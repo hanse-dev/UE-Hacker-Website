@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  dev:
+    build:
+      context: .
+      target: build # Use the build stage as a base
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules # Anonymous volume to prevent local node_modules from overwriting the container's
+    command: npm run dev -- --host 0.0.0.0
+
+  prod:
+    build:
+      context: .
+      # The default target is the final stage
+    ports:
+      - "8080:80"

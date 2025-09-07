@@ -1,0 +1,1 @@
+In diesem Kurs werden wir Python lernen. Wir nehmen uns 12 Wochen Zeit, um alle wichtigen Themen zu behandeln. Unten sind die Wochen mit den jeweiligen Zielen aufgelistet. In jeder Woche findest du die Dateien, die du herunterladen kannst.
