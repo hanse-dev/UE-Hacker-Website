@@ -58,7 +58,7 @@ The website will be available at `http://localhost:5173`.
 To build and run the production-ready version of the website, run:
 
 ```bash
-docker-compose up prod
+docker-compose up -d --build prod
 ```
 
 The website will be served by Nginx at `http://localhost:8080`.
