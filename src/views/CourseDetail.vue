@@ -3,16 +3,27 @@
     <h1>12-Wochen Python Grundkurs</h1>
     <div v-if="description" v-html="description" class="course-description"></div>
 
-    <div v-for="(week, index) in weeks" :key="index" class="week-section">
-      <h2>{{ week.title }}</h2>
-      <div v-html="week.content"></div>
-      <div v-if="week.downloads.length > 0" class="downloads-section">
-        <h4>Downloads</h4>
-        <ul>
-          <li v-for="(file, fileIndex) in week.downloads" :key="fileIndex">
-            <a :href="file.url" download>{{ file.name }}</a>
-          </li>
-        </ul>
+    <div class="table-of-contents">
+      <h3>Inhaltsverzeichnis</h3>
+      <ol>
+        <li v-for="(week, index) in weeks" :key="`toc-${index}`">
+          <a :href="`#woche-${index + 1}`">{{ week.title }}</a>
+        </li>
+      </ol>
+    </div>
+
+    <div v-for="(week, index) in weeks" :key="index" class="week-section" :id="`woche-${index + 1}`">
+      <div class="week-section-inner">
+        <h2>{{ week.title }}</h2>
+        <div v-html="week.content"></div>
+        <div v-if="week.downloads.length > 0" class="downloads-section">
+          <h4>Downloads</h4>
+          <ul>
+            <li v-for="(file, fileIndex) in week.downloads" :key="fileIndex">
+              <a :href="file.url" download>{{ file.name }}</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -81,6 +92,7 @@ export default {
         const weekB = parseInt(b.title.match(/\d+/) || 0, 10);
         return weekA - weekB;
       });
+
     });
 
     return {
@@ -99,12 +111,6 @@ export default {
   margin-bottom: 40px;
   font-size: 1.1em;
 }
-.week-section {
-  margin-bottom: 30px;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-left: 4px solid #ffd700;
-}
 .downloads-section h4 {
   margin-top: 20px;
   border-top: 1px solid #eee;
@@ -118,4 +124,37 @@ export default {
   text-decoration: none;
   color: #ff4136;
 }
+
+.table-of-contents {
+  background-color: #fdfdfd;
+  border: 1px solid #eee;
+  padding: 20px;
+  margin-bottom: 40px;
+  border-radius: 8px;
+}
+
+.table-of-contents h3 {
+  margin-top: 0;
+  border-bottom: 2px solid #ffd700;
+  padding-bottom: 10px;
+}
+
+.table-of-contents ol {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.table-of-contents li {
+  margin-bottom: 10px;
+}
+
+.table-of-contents a {
+  text-decoration: none;
+  color: #333;
+}
+
+.table-of-contents a:hover {
+  color: #ff4136;
+}
+
 </style>
