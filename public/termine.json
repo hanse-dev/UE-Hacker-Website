@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "date": "Dienstag, 16.09.25",
+    "time": "17:30 - 18:30 Uhr",
+    "location": "Übergangshaus, Königstraße 54, 23564 Lübeck",
+    "topic": "Datentypen & Kreative Geschichten",
+    "link": "/kurs/python-12-wochen-grundkurs#woche-2"
+  },
+  {
+    "id": 2,
+    "date": "Dienstag, 24.09.25",
+    "time": "17:30 - 18:30 Uhr",
+    "location": "Übergangshaus, Königstraße 54, 23564 Lübeck",
+    "topic": "Bedingungen (if-else)",
+    "link": "/kurs/python-12-wochen-grundkurs#woche-3"
+  },
+  {
+    "id": 3,
+    "date": "Dienstag, 30.09.25",
+    "time": "17:30 - 18:30 Uhr",
+    "location": "Übergangshaus, Königstraße 54, 23564 Lübeck",
+    "topic": "Schleifen (for, while)",
+    "link": "/kurs/python-12-wochen-grundkurs#woche-4"
+  }
+]

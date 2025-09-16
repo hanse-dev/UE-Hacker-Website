@@ -68,6 +68,10 @@ body {
   color: var(--accent-yellow);
 }
 
+.header-title-link {
+  text-decoration: none;
+}
+
 /* Main Content Styles */
 .app-main {
   flex-grow: 1;
@@ -84,6 +88,8 @@ body {
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .app-main h1, .app-main h2, .app-main h3 {
@@ -164,6 +170,44 @@ body {
 
 .course-link:hover {
   color: #fb8c00;
+}
+
+/* Termine Section */
+.termine-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.termin-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column; /* Ensure vertical layout */
+}
+
+.termin-card {
+  background-color: #fafafa;
+  border: 1px solid var(--border-color);
+  padding: 25px;
+  border-radius: 12px;
+  flex-grow: 1; /* Allow card to fill the space */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.termin-link:hover .termin-card {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.termin-card h3 {
+  margin-top: 0;
+  font-size: 1.2em;
+  color: var(--primary-purple);
+}
+
+.termin-card p {
+  margin-bottom: 5px;
 }
 
 /* Footer Styles */
