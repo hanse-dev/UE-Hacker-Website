@@ -1,9 +1,12 @@
 ---
-title: 'Woche 2: Datentypen und Variablen'
+title: 'Woche 2 – Datentypen & Kreative Geschichten'
 ---
 
+# Projekt: „Mein erstes Text-Abenteuer“
+Wir programmieren eine interaktive Geschichte, die sich durch die Eingaben des Benutzers verändert.
+
 # Ziele
-- wir verstehen, was Variablen sind und wozu man sie benötigt
-- wir lernen die wichtigsten Datentypen kennen: Zahlen (int, float), Text (str), boolesche Werte (bool)
-- wir können Daten vom Nutzer abfragen und speichern (input-Funktion).
-- wir begreifen die Bedeutung von Variablennamen und der Typumwandlung in Python.
+- Wir verstehen grundlegende Datentypen `str`, `int` und `float`.
+- Wir lernen wie Werte zwischen Datentypen umgewandelt werden (Type Casting).
+- Wir können Strings und Zahlen in einem Programm kombinieren.
+- Wir können einfache Eingaben des Benutzers mit der `input()`-Funktion abfragen.
