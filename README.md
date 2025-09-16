@@ -1,4 +1,4 @@
-# Uebergangshacker Website - Projekt Übersicht
+# Übergangshacker Website - Projekt Übersicht
 
 ## Zweck der WebApp
 **Lernplattform für Jugendliche zum Programmieren lernen in Python**
