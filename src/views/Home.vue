@@ -47,9 +47,30 @@ export default {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        termine.value = await response.json();
+        const allTermine = await response.json();
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // Set time to midnight for accurate date comparison
+
+        termine.value = allTermine.filter(termin => {
+          const dateString = termin.date.split(', ')[1];
+          if (!dateString) return false;
+
+          const parts = dateString.split('.'); // e.g., ["16", "09", "25"]
+          if (parts.length !== 3) return false;
+
+          const day = parts[0];
+          const month = parts[1];
+          const year = `20${parts[2]}`;
+
+          // Create a date object for the appointment in YYYY-MM-DD format for reliability
+          const terminDate = new Date(`${year}-${month}-${day}`);
+          
+          return terminDate >= today;
+        });
+
       } catch (error) {
-        console.error('Could not load termine:', error);
+        console.error('Could not load or filter termine:', error);
       }
     });
 
