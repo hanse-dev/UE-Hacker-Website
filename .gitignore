@@ -122,3 +122,4 @@ dist-ssr
 *.sln
 *.sw?
 src/assets/.DS_Store
+.DS_Store

@@ -1,37 +1,5 @@
 [
   {
-    "id": 1,
-    "date": "Dienstag, 16.09.25",
-    "time": "17:30 - 18:30 Uhr",
-    "location": "Übergangshaus, Königstraße 54, 23564 Lübeck",
-    "topic": "Datentypen & Kreative Geschichten",
-    "link": "/kurs/python-12-wochen-grundkurs#woche-2"
-  },
-  {
-    "id": 2,
-    "date": "Dienstag, 23.09.25",
-    "time": "17:30 - 18:30 Uhr",
-    "location": "Übergangshaus, Königstraße 54, 23564 Lübeck",
-    "topic": "Bedingungen (if-else)",
-    "link": "/kurs/python-12-wochen-grundkurs#woche-3"
-  },
-  {
-    "id": 3,
-    "date": "Dienstag, 30.09.25",
-    "time": "17:30 - 18:30 Uhr",
-    "location": "Übergangshaus, Königstraße 54, 23564 Lübeck",
-    "topic": "Schleifen (for, while)",
-    "link": "/kurs/python-12-wochen-grundkurs#woche-4"
-  },
-  {
-    "id": 4,
-    "date": "Dienstag, 07.10.25",
-    "time": "17:30 - 18:30 Uhr",
-    "location": "Übergangshaus, Königstraße 54, 23564 Lübeck",
-    "topic": "Funktionen",
-    "link": "/kurs/python-12-wochen-grundkurs#woche-5"
-  },
-  {
     "id": 5,
     "date": "Dienstag, 14.10.25",
     "time": "17:30 - 18:30 Uhr",
@@ -47,5 +15,21 @@
     "location": "Übergangshaus, Königstraße 54, 23564 Lübeck",
     "topic": "Module und Bibliotheken (math, random)",
     "link": "/kurs/python-12-wochen-grundkurs#woche-6"
+  },
+  {
+    "id": 7,
+    "date": "Donnerstag, 23.10.25",
+    "time": "10:30 - 14:30 Uhr",
+    "location": "Übergangshaus, Königstraße 54, 23564 Lübeck",
+    "topic": "AI für Teenager",
+    "link": "/kurs/ferienkurse"
+  },
+  {
+    "id": 8,
+    "date": "Montag, 27.10.25",
+    "time": "10:30 - 14:30 Uhr",
+    "location": "Coworking-Space Cobaas, Baasberg 1, 24211 Preetz",
+    "topic": "AI für Teenager",
+    "link": "/kurs/ferienkurse"
   }
 ]

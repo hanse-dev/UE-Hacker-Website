@@ -9,9 +9,10 @@ const routes = [
     component: Home,
   },
   {
-    path: '/kurs/python-12-wochen-grundkurs',
+    path: '/kurs/:id',
     name: 'CourseDetail',
     component: CourseDetail,
+    props: true,
   },
 ];
 

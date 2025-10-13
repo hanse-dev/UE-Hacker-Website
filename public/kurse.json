@@ -1,0 +1,14 @@
+[
+  {
+    "id": "python-12-wochen-grundkurs",
+    "title": "12-Wochen Python Grundkurs",
+    "description": "Alles, was du für den Einstieg in Python brauchst. Von den Grundlagen bis zu deinem ersten eigenen Projekt.",
+    "contentPath": "python-12-wochen-grundkurs"
+  },
+  {
+    "id": "ferienkurse",
+    "title": "Meet & Code - Herbstferienprogramm Al für Teenager",
+    "description": "Wir lernen in verschiedenen Sessions gemeinsam, was alles mit Al-Tools möglich ist, wie man sie nutzt und wie sie im neuen Schuljahr helfen können.",
+    "contentPath": "ferienkurse"
+  }
+]

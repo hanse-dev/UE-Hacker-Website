@@ -8,8 +8,7 @@
         </div>
       </router-link>
       <nav>
-        <router-link to="/">Home</router-link>
-        <router-link to="/kurs/python-12-wochen-grundkurs">Kurse</router-link>
+        <router-link v-if="showHomeLink" to="/">Home</router-link>
       </nav>
     </header>
 
@@ -24,7 +23,15 @@
 </template>
 
 <script>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+
 export default {
   name: 'App',
+  setup() {
+    const route = useRoute();
+    const showHomeLink = computed(() => route.path !== '/');
+    return { showHomeLink };
+  },
 };
 </script>
