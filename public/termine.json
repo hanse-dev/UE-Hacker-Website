@@ -37,6 +37,15 @@
     "time": "17:30 - 18:30 Uhr",
     "location": "Übergangshaus, Königstraße 54, 23564 Lübeck",
     "topic": "Module und Bibliotheken (math, random)",
+    "link": "/kurs/python-12-wochen-grundkurs#woche-6",
+    "cancelled": true
+  },
+  {
+    "id": 6,
+    "date": "Dienstag, 04.11.25",
+    "time": "17:30 - 18:30 Uhr",
+    "location": "Übergangshaus, Königstraße 54, 23564 Lübeck",
+    "topic": "Module und Bibliotheken (math, random)",
     "link": "/kurs/python-12-wochen-grundkurs#woche-6"
   }
 ]

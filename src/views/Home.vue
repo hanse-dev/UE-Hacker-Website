@@ -10,7 +10,8 @@
       <h2>Nächste Termine</h2>
       <div class="termine-list">
         <router-link v-for="termin in termine" :key="termin.id" :to="termin.link" class="termin-link">
-          <div class="termin-card">
+          <div class="termin-card" :class="{ 'cancelled': termin.cancelled }">
+            <h3 v-if="termin.cancelled" class="cancelled-text">Termin abgesagt</h3>
             <h3>{{ termin.date }}</h3>
             <p><strong>Uhrzeit:</strong> {{ termin.time }}</p>
             <p><strong>Ort:</strong> {{ termin.location }}</p>
