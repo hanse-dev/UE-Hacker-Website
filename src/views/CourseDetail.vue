@@ -28,8 +28,20 @@
     <div v-for="(week, index) in weeks" :key="index" class="week-section" :id="`woche-${index + 1}`">
       <div class="week-section-inner">
         <h2>{{ week.title }}</h2>
-        <div v-html="week.content"></div>
-        <div v-if="week.downloads.length > 0" class="downloads-section">
+
+        <!-- Show markdown description if available -->
+        <div v-if="week.content" v-html="week.content" class="week-description"></div>
+
+        <!-- Show interactive notebook if available -->
+        <JupyterNotebook
+          v-if="week.hasNotebook"
+          :notebook-path="week.notebookPath"
+          :notebook-url="week.notebookUrl"
+          :week-number="index + 1"
+        />
+
+        <!-- Show downloads for non-notebook weeks -->
+        <div v-if="!week.hasNotebook && week.downloads.length > 0" class="downloads-section">
           <h4>Downloads</h4>
           <ul>
             <li v-for="(file, fileIndex) in week.downloads" :key="fileIndex">
@@ -49,9 +61,13 @@
 import { ref, onMounted, computed } from 'vue';
 import fm from 'front-matter';
 import { marked } from 'marked';
+import JupyterNotebook from '../components/JupyterNotebook.vue';
 
 export default {
   name: 'CourseDetail',
+  components: {
+    JupyterNotebook,
+  },
   props: {
     id: {
       type: String,
@@ -116,26 +132,57 @@ export default {
         // Load weekly content only for the 12-week course
         if (isWeeklyCourse.value) {
             const weekModules = import.meta.glob('../../content/python-12-wochen-grundkurs/woche-*/*.md', { query: '?raw' });
+            const notebookModules = import.meta.glob('../../content/python-12-wochen-grundkurs/woche-*/*.ipynb', { query: '?url', import: 'default' });
             const downloadModules = import.meta.glob('../../content/python-12-wochen-grundkurs/woche-*/*.*', { query: '?url', import: 'default' });
             const weeklyContent = {};
 
+            // First, check for notebooks
+            const notebookPromises = Object.entries(notebookModules).map(async ([path, loader]) => {
+                const weekMatch = path.match(/woche-(\d+)/);
+                if (weekMatch) {
+                    const weekNum = parseInt(weekMatch[1], 10);
+                    const notebookUrl = await loader();
+                    weeklyContent[weekNum] = {
+                        title: `Woche ${weekNum}`,
+                        hasNotebook: true,
+                        notebookPath: notebookUrl,
+                        notebookUrl: notebookUrl,
+                        downloads: [],
+                    };
+                }
+            });
+            await Promise.all(notebookPromises);
+
+            // Then load markdown for all weeks
             const markdownPromises = Object.entries(weekModules).map(async ([path, loader]) => {
                 const weekMatch = path.match(/woche-(\d+)/);
                 if (weekMatch) {
                     const weekNum = parseInt(weekMatch[1], 10);
                     const rawContent = (await loader()).default;
                     const parsed = fm(rawContent);
-                    weeklyContent[weekNum] = {
-                        title: parsed.attributes.title || `Woche ${weekNum}`,
-                        content: marked(parsed.body),
-                        downloads: [],
-                    };
+
+                    if (weeklyContent[weekNum]) {
+                        // Week already has a notebook, add markdown content to it
+                        weeklyContent[weekNum].content = marked(parsed.body);
+                        if (parsed.attributes.title) {
+                            weeklyContent[weekNum].title = parsed.attributes.title;
+                        }
+                    } else {
+                        // Week has no notebook, create entry with markdown
+                        weeklyContent[weekNum] = {
+                            title: parsed.attributes.title || `Woche ${weekNum}`,
+                            content: marked(parsed.body),
+                            hasNotebook: false,
+                            downloads: [],
+                        };
+                    }
                 }
             });
             await Promise.all(markdownPromises);
 
+            // Load other downloads (excluding notebooks and markdown files)
             const downloadPromises = Object.entries(downloadModules).map(async ([path, loader]) => {
-                if (path.endsWith('.md')) return;
+                if (path.endsWith('.md') || path.endsWith('.ipynb')) return;
                 const weekMatch = path.match(/woche-(\d+)/);
                 if (weekMatch) {
                     const weekNum = parseInt(weekMatch[1], 10);
@@ -248,6 +295,41 @@ export default {
 
 .termin-card-local h4 {
     margin-top: 0;
+}
+
+.week-description {
+  background: #f9f9f9;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border-left: 4px solid #ffd700;
+}
+
+.week-description :deep(h2),
+.week-description :deep(h3),
+.week-description :deep(h4) {
+  color: #333;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.week-description :deep(p) {
+  line-height: 1.6;
+  margin-bottom: 1em;
+}
+
+.week-description :deep(ul),
+.week-description :deep(ol) {
+  margin-bottom: 1em;
+  padding-left: 25px;
+}
+
+.week-description :deep(code) {
+  background: #fff;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
 }
 
 </style>
