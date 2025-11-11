@@ -1,9 +1,21 @@
 ---
-title: 'Woche 5 – Funktionen & Eigene Werkzeuge'
+title: '🧙 Woche 5 – Die Zauberspruch-Akademie: Funktionen meistern!'
 ---
 
-# Projekt: „Der Universal-Rechner & Der persönliche Begrüßer“
-Wir schreiben eigene, wiederverwendbare Code-Blöcke (Funktionen), um einen kleinen Rechner und ein Begrüßungsprogramm zu bauen, das wir immer wieder verwenden können.
+# 📜 Die Quest: Werde zum Zaubermeister!
 
-# Ziele
-- Wir lernen, wie wir unsere eigenen Werkzeuge in Python erstellen. Mit Funktionen wird unser Code aufgeräumter, professioneller und viel mächtiger!
+Willkommen in der **Zauberspruch-Akademie von Pythonia**! Du bist ein junger Zauberlehrling, der bisher nur einzelne Zauber gewirkt hat. Aber jetzt ist es Zeit für die nächste Stufe: Du lernst, **eigene Zaubersprüche zu erschaffen**!
+
+## 🎯 Projekt: „Der Universal-Rechner & Der persönliche Begrüßer"
+Erschaffe mächtige magische Werkzeuge! Lerne, wie du wiederverwendbare Zaubersprüche (Funktionen) schreibst, um einen Universal-Rechner und einen persönlichen Begrüßer zu bauen.
+
+## ✨ Ziele
+- **Level:** Zauberlehrling
+- **XP zu verdienen:** 1200 Punkte
+- **Boss-Kampf:** Der Großmeister der Wiederholungen
+
+Du lernst:
+- Eigene Zaubersprüche (Funktionen) mit `def` zu erschaffen
+- Zauber-Zutaten (Parameter) zu verwenden
+- Magische Ergebnisse (`return`) zurückzubekommen
+- Code professionell zu strukturieren und zu organisieren
