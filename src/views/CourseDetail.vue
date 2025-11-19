@@ -27,27 +27,55 @@
 
     <div v-for="(week, index) in weeks" :key="index" class="week-section" :id="`woche-${index + 1}`">
       <div class="week-section-inner">
-        <h2>{{ week.title }}</h2>
+        <div class="week-header" @click="toggleWeek(index)">
+          <h2>{{ week.title }}</h2>
+          <button class="toggle-btn" :class="{ 'expanded': week.expanded }">
+            <span class="toggle-icon">{{ week.expanded ? '−' : '+' }}</span>
+          </button>
+        </div>
 
-        <!-- Show markdown description if available -->
-        <div v-if="week.content" v-html="week.content" class="week-description"></div>
+        <div v-show="week.expanded" class="week-content">
+          <!-- Show markdown description if available -->
+          <div v-if="week.content" v-html="week.content" class="week-description"></div>
 
-        <!-- Show interactive notebook if available -->
-        <JupyterNotebook
-          v-if="week.hasNotebook"
-          :notebook-path="week.notebookPath"
-          :notebook-url="week.notebookUrl"
-          :week-number="index + 1"
-        />
+          <!-- Show interactive notebook if available -->
+          <div v-if="week.hasNotebook" class="notebook-variants">
+            <h4>📚 Notebook-Varianten</h4>
+            <div class="variant-selector">
+              <button 
+                @click="setVariant(week, 'standard')"
+                :class="{ active: week.selectedVariant === 'standard' }"
+                class="variant-btn"
+              >
+                🎮 Gaming-Version
+              </button>
+              <button 
+                v-if="week.hasPferdewirtschaftVariant"
+                @click="setVariant(week, 'pferdewirtschaft')"
+                :class="{ active: week.selectedVariant === 'pferdewirtschaft' }"
+                class="variant-btn"
+              >
+                🐎 Pferdewirtschaft-Version
+              </button>
+            </div>
+            
+            <JupyterNotebook
+              :notebook-path="week.selectedVariant === 'pferdewirtschaft' ? week.pferdewirtschaftNotebookPath : week.notebookPath"
+              :notebook-url="week.selectedVariant === 'pferdewirtschaft' ? week.pferdewirtschaftNotebookUrl : week.notebookUrl"
+              :week-number="index + 1"
+              :key="week.selectedVariant"
+            />
+          </div>
 
-        <!-- Show downloads for non-notebook weeks -->
-        <div v-if="!week.hasNotebook && week.downloads.length > 0" class="downloads-section">
-          <h4>Downloads</h4>
-          <ul>
-            <li v-for="(file, fileIndex) in week.downloads" :key="fileIndex">
-              <a :href="file.url" download>{{ file.name }}</a>
-            </li>
-          </ul>
+          <!-- Show downloads for non-notebook weeks -->
+          <div v-if="!week.hasNotebook && week.downloads.length > 0" class="downloads-section">
+            <h4>Downloads</h4>
+            <ul>
+              <li v-for="(file, fileIndex) in week.downloads" :key="fileIndex">
+                <a :href="file.url" download>{{ file.name }}</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -58,7 +86,7 @@
 </template>
 
 <script>
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, computed, reactive } from 'vue';
 import fm from 'front-matter';
 import { marked } from 'marked';
 import JupyterNotebook from '../components/JupyterNotebook.vue';
@@ -90,6 +118,14 @@ export default {
       const parts = datePart.split('.');
       if (parts.length !== 3) return null;
       return new Date(`20${parts[2]}`, parts[1] - 1, parts[0]);
+    };
+
+    const setVariant = (week, variant) => {
+      week.selectedVariant = variant;
+    };
+
+    const toggleWeek = (index) => {
+      weeks.value[index].expanded = !weeks.value[index].expanded;
     };
 
     onMounted(async () => {
@@ -142,13 +178,31 @@ export default {
                 if (weekMatch) {
                     const weekNum = parseInt(weekMatch[1], 10);
                     const notebookUrl = await loader();
-                    weeklyContent[weekNum] = {
-                        title: `Woche ${weekNum}`,
-                        hasNotebook: true,
-                        notebookPath: notebookUrl,
-                        notebookUrl: notebookUrl,
-                        downloads: [],
-                    };
+                    const isPferdewirtschaft = path.includes('pferdewirtschaft');
+                    
+                    if (!weeklyContent[weekNum]) {
+                        weeklyContent[weekNum] = reactive({
+                            title: `Woche ${weekNum}`,
+                            hasNotebook: true,
+                            notebookPath: notebookUrl,
+                            notebookUrl: notebookUrl,
+                            hasPferdewirtschaftVariant: false,
+                            pferdewirtschaftNotebookPath: null,
+                            pferdewirtschaftNotebookUrl: null,
+                            downloads: [],
+                            selectedVariant: 'standard',
+                            expanded: weekNum === 1, // Nur erste Woche standardmäßig geöffnet
+                        });
+                    }
+                    
+                    if (isPferdewirtschaft) {
+                        weeklyContent[weekNum].hasPferdewirtschaftVariant = true;
+                        weeklyContent[weekNum].pferdewirtschaftNotebookPath = notebookUrl;
+                        weeklyContent[weekNum].pferdewirtschaftNotebookUrl = notebookUrl;
+                    } else {
+                        weeklyContent[weekNum].notebookPath = notebookUrl;
+                        weeklyContent[weekNum].notebookUrl = notebookUrl;
+                    }
                 }
             });
             await Promise.all(notebookPromises);
@@ -169,12 +223,14 @@ export default {
                         }
                     } else {
                         // Week has no notebook, create entry with markdown
-                        weeklyContent[weekNum] = {
+                        weeklyContent[weekNum] = reactive({
                             title: parsed.attributes.title || `Woche ${weekNum}`,
                             content: marked(parsed.body),
                             hasNotebook: false,
                             downloads: [],
-                        };
+                            selectedVariant: 'standard',
+                            expanded: weekNum === 1, // Nur erste Woche standardmäßig geöffnet
+                        });
                     }
                 }
             });
@@ -212,6 +268,8 @@ export default {
       weeks,
       isWeeklyCourse,
       courseTermine,
+      setVariant,
+      toggleWeek,
     };
   },
 };
@@ -330,6 +388,121 @@ export default {
   border-radius: 3px;
   font-family: 'Courier New', monospace;
   font-size: 0.9em;
+}
+
+.notebook-variants {
+  margin-bottom: 20px;
+}
+
+.notebook-variants h4 {
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 1.1em;
+}
+
+.variant-selector {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.variant-btn {
+  background: #f8f9fa;
+  border: 2px solid #dee2e6;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.variant-btn:hover {
+  background: #e9ecef;
+  border-color: #ff4136;
+}
+
+.variant-btn.active {
+  background: #ff4136;
+  color: white;
+  border-color: #ff4136;
+  font-weight: bold;
+}
+
+.week-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  margin-bottom: 0;
+  transition: all 0.3s ease;
+}
+
+.week-header:hover {
+  background: #e9ecef;
+  border-color: #ff4136;
+}
+
+.week-header h2 {
+  margin: 0;
+  color: #333;
+}
+
+.toggle-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #666;
+  padding: 5px 10px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background: #ff4136;
+  color: white;
+}
+
+.toggle-btn.expanded {
+  background: #ff4136;
+  color: white;
+  transform: rotate(180deg);
+}
+
+.toggle-icon {
+  font-weight: bold;
+  display: block;
+}
+
+.week-content {
+  padding: 20px;
+  border: 1px solid #dee2e6;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  background: white;
+}
+
+.week-section {
+  margin-bottom: 20px;
+}
+
+.week-section-inner {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 </style>

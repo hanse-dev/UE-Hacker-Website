@@ -43,7 +43,7 @@
   },
     {
     "id": 10,
-    "date": "Dienstag, 18.11.25",
+    "date": "Dienstag, 25.11.25",
     "time": "17:30 - 18:30 Uhr",
     "location": "Übergangshaus, Königstraße 54, 23564 Lübeck",
     "topic": "Listen - Grundlegende Operationen",
@@ -51,7 +51,7 @@
   },
     {
     "id": 11,
-    "date": "Dienstag, 25.11.25",
+    "date": "Dienstag, 02.12.25",
     "time": "17:30 - 18:30 Uhr",
     "location": "Übergangshaus, Königstraße 54, 23564 Lübeck",
     "topic": "Module und Bibliotheken (math, random)",
@@ -59,7 +59,7 @@
   },
     {
     "id": 12,
-    "date": "Dienstag, 02.12.25",
+    "date": "Dienstag, 09.12.25",
     "time": "17:30 - 18:30 Uhr",
     "location": "Übergangshaus, Königstraße 54, 23564 Lübeck",
     "topic": "Dictionaries und Tupel",

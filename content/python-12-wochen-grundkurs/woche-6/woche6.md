@@ -1,20 +1,28 @@
 ---
-title: '🎮 Woche 6 – Das Inventar-System: Listen meistern!'
+title: '📚 Woche 6 – Das Sammlungs-System: Listen meistern!'
 ---
 
-# 📜 Die Quest: Dein erstes Inventar-System
+# 🎯 Die Herausforderung: Dein erstes Sammlungs-System
 
-Du bist ein junger Abenteurer in der Welt von Pythonia. Bisher hast du nur einzelne Gegenstände tragen können – ein Schwert hier, ein Trank da. Aber jetzt steht dir eine große Quest bevor: Du musst den **Chaos-Drachen** besiegen, der die Daten des Königreichs durcheinander gebracht hat!
+Du stehst vor einer wichtigen Aufgabe: Organisation! Ob du nun die Ausrüstung eines Abenteuers verwalten, die Futterrationen auf einem Pferdehof organisieren oder eine persönliche Sammlung katalogisieren möchtest – du brauchst ein System, das mehrere Elemente gleichzeitig verwalten kann.
 
-Dafür brauchst du ein **Inventar-System** – eine magische Tasche, die viele Gegenstände aufnehmen kann. In Python nennen wir diese magische Tasche eine **Liste**.
+Dafür brauchst du ein **Sammlungs-System** – eine digitale Struktur, die viele Elemente aufnehmen kann. In Python nennen wir diese Struktur eine **Liste**.
 
-## 🎯 Projekt: „Die Einkaufsliste & Der persönliche Sammler"
-Meistere das Inventar-System! Lerne, wie du Listen organisierst und verwaltest, um praktische Programme wie Einkaufslisten und Sammlungen zu erstellen.
+## 🎮 Themenwelten zur Auswahl
+
+Wähle deine bevorzugte Lernumgebung:
+- **🎮 Gaming-Welt:** Abenteuer, Monster und magische Ausrüstung
+- **🐎 Pferdewirtschaft:** Stallmanagement, Pferde und Futterplanung
+
+Beide Welten vermitteln dieselben Python-Kenntnisse – nur mit unterschiedlichem Flair!
+
+## 🎯 Projekt: „Die digitale Sammlung"
+Meistere das Sammlungs-System! Lerne, wie du Listen organisierst und verwaltest, um praktische Programme wie Einkaufslisten, Inventare oder Planungssysteme zu erstellen.
 
 ## ✨ Ziele
-- **Level:** Anfänger-Abenteurer
+- **Level:** Sammlungs-Anfänger:in
 - **XP zu verdienen:** 1000 Punkte
-- **Boss-Kampf:** Der Chaos-Drache der unsortierten Daten
+- **Herausforderung:** Die unsortierte Daten-Chaos meistern
 
 Du lernst:
 - Listen zu erstellen und mit Werten zu füllen

@@ -1,21 +1,31 @@
 ---
-title: '🧙 Woche 5 – Die Zauberspruch-Akademie: Funktionen meistern!'
+title: '📚 Woche 5 – Das Routinen-System: Funktionen meistern!'
 ---
 
-# 📜 Die Quest: Werde zum Zaubermeister!
+# 🎯 Die Herausforderung: Dein erstes Routinen-System
 
-Willkommen in der **Zauberspruch-Akademie von Pythonia**! Du bist ein junger Zauberlehrling, der bisher nur einzelne Zauber gewirkt hat. Aber jetzt ist es Zeit für die nächste Stufe: Du lernst, **eigene Zaubersprüche zu erschaffen**!
+Du stehst vor einer wichtigen Aufgabe: Automatisierung! Ob du nun magische Zaubersprüche erschaffen, Stall-Routinen auf einem Pferdehof organisieren oder persönliche Helfer programmieren möchtest – du brauchst ein System, das Aufgaben wiederholbar und flexibel macht.
 
-## 🎯 Projekt: „Der Universal-Rechner & Der persönliche Begrüßer"
-Erschaffe mächtige magische Werkzeuge! Lerne, wie du wiederverwendbare Zaubersprüche (Funktionen) schreibst, um einen Universal-Rechner und einen persönlichen Begrüßer zu bauen.
+Dafür brauchst du ein **Routinen-System** – eine wiederverwendbare Struktur, die komplexe Aufgaben in kleine, verständliche Schritte zerlegt. In Python nennen wir diese Struktur eine **Funktion**.
+
+## 🎮 Themenwelten zur Auswahl
+
+Wähle deine bevorzugte Lernumgebung:
+- **🧙 Gaming-Welt:** Zaubersprüche, Magie und fantasy-Abenteuer
+- **🐎 Pferdewirtschaft:** Stall-Routinen, Pferdepflege und Hof-Management
+
+Beide Welten vermitteln dieselben Python-Kenntnisse – nur mit unterschiedlichem Flair!
+
+## 🎯 Projekt: „Der digitale Helfer"
+Erschaffe praktische Werkzeuge! Lerne, wie du wiederverwendbare Routinen (Funktionen) schreibst, um Rechner, Begrüßungssysteme und organisatorische Helfer zu bauen.
 
 ## ✨ Ziele
-- **Level:** Zauberlehrling
+- **Level:** Routinen-Anfänger:in
 - **XP zu verdienen:** 1200 Punkte
-- **Boss-Kampf:** Der Großmeister der Wiederholungen
+- **Herausforderung:** Die Meister:in der Wiederholungen
 
 Du lernst:
-- Eigene Zaubersprüche (Funktionen) mit `def` zu erschaffen
-- Zauber-Zutaten (Parameter) zu verwenden
-- Magische Ergebnisse (`return`) zurückzubekommen
+- Eigene Routinen (Funktionen) mit `def` zu erstellen
+- Arbeitsmittel (Parameter) zu verwenden
+- Praktische Ergebnisse (`return`) zurückzubekommen
 - Code professionell zu strukturieren und zu organisieren
