@@ -64,5 +64,13 @@
     "location": "Übergangshaus, Königstraße 54, 23564 Lübeck",
     "topic": "Dictionaries und Tupel",
     "link": "/kurs/python-12-wochen-grundkurs#woche-8"
+    },
+    {
+    "id": 13,
+    "date": "Dienstag, 16.12.25",
+    "time": "17:30 - 18:30 Uhr",
+    "location": "Übergangshaus, Königstraße 54, 23564 Lübeck",
+    "topic": "Testing",
+    "link": "/kurs/python-12-wochen-grundkurs#woche-9"
   }
 ]
