@@ -43,25 +43,34 @@
             <h4>📚 Notebook-Varianten</h4>
             <div class="variant-selector">
               <button 
-                @click="setVariant(week, 'standard')"
-                :class="{ active: week.selectedVariant === 'standard' }"
+                v-if="week.hasAbenteuerVariant"
+                @click="setVariant(week, 'abenteuer')"
+                :class="{ active: week.selectedVariant === 'abenteuer' }"
                 class="variant-btn"
               >
-                🎮 Gaming-Version
+                🗺️ Abenteuer
               </button>
               <button 
-                v-if="week.hasPferdewirtschaftVariant"
-                @click="setVariant(week, 'pferdewirtschaft')"
-                :class="{ active: week.selectedVariant === 'pferdewirtschaft' }"
+                v-if="week.hasPferdeVariant"
+                @click="setVariant(week, 'pferde')"
+                :class="{ active: week.selectedVariant === 'pferde' }"
                 class="variant-btn"
               >
-                🐎 Pferdewirtschaft-Version
+                🐴 Pferde
+              </button>
+              <button 
+                v-if="week.hasScifiVariant"
+                @click="setVariant(week, 'scifi')"
+                :class="{ active: week.selectedVariant === 'scifi' }"
+                class="variant-btn"
+              >
+                🚀 Sci-Fi
               </button>
             </div>
             
             <JupyterNotebook
-              :notebook-path="week.selectedVariant === 'pferdewirtschaft' ? week.pferdewirtschaftNotebookPath : week.notebookPath"
-              :notebook-url="week.selectedVariant === 'pferdewirtschaft' ? week.pferdewirtschaftNotebookUrl : week.notebookUrl"
+              :notebook-path="getNotebookPath(week)"
+              :notebook-url="getNotebookUrl(week)"
               :week-number="index + 1"
               :key="week.selectedVariant"
             />
@@ -178,30 +187,52 @@ export default {
                 if (weekMatch) {
                     const weekNum = parseInt(weekMatch[1], 10);
                     const notebookUrl = await loader();
-                    const isPferdewirtschaft = path.includes('pferdewirtschaft');
+                    
+                    // Detect variant type from filename
+                    const isAbenteuer = path.includes('_abenteuer.ipynb');
+                    const isPferde = path.includes('_pferde.ipynb');
+                    const isScifi = path.includes('_scifi.ipynb');
                     
                     if (!weeklyContent[weekNum]) {
                         weeklyContent[weekNum] = reactive({
                             title: `Woche ${weekNum}`,
                             hasNotebook: true,
-                            notebookPath: notebookUrl,
-                            notebookUrl: notebookUrl,
-                            hasPferdewirtschaftVariant: false,
-                            pferdewirtschaftNotebookPath: null,
-                            pferdewirtschaftNotebookUrl: null,
+                            hasAbenteuerVariant: false,
+                            hasPferdeVariant: false,
+                            hasScifiVariant: false,
+                            abenteuerNotebookPath: null,
+                            abenteuerNotebookUrl: null,
+                            pferdeNotebookPath: null,
+                            pferdeNotebookUrl: null,
+                            scifiNotebookPath: null,
+                            scifiNotebookUrl: null,
                             downloads: [],
-                            selectedVariant: 'standard',
+                            selectedVariant: null,
                             expanded: weekNum === 1, // Nur erste Woche standardmäßig geöffnet
                         });
                     }
                     
-                    if (isPferdewirtschaft) {
-                        weeklyContent[weekNum].hasPferdewirtschaftVariant = true;
-                        weeklyContent[weekNum].pferdewirtschaftNotebookPath = notebookUrl;
-                        weeklyContent[weekNum].pferdewirtschaftNotebookUrl = notebookUrl;
-                    } else {
-                        weeklyContent[weekNum].notebookPath = notebookUrl;
-                        weeklyContent[weekNum].notebookUrl = notebookUrl;
+                    if (isAbenteuer) {
+                        weeklyContent[weekNum].hasAbenteuerVariant = true;
+                        weeklyContent[weekNum].abenteuerNotebookPath = notebookUrl;
+                        weeklyContent[weekNum].abenteuerNotebookUrl = notebookUrl;
+                        if (!weeklyContent[weekNum].selectedVariant) {
+                            weeklyContent[weekNum].selectedVariant = 'abenteuer';
+                        }
+                    } else if (isPferde) {
+                        weeklyContent[weekNum].hasPferdeVariant = true;
+                        weeklyContent[weekNum].pferdeNotebookPath = notebookUrl;
+                        weeklyContent[weekNum].pferdeNotebookUrl = notebookUrl;
+                        if (!weeklyContent[weekNum].selectedVariant) {
+                            weeklyContent[weekNum].selectedVariant = 'pferde';
+                        }
+                    } else if (isScifi) {
+                        weeklyContent[weekNum].hasScifiVariant = true;
+                        weeklyContent[weekNum].scifiNotebookPath = notebookUrl;
+                        weeklyContent[weekNum].scifiNotebookUrl = notebookUrl;
+                        if (!weeklyContent[weekNum].selectedVariant) {
+                            weeklyContent[weekNum].selectedVariant = 'scifi';
+                        }
                     }
                 }
             });
@@ -228,7 +259,7 @@ export default {
                             content: marked(parsed.body),
                             hasNotebook: false,
                             downloads: [],
-                            selectedVariant: 'standard',
+                            selectedVariant: null,
                             expanded: weekNum === 1, // Nur erste Woche standardmäßig geöffnet
                         });
                     }
@@ -262,6 +293,20 @@ export default {
       }
     });
 
+    const getNotebookPath = (week) => {
+      if (week.selectedVariant === 'abenteuer') return week.abenteuerNotebookPath;
+      if (week.selectedVariant === 'pferde') return week.pferdeNotebookPath;
+      if (week.selectedVariant === 'scifi') return week.scifiNotebookPath;
+      return null;
+    };
+
+    const getNotebookUrl = (week) => {
+      if (week.selectedVariant === 'abenteuer') return week.abenteuerNotebookUrl;
+      if (week.selectedVariant === 'pferde') return week.pferdeNotebookUrl;
+      if (week.selectedVariant === 'scifi') return week.scifiNotebookUrl;
+      return null;
+    };
+
     return {
       course,
       description,
@@ -270,6 +315,8 @@ export default {
       courseTermine,
       setVariant,
       toggleWeek,
+      getNotebookPath,
+      getNotebookUrl,
     };
   },
 };
