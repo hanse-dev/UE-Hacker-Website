@@ -11,20 +11,13 @@ Dafür brauchst du ein **Sammlungs-System** – eine digitale Struktur, die viel
 ## 🎮 Themenwelten zur Auswahl
 
 Wähle deine bevorzugte Lernumgebung:
-- **🎮 Gaming-Welt:** Abenteuer, Monster und magische Ausrüstung
+- **🗺️ Abenteuer-Welt:** Inventar-Systeme und Schatz-Sammlungen
 - **🐎 Pferdewirtschaft:** Stallmanagement, Pferde und Futterplanung
+- **🎮 Sci-Fi-Welt:** Abenteuer, Monster und magische Ausrüstung
 
-Beide Welten vermitteln dieselben Python-Kenntnisse – nur mit unterschiedlichem Flair!
+Alle Welten vermitteln dieselben Python-Kenntnisse – nur mit unterschiedlichem Flair!
 
-## 🎯 Projekt: „Die digitale Sammlung"
-Meistere das Sammlungs-System! Lerne, wie du Listen organisierst und verwaltest, um praktische Programme wie Einkaufslisten, Inventare oder Planungssysteme zu erstellen.
-
-## ✨ Ziele
-- **Level:** Sammlungs-Anfänger:in
-- **XP zu verdienen:** 1000 Punkte
-- **Herausforderung:** Die unsortierte Daten-Chaos meistern
-
-Du lernst:
+# 🎯 Lernziele
 - Listen zu erstellen und mit Werten zu füllen
 - Über Indizes auf Listenelemente zuzugreifen
 - Listen mit `append()`, `remove()`, `pop()` zu verändern

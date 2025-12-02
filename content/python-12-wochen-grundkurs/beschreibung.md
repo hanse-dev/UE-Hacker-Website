@@ -2,7 +2,7 @@ In diesem Kurs werden wir Python lernen. Wir nehmen uns 12 Wochen Zeit, um alle 
 
 Hier ist die Übersicht der Wochenthemen:
 
-*   **Woche 1:** Einführung und erste Programme
+*   **Woche 1:** Einführung und erstes Programm
 *   **Woche 2:** Datentypen und Variablen
 *   **Woche 3:** Bedingungen (if-else)
 *   **Woche 4:** Schleifen (for, while)

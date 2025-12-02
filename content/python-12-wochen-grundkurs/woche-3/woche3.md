@@ -1,11 +1,26 @@
 ---
-title: 'Woche 3 – Bedingungen & Logische Abenteuer'
+title: '📚 Woche 3 – Bedingungen (if-else): Entscheidungen treffen!'
 ---
 
-# Projekt: „Interaktiver Pfad-Entscheider“
-Wir programmieren eine Geschichte, in der der Benutzer Entscheidungen trifft, die den Verlauf der Handlung bestimmen.
+# 🎯 Die Herausforderung: Programme, die denken
 
-# Ziele
-- Wir lernen Bedingungen mit `if`, `elif` und `else` formulieren.
-- Wir lernen Vergleichs- (`==`, `>`, `<`) und logische Operatoren (`and`, `or`) anwenden.
-- Wir nutzen Benutzereingaben, um den Programmfluss zu steuern.
+Du stehst vor einer wichtigen Frage: Wie kann dein Programm Entscheidungen treffen? Wie reagiert es unterschiedlich auf verschiedene Situationen? Soll ein Held angreifen oder fliehen? Ist ein Spieler alt genug? Hat jemand genug Gold für einen Kauf?
+
+Dafür brauchst du **Bedingungen** – Code, der nur unter bestimmten Umständen ausgeführt wird. In Python nutzen wir dafür **if-else-Strukturen**.
+
+## 🎮 Themenwelten zur Auswahl
+
+Wähle deine bevorzugte Lernumgebung:
+- **🗺️ Abenteuer-Welt:** Entscheidungen im Kampf und auf Quests in Pythonia
+- **🐴 Pferdewirtschaft:** Pferdepflege-Entscheidungen und Reiterhof-Management
+- **🚀 Sci-Fi-Welt:** Raumschiff-Systeme und kritische Weltraum-Entscheidungen
+
+Alle Welten vermitteln dieselben Python-Kenntnisse – nur mit unterschiedlichem Flair!
+
+# 🎯 Lernziele
+- Einfache if-Bedingungen zu schreiben
+- if-else-Strukturen zu nutzen
+- Mehrere Bedingungen mit elif zu kombinieren
+- Vergleichsoperatoren (==, !=, <, >, <=, >=) anzuwenden
+- Logische Operatoren (and, or, not) zu verwenden
+- Verschachtelte Bedingungen zu erstellen

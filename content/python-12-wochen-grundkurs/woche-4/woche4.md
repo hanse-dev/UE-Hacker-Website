@@ -11,21 +11,13 @@ Dafür brauchst du ein **Wiederholungs-System** – eine Struktur, die Codeblöc
 ## 🎮 Themenwelten zur Auswahl
 
 Wähle deine bevorzugte Lernumgebung:
-- **🚀 Gaming-Welt:** Raketen, Countdowns und technische Systeme
-- **🐎 Pferdewirtschaft:** Stall-Routinen, Fütterungs-Pläne und Hof-Management
 - **🗺️ Abenteuer-Welt:** Rituale, Quests und magische Wiederholungen
+- **🐎 Pferdewirtschaft:** Stall-Routinen, Fütterungs-Pläne und Hof-Management
+- **🚀 Sci-Fi-Welt:** Raketen, Countdowns und technische Systeme
 
 Alle Welten vermitteln dieselben Python-Kenntnisse – nur mit unterschiedlichem Flair!
 
-## 🎯 Projekt: „Der digitale Automatisierer"
-Meistere die Kunst der Wiederholung! Lerne, wie du automatisierte Systeme (Schleifen) erstellst, um Countdowns, Passwort-Systeme und organisatorische Helfer zu bauen.
-
-## ✨ Ziele
-- **Level:** Automatisierungs-Anfänger:in
-- **XP zu verdienen:** 1000 Punkte
-- **Herausforderung:** Die Wächter:in der Endlos-Rituale
-
-Du lernst:
+# 🎯 Lernziele
 - Wiederholungs-Systeme (Schleifen) mit `for` und `while` zu erstellen
 - Bedingungen zu steuern und Endlosschleifen zu vermeiden
 - Mit `break` Routinen kontrolliert zu beenden
