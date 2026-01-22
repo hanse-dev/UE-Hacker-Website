@@ -17,7 +17,7 @@
     </main>
 
     <footer class="app-footer">
-      <p>&copy; 2025 Übergangshacker. Alle Rechte vorbehalten.</p>
+      <p>&copy; 2026 Übergangshacker. Alle Rechte vorbehalten.</p>
     </footer>
   </div>
 </template>

@@ -31,6 +31,31 @@
         </div>
       </div>
     </section>
+
+    <section id="unterstuetzer">
+      <h2>Unterstützt von</h2>
+      <div class="unterstuetzer-card">
+        <div class="unterstuetzer-content">
+          <img src="@/assets/itscouts-logo.jpeg" alt="ITScouts Logo" class="unterstuetzer-logo">
+          <div class="unterstuetzer-text">
+            <h3>ITScouts</h3>
+            <p>Die ITScouts fördern junge Talente im Bereich IT und Programmierung. Gemeinsam bringen wir Kindern und Jugendlichen die Welt des Codes näher.</p>
+            <a href="https://www.faw.de/luebeck/projekte/it-scout" target="_blank" rel="noopener noreferrer" class="mehr-infos-link">mehr Infos hier</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="unterstuetzer-card">
+        <div class="unterstuetzer-content">
+          <img src="@/assets/logo_dlc_beta.svg" alt="DLC Logo" class="unterstuetzer-logo">
+          <div class="unterstuetzer-text">
+            <h3>DLC - Digital Learning Center</h3>
+            <p>Das DLC ist ein innovatives Zentrum für digitale Bildung und Technologietransfer. Wir unterstützen moderne Bildungsprojekte und schaffen Raum für zukunftsweisendes Lernen.</p>
+            <a href="https://dlc.sh" target="_blank" rel="noopener noreferrer" class="mehr-infos-link">mehr Infos hier</a>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -138,5 +163,74 @@ export default {
   color: #333;
   margin-top: -10px;
   margin-bottom: 15px;
+}
+
+.unterstuetzer-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 2rem 0;
+  border: 1px solid #e9ecef;
+}
+
+.unterstuetzer-content {
+  display: flex;
+  align-items: center;
+}
+
+.unterstuetzer-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease;
+}
+
+.unterstuetzer-link:hover {
+  transform: translateY(-2px);
+}
+
+.mehr-infos-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.mehr-infos-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.unterstuetzer-logo {
+  width: 120px;
+  height: auto;
+  margin-right: 2rem;
+  border-radius: 4px;
+}
+
+.unterstuetzer-text h3 {
+  margin: 0 0 0.5rem 0;
+  color: #2c3e50;
+}
+
+.unterstuetzer-text p {
+  margin: 0;
+  color: #666;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .unterstuetzer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .unterstuetzer-logo {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
 }
 </style>
