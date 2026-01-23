@@ -18,7 +18,7 @@ Diese Vorlage basiert auf der optimierten Struktur von Woche 1 mit maximal 3 Ker
 ```markdown
 ## 🌟 Die Freundschaft beginnt: Willkommen im Reiterhof Sonnental
 
-Willkommen, junge Pferdefreund:in! Du betrittst den idyllischen **Reiterhof Sonnental** – ein Ort voller Natur, Freundschaft und Abenteuer mit Pferden. In dieser Woche lernst du die drei wichtigsten Grundlagen:
+Willkommen, junge Pferdefreund:in! Du betrittst den idyllischen **Reiterhof Sonnental** – ein Ort voller Natur, Freundschaft und Abenteuer mit Pferden. In dieser Woche lernst du die drei wichtigsten Lektion:
 
 **Deine Mission:**
 - [Lernziel 1]
@@ -28,11 +28,11 @@ Willkommen, junge Pferdefreund:in! Du betrittst den idyllischen **Reiterhof Sonn
 **Leg los!** Dein Pferdefreund wartet schon auf dich...
 ```
 
-### 3. **Drei Grundlagen-Konzepte** (je 1x Markdown + 1x Code)
+### 3. **Drei Lektion-Konzepte** (je 1x Markdown + 1x Code)
 
-#### Konzept 1: [Name des Konzepts]
+#### Lektion 1: [Name des Konzepts]
 ```markdown
-## 📚 Grundlage 1: [Name des Konzepts]
+## 📚 Lektion 1: [Name des Konzepts]
 
 **Was es ist:** [Kurze, einfache Erklärung mit Pferde-Metapher]
 
@@ -55,9 +55,9 @@ Willkommen, junge Pferdefreund:in! Du betrittst den idyllischen **Reiterhof Sonn
 [Code-Beispiel]
 ```
 
-#### Konzept 2: [Name des Konzepts]
+#### Lektion 2: [Name des Konzepts]
 ```markdown
-## 🐎 Grundlage 2: [Name des Konzepts]
+## 🐎 Lektion 2: [Name des Konzepts]
 
 **Was es ist:** [Kurze, einfache Erklärung mit Pferde-Metapher]
 
@@ -80,9 +80,9 @@ Willkommen, junge Pferdefreund:in! Du betrittst den idyllischen **Reiterhof Sonn
 [Code-Beispiel]
 ```
 
-#### Konzept 3: [Name des Konzepts]
+#### Lektion 3: [Name des Konzepts]
 ```markdown
-## 🍃 Grundlage 3: [Name des Konzepts]
+## 🍃 Lektion 3: [Name des Konzepts]
 
 **Was es ist:** [Kurze, einfache Erklärung mit Pferde-Metapher]
 

@@ -18,7 +18,7 @@ Diese Vorlage basiert auf der optimierten Struktur von Woche 1 mit maximal 3 Ker
 ```markdown
 ## 🌟 Die Mission beginnt: Willkommen an Bord der Nebula-7
 
-Willkommen, Kommandant:in! Du betrittstest die hochmoderne **Raumstation Nebula-7** – ein Zentrum für technologische Innovationen und interstellare Abenteuer. In dieser Woche lernst du die drei wichtigsten Grundlagen:
+Willkommen, Kommandant:in! Du betrittstest die hochmoderne **Raumstation Nebula-7** – ein Zentrum für technologische Innovationen und interstellare Abenteuer. In dieser Woche lernst du die drei wichtigsten Systemprotokolle:
 
 **Deine Mission:**
 - [Lernziel 1]
@@ -28,11 +28,11 @@ Willkommen, Kommandant:in! Du betrittstest die hochmoderne **Raumstation Nebula-
 **Leg los!** Dein nächster Befehl wartet schon...
 ```
 
-### 3. **Drei Grundlagen-Konzepte** (je 1x Markdown + 1x Code)
+### 3. **Drei Systemprotokoll-Konzepte** (je 1x Markdown + 1x Code)
 
-#### Konzept 1: [Name des Konzepts]
+#### Systemprotokoll 1: [Name des Systemprotokoll]
 ```markdown
-## 📚 Grundlage 1: [Name des Konzepts]
+## 📚 Systemprotokoll 1: [Name des Systemprotokoll]
 
 **Was es ist:** [Kurze, einfache Erklärung mit Sci-Fi-Metapher]
 
@@ -55,9 +55,9 @@ Willkommen, Kommandant:in! Du betrittstest die hochmoderne **Raumstation Nebula-
 [Code-Beispiel]
 ```
 
-#### Konzept 2: [Name des Konzepts]
+#### Systemprotokoll 2: [Name des Systemprotokoll]
 ```markdown
-## 🤖 Grundlage 2: [Name des Konzepts]
+## 🤖 Systemprotokoll 2: [Name des Systemprotokoll]
 
 **Was es ist:** [Kurze, einfache Erklärung mit Sci-Fi-Metapher]
 
@@ -80,9 +80,9 @@ Willkommen, Kommandant:in! Du betrittstest die hochmoderne **Raumstation Nebula-
 [Code-Beispiel]
 ```
 
-#### Konzept 3: [Name des Konzepts]
+#### Systemprotokoll 3: [Name des Systemprotokoll]
 ```markdown
-## 🛸 Grundlage 3: [Name des Konzepts]
+## 🛸 Systemprotokoll 3: [Name des Systemprotokoll]
 
 **Was es ist:** [Kurze, einfache Erklärung mit Sci-Fi-Metapher]
 

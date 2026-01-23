@@ -13,9 +13,10 @@
 ### Woche 2: Datentypen und Variablen
 - **Thema:** Die vier Grunddatentypen
 - **Die Kern-Lernpunkte:**
-  1. Die vier Datentypen: String, Integer, Float, Boolean
-  2. Mathematische Operationen und String-Operationen
-  3. Typumwandlung und Benutzereingaben
+  1. Den f-string für moderne Textformatierung zu beherrschen
+  2. Die vier Datentypen: String, Integer, Float, Boolean
+  3. Mathematische Operationen und String-Operationen
+  4. Typumwandlung und Benutzereingaben
 
 ### Woche 3: Bedingungen (if-else)
 - **Thema:** Entscheidungen im Code

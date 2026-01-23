@@ -28,11 +28,11 @@ Willkommen, junger Abenteurer! Du betrittst die magische Welt von **[Ort]** – 
 **Leg los!** Dein erster Zauber wartet schon...
 ```
 
-### 3. **Drei Grundlagen-Konzepte** (je 1x Markdown + 1x Code)
+### 3. **Drei Zauberformel-Konzepte** (je 1x Markdown + 1x Code)
 
 #### Konzept 1: [Name des Konzepts]
 ```markdown
-## 📚 Grundlage 1: [Name des Konzepts]
+## 📚 Zauberformel 1: [Name des Konzepts]
 
 **Was es ist:** [Kurze, einfache Erklärung]
 
@@ -57,7 +57,7 @@ Willkommen, junger Abenteurer! Du betrittst die magische Welt von **[Ort]** – 
 
 #### Konzept 2: [Name des Konzepts]
 ```markdown
-## 📦 Grundlage 2: [Name des Konzepts]
+## 📦 Zauberformel 2: [Name des Konzepts]
 
 **Was es ist:** [Kurze, einfache Erklärung]
 
@@ -82,7 +82,7 @@ Willkommen, junger Abenteurer! Du betrittst die magische Welt von **[Ort]** – 
 
 #### Konzept 3: [Name des Konzepts]
 ```markdown
-## ✨ Grundlage 3: [Name des Konzepts]
+## ✨ Zauberformel 3: [Name des Konzepts]
 
 **Was es ist:** [Kurze, einfache Erklärung]
 
