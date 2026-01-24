@@ -405,6 +405,13 @@ print("🚀 Nächste Woche: [Thema nächste Woche]!")
 - ❌ **KEINE `\n` in Print-Statements verwenden!**
 - ✅ **Für neue Zeilen: Separates `print()` verwenden**
 
+### Wichtig für Boss-Quests:
+- ❌ **KEINE Klassen in Woche 9!** (kommen erst in Woche 10)
+- ✅ Nur Funktionen verwenden in Woche 9
+- ✅ Minimale Code-Beispiele mit `pass`
+- ✅ Klare Beschreibungen WAS zu tun ist
+- ✅ Struktur-Hinweise ohne komplette Lösungen
+
 ### Markdown-Stil:
 - Emojis für visuelle Orientierung
 - Kurze, prägnante Sätze

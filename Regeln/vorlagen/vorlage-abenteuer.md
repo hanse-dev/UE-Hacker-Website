@@ -297,13 +297,54 @@ Wenn du alle Punkte abhaken kannst – Glückwunsch! Du bist bereit für die Bos
 
 [Story]
 
-**Aufgaben:**
-1. [Aufgabe 1]
-2. [Aufgabe 2]
-3. [Aufgabe 3]
-4. [Aufgabe 4]
-5. [Aufgabe 5]
-6. [Aufgabe 6]
+**Was du tun sollst:**
+
+**1. [Hauptaufgabe 1]:**
+   - Erstelle eine Funktion für [spezifische Aufgabe]
+   - Die Funktion soll [konkrete Anforderung]
+   - Tipp: [Hinweis ohne Lösung]
+
+**2. [Hauptaufgabe 2]:**
+   - Schreibe eine Funktion, die [beschreibt was zu tun ist]
+   - Erstelle eine Validierungsfunktion für [Zweck]
+   - Behandle Fehler wenn [Fehlerfall]
+
+**3. [Hauptaufgabe 3]:**
+   - Erstelle eine [Datenstruktur] als Zwischenspeicher
+   - Schreibe Funktionen zum Hinzufügen und Holen von Daten
+   - Implementiere eine Funktion zum [Aktion]
+
+**4. [Hauptaufgabe 4]:**
+   - Filtere Daten nach [Bedingung 1]
+   - Filtere Daten nach [Bedingung 2]
+   - Kombiniere mehrere Filterbedingungen
+
+**5. [Hauptaufgabe 5]:**
+   - Speichere gefilterte Daten als [Format 1]
+   - Speichere gefilterte Daten als [Format 2]
+   - Erstelle automatische Dateinamen mit Zeitstempel
+
+**6. [Hauptaufgabe 6]:**
+   - Starte den [Prozess]
+   - Verarbeite Daten in Echtzeit
+   - Zeige Statistik der verarbeiteten Daten
+
+**Beispiel-Struktur:**
+```python
+# So könntest du beginnen:
+import time
+import json
+
+def funktion_name(parameter):
+    # Beschreibung was die Funktion tut
+    pass
+
+# ... weitere Funktionen hier
+
+# Hauptprogramm
+daten = []
+# Verarbeite Daten...
+```
 
 **Bonus-Challenge:** [Optionale Zusatzaufgabe]
 ```
@@ -320,13 +361,72 @@ Wenn du alle Punkte abhaken kannst – Glückwunsch! Du bist bereit für die Bos
 
 [Story]
 
-**Aufgaben:**
-1. [Aufgabe 1]
-2. [Aufgabe 2]
-3. [Aufgabe 3]
-4. [Aufgabe 4]
-5. [Aufgabe 5]
-6. [Aufgabe 6]
+**Was du tun sollst:**
+
+**1. [Hauptaufgabe 1]:**
+   - Erstelle eine Funktion, die [spezifische Aufgabe]
+   - Prüfe die [Eigenschaft] falls [Bedingung]
+   - Gib "[Rückgabewert]" zurück wenn [Fall]
+
+**2. [Hauptaufgabe 2]:**
+   - Wandele [Format 1] in [Format 2] um
+   - Beachte: [spezielle Anforderung]
+   - Wandele [Format 2] in [Format 1] um
+   - Erkenne automatisch die [Eigenschaft]
+   - Behandle [Problemfall]
+
+**3. [Hauptaufgabe 3]:**
+   - Lese [Dateityp] mit [Modul]
+   - Wandele [Struktur] in Dictionary um
+   - Wandele Dictionary in [Struktur] um
+   - Speichere [Struktur] in Datei
+   - Behandle [speziellen Fall]
+
+**4. [Hauptaufgabe 4]:**
+   - Prüfe Daten gegen ein [Schema]
+   - Stelle konsistente [Typen] sicher
+   - Entferne ungültige oder leere Einträge
+   - Standardisiere Formate (Datum, Zahlen etc.)
+   - Gib [Fehlermeldung] bei ungültigen Daten
+
+**5. [Hauptaufgabe 5]:**
+   - Benenne [Elemente] um (mapping)
+   - Behalte nur bestimmte [Elemente]
+   - Füge berechnete [Elemente] hinzu
+   - Gruppiere und aggregiere Daten
+   - Sortiere Daten nach [Kriterium]
+
+**6. [Hauptaufgabe 6]:**
+   - Hauptfunktion für die [Prozess]
+   - Batch-Verarbeitung für viele [Elemente]
+   - Protokoll aller [Aktionen]
+   - Automatische [Prozess] ganzer Ordner
+   - Statistik über verarbeitete [Elemente]
+
+**Beispiel-Struktur:**
+```python
+# So könntest du beginnen:
+import json
+import csv
+import xml.etree.ElementTree as ET
+
+def funktion_name(parameter):
+    # Erkenne [Format]
+    pass
+
+def konvertiere_format(eingabe, ausgabe):
+    # Konvertiere [Format] mit [Spezialität]
+    pass
+
+# ... weitere Funktionen hier
+
+# Hauptprogramm
+statistik = {
+    'anzahl': 0,
+    'gesamt': 0
+}
+# Verarbeite [Elemente]...
+```
 
 **Bonus-Challenge:** [Optionale Zusatzaufgabe]
 ```
@@ -343,13 +443,81 @@ Wenn du alle Punkte abhaken kannst – Glückwunsch! Du bist bereit für die Bos
 
 [Story]
 
-**Aufgaben:**
-1. [Aufgabe 1]
-2. [Aufgabe 2]
-3. [Aufgabe 3]
-4. [Aufgabe 4]
-5. [Aufgabe 5]
-6. [Aufgabe 6]
+**Was du tun sollst:**
+
+**1. [Hauptaufgabe 1]:**
+   - Erstelle Funktionen zur automatischen [Aktion]
+   - Verschiebe [Elemente] ins [Ziel] mit Zeitstempel
+   - [Aktion] alte [Elemente] automatisch (nach [Kriterium])
+   - Liste alle archivierten [Elemente] auf
+   - Sortiere [Elemente] nach verschiedenen Kriterien
+
+**2. [Hauptaufgabe 2]:**
+   - Komprimiere [Elemente] mit [Methode]
+   - Entpacke komprimierte [Elemente]
+   - Packe ganze [Strukturen]
+   - Berechne wie viel [Ressource] gespart wird
+   - Zeige [Rate] an
+
+**3. [Hauptaufgabe 3]:**
+   - Erstelle einen durchsuchbaren [Index]
+   - Speichere [Metadaten] zu jedem [Element]
+   - Erstelle eine Suchfunktion für den [Index]
+   - Exportiere den [Index] als [Format]
+   - Aktualisiere den [Index] automatisch
+
+**4. [Hauptaufgabe 4]:**
+   - Durchsuche [Inhalte] nach [Kriterium]
+   - Suche in mehreren [Elementen] gleichzeitig
+   - Nutze [spezielle Methode] für die Suche
+   - Suche nach [Metadaten]
+   - Zeige [Ergebnisse] mit [Kontext] an
+
+**5. [Hauptaufgabe 5]:**
+   - Erstelle [spezielle Backups] (nur neue/geänderte [Elemente])
+   - Vergleiche zwei [Elemente] auf Unterschiede
+   - Stelle [Elemente] aus [Archiv] wieder her
+   - Verwalte mehrere [Generationen]
+   - Erstelle [Protokoll]
+
+**6. [Hauptaufgabe 6]:**
+   - Zentrale Funktionen für alle Aufgaben
+   - Zeige Status des [Systems] an
+   - Statistiken ([Metrik 1], [Metrik 2] etc.)
+   - Bereinige doppelte/defekte [Elemente]
+   - Exportiere kompletten [Katalog]
+
+**Beispiel-Struktur:**
+```python
+# So könntest du beginnen:
+import os
+import json
+import gzip
+import hashlib
+from datetime import datetime
+
+def archiviere_element(quelle, archiv_ordner):
+    # Verschiebe [Element] ins [Archiv]
+    pass
+
+def komprimiere_element(element):
+    # Komprimiere [Element]
+    pass
+
+def erstelle_index(archiv_ordner):
+    # Erstelle durchsuchbaren [Index]
+    pass
+
+# ... weitere Funktionen hier
+
+# Hauptprogramm
+statistik = {
+    'anzahl_elemente': 0,
+    'gesamt_groesse': 0,
+    'rate': 0
+}
+# Verarbeite [System]...
+```
 
 **Bonus-Challenge:** [Optionale Zusatzaufgabe]
 ```
@@ -404,6 +572,13 @@ print("📚 Nächste Woche: [Thema nächste Woche]!")
 - ✅ Emojis in Print-Ausgaben
 - ❌ **KEINE `\n` in Print-Statements verwenden!**
 - ✅ **Für neue Zeilen: Separates `print()` verwenden**
+
+### Wichtig für Boss-Quests:
+- ❌ **KEINE Klassen in Woche 9!** (kommen erst in Woche 10)
+- ✅ Nur Funktionen verwenden in Woche 9
+- ✅ Minimale Code-Beispiele mit `pass`
+- ✅ Klare Beschreibungen WAS zu tun ist
+- ✅ Struktur-Hinweise ohne komplette Lösungen
 
 ### Markdown-Stil:
 - Emojis für visuelle Orientierung

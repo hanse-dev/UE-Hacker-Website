@@ -90,13 +90,141 @@ Jedes Notebook hat **11 Abschnitte**:
 4. Debug-Quest (3 fehlerhafte Code-Beispiele)
 5. Haupt-Missionen (3 Missionen ⭐⭐ bis ⭐⭐⭐⭐)
 6. Reflexion (3 Fragen)
-7. Lexikon (10-12 Begriffe)
+7. Lexikon (5-10 Begriffe)
 8. Lernziele-Check (6 Punkte)
 9. Zusammenfassung (5 Anwendungen)
 10. Boss-Kampf (3 Quests ⭐⭐⭐⭐ bis ⭐⭐⭐⭐⭐)
 11. Debug-Lösungen (am Ende)
 
-#### 3.2 Themen-Platzhalter vorbereiten
+#### 3.2 KLARE AUFGABENSTELLUNGEN (WICHTIG!)
+
+**Für Haupt-Missionen (Abschnitt 5):**
+Jede Mission MUSS enthalten:
+- **"Was du tun sollst:"** - Klare, nummerierte Aufgabenliste mit Beschreibung
+- **Struktur-Tipps** mit kurzen Erklärungen (ohne konkreten Code)
+- **Tipp:** Hinweise zur besseren Übersicht
+- **Bonus-Challenge:** Als optional markiert
+
+**Beispiel-Format:**
+```markdown
+### ⭐⭐☆☆☆ Mission 1: [Titel]
+
+**Belohnung:** 300 [Währung] + [Item]
+
+[Kurze Story-Einleitung]
+
+**Was du tun sollst:**
+1. **Gib deinen Namen aus:** Nutze den print()-Befehl für deinen Namen
+2. **Erstelle eine Variable:** Speichere deine Lieblingszahl in einer Variable
+3. **Kombiniere Text und Zahl:** Gib einen Satz aus, der Text und deine Zahl enthält
+4. **Füge eine Überschrift hinzu:** Gib eine dicke Überschrift mit === aus
+5. **Leere Zeile einfügen:** Nutze print() für eine leere Zeile
+
+**Tipp:** Nutze `print()` für leere Zeilen zur besseren Übersicht!
+
+**Bonus-Challenge:** Gib deine Lieblingsfarbe aus!
+```
+
+**Für Boss-Quests (Abschnitt 10):**
+Jede Boss-Quest MUSS enthalten:
+- **"Was du tun sollst:"** - Detaillierte Schritte mit Beschreibung
+- **Struktur-Hilfe** mit Erklärungen (ohne konkreten Code)
+- **Klare Anweisungen** für jeden Schritt
+- **Bonus-Challenge** als Option
+
+**Beispiel-Format:**
+```markdown
+### ⭐⭐⭐⭐☆ Boss-Quest 1: [Titel]
+
+**Belohnung:** 500 [Währung] + [Item]
+
+[Story-Einleitung]
+
+**Was du tun sollst:**
+1. **Erstelle ein Gedicht:** Schreibe 4 Zeilen über das Thema
+2. **Speichere jede Zeile:** Lege für jede Zeile eine eigene Variable an
+3. **Gib das Gedicht aus:** Gib alle Zeilen untereinander aus
+4. **Füge Metadaten hinzu:** Gib eine Überschrift und einen Autorennamen aus
+5. **Bewerte dein Werk:** Gib eine Bewertung von 1-5 Sternen aus
+6. **Erkläre die Bedeutung:** Gib einen Satz aus, warum das Thema wichtig ist
+
+**Struktur-Tipp:**
+- Beginne mit einer Überschrift
+- Gib dann jede Zeile des Gedichts aus
+- Füge am Ende Metadaten hinzu
+
+**Bonus-Challenge:** Füge eine versteckte Botschaft hinzu!
+```
+
+#### 3.3 Boss-Quests: Klarheit und Struktur
+
+**Wichtigste Regel ab Woche 2+:**
+- ❌ **KEINE Klassen ab Woche 2+!** (kommen erst in Woche 10)
+- ✅ Minimale Code-Beispiele mit `pass`
+- ✅ Klare Beschreibungen WAS zu tun ist
+- ✅ Struktur-Hinweise ohne komplette Lösungen
+
+**Struktur für klare Boss-Quests (ab Woche 2):**
+```markdown
+### ⭐⭐⭐⭐☆ Boss-Quest 1: [Titel]
+
+**Belohnung:** 500 [Währung] + [Item]
+
+[Story]
+
+**Was du tun sollst:**
+
+**1. [Hauptaufgabe 1]:**
+   - Erstelle eine Funktion für [spezifische Aufgabe]
+   - Die Funktion soll [konkrete Anforderung]
+   - Tipp: [Hinweis ohne Lösung]
+
+**2. [Hauptaufgabe 2]:**
+   - Schreibe eine Funktion, die [beschreibt was zu tun ist]
+   - Erstelle eine Validierungsfunktion für [Zweck]
+   - Behandle Fehler wenn [Fehlerfall]
+
+**3. [Hauptaufgabe 3]:**
+   - Erstelle eine [Datenstruktur] als Zwischenspeicher
+   - Schreibe Funktionen zum Hinzufügen und Holen von Daten
+   - Implementiere eine Funktion zum [Aktion]
+
+**4. [Hauptaufgabe 4]:**
+   - Filtere Daten nach [Bedingung 1]
+   - Filtere Daten nach [Bedingung 2]
+   - Kombiniere mehrere Filterbedingungen
+
+**5. [Hauptaufgabe 5]:**
+   - Speichere gefilterte Daten als [Format 1]
+   - Speichere gefilterte Daten als [Format 2]
+   - Erstelle automatische Dateinamen mit Zeitstempel
+
+**6. [Hauptaufgabe 6]:**
+   - Starte den [Prozess]
+   - Verarbeite Daten in Echtzeit
+   - Zeige Statistik der verarbeiteten Daten
+
+**Beispiel-Struktur:**
+```python
+# So könntest du beginnen:
+import time
+import json
+
+def funktion_name(parameter):
+    # Beschreibung was die Funktion tut
+    pass
+
+# ... weitere Funktionen hier
+
+# Hauptprogramm
+daten = []
+# Verarbeite Daten...
+```
+
+**Bonus-Challenge:** [Optionale Zusatzaufgabe]
+```
+
+#### 3.4 Themen-Platzhalter vorbereiten
 | Platzhalter | Abenteuer | Pferde | Sci-Fi |
 |-------------|-----------|--------|--------|
 | [Währung] | XP | Huf-Punkte | Cyber Credits |
@@ -106,7 +234,7 @@ Jedes Notebook hat **11 Abschnitte**:
 | [Mentor] | alte Magier | erfahrene Reitlehrerin | Missionsleiterin |
 | [🐉/🐴/🚀] | 🐉 | 🐴 | 🚀 |
 
-#### 3.3 Notebooks erstellen
+#### 3.5 Notebooks erstellen
 ```bash
 # Drei Dateien erstellen (alle OHNE Bindestrich):
 touch content/python-12-wochen-grundkurs/woche-[X]/woche[X]_abenteuer.ipynb
@@ -154,6 +282,12 @@ touch content/python-12-wochen-grundkurs/woche-[X]/woche[X]_scifi.ipynb
 - [ ] Keine `\n` in Print-Statements
 - [ ] F-Strings nur ab Woche 2+
 - [ ] Debug-Lösungen am Ende
+- [ ] **Boss-Quests mit klarer Struktur (ab Woche 9)**
+- [ ] **Keine Klassen in Woche 8-9, nur Funktionen**
+- [ ] **Missionen haben "Was du tun sollst:" mit einer klaren Anleitung, ohne Lösung**
+- [ ] **Boss-Quests haben eine klare Beschreibung ohne Lösung**
+- [ ] **Struktur-Tipps und Beispiele sind enthalten**
+- [ ] **Bonus-Challenges sind als optional markiert**
 
 ---
 
