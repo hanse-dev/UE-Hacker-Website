@@ -145,22 +145,24 @@ Ein junger [Magier/Reiter/Techniker] hat versucht, die ersten [Zauber/Befehle] z
 ```
 
 ```python
-# 🐛 Bug #1: [Kurzer Titel]
+# 🐛 Bug #1
 
 [fehlerhafter Code]
 ```
 
 ```python
-# 🐛 Bug #2: [Kurzer Titel]
+# 🐛 Bug #2
 
 [fehlerhafter Code]
 ```
 
 ```python
-# 🐛 Bug #3: [Kurzer Titel]
+# 🐛 Bug #3
 
 [fehlerhafter Code]
 ```
+
+**WICHTIG:** Die Debug-Quests dürfen KEINE Kommentare mit Lösungen oder Hinweisen enthalten! Nur der fehlerhafte Code.
 
 ### 5. **Haupt-Missionen** (Markdown + leere Code-Zelle)
 
