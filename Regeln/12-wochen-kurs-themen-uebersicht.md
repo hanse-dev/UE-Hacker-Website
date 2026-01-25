@@ -60,30 +60,30 @@
   2. Tupel als unveränderliche Listen verwenden
   3. Unterschiede und Anwendungsfälle von Listen, Dictionaries und Tupeln
 
-### Woche 9: Testing
-- **Thema:** Code Qualität sicherstellen
-- **Die Kern-Lernpunkte:**
-  1. Unit Tests mit unittest schreiben
-  2. Assert-Statements und Test-Fälle
-  3. Test-Driven Development Grundlagen
-
-### Woche 10: Dateioperationen
+### Woche 9: JSON-Dateien und I/O
 - **Thema:** Daten speichern und laden
 - **Die Kern-Lernpunkte:**
   1. Dateien lesen und schreiben mit open()
   2. CSV- und JSON-Dateien verarbeiten
   3. Fehlerbehandlung beim Dateizugriff
 
-### Woche 11: Grafische Projekte mit Turtle
+### Woche 10: OOP Grundlagen
+- **Thema:** Klassen und Objekte
+- **Die Kern-Lernpunkte:**
+  1. Klassen mit Attributen und Methoden erstellen
+  2. Objekte instanziieren und verwenden
+  3. Konstruktoren und Destruktoren verstehen
+
+### Woche 11: OOP Fortgeschritten
+- **Thema:** Vererbung und Polymorphismus
+- **Die Kern-Lernpunkte:**
+  1. Vererbung für Code-Wiederverwendung nutzen
+  2. Polymorphismus für flexible Systeme
+  3. Magic Methods und Design Patterns
+
+### Woche 12: Grafische Projekte mit Turtle
 - **Thema:** Visuelle Programmierung
 - **Die Kern-Lernpunkte:**
   1. Turtle-Grafik importieren und einrichten
   2. Formen zeichnen und bewegen
   3. Farben und interaktive Grafik
-
-### Woche 12: Abschlussprojekt
-- **Thema:** Alles kombinieren
-- **Die Kern-Lernpunkte:**
-  1. Eigenes Projekt planen und strukturieren
-  2. Alle gelernten Konzepte anwenden
-  3. Projekt präsentieren und dokumentieren

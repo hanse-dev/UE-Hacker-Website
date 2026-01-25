@@ -1,22 +1,22 @@
 ---
-title: '📚 Woche 10 – Objektorientierung: Die magischen Blaupausen!'
+title: '📚 Woche 10 – OOP Grundlagen: Die magischen Blaupausen!'
 ---
 
-# 🎯 Die Herausforderung: Code in Objekte organisieren!
+# 🎯 Teil 1: Objekte entdecken und erstellen!
 
-Du hast komplexe Systeme mit vielen Teilen. Statt unstrukturiertem Code brauchst du eine Möglichkeit, Daten und Verhalten zu bündeln und Code wiederverwendbar zu machen.
+Du hast viele Daten und Funktionen. Statt alles wild durcheinander, kannst du sie zu logischen Einheiten bündeln.
 
-Mit Klassen und Objekten kannst du professionelle, skalierbare Systeme bauen!
+Mit Klassen und Objekten wird dein Code ordentlich, übersichtlich und wiederverwendbar!
 
 ## 🎮 Themenwelten zur Auswahl
 
-- **🗺️ Abenteuer-Welt:** Die Zünfte und Gilden von Pyralia – erschaffe magische Klassen und spezialisierte Charaktere!
-- **🐴 Pferdewirtschaft:** Die Struktur des Reiterhofs – Pferde, Reiter und Ausrüstung als perfekte Objekte!
-- **🚀 Sci-Fi-Welt:** Die Blaupausen der Raumstation Nebula-7 – objektorientierte Systeme!
+- **🗺️ Abenteuer-Welt:** Die Handwerkszünfte von Pyralia – erschaffe deine erste magische Klasse!
+- **🐴 Pferdewirtschaft:** Die Struktur des Reiterhofs – organisiere Pferde und Ausrüstung als Objekte!
+- **🚀 Sci-Fi-Welt:** Die Grundlagen der Raumstation – baue deine ersten Schiffs-Klassen!
 
-# 🎯 Lernziele
-- Klassen mit Attributen und Methoden
-- Objekte erstellen und verwenden
-- Vererbung für Code-Wiederverwendung
-- Polymorphismus für flexible Systeme
-- Magic Methods für intuitive Objekte
+# 🎯 Lernziele (Teil 1)
+- Was sind Klassen und Objekte?
+- Einfache Klassen erstellen
+- Attribute verstehen und nutzen
+- Methoden definieren und aufrufen
+- Objekte instanziieren

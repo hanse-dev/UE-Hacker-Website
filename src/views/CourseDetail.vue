@@ -38,6 +38,44 @@
           <!-- Show markdown description if available -->
           <div v-if="week.content" v-html="week.content" class="week-description"></div>
 
+          <!-- Show downloads for weeks with notebooks (only cheat sheets) -->
+          <div v-if="week.hasNotebook && week.downloads.some(d => d.isCheatSheet)" class="downloads-section">
+            <div class="cheat-sheet-container">
+              <div class="cheat-sheet-header" @click="toggleCheatSheet(week)">
+                <h4>🐢 Turtle Cheat Sheet</h4>
+                <button class="cheat-sheet-toggle-btn" :class="{ 'expanded': week.showCheatSheet }">
+                  <span class="toggle-icon">{{ week.showCheatSheet ? '−' : '+' }}</span>
+                </button>
+              </div>
+              
+              <div v-show="week.showCheatSheet" class="cheat-sheet-content">
+                <div class="cheat-sheet-actions">
+                  <a :href="week.downloads.find(d => d.isCheatSheet).url" download class="download-btn">
+                    <span class="download-icon">📥</span>
+                    Als Markdown herunterladen
+                  </a>
+                </div>
+                
+                <div class="cheat-sheet-preview" v-if="week.cheatSheetContent">
+                  <div v-html="week.cheatSheetContent" class="cheat-sheet-markdown"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Show downloads for non-notebook weeks -->
+          <div v-if="!week.hasNotebook && week.downloads.length > 0" class="downloads-section">
+            <h4>Downloads</h4>
+            <ul>
+              <li v-for="(file, fileIndex) in week.downloads" :key="fileIndex">
+                <a :href="file.url" download :class="{ 'cheat-sheet-link': file.isCheatSheet }">
+                  <span class="download-icon">{{ file.isCheatSheet ? '📚' : '📥' }}</span>
+                  {{ file.name }}
+                </a>
+              </li>
+            </ul>
+          </div>
+
           <!-- Show interactive notebook if available -->
           <div v-if="week.hasNotebook" class="notebook-variants">
             <h4>📚 Notebook-Varianten</h4>
@@ -74,16 +112,6 @@
               :week-number="index + 1"
               :key="week.selectedVariant"
             />
-          </div>
-
-          <!-- Show downloads for non-notebook weeks -->
-          <div v-if="!week.hasNotebook && week.downloads.length > 0" class="downloads-section">
-            <h4>Downloads</h4>
-            <ul>
-              <li v-for="(file, fileIndex) in week.downloads" :key="fileIndex">
-                <a :href="file.url" download>{{ file.name }}</a>
-              </li>
-            </ul>
           </div>
         </div>
       </div>
@@ -135,6 +163,10 @@ export default {
 
     const toggleWeek = (index) => {
       weeks.value[index].expanded = !weeks.value[index].expanded;
+    };
+
+    const toggleCheatSheet = (week) => {
+      week.showCheatSheet = !week.showCheatSheet;
     };
 
     onMounted(async () => {
@@ -209,6 +241,7 @@ export default {
                             downloads: [],
                             selectedVariant: null,
                             expanded: weekNum === 1, // Nur erste Woche standardmäßig geöffnet
+                            showCheatSheet: false, // Cheat Sheet standardmäßig geschlossen
                         });
                     }
                     
@@ -243,6 +276,10 @@ export default {
                 const weekMatch = path.match(/woche-(\d+)/);
                 if (weekMatch) {
                     const weekNum = parseInt(weekMatch[1], 10);
+                    // Skip cheat sheet files - they are handled separately
+                    if (path.includes('cheat_sheet') || path.includes('cheat-sheet')) {
+                        return;
+                    }
                     const rawContent = (await loader()).default;
                     const parsed = fm(rawContent);
 
@@ -284,6 +321,35 @@ export default {
             });
             await Promise.all(downloadPromises);
 
+            // Load cheat sheets (special markdown files)
+            const cheatSheetPromises = Object.entries(weekModules).map(async ([path, loader]) => {
+                if (path.includes('cheat_sheet') || path.includes('cheat-sheet')) {
+                    const weekMatch = path.match(/woche-(\d+)/);
+                    if (weekMatch) {
+                        const weekNum = parseInt(weekMatch[1], 10);
+                        if (weeklyContent[weekNum]) {
+                            const url = path.replace('../../content', '/content').replace('.md', '');
+                            
+                            // Fetch and render the cheat sheet content
+                            try {
+                                const contentLoader = await loader();
+                                const parsed = fm(contentLoader.default);
+                                weeklyContent[weekNum].cheatSheetContent = marked(parsed.body);
+                            } catch (e) {
+                                console.error('Could not load cheat sheet content:', e);
+                            }
+                            
+                            weeklyContent[weekNum].downloads.push({
+                                name: '🐢 Turtle Cheat Sheet',
+                                url: url + '.md',
+                                isCheatSheet: true
+                            });
+                        }
+                    }
+                }
+            });
+            await Promise.all(cheatSheetPromises);
+
             weeks.value = Object.values(weeklyContent).sort((a, b) => {
                 const weekA = parseInt(a.title.match(/\d+/) || 0, 10);
                 const weekB = parseInt(b.title.match(/\d+/) || 0, 10);
@@ -315,6 +381,7 @@ export default {
       courseTermine,
       setVariant,
       toggleWeek,
+      toggleCheatSheet,
       getNotebookPath,
       getNotebookUrl,
     };
@@ -339,9 +406,214 @@ export default {
   list-style-type: none;
   padding: 0;
 }
+.downloads-section li {
+  margin-bottom: 10px;
+}
 .downloads-section li a {
   text-decoration: none;
   color: #ff4136;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+.downloads-section li a:hover {
+  background-color: #fff5f5;
+  transform: translateX(5px);
+}
+.cheat-sheet-link {
+  color: #28a745 !important;
+  font-weight: bold;
+  border: 2px solid #28a745;
+  background-color: #f8fff9;
+}
+.cheat-sheet-link:hover {
+  background-color: #e8f5e8 !important;
+}
+.download-icon {
+  font-size: 1.2em;
+}
+
+.cheat-sheet-container {
+  margin-bottom: 20px;
+  border: 2px solid #28a745;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f8fff9;
+}
+
+.cheat-sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 15px 20px;
+  background: #28a745;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.cheat-sheet-header:hover {
+  background: #218838;
+}
+
+.cheat-sheet-header h4 {
+  margin: 0;
+  font-size: 1.1em;
+}
+
+.cheat-sheet-toggle-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.cheat-sheet-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.cheat-sheet-toggle-btn.expanded {
+  transform: rotate(180deg);
+}
+
+.cheat-sheet-content {
+  padding: 20px;
+  background: white;
+}
+
+.cheat-sheet-actions {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: #28a745;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.download-btn:hover {
+  background: #218838;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+.cheat-sheet-preview {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+  background: white;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.cheat-sheet-iframe {
+  width: 100%;
+  height: 600px;
+  border: none;
+  background: white;
+}
+
+.cheat-sheet-markdown {
+  padding: 20px;
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+
+.cheat-sheet-markdown h1 {
+  color: #28a745;
+  border-bottom: 2px solid #28a745;
+  padding-bottom: 10px;
+  margin-top: 0;
+}
+
+.cheat-sheet-markdown h2 {
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+  margin-top: 2em;
+}
+
+.cheat-sheet-markdown h3 {
+  color: #555;
+  margin-top: 1.5em;
+}
+
+.cheat-sheet-markdown code {
+  background: #f8f9fa;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+  border: 1px solid #e9ecef;
+}
+
+.cheat-sheet-markdown pre {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 6px;
+  overflow-x: auto;
+  border: 1px solid #e9ecef;
+}
+
+.cheat-sheet-markdown pre code {
+  background: none;
+  padding: 0;
+  border: none;
+}
+
+.cheat-sheet-markdown ul,
+.cheat-sheet-markdown ol {
+  padding-left: 25px;
+}
+
+.cheat-sheet-markdown li {
+  margin-bottom: 5px;
+}
+
+.cheat-sheet-markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.cheat-sheet-markdown th,
+.cheat-sheet-markdown td {
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.cheat-sheet-markdown th {
+  background: #f8f9fa;
+  font-weight: bold;
+}
+
+.cheat-sheet-markdown blockquote {
+  border-left: 4px solid #28a745;
+  padding-left: 20px;
+  margin-left: 0;
+  color: #666;
+  font-style: italic;
 }
 
 .table-of-contents {
@@ -416,6 +688,25 @@ export default {
   color: #333;
   margin-top: 1.5em;
   margin-bottom: 0.5em;
+}
+
+.week-description :deep(h1) {
+  font-size: 1.4em;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+.week-description :deep(h2) {
+  font-size: 1.2em;
+}
+
+.week-description :deep(h3) {
+  font-size: 1.1em;
+}
+
+.week-description :deep(h4) {
+  font-size: 1em;
 }
 
 .week-description :deep(p) {
@@ -500,6 +791,7 @@ export default {
 .week-header h2 {
   margin: 0;
   color: #333;
+  font-size: 1.2em;
 }
 
 .toggle-btn {
