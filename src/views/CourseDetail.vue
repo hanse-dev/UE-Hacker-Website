@@ -157,6 +157,16 @@ export default {
       return new Date(`20${parts[2]}`, parts[1] - 1, parts[0]);
     };
 
+    const parseISO = (isoString) => (isoString ? new Date(isoString) : null);
+    const isRecurringActive = (termin, today) => {
+      if (!termin.recurring || !termin.validFrom) return false;
+      const from = parseISO(termin.validFrom);
+      if (!from || today < from) return false;
+      if (!termin.validUntil) return true;
+      const until = parseISO(termin.validUntil);
+      return until && today <= until;
+    };
+
     const setVariant = (week, variant) => {
       week.selectedVariant = variant;
     };
@@ -196,12 +206,24 @@ export default {
             const today = new Date();
             today.setHours(0, 0, 0, 0);
 
+            const getSortDate = (termin) => {
+                if (termin.recurring) return parseISO(termin.validFrom) || today;
+                return parseDate(termin.date) || today;
+            };
+
             courseTermine.value = allTermine
                 .filter(termin => {
+                    if (termin.cancelled || !termin.link.startsWith(`/kurs/${props.id}`)) return false;
+                    if (termin.recurring) return isRecurringActive(termin, today);
                     const terminDate = parseDate(termin.date);
-                    return !termin.cancelled && termin.link.startsWith(`/kurs/${props.id}`) && terminDate && terminDate >= today;
+                    return terminDate && terminDate >= today;
                 })
-                .sort((a, b) => parseDate(a.date) - parseDate(b.date));
+                .sort((a, b) => {
+                    const aRec = a.recurring ? 0 : 1;
+                    const bRec = b.recurring ? 0 : 1;
+                    if (aRec !== bRec) return aRec - bRec;
+                    return getSortDate(a) - getSortDate(b);
+                });
         } catch (e) {
             console.error('Could not load appointments:', e);
         }

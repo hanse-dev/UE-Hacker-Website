@@ -72,5 +72,16 @@
     "location": "Übergangshaus, Königstraße 54, 23564 Lübeck",
     "topic": "Testing",
     "link": "/kurs/python-12-wochen-grundkurs#woche-9"
+  },
+  {
+    "id": 14,
+    "recurring": true,
+    "validFrom": "2025-01-07",
+    "validUntil": null,
+    "date": "Jeden Dienstag",
+    "time": "17:30 - 18:30 Uhr",
+    "location": "Online",
+    "topic": "12-Wochen-Kurs Python",
+    "link": "/kurs/python-12-wochen-grundkurs"
   }
 ]
