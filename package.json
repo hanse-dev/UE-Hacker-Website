@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cheatsheet:notebooks": "python3 scripts/md_to_cheatsheet_notebook.py"
   },
   "dependencies": {
     "front-matter": "^4.0.2",

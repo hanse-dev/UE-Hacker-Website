@@ -54,6 +54,10 @@
                     <span class="download-icon">📥</span>
                     Als Markdown herunterladen
                   </a>
+                  <a v-if="cheatSheet.notebookUrl" :href="cheatSheet.notebookUrl" download class="download-btn">
+                    <span class="download-icon">📓</span>
+                    Als Jupyter Notebook herunterladen
+                  </a>
                 </div>
                 
                 <div class="cheat-sheet-preview" v-if="cheatSheet.content">
@@ -267,6 +271,7 @@ export default {
                             scifiNotebookUrl: null,
                             downloads: [],
                             cheatSheets: [],
+                            wissensCheatSheetNotebookUrl: null,
                             expandedCheatSheets: {},
                             selectedVariant: null,
                             expanded: weekNum === 1, // Nur erste Woche standardmäßig geöffnet
@@ -294,6 +299,29 @@ export default {
                         if (!weeklyContent[weekNum].selectedVariant) {
                             weeklyContent[weekNum].selectedVariant = 'scifi';
                         }
+                    } else if (path.includes('wissens_cheat_sheet')) {
+                        if (!weeklyContent[weekNum]) {
+                            weeklyContent[weekNum] = reactive({
+                                title: `Woche ${weekNum}`,
+                                hasNotebook: true,
+                                hasAbenteuerVariant: false,
+                                hasPferdeVariant: false,
+                                hasScifiVariant: false,
+                                abenteuerNotebookPath: null,
+                                abenteuerNotebookUrl: null,
+                                pferdeNotebookPath: null,
+                                pferdeNotebookUrl: null,
+                                scifiNotebookPath: null,
+                                scifiNotebookUrl: null,
+                                downloads: [],
+                                cheatSheets: [],
+                                wissensCheatSheetNotebookUrl: null,
+                                expandedCheatSheets: {},
+                                selectedVariant: null,
+                                expanded: weekNum === 1,
+                            });
+                        }
+                        weeklyContent[weekNum].wissensCheatSheetNotebookUrl = notebookUrl;
                     }
                 }
             });
@@ -367,10 +395,12 @@ export default {
                                 const contentLoader = await loader();
                                 const parsed = fm(contentLoader.default);
                                 if (!weeklyContent[weekNum].cheatSheets) weeklyContent[weekNum].cheatSheets = [];
+                                const notebookUrl = weeklyContent[weekNum].wissensCheatSheetNotebookUrl || null;
                                 weeklyContent[weekNum].cheatSheets.push({
                                     name,
                                     content: marked(parsed.body),
-                                    url
+                                    url,
+                                    notebookUrl: filename.includes('wissens') ? notebookUrl : null
                                 });
                             } catch (e) {
                                 console.error('Could not load cheat sheet content:', e);
@@ -541,6 +571,7 @@ export default {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  margin: 8px;
   padding: 12px 24px;
   background: #28a745;
   color: white;
