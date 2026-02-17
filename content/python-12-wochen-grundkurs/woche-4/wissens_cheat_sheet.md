@@ -4,23 +4,108 @@ _Zusammenfassung aller Themen aus Woche 1–3_
 
 ## Woche 1: Einführung und erstes Programm
 
-- Text mit `print()` ausgeben
-- Informationen in Variablen speichern
-- Texte mit `+` und `str()` kombinieren
-- Kommentare mit `#` hinzufügen
+### print()
+Gibt Text auf dem Bildschirm aus. Text steht in Anführungszeichen.
+
+```python
+print("Hallo Welt!")
+```
+
+### Variablen
+Speichern Informationen für spätere Verwendung. Ein Name wird einem Wert zugewiesen.
+
+```python
+name = "Python"
+anzahl = 3
+```
+
+### String-Kombination mit + und str()
+Texte mit `+` verbinden. Zahlen mit `str()` in Text umwandeln, um sie einzubauen.
+
+```python
+print("Ich heiße " + name)
+print("Anzahl: " + str(anzahl))
+```
+
+### Kommentare
+Mit `#` werden Zeilen ignoriert – für Erklärungen im Code.
+
+```python
+# Das ist ein Kommentar
+x = 5  # x hat den Wert 5
+```
+
+---
 
 ## Woche 2: Datentypen und Variablen
 
-- f-Strings für moderne Textformatierung
-- Die vier Datentypen: String, Integer, Float, Boolean
-- Mathematische Operationen und Textmanipulation
-- Typumwandlungen für flexible Datenverarbeitung
+### f-Strings
+Moderne Textformatierung: Variablen in geschweiften Klammern einfügen.
+
+```python
+print(f"Name: {name}, Anzahl: {anzahl}")
+```
+
+### Die vier Datentypen
+- **String** (str): Text in Anführungszeichen
+- **Integer** (int): Ganze Zahlen
+- **Float** (float): Dezimalzahlen
+- **Boolean** (bool): `True` oder `False`
+
+```python
+text = "Hallo"
+zahl = 42
+komma = 3.14
+wahr = True
+```
+
+### Operationen
+Mathematik mit Zahlen, String-Verkettung mit `+`, Wiederholung mit `*`.
+
+```python
+ergebnis = 10 + 5
+text_lang = "A" * 3  # "AAA"
+```
+
+### Typumwandlungen
+`int()`, `float()`, `str()` wandeln zwischen Datentypen um.
+
+```python
+x = int("42")
+text = str(3.14)
+```
+
+---
 
 ## Woche 3: Bedingungen (if-else)
 
-- if-Bedingungen für einfache Entscheidungen
-- if-else für zwei Wege der Wahl
-- if-elif-else für multiple Entscheidungen
-- Vergleichsoperatoren: `==`, `!=`, `<`, `>`, `<=`, `>=`
-- Logische Operatoren: `and`, `or`, `not`
-- Verschachtelte Bedingungen mit korrekter Einrückung
+### if, if-else, if-elif-else
+Entscheidungen: Nur bestimmter Code wird ausgeführt, wenn die Bedingung erfüllt ist.
+
+```python
+if alter >= 18:
+    print("Volljährig")
+elif alter >= 16:
+    print("Fast volljährig")
+else:
+    print("Minderjährig")
+```
+
+### Vergleichsoperatoren
+`==` (gleich), `!=` (ungleich), `<`, `>`, `<=`, `>=`
+
+```python
+x == 5
+name != ""
+```
+
+### Logische Operatoren
+`and` (beides wahr), `or` (mindestens eines wahr), `not` (verneinen)
+
+```python
+if alter >= 18 and gültig:
+    print("OK")
+```
+
+### Verschachtelte Bedingungen
+if-Blöcke in if-Blöcken – Einrückung mit 4 Leerzeichen ist entscheidend.
