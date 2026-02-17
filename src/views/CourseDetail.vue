@@ -38,26 +38,26 @@
           <!-- Show markdown description if available -->
           <div v-if="week.content" v-html="week.content" class="week-description"></div>
 
-          <!-- Show downloads for weeks with notebooks (only cheat sheets) -->
-          <div v-if="week.hasNotebook && week.downloads.some(d => d.isCheatSheet)" class="downloads-section">
-            <div class="cheat-sheet-container">
-              <div class="cheat-sheet-header" @click="toggleCheatSheet(week)">
-                <h4>🐢 Turtle Cheat Sheet</h4>
-                <button class="cheat-sheet-toggle-btn" :class="{ 'expanded': week.showCheatSheet }">
-                  <span class="toggle-icon">{{ week.showCheatSheet ? '−' : '+' }}</span>
+          <!-- Show cheat sheets for weeks with notebooks -->
+          <div v-if="week.hasNotebook && week.cheatSheets?.length > 0" class="downloads-section">
+            <div v-for="(cheatSheet, csIndex) in week.cheatSheets" :key="csIndex" class="cheat-sheet-container">
+              <div class="cheat-sheet-header" @click="toggleCheatSheet(week, csIndex)">
+                <h4>{{ cheatSheet.name }}</h4>
+                <button class="cheat-sheet-toggle-btn" :class="{ 'expanded': isCheatSheetExpanded(week, csIndex) }">
+                  <span class="toggle-icon">{{ isCheatSheetExpanded(week, csIndex) ? '−' : '+' }}</span>
                 </button>
               </div>
               
-              <div v-show="week.showCheatSheet" class="cheat-sheet-content">
+              <div v-show="isCheatSheetExpanded(week, csIndex)" class="cheat-sheet-content">
                 <div class="cheat-sheet-actions">
-                  <a :href="week.downloads.find(d => d.isCheatSheet).url" download class="download-btn">
+                  <a :href="cheatSheet.url" download class="download-btn">
                     <span class="download-icon">📥</span>
                     Als Markdown herunterladen
                   </a>
                 </div>
                 
-                <div class="cheat-sheet-preview" v-if="week.cheatSheetContent">
-                  <div v-html="week.cheatSheetContent" class="cheat-sheet-markdown"></div>
+                <div class="cheat-sheet-preview" v-if="cheatSheet.content">
+                  <div v-html="cheatSheet.content" class="cheat-sheet-markdown"></div>
                 </div>
               </div>
             </div>
@@ -175,8 +175,13 @@ export default {
       weeks.value[index].expanded = !weeks.value[index].expanded;
     };
 
-    const toggleCheatSheet = (week) => {
-      week.showCheatSheet = !week.showCheatSheet;
+    const toggleCheatSheet = (week, csIndex) => {
+      if (!week.expandedCheatSheets) week.expandedCheatSheets = {};
+      week.expandedCheatSheets[csIndex] = !week.expandedCheatSheets[csIndex];
+    };
+
+    const isCheatSheetExpanded = (week, csIndex) => {
+      return week.expandedCheatSheets?.[csIndex] ?? false;
     };
 
     onMounted(async () => {
@@ -261,9 +266,10 @@ export default {
                             scifiNotebookPath: null,
                             scifiNotebookUrl: null,
                             downloads: [],
+                            cheatSheets: [],
+                            expandedCheatSheets: {},
                             selectedVariant: null,
                             expanded: weekNum === 1, // Nur erste Woche standardmäßig geöffnet
-                            showCheatSheet: false, // Cheat Sheet standardmäßig geschlossen
                         });
                     }
                     
@@ -350,27 +356,37 @@ export default {
                     if (weekMatch) {
                         const weekNum = parseInt(weekMatch[1], 10);
                         if (weeklyContent[weekNum]) {
-                            const url = path.replace('../../content', '/content').replace('.md', '');
-                            
-                            // Fetch and render the cheat sheet content
+                            const url = path.replace('../../content', '/content').replace('.md', '') + '.md';
+                            const filename = path.split('/').pop() || '';
+
+                            let name = 'Cheat Sheet';
+                            if (filename.includes('wissens')) name = '📚 Wissens-Cheat-Sheet';
+                            else if (filename.includes('turtle')) name = '🐢 Turtle Cheat Sheet';
+
                             try {
                                 const contentLoader = await loader();
                                 const parsed = fm(contentLoader.default);
-                                weeklyContent[weekNum].cheatSheetContent = marked(parsed.body);
+                                if (!weeklyContent[weekNum].cheatSheets) weeklyContent[weekNum].cheatSheets = [];
+                                weeklyContent[weekNum].cheatSheets.push({
+                                    name,
+                                    content: marked(parsed.body),
+                                    url
+                                });
                             } catch (e) {
                                 console.error('Could not load cheat sheet content:', e);
                             }
-                            
-                            weeklyContent[weekNum].downloads.push({
-                                name: '🐢 Turtle Cheat Sheet',
-                                url: url + '.md',
-                                isCheatSheet: true
-                            });
                         }
                     }
                 }
             });
             await Promise.all(cheatSheetPromises);
+
+            // Sort cheat sheets: Wissens-Cheat-Sheet first, then Turtle
+            Object.values(weeklyContent).forEach(week => {
+                if (week.cheatSheets?.length > 1) {
+                    week.cheatSheets.sort((a, b) => (a.name.includes('Wissens') ? 0 : 1) - (b.name.includes('Wissens') ? 0 : 1));
+                }
+            });
 
             weeks.value = Object.values(weeklyContent).sort((a, b) => {
                 const weekA = parseInt(a.title.match(/\d+/) || 0, 10);
@@ -404,6 +420,7 @@ export default {
       setVariant,
       toggleWeek,
       toggleCheatSheet,
+      isCheatSheetExpanded,
       getNotebookPath,
       getNotebookUrl,
     };
