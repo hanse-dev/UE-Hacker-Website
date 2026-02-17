@@ -439,7 +439,7 @@ print("[📚/🐴/🚀] Nächste Woche: [Thema nächste Woche]!")
 - ✅ Thematisch passende Variablennamen
 - ✅ Kommentare auf Deutsch
 - ✅ Emojis in Print-Ausgaben
-- ❌ **KEINE `\n` in Print-Statements verwenden!**
+- ❌ **Keine `\n` im String von `print()` verwenden!** (z. B. nicht `print("Zeile1\nZeile2")`)
 - ✅ **Für neue Zeilen: Separates `print()` verwenden**
 
 ### Markdown-Stil:
@@ -572,7 +572,7 @@ print("[📚/🐴/🚀] Nächste Woche: [Thema nächste Woche]!")
 - [ ] 3 Haupt-Missionen (⭐⭐ bis ⭐⭐⭐⭐)
 - [ ] 3 [Boss-Quests/Abschluss-Challenges/Finale Missionen] (⭐⭐⭐⭐ bis ⭐⭐⭐⭐⭐)
 - [ ] F-Strings verwendet (außer Woche 1)
-- [ ] Keine `\n` in Print-Statements (separates `print()` verwenden)
+- [ ] Keine `\n` im String von `print()` (separates `print()` für neue Zeilen verwenden)
 - [ ] Thematische Konsistenz
 - [ ] Emojis durchgängig verwendet
 - [ ] Narrative Elemente eingebaut

@@ -279,7 +279,7 @@ touch content/python-12-wochen-grundkurs/woche-[X]/woche[X]_scifi.ipynb
 - [ ] Platzhalter korrekt ersetzt
 - [ ] Kern-Lernpunkte aus @Regeln/12-wochen-kurs-themen-uebersicht.md eingebaut
 - [ ] Thematische Konsistenz gewahrt
-- [ ] Keine `\n` in Print-Statements
+- [ ] Keine `\n` im String von `print()` (separates `print()` für neue Zeilen verwenden)
 - [ ] F-Strings nur ab Woche 2+
 - [ ] Debug-Lösungen am Ende
 - [ ] **Boss-Quests mit klarer Struktur (ab Woche 9)**
@@ -299,7 +299,7 @@ touch content/python-12-wochen-grundkurs/woche-[X]/woche[X]_scifi.ipynb
 
 ### Technische Details:
 - **JSON-Format:** Siehe @Regeln/notebook-erstellung.md → "Technische Anforderungen"
-- **Code-Stil:** Keine `\n`, separates `print()` für neue Zeilen
+- **Code-Stil:** Keine `\n` im String von `print()`, separates `print()` für neue Zeilen
 
 ### Didaktische Prinzipien:
 - Maximal 3 Konzepte pro Woche

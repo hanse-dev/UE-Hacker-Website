@@ -402,7 +402,7 @@ print("🐴 Nächste Woche: [Thema nächste Woche]!")
 - ✅ Thematisch passende Variablennamen (pferde-bezogen)
 - ✅ Kommentare auf Deutsch
 - ✅ Emojis in Print-Ausgaben
-- ❌ **KEINE `\n` in Print-Statements verwenden!**
+- ❌ **Keine `\n` im String von `print()` verwenden!** (z. B. nicht `print("Zeile1\nZeile2")`)
 - ✅ **Für neue Zeilen: Separates `print()` verwenden**
 
 ### Wichtig für Boss-Quests:

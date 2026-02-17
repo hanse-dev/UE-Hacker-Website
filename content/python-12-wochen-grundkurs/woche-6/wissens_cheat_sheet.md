@@ -138,6 +138,18 @@ Schleife innerhalb einer Schleife – z.B. für Muster oder Tabellen.
 
 ## Woche 5: Funktionen
 
+### Aufrufen von Funktionen
+Eine Funktion muss mit Klammern aufgerufen werden, damit sie ausgeführt wird.
+- **Mit Klammern `funktion()`:** Führt die Funktion aus – der Code wird abgearbeitet
+- **Ohne Klammern `funktion`:** Nur Referenz auf das Funktionsobjekt – führt NICHT aus (nützlich z.B. zum Übergeben als Parameter)
+
+```python
+def gruessen():
+    print("Hallo!")
+gruessen()   # Wird ausgeführt
+gruessen     # Wird NICHT ausgeführt – nur Referenz
+```
+
 ### def und Parameter
 Code-Blöcke wiederverwenden. Parameter sind Platzhalter für Werte beim Aufruf.
 
