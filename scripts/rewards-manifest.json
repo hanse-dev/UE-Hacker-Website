@@ -1,0 +1,442 @@
+{
+  "python-12-wochen-grundkurs": {
+    "abenteuer": {
+      "1": {
+        "missions": [
+          { "id": "w1-m1", "points": 300, "item": "Magischer Grimoire" },
+          { "id": "w1-m2", "points": 400, "item": "Schatzkarte" },
+          { "id": "w1-m3", "points": 500, "item": "Heldenschwert" }
+        ],
+        "bossQuests": [
+          { "id": "w1-boss1", "points": 500, "item": "Kristallkugel" },
+          { "id": "w1-boss2", "points": 600, "item": "Drachenamulett" },
+          { "id": "w1-boss3", "points": 400, "item": "Portalschlüssel" }
+        ]
+      },
+      "2": {
+        "missions": [
+          { "id": "w2-m1", "points": 300, "item": "Kristallkugel" },
+          { "id": "w2-m2", "points": 400, "item": "Magisches Tintenfass" },
+          { "id": "w2-m3", "points": 500, "item": "Championmedaille" }
+        ],
+        "bossQuests": [
+          { "id": "w2-boss1", "points": 500, "item": "Schatzschlüssel" },
+          { "id": "w2-boss2", "points": 600, "item": "Zaubermeister-Titel" },
+          { "id": "w2-boss3", "points": 400, "item": "Quest-Buch" }
+        ]
+      },
+      "3": {
+        "missions": [
+          { "id": "w3-m1", "points": 300, "item": "Brückenschlüssel" },
+          { "id": "w3-m2", "points": 400, "item": "Schatzkarte" },
+          { "id": "w3-m3", "points": 500, "item": "Championumhang" }
+        ],
+        "bossQuests": [
+          { "id": "w3-boss1", "points": 500, "item": "Magie-Zertifikat" },
+          { "id": "w3-boss2", "points": 600, "item": "Dungeon-Meister-Lizenz" },
+          { "id": "w3-boss3", "points": 400, "item": "Quest-Abzeichen" }
+        ]
+      },
+      "4": {
+        "missions": [
+          { "id": "w4-m1", "points": 300, "item": "Zauberstab" },
+          { "id": "w4-m2", "points": 400, "item": "Turmschlüssel" },
+          { "id": "w4-m3", "points": 500, "item": "Labyrinthkarte" }
+        ],
+        "bossQuests": [
+          { "id": "w4-boss1", "points": 500, "item": "Magischer Kristall" },
+          { "id": "w4-boss2", "points": 600, "item": "Zaubermeister-Titel" },
+          { "id": "w4-boss3", "points": 400, "item": "Dungeon-Meister" }
+        ]
+      },
+      "5": {
+        "missions": [
+          { "id": "w5-m1", "points": 300, "item": "Zauberstab" },
+          { "id": "w5-m2", "points": 400, "item": "Schöpfungstafel" },
+          { "id": "w5-m3", "points": 500, "item": "Quest-Buch" }
+        ],
+        "bossQuests": [
+          { "id": "w5-boss1", "points": 500, "item": "Meister-Zauber" },
+          { "id": "w5-boss2", "points": 600, "item": "Gildenmeister-Titel" },
+          { "id": "w5-boss3", "points": 400, "item": "Kampf-Simulator" }
+        ]
+      },
+      "6": {
+        "missions": [
+          { "id": "w6-m1", "points": 300, "item": "Magischer Beutel" },
+          { "id": "w6-m2", "points": 400, "item": "Rucksack der Unendlichkeit" },
+          { "id": "w6-m3", "points": 500, "item": "Gilde-Meister-Urkunde" }
+        ],
+        "bossQuests": [
+          { "id": "w6-boss1", "points": 500, "item": "Zauber-Kristall" },
+          { "id": "w6-boss2", "points": 600, "item": "Gildenmeister-Titel" },
+          { "id": "w6-boss3", "points": 400, "item": "Quest-Buch" }
+        ]
+      },
+      "7": {
+        "missions": [
+          { "id": "w7-m1", "points": 300, "item": "Magischer Beutel" },
+          { "id": "w7-m2", "points": 400, "item": "Kristallkugel" },
+          { "id": "w7-m3", "points": 500, "item": "Gilde-Meister-Urkunde" }
+        ],
+        "bossQuests": [
+          { "id": "w7-boss1", "points": 500, "item": "Simulations-Kristall" },
+          { "id": "w7-boss2", "points": 600, "item": "Elementarstab" },
+          { "id": "w7-boss3", "points": 400, "item": "Gilde-Meister-Urkunde (Artefakt)" }
+        ]
+      },
+      "8": {
+        "missions": [
+          { "id": "w8-m1", "points": 300, "item": "Magischer Beutel" },
+          { "id": "w8-m2", "points": 400, "item": "Kristallkugel" },
+          { "id": "w8-m3", "points": 500, "item": "Gilde-Meister-Urkunde" }
+        ],
+        "bossQuests": [
+          { "id": "w8-boss1", "points": 500, "item": "Schatzkarte" },
+          { "id": "w8-boss2", "points": 600, "item": "Dungeon-Meister-Titel" },
+          { "id": "w8-boss3", "points": 400, "item": "Quest-Buch" }
+        ]
+      },
+      "9": {
+        "missions": [
+          { "id": "w9-m1", "points": 300, "item": "Magisches Tagebuch" },
+          { "id": "w9-m2", "points": 400, "item": "Zauberstab" },
+          { "id": "w9-m3", "points": 500, "item": "Datenbank-Urkunde" }
+        ],
+        "bossQuests": [
+          { "id": "w9-boss1", "points": 500, "item": "Stream-Zauberstab" },
+          { "id": "w9-boss2", "points": 600, "item": "Konverter-Titel" },
+          { "id": "w9-boss3", "points": 400, "item": "Archivierungs-Protokoll" }
+        ]
+      },
+      "10": {
+        "missions": [
+          { "id": "w10-m1", "points": 300, "item": "Magischer Schmiedehammer" },
+          { "id": "w10-m2", "points": 400, "item": "Zauberstab der Weisheit" },
+          { "id": "w10-m3", "points": 500, "item": "Drachenei" }
+        ],
+        "bossQuests": [
+          { "id": "w10-boss1", "points": 500, "item": "Legende-Schmiedeammer" },
+          { "id": "w10-boss2", "points": 600, "item": "Arch-Zauberstab" },
+          { "id": "w10-boss3", "points": 400, "item": "Monster-Handbuch" }
+        ]
+      },
+      "11": {
+        "missions": [
+          { "id": "w11-m1", "points": 350, "item": "Erbstab der Meister" },
+          { "id": "w11-m2", "points": 450, "item": "Schild der Vielseitigkeit" },
+          { "id": "w11-m3", "points": 550, "item": "Amulett der Macht" }
+        ],
+        "bossQuests": [
+          { "id": "w11-boss1", "points": 600, "item": "Meister-Gildenring" },
+          { "id": "w11-boss2", "points": 800, "item": "Szepter der Macht" },
+          { "id": "w11-boss3", "points": 400, "item": "Codex der Allmacht" }
+        ]
+      },
+      "12": {
+        "missions": [
+          { "id": "w12-m1", "points": 350, "item": "Magischer Zeichenstift" },
+          { "id": "w12-m2", "points": 450, "item": "Hut der Visualisierung" },
+          { "id": "w12-m3", "points": 550, "item": "Amulett der Symmetrie" }
+        ],
+        "bossQuests": [
+          { "id": "w12-boss1", "points": 600, "item": "Meisterkarte der Magier" },
+          { "id": "w12-boss2", "points": 800, "item": "Szepter der Animation" },
+          { "id": "w12-boss3", "points": 400, "item": "Codex der unendlichen Kreativität" }
+        ]
+      }
+    },
+    "pferde": {
+      "1": {
+        "missions": [
+          { "id": "w1-m1", "points": 300, "item": "Stallkarte" },
+          { "id": "w1-m2", "points": 400, "item": "Futtereimer" },
+          { "id": "w1-m3", "points": 500, "item": "Turnierbande" }
+        ],
+        "bossQuests": [
+          { "id": "w1-boss1", "points": 500, "item": "Futterbuch" },
+          { "id": "w1-boss2", "points": 600, "item": "Vertrauensbande" },
+          { "id": "w1-boss3", "points": 400, "item": "Turnier-Urkunde" }
+        ]
+      },
+      "2": {
+        "missions": [
+          { "id": "w2-m1", "points": 300, "item": "Futtereimer" },
+          { "id": "w2-m2", "points": 400, "item": "Reithelm" },
+          { "id": "w2-m3", "points": 500, "item": "Turnierbande" }
+        ],
+        "bossQuests": [
+          { "id": "w2-boss1", "points": 500, "item": "Futterraumschlüssel" },
+          { "id": "w2-boss2", "points": 600, "item": "Trainingsmeister-Titel" },
+          { "id": "w2-boss3", "points": 400, "item": "Turnierplan" }
+        ]
+      },
+      "3": {
+        "missions": [
+          { "id": "w3-m1", "points": 300, "item": "Stallschlüssel" },
+          { "id": "w3-m2", "points": 400, "item": "Futterschip" },
+          { "id": "w3-m3", "points": 500, "item": "Turnierbande" }
+        ],
+        "bossQuests": [
+          { "id": "w3-boss1", "points": 500, "item": "Reiter-Zertifikat" },
+          { "id": "w3-boss2", "points": 600, "item": "Reitmeister-Lizenz" },
+          { "id": "w3-boss3", "points": 400, "item": "Turnier-Abzeichen" }
+        ]
+      },
+      "4": {
+        "missions": [
+          { "id": "w4-m1", "points": 300, "item": "Zählstock" },
+          { "id": "w4-m2", "points": 400, "item": "Stallschlüssel" },
+          { "id": "w4-m3", "points": 500, "item": "Trainingsplan" }
+        ],
+        "bossQuests": [
+          { "id": "w4-boss1", "points": 500, "item": "Spring-Kurs" },
+          { "id": "w4-boss2", "points": 600, "item": "Reitbrett-Meister" },
+          { "id": "w4-boss3", "points": 400, "item": "Marathon-Medaille" }
+        ]
+      },
+      "5": {
+        "missions": [
+          { "id": "w5-m1", "points": 300, "item": "Trainingsplan" },
+          { "id": "w5-m2", "points": 400, "item": "Trainer-Zertifikat" },
+          { "id": "w5-m3", "points": 500, "item": "Turnier-Planer" }
+        ],
+        "bossQuests": [
+          { "id": "w5-boss1", "points": 500, "item": "Meister-Training" },
+          { "id": "w5-boss2", "points": 600, "item": "Stallmeister-Titel" },
+          { "id": "w5-boss3", "points": 400, "item": "Turnier-Simulator" }
+        ]
+      },
+      "6": {
+        "missions": [
+          { "id": "w6-m1", "points": 300, "item": "Stall-Schlüssel" },
+          { "id": "w6-m2", "points": 400, "item": "Trainings-Planer" },
+          { "id": "w6-m3", "points": 500, "item": "Reitmeister-Urkunde" }
+        ],
+        "bossQuests": [
+          { "id": "w6-boss1", "points": 500, "item": "Trainings-Kristall" },
+          { "id": "w6-boss2", "points": 600, "item": "Stallmeister-Titel" },
+          { "id": "w6-boss3", "points": 400, "item": "Turnier-Protokoll" }
+        ]
+      },
+      "7": {
+        "missions": [
+          { "id": "w7-m1", "points": 300, "item": "Stall-Schlüssel" },
+          { "id": "w7-m2", "points": 400, "item": "GPS-Halsband" },
+          { "id": "w7-m3", "points": 500, "item": "Reitmeister-Urkunde" }
+        ],
+        "bossQuests": [
+          { "id": "w7-boss1", "points": 500, "item": "Simulations-Sattel" },
+          { "id": "w7-boss2", "points": 600, "item": "Meister-Peitsche" },
+          { "id": "w7-boss3", "points": 400, "item": "Schmiedehammer" }
+        ]
+      },
+      "8": {
+        "missions": [
+          { "id": "w8-m1", "points": 300, "item": "Stall-Schlüssel" },
+          { "id": "w8-m2", "points": 400, "item": "GPS-Halsband" },
+          { "id": "w8-m3", "points": 500, "item": "Reitmeister-Urkunde" }
+        ],
+        "bossQuests": [
+          { "id": "w8-boss1", "points": 500, "item": "Meister-Plan" },
+          { "id": "w8-boss2", "points": 600, "item": "Stall-Meister-Titel" },
+          { "id": "w8-boss3", "points": 400, "item": "Turnier-Buch" }
+        ]
+      },
+      "9": {
+        "missions": [
+          { "id": "w9-m1", "points": 300, "item": "Stallbuch" },
+          { "id": "w9-m2", "points": 400, "item": "Daten-Chip" },
+          { "id": "w9-m3", "points": 500, "item": "Datenbank-Urkunde" }
+        ],
+        "bossQuests": [
+          { "id": "w9-boss1", "points": 500, "item": "Stream-Prozessor" },
+          { "id": "w9-boss2", "points": 600, "item": "Konverter-Titel" },
+          { "id": "w9-boss3", "points": 400, "item": "Archivierungs-Protokoll" }
+        ]
+      },
+      "10": {
+        "missions": [
+          { "id": "w10-m1", "points": 300, "item": "Pferdedecke" },
+          { "id": "w10-m2", "points": 400, "item": "Reithelm" },
+          { "id": "w10-m3", "points": 500, "item": "Futtereimer" }
+        ],
+        "bossQuests": [
+          { "id": "w10-boss1", "points": 500, "item": "Stallmeister-Schlüssel" },
+          { "id": "w10-boss2", "points": 600, "item": "Goldmedaille" },
+          { "id": "w10-boss3", "points": 400, "item": "Therapie-Zertifikat" }
+        ]
+      },
+      "11": {
+        "missions": [
+          { "id": "w11-m1", "points": 350, "item": "Zuchturkunde" },
+          { "id": "w11-m2", "points": 450, "item": "Trainingspeitsche" },
+          { "id": "w11-m3", "points": 550, "item": "Siegerkranz" }
+        ],
+        "bossQuests": [
+          { "id": "w11-boss1", "points": 600, "item": "Meisterzüchter-Urkunde" },
+          { "id": "w11-boss2", "points": 800, "item": "Ehrenmedaille" },
+          { "id": "w11-boss3", "points": 400, "item": "Turniersiegertrophäe" }
+        ]
+      },
+      "12": {
+        "missions": [
+          { "id": "w12-m1", "points": 350, "item": "Dressurpeitsche der Präzision" },
+          { "id": "w12-m2", "points": 450, "item": "Sprungstiefel der Eleganz" },
+          { "id": "w12-m3", "points": 550, "item": "Siegerkranz der Geschwindigkeit" }
+        ],
+        "bossQuests": [
+          { "id": "w12-boss1", "points": 600, "item": "Meister-Reitbahn" },
+          { "id": "w12-boss2", "points": 800, "item": "Szepter der Animation" },
+          { "id": "w12-boss3", "points": 400, "item": "Codex des interaktiven Trainings" }
+        ]
+      }
+    },
+    "scifi": {
+      "1": {
+        "missions": [
+          { "id": "w1-m1", "points": 300, "item": "Datenpad" },
+          { "id": "w1-m2", "points": 400, "item": "Scanner" },
+          { "id": "w1-m3", "points": 500, "item": "Pilotenabzeichen" }
+        ],
+        "bossQuests": [
+          { "id": "w1-boss1", "points": 500, "item": "Quantenschreiber" },
+          { "id": "w1-boss2", "points": 600, "item": "Antivirus-Protokoll" },
+          { "id": "w1-boss3", "points": 400, "item": "Wurmloch-Koordinaten" }
+        ]
+      },
+      "2": {
+        "missions": [
+          { "id": "w2-m1", "points": 300, "item": "Energiezelle" },
+          { "id": "w2-m2", "points": 400, "item": "Datenpad" },
+          { "id": "w2-m3", "points": 500, "item": "Mining-Laser" }
+        ],
+        "bossQuests": [
+          { "id": "w2-boss1", "points": 500, "item": "Dock-Zugang" },
+          { "id": "w2-boss2", "points": 600, "item": "KI-Entwickler-Titel" },
+          { "id": "w2-boss3", "points": 400, "item": "Missionsabzeichen" }
+        ]
+      },
+      "3": {
+        "missions": [
+          { "id": "w3-m1", "points": 300, "item": "Scanner-Lizenz" },
+          { "id": "w3-m2", "points": 400, "item": "Terminal-Zugang" },
+          { "id": "w3-m3", "points": 500, "item": "Missionsabzeichen" }
+        ],
+        "bossQuests": [
+          { "id": "w3-boss1", "points": 500, "item": "KI-Zertifikat" },
+          { "id": "w3-boss2", "points": 600, "item": "Piloten-Lizenz" },
+          { "id": "w3-boss3", "points": 400, "item": "Missionsabzeichen" }
+        ]
+      },
+      "4": {
+        "missions": [
+          { "id": "w4-m1", "points": 300, "item": "Quanten-Chip" },
+          { "id": "w4-m2", "points": 400, "item": "Kommandanten-Schlüssel" },
+          { "id": "w4-m3", "points": 500, "item": "Zeit-Reise-Lizenz" }
+        ],
+        "bossQuests": [
+          { "id": "w4-boss1", "points": 500, "item": "Quanten-Prozessor" },
+          { "id": "w4-boss2", "points": 600, "item": "Holodeck-Meister" },
+          { "id": "w4-boss3", "points": 400, "item": "Tunnel-Navigator" }
+        ]
+      },
+      "5": {
+        "missions": [
+          { "id": "w5-m1", "points": 300, "item": "System-Zugang" },
+          { "id": "w5-m2", "points": 400, "item": "Missions-Kontrolle" },
+          { "id": "w5-m3", "points": 500, "item": "Flotten-Kommando" }
+        ],
+        "bossQuests": [
+          { "id": "w5-boss1", "points": 500, "item": "Master-Protokoll" },
+          { "id": "w5-boss2", "points": 600, "item": "Kommandanten-Titel" },
+          { "id": "w5-boss3", "points": 400, "item": "Kampf-Simulator" }
+        ]
+      },
+      "6": {
+        "missions": [
+          { "id": "w6-m1", "points": 300, "item": "Daten-Chip" },
+          { "id": "w6-m2", "points": 400, "item": "System-Konsole" },
+          { "id": "w6-m3", "points": 500, "item": "Crew-Meister-Urkunde" }
+        ],
+        "bossQuests": [
+          { "id": "w6-boss1", "points": 500, "item": "Daten-Kristall" },
+          { "id": "w6-boss2", "points": 600, "item": "Kommandanten-Titel" },
+          { "id": "w6-boss3", "points": 400, "item": "Missions-Protokoll" }
+        ]
+      },
+      "7": {
+        "missions": [
+          { "id": "w7-m1", "points": 300, "item": "Daten-Chip" },
+          { "id": "w7-m2", "points": 400, "item": "Navigations-Gerät" },
+          { "id": "w7-m3", "points": 500, "item": "Crew-Meister-Urkunde" }
+        ],
+        "bossQuests": [
+          { "id": "w7-boss1", "points": 500, "item": "Simulations-Kern" },
+          { "id": "w7-boss2", "points": 600, "item": "Quanten-Prozessor" },
+          { "id": "w7-boss3", "points": 400, "item": "KI-Kern" }
+        ]
+      },
+      "8": {
+        "missions": [
+          { "id": "w8-m1", "points": 300, "item": "Daten-Chip" },
+          { "id": "w8-m2", "points": 400, "item": "Navigations-Gerät" },
+          { "id": "w8-m3", "points": 500, "item": "Crew-Meister-Urkunde" }
+        ],
+        "bossQuests": [
+          { "id": "w8-boss1", "points": 500, "item": "Daten-Kristall" },
+          { "id": "w8-boss2", "points": 600, "item": "Kommandanten-Titel" },
+          { "id": "w8-boss3", "points": 400, "item": "Missions-Protokoll" }
+        ]
+      },
+      "9": {
+        "missions": [
+          { "id": "w9-m1", "points": 300, "item": "Daten-Chip" },
+          { "id": "w9-m2", "points": 400, "item": "Daten-Transformer" },
+          { "id": "w9-m3", "points": 500, "item": "Datenbank-Urkunde" }
+        ],
+        "bossQuests": [
+          { "id": "w9-boss1", "points": 500, "item": "Stream-Prozessor" },
+          { "id": "w9-boss2", "points": 600, "item": "Konverter-Titel" },
+          { "id": "w9-boss3", "points": 400, "item": "Archivierungs-Protokoll" }
+        ]
+      },
+      "10": {
+        "missions": [
+          { "id": "w10-m1", "points": 300, "item": "Schraubenschlüssel" },
+          { "id": "w10-m2", "points": 400, "item": "Laserpistole" },
+          { "id": "w10-m3", "points": 500, "item": "Raumanzug" }
+        ],
+        "bossQuests": [
+          { "id": "w10-boss1", "points": 500, "item": "Konstruktions-Kit" },
+          { "id": "w10-boss2", "points": 600, "item": "Quantenprozessor" },
+          { "id": "w10-boss3", "points": 400, "item": "Universalübersetzer" }
+        ]
+      },
+      "11": {
+        "missions": [
+          { "id": "w11-m1", "points": 350, "item": "Konstruktions-Kit" },
+          { "id": "w11-m2", "points": 450, "item": "Waffen-Upgrade" },
+          { "id": "w11-m3", "points": 550, "item": "Hypersprungs-Modul" }
+        ],
+        "bossQuests": [
+          { "id": "w11-boss1", "points": 600, "item": "Quantenprozessor" },
+          { "id": "w11-boss2", "points": 800, "item": "Warpantrieb" },
+          { "id": "w11-boss3", "points": 400, "item": "Universalübersetzer" }
+        ]
+      },
+      "12": {
+        "missions": [
+          { "id": "w12-m1", "points": 350, "item": "Hologramm-Projektor" },
+          { "id": "w12-m2", "points": 450, "item": "Kommandanten-Abzeichen" },
+          { "id": "w12-m3", "points": 550, "item": "Sternenkartographen-Zertifikat" }
+        ],
+        "bossQuests": [
+          { "id": "w12-boss1", "points": 600, "item": "Galaktische Karte" },
+          { "id": "w12-boss2", "points": 800, "item": "Szepter der Flotten-Kommandanten" },
+          { "id": "w12-boss3", "points": 400, "item": "Codex des Hologramm-Meisters" }
+        ]
+      }
+    }
+  }
+}

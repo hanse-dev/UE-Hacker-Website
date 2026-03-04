@@ -113,6 +113,9 @@ dist-ssr
 # Vitest cache
 .vitest-cache
 
+# Lokaler Fortschritt (scripts/fortschritt.py)
+mein-fortschritt.json
+
 # IDE files
 .idea/
 .vscode/

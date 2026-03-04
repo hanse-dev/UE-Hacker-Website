@@ -4,10 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "npm run pack:notebooks && vite",
     "build": "vite build",
     "preview": "vite preview",
-    "cheatsheet:notebooks": "python3 scripts/md_to_cheatsheet_notebook.py"
+    "cheatsheet:notebooks": "python3 scripts/md_to_cheatsheet_notebook.py",
+    "pack:notebooks": "python3 scripts/pack_notebooks.py",
+    "watch:notebooks": "node scripts/watch_notebooks.js",
+    "prebuild": "npm run pack:notebooks"
   },
   "dependencies": {
     "front-matter": "^4.0.2",

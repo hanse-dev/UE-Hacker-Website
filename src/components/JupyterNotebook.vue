@@ -27,6 +27,47 @@
         </ol>
       </div>
 
+      <!-- Missionen-Panel (nur für Python 12-Wochen-Kurs) – ein-/ausklappbar -->
+      <div v-if="missionen.length > 0" class="missionen-panel">
+        <div class="missionen-panel-header" @click="missionenExpanded = !missionenExpanded">
+          <h4>🎯 Missionen & Belohnungen – Woche {{ weekNumber }}</h4>
+          <span class="missionen-toggle">{{ missionenExpanded ? '−' : '+' }}</span>
+        </div>
+        <div v-show="missionenExpanded" class="missionen-panel-content">
+          <p class="missionen-hint">Hast du eine Mission gemeistert? Klicke auf „Punkte einlösen“! Vergriffen? Nutze „Rückgängig“.</p>
+          <div class="missionen-list">
+            <div
+              v-for="m in missionen"
+              :key="m.id"
+              class="mission-item"
+              :class="{ claimed: isClaimed(m.id) }"
+            >
+              <span class="mission-label">{{ m.label }}:</span>
+              <span class="mission-info">{{ m.points }} {{ pointUnit }} + {{ m.item }}</span>
+              <div class="mission-actions">
+                <button
+                  v-if="!isClaimed(m.id)"
+                  @click.stop="claimMission(m)"
+                  class="btn-claim"
+                >
+                  ✨ Punkte einlösen
+                </button>
+                <template v-else>
+                  <span class="mission-claimed">✅ Eingelöst</span>
+                  <button
+                    @click.stop="unclaimMission(m)"
+                    class="btn-unclaim"
+                    title="Rückgängig machen"
+                  >
+                    ↩ Rückgängig
+                  </button>
+                </template>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Controls -->
       <div class="notebook-header">
         <div class="notebook-controls">
@@ -91,8 +132,9 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { marked } from 'marked';
+import { useFortschritt } from '../composables/useFortschritt';
 
 export default {
   name: 'JupyterNotebook',
@@ -109,6 +151,14 @@ export default {
       type: Number,
       required: true,
     },
+    variant: {
+      type: String,
+      default: null,
+    },
+    courseId: {
+      type: String,
+      default: null,
+    },
   },
   setup(props) {
     const cells = ref([]);
@@ -118,6 +168,47 @@ export default {
     const kernelStatus = ref('');
     const pyodide = ref(null);
     const isExpanded = ref(false);
+    const rewardsManifest = ref(null);
+
+    const missionenExpanded = ref(true);
+    const { claimMission: doClaimMission, unclaimMission: doUnclaimMission, isClaimed: checkClaimed } = useFortschritt();
+
+    const pointUnits = { abenteuer: 'XP', pferde: 'Huf-Punkte', scifi: 'Cyber Credits' };
+    const pointUnit = computed(() => pointUnits[props.variant] || 'Punkte');
+
+    const missionen = computed(() => {
+      if (!rewardsManifest.value || !props.variant || props.courseId !== 'python-12-wochen-grundkurs') {
+        return [];
+      }
+      const course = rewardsManifest.value[props.courseId];
+      if (!course) return [];
+      const variantData = course[props.variant];
+      if (!variantData) return [];
+      const weekData = variantData[String(props.weekNumber)];
+      if (!weekData) return [];
+      const missions = (weekData.missions || []).map((m, i) => ({ ...m, label: `Mission ${i + 1}` }));
+      const bosses = (weekData.bossQuests || []).map((m, i) => ({ ...m, label: `Boss-Quest ${i + 1}` }));
+      return [...missions, ...bosses];
+    });
+
+    const isClaimed = (missionId) => checkClaimed(props.variant, missionId);
+
+    const claimMission = (m) => {
+      doClaimMission(props.variant, m.id, m.points, m.item, m.label);
+    };
+
+    const unclaimMission = (m) => {
+      doUnclaimMission(props.variant, m.id);
+    };
+
+    const loadRewardsManifest = async () => {
+      try {
+        const res = await fetch('/rewards-manifest.json');
+        if (res.ok) rewardsManifest.value = await res.json();
+      } catch (e) {
+        console.error('Rewards-Manifest konnte nicht geladen werden:', e);
+      }
+    };
 
     const renderMarkdown = (source) => {
       const text = Array.isArray(source) ? source.join('') : source;
@@ -280,9 +371,16 @@ _output = _stdout_capture.getvalue()
 
     onMounted(() => {
       loadNotebook();
+      loadRewardsManifest();
     });
 
     return {
+      missionenExpanded,
+      missionen,
+      pointUnit,
+      isClaimed,
+      claimMission,
+      unclaimMission,
       cells,
       loading,
       error,
@@ -401,6 +499,131 @@ _output = _stdout_capture.getvalue()
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Missionen Panel */
+.missionen-panel {
+  background: linear-gradient(135deg, #fef9e7 0%, #fdebd0 100%);
+  border: 2px solid #ffd700;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.missionen-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.missionen-panel-header:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.missionen-panel-header h4 {
+  margin: 0;
+  color: #333;
+  font-size: 1.1em;
+}
+
+.missionen-toggle {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #666;
+}
+
+.missionen-panel-content {
+  padding: 0 20px 16px 20px;
+  border-top: 1px solid rgba(255, 215, 0, 0.5);
+}
+
+.missionen-hint {
+  margin: 8px 0 12px 0;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.missionen-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mission-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 6px;
+  border: 1px solid #eee;
+}
+
+.mission-item.claimed {
+  background: #e8f5e9;
+  border-color: #c8e6c9;
+}
+
+.mission-label {
+  font-weight: 600;
+  color: #555;
+  min-width: 90px;
+}
+
+.mission-info {
+  font-size: 0.95em;
+  color: #333;
+  flex: 1;
+}
+
+.mission-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-claim {
+  background: #ffd700;
+  color: #333;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.9em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-claim:hover {
+  background: #ffed4e;
+  transform: translateY(-1px);
+}
+
+.btn-unclaim {
+  background: transparent;
+  color: #666;
+  border: 1px solid #ccc;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.85em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-unclaim:hover {
+  background: #ffebee;
+  color: #c62828;
+  border-color: #ef9a9a;
+}
+
+.mission-claimed {
+  font-size: 0.9em;
+  color: #2e7d32;
+  font-weight: 600;
 }
 
 /* Instructions */
