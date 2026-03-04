@@ -1,6 +1,9 @@
 # Build Stage
 FROM node:18-alpine AS build
 
+# Python für pack:notebooks (prebuild)
+RUN apk add --no-cache python3
+
 WORKDIR /app
 
 COPY package*.json ./
