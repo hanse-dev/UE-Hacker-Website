@@ -3,6 +3,20 @@
     <h1>{{ course.title }}</h1>
     <div v-if="description" v-html="description" class="course-description"></div>
 
+    <!-- Upcoming Appointments Section -->
+    <div class="appointments-section">
+      <h3>Nächste Termine für diesen Kurs</h3>
+      <div v-if="courseTermine.length > 0" class="termine-list-local">
+        <div v-for="termin in courseTermine" :key="termin.id" class="termin-card-local">
+          <h4>{{ termin.date }}</h4>
+          <p><strong>Uhrzeit:</strong> {{ termin.time }}</p>
+          <p><strong>Ort:</strong> {{ termin.location }}</p>
+          <p v-if="termin.topic"><strong>Thema:</strong> {{ termin.topic }}</p>
+        </div>
+      </div>
+      <p v-else class="termine-empty">Aktuell keine Termine für diesen Kurs.</p>
+    </div>
+
     <!-- Fortschritts-Widget (nur für Python 12-Wochen-Kurs) – ein-/ausklappbar -->
     <div v-if="isWeeklyCourse && fortschrittReady" class="fortschritt-widget">
       <div class="fortschritt-widget-header" @click="fortschrittExpanded = !fortschrittExpanded">
@@ -10,6 +24,10 @@
         <span class="fortschritt-toggle">{{ fortschrittExpanded ? '−' : '+' }}</span>
       </div>
       <div v-show="fortschrittExpanded" class="fortschritt-widget-content">
+        <div class="fortschritt-einleitung">
+          <p><strong>Was ist das Punkte-System?</strong> In jeder Woche gibt es Missionen, die du meisterst – dabei sammelst du Belohnungen (XP, Huf-Punkte oder Cyber Credits je nach Questreihe). Das soll Spaß machen und dich motivieren, dranzubleiben.</p>
+          <p>Klicke bei jeder erledigten Mission auf „Punkte einlösen“ – so siehst du deinen Fortschritt und kannst dich über gesammelte Items freuen. Nichts davon ist Pflicht, es ist nur zum Feiern deiner Erfolge da. 🎉</p>
+        </div>
         <!-- Import/Export für lokale Nutzer -->
         <div class="fortschritt-import-export">
           <button @click="exportFortschritt" class="fortschritt-io-btn" title="Fortschritt als JSON herunterladen">
@@ -127,20 +145,6 @@
         </div>
         <p class="fortschritt-hint" v-if="getTotalClaims() === 0">Klicke „Punkte einlösen“ bei jeder Mission, die du gemeistert hast!</p>
       </div>
-    </div>
-
-    <!-- Upcoming Appointments Section -->
-    <div class="appointments-section">
-      <h3>Nächste Termine für diesen Kurs</h3>
-      <div v-if="courseTermine.length > 0" class="termine-list-local">
-        <div v-for="termin in courseTermine" :key="termin.id" class="termin-card-local">
-          <h4>{{ termin.date }}</h4>
-          <p><strong>Uhrzeit:</strong> {{ termin.time }}</p>
-          <p><strong>Ort:</strong> {{ termin.location }}</p>
-          <p v-if="termin.topic"><strong>Thema:</strong> {{ termin.topic }}</p>
-        </div>
-      </div>
-      <p v-else class="termine-empty">Aktuell keine Termine für diesen Kurs.</p>
     </div>
 
     <div v-for="(week, index) in weeks" :key="index" class="week-section" :id="`woche-${index + 1}`">
@@ -946,6 +950,24 @@ export default {
 .fortschritt-widget-content {
   padding: 0 20px 20px 20px;
   border-top: 1px solid rgba(255, 215, 0, 0.5);
+}
+
+.fortschritt-einleitung {
+  background: rgba(255, 255, 255, 0.6);
+  padding: 14px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  border-left: 4px solid #ffd700;
+}
+
+.fortschritt-einleitung p {
+  margin: 0 0 8px 0;
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+.fortschritt-einleitung p:last-child {
+  margin-bottom: 0;
 }
 
 .fortschritt-import-export {

@@ -78,8 +78,8 @@
     "recurring": true,
     "validFrom": "2025-01-07",
     "validUntil": null,
-    "date": "Jeden Dienstag",
-    "time": "17:30 - 18:30 Uhr",
+    "date": "Jeden Mittwoch",
+    "time": "17:00 - 18:00 Uhr",
     "location": "Online",
     "topic": "12-Wochen-Kurs Python",
     "link": "/kurs/python-12-wochen-grundkurs"
