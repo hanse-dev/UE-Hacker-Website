@@ -49,6 +49,12 @@
             <span class="fortschritt-toggle">{{ skriptErklaerungExpanded ? '−' : '+' }}</span>
           </div>
           <div v-show="skriptErklaerungExpanded" class="fortschritt-skript-content">
+            <div class="fortschritt-skript-download">
+              <a href="/fortschritt-script.zip" download class="fortschritt-skript-btn">
+                📥 Fortschritt-Skript herunterladen
+              </a>
+              <span class="fortschritt-skript-btn-hint">ZIP mit <code>fortschritt.py</code> und <code>rewards-manifest.json</code></span>
+            </div>
             <p>Wenn du die Notebooks <strong>lokal</strong> in Jupyter oder VS Code ausführst, kannst du trotzdem Punkte sammeln:</p>
             <ol>
               <li><strong>Skript ausführen</strong>, wenn du eine Mission gemeistert hast:
@@ -57,7 +63,7 @@
               </li>
               <li><strong>Hier importieren</strong>: Klicke oben auf „📥 Importieren“ und wähle deine <code>mein-fortschritt.json</code> – die Missionen werden zusammengeführt.</li>
             </ol>
-            <p class="fortschritt-skript-details">Das Skript liegt im Projekt unter <code>scripts/fortschritt.py</code>. Mit dem Notebook-Pack unten kannst du alle Dateien herunterladen. Direkt: <code>python fortschritt.py add abenteuer w10-m1</code> oder <code>python fortschritt.py show</code> für den aktuellen Stand.</p>
+            <p class="fortschritt-skript-details">Lade das ZIP oben herunter, entpacke es und führe <code>python fortschritt.py</code> im entpackten Ordner aus. Oder nutze das vollständige Notebook-Pack unten – es enthält das Skript ebenfalls. Befehle: <code>python fortschritt.py add abenteuer w10-m1</code> oder <code>python fortschritt.py show</code> für den aktuellen Stand.</p>
           </div>
         </div>
 
@@ -250,7 +256,7 @@
       <a href="/python-12-wochen-notebooks.zip" download class="notebook-pack-btn">
         📦 Alle Notebooks als Pack herunterladen
       </a>
-      <p class="notebook-pack-hint">Zip mit allen 12 Wochen (Abenteuer, Pferde, Sci-Fi) + Cheat Sheets – zum Arbeiten in Jupyter oder VS Code.</p>
+      <p class="notebook-pack-hint">Zip mit allen 12 Wochen (Abenteuer, Pferde, Sci-Fi) + Cheat Sheets + Fortschritt-Skript – zum Arbeiten in Jupyter oder VS Code.</p>
     </div>
   </section>
   <div v-else>
@@ -1037,6 +1043,37 @@ export default {
 .fortschritt-skript-content {
   padding: 0 16px 16px 16px;
   border-top: 1px solid #dee2e6;
+}
+
+.fortschritt-skript-download {
+  margin: 12px 0 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fortschritt-skript-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #ffd700;
+  color: #333;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  border: 2px solid #e6c200;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.fortschritt-skript-btn:hover {
+  background: #ffe033;
+  border-color: #ffd700;
+}
+
+.fortschritt-skript-btn-hint {
+  font-size: 0.85em;
+  color: #666;
 }
 
 .fortschritt-skript-content p {
