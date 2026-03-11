@@ -64,6 +64,7 @@
 
 <script>
 import { ref, onMounted } from 'vue';
+import { assetUrl } from '../utils/assetUrl';
 
 export default {
   name: 'Home',
@@ -94,7 +95,7 @@ export default {
 
     const fetchTermine = async () => {
       try {
-        const response = await fetch('/termine.json');
+        const response = await fetch(assetUrl('termine.json'));
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -130,7 +131,7 @@ export default {
 
     const fetchKurse = async () => {
       try {
-        const response = await fetch('/kurse.json');
+        const response = await fetch(assetUrl('kurse.json'));
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

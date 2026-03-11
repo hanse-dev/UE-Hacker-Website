@@ -136,6 +136,7 @@ import { ref, onMounted, computed } from 'vue';
 import { marked } from 'marked';
 import { useFortschritt } from '../composables/useFortschritt';
 import { usePyodide } from '../composables/usePyodide';
+import { assetUrl } from '../utils/assetUrl';
 
 export default {
   name: 'JupyterNotebook',
@@ -203,7 +204,7 @@ export default {
 
     const loadRewardsManifest = async () => {
       try {
-        const res = await fetch('/rewards-manifest.json');
+        const res = await fetch(assetUrl('rewards-manifest.json'));
         if (res.ok) rewardsManifest.value = await res.json();
       } catch (e) {
         console.error('Rewards-Manifest konnte nicht geladen werden:', e);

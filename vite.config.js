@@ -4,6 +4,8 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // Bei Deployment unter Subpath (z.B. /ue-hacker/) base setzen:
+  // base: '/ue-hacker/',
   plugins: [vue()],
   assetsInclude: ['**/*.ipynb'],
   resolve: {
