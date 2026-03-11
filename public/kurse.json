@@ -1,5 +1,11 @@
 [
   {
+    "id": "python-grundlagen-interaktiv",
+    "title": "Python Grundlagen – Interaktiv",
+    "description": "Kurze Erklärungen und kleine Programmieraufgaben. Löse jede Aufgabe direkt im Browser – erst wenn sie stimmt, geht es weiter.",
+    "contentPath": "python-grundlagen-interaktiv"
+  },
+  {
     "id": "python-12-wochen-grundkurs",
     "title": "12-Wochen Python Grundkurs",
     "description": "Alles, was du für den Einstieg in Python brauchst. Von den Grundlagen bis zu deinem ersten eigenen Projekt.",

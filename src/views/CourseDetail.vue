@@ -3,8 +3,8 @@
     <h1>{{ course.title }}</h1>
     <div v-if="description" v-html="description" class="course-description"></div>
 
-    <!-- Upcoming Appointments Section -->
-    <div class="appointments-section">
+    <!-- Upcoming Appointments Section (nicht für interaktiven Kurs) -->
+    <div v-if="!isInteractiveCourse" class="appointments-section">
       <h3>Nächste Termine für diesen Kurs</h3>
       <div v-if="courseTermine.length > 0" class="termine-list-local">
         <div v-for="termin in courseTermine" :key="termin.id" class="termin-card-local">
@@ -17,8 +17,13 @@
       <p v-else class="termine-empty">Aktuell keine Termine für diesen Kurs.</p>
     </div>
 
+    <!-- Interaktiver Grundlagen-Kurs -->
+    <div v-if="isInteractiveCourse" class="interactive-course-wrapper">
+      <InteractiveCourse :content-path="course.contentPath" />
+    </div>
+
     <!-- Fortschritts-Widget (nur für Python 12-Wochen-Kurs) – ein-/ausklappbar -->
-    <div v-if="isWeeklyCourse && fortschrittReady" class="fortschritt-widget">
+    <div v-else-if="isWeeklyCourse && fortschrittReady" class="fortschritt-widget">
       <div class="fortschritt-widget-header" @click="fortschrittExpanded = !fortschrittExpanded">
         <h3>🏆 Deine gesammelten Belohnungen</h3>
         <span class="fortschritt-toggle">{{ fortschrittExpanded ? '−' : '+' }}</span>
@@ -153,7 +158,7 @@
       </div>
     </div>
 
-    <div v-for="(week, index) in weeks" :key="index" class="week-section" :id="`woche-${index + 1}`">
+    <div v-if="isWeeklyCourse" v-for="(week, index) in weeks" :key="index" class="week-section" :id="`woche-${index + 1}`">
       <div class="week-section-inner">
         <div class="week-header" @click="toggleWeek(index)">
           <h2>{{ week.title }}</h2>
@@ -269,12 +274,14 @@ import { ref, onMounted, computed, reactive } from 'vue';
 import fm from 'front-matter';
 import { marked } from 'marked';
 import JupyterNotebook from '../components/JupyterNotebook.vue';
+import InteractiveCourse from '../components/InteractiveCourse.vue';
 import { useFortschritt } from '../composables/useFortschritt';
 
 export default {
   name: 'CourseDetail',
   components: {
     JupyterNotebook,
+    InteractiveCourse,
   },
   props: {
     id: {
@@ -365,6 +372,10 @@ export default {
 
     const isWeeklyCourse = computed(() => {
         return props.id === 'python-12-wochen-grundkurs';
+    });
+
+    const isInteractiveCourse = computed(() => {
+        return props.id === 'python-grundlagen-interaktiv';
     });
 
     const parseDate = (dateString) => {
@@ -662,6 +673,7 @@ export default {
       description,
       weeks,
       isWeeklyCourse,
+      isInteractiveCourse,
       courseTermine,
       fortschrittReady,
       fortschrittExpanded,
@@ -694,6 +706,11 @@ export default {
 <style scoped>
 .course-detail {
   padding: 20px;
+}
+
+.interactive-course-wrapper {
+  margin-top: 20px;
+  overflow: visible;
 }
 .course-description {
   margin-bottom: 40px;

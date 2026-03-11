@@ -135,6 +135,7 @@
 import { ref, onMounted, computed } from 'vue';
 import { marked } from 'marked';
 import { useFortschritt } from '../composables/useFortschritt';
+import { usePyodide } from '../composables/usePyodide';
 
 export default {
   name: 'JupyterNotebook',
@@ -164,11 +165,10 @@ export default {
     const cells = ref([]);
     const loading = ref(true);
     const error = ref(null);
-    const kernelReady = ref(false);
-    const kernelStatus = ref('');
-    const pyodide = ref(null);
     const isExpanded = ref(false);
     const rewardsManifest = ref(null);
+
+    const { kernelReady, kernelStatus, initializeKernel: initPyodide, runPython } = usePyodide();
 
     const missionenExpanded = ref(true);
     const { claimMission: doClaimMission, unclaimMission: doUnclaimMission, isClaimed: checkClaimed } = useFortschritt();
@@ -241,50 +241,9 @@ export default {
     };
 
     const initializeKernel = async () => {
-      if (kernelReady.value) return;
-
       try {
-        kernelStatus.value = 'Python-Kernel wird gestartet (kann bis zu 30 Sekunden dauern)...';
-
-        // Load Pyodide from CDN
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js';
-
-        await new Promise((resolve, reject) => {
-          script.onload = resolve;
-          script.onerror = reject;
-          document.head.appendChild(script);
-        });
-
-        // Initialize Pyodide
-        pyodide.value = await window.loadPyodide({
-          indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/',
-        });
-
-        // Redirect stdout and setup input() function
-        await pyodide.value.runPythonAsync(`
-import sys
-from io import StringIO
-import builtins
-from js import window
-
-# Replace input() with JavaScript prompt
-def browser_input(prompt=''):
-    result = window.prompt(str(prompt))
-    return result if result is not None else ''
-
-builtins.input = browser_input
-        `);
-
-        kernelReady.value = true;
-        kernelStatus.value = 'Python ist bereit!';
-
-        setTimeout(() => {
-          kernelStatus.value = '';
-        }, 3000);
+        await initPyodide();
       } catch (e) {
-        console.error('Error initializing Pyodide:', e);
-        kernelStatus.value = 'Fehler beim Starten des Kernels: ' + e.message;
         error.value = 'Konnte Python-Kernel nicht starten. Bitte Seite neu laden.';
       }
     };
@@ -309,38 +268,18 @@ builtins.input = browser_input
         return;
       }
 
-      try {
-        outputElement.innerHTML = '<div class="output-running">Wird ausgeführt...</div>';
+      outputElement.innerHTML = '<div class="output-running">Wird ausgeführt...</div>';
 
-        // Capture stdout and execute code
-        const captureCode = `
-import sys
-from io import StringIO
+      const result = await runPython(code);
 
-_stdout_capture = StringIO()
-_old_stdout = sys.stdout
-sys.stdout = _stdout_capture
-
-try:
-${code.split('\n').map(line => '    ' + line).join('\n')}
-    pass  # Ensure try block is never empty
-finally:
-    sys.stdout = _old_stdout
-
-_output = _stdout_capture.getvalue()
-`;
-
-        await pyodide.value.runPythonAsync(captureCode);
-        const output = pyodide.value.globals.get('_output');
-
-        if (output && output.trim()) {
-          outputElement.innerHTML = `<pre class="output-stream">${escapeHtml(output)}</pre>`;
+      if (result.success) {
+        if (result.output && result.output.trim()) {
+          outputElement.innerHTML = `<pre class="output-stream">${escapeHtml(result.output)}</pre>`;
         } else {
           outputElement.innerHTML = '';
         }
-      } catch (e) {
-        console.error('Error running cell:', e);
-        outputElement.innerHTML = `<pre class="output-error">${escapeHtml(e.message)}</pre>`;
+      } else {
+        outputElement.innerHTML = `<pre class="output-error">${escapeHtml(result.error)}</pre>`;
       }
     };
 

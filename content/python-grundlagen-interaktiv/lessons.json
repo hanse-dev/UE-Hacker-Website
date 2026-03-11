@@ -1,0 +1,201 @@
+[
+  {
+    "id": "lektion-01",
+    "title": "Dein erstes Programm",
+    "file": "lektion-01.md",
+    "lessonSummary": "Gut gemacht! Du kannst jetzt Text mit print() auf dem Bildschirm ausgeben.",
+    "tasks": [
+      {
+        "instruction": "Gib „Hallo Welt“ aus.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Hallo Welt" }
+      },
+      {
+        "instruction": "Gib „Fertig“ aus.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Fertig" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "title": "Variablen",
+    "file": "lektion-02.md",
+    "lessonSummary": "Prima! Du hast gelernt, Werte in Variablen zu speichern und wieder zu verwenden.",
+    "tasks": [
+      {
+        "instruction": "Speichere „Python“ in einer Variable und gib sie mit print() aus.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Python" }
+      },
+      {
+        "instruction": "Speichere die Zahl 42 in einer Variable und gib sie aus.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "42" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "title": "Zahlen und Rechnen",
+    "file": "lektion-03.md",
+    "lessonSummary": "Toll! Du beherrschst jetzt die Grundrechenarten in Python.",
+    "tasks": [
+      {
+        "instruction": "Erstelle zwei Variablen mit Zahlen und gib ihre Summe aus (z.B. 10 + 3 = 13).",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "13" }
+      },
+      {
+        "instruction": "Erstelle zwei Variablen und gib ihr Produkt aus (z.B. 10 * 3 = 30).",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "30" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-datentypen",
+    "title": "Datentypen",
+    "file": "lektion-datentypen.md",
+    "lessonSummary": "Klasse! Du kennst die wichtigsten Datentypen und kannst sie mit type() prüfen.",
+    "tasks": [
+      {
+        "instruction": "Gib den Typ der Zahl 100 aus (nutze type()).",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "int" }
+      },
+      {
+        "instruction": "Gib den Typ des Textes „Python“ aus.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "str" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "title": "Strings formatieren (f-Strings)",
+    "file": "lektion-04.md",
+    "lessonSummary": "Geschafft! Du kannst Variablen mit f-Strings elegant in Text einbinden.",
+    "tasks": [
+      {
+        "instruction": "Erstelle eine Variable und gib sie mit einem f-String aus (z.B. „Hallo, [Name]!“).",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Hallo," }
+      },
+      {
+        "instruction": "Erstelle eine Variable alter mit einer Zahl und gib z.B. „Ich bin X Jahre alt“ aus (mit f-String).",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Jahre" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "title": "Bedingungen mit if",
+    "file": "lektion-05.md",
+    "lessonSummary": "Ausgezeichnet! Du triffst jetzt mit if und else Entscheidungen im Code.",
+    "tasks": [
+      {
+        "instruction": "Gib „Du bist mindestens 16!“ aus, wenn eine Variable alter mindestens 16 ist.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "mindestens 16" }
+      },
+      {
+        "instruction": "Nutze if und else: Wenn alter unter 16 ist, gib „zu jung“ aus; sonst „Du bist mindestens 16!“.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "zu jung" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "title": "Schleifen mit for",
+    "file": "lektion-06.md",
+    "lessonSummary": "Perfekt! Du wiederholst Code mit for-Schleifen.",
+    "tasks": [
+      {
+        "instruction": "Gib „Hallo“ mehrfach aus (z.B. mit einer for-Schleife über range).",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Hallo" }
+      },
+      {
+        "instruction": "Nutze eine for-Schleife und gib die Schleifenvariable aus (die Ausgabe enthält 0).",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "0" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "title": "Listen",
+    "file": "lektion-07.md",
+    "lessonSummary": "Super! Du speicherst mehrere Werte in Listen und greifst über den Index darauf zu.",
+    "tasks": [
+      {
+        "instruction": "Erstelle eine Liste mit „Hund“, „Katze“, „Maus“ und gib das erste Element aus.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Hund" }
+      },
+      {
+        "instruction": "Gib das letzte Element derselben Liste aus (Index -1).",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Maus" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-08",
+    "title": "Funktionen",
+    "file": "lektion-08.md",
+    "lessonSummary": "Stark! Du definierst und rufst wiederverwendbare Funktionen mit def auf.",
+    "tasks": [
+      {
+        "instruction": "Definiere eine Funktion, die „Guten Tag!“ ausgibt, und rufe sie auf.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Guten Tag" }
+      },
+      {
+        "instruction": "Definiere eine Funktion verdoppeln(zahl), die eine Zahl verdoppelt und ausgibt. Rufe sie z.B. mit 3.5 auf.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "7" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-09",
+    "title": "Dictionaries",
+    "file": "lektion-09.md",
+    "lessonSummary": "Sehr gut! Du speicherst und rufst Schlüssel-Wert-Paare in Dictionaries ab.",
+    "tasks": [
+      {
+        "instruction": "Erstelle ein Dictionary mit „apfel“ → „apple“ und „buch“ → „book“. Gib den Wert zu „apfel“ aus.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "apple" }
+      },
+      {
+        "instruction": "Gib den Wert zu „buch“ aus (aus demselben Dictionary).",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "book" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-10",
+    "title": "Übung: Alles zusammen",
+    "file": "lektion-10.md",
+    "lessonSummary": "Fertig! Du hast die Python-Grundlagen gemeistert. Du bist bereit für den 12-Wochen Python Grundkurs!",
+    "nextCourseId": "python-12-wochen-grundkurs",
+    "tasks": [
+      {
+        "instruction": "Erstelle eine Liste mit Zahlen und gib jede Zahl verdoppelt aus (z.B. [1,2,3] → 2, 4, 6).",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "2" }
+      },
+      {
+        "instruction": "Erstelle eine Funktion summe(zahlen), die eine Liste von Zahlen nimmt, die Summe berechnet und mit print() ausgibt. Rufe sie mit [1, 2, 3, 4, 5] auf. Die Ausgabe soll 15 enthalten.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "15" }
+      }
+    ]
+  }
+]

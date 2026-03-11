@@ -3,7 +3,10 @@
     <section id="hero">
       <h2>Willkommen bei den Übergangshackern!</h2>
       <p>Deine Reise in die Welt des Programmierens beginnt hier. Lerne Python auf eine Weise, die Spass macht.</p>
-      <router-link to="/kurs/python-12-wochen-grundkurs" class="cta-button">Zum 12-Wochen-Kurs</router-link>
+      <div class="hero-buttons">
+        <router-link to="/kurs/python-12-wochen-grundkurs" class="cta-button">Zum 12-Wochen-Kurs</router-link>
+        <router-link to="/kurs/python-grundlagen-interaktiv" class="cta-button cta-button-secondary">Python Grundlagen – Interaktiv</router-link>
+      </div>
     </section>
 
     <section id="termine" v-if="termine.length > 0">
@@ -143,7 +146,7 @@ export default {
 
       // Filter courses
       kurse.value = kurse.value.filter(kurs => {
-        if (kurs.id === 'python-12-wochen-grundkurs') {
+        if (kurs.id === 'python-12-wochen-grundkurs' || kurs.id === 'python-grundlagen-interaktiv') {
           return true;
         }
         return termine.value.some(termin => termin.link.startsWith(`/kurs/${kurs.id}`));

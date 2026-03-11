@@ -118,6 +118,14 @@ body {
   border-bottom: none;
 }
 
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 .cta-button {
   display: inline-block;
   background-color: var(--accent-orange);
@@ -134,6 +142,14 @@ body {
 .cta-button:hover {
   background-color: #fb8c00; /* Darker orange */
   transform: translateY(-2px);
+}
+
+.cta-button-secondary {
+  background-color: var(--primary-purple);
+}
+
+.cta-button-secondary:hover {
+  background-color: #3d1b5c;
 }
 
 /* Course List & Cards */

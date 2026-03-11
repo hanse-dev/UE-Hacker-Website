@@ -9,12 +9,16 @@
       </router-link>
       <nav>
         <router-link v-if="showHomeLink" to="/">Home</router-link>
+        <router-link :to="{ path: '/', hash: '#kurse-uebersicht' }">Kurse</router-link>
       </nav>
     </header>
 
-    <main class="app-main">
+    <main class="app-main" v-if="!isCourseDetail">
       <router-view />
     </main>
+    <div v-else class="app-main">
+      <router-view />
+    </div>
 
     <footer class="app-footer">
       <p>&copy; 2026 Übergangshacker. Alle Rechte vorbehalten.</p>
@@ -31,7 +35,8 @@ export default {
   setup() {
     const route = useRoute();
     const showHomeLink = computed(() => route.path !== '/');
-    return { showHomeLink };
+    const isCourseDetail = computed(() => route.path.startsWith('/kurs/'));
+    return { showHomeLink, isCourseDetail };
   },
 };
 </script>
