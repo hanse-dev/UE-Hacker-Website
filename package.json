@@ -10,7 +10,9 @@
     "cheatsheet:notebooks": "python3 scripts/md_to_cheatsheet_notebook.py",
     "pack:notebooks": "python3 scripts/pack_notebooks.py",
     "watch:notebooks": "node scripts/watch_notebooks.js",
-    "prebuild": "npm run pack:notebooks"
+    "prebuild": "npm run pack:notebooks",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui"
   },
   "dependencies": {
     "front-matter": "^4.0.2",
@@ -20,6 +22,7 @@
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.0",
     "@vitejs/plugin-vue": "^5.0.5",
     "vite": "^5.0.0"
   }
