@@ -53,7 +53,6 @@ const NOTEBOOK_TYPES = [
   '1_lektion',
   '2_debug',
   '3_missionen',
-  '4_reflexion',
   '5_loesungen',
   '6_boss',
 ];

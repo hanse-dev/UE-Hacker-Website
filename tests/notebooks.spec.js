@@ -15,7 +15,7 @@ test('Kursseite: 12 Wochen, 3 Varianten, 7 Tabs', async ({ page }) => {
   await expect(page.locator('.week-header')).toHaveCount(12);
   const w1 = page.locator('.week-section').first();
   await expect(w1.locator('.variant-btn')).toHaveCount(3);
-  await expect(w1.locator('.tab-btn')).toHaveCount(7);
+  await expect(w1.locator('.tab-btn')).toHaveCount(6);
 });
 
 test('Woche 1: Notebook lädt, Tab- und Varianten-Wechsel', async ({ page }) => {
