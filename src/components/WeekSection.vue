@@ -136,8 +136,8 @@ const TABS = [
   { key: '1_lektion',   label: 'Lektion',    icon: '📚' },
   { key: '2_debug',     label: 'Debug',      icon: '🐛' },
   { key: '3_missionen', label: 'Missionen',  icon: '⭐' },
-  { key: '5_loesungen', label: 'Lösungen',   icon: '🔧' },
-  { key: '6_boss',      label: 'Boss-Quest', icon: '🐉' },
+  { key: '5_boss',      label: 'Boss-Quest', icon: '🐉' },
+  { key: '6_loesungen', label: 'Lösungen',   icon: '🔧' },
   { key: '0_glossar',   label: 'Glossar',    icon: '📖' },
 ];
 

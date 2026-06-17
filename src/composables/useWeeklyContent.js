@@ -53,8 +53,8 @@ const NOTEBOOK_TYPES = [
   '1_lektion',
   '2_debug',
   '3_missionen',
-  '5_loesungen',
-  '6_boss',
+  '5_boss',
+  '6_loesungen',
 ];
 
 function emptyWeek(weekNum) {
