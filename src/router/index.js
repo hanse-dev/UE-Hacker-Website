@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import CourseDetail from '../views/CourseDetail.vue';
+import Teaser from '../views/Teaser.vue';
 
 const routes = [
   {
@@ -13,6 +14,12 @@ const routes = [
     name: 'CourseDetail',
     component: CourseDetail,
     props: true,
+  },
+  {
+    path: '/teaser',
+    name: 'Teaser',
+    component: Teaser,
+    meta: { fullscreen: true },
   },
 ];
 

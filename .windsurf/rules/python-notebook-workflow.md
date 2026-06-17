@@ -2,62 +2,79 @@
 trigger: manual
 ---
 
-# 🔄 Python-Notebook Workflow: Komplettanleitung
+# 🔄 Python-Notebook Workflow: Neue Woche erstellen
 
-Dieser Guide beschreibt den vollständigen Prozess zur Erstellung einer neuen Woche mit 3 thematischen Jupyter-Notebooks.
-
-## 📋 Übersicht der beteiligten Dateien
-
-| Datei | Zweck | Wann verwenden |
-|-------|-------|----------------|
-| **@Regeln/12-wochen-kurs-themen-uebersicht.md** | Kurrikulum & Themen | **VORBEGINN** - Thema finden |
-| **@Regeln/ordner-und-beschreibung.md** | Ordner & Markdown-Beschreibung | Schritt 1-2 |
-| **@Regeln/notebook-erstellung.md** | Notebook-Erstellung | Schritt 3 |
-| **@Regeln/vorlagen/vorlage-abenteuer.md** | Fantasy-Template | Schritt 3 |
-| **@Regeln/vorlagen/vorlage-pferde.md** | Pferde-Template | Schritt 3 |
-| **@Regeln/vorlagen/vorlage-scifi.md** | Sci-Fi-Template | Schritt 3 |
+Dieser Guide beschreibt den aktuellen Prozess zur Erstellung einer neuen Woche im Python 12-Wochen-Grundkurs.
 
 ---
 
-## 🎯 Vorbereitung: Thema finden
+## 📁 Ordnerstruktur (Stand: 2025)
 
-**BEVOR du starte, prüfe das Kurrikulum:**
-1. Öffne @Regeln/12-wochen-kurs-themen-uebersicht.md
-2. Finde Woche [X] in der Übersicht
-3. Übernehme das exakte Thema und die Kern-Lernpunkte
+Jede Woche hat **7 Notebooks pro Kurs** in eigenen Unterordnern:
 
-**Beispiel Woche 7:**
-- Thema: "Module und Bibliotheken (math, random)"
-- Kern-Lernpunkte: Module importieren, math-Modul, random-Modul
+```
+content/python-12-wochen-grundkurs/
+├── gesamtglossar.ipynb          ← Alle Begriffe aller 12 Wochen
+├── woche-X/
+│   ├── wocheX.md                ← Wochenbeschreibung (Frontmatter + Inhalt)
+│   ├── abenteuer/
+│   │   ├── wocheX_abenteuer_0_glossar.ipynb
+│   │   ├── wocheX_abenteuer_1_lektion.ipynb
+│   │   ├── wocheX_abenteuer_2_debug.ipynb
+│   │   ├── wocheX_abenteuer_3_missionen.ipynb
+│   │   ├── wocheX_abenteuer_4_reflexion.ipynb
+│   │   ├── wocheX_abenteuer_5_loesungen.ipynb
+│   │   └── wocheX_abenteuer_6_boss.ipynb
+│   ├── pferde/
+│   │   └── wocheX_pferde_0_glossar.ipynb  … (gleiche 7 Dateien)
+│   └── scifi/
+│       └── wocheX_scifi_0_glossar.ipynb   … (gleiche 7 Dateien)
+```
 
 ---
 
-## 🎯 Schritt-für-Schritt Anleitung
+## 📋 Lehrplan (was wann gelehrt wird)
 
-### Schritt 1: Ordner vorbereiten
+Immer zuerst `content/python-12-wochen-grundkurs/lehrplan.md` lesen, bevor eine neue Woche erstellt wird. Dort stehen exakt welche Konzepte neu eingeführt werden und was vertieft wird.
+
+**Wichtige Sequenz-Regeln:**
+- f-Strings: erst ab Woche 2
+- Klassen (`class`): erst ab Woche 10
+- break/continue: erst ab Woche 6
+- JSON: erst ab Woche 9 (nicht in Woche 7)
+- `os`, `shutil`, `pathlib`: NICHT im Kurs
+
+---
+
+## 🗂️ Die 7 Notebook-Typen
+
+| Datei | Inhalt | Besonderheiten |
+|-------|--------|----------------|
+| `_0_glossar` | Begriffstabelle + Kurzbeispiele + Wiederholung | Format: `Begriff \| Bedeutung \| Beispiel` |
+| `_1_lektion` | Lernstoff mit Zauberformel/Lektion/Systemprotokoll-Abschnitten | Kein "Warum nützlich"-Bulletblock |
+| `_2_debug` | 3 fehlerhafte Code-Zellen | Vor jeder Bug-Zelle: WHY-Markdown |
+| `_3_missionen` | 3 Missionen (⭐⭐ bis ⭐⭐⭐⭐) | Schritt-Format, kein Starter-Code |
+| `_4_reflexion` | 3 Reflexionsfragen | Frage IMMER vor Antwort-Platzhalter |
+| `_5_loesungen` | Debug-Lösungen + Missions-Lösungsvorschläge | Erst Debug, dann Missionen |
+| `_6_boss` | 3 Boss-Quests (⭐⭐⭐⭐ bis ⭐⭐⭐⭐⭐) | Story-getrieben, offen formuliert |
+
+---
+
+## ✍️ Schritt-für-Schritt
+
+### Schritt 1 – Ordner anlegen
 ```bash
-# Prüfen, ob Ordner existiert:
-content/python-12-wochen-grundkurs/woche-[X]/
-
-# Falls nicht, erstellen mit Bindestrich!
-mkdir content/python-12-wochen-grundkurs/woche-[X]/
+mkdir -p content/python-12-wochen-grundkurs/woche-X/{abenteuer,pferde,scifi}
+touch content/python-12-wochen-grundkurs/woche-X/wocheX.md
 ```
 
-**Referenz:** Siehe @Regeln/ordner-und-beschreibung.md → Abschnitt "1. Ordner-Struktur prüfen und erstellen"
-
-### Schritt 2: Markdown-Beschreibung erstellen
-```bash
-# Datei OHNE Bindestrich erstellen:
-touch content/python-12-wochen-grundkurs/woche-[X]/woche[X].md
-```
-
-**Template:**
+### Schritt 2 – `wocheX.md` erstellen
 ```markdown
 ---
-title: '📚 Woche [X] – [Thema]: [Kurzer Untertitel]!'
+title: '📚 Woche X – Thema: Kurzer Untertitel'
 ---
 
-# 🎯 Die Herausforderung: [Kurze Beschreibung]
+# 🎯 Die Herausforderung: [Kurzbeschreibung]
 
 [2-3 Sätze über das Problem]
 
@@ -70,297 +87,268 @@ title: '📚 Woche [X] – [Thema]: [Kurzer Untertitel]!'
 - **🚀 Sci-Fi-Welt:** [Thematische Beschreibung]
 
 # 🎯 Lernziele
-- [Lernziel 1 mit Infinitiv]
-- [Lernziel 2 mit Infinitiv]
-- [Lernziel 3 mit Infinitiv]
-- [Lernziel 4 mit Infinitiv]
-- [Lernziel 5 mit Infinitiv]
-- [Lernziel 6 mit Infinitiv]
+- [Lernziel 1]
+- [Lernziel 2]
+- [Lernziel 3]
 ```
 
-**Referenz:** Siehe @Regeln/ordner-und-beschreibung.md → Abschnitt "Format für woche[X].md"
+### Schritt 3 – 7 × 3 Notebooks erstellen
 
-### Schritt 3: Drei Jupyter-Notebooks erstellen
+Für jeden der 7 Typen je 3 thematische Varianten erstellen. Alle Notebooks haben `nbformat: 4`.
 
-#### 3.1 Struktur verstehen
-Jedes Notebook hat **11 Abschnitte**:
-1. Titel-Zelle (mit XP & Boss)
-2. Einführung (mit 3 Lernzielen)
-3. 3 Grundlagen-Konzepte (je Theorie + 3 Code-Beispiele)
-4. Debug-Quest (3 fehlerhafte Code-Beispiele)
-5. Haupt-Missionen (3 Missionen ⭐⭐ bis ⭐⭐⭐⭐)
-6. Reflexion (3 Fragen)
-7. Lexikon (5-10 Begriffe)
-8. Lernziele-Check (6 Punkte)
-9. Zusammenfassung (5 Anwendungen)
-10. Boss-Kampf (3 Quests ⭐⭐⭐⭐ bis ⭐⭐⭐⭐⭐)
-11. Debug-Lösungen (am Ende)
+---
 
-#### 3.2 KLARE AUFGABENSTELLUNGEN (WICHTIG!)
+## 📖 _0_glossar – Format
 
-**Für Haupt-Missionen (Abschnitt 5):**
-Jede Mission MUSS enthalten:
-- **"Was du tun sollst:"** - Klare, nummerierte Aufgabenliste mit Beschreibung
-- **Struktur-Tipps** mit kurzen Erklärungen (ohne konkreten Code)
-- **Tipp:** Hinweise zur besseren Übersicht
-- **Bonus-Challenge:** Als optional markiert
+```markdown
+# 📖 Woche X – Glossar
+> Dieses Notebook kannst du die ganze Woche offen lassen.
 
-**Beispiel-Format:**
+## Begriffe dieser Woche
+| Begriff | Bedeutung | Beispiel |
+|---------|-----------|----------|
+| `print()` | Gibt Text aus | `print("Hallo")` |
+...
+
+## Kurzbeispiele
+[Code-Zelle mit theme-spezifischen Beispielen]
+
+## Wiederholung – Begriffe aus früheren Wochen
+### Aus Woche N
+| Begriff | Bedeutung | Beispiel |
+...
+```
+
+**Themen-spezifische Beispiele:**
+- Abenteuer: `held`, `waffe`, `level`, Namen wie "Aria", "Borin"
+- Pferde: `pferd`, `reiter`, `stall`, Namen wie "Bobby", "Blitz"
+- SciFi: `schiff`, `crew`, `kommandant`, Namen wie "Kirk", "Enterprise"
+
+---
+
+## 📚 _1_lektion – Format
+
+```markdown
+# [Emoji] Woche X – Lektion: [Titel]
+[Nav-Tabelle]
+
+## [Emoji] Was ist ein/eine [Konzept]?
+[1-2 Sätze, einfache Sprache, Alltagsvergleich]
+
+## Zauberformel 1: [Konzeptname]   ← Abenteuer
+## Lektion 1: [Konzeptname]        ← Pferde
+## Systemprotokoll 1: [Konzeptname]← SciFi
+
+**Was es ist:** [Einfache Erklärung]
+[Code-Beispiele]
+```
+
+**Sprachregeln:**
+- Kein `**Warum nützlich:**`-Bulletblock
+- Keine langen metaphorischen Untertitel (`Die Runen des X`)
+- Einfache Sprache: `schreiben` statt `implementieren`, `erstellen` statt `instanziieren`
+- Fachbegriffe beim ersten Auftreten erklären: `Konstruktor *(= Methode die beim Erstellen automatisch startet)*`
+
+---
+
+## 🐛 _2_debug – Format
+
+```markdown
+# 🐛 Debug-Quest – [Theme] Woche X
+
+## 🐛 Debug-Quest: Finde die Fehler!
+[Kurze Story-Einleitung]
+
+### 🐛 Bug #1
+**Was passiert:** [Erklärung warum der Fehler auftritt – nicht nur was]
+
+[Code-Zelle mit Fehler]
+
+### 🐛 Bug #2
+**Was passiert:** ...
+[Code-Zelle]
+
+### 🐛 Bug #3
+**Was passiert:** ...
+[Code-Zelle]
+```
+
+**Typische Bug-Typen pro Woche:**
+- W1: fehlende Anführungszeichen, str()-Fehler, Tippfehler in Variablen
+- W2: f-String Syntax, falscher Typ bei Methoden
+- W3: `=` statt `==`, fehlendes `:` bei elif, IndentationError
+- W4: falsche Einrückung in Schleifen, range()-Fehler
+- W5: fehlende Parameter, falsches return
+- W6–W12: passend zum Wochenthema
+
+---
+
+## ⭐ _3_missionen – Format
+
 ```markdown
 ### ⭐⭐☆☆☆ Mission 1: [Titel]
 
 **Belohnung:** 300 [Währung] + [Item]
 
-[Kurze Story-Einleitung]
+[1 Satz Story]
 
-**Was du tun sollst:**
-1. **Gib deinen Namen aus:** Nutze den print()-Befehl für deinen Namen
-2. **Erstelle eine Variable:** Speichere deine Lieblingszahl in einer Variable
-3. **Kombiniere Text und Zahl:** Gib einen Satz aus, der Text und deine Zahl enthält
-4. **Füge eine Überschrift hinzu:** Gib eine dicke Überschrift mit === aus
-5. **Leere Zeile einfügen:** Nutze print() für eine leere Zeile
+**Schritt 1 – [Titel]:**
+[Was zu tun ist, 1-2 Sätze]
 
-**Tipp:** Nutze `print()` für leere Zeilen zur besseren Übersicht!
+**Schritt 2 – [Titel]:**
+[Was zu tun ist]
 
-**Bonus-Challenge:** Gib deine Lieblingsfarbe aus!
+**Bonus:** [Optionale Erweiterung]
 ```
 
-**Für Boss-Quests (Abschnitt 10):**
-Jede Boss-Quest MUSS enthalten:
-- **"Was du tun sollst:"** - Detaillierte Schritte mit Beschreibung
-- **Struktur-Hilfe** mit Erklärungen (ohne konkreten Code)
-- **Klare Anweisungen** für jeden Schritt
-- **Bonus-Challenge** als Option
+**Regeln:**
+- Keine vorgeschriebenen Funktionsnamen (`erstelle_held(name, level)`)
+- Kein Starter-Code, keine "Erwartete Ausgabe"
+- Mission 3 endet mit: `> 💡 **Tipp:** Du entscheidest selbst, wie du das umsetzt – es gibt keinen einzig richtigen Weg!`
+- Schwierigkeit steigt: Mission 1 = ⭐⭐, Mission 2 = ⭐⭐⭐, Mission 3 = ⭐⭐⭐⭐
 
-**Beispiel-Format:**
+---
+
+## 🤔 _4_reflexion – Format
+
 ```markdown
+# 🤔 Reflexion & Zusammenfassung – [Theme] Woche X
+
+## Weisheiten der [Theme-Mentor] (Reflexion)
+[Kurze Einleitung]
+
+**1. [Frage?]**
+
+✏️ *Schreibe deine Antwort hier...*
+
+**2. [Frage?]**
+
+✏️ *Schreibe deine Antwort hier...*
+
+**3. [Frage?]**
+
+✏️ *Schreibe deine Antwort hier...*
+
+## 🏆 Zusammenfassung: [Titel]
+[Was gelernt wurde + reale Anwendungen + Ausblick auf nächste Woche]
+```
+
+**Wichtig:** Frage IMMER vor dem Antwort-Platzhalter (nicht dahinter).
+
+**Theme-Mentoren:** alte Magier (Abenteuer) / erfahrene Reitlehrerin (Pferde) / Missionsleiterin (SciFi)
+
+---
+
+## 🔧 _5_loesungen – Format
+
+```markdown
+# 🔧 Lösungen – [Theme] Woche X
+
+## 🐛 Debug-Quest Lösungen
+
+[Code-Zelle mit Lösung Bug #1]
+[Code-Zelle mit Lösung Bug #2]
+[Code-Zelle mit Lösung Bug #3]
+
+## ⭐ Missions-Lösungsvorschläge
+
+### ⭐⭐☆☆☆ Mission 1: [Titel]
+[Code-Zelle: # ✏️ Lösungsvorschlag Mission 1]
+
+### Mission 2 ...
+### Mission 3 ...
+```
+
+---
+
+## 🐉 _6_boss – Format
+
+```markdown
+# 🐉 Boss-Quests – [Theme] Woche X
+
+## 🐉 Boss-Kampf: Hausaufgaben-Quests
+[Einleitung + Belohnungshinweis]
+
 ### ⭐⭐⭐⭐☆ Boss-Quest 1: [Titel]
 
 **Belohnung:** 500 [Währung] + [Item]
 
-[Story-Einleitung]
+[2-3 Sätze Story-Einleitung mit klarem Ziel]
 
-**Was du tun sollst:**
-1. **Erstelle ein Gedicht:** Schreibe 4 Zeilen über das Thema
-2. **Speichere jede Zeile:** Lege für jede Zeile eine eigene Variable an
-3. **Gib das Gedicht aus:** Gib alle Zeilen untereinander aus
-4. **Füge Metadaten hinzu:** Gib eine Überschrift und einen Autorennamen aus
-5. **Bewerte dein Werk:** Gib eine Bewertung von 1-5 Sternen aus
-6. **Erkläre die Bedeutung:** Gib einen Satz aus, warum das Thema wichtig ist
+**Schritt 1 – [Titel]:**
+[Was zu tun ist, kein Starter-Code, keine Funktionsnamen]
 
-**Struktur-Tipp:**
-- Beginne mit einer Überschrift
-- Gib dann jede Zeile des Gedichts aus
-- Füge am Ende Metadaten hinzu
+**Schritt 2 – [Titel]:**
+[Was zu tun ist]
 
-**Bonus-Challenge:** Füge eine versteckte Botschaft hinzu!
+**Schritt 3 – [Titel]:**
+[Was zu tun ist]
+
+**Bonus:** [Optionale Erweiterung]
 ```
 
-#### 3.3 Boss-Quests: Klarheit und Struktur
+**Regeln:**
+- Story kommt ZUERST, dann Schritte
+- Max 3-4 Schritte (nicht 5-6)
+- Keine Klassen vor Woche 10
+- Kein `os`, `shutil`, `zipfile` (nicht im Lehrplan)
+- Offen formulieren: Schüler entscheidet selbst wie, nicht was
 
-**Wichtigste Regel ab Woche 2+:**
-- ❌ **KEINE Klassen ab Woche 2+!** (kommen erst in Woche 10)
-- ✅ Minimale Code-Beispiele mit `pass`
-- ✅ Klare Beschreibungen WAS zu tun ist
-- ✅ Struktur-Hinweise ohne komplette Lösungen
+---
 
-**Struktur für klare Boss-Quests (ab Woche 2):**
-```markdown
-### ⭐⭐⭐⭐☆ Boss-Quest 1: [Titel]
+## 🎨 Themen-Konsistenz
 
-**Belohnung:** 500 [Währung] + [Item]
+| Element | Abenteuer | Pferde | SciFi |
+|---------|-----------|--------|-------|
+| Abschnitt-Name | Zauberformel | Lektion | Systemprotokoll |
+| Währung | XP | Huf-Punkte | Cyber Credits |
+| Lexikon | Zauberspruch-Lexikon | Reiterhof-Lexikon | Tech-Lexikon |
+| Mentor | alter Magier | erfahrene Reitlehrerin | Missionsleiterin |
+| Code-Variablen | held, waffe, gold | pferd, stall, futter | schiff, crew, energie |
+| Beispiel-Namen | Aria, Borin, Gandalf | Bobby, Blitz, Moritz | Kirk, Enterprise, Nebula-7 |
+| Boss-Emoji | 🐉 | 🐴 | 🚀 |
 
-[Story]
+---
 
-**Was du tun sollst:**
+## ❌ Häufige Fehler vermeiden
 
-**1. [Hauptaufgabe 1]:**
-   - Erstelle eine Funktion für [spezifische Aufgabe]
-   - Die Funktion soll [konkrete Anforderung]
-   - Tipp: [Hinweis ohne Lösung]
-
-**2. [Hauptaufgabe 2]:**
-   - Schreibe eine Funktion, die [beschreibt was zu tun ist]
-   - Erstelle eine Validierungsfunktion für [Zweck]
-   - Behandle Fehler wenn [Fehlerfall]
-
-**3. [Hauptaufgabe 3]:**
-   - Erstelle eine [Datenstruktur] als Zwischenspeicher
-   - Schreibe Funktionen zum Hinzufügen und Holen von Daten
-   - Implementiere eine Funktion zum [Aktion]
-
-**4. [Hauptaufgabe 4]:**
-   - Filtere Daten nach [Bedingung 1]
-   - Filtere Daten nach [Bedingung 2]
-   - Kombiniere mehrere Filterbedingungen
-
-**5. [Hauptaufgabe 5]:**
-   - Speichere gefilterte Daten als [Format 1]
-   - Speichere gefilterte Daten als [Format 2]
-   - Erstelle automatische Dateinamen mit Zeitstempel
-
-**6. [Hauptaufgabe 6]:**
-   - Starte den [Prozess]
-   - Verarbeite Daten in Echtzeit
-   - Zeige Statistik der verarbeiteten Daten
-
-**Beispiel-Struktur:**
-```python
-# So könntest du beginnen:
-import time
-import json
-
-def funktion_name(parameter):
-    # Beschreibung was die Funktion tut
-    pass
-
-# ... weitere Funktionen hier
-
-# Hauptprogramm
-daten = []
-# Verarbeite Daten...
-```
-
-**Bonus-Challenge:** [Optionale Zusatzaufgabe]
-```
-
-#### 3.4 Themen-Platzhalter vorbereiten
-| Platzhalter | Abenteuer | Pferde | Sci-Fi |
-|-------------|-----------|--------|--------|
-| [Währung] | XP | Huf-Punkte | Cyber Credits |
-| [Boss/Herausforderung] | Boss | Herausforderung | Herausforderung |
-| [Theme-Name] | Zauberformel | Lektion | Systemprotokoll |
-| [Theme-Lexikon] | Zauberspruch-Lexikon | Reiterhof-Lexikon | Tech-Lexikon |
-| [Mentor] | alte Magier | erfahrene Reitlehrerin | Missionsleiterin |
-| [🐉/🐴/🚀] | 🐉 | 🐴 | 🚀 |
-
-#### 3.5 Notebooks erstellen
-```bash
-# Drei Dateien erstellen (alle OHNE Bindestrich):
-touch content/python-12-wochen-grundkurs/woche-[X]/woche[X]_abenteuer.ipynb
-touch content/python-12-wochen-grundkurs/woche-[X]/woche[X]_pferde.ipynb
-touch content/python-12-wochen-grundkurs/woche-[X]/woche[X]_scifi.ipynb
-```
-
-**Für jedes Notebook:**
-1. Template kopieren: @Regeln/vorlagen/vorlage-[theme].md
-2. Platzhalter ersetzen:
-   - `[X]` → Wochennummer
-   - `[THEMA]` → Python-Thema der Woche
-   - `[Boss-Namen]` → Thematisch passend
-   - Alle Theme-Platzhalter (siehe Tabelle oben)
-
-**Referenzen:**
-- Hauptstruktur: @Regeln/notebook-erstellung.md
-- Templates: @Regeln/vorlagen/vorlage-abenteuer.md, @Regeln/vorlagen/vorlage-pferde.md, @Regeln/vorlagen/vorlage-scifi.md
+| Fehler | Richtig |
+|--------|---------|
+| `implementieren` | `schreiben` / `einbauen` |
+| `instanziieren` | `erstellen` |
+| `iterieren` | `durchgehen` |
+| `Namenskonvention` | `Schreibregel` |
+| `Rückgabewert` | `Ergebnis` |
+| `Anatomie einer Liste` | `Aufbau einer Liste` |
+| `Buffer` | `Zwischenspeicher` |
+| `\n` in `print()` | separates `print()` |
+| Klassen vor Woche 10 | ❌ nicht verwenden |
+| os/shutil | ❌ nicht im Kurs |
 
 ---
 
 ## ✅ Qualitäts-Checkliste
 
-### Vor der Erstellung:
-- [ ] Wochennummer klar?
-- [ ] Python-Thema definiert?
-- [ ] Boss-Namen für alle 3 Themes überlegt?
+### Vor der Erstellung
+- [ ] Thema in `lehrplan.md` nachgeschlagen?
+- [ ] Welche Konzepte sind NEU, welche sind Vertiefung?
+- [ ] Woche-spezifische Einschränkungen beachtet?
 
-### Nach Schritt 1 (Ordner):
-- [ ] Ordner `woche-[X]/` existiert mit Bindestrich
-
-### Nach Schritt 2 (Beschreibung):
-- [ ] Datei `woche[X].md` erstellt ohne Bindestrich
-- [ ] Thema aus @Regeln/12-wochen-kurs-themen-uebersicht.md übernommen
-- [ ] Frontmatter mit title vorhanden
-- [ ] Alle 3 Themenwelten beschrieben
-- [ ] 5-6 Lernziele mit Infinitiv
-
-### Nach Schritt 3 (Notebooks):
-- [ ] Alle 3 .ipynb Dateien erstellt
-- [ ] Jedes Notebook hat 11 Abschnitte
-- [ ] Platzhalter korrekt ersetzt
-- [ ] Kern-Lernpunkte aus @Regeln/12-wochen-kurs-themen-uebersicht.md eingebaut
-- [ ] Thematische Konsistenz gewahrt
-- [ ] Keine `\n` im String von `print()` (separates `print()` für neue Zeilen verwenden)
-- [ ] F-Strings nur ab Woche 2+
-- [ ] Debug-Lösungen am Ende
-- [ ] **Boss-Quests mit klarer Struktur (ab Woche 9)**
-- [ ] **Keine Klassen in Woche 8-9, nur Funktionen**
-- [ ] **Missionen haben "Was du tun sollst:" mit einer klaren Anleitung, ohne Lösung**
-- [ ] **Boss-Quests haben eine klare Beschreibung ohne Lösung**
-- [ ] **Struktur-Tipps und Beispiele sind enthalten**
-- [ ] **Bonus-Challenges sind als optional markiert**
+### Für jedes Notebook
+- [ ] Korrekte Dateinamen: `wocheX_[theme]_[N]_[typ].ipynb`
+- [ ] Glossar: Tabelle mit Begriff/Bedeutung/Beispiel + Wiederholung?
+- [ ] Lektion: kein "Warum nützlich"-Block, einfache Sprache?
+- [ ] Debug: WHY-Markdown vor jeder Bug-Zelle?
+- [ ] Missionen: Schritt-Format, kein Starter-Code, kein Funktionsname?
+- [ ] Reflexion: Frage VOR Antwort-Platzhalter?
+- [ ] Boss: Story zuerst, max 3-4 Schritte, offen formuliert?
+- [ ] Themen-Konsistenz: richtige Variablen-Namen je Kurs?
+- [ ] Code-Beispiele lauffähig (kein `\n` in `print()`)?
 
 ---
 
-## 🔗 Nützliche Verknüpfungen
+## 🔗 Referenzen
 
-### Beispiele & Referenzen:
-- **Beispiel-Woche:** `content/python-12-wochen-grundkurs/woche-6/`
-- **Stil-Beispiele:** Siehe `woche6.md` für Markdown-Stil
-
-### Technische Details:
-- **JSON-Format:** Siehe @Regeln/notebook-erstellung.md → "Technische Anforderungen"
-- **Code-Stil:** Keine `\n` im String von `print()`, separates `print()` für neue Zeilen
-
-### Didaktische Prinzipien:
-- Maximal 3 Konzepte pro Woche
-- Code-First: Direkt mit Beispielen starten
-- Gamification: XP, Schwierigkeitssterne, Boss-Kämpfe
-
----
-
-## 🚀 Quick-Start Template
-
-Für eine neue Woche `[X]` mit Thema `[THEMA]`:
-
-**1. Thema finden:**
-```bash
-# Siehe: @Regeln/12-wochen-kurs-themen-uebersicht.md
-# Beispiel Woche 7: "Module und Bibliotheken (math, random)"
-```
-
-```bash
-# 1. Ordner erstellen
-mkdir -p content/python-12-wochen-grundkurs/woche-[X]
-
-# 2. Beschreibung erstellen
-cat > content/python-12-wochen-grundkurs/woche-[X]/woche[X].md << 'EOF'
----
-title: '📚 Woche [X] – [THEMA]: [UNTERTITEL]!'
----
-
-# 🎯 Die Herausforderung: [KURZBESCHREIBUNG]
-
-[2-3 Sätze Problem]
-
-[1 Satz Lösung]
-
-## 🎮 Themenwelten zur Auswahl
-
-- **🗺️ Abenteuer-Welt:** [BESCHREIBUNG]
-- **🐴 Pferdewirtschaft:** [BESCHREIBUNG]
-- **🚀 Sci-Fi-Welt:** [BESCHREIBUNG]
-
-# 🎯 Lernziele
-- [LERNZIEL 1]
-- [LERNZIEL 2]
-- [LERNZIEL 3]
-- [LERNZIEL 4]
-- [LERNZIEL 5]
-- [LERNZIEL 6]
-EOF
-
-# 3. Notebooks erstellen (Templates kopieren und anpassen)
-# Siehe @Regeln/vorlagen/ für die vollständigen Templates
-```
-
----
-
-## 💡 Tipps & Tricks
-
-1. **Konsistenz ist alles:** Immer gleiche Struktur, gleiche Stil-Regeln
-2. **Themen-Treue:** Jede Welt sollte ihre Metaphern durchhalten
-3. **Progression:** Missionen von leicht zu schwer
-4. **Qualität vor Quantität:** Lieber 3 gute Konzepte als 5 schlechte
-5. **Testen:** Code-Beispiele müssen laufen!
-
-Bei Problemen: Immer die Referenz-Dateien konsultieren und den Workflow Schritt für Schritt durchgehen!
+- **Lehrplan:** `content/python-12-wochen-grundkurs/lehrplan.md`
+- **Gesamtglossar:** `content/python-12-wochen-grundkurs/gesamtglossar.ipynb`
+- **Beispiel-Woche:** `content/python-12-wochen-grundkurs/woche-3/`

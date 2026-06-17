@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1920, initial-scale=1.0" />
+  <title>Übergangshacker – Wir sind da!</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:  #EF533A;
+      --blue: #29396D;
+      --bg:   #0d1117;
+    }
+
+    body {
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      background: var(--bg);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* ── Animated background grid ── */
+    body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(41,57,109,0.18) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(41,57,109,0.18) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridMove 20s linear infinite;
+    }
+
+    @keyframes gridMove {
+      0%   { background-position: 0 0; }
+      100% { background-position: 60px 60px; }
+    }
+
+    /* ── Corner glow blobs ── */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.25;
+      animation: pulse 6s ease-in-out infinite;
+    }
+    .blob-1 { width: 600px; height: 600px; background: var(--blue); top: -150px; left: -150px; animation-delay: 0s; }
+    .blob-2 { width: 500px; height: 500px; background: var(--red);  bottom: -100px; right: -100px; animation-delay: 3s; }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1);    opacity: 0.25; }
+      50%       { transform: scale(1.15); opacity: 0.35; }
+    }
+
+    /* ── Floating code snippets ── */
+    .code-float {
+      position: absolute;
+      font-family: 'Courier New', monospace;
+      font-size: 15px;
+      color: rgba(239,83,58,0.2);
+      white-space: nowrap;
+      animation: floatUp linear infinite;
+      user-select: none;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 0.15; }
+      to   { transform: translateY(-1100px); opacity: 0; }
+    }
+
+    /* ── Main content ── */
+    .content {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* ── Logo ── */
+    .logo-wrap {
+      margin-bottom: 40px;
+      animation: fadeDown 1s ease-out;
+    }
+
+    .logo-wrap img {
+      height: 200px;
+      width: auto;
+      filter: drop-shadow(0 8px 32px rgba(239,83,58,0.35));
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Chip label ── */
+    .chip {
+      background: rgba(239,83,58,0.15);
+      border: 1px solid rgba(239,83,58,0.5);
+      color: var(--red);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      padding: 8px 28px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+      animation: fadeDown 1s ease-out 0.2s both;
+    }
+
+    /* ── Main heading ── */
+    h1 {
+      font-size: 130px;
+      font-weight: 900;
+      line-height: 1;
+      text-align: center;
+      letter-spacing: -3px;
+      animation: fadeDown 1s ease-out 0.4s both;
+    }
+
+    h1 .ue   { color: #fff; }
+    h1 .gangs { color: rgba(255,255,255,0.35); }
+    h1 .hacker { color: var(--red); }
+
+    /* ── Divider ── */
+    .divider {
+      width: 120px;
+      height: 4px;
+      background: var(--red);
+      border-radius: 2px;
+      margin: 40px 0;
+      animation: grow 1s ease-out 0.7s both;
+    }
+
+    @keyframes grow {
+      from { width: 0; opacity: 0; }
+      to   { width: 120px; opacity: 1; }
+    }
+
+    /* ── Tagline ── */
+    .tagline {
+      font-size: 38px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+      line-height: 1.45;
+      max-width: 900px;
+      animation: fadeUp 1s ease-out 0.8s both;
+    }
+
+    .tagline strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* ── CTA ── */
+    .cta {
+      margin-top: 56px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      animation: fadeUp 1s ease-out 1.1s both;
+    }
+
+    .cta-arrow {
+      font-size: 32px;
+      color: var(--red);
+      animation: bounce 1.5s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(0); }
+      50%       { transform: translateX(10px); }
+    }
+
+    .cta-text {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Bottom bar ── */
+    .bottom-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--blue), var(--red), var(--blue));
+      background-size: 200% 100%;
+      animation: shimmer 4s linear infinite;
+    }
+
+    @keyframes shimmer {
+      0%   { background-position: 0% 0%; }
+      100% { background-position: 200% 0%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background blobs -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <!-- Floating code -->
+  <script>
+    const snippets = [
+      'print("Hallo Welt!")', 'for i in range(10):', 'def lernen():', 'if kreativ == True:',
+      'import python', 'x = input("Dein Name?")', 'while True: coden()',
+      'class Hacker:', '# TODO: Welt verbessern', 'return neues_wissen',
+      'liste = [✨, 🚀, 💡]', 'print(f"Level: {level}")',
+    ];
+    const cols = [80, 220, 420, 620, 820, 1020, 1200, 1400, 1600, 1780];
+    cols.forEach((left, i) => {
+      const el = document.createElement('div');
+      el.className = 'code-float';
+      el.style.left = left + 'px';
+      el.style.bottom = '-60px';
+      el.style.animationDuration = (18 + i * 2.5) + 's';
+      el.style.animationDelay = (i * 1.8) + 's';
+      el.textContent = snippets[i % snippets.length];
+      document.body.appendChild(el);
+    });
+  </script>
+
+  <!-- Main content -->
+  <div class="content">
+
+    <!-- Logo -->
+    <div class="logo-wrap">
+      <img src="logo.png" alt="Übergangshacker Logo" />
+    </div>
+
+    <div class="chip">Workshop · Coding · Community</div>
+
+    <h1>
+      <span class="ue">Über</span><span class="gangs">gangs</span><span class="hacker">hacker</span>
+    </h1>
+
+    <div class="divider"></div>
+
+    <p class="tagline">
+      Wir sind heute hier — und du kannst <strong>einfach vorbeikommen.</strong><br>
+      Lern programmieren, stell Fragen, mach mit.
+    </p>
+
+    <div class="cta">
+      <span class="cta-arrow">→</span>
+      <span class="cta-text">Komm gerne rein &amp; schau vorbei!</span>
+      <span class="cta-arrow">←</span>
+    </div>
+
+  </div>
+
+  <!-- Bottom shimmer bar -->
+  <div class="bottom-bar"></div>
+
+</body>
+</html>

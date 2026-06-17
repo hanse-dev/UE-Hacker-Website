@@ -1,5 +1,8 @@
 <template>
-  <div id="app-container">
+  <!-- Teaser: vollbild, kein Header/Footer -->
+  <router-view v-if="isTeaser" />
+
+  <div v-else id="app-container">
     <header class="app-header">
       <router-link to="/" class="header-title-link">
         <div class="header-title">
@@ -34,9 +37,10 @@ export default {
   name: 'App',
   setup() {
     const route = useRoute();
-    const showHomeLink = computed(() => route.path !== '/');
+    const showHomeLink  = computed(() => route.path !== '/');
     const isCourseDetail = computed(() => route.path.startsWith('/kurs/'));
-    return { showHomeLink, isCourseDetail };
+    const isTeaser      = computed(() => route.path === '/teaser');
+    return { showHomeLink, isCourseDetail, isTeaser };
   },
 };
 </script>
