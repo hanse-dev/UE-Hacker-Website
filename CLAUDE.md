@@ -53,15 +53,22 @@ content/
 
 ## Handoff-Notizen (für den nächsten Rechner)
 
-> **Zuletzt aktualisiert:** 2026-06-17
-> **Letzter Commit:** `ab99f92` — feat: add teaser view and routing, implement mission panel component
+> **Zuletzt aktualisiert:** 2026-06-18
+> **Letzter Commit:** `7141bd7` — docs: update CLAUDE.md with post-commit todo check rule
 
-**Was gerade läuft:**
-Branch `splitting` baut eine neue Website-Struktur mit Kurs-Übersicht, Teaser-View und Mission-Panel-Komponente. Die Notebook-Inhalte sind vollständig (alle 12 Wochen × 3 Themen × 7 Notebooks = 252 Dateien).
+**Was diese Session gemacht wurde:**
+- Debug-Notebooks repariert: 9 Code-Zellen hatten keine echten Bugs (woche-4 for-Schleife ohne Doppelpunkt, woche-5 fehlender Print für Funktionsobjekt-Bug, woche-10 fehlender `__init__`-Parameter)
+- Alle 36 Reflexion-Notebooks gelöscht + Reflexion-Tab aus dem Frontend entfernt
+- Reihenfolge Boss-Quest ↔ Lösungen getauscht (Dateien umbenannt: `5_boss`, `6_loesungen`; Frontend-Keys angepasst)
+- Alle 36 Lösungsnotebooks mit echten Lösungen befüllt: Missions-Lösungen (kein Platzhalter mehr) + neuer Boss-Quest-Lösungsabschnitt
+- Playwright-Tests laufen durch (11/11) nach allen Änderungen
+
+**Notebook-Struktur jetzt:** 6 Dateien pro Woche/Thema:
+`0_glossar` → `1_lektion` → `2_debug` → `3_missionen` → `5_boss` → `6_loesungen`
 
 **Bekannte offene Baustellen:**
-- Debug Quests noch nicht überprüft
-- Mission Panel Komponente neu, noch nicht vollständig getestet
+- Website/Frontend: Tab-System erklären, Belohnungen in Kursaufbau, localStorage für Punkte-Stand, Verlinkung testen, Belohnungen/Woche-1 zuklappen
+- Inhalte: Woche 9-12 Debug-Notebooks auf Verständlichkeit prüfen, Glossar-Notebooks auf Anfänger-Tauglichkeit prüfen
 
 **Workflow:**
 1. `docker-compose up dev` starten
