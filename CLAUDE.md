@@ -54,20 +54,17 @@ content/
 ## Handoff-Notizen (für den nächsten Rechner)
 
 > **Zuletzt aktualisiert:** 2026-06-18
-> **Letzter Commit:** feat: translate all 26 markdown content files to English (Phase 4)
+> **Letzter Commit:** feat: add rewards-manifest-en.json and reactive manifest loading (Phase 5)
 
 **Was zuletzt gemacht wurde:**
-- Phase 4 abgeschlossen: alle 26 Markdown-Dateien ins Englische übersetzt
-- `content/python-12-wochen-grundkurs-en/` komplett befüllt: beschreibung.md, lehrplan.md, woche-{1-12}/woche*.md, woche-{2-12}/wissens_cheat_sheet.md, woche-12/turtle_cheat_sheet.md
-- Alle 11 wissens_cheat_sheet.md kumulativ aufgebaut (EN Variablennamen, EN Code-Strings)
-- turtle_cheat_sheet.md übersetzt (Kommentare, Abschnittstitel, Beschreibungen)
-- `useWeeklyContent.js`: EN-Cheat-Sheet-Name jetzt "📚 Knowledge Cheat Sheet" statt "Wissens-Cheat-Sheet"
-- Verzeichnisstruktur für Notebooks bereits angelegt: adventure/, horses/, scifi/ in allen 12 Wochen
+- Phase 5 abgeschlossen: `public/rewards-manifest-en.json` mit allen EN Item-Namen angelegt
+- Alle 3 Varianten × 12 Wochen × 6 Items übersetzt (Abenteuer→Adventure, Pferde→Horses, Scifi)
+- `MissionenPanel.vue`: lädt jetzt `rewards-manifest-en.json` wenn lang=EN, watcher auf `lang` für reaktives Neuladen
+- Phase 4 + 5 vollständig – Language-Toggle für alle Markdown-Inhalte und Missionen funktionsfähig
 
 **Bekannte offene Baustellen:**
-- Language-Toggle Phase 5: `rewards-manifest-en.json` oder Erweiterung
 - Language-Toggle Phase 6: 216 Notebooks übersetzen (~18 pro Session)
-- Verlinkung zu den richtigen Notebooks testen
+- Notebooks in EN-Verzeichnis: adventure/, horses/, scifi/ in allen 12 Wochen bereit zum Befüllen
 
 **Workflow:**
 1. `docker-compose up dev` starten

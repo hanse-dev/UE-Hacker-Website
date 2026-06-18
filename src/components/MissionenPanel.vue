@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import { useFortschritt } from '../composables/useFortschritt';
 import { assetUrl } from '../utils/assetUrl';
 import { useLanguage } from '../composables/useLanguage.js';
@@ -43,7 +43,7 @@ export default {
     courseId:   { type: String, default: null },
   },
   setup(props) {
-    const { t } = useLanguage();
+    const { t, lang } = useLanguage();
     const expanded = ref(false);
     const rewardsManifest = ref(null);
     const { claimMission: doClaimMission, unclaimMission: doUnclaimMission, isClaimed: checkClaimed } = useFortschritt();
@@ -70,12 +70,16 @@ export default {
     const claimMission   = (m) => doClaimMission(props.variant, m.id, m.points, m.item, m.label);
     const unclaimMission = (m) => doUnclaimMission(props.variant, m.id);
 
-    onMounted(async () => {
+    const loadManifest = async () => {
       try {
-        const res = await fetch(assetUrl('rewards-manifest.json'));
+        const file = lang.value === 'en' ? 'rewards-manifest-en.json' : 'rewards-manifest.json';
+        const res = await fetch(assetUrl(file));
         if (res.ok) rewardsManifest.value = await res.json();
       } catch (e) { /* silent */ }
-    });
+    };
+
+    onMounted(loadManifest);
+    watch(lang, loadManifest);
 
     return { expanded, missionen, pointUnit, isClaimed, claimMission, unclaimMission, t };
   },
