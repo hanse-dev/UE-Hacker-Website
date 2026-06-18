@@ -60,10 +60,10 @@ content/
 - Alle 36 Glossar-Notebooks durchgesehen: anfängerfreundlich und konsistent
 - Woche 11 (×3): doppelte Tabellenzeilen für Polymorphismus und Vererbung entfernt
 - Woche 10 Pferde: `trainieren()` war ein No-op (`self.rasse = self.rasse`) → durch sinnvollen `fitness`-Counter ersetzt
-- Tab-System erklärt: aufklappbares `<details>`-Panel über den Tabs mit Kurzbeschreibung jedes Tabs + Tooltip auf Hover
+- Tab-System erklärt: einmalig oben auf der Kursseite als `<h2>Wie ist der Kurs aufgebaut?</h2>` mit 6-Tab-Grid (Icon + Titel + Beschreibung); Tooltip auf jedem Tab-Button
 
 **Bekannte offene Baustellen:**
-- Website/Frontend: Kursaufbau mit Belohnungen ergänzen, localStorage für Punkte-Stand, Verlinkung testen, Belohnungen/Woche-1 zuklappen
+- Website/Frontend: localStorage für Punkte-Stand, Verlinkung testen, Belohnungen/Woche-1 zuklappen
 - Mission Panel Komponente neu, noch nicht vollständig getestet
 
 **Workflow:**

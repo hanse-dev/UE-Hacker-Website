@@ -3,7 +3,7 @@
 ## Now
 ### Website / Frontend
 - [x] Das Tabsystem erklären
-- [ ] "Wie ist der Kurs aufgebaut?" mit den Belohnungen ergänzen
+- [x] "Wie ist der Kurs aufgebaut?" mit den Belohnungen ergänzen
 - [ ] MissionenPanel: Punkte-Stand nach Browser-Reload prüfen (localStorage?)
 - [ ] CourseDetail.vue: Verlinkung zu den richtigen Notebooks testen
 - [ ] Belohnungen zuklappen

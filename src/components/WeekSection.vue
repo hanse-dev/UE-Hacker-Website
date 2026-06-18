@@ -92,20 +92,7 @@
             :course-id="courseId"
           />
 
-          <!-- Row 3: Tab-Guide + Notebook-Tabs -->
-          <details class="tab-guide">
-            <summary class="tab-guide-summary">ℹ️ Wie ist die Woche aufgebaut?</summary>
-            <div class="tab-guide-content">
-              <p class="tab-guide-order">Empfohlene Reihenfolge: 📚 Lektion → 🐛 Debug → ⭐ Missionen → 🐉 Boss-Quest</p>
-              <ul class="tab-guide-list">
-                <li v-for="tab in TABS" :key="tab.key">
-                  <span class="tab-guide-icon">{{ tab.icon }}</span>
-                  <strong>{{ tab.label }}</strong> – {{ tab.description }}
-                </li>
-              </ul>
-            </div>
-          </details>
-
+          <!-- Row 3: Notebook-Tabs -->
           <div class="notebook-tabs">
             <button
               v-for="tab in TABS"
@@ -220,63 +207,6 @@ export default {
   color: white;
   border-color: #ff4136;
   font-weight: 700;
-}
-
-/* ── Tab guide ─────────────────────────────────────────────────────────── */
-.tab-guide {
-  margin-bottom: 10px;
-}
-
-.tab-guide-summary {
-  cursor: pointer;
-  font-size: 0.82em;
-  color: #888;
-  user-select: none;
-  padding: 4px 0;
-  list-style: none;
-}
-
-.tab-guide-summary::-webkit-details-marker { display: none; }
-.tab-guide-summary::marker { display: none; }
-
-.tab-guide-summary:hover { color: #555; }
-
-.tab-guide-content {
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
-  border-radius: 8px;
-  padding: 12px 16px;
-  margin-top: 6px;
-}
-
-.tab-guide-order {
-  margin: 0 0 10px;
-  font-size: 0.82em;
-  color: #555;
-  font-weight: 500;
-}
-
-.tab-guide-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.tab-guide-list li {
-  font-size: 0.82em;
-  color: #444;
-  display: flex;
-  gap: 6px;
-  align-items: baseline;
-}
-
-.tab-guide-icon {
-  flex-shrink: 0;
-  width: 1.4em;
-  text-align: center;
 }
 
 /* ── Tabs ──────────────────────────────────────────────────────────────── */
