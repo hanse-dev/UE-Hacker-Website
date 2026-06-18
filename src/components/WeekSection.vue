@@ -92,7 +92,20 @@
             :course-id="courseId"
           />
 
-          <!-- Row 3: Notebook-Tabs -->
+          <!-- Row 3: Tab-Guide + Notebook-Tabs -->
+          <details class="tab-guide">
+            <summary class="tab-guide-summary">ℹ️ Wie ist die Woche aufgebaut?</summary>
+            <div class="tab-guide-content">
+              <p class="tab-guide-order">Empfohlene Reihenfolge: 📚 Lektion → 🐛 Debug → ⭐ Missionen → 🐉 Boss-Quest</p>
+              <ul class="tab-guide-list">
+                <li v-for="tab in TABS" :key="tab.key">
+                  <span class="tab-guide-icon">{{ tab.icon }}</span>
+                  <strong>{{ tab.label }}</strong> – {{ tab.description }}
+                </li>
+              </ul>
+            </div>
+          </details>
+
           <div class="notebook-tabs">
             <button
               v-for="tab in TABS"
@@ -100,6 +113,7 @@
               class="tab-btn"
               :class="{ active: selectedTab === tab.key, available: hasTab(tab.key) }"
               :disabled="!hasTab(tab.key)"
+              :title="tab.description"
               @click="selectedTab = tab.key"
             >
               <span class="tab-icon">{{ tab.icon }}</span>
@@ -133,12 +147,12 @@ import JupyterNotebook from './JupyterNotebook.vue';
 import MissionenPanel from './MissionenPanel.vue';
 
 const TABS = [
-  { key: '1_lektion',   label: 'Lektion',    icon: '📚' },
-  { key: '2_debug',     label: 'Debug',      icon: '🐛' },
-  { key: '3_missionen', label: 'Missionen',  icon: '⭐' },
-  { key: '5_boss',      label: 'Boss-Quest', icon: '🐉' },
-  { key: '6_loesungen', label: 'Lösungen',   icon: '🔧' },
-  { key: '0_glossar',   label: 'Glossar',    icon: '📖' },
+  { key: '1_lektion',   label: 'Lektion',    icon: '📚', description: 'Neuer Stoff: lies und verstehe das Thema der Woche' },
+  { key: '2_debug',     label: 'Debug',      icon: '🐛', description: 'Finde und fixe absichtliche Bugs im Code' },
+  { key: '3_missionen', label: 'Missionen',  icon: '⭐', description: 'Kleine Aufgaben zum Üben des neuen Stoffs' },
+  { key: '5_boss',      label: 'Boss-Quest', icon: '🐉', description: 'Die große Abschluss-Challenge – alles zusammen!' },
+  { key: '6_loesungen', label: 'Lösungen',   icon: '🔧', description: 'Musterlösungen zu Missionen und Boss-Quest' },
+  { key: '0_glossar',   label: 'Glossar',    icon: '📖', description: 'Alle Begriffe der Woche zum Nachschlagen – immer verfügbar' },
 ];
 
 export default {
@@ -206,6 +220,63 @@ export default {
   color: white;
   border-color: #ff4136;
   font-weight: 700;
+}
+
+/* ── Tab guide ─────────────────────────────────────────────────────────── */
+.tab-guide {
+  margin-bottom: 10px;
+}
+
+.tab-guide-summary {
+  cursor: pointer;
+  font-size: 0.82em;
+  color: #888;
+  user-select: none;
+  padding: 4px 0;
+  list-style: none;
+}
+
+.tab-guide-summary::-webkit-details-marker { display: none; }
+.tab-guide-summary::marker { display: none; }
+
+.tab-guide-summary:hover { color: #555; }
+
+.tab-guide-content {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 6px;
+}
+
+.tab-guide-order {
+  margin: 0 0 10px;
+  font-size: 0.82em;
+  color: #555;
+  font-weight: 500;
+}
+
+.tab-guide-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.tab-guide-list li {
+  font-size: 0.82em;
+  color: #444;
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+}
+
+.tab-guide-icon {
+  flex-shrink: 0;
+  width: 1.4em;
+  text-align: center;
 }
 
 /* ── Tabs ──────────────────────────────────────────────────────────────── */
