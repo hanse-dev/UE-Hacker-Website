@@ -85,35 +85,43 @@
           <span class="fortschritt-toggle">{{ weeklySectionExpanded ? '−' : '+' }}</span>
         </div>
         <div v-show="weeklySectionExpanded">
-        <p class="fortschritt-weekly-hint">Pro Woche gibt es 6 Missionen (3 Haupt + 3 Boss). Zeigt wie viel % du bereits eingelöst hast.</p>
-        <div class="fortschritt-by-week" v-for="v in displayedVariantKeys" :key="`week-${v}`">
-          <h5>{{ variantLabels[v] }}</h5>
-          <div class="week-progress-grid">
-            <div
-              v-for="w in getWeeklyProgress(v)"
-              :key="`${v}-w${w.week}`"
-              class="week-progress-card"
-              :class="{ 'has-claims': w.claimedCount > 0, 'complete': w.percentOpen === 0 }"
-            >
-              <div class="week-progress-header" @click="toggleWeekProgress(v, w.week)">
-                <span class="week-number">Woche {{ w.week }}</span>
-                <span class="week-stats">{{ w.claimedCount }}/6 ✓ {{ w.percentDone }}%</span>
-                <span class="week-open" v-if="w.percentOpen > 0">{{ w.percentOpen }}% offen</span>
-                <span class="week-open complete" v-else>✓ Vollständig</span>
-                <span class="week-toggle">{{ isWeekProgressExpanded(v, w.week) ? '−' : '+' }}</span>
-              </div>
-              <div v-show="isWeekProgressExpanded(v, w.week)" class="week-progress-detail">
-                <ul v-if="w.claims.length > 0" class="fortschritt-claims-list">
-                  <li v-for="(c, i) in w.claims" :key="`${v}-w${w.week}-${c.missionId}-${i}`">
-                    <span class="claim-label">{{ formatClaimLabel(c) }}:</span>
-                    <span class="claim-reward">{{ c.points }} {{ variantUnits[v] }} + {{ c.item }}</span>
-                  </li>
-                </ul>
-                <p v-else class="week-no-claims">Noch nichts in dieser Woche eingelöst.</p>
+          <p class="fortschritt-weekly-hint">Pro Woche gibt es 6 Missionen (3 Haupt + 3 Boss). Zeigt wie viel % du bereits eingelöst hast.</p>
+          <div class="weekly-tabs">
+            <button
+              v-for="v in variantKeys"
+              :key="v"
+              class="weekly-tab-btn"
+              :class="{ active: weeklyTabVariant === v }"
+              @click="weeklyTabVariant = v"
+            >{{ variantLabels[v] }}</button>
+          </div>
+          <div class="fortschritt-by-week">
+            <div class="week-progress-grid">
+              <div
+                v-for="w in getWeeklyProgress(weeklyTabVariant)"
+                :key="`${weeklyTabVariant}-w${w.week}`"
+                class="week-progress-card"
+                :class="{ 'has-claims': w.claimedCount > 0, 'complete': w.percentOpen === 0 }"
+              >
+                <div class="week-progress-header" @click="toggleWeekProgress(weeklyTabVariant, w.week)">
+                  <span class="week-number">Woche {{ w.week }}</span>
+                  <span class="week-stats">{{ w.claimedCount }}/6 ✓ {{ w.percentDone }}%</span>
+                  <span class="week-open" v-if="w.percentOpen > 0">{{ w.percentOpen }}% offen</span>
+                  <span class="week-open complete" v-else>✓ Vollständig</span>
+                  <span class="week-toggle">{{ isWeekProgressExpanded(weeklyTabVariant, w.week) ? '−' : '+' }}</span>
+                </div>
+                <div v-show="isWeekProgressExpanded(weeklyTabVariant, w.week)" class="week-progress-detail">
+                  <ul v-if="w.claims.length > 0" class="fortschritt-claims-list">
+                    <li v-for="(c, i) in w.claims" :key="`${weeklyTabVariant}-w${w.week}-${c.missionId}-${i}`">
+                      <span class="claim-label">{{ formatClaimLabel(c) }}:</span>
+                      <span class="claim-reward">{{ c.points }} {{ variantUnits[weeklyTabVariant] }} + {{ c.item }}</span>
+                    </li>
+                  </ul>
+                  <p v-else class="week-no-claims">Noch nichts in dieser Woche eingelöst.</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         </div>
       </div>
 
@@ -152,6 +160,7 @@ export default {
     const fortschrittExpanded = ref(false);
     const skriptErklaerungExpanded = ref(false);
     const weeklySectionExpanded = ref(false);
+    const weeklyTabVariant = ref('abenteuer');
     const selectedFortschrittVariant = ref('alle');
     const weekProgressExpanded = ref({});
 
@@ -227,6 +236,7 @@ export default {
       fortschrittExpanded,
       skriptErklaerungExpanded,
       weeklySectionExpanded,
+      weeklyTabVariant,
       selectedFortschrittVariant,
       displayedVariantKeys,
       variantKeys: VARIANT_KEYS,
@@ -539,10 +549,41 @@ export default {
   color: #666;
 }
 
-.fortschritt-by-week h5 {
-  margin: 12px 0 8px 0;
-  font-size: 0.95em;
-  color: #555;
+.weekly-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid rgba(255, 215, 0, 0.6);
+  margin: 10px 0 0;
+}
+
+.weekly-tab-btn {
+  padding: 8px 16px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.88em;
+  font-weight: 500;
+  color: #666;
+  margin-bottom: -2px;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.weekly-tab-btn:hover {
+  color: #333;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.weekly-tab-btn.active {
+  color: #7a5c00;
+  border-bottom-color: #ffd700;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.fortschritt-by-week {
+  padding-top: 12px;
 }
 
 .week-progress-grid {
