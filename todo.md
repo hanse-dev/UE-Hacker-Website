@@ -5,20 +5,19 @@
 - [x] Das Tabsystem erklären
 - [x] "Wie ist der Kurs aufgebaut?" mit den Belohnungen ergänzen
 - [x] MissionenPanel: Punkte-Stand nach Browser-Reload prüfen (localStorage?)
-- [ ] CourseDetail.vue: Verlinkung zu den richtigen Notebooks testen
 - [x] Belohnungen zuklappen
 - [x] Woche 1 zuklappen
 
 ### Inhalte / Notebooks
 - [x] Woche 9-12 Debug-Notebooks kurz durchschauen (Aufgaben verständlich?)
 - [x] Glossar-Notebooks: Sind alle Begriffe für Anfänger erklärt?
+- [ ] Branch `splitting` in `main` mergen
 
 
 ## Later
 ### Website / Frontend
 
 - [ ] neuer Branch, in dem alles auf Englisch übersetzt wird
-- [ ] Branch `splitting` in `main` mergen
 
 ### Inhalte / Notebooks
 
