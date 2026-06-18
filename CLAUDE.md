@@ -54,7 +54,7 @@ content/
 ## Handoff-Notizen (für den nächsten Rechner)
 
 > **Zuletzt aktualisiert:** 2026-06-18
-> **Letzter Commit:** `e6964b5` — chore: mark debug notebook review as done in todo.md
+> **Letzter Commit:** `795cd3e` — docs: update handoff and add auto-update instruction
 
 **Was diese Session gemacht wurde:**
 - Woche 9-12 Debug-Notebooks durchgeschaut: Bugs auf Verständlichkeit geprüft
@@ -85,7 +85,7 @@ Nach jedem `git commit` prüfen:
 
 ## Handoff automatisch aktualisieren
 
-**Am Ende jeder produktiven Session** (d.h. wenn der User signalisiert dass er fertig ist, z.B. "push", "bis später", "tschüss") ohne explizite Aufforderung:
-1. Handoff-Abschnitt in dieser Datei aktualisieren (was wurde gemacht, was ist offen, letzter Commit)
+**Vor jedem Commit** ohne explizite Aufforderung:
+1. Handoff-Abschnitt in dieser Datei aktualisieren (letzter Commit, was wurde gemacht, was ist offen)
 2. `todo.md` prüfen und erledigte Punkte markieren
-3. `git add CLAUDE.md todo.md && git commit && git push`
+3. `CLAUDE.md` und `todo.md` mit in denselben Commit aufnehmen (kein Extra-Commit)
