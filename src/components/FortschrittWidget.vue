@@ -80,7 +80,11 @@
       </div>
 
       <div class="fortschritt-weekly-section">
-        <h4>📅 Verlauf nach Woche</h4>
+        <div class="fortschritt-weekly-header" @click="weeklySectionExpanded = !weeklySectionExpanded">
+          <h4>📅 Verlauf nach Woche</h4>
+          <span class="fortschritt-toggle">{{ weeklySectionExpanded ? '−' : '+' }}</span>
+        </div>
+        <div v-show="weeklySectionExpanded">
         <p class="fortschritt-weekly-hint">Pro Woche gibt es 6 Missionen (3 Haupt + 3 Boss). Zeigt wie viel % du bereits eingelöst hast.</p>
         <div class="fortschritt-by-week" v-for="v in displayedVariantKeys" :key="`week-${v}`">
           <h5>{{ variantLabels[v] }}</h5>
@@ -109,6 +113,7 @@
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
 
@@ -146,6 +151,7 @@ export default {
   setup() {
     const fortschrittExpanded = ref(false);
     const skriptErklaerungExpanded = ref(false);
+    const weeklySectionExpanded = ref(false);
     const selectedFortschrittVariant = ref('alle');
     const weekProgressExpanded = ref({});
 
@@ -220,6 +226,7 @@ export default {
     return {
       fortschrittExpanded,
       skriptErklaerungExpanded,
+      weeklySectionExpanded,
       selectedFortschrittVariant,
       displayedVariantKeys,
       variantKeys: VARIANT_KEYS,
@@ -507,8 +514,21 @@ export default {
   border-top: 1px solid rgba(255, 215, 0, 0.5);
 }
 
+.fortschritt-weekly-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  padding: 6px 0;
+}
+
+.fortschritt-weekly-header:hover h4 {
+  color: #555;
+}
+
 .fortschritt-weekly-section h4 {
-  margin: 0 0 6px 0;
+  margin: 0;
   font-size: 1em;
   color: #333;
 }
