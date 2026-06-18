@@ -11,7 +11,7 @@
 
 ### Inhalte / Notebooks
 - [x] Woche 9-12 Debug-Notebooks kurz durchschauen (Aufgaben verständlich?)
-- [ ] Glossar-Notebooks: Sind alle Begriffe für Anfänger erklärt?
+- [x] Glossar-Notebooks: Sind alle Begriffe für Anfänger erklärt?
 
 
 ## Later

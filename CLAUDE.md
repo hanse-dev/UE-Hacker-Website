@@ -54,18 +54,16 @@ content/
 ## Handoff-Notizen (für den nächsten Rechner)
 
 > **Zuletzt aktualisiert:** 2026-06-18
-> **Letzter Commit:** `795cd3e` — docs: update handoff and add auto-update instruction
+> **Letzter Commit:** `b558cfb` — feat: swap Boss-Quest and Lösungen order
 
-**Was diese Session gemacht wurde:**
-- Woche 9-12 Debug-Notebooks durchgeschaut: Bugs auf Verständlichkeit geprüft
-- Alle 36 Debug-Notebooks: Hinweis "Diese Fehler wurden absichtlich eingebaut" ergänzt
-- Woche 9 Bug #3 (×3): `test.csv`-Zugriff durch `io.StringIO` ersetzt → echter `IndexError` sichtbar
-- Woche 12 Pferde + Scifi: falsche/unklare Bugs korrigiert (pendown, Farbe, Beschreibungen)
-- Commit-Stil: kein Co-Authored-By mehr
+**Was zuletzt gemacht wurde:**
+- Alle 36 Glossar-Notebooks durchgesehen: anfängerfreundlich und konsistent
+- Woche 11 (×3): doppelte Tabellenzeilen für Polymorphismus und Vererbung entfernt
+- Woche 10 Pferde: `trainieren()` war ein No-op (`self.rasse = self.rasse`) → durch sinnvollen `fitness`-Counter ersetzt
 
 **Bekannte offene Baustellen:**
 - Website/Frontend: Tab-System erklären, Belohnungen in Kursaufbau, localStorage für Punkte-Stand, Verlinkung testen, Belohnungen/Woche-1 zuklappen
-- Inhalte: Glossar-Notebooks auf Anfänger-Tauglichkeit prüfen
+- Mission Panel Komponente neu, noch nicht vollständig getestet
 
 **Workflow:**
 1. `docker-compose up dev` starten
