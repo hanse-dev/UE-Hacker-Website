@@ -17,7 +17,7 @@
 ## Later
 ### Website / Frontend
 
-- [ ] Language-Toggle: Phase 4 – Markdown-Content-Dateien auf Englisch übersetzen (38 Dateien)
+- [x] Language-Toggle: Phase 4 – Markdown-Content-Dateien auf Englisch übersetzen (26 Dateien)
 - [ ] Language-Toggle: Phase 5 – rewards-manifest-en.json anlegen
 - [ ] Language-Toggle: Phase 6 – Notebooks übersetzen (216 Notebooks, ~18 pro Session)
 

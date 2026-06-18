@@ -54,19 +54,17 @@ content/
 ## Handoff-Notizen (für den nächsten Rechner)
 
 > **Zuletzt aktualisiert:** 2026-06-18
-> **Letzter Commit:** feat: add language toggle (DE/EN) — Phase 1–3
+> **Letzter Commit:** feat: translate all 26 markdown content files to English (Phase 4)
 
 **Was zuletzt gemacht wurde:**
-- Neuer Branch `language-toggle` von `main` abgezweigt
-- `src/composables/useLanguage.js`: Singleton `lang` ref (localStorage-persistiert), `t(key)` Funktion
-- `src/locales/de.js` + `src/locales/en.js`: alle UI-Strings (~60 Keys je Locale)
-- DE/EN-Schalter als Buttons in App.vue Navigation
-- Alle 10 Vue-Komponenten auf `t()` umgestellt
-- `useWeeklyContent.js`: `lang`-Parameter, beide Verzeichnisse per statischer Globs, EN-Dirs (`adventure/horses`) auf interne Keys gemappt
-- CourseDetail: `watch(lang, ...)` für automatisches Neuladen
+- Phase 4 abgeschlossen: alle 26 Markdown-Dateien ins Englische übersetzt
+- `content/python-12-wochen-grundkurs-en/` komplett befüllt: beschreibung.md, lehrplan.md, woche-{1-12}/woche*.md, woche-{2-12}/wissens_cheat_sheet.md, woche-12/turtle_cheat_sheet.md
+- Alle 11 wissens_cheat_sheet.md kumulativ aufgebaut (EN Variablennamen, EN Code-Strings)
+- turtle_cheat_sheet.md übersetzt (Kommentare, Abschnittstitel, Beschreibungen)
+- `useWeeklyContent.js`: EN-Cheat-Sheet-Name jetzt "📚 Knowledge Cheat Sheet" statt "Wissens-Cheat-Sheet"
+- Verzeichnisstruktur für Notebooks bereits angelegt: adventure/, horses/, scifi/ in allen 12 Wochen
 
 **Bekannte offene Baustellen:**
-- Language-Toggle Phase 4: Markdown-Content-Dateien auf Englisch übersetzen (38 .md)
 - Language-Toggle Phase 5: `rewards-manifest-en.json` oder Erweiterung
 - Language-Toggle Phase 6: 216 Notebooks übersetzen (~18 pro Session)
 - Verlinkung zu den richtigen Notebooks testen
