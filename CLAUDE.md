@@ -60,11 +60,14 @@ content/
 - Alle 36 Glossar-Notebooks durchgesehen: anfängerfreundlich und konsistent
 - Woche 11 (×3): doppelte Tabellenzeilen für Polymorphismus und Vererbung entfernt
 - Woche 10 Pferde: `trainieren()` war ein No-op (`self.rasse = self.rasse`) → durch sinnvollen `fitness`-Counter ersetzt
-- Tab-System erklärt: einmalig oben auf der Kursseite als `<h2>Wie ist der Kurs aufgebaut?</h2>` mit 6-Tab-Grid (Icon + Titel + Beschreibung); Tooltip auf jedem Tab-Button
+- Tab-System erklärt: einmalig oben auf der Kursseite als `<h2>Wie ist der Kurs aufgebaut?</h2>` mit 6-Tab-Grid; in course-description integriert
+- Belohnungen (FortschrittWidget) + Woche 1 klappen beim Seitenaufruf jetzt ein
+- localStorage-Persistenz war bereits implementiert (useFortschritt.js)
+- Verlauf-nach-Woche als Tabs (Abenteuer/Pferde/Sci-Fi) neu gestaltet
+- Code-Zellen zeigen jetzt vollen Source ohne Scrollbar
 
 **Bekannte offene Baustellen:**
-- Website/Frontend: localStorage für Punkte-Stand, Verlinkung testen, Belohnungen/Woche-1 zuklappen
-- Mission Panel Komponente neu, noch nicht vollständig getestet
+- Website/Frontend: Verlinkung zu den richtigen Notebooks testen
 
 **Workflow:**
 1. `docker-compose up dev` starten

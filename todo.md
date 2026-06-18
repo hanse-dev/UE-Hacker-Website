@@ -4,10 +4,10 @@
 ### Website / Frontend
 - [x] Das Tabsystem erklären
 - [x] "Wie ist der Kurs aufgebaut?" mit den Belohnungen ergänzen
-- [ ] MissionenPanel: Punkte-Stand nach Browser-Reload prüfen (localStorage?)
+- [x] MissionenPanel: Punkte-Stand nach Browser-Reload prüfen (localStorage?)
 - [ ] CourseDetail.vue: Verlinkung zu den richtigen Notebooks testen
-- [ ] Belohnungen zuklappen
-- [ ] Woche 1 zuklappen
+- [x] Belohnungen zuklappen
+- [x] Woche 1 zuklappen
 
 ### Inhalte / Notebooks
 - [x] Woche 9-12 Debug-Notebooks kurz durchschauen (Aufgaben verständlich?)

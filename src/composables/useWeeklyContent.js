@@ -72,7 +72,7 @@ function emptyWeek(weekNum) {
     expandedCheatSheets: {},
     selectedVariant: null,
     selectedTab: '1_lektion',
-    expanded: weekNum === 1,
+    expanded: false,
   });
 }
 
