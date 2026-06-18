@@ -38,7 +38,7 @@
             class="code-editor"
             spellcheck="false"
             v-model="cell.source"
-            rows="5"
+            :rows="Math.max(3, cell.source.split('\n').length)"
           ></textarea>
           <div :id="`output-${index}`" class="cell-output"></div>
         </div>
@@ -246,7 +246,7 @@ export default {
   background: #ffffff; border: none;
   font-family: 'Courier New', Consolas, Monaco, monospace;
   font-size: 13.5px; line-height: 1.55; color: #1f2937;
-  resize: vertical; overflow: auto;
+  resize: none; overflow: hidden;
   white-space: pre; word-wrap: normal;
   box-sizing: border-box;
 }
