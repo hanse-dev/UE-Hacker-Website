@@ -1,7 +1,21 @@
 <template>
   <section class="course-detail" v-if="course">
     <h1>{{ course.title }}</h1>
-    <div v-if="description" v-html="description" class="course-description"></div>
+    <div v-if="description || isWeeklyCourse" class="course-description">
+      <div v-if="description" v-html="description"></div>
+      <div v-if="isWeeklyCourse" class="course-structure">
+        <p class="course-structure-intro">Jede Woche ist in 6 Bereiche aufgeteilt – arbeite sie am besten in dieser Reihenfolge durch:</p>
+        <div class="course-structure-tabs">
+          <div class="course-structure-tab" v-for="tab in COURSE_TABS" :key="tab.key">
+            <span class="course-structure-icon">{{ tab.icon }}</span>
+            <div class="course-structure-text">
+              <strong>{{ tab.label }}</strong>
+              <span>{{ tab.description }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <CourseAppointments v-if="!isInteractiveCourse" :termine="courseTermine" />
 
@@ -10,20 +24,6 @@
     </div>
 
     <FortschrittWidget v-else-if="isWeeklyCourse && fortschrittReady" />
-
-    <div v-if="isWeeklyCourse" class="course-structure">
-      <h2>Wie ist der Kurs aufgebaut?</h2>
-      <p class="course-structure-intro">Jede Woche ist in 6 Bereiche aufgeteilt – arbeite sie am besten in dieser Reihenfolge durch:</p>
-      <div class="course-structure-tabs">
-        <div class="course-structure-tab" v-for="tab in COURSE_TABS" :key="tab.key">
-          <span class="course-structure-icon">{{ tab.icon }}</span>
-          <div class="course-structure-text">
-            <strong>{{ tab.label }}</strong>
-            <span>{{ tab.description }}</span>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <WeekSection
       v-if="isWeeklyCourse"
@@ -201,13 +201,7 @@ export default {
 
 /* ── Course structure guide ────────────────────────────────────────────── */
 .course-structure {
-  margin: 0 0 40px;
-}
-
-.course-structure h2 {
-  font-size: 1.4em;
-  color: #333;
-  margin-bottom: 8px;
+  margin-top: 8px;
 }
 
 .course-structure-intro {
