@@ -144,7 +144,7 @@ const WEEKLY_TOTAL = 6;
 export default {
   name: 'FortschrittWidget',
   setup() {
-    const fortschrittExpanded = ref(true);
+    const fortschrittExpanded = ref(false);
     const skriptErklaerungExpanded = ref(false);
     const selectedFortschrittVariant = ref('alle');
     const weekProgressExpanded = ref({});
