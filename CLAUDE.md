@@ -30,8 +30,8 @@ content/
       abenteuer/
 ```
 
-### Notebook-Struktur (pro Woche/Thema — 7 Dateien)
-`0_glossar` → `1_lektion` → `2_debug` → `3_missionen` → `4_reflexion` → `5_loesungen` → `6_boss`
+### Notebook-Struktur (pro Woche/Thema — 6 Dateien)
+`0_glossar` → `1_lektion` → `2_debug` → `3_missionen` → `5_boss` → `6_loesungen`
 
 ### Kurs-Themen
 - **Sci-Fi:** Cyber Credits, Daten-Chip, Crew-Meister-Urkunde
@@ -67,6 +67,15 @@ Branch `splitting` baut eine neue Website-Struktur mit Kurs-Übersicht, Teaser-V
 1. `docker-compose up dev` starten
 2. Weiter an `splitting` Branch arbeiten
 3. Am Ende: `git add`, `git commit`, `git push` — dann steht alles auf dem anderen Rechner bereit
+
+---
+
+## Nach jedem Commit
+
+Nach jedem `git commit` prüfen:
+- Welche Aufgaben aus `todo.md` wurden durch diesen Commit erledigt?
+- Diese Einträge in `todo.md` von `[ ]` auf `[x]` setzen und unter `## Done` verschieben.
+- `todo.md` dann mit in den nächsten Commit aufnehmen, oder direkt committen.
 
 ---
 
