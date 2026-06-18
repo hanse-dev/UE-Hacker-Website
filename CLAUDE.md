@@ -54,17 +54,18 @@ content/
 ## Handoff-Notizen (für den nächsten Rechner)
 
 > **Zuletzt aktualisiert:** 2026-06-18
-> **Letzter Commit:** feat: add rewards-manifest-en.json and reactive manifest loading (Phase 5)
+> **Letzter Commit:** feat: translate Week 1 notebooks to English (Phase 6, Session 1/12)
 
 **Was zuletzt gemacht wurde:**
-- Phase 5 abgeschlossen: `public/rewards-manifest-en.json` mit allen EN Item-Namen angelegt
-- Alle 3 Varianten × 12 Wochen × 6 Items übersetzt (Abenteuer→Adventure, Pferde→Horses, Scifi)
-- `MissionenPanel.vue`: lädt jetzt `rewards-manifest-en.json` wenn lang=EN, watcher auf `lang` für reaktives Neuladen
-- Phase 4 + 5 vollständig – Language-Toggle für alle Markdown-Inhalte und Missionen funktionsfähig
+- Phase 6 gestartet: Woche 1 – alle 18 EN-Notebooks erstellt (adventure, horses, scifi je 6)
+- Dateien: `content/python-12-wochen-grundkurs-en/woche-1/{adventure,horses,scifi}/week1_*.ipynb`
+- EN-Dateinamenmuster: `week{N}_{variant}_{type}.ipynb`
+- Alle Notebooks vollständig übersetzt: Glossar, Lektion, Debug, Missionen, Boss, Lösungen
+- Themenkontext beibehalten (Pythonia/Aria für Adventure, Sunny Valley/Bobby für Horses, Nebula-7 für Scifi)
 
 **Bekannte offene Baustellen:**
-- Language-Toggle Phase 6: 216 Notebooks übersetzen (~18 pro Session)
-- Notebooks in EN-Verzeichnis: adventure/, horses/, scifi/ in allen 12 Wochen bereit zum Befüllen
+- Language-Toggle Phase 6: Noch 198 Notebooks (Wochen 2–12, je ~18 pro Session)
+- Nächste Session: Woche 2 (adventure, horses, scifi lesen → übersetzen → committen)
 
 **Workflow:**
 1. `docker-compose up dev` starten
