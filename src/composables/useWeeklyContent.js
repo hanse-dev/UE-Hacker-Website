@@ -57,9 +57,9 @@ const NOTEBOOK_TYPES = [
   '6_loesungen',
 ];
 
-function emptyWeek(weekNum) {
+function emptyWeek(weekNum, label = 'Woche') {
   return reactive({
-    title: `Woche ${weekNum}`,
+    title: `${label} ${weekNum}`,
     shortDesc: '',
     lernziele: [],
     hasNotebook: false,
@@ -76,22 +76,51 @@ function emptyWeek(weekNum) {
   });
 }
 
-export async function loadWeeklyContent() {
-  const weekModules = import.meta.glob(
+export async function loadWeeklyContent(lang = 'de') {
+  const isEn = lang === 'en';
+
+  // ── DE globs (always compiled by Vite — strings must be static literals) ─
+  const weekModulesDe = import.meta.glob(
     '../../content/python-12-wochen-grundkurs/woche-*/*.md',
     { query: '?raw' }
   );
-
-  // Split notebooks live in theme subfolders
-  const splitNotebookModules = import.meta.glob(
+  const splitNotebookModulesDe = import.meta.glob(
     '../../content/python-12-wochen-grundkurs/woche-*/{abenteuer,pferde,scifi}/*.ipynb',
     { query: '?url', import: 'default' }
   );
-
-  const downloadModules = import.meta.glob(
+  const downloadModulesDe = import.meta.glob(
     '../../content/python-12-wochen-grundkurs/woche-*/*.*',
     { query: '?url', import: 'default' }
   );
+
+  // ── EN globs (empty until content is translated) ──────────────────────────
+  const weekModulesEn = import.meta.glob(
+    '../../content/python-12-wochen-grundkurs-en/woche-*/*.md',
+    { query: '?raw' }
+  );
+  const splitNotebookModulesEn = import.meta.glob(
+    '../../content/python-12-wochen-grundkurs-en/woche-*/{adventure,horses,scifi}/*.ipynb',
+    { query: '?url', import: 'default' }
+  );
+  const downloadModulesEn = import.meta.glob(
+    '../../content/python-12-wochen-grundkurs-en/woche-*/*.*',
+    { query: '?url', import: 'default' }
+  );
+
+  const weekModules          = isEn ? weekModulesEn          : weekModulesDe;
+  const splitNotebookModules = isEn ? splitNotebookModulesEn : splitNotebookModulesDe;
+  const downloadModules      = isEn ? downloadModulesEn      : downloadModulesDe;
+
+  // EN dir names (adventure/horses/scifi) map to the same internal keys as DE
+  const variantDirToKey = isEn
+    ? { adventure: 'abenteuer', horses: 'pferde', scifi: 'scifi' }
+    : { abenteuer: 'abenteuer', pferde: 'pferde', scifi: 'scifi' };
+
+  const variantDirPattern = isEn
+    ? /\/(adventure|horses|scifi)\/week\d+_(?:adventure|horses|scifi)_(\d+_\w+)\.ipynb$/
+    : /\/(abenteuer|pferde|scifi)\/woche\d+_(?:abenteuer|pferde|scifi)_(\d+_\w+)\.ipynb$/;
+
+  const weekLabel = isEn ? 'Week' : 'Woche';
 
   const weeklyContent = {};
 
@@ -102,16 +131,18 @@ export async function loadWeeklyContent() {
       if (!weekMatch) return;
       const weekNum = parseInt(weekMatch[1], 10);
 
-      // Extract variant (abenteuer|pferde|scifi) and type (0_glossar, 1_lektion…)
-      const typeMatch = path.match(/\/(abenteuer|pferde|scifi)\/woche\d+_(?:abenteuer|pferde|scifi)_(\d+_\w+)\.ipynb$/);
+      const typeMatch = path.match(variantDirPattern);
       if (!typeMatch) return;
-      const variant = typeMatch[1];
-      const type = typeMatch[2];
+      const variantDir = typeMatch[1];
+      const type       = typeMatch[2];
       if (!NOTEBOOK_TYPES.includes(type)) return;
+
+      const variant = variantDirToKey[variantDir];
+      if (!variant) return;
 
       const url = await loader();
 
-      if (!weeklyContent[weekNum]) weeklyContent[weekNum] = emptyWeek(weekNum);
+      if (!weeklyContent[weekNum]) weeklyContent[weekNum] = emptyWeek(weekNum, weekLabel);
 
       weeklyContent[weekNum].hasNotebook = true;
       weeklyContent[weekNum].notebooks[variant][type] = url;
@@ -143,7 +174,7 @@ export async function loadWeeklyContent() {
       const rawContent = (await loader()).default;
       const parsed = fm(rawContent);
 
-      if (!weeklyContent[weekNum]) weeklyContent[weekNum] = emptyWeek(weekNum);
+      if (!weeklyContent[weekNum]) weeklyContent[weekNum] = emptyWeek(weekNum, weekLabel);
 
       const { shortDesc, lernziele } = parseWeekMarkdown(parsed.body);
       weeklyContent[weekNum].shortDesc = shortDesc;

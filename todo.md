@@ -11,18 +11,19 @@
 ### Inhalte / Notebooks
 - [x] Woche 9-12 Debug-Notebooks kurz durchschauen (Aufgaben verständlich?)
 - [x] Glossar-Notebooks: Sind alle Begriffe für Anfänger erklärt?
-- [ ] Branch `splitting` in `main` mergen
+- [x] Branch `splitting` in `main` mergen
 
 
 ## Later
 ### Website / Frontend
 
-- [ ] neuer Branch, in dem alles auf Englisch übersetzt wird
+- [ ] Language-Toggle: Phase 4 – Markdown-Content-Dateien auf Englisch übersetzen (38 Dateien)
+- [ ] Language-Toggle: Phase 5 – rewards-manifest-en.json anlegen
+- [ ] Language-Toggle: Phase 6 – Notebooks übersetzen (216 Notebooks, ~18 pro Session)
 
 ### Inhalte / Notebooks
 
 - [ ] den "python grundlagen interaktiv" kurs in 2 Varianten zu erstellen, 1x kinderfreundlich (in einfacher Sprache), 1x für Jugendliche
-- [ ] neuer Branch, in dem alles auf Englisch übersetzt wird
 
 ### Infrastruktur
 

@@ -42,8 +42,8 @@ content/
 
 ## Aktiver Branch & Offene Aufgaben
 
-**Branch:** `splitting`
-**Gegenüber `main`:** Neue Content-Struktur mit aufgeteilten Notebooks (7 Dateien/Woche statt monolithisch), KURSPLAN.md, Website-Routing für Kurs-Übersicht.
+**Branch:** `language-toggle`
+**Gegenüber `main`:** Language-Toggle-Feature (DE/EN Umschalter in der App).
 
 ### Nächste Schritte / Offene Punkte
 
@@ -54,24 +54,26 @@ content/
 ## Handoff-Notizen (für den nächsten Rechner)
 
 > **Zuletzt aktualisiert:** 2026-06-18
-> **Letzter Commit:** `b558cfb` — feat: swap Boss-Quest and Lösungen order
+> **Letzter Commit:** feat: add language toggle (DE/EN) — Phase 1–3
 
 **Was zuletzt gemacht wurde:**
-- Alle 36 Glossar-Notebooks durchgesehen: anfängerfreundlich und konsistent
-- Woche 11 (×3): doppelte Tabellenzeilen für Polymorphismus und Vererbung entfernt
-- Woche 10 Pferde: `trainieren()` war ein No-op (`self.rasse = self.rasse`) → durch sinnvollen `fitness`-Counter ersetzt
-- Tab-System erklärt: einmalig oben auf der Kursseite als `<h2>Wie ist der Kurs aufgebaut?</h2>` mit 6-Tab-Grid; in course-description integriert
-- Belohnungen (FortschrittWidget) + Woche 1 klappen beim Seitenaufruf jetzt ein
-- localStorage-Persistenz war bereits implementiert (useFortschritt.js)
-- Verlauf-nach-Woche als Tabs (Abenteuer/Pferde/Sci-Fi) neu gestaltet
-- Code-Zellen zeigen jetzt vollen Source ohne Scrollbar
+- Neuer Branch `language-toggle` von `main` abgezweigt
+- `src/composables/useLanguage.js`: Singleton `lang` ref (localStorage-persistiert), `t(key)` Funktion
+- `src/locales/de.js` + `src/locales/en.js`: alle UI-Strings (~60 Keys je Locale)
+- DE/EN-Schalter als Buttons in App.vue Navigation
+- Alle 10 Vue-Komponenten auf `t()` umgestellt
+- `useWeeklyContent.js`: `lang`-Parameter, beide Verzeichnisse per statischer Globs, EN-Dirs (`adventure/horses`) auf interne Keys gemappt
+- CourseDetail: `watch(lang, ...)` für automatisches Neuladen
 
 **Bekannte offene Baustellen:**
-- Website/Frontend: Verlinkung zu den richtigen Notebooks testen
+- Language-Toggle Phase 4: Markdown-Content-Dateien auf Englisch übersetzen (38 .md)
+- Language-Toggle Phase 5: `rewards-manifest-en.json` oder Erweiterung
+- Language-Toggle Phase 6: 216 Notebooks übersetzen (~18 pro Session)
+- Verlinkung zu den richtigen Notebooks testen
 
 **Workflow:**
 1. `docker-compose up dev` starten
-2. Weiter an `splitting` Branch arbeiten
+2. Weiter an `language-toggle` Branch arbeiten
 3. Am Ende: `git add`, `git commit`, `git push` — dann steht alles auf dem anderen Rechner bereit
 
 ---

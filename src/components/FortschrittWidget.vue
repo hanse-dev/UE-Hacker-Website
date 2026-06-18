@@ -1,20 +1,20 @@
 <template>
   <div class="fortschritt-widget">
     <div class="fortschritt-widget-header" @click="fortschrittExpanded = !fortschrittExpanded">
-      <h3>🏆 Deine gesammelten Belohnungen</h3>
+      <h3>{{ t('progress.title') }}</h3>
       <span class="fortschritt-toggle">{{ fortschrittExpanded ? '−' : '+' }}</span>
     </div>
     <div v-show="fortschrittExpanded" class="fortschritt-widget-content">
       <div class="fortschritt-einleitung">
-        <p><strong>Was ist das Punkte-System?</strong> In jeder Woche gibt es Missionen, die du meisterst – dabei sammelst du Belohnungen (XP, Huf-Punkte oder Cyber Credits je nach Questreihe). Das soll Spaß machen und dich motivieren, dranzubleiben.</p>
-        <p>Klicke bei jeder erledigten Mission auf „Punkte einlösen" – so siehst du deinen Fortschritt und kannst dich über gesammelte Items freuen. Nichts davon ist Pflicht, es ist nur zum Feiern deiner Erfolge da. 🎉</p>
+        <p><strong>{{ t('progress.intro1.label') }}</strong> {{ t('progress.intro1') }}</p>
+        <p>{{ t('progress.intro2') }}</p>
       </div>
       <div class="fortschritt-import-export">
         <button @click="exportFortschritt" class="fortschritt-io-btn" title="Fortschritt als JSON herunterladen">
-          📤 Exportieren
+          {{ t('progress.export') }}
         </button>
         <label class="fortschritt-io-btn">
-          📥 Importieren
+          {{ t('progress.import') }}
           <input
             type="file"
             accept=".json,application/json"
@@ -25,37 +25,37 @@
       </div>
       <div class="fortschritt-skript-erklaerung">
         <div class="fortschritt-skript-header" @click="skriptErklaerungExpanded = !skriptErklaerungExpanded">
-          <h4>💻 Lokal arbeiten? So funktioniert das Fortschritt-Skript</h4>
+          <h4>{{ t('progress.script.title') }}</h4>
           <span class="fortschritt-toggle">{{ skriptErklaerungExpanded ? '−' : '+' }}</span>
         </div>
         <div v-show="skriptErklaerungExpanded" class="fortschritt-skript-content">
           <div class="fortschritt-skript-download">
             <a href="/fortschritt-script.zip" download class="fortschritt-skript-btn">
-              📥 Fortschritt-Skript herunterladen
+              {{ t('progress.script.download') }}
             </a>
-            <span class="fortschritt-skript-btn-hint">ZIP mit <code>fortschritt.py</code> und <code>rewards-manifest.json</code></span>
+            <span class="fortschritt-skript-btn-hint">{{ t('progress.script.hint') }}</span>
           </div>
-          <p>Wenn du die Notebooks <strong>lokal</strong> in Jupyter oder VS Code ausführst, kannst du trotzdem Punkte sammeln:</p>
+          <p>{{ t('progress.script.p1') }}</p>
           <ol>
-            <li><strong>Skript ausführen</strong>, wenn du eine Mission gemeistert hast:
+            <li><strong>{{ t('progress.script.step1') }}</strong>
               <pre><code>python fortschritt.py</code></pre>
-              Das Skript fragt dich interaktiv: Questreihe (Abenteuer/Pferde/Sci-Fi), Woche (1–12), was du beendet hast (Mission 1–3 oder Boss-Quest 1–3). Es erstellt <code>mein-fortschritt.json</code> im aktuellen Verzeichnis.
+              {{ t('progress.script.step1.detail') }}
             </li>
-            <li><strong>Hier importieren</strong>: Klicke oben auf „📥 Importieren" und wähle deine <code>mein-fortschritt.json</code> – die Missionen werden zusammengeführt.</li>
+            <li><strong>{{ t('progress.script.step2') }}</strong>: {{ t('progress.script.step2.detail') }}</li>
           </ol>
-          <p class="fortschritt-skript-details">Lade das ZIP oben herunter, entpacke es und führe <code>python fortschritt.py</code> im entpackten Ordner aus. Oder nutze das vollständige Notebook-Pack unten – es enthält das Skript ebenfalls. Befehle: <code>python fortschritt.py add abenteuer w10-m1</code> oder <code>python fortschritt.py show</code> für den aktuellen Stand.</p>
+          <p class="fortschritt-skript-details">{{ t('progress.script.details') }}</p>
         </div>
       </div>
 
       <div class="fortschritt-variant-selector">
-        <span class="fortschritt-variant-label">Questreihe:</span>
+        <span class="fortschritt-variant-label">{{ t('progress.variant.label') }}</span>
         <div class="fortschritt-variant-buttons">
           <button
             @click="selectedFortschrittVariant = 'alle'"
             :class="{ active: selectedFortschrittVariant === 'alle' }"
             class="fortschritt-variant-btn"
           >
-            Alle
+            {{ t('progress.variant.all') }}
           </button>
           <button
             v-for="v in variantKeys"
@@ -81,11 +81,11 @@
 
       <div class="fortschritt-weekly-section">
         <div class="fortschritt-weekly-header" @click="weeklySectionExpanded = !weeklySectionExpanded">
-          <h4>📅 Verlauf nach Woche</h4>
+          <h4>{{ t('progress.weekly.title') }}</h4>
           <span class="fortschritt-toggle">{{ weeklySectionExpanded ? '−' : '+' }}</span>
         </div>
         <div v-show="weeklySectionExpanded">
-          <p class="fortschritt-weekly-hint">Pro Woche gibt es 6 Missionen (3 Haupt + 3 Boss). Zeigt wie viel % du bereits eingelöst hast.</p>
+          <p class="fortschritt-weekly-hint">{{ t('progress.weekly.hint') }}</p>
           <div class="weekly-tabs">
             <button
               v-for="v in variantKeys"
@@ -104,10 +104,10 @@
                 :class="{ 'has-claims': w.claimedCount > 0, 'complete': w.percentOpen === 0 }"
               >
                 <div class="week-progress-header" @click="toggleWeekProgress(weeklyTabVariant, w.week)">
-                  <span class="week-number">Woche {{ w.week }}</span>
+                  <span class="week-number">{{ t('week.label') }} {{ w.week }}</span>
                   <span class="week-stats">{{ w.claimedCount }}/6 ✓ {{ w.percentDone }}%</span>
-                  <span class="week-open" v-if="w.percentOpen > 0">{{ w.percentOpen }}% offen</span>
-                  <span class="week-open complete" v-else>✓ Vollständig</span>
+                  <span class="week-open" v-if="w.percentOpen > 0">{{ w.percentOpen }}{{ t('progress.week.open') }}</span>
+                  <span class="week-open complete" v-else>{{ t('progress.week.complete') }}</span>
                   <span class="week-toggle">{{ isWeekProgressExpanded(weeklyTabVariant, w.week) ? '−' : '+' }}</span>
                 </div>
                 <div v-show="isWeekProgressExpanded(weeklyTabVariant, w.week)" class="week-progress-detail">
@@ -117,7 +117,7 @@
                       <span class="claim-reward">{{ c.points }} {{ variantUnits[weeklyTabVariant] }} + {{ c.item }}</span>
                     </li>
                   </ul>
-                  <p v-else class="week-no-claims">Noch nichts in dieser Woche eingelöst.</p>
+                  <p v-else class="week-no-claims">{{ t('progress.week.noClaims') }}</p>
                 </div>
               </div>
             </div>
@@ -127,20 +127,20 @@
 
       <div class="fortschritt-details" v-for="v in displayedVariantKeys" :key="`details-${v}`">
         <div v-if="getVariantProgress(v).claims.length > 0" class="fortschritt-variant-detail">
-          <h4>{{ variantLabels[v] }} – alle eingelösten Belohnungen</h4>
+          <h4>{{ variantLabels[v] }} – {{ t('progress.details.all') }}</h4>
           <ul class="fortschritt-claims-list">
             <li v-for="(c, i) in getVariantProgress(v).claims" :key="`${v}-${c.missionId}-${i}`">
               <span class="claim-label">{{ formatClaimLabel(c) }} (Woche {{ getWeekFromMissionId(c.missionId) }}):</span>
               <span class="claim-reward">{{ c.points }} {{ variantUnits[v] }} + {{ c.item }}</span>
             </li>
           </ul>
-          <h4 class="items-header">📦 Gesammelte Items</h4>
+          <h4 class="items-header">{{ t('progress.details.items') }}</h4>
           <ul class="fortschritt-items-list">
             <li v-for="(item, i) in getVariantProgress(v).items" :key="`${v}-item-${i}`">{{ item }}</li>
           </ul>
         </div>
       </div>
-      <p class="fortschritt-hint" v-if="getTotalClaims() === 0">Klicke „Punkte einlösen" bei jeder Mission, die du gemeistert hast!</p>
+      <p class="fortschritt-hint" v-if="getTotalClaims() === 0">{{ t('progress.hint') }}</p>
     </div>
   </div>
 </template>
@@ -148,15 +148,15 @@
 <script>
 import { ref, computed } from 'vue';
 import { useFortschritt } from '../composables/useFortschritt';
+import { useLanguage } from '../composables/useLanguage.js';
 
 const VARIANT_KEYS = ['abenteuer', 'pferde', 'scifi'];
-const VARIANT_LABELS = { abenteuer: '🗺️ Abenteuer', pferde: '🐴 Pferde', scifi: '🚀 Sci-Fi' };
-const VARIANT_UNITS = { abenteuer: 'XP', pferde: 'Huf-Punkte', scifi: 'Cyber Credits' };
 const WEEKLY_TOTAL = 6;
 
 export default {
   name: 'FortschrittWidget',
   setup() {
+    const { t } = useLanguage();
     const fortschrittExpanded = ref(false);
     const skriptErklaerungExpanded = ref(false);
     const weeklySectionExpanded = ref(false);
@@ -166,6 +166,18 @@ export default {
 
     const { getVariantProgress, exportProgress, importProgress } = useFortschritt();
 
+    const variantLabels = computed(() => ({
+      abenteuer: t('variant.adventure'),
+      pferde:    t('variant.horses'),
+      scifi:     t('variant.scifi'),
+    }));
+
+    const variantUnits = computed(() => ({
+      abenteuer: t('unit.adventure'),
+      pferde:    t('unit.horses'),
+      scifi:     t('unit.scifi'),
+    }));
+
     const displayedVariantKeys = computed(() =>
       selectedFortschrittVariant.value === 'alle' ? VARIANT_KEYS : [selectedFortschrittVariant.value]
     );
@@ -173,7 +185,9 @@ export default {
     const deriveMissionLabel = (id) => {
       const m = id.match(/w(\d+)-(m|boss)(\d+)/);
       if (!m) return id;
-      return m[2] === 'm' ? `Mission ${m[3]}` : `Boss-Quest ${m[3]}`;
+      return m[2] === 'm'
+        ? `${t('mission.label')} ${m[3]}`
+        : `${t('mission.boss.label')} ${m[3]}`;
     };
 
     const formatClaimLabel = (c) => c.missionLabel || (c.missionId ? deriveMissionLabel(c.missionId) : '–');
@@ -223,9 +237,9 @@ export default {
       reader.onload = () => {
         const result = importProgress(reader.result);
         if (result.ok) {
-          alert('Fortschritt wurde importiert und mit deinem bestehenden Stand zusammengeführt.');
+          alert(t('progress.import.success'));
         } else {
-          alert('Import fehlgeschlagen: ' + (result.error || 'Unbekannter Fehler'));
+          alert(t('progress.import.failure') + ' ' + (result.error || '?'));
         }
       };
       reader.readAsText(file, 'UTF-8');
@@ -240,8 +254,8 @@ export default {
       selectedFortschrittVariant,
       displayedVariantKeys,
       variantKeys: VARIANT_KEYS,
-      variantLabels: VARIANT_LABELS,
-      variantUnits: VARIANT_UNITS,
+      variantLabels,
+      variantUnits,
       getVariantProgress,
       formatClaimLabel,
       getTotalClaims,
@@ -251,6 +265,7 @@ export default {
       getWeeklyProgress,
       isWeekProgressExpanded,
       toggleWeekProgress,
+      t,
     };
   },
 };

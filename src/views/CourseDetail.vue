@@ -4,9 +4,9 @@
     <div v-if="description || isWeeklyCourse" class="course-description">
       <div v-if="description" v-html="description"></div>
       <div v-if="isWeeklyCourse" class="course-structure">
-        <p class="course-structure-intro">Jede Woche ist in 6 Bereiche aufgeteilt – arbeite sie am besten in dieser Reihenfolge durch:</p>
+        <p class="course-structure-intro">{{ t('course.structure.intro') }}</p>
         <div class="course-structure-tabs">
-          <div class="course-structure-tab" v-for="tab in COURSE_TABS" :key="tab.key">
+          <div class="course-structure-tab" v-for="tab in courseTabs" :key="tab.key">
             <span class="course-structure-icon">{{ tab.icon }}</span>
             <div class="course-structure-text">
               <strong>{{ tab.label }}</strong>
@@ -39,35 +39,34 @@
 
     <div v-if="isWeeklyCourse" class="notebook-pack-download">
       <a href="/python-12-wochen-notebooks.zip" download class="notebook-pack-btn">
-        📦 Alle Notebooks als Pack herunterladen
+        {{ t('course.download.btn') }}
       </a>
-      <p class="notebook-pack-hint">Zip mit allen 12 Wochen (Abenteuer, Pferde, Sci-Fi) + Cheat Sheets + Fortschritt-Skript – zum Arbeiten in Jupyter oder VS Code.</p>
+      <p class="notebook-pack-hint">{{ t('course.download.hint') }}</p>
     </div>
   </section>
   <div v-else class="course-loading">
-    <p v-if="loading">Kurs wird geladen...</p>
-    <p v-else class="course-error">
-      Kurs konnte nicht geladen werden. Prüfe die Browser-Konsole (F12) für Details.
-    </p>
+    <p v-if="loading">{{ t('course.loading') }}</p>
+    <p v-else class="course-error">{{ t('course.error') }}</p>
   </div>
 </template>
 
 <script>
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, computed, watch } from 'vue';
 import CourseAppointments from '../components/CourseAppointments.vue';
 import FortschrittWidget from '../components/FortschrittWidget.vue';
 import WeekSection from '../components/WeekSection.vue';
 import InteractiveCourse from '../components/InteractiveCourse.vue';
 import { loadCourseData } from '../composables/useCourseData';
 import { loadWeeklyContent } from '../composables/useWeeklyContent';
+import { useLanguage } from '../composables/useLanguage.js';
 
-const COURSE_TABS = [
-  { key: '1_lektion',   label: 'Lektion',    icon: '📚', description: 'Neuer Stoff: lies und verstehe das Thema der Woche' },
-  { key: '2_debug',     label: 'Debug',      icon: '🐛', description: 'Finde und fixe absichtliche Bugs im Code' },
-  { key: '3_missionen', label: 'Missionen',  icon: '⭐', description: 'Kleine Aufgaben zum Üben des neuen Stoffs' },
-  { key: '5_boss',      label: 'Boss-Quest', icon: '🐉', description: 'Die große Abschluss-Challenge – alles zusammen!' },
-  { key: '6_loesungen', label: 'Lösungen',   icon: '🔧', description: 'Musterlösungen zu Missionen und Boss-Quest' },
-  { key: '0_glossar',   label: 'Glossar',    icon: '📖', description: 'Alle Begriffe der Woche zum Nachschlagen – immer verfügbar' },
+const TABS_CONFIG = [
+  { key: '1_lektion',   icon: '📚', labelKey: 'tab.lesson',    descKey: 'tab.lesson.desc' },
+  { key: '2_debug',     icon: '🐛', labelKey: 'tab.debug',     descKey: 'tab.debug.desc' },
+  { key: '3_missionen', icon: '⭐', labelKey: 'tab.missions',  descKey: 'tab.missions.desc' },
+  { key: '5_boss',      icon: '🐉', labelKey: 'tab.boss',      descKey: 'tab.boss.desc' },
+  { key: '6_loesungen', icon: '🔧', labelKey: 'tab.solutions', descKey: 'tab.solutions.desc' },
+  { key: '0_glossar',   icon: '📖', labelKey: 'tab.glossary',  descKey: 'tab.glossary.desc' },
 ];
 
 export default {
@@ -82,6 +81,8 @@ export default {
     id: { type: String, required: true },
   },
   setup(props) {
+    const { lang, t } = useLanguage();
+
     const course = ref(null);
     const description = ref('');
     const weeks = ref([]);
@@ -91,6 +92,10 @@ export default {
 
     const isWeeklyCourse = computed(() => props.id === 'python-12-wochen-grundkurs');
     const isInteractiveCourse = computed(() => props.id === 'python-grundlagen-interaktiv');
+
+    const courseTabs = computed(() =>
+      TABS_CONFIG.map(tab => ({ ...tab, label: t(tab.labelKey), description: t(tab.descKey) }))
+    );
 
     const setVariant = (week, variant) => {
       week.selectedVariant = variant;
@@ -105,16 +110,19 @@ export default {
       week.expandedCheatSheets[csIndex] = !week.expandedCheatSheets[csIndex];
     };
 
+    const loadContent = async () => {
+      if (isWeeklyCourse.value) {
+        weeks.value = await loadWeeklyContent(lang.value);
+      }
+    };
+
     onMounted(async () => {
       try {
         const data = await loadCourseData(props.id);
         course.value = data.course;
         description.value = data.description;
         courseTermine.value = data.courseTermine;
-
-        if (isWeeklyCourse.value) {
-          weeks.value = await loadWeeklyContent();
-        }
+        await loadContent();
       } catch (e) {
         console.error('CourseDetail load error:', e);
       } finally {
@@ -122,6 +130,8 @@ export default {
         fortschrittReady.value = true;
       }
     });
+
+    watch(lang, () => loadContent());
 
     return {
       course,
@@ -133,7 +143,8 @@ export default {
       isWeeklyCourse,
       isInteractiveCourse,
       id: props.id,
-      COURSE_TABS,
+      courseTabs,
+      t,
       setVariant,
       toggleWeek,
       toggleCheatSheet,

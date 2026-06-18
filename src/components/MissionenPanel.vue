@@ -1,7 +1,7 @@
 <template>
   <div v-if="missionen.length > 0" class="missionen-panel">
     <div class="missionen-panel-header" @click="expanded = !expanded">
-      <span class="missionen-title">🎯 Missionen & Belohnungen</span>
+      <span class="missionen-title">{{ t('mission.panel.title') }}</span>
       <span class="missionen-toggle">{{ expanded ? '−' : '+' }}</span>
     </div>
     <div v-show="expanded" class="missionen-panel-content">
@@ -16,11 +16,11 @@
           <span class="mission-info">{{ m.points }} {{ pointUnit }} + {{ m.item }}</span>
           <div class="mission-actions">
             <button v-if="!isClaimed(m.id)" @click.stop="claimMission(m)" class="btn-claim">
-              ✨ Einlösen
+              {{ t('mission.claim') }}
             </button>
             <template v-else>
               <span class="mission-claimed">✅</span>
-              <button @click.stop="unclaimMission(m)" class="btn-unclaim" title="Rückgängig">↩</button>
+              <button @click.stop="unclaimMission(m)" class="btn-unclaim" :title="t('mission.unclaim')">↩</button>
             </template>
           </div>
         </div>
@@ -33,6 +33,7 @@
 import { ref, computed, onMounted } from 'vue';
 import { useFortschritt } from '../composables/useFortschritt';
 import { assetUrl } from '../utils/assetUrl';
+import { useLanguage } from '../composables/useLanguage.js';
 
 export default {
   name: 'MissionenPanel',
@@ -42,19 +43,26 @@ export default {
     courseId:   { type: String, default: null },
   },
   setup(props) {
+    const { t } = useLanguage();
     const expanded = ref(false);
     const rewardsManifest = ref(null);
     const { claimMission: doClaimMission, unclaimMission: doUnclaimMission, isClaimed: checkClaimed } = useFortschritt();
 
-    const pointUnits = { abenteuer: 'XP', pferde: 'Huf-Punkte', scifi: 'Cyber Credits' };
-    const pointUnit = computed(() => pointUnits[props.variant] || 'Punkte');
+    const pointUnit = computed(() => {
+      const units = {
+        abenteuer: t('unit.adventure'),
+        pferde:    t('unit.horses'),
+        scifi:     t('unit.scifi'),
+      };
+      return units[props.variant] || t('unit.default');
+    });
 
     const missionen = computed(() => {
       if (!rewardsManifest.value || !props.variant || props.courseId !== 'python-12-wochen-grundkurs') return [];
       const weekData = rewardsManifest.value[props.courseId]?.[props.variant]?.[String(props.weekNumber)];
       if (!weekData) return [];
-      const missions = (weekData.missions || []).map((m, i) => ({ ...m, label: `Mission ${i + 1}` }));
-      const bosses  = (weekData.bossQuests || []).map((m, i) => ({ ...m, label: `Boss-Quest ${i + 1}` }));
+      const missions = (weekData.missions || []).map((m, i) => ({ ...m, label: `${t('mission.label')} ${i + 1}` }));
+      const bosses  = (weekData.bossQuests || []).map((m, i) => ({ ...m, label: `${t('mission.boss.label')} ${i + 1}` }));
       return [...missions, ...bosses];
     });
 
@@ -69,7 +77,7 @@ export default {
       } catch (e) { /* silent */ }
     });
 
-    return { expanded, missionen, pointUnit, isClaimed, claimMission, unclaimMission };
+    return { expanded, missionen, pointUnit, isClaimed, claimMission, unclaimMission, t };
   },
 };
 </script>

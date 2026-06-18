@@ -1,0 +1,113 @@
+export default {
+  // ── Navigation ──────────────────────────────────────────────────────────
+  'nav.home':    'Home',
+  'nav.courses': 'Kurse',
+  'footer.copyright': '© 2026 Übergangshacker. Alle Rechte vorbehalten.',
+
+  // ── Home ────────────────────────────────────────────────────────────────
+  'home.hero.title':    'Willkommen bei den Übergangshackern!',
+  'home.hero.subtitle': 'Deine Reise in die Welt des Programmierens beginnt hier. Lerne Python auf eine Weise, die Spass macht.',
+  'home.cta.weekly':      'Zum 12-Wochen-Kurs',
+  'home.cta.interactive': 'Python Grundlagen – Interaktiv',
+  'home.appointments.title': 'Nächste Termine',
+  'home.appt.time':     'Uhrzeit:',
+  'home.appt.location': 'Ort:',
+  'home.appt.cancelled': 'Termin abgesagt',
+  'home.courses.title':   'Kursübersicht',
+  'home.course.moreInfo': 'Mehr erfahren',
+  'home.supporters.title': 'Unterstützt von',
+  'home.moreInfo': 'mehr Infos hier',
+  'home.itscouts.desc': 'Die ITScouts fördern junge Talente im Bereich IT und Programmierung. Gemeinsam bringen wir Kindern und Jugendlichen die Welt des Codes näher.',
+  'home.dlc.desc': 'Das DLC ist ein innovatives Zentrum für digitale Bildung und Technologietransfer. Wir unterstützen moderne Bildungsprojekte und schaffen Raum für zukunftsweisendes Lernen.',
+
+  // ── Course detail ────────────────────────────────────────────────────────
+  'course.loading': 'Kurs wird geladen...',
+  'course.error':   'Kurs konnte nicht geladen werden. Prüfe die Browser-Konsole (F12) für Details.',
+  'course.structure.intro': 'Jede Woche ist in 6 Bereiche aufgeteilt – arbeite sie am besten in dieser Reihenfolge durch:',
+  'course.download.btn':  '📦 Alle Notebooks als Pack herunterladen',
+  'course.download.hint': 'Zip mit allen 12 Wochen (Abenteuer, Pferde, Sci-Fi) + Cheat Sheets + Fortschritt-Skript – zum Arbeiten in Jupyter oder VS Code.',
+
+  // ── Tabs ─────────────────────────────────────────────────────────────────
+  'tab.lesson':       'Lektion',
+  'tab.lesson.desc':  'Neuer Stoff: lies und verstehe das Thema der Woche',
+  'tab.debug':        'Debug',
+  'tab.debug.desc':   'Finde und fixe absichtliche Bugs im Code',
+  'tab.missions':     'Missionen',
+  'tab.missions.desc':'Kleine Aufgaben zum Üben des neuen Stoffs',
+  'tab.boss':         'Boss-Quest',
+  'tab.boss.desc':    'Die große Abschluss-Challenge – alles zusammen!',
+  'tab.solutions':    'Lösungen',
+  'tab.solutions.desc':'Musterlösungen zu Missionen und Boss-Quest',
+  'tab.glossary':     'Glossar',
+  'tab.glossary.desc':'Alle Begriffe der Woche zum Nachschlagen – immer verfügbar',
+
+  // ── Variants & units ─────────────────────────────────────────────────────
+  'variant.adventure': '🗺️ Abenteuer',
+  'variant.horses':    '🐴 Pferde',
+  'variant.scifi':     '🚀 Sci-Fi',
+  'unit.adventure': 'XP',
+  'unit.horses':    'Huf-Punkte',
+  'unit.scifi':     'Cyber Credits',
+  'unit.default':   'Punkte',
+
+  // ── Week section ──────────────────────────────────────────────────────────
+  'week.label':       'Woche',
+  'week.noNotebook':  'Kein Notebook für diesen Bereich verfügbar.',
+  'week.downloads':   'Downloads',
+  'week.download.md': 'Als Markdown herunterladen',
+  'week.download.nb': 'Als Jupyter Notebook herunterladen',
+
+  // ── Progress widget ───────────────────────────────────────────────────────
+  'progress.title':  '🏆 Deine gesammelten Belohnungen',
+  'progress.intro1': 'In jeder Woche gibt es Missionen, die du meisterst – dabei sammelst du Belohnungen (XP, Huf-Punkte oder Cyber Credits je nach Questreihe). Das soll Spaß machen und dich motivieren, dranzubleiben.',
+  'progress.intro2': 'Klicke bei jeder erledigten Mission auf „Punkte einlösen" – so siehst du deinen Fortschritt und kannst dich über gesammelte Items freuen. Nichts davon ist Pflicht, es ist nur zum Feiern deiner Erfolge da. 🎉',
+  'progress.intro1.label': 'Was ist das Punkte-System?',
+  'progress.export': '📤 Exportieren',
+  'progress.import': '📥 Importieren',
+  'progress.script.title':    '💻 Lokal arbeiten? So funktioniert das Fortschritt-Skript',
+  'progress.script.download': '📥 Fortschritt-Skript herunterladen',
+  'progress.script.hint':     'ZIP mit fortschritt.py und rewards-manifest.json',
+  'progress.script.p1':       'Wenn du die Notebooks lokal in Jupyter oder VS Code ausführst, kannst du trotzdem Punkte sammeln:',
+  'progress.script.step1':    'Skript ausführen, wenn du eine Mission gemeistert hast:',
+  'progress.script.step1.detail': 'Das Skript fragt dich interaktiv: Questreihe (Abenteuer/Pferde/Sci-Fi), Woche (1–12), was du beendet hast (Mission 1–3 oder Boss-Quest 1–3). Es erstellt mein-fortschritt.json im aktuellen Verzeichnis.',
+  'progress.script.step2':    'Hier importieren',
+  'progress.script.step2.detail': 'Klicke oben auf „📥 Importieren" und wähle deine mein-fortschritt.json – die Missionen werden zusammengeführt.',
+  'progress.script.details':  'Lade das ZIP oben herunter, entpacke es und führe python fortschritt.py im entpackten Ordner aus. Oder nutze das vollständige Notebook-Pack unten – es enthält das Skript ebenfalls. Befehle: python fortschritt.py add abenteuer w10-m1 oder python fortschritt.py show für den aktuellen Stand.',
+  'progress.variant.label':   'Questreihe:',
+  'progress.variant.all':     'Alle',
+  'progress.weekly.title':    '📅 Verlauf nach Woche',
+  'progress.weekly.hint':     'Pro Woche gibt es 6 Missionen (3 Haupt + 3 Boss). Zeigt wie viel % du bereits eingelöst hast.',
+  'progress.week.open':       '% offen',
+  'progress.week.complete':   '✓ Vollständig',
+  'progress.week.noClaims':   'Noch nichts in dieser Woche eingelöst.',
+  'progress.details.all':     'alle eingelösten Belohnungen',
+  'progress.details.items':   '📦 Gesammelte Items',
+  'progress.hint':            'Klicke „Punkte einlösen" bei jeder Mission, die du gemeistert hast!',
+  'progress.import.success':  'Fortschritt wurde importiert und mit deinem bestehenden Stand zusammengeführt.',
+  'progress.import.failure':  'Import fehlgeschlagen:',
+
+  // ── Mission panel ─────────────────────────────────────────────────────────
+  'mission.panel.title': '🎯 Missionen & Belohnungen',
+  'mission.claim':       '✨ Einlösen',
+  'mission.unclaim':     'Rückgängig',
+  'mission.label':       'Mission',
+  'mission.boss.label':  'Boss-Quest',
+
+  // ── Appointments ──────────────────────────────────────────────────────────
+  'appt.title':    'Nächste Termine für diesen Kurs',
+  'appt.empty':    'Aktuell keine Termine für diesen Kurs.',
+  'appt.time':     'Uhrzeit:',
+  'appt.location': 'Ort:',
+  'appt.topic':    'Thema:',
+
+  // ── Jupyter ───────────────────────────────────────────────────────────────
+  'jupyter.init':      'Python initialisieren',
+  'jupyter.ready':     '✓ Python bereit',
+  'jupyter.runAll':    '▶ Alle ausführen',
+  'jupyter.loading':   'Lade Notebook…',
+  'jupyter.runCell':   '▶ Ausführen',
+  'jupyter.running':   'Wird ausgeführt…',
+  'jupyter.loadError': 'Notebook konnte nicht geladen werden',
+  'jupyter.initError': 'Python-Start fehlgeschlagen – Seite neu laden.',
+  'jupyter.fetchError':'Fehler beim Laden: ',
+};

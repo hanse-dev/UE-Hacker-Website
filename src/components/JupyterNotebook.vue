@@ -3,17 +3,17 @@
     <!-- Controls bar -->
     <div class="notebook-controls-bar">
       <button @click="initializeKernel" :disabled="kernelReady" class="btn-kernel">
-        {{ kernelReady ? '✓ Python bereit' : 'Python initialisieren' }}
+        {{ kernelReady ? t('jupyter.ready') : t('jupyter.init') }}
       </button>
       <button @click="runAllCells" :disabled="!kernelReady" class="btn-run-all">
-        ▶ Alle ausführen
+        {{ t('jupyter.runAll') }}
       </button>
       <a :href="notebookUrl" download class="btn-download">
         ⬇ .ipynb
       </a>
     </div>
 
-    <div v-if="loading" class="loading">Lade Notebook…</div>
+    <div v-if="loading" class="loading">{{ t('jupyter.loading') }}</div>
     <div v-else-if="error" class="error">{{ error }}</div>
 
     <div v-else class="notebook-cells">
@@ -30,7 +30,7 @@
           <div class="code-header">
             <span class="cell-label">In [{{ index + 1 }}]</span>
             <button @click="runCell(index)" :disabled="!kernelReady" class="btn-run-cell">
-              ▶ Ausführen
+              {{ t('jupyter.runCell') }}
             </button>
           </div>
           <textarea
@@ -53,6 +53,7 @@
 import { ref, onMounted } from 'vue';
 import { marked } from 'marked';
 import { usePyodide } from '../composables/usePyodide';
+import { useLanguage } from '../composables/useLanguage.js';
 
 export default {
   name: 'JupyterNotebook',
@@ -64,6 +65,7 @@ export default {
     courseId:     { type: String, default: null },
   },
   setup(props) {
+    const { t } = useLanguage();
     const cells   = ref([]);
     const loading = ref(true);
     const error   = ref(null);
@@ -79,14 +81,14 @@ export default {
       try {
         loading.value = true;
         const res = await fetch(props.notebookPath);
-        if (!res.ok) throw new Error('Notebook konnte nicht geladen werden');
+        if (!res.ok) throw new Error(t('jupyter.loadError'));
         const nb = await res.json();
         cells.value = (nb.cells || []).map(cell => ({
           ...cell,
           source: Array.isArray(cell.source) ? cell.source.join('') : cell.source,
         }));
       } catch (e) {
-        error.value = 'Fehler beim Laden: ' + e.message;
+        error.value = t('jupyter.fetchError') + e.message;
       } finally {
         loading.value = false;
       }
@@ -94,7 +96,7 @@ export default {
 
     const initializeKernel = async () => {
       try { await initPyodide(); }
-      catch (e) { error.value = 'Python-Start fehlgeschlagen – Seite neu laden.'; }
+      catch (e) { error.value = t('jupyter.initError'); }
     };
 
     const escapeHtml = (text) => {
@@ -111,7 +113,7 @@ export default {
       const out  = document.getElementById(`output-${index}`);
       if (!out) return;
       if (!code) { out.innerHTML = ''; return; }
-      out.innerHTML = '<div class="output-running">Wird ausgeführt…</div>';
+      out.innerHTML = `<div class="output-running">${t('jupyter.running')}</div>`;
       const result = await runPython(code);
       if (result.success) {
         out.innerHTML = result.output?.trim()
@@ -135,7 +137,7 @@ export default {
     onMounted(loadNotebook);
 
     return { cells, loading, error, kernelReady, kernelStatus,
-             renderMarkdown, initializeKernel, runCell, runAllCells };
+             renderMarkdown, initializeKernel, runCell, runAllCells, t };
   },
 };
 </script>
