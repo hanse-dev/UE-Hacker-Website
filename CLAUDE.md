@@ -54,21 +54,18 @@ content/
 ## Handoff-Notizen (für den nächsten Rechner)
 
 > **Zuletzt aktualisiert:** 2026-06-18
-> **Letzter Commit:** `7141bd7` — docs: update CLAUDE.md with post-commit todo check rule
+> **Letzter Commit:** `e6964b5` — chore: mark debug notebook review as done in todo.md
 
 **Was diese Session gemacht wurde:**
-- Debug-Notebooks repariert: 9 Code-Zellen hatten keine echten Bugs (woche-4 for-Schleife ohne Doppelpunkt, woche-5 fehlender Print für Funktionsobjekt-Bug, woche-10 fehlender `__init__`-Parameter)
-- Alle 36 Reflexion-Notebooks gelöscht + Reflexion-Tab aus dem Frontend entfernt
-- Reihenfolge Boss-Quest ↔ Lösungen getauscht (Dateien umbenannt: `5_boss`, `6_loesungen`; Frontend-Keys angepasst)
-- Alle 36 Lösungsnotebooks mit echten Lösungen befüllt: Missions-Lösungen (kein Platzhalter mehr) + neuer Boss-Quest-Lösungsabschnitt
-- Playwright-Tests laufen durch (11/11) nach allen Änderungen
-
-**Notebook-Struktur jetzt:** 6 Dateien pro Woche/Thema:
-`0_glossar` → `1_lektion` → `2_debug` → `3_missionen` → `5_boss` → `6_loesungen`
+- Woche 9-12 Debug-Notebooks durchgeschaut: Bugs auf Verständlichkeit geprüft
+- Alle 36 Debug-Notebooks: Hinweis "Diese Fehler wurden absichtlich eingebaut" ergänzt
+- Woche 9 Bug #3 (×3): `test.csv`-Zugriff durch `io.StringIO` ersetzt → echter `IndexError` sichtbar
+- Woche 12 Pferde + Scifi: falsche/unklare Bugs korrigiert (pendown, Farbe, Beschreibungen)
+- Commit-Stil: kein Co-Authored-By mehr
 
 **Bekannte offene Baustellen:**
 - Website/Frontend: Tab-System erklären, Belohnungen in Kursaufbau, localStorage für Punkte-Stand, Verlinkung testen, Belohnungen/Woche-1 zuklappen
-- Inhalte: Woche 9-12 Debug-Notebooks auf Verständlichkeit prüfen, Glossar-Notebooks auf Anfänger-Tauglichkeit prüfen
+- Inhalte: Glossar-Notebooks auf Anfänger-Tauglichkeit prüfen
 
 **Workflow:**
 1. `docker-compose up dev` starten
@@ -86,9 +83,9 @@ Nach jedem `git commit` prüfen:
 
 ---
 
-## Hinweis: Handoff aktualisieren
+## Handoff automatisch aktualisieren
 
-Am Ende einer produktiven Session kannst du Claude bitten:
-> "Aktualisiere den Handoff-Abschnitt in der CLAUDE.md"
-
-Claude fasst dann zusammen was gemacht wurde und was als nächstes ansteht.
+**Am Ende jeder produktiven Session** (d.h. wenn der User signalisiert dass er fertig ist, z.B. "push", "bis später", "tschüss") ohne explizite Aufforderung:
+1. Handoff-Abschnitt in dieser Datei aktualisieren (was wurde gemacht, was ist offen, letzter Commit)
+2. `todo.md` prüfen und erledigte Punkte markieren
+3. `git add CLAUDE.md todo.md && git commit && git push`
