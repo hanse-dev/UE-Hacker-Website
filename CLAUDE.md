@@ -54,19 +54,19 @@ content/
 ## Handoff-Notizen (für den nächsten Rechner)
 
 > **Zuletzt aktualisiert:** 2026-06-18
-> **Letzter Commit:** feat: translate Week 7 notebooks to English (Phase 6, Session 7/12)
+> **Letzter Commit:** feat: translate Week 8 notebooks to English (Phase 6, Session 8/12)
 
 **Was zuletzt gemacht wurde:**
-- Woche 7 – alle 18 EN-Notebooks erstellt (adventure, horses, scifi je 6), parallel via 3 Agenten
-- Dateien: `content/python-12-wochen-grundkurs-en/woche-7/{adventure,horses,scifi}/week7_*.ipynb`
-- Thema Woche 7: Module und Bibliotheken (import, from, math, random, Aliasse mit as)
-- Adventure: Pyralia magic library / Dice Tower / Magic Oracle / Random Dungeon, XP rewards
-- Horses: Sunny Valley Ranch / obstacle names translated, Hoof Points rewards
-- Scifi: Nebula-7 / coordinates/distance/sector themes, Cyber Credits rewards
+- Woche 8 – alle 18 EN-Notebooks erstellt (adventure, horses, scifi je 6), parallel via 3 Agenten
+- Dateien: `content/python-12-wochen-grundkurs-en/woche-8/{adventure,horses,scifi}/week8_*.ipynb`
+- Thema Woche 8: Dictionaries und Tupel (dict, key-value, keys/values/items/get/update, tuple, Unveränderlichkeit)
+- Adventure: Pyralia guild archive / hero profiles / artifacts, XP rewards
+- Horses: Sunny Valley / stable cards / tournament schedule / ranch register, Hoof Points rewards
+- Scifi: Nebula-7 / crew profiles / ship coordinates / station register, Cyber Credits rewards
 
 **Bekannte offene Baustellen:**
-- Language-Toggle Phase 6: Noch 90 Notebooks (Wochen 8–12, je ~18 pro Session)
-- Nächste Session: Woche 8 (adventure, horses, scifi – 3 parallele Agenten)
+- Language-Toggle Phase 6: Noch 72 Notebooks (Wochen 9–12, je ~18 pro Session)
+- Nächste Session: Woche 9 (adventure, horses, scifi – 3 parallele Agenten)
 
 **Workflow:**
 1. `docker-compose up dev` starten
