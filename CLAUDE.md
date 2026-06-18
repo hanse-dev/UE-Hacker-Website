@@ -54,20 +54,19 @@ content/
 ## Handoff-Notizen (für den nächsten Rechner)
 
 > **Zuletzt aktualisiert:** 2026-06-18
-> **Letzter Commit:** feat: translate Week 2 notebooks to English (Phase 6, Session 2/12)
+> **Letzter Commit:** feat: translate Week 3 notebooks to English (Phase 6, Session 3/12)
 
 **Was zuletzt gemacht wurde:**
-- Woche 2 – alle 18 EN-Notebooks erstellt (adventure, horses, scifi je 6)
-- Dateien: `content/python-12-wochen-grundkurs-en/woche-2/{adventure,horses,scifi}/week2_*.ipynb`
-- Thema Woche 2: Datentypen & Variablen (f-Strings, Float, type(), len(), int/float/str/bool(), String-Methoden)
-- Adventure: Alchemists-Workshop / Four Magic Elements – Aria/Pythonia-Kontext
-- Horses: Four Hoof-Beat Types – Sunny Valley Riding Ranch / Bobby-Kontext
-- Scifi: Four Quantum Types – Nebula-7 Data Lab-Kontext
-- Boss-Quest-Lösungen: je 8 Elemente (Feed Room / Dock), 5 Elemente (Training Hall / AI Lab), 2 Units (Tournament / Space Mission)
+- Woche 3 – alle 18 EN-Notebooks erstellt (adventure, horses, scifi je 6), parallel via 3 Agenten
+- Dateien: `content/python-12-wochen-grundkurs-en/woche-3/{adventure,horses,scifi}/week3_*.ipynb`
+- Thema Woche 3: Bedingungen (if/elif/else), Vergleichsoperatoren, logische Operatoren (and/or/not)
+- Adventure: "Paths of Decision" – Bridge Guardian, Treasure Chest, Champions Arena, Magic Quiz, Dungeon Simulator
+- Horses: "Crossroads of the Riding Path" – Stable Guard, Feed Dispenser, Tournament, Rider Quiz, Obstacle Simulator
+- Scifi: "Paths of Decision" – Security Scanner, Terminal Access, Mission Rating, AI Quiz, Spaceship Simulator
 
 **Bekannte offene Baustellen:**
-- Language-Toggle Phase 6: Noch 180 Notebooks (Wochen 3–12, je ~18 pro Session)
-- Nächste Session: Woche 3 (adventure, horses, scifi lesen → übersetzen → committen)
+- Language-Toggle Phase 6: Noch 162 Notebooks (Wochen 4–12, je ~18 pro Session)
+- Nächste Session: Woche 4 (adventure, horses, scifi – 3 parallele Agenten)
 
 **Workflow:**
 1. `docker-compose up dev` starten
