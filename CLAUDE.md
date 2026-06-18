@@ -54,19 +54,19 @@ content/
 ## Handoff-Notizen (für den nächsten Rechner)
 
 > **Zuletzt aktualisiert:** 2026-06-18
-> **Letzter Commit:** feat: translate Week 3 notebooks to English (Phase 6, Session 3/12)
+> **Letzter Commit:** feat: translate Week 4 notebooks to English (Phase 6, Session 4/12)
 
 **Was zuletzt gemacht wurde:**
-- Woche 3 – alle 18 EN-Notebooks erstellt (adventure, horses, scifi je 6), parallel via 3 Agenten
-- Dateien: `content/python-12-wochen-grundkurs-en/woche-3/{adventure,horses,scifi}/week3_*.ipynb`
-- Thema Woche 3: Bedingungen (if/elif/else), Vergleichsoperatoren, logische Operatoren (and/or/not)
-- Adventure: "Paths of Decision" – Bridge Guardian, Treasure Chest, Champions Arena, Magic Quiz, Dungeon Simulator
-- Horses: "Crossroads of the Riding Path" – Stable Guard, Feed Dispenser, Tournament, Rider Quiz, Obstacle Simulator
-- Scifi: "Paths of Decision" – Security Scanner, Terminal Access, Mission Rating, AI Quiz, Spaceship Simulator
+- Woche 4 – alle 18 EN-Notebooks erstellt (adventure, horses, scifi je 6), parallel via 3 Agenten
+- Dateien: `content/python-12-wochen-grundkurs-en/woche-4/{adventure,horses,scifi}/week4_*.ipynb`
+- Thema Woche 4: Schleifen (for, while, range(), break, continue)
+- Adventure: Number Sorcerer, Tower of Repetitions, Labyrinth, Magic Number, Enchanted World
+- Horses: Counting Rider, Stable Manager, Endurance Training, Jumping Training, Riding Board, Marathon Ride
+- Scifi: Quantum Counter, Space Station Commander, Time Paradox, Prime Number Decryption, Holodeck, Endless Tunnel
 
 **Bekannte offene Baustellen:**
-- Language-Toggle Phase 6: Noch 162 Notebooks (Wochen 4–12, je ~18 pro Session)
-- Nächste Session: Woche 4 (adventure, horses, scifi – 3 parallele Agenten)
+- Language-Toggle Phase 6: Noch 144 Notebooks (Wochen 5–12, je ~18 pro Session)
+- Nächste Session: Woche 5 (adventure, horses, scifi – 3 parallele Agenten)
 
 **Workflow:**
 1. `docker-compose up dev` starten
