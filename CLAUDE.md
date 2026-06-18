@@ -54,18 +54,20 @@ content/
 ## Handoff-Notizen (für den nächsten Rechner)
 
 > **Zuletzt aktualisiert:** 2026-06-18
-> **Letzter Commit:** feat: translate Week 1 notebooks to English (Phase 6, Session 1/12)
+> **Letzter Commit:** feat: translate Week 2 notebooks to English (Phase 6, Session 2/12)
 
 **Was zuletzt gemacht wurde:**
-- Phase 6 gestartet: Woche 1 – alle 18 EN-Notebooks erstellt (adventure, horses, scifi je 6)
-- Dateien: `content/python-12-wochen-grundkurs-en/woche-1/{adventure,horses,scifi}/week1_*.ipynb`
-- EN-Dateinamenmuster: `week{N}_{variant}_{type}.ipynb`
-- Alle Notebooks vollständig übersetzt: Glossar, Lektion, Debug, Missionen, Boss, Lösungen
-- Themenkontext beibehalten (Pythonia/Aria für Adventure, Sunny Valley/Bobby für Horses, Nebula-7 für Scifi)
+- Woche 2 – alle 18 EN-Notebooks erstellt (adventure, horses, scifi je 6)
+- Dateien: `content/python-12-wochen-grundkurs-en/woche-2/{adventure,horses,scifi}/week2_*.ipynb`
+- Thema Woche 2: Datentypen & Variablen (f-Strings, Float, type(), len(), int/float/str/bool(), String-Methoden)
+- Adventure: Alchemists-Workshop / Four Magic Elements – Aria/Pythonia-Kontext
+- Horses: Four Hoof-Beat Types – Sunny Valley Riding Ranch / Bobby-Kontext
+- Scifi: Four Quantum Types – Nebula-7 Data Lab-Kontext
+- Boss-Quest-Lösungen: je 8 Elemente (Feed Room / Dock), 5 Elemente (Training Hall / AI Lab), 2 Units (Tournament / Space Mission)
 
 **Bekannte offene Baustellen:**
-- Language-Toggle Phase 6: Noch 198 Notebooks (Wochen 2–12, je ~18 pro Session)
-- Nächste Session: Woche 2 (adventure, horses, scifi lesen → übersetzen → committen)
+- Language-Toggle Phase 6: Noch 180 Notebooks (Wochen 3–12, je ~18 pro Session)
+- Nächste Session: Woche 3 (adventure, horses, scifi lesen → übersetzen → committen)
 
 **Workflow:**
 1. `docker-compose up dev` starten
