@@ -54,19 +54,20 @@ content/
 ## Handoff-Notizen (für den nächsten Rechner)
 
 > **Zuletzt aktualisiert:** 2026-06-18
-> **Letzter Commit:** feat: translate Week 4 notebooks to English (Phase 6, Session 4/12)
+> **Letzter Commit:** feat: translate Week 5 notebooks to English (Phase 6, Session 5/12)
 
 **Was zuletzt gemacht wurde:**
-- Woche 4 – alle 18 EN-Notebooks erstellt (adventure, horses, scifi je 6), parallel via 3 Agenten
-- Dateien: `content/python-12-wochen-grundkurs-en/woche-4/{adventure,horses,scifi}/week4_*.ipynb`
-- Thema Woche 4: Schleifen (for, while, range(), break, continue)
-- Adventure: Number Sorcerer, Tower of Repetitions, Labyrinth, Magic Number, Enchanted World
-- Horses: Counting Rider, Stable Manager, Endurance Training, Jumping Training, Riding Board, Marathon Ride
-- Scifi: Quantum Counter, Space Station Commander, Time Paradox, Prime Number Decryption, Holodeck, Endless Tunnel
+- Woche 5 – alle 18 EN-Notebooks erstellt (adventure, horses, scifi je 6)
+- Dateien: `content/python-12-wochen-grundkurs-en/woche-5/{adventure,horses,scifi}/week5_*.ipynb`
+- Thema Woche 5: Funktionen (def, Parameter, return, Docstrings, snake_case)
+- Adventure: Spell Apprentice, Character Creator, Quest Machine, Spell Generator, Guild Manager, Battle Simulation
+- Horses: Training Beginner, Horse Trainer, Tournament Machine, Training Generator, Stable Manager, Tournament Simulation
+- Scifi: System Technician, Mission Planner, Fleet Coordination, Protocol Generator, Space Station Manager, Battle Simulation
+- Hinweis: Agenten liefen auf Rate Limit (nur glossar+lektion) – restliche 12 Dateien inline geschrieben
 
 **Bekannte offene Baustellen:**
-- Language-Toggle Phase 6: Noch 144 Notebooks (Wochen 5–12, je ~18 pro Session)
-- Nächste Session: Woche 5 (adventure, horses, scifi – 3 parallele Agenten)
+- Language-Toggle Phase 6: Noch 126 Notebooks (Wochen 6–12, je ~18 pro Session)
+- Nächste Session: Woche 6 (adventure, horses, scifi – 3 parallele Agenten)
 
 **Workflow:**
 1. `docker-compose up dev` starten
