@@ -53,20 +53,21 @@ content/
 
 ## Handoff-Notizen (für den nächsten Rechner)
 
-> **Zuletzt aktualisiert:** 2026-06-18
-> **Letzter Commit:** feat: translate Week 8 notebooks to English (Phase 6, Session 8/12)
+> **Zuletzt aktualisiert:** 2026-06-19
+> **Letzter Commit:** feat: translate Week 9 notebooks to English (Phase 6, Session 9/12)
 
 **Was zuletzt gemacht wurde:**
-- Woche 8 – alle 18 EN-Notebooks erstellt (adventure, horses, scifi je 6), parallel via 3 Agenten
-- Dateien: `content/python-12-wochen-grundkurs-en/woche-8/{adventure,horses,scifi}/week8_*.ipynb`
-- Thema Woche 8: Dictionaries und Tupel (dict, key-value, keys/values/items/get/update, tuple, Unveränderlichkeit)
-- Adventure: Pyralia guild archive / hero profiles / artifacts, XP rewards
-- Horses: Sunny Valley / stable cards / tournament schedule / ranch register, Hoof Points rewards
-- Scifi: Nebula-7 / crew profiles / ship coordinates / station register, Cyber Credits rewards
+- Woche 9 – alle 18 EN-Notebooks erstellt (adventure, horses, scifi je 6)
+- Dateien: `content/python-12-wochen-grundkurs-en/woche-9/{adventure,horses,scifi}/week9_*.ipynb`
+- Thema Woche 9: JSON-Dateien und I/O (open(), read/write, json.load/dump, csv, try/except)
+- Adventure: Pyralia scriptorium / Hero Diary / Treasure Map / Quest Log, XP rewards
+- Horses: Sunny Valley / Training Diary / Stable Card / Tournament Log, Hoof Points rewards
+- Scifi: Nebula-7 / Mission Diary / Star Map / Mission Archive, Cyber Credits rewards
+- Hinweis: Agenten konnten Woche 9 nicht schreiben (Berechtigungsproblem) – alles inline geschrieben
 
 **Bekannte offene Baustellen:**
-- Language-Toggle Phase 6: Noch 72 Notebooks (Wochen 9–12, je ~18 pro Session)
-- Nächste Session: Woche 9 (adventure, horses, scifi – 3 parallele Agenten)
+- Language-Toggle Phase 6: Noch 54 Notebooks (Wochen 10–12, je ~18 pro Session)
+- Nächste Session: Woche 10 (adventure, horses, scifi – direkt inline oder Agenten)
 
 **Workflow:**
 1. `docker-compose up dev` starten
