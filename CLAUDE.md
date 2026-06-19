@@ -54,20 +54,19 @@ content/
 ## Handoff-Notizen (für den nächsten Rechner)
 
 > **Zuletzt aktualisiert:** 2026-06-19
-> **Letzter Commit:** feat: translate Week 9 notebooks to English (Phase 6, Session 9/12)
+> **Letzter Commit:** feat: translate Week 10 notebooks to English (Phase 6, Session 10/12)
 
 **Was zuletzt gemacht wurde:**
-- Woche 9 – alle 18 EN-Notebooks erstellt (adventure, horses, scifi je 6)
-- Dateien: `content/python-12-wochen-grundkurs-en/woche-9/{adventure,horses,scifi}/week9_*.ipynb`
-- Thema Woche 9: JSON-Dateien und I/O (open(), read/write, json.load/dump, csv, try/except)
-- Adventure: Pyralia scriptorium / Hero Diary / Treasure Map / Quest Log, XP rewards
-- Horses: Sunny Valley / Training Diary / Stable Card / Tournament Log, Hoof Points rewards
-- Scifi: Nebula-7 / Mission Diary / Star Map / Mission Archive, Cyber Credits rewards
-- Hinweis: Agenten konnten Woche 9 nicht schreiben (Berechtigungsproblem) – alles inline geschrieben
+- Woche 10 – alle 18 EN-Notebooks erstellt (adventure, horses, scifi je 6)
+- Dateien: `content/python-12-wochen-grundkurs-en/woche-10/{adventure,horses,scifi}/week10_*.ipynb`
+- Thema Woche 10: OOP Grundlagen (class, object, __init__, self, Attribute, Methoden)
+- Adventure: Guilds of Pyralia / magic blueprints / Swords, Wizards, Dragons – XP rewards
+- Horses: Sonnental Riding School / stable plans / Horses, Riders, Tournament – Hoof Points rewards
+- Scifi: Nebula-7 Space Station / technical blueprints / Robots, Soldiers, Spaceships – Cyber Credits rewards
 
 **Bekannte offene Baustellen:**
-- Language-Toggle Phase 6: Noch 54 Notebooks (Wochen 10–12, je ~18 pro Session)
-- Nächste Session: Woche 10 (adventure, horses, scifi – direkt inline oder Agenten)
+- Language-Toggle Phase 6: Noch 36 Notebooks (Wochen 11–12, je ~18 pro Session)
+- Nächste Session: Woche 11 (adventure, horses, scifi – OOP Fortgeschritten: Vererbung & Polymorphismus)
 
 **Workflow:**
 1. `docker-compose up dev` starten
