@@ -54,19 +54,19 @@ content/
 ## Handoff-Notizen (für den nächsten Rechner)
 
 > **Zuletzt aktualisiert:** 2026-06-19
-> **Letzter Commit:** feat: translate Week 10 notebooks to English (Phase 6, Session 10/12)
+> **Letzter Commit:** feat: translate Week 11 notebooks to English (Phase 6, Session 11/12)
 
 **Was zuletzt gemacht wurde:**
-- Woche 10 – alle 18 EN-Notebooks erstellt (adventure, horses, scifi je 6)
-- Dateien: `content/python-12-wochen-grundkurs-en/woche-10/{adventure,horses,scifi}/week10_*.ipynb`
-- Thema Woche 10: OOP Grundlagen (class, object, __init__, self, Attribute, Methoden)
-- Adventure: Guilds of Pyralia / magic blueprints / Swords, Wizards, Dragons – XP rewards
-- Horses: Sonnental Riding School / stable plans / Horses, Riders, Tournament – Hoof Points rewards
-- Scifi: Nebula-7 Space Station / technical blueprints / Robots, Soldiers, Spaceships – Cyber Credits rewards
+- Woche 11 – alle 18 EN-Notebooks erstellt (adventure, horses, scifi je 6), per parallele Agenten
+- Dateien: `content/python-12-wochen-grundkurs-en/woche-11/{adventure,horses,scifi}/week11_*.ipynb`
+- Thema Woche 11: OOP Fortgeschritten (Vererbung, Polymorphismus, Magic Methods: __str__, __repr__, __add__, __len__, __eq__)
+- Adventure: Master Guilds of Pyralia / LivingBeing→Human→Warrior/Mage, GuildSystem, Polymorphic Arsenal – XP rewards
+- Horses: Sonnental Stud Farm / RidingHorse→Thoroughbred/Coldblood, Polymorphic Training, Champion Register – Hoof Points rewards
+- Scifi: Nebula-7 / Robot→Android→CombatRobot/MedicalRobot, Polymorphic Weapon System, Spaceship Registry – Cyber Credits rewards
 
 **Bekannte offene Baustellen:**
-- Language-Toggle Phase 6: Noch 36 Notebooks (Wochen 11–12, je ~18 pro Session)
-- Nächste Session: Woche 11 (adventure, horses, scifi – OOP Fortgeschritten: Vererbung & Polymorphismus)
+- Language-Toggle Phase 6: Noch 18 Notebooks (Woche 12 – letzte Session)
+- Nächste Session: Woche 12 (adventure, horses, scifi – Abschlussprojekt / Finale)
 
 **Workflow:**
 1. `docker-compose up dev` starten
