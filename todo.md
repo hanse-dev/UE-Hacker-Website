@@ -19,7 +19,7 @@
 
 - [x] Language-Toggle: Phase 4 – Markdown-Content-Dateien auf Englisch übersetzen (26 Dateien)
 - [x] Language-Toggle: Phase 5 – rewards-manifest-en.json anlegen
-- [ ] Language-Toggle: Phase 6 – Notebooks übersetzen (216 Notebooks, ~18 pro Session)
+- [x] Language-Toggle: Phase 6 – Notebooks übersetzen (216 Notebooks, ~18 pro Session)
 
 ### Inhalte / Notebooks
 

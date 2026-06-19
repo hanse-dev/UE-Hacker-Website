@@ -54,19 +54,21 @@ content/
 ## Handoff-Notizen (für den nächsten Rechner)
 
 > **Zuletzt aktualisiert:** 2026-06-19
-> **Letzter Commit:** feat: translate Week 11 notebooks to English (Phase 6, Session 11/12)
+> **Letzter Commit:** feat: translate Week 12 notebooks to English (Phase 6, Session 12/12)
 
 **Was zuletzt gemacht wurde:**
-- Woche 11 – alle 18 EN-Notebooks erstellt (adventure, horses, scifi je 6), per parallele Agenten
-- Dateien: `content/python-12-wochen-grundkurs-en/woche-11/{adventure,horses,scifi}/week11_*.ipynb`
-- Thema Woche 11: OOP Fortgeschritten (Vererbung, Polymorphismus, Magic Methods: __str__, __repr__, __add__, __len__, __eq__)
-- Adventure: Master Guilds of Pyralia / LivingBeing→Human→Warrior/Mage, GuildSystem, Polymorphic Arsenal – XP rewards
-- Horses: Sonnental Stud Farm / RidingHorse→Thoroughbred/Coldblood, Polymorphic Training, Champion Register – Hoof Points rewards
-- Scifi: Nebula-7 / Robot→Android→CombatRobot/MedicalRobot, Polymorphic Weapon System, Spaceship Registry – Cyber Credits rewards
+- Phase 6 abgeschlossen! Alle 216 EN-Notebooks sind erstellt (Wochen 1–12).
+- Woche 12 – alle 18 EN-Notebooks erstellt (adventure, horses, scifi je 6)
+- Dateien: `content/python-12-wochen-grundkurs-en/woche-12/{adventure,horses,scifi}/week12_*.ipynb`
+- Thema Woche 12: Turtle Graphics (Formen, Farben, Füllungen, Schleifen, animierte Grafiken)
+- Adventure: Pyralia Forest Painter / Pixie Artworks / XP rewards
+- Horses: Sonnental Tournament Visualisation Board / Dressage & Show Jumping / Hoof Points rewards
+- Scifi: Nebula-7 Hologram Projectors / Star field, spaceships, planets / Cyber Credits rewards
+- Hinweis: Agenten haben wegen Turtle-Notebook-Größe Timeout (600s) – alles inline fertiggestellt
 
 **Bekannte offene Baustellen:**
-- Language-Toggle Phase 6: Noch 18 Notebooks (Woche 12 – letzte Session)
-- Nächste Session: Woche 12 (adventure, horses, scifi – Abschlussprojekt / Finale)
+- Language-Toggle Phase 6 ist FERTIG ✅ – keine offenen Notebook-Übersetzungen mehr
+- Mögliche nächste Aufgaben: Docker prod-Build testen, README.md aktualisieren
 
 **Workflow:**
 1. `docker-compose up dev` starten
