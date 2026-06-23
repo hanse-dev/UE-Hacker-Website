@@ -28,8 +28,8 @@
       <h2>{{ t('home.courses.title') }}</h2>
       <div class="course-list">
         <div v-for="kurs in kurse" :key="kurs.id" class="course-card">
-          <h3>{{ kurs.title }}</h3>
-          <p>{{ kurs.description }}</p>
+          <h3>{{ lang === 'en' && kurs.title_en ? kurs.title_en : kurs.title }}</h3>
+          <p>{{ lang === 'en' && kurs.description_en ? kurs.description_en : kurs.description }}</p>
           <router-link :to="`/kurs/${kurs.id}`" class="course-link">{{ t('home.course.moreInfo') }}</router-link>
         </div>
       </div>
@@ -142,7 +142,7 @@ export default {
       }
     };
 
-    const { t } = useLanguage();
+    const { lang, t } = useLanguage();
 
     onMounted(async () => {
       await fetchTermine();
@@ -183,6 +183,7 @@ export default {
     return {
       termine,
       kurse,
+      lang,
       t,
     };
   },

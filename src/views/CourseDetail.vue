@@ -1,6 +1,6 @@
 <template>
   <section class="course-detail" v-if="course">
-    <h1>{{ course.title }}</h1>
+    <h1>{{ courseTitle }}</h1>
     <div v-if="description || isWeeklyCourse" class="course-description">
       <div v-if="description" v-html="description"></div>
       <div v-if="isWeeklyCourse" class="course-structure">
@@ -110,6 +110,12 @@ export default {
       week.expandedCheatSheets[csIndex] = !week.expandedCheatSheets[csIndex];
     };
 
+    const courseTitle = computed(() =>
+      lang.value === 'en' && course.value?.title_en
+        ? course.value.title_en
+        : course.value?.title ?? ''
+    );
+
     const loadContent = async () => {
       if (isWeeklyCourse.value) {
         weeks.value = await loadWeeklyContent(lang.value);
@@ -118,7 +124,7 @@ export default {
 
     onMounted(async () => {
       try {
-        const data = await loadCourseData(props.id);
+        const data = await loadCourseData(props.id, lang.value);
         course.value = data.course;
         description.value = data.description;
         courseTermine.value = data.courseTermine;
@@ -131,10 +137,17 @@ export default {
       }
     });
 
-    watch(lang, () => loadContent());
+    watch(lang, async () => {
+      if (course.value) {
+        const data = await loadCourseData(props.id, lang.value);
+        description.value = data.description;
+      }
+      await loadContent();
+    });
 
     return {
       course,
+      courseTitle,
       description,
       weeks,
       courseTermine,

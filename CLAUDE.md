@@ -53,27 +53,26 @@ content/
 
 ## Handoff-Notizen (für den nächsten Rechner)
 
-> **Zuletzt aktualisiert:** 2026-06-19
-> **Letzter Commit:** feat: translate Week 12 notebooks to English (Phase 6, Session 12/12)
+> **Zuletzt aktualisiert:** 2026-06-23
+> **Letzter Commit:** fix: language-aware course title and description + EN course card labels
 
 **Was zuletzt gemacht wurde:**
-- Phase 6 abgeschlossen! Alle 216 EN-Notebooks sind erstellt (Wochen 1–12).
-- Woche 12 – alle 18 EN-Notebooks erstellt (adventure, horses, scifi je 6)
-- Dateien: `content/python-12-wochen-grundkurs-en/woche-12/{adventure,horses,scifi}/week12_*.ipynb`
-- Thema Woche 12: Turtle Graphics (Formen, Farben, Füllungen, Schleifen, animierte Grafiken)
-- Adventure: Pyralia Forest Painter / Pixie Artworks / XP rewards
-- Horses: Sonnental Tournament Visualisation Board / Dressage & Show Jumping / Hoof Points rewards
-- Scifi: Nebula-7 Hologram Projectors / Star field, spaceships, planets / Cyber Credits rewards
-- Hinweis: Agenten haben wegen Turtle-Notebook-Größe Timeout (600s) – alles inline fertiggestellt
+- `language-toggle` Branch vollständig in `main` gemergt
+- Zwei Lücken im Language-Toggle geschlossen:
+  - Kurs-Beschreibung (`beschreibung.md`) wechselt jetzt bei Sprachwechsel → `useCourseData.js` nimmt `lang`-Parameter, `CourseDetail.vue` watchet `lang` und lädt Beschreibung neu
+  - Kursübersicht (Homepage) zeigt jetzt EN-Titel/-Beschreibung → `kurse.json` um `title_en`/`description_en` ergänzt, `Home.vue` reaktiv
+  - `CourseDetail.vue` zeigt EN-Kurstitel via `courseTitle` computed
+- `npm ci` war nötig (node_modules fehlte); `allowScripts` für esbuild/fsevents in `package.json` gesetzt
 
 **Bekannte offene Baustellen:**
-- Language-Toggle Phase 6 ist FERTIG ✅ – keine offenen Notebook-Übersetzungen mehr
-- Mögliche nächste Aufgaben: Docker prod-Build testen, README.md aktualisieren
+- Docker prod-Build noch nicht getestet
+- README.md noch nicht aktualisiert
+- Notebook-Download-ZIP ist nur DE (kein EN-Zip)
 
 **Workflow:**
-1. `docker-compose up dev` starten
-2. Weiter an `language-toggle` Branch arbeiten
-3. Am Ende: `git add`, `git commit`, `git push` — dann steht alles auf dem anderen Rechner bereit
+1. `./node_modules/.bin/vite --port 5173` starten (kein Docker auf diesem Rechner)
+2. Weiter auf `main` arbeiten
+3. Am Ende: `git add`, `git commit`, `git push`
 
 ---
 

@@ -2,19 +2,25 @@
   {
     "id": "python-grundlagen-interaktiv",
     "title": "Python Grundlagen – Interaktiv",
+    "title_en": "Python Basics – Interactive",
     "description": "Kurze Erklärungen und kleine Programmieraufgaben. Löse jede Aufgabe direkt im Browser – erst wenn sie stimmt, geht es weiter.",
+    "description_en": "Short explanations and small coding tasks. Solve each task directly in the browser — only when it's correct can you move on.",
     "contentPath": "python-grundlagen-interaktiv"
   },
   {
     "id": "python-12-wochen-grundkurs",
     "title": "12-Wochen Python Grundkurs",
+    "title_en": "12-Week Python Beginner Course",
     "description": "Alles, was du für den Einstieg in Python brauchst. Von den Grundlagen bis zu deinem ersten eigenen Projekt.",
+    "description_en": "Everything you need to get started with Python. From the basics to your first own project.",
     "contentPath": "python-12-wochen-grundkurs"
   },
   {
     "id": "ferienkurse",
     "title": "Meet & Code - Herbstferienprogramm Al für Teenager",
+    "title_en": "Meet & Code - Autumn Holiday Programme AI for Teenagers",
     "description": "Wir lernen in verschiedenen Sessions gemeinsam, was alles mit Al-Tools möglich ist, wie man sie nutzt und wie sie im neuen Schuljahr helfen können.",
+    "description_en": "In several sessions we explore together what is possible with AI tools, how to use them, and how they can help in the new school year.",
     "contentPath": "ferienkurse"
   }
 ]

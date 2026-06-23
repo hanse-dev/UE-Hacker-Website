@@ -22,7 +22,7 @@ function isRecurringActive(termin, today) {
   return until && today <= until;
 }
 
-export async function loadCourseData(courseId) {
+export async function loadCourseData(courseId, lang = 'de') {
   let course = null;
   let description = '';
   let courseTermine = [];
@@ -47,7 +47,11 @@ export async function loadCourseData(courseId) {
 
   if (course) {
     try {
-      const descModule = await import(`../../content/${course.contentPath}/beschreibung.md?raw`);
+      const enContentPath = `${course.contentPath}-en`;
+      const descPath = (lang === 'en' && courseId === 'python-12-wochen-grundkurs')
+        ? enContentPath
+        : course.contentPath;
+      const descModule = await import(`../../content/${descPath}/beschreibung.md?raw`);
       description = marked(descModule.default);
     } catch (e) {
       console.error('Could not load course description:', e);
