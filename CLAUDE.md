@@ -88,6 +88,18 @@ public/
 
 ---
 
+## Bei Inhaltsänderungen: Zusammenhänge prüfen
+
+Wann immer du Inhalte änderst (Notebooks, Markdown-Lektionen, JSON-Manifeste), **prüfe immer `INHALTE.md` Abschnitt 6** — dort steht, welche Dateien gleichzeitig angepasst werden müssen.
+
+Kurzübersicht der wichtigsten Kopplungen:
+- **Notebook ändern** → DE- und EN-Version synchron halten (`python-12-wochen-grundkurs` ↔ `python-12-wochen-grundkurs-en`)
+- **Interaktive Lektion ändern** → alle drei Ordner prüfen (`python-grundlagen-interaktiv`, `-kinder`, `-jugendliche`) — oder bewusst nur eine Variante ändern und das begründen
+- **Missionen/Punkte ändern** → `rewards-manifest.json` und `rewards-manifest-en.json`
+- **Kursmetadaten ändern** → `public/kurse.json` (inkl. `title_en`, `description_en`) und ggf. `beschreibung.md` in beiden Sprachordnern
+
+---
+
 ## Nach jedem Commit
 
 Nach jedem `git commit` prüfen:
