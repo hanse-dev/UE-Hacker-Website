@@ -1,0 +1,113 @@
+export default {
+  // ── Navigation ──────────────────────────────────────────────────────────
+  'nav.home':    'Home',
+  'nav.courses': 'Courses',
+  'footer.copyright': '© 2026 Übergangshacker. All rights reserved.',
+
+  // ── Home ────────────────────────────────────────────────────────────────
+  'home.hero.title':    'Welcome to the Übergangshacker!',
+  'home.hero.subtitle': 'Your journey into the world of programming starts here. Learn Python in a way that is actually fun.',
+  'home.cta.weekly':      'To the 12-Week Course',
+  'home.cta.interactive': 'Python Basics – Interactive',
+  'home.appointments.title': 'Upcoming Events',
+  'home.appt.time':     'Time:',
+  'home.appt.location': 'Location:',
+  'home.appt.cancelled': 'Event cancelled',
+  'home.courses.title':   'Course Overview',
+  'home.course.moreInfo': 'Learn more',
+  'home.supporters.title': 'Supported by',
+  'home.moreInfo': 'more info here',
+  'home.itscouts.desc': 'ITScouts support young talent in IT and programming. Together we bring the world of code closer to children and young people.',
+  'home.dlc.desc': 'The DLC is an innovative centre for digital education and technology transfer. We support modern educational projects and create space for forward-thinking learning.',
+
+  // ── Course detail ────────────────────────────────────────────────────────
+  'course.loading': 'Loading course...',
+  'course.error':   'Course could not be loaded. Check the browser console (F12) for details.',
+  'course.structure.intro': 'Each week is divided into 6 areas – work through them in this order for best results:',
+  'course.download.btn':  '📦 Download all notebooks as a pack',
+  'course.download.hint': 'Zip with all 12 weeks (Adventure, Horses, Sci-Fi) + Cheat Sheets + Progress Script – for working in Jupyter or VS Code.',
+
+  // ── Tabs ─────────────────────────────────────────────────────────────────
+  'tab.lesson':       'Lesson',
+  'tab.lesson.desc':  'New material: read and understand the week\'s topic',
+  'tab.debug':        'Debug',
+  'tab.debug.desc':   'Find and fix intentional bugs in the code',
+  'tab.missions':     'Missions',
+  'tab.missions.desc':'Small tasks for practising the new material',
+  'tab.boss':         'Boss Quest',
+  'tab.boss.desc':    'The big final challenge – everything combined!',
+  'tab.solutions':    'Solutions',
+  'tab.solutions.desc':'Sample solutions for Missions and Boss Quest',
+  'tab.glossary':     'Glossary',
+  'tab.glossary.desc':'All the week\'s terms for reference – always available',
+
+  // ── Variants & units ─────────────────────────────────────────────────────
+  'variant.adventure': '🗺️ Adventure',
+  'variant.horses':    '🐴 Horses',
+  'variant.scifi':     '🚀 Sci-Fi',
+  'unit.adventure': 'XP',
+  'unit.horses':    'Hoof Points',
+  'unit.scifi':     'Cyber Credits',
+  'unit.default':   'Points',
+
+  // ── Week section ──────────────────────────────────────────────────────────
+  'week.label':       'Week',
+  'week.noNotebook':  'No notebook available for this section.',
+  'week.downloads':   'Downloads',
+  'week.download.md': 'Download as Markdown',
+  'week.download.nb': 'Download as Jupyter Notebook',
+
+  // ── Progress widget ───────────────────────────────────────────────────────
+  'progress.title':  '🏆 Your collected rewards',
+  'progress.intro1': 'Each week has missions to conquer – as you complete them you collect rewards (XP, Hoof Points, or Cyber Credits depending on your quest line). The goal is to make learning fun and keep you motivated.',
+  'progress.intro2': 'Click "Redeem" on each mission you have completed – you can track your progress and enjoy the items you collect. None of this is required, it\'s just here to celebrate your achievements. 🎉',
+  'progress.intro1.label': 'What is the points system?',
+  'progress.export': '📤 Export',
+  'progress.import': '📥 Import',
+  'progress.script.title':    '💻 Working locally? Here\'s how the progress script works',
+  'progress.script.download': '📥 Download progress script',
+  'progress.script.hint':     'ZIP with fortschritt.py and rewards-manifest.json',
+  'progress.script.p1':       'If you run the notebooks locally in Jupyter or VS Code, you can still collect points:',
+  'progress.script.step1':    'Run the script when you have completed a mission:',
+  'progress.script.step1.detail': 'The script asks you interactively: quest line (Adventure/Horses/Sci-Fi), week (1–12), what you completed (Mission 1–3 or Boss Quest 1–3). It creates mein-fortschritt.json in the current directory.',
+  'progress.script.step2':    'Import here',
+  'progress.script.step2.detail': 'Click "📥 Import" above and select your mein-fortschritt.json – the missions will be merged with your existing progress.',
+  'progress.script.details':  'Download the ZIP above, unzip it and run python fortschritt.py in the unpacked folder. Or use the complete notebook pack below – it includes the script too. Commands: python fortschritt.py add abenteuer w10-m1 or python fortschritt.py show for the current status.',
+  'progress.variant.label':   'Quest line:',
+  'progress.variant.all':     'All',
+  'progress.weekly.title':    '📅 Progress by Week',
+  'progress.weekly.hint':     'Each week has 6 missions (3 main + 3 boss). Shows how much % you have already redeemed.',
+  'progress.week.open':       '% open',
+  'progress.week.complete':   '✓ Complete',
+  'progress.week.noClaims':   'Nothing redeemed in this week yet.',
+  'progress.details.all':     'all redeemed rewards',
+  'progress.details.items':   '📦 Collected Items',
+  'progress.hint':            'Click "Redeem" on each mission you have completed!',
+  'progress.import.success':  'Progress was imported and merged with your existing data.',
+  'progress.import.failure':  'Import failed:',
+
+  // ── Mission panel ─────────────────────────────────────────────────────────
+  'mission.panel.title': '🎯 Missions & Rewards',
+  'mission.claim':       '✨ Redeem',
+  'mission.unclaim':     'Undo',
+  'mission.label':       'Mission',
+  'mission.boss.label':  'Boss Quest',
+
+  // ── Appointments ──────────────────────────────────────────────────────────
+  'appt.title':    'Upcoming appointments for this course',
+  'appt.empty':    'No appointments for this course at the moment.',
+  'appt.time':     'Time:',
+  'appt.location': 'Location:',
+  'appt.topic':    'Topic:',
+
+  // ── Jupyter ───────────────────────────────────────────────────────────────
+  'jupyter.init':      'Initialise Python',
+  'jupyter.ready':     '✓ Python ready',
+  'jupyter.runAll':    '▶ Run all',
+  'jupyter.loading':   'Loading notebook…',
+  'jupyter.runCell':   '▶ Run',
+  'jupyter.running':   'Running…',
+  'jupyter.loadError': 'Notebook could not be loaded',
+  'jupyter.initError': 'Python failed to start – reload the page.',
+  'jupyter.fetchError':'Error loading: ',
+};

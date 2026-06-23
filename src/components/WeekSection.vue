@@ -32,11 +32,11 @@
               <div class="cheat-sheet-actions">
                 <a :href="cheatSheet.url" download class="download-btn">
                   <span class="download-icon">📥</span>
-                  Als Markdown herunterladen
+                  {{ t('week.download.md') }}
                 </a>
                 <a v-if="cheatSheet.notebookUrl" :href="cheatSheet.notebookUrl" download class="download-btn">
                   <span class="download-icon">📓</span>
-                  Als Jupyter Notebook herunterladen
+                  {{ t('week.download.nb') }}
                 </a>
               </div>
               <div class="cheat-sheet-preview" v-if="cheatSheet.content">
@@ -48,7 +48,7 @@
 
         <!-- Other downloads -->
         <div v-if="!week.hasNotebook && week.downloads?.length > 0" class="downloads-section">
-          <h4>Downloads</h4>
+          <h4>{{ t('week.downloads') }}</h4>
           <ul>
             <li v-for="(file, fileIndex) in week.downloads" :key="fileIndex">
               <a :href="file.url" download :class="{ 'cheat-sheet-link': file.isCheatSheet }">
@@ -64,25 +64,24 @@
 
           <!-- Row 1: Varianten-Auswahl -->
           <div class="variant-selector">
-
             <button
               v-if="week.hasAbenteuerVariant"
               @click="$emit('set-variant', 'abenteuer')"
               :class="{ active: week.selectedVariant === 'abenteuer' }"
               class="variant-btn"
-            >🗺️ Abenteuer</button>
+            >{{ t('variant.adventure') }}</button>
             <button
               v-if="week.hasPferdeVariant"
               @click="$emit('set-variant', 'pferde')"
               :class="{ active: week.selectedVariant === 'pferde' }"
               class="variant-btn"
-            >🐴 Pferde</button>
+            >{{ t('variant.horses') }}</button>
             <button
               v-if="week.hasScifiVariant"
               @click="$emit('set-variant', 'scifi')"
               :class="{ active: week.selectedVariant === 'scifi' }"
               class="variant-btn"
-            >🚀 Sci-Fi</button>
+            >{{ t('variant.scifi') }}</button>
           </div>
 
           <!-- Row 2: Missionen & Belohnungen -->
@@ -95,7 +94,7 @@
           <!-- Row 3: Notebook-Tabs -->
           <div class="notebook-tabs">
             <button
-              v-for="tab in TABS"
+              v-for="tab in tabs"
               :key="tab.key"
               class="tab-btn"
               :class="{ active: selectedTab === tab.key, available: hasTab(tab.key) }"
@@ -119,7 +118,7 @@
             :key="`${index}-${week.selectedVariant}-${selectedTab}`"
           />
           <div v-else class="tab-empty">
-            Kein Notebook für diesen Bereich verfügbar.
+            {{ t('week.noNotebook') }}
           </div>
 
         </div>
@@ -132,14 +131,15 @@
 import { ref, computed } from 'vue';
 import JupyterNotebook from './JupyterNotebook.vue';
 import MissionenPanel from './MissionenPanel.vue';
+import { useLanguage } from '../composables/useLanguage.js';
 
-const TABS = [
-  { key: '1_lektion',   label: 'Lektion',    icon: '📚', description: 'Neuer Stoff: lies und verstehe das Thema der Woche' },
-  { key: '2_debug',     label: 'Debug',      icon: '🐛', description: 'Finde und fixe absichtliche Bugs im Code' },
-  { key: '3_missionen', label: 'Missionen',  icon: '⭐', description: 'Kleine Aufgaben zum Üben des neuen Stoffs' },
-  { key: '5_boss',      label: 'Boss-Quest', icon: '🐉', description: 'Die große Abschluss-Challenge – alles zusammen!' },
-  { key: '6_loesungen', label: 'Lösungen',   icon: '🔧', description: 'Musterlösungen zu Missionen und Boss-Quest' },
-  { key: '0_glossar',   label: 'Glossar',    icon: '📖', description: 'Alle Begriffe der Woche zum Nachschlagen – immer verfügbar' },
+const TABS_CONFIG = [
+  { key: '1_lektion',   icon: '📚', labelKey: 'tab.lesson',    descKey: 'tab.lesson.desc' },
+  { key: '2_debug',     icon: '🐛', labelKey: 'tab.debug',     descKey: 'tab.debug.desc' },
+  { key: '3_missionen', icon: '⭐', labelKey: 'tab.missions',  descKey: 'tab.missions.desc' },
+  { key: '5_boss',      icon: '🐉', labelKey: 'tab.boss',      descKey: 'tab.boss.desc' },
+  { key: '6_loesungen', icon: '🔧', labelKey: 'tab.solutions', descKey: 'tab.solutions.desc' },
+  { key: '0_glossar',   icon: '📖', labelKey: 'tab.glossary',  descKey: 'tab.glossary.desc' },
 ];
 
 export default {
@@ -152,7 +152,12 @@ export default {
   },
   emits: ['toggle', 'toggle-cheat-sheet', 'set-variant'],
   setup(props) {
+    const { t } = useLanguage();
     const selectedTab = ref(props.week.selectedTab ?? '1_lektion');
+
+    const tabs = computed(() =>
+      TABS_CONFIG.map(tab => ({ ...tab, label: t(tab.labelKey), description: t(tab.descKey) }))
+    );
 
     const isCheatSheetExpanded = (csIndex) =>
       props.week.expandedCheatSheets?.[csIndex] ?? false;
@@ -164,7 +169,7 @@ export default {
       props.week.notebooks?.[props.week.selectedVariant]?.[selectedTab.value] ?? null
     );
 
-    return { TABS, selectedTab, isCheatSheetExpanded, hasTab, activeNotebookUrl };
+    return { tabs, t, selectedTab, isCheatSheetExpanded, hasTab, activeNotebookUrl };
   },
 };
 </script>

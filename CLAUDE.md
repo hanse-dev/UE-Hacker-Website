@@ -42,8 +42,8 @@ content/
 
 ## Aktiver Branch & Offene Aufgaben
 
-**Branch:** `splitting`
-**Gegenüber `main`:** Neue Content-Struktur mit aufgeteilten Notebooks (7 Dateien/Woche statt monolithisch), KURSPLAN.md, Website-Routing für Kurs-Übersicht.
+**Branch:** `language-toggle`
+**Gegenüber `main`:** Language-Toggle-Feature (DE/EN Umschalter in der App).
 
 ### Nächste Schritte / Offene Punkte
 
@@ -53,26 +53,26 @@ content/
 
 ## Handoff-Notizen (für den nächsten Rechner)
 
-> **Zuletzt aktualisiert:** 2026-06-18
-> **Letzter Commit:** `b558cfb` — feat: swap Boss-Quest and Lösungen order
+> **Zuletzt aktualisiert:** 2026-06-23
+> **Letzter Commit:** fix: language-aware course title and description + EN course card labels
 
 **Was zuletzt gemacht wurde:**
-- Alle 36 Glossar-Notebooks durchgesehen: anfängerfreundlich und konsistent
-- Woche 11 (×3): doppelte Tabellenzeilen für Polymorphismus und Vererbung entfernt
-- Woche 10 Pferde: `trainieren()` war ein No-op (`self.rasse = self.rasse`) → durch sinnvollen `fitness`-Counter ersetzt
-- Tab-System erklärt: einmalig oben auf der Kursseite als `<h2>Wie ist der Kurs aufgebaut?</h2>` mit 6-Tab-Grid; in course-description integriert
-- Belohnungen (FortschrittWidget) + Woche 1 klappen beim Seitenaufruf jetzt ein
-- localStorage-Persistenz war bereits implementiert (useFortschritt.js)
-- Verlauf-nach-Woche als Tabs (Abenteuer/Pferde/Sci-Fi) neu gestaltet
-- Code-Zellen zeigen jetzt vollen Source ohne Scrollbar
+- `language-toggle` Branch vollständig in `main` gemergt
+- Zwei Lücken im Language-Toggle geschlossen:
+  - Kurs-Beschreibung (`beschreibung.md`) wechselt jetzt bei Sprachwechsel → `useCourseData.js` nimmt `lang`-Parameter, `CourseDetail.vue` watchet `lang` und lädt Beschreibung neu
+  - Kursübersicht (Homepage) zeigt jetzt EN-Titel/-Beschreibung → `kurse.json` um `title_en`/`description_en` ergänzt, `Home.vue` reaktiv
+  - `CourseDetail.vue` zeigt EN-Kurstitel via `courseTitle` computed
+- `npm ci` war nötig (node_modules fehlte); `allowScripts` für esbuild/fsevents in `package.json` gesetzt
 
 **Bekannte offene Baustellen:**
-- Website/Frontend: Verlinkung zu den richtigen Notebooks testen
+- Docker prod-Build noch nicht getestet
+- README.md noch nicht aktualisiert
+- Notebook-Download-ZIP ist nur DE (kein EN-Zip)
 
 **Workflow:**
-1. `docker-compose up dev` starten
-2. Weiter an `splitting` Branch arbeiten
-3. Am Ende: `git add`, `git commit`, `git push` — dann steht alles auf dem anderen Rechner bereit
+1. `./node_modules/.bin/vite --port 5173` starten (kein Docker auf diesem Rechner)
+2. Weiter auf `main` arbeiten
+3. Am Ende: `git add`, `git commit`, `git push`
 
 ---
 

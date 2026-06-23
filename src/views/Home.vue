@@ -1,60 +1,60 @@
 <template>
   <div>
     <section id="hero">
-      <h2>Willkommen bei den Übergangshackern!</h2>
-      <p>Deine Reise in die Welt des Programmierens beginnt hier. Lerne Python auf eine Weise, die Spass macht.</p>
+      <h2>{{ t('home.hero.title') }}</h2>
+      <p>{{ t('home.hero.subtitle') }}</p>
       <div class="hero-buttons">
-        <router-link to="/kurs/python-12-wochen-grundkurs" class="cta-button">Zum 12-Wochen-Kurs</router-link>
-        <router-link to="/kurs/python-grundlagen-interaktiv" class="cta-button cta-button-secondary">Python Grundlagen – Interaktiv</router-link>
+        <router-link to="/kurs/python-12-wochen-grundkurs" class="cta-button">{{ t('home.cta.weekly') }}</router-link>
+        <router-link to="/kurs/python-grundlagen-interaktiv" class="cta-button cta-button-secondary">{{ t('home.cta.interactive') }}</router-link>
       </div>
     </section>
 
     <section id="termine" v-if="termine.length > 0">
-      <h2>Nächste Termine</h2>
+      <h2>{{ t('home.appointments.title') }}</h2>
       <div class="termine-list">
         <router-link v-for="termin in termine" :key="termin.id" :to="termin.link" class="termin-link">
           <div class="termin-card" :class="{ 'cancelled': termin.cancelled }">
-            <h3 v-if="termin.cancelled" class="cancelled-text">Termin abgesagt</h3>
+            <h3 v-if="termin.cancelled" class="cancelled-text">{{ t('home.appt.cancelled') }}</h3>
             <h3>{{ termin.date }}</h3>
             <h4 class="termin-topic">{{ termin.topic }}</h4>
-            <p><strong>Uhrzeit:</strong> {{ termin.time }}</p>
-            <p><strong>Ort:</strong> {{ termin.location }}</p>
+            <p><strong>{{ t('home.appt.time') }}</strong> {{ termin.time }}</p>
+            <p><strong>{{ t('home.appt.location') }}</strong> {{ termin.location }}</p>
           </div>
         </router-link>
       </div>
     </section>
 
     <section id="kurse-uebersicht">
-      <h2>Kursübersicht</h2>
+      <h2>{{ t('home.courses.title') }}</h2>
       <div class="course-list">
         <div v-for="kurs in kurse" :key="kurs.id" class="course-card">
-          <h3>{{ kurs.title }}</h3>
-          <p>{{ kurs.description }}</p>
-          <router-link :to="`/kurs/${kurs.id}`" class="course-link">Mehr erfahren</router-link>
+          <h3>{{ lang === 'en' && kurs.title_en ? kurs.title_en : kurs.title }}</h3>
+          <p>{{ lang === 'en' && kurs.description_en ? kurs.description_en : kurs.description }}</p>
+          <router-link :to="`/kurs/${kurs.id}`" class="course-link">{{ t('home.course.moreInfo') }}</router-link>
         </div>
       </div>
     </section>
 
     <section id="unterstuetzer">
-      <h2>Unterstützt von</h2>
+      <h2>{{ t('home.supporters.title') }}</h2>
       <div class="unterstuetzer-card">
         <div class="unterstuetzer-content">
           <img src="@/assets/itscouts-logo.jpeg" alt="ITScouts Logo" class="unterstuetzer-logo">
           <div class="unterstuetzer-text">
             <h3>ITScouts</h3>
-            <p>Die ITScouts fördern junge Talente im Bereich IT und Programmierung. Gemeinsam bringen wir Kindern und Jugendlichen die Welt des Codes näher.</p>
-            <a href="https://www.faw.de/luebeck/projekte/it-scout" target="_blank" rel="noopener noreferrer" class="mehr-infos-link">mehr Infos hier</a>
+            <p>{{ t('home.itscouts.desc') }}</p>
+            <a href="https://www.faw.de/luebeck/projekte/it-scout" target="_blank" rel="noopener noreferrer" class="mehr-infos-link">{{ t('home.moreInfo') }}</a>
           </div>
         </div>
       </div>
-      
+
       <div class="unterstuetzer-card">
         <div class="unterstuetzer-content">
           <img src="@/assets/logo_dlc_beta.svg" alt="DLC Logo" class="unterstuetzer-logo">
           <div class="unterstuetzer-text">
             <h3>DLC - Digital Learning Center</h3>
-            <p>Das DLC ist ein innovatives Zentrum für digitale Bildung und Technologietransfer. Wir unterstützen moderne Bildungsprojekte und schaffen Raum für zukunftsweisendes Lernen.</p>
-            <a href="https://dlc.sh" target="_blank" rel="noopener noreferrer" class="mehr-infos-link">mehr Infos hier</a>
+            <p>{{ t('home.dlc.desc') }}</p>
+            <a href="https://dlc.sh" target="_blank" rel="noopener noreferrer" class="mehr-infos-link">{{ t('home.moreInfo') }}</a>
           </div>
         </div>
       </div>
@@ -65,6 +65,7 @@
 <script>
 import { ref, onMounted } from 'vue';
 import { assetUrl } from '../utils/assetUrl';
+import { useLanguage } from '../composables/useLanguage.js';
 
 export default {
   name: 'Home',
@@ -141,6 +142,8 @@ export default {
       }
     };
 
+    const { lang, t } = useLanguage();
+
     onMounted(async () => {
       await fetchTermine();
       await fetchKurse();
@@ -180,6 +183,8 @@ export default {
     return {
       termine,
       kurse,
+      lang,
+      t,
     };
   },
 };

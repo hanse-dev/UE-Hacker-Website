@@ -1,19 +1,21 @@
 <template>
   <div class="appointments-section">
-    <h3>Nächste Termine für diesen Kurs</h3>
+    <h3>{{ t('appt.title') }}</h3>
     <div v-if="termine.length > 0" class="termine-list-local">
       <div v-for="termin in termine" :key="termin.id" class="termin-card-local">
         <h4>{{ termin.date }}</h4>
-        <p><strong>Uhrzeit:</strong> {{ termin.time }}</p>
-        <p><strong>Ort:</strong> {{ termin.location }}</p>
-        <p v-if="termin.topic"><strong>Thema:</strong> {{ termin.topic }}</p>
+        <p><strong>{{ t('appt.time') }}</strong> {{ termin.time }}</p>
+        <p><strong>{{ t('appt.location') }}</strong> {{ termin.location }}</p>
+        <p v-if="termin.topic"><strong>{{ t('appt.topic') }}</strong> {{ termin.topic }}</p>
       </div>
     </div>
-    <p v-else class="termine-empty">Aktuell keine Termine für diesen Kurs.</p>
+    <p v-else class="termine-empty">{{ t('appt.empty') }}</p>
   </div>
 </template>
 
 <script>
+import { useLanguage } from '../composables/useLanguage.js';
+
 export default {
   name: 'CourseAppointments',
   props: {
@@ -21,6 +23,10 @@ export default {
       type: Array,
       default: () => [],
     },
+  },
+  setup() {
+    const { t } = useLanguage();
+    return { t };
   },
 };
 </script>
