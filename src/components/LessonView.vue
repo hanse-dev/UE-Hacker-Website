@@ -23,6 +23,7 @@
           <p class="task-instruction">
             <span v-if="completedTasks.has(idx)" class="task-done">✓</span>
             <span v-else class="task-pending">○</span>
+            <span v-if="task.isBonus" class="task-bonus-badge">Bonus</span>
             <span v-html="instructionWithGlossary(task.instruction || 'Aufgabe ' + (idx + 1))"></span>
             <span v-if="completedTasks.has(idx)" class="task-status-label">(erledigt)</span>
             <span v-else-if="!completedTasks.has(idx) && completedTasks.size > 0" class="task-status-label">(noch offen)</span>
@@ -96,11 +97,15 @@ export default {
       type: String,
       required: true,
     },
+    variant: {
+      type: String,
+      default: 'kinder',
+    },
   },
   emits: ['completed', 'next'],
   setup(props, { emit }) {
     const { kernelReady, kernelStatus, initializeKernel, runPython } = usePyodide();
-    const { markCompleted, isLessonUnlocked } = useInteractiveProgress();
+    const { markCompleted, isLessonUnlocked } = useInteractiveProgress(props.variant);
 
     const lessonContent = ref('');
     const checking = ref(false);
@@ -149,25 +154,32 @@ export default {
       isMounted.value = false;
     });
 
-    const lessonLoaders = {
-      'lektion-01.md': () => import('../../content/python-grundlagen-interaktiv/lektion-01.md?raw'),
-      'lektion-02.md': () => import('../../content/python-grundlagen-interaktiv/lektion-02.md?raw'),
-      'lektion-03.md': () => import('../../content/python-grundlagen-interaktiv/lektion-03.md?raw'),
-      'lektion-datentypen.md': () => import('../../content/python-grundlagen-interaktiv/lektion-datentypen.md?raw'),
-      'lektion-04.md': () => import('../../content/python-grundlagen-interaktiv/lektion-04.md?raw'),
-      'lektion-05.md': () => import('../../content/python-grundlagen-interaktiv/lektion-05.md?raw'),
-      'lektion-06.md': () => import('../../content/python-grundlagen-interaktiv/lektion-06.md?raw'),
-      'lektion-07.md': () => import('../../content/python-grundlagen-interaktiv/lektion-07.md?raw'),
-      'lektion-08.md': () => import('../../content/python-grundlagen-interaktiv/lektion-08.md?raw'),
-      'lektion-09.md': () => import('../../content/python-grundlagen-interaktiv/lektion-09.md?raw'),
-      'lektion-10.md': () => import('../../content/python-grundlagen-interaktiv/lektion-10.md?raw'),
-    };
+    const allLessonModules = import.meta.glob(
+      [
+        '../../content/python-grundlagen-interaktiv/*.md',
+        '../../content/python-grundlagen-interaktiv-kinder/*.md',
+        '../../content/python-grundlagen-interaktiv-jugendliche/*.md',
+      ],
+      { query: '?raw', import: 'default' }
+    );
+
+    const allGlossaryModules = import.meta.glob(
+      [
+        '../../content/python-grundlagen-interaktiv/glossary.json',
+        '../../content/python-grundlagen-interaktiv-kinder/glossary.json',
+        '../../content/python-grundlagen-interaktiv-jugendliche/glossary.json',
+      ],
+    );
 
     let glossary = {};
     const loadGlossary = async () => {
       try {
-        const mod = await import('../../content/python-grundlagen-interaktiv/glossary.json');
-        glossary = mod.default || {};
+        const key = `../../content/${props.contentPath}/glossary.json`;
+        const loader = allGlossaryModules[key];
+        if (loader) {
+          const mod = await loader();
+          glossary = mod.default || {};
+        }
       } catch {
         glossary = {};
       }
@@ -216,18 +228,17 @@ export default {
 
     const loadContent = async () => {
       if (!props.lesson?.file || !props.contentPath) return;
-      const file = props.lesson.file;
-      const loader = lessonLoaders[file];
+      const key = `../../content/${props.contentPath}/${props.lesson.file}`;
+      const loader = allLessonModules[key];
       if (!loader) {
         lessonContent.value = '<p>Lektion konnte nicht geladen werden.</p>';
         return;
       }
       try {
         if (Object.keys(glossary).length === 0) await loadGlossary();
-        const mod = await loader();
+        const text = await loader();
         if (!isMounted.value) return;
-        const text = mod?.default ?? '';
-        let html = marked(text || '');
+        let html = marked(text ?? '');
         html = applyGlossaryTooltips(html);
         lessonContent.value = html;
       } catch (e) {
@@ -492,6 +503,19 @@ export default {
   font-size: 0.9em;
 }
 
+.task-bonus-badge {
+  display: inline-block;
+  background: var(--accent-orange, #ff9800);
+  color: white;
+  font-size: 0.72em;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 10px;
+  margin-right: 6px;
+  vertical-align: middle;
+  letter-spacing: 0.03em;
+}
+
 .lesson-complete-box {
   margin-top: 24px;
   padding: 20px;
@@ -533,6 +557,7 @@ a.btn-next {
   max-width: 500px;
   min-height: 80px;
   padding: 15px;
+  box-sizing: border-box;
   background: #fff;
   border: 1px solid #dee2e6;
   border-radius: 6px;

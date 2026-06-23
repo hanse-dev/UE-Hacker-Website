@@ -1,0 +1,201 @@
+[
+  {
+    "id": "lektion-01",
+    "title": "Dein erstes Programm 🎉",
+    "file": "lektion-01.md",
+    "lessonSummary": "Wahnsinn, das war super! 🌟 Du kannst jetzt mit print() Text auf dem Bildschirm erscheinen lassen!",
+    "tasks": [
+      {
+        "instruction": "Sag der Welt Hallo! Gib \"Hallo Welt\" aus.",
+        "codeTemplate": "print(\"___\")",
+        "validation": { "type": "output_contains", "expected": "Hallo Welt" }
+      },
+      {
+        "instruction": "Gib \"Ich lerne Python!\" aus.",
+        "codeTemplate": "print(\"___\")",
+        "validation": { "type": "output_contains", "expected": "Ich lerne Python" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "title": "Variablen – dein Gedächtnis 🧠",
+    "file": "lektion-02.md",
+    "lessonSummary": "Prima! 🎉 Du hast gelernt, Werte in Variablen zu speichern. Wie eine Schatztruhe!",
+    "tasks": [
+      {
+        "instruction": "Speichere \"Drache\" in einer Variable namens tier und gib sie aus.",
+        "codeTemplate": "tier = \"___\"\nprint(tier)",
+        "validation": { "type": "output_contains", "expected": "Drache" }
+      },
+      {
+        "instruction": "Speichere die Zahl 100 in einer Variable namens punkte und gib sie aus.",
+        "codeTemplate": "punkte = ___\nprint(punkte)",
+        "validation": { "type": "output_contains", "expected": "100" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "title": "Zahlen und Rechnen 🔢",
+    "file": "lektion-03.md",
+    "lessonSummary": "Toll! 🧮 Du kannst Python jetzt als Taschenrechner nutzen!",
+    "tasks": [
+      {
+        "instruction": "Ein Einhorn hat 10 Magiepunkte, ein Drache hat 7. Gib ihre Summe aus.",
+        "codeTemplate": "einhorn = 10\ndrache = 7\nprint(___ + ___)",
+        "validation": { "type": "output_contains", "expected": "17" }
+      },
+      {
+        "instruction": "Du hast 6 Zaubertränke und bekommst 4 dazu. Gib das Produkt aus (6 * 4).",
+        "codeTemplate": "print(___ * ___)",
+        "validation": { "type": "output_contains", "expected": "24" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-datentypen",
+    "title": "Datentypen – was steckt dahinter? 🔍",
+    "file": "lektion-datentypen.md",
+    "lessonSummary": "Klasse! 🔍 Du kennst jetzt die wichtigsten Datentypen in Python!",
+    "tasks": [
+      {
+        "instruction": "Finde heraus, welchen Typ die Zahl 7 hat. Nutze type().",
+        "codeTemplate": "print(type(___))",
+        "validation": { "type": "output_contains", "expected": "int" }
+      },
+      {
+        "instruction": "Finde heraus, welchen Typ \"Zauberspruch\" hat.",
+        "codeTemplate": "print(type(\"___\"))",
+        "validation": { "type": "output_contains", "expected": "str" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "title": "f-Strings – Text und Variablen mischen ✨",
+    "file": "lektion-04.md",
+    "lessonSummary": "Geschafft! ✨ Du kannst Variablen jetzt elegant in Texte einbauen!",
+    "tasks": [
+      {
+        "instruction": "Erstelle eine Variable tier mit deinem Lieblingstier und gib \"Mein Lieblingstier ist ein/e ___!\" aus.",
+        "codeTemplate": "tier = \"___\"\nprint(f\"Mein Lieblingstier ist ein/e {___}!\")",
+        "validation": { "type": "output_contains", "expected": "Lieblingstier" }
+      },
+      {
+        "instruction": "Erstelle eine Variable alter mit deinem Alter und gib \"Ich bin ___ Jahre alt.\" aus.",
+        "codeTemplate": "alter = ___\nprint(f\"Ich bin {___} Jahre alt.\")",
+        "validation": { "type": "output_contains", "expected": "Jahre alt" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "title": "Entscheidungen mit if 🤔",
+    "file": "lektion-05.md",
+    "lessonSummary": "Ausgezeichnet! 🤔 Du kannst Python jetzt Entscheidungen treffen lassen!",
+    "tasks": [
+      {
+        "instruction": "Ein Drache hat 80 Lebenspunkte. Wenn er mehr als 50 hat, gib \"Der Drache ist stark!\" aus.",
+        "codeTemplate": "leben = 80\nif leben > ___:\n    print(\"___\")",
+        "validation": { "type": "output_contains", "expected": "stark" }
+      },
+      {
+        "instruction": "Wenn ein Tier \"Hund\" ist, gib \"Wuff!\" aus, sonst \"Miau!\".",
+        "codeTemplate": "tier = \"Hund\"\nif tier == \"Hund\":\n    print(\"___\")\nelse:\n    print(\"___\")",
+        "validation": { "type": "output_contains", "expected": "Wuff" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "title": "Schleifen mit for 🔄",
+    "file": "lektion-06.md",
+    "lessonSummary": "Perfekt! 🔄 Du kannst Code jetzt mit for-Schleifen wiederholen!",
+    "tasks": [
+      {
+        "instruction": "Füttere deinen Drachen 3 Mal! Gib \"Nom nom!\" dreimal aus (mit range).",
+        "codeTemplate": "for i in range(___):\n    print(\"___\")",
+        "validation": { "type": "output_contains", "expected": "Nom" }
+      },
+      {
+        "instruction": "Gib die Zahlen 0, 1 und 2 aus (nutze range und die Schleifenvariable).",
+        "codeTemplate": "for i in range(___):\n    print(___)",
+        "validation": { "type": "output_contains", "expected": "0" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "title": "Listen – viele Werte auf einmal 📋",
+    "file": "lektion-07.md",
+    "lessonSummary": "Super! 📋 Du kannst jetzt mehrere Werte in einer Liste speichern!",
+    "tasks": [
+      {
+        "instruction": "Erstelle eine Liste mit \"Drache\", \"Einhorn\", \"Phönix\" und gib das erste Tier aus.",
+        "codeTemplate": "tiere = [\"___\", \"___\", \"___\"]\nprint(tiere[___])",
+        "validation": { "type": "output_contains", "expected": "Drache" }
+      },
+      {
+        "instruction": "Gib das letzte Tier aus deiner Liste aus (Index -1).",
+        "codeTemplate": "print(tiere[___])",
+        "validation": { "type": "output_contains", "expected": "Phönix" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-08",
+    "title": "Funktionen – dein eigener Zauberspruch 🪄",
+    "file": "lektion-08.md",
+    "lessonSummary": "Stark! 🪄 Du kannst jetzt eigene Funktionen zaubern!",
+    "tasks": [
+      {
+        "instruction": "Definiere eine Funktion zaubern(), die \"Abrakadabra!\" ausgibt, und rufe sie auf.",
+        "codeTemplate": "def zaubern():\n    print(\"___\")\n\nzaubern()",
+        "validation": { "type": "output_contains", "expected": "Abrakadabra" }
+      },
+      {
+        "instruction": "Definiere eine Funktion verdoppeln(zahl), die eine Zahl verdoppelt und ausgibt. Rufe sie mit 6 auf.",
+        "codeTemplate": "def verdoppeln(zahl):\n    print(___ * 2)\n\nverdoppeln(___)",
+        "validation": { "type": "output_contains", "expected": "12" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-09",
+    "title": "Dictionaries – das Tierlexikon 📖",
+    "file": "lektion-09.md",
+    "lessonSummary": "Sehr gut! 📖 Du kannst jetzt Schlüssel-Wert-Paare in Dictionaries speichern!",
+    "tasks": [
+      {
+        "instruction": "Erstelle ein Dictionary mit \"Hund\" → \"bellt\" und \"Katze\" → \"miaut\". Gib aus, was der Hund macht.",
+        "codeTemplate": "geraeusche = {\"Hund\": \"___\", \"Katze\": \"___\"}\nprint(geraeusche[\"___\"])",
+        "validation": { "type": "output_contains", "expected": "bellt" }
+      },
+      {
+        "instruction": "Gib aus, was die Katze macht.",
+        "codeTemplate": "print(geraeusche[\"___\"])",
+        "validation": { "type": "output_contains", "expected": "miaut" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-10",
+    "title": "Kleine Übung: Alles zusammen! 🏆",
+    "file": "lektion-10.md",
+    "lessonSummary": "Fantastisch! 🏆 Du hast alle Python-Grundlagen gemeistert! Du bist bereit für den 12-Wochen-Kurs!",
+    "nextCourseId": "python-12-wochen-grundkurs",
+    "tasks": [
+      {
+        "instruction": "Erstelle eine Liste [2, 4, 6] und gib jede Zahl verdoppelt aus (mit einer for-Schleife).",
+        "codeTemplate": "zahlen = [2, 4, 6]\nfor z in zahlen:\n    print(___ * 2)",
+        "validation": { "type": "output_contains", "expected": "4" }
+      },
+      {
+        "instruction": "Erstelle eine Funktion summe(zahlen), die die Summe einer Liste ausgibt. Rufe sie mit [1, 2, 3, 4, 5] auf.",
+        "codeTemplate": "def summe(zahlen):\n    print(sum(___))\n\nsumme([1, 2, 3, 4, 5])",
+        "validation": { "type": "output_contains", "expected": "15" }
+      }
+    ]
+  }
+]

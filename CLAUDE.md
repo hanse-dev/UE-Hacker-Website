@@ -54,20 +54,24 @@ content/
 ## Handoff-Notizen (für den nächsten Rechner)
 
 > **Zuletzt aktualisiert:** 2026-06-23
-> **Letzter Commit:** fix: language-aware course title and description + EN course card labels
+> **Letzter Commit:** `5c23de9` — feat: merge language-toggle branch — full DE/EN toggle
 
 **Was zuletzt gemacht wurde:**
-- `language-toggle` Branch vollständig in `main` gemergt
-- Zwei Lücken im Language-Toggle geschlossen:
-  - Kurs-Beschreibung (`beschreibung.md`) wechselt jetzt bei Sprachwechsel → `useCourseData.js` nimmt `lang`-Parameter, `CourseDetail.vue` watchet `lang` und lädt Beschreibung neu
-  - Kursübersicht (Homepage) zeigt jetzt EN-Titel/-Beschreibung → `kurse.json` um `title_en`/`description_en` ergänzt, `Home.vue` reaktiv
-  - `CourseDetail.vue` zeigt EN-Kurstitel via `courseTitle` computed
-- `npm ci` war nötig (node_modules fehlte); `allowScripts` für esbuild/fsevents in `package.json` gesetzt
+- `language-toggle` Branch vollständig in `main` gemergt (alle 6 Phasen)
+- Interaktiven Einführungskurs (`python-grundlagen-interaktiv`) in 2 Varianten aufgeteilt:
+  - `content/python-grundlagen-interaktiv-kinder/` — Zielgruppe 8–12 Jahre (Tier-/Spielbeispiele, Code-Templates, 2 Aufgaben/Lektion)
+  - `content/python-grundlagen-interaktiv-jugendliche/` — Zielgruppe 13–17 Jahre (App-/Alltag-Beispiele, leere Templates, 3 Aufgaben mit Bonus)
+- `InteractiveCourse.vue` komplett neu: Variantenauswahl-Screen, dynamisches Laden per `import.meta.glob`, Mobile-Layout mit Toggle-Button
+- `LessonView.vue`: `variant`-Prop, dynamische Glossar-/Lesson-Loader, Bonus-Badge
+- `useInteractiveProgress.js`: Per-Variante State-Map mit eigenem localStorage-Slot
+- Mobile-Bugs behoben: Sidebar-Overlay-Fix (CSS-Kaskade), Grid-Row-Sizing, Code-Textarea overflow
+- `INHALTE.md` neu erstellt: Referenzdokument für alle Inhaltsdateien und ihre Zusammenhänge
 
 **Bekannte offene Baustellen:**
 - Docker prod-Build noch nicht getestet
 - README.md noch nicht aktualisiert
 - Notebook-Download-ZIP ist nur DE (kein EN-Zip)
+- EN-Titeln für Wochen 5–12 in `INHALTE.md` noch mit Platzhaltern (aus Notebooks nachlesen)
 
 **Workflow:**
 1. `./node_modules/.bin/vite --port 5173` starten (kein Docker auf diesem Rechner)

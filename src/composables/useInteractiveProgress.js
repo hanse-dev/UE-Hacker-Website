@@ -1,71 +1,63 @@
 import { ref, computed, watch } from 'vue';
 
-const STORAGE_KEY = 'ue-hacker-interactive-progress';
 const COURSE_ID = 'python-grundlagen-interaktiv';
 
-const defaultState = () => ({
-  version: 1,
-  courseId: COURSE_ID,
-  completedLessonIds: [],
-});
+function storageKey(variant) {
+  return `ue-hacker-interactive-progress-${variant}`;
+}
 
-function loadFromStorage() {
+function defaultState(variant) {
+  return { version: 1, courseId: COURSE_ID, variant, completedLessonIds: [] };
+}
+
+function loadFromStorage(variant) {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return defaultState();
+    const raw = localStorage.getItem(storageKey(variant));
+    if (!raw) return defaultState(variant);
     const parsed = JSON.parse(raw);
-    if (parsed.courseId !== COURSE_ID) return defaultState();
-    return { ...defaultState(), ...parsed };
+    return { ...defaultState(variant), ...parsed };
   } catch {
-    return defaultState();
+    return defaultState(variant);
   }
 }
 
-function saveToStorage(state) {
+function saveToStorage(variant, state) {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    localStorage.setItem(storageKey(variant), JSON.stringify(state));
   } catch (e) {
     console.error('Fortschritt konnte nicht gespeichert werden:', e);
   }
 }
 
-const state = ref(loadFromStorage());
+const states = {};
 
-/**
- * Composable für Fortschritt im interaktiven Python-Grundlagen-Kurs.
- * Speichert gelöste Lektionen in localStorage.
- */
-export function useInteractiveProgress() {
-  const save = () => saveToStorage(state.value);
+function getVariantState(variant) {
+  if (!states[variant]) {
+    states[variant] = ref(loadFromStorage(variant));
+    watch(states[variant], (s) => saveToStorage(variant, s), { deep: true });
+  }
+  return states[variant];
+}
 
-  watch(state, (s) => saveToStorage(s), { deep: true });
+export function useInteractiveProgress(variant = 'kinder') {
+  const state = getVariantState(variant);
 
   const completedLessonIds = computed(() => state.value.completedLessonIds || []);
-
   const isCompleted = (lessonId) => completedLessonIds.value.includes(lessonId);
 
   const markCompleted = (lessonId) => {
     const ids = state.value.completedLessonIds || [];
     if (ids.includes(lessonId)) return true;
-    state.value = {
-      ...state.value,
-      completedLessonIds: [...ids, lessonId],
-    };
+    state.value = { ...state.value, completedLessonIds: [...ids, lessonId] };
     return true;
   };
 
-  /**
-   * Prüft, ob eine Lektion freigeschaltet ist (erste Lektion oder vorherige abgeschlossen).
-   * @param {string} lessonId - ID der Lektion
-   * @param {Array<{id: string}>} lessons - Alle Lektionen in Reihenfolge
-   */
   const isLessonUnlocked = (lessonId, lessons) => {
     if (!lessons?.length) return false;
     const index = lessons.findIndex((l) => l.id === lessonId);
     if (index < 0) return false;
     if (index === 0) return true;
-    const prevId = lessons[index - 1].id;
-    return isCompleted(prevId);
+    return isCompleted(lessons[index - 1].id);
   };
 
   const getNextLessonId = (currentLessonId, lessons) => {
@@ -75,28 +67,19 @@ export function useInteractiveProgress() {
     return lessons[index + 1].id;
   };
 
-  const resetProgress = () => {
-    state.value = defaultState();
-  };
+  const resetProgress = () => { state.value = defaultState(variant); };
 
   const exportProgress = () => JSON.stringify(state.value, null, 2);
 
   const importProgress = (jsonStringOrObject) => {
     try {
-      const data =
-        typeof jsonStringOrObject === 'string'
-          ? JSON.parse(jsonStringOrObject)
-          : jsonStringOrObject;
-      if (data.courseId !== COURSE_ID) return { ok: false, error: 'Falscher Kurs' };
+      const data = typeof jsonStringOrObject === 'string'
+        ? JSON.parse(jsonStringOrObject)
+        : jsonStringOrObject;
       const incoming = data.completedLessonIds || [];
       const existing = new Set(state.value.completedLessonIds || []);
-      for (const id of incoming) {
-        existing.add(id);
-      }
-      state.value = {
-        ...defaultState(),
-        completedLessonIds: [...existing],
-      };
+      for (const id of incoming) existing.add(id);
+      state.value = { ...defaultState(variant), completedLessonIds: [...existing] };
       return { ok: true };
     } catch (e) {
       return { ok: false, error: e.message };
@@ -114,7 +97,7 @@ export function useInteractiveProgress() {
     isLessonUnlocked,
     getNextLessonId,
     resetProgress,
-    save,
+    save: () => saveToStorage(variant, state.value),
     exportProgress,
     importProgress,
   };

@@ -1,0 +1,267 @@
+[
+  {
+    "id": "lektion-01",
+    "title": "Dein erstes Programm",
+    "file": "lektion-01.md",
+    "lessonSummary": "Erledigt. print() ist grundlegend – du wirst es in jedem Python-Skript wieder sehen.",
+    "tasks": [
+      {
+        "instruction": "Gib \"Hallo Welt\" aus.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Hallo Welt" }
+      },
+      {
+        "instruction": "Gib deinen Namen in einer Begrüßung aus, z.B. \"Hi, ich bin Alex!\".",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Hi" }
+      },
+      {
+        "instruction": "Gib drei verschiedene Zeilen mit drei print()-Aufrufen aus. Jede Zeile soll \"Zeile\" enthalten.",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "Zeile" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "title": "Variablen",
+    "file": "lektion-02.md",
+    "lessonSummary": "Gut. Variablen sind der Grundbaustein jedes Programms.",
+    "tasks": [
+      {
+        "instruction": "Speichere \"Python\" in einer Variable und gib sie aus.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Python" }
+      },
+      {
+        "instruction": "Speichere die Zahl 2024 in einer Variable und gib sie aus.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "2024" }
+      },
+      {
+        "instruction": "Erstelle zwei Variablen vorname und nachname und gib sie zusammen aus, z.B. \"Max Mustermann\".",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "Mustermann" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "title": "Zahlen und Rechnen",
+    "file": "lektion-03.md",
+    "lessonSummary": "Gut. Python als Taschenrechner – das wirst du ständig brauchen.",
+    "tasks": [
+      {
+        "instruction": "Berechne den Durchschnitt von [80, 92, 75, 88] – addiere alle und teile durch 4.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "83" }
+      },
+      {
+        "instruction": "Berechne 2 hoch 10 (2 ** 10) und gib das Ergebnis aus.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "1024" }
+      },
+      {
+        "instruction": "Berechne den Rest von 17 geteilt durch 5 mit dem %-Operator.",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "2" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-datentypen",
+    "title": "Datentypen",
+    "file": "lektion-datentypen.md",
+    "lessonSummary": "Gut. Typen sind in Python implizit – aber du solltest immer wissen, womit du arbeitest.",
+    "tasks": [
+      {
+        "instruction": "Gib den Typ von 3.14 aus.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "float" }
+      },
+      {
+        "instruction": "Konvertiere den String \"42\" in eine Zahl und gib ihren Typ aus.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "int" }
+      },
+      {
+        "instruction": "Was ergibt type(True)? Gib es aus.",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "bool" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "title": "Strings formatieren (f-Strings)",
+    "file": "lektion-04.md",
+    "lessonSummary": "Gut. f-Strings sind Standard in modernem Python-Code.",
+    "tasks": [
+      {
+        "instruction": "Erstelle Variablen name und alter und gib einen Satz aus: \"Alex ist 17 Jahre alt.\"",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Jahre alt" }
+      },
+      {
+        "instruction": "Erstelle eine Variable punkte = 850 und gib aus: \"Highscore: 850 Punkte.\"",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Highscore" }
+      },
+      {
+        "instruction": "Berechne 15% von 80 direkt im f-String und gib aus: \"15% von 80 = 12.0\"",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "12" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "title": "Bedingungen mit if",
+    "file": "lektion-05.md",
+    "lessonSummary": "Gut. Bedingungen steuern den Programmablauf – das Kernprinzip fast jeder Logik.",
+    "tasks": [
+      {
+        "instruction": "Gib \"Volljährig\" aus, wenn eine Variable alter mindestens 18 ist, sonst \"Minderjährig\".",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "jährig" }
+      },
+      {
+        "instruction": "Prüfe mit if/elif/else: Unter 13 → \"Kind\", 13–17 → \"Teenager\", 18+ → \"Erwachsener\".",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Teenager" }
+      },
+      {
+        "instruction": "Prüfe ob eine Zahl gerade ist (% 2 == 0). Gib \"gerade\" oder \"ungerade\" aus.",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "gerade" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "title": "Schleifen mit for",
+    "file": "lektion-06.md",
+    "lessonSummary": "Gut. Schleifen sind das Arbeitspferd für Wiederholungen in echten Programmen.",
+    "tasks": [
+      {
+        "instruction": "Iteriere über eine Liste [\"Python\", \"Java\", \"JavaScript\"] und gib jede Sprache aus.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Python" }
+      },
+      {
+        "instruction": "Gib alle geraden Zahlen von 0 bis 10 aus (range mit Schrittweite 2).",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "10" }
+      },
+      {
+        "instruction": "Gib die Zahlen 1–5 rückwärts aus (range mit negativem Schritt).",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "1" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "title": "Listen",
+    "file": "lektion-07.md",
+    "lessonSummary": "Gut. Listen sind eine der meistgenutzten Datenstrukturen in Python.",
+    "tasks": [
+      {
+        "instruction": "Erstelle eine Liste zahlen = [5, 3, 8, 1, 9] und gib die Länge aus.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "5" }
+      },
+      {
+        "instruction": "Sortiere die Liste zahlen und gib das erste Element aus (kleinste Zahl).",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "1" }
+      },
+      {
+        "instruction": "Füge die Zahl 4 zur Liste hinzu und gib die neue Länge aus.",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "6" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-08",
+    "title": "Funktionen",
+    "file": "lektion-08.md",
+    "lessonSummary": "Gut. Funktionen sind das wichtigste Werkzeug für strukturierten, wartbaren Code.",
+    "tasks": [
+      {
+        "instruction": "Definiere quadrat(n) das n² berechnet und mit print() ausgibt. Rufe sie mit 7 auf.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "49" }
+      },
+      {
+        "instruction": "Definiere celsius_zu_fahrenheit(c) – Formel: (c * 9/5) + 32. Rufe sie mit 0 auf.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "32" }
+      },
+      {
+        "instruction": "Definiere maximum(a, b), die die größere der zwei Zahlen ausgibt. Teste mit 15 und 23.",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "23" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-09",
+    "title": "Dictionaries",
+    "file": "lektion-09.md",
+    "lessonSummary": "Gut. Dictionaries sind in Python allgegenwärtig – JSON, APIs, Konfigurationen, alles Dictionaries.",
+    "tasks": [
+      {
+        "instruction": "Erstelle ein Dictionary mit \"sprache\": \"Python\" und \"version\": 3. Gib \"sprache\" aus.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Python" }
+      },
+      {
+        "instruction": "Füge dem Dictionary einen neuen Key \"beliebt\" mit Wert True hinzu und gib True aus.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "True" }
+      },
+      {
+        "instruction": "Iteriere über alle Key-Value-Paare mit .items() und gib sie aus.",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "sprache" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-10",
+    "title": "Übung: Alles zusammen",
+    "file": "lektion-10.md",
+    "lessonSummary": "Fertig. Du hast die Python-Grundlagen gemeistert. Ab in den 12-Wochen-Kurs!",
+    "nextCourseId": "python-12-wochen-grundkurs",
+    "tasks": [
+      {
+        "instruction": "Erstelle eine Liste zahlen = [3, 7, 2, 9, 1] und gib jede Zahl verdoppelt aus.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "14" }
+      },
+      {
+        "instruction": "Definiere summe(zahlen) die die Summe mit print() ausgibt. Rufe sie mit [10, 20, 30, 40] auf.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "100" }
+      },
+      {
+        "instruction": "Erstelle ein Dictionary {\"Alice\": 25, \"Bob\": 30, \"Charlie\": 20} und gib alle Namen mit einer for-Schleife aus.",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "Alice" }
+      }
+    ]
+  }
+]
