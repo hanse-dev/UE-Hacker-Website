@@ -23,12 +23,21 @@ src/
   router/        Vue Router Konfiguration
   composables/   Composition API Utilities
 content/
-  python-12-wochen-grundkurs/
+  python-12-wochen-grundkurs/        ← DE Notebooks
     woche-{1-12}/
-      scifi/     7 Notebooks pro Thema (0_glossar bis 6_boss)
-      pferde/
-      abenteuer/
+      abenteuer/ pferde/ scifi/      ← je 6 .ipynb pro Variante
+  python-12-wochen-grundkurs-en/     ← EN Notebooks (gleiche Struktur)
+    woche-{1-12}/
+      adventure/ horses/ scifi/
+  python-grundlagen-interaktiv-kinder/      ← Interaktiv, 8–12 Jahre
+  python-grundlagen-interaktiv-jugendliche/ ← Interaktiv, 13–17 Jahre
+public/
+  kurse.json                         ← Kursmetadaten (title, title_en, …)
+  rewards-manifest.json              ← Belohnungen DE
+  rewards-manifest-en.json           ← Belohnungen EN
 ```
+
+> Vollständige Dateistruktur und Zusammenhänge zwischen Sprachen/Varianten: @INHALTE.md
 
 ### Notebook-Struktur (pro Woche/Thema — 6 Dateien)
 `0_glossar` → `1_lektion` → `2_debug` → `3_missionen` → `5_boss` → `6_loesungen`
@@ -42,8 +51,7 @@ content/
 
 ## Aktiver Branch & Offene Aufgaben
 
-**Branch:** `language-toggle`
-**Gegenüber `main`:** Language-Toggle-Feature (DE/EN Umschalter in der App).
+**Branch:** `main`
 
 ### Nächste Schritte / Offene Punkte
 
