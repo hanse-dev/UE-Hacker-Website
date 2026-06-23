@@ -168,9 +168,11 @@ Struktur: `{ "python-12-wochen-grundkurs": { "abenteuer"|"pferde"|"scifi": { "1"
 ## 5. Interaktiver Einführungskurs: Varianten
 
 ```
-content/python-grundlagen-interaktiv/           ← Original (nicht mehr direkt genutzt)
-content/python-grundlagen-interaktiv-kinder/    ← Variante für 8–12 Jahre
-content/python-grundlagen-interaktiv-jugendliche/ ← Variante für 13–17 Jahre
+content/python-grundlagen-interaktiv/              ← Original (nicht mehr direkt genutzt)
+content/python-grundlagen-interaktiv-kinder/       ← DE, 8–12 Jahre
+content/python-grundlagen-interaktiv-jugendliche/  ← DE, 13–17 Jahre
+content/python-grundlagen-interaktiv-kinder-en/    ← EN, 8–12 Jahre
+content/python-grundlagen-interaktiv-jugendliche-en/ ← EN, 13–17 Jahre
 ```
 
 Jeder Ordner enthält dieselben Dateien:
@@ -213,8 +215,14 @@ Jeder Ordner enthält dieselben Dateien:
 - [ ] `content/{kurs-id}-en/beschreibung.md` (falls EN-Version existiert)
 
 ### Wenn du eine Lektion im interaktiven Kurs änderst:
-- [ ] `lektion-XX.md` in **allen drei** Ordnern anpassen (oder bewusst nur eine Variante)
-- [ ] `lessons.json` in dem jeweiligen Ordner (Aufgaben, Validierung, Templates)
+- [ ] `lektion-XX.md` in **allen fünf** Ordnern anpassen (oder bewusst nur bestimmte Varianten)
+- [ ] `lessons.json` im jeweiligen Ordner (Aufgaben, Validierung, Templates)
+
+Ordner-Mapping (immer paarweise anpassen):
+| DE | EN |
+|---|---|
+| `python-grundlagen-interaktiv-kinder/` | `python-grundlagen-interaktiv-kinder-en/` |
+| `python-grundlagen-interaktiv-jugendliche/` | `python-grundlagen-interaktiv-jugendliche-en/` |
 
 ### Wenn du eine neue Woche hinzufügst (12-Wochen-Kurs):
 - [ ] 18 DE-Notebooks (3 Varianten × 6 Typen)

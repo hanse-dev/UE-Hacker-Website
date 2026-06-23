@@ -1,0 +1,267 @@
+[
+  {
+    "id": "lektion-01",
+    "title": "Your First Program",
+    "file": "lektion-01.md",
+    "lessonSummary": "Done. print() is fundamental – you'll see it in every Python script.",
+    "tasks": [
+      {
+        "instruction": "Print \"Hello World\".",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Hello World" }
+      },
+      {
+        "instruction": "Print your name in a greeting, e.g. \"Hi, I'm Alex!\".",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Hi" }
+      },
+      {
+        "instruction": "Print three different lines using three print() calls. Each line should contain \"Line\".",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "Line" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "title": "Variables",
+    "file": "lektion-02.md",
+    "lessonSummary": "Good. Variables are the basic building block of every program.",
+    "tasks": [
+      {
+        "instruction": "Store \"Python\" in a variable and print it.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Python" }
+      },
+      {
+        "instruction": "Store the number 2024 in a variable and print it.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "2024" }
+      },
+      {
+        "instruction": "Create two variables first_name and last_name and print them together, e.g. \"Max Mustermann\".",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "Mustermann" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "title": "Numbers and Arithmetic",
+    "file": "lektion-03.md",
+    "lessonSummary": "Good. Python as a calculator – you'll need this constantly.",
+    "tasks": [
+      {
+        "instruction": "Calculate the average of [80, 92, 75, 88] – add all values and divide by 4.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "83" }
+      },
+      {
+        "instruction": "Calculate 2 to the power of 10 (2 ** 10) and print the result.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "1024" }
+      },
+      {
+        "instruction": "Calculate the remainder of 17 divided by 5 using the % operator.",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "2" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-datentypen",
+    "title": "Data Types",
+    "file": "lektion-datentypen.md",
+    "lessonSummary": "Good. Types are implicit in Python – but you should always know what you're working with.",
+    "tasks": [
+      {
+        "instruction": "Print the type of 3.14.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "float" }
+      },
+      {
+        "instruction": "Convert the string \"42\" to a number and print its type.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "int" }
+      },
+      {
+        "instruction": "What does type(True) return? Print it.",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "bool" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "title": "Formatting Strings (f-Strings)",
+    "file": "lektion-04.md",
+    "lessonSummary": "Good. f-Strings are standard in modern Python code.",
+    "tasks": [
+      {
+        "instruction": "Create variables name and age and print a sentence: \"Alex is 17 years old.\"",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "years old" }
+      },
+      {
+        "instruction": "Create a variable score = 850 and print: \"Highscore: 850 points.\"",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Highscore" }
+      },
+      {
+        "instruction": "Calculate 15% of 80 directly in the f-String and print: \"15% of 80 = 12.0\"",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "12" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "title": "Conditions with if",
+    "file": "lektion-05.md",
+    "lessonSummary": "Good. Conditions control program flow – the core principle behind almost every logic.",
+    "tasks": [
+      {
+        "instruction": "Print \"Adult\" if a variable age is at least 18, otherwise print \"Minor\".",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Adult" }
+      },
+      {
+        "instruction": "Check with if/elif/else: Under 13 → \"Child\", 13-17 → \"Teenager\", 18+ → \"Adult\".",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Teenager" }
+      },
+      {
+        "instruction": "Check if a number is even (% 2 == 0). Print \"even\" or \"odd\".",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "even" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "title": "Loops with for",
+    "file": "lektion-06.md",
+    "lessonSummary": "Good. Loops are the workhorse for repetition in real programs.",
+    "tasks": [
+      {
+        "instruction": "Iterate over a list [\"Python\", \"Java\", \"JavaScript\"] and print each language.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Python" }
+      },
+      {
+        "instruction": "Print all even numbers from 0 to 10 (range with step 2).",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "10" }
+      },
+      {
+        "instruction": "Print the numbers 1-5 in reverse (range with negative step).",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "1" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "title": "Lists",
+    "file": "lektion-07.md",
+    "lessonSummary": "Good. Lists are one of the most frequently used data structures in Python.",
+    "tasks": [
+      {
+        "instruction": "Create a list numbers = [5, 3, 8, 1, 9] and print its length.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "5" }
+      },
+      {
+        "instruction": "Sort the list numbers and print the first element (smallest number).",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "1" }
+      },
+      {
+        "instruction": "Add the number 4 to the list and print the new length.",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "6" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-08",
+    "title": "Functions",
+    "file": "lektion-08.md",
+    "lessonSummary": "Good. Functions are the most important tool for structured, maintainable code.",
+    "tasks": [
+      {
+        "instruction": "Define square(n) that calculates n² and prints it with print(). Call it with 7.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "49" }
+      },
+      {
+        "instruction": "Define celsius_to_fahrenheit(c) – formula: (c * 9/5) + 32. Call it with 0.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "32" }
+      },
+      {
+        "instruction": "Define maximum(a, b) that prints the larger of the two numbers. Test with 15 and 23.",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "23" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-09",
+    "title": "Dictionaries",
+    "file": "lektion-09.md",
+    "lessonSummary": "Good. Dictionaries are everywhere in Python – JSON, APIs, configs, all dictionaries.",
+    "tasks": [
+      {
+        "instruction": "Create a dictionary with \"language\": \"Python\" and \"version\": 3. Print the value of \"language\".",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "Python" }
+      },
+      {
+        "instruction": "Add a new key \"popular\" with value True to the dictionary and print True.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "True" }
+      },
+      {
+        "instruction": "Iterate over all key-value pairs using .items() and print them.",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "language" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-10",
+    "title": "Exercise: Putting It All Together",
+    "file": "lektion-10.md",
+    "lessonSummary": "Done. You've mastered the Python basics. Time for the 12-week course!",
+    "nextCourseId": "python-12-wochen-grundkurs",
+    "tasks": [
+      {
+        "instruction": "Create a list numbers = [3, 7, 2, 9, 1] and print each number doubled.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "14" }
+      },
+      {
+        "instruction": "Define total(numbers) that prints the sum with print(). Call it with [10, 20, 30, 40].",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "100" }
+      },
+      {
+        "instruction": "Create a dictionary {\"Alice\": 25, \"Bob\": 30, \"Charlie\": 20} and print all names using a for loop.",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "Alice" }
+      }
+    ]
+  }
+]

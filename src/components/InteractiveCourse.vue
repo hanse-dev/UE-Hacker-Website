@@ -2,45 +2,45 @@
   <div class="interactive-course">
     <!-- Variant selector -->
     <div v-if="!variant" class="variant-selector">
-      <h2>Für wen ist dieser Kurs?</h2>
-      <p class="variant-intro">Wähle deine Version – du kannst später wechseln.</p>
+      <h2>{{ lang === 'en' ? 'Who is this course for?' : 'Für wen ist dieser Kurs?' }}</h2>
+      <p class="variant-intro">{{ lang === 'en' ? 'Choose your version – you can switch later.' : 'Wähle deine Version – du kannst später wechseln.' }}</p>
       <div class="variant-cards">
         <button class="variant-card" @click="selectVariant('kinder')">
           <span class="variant-icon">🌟</span>
-          <strong>Für Kinder</strong>
-          <span class="variant-age">8–12 Jahre</span>
+          <strong>{{ lang === 'en' ? 'For Kids' : 'Für Kinder' }}</strong>
+          <span class="variant-age">{{ lang === 'en' ? '8–12 years' : '8–12 Jahre' }}</span>
           <ul class="variant-features">
-            <li>Einfache Erklärungen</li>
-            <li>Tiere &amp; Spielbeispiele</li>
-            <li>Code-Vorlagen zum Ausfüllen</li>
+            <li>{{ lang === 'en' ? 'Simple explanations' : 'Einfache Erklärungen' }}</li>
+            <li>{{ lang === 'en' ? 'Animals &amp; game examples' : 'Tiere &amp; Spielbeispiele' }}</li>
+            <li>{{ lang === 'en' ? 'Code templates to fill in' : 'Code-Vorlagen zum Ausfüllen' }}</li>
           </ul>
         </button>
         <button class="variant-card" @click="selectVariant('jugendliche')">
           <span class="variant-icon">🚀</span>
-          <strong>Für Jugendliche</strong>
-          <span class="variant-age">13–17 Jahre</span>
+          <strong>{{ lang === 'en' ? 'For Teenagers' : 'Für Jugendliche' }}</strong>
+          <span class="variant-age">{{ lang === 'en' ? '13–17 years' : '13–17 Jahre' }}</span>
           <ul class="variant-features">
-            <li>Direkter Einstieg</li>
-            <li>Alltags- &amp; App-Beispiele</li>
-            <li>Bonus-Aufgaben pro Lektion</li>
+            <li>{{ lang === 'en' ? 'Direct approach' : 'Direkter Einstieg' }}</li>
+            <li>{{ lang === 'en' ? 'Everyday &amp; app examples' : 'Alltags- &amp; App-Beispiele' }}</li>
+            <li>{{ lang === 'en' ? 'Bonus tasks per lesson' : 'Bonus-Aufgaben pro Lektion' }}</li>
           </ul>
         </button>
       </div>
     </div>
 
     <template v-else>
-      <div v-if="loading" class="loading">Lade Lektionen...</div>
+      <div v-if="loading" class="loading">{{ lang === 'en' ? 'Loading lessons...' : 'Lade Lektionen...' }}</div>
       <div v-else-if="error" class="error">{{ error }}</div>
 
       <template v-else>
         <div class="course-layout">
           <div class="progress-bar-full">
             <div class="progress-info">
-              <span>Lektion {{ currentIndex + 1 }} von {{ lessons.length }}</span>
+              <span>{{ lang === 'en' ? 'Lesson' : 'Lektion' }} {{ currentIndex + 1 }} {{ lang === 'en' ? 'of' : 'von' }} {{ lessons.length }}</span>
               <div class="progress-info-right">
-                <span class="progress-count">{{ completedCount }} abgeschlossen</span>
+                <span class="progress-count">{{ completedCount }} {{ lang === 'en' ? 'completed' : 'abgeschlossen' }}</span>
                 <button class="btn-sidebar-toggle" @click="sidebarOpen = !sidebarOpen">
-                  {{ sidebarOpen ? '✕ Schließen' : '☰ Lektionen' }}
+                  {{ sidebarOpen ? (lang === 'en' ? '✕ Close' : '✕ Schließen') : (lang === 'en' ? '☰ Lessons' : '☰ Lektionen') }}
                 </button>
               </div>
             </div>
@@ -50,7 +50,7 @@
           </div>
 
           <aside class="lessons-sidebar" :class="{ 'sidebar-mobile-open': sidebarOpen }">
-            <h3>Lektionen</h3>
+            <h3>{{ lang === 'en' ? 'Lessons' : 'Lektionen' }}</h3>
             <ul class="lessons-list">
               <li
                 v-for="(lesson, idx) in lessons"
@@ -69,19 +69,19 @@
             </ul>
 
             <div class="sidebar-actions">
-              <button @click="exportProgress" class="btn-export">Fortschritt exportieren</button>
+              <button @click="exportProgress" class="btn-export">{{ lang === 'en' ? 'Export progress' : 'Fortschritt exportieren' }}</button>
               <label class="btn-import">
-                Importieren
+                {{ lang === 'en' ? 'Import' : 'Importieren' }}
                 <input type="file" accept=".json" class="file-input" @change="onImportFile" />
               </label>
-              <button @click="switchVariant" class="btn-switch">Version wechseln</button>
+              <button @click="switchVariant" class="btn-switch">{{ lang === 'en' ? 'Switch version' : 'Version wechseln' }}</button>
             </div>
           </aside>
 
           <main class="lesson-main">
             <div v-if="!currentLesson" class="no-lesson">
-              <p>Wähle eine Lektion aus der Liste.</p>
-              <p v-if="lessons.length">Starte mit Lektion 1!</p>
+              <p>{{ lang === 'en' ? 'Select a lesson from the list.' : 'Wähle eine Lektion aus der Liste.' }}</p>
+              <p v-if="lessons.length">{{ lang === 'en' ? 'Start with Lesson 1!' : 'Starte mit Lektion 1!' }}</p>
             </div>
             <LessonView
               v-else
@@ -101,18 +101,23 @@
 import { ref, computed, watch, onMounted } from 'vue';
 import LessonView from './LessonView.vue';
 import { useInteractiveProgress } from '../composables/useInteractiveProgress';
+import { useLanguage } from '../composables/useLanguage';
 
 const VARIANT_STORAGE_KEY = 'ue-hacker-interactive-variant';
 
 const VARIANT_CONTENT_PATH = {
-  kinder:       'python-grundlagen-interaktiv-kinder',
-  jugendliche:  'python-grundlagen-interaktiv-jugendliche',
+  kinder:             'python-grundlagen-interaktiv-kinder',
+  jugendliche:        'python-grundlagen-interaktiv-jugendliche',
+  'kinder-en':        'python-grundlagen-interaktiv-kinder-en',
+  'jugendliche-en':   'python-grundlagen-interaktiv-jugendliche-en',
 };
 
 const lessonJsonModules = import.meta.glob([
   '../../content/python-grundlagen-interaktiv/lessons.json',
   '../../content/python-grundlagen-interaktiv-kinder/lessons.json',
   '../../content/python-grundlagen-interaktiv-jugendliche/lessons.json',
+  '../../content/python-grundlagen-interaktiv-kinder-en/lessons.json',
+  '../../content/python-grundlagen-interaktiv-jugendliche-en/lessons.json',
 ]);
 
 export default {
@@ -122,6 +127,7 @@ export default {
     contentPath: { type: String, default: 'python-grundlagen-interaktiv' },
   },
   setup() {
+    const { lang } = useLanguage();
     const variant = ref(localStorage.getItem(VARIANT_STORAGE_KEY) || null);
     const lessons = ref([]);
     const loading = ref(false);
@@ -129,9 +135,11 @@ export default {
     const currentLessonId = ref(null);
     const sidebarOpen = ref(false);
 
-    const contentPathForVariant = computed(() =>
-      variant.value ? (VARIANT_CONTENT_PATH[variant.value] || 'python-grundlagen-interaktiv') : 'python-grundlagen-interaktiv'
-    );
+    const contentPathForVariant = computed(() => {
+      if (!variant.value) return 'python-grundlagen-interaktiv';
+      const key = lang.value === 'en' ? `${variant.value}-en` : variant.value;
+      return VARIANT_CONTENT_PATH[key] || VARIANT_CONTENT_PATH[variant.value] || 'python-grundlagen-interaktiv';
+    });
 
     // Pre-create both progress instances — composables must not be called inside computed()
     const progressKinder      = useInteractiveProgress('kinder');
@@ -173,7 +181,7 @@ export default {
         }
       } catch (e) {
         console.error('Could not load lessons:', e);
-        error.value = 'Lektionen konnten nicht geladen werden.';
+        error.value = lang.value === 'en' ? 'Could not load lessons.' : 'Lektionen konnten nicht geladen werden.';
       } finally {
         loading.value = false;
       }
@@ -222,8 +230,8 @@ export default {
       const reader = new FileReader();
       reader.onload = () => {
         const result = activeProgress.value.importProgress(reader.result);
-        if (result.ok) alert('Fortschritt wurde importiert.');
-        else alert('Import fehlgeschlagen: ' + (result.error || 'Unbekannter Fehler'));
+        if (result.ok) alert(lang.value === 'en' ? 'Progress imported.' : 'Fortschritt wurde importiert.');
+        else alert((lang.value === 'en' ? 'Import failed: ' : 'Import fehlgeschlagen: ') + (result.error || (lang.value === 'en' ? 'Unknown error' : 'Unbekannter Fehler')));
       };
       reader.readAsText(file, 'UTF-8');
       e.target.value = '';
@@ -231,8 +239,13 @@ export default {
 
     onMounted(loadLessons);
     watch(variant, loadLessons);
+    watch(lang, () => {
+      currentLessonId.value = null;
+      loadLessons();
+    });
 
     return {
+      lang,
       variant,
       lessons,
       loading,

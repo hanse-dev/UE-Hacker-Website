@@ -1,20 +1,20 @@
 <template>
   <div class="lesson-view">
     <div class="lesson-content">
-      <p v-if="!lessonContent" class="lesson-loading">Lektion wird geladen...</p>
+      <p v-if="!lessonContent" class="lesson-loading">{{ lang === 'en' ? 'Loading lesson...' : 'Lektion wird geladen...' }}</p>
       <div v-else v-html="lessonContent"></div>
     </div>
 
     <div class="lesson-editor-section">
-      <p class="editor-hint">Python wird beim Öffnen automatisch geladen (~30 Sek.). Schreibe deinen Code und klicke auf „Prüfen", sobald „Python bereit" angezeigt wird.</p>
+      <p class="editor-hint">{{ lang === 'en' ? 'Python loads automatically when you open the page (~30 sec). Write your code and click "Check" once "Python ready" appears.' : 'Python wird beim Öffnen automatisch geladen (~30 Sek.). Schreibe deinen Code und klicke auf „Prüfen", sobald „Python bereit" angezeigt wird.' }}</p>
       <div class="editor-header">
-        <span class="editor-label">Dein Code</span>
+        <span class="editor-label">{{ lang === 'en' ? 'Your Code' : 'Dein Code' }}</span>
         <button
           @click="initializeKernel"
           :disabled="kernelReady"
           class="btn-kernel"
         >
-          {{ kernelReady ? '✓ Python bereit' : 'Python initialisieren' }}
+          {{ kernelReady ? (lang === 'en' ? '✓ Python ready' : '✓ Python bereit') : (lang === 'en' ? 'Initialize Python' : 'Python initialisieren') }}
         </button>
       </div>
 
@@ -24,16 +24,16 @@
             <span v-if="completedTasks.has(idx)" class="task-done">✓</span>
             <span v-else class="task-pending">○</span>
             <span v-if="task.isBonus" class="task-bonus-badge">Bonus</span>
-            <span v-html="instructionWithGlossary(task.instruction || 'Aufgabe ' + (idx + 1))"></span>
-            <span v-if="completedTasks.has(idx)" class="task-status-label">(erledigt)</span>
-            <span v-else-if="!completedTasks.has(idx) && completedTasks.size > 0" class="task-status-label">(noch offen)</span>
+            <span v-html="instructionWithGlossary(task.instruction || (lang === 'en' ? 'Task ' : 'Aufgabe ') + (idx + 1))"></span>
+            <span v-if="completedTasks.has(idx)" class="task-status-label">{{ lang === 'en' ? '(done)' : '(erledigt)' }}</span>
+            <span v-else-if="!completedTasks.has(idx) && completedTasks.size > 0" class="task-status-label">{{ lang === 'en' ? '(pending)' : '(noch offen)' }}</span>
           </p>
           <textarea
             v-model="taskCodes[idx]"
             class="code-editor"
             spellcheck="false"
             rows="4"
-            :placeholder="'Aufgabe ' + (idx + 1) + '...'"
+            :placeholder="(lang === 'en' ? 'Task ' : 'Aufgabe ') + (idx + 1) + '...'"
           ></textarea>
           <div class="editor-actions">
             <button
@@ -41,18 +41,18 @@
               :disabled="!kernelReady || checking"
               class="btn-run"
             >
-              Ausführen
+              {{ lang === 'en' ? 'Run' : 'Ausführen' }}
             </button>
             <button
               @click="checkTask(idx)"
               :disabled="!kernelReady || checking"
               class="btn-check"
             >
-              {{ checking ? 'Wird geprüft...' : 'Prüfen' }}
+              {{ checking ? (lang === 'en' ? 'Checking...' : 'Wird geprüft...') : (lang === 'en' ? 'Check' : 'Prüfen') }}
             </button>
           </div>
           <div v-if="taskOutputs[idx] !== null" class="output-display">
-            <strong>Ausgabe:</strong>
+            <strong>{{ lang === 'en' ? 'Output:' : 'Ausgabe:' }}</strong>
             <pre class="output-content">{{ taskOutputs[idx] }}</pre>
           </div>
           <div v-if="taskFeedback[idx]" :class="['feedback', taskFeedback[idx].success ? 'feedback-success' : 'feedback-error']">
@@ -68,9 +68,9 @@
           :to="'/kurs/' + lesson.nextCourseId"
           class="btn-next"
         >
-          Zum 12-Wochen Python Grundkurs
+          {{ lang === 'en' ? 'Go to the 12-Week Python Course' : 'Zum 12-Wochen Python Grundkurs' }}
         </router-link>
-        <button v-else @click="goToNext" class="btn-next">Weiter zur nächsten Lektion</button>
+        <button v-else @click="goToNext" class="btn-next">{{ lang === 'en' ? 'Next lesson' : 'Weiter zur nächsten Lektion' }}</button>
       </div>
 
       <div v-if="kernelStatus" class="kernel-status">
@@ -85,6 +85,7 @@ import { ref, watch, onMounted, onBeforeUnmount, computed } from 'vue';
 import { marked } from 'marked';
 import { usePyodide } from '../composables/usePyodide';
 import { useInteractiveProgress } from '../composables/useInteractiveProgress';
+import { useLanguage } from '../composables/useLanguage';
 
 export default {
   name: 'LessonView',
@@ -104,6 +105,7 @@ export default {
   },
   emits: ['completed', 'next'],
   setup(props, { emit }) {
+    const { lang } = useLanguage();
     const { kernelReady, kernelStatus, initializeKernel, runPython } = usePyodide();
     const { markCompleted, isLessonUnlocked } = useInteractiveProgress(props.variant);
 
@@ -130,7 +132,7 @@ export default {
       return t.length > 0 && completedTasks.value.size === t.length;
     });
 
-    const lessonSummary = computed(() => props.lesson?.lessonSummary || 'Super, du hast diese Lektion abgeschlossen!');
+    const lessonSummary = computed(() => props.lesson?.lessonSummary || (lang.value === 'en' ? 'Great, you completed this lesson!' : 'Super, du hast diese Lektion abgeschlossen!'));
 
     const taskCodes = ref([]);
     const taskOutputs = ref([]);
@@ -281,9 +283,9 @@ export default {
       if (!isMounted.value) return;
 
       if (result.success) {
-        taskOutputs.value[idx] = result.output || '(keine Ausgabe)';
+        taskOutputs.value[idx] = result.output || (lang.value === 'en' ? '(no output)' : '(keine Ausgabe)');
       } else {
-        taskOutputs.value[idx] = 'Fehler: ' + (result.error || 'Unbekannter Fehler');
+        taskOutputs.value[idx] = (lang.value === 'en' ? 'Error: ' : 'Fehler: ') + (result.error || (lang.value === 'en' ? 'Unknown error' : 'Unbekannter Fehler'));
       }
       checking.value = false;
     };
@@ -297,13 +299,11 @@ export default {
       if (!isMounted.value) return;
 
       if (result.success) {
-        taskOutputs.value[idx] = result.output || '(keine Ausgabe)';
+        taskOutputs.value[idx] = result.output || (lang.value === 'en' ? '(no output)' : '(keine Ausgabe)');
       } else {
-        taskOutputs.value[idx] = 'Fehler: ' + (result.error || 'Unbekannter Fehler');
-        taskFeedback.value[idx] = {
-          success: false,
-          message: 'Fehler: ' + (result.error || 'Unbekannter Fehler'),
-        };
+        const errMsg = (lang.value === 'en' ? 'Error: ' : 'Fehler: ') + (result.error || (lang.value === 'en' ? 'Unknown error' : 'Unbekannter Fehler'));
+        taskOutputs.value[idx] = errMsg;
+        taskFeedback.value[idx] = { success: false, message: errMsg };
         checking.value = false;
         return;
       }
@@ -319,22 +319,23 @@ export default {
           markCompleted(props.lesson.id);
           taskFeedback.value[idx] = {
             success: true,
-            message: 'Richtig! Du hast alle Aufgaben abgeschlossen.',
+            message: lang.value === 'en' ? 'Correct! You completed all tasks.' : 'Richtig! Du hast alle Aufgaben abgeschlossen.',
           };
         } else {
           const remaining = total - done;
           taskFeedback.value[idx] = {
             success: true,
-            message: 'Richtig! Aufgabe ' + (idx + 1) + ' erledigt. Noch ' + remaining + ' Aufgabe(n) zu lösen.',
+            message: lang.value === 'en'
+              ? `Correct! Task ${idx + 1} done. ${remaining} task(s) remaining.`
+              : `Richtig! Aufgabe ${idx + 1} erledigt. Noch ${remaining} Aufgabe(n) zu lösen.`,
           };
         }
       } else {
         taskFeedback.value[idx] = {
           success: false,
-          message:
-            'Die Ausgabe stimmt noch nicht. Erwartet wurde etwas mit: "' +
-            (validation?.expected || '') +
-            '"',
+          message: lang.value === 'en'
+            ? `Output doesn't match yet. Expected something containing: "${validation?.expected || ''}"`
+            : `Die Ausgabe stimmt noch nicht. Erwartet wurde etwas mit: "${validation?.expected || ''}"`,
         };
       }
 
@@ -346,6 +347,7 @@ export default {
     };
 
     return {
+      lang,
       lessonContent,
       checking,
       tasks,

@@ -1,0 +1,201 @@
+[
+  {
+    "id": "lektion-01",
+    "title": "Your First Program 🎉",
+    "file": "lektion-01.md",
+    "lessonSummary": "Amazing, that was awesome! 🌟 You can now use print() to show text on the screen!",
+    "tasks": [
+      {
+        "instruction": "Say hello to the world! Print \"Hello World\".",
+        "codeTemplate": "print(\"___\")",
+        "validation": { "type": "output_contains", "expected": "Hello World" }
+      },
+      {
+        "instruction": "Print \"I am learning Python!\".",
+        "codeTemplate": "print(\"___\")",
+        "validation": { "type": "output_contains", "expected": "I am learning Python" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "title": "Variables – Your Memory 🧠",
+    "file": "lektion-02.md",
+    "lessonSummary": "Great job! 🎉 You learned how to store values in variables. Like a treasure chest!",
+    "tasks": [
+      {
+        "instruction": "Store \"Dragon\" in a variable called animal and print it.",
+        "codeTemplate": "animal = \"___\"\nprint(animal)",
+        "validation": { "type": "output_contains", "expected": "Dragon" }
+      },
+      {
+        "instruction": "Store the number 100 in a variable called points and print it.",
+        "codeTemplate": "points = ___\nprint(points)",
+        "validation": { "type": "output_contains", "expected": "100" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "title": "Numbers and Maths 🔢",
+    "file": "lektion-03.md",
+    "lessonSummary": "Excellent! 🧮 You can now use Python as a calculator!",
+    "tasks": [
+      {
+        "instruction": "A unicorn has 10 magic points, a dragon has 7. Print their sum.",
+        "codeTemplate": "unicorn = 10\ndragon = 7\nprint(___ + ___)",
+        "validation": { "type": "output_contains", "expected": "17" }
+      },
+      {
+        "instruction": "You have 6 magic potions and get 4 more. Print the product (6 * 4).",
+        "codeTemplate": "print(___ * ___)",
+        "validation": { "type": "output_contains", "expected": "24" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-datentypen",
+    "title": "Data Types – What's Inside? 🔍",
+    "file": "lektion-datentypen.md",
+    "lessonSummary": "Brilliant! 🔍 You now know the most important data types in Python!",
+    "tasks": [
+      {
+        "instruction": "Find out what type the number 7 is. Use type().",
+        "codeTemplate": "print(type(___))",
+        "validation": { "type": "output_contains", "expected": "int" }
+      },
+      {
+        "instruction": "Find out what type \"magic spell\" is.",
+        "codeTemplate": "print(type(\"___\"))",
+        "validation": { "type": "output_contains", "expected": "str" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "title": "f-Strings – Mixing Text and Variables ✨",
+    "file": "lektion-04.md",
+    "lessonSummary": "Done it! ✨ You can now elegantly include variables in your text!",
+    "tasks": [
+      {
+        "instruction": "Create a variable animal with your favorite animal and print \"My favorite animal is a ___!\".",
+        "codeTemplate": "animal = \"___\"\nprint(f\"My favorite animal is a {___}!\")",
+        "validation": { "type": "output_contains", "expected": "favorite animal" }
+      },
+      {
+        "instruction": "Create a variable age with your age and print \"I am ___ years old.\".",
+        "codeTemplate": "age = ___\nprint(f\"I am {___} years old.\")",
+        "validation": { "type": "output_contains", "expected": "years old" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "title": "Decisions with if 🤔",
+    "file": "lektion-05.md",
+    "lessonSummary": "Excellent! 🤔 You can now let Python make decisions!",
+    "tasks": [
+      {
+        "instruction": "A dragon has 80 health points. If it has more than 50, print \"The dragon is strong!\".",
+        "codeTemplate": "health = 80\nif health > ___:\n    print(\"___\")",
+        "validation": { "type": "output_contains", "expected": "strong" }
+      },
+      {
+        "instruction": "If an animal is \"Dog\", print \"Woof!\", otherwise print \"Meow!\".",
+        "codeTemplate": "animal = \"Dog\"\nif animal == \"Dog\":\n    print(\"___\")\nelse:\n    print(\"___\")",
+        "validation": { "type": "output_contains", "expected": "Woof" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "title": "Loops with for 🔄",
+    "file": "lektion-06.md",
+    "lessonSummary": "Perfect! 🔄 You can now repeat code with for loops!",
+    "tasks": [
+      {
+        "instruction": "Feed your dragon 3 times! Print \"Nom nom!\" three times (using range).",
+        "codeTemplate": "for i in range(___):\n    print(\"___\")",
+        "validation": { "type": "output_contains", "expected": "Nom" }
+      },
+      {
+        "instruction": "Print the numbers 0, 1 and 2 (use range and the loop variable).",
+        "codeTemplate": "for i in range(___):\n    print(___)",
+        "validation": { "type": "output_contains", "expected": "0" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "title": "Lists – Many Values at Once 📋",
+    "file": "lektion-07.md",
+    "lessonSummary": "Super! 📋 You can now store multiple values in a list!",
+    "tasks": [
+      {
+        "instruction": "Create a list with \"Dragon\", \"Unicorn\", \"Phoenix\" and print the first animal.",
+        "codeTemplate": "animals = [\"___\", \"___\", \"___\"]\nprint(animals[___])",
+        "validation": { "type": "output_contains", "expected": "Dragon" }
+      },
+      {
+        "instruction": "Print the last animal from your list (index -1).",
+        "codeTemplate": "print(animals[___])",
+        "validation": { "type": "output_contains", "expected": "Phoenix" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-08",
+    "title": "Functions – Your Own Magic Spell 🪄",
+    "file": "lektion-08.md",
+    "lessonSummary": "Awesome! 🪄 You can now create your own magical functions!",
+    "tasks": [
+      {
+        "instruction": "Define a function cast_spell() that prints \"Abracadabra!\", and call it.",
+        "codeTemplate": "def cast_spell():\n    print(\"___\")\n\ncast_spell()",
+        "validation": { "type": "output_contains", "expected": "Abracadabra" }
+      },
+      {
+        "instruction": "Define a function double(number) that doubles a number and prints it. Call it with 6.",
+        "codeTemplate": "def double(number):\n    print(___ * 2)\n\ndouble(___)",
+        "validation": { "type": "output_contains", "expected": "12" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-09",
+    "title": "Dictionaries – The Animal Encyclopedia 📖",
+    "file": "lektion-09.md",
+    "lessonSummary": "Very good! 📖 You can now store key-value pairs in dictionaries!",
+    "tasks": [
+      {
+        "instruction": "Create a dictionary with \"Dog\" → \"barks\" and \"Cat\" → \"meows\". Print what the dog does.",
+        "codeTemplate": "sounds = {\"Dog\": \"___\", \"Cat\": \"___\"}\nprint(sounds[\"___\"])",
+        "validation": { "type": "output_contains", "expected": "barks" }
+      },
+      {
+        "instruction": "Print what the cat does.",
+        "codeTemplate": "print(sounds[\"___\"])",
+        "validation": { "type": "output_contains", "expected": "meows" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-10",
+    "title": "Mini Challenge: Putting It All Together! 🏆",
+    "file": "lektion-10.md",
+    "lessonSummary": "Fantastic! 🏆 You have mastered all the Python basics! You are ready for the 12-week course!",
+    "nextCourseId": "python-12-wochen-grundkurs",
+    "tasks": [
+      {
+        "instruction": "Create a list [2, 4, 6] and print each number doubled (using a for loop).",
+        "codeTemplate": "numbers = [2, 4, 6]\nfor n in numbers:\n    print(___ * 2)",
+        "validation": { "type": "output_contains", "expected": "4" }
+      },
+      {
+        "instruction": "Create a function total(numbers) that prints the sum of a list. Call it with [1, 2, 3, 4, 5].",
+        "codeTemplate": "def total(numbers):\n    print(sum(___))\n\ntotal([1, 2, 3, 4, 5])",
+        "validation": { "type": "output_contains", "expected": "15" }
+      }
+    ]
+  }
+]
