@@ -113,7 +113,6 @@ const VARIANT_CONTENT_PATH = {
 };
 
 const lessonJsonModules = import.meta.glob([
-  '../../content/python-grundlagen-interaktiv/lessons.json',
   '../../content/python-grundlagen-interaktiv-kinder/lessons.json',
   '../../content/python-grundlagen-interaktiv-jugendliche/lessons.json',
   '../../content/python-grundlagen-interaktiv-kinder-en/lessons.json',
@@ -123,9 +122,6 @@ const lessonJsonModules = import.meta.glob([
 export default {
   name: 'InteractiveCourse',
   components: { LessonView },
-  props: {
-    contentPath: { type: String, default: 'python-grundlagen-interaktiv' },
-  },
   setup() {
     const { lang } = useLanguage();
     const variant = ref(localStorage.getItem(VARIANT_STORAGE_KEY) || null);
@@ -136,9 +132,9 @@ export default {
     const sidebarOpen = ref(false);
 
     const contentPathForVariant = computed(() => {
-      if (!variant.value) return 'python-grundlagen-interaktiv';
+      if (!variant.value) return null;
       const key = lang.value === 'en' ? `${variant.value}-en` : variant.value;
-      return VARIANT_CONTENT_PATH[key] || VARIANT_CONTENT_PATH[variant.value] || 'python-grundlagen-interaktiv';
+      return VARIANT_CONTENT_PATH[key] || VARIANT_CONTENT_PATH[variant.value] || null;
     });
 
     // Pre-create both progress instances — composables must not be called inside computed()

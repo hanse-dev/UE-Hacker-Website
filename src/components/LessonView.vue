@@ -158,18 +158,20 @@ export default {
 
     const allLessonModules = import.meta.glob(
       [
-        '../../content/python-grundlagen-interaktiv/*.md',
         '../../content/python-grundlagen-interaktiv-kinder/*.md',
         '../../content/python-grundlagen-interaktiv-jugendliche/*.md',
+        '../../content/python-grundlagen-interaktiv-kinder-en/*.md',
+        '../../content/python-grundlagen-interaktiv-jugendliche-en/*.md',
       ],
       { query: '?raw', import: 'default' }
     );
 
     const allGlossaryModules = import.meta.glob(
       [
-        '../../content/python-grundlagen-interaktiv/glossary.json',
         '../../content/python-grundlagen-interaktiv-kinder/glossary.json',
         '../../content/python-grundlagen-interaktiv-jugendliche/glossary.json',
+        '../../content/python-grundlagen-interaktiv-kinder-en/glossary.json',
+        '../../content/python-grundlagen-interaktiv-jugendliche-en/glossary.json',
       ],
     );
 

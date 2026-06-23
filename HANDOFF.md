@@ -1,7 +1,7 @@
 # Handoff-Notizen (für den nächsten Rechner)
 
 > **Zuletzt aktualisiert:** 2026-06-23
-> **Letzter Commit:** feat: translate interactive course to English (kinder-en + jugendliche-en)
+> **Letzter Commit:** chore: clean up python-grundlagen-interaktiv folder + translate beschreibung.md
 
 **Was zuletzt gemacht wurde:**
 - Interaktiven Einführungskurs auf Englisch übersetzt — 2 neue Inhaltspfade:

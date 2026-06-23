@@ -48,7 +48,8 @@ export async function loadCourseData(courseId, lang = 'de') {
   if (course) {
     try {
       const enContentPath = `${course.contentPath}-en`;
-      const descPath = (lang === 'en' && courseId === 'python-12-wochen-grundkurs')
+      const hasEnDescription = ['python-12-wochen-grundkurs', 'python-grundlagen-interaktiv'];
+      const descPath = (lang === 'en' && hasEnDescription.includes(courseId))
         ? enContentPath
         : course.contentPath;
       const descModule = await import(`../../content/${descPath}/beschreibung.md?raw`);
