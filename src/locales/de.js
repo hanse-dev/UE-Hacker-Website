@@ -53,9 +53,11 @@ export default {
   // ── Week section ──────────────────────────────────────────────────────────
   'week.label':       'Woche',
   'week.noNotebook':  'Kein Notebook für diesen Bereich verfügbar.',
-  'week.downloads':   'Downloads',
-  'week.download.md': 'Als Markdown herunterladen',
-  'week.download.nb': 'Als Jupyter Notebook herunterladen',
+  'week.downloads':        'Downloads',
+  'week.download.md':      'Als Markdown herunterladen',
+  'week.download.nb':      'Als Jupyter Notebook herunterladen',
+  'week.download.week':    '📦 Woche {n} herunterladen',
+  'week.download.week.hint': 'Alle Notebooks dieser Woche (Abenteuer, Pferde, Sci-Fi) als ZIP',
 
   // ── Progress widget ───────────────────────────────────────────────────────
   'progress.title':  '🏆 Deine gesammelten Belohnungen',
