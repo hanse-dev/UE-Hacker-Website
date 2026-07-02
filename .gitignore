@@ -126,3 +126,22 @@ mein-fortschritt.json
 *.sw?
 src/assets/.DS_Store
 .DS_Store
+**/.DS_Store
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+
+# Jupyter / Python
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Generierte Download-Pakete (scripts/pack_notebooks.py)
+public/**/*.zip
+
+# Lokale Backups
+_backups/
