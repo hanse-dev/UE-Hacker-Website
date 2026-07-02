@@ -112,4 +112,6 @@ export default {
   'jupyter.loadError': 'Notebook konnte nicht geladen werden',
   'jupyter.initError': 'Python-Start fehlgeschlagen – Seite neu laden.',
   'jupyter.fetchError':'Fehler beim Laden: ',
+  'jupyter.noOutput':  '(keine Ausgabe)',
+  'jupyter.unknownError': 'Unbekannter Fehler',
 };

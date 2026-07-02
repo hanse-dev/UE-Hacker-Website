@@ -40,7 +40,23 @@
             v-model="cell.source"
             :rows="Math.max(3, cell.source.split('\n').length)"
           ></textarea>
-          <div :id="`output-${index}`" class="cell-output"></div>
+          <div v-if="cellOutputs[index]" class="cell-output">
+            <div v-if="cellOutputs[index].status === 'running'" class="output-running">
+              {{ t('jupyter.running') }}
+            </div>
+            <pre
+              v-else-if="cellOutputs[index].status === 'success' && cellOutputs[index].text"
+              class="output-stream"
+            >{{ cellOutputs[index].text }}</pre>
+            <pre
+              v-else-if="cellOutputs[index].status === 'success'"
+              class="output-empty"
+            >{{ t('jupyter.noOutput') }}</pre>
+            <pre
+              v-else-if="cellOutputs[index].status === 'error'"
+              class="output-error"
+            >{{ cellOutputs[index].text }}</pre>
+          </div>
         </div>
       </div>
     </div>
@@ -66,9 +82,10 @@ export default {
   },
   setup(props) {
     const { t } = useLanguage();
-    const cells   = ref([]);
-    const loading = ref(true);
-    const error   = ref(null);
+    const cells       = ref([]);
+    const cellOutputs = ref({});
+    const loading     = ref(true);
+    const error       = ref(null);
 
     const { kernelReady, kernelStatus, initializeKernel: initPyodide, runPython } = usePyodide();
 
@@ -87,6 +104,7 @@ export default {
           ...cell,
           source: Array.isArray(cell.source) ? cell.source.join('') : cell.source,
         }));
+        cellOutputs.value = {};
       } catch (e) {
         error.value = t('jupyter.fetchError') + e.message;
       } finally {
@@ -99,28 +117,27 @@ export default {
       catch (e) { error.value = t('jupyter.initError'); }
     };
 
-    const escapeHtml = (text) => {
-      const d = document.createElement('div');
-      d.textContent = text;
-      return d.innerHTML;
-    };
-
     const runCell = async (index) => {
       if (!kernelReady.value) return;
       const cell = cells.value[index];
       if (cell.cell_type !== 'code') return;
       const code = cell.source.trim();
-      const out  = document.getElementById(`output-${index}`);
-      if (!out) return;
-      if (!code) { out.innerHTML = ''; return; }
-      out.innerHTML = `<div class="output-running">${t('jupyter.running')}</div>`;
+      if (!code) {
+        cellOutputs.value = { ...cellOutputs.value, [index]: null };
+        return;
+      }
+      cellOutputs.value = { ...cellOutputs.value, [index]: { status: 'running' } };
       const result = await runPython(code);
       if (result.success) {
-        out.innerHTML = result.output?.trim()
-          ? `<pre class="output-stream">${escapeHtml(result.output)}</pre>`
-          : '';
+        cellOutputs.value = {
+          ...cellOutputs.value,
+          [index]: { status: 'success', text: result.output ?? '' },
+        };
       } else {
-        out.innerHTML = `<pre class="output-error">${escapeHtml(result.error)}</pre>`;
+        cellOutputs.value = {
+          ...cellOutputs.value,
+          [index]: { status: 'error', text: result.error || t('jupyter.unknownError') },
+        };
       }
     };
 
@@ -134,9 +151,12 @@ export default {
       }
     };
 
-    onMounted(loadNotebook);
+    onMounted(() => {
+      loadNotebook();
+      initializeKernel();
+    });
 
-    return { cells, loading, error, kernelReady, kernelStatus,
+    return { cells, cellOutputs, loading, error, kernelReady, kernelStatus,
              renderMarkdown, initializeKernel, runCell, runAllCells, t };
   },
 };
@@ -258,9 +278,9 @@ export default {
   padding: 8px 14px; background: #fff;
   border-top: 1px solid #f3f4f6; min-height: 0;
 }
-.cell-output:empty { display: none; }
 
 .output-running { color: #9ca3af; font-style: italic; font-size: 0.85em; }
+.output-empty { margin: 0; font-family: monospace; font-size: 13px; color: #9ca3af; font-style: italic; }
 .output-stream {
   margin: 0; font-family: monospace; font-size: 13px;
   white-space: pre-wrap; color: #111827;

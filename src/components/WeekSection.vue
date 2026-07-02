@@ -117,7 +117,7 @@
 
           <!-- Notebook -->
           <JupyterNotebook
-            v-if="activeNotebookUrl"
+            v-if="week.expanded && activeNotebookUrl"
             :notebook-path="activeNotebookUrl"
             :notebook-url="activeNotebookUrl"
             :week-number="index + 1"
