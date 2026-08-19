@@ -136,7 +136,7 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import JupyterNotebook from './JupyterNotebook.vue';
 import MissionenPanel from './MissionenPanel.vue';
 import { useLanguage } from '../composables/useLanguage.js';
@@ -161,7 +161,14 @@ export default {
   emits: ['toggle', 'toggle-cheat-sheet', 'set-variant'],
   setup(props) {
     const { t } = useLanguage();
-    const selectedTab = ref(props.week.selectedTab ?? '1_lektion');
+    const tabStorageKey = `ue-hacker-week-tab-${props.courseId}-${props.index}`;
+    const selectedTab = ref(
+      localStorage.getItem(tabStorageKey) ?? props.week.selectedTab ?? '1_lektion'
+    );
+
+    watch(selectedTab, (value) => {
+      localStorage.setItem(tabStorageKey, value);
+    });
 
     const tabs = computed(() =>
       TABS_CONFIG.map(tab => ({ ...tab, label: t(tab.labelKey), description: t(tab.descKey) }))

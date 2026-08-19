@@ -66,10 +66,33 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import { marked } from 'marked';
 import { usePyodide } from '../composables/usePyodide';
 import { useLanguage } from '../composables/useLanguage.js';
+
+const stateKey = (notebookPath) => `ue-hacker-notebook-state-${notebookPath}`;
+
+const loadSavedState = (notebookPath) => {
+  try {
+    const raw = localStorage.getItem(stateKey(notebookPath));
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+};
+
+const saveState = (notebookPath, cells, cellOutputs, originalSources) => {
+  try {
+    localStorage.setItem(stateKey(notebookPath), JSON.stringify({
+      originals: originalSources,
+      sources: cells.map(cell => cell.source),
+      outputs: cellOutputs,
+    }));
+  } catch {
+    /* localStorage voll oder deaktiviert */
+  }
+};
 
 export default {
   name: 'JupyterNotebook',
@@ -86,6 +109,7 @@ export default {
     const cellOutputs = ref({});
     const loading     = ref(true);
     const error       = ref(null);
+    let originalSources = [];
 
     const { kernelReady, kernelStatus, initializeKernel: initPyodide, runPython } = usePyodide();
 
@@ -100,11 +124,27 @@ export default {
         const res = await fetch(props.notebookPath);
         if (!res.ok) throw new Error(t('jupyter.loadError'));
         const nb = await res.json();
-        cells.value = (nb.cells || []).map(cell => ({
+        const loadedCells = (nb.cells || []).map(cell => ({
           ...cell,
           source: Array.isArray(cell.source) ? cell.source.join('') : cell.source,
         }));
-        cellOutputs.value = {};
+
+        originalSources = loadedCells.map(cell => cell.source);
+
+        const saved = loadSavedState(props.notebookPath);
+        const outputs = {};
+        if (saved && saved.originals?.length === loadedCells.length) {
+          loadedCells.forEach((cell, i) => {
+            if (cell.cell_type !== 'code') return;
+            const unchanged = saved.originals[i] === originalSources[i];
+            if (!unchanged) return;
+            cell.source = saved.sources[i];
+            if (saved.outputs?.[i]) outputs[i] = saved.outputs[i];
+          });
+        }
+        cellOutputs.value = outputs;
+
+        cells.value = loadedCells;
       } catch (e) {
         error.value = t('jupyter.fetchError') + e.message;
       } finally {
@@ -155,6 +195,10 @@ export default {
       loadNotebook();
       initializeKernel();
     });
+
+    watch([cells, cellOutputs], () => {
+      if (cells.value.length) saveState(props.notebookPath, cells.value, cellOutputs.value, originalSources);
+    }, { deep: true });
 
     return { cells, cellOutputs, loading, error, kernelReady, kernelStatus,
              renderMarkdown, initializeKernel, runCell, runAllCells, t };
