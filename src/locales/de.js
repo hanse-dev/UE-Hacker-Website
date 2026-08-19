@@ -94,6 +94,15 @@ export default {
   'mission.unclaim':     'Rückgängig',
   'mission.label':       'Mission',
   'mission.boss.label':  'Boss-Quest',
+  'mission.checkpoint.hint': 'Tipp: Schließe zuerst den Lernpfad-Checkpoint für diese Woche ab – dann weißt du sicher, dass du alles verstanden hast!',
+  'mission.checkpoint.done': 'Checkpoint für diese Woche abgeschlossen – du kannst Missionen einlösen!',
+
+  // ── Learning path checkpoints ─────────────────────────────────────────────
+  'checkpoint.title':      'Lernpfad-Checkpoint',
+  'checkpoint.hint':       'Kurzer Quiz- & Code-Check zu den Themen dieser Woche.',
+  'checkpoint.open':       'Zum Checkpoint →',
+  'checkpoint.done.title': 'Checkpoint geschafft!',
+  'checkpoint.done.hint':  'Du hast die Themen dieser Woche im Lernpfad abgeschlossen.',
 
   // ── Appointments ──────────────────────────────────────────────────────────
   'appt.title':    'Nächste Termine für diesen Kurs',

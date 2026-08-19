@@ -94,6 +94,15 @@ export default {
   'mission.unclaim':     'Undo',
   'mission.label':       'Mission',
   'mission.boss.label':  'Boss Quest',
+  'mission.checkpoint.hint': 'Tip: Complete the learning path checkpoint for this week first – then you know for sure you understood everything!',
+  'mission.checkpoint.done': 'Checkpoint for this week completed – you can redeem missions!',
+
+  // ── Learning path checkpoints ─────────────────────────────────────────────
+  'checkpoint.title':      'Learning path checkpoint',
+  'checkpoint.hint':       'Quick quiz & code check for this week\'s topics.',
+  'checkpoint.open':       'Go to checkpoint →',
+  'checkpoint.done.title': 'Checkpoint complete!',
+  'checkpoint.done.hint':  'You completed this week\'s topics in the learning path.',
 
   // ── Appointments ──────────────────────────────────────────────────────────
   'appt.title':    'Upcoming appointments for this course',

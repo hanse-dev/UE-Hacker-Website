@@ -1,0 +1,330 @@
+[
+  {
+    "id": "print-und-ausgabe",
+    "title": "Print & Ausgabe 🖨️",
+    "title_en": "Print & Output 🖨️",
+    "summary": "print() ist der Standardweg, um Ergebnisse und Debug-Infos auszugeben.",
+    "summary_en": "print() is the standard way to output results and debug info.",
+    "order": 1,
+    "links": {
+      "interactiveLessonId": "lektion-01",
+      "weekNumbers": [1]
+    },
+    "skipTest": {
+      "passThreshold": 0.8,
+      "questions": [
+        {
+          "id": "skip-print-1",
+          "type": "multiple_choice",
+          "question": "Was ist die Hauptfunktion von print()?",
+          "options": ["Werte auf stdout ausgeben", "Variablen löschen", "Module importieren"],
+          "correctIndex": 0,
+          "explanation": "print() schreibt Ausgabe in die Konsole."
+        },
+        {
+          "id": "skip-print-2",
+          "type": "true_false",
+          "question": "Python unterscheidet bei Funktionsnamen zwischen Groß- und Kleinschreibung.",
+          "correct": true,
+          "explanation": "print() funktioniert, Print() nicht."
+        },
+        {
+          "id": "skip-print-3",
+          "type": "multiple_choice",
+          "question": "Welcher Datentyp steht in \"Hello\"?",
+          "options": ["str (String)", "int", "bool"],
+          "correctIndex": 0,
+          "explanation": "Text in Anführungszeichen ist ein String."
+        },
+        {
+          "id": "skip-print-4",
+          "type": "true_false",
+          "question": "Mehrere print()-Aufrufe erzeugen mehrere Zeilen Ausgabe.",
+          "correct": true,
+          "explanation": "Jeder print()-Aufruf endet standardmäßig mit einem Zeilenumbruch."
+        },
+        {
+          "id": "skip-print-5",
+          "type": "multiple_choice",
+          "question": "Welche Syntax ist korrekt?",
+          "options": ["print('Hi')", "Print('Hi')", "print{Hi}"],
+          "correctIndex": 0,
+          "explanation": "Funktionsname klein, Argument in Klammern."
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "step-quiz-print",
+        "type": "quiz",
+        "title": "Verständnis-Check",
+        "title_en": "Understanding Check",
+        "questions": [
+          {
+            "id": "q-print-1",
+            "type": "multiple_choice",
+            "question": "Was gibt print(type(42)) ungefähr aus?",
+            "options": ["<class 'int'>", "42", "int"],
+            "correctIndex": 0,
+            "explanation": "type() gibt den Typ als Repräsentation zurück."
+          },
+          {
+            "id": "q-print-2",
+            "type": "true_false",
+            "question": "Kommentare mit # werden von Python nicht ausgeführt.",
+            "correct": true,
+            "explanation": "Alles nach # in einer Zeile ist ein Kommentar."
+          },
+          {
+            "id": "q-print-3",
+            "type": "multiple_choice",
+            "question": "Welche Ausgabe erzeugt print('Line1', 'Line2')?",
+            "options": ["Line1 Line2 (eine Zeile)", "Nur Line1", "Syntaxfehler"],
+            "correctIndex": 0,
+            "explanation": "Mehrere Argumente werden mit Leerzeichen getrennt ausgegeben."
+          },
+          {
+            "id": "q-print-4",
+            "type": "multiple_choice",
+            "question": "Was ist ein String-Literal?",
+            "options": ["Text in Anführungszeichen im Code", "Eine Variable", "Ein Fehler"],
+            "correctIndex": 0,
+            "explanation": "Literale sind fest im Code geschriebene Werte."
+          }
+        ]
+      },
+      {
+        "id": "step-code-print-1",
+        "type": "code",
+        "instruction": "Gib \"Hello World\" aus.",
+        "instruction_en": "Print \"Hello World\".",
+        "codeTemplate": "print(\"___\")",
+        "validation": { "type": "output_contains", "expected": "Hello World" }
+      },
+      {
+        "id": "step-code-print-2",
+        "type": "code",
+        "instruction": "Gib zwei Zeilen aus: \"Hi\" und \"Line\" (zwei print-Befehle).",
+        "instruction_en": "Print two lines: \"Hi\" and \"Line\" (two print statements).",
+        "codeTemplate": "print(\"Hi\")\nprint(\"___\")",
+        "validation": { "type": "output_contains", "expected": "Line" }
+      }
+    ]
+  },
+  {
+    "id": "variablen",
+    "title": "Variablen 🧠",
+    "title_en": "Variables 🧠",
+    "summary": "Variablen speichern Werte unter einem Namen – Grundlage für jedes Programm.",
+    "summary_en": "Variables store values under a name – the foundation of every program.",
+    "order": 2,
+    "links": {
+      "interactiveLessonId": "lektion-02",
+      "weekNumbers": [1]
+    },
+    "skipTest": {
+      "passThreshold": 0.8,
+      "questions": [
+        {
+          "id": "skip-var-1",
+          "type": "multiple_choice",
+          "question": "Was macht x = 10?",
+          "options": ["Weist 10 der Variable x zu", "Vergleicht x mit 10", "Definiert eine Funktion"],
+          "correctIndex": 0,
+          "explanation": "Einzelnes = ist Zuweisung."
+        },
+        {
+          "id": "skip-var-2",
+          "type": "true_false",
+          "question": "In Python muss man den Typ einer Variable vorher deklarieren.",
+          "correct": false,
+          "explanation": "Python ist dynamisch typisiert."
+        },
+        {
+          "id": "skip-var-3",
+          "type": "multiple_choice",
+          "question": "Was gibt print(name) aus wenn name = \"Mustermann\"?",
+          "options": ["Mustermann", "name", "\"Mustermann\""],
+          "correctIndex": 0,
+          "explanation": "print gibt den Wert aus, nicht den Variablennamen."
+        },
+        {
+          "id": "skip-var-4",
+          "type": "true_false",
+          "question": "Eine Variable kann ihren Wert überschreiben (neu zuweisen).",
+          "correct": true,
+          "explanation": "x = 1; x = 2 überschreibt den alten Wert."
+        },
+        {
+          "id": "skip-var-5",
+          "type": "multiple_choice",
+          "question": "Welcher Name ist in Python gültig?",
+          "options": ["score_2024", "2024score", "score-2024"],
+          "correctIndex": 0,
+          "explanation": "Variablennamen dürfen nicht mit Zahl beginnen und kein - enthalten."
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "step-quiz-variablen",
+        "type": "quiz",
+        "title": "Verständnis-Check",
+        "title_en": "Understanding Check",
+        "questions": [
+          {
+            "id": "q-var-1",
+            "type": "multiple_choice",
+            "question": "Unterschied zwischen = und ==?",
+            "options": ["= zuweisen, == vergleichen", "Beides vergleichen", "Beides zuweisen"],
+            "correctIndex": 0,
+            "explanation": "== prüft Gleichheit, = weist zu."
+          },
+          {
+            "id": "q-var-2",
+            "type": "true_false",
+            "question": "f\"Hallo {name}\" mischt Text und Variablen (f-String).",
+            "correct": true,
+            "explanation": "f-Strings formatieren Variablen direkt im Text."
+          },
+          {
+            "id": "q-var-3",
+            "type": "multiple_choice",
+            "question": "Was ist der Typ von 3.14?",
+            "options": ["float", "int", "str"],
+            "correctIndex": 0,
+            "explanation": "Dezimalzahlen sind floats."
+          }
+        ]
+      },
+      {
+        "id": "step-code-var-1",
+        "type": "code",
+        "instruction": "Speichere \"Python\" in sprache und gib sie aus.",
+        "instruction_en": "Store \"Python\" in sprache and print it.",
+        "codeTemplate": "sprache = \"___\"\nprint(sprache)",
+        "validation": { "type": "output_contains", "expected": "Python" }
+      },
+      {
+        "id": "step-code-var-2",
+        "type": "code",
+        "instruction": "Speichere 2024 in jahr und gib es mit print aus.",
+        "instruction_en": "Store 2024 in jahr and print it.",
+        "codeTemplate": "jahr = ___\nprint(jahr)",
+        "validation": { "type": "output_contains", "expected": "2024" }
+      }
+    ]
+  },
+  {
+    "id": "bedingungen",
+    "title": "Bedingungen 🔀",
+    "title_en": "Conditions 🔀",
+    "summary": "if/elif/else steuert den Programmfluss anhand von Bedingungen.",
+    "summary_en": "if/elif/else controls program flow based on conditions.",
+    "order": 3,
+    "links": {
+      "interactiveLessonId": "lektion-05",
+      "weekNumbers": [3]
+    },
+    "skipTest": {
+      "passThreshold": 0.8,
+      "questions": [
+        {
+          "id": "skip-if-1",
+          "type": "multiple_choice",
+          "question": "Wann wird der else-Block ausgeführt?",
+          "options": ["Wenn alle if/elif-Bedingungen falsch sind", "Immer", "Nur bei True"],
+          "correctIndex": 0,
+          "explanation": "else ist der Fallback."
+        },
+        {
+          "id": "skip-if-2",
+          "type": "true_false",
+          "question": "elif prüft eine weitere Bedingung, wenn if falsch war.",
+          "correct": true,
+          "explanation": "elif = else if."
+        },
+        {
+          "id": "skip-if-3",
+          "type": "multiple_choice",
+          "question": "Ergebnis von 5 != 5?",
+          "options": ["False", "True", "5"],
+          "correctIndex": 0,
+          "explanation": "!= bedeutet ungleich - 5 ist nicht ungleich 5."
+        },
+        {
+          "id": "skip-if-4",
+          "type": "true_false",
+          "question": "Vergleiche wie >, <, >= liefern Booleans.",
+          "correct": true,
+          "explanation": "Vergleichsoperatoren ergeben True oder False."
+        },
+        {
+          "id": "skip-if-5",
+          "type": "multiple_choice",
+          "question": "Was prüft: if not logged_in?",
+          "options": ["Ob logged_in falsch ist", "Ob logged_in existiert", "Ob logged_in eine Zahl ist"],
+          "correctIndex": 0,
+          "explanation": "not kehrt den Wahrheitswert um."
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "step-quiz-bedingungen",
+        "type": "quiz",
+        "title": "Verständnis-Check",
+        "title_en": "Understanding Check",
+        "questions": [
+          {
+            "id": "q-if-1",
+            "type": "multiple_choice",
+            "question": "Welche Bedingung ist True?",
+            "options": ["alter >= 18 and punkte > 0", "alter < 0", "punkte == \"0\""],
+            "correctIndex": 0,
+            "explanation": "and verlangt, dass beide Teile wahr sind."
+          },
+          {
+            "id": "q-if-2",
+            "type": "true_false",
+            "question": "Ein leerer String \"\" wird in if \"\" als falsch behandelt.",
+            "correct": true,
+            "explanation": "Leere Sequenzen sind falsy in Python."
+          },
+          {
+            "id": "q-if-3",
+            "type": "multiple_choice",
+            "question": "Was macht elif?",
+            "options": ["Prüft eine alternative Bedingung", "Beendet das Programm", "Importiert ein Modul"],
+            "correctIndex": 0,
+            "explanation": "elif erweitert die if-Kette."
+          },
+          {
+            "id": "q-if-4",
+            "type": "multiple_choice",
+            "question": "Operator fuer groesser oder gleich?",
+            "options": [">=", "=>", "=<"],
+            "correctIndex": 0,
+            "explanation": ">= ist der korrekte Operator."
+          }
+        ]
+      },
+      {
+        "id": "step-code-if-1",
+        "type": "code",
+        "instruction": "Setze alter = 16. Wenn alter >= 18: print(\"Erwachsen\"), sonst print(\"Teenager\").",
+        "instruction_en": "Set alter = 16. If alter >= 18: print(\"Adult\"), else print(\"Teenager\").",
+        "codeTemplate": "alter = 16\nif alter >= 18:\n    print(\"Erwachsen\")\nelse:\n    print(\"___\")",
+        "validation": { "type": "output_contains", "expected": "Teenager" }
+      },
+      {
+        "id": "step-code-if-2",
+        "type": "code",
+        "instruction": "Prüfe ob zahl % 2 == 0 (gerade). Bei zahl = 10: print(\"gerade\").",
+        "instruction_en": "Check if zahl % 2 == 0 (even). With zahl = 10: print(\"even\").",
+        "codeTemplate": "zahl = 10\nif zahl % 2 == 0:\n    print(\"___\")",
+        "validation": { "type": "output_contains", "expected": "gerade" }
+      }
+    ]
+  }
+]

@@ -5,6 +5,12 @@
       <span class="missionen-toggle">{{ expanded ? '−' : '+' }}</span>
     </div>
     <div v-show="expanded" class="missionen-panel-content">
+      <p v-if="hasCheckpoint && !checkpointComplete" class="checkpoint-mission-hint">
+        {{ t('mission.checkpoint.hint') }}
+      </p>
+      <p v-else-if="hasCheckpoint && checkpointComplete" class="checkpoint-mission-done">
+        {{ t('mission.checkpoint.done') }}
+      </p>
       <div class="missionen-list">
         <div
           v-for="m in missionen"
@@ -34,6 +40,10 @@ import { ref, computed, onMounted, watch } from 'vue';
 import { useFortschritt } from '../composables/useFortschritt';
 import { assetUrl } from '../utils/assetUrl';
 import { useLanguage } from '../composables/useLanguage.js';
+import { hasWeekCheckpoint, isWeekCheckpointComplete } from '../composables/useLearningPathCheckpoints.js';
+import { useLearnerProgress } from '../composables/useLearnerProgress.js';
+
+const VARIANT_STORAGE_KEY = 'ue-hacker-lernpfad-variant';
 
 export default {
   name: 'MissionenPanel',
@@ -81,7 +91,23 @@ export default {
     onMounted(loadManifest);
     watch(lang, loadManifest);
 
-    return { expanded, missionen, pointUnit, isClaimed, claimMission, unclaimMission, t };
+    const hasCheckpoint = computed(() => hasWeekCheckpoint(props.weekNumber));
+
+    const lernpfadVariant = localStorage.getItem(VARIANT_STORAGE_KEY) || 'kinder';
+    const progressKinder = useLearnerProgress('kinder');
+    const progressJugendliche = useLearnerProgress('jugendliche');
+    const lernpfadProgress = computed(() =>
+      lernpfadVariant === 'jugendliche' ? progressJugendliche : progressKinder
+    );
+
+    const checkpointComplete = computed(() =>
+      isWeekCheckpointComplete(props.weekNumber, (id) => lernpfadProgress.value.isTopicDone(id))
+    );
+
+    return {
+      expanded, missionen, pointUnit, isClaimed, claimMission, unclaimMission, t,
+      hasCheckpoint, checkpointComplete,
+    };
   },
 };
 </script>
@@ -111,6 +137,28 @@ export default {
 .missionen-toggle { font-size: 1.1em; color: #92400e; font-weight: bold; }
 
 .missionen-panel-content { padding: 6px 16px 12px; border-top: 1px solid #fde68a; }
+
+.checkpoint-mission-hint {
+  margin: 8px 0 10px 0;
+  padding: 10px 12px;
+  background: #e0f2fe;
+  border: 1px solid #7dd3fc;
+  border-radius: 6px;
+  font-size: 0.85em;
+  color: #0c4a6e;
+  line-height: 1.4;
+}
+
+.checkpoint-mission-done {
+  margin: 8px 0 10px 0;
+  padding: 10px 12px;
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-radius: 6px;
+  font-size: 0.85em;
+  color: #155724;
+  line-height: 1.4;
+}
 
 .missionen-list { display: flex; flex-direction: column; gap: 6px; margin-top: 6px; }
 

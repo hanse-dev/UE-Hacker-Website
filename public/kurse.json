@@ -1,5 +1,13 @@
 [
   {
+    "id": "python-lernpfad",
+    "title": "Python Lernpfad",
+    "title_en": "Python Learning Path",
+    "description": "Themenweise üben mit Quiz und Code – du entscheidest, was du schon kannst. Sofortige Rückmeldung zu jedem Schritt.",
+    "description_en": "Practice topic by topic with quizzes and code — you decide what you already know. Instant feedback on every step.",
+    "contentPath": "python-lernpfad"
+  },
+  {
     "id": "python-grundlagen-interaktiv",
     "title": "Python Grundlagen – Interaktiv",
     "title_en": "Python Basics – Interactive",

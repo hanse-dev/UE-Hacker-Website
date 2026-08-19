@@ -86,6 +86,7 @@ import { marked } from 'marked';
 import { usePyodide } from '../composables/usePyodide';
 import { useInteractiveProgress } from '../composables/useInteractiveProgress';
 import { useLanguage } from '../composables/useLanguage';
+import { validateOutput } from '../composables/useTaskValidation';
 
 export default {
   name: 'LessonView',
@@ -260,20 +261,6 @@ export default {
       },
       { immediate: true }
     );
-
-    const validateOutput = (output, validation) => {
-      if (!validation) return true;
-      const { type, expected } = validation;
-      const out = (output || '').trim();
-      switch (type) {
-        case 'output_contains':
-          return out.includes(expected);
-        case 'output_equals':
-          return out === expected;
-        default:
-          return out.includes(expected);
-      }
-    };
 
     const runTask = async (idx) => {
       if (!kernelReady.value) return;

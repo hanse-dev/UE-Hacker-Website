@@ -70,6 +70,23 @@
         <!-- Notebook viewer with variant + tab navigation -->
         <div v-if="week.hasNotebook" class="notebook-area">
 
+          <!-- Learning path checkpoint -->
+          <div v-if="hasCheckpoint" class="checkpoint-banner" :class="{ 'checkpoint-done': checkpointComplete }">
+            <div class="checkpoint-content">
+              <span class="checkpoint-icon">{{ checkpointComplete ? '✅' : '🎯' }}</span>
+              <div class="checkpoint-text">
+                <strong>{{ checkpointTitle }}</strong>
+                <span>{{ checkpointHint }}</span>
+              </div>
+            </div>
+            <router-link
+              :to="{ path: '/kurs/python-lernpfad', query: checkpointQuery }"
+              class="checkpoint-link"
+            >
+              {{ t('checkpoint.open') }}
+            </router-link>
+          </div>
+
           <!-- Row 1: Varianten-Auswahl -->
           <div class="variant-selector">
             <button
@@ -140,6 +157,8 @@ import { ref, computed, watch } from 'vue';
 import JupyterNotebook from './JupyterNotebook.vue';
 import MissionenPanel from './MissionenPanel.vue';
 import { useLanguage } from '../composables/useLanguage.js';
+import { hasWeekCheckpoint, isWeekCheckpointComplete, getCheckpointTopicIds } from '../composables/useLearningPathCheckpoints.js';
+import { useLearnerProgress } from '../composables/useLearnerProgress.js';
 
 const TABS_CONFIG = [
   { key: '1_lektion',   icon: '📚', labelKey: 'tab.lesson',    descKey: 'tab.lesson.desc' },
@@ -184,7 +203,39 @@ export default {
       props.week.notebooks?.[props.week.selectedVariant]?.[selectedTab.value] ?? null
     );
 
-    return { tabs, t, selectedTab, isCheatSheetExpanded, hasTab, activeNotebookUrl };
+    const weekNumber = computed(() => props.index + 1);
+    const hasCheckpoint = computed(() => hasWeekCheckpoint(weekNumber.value));
+
+    const lernpfadVariant = localStorage.getItem(VARIANT_STORAGE_KEY) || 'kinder';
+    const progressKinder = useLearnerProgress('kinder');
+    const progressJugendliche = useLearnerProgress('jugendliche');
+    const lernpfadProgress = computed(() =>
+      lernpfadVariant === 'jugendliche' ? progressJugendliche : progressKinder
+    );
+
+    const checkpointComplete = computed(() =>
+      isWeekCheckpointComplete(weekNumber.value, (id) => lernpfadProgress.value.isTopicDone(id))
+    );
+
+    const checkpointTopicIds = computed(() => getCheckpointTopicIds(weekNumber.value));
+
+    const checkpointQuery = computed(() => {
+      const ids = checkpointTopicIds.value;
+      return ids.length ? { topic: ids[0] } : {};
+    });
+
+    const checkpointTitle = computed(() =>
+      checkpointComplete.value ? t('checkpoint.done.title') : t('checkpoint.title')
+    );
+
+    const checkpointHint = computed(() =>
+      checkpointComplete.value ? t('checkpoint.done.hint') : t('checkpoint.hint')
+    );
+
+    return {
+      tabs, t, selectedTab, isCheatSheetExpanded, hasTab, activeNotebookUrl,
+      hasCheckpoint, checkpointComplete, checkpointQuery, checkpointTitle, checkpointHint,
+    };
   },
 };
 </script>
@@ -192,7 +243,67 @@ export default {
 <style scoped>
 /* ── Notebook area ─────────────────────────────────────────────────────── */
 .notebook-area {
-  margin-top: 10px;
+  margin-top: 16px;
+}
+
+.checkpoint-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  background: #f0f4ff;
+  border: 2px solid #6c8ebf;
+  border-radius: 10px;
+}
+
+.checkpoint-banner.checkpoint-done {
+  background: #f0fdf4;
+  border-color: #28a745;
+}
+
+.checkpoint-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.checkpoint-icon {
+  font-size: 1.5em;
+  line-height: 1;
+}
+
+.checkpoint-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.checkpoint-text strong {
+  font-size: 0.95em;
+  color: #222;
+}
+
+.checkpoint-text span {
+  font-size: 0.85em;
+  color: #555;
+}
+
+.checkpoint-link {
+  background: var(--primary-purple, #4a2274);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+
+.checkpoint-link:hover {
+  background: #3d1b5c;
 }
 
 /* ── Variant selector ──────────────────────────────────────────────────── */

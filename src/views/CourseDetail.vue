@@ -17,10 +17,14 @@
       </div>
     </div>
 
-    <CourseAppointments v-if="!isInteractiveCourse" :termine="courseTermine" />
+    <CourseAppointments v-if="!isInteractiveCourse && !isLearningPathCourse" :termine="courseTermine" />
 
     <div v-if="isInteractiveCourse" class="interactive-course-wrapper">
       <InteractiveCourse :content-path="course.contentPath" />
+    </div>
+
+    <div v-else-if="isLearningPathCourse" class="learning-path-wrapper">
+      <LearningPathCourse />
     </div>
 
     <FortschrittWidget v-else-if="isWeeklyCourse && fortschrittReady" />
@@ -56,6 +60,7 @@ import CourseAppointments from '../components/CourseAppointments.vue';
 import FortschrittWidget from '../components/FortschrittWidget.vue';
 import WeekSection from '../components/WeekSection.vue';
 import InteractiveCourse from '../components/InteractiveCourse.vue';
+import LearningPathCourse from '../components/LearningPathCourse.vue';
 import { loadCourseData } from '../composables/useCourseData';
 import { loadWeeklyContent } from '../composables/useWeeklyContent';
 import { useLanguage } from '../composables/useLanguage.js';
@@ -76,6 +81,7 @@ export default {
     FortschrittWidget,
     WeekSection,
     InteractiveCourse,
+    LearningPathCourse,
   },
   props: {
     id: { type: String, required: true },
@@ -92,6 +98,7 @@ export default {
 
     const isWeeklyCourse = computed(() => props.id === 'python-12-wochen-grundkurs');
     const isInteractiveCourse = computed(() => props.id === 'python-grundlagen-interaktiv');
+    const isLearningPathCourse = computed(() => props.id === 'python-lernpfad');
 
     const courseTabs = computed(() =>
       TABS_CONFIG.map(tab => ({ ...tab, label: t(tab.labelKey), description: t(tab.descKey) }))
@@ -155,6 +162,7 @@ export default {
       loading,
       isWeeklyCourse,
       isInteractiveCourse,
+      isLearningPathCourse,
       id: props.id,
       courseTabs,
       t,
@@ -172,6 +180,11 @@ export default {
 }
 
 .interactive-course-wrapper {
+  margin-top: 20px;
+  overflow: visible;
+}
+
+.learning-path-wrapper {
   margin-top: 20px;
   overflow: visible;
 }

@@ -1,0 +1,78 @@
+{
+  "passThreshold": 0.8,
+  "title": "Einstufungstest",
+  "title_en": "Placement Test",
+  "intro": "Beantworte diese Fragen – dann wissen wir, welche Themen du schon kannst und welche wir dir empfehlen.",
+  "intro_en": "Answer these questions – then we'll know which topics you already know and which we recommend.",
+  "questions": [
+    {
+      "id": "pl-print-1",
+      "topicId": "print-und-ausgabe",
+      "type": "multiple_choice",
+      "question": "Wofür benutzt man print()?",
+      "options": ["Text ausgeben", "Computer ausschalten", "Musik abspielen"],
+      "correctIndex": 0
+    },
+    {
+      "id": "pl-print-2",
+      "topicId": "print-und-ausgabe",
+      "type": "true_false",
+      "question": "Text in Python steht in Anführungszeichen.",
+      "correct": true
+    },
+    {
+      "id": "pl-print-3",
+      "topicId": "print-und-ausgabe",
+      "type": "multiple_choice",
+      "question": "Welche Zeile ist richtig?",
+      "options": ["print(\"Hi\")", "Print(\"Hi\")", "print(Hi)"],
+      "correctIndex": 0
+    },
+    {
+      "id": "pl-var-1",
+      "topicId": "variablen",
+      "type": "multiple_choice",
+      "question": "Was ist eine Variable?",
+      "options": ["Ein Name für einen gespeicherten Wert", "Ein Drucker", "Ein Spiel"],
+      "correctIndex": 0
+    },
+    {
+      "id": "pl-var-2",
+      "topicId": "variablen",
+      "type": "true_false",
+      "question": "name = \"Luna\" speichert Luna in der Variable name.",
+      "correct": true
+    },
+    {
+      "id": "pl-var-3",
+      "topicId": "variablen",
+      "type": "multiple_choice",
+      "question": "Was gibt print(x) aus wenn x = 7?",
+      "options": ["7", "x", "Fehler"],
+      "correctIndex": 0
+    },
+    {
+      "id": "pl-if-1",
+      "topicId": "bedingungen",
+      "type": "multiple_choice",
+      "question": "Wofür ist if da?",
+      "options": ["Entscheidungen treffen", "Text drucken", "Bilder zeigen"],
+      "correctIndex": 0
+    },
+    {
+      "id": "pl-if-2",
+      "topicId": "bedingungen",
+      "type": "true_false",
+      "question": "else wird ausgeführt, wenn if falsch ist.",
+      "correct": true
+    },
+    {
+      "id": "pl-if-3",
+      "topicId": "bedingungen",
+      "type": "multiple_choice",
+      "question": "Was ist wahr: 8 > 3?",
+      "options": ["Ja, die Bedingung ist True", "Nein, False", "Syntaxfehler"],
+      "correctIndex": 0
+    }
+  ]
+}
