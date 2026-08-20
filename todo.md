@@ -39,10 +39,12 @@
 - [x] Woche 7 Abenteuer (DE+EN) als Pilot komplett umgebaut: zusammenhängende Szenen statt Schritt-Listen,
       Bibliothekswahl von math-lastig auf random/string/time umgestellt, Debug-Bugs unabhängig vom
       geteilten Kernel-Zustand gemacht, Belohnungstexte an rewards-manifest(.en).json angeglichen
-- [ ] Restliche 11 Wochen Abenteuer nach demselben Prinzip überarbeiten
+- [x] Pythonia/Pyralia-Namenskonflikt weltweit vereinheitlicht (Woche 1, 10, 12, DE+EN, inkl. Vorlagen
+      unter Regeln/)
+- [x] Woche 2 Abenteuer (DE+EN) umgebaut: Elementbezug ("Vier magische Elemente") jetzt durchgängig
+      eingelöst — Feuer=str, Erde=int, Wasser=float, Luft=bool, "Elementarturm" als Rahmengeschichte
+- [ ] Restliche 10 Wochen Abenteuer (3–6, 8–12) nach demselben Prinzip überarbeiten
 - [ ] Pferde- und Sci-Fi-Variante ebenfalls überarbeiten (eigene Metaphern nötig, kein reines Übersetzen)
-- [ ] Pythonia/Pyralia-Namenskonflikt weltweit vereinheitlichen (betrifft Woche 1, 10, 12)
-- [ ] Woche 2: Elementbezug ("Vier magische Elemente") einbauen oder Titel entschärfen
 - [ ] Woche 6: Boss-Quest-Titel/Prämissen stärker von Woche 5 abgrenzen (wirken aktuell kopiert)
 - [ ] Woche 9: Missionen-Formatierung vereinheitlichen (Nummerierungs-Mischmasch)
 - [ ] Woche 10, Boss-Quest 2 ("Zookeeper"): stärker in die Fantasy-Welt einbetten
