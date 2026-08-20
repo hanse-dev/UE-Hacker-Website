@@ -47,11 +47,15 @@
       bereits in sich geschlossen — kein Umbau nötig
 - [x] Woche 6: Boss-Quest 1+2 Titel/Prämissen ("Zauber-Generator"/"Guilden-Manager") waren wortgleich
       zu Woche 5 kopiert — in DE+EN umbenannt/umthemet ("Schatzkammer-Katalog"/"Tresorwächter")
-- [ ] Restliche 6 Wochen Abenteuer (8–12) nach demselben Prinzip überarbeiten/prüfen
-- [ ] Pferde- und Sci-Fi-Variante ebenfalls überarbeiten (eigene Metaphern nötig, kein reines Übersetzen)
-- [ ] Woche 9: Missionen-Formatierung vereinheitlichen (Nummerierungs-Mischmasch)
-- [ ] Woche 10, Boss-Quest 2 ("Zookeeper"): stärker in die Fantasy-Welt einbetten
-- [ ] Woche 12, Boss-Quest 5: Textbug "Als Nächstes: Woche – wartet schon!" reparieren (Wochenzahl fehlt)
+- [x] Woche 8: Debug-Bug #1 hatte gar keinen Fehler mehr (fehlende schließende Klammer nie eingebaut,
+      obwohl Lösung das als Fix erklärt) — in DE+EN repariert
+- [x] Woche 9: Missionen-Formatierung vereinheitlicht (Nummerierungs-Mischmasch behoben, DE+EN)
+- [x] Woche 10, Boss-Quest 2 ("Zookeeper" → "Die Kreaturen-Menagerie"): reale Zootiere durch magische
+      Kreaturen (Einhorn, Greif, Phönix, Drache) ersetzt, DE+EN
+- [x] Woche 12, Boss-Quest 5: Textbug "Als Nächstes: Woche – wartet schon!" repariert (DE) — betraf auch
+      Pferde- und Sci-Fi-Variante DE (EN war bereits korrekt), alle drei mitgefixt
+- [x] Woche 11 geprüft: bereits gut, kein Umbau nötig
+- [ ] Pferde- und Sci-Fi-Variante inhaltlich überarbeiten (eigene Metaphern nötig, kein reines Übersetzen)
 - [ ] "Gilde-Meister-Urkunde" als Zwischenbelohnung (W6/7/8) vs. Kursabschluss-Titel prüfen — evtl. umbenennen
 
 ### Später: Admin-Login (neuer Branch `cursor/admin-login`)

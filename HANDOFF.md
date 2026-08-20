@@ -23,15 +23,28 @@
 - Woche 6 Abenteuer (DE + EN): Boss-Quest 1+2 waren wortwörtlich von Woche 5 kopiert
   ("Zauber-Generator"/"Guilden-Manager") — umbenannt zu "Schatzkammer-Katalog"/"Tresorwächter" mit
   passend umgethemtem Code (Schätze/Tresorfächer statt Zauber/Gildenabteilungen)
+- Woche 8 Abenteuer (DE + EN): Debug-Bug #1 reparieret — hatte gar keinen Fehler mehr (fehlende
+  schließende `}` nie tatsächlich entfernt, obwohl Lösungstext das als Fix erklärt)
+- Woche 9 Abenteuer (DE + EN): Missionen-Formatierung vereinheitlicht (Mix aus nummerierten Listen und
+  "Schritt N"-Überschriften ohne Leerzeilen bereinigt zu konsistentem Schritt-Format)
+- Woche 10 Abenteuer (DE + EN): Boss-Quest 2 "Der Zookeeper" (reale Zootiere: Löwe, Elefant, Gnu,
+  Pinguin) zu "Die Kreaturen-Menagerie" mit magischen Wesen (Einhorn, Greif, Phönix, Jungdrache)
+  umgethemt, passend zur Pyralia-Fantasywelt
+- Woche 12 Abenteuer (DE): Textbug "Als Nächstes: Woche – wartet schon!" (fehlende Wochenzahl am
+  Kursende) repariert zu "Deine eigenen Python-Projekte warten!" — derselbe Bug steckte auch in Woche 12
+  Pferde und Sci-Fi (DE), dort ebenfalls gefixt (EN war bereits korrekt)
+- Woche 11 geprüft und für gut befunden — kein Umbau nötig
 - Alle Code-Zellen in den neuen/geänderten Notebooks wurden ausgeführt und verifiziert (auch mit geteiltem
   Namespace, um Kernel-Reihenfolge-Effekte zu simulieren)
 
 **Als Nächstes:**
 1. Committen (noch nicht passiert)
-2. Mit gleichem Prinzip weitermachen: Woche 8–12 Abenteuer (DE+EN) prüfen/umbauen, dann Pferde/Sci-Fi
+2. Alle 12 Wochen der Abenteuer-Variante sind jetzt durchgegangen. Offen: Pferde- und Sci-Fi-Variante
+   inhaltlich überarbeiten (eigene Metaphern nötig, kein reines Übersetzen); "Gilde-Meister-Urkunde"
+   als Zwischenbelohnung vs. Kursabschluss-Titel klären
 3. Bei Weiterarbeit in neuer Session: dieses Vorgehen als Vorlage nehmen — zuerst Ist-Zustand prüfen
-   (Missionen schon sinnvolle Szenen? Titel eingelöst? Boss-Quests einzigartig?), nur bei echtem Bedarf
-   voll umbauen (Analyse → Story-Konzept → alle 6 Notebook-Typen DE schreiben → Code testen, inkl.
-   Debug-Bugs mit geteiltem Kernel-Zustand → EN spiegeln → testen → committen)
+   (Missionen schon sinnvolle Szenen? Titel eingelöst? Boss-Quests einzigartig? Debug-Bugs echt kaputt?),
+   nur bei echtem Bedarf voll umbauen (Analyse → Story-Konzept → alle 6 Notebook-Typen DE schreiben →
+   Code testen, inkl. Debug-Bugs mit geteiltem Kernel-Zustand → EN spiegeln → testen → committen)
 
 **Git-Regel:** Jedes neue Thema = neuer Branch (`cursor/…`). Siehe `WORKFLOW.md`.
