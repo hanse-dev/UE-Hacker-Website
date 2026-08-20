@@ -83,6 +83,66 @@ Dateien: `src/composables/useProgressSync.js`, `src/components/JupyterNotebook.v
 
 **Server nach Merge:** `git pull` auf `main` + `docker compose up -d --build app` + Hard-Reload.
 
+### 3.4 Storytelling-Überarbeitung 12-Wochen-Kurs (alle 3 Varianten, alle 12 Wochen)
+
+**Ziel:** Missionen/Boss-Quests waren oft nur Schritt-Listen mit Deko statt echter Szenen, manche Wochen
+lösten ihr eigenes Titelversprechen nicht ein, und es gab mehrere echte Content-Bugs (kaputter Code,
+Textfehler, kopierte Boss-Quests). Pro Woche wurde geprüft, ob ein Umbau nötig ist, und nur dort umgebaut,
+wo es einen echten Mangel gab.
+
+**Abenteuer-Variante** (zuerst, als Vorlage):
+- Woche 7 als Pilot komplett umgebaut: Rahmengeschichte "Der Archivar der Bibliothek von Pyralia" mit
+  drei zusammenhängenden Prüfungen statt isolierter Schritt-Listen; Bibliothekswahl von `math`-lastig auf
+  `random`/`string`/`time` umgestellt
+- Pythonia/Pyralia-Namenskonflikt weltweit vereinheitlicht (auf "Pyralia") — Woche 1, 10, 12 (DE+EN)
+  sowie die Vorlagen unter `Regeln/`
+- Woche 2 umgebaut: "Elementarturm", vier Datentypen jetzt explizit als Elemente (🔥 Feuer=str,
+  🪨 Erde=int, 💧 Wasser=float, 💨 Luft=bool)
+- Woche 6: Boss-Quest 1+2 waren wortwörtlich von Woche 5 kopiert — umbenannt/umgethemt
+- Woche 8: Debug-Bug #1 hatte keinen Fehler mehr (fehlende schließende Klammer nie entfernt) — repariert
+- Woche 9: Missionen-Formatierung vereinheitlicht
+- Woche 10: Boss-Quest 2 "Der Zookeeper" (reale Zootiere) zu "Die Kreaturen-Menagerie" umgethemt
+- Woche 12: Textbug "Als Nächstes: Woche – wartet schon!" repariert (betraf auch Pferde/Sci-Fi DE)
+- Woche 3, 4, 5, 11 geprüft und für gut befunden
+
+**Pferde- und Sci-Fi-Variante** (nach demselben Prinzip, Analyse zuerst per Subagent):
+- Sci-Fi Woche 11: kompletter Lektion-Code (DE) war kaputt (fehlendes `def`/`self` bei jeder Methode) —
+  an die korrekte EN-Version angeglichen; Weltname vereinheitlicht (Nebula-7 statt "Evolution-Station
+  Alpha-7")
+- Sci-Fi Woche 8: Debug-Bug #1 hatte keinen Fehler mehr — repariert (DE+EN)
+- Sci-Fi Woche 5/6/8: Boss-Quest "Raumstation(s)-Manager" dreifach dupliziert — Woche 6 zu
+  "Der Hangar-Verwalter", Woche 8 zu "Die Sensor-Matrix" umgethemt (DE+EN), rewards-manifest angepasst
+- Sci-Fi Woche 12: "XP" statt "Cyber Credits" korrigiert
+- Sci-Fi Woche 9: f-String-Syntaxrisiko behoben (verschachtelte gleiche Anführungszeichen, vor Python
+  3.12 ein SyntaxError)
+- Sci-Fi Woche 12: Debug-Bugs entspoilert (Kommentare verrieten die Lösung direkt); Lösungs-Notebook an
+  den tatsächlichen Bug angeglichen (war inhaltlich falsch zugeordnet)
+- Sci-Fi Woche 5: fehlende Platzhalterkommentare in Boss-Quest-Codezellen ergänzt
+- Sci-Fi Woche 7: Missionen enger an eine durchgehende Szene gebunden (Systemchecks/Kalibrierung/
+  Erkundungsmission statt lose math/random-Häppchen)
+- Pferde Woche 9: Intro wortwörtlich von Woche 8 kopiert — neue Rahmengeschichte "Die Zuchtbücher von
+  Sonnental" (DE+EN); Belohnungsitem "Daten-Chip" (eigentlich Sci-Fi-Item) zu "Stammbaum-Urkunde"
+  korrigiert
+- Pferde Woche 5/8: abgebrochener Satz und mehrfacher "Funktion eine Funktion"-Textbug repariert (DE+EN)
+- Pferde Woche 7/8/9: "Sonnentals"-Tippfehler (falsche Genitivform) zu "Sonnental" korrigiert
+- Pferde Woche 12: "XP" statt "Huf-Punkte" und Tippfehler "Visualierungsbrett" korrigiert (DE)
+- Pferde Woche 12 + Sci-Fi Woche 12 + Abenteuer Woche 12: Debug-Bug-Spoiler-Kommentare entfernt (DE+EN)
+- Pferde Woche 2: "Vier Hufschlag-Typen" jetzt benannt (Schritt=str, Trab=int, Galopp=float, Sprung=bool)
+- **Nebenfund:** `week5_horses_1_lektion.ipynb` (EN) hatte unescaped Anführungszeichen und war dadurch
+  kaputtes JSON (Notebook konnte in der Website nicht laden) — repariert. Repo-weiter Scan aller 444
+  Notebooks bestätigt danach: keine weiteren kaputten Dateien.
+
+**Gelernte Regeln:**
+1. Debug-Notebook-Bugs müssen unabhängig vom geteilten Jupyter-Kernel-Zustand sein — ein "vergessener
+   Import" funktioniert nicht mehr, wenn eine frühere Zelle das Modul schon importiert hat.
+2. Debug-Notebook-Kommentare dürfen die Lösung nicht verraten (keine "# Bug: X fehlt!"-Kommentare) —
+   vage Leitfragen sind ok ("Was fehlt hier?").
+3. Bei jeder Notebook-Änderung: Code-Zellen ausführen/kompilieren (auch mit geteiltem Namespace) und
+   JSON-Validität prüfen, bevor committet wird.
+
+**Offen:** "Gilde-Meister-Urkunde" als Zwischenbelohnung (W6/7/8, Abenteuer) vs. Kursabschluss-Titel
+klären — evtl. umbenennen.
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -96,36 +156,6 @@ npm run start:all      # Vite :5173 + API :3001 (Proxy /api)
 # oder
 npm run start:prod     # Build + alles :8080
 ```
-### 3.4 Storytelling-Überarbeitung 12-Wochen-Kurs, Abenteuer-Variante (alle 12 Wochen)
-
-**Ziel:** Missionen/Boss-Quests waren oft nur Schritt-Listen mit Fantasy-Deko statt echter Szenen, und
-manche Wochen lösten ihr eigenes Titelversprechen nicht ein. Pro Woche wurde geprüft, ob ein Umbau nötig
-ist, und nur dort umgebaut, wo es einen echten Mangel gab (nicht alle Wochen pauschal neu geschrieben).
-
-- Woche 7 als Pilot komplett umgebaut: Rahmengeschichte "Der Archivar der Bibliothek von Pyralia" mit
-  drei zusammenhängenden Prüfungen statt isolierter Schritt-Listen; Bibliothekswahl von `math`-lastig auf
-  `random`/`string`/`time` umgestellt (math nur noch optionaler Bonus-Exkurs)
-- Pythonia/Pyralia-Namenskonflikt weltweit vereinheitlicht (auf "Pyralia") — betraf Woche 1, 10, 12
-  (DE+EN, inkl. gecachter Zell-Outputs) sowie die Vorlagen unter `Regeln/`
-- Woche 2 umgebaut: "Elementarturm" als Rahmengeschichte, die vier Datentypen jetzt explizit als Elemente
-  eingeführt (🔥 Feuer=str, 🪨 Erde=int, 💧 Wasser=float, 💨 Luft=bool)
-- Woche 3, 4, 5, 11 geprüft und für gut befunden — kein Umbau nötig
-- Woche 6: Boss-Quest 1+2 waren wortwörtlich von Woche 5 kopiert — umbenannt/umgethemt
-  ("Schatzkammer-Katalog"/"Tresorwächter")
-- Woche 8: Debug-Bug #1 hatte gar keinen Fehler mehr (fehlende schließende Klammer nie tatsächlich
-  entfernt) — repariert
-- Woche 9: Missionen-Formatierung vereinheitlicht (Mix aus nummerierten Listen und Schritt-Überschriften)
-- Woche 10: Boss-Quest 2 "Der Zookeeper" (reale Zootiere) zu "Die Kreaturen-Menagerie" mit magischen
-  Wesen umgethemt
-- Woche 12: Textbug "Als Nächstes: Woche – wartet schon!" repariert (betraf auch Pferde/Sci-Fi DE)
-
-**Gelernte Regel:** Debug-Notebook-Bugs müssen unabhängig vom geteilten Jupyter-Kernel-Zustand sein — ein
-"vergessener Import" als Bug funktioniert nicht mehr, wenn eine frühere Zelle das Modul schon importiert
-hat. Alle Code-Zellen in neuen/geänderten Notebooks wurden ausgeführt und verifiziert (auch mit geteiltem
-Namespace, um das zu simulieren).
-
-**Offen:** Pferde- und Sci-Fi-Variante analog überarbeiten (eigene Metaphern nötig, kein reines
-Übersetzen); "Gilde-Meister-Urkunde" als Zwischenbelohnung (W6/7/8) vs. Kursabschluss-Titel klären.
 
 ### Docker Prod
 
@@ -168,7 +198,7 @@ Siehe auch `todo.md`.
 - [ ] Server-Deploy final verifizieren (Service `app`, Orphans weg, Health, Admin-Login, kein Notebook-Blinken mehr nach PR #3)
 
 **Inhalte**
-- [ ] Storytelling-Überarbeitung (siehe 3.4) auf Pferde- und Sci-Fi-Variante ausweiten
+- [ ] "Gilde-Meister-Urkunde" als Zwischenbelohnung (W6/7/8, Abenteuer) vs. Kursabschluss-Titel klären (siehe 3.4)
 
 **Nächste Features — je eigener Branch von `main` (Reihenfolge):**
 
