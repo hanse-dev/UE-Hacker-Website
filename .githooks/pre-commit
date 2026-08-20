@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+# Pre-commit: run Einstufung/Check Playwright suite.
+# Skip once with:  SKIP_CHECKS=1 git commit ...
+# Or bypass hooks: git commit --no-verify
+
+if [ "$SKIP_CHECKS" = "1" ] || [ "$SKIP_CHECKS" = "true" ]; then
+  echo "⏭  SKIP_CHECKS set — Playwright checks skipped."
+  exit 0
+fi
+
+echo "▶  Running npm run test:checks …"
+npm run test:checks
+status=$?
+
+if [ $status -ne 0 ]; then
+  echo ""
+  echo "✖  Checks failed — commit aborted."
+  echo "   Fix the failures, or skip with: SKIP_CHECKS=1 git commit …"
+  echo "   (First time? npx playwright install chromium)"
+  exit $status
+fi
+
+echo "✔  Checks passed."
+exit 0

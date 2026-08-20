@@ -3,6 +3,14 @@
     <h1>{{ courseTitle }}</h1>
     <div v-if="description || isWeeklyCourse" class="course-description">
       <div v-if="description" v-html="description"></div>
+
+      <div v-if="isWeeklyCourse || isInteractiveCourse" class="placement-banner">
+        <p>{{ t('course.placement.banner') }}</p>
+        <router-link to="/kurs/python-einstufung" class="placement-banner-link">
+          {{ t('course.placement.link') }}
+        </router-link>
+      </div>
+
       <div v-if="isWeeklyCourse" class="course-structure">
         <p class="course-structure-intro">{{ t('course.structure.intro') }}</p>
         <div class="course-structure-tabs">
@@ -17,14 +25,14 @@
       </div>
     </div>
 
-    <CourseAppointments v-if="!isInteractiveCourse && !isLearningPathCourse" :termine="courseTermine" />
+    <CourseAppointments v-if="!isInteractiveCourse && !isPlacementCourse" :termine="courseTermine" />
 
     <div v-if="isInteractiveCourse" class="interactive-course-wrapper">
       <InteractiveCourse :content-path="course.contentPath" />
     </div>
 
-    <div v-else-if="isLearningPathCourse" class="learning-path-wrapper">
-      <LearningPathCourse />
+    <div v-else-if="isPlacementCourse" class="placement-course-wrapper">
+      <PlacementCourse />
     </div>
 
     <FortschrittWidget v-else-if="isWeeklyCourse && fortschrittReady" />
@@ -55,20 +63,22 @@
 </template>
 
 <script>
-import { ref, onMounted, computed, watch } from 'vue';
+import { ref, onMounted, computed, watch, toRef } from 'vue';
 import CourseAppointments from '../components/CourseAppointments.vue';
 import FortschrittWidget from '../components/FortschrittWidget.vue';
 import WeekSection from '../components/WeekSection.vue';
 import InteractiveCourse from '../components/InteractiveCourse.vue';
-import LearningPathCourse from '../components/LearningPathCourse.vue';
+import PlacementCourse from '../components/PlacementCourse.vue';
 import { loadCourseData } from '../composables/useCourseData';
 import { loadWeeklyContent } from '../composables/useWeeklyContent';
 import { useLanguage } from '../composables/useLanguage.js';
+import { useRoute } from 'vue-router';
 
 const TABS_CONFIG = [
   { key: '1_lektion',   icon: '📚', labelKey: 'tab.lesson',    descKey: 'tab.lesson.desc' },
   { key: '2_debug',     icon: '🐛', labelKey: 'tab.debug',     descKey: 'tab.debug.desc' },
   { key: '3_missionen', icon: '⭐', labelKey: 'tab.missions',  descKey: 'tab.missions.desc' },
+  { key: '4_check',     icon: '✅', labelKey: 'tab.check',     descKey: 'tab.check.desc' },
   { key: '5_boss',      icon: '🐉', labelKey: 'tab.boss',      descKey: 'tab.boss.desc' },
   { key: '6_loesungen', icon: '🔧', labelKey: 'tab.solutions', descKey: 'tab.solutions.desc' },
   { key: '0_glossar',   icon: '📖', labelKey: 'tab.glossary',  descKey: 'tab.glossary.desc' },
@@ -81,13 +91,14 @@ export default {
     FortschrittWidget,
     WeekSection,
     InteractiveCourse,
-    LearningPathCourse,
+    PlacementCourse,
   },
   props: {
     id: { type: String, required: true },
   },
   setup(props) {
     const { lang, t } = useLanguage();
+    const route = useRoute();
 
     const course = ref(null);
     const description = ref('');
@@ -98,7 +109,7 @@ export default {
 
     const isWeeklyCourse = computed(() => props.id === 'python-12-wochen-grundkurs');
     const isInteractiveCourse = computed(() => props.id === 'python-grundlagen-interaktiv');
-    const isLearningPathCourse = computed(() => props.id === 'python-lernpfad');
+    const isPlacementCourse = computed(() => props.id === 'python-einstufung');
 
     const courseTabs = computed(() =>
       TABS_CONFIG.map(tab => ({ ...tab, label: t(tab.labelKey), description: t(tab.descKey) }))
@@ -126,23 +137,57 @@ export default {
     const loadContent = async () => {
       if (isWeeklyCourse.value) {
         weeks.value = await loadWeeklyContent(lang.value);
+      } else {
+        weeks.value = [];
       }
     };
 
-    onMounted(async () => {
+    const applyWeekDeepLink = () => {
+      if (!isWeeklyCourse.value || !weeks.value.length) return;
+      const weekNum = Number(route.query.week);
+      if (!weekNum || weekNum < 1 || weekNum > weeks.value.length) return;
+      const idx = weekNum - 1;
+      weeks.value[idx].expanded = true;
+      // DOM may not have WeekSection yet (same tick as loadContent) — retry briefly
+      const scrollToWeek = (attempt = 0) => {
+        const el = document.getElementById(`woche-${weekNum}`);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          return;
+        }
+        if (attempt < 20) {
+          requestAnimationFrame(() => scrollToWeek(attempt + 1));
+        }
+      };
+      requestAnimationFrame(() => scrollToWeek());
+    };
+
+    const loadCourse = async () => {
+      loading.value = true;
+      fortschrittReady.value = false;
+      course.value = null;
+      description.value = '';
+      weeks.value = [];
+      courseTermine.value = [];
       try {
         const data = await loadCourseData(props.id, lang.value);
         course.value = data.course;
         description.value = data.description;
         courseTermine.value = data.courseTermine;
         await loadContent();
+        applyWeekDeepLink();
       } catch (e) {
         console.error('CourseDetail load error:', e);
       } finally {
         loading.value = false;
         fortschrittReady.value = true;
       }
-    });
+    };
+
+    onMounted(loadCourse);
+
+    // Same component instance is reused when switching /kurs/:id → must reload
+    watch(() => props.id, loadCourse);
 
     watch(lang, async () => {
       if (course.value) {
@@ -150,7 +195,10 @@ export default {
         description.value = data.description;
       }
       await loadContent();
+      applyWeekDeepLink();
     });
+
+    watch(() => route.query.week, applyWeekDeepLink);
 
     return {
       course,
@@ -162,8 +210,8 @@ export default {
       loading,
       isWeeklyCourse,
       isInteractiveCourse,
-      isLearningPathCourse,
-      id: props.id,
+      isPlacementCourse,
+      id: toRef(props, 'id'),
       courseTabs,
       t,
       setVariant,
@@ -184,7 +232,7 @@ export default {
   overflow: visible;
 }
 
-.learning-path-wrapper {
+.placement-course-wrapper {
   margin-top: 20px;
   overflow: visible;
 }
@@ -192,6 +240,42 @@ export default {
 .course-description {
   margin-bottom: 40px;
   font-size: 1.1em;
+}
+
+.placement-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 20px 0 0 0;
+  padding: 14px 16px;
+  background: #f0f4ff;
+  border: 2px solid #6c8ebf;
+  border-radius: 10px;
+}
+
+.placement-banner p {
+  margin: 0;
+  flex: 1;
+  font-size: 0.95em;
+  color: #334;
+  line-height: 1.4;
+}
+
+.placement-banner-link {
+  background: var(--primary-purple, #4a2274);
+  color: white;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+
+.placement-banner-link:hover {
+  background: #3d1b5c;
 }
 
 .notebook-pack-download {

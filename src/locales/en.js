@@ -9,6 +9,7 @@ export default {
   'home.hero.subtitle': 'Your journey into the world of programming starts here. Learn Python in a way that is actually fun.',
   'home.cta.weekly':      'To the 12-Week Course',
   'home.cta.interactive': 'Python Basics – Interactive',
+  'home.cta.placement':   'Placement test',
   'home.appointments.title': 'Upcoming Events',
   'home.appt.time':     'Time:',
   'home.appt.location': 'Location:',
@@ -23,7 +24,9 @@ export default {
   // ── Course detail ────────────────────────────────────────────────────────
   'course.loading': 'Loading course...',
   'course.error':   'Course could not be loaded. Check the browser console (F12) for details.',
-  'course.structure.intro': 'Each week is divided into 6 areas – work through them in this order for best results:',
+  'course.structure.intro': 'Each week is divided into areas – including a Check for understanding. Best worked through in this order:',
+  'course.placement.banner': 'Not sure where to start? Take the placement test first – same questions as the Check tab in each week.',
+  'course.placement.link': 'Go to placement →',
   'course.download.btn':  '📦 Download all notebooks as a pack',
   'course.download.hint': 'Zip with all 12 weeks (Adventure, Horses, Sci-Fi) + Cheat Sheets + Progress Script – for working in Jupyter or VS Code.',
 
@@ -34,6 +37,8 @@ export default {
   'tab.debug.desc':   'Find and fix intentional bugs in the code',
   'tab.missions':     'Missions',
   'tab.missions.desc':'Small tasks for practising the new material',
+  'tab.check':        'Check',
+  'tab.check.desc':   'Short understanding quiz for this week\'s topics',
   'tab.boss':         'Boss Quest',
   'tab.boss.desc':    'The big final challenge – everything combined!',
   'tab.solutions':    'Solutions',
@@ -94,15 +99,8 @@ export default {
   'mission.unclaim':     'Undo',
   'mission.label':       'Mission',
   'mission.boss.label':  'Boss Quest',
-  'mission.checkpoint.hint': 'Tip: Complete the learning path checkpoint for this week first – then you know for sure you understood everything!',
-  'mission.checkpoint.done': 'Checkpoint for this week completed – you can redeem missions!',
-
-  // ── Learning path checkpoints ─────────────────────────────────────────────
-  'checkpoint.title':      'Learning path checkpoint',
-  'checkpoint.hint':       'Quick quiz & code check for this week\'s topics.',
-  'checkpoint.open':       'Go to checkpoint →',
-  'checkpoint.done.title': 'Checkpoint complete!',
-  'checkpoint.done.hint':  'You completed this week\'s topics in the learning path.',
+  'mission.check.hint':  'Tip: Do this week\'s Check tab first — then you know the material stuck!',
+  'mission.check.done':  'Week check passed — you can redeem missions!',
 
   // ── Appointments ──────────────────────────────────────────────────────────
   'appt.title':    'Upcoming appointments for this course',

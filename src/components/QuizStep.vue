@@ -6,44 +6,27 @@
       v-for="(q, qIdx) in questions"
       :key="q.id || qIdx"
       class="quiz-question"
-      :class="{ answered: answers[qIdx] !== null && answers[qIdx] !== undefined, correct: feedback[qIdx]?.correct, incorrect: feedback[qIdx] && !feedback[qIdx].correct }"
+      :class="{ answered: isAnswered(qIdx), correct: feedback[qIdx]?.correct, incorrect: feedback[qIdx] && !feedback[qIdx].correct }"
     >
       <p class="question-text">
         <span class="question-num">{{ qIdx + 1 }}.</span>
         {{ questionText(q) }}
       </p>
+      <p v-if="isMulti(q)" class="multi-hint">
+        {{ lang === 'en' ? 'Select all that apply.' : 'Mehrere Antworten möglich.' }}
+      </p>
 
-      <div v-if="q.type === 'true_false'" class="options tf-options">
-        <button
-          type="button"
-          class="option-btn"
-          :class="{ selected: answers[qIdx] === true, correct: showResults && q.correct === true, wrong: showResults && answers[qIdx] === true && q.correct !== true }"
-          :disabled="submitted"
-          @click="selectAnswer(qIdx, true)"
-        >
-          {{ lang === 'en' ? 'True' : 'Wahr' }}
-        </button>
-        <button
-          type="button"
-          class="option-btn"
-          :class="{ selected: answers[qIdx] === false, correct: showResults && q.correct === false, wrong: showResults && answers[qIdx] === false && q.correct !== false }"
-          :disabled="submitted"
-          @click="selectAnswer(qIdx, false)"
-        >
-          {{ lang === 'en' ? 'False' : 'Falsch' }}
-        </button>
-      </div>
-
-      <div v-else class="options mc-options">
+      <div class="options mc-options">
         <button
           v-for="(opt, oIdx) in q.options"
           :key="oIdx"
           type="button"
           class="option-btn option-block"
-          :class="{ selected: answers[qIdx] === oIdx, correct: showResults && q.correctIndex === oIdx, wrong: showResults && answers[qIdx] === oIdx && q.correctIndex !== oIdx }"
+          :class="optionClass(q, qIdx, oIdx)"
           :disabled="submitted"
           @click="selectAnswer(qIdx, oIdx)"
         >
+          <span v-if="isMulti(q)" class="option-mark">{{ isSelected(qIdx, oIdx) ? '☑' : '☐' }}</span>
           {{ opt }}
         </button>
       </div>
@@ -76,7 +59,12 @@
 
 <script>
 import { ref, computed, watch } from 'vue';
-import { scoreQuizAnswers, isQuizPassed } from '../composables/useTaskValidation';
+import {
+  scoreQuizAnswers,
+  isQuizPassed,
+  isAnswerCorrect,
+  getCorrectIndices,
+} from '../composables/useTaskValidation';
 
 export default {
   name: 'QuizStep',
@@ -93,8 +81,14 @@ export default {
     const submitted = ref(false);
     const scoreResult = ref({ score: 0, correct: 0, total: 0 });
 
+    const isMulti = (q) =>
+      q?.type === 'multiple_select'
+      || (Array.isArray(q?.correctIndices) && q.correctIndices.length > 0);
+
+    const emptyAnswer = (q) => (isMulti(q) ? [] : null);
+
     const initAnswers = () => {
-      answers.value = props.questions.map(() => null);
+      answers.value = props.questions.map((q) => emptyAnswer(q));
       feedback.value = props.questions.map(() => null);
       submitted.value = false;
       scoreResult.value = { score: 0, correct: 0, total: 0 };
@@ -102,8 +96,21 @@ export default {
 
     watch(() => props.questions, initAnswers, { immediate: true });
 
+    const isSelected = (qIdx, oIdx) => {
+      const a = answers.value[qIdx];
+      if (Array.isArray(a)) return a.includes(oIdx);
+      return a === oIdx;
+    };
+
+    const isAnswered = (qIdx) => {
+      const q = props.questions[qIdx];
+      const a = answers.value[qIdx];
+      if (isMulti(q)) return Array.isArray(a) && a.length > 0;
+      return a !== null && a !== undefined;
+    };
+
     const allAnswered = computed(() =>
-      answers.value.every((a) => a !== null && a !== undefined)
+      props.questions.every((_, i) => isAnswered(i))
     );
 
     const passed = computed(() =>
@@ -117,19 +124,36 @@ export default {
       return q.question;
     };
 
+    const optionClass = (q, qIdx, oIdx) => {
+      const selected = isSelected(qIdx, oIdx);
+      const classes = { selected };
+      if (!showResults.value) return classes;
+      const correctSet = new Set(getCorrectIndices(q));
+      if (correctSet.has(oIdx)) classes.correct = true;
+      if (selected && !correctSet.has(oIdx)) classes.wrong = true;
+      return classes;
+    };
+
     const selectAnswer = (qIdx, value) => {
       if (submitted.value) return;
+      const q = props.questions[qIdx];
       const next = [...answers.value];
-      next[qIdx] = value;
+      if (isMulti(q)) {
+        const cur = Array.isArray(next[qIdx]) ? [...next[qIdx]] : [];
+        const pos = cur.indexOf(value);
+        if (pos >= 0) cur.splice(pos, 1);
+        else cur.push(value);
+        next[qIdx] = cur;
+      } else {
+        next[qIdx] = value;
+      }
       answers.value = next;
     };
 
     const buildFeedback = () => {
       feedback.value = props.questions.map((q, i) => {
         const a = answers.value[i];
-        let correct = false;
-        if (q.type === 'true_false') correct = a === q.correct;
-        else correct = a === q.correctIndex;
+        const correct = isAnswerCorrect(q, a);
         const expl = props.lang === 'en' && q.explanation_en ? q.explanation_en : q.explanation;
         return {
           correct,
@@ -145,7 +169,7 @@ export default {
       scoreResult.value = scoreQuizAnswers(props.questions, answers.value);
       buildFeedback();
       submitted.value = true;
-      const payload = { ...scoreResult.value, answers: [...answers.value] };
+      const payload = { ...scoreResult.value, answers: answers.value.map((a) => (Array.isArray(a) ? [...a] : a)) };
       if (isQuizPassed(scoreResult.value.score, props.passThreshold)) {
         emit('completed', payload);
       } else {
@@ -164,6 +188,10 @@ export default {
       passed,
       showResults,
       questionText,
+      isMulti,
+      isSelected,
+      isAnswered,
+      optionClass,
       selectAnswer,
       submitQuiz,
       retry,
@@ -205,6 +233,13 @@ export default {
   margin: 0 0 12px 0;
   font-weight: 600;
   line-height: 1.4;
+}
+
+.multi-hint {
+  margin: -6px 0 10px 0;
+  font-size: 0.85em;
+  color: #6c757d;
+  font-weight: 500;
 }
 
 .question-num {
@@ -258,6 +293,15 @@ export default {
 
 .option-block {
   width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.option-mark {
+  flex-shrink: 0;
+  font-size: 1.05em;
+  line-height: 1.3;
 }
 
 .question-feedback {

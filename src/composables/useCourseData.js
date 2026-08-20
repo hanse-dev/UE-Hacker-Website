@@ -48,15 +48,20 @@ export async function loadCourseData(courseId, lang = 'de') {
   if (course) {
     try {
       const enContentPath = `${course.contentPath}-en`;
-      const hasEnDescription = ['python-12-wochen-grundkurs', 'python-grundlagen-interaktiv'];
+      const hasEnDescription = ['python-12-wochen-grundkurs', 'python-grundlagen-interaktiv', 'python-einstufung'];
       const descPath = (lang === 'en' && hasEnDescription.includes(courseId))
         ? enContentPath
         : course.contentPath;
       const descModule = await import(`../../content/${descPath}/beschreibung.md?raw`);
       description = marked(descModule.default);
     } catch (e) {
-      console.error('Could not load course description:', e);
-      description = '<p>Die Beschreibung für diesen Kurs konnte nicht geladen werden.</p>';
+      console.warn('Could not load beschreibung.md, falling back to kurse.json:', e.message);
+      const fallback = lang === 'en' && course.description_en
+        ? course.description_en
+        : course.description;
+      description = fallback
+        ? `<p>${fallback}</p>`
+        : '<p>Die Beschreibung für diesen Kurs konnte nicht geladen werden.</p>';
     }
 
     try {

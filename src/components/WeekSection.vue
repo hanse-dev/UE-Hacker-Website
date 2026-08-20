@@ -70,23 +70,6 @@
         <!-- Notebook viewer with variant + tab navigation -->
         <div v-if="week.hasNotebook" class="notebook-area">
 
-          <!-- Learning path checkpoint -->
-          <div v-if="hasCheckpoint" class="checkpoint-banner" :class="{ 'checkpoint-done': checkpointComplete }">
-            <div class="checkpoint-content">
-              <span class="checkpoint-icon">{{ checkpointComplete ? '✅' : '🎯' }}</span>
-              <div class="checkpoint-text">
-                <strong>{{ checkpointTitle }}</strong>
-                <span>{{ checkpointHint }}</span>
-              </div>
-            </div>
-            <router-link
-              :to="{ path: '/kurs/python-lernpfad', query: checkpointQuery }"
-              class="checkpoint-link"
-            >
-              {{ t('checkpoint.open') }}
-            </router-link>
-          </div>
-
           <!-- Row 1: Varianten-Auswahl -->
           <div class="variant-selector">
             <button
@@ -132,9 +115,15 @@
             </button>
           </div>
 
+          <!-- Check tab (quiz, not notebook) -->
+          <WeekCheckPanel
+            v-if="week.expanded && selectedTab === '4_check' && hasCheck"
+            :week-number="index + 1"
+          />
+
           <!-- Notebook -->
           <JupyterNotebook
-            v-if="week.expanded && activeNotebookUrl"
+            v-else-if="week.expanded && activeNotebookUrl"
             :notebook-path="activeNotebookUrl"
             :notebook-url="activeNotebookUrl"
             :week-number="index + 1"
@@ -142,7 +131,7 @@
             :course-id="courseId"
             :key="`${index}-${week.selectedVariant}-${selectedTab}`"
           />
-          <div v-else class="tab-empty">
+          <div v-else-if="selectedTab !== '4_check'" class="tab-empty">
             {{ t('week.noNotebook') }}
           </div>
 
@@ -153,17 +142,19 @@
 </template>
 
 <script>
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 import JupyterNotebook from './JupyterNotebook.vue';
 import MissionenPanel from './MissionenPanel.vue';
+import WeekCheckPanel from './WeekCheckPanel.vue';
 import { useLanguage } from '../composables/useLanguage.js';
-import { hasWeekCheckpoint, isWeekCheckpointComplete, getCheckpointTopicIds } from '../composables/useLearningPathCheckpoints.js';
-import { useLearnerProgress } from '../composables/useLearnerProgress.js';
+import { loadWeekChecks, hasWeekCheck } from '../composables/useWeekChecks.js';
 
 const TABS_CONFIG = [
   { key: '1_lektion',   icon: '📚', labelKey: 'tab.lesson',    descKey: 'tab.lesson.desc' },
   { key: '2_debug',     icon: '🐛', labelKey: 'tab.debug',     descKey: 'tab.debug.desc' },
   { key: '3_missionen', icon: '⭐', labelKey: 'tab.missions',  descKey: 'tab.missions.desc' },
+  { key: '4_check',     icon: '✅', labelKey: 'tab.check',     descKey: 'tab.check.desc' },
   { key: '5_boss',      icon: '🐉', labelKey: 'tab.boss',      descKey: 'tab.boss.desc' },
   { key: '6_loesungen', icon: '🔧', labelKey: 'tab.solutions', descKey: 'tab.solutions.desc' },
   { key: '0_glossar',   icon: '📖', labelKey: 'tab.glossary',  descKey: 'tab.glossary.desc' },
@@ -171,7 +162,7 @@ const TABS_CONFIG = [
 
 export default {
   name: 'WeekSection',
-  components: { JupyterNotebook, MissionenPanel },
+  components: { JupyterNotebook, MissionenPanel, WeekCheckPanel },
   props: {
     week: { type: Object, required: true },
     index: { type: Number, required: true },
@@ -180,6 +171,9 @@ export default {
   emits: ['toggle', 'toggle-cheat-sheet', 'set-variant'],
   setup(props) {
     const { t } = useLanguage();
+    const route = useRoute();
+    const checksData = ref(null);
+
     const tabStorageKey = `ue-hacker-week-tab-${props.courseId}-${props.index}`;
     const selectedTab = ref(
       localStorage.getItem(tabStorageKey) ?? props.week.selectedTab ?? '1_lektion'
@@ -189,52 +183,68 @@ export default {
       localStorage.setItem(tabStorageKey, value);
     });
 
-    const tabs = computed(() =>
-      TABS_CONFIG.map(tab => ({ ...tab, label: t(tab.labelKey), description: t(tab.descKey) }))
-    );
+    const weekNumber = computed(() => props.index + 1);
+    const hasCheck = computed(() => hasWeekCheck(checksData.value, weekNumber.value));
+
+    const tabs = computed(() => {
+      const base = TABS_CONFIG.map(tab => ({
+        ...tab,
+        label: t(tab.labelKey),
+        description: t(tab.descKey),
+      }));
+      // Hide check tab if no questions for this week
+      return base.filter((tab) => tab.key !== '4_check' || hasCheck.value);
+    });
 
     const isCheatSheetExpanded = (csIndex) =>
       props.week.expandedCheatSheets?.[csIndex] ?? false;
 
-    const hasTab = (key) =>
-      !!props.week.notebooks?.[props.week.selectedVariant]?.[key];
+    const hasTab = (key) => {
+      if (key === '4_check') return hasCheck.value;
+      return !!props.week.notebooks?.[props.week.selectedVariant]?.[key];
+    };
 
-    const activeNotebookUrl = computed(() =>
-      props.week.notebooks?.[props.week.selectedVariant]?.[selectedTab.value] ?? null
-    );
-
-    const weekNumber = computed(() => props.index + 1);
-    const hasCheckpoint = computed(() => hasWeekCheckpoint(weekNumber.value));
-
-    const lernpfadVariant = localStorage.getItem(VARIANT_STORAGE_KEY) || 'kinder';
-    const progressKinder = useLearnerProgress('kinder');
-    const progressJugendliche = useLearnerProgress('jugendliche');
-    const lernpfadProgress = computed(() =>
-      lernpfadVariant === 'jugendliche' ? progressJugendliche : progressKinder
-    );
-
-    const checkpointComplete = computed(() =>
-      isWeekCheckpointComplete(weekNumber.value, (id) => lernpfadProgress.value.isTopicDone(id))
-    );
-
-    const checkpointTopicIds = computed(() => getCheckpointTopicIds(weekNumber.value));
-
-    const checkpointQuery = computed(() => {
-      const ids = checkpointTopicIds.value;
-      return ids.length ? { topic: ids[0] } : {};
+    const activeNotebookUrl = computed(() => {
+      if (selectedTab.value === '4_check') return null;
+      return props.week.notebooks?.[props.week.selectedVariant]?.[selectedTab.value] ?? null;
     });
 
-    const checkpointTitle = computed(() =>
-      checkpointComplete.value ? t('checkpoint.done.title') : t('checkpoint.title')
-    );
+    const applyRouteTab = () => {
+      const weekParam = Number(route.query.week);
+      if (weekParam !== weekNumber.value) return;
+      const tab = String(route.query.tab || '').toLowerCase();
+      // Deep-link from placement / share URL: open the requested tab (default: lesson notebooks)
+      if (tab === 'check' && hasCheck.value) {
+        selectedTab.value = '4_check';
+      } else if (!tab || tab === 'lektion' || tab === 'lesson') {
+        selectedTab.value = '1_lektion';
+      } else if (tab === 'debug') {
+        selectedTab.value = '2_debug';
+      } else if (tab === 'missionen' || tab === 'missions') {
+        selectedTab.value = '3_missionen';
+      } else if (tab === 'boss') {
+        selectedTab.value = '5_boss';
+      } else if (tab === 'loesungen' || tab === 'solutions') {
+        selectedTab.value = '6_loesungen';
+      } else if (tab === 'glossar' || tab === 'glossary') {
+        selectedTab.value = '0_glossar';
+      }
+    };
 
-    const checkpointHint = computed(() =>
-      checkpointComplete.value ? t('checkpoint.done.hint') : t('checkpoint.hint')
-    );
+    onMounted(async () => {
+      try {
+        checksData.value = await loadWeekChecks();
+      } catch (e) {
+        console.error(e);
+      }
+      applyRouteTab();
+    });
+
+    watch(() => [route.query.week, route.query.tab, hasCheck.value], applyRouteTab);
 
     return {
       tabs, t, selectedTab, isCheatSheetExpanded, hasTab, activeNotebookUrl,
-      hasCheckpoint, checkpointComplete, checkpointQuery, checkpointTitle, checkpointHint,
+      hasCheck,
     };
   },
 };
@@ -244,66 +254,6 @@ export default {
 /* ── Notebook area ─────────────────────────────────────────────────────── */
 .notebook-area {
   margin-top: 16px;
-}
-
-.checkpoint-banner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 14px 16px;
-  margin-bottom: 16px;
-  background: #f0f4ff;
-  border: 2px solid #6c8ebf;
-  border-radius: 10px;
-}
-
-.checkpoint-banner.checkpoint-done {
-  background: #f0fdf4;
-  border-color: #28a745;
-}
-
-.checkpoint-content {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.checkpoint-icon {
-  font-size: 1.5em;
-  line-height: 1;
-}
-
-.checkpoint-text {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.checkpoint-text strong {
-  font-size: 0.95em;
-  color: #222;
-}
-
-.checkpoint-text span {
-  font-size: 0.85em;
-  color: #555;
-}
-
-.checkpoint-link {
-  background: var(--primary-purple, #4a2274);
-  color: white;
-  padding: 8px 16px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9em;
-  white-space: nowrap;
-}
-
-.checkpoint-link:hover {
-  background: #3d1b5c;
 }
 
 /* ── Variant selector ──────────────────────────────────────────────────── */

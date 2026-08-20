@@ -5,11 +5,11 @@
       <span class="missionen-toggle">{{ expanded ? '−' : '+' }}</span>
     </div>
     <div v-show="expanded" class="missionen-panel-content">
-      <p v-if="hasCheckpoint && !checkpointComplete" class="checkpoint-mission-hint">
-        {{ t('mission.checkpoint.hint') }}
+      <p v-if="hasCheck && !checkPassed" class="checkpoint-mission-hint">
+        {{ t('mission.check.hint') }}
       </p>
-      <p v-else-if="hasCheckpoint && checkpointComplete" class="checkpoint-mission-done">
-        {{ t('mission.checkpoint.done') }}
+      <p v-else-if="hasCheck && checkPassed" class="checkpoint-mission-done">
+        {{ t('mission.check.done') }}
       </p>
       <div class="missionen-list">
         <div
@@ -40,10 +40,7 @@ import { ref, computed, onMounted, watch } from 'vue';
 import { useFortschritt } from '../composables/useFortschritt';
 import { assetUrl } from '../utils/assetUrl';
 import { useLanguage } from '../composables/useLanguage.js';
-import { hasWeekCheckpoint, isWeekCheckpointComplete } from '../composables/useLearningPathCheckpoints.js';
-import { useLearnerProgress } from '../composables/useLearnerProgress.js';
-
-const VARIANT_STORAGE_KEY = 'ue-hacker-lernpfad-variant';
+import { loadWeekChecks, hasWeekCheck, useWeekChecks } from '../composables/useWeekChecks.js';
 
 export default {
   name: 'MissionenPanel',
@@ -56,7 +53,9 @@ export default {
     const { t, lang } = useLanguage();
     const expanded = ref(false);
     const rewardsManifest = ref(null);
+    const checksData = ref(null);
     const { claimMission: doClaimMission, unclaimMission: doUnclaimMission, isClaimed: checkClaimed } = useFortschritt();
+    const { isWeekCheckPassed } = useWeekChecks();
 
     const pointUnit = computed(() => {
       const units = {
@@ -80,6 +79,9 @@ export default {
     const claimMission   = (m) => doClaimMission(props.variant, m.id, m.points, m.item, m.label);
     const unclaimMission = (m) => doUnclaimMission(props.variant, m.id);
 
+    const hasCheck = computed(() => hasWeekCheck(checksData.value, props.weekNumber));
+    const checkPassed = computed(() => isWeekCheckPassed(props.weekNumber));
+
     const loadManifest = async () => {
       try {
         const file = lang.value === 'en' ? 'rewards-manifest-en.json' : 'rewards-manifest.json';
@@ -88,25 +90,17 @@ export default {
       } catch (e) { /* silent */ }
     };
 
-    onMounted(loadManifest);
+    onMounted(async () => {
+      loadManifest();
+      try {
+        checksData.value = await loadWeekChecks();
+      } catch (e) { /* silent */ }
+    });
     watch(lang, loadManifest);
-
-    const hasCheckpoint = computed(() => hasWeekCheckpoint(props.weekNumber));
-
-    const lernpfadVariant = localStorage.getItem(VARIANT_STORAGE_KEY) || 'kinder';
-    const progressKinder = useLearnerProgress('kinder');
-    const progressJugendliche = useLearnerProgress('jugendliche');
-    const lernpfadProgress = computed(() =>
-      lernpfadVariant === 'jugendliche' ? progressJugendliche : progressKinder
-    );
-
-    const checkpointComplete = computed(() =>
-      isWeekCheckpointComplete(props.weekNumber, (id) => lernpfadProgress.value.isTopicDone(id))
-    );
 
     return {
       expanded, missionen, pointUnit, isClaimed, claimMission, unclaimMission, t,
-      hasCheckpoint, checkpointComplete,
+      hasCheck, checkPassed,
     };
   },
 };

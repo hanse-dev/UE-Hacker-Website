@@ -1,11 +1,11 @@
 [
   {
-    "id": "python-lernpfad",
-    "title": "Python Lernpfad",
-    "title_en": "Python Learning Path",
-    "description": "Themenweise üben mit Quiz und Code – du entscheidest, was du schon kannst. Sofortige Rückmeldung zu jedem Schritt.",
-    "description_en": "Practice topic by topic with quizzes and code — you decide what you already know. Instant feedback on every step.",
-    "contentPath": "python-lernpfad"
+    "id": "python-einstufung",
+    "title": "Python Einstufung",
+    "title_en": "Python Placement",
+    "description": "Kurzer Test über mehrere Wochen. Wir zeigen dir, wo du starten kannst – und du springst direkt zum Wochen-Check.",
+    "description_en": "A short test across several weeks. We show you where to start — and you jump straight to that week's check.",
+    "contentPath": "python-einstufung"
   },
   {
     "id": "python-grundlagen-interaktiv",

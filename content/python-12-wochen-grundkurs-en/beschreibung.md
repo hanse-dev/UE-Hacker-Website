@@ -10,6 +10,10 @@ The course is aimed at everyone who wants to start with Python **from scratch**.
 - **Three theme worlds** – choose between Adventure, Horse Stables, or Sci-Fi. All teach the same Python knowledge, just with different settings.
 - **Missions & rewards** – each week consists of small missions you master. You can collect points for motivation and to celebrate your progress. This is optional and just for fun.
 
+## Placement – where should I start?
+
+Not sure whether to begin at week 1 or later? Take the short **[Python placement test](/kurs/python-einstufung)** first. It uses the same questions as the **Check** tab in each week and shows you where to continue.
+
 ## Who is the course for?
 
 For absolute beginners. You don't need any prior knowledge – just curiosity and the desire to give computers commands.

@@ -10,6 +10,10 @@ Der Kurs richtet sich an alle, die **von Null** in Python einsteigen wollen. In 
 - **Drei Themenwelten** – du wählst zwischen Abenteuer, Pferdewirtschaft oder Sci-Fi. Alle vermitteln dasselbe Python-Wissen, nur mit unterschiedlichem Setting.
 - **Missionen & Belohnungen** – jede Woche besteht aus kleinen Missionen, die du meisterst. Dafür kannst du Punkte sammeln – zur Motivation und zum Feiern deiner Fortschritte. Das ist freiwillig und nur zum Spaß da.
 
+## Einstufung – wo soll ich starten?
+
+Unsicher, ob du bei Woche 1 oder später einsteigen sollst? Mach zuerst den kurzen **[Python Einstufungstest](/kurs/python-einstufung)**. Er nutzt dieselben Fragen wie der **Check**-Tab in den Wochen und zeigt dir, wo du weitermachen kannst.
+
 ## Für wen ist der Kurs?
 
 Für absolute Einsteiger:innen. Du brauchst keine Vorkenntnisse, nur Neugier und Lust, dem Computer Befehle zu geben.
