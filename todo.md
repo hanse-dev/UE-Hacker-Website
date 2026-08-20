@@ -33,6 +33,22 @@
 - [x] Alten Lernpfad-Code/Content entfernt
 - [ ] Committen und in `main` mergen
 
+### Storytelling-Überarbeitung 12-Wochen-Kurs (Branch `cursor/storytelling-woche7-pilot`)
+
+- [x] Storytelling-Analyse Abenteuer-Variante (alle 12 Wochen) — Befunde siehe unten
+- [x] Woche 7 Abenteuer (DE+EN) als Pilot komplett umgebaut: zusammenhängende Szenen statt Schritt-Listen,
+      Bibliothekswahl von math-lastig auf random/string/time umgestellt, Debug-Bugs unabhängig vom
+      geteilten Kernel-Zustand gemacht, Belohnungstexte an rewards-manifest(.en).json angeglichen
+- [ ] Restliche 11 Wochen Abenteuer nach demselben Prinzip überarbeiten
+- [ ] Pferde- und Sci-Fi-Variante ebenfalls überarbeiten (eigene Metaphern nötig, kein reines Übersetzen)
+- [ ] Pythonia/Pyralia-Namenskonflikt weltweit vereinheitlichen (betrifft Woche 1, 10, 12)
+- [ ] Woche 2: Elementbezug ("Vier magische Elemente") einbauen oder Titel entschärfen
+- [ ] Woche 6: Boss-Quest-Titel/Prämissen stärker von Woche 5 abgrenzen (wirken aktuell kopiert)
+- [ ] Woche 9: Missionen-Formatierung vereinheitlichen (Nummerierungs-Mischmasch)
+- [ ] Woche 10, Boss-Quest 2 ("Zookeeper"): stärker in die Fantasy-Welt einbetten
+- [ ] Woche 12, Boss-Quest 5: Textbug "Als Nächstes: Woche – wartet schon!" reparieren (Wochenzahl fehlt)
+- [ ] "Gilde-Meister-Urkunde" als Zwischenbelohnung (W6/7/8) vs. Kursabschluss-Titel prüfen — evtl. umbenennen
+
 ### Später: Admin-Login (neuer Branch `cursor/admin-login`)
 
 - [x] Neuer Branch von `main` — Plan: [`ACCOUNT-SYNC-PLAN.md`](ACCOUNT-SYNC-PLAN.md)
