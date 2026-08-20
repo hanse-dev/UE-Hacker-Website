@@ -589,7 +589,7 @@ print("📚 Nächste Woche: [Thema nächste Woche]!")
 
 ### Thematische Konsistenz:
 - **Abenteuer:** Magisch, Fantasy-RPG, mittelalterlich
-  - Setting: Pythonia, magische Welt
+  - Setting: Pyralia, magische Welt
   - Protagonist: Junger Abenteurer/Magier
   - Währung: XP (Experience Points)
   - Mentor: "Der alte Magier"

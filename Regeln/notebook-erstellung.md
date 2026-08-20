@@ -24,7 +24,7 @@ Erstelle **3 Jupyter-Notebooks** für **Woche [NUMMER]** zum Thema **"[THEMA]"**
 Erstelle jeweils ein Notebook für:
 
 #### 1. **Abenteuer/Fantasy-Theme** (`woche[X]_abenteuer.ipynb`)
-- Setting: Pythonia, magische Welt
+- Setting: Pyralia, magische Welt
 - Protagonist: Junger Abenteurer/Magier
 - Währung: XP (Experience Points)
 - Boss: [Thematisch passender Fantasy-Boss]
@@ -451,7 +451,7 @@ print("[📚/🐴/🚀] Nächste Woche: [Thema nächste Woche]!")
 
 ### Thematische Konsistenz:
 - **Abenteuer:** Magisch, Fantasy-RPG, mittelalterlich
-  - Setting: Pythonia, magische Welt
+  - Setting: Pyralia, magische Welt
   - Protagonist: Junger Abenteurer/Magier
   - Währung: XP (Experience Points)
   - Mentor: "Der alte Magier"
