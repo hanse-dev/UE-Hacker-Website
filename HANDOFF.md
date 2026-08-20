@@ -140,8 +140,10 @@ wo es einen echten Mangel gab.
 3. Bei jeder Notebook-Änderung: Code-Zellen ausführen/kompilieren (auch mit geteiltem Namespace) und
    JSON-Validität prüfen, bevor committet wird.
 
-**Offen:** "Gilde-Meister-Urkunde" als Zwischenbelohnung (W6/7/8, Abenteuer) vs. Kursabschluss-Titel
-klären — evtl. umbenennen.
+**Geklärt:** "Gilde-Meister-Urkunde" als Zwischenbelohnung in W6/7/8 (Abenteuer) ist kein Bug — Pferde
+("Reitmeister-Urkunde") und Sci-Fi ("Crew-Meister-Urkunde") nutzen dasselbe Muster je 3×, und andere
+Items (z.B. "Kristallkugel" 4×, "Quest-Buch" 4×) wiederholen sich im ganzen Kurs genauso. Bewusstes
+Belohnungs-Flavor-Muster für die schwierigste Mission der Woche — keine Umbenennung nötig.
 
 ---
 
@@ -198,7 +200,7 @@ Siehe auch `todo.md`.
 - [ ] Server-Deploy final verifizieren (Service `app`, Orphans weg, Health, Admin-Login, kein Notebook-Blinken mehr nach PR #3)
 
 **Inhalte**
-- [ ] "Gilde-Meister-Urkunde" als Zwischenbelohnung (W6/7/8, Abenteuer) vs. Kursabschluss-Titel klären (siehe 3.4)
+- Keine offenen Punkte aus der Storytelling-Überarbeitung mehr (siehe 3.4) — "Gilde-Meister-Urkunde" geklärt, kein Bug
 
 **Nächste Features — je eigener Branch von `main` (Reihenfolge):**
 

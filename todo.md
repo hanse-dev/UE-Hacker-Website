@@ -25,8 +25,10 @@
       fehlende Platzhalter, W7 Missionen enger verknüpft; Pferde W2 Hufschlag-Typen jetzt benannt.
       Nebenbei: eine kaputte JSON-Datei (week5_horses_1_lektion.ipynb EN) gefunden und repariert,
       alle 444 Notebooks im Repo auf valides JSON geprüft.
-- [ ] "Gilde-Meister-Urkunde" als Zwischenbelohnung (W6/7/8) vs. Kursabschluss-Titel klären — evtl.
-      umbenennen
+- [x] "Gilde-Meister-Urkunde" als Zwischenbelohnung (W6/7/8) geprüft: kein Bug — Pferde/Sci-Fi nutzen
+      dasselbe Muster (Reitmeister-/Crew-Meister-Urkunde je 3×), und andere Items (Kristallkugel 4×,
+      Quest-Buch 4×) wiederholen sich im ganzen Kurs genauso — bewusstes Belohnungs-Flavor-Muster,
+      keine Umbenennung nötig
 
 ### Infrastruktur
 - [x] Einstufung / Checks in `main` (PR #1)
