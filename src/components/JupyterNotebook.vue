@@ -86,11 +86,13 @@ const loadSavedState = (notebookPath) => {
 const saveState = (notebookPath, cells, cellOutputs, originalSources) => {
   try {
     const key = stateKey(notebookPath);
-    localStorage.setItem(key, JSON.stringify({
+    const payload = JSON.stringify({
       originals: originalSources,
       sources: cells.map(cell => cell.source),
       outputs: cellOutputs,
-    }));
+    });
+    if (localStorage.getItem(key) === payload) return;
+    localStorage.setItem(key, payload);
     touchSyncKey(key);
   } catch {
     /* localStorage voll oder deaktiviert */
@@ -155,6 +157,32 @@ export default {
       }
     };
 
+    /** Sync: nur gespeicherten Stand anwenden — kein erneutes Fetch (kein Blinken). */
+    const applySyncedNotebookState = () => {
+      if (!cells.value.length) return;
+      const saved = loadSavedState(props.notebookPath);
+      if (!saved || saved.originals?.length !== cells.value.length) return;
+
+      let changed = false;
+      const nextOutputs = { ...cellOutputs.value };
+      cells.value.forEach((cell, i) => {
+        if (cell.cell_type !== 'code') return;
+        if (saved.originals[i] !== originalSources[i]) return;
+        if (typeof saved.sources?.[i] === 'string' && cell.source !== saved.sources[i]) {
+          cell.source = saved.sources[i];
+          changed = true;
+        }
+        if (saved.outputs?.[i] && JSON.stringify(nextOutputs[i]) !== JSON.stringify(saved.outputs[i])) {
+          nextOutputs[i] = saved.outputs[i];
+          changed = true;
+        }
+      });
+      if (changed) {
+        cellOutputs.value = nextOutputs;
+        cells.value = [...cells.value];
+      }
+    };
+
     const initializeKernel = async () => {
       try { await initPyodide(); }
       catch (e) { error.value = t('jupyter.initError'); }
@@ -197,11 +225,11 @@ export default {
     onMounted(() => {
       loadNotebook();
       initializeKernel();
-      window.addEventListener(PROGRESS_APPLIED_EVENT, loadNotebook);
+      window.addEventListener(PROGRESS_APPLIED_EVENT, applySyncedNotebookState);
     });
 
     onUnmounted(() => {
-      window.removeEventListener(PROGRESS_APPLIED_EVENT, loadNotebook);
+      window.removeEventListener(PROGRESS_APPLIED_EVENT, applySyncedNotebookState);
     });
 
     watch([cells, cellOutputs], () => {

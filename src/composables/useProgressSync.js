@@ -86,22 +86,35 @@ export function applyProgressPayload(payload) {
   applying = true;
   try {
     const meta = loadMeta();
+    let changed = false;
     for (const [key, entry] of Object.entries(payload || {})) {
       if (!isSyncableKey(key) || !entry) continue;
       try {
         const raw = typeof entry.value === 'string'
           ? entry.value
           : JSON.stringify(entry.value);
-        localStorage.setItem(key, raw);
-        meta[key] = entry.updatedAt || new Date().toISOString();
+        if (localStorage.getItem(key) !== raw) {
+          localStorage.setItem(key, raw);
+          changed = true;
+        }
+        const nextAt = entry.updatedAt || new Date().toISOString();
+        if (meta[key] !== nextAt) {
+          meta[key] = nextAt;
+          changed = true;
+        }
       } catch (e) {
         console.error('Konnte Sync-Key nicht anwenden:', key, e);
       }
     }
     saveMeta(meta);
-    window.dispatchEvent(new CustomEvent(PROGRESS_APPLIED_EVENT));
+    if (changed) {
+      window.dispatchEvent(new CustomEvent(PROGRESS_APPLIED_EVENT));
+    }
   } finally {
-    applying = false;
+    // Vue-Watcher laufen oft erst im nächsten Tick — Sync-Schleife vermeiden
+    setTimeout(() => {
+      applying = false;
+    }, 0);
   }
 }
 
@@ -112,8 +125,16 @@ export async function syncNow() {
     const remote = await fetchProgress();
     const local = collectLocalPayload();
     const merged = mergeProgressPayload(local, remote?.payload || {});
-    applyProgressPayload(merged);
-    await putProgress(merged);
+    const mergedJson = JSON.stringify(merged);
+    const localJson = JSON.stringify(local);
+    const remoteJson = JSON.stringify(remote?.payload || {});
+
+    if (mergedJson !== localJson) {
+      applyProgressPayload(merged);
+    }
+    if (mergedJson !== remoteJson) {
+      await putProgress(merged);
+    }
     return { ok: true };
   } catch (e) {
     console.warn('Progress-Sync fehlgeschlagen:', e.message || e);
