@@ -1,5 +1,22 @@
 # Workflow-Regeln
 
+## Git: Ein Thema = ein Branch
+
+**Immer einen neuen Branch anlegen, wenn ein neues Thema beginnt.**
+
+- Prefix: `cursor/` (z.B. `cursor/python-lernpfad-quiz`, `cursor/admin-login`)
+- Branch von aktuellem `main` aus starten
+- Ein Branch = ein Thema; Admin/Accounts nicht auf dem Lernpfad-Branch mischen
+- Erst mergen, wenn das Thema fertig/getestet ist — danach neues Thema → neuer Branch
+
+## Pre-commit Hook (Checks)
+
+Beim Commit läuft automatisch `npm run test:checks` (Einstufung, Check-Tab, Home, Interaktiv-Smoke).
+
+- Einmalig nach Clone: `npm install` (setzt `core.hooksPath` auf `.githooks`) und ggf. `npx playwright install chromium`
+- Überspringen: `SKIP_CHECKS=1 git commit …` oder `git commit --no-verify`
+- Voller Notebook-Test weiterhin manuell: `npm test`
+
 ## Bei Inhaltsänderungen: Zusammenhänge prüfen
 
 Wann immer du Inhalte änderst (Notebooks, Markdown-Lektionen, JSON-Manifeste), **prüfe immer `INHALTE.md` Abschnitt 6** — dort steht, welche Dateien gleichzeitig angepasst werden müssen.

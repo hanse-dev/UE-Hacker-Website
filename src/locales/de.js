@@ -9,6 +9,7 @@ export default {
   'home.hero.subtitle': 'Deine Reise in die Welt des Programmierens beginnt hier. Lerne Python auf eine Weise, die Spass macht.',
   'home.cta.weekly':      'Zum 12-Wochen-Kurs',
   'home.cta.interactive': 'Python Grundlagen – Interaktiv',
+  'home.cta.placement':   'Einstufungstest',
   'home.appointments.title': 'Nächste Termine',
   'home.appt.time':     'Uhrzeit:',
   'home.appt.location': 'Ort:',
@@ -23,7 +24,9 @@ export default {
   // ── Course detail ────────────────────────────────────────────────────────
   'course.loading': 'Kurs wird geladen...',
   'course.error':   'Kurs konnte nicht geladen werden. Prüfe die Browser-Konsole (F12) für Details.',
-  'course.structure.intro': 'Jede Woche ist in 6 Bereiche aufgeteilt – arbeite sie am besten in dieser Reihenfolge durch:',
+  'course.structure.intro': 'Jede Woche ist in Bereiche aufgeteilt – inkl. Check zum Verständnis. Am besten in dieser Reihenfolge:',
+  'course.placement.banner': 'Unsicher, wo du starten sollst? Mach zuerst den Einstufungstest – gleiche Fragen wie im Check-Tab der Wochen.',
+  'course.placement.link': 'Zur Einstufung →',
   'course.download.btn':  '📦 Alle Notebooks als Pack herunterladen',
   'course.download.hint': 'Zip mit allen 12 Wochen (Abenteuer, Pferde, Sci-Fi) + Cheat Sheets + Fortschritt-Skript – zum Arbeiten in Jupyter oder VS Code.',
 
@@ -34,6 +37,8 @@ export default {
   'tab.debug.desc':   'Finde und fixe absichtliche Bugs im Code',
   'tab.missions':     'Missionen',
   'tab.missions.desc':'Kleine Aufgaben zum Üben des neuen Stoffs',
+  'tab.check':        'Check',
+  'tab.check.desc':   'Kurzer Verständnis-Test zu den Themen der Woche',
   'tab.boss':         'Boss-Quest',
   'tab.boss.desc':    'Die große Abschluss-Challenge – alles zusammen!',
   'tab.solutions':    'Lösungen',
@@ -94,6 +99,8 @@ export default {
   'mission.unclaim':     'Rückgängig',
   'mission.label':       'Mission',
   'mission.boss.label':  'Boss-Quest',
+  'mission.check.hint':  'Tipp: Mach zuerst den Check-Tab dieser Woche – dann weißt du, ob der Stoff sitzt!',
+  'mission.check.done':  'Wochen-Check bestanden – du kannst Missionen einlösen!',
 
   // ── Appointments ──────────────────────────────────────────────────────────
   'appt.title':    'Nächste Termine für diesen Kurs',

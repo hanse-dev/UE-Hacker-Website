@@ -115,9 +115,15 @@
             </button>
           </div>
 
+          <!-- Check tab (quiz, not notebook) -->
+          <WeekCheckPanel
+            v-if="week.expanded && selectedTab === '4_check' && hasCheck"
+            :week-number="index + 1"
+          />
+
           <!-- Notebook -->
           <JupyterNotebook
-            v-if="week.expanded && activeNotebookUrl"
+            v-else-if="week.expanded && activeNotebookUrl"
             :notebook-path="activeNotebookUrl"
             :notebook-url="activeNotebookUrl"
             :week-number="index + 1"
@@ -125,7 +131,7 @@
             :course-id="courseId"
             :key="`${index}-${week.selectedVariant}-${selectedTab}`"
           />
-          <div v-else class="tab-empty">
+          <div v-else-if="selectedTab !== '4_check'" class="tab-empty">
             {{ t('week.noNotebook') }}
           </div>
 
@@ -136,15 +142,19 @@
 </template>
 
 <script>
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 import JupyterNotebook from './JupyterNotebook.vue';
 import MissionenPanel from './MissionenPanel.vue';
+import WeekCheckPanel from './WeekCheckPanel.vue';
 import { useLanguage } from '../composables/useLanguage.js';
+import { loadWeekChecks, hasWeekCheck } from '../composables/useWeekChecks.js';
 
 const TABS_CONFIG = [
   { key: '1_lektion',   icon: '📚', labelKey: 'tab.lesson',    descKey: 'tab.lesson.desc' },
   { key: '2_debug',     icon: '🐛', labelKey: 'tab.debug',     descKey: 'tab.debug.desc' },
   { key: '3_missionen', icon: '⭐', labelKey: 'tab.missions',  descKey: 'tab.missions.desc' },
+  { key: '4_check',     icon: '✅', labelKey: 'tab.check',     descKey: 'tab.check.desc' },
   { key: '5_boss',      icon: '🐉', labelKey: 'tab.boss',      descKey: 'tab.boss.desc' },
   { key: '6_loesungen', icon: '🔧', labelKey: 'tab.solutions', descKey: 'tab.solutions.desc' },
   { key: '0_glossar',   icon: '📖', labelKey: 'tab.glossary',  descKey: 'tab.glossary.desc' },
@@ -152,7 +162,7 @@ const TABS_CONFIG = [
 
 export default {
   name: 'WeekSection',
-  components: { JupyterNotebook, MissionenPanel },
+  components: { JupyterNotebook, MissionenPanel, WeekCheckPanel },
   props: {
     week: { type: Object, required: true },
     index: { type: Number, required: true },
@@ -161,6 +171,9 @@ export default {
   emits: ['toggle', 'toggle-cheat-sheet', 'set-variant'],
   setup(props) {
     const { t } = useLanguage();
+    const route = useRoute();
+    const checksData = ref(null);
+
     const tabStorageKey = `ue-hacker-week-tab-${props.courseId}-${props.index}`;
     const selectedTab = ref(
       localStorage.getItem(tabStorageKey) ?? props.week.selectedTab ?? '1_lektion'
@@ -170,21 +183,69 @@ export default {
       localStorage.setItem(tabStorageKey, value);
     });
 
-    const tabs = computed(() =>
-      TABS_CONFIG.map(tab => ({ ...tab, label: t(tab.labelKey), description: t(tab.descKey) }))
-    );
+    const weekNumber = computed(() => props.index + 1);
+    const hasCheck = computed(() => hasWeekCheck(checksData.value, weekNumber.value));
+
+    const tabs = computed(() => {
+      const base = TABS_CONFIG.map(tab => ({
+        ...tab,
+        label: t(tab.labelKey),
+        description: t(tab.descKey),
+      }));
+      // Hide check tab if no questions for this week
+      return base.filter((tab) => tab.key !== '4_check' || hasCheck.value);
+    });
 
     const isCheatSheetExpanded = (csIndex) =>
       props.week.expandedCheatSheets?.[csIndex] ?? false;
 
-    const hasTab = (key) =>
-      !!props.week.notebooks?.[props.week.selectedVariant]?.[key];
+    const hasTab = (key) => {
+      if (key === '4_check') return hasCheck.value;
+      return !!props.week.notebooks?.[props.week.selectedVariant]?.[key];
+    };
 
-    const activeNotebookUrl = computed(() =>
-      props.week.notebooks?.[props.week.selectedVariant]?.[selectedTab.value] ?? null
-    );
+    const activeNotebookUrl = computed(() => {
+      if (selectedTab.value === '4_check') return null;
+      return props.week.notebooks?.[props.week.selectedVariant]?.[selectedTab.value] ?? null;
+    });
 
-    return { tabs, t, selectedTab, isCheatSheetExpanded, hasTab, activeNotebookUrl };
+    const applyRouteTab = () => {
+      const weekParam = Number(route.query.week);
+      if (weekParam !== weekNumber.value) return;
+      const tab = String(route.query.tab || '').toLowerCase();
+      // Deep-link from placement / share URL: open the requested tab (default: lesson notebooks)
+      if (tab === 'check' && hasCheck.value) {
+        selectedTab.value = '4_check';
+      } else if (!tab || tab === 'lektion' || tab === 'lesson') {
+        selectedTab.value = '1_lektion';
+      } else if (tab === 'debug') {
+        selectedTab.value = '2_debug';
+      } else if (tab === 'missionen' || tab === 'missions') {
+        selectedTab.value = '3_missionen';
+      } else if (tab === 'boss') {
+        selectedTab.value = '5_boss';
+      } else if (tab === 'loesungen' || tab === 'solutions') {
+        selectedTab.value = '6_loesungen';
+      } else if (tab === 'glossar' || tab === 'glossary') {
+        selectedTab.value = '0_glossar';
+      }
+    };
+
+    onMounted(async () => {
+      try {
+        checksData.value = await loadWeekChecks();
+      } catch (e) {
+        console.error(e);
+      }
+      applyRouteTab();
+    });
+
+    watch(() => [route.query.week, route.query.tab, hasCheck.value], applyRouteTab);
+
+    return {
+      tabs, t, selectedTab, isCheatSheetExpanded, hasTab, activeNotebookUrl,
+      hasCheck,
+    };
   },
 };
 </script>
@@ -192,7 +253,7 @@ export default {
 <style scoped>
 /* ── Notebook area ─────────────────────────────────────────────────────── */
 .notebook-area {
-  margin-top: 10px;
+  margin-top: 16px;
 }
 
 /* ── Variant selector ──────────────────────────────────────────────────── */

@@ -1,0 +1,2611 @@
+{
+  "passThreshold": 0.8,
+  "placementPerWeek": 2,
+  "weekCheckCount": 5,
+  "projects": [
+    {
+      "id": "quiz-arena",
+      "title": "Quiz-Arena",
+      "title_en": "Quiz Arena",
+      "description": "Baue dein eigenes Quiz: Fragen in einer Liste oder einem Dictionary, Eingabe mit input(), Punkte zählen mit if/else. Speichere Highscores optional in einer JSON-Datei.",
+      "description_en": "Build your own quiz: questions in a list or dictionary, input() for answers, score with if/else. Optionally save highscores to a JSON file.",
+      "skills": [
+        "Listen/Dicts",
+        "if/else",
+        "Funktionen",
+        "JSON (optional)"
+      ],
+      "skills_en": [
+        "Lists/dicts",
+        "if/else",
+        "Functions",
+        "JSON (optional)"
+      ]
+    },
+    {
+      "id": "turtle-welt",
+      "title": "Turtle-Welt",
+      "title_en": "Turtle World",
+      "description": "Zeichne eine Szene oder ein kleines Spiel mit Turtle: Haus, Labyrinth oder Fang-den-Punkt. Nutze Schleifen für Muster und Funktionen für wiederkehrende Formen.",
+      "description_en": "Draw a scene or a small game with Turtle: house, maze, or catch-the-dot. Use loops for patterns and functions for repeated shapes.",
+      "skills": [
+        "Turtle",
+        "Schleifen",
+        "Funktionen",
+        "Zufall (optional)"
+      ],
+      "skills_en": [
+        "Turtle",
+        "Loops",
+        "Functions",
+        "Random (optional)"
+      ]
+    },
+    {
+      "id": "helden-tagebuch",
+      "title": "Helden-Tagebuch",
+      "title_en": "Hero Journal",
+      "description": "Erfinde ein Tagebuch oder Inventar für deine Kurs-Figur: Einträge als Dictionary, speichern/laden mit JSON, Menü mit while-Schleife. Später kannst du Klassen (OOP) dafür nutzen.",
+      "description_en": "Create a journal or inventory for your course character: entries as dictionaries, save/load with JSON, menu with a while loop. Later you can use classes (OOP) for it.",
+      "skills": [
+        "Dicts",
+        "JSON/Dateien",
+        "while-Menü",
+        "OOP (optional)"
+      ],
+      "skills_en": [
+        "Dicts",
+        "JSON/files",
+        "while menu",
+        "OOP (optional)"
+      ]
+    }
+  ],
+  "weeks": {
+    "1": {
+      "title": "Woche 1 – Einführung & print()",
+      "title_en": "Week 1 – Intro & print()",
+      "questions": [
+        {
+          "id": "w1-1",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Wofür benutzt man print() in Python?",
+          "question_en": "What is print() used for in Python?",
+          "options": [
+            "Um Text auszugeben",
+            "Um den Computer auszuschalten",
+            "Um ein Bild zu malen"
+          ],
+          "options_en": [
+            "To display text",
+            "To turn off the computer",
+            "To draw a picture"
+          ],
+          "correctIndex": 0,
+          "explanation": "print() gibt Text auf dem Bildschirm aus.",
+          "explanation_en": "print() gibt Text auf dem Bildschirm aus."
+        },
+        {
+          "id": "w1-2",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Wie schreibt man Text in Python korrekt?",
+          "question_en": "How do you write text correctly in Python?",
+          "options": [
+            "In Anführungszeichen: \"Hallo\"",
+            "Ohne Anführungszeichen: Hallo",
+            "In eckigen Klammern: [Hallo]"
+          ],
+          "options_en": [
+            "In quotes: \"Hallo\"",
+            "Without quotes: Hallo",
+            "In square brackets: [Hallo]"
+          ],
+          "correctIndex": 0,
+          "explanation": "Strings stehen in Anführungszeichen.",
+          "explanation_en": "Strings stehen in Anführungszeichen."
+        },
+        {
+          "id": "w1-3",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Welche Zeile ist korrekt?",
+          "question_en": "Which line is correct?",
+          "options": [
+            "print(\"Hi\")",
+            "Print(\"Hi\")",
+            "print[Hi]"
+          ],
+          "options_en": [
+            "print(\"Hi\")",
+            "Print(\"Hi\")",
+            "print[Hi]"
+          ],
+          "correctIndex": 0,
+          "explanation": "print muss klein geschrieben werden.",
+          "explanation_en": "print muss klein geschrieben werden."
+        },
+        {
+          "id": "w1-4",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was ist eine Variable?",
+          "question_en": "What is a variable?",
+          "options": [
+            "Ein Behälter für einen Wert",
+            "Ein Drucker",
+            "Ein Fehler im Code"
+          ],
+          "options_en": [
+            "A container for a value",
+            "A printer",
+            "An error in the code"
+          ],
+          "correctIndex": 0,
+          "explanation": "Variablen speichern Werte unter einem Namen.",
+          "explanation_en": "Variablen speichern Werte unter einem Namen."
+        },
+        {
+          "id": "w1-5",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was macht name = \"Anna\"?",
+          "question_en": "What does name = \"Anna\" do?",
+          "options": [
+            "Speichert den Text Anna in name",
+            "Vergleicht name mit Anna",
+            "Löscht die Variable name"
+          ],
+          "options_en": [
+            "Stores the text Anna in name",
+            "Compares name with Anna",
+            "Deletes the variable name"
+          ],
+          "correctIndex": 0,
+          "explanation": "Das = Zeichen weist einen Wert zu.",
+          "explanation_en": "Das = Zeichen weist einen Wert zu."
+        },
+        {
+          "id": "w1-6",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was gibt print(punkte) aus, wenn punkte = 100?",
+          "question_en": "What does print(punkte) output if punkte = 100?",
+          "options": [
+            "100",
+            "punkte",
+            "Fehler"
+          ],
+          "options_en": [
+            "100",
+            "punkte",
+            "Error"
+          ],
+          "correctIndex": 0,
+          "explanation": "print zeigt den Wert der Variable, nicht den Namen.",
+          "explanation_en": "print zeigt den Wert der Variable, nicht den Namen."
+        },
+        {
+          "id": "w1-7",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Welches Zeichen weist einer Variable einen Wert zu?",
+          "question_en": "Which symbol assigns a value to a variable?",
+          "options": [
+            "=",
+            "==",
+            "+"
+          ],
+          "options_en": [
+            "=",
+            "==",
+            "+"
+          ],
+          "correctIndex": 0,
+          "explanation": "= weist zu, == vergleicht.",
+          "explanation_en": "= weist zu, == vergleicht."
+        },
+        {
+          "id": "w1-8",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Womit beginnt ein Kommentar in Python?",
+          "question_en": "What starts a comment in Python?",
+          "options": [
+            "#",
+            "//",
+            "/*"
+          ],
+          "options_en": [
+            "#",
+            "//",
+            "/*"
+          ],
+          "correctIndex": 0,
+          "explanation": "Alles nach # wird von Python ignoriert.",
+          "explanation_en": "Alles nach # wird von Python ignoriert."
+        },
+        {
+          "id": "w1-9",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was gibt print(\"Hallo\", \"Welt\") ungefähr aus?",
+          "question_en": "What does print(\"Hallo\", \"Welt\") roughly output?",
+          "options": [
+            "Hallo Welt",
+            "HalloWelt",
+            "Fehler"
+          ],
+          "options_en": [
+            "Hallo Welt",
+            "HalloWelt",
+            "Error"
+          ],
+          "correctIndex": 0,
+          "explanation": "Mehrere Argumente werden mit Leerzeichen getrennt.",
+          "explanation_en": "Mehrere Argumente werden mit Leerzeichen getrennt."
+        },
+        {
+          "id": "w1-10",
+          "type": "multiple_select",
+          "inPlacement": false,
+          "question": "Welche Aussagen zu print() stimmen?",
+          "question_en": "Which statements about print() are true?",
+          "options": [
+            "print kann Text ausgeben",
+            "print muss groß geschrieben werden",
+            "print kann auch Zahlen ausgeben",
+            "print löscht Dateien"
+          ],
+          "options_en": [
+            "print can display text",
+            "print must be capitalized",
+            "print can also display numbers",
+            "print deletes files"
+          ],
+          "correctIndices": [
+            0,
+            2
+          ],
+          "explanation": "print gibt Werte aus – klein geschrieben, Text und Zahlen sind ok.",
+          "explanation_en": "print gibt Werte aus – klein geschrieben, Text und Zahlen sind ok."
+        }
+      ]
+    },
+    "2": {
+      "title": "Woche 2 – Datentypen & Variablen",
+      "title_en": "Week 2 – Data types & variables",
+      "questions": [
+        {
+          "id": "w2-1",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Welcher Datentyp ist 42?",
+          "question_en": "Which data type is 42?",
+          "options": [
+            "int",
+            "str",
+            "bool"
+          ],
+          "options_en": [
+            "int",
+            "str",
+            "bool"
+          ],
+          "correctIndex": 0,
+          "explanation": "42 ist eine ganze Zahl (int).",
+          "explanation_en": "42 ist eine ganze Zahl (int)."
+        },
+        {
+          "id": "w2-2",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Welcher Datentyp ist \"Hallo\"?",
+          "question_en": "Which data type is \"Hallo\"?",
+          "options": [
+            "str",
+            "int",
+            "float"
+          ],
+          "options_en": [
+            "str",
+            "int",
+            "float"
+          ],
+          "correctIndex": 0,
+          "explanation": "Text in Anführungszeichen ist ein String.",
+          "explanation_en": "Text in Anführungszeichen ist ein String."
+        },
+        {
+          "id": "w2-3",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Welcher Datentyp ist 3.14?",
+          "question_en": "Which data type is 3.14?",
+          "options": [
+            "float",
+            "int",
+            "str"
+          ],
+          "options_en": [
+            "float",
+            "int",
+            "str"
+          ],
+          "correctIndex": 0,
+          "explanation": "Zahlen mit Punkt sind float.",
+          "explanation_en": "Zahlen mit Punkt sind float."
+        },
+        {
+          "id": "w2-4",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was macht type(x)?",
+          "question_en": "What does type(x) do?",
+          "options": [
+            "Zeigt den Datentyp von x",
+            "Löscht x",
+            "Verdoppelt x"
+          ],
+          "options_en": [
+            "Shows the data type of x",
+            "Deletes x",
+            "Doubles x"
+          ],
+          "correctIndex": 0,
+          "explanation": "type() verrät den Datentyp.",
+          "explanation_en": "type() verrät den Datentyp."
+        },
+        {
+          "id": "w2-5",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Welcher Typ sind True und False?",
+          "question_en": "Which type are True and False?",
+          "options": [
+            "bool",
+            "str",
+            "int"
+          ],
+          "options_en": [
+            "bool",
+            "str",
+            "int"
+          ],
+          "correctIndex": 0,
+          "explanation": "Boolean = Wahrheitswert.",
+          "explanation_en": "Boolean = Wahrheitswert."
+        },
+        {
+          "id": "w2-6",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was ergibt 10 / 2 in Python 3?",
+          "question_en": "What is 10 / 2 in Python 3?",
+          "options": [
+            "5.0",
+            "5",
+            "\"10/2\""
+          ],
+          "options_en": [
+            "5.0",
+            "5",
+            "\"10/2\""
+          ],
+          "correctIndex": 0,
+          "explanation": "/ liefert immer eine Kommazahl.",
+          "explanation_en": "/ liefert immer eine Kommazahl."
+        },
+        {
+          "id": "w2-7",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was ergibt 10 // 3?",
+          "question_en": "What is 10 // 3?",
+          "options": [
+            "3",
+            "3.33",
+            "1"
+          ],
+          "options_en": [
+            "3",
+            "3.33",
+            "1"
+          ],
+          "correctIndex": 0,
+          "explanation": "// ist Ganzzahldivision.",
+          "explanation_en": "// ist Ganzzahldivision."
+        },
+        {
+          "id": "w2-8",
+          "type": "multiple_select",
+          "inPlacement": false,
+          "question": "Welche Variablennamen sind erlaubt?",
+          "question_en": "Which variable names are allowed?",
+          "options": [
+            "spieler1",
+            "name",
+            "1spieler",
+            "spieler-name"
+          ],
+          "options_en": [
+            "spieler1",
+            "name",
+            "1spieler",
+            "spieler-name"
+          ],
+          "correctIndices": [0, 1],
+          "explanation": "Namen dürfen nicht mit einer Ziffer beginnen und kein Minuszeichen enthalten.",
+          "explanation_en": "Names must not start with a digit and must not contain a hyphen."
+        },
+        {
+          "id": "w2-9",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was macht int(\"7\")?",
+          "question_en": "What does int(\"7\") do?",
+          "options": [
+            "Wandelt Text in die Zahl 7 um",
+            "Gibt einen Fehler",
+            "Gibt \"7\" zurück"
+          ],
+          "options_en": [
+            "Converts text to the number 7",
+            "Raises an error",
+            "Returns \"7\""
+          ],
+          "correctIndex": 0,
+          "explanation": "int() wandelt in Ganzzahl um.",
+          "explanation_en": "int() wandelt in Ganzzahl um."
+        },
+        {
+          "id": "w2-10",
+          "type": "multiple_select",
+          "inPlacement": false,
+          "question": "Welche davon sind gültige Datentypen in Python?",
+          "question_en": "Which of these are valid Python data types?",
+          "options": [
+            "int",
+            "str",
+            "float",
+            "print"
+          ],
+          "options_en": [
+            "int",
+            "str",
+            "float",
+            "print"
+          ],
+          "correctIndices": [
+            0,
+            1,
+            2
+          ],
+          "explanation": "print ist eine Funktion, kein Datentyp.",
+          "explanation_en": "print ist eine Funktion, kein Datentyp."
+        }
+      ]
+    },
+    "3": {
+      "title": "Woche 3 – Bedingungen (if/else)",
+      "title_en": "Week 3 – Conditions (if/else)",
+      "questions": [
+        {
+          "id": "w3-1",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Wofür benutzt man if in Python?",
+          "question_en": "What is if used for in Python?",
+          "options": [
+            "Um Entscheidungen zu treffen",
+            "Um Text auszugeben",
+            "Um Dateien zu öffnen"
+          ],
+          "options_en": [
+            "To make decisions",
+            "To print text",
+            "To open files"
+          ],
+          "correctIndex": 0,
+          "explanation": "if prüft eine Bedingung.",
+          "explanation_en": "if prüft eine Bedingung."
+        },
+        {
+          "id": "w3-2",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Wann wird der else-Block ausgeführt?",
+          "question_en": "When does the else block run?",
+          "options": [
+            "Wenn die if-Bedingung falsch ist",
+            "Immer zuerst",
+            "Nur bei Fehlern"
+          ],
+          "options_en": [
+            "When the if condition is false",
+            "Always first",
+            "Only on errors"
+          ],
+          "correctIndex": 0,
+          "explanation": "else ist der sonst-Fall.",
+          "explanation_en": "else ist der sonst-Fall."
+        },
+        {
+          "id": "w3-3",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Welches Zeichen vergleicht zwei Werte auf Gleichheit?",
+          "question_en": "Which symbol compares two values for equality?",
+          "options": [
+            "==",
+            "=",
+            "!="
+          ],
+          "options_en": [
+            "==",
+            "=",
+            "!="
+          ],
+          "correctIndex": 0,
+          "explanation": "== prüft Gleichheit, = weist zu.",
+          "explanation_en": "== prüft Gleichheit, = weist zu."
+        },
+        {
+          "id": "w3-4",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was muss nach if stehen?",
+          "question_en": "What must come after if?",
+          "options": [
+            "Eine Bedingung und eingerückter Code",
+            "Nur ein print",
+            "Ein Modulimport"
+          ],
+          "options_en": [
+            "A condition and indented code",
+            "Only a print",
+            "A module import"
+          ],
+          "correctIndex": 0,
+          "explanation": "Einrückung zeigt den if-Block.",
+          "explanation_en": "Einrückung zeigt den if-Block."
+        },
+        {
+          "id": "w3-5",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was gibt aus: if 5 > 3: print(\"ja\")?",
+          "question_en": "What does this print: if 5 > 3: print(\"yes\")?",
+          "options": [
+            "ja",
+            "5 > 3",
+            "Nichts"
+          ],
+          "options_en": [
+            "yes",
+            "5 > 3",
+            "Nothing"
+          ],
+          "correctIndex": 0,
+          "explanation": "5 > 3 ist wahr.",
+          "explanation_en": "5 > 3 ist wahr."
+        },
+        {
+          "id": "w3-6",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was bedeutet != ?",
+          "question_en": "What does != mean?",
+          "options": [
+            "ungleich",
+            "gleich",
+            "kleiner"
+          ],
+          "options_en": [
+            "not equal",
+            "equal",
+            "less than"
+          ],
+          "correctIndex": 0,
+          "explanation": "!= heißt „nicht gleich“.",
+          "explanation_en": "!= heißt „nicht gleich“."
+        },
+        {
+          "id": "w3-7",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Wofür ist elif da?",
+          "question_en": "What is elif for?",
+          "options": [
+            "Weitere Bedingungen prüfen",
+            "Schleifen beenden",
+            "Text speichern"
+          ],
+          "options_en": [
+            "Checking more conditions",
+            "Ending loops",
+            "Saving text"
+          ],
+          "correctIndex": 0,
+          "explanation": "elif = else if.",
+          "explanation_en": "elif = else if."
+        },
+        {
+          "id": "w3-8",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was ist das Ergebnis von 3 < 5 and 10 > 8?",
+          "question_en": "What is the result of 3 < 5 and 10 > 8?",
+          "options": [
+            "True",
+            "False",
+            "Fehler"
+          ],
+          "options_en": [
+            "True",
+            "False",
+            "Error"
+          ],
+          "correctIndex": 0,
+          "explanation": "Beide Teile sind wahr → True.",
+          "explanation_en": "Beide Teile sind wahr → True."
+        },
+        {
+          "id": "w3-9",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Welcher Vergleich ist wahr?",
+          "question_en": "Which comparison is true?",
+          "options": [
+            "7 >= 7",
+            "7 > 7",
+            "7 < 3"
+          ],
+          "options_en": [
+            "7 >= 7",
+            "7 > 7",
+            "7 < 3"
+          ],
+          "correctIndex": 0,
+          "explanation": ">= bedeutet größer oder gleich.",
+          "explanation_en": ">= bedeutet größer oder gleich."
+        },
+        {
+          "id": "w3-10",
+          "type": "multiple_select",
+          "inPlacement": false,
+          "question": "Welche Schlüsselwörter gehören zu Bedingungen?",
+          "question_en": "Which keywords belong to conditions?",
+          "options": [
+            "if",
+            "elif",
+            "else",
+            "for"
+          ],
+          "options_en": [
+            "if",
+            "elif",
+            "else",
+            "for"
+          ],
+          "correctIndices": [
+            0,
+            1,
+            2
+          ],
+          "explanation": "for gehört zu Schleifen.",
+          "explanation_en": "for gehört zu Schleifen."
+        }
+      ]
+    },
+    "4": {
+      "title": "Woche 4 – Schleifen (for/while)",
+      "title_en": "Week 4 – Loops (for/while)",
+      "questions": [
+        {
+          "id": "w4-1",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Wofür benutzt man eine for-Schleife?",
+          "question_en": "What is a for loop used for?",
+          "options": [
+            "Um Code mehrfach auszuführen",
+            "Um Dateien zu löschen",
+            "Um Fehler zu erzeugen"
+          ],
+          "options_en": [
+            "To run code multiple times",
+            "To delete files",
+            "To create errors"
+          ],
+          "correctIndex": 0,
+          "explanation": "Schleifen wiederholen Code.",
+          "explanation_en": "Schleifen wiederholen Code."
+        },
+        {
+          "id": "w4-2",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Was macht range(3)?",
+          "question_en": "What does range(3) do?",
+          "options": [
+            "Liefert 0, 1, 2",
+            "Liefert 1, 2, 3",
+            "Liefert nur 3"
+          ],
+          "options_en": [
+            "Yields 0, 1, 2",
+            "Yields 1, 2, 3",
+            "Yields only 3"
+          ],
+          "correctIndex": 0,
+          "explanation": "range(n) geht von 0 bis n-1.",
+          "explanation_en": "range(n) geht von 0 bis n-1."
+        },
+        {
+          "id": "w4-3",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Wann läuft eine while-Schleife weiter?",
+          "question_en": "When does a while loop keep running?",
+          "options": [
+            "Solange die Bedingung wahr ist",
+            "Genau einmal",
+            "Nur bei Fehlern"
+          ],
+          "options_en": [
+            "As long as the condition is true",
+            "Exactly once",
+            "Only on errors"
+          ],
+          "correctIndex": 0,
+          "explanation": "while = solange.",
+          "explanation_en": "while = solange."
+        },
+        {
+          "id": "w4-4",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was macht break in einer Schleife?",
+          "question_en": "What does break do in a loop?",
+          "options": [
+            "Beendet die Schleife sofort",
+            "Überspringt eine Runde",
+            "Startet neu"
+          ],
+          "options_en": [
+            "Stops the loop immediately",
+            "Skips one round",
+            "Restarts"
+          ],
+          "correctIndex": 0,
+          "explanation": "break bricht ab.",
+          "explanation_en": "break bricht ab."
+        },
+        {
+          "id": "w4-5",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was macht continue?",
+          "question_en": "What does continue do?",
+          "options": [
+            "Springt zur nächsten Runde",
+            "Beendet das Programm",
+            "Löscht Variablen"
+          ],
+          "options_en": [
+            "Jumps to the next iteration",
+            "Ends the program",
+            "Deletes variables"
+          ],
+          "correctIndex": 0,
+          "explanation": "continue überspringt den Rest der aktuellen Runde.",
+          "explanation_en": "continue überspringt den Rest der aktuellen Runde."
+        },
+        {
+          "id": "w4-6",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Wie oft läuft for i in range(5):?",
+          "question_en": "How many times does for i in range(5): run?",
+          "options": [
+            "5-mal",
+            "4-mal",
+            "6-mal"
+          ],
+          "options_en": [
+            "5 times",
+            "4 times",
+            "6 times"
+          ],
+          "correctIndex": 0,
+          "explanation": "range(5) → 5 Durchläufe.",
+          "explanation_en": "range(5) → 5 Durchläufe."
+        },
+        {
+          "id": "w4-7",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Welche Schleife passt besser bei bekannter Anzahl?",
+          "question_en": "Which loop fits better when you know the count?",
+          "options": [
+            "for",
+            "while",
+            "if"
+          ],
+          "options_en": [
+            "for",
+            "while",
+            "if"
+          ],
+          "correctIndex": 0,
+          "explanation": "for mit range ist ideal bei bekannter Anzahl.",
+          "explanation_en": "for mit range ist ideal bei bekannter Anzahl."
+        },
+        {
+          "id": "w4-8",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Wann kann eine Endlosschleife entstehen?",
+          "question_en": "When can an infinite loop happen?",
+          "options": [
+            "Wenn die while-Bedingung nie falsch wird",
+            "Bei jedem for",
+            "Nur bei print"
+          ],
+          "options_en": [
+            "When the while condition never becomes false",
+            "With every for",
+            "Only with print"
+          ],
+          "correctIndex": 0,
+          "explanation": "Dann läuft while ewig.",
+          "explanation_en": "Dann läuft while ewig."
+        },
+        {
+          "id": "w4-9",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was gibt aus: for x in [\"a\",\"b\"]: print(x)?",
+          "question_en": "What does this print: for x in [\"a\",\"b\"]: print(x)?",
+          "options": [
+            "a und b untereinander",
+            "ab",
+            "Fehler"
+          ],
+          "options_en": [
+            "a and b on separate lines",
+            "ab",
+            "Error"
+          ],
+          "correctIndex": 0,
+          "explanation": "Die Schleife geht über die Liste.",
+          "explanation_en": "Die Schleife geht über die Liste."
+        },
+        {
+          "id": "w4-10",
+          "type": "multiple_select",
+          "inPlacement": false,
+          "question": "Welche Befehle steuern Schleifen?",
+          "question_en": "Which statements control loops?",
+          "options": [
+            "break",
+            "continue",
+            "def",
+            "for"
+          ],
+          "options_en": [
+            "break",
+            "continue",
+            "def",
+            "for"
+          ],
+          "correctIndices": [
+            0,
+            1,
+            3
+          ],
+          "explanation": "def definiert Funktionen; for/break/continue gehören zu Schleifen.",
+          "explanation_en": "def definiert Funktionen; for/break/continue gehören zu Schleifen."
+        }
+      ]
+    },
+    "5": {
+      "title": "Woche 5 – Funktionen",
+      "title_en": "Week 5 – Functions",
+      "questions": [
+        {
+          "id": "w5-1",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Womit definiert man eine Funktion?",
+          "question_en": "How do you define a function?",
+          "options": [
+            "def",
+            "fun",
+            "function"
+          ],
+          "options_en": [
+            "def",
+            "fun",
+            "function"
+          ],
+          "correctIndex": 0,
+          "explanation": "In Python: def name():",
+          "explanation_en": "In Python: def name():"
+        },
+        {
+          "id": "w5-2",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Was macht return?",
+          "question_en": "What does return do?",
+          "options": [
+            "Gibt einen Wert aus der Funktion zurück",
+            "Startet eine Schleife",
+            "Importiert ein Modul"
+          ],
+          "options_en": [
+            "Sends a value back from the function",
+            "Starts a loop",
+            "Imports a module"
+          ],
+          "correctIndex": 0,
+          "explanation": "return beendet die Funktion und liefert einen Wert.",
+          "explanation_en": "return beendet die Funktion und liefert einen Wert."
+        },
+        {
+          "id": "w5-3",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Was sind Parameter?",
+          "question_en": "What are parameters?",
+          "options": [
+            "Eingabewerte einer Funktion",
+            "Fehlercodes",
+            "Dateinamen"
+          ],
+          "options_en": [
+            "Input values of a function",
+            "Error codes",
+            "File names"
+          ],
+          "correctIndex": 0,
+          "explanation": "Parameter stehen in den Klammern.",
+          "explanation_en": "Parameter stehen in den Klammern."
+        },
+        {
+          "id": "w5-4",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Warum sind Funktionen nützlich?",
+          "question_en": "Why are functions useful?",
+          "options": [
+            "Code wiederverwenden und ordnen",
+            "Computer beschleunigen immer",
+            "Drucken verhindern"
+          ],
+          "options_en": [
+            "Reuse and organize code",
+            "Always speed up the computer",
+            "Prevent printing"
+          ],
+          "correctIndex": 0,
+          "explanation": "Funktionen vermeiden Wiederholung.",
+          "explanation_en": "Funktionen vermeiden Wiederholung."
+        },
+        {
+          "id": "w5-5",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Wie oft darf man eine Funktion aufrufen?",
+          "question_en": "How often may you call a function?",
+          "options": [
+            "So oft man will",
+            "Nur einmal",
+            "Nur zweimal"
+          ],
+          "options_en": [
+            "As often as you want",
+            "Only once",
+            "Only twice"
+          ],
+          "correctIndex": 0,
+          "explanation": "Genau dafür sind sie da.",
+          "explanation_en": "Genau dafür sind sie da."
+        },
+        {
+          "id": "w5-6",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was passiert ohne return?",
+          "question_en": "What happens without return?",
+          "options": [
+            "Die Funktion gibt None zurück",
+            "Immer einen Fehler",
+            "Immer 0"
+          ],
+          "options_en": [
+            "The function returns None",
+            "Always an error",
+            "Always 0"
+          ],
+          "correctIndex": 0,
+          "explanation": "Ohne return → None.",
+          "explanation_en": "Ohne return → None."
+        },
+        {
+          "id": "w5-7",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Wie muss der Funktionskörper geschrieben sein?",
+          "question_en": "How must the function body be written?",
+          "options": [
+            "Eingerückt",
+            "In Großbuchstaben",
+            "Ohne Klammern"
+          ],
+          "options_en": [
+            "Indented",
+            "In uppercase",
+            "Without parentheses"
+          ],
+          "correctIndex": 0,
+          "explanation": "Wie bei if und Schleifen.",
+          "explanation_en": "Wie bei if und Schleifen."
+        },
+        {
+          "id": "w5-8",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Wie ruft man gruss() auf?",
+          "question_en": "How do you call gruss()?",
+          "options": [
+            "gruss()",
+            "def gruss()",
+            "call gruss"
+          ],
+          "options_en": [
+            "gruss()",
+            "def gruss()",
+            "call gruss"
+          ],
+          "correctIndex": 0,
+          "explanation": "Name plus Klammern.",
+          "explanation_en": "Name plus Klammern."
+        },
+        {
+          "id": "w5-9",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was ist ein Default-Parameter?",
+          "question_en": "What is a default parameter?",
+          "options": [
+            "Ein vorgegebener Wert, falls nichts übergeben wird",
+            "Ein Fehler",
+            "Ein Modul"
+          ],
+          "options_en": [
+            "A preset value if nothing is passed",
+            "An error",
+            "A module"
+          ],
+          "correctIndex": 0,
+          "explanation": "z.B. def f(x=1):",
+          "explanation_en": "z.B. def f(x=1):"
+        },
+        {
+          "id": "w5-10",
+          "type": "multiple_select",
+          "inPlacement": false,
+          "question": "Was gehört zu einer typischen Funktion?",
+          "question_en": "What belongs to a typical function?",
+          "options": [
+            "def",
+            "Name der Funktion",
+            "Klammern",
+            "import turtle immer"
+          ],
+          "options_en": [
+            "def",
+            "Function name",
+            "Parentheses",
+            "import turtle always"
+          ],
+          "correctIndices": [
+            0,
+            1,
+            2
+          ],
+          "explanation": "import turtle braucht man nur für Grafik.",
+          "explanation_en": "import turtle braucht man nur für Grafik."
+        }
+      ]
+    },
+    "6": {
+      "title": "Woche 6 – Listen",
+      "title_en": "Week 6 – Lists",
+      "questions": [
+        {
+          "id": "w6-1",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Wie schreibt man eine Liste?",
+          "question_en": "How do you write a list?",
+          "options": [
+            "[1, 2, 3]",
+            "{1, 2, 3}",
+            "\"1, 2, 3\""
+          ],
+          "options_en": [
+            "[1, 2, 3]",
+            "{1, 2, 3}",
+            "\"1, 2, 3\""
+          ],
+          "correctIndex": 0,
+          "explanation": "Listen stehen in eckigen Klammern.",
+          "explanation_en": "Listen stehen in eckigen Klammern."
+        },
+        {
+          "id": "w6-2",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Welcher Index ist das erste Element?",
+          "question_en": "Which index is the first element?",
+          "options": [
+            "0",
+            "1",
+            "-1"
+          ],
+          "options_en": [
+            "0",
+            "1",
+            "-1"
+          ],
+          "correctIndex": 0,
+          "explanation": "Python zählt ab 0.",
+          "explanation_en": "Python zählt ab 0."
+        },
+        {
+          "id": "w6-3",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Was macht listen.append(x)?",
+          "question_en": "What does list.append(x) do?",
+          "options": [
+            "Hängt x ans Ende der Liste",
+            "Löscht x",
+            "Sortiert die Liste"
+          ],
+          "options_en": [
+            "Adds x to the end of the list",
+            "Deletes x",
+            "Sorts the list"
+          ],
+          "correctIndex": 0,
+          "explanation": "append = anhängen.",
+          "explanation_en": "append = anhängen."
+        },
+        {
+          "id": "w6-4",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was macht len(liste)?",
+          "question_en": "What does len(liste) do?",
+          "options": [
+            "Gibt die Anzahl der Elemente zurück",
+            "Löscht die Liste",
+            "Sortiert die Liste"
+          ],
+          "options_en": [
+            "Returns the number of elements",
+            "Deletes the list",
+            "Sorts the list"
+          ],
+          "correctIndex": 0,
+          "explanation": "len = Länge.",
+          "explanation_en": "len = Länge."
+        },
+        {
+          "id": "w6-5",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was darf in einer Liste stehen?",
+          "question_en": "What may a list contain?",
+          "options": [
+            "Verschiedene Datentypen gemischt",
+            "Nur Zahlen",
+            "Nur Text"
+          ],
+          "options_en": [
+            "Mixed data types",
+            "Only numbers",
+            "Only text"
+          ],
+          "correctIndex": 0,
+          "explanation": "z.B. [1, \"a\", True].",
+          "explanation_en": "z.B. [1, \"a\", True]."
+        },
+        {
+          "id": "w6-6",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was ist liste[-1]?",
+          "question_en": "What is liste[-1]?",
+          "options": [
+            "Das letzte Element",
+            "Das erste Element",
+            "Immer ein Fehler"
+          ],
+          "options_en": [
+            "The last element",
+            "The first element",
+            "Always an error"
+          ],
+          "correctIndex": 0,
+          "explanation": "Negative Indizes zählen vom Ende.",
+          "explanation_en": "Negative Indizes zählen vom Ende."
+        },
+        {
+          "id": "w6-7",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was macht liste.remove(x)?",
+          "question_en": "What does liste.remove(x) do?",
+          "options": [
+            "Entfernt das erste Vorkommen von x",
+            "Löscht die ganze Liste",
+            "Sortiert"
+          ],
+          "options_en": [
+            "Removes the first occurrence of x",
+            "Deletes the whole list",
+            "Sorts"
+          ],
+          "correctIndex": 0,
+          "explanation": "remove sucht den Wert.",
+          "explanation_en": "remove sucht den Wert."
+        },
+        {
+          "id": "w6-8",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was ist liste[1:3]?",
+          "question_en": "What is liste[1:3]?",
+          "options": [
+            "Ein Ausschnitt der Liste",
+            "Nur das Element 1",
+            "Ein Fehler"
+          ],
+          "options_en": [
+            "A portion of the list",
+            "Only element 1",
+            "An error"
+          ],
+          "correctIndex": 0,
+          "explanation": "Slices schneiden Teillisten aus.",
+          "explanation_en": "Slices schneiden Teillisten aus."
+        },
+        {
+          "id": "w6-9",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was macht for item in liste:?",
+          "question_en": "What does for item in liste: do?",
+          "options": [
+            "Geht jedes Element durch",
+            "Löscht Elemente",
+            "Verdoppelt die Liste"
+          ],
+          "options_en": [
+            "Iterates over each element",
+            "Deletes elements",
+            "Doubles the list"
+          ],
+          "correctIndex": 0,
+          "explanation": "Typische Listenschleife.",
+          "explanation_en": "Typische Listenschleife."
+        },
+        {
+          "id": "w6-10",
+          "type": "multiple_select",
+          "inPlacement": false,
+          "question": "Welche Schreibweisen erzeugen eine Liste?",
+          "question_en": "Which notations create a list?",
+          "options": [
+            "[]",
+            "[1, 2]",
+            "list((1, 2))",
+            "{\"a\": 1}"
+          ],
+          "options_en": [
+            "[]",
+            "[1, 2]",
+            "list((1, 2))",
+            "{\"a\": 1}"
+          ],
+          "correctIndices": [
+            0,
+            1,
+            2
+          ],
+          "explanation": "{\"a\": 1} ist ein Dictionary.",
+          "explanation_en": "{\"a\": 1} ist ein Dictionary."
+        }
+      ]
+    },
+    "7": {
+      "title": "Woche 7 – Module & Bibliotheken",
+      "title_en": "Week 7 – Modules & libraries",
+      "questions": [
+        {
+          "id": "w7-1",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Womit importiert man ein Modul?",
+          "question_en": "How do you import a module?",
+          "options": [
+            "import",
+            "include",
+            "load"
+          ],
+          "options_en": [
+            "import",
+            "include",
+            "load"
+          ],
+          "correctIndex": 0,
+          "explanation": "z.B. import math",
+          "explanation_en": "z.B. import math"
+        },
+        {
+          "id": "w7-2",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Was liefert random.randint(1, 6)?",
+          "question_en": "What does random.randint(1, 6) return?",
+          "options": [
+            "Zufallszahl von 1 bis 6",
+            "Immer 6",
+            "Nur 1"
+          ],
+          "options_en": [
+            "A random number from 1 to 6",
+            "Always 6",
+            "Only 1"
+          ],
+          "correctIndex": 0,
+          "explanation": "randint inklusive beider Grenzen.",
+          "explanation_en": "randint inklusive beider Grenzen."
+        },
+        {
+          "id": "w7-3",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Was steckt in Modulen?",
+          "question_en": "What do modules contain?",
+          "options": [
+            "Fertige Funktionen zum Nutzen",
+            "Nur Fehler",
+            "Nur Kommentare"
+          ],
+          "options_en": [
+            "Ready-made functions to use",
+            "Only errors",
+            "Only comments"
+          ],
+          "correctIndex": 0,
+          "explanation": "Bibliotheken = Werkzeugkästen.",
+          "explanation_en": "Bibliotheken = Werkzeugkästen."
+        },
+        {
+          "id": "w7-4",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was macht math.sqrt(9)?",
+          "question_en": "What does math.sqrt(9) do?",
+          "options": [
+            "Berechnet die Wurzel",
+            "Quadriert die Zahl",
+            "Gibt einen Fehler"
+          ],
+          "options_en": [
+            "Computes the square root",
+            "Squares the number",
+            "Raises an error"
+          ],
+          "correctIndex": 0,
+          "explanation": "sqrt(9) ergibt 3.0.",
+          "explanation_en": "sqrt(9) ergibt 3.0."
+        },
+        {
+          "id": "w7-5",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was bedeutet from math import pi?",
+          "question_en": "What does from math import pi mean?",
+          "options": [
+            "Nur pi aus math holen",
+            "Ganz math löschen",
+            "pi verdoppeln"
+          ],
+          "options_en": [
+            "Import only pi from math",
+            "Delete all of math",
+            "Double pi"
+          ],
+          "correctIndex": 0,
+          "explanation": "Gezielter Import.",
+          "explanation_en": "Gezielter Import."
+        },
+        {
+          "id": "w7-6",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Welches Modul hilft bei Zufall?",
+          "question_en": "Which module helps with randomness?",
+          "options": [
+            "random",
+            "os",
+            "json"
+          ],
+          "options_en": [
+            "random",
+            "os",
+            "json"
+          ],
+          "correctIndex": 0,
+          "explanation": "random für Würfel & Co.",
+          "explanation_en": "random für Würfel & Co."
+        },
+        {
+          "id": "w7-7",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Muss man jedes Modul selbst schreiben?",
+          "question_en": "Must you write every module yourself?",
+          "options": [
+            "Nein, viele sind eingebaut",
+            "Ja, immer",
+            "Nur am Wochenende"
+          ],
+          "options_en": [
+            "No, many are built in",
+            "Yes, always",
+            "Only on weekends"
+          ],
+          "correctIndex": 0,
+          "explanation": "Viele Module sind schon da.",
+          "explanation_en": "Viele Module sind schon da."
+        },
+        {
+          "id": "w7-8",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was ist import math as m?",
+          "question_en": "What is import math as m?",
+          "options": [
+            "Kurzname m für math",
+            "Löscht math",
+            "Ein Fehler"
+          ],
+          "options_en": [
+            "Short name m for math",
+            "Deletes math",
+            "An error"
+          ],
+          "correctIndex": 0,
+          "explanation": "as vergibt einen Kurznamen.",
+          "explanation_en": "as vergibt einen Kurznamen."
+        },
+        {
+          "id": "w7-9",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Wofür hilft datetime?",
+          "question_en": "What does datetime help with?",
+          "options": [
+            "Datum und Uhrzeit",
+            "Zeichnen",
+            "Listen sortieren"
+          ],
+          "options_en": [
+            "Date and time",
+            "Drawing",
+            "Sorting lists"
+          ],
+          "correctIndex": 0,
+          "explanation": "datetime = Zeit.",
+          "explanation_en": "datetime = Zeit."
+        },
+        {
+          "id": "w7-10",
+          "type": "multiple_select",
+          "inPlacement": false,
+          "question": "Welche Module sind in der Standardbibliothek?",
+          "question_en": "Which modules are in the standard library?",
+          "options": [
+            "random",
+            "math",
+            "json",
+            "mein_geheim_modul_xyz"
+          ],
+          "options_en": [
+            "random",
+            "math",
+            "json",
+            "mein_geheim_modul_xyz"
+          ],
+          "correctIndices": [
+            0,
+            1,
+            2
+          ],
+          "explanation": "random, math und json sind Standard.",
+          "explanation_en": "random, math und json sind Standard."
+        }
+      ]
+    },
+    "8": {
+      "title": "Woche 8 – Dictionaries & Tupel",
+      "title_en": "Week 8 – Dictionaries & tuples",
+      "questions": [
+        {
+          "id": "w8-1",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Wie schreibt man ein Dictionary?",
+          "question_en": "How do you write a dictionary?",
+          "options": [
+            "{\"name\": \"Ada\"}",
+            "[\"name\", \"Ada\"]",
+            "\"name\" = \"Ada\""
+          ],
+          "options_en": [
+            "{\"name\": \"Ada\"}",
+            "[\"name\", \"Ada\"]",
+            "\"name\" = \"Ada\""
+          ],
+          "correctIndex": 0,
+          "explanation": "Dicts: geschweifte Klammern, Schlüssel: Wert.",
+          "explanation_en": "Dicts: geschweifte Klammern, Schlüssel: Wert."
+        },
+        {
+          "id": "w8-2",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Womit greift man auf einen Dict-Wert zu?",
+          "question_en": "How do you access a dict value?",
+          "options": [
+            "person[\"name\"]",
+            "person.name()",
+            "person->name"
+          ],
+          "options_en": [
+            "person[\"name\"]",
+            "person.name()",
+            "person->name"
+          ],
+          "correctIndex": 0,
+          "explanation": "Zugriff über den Schlüssel.",
+          "explanation_en": "Zugriff über den Schlüssel."
+        },
+        {
+          "id": "w8-3",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Wie schreibt man ein Tupel?",
+          "question_en": "How do you write a tuple?",
+          "options": [
+            "(1, 2)",
+            "[1, 2]",
+            "{1, 2}"
+          ],
+          "options_en": [
+            "(1, 2)",
+            "[1, 2]",
+            "{1, 2}"
+          ],
+          "correctIndex": 0,
+          "explanation": "Tupel: runde Klammern.",
+          "explanation_en": "Tupel: runde Klammern."
+        },
+        {
+          "id": "w8-4",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was ist der Unterschied Liste vs. Tupel?",
+          "question_en": "What is the difference list vs. tuple?",
+          "options": [
+            "Listen änderbar, Tupel meist nicht",
+            "Tupel sind immer länger",
+            "Kein Unterschied"
+          ],
+          "options_en": [
+            "Lists mutable, tuples usually not",
+            "Tuples are always longer",
+            "No difference"
+          ],
+          "correctIndex": 0,
+          "explanation": "Tupel sind immutable.",
+          "explanation_en": "Tupel sind immutable."
+        },
+        {
+          "id": "w8-5",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was gilt für Dict-Schlüssel?",
+          "question_en": "What is true about dict keys?",
+          "options": [
+            "Sie sollten eindeutig sein",
+            "Sie dürfen beliebig doppelt vorkommen",
+            "Es gibt keine Schlüssel"
+          ],
+          "options_en": [
+            "They should be unique",
+            "They may freely duplicate",
+            "There are no keys"
+          ],
+          "correctIndex": 0,
+          "explanation": "Jeder Schlüssel nur einmal.",
+          "explanation_en": "Jeder Schlüssel nur einmal."
+        },
+        {
+          "id": "w8-6",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was macht d.keys()?",
+          "question_en": "What does d.keys() do?",
+          "options": [
+            "Liefert die Schlüssel",
+            "Löscht das Dict",
+            "Sortiert Werte"
+          ],
+          "options_en": [
+            "Returns the keys",
+            "Deletes the dict",
+            "Sorts values"
+          ],
+          "correctIndex": 0,
+          "explanation": "keys() = alle Schlüssel.",
+          "explanation_en": "keys() = alle Schlüssel."
+        },
+        {
+          "id": "w8-7",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was macht d.get(\"x\", 0)?",
+          "question_en": "What does d.get(\"x\", 0) do?",
+          "options": [
+            "Wert von x oder 0, falls fehlt",
+            "Immer Fehler",
+            "Immer 0"
+          ],
+          "options_en": [
+            "Value of x or 0 if missing",
+            "Always error",
+            "Always 0"
+          ],
+          "correctIndex": 0,
+          "explanation": "get mit Default ist sicher.",
+          "explanation_en": "get mit Default ist sicher."
+        },
+        {
+          "id": "w8-8",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was macht person[\"alter\"] = 12?",
+          "question_en": "What does person[\"age\"] = 12 do?",
+          "options": [
+            "Setzt oder überschreibt den Wert",
+            "Löscht person",
+            "Startet eine Schleife"
+          ],
+          "options_en": [
+            "Sets or overwrites the value",
+            "Deletes person",
+            "Starts a loop"
+          ],
+          "correctIndex": 0,
+          "explanation": "Zuweisung im Dict.",
+          "explanation_en": "Zuweisung im Dict."
+        },
+        {
+          "id": "w8-9",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Welche Klammer für Tupel?",
+          "question_en": "Which brackets for tuples?",
+          "options": [
+            "()",
+            "[]",
+            "{}"
+          ],
+          "options_en": [
+            "()",
+            "[]",
+            "{}"
+          ],
+          "correctIndex": 0,
+          "explanation": "() = Tupel.",
+          "explanation_en": "() = Tupel."
+        },
+        {
+          "id": "w8-10",
+          "type": "multiple_select",
+          "inPlacement": false,
+          "question": "Welche Strukturen speichern mehrere Werte?",
+          "question_en": "Which structures store multiple values?",
+          "options": [
+            "list",
+            "tuple",
+            "dict",
+            "int"
+          ],
+          "options_en": [
+            "list",
+            "tuple",
+            "dict",
+            "int"
+          ],
+          "correctIndices": [
+            0,
+            1,
+            2
+          ],
+          "explanation": "int ist ein einzelner Zahlenwert.",
+          "explanation_en": "int ist ein einzelner Zahlenwert."
+        }
+      ]
+    },
+    "9": {
+      "title": "Woche 9 – JSON & Dateien",
+      "title_en": "Week 9 – JSON & files",
+      "questions": [
+        {
+          "id": "w9-1",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Wofür ist JSON gut?",
+          "question_en": "What is JSON good for?",
+          "options": [
+            "Daten speichern und austauschen",
+            "Bilder zeichnen",
+            "Musik abspielen"
+          ],
+          "options_en": [
+            "Storing and exchanging data",
+            "Drawing images",
+            "Playing music"
+          ],
+          "correctIndex": 0,
+          "explanation": "JSON ist ein Datenformat.",
+          "explanation_en": "JSON ist ein Datenformat."
+        },
+        {
+          "id": "w9-2",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Welches Modul hilft bei JSON in Python?",
+          "question_en": "Which module helps with JSON in Python?",
+          "options": [
+            "json",
+            "math",
+            "turtle"
+          ],
+          "options_en": [
+            "json",
+            "math",
+            "turtle"
+          ],
+          "correctIndex": 0,
+          "explanation": "import json",
+          "explanation_en": "import json"
+        },
+        {
+          "id": "w9-3",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Womit öffnet man eine Datei?",
+          "question_en": "How do you open a file?",
+          "options": [
+            "open(\"datei.txt\")",
+            "print(\"datei.txt\")",
+            "range(\"datei.txt\")"
+          ],
+          "options_en": [
+            "open(\"file.txt\")",
+            "print(\"file.txt\")",
+            "range(\"file.txt\")"
+          ],
+          "correctIndex": 0,
+          "explanation": "Danach lesen oder schreiben.",
+          "explanation_en": "Danach lesen oder schreiben."
+        },
+        {
+          "id": "w9-4",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was macht json.dumps(obj)?",
+          "question_en": "What does json.dumps(obj) do?",
+          "options": [
+            "Wandelt Objekt in JSON-Text um",
+            "Löscht die Datei",
+            "Zeichnet"
+          ],
+          "options_en": [
+            "Converts object to JSON text",
+            "Deletes the file",
+            "Draws"
+          ],
+          "correctIndex": 0,
+          "explanation": "dumps = dump string.",
+          "explanation_en": "dumps = dump string."
+        },
+        {
+          "id": "w9-5",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was macht json.loads(text)?",
+          "question_en": "What does json.loads(text) do?",
+          "options": [
+            "Wandelt JSON-Text in Python-Objekt um",
+            "Speichert Bild",
+            "Startet Turtle"
+          ],
+          "options_en": [
+            "Converts JSON text to a Python object",
+            "Saves an image",
+            "Starts Turtle"
+          ],
+          "correctIndex": 0,
+          "explanation": "loads = load string.",
+          "explanation_en": "loads = load string."
+        },
+        {
+          "id": "w9-6",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Welcher Modus schreibt in eine Datei?",
+          "question_en": "Which mode writes to a file?",
+          "options": [
+            "\"w\"",
+            "\"r\"",
+            "\"x\""
+          ],
+          "options_en": [
+            "\"w\"",
+            "\"r\"",
+            "\"x\""
+          ],
+          "correctIndex": 0,
+          "explanation": "w = write.",
+          "explanation_en": "w = write."
+        },
+        {
+          "id": "w9-7",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Warum with open(...) as f: ?",
+          "question_en": "Why with open(...) as f: ?",
+          "options": [
+            "Datei wird sicher wieder geschlossen",
+            "Schneller immer",
+            "Nur für Bilder"
+          ],
+          "options_en": [
+            "File is closed safely",
+            "Always faster",
+            "Only for images"
+          ],
+          "correctIndex": 0,
+          "explanation": "with schließt automatisch.",
+          "explanation_en": "with schließt automatisch."
+        },
+        {
+          "id": "w9-8",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Woran erinnert JSON oft?",
+          "question_en": "What does JSON often look like?",
+          "options": [
+            "Python-Dicts und Listen",
+            "Nur Turtle-Code",
+            "Nur Kommentare"
+          ],
+          "options_en": [
+            "Python dicts and lists",
+            "Only Turtle code",
+            "Only comments"
+          ],
+          "correctIndex": 0,
+          "explanation": "Ähnliche Schreibweise.",
+          "explanation_en": "Ähnliche Schreibweise."
+        },
+        {
+          "id": "w9-9",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was macht f.read()?",
+          "question_en": "What does f.read() do?",
+          "options": [
+            "Liest den Dateiinhalt",
+            "Löscht die Datei",
+            "Komprimiert"
+          ],
+          "options_en": [
+            "Reads the file contents",
+            "Deletes the file",
+            "Compresses"
+          ],
+          "correctIndex": 0,
+          "explanation": "read = lesen.",
+          "explanation_en": "read = lesen."
+        },
+        {
+          "id": "w9-10",
+          "type": "multiple_select",
+          "inPlacement": false,
+          "question": "Welche Funktionen gehören zu JSON?",
+          "question_en": "Which functions belong to JSON?",
+          "options": [
+            "json.dumps",
+            "json.loads",
+            "json.dump",
+            "turtle.forward"
+          ],
+          "options_en": [
+            "json.dumps",
+            "json.loads",
+            "json.dump",
+            "turtle.forward"
+          ],
+          "correctIndices": [
+            0,
+            1,
+            2
+          ],
+          "explanation": "turtle.forward gehört zur Grafik.",
+          "explanation_en": "turtle.forward gehört zur Grafik."
+        }
+      ]
+    },
+    "10": {
+      "title": "Woche 10 – OOP Grundlagen",
+      "title_en": "Week 10 – OOP basics",
+      "questions": [
+        {
+          "id": "w10-1",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Was ist eine Klasse?",
+          "question_en": "What is a class?",
+          "options": [
+            "Eine Blaupause für Objekte",
+            "Eine Schleife",
+            "Ein Fehler"
+          ],
+          "options_en": [
+            "A blueprint for objects",
+            "A loop",
+            "An error"
+          ],
+          "correctIndex": 0,
+          "explanation": "Klasse = Bauplan.",
+          "explanation_en": "Klasse = Bauplan."
+        },
+        {
+          "id": "w10-2",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Womit erzeugt man ein Objekt aus einer Klasse?",
+          "question_en": "How do you create an object from a class?",
+          "options": [
+            "KlassenName()",
+            "new KlassenName",
+            "make Klasse"
+          ],
+          "options_en": [
+            "ClassName()",
+            "new ClassName",
+            "make Class"
+          ],
+          "correctIndex": 0,
+          "explanation": "Aufruf wie eine Funktion.",
+          "explanation_en": "Aufruf wie eine Funktion."
+        },
+        {
+          "id": "w10-3",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Wann wird __init__ aufgerufen?",
+          "question_en": "When is __init__ called?",
+          "options": [
+            "Beim Erzeugen eines Objekts",
+            "Nur am Programmende",
+            "Nur bei print"
+          ],
+          "options_en": [
+            "When creating an object",
+            "Only at program end",
+            "Only with print"
+          ],
+          "correctIndex": 0,
+          "explanation": "Konstruktor / Initialisierung.",
+          "explanation_en": "Konstruktor / Initialisierung."
+        },
+        {
+          "id": "w10-4",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was ist self?",
+          "question_en": "What is self?",
+          "options": [
+            "Bezug auf das aktuelle Objekt",
+            "Ein Modul",
+            "Ein Datentyp"
+          ],
+          "options_en": [
+            "Reference to the current object",
+            "A module",
+            "A data type"
+          ],
+          "correctIndex": 0,
+          "explanation": "self = dieses Objekt.",
+          "explanation_en": "self = dieses Objekt."
+        },
+        {
+          "id": "w10-5",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was sind Attribute?",
+          "question_en": "What are attributes?",
+          "options": [
+            "Daten, die zu einem Objekt gehören",
+            "Nur Schleifen",
+            "Nur Dateien"
+          ],
+          "options_en": [
+            "Data that belong to an object",
+            "Only loops",
+            "Only files"
+          ],
+          "correctIndex": 0,
+          "explanation": "z.B. held.name",
+          "explanation_en": "z.B. held.name"
+        },
+        {
+          "id": "w10-6",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was sind Methoden?",
+          "question_en": "What are methods?",
+          "options": [
+            "Funktionen innerhalb einer Klasse",
+            "Nur Variablen",
+            "Nur Dateien"
+          ],
+          "options_en": [
+            "Functions inside a class",
+            "Only variables",
+            "Only files"
+          ],
+          "correctIndex": 0,
+          "explanation": "Methoden = Objekt-Verhalten.",
+          "explanation_en": "Methoden = Objekt-Verhalten."
+        },
+        {
+          "id": "w10-7",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Wie viele Objekte einer Klasse darf man erzeugen?",
+          "question_en": "How many objects of a class may you create?",
+          "options": [
+            "Beliebig viele",
+            "Genau eines",
+            "Maximal zwei"
+          ],
+          "options_en": [
+            "As many as you like",
+            "Exactly one",
+            "At most two"
+          ],
+          "correctIndex": 0,
+          "explanation": "Viele Instanzen.",
+          "explanation_en": "Viele Instanzen."
+        },
+        {
+          "id": "w10-8",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Womit startet eine Klassendefinition?",
+          "question_en": "What starts a class definition?",
+          "options": [
+            "class",
+            "def",
+            "for"
+          ],
+          "options_en": [
+            "class",
+            "def",
+            "for"
+          ],
+          "correctIndex": 0,
+          "explanation": "class Schlüsselwort.",
+          "explanation_en": "class Schlüsselwort."
+        },
+        {
+          "id": "w10-9",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was speichert self.name = name?",
+          "question_en": "What does self.name = name store?",
+          "options": [
+            "Ein Attribut am Objekt",
+            "Eine globale Konstante",
+            "Einen Import"
+          ],
+          "options_en": [
+            "An attribute on the object",
+            "A global constant",
+            "An import"
+          ],
+          "correctIndex": 0,
+          "explanation": "Objekt-Daten.",
+          "explanation_en": "Objekt-Daten."
+        },
+        {
+          "id": "w10-10",
+          "type": "multiple_select",
+          "inPlacement": false,
+          "question": "Was gehört zu OOP?",
+          "question_en": "What belongs to OOP?",
+          "options": [
+            "Klasse",
+            "Objekt",
+            "Methode",
+            "nur range()"
+          ],
+          "options_en": [
+            "Class",
+            "Object",
+            "Method",
+            "only range()"
+          ],
+          "correctIndices": [
+            0,
+            1,
+            2
+          ],
+          "explanation": "range() ist keine OOP-Idee.",
+          "explanation_en": "range() ist keine OOP-Idee."
+        }
+      ]
+    },
+    "11": {
+      "title": "Woche 11 – OOP Fortgeschritten",
+      "title_en": "Week 11 – Advanced OOP",
+      "questions": [
+        {
+          "id": "w11-1",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Was ist Vererbung?",
+          "question_en": "What is inheritance?",
+          "options": [
+            "Eine Klasse übernimmt von einer anderen",
+            "Dateien kopieren",
+            "Zufallszahlen"
+          ],
+          "options_en": [
+            "A class takes over from another",
+            "Copying files",
+            "Random numbers"
+          ],
+          "correctIndex": 0,
+          "explanation": "Kindklasse erbt von Elternklasse.",
+          "explanation_en": "Kindklasse erbt von Elternklasse."
+        },
+        {
+          "id": "w11-2",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Was bedeutet Methoden überschreiben?",
+          "question_en": "What does overriding a method mean?",
+          "options": [
+            "In der Kindklasse neu definieren",
+            "Die Methode löschen für immer",
+            "Ein Modul importieren"
+          ],
+          "options_en": [
+            "Redefine it in the child class",
+            "Delete the method forever",
+            "Import a module"
+          ],
+          "correctIndex": 0,
+          "explanation": "Gleiches Methodenname, neues Verhalten.",
+          "explanation_en": "Gleiches Methodenname, neues Verhalten."
+        },
+        {
+          "id": "w11-3",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Wozu dient super()?",
+          "question_en": "What is super() for?",
+          "options": [
+            "Eltern-Methoden aufrufen",
+            "Schleifen beenden",
+            "JSON speichern"
+          ],
+          "options_en": [
+            "Calling parent methods",
+            "Ending loops",
+            "Saving JSON"
+          ],
+          "correctIndex": 0,
+          "explanation": "super() greift auf die Elternklasse zu.",
+          "explanation_en": "super() greift auf die Elternklasse zu."
+        },
+        {
+          "id": "w11-4",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was bedeutet class Katze(Tier):?",
+          "question_en": "What does class Katze(Tier): mean?",
+          "options": [
+            "Katze erbt von Tier",
+            "Katze löscht Tier",
+            "Zwei unverbundene Klassen"
+          ],
+          "options_en": [
+            "Katze inherits from Tier",
+            "Katze deletes Tier",
+            "Two unrelated classes"
+          ],
+          "correctIndex": 0,
+          "explanation": "Klammer = Elternklasse.",
+          "explanation_en": "Klammer = Elternklasse."
+        },
+        {
+          "id": "w11-5",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was meint Polymorphie grob?",
+          "question_en": "What does polymorphism roughly mean?",
+          "options": [
+            "Gleiches Interface, unterschiedliches Verhalten",
+            "Nur eine Klasse erlaubt",
+            "Keine Methoden"
+          ],
+          "options_en": [
+            "Same interface, different behavior",
+            "Only one class allowed",
+            "No methods"
+          ],
+          "correctIndex": 0,
+          "explanation": "z.B. sprechen() bei Hund/Katze.",
+          "explanation_en": "z.B. sprechen() bei Hund/Katze."
+        },
+        {
+          "id": "w11-6",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Warum Vererbung nutzen?",
+          "question_en": "Why use inheritance?",
+          "options": [
+            "Gemeinsamen Code teilen",
+            "Immer schneller",
+            "Drucken verbieten"
+          ],
+          "options_en": [
+            "Share common code",
+            "Always faster",
+            "Forbid printing"
+          ],
+          "correctIndex": 0,
+          "explanation": "Weniger Doppelcode.",
+          "explanation_en": "Weniger Doppelcode."
+        },
+        {
+          "id": "w11-7",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was darf eine Kindklasse zusätzlich tun?",
+          "question_en": "What else may a child class do?",
+          "options": [
+            "Neue Attribute und Methoden hinzufügen",
+            "Nur die Elternklasse löschen",
+            "Keine Änderungen"
+          ],
+          "options_en": [
+            "Add new attributes and methods",
+            "Only delete the parent class",
+            "No changes"
+          ],
+          "correctIndex": 0,
+          "explanation": "Erweitern ist erlaubt.",
+          "explanation_en": "Erweitern ist erlaubt."
+        },
+        {
+          "id": "w11-8",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was ist eine Elternklasse?",
+          "question_en": "What is a parent class?",
+          "options": [
+            "Die Klasse, von der geerbt wird",
+            "Immer die letzte Klasse",
+            "Ein Modul"
+          ],
+          "options_en": [
+            "The class being inherited from",
+            "Always the last class",
+            "A module"
+          ],
+          "correctIndex": 0,
+          "explanation": "Auch Basisklasse genannt.",
+          "explanation_en": "Auch Basisklasse genannt."
+        },
+        {
+          "id": "w11-9",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was prüft isinstance(obj, Klasse)?",
+          "question_en": "What does isinstance(obj, Class) check?",
+          "options": [
+            "ob obj zu Klasse oder Kind gehört",
+            "die Dateigröße",
+            "nur den Namen"
+          ],
+          "options_en": [
+            "whether obj belongs to Class or a child",
+            "file size",
+            "only the name"
+          ],
+          "correctIndex": 0,
+          "explanation": "Typ-Prüfung.",
+          "explanation_en": "Typ-Prüfung."
+        },
+        {
+          "id": "w11-10",
+          "type": "multiple_select",
+          "inPlacement": false,
+          "question": "Welche Begriffe gehören zur Vererbung?",
+          "question_en": "Which terms belong to inheritance?",
+          "options": [
+            "Elternklasse",
+            "Kindklasse",
+            "super()",
+            "turtle.circle"
+          ],
+          "options_en": [
+            "Parent class",
+            "Child class",
+            "super()",
+            "turtle.circle"
+          ],
+          "correctIndices": [
+            0,
+            1,
+            2
+          ],
+          "explanation": "turtle.circle ist Grafik.",
+          "explanation_en": "turtle.circle ist Grafik."
+        }
+      ]
+    },
+    "12": {
+      "title": "Woche 12 – Turtle-Grafik",
+      "title_en": "Week 12 – Turtle graphics",
+      "questions": [
+        {
+          "id": "w12-1",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Welches Modul zeichnet mit der Schildkröte?",
+          "question_en": "Which module draws with the turtle?",
+          "options": [
+            "turtle",
+            "json",
+            "random"
+          ],
+          "options_en": [
+            "turtle",
+            "json",
+            "random"
+          ],
+          "correctIndex": 0,
+          "explanation": "import turtle",
+          "explanation_en": "import turtle"
+        },
+        {
+          "id": "w12-2",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Was macht turtle.forward(100)?",
+          "question_en": "What does turtle.forward(100) do?",
+          "options": [
+            "Geht 100 Schritte vor",
+            "Dreht um 100 Grad",
+            "Löscht alles"
+          ],
+          "options_en": [
+            "Moves 100 steps forward",
+            "Turns 100 degrees",
+            "Clears everything"
+          ],
+          "correctIndex": 0,
+          "explanation": "forward = vorwärts.",
+          "explanation_en": "forward = vorwärts."
+        },
+        {
+          "id": "w12-3",
+          "type": "multiple_choice",
+          "inPlacement": true,
+          "question": "Was macht turtle.right(90)?",
+          "question_en": "What does turtle.right(90) do?",
+          "options": [
+            "Dreht 90 Grad nach rechts",
+            "Geht 90 Schritte",
+            "Speichert JSON"
+          ],
+          "options_en": [
+            "Turns 90 degrees right",
+            "Moves 90 steps",
+            "Saves JSON"
+          ],
+          "correctIndex": 0,
+          "explanation": "right/left steuern die Richtung.",
+          "explanation_en": "right/left steuern die Richtung."
+        },
+        {
+          "id": "w12-4",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was macht turtle.penup()?",
+          "question_en": "What does turtle.penup() do?",
+          "options": [
+            "Stift anheben",
+            "Stift dicker machen",
+            "Fenster schließen"
+          ],
+          "options_en": [
+            "Lifts the pen",
+            "Makes the pen thicker",
+            "Closes the window"
+          ],
+          "correctIndex": 0,
+          "explanation": "penup = kein Strich.",
+          "explanation_en": "penup = kein Strich."
+        },
+        {
+          "id": "w12-5",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was macht turtle.pendown()?",
+          "question_en": "What does turtle.pendown() do?",
+          "options": [
+            "Stift senken",
+            "Programm beenden",
+            "Farbe löschen"
+          ],
+          "options_en": [
+            "Lowers the pen",
+            "Ends the program",
+            "Clears the color"
+          ],
+          "correctIndex": 0,
+          "explanation": "pendown = Stift runter.",
+          "explanation_en": "pendown = Stift runter."
+        },
+        {
+          "id": "w12-6",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was macht turtle.circle(50)?",
+          "question_en": "What does turtle.circle(50) do?",
+          "options": [
+            "Zeichnet einen Kreis",
+            "Macht ein Quadrat",
+            "Speichert JSON"
+          ],
+          "options_en": [
+            "Draws a circle",
+            "Makes a square",
+            "Saves JSON"
+          ],
+          "correctIndex": 0,
+          "explanation": "circle = Kreis.",
+          "explanation_en": "circle = Kreis."
+        },
+        {
+          "id": "w12-7",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was macht turtle.color(\"red\")?",
+          "question_en": "What does turtle.color(\"red\") do?",
+          "options": [
+            "setzt die Stiftfarbe",
+            "löscht den Bildschirm",
+            "startet Musik"
+          ],
+          "options_en": [
+            "sets the pen color",
+            "clears the screen",
+            "starts music"
+          ],
+          "correctIndex": 0,
+          "explanation": "Farbe fürs Zeichnen.",
+          "explanation_en": "Farbe fürs Zeichnen."
+        },
+        {
+          "id": "w12-8",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Womit zeichnet man Muster effizient?",
+          "question_en": "How do you draw patterns efficiently?",
+          "options": [
+            "Mit Schleifen",
+            "Nur mit copy-paste",
+            "Ohne forward"
+          ],
+          "options_en": [
+            "With loops",
+            "Only with copy-paste",
+            "Without forward"
+          ],
+          "correctIndex": 0,
+          "explanation": "for + forward/right.",
+          "explanation_en": "for + forward/right."
+        },
+        {
+          "id": "w12-9",
+          "type": "multiple_choice",
+          "inPlacement": false,
+          "question": "Was macht turtle.goto(x, y)?",
+          "question_en": "What does turtle.goto(x, y) do?",
+          "options": [
+            "Geht zur Position x, y",
+            "Nur Farbe ändern",
+            "Programm beenden"
+          ],
+          "options_en": [
+            "Goes to position x, y",
+            "Only changes color",
+            "Ends the program"
+          ],
+          "correctIndex": 0,
+          "explanation": "goto = Position anfahren.",
+          "explanation_en": "goto = Position anfahren."
+        },
+        {
+          "id": "w12-10",
+          "type": "multiple_select",
+          "inPlacement": false,
+          "question": "Welche Befehle gehören zu Turtle?",
+          "question_en": "Which commands belong to Turtle?",
+          "options": [
+            "forward",
+            "right",
+            "circle",
+            "json.loads"
+          ],
+          "options_en": [
+            "forward",
+            "right",
+            "circle",
+            "json.loads"
+          ],
+          "correctIndices": [
+            0,
+            1,
+            2
+          ],
+          "explanation": "json.loads gehört zu Dateien/JSON.",
+          "explanation_en": "json.loads gehört zu Dateien/JSON."
+        }
+      ]
+    }
+  }
+}

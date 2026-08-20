@@ -6,6 +6,7 @@
       <div class="hero-buttons">
         <router-link to="/kurs/python-12-wochen-grundkurs" class="cta-button">{{ t('home.cta.weekly') }}</router-link>
         <router-link to="/kurs/python-grundlagen-interaktiv" class="cta-button cta-button-secondary">{{ t('home.cta.interactive') }}</router-link>
+        <router-link to="/kurs/python-einstufung" class="cta-button cta-button-secondary">{{ t('home.cta.placement') }}</router-link>
       </div>
     </section>
 

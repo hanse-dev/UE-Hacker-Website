@@ -1,5 +1,13 @@
 [
   {
+    "id": "python-einstufung",
+    "title": "Python Einstufung",
+    "title_en": "Python Placement",
+    "description": "Kurzer Test über mehrere Wochen. Wir zeigen dir, wo du starten kannst – und du springst direkt zum Wochen-Check.",
+    "description_en": "A short test across several weeks. We show you where to start — and you jump straight to that week's check.",
+    "contentPath": "python-einstufung"
+  },
+  {
     "id": "python-grundlagen-interaktiv",
     "title": "Python Grundlagen – Interaktiv",
     "title_en": "Python Basics – Interactive",

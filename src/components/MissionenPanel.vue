@@ -5,6 +5,12 @@
       <span class="missionen-toggle">{{ expanded ? '−' : '+' }}</span>
     </div>
     <div v-show="expanded" class="missionen-panel-content">
+      <p v-if="hasCheck && !checkPassed" class="checkpoint-mission-hint">
+        {{ t('mission.check.hint') }}
+      </p>
+      <p v-else-if="hasCheck && checkPassed" class="checkpoint-mission-done">
+        {{ t('mission.check.done') }}
+      </p>
       <div class="missionen-list">
         <div
           v-for="m in missionen"
@@ -34,6 +40,7 @@ import { ref, computed, onMounted, watch } from 'vue';
 import { useFortschritt } from '../composables/useFortschritt';
 import { assetUrl } from '../utils/assetUrl';
 import { useLanguage } from '../composables/useLanguage.js';
+import { loadWeekChecks, hasWeekCheck, useWeekChecks } from '../composables/useWeekChecks.js';
 
 export default {
   name: 'MissionenPanel',
@@ -46,7 +53,9 @@ export default {
     const { t, lang } = useLanguage();
     const expanded = ref(false);
     const rewardsManifest = ref(null);
+    const checksData = ref(null);
     const { claimMission: doClaimMission, unclaimMission: doUnclaimMission, isClaimed: checkClaimed } = useFortschritt();
+    const { isWeekCheckPassed } = useWeekChecks();
 
     const pointUnit = computed(() => {
       const units = {
@@ -70,6 +79,9 @@ export default {
     const claimMission   = (m) => doClaimMission(props.variant, m.id, m.points, m.item, m.label);
     const unclaimMission = (m) => doUnclaimMission(props.variant, m.id);
 
+    const hasCheck = computed(() => hasWeekCheck(checksData.value, props.weekNumber));
+    const checkPassed = computed(() => isWeekCheckPassed(props.weekNumber));
+
     const loadManifest = async () => {
       try {
         const file = lang.value === 'en' ? 'rewards-manifest-en.json' : 'rewards-manifest.json';
@@ -78,10 +90,18 @@ export default {
       } catch (e) { /* silent */ }
     };
 
-    onMounted(loadManifest);
+    onMounted(async () => {
+      loadManifest();
+      try {
+        checksData.value = await loadWeekChecks();
+      } catch (e) { /* silent */ }
+    });
     watch(lang, loadManifest);
 
-    return { expanded, missionen, pointUnit, isClaimed, claimMission, unclaimMission, t };
+    return {
+      expanded, missionen, pointUnit, isClaimed, claimMission, unclaimMission, t,
+      hasCheck, checkPassed,
+    };
   },
 };
 </script>
@@ -111,6 +131,28 @@ export default {
 .missionen-toggle { font-size: 1.1em; color: #92400e; font-weight: bold; }
 
 .missionen-panel-content { padding: 6px 16px 12px; border-top: 1px solid #fde68a; }
+
+.checkpoint-mission-hint {
+  margin: 8px 0 10px 0;
+  padding: 10px 12px;
+  background: #e0f2fe;
+  border: 1px solid #7dd3fc;
+  border-radius: 6px;
+  font-size: 0.85em;
+  color: #0c4a6e;
+  line-height: 1.4;
+}
+
+.checkpoint-mission-done {
+  margin: 8px 0 10px 0;
+  padding: 10px 12px;
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-radius: 6px;
+  font-size: 0.85em;
+  color: #155724;
+  line-height: 1.4;
+}
 
 .missionen-list { display: flex; flex-direction: column; gap: 6px; margin-top: 6px; }
 

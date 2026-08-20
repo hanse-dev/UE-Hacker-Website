@@ -22,3 +22,21 @@
 
 - [ ] Docker-Deployment testen (prod-Build auf lokalem Rechner)
 - [ ] README.md aktualisieren (neue Struktur erklären)
+
+### Jetzt: Einstufung / Checks (Branch `cursor/python-lernpfad-quiz`)
+
+- [x] Einstufung als eigener Kurs + Check-Tab pro Woche
+- [x] Fragen für alle 12 Wochen + Rotation / Multi-Select
+- [x] Bei 100%: Projektideen statt Woche-1-Empfehlung
+- [x] Deep-Link Einstufung → Kurs lädt Wochen neu
+- [x] Playwright-Tests + Pre-commit-Hook
+- [x] Alten Lernpfad-Code/Content entfernt
+- [ ] Committen und in `main` mergen
+
+### Später: Admin-Login (neuer Branch `cursor/admin-login`)
+
+- [ ] Neuer Branch von `main` — Plan: [`ACCOUNT-SYNC-PLAN.md`](ACCOUNT-SYNC-PLAN.md)
+  - Phase 1: kleine API + Admin (User anlegen)
+  - Phase 2: Login + Progress-Sync
+  - Phase 3: Notebook-Sync (optional)
+  - **Nicht:** E-Mail-Registrierung / Supabase / öffentliche Sign-up
