@@ -18,14 +18,20 @@
 - Woche 2 Abenteuer (DE + EN) umgebaut: "Elementarturm" als Rahmengeschichte, die vier Datentypen jetzt
   explizit als Elemente eingeführt (🔥 Feuer=str, 🪨 Erde=int, 💧 Wasser=float, 💨 Luft=bool), Missionen als
   drei zusammenhängende Prüfungen statt Schritt-Listen
-- Alle Code-Zellen in den neuen Notebooks wurden ausgeführt und verifiziert (auch mit geteiltem
+- Woche 3, 4, 5 Abenteuer geprüft und für gut befunden (Missionen sind bereits sinnvolle Szenen,
+  Debug-Bugs bereits in sich geschlossen) — kein Umbau nötig, nur verifiziert
+- Woche 6 Abenteuer (DE + EN): Boss-Quest 1+2 waren wortwörtlich von Woche 5 kopiert
+  ("Zauber-Generator"/"Guilden-Manager") — umbenannt zu "Schatzkammer-Katalog"/"Tresorwächter" mit
+  passend umgethemtem Code (Schätze/Tresorfächer statt Zauber/Gildenabteilungen)
+- Alle Code-Zellen in den neuen/geänderten Notebooks wurden ausgeführt und verifiziert (auch mit geteiltem
   Namespace, um Kernel-Reihenfolge-Effekte zu simulieren)
 
 **Als Nächstes:**
 1. Committen (noch nicht passiert)
-2. Mit gleichem Prinzip weitermachen: Woche 3–6, 8–12 Abenteuer (DE+EN) umbauen, dann Pferde/Sci-Fi
-3. Bei Weiterarbeit in neuer Session: dieses Vorgehen als Vorlage nehmen (Analyse der Ist-Notebooks →
-   Story-Konzept passend zum Wochenthema entwerfen → alle 6 Notebook-Typen DE schreiben → Code testen
-   (auch Debug-Bugs mit geteiltem Kernel-Zustand!) → EN-Version spiegeln → testen → committen)
+2. Mit gleichem Prinzip weitermachen: Woche 8–12 Abenteuer (DE+EN) prüfen/umbauen, dann Pferde/Sci-Fi
+3. Bei Weiterarbeit in neuer Session: dieses Vorgehen als Vorlage nehmen — zuerst Ist-Zustand prüfen
+   (Missionen schon sinnvolle Szenen? Titel eingelöst? Boss-Quests einzigartig?), nur bei echtem Bedarf
+   voll umbauen (Analyse → Story-Konzept → alle 6 Notebook-Typen DE schreiben → Code testen, inkl.
+   Debug-Bugs mit geteiltem Kernel-Zustand → EN spiegeln → testen → committen)
 
 **Git-Regel:** Jedes neue Thema = neuer Branch (`cursor/…`). Siehe `WORKFLOW.md`.

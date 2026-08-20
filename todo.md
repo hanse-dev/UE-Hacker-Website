@@ -43,9 +43,12 @@
       unter Regeln/)
 - [x] Woche 2 Abenteuer (DE+EN) umgebaut: Elementbezug ("Vier magische Elemente") jetzt durchgängig
       eingelöst — Feuer=str, Erde=int, Wasser=float, Luft=bool, "Elementarturm" als Rahmengeschichte
-- [ ] Restliche 10 Wochen Abenteuer (3–6, 8–12) nach demselben Prinzip überarbeiten
+- [x] Woche 3, 4, 5 Abenteuer geprüft: Missionen bereits sinnvolle Szenen mit Zielbezug, Debug-Bugs
+      bereits in sich geschlossen — kein Umbau nötig
+- [x] Woche 6: Boss-Quest 1+2 Titel/Prämissen ("Zauber-Generator"/"Guilden-Manager") waren wortgleich
+      zu Woche 5 kopiert — in DE+EN umbenannt/umthemet ("Schatzkammer-Katalog"/"Tresorwächter")
+- [ ] Restliche 6 Wochen Abenteuer (8–12) nach demselben Prinzip überarbeiten/prüfen
 - [ ] Pferde- und Sci-Fi-Variante ebenfalls überarbeiten (eigene Metaphern nötig, kein reines Übersetzen)
-- [ ] Woche 6: Boss-Quest-Titel/Prämissen stärker von Woche 5 abgrenzen (wirken aktuell kopiert)
 - [ ] Woche 9: Missionen-Formatierung vereinheitlichen (Nummerierungs-Mischmasch)
 - [ ] Woche 10, Boss-Quest 2 ("Zookeeper"): stärker in die Fantasy-Welt einbetten
 - [ ] Woche 12, Boss-Quest 5: Textbug "Als Nächstes: Woche – wartet schon!" reparieren (Wochenzahl fehlt)
