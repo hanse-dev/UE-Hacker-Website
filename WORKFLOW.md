@@ -4,9 +4,10 @@
 
 **Immer einen neuen Branch anlegen, wenn ein neues Thema beginnt.**
 
-- Prefix: `cursor/` (z.B. `cursor/python-lernpfad-quiz`, `cursor/admin-login`)
+- Prefix: `cursor/` (z.B. `cursor/kurs-python-spiele`, `cursor/admin-login`)
 - Branch von aktuellem `main` aus starten
 - Ein Branch = ein Thema; Admin/Accounts nicht auf dem Lernpfad-Branch mischen
+- Nächste Kurs-Themen (geplant): `cursor/kurs-python-spiele` → `cursor/kurs-python-projekte` → `cursor/kurs-js-minigames` oder `cursor/kurs-ki-labor` (siehe `todo.md`)
 - Erst mergen, wenn das Thema fertig/getestet ist — danach neues Thema → neuer Branch
 
 ## Pre-commit Hook (Checks)
