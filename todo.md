@@ -35,8 +35,10 @@
 
 ### Später: Admin-Login (neuer Branch `cursor/admin-login`)
 
-- [ ] Neuer Branch von `main` — Plan: [`ACCOUNT-SYNC-PLAN.md`](ACCOUNT-SYNC-PLAN.md)
-  - Phase 1: kleine API + Admin (User anlegen)
-  - Phase 2: Login + Progress-Sync
-  - Phase 3: Notebook-Sync (optional)
+- [x] Neuer Branch von `main` — Plan: [`ACCOUNT-SYNC-PLAN.md`](ACCOUNT-SYNC-PLAN.md)
+  - [x] Phase 1: kleine API + Admin (User anlegen)
+  - [x] Phase 2: Login + Progress-Sync
+  - [x] Phase 3: Notebook-Sync
+  - [x] API liefert Static (`dist/`), ein Port / ein Docker-Container `app`
   - **Nicht:** E-Mail-Registrierung / Supabase / öffentliche Sign-up
+- [ ] Manuell testen + ggf. committen/PR

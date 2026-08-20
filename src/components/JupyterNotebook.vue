@@ -66,10 +66,11 @@
 </template>
 
 <script>
-import { ref, watch, onMounted } from 'vue';
+import { ref, watch, onMounted, onUnmounted } from 'vue';
 import { marked } from 'marked';
 import { usePyodide } from '../composables/usePyodide';
 import { useLanguage } from '../composables/useLanguage.js';
+import { PROGRESS_APPLIED_EVENT, touchSyncKey } from '../composables/useProgressSync.js';
 
 const stateKey = (notebookPath) => `ue-hacker-notebook-state-${notebookPath}`;
 
@@ -84,11 +85,13 @@ const loadSavedState = (notebookPath) => {
 
 const saveState = (notebookPath, cells, cellOutputs, originalSources) => {
   try {
-    localStorage.setItem(stateKey(notebookPath), JSON.stringify({
+    const key = stateKey(notebookPath);
+    localStorage.setItem(key, JSON.stringify({
       originals: originalSources,
       sources: cells.map(cell => cell.source),
       outputs: cellOutputs,
     }));
+    touchSyncKey(key);
   } catch {
     /* localStorage voll oder deaktiviert */
   }
@@ -194,6 +197,11 @@ export default {
     onMounted(() => {
       loadNotebook();
       initializeKernel();
+      window.addEventListener(PROGRESS_APPLIED_EVENT, loadNotebook);
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener(PROGRESS_APPLIED_EVENT, loadNotebook);
     });
 
     watch([cells, cellOutputs], () => {

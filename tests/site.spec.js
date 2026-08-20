@@ -38,7 +38,10 @@ test.describe('Home & Navigation', () => {
   test('Sprachumschaltung DE → EN', async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('#hero h2')).toContainText(/Willkommen|Übergangshacker/i);
-    await page.locator('.lang-switcher button', { hasText: 'EN' }).click();
+    await page.locator('.options-btn').click();
+    await expect(page.locator('.settings-modal')).toBeVisible();
+    await page.locator('.settings-modal .lang-switcher button', { hasText: 'EN' }).click();
+    await page.locator('.settings-close').click();
     await expect(page.locator('a.cta-button[href="/kurs/python-einstufung"]')).toContainText(/Placement/i);
     await expect(page.locator('#kurse-uebersicht h2')).toContainText(/Course/i);
     await expect(page.locator('#kurse-uebersicht .course-card').first()).toContainText(/Week|Interactive|Basics/i);

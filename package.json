@@ -13,8 +13,14 @@
     "prebuild": "npm run pack:notebooks",
     "test": "playwright test",
     "test:ui": "playwright test --ui",
-    "test:checks": "playwright test tests/week-checks-logic.spec.js tests/week-checks.spec.js tests/site.spec.js",
+    "test:checks": "playwright test tests/week-checks-logic.spec.js tests/week-checks.spec.js tests/site.spec.js tests/progress-merge.spec.js",
     "test:precommit": "npm run test:checks",
+    "test:auth": "playwright test -c playwright.auth.config.js",
+    "api": "npm --prefix api start",
+    "api:dev": "npm --prefix api run dev",
+    "start:all": "concurrently -k -n api,web -c blue,green \"npm run api:dev\" \"npm run dev\"",
+    "start:all:docker": "concurrently -k -n api,web -c blue,green \"npm run api:dev\" \"npm run pack:notebooks && vite --host 0.0.0.0 --port 5173\"",
+    "start:prod": "npm run build && STATIC_DIR=./dist API_PORT=8080 node api/src/index.js",
     "prepare": "git config core.hooksPath .githooks 2>/dev/null || true"
   },
   "dependencies": {
@@ -27,6 +33,7 @@
   "devDependencies": {
     "@playwright/test": "^1.61.0",
     "@vitejs/plugin-vue": "^5.0.5",
+    "concurrently": "^10.0.5",
     "vite": "^5.0.0"
   },
   "allowScripts": {
