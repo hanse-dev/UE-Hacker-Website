@@ -13,7 +13,7 @@
     "prebuild": "npm run pack:notebooks",
     "test": "playwright test",
     "test:ui": "playwright test --ui",
-    "test:checks": "playwright test tests/week-checks-logic.spec.js tests/week-checks.spec.js tests/site.spec.js tests/progress-merge.spec.js",
+    "test:checks": "playwright test tests/week-checks-logic.spec.js tests/week-checks.spec.js tests/site.spec.js tests/progress-merge.spec.js tests/storytelling-content.spec.js",
     "test:precommit": "npm run test:checks",
     "test:auth": "playwright test -c playwright.auth.config.js",
     "api": "npm --prefix api start",

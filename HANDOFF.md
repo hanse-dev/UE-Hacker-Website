@@ -140,6 +140,12 @@ wo es einen echten Mangel gab.
 3. Bei jeder Notebook-Änderung: Code-Zellen ausführen/kompilieren (auch mit geteiltem Namespace) und
    JSON-Validität prüfen, bevor committet wird.
 
+**Systemtests:** Die wichtigsten Fixes sind als Playwright-Regressionstests in `tests/storytelling-content.spec.js`
+festgehalten (läuft mit in `npm run test:checks`) — prüft u.a. Woche-9-Pferde-Rahmengeschichte,
+Hufschlag-Typen-Benennung, Sci-Fi-Woche-11-Code-Korrektheit (def/self), Boss-Quest-Eindeutigkeit
+Woche 6/8 Sci-Fi, Cyber-Credits/Huf-Punkte statt XP, und dass Debug-Bugs nicht im Kommentar verraten
+werden. Jeder Test wurde gegen eine absichtlich kaputte Kopie verifiziert (schlägt dann fehl).
+
 **Geklärt:** "Gilde-Meister-Urkunde" als Zwischenbelohnung in W6/7/8 (Abenteuer) ist kein Bug — Pferde
 ("Reitmeister-Urkunde") und Sci-Fi ("Crew-Meister-Urkunde") nutzen dasselbe Muster je 3×, und andere
 Items (z.B. "Kristallkugel" 4×, "Quest-Buch" 4×) wiederholen sich im ganzen Kurs genauso. Bewusstes
@@ -174,7 +180,7 @@ SQLite bleibt in `./api/data/` (Volume). Env-Änderung → Container **recreate*
 
 | Command | Inhalt |
 |---------|--------|
-| `npm run test:checks` | Pre-commit: Logic, Week-Checks/Placement, Site, Merge |
+| `npm run test:checks` | Pre-commit: Logic, Week-Checks/Placement, Site, Merge, Storytelling-Content |
 | `npm run test:auth` | API + Admin/Optionen-UI (eigene Config, Test-API :3011) |
 
 ### Wichtige Pfade

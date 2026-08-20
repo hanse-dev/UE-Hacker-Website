@@ -12,7 +12,7 @@
 
 ## Pre-commit Hook (Checks)
 
-Beim Commit läuft automatisch `npm run test:checks` (Einstufung, Check-Tab, Home, Interaktiv-Smoke).
+Beim Commit läuft automatisch `npm run test:checks` (Einstufung, Check-Tab, Home, Interaktiv-Smoke, Storytelling-Content-Regressionen).
 
 - Einmalig nach Clone: `npm install` (setzt `core.hooksPath` auf `.githooks`) und ggf. `npx playwright install chromium`
 - Überspringen: `SKIP_CHECKS=1 git commit …` oder `git commit --no-verify`
