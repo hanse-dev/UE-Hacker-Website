@@ -1,7 +1,7 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-08-20  
-> **Aktueller Stand:** Branch `main` @ `0c81df0` (enthält PR #1–#3)  
+> **Aktueller Stand:** Branch `main` (enthält PR #1–#4 sowie die Storytelling-Überarbeitung, siehe 3.4)  
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -96,6 +96,36 @@ npm run start:all      # Vite :5173 + API :3001 (Proxy /api)
 # oder
 npm run start:prod     # Build + alles :8080
 ```
+### 3.4 Storytelling-Überarbeitung 12-Wochen-Kurs, Abenteuer-Variante (alle 12 Wochen)
+
+**Ziel:** Missionen/Boss-Quests waren oft nur Schritt-Listen mit Fantasy-Deko statt echter Szenen, und
+manche Wochen lösten ihr eigenes Titelversprechen nicht ein. Pro Woche wurde geprüft, ob ein Umbau nötig
+ist, und nur dort umgebaut, wo es einen echten Mangel gab (nicht alle Wochen pauschal neu geschrieben).
+
+- Woche 7 als Pilot komplett umgebaut: Rahmengeschichte "Der Archivar der Bibliothek von Pyralia" mit
+  drei zusammenhängenden Prüfungen statt isolierter Schritt-Listen; Bibliothekswahl von `math`-lastig auf
+  `random`/`string`/`time` umgestellt (math nur noch optionaler Bonus-Exkurs)
+- Pythonia/Pyralia-Namenskonflikt weltweit vereinheitlicht (auf "Pyralia") — betraf Woche 1, 10, 12
+  (DE+EN, inkl. gecachter Zell-Outputs) sowie die Vorlagen unter `Regeln/`
+- Woche 2 umgebaut: "Elementarturm" als Rahmengeschichte, die vier Datentypen jetzt explizit als Elemente
+  eingeführt (🔥 Feuer=str, 🪨 Erde=int, 💧 Wasser=float, 💨 Luft=bool)
+- Woche 3, 4, 5, 11 geprüft und für gut befunden — kein Umbau nötig
+- Woche 6: Boss-Quest 1+2 waren wortwörtlich von Woche 5 kopiert — umbenannt/umgethemt
+  ("Schatzkammer-Katalog"/"Tresorwächter")
+- Woche 8: Debug-Bug #1 hatte gar keinen Fehler mehr (fehlende schließende Klammer nie tatsächlich
+  entfernt) — repariert
+- Woche 9: Missionen-Formatierung vereinheitlicht (Mix aus nummerierten Listen und Schritt-Überschriften)
+- Woche 10: Boss-Quest 2 "Der Zookeeper" (reale Zootiere) zu "Die Kreaturen-Menagerie" mit magischen
+  Wesen umgethemt
+- Woche 12: Textbug "Als Nächstes: Woche – wartet schon!" repariert (betraf auch Pferde/Sci-Fi DE)
+
+**Gelernte Regel:** Debug-Notebook-Bugs müssen unabhängig vom geteilten Jupyter-Kernel-Zustand sein — ein
+"vergessener Import" als Bug funktioniert nicht mehr, wenn eine frühere Zelle das Modul schon importiert
+hat. Alle Code-Zellen in neuen/geänderten Notebooks wurden ausgeführt und verifiziert (auch mit geteiltem
+Namespace, um das zu simulieren).
+
+**Offen:** Pferde- und Sci-Fi-Variante analog überarbeiten (eigene Metaphern nötig, kein reines
+Übersetzen); "Gilde-Meister-Urkunde" als Zwischenbelohnung (W6/7/8) vs. Kursabschluss-Titel klären.
 
 ### Docker Prod
 
@@ -136,6 +166,9 @@ Siehe auch `todo.md`.
 
 **Betrieb**
 - [ ] Server-Deploy final verifizieren (Service `app`, Orphans weg, Health, Admin-Login, kein Notebook-Blinken mehr nach PR #3)
+
+**Inhalte**
+- [ ] Storytelling-Überarbeitung (siehe 3.4) auf Pferde- und Sci-Fi-Variante ausweiten
 
 **Nächste Features — je eigener Branch von `main` (Reihenfolge):**
 

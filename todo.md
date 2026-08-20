@@ -14,6 +14,14 @@
 - [x] Glossar-Notebooks für Anfänger
 - [x] Branch `splitting` in `main` mergen
 - [x] Interaktiv-Kurs: Varianten Kinder + Jugendliche
+- [x] Storytelling-Überarbeitung Abenteuer-Variante (alle 12 Wochen, DE+EN): zusammenhängende Szenen
+      statt Schritt-Listen, Pythonia/Pyralia-Namenskonflikt vereinheitlicht, Woche 2 "vier Elemente"
+      jetzt eingelöst, mehrere Bugs behoben (Woche 6 Boss-Quest-Klon, Woche 8 kaputter Debug-Bug,
+      Woche 9 Formatierung, Woche 10 Zoo-Thema, Woche 12 Textbug) — Details siehe Commit-Historie
+- [ ] Pferde- und Sci-Fi-Variante analog zur Abenteuer-Variante überarbeiten (eigene Metaphern nötig,
+      kein reines Übersetzen)
+- [ ] "Gilde-Meister-Urkunde" als Zwischenbelohnung (W6/7/8) vs. Kursabschluss-Titel klären — evtl.
+      umbenennen
 
 ### Infrastruktur
 - [x] Einstufung / Checks in `main` (PR #1)

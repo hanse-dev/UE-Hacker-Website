@@ -11,7 +11,7 @@ With the basics of programming, you lay the foundation for all the weeks ahead!
 ## 🎮 Theme worlds to choose from
 
 Choose your preferred learning environment:
-- **🗺️ Adventure World:** Enter the magical world of Pythonia as a young adventurer!
+- **🗺️ Adventure World:** Enter the magical world of Pyralia as a young adventurer!
 - **🐴 Horse Stables:** Accompany a young foal at the Sonnental riding stable!
 - **🚀 Sci-Fi World:** Start your career as a rookie pilot aboard Space Station Nebula-7!
 
