@@ -3,438 +3,1302 @@
     "abenteuer": {
       "1": {
         "missions": [
-          { "id": "w1-m1", "points": 300, "item": "Magic Grimoire" },
-          { "id": "w1-m2", "points": 400, "item": "Treasure Map" },
-          { "id": "w1-m3", "points": 500, "item": "Hero's Sword" }
+          {
+            "id": "w1-m1",
+            "points": 300,
+            "item": "Magic Grimoire"
+          },
+          {
+            "id": "w1-m2",
+            "points": 400,
+            "item": "Treasure Map"
+          },
+          {
+            "id": "w1-m3",
+            "points": 500,
+            "item": "Hero's Sword"
+          }
         ],
         "bossQuests": [
-          { "id": "w1-boss1", "points": 500, "item": "Crystal Ball" },
-          { "id": "w1-boss2", "points": 600, "item": "Dragon Amulet" },
-          { "id": "w1-boss3", "points": 400, "item": "Portal Key" }
+          {
+            "id": "w1-boss1",
+            "points": 500,
+            "item": "Crystal Ball"
+          },
+          {
+            "id": "w1-boss2",
+            "points": 600,
+            "item": "Dragon Amulet"
+          },
+          {
+            "id": "w1-boss3",
+            "points": 400,
+            "item": "Portal Key"
+          }
         ]
       },
       "2": {
         "missions": [
-          { "id": "w2-m1", "points": 300, "item": "Crystal Ball" },
-          { "id": "w2-m2", "points": 400, "item": "Magic Inkwell" },
-          { "id": "w2-m3", "points": 500, "item": "Champion Medal" }
+          {
+            "id": "w2-m1",
+            "points": 300,
+            "item": "Crystal Ball"
+          },
+          {
+            "id": "w2-m2",
+            "points": 400,
+            "item": "Magic Inkwell"
+          },
+          {
+            "id": "w2-m3",
+            "points": 500,
+            "item": "Champion Medal"
+          }
         ],
         "bossQuests": [
-          { "id": "w2-boss1", "points": 500, "item": "Treasure Key" },
-          { "id": "w2-boss2", "points": 600, "item": "Arcane Master Title" },
-          { "id": "w2-boss3", "points": 400, "item": "Quest Book" }
+          {
+            "id": "w2-boss1",
+            "points": 500,
+            "item": "Treasure Key"
+          },
+          {
+            "id": "w2-boss2",
+            "points": 600,
+            "item": "Arcane Master Title"
+          },
+          {
+            "id": "w2-boss3",
+            "points": 400,
+            "item": "Quest Book"
+          }
         ]
       },
       "3": {
         "missions": [
-          { "id": "w3-m1", "points": 300, "item": "Bridge Key" },
-          { "id": "w3-m2", "points": 400, "item": "Treasure Map" },
-          { "id": "w3-m3", "points": 500, "item": "Champion's Cloak" }
+          {
+            "id": "w3-m1",
+            "points": 300,
+            "item": "Bridge Key"
+          },
+          {
+            "id": "w3-m2",
+            "points": 400,
+            "item": "Treasure Map"
+          },
+          {
+            "id": "w3-m3",
+            "points": 500,
+            "item": "Champion's Cloak"
+          }
         ],
         "bossQuests": [
-          { "id": "w3-boss1", "points": 500, "item": "Magic Certificate" },
-          { "id": "w3-boss2", "points": 600, "item": "Dungeon Master License" },
-          { "id": "w3-boss3", "points": 400, "item": "Quest Badge" }
+          {
+            "id": "w3-boss1",
+            "points": 500,
+            "item": "Magic Certificate"
+          },
+          {
+            "id": "w3-boss2",
+            "points": 600,
+            "item": "Dungeon Master License"
+          },
+          {
+            "id": "w3-boss3",
+            "points": 400,
+            "item": "Quest Badge"
+          }
         ]
       },
       "4": {
         "missions": [
-          { "id": "w4-m1", "points": 300, "item": "Magic Wand" },
-          { "id": "w4-m2", "points": 400, "item": "Tower Key" },
-          { "id": "w4-m3", "points": 500, "item": "Labyrinth Map" }
+          {
+            "id": "w4-m1",
+            "points": 300,
+            "item": "Magic Wand"
+          },
+          {
+            "id": "w4-m2",
+            "points": 400,
+            "item": "Tower Key"
+          },
+          {
+            "id": "w4-m3",
+            "points": 500,
+            "item": "Labyrinth Map"
+          }
         ],
         "bossQuests": [
-          { "id": "w4-boss1", "points": 500, "item": "Magic Crystal" },
-          { "id": "w4-boss2", "points": 600, "item": "Arcane Master Title" },
-          { "id": "w4-boss3", "points": 400, "item": "Dungeon Master" }
+          {
+            "id": "w4-boss1",
+            "points": 500,
+            "item": "Magic Crystal"
+          },
+          {
+            "id": "w4-boss2",
+            "points": 600,
+            "item": "Arcane Master Title"
+          },
+          {
+            "id": "w4-boss3",
+            "points": 400,
+            "item": "Dungeon Master"
+          }
         ]
       },
       "5": {
         "missions": [
-          { "id": "w5-m1", "points": 300, "item": "Magic Wand" },
-          { "id": "w5-m2", "points": 400, "item": "Creation Tablet" },
-          { "id": "w5-m3", "points": 500, "item": "Quest Book" }
+          {
+            "id": "w5-m1",
+            "points": 300,
+            "item": "Magic Wand"
+          },
+          {
+            "id": "w5-m2",
+            "points": 400,
+            "item": "Creation Tablet"
+          },
+          {
+            "id": "w5-m3",
+            "points": 500,
+            "item": "Quest Book"
+          }
         ],
         "bossQuests": [
-          { "id": "w5-boss1", "points": 500, "item": "Master Spell" },
-          { "id": "w5-boss2", "points": 600, "item": "Guild Master Title" },
-          { "id": "w5-boss3", "points": 400, "item": "Combat Simulator" }
+          {
+            "id": "w5-boss1",
+            "points": 500,
+            "item": "Master Spell"
+          },
+          {
+            "id": "w5-boss2",
+            "points": 600,
+            "item": "Guild Master Title"
+          },
+          {
+            "id": "w5-boss3",
+            "points": 400,
+            "item": "Combat Simulator"
+          }
         ]
       },
       "6": {
         "missions": [
-          { "id": "w6-m1", "points": 300, "item": "Magic Pouch" },
-          { "id": "w6-m2", "points": 400, "item": "Bag of Infinity" },
-          { "id": "w6-m3", "points": 500, "item": "Guild Master Certificate" }
+          {
+            "id": "w6-m1",
+            "points": 300,
+            "item": "Magic Pouch"
+          },
+          {
+            "id": "w6-m2",
+            "points": 400,
+            "item": "Bag of Infinity"
+          },
+          {
+            "id": "w6-m3",
+            "points": 500,
+            "item": "Guild Master Certificate"
+          }
         ],
         "bossQuests": [
-          { "id": "w6-boss1", "points": 500, "item": "Spell Crystal" },
-          { "id": "w6-boss2", "points": 600, "item": "Guild Master Title" },
-          { "id": "w6-boss3", "points": 400, "item": "Quest Book" }
+          {
+            "id": "w6-boss1",
+            "points": 500,
+            "item": "Spell Crystal"
+          },
+          {
+            "id": "w6-boss2",
+            "points": 600,
+            "item": "Guild Master Title"
+          },
+          {
+            "id": "w6-boss3",
+            "points": 400,
+            "item": "Quest Book"
+          }
         ]
       },
       "7": {
         "missions": [
-          { "id": "w7-m1", "points": 300, "item": "Magic Pouch" },
-          { "id": "w7-m2", "points": 400, "item": "Crystal Ball" },
-          { "id": "w7-m3", "points": 500, "item": "Guild Master Certificate" }
+          {
+            "id": "w7-m1",
+            "points": 300,
+            "item": "Magic Pouch"
+          },
+          {
+            "id": "w7-m2",
+            "points": 400,
+            "item": "Crystal Ball"
+          },
+          {
+            "id": "w7-m3",
+            "points": 500,
+            "item": "Guild Master Certificate"
+          }
         ],
         "bossQuests": [
-          { "id": "w7-boss1", "points": 500, "item": "Simulation Crystal" },
-          { "id": "w7-boss2", "points": 600, "item": "Elemental Staff" },
-          { "id": "w7-boss3", "points": 400, "item": "Guild Master Certificate (Artifact)" }
+          {
+            "id": "w7-boss1",
+            "points": 500,
+            "item": "Simulation Crystal"
+          },
+          {
+            "id": "w7-boss2",
+            "points": 600,
+            "item": "Elemental Staff"
+          },
+          {
+            "id": "w7-boss3",
+            "points": 400,
+            "item": "Guild Master Certificate (Artifact)"
+          }
         ]
       },
       "8": {
         "missions": [
-          { "id": "w8-m1", "points": 300, "item": "Magic Pouch" },
-          { "id": "w8-m2", "points": 400, "item": "Crystal Ball" },
-          { "id": "w8-m3", "points": 500, "item": "Guild Master Certificate" }
+          {
+            "id": "w8-m1",
+            "points": 300,
+            "item": "Magic Pouch"
+          },
+          {
+            "id": "w8-m2",
+            "points": 400,
+            "item": "Crystal Ball"
+          },
+          {
+            "id": "w8-m3",
+            "points": 500,
+            "item": "Guild Master Certificate"
+          }
         ],
         "bossQuests": [
-          { "id": "w8-boss1", "points": 500, "item": "Treasure Map" },
-          { "id": "w8-boss2", "points": 600, "item": "Dungeon Master Title" },
-          { "id": "w8-boss3", "points": 400, "item": "Quest Book" }
+          {
+            "id": "w8-boss1",
+            "points": 500,
+            "item": "Treasure Map"
+          },
+          {
+            "id": "w8-boss2",
+            "points": 600,
+            "item": "Dungeon Master Title"
+          },
+          {
+            "id": "w8-boss3",
+            "points": 400,
+            "item": "Quest Book"
+          }
         ]
       },
       "9": {
         "missions": [
-          { "id": "w9-m1", "points": 300, "item": "Magic Diary" },
-          { "id": "w9-m2", "points": 400, "item": "Magic Wand" },
-          { "id": "w9-m3", "points": 500, "item": "Database Certificate" }
+          {
+            "id": "w9-m1",
+            "points": 300,
+            "item": "Magic Diary"
+          },
+          {
+            "id": "w9-m2",
+            "points": 400,
+            "item": "Magic Wand"
+          },
+          {
+            "id": "w9-m3",
+            "points": 500,
+            "item": "Database Certificate"
+          }
         ],
         "bossQuests": [
-          { "id": "w9-boss1", "points": 500, "item": "Stream Wand" },
-          { "id": "w9-boss2", "points": 600, "item": "Converter Title" },
-          { "id": "w9-boss3", "points": 400, "item": "Archiving Protocol" }
+          {
+            "id": "w9-boss1",
+            "points": 500,
+            "item": "Stream Wand"
+          },
+          {
+            "id": "w9-boss2",
+            "points": 600,
+            "item": "Converter Title"
+          },
+          {
+            "id": "w9-boss3",
+            "points": 400,
+            "item": "Archiving Protocol"
+          }
         ]
       },
       "10": {
         "missions": [
-          { "id": "w10-m1", "points": 300, "item": "Magic Forge Hammer" },
-          { "id": "w10-m2", "points": 400, "item": "Staff of Wisdom" },
-          { "id": "w10-m3", "points": 500, "item": "Dragon Egg" }
+          {
+            "id": "w10-m1",
+            "points": 300,
+            "item": "Magic Forge Hammer"
+          },
+          {
+            "id": "w10-m2",
+            "points": 400,
+            "item": "Staff of Wisdom"
+          },
+          {
+            "id": "w10-m3",
+            "points": 500,
+            "item": "Dragon Egg"
+          }
         ],
         "bossQuests": [
-          { "id": "w10-boss1", "points": 500, "item": "Legendary Forge Hammer" },
-          { "id": "w10-boss2", "points": 600, "item": "Arch Wand" },
-          { "id": "w10-boss3", "points": 400, "item": "Monster Handbook" }
+          {
+            "id": "w10-boss1",
+            "points": 500,
+            "item": "Legendary Forge Hammer"
+          },
+          {
+            "id": "w10-boss2",
+            "points": 600,
+            "item": "Arch Wand"
+          },
+          {
+            "id": "w10-boss3",
+            "points": 400,
+            "item": "Monster Handbook"
+          }
         ]
       },
       "11": {
         "missions": [
-          { "id": "w11-m1", "points": 350, "item": "Heritage Staff of Masters" },
-          { "id": "w11-m2", "points": 450, "item": "Shield of Versatility" },
-          { "id": "w11-m3", "points": 550, "item": "Amulet of Power" }
+          {
+            "id": "w11-m1",
+            "points": 350,
+            "item": "Heritage Staff of Masters"
+          },
+          {
+            "id": "w11-m2",
+            "points": 450,
+            "item": "Shield of Versatility"
+          },
+          {
+            "id": "w11-m3",
+            "points": 550,
+            "item": "Amulet of Power"
+          }
         ],
         "bossQuests": [
-          { "id": "w11-boss1", "points": 600, "item": "Master Guild Ring" },
-          { "id": "w11-boss2", "points": 800, "item": "Sceptre of Power" },
-          { "id": "w11-boss3", "points": 400, "item": "Codex of Omnipotence" }
+          {
+            "id": "w11-boss1",
+            "points": 600,
+            "item": "Master Guild Ring"
+          },
+          {
+            "id": "w11-boss2",
+            "points": 800,
+            "item": "Sceptre of Power"
+          },
+          {
+            "id": "w11-boss3",
+            "points": 400,
+            "item": "Codex of Omnipotence"
+          }
         ]
       },
       "12": {
         "missions": [
-          { "id": "w12-m1", "points": 350, "item": "Magic Drawing Pen" },
-          { "id": "w12-m2", "points": 450, "item": "Hat of Visualisation" },
-          { "id": "w12-m3", "points": 550, "item": "Amulet of Symmetry" }
+          {
+            "id": "w12-m1",
+            "points": 350,
+            "item": "Magic Drawing Pen"
+          },
+          {
+            "id": "w12-m2",
+            "points": 450,
+            "item": "Hat of Visualisation"
+          },
+          {
+            "id": "w12-m3",
+            "points": 550,
+            "item": "Amulet of Symmetry"
+          }
         ],
         "bossQuests": [
-          { "id": "w12-boss1", "points": 600, "item": "Master Map of the Mages" },
-          { "id": "w12-boss2", "points": 800, "item": "Sceptre of Animation" },
-          { "id": "w12-boss3", "points": 400, "item": "Codex of Infinite Creativity" }
+          {
+            "id": "w12-boss1",
+            "points": 600,
+            "item": "Master Map of the Mages"
+          },
+          {
+            "id": "w12-boss2",
+            "points": 800,
+            "item": "Sceptre of Animation"
+          },
+          {
+            "id": "w12-boss3",
+            "points": 400,
+            "item": "Codex of Infinite Creativity"
+          }
         ]
       }
     },
     "pferde": {
       "1": {
         "missions": [
-          { "id": "w1-m1", "points": 300, "item": "Stable Map" },
-          { "id": "w1-m2", "points": 400, "item": "Feed Bucket" },
-          { "id": "w1-m3", "points": 500, "item": "Tournament Ribbon" }
+          {
+            "id": "w1-m1",
+            "points": 300,
+            "item": "Stable Map"
+          },
+          {
+            "id": "w1-m2",
+            "points": 400,
+            "item": "Feed Bucket"
+          },
+          {
+            "id": "w1-m3",
+            "points": 500,
+            "item": "Tournament Ribbon"
+          }
         ],
         "bossQuests": [
-          { "id": "w1-boss1", "points": 500, "item": "Feed Book" },
-          { "id": "w1-boss2", "points": 600, "item": "Bond of Trust" },
-          { "id": "w1-boss3", "points": 400, "item": "Tournament Certificate" }
+          {
+            "id": "w1-boss1",
+            "points": 500,
+            "item": "Feed Book"
+          },
+          {
+            "id": "w1-boss2",
+            "points": 600,
+            "item": "Bond of Trust"
+          },
+          {
+            "id": "w1-boss3",
+            "points": 400,
+            "item": "Tournament Certificate"
+          }
         ]
       },
       "2": {
         "missions": [
-          { "id": "w2-m1", "points": 300, "item": "Feed Bucket" },
-          { "id": "w2-m2", "points": 400, "item": "Riding Helmet" },
-          { "id": "w2-m3", "points": 500, "item": "Tournament Ribbon" }
+          {
+            "id": "w2-m1",
+            "points": 300,
+            "item": "Feed Bucket"
+          },
+          {
+            "id": "w2-m2",
+            "points": 400,
+            "item": "Riding Helmet"
+          },
+          {
+            "id": "w2-m3",
+            "points": 500,
+            "item": "Tournament Ribbon"
+          }
         ],
         "bossQuests": [
-          { "id": "w2-boss1", "points": 500, "item": "Feed Room Key" },
-          { "id": "w2-boss2", "points": 600, "item": "Training Master Title" },
-          { "id": "w2-boss3", "points": 400, "item": "Tournament Schedule" }
+          {
+            "id": "w2-boss1",
+            "points": 500,
+            "item": "Feed Room Key"
+          },
+          {
+            "id": "w2-boss2",
+            "points": 600,
+            "item": "Training Master Title"
+          },
+          {
+            "id": "w2-boss3",
+            "points": 400,
+            "item": "Tournament Schedule"
+          }
         ]
       },
       "3": {
         "missions": [
-          { "id": "w3-m1", "points": 300, "item": "Stable Key" },
-          { "id": "w3-m2", "points": 400, "item": "Feed Scoop" },
-          { "id": "w3-m3", "points": 500, "item": "Tournament Ribbon" }
+          {
+            "id": "w3-m1",
+            "points": 300,
+            "item": "Stable Key"
+          },
+          {
+            "id": "w3-m2",
+            "points": 400,
+            "item": "Feed Scoop"
+          },
+          {
+            "id": "w3-m3",
+            "points": 500,
+            "item": "Tournament Ribbon"
+          }
         ],
         "bossQuests": [
-          { "id": "w3-boss1", "points": 500, "item": "Rider Certificate" },
-          { "id": "w3-boss2", "points": 600, "item": "Riding Master License" },
-          { "id": "w3-boss3", "points": 400, "item": "Tournament Badge" }
+          {
+            "id": "w3-boss1",
+            "points": 500,
+            "item": "Rider Certificate"
+          },
+          {
+            "id": "w3-boss2",
+            "points": 600,
+            "item": "Riding Master License"
+          },
+          {
+            "id": "w3-boss3",
+            "points": 400,
+            "item": "Tournament Badge"
+          }
         ]
       },
       "4": {
         "missions": [
-          { "id": "w4-m1", "points": 300, "item": "Tally Stick" },
-          { "id": "w4-m2", "points": 400, "item": "Stable Key" },
-          { "id": "w4-m3", "points": 500, "item": "Training Plan" }
+          {
+            "id": "w4-m1",
+            "points": 300,
+            "item": "Tally Stick"
+          },
+          {
+            "id": "w4-m2",
+            "points": 400,
+            "item": "Stable Key"
+          },
+          {
+            "id": "w4-m3",
+            "points": 500,
+            "item": "Training Plan"
+          }
         ],
         "bossQuests": [
-          { "id": "w4-boss1", "points": 500, "item": "Jumping Course" },
-          { "id": "w4-boss2", "points": 600, "item": "Riding Board Master" },
-          { "id": "w4-boss3", "points": 400, "item": "Marathon Medal" }
+          {
+            "id": "w4-boss1",
+            "points": 500,
+            "item": "Jumping Course"
+          },
+          {
+            "id": "w4-boss2",
+            "points": 600,
+            "item": "Riding Board Master"
+          },
+          {
+            "id": "w4-boss3",
+            "points": 400,
+            "item": "Marathon Medal"
+          }
         ]
       },
       "5": {
         "missions": [
-          { "id": "w5-m1", "points": 300, "item": "Training Plan" },
-          { "id": "w5-m2", "points": 400, "item": "Trainer Certificate" },
-          { "id": "w5-m3", "points": 500, "item": "Tournament Planner" }
+          {
+            "id": "w5-m1",
+            "points": 300,
+            "item": "Training Plan"
+          },
+          {
+            "id": "w5-m2",
+            "points": 400,
+            "item": "Trainer Certificate"
+          },
+          {
+            "id": "w5-m3",
+            "points": 500,
+            "item": "Tournament Planner"
+          }
         ],
         "bossQuests": [
-          { "id": "w5-boss1", "points": 500, "item": "Master Training" },
-          { "id": "w5-boss2", "points": 600, "item": "Stable Master Title" },
-          { "id": "w5-boss3", "points": 400, "item": "Tournament Simulator" }
+          {
+            "id": "w5-boss1",
+            "points": 500,
+            "item": "Master Training"
+          },
+          {
+            "id": "w5-boss2",
+            "points": 600,
+            "item": "Stable Master Title"
+          },
+          {
+            "id": "w5-boss3",
+            "points": 400,
+            "item": "Tournament Simulator"
+          }
         ]
       },
       "6": {
         "missions": [
-          { "id": "w6-m1", "points": 300, "item": "Stable Key" },
-          { "id": "w6-m2", "points": 400, "item": "Training Planner" },
-          { "id": "w6-m3", "points": 500, "item": "Riding Master Certificate" }
+          {
+            "id": "w6-m1",
+            "points": 300,
+            "item": "Stable Key"
+          },
+          {
+            "id": "w6-m2",
+            "points": 400,
+            "item": "Training Planner"
+          },
+          {
+            "id": "w6-m3",
+            "points": 500,
+            "item": "Riding Master Certificate"
+          }
         ],
         "bossQuests": [
-          { "id": "w6-boss1", "points": 500, "item": "Training Crystal" },
-          { "id": "w6-boss2", "points": 600, "item": "Stable Master Title" },
-          { "id": "w6-boss3", "points": 400, "item": "Tournament Protocol" }
+          {
+            "id": "w6-boss1",
+            "points": 500,
+            "item": "Training Crystal"
+          },
+          {
+            "id": "w6-boss2",
+            "points": 600,
+            "item": "Stable Master Title"
+          },
+          {
+            "id": "w6-boss3",
+            "points": 400,
+            "item": "Tournament Protocol"
+          }
         ]
       },
       "7": {
         "missions": [
-          { "id": "w7-m1", "points": 300, "item": "Stable Key" },
-          { "id": "w7-m2", "points": 400, "item": "GPS Collar" },
-          { "id": "w7-m3", "points": 500, "item": "Riding Master Certificate" }
+          {
+            "id": "w7-m1",
+            "points": 300,
+            "item": "Stable Key"
+          },
+          {
+            "id": "w7-m2",
+            "points": 400,
+            "item": "GPS Collar"
+          },
+          {
+            "id": "w7-m3",
+            "points": 500,
+            "item": "Riding Master Certificate"
+          }
         ],
         "bossQuests": [
-          { "id": "w7-boss1", "points": 500, "item": "Simulation Saddle" },
-          { "id": "w7-boss2", "points": 600, "item": "Master Whip" },
-          { "id": "w7-boss3", "points": 400, "item": "Forge Hammer" }
+          {
+            "id": "w7-boss1",
+            "points": 500,
+            "item": "Simulation Saddle"
+          },
+          {
+            "id": "w7-boss2",
+            "points": 600,
+            "item": "Master Whip"
+          },
+          {
+            "id": "w7-boss3",
+            "points": 400,
+            "item": "Forge Hammer"
+          }
         ]
       },
       "8": {
         "missions": [
-          { "id": "w8-m1", "points": 300, "item": "Stable Key" },
-          { "id": "w8-m2", "points": 400, "item": "GPS Collar" },
-          { "id": "w8-m3", "points": 500, "item": "Riding Master Certificate" }
+          {
+            "id": "w8-m1",
+            "points": 300,
+            "item": "Stable Key"
+          },
+          {
+            "id": "w8-m2",
+            "points": 400,
+            "item": "GPS Collar"
+          },
+          {
+            "id": "w8-m3",
+            "points": 500,
+            "item": "Riding Master Certificate"
+          }
         ],
         "bossQuests": [
-          { "id": "w8-boss1", "points": 500, "item": "Master Plan" },
-          { "id": "w8-boss2", "points": 600, "item": "Stable Master Title" },
-          { "id": "w8-boss3", "points": 400, "item": "Tournament Book" }
+          {
+            "id": "w8-boss1",
+            "points": 500,
+            "item": "Master Plan"
+          },
+          {
+            "id": "w8-boss2",
+            "points": 600,
+            "item": "Stable Master Title"
+          },
+          {
+            "id": "w8-boss3",
+            "points": 400,
+            "item": "Tournament Book"
+          }
         ]
       },
       "9": {
         "missions": [
-          { "id": "w9-m1", "points": 300, "item": "Stable Logbook" },
-          { "id": "w9-m2", "points": 400, "item": "Data Chip" },
-          { "id": "w9-m3", "points": 500, "item": "Database Certificate" }
+          {
+            "id": "w9-m1",
+            "points": 300,
+            "item": "Stable Logbook"
+          },
+          {
+            "id": "w9-m2",
+            "points": 400,
+            "item": "Pedigree Certificate"
+          },
+          {
+            "id": "w9-m3",
+            "points": 500,
+            "item": "Database Certificate"
+          }
         ],
         "bossQuests": [
-          { "id": "w9-boss1", "points": 500, "item": "Stream Processor" },
-          { "id": "w9-boss2", "points": 600, "item": "Converter Title" },
-          { "id": "w9-boss3", "points": 400, "item": "Archiving Protocol" }
+          {
+            "id": "w9-boss1",
+            "points": 500,
+            "item": "Stream Processor"
+          },
+          {
+            "id": "w9-boss2",
+            "points": 600,
+            "item": "Converter Title"
+          },
+          {
+            "id": "w9-boss3",
+            "points": 400,
+            "item": "Archiving Protocol"
+          }
         ]
       },
       "10": {
         "missions": [
-          { "id": "w10-m1", "points": 300, "item": "Horse Blanket" },
-          { "id": "w10-m2", "points": 400, "item": "Riding Helmet" },
-          { "id": "w10-m3", "points": 500, "item": "Feed Bucket" }
+          {
+            "id": "w10-m1",
+            "points": 300,
+            "item": "Horse Blanket"
+          },
+          {
+            "id": "w10-m2",
+            "points": 400,
+            "item": "Riding Helmet"
+          },
+          {
+            "id": "w10-m3",
+            "points": 500,
+            "item": "Feed Bucket"
+          }
         ],
         "bossQuests": [
-          { "id": "w10-boss1", "points": 500, "item": "Stable Master Key" },
-          { "id": "w10-boss2", "points": 600, "item": "Gold Medal" },
-          { "id": "w10-boss3", "points": 400, "item": "Therapy Certificate" }
+          {
+            "id": "w10-boss1",
+            "points": 500,
+            "item": "Stable Master Key"
+          },
+          {
+            "id": "w10-boss2",
+            "points": 600,
+            "item": "Gold Medal"
+          },
+          {
+            "id": "w10-boss3",
+            "points": 400,
+            "item": "Therapy Certificate"
+          }
         ]
       },
       "11": {
         "missions": [
-          { "id": "w11-m1", "points": 350, "item": "Breeding Certificate" },
-          { "id": "w11-m2", "points": 450, "item": "Training Whip" },
-          { "id": "w11-m3", "points": 550, "item": "Victor's Wreath" }
+          {
+            "id": "w11-m1",
+            "points": 350,
+            "item": "Breeding Certificate"
+          },
+          {
+            "id": "w11-m2",
+            "points": 450,
+            "item": "Training Whip"
+          },
+          {
+            "id": "w11-m3",
+            "points": 550,
+            "item": "Victor's Wreath"
+          }
         ],
         "bossQuests": [
-          { "id": "w11-boss1", "points": 600, "item": "Master Breeder Certificate" },
-          { "id": "w11-boss2", "points": 800, "item": "Honour Medal" },
-          { "id": "w11-boss3", "points": 400, "item": "Tournament Trophy" }
+          {
+            "id": "w11-boss1",
+            "points": 600,
+            "item": "Master Breeder Certificate"
+          },
+          {
+            "id": "w11-boss2",
+            "points": 800,
+            "item": "Honour Medal"
+          },
+          {
+            "id": "w11-boss3",
+            "points": 400,
+            "item": "Tournament Trophy"
+          }
         ]
       },
       "12": {
         "missions": [
-          { "id": "w12-m1", "points": 350, "item": "Dressage Whip of Precision" },
-          { "id": "w12-m2", "points": 450, "item": "Jumping Boots of Elegance" },
-          { "id": "w12-m3", "points": 550, "item": "Victor's Wreath of Speed" }
+          {
+            "id": "w12-m1",
+            "points": 350,
+            "item": "Dressage Whip of Precision"
+          },
+          {
+            "id": "w12-m2",
+            "points": 450,
+            "item": "Jumping Boots of Elegance"
+          },
+          {
+            "id": "w12-m3",
+            "points": 550,
+            "item": "Victor's Wreath of Speed"
+          }
         ],
         "bossQuests": [
-          { "id": "w12-boss1", "points": 600, "item": "Master Riding Arena" },
-          { "id": "w12-boss2", "points": 800, "item": "Sceptre of Animation" },
-          { "id": "w12-boss3", "points": 400, "item": "Codex of Interactive Training" }
+          {
+            "id": "w12-boss1",
+            "points": 600,
+            "item": "Master Riding Arena"
+          },
+          {
+            "id": "w12-boss2",
+            "points": 800,
+            "item": "Sceptre of Animation"
+          },
+          {
+            "id": "w12-boss3",
+            "points": 400,
+            "item": "Codex of Interactive Training"
+          }
         ]
       }
     },
     "scifi": {
       "1": {
         "missions": [
-          { "id": "w1-m1", "points": 300, "item": "Data Pad" },
-          { "id": "w1-m2", "points": 400, "item": "Scanner" },
-          { "id": "w1-m3", "points": 500, "item": "Pilot Badge" }
+          {
+            "id": "w1-m1",
+            "points": 300,
+            "item": "Data Pad"
+          },
+          {
+            "id": "w1-m2",
+            "points": 400,
+            "item": "Scanner"
+          },
+          {
+            "id": "w1-m3",
+            "points": 500,
+            "item": "Pilot Badge"
+          }
         ],
         "bossQuests": [
-          { "id": "w1-boss1", "points": 500, "item": "Quantum Writer" },
-          { "id": "w1-boss2", "points": 600, "item": "Antivirus Protocol" },
-          { "id": "w1-boss3", "points": 400, "item": "Wormhole Coordinates" }
+          {
+            "id": "w1-boss1",
+            "points": 500,
+            "item": "Quantum Writer"
+          },
+          {
+            "id": "w1-boss2",
+            "points": 600,
+            "item": "Antivirus Protocol"
+          },
+          {
+            "id": "w1-boss3",
+            "points": 400,
+            "item": "Wormhole Coordinates"
+          }
         ]
       },
       "2": {
         "missions": [
-          { "id": "w2-m1", "points": 300, "item": "Energy Cell" },
-          { "id": "w2-m2", "points": 400, "item": "Data Pad" },
-          { "id": "w2-m3", "points": 500, "item": "Mining Laser" }
+          {
+            "id": "w2-m1",
+            "points": 300,
+            "item": "Energy Cell"
+          },
+          {
+            "id": "w2-m2",
+            "points": 400,
+            "item": "Data Pad"
+          },
+          {
+            "id": "w2-m3",
+            "points": 500,
+            "item": "Mining Laser"
+          }
         ],
         "bossQuests": [
-          { "id": "w2-boss1", "points": 500, "item": "Dock Access" },
-          { "id": "w2-boss2", "points": 600, "item": "AI Developer Title" },
-          { "id": "w2-boss3", "points": 400, "item": "Mission Badge" }
+          {
+            "id": "w2-boss1",
+            "points": 500,
+            "item": "Dock Access"
+          },
+          {
+            "id": "w2-boss2",
+            "points": 600,
+            "item": "AI Developer Title"
+          },
+          {
+            "id": "w2-boss3",
+            "points": 400,
+            "item": "Mission Badge"
+          }
         ]
       },
       "3": {
         "missions": [
-          { "id": "w3-m1", "points": 300, "item": "Scanner License" },
-          { "id": "w3-m2", "points": 400, "item": "Terminal Access" },
-          { "id": "w3-m3", "points": 500, "item": "Mission Badge" }
+          {
+            "id": "w3-m1",
+            "points": 300,
+            "item": "Scanner License"
+          },
+          {
+            "id": "w3-m2",
+            "points": 400,
+            "item": "Terminal Access"
+          },
+          {
+            "id": "w3-m3",
+            "points": 500,
+            "item": "Mission Badge"
+          }
         ],
         "bossQuests": [
-          { "id": "w3-boss1", "points": 500, "item": "AI Certificate" },
-          { "id": "w3-boss2", "points": 600, "item": "Pilot License" },
-          { "id": "w3-boss3", "points": 400, "item": "Mission Badge" }
+          {
+            "id": "w3-boss1",
+            "points": 500,
+            "item": "AI Certificate"
+          },
+          {
+            "id": "w3-boss2",
+            "points": 600,
+            "item": "Pilot License"
+          },
+          {
+            "id": "w3-boss3",
+            "points": 400,
+            "item": "Mission Badge"
+          }
         ]
       },
       "4": {
         "missions": [
-          { "id": "w4-m1", "points": 300, "item": "Quantum Chip" },
-          { "id": "w4-m2", "points": 400, "item": "Commander Key" },
-          { "id": "w4-m3", "points": 500, "item": "Time Travel License" }
+          {
+            "id": "w4-m1",
+            "points": 300,
+            "item": "Quantum Chip"
+          },
+          {
+            "id": "w4-m2",
+            "points": 400,
+            "item": "Commander Key"
+          },
+          {
+            "id": "w4-m3",
+            "points": 500,
+            "item": "Time Travel License"
+          }
         ],
         "bossQuests": [
-          { "id": "w4-boss1", "points": 500, "item": "Quantum Processor" },
-          { "id": "w4-boss2", "points": 600, "item": "Holodeck Master" },
-          { "id": "w4-boss3", "points": 400, "item": "Tunnel Navigator" }
+          {
+            "id": "w4-boss1",
+            "points": 500,
+            "item": "Quantum Processor"
+          },
+          {
+            "id": "w4-boss2",
+            "points": 600,
+            "item": "Holodeck Master"
+          },
+          {
+            "id": "w4-boss3",
+            "points": 400,
+            "item": "Tunnel Navigator"
+          }
         ]
       },
       "5": {
         "missions": [
-          { "id": "w5-m1", "points": 300, "item": "System Access" },
-          { "id": "w5-m2", "points": 400, "item": "Mission Control" },
-          { "id": "w5-m3", "points": 500, "item": "Fleet Command" }
+          {
+            "id": "w5-m1",
+            "points": 300,
+            "item": "System Access"
+          },
+          {
+            "id": "w5-m2",
+            "points": 400,
+            "item": "Mission Control"
+          },
+          {
+            "id": "w5-m3",
+            "points": 500,
+            "item": "Fleet Command"
+          }
         ],
         "bossQuests": [
-          { "id": "w5-boss1", "points": 500, "item": "Master Protocol" },
-          { "id": "w5-boss2", "points": 600, "item": "Commander Title" },
-          { "id": "w5-boss3", "points": 400, "item": "Combat Simulator" }
+          {
+            "id": "w5-boss1",
+            "points": 500,
+            "item": "Master Protocol"
+          },
+          {
+            "id": "w5-boss2",
+            "points": 600,
+            "item": "Commander Title"
+          },
+          {
+            "id": "w5-boss3",
+            "points": 400,
+            "item": "Combat Simulator"
+          }
         ]
       },
       "6": {
         "missions": [
-          { "id": "w6-m1", "points": 300, "item": "Data Chip" },
-          { "id": "w6-m2", "points": 400, "item": "System Console" },
-          { "id": "w6-m3", "points": 500, "item": "Crew Master Certificate" }
+          {
+            "id": "w6-m1",
+            "points": 300,
+            "item": "Data Chip"
+          },
+          {
+            "id": "w6-m2",
+            "points": 400,
+            "item": "System Console"
+          },
+          {
+            "id": "w6-m3",
+            "points": 500,
+            "item": "Crew Master Certificate"
+          }
         ],
         "bossQuests": [
-          { "id": "w6-boss1", "points": 500, "item": "Data Crystal" },
-          { "id": "w6-boss2", "points": 600, "item": "Commander Title" },
-          { "id": "w6-boss3", "points": 400, "item": "Mission Protocol" }
+          {
+            "id": "w6-boss1",
+            "points": 500,
+            "item": "Data Crystal"
+          },
+          {
+            "id": "w6-boss2",
+            "points": 600,
+            "item": "Hangar Master Badge"
+          },
+          {
+            "id": "w6-boss3",
+            "points": 400,
+            "item": "Mission Protocol"
+          }
         ]
       },
       "7": {
         "missions": [
-          { "id": "w7-m1", "points": 300, "item": "Data Chip" },
-          { "id": "w7-m2", "points": 400, "item": "Navigation Device" },
-          { "id": "w7-m3", "points": 500, "item": "Crew Master Certificate" }
+          {
+            "id": "w7-m1",
+            "points": 300,
+            "item": "Data Chip"
+          },
+          {
+            "id": "w7-m2",
+            "points": 400,
+            "item": "Navigation Device"
+          },
+          {
+            "id": "w7-m3",
+            "points": 500,
+            "item": "Crew Master Certificate"
+          }
         ],
         "bossQuests": [
-          { "id": "w7-boss1", "points": 500, "item": "Simulation Core" },
-          { "id": "w7-boss2", "points": 600, "item": "Quantum Processor" },
-          { "id": "w7-boss3", "points": 400, "item": "AI Core" }
+          {
+            "id": "w7-boss1",
+            "points": 500,
+            "item": "Simulation Core"
+          },
+          {
+            "id": "w7-boss2",
+            "points": 600,
+            "item": "Quantum Processor"
+          },
+          {
+            "id": "w7-boss3",
+            "points": 400,
+            "item": "AI Core"
+          }
         ]
       },
       "8": {
         "missions": [
-          { "id": "w8-m1", "points": 300, "item": "Data Chip" },
-          { "id": "w8-m2", "points": 400, "item": "Navigation Device" },
-          { "id": "w8-m3", "points": 500, "item": "Crew Master Certificate" }
+          {
+            "id": "w8-m1",
+            "points": 300,
+            "item": "Data Chip"
+          },
+          {
+            "id": "w8-m2",
+            "points": 400,
+            "item": "Navigation Device"
+          },
+          {
+            "id": "w8-m3",
+            "points": 500,
+            "item": "Crew Master Certificate"
+          }
         ],
         "bossQuests": [
-          { "id": "w8-boss1", "points": 500, "item": "Data Crystal" },
-          { "id": "w8-boss2", "points": 600, "item": "Commander Title" },
-          { "id": "w8-boss3", "points": 400, "item": "Mission Protocol" }
+          {
+            "id": "w8-boss1",
+            "points": 500,
+            "item": "Data Crystal"
+          },
+          {
+            "id": "w8-boss2",
+            "points": 600,
+            "item": "Sensor Calibrator"
+          },
+          {
+            "id": "w8-boss3",
+            "points": 400,
+            "item": "Mission Protocol"
+          }
         ]
       },
       "9": {
         "missions": [
-          { "id": "w9-m1", "points": 300, "item": "Data Chip" },
-          { "id": "w9-m2", "points": 400, "item": "Data Transformer" },
-          { "id": "w9-m3", "points": 500, "item": "Database Certificate" }
+          {
+            "id": "w9-m1",
+            "points": 300,
+            "item": "Data Chip"
+          },
+          {
+            "id": "w9-m2",
+            "points": 400,
+            "item": "Data Transformer"
+          },
+          {
+            "id": "w9-m3",
+            "points": 500,
+            "item": "Database Certificate"
+          }
         ],
         "bossQuests": [
-          { "id": "w9-boss1", "points": 500, "item": "Stream Processor" },
-          { "id": "w9-boss2", "points": 600, "item": "Converter Title" },
-          { "id": "w9-boss3", "points": 400, "item": "Archiving Protocol" }
+          {
+            "id": "w9-boss1",
+            "points": 500,
+            "item": "Stream Processor"
+          },
+          {
+            "id": "w9-boss2",
+            "points": 600,
+            "item": "Converter Title"
+          },
+          {
+            "id": "w9-boss3",
+            "points": 400,
+            "item": "Archiving Protocol"
+          }
         ]
       },
       "10": {
         "missions": [
-          { "id": "w10-m1", "points": 300, "item": "Wrench" },
-          { "id": "w10-m2", "points": 400, "item": "Laser Pistol" },
-          { "id": "w10-m3", "points": 500, "item": "Spacesuit" }
+          {
+            "id": "w10-m1",
+            "points": 300,
+            "item": "Wrench"
+          },
+          {
+            "id": "w10-m2",
+            "points": 400,
+            "item": "Laser Pistol"
+          },
+          {
+            "id": "w10-m3",
+            "points": 500,
+            "item": "Spacesuit"
+          }
         ],
         "bossQuests": [
-          { "id": "w10-boss1", "points": 500, "item": "Construction Kit" },
-          { "id": "w10-boss2", "points": 600, "item": "Quantum Processor" },
-          { "id": "w10-boss3", "points": 400, "item": "Universal Translator" }
+          {
+            "id": "w10-boss1",
+            "points": 500,
+            "item": "Construction Kit"
+          },
+          {
+            "id": "w10-boss2",
+            "points": 600,
+            "item": "Quantum Processor"
+          },
+          {
+            "id": "w10-boss3",
+            "points": 400,
+            "item": "Universal Translator"
+          }
         ]
       },
       "11": {
         "missions": [
-          { "id": "w11-m1", "points": 350, "item": "Construction Kit" },
-          { "id": "w11-m2", "points": 450, "item": "Weapon Upgrade" },
-          { "id": "w11-m3", "points": 550, "item": "Hyperjump Module" }
+          {
+            "id": "w11-m1",
+            "points": 350,
+            "item": "Construction Kit"
+          },
+          {
+            "id": "w11-m2",
+            "points": 450,
+            "item": "Weapon Upgrade"
+          },
+          {
+            "id": "w11-m3",
+            "points": 550,
+            "item": "Hyperjump Module"
+          }
         ],
         "bossQuests": [
-          { "id": "w11-boss1", "points": 600, "item": "Quantum Processor" },
-          { "id": "w11-boss2", "points": 800, "item": "Warp Drive" },
-          { "id": "w11-boss3", "points": 400, "item": "Universal Translator" }
+          {
+            "id": "w11-boss1",
+            "points": 600,
+            "item": "Quantum Processor"
+          },
+          {
+            "id": "w11-boss2",
+            "points": 800,
+            "item": "Warp Drive"
+          },
+          {
+            "id": "w11-boss3",
+            "points": 400,
+            "item": "Universal Translator"
+          }
         ]
       },
       "12": {
         "missions": [
-          { "id": "w12-m1", "points": 350, "item": "Hologram Projector" },
-          { "id": "w12-m2", "points": 450, "item": "Commander Badge" },
-          { "id": "w12-m3", "points": 550, "item": "Star Cartographer Certificate" }
+          {
+            "id": "w12-m1",
+            "points": 350,
+            "item": "Hologram Projector"
+          },
+          {
+            "id": "w12-m2",
+            "points": 450,
+            "item": "Commander Badge"
+          },
+          {
+            "id": "w12-m3",
+            "points": 550,
+            "item": "Star Cartographer Certificate"
+          }
         ],
         "bossQuests": [
-          { "id": "w12-boss1", "points": 600, "item": "Galactic Map" },
-          { "id": "w12-boss2", "points": 800, "item": "Sceptre of the Fleet Commander" },
-          { "id": "w12-boss3", "points": 400, "item": "Codex of the Hologram Master" }
+          {
+            "id": "w12-boss1",
+            "points": 600,
+            "item": "Galactic Map"
+          },
+          {
+            "id": "w12-boss2",
+            "points": 800,
+            "item": "Sceptre of the Fleet Commander"
+          },
+          {
+            "id": "w12-boss3",
+            "points": 400,
+            "item": "Codex of the Hologram Master"
+          }
         ]
       }
     }
