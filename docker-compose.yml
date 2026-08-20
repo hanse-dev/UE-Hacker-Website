@@ -1,20 +1,35 @@
 version: '3.8'
 
 services:
+  # Hot-reload Dev: Vite + API (Browser nur :5173, /api wird geproxyt)
   dev:
     build:
       context: .
-      target: build # Use the build stage as a base
+      target: frontend
     ports:
       - "5173:5173"
     volumes:
       - .:/app
-      - /app/node_modules # Anonymous volume to prevent local node_modules from overwriting the container's
-    command: npm run dev -- --host 0.0.0.0
+      - /app/node_modules
+    command: npm run start:all:docker
+    environment:
+      - VITE_API_PROXY=http://127.0.0.1:3001
+      - API_PORT=3001
+      - DATA_DIR=/app/api/data
+    env_file:
+      - .env
 
-  prod:
+  # Produktion: ein Container, ein Port (Static + API)
+  app:
     build:
       context: .
-      # The default target is the final stage
     ports:
-      - "8080:80"
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      - DATA_DIR=/app/data
+      - STATIC_DIR=/app/dist
+      - API_PORT=8080
+    volumes:
+      - ./api/data:/app/data

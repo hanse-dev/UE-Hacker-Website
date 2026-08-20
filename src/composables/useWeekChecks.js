@@ -1,5 +1,6 @@
 import { ref, computed, watch } from 'vue';
 import { scoreQuizAnswers, isQuizPassed } from './useTaskValidation';
+import { PROGRESS_APPLIED_EVENT, touchSyncKey } from './useProgressSync.js';
 
 export { scoreQuizAnswers, isQuizPassed };
 
@@ -143,6 +144,7 @@ function loadProgress() {
 function saveProgress(state) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    touchSyncKey(STORAGE_KEY);
   } catch (e) {
     console.error('Week checks progress save failed:', e);
   }
@@ -150,6 +152,12 @@ function saveProgress(state) {
 
 const progress = ref(loadProgress());
 watch(progress, (s) => saveProgress(s), { deep: true });
+
+if (typeof window !== 'undefined') {
+  window.addEventListener(PROGRESS_APPLIED_EVENT, () => {
+    progress.value = loadProgress();
+  });
+}
 
 export function useWeekChecks() {
   const markWeekPassed = (weekNumber, scoreResult) => {
@@ -181,19 +189,47 @@ export function useWeekChecks() {
       placement: {
         completed: true,
         weekScores,
+        session: null,
+        at: new Date().toISOString(),
+      },
+    };
+  };
+
+  /** Save in-progress placement (questions + answers + checked flags). */
+  const savePlacementSession = (session) => {
+    if (!session) {
+      const cur = progress.value.placement;
+      if (cur?.completed) return;
+      progress.value = { ...progress.value, placement: null };
+      return;
+    }
+    progress.value = {
+      ...progress.value,
+      placement: {
+        completed: false,
+        weekScores: null,
+        session: {
+          questions: session.questions,
+          answers: session.answers,
+          checked: session.checked,
+          at: new Date().toISOString(),
+        },
         at: new Date().toISOString(),
       },
     };
   };
 
   const placementResult = computed(() => progress.value.placement);
+  const placementSession = computed(() => progress.value.placement?.session || null);
 
   return {
     progress,
     markWeekPassed,
     isWeekCheckPassed,
     savePlacementResult,
+    savePlacementSession,
     placementResult,
+    placementSession,
     scoreQuizAnswers,
     isQuizPassed,
   };

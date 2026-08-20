@@ -1,4 +1,5 @@
 import { ref, computed, watch } from 'vue';
+import { PROGRESS_APPLIED_EVENT, touchSyncKey } from './useProgressSync.js';
 
 const COURSE_ID = 'python-grundlagen-interaktiv';
 
@@ -24,6 +25,7 @@ function loadFromStorage(variant) {
 function saveToStorage(variant, state) {
   try {
     localStorage.setItem(storageKey(variant), JSON.stringify(state));
+    touchSyncKey(storageKey(variant));
   } catch (e) {
     console.error('Fortschritt konnte nicht gespeichert werden:', e);
   }
@@ -35,6 +37,11 @@ function getVariantState(variant) {
   if (!states[variant]) {
     states[variant] = ref(loadFromStorage(variant));
     watch(states[variant], (s) => saveToStorage(variant, s), { deep: true });
+    if (typeof window !== 'undefined') {
+      window.addEventListener(PROGRESS_APPLIED_EVENT, () => {
+        states[variant].value = loadFromStorage(variant);
+      });
+    }
   }
   return states[variant];
 }

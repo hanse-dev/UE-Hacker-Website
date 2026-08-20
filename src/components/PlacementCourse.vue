@@ -8,15 +8,22 @@
         <h2>{{ lang === 'en' ? 'Where should I start?' : 'Wo soll ich starten?' }}</h2>
         <p>
           {{ lang === 'en'
-            ? 'Answer a few questions from different weeks. We recommend which week to open next — you can jump there directly.'
-            : 'Beantworte ein paar Fragen aus verschiedenen Wochen. Wir empfehlen dir, welche Woche als Nächstes sinnvoll ist — und du kannst direkt hinspringen.' }}
+            ? 'Answer a few questions from different weeks. Check each answer with “Check” — your progress is saved.'
+            : 'Beantworte ein paar Fragen aus verschiedenen Wochen. Prüfe jede Antwort mit „Prüfen“ — dein Stand wird gespeichert.' }}
+        </p>
+        <p v-if="sessionProgress" class="session-progress">
+          {{ sessionProgress }}
         </p>
       </div>
       <QuizStep
         v-if="questions.length"
+        :key="quizKey"
+        mode="per-question"
         :questions="questions"
         :pass-threshold="0"
         :lang="lang"
+        :initial-state="quizInitial"
+        @progress="onProgress"
         @completed="onSubmit"
         @failed="onSubmit"
       />
@@ -109,19 +116,28 @@ import {
   isQuizPassed,
 } from '../composables/useWeekChecks';
 import { useLanguage } from '../composables/useLanguage';
+import { PROGRESS_APPLIED_EVENT } from '../composables/useProgressSync.js';
 
 export default {
   name: 'PlacementCourse',
   components: { QuizStep },
   setup() {
     const { lang } = useLanguage();
-    const { savePlacementResult, placementResult } = useWeekChecks();
+    const {
+      savePlacementResult,
+      savePlacementSession,
+      placementResult,
+      placementSession,
+    } = useWeekChecks();
     const data = ref(null);
     const loading = ref(true);
     const error = ref(null);
     const weekResults = ref([]);
     const showResults = ref(false);
     const questions = ref([]);
+    const quizInitial = ref(null);
+    const quizKey = ref(0);
+    const checkedCount = ref(0);
 
     const threshold = computed(() => data.value?.passThreshold ?? 0.8);
     const projects = computed(() =>
@@ -139,10 +155,32 @@ export default {
       return null;
     });
 
+    const sessionProgress = computed(() => {
+      if (showResults.value || !questions.value.length) return '';
+      const n = questions.value.length;
+      const c = checkedCount.value;
+      if (!c) return '';
+      return lang.value === 'en'
+        ? `Saved progress: ${c}/${n} checked`
+        : `Gespeicherter Stand: ${c}/${n} geprüft`;
+    });
+
     const pickQuestions = () => {
-      questions.value = data.value
-        ? getPlacementQuestions(data.value, lang.value)
-        : [];
+      const qs = data.value ? getPlacementQuestions(data.value, lang.value) : [];
+      questions.value = qs;
+      quizInitial.value = {
+        answers: qs.map((q) => (q.type === 'multiple_select' ? [] : null)),
+        checked: qs.map(() => false),
+      };
+      checkedCount.value = 0;
+      quizKey.value += 1;
+      if (qs.length) {
+        savePlacementSession({
+          questions: qs,
+          answers: quizInitial.value.answers,
+          checked: quizInitial.value.checked,
+        });
+      }
     };
 
     const restoreResults = () => {
@@ -163,14 +201,34 @@ export default {
       return showResults.value;
     };
 
+    const restoreSession = () => {
+      const session = placementSession.value;
+      if (!session?.questions?.length) return false;
+      if (session.checked?.length && session.checked.every(Boolean)) {
+        // Fully checked but not finalized — finalize from session
+        questions.value = session.questions;
+        onSubmit({ answers: session.answers });
+        return true;
+      }
+      questions.value = session.questions;
+      quizInitial.value = {
+        answers: session.answers || session.questions.map(() => null),
+        checked: session.checked || session.questions.map(() => false),
+      };
+      checkedCount.value = (quizInitial.value.checked || []).filter(Boolean).length;
+      quizKey.value += 1;
+      showResults.value = false;
+      return true;
+    };
+
     const load = async () => {
       loading.value = true;
       error.value = null;
       try {
         data.value = await loadWeekChecks();
-        if (!restoreResults()) {
-          pickQuestions();
-        }
+        if (restoreResults()) return;
+        if (restoreSession()) return;
+        pickQuestions();
       } catch (e) {
         console.error(e);
         error.value = lang.value === 'en'
@@ -179,6 +237,16 @@ export default {
       } finally {
         loading.value = false;
       }
+    };
+
+    const onProgress = (payload) => {
+      if (!questions.value.length) return;
+      checkedCount.value = (payload.checked || []).filter(Boolean).length;
+      savePlacementSession({
+        questions: questions.value,
+        answers: payload.answers,
+        checked: payload.checked,
+      });
     };
 
     const onSubmit = (payload) => {
@@ -226,19 +294,35 @@ export default {
 
     onMounted(load);
     watch(lang, () => {
-      if (!showResults.value) pickQuestions();
+      // Keep an in-progress session as-is (questions already localized).
+      if (showResults.value || placementSession.value?.questions?.length) return;
+      pickQuestions();
     });
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener(PROGRESS_APPLIED_EVENT, () => {
+        if (loading.value) return;
+        if (restoreResults()) return;
+        if (placementSession.value?.questions?.length) {
+          restoreSession();
+        }
+      });
+    }
 
     return {
       lang,
       loading,
       error,
       questions,
+      quizInitial,
+      quizKey,
       showResults,
       weekResults,
       recommendedWeek,
       allPassed,
       projects,
+      sessionProgress,
+      onProgress,
       onSubmit,
       reset,
     };
@@ -270,8 +354,13 @@ export default {
 
 .placement-intro p {
   color: #555;
-  margin: 0 0 20px 0;
+  margin: 0 0 12px 0;
   line-height: 1.5;
+}
+
+.session-progress {
+  font-weight: 600;
+  color: var(--primary-purple, #4a2274) !important;
 }
 
 .placement-results h2 {

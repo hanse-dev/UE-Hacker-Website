@@ -72,6 +72,11 @@ jspm_packages/
 .env.production.local
 .env.local
 
+# API SQLite
+api/data/*.sqlite
+api/data/*.sqlite-*
+!api/data/.gitkeep
+
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 

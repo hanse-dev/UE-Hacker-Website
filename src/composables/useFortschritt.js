@@ -1,4 +1,5 @@
 import { ref, computed, watch } from 'vue';
+import { PROGRESS_APPLIED_EVENT, touchSyncKey } from './useProgressSync.js';
 
 const STORAGE_KEY = 'ue-hacker-fortschritt';
 const COURSE_ID = 'python-12-wochen-grundkurs';
@@ -43,6 +44,7 @@ function loadFromStorage() {
 function saveToStorage(state) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    touchSyncKey(STORAGE_KEY);
   } catch (e) {
     console.error('Fortschritt konnte nicht gespeichert werden:', e);
   }
@@ -50,6 +52,12 @@ function saveToStorage(state) {
 
 // Shared state across all components
 const state = ref(loadFromStorage());
+
+if (typeof window !== 'undefined') {
+  window.addEventListener(PROGRESS_APPLIED_EVENT, () => {
+    state.value = loadFromStorage();
+  });
+}
 
 export function useFortschritt() {
 

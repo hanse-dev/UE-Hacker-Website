@@ -1,31 +1,29 @@
-# Build Stage
-FROM node:18-alpine AS build
-
-# Python für pack:notebooks (prebuild)
+# Frontend build
+FROM node:22-alpine AS frontend
 RUN apk add --no-cache python3
-
 WORKDIR /app
-
 COPY package*.json ./
-
 RUN npm install
-
 COPY . .
-
 RUN npm run build
 
-# Production Stage
-# Stage 2: Serve the application using Nginx
-FROM nginx:stable-alpine
+# API + static (single process, one port)
+FROM node:22-alpine
+WORKDIR /app
 
-# Copy the built files from the build stage
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY api/package*.json ./api/
+RUN cd api && npm install --omit=dev
 
-# Copy nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY api/src ./api/src
+COPY --from=frontend /app/dist ./dist
 
-# Expose port 80
-EXPOSE 80
+RUN mkdir -p /app/data
 
-# Start Nginx when the container launches
-CMD ["nginx", "-g", "daemon off;"]
+ENV NODE_ENV=production
+ENV DATA_DIR=/app/data
+ENV STATIC_DIR=/app/dist
+ENV API_PORT=8080
+
+EXPOSE 8080
+
+CMD ["node", "api/src/index.js"]

@@ -35,7 +35,7 @@ async function clickOptionByExactText(card, opt) {
   throw new Error(`Option not found: ${opt}`);
 }
 
-async function answerAllQuizQuestions(page, root = page) {
+async function answerAllQuizQuestions(page, root = page, { checkEach = false } = {}) {
   const cards = root.locator('.quiz-question');
   await expect(cards.first()).toBeVisible({ timeout: 15000 });
   const count = await cards.count();
@@ -50,14 +50,20 @@ async function answerAllQuizQuestions(page, root = page) {
     for (const opt of correctOptionTexts(q)) {
       await clickOptionByExactText(card, opt);
     }
+    if (checkEach) {
+      await card.locator('.btn-check-one').click();
+    }
   }
 }
 
 test.describe('Einstufung & Check-Tab', () => {
   test.beforeEach(async ({ page }) => {
     await page.addInitScript((key) => {
+      // Nur einmal pro Tab-Kontext leeren — Reload soll gespeicherten Stand behalten
+      if (sessionStorage.getItem('pw-storage-cleared')) return;
       localStorage.removeItem(key);
       localStorage.removeItem('ue-hacker-lang');
+      sessionStorage.setItem('pw-storage-cleared', '1');
     }, STORAGE_KEY);
   });
 
@@ -103,8 +109,7 @@ test.describe('Einstufung & Check-Tab', () => {
     const questionCount = await page.locator('.quiz-question').count();
     expect(questionCount).toBe(12 * checks.placementPerWeek);
 
-    await answerAllQuizQuestions(page);
-    await page.locator('.btn-check-quiz').click();
+    await answerAllQuizQuestions(page, page, { checkEach: true });
 
     await expect(page.locator('.placement-results')).toBeVisible({ timeout: 10000 });
     await expect(page.locator('.projects-block')).toBeVisible();
@@ -116,6 +121,27 @@ test.describe('Einstufung & Check-Tab', () => {
     await expect(page.locator('.course-detail > h1')).toHaveText(/12-Wochen|12-Week/);
     await expect(page.locator('.week-section')).toHaveCount(12, { timeout: 30000 });
     await expect(page.locator('.cell').first()).toBeVisible({ timeout: 20000 });
+  });
+
+  test('Einstufung: Zwischenstand wird wiederhergestellt', async ({ page }) => {
+    await page.goto(PLACEMENT_URL);
+    await expect(page.locator('.quiz-question').first()).toBeVisible({ timeout: 15000 });
+
+    const first = page.locator('.quiz-question').first();
+    const raw = await first.locator('.question-text').innerText();
+    const q = findQuestion(raw);
+    expect(q).toBeTruthy();
+    for (const opt of correctOptionTexts(q)) {
+      await clickOptionByExactText(first, opt);
+    }
+    await first.locator('.btn-check-one').click();
+    await expect(first.locator('.question-feedback')).toBeVisible();
+    await expect(page.locator('.session-progress')).toBeVisible();
+
+    await page.reload();
+    await expect(page.locator('.quiz-question').first()).toBeVisible({ timeout: 15000 });
+    await expect(page.locator('.quiz-question').first().locator('.question-feedback')).toBeVisible();
+    await expect(page.locator('.session-progress')).toContainText(/1\//);
   });
 
   test('Einstufung: gespeichertes Ergebnis mit Lücke → Empfehlung, kein Projekte-Block', async ({ page }) => {

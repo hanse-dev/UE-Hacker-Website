@@ -63,6 +63,14 @@ body {
   transition: color 0.3s;
 }
 
+.app-header nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px 0;
+}
+
 .app-header nav a:hover,
 .app-header nav a.router-link-exact-active {
   color: var(--accent-yellow);

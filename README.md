@@ -1,76 +1,96 @@
-# Übergangshacker Website - Projekt Übersicht
+# Übergangshacker Website
 
-## Zweck der WebApp
-**Lernplattform für Jugendliche zum Programmieren lernen in Python**
+Lernplattform für Kinder und Jugendliche (Python). Vue 3 + Vite Frontend, Express-API mit SQLite, Docker-Deployment.
 
-Die Website dient als zentrale Anlaufstelle für:
-- Schulungen und Kurse für Kids/Jugendliche
-- Bereitstellung von Lernmaterialien
-- Downloads von Hausaufgaben und Cheat Sheets
-
-## Zielgruppe
-- Kinder und Jugendliche die Programmieren lernen möchten
-- Fokus auf Python-Programmierung
-
-## Geplante Kurse & Inhalte
-
-### Aktueller Kursplan:
-1. **12-Wochen Python Grundkurs** 
-   - Bereitstellung von Kursmaterialien
-   - Hausaufgaben zum Download
-   - Cheat Sheets
-
-2. **Weitere Kurse** (geplant)
-   - Erweiterbare Struktur für zukünftige Kurse
-
-## Design-Anforderungen
-- **Zielgruppe**: Jugendliche (ansprechend, aber nicht zu verspielt)
-- **Farbschema**: Gelbes Design mit roten Akzenten
-- **Framework**: Vue
-- **Styling**: CSS
-- **Modern und clean**, professionell aber jugendgerecht
-
-## Funktionale Anforderungen
-
-### Content Management:
-- Total einfach, Dateien in einem Ordner sollen nach der Struktur auf der Website angezeigt werden
-
-### Technische Features:
-- SEO-optimiert
-- Docker-Deployment ready
-
-## Deployment & Docker
-
-This project is fully configured to run with Docker and Docker Compose, simplifying both development and deployment.
-
-### Local Development with Docker
-
-To start the development server with live-reloading, run:
+## Schnellstart (lokal)
 
 ```bash
-docker-compose up dev
+cp .env.example .env          # einmalig
+# ADMIN_PASSWORD in .env setzen
+
+cd api && npm install && cd ..
+npm install
+
+npm run start:all             # API :3001 + Vite :5173
 ```
 
-The website will be available at `http://localhost:5173`.
+- Website: http://localhost:5173/  
+- Admin: http://localhost:5173/admin  
+- API-Health: http://localhost:3001/api/health  
 
-### Production with Docker
-
-To build and run the production-ready version of the website, run:
+Ein Port wie in Produktion:
 
 ```bash
-docker-compose up -d --build prod
+npm run start:prod            # Build + Server auf :8080
 ```
 
-The website will be served by Nginx at `http://localhost:8080`.
+## `.env` — wann wird sie geladen?
 
-This setup is ideal for deploying the website to a Virtual Private Server (VPS).
-- Performance-optimiert
-- SEO/Meta-Tags für bessere Auffindbarkeit
+Die API liest `.env` **beim Prozessstart** (einmalig über `dotenv`). Danach gilt der Wert im laufenden Prozess.
 
-## Chat-Einstiegspunkt
-Diese Datei dient als Referenz für zukünftige Entwicklungsarbeiten und Kontext für neue Chat-Sessions.
+| Situation | Verhalten |
+|-----------|-----------|
+| `ADMIN_PASSWORD` **vor** dem Start setzen | wird beim Start geladen — so ist es gedacht |
+| `.env` **während** der API läuft ändern | **keine** automatische Aktualisierung |
+| Nach Passwort-Änderung | API **neu starten** (bzw. Container neu erstellen) |
 
----
-*Erstellt: $(date)*
-*Letzte Aktualisierung: Bei größeren Änderungen*
+**Lokal:** Datei `.env` im Projektroot (siehe `.env.example`). Nie committen.
 
+**Docker:** Compose lädt `env_file: .env` beim **Container-Start**. Nach Änderung:
+
+```bash
+# .env editieren, dann:
+docker compose up -d --force-recreate app
+```
+
+Nur `docker compose build` reicht nicht — die Env steckt nicht im Image, sondern wird beim Start injiziert. Neu erstellen / neu starten schon.
+
+`ADMIN_PASSWORD` ist nur für die Admin-Oberfläche (`/admin`). Lernenden-Accounts liegen in der SQLite-DB (`api/data/`), nicht in der `.env`.
+
+Optionale Variablen: siehe `.env.example` (`SESSION_SECRET`, `API_PORT`, …).
+
+## Docker (Produktion)
+
+Ein Container: Static-Frontend + API auf einem Port.
+
+```bash
+cp .env.example .env          # ADMIN_PASSWORD setzen
+docker compose up -d --build app
+```
+
+→ http://localhost:8080  
+
+SQLite bleibt auf dem Host unter `./api/data/` (Volume) — bleibt bei Rebuild erhalten, solange der Ordner nicht gelöscht wird.
+
+Dev mit Hot-Reload im Container:
+
+```bash
+docker compose up --build dev
+```
+
+→ http://localhost:5173  
+
+## Wichtige npm-Scripts
+
+| Script | Zweck |
+|--------|--------|
+| `npm run start:all` | Dev: API + Vite parallel |
+| `npm run start:prod` | Build + ein Server (:8080) |
+| `npm run api` / `api:dev` | nur API |
+| `npm run test:checks` | Pre-commit-Suite (Checks, Site, Merge) |
+| `npm run test:auth` | API + Admin/Login-UI |
+
+## Admin & Sync (Kurz)
+
+1. `/admin` mit `ADMIN_PASSWORD` öffnen  
+2. Lernenden-Account anlegen (`kinder` / `jugendliche`)  
+3. Im Header **Optionen** → Anmelden → Fortschritt sync’t (lokal bleibt Fallback)
+
+Details: [`ACCOUNT-SYNC-PLAN.md`](ACCOUNT-SYNC-PLAN.md)
+
+## Stack
+
+- Frontend: Vue 3, Vue Router, Vite  
+- Inhalte: Jupyter-Notebooks unter `content/`  
+- API: Express + SQLite (`node:sqlite`, Node ≥ 22)  
+- Prod: API liefert auch `dist/` (kein separates Nginx nötig)
