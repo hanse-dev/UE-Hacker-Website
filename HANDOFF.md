@@ -1,7 +1,11 @@
 # Handoff — UE Hacker Website
 
-> **Zuletzt aktualisiert:** 2026-08-20  
-> **Aktueller Stand:** Branch `main` (enthält PR #1–#4 sowie die Storytelling-Überarbeitung, siehe 3.4)  
+> **Zuletzt aktualisiert:** 2026-09-03  
+> **Aktueller Stand:** Branch `backup-sqlite-db` (von `main`, enthält PR #1–#4, die
+> Storytelling-Überarbeitung (3.4) sowie das SQLite-Backup-Script (Abschnitt 4)). Parallel dazu
+> existieren `debug-notebook-safety`, `et-fixes`, `kurs-caesar-chiffre`, `interaktiv-klarer` und
+> `text-typo-pass` als eigene, unabhängige Branches von `main` — noch keiner gemergt (Deploy erst
+> später geplant).  
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -175,6 +179,33 @@ curl -s http://127.0.0.1:8080/api/health
 ```
 
 SQLite bleibt in `./api/data/` (Volume). Env-Änderung → Container **recreate**, nicht nur rebuild.
+Ein `git pull` + `docker compose up -d --build app` lässt Nutzerdaten unangetastet — die DB liegt
+als Bind-Mount auf dem Host, nicht im Container, und ist gitignored. **Einzige echte Gefahr:**
+`git clean -fdx` im Repo-Verzeichnis würde die ungetrackte `.sqlite`-Datei löschen, weil sie
+technisch im Working Tree liegt — nie in einem Deploy-Skript ohne Ausschluss von `api/data/`.
+
+### DB-Backup
+
+`api/src/scripts/backup-db.js` zieht per `VACUUM INTO` eine konsistente Kopie der SQLite-DB (sicher
+auch im laufenden Betrieb dank WAL-Modus — ein simples `cp` könnte sonst mitten in einem
+Schreibvorgang eine kaputte Kopie erzeugen) und behält per Retention nur die N neuesten Backups
+(Default 14, über `BACKUP_KEEP` einstellbar). Landet unter `api/data/backups/` — dank Bind-Mount
+automatisch auch auf dem Host sichtbar.
+
+```bash
+npm run backup:db                 # lokal (nutzt DATA_DIR/DB_PATH wie die App selbst)
+docker compose exec app node src/scripts/backup-db.js   # im laufenden Prod-Container
+```
+
+**Empfehlung für den Server:** ein Cron-Job, z.B. täglich um 3 Uhr:
+```
+0 3 * * * cd /pfad/zum/repo && docker compose exec -T app node src/scripts/backup-db.js >> /var/log/ue-hacker-backup.log 2>&1
+```
+Die Backups selbst liegen weiterhin auf demselben Server-Volume — für echten Schutz vor
+Datenverlust (Festplattendefekt, versehentliches Löschen) zusätzlich regelmäßig extern sichern
+(z.B. `rsync`/`rclone` von `api/data/backups/` auf einen anderen Host oder Cloud-Speicher). Das ist
+mit den Bordmitteln hier noch nicht abgedeckt — bewusst nicht mitgebaut, da das von der jeweiligen
+Server-/Backup-Infrastruktur abhängt.
 
 ### Tests
 
@@ -182,11 +213,13 @@ SQLite bleibt in `./api/data/` (Volume). Env-Änderung → Container **recreate*
 |---------|--------|
 | `npm run test:checks` | Pre-commit: Logic, Week-Checks/Placement, Site, Merge, Storytelling-Content |
 | `npm run test:auth` | API + Admin/Optionen-UI (eigene Config, Test-API :3011) |
+| `npm --prefix api test` | Node-Test-Runner: `backup-db.js` (Backup + Retention) |
 
 ### Wichtige Pfade
 
 ```
 api/src/          Express (index, auth, db, routes)
+api/src/scripts/  backup-db.js (+ Test) — SQLite-Backup mit Retention
 src/views/AdminView.vue
 src/App.vue       Optionen-Modal
 src/composables/useAuth*.js, useProgressSync.js, useWeekChecks.js
@@ -203,20 +236,29 @@ content/python-checks/weeks.json
 Siehe auch `todo.md`.
 
 **Betrieb**
-- [ ] Server-Deploy final verifizieren (Service `app`, Orphans weg, Health, Admin-Login, kein Notebook-Blinken mehr nach PR #3)
+- [ ] Server-Deploy final verifizieren (Service `app`, Orphans weg, Health, Admin-Login, kein
+      Notebook-Blinken mehr nach PR #3) — **bewusst zurückgestellt**, Nutzer will erst später
+      deployen (Stand dieser Session)
+- [x] SQLite-Backup-Script (`api/src/scripts/backup-db.js`) — siehe Abschnitt 4. Externe
+      Sicherung der Backups (z.B. `rsync`/`rclone` auf einen anderen Host) bewusst nicht mitgebaut,
+      hängt von der jeweiligen Server-Infrastruktur ab
 
 **Inhalte**
 - Keine offenen Punkte aus der Storytelling-Überarbeitung mehr (siehe 3.4) — "Gilde-Meister-Urkunde" geklärt, kein Bug
 
-**Nächste Features — je eigener Branch von `main` (Reihenfolge):**
+**Vom Nutzer priorisierte Reihenfolge für die nächsten Schritte (diese Session):**
 
-1. **`cursor/kurs-python-spiele`** — Python Spiele-Werkstatt (Turtle/Textspiele)  
-2. **`cursor/kurs-python-projekte`** — „Was kommt danach?“ Projekt-Sprints  
-3. **`cursor/kurs-js-minigames`** *oder* **`cursor/kurs-ki-labor`** — Entscheidung beim Start  
+1. ✅ SQLite-Backup-Script (dieser Branch)
+2. Text-Tippfehler-Pass Phase 2+ fortsetzen (Branch `text-typo-pass`, `.vue`-Dateien/
+   Wochenbeschreibungen/`weeks.json`/Notebooks)
+3. Neue Kurse: **`kurs-python-spiele`** (Python Spiele-Werkstatt) zuerst, danach
+   **`kurs-python-projekte`**, danach **`kurs-js-minigames`** *oder* **`kurs-ki-labor`**
+4. Danach erst: die 6 bereits fertigen Branches mergen + Server-Deploy (`kontakt-email` fehlt noch
+   die E-Mail-Adresse vom Nutzer)
 
 Nicht mischen; Details/Checkboxen in `todo.md`.
 
-**Bewusst nicht geplant:** öffentliches Sign-up, E-Mail, Supabase als Pflicht.
+**Bewusst nicht geplant:** öffentliches Sign-up, Mailversand/Kontaktformular, Supabase als Pflicht.
 
 **Bekannte Altlasten (niedrige Prio):** Notebook-Download-ZIP nur DE; optionale EN-Nachzüge bei neuen Kursen.
 
@@ -224,12 +266,15 @@ Nicht mischen; Details/Checkboxen in `todo.md`.
 
 ## 6. Entscheidungen / Konventionen (nicht ohne Rückfrage ändern)
 
-- Ein Thema = ein Branch `cursor/…` von `main` (`WORKFLOW.md`)
+- Ein Thema = ein Branch von `main` (`WORKFLOW.md`) — **kein** Präfix mehr (früher `cursor/…`,
+  wurde entfernt)
 - Accounts: Admin legt an; `ageGroup` kinder|jugendliche; ein Mensch = ein Account
 - Sync: per-key Merge nach `updatedAt`
 - Prod: ein Container `app`, Port 8080, API serviert Static
 - SQLite bleibt; Node ≥ 22 wegen `node:sqlite`
-- Vor Commit: `test:checks`; Auth-Änderungen zusätzlich `test:auth`
+- Vor Commit: `test:checks`; Auth-Änderungen zusätzlich `test:auth`; Verhaltensänderungen brauchen
+  einen Test in `tests/*.spec.js` bzw. `api/src/scripts/*.test.js` (`WORKFLOW.md`) — nicht nur
+  manuell verifizieren
 - Inhaltsänderungen: `INHALTE.md` Abschnitt 6 (DE/EN, Manifeste, `kurse.json`)
 
 ---
@@ -238,8 +283,16 @@ Nicht mischen; Details/Checkboxen in `todo.md`.
 
 1. `git checkout main && git pull`  
 2. `HANDOFF.md` + `todo.md` + `WORKFLOW.md` lesen  
-3. Neues Thema → **neuen** Branch, z.B. `git checkout -b cursor/kurs-python-spiele`  
-4. Nicht: altes `prod` in Compose erwarten; nicht: Sync so ändern, dass Notebooks wieder voll neu geladen werden bei jedem Apply  
-5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
+3. Neues Thema → **neuen** Branch (kein Präfix mehr), z.B. `git checkout -b kurs-python-spiele`  
+4. Nicht: altes `prod` in Compose erwarten; nicht: Sync so ändern, dass Notebooks wieder voll neu
+   geladen werden bei jedem Apply; nicht: SQLite per `cp` statt `VACUUM INTO` sichern (WAL-Modus,
+   siehe Abschnitt 4); nicht: ungefragt deployen/mergen — Nutzer will das für später aufheben
+5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen (inkl. neuem Test in
+   `tests/*.spec.js`, siehe `WORKFLOW.md`), PR erst wenn explizit gewünscht
+
+**Empfohlener nächster inhaltlicher Schritt (vom Nutzer priorisiert, siehe Abschnitt 5):**
+Branch `text-typo-pass` mit Phase 2 fortsetzen (`.vue`-Dateien, Wochenbeschreibungen, `weeks.json`,
+dann Notebooks), danach Branch `kurs-python-spiele` neu anlegen und die Python-Spiele-Werkstatt
+aufbauen. Server-Deploy und das Mergen der bereits fertigen Branches sind bewusst zurückgestellt.
 
 **Empfohlener nächster inhaltlicher Schritt:** Branch `cursor/kurs-python-spiele` anlegen und Kursgerüst (`kurse.json` + Content-Ordner) skizzieren.

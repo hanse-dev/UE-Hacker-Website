@@ -1,5 +1,28 @@
 # Todo
 
+## Jetzt: vom Nutzer priorisierte Reihenfolge (Deploy bewusst zurückgestellt)
+
+1. [x] **SQLite-Backup-Script** (Branch `backup-sqlite-db`, dieser Branch) — `api/src/scripts/backup-db.js`
+       zieht per `VACUUM INTO` eine konsistente Kopie (sicher auch im WAL-Modus/laufenden Betrieb),
+       Retention behält die letzten `BACKUP_KEEP` (Default 14) Backups. `npm run backup:db` lokal,
+       `docker compose exec app node src/scripts/backup-db.js` in Prod — Cron-Beispiel in
+       `HANDOFF.md` Abschnitt 4. Getestet mit `node --test` (4 Tests: Backup-Inhalt, fehlende
+       Quelle, Retention, Ignorieren fremder Dateien im Backup-Ordner) + End-to-End-Smoketest der
+       CLI mit echten Env-Vars. **Nicht abgedeckt:** externe Sicherung der Backups selbst
+       (Server-Ausfall) — hängt von der jeweiligen Infrastruktur ab, bewusst nicht mitgebaut.
+2. [ ] **Text-Tippfehler-Pass Phase 2+** (Branch `text-typo-pass` fortsetzen) — `.vue`-Dateien
+       systematisch prüfbar machen, dann `content/*/beschreibung.md` + `weeks.json`, dann die 444
+       Notebooks (siehe Details weiter unten im bestehenden Abschnitt)
+3. [ ] **Neue Kurse**, in dieser Reihenfolge (je eigener Branch, kein `cursor/`-Präfix mehr):
+       - `kurs-python-spiele` — Python Spiele-Werkstatt (Turtle/Textspiele)
+       - `kurs-python-projekte` — „Was kommt danach?“ Projekt-Sprints
+       - `kurs-js-minigames` *oder* `kurs-ki-labor` — Entscheidung beim Start
+4. [ ] **Danach erst:** die 6 bereits fertigen Branches (`debug-notebook-safety`, `et-fixes`,
+       `kurs-caesar-chiffre`, `interaktiv-klarer`, `text-typo-pass`, `backup-sqlite-db`) mergen und
+       Server-Deploy verifizieren; `kontakt-email` fehlt noch die E-Mail-Adresse vom Nutzer
+
+---
+
 ## Now
 ### Website / Frontend
 - [x] Das Tabsystem erklären
@@ -35,6 +58,7 @@
 - [x] Admin-Login / Progress-Sync in `main` (PR #2)
 - [x] Notebook-Sync-Loop-Fix in `main` (PR #3)
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken)
+      — **zurückgestellt**, siehe "Jetzt"-Abschnitt oben (Nutzer will erst später deployen)
 
 ---
 
@@ -42,14 +66,14 @@
 
 Reihenfolge empfohlen: 1 → 2 → 3. Nicht mischen.
 
-### 1. Python Spiele-Werkstatt — Branch `cursor/kurs-python-spiele`
+### 1. Python Spiele-Werkstatt — Branch `kurs-python-spiele`
 - [ ] Kursmetadaten in `kurse.json` (+ EN)
 - [ ] Content-Struktur (Wochen/Tabs analog bestehender Kurse oder Kurzformat)
 - [ ] Turtle-/Textspiele, Level-Ideen, Belohnungen falls passend
 - [ ] DE + EN (oder bewusst DE-first, EN nachziehen)
 - [ ] Smoke-Test / manuell prüfen → PR nach `main`
 
-### 2. Was kommt danach? Projekt-Sprints — Branch `cursor/kurs-python-projekte`
+### 2. Was kommt danach? Projekt-Sprints — Branch `kurs-python-projekte`
 - [ ] 2–3 feste Projekt-Sprints (je ~2 Wochen Umfang skizzieren)
 - [ ] Kursseite + Einstieg von 12-Wochen-Kurs verlinken („Weiter so“)
 - [ ] Projektideen aus Einstufung ggf. hier ausbauen
@@ -57,8 +81,8 @@ Reihenfolge empfohlen: 1 → 2 → 3. Nicht mischen.
 - [ ] Smoke-Test → PR nach `main`
 
 ### 3. JS Mini-Games (Teens) **oder** KI-Labor — Branch wählen:
-- **A)** `cursor/kurs-js-minigames` — Browser-Spiele, Canvas/p5, Zielgruppe 13–17
-- **B)** `cursor/kurs-ki-labor` — Prompts, Grenzen, Schul-Nutzen (breitere Zielgruppe)
+- **A)** `kurs-js-minigames` — Browser-Spiele, Canvas/p5, Zielgruppe 13–17
+- **B)** `kurs-ki-labor` — Prompts, Grenzen, Schul-Nutzen (breitere Zielgruppe)
 - [ ] Entscheidung A vs B (oder beide nacheinander, je ein Branch)
 - [ ] Kursmetadaten + Content
 - [ ] Smoke-Test → PR nach `main`
