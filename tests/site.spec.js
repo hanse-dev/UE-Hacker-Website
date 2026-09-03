@@ -106,6 +106,27 @@ test.describe('Interaktiver Kurs', () => {
     await expect(page.locator('.placement-banner')).toBeVisible({ timeout: 15000 });
     await expect(page.locator('.placement-banner-link')).toHaveAttribute('href', '/kurs/python-einstufung');
   });
+
+  test('Gestufter Hinweis: erster Fehlversuch verrät die Lösung nicht, ab dem zweiten schon', async ({ page }) => {
+    test.setTimeout(60000);
+    await page.goto(INTERACTIVE_URL);
+    await page.locator('.variant-card').first().click();
+    await page.waitForSelector('.task-block', { timeout: 20000 });
+    await page.locator('.btn-kernel').click();
+    await expect(page.locator('.btn-check').first()).toBeEnabled({ timeout: 40000 });
+
+    const task = page.locator('.task-block').first();
+    const editor = task.locator('.code-editor');
+
+    await editor.fill('print("nope")');
+    await task.locator('.btn-check').click();
+    await expect(task.locator('.feedback')).toBeVisible({ timeout: 10000 });
+    await expect(task.locator('.feedback')).not.toContainText('Erwartet wurde etwas mit');
+
+    await editor.fill('print("still nope")');
+    await task.locator('.btn-check').click();
+    await expect(task.locator('.feedback')).toContainText('Erwartet wurde etwas mit', { timeout: 10000 });
+  });
 });
 
 test.describe('Weitere Kursseiten', () => {

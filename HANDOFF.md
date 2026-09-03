@@ -2,10 +2,10 @@
 
 > **Zuletzt aktualisiert:** 2026-09-03  
 > **Aktueller Stand:** `main` enthält jetzt PR #1–#4, die Storytelling-Überarbeitung (3.4), den
-> Endlosschleifen-Schutz + Sci-Fi-Debug-Ziele sowie die Einstufungstest-Fixes (3.5) — die Branches
-> `debug-notebook-safety` und `et-fixes` sind gerade gemergt worden. Fünf weitere Branches werden im
-> Anschluss in derselben Session nach `main` gemergt: `interaktiv-klarer` → `text-typo-pass` →
-> `backup-sqlite-db` → `kurs-caesar-chiffre` → `wochen-zertifikate`.  
+> Endlosschleifen-Schutz + Sci-Fi-Debug-Ziele, die Einstufungstest-Fixes (3.5/3.6) sowie den
+> gestuften Hinweis im interaktiven Kurs — `debug-notebook-safety`, `et-fixes` und
+> `interaktiv-klarer` sind gerade gemergt worden. Vier weitere Branches folgen in derselben Session:
+> `text-typo-pass` → `backup-sqlite-db` → `kurs-caesar-chiffre` → `wochen-zertifikate`.  
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -243,6 +243,30 @@ ergänzt** (waren zunächst nur manuell verifiziert, nicht in der Suite): `tests
 Woche reicht (0.66-Schwelle), 1 von 3 nicht" (beantwortet Woche 1 mit 2/3, Woche 2 mit 1/3, Rest
 korrekt, prüft `.week-result.ok`/`.review`-Klassen und die angezeigten Bruch-Werte).
 
+### 3.7 Interaktiver Kurs: gestufter Hinweis (Branch `cursor/interaktiv-klarer`)
+
+**Ausgangslage:** 10 Verbesserungswünsche wurden in 6 Branches gruppiert (Plan-Datei
+`~/.claude/plans/scalable-singing-cook.md`), Reihenfolge B→A→E→F→C→D. Dies ist Branch C
+(Punkt 7 — "Interaktive Session klarer gestalten").
+
+**Umgesetzt:** `LessonView.vue`s `checkTask()` verriet bei falscher Aufgaben-Ausgabe sofort die
+wörtliche erwartete Teilzeichenkette ("Erwartet wurde etwas mit: '...'") — wirkte wie
+Lösungsverrat. Jetzt gibt es einen neuen `taskAttempts`-Zähler pro Aufgabe: beim ersten Fehlversuch
+kommt nur ein sanfter Hinweis ("schau dir deine Ausgabe an und vergleiche sie mit der
+Aufgabenstellung"), erst ab dem zweiten Fehlversuch wird die konkrete erwartete Teilzeichenkette
+gezeigt (damit niemand dauerhaft feststeckt). Ein Python-Laufzeitfehler (z.B. `NameError`) ist
+davon unberührt — der wird weiterhin sofort und vollständig angezeigt, da er selbst die nützliche
+Diagnose ist, kein Lösungsverrat.
+
+**Bewusst nicht umgesetzt:** die im Plan genannte "Ausführen vs. Prüfen"-Unterscheidung klarer
+machen und der Fortschritts-/Weiter-Flow — das sind subjektive "klarer machen"-Wünsche ohne
+konkret benannten Verwirrungspunkt. Braucht erst Rückmeldung vom Nutzer (idealerweise mit
+Screenshot), was genau als unklar aufgefallen ist, bevor an der UI weiter herumgebaut wird.
+
+**Getestet:** neuer Playwright-Test in `tests/site.spec.js` (erster Fehlversuch zeigt keine
+Erwartung, zweiter schon) + `npm run test:checks` (alle 33 Tests grün) + manuell im Browser
+verifiziert.
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -301,12 +325,15 @@ Siehe auch `todo.md`.
 - Keine offenen Punkte aus der Storytelling-Überarbeitung mehr (siehe 3.4) — "Gilde-Meister-Urkunde" geklärt, kein Bug
 - Debug-Notebook-Ziele (3.5): Pferde + Abenteuer noch offen (Sci-Fi fertig)
 - Einstufungstest (3.6): Distraktoren für Wochen 5-12 noch offen (Wochen 1-4 fertig)
+- Interaktiver Kurs (3.7): "Ausführen vs. Prüfen"-Klarheit und Weiter-Flow noch offen, braucht
+  konkretes Nutzer-Feedback (idealerweise Screenshot) bevor daran gearbeitet wird
 
-**Branch-Merge läuft gerade (diese Session):** `debug-notebook-safety` und `et-fixes` sind soeben
-nach `main` gemergt. Als Nächstes in derselben Session: `interaktiv-klarer` → `text-typo-pass` →
-`backup-sqlite-db` → `kurs-caesar-chiffre` → `wochen-zertifikate` (Reihenfolge/Begründung siehe
-`todo.md`). Nach jedem Merge `npm run test:checks` (und bei Auth-relevanten Branches zusätzlich
-`npm run test:auth`), bevor der nächste Branch drankommt. Noch **nicht** nach `origin/main` gepusht.
+**Branch-Merge läuft gerade (diese Session):** `debug-notebook-safety`, `et-fixes` und
+`interaktiv-klarer` sind soeben nach `main` gemergt. Als Nächstes in derselben Session:
+`text-typo-pass` → `backup-sqlite-db` → `kurs-caesar-chiffre` → `wochen-zertifikate`
+(Reihenfolge/Begründung siehe `todo.md`). Nach jedem Merge `npm run test:checks` (und bei
+Auth-relevanten Branches zusätzlich `npm run test:auth`), bevor der nächste Branch drankommt. Noch
+**nicht** nach `origin/main` gepusht.
 
 **Danach — nächste Kurs-Themen, je eigener Branch von `main`:**
 
@@ -316,10 +343,10 @@ nach `main` gemergt. Als Nächstes in derselben Session: `interaktiv-klarer` →
 
 Nicht mischen; Details/Checkboxen in `todo.md`.
 
-**Bewusst nicht geplant:** öffentliches Sign-up, Supabase als Pflicht. Kontakt-E-Mail im Footer
-wartet noch auf die tatsächliche Adresse vom Nutzer (nicht selbst erfinden).
+**Bewusst nicht geplant:** öffentliches Sign-up, Mailversand/Kontaktformular, Supabase als Pflicht.
+Kontakt-E-Mail im Footer wartet noch auf die tatsächliche Adresse vom Nutzer (nicht selbst erfinden).
 
-**Bekannte Altlasten (niedrige Prio):** Notebook-Download-ZIP nur DE; optionale EN-Nachzüge bei neuen Kursen.
+**Bekannte Altlasten (niedrige Prio):** Notebook-Download-ZIP nur DE; optionale EN-Nachzüge bei neuen Kursen (inkl. Cäsar-Chiffre).
 
 ---
 
@@ -347,5 +374,5 @@ wartet noch auf die tatsächliche Adresse vom Nutzer (nicht selbst erfinden).
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
 **Empfohlener nächster Schritt:** Branch-Merge-Kette fortsetzen (siehe Abschnitt 5) —
-`interaktiv-klarer` → `text-typo-pass` → `backup-sqlite-db` → `kurs-caesar-chiffre` →
-`wochen-zertifikate`, danach `kurs-python-spiele` (Kursgerüst `kurse.json` + Content-Ordner).
+`text-typo-pass` → `backup-sqlite-db` → `kurs-caesar-chiffre` → `wochen-zertifikate`, danach
+`kurs-python-spiele` (Kursgerüst `kurse.json` + Content-Ordner).
