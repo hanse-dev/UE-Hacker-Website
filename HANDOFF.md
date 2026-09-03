@@ -3,7 +3,10 @@
 > **Zuletzt aktualisiert:** 2026-09-03  
 > **Aktueller Stand:** `main` enthält PR #1–#3 + Storytelling-Überarbeitung (siehe 3.4). Sieben weitere
 > Themen sind fertig auf eigenen Branches, aber noch **nicht** nach `main` gemerged — Merge/Deploy ist
-> auf Wunsch des Nutzers bewusst zurückgestellt (siehe 3.5).  
+> auf Wunsch des Nutzers bewusst zurückgestellt (siehe 3.5). `wochen-zertifikate` wurde in dieser
+> Session final überarbeitet (Zertifikat jetzt komplett von Missionen entkoppelt, 2 Coding-Aufgaben
+> pro Woche, alle Belohnungszeilen aus 444 Notebooks entfernt) — Details unten in 3.5, offene
+> Anschlussfrage (Merge-Reihenfolge) in Abschnitt 5/7.  
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -325,10 +328,26 @@ Siehe auch `todo.md`.
 
 **Inhalte**
 - Keine offenen Punkte aus der Storytelling-Überarbeitung mehr (siehe 3.4) — "Gilde-Meister-Urkunde" geklärt, kein Bug
+- [ ] **Neu gefunden, noch nicht behoben:** Boss-Quest-Lösungscode (`6_loesungen`-Notebooks) und
+  Abschluss-Markdown enthalten noch punkte-artige Feier-Texte, z.B. `print("🎉 +400 XP: Boss-Quest
+  abgeschlossen!")` und `**Gesammelte XP:** 1500 Punkte`. Das sind **keine** `**Belohnung:**`-Zeilen
+  (die wurden in `wochen-zertifikate` bereits vollständig entfernt, siehe 3.5) — das ist Code-Output
+  und Abschluss-Prosa, die noch von XP/Punkten erzählt, obwohl es das System nicht mehr gibt. Noch
+  nicht mit dem Nutzer geklärt, ob das behoben werden soll (reines Story-Flavor vs. veraltete
+  Punkte-Referenz). Vermutlich in denselben 444 Notebooks verstreut wie die entfernten
+  Belohnungszeilen — vor dem Fix erst eine Umfangs-Analyse machen (grep nach `XP`, `Gesammelte`,
+  `Punkte` in Boss-/Lösungs-Notebooks), dann mit dem Nutzer abstimmen, bevor an allen Dateien geändert
+  wird.
 
 **Fertige, ungemergte Branches (siehe 3.5 für Details):** `debug-notebook-safety`, `et-fixes`,
 `interaktiv-klarer`, `text-typo-pass`, `backup-sqlite-db`, `kurs-caesar-chiffre`, `wochen-zertifikate`.
-Merge/Deploy ist auf Nutzerwunsch bewusst zurückgestellt — nicht ohne Rückfrage mergen.
+Merge/Deploy ist auf Nutzerwunsch bewusst zurückgestellt — nicht ohne Rückfrage mergen. Empfohlene
+Merge-Reihenfolge (Details/Begründung siehe 3.5 und todo.md):
+`debug-notebook-safety` → `et-fixes` → `interaktiv-klarer` → `text-typo-pass` → `backup-sqlite-db` →
+`kurs-caesar-chiffre` → `wochen-zertifikate`. Nach jedem Merge `npm run test:checks` laufen lassen,
+bevor der nächste Branch drankommt. **`wochen-zertifikate` ist der umfangreichste Branch** (2 Commits,
+Punkte-/Sammelsystem komplett durch Zertifikate ersetzt) — dort am ehesten mit Merge-Konflikten in
+`content/python-checks/weeks.json` rechnen (kollidiert mit `et-fixes`' Änderungen an derselben Datei).
 
 **Laufend/als Nächstes:**
 
@@ -374,6 +393,9 @@ noch auf die tatsächliche Adresse vom Nutzer (nicht selbst erfinden).
 4. Nicht: altes `prod` in Compose erwarten; nicht: Sync so ändern, dass Notebooks wieder voll neu geladen werden bei jedem Apply; nicht: Punkte-/Item-System wieder einführen  
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
-**Empfohlener nächster inhaltlicher Schritt:** Beim Nutzer nachfragen, ob/wann die sieben fertigen
-Branches (3.5) gemerged werden sollen, oder direkt mit den Spiele-Inhalten auf `kurs-python-spiele`
-weitermachen.
+**Empfohlener nächster inhaltlicher Schritt:** Der Nutzer wollte als Nächstes entscheiden, ob/wann die
+sieben fertigen Branches (3.5) mit der oben genannten Reihenfolge gemerged werden — das war der letzte
+offene Punkt am Ende der vorigen Session, noch keine Antwort. Direkt danach fragen. Falls der Nutzer
+stattdessen lieber inhaltlich weiterarbeiten will: `kurs-python-spiele` (Spiele-Werkstatt-Inhalte)
+oder der neu gefundene XP/Punkte-Text in Boss-Lösungsnotebooks (siehe Abschnitt 5) sind die
+nächstliegenden Kandidaten.
