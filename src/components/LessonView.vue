@@ -138,6 +138,7 @@ export default {
     const taskCodes = ref([]);
     const taskOutputs = ref([]);
     const taskFeedback = ref([]);
+    const taskAttempts = ref([]);
     const completedTasks = ref(new Set());
 
     const initTaskState = () => {
@@ -145,6 +146,7 @@ export default {
       taskCodes.value = t.map((x) => x.codeTemplate ?? '');
       taskOutputs.value = t.map(() => null);
       taskFeedback.value = t.map(() => null);
+      taskAttempts.value = t.map(() => 0);
       completedTasks.value = new Set();
     };
 
@@ -290,6 +292,7 @@ export default {
       if (result.success) {
         taskOutputs.value[idx] = result.output || (lang.value === 'en' ? '(no output)' : '(keine Ausgabe)');
       } else {
+        taskAttempts.value[idx] = (taskAttempts.value[idx] || 0) + 1;
         const errMsg = (lang.value === 'en' ? 'Error: ' : 'Fehler: ') + (result.error || (lang.value === 'en' ? 'Unknown error' : 'Unbekannter Fehler'));
         taskOutputs.value[idx] = errMsg;
         taskFeedback.value[idx] = { success: false, message: errMsg };
@@ -320,12 +323,25 @@ export default {
           };
         }
       } else {
-        taskFeedback.value[idx] = {
-          success: false,
-          message: lang.value === 'en'
-            ? `Output doesn't match yet. Expected something containing: "${validation?.expected || ''}"`
-            : `Die Ausgabe stimmt noch nicht. Erwartet wurde etwas mit: "${validation?.expected || ''}"`,
-        };
+        taskAttempts.value[idx] = (taskAttempts.value[idx] || 0) + 1;
+        // Erster Fehlversuch: nur ein sanfter Hinweis, kein Lösungsverrat.
+        // Ab dem zweiten Fehlversuch: die erwartete Teilzeichenkette zeigen, damit niemand
+        // dauerhaft feststeckt.
+        if (taskAttempts.value[idx] < 2) {
+          taskFeedback.value[idx] = {
+            success: false,
+            message: lang.value === 'en'
+              ? 'Not quite yet — check the output above and compare it with the task.'
+              : 'Noch nicht ganz – schau dir deine Ausgabe oben an und vergleiche sie mit der Aufgabenstellung.',
+          };
+        } else {
+          taskFeedback.value[idx] = {
+            success: false,
+            message: lang.value === 'en'
+              ? `Output doesn't match yet. Expected something containing: "${validation?.expected || ''}"`
+              : `Die Ausgabe stimmt noch nicht. Erwartet wurde etwas mit: "${validation?.expected || ''}"`,
+          };
+        }
       }
 
       checking.value = false;

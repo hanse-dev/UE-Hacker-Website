@@ -1,7 +1,10 @@
 # Handoff — UE Hacker Website
 
-> **Zuletzt aktualisiert:** 2026-08-20  
-> **Aktueller Stand:** Branch `main` (enthält PR #1–#4 sowie die Storytelling-Überarbeitung, siehe 3.4)  
+> **Zuletzt aktualisiert:** 2026-09-03  
+> **Aktueller Stand:** Branch `cursor/interaktiv-klarer` (von `main`, enthält PR #1–#4, die
+> Storytelling-Überarbeitung (3.4) sowie den gestuften Hinweis im interaktiven Kurs (3.5)).
+> Parallel dazu existieren `cursor/debug-notebook-safety`, `cursor/et-fixes` und
+> `cursor/kurs-caesar-chiffre` als eigene, unabhängige Branches von `main` — noch keiner gemergt.  
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -151,6 +154,30 @@ werden. Jeder Test wurde gegen eine absichtlich kaputte Kopie verifiziert (schl�
 Items (z.B. "Kristallkugel" 4×, "Quest-Buch" 4×) wiederholen sich im ganzen Kurs genauso. Bewusstes
 Belohnungs-Flavor-Muster für die schwierigste Mission der Woche — keine Umbenennung nötig.
 
+### 3.5 Interaktiver Kurs: gestufter Hinweis (Branch `cursor/interaktiv-klarer`)
+
+**Ausgangslage:** 10 Verbesserungswünsche wurden in 6 Branches gruppiert (Plan-Datei
+`~/.claude/plans/scalable-singing-cook.md`), Reihenfolge B→A→E→F→C→D. Dies ist Branch C
+(Punkt 7 — "Interaktive Session klarer gestalten").
+
+**Umgesetzt:** `LessonView.vue`s `checkTask()` verriet bei falscher Aufgaben-Ausgabe sofort die
+wörtliche erwartete Teilzeichenkette ("Erwartet wurde etwas mit: '...'") — wirkte wie
+Lösungsverrat. Jetzt gibt es einen neuen `taskAttempts`-Zähler pro Aufgabe: beim ersten Fehlversuch
+kommt nur ein sanfter Hinweis ("schau dir deine Ausgabe an und vergleiche sie mit der
+Aufgabenstellung"), erst ab dem zweiten Fehlversuch wird die konkrete erwartete Teilzeichenkette
+gezeigt (damit niemand dauerhaft feststeckt). Ein Python-Laufzeitfehler (z.B. `NameError`) ist
+davon unberührt — der wird weiterhin sofort und vollständig angezeigt, da er selbst die nützliche
+Diagnose ist, kein Lösungsverrat.
+
+**Bewusst nicht umgesetzt:** die im Plan genannte "Ausführen vs. Prüfen"-Unterscheidung klarer
+machen und der Fortschritts-/Weiter-Flow — das sind subjektive "klarer machen"-Wünsche ohne
+konkret benannten Verwirrungspunkt. Braucht erst Rückmeldung vom Nutzer (idealerweise mit
+Screenshot), was genau als unklar aufgefallen ist, bevor an der UI weiter herumgebaut wird.
+
+**Getestet:** neuer Playwright-Test in `tests/site.spec.js` (erster Fehlversuch zeigt keine
+Erwartung, zweiter schon) + `npm run test:checks` (alle 33 Tests grün) + manuell im Browser
+verifiziert.
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -207,8 +234,25 @@ Siehe auch `todo.md`.
 
 **Inhalte**
 - Keine offenen Punkte aus der Storytelling-Überarbeitung mehr (siehe 3.4) — "Gilde-Meister-Urkunde" geklärt, kein Bug
+- Interaktiver Kurs (3.5): "Ausführen vs. Prüfen"-Klarheit und Weiter-Flow noch offen, braucht
+  konkretes Nutzer-Feedback (idealerweise Screenshot) bevor daran gearbeitet wird
 
-**Nächste Features — je eigener Branch von `main` (Reihenfolge):**
+**Laufend — 10 Verbesserungen in 6 Branches (Reihenfolge B→A→E→F→C→D, siehe `todo.md` + Plan-Datei
+`~/.claude/plans/scalable-singing-cook.md`):**
+
+1. **`cursor/debug-notebook-safety`** — ✅ Punkt 5 fertig, Punkt 6 Sci-Fi fertig (Pferde/Abenteuer offen)
+2. **`cursor/et-fixes`** — ✅ fertig
+3. **`cursor/kontakt-email`** — zurückgestellt, braucht Kontakt-E-Mail-Adresse vom Nutzer
+4. **`cursor/kurs-caesar-chiffre`** — ✅ fertig
+5. **`cursor/interaktiv-klarer`** — ✅ fertig (dieser Branch): gestufter Hinweis; Rest zurückgestellt
+6. **`cursor/text-typo-pass`** — offen, größter Umfang, noch nicht begonnen
+
+Vier Branches (`debug-notebook-safety`, `et-fixes`, `kurs-caesar-chiffre`, `interaktiv-klarer`)
+sind lokal committet, aber noch **nicht gepusht/gemergt** — vor dem Mergen prüfen, ob sich
+`HANDOFF.md`/`todo.md` zwischen den Branches überschneiden (jeder Branch hat unabhängig voneinander
+dieselben Abschnitte editiert, das muss beim Merge zusammengeführt werden).
+
+**Danach — nächste Kurs-Themen, je eigener Branch von `main` (Reihenfolge):**
 
 1. **`cursor/kurs-python-spiele`** — Python Spiele-Werkstatt (Turtle/Textspiele)  
 2. **`cursor/kurs-python-projekte`** — „Was kommt danach?“ Projekt-Sprints  
@@ -216,9 +260,11 @@ Siehe auch `todo.md`.
 
 Nicht mischen; Details/Checkboxen in `todo.md`.
 
-**Bewusst nicht geplant:** öffentliches Sign-up, E-Mail, Supabase als Pflicht.
+**Bewusst nicht geplant:** öffentliches Sign-up, Mailversand/Kontaktformular, Supabase als Pflicht.
+(Eine rein statische Kontakt-E-Mail im Footer ist als Branch `cursor/kontakt-email` geplant — kein
+Formular, kein Versand, siehe oben.)
 
-**Bekannte Altlasten (niedrige Prio):** Notebook-Download-ZIP nur DE; optionale EN-Nachzüge bei neuen Kursen.
+**Bekannte Altlasten (niedrige Prio):** Notebook-Download-ZIP nur DE; optionale EN-Nachzüge bei neuen Kursen (inkl. Cäsar-Chiffre).
 
 ---
 
@@ -238,8 +284,13 @@ Nicht mischen; Details/Checkboxen in `todo.md`.
 
 1. `git checkout main && git pull`  
 2. `HANDOFF.md` + `todo.md` + `WORKFLOW.md` lesen  
-3. Neues Thema → **neuen** Branch, z.B. `git checkout -b cursor/kurs-python-spiele`  
+3. Neues Thema → **neuen** Branch, z.B. `git checkout -b cursor/text-typo-pass`  
 4. Nicht: altes `prod` in Compose erwarten; nicht: Sync so ändern, dass Notebooks wieder voll neu geladen werden bei jedem Apply  
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
-**Empfohlener nächster inhaltlicher Schritt:** Branch `cursor/kurs-python-spiele` anlegen und Kursgerüst (`kurse.json` + Content-Ordner) skizzieren.
+**Empfohlener nächster inhaltlicher Schritt:** Die vier fertigen Branches (`debug-notebook-safety`,
+`et-fixes`, `kurs-caesar-chiffre`, `interaktiv-klarer`) nach `main` mergen (`HANDOFF.md`/`todo.md`-
+Überschneidungen dabei zusammenführen), dann `cursor/kontakt-email` (sobald die Adresse vorliegt)
+oder `cursor/text-typo-pass` (Plan-Datei `~/.claude/plans/scalable-singing-cook.md`, Abschnitt
+"Branch D") angehen — größter verbleibender Umfang, am besten mit dem Nutzer über den Umfang der
+ersten Etappe absprechen, bevor losgelegt wird.

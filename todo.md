@@ -1,5 +1,27 @@
 # Todo
 
+## Jetzt: 10 Verbesserungen in 6 Branches (gruppiert, B→A→E→F→C→D)
+
+Plan-Datei: `~/.claude/plans/scalable-singing-cook.md` (Kontext/Details je Branch).
+
+### Branch `cursor/debug-notebook-safety` (Punkte 5, 6) — eigener Branch, fertig
+### Branch `cursor/et-fixes` (Punkte 1-4) — eigener Branch, fertig
+### Branch `cursor/kontakt-email` (Punkt 9) — zurückgestellt, braucht E-Mail-Adresse vom Nutzer
+### Branch `cursor/kurs-caesar-chiffre` (Punkt 10) — eigener Branch, fertig
+
+### Branch `cursor/interaktiv-klarer` (Punkt 7) — dieser Branch
+- [x] Gestufter Hinweis in `LessonView.vue`: erster Fehlversuch pro Aufgabe zeigt nur einen sanften
+      Hinweis ("schau dir deine Ausgabe an und vergleiche sie"), erst ab dem zweiten Fehlversuch
+      wird die konkret erwartete Teilzeichenkette gezeigt (vorher wurde sie sofort verraten)
+- [x] Playwright-Test ergänzt (`tests/site.spec.js`)
+- **Nicht umgesetzt (bewusst zurückgestellt):** "Ausführen vs. Prüfen"-Unterscheidung klarer
+      machen, Fortschritts-/Weiter-Flow überarbeiten — das waren im Plan als "braucht konkretes
+      Nutzer-Feedback, nicht blind umsetzen" markiert; noch offen, was genau daran unklar wirkt
+
+### Branch `cursor/text-typo-pass` (Punkt 8) — offen, größter Umfang
+
+---
+
 ## Now
 ### Website / Frontend
 - [x] Das Tabsystem erklären
