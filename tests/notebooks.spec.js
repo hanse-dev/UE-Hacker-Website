@@ -5,7 +5,7 @@ const VARIANTS = [['abenteuer', 'Abenteuer'], ['pferde', 'Pferde'], ['scifi', 'S
 
 async function openWeek(page, weekIndex) {
   const week = page.locator('.week-section').nth(weekIndex);
-  if (weekIndex !== 0) await week.locator('.week-header').click();
+  await week.locator('.week-header').click();
   await week.locator('.cell').first().waitFor({ state: 'visible', timeout: 8000 });
   return week;
 }
