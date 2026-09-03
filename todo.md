@@ -1,5 +1,39 @@
 # Todo
 
+## Jetzt: 10 Verbesserungen in 6 Branches (gruppiert, B→A→E→F→C→D)
+
+Plan-Datei: `~/.claude/plans/scalable-singing-cook.md` (Kontext/Details je Branch).
+
+### Branch `cursor/debug-notebook-safety` (Punkte 5, 6) — eigener Branch, fertig
+### Branch `cursor/et-fixes` (Punkte 1-4) — eigener Branch, fertig
+### Branch `cursor/kontakt-email` (Punkt 9) — zurückgestellt, braucht E-Mail-Adresse vom Nutzer
+### Branch `cursor/kurs-caesar-chiffre` (Punkt 10) — eigener Branch, fertig
+### Branch `cursor/interaktiv-klarer` (Punkt 7) — eigener Branch, fertig
+
+### Branch `cursor/text-typo-pass` (Punkt 8) — dieser Branch, Phase 1 von mehreren
+- [x] `cspell` als Tooling eingerichtet (`cspell.json`, `npm run lint:spelling`) mit deutschem und
+      englischem Wörterbuch (`@cspell/dict-de-de`, `@cspell/dict-en_us`) — dauerhaft nutzbar für
+      künftige Content-Reviews
+- [x] `src/locales/de.js` + `src/locales/en.js` geprüft: **keine echten Tippfehler gefunden**,
+      Texte waren bereits sauber. Ein paar False Positives ins Custom-Dictionary aufgenommen
+      (Identifier wie `jupyter`/`scifi`/`appt` in Locale-Keys, sowie bewusst britisches Englisch
+      "Initialise"/"practising", konsistent im EN-Text verwendet — keine Inkonsistenz, kein Fix nötig)
+- [x] Stichprobe über `.vue`-Komponenten (`src/components/*.vue`, `src/views/*.vue`): dort steckt
+      viel Prosa NICHT in `locales/*.js`, sondern direkt als `lang === 'en' ? ... : ...`-Ternary im
+      Template. Ergebnis: **ebenfalls keine echten Tippfehler**, aber ~84 False Positives
+      (Routen-Segmente wie `kurs`/`woche`/`lektion`, CSS-Klassen, Variablennamen) — cspell kann
+      `.vue`-Dateien nicht sauber genug von Code trennen, ohne weitere Konfiguration. Deshalb nicht
+      systematisch in `cspell.json` aufgenommen (würde zu viele echte Treffer mit-verstecken).
+- **Offen für weitere Sessions:**
+  - [ ] `.vue`-Dateien sauber prüfbar machen (z.B. gezielte Marker/Konvention für Prosa-Strings,
+        oder Ternary-Texte in `locales/*.js` überführen) — dann echte Prosa-Tippfehler dort finden
+  - [ ] `content/*/beschreibung.md` + `content/python-checks/weeks.json` (Einstufungstest-Texte)
+  - [ ] 444 Notebooks (DE+EN, alle 3 Varianten) — größter Umfang, extra Extraktionsskript nötig
+        (`.ipynb` ist JSON, Text-Zellen müssen erst herausgezogen werden)
+  - Reihenfolge laut Plan: Abenteuer → Pferde → Sci-Fi, je eigener Commit zum Reviewen
+
+---
+
 ## Now
 ### Website / Frontend
 - [x] Das Tabsystem erklären

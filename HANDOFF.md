@@ -1,7 +1,10 @@
 # Handoff — UE Hacker Website
 
-> **Zuletzt aktualisiert:** 2026-08-20  
-> **Aktueller Stand:** Branch `main` (enthält PR #1–#4 sowie die Storytelling-Überarbeitung, siehe 3.4)  
+> **Zuletzt aktualisiert:** 2026-09-03  
+> **Aktueller Stand:** Branch `cursor/text-typo-pass` (von `main`, enthält PR #1–#4, die
+> Storytelling-Überarbeitung (3.4) sowie Phase 1 des Text-Tippfehler-Passes (3.5)). Parallel dazu
+> existieren `cursor/debug-notebook-safety`, `cursor/et-fixes`, `cursor/kurs-caesar-chiffre` und
+> `cursor/interaktiv-klarer` als eigene, unabhängige Branches von `main` — noch keiner gemergt.  
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -151,6 +154,42 @@ werden. Jeder Test wurde gegen eine absichtlich kaputte Kopie verifiziert (schl�
 Items (z.B. "Kristallkugel" 4×, "Quest-Buch" 4×) wiederholen sich im ganzen Kurs genauso. Bewusstes
 Belohnungs-Flavor-Muster für die schwierigste Mission der Woche — keine Umbenennung nötig.
 
+### 3.5 Text-Tippfehler-Pass, Phase 1: Tooling + UI-Texte (Branch `cursor/text-typo-pass`)
+
+**Ausgangslage:** 10 Verbesserungswünsche wurden in 6 Branches gruppiert (Plan-Datei
+`~/.claude/plans/scalable-singing-cook.md`), Reihenfolge B→A→E→F→C→D. Dies ist Branch D
+(Punkt 8 — "Texte überarbeiten, komplette Seite auf Schreibfehler prüfen"), Phase 1 von mehreren.
+
+**Tooling:** `cspell` + `@cspell/dict-de-de` + `@cspell/dict-en_us` als devDependencies,
+`cspell.json` (Config, Custom-Wortliste) + `npm run lint:spelling`. **Wichtig:** externe
+Wörterbuch-Pakete müssen über `"import": ["@cspell/dict-de-de/cspell-ext.json", ...]` eingebunden
+werden — nur `"dictionaries": ["de-de", "en_us"]` ohne `import` lädt sie NICHT (führte anfangs zu
+402 falschen Treffern, weil praktisch jedes deutsche Wort als unbekannt galt).
+
+**Ergebnis UI-Texte:** `src/locales/de.js` + `src/locales/en.js` sind bereits sauber — keine
+echten Tippfehler gefunden. Ein paar technische Identifier (`jupyter`, `scifi`, `appt` als Teil von
+Locale-Keys) sowie bewusst britisches Englisch ("Initialise", "practising" — konsistent im
+EN-Text, kein Stilbruch) sind im Custom-Dictionary vermerkt.
+
+**Wichtige Erkenntnis:** Ein Großteil der tatsächlichen Nutzer-Prosa steckt NICHT in
+`src/locales/*.js`, sondern direkt als `lang === 'en' ? '...' : '...'`-Ternarys in den
+`.vue`-Dateien (`InteractiveCourse.vue`, `PlacementCourse.vue`, `QuizStep.vue`, `LessonView.vue`,
+`Home.vue` etc.). Eine cspell-Stichprobe über `src/components/*.vue` + `src/views/*.vue` fand
+ebenfalls keine echten Tippfehler, aber ~84 False Positives (Routen-Segmente wie `kurs`/`woche`/
+`lektion`, CSS-Klassennamen, Variablennamen) — cspell trennt Vue-Templates nicht sauber genug von
+Prosa. Deshalb **nicht** systematisch ins Custom-Dictionary aufgenommen (würde echte Treffer
+mit-verstecken) — braucht für eine spätere Session entweder gezielte Ignore-Patterns oder eine
+Vue-spezifische Cspell-Konfiguration.
+
+**Noch offen (nächste Sessions, siehe `todo.md`):**
+- `.vue`-Dateien systematisch prüfbar machen
+- `content/*/beschreibung.md` + `content/python-checks/weeks.json`
+- 444 Notebooks (DE+EN, 3 Varianten) — größter Umfang, braucht ein Extraktionsskript für die
+  Text-Zellen aus dem `.ipynb`-JSON
+
+**Getestet:** `npm run lint:spelling` (neuer Script) + `npm run test:checks` (32 Tests grün,
+unverändert — reine Tooling-/Doku-Änderung ohne Code-Verhalten-Impact in dieser Phase).
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -207,8 +246,26 @@ Siehe auch `todo.md`.
 
 **Inhalte**
 - Keine offenen Punkte aus der Storytelling-Überarbeitung mehr (siehe 3.4) — "Gilde-Meister-Urkunde" geklärt, kein Bug
+- Text-Tippfehler-Pass (3.5): nur Phase 1 (Tooling + UI-Texte) fertig — `.vue`-Dateien,
+  Wochenbeschreibungen, `weeks.json` und alle 444 Notebooks noch offen
 
-**Nächste Features — je eigener Branch von `main` (Reihenfolge):**
+**Laufend — 10 Verbesserungen in 6 Branches (Reihenfolge B→A→E→F→C→D, siehe `todo.md` + Plan-Datei
+`~/.claude/plans/scalable-singing-cook.md`):**
+
+1. **`cursor/debug-notebook-safety`** — ✅ Punkt 5 fertig, Punkt 6 Sci-Fi fertig (Pferde/Abenteuer offen)
+2. **`cursor/et-fixes`** — ✅ fertig
+3. **`cursor/kontakt-email`** — zurückgestellt, braucht Kontakt-E-Mail-Adresse vom Nutzer
+4. **`cursor/kurs-caesar-chiffre`** — ✅ fertig
+5. **`cursor/interaktiv-klarer`** — ✅ fertig
+6. **`cursor/text-typo-pass`** — 🟡 nur Phase 1 fertig (Tooling + UI-Texte, keine Tippfehler
+   gefunden) — Phase 2+ (`.vue`-Dateien, Wochenbeschreibungen, `weeks.json`, 444 Notebooks) offen
+
+Fünf Branches (`debug-notebook-safety`, `et-fixes`, `kurs-caesar-chiffre`, `interaktiv-klarer`,
+`text-typo-pass`) sind lokal committet, aber noch **nicht gepusht/gemergt** — vor dem Mergen
+prüfen, ob sich `HANDOFF.md`/`todo.md` zwischen den Branches überschneiden (jeder Branch hat
+unabhängig voneinander dieselben Abschnitte editiert, das muss beim Merge zusammengeführt werden).
+
+**Danach — nächste Kurs-Themen, je eigener Branch von `main` (Reihenfolge):**
 
 1. **`cursor/kurs-python-spiele`** — Python Spiele-Werkstatt (Turtle/Textspiele)  
 2. **`cursor/kurs-python-projekte`** — „Was kommt danach?“ Projekt-Sprints  
@@ -216,9 +273,11 @@ Siehe auch `todo.md`.
 
 Nicht mischen; Details/Checkboxen in `todo.md`.
 
-**Bewusst nicht geplant:** öffentliches Sign-up, E-Mail, Supabase als Pflicht.
+**Bewusst nicht geplant:** öffentliches Sign-up, Mailversand/Kontaktformular, Supabase als Pflicht.
+(Eine rein statische Kontakt-E-Mail im Footer ist als Branch `cursor/kontakt-email` geplant — kein
+Formular, kein Versand, siehe oben.)
 
-**Bekannte Altlasten (niedrige Prio):** Notebook-Download-ZIP nur DE; optionale EN-Nachzüge bei neuen Kursen.
+**Bekannte Altlasten (niedrige Prio):** Notebook-Download-ZIP nur DE; optionale EN-Nachzüge bei neuen Kursen (inkl. Cäsar-Chiffre).
 
 ---
 
@@ -238,8 +297,16 @@ Nicht mischen; Details/Checkboxen in `todo.md`.
 
 1. `git checkout main && git pull`  
 2. `HANDOFF.md` + `todo.md` + `WORKFLOW.md` lesen  
-3. Neues Thema → **neuen** Branch, z.B. `git checkout -b cursor/kurs-python-spiele`  
-4. Nicht: altes `prod` in Compose erwarten; nicht: Sync so ändern, dass Notebooks wieder voll neu geladen werden bei jedem Apply  
+3. Weiterarbeiten am selben Thema → `git checkout cursor/text-typo-pass`; neues Thema → **neuen**
+   Branch  
+4. Nicht: altes `prod` in Compose erwarten; nicht: Sync so ändern, dass Notebooks wieder voll neu
+   geladen werden bei jedem Apply; nicht: `cspell`-Wörterbücher nur über `"dictionaries"` ohne
+   `"import"` einbinden (lädt sie nicht, siehe 3.5)  
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
-**Empfohlener nächster inhaltlicher Schritt:** Branch `cursor/kurs-python-spiele` anlegen und Kursgerüst (`kurse.json` + Content-Ordner) skizzieren.
+**Empfohlener nächster inhaltlicher Schritt:** Die fünf fertigen Branches (`debug-notebook-safety`,
+`et-fixes`, `kurs-caesar-chiffre`, `interaktiv-klarer`, `text-typo-pass`) nach `main` mergen
+(`HANDOFF.md`/`todo.md`-Überschneidungen dabei zusammenführen), dann `cursor/text-typo-pass` mit
+Phase 2 fortsetzen (`.vue`-Dateien, Wochenbeschreibungen, `weeks.json`, dann Notebooks — Plan-Datei
+`~/.claude/plans/scalable-singing-cook.md`, Abschnitt "Branch D") oder `cursor/kontakt-email`,
+sobald die Kontakt-E-Mail-Adresse vorliegt.

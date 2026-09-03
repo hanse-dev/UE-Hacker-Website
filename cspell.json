@@ -1,0 +1,28 @@
+{
+  "version": "0.2",
+  "language": "de,en",
+  "import": [
+    "@cspell/dict-de-de/cspell-ext.json",
+    "@cspell/dict-en_us/cspell-ext.json"
+  ],
+  "dictionaries": ["de-de", "en_us"],
+  "ignorePaths": [
+    "node_modules/**",
+    "dist/**",
+    "public/**/*.zip",
+    "public/python-12-wochen-notebooks.zip",
+    "package-lock.json",
+    "api/data/**",
+    "*.ipynb"
+  ],
+  "words": [
+    "appt",
+    "itscouts",
+    "scifi",
+    "jupyter",
+    "Questreihe",
+    "abenteuer",
+    "Initialise",
+    "practising"
+  ]
+}
