@@ -3,15 +3,17 @@
 Fortschritt speichern – für lokale Nutzer (Jupyter/VS Code)
 
 Wenn du die Notebooks lokal ausführst, kannst du mit diesem Skript
-deine eingelösten Missionen in mein-fortschritt.json speichern.
+deine erledigten Missionen in mein-fortschritt.json speichern.
 Diese Datei kannst du dann auf der Website unter "Fortschritt importieren"
-hochladen, um deine Punkte zu synchronisieren.
+hochladen. Sobald alle Missionen einer Woche erledigt sind und du den
+Wochen-Check (Quiz + Coding-Aufgabe) auf der Website bestanden hast,
+bekommst du das Zertifikat dieser Woche.
 
 Verwendung:
   python fortschritt.py              # Interaktiv: fragt, was du beendet hast
   python fortschritt.py add          # Wie oben (interaktiv)
   python fortschritt.py add abenteuer w10-m1     # Direkt über Befehlszeile
-  python fortschritt.py unclaim abenteuer w10-m1 # Einlösen rückgängig
+  python fortschritt.py unclaim abenteuer w10-m1 # Erledigt-Markierung rückgängig
   python fortschritt.py show                     # Aktuellen Stand anzeigen
 """
 
@@ -52,29 +54,28 @@ def load_manifest():
         return json.load(f)
 
 
-def get_mission_data(manifest, variant, mission_id):
-    """Hole points und item für eine Mission aus dem Manifest."""
+def mission_exists(manifest, variant, mission_id):
+    """Prüft, ob die Mission-ID für die Variante im Manifest bekannt ist."""
     course = manifest.get(COURSE_ID, {})
     variant_data = course.get(variant, {})
-    for week_str, week_data in variant_data.items():
+    for week_data in variant_data.values():
         for key in ("missions", "bossQuests"):
-            for m in week_data.get(key, []):
-                if m.get("id") == mission_id:
-                    label = "Mission" if key == "missions" else "Boss-Quest"
-                    idx = week_data[key].index(m)
-                    label = f"{label} {(idx % 3) + 1}"
-                    return m.get("points", 0), m.get("item", ""), label
+            ids = week_data.get(key, [])
+            if mission_id in ids:
+                label = "Mission" if key == "missions" else "Boss-Quest"
+                idx = ids.index(mission_id)
+                return f"{label} {idx + 1}"
     return None
 
 
 def default_state():
     return {
-        "version": 2,
+        "version": 3,
         "courseId": COURSE_ID,
         "variants": {
-            "abenteuer": {"claims": []},
-            "pferde": {"claims": []},
-            "scifi": {"claims": []},
+            "abenteuer": {"done": []},
+            "pferde": {"done": []},
+            "scifi": {"done": []},
         },
     }
 
@@ -84,7 +85,7 @@ def load_fortschritt():
         return default_state()
     with open(FILE_NAME, encoding="utf-8") as f:
         data = json.load(f)
-    if data.get("courseId") != COURSE_ID or data.get("version") != 2:
+    if data.get("courseId") != COURSE_ID or data.get("version") != 3:
         return default_state()
     return data
 
@@ -97,47 +98,39 @@ def save_fortschritt(data):
 
 def cmd_add(manifest, variant, mission_id):
     if variant not in ("abenteuer", "pferde", "scifi"):
-        print(f"Fehler: Variante muss abenteuer, pferde oder scifi sein.", file=sys.stderr)
+        print("Fehler: Variante muss abenteuer, pferde oder scifi sein.", file=sys.stderr)
         sys.exit(1)
-    mission_data = get_mission_data(manifest, variant, mission_id)
-    if not mission_data:
+    label = mission_exists(manifest, variant, mission_id)
+    if not label:
         print(f"Fehler: Mission '{mission_id}' für Variante '{variant}' nicht gefunden.", file=sys.stderr)
         sys.exit(1)
-    points, item, label = mission_data
     data = load_fortschritt()
-    claims = data["variants"][variant]["claims"]
-    if any(c.get("missionId") == mission_id for c in claims):
-        print("Diese Mission wurde bereits eingelöst.")
+    done = data["variants"][variant]["done"]
+    if mission_id in done:
+        print("Diese Mission ist bereits als erledigt markiert.")
         return
-    claims.append({
-        "missionId": mission_id,
-        "points": points,
-        "item": item,
-        "missionLabel": label,
-    })
+    done.append(mission_id)
     save_fortschritt(data)
-    unit = {"abenteuer": "XP", "pferde": "Huf-Punkte", "scifi": "Cyber Credits"}[variant]
-    print(f"✓ +{points} {unit} + {item} ({label})")
+    print(f"✓ {label} ({mission_id}) als erledigt markiert.")
 
 
 def cmd_unclaim(variant, mission_id):
     data = load_fortschritt()
-    claims = data["variants"][variant]["claims"]
-    new_claims = [c for c in claims if c.get("missionId") != mission_id]
-    if len(new_claims) == len(claims):
-        print("Diese Mission war nicht eingelöst.")
+    done = data["variants"][variant]["done"]
+    if mission_id not in done:
+        print("Diese Mission war nicht als erledigt markiert.")
         return
-    data["variants"][variant]["claims"] = new_claims
+    done.remove(mission_id)
     save_fortschritt(data)
     print(f"✓ Mission {mission_id} zurückgenommen.")
 
 
 def interactive_add(manifest):
-    """Interaktiv fragen, was der Nutzer beendet hat, und einlösen."""
+    """Interaktiv fragen, was der Nutzer beendet hat, und markieren."""
     variant_choices = [
-        ("1", "abenteuer", "🗺️ Abenteuer (XP)"),
-        ("2", "pferde", "🐴 Pferde (Huf-Punkte)"),
-        ("3", "scifi", "🚀 Sci-Fi (Cyber Credits)"),
+        ("1", "abenteuer", "🗺️ Abenteuer"),
+        ("2", "pferde", "🐴 Pferde"),
+        ("3", "scifi", "🚀 Sci-Fi"),
     ]
     mission_choices = [
         ("1", "m1", "Mission 1"),
@@ -190,22 +183,20 @@ def interactive_add(manifest):
 
 
 def cmd_show(data):
-    units = {"abenteuer": "XP", "pferde": "Huf-Punkte", "scifi": "Cyber Credits"}
     labels = {"abenteuer": "🗺️ Abenteuer", "pferde": "🐴 Pferde", "scifi": "🚀 Sci-Fi"}
     total = 0
     for v in ("abenteuer", "pferde", "scifi"):
-        claims = data["variants"][v]["claims"]
-        pts = sum(c.get("points", 0) for c in claims)
-        total += pts
-        if claims:
-            print(f"\n{labels[v]}: {pts} {units[v]} ({len(claims)} Missionen)")
-            for c in claims:
-                print(f"  • {c.get('missionLabel', c.get('missionId'))}: {c.get('points')} {units[v]} + {c.get('item', '')}")
+        done = data["variants"][v]["done"]
+        total += len(done)
+        if done:
+            print(f"\n{labels[v]}: {len(done)} Missionen erledigt")
+            for mission_id in done:
+                print(f"  • {mission_id}")
     if total == 0:
-        print("Noch keine Missionen eingelöst.")
-        print(f"Beispiel: python fortschritt.py add abenteuer w1-m1")
+        print("Noch keine Missionen als erledigt markiert.")
+        print("Beispiel: python fortschritt.py add abenteuer w1-m1")
     else:
-        print(f"\nGesamt: {total} Punkte")
+        print(f"\nGesamt: {total} Missionen erledigt")
     print(f"\nDatei: {os.path.abspath(FILE_NAME)}")
     print("Diese Datei auf der Website unter 'Fortschritt importieren' hochladen, um zu synchronisieren.")
 
@@ -213,10 +204,10 @@ def cmd_show(data):
 def main():
     parser = argparse.ArgumentParser(description="Fortschritt lokal speichern (für Import auf der Website)")
     sub = parser.add_subparsers(dest="cmd", required=False)
-    add_p = sub.add_parser("add", help="Mission einlösen (ohne Args: interaktiv)")
+    add_p = sub.add_parser("add", help="Mission als erledigt markieren (ohne Args: interaktiv)")
     add_p.add_argument("variant", nargs="?", choices=["abenteuer", "pferde", "scifi"])
     add_p.add_argument("mission_id", nargs="?", help="z.B. w1-m1, w10-boss2")
-    unclaim_p = sub.add_parser("unclaim", help="Einlösen rückgängig machen")
+    unclaim_p = sub.add_parser("unclaim", help="Erledigt-Markierung rückgängig machen")
     unclaim_p.add_argument("variant", choices=["abenteuer", "pferde", "scifi"])
     unclaim_p.add_argument("mission_id")
     sub.add_parser("show", help="Aktuellen Stand anzeigen")

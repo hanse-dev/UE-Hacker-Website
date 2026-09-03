@@ -1,41 +1,29 @@
-import { ref, computed, watch } from 'vue';
+import { ref, watch } from 'vue';
 import { PROGRESS_APPLIED_EVENT, touchSyncKey } from './useProgressSync.js';
 
 const STORAGE_KEY = 'ue-hacker-fortschritt';
 const COURSE_ID = 'python-12-wochen-grundkurs';
 
+// Version 3: keine Punkte/Items mehr, nur noch erledigte Missions-/Boss-Quest-IDs pro Variante.
+// Ersetzt das frühere Punkte-/Sammelsystem — Belohnung ist jetzt das Wochen-Zertifikat
+// (siehe useZertifikate.js), das an alle erledigten Missionen + bestandenen Wochen-Check koppelt.
 const defaultState = () => ({
-  version: 2,
+  version: 3,
   courseId: COURSE_ID,
   variants: {
-    abenteuer: { claims: [] },
-    pferde: { claims: [] },
-    scifi: { claims: [] },
+    abenteuer: { done: [] },
+    pferde: { done: [] },
+    scifi: { done: [] },
   },
 });
-
-function migrateFromV1(parsed) {
-  const migrated = defaultState();
-  for (const v of ['abenteuer', 'pferde', 'scifi']) {
-    const old = parsed.variants?.[v];
-    if (!old?.claimedMissions?.length) continue;
-    migrated.variants[v].claims = (old.claimedMissions || []).map((missionId, i) => ({
-      missionId,
-      points: 0,
-      item: (old.items || [])[i] || '–',
-    }));
-  }
-  return migrated;
-}
 
 function loadFromStorage() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return defaultState();
     const parsed = JSON.parse(raw);
-    if (parsed.courseId !== COURSE_ID) return defaultState();
-    if (parsed.version === 2) return { ...defaultState(), ...parsed };
-    return migrateFromV1(parsed);
+    if (parsed.courseId !== COURSE_ID || parsed.version !== 3) return defaultState();
+    return { ...defaultState(), ...parsed };
   } catch {
     return defaultState();
   }
@@ -65,53 +53,44 @@ export function useFortschritt() {
 
   watch(state, (s) => saveToStorage(s), { deep: true });
 
-  const claimMission = (variant, missionId, points, item, missionLabel = null) => {
+  const markDone = (variant, missionId) => {
     const v = state.value.variants[variant];
     if (!v) return false;
-    const claims = v.claims || [];
-    if (claims.some((c) => c.missionId === missionId)) return false;
-
-    claims.push({ missionId, points, item, missionLabel });
-    v.claims = claims;
+    const done = v.done || [];
+    if (done.includes(missionId)) return false;
+    v.done = [...done, missionId];
     state.value = { ...state.value };
     return true;
   };
 
-  const unclaimMission = (variant, missionId) => {
+  const markUndone = (variant, missionId) => {
     const v = state.value.variants[variant];
-    if (!v?.claims) return false;
-    const idx = v.claims.findIndex((c) => c.missionId === missionId);
+    if (!v?.done) return false;
+    const idx = v.done.indexOf(missionId);
     if (idx === -1) return false;
-    v.claims.splice(idx, 1);
+    v.done.splice(idx, 1);
     state.value = { ...state.value };
     return true;
   };
 
-  const isClaimed = (variant, missionId) => {
-    return state.value.variants[variant]?.claims?.some((c) => c.missionId === missionId) ?? false;
+  const isDone = (variant, missionId) => {
+    return state.value.variants[variant]?.done?.includes(missionId) ?? false;
+  };
+
+  /** Prüft, ob alle übergebenen Mission-IDs für die Variante erledigt sind. */
+  const isWeekComplete = (variant, missionIds) => {
+    if (!missionIds?.length) return false;
+    return missionIds.every((id) => isDone(variant, id));
   };
 
   const getVariantProgress = (variant) => {
     const v = state.value.variants[variant];
-    const claims = v?.claims || [];
-    return {
-      totalPoints: claims.reduce((sum, c) => sum + (c.points || 0), 0),
-      claims: [...claims],
-      items: claims.map((c) => c.item).filter(Boolean),
-    };
+    return { done: [...(v?.done || [])] };
   };
-
-  const getTotalPointsAllVariants = computed(() => {
-    const v = state.value.variants;
-    return ['abenteuer', 'pferde', 'scifi'].reduce(
-      (sum, key) => sum + (getVariantProgress(key).totalPoints || 0),
-      0
-    );
-  });
 
   const resetProgress = (variant = null) => {
     if (variant) {
-      state.value.variants[variant] = { claims: [] };
+      state.value.variants[variant] = { done: [] };
     } else {
       state.value = defaultState();
     }
@@ -128,18 +107,11 @@ export function useFortschritt() {
         ? JSON.parse(jsonStringOrObject)
         : jsonStringOrObject;
       if (data.courseId !== COURSE_ID) return { ok: false, error: 'Falscher Kurs' };
-      const imported = data.version === 2 ? data : migrateFromV1(data);
       for (const v of ['abenteuer', 'pferde', 'scifi']) {
-        const existing = state.value.variants[v]?.claims || [];
-        const incoming = imported.variants?.[v]?.claims || [];
-        const existingIds = new Set(existing.map((c) => c.missionId));
-        for (const c of incoming) {
-          if (!existingIds.has(c.missionId)) {
-            existing.push(c);
-            existingIds.add(c.missionId);
-          }
-        }
-        state.value.variants[v].claims = existing;
+        const existing = new Set(state.value.variants[v]?.done || []);
+        const incoming = data.variants?.[v]?.done || [];
+        for (const id of incoming) existing.add(id);
+        state.value.variants[v].done = [...existing];
       }
       state.value = { ...state.value };
       return { ok: true };
@@ -150,11 +122,11 @@ export function useFortschritt() {
 
   return {
     state,
-    claimMission,
-    unclaimMission,
-    isClaimed,
+    markDone,
+    markUndone,
+    isDone,
+    isWeekComplete,
     getVariantProgress,
-    getTotalPointsAllVariants,
     resetProgress,
     save,
     exportProgress,

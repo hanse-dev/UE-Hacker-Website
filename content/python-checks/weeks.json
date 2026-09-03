@@ -271,7 +271,16 @@
           "explanation": "print gibt Werte aus – klein geschrieben, Text und Zahlen sind ok.",
           "explanation_en": "print gibt Werte aus – klein geschrieben, Text und Zahlen sind ok."
         }
-      ]
+      ],
+      "codingChallenge": {
+        "instruction": "Schreibe ein Programm, das den Text \"Level 1 geschafft!\" ausgibt.",
+        "instruction_en": "Write a program that prints the text \"Level 1 geschafft!\".",
+        "codeTemplate": "",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level 1 geschafft!"
+        }
+      }
     },
     "2": {
       "title": "Woche 2 – Datentypen & Variablen",
@@ -485,7 +494,16 @@
           "explanation": "print ist eine Funktion, kein Datentyp.",
           "explanation_en": "print ist eine Funktion, kein Datentyp."
         }
-      ]
+      ],
+      "codingChallenge": {
+        "instruction": "Berechne 7 + 5 und gib das Ergebnis aus.",
+        "instruction_en": "Calculate 7 + 5 and print the result.",
+        "codeTemplate": "",
+        "validation": {
+          "type": "output_contains",
+          "expected": "12"
+        }
+      }
     },
     "3": {
       "title": "Woche 3 – Bedingungen (if/else)",
@@ -697,7 +715,16 @@
           "explanation": "for gehört zu Schleifen.",
           "explanation_en": "for gehört zu Schleifen."
         }
-      ]
+      ],
+      "codingChallenge": {
+        "instruction": "Prüfe, ob die Zahl 15 größer als 10 ist, und gib das Ergebnis des Vergleichs aus (also True oder False).",
+        "instruction_en": "Check whether the number 15 is greater than 10, and print the result of the comparison (True or False).",
+        "codeTemplate": "",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True"
+        }
+      }
     },
     "4": {
       "title": "Woche 4 – Schleifen (for/while)",
@@ -909,7 +936,16 @@
           "explanation": "def definiert Funktionen; for/break/continue gehören zu Schleifen.",
           "explanation_en": "def definiert Funktionen; for/break/continue gehören zu Schleifen."
         }
-      ]
+      ],
+      "codingChallenge": {
+        "instruction": "Nutze eine Schleife, um die Zahlen 1 bis 5 zu addieren, und gib die Summe aus.",
+        "instruction_en": "Use a loop to add up the numbers 1 to 5, and print the sum.",
+        "codeTemplate": "",
+        "validation": {
+          "type": "output_contains",
+          "expected": "15"
+        }
+      }
     },
     "5": {
       "title": "Woche 5 – Funktionen",
@@ -1121,7 +1157,16 @@
           "explanation": "import turtle braucht man nur für Grafik.",
           "explanation_en": "import turtle braucht man nur für Grafik."
         }
-      ]
+      ],
+      "codingChallenge": {
+        "instruction": "Schreibe eine Funktion verdopple(zahl), die die doppelte Zahl zurückgibt, und gib verdopple(6) aus.",
+        "instruction_en": "Write a function verdopple(zahl) that returns double the number, and print verdopple(6).",
+        "codeTemplate": "",
+        "validation": {
+          "type": "output_contains",
+          "expected": "12"
+        }
+      }
     },
     "6": {
       "title": "Woche 6 – Listen",
@@ -1333,7 +1378,16 @@
           "explanation": "{\"a\": 1} ist ein Dictionary.",
           "explanation_en": "{\"a\": 1} ist ein Dictionary."
         }
-      ]
+      ],
+      "codingChallenge": {
+        "instruction": "Erstelle eine Liste mit den Zahlen 3, 7 und 2, und gib die größte Zahl aus (Tipp: max()).",
+        "instruction_en": "Create a list with the numbers 3, 7 and 2, and print the largest number (hint: max()).",
+        "codeTemplate": "",
+        "validation": {
+          "type": "output_contains",
+          "expected": "7"
+        }
+      }
     },
     "7": {
       "title": "Woche 7 – Module & Bibliotheken",
@@ -1545,7 +1599,16 @@
           "explanation": "random, math und json sind Standard.",
           "explanation_en": "random, math und json sind Standard."
         }
-      ]
+      ],
+      "codingChallenge": {
+        "instruction": "Importiere das math-Modul und gib die Quadratwurzel von 16 aus.",
+        "instruction_en": "Import the math module and print the square root of 16.",
+        "codeTemplate": "",
+        "validation": {
+          "type": "output_contains",
+          "expected": "4.0"
+        }
+      }
     },
     "8": {
       "title": "Woche 8 – Dictionaries & Tupel",
@@ -1757,7 +1820,16 @@
           "explanation": "int ist ein einzelner Zahlenwert.",
           "explanation_en": "int ist ein einzelner Zahlenwert."
         }
-      ]
+      ],
+      "codingChallenge": {
+        "instruction": "Erstelle ein Dictionary person mit dem Schlüssel \"name\" und dem Wert \"Alex\", und gib person[\"name\"] aus.",
+        "instruction_en": "Create a dictionary person with the key \"name\" and the value \"Alex\", and print person[\"name\"].",
+        "codeTemplate": "",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Alex"
+        }
+      }
     },
     "9": {
       "title": "Woche 9 – JSON & Dateien",
@@ -1969,7 +2041,16 @@
           "explanation": "turtle.forward gehört zur Grafik.",
           "explanation_en": "turtle.forward gehört zur Grafik."
         }
-      ]
+      ],
+      "codingChallenge": {
+        "instruction": "Wandle die Liste [1, 2, 3] mit json.dumps() in Text um und gib das Ergebnis aus.",
+        "instruction_en": "Convert the list [1, 2, 3] to text with json.dumps() and print the result.",
+        "codeTemplate": "import json\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "[1, 2, 3]"
+        }
+      }
     },
     "10": {
       "title": "Woche 10 – OOP Grundlagen",
@@ -2181,7 +2262,16 @@
           "explanation": "range() ist keine OOP-Idee.",
           "explanation_en": "range() ist keine OOP-Idee."
         }
-      ]
+      ],
+      "codingChallenge": {
+        "instruction": "Erstelle eine Klasse Tier mit einem Attribut name im __init__, erzeuge ein Objekt mit dem Namen \"Bello\" und gib tier.name aus.",
+        "instruction_en": "Create a class Tier with a name attribute in __init__, create an object named \"Bello\" and print tier.name.",
+        "codeTemplate": "",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bello"
+        }
+      }
     },
     "11": {
       "title": "Woche 11 – OOP Fortgeschritten",
@@ -2393,7 +2483,16 @@
           "explanation": "turtle.circle ist Grafik.",
           "explanation_en": "turtle.circle ist Grafik."
         }
-      ]
+      ],
+      "codingChallenge": {
+        "instruction": "Erstelle eine Klasse Basis mit einer Methode sag_hallo(), die \"Hallo!\" ausgibt, und eine Klasse Kind(Basis), die davon erbt. Erzeuge ein Kind-Objekt und rufe sag_hallo() auf.",
+        "instruction_en": "Create a class Basis with a method sag_hallo() that prints \"Hallo!\", and a class Kind(Basis) that inherits from it. Create a Kind object and call sag_hallo().",
+        "codeTemplate": "",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hallo!"
+        }
+      }
     },
     "12": {
       "title": "Woche 12 – Turtle-Grafik",
@@ -2605,7 +2704,16 @@
           "explanation": "json.loads gehört zu Dateien/JSON.",
           "explanation_en": "json.loads gehört zu Dateien/JSON."
         }
-      ]
+      ],
+      "codingChallenge": {
+        "instruction": "Importiere das turtle-Modul und gib danach \"Turtle bereit!\" aus.",
+        "instruction_en": "Import the turtle module and then print \"Turtle bereit!\".",
+        "codeTemplate": "",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Turtle bereit!"
+        }
+      }
     }
   }
 }

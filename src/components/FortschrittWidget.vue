@@ -10,7 +10,7 @@
         <p>{{ t('progress.intro2') }}</p>
       </div>
       <div class="fortschritt-import-export">
-        <button @click="exportFortschritt" class="fortschritt-io-btn" title="Fortschritt als JSON herunterladen">
+        <button @click="exportFortschritt" class="fortschritt-io-btn">
           {{ t('progress.export') }}
         </button>
         <label class="fortschritt-io-btn">
@@ -72,10 +72,7 @@
       <div class="fortschritt-variants">
         <div class="fortschritt-variant" v-for="v in displayedVariantKeys" :key="v">
           <span class="variant-label">{{ variantLabels[v] }}</span>
-          <span class="variant-points">{{ getVariantProgress(v).totalPoints }} {{ variantUnits[v] }}</span>
-          <span class="variant-items" v-if="getVariantProgress(v).claims.length > 0">
-            ({{ getVariantProgress(v).claims.length }} Missionen)
-          </span>
+          <span class="variant-certificate-count">{{ countCertificates(lang, v) }}/12 🎓</span>
         </div>
       </div>
 
@@ -95,52 +92,24 @@
               @click="weeklyTabVariant = v"
             >{{ variantLabels[v] }}</button>
           </div>
-          <div class="fortschritt-by-week">
-            <div class="week-progress-grid">
-              <div
-                v-for="w in getWeeklyProgress(weeklyTabVariant)"
-                :key="`${weeklyTabVariant}-w${w.week}`"
-                class="week-progress-card"
-                :class="{ 'has-claims': w.claimedCount > 0, 'complete': w.percentOpen === 0 }"
-              >
-                <div class="week-progress-header" @click="toggleWeekProgress(weeklyTabVariant, w.week)">
-                  <span class="week-number">{{ t('week.label') }} {{ w.week }}</span>
-                  <span class="week-stats">{{ w.claimedCount }}/6 ✓ {{ w.percentDone }}%</span>
-                  <span class="week-open" v-if="w.percentOpen > 0">{{ w.percentOpen }}{{ t('progress.week.open') }}</span>
-                  <span class="week-open complete" v-else>{{ t('progress.week.complete') }}</span>
-                  <span class="week-toggle">{{ isWeekProgressExpanded(weeklyTabVariant, w.week) ? '−' : '+' }}</span>
-                </div>
-                <div v-show="isWeekProgressExpanded(weeklyTabVariant, w.week)" class="week-progress-detail">
-                  <ul v-if="w.claims.length > 0" class="fortschritt-claims-list">
-                    <li v-for="(c, i) in w.claims" :key="`${weeklyTabVariant}-w${w.week}-${c.missionId}-${i}`">
-                      <span class="claim-label">{{ formatClaimLabel(c) }}:</span>
-                      <span class="claim-reward">{{ c.points }} {{ variantUnits[weeklyTabVariant] }} + {{ c.item }}</span>
-                    </li>
-                  </ul>
-                  <p v-else class="week-no-claims">{{ t('progress.week.noClaims') }}</p>
-                </div>
-              </div>
+          <div class="certificate-grid">
+            <div
+              v-for="w in 12"
+              :key="`${weeklyTabVariant}-w${w}`"
+              class="certificate-card"
+              :class="{ earned: isCertificateEarned(lang, weeklyTabVariant, w) }"
+            >
+              <span class="certificate-icon">{{ isCertificateEarned(lang, weeklyTabVariant, w) ? '🎓' : '🔒' }}</span>
+              <span class="certificate-week">{{ t('week.label') }} {{ w }}</span>
+              <span class="certificate-status">
+                {{ isCertificateEarned(lang, weeklyTabVariant, w) ? t('progress.week.certificate.earned') : t('progress.week.certificate.locked') }}
+              </span>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="fortschritt-details" v-for="v in displayedVariantKeys" :key="`details-${v}`">
-        <div v-if="getVariantProgress(v).claims.length > 0" class="fortschritt-variant-detail">
-          <h4>{{ variantLabels[v] }} – {{ t('progress.details.all') }}</h4>
-          <ul class="fortschritt-claims-list">
-            <li v-for="(c, i) in getVariantProgress(v).claims" :key="`${v}-${c.missionId}-${i}`">
-              <span class="claim-label">{{ formatClaimLabel(c) }} (Woche {{ getWeekFromMissionId(c.missionId) }}):</span>
-              <span class="claim-reward">{{ c.points }} {{ variantUnits[v] }} + {{ c.item }}</span>
-            </li>
-          </ul>
-          <h4 class="items-header">{{ t('progress.details.items') }}</h4>
-          <ul class="fortschritt-items-list">
-            <li v-for="(item, i) in getVariantProgress(v).items" :key="`${v}-item-${i}`">{{ item }}</li>
-          </ul>
-        </div>
-      </div>
-      <p class="fortschritt-hint" v-if="getTotalClaims() === 0">{{ t('progress.hint') }}</p>
+      <p class="fortschritt-hint" v-if="getTotalCertificates() === 0">{{ t('progress.hint') }}</p>
     </div>
   </div>
 </template>
@@ -148,23 +117,24 @@
 <script>
 import { ref, computed } from 'vue';
 import { useFortschritt } from '../composables/useFortschritt';
+import { useZertifikate } from '../composables/useZertifikate';
 import { useLanguage } from '../composables/useLanguage.js';
 
 const VARIANT_KEYS = ['abenteuer', 'pferde', 'scifi'];
-const WEEKLY_TOTAL = 6;
 
 export default {
   name: 'FortschrittWidget',
   setup() {
-    const { t } = useLanguage();
+    const { t, lang } = useLanguage();
     const fortschrittExpanded = ref(false);
     const skriptErklaerungExpanded = ref(false);
     const weeklySectionExpanded = ref(false);
     const weeklyTabVariant = ref('abenteuer');
     const selectedFortschrittVariant = ref('alle');
-    const weekProgressExpanded = ref({});
 
-    const { getVariantProgress, exportProgress, importProgress } = useFortschritt();
+    const { exportProgress, importProgress } = useFortschritt();
+    const { ensureManifestLoaded, isCertificateEarned, countCertificates } = useZertifikate();
+    ensureManifestLoaded(lang.value);
 
     const variantLabels = computed(() => ({
       abenteuer: t('variant.adventure'),
@@ -172,53 +142,12 @@ export default {
       scifi:     t('variant.scifi'),
     }));
 
-    const variantUnits = computed(() => ({
-      abenteuer: t('unit.adventure'),
-      pferde:    t('unit.horses'),
-      scifi:     t('unit.scifi'),
-    }));
-
     const displayedVariantKeys = computed(() =>
       selectedFortschrittVariant.value === 'alle' ? VARIANT_KEYS : [selectedFortschrittVariant.value]
     );
 
-    const deriveMissionLabel = (id) => {
-      const m = id.match(/w(\d+)-(m|boss)(\d+)/);
-      if (!m) return id;
-      return m[2] === 'm'
-        ? `${t('mission.label')} ${m[3]}`
-        : `${t('mission.boss.label')} ${m[3]}`;
-    };
-
-    const formatClaimLabel = (c) => c.missionLabel || (c.missionId ? deriveMissionLabel(c.missionId) : '–');
-    const getTotalClaims = () => VARIANT_KEYS.reduce((n, v) => n + getVariantProgress(v).claims.length, 0);
-
-    const getWeekFromMissionId = (missionId) => {
-      const m = missionId && missionId.match(/w(\d+)-/);
-      return m ? parseInt(m[1], 10) : '?';
-    };
-
-    const getWeeklyProgress = (variant) => {
-      const claims = getVariantProgress(variant).claims;
-      const byWeek = {};
-      for (let w = 1; w <= 12; w++) byWeek[w] = { week: w, claims: [], claimedCount: 0, percentDone: 0, percentOpen: 100 };
-      for (const c of claims) {
-        const w = getWeekFromMissionId(c.missionId);
-        if (typeof w === 'number' && byWeek[w]) {
-          byWeek[w].claims.push(c);
-          byWeek[w].claimedCount = byWeek[w].claims.length;
-          byWeek[w].percentDone = Math.round((byWeek[w].claimedCount / WEEKLY_TOTAL) * 100);
-          byWeek[w].percentOpen = 100 - byWeek[w].percentDone;
-        }
-      }
-      return Object.values(byWeek);
-    };
-
-    const isWeekProgressExpanded = (variant, week) => weekProgressExpanded.value[`${variant}-${week}`] ?? false;
-    const toggleWeekProgress = (variant, week) => {
-      const key = `${variant}-${week}`;
-      weekProgressExpanded.value = { ...weekProgressExpanded.value, [key]: !weekProgressExpanded.value[key] };
-    };
+    const getTotalCertificates = () =>
+      VARIANT_KEYS.reduce((n, v) => n + countCertificates(lang.value, v), 0);
 
     const exportFortschritt = () => {
       const json = exportProgress();
@@ -255,16 +184,12 @@ export default {
       displayedVariantKeys,
       variantKeys: VARIANT_KEYS,
       variantLabels,
-      variantUnits,
-      getVariantProgress,
-      formatClaimLabel,
-      getTotalClaims,
+      lang,
+      isCertificateEarned,
+      countCertificates,
+      getTotalCertificates,
       exportFortschritt,
       onImportFile,
-      getWeekFromMissionId,
-      getWeeklyProgress,
-      isWeekProgressExpanded,
-      toggleWeekProgress,
       t,
     };
   },
@@ -523,14 +448,8 @@ export default {
   margin-right: 8px;
 }
 
-.variant-points {
-  color: #ff4136;
-}
-
-.variant-items {
-  font-size: 0.9em;
-  color: #666;
-  margin-left: 4px;
+.variant-certificate-count {
+  color: #7c3aed;
 }
 
 .fortschritt-weekly-section {
@@ -597,132 +516,48 @@ export default {
   background: rgba(255, 255, 255, 0.5);
 }
 
-.fortschritt-by-week {
+.certificate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
   padding-top: 12px;
 }
 
-.week-progress-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 10px;
-}
-
-.week-progress-card {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid #eee;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.week-progress-card.has-claims {
-  border-color: #c8e6c9;
-  background: rgba(232, 245, 233, 0.6);
-}
-
-.week-progress-card.complete {
-  border-color: #2e7d32;
-  background: rgba(200, 230, 201, 0.8);
-}
-
-.week-progress-header {
+.certificate-card {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
-  gap: 6px;
-  padding: 10px 12px;
-  cursor: pointer;
-  font-size: 0.9em;
-}
-
-.week-progress-header:hover {
-  background: rgba(255, 255, 255, 0.7);
-}
-
-.week-number {
-  font-weight: 600;
-  color: #333;
-  min-width: 65px;
-}
-
-.week-stats {
-  color: #2e7d32;
-  font-weight: 600;
-}
-
-.week-open {
-  font-size: 0.85em;
-  color: #666;
-}
-
-.week-open.complete {
-  color: #2e7d32;
-}
-
-.week-toggle {
-  margin-left: auto;
-  font-weight: bold;
-  color: #999;
-}
-
-.week-progress-detail {
-  padding: 0 12px 12px 12px;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.week-progress-detail ul {
-  margin: 8px 0 0 0;
-  padding-left: 18px;
-}
-
-.week-no-claims {
-  margin: 8px 0 0 0;
-  font-size: 0.9em;
-  color: #999;
-  font-style: italic;
-}
-
-.fortschritt-details {
-  margin-top: 16px;
-}
-
-.fortschritt-variant-detail {
+  gap: 4px;
   background: rgba(255, 255, 255, 0.9);
-  padding: 16px;
-  border-radius: 8px;
   border: 1px solid #eee;
-  margin-bottom: 12px;
+  border-radius: 8px;
+  padding: 14px 10px;
+  text-align: center;
 }
 
-.fortschritt-variant-detail h4 {
-  margin: 0 0 10px 0;
-  font-size: 1em;
-  color: #555;
+.certificate-card.earned {
+  border-color: #c4b5fd;
+  background: rgba(237, 233, 254, 0.8);
 }
 
-.fortschritt-variant-detail .items-header {
-  margin-top: 16px;
-  margin-bottom: 8px;
+.certificate-icon {
+  font-size: 1.8em;
 }
 
-.fortschritt-claims-list,
-.fortschritt-items-list {
-  margin: 0 0 0 4px;
-  padding-left: 20px;
-}
-
-.fortschritt-claims-list li,
-.fortschritt-items-list li {
-  margin-bottom: 6px;
-}
-
-.claim-label {
+.certificate-week {
   font-weight: 600;
   color: #333;
-  margin-right: 6px;
+  font-size: 0.9em;
 }
 
-.claim-reward {
+.certificate-status {
+  font-size: 0.78em;
   color: #666;
+}
+
+.certificate-card.earned .certificate-status {
+  color: #5b21b6;
+  font-weight: 600;
 }
 
 .fortschritt-hint {

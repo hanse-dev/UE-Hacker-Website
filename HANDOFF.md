@@ -1,7 +1,9 @@
 # Handoff — UE Hacker Website
 
-> **Zuletzt aktualisiert:** 2026-08-20  
-> **Aktueller Stand:** Branch `main` (enthält PR #1–#4 sowie die Storytelling-Überarbeitung, siehe 3.4)  
+> **Zuletzt aktualisiert:** 2026-09-03  
+> **Aktueller Stand:** `main` enthält PR #1–#3 + Storytelling-Überarbeitung (siehe 3.4). Sieben weitere
+> Themen sind fertig auf eigenen Branches, aber noch **nicht** nach `main` gemerged — Merge/Deploy ist
+> auf Wunsch des Nutzers bewusst zurückgestellt (siehe 3.5).  
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -151,6 +153,84 @@ werden. Jeder Test wurde gegen eine absichtlich kaputte Kopie verifiziert (schl�
 Items (z.B. "Kristallkugel" 4×, "Quest-Buch" 4×) wiederholen sich im ganzen Kurs genauso. Bewusstes
 Belohnungs-Flavor-Muster für die schwierigste Mission der Woche — keine Umbenennung nötig.
 
+### 3.5 Sieben weitere Themen (je eigener Branch, fertig, noch nicht gemerged)
+
+Nutzer-Vorgabe: Branch-Namen jetzt **ohne** `cursor/`-Präfix (wurde nachträglich bei allen Branches
+entfernt). Jede Verhaltensänderung hat einen Playwright-Test (WORKFLOW.md-Regel, s.u.). Deploy/Merge
+bewusst zurückgestellt — der Nutzer will erst später deployen.
+
+**`debug-notebook-safety`** — Pyodide läuft komplett im Hauptthread (`usePyodide.js`); eine
+`while True:`-Zelle würde den Tab einfrieren, ein Web-Worker-Timeout hätte `input()` in 65 Notebooks
+kaputt gemacht (Worker hat kein `window.prompt()`). Stattdessen: AST-Injection (`_LoopDeadlineGuard`
+in `usePyodide.js`), die in jede `for`/`while`-Schleife eine Deadline-Prüfung einbaut; nach 5s wirft
+`_CellTimeout(BaseException)` (bewusst nicht `Exception`, damit generische `except Exception`-Blöcke
+in Nutzercode das nicht schlucken). Zusätzlich: 24 Sci-Fi-Debug-Notebooks (12 Wochen × DE+EN) um eine
+"Ziel:"-Zeile ergänzt, damit Bug-Zellen ein erkennbares Soll-Verhalten nennen.
+
+**`et-fixes`** — Einstufungstest-Verbesserungen: "Weiß ich nicht"-Option im Quiz (eigene, freundliche
+Rückmeldung statt harter Falsch-Wertung-Optik), Einstufung von 2 auf 3 Fragen/Woche mit eigener
+`placementPassThreshold: 0.66` (bewusst nicht 0.67 — `2/3 = 0.6666...` liegt SONST unter der Schwelle,
+selbst gefunden per `python3 -c "print(2/3>=0.67)"` → `False`), 12 Distraktoren in Wochen 1-4 von
+generischem Unsinn zu plausiblen Missverständnissen geschärft.
+
+**`interaktiv-klarer`** — gestufter Hinweis in `LessonView.vue`: beim ersten Fehlversuch nur ein
+vager Hinweis, der wörtliche erwartete Teilstring wird erst ab dem zweiten Fehlversuch gezeigt (vorher
+wirkte die sofortige wörtliche Anzeige wie Lösungsverrat).
+
+**`text-typo-pass`** — `cspell.json` + `npm run lint:spelling` neu eingerichtet (braucht `"import"`,
+nicht nur `"dictionaries"`, sonst 400+ Fehlalarme). Reale Tippfehler gefunden und behoben: britisches
+Englisch vereinheitlicht (W12 EN "colors"→"colours"), "Parours"→"Parcours", "pferdbezogene"→
+"pferdebezogene", "Pferdname"→"Pferdename", "Futterschip"→"Futterschippe" (auch im Rewards-Manifest),
+doppeltes "Du betrittstest"→"Du betrittst" (W1+W10 Sci-Fi).
+
+**`backup-sqlite-db`** — `api/src/scripts/backup-db.js`: sicheres Backup der Live-SQLite-DB per
+`VACUUM INTO` (kein `cp`, das bei gleichzeitigen Schreibzugriffen korrumpieren könnte) + Rotation
+(`BACKUP_KEEP`, Default 14). `npm run backup:db` (Root + `api/`). Tests mit `node --test` (erste
+Tests im `api/`-Ordner).
+
+**`kurs-caesar-chiffre`** — erstes eigenständiges Projekt neben den Wochenkursen (nicht Teil des
+12-Wochen- oder Interaktiv-Kurses): `content/caesar-chiffre/` mit 5 Lektionen (ord/chr, Verschieben
+mit Modulo, Verschlüsseln-Funktion, Entschlüsseln-Funktion, Brute-Force-Knacker). Neue, schlanke
+`src/components/ProjectCourse.vue` (reduzierte Kopie der Nicht-Varianten-Teile von
+`InteractiveCourse.vue`, kein Kinder/Jugendliche-Varianten-Selector). Eintrag in `kurse.json` als
+`projekt-caesar-chiffre`, verlinkt aus dem 12-Wochen-Kurs. Auf `kurs-python-spiele` wurde
+`ProjectCourse.vue` danach generalisiert (`contentPath`-Prop statt fest verdrahteter Konstanten),
+damit sich mehrere Projekt-Kurse die Komponente teilen können — das ist bereits committet, die
+eigentlichen Spiele-Inhalte für `kurs-python-spiele` fehlen aber noch (siehe todo.md).
+
+**`wochen-zertifikate`** — größere Änderung, vom Nutzer explizit angestoßen: das Punkte-/
+Sammel-Item-System wird komplett durch **Wochen-Zertifikate** ersetzt. Auslöser war der Wunsch, dass
+Boss-Quests+Missionen allein ("einfaches Abhaken") zu wenig Aussagekraft haben — der Nutzer wollte
+das Für-und-Wider erst diskutieren, bevor etwas gebaut wird. Ergebnis nach Abstimmung:
+- Ein Zertifikat pro Woche **und** Variante (Abenteuer-/Pferde-/Sci-Fi-Zertifikat — nur der Name ist
+  variantenspezifisch, die zugrunde liegenden Quiz-/Coding-Fragen bleiben generisch/geteilt) wird nur
+  verliehen, wenn **beides** erfüllt ist: (a) alle 3 Missionen + alle 3 Boss-Quests dieser Woche sind
+  als erledigt markiert, UND (b) der Wochen-Check ist bestanden — und der Wochen-Check besteht jetzt
+  aus zwei Teilen: dem bestehenden Quiz **plus einer neuen kleinen, automatisch geprüften
+  Programmieraufgabe** (1 pro Woche, generisch, Pyodide-basiert). Reines Abhaken oder ein reines Quiz
+  allein reichen also nicht mehr.
+- Punkte/Items sind komplett weg, keine Kompatibilitäts-Schicht. `public/rewards-manifest*.json`
+  enthalten nur noch ID-Listen (`missions`, `bossQuests`), keine `points`/`item`-Felder mehr.
+- Neue/umgebaute Dateien: `content/python-checks/weeks.json` (neues Feld `codingChallenge` pro
+  Woche: `instruction(_en)`, `codeTemplate`, `validation: {type:'output_contains', expected}` — jeder
+  `expected`-Wert lokal mit `python3` gegen den Template-Code verifiziert), `useFortschritt.js`
+  (Schema-Version 3: `{variants:{abenteuer|pferde|scifi:{done:[missionId,...]}}}`, API
+  `markDone`/`markUndone`/`isDone`/`isWeekComplete`), `useWeekChecks.js` (getrennt
+  `markQuizPassed`/`markCodingPassed`, `isWeekCheckPassed` = beide bestanden), neue
+  `useZertifikate.js` (Zertifikats-Logik: Manifest + Fortschritt + Week-Checks zusammenführen), neue
+  `CodeChallenge.vue` (Pyodide-Editor + Prüfen-Button, analog zu den Notebook-Zellen), `MissionenPanel.vue`
+  und `FortschrittWidget.vue` komplett neu (Checklisten-UI statt Punktestand, Zertifikats-Raster statt
+  Item-Sammlung), `scripts/fortschritt.py` (lokales Skript für Jupyter/VS-Code-Nutzer) entsprechend
+  vereinfacht. Tests: `tests/zertifikate.spec.js` (in `test:checks` aufgenommen).
+- **Ein Playwright-Bug beim Testen selbst** (nicht im Produktivcode): `passWeek1Quiz()` im Test las
+  `.quiz-question`-Anzahl, bevor `loadWeekChecks()` (asynchroner Fetch) fertig war → 0 Fragen erkannt,
+  0 Klicks, `.btn-check-quiz` blieb für immer disabled. Fix: `await expect(cards.first()).toBeVisible()`
+  vor dem Auslesen der Anzahl ergänzen. Falls an anderer Stelle ein ähnliches Timing-Problem auftaucht
+  (Frage-Anzahl 0 trotz sichtbarem Check-Tab): zuerst prüfen, ob auf das Laden gewartet wurde, bevor
+  ein Bug in `QuizStep.vue`/`WeekCheckPanel.vue` vermutet wird.
+- `content/python-12-wochen-grundkurs(-en)/beschreibung.md` und `INHALTE.md` Abschnitt 4 wurden
+  passend zur neuen Terminologie aktualisiert (kein "Punkte sammeln" mehr).
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -204,19 +284,26 @@ Siehe auch `todo.md`.
 
 **Betrieb**
 - [ ] Server-Deploy final verifizieren (Service `app`, Orphans weg, Health, Admin-Login, kein Notebook-Blinken mehr nach PR #3)
+- [ ] Backup-Skript (`backup-sqlite-db`, siehe 3.5) auf dem Server einrichten, sobald die anderen Branches gemerged sind
 
 **Inhalte**
 - Keine offenen Punkte aus der Storytelling-Überarbeitung mehr (siehe 3.4) — "Gilde-Meister-Urkunde" geklärt, kein Bug
 
-**Nächste Features — je eigener Branch von `main` (Reihenfolge):**
+**Fertige, ungemergte Branches (siehe 3.5 für Details):** `debug-notebook-safety`, `et-fixes`,
+`interaktiv-klarer`, `text-typo-pass`, `backup-sqlite-db`, `kurs-caesar-chiffre`, `wochen-zertifikate`.
+Merge/Deploy ist auf Nutzerwunsch bewusst zurückgestellt — nicht ohne Rückfrage mergen.
 
-1. **`cursor/kurs-python-spiele`** — Python Spiele-Werkstatt (Turtle/Textspiele)  
-2. **`cursor/kurs-python-projekte`** — „Was kommt danach?“ Projekt-Sprints  
-3. **`cursor/kurs-js-minigames`** *oder* **`cursor/kurs-ki-labor`** — Entscheidung beim Start  
+**Laufend/als Nächstes:**
 
-Nicht mischen; Details/Checkboxen in `todo.md`.
+1. **`kurs-python-spiele`** — Python Spiele-Werkstatt, `ProjectCourse.vue` schon generalisiert,
+   Inhalte (mehrere kleine Projekte wie Cäsar-Chiffre, DE-first) fehlen noch
+2. **`kurs-python-projekte`** — „Was kommt danach?“ Projekt-Sprints
+3. **`kurs-js-minigames`** *oder* **`kurs-ki-labor`** — Entscheidung beim Start
 
-**Bewusst nicht geplant:** öffentliches Sign-up, E-Mail, Supabase als Pflicht.
+Branch-Namen jetzt **ohne** `cursor/`-Präfix. Nicht mischen; Details/Checkboxen in `todo.md`.
+
+**Bewusst nicht geplant:** öffentliches Sign-up, Supabase als Pflicht. Kontakt-E-Mail im Footer wartet
+noch auf die tatsächliche Adresse vom Nutzer (nicht selbst erfinden).
 
 **Bekannte Altlasten (niedrige Prio):** Notebook-Download-ZIP nur DE; optionale EN-Nachzüge bei neuen Kursen.
 
@@ -224,13 +311,16 @@ Nicht mischen; Details/Checkboxen in `todo.md`.
 
 ## 6. Entscheidungen / Konventionen (nicht ohne Rückfrage ändern)
 
-- Ein Thema = ein Branch `cursor/…` von `main` (`WORKFLOW.md`)
+- Ein Thema = ein Branch von `main`, **ohne** `cursor/`-Präfix (`WORKFLOW.md`)
+- Jede Verhaltensänderung braucht einen Playwright-Test (`WORKFLOW.md`) — reine Text-/Typo-Korrekturen sind ausgenommen
 - Accounts: Admin legt an; `ageGroup` kinder|jugendliche; ein Mensch = ein Account
 - Sync: per-key Merge nach `updatedAt`
 - Prod: ein Container `app`, Port 8080, API serviert Static
 - SQLite bleibt; Node ≥ 22 wegen `node:sqlite`
 - Vor Commit: `test:checks`; Auth-Änderungen zusätzlich `test:auth`
 - Inhaltsänderungen: `INHALTE.md` Abschnitt 6 (DE/EN, Manifeste, `kurse.json`)
+- Missionen/Belohnungen kennen seit `wochen-zertifikate` **keine Punkte/Items mehr** — nur noch
+  Zertifikate (siehe 3.5). Nicht versehentlich wieder ein Punktesystem einführen.
 
 ---
 
@@ -238,8 +328,10 @@ Nicht mischen; Details/Checkboxen in `todo.md`.
 
 1. `git checkout main && git pull`  
 2. `HANDOFF.md` + `todo.md` + `WORKFLOW.md` lesen  
-3. Neues Thema → **neuen** Branch, z.B. `git checkout -b cursor/kurs-python-spiele`  
-4. Nicht: altes `prod` in Compose erwarten; nicht: Sync so ändern, dass Notebooks wieder voll neu geladen werden bei jedem Apply  
+3. Neues Thema → **neuen** Branch (ohne `cursor/`-Präfix), z.B. `git checkout -b kurs-python-spiele`  
+4. Nicht: altes `prod` in Compose erwarten; nicht: Sync so ändern, dass Notebooks wieder voll neu geladen werden bei jedem Apply; nicht: Punkte-/Item-System wieder einführen  
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
-**Empfohlener nächster inhaltlicher Schritt:** Branch `cursor/kurs-python-spiele` anlegen und Kursgerüst (`kurse.json` + Content-Ordner) skizzieren.
+**Empfohlener nächster inhaltlicher Schritt:** Beim Nutzer nachfragen, ob/wann die sieben fertigen
+Branches (3.5) gemerged werden sollen, oder direkt mit den Spiele-Inhalten auf `kurs-python-spiele`
+weitermachen.

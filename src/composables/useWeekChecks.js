@@ -160,13 +160,19 @@ if (typeof window !== 'undefined') {
 }
 
 export function useWeekChecks() {
-  const markWeekPassed = (weekNumber, scoreResult) => {
+  // Der Wochen-Check besteht aus zwei unabhängig abschließbaren Teilen (Quiz + Coding-Aufgabe).
+  // Das Zertifikat einer Woche setzt voraus, dass BEIDE bestanden sind — isWeekCheckPassed()
+  // bleibt daher als "vollständig bestanden"-Abfrage bestehen, liest aber jetzt aus zwei Flags.
+  const markQuizPassed = (weekNumber, scoreResult) => {
+    const key = String(weekNumber);
+    const existing = progress.value.weeks?.[key] || {};
     progress.value = {
       ...progress.value,
       weeks: {
         ...progress.value.weeks,
-        [String(weekNumber)]: {
-          status: 'passed',
+        [key]: {
+          ...existing,
+          quizPassed: true,
           score: scoreResult.score,
           correct: scoreResult.correct,
           total: scoreResult.total,
@@ -176,8 +182,30 @@ export function useWeekChecks() {
     };
   };
 
+  const markCodingPassed = (weekNumber) => {
+    const key = String(weekNumber);
+    const existing = progress.value.weeks?.[key] || {};
+    progress.value = {
+      ...progress.value,
+      weeks: {
+        ...progress.value.weeks,
+        [key]: {
+          ...existing,
+          codingPassed: true,
+          at: new Date().toISOString(),
+        },
+      },
+    };
+  };
+
+  const isQuizPassedForWeek = (weekNumber) =>
+    progress.value.weeks?.[String(weekNumber)]?.quizPassed === true;
+
+  const isCodingPassedForWeek = (weekNumber) =>
+    progress.value.weeks?.[String(weekNumber)]?.codingPassed === true;
+
   const isWeekCheckPassed = (weekNumber) =>
-    progress.value.weeks?.[String(weekNumber)]?.status === 'passed';
+    isQuizPassedForWeek(weekNumber) && isCodingPassedForWeek(weekNumber);
 
   const savePlacementResult = (weekScores) => {
     if (!weekScores) {
@@ -224,7 +252,10 @@ export function useWeekChecks() {
 
   return {
     progress,
-    markWeekPassed,
+    markQuizPassed,
+    markCodingPassed,
+    isQuizPassedForWeek,
+    isCodingPassedForWeek,
     isWeekCheckPassed,
     savePlacementResult,
     savePlacementSession,

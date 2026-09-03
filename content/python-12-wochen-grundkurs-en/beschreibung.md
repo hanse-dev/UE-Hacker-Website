@@ -8,7 +8,7 @@ The course is aimed at everyone who wants to start with Python **from scratch**.
 
 - **12 weeks** – each week has a clear topic: variables, loops, functions, lists, OOP, turtle graphics, and more.
 - **Three theme worlds** – choose between Adventure, Horse Stables, or Sci-Fi. All teach the same Python knowledge, just with different settings.
-- **Missions & rewards** – each week consists of small missions you master. You can collect points for motivation and to celebrate your progress. This is optional and just for fun.
+- **Missions & certificates** – each week consists of small missions you master. Complete all of them and pass the week check (quiz + a small coding task), and you earn that week's certificate – proof that you really understood the topic.
 
 ## Placement – where should I start?
 

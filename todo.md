@@ -34,22 +34,50 @@
 - [x] Einstufung / Checks in `main` (PR #1)
 - [x] Admin-Login / Progress-Sync in `main` (PR #2)
 - [x] Notebook-Sync-Loop-Fix in `main` (PR #3)
+- [x] Backup-Skript für die SQLite-Nutzerdatenbank (Branch `backup-sqlite-db`, VACUUM INTO + Rotation)
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken)
+
+---
+
+## Fertige Branches (noch nicht nach `main` gemerged)
+
+Reihenfolge-Empfehlung fürs Mergen: `debug-notebook-safety` → `et-fixes` → `interaktiv-klarer` →
+`text-typo-pass` → `backup-sqlite-db` → `kurs-caesar-chiffre` → `wochen-zertifikate`. Deploy/Merge
+bewusst zurückgestellt (siehe HANDOFF.md).
+
+- [x] `debug-notebook-safety` — 5s-Timeout gegen Endlosschleifen in Pyodide-Zellen (AST-Loop-Guard,
+      kein Web-Worker nötig), Sci-Fi-Debug-Notebooks (24 Dateien) um Ziel-Angabe ergänzt
+- [x] `et-fixes` — "Weiß nicht"-Option im Quiz, Einstufung auf 3 Fragen/Woche mit eigener
+      66%-Schwelle, 12 Distraktoren in Wochen 1-4 geschärft
+- [x] `interaktiv-klarer` — gestufter Hinweis im interaktiven Kurs (vager Hinweis beim 1. Fehlversuch,
+      wörtlicher erwarteter Wert erst ab dem 2.)
+- [x] `text-typo-pass` — cspell-Setup (`cspell.json`, `lint:spelling`) + reale Tippfehler behoben
+      (Britisches Englisch W12, "Parours"→"Parcours", "Futterschip"→"Futterschippe" u.a.)
+- [x] `kurs-caesar-chiffre` — erstes eigenständiges Projekt neben den Wochenkursen (5 Lektionen,
+      neue `ProjectCourse.vue`), verlinkt aus dem 12-Wochen-Kurs
+- [ ] `kurs-python-spiele` — `ProjectCourse.vue` bereits generalisiert (mehrere Projekt-Kurse teilen
+      sich die Komponente), die eigentlichen Spiele-Inhalte (Quiz-Arena, Turtle-Welt, Galgenmännchen)
+      noch offen
+- [x] `wochen-zertifikate` — Punkte-/Sammelsystem komplett entfernt, ersetzt durch Wochen-Zertifikate:
+      Zertifikat pro Woche/Variante nur wenn alle Missionen+Boss-Quests erledigt UND Wochen-Check
+      (Quiz + neue generische Coding-Aufgabe pro Woche) bestanden ist. `rewards-manifest*.json` auf
+      reine ID-Listen reduziert (keine Punkte/Items mehr), `useFortschritt.js`/`useWeekChecks.js`
+      neu geschrieben, neue `useZertifikate.js`. Tests: `tests/zertifikate.spec.js`.
 
 ---
 
 ## Nächste Themen (je eigener Branch von `main`)
 
-Reihenfolge empfohlen: 1 → 2 → 3. Nicht mischen.
+Reihenfolge empfohlen: 1 → 2 → 3. Nicht mischen. (Branch-Namen ohne `cursor/`-Präfix.)
 
-### 1. Python Spiele-Werkstatt — Branch `cursor/kurs-python-spiele`
+### 1. Python Spiele-Werkstatt — Branch `kurs-python-spiele` (bereits begonnen, s.o.)
+- [x] `ProjectCourse.vue` generalisiert für mehrere Projekt-Kurse
 - [ ] Kursmetadaten in `kurse.json` (+ EN)
-- [ ] Content-Struktur (Wochen/Tabs analog bestehender Kurse oder Kurzformat)
-- [ ] Turtle-/Textspiele, Level-Ideen, Belohnungen falls passend
-- [ ] DE + EN (oder bewusst DE-first, EN nachziehen)
+- [ ] Content-Struktur (mehrere kleine Projekte wie Cäsar-Chiffre, DE-first)
+- [ ] Turtle-/Textspiele, Level-Ideen
 - [ ] Smoke-Test / manuell prüfen → PR nach `main`
 
-### 2. Was kommt danach? Projekt-Sprints — Branch `cursor/kurs-python-projekte`
+### 2. Was kommt danach? Projekt-Sprints — Branch `kurs-python-projekte`
 - [ ] 2–3 feste Projekt-Sprints (je ~2 Wochen Umfang skizzieren)
 - [ ] Kursseite + Einstieg von 12-Wochen-Kurs verlinken („Weiter so“)
 - [ ] Projektideen aus Einstufung ggf. hier ausbauen
@@ -57,8 +85,8 @@ Reihenfolge empfohlen: 1 → 2 → 3. Nicht mischen.
 - [ ] Smoke-Test → PR nach `main`
 
 ### 3. JS Mini-Games (Teens) **oder** KI-Labor — Branch wählen:
-- **A)** `cursor/kurs-js-minigames` — Browser-Spiele, Canvas/p5, Zielgruppe 13–17
-- **B)** `cursor/kurs-ki-labor` — Prompts, Grenzen, Schul-Nutzen (breitere Zielgruppe)
+- **A)** `kurs-js-minigames` — Browser-Spiele, Canvas/p5, Zielgruppe 13–17
+- **B)** `kurs-ki-labor` — Prompts, Grenzen, Schul-Nutzen (breitere Zielgruppe)
 - [ ] Entscheidung A vs B (oder beide nacheinander, je ein Branch)
 - [ ] Kursmetadaten + Content
 - [ ] Smoke-Test → PR nach `main`
