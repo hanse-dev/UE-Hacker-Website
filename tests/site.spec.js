@@ -115,3 +115,34 @@ test.describe('Weitere Kursseiten', () => {
     await expect(page.locator('.course-error')).toHaveCount(0);
   });
 });
+
+test.describe('Debug-Notebook-Sicherheit', () => {
+  test('Endlosschleife bricht nach ~5s ab statt den Tab einzufrieren', async ({ page }) => {
+    test.setTimeout(60000);
+    await page.goto(`${COURSE_URL}?week=1&tab=debug#woche-1`);
+    const week = page.locator('#woche-1');
+    await expect(week.locator('.btn-run-cell').first()).toBeVisible({ timeout: 20000 });
+
+    // Kernel initialisiert sich beim Mount bereits automatisch — nicht extra klicken
+    // (der Button kann währenddessen schon deaktiviert/instabil sein).
+    await expect(week.locator('.btn-run-cell').first()).toBeEnabled({ timeout: 40000 });
+
+    const editor = week.locator('.code-editor').first();
+    const runBtn = week.locator('.btn-run-cell').first();
+    await editor.fill('while True:\n    pass\n');
+
+    const start = Date.now();
+    await runBtn.click();
+    await expect(week.locator('.output-error').first()).toBeVisible({ timeout: 15000 });
+    const elapsed = Date.now() - start;
+
+    expect(elapsed).toBeGreaterThan(3000);
+    expect(elapsed).toBeLessThan(12000);
+    await expect(week.locator('.output-error').first()).toContainText(/Endlosschleife/);
+
+    // Kernel muss danach weiter benutzbar sein — keine dauerhafte Blockade.
+    await editor.fill('print("kernel lebt", 1 + 1)');
+    await runBtn.click();
+    await expect(week.locator('.output-stream').first()).toContainText('kernel lebt 2', { timeout: 10000 });
+  });
+});

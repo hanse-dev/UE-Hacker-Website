@@ -152,7 +152,7 @@ werden. Jeder Test wurde gegen eine absichtlich kaputte Kopie verifiziert (schl�
 Items (z.B. "Kristallkugel" 4×, "Quest-Buch" 4×) wiederholen sich im ganzen Kurs genauso. Bewusstes
 Belohnungs-Flavor-Muster für die schwierigste Mission der Woche — keine Umbenennung nötig.
 
-### 3.5 Debug-Notebook-Sicherheit: Endlosschleifen-Schutz + Sci-Fi-Debug-Ziele (Branch `cursor/debug-notebook-safety`)
+### 3.5 Debug-Notebook-Sicherheit: Endlosschleifen-Schutz + Sci-Fi-Debug-Ziele (Branch `debug-notebook-safety`)
 
 **Ausgangslage:** 10 Verbesserungswünsche wurden in 6 Branches gruppiert (Plan-Datei
 `~/.claude/plans/scalable-singing-cook.md`), Reihenfolge B→A→E→F→C→D. Dies ist Branch B.
@@ -184,7 +184,9 @@ kein Blocker.
 Endlosschleife auch verschachtelt in Funktionen, geteilte Variablen über Zellen hinweg bleiben
 erhalten, NameError/SyntaxError propagieren weiterhin normal) sowie live im Browser per Playwright
 (Debug-Tab, Sci-Fi, Woche 1): `while True: pass` wird nach ~5032ms mit Fehlermeldung abgebrochen,
-danach läuft eine normale Zelle sofort wieder korrekt.
+danach läuft eine normale Zelle sofort wieder korrekt. **Dauerhafter Regressionstest** ergänzt:
+`tests/site.spec.js` → Describe „Debug-Notebook-Sicherheit" (prüft Abbruchzeit 3-12s, Fehlertext
+und dass der Kernel danach weiter benutzbar bleibt).
 
 **Debug-Ziele (Punkt 6):** Sci-Fi-Variante komplett (12 Wochen × DE+EN = 24 Dateien, 72
 Bug-Markdown-Zellen) um eine **Ziel:**/**Goal:**-Zeile ergänzt, die das erwartete Verhalten/die
@@ -193,7 +195,12 @@ einem Tupel: "Ziel: Das Programm soll die erste Koordinate auf `150` ändern" �
 Tupel-Unveränderlichkeit zu erwähnen). Stichprobenartig gegen den jeweiligen Code-Kontext geprüft
 (Woche 1, 8, 11) — akkurat und spoilerfrei; `tests/storytelling-content.spec.js`s
 Anti-Spoiler-Test (prüft nur Code-Zellen auf `# Bug:`-Kommentare) bleibt unberührt, da nur
-Markdown-Zellen geändert wurden.
+Markdown-Zellen geändert wurden. **Dauerhafter Regressionstest** ergänzt: neuer Test „Woche 1:
+Debug-Bugs nennen ein Ziel, ohne den Fehler zu verraten" prüft Anzahl Ziel-Zeilen == Anzahl Bugs
+und dass keine typischen Spoiler-Formulierungen vorkommen. Dabei nebenbei einen latenten Bug im
+Test-Helper `openWeek()` gefunden und behoben: er ging noch davon aus, dass Woche 1 (Index 0)
+immer aufgeklappt startet — das war seit der "Woche 1 zuklappen"-Änderung nicht mehr der Fall,
+wurde aber nie bemerkt, weil kein bisheriger Test Woche 1 über diesen Helper geöffnet hatte.
 
 **Offen (nächste Session):** Pferde- und Abenteuer-Variante nach demselben Muster mit Debug-Zielen
 ergänzen (im Plan als "danach nachziehen" vorgesehen, nicht in dieser Sitzung geschafft).

@@ -17,6 +17,12 @@ Plan-Datei: `~/.claude/plans/scalable-singing-cook.md` (Kontext/Details je Branc
       72 Bug-Zellen) um eine **Ziel:**/**Goal:**-Zeile ergänzt, die das erwartete Verhalten/die
       erwartete Ausgabe beschreibt, ohne den Bug zu verraten. Stichprobenartig geprüft (Woche 1, 8,
       11) — akkurat und spoilerfrei.
+- [x] Dauerhafte Tests ergänzt (waren zunächst nur manuell per Playwright-Skript verifiziert, nicht
+      in der Suite): `tests/site.spec.js` → "Debug-Notebook-Sicherheit" (Endlosschleife bricht nach
+      3-12s ab, Kernel bleibt danach nutzbar) und `tests/storytelling-content.spec.js` → "Woche 1:
+      Debug-Bugs nennen ein Ziel" (Anzahl Ziel-Zeilen == Anzahl Bugs, keine Spoiler-Formulierungen).
+      Dabei einen latenten Bug im Test-Helper `openWeek()` gefunden+behoben (ging noch davon aus,
+      dass Woche 1 immer aufgeklappt startet).
 - [ ] Punkt 6 Fortsetzung: Pferde- und Abenteuer-Variante nach demselben Muster (nicht in dieser
       Sitzung gemacht — nächste Session)
 
