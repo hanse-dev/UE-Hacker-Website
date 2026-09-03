@@ -37,124 +37,38 @@ Lernplattform für Kinder/Jugendliche (Python) — Vue 3 + Vite, Notebooks unter
 
 ## 3. Was sich geändert hat (Zusammenfassung der großen Features)
 
-### 3.1 Einstufung & Checks (PR #1)
+### 3.1 Einstufung & Checks (PR #1) — gemerged
 
-- Kurs `python-einstufung`; Fragen in `content/python-checks/weeks.json`
-- Pro Woche Tab **Check**; Multi-Select; gemischte Optionen
-- Placement: Fragen pro Woche; bei 100 % Projektideen
-- Deep-Link öffnet 12-Wochen-Kurs mit Notebooks
-- Playwright: `npm run test:checks` + Pre-commit `.githooks/pre-commit`
+Kurs `python-einstufung`, Fragen in `content/python-checks/weeks.json`, Check-Tab pro Woche,
+Deep-Link öffnet den 12-Wochen-Kurs an der richtigen Stelle. Details: `git log` / PR #1.
 
-### 3.2 Admin, Accounts, Sync, Deploy (PR #2)
+### 3.2 Admin, Accounts, Sync, Deploy (PR #2) — gemerged
 
-**API (`api/`):**
-- Express, SQLite über **`node:sqlite`** (Node **≥ 22**, kein better-sqlite3)
-- Tabellen: `users`, `progress`
-- Admin: `POST /api/admin/login`, CRUD `/api/admin/users` (Bearer Admin-Token)
-- Learner: `POST /api/login`, `GET /api/me`, `GET|PUT /api/progress`
-- Env: Projektroot `.env` — **`ADMIN_PASSWORD` Pflicht**; geladen **nur beim Prozessstart**
-- DB-Datei: `api/data/ue-hacker.sqlite` (gitignored; Volume in Docker)
+Express+SQLite-API (`api/`, `node:sqlite`, Node ≥ 22), Admin-Login + User-Verwaltung, Learner-Login
+mit Progress-Sync (per-Key-Merge nach `updatedAt`, ohne Login bleibt alles lokal), Single-Port-Deploy
+(`docker compose up -d --build app` → Service **`app`**, nicht `prod`). Aktuelle Betriebsbefehle stehen
+in Abschnitt 4, Details zur Umsetzung: `git log` / PR #2.
 
-**Frontend:**
-- `/admin` — User anlegen (`kinder` | `jugendliche`)
-- Header **Optionen** → Modal: Sprache DE/EN, Konto, Anmelden/Abmelden
-- Sync-Keys u.a.: `ue-hacker-fortschritt`, `ue-hacker-week-checks`, Interactive, `ue-hacker-notebook-state-*`
-- Merge: pro Key, neueres `updatedAt` gewinnt → lokal + Server (`useProgressSync.js`, `progressMerge.js`)
-- Ohne Login: alles bleibt lokal
+### 3.3 Notebook-Sync-Loop-Fix (PR #3) — gemerged
 
-**Einstufung UX (auch PR #2-Zeitraum):**
-- Pro Frage **Prüfen**; Zwischenstand in `placement.session` in week-checks-Storage
-- Wird mit Account mitgesynct
+**Gelernte Regel:** Sync darf nach dem Anwenden von Server-Zuständen niemals einen vollen
+Notebook-Re-Fetch auslösen — sonst reagiert der Watcher darauf, synct erneut, und es entsteht eine
+Endlosschleife (führte zu sichtbarem Blinken bei eingeloggten Nutzern). Sync wendet Zustand seither
+nur lokal an, ohne Reload. Details: `git log` / PR #3, `useProgressSync.js`.
 
-**Deploy:**
-- `Dockerfile`: Build Frontend → Image mit API + `dist`
-- `docker compose up -d --build app` → `:8080`
-- **Nicht** mehr: `docker-compose up … prod` (Service existiert nicht → Fehler + Orphans)
-- Alte Orphans: `docker compose down --remove-orphans`
+### 3.4 Storytelling-Überarbeitung 12-Wochen-Kurs — gemerged
 
-### 3.3 Notebook-Sync-Loop-Fix (PR #3) — wichtig
+Alle 3 Varianten (Abenteuer/Pferde/Sci-Fi), alle 12 Wochen wurden auf zusammenhängende Szenen statt
+Schritt-Listen geprüft und mehrere echte Content-Bugs behoben (kaputter Code, Boss-Quest-Duplikate,
+Textfehler) — Details siehe Commit-Historie.
 
-**Symptom:** Auf dem Server blinkte das Notebook ca. jede Sekunde; Network: `.ipynb` + `/api/progress` in Endlosschleife (oft bei **eingeloggt**).
-
-**Ursache:**  
-`PROGRESS_APPLIED` → `JupyterNotebook` machte volles `loadNotebook()` (Fetch + `loading`) → Watch speicherte → `touchSyncKey` → Sync → Apply → wieder Event.
-
-**Fix:**
-- Sync wendet Notebook-State nur lokal an, **ohne** Re-Fetch / ohne Loading-Blink
-- `syncNow` skippt Apply/Put wenn nichts geändert
-- `saveState` / Apply schreiben nur bei Inhaltsänderung; `applying`-Flag etwas länger (Tick), damit Vue-Watcher keinen Re-Sync auslösen
-
-Dateien: `src/composables/useProgressSync.js`, `src/components/JupyterNotebook.vue`
-
-**Server nach Merge:** `git pull` auf `main` + `docker compose up -d --build app` + Hard-Reload.
-
-### 3.4 Storytelling-Überarbeitung 12-Wochen-Kurs (alle 3 Varianten, alle 12 Wochen)
-
-**Ziel:** Missionen/Boss-Quests waren oft nur Schritt-Listen mit Deko statt echter Szenen, manche Wochen
-lösten ihr eigenes Titelversprechen nicht ein, und es gab mehrere echte Content-Bugs (kaputter Code,
-Textfehler, kopierte Boss-Quests). Pro Woche wurde geprüft, ob ein Umbau nötig ist, und nur dort umgebaut,
-wo es einen echten Mangel gab.
-
-**Abenteuer-Variante** (zuerst, als Vorlage):
-- Woche 7 als Pilot komplett umgebaut: Rahmengeschichte "Der Archivar der Bibliothek von Pyralia" mit
-  drei zusammenhängenden Prüfungen statt isolierter Schritt-Listen; Bibliothekswahl von `math`-lastig auf
-  `random`/`string`/`time` umgestellt
-- Pythonia/Pyralia-Namenskonflikt weltweit vereinheitlicht (auf "Pyralia") — Woche 1, 10, 12 (DE+EN)
-  sowie die Vorlagen unter `Regeln/`
-- Woche 2 umgebaut: "Elementarturm", vier Datentypen jetzt explizit als Elemente (🔥 Feuer=str,
-  🪨 Erde=int, 💧 Wasser=float, 💨 Luft=bool)
-- Woche 6: Boss-Quest 1+2 waren wortwörtlich von Woche 5 kopiert — umbenannt/umgethemt
-- Woche 8: Debug-Bug #1 hatte keinen Fehler mehr (fehlende schließende Klammer nie entfernt) — repariert
-- Woche 9: Missionen-Formatierung vereinheitlicht
-- Woche 10: Boss-Quest 2 "Der Zookeeper" (reale Zootiere) zu "Die Kreaturen-Menagerie" umgethemt
-- Woche 12: Textbug "Als Nächstes: Woche – wartet schon!" repariert (betraf auch Pferde/Sci-Fi DE)
-- Woche 3, 4, 5, 11 geprüft und für gut befunden
-
-**Pferde- und Sci-Fi-Variante** (nach demselben Prinzip, Analyse zuerst per Subagent):
-- Sci-Fi Woche 11: kompletter Lektion-Code (DE) war kaputt (fehlendes `def`/`self` bei jeder Methode) —
-  an die korrekte EN-Version angeglichen; Weltname vereinheitlicht (Nebula-7 statt "Evolution-Station
-  Alpha-7")
-- Sci-Fi Woche 8: Debug-Bug #1 hatte keinen Fehler mehr — repariert (DE+EN)
-- Sci-Fi Woche 5/6/8: Boss-Quest "Raumstation(s)-Manager" dreifach dupliziert — Woche 6 zu
-  "Der Hangar-Verwalter", Woche 8 zu "Die Sensor-Matrix" umgethemt (DE+EN), rewards-manifest angepasst
-- Sci-Fi Woche 12: "XP" statt "Cyber Credits" korrigiert
-- Sci-Fi Woche 9: f-String-Syntaxrisiko behoben (verschachtelte gleiche Anführungszeichen, vor Python
-  3.12 ein SyntaxError)
-- Sci-Fi Woche 12: Debug-Bugs entspoilert (Kommentare verrieten die Lösung direkt); Lösungs-Notebook an
-  den tatsächlichen Bug angeglichen (war inhaltlich falsch zugeordnet)
-- Sci-Fi Woche 5: fehlende Platzhalterkommentare in Boss-Quest-Codezellen ergänzt
-- Sci-Fi Woche 7: Missionen enger an eine durchgehende Szene gebunden (Systemchecks/Kalibrierung/
-  Erkundungsmission statt lose math/random-Häppchen)
-- Pferde Woche 9: Intro wortwörtlich von Woche 8 kopiert — neue Rahmengeschichte "Die Zuchtbücher von
-  Sonnental" (DE+EN); Belohnungsitem "Daten-Chip" (eigentlich Sci-Fi-Item) zu "Stammbaum-Urkunde"
-  korrigiert
-- Pferde Woche 5/8: abgebrochener Satz und mehrfacher "Funktion eine Funktion"-Textbug repariert (DE+EN)
-- Pferde Woche 7/8/9: "Sonnentals"-Tippfehler (falsche Genitivform) zu "Sonnental" korrigiert
-- Pferde Woche 12: "XP" statt "Huf-Punkte" und Tippfehler "Visualierungsbrett" korrigiert (DE)
-- Pferde Woche 12 + Sci-Fi Woche 12 + Abenteuer Woche 12: Debug-Bug-Spoiler-Kommentare entfernt (DE+EN)
-- Pferde Woche 2: "Vier Hufschlag-Typen" jetzt benannt (Schritt=str, Trab=int, Galopp=float, Sprung=bool)
-- **Nebenfund:** `week5_horses_1_lektion.ipynb` (EN) hatte unescaped Anführungszeichen und war dadurch
-  kaputtes JSON (Notebook konnte in der Website nicht laden) — repariert. Repo-weiter Scan aller 444
-  Notebooks bestätigt danach: keine weiteren kaputten Dateien.
-
-**Gelernte Regeln:**
+**Gelernte Regeln (weiterhin relevant für Notebook-Arbeit):**
 1. Debug-Notebook-Bugs müssen unabhängig vom geteilten Jupyter-Kernel-Zustand sein — ein "vergessener
-   Import" funktioniert nicht mehr, wenn eine frühere Zelle das Modul schon importiert hat.
-2. Debug-Notebook-Kommentare dürfen die Lösung nicht verraten (keine "# Bug: X fehlt!"-Kommentare) —
-   vage Leitfragen sind ok ("Was fehlt hier?").
-3. Bei jeder Notebook-Änderung: Code-Zellen ausführen/kompilieren (auch mit geteiltem Namespace) und
-   JSON-Validität prüfen, bevor committet wird.
+   Import" wirkt nicht mehr, wenn eine frühere Zelle das Modul schon importiert hat.
+2. Debug-Notebook-Kommentare dürfen die Lösung nicht verraten — vage Leitfragen sind ok.
+3. Bei jeder Notebook-Änderung: Code-Zellen ausführen und JSON-Validität prüfen, bevor committet wird.
 
-**Systemtests:** Die wichtigsten Fixes sind als Playwright-Regressionstests in `tests/storytelling-content.spec.js`
-festgehalten (läuft mit in `npm run test:checks`) — prüft u.a. Woche-9-Pferde-Rahmengeschichte,
-Hufschlag-Typen-Benennung, Sci-Fi-Woche-11-Code-Korrektheit (def/self), Boss-Quest-Eindeutigkeit
-Woche 6/8 Sci-Fi, Cyber-Credits/Huf-Punkte statt XP, und dass Debug-Bugs nicht im Kommentar verraten
-werden. Jeder Test wurde gegen eine absichtlich kaputte Kopie verifiziert (schlägt dann fehl).
-
-**Geklärt:** "Gilde-Meister-Urkunde" als Zwischenbelohnung in W6/7/8 (Abenteuer) ist kein Bug — Pferde
-("Reitmeister-Urkunde") und Sci-Fi ("Crew-Meister-Urkunde") nutzen dasselbe Muster je 3×, und andere
-Items (z.B. "Kristallkugel" 4×, "Quest-Buch" 4×) wiederholen sich im ganzen Kurs genauso. Bewusstes
-Belohnungs-Flavor-Muster für die schwierigste Mission der Woche — keine Umbenennung nötig.
+Regressionstests: `tests/storytelling-content.spec.js` (Teil von `npm run test:checks`).
 
 ### 3.5 Sieben weitere Themen (je eigener Branch, fertig, noch nicht gemerged)
 
@@ -327,7 +241,7 @@ Siehe auch `todo.md`.
 - [ ] Backup-Skript (`backup-sqlite-db`, siehe 3.5) auf dem Server einrichten, sobald die anderen Branches gemerged sind
 
 **Inhalte**
-- Keine offenen Punkte aus der Storytelling-Überarbeitung mehr (siehe 3.4) — "Gilde-Meister-Urkunde" geklärt, kein Bug
+- Keine offenen Punkte aus der Storytelling-Überarbeitung mehr (siehe 3.4)
 - [ ] **Neu gefunden, noch nicht behoben:** Boss-Quest-Lösungscode (`6_loesungen`-Notebooks) und
   Abschluss-Markdown enthalten noch punkte-artige Feier-Texte, z.B. `print("🎉 +400 XP: Boss-Quest
   abgeschlossen!")` und `**Gesammelte XP:** 1500 Punkte`. Das sind **keine** `**Belohnung:**`-Zeilen
