@@ -57,6 +57,42 @@ test.describe('Storytelling-Überarbeitung: Pferde', () => {
     expect(week9Text).not.toContain(week8Intro);
     expect(week9Text).not.toContain('Sonnentals');
   });
+
+  test('Woche 1: Debug-Bugs nennen ein Ziel, ohne den Fehler zu verraten', async ({ page }) => {
+    await page.goto(COURSE_URL);
+    const week = await openWeek(page, 0); // Woche 1
+    await selectVariant(week, 'Pferde');
+    await selectTab(week, 'Debug');
+
+    const text = await week.locator('.notebook-cells').innerText();
+    const bugCount = (text.match(/Bug #\d/g) || []).length;
+    const zielCount = (text.match(/\*\*Ziel:\*\*|Ziel:/g) || []).length;
+    expect(bugCount).toBeGreaterThan(0);
+    expect(zielCount).toBe(bugCount);
+    expect(text).toContain('Das Programm soll den Text');
+
+    const spoilerWords = /fehlende[rs]?\s+(Klammer|Anführungszeichen|import)|Tippfehler|falsch geschrieben/i;
+    expect(text).not.toMatch(spoilerWords);
+  });
+});
+
+test.describe('Storytelling-Überarbeitung: Abenteuer', () => {
+  test('Woche 1: Debug-Bugs nennen ein Ziel, ohne den Fehler zu verraten', async ({ page }) => {
+    await page.goto(COURSE_URL);
+    const week = await openWeek(page, 0); // Woche 1
+    await selectVariant(week, 'Abenteuer');
+    await selectTab(week, 'Debug');
+
+    const text = await week.locator('.notebook-cells').innerText();
+    const bugCount = (text.match(/Bug #\d/g) || []).length;
+    const zielCount = (text.match(/\*\*Ziel:\*\*|Ziel:/g) || []).length;
+    expect(bugCount).toBeGreaterThan(0);
+    expect(zielCount).toBe(bugCount);
+    expect(text).toContain('Das Programm soll den Text');
+
+    const spoilerWords = /fehlende[rs]?\s+(Klammer|Anführungszeichen|import)|Tippfehler|falsch geschrieben/i;
+    expect(text).not.toMatch(spoilerWords);
+  });
 });
 
 test.describe('Storytelling-Überarbeitung: Sci-Fi', () => {
