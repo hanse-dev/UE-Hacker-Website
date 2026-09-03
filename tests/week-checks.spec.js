@@ -123,6 +123,70 @@ test.describe('Einstufung & Check-Tab', () => {
     await expect(page.locator('.cell').first()).toBeVisible({ timeout: 20000 });
   });
 
+  test('Einstufung: "Ich weiß es nicht" zeigt eigene Rückmeldung und die richtige Antwort', async ({ page }) => {
+    await page.goto(PLACEMENT_URL);
+    await expect(page.locator('.quiz-question').first()).toBeVisible({ timeout: 15000 });
+    if (await page.locator('.btn-retry').isVisible().catch(() => false)) {
+      await page.locator('.btn-retry').click();
+      await expect(page.locator('.quiz-question').first()).toBeVisible({ timeout: 15000 });
+    }
+
+    const card = page.locator('.quiz-question').first();
+    await card.getByRole('button', { name: /weiß es nicht/i }).click();
+    await card.locator('.btn-check-one').click();
+
+    await expect(card.locator('.question-feedback')).toContainText('Kein Problem');
+    await expect(card.locator('.option-btn.correct')).toHaveCount(1);
+    await expect(card.locator('.option-dontknow.selected')).toBeVisible();
+  });
+
+  test('Einstufung: 2 von 3 richtig pro Woche reicht (0.66-Schwelle), 1 von 3 nicht', async ({ page }) => {
+    test.setTimeout(120000);
+    await page.goto(PLACEMENT_URL);
+    await expect(page.locator('.quiz-question').first()).toBeVisible({ timeout: 15000 });
+    if (await page.locator('.btn-retry').isVisible().catch(() => false)) {
+      await page.locator('.btn-retry').click();
+      await expect(page.locator('.quiz-question').first()).toBeVisible({ timeout: 15000 });
+    }
+
+    const cards = page.locator('.quiz-question');
+    const count = await cards.count();
+    expect(count).toBe(12 * checks.placementPerWeek);
+    expect(checks.placementPerWeek).toBe(3); // Test setzt 3 Fragen/Woche voraus
+
+    for (let i = 0; i < count; i++) {
+      const card = cards.nth(i);
+      const weekIdx = Math.floor(i / 3);
+      const posInWeek = i % 3;
+
+      // Woche 1 (weekIdx 0): 2 richtig + 1 "weiß nicht" -> 2/3 = 67% >= 0.66 -> "ok"
+      // Woche 2 (weekIdx 1): 1 richtig + 2 "weiß nicht" -> 1/3 = 33% < 0.66 -> "review"
+      // Alle anderen Wochen: komplett richtig, damit sie nicht in die Bewertung hineinspielen.
+      const shouldDontKnow =
+        (weekIdx === 0 && posInWeek === 2) ||
+        (weekIdx === 1 && posInWeek >= 1);
+
+      if (shouldDontKnow) {
+        await card.getByRole('button', { name: /weiß es nicht/i }).click();
+      } else {
+        const raw = await card.locator('.question-text').innerText();
+        const q = findQuestion(raw);
+        expect(q, `Unbekannte Frage: ${raw}`).toBeTruthy();
+        for (const opt of correctOptionTexts(q)) {
+          await clickOptionByExactText(card, opt);
+        }
+      }
+      await card.locator('.btn-check-one').click();
+    }
+
+    await expect(page.locator('.placement-results')).toBeVisible({ timeout: 10000 });
+    const results = page.locator('.week-result');
+    await expect(results.nth(0)).toHaveClass(/ok/);
+    await expect(results.nth(0)).toContainText('2/3');
+    await expect(results.nth(1)).toHaveClass(/review/);
+    await expect(results.nth(1)).toContainText('1/3');
+  });
+
   test('Einstufung: Zwischenstand wird wiederhergestellt', async ({ page }) => {
     await page.goto(PLACEMENT_URL);
     await expect(page.locator('.quiz-question').first()).toBeVisible({ timeout: 15000 });

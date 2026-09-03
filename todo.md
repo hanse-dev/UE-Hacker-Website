@@ -21,6 +21,10 @@ Plan-Datei: `~/.claude/plans/scalable-singing-cook.md` (Kontext/Details je Branc
 - [x] Punkt 4: Distraktoren für Wochen 1-4 (12 von 40 Fragen, die genuin unplausibel waren, z.B.
       "Um den Computer auszuschalten") durch nähere Verwechslungen ersetzt (DE+EN), Rest der
       12 Wochen bewusst nicht angefasst (todo für spätere Session, siehe unten)
+- [x] Dauerhafte Tests ergänzt (Punkt 1 + 3 waren zunächst nur manuell per Playwright-Skript
+      verifiziert, nicht in der Suite): `tests/week-checks.spec.js` → "Ich weiß es nicht zeigt
+      eigene Rückmeldung und die richtige Antwort" sowie "2 von 3 richtig pro Woche reicht
+      (0.66-Schwelle), 1 von 3 nicht"
 
 **Offen für später:** Distraktoren für Wochen 5-12 nach demselben Muster (~80 Fragen, nicht in
 dieser Sitzung gemacht).

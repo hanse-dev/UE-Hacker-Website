@@ -182,10 +182,12 @@ Belohnungs-Flavor-Muster für die schwierigste Mission der Woche — keine Umben
   (echte Verwechslungen wie `==`/`=`/`!=` oder `//`/`/*` für Kommentare) wurden bewusst NICHT
   angefasst. Wochen 5-12 sind noch offen (siehe `todo.md`).
 
-**Getestet:** `npm run test:checks` (alle 32 bestehen, inkl. dynamisch mitgehendem
-`placementPerWeek`-Test) + live im Browser per Playwright: "weiß nicht" zeigt Rückmeldung und
-markiert die korrekte Antwort weiterhin grün; 2/3 richtig pro Woche → "ok", 1/3 richtig → "review";
-Falsch-Antwort zeigt "Nicht ganz — …".
+**Getestet:** `npm run test:checks` (alle 34 bestehen, inkl. dynamisch mitgehendem
+`placementPerWeek`-Test) + live im Browser per Playwright verifiziert. **Dauerhafte Regressionstests
+ergänzt** (waren zunächst nur manuell verifiziert, nicht in der Suite): `tests/week-checks.spec.js`
+→ „Ich weiß es nicht zeigt eigene Rückmeldung und die richtige Antwort" sowie „2 von 3 richtig pro
+Woche reicht (0.66-Schwelle), 1 von 3 nicht" (beantwortet Woche 1 mit 2/3, Woche 2 mit 1/3, Rest
+korrekt, prüft `.week-result.ok`/`.review`-Klassen und die angezeigten Bruch-Werte).
 
 ---
 
