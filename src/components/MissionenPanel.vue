@@ -5,6 +5,7 @@
       <span class="missionen-toggle">{{ expanded ? '−' : '+' }}</span>
     </div>
     <div v-show="expanded" class="missionen-panel-content">
+      <p class="missionen-panel-hint">{{ t('mission.panel.hint') }}</p>
       <p v-if="hasCheck && !checkPassed" class="checkpoint-mission-hint">
         {{ t('mission.check.hint') }}
       </p>
@@ -79,9 +80,7 @@ export default {
     const hasCheck = computed(() => hasWeekCheck(checksData.value, props.weekNumber));
     const checkPassed = computed(() => isWeekCheckPassed(props.weekNumber));
 
-    const certificateEarned = computed(() =>
-      isCertificateEarned(lang.value, props.variant, props.weekNumber)
-    );
+    const certificateEarned = computed(() => isCertificateEarned(props.weekNumber));
 
     onMounted(async () => {
       ensureManifestLoaded(lang.value);
@@ -124,6 +123,13 @@ export default {
 .missionen-toggle { font-size: 1.1em; color: #92400e; font-weight: bold; }
 
 .missionen-panel-content { padding: 6px 16px 12px; border-top: 1px solid #fde68a; }
+
+.missionen-panel-hint {
+  margin: 8px 0;
+  font-size: 0.8em;
+  color: #92400e;
+  font-style: italic;
+}
 
 .checkpoint-mission-hint {
   margin: 8px 0 10px 0;

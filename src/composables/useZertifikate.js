@@ -1,11 +1,11 @@
 import { ref } from 'vue';
 import { assetUrl } from '../utils/assetUrl';
-import { useFortschritt } from './useFortschritt';
 import { useWeekChecks } from './useWeekChecks';
 
 const COURSE_ID = 'python-12-wochen-grundkurs';
 
 // Manifest ist pro Sprache gecacht, damit nicht jede Komponente einzeln fetcht.
+// Wird nur noch für die Missionen-Anzeige (Übungs-Checkliste) gebraucht, nicht mehr fürs Zertifikat.
 const manifestByLang = { de: ref(null), en: ref(null) };
 const loadPromises = {};
 
@@ -23,7 +23,6 @@ async function ensureManifestLoaded(lang) {
 }
 
 export function useZertifikate() {
-  const { isWeekComplete } = useFortschritt();
   const { isWeekCheckPassed } = useWeekChecks();
 
   const getManifest = (lang) => manifestByLang[lang === 'en' ? 'en' : 'de'].value;
@@ -39,17 +38,17 @@ export function useZertifikate() {
     return [...missions, ...bossQuests];
   };
 
-  /** Zertifikat einer Woche/Variante: alle Missionen+Boss-Quest erledigt UND Wochen-Check (Quiz+Coding) bestanden. */
-  const isCertificateEarned = (lang, variant, weekNumber) => {
-    const ids = getWeekMissionIds(lang, variant, weekNumber);
-    if (!ids.length) return false;
-    return isWeekComplete(variant, ids) && isWeekCheckPassed(weekNumber);
-  };
+  /**
+   * Zertifikat einer Woche: nur der Wochen-Check zählt (Quiz + beide Coding-Aufgaben bestanden).
+   * Missionen/Boss-Quests sind reine Übungs-Checkliste und keine Voraussetzung mehr — es gibt
+   * damit nur noch EIN Zertifikat pro Woche, unabhängig von der gewählten Variante.
+   */
+  const isCertificateEarned = (weekNumber) => isWeekCheckPassed(weekNumber);
 
-  const countCertificates = (lang, variant) => {
+  const countCertificates = () => {
     let count = 0;
     for (let w = 1; w <= 12; w++) {
-      if (isCertificateEarned(lang, variant, w)) count++;
+      if (isCertificateEarned(w)) count++;
     }
     return count;
   };

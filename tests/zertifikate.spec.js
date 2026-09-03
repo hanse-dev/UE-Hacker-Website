@@ -47,11 +47,17 @@ async function passWeek1Quiz(week) {
   await week.locator('.btn-check-quiz').click();
 }
 
-async function passWeek1CodingChallenge(week) {
-  await expect(week.locator('.code-challenge .btn-check')).toBeEnabled({ timeout: 40000 });
-  await week.locator('.code-challenge .code-editor').fill('print("Level 1 geschafft!")');
-  await week.locator('.code-challenge .btn-check').click();
-  await expect(week.locator('.code-challenge .feedback-success, .code-challenge .challenge-feedback.feedback-success')).toBeVisible({ timeout: 10000 });
+async function passCodingChallenge(week, challengeIndex, code) {
+  const challenge = week.locator(`.code-challenge[data-challenge-index="${challengeIndex}"]`);
+  await expect(challenge.locator('.btn-check')).toBeEnabled({ timeout: 40000 });
+  await challenge.locator('.code-editor').fill(code);
+  await challenge.locator('.btn-check').click();
+  await expect(challenge.locator('.feedback-success, .challenge-feedback.feedback-success')).toBeVisible({ timeout: 10000 });
+}
+
+async function passWeek1CodingChallenges(week) {
+  await passCodingChallenge(week, 0, 'print("Level 1 geschafft!")');
+  await passCodingChallenge(week, 1, 'name = "Nova"\nlevel = 3\nprint(name + " hat Level " + str(level) + " erreicht!")');
 }
 
 test.describe('Wochen-Zertifikate', () => {
@@ -63,7 +69,7 @@ test.describe('Wochen-Zertifikate', () => {
     });
   });
 
-  test('Missionen allein reichen nicht — Zertifikat braucht auch den Wochen-Check', async ({ page }) => {
+  test('Missionen allein reichen nicht — Zertifikat braucht den Wochen-Check', async ({ page }) => {
     test.setTimeout(60000);
     await page.goto(`${COURSE_URL}?week=1&tab=lektion#woche-1`);
     const week = page.locator('#woche-1');
@@ -81,26 +87,26 @@ test.describe('Wochen-Zertifikate', () => {
     await expect(week.locator('.certificate-earned')).toHaveCount(0);
   });
 
-  test('Alle Missionen + Quiz + Coding-Aufgabe → Zertifikat wird verliehen', async ({ page }) => {
-    test.setTimeout(90000);
-    await page.goto(`${COURSE_URL}?week=1&tab=lektion#woche-1`);
+  test('Nur Quiz ohne beide Coding-Aufgaben reicht nicht', async ({ page }) => {
+    test.setTimeout(60000);
+    await page.goto(`${COURSE_URL}?week=1&tab=check#woche-1`);
     const week = page.locator('#woche-1');
-    await expect(week.locator('.week-content')).toBeVisible({ timeout: 20000 });
-
-    await week.locator('.missionen-panel-header').click();
-    const missionItems = week.locator('.mission-item');
-    await expect(missionItems.first()).toBeVisible({ timeout: 10000 });
-    const missionCount = await missionItems.count();
-    for (let i = 0; i < missionCount; i++) {
-      await missionItems.nth(i).locator('.btn-claim').click();
-    }
-
-    await week.locator('.tab-btn:has-text("Check")').click();
     await expect(week.locator('.week-check-panel')).toBeVisible({ timeout: 20000 });
     await passWeek1Quiz(week);
-    await passWeek1CodingChallenge(week);
+    await passCodingChallenge(week, 0, 'print("Level 1 geschafft!")');
 
-    // Das Missionen-Panel ist eine eigene Zeile (kein Tab-Inhalt) und bleibt aufgeklappt.
+    await expect(week.locator('.certificate-earned')).toHaveCount(0);
+  });
+
+  test('Quiz + beide Coding-Aufgaben (ohne Missionen) → Zertifikat wird verliehen', async ({ page }) => {
+    test.setTimeout(90000);
+    await page.goto(`${COURSE_URL}?week=1&tab=check#woche-1`);
+    const week = page.locator('#woche-1');
+    await expect(week.locator('.week-check-panel')).toBeVisible({ timeout: 20000 });
+    await passWeek1Quiz(week);
+    await passWeek1CodingChallenges(week);
+
+    await week.locator('.missionen-panel-header').click();
     await expect(week.locator('.certificate-earned')).toBeVisible({ timeout: 5000 });
   });
 
@@ -108,29 +114,21 @@ test.describe('Wochen-Zertifikate', () => {
     test.setTimeout(60000);
     await page.goto(`${COURSE_URL}?week=1&tab=check#woche-1`);
     const week = page.locator('#woche-1');
-    await expect(week.locator('.code-challenge')).toBeVisible({ timeout: 20000 });
-    await expect(week.locator('.code-challenge .btn-check')).toBeEnabled({ timeout: 40000 });
+    const challenge = week.locator('.code-challenge[data-challenge-index="0"]');
+    await expect(challenge).toBeVisible({ timeout: 20000 });
+    await expect(challenge.locator('.btn-check')).toBeEnabled({ timeout: 40000 });
 
-    await week.locator('.code-challenge .code-editor').fill('print("etwas ganz anderes")');
-    await week.locator('.code-challenge .btn-check').click();
-    await expect(week.locator('.code-challenge .feedback-error')).toBeVisible({ timeout: 10000 });
-    await expect(week.locator('.code-challenge .challenge-badge')).toHaveCount(0);
+    await challenge.locator('.code-editor').fill('print("etwas ganz anderes")');
+    await challenge.locator('.btn-check').click();
+    await expect(challenge.locator('.feedback-error')).toBeVisible({ timeout: 10000 });
+    await expect(challenge.locator('.challenge-badge')).toHaveCount(0);
   });
 
   test('FortschrittWidget zeigt das Zertifikat im Wochen-Raster', async ({ page }) => {
     await page.addInitScript(() => {
-      localStorage.setItem('ue-hacker-fortschritt', JSON.stringify({
-        version: 3,
-        courseId: 'python-12-wochen-grundkurs',
-        variants: {
-          abenteuer: { done: ['w1-m1', 'w1-m2', 'w1-m3', 'w1-boss1', 'w1-boss2', 'w1-boss3'] },
-          pferde: { done: [] },
-          scifi: { done: [] },
-        },
-      }));
       localStorage.setItem('ue-hacker-week-checks', JSON.stringify({
         version: 1,
-        weeks: { '1': { quizPassed: true, codingPassed: true, at: new Date().toISOString() } },
+        weeks: { '1': { quizPassed: true, codingPassed: { 0: true, 1: true }, at: new Date().toISOString() } },
         placement: null,
       }));
     });
@@ -140,7 +138,6 @@ test.describe('Wochen-Zertifikate', () => {
 
     await page.locator('.fortschritt-widget-header').click();
     await page.locator('.fortschritt-weekly-header').click();
-    await page.locator('.weekly-tab-btn', { hasText: 'Abenteuer' }).click();
 
     const week1Card = page.locator('.certificate-card').first();
     await expect(week1Card).toHaveClass(/earned/);

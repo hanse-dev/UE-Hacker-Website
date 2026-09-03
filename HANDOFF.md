@@ -200,36 +200,73 @@ eigentlichen Spiele-Inhalte für `kurs-python-spiele` fehlen aber noch (siehe to
 
 **`wochen-zertifikate`** — größere Änderung, vom Nutzer explizit angestoßen: das Punkte-/
 Sammel-Item-System wird komplett durch **Wochen-Zertifikate** ersetzt. Auslöser war der Wunsch, dass
-Boss-Quests+Missionen allein ("einfaches Abhaken") zu wenig Aussagekraft haben — der Nutzer wollte
-das Für-und-Wider erst diskutieren, bevor etwas gebaut wird. Ergebnis nach Abstimmung:
-- Ein Zertifikat pro Woche **und** Variante (Abenteuer-/Pferde-/Sci-Fi-Zertifikat — nur der Name ist
-  variantenspezifisch, die zugrunde liegenden Quiz-/Coding-Fragen bleiben generisch/geteilt) wird nur
-  verliehen, wenn **beides** erfüllt ist: (a) alle 3 Missionen + alle 3 Boss-Quests dieser Woche sind
-  als erledigt markiert, UND (b) der Wochen-Check ist bestanden — und der Wochen-Check besteht jetzt
-  aus zwei Teilen: dem bestehenden Quiz **plus einer neuen kleinen, automatisch geprüften
-  Programmieraufgabe** (1 pro Woche, generisch, Pyodide-basiert). Reines Abhaken oder ein reines Quiz
-  allein reichen also nicht mehr.
+Boss-Quests+Missionen allein ("einfaches Abhaken") zu wenig Aussagekraft haben. Der Nutzer wollte das
+Für-und-Wider erst diskutieren, dann kam die Anforderung in zwei Schritten — erst "Quiz + eine
+Coding-Aufgabe zusätzlich zu den Missionen", dann (nach weiterem Nachdenken des Nutzers) die deutlich
+einfachere Endversion: **Missionen zählen gar nicht mehr fürs Zertifikat.**
+
+Finaler Stand:
+- **Ein** Zertifikat pro Woche (keine Varianten-Aufteilung — ein früherer Zwischenstand hatte noch
+  Abenteuer-/Pferde-/Sci-Fi-Zertifikate vorgesehen, das wurde verworfen, weil das Zertifikat inhaltlich
+  komplett variantenunabhängig ist: Quiz und Coding-Aufgaben sind generisch/geteilt. 3 separate,
+  aber immer identisch verliehene Zertifikate hätten keinen Mehrwert gehabt). Verliehen wird es, sobald
+  der Wochen-Check bestanden ist — und der besteht aus **Quiz + zwei Coding-Aufgaben** (leicht +
+  schwerer, je eine pro Woche, generisch, Pyodide-basiert). Missionen/Boss-Quests bleiben als
+  freiwillige Übungs-Checkliste pro Variante bestehen (weiterhin abhakbar in `MissionenPanel.vue`),
+  zählen aber nicht mehr als Voraussetzung.
 - Punkte/Items sind komplett weg, keine Kompatibilitäts-Schicht. `public/rewards-manifest*.json`
   enthalten nur noch ID-Listen (`missions`, `bossQuests`), keine `points`/`item`-Felder mehr.
-- Neue/umgebaute Dateien: `content/python-checks/weeks.json` (neues Feld `codingChallenge` pro
-  Woche: `instruction(_en)`, `codeTemplate`, `validation: {type:'output_contains', expected}` — jeder
-  `expected`-Wert lokal mit `python3` gegen den Template-Code verifiziert), `useFortschritt.js`
-  (Schema-Version 3: `{variants:{abenteuer|pferde|scifi:{done:[missionId,...]}}}`, API
-  `markDone`/`markUndone`/`isDone`/`isWeekComplete`), `useWeekChecks.js` (getrennt
-  `markQuizPassed`/`markCodingPassed`, `isWeekCheckPassed` = beide bestanden), neue
-  `useZertifikate.js` (Zertifikats-Logik: Manifest + Fortschritt + Week-Checks zusammenführen), neue
-  `CodeChallenge.vue` (Pyodide-Editor + Prüfen-Button, analog zu den Notebook-Zellen), `MissionenPanel.vue`
-  und `FortschrittWidget.vue` komplett neu (Checklisten-UI statt Punktestand, Zertifikats-Raster statt
-  Item-Sammlung), `scripts/fortschritt.py` (lokales Skript für Jupyter/VS-Code-Nutzer) entsprechend
-  vereinfacht. Tests: `tests/zertifikate.spec.js` (in `test:checks` aufgenommen).
+- `content/python-checks/weeks.json`: Feld heißt jetzt `codingChallenges` (Array, nicht mehr
+  `codingChallenge`-Objekt) — 2 Einträge pro Woche (`instruction(_en)`, `codeTemplate`,
+  `validation: {type:'output_contains', expected}`). Alle 12 neuen "schwereren" Aufgaben lokal mit
+  `python3` gegen eine Referenzlösung verifiziert, bevor sie geschrieben wurden.
+- `useWeekChecks.js`: `codingPassed` ist jetzt ein Objekt `{0: true, 1: true}` (ein Flag pro
+  Challenge-Index) statt eines einzelnen Booleans; `isCodingPassedForWeek(week, totalChallenges=2)`
+  prüft alle Indizes. `CodeChallenge.vue` bekam eine `challenge-index`-Prop (plus `label`), damit
+  `WeekCheckPanel.vue` zwei Instanzen nebeneinander rendern kann (`data-challenge-index="0"/"1"` am
+  Root-Element für Tests).
+- `useZertifikate.js`: `isCertificateEarned(weekNumber)` prüft nur noch `isWeekCheckPassed()` — Manifest/
+  Missionen werden dafür nicht mehr angefasst (Manifest-Zugriff bleibt nur noch für die
+  Missionen-Anzeige selbst erhalten). `countCertificates()` ohne Variantenparameter.
+- `FortschrittWidget.vue` komplett vereinfacht: keine Varianten-Auswahl/-Tabs mehr, ein einzelnes
+  12-Wochen-Zertifikats-Raster statt drei parallele Raster.
+- **Alle "\*\*Belohnung(en):\*\*"/"\*\*Reward(s):\*\*"-Zeilen aus allen 444 Notebooks entfernt** — die
+  waren nach der Punkte-Entfernung inhaltlich verwaist (nannten XP/Huf-Punkte/Cyber Credits/Items, die
+  es im Produkt nicht mehr gibt). Das war technisch aufwändiger als erwartet: Notebooks im Repo
+  verwenden mindestens **drei verschiedene JSON-Serialisierungs-Stile** für `cell.source`
+  (mehrzeiliges Array mit einem String pro Zeile; ein einzelner String mit eingebetteten `\n`;
+  kompaktes Array, mehrere Strings auf einer physischen Zeile) — ein naiver `json.load()` +
+  `json.dump()`-Rewrite des ganzen Files hätte in >80% der Fälle die Formatierung anderer,
+  unveränderter Stellen zerstört (mit `indent=1`/`2`/`4` verglichen: keines matcht die Originaldatei
+  byte-genau). Lösung: nur die betroffenen Zeilen/Werte gezielt per Text-Ersetzung anfassen (nie das
+  ganze File neu serialisieren), nach jeder Änderung `json.loads()` zur Validierung, und bei jeder
+  entfernten "letztes Array-Element"-Belohnungszeile das jetzt illegale Trailing-Komma vor der
+  schließenden Klammer separat reparieren. Nebenbei auch die **"Lernziele"-Checkliste** entschärft:
+  das ☐-Symbol ist reiner Unicode-Text (kein `- [ ]` GFM-Task-Listen-Syntax, `marked` rendert es nicht
+  interaktiv) — Formulierungen wie "Hake ab, was du schon kannst" / "Wenn du alle Punkte abhaken
+  kannst" (DE) bzw. "Check/Tick off..." (EN) täuschten Klickbarkeit vor, die nie existiert hat. Ersetzt
+  durch "Überprüfe selbst, ob du diese Fähigkeiten gemeistert hast" / "Check for yourself...".
+  Nutzer-Entscheidung dazu: kleiner Text-Fix statt echter interaktiver Checkboxen (das wäre ein
+  eigenes, deutlich größeres Feature gewesen).
+- **Lokales Fortschritt-Skript entfernt** (`scripts/fortschritt.py`, `scripts/README-fortschritt.md`,
+  `scripts/rewards-manifest.json`, sowie die `fortschritt-script.zip`-Bündelung in
+  `pack_notebooks.py`): Nutzer-Entscheidung, dass Fortschritt-Sync über den Account (Login, PR #2)
+  laufen soll statt über ein CLI-Skript + manuellen JSON-Export/Import für Jupyter/VS-Code-Nutzer.
+  Der allgemeine Export/Import-Button in `FortschrittWidget.vue` bleibt bestehen (generisches
+  Backup/Restore, nicht exklusiv ans Skript gebunden).
 - **Ein Playwright-Bug beim Testen selbst** (nicht im Produktivcode): `passWeek1Quiz()` im Test las
   `.quiz-question`-Anzahl, bevor `loadWeekChecks()` (asynchroner Fetch) fertig war → 0 Fragen erkannt,
   0 Klicks, `.btn-check-quiz` blieb für immer disabled. Fix: `await expect(cards.first()).toBeVisible()`
   vor dem Auslesen der Anzahl ergänzen. Falls an anderer Stelle ein ähnliches Timing-Problem auftaucht
   (Frage-Anzahl 0 trotz sichtbarem Check-Tab): zuerst prüfen, ob auf das Laden gewartet wurde, bevor
   ein Bug in `QuizStep.vue`/`WeekCheckPanel.vue` vermutet wird.
-- `content/python-12-wochen-grundkurs(-en)/beschreibung.md` und `INHALTE.md` Abschnitt 4 wurden
-  passend zur neuen Terminologie aktualisiert (kein "Punkte sammeln" mehr).
+- `content/python-12-wochen-grundkurs(-en)/beschreibung.md`, `INHALTE.md` Abschnitt 4 und die
+  betroffenen `progress.*`/`mission.*`-Locale-Texte wurden passend zur neuen Terminologie aktualisiert
+  (kein "Punkte sammeln" mehr, kein Verweis mehr auf Missionen als Zertifikats-Voraussetzung).
+  `tests/storytelling-content.spec.js`: zwei Tests entfernt, die variantenspezifische
+  Belohnungs-Wortwahl prüften (z.B. "Huf-Punkte statt XP") — die geprüfte Textstelle existiert jetzt
+  gar nicht mehr, nicht weil der Fix falsch war, sondern weil das Feature (Belohnungszeilen) komplett
+  entfernt wurde.
 
 ---
 
@@ -321,6 +358,11 @@ noch auf die tatsächliche Adresse vom Nutzer (nicht selbst erfinden).
 - Inhaltsänderungen: `INHALTE.md` Abschnitt 6 (DE/EN, Manifeste, `kurse.json`)
 - Missionen/Belohnungen kennen seit `wochen-zertifikate` **keine Punkte/Items mehr** — nur noch
   Zertifikate (siehe 3.5). Nicht versehentlich wieder ein Punktesystem einführen.
+- Zertifikat = **nur** Wochen-Check (Quiz + beide Coding-Aufgaben), **ein** Zertifikat pro Woche
+  (keine Varianten-Aufteilung). Missionen/Boss-Quests sind reine Übung, keine Voraussetzung — nicht
+  versehentlich wieder an Missionen koppeln oder wieder 3 Varianten-Zertifikate einführen.
+- Kein lokales Fortschritt-Skript mehr (`scripts/fortschritt.py` entfernt) — Fortschritt-Sync läuft
+  über den Account (Login), nicht über CLI-Skript + manuellen JSON-Import. Nicht wieder einführen.
 
 ---
 

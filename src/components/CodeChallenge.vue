@@ -1,7 +1,7 @@
 <template>
-  <div class="code-challenge" v-if="challenge">
+  <div class="code-challenge" :data-challenge-index="challengeIndex" v-if="challenge">
     <div class="challenge-header">
-      <h4>{{ lang === 'en' ? '💻 Coding challenge' : '💻 Coding-Aufgabe' }}</h4>
+      <h4>{{ title }}</h4>
       <span v-if="alreadyPassed" class="challenge-badge">{{ lang === 'en' ? 'Passed' : 'Bestanden' }}</span>
     </div>
     <p class="challenge-instruction">{{ instruction }}</p>
@@ -48,11 +48,13 @@ export default {
   name: 'CodeChallenge',
   props: {
     weekNumber: { type: Number, required: true },
+    challengeIndex: { type: Number, default: 0 },
+    label: { type: String, default: '' },
   },
   setup(props) {
     const { lang } = useLanguage();
     const { kernelReady, kernelStatus, initializeKernel, runPython } = usePyodide();
-    const { markCodingPassed, isCodingPassedForWeek } = useWeekChecks();
+    const { markCodingPassed, isCodingChallengePassed } = useWeekChecks();
 
     const challenge = ref(null);
     const code = ref('');
@@ -66,12 +68,18 @@ export default {
         : challenge.value?.instruction
     );
 
-    const alreadyPassed = computed(() => isCodingPassedForWeek(props.weekNumber));
+    const title = computed(() => {
+      const base = lang.value === 'en' ? '💻 Coding challenge' : '💻 Coding-Aufgabe';
+      return props.label ? `${base}: ${props.label}` : base;
+    });
+
+    const alreadyPassed = computed(() => isCodingChallengePassed(props.weekNumber, props.challengeIndex));
 
     const load = async () => {
       try {
         const data = await loadWeekChecks();
-        challenge.value = data?.weeks?.[String(props.weekNumber)]?.codingChallenge || null;
+        const challenges = data?.weeks?.[String(props.weekNumber)]?.codingChallenges || [];
+        challenge.value = challenges[props.challengeIndex] || null;
         code.value = challenge.value?.codeTemplate ?? '';
       } catch (e) {
         challenge.value = null;
@@ -79,7 +87,7 @@ export default {
     };
 
     onMounted(load);
-    watch(() => props.weekNumber, () => {
+    watch(() => [props.weekNumber, props.challengeIndex], () => {
       output.value = null;
       feedback.value = null;
       load();
@@ -112,7 +120,7 @@ export default {
 
       const valid = validateOutput(result.output, challenge.value?.validation);
       if (valid) {
-        markCodingPassed(props.weekNumber);
+        markCodingPassed(props.weekNumber, props.challengeIndex);
         feedback.value = {
           success: true,
           message: lang.value === 'en' ? 'Correct! Coding challenge passed.' : 'Richtig! Coding-Aufgabe bestanden.',
@@ -133,6 +141,7 @@ export default {
       initializeKernel,
       challenge,
       instruction,
+      title,
       alreadyPassed,
       code,
       output,

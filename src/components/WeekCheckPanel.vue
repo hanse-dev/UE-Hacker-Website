@@ -21,9 +21,10 @@
         @completed="onPassed"
         @failed="onFailed"
       />
-      <CodeChallenge :week-number="weekNumber" />
+      <CodeChallenge :week-number="weekNumber" :challenge-index="0" :label="lang === 'en' ? 'Easy' : 'Leicht'" />
+      <CodeChallenge :week-number="weekNumber" :challenge-index="1" :label="lang === 'en' ? 'Harder' : 'Schwerer'" />
       <p v-if="quizPassed && codingPassed" class="check-fully-done">
-        {{ lang === 'en' ? '🎉 Both parts done — this week counts toward your certificate!' : '🎉 Beide Teile geschafft — diese Woche zählt für dein Zertifikat!' }}
+        {{ lang === 'en' ? '🎉 All parts done — you\'ve earned this week\'s certificate!' : '🎉 Alles geschafft — du hast das Zertifikat dieser Woche verdient!' }}
       </p>
     </template>
   </div>

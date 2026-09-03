@@ -38,7 +38,7 @@ test.describe('Storytelling-Überarbeitung: Pferde', () => {
     }
   });
 
-  test('Woche 9: eigene Rahmengeschichte statt Woche-8-Duplikat, korrektes Belohnungsitem', async ({ page }) => {
+  test('Woche 9: eigene Rahmengeschichte statt Woche-8-Duplikat', async ({ page }) => {
     await page.goto(COURSE_URL);
     const week8 = await openWeek(page, 7); // Woche 8
     await selectVariant(week8, 'Pferde');
@@ -55,22 +55,6 @@ test.describe('Storytelling-Überarbeitung: Pferde', () => {
     const week8Intro = week8Text.split('\n').slice(0, 6).join('\n');
     expect(week9Text).not.toContain(week8Intro);
     expect(week9Text).not.toContain('Sonnentals');
-
-    await selectTab(week9, 'Missionen');
-    const missionsText = await week9.locator('.notebook-cells').innerText();
-    expect(missionsText).toContain('Stammbaum-Urkunde');
-    expect(missionsText).not.toContain('Daten-Chip');
-  });
-
-  test('Woche 12: Huf-Punkte statt XP', async ({ page }) => {
-    await page.goto(COURSE_URL);
-    const week = await openWeek(page, 11); // Woche 12
-    await selectVariant(week, 'Pferde');
-    await selectTab(week, 'Boss-Quest');
-
-    const text = await week.locator('.notebook-cells').innerText();
-    expect(text).toContain('Huf-Punkte');
-    expect(text).not.toMatch(/\bXP\b/);
   });
 });
 
@@ -131,17 +115,6 @@ test.describe('Storytelling-Überarbeitung: Sci-Fi', () => {
     const week8Text = await week8.locator('.notebook-cells').innerText();
     expect(week8Text).toContain('Die Sensor-Matrix');
     expect(week8Text).not.toContain('Der Raumstation-Manager');
-  });
-
-  test('Woche 12: Cyber Credits statt XP', async ({ page }) => {
-    await page.goto(COURSE_URL);
-    const week = await openWeek(page, 11); // Woche 12
-    await selectVariant(week, 'Sci-Fi');
-    await selectTab(week, 'Boss-Quest');
-
-    const text = await week.locator('.notebook-cells').innerText();
-    expect(text).toContain('Cyber Credits');
-    expect(text).not.toMatch(/\bXP\b/);
   });
 
   test('Woche 12: Debug-Bugs verraten die Lösung nicht im Kommentar', async ({ page }) => {

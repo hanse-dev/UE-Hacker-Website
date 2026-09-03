@@ -59,10 +59,21 @@ bewusst zurückgestellt (siehe HANDOFF.md).
       sich die Komponente), die eigentlichen Spiele-Inhalte (Quiz-Arena, Turtle-Welt, Galgenmännchen)
       noch offen
 - [x] `wochen-zertifikate` — Punkte-/Sammelsystem komplett entfernt, ersetzt durch Wochen-Zertifikate:
-      Zertifikat pro Woche/Variante nur wenn alle Missionen+Boss-Quests erledigt UND Wochen-Check
-      (Quiz + neue generische Coding-Aufgabe pro Woche) bestanden ist. `rewards-manifest*.json` auf
-      reine ID-Listen reduziert (keine Punkte/Items mehr), `useFortschritt.js`/`useWeekChecks.js`
-      neu geschrieben, neue `useZertifikate.js`. Tests: `tests/zertifikate.spec.js`.
+      **ein** Zertifikat pro Woche (keine Varianten-Aufteilung mehr), verliehen sobald der Wochen-Check
+      bestanden ist — Quiz **plus zwei** Coding-Aufgaben (leicht + schwerer). Missionen/Boss-Quests
+      bleiben als freiwillige Übungs-Checkliste pro Variante bestehen, zählen aber nicht mehr fürs
+      Zertifikat (Nutzer-Entscheidung: reines Abhaken war nicht aussagekräftig genug).
+      `rewards-manifest*.json` auf reine ID-Listen reduziert (keine Punkte/Items mehr),
+      `useFortschritt.js`/`useWeekChecks.js` neu geschrieben, neue `useZertifikate.js`.
+      `content/python-checks/weeks.json`: `codingChallenge` (1) → `codingChallenges` (Array, 2 Einträge)
+      pro Woche, alle 12 neuen "schwereren" Aufgaben lokal mit `python3` verifiziert.
+      Alle "**Belohnung(en):**"-Zeilen aus allen 444 Notebooks entfernt (waren nach der Punkte-
+      Entfernung inhaltlich verwaist), dabei auch die "Lernziele"-Checkliste entschärft: das ☐-Symbol
+      ist reiner Text (kein echtes Interaktionselement in `marked`), Formulierungen wie "Hake ab" /
+      "Check off" wurden durch "Überprüfe selbst" / "Check for yourself" ersetzt, um keine Klickbarkeit
+      vorzutäuschen. Lokales Fortschritt-Skript (`scripts/fortschritt.py` + `README-fortschritt.md`)
+      komplett entfernt — Fortschritt läuft jetzt über den Account (Login/Sync), nicht mehr über
+      manuellen JSON-Export/Import von einem CLI-Skript. Tests: `tests/zertifikate.spec.js`.
 
 ---
 
