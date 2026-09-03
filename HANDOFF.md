@@ -3,10 +3,10 @@
 > **Zuletzt aktualisiert:** 2026-09-03  
 > **Aktueller Stand:** `main` enthält jetzt PR #1–#4, die Storytelling-Überarbeitung (3.4), den
 > Endlosschleifen-Schutz + Sci-Fi-Debug-Ziele, die Einstufungstest-Fixes (3.5/3.6), den gestuften
-> Hinweis im interaktiven Kurs (3.7) sowie den kompletten Text-Tippfehler-Pass (3.8) — alle 444
-> Notebooks des 12-Wochen-Kurses jetzt geprüft. `debug-notebook-safety`, `et-fixes`,
-> `interaktiv-klarer` und `text-typo-pass` sind gerade gemergt worden. Drei weitere Branches folgen
-> in derselben Session: `backup-sqlite-db` → `kurs-caesar-chiffre` → `wochen-zertifikate`.  
+> Hinweis im interaktiven Kurs (3.7), den kompletten Text-Tippfehler-Pass (3.8) sowie das
+> SQLite-Backup-Script (Abschnitt 4) — `debug-notebook-safety`, `et-fixes`, `interaktiv-klarer`,
+> `text-typo-pass` und `backup-sqlite-db` sind gerade gemergt worden. Zwei weitere Branches folgen
+> in derselben Session: `kurs-caesar-chiffre` → `wochen-zertifikate`.  
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -390,6 +390,33 @@ curl -s http://127.0.0.1:8080/api/health
 ```
 
 SQLite bleibt in `./api/data/` (Volume). Env-Änderung → Container **recreate**, nicht nur rebuild.
+Ein `git pull` + `docker compose up -d --build app` lässt Nutzerdaten unangetastet — die DB liegt
+als Bind-Mount auf dem Host, nicht im Container, und ist gitignored. **Einzige echte Gefahr:**
+`git clean -fdx` im Repo-Verzeichnis würde die ungetrackte `.sqlite`-Datei löschen, weil sie
+technisch im Working Tree liegt — nie in einem Deploy-Skript ohne Ausschluss von `api/data/`.
+
+### DB-Backup
+
+`api/src/scripts/backup-db.js` zieht per `VACUUM INTO` eine konsistente Kopie der SQLite-DB (sicher
+auch im laufenden Betrieb dank WAL-Modus — ein simples `cp` könnte sonst mitten in einem
+Schreibvorgang eine kaputte Kopie erzeugen) und behält per Retention nur die N neuesten Backups
+(Default 14, über `BACKUP_KEEP` einstellbar). Landet unter `api/data/backups/` — dank Bind-Mount
+automatisch auch auf dem Host sichtbar.
+
+```bash
+npm run backup:db                 # lokal (nutzt DATA_DIR/DB_PATH wie die App selbst)
+docker compose exec app node src/scripts/backup-db.js   # im laufenden Prod-Container
+```
+
+**Empfehlung für den Server:** ein Cron-Job, z.B. täglich um 3 Uhr:
+```
+0 3 * * * cd /pfad/zum/repo && docker compose exec -T app node src/scripts/backup-db.js >> /var/log/ue-hacker-backup.log 2>&1
+```
+Die Backups selbst liegen weiterhin auf demselben Server-Volume — für echten Schutz vor
+Datenverlust (Festplattendefekt, versehentliches Löschen) zusätzlich regelmäßig extern sichern
+(z.B. `rsync`/`rclone` von `api/data/backups/` auf einen anderen Host oder Cloud-Speicher). Das ist
+mit den Bordmitteln hier noch nicht abgedeckt — bewusst nicht mitgebaut, da das von der jeweiligen
+Server-/Backup-Infrastruktur abhängt.
 
 ### Tests
 
@@ -397,11 +424,13 @@ SQLite bleibt in `./api/data/` (Volume). Env-Änderung → Container **recreate*
 |---------|--------|
 | `npm run test:checks` | Pre-commit: Logic, Week-Checks/Placement, Site, Merge, Storytelling-Content |
 | `npm run test:auth` | API + Admin/Optionen-UI (eigene Config, Test-API :3011) |
+| `npm --prefix api test` | Node-Test-Runner: `backup-db.js` (Backup + Retention) |
 
 ### Wichtige Pfade
 
 ```
 api/src/          Express (index, auth, db, routes)
+api/src/scripts/  backup-db.js (+ Test) — SQLite-Backup mit Retention
 src/views/AdminView.vue
 src/App.vue       Optionen-Modal
 src/composables/useAuth*.js, useProgressSync.js, useWeekChecks.js
@@ -421,7 +450,9 @@ Siehe auch `todo.md`.
 - [ ] Server-Deploy final verifizieren (Service `app`, Orphans weg, Health, Admin-Login, kein
       Notebook-Blinken mehr nach PR #3) — **bewusst zurückgestellt**, Nutzer will erst später
       deployen
-- [x] SQLite-Backup-Script (Branch `backup-sqlite-db`) — siehe eigener Branch
+- [x] SQLite-Backup-Script (`api/src/scripts/backup-db.js`) — siehe Abschnitt 4. Externe
+      Sicherung der Backups (z.B. `rsync`/`rclone` auf einen anderen Host) bewusst nicht mitgebaut,
+      hängt von der jeweiligen Server-Infrastruktur ab
 
 **Inhalte**
 - Keine offenen Punkte aus der Storytelling-Überarbeitung mehr (siehe 3.4) — "Gilde-Meister-Urkunde" geklärt, kein Bug
@@ -434,11 +465,11 @@ Siehe auch `todo.md`.
   (`python-grundlagen-interaktiv*`, `caesar-chiffre`) noch offen
 
 **Branch-Merge läuft gerade (diese Session):** `debug-notebook-safety`, `et-fixes`,
-`interaktiv-klarer` und `text-typo-pass` sind soeben nach `main` gemergt. Als Nächstes in derselben
-Session: `backup-sqlite-db` → `kurs-caesar-chiffre` → `wochen-zertifikate` (Reihenfolge/Begründung
-siehe `todo.md`). Nach jedem Merge `npm run test:checks` (und bei Auth-relevanten Branches
-zusätzlich `npm run test:auth`), bevor der nächste Branch drankommt. Noch **nicht** nach
-`origin/main` gepusht.
+`interaktiv-klarer`, `text-typo-pass` und `backup-sqlite-db` sind soeben nach `main` gemergt. Als
+Nächstes in derselben Session: `kurs-caesar-chiffre` → `wochen-zertifikate`
+(Reihenfolge/Begründung siehe `todo.md`). Nach jedem Merge `npm run test:checks` (und bei
+Auth-relevanten Branches zusätzlich `npm run test:auth`), bevor der nächste Branch drankommt. Noch
+**nicht** nach `origin/main` gepusht.
 
 **Danach — nächste Kurs-Themen, je eigener Branch von `main`:**
 
@@ -457,12 +488,15 @@ Kontakt-E-Mail im Footer wartet noch auf die tatsächliche Adresse vom Nutzer (n
 
 ## 6. Entscheidungen / Konventionen (nicht ohne Rückfrage ändern)
 
-- Ein Thema = ein Branch `…` von `main` (`WORKFLOW.md`)
+- Ein Thema = ein Branch von `main` (`WORKFLOW.md`) — **kein** Präfix mehr (früher `cursor/…`,
+  wurde entfernt)
 - Accounts: Admin legt an; `ageGroup` kinder|jugendliche; ein Mensch = ein Account
 - Sync: per-key Merge nach `updatedAt`
 - Prod: ein Container `app`, Port 8080, API serviert Static
 - SQLite bleibt; Node ≥ 22 wegen `node:sqlite`
-- Vor Commit: `test:checks`; Auth-Änderungen zusätzlich `test:auth`
+- Vor Commit: `test:checks`; Auth-Änderungen zusätzlich `test:auth`; Verhaltensänderungen brauchen
+  einen Test in `tests/*.spec.js` bzw. `api/src/scripts/*.test.js` (`WORKFLOW.md`) — nicht nur
+  manuell verifizieren
 - Inhaltsänderungen: `INHALTE.md` Abschnitt 6 (DE/EN, Manifeste, `kurse.json`)
 
 ---
@@ -471,16 +505,17 @@ Kontakt-E-Mail im Footer wartet noch auf die tatsächliche Adresse vom Nutzer (n
 
 1. `git checkout main && git pull`  
 2. `HANDOFF.md` + `todo.md` + `WORKFLOW.md` lesen  
-3. Neues Thema → **neuen** Branch (ohne `cursor/`-Präfix)  
+3. Neues Thema → **neuen** Branch (ohne Präfix)  
 4. Nicht: altes `prod` in Compose erwarten; nicht: Sync so ändern, dass Notebooks wieder voll neu
    geladen werden bei jedem Apply; nicht: Pyodide in einen Web Worker verschieben ohne `input()`
    (65 Notebooks) neu zu lösen (siehe 3.5); nicht: `placementPassThreshold` auf einen Bruch wie `2/3`
    exakt setzen (Floating-Point — siehe 3.6); nicht: `cspell`-Wörterbücher nur über
    `"dictionaries"` ohne `"import"` einbinden (lädt sie nicht, siehe 3.8); nicht:
    `scripts/extract_notebook_text.py` nach `/tmp` ausgeben lassen (cspell sieht Pfade außerhalb
-   des Repos nicht, siehe 3.9)
+   des Repos nicht, siehe 3.9); nicht: SQLite per `cp` statt `VACUUM INTO` sichern (WAL-Modus,
+   siehe Abschnitt 4)
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
 **Empfohlener nächster Schritt:** Branch-Merge-Kette fortsetzen (siehe Abschnitt 5) —
-`backup-sqlite-db` → `kurs-caesar-chiffre` → `wochen-zertifikate`, danach `kurs-python-spiele`
-(Kursgerüst `kurse.json` + Content-Ordner).
+`kurs-caesar-chiffre` → `wochen-zertifikate`, danach `kurs-python-spiele` (Kursgerüst `kurse.json`
++ Content-Ordner).

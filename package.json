@@ -19,6 +19,7 @@
     "lint:spelling": "cspell --no-progress \"src/locales/*.js\"",
     "api": "npm --prefix api start",
     "api:dev": "npm --prefix api run dev",
+    "backup:db": "npm --prefix api run backup:db",
     "start:all": "concurrently -k -n api,web -c blue,green \"npm run api:dev\" \"npm run dev\"",
     "start:all:docker": "concurrently -k -n api,web -c blue,green \"npm run api:dev\" \"npm run pack:notebooks && vite --host 0.0.0.0 --port 5173\"",
     "start:prod": "npm run build && STATIC_DIR=./dist API_PORT=8080 node api/src/index.js",

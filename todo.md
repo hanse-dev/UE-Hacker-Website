@@ -46,7 +46,14 @@
 - [x] Einstufung / Checks in `main` (PR #1)
 - [x] Admin-Login / Progress-Sync in `main` (PR #2)
 - [x] Notebook-Sync-Loop-Fix in `main` (PR #3)
+- [x] SQLite-Backup-Script (`backup-sqlite-db`): `api/src/scripts/backup-db.js` zieht per
+      `VACUUM INTO` eine konsistente Kopie (sicher auch im WAL-Modus/laufenden Betrieb), Retention
+      behält die letzten `BACKUP_KEEP` (Default 14) Backups. `npm run backup:db` lokal,
+      `docker compose exec app node src/scripts/backup-db.js` in Prod. Getestet mit `node --test`
+      (4 Tests). Nicht abgedeckt: externe Sicherung der Backups selbst — hängt von der
+      Infrastruktur ab, bewusst nicht mitgebaut.
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken)
+      — **zurückgestellt** (Nutzer will erst später deployen)
 
 ---
 
