@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Erstellt ZIP-Pakete für den Python 12-Wochen-Kurs (Notebooks + Fortschritt-Skript)."""
+"""Erstellt ZIP-Pakete für den Python 12-Wochen-Kurs (Notebooks)."""
 
 import zipfile
 from pathlib import Path
@@ -27,9 +27,7 @@ def main():
             arcname = ipynb.relative_to(CONTENT_DIR)
             zf.write(ipynb, arcname)
             count += 1
-        zf.write(SCRIPT_DIR / "fortschritt.py", "fortschritt.py")
-        zf.write(SCRIPT_DIR / "rewards-manifest.json", "rewards-manifest.json")
-    print(f"✓ {count} Notebooks + Fortschritt-Skript gepackt: {zip_path}", flush=True)
+    print(f"✓ {count} Notebooks gepackt: {zip_path}", flush=True)
 
     # 2. Pro-Woche-ZIPs
     week_count = 0
@@ -48,13 +46,6 @@ def main():
         print(f"  Woche {week_num}: {len(notebooks)} Notebooks → {week_zip.name}", flush=True)
         week_count += 1
     print(f"✓ {week_count} Wochen-ZIPs erstellt: {WEEK_ZIPS_DIR}", flush=True)
-
-    # 3. Fortschritt-Skript-ZIP
-    fortschritt_zip = OUTPUT_DIR / "fortschritt-script.zip"
-    with zipfile.ZipFile(fortschritt_zip, "w", zipfile.ZIP_DEFLATED) as zf:
-        zf.write(SCRIPT_DIR / "fortschritt.py", "fortschritt.py")
-        zf.write(SCRIPT_DIR / "rewards-manifest.json", "rewards-manifest.json")
-    print(f"✓ Fortschritt-Skript gepackt: {fortschritt_zip}", flush=True)
 
     return 0
 

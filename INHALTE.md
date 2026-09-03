@@ -150,18 +150,20 @@ content/python-12-wochen-grundkurs-en/       ← Englisch (gleiche Struktur)
 
 ---
 
-## 4. Belohnungen / Rewards
+## 4. Missionen & Zertifikate
 
-Die Missionen und ihre Punkte sind in zwei parallelen JSON-Dateien definiert:
+Die Missionen (nur IDs, keine Punkte/Items) sind in zwei parallelen JSON-Dateien definiert:
 
 | Sprache | Datei |
 |---|---|
 | Deutsch | `public/rewards-manifest.json` |
 | Englisch | `public/rewards-manifest-en.json` |
 
-Struktur: `{ "python-12-wochen-grundkurs": { "abenteuer"|"pferde"|"scifi": { "1"–"12": { missions, bossQuests } } } }`
+Struktur: `{ "python-12-wochen-grundkurs": { "abenteuer"|"pferde"|"scifi": { "1"–"12": { missions: [id, ...], bossQuests: [id, ...] } } } }`
 
-**Bei Änderungen an Missionen / Punkten immer beide Dateien synchron halten.**
+Ein **Zertifikat** für eine Woche/Variante wird verliehen, wenn (a) alle Missionen + Boss-Quests dieser Woche als erledigt markiert sind UND (b) der Wochen-Check (Quiz + Coding-Aufgabe im Check-Tab) bestanden ist. Es gibt kein Punkte-/Sammel-System mehr – Logik dazu in `src/composables/useFortschritt.js`, `useWeekChecks.js`, `useZertifikate.js`.
+
+**Bei Änderungen an Missionen immer beide Dateien synchron halten.**
 
 ---
 
@@ -205,9 +207,12 @@ Jeder Ordner enthält dieselben Dateien:
 - [ ] DE: `content/python-12-wochen-grundkurs/woche-{N}/{variante}/woche{N}_{variante}_{typ}.ipynb`
 - [ ] EN: `content/python-12-wochen-grundkurs-en/woche-{N}/{en_variante}/week{N}_{en_variante}_{typ}.ipynb`
 
-### Wenn du Missionen/Punkte änderst:
+### Wenn du Missionen änderst:
 - [ ] `public/rewards-manifest.json`
 - [ ] `public/rewards-manifest-en.json`
+
+### Wenn du die Wochen-Check-Fragen oder die Coding-Aufgabe änderst:
+- [ ] `content/python-checks/weeks.json` (Feld `questions` bzw. `codingChallenge` je Woche, DE+EN in denselben Einträgen)
 
 ### Wenn du Kurs-Metadaten (Titel, Beschreibung) änderst:
 - [ ] `public/kurse.json` (Felder `title`, `title_en`, `description`, `description_en`)

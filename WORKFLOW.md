@@ -4,6 +4,8 @@
 
 **Immer einen neuen Branch anlegen, wenn ein neues Thema beginnt.**
 
+- **Ohne** Prefix (z.B. `kurs-python-spiele`, `admin-login`) — der frühere `cursor/`-Prefix wurde
+  nachträglich bei allen Branches entfernt, nicht wieder einführen
 - Branch von aktuellem `main` aus starten
 - Ein Branch = ein Thema; Admin/Accounts nicht auf dem Lernpfad-Branch mischen
 - Nächste Kurs-Themen (geplant): `kurs-python-spiele` → `kurs-python-projekte` → `kurs-js-minigames` oder `kurs-ki-labor` (siehe `todo.md`)
@@ -58,3 +60,18 @@ Nach jedem `git commit` prüfen:
 1. `HANDOFF.md` aktualisieren (letzter Commit, was wurde gemacht, was ist offen)
 2. `todo.md` prüfen und erledigte Punkte markieren
 3. `HANDOFF.md` und `todo.md` mit in denselben Commit aufnehmen (kein Extra-Commit)
+
+## HANDOFF.md aufräumen (gegen unbegrenztes Wachstum)
+
+`HANDOFF.md` soll einen schnellen Einstieg in eine neue Session ermöglichen, nicht als
+vollständiges Änderungsprotokoll für immer wachsen — die Commit-Historie (`git log`/`git show`)
+ist die dauerhafte, verlässliche Quelle für Details.
+
+- **Nach dem Mergen eines Branches nach `main`:** den zugehörigen Abschnitt in HANDOFF.md
+  Abschnitt 3 (Feature-Historie) von einer vollständigen Erzählung auf 2–3 Zeilen kürzen
+  (Branch-/PR-Name, worum es ging, Verweis auf die Commit-Historie für Details). Eine kurze
+  "Gelernte Regel"-Zeile darf bleiben, wenn sie ein wiederverwendbares Muster festhält (z.B. ein
+  Bug-Typ, der wieder auftreten könnte) — die Schritt-für-Schritt-Story nicht.
+- Abschnitt 5 (Offene Aufgaben) und Abschnitt 7 (Schnellstart) bleiben immer knapp und aktuell —
+  das sind die Abschnitte, die eine neue Session tatsächlich zuerst braucht.
+- Faustregel: wenn Abschnitt 3 spürbar länger wird als Abschnitt 5+7 zusammen, ist Aufräumen fällig.

@@ -7,6 +7,7 @@ function parseWeekMarkdown(body) {
   const lines = body.split('\n');
   let shortDesc = '';
   const lernziele = [];
+  const lernzieleFull = [];
   const descLines = [];
   let inWelten = false;
   let inLernziele = false;
@@ -18,7 +19,7 @@ function parseWeekMarkdown(body) {
     if (/^#{1,3}\s+/.test(trimmed)) {
       const headingText = trimmed.replace(/^#+\s+/, '').toLowerCase();
       inWelten    = /welten|auswahl|themenwelt/.test(headingText);
-      inLernziele = headingText.includes('lernziel');
+      inLernziele = headingText.includes('lernziel') || headingText.includes('learning goal');
       continue;
     }
 
@@ -26,6 +27,7 @@ function parseWeekMarkdown(body) {
 
     if (inLernziele && trimmed.startsWith('- ')) {
       const raw = trimmed.slice(2);
+      lernzieleFull.push(raw.replace(/\*\*/g, '').replace(/`/g, '').trim());
       const boldMatch = raw.match(/^\*\*(.+?)\*\*/);
       let chip = boldMatch ? boldMatch[1] : raw.replace(/\*\*/g, '').split(':')[0];
       // Shorten at first German preposition for compact chips
@@ -45,7 +47,7 @@ function parseWeekMarkdown(body) {
   const sentences = descLines.join(' ').match(/[^.!?]+[.!?]*/g) || [];
   shortDesc = sentences.slice(0, 2).join(' ').trim();
 
-  return { shortDesc, lernziele };
+  return { shortDesc, lernziele, lernzieleFull };
 }
 
 const NOTEBOOK_TYPES = [
@@ -62,6 +64,7 @@ function emptyWeek(weekNum, label = 'Woche') {
     title: `${label} ${weekNum}`,
     shortDesc: '',
     lernziele: [],
+    lernzieleFull: [],
     hasNotebook: false,
     hasAbenteuerVariant: false,
     hasPferdeVariant: false,
@@ -176,9 +179,10 @@ export async function loadWeeklyContent(lang = 'de') {
 
       if (!weeklyContent[weekNum]) weeklyContent[weekNum] = emptyWeek(weekNum, weekLabel);
 
-      const { shortDesc, lernziele } = parseWeekMarkdown(parsed.body);
+      const { shortDesc, lernziele, lernzieleFull } = parseWeekMarkdown(parsed.body);
       weeklyContent[weekNum].shortDesc = shortDesc;
       weeklyContent[weekNum].lernziele = lernziele;
+      weeklyContent[weekNum].lernzieleFull = lernzieleFull;
       if (parsed.attributes.title) weeklyContent[weekNum].title = parsed.attributes.title;
     })
   );

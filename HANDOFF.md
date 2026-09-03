@@ -1,13 +1,12 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-09-03  
-> **Aktueller Stand:** `main` enthält jetzt PR #1–#4, die Storytelling-Überarbeitung (3.4), den
-> Endlosschleifen-Schutz + Sci-Fi-Debug-Ziele, die Einstufungstest-Fixes (3.5/3.6), den gestuften
-> Hinweis im interaktiven Kurs (3.7), den kompletten Text-Tippfehler-Pass (3.8), das
-> SQLite-Backup-Script (Abschnitt 4) sowie das neue Cäsar-Chiffre-Projekt (3.11) —
-> `debug-notebook-safety`, `et-fixes`, `interaktiv-klarer`, `text-typo-pass`, `backup-sqlite-db`
-> und `kurs-caesar-chiffre` sind gerade gemergt worden. Nur noch ein Branch fehlt in dieser
-> Session: `wochen-zertifikate`.  
+> **Aktueller Stand:** Alle sieben Feature-Branches (siehe 3.5–3.13) sind in dieser Session nach
+> `main` gemergt: `debug-notebook-safety`, `et-fixes`, `interaktiv-klarer`, `text-typo-pass`,
+> `backup-sqlite-db`, `kurs-caesar-chiffre` und `wochen-zertifikate` (Wochen-Zertifikate +
+> Zertifikat-PDF-Download). `main` enthält damit PR #1–#4, die Storytelling-Überarbeitung (3.4) und
+> alle sieben Themen. Noch **nicht** nach `origin/main` gepusht — Push/Deploy bewusst
+> zurückgestellt, siehe Abschnitt 5/7.  
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -38,124 +37,38 @@ Lernplattform für Kinder/Jugendliche (Python) — Vue 3 + Vite, Notebooks unter
 
 ## 3. Was sich geändert hat (Zusammenfassung der großen Features)
 
-### 3.1 Einstufung & Checks (PR #1)
+### 3.1 Einstufung & Checks (PR #1) — gemerged
 
-- Kurs `python-einstufung`; Fragen in `content/python-checks/weeks.json`
-- Pro Woche Tab **Check**; Multi-Select; gemischte Optionen
-- Placement: Fragen pro Woche; bei 100 % Projektideen
-- Deep-Link öffnet 12-Wochen-Kurs mit Notebooks
-- Playwright: `npm run test:checks` + Pre-commit `.githooks/pre-commit`
+Kurs `python-einstufung`, Fragen in `content/python-checks/weeks.json`, Check-Tab pro Woche,
+Deep-Link öffnet den 12-Wochen-Kurs an der richtigen Stelle. Details: `git log` / PR #1.
 
-### 3.2 Admin, Accounts, Sync, Deploy (PR #2)
+### 3.2 Admin, Accounts, Sync, Deploy (PR #2) — gemerged
 
-**API (`api/`):**
-- Express, SQLite über **`node:sqlite`** (Node **≥ 22**, kein better-sqlite3)
-- Tabellen: `users`, `progress`
-- Admin: `POST /api/admin/login`, CRUD `/api/admin/users` (Bearer Admin-Token)
-- Learner: `POST /api/login`, `GET /api/me`, `GET|PUT /api/progress`
-- Env: Projektroot `.env` — **`ADMIN_PASSWORD` Pflicht**; geladen **nur beim Prozessstart**
-- DB-Datei: `api/data/ue-hacker.sqlite` (gitignored; Volume in Docker)
+Express+SQLite-API (`api/`, `node:sqlite`, Node ≥ 22), Admin-Login + User-Verwaltung, Learner-Login
+mit Progress-Sync (per-Key-Merge nach `updatedAt`, ohne Login bleibt alles lokal), Single-Port-Deploy
+(`docker compose up -d --build app` → Service **`app`**, nicht `prod`). Aktuelle Betriebsbefehle stehen
+in Abschnitt 4, Details zur Umsetzung: `git log` / PR #2.
 
-**Frontend:**
-- `/admin` — User anlegen (`kinder` | `jugendliche`)
-- Header **Optionen** → Modal: Sprache DE/EN, Konto, Anmelden/Abmelden
-- Sync-Keys u.a.: `ue-hacker-fortschritt`, `ue-hacker-week-checks`, Interactive, `ue-hacker-notebook-state-*`
-- Merge: pro Key, neueres `updatedAt` gewinnt → lokal + Server (`useProgressSync.js`, `progressMerge.js`)
-- Ohne Login: alles bleibt lokal
+### 3.3 Notebook-Sync-Loop-Fix (PR #3) — gemerged
 
-**Einstufung UX (auch PR #2-Zeitraum):**
-- Pro Frage **Prüfen**; Zwischenstand in `placement.session` in week-checks-Storage
-- Wird mit Account mitgesynct
+**Gelernte Regel:** Sync darf nach dem Anwenden von Server-Zuständen niemals einen vollen
+Notebook-Re-Fetch auslösen — sonst reagiert der Watcher darauf, synct erneut, und es entsteht eine
+Endlosschleife (führte zu sichtbarem Blinken bei eingeloggten Nutzern). Sync wendet Zustand seither
+nur lokal an, ohne Reload. Details: `git log` / PR #3, `useProgressSync.js`.
 
-**Deploy:**
-- `Dockerfile`: Build Frontend → Image mit API + `dist`
-- `docker compose up -d --build app` → `:8080`
-- **Nicht** mehr: `docker-compose up … prod` (Service existiert nicht → Fehler + Orphans)
-- Alte Orphans: `docker compose down --remove-orphans`
+### 3.4 Storytelling-Überarbeitung 12-Wochen-Kurs — gemerged
 
-### 3.3 Notebook-Sync-Loop-Fix (PR #3) — wichtig
+Alle 3 Varianten (Abenteuer/Pferde/Sci-Fi), alle 12 Wochen wurden auf zusammenhängende Szenen statt
+Schritt-Listen geprüft und mehrere echte Content-Bugs behoben (kaputter Code, Boss-Quest-Duplikate,
+Textfehler) — Details siehe Commit-Historie.
 
-**Symptom:** Auf dem Server blinkte das Notebook ca. jede Sekunde; Network: `.ipynb` + `/api/progress` in Endlosschleife (oft bei **eingeloggt**).
-
-**Ursache:**  
-`PROGRESS_APPLIED` → `JupyterNotebook` machte volles `loadNotebook()` (Fetch + `loading`) → Watch speicherte → `touchSyncKey` → Sync → Apply → wieder Event.
-
-**Fix:**
-- Sync wendet Notebook-State nur lokal an, **ohne** Re-Fetch / ohne Loading-Blink
-- `syncNow` skippt Apply/Put wenn nichts geändert
-- `saveState` / Apply schreiben nur bei Inhaltsänderung; `applying`-Flag etwas länger (Tick), damit Vue-Watcher keinen Re-Sync auslösen
-
-Dateien: `src/composables/useProgressSync.js`, `src/components/JupyterNotebook.vue`
-
-**Server nach Merge:** `git pull` auf `main` + `docker compose up -d --build app` + Hard-Reload.
-
-### 3.4 Storytelling-Überarbeitung 12-Wochen-Kurs (alle 3 Varianten, alle 12 Wochen)
-
-**Ziel:** Missionen/Boss-Quests waren oft nur Schritt-Listen mit Deko statt echter Szenen, manche Wochen
-lösten ihr eigenes Titelversprechen nicht ein, und es gab mehrere echte Content-Bugs (kaputter Code,
-Textfehler, kopierte Boss-Quests). Pro Woche wurde geprüft, ob ein Umbau nötig ist, und nur dort umgebaut,
-wo es einen echten Mangel gab.
-
-**Abenteuer-Variante** (zuerst, als Vorlage):
-- Woche 7 als Pilot komplett umgebaut: Rahmengeschichte "Der Archivar der Bibliothek von Pyralia" mit
-  drei zusammenhängenden Prüfungen statt isolierter Schritt-Listen; Bibliothekswahl von `math`-lastig auf
-  `random`/`string`/`time` umgestellt
-- Pythonia/Pyralia-Namenskonflikt weltweit vereinheitlicht (auf "Pyralia") — Woche 1, 10, 12 (DE+EN)
-  sowie die Vorlagen unter `Regeln/`
-- Woche 2 umgebaut: "Elementarturm", vier Datentypen jetzt explizit als Elemente (🔥 Feuer=str,
-  🪨 Erde=int, 💧 Wasser=float, 💨 Luft=bool)
-- Woche 6: Boss-Quest 1+2 waren wortwörtlich von Woche 5 kopiert — umbenannt/umgethemt
-- Woche 8: Debug-Bug #1 hatte keinen Fehler mehr (fehlende schließende Klammer nie entfernt) — repariert
-- Woche 9: Missionen-Formatierung vereinheitlicht
-- Woche 10: Boss-Quest 2 "Der Zookeeper" (reale Zootiere) zu "Die Kreaturen-Menagerie" umgethemt
-- Woche 12: Textbug "Als Nächstes: Woche – wartet schon!" repariert (betraf auch Pferde/Sci-Fi DE)
-- Woche 3, 4, 5, 11 geprüft und für gut befunden
-
-**Pferde- und Sci-Fi-Variante** (nach demselben Prinzip, Analyse zuerst per Subagent):
-- Sci-Fi Woche 11: kompletter Lektion-Code (DE) war kaputt (fehlendes `def`/`self` bei jeder Methode) —
-  an die korrekte EN-Version angeglichen; Weltname vereinheitlicht (Nebula-7 statt "Evolution-Station
-  Alpha-7")
-- Sci-Fi Woche 8: Debug-Bug #1 hatte keinen Fehler mehr — repariert (DE+EN)
-- Sci-Fi Woche 5/6/8: Boss-Quest "Raumstation(s)-Manager" dreifach dupliziert — Woche 6 zu
-  "Der Hangar-Verwalter", Woche 8 zu "Die Sensor-Matrix" umgethemt (DE+EN), rewards-manifest angepasst
-- Sci-Fi Woche 12: "XP" statt "Cyber Credits" korrigiert
-- Sci-Fi Woche 9: f-String-Syntaxrisiko behoben (verschachtelte gleiche Anführungszeichen, vor Python
-  3.12 ein SyntaxError)
-- Sci-Fi Woche 12: Debug-Bugs entspoilert (Kommentare verrieten die Lösung direkt); Lösungs-Notebook an
-  den tatsächlichen Bug angeglichen (war inhaltlich falsch zugeordnet)
-- Sci-Fi Woche 5: fehlende Platzhalterkommentare in Boss-Quest-Codezellen ergänzt
-- Sci-Fi Woche 7: Missionen enger an eine durchgehende Szene gebunden (Systemchecks/Kalibrierung/
-  Erkundungsmission statt lose math/random-Häppchen)
-- Pferde Woche 9: Intro wortwörtlich von Woche 8 kopiert — neue Rahmengeschichte "Die Zuchtbücher von
-  Sonnental" (DE+EN); Belohnungsitem "Daten-Chip" (eigentlich Sci-Fi-Item) zu "Stammbaum-Urkunde"
-  korrigiert
-- Pferde Woche 5/8: abgebrochener Satz und mehrfacher "Funktion eine Funktion"-Textbug repariert (DE+EN)
-- Pferde Woche 7/8/9: "Sonnentals"-Tippfehler (falsche Genitivform) zu "Sonnental" korrigiert
-- Pferde Woche 12: "XP" statt "Huf-Punkte" und Tippfehler "Visualierungsbrett" korrigiert (DE)
-- Pferde Woche 12 + Sci-Fi Woche 12 + Abenteuer Woche 12: Debug-Bug-Spoiler-Kommentare entfernt (DE+EN)
-- Pferde Woche 2: "Vier Hufschlag-Typen" jetzt benannt (Schritt=str, Trab=int, Galopp=float, Sprung=bool)
-- **Nebenfund:** `week5_horses_1_lektion.ipynb` (EN) hatte unescaped Anführungszeichen und war dadurch
-  kaputtes JSON (Notebook konnte in der Website nicht laden) — repariert. Repo-weiter Scan aller 444
-  Notebooks bestätigt danach: keine weiteren kaputten Dateien.
-
-**Gelernte Regeln:**
+**Gelernte Regeln (weiterhin relevant für Notebook-Arbeit):**
 1. Debug-Notebook-Bugs müssen unabhängig vom geteilten Jupyter-Kernel-Zustand sein — ein "vergessener
-   Import" funktioniert nicht mehr, wenn eine frühere Zelle das Modul schon importiert hat.
-2. Debug-Notebook-Kommentare dürfen die Lösung nicht verraten (keine "# Bug: X fehlt!"-Kommentare) —
-   vage Leitfragen sind ok ("Was fehlt hier?").
-3. Bei jeder Notebook-Änderung: Code-Zellen ausführen/kompilieren (auch mit geteiltem Namespace) und
-   JSON-Validität prüfen, bevor committet wird.
+   Import" wirkt nicht mehr, wenn eine frühere Zelle das Modul schon importiert hat.
+2. Debug-Notebook-Kommentare dürfen die Lösung nicht verraten — vage Leitfragen sind ok.
+3. Bei jeder Notebook-Änderung: Code-Zellen ausführen und JSON-Validität prüfen, bevor committet wird.
 
-**Systemtests:** Die wichtigsten Fixes sind als Playwright-Regressionstests in `tests/storytelling-content.spec.js`
-festgehalten (läuft mit in `npm run test:checks`) — prüft u.a. Woche-9-Pferde-Rahmengeschichte,
-Hufschlag-Typen-Benennung, Sci-Fi-Woche-11-Code-Korrektheit (def/self), Boss-Quest-Eindeutigkeit
-Woche 6/8 Sci-Fi, Cyber-Credits/Huf-Punkte statt XP, und dass Debug-Bugs nicht im Kommentar verraten
-werden. Jeder Test wurde gegen eine absichtlich kaputte Kopie verifiziert (schlägt dann fehl).
-
-**Geklärt:** "Gilde-Meister-Urkunde" als Zwischenbelohnung in W6/7/8 (Abenteuer) ist kein Bug — Pferde
-("Reitmeister-Urkunde") und Sci-Fi ("Crew-Meister-Urkunde") nutzen dasselbe Muster je 3×, und andere
-Items (z.B. "Kristallkugel" 4×, "Quest-Buch" 4×) wiederholen sich im ganzen Kurs genauso. Bewusstes
-Belohnungs-Flavor-Muster für die schwierigste Mission der Woche — keine Umbenennung nötig.
+Regressionstests: `tests/storytelling-content.spec.js` (Teil von `npm run test:checks`).
 
 ### 3.5 Debug-Notebook-Sicherheit: Endlosschleifen-Schutz + Sci-Fi-Debug-Ziele (Branch `debug-notebook-safety`)
 
@@ -406,6 +319,110 @@ Home-Test, der jetzt 3 statt 2 immer sichtbare Kurskarten erwartet) + manuell pe
 echtem Pyodide-Lauf durch alle 5 Lektionen (inkl. der Brute-Force-Lektion, die tatsächlich
 "projekt" als Klartext ausgibt) sowie Deep-Link-Navigation zu Woche 2 des 12-Wochen-Kurses.
 
+### 3.12 Wochen-Zertifikate: Punkte-/Sammelsystem ersetzt (Branch `wochen-zertifikate`)
+
+Größere Änderung, vom Nutzer explizit angestoßen: das Punkte-/
+Sammel-Item-System wird komplett durch **Wochen-Zertifikate** ersetzt. Auslöser war der Wunsch, dass
+Boss-Quests+Missionen allein ("einfaches Abhaken") zu wenig Aussagekraft haben. Der Nutzer wollte das
+Für-und-Wider erst diskutieren, dann kam die Anforderung in zwei Schritten — erst "Quiz + eine
+Coding-Aufgabe zusätzlich zu den Missionen", dann (nach weiterem Nachdenken des Nutzers) die deutlich
+einfachere Endversion: **Missionen zählen gar nicht mehr fürs Zertifikat.**
+
+Finaler Stand:
+- **Ein** Zertifikat pro Woche (keine Varianten-Aufteilung — ein früherer Zwischenstand hatte noch
+  Abenteuer-/Pferde-/Sci-Fi-Zertifikate vorgesehen, das wurde verworfen, weil das Zertifikat inhaltlich
+  komplett variantenunabhängig ist: Quiz und Coding-Aufgaben sind generisch/geteilt. 3 separate,
+  aber immer identisch verliehene Zertifikate hätten keinen Mehrwert gehabt). Verliehen wird es, sobald
+  der Wochen-Check bestanden ist — und der besteht aus **Quiz + zwei Coding-Aufgaben** (leicht +
+  schwerer, je eine pro Woche, generisch, Pyodide-basiert). Missionen/Boss-Quests bleiben als
+  freiwillige Übungs-Checkliste pro Variante bestehen (weiterhin abhakbar in `MissionenPanel.vue`),
+  zählen aber nicht mehr als Voraussetzung.
+- Punkte/Items sind komplett weg, keine Kompatibilitäts-Schicht. `public/rewards-manifest*.json`
+  enthalten nur noch ID-Listen (`missions`, `bossQuests`), keine `points`/`item`-Felder mehr.
+- `content/python-checks/weeks.json`: Feld heißt jetzt `codingChallenges` (Array, nicht mehr
+  `codingChallenge`-Objekt) — 2 Einträge pro Woche (`instruction(_en)`, `codeTemplate`,
+  `validation: {type:'output_contains', expected}`). Alle 12 neuen "schwereren" Aufgaben lokal mit
+  `python3` gegen eine Referenzlösung verifiziert, bevor sie geschrieben wurden.
+- `useWeekChecks.js`: `codingPassed` ist jetzt ein Objekt `{0: true, 1: true}` (ein Flag pro
+  Challenge-Index) statt eines einzelnen Booleans; `isCodingPassedForWeek(week, totalChallenges=2)`
+  prüft alle Indizes. `CodeChallenge.vue` bekam eine `challenge-index`-Prop (plus `label`), damit
+  `WeekCheckPanel.vue` zwei Instanzen nebeneinander rendern kann (`data-challenge-index="0"/"1"` am
+  Root-Element für Tests).
+- `useZertifikate.js`: `isCertificateEarned(weekNumber)` prüft nur noch `isWeekCheckPassed()` — Manifest/
+  Missionen werden dafür nicht mehr angefasst (Manifest-Zugriff bleibt nur noch für die
+  Missionen-Anzeige selbst erhalten). `countCertificates()` ohne Variantenparameter.
+- `FortschrittWidget.vue` komplett vereinfacht: keine Varianten-Auswahl/-Tabs mehr, ein einzelnes
+  12-Wochen-Zertifikats-Raster statt drei parallele Raster.
+- **Alle "\*\*Belohnung(en):\*\*"/"\*\*Reward(s):\*\*"-Zeilen aus allen 444 Notebooks entfernt** — die
+  waren nach der Punkte-Entfernung inhaltlich verwaist (nannten XP/Huf-Punkte/Cyber Credits/Items, die
+  es im Produkt nicht mehr gibt). Das war technisch aufwändiger als erwartet: Notebooks im Repo
+  verwenden mindestens **drei verschiedene JSON-Serialisierungs-Stile** für `cell.source`
+  (mehrzeiliges Array mit einem String pro Zeile; ein einzelner String mit eingebetteten `\n`;
+  kompaktes Array, mehrere Strings auf einer physischen Zeile) — ein naiver `json.load()` +
+  `json.dump()`-Rewrite des ganzen Files hätte in >80% der Fälle die Formatierung anderer,
+  unveränderter Stellen zerstört (mit `indent=1`/`2`/`4` verglichen: keines matcht die Originaldatei
+  byte-genau). Lösung: nur die betroffenen Zeilen/Werte gezielt per Text-Ersetzung anfassen (nie das
+  ganze File neu serialisieren), nach jeder Änderung `json.loads()` zur Validierung, und bei jeder
+  entfernten "letztes Array-Element"-Belohnungszeile das jetzt illegale Trailing-Komma vor der
+  schließenden Klammer separat reparieren. Nebenbei auch die **"Lernziele"-Checkliste** entschärft:
+  das ☐-Symbol ist reiner Unicode-Text (kein `- [ ]` GFM-Task-Listen-Syntax, `marked` rendert es nicht
+  interaktiv) — Formulierungen wie "Hake ab, was du schon kannst" / "Wenn du alle Punkte abhaken
+  kannst" (DE) bzw. "Check/Tick off..." (EN) täuschten Klickbarkeit vor, die nie existiert hat. Ersetzt
+  durch "Überprüfe selbst, ob du diese Fähigkeiten gemeistert hast" / "Check for yourself...".
+  Nutzer-Entscheidung dazu: kleiner Text-Fix statt echter interaktiver Checkboxen (das wäre ein
+  eigenes, deutlich größeres Feature gewesen).
+- **Lokales Fortschritt-Skript entfernt** (`scripts/fortschritt.py`, `scripts/README-fortschritt.md`,
+  `scripts/rewards-manifest.json`, sowie die `fortschritt-script.zip`-Bündelung in
+  `pack_notebooks.py`): Nutzer-Entscheidung, dass Fortschritt-Sync über den Account (Login, PR #2)
+  laufen soll statt über ein CLI-Skript + manuellen JSON-Export/Import für Jupyter/VS-Code-Nutzer.
+  Der allgemeine Export/Import-Button in `FortschrittWidget.vue` bleibt bestehen (generisches
+  Backup/Restore, nicht exklusiv ans Skript gebunden).
+- **Ein Playwright-Bug beim Testen selbst** (nicht im Produktivcode): `passWeek1Quiz()` im Test las
+  `.quiz-question`-Anzahl, bevor `loadWeekChecks()` (asynchroner Fetch) fertig war → 0 Fragen erkannt,
+  0 Klicks, `.btn-check-quiz` blieb für immer disabled. Fix: `await expect(cards.first()).toBeVisible()`
+  vor dem Auslesen der Anzahl ergänzen. Falls an anderer Stelle ein ähnliches Timing-Problem auftaucht
+  (Frage-Anzahl 0 trotz sichtbarem Check-Tab): zuerst prüfen, ob auf das Laden gewartet wurde, bevor
+  ein Bug in `QuizStep.vue`/`WeekCheckPanel.vue` vermutet wird.
+- `content/python-12-wochen-grundkurs(-en)/beschreibung.md`, `INHALTE.md` Abschnitt 4 und die
+  betroffenen `progress.*`/`mission.*`-Locale-Texte wurden passend zur neuen Terminologie aktualisiert
+  (kein "Punkte sammeln" mehr, kein Verweis mehr auf Missionen als Zertifikats-Voraussetzung).
+  `tests/storytelling-content.spec.js`: zwei Tests entfernt, die variantenspezifische
+  Belohnungs-Wortwahl prüften (z.B. "Huf-Punkte statt XP") — die geprüfte Textstelle existiert jetzt
+  gar nicht mehr, nicht weil der Fix falsch war, sondern weil das Feature (Belohnungszeilen) komplett
+  entfernt wurde.
+
+### 3.13 Zertifikat-PDF-Download (gleicher Branch, Nachtrag)
+
+Nutzer-Wunsch nach einem greifbaren Dokument statt nur dem 🎓-Icon im Raster. Jedes verliehene
+Wochen-Zertifikat lässt sich jetzt als PDF herunterladen —
+mit den Lernzielen der Woche (aus `woche{N}.md`, Abschnitt "Lernziele"/"Learning goals"), Datum, Logo
+und einem editierbaren Namensfeld. **Nur sichtbar, wenn ein Account eingeloggt ist** — bei rein
+lokalem Fortschritt ohne Login erscheint stattdessen ein Hinweistext. E-Mail-Versand ist bewusst noch
+nicht Teil davon (eigenes, späteres Thema — Kontaktweg für Account-Wünsche kommt separat).
+
+- Neue Dependency `pdf-lib` (reines Browser-JS, kein Server-PDF nötig für den Download) — wird per
+  dynamischem `import()` erst beim Klick geladen (Vorbild: `useCourseData.js` lädt Content genauso
+  lazy), damit das PDF-Feature das Haupt-Bundle nicht aufbläht.
+- `useWeeklyContent.js:parseWeekMarkdown` hat jetzt zusätzlich `lernzieleFull` (volle, ungekürzte
+  Lernziele-Bullets) neben dem bestehenden `lernziele` (auf 36 Zeichen gekürzte UI-Chips) — die Chips
+  waren für ein Zertifikat unbrauchbar ("Text mit `print()` ausgeben" → nur "Text"). `CourseDetail.vue`
+  reicht das schon geladene `weeks`-Array jetzt per Prop an `FortschrittWidget.vue` durch.
+- **Gelernte Regel:** die Standard-PDF-Fonts (Helvetica) können nur WinAnsi/Windows-1252 kodieren —
+  Emoji aus Notebook-/Markdown-Titeln (z.B. das 📚 im Wochentitel-Frontmatter) lassen `pdf-lib` sonst
+  mit "WinAnsi cannot encode …" abstürzen. `useCertificatePdf.js:sanitizeForPdfFont` filtert das vorher
+  pro Zeichen heraus (testet `font.widthOfTextAtSize` je Unicode-Codepoint). Gilt für jeden Text, der
+  aus Content-Dateien statt fest im Code steht.
+- Bullet-Listen in `pdf-lib` nicht einzeln zentrieren (`drawText` pro Zeile mit eigener Center-Breite)
+  — das ergibt eine optisch zerfranste, unterschiedlich eingerückte Liste. Stattdessen alle Zeilen
+  vorab sammeln, per größter Zeilenbreite als Block linksbündig positionieren und den Block als Ganzes
+  zentrieren.
+- Tests: `tests/zertifikate.spec.js` (ohne Login → kein Download-Button, nur Hinweistext;
+  `test:checks`, kein API-Server nötig) + `tests/auth-ui.spec.js` (echter Login über den Test-API-Server
+  auf :3011, PDF-Download-Button erscheint erst danach, Playwright fängt den echten `download`-Event ab
+  und prüft den Dateinamen; `test:auth`).
+- `api/node_modules` fehlte in dieser Arbeitskopie (Express nie installiert) — `cd api && npm install`
+  nachgeholt, damit `npm run test:auth` den Test-API-Server überhaupt starten kann.
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -492,7 +509,7 @@ Siehe auch `todo.md`.
       deployen
 - [x] SQLite-Backup-Script (`api/src/scripts/backup-db.js`) — siehe Abschnitt 4. Externe
       Sicherung der Backups (z.B. `rsync`/`rclone` auf einen anderen Host) bewusst nicht mitgebaut,
-      hängt von der jeweiligen Server-Infrastruktur ab
+      hängt von der jeweiligen Server-Infrastruktur ab. Auf dem Server noch einzurichten (Cron o.ä.).
 
 **Inhalte**
 - Keine offenen Punkte aus der Storytelling-Überarbeitung mehr (siehe 3.4) — "Gilde-Meister-Urkunde" geklärt, kein Bug
@@ -504,16 +521,30 @@ Siehe auch `todo.md`.
   Wochenbeschreibungen + `weeks.json` fertig — `.vue`-Dateien und die interaktiven Kurse
   (`python-grundlagen-interaktiv*`, `caesar-chiffre`) noch offen
 - Cäsar-Chiffre-Projekt (3.11): EN-Version noch offen (DE-first)
+- [ ] **Neu gefunden, noch nicht behoben (3.12):** Boss-Quest-Lösungscode (`6_loesungen`-Notebooks)
+  und Abschluss-Markdown enthalten noch punkte-artige Feier-Texte, z.B. `print("🎉 +400 XP:
+  Boss-Quest abgeschlossen!")` und `**Gesammelte XP:** 1500 Punkte`. Das sind **keine**
+  `**Belohnung:**`-Zeilen (die wurden in `wochen-zertifikate` bereits vollständig entfernt) — das
+  ist Code-Output und Abschluss-Prosa, die noch von XP/Punkten erzählt, obwohl es das System nicht
+  mehr gibt. Noch nicht mit dem Nutzer geklärt, ob das behoben werden soll (reines Story-Flavor vs.
+  veraltete Punkte-Referenz). Vermutlich in denselben 444 Notebooks verstreut wie die entfernten
+  Belohnungszeilen — vor dem Fix erst eine Umfangs-Analyse machen (grep nach `XP`, `Gesammelte`,
+  `Punkte` in Boss-/Lösungs-Notebooks), dann mit dem Nutzer abstimmen, bevor an allen Dateien
+  geändert wird.
+- Zertifikat-PDF (3.13): E-Mail-Versand eigenes, späteres Thema (hängt an der noch offenen
+  Kontakt-E-Mail-Adresse, s.u.). Bewusst nur für den 12-Wochen-Kurs — Interaktiv-Kurs und
+  Projekt-Kurse (Cäsar-Chiffre, künftig `kurs-python-spiele`) könnten später ein eigenes
+  Abschluss-Zertifikat bekommen, aber noch nicht angefragt.
 
-**Branch-Merge läuft gerade (diese Session):** `debug-notebook-safety`, `et-fixes`,
-`interaktiv-klarer`, `text-typo-pass`, `backup-sqlite-db` und `kurs-caesar-chiffre` sind soeben
-nach `main` gemergt. Nur noch **`wochen-zertifikate`** fehlt in dieser Session. Nach jedem Merge
-`npm run test:checks` (und bei Auth-relevanten Branches zusätzlich `npm run test:auth`), bevor der
-nächste Branch drankommt. Noch **nicht** nach `origin/main` gepusht.
+**Alle sieben Branches sind gemergt** (`debug-notebook-safety`, `et-fixes`, `interaktiv-klarer`,
+`text-typo-pass`, `backup-sqlite-db`, `kurs-caesar-chiffre`, `wochen-zertifikate`) — noch **nicht**
+nach `origin/main` gepusht, Push/Server-Deploy bewusst zurückgestellt (Nutzer will erst später
+deployen).
 
 **Danach — nächste Kurs-Themen, je eigener Branch von `main`:**
 
-1. **`kurs-python-spiele`** — Python Spiele-Werkstatt (Turtle/Textspiele)
+1. **`kurs-python-spiele`** — Python Spiele-Werkstatt, `ProjectCourse.vue` schon generalisiert,
+   Inhalte (mehrere kleine Projekte wie Cäsar-Chiffre, DE-first) fehlen noch
 2. **`kurs-python-projekte`** — „Was kommt danach?“ Projekt-Sprints
 3. **`kurs-js-minigames`** *oder* **`kurs-ki-labor`** — Entscheidung beim Start
 
@@ -530,6 +561,7 @@ Kontakt-E-Mail im Footer wartet noch auf die tatsächliche Adresse vom Nutzer (n
 
 - Ein Thema = ein Branch von `main` (`WORKFLOW.md`) — **kein** Präfix mehr (früher `cursor/…`,
   wurde entfernt)
+- Jede Verhaltensänderung braucht einen Playwright-Test (`WORKFLOW.md`) — reine Text-/Typo-Korrekturen sind ausgenommen
 - Accounts: Admin legt an; `ageGroup` kinder|jugendliche; ein Mensch = ein Account
 - Sync: per-key Merge nach `updatedAt`
 - Prod: ein Container `app`, Port 8080, API serviert Static
@@ -538,6 +570,15 @@ Kontakt-E-Mail im Footer wartet noch auf die tatsächliche Adresse vom Nutzer (n
   einen Test in `tests/*.spec.js` bzw. `api/src/scripts/*.test.js` (`WORKFLOW.md`) — nicht nur
   manuell verifizieren
 - Inhaltsänderungen: `INHALTE.md` Abschnitt 6 (DE/EN, Manifeste, `kurse.json`)
+- Missionen/Belohnungen kennen seit `wochen-zertifikate` **keine Punkte/Items mehr** — nur noch
+  Zertifikate (siehe 3.12). Nicht versehentlich wieder ein Punktesystem einführen.
+- Zertifikat = **nur** Wochen-Check (Quiz + beide Coding-Aufgaben), **ein** Zertifikat pro Woche
+  (keine Varianten-Aufteilung). Missionen/Boss-Quests sind reine Übung, keine Voraussetzung — nicht
+  versehentlich wieder an Missionen koppeln oder wieder 3 Varianten-Zertifikate einführen.
+- Kein lokales Fortschritt-Skript mehr (`scripts/fortschritt.py` entfernt) — Fortschritt-Sync läuft
+  über den Account (Login), nicht über CLI-Skript + manuellen JSON-Import. Nicht wieder einführen.
+- Zertifikat-PDF-Download ist **login-gated** — ohne Account nur ein Hinweistext, kein Button. Nicht
+  versehentlich für alle (auch rein lokalen Fortschritt ohne Login) freischalten.
 
 ---
 
@@ -554,9 +595,12 @@ Kontakt-E-Mail im Footer wartet noch auf die tatsächliche Adresse vom Nutzer (n
    `scripts/extract_notebook_text.py` nach `/tmp` ausgeben lassen (cspell sieht Pfade außerhalb
    des Repos nicht, siehe 3.9); nicht: SQLite per `cp` statt `VACUUM INTO` sichern (WAL-Modus,
    siehe Abschnitt 4); nicht: einen neuen `LessonView.vue`-Kurs anlegen, ohne die
-   `import.meta.glob(...)`-Pfadlisten in `LessonView.vue` zu erweitern (siehe 3.11)
+   `import.meta.glob(...)`-Pfadlisten in `LessonView.vue` zu erweitern (siehe 3.11); nicht:
+   Punkte-/Item-System wieder einführen (siehe 3.12)
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
-**Empfohlener nächster Schritt:** Branch-Merge-Kette abschließen (siehe Abschnitt 5) —
-nur noch `wochen-zertifikate`, danach `kurs-python-spiele` (Kursgerüst `kurse.json` +
-Content-Ordner).
+**Empfohlener nächster Schritt:** Alle sieben Branches sind gemergt. Der Nutzer wollte als
+Nächstes entscheiden, ob/wann nach `origin/main` gepusht und deployed wird — direkt danach fragen.
+Falls stattdessen inhaltlich weitergearbeitet werden soll: `kurs-python-spiele` (Spiele-Werkstatt-
+Inhalte) oder der XP/Punkte-Text in Boss-Lösungsnotebooks (siehe Abschnitt 5) sind die
+nächstliegenden Kandidaten.

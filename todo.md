@@ -62,15 +62,58 @@
 
 ---
 
+## Fertige Branches (alle nach `main` gemerged)
+
+Alle sieben Branches sind in dieser Session in der Reihenfolge `debug-notebook-safety` → `et-fixes`
+→ `interaktiv-klarer` → `text-typo-pass` → `backup-sqlite-db` → `kurs-caesar-chiffre` →
+`wochen-zertifikate` nach `main` gemergt worden. Noch **nicht** nach `origin/main` gepusht — Push
+und Server-Deploy bewusst zurückgestellt (siehe HANDOFF.md).
+
+- [x] `debug-notebook-safety` — 5s-Timeout gegen Endlosschleifen in Pyodide-Zellen (AST-Loop-Guard,
+      kein Web-Worker nötig), Sci-Fi-Debug-Notebooks (24 Dateien) um Ziel-Angabe ergänzt
+- [x] `et-fixes` — "Weiß nicht"-Option im Quiz, Einstufung auf 3 Fragen/Woche mit eigener
+      66%-Schwelle, 12 Distraktoren in Wochen 1-4 geschärft
+- [x] `interaktiv-klarer` — gestufter Hinweis im interaktiven Kurs (vager Hinweis beim 1. Fehlversuch,
+      wörtlicher erwarteter Wert erst ab dem 2.)
+- [x] `text-typo-pass` — cspell-Setup (`cspell.json`, `lint:spelling`) + reale Tippfehler behoben
+      (Britisches Englisch W12, "Parours"→"Parcours", "Futterschip"→"Futterschippe" u.a.)
+- [x] `kurs-caesar-chiffre` — erstes eigenständiges Projekt neben den Wochenkursen (5 Lektionen,
+      neue `ProjectCourse.vue`), verlinkt aus dem 12-Wochen-Kurs
+- [ ] `kurs-python-spiele` — `ProjectCourse.vue` bereits generalisiert (mehrere Projekt-Kurse teilen
+      sich die Komponente), die eigentlichen Spiele-Inhalte (Quiz-Arena, Turtle-Welt, Galgenmännchen)
+      noch offen
+- [x] `wochen-zertifikate` (HANDOFF.md 3.12) — Punkte-/Sammelsystem komplett entfernt, ersetzt durch Wochen-Zertifikate:
+      **ein** Zertifikat pro Woche (keine Varianten-Aufteilung mehr), verliehen sobald der Wochen-Check
+      bestanden ist — Quiz **plus zwei** Coding-Aufgaben (leicht + schwerer). Missionen/Boss-Quests
+      bleiben als freiwillige Übungs-Checkliste pro Variante bestehen, zählen aber nicht mehr fürs
+      Zertifikat (Nutzer-Entscheidung: reines Abhaken war nicht aussagekräftig genug).
+      `rewards-manifest*.json` auf reine ID-Listen reduziert (keine Punkte/Items mehr),
+      `useFortschritt.js`/`useWeekChecks.js` neu geschrieben, neue `useZertifikate.js`.
+      `content/python-checks/weeks.json`: `codingChallenge` (1) → `codingChallenges` (Array, 2 Einträge)
+      pro Woche, alle 12 neuen "schwereren" Aufgaben lokal mit `python3` verifiziert.
+      Alle "**Belohnung(en):**"-Zeilen aus allen 444 Notebooks entfernt (waren nach der Punkte-
+      Entfernung inhaltlich verwaist), dabei auch die "Lernziele"-Checkliste entschärft: das ☐-Symbol
+      ist reiner Text (kein echtes Interaktionselement in `marked`), Formulierungen wie "Hake ab" /
+      "Check off" wurden durch "Überprüfe selbst" / "Check for yourself" ersetzt, um keine Klickbarkeit
+      vorzutäuschen. Lokales Fortschritt-Skript (`scripts/fortschritt.py` + `README-fortschritt.md`)
+      komplett entfernt — Fortschritt läuft jetzt über den Account (Login/Sync), nicht mehr über
+      manuellen JSON-Export/Import von einem CLI-Skript. Tests: `tests/zertifikate.spec.js`.
+- [x] Zertifikat-PDF (Download, nur mit Account): pro verliehenem Wochen-Zertifikat ein
+      herunterladbares PDF mit den Lernzielen der Woche, editierbarem Namensfeld, nur sichtbar wenn
+      eingeloggt. E-Mail-Versand bewusst zurückgestellt (eigenes, späteres Thema). Details siehe
+      HANDOFF.md 3.13.
+
+---
+
 ## Nächste Themen (je eigener Branch von `main`)
 
-Reihenfolge empfohlen: 1 → 2 → 3. Nicht mischen.
+Reihenfolge empfohlen: 1 → 2 → 3. Nicht mischen. (Branch-Namen ohne `cursor/`-Präfix.)
 
-### 1. Python Spiele-Werkstatt — Branch `kurs-python-spiele`
+### 1. Python Spiele-Werkstatt — Branch `kurs-python-spiele` (bereits begonnen, s.o.)
+- [x] `ProjectCourse.vue` generalisiert für mehrere Projekt-Kurse
 - [ ] Kursmetadaten in `kurse.json` (+ EN)
-- [ ] Content-Struktur (Wochen/Tabs analog bestehender Kurse oder Kurzformat)
-- [ ] Turtle-/Textspiele, Level-Ideen, Belohnungen falls passend
-- [ ] DE + EN (oder bewusst DE-first, EN nachziehen)
+- [ ] Content-Struktur (mehrere kleine Projekte wie Cäsar-Chiffre, DE-first)
+- [ ] Turtle-/Textspiele, Level-Ideen
 - [ ] Smoke-Test / manuell prüfen → PR nach `main`
 
 ### 2. Was kommt danach? Projekt-Sprints — Branch `kurs-python-projekte`

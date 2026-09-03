@@ -272,6 +272,26 @@
           "explanation": "print gibt Werte aus – klein geschrieben, Text und Zahlen sind ok.",
           "explanation_en": "print gibt Werte aus – klein geschrieben, Text und Zahlen sind ok."
         }
+      ],
+      "codingChallenges": [
+        {
+          "instruction": "Schreibe ein Programm, das den Text \"Level 1 geschafft!\" ausgibt.",
+          "instruction_en": "Write a program that prints the text \"Level 1 geschafft!\".",
+          "codeTemplate": "",
+          "validation": {
+            "type": "output_contains",
+            "expected": "Level 1 geschafft!"
+          }
+        },
+        {
+          "instruction": "Erstelle eine Variable name mit dem Wert \"Nova\" und eine Variable level mit der Zahl 3. Gib \"Nova hat Level 3 erreicht!\" aus, indem du beide Variablen mit + verbindest (denk an str()).",
+          "instruction_en": "Create a variable name with the value \"Nova\" and a variable level with the number 3. Print \"Nova hat Level 3 erreicht!\" by combining both variables with + (remember str()).",
+          "codeTemplate": "",
+          "validation": {
+            "type": "output_contains",
+            "expected": "Nova hat Level 3 erreicht!"
+          }
+        }
       ]
     },
     "2": {
@@ -486,6 +506,26 @@
           "explanation": "print ist eine Funktion, kein Datentyp.",
           "explanation_en": "print ist eine Funktion, kein Datentyp."
         }
+      ],
+      "codingChallenges": [
+        {
+          "instruction": "Berechne 7 + 5 und gib das Ergebnis aus.",
+          "instruction_en": "Calculate 7 + 5 and print the result.",
+          "codeTemplate": "",
+          "validation": {
+            "type": "output_contains",
+            "expected": "12"
+          }
+        },
+        {
+          "instruction": "Erstelle eine Variable alter mit der Zahl 10 (int) und wandle sie mit str() in Text um. Gib den Satz \"Ich bin 10 Jahre alt\" aus, indem du den Text mit der umgewandelten Variable zusammensetzt.",
+          "instruction_en": "Create a variable alter with the number 10 (int) and convert it to text with str(). Print the sentence \"Ich bin 10 Jahre alt\" by combining the text with the converted variable.",
+          "codeTemplate": "",
+          "validation": {
+            "type": "output_contains",
+            "expected": "Ich bin 10 Jahre alt"
+          }
+        }
       ]
     },
     "3": {
@@ -697,6 +737,26 @@
           ],
           "explanation": "for gehört zu Schleifen.",
           "explanation_en": "for gehört zu Schleifen."
+        }
+      ],
+      "codingChallenges": [
+        {
+          "instruction": "Prüfe, ob die Zahl 15 größer als 10 ist, und gib das Ergebnis des Vergleichs aus (also True oder False).",
+          "instruction_en": "Check whether the number 15 is greater than 10, and print the result of the comparison (True or False).",
+          "codeTemplate": "",
+          "validation": {
+            "type": "output_contains",
+            "expected": "True"
+          }
+        },
+        {
+          "instruction": "Vergleiche zwei Zahlen mit if/else: zahl1 = 12 und zahl2 = 7. Gib mit einem if/else-Block die größere der beiden Zahlen aus.",
+          "instruction_en": "Compare two numbers with if/else: zahl1 = 12 and zahl2 = 7. Use an if/else block to print the larger of the two numbers.",
+          "codeTemplate": "",
+          "validation": {
+            "type": "output_contains",
+            "expected": "12"
+          }
         }
       ]
     },
@@ -910,6 +970,26 @@
           "explanation": "def definiert Funktionen; for/break/continue gehören zu Schleifen.",
           "explanation_en": "def definiert Funktionen; for/break/continue gehören zu Schleifen."
         }
+      ],
+      "codingChallenges": [
+        {
+          "instruction": "Nutze eine Schleife, um die Zahlen 1 bis 5 zu addieren, und gib die Summe aus.",
+          "instruction_en": "Use a loop to add the numbers 1 to 5, and print the sum.",
+          "codeTemplate": "",
+          "validation": {
+            "type": "output_contains",
+            "expected": "15"
+          }
+        },
+        {
+          "instruction": "Nutze eine Schleife, um die Zahlen von 1 bis 4 zu multiplizieren (also 1*2*3*4), und gib das Ergebnis aus.",
+          "instruction_en": "Use a loop to multiply the numbers from 1 to 4 (i.e. 1*2*3*4), and print the result.",
+          "codeTemplate": "",
+          "validation": {
+            "type": "output_contains",
+            "expected": "24"
+          }
+        }
       ]
     },
     "5": {
@@ -1121,6 +1201,26 @@
           ],
           "explanation": "import turtle braucht man nur für Grafik.",
           "explanation_en": "import turtle braucht man nur für Grafik."
+        }
+      ],
+      "codingChallenges": [
+        {
+          "instruction": "Schreibe eine Funktion verdopple(zahl), die die doppelte Zahl zurückgibt, und gib verdopple(6) aus.",
+          "instruction_en": "Write a function verdopple(zahl) that returns double the number, and print verdopple(6).",
+          "codeTemplate": "",
+          "validation": {
+            "type": "output_contains",
+            "expected": "12"
+          }
+        },
+        {
+          "instruction": "Schreibe eine Funktion addiere(a, b), die die Summe von a und b zurückgibt, und gib addiere(9, 8) aus.",
+          "instruction_en": "Write a function addiere(a, b) that returns the sum of a and b, and print addiere(9, 8).",
+          "codeTemplate": "",
+          "validation": {
+            "type": "output_contains",
+            "expected": "17"
+          }
         }
       ]
     },
@@ -1334,6 +1434,26 @@
           "explanation": "{\"a\": 1} ist ein Dictionary.",
           "explanation_en": "{\"a\": 1} ist ein Dictionary."
         }
+      ],
+      "codingChallenges": [
+        {
+          "instruction": "Erstelle eine Liste mit den Zahlen 3, 7 und 2, und gib die größte Zahl aus (Tipp: max()).",
+          "instruction_en": "Create a list with the numbers 3, 7 and 2, and print the largest number (hint: max()).",
+          "codeTemplate": "",
+          "validation": {
+            "type": "output_contains",
+            "expected": "7"
+          }
+        },
+        {
+          "instruction": "Erstelle eine Liste mit den Zahlen 4, 9, 1 und 6. Berechne die Summe aller Zahlen (Tipp: sum()) und gib sie aus.",
+          "instruction_en": "Create a list with the numbers 4, 9, 1 and 6. Calculate the sum of all numbers (hint: sum()) and print it.",
+          "codeTemplate": "",
+          "validation": {
+            "type": "output_contains",
+            "expected": "20"
+          }
+        }
       ]
     },
     "7": {
@@ -1545,6 +1665,26 @@
           ],
           "explanation": "random, math und json sind Standard.",
           "explanation_en": "random, math und json sind Standard."
+        }
+      ],
+      "codingChallenges": [
+        {
+          "instruction": "Importiere das math-Modul und gib die Quadratwurzel von 16 aus.",
+          "instruction_en": "Import the math module and print the square root of 16.",
+          "codeTemplate": "",
+          "validation": {
+            "type": "output_contains",
+            "expected": "4.0"
+          }
+        },
+        {
+          "instruction": "Importiere das math-Modul und gib math.factorial(5) aus (die Fakultät von 5, also 5*4*3*2*1).",
+          "instruction_en": "Import the math module and print math.factorial(5) (the factorial of 5, i.e. 5*4*3*2*1).",
+          "codeTemplate": "",
+          "validation": {
+            "type": "output_contains",
+            "expected": "120"
+          }
         }
       ]
     },
@@ -1758,6 +1898,26 @@
           "explanation": "int ist ein einzelner Zahlenwert.",
           "explanation_en": "int ist ein einzelner Zahlenwert."
         }
+      ],
+      "codingChallenges": [
+        {
+          "instruction": "Erstelle ein Dictionary person mit dem Schlüssel \"name\" und dem Wert \"Alex\", und gib person[\"name\"] aus.",
+          "instruction_en": "Create a dictionary person with the key \"name\" and the value \"Alex\", and print person[\"name\"].",
+          "codeTemplate": "",
+          "validation": {
+            "type": "output_contains",
+            "expected": "Alex"
+          }
+        },
+        {
+          "instruction": "Erstelle ein Dictionary schueler mit den Schlüsseln \"name\" (Wert \"Mia\") und \"note\" (Wert 2). Gib den Satz \"Mia hat die Note 2\" aus, indem du beide Werte aus dem Dictionary verwendest (denk an str() für die Zahl).",
+          "instruction_en": "Create a dictionary schueler with the keys \"name\" (value \"Mia\") and \"note\" (value 2). Print the sentence \"Mia hat die Note 2\" using both values from the dictionary (remember str() for the number).",
+          "codeTemplate": "",
+          "validation": {
+            "type": "output_contains",
+            "expected": "Mia hat die Note 2"
+          }
+        }
       ]
     },
     "9": {
@@ -1969,6 +2129,26 @@
           ],
           "explanation": "turtle.forward gehört zur Grafik.",
           "explanation_en": "turtle.forward gehört zur Grafik."
+        }
+      ],
+      "codingChallenges": [
+        {
+          "instruction": "Wandle die Liste [1, 2, 3] mit json.dumps() in Text um und gib das Ergebnis aus.",
+          "instruction_en": "Convert the list [1, 2, 3] to text with json.dumps() and print the result.",
+          "codeTemplate": "import json\n",
+          "validation": {
+            "type": "output_contains",
+            "expected": "[1, 2, 3]"
+          }
+        },
+        {
+          "instruction": "Wandle das Dictionary {\"stadt\": \"Berlin\"} mit json.dumps() in Text um und gib das Ergebnis aus.",
+          "instruction_en": "Convert the dictionary {\"stadt\": \"Berlin\"} to text with json.dumps() and print the result.",
+          "codeTemplate": "import json\n",
+          "validation": {
+            "type": "output_contains",
+            "expected": "{\"stadt\": \"Berlin\"}"
+          }
         }
       ]
     },
@@ -2182,6 +2362,26 @@
           "explanation": "range() ist keine OOP-Idee.",
           "explanation_en": "range() ist keine OOP-Idee."
         }
+      ],
+      "codingChallenges": [
+        {
+          "instruction": "Erstelle eine Klasse Tier mit einem Attribut name im __init__, erzeuge ein Objekt mit dem Namen \"Bello\" und gib tier.name aus.",
+          "instruction_en": "Create a class Tier with an attribute name in __init__, create an object named \"Bello\" and print tier.name.",
+          "codeTemplate": "",
+          "validation": {
+            "type": "output_contains",
+            "expected": "Bello"
+          }
+        },
+        {
+          "instruction": "Erstelle eine Klasse Tier mit einem Attribut name im __init__ und einer Methode vorstellen(self), die \"Ich heiße \" + self.name ausgibt. Erzeuge ein Tier mit dem Namen \"Rex\" und rufe vorstellen() auf.",
+          "instruction_en": "Create a class Tier with an attribute name in __init__ and a method vorstellen(self) that prints \"Ich heiße \" + self.name. Create a Tier named \"Rex\" and call vorstellen().",
+          "codeTemplate": "",
+          "validation": {
+            "type": "output_contains",
+            "expected": "Ich heiße Rex"
+          }
+        }
       ]
     },
     "11": {
@@ -2394,6 +2594,26 @@
           "explanation": "turtle.circle ist Grafik.",
           "explanation_en": "turtle.circle ist Grafik."
         }
+      ],
+      "codingChallenges": [
+        {
+          "instruction": "Erstelle eine Klasse Basis mit einer Methode sag_hallo(), die \"Hallo!\" ausgibt, und eine Klasse Kind(Basis), die davon erbt. Erzeuge ein Kind-Objekt und rufe sag_hallo() auf.",
+          "instruction_en": "Create a class Basis with a method sag_hallo() that prints \"Hallo!\", and a class Kind(Basis) that inherits from it. Create a Kind object and call sag_hallo().",
+          "codeTemplate": "",
+          "validation": {
+            "type": "output_contains",
+            "expected": "Hallo!"
+          }
+        },
+        {
+          "instruction": "Erstelle eine Klasse Basis mit einer Methode sag_hallo(self), die \"Hallo von Basis!\" ausgibt. Erstelle eine Klasse Kind(Basis), die sag_hallo(self) überschreibt und stattdessen \"Hallo von Kind!\" ausgibt. Erzeuge ein Kind-Objekt und rufe sag_hallo() auf.",
+          "instruction_en": "Create a class Basis with a method sag_hallo(self) that prints \"Hallo von Basis!\". Create a class Kind(Basis) that overrides sag_hallo(self) to print \"Hallo von Kind!\" instead. Create a Kind object and call sag_hallo().",
+          "codeTemplate": "",
+          "validation": {
+            "type": "output_contains",
+            "expected": "Hallo von Kind!"
+          }
+        }
       ]
     },
     "12": {
@@ -2605,6 +2825,26 @@
           ],
           "explanation": "json.loads gehört zu Dateien/JSON.",
           "explanation_en": "json.loads gehört zu Dateien/JSON."
+        }
+      ],
+      "codingChallenges": [
+        {
+          "instruction": "Importiere das turtle-Modul und gib danach \"Turtle bereit!\" aus.",
+          "instruction_en": "Import the turtle module and then print \"Turtle bereit!\".",
+          "codeTemplate": "",
+          "validation": {
+            "type": "output_contains",
+            "expected": "Turtle bereit!"
+          }
+        },
+        {
+          "instruction": "Importiere das turtle-Modul. Nutze zusätzlich eine Schleife, um 4-mal \"Seite gezeichnet\" auszugeben (wie bei den 4 Seiten eines Quadrats).",
+          "instruction_en": "Import the turtle module. Also use a loop to print \"Seite gezeichnet\" 4 times (like the 4 sides of a square).",
+          "codeTemplate": "",
+          "validation": {
+            "type": "output_contains",
+            "expected": "Seite gezeichnet"
+          }
         }
       ]
     }

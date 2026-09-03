@@ -21,6 +21,11 @@
         @completed="onPassed"
         @failed="onFailed"
       />
+      <CodeChallenge :week-number="weekNumber" :challenge-index="0" :label="lang === 'en' ? 'Easy' : 'Leicht'" />
+      <CodeChallenge :week-number="weekNumber" :challenge-index="1" :label="lang === 'en' ? 'Harder' : 'Schwerer'" />
+      <p v-if="quizPassed && codingPassed" class="check-fully-done">
+        {{ lang === 'en' ? '🎉 All parts done — you\'ve earned this week\'s certificate!' : '🎉 Alles geschafft — du hast das Zertifikat dieser Woche verdient!' }}
+      </p>
     </template>
   </div>
 </template>
@@ -28,24 +33,27 @@
 <script>
 import { ref, computed, onMounted, watch } from 'vue';
 import QuizStep from './QuizStep.vue';
+import CodeChallenge from './CodeChallenge.vue';
 import { loadWeekChecks, getWeekQuestions, useWeekChecks } from '../composables/useWeekChecks';
 import { useLanguage } from '../composables/useLanguage';
 
 export default {
   name: 'WeekCheckPanel',
-  components: { QuizStep },
+  components: { QuizStep, CodeChallenge },
   props: {
     weekNumber: { type: Number, required: true },
   },
   setup(props) {
     const { lang } = useLanguage();
-    const { markWeekPassed, isWeekCheckPassed } = useWeekChecks();
+    const { markQuizPassed, isWeekCheckPassed, isQuizPassedForWeek, isCodingPassedForWeek } = useWeekChecks();
     const data = ref(null);
     const loading = ref(true);
     const questions = ref([]);
 
     const passThreshold = computed(() => data.value?.passThreshold ?? 0.8);
     const alreadyPassed = computed(() => isWeekCheckPassed(props.weekNumber));
+    const quizPassed = computed(() => isQuizPassedForWeek(props.weekNumber));
+    const codingPassed = computed(() => isCodingPassedForWeek(props.weekNumber));
 
     const pickQuestions = () => {
       questions.value = data.value
@@ -74,7 +82,7 @@ export default {
     });
 
     const onPassed = (result) => {
-      markWeekPassed(props.weekNumber, result);
+      markQuizPassed(props.weekNumber, result);
     };
 
     const onFailed = () => {};
@@ -85,6 +93,8 @@ export default {
       questions,
       passThreshold,
       alreadyPassed,
+      quizPassed,
+      codingPassed,
       onPassed,
       onFailed,
     };
@@ -125,6 +135,16 @@ export default {
   font-weight: 700;
   padding: 2px 10px;
   border-radius: 10px;
+}
+
+.check-fully-done {
+  margin: 16px 0 0 0;
+  padding: 12px 16px;
+  background: #fff3cd;
+  border: 1px solid #ffe69c;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #664d03;
 }
 
 .check-loading,

@@ -39,7 +39,7 @@
       <ProjectCourse :course-id="id" />
     </div>
 
-    <FortschrittWidget v-else-if="isWeeklyCourse && fortschrittReady" />
+    <FortschrittWidget v-else-if="isWeeklyCourse && fortschrittReady" :weeks="weeks" />
 
     <WeekSection
       v-if="isWeeklyCourse"

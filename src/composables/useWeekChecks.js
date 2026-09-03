@@ -160,13 +160,20 @@ if (typeof window !== 'undefined') {
 }
 
 export function useWeekChecks() {
-  const markWeekPassed = (weekNumber, scoreResult) => {
+  // Der Wochen-Check besteht aus zwei unabhängig abschließbaren Teilen: Quiz + Coding-Aufgaben.
+  // Es gibt pro Woche mehrere Coding-Aufgaben (aktuell 2: leicht + schwerer) — codingPassed hält
+  // pro Challenge-Index ein eigenes Flag. isWeekCheckPassed() ist die "vollständig bestanden"-
+  // Abfrage: Quiz UND alle Coding-Aufgaben der Woche.
+  const markQuizPassed = (weekNumber, scoreResult) => {
+    const key = String(weekNumber);
+    const existing = progress.value.weeks?.[key] || {};
     progress.value = {
       ...progress.value,
       weeks: {
         ...progress.value.weeks,
-        [String(weekNumber)]: {
-          status: 'passed',
+        [key]: {
+          ...existing,
+          quizPassed: true,
           score: scoreResult.score,
           correct: scoreResult.correct,
           total: scoreResult.total,
@@ -176,8 +183,38 @@ export function useWeekChecks() {
     };
   };
 
-  const isWeekCheckPassed = (weekNumber) =>
-    progress.value.weeks?.[String(weekNumber)]?.status === 'passed';
+  const markCodingPassed = (weekNumber, challengeIndex = 0) => {
+    const key = String(weekNumber);
+    const existing = progress.value.weeks?.[key] || {};
+    progress.value = {
+      ...progress.value,
+      weeks: {
+        ...progress.value.weeks,
+        [key]: {
+          ...existing,
+          codingPassed: { ...existing.codingPassed, [challengeIndex]: true },
+          at: new Date().toISOString(),
+        },
+      },
+    };
+  };
+
+  const isQuizPassedForWeek = (weekNumber) =>
+    progress.value.weeks?.[String(weekNumber)]?.quizPassed === true;
+
+  const isCodingChallengePassed = (weekNumber, challengeIndex = 0) =>
+    progress.value.weeks?.[String(weekNumber)]?.codingPassed?.[challengeIndex] === true;
+
+  /** Alle Coding-Aufgaben der Woche bestanden (totalChallenges = wie viele es davon gibt). */
+  const isCodingPassedForWeek = (weekNumber, totalChallenges = 2) => {
+    for (let i = 0; i < totalChallenges; i += 1) {
+      if (!isCodingChallengePassed(weekNumber, i)) return false;
+    }
+    return true;
+  };
+
+  const isWeekCheckPassed = (weekNumber, totalChallenges = 2) =>
+    isQuizPassedForWeek(weekNumber) && isCodingPassedForWeek(weekNumber, totalChallenges);
 
   const savePlacementResult = (weekScores) => {
     if (!weekScores) {
@@ -224,7 +261,11 @@ export function useWeekChecks() {
 
   return {
     progress,
-    markWeekPassed,
+    markQuizPassed,
+    markCodingPassed,
+    isQuizPassedForWeek,
+    isCodingChallengePassed,
+    isCodingPassedForWeek,
     isWeekCheckPassed,
     savePlacementResult,
     savePlacementSession,
