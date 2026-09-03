@@ -1,12 +1,14 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-09-03  
-> **Aktueller Stand:** Alle sieben Feature-Branches (siehe 3.5–3.13) sind in dieser Session nach
-> `main` gemergt: `debug-notebook-safety`, `et-fixes`, `interaktiv-klarer`, `text-typo-pass`,
-> `backup-sqlite-db`, `kurs-caesar-chiffre` und `wochen-zertifikate` (Wochen-Zertifikate +
-> Zertifikat-PDF-Download). `main` enthält damit PR #1–#4, die Storytelling-Überarbeitung (3.4) und
-> alle sieben Themen. Noch **nicht** nach `origin/main` gepusht — Push/Deploy bewusst
-> zurückgestellt, siehe Abschnitt 5/7.  
+> **Aktueller Stand:** Alle sieben Feature-Branches (siehe 3.5–3.13) sind gemergt:
+> `debug-notebook-safety`, `et-fixes`, `interaktiv-klarer`, `text-typo-pass`, `backup-sqlite-db`,
+> `kurs-caesar-chiffre` und `wochen-zertifikate` (Wochen-Zertifikate + Zertifikat-PDF-Download).
+> Direkt danach, auf eigenem Branch `entferne-xp-texte`: die letzten Überbleibsel des alten
+> Punktesystems entfernt — Boss-Quest-Feier-Prints und Abschluss-Texte nannten noch XP/Huf-Punkte/
+> Cyber-Credits-Zahlen (3.14). `main` enthält damit PR #1–#4, die Storytelling-Überarbeitung (3.4)
+> und alle acht Themen. `entferne-xp-texte` ist noch **nicht** in `main` gemergt. Noch **nicht**
+> nach `origin/main` gepusht — Push/Deploy bewusst zurückgestellt, siehe Abschnitt 5/7.  
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -423,6 +425,44 @@ nicht Teil davon (eigenes, späteres Thema — Kontaktweg für Account-Wünsche 
 - `api/node_modules` fehlte in dieser Arbeitskopie (Express nie installiert) — `cd api && npm install`
   nachgeholt, damit `npm run test:auth` den Test-API-Server überhaupt starten kann.
 
+### 3.14 Punkte-artige Feier-Texte entfernt (Branch `entferne-xp-texte`)
+
+Nachtrag zu `wochen-zertifikate`: die entfernten `**Belohnung:**`-Zeilen waren nicht die einzige
+Stelle, die noch vom alten Punktesystem erzählte — Boss-Quest-Lösungscode und Abschluss-Markdown
+gaben weiterhin XP/Huf-Punkte/Cyber-Credits-Zahlen aus, die es im Produkt nicht mehr gibt.
+
+**Umfangs-Analyse zuerst** (wie in HANDOFF.md schon vorgemerkt): grep nach `XP`, `Huf-Punkte`,
+`Hoof Points`, `Cyber Credits`, `Gesammelte` über alle 444 Notebooks, dann jeder Treffer einzeln
+eingeordnet — nicht jede Erwähnung ist ein Überbleibsel:
+- **Entfernt (echte Reward-Behauptungen ans reale Publikum):** der Präfix `+400 XP: ` (bzw.
+  `Huf-Punkte`/`Hoof Points`/`Cyber Credits`) in den `🎉`-Boss-Quest-Abschluss-Prints — 125
+  Notebooks, DE+EN, alle drei Varianten, sowohl `5_boss` (Beispiel-Ausgabe) als auch `6_loesungen`
+  (tatsächlicher Lösungscode). Plus drei Einzelfälle: `**Gesammelte XP:** 1500 Punkte` (Woche 1
+  Abenteuer Boss), das Versprechen „sammelst du **1000 XP**!" in der Woche-1-Lektion, und
+  „…und 500 Huf-Punkte/Hoof Points für den Erstplatzierten" in der Woche-1-Pferde-Siegerehrung
+  (DE+EN) — dort blieb nur der Sachpreis (Pokal, Schleife) übrig, die Punktzahl gestrichen.
+- **Bewusst NICHT angefasst (fiktive Story-Werte, die die Übung selbst berechnet, keine echte
+  Belohnung ans reale Publikum):** `hero_xp`/`erfahrung`-Felder in Helden-Steckbrief-Übungen,
+  `reward`/`belohnung`-Tupel in Dict/Tupel-Übungen, die Cyber-Credits-Berechnung einer
+  Asteroiden-Bewertungsübung, `erfolgs_xp`/`earned_xp` als Summe über eine selbst gebaute
+  Quest-Liste (Listen/Dict-Übung), sowie die `+200 XP`/`-20 HP`/`-10 HP`-Zufallsereignis-Prints in
+  Woche 3 (dieselbe Übung nennt Schaden in "HP", das war nie eine reale Platform-Währung — die
+  Struktur ist identisch, nur "XP" fällt hier zufällig mit dem alten Currency-Namen zusammen). Die
+  Unterscheidung: erzählt die Zeile dem *echten Lernenden*, dass er/sie gerade etwas Reales
+  bekommen hat (Session-Abschluss-Feier), oder ist die Zahl nur ein Zwischenwert, den die Übung
+  selbst als Programmier-Aufgabe berechnet (Variablen/Listen/Dicts/Summen)?
+- Website-Texte (`src/`, `public/*.json`, `beschreibung.md`) waren bereits vollständig sauber —
+  dort war schon in `wochen-zertifikate` alles entfernt worden.
+
+**Umsetzung:** Massenänderung per Text-Ersetzung (nicht JSON-Reserialisierung) wie schon beim
+`**Belohnung:**`-Cleanup — Regex `(🎉 )\+\d+ (XP|Huf-Punkte|Hoof Points|Cyber Credits): ` → `\1`
+für die 125 Boss-Quest-Prints, drei manuelle Einzel-Edits für die restlichen Fälle. Nach jeder
+Änderung `json.loads()` zur Validierung (126 Notebooks geprüft, alle valide) sowie `ast.parse()`
+auf jede Code-Zelle der geänderten Notebooks (keine Syntaxfehler).
+
+**Getestet:** `npm run test:checks` (43 Tests grün, unverändert — reine Text-/Print-Output-Änderung
+ohne Verhaltensänderung, laut `WORKFLOW.md` kein neuer Test nötig).
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -521,16 +561,7 @@ Siehe auch `todo.md`.
   Wochenbeschreibungen + `weeks.json` fertig — `.vue`-Dateien und die interaktiven Kurse
   (`python-grundlagen-interaktiv*`, `caesar-chiffre`) noch offen
 - Cäsar-Chiffre-Projekt (3.11): EN-Version noch offen (DE-first)
-- [ ] **Neu gefunden, noch nicht behoben (3.12):** Boss-Quest-Lösungscode (`6_loesungen`-Notebooks)
-  und Abschluss-Markdown enthalten noch punkte-artige Feier-Texte, z.B. `print("🎉 +400 XP:
-  Boss-Quest abgeschlossen!")` und `**Gesammelte XP:** 1500 Punkte`. Das sind **keine**
-  `**Belohnung:**`-Zeilen (die wurden in `wochen-zertifikate` bereits vollständig entfernt) — das
-  ist Code-Output und Abschluss-Prosa, die noch von XP/Punkten erzählt, obwohl es das System nicht
-  mehr gibt. Noch nicht mit dem Nutzer geklärt, ob das behoben werden soll (reines Story-Flavor vs.
-  veraltete Punkte-Referenz). Vermutlich in denselben 444 Notebooks verstreut wie die entfernten
-  Belohnungszeilen — vor dem Fix erst eine Umfangs-Analyse machen (grep nach `XP`, `Gesammelte`,
-  `Punkte` in Boss-/Lösungs-Notebooks), dann mit dem Nutzer abstimmen, bevor an allen Dateien
-  geändert wird.
+- [x] Punkte-artige Feier-Texte entfernt (3.14, Branch `entferne-xp-texte`) — siehe unten
 - Zertifikat-PDF (3.13): E-Mail-Versand eigenes, späteres Thema (hängt an der noch offenen
   Kontakt-E-Mail-Adresse, s.u.). Bewusst nur für den 12-Wochen-Kurs — Interaktiv-Kurs und
   Projekt-Kurse (Cäsar-Chiffre, künftig `kurs-python-spiele`) könnten später ein eigenes

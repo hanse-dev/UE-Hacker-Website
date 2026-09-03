@@ -102,6 +102,13 @@ und Server-Deploy bewusst zurückgestellt (siehe HANDOFF.md).
       herunterladbares PDF mit den Lernzielen der Woche, editierbarem Namensfeld, nur sichtbar wenn
       eingeloggt. E-Mail-Versand bewusst zurückgestellt (eigenes, späteres Thema). Details siehe
       HANDOFF.md 3.13.
+- [x] `entferne-xp-texte` (HANDOFF.md 3.14, noch nicht in `main` gemergt) — letzte Überbleibsel des
+      alten Punktesystems entfernt: Präfix `+400 XP:`/`Huf-Punkte`/`Hoof Points`/`Cyber Credits` aus
+      125 Boss-Quest-Feier-Prints (DE+EN, alle Varianten) gestrichen, plus drei Einzelfälle
+      (`**Gesammelte XP:** 1500 Punkte`, "sammelst du 1000 XP"-Versprechen, Huf-Punkte in der
+      Pferde-Siegerehrung Woche 1). Fiktive Story-Werte, die eine Übung selbst berechnet
+      (Helden-Steckbriefe, Quest-Listen-Summen, Cyber-Credits-Rechenübung, HP-Zufallsereignisse),
+      bewusst nicht angefasst — keine echte Belohnungsbehauptung ans reale Publikum.
 
 ---
 
