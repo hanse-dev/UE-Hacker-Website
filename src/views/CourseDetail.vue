@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <CourseAppointments v-if="!isInteractiveCourse && !isPlacementCourse" :termine="courseTermine" />
+    <CourseAppointments v-if="!isInteractiveCourse && !isPlacementCourse && !isProjectCourse" :termine="courseTermine" />
 
     <div v-if="isInteractiveCourse" class="interactive-course-wrapper">
       <InteractiveCourse :content-path="course.contentPath" />
@@ -33,6 +33,10 @@
 
     <div v-else-if="isPlacementCourse" class="placement-course-wrapper">
       <PlacementCourse />
+    </div>
+
+    <div v-else-if="isProjectCourse" class="project-course-wrapper">
+      <ProjectCourse :course-id="id" />
     </div>
 
     <FortschrittWidget v-else-if="isWeeklyCourse && fortschrittReady" />
@@ -55,6 +59,16 @@
       </a>
       <p class="notebook-pack-hint">{{ t('course.download.hint') }}</p>
     </div>
+
+    <div v-if="isWeeklyCourse" class="project-banner">
+      <div class="project-banner-text">
+        <strong>{{ t('course.project.banner.title') }}</strong>
+        <p>{{ t('course.project.banner.desc') }}</p>
+      </div>
+      <router-link to="/kurs/projekt-caesar-chiffre" class="project-banner-link">
+        {{ t('course.project.banner.link') }}
+      </router-link>
+    </div>
   </section>
   <div v-else class="course-loading">
     <p v-if="loading">{{ t('course.loading') }}</p>
@@ -69,6 +83,7 @@ import FortschrittWidget from '../components/FortschrittWidget.vue';
 import WeekSection from '../components/WeekSection.vue';
 import InteractiveCourse from '../components/InteractiveCourse.vue';
 import PlacementCourse from '../components/PlacementCourse.vue';
+import ProjectCourse from '../components/ProjectCourse.vue';
 import { loadCourseData } from '../composables/useCourseData';
 import { loadWeeklyContent } from '../composables/useWeeklyContent';
 import { useLanguage } from '../composables/useLanguage.js';
@@ -92,6 +107,7 @@ export default {
     WeekSection,
     InteractiveCourse,
     PlacementCourse,
+    ProjectCourse,
   },
   props: {
     id: { type: String, required: true },
@@ -110,6 +126,7 @@ export default {
     const isWeeklyCourse = computed(() => props.id === 'python-12-wochen-grundkurs');
     const isInteractiveCourse = computed(() => props.id === 'python-grundlagen-interaktiv');
     const isPlacementCourse = computed(() => props.id === 'python-einstufung');
+    const isProjectCourse = computed(() => props.id === 'projekt-caesar-chiffre');
 
     const courseTabs = computed(() =>
       TABS_CONFIG.map(tab => ({ ...tab, label: t(tab.labelKey), description: t(tab.descKey) }))
@@ -211,6 +228,7 @@ export default {
       isWeeklyCourse,
       isInteractiveCourse,
       isPlacementCourse,
+      isProjectCourse,
       id: toRef(props, 'id'),
       courseTabs,
       t,
@@ -228,6 +246,11 @@ export default {
 }
 
 .interactive-course-wrapper {
+  margin-top: 20px;
+  overflow: visible;
+}
+
+.project-course-wrapper {
   margin-top: 20px;
   overflow: visible;
 }
@@ -318,6 +341,46 @@ export default {
   margin: 12px 0 0 0;
   font-size: 0.9em;
   color: #555;
+}
+
+.project-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 40px;
+  padding: 18px 20px;
+  background: #f3eef8;
+  border: 2px solid #c4a8e0;
+  border-radius: 10px;
+}
+
+.project-banner-text strong {
+  display: block;
+  color: var(--primary-purple, #4a2274);
+  margin-bottom: 4px;
+}
+
+.project-banner-text p {
+  margin: 0;
+  color: #444;
+  font-size: 0.95em;
+}
+
+.project-banner-link {
+  background: var(--primary-purple, #4a2274);
+  color: white;
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+
+.project-banner-link:hover {
+  background: #3d1b5c;
 }
 
 /* ── Course structure guide ────────────────────────────────────────────── */

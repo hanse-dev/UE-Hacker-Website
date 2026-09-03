@@ -1,5 +1,42 @@
 # Todo
 
+## Jetzt: 10 Verbesserungen in 6 Branches (gruppiert, B→A→E→F→C→D)
+
+Plan-Datei: `~/.claude/plans/scalable-singing-cook.md` (Kontext/Details je Branch).
+
+### Branch `cursor/debug-notebook-safety` (Punkte 5, 6) — eigener Branch
+- [x] Punkt 5 — Endlosschleifen-Schutz in `usePyodide.js` (AST-Guard, 5s-Timeout)
+- [x] Punkt 6 — Sci-Fi-Debug-Notebooks um Ziel-Angaben ergänzt (Pferde/Abenteuer offen)
+
+### Branch `cursor/et-fixes` (Punkte 1-4) — eigener Branch
+- [x] Alle 4 Punkte fertig: "weiß nicht"-Option, Wortlaut, Scoring (placementPerWeek 3,
+      placementPassThreshold 0.66), Distraktoren Wochen 1-4 (Wochen 5-12 offen)
+
+### Branch `cursor/kontakt-email` (Punkt 9) — zurückgestellt
+- [ ] Braucht die tatsächliche Kontakt-E-Mail-Adresse vom Nutzer, dann Footer-Link ergänzen
+
+### Branch `cursor/kurs-caesar-chiffre` (Punkt 10) — dieser Branch
+- [x] Neuer Kurs `projekt-caesar-chiffre`: 5 Lektionen (ord/chr → Verschieben mit Wraparound →
+      Verschlüsseln-Funktion → Entschlüsseln-Funktion → Brute-Force-Knacker), reuse von
+      `LessonView.vue` über neue schlanke Komponente `ProjectCourse.vue` (kein Varianten-Selector,
+      anders als `InteractiveCourse.vue`)
+- [x] Deep-Links aus den Lektionstexten in Woche 2/4/5 des 12-Wochen-Kurses (bestehender
+      Query-Param-Mechanismus aus `PlacementCourse.vue` wiederverwendet)
+- [x] Sichtbar auf der Startseite (Home.vue-Filter erweitert) und als Hinweis-Banner am Ende des
+      12-Wochen-Kurses
+- [x] `useInteractiveProgress.js` um optionalen `courseId`-Parameter erweitert (verhindert
+      falsches `courseId`-Feld im exportierten Fortschritt, wenn dieselbe Composable für einen
+      zweiten Kurs wiederverwendet wird)
+- [x] Playwright-Tests ergänzt (`tests/site.spec.js`), End-to-End manuell mit echtem Pyodide-Lauf
+      durch alle 5 Lektionen verifiziert (inkl. Brute-Force-Ausgabe "projekt")
+- **Bekannte Einschränkung:** nur DE-Content (kein EN), bewusst DE-first wie andere neue Kurse in
+  der Planung — EN-Nachzug offen für später
+
+### Branch `cursor/interaktiv-klarer` (Punkt 7) — offen
+### Branch `cursor/text-typo-pass` (Punkt 8) — offen, größter Umfang
+
+---
+
 ## Now
 ### Website / Frontend
 - [x] Das Tabsystem erklären

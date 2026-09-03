@@ -1,0 +1,80 @@
+[
+  {
+    "id": "lektion-01",
+    "title": "Was ist eine Cäsar-Chiffre?",
+    "file": "lektion-01.md",
+    "lessonSummary": "Gut! ord() und chr() sind dein Werkzeug, um mit Buchstaben zu rechnen.",
+    "tasks": [
+      {
+        "instruction": "Gib mit ord() den Zeichencode von 'a' aus.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "97" }
+      },
+      {
+        "instruction": "Gib mit chr() heraus, welcher Buchstabe zum Zeichencode 100 gehört.",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "d" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "title": "Buchstaben verschieben",
+    "file": "lektion-02.md",
+    "lessonSummary": "Genau so funktioniert das Verschieben mit Wraparound – das brauchst du gleich für ganze Texte.",
+    "tasks": [
+      {
+        "instruction": "Verschiebe den Buchstaben 'y' um 3 Stellen (mit Wraparound) und gib das Ergebnis aus.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "b" }
+      },
+      {
+        "instruction": "Bonus: Verschiebe 'z' um 1 Stelle. Was kommt heraus?",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "a" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "title": "Die Verschlüsselungsfunktion",
+    "file": "lektion-03.md",
+    "lessonSummary": "Du hast gerade deine erste eigene Verschlüsselungsfunktion gebaut!",
+    "tasks": [
+      {
+        "instruction": "Schreibe die Funktion verschluesseln(text, verschiebung) (wie in der Lektion erklärt) und gib verschluesseln('hallo', 3) aus.",
+        "codeTemplate": "def verschluesseln(text, verschiebung):\n    ergebnis = \"\"\n    for zeichen in text:\n        if zeichen.isalpha():\n            start = ord('a')\n            position = ord(zeichen) - start\n            neue_position = (position + verschiebung) % 26\n            ergebnis = ergebnis + chr(start + neue_position)\n        else:\n            ergebnis = ergebnis + zeichen\n    return ergebnis\n\n# dein Aufruf hier\n",
+        "validation": { "type": "output_contains", "expected": "kdoor" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "title": "Die Entschlüsselungsfunktion",
+    "file": "lektion-04.md",
+    "lessonSummary": "Verschlüsseln und Entschlüsseln – jetzt beherrschst du beide Richtungen.",
+    "tasks": [
+      {
+        "instruction": "Definiere verschluesseln und entschluesseln (entschluesseln ruft verschluesseln mit negativer Verschiebung auf) und gib entschluesseln('kdoor', 3) aus.",
+        "codeTemplate": "def verschluesseln(text, verschiebung):\n    ergebnis = \"\"\n    for zeichen in text:\n        if zeichen.isalpha():\n            start = ord('a')\n            position = ord(zeichen) - start\n            neue_position = (position + verschiebung) % 26\n            ergebnis = ergebnis + chr(start + neue_position)\n        else:\n            ergebnis = ergebnis + zeichen\n    return ergebnis\n\ndef entschluesseln(text, verschiebung):\n    # dein Code hier\n    pass\n\n# dein Aufruf hier\n",
+        "validation": { "type": "output_contains", "expected": "hallo" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "title": "Der Brute-Force-Knacker",
+    "file": "lektion-05.md",
+    "lessonSummary": "Geschafft! Du hast dein erstes eigenes Python-Projekt gebaut – vom ersten Buchstaben-Trick bis zum Code-Knacker.",
+    "nextCourseId": "python-12-wochen-grundkurs",
+    "tasks": [
+      {
+        "instruction": "Probiere mit einer Schleife über range(26) alle Verschiebungen für den Geheimtext 'uwtojpy' aus und gib jede Möglichkeit aus. Eine Zeile ergibt ein echtes Wort!",
+        "codeTemplate": "def verschluesseln(text, verschiebung):\n    ergebnis = \"\"\n    for zeichen in text:\n        if zeichen.isalpha():\n            start = ord('a')\n            position = ord(zeichen) - start\n            neue_position = (position + verschiebung) % 26\n            ergebnis = ergebnis + chr(start + neue_position)\n        else:\n            ergebnis = ergebnis + zeichen\n    return ergebnis\n\ndef entschluesseln(text, verschiebung):\n    return verschluesseln(text, -verschiebung)\n\ngeheimtext = \"uwtojpy\"\n# deine Schleife hier\n",
+        "validation": { "type": "output_contains", "expected": "projekt" }
+      }
+    ]
+  }
+]
