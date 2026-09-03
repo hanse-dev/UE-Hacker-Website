@@ -4,46 +4,35 @@
 
 Plan-Datei: `~/.claude/plans/scalable-singing-cook.md` (Kontext/Details je Branch).
 
-### Branch `cursor/debug-notebook-safety` (Punkte 5, 6)
-- [x] Punkt 5 — Endlosschleifen-Schutz: `usePyodide.js` injiziert per AST-Transformation eine
-      Deadline-Prüfung in jede `for`/`while`-Schleife; nach 5 Sekunden wird mit `_CellTimeout`
-      (BaseException) abgebrochen und eine freundliche Fehlermeldung gezeigt statt den Tab
-      einzufrieren. Bewusst KEIN Web-Worker (hätte `input()` in 65 Notebooks kaputt gemacht, da
-      `window.prompt()` im Worker nicht verfügbar ist) — lokal mit CPython getestet (Endlosschleife,
-      verschachtelt in Funktionen, geteilte Variablen über Zellen hinweg, NameError/SyntaxError
-      bleiben unverändert) und live im Browser verifiziert (Playwright: Abbruch nach ~5s,
-      Kernel bleibt danach voll funktionsfähig).
-- [x] Punkt 6 — Debug-Ziel benennen: Sci-Fi-Variante komplett (12 Wochen × DE+EN = 24 Dateien,
-      72 Bug-Zellen) um eine **Ziel:**/**Goal:**-Zeile ergänzt, die das erwartete Verhalten/die
-      erwartete Ausgabe beschreibt, ohne den Bug zu verraten. Stichprobenartig geprüft (Woche 1, 8,
-      11) — akkurat und spoilerfrei.
-- [x] Dauerhafte Tests ergänzt (waren zunächst nur manuell per Playwright-Skript verifiziert, nicht
-      in der Suite): `tests/site.spec.js` → "Debug-Notebook-Sicherheit" (Endlosschleife bricht nach
-      3-12s ab, Kernel bleibt danach nutzbar) und `tests/storytelling-content.spec.js` → "Woche 1:
-      Debug-Bugs nennen ein Ziel" (Anzahl Ziel-Zeilen == Anzahl Bugs, keine Spoiler-Formulierungen).
-      Dabei einen latenten Bug im Test-Helper `openWeek()` gefunden+behoben (ging noch davon aus,
-      dass Woche 1 immer aufgeklappt startet).
-- [ ] Punkt 6 Fortsetzung: Pferde- und Abenteuer-Variante nach demselben Muster (nicht in dieser
-      Sitzung gemacht — nächste Session)
+### Branch `cursor/debug-notebook-safety` (Punkte 5, 6) — auf eigenem Branch, nicht hier gemergt
+- [x] Punkt 5 — Endlosschleifen-Schutz in `usePyodide.js` (AST-Guard, 5s-Timeout)
+- [x] Punkt 6 — Sci-Fi-Debug-Notebooks um Ziel-Angaben ergänzt (Pferde/Abenteuer offen)
 
-### Branch `cursor/et-fixes` (Punkte 1-4) — noch offen
-- [ ] Punkt 1: "Ich weiß es nicht"-Option in `QuizStep.vue`
-- [ ] Punkt 2: Erklärung bei Falsch-Antwort ist technisch schon vorhanden (Coverage 100 % in
-      `weeks.json`) — nur Wortlaut schärfen
-- [ ] Punkt 3: Placement-Scoring lockern (`placementPerWeek` 2→3, eigener `placementPassThreshold`)
-- [ ] Punkt 4: Distraktoren in `weeks.json` plausibler machen (erste Charge Wochen 1-4)
+### Branch `cursor/et-fixes` (Punkte 1-4) — dieser Branch
+- [x] Punkt 1: "Ich weiß es nicht"-Option in `QuizStep.vue` — zählt wie falsch, löst eigene
+      freundliche Rückmeldung aus ("Kein Problem — hier ist die Antwort: …"), Coverage geprüft
+- [x] Punkt 2: Wortlaut bei Falsch-Antwort geschärft ("Nicht ganz — [Erklärung]" statt Erklärung
+      ohne Einleitung) — Erklärungs-Feature selbst war schon vorhanden (100 % Coverage in
+      `weeks.json`), nur Framing verbessert
+- [x] Punkt 3: Placement-Scoring gelockert — `placementPerWeek` 2→3, neuer eigener
+      `placementPassThreshold: 0.66` (≈ 2 von 3 richtig reicht) statt dem harten `passThreshold: 0.8`
+      der normalen Wochen-Checks (die bleiben unverändert bei 0.8). Live verifiziert: 2/3 richtig
+      (67 %) → "ok", 1/3 richtig (33 %) → "review".
+- [x] Punkt 4: Distraktoren für Wochen 1-4 (12 von 40 Fragen, die genuin unplausibel waren, z.B.
+      "Um den Computer auszuschalten") durch nähere Verwechslungen ersetzt (DE+EN), Rest der
+      12 Wochen bewusst nicht angefasst (todo für spätere Session, siehe unten)
+- [x] Dauerhafte Tests ergänzt (Punkt 1 + 3 waren zunächst nur manuell per Playwright-Skript
+      verifiziert, nicht in der Suite): `tests/week-checks.spec.js` → "Ich weiß es nicht zeigt
+      eigene Rückmeldung und die richtige Antwort" sowie "2 von 3 richtig pro Woche reicht
+      (0.66-Schwelle), 1 von 3 nicht"
 
-### Branch `cursor/kontakt-email` (Punkt 9) — noch offen
-- [ ] Footer-Link ergänzen — **braucht die tatsächliche Kontakt-E-Mail-Adresse vom Nutzer**
+**Offen für später:** Distraktoren für Wochen 5-12 nach demselben Muster (~80 Fragen, nicht in
+dieser Sitzung gemacht).
 
-### Branch `cursor/kurs-caesar-chiffre` (Punkt 10) — noch offen
-- [ ] Neuer Projekt-Kurs "Cäsar-Chiffre" mit Deep-Links in Woche 2/4/5 des 12-Wochen-Kurses
-
-### Branch `cursor/interaktiv-klarer` (Punkt 7) — noch offen
-- [ ] Gestufter Hinweis in `LessonView.vue` statt sofortigem Preisgeben der erwarteten Ausgabe
-
-### Branch `cursor/text-typo-pass` (Punkt 8) — noch offen
-- [ ] `cspell`-Tooling-Pass, dann UI-Texte → Wochenbeschreibungen → Notebook-Inhalte
+### Branch `cursor/kontakt-email` (Punkt 9) — offen, braucht Kontakt-E-Mail-Adresse vom Nutzer
+### Branch `cursor/kurs-caesar-chiffre` (Punkt 10) — offen
+### Branch `cursor/interaktiv-klarer` (Punkt 7) — offen
+### Branch `cursor/text-typo-pass` (Punkt 8) — offen, größter Umfang
 
 ---
 
