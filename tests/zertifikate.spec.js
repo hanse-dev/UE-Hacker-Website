@@ -146,4 +146,25 @@ test.describe('Wochen-Zertifikate', () => {
     const week2Card = page.locator('.certificate-card').nth(1);
     await expect(week2Card).not.toHaveClass(/earned/);
   });
+
+  test('PDF-Download braucht einen Account — ohne Login nur Hinweistext', async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem('ue-hacker-week-checks', JSON.stringify({
+        version: 1,
+        weeks: { '1': { quizPassed: true, codingPassed: { 0: true, 1: true }, at: new Date().toISOString() } },
+        placement: null,
+      }));
+    });
+
+    await page.goto(`${COURSE_URL}?week=1&tab=lektion#woche-1`);
+    await expect(page.locator('.week-content').first()).toBeVisible({ timeout: 20000 });
+
+    await page.locator('.fortschritt-widget-header').click();
+    await page.locator('.fortschritt-weekly-header').click();
+
+    const week1Card = page.locator('.certificate-card').first();
+    await expect(week1Card).toHaveClass(/earned/);
+    await expect(week1Card.locator('.btn-certificate-pdf')).toHaveCount(0);
+    await expect(week1Card.locator('.certificate-login-hint')).toBeVisible();
+  });
 });

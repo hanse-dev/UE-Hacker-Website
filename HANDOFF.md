@@ -4,9 +4,9 @@
 > **Aktueller Stand:** `main` enthält PR #1–#3 + Storytelling-Überarbeitung (siehe 3.4). Sieben weitere
 > Themen sind fertig auf eigenen Branches, aber noch **nicht** nach `main` gemerged — Merge/Deploy ist
 > auf Wunsch des Nutzers bewusst zurückgestellt (siehe 3.5). `wochen-zertifikate` wurde in dieser
-> Session final überarbeitet (Zertifikat jetzt komplett von Missionen entkoppelt, 2 Coding-Aufgaben
-> pro Woche, alle Belohnungszeilen aus 444 Notebooks entfernt) — Details unten in 3.5, offene
-> Anschlussfrage (Merge-Reihenfolge) in Abschnitt 5/7.  
+> Session um Zertifikat-PDFs erweitert (Download pro verliehenem Zertifikat, nur mit Account, mit den
+> Lernzielen der Woche) — Details unten in 3.5, offene Anschlussfrage (Merge-Reihenfolge) in
+> Abschnitt 5/7.  
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -185,6 +185,36 @@ Finaler Stand:
   gar nicht mehr, nicht weil der Fix falsch war, sondern weil das Feature (Belohnungszeilen) komplett
   entfernt wurde.
 
+**Nachtrag: Zertifikat-PDFs** (gleiche Session, Nutzer-Wunsch nach einem greifbaren Dokument statt nur
+dem 🎓-Icon im Raster). Jedes verliehene Wochen-Zertifikat lässt sich jetzt als PDF herunterladen —
+mit den Lernzielen der Woche (aus `woche{N}.md`, Abschnitt "Lernziele"/"Learning goals"), Datum, Logo
+und einem editierbaren Namensfeld. **Nur sichtbar, wenn ein Account eingeloggt ist** — bei rein
+lokalem Fortschritt ohne Login erscheint stattdessen ein Hinweistext. E-Mail-Versand ist bewusst noch
+nicht Teil davon (eigenes, späteres Thema — Kontaktweg für Account-Wünsche kommt separat).
+
+- Neue Dependency `pdf-lib` (reines Browser-JS, kein Server-PDF nötig für den Download) — wird per
+  dynamischem `import()` erst beim Klick geladen (Vorbild: `useCourseData.js` lädt Content genauso
+  lazy), damit das PDF-Feature das Haupt-Bundle nicht aufbläht.
+- `useWeeklyContent.js:parseWeekMarkdown` hat jetzt zusätzlich `lernzieleFull` (volle, ungekürzte
+  Lernziele-Bullets) neben dem bestehenden `lernziele` (auf 36 Zeichen gekürzte UI-Chips) — die Chips
+  waren für ein Zertifikat unbrauchbar ("Text mit `print()` ausgeben" → nur "Text"). `CourseDetail.vue`
+  reicht das schon geladene `weeks`-Array jetzt per Prop an `FortschrittWidget.vue` durch.
+- **Gelernte Regel:** die Standard-PDF-Fonts (Helvetica) können nur WinAnsi/Windows-1252 kodieren —
+  Emoji aus Notebook-/Markdown-Titeln (z.B. das 📚 im Wochentitel-Frontmatter) lassen `pdf-lib` sonst
+  mit "WinAnsi cannot encode …" abstürzen. `useCertificatePdf.js:sanitizeForPdfFont` filtert das vorher
+  pro Zeichen heraus (testet `font.widthOfTextAtSize` je Unicode-Codepoint). Gilt für jeden Text, der
+  aus Content-Dateien statt fest im Code steht.
+- Bullet-Listen in `pdf-lib` nicht einzeln zentrieren (`drawText` pro Zeile mit eigener Center-Breite)
+  — das ergibt eine optisch zerfranste, unterschiedlich eingerückte Liste. Stattdessen alle Zeilen
+  vorab sammeln, per größter Zeilenbreite als Block linksbündig positionieren und den Block als Ganzes
+  zentrieren.
+- Tests: `tests/zertifikate.spec.js` (ohne Login → kein Download-Button, nur Hinweistext;
+  `test:checks`, kein API-Server nötig) + `tests/auth-ui.spec.js` (echter Login über den Test-API-Server
+  auf :3011, PDF-Download-Button erscheint erst danach, Playwright fängt den echten `download`-Event ab
+  und prüft den Dateinamen; `test:auth`).
+- `api/node_modules` fehlte in dieser Arbeitskopie (Express nie installiert) — `cd api && npm install`
+  nachgeholt, damit `npm run test:auth` den Test-API-Server überhaupt starten kann.
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -253,6 +283,14 @@ Siehe auch `todo.md`.
   `Punkte` in Boss-/Lösungs-Notebooks), dann mit dem Nutzer abstimmen, bevor an allen Dateien geändert
   wird.
 
+**Zertifikat-PDF — bewusst zurückgestellt/offen (siehe 3.5):**
+- E-Mail-Versand des PDFs: eigenes, späteres Thema. Hängt zusammen mit einer noch offenen
+  Kontakt-E-Mail-Adresse (s.u.), über die Interessent:innen einen Account anfragen sollen — beides
+  noch nicht spezifiziert, nicht selbst erfinden.
+- Zertifikat-PDFs bewusst nur für den 12-Wochen-Kurs (Nutzer-Entscheidung). Interaktiv-Kurs und
+  Projekt-Kurse (Cäsar-Chiffre, künftig `kurs-python-spiele`) könnten später ein eigenes
+  Abschluss-Zertifikat bekommen — noch nicht angefragt, erst wenn der Nutzer das explizit will.
+
 **Fertige, ungemergte Branches (siehe 3.5 für Details):** `debug-notebook-safety`, `et-fixes`,
 `interaktiv-klarer`, `text-typo-pass`, `backup-sqlite-db`, `kurs-caesar-chiffre`, `wochen-zertifikate`.
 Merge/Deploy ist auf Nutzerwunsch bewusst zurückgestellt — nicht ohne Rückfrage mergen. Empfohlene
@@ -296,6 +334,8 @@ noch auf die tatsächliche Adresse vom Nutzer (nicht selbst erfinden).
   versehentlich wieder an Missionen koppeln oder wieder 3 Varianten-Zertifikate einführen.
 - Kein lokales Fortschritt-Skript mehr (`scripts/fortschritt.py` entfernt) — Fortschritt-Sync läuft
   über den Account (Login), nicht über CLI-Skript + manuellen JSON-Import. Nicht wieder einführen.
+- Zertifikat-PDF-Download ist **login-gated** — ohne Account nur ein Hinweistext, kein Button. Nicht
+  versehentlich für alle (auch rein lokalen Fortschritt ohne Login) freischalten.
 
 ---
 

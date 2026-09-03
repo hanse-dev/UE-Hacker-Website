@@ -74,6 +74,10 @@ bewusst zurückgestellt (siehe HANDOFF.md).
       vorzutäuschen. Lokales Fortschritt-Skript (`scripts/fortschritt.py` + `README-fortschritt.md`)
       komplett entfernt — Fortschritt läuft jetzt über den Account (Login/Sync), nicht mehr über
       manuellen JSON-Export/Import von einem CLI-Skript. Tests: `tests/zertifikate.spec.js`.
+- [x] Zertifikat-PDF (Download, nur mit Account): pro verliehenem Wochen-Zertifikat ein
+      herunterladbares PDF mit den Lernzielen der Woche, editierbarem Namensfeld, nur sichtbar wenn
+      eingeloggt. E-Mail-Versand bewusst zurückgestellt (eigenes, späteres Thema). Details siehe
+      HANDOFF.md 3.5.
 
 ---
 

@@ -34,6 +34,16 @@
         </div>
         <div v-show="weeklySectionExpanded">
           <p class="fortschritt-weekly-hint">{{ t('progress.weekly.hint') }}</p>
+          <div v-if="isLoggedIn" class="certificate-name-field">
+            <label for="certificate-name-input">{{ t('progress.certificate.name.label') }}</label>
+            <input
+              id="certificate-name-input"
+              type="text"
+              :value="certificateName"
+              @input="setCertificateName($event.target.value)"
+              class="certificate-name-input"
+            />
+          </div>
           <div class="certificate-grid">
             <div
               v-for="w in 12"
@@ -46,6 +56,17 @@
               <span class="certificate-status">
                 {{ isCertificateEarned(w) ? t('progress.week.certificate.earned') : t('progress.week.certificate.locked') }}
               </span>
+              <template v-if="isCertificateEarned(w)">
+                <button
+                  v-if="isLoggedIn"
+                  class="btn-certificate-pdf"
+                  :disabled="pdfBusyWeek === w"
+                  @click="onDownloadPdf(w)"
+                >
+                  {{ pdfBusyWeek === w ? t('progress.certificate.generating') : t('progress.certificate.download') }}
+                </button>
+                <span v-else class="certificate-login-hint">{{ t('progress.certificate.loginRequired') }}</span>
+              </template>
             </div>
           </div>
         </div>
@@ -61,16 +82,61 @@ import { ref } from 'vue';
 import { useFortschritt } from '../composables/useFortschritt';
 import { useZertifikate } from '../composables/useZertifikate';
 import { useLanguage } from '../composables/useLanguage.js';
+import { useAuth } from '../composables/useAuth.js';
+import { downloadCertificatePdf } from '../composables/useCertificatePdf.js';
+
+const CERTIFICATE_NAME_KEY = 'ue-hacker-certificate-name';
 
 export default {
   name: 'FortschrittWidget',
-  setup() {
-    const { t } = useLanguage();
+  props: {
+    weeks: {
+      type: Array,
+      default: () => [],
+    },
+  },
+  setup(props) {
+    const { t, lang } = useLanguage();
+    const { isLoggedIn, user } = useAuth();
     const fortschrittExpanded = ref(false);
     const weeklySectionExpanded = ref(false);
+    const pdfBusyWeek = ref(null);
 
     const { exportProgress, importProgress } = useFortschritt();
     const { isCertificateEarned, countCertificates } = useZertifikate();
+
+    const certificateName = ref(
+      localStorage.getItem(CERTIFICATE_NAME_KEY) || user.value?.username || ''
+    );
+
+    const setCertificateName = (value) => {
+      certificateName.value = value;
+      localStorage.setItem(CERTIFICATE_NAME_KEY, value);
+    };
+
+    const getWeekData = (weekNumber) => {
+      const match = props.weeks.find((week) => {
+        const num = parseInt((week.title || '').match(/\d+/)?.[0], 10);
+        return num === weekNumber;
+      });
+      return match || props.weeks[weekNumber - 1] || null;
+    };
+
+    const onDownloadPdf = async (weekNumber) => {
+      pdfBusyWeek.value = weekNumber;
+      try {
+        const weekData = getWeekData(weekNumber);
+        await downloadCertificatePdf({
+          weekNumber,
+          weekTitle: weekData?.title || `${t('week.label')} ${weekNumber}`,
+          lernziele: weekData?.lernzieleFull || [],
+          learnerName: certificateName.value || user.value?.username || '',
+          lang: lang.value,
+        });
+      } finally {
+        pdfBusyWeek.value = null;
+      }
+    };
 
     const exportFortschritt = () => {
       const json = exportProgress();
@@ -105,6 +171,11 @@ export default {
       countCertificates,
       exportFortschritt,
       onImportFile,
+      isLoggedIn,
+      certificateName,
+      setCertificateName,
+      pdfBusyWeek,
+      onDownloadPdf,
       t,
     };
   },
@@ -247,6 +318,56 @@ export default {
   margin: 0 0 16px 0;
   font-size: 0.85em;
   color: #666;
+}
+
+.certificate-name-field {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 16px 0;
+}
+
+.certificate-name-field label {
+  font-size: 0.85em;
+  color: #555;
+  font-weight: 600;
+}
+
+.certificate-name-input {
+  flex: 1;
+  min-width: 180px;
+  padding: 8px 10px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+
+.btn-certificate-pdf {
+  margin-top: 4px;
+  background: #7c3aed;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.75em;
+  cursor: pointer;
+}
+
+.btn-certificate-pdf:hover:not(:disabled) {
+  background: #6d28d9;
+}
+
+.btn-certificate-pdf:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.certificate-login-hint {
+  margin-top: 4px;
+  font-size: 0.7em;
+  color: #888;
+  font-style: italic;
 }
 
 .certificate-grid {

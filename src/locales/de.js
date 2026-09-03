@@ -125,6 +125,10 @@ export default {
   'progress.hint':            'Mach den Wochen-Check (Quiz + Coding-Aufgaben), um dein erstes Zertifikat zu bekommen!',
   'progress.import.success':  'Fortschritt wurde importiert und mit deinem bestehenden Stand zusammengeführt.',
   'progress.import.failure':  'Import fehlgeschlagen:',
+  'progress.certificate.name.label': 'Name auf dem Zertifikat:',
+  'progress.certificate.download': '📄 PDF herunterladen',
+  'progress.certificate.generating': 'Wird erstellt …',
+  'progress.certificate.loginRequired': 'Login nötig für PDF-Download',
 
   // ── Mission panel ─────────────────────────────────────────────────────────
   'mission.panel.title': '🎯 Missionen',
