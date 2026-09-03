@@ -74,6 +74,11 @@ und Server-Deploy bewusst zurückgestellt (siehe HANDOFF.md).
 
 - [x] `debug-notebook-safety` — 5s-Timeout gegen Endlosschleifen in Pyodide-Zellen (AST-Loop-Guard,
       kein Web-Worker nötig), Sci-Fi-Debug-Notebooks (24 Dateien) um Ziel-Angabe ergänzt
+- [x] Debug-Notebook-Ziele auch für Pferde + Abenteuer nachgezogen (Branch
+      `debug-ziele-pferde-abenteuer`) — 48 Dateien (Pferde/Abenteuer × DE/EN × 12 Wochen), 144
+      "**Ziel:**"/"**Goal:**"-Zeilen ergänzt, nur Markdown-Zellen geändert, Bug-Code unangetastet.
+      Neue Tests: `storytelling-content.spec.js` Woche-1-Ziel-Check für Pferde + Abenteuer
+      (analog zum bestehenden Sci-Fi-Test).
 - [x] `et-fixes` — "Weiß nicht"-Option im Quiz, Einstufung auf 3 Fragen/Woche mit eigener
       66%-Schwelle, 12 Distraktoren in Wochen 1-4 geschärft
 - [x] `interaktiv-klarer` — gestufter Hinweis im interaktiven Kurs (vager Hinweis beim 1. Fehlversuch,

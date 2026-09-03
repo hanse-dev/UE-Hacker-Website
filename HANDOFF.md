@@ -1,16 +1,15 @@
 # Handoff — UE Hacker Website
 
-> **Zuletzt aktualisiert:** 2026-09-03  
+> **Zuletzt aktualisiert:** 2026-09-04  
 > **Aktueller Stand:** Alle sieben Feature-Branches (3.5–3.13) plus `entferne-xp-texte` (3.14,
-> Boss-Quest-Feier-Prints erzählten noch von XP/Huf-Punkte/Cyber-Credits-Zahlen) sind in `main`
-> gemergt. Dabei ein alter Testbug in `tests/notebooks.spec.js` gefunden und gefixt (`openWeek()`
-> ging noch von aufgeklapptem Woche-1-Start aus — derselbe Bug wie schon mal in
-> `storytelling-content.spec.js`, hier aber nie mitgezogen, weil die Datei nicht in `test:checks`
-> läuft). Gerade in Arbeit, auf eigenem Branch `einstufung-distraktoren-w5-12`: Distraktoren im
-> Einstufungstest für Wochen 5-12 geschärft (3.15, Fortsetzung von 3.6). Als Nächstes laut
-> Nutzer-Wunsch: Debug-Notebook-"Ziel:"-Zeilen für Pferde/Abenteuer nachziehen (bisher nur Sci-Fi,
-> siehe 3.5). Noch **nicht** nach `origin/main` gepusht — Push/Deploy bewusst zurückgestellt, siehe
-> Abschnitt 5/7.  
+> Boss-Quest-Feier-Prints erzählten noch von XP/Huf-Punkte/Cyber-Credits-Zahlen) und
+> `einstufung-distraktoren-w5-12` (3.15, Fortsetzung von 3.6) sind in `main` gemergt. Dabei ein
+> alter Testbug in `tests/notebooks.spec.js` gefunden und gefixt (`openWeek()` ging noch von
+> aufgeklapptem Woche-1-Start aus — derselbe Bug wie schon mal in `storytelling-content.spec.js`,
+> hier aber nie mitgezogen, weil die Datei nicht in `test:checks` läuft). Gerade in Arbeit, auf
+> eigenem Branch `debug-ziele-pferde-abenteuer`: Debug-Notebook-"Ziel:"-Zeilen für Pferde/Abenteuer
+> nachgezogen (3.16, bisher nur Sci-Fi, Fortsetzung von 3.5). Noch **nicht** nach `origin/main`
+> gepusht — Push/Deploy bewusst zurückgestellt, siehe Abschnitt 5/7.  
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -489,6 +488,41 @@ Fragen, ob ein Distraktor versehentlich auch als "richtig" durchgehen könnte �
 änderung, laut `WORKFLOW.md` kein neuer Test nötig (die bestehenden Tests lesen Fragen/Antworten
 sowieso dynamisch aus `weeks.json`, nicht hart codiert).
 
+### 3.16 Debug-Notebook-Ziele: Pferde + Abenteuer nachgezogen (Branch `debug-ziele-pferde-abenteuer`)
+
+Fortsetzung von 3.5 (`debug-notebook-safety` hatte nur Sci-Fi gemacht, 24 Dateien). Jetzt Pferde +
+Abenteuer, DE + EN, alle 12 Wochen ergänzt — 48 Debug-Notebooks (`2_debug.ipynb`), je 3 Bug-Zellen,
+144 `**Ziel:**`/`**Goal:**`-Zeilen insgesamt (nur 3 Bugs pro Notebook, nicht 6 wie ursprünglich
+geschätzt).
+
+**Vorgehen:** Erst alle 144 Bug-Code-Zellen gelesen (Pferde/Abenteuer DE komplett, EN stichproben-
+artig gegengeprüft) und pro Bug den *beabsichtigten* korrekten Output ermittelt, ohne die Ursache
+zu verraten — z.B. bei `koordinaten[0] = 150` (Tupel-Bug, identisch zum Sci-Fi-Beispiel aus 3.5):
+"Ziel: Das Programm soll die erste Koordinate auf `150` ändern", nicht "Tupel sind unveränderlich".
+Bei zwei Bugs (Woche 5 #1: eine nie aufgerufene Funktion; Woche 9 #3: CSV-Datei, die im Notebook nie
+angelegt wird, bevor sie gelesen wird) gibt es keinen sinnvollen "soll X ausgeben"-Satz — dort
+generischer formuliert ("soll die Funktion fehlerfrei definieren" bzw. "soll den Inhalt zeilenweise
+ausgeben"). Die CSV-Datei-Lücke selbst (fehlende Datei-Erstellung) ist ein separates, vorbestehendes
+Content-Problem, nicht Teil dieser Änderung.
+
+**Technisch — drei verschiedene JSON-Stile pro Markdown-Zelle in freier Wildbahn** (analog zur
+bereits bekannten Notebook-Serialisierungs-Vielfalt aus `wochen-zertifikate`, siehe 3.12): reiner
+String, Array mit einem Element, Array mit einem String pro Zeile. Lösung: unabhängig vom Stil ist
+der abschließende Fragesatz ("Was ist falsch? Finde und behebe den Fehler!" bzw. EN-Varianten mit
+"bug!"/"error!") immer das letzte Textstück vor dem schließenden Anführungszeichen — die neue
+Ziel-Zeile wird einfach dort angehängt (`\n\n**Ziel:** ...`), unabhängig davon, ob dieser String
+ein eigenständiger Wert oder das letzte Array-Element ist. Kein Array-Element hinzugefügt, kein
+Full-Reserialize.
+
+**Verifiziert:** nicht per `ast.parse()` auf Code-Zellen (die enthalten ja absichtlich kaputten
+Code — das hätte 35 erwartete "Fehler" gemeldet, die keine sind), sondern per Zell-für-Zell-Diff
+gegen den alten Stand: bestätigt, dass ausschließlich Markdown-Zellen geändert wurden und jede
+Änderung eine reine Erweiterung des alten Texts ist (kein Code-Byte angefasst).
+
+**Getestet:** `npm run test:checks` (45 Tests, 2 neu: Pferde- und Abenteuer-Pendant zum
+bestehenden Sci-Fi-Ziel-Test in `storytelling-content.spec.js`) + `npm test` (voller Lauf inkl.
+`tests/notebooks.spec.js` über alle 12 Wochen × 3 Varianten, 56 Tests grün).
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -579,7 +613,8 @@ Siehe auch `todo.md`.
 
 **Inhalte**
 - Keine offenen Punkte aus der Storytelling-Überarbeitung mehr (siehe 3.4) — "Gilde-Meister-Urkunde" geklärt, kein Bug
-- Debug-Notebook-Ziele (3.5): Pferde + Abenteuer noch offen (Sci-Fi fertig)
+- [x] Debug-Notebook-Ziele (3.5): Pferde + Abenteuer nachgezogen (3.16, Branch
+  `debug-ziele-pferde-abenteuer`)
 - [x] Einstufungstest (3.6): Distraktoren für Wochen 5-12 geschärft (3.15, Branch
   `einstufung-distraktoren-w5-12`)
 - Interaktiver Kurs (3.7): "Ausführen vs. Prüfen"-Klarheit und Weiter-Flow noch offen, braucht
