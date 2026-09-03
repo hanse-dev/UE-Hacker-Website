@@ -12,7 +12,7 @@ const TEXT = {
     weekLabel: (n) => `Woche ${n}`,
     learnedHeading: 'Was du gelernt hast',
     dateLabel: (d) => `Ausgestellt am ${d}`,
-    footer: 'UE Hacker – Lernplattform für Python-Programmierung',
+    footer: 'Übergangshacker - Dein Einstieg ins Coding: Loslegen. Ausprobieren. Verstehen.',
   },
   en: {
     certificate: 'Certificate',
@@ -20,7 +20,7 @@ const TEXT = {
     weekLabel: (n) => `Week ${n}`,
     learnedHeading: 'What you learned',
     dateLabel: (d) => `Issued on ${d}`,
-    footer: 'UE Hacker – Learning platform for Python programming',
+    footer: 'Übergangshacker - Your start into coding: Get started. Experiment. Understand.',
   },
 };
 
