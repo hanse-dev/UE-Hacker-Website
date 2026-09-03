@@ -54,13 +54,32 @@ Plan-Datei: `~/.claude/plans/scalable-singing-cook.md` (Kontext/Details je Branc
       Englisch ("colors", "colorful") statt des sonst im ganzen EN-Kurs konsequent verwendeten
       britischen Englisch ("colours", "practise", "organised", …) — korrigiert. Method-Referenzen
       wie `.color()`/`.fillcolor()` (Turtle-API, tatsächlich so benannt) bewusst unverändert gelassen.
+### Branch `text-typo-pass` — Phase 2 Fortsetzung: Pferde + Sci-Fi (alle 444 Notebooks jetzt geprüft)
+- [x] Pferde-Variante komplett geprüft (144 Notebooks DE+EN): **4 echte Tippfehler gefunden und
+      korrigiert:**
+      - "Parours" → "Parcours" (Woche 11, Missionen)
+      - "pferdbezogene" → "pferdebezogene" (Woche 2, Lektion — fehlendes Fugen-e)
+      - "Pferdname" → "Pferdename" (Woche 1, Glossar — inkonsistent zu 4 anderen Stellen im
+        selben Notebook-Satz, die korrekt "Pferdename(n)" schreiben)
+      - "Futterschip" → "Futterschippe" (Woche 3, Missionen **und** `rewards-manifest.json`) —
+        aufgelöst über den EN-Manifest-Eintrag "Feed Scoop": kein Sci-Fi-Chip-Wortspiel, sondern
+        ein abgeschnittenes "Futterschippe" (Schippe = Scoop). Bewusst NICHT angefasst: "zuviel"
+        (Woche 1, Lösungen) — alte Rechtschreibung, weit verbreitet, kein klarer Fehler.
+- [x] Sci-Fi-Variante komplett geprüft (144 Notebooks DE+EN): **1 echter Tippfehler, doppelt
+      vorhanden:** "Du betrittstest die hochmoderne Raumstation Nebula-7" → "Du betrittst die..."
+      in Woche 1 UND Woche 10 (identischer Intro-Text in beiden Lektionen dupliziert). Bewusst
+      NICHT angefasst: "statu" in Woche 1 Lösungen — das ist absichtlich der im Debug-Notebook
+      erklärte Tippfehler selbst (`status` vs. `statu`), kein echter Fehler zum Fixen.
+- [x] Alle 11 Cheat-Sheets (DE, `.md`-Quelle + generierte `.ipynb`) + 11 EN-Cheat-Sheets +
+      `turtle_cheat_sheet.md` (DE+EN) + `gesamtglossar.ipynb` geprüft: **keine Tippfehler**, nur
+      Turtle-API-Methodennamen (`setheading`, `pencolor`, …) als False Positives.
+- **Ergebnis: alle 444 Notebooks des 12-Wochen-Kurses + alle Cheat-Sheets/Glossare jetzt einmal
+  komplett auf Tippfehler geprüft.** `cspell.json` enthält jetzt 344 projektspezifische Wörter.
 - **Offen für weitere Sessions:**
-  - [ ] Pferde- und Sci-Fi-Variante (DE+EN) nach demselben Muster — insbesondere prüfen, ob der
-        US/UK-Englisch-Mix aus Woche 12 Abenteuer sich in `week12_horses_*`/`week12_scifi_*`
-        wiederholt (beim kurzen Gegencheck tauchte dort `color`/`.color()` nur in Code-nahen
-        Method-Referenzen auf, nicht in freier Prosa — aber nicht vollständig durchgeprüft)
   - [ ] `.vue`-Dateien sauber prüfbar machen (z.B. gezielte Marker/Konvention für Prosa-Strings,
         oder Ternary-Texte in `locales/*.js` überführen) — dann echte Prosa-Tippfehler dort finden
+  - [ ] Interaktive Kurse (`python-grundlagen-interaktiv*`, 5 Ordner) und `caesar-chiffre`
+        (Branch `kurs-caesar-chiffre`) noch nicht mit cspell geprüft
 
 ---
 

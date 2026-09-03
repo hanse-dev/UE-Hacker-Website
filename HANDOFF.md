@@ -2,10 +2,11 @@
 
 > **Zuletzt aktualisiert:** 2026-09-03  
 > **Aktueller Stand:** Branch `text-typo-pass` (von `main`, enthält PR #1–#4, die
-> Storytelling-Überarbeitung (3.4) sowie Phase 1+2 des Text-Tippfehler-Passes (3.5, 3.6)). Parallel
-> dazu existieren `debug-notebook-safety`, `et-fixes`, `kurs-caesar-chiffre`, `interaktiv-klarer`
-> und `backup-sqlite-db` als eigene, unabhängige Branches von `main` — noch keiner gemergt (Deploy
-> erst später geplant, vom Nutzer priorisierte Reihenfolge siehe Abschnitt 5).  
+> Storytelling-Überarbeitung (3.4) sowie den kompletten Text-Tippfehler-Pass (3.5–3.7) — alle 444
+> Notebooks des 12-Wochen-Kurses jetzt geprüft). Parallel dazu existieren `debug-notebook-safety`,
+> `et-fixes`, `kurs-caesar-chiffre`, `interaktiv-klarer` und `backup-sqlite-db` als eigene,
+> unabhängige Branches von `main` — noch keiner gemergt (Deploy erst später geplant, vom Nutzer
+> priorisierte Reihenfolge siehe Abschnitt 5).  
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -211,15 +212,47 @@ Bewusst unverändert gelassen: `.color()`/`.fillcolor()` als Turtle-API-Methoden
 (z.B. im Glossar "Set pen color") — die Methode heißt in Python tatsächlich so, das ist kein
 Dialekt-Stilbruch, sondern korrekt zitierter Code.
 
-**Noch offen (nächste Sessions, siehe `todo.md`):**
-- Pferde- und Sci-Fi-Variante (DE+EN) nach demselben Muster — insbesondere prüfen, ob sich der
-  US/UK-Mix aus Woche 12 Abenteuer dort wiederholt (kurzer Gegencheck war unauffällig, aber nicht
-  vollständig durchgeprüft)
-- `.vue`-Dateien systematisch prüfbar machen
-
 **Getestet:** `npm run test:checks` (32 Tests grün, unverändert — der Colours-Fix ist eine reine
 Text-Korrektur ohne Verhaltensänderung, laut der neuen `WORKFLOW.md`-Regel braucht das keinen
 eigenen Test) + manuelle JSON-Validitätsprüfung der geänderten Notebook-Datei.
+
+### 3.7 Text-Tippfehler-Pass, Fortsetzung: Pferde + Sci-Fi — alle 444 Notebooks fertig
+
+Gleiches Verfahren (Skript aus 3.6) auf Pferde- und Sci-Fi-Variante (je 144 Notebooks DE+EN)
+angewendet. **Damit sind jetzt alle 444 Notebooks des 12-Wochen-Kurses + alle Cheat-Sheets/Glossare
+einmal komplett auf Tippfehler geprüft.**
+
+**Echte Funde (alle einzeln über Kontext verifiziert, nicht blind gefixt):**
+- **Pferde Woche 11:** "Parours" → "Parcours" (fehlendes "c")
+- **Pferde Woche 2:** "pferdbezogene" → "pferdebezogene" (fehlendes Fugen-e)
+- **Pferde Woche 1 (Glossar):** "Pferdname" → "Pferdename" — inkonsistent zu 4 anderen Stellen im
+  selben Wochensatz, die korrekt "Pferdename(n)" schreiben
+- **Pferde Woche 3 + `rewards-manifest.json`:** "Futterschip" → "Futterschippe" — aufgelöst über
+  den EN-Manifest-Eintrag "Feed Scoop" (nicht "Feed Chip"): kein Sci-Fi-Chip-Wortspiel, sondern ein
+  abgeschnittenes "Futterschippe". Betraf zwei gekoppelte Dateien (Notebook + Manifest), beide
+  angepasst (INHALTE.md-Kopplungsregel für Belohnungsitems).
+- **Sci-Fi Woche 1 UND Woche 10** (identischer Intro-Text dupliziert): "Du betrittstest die
+  hochmoderne Raumstation Nebula-7" → "Du betrittst die..."
+
+**Bewusst nicht angefasst** (geprüft, aber kein echter Fehler):
+- Pferde Woche 1 Lösungen: "zuviel" — alte Rechtschreibung, weit verbreitet, kein klarer Fehler
+- Sci-Fi Woche 1 Lösungen: "statu" — das ist der im Debug-Notebook absichtlich erklärte Tippfehler
+  selbst (`status` vs. `statu`), kein zu fixender Fehler
+- Pferde/Sci-Fi Woche 12: kein US/UK-Englisch-Mix gefunden (anders als bei Abenteuer Woche 12) —
+  `color`/`.color()` kam nur in Turtle-API-Method-Referenzen vor, nicht in freier Prosa
+
+Alle 11 DE-Cheat-Sheets (`.md`-Quelle + generierte `.ipynb`), 11 EN-Cheat-Sheets,
+`turtle_cheat_sheet.md` (DE+EN) und `gesamtglossar.ipynb` ebenfalls geprüft — sauber, nur
+Turtle-API-Methodennamen als False Positives. `cspell.json` enthält jetzt 344 projektspezifische
+Wörter.
+
+**Noch offen (nächste Sessions, siehe `todo.md`):**
+- `.vue`-Dateien systematisch prüfbar machen
+- Interaktive Kurse (`python-grundlagen-interaktiv*`) und `caesar-chiffre` noch nicht geprüft
+
+**Getestet:** `npm run test:checks` (32 Tests grün — alle Fixes sind reine Text-/Content-
+Korrekturen ohne Verhaltensänderung, laut `WORKFLOW.md` kein eigener Test nötig) + JSON-Validität
+aller 6 geänderten Notebook-Dateien geprüft.
 
 ---
 
@@ -280,14 +313,15 @@ Siehe auch `todo.md`.
 
 **Inhalte**
 - Keine offenen Punkte aus der Storytelling-Überarbeitung mehr (siehe 3.4) — "Gilde-Meister-Urkunde" geklärt, kein Bug
-- Text-Tippfehler-Pass (3.5/3.6): Phase 1+2 fertig (UI-Texte, Wochenbeschreibungen, `weeks.json`,
-  Abenteuer-Notebooks DE+EN) — Pferde/Sci-Fi-Notebooks und `.vue`-Dateien noch offen
+- Text-Tippfehler-Pass (3.5–3.7): alle 444 Notebooks + Cheat-Sheets/Glossare + UI-Texte +
+  Wochenbeschreibungen + `weeks.json` fertig — `.vue`-Dateien und die interaktiven Kurse
+  (`python-grundlagen-interaktiv*`, `caesar-chiffre`) noch offen
 
 **Vom Nutzer priorisierte Reihenfolge für die nächsten Schritte (diese Session):**
 
 1. ✅ SQLite-Backup-Script (Branch `backup-sqlite-db`)
-2. 🟡 Text-Tippfehler-Pass fortsetzen (dieser Branch) — Phase 1+2 fertig, Pferde/Sci-Fi-Notebooks
-   und `.vue`-Dateien offen
+2. ✅ Text-Tippfehler-Pass (dieser Branch) — alle 444 Notebooks fertig; `.vue`-Dateien und
+   interaktive Kurse offen für eine spätere Session
 3. Neue Kurse: **`kurs-python-spiele`** zuerst, danach **`kurs-python-projekte`**, danach
    **`kurs-js-minigames`** *oder* **`kurs-ki-labor`**
 4. Danach erst: alle fertigen Branches (`debug-notebook-safety`, `et-fixes`, `kurs-caesar-chiffre`,
@@ -340,14 +374,8 @@ Formular, kein Versand, siehe oben.)
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen (inkl. neuem Test in
    `tests/*.spec.js` bei Verhaltensänderungen, siehe `WORKFLOW.md`), PR erst wenn explizit gewünscht
 
-**Empfohlener nächster inhaltlicher Schritt (vom Nutzer priorisiert, siehe Abschnitt 5):** Pferde-
-und Sci-Fi-Notebooks nach demselben Muster wie Abenteuer prüfen (Skript + Custom-Dictionary schon
-da), danach Branch `kurs-python-spiele` neu anlegen. Server-Deploy und das Mergen der fertigen
-Branches sind bewusst zurückgestellt.
-
-**Empfohlener nächster inhaltlicher Schritt:** Die fünf fertigen Branches (`debug-notebook-safety`,
-`et-fixes`, `kurs-caesar-chiffre`, `interaktiv-klarer`, `text-typo-pass`) nach `main` mergen
-(`HANDOFF.md`/`todo.md`-Überschneidungen dabei zusammenführen), dann `text-typo-pass` mit
-Phase 2 fortsetzen (`.vue`-Dateien, Wochenbeschreibungen, `weeks.json`, dann Notebooks — Plan-Datei
-`~/.claude/plans/scalable-singing-cook.md`, Abschnitt "Branch D") oder `kontakt-email`,
-sobald die Kontakt-E-Mail-Adresse vorliegt.
+**Empfohlener nächster inhaltlicher Schritt (vom Nutzer priorisiert, siehe Abschnitt 5):** Branch
+`kurs-python-spiele` neu anlegen und die Python-Spiele-Werkstatt aufbauen (Punkt 3 der Prioritäten-
+liste). `.vue`-Dateien und interaktive Kurse für den Tippfehler-Pass sind für eine spätere Session
+vorgemerkt. Server-Deploy und das Mergen der fertigen Branches sind bewusst zurückgestellt, bis der
+Nutzer das anstößt.
