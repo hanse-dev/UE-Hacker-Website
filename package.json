@@ -16,6 +16,7 @@
     "test:checks": "playwright test tests/week-checks-logic.spec.js tests/week-checks.spec.js tests/site.spec.js tests/progress-merge.spec.js tests/storytelling-content.spec.js",
     "test:precommit": "npm run test:checks",
     "test:auth": "playwright test -c playwright.auth.config.js",
+    "lint:spelling": "cspell --no-progress \"src/locales/*.js\"",
     "api": "npm --prefix api start",
     "api:dev": "npm --prefix api run dev",
     "start:all": "concurrently -k -n api,web -c blue,green \"npm run api:dev\" \"npm run dev\"",
@@ -31,9 +32,12 @@
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
+    "@cspell/dict-de-de": "^4.1.2",
+    "@cspell/dict-en_us": "^4.4.37",
     "@playwright/test": "^1.61.0",
     "@vitejs/plugin-vue": "^5.0.5",
     "concurrently": "^10.0.5",
+    "cspell": "^10.2.0",
     "vite": "^5.0.0"
   },
   "allowScripts": {

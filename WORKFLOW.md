@@ -4,11 +4,28 @@
 
 **Immer einen neuen Branch anlegen, wenn ein neues Thema beginnt.**
 
-- Prefix: `cursor/` (z.B. `cursor/kurs-python-spiele`, `cursor/admin-login`)
 - Branch von aktuellem `main` aus starten
 - Ein Branch = ein Thema; Admin/Accounts nicht auf dem Lernpfad-Branch mischen
-- Nächste Kurs-Themen (geplant): `cursor/kurs-python-spiele` → `cursor/kurs-python-projekte` → `cursor/kurs-js-minigames` oder `cursor/kurs-ki-labor` (siehe `todo.md`)
+- Nächste Kurs-Themen (geplant): `kurs-python-spiele` → `kurs-python-projekte` → `kurs-js-minigames` oder `kurs-ki-labor` (siehe `todo.md`)
 - Erst mergen, wenn das Thema fertig/getestet ist — danach neues Thema → neuer Branch
+
+## Tests für jede Verhaltensänderung
+
+**Jede Änderung an Logik/Verhalten (nicht reine Text-/Content-Korrekturen) braucht einen
+dauerhaften Test in der Playwright-Suite (`tests/*.spec.js`), nicht nur eine manuelle
+Verifizierung.** Ein Skript, das einmal im Terminal läuft, oder eine manuelle Browser-Prüfung
+zeigt nur, dass es *heute* funktioniert — ohne Test in `test:checks` kann die nächste Änderung
+das stillschweigend wieder kaputt machen, ohne dass es auffällt.
+
+- Neuer Bugfix, neue Option/Feature, geänderte Berechnung/Schwelle → passenden Test in einer
+  bestehenden `describe()`-Gruppe ergänzen (oder eine neue, wenn thematisch nötig) — Vorbild:
+  bestehende Tests in `tests/site.spec.js`, `tests/week-checks.spec.js`,
+  `tests/storytelling-content.spec.js`
+- Vor dem Commit `npm run test:checks` laufen lassen und sicherstellen, dass der neue Test auch
+  wirklich fehlschlägt, wenn man die Änderung rückgängig macht (sonst testet er nichts)
+- Reine Content-/Text-Änderungen ohne Verhaltensänderung (Tippfehler, Formulierungen) brauchen
+  keinen neuen Test, aber bei Content mit eingebetteter Logik (z. B. Datentypen-Reihenfolge in
+  Quizfragen) im Zweifel lieber einen Test ergänzen als weglassen
 
 ## Pre-commit Hook (Checks)
 

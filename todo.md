@@ -16,6 +16,12 @@
       (~80 Fragen, siehe `et-fixes`-Commit für die Vorgehensweise)
 
 ### Inhalte / Notebooks
+- [x] Text-Tippfehler-Pass über die ganze Seite (`text-typo-pass`): `cspell`-Tooling eingerichtet
+      (`cspell.json`, `npm run lint:spelling`), alle 444 Notebooks + Cheat-Sheets/Glossare geprüft,
+      6 echte Tippfehler gefunden und korrigiert (u.a. "Parours"→"Parcours",
+      "Futterschip"→"Futterschippe", britisches Englisch in Woche 12 EN). Details siehe HANDOFF.md
+      3.8. **Offen:** `.vue`-Prosa (Ternary-Texte) und die Interaktiv-/Cäsar-Chiffre-Kurse sind noch
+      nicht mit cspell geprüft.
 - [x] Woche 9-12 Debug-Notebooks kurz durchschauen
 - [x] Glossar-Notebooks für Anfänger
 - [x] Branch `splitting` in `main` mergen
@@ -48,14 +54,14 @@
 
 Reihenfolge empfohlen: 1 → 2 → 3. Nicht mischen.
 
-### 1. Python Spiele-Werkstatt — Branch `cursor/kurs-python-spiele`
+### 1. Python Spiele-Werkstatt — Branch `kurs-python-spiele`
 - [ ] Kursmetadaten in `kurse.json` (+ EN)
 - [ ] Content-Struktur (Wochen/Tabs analog bestehender Kurse oder Kurzformat)
 - [ ] Turtle-/Textspiele, Level-Ideen, Belohnungen falls passend
 - [ ] DE + EN (oder bewusst DE-first, EN nachziehen)
 - [ ] Smoke-Test / manuell prüfen → PR nach `main`
 
-### 2. Was kommt danach? Projekt-Sprints — Branch `cursor/kurs-python-projekte`
+### 2. Was kommt danach? Projekt-Sprints — Branch `kurs-python-projekte`
 - [ ] 2–3 feste Projekt-Sprints (je ~2 Wochen Umfang skizzieren)
 - [ ] Kursseite + Einstieg von 12-Wochen-Kurs verlinken („Weiter so“)
 - [ ] Projektideen aus Einstufung ggf. hier ausbauen
@@ -63,8 +69,8 @@ Reihenfolge empfohlen: 1 → 2 → 3. Nicht mischen.
 - [ ] Smoke-Test → PR nach `main`
 
 ### 3. JS Mini-Games (Teens) **oder** KI-Labor — Branch wählen:
-- **A)** `cursor/kurs-js-minigames` — Browser-Spiele, Canvas/p5, Zielgruppe 13–17
-- **B)** `cursor/kurs-ki-labor` — Prompts, Grenzen, Schul-Nutzen (breitere Zielgruppe)
+- **A)** `kurs-js-minigames` — Browser-Spiele, Canvas/p5, Zielgruppe 13–17
+- **B)** `kurs-ki-labor` — Prompts, Grenzen, Schul-Nutzen (breitere Zielgruppe)
 - [ ] Entscheidung A vs B (oder beide nacheinander, je ein Branch)
 - [ ] Kursmetadaten + Content
 - [ ] Smoke-Test → PR nach `main`

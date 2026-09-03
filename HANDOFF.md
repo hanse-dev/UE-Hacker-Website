@@ -2,10 +2,11 @@
 
 > **Zuletzt aktualisiert:** 2026-09-03  
 > **Aktueller Stand:** `main` enthält jetzt PR #1–#4, die Storytelling-Überarbeitung (3.4), den
-> Endlosschleifen-Schutz + Sci-Fi-Debug-Ziele, die Einstufungstest-Fixes (3.5/3.6) sowie den
-> gestuften Hinweis im interaktiven Kurs — `debug-notebook-safety`, `et-fixes` und
-> `interaktiv-klarer` sind gerade gemergt worden. Vier weitere Branches folgen in derselben Session:
-> `text-typo-pass` → `backup-sqlite-db` → `kurs-caesar-chiffre` → `wochen-zertifikate`.  
+> Endlosschleifen-Schutz + Sci-Fi-Debug-Ziele, die Einstufungstest-Fixes (3.5/3.6), den gestuften
+> Hinweis im interaktiven Kurs (3.7) sowie den kompletten Text-Tippfehler-Pass (3.8) — alle 444
+> Notebooks des 12-Wochen-Kurses jetzt geprüft. `debug-notebook-safety`, `et-fixes`,
+> `interaktiv-klarer` und `text-typo-pass` sind gerade gemergt worden. Drei weitere Branches folgen
+> in derselben Session: `backup-sqlite-db` → `kurs-caesar-chiffre` → `wochen-zertifikate`.  
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -24,9 +25,9 @@ Lernplattform für Kinder/Jugendliche (Python) — Vue 3 + Vite, Notebooks unter
 
 | PR | Branch | Inhalt |
 |----|--------|--------|
-| #1 | `cursor/python-lernpfad-quiz` | Einstufung + Wochen-Checks, Tests, alter Lernpfad entfernt |
-| #2 | `cursor/admin-login` | Express+SQLite API, Admin, Login, Progress/Notebook-Sync, Single-Port-Deploy |
-| #3 | `cursor/fix-notebook-sync-loop` | Hotfix: Notebook-Blink-/Reload-Schleife bei eingeloggt+Sync |
+| #1 | `python-lernpfad-quiz` | Einstufung + Wochen-Checks, Tests, alter Lernpfad entfernt |
+| #2 | `admin-login` | Express+SQLite API, Admin, Login, Progress/Notebook-Sync, Single-Port-Deploy |
+| #3 | `fix-notebook-sync-loop` | Hotfix: Notebook-Blink-/Reload-Schleife bei eingeloggt+Sync |
 
 `main` ist der Integrationsstand. Feature-Branches oben sind historisch; neue Arbeit immer **neu von `main`**.
 
@@ -267,6 +268,104 @@ Screenshot), was genau als unklar aufgefallen ist, bevor an der UI weiter herumg
 Erwartung, zweiter schon) + `npm run test:checks` (alle 33 Tests grün) + manuell im Browser
 verifiziert.
 
+### 3.8 Text-Tippfehler-Pass, Phase 1: Tooling + UI-Texte (Branch `text-typo-pass`)
+
+**Ausgangslage:** 10 Verbesserungswünsche wurden in 6 Branches gruppiert (Plan-Datei
+`~/.claude/plans/scalable-singing-cook.md`), Reihenfolge B→A→E→F→C→D. Dies ist Branch D
+(Punkt 8 — "Texte überarbeiten, komplette Seite auf Schreibfehler prüfen"), Phase 1 von mehreren.
+
+**Tooling:** `cspell` + `@cspell/dict-de-de` + `@cspell/dict-en_us` als devDependencies,
+`cspell.json` (Config, Custom-Wortliste) + `npm run lint:spelling`. **Wichtig:** externe
+Wörterbuch-Pakete müssen über `"import": ["@cspell/dict-de-de/cspell-ext.json", ...]` eingebunden
+werden — nur `"dictionaries": ["de-de", "en_us"]` ohne `import` lädt sie NICHT (führte anfangs zu
+402 falschen Treffern, weil praktisch jedes deutsche Wort als unbekannt galt).
+
+**Ergebnis UI-Texte:** `src/locales/de.js` + `src/locales/en.js` sind bereits sauber — keine
+echten Tippfehler gefunden. Ein paar technische Identifier (`jupyter`, `scifi`, `appt` als Teil von
+Locale-Keys) sowie bewusst britisches Englisch ("Initialise", "practising" — konsistent im
+EN-Text, kein Stilbruch) sind im Custom-Dictionary vermerkt.
+
+**Wichtige Erkenntnis:** Ein Großteil der tatsächlichen Nutzer-Prosa steckt NICHT in
+`src/locales/*.js`, sondern direkt als `lang === 'en' ? '...' : '...'`-Ternarys in den
+`.vue`-Dateien (`InteractiveCourse.vue`, `PlacementCourse.vue`, `QuizStep.vue`, `LessonView.vue`,
+`Home.vue` etc.). Eine cspell-Stichprobe über `src/components/*.vue` + `src/views/*.vue` fand
+ebenfalls keine echten Tippfehler, aber ~84 False Positives (Routen-Segmente wie `kurs`/`woche`/
+`lektion`, CSS-Klassennamen, Variablennamen) — cspell trennt Vue-Templates nicht sauber genug von
+Prosa. Deshalb **nicht** systematisch ins Custom-Dictionary aufgenommen (würde echte Treffer
+mit-verstecken) — braucht für eine spätere Session entweder gezielte Ignore-Patterns oder eine
+Vue-spezifische Cspell-Konfiguration.
+
+### 3.9 Text-Tippfehler-Pass, Phase 2: Wochenbeschreibungen, Einstufung, Notebooks Abenteuer
+
+**`content/*/beschreibung.md`** (alle 11 Dateien) und **`content/python-checks/weeks.json`**
+(38 Treffer) geprüft — beide **komplett sauber**, die 38 `weeks.json`-Treffer waren durchweg
+Python-Schlüsselwörter/Funktionsnamen in Code-Beispielen (`elif`, `randint`, `isinstance`, …) oder
+Code-Identifier in Beispiel-Strings (`mein_geheim_modul_xyz`, `datei.txt`).
+
+**Notebooks — neues Skript `scripts/extract_notebook_text.py`:** zieht nur die Markdown-Zellen aus
+`.ipynb`-Dateien in `.md`-Dateien (Code-Zellen bewusst ausgeklammert, sonst zu viele
+Identifier-False-Positives). **Wichtige Falle:** der Ausgabeordner muss innerhalb des Repos liegen
+— `cspell` prüft Pfade außerhalb des erkannten Projekt-Roots nicht (stiller 0-Treffer, kein Fehler),
+`/tmp` funktioniert deshalb nicht.
+
+**Abenteuer-Variante komplett geprüft** (144 Notebooks DE+EN, ~150 einzigartige Kandidatenwörter
+einzeln nachgeprüft, nicht blind übernommen): **keine echten Tippfehler.** Fast alles waren
+Fantasy-Eigennamen/-Komposita (Pyralia, Runenschmiede, Tresorwächter, Gildenarchiv, …),
+Python-Identifier in Code-Beispielen, oder seltene aber korrekte deutsche Flexionsformen — z.B.
+"lesbarere" (lesbar+er+e, Komparativ + schwache Adjektivendung, korrekt) und "primen" (Dativ/Akk.
+Plural von "prim" nach "alle", korrekt) wurden einzeln nachgerechnet, bevor sie als „kein Fehler"
+eingestuft wurden. Alle False Positives ins Custom-Dictionary übernommen (`cspell.json`, jetzt
+159 Wörter).
+
+**Ein echter Fund:** `week12_adventure_1_lektion.ipynb` (EN) nutzte an 4 Stellen amerikanisches
+Englisch ("colors", "colorful") statt des sonst im ganzen EN-Kurs konsequent verwendeten
+britischen Englisch (vgl. "colours", "practise", "organised" im Rest des Korpus) — korrigiert.
+Bewusst unverändert gelassen: `.color()`/`.fillcolor()` als Turtle-API-Methodennamen-Referenzen
+(z.B. im Glossar "Set pen color") — die Methode heißt in Python tatsächlich so, das ist kein
+Dialekt-Stilbruch, sondern korrekt zitierter Code.
+
+**Getestet:** `npm run test:checks` (32 Tests grün, unverändert — der Colours-Fix ist eine reine
+Text-Korrektur ohne Verhaltensänderung, laut der neuen `WORKFLOW.md`-Regel braucht das keinen
+eigenen Test) + manuelle JSON-Validitätsprüfung der geänderten Notebook-Datei.
+
+### 3.10 Text-Tippfehler-Pass, Fortsetzung: Pferde + Sci-Fi — alle 444 Notebooks fertig
+
+Gleiches Verfahren (Skript aus 3.6) auf Pferde- und Sci-Fi-Variante (je 144 Notebooks DE+EN)
+angewendet. **Damit sind jetzt alle 444 Notebooks des 12-Wochen-Kurses + alle Cheat-Sheets/Glossare
+einmal komplett auf Tippfehler geprüft.**
+
+**Echte Funde (alle einzeln über Kontext verifiziert, nicht blind gefixt):**
+- **Pferde Woche 11:** "Parours" → "Parcours" (fehlendes "c")
+- **Pferde Woche 2:** "pferdbezogene" → "pferdebezogene" (fehlendes Fugen-e)
+- **Pferde Woche 1 (Glossar):** "Pferdname" → "Pferdename" — inkonsistent zu 4 anderen Stellen im
+  selben Wochensatz, die korrekt "Pferdename(n)" schreiben
+- **Pferde Woche 3 + `rewards-manifest.json`:** "Futterschip" → "Futterschippe" — aufgelöst über
+  den EN-Manifest-Eintrag "Feed Scoop" (nicht "Feed Chip"): kein Sci-Fi-Chip-Wortspiel, sondern ein
+  abgeschnittenes "Futterschippe". Betraf zwei gekoppelte Dateien (Notebook + Manifest), beide
+  angepasst (INHALTE.md-Kopplungsregel für Belohnungsitems).
+- **Sci-Fi Woche 1 UND Woche 10** (identischer Intro-Text dupliziert): "Du betrittstest die
+  hochmoderne Raumstation Nebula-7" → "Du betrittst die..."
+
+**Bewusst nicht angefasst** (geprüft, aber kein echter Fehler):
+- Pferde Woche 1 Lösungen: "zuviel" — alte Rechtschreibung, weit verbreitet, kein klarer Fehler
+- Sci-Fi Woche 1 Lösungen: "statu" — das ist der im Debug-Notebook absichtlich erklärte Tippfehler
+  selbst (`status` vs. `statu`), kein zu fixender Fehler
+- Pferde/Sci-Fi Woche 12: kein US/UK-Englisch-Mix gefunden (anders als bei Abenteuer Woche 12) —
+  `color`/`.color()` kam nur in Turtle-API-Method-Referenzen vor, nicht in freier Prosa
+
+Alle 11 DE-Cheat-Sheets (`.md`-Quelle + generierte `.ipynb`), 11 EN-Cheat-Sheets,
+`turtle_cheat_sheet.md` (DE+EN) und `gesamtglossar.ipynb` ebenfalls geprüft — sauber, nur
+Turtle-API-Methodennamen als False Positives. `cspell.json` enthält jetzt 344 projektspezifische
+Wörter.
+
+**Noch offen (nächste Sessions, siehe `todo.md`):**
+- `.vue`-Dateien systematisch prüfbar machen
+- Interaktive Kurse (`python-grundlagen-interaktiv*`) und `caesar-chiffre` noch nicht geprüft
+
+**Getestet:** `npm run test:checks` (32 Tests grün — alle Fixes sind reine Text-/Content-
+Korrekturen ohne Verhaltensänderung, laut `WORKFLOW.md` kein eigener Test nötig) + JSON-Validität
+aller 6 geänderten Notebook-Dateien geprüft.
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -319,7 +418,10 @@ content/python-checks/weeks.json
 Siehe auch `todo.md`.
 
 **Betrieb**
-- [ ] Server-Deploy final verifizieren (Service `app`, Orphans weg, Health, Admin-Login, kein Notebook-Blinken mehr nach PR #3)
+- [ ] Server-Deploy final verifizieren (Service `app`, Orphans weg, Health, Admin-Login, kein
+      Notebook-Blinken mehr nach PR #3) — **bewusst zurückgestellt**, Nutzer will erst später
+      deployen
+- [x] SQLite-Backup-Script (Branch `backup-sqlite-db`) — siehe eigener Branch
 
 **Inhalte**
 - Keine offenen Punkte aus der Storytelling-Überarbeitung mehr (siehe 3.4) — "Gilde-Meister-Urkunde" geklärt, kein Bug
@@ -327,13 +429,16 @@ Siehe auch `todo.md`.
 - Einstufungstest (3.6): Distraktoren für Wochen 5-12 noch offen (Wochen 1-4 fertig)
 - Interaktiver Kurs (3.7): "Ausführen vs. Prüfen"-Klarheit und Weiter-Flow noch offen, braucht
   konkretes Nutzer-Feedback (idealerweise Screenshot) bevor daran gearbeitet wird
+- Text-Tippfehler-Pass (3.8–3.10): alle 444 Notebooks + Cheat-Sheets/Glossare + UI-Texte +
+  Wochenbeschreibungen + `weeks.json` fertig — `.vue`-Dateien und die interaktiven Kurse
+  (`python-grundlagen-interaktiv*`, `caesar-chiffre`) noch offen
 
-**Branch-Merge läuft gerade (diese Session):** `debug-notebook-safety`, `et-fixes` und
-`interaktiv-klarer` sind soeben nach `main` gemergt. Als Nächstes in derselben Session:
-`text-typo-pass` → `backup-sqlite-db` → `kurs-caesar-chiffre` → `wochen-zertifikate`
-(Reihenfolge/Begründung siehe `todo.md`). Nach jedem Merge `npm run test:checks` (und bei
-Auth-relevanten Branches zusätzlich `npm run test:auth`), bevor der nächste Branch drankommt. Noch
-**nicht** nach `origin/main` gepusht.
+**Branch-Merge läuft gerade (diese Session):** `debug-notebook-safety`, `et-fixes`,
+`interaktiv-klarer` und `text-typo-pass` sind soeben nach `main` gemergt. Als Nächstes in derselben
+Session: `backup-sqlite-db` → `kurs-caesar-chiffre` → `wochen-zertifikate` (Reihenfolge/Begründung
+siehe `todo.md`). Nach jedem Merge `npm run test:checks` (und bei Auth-relevanten Branches
+zusätzlich `npm run test:auth`), bevor der nächste Branch drankommt. Noch **nicht** nach
+`origin/main` gepusht.
 
 **Danach — nächste Kurs-Themen, je eigener Branch von `main`:**
 
@@ -352,7 +457,7 @@ Kontakt-E-Mail im Footer wartet noch auf die tatsächliche Adresse vom Nutzer (n
 
 ## 6. Entscheidungen / Konventionen (nicht ohne Rückfrage ändern)
 
-- Ein Thema = ein Branch `cursor/…` von `main` (`WORKFLOW.md`)
+- Ein Thema = ein Branch `…` von `main` (`WORKFLOW.md`)
 - Accounts: Admin legt an; `ageGroup` kinder|jugendliche; ein Mensch = ein Account
 - Sync: per-key Merge nach `updatedAt`
 - Prod: ein Container `app`, Port 8080, API serviert Static
@@ -370,9 +475,12 @@ Kontakt-E-Mail im Footer wartet noch auf die tatsächliche Adresse vom Nutzer (n
 4. Nicht: altes `prod` in Compose erwarten; nicht: Sync so ändern, dass Notebooks wieder voll neu
    geladen werden bei jedem Apply; nicht: Pyodide in einen Web Worker verschieben ohne `input()`
    (65 Notebooks) neu zu lösen (siehe 3.5); nicht: `placementPassThreshold` auf einen Bruch wie `2/3`
-   exakt setzen (Floating-Point — siehe 3.6)
+   exakt setzen (Floating-Point — siehe 3.6); nicht: `cspell`-Wörterbücher nur über
+   `"dictionaries"` ohne `"import"` einbinden (lädt sie nicht, siehe 3.8); nicht:
+   `scripts/extract_notebook_text.py` nach `/tmp` ausgeben lassen (cspell sieht Pfade außerhalb
+   des Repos nicht, siehe 3.9)
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
 **Empfohlener nächster Schritt:** Branch-Merge-Kette fortsetzen (siehe Abschnitt 5) —
-`text-typo-pass` → `backup-sqlite-db` → `kurs-caesar-chiffre` → `wochen-zertifikate`, danach
-`kurs-python-spiele` (Kursgerüst `kurse.json` + Content-Ordner).
+`backup-sqlite-db` → `kurs-caesar-chiffre` → `wochen-zertifikate`, danach `kurs-python-spiele`
+(Kursgerüst `kurse.json` + Content-Ordner).
