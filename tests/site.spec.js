@@ -19,10 +19,11 @@ test.describe('Home & Navigation', () => {
     await expect(page.locator('a.cta-button[href="/kurs/python-12-wochen-grundkurs"]')).toBeVisible();
     await expect(page.locator('a.cta-button[href="/kurs/python-grundlagen-interaktiv"]')).toBeVisible();
 
-    // Home filtert Kurse: 12-Wochen + Interaktiv immer; andere nur mit Termin
-    await expect(page.locator('#kurse-uebersicht .course-card')).toHaveCount(2);
+    // Home filtert Kurse: 12-Wochen + Interaktiv + Cäsar-Chiffre-Projekt immer; andere nur mit Termin
+    await expect(page.locator('#kurse-uebersicht .course-card')).toHaveCount(3);
     await expect(page.locator('a.course-link[href="/kurs/python-12-wochen-grundkurs"]')).toBeVisible();
     await expect(page.locator('a.course-link[href="/kurs/python-grundlagen-interaktiv"]')).toBeVisible();
+    await expect(page.locator('a.course-link[href="/kurs/projekt-caesar-chiffre"]')).toBeVisible();
   });
 
   test('Home-CTA Einstufung öffnet Placement-Kurs', async ({ page }) => {
@@ -126,6 +127,44 @@ test.describe('Interaktiver Kurs', () => {
     await editor.fill('print("still nope")');
     await task.locator('.btn-check').click();
     await expect(task.locator('.feedback')).toContainText('Erwartet wurde etwas mit', { timeout: 10000 });
+  });
+});
+
+test.describe('Cäsar-Chiffre-Projekt', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.removeItem('ue-hacker-lang');
+      localStorage.removeItem('ue-hacker-interactive-progress-caesar-chiffre');
+    });
+  });
+
+  test('Kurs lädt, Lektion 1 lösen schaltet Lektion 2 frei', async ({ page }) => {
+    test.setTimeout(60000);
+    await page.goto('/kurs/projekt-caesar-chiffre');
+    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(5, { timeout: 15000 });
+    await expect(page.locator('.course-description')).toContainText('Cäsar-Chiffre');
+
+    await page.locator('.btn-kernel').click();
+    await expect(page.locator('.btn-check').first()).toBeEnabled({ timeout: 40000 });
+
+    const task1 = page.locator('.task-block').nth(0);
+    await task1.locator('.code-editor').fill("print(ord('a'))");
+    await task1.locator('.btn-check').click();
+    await expect(task1.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+
+    const task2 = page.locator('.task-block').nth(1);
+    await task2.locator('.code-editor').fill("print(chr(100))");
+    await task2.locator('.btn-check').click();
+    await expect(task2.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+
+    await expect(page.locator('.lesson-item.completed')).toHaveCount(1);
+    await expect(page.locator('.lesson-item').nth(1)).not.toHaveClass(/locked/);
+  });
+
+  test('Kurs erscheint auf der Startseite und im 12-Wochen-Kurs verlinkt', async ({ page }) => {
+    await page.goto('/kurs/python-12-wochen-grundkurs');
+    await expect(page.locator('.project-banner')).toBeVisible({ timeout: 15000 });
+    await expect(page.locator('.project-banner-link')).toHaveAttribute('href', '/kurs/projekt-caesar-chiffre');
   });
 });
 

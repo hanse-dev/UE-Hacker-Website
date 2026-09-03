@@ -103,12 +103,16 @@ export default {
       type: String,
       default: 'kinder',
     },
+    courseId: {
+      type: String,
+      default: 'python-grundlagen-interaktiv',
+    },
   },
   emits: ['completed', 'next'],
   setup(props, { emit }) {
     const { lang } = useLanguage();
     const { kernelReady, kernelStatus, initializeKernel, runPython } = usePyodide();
-    const { markCompleted, isLessonUnlocked } = useInteractiveProgress(props.variant);
+    const { markCompleted, isLessonUnlocked } = useInteractiveProgress(props.variant, props.courseId);
 
     const lessonContent = ref('');
     const checking = ref(false);
@@ -165,6 +169,7 @@ export default {
         '../../content/python-grundlagen-interaktiv-jugendliche/*.md',
         '../../content/python-grundlagen-interaktiv-kinder-en/*.md',
         '../../content/python-grundlagen-interaktiv-jugendliche-en/*.md',
+        '../../content/caesar-chiffre/*.md',
       ],
       { query: '?raw', import: 'default' }
     );
@@ -175,6 +180,7 @@ export default {
         '../../content/python-grundlagen-interaktiv-jugendliche/glossary.json',
         '../../content/python-grundlagen-interaktiv-kinder-en/glossary.json',
         '../../content/python-grundlagen-interaktiv-jugendliche-en/glossary.json',
+        '../../content/caesar-chiffre/glossary.json',
       ],
     );
 

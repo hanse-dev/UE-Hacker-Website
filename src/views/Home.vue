@@ -150,8 +150,9 @@ export default {
       await fetchKurse();
 
       // Filter courses
+      const ALWAYS_VISIBLE_KURSE = ['python-12-wochen-grundkurs', 'python-grundlagen-interaktiv', 'projekt-caesar-chiffre'];
       kurse.value = kurse.value.filter(kurs => {
-        if (kurs.id === 'python-12-wochen-grundkurs' || kurs.id === 'python-grundlagen-interaktiv') {
+        if (ALWAYS_VISIBLE_KURSE.includes(kurs.id)) {
           return true;
         }
         return termine.value.some(termin => termin.link.startsWith(`/kurs/${kurs.id}`));

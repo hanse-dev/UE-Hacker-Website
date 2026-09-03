@@ -80,6 +80,9 @@ export default {
   'course.placement.link': 'Zur Einstufung →',
   'course.download.btn':  '📦 Alle Notebooks als Pack herunterladen',
   'course.download.hint': 'Zip mit allen 12 Wochen (Abenteuer, Pferde, Sci-Fi) + Cheat Sheets + Fortschritt-Skript – zum Arbeiten in Jupyter oder VS Code.',
+  'course.project.banner.title': 'Fertig mit dem Kurs (oder schon mittendrin)? Zeit für dein erstes eigenes Projekt!',
+  'course.project.banner.desc': 'Baue eine echte Geheimschrift – die Cäsar-Chiffre. Nutzt Strings, Schleifen und Funktionen aus diesem Kurs.',
+  'course.project.banner.link': 'Zum Projekt →',
 
   // ── Tabs ─────────────────────────────────────────────────────────────────
   'tab.lesson':       'Lektion',

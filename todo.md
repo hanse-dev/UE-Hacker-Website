@@ -16,6 +16,11 @@
       (~80 Fragen, siehe `et-fixes`-Commit für die Vorgehensweise)
 
 ### Inhalte / Notebooks
+- [x] Neues Projekt "Cäsar-Chiffre" (`kurs-caesar-chiffre`, `projekt-caesar-chiffre`): 5 Lektionen
+      (ord/chr → Verschieben mit Wraparound → Verschlüsseln-Funktion → Entschlüsseln-Funktion →
+      Brute-Force-Knacker), eigene schlanke Komponente `ProjectCourse.vue` (kein Varianten-Selector),
+      Deep-Links aus Woche 2/4/5 des 12-Wochen-Kurses, sichtbar auf der Startseite. Bewusst nur
+      DE-Content (EN-Nachzug offen). Tests in `tests/site.spec.js`.
 - [x] Text-Tippfehler-Pass über die ganze Seite (`text-typo-pass`): `cspell`-Tooling eingerichtet
       (`cspell.json`, `npm run lint:spelling`), alle 444 Notebooks + Cheat-Sheets/Glossare geprüft,
       6 echte Tippfehler gefunden und korrigiert (u.a. "Parours"→"Parcours",

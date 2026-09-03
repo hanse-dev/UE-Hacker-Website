@@ -7,18 +7,18 @@ function storageKey(variant) {
   return `ue-hacker-interactive-progress-${variant}`;
 }
 
-function defaultState(variant) {
-  return { version: 1, courseId: COURSE_ID, variant, completedLessonIds: [] };
+function defaultState(variant, courseId = COURSE_ID) {
+  return { version: 1, courseId, variant, completedLessonIds: [] };
 }
 
-function loadFromStorage(variant) {
+function loadFromStorage(variant, courseId) {
   try {
     const raw = localStorage.getItem(storageKey(variant));
-    if (!raw) return defaultState(variant);
+    if (!raw) return defaultState(variant, courseId);
     const parsed = JSON.parse(raw);
-    return { ...defaultState(variant), ...parsed };
+    return { ...defaultState(variant, courseId), ...parsed };
   } catch {
-    return defaultState(variant);
+    return defaultState(variant, courseId);
   }
 }
 
@@ -33,21 +33,21 @@ function saveToStorage(variant, state) {
 
 const states = {};
 
-function getVariantState(variant) {
+function getVariantState(variant, courseId) {
   if (!states[variant]) {
-    states[variant] = ref(loadFromStorage(variant));
+    states[variant] = ref(loadFromStorage(variant, courseId));
     watch(states[variant], (s) => saveToStorage(variant, s), { deep: true });
     if (typeof window !== 'undefined') {
       window.addEventListener(PROGRESS_APPLIED_EVENT, () => {
-        states[variant].value = loadFromStorage(variant);
+        states[variant].value = loadFromStorage(variant, courseId);
       });
     }
   }
   return states[variant];
 }
 
-export function useInteractiveProgress(variant = 'kinder') {
-  const state = getVariantState(variant);
+export function useInteractiveProgress(variant = 'kinder', courseId = COURSE_ID) {
+  const state = getVariantState(variant, courseId);
 
   const completedLessonIds = computed(() => state.value.completedLessonIds || []);
   const isCompleted = (lessonId) => completedLessonIds.value.includes(lessonId);
@@ -74,7 +74,7 @@ export function useInteractiveProgress(variant = 'kinder') {
     return lessons[index + 1].id;
   };
 
-  const resetProgress = () => { state.value = defaultState(variant); };
+  const resetProgress = () => { state.value = defaultState(variant, courseId); };
 
   const exportProgress = () => JSON.stringify(state.value, null, 2);
 
@@ -86,7 +86,7 @@ export function useInteractiveProgress(variant = 'kinder') {
       const incoming = data.completedLessonIds || [];
       const existing = new Set(state.value.completedLessonIds || []);
       for (const id of incoming) existing.add(id);
-      state.value = { ...defaultState(variant), completedLessonIds: [...existing] };
+      state.value = { ...defaultState(variant, courseId), completedLessonIds: [...existing] };
       return { ok: true };
     } catch (e) {
       return { ok: false, error: e.message };

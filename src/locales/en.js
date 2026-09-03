@@ -80,6 +80,9 @@ export default {
   'course.placement.link': 'Go to placement →',
   'course.download.btn':  '📦 Download all notebooks as a pack',
   'course.download.hint': 'Zip with all 12 weeks (Adventure, Horses, Sci-Fi) + Cheat Sheets + Progress Script – for working in Jupyter or VS Code.',
+  'course.project.banner.title': 'Done with the course (or already partway through)? Time for your first own project!',
+  'course.project.banner.desc': 'Build a real cipher – the Caesar cipher. Uses strings, loops, and functions from this course.',
+  'course.project.banner.link': 'Go to project →',
 
   // ── Tabs ─────────────────────────────────────────────────────────────────
   'tab.lesson':       'Lesson',

@@ -3,10 +3,11 @@
 > **Zuletzt aktualisiert:** 2026-09-03  
 > **Aktueller Stand:** `main` enthält jetzt PR #1–#4, die Storytelling-Überarbeitung (3.4), den
 > Endlosschleifen-Schutz + Sci-Fi-Debug-Ziele, die Einstufungstest-Fixes (3.5/3.6), den gestuften
-> Hinweis im interaktiven Kurs (3.7), den kompletten Text-Tippfehler-Pass (3.8) sowie das
-> SQLite-Backup-Script (Abschnitt 4) — `debug-notebook-safety`, `et-fixes`, `interaktiv-klarer`,
-> `text-typo-pass` und `backup-sqlite-db` sind gerade gemergt worden. Zwei weitere Branches folgen
-> in derselben Session: `kurs-caesar-chiffre` → `wochen-zertifikate`.  
+> Hinweis im interaktiven Kurs (3.7), den kompletten Text-Tippfehler-Pass (3.8), das
+> SQLite-Backup-Script (Abschnitt 4) sowie das neue Cäsar-Chiffre-Projekt (3.11) —
+> `debug-notebook-safety`, `et-fixes`, `interaktiv-klarer`, `text-typo-pass`, `backup-sqlite-db`
+> und `kurs-caesar-chiffre` sind gerade gemergt worden. Nur noch ein Branch fehlt in dieser
+> Session: `wochen-zertifikate`.  
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -366,6 +367,45 @@ Wörter.
 Korrekturen ohne Verhaltensänderung, laut `WORKFLOW.md` kein eigener Test nötig) + JSON-Validität
 aller 6 geänderten Notebook-Dateien geprüft.
 
+### 3.11 Neues Projekt: Cäsar-Chiffre (Branch `kurs-caesar-chiffre`)
+
+Das erste eigenständige "Projekt" neben den Wochenkursen.
+
+- **Content:** `content/caesar-chiffre/` (neuer Ordner, gleiches Schema wie
+  `python-grundlagen-interaktiv-*`: `lessons.json` + `lektion-01..05.md` + `beschreibung.md`).
+  5 Lektionen: ord()/chr() → Buchstaben verschieben (Modulo/Wraparound) → Verschlüsselungsfunktion
+  → Entschlüsselungsfunktion → Brute-Force-Knacker (probiert alle 26 Verschiebungen). Jede
+  Lektion verlinkt im Text auf die passende Woche des 12-Wochen-Kurses (Woche 2 Strings, Woche 4
+  Schleifen, Woche 5 Funktionen) über denselben Query-Param-Deep-Link-Mechanismus wie
+  `PlacementCourse.vue` (`?week=N&tab=lektion#woche-N`) — als normaler Markdown-Link, löst also
+  einen vollen Seiten-Reload statt SPA-Transition aus, funktioniert aber korrekt.
+- **Neue Komponente `src/components/ProjectCourse.vue`:** bewusst NICHT `InteractiveCourse.vue`
+  wiederverwendet, weil die einen fest eingebauten Kinder/Jugendliche-Varianten-Selector hat, der
+  hier nicht passt (nur eine Variante). `ProjectCourse.vue` ist eine reduzierte Kopie ohne
+  Varianten-Auswahl, reused aber `LessonView.vue` unverändert.
+- **`src/composables/useInteractiveProgress.js`:** bekam einen optionalen zweiten Parameter
+  `courseId` (Default bleibt der bisherige Wert, rückwärtskompatibel) — ohne den hätte der
+  exportierte Fortschritt für Cäsar-Chiffre fälschlich `courseId: "python-grundlagen-interaktiv"`
+  enthalten, da diese Composable bisher hart auf den einen Kurs verdrahtet war.
+- **`LessonView.vue`:** `import.meta.glob(...)`-Listen für Lektions-Markdown und Glossar sind
+  hart codierte Pfadlisten (Vite braucht statische Glob-Patterns) — `content/caesar-chiffre/*.md`
+  wurde dort ergänzt, sonst hätte die neue Lektion nicht geladen werden können. **Wichtig für
+  künftige neue Kurse mit `LessonView.vue`:** diese Glob-Liste immer mit erweitern.
+- **`kurse.json`:** neuer Eintrag `projekt-caesar-chiffre`. **`Home.vue`:** die Kursliste auf der
+  Startseite ist standardmäßig gefiltert (nur 12-Wochen-Kurs + Interaktiv-Kurs erscheinen immer,
+  alles andere nur mit Termin in `termine.json`) — `projekt-caesar-chiffre` wurde bewusst zur
+  Always-visible-Liste hinzugefügt, damit es wie gewünscht "neben den Wochenkursen" sichtbar ist.
+- **Hinweis-Banner im 12-Wochen-Kurs:** neuer `.project-banner`-Block am Ende der Kursseite
+  (`CourseDetail.vue`, nur bei `isWeeklyCourse`) verlinkt zum neuen Projekt.
+- **Bekannte Einschränkung:** nur deutschsprachiger Content (kein `-en`-Pendant) — im EN-Modus
+  fällt `loadCourseData` automatisch auf den DE-Beschreibungstext zurück (nicht ideal, aber
+  funktional, konsistent mit "DE-first" bei anderen neuen Kursen laut `todo.md`).
+
+**Getestet:** `npm run test:checks` (2 neue Tests in `tests/site.spec.js` + angepasster
+Home-Test, der jetzt 3 statt 2 immer sichtbare Kurskarten erwartet) + manuell per Playwright mit
+echtem Pyodide-Lauf durch alle 5 Lektionen (inkl. der Brute-Force-Lektion, die tatsächlich
+"projekt" als Klartext ausgibt) sowie Deep-Link-Navigation zu Woche 2 des 12-Wochen-Kurses.
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -463,13 +503,13 @@ Siehe auch `todo.md`.
 - Text-Tippfehler-Pass (3.8–3.10): alle 444 Notebooks + Cheat-Sheets/Glossare + UI-Texte +
   Wochenbeschreibungen + `weeks.json` fertig — `.vue`-Dateien und die interaktiven Kurse
   (`python-grundlagen-interaktiv*`, `caesar-chiffre`) noch offen
+- Cäsar-Chiffre-Projekt (3.11): EN-Version noch offen (DE-first)
 
 **Branch-Merge läuft gerade (diese Session):** `debug-notebook-safety`, `et-fixes`,
-`interaktiv-klarer`, `text-typo-pass` und `backup-sqlite-db` sind soeben nach `main` gemergt. Als
-Nächstes in derselben Session: `kurs-caesar-chiffre` → `wochen-zertifikate`
-(Reihenfolge/Begründung siehe `todo.md`). Nach jedem Merge `npm run test:checks` (und bei
-Auth-relevanten Branches zusätzlich `npm run test:auth`), bevor der nächste Branch drankommt. Noch
-**nicht** nach `origin/main` gepusht.
+`interaktiv-klarer`, `text-typo-pass`, `backup-sqlite-db` und `kurs-caesar-chiffre` sind soeben
+nach `main` gemergt. Nur noch **`wochen-zertifikate`** fehlt in dieser Session. Nach jedem Merge
+`npm run test:checks` (und bei Auth-relevanten Branches zusätzlich `npm run test:auth`), bevor der
+nächste Branch drankommt. Noch **nicht** nach `origin/main` gepusht.
 
 **Danach — nächste Kurs-Themen, je eigener Branch von `main`:**
 
@@ -513,9 +553,10 @@ Kontakt-E-Mail im Footer wartet noch auf die tatsächliche Adresse vom Nutzer (n
    `"dictionaries"` ohne `"import"` einbinden (lädt sie nicht, siehe 3.8); nicht:
    `scripts/extract_notebook_text.py` nach `/tmp` ausgeben lassen (cspell sieht Pfade außerhalb
    des Repos nicht, siehe 3.9); nicht: SQLite per `cp` statt `VACUUM INTO` sichern (WAL-Modus,
-   siehe Abschnitt 4)
+   siehe Abschnitt 4); nicht: einen neuen `LessonView.vue`-Kurs anlegen, ohne die
+   `import.meta.glob(...)`-Pfadlisten in `LessonView.vue` zu erweitern (siehe 3.11)
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
-**Empfohlener nächster Schritt:** Branch-Merge-Kette fortsetzen (siehe Abschnitt 5) —
-`kurs-caesar-chiffre` → `wochen-zertifikate`, danach `kurs-python-spiele` (Kursgerüst `kurse.json`
-+ Content-Ordner).
+**Empfohlener nächster Schritt:** Branch-Merge-Kette abschließen (siehe Abschnitt 5) —
+nur noch `wochen-zertifikate`, danach `kurs-python-spiele` (Kursgerüst `kurse.json` +
+Content-Ordner).
