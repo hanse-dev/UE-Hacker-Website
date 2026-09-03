@@ -146,6 +146,94 @@ test.describe('UI: Admin + Header-Login', () => {
     const downloadPromise = page.waitForEvent('download');
     await downloadBtn.click();
     const download = await downloadPromise;
-    expect(download.suggestedFilename()).toMatch(/^Zertifikat_Woche_1_.*\.pdf$/);
+    expect(download.suggestedFilename()).toMatch(/^Zertifikat_Woche_1_Max_Mustermann\.pdf$/);
+  });
+
+  test('Zertifikat-PDF: eine andere Woche als Woche 1 lädt auch ihre eigenen Daten', async ({ page, request }) => {
+    test.setTimeout(60000);
+    const username = `certpdf5_${Date.now()}`;
+    const adminLogin = await request.post(`${API}/api/admin/login`, {
+      data: { password: ADMIN_PASSWORD },
+    });
+    const { token: adminToken } = await adminLogin.json();
+    await request.post(`${API}/api/admin/users`, {
+      headers: { Authorization: `Bearer ${adminToken}` },
+      data: { username, password: 'pass1234', ageGroup: 'jugendliche' },
+    });
+
+    await page.addInitScript(() => {
+      localStorage.setItem('ue-hacker-week-checks', JSON.stringify({
+        version: 1,
+        weeks: {
+          '1': { quizPassed: true, codingPassed: { 0: true, 1: true }, at: new Date().toISOString() },
+          '5': { quizPassed: true, codingPassed: { 0: true, 1: true }, at: new Date().toISOString() },
+        },
+        placement: null,
+      }));
+    });
+
+    await page.goto('/');
+    await page.locator('.options-btn').click();
+    await page.locator('.settings-modal .auth-btn.primary', { hasText: /Anmelden|Log in/ }).click();
+    await page.locator('.settings-modal input').nth(0).fill(username);
+    await page.locator('.settings-modal input[type="password"]').fill('pass1234');
+    await page.locator('.settings-modal .auth-btn.primary').click();
+    await expect(page.locator('.settings-modal')).toContainText(username);
+
+    await page.goto(`${COURSE_URL}?week=1&tab=lektion#woche-1`);
+    await expect(page.locator('.week-content').first()).toBeVisible({ timeout: 20000 });
+    await page.locator('.fortschritt-widget-header').click();
+    await page.locator('.fortschritt-weekly-header').click();
+
+    const week5Card = page.locator('.certificate-card').nth(4);
+    await expect(week5Card).toHaveClass(/earned/);
+    const downloadPromise = page.waitForEvent('download');
+    await week5Card.locator('.btn-certificate-pdf').click();
+    const download = await downloadPromise;
+    // Guards against an off-by-one in FortschrittWidget's week→content lookup: this must be
+    // week 5's certificate, not week 1's (the first earned week) reused for every button.
+    expect(download.suggestedFilename()).toMatch(/^Zertifikat_Woche_5_/);
+  });
+
+  test('Zertifikat-PDF: funktioniert auch auf Englisch (Titel/Lernziele enthalten Emoji, das die PDF-Schrift nicht kennt)', async ({ page, request }) => {
+    test.setTimeout(60000);
+    const username = `certpdfen_${Date.now()}`;
+    const adminLogin = await request.post(`${API}/api/admin/login`, {
+      data: { password: ADMIN_PASSWORD },
+    });
+    const { token: adminToken } = await adminLogin.json();
+    await request.post(`${API}/api/admin/users`, {
+      headers: { Authorization: `Bearer ${adminToken}` },
+      data: { username, password: 'pass1234', ageGroup: 'jugendliche' },
+    });
+
+    await page.addInitScript(() => {
+      localStorage.setItem('ue-hacker-lang', 'en');
+      localStorage.setItem('ue-hacker-week-checks', JSON.stringify({
+        version: 1,
+        weeks: { '1': { quizPassed: true, codingPassed: { 0: true, 1: true }, at: new Date().toISOString() } },
+        placement: null,
+      }));
+    });
+
+    await page.goto('/');
+    await page.locator('.options-btn').click();
+    await page.locator('.settings-modal .auth-btn.primary', { hasText: /Log in/ }).click();
+    await page.locator('.settings-modal input').nth(0).fill(username);
+    await page.locator('.settings-modal input[type="password"]').fill('pass1234');
+    await page.locator('.settings-modal .auth-btn.primary').click();
+    await expect(page.locator('.settings-modal')).toContainText(username);
+
+    await page.goto(`${COURSE_URL}?week=1&tab=lektion#woche-1`);
+    await expect(page.locator('.week-content').first()).toBeVisible({ timeout: 20000 });
+    await page.locator('.fortschritt-widget-header').click();
+    await page.locator('.fortschritt-weekly-header').click();
+
+    const week1Card = page.locator('.certificate-card').first();
+    await expect(week1Card).toHaveClass(/earned/);
+    const downloadPromise = page.waitForEvent('download');
+    await week1Card.locator('.btn-certificate-pdf').click();
+    const download = await downloadPromise;
+    expect(download.suggestedFilename()).toMatch(/^Certificate_Week_1_/);
   });
 });
