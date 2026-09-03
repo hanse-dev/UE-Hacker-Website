@@ -1,5 +1,37 @@
 # Todo
 
+## Jetzt: 10 Verbesserungen in 6 Branches (gruppiert, B→A→E→F→C→D)
+
+Plan-Datei: `~/.claude/plans/scalable-singing-cook.md` (Kontext/Details je Branch).
+
+### Branch `cursor/debug-notebook-safety` (Punkte 5, 6) — auf eigenem Branch, nicht hier gemergt
+- [x] Punkt 5 — Endlosschleifen-Schutz in `usePyodide.js` (AST-Guard, 5s-Timeout)
+- [x] Punkt 6 — Sci-Fi-Debug-Notebooks um Ziel-Angaben ergänzt (Pferde/Abenteuer offen)
+
+### Branch `cursor/et-fixes` (Punkte 1-4) — dieser Branch
+- [x] Punkt 1: "Ich weiß es nicht"-Option in `QuizStep.vue` — zählt wie falsch, löst eigene
+      freundliche Rückmeldung aus ("Kein Problem — hier ist die Antwort: …"), Coverage geprüft
+- [x] Punkt 2: Wortlaut bei Falsch-Antwort geschärft ("Nicht ganz — [Erklärung]" statt Erklärung
+      ohne Einleitung) — Erklärungs-Feature selbst war schon vorhanden (100 % Coverage in
+      `weeks.json`), nur Framing verbessert
+- [x] Punkt 3: Placement-Scoring gelockert — `placementPerWeek` 2→3, neuer eigener
+      `placementPassThreshold: 0.66` (≈ 2 von 3 richtig reicht) statt dem harten `passThreshold: 0.8`
+      der normalen Wochen-Checks (die bleiben unverändert bei 0.8). Live verifiziert: 2/3 richtig
+      (67 %) → "ok", 1/3 richtig (33 %) → "review".
+- [x] Punkt 4: Distraktoren für Wochen 1-4 (12 von 40 Fragen, die genuin unplausibel waren, z.B.
+      "Um den Computer auszuschalten") durch nähere Verwechslungen ersetzt (DE+EN), Rest der
+      12 Wochen bewusst nicht angefasst (todo für spätere Session, siehe unten)
+
+**Offen für später:** Distraktoren für Wochen 5-12 nach demselben Muster (~80 Fragen, nicht in
+dieser Sitzung gemacht).
+
+### Branch `cursor/kontakt-email` (Punkt 9) — offen, braucht Kontakt-E-Mail-Adresse vom Nutzer
+### Branch `cursor/kurs-caesar-chiffre` (Punkt 10) — offen
+### Branch `cursor/interaktiv-klarer` (Punkt 7) — offen
+### Branch `cursor/text-typo-pass` (Punkt 8) — offen, größter Umfang
+
+---
+
 ## Now
 ### Website / Frontend
 - [x] Das Tabsystem erklären

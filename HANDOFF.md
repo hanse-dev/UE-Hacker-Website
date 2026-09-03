@@ -1,7 +1,10 @@
 # Handoff — UE Hacker Website
 
-> **Zuletzt aktualisiert:** 2026-08-20  
-> **Aktueller Stand:** Branch `main` (enthält PR #1–#4 sowie die Storytelling-Überarbeitung, siehe 3.4)  
+> **Zuletzt aktualisiert:** 2026-09-03  
+> **Aktueller Stand:** Branch `cursor/et-fixes` (von `main`, enthält PR #1–#4, die
+> Storytelling-Überarbeitung (3.4) sowie die Einstufungstest-Fixes (3.5)). Parallel dazu existiert
+> `cursor/debug-notebook-safety` (Endlosschleifen-Schutz + Sci-Fi-Debug-Ziele) als eigener,
+> unabhängiger Branch von `main` — beide noch nicht gemergt.  
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -151,6 +154,39 @@ werden. Jeder Test wurde gegen eine absichtlich kaputte Kopie verifiziert (schl�
 Items (z.B. "Kristallkugel" 4×, "Quest-Buch" 4×) wiederholen sich im ganzen Kurs genauso. Bewusstes
 Belohnungs-Flavor-Muster für die schwierigste Mission der Woche — keine Umbenennung nötig.
 
+### 3.5 Einstufungstest-Fixes (Branch `cursor/et-fixes`)
+
+**Ausgangslage:** 10 Verbesserungswünsche wurden in 6 Branches gruppiert (Plan-Datei
+`~/.claude/plans/scalable-singing-cook.md`), Reihenfolge B→A→E→F→C→D. Dies ist Branch A.
+
+- **"Ich weiß es nicht"** (`src/components/QuizStep.vue`): eigener Button pro Frage, setzt die
+  Antwort auf einen Sentinel-Wert `DONT_KNOW`, der nie mit einem `correctIndex` übereinstimmt (zählt
+  also korrekt als "falsch" für die Bewertung), löst aber eine eigene Rückmeldung aus ("Kein
+  Problem — hier ist die Antwort: …") statt der normalen Falsch-Rückmeldung.
+- **Erklärung bei Falsch-Antwort:** war technisch schon vorhanden (100 % Coverage: 240
+  `explanation`/`explanation_en`-Einträge bei 120 Fragen in `weeks.json`, `optionClass()` hebt die
+  richtige Option grün hervor sobald geprüft) — nur der Wortlaut wurde geschärft: falsche Antworten
+  zeigen jetzt "Nicht ganz — [Erklärung]" statt der Erklärung ohne Einleitung, damit klar ist, dass
+  es sich um eine Korrektur handelt.
+- **Placement-Scoring gelockert:** `placementPerWeek` 2→3 (jede Woche hat bereits genau 3
+  `inPlacement: true`-Fragen, keine Content-Änderung nötig), neuer eigener Config-Wert
+  `placementPassThreshold: 0.66` in `weeks.json` statt des allgemeinen `passThreshold: 0.8` (der für
+  die normalen Wochen-Checks unverändert bleibt — `WeekCheckPanel.vue` liest weiter `passThreshold`).
+  `PlacementCourse.vue`s `threshold`-Computed liest jetzt `placementPassThreshold ?? passThreshold ?? 0.8`.
+  **Vorsicht bei künftigen Threshold-Änderungen:** 2/3 ergibt in JS `0.6666...` — ein Threshold von
+  z.B. `0.67` hätte "2 von 3 richtig" fälschlich durchfallen lassen (0.6667 < 0.67); erst beim
+  Live-Test im Browser aufgefallen, `0.66` gewählt um sauberen Abstand zu halten.
+- **Distraktoren:** für Wochen 1-4 wurden 12 von 40 Fragen mit genuin unplausiblen Falsch-Antworten
+  (z.B. "Um den Computer auszuschalten", "Ein Drucker") auf nähere Verwechslungen umgestellt (z.B.
+  "Ein fester Wert, der sich nie ändert" für "Was ist eine Variable?"). Bereits gute Distraktoren
+  (echte Verwechslungen wie `==`/`=`/`!=` oder `//`/`/*` für Kommentare) wurden bewusst NICHT
+  angefasst. Wochen 5-12 sind noch offen (siehe `todo.md`).
+
+**Getestet:** `npm run test:checks` (alle 32 bestehen, inkl. dynamisch mitgehendem
+`placementPerWeek`-Test) + live im Browser per Playwright: "weiß nicht" zeigt Rückmeldung und
+markiert die korrekte Antwort weiterhin grün; 2/3 richtig pro Woche → "ok", 1/3 richtig → "review";
+Falsch-Antwort zeigt "Nicht ganz — …".
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -207,8 +243,20 @@ Siehe auch `todo.md`.
 
 **Inhalte**
 - Keine offenen Punkte aus der Storytelling-Überarbeitung mehr (siehe 3.4) — "Gilde-Meister-Urkunde" geklärt, kein Bug
+- Einstufungstest (3.5): Distraktoren für Wochen 5-12 noch offen (Wochen 1-4 fertig)
+- Debug-Notebook-Ziele (auf Branch `cursor/debug-notebook-safety`): Pferde + Abenteuer noch offen
 
-**Nächste Features — je eigener Branch von `main` (Reihenfolge):**
+**Laufend — 10 Verbesserungen in 6 Branches (Reihenfolge B→A→E→F→C→D, siehe `todo.md` + Plan-Datei
+`~/.claude/plans/scalable-singing-cook.md`):**
+
+1. **`cursor/debug-notebook-safety`** — ✅ Punkt 5 fertig, Punkt 6 Sci-Fi fertig (Pferde/Abenteuer offen), eigener Branch, noch nicht gemergt
+2. **`cursor/et-fixes`** — ✅ fertig (dieser Branch): "weiß nicht"-Option, Wortlaut, Scoring, Distraktoren W1-4
+3. **`cursor/kontakt-email`** — Footer-Kontakt-E-Mail (offen, braucht Adresse vom Nutzer)
+4. **`cursor/kurs-caesar-chiffre`** — erstes Projekt neben den Wochenkursen (offen)
+5. **`cursor/interaktiv-klarer`** — gestufter Hinweis statt Lösungsverrat in `LessonView.vue` (offen)
+6. **`cursor/text-typo-pass`** — Rechtschreib-/Text-Pass über die ganze Seite (offen, größter Umfang)
+
+**Danach — nächste Kurs-Themen, je eigener Branch von `main` (Reihenfolge):**
 
 1. **`cursor/kurs-python-spiele`** — Python Spiele-Werkstatt (Turtle/Textspiele)  
 2. **`cursor/kurs-python-projekte`** — „Was kommt danach?“ Projekt-Sprints  
@@ -216,7 +264,9 @@ Siehe auch `todo.md`.
 
 Nicht mischen; Details/Checkboxen in `todo.md`.
 
-**Bewusst nicht geplant:** öffentliches Sign-up, E-Mail, Supabase als Pflicht.
+**Bewusst nicht geplant:** öffentliches Sign-up, Mailversand/Kontaktformular, Supabase als Pflicht.
+(Eine rein statische Kontakt-E-Mail im Footer ist als Branch `cursor/kontakt-email` geplant — kein
+Formular, kein Versand, siehe oben.)
 
 **Bekannte Altlasten (niedrige Prio):** Notebook-Download-ZIP nur DE; optionale EN-Nachzüge bei neuen Kursen.
 
@@ -238,8 +288,13 @@ Nicht mischen; Details/Checkboxen in `todo.md`.
 
 1. `git checkout main && git pull`  
 2. `HANDOFF.md` + `todo.md` + `WORKFLOW.md` lesen  
-3. Neues Thema → **neuen** Branch, z.B. `git checkout -b cursor/kurs-python-spiele`  
-4. Nicht: altes `prod` in Compose erwarten; nicht: Sync so ändern, dass Notebooks wieder voll neu geladen werden bei jedem Apply  
+3. Neues Thema → **neuen** Branch, z.B. `git checkout -b cursor/kontakt-email`  
+4. Nicht: altes `prod` in Compose erwarten; nicht: Sync so ändern, dass Notebooks wieder voll neu geladen werden bei jedem Apply; nicht: `placementPassThreshold` auf einen Bruch wie `2/3` exakt setzen (Floating-Point — siehe 3.5)  
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
+
+**Empfohlener nächster inhaltlicher Schritt:** `cursor/debug-notebook-safety` und `cursor/et-fixes`
+nach `main` mergen (beide fertig, noch nicht gepusht/PR erstellt), dann Branch `cursor/kontakt-email`
+anlegen (braucht die Kontakt-E-Mail-Adresse vom Nutzer) oder `cursor/kurs-caesar-chiffre` (Plan-Datei
+`~/.claude/plans/scalable-singing-cook.md`, Abschnitt "Branch F").
 
 **Empfohlener nächster inhaltlicher Schritt:** Branch `cursor/kurs-python-spiele` anlegen und Kursgerüst (`kurse.json` + Content-Ordner) skizzieren.

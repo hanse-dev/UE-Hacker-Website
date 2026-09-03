@@ -33,6 +33,15 @@
           <span v-if="isMulti(q)" class="option-mark">{{ isSelected(qIdx, oIdx) ? '☑' : '☐' }}</span>
           {{ opt }}
         </button>
+        <button
+          type="button"
+          class="option-btn option-block option-dontknow"
+          :class="{ selected: isDontKnow(qIdx) }"
+          :disabled="isLocked(qIdx)"
+          @click="selectDontKnow(qIdx)"
+        >
+          {{ lang === 'en' ? "🤷 I don't know" : '🤷 Ich weiß es nicht' }}
+        </button>
       </div>
 
       <div v-if="perQuestion && !checked[qIdx]" class="question-actions">
@@ -93,6 +102,10 @@ import {
   getCorrectIndices,
 } from '../composables/useTaskValidation';
 
+// Sentinel für "Ich weiß es nicht" — zählt für die Bewertung als falsch (kein Rätsel-Bonus),
+// löst aber eine eigene, freundlichere Rückmeldung aus statt "falsch geraten".
+const DONT_KNOW = '__DONT_KNOW__';
+
 export default {
   name: 'QuizStep',
   props: {
@@ -122,13 +135,26 @@ export default {
     const emptyAnswer = (q) => (isMulti(q) ? [] : null);
 
     const feedbackFor = (q, a) => {
-      const correct = isAnswerCorrect(q, a);
       const expl = props.lang === 'en' && q.explanation_en ? q.explanation_en : q.explanation;
+      if (a === DONT_KNOW) {
+        const lead = props.lang === 'en'
+          ? 'No problem — here is the answer:'
+          : 'Kein Problem — hier ist die Antwort:';
+        return {
+          correct: false,
+          message: expl ? `${lead} ${expl}` : lead,
+        };
+      }
+      const correct = isAnswerCorrect(q, a);
+      if (correct) {
+        return { correct: true, message: expl || (props.lang === 'en' ? 'Correct!' : 'Richtig!') };
+      }
+      const wrongLead = props.lang === 'en' ? 'Not quite —' : 'Nicht ganz —';
       return {
-        correct,
-        message: correct
-          ? (expl || (props.lang === 'en' ? 'Correct!' : 'Richtig!'))
-          : (expl || (props.lang === 'en' ? 'Not quite – check again.' : 'Noch nicht ganz – schau nochmal hin.')),
+        correct: false,
+        message: expl
+          ? `${wrongLead} ${expl}`
+          : (props.lang === 'en' ? 'Not quite – check again.' : 'Noch nicht ganz – schau nochmal hin.'),
       };
     };
 
@@ -199,9 +225,12 @@ export default {
       return a === oIdx;
     };
 
+    const isDontKnow = (qIdx) => answers.value[qIdx] === DONT_KNOW;
+
     const isAnswered = (qIdx) => {
       const q = props.questions[qIdx];
       const a = answers.value[qIdx];
+      if (a === DONT_KNOW) return true;
       if (isMulti(q)) return Array.isArray(a) && a.length > 0;
       return a !== null && a !== undefined;
     };
@@ -248,6 +277,14 @@ export default {
       } else {
         next[qIdx] = value;
       }
+      answers.value = next;
+      if (perQuestion.value) emitProgress();
+    };
+
+    const selectDontKnow = (qIdx) => {
+      if (isLocked(qIdx)) return;
+      const next = [...answers.value];
+      next[qIdx] = DONT_KNOW;
       answers.value = next;
       if (perQuestion.value) emitProgress();
     };
@@ -305,9 +342,11 @@ export default {
       isMulti,
       isSelected,
       isAnswered,
+      isDontKnow,
       isLocked,
       optionClass,
       selectAnswer,
+      selectDontKnow,
       checkOne,
       submitQuiz,
       retry,
@@ -401,6 +440,18 @@ export default {
 .option-btn.wrong {
   border-color: #dc3545;
   background: #f8d7da;
+}
+
+.option-dontknow {
+  border-style: dashed;
+  color: #6c757d;
+  font-style: italic;
+}
+
+.option-dontknow.selected {
+  border-color: #6c757d;
+  background: #f1f1f1;
+  color: #495057;
 }
 
 .option-btn:disabled {

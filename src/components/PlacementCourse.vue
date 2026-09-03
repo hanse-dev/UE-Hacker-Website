@@ -139,7 +139,7 @@ export default {
     const quizKey = ref(0);
     const checkedCount = ref(0);
 
-    const threshold = computed(() => data.value?.passThreshold ?? 0.8);
+    const threshold = computed(() => data.value?.placementPassThreshold ?? data.value?.passThreshold ?? 0.8);
     const projects = computed(() =>
       data.value ? getProjectIdeas(data.value, lang.value) : []
     );

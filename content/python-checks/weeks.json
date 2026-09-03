@@ -1,6 +1,7 @@
 {
   "passThreshold": 0.8,
-  "placementPerWeek": 2,
+  "placementPerWeek": 3,
+  "placementPassThreshold": 0.66,
   "weekCheckCount": 5,
   "projects": [
     {
@@ -74,13 +75,13 @@
           "question_en": "What is print() used for in Python?",
           "options": [
             "Um Text auszugeben",
-            "Um den Computer auszuschalten",
-            "Um ein Bild zu malen"
+            "Um eine Datei zu speichern",
+            "Um eine Variable zu erstellen"
           ],
           "options_en": [
             "To display text",
-            "To turn off the computer",
-            "To draw a picture"
+            "To save a file",
+            "To create a variable"
           ],
           "correctIndex": 0,
           "explanation": "print() gibt Text auf dem Bildschirm aus.",
@@ -134,13 +135,13 @@
           "question_en": "What is a variable?",
           "options": [
             "Ein Behälter für einen Wert",
-            "Ein Drucker",
-            "Ein Fehler im Code"
+            "Ein fester Wert, der sich nie ändert",
+            "Ein Name für eine Funktion"
           ],
           "options_en": [
             "A container for a value",
-            "A printer",
-            "An error in the code"
+            "A fixed value that never changes",
+            "A name for a function"
           ],
           "correctIndex": 0,
           "explanation": "Variablen speichern Werte unter einem Namen.",
@@ -155,12 +156,12 @@
           "options": [
             "Speichert den Text Anna in name",
             "Vergleicht name mit Anna",
-            "Löscht die Variable name"
+            "Gibt den Text Anna auf dem Bildschirm aus"
           ],
           "options_en": [
             "Stores the text Anna in name",
             "Compares name with Anna",
-            "Deletes the variable name"
+            "Displays the text Anna on the screen"
           ],
           "correctIndex": 0,
           "explanation": "Das = Zeichen weist einen Wert zu.",
@@ -256,13 +257,13 @@
             "print kann Text ausgeben",
             "print muss groß geschrieben werden",
             "print kann auch Zahlen ausgeben",
-            "print löscht Dateien"
+            "print braucht immer Anführungszeichen um den Inhalt"
           ],
           "options_en": [
             "print can display text",
             "print must be capitalized",
             "print can also display numbers",
-            "print deletes files"
+            "print always needs quotes around its content"
           ],
           "correctIndices": [
             0,
@@ -345,13 +346,13 @@
           "question_en": "What does type(x) do?",
           "options": [
             "Zeigt den Datentyp von x",
-            "Löscht x",
-            "Verdoppelt x"
+            "Wandelt x in Text um",
+            "Gibt den Wert von x aus"
           ],
           "options_en": [
             "Shows the data type of x",
-            "Deletes x",
-            "Doubles x"
+            "Converts x to text",
+            "Prints the value of x"
           ],
           "correctIndex": 0,
           "explanation": "type() verrät den Datentyp.",
@@ -406,12 +407,12 @@
           "options": [
             "3",
             "3.33",
-            "1"
+            "3.0"
           ],
           "options_en": [
             "3",
             "3.33",
-            "1"
+            "3.0"
           ],
           "correctIndex": 0,
           "explanation": "// ist Ganzzahldivision.",
@@ -500,12 +501,12 @@
           "options": [
             "Um Entscheidungen zu treffen",
             "Um Text auszugeben",
-            "Um Dateien zu öffnen"
+            "Um eine Schleife zu wiederholen"
           ],
           "options_en": [
             "To make decisions",
             "To print text",
-            "To open files"
+            "To repeat a loop"
           ],
           "correctIndex": 0,
           "explanation": "if prüft eine Bedingung.",
@@ -559,13 +560,13 @@
           "question_en": "What must come after if?",
           "options": [
             "Eine Bedingung und eingerückter Code",
-            "Nur ein print",
-            "Ein Modulimport"
+            "Nur eine Bedingung, Einrückung ist nicht nötig",
+            "Nur eingerückter Code ohne Bedingung"
           ],
           "options_en": [
             "A condition and indented code",
-            "Only a print",
-            "A module import"
+            "Only a condition, indentation is not needed",
+            "Only indented code, no condition"
           ],
           "correctIndex": 0,
           "explanation": "Einrückung zeigt den if-Block.",
@@ -619,13 +620,13 @@
           "question_en": "What is elif for?",
           "options": [
             "Weitere Bedingungen prüfen",
-            "Schleifen beenden",
-            "Text speichern"
+            "Das Gleiche wie else, nur mit anderem Namen",
+            "Beendet die if-Bedingung"
           ],
           "options_en": [
             "Checking more conditions",
-            "Ending loops",
-            "Saving text"
+            "The same as else, just with a different name",
+            "Ends the if condition"
           ],
           "correctIndex": 0,
           "explanation": "elif = else if.",
@@ -711,13 +712,13 @@
           "question_en": "What is a for loop used for?",
           "options": [
             "Um Code mehrfach auszuführen",
-            "Um Dateien zu löschen",
-            "Um Fehler zu erzeugen"
+            "Um eine Bedingung zu prüfen",
+            "Um eine Funktion zu definieren"
           ],
           "options_en": [
             "To run code multiple times",
-            "To delete files",
-            "To create errors"
+            "To check a condition",
+            "To define a function"
           ],
           "correctIndex": 0,
           "explanation": "Schleifen wiederholen Code.",
@@ -791,13 +792,13 @@
           "question_en": "What does continue do?",
           "options": [
             "Springt zur nächsten Runde",
-            "Beendet das Programm",
-            "Löscht Variablen"
+            "Beendet die Schleife sofort",
+            "Startet die Schleife neu von vorne"
           ],
           "options_en": [
             "Jumps to the next iteration",
-            "Ends the program",
-            "Deletes variables"
+            "Ends the loop immediately",
+            "Restarts the loop from the beginning"
           ],
           "correctIndex": 0,
           "explanation": "continue überspringt den Rest der aktuellen Runde.",
@@ -852,12 +853,12 @@
           "options": [
             "Wenn die while-Bedingung nie falsch wird",
             "Bei jedem for",
-            "Nur bei print"
+            "Wenn man break benutzt"
           ],
           "options_en": [
             "When the while condition never becomes false",
             "With every for",
-            "Only with print"
+            "When you use break"
           ],
           "correctIndex": 0,
           "explanation": "Dann läuft while ewig.",
