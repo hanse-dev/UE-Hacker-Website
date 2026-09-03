@@ -1,7 +1,8 @@
 # Handoff — UE Hacker Website
 
-> **Zuletzt aktualisiert:** 2026-08-20  
-> **Aktueller Stand:** Branch `main` (enthält PR #1–#4 sowie die Storytelling-Überarbeitung, siehe 3.4)  
+> **Zuletzt aktualisiert:** 2026-09-03  
+> **Aktueller Stand:** Branch `cursor/debug-notebook-safety` (von `main`, enthält PR #1–#4, die
+> Storytelling-Überarbeitung (3.4) sowie den Endlosschleifen-Schutz + Sci-Fi-Debug-Ziele (3.5))  
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -151,6 +152,59 @@ werden. Jeder Test wurde gegen eine absichtlich kaputte Kopie verifiziert (schl�
 Items (z.B. "Kristallkugel" 4×, "Quest-Buch" 4×) wiederholen sich im ganzen Kurs genauso. Bewusstes
 Belohnungs-Flavor-Muster für die schwierigste Mission der Woche — keine Umbenennung nötig.
 
+### 3.5 Debug-Notebook-Sicherheit: Endlosschleifen-Schutz + Sci-Fi-Debug-Ziele (Branch `debug-notebook-safety`)
+
+**Ausgangslage:** 10 Verbesserungswünsche wurden in 6 Branches gruppiert (Plan-Datei
+`~/.claude/plans/scalable-singing-cook.md`), Reihenfolge B→A→E→F→C→D. Dies ist Branch B.
+
+**Endlosschleifen-Schutz (`src/composables/usePyodide.js`):** Python lief bisher komplett
+client-seitig via Pyodide direkt auf dem Hauptthread — eine `while True:` in irgendeiner Code-Zelle
+(nicht nur Debug-Notebooks) fror den Tab für immer ein, kein Timeout konnte greifen (Event-Loop
+selbst blockiert). Lösung: bei der Kernel-Initialisierung wird eine Python-Hilfsfunktion
+`_run_cell_with_guard(source, timeout_seconds=5)` registriert, die den Zell-Code per `ast`-Modul
+parst und vor jeden `for`/`while`-Schleifenkörper eine Deadline-Prüfung einfügt (`if time.time() >
+deadline: raise _CellTimeout()`, `_CellTimeout` erbt bewusst von `BaseException` statt `Exception`,
+damit ein normales `except Exception:` sie nicht verschluckt). `runPython()` übergibt den Code jetzt
+über `pyodide.globals.set('_cell_source', ...)` statt textueller Einbettung.
+
+**Bewusst KEIN Web Worker:** Die ursprünglich im Plan vorgesehene Web-Worker-Lösung (für "echte"
+Unterbrechbarkeit) hätte `input()` kaputt gemacht — 65 Notebooks nutzen `input()` über
+`window.prompt()` (synchron, nur auf dem Hauptthread möglich ohne SharedArrayBuffer +
+COOP/COEP-Header). Die AST-Guard-Lösung läuft weiter auf dem Hauptthread, braucht keine
+Server-/Infra-Änderung und bricht nach 5 Sekunden sauber ab, ohne `input()` zu beeinträchtigen. Das
+ist eine bewusste Abweichung vom ursprünglich geschriebenen Plan (dort stand Web Worker) — technisch
+überlegen für diesen konkreten Fall, da sie den harten Blocker (`input()`) vermeidet.
+
+**Bekannte Grenze:** Ein `while True: try: ... except: pass` könnte `_CellTimeout` theoretisch
+schlucken (bare `except:` fängt auch `BaseException`) und die Schleife liefe weiter — für die
+Zielgruppe (Kinder/Jugendliche in strukturierten Debug-Aufgaben) ein sehr unwahrscheinliches Muster,
+kein Blocker.
+
+**Getestet:** lokal mit CPython (`test_loop_guard.py`-Äquivalent: normale Zellen, `for`-Schleifen,
+Endlosschleife auch verschachtelt in Funktionen, geteilte Variablen über Zellen hinweg bleiben
+erhalten, NameError/SyntaxError propagieren weiterhin normal) sowie live im Browser per Playwright
+(Debug-Tab, Sci-Fi, Woche 1): `while True: pass` wird nach ~5032ms mit Fehlermeldung abgebrochen,
+danach läuft eine normale Zelle sofort wieder korrekt. **Dauerhafter Regressionstest** ergänzt:
+`tests/site.spec.js` → Describe „Debug-Notebook-Sicherheit" (prüft Abbruchzeit 3-12s, Fehlertext
+und dass der Kernel danach weiter benutzbar bleibt).
+
+**Debug-Ziele (Punkt 6):** Sci-Fi-Variante komplett (12 Wochen × DE+EN = 24 Dateien, 72
+Bug-Markdown-Zellen) um eine **Ziel:**/**Goal:**-Zeile ergänzt, die das erwartete Verhalten/die
+erwartete Ausgabe beschreibt, ohne den Bug selbst zu verraten (z.B. bei `koordinaten[0] = 150` auf
+einem Tupel: "Ziel: Das Programm soll die erste Koordinate auf `150` ändern" — ohne
+Tupel-Unveränderlichkeit zu erwähnen). Stichprobenartig gegen den jeweiligen Code-Kontext geprüft
+(Woche 1, 8, 11) — akkurat und spoilerfrei; `tests/storytelling-content.spec.js`s
+Anti-Spoiler-Test (prüft nur Code-Zellen auf `# Bug:`-Kommentare) bleibt unberührt, da nur
+Markdown-Zellen geändert wurden. **Dauerhafter Regressionstest** ergänzt: neuer Test „Woche 1:
+Debug-Bugs nennen ein Ziel, ohne den Fehler zu verraten" prüft Anzahl Ziel-Zeilen == Anzahl Bugs
+und dass keine typischen Spoiler-Formulierungen vorkommen. Dabei nebenbei einen latenten Bug im
+Test-Helper `openWeek()` gefunden und behoben: er ging noch davon aus, dass Woche 1 (Index 0)
+immer aufgeklappt startet — das war seit der "Woche 1 zuklappen"-Änderung nicht mehr der Fall,
+wurde aber nie bemerkt, weil kein bisheriger Test Woche 1 über diesen Helper geöffnet hatte.
+
+**Offen (nächste Session):** Pferde- und Abenteuer-Variante nach demselben Muster mit Debug-Zielen
+ergänzen (im Plan als "danach nachziehen" vorgesehen, nicht in dieser Sitzung geschafft).
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -207,8 +261,19 @@ Siehe auch `todo.md`.
 
 **Inhalte**
 - Keine offenen Punkte aus der Storytelling-Überarbeitung mehr (siehe 3.4) — "Gilde-Meister-Urkunde" geklärt, kein Bug
+- Debug-Notebook-Ziele (3.5, Punkt 6): Pferde + Abenteuer noch offen (Sci-Fi fertig)
 
-**Nächste Features — je eigener Branch von `main` (Reihenfolge):**
+**Laufend — 10 Verbesserungen in 6 Branches (Reihenfolge B→A→E→F→C→D, siehe `todo.md` + Plan-Datei
+`~/.claude/plans/scalable-singing-cook.md`):**
+
+1. **`cursor/debug-notebook-safety`** — ✅ Punkt 5 fertig, Punkt 6 Sci-Fi fertig (Pferde/Abenteuer offen)
+2. **`cursor/et-fixes`** — Einstufungstest: "weiß nicht"-Option, Scoring lockern, Distraktoren (offen)
+3. **`cursor/kontakt-email`** — Footer-Kontakt-E-Mail (offen, braucht Adresse vom Nutzer)
+4. **`cursor/kurs-caesar-chiffre`** — erstes Projekt neben den Wochenkursen (offen)
+5. **`cursor/interaktiv-klarer`** — gestufter Hinweis statt Lösungsverrat in `LessonView.vue` (offen)
+6. **`cursor/text-typo-pass`** — Rechtschreib-/Text-Pass über die ganze Seite (offen, größter Umfang)
+
+**Danach — nächste Kurs-Themen, je eigener Branch von `main` (Reihenfolge):**
 
 1. **`cursor/kurs-python-spiele`** — Python Spiele-Werkstatt (Turtle/Textspiele)  
 2. **`cursor/kurs-python-projekte`** — „Was kommt danach?“ Projekt-Sprints  
@@ -216,7 +281,9 @@ Siehe auch `todo.md`.
 
 Nicht mischen; Details/Checkboxen in `todo.md`.
 
-**Bewusst nicht geplant:** öffentliches Sign-up, E-Mail, Supabase als Pflicht.
+**Bewusst nicht geplant:** öffentliches Sign-up, Mailversand/Kontaktformular, Supabase als Pflicht.
+(Eine rein statische Kontakt-E-Mail im Footer ist als Branch `cursor/kontakt-email` geplant — kein
+Formular, kein Versand, siehe oben.)
 
 **Bekannte Altlasten (niedrige Prio):** Notebook-Download-ZIP nur DE; optionale EN-Nachzüge bei neuen Kursen.
 
@@ -238,8 +305,10 @@ Nicht mischen; Details/Checkboxen in `todo.md`.
 
 1. `git checkout main && git pull`  
 2. `HANDOFF.md` + `todo.md` + `WORKFLOW.md` lesen  
-3. Neues Thema → **neuen** Branch, z.B. `git checkout -b cursor/kurs-python-spiele`  
-4. Nicht: altes `prod` in Compose erwarten; nicht: Sync so ändern, dass Notebooks wieder voll neu geladen werden bei jedem Apply  
+3. Neues Thema → **neuen** Branch, z.B. `git checkout -b cursor/et-fixes`  
+4. Nicht: altes `prod` in Compose erwarten; nicht: Sync so ändern, dass Notebooks wieder voll neu geladen werden bei jedem Apply; nicht: Pyodide in einen Web Worker verschieben ohne `input()` (65 Notebooks) neu zu lösen (siehe 3.5)
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
-**Empfohlener nächster inhaltlicher Schritt:** Branch `cursor/kurs-python-spiele` anlegen und Kursgerüst (`kurse.json` + Content-Ordner) skizzieren.
+**Empfohlener nächster inhaltlicher Schritt:** `cursor/debug-notebook-safety` fertigstellen (PR nach
+`main`), dann Branch `cursor/et-fixes` anlegen (Plan-Datei `~/.claude/plans/scalable-singing-cook.md`,
+Abschnitt "Branch A"). Erst danach `cursor/kurs-python-spiele` (siehe Abschnitt 5, "Danach").

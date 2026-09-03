@@ -8,7 +8,8 @@ const COURSE_URL = '/kurs/python-12-wochen-grundkurs';
 
 async function openWeek(page, weekIndex) {
   const week = page.locator('.week-section').nth(weekIndex);
-  if (weekIndex !== 0) await week.locator('.week-header').click();
+  // Alle Wochen (inkl. Woche 1) starten zugeklappt — immer aufklappen.
+  await week.locator('.week-header').click();
   await week.locator('.cell').first().waitFor({ state: 'visible', timeout: 8000 });
   return week;
 }
@@ -156,5 +157,23 @@ test.describe('Storytelling-Überarbeitung: Sci-Fi', () => {
       const code = await codeCells.nth(i).inputValue();
       expect(code).not.toMatch(/#\s*Bug:/i);
     }
+  });
+
+  test('Woche 1: Debug-Bugs nennen ein Ziel, ohne den Fehler zu verraten', async ({ page }) => {
+    await page.goto(COURSE_URL);
+    const week = await openWeek(page, 0); // Woche 1
+    await selectVariant(week, 'Sci-Fi');
+    await selectTab(week, 'Debug');
+
+    const text = await week.locator('.notebook-cells').innerText();
+    const bugCount = (text.match(/Bug #\d/g) || []).length;
+    const zielCount = (text.match(/\*\*Ziel:\*\*|Ziel:/g) || []).length;
+    expect(bugCount).toBeGreaterThan(0);
+    expect(zielCount).toBe(bugCount);
+    expect(text).toContain('Das Programm soll den Text');
+
+    // Ziel-Text darf den Fehler selbst nicht verraten (z.B. "fehlende Klammer", "Tippfehler").
+    const spoilerWords = /fehlende[rs]?\s+(Klammer|Anführungszeichen|import)|Tippfehler|falsch geschrieben/i;
+    expect(text).not.toMatch(spoilerWords);
   });
 });
