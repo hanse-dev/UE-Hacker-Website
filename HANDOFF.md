@@ -1,10 +1,10 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-09-03  
-> **Aktueller Stand:** Branch `cursor/text-typo-pass` (von `main`, enthält PR #1–#4, die
+> **Aktueller Stand:** Branch `text-typo-pass` (von `main`, enthält PR #1–#4, die
 > Storytelling-Überarbeitung (3.4) sowie Phase 1 des Text-Tippfehler-Passes (3.5)). Parallel dazu
-> existieren `cursor/debug-notebook-safety`, `cursor/et-fixes`, `cursor/kurs-caesar-chiffre` und
-> `cursor/interaktiv-klarer` als eigene, unabhängige Branches von `main` — noch keiner gemergt.  
+> existieren `debug-notebook-safety`, `et-fixes`, `kurs-caesar-chiffre` und
+> `interaktiv-klarer` als eigene, unabhängige Branches von `main` — noch keiner gemergt.  
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -23,9 +23,9 @@ Lernplattform für Kinder/Jugendliche (Python) — Vue 3 + Vite, Notebooks unter
 
 | PR | Branch | Inhalt |
 |----|--------|--------|
-| #1 | `cursor/python-lernpfad-quiz` | Einstufung + Wochen-Checks, Tests, alter Lernpfad entfernt |
-| #2 | `cursor/admin-login` | Express+SQLite API, Admin, Login, Progress/Notebook-Sync, Single-Port-Deploy |
-| #3 | `cursor/fix-notebook-sync-loop` | Hotfix: Notebook-Blink-/Reload-Schleife bei eingeloggt+Sync |
+| #1 | `python-lernpfad-quiz` | Einstufung + Wochen-Checks, Tests, alter Lernpfad entfernt |
+| #2 | `admin-login` | Express+SQLite API, Admin, Login, Progress/Notebook-Sync, Single-Port-Deploy |
+| #3 | `fix-notebook-sync-loop` | Hotfix: Notebook-Blink-/Reload-Schleife bei eingeloggt+Sync |
 
 `main` ist der Integrationsstand. Feature-Branches oben sind historisch; neue Arbeit immer **neu von `main`**.
 
@@ -154,7 +154,7 @@ werden. Jeder Test wurde gegen eine absichtlich kaputte Kopie verifiziert (schl�
 Items (z.B. "Kristallkugel" 4×, "Quest-Buch" 4×) wiederholen sich im ganzen Kurs genauso. Bewusstes
 Belohnungs-Flavor-Muster für die schwierigste Mission der Woche — keine Umbenennung nötig.
 
-### 3.5 Text-Tippfehler-Pass, Phase 1: Tooling + UI-Texte (Branch `cursor/text-typo-pass`)
+### 3.5 Text-Tippfehler-Pass, Phase 1: Tooling + UI-Texte (Branch `text-typo-pass`)
 
 **Ausgangslage:** 10 Verbesserungswünsche wurden in 6 Branches gruppiert (Plan-Datei
 `~/.claude/plans/scalable-singing-cook.md`), Reihenfolge B→A→E→F→C→D. Dies ist Branch D
@@ -252,12 +252,12 @@ Siehe auch `todo.md`.
 **Laufend — 10 Verbesserungen in 6 Branches (Reihenfolge B→A→E→F→C→D, siehe `todo.md` + Plan-Datei
 `~/.claude/plans/scalable-singing-cook.md`):**
 
-1. **`cursor/debug-notebook-safety`** — ✅ Punkt 5 fertig, Punkt 6 Sci-Fi fertig (Pferde/Abenteuer offen)
-2. **`cursor/et-fixes`** — ✅ fertig
-3. **`cursor/kontakt-email`** — zurückgestellt, braucht Kontakt-E-Mail-Adresse vom Nutzer
-4. **`cursor/kurs-caesar-chiffre`** — ✅ fertig
-5. **`cursor/interaktiv-klarer`** — ✅ fertig
-6. **`cursor/text-typo-pass`** — 🟡 nur Phase 1 fertig (Tooling + UI-Texte, keine Tippfehler
+1. **`debug-notebook-safety`** — ✅ Punkt 5 fertig, Punkt 6 Sci-Fi fertig (Pferde/Abenteuer offen)
+2. **`et-fixes`** — ✅ fertig
+3. **`kontakt-email`** — zurückgestellt, braucht Kontakt-E-Mail-Adresse vom Nutzer
+4. **`kurs-caesar-chiffre`** — ✅ fertig
+5. **`interaktiv-klarer`** — ✅ fertig
+6. **`text-typo-pass`** — 🟡 nur Phase 1 fertig (Tooling + UI-Texte, keine Tippfehler
    gefunden) — Phase 2+ (`.vue`-Dateien, Wochenbeschreibungen, `weeks.json`, 444 Notebooks) offen
 
 Fünf Branches (`debug-notebook-safety`, `et-fixes`, `kurs-caesar-chiffre`, `interaktiv-klarer`,
@@ -267,14 +267,14 @@ unabhängig voneinander dieselben Abschnitte editiert, das muss beim Merge zusam
 
 **Danach — nächste Kurs-Themen, je eigener Branch von `main` (Reihenfolge):**
 
-1. **`cursor/kurs-python-spiele`** — Python Spiele-Werkstatt (Turtle/Textspiele)  
-2. **`cursor/kurs-python-projekte`** — „Was kommt danach?“ Projekt-Sprints  
-3. **`cursor/kurs-js-minigames`** *oder* **`cursor/kurs-ki-labor`** — Entscheidung beim Start  
+1. **`kurs-python-spiele`** — Python Spiele-Werkstatt (Turtle/Textspiele)  
+2. **`kurs-python-projekte`** — „Was kommt danach?“ Projekt-Sprints  
+3. **`kurs-js-minigames`** *oder* **`kurs-ki-labor`** — Entscheidung beim Start  
 
 Nicht mischen; Details/Checkboxen in `todo.md`.
 
 **Bewusst nicht geplant:** öffentliches Sign-up, Mailversand/Kontaktformular, Supabase als Pflicht.
-(Eine rein statische Kontakt-E-Mail im Footer ist als Branch `cursor/kontakt-email` geplant — kein
+(Eine rein statische Kontakt-E-Mail im Footer ist als Branch `kontakt-email` geplant — kein
 Formular, kein Versand, siehe oben.)
 
 **Bekannte Altlasten (niedrige Prio):** Notebook-Download-ZIP nur DE; optionale EN-Nachzüge bei neuen Kursen (inkl. Cäsar-Chiffre).
@@ -283,7 +283,7 @@ Formular, kein Versand, siehe oben.)
 
 ## 6. Entscheidungen / Konventionen (nicht ohne Rückfrage ändern)
 
-- Ein Thema = ein Branch `cursor/…` von `main` (`WORKFLOW.md`)
+- Ein Thema = ein Branch `…` von `main` (`WORKFLOW.md`)
 - Accounts: Admin legt an; `ageGroup` kinder|jugendliche; ein Mensch = ein Account
 - Sync: per-key Merge nach `updatedAt`
 - Prod: ein Container `app`, Port 8080, API serviert Static
@@ -297,7 +297,7 @@ Formular, kein Versand, siehe oben.)
 
 1. `git checkout main && git pull`  
 2. `HANDOFF.md` + `todo.md` + `WORKFLOW.md` lesen  
-3. Weiterarbeiten am selben Thema → `git checkout cursor/text-typo-pass`; neues Thema → **neuen**
+3. Weiterarbeiten am selben Thema → `git checkout text-typo-pass`; neues Thema → **neuen**
    Branch  
 4. Nicht: altes `prod` in Compose erwarten; nicht: Sync so ändern, dass Notebooks wieder voll neu
    geladen werden bei jedem Apply; nicht: `cspell`-Wörterbücher nur über `"dictionaries"` ohne
@@ -306,7 +306,7 @@ Formular, kein Versand, siehe oben.)
 
 **Empfohlener nächster inhaltlicher Schritt:** Die fünf fertigen Branches (`debug-notebook-safety`,
 `et-fixes`, `kurs-caesar-chiffre`, `interaktiv-klarer`, `text-typo-pass`) nach `main` mergen
-(`HANDOFF.md`/`todo.md`-Überschneidungen dabei zusammenführen), dann `cursor/text-typo-pass` mit
+(`HANDOFF.md`/`todo.md`-Überschneidungen dabei zusammenführen), dann `text-typo-pass` mit
 Phase 2 fortsetzen (`.vue`-Dateien, Wochenbeschreibungen, `weeks.json`, dann Notebooks — Plan-Datei
-`~/.claude/plans/scalable-singing-cook.md`, Abschnitt "Branch D") oder `cursor/kontakt-email`,
+`~/.claude/plans/scalable-singing-cook.md`, Abschnitt "Branch D") oder `kontakt-email`,
 sobald die Kontakt-E-Mail-Adresse vorliegt.

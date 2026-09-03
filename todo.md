@@ -4,13 +4,23 @@
 
 Plan-Datei: `~/.claude/plans/scalable-singing-cook.md` (Kontext/Details je Branch).
 
-### Branch `cursor/debug-notebook-safety` (Punkte 5, 6) — eigener Branch, fertig
-### Branch `cursor/et-fixes` (Punkte 1-4) — eigener Branch, fertig
-### Branch `cursor/kontakt-email` (Punkt 9) — zurückgestellt, braucht E-Mail-Adresse vom Nutzer
-### Branch `cursor/kurs-caesar-chiffre` (Punkt 10) — eigener Branch, fertig
-### Branch `cursor/interaktiv-klarer` (Punkt 7) — eigener Branch, fertig
+### Branch `debug-notebook-safety` (Punkte 5, 6) — eigener Branch, fertig (inkl. nachgereichter
+      Tests für Endlosschleifen-Schutz + Debug-Ziele, siehe unten "Testlücke geschlossen")
+### Branch `et-fixes` (Punkte 1-4) — eigener Branch, fertig (inkl. nachgereichter Tests für
+      "weiß nicht"-Option + Scoring-Schwelle, siehe unten)
+### Branch `kontakt-email` (Punkt 9) — zurückgestellt, braucht E-Mail-Adresse vom Nutzer
+### Branch `kurs-caesar-chiffre` (Punkt 10) — eigener Branch, fertig (hatte von Anfang an Tests)
+### Branch `interaktiv-klarer` (Punkt 7) — eigener Branch, fertig (hatte von Anfang an einen Test)
 
-### Branch `cursor/text-typo-pass` (Punkt 8) — dieser Branch, Phase 1 von mehreren
+### Testlücke geschlossen (nachträglich, auf Nutzer-Nachfrage)
+- [x] Geprüft, ob alle Änderungen Tests haben: `debug-notebook-safety` (Endlosschleifen-Schutz,
+      Debug-Ziele) und `et-fixes` ("weiß nicht"-Option, Scoring-Schwelle) hatten nur manuelle
+      Playwright-Verifizierung, keine dauerhaften Tests — auf den jeweiligen Branches nachgereicht
+- [x] `WORKFLOW.md` um Abschnitt "Tests für jede Verhaltensänderung" ergänzt, damit das nicht
+      wieder passiert (manuelle Verifizierung reicht nicht, jede Verhaltensänderung braucht einen
+      Test in `tests/*.spec.js`)
+
+### Branch `text-typo-pass` (Punkt 8) — dieser Branch, Phase 1 von mehreren
 - [x] `cspell` als Tooling eingerichtet (`cspell.json`, `npm run lint:spelling`) mit deutschem und
       englischem Wörterbuch (`@cspell/dict-de-de`, `@cspell/dict-en_us`) — dauerhaft nutzbar für
       künftige Content-Reviews
@@ -76,14 +86,14 @@ Plan-Datei: `~/.claude/plans/scalable-singing-cook.md` (Kontext/Details je Branc
 
 Reihenfolge empfohlen: 1 → 2 → 3. Nicht mischen.
 
-### 1. Python Spiele-Werkstatt — Branch `cursor/kurs-python-spiele`
+### 1. Python Spiele-Werkstatt — Branch `kurs-python-spiele`
 - [ ] Kursmetadaten in `kurse.json` (+ EN)
 - [ ] Content-Struktur (Wochen/Tabs analog bestehender Kurse oder Kurzformat)
 - [ ] Turtle-/Textspiele, Level-Ideen, Belohnungen falls passend
 - [ ] DE + EN (oder bewusst DE-first, EN nachziehen)
 - [ ] Smoke-Test / manuell prüfen → PR nach `main`
 
-### 2. Was kommt danach? Projekt-Sprints — Branch `cursor/kurs-python-projekte`
+### 2. Was kommt danach? Projekt-Sprints — Branch `kurs-python-projekte`
 - [ ] 2–3 feste Projekt-Sprints (je ~2 Wochen Umfang skizzieren)
 - [ ] Kursseite + Einstieg von 12-Wochen-Kurs verlinken („Weiter so“)
 - [ ] Projektideen aus Einstufung ggf. hier ausbauen
@@ -91,8 +101,8 @@ Reihenfolge empfohlen: 1 → 2 → 3. Nicht mischen.
 - [ ] Smoke-Test → PR nach `main`
 
 ### 3. JS Mini-Games (Teens) **oder** KI-Labor — Branch wählen:
-- **A)** `cursor/kurs-js-minigames` — Browser-Spiele, Canvas/p5, Zielgruppe 13–17
-- **B)** `cursor/kurs-ki-labor` — Prompts, Grenzen, Schul-Nutzen (breitere Zielgruppe)
+- **A)** `kurs-js-minigames` — Browser-Spiele, Canvas/p5, Zielgruppe 13–17
+- **B)** `kurs-ki-labor` — Prompts, Grenzen, Schul-Nutzen (breitere Zielgruppe)
 - [ ] Entscheidung A vs B (oder beide nacheinander, je ein Branch)
 - [ ] Kursmetadaten + Content
 - [ ] Smoke-Test → PR nach `main`
