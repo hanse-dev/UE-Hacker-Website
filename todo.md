@@ -34,13 +34,33 @@ Plan-Datei: `~/.claude/plans/scalable-singing-cook.md` (Kontext/Details je Branc
       (Routen-Segmente wie `kurs`/`woche`/`lektion`, CSS-Klassen, Variablennamen) — cspell kann
       `.vue`-Dateien nicht sauber genug von Code trennen, ohne weitere Konfiguration. Deshalb nicht
       systematisch in `cspell.json` aufgenommen (würde zu viele echte Treffer mit-verstecken).
+### Branch `text-typo-pass` — Phase 2 (Wochenbeschreibungen, Einstufung, Notebooks Abenteuer)
+- [x] `content/*/beschreibung.md` (alle 11 Dateien) geprüft: **keine Tippfehler gefunden**
+- [x] `content/python-checks/weeks.json` geprüft: 38 Treffer, **alle False Positives** (Python-
+      Schlüsselwörter/Funktionsnamen in Code-Beispielen wie `elif`/`randint`/`isinstance`, sowie
+      Code-Identifier in Beispiel-Strings wie `mein_geheim_modul_xyz`/`datei.txt`) — **keine echten
+      Tippfehler**, alle ins Custom-Dictionary aufgenommen
+- [x] Neues Skript `scripts/extract_notebook_text.py`: zieht Markdown-Zellen aus `.ipynb`-Dateien in
+      `.md`-Dateien, damit `cspell` sie prüfen kann (Code-Zellen bewusst ausgeklammert — sonst zu
+      viele Identifier-False-Positives). **Wichtig:** Ausgabeordner muss innerhalb des Repos liegen
+      (`cspell` erkennt Pfade außerhalb des Projekt-Roots nicht, `/tmp` funktioniert nicht)
+- [x] Abenteuer-Variante komplett geprüft (12 Wochen × 6 Typen × DE+EN = 144 Notebooks, ~150
+      einzigartige Kandidatenwörter manuell geprüft): **keine echten Tippfehler** — fast alles Fantasy-Eigennamen/
+      -Komposita (Pyralia, Runenschmiede, Tresorwächter, …), Python-Identifier in Code-Beispielen,
+      oder korrekte aber seltene deutsche Flexionsformen (z.B. "lesbarere", "primen" — beide
+      grammatisch korrekt, einzeln nachgeprüft). Alle False Positives ins Custom-Dictionary
+      übernommen (jetzt 159 Wörter in `cspell.json`).
+- [x] **Ein echter Fund:** `week12_adventure_1_lektion.ipynb` (EN) nutzte an 4 Stellen amerikanisches
+      Englisch ("colors", "colorful") statt des sonst im ganzen EN-Kurs konsequent verwendeten
+      britischen Englisch ("colours", "practise", "organised", …) — korrigiert. Method-Referenzen
+      wie `.color()`/`.fillcolor()` (Turtle-API, tatsächlich so benannt) bewusst unverändert gelassen.
 - **Offen für weitere Sessions:**
+  - [ ] Pferde- und Sci-Fi-Variante (DE+EN) nach demselben Muster — insbesondere prüfen, ob der
+        US/UK-Englisch-Mix aus Woche 12 Abenteuer sich in `week12_horses_*`/`week12_scifi_*`
+        wiederholt (beim kurzen Gegencheck tauchte dort `color`/`.color()` nur in Code-nahen
+        Method-Referenzen auf, nicht in freier Prosa — aber nicht vollständig durchgeprüft)
   - [ ] `.vue`-Dateien sauber prüfbar machen (z.B. gezielte Marker/Konvention für Prosa-Strings,
         oder Ternary-Texte in `locales/*.js` überführen) — dann echte Prosa-Tippfehler dort finden
-  - [ ] `content/*/beschreibung.md` + `content/python-checks/weeks.json` (Einstufungstest-Texte)
-  - [ ] 444 Notebooks (DE+EN, alle 3 Varianten) — größter Umfang, extra Extraktionsskript nötig
-        (`.ipynb` ist JSON, Text-Zellen müssen erst herausgezogen werden)
-  - Reihenfolge laut Plan: Abenteuer → Pferde → Sci-Fi, je eigener Commit zum Reviewen
 
 ---
 

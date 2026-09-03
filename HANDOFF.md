@@ -2,9 +2,10 @@
 
 > **Zuletzt aktualisiert:** 2026-09-03  
 > **Aktueller Stand:** Branch `text-typo-pass` (von `main`, enthält PR #1–#4, die
-> Storytelling-Überarbeitung (3.4) sowie Phase 1 des Text-Tippfehler-Passes (3.5)). Parallel dazu
-> existieren `debug-notebook-safety`, `et-fixes`, `kurs-caesar-chiffre` und
-> `interaktiv-klarer` als eigene, unabhängige Branches von `main` — noch keiner gemergt.  
+> Storytelling-Überarbeitung (3.4) sowie Phase 1+2 des Text-Tippfehler-Passes (3.5, 3.6)). Parallel
+> dazu existieren `debug-notebook-safety`, `et-fixes`, `kurs-caesar-chiffre`, `interaktiv-klarer`
+> und `backup-sqlite-db` als eigene, unabhängige Branches von `main` — noch keiner gemergt (Deploy
+> erst später geplant, vom Nutzer priorisierte Reihenfolge siehe Abschnitt 5).  
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -181,14 +182,44 @@ Prosa. Deshalb **nicht** systematisch ins Custom-Dictionary aufgenommen (würde 
 mit-verstecken) — braucht für eine spätere Session entweder gezielte Ignore-Patterns oder eine
 Vue-spezifische Cspell-Konfiguration.
 
-**Noch offen (nächste Sessions, siehe `todo.md`):**
-- `.vue`-Dateien systematisch prüfbar machen
-- `content/*/beschreibung.md` + `content/python-checks/weeks.json`
-- 444 Notebooks (DE+EN, 3 Varianten) — größter Umfang, braucht ein Extraktionsskript für die
-  Text-Zellen aus dem `.ipynb`-JSON
+### 3.6 Text-Tippfehler-Pass, Phase 2: Wochenbeschreibungen, Einstufung, Notebooks Abenteuer
 
-**Getestet:** `npm run lint:spelling` (neuer Script) + `npm run test:checks` (32 Tests grün,
-unverändert — reine Tooling-/Doku-Änderung ohne Code-Verhalten-Impact in dieser Phase).
+**`content/*/beschreibung.md`** (alle 11 Dateien) und **`content/python-checks/weeks.json`**
+(38 Treffer) geprüft — beide **komplett sauber**, die 38 `weeks.json`-Treffer waren durchweg
+Python-Schlüsselwörter/Funktionsnamen in Code-Beispielen (`elif`, `randint`, `isinstance`, …) oder
+Code-Identifier in Beispiel-Strings (`mein_geheim_modul_xyz`, `datei.txt`).
+
+**Notebooks — neues Skript `scripts/extract_notebook_text.py`:** zieht nur die Markdown-Zellen aus
+`.ipynb`-Dateien in `.md`-Dateien (Code-Zellen bewusst ausgeklammert, sonst zu viele
+Identifier-False-Positives). **Wichtige Falle:** der Ausgabeordner muss innerhalb des Repos liegen
+— `cspell` prüft Pfade außerhalb des erkannten Projekt-Roots nicht (stiller 0-Treffer, kein Fehler),
+`/tmp` funktioniert deshalb nicht.
+
+**Abenteuer-Variante komplett geprüft** (144 Notebooks DE+EN, ~150 einzigartige Kandidatenwörter
+einzeln nachgeprüft, nicht blind übernommen): **keine echten Tippfehler.** Fast alles waren
+Fantasy-Eigennamen/-Komposita (Pyralia, Runenschmiede, Tresorwächter, Gildenarchiv, …),
+Python-Identifier in Code-Beispielen, oder seltene aber korrekte deutsche Flexionsformen — z.B.
+"lesbarere" (lesbar+er+e, Komparativ + schwache Adjektivendung, korrekt) und "primen" (Dativ/Akk.
+Plural von "prim" nach "alle", korrekt) wurden einzeln nachgerechnet, bevor sie als „kein Fehler"
+eingestuft wurden. Alle False Positives ins Custom-Dictionary übernommen (`cspell.json`, jetzt
+159 Wörter).
+
+**Ein echter Fund:** `week12_adventure_1_lektion.ipynb` (EN) nutzte an 4 Stellen amerikanisches
+Englisch ("colors", "colorful") statt des sonst im ganzen EN-Kurs konsequent verwendeten
+britischen Englisch (vgl. "colours", "practise", "organised" im Rest des Korpus) — korrigiert.
+Bewusst unverändert gelassen: `.color()`/`.fillcolor()` als Turtle-API-Methodennamen-Referenzen
+(z.B. im Glossar "Set pen color") — die Methode heißt in Python tatsächlich so, das ist kein
+Dialekt-Stilbruch, sondern korrekt zitierter Code.
+
+**Noch offen (nächste Sessions, siehe `todo.md`):**
+- Pferde- und Sci-Fi-Variante (DE+EN) nach demselben Muster — insbesondere prüfen, ob sich der
+  US/UK-Mix aus Woche 12 Abenteuer dort wiederholt (kurzer Gegencheck war unauffällig, aber nicht
+  vollständig durchgeprüft)
+- `.vue`-Dateien systematisch prüfbar machen
+
+**Getestet:** `npm run test:checks` (32 Tests grün, unverändert — der Colours-Fix ist eine reine
+Text-Korrektur ohne Verhaltensänderung, laut der neuen `WORKFLOW.md`-Regel braucht das keinen
+eigenen Test) + manuelle JSON-Validitätsprüfung der geänderten Notebook-Datei.
 
 ---
 
@@ -242,28 +273,30 @@ content/python-checks/weeks.json
 Siehe auch `todo.md`.
 
 **Betrieb**
-- [ ] Server-Deploy final verifizieren (Service `app`, Orphans weg, Health, Admin-Login, kein Notebook-Blinken mehr nach PR #3)
+- [ ] Server-Deploy final verifizieren (Service `app`, Orphans weg, Health, Admin-Login, kein
+      Notebook-Blinken mehr nach PR #3) — **bewusst zurückgestellt**, Nutzer will erst später
+      deployen
+- [x] SQLite-Backup-Script (Branch `backup-sqlite-db`) — siehe eigener Branch
 
 **Inhalte**
 - Keine offenen Punkte aus der Storytelling-Überarbeitung mehr (siehe 3.4) — "Gilde-Meister-Urkunde" geklärt, kein Bug
-- Text-Tippfehler-Pass (3.5): nur Phase 1 (Tooling + UI-Texte) fertig — `.vue`-Dateien,
-  Wochenbeschreibungen, `weeks.json` und alle 444 Notebooks noch offen
+- Text-Tippfehler-Pass (3.5/3.6): Phase 1+2 fertig (UI-Texte, Wochenbeschreibungen, `weeks.json`,
+  Abenteuer-Notebooks DE+EN) — Pferde/Sci-Fi-Notebooks und `.vue`-Dateien noch offen
 
-**Laufend — 10 Verbesserungen in 6 Branches (Reihenfolge B→A→E→F→C→D, siehe `todo.md` + Plan-Datei
-`~/.claude/plans/scalable-singing-cook.md`):**
+**Vom Nutzer priorisierte Reihenfolge für die nächsten Schritte (diese Session):**
 
-1. **`debug-notebook-safety`** — ✅ Punkt 5 fertig, Punkt 6 Sci-Fi fertig (Pferde/Abenteuer offen)
-2. **`et-fixes`** — ✅ fertig
-3. **`kontakt-email`** — zurückgestellt, braucht Kontakt-E-Mail-Adresse vom Nutzer
-4. **`kurs-caesar-chiffre`** — ✅ fertig
-5. **`interaktiv-klarer`** — ✅ fertig
-6. **`text-typo-pass`** — 🟡 nur Phase 1 fertig (Tooling + UI-Texte, keine Tippfehler
-   gefunden) — Phase 2+ (`.vue`-Dateien, Wochenbeschreibungen, `weeks.json`, 444 Notebooks) offen
+1. ✅ SQLite-Backup-Script (Branch `backup-sqlite-db`)
+2. 🟡 Text-Tippfehler-Pass fortsetzen (dieser Branch) — Phase 1+2 fertig, Pferde/Sci-Fi-Notebooks
+   und `.vue`-Dateien offen
+3. Neue Kurse: **`kurs-python-spiele`** zuerst, danach **`kurs-python-projekte`**, danach
+   **`kurs-js-minigames`** *oder* **`kurs-ki-labor`**
+4. Danach erst: alle fertigen Branches (`debug-notebook-safety`, `et-fixes`, `kurs-caesar-chiffre`,
+   `interaktiv-klarer`, `text-typo-pass`, `backup-sqlite-db`) mergen + Server-Deploy verifizieren;
+   `kontakt-email` fehlt noch die E-Mail-Adresse vom Nutzer
 
-Fünf Branches (`debug-notebook-safety`, `et-fixes`, `kurs-caesar-chiffre`, `interaktiv-klarer`,
-`text-typo-pass`) sind lokal committet, aber noch **nicht gepusht/gemergt** — vor dem Mergen
-prüfen, ob sich `HANDOFF.md`/`todo.md` zwischen den Branches überschneiden (jeder Branch hat
-unabhängig voneinander dieselben Abschnitte editiert, das muss beim Merge zusammengeführt werden).
+Sechs Branches sind lokal committet, aber noch **nicht gepusht/gemergt** — vor dem Mergen prüfen,
+ob sich `HANDOFF.md`/`todo.md` zwischen den Branches überschneiden (jeder Branch hat unabhängig
+voneinander dieselben Abschnitte editiert, das muss beim Merge zusammengeführt werden).
 
 **Danach — nächste Kurs-Themen, je eigener Branch von `main` (Reihenfolge):**
 
@@ -301,8 +334,16 @@ Formular, kein Versand, siehe oben.)
    Branch  
 4. Nicht: altes `prod` in Compose erwarten; nicht: Sync so ändern, dass Notebooks wieder voll neu
    geladen werden bei jedem Apply; nicht: `cspell`-Wörterbücher nur über `"dictionaries"` ohne
-   `"import"` einbinden (lädt sie nicht, siehe 3.5)  
-5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
+   `"import"` einbinden (lädt sie nicht, siehe 3.5); nicht: `scripts/extract_notebook_text.py`
+   nach `/tmp` ausgeben lassen (cspell sieht Pfade außerhalb des Repos nicht, siehe 3.6); nicht:
+   ungefragt deployen/mergen — Nutzer will das für später aufheben
+5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen (inkl. neuem Test in
+   `tests/*.spec.js` bei Verhaltensänderungen, siehe `WORKFLOW.md`), PR erst wenn explizit gewünscht
+
+**Empfohlener nächster inhaltlicher Schritt (vom Nutzer priorisiert, siehe Abschnitt 5):** Pferde-
+und Sci-Fi-Notebooks nach demselben Muster wie Abenteuer prüfen (Skript + Custom-Dictionary schon
+da), danach Branch `kurs-python-spiele` neu anlegen. Server-Deploy und das Mergen der fertigen
+Branches sind bewusst zurückgestellt.
 
 **Empfohlener nächster inhaltlicher Schritt:** Die fünf fertigen Branches (`debug-notebook-safety`,
 `et-fixes`, `kurs-caesar-chiffre`, `interaktiv-klarer`, `text-typo-pass`) nach `main` mergen
