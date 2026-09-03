@@ -196,5 +196,8 @@ export async function downloadCertificatePdf(options) {
   a.href = URL.createObjectURL(blob);
   a.download = filename;
   a.click();
-  URL.revokeObjectURL(a.href);
+  // Revoking immediately after click() races the browser's download start — it can silently
+  // drop the download, especially noticeable when several certificates are downloaded back to
+  // back. Defer the revoke instead of doing it synchronously.
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
 }
