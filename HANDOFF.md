@@ -1,14 +1,16 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-09-03  
-> **Aktueller Stand:** Alle sieben Feature-Branches (siehe 3.5–3.13) sind gemergt:
-> `debug-notebook-safety`, `et-fixes`, `interaktiv-klarer`, `text-typo-pass`, `backup-sqlite-db`,
-> `kurs-caesar-chiffre` und `wochen-zertifikate` (Wochen-Zertifikate + Zertifikat-PDF-Download).
-> Direkt danach, auf eigenem Branch `entferne-xp-texte`: die letzten Überbleibsel des alten
-> Punktesystems entfernt — Boss-Quest-Feier-Prints und Abschluss-Texte nannten noch XP/Huf-Punkte/
-> Cyber-Credits-Zahlen (3.14). `main` enthält damit PR #1–#4, die Storytelling-Überarbeitung (3.4)
-> und alle acht Themen. `entferne-xp-texte` ist noch **nicht** in `main` gemergt. Noch **nicht**
-> nach `origin/main` gepusht — Push/Deploy bewusst zurückgestellt, siehe Abschnitt 5/7.  
+> **Aktueller Stand:** Alle sieben Feature-Branches (3.5–3.13) plus `entferne-xp-texte` (3.14,
+> Boss-Quest-Feier-Prints erzählten noch von XP/Huf-Punkte/Cyber-Credits-Zahlen) sind in `main`
+> gemergt. Dabei ein alter Testbug in `tests/notebooks.spec.js` gefunden und gefixt (`openWeek()`
+> ging noch von aufgeklapptem Woche-1-Start aus — derselbe Bug wie schon mal in
+> `storytelling-content.spec.js`, hier aber nie mitgezogen, weil die Datei nicht in `test:checks`
+> läuft). Gerade in Arbeit, auf eigenem Branch `einstufung-distraktoren-w5-12`: Distraktoren im
+> Einstufungstest für Wochen 5-12 geschärft (3.15, Fortsetzung von 3.6). Als Nächstes laut
+> Nutzer-Wunsch: Debug-Notebook-"Ziel:"-Zeilen für Pferde/Abenteuer nachziehen (bisher nur Sci-Fi,
+> siehe 3.5). Noch **nicht** nach `origin/main` gepusht — Push/Deploy bewusst zurückgestellt, siehe
+> Abschnitt 5/7.  
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -463,6 +465,30 @@ auf jede Code-Zelle der geänderten Notebooks (keine Syntaxfehler).
 **Getestet:** `npm run test:checks` (43 Tests grün, unverändert — reine Text-/Print-Output-Änderung
 ohne Verhaltensänderung, laut `WORKFLOW.md` kein neuer Test nötig).
 
+### 3.15 Einstufungstest: Distraktoren Wochen 5-12 geschärft (Branch `einstufung-distraktoren-w5-12`)
+
+Fortsetzung von 3.6 (`et-fixes` hatte nur Wochen 1-4 gemacht, 12 von 40 Fragen). Jetzt Wochen 5-12
+durchgesehen (80 Fragen) — 28 hatten unplausible Falsch-Antworten, die man auch ohne Python-Wissen
+ausschließen konnte (z.B. "Nur am Wochenende" bei "Muss man jedes Modul selbst schreiben?", oder
+themenfremde Distraktoren wie "Musik abspielen" bei "Wofür ist JSON gut?"). Ersetzt durch nähere
+Verwechslungen, die echtes Verständnis brauchen — bevorzugt durch **Vertauschen verwandter
+Konzepte**: `json.dumps`/`json.loads` gegeneinander als Distraktor, `append`/`insert(0)`,
+`remove(value)`/`pop(index)`, `import math`/`from math import pi`, Radius/Durchmesser bei
+`turtle.circle()`. Bereits gute Distraktoren (z.B. `class`/`def`/`for`, `new KlassenName`) bewusst
+nicht angefasst.
+
+**Umsetzung:** wie bei den vorherigen JSON-Content-Änderungen keine volle Reserialisierung —
+Text-Ersetzung pro Frage, auf den Block zwischen zwei `"id":`-Markern begrenzt (verhindert, dass
+generische Wörter wie "Ein Fehler" oder "Ein Modul", die in mehreren Fragen als Distraktor
+vorkommen, versehentlich in der falschen Frage landen). `correctIndex` unverändert, nur
+Falsch-Antworten getauscht — DE (`options`) und EN (`options_en`) synchron gehalten.
+
+**Getestet:** `npm run test:checks` (43 Tests grün) + Duplikat-Check (kein Options-Array enthält
+nach der Änderung zwei identische Einträge, DE wie EN) + manuelle Durchsicht aller 28 geänderten
+Fragen, ob ein Distraktor versehentlich auch als "richtig" durchgehen könnte — keine Verhaltens-
+änderung, laut `WORKFLOW.md` kein neuer Test nötig (die bestehenden Tests lesen Fragen/Antworten
+sowieso dynamisch aus `weeks.json`, nicht hart codiert).
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -554,7 +580,8 @@ Siehe auch `todo.md`.
 **Inhalte**
 - Keine offenen Punkte aus der Storytelling-Überarbeitung mehr (siehe 3.4) — "Gilde-Meister-Urkunde" geklärt, kein Bug
 - Debug-Notebook-Ziele (3.5): Pferde + Abenteuer noch offen (Sci-Fi fertig)
-- Einstufungstest (3.6): Distraktoren für Wochen 5-12 noch offen (Wochen 1-4 fertig)
+- [x] Einstufungstest (3.6): Distraktoren für Wochen 5-12 geschärft (3.15, Branch
+  `einstufung-distraktoren-w5-12`)
 - Interaktiver Kurs (3.7): "Ausführen vs. Prüfen"-Klarheit und Weiter-Flow noch offen, braucht
   konkretes Nutzer-Feedback (idealerweise Screenshot) bevor daran gearbeitet wird
 - Text-Tippfehler-Pass (3.8–3.10): alle 444 Notebooks + Cheat-Sheets/Glossare + UI-Texte +

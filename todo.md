@@ -12,8 +12,11 @@
       wörtlicher erwarteter Wert erst ab dem zweiten) — **bewusst zurückgestellt:** "Ausführen vs.
       Prüfen"-Unterscheidung klarer machen und den Fortschritts-/Weiter-Flow überarbeiten; brauchte
       konkretes Nutzer-Feedback, nicht blind umsetzen
-- [ ] Einstufungstest: Distraktoren für Wochen 5-12 nach dem Muster von Wochen 1-4 schärfen
-      (~80 Fragen, siehe `et-fixes`-Commit für die Vorgehensweise)
+- [x] Einstufungstest: Distraktoren für Wochen 5-12 geschärft (Branch
+      `einstufung-distraktoren-w5-12`) — 28 von 80 Fragen hatten unplausible Falsch-Antworten
+      (z.B. "Nur am Wochenende" bei "Muss man jedes Modul selbst schreiben?"), auf nähere
+      Verwechslungen umgestellt (z.B. json.dumps/json.loads gegeneinander vertauscht als
+      Distraktor). Schon gute Distraktoren unangetastet gelassen, DE+EN synchron.
 
 ### Inhalte / Notebooks
 - [x] Neues Projekt "Cäsar-Chiffre" (`kurs-caesar-chiffre`, `projekt-caesar-chiffre`): 5 Lektionen

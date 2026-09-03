@@ -1044,13 +1044,13 @@
           "question_en": "What are parameters?",
           "options": [
             "Eingabewerte einer Funktion",
-            "Fehlercodes",
-            "Dateinamen"
+            "Der Rückgabewert einer Funktion",
+            "Der Name der Funktion"
           ],
           "options_en": [
             "Input values of a function",
-            "Error codes",
-            "File names"
+            "The return value of a function",
+            "The name of the function"
           ],
           "correctIndex": 0,
           "explanation": "Parameter stehen in den Klammern.",
@@ -1064,13 +1064,13 @@
           "question_en": "Why are functions useful?",
           "options": [
             "Code wiederverwenden und ordnen",
-            "Computer beschleunigen immer",
-            "Drucken verhindern"
+            "Damit der Code nur einmal ausgeführt werden kann",
+            "Damit man keine Variablen mehr braucht"
           ],
           "options_en": [
             "Reuse and organize code",
-            "Always speed up the computer",
-            "Prevent printing"
+            "So the code can only run once",
+            "So you no longer need variables"
           ],
           "correctIndex": 0,
           "explanation": "Funktionen vermeiden Wiederholung.",
@@ -1124,13 +1124,13 @@
           "question_en": "How must the function body be written?",
           "options": [
             "Eingerückt",
-            "In Großbuchstaben",
-            "Ohne Klammern"
+            "Auf derselben Zeile wie def",
+            "In einer eigenen Datei"
           ],
           "options_en": [
             "Indented",
-            "In uppercase",
-            "Without parentheses"
+            "On the same line as def",
+            "In its own file"
           ],
           "correctIndex": 0,
           "explanation": "Wie bei if und Schleifen.",
@@ -1164,13 +1164,13 @@
           "question_en": "What is a default parameter?",
           "options": [
             "Ein vorgegebener Wert, falls nichts übergeben wird",
-            "Ein Fehler",
-            "Ein Modul"
+            "Ein Parameter, der immer zwingend angegeben werden muss",
+            "Der erste Parameter einer Funktion"
           ],
           "options_en": [
             "A preset value if nothing is passed",
-            "An error",
-            "A module"
+            "A parameter that must always be given",
+            "The first parameter of a function"
           ],
           "correctIndex": 0,
           "explanation": "z.B. def f(x=1):",
@@ -1276,12 +1276,12 @@
           "question_en": "What does list.append(x) do?",
           "options": [
             "Hängt x ans Ende der Liste",
-            "Löscht x",
+            "Fügt x am Anfang der Liste ein",
             "Sortiert die Liste"
           ],
           "options_en": [
             "Adds x to the end of the list",
-            "Deletes x",
+            "Adds x at the start of the list",
             "Sorts the list"
           ],
           "correctIndex": 0,
@@ -1357,12 +1357,12 @@
           "options": [
             "Entfernt das erste Vorkommen von x",
             "Löscht die ganze Liste",
-            "Sortiert"
+            "Entfernt das Element am Index x"
           ],
           "options_en": [
             "Removes the first occurrence of x",
             "Deletes the whole list",
-            "Sorts"
+            "Removes the element at index x"
           ],
           "correctIndex": 0,
           "explanation": "remove sucht den Wert.",
@@ -1397,12 +1397,12 @@
           "options": [
             "Geht jedes Element durch",
             "Löscht Elemente",
-            "Verdoppelt die Liste"
+            "Erstellt eine neue leere Liste"
           ],
           "options_en": [
             "Iterates over each element",
             "Deletes elements",
-            "Doubles the list"
+            "Creates a new empty list"
           ],
           "correctIndex": 0,
           "explanation": "Typische Listenschleife.",
@@ -1508,13 +1508,13 @@
           "question_en": "What do modules contain?",
           "options": [
             "Fertige Funktionen zum Nutzen",
-            "Nur Fehler",
-            "Nur Kommentare"
+            "Beispielcode, den man nicht direkt nutzen kann",
+            "Nur Dokumentation ohne Code"
           ],
           "options_en": [
             "Ready-made functions to use",
-            "Only errors",
-            "Only comments"
+            "Example code you can't actually use",
+            "Only documentation, no code"
           ],
           "correctIndex": 0,
           "explanation": "Bibliotheken = Werkzeugkästen.",
@@ -1549,12 +1549,12 @@
           "options": [
             "Nur pi aus math holen",
             "Ganz math löschen",
-            "pi verdoppeln"
+            "Importiert das ganze math-Modul"
           ],
           "options_en": [
             "Import only pi from math",
             "Delete all of math",
-            "Double pi"
+            "Imports the whole math module"
           ],
           "correctIndex": 0,
           "explanation": "Gezielter Import.",
@@ -1589,12 +1589,12 @@
           "options": [
             "Nein, viele sind eingebaut",
             "Ja, immer",
-            "Nur am Wochenende"
+            "Ja, außer math"
           ],
           "options_en": [
             "No, many are built in",
             "Yes, always",
-            "Only on weekends"
+            "Yes, except math"
           ],
           "correctIndex": 0,
           "explanation": "Viele Module sind schon da.",
@@ -1628,12 +1628,12 @@
           "question_en": "What does datetime help with?",
           "options": [
             "Datum und Uhrzeit",
-            "Zeichnen",
+            "Zufallszahlen erzeugen",
             "Listen sortieren"
           ],
           "options_en": [
             "Date and time",
-            "Drawing",
+            "Generating random numbers",
             "Sorting lists"
           ],
           "correctIndex": 0,
@@ -1760,12 +1760,12 @@
           "question_en": "What is the difference list vs. tuple?",
           "options": [
             "Listen änderbar, Tupel meist nicht",
-            "Tupel sind immer länger",
+            "Tupel können nur Zahlen enthalten",
             "Kein Unterschied"
           ],
           "options_en": [
             "Lists mutable, tuples usually not",
-            "Tuples are always longer",
+            "Tuples can only contain numbers",
             "No difference"
           ],
           "correctIndex": 0,
@@ -1781,12 +1781,12 @@
           "options": [
             "Sie sollten eindeutig sein",
             "Sie dürfen beliebig doppelt vorkommen",
-            "Es gibt keine Schlüssel"
+            "Sie müssen immer Zahlen sein"
           ],
           "options_en": [
             "They should be unique",
             "They may freely duplicate",
-            "There are no keys"
+            "They must always be numbers"
           ],
           "correctIndex": 0,
           "explanation": "Jeder Schlüssel nur einmal.",
@@ -1932,13 +1932,13 @@
           "question_en": "What is JSON good for?",
           "options": [
             "Daten speichern und austauschen",
-            "Bilder zeichnen",
-            "Musik abspielen"
+            "Programme schneller ausführen",
+            "Fehler im Code automatisch beheben"
           ],
           "options_en": [
             "Storing and exchanging data",
-            "Drawing images",
-            "Playing music"
+            "Making programs run faster",
+            "Automatically fixing code errors"
           ],
           "correctIndex": 0,
           "explanation": "JSON ist ein Datenformat.",
@@ -1993,12 +1993,12 @@
           "options": [
             "Wandelt Objekt in JSON-Text um",
             "Löscht die Datei",
-            "Zeichnet"
+            "Liest JSON aus einer Datei"
           ],
           "options_en": [
             "Converts object to JSON text",
             "Deletes the file",
-            "Draws"
+            "Reads JSON from a file"
           ],
           "correctIndex": 0,
           "explanation": "dumps = dump string.",
@@ -2012,13 +2012,13 @@
           "question_en": "What does json.loads(text) do?",
           "options": [
             "Wandelt JSON-Text in Python-Objekt um",
-            "Speichert Bild",
-            "Startet Turtle"
+            "Wandelt ein Python-Objekt in JSON-Text um",
+            "Speichert die Datei auf der Festplatte"
           ],
           "options_en": [
             "Converts JSON text to a Python object",
-            "Saves an image",
-            "Starts Turtle"
+            "Converts a Python object to JSON text",
+            "Saves the file to disk"
           ],
           "correctIndex": 0,
           "explanation": "loads = load string.",
@@ -2052,13 +2052,13 @@
           "question_en": "Why with open(...) as f: ?",
           "options": [
             "Datei wird sicher wieder geschlossen",
-            "Schneller immer",
-            "Nur für Bilder"
+            "Man muss die Datei danach nicht mehr öffnen",
+            "Es funktioniert nur bei JSON-Dateien"
           ],
           "options_en": [
             "File is closed safely",
-            "Always faster",
-            "Only for images"
+            "You don't need to open the file afterwards",
+            "It only works for JSON files"
           ],
           "correctIndex": 0,
           "explanation": "with schließt automatisch.",
@@ -2072,13 +2072,13 @@
           "question_en": "What does JSON often look like?",
           "options": [
             "Python-Dicts und Listen",
-            "Nur Turtle-Code",
-            "Nur Kommentare"
+            "CSV-Tabellen",
+            "Nur einzelne Zahlen"
           ],
           "options_en": [
             "Python dicts and lists",
-            "Only Turtle code",
-            "Only comments"
+            "CSV tables",
+            "Only single numbers"
           ],
           "correctIndex": 0,
           "explanation": "Ähnliche Schreibweise.",
@@ -2093,12 +2093,12 @@
           "options": [
             "Liest den Dateiinhalt",
             "Löscht die Datei",
-            "Komprimiert"
+            "Schreibt neuen Text in die Datei"
           ],
           "options_en": [
             "Reads the file contents",
             "Deletes the file",
-            "Compresses"
+            "Writes new text to the file"
           ],
           "correctIndex": 0,
           "explanation": "read = lesen.",
@@ -2164,13 +2164,13 @@
           "question_en": "What is a class?",
           "options": [
             "Eine Blaupause für Objekte",
-            "Eine Schleife",
-            "Ein Fehler"
+            "Eine Sammlung von Variablen ohne Funktionen",
+            "Ein spezieller Import"
           ],
           "options_en": [
             "A blueprint for objects",
-            "A loop",
-            "An error"
+            "A collection of variables without functions",
+            "A special import"
           ],
           "correctIndex": 0,
           "explanation": "Klasse = Bauplan.",
@@ -2224,13 +2224,13 @@
           "question_en": "What is self?",
           "options": [
             "Bezug auf das aktuelle Objekt",
-            "Ein Modul",
-            "Ein Datentyp"
+            "Der Name der Klasse",
+            "Eine spezielle Funktion, die man selbst schreiben muss"
           ],
           "options_en": [
             "Reference to the current object",
-            "A module",
-            "A data type"
+            "The name of the class",
+            "A special function you have to write yourself"
           ],
           "correctIndex": 0,
           "explanation": "self = dieses Objekt.",
@@ -2244,13 +2244,13 @@
           "question_en": "What are attributes?",
           "options": [
             "Daten, die zu einem Objekt gehören",
-            "Nur Schleifen",
-            "Nur Dateien"
+            "Nur die Methodennamen einer Klasse",
+            "Globale Variablen außerhalb der Klasse"
           ],
           "options_en": [
             "Data that belong to an object",
-            "Only loops",
-            "Only files"
+            "Only the method names of a class",
+            "Global variables outside the class"
           ],
           "correctIndex": 0,
           "explanation": "z.B. held.name",
@@ -2264,13 +2264,13 @@
           "question_en": "What are methods?",
           "options": [
             "Funktionen innerhalb einer Klasse",
-            "Nur Variablen",
-            "Nur Dateien"
+            "Nur die Attribute eines Objekts",
+            "Import-Anweisungen am Dateianfang"
           ],
           "options_en": [
             "Functions inside a class",
-            "Only variables",
-            "Only files"
+            "Only the attributes of an object",
+            "Import statements at the top of the file"
           ],
           "correctIndex": 0,
           "explanation": "Methoden = Objekt-Verhalten.",
@@ -2324,13 +2324,13 @@
           "question_en": "What does self.name = name store?",
           "options": [
             "Ein Attribut am Objekt",
-            "Eine globale Konstante",
-            "Einen Import"
+            "Eine lokale Variable, die nach der Funktion verschwindet",
+            "Einen Parameter-Default"
           ],
           "options_en": [
             "An attribute on the object",
-            "A global constant",
-            "An import"
+            "A local variable that disappears after the function ends",
+            "A parameter default"
           ],
           "correctIndex": 0,
           "explanation": "Objekt-Daten.",
@@ -2396,13 +2396,13 @@
           "question_en": "What is inheritance?",
           "options": [
             "Eine Klasse übernimmt von einer anderen",
-            "Dateien kopieren",
-            "Zufallszahlen"
+            "Ein Objekt in eine Datei speichern",
+            "Zwei Klassen zu einer verschmelzen"
           ],
           "options_en": [
             "A class takes over from another",
-            "Copying files",
-            "Random numbers"
+            "Saving an object to a file",
+            "Merging two classes into one"
           ],
           "correctIndex": 0,
           "explanation": "Kindklasse erbt von Elternklasse.",
@@ -2476,13 +2476,13 @@
           "question_en": "What does polymorphism roughly mean?",
           "options": [
             "Gleiches Interface, unterschiedliches Verhalten",
-            "Nur eine Klasse erlaubt",
-            "Keine Methoden"
+            "Mehrere Klassen gleichzeitig erben (von mehreren Eltern)",
+            "Eine Methode darf nur einmal existieren"
           ],
           "options_en": [
             "Same interface, different behavior",
-            "Only one class allowed",
-            "No methods"
+            "Inheriting from multiple classes at once",
+            "A method may only exist once"
           ],
           "correctIndex": 0,
           "explanation": "z.B. sprechen() bei Hund/Katze.",
@@ -2496,13 +2496,13 @@
           "question_en": "Why use inheritance?",
           "options": [
             "Gemeinsamen Code teilen",
-            "Immer schneller",
-            "Drucken verbieten"
+            "Damit der Code kürzer aussieht, auch wenn er dasselbe macht",
+            "Weil Python es erzwingt"
           ],
           "options_en": [
             "Share common code",
-            "Always faster",
-            "Forbid printing"
+            "So the code looks shorter, even if it does the same thing",
+            "Because Python forces it"
           ],
           "correctIndex": 0,
           "explanation": "Weniger Doppelcode.",
@@ -2729,12 +2729,12 @@
           "options": [
             "Zeichnet einen Kreis",
             "Macht ein Quadrat",
-            "Speichert JSON"
+            "Zeichnet einen Kreis mit Durchmesser 50"
           ],
           "options_en": [
             "Draws a circle",
             "Makes a square",
-            "Saves JSON"
+            "Draws a circle with diameter 50"
           ],
           "correctIndex": 0,
           "explanation": "circle = Kreis.",
