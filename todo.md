@@ -1,5 +1,46 @@
 # Todo
 
+## Jetzt: 10 Verbesserungen in 6 Branches (gruppiert, B→A→E→F→C→D)
+
+Plan-Datei: `~/.claude/plans/scalable-singing-cook.md` (Kontext/Details je Branch).
+
+### Branch `cursor/debug-notebook-safety` (Punkte 5, 6)
+- [x] Punkt 5 — Endlosschleifen-Schutz: `usePyodide.js` injiziert per AST-Transformation eine
+      Deadline-Prüfung in jede `for`/`while`-Schleife; nach 5 Sekunden wird mit `_CellTimeout`
+      (BaseException) abgebrochen und eine freundliche Fehlermeldung gezeigt statt den Tab
+      einzufrieren. Bewusst KEIN Web-Worker (hätte `input()` in 65 Notebooks kaputt gemacht, da
+      `window.prompt()` im Worker nicht verfügbar ist) — lokal mit CPython getestet (Endlosschleife,
+      verschachtelt in Funktionen, geteilte Variablen über Zellen hinweg, NameError/SyntaxError
+      bleiben unverändert) und live im Browser verifiziert (Playwright: Abbruch nach ~5s,
+      Kernel bleibt danach voll funktionsfähig).
+- [x] Punkt 6 — Debug-Ziel benennen: Sci-Fi-Variante komplett (12 Wochen × DE+EN = 24 Dateien,
+      72 Bug-Zellen) um eine **Ziel:**/**Goal:**-Zeile ergänzt, die das erwartete Verhalten/die
+      erwartete Ausgabe beschreibt, ohne den Bug zu verraten. Stichprobenartig geprüft (Woche 1, 8,
+      11) — akkurat und spoilerfrei.
+- [ ] Punkt 6 Fortsetzung: Pferde- und Abenteuer-Variante nach demselben Muster (nicht in dieser
+      Sitzung gemacht — nächste Session)
+
+### Branch `cursor/et-fixes` (Punkte 1-4) — noch offen
+- [ ] Punkt 1: "Ich weiß es nicht"-Option in `QuizStep.vue`
+- [ ] Punkt 2: Erklärung bei Falsch-Antwort ist technisch schon vorhanden (Coverage 100 % in
+      `weeks.json`) — nur Wortlaut schärfen
+- [ ] Punkt 3: Placement-Scoring lockern (`placementPerWeek` 2→3, eigener `placementPassThreshold`)
+- [ ] Punkt 4: Distraktoren in `weeks.json` plausibler machen (erste Charge Wochen 1-4)
+
+### Branch `cursor/kontakt-email` (Punkt 9) — noch offen
+- [ ] Footer-Link ergänzen — **braucht die tatsächliche Kontakt-E-Mail-Adresse vom Nutzer**
+
+### Branch `cursor/kurs-caesar-chiffre` (Punkt 10) — noch offen
+- [ ] Neuer Projekt-Kurs "Cäsar-Chiffre" mit Deep-Links in Woche 2/4/5 des 12-Wochen-Kurses
+
+### Branch `cursor/interaktiv-klarer` (Punkt 7) — noch offen
+- [ ] Gestufter Hinweis in `LessonView.vue` statt sofortigem Preisgeben der erwarteten Ausgabe
+
+### Branch `cursor/text-typo-pass` (Punkt 8) — noch offen
+- [ ] `cspell`-Tooling-Pass, dann UI-Texte → Wochenbeschreibungen → Notebook-Inhalte
+
+---
+
 ## Now
 ### Website / Frontend
 - [x] Das Tabsystem erklären
