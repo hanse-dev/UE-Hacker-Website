@@ -17,6 +17,13 @@
       (z.B. "Nur am Wochenende" bei "Muss man jedes Modul selbst schreiben?"), auf nähere
       Verwechslungen umgestellt (z.B. json.dumps/json.loads gegeneinander vertauscht als
       Distraktor). Schon gute Distraktoren unangetastet gelassen, DE+EN synchron.
+- [x] Einstufungstest/Check-Tab: personalisierte Falsch-Antwort-Erklärungen (Branch
+      `einstufung-personalisierte-erklaerungen`, noch nicht gemergt) — statt einer geteilten
+      Erklärung für alle falschen Antworten einer Frage bekommt jetzt jede falsche Antwort ihre
+      eigene, passende Erklärung (z.B. `print[Hi]` bekommt "eckige statt runde Klammern, Anführungs-
+      zeichen fehlen" statt fälschlich "muss klein geschrieben werden"). Nebenbei gefunden und
+      mitgefixt: 119 von 120 `explanation_en`-Feldern waren nie übersetzt worden. Details siehe
+      HANDOFF.md 3.17.
 
 ### Inhalte / Notebooks
 - [x] Neues Projekt "Cäsar-Chiffre" (`kurs-caesar-chiffre`, `projekt-caesar-chiffre`): 5 Lektionen

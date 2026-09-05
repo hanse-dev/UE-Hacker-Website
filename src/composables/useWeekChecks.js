@@ -32,6 +32,7 @@ export function localizeQuestion(q, lang = 'de') {
     question: q.question_en || q.question,
     options: q.options_en || q.options,
     explanation: q.explanation_en || q.explanation,
+    optionExplanations: q.optionExplanations_en || q.optionExplanations,
   };
 }
 
@@ -59,17 +60,27 @@ export function shuffleQuestionOptions(q) {
     ? q.correctIndices
     : [typeof q.correctIndex === 'number' ? q.correctIndex : 0];
   const correctTexts = indices.map((i) => q.options[i]);
-  const options = shuffleList(q.options);
+
+  // Options and their per-option explanations must move together, so pair
+  // them up before shuffling rather than shuffling two arrays in parallel.
+  const hasExplanations = Array.isArray(q.optionExplanations)
+    && q.optionExplanations.length === q.options.length;
+  const pairs = shuffleList(
+    q.options.map((opt, i) => [opt, hasExplanations ? q.optionExplanations[i] : undefined])
+  );
+  const options = pairs.map(([opt]) => opt);
+  const optionExplanations = hasExplanations ? pairs.map(([, expl]) => expl) : q.optionExplanations;
   const remapped = correctTexts
     .map((text) => options.indexOf(text))
     .filter((i) => i >= 0);
 
   if (q.type === 'multiple_select') {
-    return { ...q, options, correctIndices: remapped };
+    return { ...q, options, optionExplanations, correctIndices: remapped };
   }
   return {
     ...q,
     options,
+    optionExplanations,
     correctIndex: remapped[0] ?? 0,
   };
 }
