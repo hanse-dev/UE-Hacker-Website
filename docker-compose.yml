@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # Hot-reload Dev: Vite + API (Browser nur :5173, /api wird geproxyt)
   dev:

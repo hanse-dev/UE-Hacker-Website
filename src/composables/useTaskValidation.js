@@ -57,3 +57,20 @@ export function isAnswerCorrect(q, answer) {
 export function isQuizPassed(score, threshold = 0.8) {
   return score >= threshold;
 }
+
+/**
+ * Explanation text for a given (possibly wrong) answer. Prefers a per-option
+ * explanation (personalized to the specific wrong option picked) over the
+ * question's shared explanation. Only single-choice answers (a number) can
+ * have a per-option explanation — multi-select answers always fall back to
+ * the shared explanation, since several options may be wrong at once.
+ */
+export function explanationForAnswer(q, answer, lang = 'de') {
+  if (typeof answer === 'number') {
+    const perOption = lang === 'en' && Array.isArray(q?.optionExplanations_en)
+      ? q.optionExplanations_en
+      : q?.optionExplanations;
+    if (Array.isArray(perOption) && perOption[answer]) return perOption[answer];
+  }
+  return lang === 'en' && q?.explanation_en ? q.explanation_en : q?.explanation;
+}

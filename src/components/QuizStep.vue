@@ -100,6 +100,7 @@ import {
   isQuizPassed,
   isAnswerCorrect,
   getCorrectIndices,
+  explanationForAnswer,
 } from '../composables/useTaskValidation';
 
 // Sentinel für "Ich weiß es nicht" — zählt für die Bewertung als falsch (kein Rätsel-Bonus),
@@ -149,11 +150,12 @@ export default {
       if (correct) {
         return { correct: true, message: expl || (props.lang === 'en' ? 'Correct!' : 'Richtig!') };
       }
+      const wrongExpl = explanationForAnswer(q, a, props.lang);
       const wrongLead = props.lang === 'en' ? 'Not quite —' : 'Nicht ganz —';
       return {
         correct: false,
-        message: expl
-          ? `${wrongLead} ${expl}`
+        message: wrongExpl
+          ? `${wrongLead} ${wrongExpl}`
           : (props.lang === 'en' ? 'Not quite – check again.' : 'Noch nicht ganz – schau nochmal hin.'),
       };
     };
