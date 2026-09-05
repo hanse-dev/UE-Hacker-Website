@@ -4,10 +4,10 @@
 > **Aktueller Stand:** Alle Branches bis `debug-ziele-pferde-abenteuer` (3.5–3.16) sind in `main`
 > gemergt (siehe `git log main` für die genaue Reihenfolge). Danach kamen zwei weitere, hier nicht
 > im Detail dokumentierte Merges hinzu: `dependency-audit-fixes` (`npm audit fix` gegen bekannte
-> Sicherheitslücken) und `vite-major-bump` (Vite 5 → 8 + `@vitejs/plugin-vue` 5 → 6). Noch **nicht**
-> nach `origin/main` gepusht — Push/Deploy bewusst zurückgestellt, siehe Abschnitt 5/7.  
-> Gerade in Arbeit, auf eigenem Branch `einstufung-personalisierte-erklaerungen`: personalisierte
-> Falsch-Antwort-Erklärungen im Einstufungstest/Check-Tab (3.17) — noch nicht gemergt.
+> Sicherheitslücken) und `vite-major-bump` (Vite 5 → 8 + `@vitejs/plugin-vue` 5 → 6). Danach
+> `einstufung-personalisierte-erklaerungen` (3.17, personalisierte Falsch-Antwort-Erklärungen im
+> Check-Tab) — ebenfalls gemergt. Noch **nicht** nach `origin/main` gepusht — Push/Deploy bewusst
+> zurückgestellt, siehe Abschnitt 5/7.
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -521,48 +521,16 @@ gegen den alten Stand: bestätigt, dass ausschließlich Markdown-Zellen geänder
 bestehenden Sci-Fi-Ziel-Test in `storytelling-content.spec.js`) + `npm test` (voller Lauf inkl.
 `tests/notebooks.spec.js` über alle 12 Wochen × 3 Varianten, 56 Tests grün).
 
-### 3.17 Personalisierte Falsch-Antwort-Erklärungen (Branch `einstufung-personalisierte-erklaerungen`, noch nicht gemergt)
+### 3.17 Personalisierte Falsch-Antwort-Erklärungen (Branch `einstufung-personalisierte-erklaerungen`) — gemerged
 
-Auslöser: im Check-Tab zeigte JEDE falsche Antwort einer Frage denselben geteilten
-`explanation`-Text — bei Fragen mit mehreren, unterschiedlich falschen Optionen (z.B.
-`print("Hi")` vs. `Print("Hi")` vs. `print[Hi]`) passte die Erklärung ("print muss klein
-geschrieben werden") nur zu einer der beiden falschen Antworten, nicht zu `print[Hi]` (dort sind
-eckige statt runde Klammern und fehlende Anführungszeichen das eigentliche Problem).
-
-- **Schema:** neue optionale Felder `optionExplanations`/`optionExplanations_en` pro Frage
-  (Array, index-gleich zu `options`, `null` an Position `correctIndex`) — nur bei `type:
-  "multiple_choice"`. `multiple_select`-Fragen bekommen bewusst keine Personalisierung (mehrere
-  Antworten können gleichzeitig falsch sein, kein einzelner "falscher Klick" zum Erklären).
-- `src/composables/useTaskValidation.js`: neue `explanationForAnswer(q, answer, lang)` — liefert
-  bei einer numerischen (Single-Choice-)Antwort die passende `optionExplanations[answer]`, sonst
-  Fallback auf die geteilte `explanation`. `src/components/QuizStep.vue` nutzt das für die
-  Feedback-Anzeige.
-- **Wichtige Falle:** `useWeekChecks.js`s `shuffleQuestionOptions()` mischt die Antwortreihenfolge
-  zufällig — die Erklärung eines Options-Texts muss beim Mischen an genau diesem Text hängen
-  bleiben, sonst zeigt die UI nach dem Shuffle die falsche Erklärung zur falschen Option. Fix:
-  Optionstext und zugehörige Erklärung werden vor dem Shuffle zu Paaren zusammengefasst und
-  gemeinsam gemischt, nicht zwei Arrays parallel geshuffelt.
-- **Nebenfund beim Content-Schreiben:** 119 von 120 `explanation_en`-Feldern waren nie übersetzt
-  worden — identisch zum deutschen Text. Auf Nutzerwunsch im selben Arbeitsgang mitgefixt (echte
-  englische Übersetzung für alle 120 Fragen). 6 Fälle blieben danach zufällig weiterhin
-  sprachneutral identisch (Code-Zeilen wie `import json`, Mnemonics wie "elif = else if.") — dort
-  die EN-Version zu einem natürlichen englischen Satz umformuliert statt der reinen Code-/Kürzel-
-  Wiederholung.
-- **Umsetzung:** Content-Erstellung (214 personalisierte Falsch-Antworten × DE+EN, plus 120
-  Übersetzungen) an 4 parallele Agents delegiert (je 3 Wochen), die Python-Feinheiten (Tupel-
-  Unveränderlichkeit, `json.dumps`/`loads`, `turtle.circle()`-Radius vs. Durchmesser) vorher per
-  `python3 -c` verifiziert haben, statt zu raten. Ergebnisse in separate Scratch-Dateien
-  geschrieben (nicht direkt in `weeks.json`, um Konflikte zwischen den 4 parallelen Agents zu
-  vermeiden), danach programmatisch zusammengeführt und strukturell gegen die Originaldatei
-  geprüft (nur die neuen/geänderten Felder unterscheiden sich, sonst nichts).
-- Tests in `tests/week-checks-logic.spec.js` ergänzt: Pairing beim Shuffle bleibt korrekt,
-  `explanationForAnswer`-Fallback-Verhalten, sowie zwei Content-Vollständigkeitschecks (jede
-  `multiple_choice`-Frage braucht ausgerichtete `optionExplanations`, und `explanation` darf nicht
-  mit `explanation_en` identisch sein) — verhindert, dass der Übersetzungs-Bug oder fehlende
-  Personalisierung bei künftigen Content-Änderungen unbemerkt zurückkommt.
-
-**Getestet:** `npm run test:checks` (49 Tests grün) + stichprobenartige inhaltliche Durchsicht über
-mehrere Wochen (Tupel, `self`, Turtle-Parameter, JSON) — fachlich korrekt.
+Jede falsche Antwort einer `multiple_choice`-Frage im Check-Tab/Einstufungstest bekommt jetzt eine
+eigene, passende Erklärung (neue Felder `optionExplanations`/`optionExplanations_en` in
+`weeks.json`, ausgewertet über `explanationForAnswer()` in `useTaskValidation.js`) statt der einen
+geteilten `explanation` für alle falschen Optionen. `multiple_select`-Fragen bleiben bewusst ohne
+Personalisierung. **Gelernte Regel:** `shuffleQuestionOptions()` muss Optionstext und zugehörige
+Erklärung als Paar mischen, sonst hängt nach dem Shuffle die falsche Erklärung an der falschen
+Option. Nebenfund: 119 von 120 `explanation_en`-Felder waren nie übersetzt (identisch zum
+deutschen Text) — im selben Zug mitgefixt. Details/Content-Erstellung: `git log`/PR.
 
 ---
 
@@ -670,13 +638,12 @@ Siehe auch `todo.md`.
   Projekt-Kurse (Cäsar-Chiffre, künftig `kurs-python-spiele`) könnten später ein eigenes
   Abschluss-Zertifikat bekommen, aber noch nicht angefragt.
 - [x] Personalisierte Falsch-Antwort-Erklärungen (3.17, Branch
-  `einstufung-personalisierte-erklaerungen`, noch nicht gemergt) — inkl. Nebenfund/Fix der
-  unübersetzten `explanation_en`-Felder
+  `einstufung-personalisierte-erklaerungen`, gemerged) — inkl. Nebenfund/Fix der unübersetzten
+  `explanation_en`-Felder
 
-**Alle Branches bis `debug-ziele-pferde-abenteuer` sind gemergt**, danach zusätzlich
-`dependency-audit-fixes` und `vite-major-bump` (siehe `git log main`) — noch **nicht** nach
-`origin/main` gepusht, Push/Server-Deploy bewusst zurückgestellt (Nutzer will erst später
-deployen). `einstufung-personalisierte-erklaerungen` (3.17) ist der aktuelle, noch offene Branch.
+**Alle Branches bis `einstufung-personalisierte-erklaerungen` sind gemergt** (siehe `git log main`
+für die genaue Reihenfolge) — noch **nicht** nach `origin/main` gepusht, Push/Server-Deploy
+bewusst zurückgestellt (Nutzer will erst später deployen). Kein offener Feature-Branch mehr.
 
 **Danach — nächste Kurs-Themen, je eigener Branch von `main`:**
 
@@ -742,8 +709,7 @@ Kontakt-E-Mail im Footer wartet noch auf die tatsächliche Adresse vom Nutzer (n
    Punkte-/Item-System wieder einführen (siehe 3.12)
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
-**Empfohlener nächster Schritt:** `einstufung-personalisierte-erklaerungen` (3.17) ist fertig und
-getestet, aber noch nicht nach `main` gemergt — als Erstes klären, ob gemerged werden soll. Danach
-weiterhin offen: ob/wann nach `origin/main` gepusht und deployed wird. Falls inhaltlich
-weitergearbeitet werden soll: `kurs-python-spiele` (Spiele-Werkstatt-Inhalte, bereits begonnen) ist
-der nächstliegende Kandidat.
+**Empfohlener nächster Schritt:** Kein offener Feature-Branch mehr. Weiterhin offen: ob/wann nach
+`origin/main` gepusht und deployed wird — direkt danach fragen. Falls inhaltlich weitergearbeitet
+werden soll: `kurs-python-spiele` (Spiele-Werkstatt-Inhalte, bereits begonnen) ist der
+nächstliegende Kandidat.
