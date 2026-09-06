@@ -1,0 +1,322 @@
+{
+  "title": "Woche 10 – OOP Grundlagen",
+  "title_en": "Week 10 – OOP basics",
+  "questions": [
+    {
+      "id": "w10-1",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Was ist eine Klasse?",
+      "question_en": "What is a class?",
+      "options": [
+        "Eine Blaupause für Objekte",
+        "Eine Sammlung von Variablen ohne Funktionen",
+        "Ein spezieller Import"
+      ],
+      "options_en": [
+        "A blueprint for objects",
+        "A collection of variables without functions",
+        "A special import"
+      ],
+      "correctIndex": 0,
+      "explanation": "Klasse = Bauplan.",
+      "explanation_en": "A class is a blueprint.",
+      "optionExplanations": [
+        null,
+        "Eine Klasse kann auch Funktionen (Methoden) enthalten, nicht nur Variablen.",
+        "Eine Klasse wird mit dem Schlüsselwort class definiert, nicht importiert."
+      ],
+      "optionExplanations_en": [
+        null,
+        "A class can also contain functions (methods), not just variables.",
+        "A class is defined with the class keyword, not imported."
+      ]
+    },
+    {
+      "id": "w10-2",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Womit erzeugt man ein Objekt aus einer Klasse?",
+      "question_en": "How do you create an object from a class?",
+      "options": [
+        "KlassenName()",
+        "new KlassenName",
+        "make Klasse"
+      ],
+      "options_en": [
+        "ClassName()",
+        "new ClassName",
+        "make Class"
+      ],
+      "correctIndex": 0,
+      "explanation": "Aufruf wie eine Funktion.",
+      "explanation_en": "You call the class like a function.",
+      "optionExplanations": [
+        null,
+        "\"new\" gibt es in Python nicht — ein Objekt entsteht, indem man die Klasse wie eine Funktion aufruft (KlassenName()).",
+        "\"make\" ist kein Python-Schlüsselwort — ein Objekt entsteht durch den Aufruf der Klasse mit Klammern."
+      ],
+      "optionExplanations_en": [
+        null,
+        "There is no \"new\" in Python — you create an object by calling the class like a function (ClassName()).",
+        "\"make\" is not a Python keyword — an object is created by calling the class with parentheses."
+      ]
+    },
+    {
+      "id": "w10-3",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Wann wird __init__ aufgerufen?",
+      "question_en": "When is __init__ called?",
+      "options": [
+        "Beim Erzeugen eines Objekts",
+        "Nur am Programmende",
+        "Nur bei print"
+      ],
+      "options_en": [
+        "When creating an object",
+        "Only at program end",
+        "Only with print"
+      ],
+      "correctIndex": 0,
+      "explanation": "Konstruktor / Initialisierung.",
+      "explanation_en": "It's the constructor — it runs during initialization.",
+      "optionExplanations": [
+        null,
+        "Es ist genau umgekehrt — __init__ läuft beim Erzeugen eines Objekts, nicht am Ende des Programms.",
+        "__init__ hat nichts mit print zu tun — es läuft automatisch beim Erzeugen eines Objekts."
+      ],
+      "optionExplanations_en": [
+        null,
+        "It's the opposite — __init__ runs when an object is created, not at the end of the program.",
+        "__init__ has nothing to do with print — it runs automatically when an object is created."
+      ]
+    },
+    {
+      "id": "w10-4",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was ist self?",
+      "question_en": "What is self?",
+      "options": [
+        "Bezug auf das aktuelle Objekt",
+        "Der Name der Klasse",
+        "Eine spezielle Funktion, die man selbst schreiben muss"
+      ],
+      "options_en": [
+        "Reference to the current object",
+        "The name of the class",
+        "A special function you have to write yourself"
+      ],
+      "correctIndex": 0,
+      "explanation": "self = dieses Objekt.",
+      "explanation_en": "self refers to the current object.",
+      "optionExplanations": [
+        null,
+        "self ist nicht der Klassenname, sondern verweist auf das konkrete Objekt, mit dem gerade gearbeitet wird.",
+        "self ist keine Funktion, die man selbst schreibt — es ist ein Parameter, der automatisch das aktuelle Objekt übergibt."
+      ],
+      "optionExplanations_en": [
+        null,
+        "self is not the class name — it refers to the specific object currently being worked with.",
+        "self is not a function you write yourself — it's a parameter that automatically passes in the current object."
+      ]
+    },
+    {
+      "id": "w10-5",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was sind Attribute?",
+      "question_en": "What are attributes?",
+      "options": [
+        "Daten, die zu einem Objekt gehören",
+        "Nur die Methodennamen einer Klasse",
+        "Globale Variablen außerhalb der Klasse"
+      ],
+      "options_en": [
+        "Data that belong to an object",
+        "Only the method names of a class",
+        "Global variables outside the class"
+      ],
+      "correctIndex": 0,
+      "explanation": "z.B. held.name",
+      "explanation_en": "For example, held.name.",
+      "optionExplanations": [
+        null,
+        "Methodennamen sind Funktionen, keine Attribute — Attribute sind die Daten (Variablen) eines Objekts.",
+        "Attribute gehören zum Objekt (z.B. self.name), nicht zu globalen Variablen außerhalb der Klasse."
+      ],
+      "optionExplanations_en": [
+        null,
+        "Method names are functions, not attributes — attributes are the data (variables) belonging to an object.",
+        "Attributes belong to the object (e.g. self.name), not to global variables outside the class."
+      ]
+    },
+    {
+      "id": "w10-6",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was sind Methoden?",
+      "question_en": "What are methods?",
+      "options": [
+        "Funktionen innerhalb einer Klasse",
+        "Nur die Attribute eines Objekts",
+        "Import-Anweisungen am Dateianfang"
+      ],
+      "options_en": [
+        "Functions inside a class",
+        "Only the attributes of an object",
+        "Import statements at the top of the file"
+      ],
+      "correctIndex": 0,
+      "explanation": "Methoden = Objekt-Verhalten.",
+      "explanation_en": "Methods define an object's behavior.",
+      "optionExplanations": [
+        null,
+        "Attribute sind die Daten eines Objekts — Methoden sind dagegen die Funktionen, die zur Klasse gehören.",
+        "Import-Anweisungen holen Module in dein Programm — Methoden sind stattdessen Funktionen innerhalb einer Klasse."
+      ],
+      "optionExplanations_en": [
+        null,
+        "Attributes are an object's data — methods, on the other hand, are the functions that belong to the class.",
+        "Import statements bring modules into your program — methods are instead functions inside a class."
+      ]
+    },
+    {
+      "id": "w10-7",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Wie viele Objekte einer Klasse darf man erzeugen?",
+      "question_en": "How many objects of a class may you create?",
+      "options": [
+        "Beliebig viele",
+        "Genau eines",
+        "Maximal zwei"
+      ],
+      "options_en": [
+        "As many as you like",
+        "Exactly one",
+        "At most two"
+      ],
+      "correctIndex": 0,
+      "explanation": "Viele Instanzen.",
+      "explanation_en": "You can create many instances.",
+      "optionExplanations": [
+        null,
+        "Eine Klasse ist kein Einzelstück — du kannst beliebig viele Objekte (Instanzen) von ihr erzeugen.",
+        "Es gibt keine Obergrenze von zwei — aus einer Klasse lassen sich beliebig viele Objekte erzeugen."
+      ],
+      "optionExplanations_en": [
+        null,
+        "A class isn't a one-off — you can create as many objects (instances) of it as you like.",
+        "There's no upper limit of two — you can create as many objects from a class as you like."
+      ]
+    },
+    {
+      "id": "w10-8",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Womit startet eine Klassendefinition?",
+      "question_en": "What starts a class definition?",
+      "options": [
+        "class",
+        "def",
+        "for"
+      ],
+      "options_en": [
+        "class",
+        "def",
+        "for"
+      ],
+      "correctIndex": 0,
+      "explanation": "class Schlüsselwort.",
+      "explanation_en": "The class keyword.",
+      "optionExplanations": [
+        null,
+        "def leitet eine Funktion ein (auch eine Methode innerhalb einer Klasse) — eine Klasse selbst beginnt mit class.",
+        "for leitet eine Schleife ein, keine Klasse — dafür braucht es das Schlüsselwort class."
+      ],
+      "optionExplanations_en": [
+        null,
+        "def starts a function (even a method inside a class) — a class itself starts with class.",
+        "for starts a loop, not a class — a class needs the keyword class."
+      ]
+    },
+    {
+      "id": "w10-9",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was speichert self.name = name?",
+      "question_en": "What does self.name = name store?",
+      "options": [
+        "Ein Attribut am Objekt",
+        "Eine lokale Variable, die nach der Funktion verschwindet",
+        "Einen Parameter-Default"
+      ],
+      "options_en": [
+        "An attribute on the object",
+        "A local variable that disappears after the function ends",
+        "A parameter default"
+      ],
+      "correctIndex": 0,
+      "explanation": "Objekt-Daten.",
+      "explanation_en": "It's data stored on the object.",
+      "optionExplanations": [
+        null,
+        "Weil die Variable mit self. gespeichert wird, bleibt sie am Objekt erhalten — sie verschwindet nicht nach dem Ende von __init__.",
+        "Ein Parameter-Default würde direkt in der Funktionssignatur stehen (z.B. name=\"Bello\") — self.name = name speichert stattdessen den übergebenen Wert am Objekt."
+      ],
+      "optionExplanations_en": [
+        null,
+        "Because the variable is stored with self., it stays attached to the object — it doesn't disappear after __init__ ends.",
+        "A parameter default would be written directly in the function signature (e.g. name=\"Bello\") — self.name = name instead stores the passed-in value on the object."
+      ]
+    },
+    {
+      "id": "w10-10",
+      "type": "multiple_select",
+      "inPlacement": false,
+      "question": "Was gehört zu OOP?",
+      "question_en": "What belongs to OOP?",
+      "options": [
+        "Klasse",
+        "Objekt",
+        "Methode",
+        "nur range()"
+      ],
+      "options_en": [
+        "Class",
+        "Object",
+        "Method",
+        "only range()"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "range() ist keine OOP-Idee.",
+      "explanation_en": "range() is not an OOP concept."
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Erstelle eine Klasse Tier mit einem Attribut name im __init__, erzeuge ein Objekt mit dem Namen \"Bello\" und gib tier.name aus.",
+      "instruction_en": "Create a class Tier with an attribute name in __init__, create an object named \"Bello\" and print tier.name.",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "Bello"
+      }
+    },
+    {
+      "instruction": "Erstelle eine Klasse Tier mit einem Attribut name im __init__ und einer Methode vorstellen(self), die \"Ich heiße \" + self.name ausgibt. Erzeuge ein Tier mit dem Namen \"Rex\" und rufe vorstellen() auf.",
+      "instruction_en": "Create a class Tier with an attribute name in __init__ and a method vorstellen(self) that prints \"Ich heiße \" + self.name. Create a Tier named \"Rex\" and call vorstellen().",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "Ich heiße Rex"
+      }
+    }
+  ]
+}

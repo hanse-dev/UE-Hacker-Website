@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import checks from '../content/python-checks/weeks.json' with { type: 'json' };
+import checks from '../content/python-checks/index.mjs';
 
 const PLACEMENT_URL = '/kurs/python-einstufung';
 const COURSE_URL = '/kurs/python-12-wochen-grundkurs';

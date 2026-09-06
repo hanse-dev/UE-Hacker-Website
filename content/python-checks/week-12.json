@@ -1,0 +1,322 @@
+{
+  "title": "Woche 12 – Turtle-Grafik",
+  "title_en": "Week 12 – Turtle graphics",
+  "questions": [
+    {
+      "id": "w12-1",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Welches Modul zeichnet mit der Schildkröte?",
+      "question_en": "Which module draws with the turtle?",
+      "options": [
+        "turtle",
+        "json",
+        "random"
+      ],
+      "options_en": [
+        "turtle",
+        "json",
+        "random"
+      ],
+      "correctIndex": 0,
+      "explanation": "import turtle",
+      "explanation_en": "You import it with: import turtle",
+      "optionExplanations": [
+        null,
+        "json wird zum Speichern/Lesen von Daten genutzt, nicht zum Zeichnen — dafür ist das turtle-Modul da.",
+        "random erzeugt Zufallszahlen, zeichnet aber nichts — zum Zeichnen braucht man das turtle-Modul."
+      ],
+      "optionExplanations_en": [
+        null,
+        "json is used for saving/reading data, not for drawing — that's what the turtle module is for.",
+        "random generates random numbers but doesn't draw anything — drawing needs the turtle module."
+      ]
+    },
+    {
+      "id": "w12-2",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Was macht turtle.forward(100)?",
+      "question_en": "What does turtle.forward(100) do?",
+      "options": [
+        "Geht 100 Schritte vor",
+        "Dreht um 100 Grad",
+        "Löscht alles"
+      ],
+      "options_en": [
+        "Moves 100 steps forward",
+        "Turns 100 degrees",
+        "Clears everything"
+      ],
+      "correctIndex": 0,
+      "explanation": "forward = vorwärts.",
+      "explanation_en": "forward = move forward.",
+      "optionExplanations": [
+        null,
+        "Drehen übernehmen right()/left() mit einem Winkel — forward() bewegt die Schildkröte nur geradeaus.",
+        "Zum Löschen gibt es z.B. clear() — forward() bewegt die Schildkröte nur vorwärts, löscht nichts."
+      ],
+      "optionExplanations_en": [
+        null,
+        "Turning is done with right()/left() and an angle — forward() just moves the turtle straight ahead.",
+        "Clearing is done with clear(), for example — forward() only moves the turtle forward, it clears nothing."
+      ]
+    },
+    {
+      "id": "w12-3",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Was macht turtle.right(90)?",
+      "question_en": "What does turtle.right(90) do?",
+      "options": [
+        "Dreht 90 Grad nach rechts",
+        "Geht 90 Schritte",
+        "Speichert JSON"
+      ],
+      "options_en": [
+        "Turns 90 degrees right",
+        "Moves 90 steps",
+        "Saves JSON"
+      ],
+      "correctIndex": 0,
+      "explanation": "right/left steuern die Richtung.",
+      "explanation_en": "right/left control the direction.",
+      "optionExplanations": [
+        null,
+        "Das Vorwärtsgehen übernimmt forward() — right() dreht die Schildkröte nur, ohne sich zu bewegen.",
+        "right() hat nichts mit JSON oder Dateien zu tun — es dreht nur die Blickrichtung der Schildkröte."
+      ],
+      "optionExplanations_en": [
+        null,
+        "Moving forward is done with forward() — right() only turns the turtle, without moving it.",
+        "right() has nothing to do with JSON or files — it just turns the direction the turtle is facing."
+      ]
+    },
+    {
+      "id": "w12-4",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was macht turtle.penup()?",
+      "question_en": "What does turtle.penup() do?",
+      "options": [
+        "Stift anheben",
+        "Stift dicker machen",
+        "Fenster schließen"
+      ],
+      "options_en": [
+        "Lifts the pen",
+        "Makes the pen thicker",
+        "Closes the window"
+      ],
+      "correctIndex": 0,
+      "explanation": "penup = kein Strich.",
+      "explanation_en": "penup = no line is drawn.",
+      "optionExplanations": [
+        null,
+        "Die Stiftdicke ändert man z.B. mit pensize() — penup() hebt den Stift nur an, sodass keine Linie gezeichnet wird.",
+        "Das Fenster schließt sich dadurch nicht — penup() hebt nur den Stift an, die Bewegung hinterlässt danach keine Spur mehr."
+      ],
+      "optionExplanations_en": [
+        null,
+        "Pen thickness is changed with pensize(), for example — penup() only lifts the pen so no line gets drawn.",
+        "This doesn't close the window — penup() only lifts the pen, so movement afterwards leaves no trace."
+      ]
+    },
+    {
+      "id": "w12-5",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was macht turtle.pendown()?",
+      "question_en": "What does turtle.pendown() do?",
+      "options": [
+        "Stift senken",
+        "Programm beenden",
+        "Farbe löschen"
+      ],
+      "options_en": [
+        "Lowers the pen",
+        "Ends the program",
+        "Clears the color"
+      ],
+      "correctIndex": 0,
+      "explanation": "pendown = Stift runter.",
+      "explanation_en": "pendown = pen goes down.",
+      "optionExplanations": [
+        null,
+        "pendown() beendet das Programm nicht — es senkt nur den Stift, sodass wieder gezeichnet wird.",
+        "Die Farbe bleibt dabei erhalten — pendown() senkt nur den Stift, damit die Bewegung wieder eine Linie zeichnet."
+      ],
+      "optionExplanations_en": [
+        null,
+        "pendown() doesn't end the program — it only lowers the pen, so drawing starts again.",
+        "The color stays unchanged — pendown() only lowers the pen, so movement draws a line again."
+      ]
+    },
+    {
+      "id": "w12-6",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was macht turtle.circle(50)?",
+      "question_en": "What does turtle.circle(50) do?",
+      "options": [
+        "Zeichnet einen Kreis",
+        "Macht ein Quadrat",
+        "Zeichnet einen Kreis mit Durchmesser 50"
+      ],
+      "options_en": [
+        "Draws a circle",
+        "Makes a square",
+        "Draws a circle with diameter 50"
+      ],
+      "correctIndex": 0,
+      "explanation": "circle = Kreis.",
+      "explanation_en": "circle = draws a circle.",
+      "optionExplanations": [
+        null,
+        "Für ein Quadrat bräuchte man forward()/right() in einer Schleife — circle() zeichnet immer einen Kreis (oder Bogen).",
+        "Die Zahl bei circle() ist der Radius, nicht der Durchmesser — der Kreis hat hier also Radius 50 (Durchmesser 100)."
+      ],
+      "optionExplanations_en": [
+        null,
+        "A square would need forward()/right() inside a loop — circle() always draws a circle (or an arc).",
+        "The number passed to circle() is the radius, not the diameter — so this circle has radius 50 (diameter 100)."
+      ]
+    },
+    {
+      "id": "w12-7",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was macht turtle.color(\"red\")?",
+      "question_en": "What does turtle.color(\"red\") do?",
+      "options": [
+        "setzt die Stiftfarbe",
+        "löscht den Bildschirm",
+        "startet Musik"
+      ],
+      "options_en": [
+        "sets the pen color",
+        "clears the screen",
+        "starts music"
+      ],
+      "correctIndex": 0,
+      "explanation": "Farbe fürs Zeichnen.",
+      "explanation_en": "It's the color used for drawing.",
+      "optionExplanations": [
+        null,
+        "Zum Löschen des Bildschirms gibt es clear() — color() ändert nur die Farbe, mit der gezeichnet wird.",
+        "turtle kann keine Musik abspielen — color() legt nur die Zeichenfarbe fest."
+      ],
+      "optionExplanations_en": [
+        null,
+        "Clearing the screen is done with clear() — color() only changes the color used for drawing.",
+        "turtle can't play music — color() only sets the drawing color."
+      ]
+    },
+    {
+      "id": "w12-8",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Womit zeichnet man Muster effizient?",
+      "question_en": "How do you draw patterns efficiently?",
+      "options": [
+        "Mit Schleifen",
+        "Nur mit copy-paste",
+        "Ohne forward"
+      ],
+      "options_en": [
+        "With loops",
+        "Only with copy-paste",
+        "Without forward"
+      ],
+      "correctIndex": 0,
+      "explanation": "for + forward/right.",
+      "explanation_en": "Use a for loop with forward/right.",
+      "optionExplanations": [
+        null,
+        "Copy-Paste funktioniert zwar, ist aber unnötig aufwändig — eine Schleife wiederholt denselben Code viel effizienter.",
+        "Ohne forward() bewegt sich die Schildkröte gar nicht — Muster entstehen gerade durch forward() (und right()) in einer Schleife."
+      ],
+      "optionExplanations_en": [
+        null,
+        "Copy-paste works, but it's needlessly tedious — a loop repeats the same code much more efficiently.",
+        "Without forward() the turtle doesn't move at all — patterns are made exactly by forward() (and right()) inside a loop."
+      ]
+    },
+    {
+      "id": "w12-9",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was macht turtle.goto(x, y)?",
+      "question_en": "What does turtle.goto(x, y) do?",
+      "options": [
+        "Geht zur Position x, y",
+        "Nur Farbe ändern",
+        "Programm beenden"
+      ],
+      "options_en": [
+        "Goes to position x, y",
+        "Only changes color",
+        "Ends the program"
+      ],
+      "correctIndex": 0,
+      "explanation": "goto = Position anfahren.",
+      "explanation_en": "goto = move to a position.",
+      "optionExplanations": [
+        null,
+        "Die Farbe ändert man mit color() — goto() bewegt die Schildkröte zu einer bestimmten Position.",
+        "goto() beendet das Programm nicht — es bewegt die Schildkröte nur zu den angegebenen Koordinaten."
+      ],
+      "optionExplanations_en": [
+        null,
+        "Color is changed with color() — goto() moves the turtle to a specific position.",
+        "goto() doesn't end the program — it only moves the turtle to the given coordinates."
+      ]
+    },
+    {
+      "id": "w12-10",
+      "type": "multiple_select",
+      "inPlacement": false,
+      "question": "Welche Befehle gehören zu Turtle?",
+      "question_en": "Which commands belong to Turtle?",
+      "options": [
+        "forward",
+        "right",
+        "circle",
+        "json.loads"
+      ],
+      "options_en": [
+        "forward",
+        "right",
+        "circle",
+        "json.loads"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "json.loads gehört zu Dateien/JSON.",
+      "explanation_en": "json.loads belongs to files/JSON, not Turtle."
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Importiere das turtle-Modul und gib danach \"Turtle bereit!\" aus.",
+      "instruction_en": "Import the turtle module and then print \"Turtle bereit!\".",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "Turtle bereit!"
+      }
+    },
+    {
+      "instruction": "Importiere das turtle-Modul. Nutze zusätzlich eine Schleife, um 4-mal \"Seite gezeichnet\" auszugeben (wie bei den 4 Seiten eines Quadrats).",
+      "instruction_en": "Import the turtle module. Also use a loop to print \"Seite gezeichnet\" 4 times (like the 4 sides of a square).",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "Seite gezeichnet"
+      }
+    }
+  ]
+}

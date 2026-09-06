@@ -1,0 +1,322 @@
+{
+  "title": "Woche 8 – Dictionaries & Tupel",
+  "title_en": "Week 8 – Dictionaries & tuples",
+  "questions": [
+    {
+      "id": "w8-1",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Wie schreibt man ein Dictionary?",
+      "question_en": "How do you write a dictionary?",
+      "options": [
+        "{\"name\": \"Ada\"}",
+        "[\"name\", \"Ada\"]",
+        "\"name\" = \"Ada\""
+      ],
+      "options_en": [
+        "{\"name\": \"Ada\"}",
+        "[\"name\", \"Ada\"]",
+        "\"name\" = \"Ada\""
+      ],
+      "correctIndex": 0,
+      "explanation": "Dicts: geschweifte Klammern, Schlüssel: Wert.",
+      "explanation_en": "Dicts use curly braces, key: value.",
+      "optionExplanations": [
+        null,
+        "Eckige Klammern [] erzeugen eine Liste, kein Dictionary – bei einem Dict fehlt außerdem der Doppelpunkt zwischen Schlüssel und Wert.",
+        "So schreibt man keine Zuweisung an einen String – ein Dictionary braucht geschweifte Klammern und einen Doppelpunkt zwischen Schlüssel und Wert."
+      ],
+      "optionExplanations_en": [
+        null,
+        "Square brackets [] create a list, not a dictionary – a dict also needs a colon between key and value.",
+        "You can't assign to a string like that – a dictionary needs curly braces and a colon between key and value."
+      ]
+    },
+    {
+      "id": "w8-2",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Womit greift man auf einen Dict-Wert zu?",
+      "question_en": "How do you access a dict value?",
+      "options": [
+        "person[\"name\"]",
+        "person.name()",
+        "person->name"
+      ],
+      "options_en": [
+        "person[\"name\"]",
+        "person.name()",
+        "person->name"
+      ],
+      "correctIndex": 0,
+      "explanation": "Zugriff über den Schlüssel.",
+      "explanation_en": "Access via the key.",
+      "optionExplanations": [
+        null,
+        "person.name() sieht aus wie ein Methodenaufruf – Dict-Werte werden aber über eckige Klammern mit dem Schlüssel abgerufen, nicht über einen Punkt.",
+        "-> gibt es in Python nicht – das ist die Zeigersyntax aus Sprachen wie C++, in Python nutzt man []."
+      ],
+      "optionExplanations_en": [
+        null,
+        "person.name() looks like a method call – but dict values are accessed with square brackets and the key, not with a dot.",
+        "-> doesn't exist in Python – that's pointer syntax from languages like C++; in Python you use []."
+      ]
+    },
+    {
+      "id": "w8-3",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Wie schreibt man ein Tupel?",
+      "question_en": "How do you write a tuple?",
+      "options": [
+        "(1, 2)",
+        "[1, 2]",
+        "{1, 2}"
+      ],
+      "options_en": [
+        "(1, 2)",
+        "[1, 2]",
+        "{1, 2}"
+      ],
+      "correctIndex": 0,
+      "explanation": "Tupel: runde Klammern.",
+      "explanation_en": "Tuples use round brackets (parentheses).",
+      "optionExplanations": [
+        null,
+        "Eckige Klammern erzeugen eine Liste (änderbar), kein Tupel.",
+        "Geschweifte Klammern mit einzelnen Werten erzeugen ein Set, kein Tupel."
+      ],
+      "optionExplanations_en": [
+        null,
+        "Square brackets create a list (which is mutable), not a tuple.",
+        "Curly braces with plain values create a set, not a tuple."
+      ]
+    },
+    {
+      "id": "w8-4",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was ist der Unterschied Liste vs. Tupel?",
+      "question_en": "What is the difference list vs. tuple?",
+      "options": [
+        "Listen änderbar, Tupel meist nicht",
+        "Tupel können nur Zahlen enthalten",
+        "Kein Unterschied"
+      ],
+      "options_en": [
+        "Lists mutable, tuples usually not",
+        "Tuples can only contain numbers",
+        "No difference"
+      ],
+      "correctIndex": 0,
+      "explanation": "Tupel sind immutable.",
+      "explanation_en": "Tuples are immutable.",
+      "optionExplanations": [
+        null,
+        "Tupel können genau wie Listen beliebige Datentypen enthalten (auch Strings, Listen, gemischte Typen) – nicht nur Zahlen.",
+        "Es gibt einen wichtigen Unterschied: Listen lassen sich nachträglich ändern, Tupel meist nicht (Versuche wie t[0] = x lösen einen TypeError aus)."
+      ],
+      "optionExplanations_en": [
+        null,
+        "Tuples can hold any data type, just like lists (strings, lists, mixed types) – not only numbers.",
+        "There is an important difference: lists can be changed afterwards, tuples usually can't (something like t[0] = x raises a TypeError)."
+      ]
+    },
+    {
+      "id": "w8-5",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was gilt für Dict-Schlüssel?",
+      "question_en": "What is true about dict keys?",
+      "options": [
+        "Sie sollten eindeutig sein",
+        "Sie dürfen beliebig doppelt vorkommen",
+        "Sie müssen immer Zahlen sein"
+      ],
+      "options_en": [
+        "They should be unique",
+        "They may freely duplicate",
+        "They must always be numbers"
+      ],
+      "correctIndex": 0,
+      "explanation": "Jeder Schlüssel nur einmal.",
+      "explanation_en": "Each key only once.",
+      "optionExplanations": [
+        null,
+        "Kommt ein Schlüssel doppelt vor, überschreibt der letzte Wert einfach den vorherigen – es bleibt am Ende trotzdem nur ein Eintrag pro Schlüssel.",
+        "Dict-Schlüssel können auch Strings oder Tupel sein – sie müssen nicht Zahlen sein, nur unveränderlich (hashable)."
+      ],
+      "optionExplanations_en": [
+        null,
+        "If a key appears twice, the later value simply overwrites the earlier one – there's still only one entry per key in the end.",
+        "Dict keys can also be strings or tuples – they don't have to be numbers, they just need to be immutable (hashable)."
+      ]
+    },
+    {
+      "id": "w8-6",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was macht d.keys()?",
+      "question_en": "What does d.keys() do?",
+      "options": [
+        "Liefert die Schlüssel",
+        "Löscht das Dict",
+        "Sortiert Werte"
+      ],
+      "options_en": [
+        "Returns the keys",
+        "Deletes the dict",
+        "Sorts values"
+      ],
+      "correctIndex": 0,
+      "explanation": "keys() = alle Schlüssel.",
+      "explanation_en": "keys() = all keys.",
+      "optionExplanations": [
+        null,
+        "keys() verändert das Dict nicht – es gibt nur eine Ansicht der vorhandenen Schlüssel zurück.",
+        "Zum Sortieren gibt es sorted(), keys() liefert lediglich die Schlüssel in ihrer bestehenden Reihenfolge."
+      ],
+      "optionExplanations_en": [
+        null,
+        "keys() doesn't change the dict at all – it just returns a view of the existing keys.",
+        "Sorting is done with sorted(); keys() simply returns the keys in their existing order."
+      ]
+    },
+    {
+      "id": "w8-7",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was macht d.get(\"x\", 0)?",
+      "question_en": "What does d.get(\"x\", 0) do?",
+      "options": [
+        "Wert von x oder 0, falls fehlt",
+        "Immer Fehler",
+        "Immer 0"
+      ],
+      "options_en": [
+        "Value of x or 0 if missing",
+        "Always error",
+        "Always 0"
+      ],
+      "correctIndex": 0,
+      "explanation": "get mit Default ist sicher.",
+      "explanation_en": "get with a default value is safe.",
+      "optionExplanations": [
+        null,
+        "Genau das Gegenteil ist der Fall: get() ist dafür da, einen Fehler bei fehlendem Schlüssel zu vermeiden – anders als d[\"x\"], das einen KeyError auslösen würde.",
+        "Ist der Schlüssel \"x\" vorhanden, liefert get() seinen echten Wert – 0 kommt nur als Rückgabe, wenn der Schlüssel fehlt."
+      ],
+      "optionExplanations_en": [
+        null,
+        "It's the opposite: get() exists to avoid an error when a key is missing – unlike d[\"x\"], which would raise a KeyError.",
+        "If the key \"x\" exists, get() returns its actual value – 0 is only returned when the key is missing."
+      ]
+    },
+    {
+      "id": "w8-8",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was macht person[\"alter\"] = 12?",
+      "question_en": "What does person[\"age\"] = 12 do?",
+      "options": [
+        "Setzt oder überschreibt den Wert",
+        "Löscht person",
+        "Startet eine Schleife"
+      ],
+      "options_en": [
+        "Sets or overwrites the value",
+        "Deletes person",
+        "Starts a loop"
+      ],
+      "correctIndex": 0,
+      "explanation": "Zuweisung im Dict.",
+      "explanation_en": "An assignment inside the dict.",
+      "optionExplanations": [
+        null,
+        "Eine Zuweisung mit = löscht nichts – sie legt den Wert für den Schlüssel neu fest oder überschreibt ihn.",
+        "Das ist eine einfache Zuweisung, keine Schleife – Schleifen werden mit for oder while geschrieben."
+      ],
+      "optionExplanations_en": [
+        null,
+        "An assignment with = doesn't delete anything – it sets or overwrites the value for that key.",
+        "This is a simple assignment, not a loop – loops are written with for or while."
+      ]
+    },
+    {
+      "id": "w8-9",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Welche Klammer für Tupel?",
+      "question_en": "Which brackets for tuples?",
+      "options": [
+        "()",
+        "[]",
+        "{}"
+      ],
+      "options_en": [
+        "()",
+        "[]",
+        "{}"
+      ],
+      "correctIndex": 0,
+      "explanation": "() = Tupel.",
+      "explanation_en": "() = tuple.",
+      "optionExplanations": [
+        null,
+        "[] steht für eine Liste, nicht für ein Tupel.",
+        "{} steht für ein Dictionary (oder ein leeres Set), nicht für ein Tupel."
+      ],
+      "optionExplanations_en": [
+        null,
+        "[] stands for a list, not a tuple.",
+        "{} stands for a dictionary (or an empty set), not a tuple."
+      ]
+    },
+    {
+      "id": "w8-10",
+      "type": "multiple_select",
+      "inPlacement": false,
+      "question": "Welche Strukturen speichern mehrere Werte?",
+      "question_en": "Which structures store multiple values?",
+      "options": [
+        "list",
+        "tuple",
+        "dict",
+        "int"
+      ],
+      "options_en": [
+        "list",
+        "tuple",
+        "dict",
+        "int"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "int ist ein einzelner Zahlenwert.",
+      "explanation_en": "int is a single number value."
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Erstelle ein Dictionary person mit dem Schlüssel \"name\" und dem Wert \"Alex\", und gib person[\"name\"] aus.",
+      "instruction_en": "Create a dictionary person with the key \"name\" and the value \"Alex\", and print person[\"name\"].",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "Alex"
+      }
+    },
+    {
+      "instruction": "Erstelle ein Dictionary schueler mit den Schlüsseln \"name\" (Wert \"Mia\") und \"note\" (Wert 2). Gib den Satz \"Mia hat die Note 2\" aus, indem du beide Werte aus dem Dictionary verwendest (denk an str() für die Zahl).",
+      "instruction_en": "Create a dictionary schueler with the keys \"name\" (value \"Mia\") and \"note\" (value 2). Print the sentence \"Mia hat die Note 2\" using both values from the dictionary (remember str() for the number).",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "Mia hat die Note 2"
+      }
+    }
+  ]
+}

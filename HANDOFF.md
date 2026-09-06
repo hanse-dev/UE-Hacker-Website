@@ -1,13 +1,12 @@
 # Handoff — UE Hacker Website
 
-> **Zuletzt aktualisiert:** 2026-09-05  
-> **Aktueller Stand:** Alle Branches bis `debug-ziele-pferde-abenteuer` (3.5–3.16) sind in `main`
-> gemergt (siehe `git log main` für die genaue Reihenfolge). Danach kamen zwei weitere, hier nicht
-> im Detail dokumentierte Merges hinzu: `dependency-audit-fixes` (`npm audit fix` gegen bekannte
-> Sicherheitslücken) und `vite-major-bump` (Vite 5 → 8 + `@vitejs/plugin-vue` 5 → 6). Danach
-> `einstufung-personalisierte-erklaerungen` (3.17, personalisierte Falsch-Antwort-Erklärungen im
-> Check-Tab) — ebenfalls gemergt. Noch **nicht** nach `origin/main` gepusht — Push/Deploy bewusst
-> zurückgestellt, siehe Abschnitt 5/7.
+> **Zuletzt aktualisiert:** 2026-09-07  
+> **Aktueller Stand:** Alle Branches bis `einstufung-personalisierte-erklaerungen` (3.5–3.17) sind in
+> `main` gemergt (siehe `git log main` für die genaue Reihenfolge), dazwischen auch
+> `dependency-audit-fixes` und `vite-major-bump`. Noch **nicht** nach `origin/main` gepusht —
+> Push/Deploy bewusst zurückgestellt, siehe Abschnitt 5/7. **Aktuell in Arbeit:** Branch
+> `weeks-json-splitten` (3.18) — erster Schritt eines größeren Refactorings gegen zu große Dateien,
+> noch nicht nach `main` gemergt.
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -532,6 +531,39 @@ Erklärung als Paar mischen, sonst hängt nach dem Shuffle die falsche Erklärun
 Option. Nebenfund: 119 von 120 `explanation_en`-Felder waren nie übersetzt (identisch zum
 deutschen Text) — im selben Zug mitgefixt. Details/Content-Erstellung: `git log`/PR.
 
+### 3.18 Refactoring-Start: `weeks.json` pro Woche aufgeteilt (Branch `weeks-json-splitten`)
+
+Erster Schritt eines größeren, vom Nutzer angestoßenen Refactorings gegen zu große Dateien (Analyse
+ergab: die meisten großen `.vue`-Components sind zu 40-65% `<style>`-Block, nicht Logik — Composables-
+Schicht ist bereits sauber geschichtet). `content/python-checks/weeks.json` (3925 Zeilen, größte
+Datei im Repo) war der einzige Content-Bereich, der noch nicht pro Woche gesplittet war.
+
+- **Neu:** `content/python-checks/config.json` (`passThreshold`, `placementPerWeek`,
+  `placementPassThreshold`, `weekCheckCount`, `projects`) + `week-1.json`…`week-12.json` (je
+  `title`/`title_en`/`questions`/`codingChallenges`). Split per Skript, Round-Trip gegen die alte
+  Datei geprüft (`json.load` alt == gemergte neue Dateien, byte-äquivalent auf Datenebene).
+- **Zwei Lade-Pfade, weil zwei Laufzeiten:** `useWeekChecks.js` (Browser/Vite) mergt weiterhin per
+  `import.meta.glob` + frischem `loader()`-Aufruf pro `loadWeekChecks()`-Call — das war schon vorher
+  bewusst so gebaut, damit Content-Edits ohne vollen Seiten-Reload sichtbar werden (HMR-Bypass), und
+  musste erhalten bleiben. Für die Playwright-Tests (laufen in Node, nicht im Vite-Dev-Server) neuer
+  kleiner Loader `content/python-checks/index.mjs` (reines `fs`/`readdirSync`, kein Vite nötig) —
+  ersetzt in den 3 betroffenen Tests (`week-checks.spec.js`, `week-checks-logic.spec.js`,
+  `zertifikate.spec.js`) den bisherigen `import ... with { type: 'json' }` auf die alte Einzeldatei.
+- **Gelernte Regel:** bei Content, der sowohl im Vite-Dev-Server (Browser) als auch in Node-Tests
+  gelesen wird, reicht ein Lade-Mechanismus nicht immer aus — `import.meta.glob` ist Vite-exklusiv,
+  ein Node-Test braucht einen eigenen (einfachen) Loader. Beide müssen bei künftigen Schema-Änderungen
+  synchron gehalten werden.
+
+**Getestet:** `npm run test:checks` (49 Tests grün) + `npm run test:auth` (13 Tests grün, inkl.
+Zertifikat-PDF-Tests, die Wochendaten laden) — alles über echte Chromium-Läufe gegen den Vite-Dev-
+Server, keine reine Unit-Verifizierung. Reine Datenumstrukturierung ohne Verhaltensänderung, laut
+`WORKFLOW.md` kein neuer Test nötig.
+
+**Offen (nächste Schritte desselben Refactorings, siehe `todo.md`):** CSS-Konsolidierung (doppelte
+Klassen wie `.btn-kernel`/`.code-editor` in LessonView/ProjectCourse/InteractiveCourse/CodeChallenge),
+`WeekSection.vue`-Aufteilung, `LessonView.vue`/`QuizStep.vue`-Entflechtung, Ternary-Cleanup (97
+Inline-`lang === 'en' ? X : Y`).
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -602,7 +634,7 @@ src/App.vue       Optionen-Modal
 src/composables/useAuth*.js, useProgressSync.js, useWeekChecks.js
 src/components/JupyterNotebook.vue, PlacementCourse.vue, QuizStep.vue
 public/kurse.json
-content/python-checks/weeks.json
+content/python-checks/config.json, week-{N}.json, index.mjs (Node-Loader für Tests)
 .env.example / .env (nie committen)
 ```
 
@@ -643,7 +675,18 @@ Siehe auch `todo.md`.
 
 **Alle Branches bis `einstufung-personalisierte-erklaerungen` sind gemergt** (siehe `git log main`
 für die genaue Reihenfolge) — noch **nicht** nach `origin/main` gepusht, Push/Server-Deploy
-bewusst zurückgestellt (Nutzer will erst später deployen). Kein offener Feature-Branch mehr.
+bewusst zurückgestellt (Nutzer will erst später deployen).
+
+**Refactoring (vom Nutzer angestoßen, gegen zu große Dateien):**
+- [x] Schritt 1: `weeks.json` pro Woche gesplittet (3.18, Branch `weeks-json-splitten`, noch nicht
+      gemergt)
+- [ ] Schritt 2: CSS-Konsolidierung (doppelte Klassen `.btn-kernel`/`.btn-check`/`.code-editor`/
+      `.kernel-status` in LessonView/ProjectCourse/InteractiveCourse/CodeChallenge)
+- [ ] Schritt 3: `WeekSection.vue` in Subkomponenten aufteilen (CheatSheetList, VariantSelector)
+- [ ] Schritt 4: `LessonView.vue` entflechten (Glossar/Content-Loading → eigenes Composable)
+- [ ] Schritt 5: `QuizStep.vue`/`PlacementCourse.vue` ähnlich entflechten
+- [ ] Schritt 6: Ternary-Cleanup (97 Inline-`lang === 'en' ? X : Y`) — niedrige Priorität, außer eine
+      dritte Sprache kommt konkret dazu (siehe „Überlegungen" unten), dann vorziehen
 
 **Danach — nächste Kurs-Themen, je eigener Branch von `main`:**
 
@@ -658,6 +701,11 @@ Nicht mischen; Details/Checkboxen in `todo.md`.
 Kontakt-E-Mail im Footer wartet noch auf die tatsächliche Adresse vom Nutzer (nicht selbst erfinden).
 
 **Bekannte Altlasten (niedrige Prio):** Notebook-Download-ZIP nur DE; optionale EN-Nachzüge bei neuen Kursen (inkl. Cäsar-Chiffre).
+
+**Überlegungen (noch nicht entschieden):** Nutzer erwägt evtl. eine dritte Sprache neben DE/EN —
+noch kein konkretes Ziel. DE/EN ist aktuell hart auf zwei Sprachen verdrahtet (Ternarys, `_en`-Feld-
+Suffix, `-en`-Ordner-Suffix), siehe Refactoring-Schritt 6 oben. Keine i18n-Library nötig, falls es
+dazu kommt — der bestehende `t()`-Mechanismus reicht, nur der Content ist der eigentliche Aufwand.
 
 ---
 
@@ -709,7 +757,8 @@ Kontakt-E-Mail im Footer wartet noch auf die tatsächliche Adresse vom Nutzer (n
    Punkte-/Item-System wieder einführen (siehe 3.12)
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
-**Empfohlener nächster Schritt:** Kein offener Feature-Branch mehr. Weiterhin offen: ob/wann nach
-`origin/main` gepusht und deployed wird — direkt danach fragen. Falls inhaltlich weitergearbeitet
-werden soll: `kurs-python-spiele` (Spiele-Werkstatt-Inhalte, bereits begonnen) ist der
-nächstliegende Kandidat.
+**Empfohlener nächster Schritt:** `weeks-json-splitten` (3.18) ist fertig und getestet, aber noch
+nicht nach `main` gemergt — als Erstes klären, ob gemerged werden soll. Danach Refactoring-Schritt 2
+(CSS-Konsolidierung) fortsetzen, siehe Abschnitt 5. Weiterhin offen: ob/wann nach `origin/main`
+gepusht und deployed wird. Falls stattdessen inhaltlich weitergearbeitet werden soll:
+`kurs-python-spiele` (Spiele-Werkstatt-Inhalte, bereits begonnen) ist der nächstliegende Kandidat.

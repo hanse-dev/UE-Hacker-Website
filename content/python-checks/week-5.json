@@ -1,0 +1,322 @@
+{
+  "title": "Woche 5 – Funktionen",
+  "title_en": "Week 5 – Functions",
+  "questions": [
+    {
+      "id": "w5-1",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Womit definiert man eine Funktion?",
+      "question_en": "How do you define a function?",
+      "options": [
+        "def",
+        "fun",
+        "function"
+      ],
+      "options_en": [
+        "def",
+        "fun",
+        "function"
+      ],
+      "correctIndex": 0,
+      "explanation": "In Python: def name():",
+      "explanation_en": "In Python, you write: def name():",
+      "optionExplanations": [
+        null,
+        "\"fun\" ist kein Python-Schlüsselwort – das korrekte Wort ist def.",
+        "\"function\" ist kein Python-Schlüsselwort – Funktionen werden mit def eingeleitet."
+      ],
+      "optionExplanations_en": [
+        null,
+        "\"fun\" is not a Python keyword – the correct word is def.",
+        "\"function\" is not a Python keyword – functions are introduced with def."
+      ]
+    },
+    {
+      "id": "w5-2",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Was macht return?",
+      "question_en": "What does return do?",
+      "options": [
+        "Gibt einen Wert aus der Funktion zurück",
+        "Startet eine Schleife",
+        "Importiert ein Modul"
+      ],
+      "options_en": [
+        "Sends a value back from the function",
+        "Starts a loop",
+        "Imports a module"
+      ],
+      "correctIndex": 0,
+      "explanation": "return beendet die Funktion und liefert einen Wert.",
+      "explanation_en": "return ends the function and delivers a value.",
+      "optionExplanations": [
+        null,
+        "Eine Schleife startet man mit for oder while, nicht mit return.",
+        "Ein Modul importiert man mit import, return hat damit nichts zu tun."
+      ],
+      "optionExplanations_en": [
+        null,
+        "You start a loop with for or while, not with return.",
+        "You import a module with import – return has nothing to do with that."
+      ]
+    },
+    {
+      "id": "w5-3",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Was sind Parameter?",
+      "question_en": "What are parameters?",
+      "options": [
+        "Eingabewerte einer Funktion",
+        "Der Rückgabewert einer Funktion",
+        "Der Name der Funktion"
+      ],
+      "options_en": [
+        "Input values of a function",
+        "The return value of a function",
+        "The name of the function"
+      ],
+      "correctIndex": 0,
+      "explanation": "Parameter stehen in den Klammern.",
+      "explanation_en": "Parameters go in the parentheses.",
+      "optionExplanations": [
+        null,
+        "Der Rückgabewert kommt aus return, nicht aus den Parametern in der Klammer.",
+        "Der Funktionsname steht vor den Klammern, das sind nicht die Parameter."
+      ],
+      "optionExplanations_en": [
+        null,
+        "The return value comes from return, not from the parameters in the parentheses.",
+        "The function name stands before the parentheses – that's not the parameters."
+      ]
+    },
+    {
+      "id": "w5-4",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Warum sind Funktionen nützlich?",
+      "question_en": "Why are functions useful?",
+      "options": [
+        "Code wiederverwenden und ordnen",
+        "Damit der Code nur einmal ausgeführt werden kann",
+        "Damit man keine Variablen mehr braucht"
+      ],
+      "options_en": [
+        "Reuse and organize code",
+        "So the code can only run once",
+        "So you no longer need variables"
+      ],
+      "correctIndex": 0,
+      "explanation": "Funktionen vermeiden Wiederholung.",
+      "explanation_en": "Functions avoid repetition.",
+      "optionExplanations": [
+        null,
+        "Man kann eine Funktion beliebig oft aufrufen, nicht nur einmal.",
+        "Funktionen ersetzen Variablen nicht – man braucht innerhalb von Funktionen weiterhin Variablen."
+      ],
+      "optionExplanations_en": [
+        null,
+        "You can call a function as many times as you like, not just once.",
+        "Functions don't replace variables – you still need variables inside functions."
+      ]
+    },
+    {
+      "id": "w5-5",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Wie oft darf man eine Funktion aufrufen?",
+      "question_en": "How often may you call a function?",
+      "options": [
+        "So oft man will",
+        "Nur einmal",
+        "Nur zweimal"
+      ],
+      "options_en": [
+        "As often as you want",
+        "Only once",
+        "Only twice"
+      ],
+      "correctIndex": 0,
+      "explanation": "Genau dafür sind sie da.",
+      "explanation_en": "That's exactly what they're for.",
+      "optionExplanations": [
+        null,
+        "Es gibt keine Begrenzung auf einen einzigen Aufruf – Funktionen sind genau dafür da, mehrfach benutzt zu werden.",
+        "Es gibt keine Begrenzung auf genau zwei Aufrufe – eine Funktion darf beliebig oft aufgerufen werden."
+      ],
+      "optionExplanations_en": [
+        null,
+        "There's no limit of a single call – functions exist precisely to be reused.",
+        "There's no limit of exactly two calls – a function can be called as often as you like."
+      ]
+    },
+    {
+      "id": "w5-6",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was passiert ohne return?",
+      "question_en": "What happens without return?",
+      "options": [
+        "Die Funktion gibt None zurück",
+        "Immer einen Fehler",
+        "Immer 0"
+      ],
+      "options_en": [
+        "The function returns None",
+        "Always an error",
+        "Always 0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ohne return → None.",
+      "explanation_en": "Without return → None.",
+      "optionExplanations": [
+        null,
+        "Eine fehlende return-Anweisung verursacht keinen Fehler – die Funktion läuft normal durch und liefert None.",
+        "Der Rückgabewert ist None, nicht automatisch 0."
+      ],
+      "optionExplanations_en": [
+        null,
+        "A missing return statement doesn't cause an error – the function just runs through and gives back None.",
+        "The return value is None, not automatically 0."
+      ]
+    },
+    {
+      "id": "w5-7",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Wie muss der Funktionskörper geschrieben sein?",
+      "question_en": "How must the function body be written?",
+      "options": [
+        "Eingerückt",
+        "Auf derselben Zeile wie def",
+        "In einer eigenen Datei"
+      ],
+      "options_en": [
+        "Indented",
+        "On the same line as def",
+        "In its own file"
+      ],
+      "correctIndex": 0,
+      "explanation": "Wie bei if und Schleifen.",
+      "explanation_en": "Like with if and loops.",
+      "optionExplanations": [
+        null,
+        "Der Funktionskörper muss in einer neuen, eingerückten Zeile stehen, nicht auf derselben Zeile wie def.",
+        "Der Funktionskörper steht direkt unter def in derselben Datei, nicht in einer separaten Datei."
+      ],
+      "optionExplanations_en": [
+        null,
+        "The function body must be on a new, indented line, not on the same line as def.",
+        "The function body sits right under def in the same file, not in a separate file."
+      ]
+    },
+    {
+      "id": "w5-8",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Wie ruft man gruss() auf?",
+      "question_en": "How do you call gruss()?",
+      "options": [
+        "gruss()",
+        "def gruss()",
+        "call gruss"
+      ],
+      "options_en": [
+        "gruss()",
+        "def gruss()",
+        "call gruss"
+      ],
+      "correctIndex": 0,
+      "explanation": "Name plus Klammern.",
+      "explanation_en": "Name plus parentheses.",
+      "optionExplanations": [
+        null,
+        "def gruss() definiert die Funktion neu (oder erneut) – das ruft sie nicht auf.",
+        "\"call\" ist kein Python-Schlüsselwort – man ruft eine Funktion einfach mit ihrem Namen und Klammern auf."
+      ],
+      "optionExplanations_en": [
+        null,
+        "def gruss() (re-)defines the function – it doesn't call it.",
+        "\"call\" is not a Python keyword – you call a function just by writing its name with parentheses."
+      ]
+    },
+    {
+      "id": "w5-9",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was ist ein Default-Parameter?",
+      "question_en": "What is a default parameter?",
+      "options": [
+        "Ein vorgegebener Wert, falls nichts übergeben wird",
+        "Ein Parameter, der immer zwingend angegeben werden muss",
+        "Der erste Parameter einer Funktion"
+      ],
+      "options_en": [
+        "A preset value if nothing is passed",
+        "A parameter that must always be given",
+        "The first parameter of a function"
+      ],
+      "correctIndex": 0,
+      "explanation": "z.B. def f(x=1):",
+      "explanation_en": "e.g. def f(x=1):",
+      "optionExplanations": [
+        null,
+        "Ein Default-Wert macht das Gegenteil: der Parameter darf beim Aufruf weggelassen werden.",
+        "Ein Default-Parameter kann an beliebiger Position stehen, nicht nur an erster Stelle."
+      ],
+      "optionExplanations_en": [
+        null,
+        "A default value does the opposite: the parameter may be left out when calling the function.",
+        "A default parameter can be at any position, not only the first one."
+      ]
+    },
+    {
+      "id": "w5-10",
+      "type": "multiple_select",
+      "inPlacement": false,
+      "question": "Was gehört zu einer typischen Funktion?",
+      "question_en": "What belongs to a typical function?",
+      "options": [
+        "def",
+        "Name der Funktion",
+        "Klammern",
+        "import turtle immer"
+      ],
+      "options_en": [
+        "def",
+        "Function name",
+        "Parentheses",
+        "import turtle always"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "import turtle braucht man nur für Grafik.",
+      "explanation_en": "You only need import turtle for graphics."
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Schreibe eine Funktion verdopple(zahl), die die doppelte Zahl zurückgibt, und gib verdopple(6) aus.",
+      "instruction_en": "Write a function verdopple(zahl) that returns double the number, and print verdopple(6).",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "12"
+      }
+    },
+    {
+      "instruction": "Schreibe eine Funktion addiere(a, b), die die Summe von a und b zurückgibt, und gib addiere(9, 8) aus.",
+      "instruction_en": "Write a function addiere(a, b) that returns the sum of a and b, and print addiere(9, 8).",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "17"
+      }
+    }
+  ]
+}

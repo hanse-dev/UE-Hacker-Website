@@ -1,0 +1,322 @@
+{
+  "title": "Woche 9 – JSON & Dateien",
+  "title_en": "Week 9 – JSON & files",
+  "questions": [
+    {
+      "id": "w9-1",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Wofür ist JSON gut?",
+      "question_en": "What is JSON good for?",
+      "options": [
+        "Daten speichern und austauschen",
+        "Programme schneller ausführen",
+        "Fehler im Code automatisch beheben"
+      ],
+      "options_en": [
+        "Storing and exchanging data",
+        "Making programs run faster",
+        "Automatically fixing code errors"
+      ],
+      "correctIndex": 0,
+      "explanation": "JSON ist ein Datenformat.",
+      "explanation_en": "JSON is a data format.",
+      "optionExplanations": [
+        null,
+        "JSON hat mit der Ausführungsgeschwindigkeit von Programmen nichts zu tun – es ist nur eine Art, Daten aufzuschreiben.",
+        "JSON findet und behebt keine Fehler im Code – es ist ein reines Format zum Speichern von Daten."
+      ],
+      "optionExplanations_en": [
+        null,
+        "JSON has nothing to do with how fast a program runs – it's just a way to write down data.",
+        "JSON doesn't find or fix errors in code – it's simply a format for storing data."
+      ]
+    },
+    {
+      "id": "w9-2",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Welches Modul hilft bei JSON in Python?",
+      "question_en": "Which module helps with JSON in Python?",
+      "options": [
+        "json",
+        "math",
+        "turtle"
+      ],
+      "options_en": [
+        "json",
+        "math",
+        "turtle"
+      ],
+      "correctIndex": 0,
+      "explanation": "import json",
+      "explanation_en": "You import it with: import json",
+      "optionExplanations": [
+        null,
+        "math ist für mathematische Berechnungen da, nicht zum Verarbeiten von JSON.",
+        "turtle wird für Grafiken/Zeichnungen verwendet, nicht für JSON."
+      ],
+      "optionExplanations_en": [
+        null,
+        "math is for mathematical calculations, not for working with JSON.",
+        "turtle is used for drawing graphics, not for JSON."
+      ]
+    },
+    {
+      "id": "w9-3",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Womit öffnet man eine Datei?",
+      "question_en": "How do you open a file?",
+      "options": [
+        "open(\"datei.txt\")",
+        "print(\"datei.txt\")",
+        "range(\"datei.txt\")"
+      ],
+      "options_en": [
+        "open(\"file.txt\")",
+        "print(\"file.txt\")",
+        "range(\"file.txt\")"
+      ],
+      "correctIndex": 0,
+      "explanation": "Danach lesen oder schreiben.",
+      "explanation_en": "After that you can read or write.",
+      "optionExplanations": [
+        null,
+        "print() gibt nur Text auf dem Bildschirm aus – es öffnet keine Datei.",
+        "range() erzeugt eine Zahlenfolge für Schleifen – es hat nichts mit Dateien zu tun."
+      ],
+      "optionExplanations_en": [
+        null,
+        "print() only displays text on the screen – it doesn't open a file.",
+        "range() creates a sequence of numbers for loops – it has nothing to do with files."
+      ]
+    },
+    {
+      "id": "w9-4",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was macht json.dumps(obj)?",
+      "question_en": "What does json.dumps(obj) do?",
+      "options": [
+        "Wandelt Objekt in JSON-Text um",
+        "Löscht die Datei",
+        "Liest JSON aus einer Datei"
+      ],
+      "options_en": [
+        "Converts object to JSON text",
+        "Deletes the file",
+        "Reads JSON from a file"
+      ],
+      "correctIndex": 0,
+      "explanation": "dumps = dump string.",
+      "explanation_en": "dumps stands for 'dump string'.",
+      "optionExplanations": [
+        null,
+        "json.dumps() arbeitet nur mit Python-Objekten im Speicher – es löscht oder verändert keine Dateien.",
+        "Das Gegenteil ist der Fall: json.dumps() erzeugt JSON-Text aus einem Objekt, gelesen wird eine Datei mit open()/json.load()."
+      ],
+      "optionExplanations_en": [
+        null,
+        "json.dumps() only works with Python objects in memory – it doesn't delete or touch any files.",
+        "It's the other way round: json.dumps() creates JSON text from an object; reading a file is done with open()/json.load()."
+      ]
+    },
+    {
+      "id": "w9-5",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was macht json.loads(text)?",
+      "question_en": "What does json.loads(text) do?",
+      "options": [
+        "Wandelt JSON-Text in Python-Objekt um",
+        "Wandelt ein Python-Objekt in JSON-Text um",
+        "Speichert die Datei auf der Festplatte"
+      ],
+      "options_en": [
+        "Converts JSON text to a Python object",
+        "Converts a Python object to JSON text",
+        "Saves the file to disk"
+      ],
+      "correctIndex": 0,
+      "explanation": "loads = load string.",
+      "explanation_en": "loads stands for 'load string'.",
+      "optionExplanations": [
+        null,
+        "Das ist genau die umgekehrte Richtung – das macht json.dumps(). json.loads() wandelt JSON-Text in ein Python-Objekt um.",
+        "json.loads() speichert nichts auf der Festplatte – es arbeitet nur mit einem Text, der schon im Speicher ist."
+      ],
+      "optionExplanations_en": [
+        null,
+        "That's the opposite direction – that's what json.dumps() does. json.loads() converts JSON text into a Python object.",
+        "json.loads() doesn't save anything to disk – it only works with text that's already in memory."
+      ]
+    },
+    {
+      "id": "w9-6",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Welcher Modus schreibt in eine Datei?",
+      "question_en": "Which mode writes to a file?",
+      "options": [
+        "\"w\"",
+        "\"r\"",
+        "\"x\""
+      ],
+      "options_en": [
+        "\"w\"",
+        "\"r\"",
+        "\"x\""
+      ],
+      "correctIndex": 0,
+      "explanation": "w = write.",
+      "explanation_en": "'w' stands for 'write'.",
+      "optionExplanations": [
+        null,
+        "\"r\" steht für read (lesen) – damit kann man nicht in die Datei schreiben.",
+        "\"x\" erstellt nur eine neue Datei und schlägt fehl, wenn sie schon existiert – zum normalen Schreiben nutzt man \"w\"."
+      ],
+      "optionExplanations_en": [
+        null,
+        "\"r\" stands for read – you can't write to the file with it.",
+        "\"x\" only creates a new file and fails if it already exists – for regular writing you use \"w\"."
+      ]
+    },
+    {
+      "id": "w9-7",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Warum with open(...) as f: ?",
+      "question_en": "Why with open(...) as f: ?",
+      "options": [
+        "Datei wird sicher wieder geschlossen",
+        "Man muss die Datei danach nicht mehr öffnen",
+        "Es funktioniert nur bei JSON-Dateien"
+      ],
+      "options_en": [
+        "File is closed safely",
+        "You don't need to open the file afterwards",
+        "It only works for JSON files"
+      ],
+      "correctIndex": 0,
+      "explanation": "with schließt automatisch.",
+      "explanation_en": "with closes the file automatically.",
+      "optionExplanations": [
+        null,
+        "with sorgt dafür, dass die Datei nach dem Block automatisch geschlossen wird – man muss sie aber vorher trotzdem mit open() öffnen.",
+        "with open(...) funktioniert bei jeder Art von Datei, nicht nur bei JSON-Dateien."
+      ],
+      "optionExplanations_en": [
+        null,
+        "with makes sure the file is automatically closed after the block – but you still need to open it with open() first.",
+        "with open(...) works for any kind of file, not just JSON files."
+      ]
+    },
+    {
+      "id": "w9-8",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Woran erinnert JSON oft?",
+      "question_en": "What does JSON often look like?",
+      "options": [
+        "Python-Dicts und Listen",
+        "CSV-Tabellen",
+        "Nur einzelne Zahlen"
+      ],
+      "options_en": [
+        "Python dicts and lists",
+        "CSV tables",
+        "Only single numbers"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ähnliche Schreibweise.",
+      "explanation_en": "Similar notation.",
+      "optionExplanations": [
+        null,
+        "CSV ist ein tabellenartiges Textformat mit Kommas/Zeilen – JSON sieht dagegen aus wie Python-Dicts und Listen mit geschweiften/eckigen Klammern.",
+        "JSON kann verschachtelte Strukturen wie Listen und Dictionaries darstellen, nicht nur einzelne Zahlen."
+      ],
+      "optionExplanations_en": [
+        null,
+        "CSV is a table-like text format with commas and rows – JSON, in contrast, looks like Python dicts and lists with curly/square brackets.",
+        "JSON can represent nested structures like lists and dictionaries, not just single numbers."
+      ]
+    },
+    {
+      "id": "w9-9",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was macht f.read()?",
+      "question_en": "What does f.read() do?",
+      "options": [
+        "Liest den Dateiinhalt",
+        "Löscht die Datei",
+        "Schreibt neuen Text in die Datei"
+      ],
+      "options_en": [
+        "Reads the file contents",
+        "Deletes the file",
+        "Writes new text to the file"
+      ],
+      "correctIndex": 0,
+      "explanation": "read = lesen.",
+      "explanation_en": "read = to read.",
+      "optionExplanations": [
+        null,
+        "read() verändert die Datei nicht – es gibt nur ihren Inhalt zurück.",
+        "Zum Schreiben braucht man write(), nicht read() – und die Datei muss dafür im Modus \"w\" geöffnet sein."
+      ],
+      "optionExplanations_en": [
+        null,
+        "read() doesn't change the file at all – it just returns its contents.",
+        "Writing needs write(), not read() – and the file has to be opened in \"w\" mode for that."
+      ]
+    },
+    {
+      "id": "w9-10",
+      "type": "multiple_select",
+      "inPlacement": false,
+      "question": "Welche Funktionen gehören zu JSON?",
+      "question_en": "Which functions belong to JSON?",
+      "options": [
+        "json.dumps",
+        "json.loads",
+        "json.dump",
+        "turtle.forward"
+      ],
+      "options_en": [
+        "json.dumps",
+        "json.loads",
+        "json.dump",
+        "turtle.forward"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "turtle.forward gehört zur Grafik.",
+      "explanation_en": "turtle.forward belongs to graphics, not JSON."
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Wandle die Liste [1, 2, 3] mit json.dumps() in Text um und gib das Ergebnis aus.",
+      "instruction_en": "Convert the list [1, 2, 3] to text with json.dumps() and print the result.",
+      "codeTemplate": "import json\n",
+      "validation": {
+        "type": "output_contains",
+        "expected": "[1, 2, 3]"
+      }
+    },
+    {
+      "instruction": "Wandle das Dictionary {\"stadt\": \"Berlin\"} mit json.dumps() in Text um und gib das Ergebnis aus.",
+      "instruction_en": "Convert the dictionary {\"stadt\": \"Berlin\"} to text with json.dumps() and print the result.",
+      "codeTemplate": "import json\n",
+      "validation": {
+        "type": "output_contains",
+        "expected": "{\"stadt\": \"Berlin\"}"
+      }
+    }
+  ]
+}

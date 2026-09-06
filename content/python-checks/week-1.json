@@ -1,0 +1,321 @@
+{
+  "title": "Woche 1 – Einführung & print()",
+  "title_en": "Week 1 – Intro & print()",
+  "questions": [
+    {
+      "id": "w1-1",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Wofür benutzt man print() in Python?",
+      "question_en": "What is print() used for in Python?",
+      "options": [
+        "Um Text auszugeben",
+        "Um eine Datei zu speichern",
+        "Um eine Variable zu erstellen"
+      ],
+      "options_en": [
+        "To display text",
+        "To save a file",
+        "To create a variable"
+      ],
+      "correctIndex": 0,
+      "explanation": "print() gibt Text auf dem Bildschirm aus.",
+      "explanation_en": "print() displays text on the screen.",
+      "optionExplanations": [
+        null,
+        "print() speichert keine Dateien – dafür gibt es andere Funktionen wie open().",
+        "print() erstellt keine Variable, es gibt nur einen Wert auf dem Bildschirm aus."
+      ],
+      "optionExplanations_en": [
+        null,
+        "print() doesn't save files — that's what functions like open() are for.",
+        "print() doesn't create a variable, it just displays a value on the screen."
+      ]
+    },
+    {
+      "id": "w1-2",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Wie schreibt man Text in Python korrekt?",
+      "question_en": "How do you write text correctly in Python?",
+      "options": [
+        "In Anführungszeichen: \"Hallo\"",
+        "Ohne Anführungszeichen: Hallo",
+        "In eckigen Klammern: [Hallo]"
+      ],
+      "options_en": [
+        "In quotes: \"Hallo\"",
+        "Without quotes: Hallo",
+        "In square brackets: [Hallo]"
+      ],
+      "correctIndex": 0,
+      "explanation": "Strings stehen in Anführungszeichen.",
+      "explanation_en": "Strings are written in quotes.",
+      "optionExplanations": [
+        null,
+        "Ohne Anführungszeichen hält Python \"Hallo\" für einen Variablennamen, nicht für Text.",
+        "Eckige Klammern werden für Listen verwendet, nicht für Text."
+      ],
+      "optionExplanations_en": [
+        null,
+        "Without quotes, Python treats Hallo as a variable name, not as text.",
+        "Square brackets are used for lists, not for text."
+      ]
+    },
+    {
+      "id": "w1-3",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Welche Zeile ist korrekt?",
+      "question_en": "Which line is correct?",
+      "options": [
+        "print(\"Hi\")",
+        "Print(\"Hi\")",
+        "print[Hi]"
+      ],
+      "options_en": [
+        "print(\"Hi\")",
+        "Print(\"Hi\")",
+        "print[Hi]"
+      ],
+      "correctIndex": 0,
+      "explanation": "print muss klein geschrieben werden.",
+      "explanation_en": "print must be written in lowercase.",
+      "optionExplanations": [
+        null,
+        "Großschreibung ist falsch – print() muss klein geschrieben werden.",
+        "Eckige Klammern statt runder Klammern, und die Anführungszeichen um Hi fehlen."
+      ],
+      "optionExplanations_en": [
+        null,
+        "Capitalisation is wrong — print() must be lowercase.",
+        "Square brackets instead of round parentheses, and the quotation marks around Hi are missing."
+      ]
+    },
+    {
+      "id": "w1-4",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was ist eine Variable?",
+      "question_en": "What is a variable?",
+      "options": [
+        "Ein Behälter für einen Wert",
+        "Ein fester Wert, der sich nie ändert",
+        "Ein Name für eine Funktion"
+      ],
+      "options_en": [
+        "A container for a value",
+        "A fixed value that never changes",
+        "A name for a function"
+      ],
+      "correctIndex": 0,
+      "explanation": "Variablen speichern Werte unter einem Namen.",
+      "explanation_en": "Variables store values under a name.",
+      "optionExplanations": [
+        null,
+        "Das Gegenteil ist richtig – der Wert einer Variable kann sich jederzeit ändern.",
+        "Das beschreibt eher eine Funktion, nicht eine Variable."
+      ],
+      "optionExplanations_en": [
+        null,
+        "It's the opposite — a variable's value can change at any time.",
+        "That describes a function, not a variable."
+      ]
+    },
+    {
+      "id": "w1-5",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was macht name = \"Anna\"?",
+      "question_en": "What does name = \"Anna\" do?",
+      "options": [
+        "Speichert den Text Anna in name",
+        "Vergleicht name mit Anna",
+        "Gibt den Text Anna auf dem Bildschirm aus"
+      ],
+      "options_en": [
+        "Stores the text Anna in name",
+        "Compares name with Anna",
+        "Displays the text Anna on the screen"
+      ],
+      "correctIndex": 0,
+      "explanation": "Das = Zeichen weist einen Wert zu.",
+      "explanation_en": "The = sign assigns a value.",
+      "optionExplanations": [
+        null,
+        "Ein einzelnes = weist einen Wert zu, es vergleicht nicht – dafür gibt es ==.",
+        "Das = weist nur zu, es gibt nichts auf dem Bildschirm aus – dafür bräuchte man print()."
+      ],
+      "optionExplanations_en": [
+        null,
+        "A single = assigns a value, it doesn't compare — that's what == is for.",
+        "= only assigns, it doesn't display anything on screen — for that you'd need print()."
+      ]
+    },
+    {
+      "id": "w1-6",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was gibt print(punkte) aus, wenn punkte = 100?",
+      "question_en": "What does print(punkte) output if punkte = 100?",
+      "options": [
+        "100",
+        "punkte",
+        "Fehler"
+      ],
+      "options_en": [
+        "100",
+        "punkte",
+        "Error"
+      ],
+      "correctIndex": 0,
+      "explanation": "print zeigt den Wert der Variable, nicht den Namen.",
+      "explanation_en": "print shows the variable's value, not its name.",
+      "optionExplanations": [
+        null,
+        "print(punkte) gibt den gespeicherten Wert aus, nicht den Variablennamen selbst.",
+        "punkte ist definiert, also gibt es keinen Fehler."
+      ],
+      "optionExplanations_en": [
+        null,
+        "print(punkte) outputs the stored value, not the variable's name itself.",
+        "punkte is defined, so there is no error."
+      ]
+    },
+    {
+      "id": "w1-7",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Welches Zeichen weist einer Variable einen Wert zu?",
+      "question_en": "Which symbol assigns a value to a variable?",
+      "options": [
+        "=",
+        "==",
+        "+"
+      ],
+      "options_en": [
+        "=",
+        "==",
+        "+"
+      ],
+      "correctIndex": 0,
+      "explanation": "= weist zu, == vergleicht.",
+      "explanation_en": "= assigns, == compares.",
+      "optionExplanations": [
+        null,
+        "== vergleicht zwei Werte auf Gleichheit, es weist keinen Wert zu.",
+        "+ addiert Werte oder verbindet Text, es weist keinen Wert zu."
+      ],
+      "optionExplanations_en": [
+        null,
+        "== compares two values for equality, it doesn't assign a value.",
+        "+ adds values or joins text, it doesn't assign a value."
+      ]
+    },
+    {
+      "id": "w1-8",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Womit beginnt ein Kommentar in Python?",
+      "question_en": "What starts a comment in Python?",
+      "options": [
+        "#",
+        "//",
+        "/*"
+      ],
+      "options_en": [
+        "#",
+        "//",
+        "/*"
+      ],
+      "correctIndex": 0,
+      "explanation": "Alles nach # wird von Python ignoriert.",
+      "explanation_en": "Everything after # is ignored by Python.",
+      "optionExplanations": [
+        null,
+        "// ist in Python die Ganzzahldivision, kein Kommentarzeichen.",
+        "/* leitet in Sprachen wie Java oder C++ einen Kommentar ein, aber nicht in Python."
+      ],
+      "optionExplanations_en": [
+        null,
+        "// is floor division in Python, not a comment symbol.",
+        "/* starts a comment in languages like Java or C++, but not in Python."
+      ]
+    },
+    {
+      "id": "w1-9",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was gibt print(\"Hallo\", \"Welt\") ungefähr aus?",
+      "question_en": "What does print(\"Hallo\", \"Welt\") roughly output?",
+      "options": [
+        "Hallo Welt",
+        "HalloWelt",
+        "Fehler"
+      ],
+      "options_en": [
+        "Hallo Welt",
+        "HalloWelt",
+        "Error"
+      ],
+      "correctIndex": 0,
+      "explanation": "Mehrere Argumente werden mit Leerzeichen getrennt.",
+      "explanation_en": "Multiple arguments are separated by a space.",
+      "optionExplanations": [
+        null,
+        "print() fügt zwischen mehreren Argumenten automatisch ein Leerzeichen ein, es klebt sie nicht zusammen.",
+        "Zwei durch Komma getrennte Strings sind gültig, das gibt keinen Fehler."
+      ],
+      "optionExplanations_en": [
+        null,
+        "print() automatically inserts a space between multiple arguments, it doesn't glue them together.",
+        "Two strings separated by a comma are valid — this doesn't cause an error."
+      ]
+    },
+    {
+      "id": "w1-10",
+      "type": "multiple_select",
+      "inPlacement": false,
+      "question": "Welche Aussagen zu print() stimmen?",
+      "question_en": "Which statements about print() are true?",
+      "options": [
+        "print kann Text ausgeben",
+        "print muss groß geschrieben werden",
+        "print kann auch Zahlen ausgeben",
+        "print braucht immer Anführungszeichen um den Inhalt"
+      ],
+      "options_en": [
+        "print can display text",
+        "print must be capitalized",
+        "print can also display numbers",
+        "print always needs quotes around its content"
+      ],
+      "correctIndices": [
+        0,
+        2
+      ],
+      "explanation": "print gibt Werte aus – klein geschrieben, Text und Zahlen sind ok.",
+      "explanation_en": "print outputs values — written in lowercase, and both text and numbers are fine."
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Schreibe ein Programm, das den Text \"Level 1 geschafft!\" ausgibt.",
+      "instruction_en": "Write a program that prints the text \"Level 1 geschafft!\".",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "Level 1 geschafft!"
+      }
+    },
+    {
+      "instruction": "Erstelle eine Variable name mit dem Wert \"Nova\" und eine Variable level mit der Zahl 3. Gib \"Nova hat Level 3 erreicht!\" aus, indem du beide Variablen mit + verbindest (denk an str()).",
+      "instruction_en": "Create a variable name with the value \"Nova\" and a variable level with the number 3. Print \"Nova hat Level 3 erreicht!\" by combining both variables with + (remember str()).",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "Nova hat Level 3 erreicht!"
+      }
+    }
+  ]
+}
