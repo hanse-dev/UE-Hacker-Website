@@ -563,7 +563,7 @@ Klassen wie `.btn-kernel`/`.code-editor` in LessonView/ProjectCourse/Interactive
 `WeekSection.vue`-Aufteilung, `LessonView.vue`/`QuizStep.vue`-Entflechtung, Ternary-Cleanup (97
 Inline-`lang === 'en' ? X : Y`).
 
-### 3.19 Refactoring Schritt 2: CSS-Konsolidierung Kurs-Sidebar-Layout (Branch `css-konsolidierung-kurslayout`)
+### 3.19 Refactoring Schritt 2: CSS-Konsolidierung Kurs-Sidebar-Layout (Branch `css-konsolidierung-kurslayout`) — gemerged
 
 `ProjectCourse.vue` ist laut 3.11 eine "reduzierte Kopie" von `InteractiveCourse.vue` — Diff der
 kompilierten CSS-Regeln bestätigte: der komplette Sidebar/Lektionsliste/Fortschritt-Block
