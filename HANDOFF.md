@@ -1,11 +1,11 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-09-07  
-> **Aktueller Stand:** Alle Branches bis `css-konsolidierung-kurslayout` (3.5–3.19) sind in `main`
+> **Aktueller Stand:** Alle Branches bis `weeksection-subkomponenten` (3.5–3.20) sind in `main`
 > gemergt (siehe `git log main` für die genaue Reihenfolge), dazwischen auch `dependency-audit-fixes`
 > und `vite-major-bump`. Noch **nicht** nach `origin/main` gepusht — Push/Deploy bewusst
-> zurückgestellt, siehe Abschnitt 5/7. Refactoring gegen zu große Dateien läuft (Schritt 1+2 fertig,
-> siehe Abschnitt 5) — Schritt 3 (`WeekSection.vue`-Aufteilung) ist der nächste.
+> zurückgestellt, siehe Abschnitt 5/7. Refactoring gegen zu große Dateien läuft (Schritt 1-3 fertig,
+> siehe Abschnitt 5) — Schritt 4 (`LessonView.vue` entflechten) ist der nächste.
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -600,6 +600,38 @@ unterscheiden sich) — dort lohnt sich vor einer Konsolidierung erst ein Abglei
 Unterschiede beabsichtigt sind oder Drift. Danach `WeekSection.vue`-Aufteilung, `LessonView.vue`/
 `QuizStep.vue`-Entflechtung, Ternary-Cleanup.
 
+### 3.20 Refactoring Schritt 3: `WeekSection.vue` in Subkomponenten aufgeteilt (Branch `weeksection-subkomponenten`)
+
+Zwei in sich geschlossene Template-Blöcke aus `WeekSection.vue` (666 Zeilen) ausgelagert:
+`CheatSheetList.vue` (der komplette Cheat-Sheet-Akkordeon-Block: Header, Download-Buttons,
+Markdown-Vorschau mit allen `:deep()`-Styles) und `VariantSelector.vue` (die 3
+Varianten-Buttons). Beide erhalten `week`/`cheat-sheets` als Prop und emittieren nach oben
+(`toggle`/`set-variant`) — der Zustand (`week.expandedCheatSheets`, `week.selectedVariant`) bleibt
+weiterhin außerhalb von `WeekSection.vue` verwaltet, wie schon vor dem Split (`WeekSection.vue` war
+selbst schon nur ein Relay dafür, keine Verhaltensänderung).
+
+**Gelernte Regel:** vor dem Verschieben von CSS-Regeln in eine neue Komponente per Playwright
+`getComputedStyle()` auf dem ALTEN Stand geprüft, nicht nur die Selektor-Texte verglichen — dabei
+einen bestehenden CSS-"Leak" gefunden: `.cheat-sheet-header h4` bekam über die generische
+`.downloads-section h4`-Regel (gedacht für die "Sonstige Downloads"-Liste) zusätzlich
+`border-top`/`padding-top`, weil beide Blöcke früher denselben `.downloads-section`-Wrapper und
+dieselbe Scope-Datei teilten. Nach dem Split verschwindet dieser Cross-Selector-Effekt automatisch
+(andere Komponente, anderer Scope-Hash) — die zwei Werte deshalb explizit in
+`CheatSheetList.vue`s eigene `.cheat-sheet-header h4`-Regel übernommen, damit sich am Rendering
+nichts ändert. **Bei künftigen Komponenten-Splits:** immer prüfen, ob eine generische Ziel-Regel
+(hier `.downloads-section h4`) versehentlich auch Elemente trifft, die mit ausgelagert werden.
+
+**Getestet:** `npm run test:checks` (49) + `npm run test:auth` (13) + `npm test` (60, volle
+Notebook-Suite über alle Wochen/Varianten) grün. Zusätzlich per Playwright verifiziert: Varianten-
+Umschaltung funktioniert weiter (aktive Klasse + Hintergrundfarbe korrekt), Cheat-Sheet-Akkordeon
+öffnet/schließt weiter, Download-Links funktionieren, und der `.cheat-sheet-header h4`-Computed-Style
+ist byte-identisch zum Stand vor dem Split.
+
+**Ergebnis:** `WeekSection.vue` 666 → 451 Zeilen, neue `CheatSheetList.vue` (201 Zeilen) und
+`VariantSelector.vue` (73 Zeilen).
+
+**Offen (nächste Schritte):** `LessonView.vue`/`QuizStep.vue`-Entflechtung, dann Ternary-Cleanup.
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -719,7 +751,8 @@ bewusst zurückgestellt (Nutzer will erst später deployen).
       `css-konsolidierung-kurslayout`, gemergt). `.btn-kernel`/`.btn-check`/`.code-editor`/
       `.kernel-status` (LessonView/CodeChallenge) noch offen — die sind NICHT identisch, erst
       Drift vs. Absicht klären (siehe 3.19 "Offen")
-- [ ] Schritt 3: `WeekSection.vue` in Subkomponenten aufteilen (CheatSheetList, VariantSelector)
+- [x] Schritt 3: `WeekSection.vue` in Subkomponenten aufgeteilt (3.20, Branch
+      `weeksection-subkomponenten`, gemergt) — neue `CheatSheetList.vue` + `VariantSelector.vue`
 - [ ] Schritt 4: `LessonView.vue` entflechten (Glossar/Content-Loading → eigenes Composable)
 - [ ] Schritt 5: `QuizStep.vue`/`PlacementCourse.vue` ähnlich entflechten
 - [ ] Schritt 6: Ternary-Cleanup (97 Inline-`lang === 'en' ? X : Y`) — niedrige Priorität, außer eine
@@ -794,8 +827,8 @@ dazu kommt — der bestehende `t()`-Mechanismus reicht, nur der Content ist der 
    Punkte-/Item-System wieder einführen (siehe 3.12)
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
-**Empfohlener nächster Schritt:** Refactoring-Schritte 1+2 sind fertig, getestet und gemergt.
-Schritt 3 (`WeekSection.vue`-Aufteilung, siehe Abschnitt 5) ist der nächste im laufenden Plan.
+**Empfohlener nächster Schritt:** Refactoring-Schritte 1-3 sind fertig, getestet und gemergt.
+Schritt 4 (`LessonView.vue` entflechten, siehe Abschnitt 5) ist der nächste im laufenden Plan.
 Weiterhin offen: ob/wann nach `origin/main` gepusht und deployed wird. Falls stattdessen inhaltlich
 weitergearbeitet werden soll: `kurs-python-spiele` (Spiele-Werkstatt-Inhalte, bereits begonnen) ist
 der nächstliegende Kandidat.
