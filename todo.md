@@ -132,7 +132,7 @@ und Server-Deploy bewusst zurückgestellt (siehe HANDOFF.md).
       Pferde-Siegerehrung Woche 1). Fiktive Story-Werte, die eine Übung selbst berechnet
       (Helden-Steckbriefe, Quest-Listen-Summen, Cyber-Credits-Rechenübung, HP-Zufallsereignisse),
       bewusst nicht angefasst — keine echte Belohnungsbehauptung ans reale Publikum.
-- [x] `weeks-json-splitten` (HANDOFF.md 3.18, noch nicht gemergt) — Refactoring Schritt 1:
+- [x] `weeks-json-splitten` (HANDOFF.md 3.18, gemergt) — Refactoring Schritt 1:
       `content/python-checks/weeks.json` (3925 Zeilen, größte Datei im Repo) in `config.json` +
       `week-1.json`…`week-12.json` aufgeteilt, Round-Trip gegen alte Datei verifiziert. Neuer
       Node-Loader `content/python-checks/index.mjs` für die 3 betroffenen Tests (Vite-Browser-Seite

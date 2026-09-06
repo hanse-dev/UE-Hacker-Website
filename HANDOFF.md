@@ -1,12 +1,11 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-09-07  
-> **Aktueller Stand:** Alle Branches bis `einstufung-personalisierte-erklaerungen` (3.5–3.17) sind in
-> `main` gemergt (siehe `git log main` für die genaue Reihenfolge), dazwischen auch
-> `dependency-audit-fixes` und `vite-major-bump`. Noch **nicht** nach `origin/main` gepusht —
-> Push/Deploy bewusst zurückgestellt, siehe Abschnitt 5/7. **Aktuell in Arbeit:** Branch
-> `weeks-json-splitten` (3.18) — erster Schritt eines größeren Refactorings gegen zu große Dateien,
-> noch nicht nach `main` gemergt.
+> **Aktueller Stand:** Alle Branches bis `weeks-json-splitten` (3.5–3.18) sind in `main` gemergt
+> (siehe `git log main` für die genaue Reihenfolge), dazwischen auch `dependency-audit-fixes` und
+> `vite-major-bump`. Noch **nicht** nach `origin/main` gepusht — Push/Deploy bewusst zurückgestellt,
+> siehe Abschnitt 5/7. `weeks-json-splitten` (3.18) ist Schritt 1 eines größeren, laufenden
+> Refactorings gegen zu große Dateien — Schritt 2 (CSS-Konsolidierung) ist der nächste.
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -531,7 +530,7 @@ Erklärung als Paar mischen, sonst hängt nach dem Shuffle die falsche Erklärun
 Option. Nebenfund: 119 von 120 `explanation_en`-Felder waren nie übersetzt (identisch zum
 deutschen Text) — im selben Zug mitgefixt. Details/Content-Erstellung: `git log`/PR.
 
-### 3.18 Refactoring-Start: `weeks.json` pro Woche aufgeteilt (Branch `weeks-json-splitten`)
+### 3.18 Refactoring-Start: `weeks.json` pro Woche aufgeteilt (Branch `weeks-json-splitten`) — gemerged
 
 Erster Schritt eines größeren, vom Nutzer angestoßenen Refactorings gegen zu große Dateien (Analyse
 ergab: die meisten großen `.vue`-Components sind zu 40-65% `<style>`-Block, nicht Logik — Composables-
@@ -678,8 +677,7 @@ für die genaue Reihenfolge) — noch **nicht** nach `origin/main` gepusht, Push
 bewusst zurückgestellt (Nutzer will erst später deployen).
 
 **Refactoring (vom Nutzer angestoßen, gegen zu große Dateien):**
-- [x] Schritt 1: `weeks.json` pro Woche gesplittet (3.18, Branch `weeks-json-splitten`, noch nicht
-      gemergt)
+- [x] Schritt 1: `weeks.json` pro Woche gesplittet (3.18, Branch `weeks-json-splitten`, gemergt)
 - [ ] Schritt 2: CSS-Konsolidierung (doppelte Klassen `.btn-kernel`/`.btn-check`/`.code-editor`/
       `.kernel-status` in LessonView/ProjectCourse/InteractiveCourse/CodeChallenge)
 - [ ] Schritt 3: `WeekSection.vue` in Subkomponenten aufteilen (CheatSheetList, VariantSelector)
@@ -757,8 +755,8 @@ dazu kommt — der bestehende `t()`-Mechanismus reicht, nur der Content ist der 
    Punkte-/Item-System wieder einführen (siehe 3.12)
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
-**Empfohlener nächster Schritt:** `weeks-json-splitten` (3.18) ist fertig und getestet, aber noch
-nicht nach `main` gemergt — als Erstes klären, ob gemerged werden soll. Danach Refactoring-Schritt 2
-(CSS-Konsolidierung) fortsetzen, siehe Abschnitt 5. Weiterhin offen: ob/wann nach `origin/main`
-gepusht und deployed wird. Falls stattdessen inhaltlich weitergearbeitet werden soll:
-`kurs-python-spiele` (Spiele-Werkstatt-Inhalte, bereits begonnen) ist der nächstliegende Kandidat.
+**Empfohlener nächster Schritt:** `weeks-json-splitten` (3.18) ist fertig, getestet und gemergt.
+Refactoring-Schritt 2 (CSS-Konsolidierung, siehe Abschnitt 5) ist der nächste im laufenden Plan.
+Weiterhin offen: ob/wann nach `origin/main` gepusht und deployed wird. Falls stattdessen inhaltlich
+weitergearbeitet werden soll: `kurs-python-spiele` (Spiele-Werkstatt-Inhalte, bereits begonnen) ist
+der nächstliegende Kandidat.
