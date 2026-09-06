@@ -137,6 +137,12 @@ und Server-Deploy bewusst zurückgestellt (siehe HANDOFF.md).
       `week-1.json`…`week-12.json` aufgeteilt, Round-Trip gegen alte Datei verifiziert. Neuer
       Node-Loader `content/python-checks/index.mjs` für die 3 betroffenen Tests (Vite-Browser-Seite
       nutzt weiter `import.meta.glob` in `useWeekChecks.js`, jetzt über mehrere Dateien gemerged).
+- [x] `css-konsolidierung-kurslayout` (HANDOFF.md 3.19, gemergt) — Refactoring Schritt 2: den
+      kompletten Sidebar/Lektionsliste-CSS-Block (~165 Zeilen, byte-identisch dupliziert zwischen
+      `InteractiveCourse.vue` und `ProjectCourse.vue`) nach `src/assets/styles/course-layout.css`
+      ausgelagert. `InteractiveCourse.vue` 547→386, `ProjectCourse.vue` 383→217 Zeilen. Per
+      Playwright visuell verifiziert (`getComputedStyle()` + Screenshots), da CSS-Änderungen von
+      den Funktionstests nicht erfasst werden.
 
 ---
 

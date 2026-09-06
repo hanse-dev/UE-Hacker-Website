@@ -187,6 +187,13 @@ export default {
 };
 </script>
 
+<style>
+/* Unscoped, damit die @import-Regeln denselben Klassennamen greifen wie im Template gerendert
+   (siehe course-layout.css-Kommentar: @import in <style scoped> bekommt einen abweichenden
+   Scope-Hash). Alle Klassen darin sind exklusiv für ProjectCourse.vue/InteractiveCourse.vue. */
+@import '../assets/styles/course-layout.css';
+</style>
+
 <style scoped>
 .project-course {
   max-width: 1200px;
@@ -206,178 +213,5 @@ export default {
   background: #f8d7da;
   border: 1px solid #f5c6cb;
   border-radius: 8px;
-}
-
-.progress-count {
-  font-weight: 600;
-  color: #28a745;
-}
-
-.course-layout {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  grid-template-rows: auto 1fr;
-  gap: 24px;
-  background: var(--white, #fff);
-  border: 1px solid var(--border-color, #e0e0e0);
-  border-radius: 12px;
-  padding: 24px;
-  min-height: 500px;
-}
-
-.progress-bar-full {
-  grid-column: 1 / -1;
-  background: #fff;
-  border: 1px solid #dee2e6;
-  border-radius: 8px;
-  padding: 16px 20px;
-}
-
-.progress-bar-full .progress-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-  font-size: 0.95em;
-  color: #555;
-}
-
-.progress-info-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.btn-sidebar-toggle {
-  display: none;
-  align-items: center;
-  gap: 4px;
-  background: transparent;
-  border: 1px solid #dee2e6;
-  border-radius: 6px;
-  padding: 4px 10px;
-  font-size: 0.85em;
-  cursor: pointer;
-  color: var(--primary-purple, #4a2274);
-  white-space: nowrap;
-}
-
-.progress-bar-full .progress-track {
-  height: 8px;
-  background: #e9ecef;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.progress-bar-full .progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--primary-purple, #4a2274), var(--accent-orange, #ff9800));
-  transition: width 0.3s ease;
-}
-
-.lessons-sidebar {
-  background: #fff;
-  border: 1px solid #dee2e6;
-  border-radius: 8px;
-  padding: 20px;
-  height: fit-content;
-  position: sticky;
-  top: 20px;
-}
-
-.lessons-sidebar h3 {
-  margin: 0 0 16px 0;
-  font-size: 1.1em;
-  color: #333;
-}
-
-.lessons-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.lesson-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  margin-bottom: 4px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.lesson-item:hover:not(.locked) { background: #f8f9fa; }
-.lesson-item.active {
-  background: rgba(74, 34, 116, 0.08);
-  border-left: 3px solid var(--primary-purple, #4a2274);
-}
-.lesson-item.completed { color: #28a745; }
-.lesson-item.locked { opacity: 0.5; cursor: not-allowed; }
-
-.lesson-number {
-  font-weight: 700;
-  color: var(--primary-purple, #4a2274);
-  min-width: 24px;
-}
-
-.lesson-title { flex: 1; font-size: 0.95em; }
-.lesson-check { color: #28a745; font-weight: bold; }
-
-.sidebar-actions {
-  margin-top: 20px;
-  padding-top: 16px;
-  border-top: 1px solid #eee;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.btn-export,
-.btn-import {
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 0.9em;
-  cursor: pointer;
-  text-align: center;
-}
-
-.btn-export:hover,
-.btn-import:hover { background: #e9ecef; }
-
-.file-input { display: none; }
-.lesson-main { min-width: 0; }
-
-.no-lesson {
-  background: #f8f9fa;
-  border: 2px dashed #dee2e6;
-  border-radius: 8px;
-  padding: 60px 40px;
-  text-align: center;
-  color: #6c757d;
-}
-
-@media (max-width: 768px) {
-  .course-layout {
-    grid-template-columns: 1fr;
-    grid-template-rows: unset;
-    min-height: unset;
-    padding: 16px;
-    gap: 16px;
-  }
-
-  .progress-bar-full { order: 1; }
-  .lessons-sidebar {
-    order: 2;
-    position: static;
-    display: none;
-  }
-  .lesson-main { order: 3; }
-  .lessons-sidebar.sidebar-mobile-open { display: block; }
-
-  .btn-sidebar-toggle { display: inline-flex; }
 }
 </style>
