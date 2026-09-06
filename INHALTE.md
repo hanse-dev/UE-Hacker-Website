@@ -212,7 +212,11 @@ Jeder Ordner enthält dieselben Dateien:
 - [ ] `public/rewards-manifest-en.json`
 
 ### Wenn du die Wochen-Check-Fragen oder die Coding-Aufgabe änderst:
-- [ ] `content/python-checks/weeks.json` (Feld `questions` bzw. `codingChallenge` je Woche, DE+EN in denselben Einträgen)
+- [ ] `content/python-checks/week-{N}.json` (Feld `questions` bzw. `codingChallenges` je Woche, DE+EN
+      in denselben Einträgen). Allgemeine Config (`passThreshold`, `placementPerWeek`, `projects`, …)
+      steht separat in `content/python-checks/config.json`. Seit dem `weeks-json-splitten`-Refactor
+      **eine Datei pro Woche** statt einer gemeinsamen `weeks.json` — beim Zusammenführen zur Laufzeit
+      siehe `useWeekChecks.js` (Browser/Vite) bzw. `content/python-checks/index.mjs` (Tests/Node).
 
 ### Wenn du Kurs-Metadaten (Titel, Beschreibung) änderst:
 - [ ] `public/kurse.json` (Felder `title`, `title_en`, `description`, `description_en`)

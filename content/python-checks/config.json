@@ -1,0 +1,65 @@
+{
+  "passThreshold": 0.8,
+  "placementPerWeek": 3,
+  "placementPassThreshold": 0.66,
+  "weekCheckCount": 5,
+  "projects": [
+    {
+      "id": "quiz-arena",
+      "title": "Quiz-Arena",
+      "title_en": "Quiz Arena",
+      "description": "Baue dein eigenes Quiz: Fragen in einer Liste oder einem Dictionary, Eingabe mit input(), Punkte zählen mit if/else. Speichere Highscores optional in einer JSON-Datei.",
+      "description_en": "Build your own quiz: questions in a list or dictionary, input() for answers, score with if/else. Optionally save highscores to a JSON file.",
+      "skills": [
+        "Listen/Dicts",
+        "if/else",
+        "Funktionen",
+        "JSON (optional)"
+      ],
+      "skills_en": [
+        "Lists/dicts",
+        "if/else",
+        "Functions",
+        "JSON (optional)"
+      ]
+    },
+    {
+      "id": "turtle-welt",
+      "title": "Turtle-Welt",
+      "title_en": "Turtle World",
+      "description": "Zeichne eine Szene oder ein kleines Spiel mit Turtle: Haus, Labyrinth oder Fang-den-Punkt. Nutze Schleifen für Muster und Funktionen für wiederkehrende Formen.",
+      "description_en": "Draw a scene or a small game with Turtle: house, maze, or catch-the-dot. Use loops for patterns and functions for repeated shapes.",
+      "skills": [
+        "Turtle",
+        "Schleifen",
+        "Funktionen",
+        "Zufall (optional)"
+      ],
+      "skills_en": [
+        "Turtle",
+        "Loops",
+        "Functions",
+        "Random (optional)"
+      ]
+    },
+    {
+      "id": "helden-tagebuch",
+      "title": "Helden-Tagebuch",
+      "title_en": "Hero Journal",
+      "description": "Erfinde ein Tagebuch oder Inventar für deine Kurs-Figur: Einträge als Dictionary, speichern/laden mit JSON, Menü mit while-Schleife. Später kannst du Klassen (OOP) dafür nutzen.",
+      "description_en": "Create a journal or inventory for your course character: entries as dictionaries, save/load with JSON, menu with a while loop. Later you can use classes (OOP) for it.",
+      "skills": [
+        "Dicts",
+        "JSON/Dateien",
+        "while-Menü",
+        "OOP (optional)"
+      ],
+      "skills_en": [
+        "Dicts",
+        "JSON/files",
+        "while menu",
+        "OOP (optional)"
+      ]
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import checks from '../content/python-checks/weeks.json' with { type: 'json' };
+import checks from '../content/python-checks/index.mjs';
 import {
   isAnswerCorrect,
   scoreQuizAnswers,

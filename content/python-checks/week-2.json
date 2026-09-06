@@ -1,0 +1,317 @@
+{
+  "title": "Woche 2 – Datentypen & Variablen",
+  "title_en": "Week 2 – Data types & variables",
+  "questions": [
+    {
+      "id": "w2-1",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Welcher Datentyp ist 42?",
+      "question_en": "Which data type is 42?",
+      "options": [
+        "int",
+        "str",
+        "bool"
+      ],
+      "options_en": [
+        "int",
+        "str",
+        "bool"
+      ],
+      "correctIndex": 0,
+      "explanation": "42 ist eine ganze Zahl (int).",
+      "explanation_en": "42 is a whole number (int).",
+      "optionExplanations": [
+        null,
+        "str steht für Text in Anführungszeichen, 42 hat aber keine Anführungszeichen.",
+        "bool steht nur für True oder False, nicht für Zahlen wie 42."
+      ],
+      "optionExplanations_en": [
+        null,
+        "str stands for text in quotes, but 42 has no quotes.",
+        "bool only stands for True or False, not for numbers like 42."
+      ]
+    },
+    {
+      "id": "w2-2",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Welcher Datentyp ist \"Hallo\"?",
+      "question_en": "Which data type is \"Hallo\"?",
+      "options": [
+        "str",
+        "int",
+        "float"
+      ],
+      "options_en": [
+        "str",
+        "int",
+        "float"
+      ],
+      "correctIndex": 0,
+      "explanation": "Text in Anführungszeichen ist ein String.",
+      "explanation_en": "Text in quotes is a string.",
+      "optionExplanations": [
+        null,
+        "int steht für ganze Zahlen, \"Hallo\" ist aber Text in Anführungszeichen.",
+        "float steht für Kommazahlen, \"Hallo\" ist aber Text in Anführungszeichen."
+      ],
+      "optionExplanations_en": [
+        null,
+        "int stands for whole numbers, but \"Hallo\" is text in quotes.",
+        "float stands for decimal numbers, but \"Hallo\" is text in quotes."
+      ]
+    },
+    {
+      "id": "w2-3",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Welcher Datentyp ist 3.14?",
+      "question_en": "Which data type is 3.14?",
+      "options": [
+        "float",
+        "int",
+        "str"
+      ],
+      "options_en": [
+        "float",
+        "int",
+        "str"
+      ],
+      "correctIndex": 0,
+      "explanation": "Zahlen mit Punkt sind float.",
+      "explanation_en": "Numbers with a decimal point are floats.",
+      "optionExplanations": [
+        null,
+        "int steht für ganze Zahlen ohne Nachkommastellen, 3.14 hat aber einen Dezimalpunkt.",
+        "str steht für Text in Anführungszeichen, 3.14 hat aber keine Anführungszeichen."
+      ],
+      "optionExplanations_en": [
+        null,
+        "int stands for whole numbers without decimals, but 3.14 has a decimal point.",
+        "str stands for text in quotes, but 3.14 has no quotes."
+      ]
+    },
+    {
+      "id": "w2-4",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was macht type(x)?",
+      "question_en": "What does type(x) do?",
+      "options": [
+        "Zeigt den Datentyp von x",
+        "Wandelt x in Text um",
+        "Gibt den Wert von x aus"
+      ],
+      "options_en": [
+        "Shows the data type of x",
+        "Converts x to text",
+        "Prints the value of x"
+      ],
+      "correctIndex": 0,
+      "explanation": "type() verrät den Datentyp.",
+      "explanation_en": "type() reveals the data type.",
+      "optionExplanations": [
+        null,
+        "Das würde str(x) machen, type() wandelt nichts um.",
+        "Das würde print(x) machen, type() zeigt den Datentyp, nicht den Wert."
+      ],
+      "optionExplanations_en": [
+        null,
+        "That's what str(x) would do — type() doesn't convert anything.",
+        "That's what print(x) would do — type() shows the data type, not the value."
+      ]
+    },
+    {
+      "id": "w2-5",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Welcher Typ sind True und False?",
+      "question_en": "Which type are True and False?",
+      "options": [
+        "bool",
+        "str",
+        "int"
+      ],
+      "options_en": [
+        "bool",
+        "str",
+        "int"
+      ],
+      "correctIndex": 0,
+      "explanation": "Boolean = Wahrheitswert.",
+      "explanation_en": "Boolean = truth value.",
+      "optionExplanations": [
+        null,
+        "str steht für Text in Anführungszeichen, True/False sind aber Wahrheitswerte ohne Anführungszeichen.",
+        "int steht für ganze Zahlen, True/False sind aber ein eigener Typ (bool), auch wenn sie sich wie 1 und 0 verhalten können."
+      ],
+      "optionExplanations_en": [
+        null,
+        "str stands for text in quotes, but True/False are truth values without quotes.",
+        "int stands for whole numbers — True/False are their own type (bool), even though they can behave like 1 and 0."
+      ]
+    },
+    {
+      "id": "w2-6",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was ergibt 10 / 2 in Python 3?",
+      "question_en": "What is 10 / 2 in Python 3?",
+      "options": [
+        "5.0",
+        "5",
+        "\"10/2\""
+      ],
+      "options_en": [
+        "5.0",
+        "5",
+        "\"10/2\""
+      ],
+      "correctIndex": 0,
+      "explanation": "/ liefert immer eine Kommazahl.",
+      "explanation_en": "/ always returns a decimal number.",
+      "optionExplanations": [
+        null,
+        "5 wäre das Ergebnis von 10 // 2 (Ganzzahldivision), / liefert aber immer eine Kommazahl.",
+        "Python berechnet 10 / 2, es gibt keinen Text als Ergebnis zurück."
+      ],
+      "optionExplanations_en": [
+        null,
+        "5 would be the result of 10 // 2 (floor division) — / always returns a decimal number.",
+        "Python calculates 10 / 2, it doesn't return text as the result."
+      ]
+    },
+    {
+      "id": "w2-7",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was ergibt 10 // 3?",
+      "question_en": "What is 10 // 3?",
+      "options": [
+        "3",
+        "3.33",
+        "3.0"
+      ],
+      "options_en": [
+        "3",
+        "3.33",
+        "3.0"
+      ],
+      "correctIndex": 0,
+      "explanation": "// ist Ganzzahldivision.",
+      "explanation_en": "// is floor division.",
+      "optionExplanations": [
+        null,
+        "3.33 wäre das (gerundete) Ergebnis von 10 / 3, // rundet aber ab auf eine ganze Zahl.",
+        "// gibt bei zwei ganzen Zahlen ein int zurück (3), keine Kommazahl."
+      ],
+      "optionExplanations_en": [
+        null,
+        "3.33 would be the (rounded) result of 10 / 3 — // rounds down to a whole number.",
+        "// returns an int (3) when both operands are ints, not a decimal number."
+      ]
+    },
+    {
+      "id": "w2-8",
+      "type": "multiple_select",
+      "inPlacement": false,
+      "question": "Welche Variablennamen sind erlaubt?",
+      "question_en": "Which variable names are allowed?",
+      "options": [
+        "spieler1",
+        "name",
+        "1spieler",
+        "spieler-name"
+      ],
+      "options_en": [
+        "spieler1",
+        "name",
+        "1spieler",
+        "spieler-name"
+      ],
+      "correctIndices": [
+        0,
+        1
+      ],
+      "explanation": "Namen dürfen nicht mit einer Ziffer beginnen und kein Minuszeichen enthalten.",
+      "explanation_en": "Names must not start with a digit and must not contain a hyphen."
+    },
+    {
+      "id": "w2-9",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was macht int(\"7\")?",
+      "question_en": "What does int(\"7\") do?",
+      "options": [
+        "Wandelt Text in die Zahl 7 um",
+        "Gibt einen Fehler",
+        "Gibt \"7\" zurück"
+      ],
+      "options_en": [
+        "Converts text to the number 7",
+        "Raises an error",
+        "Returns \"7\""
+      ],
+      "correctIndex": 0,
+      "explanation": "int() wandelt in Ganzzahl um.",
+      "explanation_en": "int() converts to a whole number.",
+      "optionExplanations": [
+        null,
+        "\"7\" lässt sich problemlos in eine Zahl umwandeln, das gibt keinen Fehler.",
+        "int() wandelt den Text in die Zahl 7 um (ohne Anführungszeichen), nicht in den Text \"7\" zurück."
+      ],
+      "optionExplanations_en": [
+        null,
+        "\"7\" can be converted to a number without any problem, this doesn't cause an error.",
+        "int() converts the text into the number 7 (without quotes), not back into the text \"7\"."
+      ]
+    },
+    {
+      "id": "w2-10",
+      "type": "multiple_select",
+      "inPlacement": false,
+      "question": "Welche davon sind gültige Datentypen in Python?",
+      "question_en": "Which of these are valid Python data types?",
+      "options": [
+        "int",
+        "str",
+        "float",
+        "print"
+      ],
+      "options_en": [
+        "int",
+        "str",
+        "float",
+        "print"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "print ist eine Funktion, kein Datentyp.",
+      "explanation_en": "print is a function, not a data type."
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Berechne 7 + 5 und gib das Ergebnis aus.",
+      "instruction_en": "Calculate 7 + 5 and print the result.",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "12"
+      }
+    },
+    {
+      "instruction": "Erstelle eine Variable alter mit der Zahl 10 (int) und wandle sie mit str() in Text um. Gib den Satz \"Ich bin 10 Jahre alt\" aus, indem du den Text mit der umgewandelten Variable zusammensetzt.",
+      "instruction_en": "Create a variable alter with the number 10 (int) and convert it to text with str(). Print the sentence \"Ich bin 10 Jahre alt\" by combining the text with the converted variable.",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "Ich bin 10 Jahre alt"
+      }
+    }
+  ]
+}

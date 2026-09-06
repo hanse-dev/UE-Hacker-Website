@@ -1,0 +1,322 @@
+{
+  "title": "Woche 11 – OOP Fortgeschritten",
+  "title_en": "Week 11 – Advanced OOP",
+  "questions": [
+    {
+      "id": "w11-1",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Was ist Vererbung?",
+      "question_en": "What is inheritance?",
+      "options": [
+        "Eine Klasse übernimmt von einer anderen",
+        "Ein Objekt in eine Datei speichern",
+        "Zwei Klassen zu einer verschmelzen"
+      ],
+      "options_en": [
+        "A class takes over from another",
+        "Saving an object to a file",
+        "Merging two classes into one"
+      ],
+      "correctIndex": 0,
+      "explanation": "Kindklasse erbt von Elternklasse.",
+      "explanation_en": "A child class inherits from a parent class.",
+      "optionExplanations": [
+        null,
+        "Das beschreibt Speichern/Serialisieren (z.B. mit JSON), nicht Vererbung — Vererbung bedeutet, dass eine Klasse Eigenschaften einer anderen übernimmt.",
+        "Bei Vererbung bleiben Eltern- und Kindklasse getrennte Klassen — sie verschmelzen nicht zu einer einzigen."
+      ],
+      "optionExplanations_en": [
+        null,
+        "That describes saving/serializing data (e.g. with JSON), not inheritance — inheritance means a class takes over properties from another.",
+        "With inheritance, parent and child stay separate classes — they don't merge into one."
+      ]
+    },
+    {
+      "id": "w11-2",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Was bedeutet Methoden überschreiben?",
+      "question_en": "What does overriding a method mean?",
+      "options": [
+        "In der Kindklasse neu definieren",
+        "Die Methode löschen für immer",
+        "Ein Modul importieren"
+      ],
+      "options_en": [
+        "Redefine it in the child class",
+        "Delete the method forever",
+        "Import a module"
+      ],
+      "correctIndex": 0,
+      "explanation": "Gleiches Methodenname, neues Verhalten.",
+      "explanation_en": "Same method name, new behavior.",
+      "optionExplanations": [
+        null,
+        "Beim Überschreiben bleibt die Methode der Elternklasse erhalten — die Kindklasse definiert nur eine eigene Version mit demselben Namen.",
+        "Das hat nichts mit Modulen zu tun — Überschreiben bedeutet, eine geerbte Methode in der Kindklasse neu zu definieren."
+      ],
+      "optionExplanations_en": [
+        null,
+        "Overriding doesn't delete the parent's method — the child class just defines its own version with the same name.",
+        "This has nothing to do with modules — overriding means redefining an inherited method in the child class."
+      ]
+    },
+    {
+      "id": "w11-3",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Wozu dient super()?",
+      "question_en": "What is super() for?",
+      "options": [
+        "Eltern-Methoden aufrufen",
+        "Schleifen beenden",
+        "JSON speichern"
+      ],
+      "options_en": [
+        "Calling parent methods",
+        "Ending loops",
+        "Saving JSON"
+      ],
+      "correctIndex": 0,
+      "explanation": "super() greift auf die Elternklasse zu.",
+      "explanation_en": "super() gives access to the parent class.",
+      "optionExplanations": [
+        null,
+        "Für das Beenden von Schleifen gibt es break — super() dient dazu, auf Methoden der Elternklasse zuzugreifen.",
+        "super() hat nichts mit JSON oder Dateien zu tun — es ruft Methoden der Elternklasse auf."
+      ],
+      "optionExplanations_en": [
+        null,
+        "break is used to end loops — super() is instead used to access methods of the parent class.",
+        "super() has nothing to do with JSON or files — it calls methods of the parent class."
+      ]
+    },
+    {
+      "id": "w11-4",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was bedeutet class Katze(Tier):?",
+      "question_en": "What does class Katze(Tier): mean?",
+      "options": [
+        "Katze erbt von Tier",
+        "Katze löscht Tier",
+        "Zwei unverbundene Klassen"
+      ],
+      "options_en": [
+        "Katze inherits from Tier",
+        "Katze deletes Tier",
+        "Two unrelated classes"
+      ],
+      "correctIndex": 0,
+      "explanation": "Klammer = Elternklasse.",
+      "explanation_en": "The parentheses name the parent class.",
+      "optionExplanations": [
+        null,
+        "Die Klammer löscht nichts — sie sagt, dass Katze von Tier erbt.",
+        "Die Klammer (Tier) verbindet die Klassen genau — sie zeigt, dass Katze von Tier erbt."
+      ],
+      "optionExplanations_en": [
+        null,
+        "The parentheses don't delete anything — they say that Katze inherits from Tier.",
+        "The parentheses (Tier) connect the classes exactly — they show that Katze inherits from Tier."
+      ]
+    },
+    {
+      "id": "w11-5",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was meint Polymorphie grob?",
+      "question_en": "What does polymorphism roughly mean?",
+      "options": [
+        "Gleiches Interface, unterschiedliches Verhalten",
+        "Mehrere Klassen gleichzeitig erben (von mehreren Eltern)",
+        "Eine Methode darf nur einmal existieren"
+      ],
+      "options_en": [
+        "Same interface, different behavior",
+        "Inheriting from multiple classes at once",
+        "A method may only exist once"
+      ],
+      "correctIndex": 0,
+      "explanation": "z.B. sprechen() bei Hund/Katze.",
+      "explanation_en": "For example, a sprechen() method for Hund/Katze.",
+      "optionExplanations": [
+        null,
+        "Das beschreibt Mehrfachvererbung, ein anderes Konzept — Polymorphie bedeutet, dass gleich benannte Methoden sich je nach Klasse unterschiedlich verhalten.",
+        "Das Gegenteil ist gemeint — bei Polymorphie darf dieselbe Methode in verschiedenen Klassen mehrfach existieren, jeweils mit eigenem Verhalten."
+      ],
+      "optionExplanations_en": [
+        null,
+        "That describes multiple inheritance, a different concept — polymorphism means methods with the same name behave differently depending on the class.",
+        "It's the opposite — with polymorphism the same method can exist in several classes at once, each with its own behavior."
+      ]
+    },
+    {
+      "id": "w11-6",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Warum Vererbung nutzen?",
+      "question_en": "Why use inheritance?",
+      "options": [
+        "Gemeinsamen Code teilen",
+        "Damit der Code kürzer aussieht, auch wenn er dasselbe macht",
+        "Weil Python es erzwingt"
+      ],
+      "options_en": [
+        "Share common code",
+        "So the code looks shorter, even if it does the same thing",
+        "Because Python forces it"
+      ],
+      "correctIndex": 0,
+      "explanation": "Weniger Doppelcode.",
+      "explanation_en": "Less duplicate code.",
+      "optionExplanations": [
+        null,
+        "Es geht nicht nur ums Aussehen — Vererbung spart echten Code, weil gemeinsame Teile nur einmal in der Elternklasse stehen.",
+        "Python zwingt niemanden zur Vererbung — man nutzt sie freiwillig, um Code zu teilen statt zu duplizieren."
+      ],
+      "optionExplanations_en": [
+        null,
+        "It's not just about how it looks — inheritance saves real code, because shared parts only exist once in the parent class.",
+        "Python doesn't force anyone to use inheritance — it's used voluntarily to share code instead of duplicating it."
+      ]
+    },
+    {
+      "id": "w11-7",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was darf eine Kindklasse zusätzlich tun?",
+      "question_en": "What else may a child class do?",
+      "options": [
+        "Neue Attribute und Methoden hinzufügen",
+        "Nur die Elternklasse löschen",
+        "Keine Änderungen"
+      ],
+      "options_en": [
+        "Add new attributes and methods",
+        "Only delete the parent class",
+        "No changes"
+      ],
+      "correctIndex": 0,
+      "explanation": "Erweitern ist erlaubt.",
+      "explanation_en": "Extending is allowed.",
+      "optionExplanations": [
+        null,
+        "Eine Kindklasse löscht die Elternklasse nicht — sie kann sie erweitern, indem sie eigene Attribute und Methoden ergänzt.",
+        "Eine Kindklasse darf durchaus Änderungen vornehmen — sie kann neue Attribute/Methoden hinzufügen oder geerbte überschreiben."
+      ],
+      "optionExplanations_en": [
+        null,
+        "A child class doesn't delete the parent class — it can extend it by adding its own attributes and methods.",
+        "A child class is allowed to make changes — it can add new attributes/methods or override inherited ones."
+      ]
+    },
+    {
+      "id": "w11-8",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was ist eine Elternklasse?",
+      "question_en": "What is a parent class?",
+      "options": [
+        "Die Klasse, von der geerbt wird",
+        "Immer die letzte Klasse",
+        "Ein Modul"
+      ],
+      "options_en": [
+        "The class being inherited from",
+        "Always the last class",
+        "A module"
+      ],
+      "correctIndex": 0,
+      "explanation": "Auch Basisklasse genannt.",
+      "explanation_en": "Also called the base class.",
+      "optionExplanations": [
+        null,
+        "Die Reihenfolge im Code entscheidet nicht — eine Elternklasse ist die Klasse, von der eine andere Klasse erbt.",
+        "Ein Modul ist eine importierbare Code-Datei — eine Elternklasse ist dagegen die Basisklasse, von der geerbt wird."
+      ],
+      "optionExplanations_en": [
+        null,
+        "The order in the code doesn't decide this — a parent class is the class that another class inherits from.",
+        "A module is an importable code file — a parent class is instead the base class that another class inherits from."
+      ]
+    },
+    {
+      "id": "w11-9",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was prüft isinstance(obj, Klasse)?",
+      "question_en": "What does isinstance(obj, Class) check?",
+      "options": [
+        "ob obj zu Klasse oder Kind gehört",
+        "die Dateigröße",
+        "nur den Namen"
+      ],
+      "options_en": [
+        "whether obj belongs to Class or a child",
+        "file size",
+        "only the name"
+      ],
+      "correctIndex": 0,
+      "explanation": "Typ-Prüfung.",
+      "explanation_en": "It's a type check.",
+      "optionExplanations": [
+        null,
+        "isinstance() hat nichts mit Dateigrößen zu tun — es prüft, ob ein Objekt zu einer Klasse (oder deren Kindklasse) gehört.",
+        "Es prüft nicht nur den Namen als Text, sondern den tatsächlichen Typ des Objekts."
+      ],
+      "optionExplanations_en": [
+        null,
+        "isinstance() has nothing to do with file size — it checks whether an object belongs to a class (or one of its child classes).",
+        "It doesn't just check the name as text — it checks the object's actual type."
+      ]
+    },
+    {
+      "id": "w11-10",
+      "type": "multiple_select",
+      "inPlacement": false,
+      "question": "Welche Begriffe gehören zur Vererbung?",
+      "question_en": "Which terms belong to inheritance?",
+      "options": [
+        "Elternklasse",
+        "Kindklasse",
+        "super()",
+        "turtle.circle"
+      ],
+      "options_en": [
+        "Parent class",
+        "Child class",
+        "super()",
+        "turtle.circle"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "turtle.circle ist Grafik.",
+      "explanation_en": "turtle.circle is graphics, not inheritance."
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Erstelle eine Klasse Basis mit einer Methode sag_hallo(), die \"Hallo!\" ausgibt, und eine Klasse Kind(Basis), die davon erbt. Erzeuge ein Kind-Objekt und rufe sag_hallo() auf.",
+      "instruction_en": "Create a class Basis with a method sag_hallo() that prints \"Hallo!\", and a class Kind(Basis) that inherits from it. Create a Kind object and call sag_hallo().",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "Hallo!"
+      }
+    },
+    {
+      "instruction": "Erstelle eine Klasse Basis mit einer Methode sag_hallo(self), die \"Hallo von Basis!\" ausgibt. Erstelle eine Klasse Kind(Basis), die sag_hallo(self) überschreibt und stattdessen \"Hallo von Kind!\" ausgibt. Erzeuge ein Kind-Objekt und rufe sag_hallo() auf.",
+      "instruction_en": "Create a class Basis with a method sag_hallo(self) that prints \"Hallo von Basis!\". Create a class Kind(Basis) that overrides sag_hallo(self) to print \"Hallo von Kind!\" instead. Create a Kind object and call sag_hallo().",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "Hallo von Kind!"
+      }
+    }
+  ]
+}

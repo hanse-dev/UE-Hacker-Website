@@ -6,17 +6,28 @@ export { scoreQuizAnswers, isQuizPassed };
 
 const STORAGE_KEY = 'ue-hacker-week-checks';
 
-const checksModule = import.meta.glob('../../content/python-checks/weeks.json');
+const configModule = import.meta.glob('../../content/python-checks/config.json');
+const weekModules = import.meta.glob('../../content/python-checks/week-*.json');
 
 let cachedWeeks = null;
 
 export async function loadWeekChecks() {
-  // Always read fresh module so content edits show up after Vite HMR
-  const key = '../../content/python-checks/weeks.json';
-  const loader = checksModule[key];
-  if (!loader) throw new Error('weeks.json not found');
-  const mod = await loader();
-  cachedWeeks = mod.default || mod;
+  // Always read fresh modules so content edits show up after Vite HMR
+  const configLoader = configModule['../../content/python-checks/config.json'];
+  if (!configLoader) throw new Error('config.json not found');
+  const configMod = await configLoader();
+  const config = configMod.default || configMod;
+
+  const weeks = {};
+  await Promise.all(
+    Object.entries(weekModules).map(async ([key, loader]) => {
+      const num = key.match(/week-(\d+)\.json$/)[1];
+      const mod = await loader();
+      weeks[num] = mod.default || mod;
+    })
+  );
+
+  cachedWeeks = { ...config, weeks };
   return cachedWeeks;
 }
 

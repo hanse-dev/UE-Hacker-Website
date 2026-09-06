@@ -57,6 +57,14 @@
       Quest-Buch 4×) wiederholen sich im ganzen Kurs genauso — bewusstes Belohnungs-Flavor-Muster,
       keine Umbenennung nötig
 
+### Überlegungen (noch nicht entschieden)
+- [ ] Weitere Sprache neben DE/EN? Noch keine Entscheidung, kein Ziel. Falls das kommt: DE/EN ist
+      aktuell hart auf zwei Sprachen verdrahtet (97 Inline-Ternarys `lang === 'en' ? X : Y` in
+      `.vue`-Dateien, `_en`-Feld-Suffix in `weeks.json`, `-en`-Ordner-Suffix in `useCourseData.js`)
+      — würde vorher eine Migration der Ternarys auf den bestehenden `t()`-Mechanismus brauchen,
+      keine neue i18n-Library nötig. Größter Aufwandstreiber wäre der Content (444 Notebooks ×
+      Sprache), nicht die UI-Technik. Siehe HANDOFF.md, Refactoring-Plan-Abschnitt.
+
 ### Infrastruktur
 - [x] Einstufung / Checks in `main` (PR #1)
 - [x] Admin-Login / Progress-Sync in `main` (PR #2)
@@ -117,13 +125,18 @@ und Server-Deploy bewusst zurückgestellt (siehe HANDOFF.md).
       herunterladbares PDF mit den Lernzielen der Woche, editierbarem Namensfeld, nur sichtbar wenn
       eingeloggt. E-Mail-Versand bewusst zurückgestellt (eigenes, späteres Thema). Details siehe
       HANDOFF.md 3.13.
-- [x] `entferne-xp-texte` (HANDOFF.md 3.14, noch nicht in `main` gemergt) — letzte Überbleibsel des
+- [x] `entferne-xp-texte` (HANDOFF.md 3.14, gemergt) — letzte Überbleibsel des
       alten Punktesystems entfernt: Präfix `+400 XP:`/`Huf-Punkte`/`Hoof Points`/`Cyber Credits` aus
       125 Boss-Quest-Feier-Prints (DE+EN, alle Varianten) gestrichen, plus drei Einzelfälle
       (`**Gesammelte XP:** 1500 Punkte`, "sammelst du 1000 XP"-Versprechen, Huf-Punkte in der
       Pferde-Siegerehrung Woche 1). Fiktive Story-Werte, die eine Übung selbst berechnet
       (Helden-Steckbriefe, Quest-Listen-Summen, Cyber-Credits-Rechenübung, HP-Zufallsereignisse),
       bewusst nicht angefasst — keine echte Belohnungsbehauptung ans reale Publikum.
+- [x] `weeks-json-splitten` (HANDOFF.md 3.18, noch nicht gemergt) — Refactoring Schritt 1:
+      `content/python-checks/weeks.json` (3925 Zeilen, größte Datei im Repo) in `config.json` +
+      `week-1.json`…`week-12.json` aufgeteilt, Round-Trip gegen alte Datei verifiziert. Neuer
+      Node-Loader `content/python-checks/index.mjs` für die 3 betroffenen Tests (Vite-Browser-Seite
+      nutzt weiter `import.meta.glob` in `useWeekChecks.js`, jetzt über mehrere Dateien gemerged).
 
 ---
 

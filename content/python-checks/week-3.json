@@ -1,0 +1,322 @@
+{
+  "title": "Woche 3 – Bedingungen (if/else)",
+  "title_en": "Week 3 – Conditions (if/else)",
+  "questions": [
+    {
+      "id": "w3-1",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Wofür benutzt man if in Python?",
+      "question_en": "What is if used for in Python?",
+      "options": [
+        "Um Entscheidungen zu treffen",
+        "Um Text auszugeben",
+        "Um eine Schleife zu wiederholen"
+      ],
+      "options_en": [
+        "To make decisions",
+        "To print text",
+        "To repeat a loop"
+      ],
+      "correctIndex": 0,
+      "explanation": "if prüft eine Bedingung.",
+      "explanation_en": "if checks a condition.",
+      "optionExplanations": [
+        null,
+        "Das macht print(), if selbst gibt keinen Text aus.",
+        "Das machen Schleifen wie for oder while, if trifft eine einmalige Entscheidung."
+      ],
+      "optionExplanations_en": [
+        null,
+        "That's what print() does — if itself doesn't display text.",
+        "That's what loops like for or while do — if makes a one-time decision."
+      ]
+    },
+    {
+      "id": "w3-2",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Wann wird der else-Block ausgeführt?",
+      "question_en": "When does the else block run?",
+      "options": [
+        "Wenn die if-Bedingung falsch ist",
+        "Immer zuerst",
+        "Nur bei Fehlern"
+      ],
+      "options_en": [
+        "When the if condition is false",
+        "Always first",
+        "Only on errors"
+      ],
+      "correctIndex": 0,
+      "explanation": "else ist der sonst-Fall.",
+      "explanation_en": "else is the otherwise case.",
+      "optionExplanations": [
+        null,
+        "Der if-Block wird immer zuerst geprüft, else kommt erst danach zum Zug, falls die Bedingung falsch ist.",
+        "else reagiert nicht auf Programmfehler, sondern auf eine falsche if-Bedingung."
+      ],
+      "optionExplanations_en": [
+        null,
+        "The if block is always checked first — else only runs afterwards, if the condition is false.",
+        "else doesn't react to program errors, but to a false if condition."
+      ]
+    },
+    {
+      "id": "w3-3",
+      "type": "multiple_choice",
+      "inPlacement": true,
+      "question": "Welches Zeichen vergleicht zwei Werte auf Gleichheit?",
+      "question_en": "Which symbol compares two values for equality?",
+      "options": [
+        "==",
+        "=",
+        "!="
+      ],
+      "options_en": [
+        "==",
+        "=",
+        "!="
+      ],
+      "correctIndex": 0,
+      "explanation": "== prüft Gleichheit, = weist zu.",
+      "explanation_en": "== checks for equality, = assigns.",
+      "optionExplanations": [
+        null,
+        "Ein einzelnes = weist einen Wert zu, es vergleicht nicht.",
+        "!= prüft auf Ungleichheit, das Gegenteil von Gleichheit."
+      ],
+      "optionExplanations_en": [
+        null,
+        "A single = assigns a value, it doesn't compare.",
+        "!= checks for inequality, the opposite of equality."
+      ]
+    },
+    {
+      "id": "w3-4",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was muss nach if stehen?",
+      "question_en": "What must come after if?",
+      "options": [
+        "Eine Bedingung und eingerückter Code",
+        "Nur eine Bedingung, Einrückung ist nicht nötig",
+        "Nur eingerückter Code ohne Bedingung"
+      ],
+      "options_en": [
+        "A condition and indented code",
+        "Only a condition, indentation is not needed",
+        "Only indented code, no condition"
+      ],
+      "correctIndex": 0,
+      "explanation": "Einrückung zeigt den if-Block.",
+      "explanation_en": "Indentation marks the if block.",
+      "optionExplanations": [
+        null,
+        "Ohne Einrückung weiß Python nicht, welcher Code zum if-Block gehört – das gibt einen Fehler.",
+        "Ohne Bedingung weiß if nicht, wann der Code ausgeführt werden soll."
+      ],
+      "optionExplanations_en": [
+        null,
+        "Without indentation, Python doesn't know which code belongs to the if block — this causes an error.",
+        "Without a condition, if doesn't know when the code should run."
+      ]
+    },
+    {
+      "id": "w3-5",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was gibt aus: if 5 > 3: print(\"ja\")?",
+      "question_en": "What does this print: if 5 > 3: print(\"yes\")?",
+      "options": [
+        "ja",
+        "5 > 3",
+        "Nichts"
+      ],
+      "options_en": [
+        "yes",
+        "5 > 3",
+        "Nothing"
+      ],
+      "correctIndex": 0,
+      "explanation": "5 > 3 ist wahr.",
+      "explanation_en": "5 > 3 is true.",
+      "optionExplanations": [
+        null,
+        "print(\"ja\") gibt den Text \"ja\" aus, nicht den Vergleich selbst.",
+        "Die Bedingung 5 > 3 ist wahr, deshalb wird der print-Befehl ausgeführt."
+      ],
+      "optionExplanations_en": [
+        null,
+        "print(\"yes\") outputs the text \"yes\", not the comparison itself.",
+        "The condition 5 > 3 is true, so the print command runs."
+      ]
+    },
+    {
+      "id": "w3-6",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was bedeutet != ?",
+      "question_en": "What does != mean?",
+      "options": [
+        "ungleich",
+        "gleich",
+        "kleiner"
+      ],
+      "options_en": [
+        "not equal",
+        "equal",
+        "less than"
+      ],
+      "correctIndex": 0,
+      "explanation": "!= heißt „nicht gleich“.",
+      "explanation_en": "!= means \"not equal\".",
+      "optionExplanations": [
+        null,
+        "== bedeutet gleich, != bedeutet das Gegenteil: ungleich.",
+        "< bedeutet kleiner, != prüft dagegen auf Ungleichheit."
+      ],
+      "optionExplanations_en": [
+        null,
+        "== means equal, != means the opposite: not equal.",
+        "< means less than — != instead checks for inequality."
+      ]
+    },
+    {
+      "id": "w3-7",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Wofür ist elif da?",
+      "question_en": "What is elif for?",
+      "options": [
+        "Weitere Bedingungen prüfen",
+        "Das Gleiche wie else, nur mit anderem Namen",
+        "Beendet die if-Bedingung"
+      ],
+      "options_en": [
+        "Checking more conditions",
+        "The same as else, just with a different name",
+        "Ends the if condition"
+      ],
+      "correctIndex": 0,
+      "explanation": "elif = else if.",
+      "explanation_en": "elif is short for 'else if'.",
+      "optionExplanations": [
+        null,
+        "else hat keine eigene Bedingung, elif dagegen prüft eine weitere Bedingung – das ist der Unterschied.",
+        "elif beendet nichts, es fügt eine zusätzliche Prüfung hinzu."
+      ],
+      "optionExplanations_en": [
+        null,
+        "else has no condition of its own, while elif checks another condition — that's the difference.",
+        "elif doesn't end anything, it adds an additional check."
+      ]
+    },
+    {
+      "id": "w3-8",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was ist das Ergebnis von 3 < 5 and 10 > 8?",
+      "question_en": "What is the result of 3 < 5 and 10 > 8?",
+      "options": [
+        "True",
+        "False",
+        "Fehler"
+      ],
+      "options_en": [
+        "True",
+        "False",
+        "Error"
+      ],
+      "correctIndex": 0,
+      "explanation": "Beide Teile sind wahr → True.",
+      "explanation_en": "Both parts are true → True.",
+      "optionExplanations": [
+        null,
+        "Da beide Vergleiche wahr sind (3 < 5 und 10 > 8), ist das Ergebnis True, nicht False.",
+        "3 < 5 und 10 > 8 sind gültige Vergleiche, das ergibt keinen Fehler."
+      ],
+      "optionExplanations_en": [
+        null,
+        "Since both comparisons are true (3 < 5 and 10 > 8), the result is True, not False.",
+        "3 < 5 and 10 > 8 are valid comparisons, this doesn't cause an error."
+      ]
+    },
+    {
+      "id": "w3-9",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Welcher Vergleich ist wahr?",
+      "question_en": "Which comparison is true?",
+      "options": [
+        "7 >= 7",
+        "7 > 7",
+        "7 < 3"
+      ],
+      "options_en": [
+        "7 >= 7",
+        "7 > 7",
+        "7 < 3"
+      ],
+      "correctIndex": 0,
+      "explanation": ">= bedeutet größer oder gleich.",
+      "explanation_en": ">= means greater than or equal to.",
+      "optionExplanations": [
+        null,
+        "7 ist nicht größer als 7, nur gleich – deshalb ist 7 > 7 falsch.",
+        "7 ist nicht kleiner als 3, deshalb ist 7 < 3 falsch."
+      ],
+      "optionExplanations_en": [
+        null,
+        "7 is not greater than 7, only equal — so 7 > 7 is false.",
+        "7 is not less than 3, so 7 < 3 is false."
+      ]
+    },
+    {
+      "id": "w3-10",
+      "type": "multiple_select",
+      "inPlacement": false,
+      "question": "Welche Schlüsselwörter gehören zu Bedingungen?",
+      "question_en": "Which keywords belong to conditions?",
+      "options": [
+        "if",
+        "elif",
+        "else",
+        "for"
+      ],
+      "options_en": [
+        "if",
+        "elif",
+        "else",
+        "for"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "for gehört zu Schleifen.",
+      "explanation_en": "for belongs to loops."
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Prüfe, ob die Zahl 15 größer als 10 ist, und gib das Ergebnis des Vergleichs aus (also True oder False).",
+      "instruction_en": "Check whether the number 15 is greater than 10, and print the result of the comparison (True or False).",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "True"
+      }
+    },
+    {
+      "instruction": "Vergleiche zwei Zahlen mit if/else: zahl1 = 12 und zahl2 = 7. Gib mit einem if/else-Block die größere der beiden Zahlen aus.",
+      "instruction_en": "Compare two numbers with if/else: zahl1 = 12 and zahl2 = 7. Use an if/else block to print the larger of the two numbers.",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "12"
+      }
+    }
+  ]
+}
