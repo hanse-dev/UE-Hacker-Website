@@ -1,11 +1,11 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-09-07  
-> **Aktueller Stand:** Alle Branches bis `weeksection-subkomponenten` (3.5–3.20) sind in `main`
-> gemergt (siehe `git log main` für die genaue Reihenfolge), dazwischen auch `dependency-audit-fixes`
-> und `vite-major-bump`. Noch **nicht** nach `origin/main` gepusht — Push/Deploy bewusst
-> zurückgestellt, siehe Abschnitt 5/7. Refactoring gegen zu große Dateien läuft (Schritt 1-3 fertig,
-> siehe Abschnitt 5) — Schritt 4 (`LessonView.vue` entflechten) ist der nächste.
+> **Aktueller Stand:** Alle Branches bis `lessonview-entflechten` (3.5–3.21) sind in `main` gemergt
+> (siehe `git log main` für die genaue Reihenfolge), dazwischen auch `dependency-audit-fixes` und
+> `vite-major-bump`. Noch **nicht** nach `origin/main` gepusht — Push/Deploy bewusst zurückgestellt,
+> siehe Abschnitt 5/7. Refactoring gegen zu große Dateien läuft (Schritt 1-4 fertig, siehe
+> Abschnitt 5) — Schritt 5 (`QuizStep.vue`/`PlacementCourse.vue` entflechten) ist der nächste.
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -632,6 +632,29 @@ ist byte-identisch zum Stand vor dem Split.
 
 **Offen (nächste Schritte):** `LessonView.vue`/`QuizStep.vue`-Entflechtung, dann Ternary-Cleanup.
 
+### 3.21 Refactoring Schritt 4: `LessonView.vue` entflechtet (Branch `lessonview-entflechten`) — gemerged
+
+Glossar/Content-Loading (Lektions-Markdown laden, Glossar laden, Tooltip-Spans in Lektionstext und
+Aufgabenanweisungen einfügen — `import.meta.glob`-Listen, `loadGlossary`, `loadContent`,
+`instructionWithGlossary`, `applyGlossaryTooltips`, `escapeHtml`) aus `LessonView.vue` in ein neues
+`src/composables/useLessonContent.js` ausgelagert. Task-Run/Check-State-Machine (der andere,
+unabhängige Verantwortungsbereich in derselben Datei) bleibt unverändert in der Komponente.
+
+**Kopplungsdetail:** `isMounted` (verhindert State-Updates nach Unmount) wird von BEIDEN
+Verantwortungsbereichen genutzt (Content-Loading UND Task-Run/Check) — bleibt deshalb in
+`LessonView.vue` deklariert und wird als Ref-Parameter in `useLessonContent(isMounted)`
+hineingereicht, statt eine zweite, separate Unmount-Guard-Instanz im Composable zu duplizieren.
+
+**Getestet:** `npm run test:checks` (49) + `npm run test:auth` (13) grün. Zusätzlich per Playwright
+verifiziert: Glossar-Tooltip-Spans (`.glossary-term`) erscheinen weiterhin im gerenderten
+Lektionstext mit korrektem `title`-Attribut (Erklärungstext) — das ist der einzige Teil dieser
+Änderung, der nicht schon durch bestehende Funktionstests (Interaktiver Kurs, Cäsar-Chiffre)
+abgedeckt war.
+
+**Ergebnis:** `LessonView.vue` 684 → 586 Zeilen, neues `useLessonContent.js` (114 Zeilen).
+
+**Offen (nächste Schritte):** `QuizStep.vue`/`PlacementCourse.vue`-Entflechtung, dann Ternary-Cleanup.
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -753,7 +776,8 @@ bewusst zurückgestellt (Nutzer will erst später deployen).
       Drift vs. Absicht klären (siehe 3.19 "Offen")
 - [x] Schritt 3: `WeekSection.vue` in Subkomponenten aufgeteilt (3.20, Branch
       `weeksection-subkomponenten`, gemergt) — neue `CheatSheetList.vue` + `VariantSelector.vue`
-- [ ] Schritt 4: `LessonView.vue` entflechten (Glossar/Content-Loading → eigenes Composable)
+- [x] Schritt 4: `LessonView.vue` entflechtet (3.21, Branch `lessonview-entflechten`, gemergt) —
+      Glossar/Content-Loading → neues `useLessonContent.js`
 - [ ] Schritt 5: `QuizStep.vue`/`PlacementCourse.vue` ähnlich entflechten
 - [ ] Schritt 6: Ternary-Cleanup (97 Inline-`lang === 'en' ? X : Y`) — niedrige Priorität, außer eine
       dritte Sprache kommt konkret dazu (siehe „Überlegungen" unten), dann vorziehen
@@ -827,8 +851,9 @@ dazu kommt — der bestehende `t()`-Mechanismus reicht, nur der Content ist der 
    Punkte-/Item-System wieder einführen (siehe 3.12)
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
-**Empfohlener nächster Schritt:** Refactoring-Schritte 1-3 sind fertig, getestet und gemergt.
-Schritt 4 (`LessonView.vue` entflechten, siehe Abschnitt 5) ist der nächste im laufenden Plan.
+**Empfohlener nächster Schritt:** Refactoring-Schritte 1-4 sind fertig, getestet und gemergt.
+Schritt 5 (`QuizStep.vue`/`PlacementCourse.vue` entflechten, siehe Abschnitt 5) ist der nächste im
+laufenden Plan.
 Weiterhin offen: ob/wann nach `origin/main` gepusht und deployed wird. Falls stattdessen inhaltlich
 weitergearbeitet werden soll: `kurs-python-spiele` (Spiele-Werkstatt-Inhalte, bereits begonnen) ist
 der nächstliegende Kandidat.
