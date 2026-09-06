@@ -149,6 +149,11 @@ und Server-Deploy bewusst zurückgestellt (siehe HANDOFF.md).
       Dabei einen bestehenden CSS-Leak gefunden (`.cheat-sheet-header h4` bekam Border/Padding über
       eine generische Nachbar-Regel) und explizit in der neuen Komponente nachgebildet, damit sich
       am Rendering nichts ändert.
+- [x] `lessonview-entflechten` (HANDOFF.md 3.21, gemergt) — Refactoring Schritt 4: Glossar/
+      Content-Loading (Lektions-Markdown/Glossar laden, Tooltip-Spans einfügen) aus
+      `LessonView.vue` in neues `src/composables/useLessonContent.js` ausgelagert, Task-Run/Check
+      bleibt unverändert in der Komponente. `LessonView.vue` 684→586 Zeilen. Per Playwright
+      verifiziert, dass Glossar-Tooltips weiterhin korrekt im Lektionstext erscheinen.
 
 ---
 

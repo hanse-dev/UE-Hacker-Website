@@ -82,11 +82,11 @@
 
 <script>
 import { ref, watch, onMounted, onBeforeUnmount, computed } from 'vue';
-import { marked } from 'marked';
 import { usePyodide } from '../composables/usePyodide';
 import { useInteractiveProgress } from '../composables/useInteractiveProgress';
 import { useLanguage } from '../composables/useLanguage';
 import { validateOutput } from '../composables/useTaskValidation';
+import { useLessonContent } from '../composables/useLessonContent';
 
 export default {
   name: 'LessonView',
@@ -114,9 +114,9 @@ export default {
     const { kernelReady, kernelStatus, initializeKernel, runPython } = usePyodide();
     const { markCompleted, isLessonUnlocked } = useInteractiveProgress(props.variant, props.courseId);
 
-    const lessonContent = ref('');
     const checking = ref(false);
     const isMounted = ref(true);
+    const { lessonContent, loadGlossary, loadContent, instructionWithGlossary } = useLessonContent(isMounted);
 
     const tasks = computed(() => {
       const t = props.lesson?.tasks;
@@ -156,116 +156,18 @@ export default {
 
     onMounted(() => {
       initializeKernel();
-      loadGlossary();
+      loadGlossary(props.contentPath);
     });
 
     onBeforeUnmount(() => {
       isMounted.value = false;
     });
 
-    const allLessonModules = import.meta.glob(
-      [
-        '../../content/python-grundlagen-interaktiv-kinder/*.md',
-        '../../content/python-grundlagen-interaktiv-jugendliche/*.md',
-        '../../content/python-grundlagen-interaktiv-kinder-en/*.md',
-        '../../content/python-grundlagen-interaktiv-jugendliche-en/*.md',
-        '../../content/caesar-chiffre/*.md',
-      ],
-      { query: '?raw', import: 'default' }
-    );
-
-    const allGlossaryModules = import.meta.glob(
-      [
-        '../../content/python-grundlagen-interaktiv-kinder/glossary.json',
-        '../../content/python-grundlagen-interaktiv-jugendliche/glossary.json',
-        '../../content/python-grundlagen-interaktiv-kinder-en/glossary.json',
-        '../../content/python-grundlagen-interaktiv-jugendliche-en/glossary.json',
-        '../../content/caesar-chiffre/glossary.json',
-      ],
-    );
-
-    let glossary = {};
-    const loadGlossary = async () => {
-      try {
-        const key = `../../content/${props.contentPath}/glossary.json`;
-        const loader = allGlossaryModules[key];
-        if (loader) {
-          const mod = await loader();
-          glossary = mod.default || {};
-        }
-      } catch {
-        glossary = {};
-      }
-    };
-
-    const instructionWithGlossary = (text) => {
-      if (!text || !glossary || Object.keys(glossary).length === 0) return escapeHtml(text || '');
-      const escaped = escapeHtml(text);
-      const terms = Object.keys(glossary).sort((a, b) => b.length - a.length);
-      let out = escaped;
-      for (const term of terms) {
-        const regex = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'g');
-        const explanation = glossary[term].replace(/"/g, '&quot;');
-        out = out.replace(regex, `<span class="glossary-term" title="${explanation}">$1</span>`);
-      }
-      return out;
-    };
-
-    const escapeHtml = (s) => {
-      if (!s) return '';
-      return String(s)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-    };
-
-    const applyGlossaryTooltips = (html) => {
-      if (!glossary || Object.keys(glossary).length === 0) return html;
-      const codeBlockRegex = /<pre><code>[\s\S]*?<\/code><\/pre>/gi;
-      const codeBlocks = html.match(codeBlockRegex) || [];
-      const textParts = html.split(codeBlockRegex);
-      const terms = Object.keys(glossary).sort((a, b) => b.length - a.length);
-      const result = textParts.map((part, i) => {
-        let out = part;
-        for (const term of terms) {
-          const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-          const regex = new RegExp(`(?<![<>])(${escaped})(?![^<]*>)`, 'g');
-          const explanation = glossary[term].replace(/"/g, '&quot;');
-          out = out.replace(regex, `<span class="glossary-term" title="${explanation}">$1</span>`);
-        }
-        return out + (codeBlocks[i] || '');
-      }).join('');
-      return result;
-    };
-
-    const loadContent = async () => {
-      if (!props.lesson?.file || !props.contentPath) return;
-      const key = `../../content/${props.contentPath}/${props.lesson.file}`;
-      const loader = allLessonModules[key];
-      if (!loader) {
-        lessonContent.value = '<p>Lektion konnte nicht geladen werden.</p>';
-        return;
-      }
-      try {
-        if (Object.keys(glossary).length === 0) await loadGlossary();
-        const text = await loader();
-        if (!isMounted.value) return;
-        let html = marked(text ?? '');
-        html = applyGlossaryTooltips(html);
-        lessonContent.value = html;
-      } catch (e) {
-        if (!isMounted.value) return;
-        console.error('Could not load lesson content:', e);
-        lessonContent.value = '<p>Lektion konnte nicht geladen werden.</p>';
-      }
-    };
-
     watch(
       () => props.lesson,
       (newLesson) => {
         initTaskState();
-        loadContent();
+        loadContent(newLesson, props.contentPath);
       },
       { immediate: true }
     );
