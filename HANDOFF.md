@@ -1,11 +1,11 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-09-07  
-> **Aktueller Stand:** Alle Branches bis `weeks-json-splitten` (3.5–3.18) sind in `main` gemergt
-> (siehe `git log main` für die genaue Reihenfolge), dazwischen auch `dependency-audit-fixes` und
-> `vite-major-bump`. Noch **nicht** nach `origin/main` gepusht — Push/Deploy bewusst zurückgestellt,
-> siehe Abschnitt 5/7. `weeks-json-splitten` (3.18) ist Schritt 1 eines größeren, laufenden
-> Refactorings gegen zu große Dateien — Schritt 2 (CSS-Konsolidierung) ist der nächste.
+> **Aktueller Stand:** Alle Branches bis `css-konsolidierung-kurslayout` (3.5–3.19) sind in `main`
+> gemergt (siehe `git log main` für die genaue Reihenfolge), dazwischen auch `dependency-audit-fixes`
+> und `vite-major-bump`. Noch **nicht** nach `origin/main` gepusht — Push/Deploy bewusst
+> zurückgestellt, siehe Abschnitt 5/7. Refactoring gegen zu große Dateien läuft (Schritt 1+2 fertig,
+> siehe Abschnitt 5) — Schritt 3 (`WeekSection.vue`-Aufteilung) ist der nächste.
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -563,6 +563,43 @@ Klassen wie `.btn-kernel`/`.code-editor` in LessonView/ProjectCourse/Interactive
 `WeekSection.vue`-Aufteilung, `LessonView.vue`/`QuizStep.vue`-Entflechtung, Ternary-Cleanup (97
 Inline-`lang === 'en' ? X : Y`).
 
+### 3.19 Refactoring Schritt 2: CSS-Konsolidierung Kurs-Sidebar-Layout (Branch `css-konsolidierung-kurslayout`)
+
+`ProjectCourse.vue` ist laut 3.11 eine "reduzierte Kopie" von `InteractiveCourse.vue` — Diff der
+kompilierten CSS-Regeln bestätigte: der komplette Sidebar/Lektionsliste/Fortschritt-Block
+(`.course-layout`, `.lessons-sidebar`, `.lesson-item`, `.sidebar-actions`, `.btn-export`/`-import`,
+`.no-lesson`, die zugehörige `@media (max-width: 768px)`-Regel — ~165 Zeilen) war zwischen beiden
+Dateien byte-identisch. In `src/assets/styles/course-layout.css` ausgelagert.
+
+**Gelernte Regel (wichtig, hat den ersten Versuch kaputt gemacht):** `@import 'shared.css';`
+**innerhalb** eines `<style scoped>`-Blocks bekommt in diesem Vite-8/`@vitejs/plugin-vue`-6-Setup
+einen **eigenen, vom Rest der Datei abweichenden** `data-v-xxxx`-Scope-Hash — die importierten
+Regeln matchen dann keine Template-Elemente mehr (per Playwright verifiziert: `getComputedStyle()`
+lieferte Default-Werte statt der erwarteten). Lösung: den `@import` in einen **separaten,
+UNscoped** `<style>`-Block packen (Vue-SFCs erlauben mehrere `<style>`-Blöcke) — dann gilt er
+global, was hier sicher ist, weil alle Klassennamen repo-weit geprüft exklusiv in genau diesen
+zwei Components vorkommen. **Ausnahme:** `.loading`/`.error` sind generische Namen, die in ~10
+anderen Components mit eigener Bedeutung vorkommen (`PlacementCourse.vue`, `JupyterNotebook.vue`,
+`AdminView.vue`, …) — die blieben bewusst als kleine Duplikate in beiden Dateien statt in der
+globalen Datei, sonst hätte die globale Regel dort geleakt. **Bei künftigen CSS-Extraktionen:**
+vor dem Auslagern grep-prüfen, ob der Klassenname anderswo im Repo mit anderer Bedeutung vorkommt.
+
+**Getestet:** `npm run test:checks` (49 Tests) + `npm run test:auth` (13 Tests) grün. Zusätzlich
+Vite-Dev-Server gestartet und per Playwright `getComputedStyle()` auf `.course-layout`/
+`.lessons-sidebar`/`.lesson-item` in beiden Kursen verglichen (identische Werte) sowie
+Full-Page-Screenshots beider Kurse visuell geprüft — reine CSS-Umstrukturierung ohne
+Verhaltensänderung, laut `WORKFLOW.md` kein neuer Test nötig, aber visuelle Verifizierung war hier
+nötig, weil Playwrights Funktionstests kein CSS prüfen.
+
+**Ergebnis:** `InteractiveCourse.vue` 547 → 386 Zeilen, `ProjectCourse.vue` 383 → 217 Zeilen (−341
+Zeilen Duplikat, jetzt eine gemeinsame 180-Zeilen-Quelle).
+
+**Offen (nächste Schritte):** `.btn-kernel`/`.code-editor`/`.kernel-status`/`.feedback-*` zwischen
+`LessonView.vue` und `CodeChallenge.vue` sind NICHT identisch (nur Klassennamen gleich, Werte
+unterscheiden sich) — dort lohnt sich vor einer Konsolidierung erst ein Abgleich, ob die
+Unterschiede beabsichtigt sind oder Drift. Danach `WeekSection.vue`-Aufteilung, `LessonView.vue`/
+`QuizStep.vue`-Entflechtung, Ternary-Cleanup.
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -678,8 +715,10 @@ bewusst zurückgestellt (Nutzer will erst später deployen).
 
 **Refactoring (vom Nutzer angestoßen, gegen zu große Dateien):**
 - [x] Schritt 1: `weeks.json` pro Woche gesplittet (3.18, Branch `weeks-json-splitten`, gemergt)
-- [ ] Schritt 2: CSS-Konsolidierung (doppelte Klassen `.btn-kernel`/`.btn-check`/`.code-editor`/
-      `.kernel-status` in LessonView/ProjectCourse/InteractiveCourse/CodeChallenge)
+- [x] Schritt 2: CSS-Konsolidierung Kurs-Sidebar-Layout (3.19, Branch
+      `css-konsolidierung-kurslayout`, gemergt). `.btn-kernel`/`.btn-check`/`.code-editor`/
+      `.kernel-status` (LessonView/CodeChallenge) noch offen — die sind NICHT identisch, erst
+      Drift vs. Absicht klären (siehe 3.19 "Offen")
 - [ ] Schritt 3: `WeekSection.vue` in Subkomponenten aufteilen (CheatSheetList, VariantSelector)
 - [ ] Schritt 4: `LessonView.vue` entflechten (Glossar/Content-Loading → eigenes Composable)
 - [ ] Schritt 5: `QuizStep.vue`/`PlacementCourse.vue` ähnlich entflechten
@@ -755,8 +794,8 @@ dazu kommt — der bestehende `t()`-Mechanismus reicht, nur der Content ist der 
    Punkte-/Item-System wieder einführen (siehe 3.12)
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
-**Empfohlener nächster Schritt:** `weeks-json-splitten` (3.18) ist fertig, getestet und gemergt.
-Refactoring-Schritt 2 (CSS-Konsolidierung, siehe Abschnitt 5) ist der nächste im laufenden Plan.
+**Empfohlener nächster Schritt:** Refactoring-Schritte 1+2 sind fertig, getestet und gemergt.
+Schritt 3 (`WeekSection.vue`-Aufteilung, siehe Abschnitt 5) ist der nächste im laufenden Plan.
 Weiterhin offen: ob/wann nach `origin/main` gepusht und deployed wird. Falls stattdessen inhaltlich
 weitergearbeitet werden soll: `kurs-python-spiele` (Spiele-Werkstatt-Inhalte, bereits begonnen) ist
 der nächstliegende Kandidat.
