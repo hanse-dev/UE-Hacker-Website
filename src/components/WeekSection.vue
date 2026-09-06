@@ -28,31 +28,12 @@
         </div>
 
         <!-- Cheat Sheets -->
-        <div v-if="week.hasNotebook && week.cheatSheets?.length > 0" class="downloads-section">
-          <div v-for="(cheatSheet, csIndex) in week.cheatSheets" :key="csIndex" class="cheat-sheet-container">
-            <div class="cheat-sheet-header" @click="$emit('toggle-cheat-sheet', csIndex)">
-              <h4>{{ cheatSheet.name }}</h4>
-              <button class="cheat-sheet-toggle-btn" :class="{ 'expanded': isCheatSheetExpanded(csIndex) }">
-                <span class="toggle-icon">{{ isCheatSheetExpanded(csIndex) ? '−' : '+' }}</span>
-              </button>
-            </div>
-            <div v-show="isCheatSheetExpanded(csIndex)" class="cheat-sheet-content">
-              <div class="cheat-sheet-actions">
-                <a :href="cheatSheet.url" download class="download-btn">
-                  <span class="download-icon">📥</span>
-                  {{ t('week.download.md') }}
-                </a>
-                <a v-if="cheatSheet.notebookUrl" :href="cheatSheet.notebookUrl" download class="download-btn">
-                  <span class="download-icon">📓</span>
-                  {{ t('week.download.nb') }}
-                </a>
-              </div>
-              <div class="cheat-sheet-preview" v-if="cheatSheet.content">
-                <div v-html="cheatSheet.content" class="cheat-sheet-markdown"></div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <CheatSheetList
+          v-if="week.hasNotebook && week.cheatSheets?.length > 0"
+          :cheat-sheets="week.cheatSheets"
+          :expanded-cheat-sheets="week.expandedCheatSheets"
+          @toggle="$emit('toggle-cheat-sheet', $event)"
+        />
 
         <!-- Other downloads -->
         <div v-if="!week.hasNotebook && week.downloads?.length > 0" class="downloads-section">
@@ -71,26 +52,7 @@
         <div v-if="week.hasNotebook" class="notebook-area">
 
           <!-- Row 1: Varianten-Auswahl -->
-          <div class="variant-selector">
-            <button
-              v-if="week.hasAbenteuerVariant"
-              @click="$emit('set-variant', 'abenteuer')"
-              :class="{ active: week.selectedVariant === 'abenteuer' }"
-              class="variant-btn"
-            >{{ t('variant.adventure') }}</button>
-            <button
-              v-if="week.hasPferdeVariant"
-              @click="$emit('set-variant', 'pferde')"
-              :class="{ active: week.selectedVariant === 'pferde' }"
-              class="variant-btn"
-            >{{ t('variant.horses') }}</button>
-            <button
-              v-if="week.hasScifiVariant"
-              @click="$emit('set-variant', 'scifi')"
-              :class="{ active: week.selectedVariant === 'scifi' }"
-              class="variant-btn"
-            >{{ t('variant.scifi') }}</button>
-          </div>
+          <VariantSelector :week="week" @set-variant="$emit('set-variant', $event)" />
 
           <!-- Row 2: Missionen & Belohnungen -->
           <MissionenPanel
@@ -147,6 +109,8 @@ import { useRoute } from 'vue-router';
 import JupyterNotebook from './JupyterNotebook.vue';
 import MissionenPanel from './MissionenPanel.vue';
 import WeekCheckPanel from './WeekCheckPanel.vue';
+import CheatSheetList from './CheatSheetList.vue';
+import VariantSelector from './VariantSelector.vue';
 import { useLanguage } from '../composables/useLanguage.js';
 import { loadWeekChecks, hasWeekCheck } from '../composables/useWeekChecks.js';
 
@@ -162,7 +126,7 @@ const TABS_CONFIG = [
 
 export default {
   name: 'WeekSection',
-  components: { JupyterNotebook, MissionenPanel, WeekCheckPanel },
+  components: { JupyterNotebook, MissionenPanel, WeekCheckPanel, CheatSheetList, VariantSelector },
   props: {
     week: { type: Object, required: true },
     index: { type: Number, required: true },
@@ -195,9 +159,6 @@ export default {
       // Hide check tab if no questions for this week
       return base.filter((tab) => tab.key !== '4_check' || hasCheck.value);
     });
-
-    const isCheatSheetExpanded = (csIndex) =>
-      props.week.expandedCheatSheets?.[csIndex] ?? false;
 
     const hasTab = (key) => {
       if (key === '4_check') return hasCheck.value;
@@ -243,7 +204,7 @@ export default {
     watch(() => [route.query.week, route.query.tab, hasCheck.value], applyRouteTab);
 
     return {
-      tabs, t, selectedTab, isCheatSheetExpanded, hasTab, activeNotebookUrl,
+      tabs, t, selectedTab, hasTab, activeNotebookUrl,
       hasCheck,
     };
   },
@@ -256,39 +217,7 @@ export default {
   margin-top: 16px;
 }
 
-/* ── Variant selector ──────────────────────────────────────────────────── */
-.variant-selector {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 12px;
-  flex-wrap: wrap;
-}
-
-.variant-btn {
-  background: #f8f9fa;
-  border: 2px solid #dee2e6;
-  padding: 8px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.9em;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-weight: 500;
-}
-
-.variant-btn:hover {
-  background: #e9ecef;
-  border-color: #ff4136;
-}
-
-.variant-btn.active {
-  background: #ff4136;
-  color: white;
-  border-color: #ff4136;
-  font-weight: 700;
-}
+/* ── Variant selector: siehe VariantSelector.vue ─────────────────────────── */
 
 /* ── Tabs ──────────────────────────────────────────────────────────────── */
 .notebook-tabs {
@@ -398,151 +327,7 @@ export default {
   background-color: #e8f5e8 !important;
 }
 
-.download-icon { font-size: 1.2em; }
-
-.cheat-sheet-container {
-  margin-bottom: 20px;
-  border: 2px solid #28a745;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #f8fff9;
-}
-
-.cheat-sheet-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  padding: 15px 20px;
-  background: #28a745;
-  color: white;
-  transition: all 0.3s ease;
-}
-
-.cheat-sheet-header:hover { background: #218838; }
-
-.cheat-sheet-header h4 { margin: 0; font-size: 1.1em; }
-
-.cheat-sheet-toggle-btn {
-  background: transparent;
-  border: none;
-  font-size: 1.5em;
-  cursor: pointer;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.cheat-sheet-toggle-btn:hover { background: rgba(255, 255, 255, 0.2); }
-.cheat-sheet-toggle-btn.expanded { transform: rotate(180deg); }
-
-.cheat-sheet-content { padding: 20px; background: white; }
-
-.cheat-sheet-actions { margin-bottom: 20px; text-align: center; }
-
-.download-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin: 8px;
-  padding: 12px 24px;
-  background: #28a745;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
-  transition: all 0.3s ease;
-}
-
-.download-btn:hover {
-  background: #218838;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
-}
-
-.cheat-sheet-preview {
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  overflow: hidden;
-  background: white;
-  max-height: 600px;
-  overflow-y: auto;
-}
-
-.cheat-sheet-markdown {
-  padding: 20px;
-  font-size: 0.95em;
-  line-height: 1.6;
-}
-
-.cheat-sheet-markdown :deep(h1) {
-  color: #28a745;
-  border-bottom: 2px solid #28a745;
-  padding-bottom: 10px;
-  margin-top: 0;
-}
-
-.cheat-sheet-markdown :deep(h2) {
-  color: #333;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 5px;
-  margin-top: 2em;
-}
-
-.cheat-sheet-markdown :deep(h3) { color: #555; margin-top: 1.5em; }
-
-.cheat-sheet-markdown :deep(code) {
-  background: #f8f9fa;
-  padding: 2px 6px;
-  border-radius: 3px;
-  font-family: 'Courier New', monospace;
-  font-size: 0.9em;
-  border: 1px solid #e9ecef;
-}
-
-.cheat-sheet-markdown :deep(pre) {
-  background: #f8f9fa;
-  padding: 15px;
-  border-radius: 6px;
-  overflow-x: auto;
-  border: 1px solid #e9ecef;
-}
-
-.cheat-sheet-markdown :deep(pre code) { background: none; padding: 0; border: none; }
-
-.cheat-sheet-markdown :deep(ul),
-.cheat-sheet-markdown :deep(ol) { padding-left: 25px; }
-
-.cheat-sheet-markdown :deep(li) { margin-bottom: 5px; }
-
-.cheat-sheet-markdown :deep(table) {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 20px 0;
-}
-
-.cheat-sheet-markdown :deep(th),
-.cheat-sheet-markdown :deep(td) {
-  border: 1px solid #ddd;
-  padding: 8px 12px;
-  text-align: left;
-}
-
-.cheat-sheet-markdown :deep(th) { background: #f8f9fa; font-weight: bold; }
-
-.cheat-sheet-markdown :deep(blockquote) {
-  border-left: 4px solid #28a745;
-  padding-left: 20px;
-  margin-left: 0;
-  color: #666;
-  font-style: italic;
-}
+/* ── Cheat Sheets: siehe CheatSheetList.vue ──────────────────────────────── */
 
 .week-header {
   display: flex;

@@ -143,6 +143,12 @@ und Server-Deploy bewusst zurückgestellt (siehe HANDOFF.md).
       ausgelagert. `InteractiveCourse.vue` 547→386, `ProjectCourse.vue` 383→217 Zeilen. Per
       Playwright visuell verifiziert (`getComputedStyle()` + Screenshots), da CSS-Änderungen von
       den Funktionstests nicht erfasst werden.
+- [x] `weeksection-subkomponenten` (HANDOFF.md 3.20, gemergt) — Refactoring Schritt 3: den
+      Cheat-Sheet-Akkordeon-Block und die Varianten-Buttons aus `WeekSection.vue` in neue
+      `CheatSheetList.vue`/`VariantSelector.vue` ausgelagert. `WeekSection.vue` 666→451 Zeilen.
+      Dabei einen bestehenden CSS-Leak gefunden (`.cheat-sheet-header h4` bekam Border/Padding über
+      eine generische Nachbar-Regel) und explizit in der neuen Komponente nachgebildet, damit sich
+      am Rendering nichts ändert.
 
 ---
 
