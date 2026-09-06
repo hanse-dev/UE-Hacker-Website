@@ -600,7 +600,7 @@ unterscheiden sich) — dort lohnt sich vor einer Konsolidierung erst ein Abglei
 Unterschiede beabsichtigt sind oder Drift. Danach `WeekSection.vue`-Aufteilung, `LessonView.vue`/
 `QuizStep.vue`-Entflechtung, Ternary-Cleanup.
 
-### 3.20 Refactoring Schritt 3: `WeekSection.vue` in Subkomponenten aufgeteilt (Branch `weeksection-subkomponenten`)
+### 3.20 Refactoring Schritt 3: `WeekSection.vue` in Subkomponenten aufgeteilt (Branch `weeksection-subkomponenten`) — gemerged
 
 Zwei in sich geschlossene Template-Blöcke aus `WeekSection.vue` (666 Zeilen) ausgelagert:
 `CheatSheetList.vue` (der komplette Cheat-Sheet-Akkordeon-Block: Header, Download-Buttons,
