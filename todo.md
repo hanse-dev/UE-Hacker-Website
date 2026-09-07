@@ -154,6 +154,12 @@ und Server-Deploy bewusst zurückgestellt (siehe HANDOFF.md).
       `LessonView.vue` in neues `src/composables/useLessonContent.js` ausgelagert, Task-Run/Check
       bleibt unverändert in der Komponente. `LessonView.vue` 684→586 Zeilen. Per Playwright
       verifiziert, dass Glossar-Tooltips weiterhin korrekt im Lektionstext erscheinen.
+- [x] `quizstep-placementcourse-entflechten` (HANDOFF.md 3.22, gemergt) — Refactoring Schritt 5:
+      `QuizStep.vue` bewusst NICHT gesplittet (beim genauen Lesen schon kohärent, keine natürliche
+      Trennstelle wie bei LessonView.vue — keine erzwungene Abstraktion). Stattdessen bei
+      `PlacementCourse.vue` echtes Duplikat beseitigt: `computePlacementResults`/`weekScoresToRows`
+      neu in `useWeekChecks.js`, ersetzen zwei Stellen, die dieselbe Score-Zeilenform bauten.
+      Refactoring-Plan damit im Kern abgeschlossen, nur Schritt 6 (Ternary-Cleanup) offen.
 
 ---
 
