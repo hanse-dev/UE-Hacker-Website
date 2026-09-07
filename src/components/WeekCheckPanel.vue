@@ -1,18 +1,16 @@
 <template>
   <div class="week-check-panel">
-    <p v-if="loading" class="check-loading">{{ lang === 'en' ? 'Loading check…' : 'Check wird geladen…' }}</p>
+    <p v-if="loading" class="check-loading">{{ t('check.loading') }}</p>
     <p v-else-if="!questions.length" class="check-empty">
-      {{ lang === 'en' ? 'No check questions for this week yet.' : 'Für diese Woche gibt es noch keinen Check.' }}
+      {{ t('check.empty') }}
     </p>
     <template v-else>
       <div class="check-intro">
-        <h3>{{ lang === 'en' ? 'Understanding check' : 'Verständnis-Check' }}</h3>
+        <h3>{{ t('check.title') }}</h3>
         <p>
-          {{ lang === 'en'
-            ? 'Short quiz for this week\'s topics. Pass with 80%+.'
-            : 'Kurzer Test zu den Themen dieser Woche. Bestehen mit 80%+.' }}
+          {{ t('check.intro') }}
         </p>
-        <span v-if="alreadyPassed" class="check-badge">{{ lang === 'en' ? 'Already passed' : 'Bereits bestanden' }}</span>
+        <span v-if="alreadyPassed" class="check-badge">{{ t('check.alreadyPassed') }}</span>
       </div>
       <QuizStep
         :questions="questions"
@@ -21,10 +19,10 @@
         @completed="onPassed"
         @failed="onFailed"
       />
-      <CodeChallenge :week-number="weekNumber" :challenge-index="0" :label="lang === 'en' ? 'Easy' : 'Leicht'" />
-      <CodeChallenge :week-number="weekNumber" :challenge-index="1" :label="lang === 'en' ? 'Harder' : 'Schwerer'" />
+      <CodeChallenge :week-number="weekNumber" :challenge-index="0" :label="t('check.challenge.easy')" />
+      <CodeChallenge :week-number="weekNumber" :challenge-index="1" :label="t('check.challenge.harder')" />
       <p v-if="quizPassed && codingPassed" class="check-fully-done">
-        {{ lang === 'en' ? '🎉 All parts done — you\'ve earned this week\'s certificate!' : '🎉 Alles geschafft — du hast das Zertifikat dieser Woche verdient!' }}
+        {{ t('check.fullyDone') }}
       </p>
     </template>
   </div>
@@ -44,7 +42,7 @@ export default {
     weekNumber: { type: Number, required: true },
   },
   setup(props) {
-    const { lang } = useLanguage();
+    const { lang, t } = useLanguage();
     const { markQuizPassed, isWeekCheckPassed, isQuizPassedForWeek, isCodingPassedForWeek } = useWeekChecks();
     const data = ref(null);
     const loading = ref(true);
@@ -89,6 +87,7 @@ export default {
 
     return {
       lang,
+      t,
       loading,
       questions,
       passThreshold,

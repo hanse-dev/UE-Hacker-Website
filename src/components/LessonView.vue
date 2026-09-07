@@ -1,20 +1,20 @@
 <template>
   <div class="lesson-view">
     <div class="lesson-content">
-      <p v-if="!lessonContent" class="lesson-loading">{{ lang === 'en' ? 'Loading lesson...' : 'Lektion wird geladen...' }}</p>
+      <p v-if="!lessonContent" class="lesson-loading">{{ t('lesson.loading') }}</p>
       <div v-else v-html="lessonContent"></div>
     </div>
 
     <div class="lesson-editor-section">
-      <p class="editor-hint">{{ lang === 'en' ? 'Python loads automatically when you open the page (~30 sec). Write your code and click "Check" once "Python ready" appears.' : 'Python wird beim Öffnen automatisch geladen (~30 Sek.). Schreibe deinen Code und klicke auf „Prüfen", sobald „Python bereit" angezeigt wird.' }}</p>
+      <p class="editor-hint">{{ t('lesson.editorHint') }}</p>
       <div class="editor-header">
-        <span class="editor-label">{{ lang === 'en' ? 'Your Code' : 'Dein Code' }}</span>
+        <span class="editor-label">{{ t('lesson.yourCode') }}</span>
         <button
           @click="initializeKernel"
           :disabled="kernelReady"
           class="btn-kernel"
         >
-          {{ kernelReady ? (lang === 'en' ? '✓ Python ready' : '✓ Python bereit') : (lang === 'en' ? 'Initialize Python' : 'Python initialisieren') }}
+          {{ kernelReady ? t('jupyter.ready') : t('editor.initPython') }}
         </button>
       </div>
 
@@ -24,16 +24,16 @@
             <span v-if="completedTasks.has(idx)" class="task-done">✓</span>
             <span v-else class="task-pending">○</span>
             <span v-if="task.isBonus" class="task-bonus-badge">Bonus</span>
-            <span v-html="instructionWithGlossary(task.instruction || (lang === 'en' ? 'Task ' : 'Aufgabe ') + (idx + 1))"></span>
-            <span v-if="completedTasks.has(idx)" class="task-status-label">{{ lang === 'en' ? '(done)' : '(erledigt)' }}</span>
-            <span v-else-if="!completedTasks.has(idx) && completedTasks.size > 0" class="task-status-label">{{ lang === 'en' ? '(pending)' : '(noch offen)' }}</span>
+            <span v-html="instructionWithGlossary(task.instruction || t('lesson.taskPrefix') + (idx + 1))"></span>
+            <span v-if="completedTasks.has(idx)" class="task-status-label">{{ t('lesson.taskDone') }}</span>
+            <span v-else-if="!completedTasks.has(idx) && completedTasks.size > 0" class="task-status-label">{{ t('lesson.taskPending') }}</span>
           </p>
           <textarea
             v-model="taskCodes[idx]"
             class="code-editor"
             spellcheck="false"
             rows="4"
-            :placeholder="(lang === 'en' ? 'Task ' : 'Aufgabe ') + (idx + 1) + '...'"
+            :placeholder="t('lesson.taskPrefix') + (idx + 1) + '...'"
           ></textarea>
           <div class="editor-actions">
             <button
@@ -41,18 +41,18 @@
               :disabled="!kernelReady || checking"
               class="btn-run"
             >
-              {{ lang === 'en' ? 'Run' : 'Ausführen' }}
+              {{ t('editor.run') }}
             </button>
             <button
               @click="checkTask(idx)"
               :disabled="!kernelReady || checking"
               class="btn-check"
             >
-              {{ checking ? (lang === 'en' ? 'Checking...' : 'Wird geprüft...') : (lang === 'en' ? 'Check' : 'Prüfen') }}
+              {{ checking ? t('editor.checking') : t('editor.check') }}
             </button>
           </div>
           <div v-if="taskOutputs[idx] !== null" class="output-display">
-            <strong>{{ lang === 'en' ? 'Output:' : 'Ausgabe:' }}</strong>
+            <strong>{{ t('editor.output') }}</strong>
             <pre class="output-content">{{ taskOutputs[idx] }}</pre>
           </div>
           <div v-if="taskFeedback[idx]" :class="['feedback', taskFeedback[idx].success ? 'feedback-success' : 'feedback-error']">
@@ -68,9 +68,9 @@
           :to="'/kurs/' + lesson.nextCourseId"
           class="btn-next"
         >
-          {{ lang === 'en' ? 'Go to the 12-Week Python Course' : 'Zum 12-Wochen Python Grundkurs' }}
+          {{ t('lesson.goToWeeklyCourse') }}
         </router-link>
-        <button v-else @click="goToNext" class="btn-next">{{ lang === 'en' ? 'Next lesson' : 'Weiter zur nächsten Lektion' }}</button>
+        <button v-else @click="goToNext" class="btn-next">{{ t('lesson.nextLesson') }}</button>
       </div>
 
       <div v-if="kernelStatus" class="kernel-status">
@@ -110,7 +110,7 @@ export default {
   },
   emits: ['completed', 'next'],
   setup(props, { emit }) {
-    const { lang } = useLanguage();
+    const { lang, t } = useLanguage();
     const { kernelReady, kernelStatus, initializeKernel, runPython } = usePyodide();
     const { markCompleted, isLessonUnlocked } = useInteractiveProgress(props.variant, props.courseId);
 
@@ -137,7 +137,7 @@ export default {
       return t.length > 0 && completedTasks.value.size === t.length;
     });
 
-    const lessonSummary = computed(() => props.lesson?.lessonSummary || (lang.value === 'en' ? 'Great, you completed this lesson!' : 'Super, du hast diese Lektion abgeschlossen!'));
+    const lessonSummary = computed(() => props.lesson?.lessonSummary || t('lesson.defaultSummary'));
 
     const taskCodes = ref([]);
     const taskOutputs = ref([]);
@@ -182,9 +182,9 @@ export default {
       if (!isMounted.value) return;
 
       if (result.success) {
-        taskOutputs.value[idx] = result.output || (lang.value === 'en' ? '(no output)' : '(keine Ausgabe)');
+        taskOutputs.value[idx] = result.output || t('jupyter.noOutput');
       } else {
-        taskOutputs.value[idx] = (lang.value === 'en' ? 'Error: ' : 'Fehler: ') + (result.error || (lang.value === 'en' ? 'Unknown error' : 'Unbekannter Fehler'));
+        taskOutputs.value[idx] = t('editor.errorPrefix') + (result.error || t('jupyter.unknownError'));
       }
       checking.value = false;
     };
@@ -198,10 +198,10 @@ export default {
       if (!isMounted.value) return;
 
       if (result.success) {
-        taskOutputs.value[idx] = result.output || (lang.value === 'en' ? '(no output)' : '(keine Ausgabe)');
+        taskOutputs.value[idx] = result.output || t('jupyter.noOutput');
       } else {
         taskAttempts.value[idx] = (taskAttempts.value[idx] || 0) + 1;
-        const errMsg = (lang.value === 'en' ? 'Error: ' : 'Fehler: ') + (result.error || (lang.value === 'en' ? 'Unknown error' : 'Unbekannter Fehler'));
+        const errMsg = t('editor.errorPrefix') + (result.error || t('jupyter.unknownError'));
         taskOutputs.value[idx] = errMsg;
         taskFeedback.value[idx] = { success: false, message: errMsg };
         checking.value = false;
@@ -219,15 +219,13 @@ export default {
           markCompleted(props.lesson.id);
           taskFeedback.value[idx] = {
             success: true,
-            message: lang.value === 'en' ? 'Correct! You completed all tasks.' : 'Richtig! Du hast alle Aufgaben abgeschlossen.',
+            message: t('lesson.allTasksDone'),
           };
         } else {
           const remaining = total - done;
           taskFeedback.value[idx] = {
             success: true,
-            message: lang.value === 'en'
-              ? `Correct! Task ${idx + 1} done. ${remaining} task(s) remaining.`
-              : `Richtig! Aufgabe ${idx + 1} erledigt. Noch ${remaining} Aufgabe(n) zu lösen.`,
+            message: t('lesson.taskDoneRemaining').replace('{n}', idx + 1).replace('{r}', remaining),
           };
         }
       } else {
@@ -238,16 +236,12 @@ export default {
         if (taskAttempts.value[idx] < 2) {
           taskFeedback.value[idx] = {
             success: false,
-            message: lang.value === 'en'
-              ? 'Not quite yet — check the output above and compare it with the task.'
-              : 'Noch nicht ganz – schau dir deine Ausgabe oben an und vergleiche sie mit der Aufgabenstellung.',
+            message: t('lesson.hintSoft'),
           };
         } else {
           taskFeedback.value[idx] = {
             success: false,
-            message: lang.value === 'en'
-              ? `Output doesn't match yet. Expected something containing: "${validation?.expected || ''}"`
-              : `Die Ausgabe stimmt noch nicht. Erwartet wurde etwas mit: "${validation?.expected || ''}"`,
+            message: t('lesson.hintExpected').replace('{expected}', validation?.expected || ''),
           };
         }
       }
@@ -261,6 +255,7 @@ export default {
 
     return {
       lang,
+      t,
       lessonContent,
       checking,
       tasks,

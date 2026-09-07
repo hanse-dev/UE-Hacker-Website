@@ -114,6 +114,31 @@ export default {
   'week.download.week':    '📦 Download Week {n}',
   'week.download.week.hint': 'All notebooks for this week (Adventure, Horses, Sci-Fi) as ZIP',
 
+  // ── Week check panel ─────────────────────────────────────────────────────
+  'check.loading':       'Loading check…',
+  'check.empty':         'No check questions for this week yet.',
+  'check.title':         'Understanding check',
+  'check.intro':         'Short quiz for this week\'s topics. Pass with 80%+.',
+  'check.alreadyPassed': 'Already passed',
+  'check.challenge.easy':   'Easy',
+  'check.challenge.harder': 'Harder',
+  'check.fullyDone': '🎉 All parts done — you\'ve earned this week\'s certificate!',
+
+  // ── Quiz step ─────────────────────────────────────────────────────────────
+  'quiz.multiHint':      'Select all that apply.',
+  'quiz.dontKnow':       '🤷 I don\'t know',
+  'quiz.checkOne':       'Check',
+  'quiz.checkAll':       'Check answers',
+  'quiz.result.pass':    'Correct! {correct}/{total}',
+  'quiz.result.fail':    'Not quite: {correct}/{total}. Try again!',
+  'quiz.retry':          'Retry',
+  'quiz.result.doneOk':  'Done! {correct}/{total}',
+  'quiz.result.doneFail':'Done: {correct}/{total}',
+  'quiz.dontKnowLead':   'No problem — here is the answer:',
+  'quiz.correct':        'Correct!',
+  'quiz.wrongLead':      'Not quite —',
+  'quiz.wrongGeneric':   'Not quite – check again.',
+
   // ── Progress widget ───────────────────────────────────────────────────────
   'progress.title':  '🎓 Your certificates',
   'progress.intro1': 'Each week has a certificate. You earn it once you\'ve passed the week check: the quiz plus both coding challenges (easy + harder).',
@@ -151,6 +176,21 @@ export default {
   'appt.location': 'Location:',
   'appt.topic':    'Topic:',
 
+  // ── Placement ─────────────────────────────────────────────────────────────
+  'placement.loading':        'Loading…',
+  'placement.loadError':      'Could not load placement.',
+  'placement.title':          'Where should I start?',
+  'placement.intro':          'Answer a few questions from different weeks. Check each answer with “Check” — your progress is saved.',
+  'placement.sessionProgress':   'Saved progress: {c}/{n} checked',
+  'placement.results.title':  'Your result',
+  'placement.results.intro':  'Green = looks good. Orange = worth reviewing that week.',
+  'placement.openWeek':       'Open week →',
+  'placement.projects.title': 'Everything looks strong — try a project!',
+  'placement.projects.intro': 'Here are three ideas that use what you learned in the 12-week course:',
+  'placement.projects.uses':  'Uses:',
+  'placement.recommend':      'Suggested start:',
+  'placement.retry':          'Retake placement',
+
   // ── Jupyter ───────────────────────────────────────────────────────────────
   'jupyter.init':      'Initialise Python',
   'jupyter.ready':     '✓ Python ready',
@@ -163,4 +203,65 @@ export default {
   'jupyter.fetchError':'Error loading: ',
   'jupyter.noOutput':  '(no output)',
   'jupyter.unknownError': 'Unknown error',
+
+  // ── Lessons sidebar (InteractiveCourse.vue + ProjectCourse.vue) ──────────
+  'lessons.loading':        'Loading lessons...',
+  'lessons.lesson':         'Lesson',
+  'lessons.of':             'of',
+  'lessons.completed':      'completed',
+  'lessons.sidebarClose':   '✕ Close',
+  'lessons.sidebarOpen':    '☰ Lessons',
+  'lessons.title':          'Lessons',
+  'lessons.exportProgress': 'Export progress',
+  'lessons.import':         'Import',
+  'lessons.selectFromList': 'Select a lesson from the list.',
+  'lessons.startWithOne':   'Start with Lesson 1!',
+  'lessons.loadError':      'Could not load lessons.',
+  'lessons.importSuccess':  'Progress imported.',
+  'lessons.importFailed':   'Import failed: ',
+
+  // ── Interactive course: variant selector ─────────────────────────────────
+  'interactive.whoFor':        'Who is this course for?',
+  'interactive.chooseVersion': 'Choose your version – you can switch later.',
+  'interactive.kids.title':    'For Kids',
+  'interactive.kids.age':      '8–12 years',
+  'interactive.kids.f1':       'Simple explanations',
+  'interactive.kids.f2':       'Animals & game examples',
+  'interactive.kids.f3':       'Code templates to fill in',
+  'interactive.teens.title':   'For Teenagers',
+  'interactive.teens.age':     '13–17 years',
+  'interactive.teens.f1':      'Direct approach',
+  'interactive.teens.f2':      'Everyday & app examples',
+  'interactive.teens.f3':      'Bonus tasks per lesson',
+  'interactive.switchVersion': 'Switch version',
+
+  // ── Code editor (LessonView.vue + CodeChallenge.vue) ─────────────────────
+  'editor.initPython': 'Initialize Python',
+  'editor.run':         'Run',
+  'editor.checking':    'Checking...',
+  'editor.check':       'Check',
+  'editor.output':      'Output:',
+  'editor.errorPrefix': 'Error: ',
+
+  // ── Lesson view (interactive lessons / Caesar cipher) ────────────────────
+  'lesson.loading':           'Loading lesson...',
+  'lesson.editorHint':        'Python loads automatically when you open the page (~30 sec). Write your code and click "Check" once "Python ready" appears.',
+  'lesson.yourCode':          'Your Code',
+  'lesson.taskPrefix':        'Task ',
+  'lesson.taskDone':          '(done)',
+  'lesson.taskPending':       '(pending)',
+  'lesson.goToWeeklyCourse':  'Go to the 12-Week Python Course',
+  'lesson.nextLesson':        'Next lesson',
+  'lesson.defaultSummary':    'Great, you completed this lesson!',
+  'lesson.allTasksDone':      'Correct! You completed all tasks.',
+  'lesson.taskDoneRemaining': 'Correct! Task {n} done. {r} task(s) remaining.',
+  'lesson.hintSoft':          'Not quite yet — check the output above and compare it with the task.',
+  'lesson.hintExpected':      'Output doesn\'t match yet. Expected something containing: "{expected}"',
+
+  // ── Code challenge (week check) ──────────────────────────────────────────
+  'challenge.passed':         'Passed',
+  'challenge.codePlaceholder':'Your code...',
+  'challenge.title':          '💻 Coding challenge',
+  'challenge.passedMessage':  'Correct! Coding challenge passed.',
+  'challenge.notYetMessage':  'Not quite yet — check your output above.',
 };

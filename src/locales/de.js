@@ -114,6 +114,31 @@ export default {
   'week.download.week':    '📦 Woche {n} herunterladen',
   'week.download.week.hint': 'Alle Notebooks dieser Woche (Abenteuer, Pferde, Sci-Fi) als ZIP',
 
+  // ── Week check panel ─────────────────────────────────────────────────────
+  'check.loading':       'Check wird geladen…',
+  'check.empty':         'Für diese Woche gibt es noch keinen Check.',
+  'check.title':         'Verständnis-Check',
+  'check.intro':         'Kurzer Test zu den Themen dieser Woche. Bestehen mit 80%+.',
+  'check.alreadyPassed': 'Bereits bestanden',
+  'check.challenge.easy':   'Leicht',
+  'check.challenge.harder': 'Schwerer',
+  'check.fullyDone': '🎉 Alles geschafft — du hast das Zertifikat dieser Woche verdient!',
+
+  // ── Quiz step ─────────────────────────────────────────────────────────────
+  'quiz.multiHint':      'Mehrere Antworten möglich.',
+  'quiz.dontKnow':       '🤷 Ich weiß es nicht',
+  'quiz.checkOne':       'Prüfen',
+  'quiz.checkAll':       'Antworten prüfen',
+  'quiz.result.pass':    'Richtig! {correct}/{total}',
+  'quiz.result.fail':    'Noch nicht: {correct}/{total}. Versuch es nochmal!',
+  'quiz.retry':          'Nochmal',
+  'quiz.result.doneOk':  'Fertig! {correct}/{total}',
+  'quiz.result.doneFail':'Fertig: {correct}/{total}',
+  'quiz.dontKnowLead':   'Kein Problem — hier ist die Antwort:',
+  'quiz.correct':        'Richtig!',
+  'quiz.wrongLead':      'Nicht ganz —',
+  'quiz.wrongGeneric':   'Noch nicht ganz – schau nochmal hin.',
+
   // ── Progress widget ───────────────────────────────────────────────────────
   'progress.title':  '🎓 Deine Zertifikate',
   'progress.intro1': 'Für jede Woche gibt es ein Zertifikat. Du bekommst es, wenn du den Wochen-Check bestanden hast: das Quiz plus beide Coding-Aufgaben (leicht + schwerer).',
@@ -151,6 +176,21 @@ export default {
   'appt.location': 'Ort:',
   'appt.topic':    'Thema:',
 
+  // ── Placement (Einstufung) ───────────────────────────────────────────────
+  'placement.loading':        'Lade…',
+  'placement.loadError':      'Einstufung konnte nicht geladen werden.',
+  'placement.title':          'Wo soll ich starten?',
+  'placement.intro':          'Beantworte ein paar Fragen aus verschiedenen Wochen. Prüfe jede Antwort mit „Prüfen“ — dein Stand wird gespeichert.',
+  'placement.sessionProgress':   'Gespeicherter Stand: {c}/{n} geprüft',
+  'placement.results.title':  'Dein Ergebnis',
+  'placement.results.intro':  'Grün = sieht gut aus. Orange = diese Woche lohnt sich zum Wiederholen.',
+  'placement.openWeek':       'Woche öffnen →',
+  'placement.projects.title': 'Alles sitzt — Zeit für ein eigenes Projekt!',
+  'placement.projects.intro': 'Hier sind drei Ideen, die das aus dem 12-Wochen-Kurs nutzen:',
+  'placement.projects.uses':  'Nutzt:',
+  'placement.recommend':      'Empfohlener Start:',
+  'placement.retry':          'Einstufung wiederholen',
+
   // ── Jupyter ───────────────────────────────────────────────────────────────
   'jupyter.init':      'Python initialisieren',
   'jupyter.ready':     '✓ Python bereit',
@@ -163,4 +203,65 @@ export default {
   'jupyter.fetchError':'Fehler beim Laden: ',
   'jupyter.noOutput':  '(keine Ausgabe)',
   'jupyter.unknownError': 'Unbekannter Fehler',
+
+  // ── Lessons sidebar (InteractiveCourse.vue + ProjectCourse.vue) ──────────
+  'lessons.loading':        'Lade Lektionen...',
+  'lessons.lesson':         'Lektion',
+  'lessons.of':             'von',
+  'lessons.completed':      'abgeschlossen',
+  'lessons.sidebarClose':   '✕ Schließen',
+  'lessons.sidebarOpen':    '☰ Lektionen',
+  'lessons.title':          'Lektionen',
+  'lessons.exportProgress': 'Fortschritt exportieren',
+  'lessons.import':         'Importieren',
+  'lessons.selectFromList': 'Wähle eine Lektion aus der Liste.',
+  'lessons.startWithOne':   'Starte mit Lektion 1!',
+  'lessons.loadError':      'Lektionen konnten nicht geladen werden.',
+  'lessons.importSuccess':  'Fortschritt wurde importiert.',
+  'lessons.importFailed':   'Import fehlgeschlagen: ',
+
+  // ── Interactive course: variant selector ─────────────────────────────────
+  'interactive.whoFor':        'Für wen ist dieser Kurs?',
+  'interactive.chooseVersion': 'Wähle deine Version – du kannst später wechseln.',
+  'interactive.kids.title':    'Für Kinder',
+  'interactive.kids.age':      '8–12 Jahre',
+  'interactive.kids.f1':       'Einfache Erklärungen',
+  'interactive.kids.f2':       'Tiere & Spielbeispiele',
+  'interactive.kids.f3':       'Code-Vorlagen zum Ausfüllen',
+  'interactive.teens.title':   'Für Jugendliche',
+  'interactive.teens.age':     '13–17 Jahre',
+  'interactive.teens.f1':      'Direkter Einstieg',
+  'interactive.teens.f2':      'Alltags- & App-Beispiele',
+  'interactive.teens.f3':      'Bonus-Aufgaben pro Lektion',
+  'interactive.switchVersion': 'Version wechseln',
+
+  // ── Code editor (LessonView.vue + CodeChallenge.vue) ─────────────────────
+  'editor.initPython': 'Python initialisieren',
+  'editor.run':         'Ausführen',
+  'editor.checking':    'Wird geprüft...',
+  'editor.check':       'Prüfen',
+  'editor.output':      'Ausgabe:',
+  'editor.errorPrefix': 'Fehler: ',
+
+  // ── Lesson view (interactive lessons / Cäsar-Chiffre) ────────────────────
+  'lesson.loading':           'Lektion wird geladen...',
+  'lesson.editorHint':        'Python wird beim Öffnen automatisch geladen (~30 Sek.). Schreibe deinen Code und klicke auf „Prüfen", sobald „Python bereit" angezeigt wird.',
+  'lesson.yourCode':          'Dein Code',
+  'lesson.taskPrefix':        'Aufgabe ',
+  'lesson.taskDone':          '(erledigt)',
+  'lesson.taskPending':       '(noch offen)',
+  'lesson.goToWeeklyCourse':  'Zum 12-Wochen Python Grundkurs',
+  'lesson.nextLesson':        'Weiter zur nächsten Lektion',
+  'lesson.defaultSummary':    'Super, du hast diese Lektion abgeschlossen!',
+  'lesson.allTasksDone':      'Richtig! Du hast alle Aufgaben abgeschlossen.',
+  'lesson.taskDoneRemaining': 'Richtig! Aufgabe {n} erledigt. Noch {r} Aufgabe(n) zu lösen.',
+  'lesson.hintSoft':          'Noch nicht ganz – schau dir deine Ausgabe oben an und vergleiche sie mit der Aufgabenstellung.',
+  'lesson.hintExpected':      'Die Ausgabe stimmt noch nicht. Erwartet wurde etwas mit: "{expected}"',
+
+  // ── Code challenge (Wochen-Check) ────────────────────────────────────────
+  'challenge.passed':         'Bestanden',
+  'challenge.codePlaceholder':'Dein Code...',
+  'challenge.title':          '💻 Coding-Aufgabe',
+  'challenge.passedMessage':  'Richtig! Coding-Aufgabe bestanden.',
+  'challenge.notYetMessage':  'Noch nicht ganz – schau dir deine Ausgabe oben an.',
 };

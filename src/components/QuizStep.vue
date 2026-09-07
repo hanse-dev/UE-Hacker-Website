@@ -17,7 +17,7 @@
         {{ questionText(q) }}
       </p>
       <p v-if="isMulti(q)" class="multi-hint">
-        {{ lang === 'en' ? 'Select all that apply.' : 'Mehrere Antworten möglich.' }}
+        {{ t('quiz.multiHint') }}
       </p>
 
       <div class="options mc-options">
@@ -40,7 +40,7 @@
           :disabled="isLocked(qIdx)"
           @click="selectDontKnow(qIdx)"
         >
-          {{ lang === 'en' ? "🤷 I don't know" : '🤷 Ich weiß es nicht' }}
+          {{ t('quiz.dontKnow') }}
         </button>
       </div>
 
@@ -51,7 +51,7 @@
           :disabled="!isAnswered(qIdx)"
           @click="checkOne(qIdx)"
         >
-          {{ lang === 'en' ? 'Check' : 'Prüfen' }}
+          {{ t('quiz.checkOne') }}
         </button>
       </div>
 
@@ -71,23 +71,23 @@
         :disabled="!allAnswered"
         @click="submitQuiz"
       >
-        {{ lang === 'en' ? 'Check answers' : 'Antworten prüfen' }}
+        {{ t('quiz.checkAll') }}
       </button>
       <div v-else-if="passed" class="quiz-result quiz-pass">
-        {{ lang === 'en' ? `Correct! ${scoreResult.correct}/${scoreResult.total}` : `Richtig! ${scoreResult.correct}/${scoreResult.total}` }}
+        {{ t('quiz.result.pass').replace('{correct}', scoreResult.correct).replace('{total}', scoreResult.total) }}
       </div>
       <div v-else class="quiz-result quiz-fail">
-        {{ lang === 'en' ? `Not quite: ${scoreResult.correct}/${scoreResult.total}. Try again!` : `Noch nicht: ${scoreResult.correct}/${scoreResult.total}. Versuch es nochmal!` }}
-        <button type="button" class="btn-retry" @click="retry">{{ lang === 'en' ? 'Retry' : 'Nochmal' }}</button>
+        {{ t('quiz.result.fail').replace('{correct}', scoreResult.correct).replace('{total}', scoreResult.total) }}
+        <button type="button" class="btn-retry" @click="retry">{{ t('quiz.retry') }}</button>
       </div>
     </div>
 
     <div v-else-if="submitted" class="quiz-actions">
       <div v-if="passed" class="quiz-result quiz-pass">
-        {{ lang === 'en' ? `Done! ${scoreResult.correct}/${scoreResult.total}` : `Fertig! ${scoreResult.correct}/${scoreResult.total}` }}
+        {{ t('quiz.result.doneOk').replace('{correct}', scoreResult.correct).replace('{total}', scoreResult.total) }}
       </div>
       <div v-else class="quiz-result quiz-fail">
-        {{ lang === 'en' ? `Done: ${scoreResult.correct}/${scoreResult.total}` : `Fertig: ${scoreResult.correct}/${scoreResult.total}` }}
+        {{ t('quiz.result.doneFail').replace('{correct}', scoreResult.correct).replace('{total}', scoreResult.total) }}
       </div>
     </div>
   </div>
@@ -102,6 +102,7 @@ import {
   getCorrectIndices,
   explanationForAnswer,
 } from '../composables/useTaskValidation';
+import { useLanguage } from '../composables/useLanguage';
 
 // Sentinel für "Ich weiß es nicht" — zählt für die Bewertung als falsch (kein Rätsel-Bonus),
 // löst aber eine eigene, freundlichere Rückmeldung aus statt "falsch geraten".
@@ -121,6 +122,7 @@ export default {
   },
   emits: ['completed', 'failed', 'progress'],
   setup(props, { emit }) {
+    const { t } = useLanguage();
     const answers = ref([]);
     const feedback = ref([]);
     const checked = ref([]);
@@ -138,9 +140,7 @@ export default {
     const feedbackFor = (q, a) => {
       const expl = props.lang === 'en' && q.explanation_en ? q.explanation_en : q.explanation;
       if (a === DONT_KNOW) {
-        const lead = props.lang === 'en'
-          ? 'No problem — here is the answer:'
-          : 'Kein Problem — hier ist die Antwort:';
+        const lead = t('quiz.dontKnowLead');
         return {
           correct: false,
           message: expl ? `${lead} ${expl}` : lead,
@@ -148,15 +148,15 @@ export default {
       }
       const correct = isAnswerCorrect(q, a);
       if (correct) {
-        return { correct: true, message: expl || (props.lang === 'en' ? 'Correct!' : 'Richtig!') };
+        return { correct: true, message: expl || t('quiz.correct') };
       }
       const wrongExpl = explanationForAnswer(q, a, props.lang);
-      const wrongLead = props.lang === 'en' ? 'Not quite —' : 'Nicht ganz —';
+      const wrongLead = t('quiz.wrongLead');
       return {
         correct: false,
         message: wrongExpl
           ? `${wrongLead} ${wrongExpl}`
-          : (props.lang === 'en' ? 'Not quite – check again.' : 'Noch nicht ganz – schau nochmal hin.'),
+          : t('quiz.wrongGeneric'),
       };
     };
 
@@ -332,6 +332,7 @@ export default {
     };
 
     return {
+      t,
       answers,
       feedback,
       checked,

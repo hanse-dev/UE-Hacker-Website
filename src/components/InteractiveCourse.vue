@@ -2,45 +2,45 @@
   <div class="interactive-course">
     <!-- Variant selector -->
     <div v-if="!variant" class="variant-selector">
-      <h2>{{ lang === 'en' ? 'Who is this course for?' : 'Für wen ist dieser Kurs?' }}</h2>
-      <p class="variant-intro">{{ lang === 'en' ? 'Choose your version – you can switch later.' : 'Wähle deine Version – du kannst später wechseln.' }}</p>
+      <h2>{{ t('interactive.whoFor') }}</h2>
+      <p class="variant-intro">{{ t('interactive.chooseVersion') }}</p>
       <div class="variant-cards">
         <button class="variant-card" @click="selectVariant('kinder')">
           <span class="variant-icon">🌟</span>
-          <strong>{{ lang === 'en' ? 'For Kids' : 'Für Kinder' }}</strong>
-          <span class="variant-age">{{ lang === 'en' ? '8–12 years' : '8–12 Jahre' }}</span>
+          <strong>{{ t('interactive.kids.title') }}</strong>
+          <span class="variant-age">{{ t('interactive.kids.age') }}</span>
           <ul class="variant-features">
-            <li>{{ lang === 'en' ? 'Simple explanations' : 'Einfache Erklärungen' }}</li>
-            <li>{{ lang === 'en' ? 'Animals &amp; game examples' : 'Tiere &amp; Spielbeispiele' }}</li>
-            <li>{{ lang === 'en' ? 'Code templates to fill in' : 'Code-Vorlagen zum Ausfüllen' }}</li>
+            <li>{{ t('interactive.kids.f1') }}</li>
+            <li>{{ t('interactive.kids.f2') }}</li>
+            <li>{{ t('interactive.kids.f3') }}</li>
           </ul>
         </button>
         <button class="variant-card" @click="selectVariant('jugendliche')">
           <span class="variant-icon">🚀</span>
-          <strong>{{ lang === 'en' ? 'For Teenagers' : 'Für Jugendliche' }}</strong>
-          <span class="variant-age">{{ lang === 'en' ? '13–17 years' : '13–17 Jahre' }}</span>
+          <strong>{{ t('interactive.teens.title') }}</strong>
+          <span class="variant-age">{{ t('interactive.teens.age') }}</span>
           <ul class="variant-features">
-            <li>{{ lang === 'en' ? 'Direct approach' : 'Direkter Einstieg' }}</li>
-            <li>{{ lang === 'en' ? 'Everyday &amp; app examples' : 'Alltags- &amp; App-Beispiele' }}</li>
-            <li>{{ lang === 'en' ? 'Bonus tasks per lesson' : 'Bonus-Aufgaben pro Lektion' }}</li>
+            <li>{{ t('interactive.teens.f1') }}</li>
+            <li>{{ t('interactive.teens.f2') }}</li>
+            <li>{{ t('interactive.teens.f3') }}</li>
           </ul>
         </button>
       </div>
     </div>
 
     <template v-else>
-      <div v-if="loading" class="loading">{{ lang === 'en' ? 'Loading lessons...' : 'Lade Lektionen...' }}</div>
+      <div v-if="loading" class="loading">{{ t('lessons.loading') }}</div>
       <div v-else-if="error" class="error">{{ error }}</div>
 
       <template v-else>
         <div class="course-layout">
           <div class="progress-bar-full">
             <div class="progress-info">
-              <span>{{ lang === 'en' ? 'Lesson' : 'Lektion' }} {{ currentIndex + 1 }} {{ lang === 'en' ? 'of' : 'von' }} {{ lessons.length }}</span>
+              <span>{{ t('lessons.lesson') }} {{ currentIndex + 1 }} {{ t('lessons.of') }} {{ lessons.length }}</span>
               <div class="progress-info-right">
-                <span class="progress-count">{{ completedCount }} {{ lang === 'en' ? 'completed' : 'abgeschlossen' }}</span>
+                <span class="progress-count">{{ completedCount }} {{ t('lessons.completed') }}</span>
                 <button class="btn-sidebar-toggle" @click="sidebarOpen = !sidebarOpen">
-                  {{ sidebarOpen ? (lang === 'en' ? '✕ Close' : '✕ Schließen') : (lang === 'en' ? '☰ Lessons' : '☰ Lektionen') }}
+                  {{ sidebarOpen ? t('lessons.sidebarClose') : t('lessons.sidebarOpen') }}
                 </button>
               </div>
             </div>
@@ -50,7 +50,7 @@
           </div>
 
           <aside class="lessons-sidebar" :class="{ 'sidebar-mobile-open': sidebarOpen }">
-            <h3>{{ lang === 'en' ? 'Lessons' : 'Lektionen' }}</h3>
+            <h3>{{ t('lessons.title') }}</h3>
             <ul class="lessons-list">
               <li
                 v-for="(lesson, idx) in lessons"
@@ -69,19 +69,19 @@
             </ul>
 
             <div class="sidebar-actions">
-              <button @click="exportProgress" class="btn-export">{{ lang === 'en' ? 'Export progress' : 'Fortschritt exportieren' }}</button>
+              <button @click="exportProgress" class="btn-export">{{ t('lessons.exportProgress') }}</button>
               <label class="btn-import">
-                {{ lang === 'en' ? 'Import' : 'Importieren' }}
+                {{ t('lessons.import') }}
                 <input type="file" accept=".json" class="file-input" @change="onImportFile" />
               </label>
-              <button @click="switchVariant" class="btn-switch">{{ lang === 'en' ? 'Switch version' : 'Version wechseln' }}</button>
+              <button @click="switchVariant" class="btn-switch">{{ t('interactive.switchVersion') }}</button>
             </div>
           </aside>
 
           <main class="lesson-main">
             <div v-if="!currentLesson" class="no-lesson">
-              <p>{{ lang === 'en' ? 'Select a lesson from the list.' : 'Wähle eine Lektion aus der Liste.' }}</p>
-              <p v-if="lessons.length">{{ lang === 'en' ? 'Start with Lesson 1!' : 'Starte mit Lektion 1!' }}</p>
+              <p>{{ t('lessons.selectFromList') }}</p>
+              <p v-if="lessons.length">{{ t('lessons.startWithOne') }}</p>
             </div>
             <LessonView
               v-else
@@ -123,7 +123,7 @@ export default {
   name: 'InteractiveCourse',
   components: { LessonView },
   setup() {
-    const { lang } = useLanguage();
+    const { lang, t } = useLanguage();
     const variant = ref(localStorage.getItem(VARIANT_STORAGE_KEY) || null);
     const lessons = ref([]);
     const loading = ref(false);
@@ -177,7 +177,7 @@ export default {
         }
       } catch (e) {
         console.error('Could not load lessons:', e);
-        error.value = lang.value === 'en' ? 'Could not load lessons.' : 'Lektionen konnten nicht geladen werden.';
+        error.value = t('lessons.loadError');
       } finally {
         loading.value = false;
       }
@@ -226,8 +226,8 @@ export default {
       const reader = new FileReader();
       reader.onload = () => {
         const result = activeProgress.value.importProgress(reader.result);
-        if (result.ok) alert(lang.value === 'en' ? 'Progress imported.' : 'Fortschritt wurde importiert.');
-        else alert((lang.value === 'en' ? 'Import failed: ' : 'Import fehlgeschlagen: ') + (result.error || (lang.value === 'en' ? 'Unknown error' : 'Unbekannter Fehler')));
+        if (result.ok) alert(t('lessons.importSuccess'));
+        else alert(t('lessons.importFailed') + (result.error || t('jupyter.unknownError')));
       };
       reader.readAsText(file, 'UTF-8');
       e.target.value = '';
@@ -242,6 +242,7 @@ export default {
 
     return {
       lang,
+      t,
       variant,
       lessons,
       loading,
