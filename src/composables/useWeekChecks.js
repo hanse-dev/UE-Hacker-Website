@@ -141,6 +141,48 @@ export function getPlacementQuestions(data, lang = 'de') {
   return list.sort((a, b) => a.weekNumber - b.weekNumber);
 }
 
+/** Score-Zeile fürs Wochen-Ergebnis-Raster der Einstufung (geteilte Form für frisch berechnete
+ *  und aus dem Speicher wiederhergestellte Ergebnisse, siehe computePlacementResults/
+ *  weekScoresToRows). */
+function scoreRow(weekNumber, title, result, threshold) {
+  return {
+    weekNumber: Number(weekNumber),
+    title,
+    score: result.score,
+    correct: result.correct,
+    total: result.total,
+    ok: isQuizPassed(result.score, threshold),
+  };
+}
+
+/** Gruppiert beantwortete Einstufungsfragen nach Woche und bewertet jede Woche einzeln. */
+export function computePlacementResults(questions, answers, threshold) {
+  const byWeek = {};
+  questions.forEach((q, i) => {
+    const w = q.weekNumber;
+    if (!byWeek[w]) byWeek[w] = { questions: [], answers: [], title: q.weekTitle };
+    byWeek[w].questions.push(q);
+    byWeek[w].answers.push(answers[i]);
+  });
+
+  const scores = {};
+  const rows = [];
+  for (const [weekNumber, group] of Object.entries(byWeek)) {
+    const result = scoreQuizAnswers(group.questions, group.answers);
+    scores[weekNumber] = { ...result, title: group.title };
+    rows.push(scoreRow(weekNumber, group.title, result, threshold));
+  }
+  rows.sort((a, b) => a.weekNumber - b.weekNumber);
+  return { scores, rows };
+}
+
+/** Wandelt gespeicherte Wochen-Scores (aus savePlacementResult) zurück in Raster-Zeilen. */
+export function weekScoresToRows(weekScores, threshold) {
+  return Object.entries(weekScores)
+    .map(([weekNumber, s]) => scoreRow(weekNumber, s.title, s, threshold))
+    .sort((a, b) => a.weekNumber - b.weekNumber);
+}
+
 export function getProjectIdeas(data, lang = 'de') {
   return (data?.projects || []).map((p) => ({
     id: p.id,

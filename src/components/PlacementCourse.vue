@@ -112,8 +112,8 @@ import {
   getPlacementQuestions,
   getProjectIdeas,
   useWeekChecks,
-  scoreQuizAnswers,
-  isQuizPassed,
+  computePlacementResults,
+  weekScoresToRows,
 } from '../composables/useWeekChecks';
 import { useLanguage } from '../composables/useLanguage';
 import { PROGRESS_APPLIED_EVENT } from '../composables/useProgressSync.js';
@@ -187,16 +187,7 @@ export default {
       if (!placementResult.value?.completed || !placementResult.value.weekScores) {
         return false;
       }
-      weekResults.value = Object.entries(placementResult.value.weekScores).map(
-        ([weekNumber, s]) => ({
-          weekNumber: Number(weekNumber),
-          title: s.title,
-          score: s.score,
-          correct: s.correct,
-          total: s.total,
-          ok: isQuizPassed(s.score, threshold.value),
-        })
-      ).sort((a, b) => a.weekNumber - b.weekNumber);
+      weekResults.value = weekScoresToRows(placementResult.value.weekScores, threshold.value);
       showResults.value = weekResults.value.length > 0;
       return showResults.value;
     };
@@ -250,36 +241,11 @@ export default {
     };
 
     const onSubmit = (payload) => {
-      const qs = questions.value;
-      const answers = payload?.answers || [];
-      const byWeek = {};
-
-      qs.forEach((q, i) => {
-        const w = q.weekNumber;
-        if (!byWeek[w]) byWeek[w] = { questions: [], answers: [], title: q.weekTitle };
-        byWeek[w].questions.push(q);
-        byWeek[w].answers.push(answers[i]);
-      });
-
-      const scores = {};
-      const rows = [];
-      for (const [weekNumber, group] of Object.entries(byWeek)) {
-        const result = scoreQuizAnswers(group.questions, group.answers);
-        scores[weekNumber] = {
-          ...result,
-          title: group.title,
-        };
-        rows.push({
-          weekNumber: Number(weekNumber),
-          title: group.title,
-          score: result.score,
-          correct: result.correct,
-          total: result.total,
-          ok: isQuizPassed(result.score, threshold.value),
-        });
-      }
-
-      rows.sort((a, b) => a.weekNumber - b.weekNumber);
+      const { scores, rows } = computePlacementResults(
+        questions.value,
+        payload?.answers || [],
+        threshold.value
+      );
       weekResults.value = rows;
       savePlacementResult(scores);
       showResults.value = true;

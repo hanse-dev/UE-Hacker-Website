@@ -1,11 +1,12 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-09-07  
-> **Aktueller Stand:** Alle Branches bis `lessonview-entflechten` (3.5–3.21) sind in `main` gemergt
-> (siehe `git log main` für die genaue Reihenfolge), dazwischen auch `dependency-audit-fixes` und
-> `vite-major-bump`. Noch **nicht** nach `origin/main` gepusht — Push/Deploy bewusst zurückgestellt,
-> siehe Abschnitt 5/7. Refactoring gegen zu große Dateien läuft (Schritt 1-4 fertig, siehe
-> Abschnitt 5) — Schritt 5 (`QuizStep.vue`/`PlacementCourse.vue` entflechten) ist der nächste.
+> **Aktueller Stand:** Alle Branches bis `quizstep-placementcourse-entflechten` (3.5–3.22) sind in
+> `main` gemergt (siehe `git log main` für die genaue Reihenfolge), dazwischen auch
+> `dependency-audit-fixes` und `vite-major-bump`. Noch **nicht** nach `origin/main` gepusht —
+> Push/Deploy bewusst zurückgestellt, siehe Abschnitt 5/7. Refactoring gegen zu große Dateien ist im
+> Kern abgeschlossen (Schritt 1-5, siehe Abschnitt 5) — nur noch Schritt 6 (Ternary-Cleanup, niedrige
+> Priorität) offen.
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -655,6 +656,33 @@ abgedeckt war.
 
 **Offen (nächste Schritte):** `QuizStep.vue`/`PlacementCourse.vue`-Entflechtung, dann Ternary-Cleanup.
 
+### 3.22 Refactoring Schritt 5: `PlacementCourse.vue` — Score-Logik ausgelagert (Branch `quizstep-placementcourse-entflechten`) — gemerged
+
+**Abweichung vom ursprünglichen Plan:** `QuizStep.vue` beim genauen Lesen NICHT gesplittet — anders
+als `LessonView.vue` (klar zwei Verantwortungsbereiche: Content-Loading vs. Task-Running) ist
+`QuizStep.vue` bereits eine einzige, in sich kohärente Quiz-State-Machine (Antworten, Prüfen,
+Feedback-Text — alles hängt zusammen, keine natürliche Trennstelle). Eine erzwungene Aufteilung
+hätte nur Code verschoben, ohne echte Kohäsion zu verbessern (CLAUDE.md: keine Abstraktionen ohne
+Not). Stattdessen bei `PlacementCourse.vue` eine echte, durch Duplikat-Beseitigung begründete
+Extraktion gemacht: `restoreResults()` (gespeichertes Ergebnis → Raster-Zeilen) und `onSubmit()`
+(frisch beantwortete Fragen → Raster-Zeilen) berechneten an zwei Stellen dieselbe Zeilenform
+(`{weekNumber, title, score, correct, total, ok}`) — jetzt `computePlacementResults()` +
+`weekScoresToRows()` in `useWeekChecks.js`, neben den bereits dort vorhandenen
+Placement-Funktionen (`getPlacementQuestions` etc.), reine Datentransformation ohne
+Vue-Abhängigkeit.
+
+**Getestet:** `npm run test:checks` (49) + `npm run test:auth` (13) grün — inkl. der
+Einstufungs-Tests, die genau die geänderten Pfade abdecken (frisches Ergebnis, wiederhergestellter
+Zwischenstand, wiederhergestelltes fertiges Ergebnis).
+
+**Ergebnis:** `PlacementCourse.vue` 497 → 463 Zeilen (moderat, weil die Extraktion bewusst klein und
+gut begründet gehalten wurde statt forciert). `QuizStep.vue` unverändert (556 Zeilen) — bewusste
+Entscheidung, siehe oben.
+
+**Damit ist der Refactoring-Plan im Kern abgeschlossen.** Übrig: Schritt 6 (Ternary-Cleanup, 97
+Inline-`lang === 'en' ? X : Y`) — niedrige Priorität, siehe Abschnitt 5/6, nur vorziehen falls eine
+dritte Sprache konkret ansteht.
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -778,7 +806,10 @@ bewusst zurückgestellt (Nutzer will erst später deployen).
       `weeksection-subkomponenten`, gemergt) — neue `CheatSheetList.vue` + `VariantSelector.vue`
 - [x] Schritt 4: `LessonView.vue` entflechtet (3.21, Branch `lessonview-entflechten`, gemergt) —
       Glossar/Content-Loading → neues `useLessonContent.js`
-- [ ] Schritt 5: `QuizStep.vue`/`PlacementCourse.vue` ähnlich entflechten
+- [x] Schritt 5: `PlacementCourse.vue` Score-Logik ausgelagert (3.22, Branch
+      `quizstep-placementcourse-entflechten`, gemergt) — `computePlacementResults`/
+      `weekScoresToRows` neu in `useWeekChecks.js`. `QuizStep.vue` bewusst NICHT gesplittet (schon
+      kohärent, keine natürliche Trennstelle — siehe 3.22 "Abweichung")
 - [ ] Schritt 6: Ternary-Cleanup (97 Inline-`lang === 'en' ? X : Y`) — niedrige Priorität, außer eine
       dritte Sprache kommt konkret dazu (siehe „Überlegungen" unten), dann vorziehen
 
@@ -851,9 +882,8 @@ dazu kommt — der bestehende `t()`-Mechanismus reicht, nur der Content ist der 
    Punkte-/Item-System wieder einführen (siehe 3.12)
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
-**Empfohlener nächster Schritt:** Refactoring-Schritte 1-4 sind fertig, getestet und gemergt.
-Schritt 5 (`QuizStep.vue`/`PlacementCourse.vue` entflechten, siehe Abschnitt 5) ist der nächste im
-laufenden Plan.
+**Empfohlener nächster Schritt:** Refactoring-Schritte 1-5 sind fertig, getestet und gemergt — der
+Plan ist damit im Kern abgeschlossen (nur Schritt 6, Ternary-Cleanup, offen, niedrige Priorität).
 Weiterhin offen: ob/wann nach `origin/main` gepusht und deployed wird. Falls stattdessen inhaltlich
 weitergearbeitet werden soll: `kurs-python-spiele` (Spiele-Werkstatt-Inhalte, bereits begonnen) ist
 der nächstliegende Kandidat.
