@@ -1,15 +1,13 @@
 <template>
   <div class="placement-course">
-    <div v-if="loading" class="loading">{{ lang === 'en' ? 'Loading…' : 'Lade…' }}</div>
+    <div v-if="loading" class="loading">{{ t('placement.loading') }}</div>
     <div v-else-if="error" class="error">{{ error }}</div>
 
     <template v-else-if="!showResults">
       <div class="placement-intro">
-        <h2>{{ lang === 'en' ? 'Where should I start?' : 'Wo soll ich starten?' }}</h2>
+        <h2>{{ t('placement.title') }}</h2>
         <p>
-          {{ lang === 'en'
-            ? 'Answer a few questions from different weeks. Check each answer with “Check” — your progress is saved.'
-            : 'Beantworte ein paar Fragen aus verschiedenen Wochen. Prüfe jede Antwort mit „Prüfen“ — dein Stand wird gespeichert.' }}
+          {{ t('placement.intro') }}
         </p>
         <p v-if="sessionProgress" class="session-progress">
           {{ sessionProgress }}
@@ -30,11 +28,9 @@
     </template>
 
     <div v-else class="placement-results">
-      <h2>{{ lang === 'en' ? 'Your result' : 'Dein Ergebnis' }}</h2>
+      <h2>{{ t('placement.results.title') }}</h2>
       <p class="results-intro">
-        {{ lang === 'en'
-          ? 'Green = looks good. Orange = worth reviewing that week.'
-          : 'Grün = sieht gut aus. Orange = diese Woche lohnt sich zum Wiederholen.' }}
+        {{ t('placement.results.intro') }}
       </p>
 
       <ul class="week-results">
@@ -56,28 +52,24 @@
               hash: `#woche-${row.weekNumber}`,
             }"
           >
-            {{ lang === 'en' ? 'Open week →' : 'Woche öffnen →' }}
+            {{ t('placement.openWeek') }}
           </router-link>
         </li>
       </ul>
 
       <div v-if="allPassed" class="projects-block">
         <h3>
-          {{ lang === 'en'
-            ? 'Everything looks strong — try a project!'
-            : 'Alles sitzt — Zeit für ein eigenes Projekt!' }}
+          {{ t('placement.projects.title') }}
         </h3>
         <p class="projects-intro">
-          {{ lang === 'en'
-            ? 'Here are three ideas that use what you learned in the 12-week course:'
-            : 'Hier sind drei Ideen, die das aus dem 12-Wochen-Kurs nutzen:' }}
+          {{ t('placement.projects.intro') }}
         </p>
         <ul class="project-list">
           <li v-for="p in projects" :key="p.id" class="project-card">
             <strong>{{ p.title }}</strong>
             <p>{{ p.description }}</p>
             <p v-if="p.skills?.length" class="project-skills">
-              {{ lang === 'en' ? 'Uses:' : 'Nutzt:' }}
+              {{ t('placement.projects.uses') }}
               {{ p.skills.join(' · ') }}
             </p>
           </li>
@@ -85,7 +77,7 @@
       </div>
 
       <p v-else-if="recommendedWeek" class="recommend">
-        {{ lang === 'en' ? 'Suggested start:' : 'Empfohlener Start:' }}
+        {{ t('placement.recommend') }}
         <router-link
           :to="{
             path: '/kurs/python-12-wochen-grundkurs',
@@ -98,7 +90,7 @@
       </p>
 
       <button type="button" class="btn-retry" @click="reset">
-        {{ lang === 'en' ? 'Retake placement' : 'Einstufung wiederholen' }}
+        {{ t('placement.retry') }}
       </button>
     </div>
   </div>
@@ -122,7 +114,7 @@ export default {
   name: 'PlacementCourse',
   components: { QuizStep },
   setup() {
-    const { lang } = useLanguage();
+    const { lang, t } = useLanguage();
     const {
       savePlacementResult,
       savePlacementSession,
@@ -160,9 +152,7 @@ export default {
       const n = questions.value.length;
       const c = checkedCount.value;
       if (!c) return '';
-      return lang.value === 'en'
-        ? `Saved progress: ${c}/${n} checked`
-        : `Gespeicherter Stand: ${c}/${n} geprüft`;
+      return t('placement.sessionProgress').replace('{c}', c).replace('{n}', n);
     });
 
     const pickQuestions = () => {
@@ -222,9 +212,7 @@ export default {
         pickQuestions();
       } catch (e) {
         console.error(e);
-        error.value = lang.value === 'en'
-          ? 'Could not load placement.'
-          : 'Einstufung konnte nicht geladen werden.';
+        error.value = t('placement.loadError');
       } finally {
         loading.value = false;
       }
@@ -277,6 +265,7 @@ export default {
 
     return {
       lang,
+      t,
       loading,
       error,
       questions,

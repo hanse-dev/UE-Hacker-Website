@@ -2,13 +2,13 @@
   <div class="code-challenge" :data-challenge-index="challengeIndex" v-if="challenge">
     <div class="challenge-header">
       <h4>{{ title }}</h4>
-      <span v-if="alreadyPassed" class="challenge-badge">{{ lang === 'en' ? 'Passed' : 'Bestanden' }}</span>
+      <span v-if="alreadyPassed" class="challenge-badge">{{ t('challenge.passed') }}</span>
     </div>
     <p class="challenge-instruction">{{ instruction }}</p>
 
     <div class="challenge-editor-header">
       <button @click="initializeKernel" :disabled="kernelReady" class="btn-kernel">
-        {{ kernelReady ? (lang === 'en' ? '✓ Python ready' : '✓ Python bereit') : (lang === 'en' ? 'Initialize Python' : 'Python initialisieren') }}
+        {{ kernelReady ? t('jupyter.ready') : t('editor.initPython') }}
       </button>
     </div>
     <textarea
@@ -16,18 +16,18 @@
       class="code-editor"
       spellcheck="false"
       rows="4"
-      :placeholder="lang === 'en' ? 'Your code...' : 'Dein Code...'"
+      :placeholder="t('challenge.codePlaceholder')"
     ></textarea>
     <div class="challenge-actions">
       <button @click="runCode" :disabled="!kernelReady || checking" class="btn-run">
-        {{ lang === 'en' ? 'Run' : 'Ausführen' }}
+        {{ t('editor.run') }}
       </button>
       <button @click="checkCode" :disabled="!kernelReady || checking" class="btn-check">
-        {{ checking ? (lang === 'en' ? 'Checking...' : 'Wird geprüft...') : (lang === 'en' ? 'Check' : 'Prüfen') }}
+        {{ checking ? t('editor.checking') : t('editor.check') }}
       </button>
     </div>
     <div v-if="output !== null" class="challenge-output">
-      <strong>{{ lang === 'en' ? 'Output:' : 'Ausgabe:' }}</strong>
+      <strong>{{ t('editor.output') }}</strong>
       <pre>{{ output }}</pre>
     </div>
     <div v-if="feedback" :class="['challenge-feedback', feedback.success ? 'feedback-success' : 'feedback-error']">
@@ -52,7 +52,7 @@ export default {
     label: { type: String, default: '' },
   },
   setup(props) {
-    const { lang } = useLanguage();
+    const { lang, t } = useLanguage();
     const { kernelReady, kernelStatus, initializeKernel, runPython } = usePyodide();
     const { markCodingPassed, isCodingChallengePassed } = useWeekChecks();
 
@@ -69,7 +69,7 @@ export default {
     );
 
     const title = computed(() => {
-      const base = lang.value === 'en' ? '💻 Coding challenge' : '💻 Coding-Aufgabe';
+      const base = t('challenge.title');
       return props.label ? `${base}: ${props.label}` : base;
     });
 
@@ -99,8 +99,8 @@ export default {
       feedback.value = null;
       const result = await runPython(code.value);
       output.value = result.success
-        ? (result.output || (lang.value === 'en' ? '(no output)' : '(keine Ausgabe)'))
-        : (lang.value === 'en' ? 'Error: ' : 'Fehler: ') + (result.error || '');
+        ? (result.output || t('jupyter.noOutput'))
+        : t('editor.errorPrefix') + (result.error || '');
       checking.value = false;
     };
 
@@ -111,24 +111,24 @@ export default {
       const result = await runPython(code.value);
 
       if (!result.success) {
-        output.value = (lang.value === 'en' ? 'Error: ' : 'Fehler: ') + (result.error || '');
+        output.value = t('editor.errorPrefix') + (result.error || '');
         feedback.value = { success: false, message: output.value };
         checking.value = false;
         return;
       }
-      output.value = result.output || (lang.value === 'en' ? '(no output)' : '(keine Ausgabe)');
+      output.value = result.output || t('jupyter.noOutput');
 
       const valid = validateOutput(result.output, challenge.value?.validation);
       if (valid) {
         markCodingPassed(props.weekNumber, props.challengeIndex);
         feedback.value = {
           success: true,
-          message: lang.value === 'en' ? 'Correct! Coding challenge passed.' : 'Richtig! Coding-Aufgabe bestanden.',
+          message: t('challenge.passedMessage'),
         };
       } else {
         feedback.value = {
           success: false,
-          message: lang.value === 'en' ? 'Not quite yet — check your output above.' : 'Noch nicht ganz – schau dir deine Ausgabe oben an.',
+          message: t('challenge.notYetMessage'),
         };
       }
       checking.value = false;
@@ -136,6 +136,7 @@ export default {
 
     return {
       lang,
+      t,
       kernelReady,
       kernelStatus,
       initializeKernel,

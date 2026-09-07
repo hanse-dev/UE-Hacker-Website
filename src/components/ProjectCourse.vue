@@ -1,16 +1,16 @@
 <template>
   <div class="project-course">
-    <div v-if="loading" class="loading">{{ lang === 'en' ? 'Loading lessons...' : 'Lade Lektionen...' }}</div>
+    <div v-if="loading" class="loading">{{ t('lessons.loading') }}</div>
     <div v-else-if="error" class="error">{{ error }}</div>
 
     <div v-else class="course-layout">
       <div class="progress-bar-full">
         <div class="progress-info">
-          <span>{{ lang === 'en' ? 'Lesson' : 'Lektion' }} {{ currentIndex + 1 }} {{ lang === 'en' ? 'of' : 'von' }} {{ lessons.length }}</span>
+          <span>{{ t('lessons.lesson') }} {{ currentIndex + 1 }} {{ t('lessons.of') }} {{ lessons.length }}</span>
           <div class="progress-info-right">
-            <span class="progress-count">{{ completedCount }} {{ lang === 'en' ? 'completed' : 'abgeschlossen' }}</span>
+            <span class="progress-count">{{ completedCount }} {{ t('lessons.completed') }}</span>
             <button class="btn-sidebar-toggle" @click="sidebarOpen = !sidebarOpen">
-              {{ sidebarOpen ? (lang === 'en' ? '✕ Close' : '✕ Schließen') : (lang === 'en' ? '☰ Lessons' : '☰ Lektionen') }}
+              {{ sidebarOpen ? t('lessons.sidebarClose') : t('lessons.sidebarOpen') }}
             </button>
           </div>
         </div>
@@ -20,7 +20,7 @@
       </div>
 
       <aside class="lessons-sidebar" :class="{ 'sidebar-mobile-open': sidebarOpen }">
-        <h3>{{ lang === 'en' ? 'Lessons' : 'Lektionen' }}</h3>
+        <h3>{{ t('lessons.title') }}</h3>
         <ul class="lessons-list">
           <li
             v-for="(lesson, idx) in lessons"
@@ -39,9 +39,9 @@
         </ul>
 
         <div class="sidebar-actions">
-          <button @click="exportProgress" class="btn-export">{{ lang === 'en' ? 'Export progress' : 'Fortschritt exportieren' }}</button>
+          <button @click="exportProgress" class="btn-export">{{ t('lessons.exportProgress') }}</button>
           <label class="btn-import">
-            {{ lang === 'en' ? 'Import' : 'Importieren' }}
+            {{ t('lessons.import') }}
             <input type="file" accept=".json" class="file-input" @change="onImportFile" />
           </label>
         </div>
@@ -49,8 +49,8 @@
 
       <main class="lesson-main">
         <div v-if="!currentLesson" class="no-lesson">
-          <p>{{ lang === 'en' ? 'Select a lesson from the list.' : 'Wähle eine Lektion aus der Liste.' }}</p>
-          <p v-if="lessons.length">{{ lang === 'en' ? 'Start with Lesson 1!' : 'Starte mit Lektion 1!' }}</p>
+          <p>{{ t('lessons.selectFromList') }}</p>
+          <p v-if="lessons.length">{{ t('lessons.startWithOne') }}</p>
         </div>
         <LessonView
           v-else
@@ -83,7 +83,7 @@ export default {
     courseId: { type: String, required: true },
   },
   setup(props) {
-    const { lang } = useLanguage();
+    const { lang, t } = useLanguage();
     const lessons = ref([]);
     const loading = ref(true);
     const error = ref(null);
@@ -121,7 +121,7 @@ export default {
         }
       } catch (e) {
         console.error('Could not load lessons:', e);
-        error.value = lang.value === 'en' ? 'Could not load lessons.' : 'Lektionen konnten nicht geladen werden.';
+        error.value = t('lessons.loadError');
       } finally {
         loading.value = false;
       }
@@ -145,8 +145,8 @@ export default {
       const reader = new FileReader();
       reader.onload = () => {
         const result = importProgress(reader.result);
-        if (result.ok) alert(lang.value === 'en' ? 'Progress imported.' : 'Fortschritt wurde importiert.');
-        else alert((lang.value === 'en' ? 'Import failed: ' : 'Import fehlgeschlagen: ') + (result.error || (lang.value === 'en' ? 'Unknown error' : 'Unbekannter Fehler')));
+        if (result.ok) alert(t('lessons.importSuccess'));
+        else alert(t('lessons.importFailed') + (result.error || t('jupyter.unknownError')));
       };
       reader.readAsText(file, 'UTF-8');
       e.target.value = '';
@@ -166,6 +166,7 @@ export default {
 
     return {
       lang,
+      t,
       lessons,
       loading,
       error,

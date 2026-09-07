@@ -58,12 +58,13 @@
       keine Umbenennung nötig
 
 ### Überlegungen (noch nicht entschieden)
-- [ ] Weitere Sprache neben DE/EN? Noch keine Entscheidung, kein Ziel. Falls das kommt: DE/EN ist
-      aktuell hart auf zwei Sprachen verdrahtet (97 Inline-Ternarys `lang === 'en' ? X : Y` in
-      `.vue`-Dateien, `_en`-Feld-Suffix in `weeks.json`, `-en`-Ordner-Suffix in `useCourseData.js`)
-      — würde vorher eine Migration der Ternarys auf den bestehenden `t()`-Mechanismus brauchen,
-      keine neue i18n-Library nötig. Größter Aufwandstreiber wäre der Content (444 Notebooks ×
-      Sprache), nicht die UI-Technik. Siehe HANDOFF.md, Refactoring-Plan-Abschnitt.
+- [ ] Weitere Sprache neben DE/EN? Noch keine Entscheidung, kein Ziel. Falls das kommt: die 97
+      Inline-Ternarys `lang === 'en' ? X : Y` in `.vue`-Dateien sind seit dem `ternary-cleanup`-
+      Refactoring (HANDOFF.md 3.23) bereits auf den `t()`-Mechanismus umgestellt — dieser Teil ist
+      also schon erledigt. Offen bleibt der Content: `_en`-Feld-Suffix in `content/python-checks/
+      week-{N}.json`, `-en`-Ordner-Suffix in `useCourseData.js`. Größter Aufwandstreiber wäre der
+      Content selbst (444 Notebooks × Sprache), nicht mehr die UI-Technik. Keine neue i18n-Library
+      nötig.
 
 ### Infrastruktur
 - [x] Einstufung / Checks in `main` (PR #1)
@@ -160,6 +161,15 @@ und Server-Deploy bewusst zurückgestellt (siehe HANDOFF.md).
       `PlacementCourse.vue` echtes Duplikat beseitigt: `computePlacementResults`/`weekScoresToRows`
       neu in `useWeekChecks.js`, ersetzen zwei Stellen, die dieselbe Score-Zeilenform bauten.
       Refactoring-Plan damit im Kern abgeschlossen, nur Schritt 6 (Ternary-Cleanup) offen.
+- [x] `ternary-cleanup` (HANDOFF.md 3.23, gemergt) — Refactoring Schritt 6: alle 97 Inline-
+      `lang === 'en' ? X : Y`-Ternarys über 7 Components auf den bestehenden `t()`-Mechanismus
+      (`locales/de.js`/`en.js`, jetzt 224 statt 166 Keys) umgestellt. Bewusst nicht migriert:
+      Daten-Feld-Auswahl (`q.explanation_en`/`explanation` etc. — kein doppelt gepflegter UI-Text)
+      und rein technische Ternarys (Locale-Code für `toLocaleString()`, Ordner-Pfad-Suffix). Geteilte
+      Locale-Keys zwischen InteractiveCourse.vue/ProjectCourse.vue (`lessons.*`) und LessonView.vue/
+      CodeChallenge.vue (`editor.*`) analog zum CSS-Konsolidierungs-Muster aus Schritt 2. Per
+      Playwright auf Englisch durchgeklickt (Automatiktests laufen überwiegend auf Deutsch). Damit
+      ist der komplette Refactoring-Plan (Schritte 1-6) abgeschlossen.
 
 ---
 

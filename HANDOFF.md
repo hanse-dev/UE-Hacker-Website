@@ -1,12 +1,11 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-09-07  
-> **Aktueller Stand:** Alle Branches bis `quizstep-placementcourse-entflechten` (3.5–3.22) sind in
-> `main` gemergt (siehe `git log main` für die genaue Reihenfolge), dazwischen auch
-> `dependency-audit-fixes` und `vite-major-bump`. Noch **nicht** nach `origin/main` gepusht —
-> Push/Deploy bewusst zurückgestellt, siehe Abschnitt 5/7. Refactoring gegen zu große Dateien ist im
-> Kern abgeschlossen (Schritt 1-5, siehe Abschnitt 5) — nur noch Schritt 6 (Ternary-Cleanup, niedrige
-> Priorität) offen.
+> **Aktueller Stand:** Alle Branches bis `ternary-cleanup` (3.5–3.23) sind in `main` gemergt (siehe
+> `git log main` für die genaue Reihenfolge), dazwischen auch `dependency-audit-fixes` und
+> `vite-major-bump`. Noch **nicht** nach `origin/main` gepusht — Push/Deploy bewusst zurückgestellt,
+> siehe Abschnitt 5/7. **Refactoring gegen zu große Dateien (Schritte 1-6) ist komplett
+> abgeschlossen.**
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -683,6 +682,48 @@ Entscheidung, siehe oben.
 Inline-`lang === 'en' ? X : Y`) — niedrige Priorität, siehe Abschnitt 5/6, nur vorziehen falls eine
 dritte Sprache konkret ansteht.
 
+### 3.23 Refactoring Schritt 6: Ternary-Cleanup (Branch `ternary-cleanup`) — gemerged
+
+Alle 97 Inline-`lang === 'en' ? X : Y`-Ternarys über 7 Components (InteractiveCourse.vue,
+LessonView.vue, ProjectCourse.vue, CodeChallenge.vue, QuizStep.vue, WeekCheckPanel.vue,
+PlacementCourse.vue) auf den bestehenden `t()`-Mechanismus (`useLanguage.js` + `locales/de.js`/
+`en.js`) umgestellt. `locales/de.js`/`en.js` von 166 auf 224 Zeilen/Keys gewachsen, komplett
+parallel gehalten (Skript-Check: gleiche Key-Menge, keine Duplikate, keine kopierten DE=EN-Werte
+außer bewusst identischen Wörtern wie „Check"/„Home").
+
+**Bewusst NICHT migriert (2 Kategorien, klar von echten Text-Ternarys unterschieden):**
+1. **Daten-Feld-Auswahl statt UI-Text:** `q.explanation_en`/`q.explanation`,
+   `q.question_en`/`q.question`, `challenge.instruction_en`/`instruction` — wählen zwischen zwei
+   Content-Feldern eines Objekts (gleiches Muster wie `localizeQuestion()` in `useWeekChecks.js`),
+   keine doppelt gepflegte UI-Prosa. Bleiben in den Components, wie auch die bereits vorher
+   bestehenden, strukturell identischen Fälle in `CourseDetail.vue`/`Home.vue`
+   (`kurs.title_en`/`title`), die nie Teil der 97 waren.
+2. **Technische Werte, keine Übersetzung:** `AdminView.vue` (Locale-Code für
+   `toLocaleString('en-GB'/'de-DE')`) und `InteractiveCourse.vue` (Ordner-Pfad-Suffix
+   `${variant}-en`/`${variant}`) — beides Parameter, keine Prosa.
+
+**Geteilte Keys zwischen Components** (analog zum CSS-Konsolidierungs-Muster aus 3.19): der
+komplette "Lektionen-Sidebar"-Text (`lessons.*`) ist identisch zwischen `InteractiveCourse.vue` und
+`ProjectCourse.vue` (dieselbe Kopplung wie beim CSS-Block), der "Code-Editor"-Text (`editor.*`,
+`jupyter.ready`/`jupyter.noOutput`/`jupyter.unknownError`) identisch zwischen `LessonView.vue` und
+`CodeChallenge.vue`. Beide Male eine Quelle statt doppelter Locale-Einträge.
+
+**Gefundene, bewusst nicht angefasste Inkonsistenz:** `LessonView.vue`/`CodeChallenge.vue` nutzten
+schon vorher amerikanisches „Initialize Python", während `jupyter.init` (JupyterNotebook.vue)
+britisches „Initialise Python" verwendet — passend zum sonst konsequent britischen Englisch im
+Kurs (siehe 3.9/3.10). Das ist eine vorbestehende Content-Inkonsistenz, keine durch diesen
+Refactor eingeführte — absichtlich nicht "nebenbei" gefixt (Content-Entscheidung, kein
+Strukturthema, würde einen eigenen kleinen Fix verdienen statt in einem Struktur-Refactor
+mitzulaufen).
+
+**Getestet:** `npm run test:checks` (49) + `npm run test:auth` (13) + `npm test` (60) grün.
+Zusätzlich per Playwright gezielt auf Englisch durchgeklickt (Interaktiv-Kurs inkl. Varianten-Karten,
+Cäsar-Chiffre, Einstufung inkl. „Ich weiß es nicht"-Rückmeldung, Wochen-Check inkl. Coding-Aufgabe
+und volles Falsch-Beantworten-Feedback mit Interpolation) — Automatiktests laufen überwiegend auf
+Deutsch, das war der einzige Weg, jede migrierte EN-Zeichenkette tatsächlich gerendert zu sehen.
+
+**Damit ist der komplette Refactoring-Plan (Schritte 1-6) abgeschlossen.**
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -810,8 +851,12 @@ bewusst zurückgestellt (Nutzer will erst später deployen).
       `quizstep-placementcourse-entflechten`, gemergt) — `computePlacementResults`/
       `weekScoresToRows` neu in `useWeekChecks.js`. `QuizStep.vue` bewusst NICHT gesplittet (schon
       kohärent, keine natürliche Trennstelle — siehe 3.22 "Abweichung")
-- [ ] Schritt 6: Ternary-Cleanup (97 Inline-`lang === 'en' ? X : Y`) — niedrige Priorität, außer eine
-      dritte Sprache kommt konkret dazu (siehe „Überlegungen" unten), dann vorziehen
+- [x] Schritt 6: Ternary-Cleanup (3.23, Branch `ternary-cleanup`, gemergt) — alle 97 Inline-
+      `lang === 'en' ? X : Y` auf den bestehenden `t()`-Mechanismus umgestellt. Bewusst nicht
+      migriert: Daten-Feld-Auswahl (`q.explanation_en`/`explanation` etc.) und rein technische
+      Ternarys (Locale-Code, Pfad-Suffix) — siehe 3.23 "Bewusst NICHT migriert"
+
+**Refactoring-Plan (Schritte 1-6) ist damit komplett abgeschlossen.**
 
 **Danach — nächste Kurs-Themen, je eigener Branch von `main`:**
 
@@ -828,9 +873,10 @@ Kontakt-E-Mail im Footer wartet noch auf die tatsächliche Adresse vom Nutzer (n
 **Bekannte Altlasten (niedrige Prio):** Notebook-Download-ZIP nur DE; optionale EN-Nachzüge bei neuen Kursen (inkl. Cäsar-Chiffre).
 
 **Überlegungen (noch nicht entschieden):** Nutzer erwägt evtl. eine dritte Sprache neben DE/EN —
-noch kein konkretes Ziel. DE/EN ist aktuell hart auf zwei Sprachen verdrahtet (Ternarys, `_en`-Feld-
-Suffix, `-en`-Ordner-Suffix), siehe Refactoring-Schritt 6 oben. Keine i18n-Library nötig, falls es
-dazu kommt — der bestehende `t()`-Mechanismus reicht, nur der Content ist der eigentliche Aufwand.
+noch kein konkretes Ziel. Die UI-Ternarys sind seit Refactoring-Schritt 6 (3.23) bereits auf `t()`
+umgestellt — dieser Teil ist erledigt. Offen bliebe nur noch der Content: `_en`-Feld-Suffix in
+`content/python-checks/week-{N}.json`, `-en`-Ordner-Suffix in `useCourseData.js`. Keine i18n-Library
+nötig, falls es dazu kommt — der bestehende `t()`-Mechanismus reicht.
 
 ---
 
@@ -882,8 +928,7 @@ dazu kommt — der bestehende `t()`-Mechanismus reicht, nur der Content ist der 
    Punkte-/Item-System wieder einführen (siehe 3.12)
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
-**Empfohlener nächster Schritt:** Refactoring-Schritte 1-5 sind fertig, getestet und gemergt — der
-Plan ist damit im Kern abgeschlossen (nur Schritt 6, Ternary-Cleanup, offen, niedrige Priorität).
-Weiterhin offen: ob/wann nach `origin/main` gepusht und deployed wird. Falls stattdessen inhaltlich
-weitergearbeitet werden soll: `kurs-python-spiele` (Spiele-Werkstatt-Inhalte, bereits begonnen) ist
-der nächstliegende Kandidat.
+**Empfohlener nächster Schritt:** Refactoring-Schritte 1-6 sind fertig, getestet und gemergt — der
+Plan ist damit komplett abgeschlossen. Weiterhin offen: ob/wann nach `origin/main` gepusht und
+deployed wird. Falls stattdessen inhaltlich weitergearbeitet werden soll: `kurs-python-spiele`
+(Spiele-Werkstatt-Inhalte, bereits begonnen) ist der nächstliegende Kandidat.
