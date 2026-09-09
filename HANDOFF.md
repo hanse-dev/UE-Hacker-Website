@@ -753,6 +753,47 @@ Anhänge, keine Reformatierung bestehender Zellen). Alle Code-Zellen per `python
 ausgeführt (nicht nur `ast.parse()`), um sicherzugehen, dass die Beispiele auch laufen. Getestet:
 `npm run test:checks` (49 Tests grün, reine Content-Ergänzung ohne UI-Verhaltensänderung).
 
+### 3.26 Curriculum-Lücken 12-Wochen-Kurs, Teil 3: Woche 4/6 Listen + break/continue (Branch `woche4-woche6-listen-neuordnung`)
+
+**Ausgangslage laut Plan:** Woche 4 nahm Listen (`[]`, `.append()`, `enumerate()`) als Vorgriff auf
+Woche 6 vorweg — echte Redundanz, da Woche 6 dieselben Grundlagen nochmal komplett von Null erklärt.
+Nutzer-Entscheidung: Listen komplett aus Woche 4 raus, Woche 6 bleibt alleinige Quelle.
+
+**Überraschender Fund währenddessen:** Der ursprüngliche Content-Audit hatte nur die
+Abenteuer-Variante geprüft und daraus geschlossen, `break`/`continue` sei in Woche 4 überall
+"angekündigt, aber nie geliefert". Tatsächlich ist das nur bei Abenteuer so (liefert `break`/
+`continue` stattdessen in Woche 6, "Sammlungs-Zauber 4") — Pferde und Sci-Fi hatten in Woche 4
+einen vollständigen, funktionierenden `break`/`continue`-Abschnitt ("Lektion/Systemprotokoll 3"),
+dafür in Woche 6 **gar keinen**. Jede Variante lehrt `break`/`continue` also genau einmal, aber an
+unterschiedlichen Stellen — ein Verstoß gegen die INHALTE.md-Regel "Konzepte müssen zwischen
+Varianten identisch sein". Nutzer-Entscheidung nach Rückfrage: alle Varianten auf **Woche 6**
+vereinheitlichen (wie Abenteuer).
+
+**Umsetzung:**
+- Woche 4 (alle 3 Varianten × DE/EN): Listen-Vorgriff-Zelle entfernt, `break`/`continue`-Abschnitt
+  bei Pferde/Sci-Fi entfernt, Intro-Bullet-Point entsprechend angepasst. Der frei gewordene dritte
+  Abschnitt ("Zauberformel/Lektion/Systemprotokoll 3") wurde durch **verschachtelte Schleifen**
+  ersetzt (eigenes Lernziel in `woche4.md`, bisher nie eingelöst) — passt inhaltlich besser zum
+  Wochenthema als Listen oder break/continue. `woche4.md` (DE+EN) Lernziele angepasst: "Schleifen
+  über Strings und Listen" → "Schleifen über Strings", "break und continue" komplett gestrichen.
+- Woche 6 (nur Pferde/Sci-Fi × DE/EN — Abenteuer hatte den Abschnitt schon): neuer Abschnitt
+  "Sammlungs-Technik/Daten-Sammlung 4: break und continue" nach demselben Muster wie Abenteuer
+  ergänzt (Themen-Liste durchsuchen, `break` bei Fund, `continue` bei Ausschluss).
+- **Nebenbei gefundener und miterledigter Bug:** Pferdes altes Woche-4-`break`/`continue`-Beispiel
+  hatte einen echten `NameError` (`print(f"Übung: {übung}")` referenzierte `übung` mit Ligatur-ü,
+  während die Schleifenvariable `uebung` hieß) — verschwindet automatisch, da der ganze Abschnitt
+  entfernt wurde, statt ihn zu reparieren und zu verschieben.
+- **Nebenfund, nicht in diesem Branch behoben:** Woche 6 Pferde UND Sci-Fi enthalten in ihrem
+  letzten Beispiel ("Fortgeschrittene Operationen") ebenfalls eine unerklärte List Comprehension
+  (`[d for d in disziplinen if len(d) > 6]` bzw. Sci-Fi-Äquivalent) — analog zum bereits bekannten
+  Fall in Woche 8 Abenteuer (siehe `todo.md`, Branch `woche8-list-comprehension-glossar`). Dieser
+  Branch sollte beim Abarbeiten auf Woche 6 (alle 3 Varianten) erweitert werden, nicht nur Woche 8.
+
+**Getestet:** `npm run test:checks` (49 Tests) + `npm test` (60 Tests, volle Notebook-Suite über alle
+Wochen/Varianten) grün. Alle geänderten/neuen Code-Zellen zusätzlich einzeln per `python3 exec()`
+ausgeführt (10 Notebooks, nicht nur `ast.parse()`), um sicherzugehen, dass die neuen
+Verschachtelungs- und break/continue-Beispiele tatsächlich laufen.
+
 ---
 
 ## 4. Aktueller technischer Stand

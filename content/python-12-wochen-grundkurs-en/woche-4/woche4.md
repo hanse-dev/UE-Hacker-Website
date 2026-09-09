@@ -23,7 +23,6 @@ In the Chronos Tower you manipulate time itself with time-loops and cycles.
 
 - **for loops** with `range()` for controlled repetitions
 - **while loops** for flexible conditions
-- **Loops over strings and lists**
-- **break and continue** for loop control
+- **Loops over strings**
 - **Nested loops** for complex patterns
 - Recognise and avoid **infinite loops**
