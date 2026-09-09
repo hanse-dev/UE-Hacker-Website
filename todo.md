@@ -35,8 +35,10 @@ Je ein Branch pro Punkt, empfohlene Reihenfolge:
       ersetzt. Zusätzlich im DE-Notebook einen zweiten eingebrannten `ModuleNotFoundError:
       No module named '_tkinter'`-Output (an der direkt folgenden `import turtle`-Zelle, vom
       Autoren-Rechner ohne Tk-Unterstützung) geleert.
-- [ ] `woche3-bedingungen-luecken` — `not`/`or` als lauffähigen Code ergänzen, echtes
-      Verschachtelungsbeispiel (`if` in `if`)
+- [x] `woche3-bedingungen-luecken` — `not`/`or` als lauffähigen Code ergänzt (neue Zauberformel/
+      Lektion/Systemprotokoll 4 "Logische Verknüpfungen"), echtes Verschachtelungsbeispiel (neue
+      Nummer 5, `if` in `if`, Tür-/Stalltür-/Schleusen-Thema je Variante). Alle 3 Varianten × DE/EN,
+      lokal mit `python3` ausgeführt (kein Syntax-/Laufzeitfehler)
 - [ ] `woche4-woche6-listen-neuordnung` — Listen/`enumerate()` komplett aus Woche 4 raus (war
       Redundanz mit Woche 6), `break`/`continue`-Ankündigung aus Woche 4 raus (wird erst Woche 6
       gelehrt), stattdessen echtes Beispiel für verschachtelte Schleifen in Woche 4
