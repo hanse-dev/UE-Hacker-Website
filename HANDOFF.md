@@ -877,6 +877,25 @@ um die 4 math-Begriffe ergänzt, die Pferde/Sci-Fi schon hatten (`math.sqrt()`, 
 validiert + Abenteuer-Lektion komplett mit `python3` durchlaufen (gemeinsamer Namespace, `time.sleep`
 für den Testlauf übersprungen) — keine Fehler.
 
+### 3.31 Curriculum-Lücken 12-Wochen-Kurs, Teil 8: Woche-11-Lernziele realistisch gekürzt (Branch `woche11-lernziele-anpassen`)
+
+"Design Patterns anwenden" und "Komposition vs. Vererbung verstehen" waren Lernziele in
+`woche11.md`, die die (bewusst kurz gehaltene) Lektion nie abdeckt — zu fortgeschritten für den
+Rahmen einer Wochenlektion. Nutzer-Entscheidung: streichen statt Content nachliefern.
+
+**Umfang bei genauerem Hinsehen größer als gedacht:** Das Versprechen steckte nicht nur in
+`woche11.md`, sondern auch in den Mission-Bullet-Listen aller 6 Lektion-Intros ("Design Patterns
+für meisterhafte Architektur"/"...professionelle Zuchtprogramme"/"...skalierbare Architektur", je
+DE+EN) sowie in der Selbstcheck-Liste der Missionen-Notebooks von Pferde und Sci-Fi (× DE/EN,
+"☐ Design Patterns erkennen und nutzen", "☐ Komposition vs Vererbung unterscheiden") — Abenteuers
+Missionen-Notebook hatte diese Checkliste nie. `woche11.md` (DE+EN) Herausforderungs-Absatz von
+"Mit Vererbung, Polymorphismus und Patterns..." auf "...und Magic Methods..." angepasst (das sind
+die drei Dinge, die die Lektion tatsächlich liefert).
+
+**Getestet:** `npm run test:checks` (49 Tests grün, reine Content-/Lernziel-Korrektur ohne
+Verhaltensänderung) + grep über alle 10 geänderten Dateien bestätigt: 0 verbleibende Erwähnungen
+von "Design Pattern"/"Komposition"/"composition".
+
 ---
 
 ## 4. Aktueller technischer Stand

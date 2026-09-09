@@ -75,8 +75,13 @@ Je ein Branch pro Punkt, empfohlene Reihenfolge:
       Umfang wie Pferde/Sci-Fi gebracht (3 Beispiele: Konstanten+Kreisberechnung, Grundwerkzeuge,
       Trigonometrie/Logarithmen/Fakultät), Intro-Mission-Bullet + Glossar (4 neue math-Begriffe)
       ergänzt. Pferde/Sci-Fi unverändert (waren schon korrekt)
-- [ ] `woche11-lernziele-anpassen` — "Design Patterns"/"Komposition vs. Vererbung" aus
-      `woche11.md`-Lernzielen streichen (zu fortgeschritten für den Rahmen der Lektion)
+- [x] `woche11-lernziele-anpassen` — "Design Patterns"/"Komposition vs. Vererbung" komplett
+      gestrichen (zu fortgeschritten für den Rahmen der Lektion): nicht nur `woche11.md`
+      (DE+EN), sondern auch die "Design Patterns für ..."-Mission-Bullets in allen 6
+      Lektion-Intros (3 Varianten × DE/EN) und die "☐ Design Patterns erkennen"/"☐ Komposition vs
+      Vererbung"-Checkliste in den Missionen von Pferde+Sci-Fi (× DE/EN) — Abenteuer-Missionen
+      hatten die Checkliste nie. Alle Fundstellen per grep verifiziert, danach 0 verbleibende
+      Erwähnungen
 - [ ] `woche12-interaktivitaet` — Event-Handling-Beispiel (`onscreenclick`/`onkey`) ergänzen, da
       "Interaktive Grafik erstellen" bisher unerfülltes Lernziel ist
 
