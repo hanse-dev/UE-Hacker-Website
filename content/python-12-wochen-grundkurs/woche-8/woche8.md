@@ -19,4 +19,5 @@ Mit Dictionaries und Tupeln kannst du deine Daten perfekt strukturieren!
 - Auf Werte über Schlüssel zugreifen
 - Tupel mit () erstellen und nutzen
 - Unveränderlichkeit verstehen
+- Fehler mit try/except abfangen
 - Verschachtelte Strukturen bauen

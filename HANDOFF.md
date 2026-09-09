@@ -807,6 +807,36 @@ Werttypen" in allen Lektion-Überschriften angepasst. Alle 3 Varianten × DE/EN,
 + alle Code-Zellen per `python3 exec()` tatsächlich ausgeführt (keine Fehler) + grep bestätigt: 0
 verbleibende "Boolean"-Erwähnungen in allen 12 Dateien.
 
+### 3.28 Curriculum-Lücken 12-Wochen-Kurs, Teil 5: try/except von Woche 5 nach Woche 8 (Branch `woche5-woche8-tryexcept-verschieben`)
+
+Wieder ein Fund, der nur bei Abenteuer stimmte: `try`/`except` wurde dort in Woche 5
+("Zauberformel 4: Fehler abfangen") gelehrt, obwohl es kein Lernziel ist, und in Woche 8 ungeklärt
+in der Tupel-Unveränderlichkeits-Demo verwendet. Bei genauerem Hinsehen hatten **Pferde und Sci-Fi
+in Woche 5 gar keine try/except-Einführung** — dort gab es also nichts zu verschieben, nur die neue
+Erklärung in Woche 8 zu ergänzen. Zusätzlich fiel auf: alle drei Woche-8-Glossare behaupteten in
+ihrem "Wiederholung aus Woche 5"-Abschnitt fälschlich, `try`/`except` sei dort schon behandelt
+worden — stimmte nur für Abenteuer.
+
+**Umsetzung:**
+- Woche 5 Abenteuer (DE+EN): "Zauberformel 4"/"Spell Formula 4" komplett aus Lektion entfernt,
+  Glossar-Einträge (`try`, `except`, `ValueError`, `TypeError`) + Code-Demo entfernt. Geprüft:
+  keine anderen Woche-5-Dateien (Missionen/Debug/Boss) setzen try/except voraus.
+- Woche 8 (alle 3 Varianten × DE/EN): neuer kompakter Abschnitt "🛡️ Fehler abfangen mit
+  try/except" direkt vor der bestehenden Tupel-Unveränderlichkeits-Demo eingefügt (nutzt genau den
+  `TypeError`-Fall, der dort ohnehin vorkommt, statt die breitere Woche-5-Erklärung mit
+  ValueError/ZeroDivisionError zu kopieren). Glossar-Haupttabelle um `try`/`except`-Zeile ergänzt,
+  die falsche "Aus Woche 5"-Zeile im Wiederholungs-Abschnitt entfernt (alle 3 Varianten, nicht nur
+  Abenteuer).
+- `woche8.md` (DE+EN): "Fehler mit try/except abfangen" als Lernziel ergänzt.
+- **Nebenfund, nicht in diesem Branch behoben:** Woche 8 Pferde UND Sci-Fi enthalten (wie schon in
+  Woche 6, siehe 3.26) je eine unerklärte List Comprehension in ihrem letzten Beispiel — Scope von
+  `woche8-list-comprehension-glossar` in `todo.md` entsprechend erweitert.
+
+**Getestet:** Alle 16 betroffenen Notebooks sequenziell mit einem gemeinsamen Namespace ausgeführt
+(nicht isoliert pro Zelle — Funktionen aus früheren Zellen müssen in späteren verfügbar sein, wie
+im echten Jupyter-Kernel), keine Fehler. `npm test` (60 Tests, volle Suite inkl. Notebook-Checks
+über alle Wochen/Varianten) grün.
+
 ---
 
 ## 4. Aktueller technischer Stand
