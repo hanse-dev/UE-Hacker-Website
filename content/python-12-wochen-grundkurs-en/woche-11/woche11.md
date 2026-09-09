@@ -6,7 +6,7 @@ title: '📚 Week 11 – Advanced OOP: The magical evolution!'
 
 You already know classes and objects. Now it's about combining them intelligently, making code reusable, and building professional architectures.
 
-With inheritance, polymorphism and patterns you can think like a professional software architect!
+With inheritance, polymorphism and magic methods you can think like a professional software architect!
 
 ## 🎮 Theme worlds to choose from
 
@@ -18,5 +18,3 @@ With inheritance, polymorphism and patterns you can think like a professional so
 - Use inheritance for code reuse
 - Polymorphism for flexible systems
 - Implement magic methods
-- Apply design patterns
-- Understand composition vs. inheritance

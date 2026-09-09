@@ -6,7 +6,7 @@ title: '📚 Woche 11 – OOP Fortgeschritten: Die magische Evolution!'
 
 Du kennst schon Klassen und Objekte. Jetzt geht es darum, sie intelligent zu kombinieren, Code wiederverwendbar zu machen und professionelle Architekturen zu bauen.
 
-Mit Vererbung, Polymorphismus und Patterns kannst du wie ein professioneller Software-Architekt denken!
+Mit Vererbung, Polymorphismus und Magic Methods kannst du wie ein professioneller Software-Architekt denken!
 
 ## 🎮 Themenwelten zur Auswahl
 
@@ -18,5 +18,3 @@ Mit Vererbung, Polymorphismus und Patterns kannst du wie ein professioneller Sof
 - Vererbung für Code-Wiederverwendung nutzen
 - Polymorphismus für flexible Systeme
 - Magic Methods implementieren
-- Design Patterns anwenden
-- Komposition vs Vererbung verstehen
