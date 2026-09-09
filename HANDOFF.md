@@ -740,6 +740,19 @@ EN-Notebook mit `NotebookEdit`-Tool (Zell-Lösch-Modus). Getestet: `json.loads()
 alle verbliebenen Code-Zellen, `npm run test:checks` (49 Tests grün, reine Bug-Fix ohne
 Verhaltensänderung, kein neuer Test nötig).
 
+### 3.25 Curriculum-Lücken 12-Wochen-Kurs, Teil 2: Woche 3 (Branch `woche3-bedingungen-luecken`)
+
+Woche 3 kündigte `and`/`or`/`not` und verschachtelte Bedingungen als Lernziele an (`woche3.md`),
+lieferte aber nur `and` beiläufig in einem Beispiel — `not`/`or` kamen nirgends als lauffähiger Code
+vor, verschachtelte `if`-Strukturen gar nicht. Neue Abschnitte "Zauberformel/Lektion/Systemprotokoll
+4: Logische Verknüpfungen" (and/or/not, je ein eigenes Beispiel) und "... 5: Verschachtelte
+Bedingungen" (Tür-/Stalltür-/Schleusen-Thema je nach Variante) an alle 6 `1_lektion`-Notebooks
+angehängt (3 Varianten × DE/EN) — Glossar hatte `and`/`or`/`not` bereits korrekt definiert, nur die
+Lektion nicht. Mit `NotebookEdit`-Tool (Insert-Modus) eingefügt, dadurch minimale Diffs (nur
+Anhänge, keine Reformatierung bestehender Zellen). Alle Code-Zellen per `python3 exec()` tatsächlich
+ausgeführt (nicht nur `ast.parse()`), um sicherzugehen, dass die Beispiele auch laufen. Getestet:
+`npm run test:checks` (49 Tests grün, reine Content-Ergänzung ohne UI-Verhaltensänderung).
+
 ---
 
 ## 4. Aktueller technischer Stand
