@@ -39,15 +39,23 @@ Je ein Branch pro Punkt, empfohlene Reihenfolge:
       Lektion/Systemprotokoll 4 "Logische Verknüpfungen"), echtes Verschachtelungsbeispiel (neue
       Nummer 5, `if` in `if`, Tür-/Stalltür-/Schleusen-Thema je Variante). Alle 3 Varianten × DE/EN,
       lokal mit `python3` ausgeführt (kein Syntax-/Laufzeitfehler)
-- [ ] `woche4-woche6-listen-neuordnung` — Listen/`enumerate()` komplett aus Woche 4 raus (war
-      Redundanz mit Woche 6), `break`/`continue`-Ankündigung aus Woche 4 raus (wird erst Woche 6
-      gelehrt), stattdessen echtes Beispiel für verschachtelte Schleifen in Woche 4
+- [x] `woche4-woche6-listen-neuordnung` — Listen/`enumerate()` komplett aus Woche 4 raus (war
+      Redundanz mit Woche 6), Woche 4 bekommt stattdessen einen neuen Abschnitt "Verschachtelte
+      Schleifen" (eigenes, bisher nie eingelöstes Lernziel). Dabei entdeckt: `break`/`continue` war
+      NICHT bei allen Varianten in Woche 4 unfertig — nur Abenteuer liefert es erst in Woche 6,
+      Pferde/Sci-Fi hatten es schon in Woche 4 (dafür nie in Woche 6). Nutzer-Entscheidung: alle auf
+      Woche 6 vereinheitlicht (wie Abenteuer) — `break`/`continue`-Abschnitt bei Pferde/Sci-Fi aus
+      Woche 4 raus, dafür neu in Woche 6 ergänzt. `woche4.md` DE+EN Lernziele angepasst. Nebenbei
+      einen echten `NameError`-Bug in Pferdes altem Woche-4-Beispiel gefunden (verschwand mit der
+      Entfernung des Abschnitts). Details siehe HANDOFF.md 3.26.
 - [ ] `woche1-boolean-entfernen` — Boolean-Erwähnung aus Woche 1 raus, taucht erstmals in Woche 2 auf
 - [ ] `woche5-woche8-tryexcept-verschieben` — `try`/`except` von Woche 5 (kein Lernziel dort) nach
       Woche 8 verschieben (wo es bereits ungeklärt in der Tupel-Demo verwendet wird), `woche8.md`
       um das Lernziel ergänzen. Vor `woche8-list-comprehension-glossar` einplanen (gleiche Dateien)
 - [ ] `woche8-list-comprehension-glossar` — unerklärte List Comprehension aus dem Lektion-Code im
-      Glossar von Woche 8 kurz erklären
+      Glossar erklären. **Scope jetzt erweitert:** betrifft nicht nur Woche 8 Abenteuer, sondern auch
+      Woche 6 Pferde + Sci-Fi (gleiches Muster, bei `woche4-woche6-listen-neuordnung` entdeckt) —
+      alle Fundstellen im selben Branch mitnehmen
 - [ ] `woche7-math-aufwerten` — `math`-Modul vom optionalen Bonus-Exkurs zu vollwertigem
       Lektionsinhalt aufwerten (Widerspruch zu `woche7.md`-Lernziel auflösen)
 - [ ] `woche11-lernziele-anpassen` — "Design Patterns"/"Komposition vs. Vererbung" aus

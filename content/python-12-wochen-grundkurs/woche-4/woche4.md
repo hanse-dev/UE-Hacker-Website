@@ -23,7 +23,6 @@ Im Chronos-Turm manipulierst du die Zeit selbst mit Zeit-Loops und Zyklen.
 
 - **for-Schleifen** mit `range()` für kontrollierte Wiederholungen
 - **while-Schleifen** für flexible Bedingungen
-- **Schleifen über Strings und Listen**
-- **break und continue** für Schleifen-Kontrolle
+- **Schleifen über Strings**
 - **Verschachtelte Schleifen** für komplexe Muster
 - **Endlosschleifen** erkennen und vermeiden
