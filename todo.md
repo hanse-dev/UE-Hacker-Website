@@ -62,13 +62,13 @@ Je ein Branch pro Punkt, empfohlene Reihenfolge:
       ergänzt. Woche 5 Abenteuer: "Zauberformel 4" komplett entfernt (Lektion + Glossar). Alle 16
       betroffenen Notebooks sequenziell (ein gemeinsamer Namespace, wie im echten Kernel) mit
       `python3` durchlaufen — keine Fehler.
-- [ ] `woche8-list-comprehension-glossar` — unerklärte List Comprehension aus dem Lektion-Code im
-      Glossar erklären. **Scope jetzt zweimal erweitert:** betrifft nicht nur Woche 8 Abenteuer,
-      sondern auch Woche 8 Pferde + Sci-Fi (`[p for p in pferde if ...]` / `[m for m in crew if
-      ...]`, bei `woche5-woche8-tryexcept-verschieben` entdeckt) UND Woche 6 Pferde + Sci-Fi
-      (gleiches Muster, bei `woche4-woche6-listen-neuordnung` entdeckt) — alle Fundstellen im
-      selben Branch mitnehmen (Woche 8 Abenteuer bereits bekannt, Woche 8 DE-Glossare in diesem
-      Branch schon leicht verändert — auf Merge-Reihenfolge achten)
+- [x] `woche8-list-comprehension-glossar` — unerklärte List Comprehension per grep über alle 444
+      Notebooks gesucht (nicht nur Woche 8 Abenteuer wie ursprünglich gedacht): betraf Woche 6
+      Pferde+Sci-Fi UND Woche 8 alle 3 Varianten (Woche 6 Abenteuer und Woche 8 selbst nutzen sie
+      nirgends unangekündigt). Neuer Glossar-Begriff "List Comprehension" in allen 10 betroffenen
+      Dateien × DE/EN ergänzt (ans Ende der Begriffstabelle). `6_loesungen`-Dateien bewusst nicht
+      angefasst (auch dort List Comprehensions gefunden, aber Lösungsdateien sind kein Lehrmittel
+      wie die Lektion, dürfen fortgeschrittenere Varianten zeigen)
 - [ ] `woche7-math-aufwerten` — `math`-Modul vom optionalen Bonus-Exkurs zu vollwertigem
       Lektionsinhalt aufwerten (Widerspruch zu `woche7.md`-Lernziel auflösen)
 - [ ] `woche11-lernziele-anpassen` — "Design Patterns"/"Komposition vs. Vererbung" aus
