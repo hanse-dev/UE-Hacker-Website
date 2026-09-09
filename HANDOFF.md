@@ -794,6 +794,19 @@ Wochen/Varianten) grün. Alle geänderten/neuen Code-Zellen zusätzlich einzeln 
 ausgeführt (10 Notebooks, nicht nur `ast.parse()`), um sicherzugehen, dass die neuen
 Verschachtelungs- und break/continue-Beispiele tatsächlich laufen.
 
+### 3.27 Curriculum-Lücken 12-Wochen-Kurs, Teil 4: Woche 1 Boolean entfernt (Branch `woche1-boolean-entfernen`)
+
+Boolean wurde in Woche 1 schon als einer von "drei häufigsten Werttypen" genannt (Lektion-Tabelle
++ Beispiel-Code-Zeile + Glossar-Begriff + Glossar-Code-Demo), obwohl Boolean offiziell erst
+Woche-2-Thema ist. Nutzer-Entscheidung: komplett entfernen statt behalten — taucht jetzt zum
+ersten Mal in Woche 2 als vierter Datentyp auf. "Drei häufigste Werttypen" → "Zwei häufigste
+Werttypen" in allen Lektion-Überschriften angepasst. Alle 3 Varianten × DE/EN, je `1_lektion` +
+`0_glossar` (12 Dateien). Rein mechanische Content-Korrektur ohne Bezug zu anderen Wochen.
+
+**Getestet:** `npm run test:checks` (49 Tests grün) + alle 12 Notebooks per `json.loads()` validiert
++ alle Code-Zellen per `python3 exec()` tatsächlich ausgeführt (keine Fehler) + grep bestätigt: 0
+verbleibende "Boolean"-Erwähnungen in allen 12 Dateien.
+
 ---
 
 ## 4. Aktueller technischer Stand
