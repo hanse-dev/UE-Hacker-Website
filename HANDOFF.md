@@ -1,11 +1,11 @@
 # Handoff — UE Hacker Website
 
-> **Zuletzt aktualisiert:** 2026-09-07  
-> **Aktueller Stand:** Alle Branches bis `ternary-cleanup` (3.5–3.23) sind in `main` gemergt (siehe
-> `git log main` für die genaue Reihenfolge), dazwischen auch `dependency-audit-fixes` und
-> `vite-major-bump`. Noch **nicht** nach `origin/main` gepusht — Push/Deploy bewusst zurückgestellt,
-> siehe Abschnitt 5/7. **Refactoring gegen zu große Dateien (Schritte 1-6) ist komplett
-> abgeschlossen.**
+> **Zuletzt aktualisiert:** 2026-09-09  
+> **Aktueller Stand:** Refactoring (Schritte 1-6) und der Curriculum-Lücken-Plan (8 von 9 Branches,
+> 3.24-3.31) sind gemergt, siehe `git log main`. Dazwischen ein unabhängig entdeckter kritischer
+> Bug behoben: Turtle-Grafik lief nie im Browser (Pyodide entfernt `turtle`), eigener Canvas-Shim
+> in `usePyodide.js` (3.32). Noch **nicht** nach `origin/main` gepusht — Push/Deploy bewusst
+> zurückgestellt, siehe Abschnitt 5/7.
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -896,6 +896,68 @@ die drei Dinge, die die Lektion tatsächlich liefert).
 Verhaltensänderung) + grep über alle 10 geänderten Dateien bestätigt: 0 verbleibende Erwähnungen
 von "Design Pattern"/"Komposition"/"composition".
 
+### 3.32 Turtle-Grafik lief nie im Browser — eigener Pyodide-Shim (Branch `turtle-pyodide-shim`)
+
+**Unabhängig vom Curriculum-Lücken-Plan entdeckt**, beim Vorbereiten von `woche12-interaktivitaet`
+(Branch 9 des Plans): Bevor ein `onscreenclick`/`onkey`-Beispiel sinnvoll ergänzt werden konnte,
+wurde per Playwright geprüft, ob Turtle-Code überhaupt im echten Browser läuft. Ergebnis: **nein** —
+`import turtle` schlägt mit `ModuleNotFoundError` fehl, weil Pyodide (hier Version 0.24.1, siehe
+`usePyodide.js`) `turtle` aus der Standardbibliothek entfernt hat (basiert auf tkinter, das im
+Browser keinen Anzeige-Server hat — offizielle Pyodide-Einschränkung, kein Konfigurationsfehler
+dieser Seite). Verifiziert mit einem bereits produktiven, unveränderten Beispiel (nicht nur neuem
+Code) — identischer Fehler. **Das bedeutet: die komplette Woche 12 (Turtle Graphics) war für alle
+Nutzer:innen die ganze Zeit über nicht lauffähig**, unentdeckt, weil kein bisheriger Test je
+echten Turtle-Code im Browser ausgeführt hat (`tests/storytelling-content.spec.js` & Co. prüfen nur
+den Text-Inhalt der Notebooks, nie die tatsächliche Code-Ausführung).
+
+**Recherche zu Alternativen** (siehe Konversation, nicht im Repo): `basthon-turtle` (PyPI) und das
+archivierte `RaspberryPiFoundation/turtle` wurden geprüft. Beide ungeeignet: Ersteres braucht laut
+eigener Doku einen Web Worker für die Pyodide-Integration — inkompatibel mit der bewussten
+Architektur-Entscheidung aus 3.5 (kein Web Worker, weil `input()` synchron über `window.prompt()`
+laufen muss). Letzteres ist unmaintained (archiviert) und unterstützt explizit keine
+Klick-/Tasten-Interaktion. `pygame-ce` wurde ebenfalls geprüft (funktioniert grundsätzlich in
+Pyodide ≥0.23), scheidet aber aus: andere API (kein turtle-Ersatz, Content-Rewrite nötig) und
+braucht eine async Game-Loop-Architektur, die mit dem bestehenden synchronen
+Einmal-Ausführung-pro-Zelle-Modell (inkl. 5s-Loop-Guard aus 3.5) kollidiert — eher Fundament für
+den geplanten `kurs-python-spiele` als Fix für Woche 12.
+
+**Umsetzung:** Eigener, selbst geschriebener Python-Shim in `usePyodide.js` (`_install_turtle_shim`,
+läuft einmalig beim Kernel-Start), der `sys.modules['turtle']` mit `Turtle`/`Screen`-Klassen belegt,
+die direkt auf ein `<canvas>` zeichnen (über Pyodides `js`-Bridge, `from js import document`). Die
+Methoden-Oberfläche wurde per grep über alle 444 Notebooks aus `content/python-12-wochen-grundkurs*`
+ermittelt (`forward`, `left`/`right`, `penup`/`pendown`, `goto`, `color`/`fillcolor`, `begin_fill`/
+`end_fill`, `circle`, `dot`, `write`, `speed`, `shape`, `hideturtle`, `Screen.bgcolor`/`title`/
+`setup`/`tracer`/`update`, `onscreenclick`/`onkey`/`listen`) — kein Web Worker, kein externes Paket,
+läuft synchron im bestehenden Ausführungsmodell. `JupyterNotebook.vue` bekam einen neuen
+`<div class="turtle-canvas-container">` pro Code-Zelle (ID `turtle-{index}`); `runPython()` in
+`usePyodide.js` setzt vor der Ausführung `window.__turtleContainerId`, das der Shim ausliest, um
+das `<canvas>` im richtigen Zellen-Container zu erzeugen.
+
+**Nebenbei gefundener echter Content-Bug:** Pferde Woche-12-Lösungen (Mission 1, "Dressur-Bahn")
+hatte eine tote Schleife `for pos, buchstabe in [(-200, -100, "C"), ...]: pass  # vereinfacht`, die
+3er-Tupel in 2 Variablen entpacken wollte — hätte in echtem CPython genauso mit `ValueError: too
+many values to unpack` abgebrochen. Offensichtlich ein verworfener erster Entwurf, der nie gelöscht
+wurde (die korrekte Version steht direkt darunter). Nur im DE-Notebook, EN war bereits sauber.
+Entfernt.
+
+**Bewusst nicht gebaut** (Scope-Grenze für "einfachste lauffähige Lösung"): kein echtes
+Klick-/Tasten-Event-Wiring für `onscreenclick`/`onkey` (aktuell nur sichere No-Ops — kein
+existierendes Notebook nutzt diese Funktionen wirklich, nur Bonus-Erwähnungen in Missions-Texten;
+`woche12-interaktivitaet` aus dem Curriculum-Plan ist damit wieder entblockt und kann das Event-
+Wiring bei Bedarf ergänzen); keine Animation/`speed()`-Verzögerung (alles zeichnet sofort); kein
+sichtbarer Turtle-Cursor (`shape()` ist kosmetischer No-Op); `tracer(0)`/`screen.update()` sind
+No-Ops. Bekannte Konsequenz: die eine Lösungsdatei mit animiertem Pferderennen (Stift oben, nur
+Positions-Updates ohne Linien) zeigt dadurch keine sichtbare Bewegung mehr — Ziellinie und
+Gewinner-Ausgabe funktionieren trotzdem, kein Kernproblem.
+
+**Getestet:** Alle 3 Varianten × alle 5 Tabs (Lektion/Missionen/Debug/Boss-Quest/Lösungen) per
+Playwright durchgeklickt — jede Zelle ausgeführt, keine unerwarteten Fehler (die eine erwartete
+Fehlermeldung war der absichtliche Debug-Bug `import Turtle` mit großem T, korrekt reproduziert).
+Neue dauerhafte Tests in `tests/site.spec.js` ("Turtle-Grafik im Browser (Pyodide-Shim)"): prüfen
+echte Pixel auf dem `<canvas>` (nicht nur "kein Fehler geworfen") — einmal für Linien-Zeichnen,
+einmal für `begin_fill()`/`end_fill()`. `npm run test:checks` (51 Tests, 2 neu) + `npm test` (60
+Tests) grün.
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -1097,10 +1159,13 @@ nötig, falls es dazu kommt — der bestehende `t()`-Mechanismus reicht.
    des Repos nicht, siehe 3.9); nicht: SQLite per `cp` statt `VACUUM INTO` sichern (WAL-Modus,
    siehe Abschnitt 4); nicht: einen neuen `LessonView.vue`-Kurs anlegen, ohne die
    `import.meta.glob(...)`-Pfadlisten in `LessonView.vue` zu erweitern (siehe 3.11); nicht:
-   Punkte-/Item-System wieder einführen (siehe 3.12)
+   Punkte-/Item-System wieder einführen (siehe 3.12); nicht: `turtle` als echtes Pyodide-Paket
+   erwarten oder erneut versuchen zu installieren — es ist bewusst durch einen eigenen Canvas-Shim
+   in `usePyodide.js` ersetzt (kein Web Worker, siehe 3.32)
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
-**Empfohlener nächster Schritt:** Refactoring-Schritte 1-6 sind fertig, getestet und gemergt — der
-Plan ist damit komplett abgeschlossen. Weiterhin offen: ob/wann nach `origin/main` gepusht und
-deployed wird. Falls stattdessen inhaltlich weitergearbeitet werden soll: `kurs-python-spiele`
+**Empfohlener nächster Schritt:** Curriculum-Lücken-Plan (`~/.claude/plans/joyful-wishing-piglet.md`)
+ist bis auf `woche12-interaktivitaet` (Branch 9, jetzt entblockt durch den Turtle-Shim) fertig. Danach
+ist der Plan komplett abgeschlossen. Weiterhin offen: ob/wann nach `origin/main` gepusht und deployed
+wird. Falls stattdessen ein neues Kursthema begonnen werden soll: `kurs-python-spiele`
 (Spiele-Werkstatt-Inhalte, bereits begonnen) ist der nächstliegende Kandidat.

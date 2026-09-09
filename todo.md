@@ -83,7 +83,45 @@ Je ein Branch pro Punkt, empfohlene Reihenfolge:
       hatten die Checkliste nie. Alle Fundstellen per grep verifiziert, danach 0 verbleibende
       Erwähnungen
 - [ ] `woche12-interaktivitaet` — Event-Handling-Beispiel (`onscreenclick`/`onkey`) ergänzen, da
-      "Interaktive Grafik erstellen" bisher unerfülltes Lernziel ist
+      "Interaktive Grafik erstellen" bisher unerfülltes Lernziel ist. War blockiert durch den
+      Turtle-Pyodide-Bug (siehe unten) — jetzt entblockt, da der Shim `onscreenclick`/`onkey`/
+      `listen()` bereits als sichere No-Ops unterstützt (nur echtes Event-Wiring fehlt noch)
+
+### Turtle-Grafik lief nie im Browser (Branch `turtle-pyodide-shim`, gemergt)
+**Kritischer, unabhängig entdeckter Bug:** Beim Testen von `woche12-interaktivitaet` (s.o.) stellte
+sich heraus, dass `import turtle` in der echten Browser-Umgebung (Pyodide 0.24.1) mit
+`ModuleNotFoundError` fehlschlägt — Pyodide hat `turtle` aus der Standardbibliothek entfernt
+(basiert auf tkinter, das im Browser keinen Anzeige-Server hat). Verifiziert: auch die bereits
+produktiven, unveränderten Beispiele (nicht nur meine neuen) schlagen exakt gleich fehl — das war
+**für alle Nutzer:innen die ganze Zeit über kaputt**, unentdeckt, weil kein Test je echten
+Turtle-Code im Browser ausgeführt hat (nur Text-Inhalt der Notebooks wurde geprüft).
+- [x] Eigenen Python-Shim in `usePyodide.js` geschrieben, der `sys.modules['turtle']` mit einer
+      eigenen, Canvas-basierten Implementierung belegt (kein externes Paket — siehe Recherche zu
+      `basthon-turtle`/RaspberryPiFoundation/pygame-ce, alle brauchten entweder einen Web Worker
+      [nicht kompatibel mit der bestehenden `input()`-über-`window.prompt()`-Architektur, siehe
+      HANDOFF.md 3.5] oder waren unmaintained/ohne Interaktions-Support). Deckt die komplette,
+      per grep über alle 444 Notebooks ermittelte API-Oberfläche ab (Turtle/Screen, forward/left/
+      right, penup/pendown, goto, color/fillcolor, begin_fill/end_fill, circle, dot, write, speed,
+      shape als No-Op, hideturtle, onscreenclick/onkey/listen als sichere No-Ops).
+- [x] `JupyterNotebook.vue`: neuer `<div class="turtle-canvas-container">` pro Code-Zelle, in den
+      der Shim bei `turtle.Screen()`/`turtle.Turtle()` ein `<canvas>` zeichnet.
+- [x] Dabei einen echten, bisher nie bemerkten Content-Bug gefunden und gefixt: Pferde-Lösungen
+      Woche 12 hatte eine tote Schleife, die 3er-Tupel in 2 Variablen entpacken wollte
+      (`ValueError: too many values to unpack`) — Überbleibsel eines verworfenen Entwurfs, direkt
+      darunter stand schon die korrekte Version. EN-Pendant war bereits sauber.
+- [x] Neue dauerhafte Tests in `tests/site.spec.js` ("Turtle-Grafik im Browser (Pyodide-Shim)"):
+      prüfen echte Pixel auf dem Canvas (nicht nur "kein Fehler"), einmal für Linien, einmal für
+      `begin_fill()`/`end_fill()`.
+- Getestet: alle 3 Varianten × Lektion/Missionen/Debug/Boss-Quest/Lösungen manuell per Playwright
+  durchgeklickt (kein Fehler außer dem absichtlichen Debug-Bug `import Turtle` mit großem T).
+  EN-Inhalte technisch identisch zu DE (gleiche turtle-Aufrufe), nicht separat durchgeklickt.
+- **Bewusst nicht gebaut:** echtes Event-Handling für `onscreenclick`/`onkey` (Klick-/Tasten-Reaktion
+  im Canvas) — aktuell nutzt kein einziges der 444 Notebooks diese Funktionen wirklich (nur
+  Bonus-Erwähnungen in Missions-Texten), daher zurückgestellt für `woche12-interaktivitaet`.
+- **Bekannte Vereinfachungen** (bewusst, für "einfachste Lösung, die läuft"): keine Animation/
+  `speed()`-Verzögerung (alles zeichnet sofort), kein sichtbarer Turtle-Cursor/keine `shape()`-Grafik,
+  `tracer(0)`+`update()` sind No-Ops (ein Beispiel mit animiertem Pferderennen bei ausgehobenem Stift
+  zeigt dadurch keine sichtbare Bewegung mehr — nur in einer Lösungsdatei, kein Kernproblem).
 
 ### Inhalte / Notebooks
 - [x] Neues Projekt "Cäsar-Chiffre" (`kurs-caesar-chiffre`, `projekt-caesar-chiffre`): 5 Lektionen
