@@ -837,6 +837,24 @@ worden — stimmte nur für Abenteuer.
 im echten Jupyter-Kernel), keine Fehler. `npm test` (60 Tests, volle Suite inkl. Notebook-Checks
 über alle Wochen/Varianten) grün.
 
+### 3.29 Curriculum-Lücken 12-Wochen-Kurs, Teil 6: List-Comprehension-Glossareintrag (Branch `woche8-list-comprehension-glossar`)
+
+Ursprünglicher Fund war nur Woche 8 Abenteuer (`[h for h in helden if h['level'] > 14]`
+unangekündigt im Lektion-Code). Ein `grep` über alle 444 Notebooks nach dem Muster
+`\[\w+ for \w+ in ` zeigte: das Muster kommt in **Lektion**-Dateien nur in Woche 6 Pferde+Sci-Fi
+und Woche 8 allen 3 Varianten vor (Woche 6 Abenteuer und Woche 8 selbst nutzen an keiner anderen
+Stelle unangekündigt eine List Comprehension). Neuer Begriff "List Comprehension" ans Ende der
+Begriffstabelle in allen 10 betroffenen Glossaren (5 Wochen-Varianten-Kombinationen × DE/EN)
+ergänzt: `[x for x in liste if x > 5]` / `[x for x in list_ if x > 5]`.
+
+**Bewusst nicht angefasst:** dieselbe grep-Suche fand List Comprehensions auch in vielen
+`6_loesungen`-Dateien über mehrere Wochen (6, 8, 9, 12) — Lösungsdateien sind kein primäres
+Lehrmittel wie die Lektion (sie zeigen eine mögliche Lösung, keine schrittweise Einführung neuer
+Konzepte), dürfen also fortgeschrittenere Syntax enthalten, ohne dass das ein Fehler ist.
+
+**Getestet:** `npm run test:checks` (49 Tests grün, reine Glossar-Ergänzung ohne
+Verhaltensänderung) + alle 10 geänderten Dateien per `json.loads()` validiert.
+
 ---
 
 ## 4. Aktueller technischer Stand
