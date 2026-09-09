@@ -25,6 +25,34 @@
       mitgefixt: 119 von 120 `explanation_en`-Feldern waren nie übersetzt worden. Details siehe
       HANDOFF.md 3.17.
 
+### Curriculum-Lücken 12-Wochen-Kurs (Plan: `~/.claude/plans/joyful-wishing-piglet.md`)
+Content-Analyse hat Reihenfolge-Probleme, Redundanz und Lernziel-Lücken im 12-Wochen-Kurs gefunden.
+Je ein Branch pro Punkt, empfohlene Reihenfolge:
+- [x] `woche12-turtle-notebook-bug-fix` — kaputte `%pip install Tinker`-Zelle in Woche-12-Lektion
+      entfernen (falscher Paketname + eingebrannter Fehler-Output). Betraf nur Abenteuer (DE+EN,
+      Pferde/Sci-Fi waren sauber): Zelle war komplett tot (nachfolgende Zellen machen ihr eigenes
+      `import turtle`, `from turtle import *` wurde nirgends genutzt), daher ganz entfernt statt
+      ersetzt. Zusätzlich im DE-Notebook einen zweiten eingebrannten `ModuleNotFoundError:
+      No module named '_tkinter'`-Output (an der direkt folgenden `import turtle`-Zelle, vom
+      Autoren-Rechner ohne Tk-Unterstützung) geleert.
+- [ ] `woche3-bedingungen-luecken` — `not`/`or` als lauffähigen Code ergänzen, echtes
+      Verschachtelungsbeispiel (`if` in `if`)
+- [ ] `woche4-woche6-listen-neuordnung` — Listen/`enumerate()` komplett aus Woche 4 raus (war
+      Redundanz mit Woche 6), `break`/`continue`-Ankündigung aus Woche 4 raus (wird erst Woche 6
+      gelehrt), stattdessen echtes Beispiel für verschachtelte Schleifen in Woche 4
+- [ ] `woche1-boolean-entfernen` — Boolean-Erwähnung aus Woche 1 raus, taucht erstmals in Woche 2 auf
+- [ ] `woche5-woche8-tryexcept-verschieben` — `try`/`except` von Woche 5 (kein Lernziel dort) nach
+      Woche 8 verschieben (wo es bereits ungeklärt in der Tupel-Demo verwendet wird), `woche8.md`
+      um das Lernziel ergänzen. Vor `woche8-list-comprehension-glossar` einplanen (gleiche Dateien)
+- [ ] `woche8-list-comprehension-glossar` — unerklärte List Comprehension aus dem Lektion-Code im
+      Glossar von Woche 8 kurz erklären
+- [ ] `woche7-math-aufwerten` — `math`-Modul vom optionalen Bonus-Exkurs zu vollwertigem
+      Lektionsinhalt aufwerten (Widerspruch zu `woche7.md`-Lernziel auflösen)
+- [ ] `woche11-lernziele-anpassen` — "Design Patterns"/"Komposition vs. Vererbung" aus
+      `woche11.md`-Lernzielen streichen (zu fortgeschritten für den Rahmen der Lektion)
+- [ ] `woche12-interaktivitaet` — Event-Handling-Beispiel (`onscreenclick`/`onkey`) ergänzen, da
+      "Interaktive Grafik erstellen" bisher unerfülltes Lernziel ist
+
 ### Inhalte / Notebooks
 - [x] Neues Projekt "Cäsar-Chiffre" (`kurs-caesar-chiffre`, `projekt-caesar-chiffre`): 5 Lektionen
       (ord/chr → Verschieben mit Wraparound → Verschlüsseln-Funktion → Entschlüsseln-Funktion →

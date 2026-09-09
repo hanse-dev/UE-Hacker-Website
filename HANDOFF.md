@@ -724,6 +724,22 @@ Deutsch, das war der einzige Weg, jede migrierte EN-Zeichenkette tatsächlich ge
 
 **Damit ist der komplette Refactoring-Plan (Schritte 1-6) abgeschlossen.**
 
+### 3.24 Curriculum-Lücken 12-Wochen-Kurs, Teil 1: Woche-12-Notebook-Bug (Branch `woche12-turtle-notebook-bug-fix`)
+
+Erster Branch eines mehrteiligen Plans (`~/.claude/plans/joyful-wishing-piglet.md`, Content-Analyse
+über alle 12 Wochen hat Reihenfolge-Probleme/Redundanz/Lernziel-Lücken gefunden — siehe `todo.md`
+für die vollständige Liste der noch offenen Branches). Dieser Branch behebt einen reinen Bug ohne
+inhaltliche Debatte: Woche-12-Lektion (nur Abenteuer, DE+EN — Pferde/Sci-Fi waren nie betroffen)
+hatte eine tote `%pip install Tinker`-Zelle (installierte ein unrelated PyPI-Paket, das zufällig
+"Tinker" heißt, nicht tkinter — turtle ist ohnehin Standardbibliothek, kein pip nötig) mit
+eingebranntem `ModuleNotFoundError`-Output vom Autoren-Rechner. Komplett entfernt statt ersetzt, da
+kein nachfolgender Code darauf aufbaute (`from turtle import *` wurde nirgends genutzt, alle
+Beispiele machen ihr eigenes `import turtle`). DE-Notebook per Text-Ersetzung + `json.dumps(indent=1)`
+bearbeitet (Datei war bereits exakt in diesem Stil serialisiert, verifiziert vor dem Schreiben),
+EN-Notebook mit `NotebookEdit`-Tool (Zell-Lösch-Modus). Getestet: `json.loads()` + `ast.parse()` auf
+alle verbliebenen Code-Zellen, `npm run test:checks` (49 Tests grün, reine Bug-Fix ohne
+Verhaltensänderung, kein neuer Test nötig).
+
 ---
 
 ## 4. Aktueller technischer Stand
