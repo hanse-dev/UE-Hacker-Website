@@ -19,4 +19,5 @@ With dictionaries and tuples you can structure your data perfectly!
 - Access values via keys
 - Create and use tuples with ()
 - Understand immutability
+- Catch errors with try/except
 - Build nested structures

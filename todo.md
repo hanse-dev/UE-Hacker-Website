@@ -51,13 +51,24 @@ Je ein Branch pro Punkt, empfohlene Reihenfolge:
 - [x] `woche1-boolean-entfernen` — Boolean-Erwähnung aus Woche 1 raus (Lektion-Tabelle "drei" → "zwei
       häufigste Werttypen", Beispiel-Code-Zeile, Glossar-Begriff + Glossar-Code-Demo), taucht jetzt
       erstmals in Woche 2 als vierter Datentyp auf. Alle 3 Varianten × DE/EN, `1_lektion` + `0_glossar`
-- [ ] `woche5-woche8-tryexcept-verschieben` — `try`/`except` von Woche 5 (kein Lernziel dort) nach
-      Woche 8 verschieben (wo es bereits ungeklärt in der Tupel-Demo verwendet wird), `woche8.md`
-      um das Lernziel ergänzen. Vor `woche8-list-comprehension-glossar` einplanen (gleiche Dateien)
+- [x] `woche5-woche8-tryexcept-verschieben` — `try`/`except` von Woche 5 nach Woche 8 verschoben.
+      Überraschender Fund: nur Abenteuer lehrte try/except in Woche 5 ("Zauberformel 4") — Pferde/
+      Sci-Fi hatten dort NIE eine try/except-Einführung, obwohl ihr Woche-8-Glossar fälschlich
+      "Wiederholung aus Woche 5: try/except" behauptete. Für Pferde/Sci-Fi gab es also gar nichts zu
+      verschieben, nur die neue Einführung in Woche 8 zu ergänzen (kein Vorwissen vorausgesetzt).
+      Woche 8 (alle 3 Varianten × DE/EN): neuer Mini-Abschnitt "🛡️ Fehler abfangen mit try/except"
+      direkt vor der Tupel-Unveränderlichkeits-Demo, Glossar-Haupttabelle um `try`/`except`-Zeile
+      ergänzt, die falsche "Aus Woche 5"-Wiederholungszeile entfernt. `woche8.md` DE+EN Lernziel
+      ergänzt. Woche 5 Abenteuer: "Zauberformel 4" komplett entfernt (Lektion + Glossar). Alle 16
+      betroffenen Notebooks sequenziell (ein gemeinsamer Namespace, wie im echten Kernel) mit
+      `python3` durchlaufen — keine Fehler.
 - [ ] `woche8-list-comprehension-glossar` — unerklärte List Comprehension aus dem Lektion-Code im
-      Glossar erklären. **Scope jetzt erweitert:** betrifft nicht nur Woche 8 Abenteuer, sondern auch
-      Woche 6 Pferde + Sci-Fi (gleiches Muster, bei `woche4-woche6-listen-neuordnung` entdeckt) —
-      alle Fundstellen im selben Branch mitnehmen
+      Glossar erklären. **Scope jetzt zweimal erweitert:** betrifft nicht nur Woche 8 Abenteuer,
+      sondern auch Woche 8 Pferde + Sci-Fi (`[p for p in pferde if ...]` / `[m for m in crew if
+      ...]`, bei `woche5-woche8-tryexcept-verschieben` entdeckt) UND Woche 6 Pferde + Sci-Fi
+      (gleiches Muster, bei `woche4-woche6-listen-neuordnung` entdeckt) — alle Fundstellen im
+      selben Branch mitnehmen (Woche 8 Abenteuer bereits bekannt, Woche 8 DE-Glossare in diesem
+      Branch schon leicht verändert — auf Merge-Reihenfolge achten)
 - [ ] `woche7-math-aufwerten` — `math`-Modul vom optionalen Bonus-Exkurs zu vollwertigem
       Lektionsinhalt aufwerten (Widerspruch zu `woche7.md`-Lernziel auflösen)
 - [ ] `woche11-lernziele-anpassen` — "Design Patterns"/"Komposition vs. Vererbung" aus
