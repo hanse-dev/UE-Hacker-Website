@@ -48,7 +48,9 @@ Je ein Branch pro Punkt, empfohlene Reihenfolge:
       Woche 4 raus, dafür neu in Woche 6 ergänzt. `woche4.md` DE+EN Lernziele angepasst. Nebenbei
       einen echten `NameError`-Bug in Pferdes altem Woche-4-Beispiel gefunden (verschwand mit der
       Entfernung des Abschnitts). Details siehe HANDOFF.md 3.26.
-- [ ] `woche1-boolean-entfernen` — Boolean-Erwähnung aus Woche 1 raus, taucht erstmals in Woche 2 auf
+- [x] `woche1-boolean-entfernen` — Boolean-Erwähnung aus Woche 1 raus (Lektion-Tabelle "drei" → "zwei
+      häufigste Werttypen", Beispiel-Code-Zeile, Glossar-Begriff + Glossar-Code-Demo), taucht jetzt
+      erstmals in Woche 2 als vierter Datentyp auf. Alle 3 Varianten × DE/EN, `1_lektion` + `0_glossar`
 - [ ] `woche5-woche8-tryexcept-verschieben` — `try`/`except` von Woche 5 (kein Lernziel dort) nach
       Woche 8 verschieben (wo es bereits ungeklärt in der Tupel-Demo verwendet wird), `woche8.md`
       um das Lernziel ergänzen. Vor `woche8-list-comprehension-glossar` einplanen (gleiche Dateien)
