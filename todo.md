@@ -69,8 +69,12 @@ Je ein Branch pro Punkt, empfohlene Reihenfolge:
       Dateien × DE/EN ergänzt (ans Ende der Begriffstabelle). `6_loesungen`-Dateien bewusst nicht
       angefasst (auch dort List Comprehensions gefunden, aber Lösungsdateien sind kein Lehrmittel
       wie die Lektion, dürfen fortgeschrittenere Varianten zeigen)
-- [ ] `woche7-math-aufwerten` — `math`-Modul vom optionalen Bonus-Exkurs zu vollwertigem
-      Lektionsinhalt aufwerten (Widerspruch zu `woche7.md`-Lernziel auflösen)
+- [x] `woche7-math-aufwerten` — wieder ein Fund, der nur bei Abenteuer stimmte: Pferde und Sci-Fi
+      hatten `math` schon immer als vollwertigen Abschnitt (nicht als Bonus), nur Abenteuer degradierte
+      es zum "Exkurs (Bonus), nicht Teil der Prüfungen". Abenteuer-Lektion (DE+EN) auf denselben
+      Umfang wie Pferde/Sci-Fi gebracht (3 Beispiele: Konstanten+Kreisberechnung, Grundwerkzeuge,
+      Trigonometrie/Logarithmen/Fakultät), Intro-Mission-Bullet + Glossar (4 neue math-Begriffe)
+      ergänzt. Pferde/Sci-Fi unverändert (waren schon korrekt)
 - [ ] `woche11-lernziele-anpassen` — "Design Patterns"/"Komposition vs. Vererbung" aus
       `woche11.md`-Lernzielen streichen (zu fortgeschritten für den Rahmen der Lektion)
 - [ ] `woche12-interaktivitaet` — Event-Handling-Beispiel (`onscreenclick`/`onkey`) ergänzen, da
