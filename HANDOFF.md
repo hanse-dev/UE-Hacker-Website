@@ -855,6 +855,28 @@ Konzepte), dürfen also fortgeschrittenere Syntax enthalten, ohne dass das ein F
 **Getestet:** `npm run test:checks` (49 Tests grün, reine Glossar-Ergänzung ohne
 Verhaltensänderung) + alle 10 geänderten Dateien per `json.loads()` validiert.
 
+### 3.30 Curriculum-Lücken 12-Wochen-Kurs, Teil 7: math-Modul aufgewertet (Branch `woche7-math-aufwerten`)
+
+Wieder ein Fund, der beim ursprünglichen Audit nur an der Abenteuer-Variante gemessen wurde: dort
+war `math` ein "Exkurs (Bonus)" mit dem Hinweis "nicht Teil der Prüfungen dieser Woche", im
+Widerspruch zu `woche7.md`s Lernziel "Das math-Modul für komplexe Berechnungen nutzen". Beim
+Nachsehen zeigte sich: **Pferde und Sci-Fi hatten `math` nie als Bonus** — beide behandeln es
+bereits als vollwertigen zweiten Abschnitt ("Werkzeug-Sammlung 2"/"Modul-Sammlung 2") mit 3
+ausführlichen Beispielen (Konstanten + Kreisberechnung, Grundwerkzeuge wie sqrt/pow/ceil/floor,
+fortgeschrittene Werkzeuge wie Trigonometrie/Logarithmen/Fakultät/ggT/kgV). Nur Abenteuer hatte
+eine einzige, stark verkürzte Bonus-Zelle mit nur `math.pi` und `math.sqrt()`.
+
+**Umsetzung:** Abenteuer-Lektion (DE+EN) auf denselben Umfang wie Pferde/Sci-Fi gebracht — den
+"Exkurs (Bonus)"-Abschnitt durch "Kapitel 5: Das math-Modul – Die Rechenkammer" ersetzt (Story-Titel
+an Abenteuers Kapitel-Nummerierung angepasst, mathematischer Inhalt identisch zu Pferde/Sci-Fi
+übernommen, da rein technisch und nicht variantenspezifisch), Intro-Mission-Bullet ergänzt, Glossar
+um die 4 math-Begriffe ergänzt, die Pferde/Sci-Fi schon hatten (`math.sqrt()`, `math.floor()`,
+`math.ceil()`, `math.pi`). Pferde/Sci-Fi (DE+EN) unverändert gelassen — waren bereits korrekt.
+
+**Getestet:** `npm run test:checks` (49 Tests grün) + alle 4 geänderten Dateien per `json.loads()`
+validiert + Abenteuer-Lektion komplett mit `python3` durchlaufen (gemeinsamer Namespace, `time.sleep`
+für den Testlauf übersprungen) — keine Fehler.
+
 ---
 
 ## 4. Aktueller technischer Stand
