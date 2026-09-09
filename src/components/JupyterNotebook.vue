@@ -57,6 +57,7 @@
               class="output-error"
             >{{ cellOutputs[index].text }}</pre>
           </div>
+          <div :id="`turtle-${index}`" class="turtle-canvas-container"></div>
         </div>
       </div>
     </div>
@@ -198,7 +199,7 @@ export default {
         return;
       }
       cellOutputs.value = { ...cellOutputs.value, [index]: { status: 'running' } };
-      const result = await runPython(code);
+      const result = await runPython(code, `turtle-${index}`);
       if (result.success) {
         cellOutputs.value = {
           ...cellOutputs.value,
@@ -369,6 +370,16 @@ export default {
   margin: 0; font-family: monospace; font-size: 13px;
   white-space: pre-wrap; color: #dc2626;
   background: #fef2f2; padding: 8px; border-radius: 4px;
+}
+
+.turtle-canvas-container:empty { display: none; }
+.turtle-canvas-container {
+  margin-top: 8px;
+}
+.turtle-canvas-container :deep(canvas) {
+  display: block;
+  max-width: 100%;
+  border-radius: 4px;
 }
 
 .kernel-status {

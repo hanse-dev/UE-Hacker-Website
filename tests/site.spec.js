@@ -206,3 +206,76 @@ test.describe('Debug-Notebook-Sicherheit', () => {
     await expect(week.locator('.output-stream').first()).toContainText('kernel lebt 2', { timeout: 10000 });
   });
 });
+
+test.describe('Turtle-Grafik im Browser (Pyodide-Shim)', () => {
+  // Pyodide entfernt `turtle` aus der Standardbibliothek (basiert auf tkinter,
+  // das im Browser keinen Anzeige-Server hat) — siehe HANDOFF.md. usePyodide.js
+  // registriert stattdessen einen eigenen Shim, der auf <canvas> zeichnet.
+  test('import turtle wirft keinen ModuleNotFoundError mehr und zeichnet sichtbar', async ({ page }) => {
+    test.setTimeout(60000);
+    await page.goto(`${COURSE_URL}?week=12&tab=lektion#woche-12`);
+    const week = page.locator('#woche-12');
+    const runBtn = week.locator('.btn-run-cell').first();
+    await expect(runBtn).toBeEnabled({ timeout: 40000 });
+
+    const editor = week.locator('.code-editor').first();
+    await editor.fill(
+      'import turtle\n' +
+      'pen = turtle.Turtle()\n' +
+      'pen.color("blue")\n' +
+      'for _ in range(4):\n' +
+      '    pen.forward(80)\n' +
+      '    pen.left(90)\n' +
+      'turtle.done()\n'
+    );
+    await runBtn.click();
+
+    await expect(week.locator('.output-error')).toHaveCount(0, { timeout: 10000 });
+    const canvas = week.locator('.turtle-canvas-container canvas').first();
+    await expect(canvas).toBeVisible({ timeout: 10000 });
+
+    const hasDrawing = await canvas.evaluate((el) => {
+      const ctx = el.getContext('2d');
+      const data = ctx.getImageData(0, 0, el.width, el.height).data;
+      for (let i = 0; i < data.length; i += 4) {
+        if (!(data[i] === 255 && data[i + 1] === 255 && data[i + 2] === 255)) return true;
+      }
+      return false;
+    });
+    expect(hasDrawing).toBe(true);
+  });
+
+  test('begin_fill()/end_fill() füllt eine Form sichtbar', async ({ page }) => {
+    test.setTimeout(60000);
+    await page.goto(`${COURSE_URL}?week=12&tab=lektion#woche-12`);
+    const week = page.locator('#woche-12');
+    const runBtn = week.locator('.btn-run-cell').first();
+    await expect(runBtn).toBeEnabled({ timeout: 40000 });
+
+    const editor = week.locator('.code-editor').first();
+    await editor.fill(
+      'import turtle\n' +
+      'pen = turtle.Turtle()\n' +
+      'pen.fillcolor("red")\n' +
+      'pen.begin_fill()\n' +
+      'for _ in range(4):\n' +
+      '    pen.forward(60)\n' +
+      '    pen.left(90)\n' +
+      'pen.end_fill()\n' +
+      'turtle.done()\n'
+    );
+    await runBtn.click();
+
+    await expect(week.locator('.output-error')).toHaveCount(0, { timeout: 10000 });
+    const canvas = week.locator('.turtle-canvas-container canvas').first();
+    const hasRedFill = await canvas.evaluate((el) => {
+      const ctx = el.getContext('2d');
+      const data = ctx.getImageData(0, 0, el.width, el.height).data;
+      for (let i = 0; i < data.length; i += 4) {
+        if (data[i] > 200 && data[i + 1] < 60 && data[i + 2] < 60) return true;
+      }
+      return false;
+    });
+    expect(hasRedFill).toBe(true);
+  });
+});
