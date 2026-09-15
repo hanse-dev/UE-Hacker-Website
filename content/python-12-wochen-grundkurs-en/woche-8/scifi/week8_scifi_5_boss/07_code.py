@@ -1,0 +1,7 @@
+print()
+print("🎉 Boss Quest completed!")
+print("🏆 You have defeated the Data Curator of the Infinite Keys!")
+print("⭐ Title earned: Master of the Data Archives")
+print()
+print("🎊 CONGRATULATIONS! You have mastered Week 8!")
+print("📚 Next week: JSON files and I/O!")

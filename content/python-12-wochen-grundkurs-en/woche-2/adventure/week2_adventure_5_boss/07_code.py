@@ -1,0 +1,7 @@
+print()
+print("🎉 Boss Quest complete!")
+print("🏆 You have defeated the Golem of Confused Forms!")
+print("⭐ The Tower Guardian nods: Master of the Four Elements!")
+print()
+print("🎊 CONGRATULATIONS! You have mastered Week 2!")
+print("📚 Next week: Conditions (if-else)!")

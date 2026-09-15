@@ -4,6 +4,18 @@ const INTERACTIVE_URL = '/kurs/python-grundlagen-interaktiv';
 const COURSE_URL = '/kurs/python-12-wochen-grundkurs';
 const PLACEMENT_URL = '/kurs/python-einstufung';
 
+// 12-Wochen-Kurs-Notebooks nutzen seit der Zellen-Format-Umstellung CodeMirror statt einer
+// <textarea class="code-editor"> - .fill()/.inputValue() funktionieren dort nicht mehr.
+// insertText() statt type(), damit CodeMirrors Auto-Indent literale "\n"-Zeichen in
+// mehrzeiligem Test-Code (z.B. "while True:\n    pass\n") nicht zusätzlich einrückt.
+async function setCodeMirrorContent(cmHost, code) {
+  const content = cmHost.locator('.cm-content');
+  await content.click();
+  await content.press('ControlOrMeta+a');
+  await content.press('Backspace');
+  await content.page().keyboard.insertText(code);
+}
+
 test.describe('Home & Navigation', () => {
   test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => {
@@ -187,9 +199,9 @@ test.describe('Debug-Notebook-Sicherheit', () => {
     // (der Button kann währenddessen schon deaktiviert/instabil sein).
     await expect(week.locator('.btn-run-cell').first()).toBeEnabled({ timeout: 40000 });
 
-    const editor = week.locator('.code-editor').first();
+    const editor = week.locator('.cm-host').first();
     const runBtn = week.locator('.btn-run-cell').first();
-    await editor.fill('while True:\n    pass\n');
+    await setCodeMirrorContent(editor, 'while True:\n    pass\n');
 
     const start = Date.now();
     await runBtn.click();
@@ -201,7 +213,7 @@ test.describe('Debug-Notebook-Sicherheit', () => {
     await expect(week.locator('.output-error').first()).toContainText(/Endlosschleife/);
 
     // Kernel muss danach weiter benutzbar sein — keine dauerhafte Blockade.
-    await editor.fill('print("kernel lebt", 1 + 1)');
+    await setCodeMirrorContent(editor, 'print("kernel lebt", 1 + 1)');
     await runBtn.click();
     await expect(week.locator('.output-stream').first()).toContainText('kernel lebt 2', { timeout: 10000 });
   });
@@ -218,8 +230,9 @@ test.describe('Turtle-Grafik im Browser (Pyodide-Shim)', () => {
     const runBtn = week.locator('.btn-run-cell').first();
     await expect(runBtn).toBeEnabled({ timeout: 40000 });
 
-    const editor = week.locator('.code-editor').first();
-    await editor.fill(
+    const editor = week.locator('.cm-host').first();
+    await setCodeMirrorContent(
+      editor,
       'import turtle\n' +
       'pen = turtle.Turtle()\n' +
       'pen.color("blue")\n' +
@@ -252,8 +265,9 @@ test.describe('Turtle-Grafik im Browser (Pyodide-Shim)', () => {
     const runBtn = week.locator('.btn-run-cell').first();
     await expect(runBtn).toBeEnabled({ timeout: 40000 });
 
-    const editor = week.locator('.code-editor').first();
-    await editor.fill(
+    const editor = week.locator('.cm-host').first();
+    await setCodeMirrorContent(
+      editor,
       'import turtle\n' +
       'pen = turtle.Turtle()\n' +
       'pen.fillcolor("red")\n' +

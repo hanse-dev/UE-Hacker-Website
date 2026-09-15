@@ -1,0 +1,7 @@
+print()
+print('🎉 Boss-Quest abgeschlossen!')
+print('🏆 Du hast den Stallmeister der unendlichen Archive besiegt!')
+print('⭐ Titel erhalten: Meister der Stall-Archive')
+print()
+print('🎊 GLÜCKWUNSCH! Du hast Woche 9 gemeistert!')
+print('📚 Nächste Woche: Objektorientierung!')

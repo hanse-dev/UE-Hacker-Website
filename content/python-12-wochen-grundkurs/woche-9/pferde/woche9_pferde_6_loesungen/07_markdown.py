@@ -1,0 +1,1 @@
+"""**Erklärung:** Der CSV-Reader gibt jede Zeile als Liste zurück. Wenn eine Zeile weniger als 3 Spalten hat (oder die Datei leer ist), gibt es einen `IndexError`. Man sollte zuerst prüfen, ob genug Spalten vorhanden sind."""

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Überwacht den content/ Ordner und erstellt automatisch das Notebook-Paket,
- * sobald eine .ipynb-Datei geändert wurde.
+ * Überwacht den content/ Ordner und baut automatisch die Zellen-Notebook-Artefakte +
+ * das Notebook-Paket neu, sobald eine Zellen-.py-Datei geändert wurde.
  * Start: npm run watch:notebooks
  */
 
@@ -18,11 +18,13 @@ const INTERVAL_MS = 5000;
 function findLatestMtime(dir) {
   let latest = 0;
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    // _generated/_bundle sind selbst erzeugte Artefakte - sonst triggert der Watcher sich selbst.
+    if (entry.name === "_generated" || entry.name === "_bundle") continue;
     const full = join(dir, entry.name);
     const stat = statSync(full);
     if (entry.isDirectory()) {
       latest = Math.max(latest, findLatestMtime(full));
-    } else if (entry.name.endsWith(".ipynb")) {
+    } else if (entry.name.endsWith(".py")) {
       latest = Math.max(latest, stat.mtimeMs);
     }
   }
@@ -30,13 +32,13 @@ function findLatestMtime(dir) {
 }
 
 function runPack() {
-  const child = spawn("npm", ["run", "pack:notebooks"], {
+  const child = spawn("npm run build:cells && npm run pack:notebooks", {
     cwd: ROOT,
     stdio: "inherit",
     shell: true,
   });
   child.on("close", (code) => {
-    if (code !== 0) console.error("Pack fehlgeschlagen.");
+    if (code !== 0) console.error("Build/Pack fehlgeschlagen.");
   });
 }
 

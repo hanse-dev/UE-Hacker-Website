@@ -24,6 +24,12 @@ async function selectTab(week, label) {
   await week.locator('.cell').first().waitFor({ state: 'visible', timeout: 5000 });
 }
 
+// Notebook-Code-Zellen nutzen seit der Zellen-Format-Umstellung CodeMirror statt einer
+// <textarea class="code-editor"> - .inputValue() funktioniert dort nicht mehr.
+async function getCodeCellText(cmHost) {
+  return cmHost.locator('.cm-content').innerText();
+}
+
 test.describe('Storytelling-Überarbeitung: Pferde', () => {
   test('Woche 2: Hufschlag-Typen benannt, kein "Sonnentals"-Tippfehler', async ({ page }) => {
     await page.goto(COURSE_URL);
@@ -106,11 +112,11 @@ test.describe('Storytelling-Überarbeitung: Sci-Fi', () => {
     expect(text).toContain('Raumstation Nebula-7');
     expect(text).not.toContain('Evolution-Station Alpha-7');
 
-    const codeCells = week.locator('.cell-code .code-editor');
+    const codeCells = week.locator('.cell-code .cm-host');
     const count = await codeCells.count();
     expect(count).toBeGreaterThan(0);
     for (let i = 0; i < count; i++) {
-      const code = await codeCells.nth(i).inputValue();
+      const code = await getCodeCellText(codeCells.nth(i));
       // The original bug: every method inside a class was missing "def" and/or
       // "self" (e.g. "aktivieren():" instead of "def aktivieren(self):", or
       // "def __init__(id, name):" instead of "def __init__(self, id, name):").
@@ -160,10 +166,10 @@ test.describe('Storytelling-Überarbeitung: Sci-Fi', () => {
     await selectVariant(week, 'Sci-Fi');
     await selectTab(week, 'Debug');
 
-    const codeCells = week.locator('.cell-code .code-editor');
+    const codeCells = week.locator('.cell-code .cm-host');
     const count = await codeCells.count();
     for (let i = 0; i < count; i++) {
-      const code = await codeCells.nth(i).inputValue();
+      const code = await getCodeCellText(codeCells.nth(i));
       expect(code).not.toMatch(/#\s*Bug:/i);
     }
   });

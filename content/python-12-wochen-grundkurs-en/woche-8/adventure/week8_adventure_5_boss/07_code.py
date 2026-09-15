@@ -1,0 +1,7 @@
+print()
+print("🎉 Boss Quest completed!")
+print("🏆 You have defeated the Archivist of the Guild Archive!")
+print("⭐ Title received: Master of Profiles")
+print()
+print("🎊 CONGRATULATIONS! You have mastered Week 8!")
+print("📚 Next week: JSON files and I/O!")

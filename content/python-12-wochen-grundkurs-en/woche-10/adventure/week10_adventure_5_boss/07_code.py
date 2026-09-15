@@ -1,0 +1,7 @@
+print()
+print("🎉 Boss Quest completed!")
+print("🏆 You have defeated the Master of the Guilds!")
+print("⭐ Title earned: Master of Blueprints")
+print()
+print("🎊 CONGRATULATIONS! You have mastered Week 10!")
+print("📚 Next week: Advanced OOP – Inheritance and Polymorphism!")

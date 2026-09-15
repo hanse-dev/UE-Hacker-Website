@@ -1,0 +1,1 @@
+"""**Explanation:** In Python, class names must always start with a capital letter. This is not a technical requirement, but an important convention – classes starting with a lowercase letter can cause confusion."""

@@ -1,0 +1,7 @@
+print()
+print("🎉 Boss Quest completed!")
+print("🏆 You have defeated the Master of the Arena!")
+print("⭐ Title earned: Visualisation Champion")
+print()
+print("🎊 CONGRATULATIONS! You have mastered Week 12!")
+print("📚 Next: Your own projects!")

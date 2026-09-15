@@ -8,8 +8,8 @@
       <button @click="runAllCells" :disabled="!kernelReady" class="btn-run-all">
         {{ t('jupyter.runAll') }}
       </button>
-      <a :href="notebookUrl" download class="btn-download">
-        ⬇ .ipynb
+      <a :href="notebookUrl" :download="downloadName || true" class="btn-download">
+        ⬇ .py
       </a>
     </div>
 
@@ -33,13 +33,7 @@
               {{ t('jupyter.runCell') }}
             </button>
           </div>
-          <textarea
-            :id="`code-${index}`"
-            class="code-editor"
-            spellcheck="false"
-            v-model="cell.source"
-            :rows="Math.max(3, cell.source.split('\n').length)"
-          ></textarea>
+          <CodeCell v-model="cell.source" />
           <div v-if="cellOutputs[index]" class="cell-output">
             <div v-if="cellOutputs[index].status === 'running'" class="output-running">
               {{ t('jupyter.running') }}
@@ -72,6 +66,7 @@ import { marked } from 'marked';
 import { usePyodide } from '../composables/usePyodide';
 import { useLanguage } from '../composables/useLanguage.js';
 import { PROGRESS_APPLIED_EVENT, touchSyncKey } from '../composables/useProgressSync.js';
+import CodeCell from './CodeCell.vue';
 
 const stateKey = (notebookPath) => `ue-hacker-notebook-state-${notebookPath}`;
 
@@ -102,9 +97,11 @@ const saveState = (notebookPath, cells, cellOutputs, originalSources) => {
 
 export default {
   name: 'JupyterNotebook',
+  components: { CodeCell },
   props: {
     notebookPath: { type: String, required: true },
     notebookUrl:  { type: String, required: true },
+    downloadName: { type: String, default: null },
     weekNumber:   { type: Number, required: true },
     variant:      { type: String, default: null },
     courseId:     { type: String, default: null },
@@ -263,19 +260,19 @@ export default {
 }
 
 .btn-kernel {
-  background: #ef4444; color: white; border: none;
+  background: var(--primary-purple, #4a2274); color: white; border: none;
   padding: 6px 14px; border-radius: 6px; cursor: pointer;
   font-size: 0.85em; font-weight: 600; transition: background 0.15s;
 }
-.btn-kernel:hover:not(:disabled) { background: #dc2626; }
-.btn-kernel:disabled { background: #22c55e; cursor: default; }
+.btn-kernel:hover:not(:disabled) { background: #3d1b5c; }
+.btn-kernel:disabled { background: #28a745; cursor: default; }
 
 .btn-run-all {
-  background: #3b82f6; color: white; border: none;
+  background: var(--accent-orange, #ff9800); color: white; border: none;
   padding: 6px 14px; border-radius: 6px; cursor: pointer;
   font-size: 0.85em; font-weight: 600; transition: background 0.15s;
 }
-.btn-run-all:hover:not(:disabled) { background: #2563eb; }
+.btn-run-all:hover:not(:disabled) { background: #fb8c00; }
 .btn-run-all:disabled { opacity: 0.4; cursor: not-allowed; }
 
 .btn-download {
@@ -301,8 +298,8 @@ export default {
 .cell-markdown { padding: 18px 22px; }
 
 .cell-markdown :deep(h1) {
-  font-size: 1.6em; margin: 0.3em 0 0.5em;
-  border-bottom: 2px solid #fbbf24; padding-bottom: 0.25em;
+  font-size: 1.6em; margin: 0.3em 0 0.5em; color: var(--primary-purple, #4a2274);
+  border-bottom: 3px solid var(--accent-yellow, #fdd835); padding-bottom: 0.25em;
 }
 .cell-markdown :deep(h2) { font-size: 1.25em; margin: 1em 0 0.4em; color: #1f2937; }
 .cell-markdown :deep(h3) { font-size: 1.05em; margin: 0.8em 0 0.3em; color: #374151; }
@@ -328,32 +325,21 @@ export default {
   margin: 0.75em 0; color: #6b7280; font-style: italic;
 }
 
-.cell-code { background: #fafafa; }
+.cell-code { background: #faf7fc; }
 
 .code-header {
   display: flex; justify-content: space-between; align-items: center;
-  padding: 5px 10px; background: #f3f4f6; border-bottom: 1px solid #e5e7eb;
+  padding: 5px 10px 5px 14px; background: #efe3f6; border-bottom: 1px solid #d9c7ea;
 }
-.cell-label { font-family: monospace; font-size: 0.75em; color: #9ca3af; }
+.cell-label { font-family: monospace; font-size: 0.75em; color: #7c5a94; }
 
 .btn-run-cell {
-  background: #22c55e; color: white; border: none;
+  background: var(--accent-orange, #ff9800); color: white; border: none;
   padding: 3px 10px; border-radius: 4px; font-size: 0.78em;
   font-weight: 600; cursor: pointer; transition: background 0.15s;
 }
-.btn-run-cell:hover:not(:disabled) { background: #16a34a; }
+.btn-run-cell:hover:not(:disabled) { background: #fb8c00; }
 .btn-run-cell:disabled { opacity: 0.4; cursor: not-allowed; }
-
-.code-editor {
-  width: 100%; min-height: 80px; padding: 12px 14px;
-  background: #ffffff; border: none;
-  font-family: 'Courier New', Consolas, Monaco, monospace;
-  font-size: 13.5px; line-height: 1.55; color: #1f2937;
-  resize: none; overflow: hidden;
-  white-space: pre; word-wrap: normal;
-  box-sizing: border-box;
-}
-.code-editor:focus { outline: 2px solid #3b82f6; outline-offset: -2px; }
 
 .cell-output {
   padding: 8px 14px; background: #fff;

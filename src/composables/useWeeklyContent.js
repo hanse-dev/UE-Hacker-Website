@@ -88,7 +88,11 @@ export async function loadWeeklyContent(lang = 'de') {
     { query: '?raw' }
   );
   const splitNotebookModulesDe = import.meta.glob(
-    '../../content/python-12-wochen-grundkurs/woche-*/{abenteuer,pferde,scifi}/*.ipynb',
+    '../../content/python-12-wochen-grundkurs/woche-*/{abenteuer,pferde,scifi}/*/_generated/*.ipynb.json',
+    { query: '?url', import: 'default' }
+  );
+  const bundleModulesDe = import.meta.glob(
+    '../../content/python-12-wochen-grundkurs/woche-*/{abenteuer,pferde,scifi}/*/_bundle/*.py',
     { query: '?url', import: 'default' }
   );
   const downloadModulesDe = import.meta.glob(
@@ -102,7 +106,11 @@ export async function loadWeeklyContent(lang = 'de') {
     { query: '?raw' }
   );
   const splitNotebookModulesEn = import.meta.glob(
-    '../../content/python-12-wochen-grundkurs-en/woche-*/{adventure,horses,scifi}/*.ipynb',
+    '../../content/python-12-wochen-grundkurs-en/woche-*/{adventure,horses,scifi}/*/_generated/*.ipynb.json',
+    { query: '?url', import: 'default' }
+  );
+  const bundleModulesEn = import.meta.glob(
+    '../../content/python-12-wochen-grundkurs-en/woche-*/{adventure,horses,scifi}/*/_bundle/*.py',
     { query: '?url', import: 'default' }
   );
   const downloadModulesEn = import.meta.glob(
@@ -112,6 +120,7 @@ export async function loadWeeklyContent(lang = 'de') {
 
   const weekModules          = isEn ? weekModulesEn          : weekModulesDe;
   const splitNotebookModules = isEn ? splitNotebookModulesEn : splitNotebookModulesDe;
+  const bundleModules        = isEn ? bundleModulesEn        : bundleModulesDe;
   const downloadModules      = isEn ? downloadModulesEn      : downloadModulesDe;
 
   // EN dir names (adventure/horses/scifi) map to the same internal keys as DE
@@ -119,9 +128,13 @@ export async function loadWeeklyContent(lang = 'de') {
     ? { adventure: 'abenteuer', horses: 'pferde', scifi: 'scifi' }
     : { abenteuer: 'abenteuer', pferde: 'pferde', scifi: 'scifi' };
 
+  // Zellen-Format: .../{variante}/woche{N}_{variante}_{typ}/_generated|_bundle/....
   const variantDirPattern = isEn
-    ? /\/(adventure|horses|scifi)\/week\d+_(?:adventure|horses|scifi)_(\d+_\w+)\.ipynb$/
-    : /\/(abenteuer|pferde|scifi)\/woche\d+_(?:abenteuer|pferde|scifi)_(\d+_\w+)\.ipynb$/;
+    ? /\/(adventure|horses|scifi)\/week\d+_(?:adventure|horses|scifi)_(\d+_\w+)\/_generated\/[^/]+\.ipynb\.json$/
+    : /\/(abenteuer|pferde|scifi)\/woche\d+_(?:abenteuer|pferde|scifi)_(\d+_\w+)\/_generated\/[^/]+\.ipynb\.json$/;
+  const bundleDirPattern = isEn
+    ? /\/(adventure|horses|scifi)\/week\d+_(?:adventure|horses|scifi)_(\d+_\w+)\/_bundle\/[^/]+\.py$/
+    : /\/(abenteuer|pferde|scifi)\/woche\d+_(?:abenteuer|pferde|scifi)_(\d+_\w+)\/_bundle\/[^/]+\.py$/;
 
   const weekLabel = isEn ? 'Week' : 'Woche';
 
@@ -148,7 +161,7 @@ export async function loadWeeklyContent(lang = 'de') {
       if (!weeklyContent[weekNum]) weeklyContent[weekNum] = emptyWeek(weekNum, weekLabel);
 
       weeklyContent[weekNum].hasNotebook = true;
-      weeklyContent[weekNum].notebooks[variant][type] = url;
+      weeklyContent[weekNum].notebooks[variant][type] = { renderUrl: url, downloadUrl: null, downloadName: null };
 
       if (variant === 'abenteuer') {
         weeklyContent[weekNum].hasAbenteuerVariant = true;
@@ -163,6 +176,37 @@ export async function loadWeeklyContent(lang = 'de') {
         if (!weeklyContent[weekNum].selectedVariant)
           weeklyContent[weekNum].selectedVariant = 'scifi';
       }
+    })
+  );
+
+  // ── Load offline-bundle download URLs (Zellen-Format: eine .py-Datei pro Notebook) ──
+  await Promise.all(
+    Object.entries(bundleModules).map(async ([path, loader]) => {
+      const weekMatch = path.match(/woche-(\d+)/);
+      if (!weekMatch) return;
+      const weekNum = parseInt(weekMatch[1], 10);
+
+      const typeMatch = path.match(bundleDirPattern);
+      if (!typeMatch) return;
+      const variantDir = typeMatch[1];
+      const type       = typeMatch[2];
+      if (!NOTEBOOK_TYPES.includes(type)) return;
+
+      const variant = variantDirToKey[variantDir];
+      if (!variant) return;
+
+      const url = await loader();
+      // Kleine Bundles landen unter Vites Inline-Grenze als data:-URI ohne Dateinamen -
+      // echten Namen aus dem Pfad ziehen, damit der Download-Button trotzdem sinnvoll heißt.
+      const nameMatch = path.match(/\/([^/]+)\/_bundle\//);
+      const downloadName = nameMatch ? `${nameMatch[1]}.py` : null;
+
+      if (!weeklyContent[weekNum]) weeklyContent[weekNum] = emptyWeek(weekNum, weekLabel);
+      if (!weeklyContent[weekNum].notebooks[variant][type]) {
+        weeklyContent[weekNum].notebooks[variant][type] = { renderUrl: null, downloadUrl: null, downloadName: null };
+      }
+      weeklyContent[weekNum].notebooks[variant][type].downloadUrl = url;
+      weeklyContent[weekNum].notebooks[variant][type].downloadName = downloadName;
     })
   );
 

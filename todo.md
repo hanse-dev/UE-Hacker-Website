@@ -1,6 +1,29 @@
 # Todo
 
 ## Now
+### 12-Wochen-Kurs: Zellen-Format-Umstellung (Branch `12-wochen-kurs-zellen-format`)
+- [x] Alle 432 Notebooks (3 Varianten × 12 Wochen × 6 Typen × DE/EN) vom `.ipynb`-Format auf
+      Zellen-Ordner (`NN_markdown.py`/`NN_code.py`) migriert, byte-exakt gegen `git HEAD`
+      verifiziert. Details siehe HANDOFF.md 3.33.
+- [x] Permanenter Build-Schritt (`scripts/build_cell_notebooks.py`, gitignored Output), in
+      `npm run dev`/`prebuild` eingehängt
+- [x] Download-ZIPs (`pack_notebooks.py`) auf `_bundle/*.py` umgestellt, Cheat-Sheets weiterhin
+      als `.ipynb` mit im Zip
+- [x] `JupyterNotebook.vue`/neue `CodeCell.vue`: CodeMirror 6 mit Autocomplete statt Textarea,
+      Marken-CI-Design (Lila/Orange/Gelb)
+- [x] `WeekSection.vue`: Wochen-Header redesignt (kurzer Titel + Kurztext, Lila-Akzentleiste)
+- [x] `useWeeklyContent.js`: zwei getrennte URLs (`renderUrl`/`downloadUrl`) pro Notebook
+- [x] Tests (`site.spec.js`, `storytelling-content.spec.js`) auf CodeMirror-taugliche Helper
+      umgestellt
+- [x] Nebenbei gefunden und gefixt: Pferde Woche 11 Lektion hatte 6 Methoden ohne `def`/`self`
+      (gleiches Bug-Muster wie der frühere Sci-Fi-Fix)
+- [x] `npm run test:checks` + `npm test` vollständig grün bestätigt
+- [x] Kursbeschreibung (`beschreibung.md`, DE+EN) bereinigt: "Einstufung – wo soll ich starten?"
+      war inhaltlich fast wortgleich mit der separaten `.placement-banner`-Komponente, die direkt
+      danach auf der Seite erscheint (zwei Boxen mit derselben Aussage hintereinander) — Abschnitt
+      entfernt, Banner bleibt die einzige Quelle dafür. "Für wen ist der Kurs?" direkt nach die
+      Zielbeschreibung vorgezogen (bessere Reihenfolge: Ziel → Zielgruppe → Aufbau)
+
 ### Website / Frontend
 - [x] Das Tabsystem erklären
 - [x] "Wie ist der Kurs aufgebaut?" mit den Belohnungen ergänzen

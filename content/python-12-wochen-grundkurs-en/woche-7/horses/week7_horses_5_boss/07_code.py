@@ -1,0 +1,7 @@
+print()
+print("🎉 Boss Quest completed!")
+print("🏆 You have defeated the Smith of Infinite Tools!")
+print("⭐ Title earned: Master of Toolboxes")
+print()
+print("🎊 CONGRATULATIONS! You have mastered Week 7!")
+print("📚 Next week: Dictionaries and Tuples!")

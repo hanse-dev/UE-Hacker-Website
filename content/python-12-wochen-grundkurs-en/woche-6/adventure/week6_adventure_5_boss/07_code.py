@@ -1,0 +1,7 @@
+print()
+print("🎉 Boss Quest completed!")
+print("🏆 You have defeated the Guardian of Infinite Collections!")
+print("⭐ Title earned: Master of Treasure Collections")
+print()
+print("🎊 CONGRATULATIONS! You have mastered Week 6!")
+print("📚 Next week: Modules and libraries (math, random)!")

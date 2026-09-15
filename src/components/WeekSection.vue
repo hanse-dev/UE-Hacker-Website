@@ -1,8 +1,11 @@
 <template>
   <div class="week-section" :id="`woche-${index + 1}`">
     <div class="week-section-inner">
-      <div class="week-header" @click="$emit('toggle')">
-        <h2>{{ week.title }}</h2>
+      <div class="week-header" :class="{ expanded: week.expanded }" @click="$emit('toggle')">
+        <div class="week-header-text">
+          <h2 class="week-title">{{ t('week.label') }} {{ index + 1 }} – {{ weekTheme }}</h2>
+          <p v-if="!week.expanded && week.shortDesc" class="week-header-desc">{{ week.shortDesc }}</p>
+        </div>
         <button class="toggle-btn" :class="{ 'expanded': week.expanded }">
           <span class="toggle-icon">{{ week.expanded ? '−' : '+' }}</span>
         </button>
@@ -85,9 +88,10 @@
 
           <!-- Notebook -->
           <JupyterNotebook
-            v-else-if="week.expanded && activeNotebookUrl"
-            :notebook-path="activeNotebookUrl"
-            :notebook-url="activeNotebookUrl"
+            v-else-if="week.expanded && activeRenderUrl"
+            :notebook-path="activeRenderUrl"
+            :notebook-url="activeDownloadUrl"
+            :download-name="activeDownloadName"
             :week-number="index + 1"
             :variant="week.selectedVariant"
             :course-id="courseId"
@@ -162,12 +166,29 @@ export default {
 
     const hasTab = (key) => {
       if (key === '4_check') return hasCheck.value;
-      return !!props.week.notebooks?.[props.week.selectedVariant]?.[key];
+      return !!props.week.notebooks?.[props.week.selectedVariant]?.[key]?.renderUrl;
     };
 
-    const activeNotebookUrl = computed(() => {
+    const activeRenderUrl = computed(() => {
       if (selectedTab.value === '4_check') return null;
-      return props.week.notebooks?.[props.week.selectedVariant]?.[selectedTab.value] ?? null;
+      return props.week.notebooks?.[props.week.selectedVariant]?.[selectedTab.value]?.renderUrl ?? null;
+    });
+    const activeDownloadUrl = computed(() => {
+      if (selectedTab.value === '4_check') return null;
+      return props.week.notebooks?.[props.week.selectedVariant]?.[selectedTab.value]?.downloadUrl ?? null;
+    });
+    const activeDownloadName = computed(() => {
+      if (selectedTab.value === '4_check') return null;
+      return props.week.notebooks?.[props.week.selectedVariant]?.[selectedTab.value]?.downloadName ?? null;
+    });
+
+    // Nur das eigentliche Story-Thema (Teil nach dem Doppelpunkt), nicht der volle
+    // technische Titel mit Emoji/Fachbegriff - "Woche 1 – Die Reise beginnt", nicht
+    // "📚 Woche 1 – Einführung und erstes Programm: Die Reise beginnt!".
+    const weekTheme = computed(() => {
+      const raw = props.week.title ?? '';
+      if (!raw.includes(':')) return raw;
+      return raw.split(':').slice(1).join(':').trim();
     });
 
     const applyRouteTab = () => {
@@ -204,7 +225,7 @@ export default {
     watch(() => [route.query.week, route.query.tab, hasCheck.value], applyRouteTab);
 
     return {
-      tabs, t, selectedTab, hasTab, activeNotebookUrl,
+      tabs, t, selectedTab, hasTab, activeRenderUrl, activeDownloadUrl, activeDownloadName, weekTheme,
       hasCheck,
     };
   },
@@ -255,10 +276,10 @@ export default {
 }
 
 .tab-btn.active {
-  color: #ff4136;
-  border-bottom-color: #ff4136;
+  color: var(--accent-orange, #ff9800);
+  border-bottom-color: var(--accent-orange, #ff9800);
   font-weight: 700;
-  background: #fff8f8;
+  background: #fff8ec;
 }
 
 .tab-btn:disabled {
@@ -333,28 +354,52 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
   cursor: pointer;
-  padding: 15px 20px;
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
+  padding: 14px 18px 14px 16px;
+  background: #f7f1fb;
+  border: 1px solid #d9c7ea;
+  border-left: 4px solid transparent;
   border-radius: 8px;
   margin-bottom: 0;
-  transition: all 0.3s ease;
+  transition: background 0.15s, border-color 0.15s;
 }
 
 .week-header:hover {
-  background: #e9ecef;
-  border-color: #ff4136;
+  background: #efe3f6;
 }
 
-.week-header h2 { margin: 0; color: #333; font-size: 1.2em; }
+.week-header.expanded {
+  background: #efe3f6;
+  border-left-color: var(--primary-purple, #4a2274);
+}
+
+.week-header-text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+
+.week-header h2.week-title {
+  margin: 0;
+  color: var(--primary-purple, #4a2274);
+  font-size: 1.25em;
+  font-weight: 700;
+  /* .app-main h2 (global, style.css) setzt sonst eine gelbe Border-Unterstreichung + 2em - hier
+     nicht gewollt, siehe HANDOFF.md 3.20 fuer denselben Leak-Typ an anderer Stelle. */
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.week-header-desc {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.85em;
+  font-weight: 400;
+}
 
 .toggle-btn {
   background: transparent;
   border: none;
   font-size: 1.5em;
   cursor: pointer;
-  color: #666;
+  color: var(--primary-purple, #4a2274);
   padding: 5px 10px;
   border-radius: 50%;
   width: 40px;
@@ -362,11 +407,12 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   transition: all 0.3s ease;
 }
 
-.toggle-btn:hover { background: #ff4136; color: white; }
-.toggle-btn.expanded { background: #ff4136; color: white; transform: rotate(180deg); }
+.toggle-btn:hover { background: var(--primary-purple, #4a2274); color: white; }
+.toggle-btn.expanded { background: var(--primary-purple, #4a2274); color: white; transform: rotate(180deg); }
 .toggle-icon { font-weight: bold; display: block; }
 
 .week-content {

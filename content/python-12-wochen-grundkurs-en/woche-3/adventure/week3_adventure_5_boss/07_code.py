@@ -1,0 +1,7 @@
+print()
+print("🎉 Boss Quest completed!")
+print("🏆 You have defeated the Sphinx of the Riddle Paths!")
+print("⭐ Title earned: Master of Decisions")
+print()
+print("🎊 CONGRATULATIONS! You have mastered Week 3!")
+print("📚 Next week: Loops (for, while)!")

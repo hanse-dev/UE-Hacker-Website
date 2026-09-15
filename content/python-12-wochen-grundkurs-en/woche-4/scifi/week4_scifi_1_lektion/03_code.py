@@ -1,0 +1,11 @@
+# Example 1: Simple for loop with range()
+print("=== Example 1: 5 Time Cycles ===")
+# range(5) generates the numbers 0, 1, 2, 3, 4
+for i in range(5):
+    print(f"Time Cycle {i+1}: Systems synchronized")
+
+print("\n=== What happens here? ===")
+print("1. range(5) creates: [0, 1, 2, 3, 4]")
+print("2. i is set to the next element on each pass")
+print("3. We print i+1 to count from 1 to 5")
+print("4. The loop ends after the last element")

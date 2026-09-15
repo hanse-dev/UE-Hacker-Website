@@ -1,0 +1,1 @@
+"""**Erklärung:** Python erwartet einen eingerückten Block. Alles was zu einem `for` gehört, muss mit 4 Leerzeichen eingerückt sein. Das abschließende `print(\"Training beendet\")` gehört nicht mehr zur Schleife – es bleibt ohne Einrückung."""

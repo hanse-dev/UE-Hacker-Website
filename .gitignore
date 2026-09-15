@@ -146,6 +146,11 @@ __pycache__/
 .venv/
 venv/
 
+# Generierte Zellen-Notebook-Artefakte (scripts/build_cell_notebooks.py) - nicht committed,
+# werden bei jedem dev/build frisch aus den Zellen-.py-Dateien erzeugt
+content/python-12-wochen-grundkurs*/**/_generated/
+content/python-12-wochen-grundkurs*/**/_bundle/
+
 # Generierte Download-Pakete (scripts/pack_notebooks.py)
 public/**/*.zip
 

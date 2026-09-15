@@ -1,0 +1,7 @@
+print()
+print('🎉 Boss Quest complete!')
+print('🏆 You defeated the Scribe of Infinite Scrolls!')
+print('⭐ Title earned: Master of the Scrolls')
+print()
+print('🎊 CONGRATULATIONS! You have mastered Week 9!')
+print('📚 Next week: Object-Oriented Programming!')

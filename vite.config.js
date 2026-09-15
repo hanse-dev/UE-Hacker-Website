@@ -15,6 +15,13 @@ export default defineConfig({
     },
   },
   server: {
+    // usePolling: Docker-Bind-Mounts (z.B. via Colima auf dem Mac) geben Datei-Events vom Host
+    // oft nicht zuverlässig an den Container weiter — ohne Polling bleibt der Vite-Dev-Server
+    // dann auf altem Stand, bis eine Datei von innerhalb des Containers angefasst wird.
+    watch: {
+      usePolling: true,
+      interval: 300,
+    },
     proxy: {
       '/api': {
         target: process.env.VITE_API_PROXY || 'http://127.0.0.1:3001',

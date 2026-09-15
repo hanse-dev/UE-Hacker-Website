@@ -1,0 +1,1 @@
+"""**Erklärung:** Klassennamen in Python müssen mit einem Großbuchstaben beginnen – das ist Konvention. Außerdem muss die Kind-Klasse den richtigen Elternklassen-Namen verwenden, damit die Vererbung funktioniert."""

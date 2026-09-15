@@ -1,0 +1,1 @@
+"""**Erklärung:** In Python müssen Klassennamen immer mit einem Großbuchstaben beginnen. Das ist keine technische Pflicht, aber eine wichtige Konvention – und Klassen die mit Kleinbuchstaben beginnen, können zu Verwirrung führen."""

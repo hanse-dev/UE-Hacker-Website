@@ -21,37 +21,51 @@ Kurs-Metadaten (Titel, Beschreibung) → `public/kurse.json` (enthält `title`, 
 
 ### Ordnerstruktur
 
+Seit der Umstellung auf das **Zellen-Format** (Branch `12-wochen-kurs-zellen-format`) ist jedes
+Notebook kein einzelnes `.ipynb` mehr, sondern ein gleichnamiger **Ordner** mit einer Datei pro
+Zelle: `NN_markdown.py` (Markdown-Text als alleinstehendes String-Literal) bzw. `NN_code.py`
+(Code unverändert), numeriert in Notebook-Reihenfolge.
+
 ```
 content/python-12-wochen-grundkurs/          ← Deutsch
   woche-{1–12}/
     woche{N}.md                              ← Wochenbeschreibung (Lernziele etc.)
     abenteuer/
-      woche{N}_abenteuer_{typ}.ipynb
+      woche{N}_abenteuer_{typ}/
+        01_markdown.py, 02_code.py, …
+        _generated/woche{N}_abenteuer_{typ}.ipynb.json   ← generiert, nicht committed
+        _bundle/woche{N}_abenteuer_{typ}.py              ← generiert, nicht committed
     pferde/
-      woche{N}_pferde_{typ}.ipynb
+      woche{N}_pferde_{typ}/…
     scifi/
-      woche{N}_scifi_{typ}.ipynb
+      woche{N}_scifi_{typ}/…
 
 content/python-12-wochen-grundkurs-en/       ← Englisch (gleiche Struktur)
   woche-{1–12}/
     woche{N}.md
     adventure/
-      week{N}_adventure_{typ}.ipynb
+      week{N}_adventure_{typ}/…
     horses/
-      week{N}_horses_{typ}.ipynb
+      week{N}_horses_{typ}/…
     scifi/
-      week{N}_scifi_{typ}.ipynb
+      week{N}_scifi_{typ}/…
 ```
+
+`_generated/` (notebook-förmige JSON fürs Browser-Rendering) und `_bundle/` (eine `.py`-Datei pro
+Notebook, direkt mit `python3 datei.py` lauffähig — kein Jupyter/Pyodide nötig, ersetzt den alten
+`.ipynb`-Download) werden bei jedem `npm run dev`/`npm run build` frisch aus den Zellen-Dateien
+erzeugt (`scripts/build_cell_notebooks.py`) und sind gitignored — **nur die numerierten
+`NN_*.py`-Dateien sind committete Quelle.**
 
 ### Varianten-Mapping DE → EN
 
-| DE Ordner | EN Ordner | DE Dateiname | EN Dateiname |
+| DE Ordner | EN Ordner | DE Notebook-Ordner | EN Notebook-Ordner |
 |---|---|---|---|
-| `abenteuer/` | `adventure/` | `woche{N}_abenteuer_{typ}.ipynb` | `week{N}_adventure_{typ}.ipynb` |
-| `pferde/` | `horses/` | `woche{N}_pferde_{typ}.ipynb` | `week{N}_horses_{typ}.ipynb` |
-| `scifi/` | `scifi/` | `woche{N}_scifi_{typ}.ipynb` | `week{N}_scifi_{typ}.ipynb` |
+| `abenteuer/` | `adventure/` | `woche{N}_abenteuer_{typ}/` | `week{N}_adventure_{typ}/` |
+| `pferde/` | `horses/` | `woche{N}_pferde_{typ}/` | `week{N}_horses_{typ}/` |
+| `scifi/` | `scifi/` | `woche{N}_scifi_{typ}/` | `week{N}_scifi_{typ}/` |
 
-### Notebook-Typen (6 Dateien pro Woche/Variante)
+### Notebook-Typen (6 Ordner pro Woche/Variante)
 
 | Kürzel | Inhalt |
 |---|---|
@@ -61,6 +75,10 @@ content/python-12-wochen-grundkurs-en/       ← Englisch (gleiche Struktur)
 | `3_missionen` | Hauptaufgaben der Woche |
 | `5_boss` | Boss-Quest (Abschlussaufgabe) |
 | `6_loesungen` | Musterlösungen |
+
+**Ausnahme:** Cheat-Sheets (`wissens_cheat_sheet.ipynb`) und `gesamtglossar.ipynb` sind NICHT Teil
+dieser Umstellung — eigene, unabhängige Pipeline (`scripts/md_to_cheatsheet_notebook.py`), bleiben
+echte `.ipynb`-Dateien.
 
 ---
 
@@ -204,8 +222,11 @@ Jeder Ordner enthält dieselben Dateien:
 ## 6. Was muss gleichzeitig geändert werden?
 
 ### Wenn du ein Notebook inhaltlich änderst (12-Wochen-Kurs):
-- [ ] DE: `content/python-12-wochen-grundkurs/woche-{N}/{variante}/woche{N}_{variante}_{typ}.ipynb`
-- [ ] EN: `content/python-12-wochen-grundkurs-en/woche-{N}/{en_variante}/week{N}_{en_variante}_{typ}.ipynb`
+- [ ] DE: die einzelnen Zell-Dateien unter
+      `content/python-12-wochen-grundkurs/woche-{N}/{variante}/woche{N}_{variante}_{typ}/NN_*.py`
+- [ ] EN: `content/python-12-wochen-grundkurs-en/woche-{N}/{en_variante}/week{N}_{en_variante}_{typ}/NN_*.py`
+- [ ] `_generated/`/`_bundle/` **nicht** von Hand anfassen — werden bei `npm run dev`/`npm run build`
+      automatisch aus den `NN_*.py`-Dateien neu erzeugt (`scripts/build_cell_notebooks.py`)
 
 ### Wenn du Missionen änderst:
 - [ ] `public/rewards-manifest.json`
@@ -238,7 +259,7 @@ Ordner-Mapping (immer paarweise anpassen):
 - [ ] 18 EN-Notebooks
 - [ ] `woche{N}.md` (DE) + `woche{N}.md` (EN)
 - [ ] Einträge in `rewards-manifest.json` + `rewards-manifest-en.json`
-- [ ] Ggf. Download-ZIP neu generieren (`npm run pack:notebooks`)
+- [ ] Ggf. Download-ZIP neu generieren (`npm run build:cells && npm run pack:notebooks`)
 
 ---
 

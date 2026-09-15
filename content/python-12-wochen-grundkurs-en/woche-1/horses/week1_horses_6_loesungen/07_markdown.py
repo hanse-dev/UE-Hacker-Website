@@ -1,0 +1,1 @@
+"""**Explanation:** The variable is called `horse`, but in `print()` it says `horses` – one extra letter. Python searches exactly for the name `horses` and cannot find it. Typos in variable names are one of the most common beginner errors!"""
