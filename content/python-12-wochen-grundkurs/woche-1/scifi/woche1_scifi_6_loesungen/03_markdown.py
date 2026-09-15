@@ -1,0 +1,1 @@
+"""**Erklärung:** Python liest `System` und `online` als Variablennamen – aber diese Variablen gibt es nicht. Text muss immer in Anführungszeichen stehen, damit Python weiß: das ist Text, keine Variable."""

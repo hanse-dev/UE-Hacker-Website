@@ -1,0 +1,7 @@
+print()
+print("🎉 Boss-Quest abgeschlossen!")
+print("🏆 Du hast den Golem der verwirrten Formen besiegt!")
+print("⭐ Die Turmwächterin nickt: Meister der vier Elemente!")
+print()
+print("🎊 GLÜCKWUNSCH! Du hast Woche 2 gemeistert!")
+print("📚 Nächste Woche: Bedingungen (if-else)!")

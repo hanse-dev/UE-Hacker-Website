@@ -1,11 +1,10 @@
 # Handoff — UE Hacker Website
 
-> **Zuletzt aktualisiert:** 2026-09-09  
-> **Aktueller Stand:** Refactoring (Schritte 1-6) und der Curriculum-Lücken-Plan (8 von 9 Branches,
-> 3.24-3.31) sind gemergt, siehe `git log main`. Dazwischen ein unabhängig entdeckter kritischer
-> Bug behoben: Turtle-Grafik lief nie im Browser (Pyodide entfernt `turtle`), eigener Canvas-Shim
-> in `usePyodide.js` (3.32). Noch **nicht** nach `origin/main` gepusht — Push/Deploy bewusst
-> zurückgestellt, siehe Abschnitt 5/7.
+> **Zuletzt aktualisiert:** 2026-09-15  
+> **Aktueller Stand:** `main` ist inzwischen nach `origin/main` gepusht (frühere "noch nicht
+> gepusht"-Notiz hier war veraltet). Größte Änderung seither: der komplette 12-Wochen-Kurs
+> (alle 3 Varianten, DE+EN) ist vom `.ipynb`-Format auf ein neues Zellen-Format umgestellt (3.33,
+> Branch `12-wochen-kurs-zellen-format`) — noch nicht nach `main` gemergt.
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -958,6 +957,90 @@ echte Pixel auf dem `<canvas>` (nicht nur "kein Fehler geworfen") — einmal fü
 einmal für `begin_fill()`/`end_fill()`. `npm run test:checks` (51 Tests, 2 neu) + `npm test` (60
 Tests) grün.
 
+### 3.33 12-Wochen-Kurs: Umstellung auf Zellen-Format (Branch `12-wochen-kurs-zellen-format`)
+
+**Motivation:** rohes `.ipynb`-JSON ist fragil bei Bulk-Edits (mehrere Serialisierungsstile im
+Repo, siehe 3.12/3.16) und erzwingt Jupyter/Pyodide zum Ausführen — kein einfacher Offline-Weg für
+Lernende ohne Jupyter-Setup. Erst an der Abenteuer-Variante als Parallel-Experiment erprobt (eigene
+Route `/experiment/...`, nicht verlinkt), dann auf Nutzer-Wunsch auf den **kompletten, echten**
+Kurs ausgeweitet: alle 3 Varianten × 12 Wochen × 6 Typen × DE/EN = 432 Notebooks.
+
+**Format:** jedes Notebook ist jetzt ein Ordner mit einer `.py`-Datei pro Zelle
+(`NN_markdown.py`/`NN_code.py`) statt einer `.ipynb`-Datei — Markdown-Zellen sind ein
+alleinstehendes String-Literal (gültiges, wirkungsloses Python), Code-Zellen unverändert. Aus
+diesen Zell-Dateien werden bei jedem `npm run dev`/`npm run build` zwei **gitignored** Artefakte
+neu erzeugt (`scripts/build_cell_notebooks.py`, Teil der `dev`/`prebuild`-Kette):
+`_generated/<name>.ipynb.json` (notebook-förmige JSON fürs Browser-Rendering) und
+`_bundle/<name>.py` (alle Zellen zusammengefügt, läuft direkt mit `python3 datei.py` — kein
+Jupyter/Pyodide nötig, ersetzt den alten `.ipynb`-Download-Button).
+
+**Migration:** `scripts/migrate_notebooks_to_cells.py` (einmalig, idempotent) hat alle 432
+Notebooks in-place ersetzt — pro Datei sofort Byte-für-Byte-Round-Trip verifiziert, danach
+zusätzlich unabhängig gegen `git show HEAD:<pfad>` gegengeprüft (0 Abweichungen), erst dann die
+alte `.ipynb` gelöscht. **Wichtige Lektion beim Bauen des Skripts:** kein künstliches
+Zeilenumbruch-Padding um den Markdown-Text und kein `.rstrip("\n")` bei der Rückwandlung — beides
+verändert den extrahierten Wert unmerklich (Markdown ignoriert überzählige Newlines beim Rendern,
+daher fällt so ein Fehler beim bloßen Anschauen nicht auf) und hätte den strengen Byte-Vergleich
+unbemerkt durchrutschen lassen, wäre die Prüfung nicht bewusst streng gehalten worden.
+
+**Nebenbei gefundener echter Content-Bug** (unabhängig von der Migration, via unerwarteten
+`ast.parse()`-Fehlern beim Validitäts-Check aufgefallen): Pferde Woche 11 Lektion hatte 6 Methoden
+in 3 Klassen-Beispielen ohne `def`/`self` (`fressen():` statt `def fressen(self):` etc.) — exakt
+dasselbe historische Bug-Muster wie bei Sci-Fi Woche 11 (bereits früher gefixt, siehe Pferde-/
+Sci-Fi-Analyse in `todo.md`), bei Pferde aber nie behoben. Gefixt, mit gemeinsamem Namespace
+ausgeführt verifiziert.
+
+**Browser-Rendering:** `JupyterNotebook.vue` nutzt jetzt CodeMirror 6 statt einer `<textarea>`
+(neue `CodeCell.vue`) — Tab-Autocomplete im VS-Code-Stil (offener Vorschlag wird mit Tab
+übernommen, sonst rückt Tab ein: `Prec.highest`-Keymap mit `acceptCompletion` vor
+`indentWithTab`), 4-Leerzeichen-Einrückung, Mindesthöhe 3 Zeilen pro Zelle (auch leer — eine
+Missionen-Platzhalterzelle wie `# Deine Lösung hier:` muss als Coding-Bereich erkennbar bleiben).
+Alle bestehenden Produktions-Features aus der alten `JupyterNotebook.vue` blieben erhalten:
+localStorage-Persistenz von Zell-Edits (Key = `notebookPath`), `PROGRESS_APPLIED_EVENT`-Sync,
+Turtle-Canvas-Container. **Bekannte, akzeptierte Nebenwirkung:** weil `notebookPath` sich durch
+die neue URL ändert, verlieren Nutzer:innen mit bereits lokal gespeichertem, unsynctem Zell-Code
+diesen einen Zwischenstand beim ersten Besuch nach dem Deploy — betrifft nur unfertigen Code in
+einzelnen Zellen, nicht Zertifikate/Fortschritt (laufen unabhängig über `useWeekChecks.js`).
+
+**Design:** von Ad-hoc-Farben (Amber/Blau/Grün aus dem ersten Prototyp) auf die echte Seiten-CI
+umgestellt — `--primary-purple`/`--accent-orange`/`--accent-yellow` aus `src/style.css` (bereits
+vorher an anderer Stelle im Code etabliert, z.B. `LessonView.vue`s `.btn-kernel`/`.btn-check`).
+Wochen-Header in `WeekSection.vue` redesignt: kurzer Titel "Woche N – Thema" (Thema = Teil nach dem
+ersten `:` im vollen `week.title`) statt des vollen technischen Titels, Kurzbeschreibung nur im
+eingeklappten Zustand (vermeidet Redundanz mit dem bestehenden `week-summary`-Block, der beim
+Aufklappen ohnehin erscheint), dezente Lila-Akzentleiste (`border-left`) statt Vollflächen-Invert
+beim Aufklappen — eine erste Version mit vollflächigem Lila-Fill wurde explizit als "zu massiv/
+überladen" verworfen.
+
+**`useWeeklyContent.js`:** Notebook-Eintrag pro Variante/Typ ist jetzt `{renderUrl, downloadUrl}`
+statt einer bloßen URL (zwei getrennte `import.meta.glob`-Quellen: `_generated/*.ipynb.json` fürs
+Rendering, `_bundle/*.py` fürs Herunterladen) — `WeekSection.vue` reicht beide getrennt an
+`JupyterNotebook.vue` durch (`notebook-path` vs. `notebook-url`).
+
+**Tests:** CodeMirror ist keine `<textarea>` — `.fill()`/`.inputValue()` funktionieren nicht mehr.
+`tests/site.spec.js` + `tests/storytelling-content.spec.js` auf neue lokale Helper umgestellt
+(`setCodeMirrorContent`/`getCodeCellText`: Klick + Select-All + `page.keyboard.insertText()` statt
+`type()` — sonst verdoppelt CodeMirrors Auto-Indent die Einrückung bei literalen `\n` in
+mehrzeiligem Test-Code). `tests/zertifikate.spec.js`s `.code-editor`-Treffer gehören zu
+`CodeChallenge.vue` (Wochen-Check, eigene Komponente) und waren nicht betroffen.
+
+**Bewusst NICHT Teil dieser Umstellung:** interaktiver Einführungskurs
+(`python-grundlagen-interaktiv*`), Cäsar-Chiffre, Wochen-Checks (`CodeChallenge.vue`) — eigene,
+unabhängige Editor-Instanzen. Cheat-Sheets (`wissens_cheat_sheet.ipynb`, `gesamtglossar.ipynb`)
+bleiben ebenfalls echte `.ipynb`-Dateien (eigene Pipeline, `md_to_cheatsheet_notebook.py`) — beim
+Umbau von `scripts/pack_notebooks.py` (jetzt: `_bundle/*.py` statt `*.ipynb`) mussten sie explizit
+wieder mit ins ZIP aufgenommen werden, sonst wären sie aus dem Download verschwunden.
+
+**Nachtrag (Kursbeschreibung bereinigt):** beim Durchklicken der Kursseite aufgefallen —
+`content/python-12-wochen-grundkurs(-en)/beschreibung.md`s Abschnitt "Einstufung – wo soll ich
+starten?" stand fast wortgleich direkt über der separaten `.placement-banner`-Komponente
+(`CourseDetail.vue`, Locale-Keys `course.placement.banner`/`.link`), die für `isWeeklyCourse` UND
+`isInteractiveCourse` automatisch unter der Beschreibung erscheint — zwei Boxen mit derselben
+Aussage hintereinander. Der interaktive Kurs hat diesen Abschnitt in seiner eigenen
+`beschreibung.md` nie dupliziert (verlässt sich schon immer nur auf den Banner) — Vorbild für den
+Fix: Abschnitt beim 12-Wochen-Kurs entfernt (Banner bleibt einzige Quelle), "Für wen ist der Kurs?"
+direkt nach die Zielbeschreibung vorgezogen (Ziel → Zielgruppe → Aufbau als Lesereihenfolge).
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -1026,7 +1109,9 @@ api/src/scripts/  backup-db.js (+ Test) — SQLite-Backup mit Retention
 src/views/AdminView.vue
 src/App.vue       Optionen-Modal
 src/composables/useAuth*.js, useProgressSync.js, useWeekChecks.js
-src/components/JupyterNotebook.vue, PlacementCourse.vue, QuizStep.vue
+src/components/JupyterNotebook.vue, CodeCell.vue, PlacementCourse.vue, QuizStep.vue
+scripts/migrate_notebooks_to_cells.py (einmalig gelaufen), build_cell_notebooks.py (bei jedem
+  dev/build), pack_notebooks.py (zippt jetzt _bundle/*.py statt *.ipynb)
 public/kurse.json
 content/python-checks/config.json, week-{N}.json, index.mjs (Node-Loader für Tests)
 .env.example / .env (nie committen)
@@ -1037,6 +1122,13 @@ content/python-checks/config.json, week-{N}.json, index.mjs (Node-Loader für Te
 ## 5. Offene Aufgaben
 
 Siehe auch `todo.md`.
+
+**Aktuell (3.33):**
+- [ ] Branch `12-wochen-kurs-zellen-format` (Zellen-Format-Umstellung, 432 Notebooks) testen
+      (`npm run test:checks` + `npm test`), dann PR/Merge nach `main`
+- [ ] Nach dem Merge: Server-Deploy-Verifikation (Abschnitt "Betrieb" unten) auch gegen die neue
+      `build:cells`-Pipeline prüfen — `npm run build` muss `build:cells` vor `pack:notebooks`
+      laufen lassen, sonst fehlen `_generated`/`_bundle` im Produktions-Build
 
 **Betrieb**
 - [ ] Server-Deploy final verifizieren (Service `app`, Orphans weg, Health, Admin-Login, kein
@@ -1067,9 +1159,8 @@ Siehe auch `todo.md`.
   `einstufung-personalisierte-erklaerungen`, gemerged) — inkl. Nebenfund/Fix der unübersetzten
   `explanation_en`-Felder
 
-**Alle Branches bis `einstufung-personalisierte-erklaerungen` sind gemergt** (siehe `git log main`
-für die genaue Reihenfolge) — noch **nicht** nach `origin/main` gepusht, Push/Server-Deploy
-bewusst zurückgestellt (Nutzer will erst später deployen).
+**`main` ist nach `origin/main` gepusht** (siehe `git log main` für die volle Historie) —
+Server-Deploy selbst bewusst weiter zurückgestellt (Nutzer will erst später deployen).
 
 **Refactoring (vom Nutzer angestoßen, gegen zu große Dateien):**
 - [x] Schritt 1: `weeks.json` pro Woche gesplittet (3.18, Branch `weeks-json-splitten`, gemergt)
@@ -1127,6 +1218,9 @@ nötig, falls es dazu kommt — der bestehende `t()`-Mechanismus reicht.
   einen Test in `tests/*.spec.js` bzw. `api/src/scripts/*.test.js` (`WORKFLOW.md`) — nicht nur
   manuell verifizieren
 - Inhaltsänderungen: `INHALTE.md` Abschnitt 6 (DE/EN, Manifeste, `kurse.json`)
+- 12-Wochen-Kurs-Notebooks sind seit 3.33 **kein `.ipynb` mehr** — Zellen-Ordner mit `NN_*.py`-
+  Dateien, `_generated`/`_bundle` sind generiert (gitignored, `scripts/build_cell_notebooks.py`).
+  Nicht versehentlich wieder rohe `.ipynb`-Dateien als Quelle einführen.
 - Missionen/Belohnungen kennen seit `wochen-zertifikate` **keine Punkte/Items mehr** — nur noch
   Zertifikate (siehe 3.12). Nicht versehentlich wieder ein Punktesystem einführen.
 - Zertifikat = **nur** Wochen-Check (Quiz + beide Coding-Aufgaben), **ein** Zertifikat pro Woche
@@ -1161,11 +1255,15 @@ nötig, falls es dazu kommt — der bestehende `t()`-Mechanismus reicht.
    `import.meta.glob(...)`-Pfadlisten in `LessonView.vue` zu erweitern (siehe 3.11); nicht:
    Punkte-/Item-System wieder einführen (siehe 3.12); nicht: `turtle` als echtes Pyodide-Paket
    erwarten oder erneut versuchen zu installieren — es ist bewusst durch einen eigenen Canvas-Shim
-   in `usePyodide.js` ersetzt (kein Web Worker, siehe 3.32)
+   in `usePyodide.js` ersetzt (kein Web Worker, siehe 3.32); nicht: 12-Wochen-Kurs-Notebooks als
+   `.ipynb` erwarten — seit 3.33 Zellen-Ordner mit `NN_*.py`-Dateien, `_generated`/`_bundle` sind
+   generiert (gitignored) und müssen nicht von Hand gepflegt werden
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
-**Empfohlener nächster Schritt:** Curriculum-Lücken-Plan (`~/.claude/plans/joyful-wishing-piglet.md`)
-ist bis auf `woche12-interaktivitaet` (Branch 9, jetzt entblockt durch den Turtle-Shim) fertig. Danach
-ist der Plan komplett abgeschlossen. Weiterhin offen: ob/wann nach `origin/main` gepusht und deployed
-wird. Falls stattdessen ein neues Kursthema begonnen werden soll: `kurs-python-spiele`
-(Spiele-Werkstatt-Inhalte, bereits begonnen) ist der nächstliegende Kandidat.
+**Empfohlener nächster Schritt:** Branch `12-wochen-kurs-zellen-format` (3.33) testen und nach
+`main` mergen — größte Baustelle gerade offen. Danach: Curriculum-Lücken-Plan
+(`~/.claude/plans/joyful-wishing-piglet.md`) war bis auf `woche12-interaktivitaet` fertig (jetzt
+durch den Turtle-Shim entblockt). Falls stattdessen ein neues Kursthema begonnen werden soll:
+`kurs-python-spiele` (Spiele-Werkstatt-Inhalte, bereits begonnen) ist der nächstliegende Kandidat —
+für neue Kurse gilt seit 3.33 die Zellen-Format-Erfahrung als Referenz, siehe Memory
+`project_neue-kurse-content-format`.

@@ -1,0 +1,7 @@
+print()
+print('🎉 Boss-Quest abgeschlossen!')
+print('🏆 Du hast den Daten-Archivar der unendlichen Streams besiegt!')
+print('⭐ Titel erhalten: Meister der Daten-Pipelines')
+print()
+print('🎊 GLÜCKWUNSCH! Du hast Woche 9 gemeistert!')
+print('📚 Nächste Woche: Objektorientierung!')

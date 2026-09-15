@@ -1,0 +1,7 @@
+print()
+print("🎉 Boss-Quest abgeschlossen!")
+print("🏆 Du hast den Schmied der unendlichen Werkzeuge besiegt!")
+print("⭐ Titel erhalten: Meister der Werkzeugkisten")
+print()
+print("🎊 GLÜCKWUNSCH! Du hast Woche 7 gemeistert!")
+print("📚 Nächste Woche: Dictionaries und Tupel!")

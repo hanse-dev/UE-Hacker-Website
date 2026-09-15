@@ -1,0 +1,1 @@
+"""**Erklärung:** `alter` ist eine Zahl (Integer), der Text davor und danach ist ein String. Python kann diese zwei Typen nicht direkt mit `+` verbinden – das ist wie versuchen, einen Stein an einen Faden zu knoten. `str()` löst das: es verwandelt die Zahl in Text."""

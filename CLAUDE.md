@@ -36,8 +36,11 @@ public/
   rewards-manifest-en.json           ← Belohnungen EN
 ```
 
-### Notebook-Struktur (pro Woche/Thema — 6 Dateien)
+### Notebook-Struktur (pro Woche/Thema — 6 Ordner)
 `0_glossar` → `1_lektion` → `2_debug` → `3_missionen` → `5_boss` → `6_loesungen`
+
+Seit der Zellen-Format-Umstellung ist jedes Notebook ein Ordner mit einer `.py`-Datei pro Zelle
+(`NN_markdown.py`/`NN_code.py`), kein `.ipynb` mehr. Details: `INHALTE.md` Abschnitt 2.
 
 ### Kurs-Themen
 - **Sci-Fi:** Cyber Credits, Daten-Chip, Crew-Meister-Urkunde

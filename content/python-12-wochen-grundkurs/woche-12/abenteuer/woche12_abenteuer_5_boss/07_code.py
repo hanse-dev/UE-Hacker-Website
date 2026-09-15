@@ -1,0 +1,7 @@
+print()
+print("🎉 Boss-Quest abgeschlossen!")
+print("🏆 Du hast den Meister der Zeichenrollen besiegt!")
+print("⭐ Titel erhalten: Magier der visuellen Künste")
+print()
+print("🎊 GLÜCKWUNSCH! Du hast Woche 12 gemeistert!")
+print("📚 Nächste Woche: Deine eigenen Projekte!")

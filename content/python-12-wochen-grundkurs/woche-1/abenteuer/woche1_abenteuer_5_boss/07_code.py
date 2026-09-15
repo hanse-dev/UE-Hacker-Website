@@ -1,0 +1,7 @@
+print()
+print("🎉 Boss-Quest abgeschlossen!")
+print("🏆 Du hast den Schweige-Drachen besiegt!")
+print("⭐ Titel erhalten: Portal-Meister")
+print()
+print("🎊 GLÜCKWUNSCH! Du hast Woche 1 gemeistert!")
+print("📚 Nächste Woche: Datentypen und Variablen!")

@@ -1,0 +1,1 @@
+"""**Erklärung:** Die Variable heißt `status`, aber im `print()` steht `statu` – ein Buchstabe fehlt. Python sucht exakt nach dem Namen `statu` und findet ihn nicht. Tippfehler in Variablennamen sind einer der häufigsten Anfängerfehler!"""

@@ -1,0 +1,7 @@
+print()
+print("🎉 Boss-Quest abgeschlossen!")
+print("🏆 Du hast den Archivar der geliehenen Zauber besiegt!")
+print("⭐ Titel erhalten: Meister der Bibliothek von Pyralia")
+print()
+print("🎊 GLÜCKWUNSCH! Du hast Woche 7 gemeistert!")
+print("📚 Nächste Woche: Dictionaries und Tupel!")

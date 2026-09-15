@@ -4,16 +4,12 @@ The course is aimed at everyone who wants to start with Python **from scratch**.
 
 **Goal:** By the end you should be able to write Python programs independently – programs that do something, make decisions, process data, and maybe even draw something. We lay the foundation you can build on.
 
+## Who is the course for?
+
+For absolute beginners. You don't need any prior knowledge – just curiosity and the desire to give computers commands.
+
 ## How is the course structured?
 
 - **12 weeks** – each week has a clear topic: variables, loops, functions, lists, OOP, turtle graphics, and more.
 - **Three theme worlds** – choose between Adventure, Horse Stables, or Sci-Fi. All teach the same Python knowledge, just with different settings.
 - **Missions & certificates** – each week consists of small missions you master. Complete all of them and pass the week check (quiz + a small coding task), and you earn that week's certificate – proof that you really understood the topic.
-
-## Placement – where should I start?
-
-Not sure whether to begin at week 1 or later? Take the short **[Python placement test](/kurs/python-einstufung)** first. It uses the same questions as the **Check** tab in each week and shows you where to continue.
-
-## Who is the course for?
-
-For absolute beginners. You don't need any prior knowledge – just curiosity and the desire to give computers commands.

@@ -1,0 +1,7 @@
+print()
+print("🎉 Boss-Quest abgeschlossen!")
+print("🏆 Du hast den Code-Archivar der unendlichen Funktionen besiegt!")
+print("⭐ Titel erhalten: Meister der Module")
+print()
+print("🎊 GLÜCKWUNSCH! Du hast Woche 7 gemeistert!")
+print("📚 Nächste Woche: Dictionaries und Tupel!")

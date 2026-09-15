@@ -1,0 +1,7 @@
+print()
+print("🎉 Boss Quest complete!")
+print("🏆 You have defeated the Archivist of Borrowed Magic!")
+print("⭐ Title earned: Master of the Library of Pyralia")
+print()
+print("🎊 CONGRATULATIONS! You have mastered Week 7!")
+print("📚 Next week: Dictionaries and Tuples!")

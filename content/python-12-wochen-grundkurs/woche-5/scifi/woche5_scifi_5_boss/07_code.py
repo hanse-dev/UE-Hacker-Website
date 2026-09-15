@@ -1,0 +1,7 @@
+print()
+print("🎉 Boss-Quest abgeschlossen!")
+print("🏆 Du hast den Architekten der unendlichen Rekursion besiegt!")
+print("⭐ Titel erhalten: Meister der Systemprotokolle")
+print()
+print("🎊 GLÜCKWUNSCH! Du hast Woche 5 gemeistert!")
+print("📚 Nächste Woche: Listen (Listen erstellen, bearbeiten, durchsuchen)!")

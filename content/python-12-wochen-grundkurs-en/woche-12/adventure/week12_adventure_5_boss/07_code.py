@@ -1,0 +1,7 @@
+print()
+print("🎉 Boss Quest completed!")
+print("🏆 You have defeated the Master of the Drawing Scrolls!")
+print("⭐ Title earned: Mage of the Visual Arts")
+print()
+print("🎊 CONGRATULATIONS! You have mastered Week 12!")
+print("📚 Next: Your own projects!")
