@@ -232,6 +232,9 @@ export default {
       } else {
         phase.value = 'variant';
       }
+      // Vorher stand man am Ende des Check-Schritts weit unten - ohne Scroll-Reset würde die
+      // neue Woche irgendwo mittendrin statt am Anfang der Lektion aufgehen.
+      nextTick(() => window.scrollTo({ top: 0, behavior: 'smooth' }));
     };
 
     const applyDeepLink = () => {

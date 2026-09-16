@@ -151,11 +151,17 @@ test.describe('12-Wochen-Kurs: Wochen-Tour', () => {
     await expect(page.locator('[data-after-check="overview"]')).toBeVisible();
     await expect(page.locator('[data-after-check="next-week"]')).toBeVisible();
 
+    // Ganz unten beim Check-Schritt - nach "Nächste Woche" muss die neue Lektion oben beginnen,
+    // nicht irgendwo mittendrin auf der alten Scroll-Position.
+    await page.mouse.wheel(0, 2000);
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(200);
+
     await page.locator('[data-after-check="next-week"]').click();
     await expect(page).toHaveURL(/week=2&variant=abenteuer/);
     await expect(page.locator('.tour-breadcrumb')).toContainText('Woche 2');
     await expect(page.locator('.tour-breadcrumb')).toContainText('Abenteuer');
     await expect(page.locator('.stepper-step.current')).toContainText('Lektion');
+    await expect.poll(() => page.evaluate(() => window.scrollY), { timeout: 2000 }).toBeLessThan(50);
   });
 
   test('Zertifikat erscheint als Abzeichen in der Übersicht und auf der Zertifikate-Seite', async ({ page }) => {

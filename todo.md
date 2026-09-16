@@ -46,6 +46,8 @@
       zurück, falls die aktuelle in der nächsten Woche fehlt; bei Woche 12 gibt es nur noch
       "Zur Übersicht") ist **immer** verfügbar, sobald man den Check-Schritt erreicht — nicht erst
       nach bestandenem Check (Nutzer-Feedback: sonst steckt man ohne Zertifikat in der Woche fest).
+      "Nächste Woche" scrollt außerdem zurück nach oben (Nutzer-Feedback: man steht ja ganz unten
+      beim Check, ohne Reset würde die neue Lektion mittendrin statt am Anfang aufgehen).
 - [x] Wochen-Übersicht: jede Kachel bekommt ein Themen-Icon (technisches Wochenthema, variantenlos)
       plus ein 🎓-Abzeichen sobald das Zertifikat der Woche verdient ist, ein Zähler oben, und ein
       Link zu einer neuen "Meine Zertifikate"-Seite (wiederverwendet `FortschrittWidget.vue` direkt
