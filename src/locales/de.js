@@ -264,4 +264,17 @@ export default {
   'challenge.title':          '💻 Coding-Aufgabe',
   'challenge.passedMessage':  'Richtig! Coding-Aufgabe bestanden.',
   'challenge.notYetMessage':  'Noch nicht ganz – schau dir deine Ausgabe oben an.',
+
+  // ── Experiment: Wochen-Tour ──────────────────────────────────────────────
+  'tour.title':            'Wochen-Tour (Experiment)',
+  'tour.intro':            'Wähle eine Woche und ein Thema – alle Wochen bleiben sichtbar.',
+  'tour.pickWeek':         'Woche wählen',
+  'tour.pickVariant':      'Thema wählen',
+  'tour.next':             'Weiter zu {step}',
+  'tour.done':             'Geschafft! Du hast alle Schritte dieser Woche durchlaufen.',
+  'tour.backToTour':       '← Zurück zur Tour',
+  'tour.sideMenu.steps':   'Diese Woche',
+  'tour.sideMenu.sections':'Abschnitte',
+  'tour.sideMenu.reference':'Nachschlagewerke',
+  'tour.loading':          'Lade Kursinhalte...',
 };

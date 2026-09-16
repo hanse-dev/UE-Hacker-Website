@@ -264,4 +264,17 @@ export default {
   'challenge.title':          '💻 Coding challenge',
   'challenge.passedMessage':  'Correct! Coding challenge passed.',
   'challenge.notYetMessage':  'Not quite yet — check your output above.',
+
+  // ── Experiment: Week tour ────────────────────────────────────────────────
+  'tour.title':            'Week tour (experiment)',
+  'tour.intro':            'Pick a week and a theme – all weeks stay visible.',
+  'tour.pickWeek':         'Pick a week',
+  'tour.pickVariant':      'Pick a theme',
+  'tour.next':             'Next: {step}',
+  'tour.done':             'Done! You have gone through every step of this week.',
+  'tour.backToTour':       '← Back to the tour',
+  'tour.sideMenu.steps':   'This week',
+  'tour.sideMenu.sections':'Sections',
+  'tour.sideMenu.reference':'Reference',
+  'tour.loading':          'Loading course content...',
 };

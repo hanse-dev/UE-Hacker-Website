@@ -2,9 +2,10 @@
 
 > **Zuletzt aktualisiert:** 2026-09-16  
 > **Aktueller Stand:** `main` ist auf `origin/main` gepusht. Der 12-Wochen-Kurs läuft jetzt komplett
-> über das neue Zellen-Format statt `.ipynb` (3.33, gemergt/gepusht). Offen: Branch
-> `wochencheck-variablen-validierung` (3.34, Fix gegen Hardcoding bei Coding-Aufgaben) — noch nicht
-> nach `main` gemergt.
+> über das neue Zellen-Format statt `.ipynb` (3.33), Branch `wochencheck-variablen-validierung`
+> (3.34, Fix gegen Hardcoding bei Coding-Aufgaben) ist ebenfalls gemergt. Offen: Branch
+> `experiment-wochen-tour` (3.35, unverlinkte Experimentseite für einen geführten Wochen-Ablauf) —
+> lokal fertig/getestet, noch nicht gemergt.
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -1096,6 +1097,55 @@ gezogen, statt sie zweimal zu schreiben.
 
 Plan-Datei für diesen Teil: `~/.claude/plans/lexical-growing-comet.md`.
 
+### 3.35 Experiment: Geführte Wochen-Tour (Branch `experiment-wochen-tour`)
+
+Nutzerwunsch: eine alternative Führung durch den 12-Wochen-Kurs ausprobieren, ohne den bestehenden
+Kurs (`/kurs/python-12-wochen-grundkurs`) anzufassen — als unverlinkte Experimentseite (Vorbild:
+die früheren `/experiment/...`-Prototypen aus 3.33).
+
+**Neue Route `/experiment/wochen-tour`** (`src/views/experiment/WeekTourView.vue`, nur per direkter
+URL erreichbar, kein Nav-Link): alle 12 Wochen bleiben als Leiste sichtbar (kein Wegklappen einer
+gewählten Woche), Klick wählt eine Woche; danach sind alle Themen-Varianten (Abenteuer/Pferde/
+Sci-Fi, `VariantSelector.vue` unverändert wiederverwendet) sichtbar. Nach der Variantenwahl öffnet
+`WeekTourStepper.vue` eine geführte Tour: obere Tab-Leiste Lektion → Debug → Missionen → Boss-Quest
+→ Check (nur vorhandene Schritte, `4_check` nur wenn `hasWeekCheck()`), **kein**
+`MissionenPanel.vue`-Punkte-Widget — die Missionen-Aufgaben selbst sind aber ein ganz normaler
+Tour-Schritt. Ein "Weiter zu {Schritt}"-Button führt der Reihe nach durch; alle Tabs bleiben
+trotzdem frei anklickbar (kein Sperren, man kann jederzeit zur Lektion zurück, ohne den erreichten
+Fortschritt zu verlieren — `viewingStepKey` und `furthestStepIndex` sind getrennter State).
+
+**Kleines Seitenmenü** (`WeekTourSideMenu.vue`): zeigt sowohl die Tour-Schritte selbst (Sprung-
+Navigation, Häkchen für bereits erreichte) als auch die Unterabschnitte des gerade offenen Schritts
+(z.B. "Bug #1/#2/#3", "Mission 1/2/3") sowie Glossar/Lösungen als eigener, nicht gegateter
+"Nachschlagewerke"-Block — Klick darauf überlagert den Inhalt, ohne die Tour-Position zu verändern
+(`activeReference`-State getrennt von `viewingStepKey`). Die Unterabschnitte werden aus den
+Notebook-Zellen selbst gewonnen: jede Markdown-Zelle im Zellen-Format (siehe 3.33) beginnt mit
+genau einer Überschrift (`#` = Notebook-Titel, `##` = Lektion-Abschnitte, `###` = Bugs/Missionen) —
+verifiziert an echten Dateien, keine Content-Änderung nötig. Neue kleine Composable
+`useNotebookHeadings.js` lädt dafür dieselbe `renderUrl`-JSON, die `JupyterNotebook.vue` ohnehin
+schon rendert (zweiter, unkritischer Fetch derselben kleinen statischen Datei).
+
+**Eine einzige additive Änderung an einer geteilten Komponente:** `JupyterNotebook.vue`s
+`.cell`-Wrapper-Div bekommt zusätzlich `:id="`cell-${index}`"` (vorher keine ID) — ermöglicht dem
+Seitenmenü, per `scrollIntoView()` zu einer Zelle zu springen, ohne die 377-Zeilen-Notebook-
+Komponente (Kernel-State, Zellen-Persistenz, Turtle-Canvas) zu duplizieren. Reine DOM-ID ohne
+Auswirkung auf Aussehen/Verhalten des einzigen bestehenden Verwenders (`WeekSection.vue`) — durch
+die volle `test:checks`-Suite (weiterhin 55/55 grün) abgesichert.
+
+**Bewusste Vereinfachungen:** keine `localStorage`-Persistenz von Woche/Variante/Schritt (Reload
+startet auf der Wochen-Übersicht neu — der Zellen-Bearbeitungsstand einzelner Notebooks bleibt
+davon unberührt, der ist bereits unabhängig in `JupyterNotebook.vue` über `notebookPath` geregelt).
+Zertifikatsvergabe läuft unverändert über das wiederverwendete `WeekCheckPanel.vue` — funktioniert
+in der Tour exakt wie im bestehenden Kurs.
+
+**Getestet:** neue `tests/experiment-wochen-tour.spec.js` (4 Tests: alle Wochen sichtbar + Tour
+öffnet auf Lektion, "Weiter" schaltet alle Schritte der Reihe nach, Seitenmenü-Sprung zu einem
+Unterabschnitt scrollt zur richtigen Zelle, Glossar öffnen und zurück zur Tour erhält den
+Fortschritt) + volle `test:checks`-Suite (55 bestehende Tests weiterhin grün) + manuell per
+Screenshot verifiziert (Woche 3 Pferde, Deep-Link `?week=&variant=&step=`).
+
+Plan-Datei: `~/.claude/plans/twinkly-strolling-lovelace.md`.
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -1178,17 +1228,16 @@ content/python-checks/config.json, week-{N}.json, index.mjs (Node-Loader für Te
 
 Siehe auch `todo.md`.
 
-**Aktuell (3.33):**
-- [ ] Branch `12-wochen-kurs-zellen-format` (Zellen-Format-Umstellung, 432 Notebooks) testen
-      (`npm run test:checks` + `npm test`), dann PR/Merge nach `main`
-- [ ] Nach dem Merge: Server-Deploy-Verifikation (Abschnitt "Betrieb" unten) auch gegen die neue
-      `build:cells`-Pipeline prüfen — `npm run build` muss `build:cells` vor `pack:notebooks`
-      laufen lassen, sonst fehlen `_generated`/`_bundle` im Produktions-Build
+**Aktuell (3.35):**
+- [ ] Branch `experiment-wochen-tour` (geführte Wochen-Tour, unverlinkte Experimentseite) lokal
+      fertig/getestet — Nutzer probiert `/experiment/wochen-tour` aus, entscheidet dann über
+      Merge/Verwerfen/Weiterentwicklung (z.B. localStorage-Persistenz, Schritt-Sperrung)
 
 **Betrieb**
 - [ ] Server-Deploy final verifizieren (Service `app`, Orphans weg, Health, Admin-Login, kein
       Notebook-Blinken mehr nach PR #3) — **bewusst zurückgestellt**, Nutzer will erst später
-      deployen
+      deployen. Dabei auch die `build:cells`-Pipeline prüfen — `npm run build` muss `build:cells`
+      vor `pack:notebooks` laufen lassen, sonst fehlen `_generated`/`_bundle` im Produktions-Build
 - [x] SQLite-Backup-Script (`api/src/scripts/backup-db.js`) — siehe Abschnitt 4. Externe
       Sicherung der Backups (z.B. `rsync`/`rclone` auf einen anderen Host) bewusst nicht mitgebaut,
       hängt von der jeweiligen Server-Infrastruktur ab. Auf dem Server noch einzurichten (Cron o.ä.).
@@ -1315,10 +1364,11 @@ nötig, falls es dazu kommt — der bestehende `t()`-Mechanismus reicht.
    generiert (gitignored) und müssen nicht von Hand gepflegt werden
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
-**Empfohlener nächster Schritt:** Branch `12-wochen-kurs-zellen-format` (3.33) testen und nach
-`main` mergen — größte Baustelle gerade offen. Danach: Curriculum-Lücken-Plan
-(`~/.claude/plans/joyful-wishing-piglet.md`) war bis auf `woche12-interaktivitaet` fertig (jetzt
-durch den Turtle-Shim entblockt). Falls stattdessen ein neues Kursthema begonnen werden soll:
+**Empfohlener nächster Schritt:** Branch `experiment-wochen-tour` (3.35) im Browser ausprobieren
+(`/experiment/wochen-tour`) und entscheiden, ob/wie es weitergeht (mergen, verwerfen, oder erst
+localStorage-Persistenz/Schritt-Sperrung nachziehen). Danach: Curriculum-Lücken-Plan
+(`~/.claude/plans/joyful-wishing-piglet.md`) war bis auf `woche12-interaktivitaet` fertig (durch
+den Turtle-Shim entblockt). Falls stattdessen ein neues Kursthema begonnen werden soll:
 `kurs-python-spiele` (Spiele-Werkstatt-Inhalte, bereits begonnen) ist der nächstliegende Kandidat —
 für neue Kurse gilt seit 3.33 die Zellen-Format-Erfahrung als Referenz, siehe Memory
 `project_neue-kurse-content-format`.

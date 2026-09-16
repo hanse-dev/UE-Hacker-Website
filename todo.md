@@ -1,43 +1,24 @@
 # Todo
 
 ## Now
-### Wochen-Check: Variablen-Validierung (Branch `wochencheck-variablen-validierung`)
-- [x] Lücke gefunden: Coding-Aufgaben, die das Anlegen bestimmter Variablen verlangen (z.B.
-      "Erstelle eine Variable name..."), ließen sich durch bloßes Hart-Codieren der erwarteten
-      Textausgabe umgehen — die Prüfung schaute nur auf `stdout`, nie auf den Programmzustand.
-- [x] Neuer optionaler `variables`-Block in `validation` (`useTaskValidation.js`): prüft nach der
-      Ausführung echte Werte im Pyodide-Namespace (`pyodide.globals.get(name)`), zusätzlich zur
-      bestehenden Ausgabe-Prüfung. `CodeChallenge.vue` löscht die betroffenen Variablennamen vor
-      jedem Lauf aus dem (geteilten) Namespace, damit ein alter Wert aus einem früheren Versuch
-      nicht fälschlich als "bestanden" durchgeht.
-- [x] Alle 24 Coding-Aufgaben (12 Wochen × 2) durchgesehen: 5 verlangen explizit benannte
-      Variablen und sind jetzt mit `variables` abgesichert — Woche 1 "Nova"/`level`, Woche 2
-      "alter", Woche 3 "zahl1"/"zahl2", Woche 8 "person"/"schueler" (verschachteltes Dictionary,
-      siehe unten). Restliche Aufgaben verlangen keine benannte Variable in der Aufgabenstellung,
-      daher (noch) kein Fix dafür — siehe Plan für Kategorie B/C unten bzw. `todo.md`-Eintrag.
-- [x] `variables` unterstützt jetzt auch verschachtelte Werte (Dictionaries): erwarteter Wert als
-      Objekt (`{"person": {"name": "Alex"}}`) statt Skalar → `CodeChallenge.vue` wandelt den
-      Pyodide-PyProxy-Rückgabewert per `.toJs({dict_converter: Object.fromEntries})` in ein
-      normales JS-Objekt um, `useTaskValidation.js`s `valuesMatch()` vergleicht rekursiv.
-- [x] Neue Tests in `tests/zertifikate.spec.js`: hart kodierte Ausgabe ohne die Variablen (Woche 1)
-      bzw. ohne das Dictionary (Woche 8) schlägt fehl, dieselbe Aufgabe mit echter Lösung besteht
-      weiterhin. Woche 3 manuell verifiziert (gleicher Skalar-Mechanismus wie Woche 1, kein
-      zusätzlicher automatisierter Test nötig).
-- **Bewusst nicht angefasst:** der interaktive Kurs (`LessonView.vue`) nutzt dieselbe
-  `validateOutput()`-Funktion, hat aber keine Aufgabe, die das Anlegen bestimmter Variablen
-  verlangt — daher keine Content-Änderung dort nötig, die neue Prüfung steht dort aber genauso
-  zur Verfügung, falls später gebraucht.
-- [x] **Kategorie B (Funktionsaufgaben):** Woche 5 (`verdopple`, `addiere`) ließ sich mit dem
-      `variables`-Mechanismus nicht sauber fixen, da nur der eine vorgerechnete Aufruf geprüft
-      würde. Neues optionales `functionCalls`-Feld (`[{name, args, expected}]`): ruft die
-      Funktion nach der Ausführung erneut mit einem in der Aufgabenstellung nie genannten Wert
-      auf (`verdopple(10)` statt nur `verdopple(6)`) — deckt auch auf, wenn eine Funktion nur
-      zufällig für das eine Beispiel stimmt (z.B. `zahl + 6` statt `zahl * 2`, beide ergeben 12
-      für `verdopple(6)`, aber nur `*2` stimmt auch für `verdopple(10) == 20`). Getestet: genau
-      dieser "zufällig richtig"-Fall schlägt jetzt fehl, echte Lösung besteht weiterhin (beide
-      Woche-5-Aufgaben).
-- **Kategorie C (Modul-Import-Check, Woche 7/12) und AST-Analyse für den Rest — zurückgestellt,**
-  siehe HANDOFF.md 3.34.
+### Experiment: Geführte Wochen-Tour (Branch `experiment-wochen-tour`)
+- [x] Neue, unverlinkte Experimentseite `/experiment/wochen-tour` (nur per direkter URL erreichbar,
+      bestehender Kurs `/kurs/python-12-wochen-grundkurs` unverändert): Wochen-Leiste (alle 12
+      Wochen bleiben sichtbar) → Themen-Wahl (Abenteuer/Pferde/Sci-Fi, alle sichtbar) → geführte
+      Tour mit Tab-Leiste oben (Lektion → Debug → Missionen → Boss-Quest → Check).
+- [x] Kein Missionen-Punkte-Widget (`MissionenPanel.vue`) in der Tour — die Missionen-Aufgaben
+      selbst sind aber ganz normaler Tour-Schritt.
+- [x] "Weiter"-Button führt Schritt für Schritt; alle Tabs bleiben trotzdem frei anklickbar
+      (kein Zwang, auch rückwärts schauen möglich, ohne den Fortschritt zurückzusetzen).
+- [x] Kleines Seitenmenü: Tour-Schritte zum Springen + Unterabschnitte des aktuellen Schritts
+      (z.B. Bug 1/2/3, Mission 1/2/3, aus den `##`/`###`-Überschriften der Notebook-Zellen
+      extrahiert) + Glossar/Lösungen als jederzeit verfügbares Nachschlagewerk (kein Tour-Schritt,
+      kein Gating).
+- [x] Neuer Test `tests/experiment-wochen-tour.spec.js` (4 Tests) + volle `test:checks`-Suite (55
+      bestehende Tests) bleibt grün — deckt ab, dass die eine additive Änderung an der geteilten
+      `JupyterNotebook.vue` (Zell-`id` fürs Scroll-Ziel des Seitenmenüs) den bestehenden Kurs nicht
+      verändert.
+- Details/Architektur-Entscheidungen: Plan-Datei `~/.claude/plans/twinkly-strolling-lovelace.md`.
 
 ### 12-Wochen-Kurs: Zellen-Format-Umstellung (Branch `12-wochen-kurs-zellen-format`)
 - [x] Alle 432 Notebooks (3 Varianten × 12 Wochen × 6 Typen × DE/EN) vom `.ipynb`-Format auf
@@ -265,6 +246,11 @@ und Server-Deploy bewusst zurückgestellt (siehe HANDOFF.md).
 - [ ] `kurs-python-spiele` — `ProjectCourse.vue` bereits generalisiert (mehrere Projekt-Kurse teilen
       sich die Komponente), die eigentlichen Spiele-Inhalte (Quiz-Arena, Turtle-Welt, Galgenmännchen)
       noch offen
+- [x] `wochencheck-variablen-validierung` (HANDOFF.md 3.34, gemergt) — Coding-Aufgaben ließen sich
+      durch Hart-Codieren der erwarteten Textausgabe umgehen (Prüfung schaute nur auf `stdout`).
+      Neue optionale `variables`-/`functionCalls`-Felder in `validation` prüfen zusätzlich echte
+      Werte im Pyodide-Namespace bzw. rufen Funktionen mit einem nie genannten Wert erneut auf.
+      5 von 24 Coding-Aufgaben betroffen und abgesichert (Kategorie C/AST-Analyse zurückgestellt).
 - [x] `wochen-zertifikate` (HANDOFF.md 3.12) — Punkte-/Sammelsystem komplett entfernt, ersetzt durch Wochen-Zertifikate:
       **ein** Zertifikat pro Woche (keine Varianten-Aufteilung mehr), verliehen sobald der Wochen-Check
       bestanden ist — Quiz **plus zwei** Coding-Aufgaben (leicht + schwerer). Missionen/Boss-Quests
