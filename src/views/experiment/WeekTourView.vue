@@ -1,18 +1,19 @@
 <template>
   <section class="week-tour">
     <h1>{{ t('tour.title') }}</h1>
-    <p class="tour-intro">{{ t('tour.intro') }}</p>
 
     <p v-if="loading" class="tour-loading">{{ t('tour.loading') }}</p>
 
     <template v-else>
-      <div class="week-rail">
+      <!-- Seite 1: Woche wählen -->
+      <div v-if="phase === 'week'" class="tour-page">
+        <p class="tour-intro">{{ t('tour.intro') }}</p>
         <h2 class="section-label">{{ t('tour.pickWeek') }}</h2>
-        <div class="week-rail-list">
+        <div class="tile-grid week-tile-grid">
           <button
             v-for="(week, index) in weeks"
             :key="index"
-            class="week-chip"
+            class="tile week-tile"
             :class="{ active: selectedWeekIndex === index }"
             :data-week="index + 1"
             @click="selectWeek(index)"
@@ -23,19 +24,38 @@
         </div>
       </div>
 
-      <div v-if="selectedWeek" class="variant-area">
-        <h2 class="section-label">{{ t('tour.pickVariant') }}</h2>
-        <VariantSelector :week="selectedWeek" @set-variant="setVariant" />
+      <!-- Seite 2: Thema wählen -->
+      <div v-else-if="phase === 'variant' && selectedWeek" class="tour-page">
+        <button class="breadcrumb-back" @click="phase = 'week'">← {{ t('tour.pickWeek') }}</button>
+        <h2 class="section-label">{{ t('week.label') }} {{ selectedWeekIndex + 1 }}: {{ weekTheme(selectedWeek) }}</h2>
+        <p class="tour-intro">{{ t('tour.pickVariant') }}</p>
+        <div class="tile-grid variant-tile-grid">
+          <button
+            v-for="v in availableVariants"
+            :key="v.key"
+            class="tile variant-tile"
+            :class="{ active: selectedWeek.selectedVariant === v.key }"
+            :data-variant="v.key"
+            @click="selectVariant(v.key)"
+          >
+            {{ v.label }}
+          </button>
+        </div>
       </div>
 
+      <!-- Seite 3+: Kursinhalt (geführte Tour) -->
       <WeekTourStepper
-        v-if="selectedWeek && selectedWeek.selectedVariant"
+        v-else-if="phase === 'tour' && selectedWeek && selectedWeek.selectedVariant"
         :week="selectedWeek"
         :week-number="selectedWeekIndex + 1"
+        :week-theme="weekTheme(selectedWeek)"
         :variant="selectedWeek.selectedVariant"
+        :variant-label="selectedVariantLabel"
         :course-id="courseId"
         :initial-step="initialStep"
         :key="selectedWeekIndex"
+        @change-week="phase = 'week'"
+        @change-variant="phase = 'variant'"
       />
     </template>
   </section>
@@ -44,16 +64,21 @@
 <script>
 import { ref, computed, onMounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import VariantSelector from '../../components/VariantSelector.vue';
 import WeekTourStepper from '../../components/experiment/WeekTourStepper.vue';
 import { loadWeeklyContent } from '../../composables/useWeeklyContent.js';
 import { useLanguage } from '../../composables/useLanguage.js';
 
 const COURSE_ID = 'python-12-wochen-grundkurs';
 
+const VARIANT_CONFIG = [
+  { key: 'abenteuer', flagKey: 'hasAbenteuerVariant', labelKey: 'variant.adventure' },
+  { key: 'pferde',    flagKey: 'hasPferdeVariant',    labelKey: 'variant.horses' },
+  { key: 'scifi',     flagKey: 'hasScifiVariant',     labelKey: 'variant.scifi' },
+];
+
 export default {
   name: 'WeekTourView',
-  components: { VariantSelector, WeekTourStepper },
+  components: { WeekTourStepper },
   setup() {
     const { lang, t } = useLanguage();
     const route = useRoute();
@@ -63,9 +88,21 @@ export default {
     const loading = ref(true);
     const selectedWeekIndex = ref(null);
     const initialStep = ref(null);
+    const phase = ref('week'); // 'week' | 'variant' | 'tour'
 
     const selectedWeek = computed(() =>
       selectedWeekIndex.value != null ? weeks.value[selectedWeekIndex.value] : null
+    );
+
+    const availableVariants = computed(() => {
+      if (!selectedWeek.value) return [];
+      return VARIANT_CONFIG
+        .filter((v) => selectedWeek.value[v.flagKey])
+        .map((v) => ({ key: v.key, label: t(v.labelKey) }));
+    });
+
+    const selectedVariantLabel = computed(() =>
+      availableVariants.value.find((v) => v.key === selectedWeek.value?.selectedVariant)?.label ?? ''
     );
 
     const weekTheme = (week) => {
@@ -76,26 +113,31 @@ export default {
 
     const selectWeek = (index) => {
       selectedWeekIndex.value = index;
-      initialStep.value = null;
-      router.replace({ query: { ...route.query, week: index + 1, variant: weeks.value[index]?.selectedVariant, step: undefined } });
+      phase.value = 'variant';
     };
 
-    const setVariant = (variant) => {
+    const selectVariant = (variant) => {
       if (!selectedWeek.value) return;
       selectedWeek.value.selectedVariant = variant;
-      router.replace({ query: { ...route.query, week: selectedWeekIndex.value + 1, variant, step: undefined } });
+      initialStep.value = null;
+      phase.value = 'tour';
+      router.replace({ query: { week: selectedWeekIndex.value + 1, variant } });
     };
 
     const applyDeepLink = () => {
       const weekNum = Number(route.query.week);
-      if (weekNum && weekNum >= 1 && weekNum <= weeks.value.length) {
-        selectedWeekIndex.value = weekNum - 1;
-        const variant = String(route.query.variant || '');
-        if (variant && weeks.value[weekNum - 1].notebooks[variant]) {
-          weeks.value[weekNum - 1].selectedVariant = variant;
-        }
-        const step = String(route.query.step || '');
-        initialStep.value = step || null;
+      if (!weekNum || weekNum < 1 || weekNum > weeks.value.length) {
+        phase.value = 'week';
+        return;
+      }
+      selectedWeekIndex.value = weekNum - 1;
+      const variant = String(route.query.variant || '');
+      if (variant && weeks.value[weekNum - 1].notebooks[variant]) {
+        weeks.value[weekNum - 1].selectedVariant = variant;
+        initialStep.value = String(route.query.step || '') || null;
+        phase.value = 'tour';
+      } else {
+        phase.value = 'variant';
       }
     };
 
@@ -110,8 +152,8 @@ export default {
     watch(lang, load);
 
     return {
-      t, weeks, loading, selectedWeekIndex, selectedWeek, initialStep,
-      weekTheme, selectWeek, setVariant, courseId: COURSE_ID,
+      t, weeks, loading, phase, selectedWeekIndex, selectedWeek, availableVariants, initialStep,
+      selectedVariantLabel, weekTheme, selectWeek, selectVariant, courseId: COURSE_ID,
     };
   },
 };
@@ -120,6 +162,15 @@ export default {
 <style scoped>
 .week-tour {
   padding: 20px;
+}
+
+.tour-page {
+  animation: tour-page-in 0.18s ease;
+}
+
+@keyframes tour-page-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .tour-intro {
@@ -133,56 +184,78 @@ export default {
 }
 
 .section-label {
-  font-size: 1em;
+  font-size: 1.3em;
   color: var(--primary-purple, #4a2274);
   margin: 0 0 10px;
   border-bottom: none;
 }
 
-.week-rail {
-  margin-bottom: 24px;
+.breadcrumb-back {
+  background: transparent;
+  border: none;
+  color: #7c5a94;
+  font-size: 0.9em;
+  cursor: pointer;
+  padding: 0 0 14px;
 }
+.breadcrumb-back:hover { color: var(--primary-purple, #4a2274); text-decoration: underline; }
 
-.week-rail-list {
+.tile-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 8px;
+  gap: 14px;
 }
 
-.week-chip {
+.week-tile-grid {
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+}
+
+.variant-tile-grid {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  max-width: 760px;
+}
+
+.tile {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
   text-align: left;
-  background: #f8f9fa;
+  background: white;
   border: 2px solid #e9ecef;
-  border-radius: 8px;
-  padding: 10px 12px;
+  border-radius: 12px;
+  padding: 20px 18px;
   cursor: pointer;
   transition: all 0.15s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
-.week-chip:hover {
+.tile:hover {
   border-color: #d9c7ea;
   background: #f7f1fb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(74, 34, 116, 0.12);
 }
 
-.week-chip.active {
+.tile.active {
   border-color: var(--primary-purple, #4a2274);
   background: #efe3f6;
 }
 
-.week-chip strong {
-  font-size: 0.88em;
+.week-tile strong {
+  font-size: 1.05em;
   color: var(--primary-purple, #4a2274);
 }
 
-.week-chip span {
-  font-size: 0.78em;
+.week-tile span {
+  font-size: 0.85em;
   color: #6b7280;
 }
 
-.variant-area {
-  margin-bottom: 8px;
+.variant-tile {
+  align-items: center;
+  text-align: center;
+  font-size: 1.15em;
+  font-weight: 600;
+  color: #374151;
+  padding: 26px 18px;
 }
 </style>

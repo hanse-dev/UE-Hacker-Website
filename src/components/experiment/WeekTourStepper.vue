@@ -1,17 +1,29 @@
 <template>
   <div class="tour-stepper">
-    <div class="tour-tabs">
-      <button
-        v-for="(step, i) in steps"
-        :key="step.key"
-        class="tour-tab"
-        :class="{ active: !activeReference && viewingStepKey === step.key, reached: i <= furthestStepIndex }"
-        :data-step-key="step.key"
-        @click="viewStep(step.key)"
-      >
-        <span class="tour-tab-icon">{{ step.icon }}</span>
-        <span class="tour-tab-label">{{ step.label }}</span>
+    <div class="tour-header">
+      <div class="tour-breadcrumb">
+        <button class="breadcrumb-link" @click="$emit('change-week')">{{ t('week.label') }} {{ weekNumber }}: {{ weekTheme }}</button>
+        <span class="breadcrumb-sep">›</span>
+        <button class="breadcrumb-link" @click="$emit('change-variant')">{{ variantLabel }}</button>
+      </div>
+      <button class="side-menu-toggle" @click="sideMenuOpen = !sideMenuOpen">
+        {{ sideMenuOpen ? '✕ ' + t('tour.sideMenu.hide') : '☰ ' + t('tour.sideMenu.show') }}
       </button>
+    </div>
+
+    <div class="progress-stepper">
+      <template v-for="(step, i) in steps" :key="step.key">
+        <button
+          class="stepper-step"
+          :class="{ done: i <= furthestStepIndex, current: !activeReference && viewingStepKey === step.key }"
+          :data-step-key="step.key"
+          @click="viewStep(step.key)"
+        >
+          <span class="stepper-dot">{{ i <= furthestStepIndex ? '✓' : i + 1 }}</span>
+          <span class="stepper-label">{{ step.label }}</span>
+        </button>
+        <span v-if="i < steps.length - 1" class="stepper-line" :class="{ done: i < furthestStepIndex }"></span>
+      </template>
     </div>
 
     <div class="tour-body">
@@ -45,6 +57,7 @@
       </div>
 
       <WeekTourSideMenu
+        v-if="sideMenuOpen"
         :steps="steps"
         :current-step-key="viewingStepKey"
         :furthest-index="furthestStepIndex"
@@ -87,14 +100,18 @@ export default {
   props: {
     week: { type: Object, required: true },
     weekNumber: { type: Number, required: true },
+    weekTheme: { type: String, default: '' },
     variant: { type: String, required: true },
+    variantLabel: { type: String, default: '' },
     courseId: { type: String, required: true },
     initialStep: { type: String, default: null },
   },
+  emits: ['change-week', 'change-variant'],
   setup(props) {
     const { t } = useLanguage();
     const checksData = ref(null);
     const hasCheck = computed(() => hasWeekCheck(checksData.value, props.weekNumber));
+    const sideMenuOpen = ref(true);
 
     const notebooksForVariant = computed(() => props.week.notebooks?.[props.variant] ?? {});
 
@@ -180,7 +197,7 @@ export default {
     });
 
     return {
-      t, steps, referenceItems, viewingStepKey, furthestStepIndex, activeReference,
+      t, steps, referenceItems, viewingStepKey, furthestStepIndex, activeReference, sideMenuOpen,
       viewStep, viewReference, nextStep, goNext,
       activeContentKey, activeContentUrl, activeContentDownloadUrl, activeContentDownloadName,
       headings, scrollToCell, referenceLabel,
@@ -191,44 +208,118 @@ export default {
 
 <style scoped>
 .tour-stepper {
-  margin-top: 16px;
+  margin-top: 8px;
 }
 
-.tour-tabs {
+.tour-header {
   display: flex;
-  gap: 0;
-  border-bottom: 2px solid #dee2e6;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tour-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.92em;
+}
+
+.breadcrumb-link {
+  background: transparent;
+  border: none;
+  color: #7c5a94;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 2px 4px;
+}
+.breadcrumb-link:hover { color: var(--primary-purple, #4a2274); text-decoration: underline; }
+.breadcrumb-sep { color: #c4b5d0; }
+
+.side-menu-toggle {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 0.82em;
+  cursor: pointer;
+  color: #555;
+  white-space: nowrap;
+}
+.side-menu-toggle:hover { background: #efe3f6; border-color: #d9c7ea; }
+
+/* ── Fortschritts-Leiste (Kullern + Linien) ─────────────────────────────── */
+.progress-stepper {
+  display: flex;
+  align-items: flex-start;
+  margin: 18px 0 8px;
   overflow-x: auto;
   scrollbar-width: none;
 }
-.tour-tabs::-webkit-scrollbar { display: none; }
+.progress-stepper::-webkit-scrollbar { display: none; }
 
-.tour-tab {
+.stepper-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0 4px;
+  min-width: 64px;
+}
+
+.stepper-dot {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  gap: 5px;
-  padding: 10px 16px;
-  border: none;
-  border-bottom: 3px solid transparent;
-  background: transparent;
-  cursor: pointer;
-  font-size: 0.88em;
-  font-weight: 500;
-  color: #666;
-  white-space: nowrap;
-  transition: all 0.18s ease;
-  margin-bottom: -2px;
-}
-
-.tour-tab:hover { color: #333; background: #f8f9fa; }
-.tour-tab.reached { color: var(--primary-purple, #4a2274); }
-.tour-tab.active {
-  color: var(--accent-orange, #ff9800);
-  border-bottom-color: var(--accent-orange, #ff9800);
+  justify-content: center;
+  border: 2px solid #d1d5db;
+  background: white;
+  color: #9ca3af;
   font-weight: 700;
-  background: #fff8ec;
+  font-size: 0.9em;
+  transition: all 0.15s ease;
 }
 
+.stepper-step.done .stepper-dot {
+  background: var(--primary-purple, #4a2274);
+  border-color: var(--primary-purple, #4a2274);
+  color: white;
+}
+
+.stepper-step.current .stepper-dot {
+  background: var(--accent-orange, #ff9800);
+  border-color: var(--accent-orange, #ff9800);
+  color: white;
+  box-shadow: 0 0 0 4px #fff3e0;
+}
+
+.stepper-label {
+  font-size: 0.78em;
+  color: #6b7280;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.stepper-step.done .stepper-label { color: var(--primary-purple, #4a2274); }
+.stepper-step.current .stepper-label { color: var(--accent-orange, #ff9800); font-weight: 700; }
+
+.stepper-line {
+  flex: 1;
+  height: 3px;
+  background: #e5e7eb;
+  margin-top: 17px;
+  min-width: 20px;
+}
+.stepper-line.done { background: var(--primary-purple, #4a2274); }
+
+/* ── Inhalt ──────────────────────────────────────────────────────────────── */
 .tour-body {
   display: flex;
   gap: 24px;

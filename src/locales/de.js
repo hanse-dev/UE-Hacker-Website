@@ -276,5 +276,7 @@ export default {
   'tour.sideMenu.steps':   'Diese Woche',
   'tour.sideMenu.sections':'Abschnitte',
   'tour.sideMenu.reference':'Nachschlagewerke',
+  'tour.sideMenu.show':    'Menü',
+  'tour.sideMenu.hide':    'Menü',
   'tour.loading':          'Lade Kursinhalte...',
 };

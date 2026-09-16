@@ -276,5 +276,7 @@ export default {
   'tour.sideMenu.steps':   'This week',
   'tour.sideMenu.sections':'Sections',
   'tour.sideMenu.reference':'Reference',
+  'tour.sideMenu.show':    'Menu',
+  'tour.sideMenu.hide':    'Menu',
   'tour.loading':          'Loading course content...',
 };
