@@ -1,72 +1,9 @@
 # Todo
 
 ## Now
-### Wochen-Tour ist jetzt die echte 12-Wochen-Kursseite (Branch `experiment-wochen-tour`)
-- [x] **Produktiv gemacht:** war zunächst nur eine unverlinkte Experimentseite unter
-      `/experiment/wochen-tour` neben dem alten Akkordeon-Kurs — dem Nutzer hat sie gefallen, jetzt
-      ersetzt sie `/kurs/python-12-wochen-grundkurs` vollständig. Dateien von "Experiment" zu echtem
-      Code befördert (`src/views/experiment/WeekTourView.vue` → `src/components/WeekTour.vue`,
-      analog `WeekTourStepper.vue`/`WeekTourSideMenu.vue`/`useNotebookHeadings.js` aus dem
-      `experiment/`-Unterordner raus), Route `/experiment/wochen-tour` entfernt.
-      `CourseDetail.vue` rendert `<WeekTour />` statt `<WeekSection v-for>` + `<FortschrittWidget>`
-      (Kursbeschreibung/Einstufungs-Banner/Notebook-Pack-Download/Cäsar-Chiffre-Banner bleiben als
-      Chrome davor erhalten, Kursaufbau-Erklärbox inhaltlich neu geschrieben für den neuen Ablauf).
-- [x] Cheat-Sheets (Wissens- + Turtle-Cheat-Sheet) als weitere "Nachschlagewerke"-Einträge neben
-      Glossar/Lösungen in die Tour übernommen (kein `renderUrl`, sondern fertig gerendertes
-      Markdown-HTML — eigener Content-Zweig in `WeekTourStepper.vue`), Wochen-ZIP-Download auf die
-      Themen-Wahl-Seite verschoben — kein Feature-Verlust ggü. der alten Seite.
-- [x] Bestehende Deep-Links von außen (`PlacementCourse.vue`, 4 Cäsar-Chiffre-Lektionen) nutzen
-      weiterhin das alte `?week=N&tab=lektion`-Schema — **unverändert gelassen**, die Tour übersetzt
-      das beim Laden intern (`TAB_TO_STEP`-Map in `WeekTour.vue`) und landet mangels `variant`-Param
-      korrekt auf der Themen-Wahl-Seite der richtigen Woche.
-- [x] Tote alte UI entfernt: `WeekSection.vue`, `MissionenPanel.vue`, `VariantSelector.vue`,
-      `CheatSheetList.vue` + deren exklusive Locale-Keys (`tab.*.desc`, `mission.*`,
-      `week.noNotebook`/`week.downloads`).
-- [x] Test-Migration: 42 von 59 Tests in 6 Dateien hingen an der alten UI-Struktur (per
-      Explore-Recherche ermittelt) — alle auf die neue Struktur portiert (`?week=&tab=` →
-      `?week=&variant=&step=`, `.tab-btn.active` → `.stepper-step.current`, Akkordeon-Klick-Helper
-      in `storytelling-content.spec.js`/`notebooks.spec.js` durch direkte URL-Navigation ersetzt).
-      Ein Test (`Missionen-Panel lässt sich aufklappen`) entfiel ersatzlos (testete exakt das
-      entfernte Widget), einer wurde inhaltlich vereinfacht. `notebooks.spec.js` deckt jetzt zu
-      Wochen 1/6/12 × 3 Varianten zusätzlich die Verzweigung und alle Nachschlagewerke ab (vorher
-      nur Tab-Klicks). Eigener Tour-Test von `tests/experiment-wochen-tour.spec.js` nach
-      `tests/wochen-tour.spec.js` umbenannt und auf die echte Kurs-URL umgestellt (testete sonst die
-      jetzt nicht mehr existierende Experiment-Route weiter).
-**Ursprüngliche Tour-Funktionen (unverändert aus der Experiment-Phase, jetzt einfach live):**
-- [x] Kein Missionen-Punkte-Widget (`MissionenPanel.vue`) in der Tour — die Missionen-Aufgaben
-      selbst sind aber ganz normaler Tour-Schritt.
-- [x] Nach den Missionen keine automatische Weiterschaltung mehr, sondern eine Wahl-Kachel-Seite
-      zwischen "Extra-Herausforderung" (ehemals Boss-Quest, nur hier umbenannt) und "Check" — beide
-      führen letztlich zum Check, die Extra-Herausforderung bleibt aber optional/überspringbar
-      (ihr Punkt in der Fortschritts-Leiste bleibt dann bewusst "nicht besucht", nicht fälschlich
-      abgehakt).
-- [x] Nach bestandenem Check (Quiz + beide Coding-Aufgaben) erscheint ein Zertifikat-Reveal direkt
-      in der Tour (Name-Feld + PDF-Download bei Login, wiederverwendet `useCertificatePdf.js`).
-      Die Wahl "Zur Übersicht"/"Nächste Woche" danach (fällt auf die erste verfügbare Variante
-      zurück, falls die aktuelle in der nächsten Woche fehlt; bei Woche 12 gibt es nur noch
-      "Zur Übersicht") ist **immer** verfügbar, sobald man den Check-Schritt erreicht — nicht erst
-      nach bestandenem Check (Nutzer-Feedback: sonst steckt man ohne Zertifikat in der Woche fest).
-      "Nächste Woche" scrollt außerdem zurück zum Anfang der Lektion (nicht zum obersten
-      Seitenrand — Kursbeschreibung/Banner stehen ja weiterhin darüber; erster Versuch mit
-      `window.scrollTo(0)` landete dort, Nutzer-Feedback: sollte direkt zur Lektion springen).
-- [x] Wochen-Übersicht: jede Kachel bekommt ein Themen-Icon (technisches Wochenthema, variantenlos)
-      plus ein 🎓-Abzeichen sobald das Zertifikat der Woche verdient ist, ein Zähler oben, und ein
-      Link zu einer neuen "Meine Zertifikate"-Seite (wiederverwendet `FortschrittWidget.vue` direkt
-      statt eines eigenen Rasters). Die Kacheln sind per dünner gestrichelter Linie verbunden wie
-      "Inseln", die man der Reihe nach bereist (SVG-Pfad, Zentren der Kacheln per
-      `getBoundingClientRect()` verbunden, reagiert per `ResizeObserver` auf Größenänderungen).
-- [x] Kleines Seitenmenü: Tour-Schritte zum Springen + Unterabschnitte des aktuellen Schritts
-      (z.B. Bug 1/2/3, Mission 1/2/3, aus den `##`/`###`-Überschriften der Notebook-Zellen
-      extrahiert) + Glossar/Lösungen als jederzeit verfügbares Nachschlagewerk (kein Tour-Schritt,
-      kein Gating).
-- [x] `FortschrittWidget.vue` bekam einen neuen optionalen `startExpanded`-Prop (Default `false`,
-      bestehende Nutzung in `CourseDetail.vue` unverändert) — auf der neuen Zertifikate-Seite direkt
-      aufgeklappt statt erst einklappen zu müssen.
-- [x] `tests/wochen-tour.spec.js` (11 Tests, inkl. echtem Bestehen von Woche 1s
-      Quiz+Coding-Aufgaben) + volle `npm test`-Suite (76 Tests) + `npm run test:auth` (13 Tests)
-      grün — deckt auch die eine additive Änderung an der geteilten `JupyterNotebook.vue`
-      (Zell-`id` fürs Scroll-Ziel des Seitenmenüs) ab.
-- Details/Architektur-Entscheidungen: Plan-Datei `~/.claude/plans/twinkly-strolling-lovelace.md`.
+
+*(Nichts aktuell offen — Branch `experiment-wochen-tour` ist gemergt, siehe "Fertige Branches"
+unten. Server-Deploy steht noch aus, siehe HANDOFF.md Abschnitt 5 "Betrieb".)*
 
 ### 12-Wochen-Kurs: Zellen-Format-Umstellung (Branch `12-wochen-kurs-zellen-format`)
 - [x] Alle 432 Notebooks (3 Varianten × 12 Wochen × 6 Typen × DE/EN) vom `.ipynb`-Format auf
@@ -363,6 +300,15 @@ und Server-Deploy bewusst zurückgestellt (siehe HANDOFF.md).
       CodeChallenge.vue (`editor.*`) analog zum CSS-Konsolidierungs-Muster aus Schritt 2. Per
       Playwright auf Englisch durchgeklickt (Automatiktests laufen überwiegend auf Deutsch). Damit
       ist der komplette Refactoring-Plan (Schritte 1-6) abgeschlossen.
+- [x] `experiment-wochen-tour` (HANDOFF.md 3.35+3.36, gemergt) — begann als unverlinktes Experiment
+      (Kachel-Auswahl Woche→Thema, Fortschritts-Leiste, Verzweigung Missionen→Extra-Herausforderung/
+      Check, Zertifikat-Reveal, Wochen-Übersicht mit Themen-Icons + verbindendem Pfad), wurde nach
+      Nutzer-Feedback zur **echten** Kursseite unter `/kurs/python-12-wochen-grundkurs` — alte
+      Akkordeon-UI (`WeekSection.vue`, `MissionenPanel.vue`, `VariantSelector.vue`,
+      `CheatSheetList.vue`) entfernt, 42 von 59 betroffene Tests in 6 Dateien portiert. Cheat-Sheets
+      + Wochen-ZIP-Download mit übernommen, alte `?week=&tab=`-Deep-Links (Einstufung,
+      Cäsar-Chiffre) funktionieren unverändert weiter (intern übersetzt). Details: Plan-Datei
+      `~/.claude/plans/twinkly-strolling-lovelace.md`.
 
 ---
 

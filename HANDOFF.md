@@ -1,13 +1,12 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-09-16  
-> **Aktueller Stand:** `main` ist auf `origin/main` gepusht. Der 12-Wochen-Kurs läuft jetzt komplett
-> über das neue Zellen-Format statt `.ipynb` (3.33), Branch `wochencheck-variablen-validierung`
-> (3.34, Fix gegen Hardcoding bei Coding-Aufgaben) ist ebenfalls gemergt. Offen: Branch
-> `experiment-wochen-tour` (3.35+3.36) — was als unverlinktes Experiment begann, ist jetzt die
-> **echte** Kursseite unter `/kurs/python-12-wochen-grundkurs` (alte Akkordeon-UI `WeekSection.vue`
-> + Co. entfernt) — lokal fertig/getestet (volle Suite grün: `npm test` 76, `npm run test:auth`
-> 13), noch nicht gemergt.
+> **Aktueller Stand:** `main` ist auf `origin/main` gepusht, inkl. Branch `experiment-wochen-tour`
+> (3.35+3.36, gemergt) — was als unverlinktes Experiment begann, ist jetzt die **echte** Kursseite
+> unter `/kurs/python-12-wochen-grundkurs` (alte Akkordeon-UI `WeekSection.vue` + Co. entfernt),
+> volle Suite grün (`npm test` 77, `npm run test:auth` 13). **Server-Deploy steht noch aus** —
+> Code ist auf GitHub, aber noch nicht auf dem Produktions-Server ausgerollt (siehe Abschnitt 4
+> "Betrieb" für die manuellen Schritte, Nutzer deployt selbst).
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -1385,18 +1384,18 @@ content/python-checks/config.json, week-{N}.json, index.mjs (Node-Loader für Te
 
 Siehe auch `todo.md`.
 
-**Aktuell (3.36):**
-- [ ] Branch `experiment-wochen-tour` — Wochen-Tour ist jetzt die echte Kursseite unter
-      `/kurs/python-12-wochen-grundkurs` (alte Akkordeon-UI entfernt), lokal fertig/getestet (volle
-      Suite grün), noch **nicht nach `main` gemergt**. Offene Kleinigkeiten für später: keine
-      `localStorage`-Persistenz von Woche/Variante/Schritt (Reload startet auf der Wochen-Übersicht
-      neu), keine Schritt-Sperrung (alle Kullern frei anklickbar, bewusst so belassen).
+**Aktuell (3.36):** Branch `experiment-wochen-tour` ist gemergt und gepusht, keine offenen
+Code-Punkte. Kleinigkeiten bewusst zurückgestellt: keine `localStorage`-Persistenz von
+Woche/Variante/Schritt (Reload startet auf der Wochen-Übersicht neu), keine Schritt-Sperrung (alle
+Kullern frei anklickbar).
 
 **Betrieb**
-- [ ] Server-Deploy final verifizieren (Service `app`, Orphans weg, Health, Admin-Login, kein
-      Notebook-Blinken mehr nach PR #3) — **bewusst zurückgestellt**, Nutzer will erst später
-      deployen. Dabei auch die `build:cells`-Pipeline prüfen — `npm run build` muss `build:cells`
-      vor `pack:notebooks` laufen lassen, sonst fehlen `_generated`/`_bundle` im Produktions-Build
+- [ ] Server-Deploy: Code ist auf `origin/main`, aber noch nicht auf dem Produktions-Server
+      ausgerollt — Nutzer deployt selbst (`git pull` + `docker compose up -d --build app` auf dem
+      Server, siehe Abschnitt 4). Dabei auch die `build:cells`-Pipeline prüfen — `npm run build`
+      muss `build:cells` vor `pack:notebooks` laufen lassen, sonst fehlen `_generated`/`_bundle`
+      im Produktions-Build. Danach im Browser gegenprüfen: `/kurs/python-12-wochen-grundkurs`
+      zeigt die neue Wochen-Tour (nicht mehr die alte Akkordeon-Seite).
 - [x] SQLite-Backup-Script (`api/src/scripts/backup-db.js`) — siehe Abschnitt 4. Externe
       Sicherung der Backups (z.B. `rsync`/`rclone` auf einen anderen Host) bewusst nicht mitgebaut,
       hängt von der jeweiligen Server-Infrastruktur ab. Auf dem Server noch einzurichten (Cron o.ä.).
@@ -1528,9 +1527,9 @@ nötig, falls es dazu kommt — der bestehende `t()`-Mechanismus reicht.
    umschreiben — funktionieren bewusst unverändert weiter, `WeekTour.vue` übersetzt intern (3.36)
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
-**Empfohlener nächster Schritt:** Branch `experiment-wochen-tour` (3.35+3.36) ist lokal fertig und
-voll getestet (Wochen-Tour ist jetzt die echte Kursseite) — bereit für PR/Merge nach `main`, sobald
-der Nutzer grünes Licht gibt. Danach: Curriculum-Lücken-Plan
+**Empfohlener nächster Schritt:** Branch `experiment-wochen-tour` (3.35+3.36) ist gemergt und
+gepusht (Wochen-Tour ist jetzt die echte Kursseite) — offen ist nur noch der eigentliche
+Server-Deploy (siehe Abschnitt 5 "Betrieb", Nutzer macht das selbst). Danach: Curriculum-Lücken-Plan
 (`~/.claude/plans/joyful-wishing-piglet.md`) war bis auf `woche12-interaktivitaet` fertig (durch
 den Turtle-Shim entblockt). Falls stattdessen ein neues Kursthema begonnen werden soll:
 `kurs-python-spiele` (Spiele-Werkstatt-Inhalte, bereits begonnen) ist der nächstliegende Kandidat —
