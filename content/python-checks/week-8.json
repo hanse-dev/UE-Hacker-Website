@@ -306,7 +306,12 @@
       "codeTemplate": "",
       "validation": {
         "type": "output_contains",
-        "expected": "Alex"
+        "expected": "Alex",
+        "variables": {
+          "person": {
+            "name": "Alex"
+          }
+        }
       }
     },
     {
@@ -315,7 +320,13 @@
       "codeTemplate": "",
       "validation": {
         "type": "output_contains",
-        "expected": "Mia hat die Note 2"
+        "expected": "Mia hat die Note 2",
+        "variables": {
+          "schueler": {
+            "name": "Mia",
+            "note": 2
+          }
+        }
       }
     }
   ]

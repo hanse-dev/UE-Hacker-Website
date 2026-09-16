@@ -310,7 +310,10 @@
       "codeTemplate": "",
       "validation": {
         "type": "output_contains",
-        "expected": "Ich bin 10 Jahre alt"
+        "expected": "Ich bin 10 Jahre alt",
+        "variables": {
+          "alter": 10
+        }
       }
     }
   ]

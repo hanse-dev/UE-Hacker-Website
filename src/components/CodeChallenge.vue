@@ -44,6 +44,15 @@ import { useWeekChecks, loadWeekChecks } from '../composables/useWeekChecks';
 import { validateOutput } from '../composables/useTaskValidation';
 import { useLanguage } from '../composables/useLanguage';
 
+// Skalare (str/int/float/bool) kommen von Pyodide schon als JS-Wert. Komplexere Werte (z.B. ein
+// dict oder ein Funktions-Rueckgabewert) sind ein PyProxy - fuer den Vergleich in ein einfaches
+// JS-Objekt umwandeln (dict_converter: Object.fromEntries statt der Standard-Map).
+function toPlainJs(raw) {
+  return (raw && typeof raw.toJs === 'function')
+    ? raw.toJs({ dict_converter: Object.fromEntries })
+    : raw;
+}
+
 export default {
   name: 'CodeChallenge',
   props: {
@@ -53,7 +62,7 @@ export default {
   },
   setup(props) {
     const { lang, t } = useLanguage();
-    const { kernelReady, kernelStatus, initializeKernel, runPython } = usePyodide();
+    const { kernelReady, kernelStatus, initializeKernel, runPython, pyodideRef } = usePyodide();
     const { markCodingPassed, isCodingChallengePassed } = useWeekChecks();
 
     const challenge = ref(null);
@@ -108,6 +117,19 @@ export default {
       if (!kernelReady.value) return;
       checking.value = true;
       feedback.value = null;
+
+      // Variablen/Funktionen aus einem frueheren Lauf (gleicher, geteilter Pyodide-Namespace)
+      // vor dem Ausfuehren entfernen - sonst koennte ein alter Wert/eine alte Definition eine
+      // Pruefung faelschlich bestehen lassen, obwohl der aktuelle Code sie gar nicht (mehr) setzt.
+      const requiredVars = Object.keys(challenge.value?.validation?.variables || {});
+      const functionCalls = challenge.value?.validation?.functionCalls || [];
+      const requiredFns = [...new Set(functionCalls.map((c) => c.name))];
+      [...requiredVars, ...requiredFns].forEach((name) => {
+        // .delete() wirft, wenn der Name noch nie gesetzt wurde (erster Versuch) - das ist
+        // hier der Normalfall, nicht abfangen wuerde checkCode() vorzeitig abbrechen.
+        try { pyodideRef.value?.globals.delete(name); } catch { /* existierte noch nicht */ }
+      });
+
       const result = await runPython(code.value);
 
       if (!result.success) {
@@ -118,7 +140,30 @@ export default {
       }
       output.value = result.output || t('jupyter.noOutput');
 
-      const valid = validateOutput(result.output, challenge.value?.validation);
+      const actualVars = {};
+      requiredVars.forEach((name) => {
+        actualVars[name] = toPlainJs(pyodideRef.value?.globals.get(name));
+      });
+
+      const functionResults = functionCalls.map(({ name, args, expected }) => {
+        const fn = pyodideRef.value?.globals.get(name);
+        if (typeof fn !== 'function') return { expected, error: true };
+        try {
+          // Defensiv: der AST-Loop-Guard (usePyodide.js) injiziert Deadline-Checks in jede
+          // Schleife der eingereichten Zelle, auch in Funktionskoerpern. Die Deadline-Variable
+          // wird nach dem urspruenglichen Lauf wieder geloescht - ohne diese Zeile wuerde der
+          // Aufruf einer Funktion mit eigener Schleife hier mit NameError abstuerzen.
+          pyodideRef.value.globals.set('__cell_deadline__', Date.now() / 1000 + 5);
+          const actual = toPlainJs(fn(...args));
+          return { expected, actual };
+        } catch {
+          return { expected, error: true };
+        } finally {
+          try { pyodideRef.value?.globals.delete('__cell_deadline__'); } catch { /* ignore */ }
+        }
+      });
+
+      const valid = validateOutput(result.output, challenge.value?.validation, actualVars, functionResults);
       if (valid) {
         markCodingPassed(props.weekNumber, props.challengeIndex);
         feedback.value = {

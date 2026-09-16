@@ -315,7 +315,11 @@
       "codeTemplate": "",
       "validation": {
         "type": "output_contains",
-        "expected": "12"
+        "expected": "12",
+        "variables": {
+          "zahl1": 12,
+          "zahl2": 7
+        }
       }
     }
   ]

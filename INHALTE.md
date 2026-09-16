@@ -238,6 +238,16 @@ Jeder Ordner enthält dieselben Dateien:
       steht separat in `content/python-checks/config.json`. Seit dem `weeks-json-splitten`-Refactor
       **eine Datei pro Woche** statt einer gemeinsamen `weeks.json` — beim Zusammenführen zur Laufzeit
       siehe `useWeekChecks.js` (Browser/Vite) bzw. `content/python-checks/index.mjs` (Tests/Node).
+      `codingChallenges[].validation` kann neben `type`/`expected` (Ausgabe-Prüfung) optional ein
+      `variables`-Feld haben (`{name: erwarteterWert}`) — prüft zusätzlich echte Variablenwerte im
+      Python-Namespace nach der Ausführung, damit eine Aufgabe nicht durch bloßes Ausgeben des
+      erwarteten Texts ohne die geforderten Variablen umgangen werden kann. Nur für Aufgaben nötig,
+      bei denen das Anlegen bestimmter Variablen selbst Teil der Aufgabe ist. `variables` unterstützt
+      auch verschachtelte Werte (z.B. `{"person": {"name": "Alex"}}"` für ein Dictionary).
+      Für Funktionsaufgaben gibt es analog ein optionales `functionCalls`-Feld
+      (`[{name, args, expected}, …]`) — ruft die geforderte Funktion nach der Ausführung mit einem
+      in der Aufgabenstellung nie genannten Eingabewert erneut auf und prüft das Ergebnis. Deckt
+      auch auf, wenn eine Funktion nur zufällig für das eine vorgerechnete Beispiel stimmt.
 
 ### Wenn du Kurs-Metadaten (Titel, Beschreibung) änderst:
 - [ ] `public/kurse.json` (Felder `title`, `title_en`, `description`, `description_en`)

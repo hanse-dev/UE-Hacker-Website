@@ -1,6 +1,44 @@
 # Todo
 
 ## Now
+### Wochen-Check: Variablen-Validierung (Branch `wochencheck-variablen-validierung`)
+- [x] Lücke gefunden: Coding-Aufgaben, die das Anlegen bestimmter Variablen verlangen (z.B.
+      "Erstelle eine Variable name..."), ließen sich durch bloßes Hart-Codieren der erwarteten
+      Textausgabe umgehen — die Prüfung schaute nur auf `stdout`, nie auf den Programmzustand.
+- [x] Neuer optionaler `variables`-Block in `validation` (`useTaskValidation.js`): prüft nach der
+      Ausführung echte Werte im Pyodide-Namespace (`pyodide.globals.get(name)`), zusätzlich zur
+      bestehenden Ausgabe-Prüfung. `CodeChallenge.vue` löscht die betroffenen Variablennamen vor
+      jedem Lauf aus dem (geteilten) Namespace, damit ein alter Wert aus einem früheren Versuch
+      nicht fälschlich als "bestanden" durchgeht.
+- [x] Alle 24 Coding-Aufgaben (12 Wochen × 2) durchgesehen: 5 verlangen explizit benannte
+      Variablen und sind jetzt mit `variables` abgesichert — Woche 1 "Nova"/`level`, Woche 2
+      "alter", Woche 3 "zahl1"/"zahl2", Woche 8 "person"/"schueler" (verschachteltes Dictionary,
+      siehe unten). Restliche Aufgaben verlangen keine benannte Variable in der Aufgabenstellung,
+      daher (noch) kein Fix dafür — siehe Plan für Kategorie B/C unten bzw. `todo.md`-Eintrag.
+- [x] `variables` unterstützt jetzt auch verschachtelte Werte (Dictionaries): erwarteter Wert als
+      Objekt (`{"person": {"name": "Alex"}}`) statt Skalar → `CodeChallenge.vue` wandelt den
+      Pyodide-PyProxy-Rückgabewert per `.toJs({dict_converter: Object.fromEntries})` in ein
+      normales JS-Objekt um, `useTaskValidation.js`s `valuesMatch()` vergleicht rekursiv.
+- [x] Neue Tests in `tests/zertifikate.spec.js`: hart kodierte Ausgabe ohne die Variablen (Woche 1)
+      bzw. ohne das Dictionary (Woche 8) schlägt fehl, dieselbe Aufgabe mit echter Lösung besteht
+      weiterhin. Woche 3 manuell verifiziert (gleicher Skalar-Mechanismus wie Woche 1, kein
+      zusätzlicher automatisierter Test nötig).
+- **Bewusst nicht angefasst:** der interaktive Kurs (`LessonView.vue`) nutzt dieselbe
+  `validateOutput()`-Funktion, hat aber keine Aufgabe, die das Anlegen bestimmter Variablen
+  verlangt — daher keine Content-Änderung dort nötig, die neue Prüfung steht dort aber genauso
+  zur Verfügung, falls später gebraucht.
+- [x] **Kategorie B (Funktionsaufgaben):** Woche 5 (`verdopple`, `addiere`) ließ sich mit dem
+      `variables`-Mechanismus nicht sauber fixen, da nur der eine vorgerechnete Aufruf geprüft
+      würde. Neues optionales `functionCalls`-Feld (`[{name, args, expected}]`): ruft die
+      Funktion nach der Ausführung erneut mit einem in der Aufgabenstellung nie genannten Wert
+      auf (`verdopple(10)` statt nur `verdopple(6)`) — deckt auch auf, wenn eine Funktion nur
+      zufällig für das eine Beispiel stimmt (z.B. `zahl + 6` statt `zahl * 2`, beide ergeben 12
+      für `verdopple(6)`, aber nur `*2` stimmt auch für `verdopple(10) == 20`). Getestet: genau
+      dieser "zufällig richtig"-Fall schlägt jetzt fehl, echte Lösung besteht weiterhin (beide
+      Woche-5-Aufgaben).
+- **Kategorie C (Modul-Import-Check, Woche 7/12) und AST-Analyse für den Rest — zurückgestellt,**
+  siehe HANDOFF.md 3.34.
+
 ### 12-Wochen-Kurs: Zellen-Format-Umstellung (Branch `12-wochen-kurs-zellen-format`)
 - [x] Alle 432 Notebooks (3 Varianten × 12 Wochen × 6 Typen × DE/EN) vom `.ipynb`-Format auf
       Zellen-Ordner (`NN_markdown.py`/`NN_code.py`) migriert, byte-exakt gegen `git HEAD`
