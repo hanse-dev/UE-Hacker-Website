@@ -70,50 +70,40 @@ test.describe('Wochen-Zertifikate', () => {
   });
 
   test('Missionen allein reichen nicht — Zertifikat braucht den Wochen-Check', async ({ page }) => {
-    test.setTimeout(60000);
-    await page.goto(`${COURSE_URL}?week=1&tab=lektion#woche-1`);
-    const week = page.locator('#woche-1');
-    await expect(week.locator('.week-content')).toBeVisible({ timeout: 20000 });
-
-    await week.locator('.missionen-panel-header').click();
-    const missionItems = week.locator('.mission-item');
-    await expect(missionItems.first()).toBeVisible({ timeout: 10000 });
-    const missionCount = await missionItems.count();
-    expect(missionCount).toBe(6);
-    for (let i = 0; i < missionCount; i++) {
-      await missionItems.nth(i).locator('.btn-claim').click();
-    }
-
-    await expect(week.locator('.certificate-earned')).toHaveCount(0);
+    // Die alte MissionenPanel-Klickkette (Missionen abhaken) gibt es nicht mehr - in der Tour
+    // sind Missionen ein reiner Inhalts-Schritt ohne "Erledigt"-Mechanik, die irgendetwas
+    // freischalten könnte. Der Kern des Tests bleibt: Missionen allein lösen kein Zertifikat aus.
+    await page.goto(`${COURSE_URL}?week=1&variant=abenteuer&step=3_missionen`);
+    await expect(page.locator('.tour-content .cell-markdown').first()).toBeVisible({ timeout: 20000 });
+    await expect(page.locator('.certificate-reveal')).toHaveCount(0);
   });
 
   test('Nur Quiz ohne beide Coding-Aufgaben reicht nicht', async ({ page }) => {
     test.setTimeout(60000);
-    await page.goto(`${COURSE_URL}?week=1&tab=check#woche-1`);
-    const week = page.locator('#woche-1');
+    await page.goto(`${COURSE_URL}?week=1&variant=abenteuer&step=4_check`);
+    const week = page;
     await expect(week.locator('.week-check-panel')).toBeVisible({ timeout: 20000 });
     await passWeek1Quiz(week);
     await passCodingChallenge(week, 0, 'print("Level 1 geschafft!")');
 
-    await expect(week.locator('.certificate-earned')).toHaveCount(0);
+    await expect(week.locator('.certificate-reveal')).toHaveCount(0);
   });
 
   test('Quiz + beide Coding-Aufgaben (ohne Missionen) → Zertifikat wird verliehen', async ({ page }) => {
     test.setTimeout(90000);
-    await page.goto(`${COURSE_URL}?week=1&tab=check#woche-1`);
-    const week = page.locator('#woche-1');
+    await page.goto(`${COURSE_URL}?week=1&variant=abenteuer&step=4_check`);
+    const week = page;
     await expect(week.locator('.week-check-panel')).toBeVisible({ timeout: 20000 });
     await passWeek1Quiz(week);
     await passWeek1CodingChallenges(week);
 
-    await week.locator('.missionen-panel-header').click();
-    await expect(week.locator('.certificate-earned')).toBeVisible({ timeout: 5000 });
+    await expect(week.locator('.certificate-reveal')).toBeVisible({ timeout: 5000 });
   });
 
   test('Coding-Aufgabe: falsche Ausgabe zeigt Fehler-Feedback, keine Bestanden-Markierung', async ({ page }) => {
     test.setTimeout(60000);
-    await page.goto(`${COURSE_URL}?week=1&tab=check#woche-1`);
-    const week = page.locator('#woche-1');
+    await page.goto(`${COURSE_URL}?week=1&variant=abenteuer&step=4_check`);
+    const week = page;
     const challenge = week.locator('.code-challenge[data-challenge-index="0"]');
     await expect(challenge).toBeVisible({ timeout: 20000 });
     await expect(challenge.locator('.btn-check')).toBeEnabled({ timeout: 40000 });
@@ -126,8 +116,8 @@ test.describe('Wochen-Zertifikate', () => {
 
   test('Coding-Aufgabe: erwartete Variablen fehlen trotz passender Textausgabe → nicht bestanden', async ({ page }) => {
     test.setTimeout(60000);
-    await page.goto(`${COURSE_URL}?week=1&tab=check#woche-1`);
-    const week = page.locator('#woche-1');
+    await page.goto(`${COURSE_URL}?week=1&variant=abenteuer&step=4_check`);
+    const week = page;
     const challenge = week.locator('.code-challenge[data-challenge-index="1"]');
     await expect(challenge).toBeVisible({ timeout: 20000 });
     await expect(challenge.locator('.btn-check')).toBeEnabled({ timeout: 40000 });
@@ -149,8 +139,8 @@ test.describe('Wochen-Zertifikate', () => {
 
   test('Coding-Aufgabe: verlangtes Dictionary fehlt trotz passender Textausgabe → nicht bestanden', async ({ page }) => {
     test.setTimeout(60000);
-    await page.goto(`${COURSE_URL}?week=8&tab=check#woche-8`);
-    const week = page.locator('#woche-8');
+    await page.goto(`${COURSE_URL}?week=8&variant=abenteuer&step=4_check`);
+    const week = page;
     const challenge = week.locator('.code-challenge[data-challenge-index="0"]');
     await expect(challenge).toBeVisible({ timeout: 20000 });
     await expect(challenge.locator('.btn-check')).toBeEnabled({ timeout: 40000 });
@@ -169,8 +159,8 @@ test.describe('Wochen-Zertifikate', () => {
 
   test('Coding-Aufgabe: Funktion, die nur zufällig für das Beispiel stimmt → nicht bestanden', async ({ page }) => {
     test.setTimeout(60000);
-    await page.goto(`${COURSE_URL}?week=5&tab=check#woche-5`);
-    const week = page.locator('#woche-5');
+    await page.goto(`${COURSE_URL}?week=5&variant=abenteuer&step=4_check`);
+    const week = page;
     const challenge = week.locator('.code-challenge[data-challenge-index="0"]');
     await expect(challenge).toBeVisible({ timeout: 20000 });
     await expect(challenge.locator('.btn-check')).toBeEnabled({ timeout: 40000 });
@@ -196,8 +186,8 @@ test.describe('Wochen-Zertifikate', () => {
 
   test('Coding-Aufgabe: zweite Funktionsaufgabe (addiere) besteht mit echter Lösung', async ({ page }) => {
     test.setTimeout(60000);
-    await page.goto(`${COURSE_URL}?week=5&tab=check#woche-5`);
-    const week = page.locator('#woche-5');
+    await page.goto(`${COURSE_URL}?week=5&variant=abenteuer&step=4_check`);
+    const week = page;
     const challenge = week.locator('.code-challenge[data-challenge-index="1"]');
     await expect(challenge).toBeVisible({ timeout: 20000 });
     await expect(challenge.locator('.btn-check')).toBeEnabled({ timeout: 40000 });
@@ -220,11 +210,11 @@ test.describe('Wochen-Zertifikate', () => {
       }));
     });
 
-    await page.goto(`${COURSE_URL}?week=1&tab=lektion#woche-1`);
-    await expect(page.locator('.week-content').first()).toBeVisible({ timeout: 20000 });
-
-    await page.locator('.fortschritt-widget-header').click();
-    await page.locator('.fortschritt-weekly-header').click();
+    await page.goto(COURSE_URL);
+    await expect(page.locator('.certificates-link')).toBeVisible({ timeout: 20000 });
+    await page.locator('.certificates-link').click();
+    // "Meine Zertifikate" startet mit start-expanded bereits aufgeklappt - kein Klick auf
+    // .fortschritt-widget-header/.fortschritt-weekly-header mehr nötig.
 
     const week1Card = page.locator('.certificate-card').first();
     await expect(week1Card).toHaveClass(/earned/);
@@ -243,11 +233,9 @@ test.describe('Wochen-Zertifikate', () => {
       }));
     });
 
-    await page.goto(`${COURSE_URL}?week=1&tab=lektion#woche-1`);
-    await expect(page.locator('.week-content').first()).toBeVisible({ timeout: 20000 });
-
-    await page.locator('.fortschritt-widget-header').click();
-    await page.locator('.fortschritt-weekly-header').click();
+    await page.goto(COURSE_URL);
+    await expect(page.locator('.certificates-link')).toBeVisible({ timeout: 20000 });
+    await page.locator('.certificates-link').click();
 
     const week1Card = page.locator('.certificate-card').first();
     await expect(week1Card).toHaveClass(/earned/);

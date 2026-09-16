@@ -6,22 +6,20 @@ import { test, expect } from '@playwright/test';
 
 const COURSE_URL = '/kurs/python-12-wochen-grundkurs';
 
-async function openWeek(page, weekIndex) {
-  const week = page.locator('.week-section').nth(weekIndex);
-  // Alle Wochen (inkl. Woche 1) starten zugeklappt — immer aufklappen.
-  await week.locator('.week-header').click();
-  await week.locator('.cell').first().waitFor({ state: 'visible', timeout: 8000 });
-  return week;
-}
+const VARIANT_KEY = { Pferde: 'pferde', Abenteuer: 'abenteuer', 'Sci-Fi': 'scifi' };
+const STEP_KEY = {
+  Lektion: '1_lektion', Debug: '2_debug', Missionen: '3_missionen',
+  'Boss-Quest': '5_boss', Check: '4_check', Lösungen: '6_loesungen', Glossar: '0_glossar',
+};
 
-async function selectVariant(week, label) {
-  await week.locator(`.variant-btn:has-text("${label}")`).click();
-  await week.locator('.cell').first().waitFor({ state: 'visible', timeout: 5000 });
-}
-
-async function selectTab(week, label) {
-  await week.locator(`.tab-btn:has-text("${label}")`).click();
-  await week.locator('.cell').first().waitFor({ state: 'visible', timeout: 5000 });
+// Direkter Deep-Link statt Akkordeon-Klick (Woche/Thema/Schritt in einem goto()) - die neue
+// Wochen-Tour zeigt ohnehin immer nur eine Woche gleichzeitig, kein Scoping mehr nötig.
+async function openWeekVariantTab(page, weekNumber, variantLabel, tabLabel) {
+  const variant = VARIANT_KEY[variantLabel];
+  const step = STEP_KEY[tabLabel];
+  await page.goto(`${COURSE_URL}?week=${weekNumber}&variant=${variant}&step=${step}`);
+  await page.locator('.cell').first().waitFor({ state: 'visible', timeout: 15000 });
+  return page;
 }
 
 // Notebook-Code-Zellen nutzen seit der Zellen-Format-Umstellung CodeMirror statt einer
@@ -32,10 +30,7 @@ async function getCodeCellText(cmHost) {
 
 test.describe('Storytelling-Überarbeitung: Pferde', () => {
   test('Woche 2: Hufschlag-Typen benannt, kein "Sonnentals"-Tippfehler', async ({ page }) => {
-    await page.goto(COURSE_URL);
-    const week = await openWeek(page, 1); // Woche 2
-    await selectVariant(week, 'Pferde');
-    await selectTab(week, 'Lektion');
+    const week = await openWeekVariantTab(page, 2, 'Pferde', 'Lektion');
 
     const text = await week.locator('.notebook-cells').innerText();
     expect(text).toContain('Sonnental');
@@ -46,15 +41,10 @@ test.describe('Storytelling-Überarbeitung: Pferde', () => {
   });
 
   test('Woche 9: eigene Rahmengeschichte statt Woche-8-Duplikat', async ({ page }) => {
-    await page.goto(COURSE_URL);
-    const week8 = await openWeek(page, 7); // Woche 8
-    await selectVariant(week8, 'Pferde');
-    await selectTab(week8, 'Lektion');
+    const week8 = await openWeekVariantTab(page, 8, 'Pferde', 'Lektion');
     const week8Text = await week8.locator('.notebook-cells').innerText();
 
-    const week9 = await openWeek(page, 8); // Woche 9
-    await selectVariant(week9, 'Pferde');
-    await selectTab(week9, 'Lektion');
+    const week9 = await openWeekVariantTab(page, 9, 'Pferde', 'Lektion');
     const week9Text = await week9.locator('.notebook-cells').innerText();
 
     expect(week9Text).toContain('Zuchtbücher von Sonnental');
@@ -65,10 +55,7 @@ test.describe('Storytelling-Überarbeitung: Pferde', () => {
   });
 
   test('Woche 1: Debug-Bugs nennen ein Ziel, ohne den Fehler zu verraten', async ({ page }) => {
-    await page.goto(COURSE_URL);
-    const week = await openWeek(page, 0); // Woche 1
-    await selectVariant(week, 'Pferde');
-    await selectTab(week, 'Debug');
+    const week = await openWeekVariantTab(page, 1, 'Pferde', 'Debug');
 
     const text = await week.locator('.notebook-cells').innerText();
     const bugCount = (text.match(/Bug #\d/g) || []).length;
@@ -84,10 +71,7 @@ test.describe('Storytelling-Überarbeitung: Pferde', () => {
 
 test.describe('Storytelling-Überarbeitung: Abenteuer', () => {
   test('Woche 1: Debug-Bugs nennen ein Ziel, ohne den Fehler zu verraten', async ({ page }) => {
-    await page.goto(COURSE_URL);
-    const week = await openWeek(page, 0); // Woche 1
-    await selectVariant(week, 'Abenteuer');
-    await selectTab(week, 'Debug');
+    const week = await openWeekVariantTab(page, 1, 'Abenteuer', 'Debug');
 
     const text = await week.locator('.notebook-cells').innerText();
     const bugCount = (text.match(/Bug #\d/g) || []).length;
@@ -103,10 +87,7 @@ test.describe('Storytelling-Überarbeitung: Abenteuer', () => {
 
 test.describe('Storytelling-Überarbeitung: Sci-Fi', () => {
   test('Woche 11: Lektion-Code ist syntaktisch korrekt (def/self vorhanden)', async ({ page }) => {
-    await page.goto(COURSE_URL);
-    const week = await openWeek(page, 10); // Woche 11
-    await selectVariant(week, 'Sci-Fi');
-    await selectTab(week, 'Lektion');
+    const week = await openWeekVariantTab(page, 11, 'Sci-Fi', 'Lektion');
 
     const text = await week.locator('.notebook-cells').innerText();
     expect(text).toContain('Raumstation Nebula-7');
@@ -137,34 +118,23 @@ test.describe('Storytelling-Überarbeitung: Sci-Fi', () => {
   });
 
   test('Woche 6/8: Boss-Quest 2 ist nicht mehr der Woche-5-Klon', async ({ page }) => {
-    await page.goto(COURSE_URL);
-
-    const week5 = await openWeek(page, 4);
-    await selectVariant(week5, 'Sci-Fi');
-    await selectTab(week5, 'Boss-Quest');
+    const week5 = await openWeekVariantTab(page, 5, 'Sci-Fi', 'Boss-Quest');
     const week5Text = await week5.locator('.notebook-cells').innerText();
     expect(week5Text).toContain('Der Raumstation-Manager');
 
-    const week6 = await openWeek(page, 5);
-    await selectVariant(week6, 'Sci-Fi');
-    await selectTab(week6, 'Boss-Quest');
+    const week6 = await openWeekVariantTab(page, 6, 'Sci-Fi', 'Boss-Quest');
     const week6Text = await week6.locator('.notebook-cells').innerText();
     expect(week6Text).toContain('Der Hangar-Verwalter');
     expect(week6Text).not.toContain('Der Raumstation-Manager');
 
-    const week8 = await openWeek(page, 7);
-    await selectVariant(week8, 'Sci-Fi');
-    await selectTab(week8, 'Boss-Quest');
+    const week8 = await openWeekVariantTab(page, 8, 'Sci-Fi', 'Boss-Quest');
     const week8Text = await week8.locator('.notebook-cells').innerText();
     expect(week8Text).toContain('Die Sensor-Matrix');
     expect(week8Text).not.toContain('Der Raumstation-Manager');
   });
 
   test('Woche 12: Debug-Bugs verraten die Lösung nicht im Kommentar', async ({ page }) => {
-    await page.goto(COURSE_URL);
-    const week = await openWeek(page, 11); // Woche 12
-    await selectVariant(week, 'Sci-Fi');
-    await selectTab(week, 'Debug');
+    const week = await openWeekVariantTab(page, 12, 'Sci-Fi', 'Debug');
 
     const codeCells = week.locator('.cell-code .cm-host');
     const count = await codeCells.count();
@@ -175,10 +145,7 @@ test.describe('Storytelling-Überarbeitung: Sci-Fi', () => {
   });
 
   test('Woche 1: Debug-Bugs nennen ein Ziel, ohne den Fehler zu verraten', async ({ page }) => {
-    await page.goto(COURSE_URL);
-    const week = await openWeek(page, 0); // Woche 1
-    await selectVariant(week, 'Sci-Fi');
-    await selectTab(week, 'Debug');
+    const week = await openWeekVariantTab(page, 1, 'Sci-Fi', 'Debug');
 
     const text = await week.locator('.notebook-cells').innerText();
     const bugCount = (text.match(/Bug #\d/g) || []).length;

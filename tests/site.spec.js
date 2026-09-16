@@ -75,22 +75,11 @@ test.describe('12-Wochen-Kurs UI', () => {
     await expect(page).toHaveURL(/python-einstufung/);
   });
 
-  test('Kursstruktur erklärt Tabs inkl. Check', async ({ page }) => {
+  test('Kursstruktur erklärt den Ablauf inkl. Check', async ({ page }) => {
     await page.goto(COURSE_URL);
     await expect(page.locator('.course-structure')).toBeVisible({ timeout: 20000 });
     await expect(page.locator('.course-structure-tab')).toHaveCount(7);
     await expect(page.locator('.course-structure-tab', { hasText: 'Check' })).toBeVisible();
-  });
-
-  test('Missionen-Panel lässt sich aufklappen', async ({ page }) => {
-    await page.goto(`${COURSE_URL}?week=1&tab=lektion#woche-1`);
-    const week = page.locator('#woche-1');
-    await expect(week.locator('.week-content')).toBeVisible({ timeout: 20000 });
-    const panel = week.locator('.missionen-panel');
-    await expect(panel).toBeVisible();
-    await panel.locator('.missionen-panel-header').click();
-    await expect(panel.locator('.missionen-panel-content')).toBeVisible();
-    await expect(panel.locator('.mission-item').first()).toBeVisible();
   });
 });
 
@@ -191,31 +180,30 @@ test.describe('Weitere Kursseiten', () => {
 test.describe('Debug-Notebook-Sicherheit', () => {
   test('Endlosschleife bricht nach ~5s ab statt den Tab einzufrieren', async ({ page }) => {
     test.setTimeout(60000);
-    await page.goto(`${COURSE_URL}?week=1&tab=debug#woche-1`);
-    const week = page.locator('#woche-1');
-    await expect(week.locator('.btn-run-cell').first()).toBeVisible({ timeout: 20000 });
+    await page.goto(`${COURSE_URL}?week=1&variant=abenteuer&step=2_debug`);
+    await expect(page.locator('.btn-run-cell').first()).toBeVisible({ timeout: 20000 });
 
     // Kernel initialisiert sich beim Mount bereits automatisch — nicht extra klicken
     // (der Button kann währenddessen schon deaktiviert/instabil sein).
-    await expect(week.locator('.btn-run-cell').first()).toBeEnabled({ timeout: 40000 });
+    await expect(page.locator('.btn-run-cell').first()).toBeEnabled({ timeout: 40000 });
 
-    const editor = week.locator('.cm-host').first();
-    const runBtn = week.locator('.btn-run-cell').first();
+    const editor = page.locator('.cm-host').first();
+    const runBtn = page.locator('.btn-run-cell').first();
     await setCodeMirrorContent(editor, 'while True:\n    pass\n');
 
     const start = Date.now();
     await runBtn.click();
-    await expect(week.locator('.output-error').first()).toBeVisible({ timeout: 15000 });
+    await expect(page.locator('.output-error').first()).toBeVisible({ timeout: 15000 });
     const elapsed = Date.now() - start;
 
     expect(elapsed).toBeGreaterThan(3000);
     expect(elapsed).toBeLessThan(12000);
-    await expect(week.locator('.output-error').first()).toContainText(/Endlosschleife/);
+    await expect(page.locator('.output-error').first()).toContainText(/Endlosschleife/);
 
     // Kernel muss danach weiter benutzbar sein — keine dauerhafte Blockade.
     await setCodeMirrorContent(editor, 'print("kernel lebt", 1 + 1)');
     await runBtn.click();
-    await expect(week.locator('.output-stream').first()).toContainText('kernel lebt 2', { timeout: 10000 });
+    await expect(page.locator('.output-stream').first()).toContainText('kernel lebt 2', { timeout: 10000 });
   });
 });
 
@@ -225,12 +213,11 @@ test.describe('Turtle-Grafik im Browser (Pyodide-Shim)', () => {
   // registriert stattdessen einen eigenen Shim, der auf <canvas> zeichnet.
   test('import turtle wirft keinen ModuleNotFoundError mehr und zeichnet sichtbar', async ({ page }) => {
     test.setTimeout(60000);
-    await page.goto(`${COURSE_URL}?week=12&tab=lektion#woche-12`);
-    const week = page.locator('#woche-12');
-    const runBtn = week.locator('.btn-run-cell').first();
+    await page.goto(`${COURSE_URL}?week=12&variant=abenteuer&step=1_lektion`);
+    const runBtn = page.locator('.btn-run-cell').first();
     await expect(runBtn).toBeEnabled({ timeout: 40000 });
 
-    const editor = week.locator('.cm-host').first();
+    const editor = page.locator('.cm-host').first();
     await setCodeMirrorContent(
       editor,
       'import turtle\n' +
@@ -243,8 +230,8 @@ test.describe('Turtle-Grafik im Browser (Pyodide-Shim)', () => {
     );
     await runBtn.click();
 
-    await expect(week.locator('.output-error')).toHaveCount(0, { timeout: 10000 });
-    const canvas = week.locator('.turtle-canvas-container canvas').first();
+    await expect(page.locator('.output-error')).toHaveCount(0, { timeout: 10000 });
+    const canvas = page.locator('.turtle-canvas-container canvas').first();
     await expect(canvas).toBeVisible({ timeout: 10000 });
 
     const hasDrawing = await canvas.evaluate((el) => {
@@ -260,12 +247,11 @@ test.describe('Turtle-Grafik im Browser (Pyodide-Shim)', () => {
 
   test('begin_fill()/end_fill() füllt eine Form sichtbar', async ({ page }) => {
     test.setTimeout(60000);
-    await page.goto(`${COURSE_URL}?week=12&tab=lektion#woche-12`);
-    const week = page.locator('#woche-12');
-    const runBtn = week.locator('.btn-run-cell').first();
+    await page.goto(`${COURSE_URL}?week=12&variant=abenteuer&step=1_lektion`);
+    const runBtn = page.locator('.btn-run-cell').first();
     await expect(runBtn).toBeEnabled({ timeout: 40000 });
 
-    const editor = week.locator('.cm-host').first();
+    const editor = page.locator('.cm-host').first();
     await setCodeMirrorContent(
       editor,
       'import turtle\n' +
@@ -280,8 +266,8 @@ test.describe('Turtle-Grafik im Browser (Pyodide-Shim)', () => {
     );
     await runBtn.click();
 
-    await expect(week.locator('.output-error')).toHaveCount(0, { timeout: 10000 });
-    const canvas = week.locator('.turtle-canvas-container canvas').first();
+    await expect(page.locator('.output-error')).toHaveCount(0, { timeout: 10000 });
+    const canvas = page.locator('.turtle-canvas-container canvas').first();
     const hasRedFill = await canvas.evaluate((el) => {
       const ctx = el.getContext('2d');
       const data = ctx.getImageData(0, 0, el.width, el.height).data;

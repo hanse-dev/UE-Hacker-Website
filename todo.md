@@ -1,43 +1,72 @@
 # Todo
 
 ## Now
-### Wochen-Check: Variablen-Validierung (Branch `wochencheck-variablen-validierung`)
-- [x] Lücke gefunden: Coding-Aufgaben, die das Anlegen bestimmter Variablen verlangen (z.B.
-      "Erstelle eine Variable name..."), ließen sich durch bloßes Hart-Codieren der erwarteten
-      Textausgabe umgehen — die Prüfung schaute nur auf `stdout`, nie auf den Programmzustand.
-- [x] Neuer optionaler `variables`-Block in `validation` (`useTaskValidation.js`): prüft nach der
-      Ausführung echte Werte im Pyodide-Namespace (`pyodide.globals.get(name)`), zusätzlich zur
-      bestehenden Ausgabe-Prüfung. `CodeChallenge.vue` löscht die betroffenen Variablennamen vor
-      jedem Lauf aus dem (geteilten) Namespace, damit ein alter Wert aus einem früheren Versuch
-      nicht fälschlich als "bestanden" durchgeht.
-- [x] Alle 24 Coding-Aufgaben (12 Wochen × 2) durchgesehen: 5 verlangen explizit benannte
-      Variablen und sind jetzt mit `variables` abgesichert — Woche 1 "Nova"/`level`, Woche 2
-      "alter", Woche 3 "zahl1"/"zahl2", Woche 8 "person"/"schueler" (verschachteltes Dictionary,
-      siehe unten). Restliche Aufgaben verlangen keine benannte Variable in der Aufgabenstellung,
-      daher (noch) kein Fix dafür — siehe Plan für Kategorie B/C unten bzw. `todo.md`-Eintrag.
-- [x] `variables` unterstützt jetzt auch verschachtelte Werte (Dictionaries): erwarteter Wert als
-      Objekt (`{"person": {"name": "Alex"}}`) statt Skalar → `CodeChallenge.vue` wandelt den
-      Pyodide-PyProxy-Rückgabewert per `.toJs({dict_converter: Object.fromEntries})` in ein
-      normales JS-Objekt um, `useTaskValidation.js`s `valuesMatch()` vergleicht rekursiv.
-- [x] Neue Tests in `tests/zertifikate.spec.js`: hart kodierte Ausgabe ohne die Variablen (Woche 1)
-      bzw. ohne das Dictionary (Woche 8) schlägt fehl, dieselbe Aufgabe mit echter Lösung besteht
-      weiterhin. Woche 3 manuell verifiziert (gleicher Skalar-Mechanismus wie Woche 1, kein
-      zusätzlicher automatisierter Test nötig).
-- **Bewusst nicht angefasst:** der interaktive Kurs (`LessonView.vue`) nutzt dieselbe
-  `validateOutput()`-Funktion, hat aber keine Aufgabe, die das Anlegen bestimmter Variablen
-  verlangt — daher keine Content-Änderung dort nötig, die neue Prüfung steht dort aber genauso
-  zur Verfügung, falls später gebraucht.
-- [x] **Kategorie B (Funktionsaufgaben):** Woche 5 (`verdopple`, `addiere`) ließ sich mit dem
-      `variables`-Mechanismus nicht sauber fixen, da nur der eine vorgerechnete Aufruf geprüft
-      würde. Neues optionales `functionCalls`-Feld (`[{name, args, expected}]`): ruft die
-      Funktion nach der Ausführung erneut mit einem in der Aufgabenstellung nie genannten Wert
-      auf (`verdopple(10)` statt nur `verdopple(6)`) — deckt auch auf, wenn eine Funktion nur
-      zufällig für das eine Beispiel stimmt (z.B. `zahl + 6` statt `zahl * 2`, beide ergeben 12
-      für `verdopple(6)`, aber nur `*2` stimmt auch für `verdopple(10) == 20`). Getestet: genau
-      dieser "zufällig richtig"-Fall schlägt jetzt fehl, echte Lösung besteht weiterhin (beide
-      Woche-5-Aufgaben).
-- **Kategorie C (Modul-Import-Check, Woche 7/12) und AST-Analyse für den Rest — zurückgestellt,**
-  siehe HANDOFF.md 3.34.
+### Wochen-Tour ist jetzt die echte 12-Wochen-Kursseite (Branch `experiment-wochen-tour`)
+- [x] **Produktiv gemacht:** war zunächst nur eine unverlinkte Experimentseite unter
+      `/experiment/wochen-tour` neben dem alten Akkordeon-Kurs — dem Nutzer hat sie gefallen, jetzt
+      ersetzt sie `/kurs/python-12-wochen-grundkurs` vollständig. Dateien von "Experiment" zu echtem
+      Code befördert (`src/views/experiment/WeekTourView.vue` → `src/components/WeekTour.vue`,
+      analog `WeekTourStepper.vue`/`WeekTourSideMenu.vue`/`useNotebookHeadings.js` aus dem
+      `experiment/`-Unterordner raus), Route `/experiment/wochen-tour` entfernt.
+      `CourseDetail.vue` rendert `<WeekTour />` statt `<WeekSection v-for>` + `<FortschrittWidget>`
+      (Kursbeschreibung/Einstufungs-Banner/Notebook-Pack-Download/Cäsar-Chiffre-Banner bleiben als
+      Chrome davor erhalten, Kursaufbau-Erklärbox inhaltlich neu geschrieben für den neuen Ablauf).
+- [x] Cheat-Sheets (Wissens- + Turtle-Cheat-Sheet) als weitere "Nachschlagewerke"-Einträge neben
+      Glossar/Lösungen in die Tour übernommen (kein `renderUrl`, sondern fertig gerendertes
+      Markdown-HTML — eigener Content-Zweig in `WeekTourStepper.vue`), Wochen-ZIP-Download auf die
+      Themen-Wahl-Seite verschoben — kein Feature-Verlust ggü. der alten Seite.
+- [x] Bestehende Deep-Links von außen (`PlacementCourse.vue`, 4 Cäsar-Chiffre-Lektionen) nutzen
+      weiterhin das alte `?week=N&tab=lektion`-Schema — **unverändert gelassen**, die Tour übersetzt
+      das beim Laden intern (`TAB_TO_STEP`-Map in `WeekTour.vue`) und landet mangels `variant`-Param
+      korrekt auf der Themen-Wahl-Seite der richtigen Woche.
+- [x] Tote alte UI entfernt: `WeekSection.vue`, `MissionenPanel.vue`, `VariantSelector.vue`,
+      `CheatSheetList.vue` + deren exklusive Locale-Keys (`tab.*.desc`, `mission.*`,
+      `week.noNotebook`/`week.downloads`).
+- [x] Test-Migration: 42 von 59 Tests in 6 Dateien hingen an der alten UI-Struktur (per
+      Explore-Recherche ermittelt) — alle auf die neue Struktur portiert (`?week=&tab=` →
+      `?week=&variant=&step=`, `.tab-btn.active` → `.stepper-step.current`, Akkordeon-Klick-Helper
+      in `storytelling-content.spec.js`/`notebooks.spec.js` durch direkte URL-Navigation ersetzt).
+      Ein Test (`Missionen-Panel lässt sich aufklappen`) entfiel ersatzlos (testete exakt das
+      entfernte Widget), einer wurde inhaltlich vereinfacht. `notebooks.spec.js` deckt jetzt zu
+      Wochen 1/6/12 × 3 Varianten zusätzlich die Verzweigung und alle Nachschlagewerke ab (vorher
+      nur Tab-Klicks). Eigener Tour-Test von `tests/experiment-wochen-tour.spec.js` nach
+      `tests/wochen-tour.spec.js` umbenannt und auf die echte Kurs-URL umgestellt (testete sonst die
+      jetzt nicht mehr existierende Experiment-Route weiter).
+**Ursprüngliche Tour-Funktionen (unverändert aus der Experiment-Phase, jetzt einfach live):**
+- [x] Kein Missionen-Punkte-Widget (`MissionenPanel.vue`) in der Tour — die Missionen-Aufgaben
+      selbst sind aber ganz normaler Tour-Schritt.
+- [x] Nach den Missionen keine automatische Weiterschaltung mehr, sondern eine Wahl-Kachel-Seite
+      zwischen "Extra-Herausforderung" (ehemals Boss-Quest, nur hier umbenannt) und "Check" — beide
+      führen letztlich zum Check, die Extra-Herausforderung bleibt aber optional/überspringbar
+      (ihr Punkt in der Fortschritts-Leiste bleibt dann bewusst "nicht besucht", nicht fälschlich
+      abgehakt).
+- [x] Nach bestandenem Check (Quiz + beide Coding-Aufgaben) erscheint ein Zertifikat-Reveal direkt
+      in der Tour (Name-Feld + PDF-Download bei Login, wiederverwendet `useCertificatePdf.js`).
+      Die Wahl "Zur Übersicht"/"Nächste Woche" danach (fällt auf die erste verfügbare Variante
+      zurück, falls die aktuelle in der nächsten Woche fehlt; bei Woche 12 gibt es nur noch
+      "Zur Übersicht") ist **immer** verfügbar, sobald man den Check-Schritt erreicht — nicht erst
+      nach bestandenem Check (Nutzer-Feedback: sonst steckt man ohne Zertifikat in der Woche fest).
+      "Nächste Woche" scrollt außerdem zurück zum Anfang der Lektion (nicht zum obersten
+      Seitenrand — Kursbeschreibung/Banner stehen ja weiterhin darüber; erster Versuch mit
+      `window.scrollTo(0)` landete dort, Nutzer-Feedback: sollte direkt zur Lektion springen).
+- [x] Wochen-Übersicht: jede Kachel bekommt ein Themen-Icon (technisches Wochenthema, variantenlos)
+      plus ein 🎓-Abzeichen sobald das Zertifikat der Woche verdient ist, ein Zähler oben, und ein
+      Link zu einer neuen "Meine Zertifikate"-Seite (wiederverwendet `FortschrittWidget.vue` direkt
+      statt eines eigenen Rasters). Die Kacheln sind per dünner gestrichelter Linie verbunden wie
+      "Inseln", die man der Reihe nach bereist (SVG-Pfad, Zentren der Kacheln per
+      `getBoundingClientRect()` verbunden, reagiert per `ResizeObserver` auf Größenänderungen).
+- [x] Kleines Seitenmenü: Tour-Schritte zum Springen + Unterabschnitte des aktuellen Schritts
+      (z.B. Bug 1/2/3, Mission 1/2/3, aus den `##`/`###`-Überschriften der Notebook-Zellen
+      extrahiert) + Glossar/Lösungen als jederzeit verfügbares Nachschlagewerk (kein Tour-Schritt,
+      kein Gating).
+- [x] `FortschrittWidget.vue` bekam einen neuen optionalen `startExpanded`-Prop (Default `false`,
+      bestehende Nutzung in `CourseDetail.vue` unverändert) — auf der neuen Zertifikate-Seite direkt
+      aufgeklappt statt erst einklappen zu müssen.
+- [x] `tests/wochen-tour.spec.js` (11 Tests, inkl. echtem Bestehen von Woche 1s
+      Quiz+Coding-Aufgaben) + volle `npm test`-Suite (76 Tests) + `npm run test:auth` (13 Tests)
+      grün — deckt auch die eine additive Änderung an der geteilten `JupyterNotebook.vue`
+      (Zell-`id` fürs Scroll-Ziel des Seitenmenüs) ab.
+- Details/Architektur-Entscheidungen: Plan-Datei `~/.claude/plans/twinkly-strolling-lovelace.md`.
 
 ### 12-Wochen-Kurs: Zellen-Format-Umstellung (Branch `12-wochen-kurs-zellen-format`)
 - [x] Alle 432 Notebooks (3 Varianten × 12 Wochen × 6 Typen × DE/EN) vom `.ipynb`-Format auf
@@ -265,6 +294,11 @@ und Server-Deploy bewusst zurückgestellt (siehe HANDOFF.md).
 - [ ] `kurs-python-spiele` — `ProjectCourse.vue` bereits generalisiert (mehrere Projekt-Kurse teilen
       sich die Komponente), die eigentlichen Spiele-Inhalte (Quiz-Arena, Turtle-Welt, Galgenmännchen)
       noch offen
+- [x] `wochencheck-variablen-validierung` (HANDOFF.md 3.34, gemergt) — Coding-Aufgaben ließen sich
+      durch Hart-Codieren der erwarteten Textausgabe umgehen (Prüfung schaute nur auf `stdout`).
+      Neue optionale `variables`-/`functionCalls`-Felder in `validation` prüfen zusätzlich echte
+      Werte im Pyodide-Namespace bzw. rufen Funktionen mit einem nie genannten Wert erneut auf.
+      5 von 24 Coding-Aufgaben betroffen und abgesichert (Kategorie C/AST-Analyse zurückgestellt).
 - [x] `wochen-zertifikate` (HANDOFF.md 3.12) — Punkte-/Sammelsystem komplett entfernt, ersetzt durch Wochen-Zertifikate:
       **ein** Zertifikat pro Woche (keine Varianten-Aufteilung mehr), verliehen sobald der Wochen-Check
       bestanden ist — Quiz **plus zwei** Coding-Aufgaben (leicht + schwerer). Missionen/Boss-Quests

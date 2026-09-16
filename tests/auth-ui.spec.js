@@ -129,11 +129,9 @@ test.describe('UI: Admin + Header-Login', () => {
     await page.locator('.settings-modal .auth-btn.primary').click();
     await expect(page.locator('.settings-modal')).toContainText(username);
 
-    await page.goto(`${COURSE_URL}?week=1&tab=lektion#woche-1`);
-    await expect(page.locator('.week-content').first()).toBeVisible({ timeout: 20000 });
-
-    await page.locator('.fortschritt-widget-header').click();
-    await page.locator('.fortschritt-weekly-header').click();
+    await page.goto(COURSE_URL);
+    await expect(page.locator('.certificates-link')).toBeVisible({ timeout: 20000 });
+    await page.locator('.certificates-link').click();
 
     await page.locator('#certificate-name-input').fill('Max Mustermann');
 
@@ -180,10 +178,9 @@ test.describe('UI: Admin + Header-Login', () => {
     await page.locator('.settings-modal .auth-btn.primary').click();
     await expect(page.locator('.settings-modal')).toContainText(username);
 
-    await page.goto(`${COURSE_URL}?week=1&tab=lektion#woche-1`);
-    await expect(page.locator('.week-content').first()).toBeVisible({ timeout: 20000 });
-    await page.locator('.fortschritt-widget-header').click();
-    await page.locator('.fortschritt-weekly-header').click();
+    await page.goto(COURSE_URL);
+    await expect(page.locator('.certificates-link')).toBeVisible({ timeout: 20000 });
+    await page.locator('.certificates-link').click();
 
     const week5Card = page.locator('.certificate-card').nth(4);
     await expect(week5Card).toHaveClass(/earned/);
@@ -224,10 +221,9 @@ test.describe('UI: Admin + Header-Login', () => {
     await page.locator('.settings-modal .auth-btn.primary').click();
     await expect(page.locator('.settings-modal')).toContainText(username);
 
-    await page.goto(`${COURSE_URL}?week=1&tab=lektion#woche-1`);
-    await expect(page.locator('.week-content').first()).toBeVisible({ timeout: 20000 });
-    await page.locator('.fortschritt-widget-header').click();
-    await page.locator('.fortschritt-weekly-header').click();
+    await page.goto(COURSE_URL);
+    await expect(page.locator('.certificates-link')).toBeVisible({ timeout: 20000 });
+    await page.locator('.certificates-link').click();
 
     const week1Card = page.locator('.certificate-card').first();
     await expect(week1Card).toHaveClass(/earned/);

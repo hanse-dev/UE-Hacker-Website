@@ -20,6 +20,7 @@
       <div
         v-for="(cell, index) in cells"
         :key="index"
+        :id="`cell-${index}`"
         :class="['cell', `cell-${cell.cell_type}`]"
       >
         <div v-if="cell.cell_type === 'markdown'" class="cell-markdown">
