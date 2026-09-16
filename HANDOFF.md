@@ -1,10 +1,10 @@
 # Handoff — UE Hacker Website
 
-> **Zuletzt aktualisiert:** 2026-09-15  
-> **Aktueller Stand:** `main` ist inzwischen nach `origin/main` gepusht (frühere "noch nicht
-> gepusht"-Notiz hier war veraltet). Größte Änderung seither: der komplette 12-Wochen-Kurs
-> (alle 3 Varianten, DE+EN) ist vom `.ipynb`-Format auf ein neues Zellen-Format umgestellt (3.33,
-> Branch `12-wochen-kurs-zellen-format`) — noch nicht nach `main` gemergt.
+> **Zuletzt aktualisiert:** 2026-09-16  
+> **Aktueller Stand:** `main` ist auf `origin/main` gepusht. Der 12-Wochen-Kurs läuft jetzt komplett
+> über das neue Zellen-Format statt `.ipynb` (3.33, gemergt/gepusht). Offen: Branch
+> `wochencheck-variablen-validierung` (3.34, Fix gegen Hardcoding bei Coding-Aufgaben) — noch nicht
+> nach `main` gemergt.
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -1040,6 +1040,61 @@ Aussage hintereinander. Der interaktive Kurs hat diesen Abschnitt in seiner eige
 `beschreibung.md` nie dupliziert (verlässt sich schon immer nur auf den Banner) — Vorbild für den
 Fix: Abschnitt beim 12-Wochen-Kurs entfernt (Banner bleibt einzige Quelle), "Für wen ist der Kurs?"
 direkt nach die Zielbeschreibung vorgezogen (Ziel → Zielgruppe → Aufbau als Lesereihenfolge).
+
+### 3.34 Wochen-Check: Variablen-Validierung gegen Hardcoding (Branch `wochencheck-variablen-validierung`)
+
+Nutzer hat beim Ausprobieren selbst herausgefunden, dass sich Coding-Aufgaben, die das Anlegen
+bestimmter Variablen verlangen (z.B. "Erstelle eine Variable name..."), durch bloßes Hart-Codieren
+der erwarteten Textausgabe umgehen ließen — `useTaskValidation.js`s `validateOutput()` prüfte
+ausschließlich `stdout` (`output_contains`/`output_equals`), nie den tatsächlichen Programmzustand.
+
+**Fix:** `validation` kann jetzt optional ein `variables`-Feld haben (`{name: erwarteterWert}`).
+`CodeChallenge.vue` liest nach der Ausführung die echten Werte aus `pyodide.globals` (Pyodide fuhrt
+Code via `exec(code, globals())` aus, siehe `_run_cell_with_guard` in `usePyodide.js` — der geteilte
+Python-Namespace ist deshalb direkt über `pyodide.globals.get(name)` abfragbar) und vergleicht sie
+zusätzlich zur Ausgabe. **Wichtige Falle dabei:** die betroffenen Variablennamen müssen vor jedem
+Lauf aus dem Namespace gelöscht werden (sonst besteht ein zweiter Versuch fälschlich, weil der alte
+Wert aus einem früheren Lauf noch da ist — der Namespace ist über die ganze Seite geteilt) — und
+`pyodide.globals.delete(name)` wirft dabei eine Exception, wenn der Name noch nie gesetzt wurde
+(der Normalfall beim ersten Versuch), muss also mit try/catch abgefangen werden, sonst bricht
+`checkCode()` vorzeitig ab und es erscheint gar kein Feedback (genau daran ist der erste
+Implementierungsversuch im eigenen Test gescheitert).
+
+**Nachtrag — alle 24 Coding-Aufgaben durchgesehen:** auf Nachfrage geprüft, ob dieselbe Lücke noch
+woanders steckt. Fündig: Woche 3 ("zahl1"/"zahl2", scalar — gleicher Mechanismus wie Nova/alter) und
+Woche 8 (beide Aufgaben, "person"/"schueler" — verlangen ein **Dictionary**, kein Skalar). Dafür
+`valuesMatch()` in `useTaskValidation.js` um rekursiven Objekt-Vergleich erweitert (erwarteter Wert
+als `{"name": "Alex"}` statt Skalar), `CodeChallenge.vue` wandelt den Pyodide-Rückgabewert dafür per
+`.toJs({dict_converter: Object.fromEntries})` in ein normales JS-Objekt um (ein dict-PyProxy laesst
+sich nicht direkt mit `===` vergleichen). Insgesamt 5 von 24 Aufgaben betroffen — der Rest verlangt
+keine explizit benannte Variable in der Aufgabenstellung (nur "berechne X" / "nutze eine Schleife" /
+"importiere Y"), dafür bräuchte es einen anderen Mechanismus (Funktions-Re-Test mit neuem Wert für
+die beiden Funktionsaufgaben in Woche 5, Modul-Import-Check für Woche 7/12 — noch nicht umgesetzt,
+siehe Plan) — bei den restlichen (Woche 2/4/6/9/10/11/12#2) wäre nur AST-Analyse des eingereichten
+Codes möglich, das ist fragiler (lehnt valide Alternativlösungen ab) und bewusst zurückgestellt.
+
+**Getestet:** neuer Test in `tests/zertifikate.spec.js` (hart kodierte Ausgabe ohne Variablen schlägt
+fehl, dieselbe Aufgabe mit echten Variablen besteht) + Analogtest fürs Dictionary bei Woche 8 +
+volle `npm run test:checks`-Suite grün (53 Tests). Woche 3 manuell per Playwright verifiziert.
+
+**Nachtrag 2 — Kategorie B (Funktionsaufgaben, geplant + umgesetzt):** Woche 5 (`verdopple`,
+`addiere`) ließ sich mit `variables` nicht sauber fixen, da nur der eine in der Aufgabenstellung
+vorgerechnete Aufruf geprüft würde. Neues optionales `functionCalls`-Feld
+(`[{name, args, expected}]`): ruft die Funktion nach der Ausführung mit einem **nie genannten**
+Eingabewert erneut auf. Deckt nicht nur "keine Funktion geschrieben" auf, sondern auch den
+subtileren Fall "Funktion stimmt nur zufällig fürs eine Beispiel" (`zahl + 6` statt `zahl * 2`
+ergibt für `verdopple(6)` beide 12, aber nur `*2` stimmt auch für den Re-Test `verdopple(10) == 20`
+— genau dieser Fall ist jetzt Teil der Tests). **Wichtige Falle dabei:** der AST-Loop-Guard aus
+`usePyodide.js` injiziert Deadline-Checks in jede Schleife der eingereichten Zelle, auch innerhalb
+von Funktionskörpern — die Deadline-Variable (`__cell_deadline__`) wird nach dem ursprünglichen Lauf
+wieder gelöscht, ein späterer Aufruf einer Funktion mit eigener Schleife würde sonst mit `NameError`
+abstürzen. Fix: vor jedem Re-Aufruf defensiv `__cell_deadline__` neu setzen (auch wenn `verdopple`/
+`addiere` selbst keine Schleife haben — Absicherung für künftige, ähnlich gebaute Aufgaben). Kleines
+Refactoring nebenbei: die `toJs()`-Konvertierung (PyProxy → einfaches JS-Objekt, für `variables` UND
+`functionCalls` gebraucht) in eine gemeinsame `toPlainJs()`-Hilfsfunktion in `CodeChallenge.vue`
+gezogen, statt sie zweimal zu schreiben.
+
+Plan-Datei für diesen Teil: `~/.claude/plans/lexical-growing-comet.md`.
 
 ---
 

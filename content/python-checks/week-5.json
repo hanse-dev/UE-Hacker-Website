@@ -306,7 +306,16 @@
       "codeTemplate": "",
       "validation": {
         "type": "output_contains",
-        "expected": "12"
+        "expected": "12",
+        "functionCalls": [
+          {
+            "name": "verdopple",
+            "args": [
+              10
+            ],
+            "expected": 20
+          }
+        ]
       }
     },
     {
@@ -315,7 +324,17 @@
       "codeTemplate": "",
       "validation": {
         "type": "output_contains",
-        "expected": "17"
+        "expected": "17",
+        "functionCalls": [
+          {
+            "name": "addiere",
+            "args": [
+              3,
+              4
+            ],
+            "expected": 7
+          }
+        ]
       }
     }
   ]

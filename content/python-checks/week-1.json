@@ -314,7 +314,11 @@
       "codeTemplate": "",
       "validation": {
         "type": "output_contains",
-        "expected": "Nova hat Level 3 erreicht!"
+        "expected": "Nova hat Level 3 erreicht!",
+        "variables": {
+          "name": "Nova",
+          "level": 3
+        }
       }
     }
   ]

@@ -2,18 +2,66 @@
  * Shared validation for code tasks and quizzes.
  */
 
-export function validateOutput(output, validation) {
+/**
+ * @param {string} output - stdout der ausgefuehrten Zelle
+ * @param {object} validation - { type, expected, variables?, functionCalls? }.
+ * @param {object} [variables] - tatsaechliche Werte aus dem Python-Namespace nach der Ausfuehrung
+ *   (Variablenname → Wert), von der aufrufenden Komponente aus `pyodide.globals` ausgelesen.
+ *   Verhindert, dass eine Aufgabe durch bloßes Ausgeben des erwarteten Texts umgangen wird, ohne
+ *   die geforderten Variablen tatsaechlich anzulegen.
+ * @param {Array<{expected: any, actual?: any, error?: boolean}>} [functionResults] - Ergebnisse
+ *   eines erneuten Aufrufs der geforderten Funktion(en) mit einem in der Aufgabenstellung nie
+ *   genannten Eingabewert (von der aufrufenden Komponente ermittelt). Deckt auf, wenn eine
+ *   Funktion nur zufaellig fuer das eine vorgerechnete Beispiel das richtige Ergebnis liefert.
+ */
+export function validateOutput(output, validation, variables, functionResults) {
   if (!validation) return true;
   const { type, expected } = validation;
   const out = (output || '').trim();
+
+  let outputOk;
   switch (type) {
     case 'output_contains':
-      return out.includes(expected);
+      outputOk = out.includes(expected);
+      break;
     case 'output_equals':
-      return out === expected;
+      outputOk = out === expected;
+      break;
     default:
-      return out.includes(expected);
+      outputOk = out.includes(expected);
   }
+  if (!outputOk) return false;
+
+  if (validation.variables) {
+    const ok = Object.entries(validation.variables).every(([name, expectedValue]) => {
+      if (!variables || !(name in variables)) return false;
+      return valuesMatch(variables[name], expectedValue);
+    });
+    if (!ok) return false;
+  }
+
+  if (validation.functionCalls) {
+    if (!functionResults) return false;
+    const ok = functionResults.every((r) => !r.error && valuesMatch(r.actual, r.expected));
+    if (!ok) return false;
+  }
+
+  return true;
+}
+
+/**
+ * Vergleicht einen aus Python gelesenen Wert mit einem erwarteten Wert. Skalare (Zahl, String,
+ * Bool) werden direkt verglichen. Ist der erwartete Wert ein Objekt (z.B. bei einer Aufgabe, die
+ * ein Dictionary verlangt), wird rekursiv Schluessel fuer Schluessel verglichen - der aufrufenden
+ * Komponente reicht es, die geforderte Variable per `pyodide.globals.get(name).toJs(...)` als
+ * einfaches JS-Objekt zu uebergeben.
+ */
+function valuesMatch(actual, expected) {
+  if (expected !== null && typeof expected === 'object' && !Array.isArray(expected)) {
+    if (actual === null || typeof actual !== 'object') return false;
+    return Object.entries(expected).every(([key, val]) => valuesMatch(actual[key], val));
+  }
+  return actual === expected;
 }
 
 export function scoreQuizAnswers(questions, answers) {
