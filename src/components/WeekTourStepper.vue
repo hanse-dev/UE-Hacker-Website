@@ -101,20 +101,21 @@
                 {{ pdfBusy ? t('progress.certificate.generating') : t('progress.certificate.download') }}
               </button>
               <p v-else class="certificate-login-hint">{{ t('progress.certificate.loginRequired') }}</p>
-
-              <div class="after-check-choice">
-                <button class="tile after-check-tile" data-after-check="overview" @click="$emit('change-week')">
-                  {{ t('tour.afterCheck.overview') }}
-                </button>
-                <button
-                  v-if="hasNextWeek"
-                  class="tile after-check-tile"
-                  data-after-check="next-week"
-                  @click="$emit('go-next-week')"
-                >{{ t('tour.afterCheck.nextWeek') }}</button>
-              </div>
             </div>
             <p v-else class="tour-check-pending">{{ t('tour.certificate.pending') }}</p>
+
+            <!-- Weiter geht's auch ohne bestandenen Check - niemand soll hier feststecken. -->
+            <div class="after-check-choice">
+              <button class="tile after-check-tile" data-after-check="overview" @click="$emit('change-week')">
+                {{ t('tour.afterCheck.overview') }}
+              </button>
+              <button
+                v-if="hasNextWeek"
+                class="tile after-check-tile"
+                data-after-check="next-week"
+                @click="$emit('go-next-week')"
+              >{{ t('tour.afterCheck.nextWeek') }}</button>
+            </div>
           </template>
 
           <p v-else class="tour-done-msg">{{ t('tour.done') }}</p>

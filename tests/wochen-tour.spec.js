@@ -187,6 +187,18 @@ test.describe('12-Wochen-Kurs: Wochen-Tour', () => {
     await expect(page.locator('[data-after-check="next-week"]')).toHaveCount(0);
   });
 
+  test('"Zur Übersicht"/"Nächste Woche" sind auch ohne bestandenen Check verfügbar', async ({ page }) => {
+    await page.goto(`${TOUR_URL}?week=2&variant=abenteuer&step=4_check`);
+    await expect(page.locator('.tour-check-pending')).toBeVisible();
+    await expect(page.locator('.certificate-reveal')).toHaveCount(0);
+    await expect(page.locator('[data-after-check="overview"]')).toBeVisible();
+    await expect(page.locator('[data-after-check="next-week"]')).toBeVisible();
+
+    await page.locator('[data-after-check="next-week"]').click();
+    await expect(page).toHaveURL(/week=3&variant=abenteuer/);
+    await expect(page.locator('.stepper-step.current')).toContainText('Lektion');
+  });
+
   test('Seitenmenü lässt sich ein- und ausklappen', async ({ page }) => {
     await page.goto(`${TOUR_URL}?week=1&variant=abenteuer`);
     await expect(page.locator('.tour-side-menu')).toBeVisible();
