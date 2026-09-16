@@ -17,7 +17,7 @@
 
         <div class="week-map" ref="weekMapRef">
           <svg class="week-map-path" :viewBox="mapViewBox" preserveAspectRatio="none">
-            <polyline :points="pathPoints" />
+            <path :d="pathD" />
           </svg>
           <div class="tile-grid week-tile-grid">
             <button
@@ -26,6 +26,7 @@
               :ref="(el) => setTileRef(el, index)"
               class="tile week-tile"
               :class="{ active: selectedWeekIndex === index }"
+              :style="tileGridStyle(index)"
               :data-week="index + 1"
               @click="selectWeek(index)"
             >
@@ -109,6 +110,30 @@ const WEEK_ICONS = {
   1: '🚀', 2: '🔤', 3: '🔀', 4: '🔁', 5: '🧩', 6: '📋',
   7: '🧰', 8: '🗃️', 9: '💾', 10: '🏗️', 11: '🧬', 12: '🐢',
 };
+
+/**
+ * Catmull-Rom-Spline durch alle Punkte, als kubische Bezier-Kurven ausgegeben - ergibt einen
+ * weichen "Reiseweg" statt gerader Liniensegmente. Klassische Umrechnung mit Tension 1/6.
+ */
+function smoothPathD(points) {
+  if (points.length < 2) return '';
+  if (points.length === 2) {
+    return `M ${points[0].x},${points[0].y} L ${points[1].x},${points[1].y}`;
+  }
+  let d = `M ${points[0].x},${points[0].y}`;
+  for (let i = 0; i < points.length - 1; i++) {
+    const p0 = points[i - 1] || points[i];
+    const p1 = points[i];
+    const p2 = points[i + 1];
+    const p3 = points[i + 2] || p2;
+    const cp1x = p1.x + (p2.x - p0.x) / 6;
+    const cp1y = p1.y + (p2.y - p0.y) / 6;
+    const cp2x = p2.x - (p3.x - p1.x) / 6;
+    const cp2y = p2.y - (p3.y - p1.y) / 6;
+    d += ` C ${cp1x},${cp1y} ${cp2x},${cp2y} ${p2.x},${p2.y}`;
+  }
+  return d;
+}
 
 export default {
   name: 'WeekTourView',
@@ -208,14 +233,34 @@ export default {
     };
 
     // ── "Inseln"-Pfad zwischen den Wochen-Kacheln ────────────────────────────
+    // Echte Schlangen-Anordnung (Zeile 2 läuft rückwärts usw.), damit der Pfad von einer Woche
+    // zur nächsten immer ein kurzer Nachbar-Sprung ist statt einer langen Diagonale quer durchs
+    // Raster. Die Spaltenzahl kommt direkt aus dem tatsächlich gerenderten CSS-Grid (auto-fill),
+    // damit das bei jeder Fensterbreite korrekt bleibt, ohne die Spaltenzahl hart zu codieren.
     const weekMapRef = ref(null);
     const tileRefs = ref([]);
-    const pathPoints = ref('');
+    const pathD = ref('');
     const mapViewBox = ref('0 0 0 0');
+    const cols = ref(1);
     let resizeObserver = null;
 
     const setTileRef = (el, index) => {
       if (el) tileRefs.value[index] = el;
+    };
+
+    const tileGridStyle = (index) => {
+      const c = cols.value || 1;
+      const row = Math.floor(index / c);
+      const colInRow = index % c;
+      const displayCol = row % 2 === 0 ? colInRow : c - 1 - colInRow;
+      return { gridColumn: String(displayCol + 1), gridRow: String(row + 1) };
+    };
+
+    const computeCols = () => {
+      const grid = weekMapRef.value?.querySelector('.week-tile-grid');
+      if (!grid) return;
+      const n = getComputedStyle(grid).gridTemplateColumns.split(' ').filter(Boolean).length;
+      if (n > 0 && n !== cols.value) cols.value = n;
     };
 
     const updatePath = () => {
@@ -226,22 +271,26 @@ export default {
         .map((_, i) => {
           const el = tileRefs.value[i];
           if (!el) return null;
-          const r = el.getBoundingClientRect();
-          const x = r.left + r.width / 2 - containerRect.left;
-          const y = r.top + r.height / 2 - containerRect.top;
-          return `${x},${y}`;
+          return {
+            x: el.getBoundingClientRect().left + el.offsetWidth / 2 - containerRect.left,
+            y: el.getBoundingClientRect().top + el.offsetHeight / 2 - containerRect.top,
+          };
         })
         .filter(Boolean);
-      pathPoints.value = points.join(' ');
+      pathD.value = smoothPathD(points);
       mapViewBox.value = `0 0 ${containerRect.width} ${containerRect.height}`;
     };
 
     const observeMap = () => {
       if (resizeObserver) resizeObserver.disconnect();
       if (!weekMapRef.value) return;
-      resizeObserver = new ResizeObserver(() => updatePath());
+      resizeObserver = new ResizeObserver(() => {
+        computeCols();
+        nextTick(updatePath);
+      });
       resizeObserver.observe(weekMapRef.value);
-      updatePath();
+      computeCols();
+      nextTick(updatePath);
     };
 
     watch(phase, (p) => {
@@ -267,7 +316,7 @@ export default {
       t, weeks, loading, phase, selectedWeekIndex, selectedWeek, availableVariants, initialStep,
       selectedVariantLabel, hasNextWeek, weekTheme, weekIcon, selectWeek, selectVariant,
       goToNextWeek, courseId: COURSE_ID, isCertificateEarned, countCertificates,
-      weekMapRef, setTileRef, pathPoints, mapViewBox,
+      weekMapRef, setTileRef, tileGridStyle, pathD, mapViewBox,
     };
   },
 };
@@ -351,7 +400,7 @@ export default {
   z-index: 0;
 }
 
-.week-map-path polyline {
+.week-map-path path {
   fill: none;
   stroke: #d9c7ea;
   stroke-width: 3;

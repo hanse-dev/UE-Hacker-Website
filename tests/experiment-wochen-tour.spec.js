@@ -80,6 +80,19 @@ test.describe('Experiment: Wochen-Tour', () => {
     await expect(page.locator('.tour-content .cell-markdown').first()).toBeVisible();
   });
 
+  test('Wochen-Pfad: Schlangen-Anordnung platziert Woche 6 direkt unter Woche 5 statt quer über das Raster', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.goto(TOUR_URL);
+    const week5Box = await page.locator('.week-tile[data-week="5"]').boundingBox();
+    const week6Box = await page.locator('.week-tile[data-week="6"]').boundingBox();
+    expect(week5Box).toBeTruthy();
+    expect(week6Box).toBeTruthy();
+    // Bei echter Schlangen-Anordnung (Zeile 2 läuft rückwärts) liegt Woche 6 direkt unter
+    // Woche 5 in derselben Spalte - ohne Umkehrung läge Woche 6 stattdessen ganz links.
+    expect(Math.abs(week5Box.x - week6Box.x)).toBeLessThan(30);
+    expect(week6Box.y).toBeGreaterThan(week5Box.y);
+  });
+
   test('Breadcrumb springt zurück zur Wochen- bzw. Themen-Seite', async ({ page }) => {
     await page.goto(`${TOUR_URL}?week=2&variant=abenteuer`);
     await expect(page.locator('.tour-breadcrumb')).toBeVisible();
@@ -93,6 +106,7 @@ test.describe('Experiment: Wochen-Tour', () => {
 
   test('Nach den Missionen führt eine Wahl-Seite zu Extra-Herausforderung oder Check', async ({ page }) => {
     await page.goto(`${TOUR_URL}?week=1&variant=abenteuer&step=3_missionen`);
+    await expect(page.locator('.stepper-step.current')).toContainText('Missionen');
     await page.locator('.tour-next-btn').click();
 
     await expect(page.locator('.branch-choice-page')).toBeVisible();
@@ -112,6 +126,7 @@ test.describe('Experiment: Wochen-Tour', () => {
 
   test('Check direkt wählen überspringt die Extra-Herausforderung (bleibt unbesucht)', async ({ page }) => {
     await page.goto(`${TOUR_URL}?week=1&variant=abenteuer&step=3_missionen`);
+    await expect(page.locator('.stepper-step.current')).toContainText('Missionen');
     await page.locator('.tour-next-btn').click();
     await page.locator('[data-branch="4_check"]').click();
 
