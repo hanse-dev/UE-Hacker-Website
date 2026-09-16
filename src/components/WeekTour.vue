@@ -233,8 +233,11 @@ export default {
         phase.value = 'variant';
       }
       // Vorher stand man am Ende des Check-Schritts weit unten - ohne Scroll-Reset würde die
-      // neue Woche irgendwo mittendrin statt am Anfang der Lektion aufgehen.
-      nextTick(() => window.scrollTo({ top: 0, behavior: 'smooth' }));
+      // neue Woche irgendwo mittendrin aufgehen. Zur Lektion selbst scrollen (Anfang von
+      // .tour-stepper), nicht zum ganz obersten Seitenrand (Kursbeschreibung/Banner davor).
+      nextTick(() => {
+        document.querySelector('.tour-stepper')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
     };
 
     const applyDeepLink = () => {

@@ -161,7 +161,9 @@ test.describe('12-Wochen-Kurs: Wochen-Tour', () => {
     await expect(page.locator('.tour-breadcrumb')).toContainText('Woche 2');
     await expect(page.locator('.tour-breadcrumb')).toContainText('Abenteuer');
     await expect(page.locator('.stepper-step.current')).toContainText('Lektion');
-    await expect.poll(() => page.evaluate(() => window.scrollY), { timeout: 2000 }).toBeLessThan(50);
+    // Scrollt zum Anfang der Lektion selbst (.tour-stepper), nicht zum obersten Seitenrand
+    // (Kursbeschreibung/Banner stehen ja weiterhin darüber).
+    await expect(page.locator('.tour-stepper')).toBeInViewport({ timeout: 2000 });
   });
 
   test('Zertifikat erscheint als Abzeichen in der Übersicht und auf der Zertifikate-Seite', async ({ page }) => {
