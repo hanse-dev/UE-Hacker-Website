@@ -75,7 +75,22 @@ export default {
   // ── Course detail ────────────────────────────────────────────────────────
   'course.loading': 'Loading course...',
   'course.error':   'Course could not be loaded. Check the browser console (F12) for details.',
-  'course.structure.intro': 'Each week is divided into areas – including a Check for understanding. Best worked through in this order:',
+  'course.structure.intro': "Here's how a week works:",
+  'course.structure.step.week.title':    'Pick a week',
+  'course.structure.step.week.desc':     'All 12 weeks stay visible – choose one.',
+  'course.structure.step.variant.title': 'Pick a theme',
+  'course.structure.step.variant.desc':  'Adventure, Horses or Sci-Fi – same material, different story.',
+  'course.structure.step.lesson.title':  'Lesson',
+  'course.structure.step.lesson.desc':   'New material: read and understand this week\'s topic.',
+  'course.structure.step.debug.title':   'Debug',
+  'course.structure.step.debug.desc':    'Find and fix intentional bugs in the code.',
+  'course.structure.step.mission.title': 'Missions',
+  'course.structure.step.mission.desc':  'Small tasks to practice the new material.',
+  'course.structure.step.branch.title':  'Extra challenge or Check',
+  'course.structure.step.branch.desc':   'Then you choose: one more, bigger task, or straight to the week check.',
+  'course.structure.step.cert.title':    'Certificate',
+  'course.structure.step.cert.desc':     'Pass the quiz and both coding challenges to earn this week\'s certificate.',
+  'course.structure.reference': '📖 Glossary, 🔧 sample solutions and cheat sheets are always available via the side menu – no matter your progress.',
   'course.placement.banner': 'Not sure where to start? Take the placement test first – same questions as the Check tab in each week.',
   'course.placement.link': 'Go to placement →',
   'course.download.btn':  '📦 Download all notebooks as a pack',
@@ -84,21 +99,13 @@ export default {
   'course.project.banner.desc': 'Build a real cipher – the Caesar cipher. Uses strings, loops, and functions from this course.',
   'course.project.banner.link': 'Go to project →',
 
-  // ── Tabs ─────────────────────────────────────────────────────────────────
+  // ── Tabs (tour step labels, see WeekTourStepper.vue) ─────────────────────
   'tab.lesson':       'Lesson',
-  'tab.lesson.desc':  'New material: read and understand the week\'s topic',
   'tab.debug':        'Debug',
-  'tab.debug.desc':   'Find and fix intentional bugs in the code',
   'tab.missions':     'Missions',
-  'tab.missions.desc':'Small tasks for practising the new material',
   'tab.check':        'Check',
-  'tab.check.desc':   'Short understanding quiz for this week\'s topics',
-  'tab.boss':         'Boss Quest',
-  'tab.boss.desc':    'The big final challenge – everything combined!',
   'tab.solutions':    'Solutions',
-  'tab.solutions.desc':'Sample solutions for Missions and Boss Quest',
   'tab.glossary':     'Glossary',
-  'tab.glossary.desc':'All the week\'s terms for reference – always available',
 
   // ── Variants & units ─────────────────────────────────────────────────────
   'variant.adventure': '🗺️ Adventure',
@@ -107,8 +114,6 @@ export default {
 
   // ── Week section ──────────────────────────────────────────────────────────
   'week.label':       'Week',
-  'week.noNotebook':  'No notebook available for this section.',
-  'week.downloads':        'Downloads',
   'week.download.md':      'Download as Markdown',
   'week.download.nb':      'Download as Jupyter Notebook',
   'week.download.week':    '📦 Download Week {n}',
@@ -157,17 +162,6 @@ export default {
   'progress.certificate.download': '📄 Download PDF',
   'progress.certificate.generating': 'Generating …',
   'progress.certificate.loginRequired': 'Login required for PDF download',
-
-  // ── Mission panel ─────────────────────────────────────────────────────────
-  'mission.panel.title': '🎯 Missions',
-  'mission.panel.hint':  'Good practice for the week — but only the Check tab (quiz + coding challenges) counts toward your certificate.',
-  'mission.done.mark':   '✅ Done',
-  'mission.done.unmark': 'Undo',
-  'mission.label':       'Mission',
-  'mission.boss.label':  'Boss Quest',
-  'mission.check.hint':  'Tip: Do this week\'s Check tab first — then you know the material stuck!',
-  'mission.check.done':  'Week check passed!',
-  'mission.certificate.earned': '🎓 Certificate earned for this week!',
 
   // ── Appointments ──────────────────────────────────────────────────────────
   'appt.title':    'Upcoming appointments for this course',
@@ -266,7 +260,6 @@ export default {
   'challenge.notYetMessage':  'Not quite yet — check your output above.',
 
   // ── Experiment: Week tour ────────────────────────────────────────────────
-  'tour.title':            'Week tour (experiment)',
   'tour.intro':            'Pick a week and a theme – all weeks stay visible.',
   'tour.pickWeek':         'Pick a week',
   'tour.pickVariant':      'Pick a theme',

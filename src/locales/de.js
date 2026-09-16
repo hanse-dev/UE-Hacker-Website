@@ -75,7 +75,22 @@ export default {
   // ── Course detail ────────────────────────────────────────────────────────
   'course.loading': 'Kurs wird geladen...',
   'course.error':   'Kurs konnte nicht geladen werden. Prüfe die Browser-Konsole (F12) für Details.',
-  'course.structure.intro': 'Jede Woche ist in Bereiche aufgeteilt – inkl. Check zum Verständnis. Am besten in dieser Reihenfolge:',
+  'course.structure.intro': 'So läuft eine Woche ab:',
+  'course.structure.step.week.title':    'Woche wählen',
+  'course.structure.step.week.desc':     'Alle 12 Wochen sind immer sichtbar – such dir eine aus.',
+  'course.structure.step.variant.title': 'Thema wählen',
+  'course.structure.step.variant.desc':  'Abenteuer, Pferde oder Sci-Fi – gleicher Stoff, andere Geschichte.',
+  'course.structure.step.lesson.title':  'Lektion',
+  'course.structure.step.lesson.desc':   'Neuer Stoff: lies und verstehe das Thema der Woche.',
+  'course.structure.step.debug.title':   'Debug',
+  'course.structure.step.debug.desc':    'Finde und fixe absichtliche Bugs im Code.',
+  'course.structure.step.mission.title': 'Missionen',
+  'course.structure.step.mission.desc':  'Kleine Aufgaben zum Üben des neuen Stoffs.',
+  'course.structure.step.branch.title':  'Extra-Herausforderung oder Check',
+  'course.structure.step.branch.desc':   'Danach wählst du: noch eine größere Aufgabe, oder direkt zum Wochen-Check.',
+  'course.structure.step.cert.title':    'Zertifikat',
+  'course.structure.step.cert.desc':     'Bestehst du Quiz und beide Coding-Aufgaben, bekommst du das Zertifikat dieser Woche.',
+  'course.structure.reference': '📖 Glossar, 🔧 Musterlösungen und Cheat-Sheets sind jederzeit über das Seitenmenü erreichbar – unabhängig vom Fortschritt.',
   'course.placement.banner': 'Unsicher, wo du starten sollst? Mach zuerst den Einstufungstest – gleiche Fragen wie im Check-Tab der Wochen.',
   'course.placement.link': 'Zur Einstufung →',
   'course.download.btn':  '📦 Alle Notebooks als Pack herunterladen',
@@ -84,21 +99,13 @@ export default {
   'course.project.banner.desc': 'Baue eine echte Geheimschrift – die Cäsar-Chiffre. Nutzt Strings, Schleifen und Funktionen aus diesem Kurs.',
   'course.project.banner.link': 'Zum Projekt →',
 
-  // ── Tabs ─────────────────────────────────────────────────────────────────
+  // ── Tabs (Tour-Schritt-Label, siehe WeekTourStepper.vue) ─────────────────
   'tab.lesson':       'Lektion',
-  'tab.lesson.desc':  'Neuer Stoff: lies und verstehe das Thema der Woche',
   'tab.debug':        'Debug',
-  'tab.debug.desc':   'Finde und fixe absichtliche Bugs im Code',
   'tab.missions':     'Missionen',
-  'tab.missions.desc':'Kleine Aufgaben zum Üben des neuen Stoffs',
   'tab.check':        'Check',
-  'tab.check.desc':   'Kurzer Verständnis-Test zu den Themen der Woche',
-  'tab.boss':         'Boss-Quest',
-  'tab.boss.desc':    'Die große Abschluss-Challenge – alles zusammen!',
   'tab.solutions':    'Lösungen',
-  'tab.solutions.desc':'Musterlösungen zu Missionen und Boss-Quest',
   'tab.glossary':     'Glossar',
-  'tab.glossary.desc':'Alle Begriffe der Woche zum Nachschlagen – immer verfügbar',
 
   // ── Variants & units ─────────────────────────────────────────────────────
   'variant.adventure': '🗺️ Abenteuer',
@@ -107,8 +114,6 @@ export default {
 
   // ── Week section ──────────────────────────────────────────────────────────
   'week.label':       'Woche',
-  'week.noNotebook':  'Kein Notebook für diesen Bereich verfügbar.',
-  'week.downloads':        'Downloads',
   'week.download.md':      'Als Markdown herunterladen',
   'week.download.nb':      'Als Jupyter Notebook herunterladen',
   'week.download.week':    '📦 Woche {n} herunterladen',
@@ -157,17 +162,6 @@ export default {
   'progress.certificate.download': '📄 PDF herunterladen',
   'progress.certificate.generating': 'Wird erstellt …',
   'progress.certificate.loginRequired': 'Login nötig für PDF-Download',
-
-  // ── Mission panel ─────────────────────────────────────────────────────────
-  'mission.panel.title': '🎯 Missionen',
-  'mission.panel.hint':  'Gute Übung für die Woche – für dein Zertifikat zählt aber nur der Check-Tab (Quiz + Coding-Aufgaben).',
-  'mission.done.mark':   '✅ Erledigt',
-  'mission.done.unmark': 'Rückgängig',
-  'mission.label':       'Mission',
-  'mission.boss.label':  'Boss-Quest',
-  'mission.check.hint':  'Tipp: Mach zuerst den Check-Tab dieser Woche – dann weißt du, ob der Stoff sitzt!',
-  'mission.check.done':  'Wochen-Check bestanden!',
-  'mission.certificate.earned': '🎓 Zertifikat für diese Woche verliehen!',
 
   // ── Appointments ──────────────────────────────────────────────────────────
   'appt.title':    'Nächste Termine für diesen Kurs',
@@ -266,7 +260,6 @@ export default {
   'challenge.notYetMessage':  'Noch nicht ganz – schau dir deine Ausgabe oben an.',
 
   // ── Experiment: Wochen-Tour ──────────────────────────────────────────────
-  'tour.title':            'Wochen-Tour (Experiment)',
   'tour.intro':            'Wähle eine Woche und ein Thema – alle Wochen bleiben sichtbar.',
   'tour.pickWeek':         'Woche wählen',
   'tour.pickVariant':      'Thema wählen',

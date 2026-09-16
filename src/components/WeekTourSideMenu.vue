@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { useLanguage } from '../../composables/useLanguage.js';
+import { useLanguage } from '../composables/useLanguage.js';
 
 export default {
   name: 'WeekTourSideMenu',

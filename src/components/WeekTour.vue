@@ -1,7 +1,5 @@
 <template>
   <section class="week-tour">
-    <h1>{{ t('tour.title') }}</h1>
-
     <p v-if="loading" class="tour-loading">{{ t('tour.loading') }}</p>
 
     <template v-else>
@@ -58,6 +56,13 @@
             {{ v.label }}
           </button>
         </div>
+
+        <div class="week-zip-download">
+          <a :href="`/wochen-zips/woche-${selectedWeekIndex + 1}.zip`" download class="btn-week-zip">
+            {{ t('week.download.week').replace('{n}', selectedWeekIndex + 1) }}
+          </a>
+          <span class="week-zip-hint">{{ t('week.download.week.hint') }}</span>
+        </div>
       </div>
 
       <!-- Seite 3: Meine Zertifikate -->
@@ -90,11 +95,11 @@
 <script>
 import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import WeekTourStepper from '../../components/experiment/WeekTourStepper.vue';
-import FortschrittWidget from '../../components/FortschrittWidget.vue';
-import { loadWeeklyContent } from '../../composables/useWeeklyContent.js';
-import { useLanguage } from '../../composables/useLanguage.js';
-import { useZertifikate } from '../../composables/useZertifikate.js';
+import WeekTourStepper from './WeekTourStepper.vue';
+import FortschrittWidget from './FortschrittWidget.vue';
+import { loadWeeklyContent } from '../composables/useWeeklyContent.js';
+import { useLanguage } from '../composables/useLanguage.js';
+import { useZertifikate } from '../composables/useZertifikate.js';
 
 const COURSE_ID = 'python-12-wochen-grundkurs';
 
@@ -109,6 +114,20 @@ const VARIANT_CONFIG = [
 const WEEK_ICONS = {
   1: '🚀', 2: '🔤', 3: '🔀', 4: '🔁', 5: '🧩', 6: '📋',
   7: '🧰', 8: '🗃️', 9: '💾', 10: '🏗️', 11: '🧬', 12: '🐢',
+};
+
+// Rückwärtskompatibel zum alten ?week=&tab=-Schema der früheren Akkordeon-Kursseite
+// (WeekSection.vue, entfernt) - z.B. von PlacementCourse.vue und den Cäsar-Chiffre-Lektionen
+// verlinkt. Nur relevant, falls ein Deep-Link zufällig schon eine Variante mitbringt (das reale
+// alte Schema tat das nie, landet also ohnehin auf der Themen-Wahl-Seite mit Lektion als Standard).
+const TAB_TO_STEP = {
+  lektion: '1_lektion', lesson: '1_lektion',
+  debug: '2_debug',
+  missionen: '3_missionen', missions: '3_missionen',
+  boss: '5_boss',
+  check: '4_check',
+  loesungen: '6_loesungen', solutions: '6_loesungen',
+  glossar: '0_glossar', glossary: '0_glossar',
 };
 
 /**
@@ -225,9 +244,13 @@ export default {
       const variant = String(route.query.variant || '');
       if (variant && weeks.value[weekNum - 1].notebooks[variant]) {
         weeks.value[weekNum - 1].selectedVariant = variant;
-        initialStep.value = String(route.query.step || '') || null;
+        const stepParam = String(route.query.step || '') || null;
+        const tabParam = String(route.query.tab || '').toLowerCase();
+        initialStep.value = stepParam || TAB_TO_STEP[tabParam] || null;
         phase.value = 'tour';
       } else {
+        // Alte Links (z.B. ?week=N&tab=lektion, nie mit variant) landen hier auf der
+        // Themen-Wahl-Seite - nach der Themenwahl startet die Tour ohnehin auf Lektion.
         phase.value = 'variant';
       }
     };
@@ -482,5 +505,38 @@ export default {
   font-weight: 600;
   color: #374151;
   padding: 26px 18px;
+}
+
+.week-zip-download {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 0 4px;
+  flex-wrap: wrap;
+}
+
+.btn-week-zip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 0.9em;
+  color: var(--primary-purple, #4a2274);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.btn-week-zip:hover {
+  background: #e9ecef;
+  border-color: var(--primary-purple, #4a2274);
+}
+
+.week-zip-hint {
+  font-size: 0.8em;
+  color: #888;
 }
 </style>

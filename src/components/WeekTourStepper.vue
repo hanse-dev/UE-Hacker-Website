@@ -33,7 +33,18 @@
           <button class="tour-back-btn" @click="activeReference = null">{{ t('tour.backToTour') }}</button>
         </div>
 
-        <div v-if="!activeReference && choosingNext" class="branch-choice-page">
+        <div v-if="activeCheatSheet" class="cheat-sheet-reference">
+          <div class="cheat-sheet-actions">
+            <a :href="activeCheatSheet.url" download class="download-btn">
+              <span class="download-icon">📥</span>{{ t('week.download.md') }}
+            </a>
+            <a v-if="activeCheatSheet.notebookUrl" :href="activeCheatSheet.notebookUrl" download class="download-btn">
+              <span class="download-icon">📓</span>{{ t('week.download.nb') }}
+            </a>
+          </div>
+          <div class="cheat-sheet-markdown" v-html="activeCheatSheet.content"></div>
+        </div>
+        <div v-else-if="!activeReference && choosingNext" class="branch-choice-page">
           <h3>{{ t('tour.branch.title') }}</h3>
           <p>{{ t('tour.branch.intro') }}</p>
           <div class="branch-tile-grid">
@@ -128,14 +139,14 @@
 
 <script>
 import { ref, computed, watch } from 'vue';
-import JupyterNotebook from '../JupyterNotebook.vue';
-import WeekCheckPanel from '../WeekCheckPanel.vue';
+import JupyterNotebook from './JupyterNotebook.vue';
+import WeekCheckPanel from './WeekCheckPanel.vue';
 import WeekTourSideMenu from './WeekTourSideMenu.vue';
-import { useLanguage } from '../../composables/useLanguage.js';
-import { useAuth } from '../../composables/useAuth.js';
-import { useNotebookHeadings } from '../../composables/experiment/useNotebookHeadings.js';
-import { loadWeekChecks, hasWeekCheck, useWeekChecks } from '../../composables/useWeekChecks.js';
-import { downloadCertificatePdf } from '../../composables/useCertificatePdf.js';
+import { useLanguage } from '../composables/useLanguage.js';
+import { useAuth } from '../composables/useAuth.js';
+import { useNotebookHeadings } from '../composables/useNotebookHeadings.js';
+import { loadWeekChecks, hasWeekCheck, useWeekChecks } from '../composables/useWeekChecks.js';
+import { downloadCertificatePdf } from '../composables/useCertificatePdf.js';
 
 const CERTIFICATE_NAME_KEY = 'ue-hacker-certificate-name';
 
@@ -182,11 +193,19 @@ export default {
         .map((step) => ({ ...step, label: t(step.labelKey) }))
     );
 
-    const referenceItems = computed(() =>
-      REFERENCE_CONFIG
+    const referenceItems = computed(() => {
+      const notebookRefs = REFERENCE_CONFIG
         .filter((ref_) => !!notebooksForVariant.value[ref_.key]?.renderUrl)
-        .map((ref_) => ({ ...ref_, label: t(ref_.labelKey) }))
-    );
+        .map((ref_) => ({ ...ref_, label: t(ref_.labelKey) }));
+      // Cheat-Sheets sind kein Notebook (fertig gerendertes Markdown-HTML aus
+      // useWeeklyContent.js) - eigene Referenz-Einträge, Name kommt bereits mit Emoji-Präfix
+      // ("📚 Wissens-Cheat-Sheet"), hier nur in icon/label getrennt fürs Seitenmenü.
+      const cheatSheetRefs = (props.week.cheatSheets || []).map((cs, i) => {
+        const [icon, ...rest] = cs.name.split(' ');
+        return { key: `cheat-${i}`, icon, label: rest.join(' ') || cs.name };
+      });
+      return [...notebookRefs, ...cheatSheetRefs];
+    });
 
     const viewingStepKey = ref(null);
     const visitedKeys = ref({});
@@ -267,6 +286,12 @@ export default {
       return nextStep.value ? t('tour.next').replace('{step}', nextStep.value.label) : '';
     });
 
+    const activeCheatSheet = computed(() => {
+      if (!activeReference.value?.startsWith('cheat-')) return null;
+      const idx = Number(activeReference.value.slice(6));
+      return props.week.cheatSheets?.[idx] ?? null;
+    });
+
     const activeContentKey = computed(() => activeReference.value ?? viewingStepKey.value);
     const activeContentUrl = computed(() => {
       if (choosingNext.value && !activeReference.value) return null;
@@ -315,7 +340,7 @@ export default {
       t, steps, referenceItems, viewingStepKey, visitedKeys, activeReference, choosingNext, sideMenuOpen,
       viewStep, viewReference, chooseBranch, nextStep, nextButtonLabel, goNext,
       activeContentKey, activeContentUrl, activeContentDownloadUrl, activeContentDownloadName,
-      headings, scrollToCell, referenceLabel,
+      activeCheatSheet, headings, scrollToCell, referenceLabel,
       checkPassed, isLoggedIn, certificateName, setCertificateName, pdfBusy, onDownloadPdf,
     };
   },
@@ -472,6 +497,58 @@ export default {
   font-weight: 600;
 }
 .tour-back-btn:hover { background: #3d1b5c; }
+
+/* ── Cheat-Sheet-Referenz ────────────────────────────────────────────────── */
+.cheat-sheet-reference {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.cheat-sheet-actions { margin-bottom: 16px; text-align: center; }
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 8px;
+  padding: 10px 20px;
+  background: #28a745;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+.download-btn:hover { background: #218838; transform: translateY(-2px); }
+.download-icon { font-size: 1.1em; }
+
+.cheat-sheet-markdown { font-size: 0.95em; line-height: 1.6; }
+
+.cheat-sheet-markdown :deep(h1) {
+  color: #28a745; border-bottom: 2px solid #28a745; padding-bottom: 10px; margin-top: 0;
+}
+.cheat-sheet-markdown :deep(h2) { color: #333; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 2em; }
+.cheat-sheet-markdown :deep(h3) { color: #555; margin-top: 1.5em; }
+.cheat-sheet-markdown :deep(code) {
+  background: #f8f9fa; padding: 2px 6px; border-radius: 3px;
+  font-family: 'Courier New', monospace; font-size: 0.9em; border: 1px solid #e9ecef;
+}
+.cheat-sheet-markdown :deep(pre) {
+  background: #f8f9fa; padding: 15px; border-radius: 6px; overflow-x: auto; border: 1px solid #e9ecef;
+}
+.cheat-sheet-markdown :deep(pre code) { background: none; padding: 0; border: none; }
+.cheat-sheet-markdown :deep(ul), .cheat-sheet-markdown :deep(ol) { padding-left: 25px; }
+.cheat-sheet-markdown :deep(li) { margin-bottom: 5px; }
+.cheat-sheet-markdown :deep(table) { width: 100%; border-collapse: collapse; margin: 20px 0; }
+.cheat-sheet-markdown :deep(th), .cheat-sheet-markdown :deep(td) {
+  border: 1px solid #ddd; padding: 8px 12px; text-align: left;
+}
+.cheat-sheet-markdown :deep(th) { background: #f8f9fa; font-weight: bold; }
+.cheat-sheet-markdown :deep(blockquote) {
+  border-left: 4px solid #28a745; padding-left: 20px; margin-left: 0; color: #666; font-style: italic;
+}
 
 /* ── Verzweigung: Extra-Herausforderung oder Check ──────────────────────── */
 .branch-choice-page {

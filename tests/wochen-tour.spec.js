@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import checks from '../content/python-checks/index.mjs';
 
-const TOUR_URL = '/experiment/wochen-tour';
+const TOUR_URL = '/kurs/python-12-wochen-grundkurs';
 
 function findQuestion(text) {
   const normalized = text.replace(/^\d+\.\s*/, '').trim();
@@ -57,7 +57,7 @@ async function passWeek1CheckForReal(page) {
   await passCoding(1, 'name = "Nova"\nlevel = 3\nprint(name + " hat Level " + str(level) + " erreicht!")');
 }
 
-test.describe('Experiment: Wochen-Tour', () => {
+test.describe('12-Wochen-Kurs: Wochen-Tour', () => {
   test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => {
       localStorage.removeItem('ue-hacker-lang');
@@ -80,17 +80,24 @@ test.describe('Experiment: Wochen-Tour', () => {
     await expect(page.locator('.tour-content .cell-markdown').first()).toBeVisible();
   });
 
-  test('Wochen-Pfad: Schlangen-Anordnung platziert Woche 6 direkt unter Woche 5 statt quer über das Raster', async ({ page }) => {
+  test('Wochen-Pfad: Schlangen-Anordnung platziert den Zeilenumbruch senkrecht statt quer über das Raster', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto(TOUR_URL);
-    const week5Box = await page.locator('.week-tile[data-week="5"]').boundingBox();
-    const week6Box = await page.locator('.week-tile[data-week="6"]').boundingBox();
-    expect(week5Box).toBeTruthy();
-    expect(week6Box).toBeTruthy();
-    // Bei echter Schlangen-Anordnung (Zeile 2 läuft rückwärts) liegt Woche 6 direkt unter
-    // Woche 5 in derselben Spalte - ohne Umkehrung läge Woche 6 stattdessen ganz links.
-    expect(Math.abs(week5Box.x - week6Box.x)).toBeLessThan(30);
-    expect(week6Box.y).toBeGreaterThan(week5Box.y);
+    // Spaltenzahl kommt aus dem tatsächlich gerenderten Grid (auto-fill, abhängig vom Seiten-
+    // Layout drumherum) - die letzte Woche der ersten Zeile hat die Wochennummer == Spaltenzahl.
+    const cols = await page.locator('.week-tile-grid').evaluate(
+      (el) => getComputedStyle(el).gridTemplateColumns.split(' ').filter(Boolean).length
+    );
+    expect(cols).toBeGreaterThan(1);
+    const lastOfRow1 = await page.locator(`.week-tile[data-week="${cols}"]`).boundingBox();
+    const firstOfRow2 = await page.locator(`.week-tile[data-week="${cols + 1}"]`).boundingBox();
+    expect(lastOfRow1).toBeTruthy();
+    expect(firstOfRow2).toBeTruthy();
+    // Bei echter Schlangen-Anordnung (Zeile 2 läuft rückwärts) liegt die erste Woche der
+    // zweiten Zeile direkt unter der letzten Woche der ersten Zeile in derselben Spalte -
+    // ohne Umkehrung läge sie stattdessen ganz links.
+    expect(Math.abs(lastOfRow1.x - firstOfRow2.x)).toBeLessThan(30);
+    expect(firstOfRow2.y).toBeGreaterThan(lastOfRow1.y);
   });
 
   test('Breadcrumb springt zurück zur Wochen- bzw. Themen-Seite', async ({ page }) => {

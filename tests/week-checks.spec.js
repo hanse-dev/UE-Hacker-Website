@@ -68,16 +68,15 @@ test.describe('Einstufung & Check-Tab', () => {
   });
 
   test('Deep-Link öffnet Woche und lädt Notebook', async ({ page }) => {
-    await page.goto(`${COURSE_URL}?week=1&tab=lektion#woche-1`);
-    const week = page.locator('#woche-1');
-    await expect(week.locator('.week-content')).toBeVisible({ timeout: 20000 });
-    await expect(week.locator('.tab-btn.active')).toContainText('Lektion');
-    await expect(week.locator('.cell').first()).toBeVisible({ timeout: 15000 });
+    await page.goto(`${COURSE_URL}?week=1&variant=abenteuer&step=1_lektion`);
+    await expect(page.locator('.tour-content')).toBeVisible({ timeout: 20000 });
+    await expect(page.locator('.stepper-step.current')).toContainText('Lektion');
+    await expect(page.locator('.cell').first()).toBeVisible({ timeout: 15000 });
   });
 
   test('Check-Tab: Multi-Select erlaubt mehrere Antworten', async ({ page }) => {
-    await page.goto(`${COURSE_URL}?week=2&tab=check#woche-2`);
-    const week = page.locator('#woche-2');
+    await page.goto(`${COURSE_URL}?week=2&variant=abenteuer&step=4_check`);
+    const week = page;
     await expect(week.locator('.week-check-panel')).toBeVisible({ timeout: 20000 });
 
     const multi = week.locator('.quiz-question').filter({ has: page.locator('.multi-hint') }).first();
@@ -116,11 +115,14 @@ test.describe('Einstufung & Check-Tab', () => {
     await expect(page.locator('.project-card')).toHaveCount(3);
     await expect(page.locator('.week-result.ok')).toHaveCount(12);
 
+    // week-jump nutzt bewusst das alte ?week=&tab=-Schema (PlacementCourse.vue unverändert) -
+    // ohne variant landet das auf der Themen-Wahl-Seite der richtigen Woche, nicht direkt in
+    // der Lektion (siehe WeekTour.vue applyDeepLink()).
     await page.locator('.week-jump').first().click();
     await expect(page).toHaveURL(/python-12-wochen-grundkurs/);
     await expect(page.locator('.course-detail > h1')).toHaveText(/12-Wochen|12-Week/);
-    await expect(page.locator('.week-section')).toHaveCount(12, { timeout: 30000 });
-    await expect(page.locator('.cell').first()).toBeVisible({ timeout: 20000 });
+    await expect(page.locator('.section-label')).toContainText('Woche 1', { timeout: 30000 });
+    await expect(page.locator('.variant-tile')).toHaveCount(3);
   });
 
   test('Einstufung: "Ich weiß es nicht" zeigt eigene Rückmeldung und die richtige Antwort', async ({ page }) => {
@@ -236,8 +238,8 @@ test.describe('Einstufung & Check-Tab', () => {
 
   test('Check-Tab: alle richtig → bestanden', async ({ page }) => {
     test.setTimeout(60000);
-    await page.goto(`${COURSE_URL}?week=1&tab=check#woche-1`);
-    const week = page.locator('#woche-1');
+    await page.goto(`${COURSE_URL}?week=1&variant=abenteuer&step=4_check`);
+    const week = page;
     await expect(week.locator('.week-check-panel')).toBeVisible({ timeout: 20000 });
     await answerAllQuizQuestions(page, week);
     await week.locator('.btn-check-quiz').click();
@@ -245,8 +247,8 @@ test.describe('Einstufung & Check-Tab', () => {
   });
 
   test('Check-Tab: falsch → Retry möglich', async ({ page }) => {
-    await page.goto(`${COURSE_URL}?week=3&tab=check#woche-3`);
-    const week = page.locator('#woche-3');
+    await page.goto(`${COURSE_URL}?week=3&variant=abenteuer&step=4_check`);
+    const week = page;
     await expect(week.locator('.week-check-panel')).toBeVisible({ timeout: 20000 });
 
     const cards = week.locator('.quiz-question');
@@ -287,7 +289,8 @@ test.describe('Einstufung & Check-Tab', () => {
     await expect(page.locator('.recommend a')).toBeVisible({ timeout: 15000 });
     await page.locator('.recommend a').click();
     await expect(page).toHaveURL(/week=4/);
-    await expect(page.locator('#woche-4 .week-content')).toBeVisible({ timeout: 20000 });
-    await expect(page.locator('#woche-4 .cell').first()).toBeVisible({ timeout: 15000 });
+    // Alter Link ohne variant -> landet auf der Themen-Wahl-Seite der richtigen Woche.
+    await expect(page.locator('.section-label')).toContainText('Woche 4', { timeout: 20000 });
+    await expect(page.locator('.variant-tile')).toHaveCount(3);
   });
 });

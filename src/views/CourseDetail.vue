@@ -14,14 +14,15 @@
       <div v-if="isWeeklyCourse" class="course-structure">
         <p class="course-structure-intro">{{ t('course.structure.intro') }}</p>
         <div class="course-structure-tabs">
-          <div class="course-structure-tab" v-for="tab in courseTabs" :key="tab.key">
-            <span class="course-structure-icon">{{ tab.icon }}</span>
+          <div class="course-structure-tab" v-for="step in courseStructureSteps" :key="step.key">
+            <span class="course-structure-icon">{{ step.icon }}</span>
             <div class="course-structure-text">
-              <strong>{{ tab.label }}</strong>
-              <span>{{ tab.description }}</span>
+              <strong>{{ step.title }}</strong>
+              <span>{{ step.desc }}</span>
             </div>
           </div>
         </div>
+        <p class="course-structure-reference">{{ t('course.structure.reference') }}</p>
       </div>
     </div>
 
@@ -39,19 +40,7 @@
       <ProjectCourse :course-id="id" />
     </div>
 
-    <FortschrittWidget v-else-if="isWeeklyCourse && fortschrittReady" :weeks="weeks" />
-
-    <WeekSection
-      v-if="isWeeklyCourse"
-      v-for="(week, index) in weeks"
-      :key="index"
-      :week="week"
-      :index="index"
-      :course-id="id"
-      @toggle="toggleWeek(index)"
-      @toggle-cheat-sheet="(csIndex) => toggleCheatSheet(week, csIndex)"
-      @set-variant="(variant) => setVariant(week, variant)"
-    />
+    <WeekTour v-else-if="isWeeklyCourse" />
 
     <div v-if="isWeeklyCourse" class="notebook-pack-download">
       <a href="/python-12-wochen-notebooks.zip" download class="notebook-pack-btn">
@@ -79,32 +68,28 @@
 <script>
 import { ref, onMounted, computed, watch, toRef } from 'vue';
 import CourseAppointments from '../components/CourseAppointments.vue';
-import FortschrittWidget from '../components/FortschrittWidget.vue';
-import WeekSection from '../components/WeekSection.vue';
+import WeekTour from '../components/WeekTour.vue';
 import InteractiveCourse from '../components/InteractiveCourse.vue';
 import PlacementCourse from '../components/PlacementCourse.vue';
 import ProjectCourse from '../components/ProjectCourse.vue';
 import { loadCourseData } from '../composables/useCourseData';
-import { loadWeeklyContent } from '../composables/useWeeklyContent';
 import { useLanguage } from '../composables/useLanguage.js';
-import { useRoute } from 'vue-router';
 
-const TABS_CONFIG = [
-  { key: '1_lektion',   icon: '📚', labelKey: 'tab.lesson',    descKey: 'tab.lesson.desc' },
-  { key: '2_debug',     icon: '🐛', labelKey: 'tab.debug',     descKey: 'tab.debug.desc' },
-  { key: '3_missionen', icon: '⭐', labelKey: 'tab.missions',  descKey: 'tab.missions.desc' },
-  { key: '4_check',     icon: '✅', labelKey: 'tab.check',     descKey: 'tab.check.desc' },
-  { key: '5_boss',      icon: '🐉', labelKey: 'tab.boss',      descKey: 'tab.boss.desc' },
-  { key: '6_loesungen', icon: '🔧', labelKey: 'tab.solutions', descKey: 'tab.solutions.desc' },
-  { key: '0_glossar',   icon: '📖', labelKey: 'tab.glossary',  descKey: 'tab.glossary.desc' },
+const STRUCTURE_STEPS_CONFIG = [
+  { key: 'week',    icon: '🗺️', titleKey: 'course.structure.step.week.title',    descKey: 'course.structure.step.week.desc' },
+  { key: 'variant', icon: '🧭', titleKey: 'course.structure.step.variant.title', descKey: 'course.structure.step.variant.desc' },
+  { key: 'lesson',  icon: '📚', titleKey: 'course.structure.step.lesson.title',  descKey: 'course.structure.step.lesson.desc' },
+  { key: 'debug',   icon: '🐛', titleKey: 'course.structure.step.debug.title',   descKey: 'course.structure.step.debug.desc' },
+  { key: 'mission', icon: '⭐', titleKey: 'course.structure.step.mission.title', descKey: 'course.structure.step.mission.desc' },
+  { key: 'branch',  icon: '🔥', titleKey: 'course.structure.step.branch.title',  descKey: 'course.structure.step.branch.desc' },
+  { key: 'cert',    icon: '🎓', titleKey: 'course.structure.step.cert.title',    descKey: 'course.structure.step.cert.desc' },
 ];
 
 export default {
   name: 'CourseDetail',
   components: {
     CourseAppointments,
-    FortschrittWidget,
-    WeekSection,
+    WeekTour,
     InteractiveCourse,
     PlacementCourse,
     ProjectCourse,
@@ -114,13 +99,10 @@ export default {
   },
   setup(props) {
     const { lang, t } = useLanguage();
-    const route = useRoute();
 
     const course = ref(null);
     const description = ref('');
-    const weeks = ref([]);
     const courseTermine = ref([]);
-    const fortschrittReady = ref(false);
     const loading = ref(true);
 
     const isWeeklyCourse = computed(() => props.id === 'python-12-wochen-grundkurs');
@@ -128,22 +110,9 @@ export default {
     const isPlacementCourse = computed(() => props.id === 'python-einstufung');
     const isProjectCourse = computed(() => props.id === 'projekt-caesar-chiffre');
 
-    const courseTabs = computed(() =>
-      TABS_CONFIG.map(tab => ({ ...tab, label: t(tab.labelKey), description: t(tab.descKey) }))
+    const courseStructureSteps = computed(() =>
+      STRUCTURE_STEPS_CONFIG.map((step) => ({ ...step, title: t(step.titleKey), desc: t(step.descKey) }))
     );
-
-    const setVariant = (week, variant) => {
-      week.selectedVariant = variant;
-    };
-
-    const toggleWeek = (index) => {
-      weeks.value[index].expanded = !weeks.value[index].expanded;
-    };
-
-    const toggleCheatSheet = (week, csIndex) => {
-      if (!week.expandedCheatSheets) week.expandedCheatSheets = {};
-      week.expandedCheatSheets[csIndex] = !week.expandedCheatSheets[csIndex];
-    };
 
     const courseTitle = computed(() =>
       lang.value === 'en' && course.value?.title_en
@@ -151,53 +120,20 @@ export default {
         : course.value?.title ?? ''
     );
 
-    const loadContent = async () => {
-      if (isWeeklyCourse.value) {
-        weeks.value = await loadWeeklyContent(lang.value);
-      } else {
-        weeks.value = [];
-      }
-    };
-
-    const applyWeekDeepLink = () => {
-      if (!isWeeklyCourse.value || !weeks.value.length) return;
-      const weekNum = Number(route.query.week);
-      if (!weekNum || weekNum < 1 || weekNum > weeks.value.length) return;
-      const idx = weekNum - 1;
-      weeks.value[idx].expanded = true;
-      // DOM may not have WeekSection yet (same tick as loadContent) — retry briefly
-      const scrollToWeek = (attempt = 0) => {
-        const el = document.getElementById(`woche-${weekNum}`);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          return;
-        }
-        if (attempt < 20) {
-          requestAnimationFrame(() => scrollToWeek(attempt + 1));
-        }
-      };
-      requestAnimationFrame(() => scrollToWeek());
-    };
-
     const loadCourse = async () => {
       loading.value = true;
-      fortschrittReady.value = false;
       course.value = null;
       description.value = '';
-      weeks.value = [];
       courseTermine.value = [];
       try {
         const data = await loadCourseData(props.id, lang.value);
         course.value = data.course;
         description.value = data.description;
         courseTermine.value = data.courseTermine;
-        await loadContent();
-        applyWeekDeepLink();
       } catch (e) {
         console.error('CourseDetail load error:', e);
       } finally {
         loading.value = false;
-        fortschrittReady.value = true;
       }
     };
 
@@ -211,30 +147,21 @@ export default {
         const data = await loadCourseData(props.id, lang.value);
         description.value = data.description;
       }
-      await loadContent();
-      applyWeekDeepLink();
     });
-
-    watch(() => route.query.week, applyWeekDeepLink);
 
     return {
       course,
       courseTitle,
       description,
-      weeks,
       courseTermine,
-      fortschrittReady,
       loading,
       isWeeklyCourse,
       isInteractiveCourse,
       isPlacementCourse,
       isProjectCourse,
       id: toRef(props, 'id'),
-      courseTabs,
+      courseStructureSteps,
       t,
-      setVariant,
-      toggleWeek,
-      toggleCheatSheet,
     };
   },
 };
@@ -431,5 +358,12 @@ export default {
   font-size: 0.82em;
   color: #666;
   line-height: 1.4;
+}
+
+.course-structure-reference {
+  margin: 14px 0 0;
+  color: #6b7280;
+  font-size: 0.85em;
+  font-style: italic;
 }
 </style>
