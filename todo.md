@@ -3,19 +3,39 @@
 ## Now
 ### Experiment: Geführte Wochen-Tour (Branch `experiment-wochen-tour`)
 - [x] Neue, unverlinkte Experimentseite `/experiment/wochen-tour` (nur per direkter URL erreichbar,
-      bestehender Kurs `/kurs/python-12-wochen-grundkurs` unverändert): Wochen-Leiste (alle 12
-      Wochen bleiben sichtbar) → Themen-Wahl (Abenteuer/Pferde/Sci-Fi, alle sichtbar) → geführte
-      Tour mit Tab-Leiste oben (Lektion → Debug → Missionen → Boss-Quest → Check).
+      bestehender Kurs `/kurs/python-12-wochen-grundkurs` unverändert): eigene Kachel-"Seiten" für
+      Woche wählen (12 Kacheln) → Thema wählen (bis zu 3 Kacheln) → geführte Tour mit
+      Fortschritts-Leiste oben (Kullern verbunden durch Linien statt Tabs: Lektion → Debug →
+      Missionen → Extra-Herausforderung → Check). Breadcrumb oben erlaubt jederzeit den Sprung
+      zurück zur Wochen-/Themenwahl. Seitenmenü ein-/ausklappbar.
 - [x] Kein Missionen-Punkte-Widget (`MissionenPanel.vue`) in der Tour — die Missionen-Aufgaben
       selbst sind aber ganz normaler Tour-Schritt.
-- [x] "Weiter"-Button führt Schritt für Schritt; alle Tabs bleiben trotzdem frei anklickbar
-      (kein Zwang, auch rückwärts schauen möglich, ohne den Fortschritt zurückzusetzen).
+- [x] Nach den Missionen keine automatische Weiterschaltung mehr, sondern eine Wahl-Kachel-Seite
+      zwischen "Extra-Herausforderung" (ehemals Boss-Quest, nur hier umbenannt) und "Check" — beide
+      führen letztlich zum Check, die Extra-Herausforderung bleibt aber optional/überspringbar
+      (ihr Punkt in der Fortschritts-Leiste bleibt dann bewusst "nicht besucht", nicht fälschlich
+      abgehakt).
+- [x] Nach bestandenem Check (Quiz + beide Coding-Aufgaben) erscheint ein Zertifikat-Reveal direkt
+      in der Tour (Name-Feld + PDF-Download bei Login, wiederverwendet `useCertificatePdf.js`),
+      danach eine Wahl zwischen "Zur Übersicht" und "Nächste Woche" (fällt auf die erste verfügbare
+      Variante zurück, falls die aktuelle in der nächsten Woche fehlt; bei Woche 12 gibt es nur noch
+      "Zur Übersicht").
+- [x] Wochen-Übersicht: jede Kachel bekommt ein Themen-Icon (technisches Wochenthema, variantenlos)
+      plus ein 🎓-Abzeichen sobald das Zertifikat der Woche verdient ist, ein Zähler oben, und ein
+      Link zu einer neuen "Meine Zertifikate"-Seite (wiederverwendet `FortschrittWidget.vue` direkt
+      statt eines eigenen Rasters). Die Kacheln sind per dünner gestrichelter Linie verbunden wie
+      "Inseln", die man der Reihe nach bereist (SVG-Pfad, Zentren der Kacheln per
+      `getBoundingClientRect()` verbunden, reagiert per `ResizeObserver` auf Größenänderungen).
 - [x] Kleines Seitenmenü: Tour-Schritte zum Springen + Unterabschnitte des aktuellen Schritts
       (z.B. Bug 1/2/3, Mission 1/2/3, aus den `##`/`###`-Überschriften der Notebook-Zellen
       extrahiert) + Glossar/Lösungen als jederzeit verfügbares Nachschlagewerk (kein Tour-Schritt,
       kein Gating).
-- [x] Neuer Test `tests/experiment-wochen-tour.spec.js` (4 Tests) + volle `test:checks`-Suite (55
-      bestehende Tests) bleibt grün — deckt ab, dass die eine additive Änderung an der geteilten
+- [x] `FortschrittWidget.vue` bekam einen neuen optionalen `startExpanded`-Prop (Default `false`,
+      bestehende Nutzung in `CourseDetail.vue` unverändert) — auf der neuen Zertifikate-Seite direkt
+      aufgeklappt statt erst einklappen zu müssen.
+- [x] Neuer Test `tests/experiment-wochen-tour.spec.js` (10 Tests, inkl. echtem Bestehen von Woche
+      1s Quiz+Coding-Aufgaben) + volle `test:checks`-Suite (55 bestehende Tests) bleibt grün — deckt
+      ab, dass die eine additive Änderung an der geteilten
       `JupyterNotebook.vue` (Zell-`id` fürs Scroll-Ziel des Seitenmenüs) den bestehenden Kurs nicht
       verändert.
 - Details/Architektur-Entscheidungen: Plan-Datei `~/.claude/plans/twinkly-strolling-lovelace.md`.

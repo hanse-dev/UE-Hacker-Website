@@ -15,14 +15,14 @@
       <template v-for="(step, i) in steps" :key="step.key">
         <button
           class="stepper-step"
-          :class="{ done: i <= furthestStepIndex, current: !activeReference && viewingStepKey === step.key }"
+          :class="{ done: !!visitedKeys[step.key], current: !activeReference && !choosingNext && viewingStepKey === step.key }"
           :data-step-key="step.key"
           @click="viewStep(step.key)"
         >
-          <span class="stepper-dot">{{ i <= furthestStepIndex ? '✓' : i + 1 }}</span>
+          <span class="stepper-dot">{{ visitedKeys[step.key] ? '✓' : i + 1 }}</span>
           <span class="stepper-label">{{ step.label }}</span>
         </button>
-        <span v-if="i < steps.length - 1" class="stepper-line" :class="{ done: i < furthestStepIndex }"></span>
+        <span v-if="i < steps.length - 1" class="stepper-line" :class="{ done: !!visitedKeys[step.key] }"></span>
       </template>
     </div>
 
@@ -33,8 +33,24 @@
           <button class="tour-back-btn" @click="activeReference = null">{{ t('tour.backToTour') }}</button>
         </div>
 
+        <div v-if="!activeReference && choosingNext" class="branch-choice-page">
+          <h3>{{ t('tour.branch.title') }}</h3>
+          <p>{{ t('tour.branch.intro') }}</p>
+          <div class="branch-tile-grid">
+            <button class="tile branch-tile" data-branch="5_boss" @click="chooseBranch('5_boss')">
+              <span class="branch-tile-icon">🔥</span>
+              <strong>{{ t('tour.deepen') }}</strong>
+              <span class="branch-tile-desc">{{ t('tour.branch.deepenDesc') }}</span>
+            </button>
+            <button class="tile branch-tile" data-branch="4_check" @click="chooseBranch('4_check')">
+              <span class="branch-tile-icon">✅</span>
+              <strong>{{ t('tab.check') }}</strong>
+              <span class="branch-tile-desc">{{ t('tour.branch.checkDesc') }}</span>
+            </button>
+          </div>
+        </div>
         <WeekCheckPanel
-          v-if="!activeReference && viewingStepKey === '4_check'"
+          v-else-if="!activeReference && viewingStepKey === '4_check'"
           :week-number="weekNumber"
         />
         <JupyterNotebook
@@ -48,10 +64,48 @@
           :key="`${weekNumber}-${variant}-${activeContentKey}`"
         />
 
-        <div v-if="!activeReference" class="tour-next-area">
-          <button v-if="nextStep" class="tour-next-btn" @click="goNext">
-            {{ t('tour.next').replace('{step}', nextStep.label) }} →
-          </button>
+        <div v-if="!activeReference && !choosingNext" class="tour-tail">
+          <button
+            v-if="viewingStepKey !== '4_check' && nextStep"
+            class="tour-next-btn"
+            @click="goNext"
+          >{{ nextButtonLabel }} →</button>
+
+          <template v-else-if="viewingStepKey === '4_check'">
+            <div v-if="checkPassed" class="certificate-reveal">
+              <div class="certificate-badge">🎓</div>
+              <h3>{{ t('tour.certificate.title') }}</h3>
+              <p>{{ t('tour.certificate.earned').replace('{week}', `${t('week.label')} ${weekNumber}: ${weekTheme}`) }}</p>
+
+              <div v-if="isLoggedIn" class="certificate-name-row">
+                <label :for="`cert-name-${weekNumber}`">{{ t('progress.certificate.name.label') }}</label>
+                <input
+                  :id="`cert-name-${weekNumber}`"
+                  type="text"
+                  :value="certificateName"
+                  @input="setCertificateName($event.target.value)"
+                />
+              </div>
+              <button v-if="isLoggedIn" class="btn-certificate-pdf" :disabled="pdfBusy" @click="onDownloadPdf">
+                {{ pdfBusy ? t('progress.certificate.generating') : t('progress.certificate.download') }}
+              </button>
+              <p v-else class="certificate-login-hint">{{ t('progress.certificate.loginRequired') }}</p>
+
+              <div class="after-check-choice">
+                <button class="tile after-check-tile" data-after-check="overview" @click="$emit('change-week')">
+                  {{ t('tour.afterCheck.overview') }}
+                </button>
+                <button
+                  v-if="hasNextWeek"
+                  class="tile after-check-tile"
+                  data-after-check="next-week"
+                  @click="$emit('go-next-week')"
+                >{{ t('tour.afterCheck.nextWeek') }}</button>
+              </div>
+            </div>
+            <p v-else class="tour-check-pending">{{ t('tour.certificate.pending') }}</p>
+          </template>
+
           <p v-else class="tour-done-msg">{{ t('tour.done') }}</p>
         </div>
       </div>
@@ -59,8 +113,8 @@
       <WeekTourSideMenu
         v-if="sideMenuOpen"
         :steps="steps"
-        :current-step-key="viewingStepKey"
-        :furthest-index="furthestStepIndex"
+        :current-step-key="!choosingNext ? viewingStepKey : null"
+        :visited-keys="visitedKeys"
         :headings="headings"
         :reference-items="referenceItems"
         :active-reference="activeReference"
@@ -78,14 +132,18 @@ import JupyterNotebook from '../JupyterNotebook.vue';
 import WeekCheckPanel from '../WeekCheckPanel.vue';
 import WeekTourSideMenu from './WeekTourSideMenu.vue';
 import { useLanguage } from '../../composables/useLanguage.js';
+import { useAuth } from '../../composables/useAuth.js';
 import { useNotebookHeadings } from '../../composables/experiment/useNotebookHeadings.js';
-import { loadWeekChecks, hasWeekCheck } from '../../composables/useWeekChecks.js';
+import { loadWeekChecks, hasWeekCheck, useWeekChecks } from '../../composables/useWeekChecks.js';
+import { downloadCertificatePdf } from '../../composables/useCertificatePdf.js';
+
+const CERTIFICATE_NAME_KEY = 'ue-hacker-certificate-name';
 
 const TOUR_STEPS_CONFIG = [
   { key: '1_lektion',   icon: '📚', labelKey: 'tab.lesson' },
   { key: '2_debug',     icon: '🐛', labelKey: 'tab.debug' },
   { key: '3_missionen', icon: '⭐', labelKey: 'tab.missions' },
-  { key: '5_boss',      icon: '🐉', labelKey: 'tab.boss' },
+  { key: '5_boss',      icon: '🔥', labelKey: 'tour.deepen' },
   { key: '4_check',     icon: '✅', labelKey: 'tab.check' },
 ];
 
@@ -105,13 +163,16 @@ export default {
     variantLabel: { type: String, default: '' },
     courseId: { type: String, required: true },
     initialStep: { type: String, default: null },
+    hasNextWeek: { type: Boolean, default: false },
   },
-  emits: ['change-week', 'change-variant'],
+  emits: ['change-week', 'change-variant', 'go-next-week'],
   setup(props) {
-    const { t } = useLanguage();
+    const { t, lang } = useLanguage();
+    const { isLoggedIn, user } = useAuth();
     const checksData = ref(null);
     const hasCheck = computed(() => hasWeekCheck(checksData.value, props.weekNumber));
     const sideMenuOpen = ref(true);
+    const { isWeekCheckPassed } = useWeekChecks();
 
     const notebooksForVariant = computed(() => props.week.notebooks?.[props.variant] ?? {});
 
@@ -128,22 +189,26 @@ export default {
     );
 
     const viewingStepKey = ref(null);
-    const furthestStepIndex = ref(0);
+    const visitedKeys = ref({});
     const activeReference = ref(null);
+    const choosingNext = ref(false);
     let usedInitialStep = false;
 
     const resetForWeekVariant = () => {
       activeReference.value = null;
+      choosingNext.value = false;
       const initialIdx = !usedInitialStep && props.initialStep
         ? steps.value.findIndex((s) => s.key === props.initialStep)
         : -1;
       usedInitialStep = true;
       if (initialIdx >= 0) {
         viewingStepKey.value = props.initialStep;
-        furthestStepIndex.value = initialIdx;
+        const visited = {};
+        steps.value.slice(0, initialIdx + 1).forEach((s) => { visited[s.key] = true; });
+        visitedKeys.value = visited;
       } else {
-        furthestStepIndex.value = 0;
         viewingStepKey.value = steps.value[0]?.key ?? null;
+        visitedKeys.value = viewingStepKey.value ? { [viewingStepKey.value]: true } : {};
       }
     };
 
@@ -160,9 +225,9 @@ export default {
 
     const viewStep = (key) => {
       activeReference.value = null;
+      choosingNext.value = false;
       viewingStepKey.value = key;
-      const idx = steps.value.findIndex((s) => s.key === key);
-      if (idx > furthestStepIndex.value) furthestStepIndex.value = idx;
+      visitedKeys.value = { ...visitedKeys.value, [key]: true };
     };
 
     const viewReference = (key) => {
@@ -172,12 +237,39 @@ export default {
     const currentStepIndex = computed(() => steps.value.findIndex((s) => s.key === viewingStepKey.value));
     const nextStep = computed(() => steps.value[currentStepIndex.value + 1] ?? null);
 
+    /**
+     * Nach den Missionen wird nicht automatisch weitergeschaltet, sondern eine Wahl zwischen
+     * Extra-Herausforderung (optional) und Check angeboten - beide führen letztlich zum Check.
+     */
     const goNext = () => {
+      if (viewingStepKey.value === '3_missionen') {
+        const hasBoss = steps.value.some((s) => s.key === '5_boss');
+        const hasCheckStep = steps.value.some((s) => s.key === '4_check');
+        if (hasBoss && hasCheckStep) { choosingNext.value = true; return; }
+        if (hasBoss) { viewStep('5_boss'); return; }
+        if (hasCheckStep) { viewStep('4_check'); return; }
+        return;
+      }
       if (nextStep.value) viewStep(nextStep.value.key);
     };
 
+    const chooseBranch = (key) => {
+      choosingNext.value = false;
+      viewStep(key);
+    };
+
+    const nextButtonLabel = computed(() => {
+      if (viewingStepKey.value === '3_missionen') {
+        const hasBoss = steps.value.some((s) => s.key === '5_boss');
+        const hasCheckStep = steps.value.some((s) => s.key === '4_check');
+        if (hasBoss && hasCheckStep) return t('tour.nextGeneric');
+      }
+      return nextStep.value ? t('tour.next').replace('{step}', nextStep.value.label) : '';
+    });
+
     const activeContentKey = computed(() => activeReference.value ?? viewingStepKey.value);
     const activeContentUrl = computed(() => {
+      if (choosingNext.value && !activeReference.value) return null;
       if (activeContentKey.value === '4_check') return null;
       return notebooksForVariant.value[activeContentKey.value]?.renderUrl ?? null;
     });
@@ -196,11 +288,35 @@ export default {
       return item ? `${item.icon} ${item.label}` : '';
     });
 
+    // ── Zertifikat-Reveal nach bestandenem Check ─────────────────────────────
+    const checkPassed = computed(() => isWeekCheckPassed(props.weekNumber));
+    const certificateName = ref(localStorage.getItem(CERTIFICATE_NAME_KEY) || user.value?.username || '');
+    const setCertificateName = (value) => {
+      certificateName.value = value;
+      localStorage.setItem(CERTIFICATE_NAME_KEY, value);
+    };
+    const pdfBusy = ref(false);
+    const onDownloadPdf = async () => {
+      pdfBusy.value = true;
+      try {
+        await downloadCertificatePdf({
+          weekNumber: props.weekNumber,
+          weekTitle: props.week.title || `${t('week.label')} ${props.weekNumber}`,
+          lernziele: props.week.lernzieleFull || [],
+          learnerName: certificateName.value || user.value?.username || '',
+          lang: lang.value,
+        });
+      } finally {
+        pdfBusy.value = false;
+      }
+    };
+
     return {
-      t, steps, referenceItems, viewingStepKey, furthestStepIndex, activeReference, sideMenuOpen,
-      viewStep, viewReference, nextStep, goNext,
+      t, steps, referenceItems, viewingStepKey, visitedKeys, activeReference, choosingNext, sideMenuOpen,
+      viewStep, viewReference, chooseBranch, nextStep, nextButtonLabel, goNext,
       activeContentKey, activeContentUrl, activeContentDownloadUrl, activeContentDownloadName,
       headings, scrollToCell, referenceLabel,
+      checkPassed, isLoggedIn, certificateName, setCertificateName, pdfBusy, onDownloadPdf,
     };
   },
 };
@@ -357,7 +473,51 @@ export default {
 }
 .tour-back-btn:hover { background: #3d1b5c; }
 
-.tour-next-area {
+/* ── Verzweigung: Extra-Herausforderung oder Check ──────────────────────── */
+.branch-choice-page {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 24px 20px;
+}
+
+.branch-choice-page h3 {
+  margin: 0 0 6px;
+  color: var(--primary-purple, #4a2274);
+}
+
+.branch-choice-page > p {
+  margin: 0 0 18px;
+  color: #555;
+}
+
+.branch-tile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  max-width: 640px;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+  background: white;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  padding: 18px 16px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.tile:hover { border-color: #d9c7ea; background: #f7f1fb; transform: translateY(-2px); }
+
+.branch-tile-icon { font-size: 1.6em; }
+.branch-tile strong { color: var(--primary-purple, #4a2274); font-size: 1.05em; }
+.branch-tile-desc { font-size: 0.82em; color: #6b7280; }
+
+/* ── Ergebnis-Bereich (Weiter / Zertifikat) ─────────────────────────────── */
+.tour-tail {
   padding: 18px 4px 4px;
 }
 
@@ -373,13 +533,105 @@ export default {
 }
 .tour-next-btn:hover { background: #fb8c00; }
 
-.tour-done-msg {
+.tour-done-msg,
+.tour-check-pending {
   background: #fff3cd;
   border: 1px solid #ffe69c;
   border-radius: 8px;
   padding: 14px 18px;
   font-weight: 600;
   color: #664d03;
+}
+
+/* ── Zertifikat-Reveal ───────────────────────────────────────────────────── */
+.certificate-reveal {
+  background: linear-gradient(135deg, #fef9e7 0%, #fdebd0 100%);
+  border: 2px solid #ffd700;
+  border-radius: 12px;
+  padding: 28px 24px;
+  text-align: center;
+  animation: certificate-pop 0.3s ease;
+}
+
+@keyframes certificate-pop {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.certificate-badge {
+  font-size: 3em;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.certificate-reveal h3 {
+  margin: 0 0 6px;
+  color: #7c3aed;
+}
+
+.certificate-reveal > p {
+  margin: 0 0 16px;
+  color: #444;
+}
+
+.certificate-name-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.certificate-name-row label {
+  font-size: 0.85em;
+  color: #555;
+  font-weight: 600;
+}
+
+.certificate-name-row input {
+  padding: 7px 10px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  font-size: 0.9em;
+  min-width: 200px;
+}
+
+.btn-certificate-pdf {
+  background: #7c3aed;
+  color: white;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 0.9em;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-certificate-pdf:hover:not(:disabled) { background: #6d28d9; }
+.btn-certificate-pdf:disabled { opacity: 0.6; cursor: default; }
+
+.certificate-login-hint {
+  font-size: 0.82em;
+  color: #888;
+  font-style: italic;
+  margin: 0;
+}
+
+.after-check-choice {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.after-check-tile {
+  align-items: center;
+  text-align: center;
+  font-weight: 700;
+  color: var(--primary-purple, #4a2274);
+  min-width: 180px;
+  background: white;
 }
 
 @media (max-width: 900px) {

@@ -94,12 +94,16 @@ export default {
       type: Array,
       default: () => [],
     },
+    startExpanded: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props) {
     const { t, lang } = useLanguage();
     const { isLoggedIn, user } = useAuth();
-    const fortschrittExpanded = ref(false);
-    const weeklySectionExpanded = ref(false);
+    const fortschrittExpanded = ref(props.startExpanded);
+    const weeklySectionExpanded = ref(props.startExpanded);
     const pdfBusyWeek = ref(null);
 
     const { exportProgress, importProgress } = useFortschritt();

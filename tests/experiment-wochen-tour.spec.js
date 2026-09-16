@@ -1,11 +1,68 @@
 import { test, expect } from '@playwright/test';
+import checks from '../content/python-checks/index.mjs';
 
 const TOUR_URL = '/experiment/wochen-tour';
+
+function findQuestion(text) {
+  const normalized = text.replace(/^\d+\.\s*/, '').trim();
+  for (const week of Object.values(checks.weeks)) {
+    for (const q of week.questions) {
+      if (q.question === normalized || q.question_en === normalized) return q;
+    }
+  }
+  return null;
+}
+
+function correctOptionTexts(q) {
+  if (q.type === 'multiple_select') return q.correctIndices.map((i) => q.options[i]);
+  return [q.options[q.correctIndex]];
+}
+
+async function clickOptionByExactText(card, opt) {
+  const buttons = card.locator('.option-btn');
+  const count = await buttons.count();
+  for (let i = 0; i < count; i++) {
+    const text = (await buttons.nth(i).innerText()).replace(/^[☐☑]\s*/, '').trim();
+    if (text === opt) {
+      await buttons.nth(i).click();
+      return;
+    }
+  }
+  throw new Error(`Option not found: ${opt}`);
+}
+
+async function passWeek1CheckForReal(page) {
+  const cards = page.locator('.quiz-question');
+  await expect(cards.first()).toBeVisible({ timeout: 20000 });
+  const count = await cards.count();
+  for (let i = 0; i < count; i++) {
+    const card = cards.nth(i);
+    const raw = await card.locator('.question-text').innerText();
+    const q = findQuestion(raw);
+    expect(q, `Unbekannte Frage: ${raw}`).toBeTruthy();
+    for (const opt of correctOptionTexts(q)) {
+      await clickOptionByExactText(card, opt);
+    }
+  }
+  await page.locator('.btn-check-quiz').click();
+
+  async function passCoding(index, code) {
+    const challenge = page.locator(`.code-challenge[data-challenge-index="${index}"]`);
+    await expect(challenge.locator('.btn-check')).toBeEnabled({ timeout: 40000 });
+    await challenge.locator('.code-editor').fill(code);
+    await challenge.locator('.btn-check').click();
+    await expect(challenge.locator('.feedback-success, .challenge-feedback.feedback-success')).toBeVisible({ timeout: 10000 });
+  }
+  await passCoding(0, 'print("Level 1 geschafft!")');
+  await passCoding(1, 'name = "Nova"\nlevel = 3\nprint(name + " hat Level " + str(level) + " erreicht!")');
+}
 
 test.describe('Experiment: Wochen-Tour', () => {
   test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => {
       localStorage.removeItem('ue-hacker-lang');
+      localStorage.removeItem('ue-hacker-fortschritt');
+      localStorage.removeItem('ue-hacker-week-checks');
     });
   });
 
@@ -34,28 +91,78 @@ test.describe('Experiment: Wochen-Tour', () => {
     await expect(page.locator('.week-tile')).toHaveCount(12);
   });
 
-  test('"Weiter"-Button schaltet Lektion -> Debug -> Missionen -> Boss-Quest -> Check der Reihe nach weiter', async ({ page }) => {
-    await page.goto(`${TOUR_URL}?week=1&variant=abenteuer`);
-    await expect(page.locator('.stepper-step.current')).toContainText('Lektion');
-
+  test('Nach den Missionen führt eine Wahl-Seite zu Extra-Herausforderung oder Check', async ({ page }) => {
+    await page.goto(`${TOUR_URL}?week=1&variant=abenteuer&step=3_missionen`);
     await page.locator('.tour-next-btn').click();
-    await expect(page.locator('.stepper-step.current')).toContainText('Debug');
 
-    await page.locator('.tour-next-btn').click();
-    await expect(page.locator('.stepper-step.current')).toContainText('Missionen');
-    // Kein Missionen-Punkte-Widget in der Tour
-    await expect(page.locator('.missionen-panel')).toHaveCount(0);
+    await expect(page.locator('.branch-choice-page')).toBeVisible();
+    await expect(page.locator('[data-branch="5_boss"]')).toContainText('Extra-Herausforderung');
+    await expect(page.locator('[data-branch="4_check"]')).toContainText('Check');
+    // Während der Wahl ist kein Tour-Schritt als "aktuell" markiert
+    await expect(page.locator('.stepper-step.current')).toHaveCount(0);
 
-    await page.locator('.tour-next-btn').click();
-    await expect(page.locator('.stepper-step.current')).toContainText('Boss-Quest');
+    await page.locator('[data-branch="5_boss"]').click();
+    await expect(page.locator('.stepper-step.current')).toContainText('Extra-Herausforderung');
+    await expect(page.locator('.stepper-step[data-step-key="5_boss"].done')).toHaveCount(1);
 
     await page.locator('.tour-next-btn').click();
     await expect(page.locator('.stepper-step.current')).toContainText('Check');
     await expect(page.locator('.week-check-panel')).toBeVisible();
+  });
 
-    // Letzter Schritt: kein "Weiter"-Button mehr, stattdessen Abschluss-Hinweis
-    await expect(page.locator('.tour-next-btn')).toHaveCount(0);
-    await expect(page.locator('.tour-done-msg')).toBeVisible();
+  test('Check direkt wählen überspringt die Extra-Herausforderung (bleibt unbesucht)', async ({ page }) => {
+    await page.goto(`${TOUR_URL}?week=1&variant=abenteuer&step=3_missionen`);
+    await page.locator('.tour-next-btn').click();
+    await page.locator('[data-branch="4_check"]').click();
+
+    await expect(page.locator('.stepper-step.current')).toContainText('Check');
+    await expect(page.locator('.stepper-step[data-step-key="5_boss"].done')).toHaveCount(0);
+  });
+
+  test('Bestandener Check zeigt das Zertifikat und führt zur nächsten Woche', async ({ page }) => {
+    test.setTimeout(60000);
+    await page.goto(`${TOUR_URL}?week=1&variant=abenteuer&step=4_check`);
+    await passWeek1CheckForReal(page);
+
+    await expect(page.locator('.certificate-reveal')).toBeVisible();
+    await expect(page.locator('.certificate-reveal')).toContainText('Woche 1');
+    await expect(page.locator('[data-after-check="overview"]')).toBeVisible();
+    await expect(page.locator('[data-after-check="next-week"]')).toBeVisible();
+
+    await page.locator('[data-after-check="next-week"]').click();
+    await expect(page).toHaveURL(/week=2&variant=abenteuer/);
+    await expect(page.locator('.tour-breadcrumb')).toContainText('Woche 2');
+    await expect(page.locator('.tour-breadcrumb')).toContainText('Abenteuer');
+    await expect(page.locator('.stepper-step.current')).toContainText('Lektion');
+  });
+
+  test('Zertifikat erscheint als Abzeichen in der Übersicht und auf der Zertifikate-Seite', async ({ page }) => {
+    test.setTimeout(60000);
+    await page.goto(`${TOUR_URL}?week=1&variant=abenteuer&step=4_check`);
+    await passWeek1CheckForReal(page);
+    await expect(page.locator('.certificate-reveal')).toBeVisible();
+
+    await page.locator('.tour-breadcrumb .breadcrumb-link').first().click(); // zurück zur Wochenübersicht
+    await expect(page.locator('.week-tile[data-week="1"] .week-tile-badge')).toBeVisible();
+    await expect(page.locator('.certificates-link')).toContainText('1/12');
+
+    await page.locator('.certificates-link').click();
+    await expect(page.locator('.certificate-card.earned')).toHaveCount(1);
+    await expect(page.locator('.certificate-card.earned')).toContainText('Woche 1');
+  });
+
+  test('"Nächste Woche" gibt es bei Woche 12 nicht mehr, nur noch "Zur Übersicht"', async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem('ue-hacker-week-checks', JSON.stringify({
+        version: 1,
+        weeks: { '12': { quizPassed: true, codingPassed: { 0: true, 1: true } } },
+        placement: null,
+      }));
+    });
+    await page.goto(`${TOUR_URL}?week=12&variant=abenteuer&step=4_check`);
+    await expect(page.locator('.certificate-reveal')).toBeVisible();
+    await expect(page.locator('[data-after-check="overview"]')).toBeVisible();
+    await expect(page.locator('[data-after-check="next-week"]')).toHaveCount(0);
   });
 
   test('Seitenmenü lässt sich ein- und ausklappen', async ({ page }) => {
@@ -76,7 +183,6 @@ test.describe('Experiment: Wochen-Tour', () => {
     const headingText = await heading.textContent();
     await heading.click();
 
-    // Die Zelle mit derselben Überschrift muss danach im Viewport sichtbar sein
     const targetCell = page.locator('.cell-markdown', { hasText: headingText.trim() }).first();
     await expect(targetCell).toBeInViewport();
   });

@@ -1101,50 +1101,88 @@ Plan-Datei für diesen Teil: `~/.claude/plans/lexical-growing-comet.md`.
 
 Nutzerwunsch: eine alternative Führung durch den 12-Wochen-Kurs ausprobieren, ohne den bestehenden
 Kurs (`/kurs/python-12-wochen-grundkurs`) anzufassen — als unverlinkte Experimentseite (Vorbild:
-die früheren `/experiment/...`-Prototypen aus 3.33).
+die früheren `/experiment/...`-Prototypen aus 3.33). Über drei Feedback-Runden gewachsen — hier der
+finale Stand, nicht die Zwischenschritte (Tab-Leiste → Kacheln+Kullern-Leiste → Verzweigung +
+Zertifikate).
 
-**Neue Route `/experiment/wochen-tour`** (`src/views/experiment/WeekTourView.vue`, nur per direkter
-URL erreichbar, kein Nav-Link): alle 12 Wochen bleiben als Leiste sichtbar (kein Wegklappen einer
-gewählten Woche), Klick wählt eine Woche; danach sind alle Themen-Varianten (Abenteuer/Pferde/
-Sci-Fi, `VariantSelector.vue` unverändert wiederverwendet) sichtbar. Nach der Variantenwahl öffnet
-`WeekTourStepper.vue` eine geführte Tour: obere Tab-Leiste Lektion → Debug → Missionen → Boss-Quest
-→ Check (nur vorhandene Schritte, `4_check` nur wenn `hasWeekCheck()`), **kein**
-`MissionenPanel.vue`-Punkte-Widget — die Missionen-Aufgaben selbst sind aber ein ganz normaler
-Tour-Schritt. Ein "Weiter zu {Schritt}"-Button führt der Reihe nach durch; alle Tabs bleiben
-trotzdem frei anklickbar (kein Sperren, man kann jederzeit zur Lektion zurück, ohne den erreichten
-Fortschritt zu verlieren — `viewingStepKey` und `furthestStepIndex` sind getrennter State).
+**Route `/experiment/wochen-tour`** (`src/views/experiment/WeekTourView.vue`, nur per direkter URL
+erreichbar, kein Nav-Link): vier "Seiten" als Wizard (`phase` ref: `week`|`variant`|`certificates`|
+`tour`), Klick auf eine Kachel navigiert sofort weiter.
+- **Woche wählen:** 12 große Kacheln, dünn gestrichelt zu einem Pfad verbunden ("Inseln", die man
+  bereist) — SVG-`<polyline>` über den `getBoundingClientRect()`-Zentren der Kachel-Refs, per
+  `ResizeObserver` neu berechnet. Jede Kachel zeigt ein technisches Themen-Icon (variantenlos,
+  `WEEK_ICONS`-Map nach INHALTE.md Abschnitt 3) und ein 🎓-Abzeichen sobald das Zertifikat der
+  Woche verdient ist (`useZertifikate().isCertificateEarned`). Zähler + Link zur Zertifikate-Seite.
+- **Thema wählen:** bis zu 3 Kacheln (Abenteuer/Pferde/Sci-Fi) — bewusst NICHT `VariantSelector.vue`
+  wiederverwendet (das ist für kleine Inline-Buttons gebaut, hier reicht die gleiche Datenbasis
+  `hasXVariant`, nur eigenes großes Kachel-Markup).
+- **Meine Zertifikate:** wiederverwendet `FortschrittWidget.vue` unverändert (gleiche Datenform
+  `weeks`) statt eines eigenen Rasters — visuell bewusst anders (Gold-Gradient) als der Rest der
+  Tour, da es 1:1 dieselbe Komponente wie im echten Kurs ist. Neuer additiver Prop `startExpanded`
+  (Default `false`, bestehende Nutzung in `CourseDetail.vue` unberührt) sorgt dafür, dass die Seite
+  direkt aufgeklappt startet.
+- **Tour:** `WeekTourStepper.vue`, siehe unten.
 
-**Kleines Seitenmenü** (`WeekTourSideMenu.vue`): zeigt sowohl die Tour-Schritte selbst (Sprung-
-Navigation, Häkchen für bereits erreichte) als auch die Unterabschnitte des gerade offenen Schritts
-(z.B. "Bug #1/#2/#3", "Mission 1/2/3") sowie Glossar/Lösungen als eigener, nicht gegateter
-"Nachschlagewerke"-Block — Klick darauf überlagert den Inhalt, ohne die Tour-Position zu verändern
-(`activeReference`-State getrennt von `viewingStepKey`). Die Unterabschnitte werden aus den
-Notebook-Zellen selbst gewonnen: jede Markdown-Zelle im Zellen-Format (siehe 3.33) beginnt mit
-genau einer Überschrift (`#` = Notebook-Titel, `##` = Lektion-Abschnitte, `###` = Bugs/Missionen) —
-verifiziert an echten Dateien, keine Content-Änderung nötig. Neue kleine Composable
-`useNotebookHeadings.js` lädt dafür dieselbe `renderUrl`-JSON, die `JupyterNotebook.vue` ohnehin
-schon rendert (zweiter, unkritischer Fetch derselben kleinen statischen Datei).
+**Fortschritts-Leiste statt Tab-Leiste** (`WeekTourStepper.vue`): Kullern (Kreise) verbunden durch
+Linien — Lektion → Debug → Missionen → Extra-Herausforderung → Check (nur vorhandene Schritte,
+`4_check` nur wenn `hasWeekCheck()`). Ein Breadcrumb oben ("Woche N: Thema › Variante") erlaubt
+jederzeit den Sprung zurück zur Wochen-/Themenwahl (`change-week`/`change-variant`-Events an
+`WeekTourView`). Alle Kullern bleiben frei anklickbar (kein Sperren).
+
+**Verzweigung nach den Missionen:** kein automatisches Weiterschalten mehr — ein "Weiter" öffnet
+eine Wahl-Kachel-Seite zwischen "🔥 Extra-Herausforderung" (der bisherige Boss-Quest-Schritt,
+`5_boss`, **nur hier umbenannt** — der echte Kurs behält "Boss-Quest") und "✅ Check". Beide führen
+letztlich zum Check; die Extra-Herausforderung bleibt optional. **Begriffsfindung mit dem Nutzer:**
+mehrere Runden Vorschläge (Vertiefung, Herausforderung, Königsdisziplin, Bonusrunde, Feuerprobe, Kür
+…) — am Ende eine Kombination aus zweien: "Extra-Herausforderung". Technisch wichtige Umstellung
+dafür: die alte `furthestStepIndex`-Schwelle (Fortschritt = "alles bis Index N ist erledigt") ging
+von striktem linearem Ablauf aus und wäre bei einer übersprungenen Extra-Herausforderung falsch
+gewesen (Check erreichen hätte Boss fälschlich mit ✓ markiert). Ersetzt durch ein `visitedKeys`-
+Objekt (welche Schritte *tatsächlich angesehen* wurden) — ein Schritt zeigt nur dann ✓, wenn er
+wirklich geöffnet wurde, nicht weil sein Index kleiner als der aktuell erreichte ist. Verifiziert:
+"Check" direkt wählen lässt "Extra-Herausforderung" unbesucht (kein ✓).
+
+**Zertifikat-Reveal nach bestandenem Check:** `isWeekCheckPassed(weekNumber)` aus `useWeekChecks.js`
+ist reaktiv auf denselben modul-weiten `progress`-Ref, den `WeekCheckPanel.vue`/`CodeChallenge.vue`
+beim Bestehen mutieren — kein Extra-Event nötig, ein `computed()` reicht. Reveal zeigt 🎓, Name-Feld
+(gleicher `localStorage`-Key `ue-hacker-certificate-name` wie `FortschrittWidget.vue`, damit der
+Name geteilt bleibt) und PDF-Download (`downloadCertificatePdf` aus `useCertificatePdf.js`,
+login-gated wie im echten Kurs) — komplett wiederverwendete Logik, keine neue PDF-Erzeugung.
+Danach eine Wahl "Zur Übersicht" / "Nächste Woche": Letzteres fällt auf die erste verfügbare
+Variante zurück, falls die aktuelle Variante in der nächsten Woche fehlt, und wird bei Woche 12
+(keine nächste Woche) gar nicht erst angezeigt (`hasNextWeek`-Prop von `WeekTourView` berechnet,
+Navigations-Logik inkl. Varianten-Fallback lebt dort, nicht im Stepper).
+
+**Kleines Seitenmenü** (`WeekTourSideMenu.vue`, ein-/ausklappbar über einen neuen Toggle-Button):
+Tour-Schritte zum Springen (✓ nach `visitedKeys`, nicht mehr nach Index-Schwelle) + Unterabschnitte
+des gerade offenen Schritts (z.B. "Bug #1/#2/#3", "Mission 1/2/3", aus den `##`/`###`-Überschriften
+der Notebook-Zellen extrahiert — jede Markdown-Zelle im Zellen-Format, siehe 3.33, beginnt mit genau
+einer Überschrift) + Glossar/Lösungen als eigener, nicht gegateter "Nachschlagewerke"-Block. Neue
+kleine Composable `useNotebookHeadings.js` lädt dafür dieselbe `renderUrl`-JSON, die
+`JupyterNotebook.vue` ohnehin schon rendert (zweiter, unkritischer Fetch derselben kleinen
+statischen Datei).
 
 **Eine einzige additive Änderung an einer geteilten Komponente:** `JupyterNotebook.vue`s
 `.cell`-Wrapper-Div bekommt zusätzlich `:id="`cell-${index}`"` (vorher keine ID) — ermöglicht dem
 Seitenmenü, per `scrollIntoView()` zu einer Zelle zu springen, ohne die 377-Zeilen-Notebook-
 Komponente (Kernel-State, Zellen-Persistenz, Turtle-Canvas) zu duplizieren. Reine DOM-ID ohne
-Auswirkung auf Aussehen/Verhalten des einzigen bestehenden Verwenders (`WeekSection.vue`) — durch
-die volle `test:checks`-Suite (weiterhin 55/55 grün) abgesichert.
+Auswirkung auf Aussehen/Verhalten des einzigen bestehenden Verwenders (`WeekSection.vue`).
 
 **Bewusste Vereinfachungen:** keine `localStorage`-Persistenz von Woche/Variante/Schritt (Reload
 startet auf der Wochen-Übersicht neu — der Zellen-Bearbeitungsstand einzelner Notebooks bleibt
 davon unberührt, der ist bereits unabhängig in `JupyterNotebook.vue` über `notebookPath` geregelt).
-Zertifikatsvergabe läuft unverändert über das wiederverwendete `WeekCheckPanel.vue` — funktioniert
-in der Tour exakt wie im bestehenden Kurs.
 
-**Getestet:** neue `tests/experiment-wochen-tour.spec.js` (4 Tests: alle Wochen sichtbar + Tour
-öffnet auf Lektion, "Weiter" schaltet alle Schritte der Reihe nach, Seitenmenü-Sprung zu einem
-Unterabschnitt scrollt zur richtigen Zelle, Glossar öffnen und zurück zur Tour erhält den
-Fortschritt) + volle `test:checks`-Suite (55 bestehende Tests weiterhin grün) + manuell per
-Screenshot verifiziert (Woche 3 Pferde, Deep-Link `?week=&variant=&step=`).
+**Getestet:** `tests/experiment-wochen-tour.spec.js` (10 Tests: Kachel-Flow, Breadcrumb-Navigation,
+Verzweigung Extra-Herausforderung/Check inkl. "bleibt unbesucht bei Direktwahl", **echtes** Bestehen
+von Woche 1s Quiz + beiden Coding-Aufgaben inkl. Zertifikat-Reveal und Sprung zur nächsten Woche,
+Zertifikat-Abzeichen in Übersicht + Zertifikate-Seite, "Nächste Woche" fehlt bei Woche 12,
+Seitenmenü ein-/ausklappen + Unterabschnitt-Sprung + Glossar-Rückkehr) + volle `test:checks`-Suite
+(55 bestehende Tests weiterhin grün, deckt u.a. den `FortschrittWidget.vue`-Prop und die additive
+Notebook-ID ab) + manuell per Playwright-Skripten End-to-End durchgespielt (nicht nur Screenshots).
 
-Plan-Datei: `~/.claude/plans/twinkly-strolling-lovelace.md`.
+Plan-Datei (erste Runde): `~/.claude/plans/twinkly-strolling-lovelace.md`. Die Verzweigung/
+Zertifikate/Übersicht-Erweiterungen (zweite Feedback-Runde) liefen ohne eigene Plan-Datei direkt
+im Gespräch (kleinere, klar umrissene Ergänzungen auf bestehender Struktur).
 
 ---
 

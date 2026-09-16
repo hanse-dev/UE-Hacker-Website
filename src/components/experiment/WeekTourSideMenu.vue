@@ -3,14 +3,14 @@
     <div class="side-menu-section">
       <h4>{{ t('tour.sideMenu.steps') }}</h4>
       <ul class="side-menu-list">
-        <li v-for="(step, i) in steps" :key="step.key">
+        <li v-for="step in steps" :key="step.key">
           <button
             class="side-menu-step"
-            :class="{ active: !activeReference && step.key === currentStepKey, reached: i <= furthestIndex }"
+            :class="{ active: !activeReference && step.key === currentStepKey, reached: !!visitedKeys[step.key] }"
             :data-step-key="step.key"
             @click="$emit('select-step', step.key)"
           >
-            <span class="side-menu-icon">{{ i <= furthestIndex ? '✓' : step.icon }}</span>
+            <span class="side-menu-icon">{{ visitedKeys[step.key] ? '✓' : step.icon }}</span>
             <span>{{ step.label }}</span>
           </button>
         </li>
@@ -59,7 +59,7 @@ export default {
   props: {
     steps: { type: Array, required: true },
     currentStepKey: { type: String, default: null },
-    furthestIndex: { type: Number, default: 0 },
+    visitedKeys: { type: Object, default: () => ({}) },
     headings: { type: Array, default: () => [] },
     referenceItems: { type: Array, default: () => [] },
     activeReference: { type: String, default: null },
