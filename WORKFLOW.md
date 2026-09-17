@@ -4,11 +4,11 @@
 
 **Immer einen neuen Branch anlegen, wenn ein neues Thema beginnt.**
 
-- **Ohne** Prefix (z.B. `kurs-python-spiele`, `admin-login`) — der frühere `cursor/`-Prefix wurde
-  nachträglich bei allen Branches entfernt, nicht wieder einführen
+- **Ohne** Prefix (z.B. `kurs-js-spielewerkstatt`, `admin-login`) — der frühere `cursor/`-Prefix
+  wurde nachträglich bei allen Branches entfernt, nicht wieder einführen
 - Branch von aktuellem `main` aus starten
 - Ein Branch = ein Thema; Admin/Accounts nicht auf dem Lernpfad-Branch mischen
-- Nächste Kurs-Themen (geplant): `kurs-python-spiele` → `kurs-python-projekte` → `kurs-js-minigames` oder `kurs-ki-labor` (siehe `todo.md`)
+- Nächste Kurs-Themen (geplant): `kurs-js-spielewerkstatt` → `kurs-python-projekte` → `kurs-ki-labor` (siehe `todo.md`, Gesamt-Roadmap in `VISION.md`)
 - Erst mergen, wenn das Thema fertig/getestet ist — danach neues Thema → neuer Branch
 
 ## Tests für jede Verhaltensänderung

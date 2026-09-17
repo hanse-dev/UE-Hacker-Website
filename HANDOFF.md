@@ -1,12 +1,15 @@
 # Handoff — UE Hacker Website
 
-> **Zuletzt aktualisiert:** 2026-09-16  
+> **Zuletzt aktualisiert:** 2026-09-18  
 > **Aktueller Stand:** `main` ist auf `origin/main` gepusht, inkl. Branch `experiment-wochen-tour`
 > (3.35+3.36, gemergt) — was als unverlinktes Experiment begann, ist jetzt die **echte** Kursseite
 > unter `/kurs/python-12-wochen-grundkurs` (alte Akkordeon-UI `WeekSection.vue` + Co. entfernt),
 > volle Suite grün (`npm test` 77, `npm run test:auth` 13). **Server-Deploy steht noch aus** —
 > Code ist auf GitHub, aber noch nicht auf dem Produktions-Server ausgerollt (siehe Abschnitt 4
-> "Betrieb" für die manuellen Schritte, Nutzer deployt selbst).
+> "Betrieb" für die manuellen Schritte, Nutzer deployt selbst). **Neu:** `VISION.md` (Mission +
+> Track-Modell/langfristige Roadmap über mehrere Sprachen/Themen) angelegt, `KURSPLAN.md` erstmals
+> aus `CLAUDE.md` verlinkt und ans Track-Modell angeglichen (Branch `vision-roadmap-abgleich`,
+> siehe Abschnitt 5).
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -1415,7 +1418,7 @@ Kullern frei anklickbar).
 - [x] Punkte-artige Feier-Texte entfernt (3.14, Branch `entferne-xp-texte`) — siehe unten
 - Zertifikat-PDF (3.13): E-Mail-Versand eigenes, späteres Thema (hängt an der noch offenen
   Kontakt-E-Mail-Adresse, s.u.). Bewusst nur für den 12-Wochen-Kurs — Interaktiv-Kurs und
-  Projekt-Kurse (Cäsar-Chiffre, künftig `kurs-python-spiele`) könnten später ein eigenes
+  Projekt-Kurse (Cäsar-Chiffre, künftig `kurs-js-spielewerkstatt`) könnten später ein eigenes
   Abschluss-Zertifikat bekommen, aber noch nicht angefragt.
 - [x] Personalisierte Falsch-Antwort-Erklärungen (3.17, Branch
   `einstufung-personalisierte-erklaerungen`, gemerged) — inkl. Nebenfund/Fix der unübersetzten
@@ -1447,12 +1450,14 @@ Server-Deploy selbst bewusst weiter zurückgestellt (Nutzer will erst später de
 
 **Danach — nächste Kurs-Themen, je eigener Branch von `main`:**
 
-1. **`kurs-python-spiele`** — Python Spiele-Werkstatt, `ProjectCourse.vue` schon generalisiert,
-   Inhalte (mehrere kleine Projekte wie Cäsar-Chiffre, DE-first) fehlen noch
+1. **`kurs-js-spielewerkstatt`** — JavaScript statt der ursprünglich geplanten Python-Spiele-
+   Werkstatt (Pyodides synchrones Ausführungsmodell verträgt keine echte Spiele-Loop, siehe 3.32).
+   Vollständiger Implementierungsplan gespeichert unter
+   `~/.claude/plans/fizzy-sprouting-quilt.md`.
 2. **`kurs-python-projekte`** — „Was kommt danach?“ Projekt-Sprints
-3. **`kurs-js-minigames`** *oder* **`kurs-ki-labor`** — Entscheidung beim Start
+3. **`kurs-ki-labor`** — KI-Grundlagen, baut auf dem Python-Track auf
 
-Nicht mischen; Details/Checkboxen in `todo.md`.
+Nicht mischen; Details/Checkboxen in `todo.md`, Gesamt-Roadmap/Track-Modell in `VISION.md`.
 
 **Bewusst nicht geplant:** öffentliches Sign-up, Mailversand/Kontaktformular, Supabase als Pflicht.
 Kontakt-E-Mail im Footer wartet noch auf die tatsächliche Adresse vom Nutzer (nicht selbst erfinden).
@@ -1532,6 +1537,8 @@ gepusht (Wochen-Tour ist jetzt die echte Kursseite) — offen ist nur noch der e
 Server-Deploy (siehe Abschnitt 5 "Betrieb", Nutzer macht das selbst). Danach: Curriculum-Lücken-Plan
 (`~/.claude/plans/joyful-wishing-piglet.md`) war bis auf `woche12-interaktivitaet` fertig (durch
 den Turtle-Shim entblockt). Falls stattdessen ein neues Kursthema begonnen werden soll:
-`kurs-python-spiele` (Spiele-Werkstatt-Inhalte, bereits begonnen) ist der nächstliegende Kandidat —
-für neue Kurse gilt seit 3.33 die Zellen-Format-Erfahrung als Referenz, siehe Memory
-`project_neue-kurse-content-format`.
+`kurs-js-spielewerkstatt` (JavaScript statt der ursprünglich geplanten Python-Variante, Plan
+gespeichert unter `~/.claude/plans/fizzy-sprouting-quilt.md`) ist der nächstliegende Kandidat —
+für neue Kurse gilt seit 3.33 die Zellen-Format-Erfahrung als Referenz (nur für Python-Kurse
+relevant), siehe Memory `project_neue-kurse-content-format`. Gesamt-Roadmap/Track-Modell:
+`VISION.md`.
