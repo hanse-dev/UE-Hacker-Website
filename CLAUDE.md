@@ -49,6 +49,18 @@ Seit der Zellen-Format-Umstellung ist jedes Notebook ein Ordner mit einer `.py`-
 
 ---
 
+## Vision & Gesamt-Roadmap
+
+@VISION.md
+
+---
+
+## Kursplan (Lehrpläne einzelner Kurse)
+
+@KURSPLAN.md
+
+---
+
 ## Offene Aufgaben
 
 @todo.md

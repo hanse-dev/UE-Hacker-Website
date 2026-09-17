@@ -1,18 +1,20 @@
-# Kursplan – Übersicht aller Kurse
+# Kursplan – Lehrpläne der einzelnen Kurse
 
-Vier Kurse mit aufeinander aufbauendem Lernpfad. Zielgruppe: Kinder und Jugendliche ohne Vorkenntnisse.
+Detaillierte Wochenpläne/Lerninhalte für die Kurse, die in `VISION.md`s Track-Modell aufgeführt
+sind. **Das Gesamtbild (welche Tracks es gibt, welches Format wofür, welche Voraussetzungen
+gelten) steht in `VISION.md` — hier stehen nur die konkreten Lehrpläne.**
 
-```
-Ab 10  →  Spieleprogrammierung Grundkurs       8 Wochen   (Pygame Zero)
-Ab 12  →  Python 12-Wochen-Grundkurs          12 Wochen   ✅ vorhanden
-Ab 14  →  Spieleprogrammierung Advanced       10 Wochen   (Python RPG oder Browser-Spiel)
-Ab 14  →  KI-Grundlagen                        8 Wochen   (ML mit Python)
-```
+Wichtig, seit `VISION.md` eingeführt wurde: Kurse aus unterschiedlichen Sprachen/Tracks bauen
+**nicht** automatisch aufeinander auf. Eine Voraussetzung gilt nur innerhalb ihres eigenen
+Tracks — Ausnahme ist der KI-Track, der legitim auf dem Python-Track aufbaut (ML-Bibliotheken
+sind Python). Die Kurse hier sind nach Track gruppiert, nicht mehr nach Alter/Nummer in einer
+einzigen Kette.
 
 ---
 
-## Kurs 1 – Spieleprogrammierung Grundkurs
-**Zielgruppe:** ab 10 Jahre | **Dauer:** 8 Wochen | **Voraussetzungen:** keine
+## Python-Track: Spieleprogrammierung Grundkurs
+**Zielgruppe:** ab 10 Jahre | **Dauer:** 8 Wochen | **Voraussetzungen:** keine (alternativer/
+früherer Einstieg in den Python-Track, siehe `VISION.md`)
 
 Erstes echtes Spiel programmieren. Sofortiger visueller Erfolg durch Pygame Zero.
 Kein komplexes Setup – Pyodide im Browser oder lokales Python.
@@ -50,7 +52,7 @@ Alle bauen dasselbe Spiel, nur mit anderem Look:
 
 ---
 
-## Kurs 2 – Python 12-Wochen-Grundkurs
+## Python-Track: 12-Wochen-Grundkurs
 **Zielgruppe:** ab 12 Jahre | **Dauer:** 12 Wochen | **Voraussetzungen:** keine
 
 ✅ **Bereits vollständig vorhanden.** Siehe `content/python-12-wochen-grundkurs/`.
@@ -63,13 +65,15 @@ Listen → Module → Dictionaries → Dateien → OOP → Vererbung → Turtle-
 
 ---
 
-## Kurs 3 – Spieleprogrammierung Advanced
-**Zielgruppe:** ab 14 Jahre | **Dauer:** 10 Wochen | **Voraussetzungen:** Python 12-Wochen-Kurs oder gleichwertig
+## Vertiefungen: Spieleprogrammierung Advanced
+**Zielgruppe:** ab 14 Jahre | **Dauer:** 10 Wochen
 
-Zwei wählbare Tracks. Schüler entscheiden sich zu Beginn für einen Track und bleiben dabei.
+Zwei unabhängige Tracks in unterschiedlichen Sprachen — **keine gemeinsame Voraussetzung**, jeder
+Track baut nur auf seiner eigenen Sprache auf (siehe `VISION.md`s Abhängigkeitsprinzip).
 
 ### Track A: Python RPG (Pygame + OOP)
-Baut direkt auf Woche 10–11 (OOP) des Grundkurses auf. Komplexes 2D-Spiel mit Klassen, Inventar und Leveln.
+**Voraussetzung:** Python 12-Wochen-Grundkurs oder gleichwertig (baut direkt auf Woche 10–11 OOP
+auf). Komplexes 2D-Spiel mit Klassen, Inventar und Leveln.
 
 | Woche | Thema |
 |-------|-------|
@@ -81,7 +85,13 @@ Baut direkt auf Woche 10–11 (OOP) des Grundkurses auf. Komplexes 2D-Spiel mit 
 | 10 | Speichern & Laden (JSON), eigenes Level bauen |
 
 ### Track B: Browser-Spiel (JavaScript + Canvas)
-Kein Python nötig. Spiel läuft direkt im Browser – ideal für Schüler die etwas für das Web bauen wollen.
+**Voraussetzung:** ein JS-Projekt-Kurs (z.B. `projekt-js-spielewerkstatt`) oder gleichwertige
+JS-Grundlagen — **kein Python nötig**. Spiel läuft direkt im Browser – ideal für Schüler die
+etwas für das Web bauen wollen. Eigenständig von der kompakten `js-spielewerkstatt`
+(Projekt-Kurs, ~6 Lektionen): die Spielewerkstatt ist ein niedrigschwelliger, für sich
+abgeschlossener Einstieg; dieser Track hier ist die spätere, deutlich umfangreichere
+Vertiefung — beide ergänzen sich, keins ist Voraussetzung für das andere im strengen Sinn,
+aber wer schon die Spielewerkstatt gemacht hat, startet hier mit Vorwissen.
 
 | Woche | Thema |
 |-------|-------|
@@ -100,8 +110,10 @@ Kein Python nötig. Spiel läuft direkt im Browser – ideal für Schüler die e
 
 ---
 
-## Kurs 4 – KI-Grundlagen
+## KI-Track: KI-Grundlagen
 **Zielgruppe:** ab 14 Jahre | **Dauer:** 8 Wochen | **Voraussetzungen:** Python 12-Wochen-Kurs
+(einzige legitime Cross-Track-Voraussetzung, siehe `VISION.md` — ML-Bibliotheken wie
+pandas/scikit-learn sind Python)
 
 Einführung in Künstliche Intelligenz – ohne tiefe Mathematik. Fokus auf Konzepte verstehen,
 ausprobieren und reflektieren. Schüler trainieren eigene Modelle und sehen was KI kann und nicht kann.
@@ -140,31 +152,35 @@ ausprobieren und reflektieren. Schüler trainieren eigene Modelle und sehen was 
 
 ## Lernpfade
 
+Beispielhafte Wege durch die Tracks — jeder Pfad bleibt innerhalb seiner Sprache, außer beim
+KI-Track (siehe `VISION.md`):
+
 ```
-Keine Vorkenntnisse, ab 10:
-  → Spieleprogrammierung Grundkurs (Kurs 1)
-  → Python 12-Wochen-Grundkurs (Kurs 2)
-  → Spieleprogrammierung Advanced (Kurs 3, Track A)
+Python-Interesse, ab 10:
+  → Spieleprogrammierung Grundkurs (Python-Track, Pygame Zero)
+  → 12-Wochen-Grundkurs (Python-Track)
+  → Spieleprogrammierung Advanced, Track A: Python RPG
 
-Keine Vorkenntnisse, ab 12:
-  → Python 12-Wochen-Grundkurs (Kurs 2)
-  → Spieleprogrammierung Advanced (Kurs 3) oder KI-Grundlagen (Kurs 4)
+Python-Interesse, ab 12:
+  → 12-Wochen-Grundkurs (Python-Track)
+  → Spieleprogrammierung Advanced Track A (Python-Track) oder KI-Grundlagen (KI-Track)
 
-Web-Interesse, ab 14:
-  → Python 12-Wochen-Grundkurs (Kurs 2)  [optional]
-  → Spieleprogrammierung Advanced, Track B: Browser-Spiel (Kurs 3)
+Web/JS-Interesse, ab 14 (kein Python nötig):
+  → js-spielewerkstatt (JS-Track, Projekt-Kurs)
+  → Spieleprogrammierung Advanced, Track B: Browser-Spiel (JS-Track)
 
 KI-Interesse, ab 14:
-  → Python 12-Wochen-Grundkurs (Kurs 2)
-  → KI-Grundlagen (Kurs 4)
+  → 12-Wochen-Grundkurs (Python-Track) — Pflicht-Voraussetzung
+  → KI-Grundlagen (KI-Track)
 ```
 
 ---
 
 ## Offene Fragen / Nächste Schritte
 
-- [ ] Entscheidung: Pygame Zero oder anderes Framework für Kurs 1?
-- [ ] Entscheidung: Track A oder Track B zuerst für Kurs 3 — oder beide parallel?
+- [ ] Entscheidung: Pygame Zero oder anderes Framework für den Spieleprogrammierung-Grundkurs?
 - [ ] Technisch: Läuft Pygame Zero in Pyodide/Browser oder braucht es lokale Installation?
-- [ ] Kurs 1: Themen-Varianten bestätigen oder festes Thema ohne Varianten?
-- [ ] Kurs 4: Datensätze vorbereiten (eigene oder öffentliche wie Iris, Titanic)?
+- [ ] Spieleprogrammierung Grundkurs: Themen-Varianten bestätigen oder festes Thema ohne Varianten?
+- [ ] KI-Grundlagen: Datensätze vorbereiten (eigene oder öffentliche wie Iris, Titanic)?
+- [ ] Reihenfolge/Priorität zwischen KI-Track und weiteren Python-Projekt-Kursen — siehe `todo.md`
+      "Nächste Themen".

@@ -228,9 +228,11 @@ und Server-Deploy bewusst zurückgestellt (siehe HANDOFF.md).
       (Britisches Englisch W12, "Parours"→"Parcours", "Futterschip"→"Futterschippe" u.a.)
 - [x] `kurs-caesar-chiffre` — erstes eigenständiges Projekt neben den Wochenkursen (5 Lektionen,
       neue `ProjectCourse.vue`), verlinkt aus dem 12-Wochen-Kurs
-- [ ] `kurs-python-spiele` — `ProjectCourse.vue` bereits generalisiert (mehrere Projekt-Kurse teilen
-      sich die Komponente), die eigentlichen Spiele-Inhalte (Quiz-Arena, Turtle-Welt, Galgenmännchen)
-      noch offen
+- [ ] `kurs-python-spiele` — Idee verworfen zugunsten von `kurs-js-spielewerkstatt` (s.u. "Nächste
+      Themen"): Pyodides synchrones Ausführungsmodell ist mit einer echten Spiele-Loop
+      unvereinbar (siehe HANDOFF.md 3.32). Korrektur: `ProjectCourse.vue` ist entgegen einer
+      früheren, fälschlichen Notiz hier **nicht** generalisiert — das passiert jetzt im Zuge von
+      `kurs-js-spielewerkstatt`.
 - [x] `wochencheck-variablen-validierung` (HANDOFF.md 3.34, gemergt) — Coding-Aufgaben ließen sich
       durch Hart-Codieren der erwarteten Textausgabe umgehen (Prüfung schaute nur auf `stdout`).
       Neue optionale `variables`-/`functionCalls`-Felder in `validation` prüfen zusätzlich echte
@@ -315,26 +317,37 @@ und Server-Deploy bewusst zurückgestellt (siehe HANDOFF.md).
 ## Nächste Themen (je eigener Branch von `main`)
 
 Reihenfolge empfohlen: 1 → 2 → 3. Nicht mischen. (Branch-Namen ohne `cursor/`-Präfix.)
+Gesamt-Roadmap/Track-Modell (welche Sprache/welches Thema baut auf was auf) siehe `VISION.md`.
 
-### 1. Python Spiele-Werkstatt — Branch `kurs-python-spiele` (bereits begonnen, s.o.)
-- [x] `ProjectCourse.vue` generalisiert für mehrere Projekt-Kurse
-- [ ] Kursmetadaten in `kurse.json` (+ EN)
-- [ ] Content-Struktur (mehrere kleine Projekte wie Cäsar-Chiffre, DE-first)
-- [ ] Turtle-/Textspiele, Level-Ideen
-- [ ] Smoke-Test / manuell prüfen → PR nach `main`
+### 1. JavaScript-Spielewerkstatt — Branch `kurs-js-spielewerkstatt`
+Ersetzt die frühere Idee einer Python-Spiele-Werkstatt: Pyodides synchrones "einmal ausführen"-
+Modell ist mit einer echten Spiele-Loop (requestAnimationFrame, laufende Tasten-/Maus-Events)
+unvereinbar (siehe HANDOFF.md 3.32) — daher JavaScript statt Python, mit einer neuen
+iframe-Sandbox-Ausführungsumgebung. Kompaktes Projekt (~6 Lektionen, wie Cäsar-Chiffre), erstes
+Spiel "Fang den Ball". Vollständiger Implementierungsplan bereits erarbeitet und gespeichert
+(`~/.claude/plans/fizzy-sprouting-quilt.md`, Abschnitt "ANHANG").
 
-### 2. Was kommt danach? Projekt-Sprints — Branch `kurs-python-projekte`
+Korrektur: `ProjectCourse.vue` ist **noch nicht** generalisiert (frühere Notiz hier war veraltet/
+falsch) — das ist Teil dieses Branches, siehe gespeicherter Plan.
+- [ ] `ProjectCourse.vue` generalisieren (contentPath/engine-Props statt hart codiertem Cäsar-Chiffre)
+- [ ] Neue JS-Sandbox-Ausführungsumgebung (`useJsSandbox.js`, iframe-basiert, kein Worker)
+- [ ] Kursmetadaten in `kurse.json` (+ `title_en`/`description_en`)
+- [ ] Content: 6 Lektionen "Fang den Ball" (DE-first, kein `-en`-Ordner wie Cäsar-Chiffre)
+- [ ] Playwright-Tests (siehe gespeicherter Plan §6) → PR nach `main`
+- [ ] `KURSPLAN.md`/`VISION.md` bei Bedarf nachziehen, falls sich beim Umsetzen was ändert
+
+### 2. Was kommt danach? Python-Projekt-Sprints — Branch `kurs-python-projekte`
 - [ ] 2–3 feste Projekt-Sprints (je ~2 Wochen Umfang skizzieren)
 - [ ] Kursseite + Einstieg von 12-Wochen-Kurs verlinken („Weiter so“)
 - [ ] Projektideen aus Einstufung ggf. hier ausbauen
 - [ ] DE (+ EN nach Bedarf)
 - [ ] Smoke-Test → PR nach `main`
 
-### 3. JS Mini-Games (Teens) **oder** KI-Labor — Branch wählen:
-- **A)** `kurs-js-minigames` — Browser-Spiele, Canvas/p5, Zielgruppe 13–17
-- **B)** `kurs-ki-labor` — Prompts, Grenzen, Schul-Nutzen (breitere Zielgruppe)
-- [ ] Entscheidung A vs B (oder beide nacheinander, je ein Branch)
+### 3. KI-Labor — Branch `kurs-ki-labor`
+Baut auf dem Python-Track auf (12-Wochen-Grundkurs), siehe `VISION.md`/`KURSPLAN.md` Kurs 4
+"KI-Grundlagen". Breitere Zielgruppe, Fokus auf Prompts/Grenzen/Schul-Nutzen.
 - [ ] Kursmetadaten + Content
 - [ ] Smoke-Test → PR nach `main`
 
-**Hinweis:** Drittes Thema erst starten, wenn 1 und 2 gemerged sind (oder bewusst parallel nur wenn Kapazität klar ist). Default: erst Spiele-Werkstatt, dann Projekt-Sprints, dann A oder B.
+**Hinweis:** Drittes Thema erst starten, wenn 1 und 2 gemerged sind (oder bewusst parallel nur
+wenn Kapazität klar ist).
