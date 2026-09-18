@@ -213,15 +213,38 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     await content.press('ControlOrMeta+a');
     await content.press('Backspace');
     // Zeichenweise tippen (statt insertText), damit CodeMirror die Vervollstaendigung live
-    // nachverfolgt, wie es beim echten Tippen im Browser auch passiert.
-    await page.keyboard.type('docum');
+    // nachverfolgt, wie es beim echten Tippen im Browser auch passiert. Eindeutiger Praefix
+    // (statt z.B. "docum", das sowohl "document" als auch die Klasse "Document" trifft und je
+    // nach interner Sortierung mal das eine, mal das andere zuerst zeigt).
+    await page.keyboard.type('requestAnimationFra');
 
     const suggestion = page.locator('.cm-tooltip-autocomplete .cm-completionLabel').first();
     await expect(suggestion).toBeVisible({ timeout: 5000 });
-    await expect(suggestion).toContainText('document');
+    await expect(suggestion).toContainText('requestAnimationFrame');
 
     await page.keyboard.press('Tab');
-    await expect(content).toHaveText('document');
+    await expect(content).toHaveText('requestAnimationFrame');
+  });
+
+  test('CodeMirror-Editor: Autovervollständigung kennt ctx-Canvas-Methoden (fillRect, arc, ...)', async ({ page }) => {
+    await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await expect(page.locator('iframe.js-sandbox')).toBeVisible({ timeout: 15000 });
+
+    const task1 = page.locator('.task-block').nth(1);
+    const content = task1.locator('.cm-content');
+    await content.click();
+    await content.press('ControlOrMeta+a');
+    await content.press('Backspace');
+    // `ctx` ist nur eine lokale Variable - ohne eigenes Scope-Objekt in JsCodeCell.vue koennte
+    // CodeMirror nicht wissen, dass sie ein CanvasRenderingContext2D ist, und "ctx." haette keine
+    // Vorschlaege.
+    await page.keyboard.type('ctx.fill');
+
+    const items = page.locator('.cm-tooltip-autocomplete .cm-completionLabel');
+    await expect(items.first()).toBeVisible({ timeout: 5000 });
+    const labels = await items.allInnerTexts();
+    expect(labels).toContain('fillRect');
+    expect(labels).toContain('fillStyle');
   });
 
   test('CodeMirror-Editor: Tab rückt ein, wenn keine Vervollständigung offen ist', async ({ page }) => {

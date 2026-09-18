@@ -13,9 +13,20 @@ import { javascript, localCompletionSource, scopeCompletionSource } from '@codem
 import { autocompletion, acceptCompletion } from '@codemirror/autocomplete';
 
 // Gleiches Autocomplete/Tab-Verhalten wie CodeCell.vue (12-Wochen-Notebooks), nur mit JS statt
-// Python. scopeCompletionSource(globalThis) schlaegt echte Browser-Globals vor (document,
-// console, Math, requestAnimationFrame, ...) - genau die Namen, die im Sandbox-Code gebraucht
-// werden.
+// Python. scopeCompletionSource(scope) schlaegt echte Browser-Globals vor (document, console,
+// Math, requestAnimationFrame, ...) - genau die Namen, die im Sandbox-Code gebraucht werden.
+//
+// scopeCompletionSource kann KEINE Typen ableiten - "ctx." haette ohne Weiteres keine
+// Vorschlaege, weil `ctx` nur eine lokale Variable ist, deren Wert (ein CanvasRenderingContext2D)
+// nirgends statisch bekannt ist. Fix: ein eigenes Scope-Objekt, das per Prototyp-Kette alle
+// globalThis-Namen erbt UND zusaetzlich `ctx`/`canvas` als eigene Properties traegt, die auf einen
+// echten (nie ans DOM gehaengten) Canvas-Context zeigen - genau die Namen, die jede Aufgabe in
+// diesem Kurs immer verwendet (siehe Content-Konvention in content/js-spielewerkstatt/).
+function buildCompletionScope() {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  return Object.assign(Object.create(globalThis), { canvas, ctx });
+}
 export default {
   name: 'JsCodeCell',
   props: {
@@ -40,7 +51,7 @@ export default {
           ])),
           indentUnit.of('  '),
           javascript(),
-          autocompletion({ override: [localCompletionSource, scopeCompletionSource(globalThis)] }),
+          autocompletion({ override: [localCompletionSource, scopeCompletionSource(buildCompletionScope())] }),
           EditorView.updateListener.of((update) => {
             if (update.docChanged && !applyingExternal) {
               emit('update:modelValue', update.state.doc.toString());

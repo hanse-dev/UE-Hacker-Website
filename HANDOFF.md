@@ -1463,6 +1463,22 @@ Scroll-Assertion im bestehenden Self-Check-Test ergänzt (relativ zur tatsächli
 Position statt eines geratenen Pixelwerts, da oberhalb noch Kursbeschreibung/Fortschrittsleiste
 stehen). Volle `npm test`-Suite (93 Tests) grün.
 
+**Vierter Nachtrag:** `ctx.` (z.B. `ctx.fillRect`) hatte trotz CodeMirror-Umstellung keine
+Vervollständigung — Nutzer-Frage, warum IntelliSense das nicht kennt. Grund: `scopeCompletionSource`
+kann keine Typen ableiten, sondern nur einen konkreten, statisch übergebenen JS-Objektbaum
+durchlaufen; `ctx` ist nur eine lokale `const`, deren Wert (ein `CanvasRenderingContext2D`)
+nirgends bekannt ist, daher lief `scopeCompletionSource(globalThis)` bei `ctx.` ins Leere. Fix in
+`JsCodeCell.vue`: neues `buildCompletionScope()` erzeugt ein Scope-Objekt, das per
+`Object.create(globalThis)` weiterhin alle Browser-Globals erbt, aber zusätzlich `ctx`/`canvas` als
+eigene Properties trägt — beide zeigen auf einen echten, nie ans DOM gehängten
+`canvas.getContext('2d')`, nur zur Reflektion der Objektstruktur. Da jede Aufgabe in diesem Kurs
+ihre Variablen laut Content-Konvention immer `canvas`/`ctx` nennt, deckt das alle Lektionen ab.
+**Nebeneffekt bemerkt beim Testen:** die Objektumstrukturierung änderte auch die Sortierung der
+allgemeinen Vorschläge (z.B. zeigte "docum" vorher "document" zuerst, jetzt manchmal "Document" —
+beides gültige Treffer, nur die Reihenfolge ist nicht mehr deterministisch). Der bestehende Test
+wurde auf einen eindeutigen Präfix (`requestAnimationFra`) umgestellt statt das mehrdeutige "docum";
+neuer Test für `ctx.fill` → `fillRect`/`fillStyle` ergänzt. Volle `npm test`-Suite weiterhin grün.
+
 ---
 
 ## 4. Aktueller technischer Stand
