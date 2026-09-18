@@ -60,6 +60,19 @@
     "contentPath": "zahlendetektiv"
   },
   {
+    "id": "projekt-js-spielewerkstatt",
+    "type": "projekt",
+    "engine": "js-sandbox",
+    "language": "javascript",
+    "level": "einsteiger",
+    "tags": ["spiele", "logikraetsel"],
+    "title": "Projekt: JS-Spielewerkstatt – Fang den Ball",
+    "title_en": "Project: JS Game Workshop – Catch the Ball",
+    "description": "Baue dein erstes eigenes Browserspiel: ein Spielfeld zeichnen, einen Schläger mit der Tastatur steuern, einen fallenden Ball animieren, Treffer erkennen und Punkte zählen. Läuft direkt im Browser – kein Python, sondern JavaScript, die Sprache des Webs.",
+    "description_en": "Build your first own browser game: draw a play field, steer a paddle with the keyboard, animate a falling ball, detect hits and count points. Runs right in the browser – no Python, but JavaScript, the language of the web.",
+    "contentPath": "js-spielewerkstatt"
+  },
+  {
     "id": "ferienkurse",
     "title": "Meet & Code - Herbstferienprogramm Al für Teenager",
     "title_en": "Meet & Code - Autumn Holiday Programme AI for Teenagers",

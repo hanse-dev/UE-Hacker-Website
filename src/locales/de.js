@@ -254,6 +254,21 @@ export default {
   'lesson.hintSoft':          'Noch nicht ganz – schau dir deine Ausgabe oben an und vergleiche sie mit der Aufgabenstellung.',
   'lesson.hintExpected':      'Die Ausgabe stimmt noch nicht. Erwartet wurde etwas mit: "{expected}"',
 
+  // ── JS-Sandbox-Lektion (JsLessonView.vue + JsSandboxFrame.vue) ───────────
+  'jsLesson.editorHint':   'Dein Code läuft in einem eigenen, abgeschotteten Bereich. Schau dir zuerst das Beispiel an und führe es aus – danach bist du an der Reihe. Jeder Klick auf „Ausführen"/„Prüfen" startet frisch neu.',
+  'jsLesson.ranExplainer': '🟠 Ein oranger Rahmen um den Code-Bereich zeigt dir, welchen Code du schon ausgeführt hast.',
+  'jsLesson.alreadyRan':   'Diesen Code hast du schon ausgeführt.',
+  'jsLesson.noOutput':     '(keine Ausgabe)',
+  'jsLesson.canvasNote':   '🎨 Dein Spielfeld wurde gezeichnet – schau es dir oben an!',
+  'jsLesson.showSolution': '🔒 Lösung anzeigen',
+  'jsLesson.unknownError': 'Unbekannter Fehler',
+  'jsLesson.selfCheckBtn': 'Ich hab\'s ausprobiert – sieht gut aus!',
+  'jsLesson.selfCheckDone':'✓ Ausprobiert',
+  'jsLesson.ready':        '✓ Sandbox bereit',
+  'jsLesson.starting':     'Sandbox startet…',
+  'jsLesson.restartFrame': 'Neu starten',
+  'jsLesson.frameStalled': 'Sieht aus, als würde dein Spiel hängen – klick auf „Neu starten".',
+
   // ── Code challenge (Wochen-Check) ────────────────────────────────────────
   'challenge.passed':         'Bestanden',
   'challenge.codePlaceholder':'Dein Code...',
@@ -319,6 +334,7 @@ export default {
   'projectTag.kommunikation': 'Kommunikation',
   'projectTag.logikraetsel': 'Logikrätsel',
   'projectTag.mathematik': 'Mathematik',
+  'projectTag.spiele': 'Spiele',
 
   'profil.title': 'Mein Profil',
   'profil.loginRequired': 'Melde dich an, um dein Profil und deine Abschluss-Abzeichen zu sehen.',

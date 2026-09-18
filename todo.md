@@ -2,9 +2,9 @@
 
 ## Now
 
-*(Nichts aktuell offen — Branch `profil-abschluss-badges` ist lokal fertig/getestet, siehe
-"Fertige Branches" unten. `kurs-projekte-uebersicht` ist bereits gemergt. Server-Deploy steht noch
-aus, siehe HANDOFF.md Abschnitt 5 "Betrieb".)*
+*(Nichts aktuell offen — `kurs-projekte-uebersicht`, `kurs-js-spielewerkstatt`,
+`profil-abschluss-badges` und `nav-projekte-link` sind alle nach `main` gemergt, siehe
+"Fertige Branches" unten. Server-Deploy steht noch aus, siehe HANDOFF.md Abschnitt 5 "Betrieb".)*
 
 ### 12-Wochen-Kurs: Zellen-Format-Umstellung (Branch `12-wochen-kurs-zellen-format`)
 - [x] Alle 432 Notebooks (3 Varianten × 12 Wochen × 6 Typen × DE/EN) vom `.ipynb`-Format auf
@@ -240,6 +240,11 @@ und Server-Deploy bewusst zurückgestellt (siehe HANDOFF.md).
       nur noch gesammelt unter `/projekte`; der 12-Wochen-Kurs-Banner verlinkt jetzt dorthin statt
       fest zu Cäsar-Chiffre. `useLessonContent.js`-Globs auf Wildcard umgestellt (kein manuelles
       Nachtragen pro neuem Projekt-Kurs mehr nötig). Details siehe `INHALTE.md` §6.
+- [x] `kurs-js-spielewerkstatt` (HANDOFF.md 3.39, gemergt) — erster JS- statt
+      Python-Projekt-Kurs: neue iframe-Sandbox (`useJsSandbox.js`/`JsSandboxFrame.vue`, kein
+      Pyodide, kein Web Worker), `JsLessonView.vue` als JS-Pendant zu `LessonView.vue`, neue
+      `engine`-Prop an `ProjectCourse.vue`. Sechs Lektionen "Fang den Ball". Details siehe
+      HANDOFF.md 3.39.
 - [x] `wochencheck-variablen-validierung` (HANDOFF.md 3.34, gemergt) — Coding-Aufgaben ließen sich
       durch Hart-Codieren der erwarteten Textausgabe umgehen (Prüfung schaute nur auf `stdout`).
       Neue optionale `variables`-/`functionCalls`-Felder in `validation` prüfen zusätzlich echte
@@ -318,13 +323,15 @@ und Server-Deploy bewusst zurückgestellt (siehe HANDOFF.md).
       + Wochen-ZIP-Download mit übernommen, alte `?week=&tab=`-Deep-Links (Einstufung,
       Cäsar-Chiffre) funktionieren unverändert weiter (intern übersetzt). Details: Plan-Datei
       `~/.claude/plans/twinkly-strolling-lovelace.md`.
-- [x] `profil-abschluss-badges` (HANDOFF.md 3.39, lokal fertig/getestet, noch nicht gemergt) —
+- [x] `profil-abschluss-badges` (HANDOFF.md 3.41, gemergt) —
       neue Login-gated Seite `/profil` mit Abschluss-Abzeichen pro Projekt-Kurs (🏅/🔒, kein
       Zertifikat/PDF/Quiz — bewusst leichtgewichtig, passend zum Projekt-Kurs-Format aus
       `VISION.md`). Neue `useProjectBadges.js`, nutzt denselben Fortschritts-Mechanismus wie
       `ProjectCourse.vue` selbst. Nebenbei gefunden: Projekt-Kurs-Fortschritt wurde nie mit dem
       Account synchronisiert — `useProgressSync.js` auf Präfix-Erkennung umgestellt, deckt jetzt
       automatisch jeden (auch künftigen) Projekt-Kurs ab.
+- [x] `nav-projekte-link` (HANDOFF.md 3.40, gemergt) — direkter "Projekte"-Link im Header neben
+      "Kurse", bisher nur über Teaser/Banner erreichbar.
 
 ---
 
@@ -333,25 +340,21 @@ und Server-Deploy bewusst zurückgestellt (siehe HANDOFF.md).
 Reihenfolge empfohlen: 1 → 2 → 3. Nicht mischen. (Branch-Namen ohne `cursor/`-Präfix.)
 Gesamt-Roadmap/Track-Modell (welche Sprache/welches Thema baut auf was auf) siehe `VISION.md`.
 
-### 1. JavaScript-Spielewerkstatt — Branch `kurs-js-spielewerkstatt`
+### 1. JavaScript-Spielewerkstatt — Branch `kurs-js-spielewerkstatt` ✅ gemergt
 Ersetzt die frühere Idee einer Python-Spiele-Werkstatt: Pyodides synchrones "einmal ausführen"-
 Modell ist mit einer echten Spiele-Loop (requestAnimationFrame, laufende Tasten-/Maus-Events)
 unvereinbar (siehe HANDOFF.md 3.32) — daher JavaScript statt Python, mit einer neuen
-iframe-Sandbox-Ausführungsumgebung. Kompaktes Projekt (~6 Lektionen, wie Cäsar-Chiffre), erstes
-Spiel "Fang den Ball". Vollständiger Implementierungsplan bereits erarbeitet und gespeichert
-(`~/.claude/plans/fizzy-sprouting-quilt.md`, Abschnitt "ANHANG").
-
-**Update:** `ProjectCourse.vue` ist inzwischen generalisiert (Branch `kurs-projekte-uebersicht`,
-s.u.) — die `contentPath`-Prop und das `type: "projekt"`-Feld in `kurse.json` existieren bereits.
-Für diesen Branch fehlt nur noch die `engine`-Prop (Default `'pyodide'`) + die JS-Sandbox selbst,
-siehe gespeicherter Plan (dort als "bereits erledigt" markiert, wo zutreffend).
-- [ ] Neue JS-Sandbox-Ausführungsumgebung (`useJsSandbox.js`, iframe-basiert, kein Worker)
-- [ ] `engine`-Prop an `ProjectCourse.vue`/`CourseDetail.vue` ergänzen
-- [ ] Kursmetadaten in `kurse.json` (inkl. `language: "javascript"`, `level`, `tags` passend zum
-      Projekte-Filter-Vokabular aus `kurs-projekte-uebersicht`)
-- [ ] Content: 6 Lektionen "Fang den Ball" (DE-first, kein `-en`-Ordner wie Cäsar-Chiffre)
-- [ ] Playwright-Tests (siehe gespeicherter Plan §6) → PR nach `main`
-- [ ] `KURSPLAN.md`/`VISION.md` bei Bedarf nachziehen, falls sich beim Umsetzen was ändert
+iframe-Sandbox-Ausführungsumgebung. Kompaktes Projekt (6 Lektionen, wie Cäsar-Chiffre), erstes
+Spiel "Fang den Ball". Details siehe HANDOFF.md 3.39.
+- [x] Neue JS-Sandbox-Ausführungsumgebung (`useJsSandbox.js`, iframe-basiert, kein Worker)
+- [x] `engine`-Prop an `ProjectCourse.vue`/`CourseDetail.vue` ergänzt (Default `'pyodide'`)
+- [x] Kursmetadaten in `kurse.json` (`engine: "js-sandbox"`, `language: "javascript"`, `level`,
+      neuer Tag `spiele` im Projekte-Filter-Vokabular, inkl. neuer `projectTag.spiele`-Locale-Keys)
+- [x] Content: 6 Lektionen "Fang den Ball" (DE-first, kein `-en`-Ordner wie Cäsar-Chiffre)
+- [x] Playwright-Tests (`tests/js-spielewerkstatt.spec.js`, 12 Tests) + `tests/projekte.spec.js`
+      angepasst → volle `test:checks`-Suite grün.
+- [ ] `KURSPLAN.md`/`VISION.md` bei Bedarf nachziehen — bisher keine Abweichung vom dortigen
+      Track-Modell nötig (JS-Projekt-Kurs passt unverändert ins bestehende Schema)
 
 ### 2. Was kommt danach? Python-Projekt-Sprints — Branch `kurs-python-projekte`
 Die Infrastruktur dafür existiert bereits (Branch `kurs-projekte-uebersicht`, s.u.): generalisiertes

@@ -15,10 +15,15 @@ Dieses Dokument beschreibt, welche Dateien zusammengehören und was bei Änderun
 | `projekt-caesar-chiffre` | `content/caesar-chiffre/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON) |
 | `projekt-morsecode` | `content/morsecode/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON) |
 | `projekt-zahlendetektiv` | `content/zahlendetektiv/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON) |
+| `projekt-js-spielewerkstatt` | `content/js-spielewerkstatt/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON, `engine: "js-sandbox"`) |
 
 Alle Projekt-Kurse (`type: "projekt"` in `kurse.json`) sind gesammelt und filterbar unter
 **`/projekte`** (`src/views/ProjekteView.vue`) zu finden — nach Sprache, Level, Thema/Tags und
 Dauer. Sie erscheinen bewusst *nicht* mehr in der normalen Kursliste auf der Startseite.
+
+`projekt-js-spielewerkstatt` ist der erste Projekt-Kurs mit `engine: "js-sandbox"` statt Pyodide —
+`ProjectCourse.vue` rendert je nach diesem Feld `LessonView.vue` (Python/Pyodide, Default) oder
+`JsLessonView.vue` (JavaScript, eigene iframe-Sandbox). Details siehe Abschnitt 6.
 
 Kurs-Metadaten (Titel, Beschreibung) → `public/kurse.json` (enthält `title`, `title_en`, `description`, `description_en`)
 
@@ -305,6 +310,27 @@ Ordner-Mapping (immer paarweise anpassen):
       ausgefiltert) brauchen **keine** Änderung mehr für einen weiteren Projekt-Kurs — nur
       Content-Ordner + `kurse.json`-Eintrag.
 
+**Für einen JavaScript-Projekt-Kurs (wie `js-spielewerkstatt`) statt Python/Pyodide:**
+- [ ] `kurse.json`-Eintrag bekommt zusätzlich `"engine": "js-sandbox"` (fehlt das Feld, ist
+      `"pyodide"` der Default — bestehende Python-Projekte brauchen keine Änderung).
+      `ProjectCourse.vue` rendert dann `JsLessonView.vue`/`JsSandboxFrame.vue` statt
+      `LessonView.vue`. Kein `.btn-kernel`-Init-Schritt nötig — jeder Lauf startet ein frisches,
+      isoliertes iframe (`sandbox="allow-scripts"`, keine `allow-same-origin`), Reset ist der
+      Normalfall (siehe `src/composables/useJsSandbox.js`).
+- [ ] `lessons.json`-Aufgaben können zusätzlich zu `variables`/`functionCalls`
+      (siehe unten) zwei JS-spezifische `validation.type`-Werte nutzen: `canvas_not_blank`
+      (irgendein gezeichneter Pixel auf dem festen Spielfeld-Canvas, ID `spielfeld`) und
+      `canvas_changed` (Pixel unterscheiden sich vor/nach `ms` Millisekunden — beweist eine
+      wirklich laufende `requestAnimationFrame`-Schleife, nicht nur ein einzelnes Standbild).
+      Fehlt `validation.expected`, wird die Ausgabe-Prüfung übersprungen (für reine Canvas-/
+      Funktions-Aufgaben ohne geforderte `console.log`-Ausgabe).
+- [ ] Optionales Aufgaben-Feld `"check": "self"` (Default `"auto"`): statt einer automatischen
+      Prüfung gibt es nur einen "Ich hab's ausprobiert"-Button — für Aufgaben, die sich nicht
+      sinnvoll automatisch prüfen lassen (freies Ausprobieren, eigene Ideen einbauen).
+- [ ] Jede Aufgabe muss eigenständig lauffähig sein — jeder Lauf (Ausführen/Prüfen) baut das
+      iframe komplett neu auf, es gibt **keinen** geteilten Namespace zwischen Aufgaben (anders
+      als beim Pyodide-Kernel, der über eine ganze Lektion hinweg erhalten bleibt).
+
 ---
 
 ## 7. Wo stehen welche Dinge im Code?
@@ -322,6 +348,9 @@ Ordner-Mapping (immer paarweise anpassen):
 | Kursdetailseite | `src/views/CourseDetail.vue` |
 | Projekt-Kurs – UI + Lektions-Fortschritt | `src/components/ProjectCourse.vue` |
 | Projekte-Übersicht + Filter (Sprache/Level/Tags/Dauer) | `src/views/ProjekteView.vue` |
+| JS-Projekt-Kurs – Lektion anzeigen (Pendant zu `LessonView.vue`) | `src/components/JsLessonView.vue` |
+| JS-Sandbox – iframe + RPC-Protokoll (Ausführen/Prüfen/Canvas) | `src/composables/useJsSandbox.js`, `src/components/JsSandboxFrame.vue` |
+| JS-Code-Editor mit IntelliSense/Tab (CodeMirror) | `src/components/JsCodeCell.vue` |
 | Fortschritts-Widget (12-Wochen) | `src/components/FortschrittWidget.vue` |
 | Missionen-Panel | `src/components/MissionenPanel.vue` |
 | Profilseite (Login-gated) + Projekt-Abschluss-Abzeichen | `src/views/ProfilView.vue`, `src/composables/useProjectBadges.js` |

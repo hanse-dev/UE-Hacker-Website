@@ -1,20 +1,9 @@
 import { test, expect } from '@playwright/test';
+import { setCodeMirrorContent } from './helpers/codemirror.js';
 
 const INTERACTIVE_URL = '/kurs/python-grundlagen-interaktiv';
 const COURSE_URL = '/kurs/python-12-wochen-grundkurs';
 const PLACEMENT_URL = '/kurs/python-einstufung';
-
-// 12-Wochen-Kurs-Notebooks nutzen seit der Zellen-Format-Umstellung CodeMirror statt einer
-// <textarea class="code-editor"> - .fill()/.inputValue() funktionieren dort nicht mehr.
-// insertText() statt type(), damit CodeMirrors Auto-Indent literale "\n"-Zeichen in
-// mehrzeiligem Test-Code (z.B. "while True:\n    pass\n") nicht zusätzlich einrückt.
-async function setCodeMirrorContent(cmHost, code) {
-  const content = cmHost.locator('.cm-content');
-  await content.click();
-  await content.press('ControlOrMeta+a');
-  await content.press('Backspace');
-  await content.page().keyboard.insertText(code);
-}
 
 test.describe('Home & Navigation', () => {
   test.beforeEach(async ({ page }) => {

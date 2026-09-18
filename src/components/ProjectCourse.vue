@@ -47,12 +47,20 @@
         </div>
       </aside>
 
-      <main class="lesson-main">
+      <main class="lesson-main" ref="mainEl">
         <div v-if="!currentLesson" class="no-lesson">
           <p>{{ t('lessons.selectFromList') }}</p>
           <p v-if="lessons.length">{{ t('lessons.startWithOne') }}</p>
         </div>
         <LessonView
+          v-else-if="engine === 'pyodide'"
+          :lesson="currentLesson"
+          :content-path="contentPath"
+          :variant="contentPath"
+          :course-id="courseId"
+          @completed="onLessonCompleted"
+        />
+        <JsLessonView
           v-else
           :lesson="currentLesson"
           :content-path="contentPath"
@@ -66,8 +74,9 @@
 </template>
 
 <script>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import LessonView from './LessonView.vue';
+import JsLessonView from './JsLessonView.vue';
 import { useInteractiveProgress } from '../composables/useInteractiveProgress';
 import { useLanguage } from '../composables/useLanguage';
 
@@ -75,10 +84,11 @@ const lessonJsonModules = import.meta.glob('../../content/*/lessons.json');
 
 export default {
   name: 'ProjectCourse',
-  components: { LessonView },
+  components: { LessonView, JsLessonView },
   props: {
     courseId: { type: String, required: true },
     contentPath: { type: String, required: true },
+    engine: { type: String, default: 'pyodide' },
   },
   setup(props) {
     const { lang, t } = useLanguage();
@@ -87,6 +97,7 @@ export default {
     const error = ref(null);
     const currentLessonId = ref(null);
     const sidebarOpen = ref(false);
+    const mainEl = ref(null);
 
     const { completedCount, isCompleted, isLessonUnlocked, exportProgress, importProgress } =
       useInteractiveProgress(props.contentPath, props.courseId);
@@ -137,6 +148,16 @@ export default {
       if (nextId) currentLessonId.value = nextId;
     };
 
+    // Wechselt man die Lektion (Sidebar-Klick oder "Weiter"-Button), soll man oben bei der neuen
+    // Lektion landen statt an der Scroll-Position der alten (meist ganz unten, am "Weiter"-Button).
+    // Kein Scroll beim allerersten Laden (oldId ist dann noch null). `flush: 'post'`, damit die neue
+    // Lektion bereits gerendert ist, bevor wir dorthin scrollen (sonst greift der Scroll noch die
+    // Position der alten Lektion ab).
+    watch(currentLessonId, (newId, oldId) => {
+      if (!oldId) return;
+      mainEl.value?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, { flush: 'post' });
+
     const onImportFile = (e) => {
       const file = e.target.files?.[0];
       if (!file) return;
@@ -169,6 +190,7 @@ export default {
       loading,
       error,
       sidebarOpen,
+      mainEl,
       currentLesson,
       currentIndex,
       progressPercent,

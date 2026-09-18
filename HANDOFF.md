@@ -1,19 +1,17 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-09-18  
-> **Aktueller Stand:** `main` ist auf `origin/main` gepusht, inkl. Branch `experiment-wochen-tour`
-> (3.35+3.36, gemergt) — was als unverlinktes Experiment begann, ist jetzt die **echte** Kursseite
-> unter `/kurs/python-12-wochen-grundkurs` (alte Akkordeon-UI `WeekSection.vue` + Co. entfernt).
-> **Server-Deploy steht noch aus** — Code ist auf GitHub, aber noch nicht auf dem
-> Produktions-Server ausgerollt (siehe Abschnitt 4 "Betrieb", Nutzer deployt selbst). **Neu:**
-> `VISION.md` (Mission + Track-Modell/langfristige Roadmap über mehrere Sprachen/Themen) angelegt,
-> `KURSPLAN.md` erstmals aus `CLAUDE.md` verlinkt und ans Track-Modell angeglichen (3.37, gemergt).
-> Darauf aufbauend: `ProjectCourse.vue` generalisiert, neue Projekte-Übersicht mit Filtern unter
-> `/projekte`, zwei neue Projekt-Kurse (Morsecode, Zahlen-Detektiv) — Branch
-> `kurs-projekte-uebersicht` (3.38, inzwischen gemergt). **Neu:** Login-gated `/profil`-Seite mit
-> Abschluss-Abzeichen pro Projekt-Kurs (3.39, Branch `profil-abschluss-badges`), lokal
-> fertig/getestet, noch **nicht** gemergt. Dabei auch Projekt-Kurs-Fortschritt erstmals mit dem
-> Account synchronisiert (war vorher nur pro Browser gültig).
+> **Aktueller Stand:** `main` ist lokal auf dem neuesten Stand (Push nach `origin/main` steht noch
+> aus). Vier Branches frisch gemergt: `kurs-projekte-uebersicht` (3.38) — Projekte-Übersicht mit
+> Filtern unter `/projekte`, `ProjectCourse.vue` generalisiert, zwei neue Projekt-Kurse (Morsecode,
+> Zahlen-Detektiv). Darauf aufbauend der erste **JavaScript**-Projekt-Kurs
+> `kurs-js-spielewerkstatt` (3.39) — eigene iframe-Sandbox-Ausführungsumgebung (kein Pyodide),
+> sechs Lektionen "Fang den Ball". Ein direkter "Projekte"-Link im Header
+> (`nav-projekte-link`, 3.40). **Neu:** Login-gated `/profil`-Seite mit Abschluss-Abzeichen pro
+> Projekt-Kurs (`profil-abschluss-badges`, 3.41) — dabei auch Projekt-Kurs-Fortschritt erstmals mit
+> dem Account synchronisiert (war vorher nur pro Browser gültig). **Server-Deploy steht weiterhin
+> aus** — Code muss noch nach `origin/main` gepusht und auf dem Produktions-Server ausgerollt
+> werden (siehe Abschnitt 4 "Betrieb", Nutzer deployt selbst).
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -1337,7 +1335,177 @@ Bisektions-Zahlenrater) — alle Code-Beispiele lokal mit `python3` gegenverifiz
 Banner-Link); `tests/site.spec.js` an die neue Home-Struktur angepasst (Projekt-Kurse nicht mehr
 in `#kurse-uebersicht`, dafür ein `/projekte`-Teaser-Link).
 
-### 3.39 Header-Nav: direkter "Projekte"-Link (Branch `nav-projekte-link`)
+### 3.39 Erster JavaScript-Projekt-Kurs: JS-Spielewerkstatt (Branch `kurs-js-spielewerkstatt`)
+
+Aufbauend auf 3.38 (generalisiertes `ProjectCourse.vue`, `type`-Feld) der erste Projekt-Kurs, der
+nicht auf Pyodide läuft: `projekt-js-spielewerkstatt` ("Fang den Ball", 6 Lektionen). Grund für
+JavaScript statt Python: Pyodide führt Code synchron auf dem Hauptthread aus — unvereinbar mit
+einer echten `requestAnimationFrame`-Spiele-Loop (bereits in 3.32 als Grund gegen einen
+Python-Spiele-Kurs festgehalten). Plan gespeichert unter
+`~/.claude/plans/fizzy-sprouting-quilt.md`.
+
+**Sandbox-Architektur:** `<iframe sandbox="allow-scripts">` (per `srcdoc`, ohne
+`allow-same-origin` → opake Origin) statt Web Worker — das Spiel braucht ein sichtbares Canvas mit
+echten `keydown`/Maus-Events, die im Worker erst per `postMessage` nachgebaut werden müssten
+(gleiche Abwägung wie beim Turtle-Shim/Loop-Guard, siehe 3.5/3.32). Kein Sicherheitsversprechen
+gegen böswillige Nutzer, sondern Blast-Radius-Schutz: ohne Sandbox könnte `localStorage.clear()`
+im Schüler-Code aus Versehen echten Fortschritt/Login löschen. `useJsSandbox.js`
+(`postMessage`-RPC: `run`/`get`/`call`/`canvas`) + `JsSandboxFrame.vue` (besitzt das iframe,
+Restart-Button als Kill-Switch) + `JsLessonView.vue` (Pendant zu `LessonView.vue`, bewusst
+**ohne** CodeMirror — `LessonView.vue`/`CodeChallenge.vue` nutzen selbst nur eine `<textarea>`,
+CodeMirror ist exklusiv der 12-Wochen-Notebook-Pipeline vorbehalten, siehe 3.33).
+
+**Kein Namespace-Problem wie bei Pyodide:** jeder Lauf (Ausführen/Prüfen) zerstört das iframe per
+Vue-`:key`-Bump komplett und baut es neu auf — Reset ist der Normalfall, nicht der Sonderfall.
+Dadurch entfällt jede Namespace-Hygiene zwischen Läufen (kein `globals.delete()`-Äquivalent
+nötig). Code läuft per **indirektem `eval`** (`(0, eval)(code)`), nicht `new Function(code)`:
+Top-Level `let`/`const` landen bei `new Function` nur lokal im Funktionsaufruf und gehen beim
+Zurückkehren verloren — indirekter `eval` führt im globalen Scope aus, `let`/`const` bleiben dort
+über den ganzen Lauf per Bezeichner abrufbar (`(0, eval)(name)`), unabhängig davon ob mit
+`function`/`var`/`let`/`const` deklariert.
+
+**Neue `validation`-Typen** (nur für diesen Kurs relevant, ausgewertet in `JsLessonView.vue`,
+nicht in `useTaskValidation.js`): `canvas_not_blank` (irgendein gezeichneter Pixel) und
+`canvas_changed` (Pixel unterscheiden sich vor/nach `ms` Millisekunden — beweist eine wirklich
+laufende Animationsschleife). `useTaskValidation.js` bekam dafür einen kleinen, rückwärts-
+kompatiblen Guard: fehlt `validation.expected`, gilt die Ausgabe-Prüfung als bestanden (reine
+Canvas-/Funktions-Aufgaben brauchen keine `console.log`-Ausgabe). Neues optionales
+Aufgaben-Feld `"check": "self"` (Default `"auto"`) für Aufgaben, die sich nicht automatisch
+prüfen lassen (freies Ausprobieren) — ein "Ich hab's ausprobiert"-Button zählt dann zum
+Fortschritt, analog zum bestehenden Missionen-Muster.
+
+**Zwei echte Bugs beim Testen gefunden und gefixt, nicht nur Test-Artefakte:**
+1. `DataCloneError: ... could not be cloned` beim `postMessage` von `functionCalls`-Argumenten —
+   die kamen aus einem reaktiven Vue-`ref()`, ein Proxy-Array lässt sich nicht per structured
+   clone über eine Fenstergrenze schicken. Fix: `post()` wandelt jede Nachricht vorher per
+   `JSON.parse(JSON.stringify(...))` in reine Werte um.
+2. **Chromium drosselt `requestAnimationFrame` in einem cross-origin/opaken iframe, das gerade
+   außerhalb des sichtbaren Viewports liegt** — per Playwright verifiziert: 0 Frames in 800ms
+   off-screen vs. ~57fps sobald sichtbar. Kein Test-Artefakt, sondern ein echtes Problem für echte
+   Nutzer:innen — eine Animationsschleife hätte für jemanden, der noch nicht zum Spielfeld
+   gescrollt hat, einfach eingefroren gewirkt. Fix: `JsSandboxFrame.vue` scrollt das iframe bei
+   jedem Ausführen/Prüfen aktiv ins Sichtfeld (`scrollIntoView({behavior:'auto'})` — nicht
+   `'smooth'`, damit das Canvas schon vor dem nächsten Frame sichtbar ist).
+
+**Content:** 6 Lektionen (Canvas zeichnen → Schläger/Tastatur-Funktion → Animationsschleife inkl.
+`canvas_changed`-Beweis → Kollisionserkennung → Punkte/Game-Over → eigene Schwierigkeitskurve +
+freies Spiel). Alle automatisch geprüften Aufgaben nutzen reine Funktionsdefinitionen mit
+versteckten Testfällen (`functionCalls`, wie beim bestehenden Python-Muster aus 3.34) statt
+Live-Spiel-Zustand zu inspizieren — robuster zu prüfen, gleiche Idee wie bei den Python-
+Projekt-Kursen. Referenzlösungen aller `functionCalls`-Aufgaben vorab mit `node -e` gegen die
+erwarteten Werte verifiziert. `kurse.json`-Eintrag mit `engine: "js-sandbox"`, `language:
+"javascript"`, neuer Tag `spiele` (+ `projectTag.spiele`-Locale-Keys DE/EN).
+
+**Tests:** `tests/js-spielewerkstatt.spec.js` (7 Tests: Engine-Nachweis kein `.btn-kernel`,
+Canvas-Aufgabe besteht/schlägt fehl, Kill-Switch baut iframe wirklich neu, Self-Check zählt zum
+Fortschritt + schaltet frei, versteckte Testfälle lassen Scheinlösungen durchfallen,
+`canvas_changed` erkennt eine wirklich laufende vs. eingefrorene Schleife) + `tests/projekte.spec.js`
+angepasst (4 statt 3 Karten, neuer Sprach-Filter-Test). Volle `npm run test:checks`-Suite (67 Tests)
+grün, `npm run lint:spelling` sauber (neue Content-Wörter wie „Browserspiel"/„keydown" in
+`cspell.json` ergänzt).
+
+**Bewusste Vereinfachungen ggü. dem ursprünglichen Plan:** kein `@codemirror/lang-javascript`
+(siehe oben, Textarea reicht wie bei den anderen Projekt-Kursen — **später per Nutzer-Feedback
+revidiert, siehe "Zweiter Nachtrag" unten**); kein separates `settleMs`-Feld
+(die `canvas_changed`-Prüfung bringt ihre eigene Wartezeit mit); Heartbeat/`alive`-Watchdog
+vorhanden, aber ohne automatischen Reset (nur ein Hinweistext neben dem manuellen
+Neu-starten-Button — ein laufendes Spiel soll nie automatisch weggeworfen werden).
+
+**Nachtrag nach Nutzer-Feedback:** zwei Probleme aus dem ersten Durchklicken behoben. (1) Ohne
+`console.log` zeigte die Ausgabe-Box "(keine Ausgabe)", obwohl oben sichtbar etwas gezeichnet
+wurde — wirkte wie "nichts ist passiert". `JsLessonView.vue` prüft jetzt nach jedem Lauf
+zusätzlich per `checkCanvasNotBlank()`, ob das Canvas verändert wurde, und hängt dann einen festen
+Hinweis ("🎨 Dein Spielfeld wurde gezeichnet – schau es dir oben an!") an die Ausgabe an — auch bei
+Aufgaben, deren `validation` gar keinen Canvas-Typ hat. (2) Die erste Schreibaufgabe jeder Lektion
+begann bisher direkt mit einem leeren `// Dein Code hier` ohne je ein lauffähiges Beispiel gesehen
+zu haben ("zu stark ins kalte Wasser geworfen"). Jede der 6 Lektionen bekam eine neue **erste**
+Aufgabe (`check: "self"`, fertiger Beispielcode zum Ausführen und Anschauen) vor der eigentlichen
+Schreibaufgabe — z.B. Lektion 1 zeigt erst ein fertig gezeichnetes Rechteck, bevor die Lernenden
+selbst zeichnen sollen; Lektion 3 zeigt die komplette Animationsschleife fertig laufend, bevor die
+Schleife selbst nachgebaut werden muss. Reine Content-/Struktur-Ergänzung, kein neuer Mechanismus
+(nutzt das bestehende `check: "self"`-Feld). Alle 7 Tests in `tests/js-spielewerkstatt.spec.js` auf
+die verschobenen Task-Indizes angepasst, ein Test erweitert (jetzt 3 statt 2 Aufgaben in Lektion 1).
+
+**Zweiter Nachtrag:** zwei weitere Wünsche direkt nach dem Ausprobieren. (1) Markierung, welcher
+Code-Bereich schon ausgeführt wurde: neuer `taskRan`-Zustand pro Aufgabe (gesetzt bei jedem
+Ausführen/Prüfen-Klick, unabhängig vom Ergebnis), oranger Rahmen um den Editor + kleiner Hinweis
+darunter, plus eine einmalige Erklärung oben in der Lektion (`jsLesson.ranExplainer`), was der
+Rahmen bedeutet. (2) IntelliSense + Tab-Einrücken auch hier: **revidiert** die in 3.39 bewusst
+getroffene Entscheidung gegen CodeMirror ("Textarea reicht wie bei den anderen Projekt-Kursen") —
+neue `src/components/JsCodeCell.vue` (Klon von `CodeCell.vue`, aber `@codemirror/lang-javascript`
+statt `python()`, neue Dependency), ersetzt die `<textarea class="code-editor">` in
+`JsLessonView.vue`. `scopeCompletionSource(globalThis)` schlägt echte Browser-Globals vor
+(`document`, `console`, `Math`, `requestAnimationFrame`, …) — per Playwright verifiziert: Tippen
+von "docum" zeigt "document" als ersten Vorschlag. Tab übernimmt erst einen offenen Vorschlag
+(VS-Code-Art), sonst rückt es ein (gleiches `Prec.highest`-Keymap-Muster wie bei `CodeCell.vue`).
+Der "schon ausgeführt"-Rahmen sitzt jetzt um den ganzen `.cm-host`-Block (`:deep()`-Selektor von
+`JsLessonView.vue` in die Kind-Komponente hinein). **Nebeneffekt:** `tests/site.spec.js`s bis dahin
+lokale `setCodeMirrorContent()`-Hilfsfunktion nach `tests/helpers/codemirror.js` ausgelagert (der
+im ursprünglichen Plan schon vorgesehene, bis dahin nie gemachte Schritt) und von
+`js-spielewerkstatt.spec.js` mitbenutzt — alle `.fill()`-Aufrufe auf `.code-editor` dort durch den
+Helper auf `.cm-host` ersetzt, zwei neue Tests für Autocomplete/Tab ergänzt. Volle `npm test`-Suite
+(92 Tests) grün.
+
+**Dritter Nachtrag:** zwei weitere Punkte direkt beim Ausprobieren gefunden. (1) In drei Lektionen
+(2, 3, 4) enthielt der `codeTemplate` der auf eine Auto-Aufgabe folgenden Self-Check-Aufgabe
+("probier's mit eigenen Werten aus") die komplette, fertige Lösung der Auto-Aufgabe direkt vorher —
+man konnte sie einfach zurückkopieren, ohne selbst zu lösen. Neues optionales `solution`-Feld pro
+Aufgabe, gerendert als natives `<details>/<summary>`-Element ("🔒 Lösung anzeigen", eingeklappt per
+Default) statt den Code direkt in den editierbaren `codeTemplate` zu schreiben — der Editor selbst
+bleibt ein neutraler Hinweis-Stub ("Kopiere deine Lösung von oben hierher"). Betraf `bewegeSchlaeger`
+(Lektion 2), die Animationsschleife mit größerem Tempo (Lektion 3) und `istTreffer` (Lektion 4).
+(2) Beim Lektionswechsel (Sidebar-Klick oder "Weiter"-Button) blieb die Scroll-Position der alten
+Lektion erhalten (meist ganz unten) statt oben bei der neuen Lektion zu landen. Fix in
+`ProjectCourse.vue` (nicht JS-spezifisch — gilt automatisch für alle Projekt-Kurse): neuer
+`mainEl`-Template-Ref auf `<main class="lesson-main">` plus ein `watch(currentLessonId, ...,
+{flush:'post'})`, der `mainEl.value.scrollIntoView({behavior:'smooth', block:'start'})` aufruft.
+**Wichtige Falle beim Debuggen:** `flush:'post'` ist hier nötig (Default ist `'pre'`) — sonst
+greift `scrollIntoView` noch die Layout-Position der ALTEN Lektion ab, bevor Vue die neue Lektion
+gerendert hat, und landet an der falschen Stelle. Kein Scroll beim allerersten Laden (`oldId` ist
+dann `null`). Neue Tests: Lösungsbanner-Sichtbarkeit + Inhalt in `js-spielewerkstatt.spec.js`,
+Scroll-Assertion im bestehenden Self-Check-Test ergänzt (relativ zur tatsächlichen `.lesson-main`-
+Position statt eines geratenen Pixelwerts, da oberhalb noch Kursbeschreibung/Fortschrittsleiste
+stehen). Volle `npm test`-Suite (93 Tests) grün.
+
+**Vierter Nachtrag:** `ctx.` (z.B. `ctx.fillRect`) hatte trotz CodeMirror-Umstellung keine
+Vervollständigung — Nutzer-Frage, warum IntelliSense das nicht kennt. Grund: `scopeCompletionSource`
+kann keine Typen ableiten, sondern nur einen konkreten, statisch übergebenen JS-Objektbaum
+durchlaufen; `ctx` ist nur eine lokale `const`, deren Wert (ein `CanvasRenderingContext2D`)
+nirgends bekannt ist, daher lief `scopeCompletionSource(globalThis)` bei `ctx.` ins Leere. Fix in
+`JsCodeCell.vue`: neues `buildCompletionScope()` erzeugt ein Scope-Objekt, das per
+`Object.create(globalThis)` weiterhin alle Browser-Globals erbt, aber zusätzlich `ctx`/`canvas` als
+eigene Properties trägt — beide zeigen auf einen echten, nie ans DOM gehängten
+`canvas.getContext('2d')`, nur zur Reflektion der Objektstruktur. Da jede Aufgabe in diesem Kurs
+ihre Variablen laut Content-Konvention immer `canvas`/`ctx` nennt, deckt das alle Lektionen ab.
+**Nebeneffekt bemerkt beim Testen:** die Objektumstrukturierung änderte auch die Sortierung der
+allgemeinen Vorschläge (z.B. zeigte "docum" vorher "document" zuerst, jetzt manchmal "Document" —
+beides gültige Treffer, nur die Reihenfolge ist nicht mehr deterministisch). Der bestehende Test
+wurde auf einen eindeutigen Präfix (`requestAnimationFra`) umgestellt statt das mehrdeutige "docum";
+neuer Test für `ctx.fill` → `fillRect`/`fillStyle` ergänzt. Volle `npm test`-Suite weiterhin grün.
+
+**Fünfter Nachtrag:** Wunsch nach Hover-Tooltips mit Parameter-Info (wie VS Code). Echte
+Typableitung bräuchte einen TypeScript-Sprachserver — weit außerhalb des Rahmens für einen
+Beginner-Kurs mit kleiner, fester API-Oberfläche. Stattdessen `jsApiHoverTooltip()` in
+`JsCodeCell.vue`: eine handkuratierte `API_DOCS`-Map (Name → Kurzsignatur + Ein-Satz-Erklärung,
+Deutsch) für genau die ~15 Methoden/Properties, die in den 6 Lektionen tatsächlich vorkommen
+(`fillRect`, `arc`, `beginPath`, `getContext`, `addEventListener`, `requestAnimationFrame`,
+`Math.floor`, `console.log`, …), plus eine `hoverTooltip`-Extension (`@codemirror/view`), die beim
+Hover das Wort unter dem Mauszeiger per Zeilen-Text-Scan extrahiert und bei Treffer eine Tooltip-Box
+zeigt. Keine echte Typprüfung — der Wortlaut allein entscheidet (`ctx.fillRect` und ein zufälliger
+lokaler Name `fillRect` zeigen beide dieselbe Doku) —, für den kleinen, kontrollierten Content-Satz
+dieses Kurses aber unproblematisch.
+
+**Gelernte Regel beim Testen:** `locator('text=…').hover()` trifft bei CodeMirror-Editoren oft die
+ganze Zeile statt nur das gesuchte Wort, weil Tokens nicht zwingend in eigene DOM-Spans verpackt
+sind — daher landete der Mauszeiger nicht über dem Zielwort und der Tooltip blieb aus. Fix: neuer
+Helper `hoverOverCodeMirrorText()` in `tests/helpers/codemirror.js`, der die exakte Pixel-Position
+eines Substrings per DOM-`Range`-API (`range.setStart/setEnd` + `getBoundingClientRect()`) statt
+über einen Locator ermittelt. `.cm-api-hover`-Tooltip-CSS bewusst in einem **unscoped**
+`<style>`-Block (zweiter Präzedenzfall nach `course-layout.css`, siehe 3.19) — CodeMirror hängt
+Tooltips als eigenes DOM-Element an, das nicht Teil des Vue-Templates ist, eine gescopte Regel
+würde es nie erreichen.
+
+### 3.40 Header-Nav: direkter "Projekte"-Link (Branch `nav-projekte-link`)
 
 Kleine, eigenständige Ergänzung: `App.vue`s Header-Nav hatte neben "Home"/"Kurse" keinen direkten
 Link zu `/projekte` — bisher nur über den Teaser auf der Startseite oder den Banner im 12-Wochen-
@@ -1347,7 +1515,7 @@ Kurs erreichbar. Neuer `<router-link to="/projekte">` direkt in der Nav, neue `n
 verletzte Playwrights Strict-Mode. Fix: auf die schon vorhandene `.projekte-teaser-link`-Klasse
 präzisiert, neuer eigener Test für den Nav-Link ergänzt. `npm run test:checks` (60 Tests) grün.
 
-### 3.40 Mein Profil: Abschluss-Abzeichen für Projekt-Kurse (Branch `profil-abschluss-badges`)
+### 3.41 Mein Profil: Abschluss-Abzeichen für Projekt-Kurse (Branch `profil-abschluss-badges`)
 
 Nutzer-Wunsch nach einer leichtgewichtigen Anerkennung für abgeschlossene Projekt-Kurse — explizit
 **kein** Zertifikat wie beim 12-Wochen-Kurs (Quiz, PDF, Login-Pflicht wäre inkonsistent mit dem in
@@ -1465,11 +1633,10 @@ content/python-checks/config.json, week-{N}.json, index.mjs (Node-Loader für Te
 
 Siehe auch `todo.md`.
 
-**Aktuell (3.38):** Branch `kurs-projekte-uebersicht` ist lokal fertig und getestet, aber noch
-nicht nach `main` gemergt/gepusht — Projekte-Übersicht + zwei neue Projekt-Kurse. Nächster
-sinnvoller Schritt danach: `kurs-js-spielewerkstatt` (Plan gespeichert unter
-`~/.claude/plans/fizzy-sprouting-quilt.md`) oder weitere Projekt-Kurse (`kurs-python-projekte`,
-siehe `todo.md`).
+**Aktuell (3.39–3.41):** `kurs-js-spielewerkstatt`, `nav-projekte-link` und
+`profil-abschluss-badges` sind alle nach `main` gemergt, aber `main` selbst steht noch nicht auf
+`origin/main` — Push aus. Nächster sinnvoller Schritt danach: weitere Projekt-Kurse
+(`kurs-python-projekte`, siehe `todo.md`) oder `kurs-ki-labor`.
 
 **Betrieb**
 - [ ] Server-Deploy: Code ist auf `origin/main`, aber noch nicht auf dem Produktions-Server
@@ -1529,10 +1696,7 @@ Server-Deploy selbst bewusst weiter zurückgestellt (Nutzer will erst später de
 
 **Danach — nächste Kurs-Themen, je eigener Branch von `main`:**
 
-1. **`kurs-js-spielewerkstatt`** — JavaScript statt der ursprünglich geplanten Python-Spiele-
-   Werkstatt (Pyodides synchrones Ausführungsmodell verträgt keine echte Spiele-Loop, siehe 3.32).
-   Vollständiger Implementierungsplan gespeichert unter
-   `~/.claude/plans/fizzy-sprouting-quilt.md`.
+1. [x] **`kurs-js-spielewerkstatt`** (3.39, gemergt).
 2. **`kurs-python-projekte`** — „Was kommt danach?“ Projekt-Sprints
 3. **`kurs-ki-labor`** — KI-Grundlagen, baut auf dem Python-Track auf
 
@@ -1608,14 +1772,22 @@ nötig, falls es dazu kommt — der bestehende `t()`-Mechanismus reicht.
    seit 3.36 rendert `CourseDetail.vue` für den 12-Wochen-Kurs `WeekTour.vue` (Kachel-Wizard +
    Fortschritts-Leiste), die alte Akkordeon-UI ist entfernt; nicht: `?week=&tab=`-Deep-Links von
    `PlacementCourse.vue`/Cäsar-Chiffre-Lektionen "reparieren" oder auf `?week=&variant=&step=`
-   umschreiben — funktionieren bewusst unverändert weiter, `WeekTour.vue` übersetzt intern (3.36)
+   umschreiben — funktionieren bewusst unverändert weiter, `WeekTour.vue` übersetzt intern (3.36);
+   nicht: `requestAnimationFrame`-Aufgaben im JS-Projekt-Kurs (`kurs-js-spielewerkstatt`, 3.39) ohne
+   `scrollIntoView()` vorher testen/bauen — Chromium drosselt rAF in einem off-screen iframe fast
+   auf 0 Frames, das ist kein Playwright-Artefakt, sondern betrifft auch echte Nutzer:innen, die
+   noch nicht zum Spielfeld gescrollt haben; nicht: `JsLessonView.vue` als reine `<textarea>`
+   erwarten — nutzt seit einem Nachtrag zu 3.39 `JsCodeCell.vue` (CodeMirror mit IntelliSense/Tab,
+   analog zu `CodeCell.vue` im 12-Wochen-Kurs) statt einer einfachen Textarea, umgekehrt zur
+   ursprünglichen Entscheidung; nicht: `nav-projekte-link`/`profil-abschluss-badges` als eigene,
+   unabhängige Themen von `kurs-js-spielewerkstatt` verwechseln, nur weil sie im selben
+   Zeitraum entstanden sind — beide sind bewusst separate Branches von `main` (3.40/3.41)
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
-**Empfohlener nächster Schritt:** Branch `kurs-projekte-uebersicht` (3.38) ist lokal fertig/
-getestet — mergen und pushen, sobald abgenommen. Danach: `kurs-js-spielewerkstatt` (JavaScript
-statt der ursprünglich geplanten Python-Variante, Plan gespeichert unter
-`~/.claude/plans/fizzy-sprouting-quilt.md` — Schritt 1 daraus ist bereits durch 3.38 erledigt) oder
-weitere Projekt-Kurse (`kurs-python-projekte`, Infrastruktur existiert bereits seit 3.38). Server-
-Deploy von `experiment-wochen-tour` (3.35+3.36) steht weiterhin aus (siehe Abschnitt 5 "Betrieb").
+**Empfohlener nächster Schritt:** `kurs-js-spielewerkstatt`, `nav-projekte-link` und
+`profil-abschluss-badges` sind alle nach `main` gemergt — noch **nicht** nach `origin/main`
+gepusht, das steht als Nächstes an. Danach: weitere Projekt-Kurse (`kurs-python-projekte`,
+Infrastruktur existiert bereits seit 3.38) oder `kurs-ki-labor`. Server-Deploy von
+`experiment-wochen-tour` (3.35+3.36) steht weiterhin aus (siehe Abschnitt 5 "Betrieb").
 Gesamt-Roadmap/Track-Modell: `VISION.md`. Für neue **Python**-Kurse gilt seit 3.33 die
 Zellen-Format-Erfahrung als Referenz, siehe Memory `project_neue-kurse-content-format`.

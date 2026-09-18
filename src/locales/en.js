@@ -254,6 +254,21 @@ export default {
   'lesson.hintSoft':          'Not quite yet — check the output above and compare it with the task.',
   'lesson.hintExpected':      'Output doesn\'t match yet. Expected something containing: "{expected}"',
 
+  // ── JS sandbox lesson (JsLessonView.vue + JsSandboxFrame.vue) ────────────
+  'jsLesson.editorHint':   'Your code runs in its own sandboxed area. First look at the example and run it – then it\'s your turn. Every click on "Run"/"Check" starts fresh.',
+  'jsLesson.ranExplainer': '🟠 An orange frame around the code area shows you which code you already ran.',
+  'jsLesson.alreadyRan':   'You already ran this code.',
+  'jsLesson.noOutput':     '(no output)',
+  'jsLesson.canvasNote':   '🎨 Your play field was drawn – check it out above!',
+  'jsLesson.showSolution': '🔒 Show solution',
+  'jsLesson.unknownError': 'Unknown error',
+  'jsLesson.selfCheckBtn': 'I tried it — looks good!',
+  'jsLesson.selfCheckDone':'✓ Tried it',
+  'jsLesson.ready':        '✓ Sandbox ready',
+  'jsLesson.starting':     'Sandbox starting…',
+  'jsLesson.restartFrame': 'Restart',
+  'jsLesson.frameStalled': 'Looks like your game might be stuck – click "Restart".',
+
   // ── Code challenge (week check) ──────────────────────────────────────────
   'challenge.passed':         'Passed',
   'challenge.codePlaceholder':'Your code...',
@@ -319,6 +334,7 @@ export default {
   'projectTag.kommunikation': 'Communication',
   'projectTag.logikraetsel': 'Logic puzzle',
   'projectTag.mathematik': 'Mathematics',
+  'projectTag.spiele': 'Games',
 
   'profil.title': 'My Profile',
   'profil.loginRequired': 'Log in to see your profile and completion badges.',
