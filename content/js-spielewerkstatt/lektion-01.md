@@ -21,3 +21,7 @@ ctx.fillRect(50, 50, 100, 80);  // x, y, Breite, Höhe
 `fillRect(x, y, breite, hoehe)` zeichnet ein gefülltes Rechteck. `(0, 0)` ist oben links im Spielfeld, x wächst nach rechts, y wächst nach unten.
 
 > 💡 Jeder Klick auf „Ausführen" oder „Prüfen" startet deinen Code in einem frischen, leeren Spielfeld – frühere Zeichnungen sind dann weg. Das ist Absicht: so fängt jede Aufgabe sauber von vorne an.
+
+In jeder Lektion dieses Kurses bekommst du zuerst ein fertiges Beispiel zum Ausführen und
+Anschauen – erst danach bist du mit einer eigenen Aufgabe dran. Schau dir also die erste Aufgabe
+unten genau an, bevor du selbst loslegst.

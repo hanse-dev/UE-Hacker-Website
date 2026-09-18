@@ -1406,6 +1406,21 @@ grün, `npm run lint:spelling` sauber (neue Content-Wörter wie „Browserspiel"
 vorhanden, aber ohne automatischen Reset (nur ein Hinweistext neben dem manuellen
 Neu-starten-Button — ein laufendes Spiel soll nie automatisch weggeworfen werden).
 
+**Nachtrag nach Nutzer-Feedback:** zwei Probleme aus dem ersten Durchklicken behoben. (1) Ohne
+`console.log` zeigte die Ausgabe-Box "(keine Ausgabe)", obwohl oben sichtbar etwas gezeichnet
+wurde — wirkte wie "nichts ist passiert". `JsLessonView.vue` prüft jetzt nach jedem Lauf
+zusätzlich per `checkCanvasNotBlank()`, ob das Canvas verändert wurde, und hängt dann einen festen
+Hinweis ("🎨 Dein Spielfeld wurde gezeichnet – schau es dir oben an!") an die Ausgabe an — auch bei
+Aufgaben, deren `validation` gar keinen Canvas-Typ hat. (2) Die erste Schreibaufgabe jeder Lektion
+begann bisher direkt mit einem leeren `// Dein Code hier` ohne je ein lauffähiges Beispiel gesehen
+zu haben ("zu stark ins kalte Wasser geworfen"). Jede der 6 Lektionen bekam eine neue **erste**
+Aufgabe (`check: "self"`, fertiger Beispielcode zum Ausführen und Anschauen) vor der eigentlichen
+Schreibaufgabe — z.B. Lektion 1 zeigt erst ein fertig gezeichnetes Rechteck, bevor die Lernenden
+selbst zeichnen sollen; Lektion 3 zeigt die komplette Animationsschleife fertig laufend, bevor die
+Schleife selbst nachgebaut werden muss. Reine Content-/Struktur-Ergänzung, kein neuer Mechanismus
+(nutzt das bestehende `check: "self"`-Feld). Alle 7 Tests in `tests/js-spielewerkstatt.spec.js` auf
+die verschobenen Task-Indizes angepasst, ein Test erweitert (jetzt 3 statt 2 Aufgaben in Lektion 1).
+
 ---
 
 ## 4. Aktueller technischer Stand

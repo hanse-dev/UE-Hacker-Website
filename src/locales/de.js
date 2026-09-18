@@ -253,8 +253,9 @@ export default {
   'lesson.hintExpected':      'Die Ausgabe stimmt noch nicht. Erwartet wurde etwas mit: "{expected}"',
 
   // ── JS-Sandbox-Lektion (JsLessonView.vue + JsSandboxFrame.vue) ───────────
-  'jsLesson.editorHint':   'Dein Code läuft in einem eigenen, abgeschotteten Bereich – jeder Klick auf „Ausführen"/„Prüfen" startet ihn frisch neu. Schau dir das Spielfeld an!',
+  'jsLesson.editorHint':   'Dein Code läuft in einem eigenen, abgeschotteten Bereich. Schau dir zuerst das Beispiel an und führe es aus – danach bist du an der Reihe. Jeder Klick auf „Ausführen"/„Prüfen" startet frisch neu.',
   'jsLesson.noOutput':     '(keine Ausgabe)',
+  'jsLesson.canvasNote':   '🎨 Dein Spielfeld wurde gezeichnet – schau es dir oben an!',
   'jsLesson.unknownError': 'Unbekannter Fehler',
   'jsLesson.selfCheckBtn': 'Ich hab\'s ausprobiert – sieht gut aus!',
   'jsLesson.selfCheckDone':'✓ Ausprobiert',

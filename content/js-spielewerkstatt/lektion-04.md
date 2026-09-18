@@ -14,10 +14,12 @@ true || false  // true – mindestens eine Seite muss wahr sein
 Eine Funktion, die eine Bedingung prüft, kann das Ergebnis des Vergleichs direkt zurückgeben – du brauchst kein `if` dafür:
 
 ```js
-function istErwachsen(alter) {
-  return alter >= 18;
+function inBereich(x, links, rechts) {
+  return x >= links && x <= rechts;
 }
 ```
+
+Probier das im ersten, schon fertigen Beispiel unten gleich selbst aus.
 
 Für unseren Schläger gilt: Er ist 80 Pixel breit, seine linke Kante ist `schlaegerX`, seine rechte Kante also `schlaegerX + 80`. Ein Treffer liegt vor, wenn
 

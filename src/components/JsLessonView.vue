@@ -143,6 +143,15 @@ export default {
       { immediate: true }
     );
 
+    // Ein Rechteck zu zeichnen erzeugt keine console.log-Ausgabe - ohne diesen Hinweis wirkt die
+    // "Ausgabe"-Box faelschlich leer, obwohl oben im Spielfeld sichtbar etwas passiert ist.
+    const withCanvasNote = async (rawOutput) => {
+      const drew = await sandboxEl.value.checkCanvasNotBlank();
+      const trimmed = (rawOutput || '').trim();
+      if (drew) return trimmed ? `${trimmed}\n\n${t('jsLesson.canvasNote')}` : t('jsLesson.canvasNote');
+      return trimmed || t('jsLesson.noOutput');
+    };
+
     const runTask = async (idx) => {
       if (checking.value) return;
       checking.value = true;
@@ -154,7 +163,7 @@ export default {
       if (!isMounted.value) return;
 
       taskOutputs.value[idx] = result.success
-        ? (result.output || t('jsLesson.noOutput'))
+        ? await withCanvasNote(result.output)
         : t('editor.errorPrefix') + (result.error || t('jsLesson.unknownError'));
       checking.value = false;
     };
@@ -177,7 +186,7 @@ export default {
         checking.value = false;
         return;
       }
-      taskOutputs.value[idx] = result.output || t('jsLesson.noOutput');
+      taskOutputs.value[idx] = await withCanvasNote(result.output);
 
       let canvasOk = true;
       if (validation.type === 'canvas_not_blank') {

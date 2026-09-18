@@ -25,12 +25,18 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     await page.goto('/kurs/projekt-js-spielewerkstatt');
     await expect(page.locator('iframe.js-sandbox')).toBeVisible({ timeout: 15000 });
 
-    const task1 = page.locator('.task-block').nth(0);
+    // Task 0 ist ein bereits fertiges Beispiel zum Ausführen - die eigentliche Schreibaufgabe ist
+    // Task 1 (erst danach kommt man "ins kalte Wasser").
+    const task1 = page.locator('.task-block').nth(1);
     await task1.locator('.code-editor').fill(
       "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nctx.fillStyle = 'yellow';\nctx.fillRect(50, 50, 100, 80);"
     );
     await task1.locator('.btn-check').click();
     await expect(task1.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+
+    // Die Ausgabe soll auch ohne console.log einen Hinweis zeigen, dass das Spielfeld verändert
+    // wurde - sonst wirkt "keine Ausgabe" faelschlich wie "nichts ist passiert".
+    await expect(task1.locator('.output-content')).toContainText('Spielfeld');
 
     const hasDrawing = await page
       .frameLocator('iframe.js-sandbox')
@@ -50,7 +56,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     await page.goto('/kurs/projekt-js-spielewerkstatt');
     await expect(page.locator('iframe.js-sandbox')).toBeVisible({ timeout: 15000 });
 
-    const task1 = page.locator('.task-block').nth(0);
+    const task1 = page.locator('.task-block').nth(1);
     await task1.locator('.code-editor').fill(
       "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\n// nichts gezeichnet"
     );
@@ -62,7 +68,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     await page.goto('/kurs/projekt-js-spielewerkstatt');
     await expect(page.locator('iframe.js-sandbox')).toBeVisible({ timeout: 15000 });
 
-    const task1 = page.locator('.task-block').nth(0);
+    const task1 = page.locator('.task-block').nth(1);
     await task1.locator('.code-editor').fill(
       "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nctx.fillStyle = 'red';\nctx.fillRect(0, 0, 50, 50);"
     );
@@ -89,19 +95,26 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     expect(await readNotBlank()).toBe(false);
   });
 
-  test('Self-Check-Aufgabe zaehlt zum Fortschritt und schaltet die naechste Lektion frei', async ({ page }) => {
+  test('Self-Check-Aufgaben zaehlen zum Fortschritt und schalten die naechste Lektion frei', async ({ page }) => {
     test.setTimeout(30000);
     await page.goto('/kurs/projekt-js-spielewerkstatt');
     await expect(page.locator('iframe.js-sandbox')).toBeVisible({ timeout: 15000 });
 
-    const task1 = page.locator('.task-block').nth(0);
+    // Lektion 1 hat 3 Aufgaben: Beispiel ansehen (self) → selbst zeichnen (auto) → Farbe
+    // ausprobieren (self). Erst wenn alle drei erledigt sind, gilt die Lektion als abgeschlossen.
+    const task0 = page.locator('.task-block').nth(0);
+    await expect(task0.locator('.btn-selfcheck')).toBeVisible();
+    await task0.locator('.btn-selfcheck').click();
+    await expect(task0.locator('.task-status-label').last()).toHaveText(/ausprobiert/i);
+
+    const task1 = page.locator('.task-block').nth(1);
     await task1.locator('.code-editor').fill(
       "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nctx.fillStyle = 'yellow';\nctx.fillRect(50, 50, 100, 80);"
     );
     await task1.locator('.btn-check').click();
     await expect(task1.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
 
-    const task2 = page.locator('.task-block').nth(1);
+    const task2 = page.locator('.task-block').nth(2);
     await expect(task2.locator('.btn-selfcheck')).toBeVisible();
     await task2.locator('.btn-selfcheck').click();
     await expect(task2.locator('.task-status-label').last()).toHaveText(/ausprobiert/i);
@@ -124,7 +137,8 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     await expect(page.locator('iframe.js-sandbox')).toBeVisible({ timeout: 15000 });
     await page.locator('.lesson-item', { hasText: 'Der Schläger hört auf die Tastatur' }).click();
 
-    const task1 = page.locator('.task-block').nth(0);
+    // Task 0 ist wieder das lauffähige Beispiel (verdopple) - die Schreibaufgabe ist Task 1.
+    const task1 = page.locator('.task-block').nth(1);
 
     // Funktioniert nur fuer den einen vorgerechneten Fall, nicht fuer die Randfaelle -
     // muss an den versteckten Testfaellen scheitern (beweist: keine Scheinloesung besteht).
@@ -151,7 +165,9 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     await page.locator('.lesson-item', { hasText: 'Alles bewegt sich' }).click();
     await expect(page.locator('iframe.js-sandbox')).toBeVisible({ timeout: 15000 });
 
-    const task2 = page.locator('.task-block').nth(1);
+    // Task 0 = naechstePosition (auto), Task 1 = fertige Loesung zum Anschauen (self),
+    // Task 2 = die Schleife selbst nachbauen (auto, canvas_changed).
+    const task2 = page.locator('.task-block').nth(2);
     // Ball bewegt sich nicht (ballY bleibt 0) - clearRect+identischer Neuzeichnen ergibt
     // unveraenderte Pixel, canvas_changed muss das erkennen und die Aufgabe ablehnen.
     await task2.locator('.code-editor').fill(

@@ -6,14 +6,19 @@
     "lessonSummary": "Gut! Du hast dein erstes Bild aufs Spielfeld gezeichnet – ctx.fillRect() ist dein Werkzeug fürs Malen.",
     "tasks": [
       {
-        "instruction": "Zeichne mit ctx.fillRect(x, y, breite, hoehe) irgendein gelbes Rechteck auf das Spielfeld.",
-        "codeTemplate": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\n\n// Dein Code hier: setze ctx.fillStyle und zeichne mit ctx.fillRect(...)\n",
+        "instruction": "Führe dieses Beispiel aus und schau dir das Spielfeld oben an – so entsteht ein gezeichnetes Rechteck.",
+        "check": "self",
+        "codeTemplate": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nctx.fillStyle = 'yellow';\nctx.fillRect(50, 50, 100, 80);\n"
+      },
+      {
+        "instruction": "Jetzt du: zeichne dein eigenes Rechteck. Nutze ctx.fillStyle für die Farbe und ctx.fillRect(x, y, breite, hoehe) zum Zeichnen.",
+        "codeTemplate": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\n\n// Dein Code hier\n",
         "validation": { "type": "canvas_not_blank" }
       },
       {
         "instruction": "Probier eine andere Farbe für fillStyle aus (z.B. 'red', 'blue' oder '#ff00ff') und eine andere Position/Größe.",
         "check": "self",
-        "codeTemplate": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nctx.fillStyle = 'yellow'; // probier eine andere Farbe\nctx.fillRect(50, 50, 100, 80);\n"
+        "codeTemplate": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nctx.fillStyle = 'blue';\nctx.fillRect(200, 100, 60, 60);\n"
       }
     ]
   },
@@ -23,6 +28,11 @@
     "file": "lektion-02.md",
     "lessonSummary": "Genau so bewegt sich dein Schläger später wirklich mit den Pfeiltasten – inklusive der Grenzen am Spielfeldrand.",
     "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zeigt, wie eine Funktion aus einem Parameter einen neuen Wert berechnet und zurückgibt.",
+        "check": "self",
+        "codeTemplate": "function verdopple(zahl) {\n  return zahl * 2;\n}\n\nconsole.log(verdopple(5));\nconsole.log(verdopple(10));\n"
+      },
       {
         "instruction": "Schreibe eine Funktion bewegeSchlaeger(x, taste), die die neue x-Position zurückgibt: bei 'ArrowLeft' 20 Pixel nach links, bei 'ArrowRight' 20 Pixel nach rechts, sonst bleibt x gleich. Die Position darf nie kleiner als 0 oder größer als 320 werden.",
         "codeTemplate": "function bewegeSchlaeger(x, taste) {\n  // Dein Code hier\n}\n",
@@ -61,14 +71,19 @@
         }
       },
       {
-        "instruction": "Baue jetzt eine echte Animationsschleife: der Ball soll bei jedem Frame ein Stück weiter nach unten fallen (ballY erhöhen), bevor requestAnimationFrame den nächsten Frame anstößt.",
+        "instruction": "Führe diese komplette Animationsschleife aus und beobachte den Ball oben auf dem Spielfeld fallen.",
+        "check": "self",
+        "codeTemplate": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nlet ballY = 0;\n\nfunction frame() {\n  ctx.clearRect(0, 0, canvas.width, canvas.height);\n  ctx.fillStyle = 'orange';\n  ctx.beginPath();\n  ctx.arc(200, ballY, 10, 0, Math.PI * 2);\n  ctx.fill();\n\n  ballY = ballY + 2;\n\n  requestAnimationFrame(frame);\n}\n\nframe();\n"
+      },
+      {
+        "instruction": "Jetzt du: baue die Schleife selbst nach. Erhöhe ballY bei jedem Frame, damit der Ball faellt, bevor requestAnimationFrame den nächsten Frame anstößt.",
         "codeTemplate": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nlet ballY = 0;\n\nfunction frame() {\n  ctx.clearRect(0, 0, canvas.width, canvas.height);\n  ctx.fillStyle = 'orange';\n  ctx.beginPath();\n  ctx.arc(200, ballY, 10, 0, Math.PI * 2);\n  ctx.fill();\n\n  // Dein Code hier: erhöhe ballY, damit der Ball faellt\n\n  requestAnimationFrame(frame);\n}\n\nframe();\n",
         "validation": { "type": "canvas_changed", "ms": 400 }
       },
       {
-        "instruction": "Beobachte, wie der Ball fällt. Was passiert, wenn du das Tempo größer machst?",
+        "instruction": "Was passiert, wenn du das Tempo größer machst? Probier ein anderes Tempo aus.",
         "check": "self",
-        "codeTemplate": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nlet ballY = 0;\n\nfunction frame() {\n  ctx.clearRect(0, 0, canvas.width, canvas.height);\n  ctx.fillStyle = 'orange';\n  ctx.beginPath();\n  ctx.arc(200, ballY, 10, 0, Math.PI * 2);\n  ctx.fill();\n\n  ballY = ballY + 4;\n\n  requestAnimationFrame(frame);\n}\n\nframe();\n"
+        "codeTemplate": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nlet ballY = 0;\n\nfunction frame() {\n  ctx.clearRect(0, 0, canvas.width, canvas.height);\n  ctx.fillStyle = 'orange';\n  ctx.beginPath();\n  ctx.arc(200, ballY, 10, 0, Math.PI * 2);\n  ctx.fill();\n\n  ballY = ballY + 6;\n\n  requestAnimationFrame(frame);\n}\n\nframe();\n"
       }
     ]
   },
@@ -78,6 +93,11 @@
     "file": "lektion-04.md",
     "lessonSummary": "Damit hast du echte Kollisionserkennung gebaut – das Herzstück jedes Fang-/Ausweich-Spiels.",
     "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zeigt, wie du mit && prüfst, ob eine Zahl in einem Bereich liegt.",
+        "check": "self",
+        "codeTemplate": "function inBereich(x, links, rechts) {\n  return x >= links && x <= rechts;\n}\n\nconsole.log(inBereich(150, 100, 180));\nconsole.log(inBereich(50, 100, 180));\n"
+      },
       {
         "instruction": "Schreibe istTreffer(ballX, ballY, schlaegerX). Der Schläger ist 80 Pixel breit, seine linke Kante liegt bei schlaegerX. Ein Treffer ist es, wenn der Ball y >= 270 erreicht hat UND ballX zwischen schlaegerX und schlaegerX + 80 liegt.",
         "codeTemplate": "function istTreffer(ballX, ballY, schlaegerX) {\n  // Dein Code hier\n}\n",
@@ -104,6 +124,11 @@
     "file": "lektion-05.md",
     "lessonSummary": "Punktestand, Ausgabe, Spielende – dein Spiel fühlt sich jetzt wie ein richtiges Spiel an.",
     "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zeigt, wie ein Bonus den Punktestand verändert – und wie du das Ergebnis mit console.log sichtbar machst.",
+        "check": "self",
+        "codeTemplate": "function beispielBonus(punkte, hatBonus) {\n  return hatBonus ? punkte + 10 : punkte;\n}\n\nconsole.log(beispielBonus(5, true));\nconsole.log(beispielBonus(5, false));\n"
+      },
       {
         "instruction": "Schreibe naechsterPunktestand(punkte, treffer). Bei treffer === true gibt sie punkte + 1 zurück, sonst unverändert punkte.",
         "codeTemplate": "function naechsterPunktestand(punkte, treffer) {\n  // Dein Code hier\n}\n",
@@ -133,6 +158,11 @@
     "file": "lektion-06.md",
     "lessonSummary": "Geschafft! Du hast dein erstes eigenes Browserspiel gebaut – vom ersten Rechteck bis zur eigenen Schwierigkeitskurve.",
     "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zeigt, wie Math.floor eine Kommazahl abrundet.",
+        "check": "self",
+        "codeTemplate": "console.log(Math.floor(7 / 2));\nconsole.log(Math.floor(12 / 5));\n"
+      },
       {
         "instruction": "Schreibe tempoFuer(punkte). Das Grundtempo ist 3; alle 5 Punkte wird der Ball 1 schneller (nutze Math.floor).",
         "codeTemplate": "function tempoFuer(punkte) {\n  // Dein Code hier\n}\n",

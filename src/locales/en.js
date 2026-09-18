@@ -253,8 +253,9 @@ export default {
   'lesson.hintExpected':      'Output doesn\'t match yet. Expected something containing: "{expected}"',
 
   // ── JS sandbox lesson (JsLessonView.vue + JsSandboxFrame.vue) ────────────
-  'jsLesson.editorHint':   'Your code runs in its own sandboxed area – every click on "Run"/"Check" starts it fresh. Watch the play field!',
+  'jsLesson.editorHint':   'Your code runs in its own sandboxed area. First look at the example and run it – then it\'s your turn. Every click on "Run"/"Check" starts fresh.',
   'jsLesson.noOutput':     '(no output)',
+  'jsLesson.canvasNote':   '🎨 Your play field was drawn – check it out above!',
   'jsLesson.unknownError': 'Unknown error',
   'jsLesson.selfCheckBtn': 'I tried it — looks good!',
   'jsLesson.selfCheckDone':'✓ Tried it',
