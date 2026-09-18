@@ -53,6 +53,14 @@
           <p v-if="lessons.length">{{ t('lessons.startWithOne') }}</p>
         </div>
         <LessonView
+          v-else-if="engine === 'pyodide'"
+          :lesson="currentLesson"
+          :content-path="contentPath"
+          :variant="contentPath"
+          :course-id="courseId"
+          @completed="onLessonCompleted"
+        />
+        <JsLessonView
           v-else
           :lesson="currentLesson"
           :content-path="contentPath"
@@ -68,6 +76,7 @@
 <script>
 import { ref, computed, onMounted } from 'vue';
 import LessonView from './LessonView.vue';
+import JsLessonView from './JsLessonView.vue';
 import { useInteractiveProgress } from '../composables/useInteractiveProgress';
 import { useLanguage } from '../composables/useLanguage';
 
@@ -75,10 +84,11 @@ const lessonJsonModules = import.meta.glob('../../content/*/lessons.json');
 
 export default {
   name: 'ProjectCourse',
-  components: { LessonView },
+  components: { LessonView, JsLessonView },
   props: {
     courseId: { type: String, required: true },
     contentPath: { type: String, required: true },
+    engine: { type: String, default: 'pyodide' },
   },
   setup(props) {
     const { lang, t } = useLanguage();

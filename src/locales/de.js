@@ -252,6 +252,17 @@ export default {
   'lesson.hintSoft':          'Noch nicht ganz – schau dir deine Ausgabe oben an und vergleiche sie mit der Aufgabenstellung.',
   'lesson.hintExpected':      'Die Ausgabe stimmt noch nicht. Erwartet wurde etwas mit: "{expected}"',
 
+  // ── JS-Sandbox-Lektion (JsLessonView.vue + JsSandboxFrame.vue) ───────────
+  'jsLesson.editorHint':   'Dein Code läuft in einem eigenen, abgeschotteten Bereich – jeder Klick auf „Ausführen"/„Prüfen" startet ihn frisch neu. Schau dir das Spielfeld an!',
+  'jsLesson.noOutput':     '(keine Ausgabe)',
+  'jsLesson.unknownError': 'Unbekannter Fehler',
+  'jsLesson.selfCheckBtn': 'Ich hab\'s ausprobiert – sieht gut aus!',
+  'jsLesson.selfCheckDone':'✓ Ausprobiert',
+  'jsLesson.ready':        '✓ Sandbox bereit',
+  'jsLesson.starting':     'Sandbox startet…',
+  'jsLesson.restartFrame': 'Neu starten',
+  'jsLesson.frameStalled': 'Sieht aus, als würde dein Spiel hängen – klick auf „Neu starten".',
+
   // ── Code challenge (Wochen-Check) ────────────────────────────────────────
   'challenge.passed':         'Bestanden',
   'challenge.codePlaceholder':'Dein Code...',
@@ -317,4 +328,5 @@ export default {
   'projectTag.kommunikation': 'Kommunikation',
   'projectTag.logikraetsel': 'Logikrätsel',
   'projectTag.mathematik': 'Mathematik',
+  'projectTag.spiele': 'Spiele',
 };

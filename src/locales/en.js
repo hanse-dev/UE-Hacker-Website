@@ -252,6 +252,17 @@ export default {
   'lesson.hintSoft':          'Not quite yet — check the output above and compare it with the task.',
   'lesson.hintExpected':      'Output doesn\'t match yet. Expected something containing: "{expected}"',
 
+  // ── JS sandbox lesson (JsLessonView.vue + JsSandboxFrame.vue) ────────────
+  'jsLesson.editorHint':   'Your code runs in its own sandboxed area – every click on "Run"/"Check" starts it fresh. Watch the play field!',
+  'jsLesson.noOutput':     '(no output)',
+  'jsLesson.unknownError': 'Unknown error',
+  'jsLesson.selfCheckBtn': 'I tried it — looks good!',
+  'jsLesson.selfCheckDone':'✓ Tried it',
+  'jsLesson.ready':        '✓ Sandbox ready',
+  'jsLesson.starting':     'Sandbox starting…',
+  'jsLesson.restartFrame': 'Restart',
+  'jsLesson.frameStalled': 'Looks like your game might be stuck – click "Restart".',
+
   // ── Code challenge (week check) ──────────────────────────────────────────
   'challenge.passed':         'Passed',
   'challenge.codePlaceholder':'Your code...',
@@ -317,4 +328,5 @@ export default {
   'projectTag.kommunikation': 'Communication',
   'projectTag.logikraetsel': 'Logic puzzle',
   'projectTag.mathematik': 'Mathematics',
+  'projectTag.spiele': 'Games',
 };

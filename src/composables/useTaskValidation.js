@@ -19,16 +19,22 @@ export function validateOutput(output, validation, variables, functionResults) {
   const { type, expected } = validation;
   const out = (output || '').trim();
 
-  let outputOk;
-  switch (type) {
-    case 'output_contains':
-      outputOk = out.includes(expected);
-      break;
-    case 'output_equals':
-      outputOk = out === expected;
-      break;
-    default:
-      outputOk = out.includes(expected);
+  // Manche Aufgaben (z.B. Canvas-/Funktions-Checks in der JS-Spielewerkstatt) verlangen keine
+  // bestimmte Ausgabe, nur echte Werte/Funktionsaufrufe oder einen Canvas-Zustand - dafuer laesst
+  // `validation` das Feld `expected` bewusst weg. Kein bestehendes validation-Objekt im Repo laesst
+  // `expected` weg, das ist also rueckwirkend kompatibel.
+  let outputOk = true;
+  if (expected !== undefined) {
+    switch (type) {
+      case 'output_contains':
+        outputOk = out.includes(expected);
+        break;
+      case 'output_equals':
+        outputOk = out === expected;
+        break;
+      default:
+        outputOk = out.includes(expected);
+    }
   }
   if (!outputOk) return false;
 
