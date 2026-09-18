@@ -6,11 +6,60 @@
 import { onMounted, onBeforeUnmount, ref, watch } from 'vue';
 import { EditorView, basicSetup } from 'codemirror';
 import { EditorState, Prec } from '@codemirror/state';
-import { keymap } from '@codemirror/view';
+import { keymap, hoverTooltip } from '@codemirror/view';
 import { indentUnit } from '@codemirror/language';
 import { indentWithTab } from '@codemirror/commands';
 import { javascript, localCompletionSource, scopeCompletionSource } from '@codemirror/lang-javascript';
 import { autocompletion, acceptCompletion } from '@codemirror/autocomplete';
+
+// Kurzsignaturen fuer genau die Canvas-/Browser-API, die in den Lektionen dieses Kurses vorkommt
+// (siehe content/js-spielewerkstatt/). Keine generische Typableitung (das koennte nur ein echter
+// TypeScript-Sprachserver, weit ausserhalb des Rahmens hier) - eine handkuratierte Liste reicht,
+// weil die API-Oberflaeche des Kurses klein und fest ist.
+const API_DOCS = {
+  getContext: "canvas.getContext('2d')\nGibt den Zeichenkontext des Canvas zurück.",
+  getElementById: 'document.getElementById(id)\nSucht ein Element anhand seiner ID im Dokument.',
+  addEventListener: "element.addEventListener(ereignis, funktion)\nRuft funktion auf, sobald ereignis eintritt (z.B. 'keydown').",
+  requestAnimationFrame: 'requestAnimationFrame(funktion)\nRuft funktion kurz vor dem nächsten Bild auf – Grundbaustein jeder Animationsschleife.',
+  fillRect: 'ctx.fillRect(x, y, breite, hoehe)\nZeichnet ein gefülltes Rechteck.',
+  strokeRect: 'ctx.strokeRect(x, y, breite, hoehe)\nZeichnet den Rahmen eines Rechtecks.',
+  clearRect: 'ctx.clearRect(x, y, breite, hoehe)\nLöscht einen Bereich des Canvas (z.B. vor jedem neuen Frame).',
+  fillStyle: 'ctx.fillStyle = farbe\nSetzt die Füllfarbe für die nächste Zeichnung, z.B. "red" oder "#ff0000".',
+  strokeStyle: 'ctx.strokeStyle = farbe\nSetzt die Rahmenfarbe für die nächste Zeichnung.',
+  beginPath: 'ctx.beginPath()\nStartet einen neuen Zeichenpfad.',
+  arc: 'ctx.arc(x, y, radius, startWinkel, endWinkel)\nZeichnet einen Kreisbogen (für einen ganzen Kreis: 0 bis Math.PI * 2).',
+  fill: 'ctx.fill()\nFüllt den aktuellen Pfad mit der Farbe aus fillStyle.',
+  fillText: 'ctx.fillText(text, x, y)\nSchreibt Text auf das Canvas.',
+  font: 'ctx.font = größe_und_schriftart\nSetzt Schriftgröße/-art für fillText, z.B. "20px sans-serif".',
+  floor: 'Math.floor(zahl)\nRundet zahl immer nach unten ab (z.B. 3.7 → 3).',
+  random: 'Math.random()\nGibt eine Zufallszahl zwischen 0 (einschließlich) und 1 (ausschließlich) zurück.',
+  log: 'console.log(wert1, wert2, ...)\nGibt Werte in der Ausgabe unter dem Code aus.',
+};
+
+function jsApiHoverTooltip() {
+  return hoverTooltip((view, pos) => {
+    const line = view.state.doc.lineAt(pos);
+    let start = pos;
+    let end = pos;
+    while (start > line.from && /\w/.test(line.text[start - line.from - 1])) start--;
+    while (end < line.to && /\w/.test(line.text[end - line.from])) end++;
+    if (start === end) return null;
+    const word = line.text.slice(start - line.from, end - line.from);
+    const doc = API_DOCS[word];
+    if (!doc) return null;
+    return {
+      pos: start,
+      end,
+      above: true,
+      create() {
+        const dom = document.createElement('div');
+        dom.className = 'cm-api-hover';
+        dom.textContent = doc;
+        return { dom };
+      },
+    };
+  });
+}
 
 // Gleiches Autocomplete/Tab-Verhalten wie CodeCell.vue (12-Wochen-Notebooks), nur mit JS statt
 // Python. scopeCompletionSource(scope) schlaegt echte Browser-Globals vor (document, console,
@@ -52,6 +101,7 @@ export default {
           indentUnit.of('  '),
           javascript(),
           autocompletion({ override: [localCompletionSource, scopeCompletionSource(buildCompletionScope())] }),
+          jsApiHoverTooltip(),
           EditorView.updateListener.of((update) => {
             if (update.docChanged && !applyingExternal) {
               emit('update:modelValue', update.state.doc.toString());
@@ -108,5 +158,21 @@ export default {
   background: #efe3f6;
   border-right: 1px solid #d9c7ea;
   color: #7c5a94;
+}
+</style>
+
+<style>
+/* Unscoped: CodeMirror haengt Tooltips als eigenes DOM-Element ausserhalb des Vue-Templates an
+   (meist direkt an document.body) - eine gescopte Regel wuerde es nie erreichen. */
+.cm-api-hover {
+  max-width: 320px;
+  padding: 6px 10px;
+  background: #2b1a3d;
+  color: #f4ecfa;
+  border-radius: 6px;
+  font-family: 'Courier New', Consolas, Monaco, monospace;
+  font-size: 12.5px;
+  line-height: 1.5;
+  white-space: pre-line;
 }
 </style>

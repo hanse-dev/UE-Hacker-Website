@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { setCodeMirrorContent } from './helpers/codemirror.js';
+import { setCodeMirrorContent, hoverOverCodeMirrorText } from './helpers/codemirror.js';
 
 // Prueft die neue JS-Sandbox-Ausfuehrungsumgebung (useJsSandbox.js/JsSandboxFrame.vue) und
 // JsLessonView.vue - unabhaengig von Pyodide, daher kein Kernel-Warmup noetig, laeuft schnell.
@@ -245,6 +245,20 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     const labels = await items.allInnerTexts();
     expect(labels).toContain('fillRect');
     expect(labels).toContain('fillStyle');
+  });
+
+  test('CodeMirror-Editor: Hover über ctx-Methode zeigt Signatur-Tooltip', async ({ page }) => {
+    await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await expect(page.locator('iframe.js-sandbox')).toBeVisible({ timeout: 15000 });
+
+    const task1 = page.locator('.task-block').nth(1);
+    const content = task1.locator('.cm-content');
+    await setCodeMirrorContent(task1.locator('.cm-host'), 'ctx.fillRect(0, 0, 10, 10);');
+
+    await hoverOverCodeMirrorText(content, 'fillRect');
+    const tooltip = page.locator('.cm-api-hover');
+    await expect(tooltip).toBeVisible({ timeout: 3000 });
+    await expect(tooltip).toContainText('fillRect(x, y, breite, hoehe)');
   });
 
   test('CodeMirror-Editor: Tab rückt ein, wenn keine Vervollständigung offen ist', async ({ page }) => {

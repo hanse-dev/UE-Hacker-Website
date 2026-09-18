@@ -1479,6 +1479,28 @@ beides gültige Treffer, nur die Reihenfolge ist nicht mehr deterministisch). De
 wurde auf einen eindeutigen Präfix (`requestAnimationFra`) umgestellt statt das mehrdeutige "docum";
 neuer Test für `ctx.fill` → `fillRect`/`fillStyle` ergänzt. Volle `npm test`-Suite weiterhin grün.
 
+**Fünfter Nachtrag:** Wunsch nach Hover-Tooltips mit Parameter-Info (wie VS Code). Echte
+Typableitung bräuchte einen TypeScript-Sprachserver — weit außerhalb des Rahmens für einen
+Beginner-Kurs mit kleiner, fester API-Oberfläche. Stattdessen `jsApiHoverTooltip()` in
+`JsCodeCell.vue`: eine handkuratierte `API_DOCS`-Map (Name → Kurzsignatur + Ein-Satz-Erklärung,
+Deutsch) für genau die ~15 Methoden/Properties, die in den 6 Lektionen tatsächlich vorkommen
+(`fillRect`, `arc`, `beginPath`, `getContext`, `addEventListener`, `requestAnimationFrame`,
+`Math.floor`, `console.log`, …), plus eine `hoverTooltip`-Extension (`@codemirror/view`), die beim
+Hover das Wort unter dem Mauszeiger per Zeilen-Text-Scan extrahiert und bei Treffer eine Tooltip-Box
+zeigt. Keine echte Typprüfung — der Wortlaut allein entscheidet (`ctx.fillRect` und ein zufälliger
+lokaler Name `fillRect` zeigen beide dieselbe Doku) —, für den kleinen, kontrollierten Content-Satz
+dieses Kurses aber unproblematisch.
+
+**Gelernte Regel beim Testen:** `locator('text=…').hover()` trifft bei CodeMirror-Editoren oft die
+ganze Zeile statt nur das gesuchte Wort, weil Tokens nicht zwingend in eigene DOM-Spans verpackt
+sind — daher landete der Mauszeiger nicht über dem Zielwort und der Tooltip blieb aus. Fix: neuer
+Helper `hoverOverCodeMirrorText()` in `tests/helpers/codemirror.js`, der die exakte Pixel-Position
+eines Substrings per DOM-`Range`-API (`range.setStart/setEnd` + `getBoundingClientRect()`) statt
+über einen Locator ermittelt. `.cm-api-hover`-Tooltip-CSS bewusst in einem **unscoped**
+`<style>`-Block (zweiter Präzedenzfall nach `course-layout.css`, siehe 3.19) — CodeMirror hängt
+Tooltips als eigenes DOM-Element an, das nicht Teil des Vue-Templates ist, eine gescopte Regel
+würde es nie erreichen.
+
 ---
 
 ## 4. Aktueller technischer Stand
