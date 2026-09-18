@@ -1334,6 +1334,16 @@ Bisektions-Zahlenrater) — alle Code-Beispiele lokal mit `python3` gegenverifiz
 Banner-Link); `tests/site.spec.js` an die neue Home-Struktur angepasst (Projekt-Kurse nicht mehr
 in `#kurse-uebersicht`, dafür ein `/projekte`-Teaser-Link).
 
+### 3.39 Header-Nav: direkter "Projekte"-Link (Branch `nav-projekte-link`)
+
+Kleine, eigenständige Ergänzung: `App.vue`s Header-Nav hatte neben "Home"/"Kurse" keinen direkten
+Link zu `/projekte` — bisher nur über den Teaser auf der Startseite oder den Banner im 12-Wochen-
+Kurs erreichbar. Neuer `<router-link to="/projekte">` direkt in der Nav, neue `nav.projects`-Keys.
+**Testfalle dabei gefunden:** der bestehende Home-Test prüfte `a[href="/projekte"]` mit
+`toBeVisible()` — traf durch den neuen Nav-Link jetzt zwei Elemente (Nav-Link + Teaser-Link) und
+verletzte Playwrights Strict-Mode. Fix: auf die schon vorhandene `.projekte-teaser-link`-Klasse
+präzisiert, neuer eigener Test für den Nav-Link ergänzt. `npm run test:checks` (60 Tests) grün.
+
 ---
 
 ## 4. Aktueller technischer Stand

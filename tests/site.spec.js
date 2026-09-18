@@ -37,7 +37,16 @@ test.describe('Home & Navigation', () => {
     await expect(page.locator('#kurse-uebersicht .course-card')).toHaveCount(2);
     await expect(page.locator('a.course-link[href="/kurs/python-12-wochen-grundkurs"]')).toBeVisible();
     await expect(page.locator('a.course-link[href="/kurs/python-grundlagen-interaktiv"]')).toBeVisible();
-    await expect(page.locator('a[href="/projekte"]')).toBeVisible();
+    await expect(page.locator('.projekte-teaser-link')).toBeVisible();
+  });
+
+  test('Header-Nav verlinkt direkt zu den Projekten', async ({ page }) => {
+    await page.goto('/');
+    const link = page.locator('nav a', { hasText: 'Projekte' });
+    await expect(link).toHaveAttribute('href', '/projekte');
+    await link.click();
+    await expect(page).toHaveURL(/\/projekte/);
+    await expect(page.locator('.projekt-card').first()).toBeVisible({ timeout: 15000 });
   });
 
   test('Home-CTA Einstufung öffnet Placement-Kurs', async ({ page }) => {

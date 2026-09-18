@@ -2,6 +2,7 @@ export default {
   // ── Navigation ──────────────────────────────────────────────────────────
   'nav.home':    'Home',
   'nav.courses': 'Courses',
+  'nav.projects': 'Projects',
   'footer.copyright': '© 2026 Übergangshacker. All rights reserved.',
 
   // ── Admin ───────────────────────────────────────────────────────────────
