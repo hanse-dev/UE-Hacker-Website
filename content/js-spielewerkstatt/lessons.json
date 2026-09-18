@@ -47,9 +47,10 @@
         }
       },
       {
-        "instruction": "Probiere deine Funktion mit eigenen Werten aus (console.log). Was passiert genau am Rand des Spielfelds?",
+        "instruction": "Probiere deine Funktion mit eigenen Werten aus (console.log). Was passiert genau am Rand des Spielfelds? Kopiere deine Lösung von oben hierher.",
         "check": "self",
-        "codeTemplate": "function bewegeSchlaeger(x, taste) {\n  let neueX = x;\n  if (taste === 'ArrowLeft') neueX -= 20;\n  if (taste === 'ArrowRight') neueX += 20;\n  if (neueX < 0) neueX = 0;\n  if (neueX > 320) neueX = 320;\n  return neueX;\n}\n\nconsole.log(bewegeSchlaeger(0, 'ArrowLeft'));\n"
+        "codeTemplate": "function bewegeSchlaeger(x, taste) {\n  // Kopiere deine Lösung von oben hierher\n}\n\nconsole.log(bewegeSchlaeger(0, 'ArrowLeft'));\n",
+        "solution": "function bewegeSchlaeger(x, taste) {\n  let neueX = x;\n  if (taste === 'ArrowLeft') neueX -= 20;\n  if (taste === 'ArrowRight') neueX += 20;\n  if (neueX < 0) neueX = 0;\n  if (neueX > 320) neueX = 320;\n  return neueX;\n}\n\nconsole.log(bewegeSchlaeger(0, 'ArrowLeft'));"
       }
     ]
   },
@@ -81,9 +82,10 @@
         "validation": { "type": "canvas_changed", "ms": 400 }
       },
       {
-        "instruction": "Was passiert, wenn du das Tempo größer machst? Probier ein anderes Tempo aus.",
+        "instruction": "Was passiert, wenn du das Tempo größer machst? Baue die Schleife nochmal mit einem größeren Tempo.",
         "check": "self",
-        "codeTemplate": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nlet ballY = 0;\n\nfunction frame() {\n  ctx.clearRect(0, 0, canvas.width, canvas.height);\n  ctx.fillStyle = 'orange';\n  ctx.beginPath();\n  ctx.arc(200, ballY, 10, 0, Math.PI * 2);\n  ctx.fill();\n\n  ballY = ballY + 6;\n\n  requestAnimationFrame(frame);\n}\n\nframe();\n"
+        "codeTemplate": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nlet ballY = 0;\n\nfunction frame() {\n  ctx.clearRect(0, 0, canvas.width, canvas.height);\n  ctx.fillStyle = 'orange';\n  ctx.beginPath();\n  ctx.arc(200, ballY, 10, 0, Math.PI * 2);\n  ctx.fill();\n\n  // Dein Code hier: erhöhe ballY mit einem größeren Tempo als vorhin\n\n  requestAnimationFrame(frame);\n}\n\nframe();\n",
+        "solution": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nlet ballY = 0;\n\nfunction frame() {\n  ctx.clearRect(0, 0, canvas.width, canvas.height);\n  ctx.fillStyle = 'orange';\n  ctx.beginPath();\n  ctx.arc(200, ballY, 10, 0, Math.PI * 2);\n  ctx.fill();\n\n  ballY = ballY + 6;\n\n  requestAnimationFrame(frame);\n}\n\nframe();"
       }
     ]
   },
@@ -112,9 +114,10 @@
         }
       },
       {
-        "instruction": "Probiere istTreffer mit eigenen Werten aus – wo genau hört der Schläger auf, den Ball zu fangen?",
+        "instruction": "Probiere istTreffer mit eigenen Werten aus – wo genau hört der Schläger auf, den Ball zu fangen? Kopiere deine Lösung von oben hierher.",
         "check": "self",
-        "codeTemplate": "function istTreffer(ballX, ballY, schlaegerX) {\n  return ballY >= 270 && ballX >= schlaegerX && ballX <= schlaegerX + 80;\n}\n\nconsole.log(istTreffer(200, 280, 160));\n"
+        "codeTemplate": "function istTreffer(ballX, ballY, schlaegerX) {\n  // Kopiere deine Lösung von oben hierher\n}\n\nconsole.log(istTreffer(200, 280, 160));\n",
+        "solution": "function istTreffer(ballX, ballY, schlaegerX) {\n  return ballY >= 270 && ballX >= schlaegerX && ballX <= schlaegerX + 80;\n}\n\nconsole.log(istTreffer(200, 280, 160));"
       }
     ]
   },

@@ -1442,6 +1442,27 @@ im ursprünglichen Plan schon vorgesehene, bis dahin nie gemachte Schritt) und v
 Helper auf `.cm-host` ersetzt, zwei neue Tests für Autocomplete/Tab ergänzt. Volle `npm test`-Suite
 (92 Tests) grün.
 
+**Dritter Nachtrag:** zwei weitere Punkte direkt beim Ausprobieren gefunden. (1) In drei Lektionen
+(2, 3, 4) enthielt der `codeTemplate` der auf eine Auto-Aufgabe folgenden Self-Check-Aufgabe
+("probier's mit eigenen Werten aus") die komplette, fertige Lösung der Auto-Aufgabe direkt vorher —
+man konnte sie einfach zurückkopieren, ohne selbst zu lösen. Neues optionales `solution`-Feld pro
+Aufgabe, gerendert als natives `<details>/<summary>`-Element ("🔒 Lösung anzeigen", eingeklappt per
+Default) statt den Code direkt in den editierbaren `codeTemplate` zu schreiben — der Editor selbst
+bleibt ein neutraler Hinweis-Stub ("Kopiere deine Lösung von oben hierher"). Betraf `bewegeSchlaeger`
+(Lektion 2), die Animationsschleife mit größerem Tempo (Lektion 3) und `istTreffer` (Lektion 4).
+(2) Beim Lektionswechsel (Sidebar-Klick oder "Weiter"-Button) blieb die Scroll-Position der alten
+Lektion erhalten (meist ganz unten) statt oben bei der neuen Lektion zu landen. Fix in
+`ProjectCourse.vue` (nicht JS-spezifisch — gilt automatisch für alle Projekt-Kurse): neuer
+`mainEl`-Template-Ref auf `<main class="lesson-main">` plus ein `watch(currentLessonId, ...,
+{flush:'post'})`, der `mainEl.value.scrollIntoView({behavior:'smooth', block:'start'})` aufruft.
+**Wichtige Falle beim Debuggen:** `flush:'post'` ist hier nötig (Default ist `'pre'`) — sonst
+greift `scrollIntoView` noch die Layout-Position der ALTEN Lektion ab, bevor Vue die neue Lektion
+gerendert hat, und landet an der falschen Stelle. Kein Scroll beim allerersten Laden (`oldId` ist
+dann `null`). Neue Tests: Lösungsbanner-Sichtbarkeit + Inhalt in `js-spielewerkstatt.spec.js`,
+Scroll-Assertion im bestehenden Self-Check-Test ergänzt (relativ zur tatsächlichen `.lesson-main`-
+Position statt eines geratenen Pixelwerts, da oberhalb noch Kursbeschreibung/Fortschrittsleiste
+stehen). Volle `npm test`-Suite (93 Tests) grün.
+
 ---
 
 ## 4. Aktueller technischer Stand

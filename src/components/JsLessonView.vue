@@ -45,6 +45,10 @@
             </button>
             <span v-else class="task-status-label">{{ t('jsLesson.selfCheckDone') }}</span>
           </div>
+          <details v-if="task.solution" class="solution-reveal">
+            <summary>{{ t('jsLesson.showSolution') }}</summary>
+            <pre class="solution-code">{{ task.solution }}</pre>
+          </details>
           <div v-if="taskOutputs[idx] !== null" class="output-display">
             <strong>{{ t('editor.output') }}</strong>
             <pre class="output-content">{{ taskOutputs[idx] }}</pre>
@@ -443,6 +447,33 @@ a.btn-next {
   font-size: 0.82em;
   color: var(--accent-orange, #fb8c00);
   font-weight: 600;
+}
+
+.solution-reveal {
+  max-width: 500px;
+  margin: 0 0 12px 0;
+  border: 1px dashed #d9c7ea;
+  border-radius: 6px;
+  background: #f7f1fb;
+}
+
+.solution-reveal summary {
+  cursor: pointer;
+  padding: 8px 12px;
+  font-weight: 600;
+  font-size: 0.85em;
+  color: var(--primary-purple, #4a2274);
+  user-select: none;
+}
+
+.solution-code {
+  margin: 0;
+  padding: 0 12px 12px 12px;
+  font-family: 'Courier New', Consolas, Monaco, monospace;
+  font-size: 0.85em;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #333;
 }
 
 .editor-actions {

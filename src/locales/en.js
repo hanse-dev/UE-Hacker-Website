@@ -258,6 +258,7 @@ export default {
   'jsLesson.alreadyRan':   'You already ran this code.',
   'jsLesson.noOutput':     '(no output)',
   'jsLesson.canvasNote':   '🎨 Your play field was drawn – check it out above!',
+  'jsLesson.showSolution': '🔒 Show solution',
   'jsLesson.unknownError': 'Unknown error',
   'jsLesson.selfCheckBtn': 'I tried it — looks good!',
   'jsLesson.selfCheckDone':'✓ Tried it',

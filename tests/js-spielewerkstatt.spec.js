@@ -132,6 +132,44 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
 
     await expect(page.locator('.lesson-item.completed')).toHaveCount(1);
     await expect(page.locator('.lesson-item').nth(1)).not.toHaveClass(/locked/);
+
+    // Klick auf "Weiter zur nächsten Lektion" soll oben bei Lektion 2 landen, nicht an der
+    // Scroll-Position stehen bleiben, an der man die letzte Aufgabe von Lektion 1 abgeschlossen hat.
+    await expect(page.locator('.btn-next')).toBeVisible();
+    const scrollBefore = await page.evaluate(() => window.scrollY);
+    const mainTop = await page.locator('.lesson-main').evaluate((el) => el.getBoundingClientRect().top + window.scrollY);
+    expect(scrollBefore).toBeGreaterThan(mainTop + 200);
+
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.lesson-item.active')).toContainText('Der Schläger');
+    await expect
+      .poll(() => page.evaluate(() => window.scrollY), { timeout: 3000 })
+      .toBeLessThan(scrollBefore - 200);
+  });
+
+  test('Lösung ist hinter einem Banner versteckt, nicht direkt im Editor vorausgefüllt', async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem(
+        'ue-hacker-interactive-progress-js-spielewerkstatt',
+        JSON.stringify({ version: 1, courseId: 'projekt-js-spielewerkstatt', variant: 'js-spielewerkstatt', completedLessonIds: ['lektion-01'] })
+      );
+    });
+    await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await expect(page.locator('iframe.js-sandbox')).toBeVisible({ timeout: 15000 });
+    await page.locator('.lesson-item', { hasText: 'Der Schläger hört auf die Tastatur' }).click();
+
+    // Task 2 ("probiere deine Funktion aus") duerfte die fertige Loesung von Task 1 nicht direkt
+    // im Editor vorausfuellen - sonst kann man sie einfach zurueckkopieren, ohne selbst zu loesen.
+    const task2 = page.locator('.task-block').nth(2);
+    const editorText = await task2.locator('.cm-content').innerText();
+    expect(editorText).not.toContain("neueX -= 20");
+
+    const solution = task2.locator('.solution-reveal');
+    await expect(solution).toBeVisible();
+    await expect(solution.locator('.solution-code')).toBeHidden();
+
+    await solution.locator('summary').click();
+    await expect(solution.locator('.solution-code')).toContainText('bewegeSchlaeger');
   });
 
   test('Funktionsaufgabe mit versteckten Testfaellen: nur echte Loesung besteht', async ({ page }) => {
