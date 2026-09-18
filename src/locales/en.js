@@ -96,8 +96,8 @@ export default {
   'course.download.btn':  '📦 Download all notebooks as a pack',
   'course.download.hint': 'Zip with all 12 weeks (Adventure, Horses, Sci-Fi) + Cheat Sheets – for working in Jupyter or VS Code.',
   'course.project.banner.title': 'Done with the course (or already partway through)? Time for your first own project!',
-  'course.project.banner.desc': 'Build a real cipher – the Caesar cipher. Uses strings, loops, and functions from this course.',
-  'course.project.banner.link': 'Go to project →',
+  'course.project.banner.desc': 'Puzzle projects like the Caesar cipher use exactly the tools from this course – strings, loops, and functions.',
+  'course.project.banner.link': 'Browse projects →',
 
   // ── Tabs (tour step labels, see WeekTourStepper.vue) ─────────────────────
   'tab.lesson':       'Lesson',
@@ -287,4 +287,34 @@ export default {
   'tour.certificates.count': '{n}/12 certificates earned',
   'tour.certificates.back': '← Back to the week overview',
   'tour.certificates.title':'My certificates',
+
+  'home.projects.title': '🧩 Fancy a puzzle project?',
+  'home.projects.desc': 'Short, self-contained projects to try out – filterable by language, level and topic.',
+  'home.projects.link': 'Browse projects →',
+
+  'projekte.title': 'Projects',
+  'projekte.intro': 'Short, self-contained puzzle projects to try out. Filter by language, level, topic or length to find something fun.',
+  'projekte.loading': 'Loading projects …',
+  'projekte.noResults': 'No projects match this filter combination. Try removing a filter.',
+  'projekte.of': 'of',
+  'projekte.lessonsLabel': 'lessons',
+  'projekte.startBtn': 'Start now',
+  'projekte.filter.language': 'Language',
+  'projekte.filter.level': 'Level',
+  'projekte.filter.tags': 'Topic',
+  'projekte.filter.duration': 'Length',
+  'projekte.filter.reset': 'Reset filters',
+
+  'projectLevel.einsteiger': 'Beginner',
+  'projectLevel.fortgeschritten': 'Advanced',
+
+  'projectDuration.kurz': 'Short',
+  'projectDuration.mittel': 'Medium',
+  'projectDuration.laenger': 'Longer',
+
+  'projectTag.kryptografie': 'Cryptography',
+  'projectTag.knobelaufgabe': 'Puzzle',
+  'projectTag.kommunikation': 'Communication',
+  'projectTag.logikraetsel': 'Logic puzzle',
+  'projectTag.mathematik': 'Mathematics',
 };

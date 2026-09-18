@@ -55,8 +55,8 @@
         <LessonView
           v-else
           :lesson="currentLesson"
-          :content-path="CONTENT_PATH"
-          :variant="PROGRESS_VARIANT"
+          :content-path="contentPath"
+          :variant="contentPath"
           :course-id="courseId"
           @completed="onLessonCompleted"
         />
@@ -71,16 +71,14 @@ import LessonView from './LessonView.vue';
 import { useInteractiveProgress } from '../composables/useInteractiveProgress';
 import { useLanguage } from '../composables/useLanguage';
 
-const CONTENT_PATH = 'caesar-chiffre';
-const PROGRESS_VARIANT = 'caesar-chiffre';
-
-const lessonJsonModules = import.meta.glob('../../content/caesar-chiffre/lessons.json');
+const lessonJsonModules = import.meta.glob('../../content/*/lessons.json');
 
 export default {
   name: 'ProjectCourse',
   components: { LessonView },
   props: {
     courseId: { type: String, required: true },
+    contentPath: { type: String, required: true },
   },
   setup(props) {
     const { lang, t } = useLanguage();
@@ -91,7 +89,7 @@ export default {
     const sidebarOpen = ref(false);
 
     const { completedCount, isCompleted, isLessonUnlocked, exportProgress, importProgress } =
-      useInteractiveProgress(PROGRESS_VARIANT, props.courseId);
+      useInteractiveProgress(props.contentPath, props.courseId);
 
     const currentIndex = computed(() => {
       const idx = lessons.value.findIndex((l) => l.id === currentLessonId.value);
@@ -111,7 +109,7 @@ export default {
       loading.value = true;
       error.value = null;
       try {
-        const key = `../../content/${CONTENT_PATH}/lessons.json`;
+        const key = `../../content/${props.contentPath}/lessons.json`;
         const loader = lessonJsonModules[key];
         if (!loader) throw new Error(`lessons.json nicht gefunden: ${key}`);
         const mod = await loader();
@@ -157,7 +155,7 @@ export default {
       const blob = new Blob([json], { type: 'application/json' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = 'caesar-chiffre-fortschritt.json';
+      a.download = `${props.contentPath}-fortschritt.json`;
       a.click();
       URL.revokeObjectURL(a.href);
     };
@@ -175,8 +173,6 @@ export default {
       currentIndex,
       progressPercent,
       completedCount,
-      CONTENT_PATH,
-      PROGRESS_VARIANT,
       isCompleted,
       isLessonUnlocked,
       selectLesson,

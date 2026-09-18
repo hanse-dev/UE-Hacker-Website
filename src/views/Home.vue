@@ -36,6 +36,16 @@
       </div>
     </section>
 
+    <section id="projekte-teaser">
+      <div class="projekte-teaser-card">
+        <div class="projekte-teaser-text">
+          <h3>{{ t('home.projects.title') }}</h3>
+          <p>{{ t('home.projects.desc') }}</p>
+        </div>
+        <router-link to="/projekte" class="projekte-teaser-link">{{ t('home.projects.link') }}</router-link>
+      </div>
+    </section>
+
     <section id="unterstuetzer">
       <h2>{{ t('home.supporters.title') }}</h2>
       <div class="unterstuetzer-card">
@@ -149,9 +159,12 @@ export default {
       await fetchTermine();
       await fetchKurse();
 
-      // Filter courses
-      const ALWAYS_VISIBLE_KURSE = ['python-12-wochen-grundkurs', 'python-grundlagen-interaktiv', 'projekt-caesar-chiffre'];
+      // Filter courses — Projekt-Kurse haben eine eigene Übersicht unter /projekte
+      const ALWAYS_VISIBLE_KURSE = ['python-12-wochen-grundkurs', 'python-grundlagen-interaktiv'];
       kurse.value = kurse.value.filter(kurs => {
+        if (kurs.type === 'projekt') {
+          return false;
+        }
         if (ALWAYS_VISIBLE_KURSE.includes(kurs.id)) {
           return true;
         }
@@ -193,6 +206,44 @@ export default {
 </script>
 
 <style scoped>
+.projekte-teaser-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 2rem 0;
+  padding: 20px 24px;
+  background: #f3eef8;
+  border: 2px solid #c4a8e0;
+  border-radius: 12px;
+}
+
+.projekte-teaser-text h3 {
+  margin: 0 0 4px;
+  color: var(--primary-purple, #4a2274);
+}
+
+.projekte-teaser-text p {
+  margin: 0;
+  color: #444;
+}
+
+.projekte-teaser-link {
+  background: var(--primary-purple, #4a2274);
+  color: white;
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.projekte-teaser-link:hover {
+  background: #3d1b5c;
+}
+
 .termin-topic {
   font-weight: bold;
   color: #333;

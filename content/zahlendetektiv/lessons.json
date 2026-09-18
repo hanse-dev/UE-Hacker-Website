@@ -1,0 +1,79 @@
+[
+  {
+    "id": "lektion-01",
+    "title": "Ist diese Zahl eine Primzahl?",
+    "file": "lektion-01.md",
+    "lessonSummary": "Genau so prüfst du, ob eine Zahl eine Primzahl ist – Teiler für Teiler durchprobieren.",
+    "tasks": [
+      {
+        "instruction": "Ruf ist_primzahl(17) auf und gib das Ergebnis aus.",
+        "codeTemplate": "def ist_primzahl(zahl):\n    if zahl < 2:\n        return False\n    for teiler in range(2, zahl):\n        if zahl % teiler == 0:\n            return False\n    return True\n\n# dein Aufruf hier\n",
+        "validation": { "type": "output_contains", "expected": "True" }
+      },
+      {
+        "instruction": "Bonus: Ruf ist_primzahl(15) auf. Ist 15 eine Primzahl?",
+        "codeTemplate": "def ist_primzahl(zahl):\n    if zahl < 2:\n        return False\n    for teiler in range(2, zahl):\n        if zahl % teiler == 0:\n            return False\n    return True\n\n# dein Aufruf hier\n",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "False" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "title": "Das Primzahlen-Sieb",
+    "file": "lektion-02.md",
+    "lessonSummary": "Damit findest du auf einen Schlag alle Primzahlen in einem ganzen Zahlenbereich.",
+    "tasks": [
+      {
+        "instruction": "Ruf primzahlen_bis(20) auf und gib das Ergebnis aus.",
+        "codeTemplate": "def ist_primzahl(zahl):\n    if zahl < 2:\n        return False\n    for teiler in range(2, zahl):\n        if zahl % teiler == 0:\n            return False\n    return True\n\ndef primzahlen_bis(n):\n    ergebnis = []\n    for zahl in range(2, n + 1):\n        if ist_primzahl(zahl):\n            ergebnis.append(zahl)\n    return ergebnis\n\n# dein Aufruf hier\n",
+        "validation": { "type": "output_contains", "expected": "17, 19]" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "title": "Die Collatz-Vermutung",
+    "file": "lektion-03.md",
+    "lessonSummary": "27 braucht überraschend viele Schritte (111!), bis die Collatz-Folge bei 1 ankommt.",
+    "tasks": [
+      {
+        "instruction": "Ruf collatz_schritte(27) auf und gib das Ergebnis aus.",
+        "codeTemplate": "def collatz_schritte(zahl):\n    schritte = 0\n    while zahl != 1:\n        if zahl % 2 == 0:\n            zahl = zahl // 2\n        else:\n            zahl = zahl * 3 + 1\n        schritte += 1\n    return schritte\n\n# dein Aufruf hier\n",
+        "validation": { "type": "output_contains", "expected": "111" }
+      },
+      {
+        "instruction": "Bonus: Ruf collatz_schritte(6) auf. Wie viele Schritte braucht die 6?",
+        "codeTemplate": "def collatz_schritte(zahl):\n    schritte = 0\n    while zahl != 1:\n        if zahl % 2 == 0:\n            zahl = zahl // 2\n        else:\n            zahl = zahl * 3 + 1\n        schritte += 1\n    return schritte\n\n# dein Aufruf hier\n",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "8" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "title": "Zahlenpalindrome",
+    "file": "lektion-04.md",
+    "lessonSummary": "text == text[::-1] ist der Trick, um zu prüfen, ob etwas rückwärts genauso aussieht.",
+    "tasks": [
+      {
+        "instruction": "Vervollständige ist_zahlenpalindrom: vergleiche den String mit seiner umgekehrten Version (text[::-1]).",
+        "codeTemplate": "def ist_zahlenpalindrom(zahl):\n    text = str(zahl)\n    # dein Code hier: vergleiche text mit der umgekehrten Version von text\n    pass\n\nprint(ist_zahlenpalindrom(121))\n",
+        "validation": { "type": "output_contains", "expected": "True" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "title": "Der Zahlenrater",
+    "file": "lektion-05.md",
+    "lessonSummary": "Geschafft! Dein Zahlenrater findet jede Zahl zwischen 1 und 100 in nur wenigen Versuchen.",
+    "tasks": [
+      {
+        "instruction": "Ruf rate_zahl(42) auf und schau dir an, wie schnell der Computer die Zahl findet.",
+        "codeTemplate": "def rate_zahl(ziel, minimum=1, maximum=100):\n    versuche = 0\n    while minimum <= maximum:\n        versuche += 1\n        mitte = (minimum + maximum) // 2\n        print(f\"Versuch {versuche}: ist es {mitte}?\")\n        if mitte == ziel:\n            print(f\"Richtig! Ich habe {ziel} in {versuche} Versuchen erraten.\")\n            return versuche\n        elif mitte < ziel:\n            minimum = mitte + 1\n        else:\n            maximum = mitte - 1\n\n# dein Aufruf hier\n",
+        "validation": { "type": "output_contains", "expected": "Richtig! Ich habe 42 in 7 Versuchen erraten." }
+      }
+    ]
+  }
+]

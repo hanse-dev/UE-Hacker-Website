@@ -1,0 +1,80 @@
+import { test, expect } from '@playwright/test';
+
+test.describe('Projekte-Übersicht', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.removeItem('ue-hacker-lang');
+      localStorage.removeItem('ue-hacker-interactive-progress-morsecode');
+    });
+  });
+
+  test('zeigt alle Projekt-Karten', async ({ page }) => {
+    await page.goto('/projekte');
+    await expect(page.locator('.projekt-card')).toHaveCount(3, { timeout: 15000 });
+    await expect(page.locator('a[href="/kurs/projekt-caesar-chiffre"]')).toBeVisible();
+    await expect(page.locator('a[href="/kurs/projekt-morsecode"]')).toBeVisible();
+    await expect(page.locator('a[href="/kurs/projekt-zahlendetektiv"]')).toBeVisible();
+  });
+
+  test('Level-Filter "Fortgeschritten" reduziert auf ein Projekt', async ({ page }) => {
+    await page.goto('/projekte');
+    await expect(page.locator('.projekt-card')).toHaveCount(3, { timeout: 15000 });
+
+    await page.locator('.filter-chip', { hasText: 'Fortgeschritten' }).click();
+    await expect(page.locator('.projekt-card')).toHaveCount(1);
+    await expect(page.locator('a[href="/kurs/projekt-zahlendetektiv"]')).toBeVisible();
+  });
+
+  test('Tag-Filter "Kryptografie" zeigt nur Cäsar-Chiffre', async ({ page }) => {
+    await page.goto('/projekte');
+    await expect(page.locator('.projekt-card')).toHaveCount(3, { timeout: 15000 });
+
+    await page.locator('.filter-chip', { hasText: 'Kryptografie' }).click();
+    await expect(page.locator('.projekt-card')).toHaveCount(1);
+    await expect(page.locator('a[href="/kurs/projekt-caesar-chiffre"]')).toBeVisible();
+  });
+
+  test('Zurücksetzen-Button stellt alle Projekte wieder her', async ({ page }) => {
+    await page.goto('/projekte');
+    await expect(page.locator('.projekt-card')).toHaveCount(3, { timeout: 15000 });
+
+    await page.locator('.filter-chip', { hasText: 'Fortgeschritten' }).click();
+    await expect(page.locator('.projekt-card')).toHaveCount(1);
+
+    await page.locator('.filter-reset').click();
+    await expect(page.locator('.projekt-card')).toHaveCount(3);
+  });
+
+  test('Morsecode-Projekt lädt und Lektion 1 lösen schaltet Lektion 2 frei', async ({ page }) => {
+    test.setTimeout(60000);
+    await page.goto('/kurs/projekt-morsecode');
+    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(5, { timeout: 15000 });
+    await expect(page.locator('.course-description')).toContainText('Morsecode');
+
+    await page.locator('.btn-kernel').click();
+    await expect(page.locator('.btn-check').first()).toBeEnabled({ timeout: 40000 });
+
+    const task1 = page.locator('.task-block').nth(0);
+    await task1.locator('.code-editor').fill(
+      "MORSE = {'a': '.-', 'b': '-...', 's': '...', 'o': '---'}\nprint(MORSE['s'])"
+    );
+    await task1.locator('.btn-check').click();
+    await expect(task1.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+
+    const task2 = page.locator('.task-block').nth(1);
+    await task2.locator('.code-editor').fill(
+      "MORSE = {'a': '.-', 'b': '-...', 's': '...', 'o': '---'}\nprint(MORSE['o'])"
+    );
+    await task2.locator('.btn-check').click();
+    await expect(task2.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+
+    await expect(page.locator('.lesson-item.completed')).toHaveCount(1);
+    await expect(page.locator('.lesson-item').nth(1)).not.toHaveClass(/locked/);
+  });
+
+  test('12-Wochen-Kurs-Banner verlinkt zu den Projekten', async ({ page }) => {
+    await page.goto('/kurs/python-12-wochen-grundkurs');
+    await expect(page.locator('.project-banner')).toBeVisible({ timeout: 15000 });
+    await expect(page.locator('.project-banner-link')).toHaveAttribute('href', '/projekte');
+  });
+});

@@ -31,11 +31,13 @@ test.describe('Home & Navigation', () => {
     await expect(page.locator('a.cta-button[href="/kurs/python-12-wochen-grundkurs"]')).toBeVisible();
     await expect(page.locator('a.cta-button[href="/kurs/python-grundlagen-interaktiv"]')).toBeVisible();
 
-    // Home filtert Kurse: 12-Wochen + Interaktiv + Cäsar-Chiffre-Projekt immer; andere nur mit Termin
-    await expect(page.locator('#kurse-uebersicht .course-card')).toHaveCount(3);
+    // Home filtert Kurse: 12-Wochen + Interaktiv immer sichtbar, andere nur mit Termin.
+    // Projekt-Kurse (type: 'projekt') erscheinen hier nicht mehr — die haben eine eigene
+    // Übersicht unter /projekte, verlinkt über den Projekte-Teaser.
+    await expect(page.locator('#kurse-uebersicht .course-card')).toHaveCount(2);
     await expect(page.locator('a.course-link[href="/kurs/python-12-wochen-grundkurs"]')).toBeVisible();
     await expect(page.locator('a.course-link[href="/kurs/python-grundlagen-interaktiv"]')).toBeVisible();
-    await expect(page.locator('a.course-link[href="/kurs/projekt-caesar-chiffre"]')).toBeVisible();
+    await expect(page.locator('a[href="/projekte"]')).toBeVisible();
   });
 
   test('Home-CTA Einstufung öffnet Placement-Kurs', async ({ page }) => {
@@ -160,12 +162,6 @@ test.describe('Cäsar-Chiffre-Projekt', () => {
 
     await expect(page.locator('.lesson-item.completed')).toHaveCount(1);
     await expect(page.locator('.lesson-item').nth(1)).not.toHaveClass(/locked/);
-  });
-
-  test('Kurs erscheint auf der Startseite und im 12-Wochen-Kurs verlinkt', async ({ page }) => {
-    await page.goto('/kurs/python-12-wochen-grundkurs');
-    await expect(page.locator('.project-banner')).toBeVisible({ timeout: 15000 });
-    await expect(page.locator('.project-banner-link')).toHaveAttribute('href', '/kurs/projekt-caesar-chiffre');
   });
 });
 
