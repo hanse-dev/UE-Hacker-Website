@@ -2,8 +2,8 @@
 
 ## Now
 
-*(Nichts aktuell offen — Branch `experiment-wochen-tour` ist gemergt, siehe "Fertige Branches"
-unten. Server-Deploy steht noch aus, siehe HANDOFF.md Abschnitt 5 "Betrieb".)*
+*(Nichts aktuell offen — Branch `kurs-projekte-uebersicht` ist lokal fertig/getestet, siehe
+"Fertige Branches" unten. Server-Deploy steht noch aus, siehe HANDOFF.md Abschnitt 5 "Betrieb".)*
 
 ### 12-Wochen-Kurs: Zellen-Format-Umstellung (Branch `12-wochen-kurs-zellen-format`)
 - [x] Alle 432 Notebooks (3 Varianten × 12 Wochen × 6 Typen × DE/EN) vom `.ipynb`-Format auf
@@ -230,9 +230,15 @@ und Server-Deploy bewusst zurückgestellt (siehe HANDOFF.md).
       neue `ProjectCourse.vue`), verlinkt aus dem 12-Wochen-Kurs
 - [ ] `kurs-python-spiele` — Idee verworfen zugunsten von `kurs-js-spielewerkstatt` (s.u. "Nächste
       Themen"): Pyodides synchrones Ausführungsmodell ist mit einer echten Spiele-Loop
-      unvereinbar (siehe HANDOFF.md 3.32). Korrektur: `ProjectCourse.vue` ist entgegen einer
-      früheren, fälschlichen Notiz hier **nicht** generalisiert — das passiert jetzt im Zuge von
-      `kurs-js-spielewerkstatt`.
+      unvereinbar (siehe HANDOFF.md 3.32).
+- [x] `kurs-projekte-uebersicht` — `ProjectCourse.vue` generalisiert (`contentPath`-Prop statt
+      hart codiertem Cäsar-Chiffre, `kurse.json`-`type`-Feld statt ID-Vergleich in
+      `CourseDetail.vue`), neue Projekte-Übersicht mit Filtern (Sprache/Level/Thema/Dauer) unter
+      `/projekte` (`ProjekteView.vue`), zwei neue Projekt-Kurse (`projekt-morsecode`,
+      `projekt-zahlendetektiv`). Projekt-Kurse erscheinen nicht mehr auf der Startseite, sondern
+      nur noch gesammelt unter `/projekte`; der 12-Wochen-Kurs-Banner verlinkt jetzt dorthin statt
+      fest zu Cäsar-Chiffre. `useLessonContent.js`-Globs auf Wildcard umgestellt (kein manuelles
+      Nachtragen pro neuem Projekt-Kurs mehr nötig). Details siehe `INHALTE.md` §6.
 - [x] `wochencheck-variablen-validierung` (HANDOFF.md 3.34, gemergt) — Coding-Aufgaben ließen sich
       durch Hart-Codieren der erwarteten Textausgabe umgehen (Prüfung schaute nur auf `stdout`).
       Neue optionale `variables`-/`functionCalls`-Felder in `validation` prüfen zusätzlich echte
@@ -327,18 +333,23 @@ iframe-Sandbox-Ausführungsumgebung. Kompaktes Projekt (~6 Lektionen, wie Cäsar
 Spiel "Fang den Ball". Vollständiger Implementierungsplan bereits erarbeitet und gespeichert
 (`~/.claude/plans/fizzy-sprouting-quilt.md`, Abschnitt "ANHANG").
 
-Korrektur: `ProjectCourse.vue` ist **noch nicht** generalisiert (frühere Notiz hier war veraltet/
-falsch) — das ist Teil dieses Branches, siehe gespeicherter Plan.
-- [ ] `ProjectCourse.vue` generalisieren (contentPath/engine-Props statt hart codiertem Cäsar-Chiffre)
+**Update:** `ProjectCourse.vue` ist inzwischen generalisiert (Branch `kurs-projekte-uebersicht`,
+s.u.) — die `contentPath`-Prop und das `type: "projekt"`-Feld in `kurse.json` existieren bereits.
+Für diesen Branch fehlt nur noch die `engine`-Prop (Default `'pyodide'`) + die JS-Sandbox selbst,
+siehe gespeicherter Plan (dort als "bereits erledigt" markiert, wo zutreffend).
 - [ ] Neue JS-Sandbox-Ausführungsumgebung (`useJsSandbox.js`, iframe-basiert, kein Worker)
-- [ ] Kursmetadaten in `kurse.json` (+ `title_en`/`description_en`)
+- [ ] `engine`-Prop an `ProjectCourse.vue`/`CourseDetail.vue` ergänzen
+- [ ] Kursmetadaten in `kurse.json` (inkl. `language: "javascript"`, `level`, `tags` passend zum
+      Projekte-Filter-Vokabular aus `kurs-projekte-uebersicht`)
 - [ ] Content: 6 Lektionen "Fang den Ball" (DE-first, kein `-en`-Ordner wie Cäsar-Chiffre)
 - [ ] Playwright-Tests (siehe gespeicherter Plan §6) → PR nach `main`
 - [ ] `KURSPLAN.md`/`VISION.md` bei Bedarf nachziehen, falls sich beim Umsetzen was ändert
 
 ### 2. Was kommt danach? Python-Projekt-Sprints — Branch `kurs-python-projekte`
-- [ ] 2–3 feste Projekt-Sprints (je ~2 Wochen Umfang skizzieren)
-- [ ] Kursseite + Einstieg von 12-Wochen-Kurs verlinken („Weiter so“)
+Die Infrastruktur dafür existiert bereits (Branch `kurs-projekte-uebersicht`, s.u.): generalisiertes
+`ProjectCourse.vue`, Projekte-Übersicht mit Filtern unter `/projekte`. Ein weiteres Projekt braucht
+nur noch einen Content-Ordner + `kurse.json`-Eintrag (siehe `INHALTE.md` §6), keine neue Komponente.
+- [ ] 2–3 weitere Projekt-Ideen ausarbeiten (Sprints im Cäsar-Chiffre-Stil, ~5 Lektionen)
 - [ ] Projektideen aus Einstufung ggf. hier ausbauen
 - [ ] DE (+ EN nach Bedarf)
 - [ ] Smoke-Test → PR nach `main`

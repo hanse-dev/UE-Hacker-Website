@@ -1,28 +1,14 @@
 import { ref } from 'vue';
 import { marked } from 'marked';
 
-// Vite braucht statische Glob-Patterns — bei einem neuen LessonView.vue-Kurs diese Listen erweitern
-// (siehe HANDOFF.md 3.11).
+// Wildcard-Glob statt fester Pro-Kurs-Liste — ein neuer LessonView.vue-Kurs (z.B. ein Projekt-Kurs)
+// braucht dadurch keine Änderung hier mehr, nur einen neuen Content-Ordner unter `content/`.
 const allLessonModules = import.meta.glob(
-  [
-    '../../content/python-grundlagen-interaktiv-kinder/*.md',
-    '../../content/python-grundlagen-interaktiv-jugendliche/*.md',
-    '../../content/python-grundlagen-interaktiv-kinder-en/*.md',
-    '../../content/python-grundlagen-interaktiv-jugendliche-en/*.md',
-    '../../content/caesar-chiffre/*.md',
-  ],
+  '../../content/*/*.md',
   { query: '?raw', import: 'default' }
 );
 
-const allGlossaryModules = import.meta.glob(
-  [
-    '../../content/python-grundlagen-interaktiv-kinder/glossary.json',
-    '../../content/python-grundlagen-interaktiv-jugendliche/glossary.json',
-    '../../content/python-grundlagen-interaktiv-kinder-en/glossary.json',
-    '../../content/python-grundlagen-interaktiv-jugendliche-en/glossary.json',
-    '../../content/caesar-chiffre/glossary.json',
-  ],
-);
+const allGlossaryModules = import.meta.glob('../../content/*/glossary.json');
 
 function escapeHtml(s) {
   if (!s) return '';

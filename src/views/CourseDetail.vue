@@ -37,7 +37,7 @@
     </div>
 
     <div v-else-if="isProjectCourse" class="project-course-wrapper">
-      <ProjectCourse :course-id="id" />
+      <ProjectCourse :course-id="id" :content-path="course.contentPath" />
     </div>
 
     <WeekTour v-else-if="isWeeklyCourse" />
@@ -54,7 +54,7 @@
         <strong>{{ t('course.project.banner.title') }}</strong>
         <p>{{ t('course.project.banner.desc') }}</p>
       </div>
-      <router-link to="/kurs/projekt-caesar-chiffre" class="project-banner-link">
+      <router-link to="/projekte" class="project-banner-link">
         {{ t('course.project.banner.link') }}
       </router-link>
     </div>
@@ -108,7 +108,7 @@ export default {
     const isWeeklyCourse = computed(() => props.id === 'python-12-wochen-grundkurs');
     const isInteractiveCourse = computed(() => props.id === 'python-grundlagen-interaktiv');
     const isPlacementCourse = computed(() => props.id === 'python-einstufung');
-    const isProjectCourse = computed(() => props.id === 'projekt-caesar-chiffre');
+    const isProjectCourse = computed(() => course.value?.type === 'projekt');
 
     const courseStructureSteps = computed(() =>
       STRUCTURE_STEPS_CONFIG.map((step) => ({ ...step, title: t(step.titleKey), desc: t(step.descKey) }))

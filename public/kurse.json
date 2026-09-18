@@ -25,11 +25,39 @@
   },
   {
     "id": "projekt-caesar-chiffre",
+    "type": "projekt",
+    "language": "python",
+    "level": "einsteiger",
+    "tags": ["kryptografie", "knobelaufgabe"],
     "title": "Projekt: Cäsar-Chiffre",
     "title_en": "Project: Caesar Cipher",
     "description": "Dein erstes eigenes Projekt: Baue Schritt für Schritt eine echte Geheimschrift, verschlüssle und entschlüssle Nachrichten und schreib am Ende einen Code-Knacker. Baut auf dem 12-Wochen-Kurs auf (Strings, Schleifen, Funktionen).",
     "description_en": "Your first own project: build a real cipher step by step, encrypt and decrypt messages, and write a code-cracker at the end. Builds on the 12-week course (strings, loops, functions).",
     "contentPath": "caesar-chiffre"
+  },
+  {
+    "id": "projekt-morsecode",
+    "type": "projekt",
+    "language": "python",
+    "level": "einsteiger",
+    "tags": ["kommunikation", "knobelaufgabe"],
+    "title": "Projekt: Morsecode-Übersetzer",
+    "title_en": "Project: Morse Code Translator",
+    "description": "Baue einen Übersetzer für Morsecode: Buchstaben in Punkte und Striche verwandeln, Morsecode wieder in Text zurückverwandeln und am Ende einen Übersetzer, der beide Richtungen kann. Nutzt Dictionaries, Schleifen und Strings.",
+    "description_en": "Build a Morse code translator: turn letters into dots and dashes, translate Morse code back into text, and finish with a translator that works both ways. Uses dictionaries, loops, and strings.",
+    "contentPath": "morsecode"
+  },
+  {
+    "id": "projekt-zahlendetektiv",
+    "type": "projekt",
+    "language": "python",
+    "level": "fortgeschritten",
+    "tags": ["logikraetsel", "mathematik", "knobelaufgabe"],
+    "title": "Projekt: Zahlen-Detektiv",
+    "title_en": "Project: Number Detective",
+    "description": "Knacke Zahlenrätsel: finde Primzahlen, verfolge die Collatz-Vermutung, entdecke Zahlenpalindrome und baue zum Schluss einen Computer, der eine gedachte Zahl errät. Nutzt Schleifen, Bedingungen und ein bisschen Mathematik.",
+    "description_en": "Crack number puzzles: find prime numbers, trace the Collatz conjecture, discover number palindromes, and finish by building a computer that guesses a number you're thinking of. Uses loops, conditions, and a bit of math.",
+    "contentPath": "zahlendetektiv"
   },
   {
     "id": "ferienkurse",

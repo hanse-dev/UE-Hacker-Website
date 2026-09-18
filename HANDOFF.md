@@ -3,13 +3,14 @@
 > **Zuletzt aktualisiert:** 2026-09-18  
 > **Aktueller Stand:** `main` ist auf `origin/main` gepusht, inkl. Branch `experiment-wochen-tour`
 > (3.35+3.36, gemergt) — was als unverlinktes Experiment begann, ist jetzt die **echte** Kursseite
-> unter `/kurs/python-12-wochen-grundkurs` (alte Akkordeon-UI `WeekSection.vue` + Co. entfernt),
-> volle Suite grün (`npm test` 77, `npm run test:auth` 13). **Server-Deploy steht noch aus** —
-> Code ist auf GitHub, aber noch nicht auf dem Produktions-Server ausgerollt (siehe Abschnitt 4
-> "Betrieb" für die manuellen Schritte, Nutzer deployt selbst). **Neu:** `VISION.md` (Mission +
-> Track-Modell/langfristige Roadmap über mehrere Sprachen/Themen) angelegt, `KURSPLAN.md` erstmals
-> aus `CLAUDE.md` verlinkt und ans Track-Modell angeglichen (Branch `vision-roadmap-abgleich`,
-> siehe Abschnitt 5).
+> unter `/kurs/python-12-wochen-grundkurs` (alte Akkordeon-UI `WeekSection.vue` + Co. entfernt).
+> **Server-Deploy steht noch aus** — Code ist auf GitHub, aber noch nicht auf dem
+> Produktions-Server ausgerollt (siehe Abschnitt 4 "Betrieb", Nutzer deployt selbst). **Neu:**
+> `VISION.md` (Mission + Track-Modell/langfristige Roadmap über mehrere Sprachen/Themen) angelegt,
+> `KURSPLAN.md` erstmals aus `CLAUDE.md` verlinkt und ans Track-Modell angeglichen (3.37, gemergt).
+> Darauf aufbauend: `ProjectCourse.vue` generalisiert, neue Projekte-Übersicht mit Filtern unter
+> `/projekte`, zwei neue Projekt-Kurse (Morsecode, Zahlen-Detektiv) — Branch
+> `kurs-projekte-uebersicht` (3.38), lokal fertig/getestet, noch **nicht** gemergt.
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -1305,6 +1306,34 @@ richtigen Themen-Wahl-Seite, ein echter Cäsar-Chiffre-Lektionslink führt zur r
 noch einen Kommentar-Treffer (der erklärt, dass die Datei entfernt wurde), keine echten
 Code-Referenzen mehr.
 
+### 3.37 Vision-Dokument + KURSPLAN.md/todo.md-Abgleich (Branch `vision-roadmap-abgleich`, gemergt)
+
+Neues `VISION.md` (Mission, Kurs-Formate Einstieg/Grundkurs/Projekt-Kurs/Vertiefung, Track-Modell
+pro Sprache mit dem Prinzip "Voraussetzung gilt nur innerhalb der eigenen Sprache/des eigenen
+Themas" — Ausnahme: KI-Track braucht legitim den Python-Track). `KURSPLAN.md` (bisher nirgends
+verlinkt) daran ausgerichtet und erstmals aus `CLAUDE.md` eingebunden — korrigiert dabei eine
+falsche Abhängigkeit (JS-Browserspiel-Track verlangte fälschlich den Python-12-Wochen-Kurs).
+`todo.md`/`WORKFLOW.md` auf `kurs-js-spielewerkstatt` als nächstes Thema umgestellt.
+
+### 3.38 Projekte-Übersicht mit Filtern + zwei neue Projekt-Kurse (Branch `kurs-projekte-uebersicht`)
+
+`ProjectCourse.vue` war trotz einer gegenteiligen, veralteten Notiz in `todo.md` weiterhin fest auf
+Cäsar-Chiffre verdrahtet (`CONTENT_PATH`/`PROGRESS_VARIANT`-Konstanten) — generalisiert auf eine
+`contentPath`-Prop, `CourseDetail.vue`s `isProjectCourse` von einem ID-Vergleich auf
+`course.type === 'projekt'` umgestellt. Neue Seite `/projekte` (`ProjekteView.vue`) sammelt alle
+Projekt-Kurse und filtert nach Sprache, Level, Thema/Tags und Dauer (Dauer wird live aus der
+`lessons.json`-Länge berechnet, kein manuell gepflegtes Feld). Projekt-Kurse erscheinen dafür nicht
+mehr in `Home.vue`s normaler Kursliste; der 12-Wochen-Kurs-Banner verlinkt jetzt zu `/projekte`
+statt fest zu Cäsar-Chiffre. `useLessonContent.js`s bisher pro Kurs gepflegte `import.meta.glob`-
+Listen sind jetzt Wildcards (`content/*/*.md` bzw. `content/*/glossary.json`) — ein neuer
+Projekt-Kurs braucht damit nur noch einen Content-Ordner + `kurse.json`-Eintrag, keine
+Code-Änderung mehr. Zwei neue Projekte ergänzt: `projekt-morsecode` (Einsteiger, 5 Lektionen) und
+`projekt-zahlendetektiv` (Fortgeschritten, 5 Lektionen, u.a. Primzahlen-Sieb, Collatz-Vermutung,
+Bisektions-Zahlenrater) — alle Code-Beispiele lokal mit `python3` gegenverifiziert. Neue Tests in
+`tests/projekte.spec.js` (Kartenanzahl, Level-/Tag-Filter, Reset, Morsecode-Lektion lösen,
+Banner-Link); `tests/site.spec.js` an die neue Home-Struktur angepasst (Projekt-Kurse nicht mehr
+in `#kurse-uebersicht`, dafür ein `/projekte`-Teaser-Link).
+
 ---
 
 ## 4. Aktueller technischer Stand
@@ -1387,10 +1416,11 @@ content/python-checks/config.json, week-{N}.json, index.mjs (Node-Loader für Te
 
 Siehe auch `todo.md`.
 
-**Aktuell (3.36):** Branch `experiment-wochen-tour` ist gemergt und gepusht, keine offenen
-Code-Punkte. Kleinigkeiten bewusst zurückgestellt: keine `localStorage`-Persistenz von
-Woche/Variante/Schritt (Reload startet auf der Wochen-Übersicht neu), keine Schritt-Sperrung (alle
-Kullern frei anklickbar).
+**Aktuell (3.38):** Branch `kurs-projekte-uebersicht` ist lokal fertig und getestet, aber noch
+nicht nach `main` gemergt/gepusht — Projekte-Übersicht + zwei neue Projekt-Kurse. Nächster
+sinnvoller Schritt danach: `kurs-js-spielewerkstatt` (Plan gespeichert unter
+`~/.claude/plans/fizzy-sprouting-quilt.md`) oder weitere Projekt-Kurse (`kurs-python-projekte`,
+siehe `todo.md`).
 
 **Betrieb**
 - [ ] Server-Deploy: Code ist auf `origin/main`, aber noch nicht auf dem Produktions-Server
@@ -1532,13 +1562,11 @@ nötig, falls es dazu kommt — der bestehende `t()`-Mechanismus reicht.
    umschreiben — funktionieren bewusst unverändert weiter, `WeekTour.vue` übersetzt intern (3.36)
 5. Nach Arbeit: `todo.md`/`HANDOFF.md` aktualisieren, testen, PR gegen `main`
 
-**Empfohlener nächster Schritt:** Branch `experiment-wochen-tour` (3.35+3.36) ist gemergt und
-gepusht (Wochen-Tour ist jetzt die echte Kursseite) — offen ist nur noch der eigentliche
-Server-Deploy (siehe Abschnitt 5 "Betrieb", Nutzer macht das selbst). Danach: Curriculum-Lücken-Plan
-(`~/.claude/plans/joyful-wishing-piglet.md`) war bis auf `woche12-interaktivitaet` fertig (durch
-den Turtle-Shim entblockt). Falls stattdessen ein neues Kursthema begonnen werden soll:
-`kurs-js-spielewerkstatt` (JavaScript statt der ursprünglich geplanten Python-Variante, Plan
-gespeichert unter `~/.claude/plans/fizzy-sprouting-quilt.md`) ist der nächstliegende Kandidat —
-für neue Kurse gilt seit 3.33 die Zellen-Format-Erfahrung als Referenz (nur für Python-Kurse
-relevant), siehe Memory `project_neue-kurse-content-format`. Gesamt-Roadmap/Track-Modell:
-`VISION.md`.
+**Empfohlener nächster Schritt:** Branch `kurs-projekte-uebersicht` (3.38) ist lokal fertig/
+getestet — mergen und pushen, sobald abgenommen. Danach: `kurs-js-spielewerkstatt` (JavaScript
+statt der ursprünglich geplanten Python-Variante, Plan gespeichert unter
+`~/.claude/plans/fizzy-sprouting-quilt.md` — Schritt 1 daraus ist bereits durch 3.38 erledigt) oder
+weitere Projekt-Kurse (`kurs-python-projekte`, Infrastruktur existiert bereits seit 3.38). Server-
+Deploy von `experiment-wochen-tour` (3.35+3.36) steht weiterhin aus (siehe Abschnitt 5 "Betrieb").
+Gesamt-Roadmap/Track-Modell: `VISION.md`. Für neue **Python**-Kurse gilt seit 3.33 die
+Zellen-Format-Erfahrung als Referenz, siehe Memory `project_neue-kurse-content-format`.

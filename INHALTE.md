@@ -12,6 +12,13 @@ Dieses Dokument beschreibt, welche Dateien zusammengehören und was bei Änderun
 | `python-grundlagen-interaktiv` | `content/python-grundlagen-interaktiv/` | *(keine EN-Version)* | Markdown + JSON |
 | *(Variante)* | `content/python-grundlagen-interaktiv-kinder/` | *(keine EN-Version)* | Markdown + JSON |
 | *(Variante)* | `content/python-grundlagen-interaktiv-jugendliche/` | *(keine EN-Version)* | Markdown + JSON |
+| `projekt-caesar-chiffre` | `content/caesar-chiffre/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON) |
+| `projekt-morsecode` | `content/morsecode/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON) |
+| `projekt-zahlendetektiv` | `content/zahlendetektiv/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON) |
+
+Alle Projekt-Kurse (`type: "projekt"` in `kurse.json`) sind gesammelt und filterbar unter
+**`/projekte`** (`src/views/ProjekteView.vue`) zu finden — nach Sprache, Level, Thema/Tags und
+Dauer. Sie erscheinen bewusst *nicht* mehr in der normalen Kursliste auf der Startseite.
 
 Kurs-Metadaten (Titel, Beschreibung) → `public/kurse.json` (enthält `title`, `title_en`, `description`, `description_en`)
 
@@ -271,6 +278,29 @@ Ordner-Mapping (immer paarweise anpassen):
 - [ ] Einträge in `rewards-manifest.json` + `rewards-manifest-en.json`
 - [ ] Ggf. Download-ZIP neu generieren (`npm run build:cells && npm run pack:notebooks`)
 
+### Wenn du einen Projekt-Kurs hinzufügst (wie Cäsar-Chiffre, Morsecode, Zahlen-Detektiv):
+- [ ] Neuer Ordner `content/{contentPath}/`: `beschreibung.md`, `lektion-01.md`…`lektion-NN.md`,
+      `lessons.json` (Schema wie beim interaktiven Kurs: `id`/`title`/`file`/`lessonSummary`/
+      `tasks[{instruction, codeTemplate, isBonus?, validation}]`) — kein `glossary.json` nötig,
+      ist optional.
+- [ ] Neuer Eintrag in `public/kurse.json` mit **Pflichtfeldern**: `id` (Präfix `projekt-`),
+      `type: "projekt"`, `contentPath`, `title`/`title_en`, `description`/`description_en`, sowie
+      den Filter-Metadaten `language` (`"python"`/`"javascript"`, Slug — steuert nur die Anzeige,
+      keine Übersetzung nötig), `level` (`"einsteiger"`/`"fortgeschritten"`) und `tags` (Array aus
+      einem festen Vokabular, aktuell: `kryptografie`, `knobelaufgabe`, `kommunikation`,
+      `logikraetsel`, `mathematik`). Ein neuer Tag braucht neue `projectTag.<slug>`-Keys in
+      **beiden** `src/locales/de.js`/`en.js` — sonst zeigt die Filter-Chip/Karte nur den rohen Slug.
+      Kein manuelles Dauer-/Lektionsanzahl-Feld nötig, `ProjekteView.vue` berechnet das live aus der
+      Länge von `lessons.json`.
+- [ ] **Kein** Eintrag in `rewards-manifest*.json` nötig — Projekt-Kurse sind vom Zertifikats-/
+      Punktesystem ausgenommen (wie der 12-Wochen-Kurs es hat, siehe Abschnitt 4).
+- [ ] DE-first ist ok (kein `-en`-Content-Ordner nötig) — `useCourseData.js`s `hasEnDescription`
+      muss dann NICHT erweitert werden, die Beschreibung fällt automatisch auf Deutsch zurück.
+- [ ] `src/router/index.js`, `src/composables/useLessonContent.js` (Wildcard-Glob) und
+      `src/views/Home.vue` (Projekt-Kurse werden dort generisch über `type === 'projekt'`
+      ausgefiltert) brauchen **keine** Änderung mehr für einen weiteren Projekt-Kurs — nur
+      Content-Ordner + `kurse.json`-Eintrag.
+
 ---
 
 ## 7. Wo stehen welche Dinge im Code?
@@ -286,5 +316,7 @@ Ordner-Mapping (immer paarweise anpassen):
 | Interaktiver Kurs – UI + Variantenwahl | `src/components/InteractiveCourse.vue` |
 | Interaktiver Kurs – Lektion anzeigen | `src/components/LessonView.vue` |
 | Kursdetailseite | `src/views/CourseDetail.vue` |
+| Projekt-Kurs – UI + Lektions-Fortschritt | `src/components/ProjectCourse.vue` |
+| Projekte-Übersicht + Filter (Sprache/Level/Tags/Dauer) | `src/views/ProjekteView.vue` |
 | Fortschritts-Widget (12-Wochen) | `src/components/FortschrittWidget.vue` |
 | Missionen-Panel | `src/components/MissionenPanel.vue` |

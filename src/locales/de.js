@@ -96,8 +96,8 @@ export default {
   'course.download.btn':  '📦 Alle Notebooks als Pack herunterladen',
   'course.download.hint': 'Zip mit allen 12 Wochen (Abenteuer, Pferde, Sci-Fi) + Cheat Sheets – zum Arbeiten in Jupyter oder VS Code.',
   'course.project.banner.title': 'Fertig mit dem Kurs (oder schon mittendrin)? Zeit für dein erstes eigenes Projekt!',
-  'course.project.banner.desc': 'Baue eine echte Geheimschrift – die Cäsar-Chiffre. Nutzt Strings, Schleifen und Funktionen aus diesem Kurs.',
-  'course.project.banner.link': 'Zum Projekt →',
+  'course.project.banner.desc': 'Knobelaufgaben wie die Cäsar-Chiffre nutzen genau die Werkzeuge aus diesem Kurs – Strings, Schleifen und Funktionen.',
+  'course.project.banner.link': 'Zu den Projekten →',
 
   // ── Tabs (Tour-Schritt-Label, siehe WeekTourStepper.vue) ─────────────────
   'tab.lesson':       'Lektion',
@@ -287,4 +287,34 @@ export default {
   'tour.certificates.count': '{n}/12 Zertifikate erhalten',
   'tour.certificates.back': '← Zurück zur Wochenübersicht',
   'tour.certificates.title':'Meine Zertifikate',
+
+  'home.projects.title': '🧩 Lust auf ein Knobelprojekt?',
+  'home.projects.desc': 'Kurze, eigenständige Projekte zum Ausprobieren – nach Sprache, Level und Thema filterbar.',
+  'home.projects.link': 'Zu den Projekten →',
+
+  'projekte.title': 'Projekte',
+  'projekte.intro': 'Kurze, eigenständige Knobelaufgaben zum Ausprobieren. Filtere nach Sprache, Level, Thema oder Dauer, um etwas zu finden, das dir Spaß macht.',
+  'projekte.loading': 'Lade Projekte …',
+  'projekte.noResults': 'Keine Projekte passen zu dieser Filterkombination. Probier es mit weniger Filtern.',
+  'projekte.of': 'von',
+  'projekte.lessonsLabel': 'Lektionen',
+  'projekte.startBtn': 'Jetzt starten',
+  'projekte.filter.language': 'Sprache',
+  'projekte.filter.level': 'Level',
+  'projekte.filter.tags': 'Thema',
+  'projekte.filter.duration': 'Dauer',
+  'projekte.filter.reset': 'Filter zurücksetzen',
+
+  'projectLevel.einsteiger': 'Einsteiger',
+  'projectLevel.fortgeschritten': 'Fortgeschritten',
+
+  'projectDuration.kurz': 'Kurz',
+  'projectDuration.mittel': 'Mittel',
+  'projectDuration.laenger': 'Länger',
+
+  'projectTag.kryptografie': 'Kryptografie',
+  'projectTag.knobelaufgabe': 'Knobelaufgabe',
+  'projectTag.kommunikation': 'Kommunikation',
+  'projectTag.logikraetsel': 'Logikrätsel',
+  'projectTag.mathematik': 'Mathematik',
 };
