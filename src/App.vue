@@ -13,6 +13,7 @@
       <nav>
         <router-link v-if="showHomeLink" to="/">{{ t('nav.home') }}</router-link>
         <router-link :to="{ path: '/', hash: '#kurse-uebersicht' }">{{ t('nav.courses') }}</router-link>
+        <router-link to="/projekte">{{ t('nav.projects') }}</router-link>
         <button
           type="button"
           class="options-btn"
