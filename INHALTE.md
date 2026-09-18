@@ -346,5 +346,6 @@ Ordner-Mapping (immer paarweise anpassen):
 | Projekte-Übersicht + Filter (Sprache/Level/Tags/Dauer) | `src/views/ProjekteView.vue` |
 | JS-Projekt-Kurs – Lektion anzeigen (Pendant zu `LessonView.vue`) | `src/components/JsLessonView.vue` |
 | JS-Sandbox – iframe + RPC-Protokoll (Ausführen/Prüfen/Canvas) | `src/composables/useJsSandbox.js`, `src/components/JsSandboxFrame.vue` |
+| JS-Code-Editor mit IntelliSense/Tab (CodeMirror) | `src/components/JsCodeCell.vue` |
 | Fortschritts-Widget (12-Wochen) | `src/components/FortschrittWidget.vue` |
 | Missionen-Panel | `src/components/MissionenPanel.vue` |

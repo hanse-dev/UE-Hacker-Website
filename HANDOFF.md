@@ -1401,7 +1401,8 @@ grün, `npm run lint:spelling` sauber (neue Content-Wörter wie „Browserspiel"
 `cspell.json` ergänzt).
 
 **Bewusste Vereinfachungen ggü. dem ursprünglichen Plan:** kein `@codemirror/lang-javascript`
-(siehe oben, Textarea reicht wie bei den anderen Projekt-Kursen); kein separates `settleMs`-Feld
+(siehe oben, Textarea reicht wie bei den anderen Projekt-Kursen — **später per Nutzer-Feedback
+revidiert, siehe "Zweiter Nachtrag" unten**); kein separates `settleMs`-Feld
 (die `canvas_changed`-Prüfung bringt ihre eigene Wartezeit mit); Heartbeat/`alive`-Watchdog
 vorhanden, aber ohne automatischen Reset (nur ein Hinweistext neben dem manuellen
 Neu-starten-Button — ein laufendes Spiel soll nie automatisch weggeworfen werden).
@@ -1420,6 +1421,26 @@ selbst zeichnen sollen; Lektion 3 zeigt die komplette Animationsschleife fertig 
 Schleife selbst nachgebaut werden muss. Reine Content-/Struktur-Ergänzung, kein neuer Mechanismus
 (nutzt das bestehende `check: "self"`-Feld). Alle 7 Tests in `tests/js-spielewerkstatt.spec.js` auf
 die verschobenen Task-Indizes angepasst, ein Test erweitert (jetzt 3 statt 2 Aufgaben in Lektion 1).
+
+**Zweiter Nachtrag:** zwei weitere Wünsche direkt nach dem Ausprobieren. (1) Markierung, welcher
+Code-Bereich schon ausgeführt wurde: neuer `taskRan`-Zustand pro Aufgabe (gesetzt bei jedem
+Ausführen/Prüfen-Klick, unabhängig vom Ergebnis), oranger Rahmen um den Editor + kleiner Hinweis
+darunter, plus eine einmalige Erklärung oben in der Lektion (`jsLesson.ranExplainer`), was der
+Rahmen bedeutet. (2) IntelliSense + Tab-Einrücken auch hier: **revidiert** die in 3.39 bewusst
+getroffene Entscheidung gegen CodeMirror ("Textarea reicht wie bei den anderen Projekt-Kursen") —
+neue `src/components/JsCodeCell.vue` (Klon von `CodeCell.vue`, aber `@codemirror/lang-javascript`
+statt `python()`, neue Dependency), ersetzt die `<textarea class="code-editor">` in
+`JsLessonView.vue`. `scopeCompletionSource(globalThis)` schlägt echte Browser-Globals vor
+(`document`, `console`, `Math`, `requestAnimationFrame`, …) — per Playwright verifiziert: Tippen
+von "docum" zeigt "document" als ersten Vorschlag. Tab übernimmt erst einen offenen Vorschlag
+(VS-Code-Art), sonst rückt es ein (gleiches `Prec.highest`-Keymap-Muster wie bei `CodeCell.vue`).
+Der "schon ausgeführt"-Rahmen sitzt jetzt um den ganzen `.cm-host`-Block (`:deep()`-Selektor von
+`JsLessonView.vue` in die Kind-Komponente hinein). **Nebeneffekt:** `tests/site.spec.js`s bis dahin
+lokale `setCodeMirrorContent()`-Hilfsfunktion nach `tests/helpers/codemirror.js` ausgelagert (der
+im ursprünglichen Plan schon vorgesehene, bis dahin nie gemachte Schritt) und von
+`js-spielewerkstatt.spec.js` mitbenutzt — alle `.fill()`-Aufrufe auf `.code-editor` dort durch den
+Helper auf `.cm-host` ersetzt, zwei neue Tests für Autocomplete/Tab ergänzt. Volle `npm test`-Suite
+(92 Tests) grün.
 
 ---
 

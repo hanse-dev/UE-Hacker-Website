@@ -254,6 +254,8 @@ export default {
 
   // ── JS sandbox lesson (JsLessonView.vue + JsSandboxFrame.vue) ────────────
   'jsLesson.editorHint':   'Your code runs in its own sandboxed area. First look at the example and run it – then it\'s your turn. Every click on "Run"/"Check" starts fresh.',
+  'jsLesson.ranExplainer': '🟠 An orange frame around the code area shows you which code you already ran.',
+  'jsLesson.alreadyRan':   'You already ran this code.',
   'jsLesson.noOutput':     '(no output)',
   'jsLesson.canvasNote':   '🎨 Your play field was drawn – check it out above!',
   'jsLesson.unknownError': 'Unknown error',

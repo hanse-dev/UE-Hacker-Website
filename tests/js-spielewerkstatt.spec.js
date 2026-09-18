@@ -1,7 +1,10 @@
 import { test, expect } from '@playwright/test';
+import { setCodeMirrorContent } from './helpers/codemirror.js';
 
 // Prueft die neue JS-Sandbox-Ausfuehrungsumgebung (useJsSandbox.js/JsSandboxFrame.vue) und
 // JsLessonView.vue - unabhaengig von Pyodide, daher kein Kernel-Warmup noetig, laeuft schnell.
+// Der Code-Editor ist CodeMirror (JsCodeCell.vue), keine <textarea> - .fill() funktioniert nicht,
+// siehe tests/helpers/codemirror.js.
 test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
   test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => {
@@ -28,7 +31,8 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     // Task 0 ist ein bereits fertiges Beispiel zum Ausführen - die eigentliche Schreibaufgabe ist
     // Task 1 (erst danach kommt man "ins kalte Wasser").
     const task1 = page.locator('.task-block').nth(1);
-    await task1.locator('.code-editor').fill(
+    await setCodeMirrorContent(
+      task1.locator('.cm-host'),
       "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nctx.fillStyle = 'yellow';\nctx.fillRect(50, 50, 100, 80);"
     );
     await task1.locator('.btn-check').click();
@@ -37,6 +41,10 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     // Die Ausgabe soll auch ohne console.log einen Hinweis zeigen, dass das Spielfeld verändert
     // wurde - sonst wirkt "keine Ausgabe" faelschlich wie "nichts ist passiert".
     await expect(task1.locator('.output-content')).toContainText('Spielfeld');
+
+    // Ein oranger Rahmen um den Editor zeigt, dass dieser Code schon ausgeführt wurde.
+    await expect(task1.locator('.code-editor-wrapper')).toHaveClass(/code-editor-ran/);
+    await expect(task1.locator('.code-ran-note')).toBeVisible();
 
     const hasDrawing = await page
       .frameLocator('iframe.js-sandbox')
@@ -57,7 +65,8 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     await expect(page.locator('iframe.js-sandbox')).toBeVisible({ timeout: 15000 });
 
     const task1 = page.locator('.task-block').nth(1);
-    await task1.locator('.code-editor').fill(
+    await setCodeMirrorContent(
+      task1.locator('.cm-host'),
       "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\n// nichts gezeichnet"
     );
     await task1.locator('.btn-check').click();
@@ -69,7 +78,8 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     await expect(page.locator('iframe.js-sandbox')).toBeVisible({ timeout: 15000 });
 
     const task1 = page.locator('.task-block').nth(1);
-    await task1.locator('.code-editor').fill(
+    await setCodeMirrorContent(
+      task1.locator('.cm-host'),
       "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nctx.fillStyle = 'red';\nctx.fillRect(0, 0, 50, 50);"
     );
     await task1.locator('.btn-run').click();
@@ -108,7 +118,8 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     await expect(task0.locator('.task-status-label').last()).toHaveText(/ausprobiert/i);
 
     const task1 = page.locator('.task-block').nth(1);
-    await task1.locator('.code-editor').fill(
+    await setCodeMirrorContent(
+      task1.locator('.cm-host'),
       "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nctx.fillStyle = 'yellow';\nctx.fillRect(50, 50, 100, 80);"
     );
     await task1.locator('.btn-check').click();
@@ -142,15 +153,55 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
 
     // Funktioniert nur fuer den einen vorgerechneten Fall, nicht fuer die Randfaelle -
     // muss an den versteckten Testfaellen scheitern (beweist: keine Scheinloesung besteht).
-    await task1.locator('.code-editor').fill('function bewegeSchlaeger(x, taste) {\n  return 140;\n}');
+    await setCodeMirrorContent(task1.locator('.cm-host'), 'function bewegeSchlaeger(x, taste) {\n  return 140;\n}');
     await task1.locator('.btn-check').click();
     await expect(task1.locator('.feedback-error')).toBeVisible({ timeout: 10000 });
 
-    await task1.locator('.code-editor').fill(
+    await setCodeMirrorContent(
+      task1.locator('.cm-host'),
       "function bewegeSchlaeger(x, taste) {\n  let neueX = x;\n  if (taste === 'ArrowLeft') neueX -= 20;\n  if (taste === 'ArrowRight') neueX += 20;\n  if (neueX < 0) neueX = 0;\n  if (neueX > 320) neueX = 320;\n  return neueX;\n}"
     );
     await task1.locator('.btn-check').click();
     await expect(task1.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+  });
+
+  test('CodeMirror-Editor: Autovervollständigung schlägt Browser-Globals vor', async ({ page }) => {
+    await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await expect(page.locator('iframe.js-sandbox')).toBeVisible({ timeout: 15000 });
+
+    const task1 = page.locator('.task-block').nth(1);
+    const content = task1.locator('.cm-content');
+    await content.click();
+    await content.press('ControlOrMeta+a');
+    await content.press('Backspace');
+    // Zeichenweise tippen (statt insertText), damit CodeMirror die Vervollstaendigung live
+    // nachverfolgt, wie es beim echten Tippen im Browser auch passiert.
+    await page.keyboard.type('docum');
+
+    const suggestion = page.locator('.cm-tooltip-autocomplete .cm-completionLabel').first();
+    await expect(suggestion).toBeVisible({ timeout: 5000 });
+    await expect(suggestion).toContainText('document');
+
+    await page.keyboard.press('Tab');
+    await expect(content).toHaveText('document');
+  });
+
+  test('CodeMirror-Editor: Tab rückt ein, wenn keine Vervollständigung offen ist', async ({ page }) => {
+    await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await expect(page.locator('iframe.js-sandbox')).toBeVisible({ timeout: 15000 });
+
+    const task1 = page.locator('.task-block').nth(1);
+    const content = task1.locator('.cm-content');
+    await content.click();
+    await content.press('ControlOrMeta+a');
+    await content.press('Backspace');
+    await page.keyboard.type('function foo() {');
+    await page.keyboard.press('Enter');
+    await page.keyboard.press('Tab');
+    await page.keyboard.type('return 1;');
+
+    const text = await content.innerText();
+    expect(text).toMatch(/function foo\(\) \{\n\s+return 1;/);
   });
 
   test('Animationsschleife: canvas_changed erkennt eine wirklich laufende rAF-Schleife', async ({ page }) => {
@@ -170,13 +221,15 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     const task2 = page.locator('.task-block').nth(2);
     // Ball bewegt sich nicht (ballY bleibt 0) - clearRect+identischer Neuzeichnen ergibt
     // unveraenderte Pixel, canvas_changed muss das erkennen und die Aufgabe ablehnen.
-    await task2.locator('.code-editor').fill(
+    await setCodeMirrorContent(
+      task2.locator('.cm-host'),
       "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nlet ballY = 0;\n\nfunction frame() {\n  ctx.clearRect(0, 0, canvas.width, canvas.height);\n  ctx.fillStyle = 'orange';\n  ctx.beginPath();\n  ctx.arc(200, ballY, 10, 0, Math.PI * 2);\n  ctx.fill();\n\n  requestAnimationFrame(frame);\n}\n\nframe();"
     );
     await task2.locator('.btn-check').click();
     await expect(task2.locator('.feedback-error')).toBeVisible({ timeout: 10000 });
 
-    await task2.locator('.code-editor').fill(
+    await setCodeMirrorContent(
+      task2.locator('.cm-host'),
       "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nlet ballY = 0;\n\nfunction frame() {\n  ctx.clearRect(0, 0, canvas.width, canvas.height);\n  ctx.fillStyle = 'orange';\n  ctx.beginPath();\n  ctx.arc(200, ballY, 10, 0, Math.PI * 2);\n  ctx.fill();\n\n  ballY = ballY + 2;\n\n  requestAnimationFrame(frame);\n}\n\nframe();"
     );
     await task2.locator('.btn-check').click();

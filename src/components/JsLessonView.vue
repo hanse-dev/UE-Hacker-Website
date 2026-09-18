@@ -7,6 +7,7 @@
 
     <div class="lesson-editor-section">
       <p class="editor-hint">{{ t('jsLesson.editorHint') }}</p>
+      <p class="editor-hint editor-hint-ran">{{ t('jsLesson.ranExplainer') }}</p>
 
       <JsSandboxFrame ref="sandboxEl" />
 
@@ -19,13 +20,10 @@
             <span v-if="completedTasks.has(idx)" class="task-status-label">{{ t('lesson.taskDone') }}</span>
             <span v-else-if="!completedTasks.has(idx) && completedTasks.size > 0" class="task-status-label">{{ t('lesson.taskPending') }}</span>
           </p>
-          <textarea
-            v-model="taskCodes[idx]"
-            class="code-editor"
-            spellcheck="false"
-            rows="6"
-            :placeholder="t('lesson.taskPrefix') + (idx + 1) + '...'"
-          ></textarea>
+          <div class="code-editor-wrapper" :class="{ 'code-editor-ran': taskRan[idx] }">
+            <JsCodeCell v-model="taskCodes[idx]" />
+          </div>
+          <p v-if="taskRan[idx]" class="code-ran-note">▶ {{ t('jsLesson.alreadyRan') }}</p>
           <div class="editor-actions">
             <button @click="runTask(idx)" :disabled="checking" class="btn-run">
               {{ t('editor.run') }}
@@ -75,6 +73,7 @@
 <script>
 import { ref, watch, onMounted, onBeforeUnmount, computed } from 'vue';
 import JsSandboxFrame from './JsSandboxFrame.vue';
+import JsCodeCell from './JsCodeCell.vue';
 import { useInteractiveProgress } from '../composables/useInteractiveProgress';
 import { useLanguage } from '../composables/useLanguage';
 import { validateOutput } from '../composables/useTaskValidation';
@@ -82,7 +81,7 @@ import { useLessonContent } from '../composables/useLessonContent';
 
 export default {
   name: 'JsLessonView',
-  components: { JsSandboxFrame },
+  components: { JsSandboxFrame, JsCodeCell },
   props: {
     lesson: { type: Object, required: true },
     contentPath: { type: String, required: true },
@@ -115,6 +114,7 @@ export default {
     const taskOutputs = ref([]);
     const taskFeedback = ref([]);
     const taskAttempts = ref([]);
+    const taskRan = ref([]);
     const completedTasks = ref(new Set());
 
     const initTaskState = () => {
@@ -123,6 +123,7 @@ export default {
       taskOutputs.value = list.map(() => null);
       taskFeedback.value = list.map(() => null);
       taskAttempts.value = list.map(() => 0);
+      taskRan.value = list.map(() => false);
       completedTasks.value = new Set();
     };
 
@@ -157,6 +158,7 @@ export default {
       checking.value = true;
       taskOutputs.value[idx] = null;
       taskFeedback.value[idx] = null;
+      taskRan.value[idx] = true;
       sandboxEl.value.scrollIntoView();
 
       const result = await sandboxEl.value.run(taskCodes.value[idx]);
@@ -172,6 +174,7 @@ export default {
       if (checking.value) return;
       checking.value = true;
       taskFeedback.value[idx] = null;
+      taskRan.value[idx] = true;
       sandboxEl.value.scrollIntoView();
 
       const validation = tasks.value[idx]?.validation || {};
@@ -264,6 +267,7 @@ export default {
       taskCodes,
       taskOutputs,
       taskFeedback,
+      taskRan,
       runTask,
       checkTask,
       markSelfChecked,
@@ -344,6 +348,10 @@ export default {
   color: #555;
 }
 
+.editor-hint-ran {
+  color: var(--primary-purple, #4a2274);
+}
+
 .task-block {
   margin-bottom: 24px;
   padding-bottom: 24px;
@@ -417,25 +425,24 @@ a.btn-next {
   text-align: center;
 }
 
-.code-editor {
-  width: 100%;
+.code-editor-wrapper {
   max-width: 500px;
-  min-height: 110px;
-  padding: 15px;
-  box-sizing: border-box;
-  background: #fff;
-  border: 1px solid #dee2e6;
-  border-radius: 6px;
-  font-family: 'Courier New', Consolas, Monaco, monospace;
-  font-size: 14px;
-  line-height: 1.6;
-  resize: vertical;
-  margin-bottom: 12px;
+  border-radius: 8px;
+  transition: box-shadow 0.15s, border-color 0.15s;
 }
 
-.code-editor:focus {
-  outline: 2px solid var(--primary-purple, #4a2274);
-  outline-offset: -2px;
+/* Rahmen zeigt: dieser Code wurde schon mindestens einmal ausgefuehrt (siehe jsLesson.ranExplainer
+   oben in der Lektion) - unabhaengig davon, ob die Aufgabe schon bestanden ist. */
+.code-editor-wrapper.code-editor-ran :deep(.cm-host) {
+  border-color: var(--accent-orange, #ff9800);
+  box-shadow: 0 0 0 2px rgba(255, 152, 0, 0.2);
+}
+
+.code-ran-note {
+  margin: -6px 0 12px 0;
+  font-size: 0.82em;
+  color: var(--accent-orange, #fb8c00);
+  font-weight: 600;
 }
 
 .editor-actions {

@@ -254,6 +254,8 @@ export default {
 
   // ── JS-Sandbox-Lektion (JsLessonView.vue + JsSandboxFrame.vue) ───────────
   'jsLesson.editorHint':   'Dein Code läuft in einem eigenen, abgeschotteten Bereich. Schau dir zuerst das Beispiel an und führe es aus – danach bist du an der Reihe. Jeder Klick auf „Ausführen"/„Prüfen" startet frisch neu.',
+  'jsLesson.ranExplainer': '🟠 Ein oranger Rahmen um den Code-Bereich zeigt dir, welchen Code du schon ausgeführt hast.',
+  'jsLesson.alreadyRan':   'Diesen Code hast du schon ausgeführt.',
   'jsLesson.noOutput':     '(keine Ausgabe)',
   'jsLesson.canvasNote':   '🎨 Dein Spielfeld wurde gezeichnet – schau es dir oben an!',
   'jsLesson.unknownError': 'Unbekannter Fehler',
