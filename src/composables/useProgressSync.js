@@ -7,11 +7,13 @@ export const PROGRESS_APPLIED_EVENT = 'ue-hacker-progress-applied';
 const FIXED_SYNC_KEYS = [
   'ue-hacker-fortschritt',
   'ue-hacker-week-checks',
-  'ue-hacker-interactive-progress-kinder',
-  'ue-hacker-interactive-progress-jugendliche',
 ];
 
 const NOTEBOOK_PREFIX = 'ue-hacker-notebook-state-';
+// Deckt sowohl die Interaktiv-Kurs-Varianten (kinder/jugendliche) als auch jeden Projekt-Kurs ab
+// (ein Key pro contentPath, siehe useInteractiveProgress.js) - Praefix statt fester Liste, damit
+// ein neuer Projekt-Kurs automatisch mitsynct, ohne diese Datei anzufassen.
+const INTERACTIVE_PROGRESS_PREFIX = 'ue-hacker-interactive-progress-';
 
 let debounceTimer = null;
 let syncing = false;
@@ -37,7 +39,7 @@ function saveMeta(meta) {
 export function isSyncableKey(key) {
   if (!key || key === SYNC_META_KEY) return false;
   if (FIXED_SYNC_KEYS.includes(key)) return true;
-  return key.startsWith(NOTEBOOK_PREFIX);
+  return key.startsWith(NOTEBOOK_PREFIX) || key.startsWith(INTERACTIVE_PROGRESS_PREFIX);
 }
 
 export function touchSyncKey(key, at = new Date().toISOString()) {

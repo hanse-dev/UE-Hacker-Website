@@ -232,4 +232,104 @@ test.describe('UI: Admin + Header-Login', () => {
     const download = await downloadPromise;
     expect(download.suggestedFilename()).toMatch(/^Certificate_Week_1_/);
   });
+
+  test('Mein Profil: Abschluss-Abzeichen erscheint nach vollständigem Projekt-Kurs', async ({ page, request }) => {
+    const username = `profil_${Date.now()}`;
+    const adminLogin = await request.post(`${API}/api/admin/login`, {
+      data: { password: ADMIN_PASSWORD },
+    });
+    const { token: adminToken } = await adminLogin.json();
+    await request.post(`${API}/api/admin/users`, {
+      headers: { Authorization: `Bearer ${adminToken}` },
+      data: { username, password: 'pass1234', ageGroup: 'jugendliche' },
+    });
+
+    await page.addInitScript(() => {
+      localStorage.setItem('ue-hacker-interactive-progress-caesar-chiffre', JSON.stringify({
+        version: 1,
+        courseId: 'projekt-caesar-chiffre',
+        variant: 'caesar-chiffre',
+        completedLessonIds: ['lektion-01', 'lektion-02', 'lektion-03', 'lektion-04', 'lektion-05'],
+      }));
+    });
+
+    await page.goto('/');
+    // Ohne Login gibt es weder den Nav-Link noch Zugriff auf die Seite.
+    await expect(page.locator('nav a', { hasText: 'Mein Profil' })).toHaveCount(0);
+    await page.goto('/profil');
+    await expect(page.locator('.profil-login-required')).toBeVisible();
+
+    await page.locator('.options-btn').click();
+    await page.locator('.settings-modal .auth-btn.primary', { hasText: /Anmelden|Log in/ }).click();
+    await page.locator('.settings-modal input').nth(0).fill(username);
+    await page.locator('.settings-modal input[type="password"]').fill('pass1234');
+    await page.locator('.settings-modal .auth-btn.primary').click();
+    await expect(page.locator('.settings-modal')).toContainText(username);
+    await page.locator('.settings-close').click();
+
+    await expect(page.locator('nav a', { hasText: 'Mein Profil' })).toBeVisible();
+    await page.locator('nav a', { hasText: 'Mein Profil' }).click();
+    await expect(page).toHaveURL(/\/profil/);
+
+    await expect(page.locator('.badge-card')).toHaveCount(3, { timeout: 10000 });
+    const caesarBadge = page.locator('.badge-card', { hasText: 'Cäsar' });
+    await expect(caesarBadge).toHaveClass(/earned/);
+    await expect(caesarBadge.locator('.badge-icon')).toHaveText('🏅');
+
+    // Ein anderes Projekt, das noch nicht bearbeitet wurde, bleibt gesperrt.
+    const morseBadge = page.locator('.badge-card', { hasText: 'Morsecode' });
+    await expect(morseBadge).not.toHaveClass(/earned/);
+    await expect(morseBadge.locator('.badge-icon')).toHaveText('🔒');
+    await expect(morseBadge.locator('.badge-status')).toContainText('0/5');
+  });
+
+  test('Mein Profil: Projekt-Fortschritt wird über den Account synchronisiert', async ({ page, request }) => {
+    const username = `profilsync_${Date.now()}`;
+    const adminLogin = await request.post(`${API}/api/admin/login`, {
+      data: { password: ADMIN_PASSWORD },
+    });
+    const { token: adminToken } = await adminLogin.json();
+    await request.post(`${API}/api/admin/users`, {
+      headers: { Authorization: `Bearer ${adminToken}` },
+      data: { username, password: 'pass1234', ageGroup: 'jugendliche' },
+    });
+
+    await page.goto('/');
+    await page.locator('.options-btn').click();
+    await page.locator('.settings-modal .auth-btn.primary', { hasText: /Anmelden|Log in/ }).click();
+    await page.locator('.settings-modal input').nth(0).fill(username);
+    await page.locator('.settings-modal input[type="password"]').fill('pass1234');
+    await page.locator('.settings-modal .auth-btn.primary').click();
+    await expect(page.locator('.settings-modal')).toContainText(username);
+    await page.locator('.settings-close').click();
+
+    // Simuliert das Abschließen einer Lektion (touchSyncKey passiert normalerweise automatisch
+    // über useInteractiveProgress.js beim echten Lösen einer Aufgabe).
+    await page.evaluate(() => {
+      const key = 'ue-hacker-interactive-progress-caesar-chiffre';
+      const value = {
+        version: 1,
+        courseId: 'projekt-caesar-chiffre',
+        variant: 'caesar-chiffre',
+        completedLessonIds: ['lektion-01'],
+      };
+      localStorage.setItem(key, JSON.stringify(value));
+      const meta = JSON.parse(localStorage.getItem('ue-hacker-sync-meta') || '{}');
+      meta[key] = new Date().toISOString();
+      localStorage.setItem('ue-hacker-sync-meta', JSON.stringify(meta));
+    });
+    // Reload läuft restoreSession()/syncNow() erneut an, ohne auf den 1.5s-Debounce warten zu müssen.
+    await page.reload();
+    await page.waitForTimeout(2500);
+
+    const userLogin = await request.post(`${API}/api/login`, {
+      data: { username, password: 'pass1234' },
+    });
+    const session = await userLogin.json();
+    const progress = await request.get(`${API}/api/progress`, {
+      headers: { Authorization: `Bearer ${session.token}` },
+    });
+    const body = await progress.json();
+    expect(body.payload['ue-hacker-interactive-progress-caesar-chiffre'].value.completedLessonIds).toContain('lektion-01');
+  });
 });

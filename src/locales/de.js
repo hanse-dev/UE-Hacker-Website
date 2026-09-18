@@ -3,6 +3,7 @@ export default {
   'nav.home':    'Home',
   'nav.courses': 'Kurse',
   'nav.projects': 'Projekte',
+  'nav.profile': 'Mein Profil',
   'footer.copyright': '© 2026 Übergangshacker. Alle Rechte vorbehalten.',
 
   // ── Admin ───────────────────────────────────────────────────────────────
@@ -318,4 +319,12 @@ export default {
   'projectTag.kommunikation': 'Kommunikation',
   'projectTag.logikraetsel': 'Logikrätsel',
   'projectTag.mathematik': 'Mathematik',
+
+  'profil.title': 'Mein Profil',
+  'profil.loginRequired': 'Melde dich an, um dein Profil und deine Abschluss-Abzeichen zu sehen.',
+  'profil.greeting': 'Hallo, {name}!',
+  'profil.badges.title': 'Abschluss-Abzeichen',
+  'profil.badges.hint': 'Schließe ein Projekt komplett ab, um sein Abzeichen freizuschalten.',
+  'profil.loading': 'Lade Abzeichen …',
+  'profil.badges.earned': 'Geschafft! 🎉',
 };

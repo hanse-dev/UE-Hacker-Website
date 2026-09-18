@@ -3,6 +3,7 @@ export default {
   'nav.home':    'Home',
   'nav.courses': 'Courses',
   'nav.projects': 'Projects',
+  'nav.profile': 'My Profile',
   'footer.copyright': '© 2026 Übergangshacker. All rights reserved.',
 
   // ── Admin ───────────────────────────────────────────────────────────────
@@ -318,4 +319,12 @@ export default {
   'projectTag.kommunikation': 'Communication',
   'projectTag.logikraetsel': 'Logic puzzle',
   'projectTag.mathematik': 'Mathematics',
+
+  'profil.title': 'My Profile',
+  'profil.loginRequired': 'Log in to see your profile and completion badges.',
+  'profil.greeting': 'Hello, {name}!',
+  'profil.badges.title': 'Completion Badges',
+  'profil.badges.hint': 'Finish a project completely to unlock its badge.',
+  'profil.loading': 'Loading badges …',
+  'profil.badges.earned': 'Done! 🎉',
 };
