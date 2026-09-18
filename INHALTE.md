@@ -294,6 +294,10 @@ Ordner-Mapping (immer paarweise anpassen):
       Länge von `lessons.json`.
 - [ ] **Kein** Eintrag in `rewards-manifest*.json` nötig — Projekt-Kurse sind vom Zertifikats-/
       Punktesystem ausgenommen (wie der 12-Wochen-Kurs es hat, siehe Abschnitt 4).
+- [ ] **Kein** manueller Eintrag für das Abschluss-Abzeichen im Profil (`/profil`) nötig —
+      `useProjectBadges.js` nutzt dasselbe Wildcard-Glob wie `ProjekteView.vue` und erkennt jeden
+      Kurs mit `type: "projekt"` automatisch. Das Abzeichen gilt als verdient, sobald alle
+      Lektionen laut `useInteractiveProgress` abgeschlossen sind — kein separater Mechanismus.
 - [ ] DE-first ist ok (kein `-en`-Content-Ordner nötig) — `useCourseData.js`s `hasEnDescription`
       muss dann NICHT erweitert werden, die Beschreibung fällt automatisch auf Deutsch zurück.
 - [ ] `src/router/index.js`, `src/composables/useLessonContent.js` (Wildcard-Glob) und
@@ -320,3 +324,4 @@ Ordner-Mapping (immer paarweise anpassen):
 | Projekte-Übersicht + Filter (Sprache/Level/Tags/Dauer) | `src/views/ProjekteView.vue` |
 | Fortschritts-Widget (12-Wochen) | `src/components/FortschrittWidget.vue` |
 | Missionen-Panel | `src/components/MissionenPanel.vue` |
+| Profilseite (Login-gated) + Projekt-Abschluss-Abzeichen | `src/views/ProfilView.vue`, `src/composables/useProjectBadges.js` |

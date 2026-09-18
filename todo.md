@@ -2,8 +2,9 @@
 
 ## Now
 
-*(Nichts aktuell offen — Branch `kurs-projekte-uebersicht` ist lokal fertig/getestet, siehe
-"Fertige Branches" unten. Server-Deploy steht noch aus, siehe HANDOFF.md Abschnitt 5 "Betrieb".)*
+*(Nichts aktuell offen — Branch `profil-abschluss-badges` ist lokal fertig/getestet, siehe
+"Fertige Branches" unten. `kurs-projekte-uebersicht` ist bereits gemergt. Server-Deploy steht noch
+aus, siehe HANDOFF.md Abschnitt 5 "Betrieb".)*
 
 ### 12-Wochen-Kurs: Zellen-Format-Umstellung (Branch `12-wochen-kurs-zellen-format`)
 - [x] Alle 432 Notebooks (3 Varianten × 12 Wochen × 6 Typen × DE/EN) vom `.ipynb`-Format auf
@@ -317,6 +318,13 @@ und Server-Deploy bewusst zurückgestellt (siehe HANDOFF.md).
       + Wochen-ZIP-Download mit übernommen, alte `?week=&tab=`-Deep-Links (Einstufung,
       Cäsar-Chiffre) funktionieren unverändert weiter (intern übersetzt). Details: Plan-Datei
       `~/.claude/plans/twinkly-strolling-lovelace.md`.
+- [x] `profil-abschluss-badges` (HANDOFF.md 3.39, lokal fertig/getestet, noch nicht gemergt) —
+      neue Login-gated Seite `/profil` mit Abschluss-Abzeichen pro Projekt-Kurs (🏅/🔒, kein
+      Zertifikat/PDF/Quiz — bewusst leichtgewichtig, passend zum Projekt-Kurs-Format aus
+      `VISION.md`). Neue `useProjectBadges.js`, nutzt denselben Fortschritts-Mechanismus wie
+      `ProjectCourse.vue` selbst. Nebenbei gefunden: Projekt-Kurs-Fortschritt wurde nie mit dem
+      Account synchronisiert — `useProgressSync.js` auf Präfix-Erkennung umgestellt, deckt jetzt
+      automatisch jeden (auch künftigen) Projekt-Kurs ab.
 
 ---
 

@@ -10,7 +10,10 @@
 > `KURSPLAN.md` erstmals aus `CLAUDE.md` verlinkt und ans Track-Modell angeglichen (3.37, gemergt).
 > Darauf aufbauend: `ProjectCourse.vue` generalisiert, neue Projekte-Übersicht mit Filtern unter
 > `/projekte`, zwei neue Projekt-Kurse (Morsecode, Zahlen-Detektiv) — Branch
-> `kurs-projekte-uebersicht` (3.38), lokal fertig/getestet, noch **nicht** gemergt.
+> `kurs-projekte-uebersicht` (3.38, inzwischen gemergt). **Neu:** Login-gated `/profil`-Seite mit
+> Abschluss-Abzeichen pro Projekt-Kurs (3.39, Branch `profil-abschluss-badges`), lokal
+> fertig/getestet, noch **nicht** gemergt. Dabei auch Projekt-Kurs-Fortschritt erstmals mit dem
+> Account synchronisiert (war vorher nur pro Browser gültig).
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -1333,6 +1336,42 @@ Bisektions-Zahlenrater) — alle Code-Beispiele lokal mit `python3` gegenverifiz
 `tests/projekte.spec.js` (Kartenanzahl, Level-/Tag-Filter, Reset, Morsecode-Lektion lösen,
 Banner-Link); `tests/site.spec.js` an die neue Home-Struktur angepasst (Projekt-Kurse nicht mehr
 in `#kurse-uebersicht`, dafür ein `/projekte`-Teaser-Link).
+
+### 3.39 Mein Profil: Abschluss-Abzeichen für Projekt-Kurse (Branch `profil-abschluss-badges`)
+
+Nutzer-Wunsch nach einer leichtgewichtigen Anerkennung für abgeschlossene Projekt-Kurse — explizit
+**kein** Zertifikat wie beim 12-Wochen-Kurs (Quiz, PDF, Login-Pflicht wäre inkonsistent mit dem in
+`VISION.md` festgehaltenen Projekt-Kurs-Prinzip "kein Zertifikat, niedrige Einstiegshürde"),
+sondern ein einfaches Abzeichen im eigenen Profil.
+
+**Neue Seite `/profil`** (`ProfilView.vue`, Login-gated — ohne Account nur ein Hinweistext, analog
+zum PDF-Download-Gate aus 3.13): zeigt pro Projekt-Kurs eine Karte mit 🏅 (verdient) oder 🔒
+(gesperrt) + Fortschritt (`x/y Lektionen`). Neue Composable `useProjectBadges.js`: lädt
+`kurse.json`, filtert `type === 'projekt'`, nutzt für jeden Kurs `useInteractiveProgress` (exakt
+derselbe Fortschritts-Mechanismus, den `ProjectCourse.vue` selbst schon nutzt — kein zweites,
+paralleles Punktesystem) und `lessons.json`-Länge (gleiches Wildcard-Glob wie `ProjekteView.vue`).
+Abzeichen verdient, sobald `completedCount >= totalLessons`. Ein neuer Projekt-Kurs braucht dafür
+**keinen** manuellen Eintrag — automatisch erkannt, wie schon bei `/projekte` selbst.
+
+**Wichtiger Nebenfund beim Umsetzen:** Projekt-Kurs-Fortschritt (`ue-hacker-interactive-progress-
+<contentPath>`, ein Key pro Kurs) wurde bisher **nie** mit dem Account synchronisiert —
+`useProgressSync.js`s `FIXED_SYNC_KEYS` kannte nur `kinder`/`jugendliche` (die Interaktiv-Kurs-
+Varianten), nicht die Projekt-Kurse. Ohne Fix wäre "im eigenen Profil" nur pro Browser gültig
+gewesen, nicht wirklich am Account hängend. Fix: `isSyncableKey()` prüft jetzt einen Präfix
+(`ue-hacker-interactive-progress-`) statt zwei fest eingetragener Keys — deckt automatisch
+`kinder`/`jugendliche` UND jeden aktuellen wie künftigen Projekt-Kurs ab, ohne diese Datei je
+wieder anfassen zu müssen. Per Playwright verifiziert: `PUT /api/progress` liefert den Projekt-Key
+nach Login tatsächlich zurück.
+
+Neuer Nav-Link "Mein Profil" in `App.vue` (nur sichtbar wenn `isLoggedIn`, gleiches Muster wie
+`showHomeLink`). Zwei neue Tests in `tests/auth-ui.spec.js` (Login-Pflicht + Abzeichen erscheint
+nach vollständigem Kurs, unvollständiger Kurs bleibt gesperrt; Sync-Test). `npm run test:auth`
+(15 Tests) + `npm run test:checks` (59 Tests) grün.
+
+**Bewusst nicht gebaut:** kein PDF-Download, kein Quiz, kein Datum/"seit wann verdient" — passend
+zur bewusst niedrigen Schwelle des Formats. Eigener Branch von `main` (nicht auf
+`kurs-js-spielewerkstatt` aufgesetzt, obwohl dort entwickelt) — das Feature ist unabhängig vom
+JS-Kurs und gilt für alle Projekt-Kurse gleichermaßen, siehe WORKFLOW.md "ein Thema = ein Branch".
 
 ---
 
