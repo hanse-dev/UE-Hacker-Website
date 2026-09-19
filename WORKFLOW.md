@@ -37,6 +37,21 @@ Beim Commit läuft automatisch `npm run test:checks` (Einstufung, Check-Tab, Hom
 - Überspringen: `SKIP_CHECKS=1 git commit …` oder `git commit --no-verify`
 - Voller Notebook-Test weiterhin manuell: `npm test`
 
+## Auffälligkeiten: fixen oder dokumentieren (gilt auch für Sub-Agenten)
+
+Fällt bei der Arbeit etwas auf (Vorgriff auf spätere Wochen, Inkonsistenz zwischen Varianten/Sprachen,
+vereinfachte oder gekürzte Aufgaben, Lücken, Bugs), wird es **nie nur im Bericht erwähnt und dann
+liegengelassen**. Entweder:
+1. **gleich beheben**, wenn es klar ist und im eigenen Arbeitsbereich liegt (inkl. Lösungs-Notebook,
+   Texte, Tests dazu) — oder
+2. **dokumentieren**, damit es später überarbeitet werden kann: Eintrag in `todo.md` (Abschnitt
+   "Nachbesserungen") mit Fundstelle (Datei), was auffiel, warum es so blieb und Vorschlag zur Lösung.
+
+**Sub-Agenten:** Das Prompt-Briefing muss diese Regel enthalten. Sie fixen, was in ihren eigenen
+Dateien liegt, und melden alles andere unter **"Auffälligkeiten (nicht behoben)"** mit Datei, Grund und
+Lösungsvorschlag — die aufrufende Session überträgt das in `todo.md` bzw. behebt es selbst. Sie ändern
+keine geteilten Dateien (`todo.md`, `HANDOFF.md`, `src/`, `tests/`) selbst.
+
 ## Bei Inhaltsänderungen: Zusammenhänge prüfen
 
 Wann immer du Inhalte änderst (Notebooks, Markdown-Lektionen, JSON-Manifeste), **prüfe immer `INHALTE.md` Abschnitt 6** — dort steht, welche Dateien gleichzeitig angepasst werden müssen.

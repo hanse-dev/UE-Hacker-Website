@@ -63,6 +63,37 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.42–3.44 | JS-Grundkurs komplett (9 Wochen), Homepage-Redesign | `JsGrundkursTour.vue`, `example`-Aufgaben |
 | 3.46 | Woche 12: Text-Adventure-Abschlussprojekt statt Turtle | Komposition einziger neuer Begriff; List Comprehension neu in Woche 6 |
 
+### In Arbeit (Branch noch nicht gemergt — nach dem Merge ins Archiv verschieben)
+
+### 3.47 Python Woche 1–3 (alle Themen, DE + EN) im Lektions-Format (Branch `python-woche1-lektionen-format`)
+
+Woche 1–3, je Abenteuer/Pferde/Sci-Fi, DE und EN (Content `content/python-woche{N}-{thema}[-en]/`, Thema-Schlüssel auch bei EN deutsch) ist nicht mehr ein Notebook-Block pro Schritt, sondern **12 einzeln
+durchklickbare Lektionen** wie im JS-Grundkurs (5 Zauberformeln → 1 Debug mit 3 Bugs → 3 Missionen →
+3 Extra-Herausforderungen), gruppiert in einer Kuller-Leiste. Content: `content/python-woche1-abenteuer/`
+(`lessons.json` + `lektion-NN.md`/`debug-01.md`/`mission-NN.md`/`boss-NN.md`), Pyodide via
+`LessonView.vue`. **Umsetzung:** `JsCourseTour.vue` hat neue Props `engine` (`'pyodide'` rendert
+`LessonView` statt `JsLessonView`) und `embedded` (kein eigener Breadcrumb). `WeekTourStepper.vue` bekommt
+`lessonContentPath`: dann sind die Tour-Schritte nur noch **Lektionen** (die eingebettete Tour) + **Check**
+(Zertifikat bleibt erhalten), Glossar/Lösungen/Cheat-Sheets bleiben Nachschlagewerke im Seitenmenü.
+`WeekTour.vue` erkennt den Ordner automatisch per `import.meta.glob('content/python-woche*/lessons.json')` — eine neue Woche braucht nur den Content-Ordner (+ Lösungs-Notebook), keinen Code (`lessonContentPath`), alles andere
+bleibt Notebook.
+- **Aufgaben sind konkretisiert:** `LessonView` prüft nur die Ausgabe (`output_contains`), also mussten
+  freie Missionen/Boss-Quests feste Vorgaben bekommen (z.B. "gib genau `Position: 10, 20, 30` aus").
+  Bonus-Teile der Originale sind nur noch Text ohne Prüfung.
+- **Pferde:** die Übungen heißen dort "Übung N" statt "Lektion N" (sonst Verwechslung mit dem Abschnitt "Lektion"). Zauberformel/Übung/Protokoll = Funktion ist in allen Themen erklärt (Notebooks + Lektionen).
+- **Nicht übernommen:** Glossar-Tooltips, die Original-Notebooks (bleiben als Nachschlagewerk
+  "Glossar"/"Lösungen" unverändert, Lösungen passen aber inhaltlich noch zu den freien Original-Aufgaben,
+  nicht zu den konkretisierten). Woche 2 und 3 wurden per Sub-Agenten (je Woche/Thema/Sprache) erstellt, Skripte in der Session-Scratchpad; Missionen/Boss sind dort vereinfacht (feste Werte, teils weniger Elemente, weil Listen/if erst später kommen). `tests/python-lektionen-format.spec.js` findet alle `python-woche*`-Ordner selbst und prüft Integrität + Tour. **Achtung:** parallel hat eine andere Session Woche-4-Ordner angelegt (nicht Teil dieser Arbeit, siehe dortigen Stand).
+- **Gelernte Regel:** `CodeChallenge` startet den Kernel nicht selbst — frühere Tests liefen nur, weil ein
+  zuvor gemountetes Notebook ihn nebenbei initialisierte. Tests klicken jetzt `.btn-kernel` explizit
+  (`ensureKernel` in `zertifikate.spec.js`). Tests, die Woche 1 Abenteuer als Notebook brauchten
+  (`wochen-tour`, `notebooks`, `site`, `week-checks`, `zertifikate`, `storytelling`), nutzen jetzt
+  Woche 12 (notebooks.spec überspringt umgestellte Wochen automatisch) bzw. die neue Lektion; neuer Test: `tests/python-woche1-lektionen.spec.js`.
+
+### 3.48 Python Woche 4 (Schleifen) im Lektions-Format (Branch `python-woche1-lektionen-format`)
+
+Alle 6 Ordner `content/python-woche4-{abenteuer|pferde|scifi}[-en]/` per Sub-Agenten erstellt (Muster: Woche 2), jede Aufgabe mit `python3` gegen Referenzlösung/Stub geprüft. `tests/python-lektionen-format.spec.js` deckt Woche 4 mit ab (`WEEKS = [1, 2, 4]`); dabei einen Fehler gefunden und gefixt (Abenteuer EN hatte `section: "mission"` statt `"boss"` bei `boss-*`). DE/EN-Struktur danach angeglichen (Abenteuer 8, Pferde 7, Sci-Fi 7 Lektionen, gleiche IDs/Aufgaben; die kleinere Sprache wurde jeweils als Übersetzung der größeren neu aufgebaut). Mehrzeilige `expected` mit `\n` in der App bestätigt. Offen: Vorgriffe in Missionen/Boss vereinfacht — Details in `todo.md` "Nachbesserungen Lektions-Format Woche 4".
+
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
 **Content / Notebooks**

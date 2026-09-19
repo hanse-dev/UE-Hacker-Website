@@ -17,6 +17,34 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 - [ ] `kurs-python-spiele` — Idee verworfen zugunsten von `kurs-js-spielewerkstatt`: Pyodides
       synchrones Ausführungsmodell ist mit einer echten Spiele-Loop unvereinbar (Archiv HANDOFF 3.32).
 
+### 12-Wochen-Kurs: Lektions-Format (Branch `python-woche1-lektionen-format`)
+- [x] Woche 1 + 2 (Abenteuer, Pferde, Sci-Fi; DE + EN) als Einzel-Lektionen im JS-Kurs-Format (siehe HANDOFF.md 3.47)
+- [x] Woche 4 (Schleifen; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.48). Woche 3 fehlt noch.
+- [x] Woche 4: DE/EN-Struktur angeglichen (Abenteuer 8, Pferde 7, Sci-Fi 7 Lektionen; IDs/Aufgaben identisch, EN/DE jeweils als Übersetzung der größeren Fassung)
+- [ ] Nutzer-Feedback abwarten, dann entscheiden: Wochen 3, 5–12
+- [ ] Lösungen/Glossar für das neue Format anpassen (Lösungen passen noch zu den freien Original-Aufgaben)
+
+#### Nachbesserungen Lektions-Format Woche 4
+- [ ] Vorgriffe im Original (`break`/`continue`, `random`, Listen, `%`, `input()`) wurden in Missionen/Boss durch feste Werte, `if`/`or` und `while`-Bedingungen ersetzt, Mengen teils kleiner (z.B. Pferde Mission 1 bis 10 statt 20, Boss 1 5 statt 10 Sprünge). In Woche 6 als Wiederholung mit den vollen Original-Aufgaben nachziehen.
+- [ ] Debug Bug #1 war im Original eine Endlosschleife (5s-Timeout), jetzt Off-by-one — bewusst so.
+- [ ] Glossar (`0_glossar`) und Lernziele-Checkliste der Original-Missionen erwähnen Listen/`append` (Vorgriff auf Woche 6) — bereinigen. Lösungs-Notebooks passen weiter zu den freien Original-Aufgaben.
+- [x] `end=""` ist jetzt in Pferde DE/EN und Sci-Fi EN Lektion 7 erklärt; mehrzeilige `expected` mit `\n` (82 Aufgaben) in der App per Wegwerf-Test bestätigt.
+- [ ] Pferde DE Boss 3: "Noch 1 Runden" (Plural bei 1) — kosmetisch, DE+`expected` müssten gemeinsam geändert werden.
+- [ ] `input()`-Beispiele (Zugangscodes/Passwort/Futter-Abfrage) nicht übernommen — braucht `stdin`-Validierung.
+
+#### Nachbesserungen Lektions-Format (Woche 1–2)
+Beim Umbau aufgefallen; entweder bewusst so gelassen oder noch offen:
+- [x] `max()` (kam in Woche 2 Abenteuer DE/EN Boss 1 und Pferde EN Boss 1 als Vorgriff vor) durch Vergleich mit `>` ersetzt (Lektions-JSON, Boss-Text, Lösungs-Notebook)
+- [x] `//`, `%`, `**` (nur Sci-Fi EN Woche 2 Lektion 6, im Original und in allen anderen Themen nicht) entfernt
+- [ ] Woche 3: Debug-Bugs uneinheitlich (Abenteuer DE + Sci-Fi DE haben 4 Bugs, die übrigen Themen/Sprachen 3), ebenso Aufgabenzahl bei Missionen/Boss — angleichen (Konzept "identisch zwischen Varianten", siehe INHALTE.md)
+- [ ] Woche 3: `output_contains` prüft pro Aufgabe nur einen String; bei mehreren geforderten Ausgaben (z.B. Boss 1 Schritt 1, Boss 3 Schritt 2/4 Abenteuer DE) und hart codierten `print`s bleibt eine Lücke — Vorschlag: Mehrfach-Erwartung (`expectedAll`) oder `variables`-Check in `JsLessonView`/`LessonView` einführen
+- [ ] Woche 3 Boss 2 (Abenteuer) nutzt Klammern in `or (... and ...)` (leichter Vorgriff auf die Rangfolge von and/or), im Boss-Text erklärt
+- [ ] Alte Notebooks (Lektion/Debug/Missionen/Boss) der umgestellten Wochen sind noch im Repo (`_bundle` für den ZIP-Download) — entfernen bzw. ausblenden, sobald alle Wochen umgestellt sind
+- [ ] Extra-Herausforderungen Woche 2 sind teils kleiner als das Original (z.B. 4 statt 8 Schiffe, 3 statt 5 KI-Modelle), weil Listen erst in Woche 6 kommen und `output_contains` nur feste Ausgaben prüft — bei Bedarf in Woche 6 als Wiederholung mit den vollen Mengen nachziehen
+- [ ] `input()`-Aufgaben prüfen nur feste Textteile (Eingabe ist frei), z.B. Woche 2 Lektion "Eingaben" und Mission 3 — eine Prüfung mit vorgegebener Eingabe bräuchte eine neue `validation`-Variante (`stdin`)
+- [ ] Missionen/Boss-Quests haben feste Vorgaben statt freier Gestaltung; Bonus-Teile sind ungeprüft — ggf. kreative "Freestyle"-Aufgabe pro Woche ohne Prüfung ergänzen
+- [ ] Vergleiche mit `>` (Boolean-Kapitel Woche 2) werden für "Sieger/über Durchschnitt" genutzt, weil `if` erst in Woche 3 kommt — bewusst, im Original gehört `>` zum Boolean-Kapitel
+
 ---
 
 ## Nächste Themen (je eigener Branch von `main`)
