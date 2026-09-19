@@ -1,5 +1,3 @@
-# Problem: Code nach if nicht eingerückt
-level = 10
-if level >= 10:
-    print("Zugriff gewährt!")
-    print("Willkommen Kommandant!")
+befehl = "LANDEN"
+if befehl == "LANDEN":
+    print("Landesequenz eingeleitet!")

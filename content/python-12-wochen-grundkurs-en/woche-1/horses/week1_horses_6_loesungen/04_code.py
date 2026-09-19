@@ -1,2 +1,1 @@
-# Problem: text without quotation marks
-print("Hello Horse")
+print("Hello ranch!")

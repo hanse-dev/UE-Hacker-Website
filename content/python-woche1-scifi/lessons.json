@@ -1,0 +1,323 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Systemprotokoll 1: print()",
+    "file": "lektion-01.md",
+    "lessonSummary": "Erstes Protokoll gesendet! Mit print() bringst du alles auf den Bildschirm.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus und schau dir die Ausgabe unten an.",
+        "example": true,
+        "codeTemplate": "print(\"Hallo Welt!\")\nprint(\"Willkommen an Bord der Nebula-7!\")\n\n# Eine leere Zeile sorgt für mehr Übersicht\nprint()\nprint(\"=== SYSTEM STARTET ===\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Willkommen an Bord der Nebula-7!"
+        }
+      },
+      {
+        "instruction": "Gib mit print() eine eigene Begrüßung aus, die das Wort \"Nebula-7\" enthält.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nebula-7"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Systemprotokoll 2: Variablen",
+    "file": "lektion-02.md",
+    "lessonSummary": "Perfekt! In Variablen kannst du Werte aufbewahren und später wieder verändern.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zeigt Text- und Zahlen-Variablen.",
+        "example": true,
+        "codeTemplate": "schiff_name = \"Enterprise\"   # Text (String)\nbesatzung = 150             # Zahl (Integer)\n\nprint(schiff_name)\nprint(besatzung)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Enterprise"
+        }
+      },
+      {
+        "instruction": "Speichere den Text \"Andromeda\" in einer Variable namens sektor und gib die Variable mit print() aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Andromeda"
+        }
+      },
+      {
+        "instruction": "Lege eine Variable energie mit dem Wert 80 an. Ändere sie danach auf 45 und gib energie aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "45"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Systemprotokoll 3: Texte verbinden",
+    "file": "lektion-03.md",
+    "lessonSummary": "Genau so baust du aus Texten und Zahlen ganze Sätze – vergiss str() bei Zahlen nicht!",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus – beachte, wo str() nötig ist.",
+        "example": true,
+        "codeTemplate": "pilot = \"Kirk\"\nrang = \"Captain\"\nmission = 5\n\nprint(\"Name: \" + pilot)\nprint(\"Mission Nummer: \" + str(mission))\nprint(pilot + \" ist \" + rang + \" der Mission \" + str(mission))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Kirk ist Captain der Mission 5"
+        }
+      },
+      {
+        "instruction": "Lege eine Variable mission mit dem Wert 5 an und gib mit + und str() genau diesen Text aus: Mission Nummer: 5",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mission Nummer: 5"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Systemprotokoll 4: input()",
+    "file": "lektion-04.md",
+    "lessonSummary": "Jetzt kann dein Programm mit Menschen reden – input() macht es interaktiv.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es öffnet sich ein Eingabefenster – gib dort einen Namen ein.",
+        "example": true,
+        "codeTemplate": "name = input(\"Wie lautet dein Name, Kommandant:in? \")\nprint(\"Willkommen an Bord, \" + name + \"!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Willkommen an Bord, "
+        }
+      },
+      {
+        "instruction": "Frage mit input() nach dem Namen des Schiffs, speichere die Antwort in schiff und gib aus: Wir fliegen mit der (und dann der Schiffsname)",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wir fliegen mit der "
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Systemprotokoll 5: Kommentare",
+    "file": "lektion-05.md",
+    "lessonSummary": "Kommentare sind deine Logbucheinträge – Python ignoriert sie, aber du findest deinen Code damit leichter wieder.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Achte darauf, welche Zeile NICHT ausgeführt wird.",
+        "example": true,
+        "codeTemplate": "# Diese Zeile gibt den Namen des Schiffs aus\nprint(\"Enterprise\")\n\nprint(\"150 Besatzungsmitglieder\")  # zeigt die Besatzungsgröße an\n\nprint(\"Dies wird ausgeführt\")\n# print(\"Dies wird NICHT ausgeführt\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Dies wird ausgeführt"
+        }
+      },
+      {
+        "instruction": "Schreibe einen eigenen Kommentar und danach ein print(), das genau Kommentar gelesen ausgibt.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Kommentar gelesen"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug-Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Fehlermeldungen genau zu lesen ist die halbe Miete beim Debuggen.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll den Text System online ausgeben. Was ist falsch?",
+        "codeTemplate": "print(System online)",
+        "validation": {
+          "type": "output_contains",
+          "expected": "System online"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Sicherheitsstufe: 3 ausgeben. Was ist falsch?",
+        "codeTemplate": "level = 3\nprint(\"Sicherheitsstufe: \" + level)",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sicherheitsstufe: 3"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Systemstatus: Aktiv ausgeben. Was ist falsch?",
+        "codeTemplate": "status = \"Aktiv\"\nprint(\"Systemstatus: \" + statu)",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Systemstatus: Aktiv"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: Der Kadett",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission geschafft – du bist ein echter Kadett!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Gib genau diesen Satz mit print() aus: Willkommen auf der Nebula-7!",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Willkommen auf der Nebula-7!"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Speichere die Zahl 4711 in der Variable dienstnummer und gib mit str() genau diesen Satz aus: Meine Dienstnummer ist 4711.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Meine Dienstnummer ist 4711."
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: Der Datentechniker",
+    "file": "mission-02.md",
+    "lessonSummary": "Protokoll abgegeben – die Schiffsdaten sind vollständig!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Lege schiffstyp = \"Shuttle\", registrierung = \"NX-42\" und besatzung = 6 an. Gib die Überschrift === SCHIFFSPROTOKOLL === aus und darunter drei Zeilen: Typ: ..., Registrierung: ... und Besatzung: 6 (Zahl mit str()!).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Besatzung: 6"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Gib mit den Variablen aus Schritt 1 diesen Satz aus: Das Shuttle NX-42 hat 6 Besatzungsmitglieder.",
+        "codeTemplate": "schiffstyp = \"Shuttle\"\nregistrierung = \"NX-42\"\nbesatzung = 6\n\n# Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Das Shuttle NX-42 hat 6 Besatzungsmitglieder."
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: Der Shuttle-Pilot",
+    "file": "mission-03.md",
+    "lessonSummary": "Der Start ist geglückt – dein Flugprotokoll steht!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Gib die Überschrift === FLUGPROTOKOLL === aus, danach diesen Satz aus den Variablen: Shuttle 7 fliegt zum Ziel Mars. (Zahl mit str()!)",
+        "codeTemplate": "shuttle = 7\nziel = \"Mars\"\n\n# Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Shuttle 7 fliegt zum Ziel Mars."
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Starte den Countdown: Gib Start in: und danach in einer eigenen Zeile 3... 2... 1... Start! aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "3... 2... 1... Start!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Das Schiffslogbuch",
+    "file": "boss-01.md",
+    "lessonSummary": "Das Logbuch ist vollständig – die Sternenflotte-Archive sind stolz auf dich!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Lege vier Variablen zeile1 bis zeile4 mit je einem Satz über die Raumfahrt an. Gib dann die Überschrift === SCHIFFSLOGBUCH === aus und danach alle vier Zeilen.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "=== SCHIFFSLOGBUCH ==="
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Trage dich ein: Gib Autor: (dein Name) und Bewertung: 5 Sterne aus. Nutze dafür eine Variable und str() für die Zahl.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bewertung: 5 Sterne"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Der KI-Virus",
+    "file": "boss-02.md",
+    "lessonSummary": "Das System ist gerettet – der KI-Virus ist besiegt!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Lege drei Variablen schritt1 bis schritt3 mit je einem Bereinigungsschritt an. Gib die Überschrift === ANTIVIRUS-PROTOKOLL === aus und danach jeden Schritt mit seiner Nummer.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "=== ANTIVIRUS-PROTOKOLL ==="
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Speichere einen Bereinigungscode in einer Variable und gib Bereinigungscode: (der Code) aus. Gib danach System wird bereinigt... aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "System wird bereinigt..."
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Das Wurmloch",
+    "file": "boss-03.md",
+    "lessonSummary": "🎊 Glückwunsch! Du hast Woche 1 gemeistert – als Nächstes wartet Woche 2: Datentypen und Variablen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Lege farbe = \"blau\", form = \"spiralförmig\" und stabilitaet = 85 an und gib genau diese Zeile aus: Wurmloch: blau, spiralförmig, Stabilität 85%",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wurmloch: blau, spiralförmig, Stabilität 85%"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Gib die Überschrift === NAVIGATIONSWARNUNG === aus und darunter eine eigene Warnung für vorbeifliegende Schiffe.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "=== NAVIGATIONSWARNUNG ==="
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,1 @@
+"""**Explanation:** The variable is called `horse`, not `horses`. A wrong name causes a `NameError`."""

@@ -9,8 +9,10 @@ Ein **Systemprotokoll** ist wie ein Befehlssatz für die Raumstation - eine fest
 - 📊 Ohne Protokolle würde die Kommunikation zusammenbrechen
 
 **In der Programmierung lernen wir:**
-- Die grundlegenden Protokolle (Befehle) von Python
+- Die grundlegenden Protokolle (Befehle) von Python – in Python heißen sie **Funktionen**
 - Wie man diese Protokolle kombiniert
-- Wie man eigene Protokolle erstellt (später)
+- Wie man eigene Protokolle erstellt (später, in Woche 5)
+
+**Wichtig:** Jede Protokoll ist in Python eine **Funktion**. Du **rufst** sie auf, indem du ihren Namen schreibst und Klammern dahinter setzt – zum Beispiel `print('Hallo')`. Was in den Klammern steht, gibst du der Funktion mit.
 
 **Jedes Systemprotokoll, das du lernst, ist wie ein neues Werkzeug für dein Raumschiff!**"""

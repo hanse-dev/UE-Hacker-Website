@@ -1,0 +1,521 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Zauberformel 1: Die for-Schleife",
+    "file": "lektion-01.md",
+    "lessonSummary": "Stark! Die for-Schleife wiederholt Code – und range(n) zählt für dich von 0 an.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus und schau dir die Ausgabe unten an.",
+        "example": true,
+        "codeTemplate": "print(\"Der Turm der Wiederholungen öffnet sich!\")\nfor i in range(5):\n    print(f\"Durchlauf {i}: Der Wert von i ist {i}\")\nprint(\"Fertig!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Durchlauf 4: Der Wert von i ist 4"
+        }
+      },
+      {
+        "instruction": "Gib mit einer for-Schleife und range(3) diese drei Zeilen aus: Zauber 0, Zauber 1 und Zauber 2 (jeweils eigene Zeile).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zauber 2"
+        }
+      },
+      {
+        "instruction": "Lege anzahl = 0 an, lass die Schleife 4-mal laufen und erhöhe dabei anzahl jedes Mal um 1. Gib danach genau aus: Fertig gezaubert: 4 Mal",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Fertig gezaubert: 4 Mal"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Zauberformel 1: range() mit Start und Ende",
+    "file": "lektion-02.md",
+    "lessonSummary": "Du kannst Zahlenfolgen jetzt bei jeder Zahl starten – das Ende zählt aber nie mit!",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Die 8 wird nicht mehr mitgezählt!",
+        "example": true,
+        "codeTemplate": "print(\"=== Zählen von 3 bis 7 ===\")\nfor zahl in range(3, 8):\n    print(f\"Zahl: {zahl}\")\nprint(\"Die 8 ist nicht dabei!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zahl: 7"
+        }
+      },
+      {
+        "instruction": "Gib die Zahlen von 10 bis 14 aus, jeweils in der Form Zahl: 10, Zahl: 11 und so weiter (bis Zahl: 14).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zahl: 14"
+        }
+      },
+      {
+        "instruction": "Du erklimmst den Turm: Gib die Stockwerke 1 bis 6 aus, jeweils als Stockwerk 1, Stockwerk 2 … bis Stockwerk 6.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stockwerk 6"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Zauberformel 1: Schrittweite und rückwärts",
+    "file": "lektion-03.md",
+    "lessonSummary": "Mit einer dritten Zahl springst du in Schritten – und mit einem negativen Schritt zählst du rückwärts.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Erst in Zweierschritten hoch, dann rückwärts.",
+        "example": true,
+        "codeTemplate": "for gerade in range(0, 11, 2):\n    print(f\"Gerade Zahl: {gerade}\")\n\nfor i in range(5, 0, -1):\n    print(f\"{i}...\")\nprint(\"🚀 Start!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "🚀 Start!"
+        }
+      },
+      {
+        "instruction": "Zähle in Fünferschritten von 5 bis 25 und gib jede Zahl als Schritt: 5, Schritt: 10 … bis Schritt: 25 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Schritt: 25"
+        }
+      },
+      {
+        "instruction": "Starte einen Countdown: Zähle von 5 bis 1 rückwärts und gib jede Zahl in der Form 5..., 4... usw. aus (bis 1...). Gib danach Start! aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1..."
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Zauberformel 1: Buchstaben durchlaufen",
+    "file": "lektion-04.md",
+    "lessonSummary": "Auch Texte kannst du durchlaufen – Buchstabe für Buchstabe.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Die Schleife läuft Buchstabe für Buchstabe.",
+        "example": true,
+        "codeTemplate": "name = \"Aria\"\nprint(f\"Der Name ist: {name}\")\nfor buchstabe in name:\n    print(f\"  - {buchstabe}\")\nprint(\"Fertig!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "  - a"
+        }
+      },
+      {
+        "instruction": "Durchlaufe den Text \"Drache\" mit einer for-Schleife und gib jeden Buchstaben in der Form - D, - r, - a … aus.",
+        "codeTemplate": "zauber = \"Drache\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "- e"
+        }
+      },
+      {
+        "instruction": "Zähle mit einer for-Schleife die Buchstaben von zauber (Variable anzahl, Start 0) und gib genau aus: Buchstaben: 11",
+        "codeTemplate": "zauber = \"Blitzschlag\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Buchstaben: 11"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Zauberformel 2: Die while-Schleife",
+    "file": "lektion-05.md",
+    "lessonSummary": "Der Wächter der Bedingung: while wiederholt, solange die Bedingung wahr ist.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus.",
+        "example": true,
+        "codeTemplate": "zaehler = 0\nwhile zaehler <= 5:\n    print(f\"Zaehler: {zaehler}\")\n    zaehler += 1  # WICHTIG: sonst Endlosschleife!\nprint(\"Bei 6 wird die Bedingung falsch – Schluss!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zaehler: 5"
+        }
+      },
+      {
+        "instruction": "Zähle mit einer while-Schleife von 1 bis 4 und gib jede Zahl als Runde 1, Runde 2 … bis Runde 4 aus.",
+        "codeTemplate": "zaehler = 1\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Runde 4"
+        }
+      },
+      {
+        "instruction": "Solange gold kleiner als 100 ist, verdopple es (gold = gold * 2). Gib danach genau aus: Gold: 128",
+        "codeTemplate": "gold = 1\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gold: 128"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Zauberformel 2: Die Spiel-Schleife",
+    "file": "lektion-06.md",
+    "lessonSummary": "Genau so funktionieren Spiele: Sie laufen, bis das Leben aufgebraucht ist.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Der Held verliert jede Runde 20 Leben.",
+        "example": true,
+        "codeTemplate": "leben = 100\nrunde = 1\n\nwhile leben > 0:\n    schaden = 20\n    leben -= schaden\n    print(f\"Runde {runde}: -{schaden} Leben, übrig: {leben}\")\n    runde += 1\n\nprint(f\"Spiel vorbei nach {runde - 1} Runden!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Spiel vorbei nach 5 Runden!"
+        }
+      },
+      {
+        "instruction": "Ein Held hat 50 Leben und verliert pro Runde 10. Lass die Schleife laufen, bis leben nicht mehr größer als 0 ist, und zähle die Runden mit. Gib danach genau aus: Held gefallen nach 5 Runden",
+        "codeTemplate": "leben = 50\nrunde = 0\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Held gefallen nach 5 Runden"
+        }
+      },
+      {
+        "instruction": "Ein Zauberer hat 30 Mana, jeder Zauber kostet 8. Wirke Zauber, solange mana mindestens 8 ist (zaehle sie in zauber_anzahl mit). Gib danach genau aus: Zauber gewirkt: 3, Mana übrig: 6",
+        "codeTemplate": "mana = 30\nzauber_anzahl = 0\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zauber gewirkt: 3, Mana übrig: 6"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Zauberformel 3: Verschachtelte Schleifen",
+    "file": "lektion-07.md",
+    "lessonSummary": "Die Doppelspirale: Die innere Schleife läuft bei jedem Durchlauf der äußeren komplett durch.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Drei Türme mit je zwei Stockwerken.",
+        "example": true,
+        "codeTemplate": "print(\"=== Die drei Türme werden durchsucht ===\")\nfor turm in range(1, 4):\n    print(f\"Turm {turm}:\")\n    for stockwerk in range(1, 3):\n        print(f\"  Stockwerk {stockwerk} wird durchsucht...\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stockwerk 2 wird durchsucht..."
+        }
+      },
+      {
+        "instruction": "Gib mit zwei verschachtelten Schleifen alle Räume aus: Die äußere Schleife zählt Gänge von 1 bis 2, die innere Türen von 1 bis 3. Jede Zeile hat die Form Raum 1-1, Raum 1-2 … bis Raum 2-3.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Raum 2-3"
+        }
+      },
+      {
+        "instruction": "Zähle mit verschachtelten Schleifen (außen range(4), innen range(5)) in der Variable anzahl, wie oft die innere Schleife insgesamt läuft. Gib danach genau aus: Gesamt: 20",
+        "codeTemplate": "anzahl = 0\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gesamt: 20"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-08",
+    "section": "lektion",
+    "title": "Zauberformel 3: Muster aus Sternen",
+    "file": "lektion-08.md",
+    "lessonSummary": "Mit verschachtelten Schleifen zeichnest du ganze Muster – Zeile für Zeile.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Ein Rechteck aus Sternen.",
+        "example": true,
+        "codeTemplate": "for zeile in range(3):\n    for spalte in range(4):\n        print(\"⭐\", end=\" \")\n    print()\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "⭐ ⭐ ⭐ ⭐"
+        }
+      },
+      {
+        "instruction": "Zeichne 3 Zeilen mit je genau 5 Sternen * (ohne Leerzeichen dazwischen, also *****). Nutze print(\"*\", end=\"\") in der inneren Schleife und ein leeres print() nach jeder Zeile.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "*****"
+        }
+      },
+      {
+        "instruction": "Zeichne eine Treppe aus Sternen: In Zeile 1 steht ein *, in Zeile 2 zwei ** und so weiter bis Zeile 4 mit ****. Tipp: range(1, 5) für die Zeilen und range(zeile) für die Spalten.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "*\n**\n***\n****"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug-Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Bei Schleifen zählen Doppelpunkt, Einrückung und die richtigen Grenzen.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Zahl 1 bis Zahl 5 ausgeben. Was ist falsch?",
+        "codeTemplate": "for i in range(1, 5):\n    print(f\"Zahl {i}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zahl 5"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Zahl 1 bis Zahl 5 ausgeben. Was ist falsch?",
+        "codeTemplate": "for i in range(5)\n    print(f\"Zahl {i+1}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zahl 5"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Durchlauf 0, Durchlauf 1 und Durchlauf 2 ausgeben, danach Ende. Was ist falsch?",
+        "codeTemplate": "for i in range(3):\nprint(f\"Durchlauf {i}\")\nprint(\"Ende\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Durchlauf 2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: Der Zahlenzauberer",
+    "file": "mission-01.md",
+    "lessonSummary": "Der Zahlenzauberer ist ausgebildet: Du hast Zahlen ausgegeben, gefiltert und aufsummiert!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Zahlenzauber wirken: Gib mit einer for-Schleife alle Zahlen von 1 bis 20 aus, jeweils in der Form Zahl: 1 … Zahl: 20.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zahl: 20"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Besondere Zahlen: Gib nur die geraden Zahlen von 2 bis 20 aus, jeweils in der Form Gerade: 2 … Gerade: 20.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gerade: 20"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Magische Summe: Berechne die Summe aller Zahlen von 1 bis 100 in der Variable summe (Start 0) und gib genau aus: Summe: 5050",
+        "codeTemplate": "summe = 0\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Summe: 5050"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: Der Wächter des Turms",
+    "file": "mission-02.md",
+    "lessonSummary": "Du hast alle zehn Stockwerke geprüft – mit for und while!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Turmaufstieg: Gehe alle Stockwerke von 1 bis 10 durch und gib für jedes aus: Stockwerk 1: Alles ruhig... (bis Stockwerk 10: Alles ruhig...).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stockwerk 10: Alles ruhig..."
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Warnungen: Gib bei den Stockwerken 3, 6 und 9 eine Warnung in der Form Magische Störung auf Stockwerk 3 aus. Tipp: range(3, 10, 3).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Magische Störung auf Stockwerk 9"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Wartung: Gehe alle Stockwerke von 1 bis 10 durch. Bei Stockwerk 7 (Vergleich mit ==) gib nur Stockwerk 7 ist wegen Reparatur gesperrt aus, bei allen anderen Stockwerk N: Alles ruhig...",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stockwerk 7 ist wegen Reparatur gesperrt"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Turm bezwingen: Steige mit einer while-Schleife von Stockwerk 1 hinauf, solange stockwerk kleiner als 10 ist (jeweils um 1 erhöhen). Gib danach genau aus: Turm bezwungen: Stockwerk 10",
+        "codeTemplate": "stockwerk = 1\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Turm bezwungen: Stockwerk 10"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: Das unendliche Labyrinth",
+    "file": "mission-03.md",
+    "lessonSummary": "Du hast den Ausgang gefunden – mit clever gewählten Bedingungen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Ausgang suchen: Du bist bei position = 0 und schritte = 0. Gehe mit einer while-Schleife, solange position kleiner als 20 ist, jeden Schritt 2 Positionen weiter (schritte um 1 erhöhen). Gib danach genau aus: Ausgang erreicht nach 10 Schritten",
+        "codeTemplate": "position = 0\nschritte = 0\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ausgang erreicht nach 10 Schritten"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Statusmeldungen: Gib alle 10 Schritte von 10 bis 100 eine Meldung aus (Position ist doppelt so groß wie der Schritt), z. B. Schritt 10: Position 20 und zuletzt Schritt 100: Position 200. Tipp: range(10, 101, 10).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Schritt 100: Position 200"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Verloren?: Du gehst pro Schritt 3 Positionen weiter, der Ausgang liegt bei 50. Laufe mit einer while-Schleife, solange position kleiner als 50 und schritte kleiner als 10 ist. Wenn du danach noch unter 50 bist, gib genau aus: Verloren im Labyrinth nach 10 Schritten",
+        "codeTemplate": "position = 0\nschritte = 0\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Verloren im Labyrinth nach 10 Schritten"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Die Magische Zahl",
+    "file": "boss-01.md",
+    "lessonSummary": "Die magischen Zahlen sind entschlüsselt – gezählt, summiert und sichtbar gemacht!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Zahlen finden: Gib alle Vielfachen von 7 von 7 bis 98 aus, jeweils in der Form Magische Zahl: 7 … Magische Zahl: 98. Tipp: range(7, 101, 7).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Magische Zahl: 98"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Zählen und summieren: Lege anzahl = 0 und summe = 0 an, laufe über alle Vielfachen von 7 bis 98 und gib danach in einer Zeile genau aus: Anzahl: 14, Summe: 735",
+        "codeTemplate": "anzahl = 0\nsumme = 0\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 14, Summe: 735"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Visualisierung: Baue mit einem Text zeile (Start leer) für jede magische Zahl einen Stern ★ auf (zeile = zeile + \"★\") und gib die Zeile danach aus. Sie muss 14 Sterne enthalten.",
+        "codeTemplate": "zeile = \"\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "★★★★★★★★★★★★★★"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Die Zauberwelt",
+    "file": "boss-02.md",
+    "lessonSummary": "Die Zauberwelt steht – der Magier hat sein Ziel erreicht!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Feld aufbauen: Zeichne mit zwei verschachtelten Schleifen ein 8×8-Feld aus Punkten. Jede Zeile besteht aus genau 8 Punkten ........ (print(\".\", end=\"\") innen, ein leeres print() nach jeder Zeile).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "........"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Figuren platzieren: Zeichne das Feld noch einmal, aber setze den Magier M oben links (Zeile 0, Spalte 0) und das Ziel Z unten rechts (Zeile 7, Spalte 7). Die erste Zeile muss M....... lauten, die letzte .......Z.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "M......."
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Bewegung: Der Magier startet bei zeile = 0 und spalte = 0 und geht pro Zug diagonal (beide Werte +1), solange zeile kleiner als 7 ist. Gib nach jedem Zug aus: Magier auf Zeile 1, Spalte 1 (bis Zeile 7, Spalte 7).",
+        "codeTemplate": "zeile = 0\nspalte = 0\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Magier auf Zeile 7, Spalte 7"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Ziel erreicht: Zähle zusätzlich die Züge in zuege (Start 0). Gib nach der Schleife aus, wenn zeile und spalte beide 7 sind (Vergleich mit == und and): Ziel erreicht nach 7 Zügen",
+        "codeTemplate": "zeile = 0\nspalte = 0\nzuege = 0\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ziel erreicht nach 7 Zügen"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Der unendliche Dungeon",
+    "file": "boss-03.md",
+    "lessonSummary": "Der Dungeon scheint endlos – aber deine Schleifen wissen, wann Schluss ist.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Dungeon-Schleife: Der Held hat leben = 100 und verliert pro Raum 20 Leben. Zähle die Tiefe (Start 0) und laufe, solange leben größer als 0 ist. Gib danach genau aus: Held gefallen in Tiefe 5",
+        "codeTemplate": "leben = 100\ntiefe = 0\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Held gefallen in Tiefe 5"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Leben und Mana: leben = 100, mana = 50. Jeder Raum kostet 15 Leben und 10 Mana. Laufe, solange leben > 0 und mana > 0 ist. Gib danach genau aus: Tiefe 5, Leben 25, Mana 0",
+        "codeTemplate": "leben = 100\nmana = 50\ntiefe = 0\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Tiefe 5, Leben 25, Mana 0"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Heilungsquellen: leben = 100, Schaden pro Raum 15. In Tiefe 4 und Tiefe 8 heilt der Held nach dem Schaden 20 Leben (if mit == und or). Laufe, solange leben > 0 ist, und gib danach genau aus: Tiefste Tiefe: 10",
+        "codeTemplate": "leben = 100\ntiefe = 0\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Tiefste Tiefe: 10"
+        }
+      }
+    ]
+  }
+]

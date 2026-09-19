@@ -1,0 +1,1 @@
+"""**Explanation:** the calculation is outside the curly braces, so it is printed as text. Put it inside: `{gold + 50}`."""

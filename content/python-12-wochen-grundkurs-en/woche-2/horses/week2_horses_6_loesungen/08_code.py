@@ -1,3 +1,2 @@
-# Problem: variable in f-String not in curly braces
-hours = 3
-print(f"Training takes {hours} hours.")
+height_cm = 168
+print(type(height_cm))

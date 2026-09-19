@@ -1,1 +1,1 @@
-"""## 🐉 Boss-Quest Lösungsvorschläge"""
+"""## 🐛 Debug-Quest"""

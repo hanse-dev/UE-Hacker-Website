@@ -1,0 +1,1 @@
+"""**Explanation:** Without curly braces the words `robot` and `status` are printed as plain text. In an f-string, variables must be written in `{}` – and the string needs the `f` in front."""

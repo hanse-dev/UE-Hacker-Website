@@ -1,1 +1,3 @@
-"""**Erklärung:** Python kann Text und Zahlen nicht direkt zusammenfügen. Verwende `str()` oder wandle das 🔥 Feuer-Element mit `int()` in ein 🪨 Erd-Element um."""
+"""### Zauberformel 1: f-Strings – Aufgabe 2
+
+Lass Python im f-String rechnen und gib genau aus: Dein Gold: 125"""

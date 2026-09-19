@@ -1,0 +1,1 @@
+"""**Erklärung:** Die Variable heißt `status`, nicht `statu`. Ein falscher Name ergibt einen `NameError`."""

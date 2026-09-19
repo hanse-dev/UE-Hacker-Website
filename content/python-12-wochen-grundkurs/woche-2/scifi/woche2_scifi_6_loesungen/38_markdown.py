@@ -1,0 +1,1 @@
+"""**Erklärung:** Der Variablenname steht im f-String ohne geschweifte Klammern und wird deshalb als Text ausgegeben. Richtig: `{schildstaerke}`."""

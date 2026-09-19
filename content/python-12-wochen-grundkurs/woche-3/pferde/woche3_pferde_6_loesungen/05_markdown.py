@@ -1,1 +1,3 @@
-"""**Erklärung:** Mit `=` weist man einer Variable einen Wert zu. Zum Vergleichen braucht man `==` (zwei Gleichheitszeichen) – das ist einer der häufigsten Anfängerfehler!"""
+"""### Übung 1: if – Aufgabe 2
+
+Prüfe mit if, ob alter_pferd mindestens 3 ist, und gib dann genau aus: Alt genug zum Reiten!"""

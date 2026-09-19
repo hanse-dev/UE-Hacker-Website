@@ -1,0 +1,495 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Übung 1: Die for-Schleife",
+    "file": "lektion-01.md",
+    "lessonSummary": "Prima! Mit for und range() wiederholst du Code, so oft du willst.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus und schau dir an, wie oft die Schleife läuft.",
+        "example": true,
+        "codeTemplate": "for i in range(5):\n    print(f\"Runde {i+1}: Das Pferd trabt elegant\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Runde 5: Das Pferd trabt elegant"
+        }
+      },
+      {
+        "instruction": "Gib mit einer for-Schleife und range(3) dreimal genau das Wort Hufschlag aus (jedes Mal in einer eigenen Zeile).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hufschlag\nHufschlag\nHufschlag"
+        }
+      },
+      {
+        "instruction": "Gib mit range(4) und i+1 genau diese Zeilen aus: Runde 1, Runde 2, Runde 3, Runde 4",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Runde 1\nRunde 2\nRunde 3\nRunde 4"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Übung 2: range() mit Start und Ende",
+    "file": "lektion-02.md",
+    "lessonSummary": "Du bestimmst, wo die Zahlen anfangen und wo sie aufhören!",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Achte darauf, welche Hürde als letzte kommt.",
+        "example": true,
+        "codeTemplate": "for hurde in range(3, 8):\n    print(f\"Hürde {hurde}: Sprung!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hürde 7: Sprung!"
+        }
+      },
+      {
+        "instruction": "Gib die Hürden 1 bis 6 aus, jeweils genau so: Hürde 1: Sprung! (bis Hürde 6: Sprung!)",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hürde 1: Sprung!\nHürde 2: Sprung!\nHürde 3: Sprung!\nHürde 4: Sprung!\nHürde 5: Sprung!\nHürde 6: Sprung!"
+        }
+      },
+      {
+        "instruction": "Gib die Bahnen 10 bis 13 aus, jeweils genau so: Bahn 10, Bahn 11, Bahn 12, Bahn 13",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bahn 10\nBahn 11\nBahn 12\nBahn 13"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Übung 3: Schrittweite und rückwärts",
+    "file": "lektion-03.md",
+    "lessonSummary": "Springe Hürden über oder zähle rückwärts – mit dem dritten range()-Wert!",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Ein Countdown zum Turnierstart.",
+        "example": true,
+        "codeTemplate": "for i in range(5, 0, -1):\n    print(f\"{i}...\")\nprint(\"🏇 LOS!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "5...\n4...\n3...\n2...\n1...\n🏇 LOS!"
+        }
+      },
+      {
+        "instruction": "Zähle mit range(3, 0, -1) von 3 bis 1 herunter (jede Zahl in einer eigenen Zeile) und gib danach genau Start! aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "3\n2\n1\nStart!"
+        }
+      },
+      {
+        "instruction": "Gib die ungeraden Bahnnummern 1 bis 9 aus, jeweils genau so: Bahn 1, Bahn 3, Bahn 5, Bahn 7, Bahn 9 (Schrittweite 2).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bahn 1\nBahn 3\nBahn 5\nBahn 7\nBahn 9"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Übung 4: Schleifen über Text",
+    "file": "lektion-04.md",
+    "lessonSummary": "Auch Text lässt sich Buchstabe für Buchstabe durchlaufen!",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus und schau dir die einzelnen Buchstaben an.",
+        "example": true,
+        "codeTemplate": "name = \"Thunder\"\nprint(f\"Der Pferdename ist: {name}\")\nfor buchstabe in name:\n    print(f\"  - {buchstabe}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "  - r"
+        }
+      },
+      {
+        "instruction": "Gehe den Namen durch und gib jeden Buchstaben genau so aus: - L, - u, - n, - a (jeder in einer eigenen Zeile).",
+        "codeTemplate": "name = \"Luna\"\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "- L\n- u\n- n\n- a"
+        }
+      },
+      {
+        "instruction": "Zähle, wie oft der Buchstabe n im Namen vorkommt (mit einer Schleife und if), und gib genau aus: Anzahl n: 4",
+        "codeTemplate": "name = \"Sonnenschein\"\nanzahl = 0\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl n: 4"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Übung 5: Die while-Schleife",
+    "file": "lektion-05.md",
+    "lessonSummary": "Solange die Bedingung stimmt, läuft die while-Schleife weiter!",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Bis 5 zählen.",
+        "example": true,
+        "codeTemplate": "zaehler = 1\nwhile zaehler <= 5:\n    print(f\"Hufschlag {zaehler}\")\n    zaehler += 1\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hufschlag 1\nHufschlag 2\nHufschlag 3\nHufschlag 4\nHufschlag 5"
+        }
+      },
+      {
+        "instruction": "Gib mit einer while-Schleife die Zeilen Runde 1 bis Runde 4 aus (der Zähler startet bei 1).",
+        "codeTemplate": "zaehler = 1\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Runde 1\nRunde 2\nRunde 3\nRunde 4"
+        }
+      },
+      {
+        "instruction": "Addiere die Zahlen 1 bis 5 mit einer while-Schleife in der Variable summe und gib genau aus: Summe: 15",
+        "codeTemplate": "zaehler = 1\nsumme = 0\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Summe: 15"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Übung 6: while mit Bedingungen",
+    "file": "lektion-06.md",
+    "lessonSummary": "Die Schleife läuft, bis das Pferd erschöpft ist – die Bedingung entscheidet!",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus und beobachte, wann das Training endet.",
+        "example": true,
+        "codeTemplate": "ausdauer = 100\nrunde = 1\nwhile ausdauer > 20:\n    ausdauer -= 15\n    print(f\"Runde {runde}: übrig {ausdauer}%\")\n    runde += 1\nprint(f\"Training beendet nach {runde-1} Runden!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Training beendet nach 6 Runden!"
+        }
+      },
+      {
+        "instruction": "Das Pferd hat 50 kg Futter und frisst 10 kg pro Tag. Gib mit einer while-Schleife (solange futter > 0) jeden Tag nach dem Fressen genau aus: Futter übrig: 40 kg, danach 30, 20, 10 und 0 kg.",
+        "codeTemplate": "futter = 50\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Futter übrig: 40 kg\nFutter übrig: 30 kg\nFutter übrig: 20 kg\nFutter übrig: 10 kg\nFutter übrig: 0 kg"
+        }
+      },
+      {
+        "instruction": "Ein Pferdegewicht-Spiel: gewicht startet bei 1 und wird in der Schleife verdoppelt, solange gewicht < 100 ist. Gib danach genau aus: Ergebnis: 128",
+        "codeTemplate": "gewicht = 1\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ergebnis: 128"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Übung 7: Verschachtelte Schleifen",
+    "file": "lektion-07.md",
+    "lessonSummary": "Eine Schleife in einer Schleife – der Trainingsplan-Zirkel!",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Der Trainingsplan wird durchgegangen.",
+        "example": true,
+        "codeTemplate": "for woche in range(1, 4):\n    print(f\"Trainingswoche {woche}:\")\n    for einheit in range(1, 3):\n        print(f\"  Einheit {einheit} wird absolviert...\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Trainingswoche 3:\n  Einheit 1 wird absolviert...\n  Einheit 2 wird absolviert..."
+        }
+      },
+      {
+        "instruction": "Gib mit zwei verschachtelten Schleifen (woche 1 bis 2, einheit 1 bis 2) genau diese Zeilen aus: Woche 1, Einheit 1 / Woche 1, Einheit 2 / Woche 2, Einheit 1 / Woche 2, Einheit 2",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Woche 1, Einheit 1\nWoche 1, Einheit 2\nWoche 2, Einheit 1\nWoche 2, Einheit 2"
+        }
+      },
+      {
+        "instruction": "Zeichne ein Rechteck aus Sternen: 3 Zeilen mit je 4 Sternen (print(\"*\", end=\"\") in der inneren Schleife, print() nach der inneren Schleife). Die Ausgabe soll genau so aussehen: ****  ****  ****  (jeweils in einer eigenen Zeile).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "****\n****\n****"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug-Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Wer Schleifen und Einrückung versteht, findet solche Fehler schnell.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Runde 1 bis Runde 5 ausgeben (jede in einer eigenen Zeile). Was ist falsch?",
+        "codeTemplate": "for i in range(5):\n    print(f\"Runde {i}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Runde 1\nRunde 2\nRunde 3\nRunde 4\nRunde 5"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Pferd 1 bis Pferd 5 ausgeben. Was ist falsch?",
+        "codeTemplate": "for i in range(5)\n    print(f\"Pferd {i+1}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Pferd 1\nPferd 2\nPferd 3\nPferd 4\nPferd 5"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Übung 0, Übung 1 und Übung 2 ausgeben, danach Training beendet. Was ist falsch?",
+        "codeTemplate": "for i in range(3):\nprint(f\"Übung {i}\")\nprint(\"Training beendet\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Übung 0\nÜbung 1\nÜbung 2\nTraining beendet"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: Der Zähl-Reiter",
+    "file": "mission-01.md",
+    "lessonSummary": "Du zählst wie ein Profi – jede Runde sitzt!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Pferde-Runden zählen: Gib mit einer for-Schleife die Pferdenummern 1 bis 10 aus, jeweils genau so: Pferd: 1 (bis Pferd: 10)",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Pferd: 1\nPferd: 2\nPferd: 3\nPferd: 4\nPferd: 5\nPferd: 6\nPferd: 7\nPferd: 8\nPferd: 9\nPferd: 10"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Gerade Nummern: Gib die geraden Pferdenummern von 2 bis 10 aus, jeweils genau so: Gerade: 2, Gerade: 4, Gerade: 6, Gerade: 8, Gerade: 10",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gerade: 2\nGerade: 4\nGerade: 6\nGerade: 8\nGerade: 10"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Trainingsstunden: Addiere in einer Schleife die Zahlen 1 bis 10 in der Variable summe und gib genau aus: Summe: 55",
+        "codeTemplate": "summe = 0\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Summe: 55"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: Der Stall-Manager",
+    "file": "mission-02.md",
+    "lessonSummary": "Alle Boxen kontrolliert – der Reiterhof läuft rund!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Stall-Rundgang: Gehe die Boxen 1 bis 5 durch und gib für jede genau aus: Box 1: Kontrolle läuft... (bis Box 5)",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Box 1: Kontrolle läuft...\nBox 2: Kontrolle läuft...\nBox 3: Kontrolle läuft...\nBox 4: Kontrolle läuft...\nBox 5: Kontrolle läuft..."
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Warnungen: Gehe die Boxen 1 bis 6 durch. Bei Box 3 und Box 6 (if mit or) gib Box 3: Warnung bzw. Box 6: Warnung aus, bei allen anderen Box N: ok.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Box 1: ok\nBox 2: ok\nBox 3: Warnung\nBox 4: ok\nBox 5: ok\nBox 6: Warnung"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Renovierung: Gehe die Boxen 6 bis 8 durch. Box 7 ist in Renovierung und soll Box 7: Renovierung ausgeben, die anderen Box 6: geprüft und Box 8: geprüft.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Box 6: geprüft\nBox 7: Renovierung\nBox 8: geprüft"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: Das Ausdauer-Training",
+    "file": "mission-03.md",
+    "lessonSummary": "Das Pferd hat durchgehalten – und du hast die Schleifen im Griff!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Ausdauer sinkt: Das Pferd startet mit ausdauer = 100 und runden = 0. Solange ausdauer > 10 ist, sinkt sie pro Runde um 15. Zähle die Runden hoch und gib in jeder Runde genau aus: Runde 1: Ausdauer 85 (dann 70, 55, 40, 25, 10).",
+        "codeTemplate": "ausdauer = 100\nrunden = 0\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Runde 1: Ausdauer 85\nRunde 2: Ausdauer 70\nRunde 3: Ausdauer 55\nRunde 4: Ausdauer 40\nRunde 5: Ausdauer 25\nRunde 6: Ausdauer 10"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Ausdauer bis null: Die Ausdauer startet bei 100 und sinkt pro Runde um 20. Gib mit while (solange ausdauer > 0) nach jeder Runde genau aus: Ausdauer: 80, Ausdauer: 60, Ausdauer: 40, Ausdauer: 20, Ausdauer: 0",
+        "codeTemplate": "ausdauer = 100\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ausdauer: 80\nAusdauer: 60\nAusdauer: 40\nAusdauer: 20\nAusdauer: 0"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Bericht: Hier läuft die Schleife aus Schritt 1 ohne Ausgabe. Gib danach genau aus: Training beendet nach 6 Runden",
+        "codeTemplate": "ausdauer = 100\nrunden = 0\nwhile ausdauer > 10:\n    ausdauer -= 15\n    runden += 1\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Training beendet nach 6 Runden"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Das Springen-Training",
+    "file": "boss-01.md",
+    "lessonSummary": "Der Sprung-Parcours ist ausgewertet – jede Höhe stimmt!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Parcours: Der erste Sprung ist 90 cm hoch, jeder weitere 10 cm höher. Berechne in einer for-Schleife (range(5)) die Höhe als 90 + i*10 und gib aus: Sprung 1: 90 cm (bis Sprung 5: 130 cm)",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sprung 1: 90 cm\nSprung 2: 100 cm\nSprung 3: 110 cm\nSprung 4: 120 cm\nSprung 5: 130 cm"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Hohe Sprünge zählen: Ergänze in der Schleife ein if, das mitzählt, wie viele der 5 Sprünge höher als 100 cm sind, und gib danach genau aus: Höher als 100 cm: 3",
+        "codeTemplate": "anzahl = 0\nfor i in range(5):\n    hoehe = 90 + i * 10\n    # 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Höher als 100 cm: 3"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Gesamthöhe: Addiere alle 5 Höhen in gesamt und gib genau aus: Gesamthöhe: 550 cm",
+        "codeTemplate": "gesamt = 0\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gesamthöhe: 550 cm"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Durchschnitt: Teile die Gesamthöhe durch 5 und gib genau aus: Durchschnitt: 110.0 cm",
+        "codeTemplate": "gesamt = 550\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Durchschnitt: 110.0 cm"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Das Reitbrett",
+    "file": "boss-02.md",
+    "lessonSummary": "Das Reitbrett steht – jedes Feld sitzt an der richtigen Stelle!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Brett aufbauen: Erstelle mit zwei verschachtelten Schleifen ein 4×4-Brett aus Punkten (print(\".\", end=\"\") innen, print() nach der inneren Schleife). Die Ausgabe: ....  ....  ....  ....  (jeweils in einer eigenen Zeile).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "....\n....\n....\n...."
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Pferd platzieren: Baue ein 3×3-Brett (Zeilen und Spalten 0 bis 2). Auf Zeile 1, Spalte 1 steht das Pferd P, sonst ein Punkt. Erwartete Ausgabe: ...  .P.  ...  (jeweils in einer eigenen Zeile).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "...\n.P.\n..."
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Koordinaten: Gib für die Zeilen 1 bis 2 und die Spalten 1 bis 3 (Zeile außen, Spalte innen) genau aus: Feld 1-1, Feld 1-2, Feld 1-3, Feld 2-1, Feld 2-2, Feld 2-3",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Feld 1-1\nFeld 1-2\nFeld 1-3\nFeld 2-1\nFeld 2-2\nFeld 2-3"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Dressur-Treppe: Baue eine Treppe aus Sternen: In Zeile 1 steht 1 Stern, in Zeile 2 zwei Sterne, bis Zeile 4 mit vier Sternen (äußere Schleife range(1, 5), innere range(zeile)). Ausgabe: *  **  ***  ****  (jeweils in einer eigenen Zeile).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "*\n**\n***\n****"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Das Marathon-Reiten",
+    "file": "boss-03.md",
+    "lessonSummary": "🎊 Glückwunsch! Du hast Woche 4 gemeistert – als Nächstes wartet Woche 5: Funktionen (def, return)!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Marathon-Schleife: Start mit energie = 100 und distanz = 0. Solange energie > 0 ist, sinkt sie pro Runde um 25 und distanz steigt um 1. Gib in jeder Runde genau aus: Runde 1: Energie 75 (dann 50, 25, 0).",
+        "codeTemplate": "energie = 100\ndistanz = 0\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Runde 1: Energie 75\nRunde 2: Energie 50\nRunde 3: Energie 25\nRunde 4: Energie 0"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Futter-Pause: Start mit energie = 100 und runde = 0. Solange runde < 6 ist, erhöhe runde um 1 und ziehe 15 Energie ab. In Runde 3 gibt es eine Futter-Pause: dann kommen zusätzlich 20 Energie dazu. Gib nach jeder Runde aus: Runde 1: Energie 85, Runde 2: Energie 70, Runde 3: Energie 75, Runde 4: Energie 60, Runde 5: Energie 45, Runde 6: Energie 30",
+        "codeTemplate": "energie = 100\nrunde = 0\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Runde 1: Energie 85\nRunde 2: Energie 70\nRunde 3: Energie 75\nRunde 4: Energie 60\nRunde 5: Energie 45\nRunde 6: Energie 30"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Statistik: Hier läuft die Marathon-Schleife aus Schritt 1 ohne Ausgabe. Gib danach genau aus: Distanz: 4 Runden und in der nächsten Zeile Letzte Energie: 0",
+        "codeTemplate": "energie = 100\ndistanz = 0\nwhile energie > 0:\n    energie -= 25\n    distanz += 1\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Distanz: 4 Runden\nLetzte Energie: 0"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Zieleinlauf: Zähle mit range(3, 0, -1) die letzten Runden herunter und gib aus: Noch 3 Runden, Noch 2 Runden, Noch 1 Runden. Danach genau: Ziel erreicht!",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Noch 3 Runden\nNoch 2 Runden\nNoch 1 Runden\nZiel erreicht!"
+        }
+      }
+    ]
+  }
+]

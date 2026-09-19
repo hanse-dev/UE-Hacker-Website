@@ -1,2 +1,2 @@
-"""# 🔧 Solutions – 🐴 Week 2 – Data Types and Variables: The Four Hoof-Beat Types
-> Tried it yourself first? Then check here!"""
+"""# 🔧 Week 2 – Solutions
+> Tried it yourself first? Then check here! There are often several right ways – these are possible solutions to the tasks in the lessons."""

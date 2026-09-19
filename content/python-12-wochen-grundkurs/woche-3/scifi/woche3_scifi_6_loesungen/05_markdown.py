@@ -1,1 +1,3 @@
-"""**Erklärung:** Mit `=` weist man einer Variable einen Wert zu. Zum Vergleichen braucht man `==` (zwei Gleichheitszeichen) – das ist einer der häufigsten Anfängerfehler!"""
+"""### Systemprotokoll 1: if – Aufgabe 2
+
+Die Boolean-Variable system_online ist schon angelegt. Nutze sie direkt als Bedingung und gib aus: Alle Systeme laufen."""

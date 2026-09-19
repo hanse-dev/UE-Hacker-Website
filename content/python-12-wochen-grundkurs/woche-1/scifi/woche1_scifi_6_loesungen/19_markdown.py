@@ -1,1 +1,1 @@
-"""### ⭐⭐⭐⭐⭐ Boss-Quest 2: Der KI-Virus"""
+"""**Erklärung:** Text muss in Anführungszeichen stehen. Ohne sie liest Python `System` und `online` als Variablennamen – die es nicht gibt."""

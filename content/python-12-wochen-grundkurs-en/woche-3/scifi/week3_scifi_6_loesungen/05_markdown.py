@@ -1,1 +1,3 @@
-"""**Explanation:** With `=` you assign a value to a variable. To compare you need `==` (two equals signs) – this is one of the most common beginner mistakes!"""
+"""### System Protocol 1: if – Task 2
+
+Create command = "STOP". Use if to check command == "STOP" and print exactly: Engines halted"""

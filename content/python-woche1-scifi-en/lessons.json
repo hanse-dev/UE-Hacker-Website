@@ -1,0 +1,323 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "System Protocol 1: print()",
+    "file": "lektion-01.md",
+    "lessonSummary": "First protocol sent! With print() you put anything on the screen.",
+    "tasks": [
+      {
+        "instruction": "Run this example and look at the output below.",
+        "example": true,
+        "codeTemplate": "print(\"Hello World!\")\nprint(\"Welcome aboard the Nebula-7!\")\n\n# An empty line makes things easier to read\nprint()\nprint(\"=== SYSTEM STARTING ===\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Welcome aboard the Nebula-7!"
+        }
+      },
+      {
+        "instruction": "Use print() to output your own greeting that contains the word \"Nebula-7\".",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nebula-7"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "System Protocol 2: Variables",
+    "file": "lektion-02.md",
+    "lessonSummary": "Perfect! Variables store values that you can change later.",
+    "tasks": [
+      {
+        "instruction": "Run this example. It shows a text variable and a number variable.",
+        "example": true,
+        "codeTemplate": "ship_name = \"Enterprise\"   # Text (String)\ncrew = 150                 # Number (Integer)\n\nprint(ship_name)\nprint(crew)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Enterprise"
+        }
+      },
+      {
+        "instruction": "Store the text \"Andromeda\" in a variable called sector and print the variable with print().",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Andromeda"
+        }
+      },
+      {
+        "instruction": "Create a variable energy with the value 80. Then change it to 45 and print energy.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "45"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "System Protocol 3: Joining Texts",
+    "file": "lektion-03.md",
+    "lessonSummary": "That's how you build whole sentences from texts and numbers – don't forget str() for numbers!",
+    "tasks": [
+      {
+        "instruction": "Run this example – notice where str() is needed.",
+        "example": true,
+        "codeTemplate": "pilot = \"Kirk\"\nrank = \"Captain\"\nmission = 5\n\nprint(\"Name: \" + pilot)\nprint(\"Mission number: \" + str(mission))\nprint(pilot + \" is \" + rank + \" of Mission \" + str(mission))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Kirk is Captain of Mission 5"
+        }
+      },
+      {
+        "instruction": "Create a variable mission with the value 5 and use + and str() to print exactly this text: Mission number: 5",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mission number: 5"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "System Protocol 4: input()",
+    "file": "lektion-04.md",
+    "lessonSummary": "Now your program can talk to people – input() makes it interactive.",
+    "tasks": [
+      {
+        "instruction": "Run this example. An input window opens – type a name into it.",
+        "example": true,
+        "codeTemplate": "name = input(\"What is your name, Commander? \")\nprint(\"Welcome aboard, \" + name + \"!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Welcome aboard, "
+        }
+      },
+      {
+        "instruction": "Ask for the name of the ship with input(), store the answer in ship and print: We are flying the (followed by the ship's name)",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "We are flying the "
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "System Protocol 5: Comments",
+    "file": "lektion-05.md",
+    "lessonSummary": "Comments are your log entries – Python ignores them, but they help you find your way around your code.",
+    "tasks": [
+      {
+        "instruction": "Run this example. Notice which line is NOT executed.",
+        "example": true,
+        "codeTemplate": "# This line prints the ship's name\nprint(\"Enterprise\")\n\nprint(\"150 crew members\")  # shows the crew size\n\nprint(\"This will run\")\n# print(\"This will NOT run\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "This will run"
+        }
+      },
+      {
+        "instruction": "Write a comment of your own and then a print() that outputs exactly: Comment read",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Comment read"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "All bugs found! Reading error messages carefully is half the battle when debugging.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Goal: The program should print the text System online. What is wrong?",
+        "codeTemplate": "print(System online)",
+        "validation": {
+          "type": "output_contains",
+          "expected": "System online"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Goal: The program should print Security level: 3. What is wrong?",
+        "codeTemplate": "level = 3\nprint(\"Security level: \" + level)",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Security level: 3"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Goal: The program should print System status: Active. What is wrong?",
+        "codeTemplate": "status = \"Active\"\nprint(\"System status: \" + statu)",
+        "validation": {
+          "type": "output_contains",
+          "expected": "System status: Active"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: The Cadet",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission accomplished – you are a true cadet!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Use print() to output exactly this sentence: Welcome aboard the Nebula-7!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Welcome aboard the Nebula-7!"
+        }
+      },
+      {
+        "instruction": "Step 2 – Store the number 4711 in the variable service_number and use str() to output exactly this sentence: My service number is 4711.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "My service number is 4711."
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: The Data Technician",
+    "file": "mission-02.md",
+    "lessonSummary": "Protocol submitted – the ship data is complete!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create ship_type = \"Shuttle\", registration = \"NX-42\" and crew = 6. Output the heading === SHIP PROTOCOL === and below it three lines: Type: ..., Registration: ... and Crew: 6 (number with str()!).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Crew: 6"
+        }
+      },
+      {
+        "instruction": "Step 2 – Using the variables from step 1, output this sentence: The Shuttle NX-42 has 6 crew members.",
+        "codeTemplate": "ship_type = \"Shuttle\"\nregistration = \"NX-42\"\ncrew = 6\n\n# Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "The Shuttle NX-42 has 6 crew members."
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: The Shuttle Pilot",
+    "file": "mission-03.md",
+    "lessonSummary": "Launch successful – your flight protocol is in place!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Output the heading === FLIGHT PROTOCOL ===, then this sentence built from the variables: Shuttle 7 is flying to the destination Mars. (number with str()!)",
+        "codeTemplate": "shuttle = 7\ndestination = \"Mars\"\n\n# Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Shuttle 7 is flying to the destination Mars."
+        }
+      },
+      {
+        "instruction": "Step 2 – Start the countdown: output Launch in: and then, on its own line, 3... 2... 1... Launch!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "3... 2... 1... Launch!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra challenge 1: The Ship's Log",
+    "file": "boss-01.md",
+    "lessonSummary": "The log is complete – the Starfleet archives are proud of you!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create four variables line1 to line4, each with a sentence about space travel. Then output the heading === SHIP'S LOG === followed by all four lines.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "=== SHIP'S LOG ==="
+        }
+      },
+      {
+        "instruction": "Step 2 – Sign the log: output Author: (your name) and Rating: 5 stars. Use a variable and str() for the number.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rating: 5 stars"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra challenge 2: The AI Virus",
+    "file": "boss-02.md",
+    "lessonSummary": "The system is saved – the AI virus is defeated!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create three variables step1 to step3, each with one cleaning step. Output the heading === ANTIVIRUS PROTOCOL === and then each step with its number.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "=== ANTIVIRUS PROTOCOL ==="
+        }
+      },
+      {
+        "instruction": "Step 2 – Store a cleaning code in a variable and output Cleaning code: (the code). Then output System is being cleaned...",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "System is being cleaned..."
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra challenge 3: The Wormhole",
+    "file": "boss-03.md",
+    "lessonSummary": "🎊 Congratulations! You have mastered Week 1 – next up is Week 2: Data types and variables!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create colour = \"blue\", shape = \"spiral\" and stability = 85 and output exactly this line: Wormhole: blue, spiral, stability 85%",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wormhole: blue, spiral, stability 85%"
+        }
+      },
+      {
+        "instruction": "Step 2 – Output the heading === NAVIGATION WARNING === and below it a warning of your own for passing ships.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "=== NAVIGATION WARNING ==="
+        }
+      }
+    ]
+  }
+]

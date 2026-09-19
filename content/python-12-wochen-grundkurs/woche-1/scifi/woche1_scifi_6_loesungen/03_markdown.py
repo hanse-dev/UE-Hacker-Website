@@ -1,1 +1,3 @@
-"""**Erklärung:** Python liest `System` und `online` als Variablennamen – aber diese Variablen gibt es nicht. Text muss immer in Anführungszeichen stehen, damit Python weiß: das ist Text, keine Variable."""
+"""### Systemprotokoll 1: print()
+
+Gib mit print() eine eigene Begrüßung aus, die das Wort "Nebula-7" enthält."""

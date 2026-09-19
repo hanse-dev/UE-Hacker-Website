@@ -1,2 +1,2 @@
-"""# 🔧 Lösungen – 🐴 Woche 2 – Datentypen und Variablen: Die vier Hufschlag-Typen
-> Erst selber versucht? Dann check hier nach!"""
+"""# 🔧 Woche 2 – Lösungen
+> Erst selber versucht? Dann check hier nach! Es gibt oft mehrere richtige Wege – das hier sind mögliche Lösungen zu den Aufgaben der Lektionen."""

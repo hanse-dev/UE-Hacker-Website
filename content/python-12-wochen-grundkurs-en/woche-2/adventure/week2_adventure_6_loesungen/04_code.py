@@ -1,4 +1,3 @@
-# Problem: No f-string used
-name = "Gandalf"
-level = 99
-print(f"Hello {name}! You are Level {level}!")
+hero = "Thorin"
+gold = 100
+print(f"{hero} has {gold} gold.")

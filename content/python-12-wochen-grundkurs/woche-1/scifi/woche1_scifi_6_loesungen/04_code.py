@@ -1,2 +1,1 @@
-# Problem: Text ohne Anführungszeichen
-print("System online")
+print("Hallo Nebula-7!")

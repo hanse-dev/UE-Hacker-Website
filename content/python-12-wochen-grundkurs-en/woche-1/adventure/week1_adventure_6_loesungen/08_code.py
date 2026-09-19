@@ -1,3 +1,3 @@
-# Problem: variable 'nam' does not exist
-name = "Aria"
-print("Welcome, " + name)
+gold = 50
+gold = 150   # the new value overwrites the old one
+print(gold)

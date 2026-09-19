@@ -1,0 +1,477 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Lesson 1: if – The First Crossroads",
+    "file": "lektion-01.md",
+    "lessonSummary": "Your program can now decide: with if, code only runs when the condition is true!",
+    "tasks": [
+      {
+        "instruction": "Run this example and see which messages appear.",
+        "example": true,
+        "codeTemplate": "horse_age = 5\nif horse_age >= 5:\n    print(\"🎉 The horse is ready for training!\")\n\nhas_saddle = True\nif has_saddle:\n    print(\"🔑 You can mount up!\")\n\ngait = \"Gallop\"\nif gait == \"Gallop\":\n    print(\"🐎 Full speed!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "The horse is ready for training!"
+        }
+      },
+      {
+        "instruction": "has_saddle is already there. Use an if to print exactly: You can mount up!",
+        "codeTemplate": "has_saddle = True\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "You can mount up!"
+        }
+      },
+      {
+        "instruction": "The variable rider_level = 12 is already there. Use an if with >= 10 to print exactly: Riding skill reached!",
+        "codeTemplate": "rider_level = 12\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Riding skill reached!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Lesson 2: Comparison Operators",
+    "file": "lektion-02.md",
+    "lessonSummary": "Equal, smaller, greater – you know the six comparison operators and never mix up = and ==!",
+    "tasks": [
+      {
+        "instruction": "Run this example: it compares heights and checks the hay.",
+        "example": true,
+        "codeTemplate": "height = 160\nprint(f\"Height at withers: {height} cm\")\nprint(f\"{height} < 165: {height < 165}\")\nprint(f\"{height} <= 160: {height <= 160}\")\nprint(f\"{height} > 150: {height > 150}\")\nprint(f\"{height} >= 160: {height >= 160}\")\n\nhay = 25\nneed = 20\nif hay > need:\n    print(f\"🌾 Enough hay! Leftover: {hay - need} kg\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "160 >= 160: True"
+        }
+      },
+      {
+        "instruction": "age = 8 is already there. Use an if with == to print exactly: Correct: The horse is 8 years old",
+        "codeTemplate": "age = 8\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Correct: The horse is 8 years old"
+        }
+      },
+      {
+        "instruction": "height = 160 is already there. Use an f-string with a comparison inside the braces to print exactly: 160 > 170: False",
+        "codeTemplate": "height = 160\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "160 > 170: False"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Lesson 3: if-else",
+    "file": "lektion-03.md",
+    "lessonSummary": "Two paths at the crossroads – if for yes, else for everything else!",
+    "tasks": [
+      {
+        "instruction": "Run this example: which path does each check take?",
+        "example": true,
+        "codeTemplate": "height = 120\nif height <= 100:\n    print(\"⚔️ Easy jump cleared!\")\nelse:\n    print(\"💨 Challenging jump!\")\n\nis_raining = False\nif is_raining:\n    print(\"🌧️ We'll ride in the indoor arena.\")\nelse:\n    print(\"☀️ Perfect for the pasture!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Challenging jump!"
+        }
+      },
+      {
+        "instruction": "is_raining = True is already there. If it rains print exactly: We'll ride in the indoor arena. Otherwise print: Perfect for the pasture!",
+        "codeTemplate": "is_raining = True\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "We'll ride in the indoor arena."
+        }
+      },
+      {
+        "instruction": "hay_stock = 45 and need = 50 are already there. If hay_stock >= need print Enough hay! – otherwise print exactly: Not enough hay! Missing: 5 kg (calculate the 5 with need - hay_stock inside an f-string).",
+        "codeTemplate": "hay_stock = 45\nneed = 50\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Not enough hay! Missing: 5 kg"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Lesson 4: if-elif-else",
+    "file": "lektion-04.md",
+    "lessonSummary": "Many paths, one decision – elif checks the conditions one after another!",
+    "tasks": [
+      {
+        "instruction": "Run this example: two decision chains, one for the skill level and one for the discipline.",
+        "example": true,
+        "codeTemplate": "experience = 750\nif experience >= 1000:\n    print(\"🏆 Master Rider!\")\nelif experience >= 500:\n    print(\"⭐ Advanced Rider!\")\nelif experience >= 100:\n    print(\"🌟 Beginner!\")\nelse:\n    print(\"📚 Still a lot to practise...\")\n\ndiscipline = \"Jumping\"\nif discipline == \"Dressage\":\n    print(\"🎆 Elegant dressage!\")\nelif discipline == \"Jumping\":\n    print(\"🏇 Show jumping course!\")\nelse:\n    print(\"❓ Unknown discipline!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Advanced Rider!"
+        }
+      },
+      {
+        "instruction": "discipline = \"Vaulting\" is already there. Build a chain: \"Dressage\" prints Elegant dressage!, \"Jumping\" prints Show jumping course!, \"Vaulting\" prints Vaulting acrobatics!, anything else prints Unknown discipline!",
+        "codeTemplate": "discipline = \"Vaulting\"\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Vaulting acrobatics!"
+        }
+      },
+      {
+        "instruction": "experience = 120 is already there. Build the skill-level chain: >= 1000 prints Master Rider!, >= 500 prints Advanced Rider!, >= 100 prints Beginner!, otherwise Still a lot to practise...",
+        "codeTemplate": "experience = 120\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Beginner!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Lesson 5: Logical Operators – and, or, not",
+    "file": "lektion-05.md",
+    "lessonSummary": "and, or, not – you can combine several conditions into one decision!",
+    "tasks": [
+      {
+        "instruction": "Run this example: and, or and not in action.",
+        "example": true,
+        "codeTemplate": "has_saddle = True\nhas_helmet = True\nif has_saddle and has_helmet:\n    print(\"🐎🪖 You are ready to ride!\")\n\nhas_bridle = False\nhas_halter = True\nif has_bridle or has_halter:\n    print(\"🐴 You can lead the horse!\")\n\nis_sick = False\nif not is_sick:\n    print(\"💪 The horse is healthy and ready to work!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "You are ready to ride!"
+        }
+      },
+      {
+        "instruction": "height = 175 and temperament = 9 are already there. If height > 170 and temperament > 7 print exactly: Warmblood for sport! – otherwise print: Pony for leisure!",
+        "codeTemplate": "height = 175\ntemperament = 9\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Warmblood for sport!"
+        }
+      },
+      {
+        "instruction": "has_bridle = False and has_halter = True are already there. Use or to print exactly: You can lead the horse!",
+        "codeTemplate": "has_bridle = False\nhas_halter = True\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "You can lead the horse!"
+        }
+      },
+      {
+        "instruction": "is_sick = False is already there. Use not to print exactly: The horse is healthy and ready to work!",
+        "codeTemplate": "is_sick = False\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "The horse is healthy and ready to work!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Lesson 6: Nested Conditions",
+    "file": "lektion-06.md",
+    "lessonSummary": "An if inside an if – you can now build decisions with several levels!",
+    "tasks": [
+      {
+        "instruction": "Run this example: the outer if is true, so the inner decision is reached.",
+        "example": true,
+        "codeTemplate": "stable_door_locked = True\nright_key = True\n\nif stable_door_locked:\n    print(\"🚪 The stable door is locked.\")\n    if right_key:\n        print(\"🔑 The key fits – the stable door opens!\")\n    else:\n        print(\"❌ This key does not fit.\")\nelse:\n    print(\"🚪 The stable door is already open.\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "The key fits – the stable door opens!"
+        }
+      },
+      {
+        "instruction": "stable_door_locked = True and right_key = False are already there. Copy the nested decision so that the program prints exactly: This key does not fit.",
+        "codeTemplate": "stable_door_locked = True\nright_key = False\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "This key does not fit."
+        }
+      },
+      {
+        "instruction": "is_raining = True and has_covered_arena = False are already there. If it rains: check inside whether there is a covered arena (print We ride in the covered arena.) – otherwise print exactly: Training is cancelled. If it does not rain, print: We ride on the pasture.",
+        "codeTemplate": "is_raining = True\nhas_covered_arena = False\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Training is cancelled."
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "All bugs found! Indentation, = versus == and elif without a condition are the classic mistakes of Week 3.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Goal: The program should print both Riding skill reached! and Congratulations! when level >= 10. What is wrong?",
+        "codeTemplate": "level = 10\nif level >= 10:\nprint(\"Riding skill reached!\")\nprint(\"Congratulations!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Riding skill reached!"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Goal: The program should print Hello Thunder!, because name has the value Thunder. What is wrong?",
+        "codeTemplate": "name = \"Thunder\"\nif name = \"Thunder\":\n    print(\"Hello Thunder!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hello Thunder!"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Goal: The program should print Trained when age >= 5. What is wrong?",
+        "codeTemplate": "age = 8\nif age >= 5:\n    print(\"Trained\")\nelif:\n    print(\"In training\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Trained"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: The Stable Guard",
+    "file": "mission-01.md",
+    "lessonSummary": "The stable guard knows exactly who is allowed in – you combined conditions with or!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create age = 10 (integer) and has_helmet = True (Boolean). Print exactly: Rider: age 10, helmet True (use an f-string with both variables).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rider: age 10, helmet True"
+        }
+      },
+      {
+        "instruction": "Step 2 – age = 10, has_helmet = False and has_permission = True are already there. If age >= 12 or has_helmet or has_permission print exactly: Access granted – otherwise print: Access denied",
+        "codeTemplate": "age = 10\nhas_helmet = False\nhas_permission = True\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Access granted"
+        }
+      },
+      {
+        "instruction": "Step 3 – Now the rider has no permission. Use the same rule with these values and print exactly: Access denied",
+        "codeTemplate": "age = 10\nhas_helmet = False\nhas_permission = False\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Access denied"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: The Feed Dispenser",
+    "file": "mission-02.md",
+    "lessonSummary": "The feed dispenser only opens for the right password – your if-elif-else chain guards it!",
+    "tasks": [
+      {
+        "instruction": "The passwords and the entered password are already there. If entered == stable_master_pw print Full access granted, elif entered == groom_pw print exactly: Feed access granted",
+        "codeTemplate": "stable_master_pw = \"hay123\"\ngroom_pw = \"oats456\"\nentered = \"oats456\"\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Feed access granted"
+        }
+      },
+      {
+        "instruction": "Now somebody types a wrong password. Extend the chain with an else so that the program prints exactly: Wrong password: no feed today",
+        "codeTemplate": "stable_master_pw = \"hay123\"\ngroom_pw = \"oats456\"\nentered = \"carrot\"\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wrong password: no feed today"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: The Tournament",
+    "file": "mission-03.md",
+    "lessonSummary": "The tournament is rated fairly – your calculations and conditions picked the medals!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create points = 95, errors = 0 and time = 55. Calculate the score with the formula above, store it in score and print exactly: Score: 89.5",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Score: 89.5"
+        }
+      },
+      {
+        "instruction": "Step 2 – points = 85, errors = 1 and time = 50 are already there and score is calculated. Use if-elif-else: gold (score >= 85 and errors == 0) prints GOLD!, silver (score >= 70 and errors <= 2) prints exactly: SILVER! – otherwise print: No medal",
+        "codeTemplate": "points = 85\nerrors = 1\ntime = 50\nscore = points - (errors * 5) - (time / 10)\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "SILVER!"
+        }
+      },
+      {
+        "instruction": "Step 3 – time = 48 is already there. In a separate if (not an elif!) check whether time < 60 and print exactly: +10 bonus for perfect time!",
+        "codeTemplate": "time = 48\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "+10 bonus for perfect time!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "The Rider Quiz",
+    "file": "boss-01.md",
+    "lessonSummary": "The rider quiz is graded – you counted the points and issued the certificate!",
+    "tasks": [
+      {
+        "instruction": "The answers q1 to q5 are already there. For every question use an if-else that prints Question N: Correct! or Question N: Wrong! (for example Question 2: Wrong!).",
+        "codeTemplate": "q1 = True\nq2 = False\nq3 = True\nq4 = True\nq5 = True\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Question 2: Wrong!"
+        }
+      },
+      {
+        "instruction": "Create points = 0 and add 100 points for every correct answer with points = points + 100 (use an if for each question). Print exactly: Points: 400",
+        "codeTemplate": "q1 = True\nq2 = False\nq3 = True\nq4 = True\nq5 = True\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Points: 400"
+        }
+      },
+      {
+        "instruction": "points = 300 is already there. Grade: points >= 400 is A, points >= 300 is B, otherwise C. Print exactly: Grade: B – and if points >= 300 (passed) also print: Rider Certificate issued",
+        "codeTemplate": "points = 300\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Grade: B"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "The Obstacle Simulator",
+    "file": "boss-02.md",
+    "lessonSummary": "The obstacle simulator is finished – all five levels are checked!",
+    "tasks": [
+      {
+        "instruction": "Level 1 – Mounting: horse_height = 1.65 (metres) and rider_weight = 75 (kg) are already there. If horse_height >= 1.60 and rider_weight <= 80 print exactly: Level 1: Mounting allowed – otherwise print: Level 1: Mounting not allowed",
+        "codeTemplate": "horse_height = 1.65\nrider_weight = 75\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level 1: Mounting allowed"
+        }
+      },
+      {
+        "instruction": "Level 2 – Gait choice: gait = \"Trot\" is already there. If gait == \"Walk\" print Level 2: Calm walk – otherwise print exactly: Level 2: Lively trot",
+        "codeTemplate": "gait = \"Trot\"\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level 2: Lively trot"
+        }
+      },
+      {
+        "instruction": "Level 3 – Speed: speed = 72 (0-100) is already there. Use if-elif-else with 5 levels: >= 90 Level 3: Racing speed, >= 70 exactly Level 3: Fast, >= 50 Level 3: Medium, >= 30 Level 3: Slow, otherwise Level 3: Standing",
+        "codeTemplate": "speed = 72\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level 3: Fast"
+        }
+      },
+      {
+        "instruction": "Level 4 – Obstacle check: height = 80, width = 60 and difficulty = 40 are already there. Use nested ifs: if height >= 70, then check inside whether width >= 50 and difficulty <= 50 and print Level 4: Obstacle cleared – otherwise Level 4: Obstacle failed. If height < 70 print Level 4: Too low.",
+        "codeTemplate": "height = 80\nwidth = 60\ndifficulty = 40\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level 4: Obstacle cleared"
+        }
+      },
+      {
+        "instruction": "Level 5 – Dismount: time = 75, errors = 0 and style = 85 are already there. Success needs time <= 60 or (errors == 0 and style >= 80). Print exactly: Level 5: Dismount successful – otherwise Level 5: Dismount failed",
+        "codeTemplate": "time = 75\nerrors = 0\nstyle = 85\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level 5: Dismount successful"
+        }
+      },
+      {
+        "instruction": "Points system: level1_ok to level5_ok are already there. Create successes = 0 and add 1 for every level that is True (successes = successes + 1). Print exactly: Successes: 4 of 5",
+        "codeTemplate": "level1_ok = True\nlevel2_ok = True\nlevel3_ok = False\nlevel4_ok = True\nlevel5_ok = True\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Successes: 4 of 5"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "The Tournament Finale",
+    "file": "boss-03.md",
+    "lessonSummary": "🎊 Congratulations! You have mastered Week 3 – Week 4 is next: loops (for, while)!",
+    "tasks": [
+      {
+        "instruction": "phase1_ok to phase5_ok are already there. Create successful_phases = 0 and add 1 for every phase that is True. Print exactly: Successful phases: 4",
+        "codeTemplate": "phase1_ok = True\nphase2_ok = True\nphase3_ok = False\nphase4_ok = True\nphase5_ok = True\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Successful phases: 4"
+        }
+      },
+      {
+        "instruction": "difficulty = 3 is already there. Use if-elif-else with 5 levels: 1 prints Difficulty: Very easy, 2 Difficulty: Easy, 3 exactly Difficulty: Medium, 4 Difficulty: Hard, 5 Difficulty: Very hard",
+        "codeTemplate": "difficulty = 3\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Difficulty: Medium"
+        }
+      },
+      {
+        "instruction": "Random events: obstacle_knocked, horse_spooked and saddle_slipped are already there. Create penalty = 0 and check each event with its own if: a knocked obstacle costs 10, a spooked horse 15, a slipped saddle 5 (penalty = penalty + ...). Print exactly: Penalty: 15",
+        "codeTemplate": "obstacle_knocked = True\nhorse_spooked = False\nsaddle_slipped = True\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Penalty: 15"
+        }
+      },
+      {
+        "instruction": "Special action: successful_phases = 2 and difficulty = 4 are already there. Use a nested if: if difficulty >= 4, check inside whether successful_phases < 3 and print exactly: Extra training required!",
+        "codeTemplate": "successful_phases = 2\ndifficulty = 4\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Extra training required!"
+        }
+      },
+      {
+        "instruction": "Evaluation: successful_phases = 4 and difficulty = 3 are already there. Calculate total_points = successful_phases * 100 - difficulty * 20 and placement = (successful_phases / 5) * 100. Print exactly: Total points: 340 and on the next line Placement: 80.0 %",
+        "codeTemplate": "successful_phases = 4\ndifficulty = 3\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total points: 340"
+        }
+      }
+    ]
+  }
+]

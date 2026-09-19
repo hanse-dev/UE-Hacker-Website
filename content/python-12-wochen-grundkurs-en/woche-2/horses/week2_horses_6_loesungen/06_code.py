@@ -1,4 +1,3 @@
-# Problem: String and Integer cannot be multiplied
-feed_kg = "10"
-days = 5
-print(f"Total feed: {int(feed_kg) * days} kg")
+feed_morning = 4
+feed_evening = 3
+print(f"Daily feed: {feed_morning + feed_evening} kg")

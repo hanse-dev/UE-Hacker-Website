@@ -1,1 +1,3 @@
-"""**Erklärung:** Python liest `Hallo` und `Welt` als Variablennamen – aber diese Variablen gibt es nicht. Text muss immer in Anführungszeichen stehen, damit Python weiß: das ist Text, keine Variable."""
+"""### Zauberformel 1: print()
+
+Gib mit print() einen eigenen Willkommensgruß aus, der das Wort "Abenteuer" enthält."""

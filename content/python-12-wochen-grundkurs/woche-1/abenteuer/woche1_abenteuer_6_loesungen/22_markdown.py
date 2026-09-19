@@ -1,0 +1,1 @@
+"""**Erklärung:** Text und Zahl lassen sich nicht mit `+` verbinden. `str(alter)` wandelt die Zahl in Text um."""

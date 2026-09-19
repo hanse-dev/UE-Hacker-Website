@@ -1,5 +1,3 @@
-# Problem: Code after if not indented
-level = 10
-if level >= 10:
-    print("Access granted!")
-    print("Welcome Commander!")
+security_level = 7
+if security_level >= 5:
+    print("Access granted")

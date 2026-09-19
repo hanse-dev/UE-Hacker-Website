@@ -1,0 +1,517 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Übung 1: if",
+    "file": "lektion-01.md",
+    "lessonSummary": "Stark! Mit if entscheidet dein Programm, ob ein Stück Code überhaupt läuft.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Der eingerückte Code läuft nur, weil die Bedingung wahr ist.",
+        "example": true,
+        "codeTemplate": "alter_pferd = 5\nif alter_pferd >= 5:\n    print(\"🎉 Das Pferd ist reif für das Training!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Das Pferd ist reif für das Training!"
+        }
+      },
+      {
+        "instruction": "Das Pferd hat einen Sattel. Prüfe mit if, ob hat_sattel wahr ist, und gib dann genau aus: Du kannst aufsteigen!",
+        "codeTemplate": "hat_sattel = True\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Du kannst aufsteigen!"
+        }
+      },
+      {
+        "instruction": "Prüfe mit if, ob alter_pferd mindestens 3 ist, und gib dann genau aus: Alt genug zum Reiten!",
+        "codeTemplate": "alter_pferd = 4\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Alt genug zum Reiten!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Übung 2: Vergleichsoperatoren",
+    "file": "lektion-02.md",
+    "lessonSummary": "Prima! Du kennst jetzt alle sechs Vergleichsoperatoren und den Unterschied zwischen = und ==.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus und schau dir an, was die Vergleiche ergeben.",
+        "example": true,
+        "codeTemplate": "groesse = 160  # Stockmaß in cm\nprint(f\"Stockmaß: {groesse} cm\")\nprint(f\"{groesse} < 165: {groesse < 165}\")\nprint(f\"{groesse} <= 160: {groesse <= 160}\")\nprint(f\"{groesse} > 150: {groesse > 150}\")\nprint(f\"{groesse} >= 160: {groesse >= 160}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "160 <= 160: True"
+        }
+      },
+      {
+        "instruction": "Prüfe mit if und ==, ob pferd_alter gleich 8 ist, und gib dann genau aus: Das Pferd ist 8 Jahre alt!",
+        "codeTemplate": "pferd_alter = 8\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Das Pferd ist 8 Jahre alt!"
+        }
+      },
+      {
+        "instruction": "Prüfe mit if und !=, ob gangart ungleich \"Galopp\" ist, und gib dann genau aus: Das ist kein Galopp!",
+        "codeTemplate": "gangart = \"Trab\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Das ist kein Galopp!"
+        }
+      },
+      {
+        "instruction": "Ein Pferd muss mindestens 160 cm Stockmaß haben. Gib mit einem f-String und >= genau aus: Groß genug: True",
+        "codeTemplate": "stockmass = 160\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Groß genug: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Übung 3: if-else",
+    "file": "lektion-03.md",
+    "lessonSummary": "Gut gemacht! Mit else hat dein Programm immer einen zweiten Weg.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Welcher Weg wird genommen?",
+        "example": true,
+        "codeTemplate": "hoehe = 120\nif hoehe <= 100:\n    print(\"⚔️ Leichte Hürde gemeistert!\")\nelse:\n    print(\"💨 Anspruchsvolle Hürde!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anspruchsvolle Hürde!"
+        }
+      },
+      {
+        "instruction": "Regnet es, reitet ihr in der Halle, sonst auf der Weide. Schreibe ein if-else und gib mit den Vorgaben genau aus: Wir reiten in der Halle.  (Bei Sonne wäre die Ausgabe: Perfekt für die Weide!)",
+        "codeTemplate": "regnet = True\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wir reiten in der Halle."
+        }
+      },
+      {
+        "instruction": "Ist der Heuvorrat mindestens so groß wie der Bedarf, gib Genug Heu! aus, sonst mit einem f-String Zu wenig Heu! Fehlt: und die fehlende Menge in kg. Hier soll genau erscheinen: Zu wenig Heu! Fehlt: 5 kg",
+        "codeTemplate": "heu_vorrat = 45\nbedarf = 50\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zu wenig Heu! Fehlt: 5 kg"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Übung 4: if-elif-else",
+    "file": "lektion-04.md",
+    "lessonSummary": "Sehr gut! Mit elif prüfst du beliebig viele Wege nacheinander.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Warum wird nur ein Weg genommen?",
+        "example": true,
+        "codeTemplate": "erfahrung = 750\nif erfahrung >= 1000:\n    print(\"🏆 Meisterreiter!\")\nelif erfahrung >= 500:\n    print(\"⭐ Fortgeschrittener Reiter!\")\nelif erfahrung >= 100:\n    print(\"🌟 Anfänger!\")\nelse:\n    print(\"📚 Noch viel zu üben...\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Fortgeschrittener Reiter!"
+        }
+      },
+      {
+        "instruction": "Gib je nach disziplin aus: Dressur → Elegante Dressur!, Springen → Sprungkurs!, Western → Western-Style!, sonst Unbekannte Disziplin! Hier soll genau erscheinen: Sprungkurs!",
+        "codeTemplate": "disziplin = \"Springen\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sprungkurs!"
+        }
+      },
+      {
+        "instruction": "Vergib Abzeichen nach punkte: ab 90 Gold, ab 70 Silber, ab 50 Bronze, sonst Kein Abzeichen. Gib genau den Namen aus – hier: Bronze",
+        "codeTemplate": "punkte = 65\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bronze"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Übung 5: and, or, not",
+    "file": "lektion-05.md",
+    "lessonSummary": "Klasse! Mit and, or und not verknüpfst du mehrere Bedingungen zu einer.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Sattel und Helm sind da, also gilt and.",
+        "example": true,
+        "codeTemplate": "hat_sattel = True\nhat_helm = True\nif hat_sattel and hat_helm:\n    print(\"🐎 Du bist bereit zum Reiten!\")\nelse:\n    print(\"Es fehlt noch etwas.\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Du bist bereit zum Reiten!"
+        }
+      },
+      {
+        "instruction": "Nutze and: Nur wenn hat_sattel und hat_helm wahr sind, gib Du bist bereit zum Reiten! aus, sonst Bitte erst den Helm holen! Hier soll genau erscheinen: Bitte erst den Helm holen!",
+        "codeTemplate": "hat_sattel = True\nhat_helm = False\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bitte erst den Helm holen!"
+        }
+      },
+      {
+        "instruction": "Nutze or: Ist hat_trense oder hat_halfter wahr, gib Du kannst das Pferd führen! aus, sonst Es fehlt Zubehör! Hier soll genau erscheinen: Du kannst das Pferd führen!",
+        "codeTemplate": "hat_trense = False\nhat_halfter = True\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Du kannst das Pferd führen!"
+        }
+      },
+      {
+        "instruction": "Nutze not: Ist der Stall nicht offen, gib genau aus: Der Stall ist zu – erst aufschließen!",
+        "codeTemplate": "stall_offen = False\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Der Stall ist zu – erst aufschließen!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Übung 6: Verschachtelte Bedingungen",
+    "file": "lektion-06.md",
+    "lessonSummary": "Geschafft! Du kannst Entscheidungen ineinander verschachteln.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus und folge den zwei Entscheidungen.",
+        "example": true,
+        "codeTemplate": "stalltuer_verschlossen = True\nrichtiger_schluessel = True\n\nif stalltuer_verschlossen:\n    print(\"🚪 Die Stalltür ist verschlossen.\")\n    if richtiger_schluessel:\n        print(\"🔑 Der Schlüssel passt – die Stalltür öffnet sich!\")\n    else:\n        print(\"❌ Dieser Schlüssel passt nicht.\")\nelse:\n    print(\"🚪 Die Stalltür steht bereits offen.\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Der Schlüssel passt – die Stalltür öffnet sich!"
+        }
+      },
+      {
+        "instruction": "Baue das Beispiel nach: Ist die Tür verschlossen, prüfe innen den Schlüssel. Passt er nicht, gib genau aus: Dieser Schlüssel passt nicht.",
+        "codeTemplate": "stalltuer_verschlossen = True\nrichtiger_schluessel = False\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Dieser Schlüssel passt nicht."
+        }
+      },
+      {
+        "instruction": "Ist das Pferd gesund, prüfe innen das Wetter: gutes Wetter → Ihr reitet aus!, sonst Ihr bleibt in der Halle. Ist das Pferd nicht gesund → Das Pferd muss zum Tierarzt. Hier soll genau erscheinen: Ihr bleibt in der Halle.",
+        "codeTemplate": "pferd_gesund = True\nwetter_gut = False\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ihr bleibt in der Halle."
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug-Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Einrückung, == und elif-Bedingungen kennst du jetzt genau.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll bei level >= 10 sowohl Reitfertigkeit erreicht! als auch Glückwunsch! ausgeben. Was ist falsch?",
+        "codeTemplate": "level = 10\nif level >= 10:\nprint(\"Reitfertigkeit erreicht!\")\nprint(\"Glückwunsch!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Glückwunsch!"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Hallo Thunder! ausgeben, weil name den Wert Thunder hat. Was ist falsch?",
+        "codeTemplate": "name = \"Thunder\"\nif name = \"Thunder\":\n    print(\"Hallo Thunder!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hallo Thunder!"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll bei alter >= 5 den Text Ausgebildet ausgeben. Was ist falsch?",
+        "codeTemplate": "alter = 8\nif alter >= 5:\n    print(\"Ausgebildet\")\nelif:\n    print(\"In Ausbildung\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ausgebildet"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: Der Stallwart",
+    "file": "mission-01.md",
+    "lessonSummary": "Der Stallwart ist zufrieden – die Zugangsregeln funktionieren!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Zugangsdaten erfassen: Lege alter = 10 (Ganzzahl), hat_helm = True und hat_erlaubnis = False an und gib mit einem f-String genau aus: Alter: 10, Helm: True",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Alter: 10, Helm: True"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Zugangsregel: Prüfe mit if und or, ob alter >= 12 ODER hat_helm ODER hat_erlaubnis gilt, und gib dann genau aus: Zugang erlaubt",
+        "codeTemplate": "alter = 10\nhat_helm = True\nhat_erlaubnis = False\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zugang erlaubt"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Ablehnung: Ergänze else und gib in diesem Fall genau aus: Zugang verweigert. Hier hat der Reiter weder Alter noch Helm noch Erlaubnis.",
+        "codeTemplate": "alter = 9\nhat_helm = False\nhat_erlaubnis = False\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zugang verweigert"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: Der Futterautomat",
+    "file": "mission-02.md",
+    "lessonSummary": "Der Futterautomat erkennt jetzt jedes Passwort richtig!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Passwörter festlegen: Lege stallmeister_passwort = \"Hufeisen\", pfleger_passwort = \"Karotte\" und eingabe = \"Karotte\" an und gib mit einem f-String genau aus: Eingabe: Karotte",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Eingabe: Karotte"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Zugriffsprüfung: Prüfe mit if, ob eingabe == stallmeister_passwort, und mit elif, ob eingabe == pfleger_passwort. Stallmeister → Vollzugriff gewährt, Pfleger → Futterzugriff gewährt. Hier soll genau erscheinen: Futterzugriff gewährt",
+        "codeTemplate": "stallmeister_passwort = \"Hufeisen\"\npfleger_passwort = \"Karotte\"\neingabe = \"Karotte\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Futterzugriff gewährt"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Falsches Passwort: Ergänze else mit der Ausgabe Falsches Passwort. Hier ist die Eingabe eine Banane, es soll genau erscheinen: Falsches Passwort",
+        "codeTemplate": "stallmeister_passwort = \"Hufeisen\"\npfleger_passwort = \"Karotte\"\neingabe = \"Banane\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Falsches Passwort"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: Das Turnier",
+    "file": "mission-03.md",
+    "lessonSummary": "Das Turnier ist ausgewertet – Medaillen und Bonus sind vergeben!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Gesamtnote berechnen: Berechne note nach der Formel und gib mit einem f-String genau aus: Note: 89.5",
+        "codeTemplate": "punkte = 95\nfehler = 0\nzeit = 55\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Note: 89.5"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Gold prüfen: Prüfe mit and, ob note >= 85 UND fehler == 0, und gib dann genau aus: 🥇 GOLD!",
+        "codeTemplate": "punkte = 95\nfehler = 0\nzeit = 55\nnote = punkte - (fehler * 5) - (zeit / 10)\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "GOLD!"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Weitere Medaillen: Schreibe if-elif: Gold wie eben (🥇 GOLD!), sonst mit elif note >= 70 UND fehler <= 2 → 🥈 SILBER!. Hier ist es Silber (ein Fehler, langsamer).",
+        "codeTemplate": "punkte = 95\nfehler = 1\nzeit = 80\nnote = punkte - (fehler * 5) - (zeit / 10)\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "SILBER!"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Zeit-Bonus: Prüfe **separat** mit einem eigenen if, ob zeit < 60, und gib dann genau aus: +10 Bonus für perfekte Zeit!",
+        "codeTemplate": "zeit = 55\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "+10 Bonus für perfekte Zeit!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Das Reiter-Quiz",
+    "file": "boss-01.md",
+    "lessonSummary": "Das Reiter-Quiz ist bestanden – du entscheidest wie ein Profi!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Antworten prüfen: Gib mit if-else für jede der fünf Antworten aus: Frage 1: ✅ Richtig! bzw. Frage 1: ❌ Falsch! (mit der passenden Nummer). Hier soll genau erscheinen: Frage 2: ❌ Falsch!",
+        "codeTemplate": "antwort1 = True\nantwort2 = False\nantwort3 = True\nantwort4 = True\nantwort5 = False\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Frage 2: ❌ Falsch!"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Punkte zählen: Addiere für jede richtige Antwort mit punkte += 100 und gib mit einem f-String genau aus: Punkte: 300",
+        "codeTemplate": "antwort1 = True\nantwort2 = False\nantwort3 = True\nantwort4 = True\nantwort5 = False\npunkte = 0\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Punkte: 300"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Note: Ab 400 Punkten Note A, ab 300 Note B. Gib genau aus: Note: B",
+        "codeTemplate": "punkte = 300\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Note: B"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Zertifikat: Bei mindestens 300 Punkten gib genau aus: 🎓 Reiter-Zertifikat: bestanden!",
+        "codeTemplate": "punkte = 300\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Reiter-Zertifikat: bestanden!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Der Hindernis-Simulator",
+    "file": "boss-02.md",
+    "lessonSummary": "Alle fünf Level des Simulators gemeistert – starke Logik!",
+    "tasks": [
+      {
+        "instruction": "Level 1 – Aufsitzen: Erlaubt ist es, wenn pferd_groesse >= 1.60 UND reiter_gewicht <= 80. Gib dann genau aus: Level 1: Aufsitzen erlaubt",
+        "codeTemplate": "pferd_groesse = 1.65\nreiter_gewicht = 70\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level 1: Aufsitzen erlaubt"
+        }
+      },
+      {
+        "instruction": "Level 2 – Gangwahl: Bei gangart \"Schritt\" gib Level 2: Ruhiger Schritt aus, sonst Level 2: Zügiger Trab. Hier soll genau erscheinen: Level 2: Zügiger Trab",
+        "codeTemplate": "gangart = \"Trab\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level 2: Zügiger Trab"
+        }
+      },
+      {
+        "instruction": "Level 3 – Geschwindigkeit: Fünf Stufen per if-elif-else nach tempo: unter 20 Sehr langsam, unter 40 Langsam, unter 60 Mittel, unter 80 Schnell, sonst Rasant. Gib mit Präfix aus: Level 3: Schnell",
+        "codeTemplate": "tempo = 72\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level 3: Schnell"
+        }
+      },
+      {
+        "instruction": "Level 4 – Hindernisprüfung (verschachtelt): Ist hoehe >= 70, prüfe innen breite >= 50: ja → Level 4: Hindernis gemeistert, nein → Level 4: Breite reicht nicht. Ist hoehe niedriger → Level 4: Zu niedrig. Hier soll genau erscheinen: Level 4: Breite reicht nicht",
+        "codeTemplate": "hoehe = 80\nbreite = 40\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level 4: Breite reicht nicht"
+        }
+      },
+      {
+        "instruction": "Level 5 – Abmeldung: Bestanden, wenn zeit <= 60 ODER (fehler == 0 UND stil >= 80). Gib dann genau aus: Level 5: Abmeldung bestanden",
+        "codeTemplate": "zeit = 75\nfehler = 0\nstil = 85\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level 5: Abmeldung bestanden"
+        }
+      },
+      {
+        "instruction": "Punktesystem – Zähle mit erfolge = 0 und erfolge += 1 pro bestandenem Level (die Ergebnisse stehen schon in den Variablen) und gib mit einem f-String genau aus: Erfolge: 3 von 5",
+        "codeTemplate": "level1_ok = True\nlevel2_ok = True\nlevel3_ok = False\nlevel4_ok = False\nlevel5_ok = True\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Erfolge: 3 von 5"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Das große Turnier",
+    "file": "boss-03.md",
+    "lessonSummary": "Das große Turnier ist ausgewertet – du beherrschst Entscheidungen im Code!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Phasen zählen: Zähle mit erfolgreiche_phasen = 0 und += 1 alle Phasen, die True sind, und gib mit einem f-String genau aus: Erfolgreiche Phasen: 4",
+        "codeTemplate": "phase1_ok = True\nphase2_ok = True\nphase3_ok = False\nphase4_ok = True\nphase5_ok = True\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Erfolgreiche Phasen: 4"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Schwierigkeitsstufe: Fünf Stufen per if-elif-else nach schwierigkeit: 1 Anfänger, 2 Leicht, 3 Mittel, 4 Schwer, sonst Extrem. Gib mit Präfix aus: Stufe: Schwer",
+        "codeTemplate": "schwierigkeit = 4\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stufe: Schwer"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Zufallsereignisse: Prüfe jedes Ereignis mit einem eigenen if. Umgeworfen → Ereignis: Hindernis umgeworfen!, scheut → Ereignis: Das Pferd scheut!, verrutscht → Ereignis: Sattel verrutscht! Hier soll genau erscheinen: Ereignis: Das Pferd scheut!",
+        "codeTemplate": "hindernis_umgeworfen = False\npferd_scheut = True\nsattel_verrutscht = False\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ereignis: Das Pferd scheut!"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Erfolgsbedingung: Bei erfolgreiche_phasen >= 4 UND schwierigkeit <= 3 gib Turniersieg! aus, sonst Kein Turniersieg. Hier soll genau erscheinen: Kein Turniersieg.",
+        "codeTemplate": "erfolgreiche_phasen = 4\nschwierigkeit = 4\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Kein Turniersieg."
+        }
+      },
+      {
+        "instruction": "Schritt 5 – Sonderaktion (verschachtelt): Ist schwierigkeit >= 4, prüfe innen erfolgreiche_phasen < 3 und gib dann genau aus: Zusatztraining erforderlich!",
+        "codeTemplate": "erfolgreiche_phasen = 2\nschwierigkeit = 4\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zusatztraining erforderlich!"
+        }
+      },
+      {
+        "instruction": "Schritt 6 – Auswertung: Gesamtpunkte = erfolgreiche_phasen * 100 - schwierigkeit * 20, Erfolgsquote = (erfolgreiche_phasen / 5) * 100. Gib mit einem f-String genau aus: Gesamtpunkte: 320, Erfolgsquote: 80.0%",
+        "codeTemplate": "erfolgreiche_phasen = 4\nschwierigkeit = 4\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gesamtpunkte: 320, Erfolgsquote: 80.0%"
+        }
+      }
+    ]
+  }
+]

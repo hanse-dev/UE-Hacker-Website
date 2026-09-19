@@ -9,8 +9,10 @@ Eine **Lektion** ist wie eine Trainingseinheit für dich und dein Pferd - eine f
 - 🏆 Am Ende könntet ihr ganze Parcours reiten
 
 **In der Programmierung lernen wir:**
-- Die grundlegenden Lektionen (Befehle) von Python
+- Die grundlegenden Lektionen (Befehle) von Python – in Python heißen sie **Funktionen**
 - Wie man diese Lektionen kombiniert
-- Wie man eigene Lektionen erstellt (später)
+- Wie man eigene Lektionen erstellt (später, in Woche 5)
+
+**Wichtig:** Jede Lektion ist in Python eine **Funktion**. Du **rufst** sie auf, indem du ihren Namen schreibst und Klammern dahinter setzt – zum Beispiel `print('Hallo')`. Was in den Klammern steht, gibst du der Funktion mit.
 
 **Jede Lektion, die du lernst, macht dich zu einem besseren Reiter/Programmierer!**"""

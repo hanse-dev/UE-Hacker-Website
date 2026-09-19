@@ -1,1 +1,3 @@
-"""**Explanation:** `elif` always needs a condition: `elif condition:`. Without a condition Python does not know when this branch should apply."""
+"""### Comparison Operators – Task 1
+
+Create level = 15. Use == in an if to print exactly: Correct: level is 15"""

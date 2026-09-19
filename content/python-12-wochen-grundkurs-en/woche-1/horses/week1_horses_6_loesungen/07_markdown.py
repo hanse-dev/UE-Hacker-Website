@@ -1,1 +1,3 @@
-"""**Explanation:** The variable is called `horse`, but in `print()` it says `horses` – one extra letter. Python searches exactly for the name `horses` and cannot find it. Typos in variable names are one of the most common beginner errors!"""
+"""### Lesson 2: Variables – Task 2
+
+Create a variable feed with the value 2. Then change it to 3 and print feed."""

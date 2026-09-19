@@ -1,4 +1,5 @@
-# Problem: Kein f-String verwendet
-name = "Gandalf"
-level = 99
-print(f"Hallo {name}! Du bist Level {level}!")
+held = "Mira"
+ort = "Elfenwald"
+gold = 40
+
+print(f"{held} reist nach {ort} mit {gold} Gold.")

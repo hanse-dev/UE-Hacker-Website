@@ -1,5 +1,4 @@
-# Problem: Code nach if nicht eingerückt
-level = 10
-if level >= 10:
-    print("Reitfertigkeit erreicht!")
-    print("Glückwunsch!")
+hat_sattel = True
+
+if hat_sattel:
+    print("Du kannst aufsteigen!")

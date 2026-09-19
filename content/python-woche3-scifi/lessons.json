@@ -1,0 +1,485 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Systemprotokoll 1: if",
+    "file": "lektion-01.md",
+    "lessonSummary": "Starke Arbeit! Mit if lässt dein Programm entscheiden, ob ein Stück Code läuft – Doppelpunkt und Einrückung nicht vergessen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zeigt drei einfache if-Bedingungen.",
+        "example": true,
+        "codeTemplate": "sicherheitsstufe = 5\nif sicherheitsstufe == 5:\n    print(\"Zugriff auf Hauptsystem gewährt!\")\n\nsystem_online = True\nif system_online:\n    print(\"Alle Systeme operational.\")\n\nbefehl = \"START\"\nif befehl == \"START\":\n    print(\"Startsequenz eingeleitet!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Startsequenz eingeleitet!"
+        }
+      },
+      {
+        "instruction": "Die Variable befehl ist schon angelegt. Gib mit einem if genau diesen Satz aus, wenn befehl gleich \"LANDEN\" ist: Landesequenz eingeleitet!",
+        "codeTemplate": "befehl = \"LANDEN\"\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Landesequenz eingeleitet!"
+        }
+      },
+      {
+        "instruction": "Die Boolean-Variable system_online ist schon angelegt. Nutze sie direkt als Bedingung und gib aus: Alle Systeme laufen.",
+        "codeTemplate": "system_online = True\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Alle Systeme laufen."
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Systemprotokoll 2: Vergleichsoperatoren",
+    "file": "lektion-02.md",
+    "lessonSummary": "Du beherrschst jetzt alle sechs Vergleichsoperatoren – und weißt, dass = zuweist und == vergleicht.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zeigt alle Vergleiche und gibt jeweils True oder False aus.",
+        "example": true,
+        "codeTemplate": "wert = 42\nprint(f\"Wert: {wert}\")\nprint(f\"{wert} < 50: {wert < 50}\")\nprint(f\"{wert} <= 42: {wert <= 42}\")\nprint(f\"{wert} > 30: {wert > 30}\")\nprint(f\"{wert} >= 42: {wert >= 42}\")\nprint(f\"{wert} != 42: {wert != 42}\")\n\nrang = 15\nif rang == 15:\n    print(\"Richtig: Rang 15 erreicht\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "42 >= 42: True"
+        }
+      },
+      {
+        "instruction": "Die Variable geschwindigkeit ist schon angelegt. Prüfe mit einem Vergleich, ob sie größer als 1000 ist, und gib dann aus: Überlichtgeschwindigkeit!",
+        "codeTemplate": "geschwindigkeit = 1200\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Überlichtgeschwindigkeit!"
+        }
+      },
+      {
+        "instruction": "Die Variable befehl ist schon angelegt. Prüfe mit !=, ob befehl ungleich \"START\" ist, und gib dann aus: Kein Start-Befehl.",
+        "codeTemplate": "befehl = \"STOPP\"\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Kein Start-Befehl."
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Systemprotokoll 3: if-else",
+    "file": "lektion-03.md",
+    "lessonSummary": "Zwei Wege, ein Programm: mit if-else entscheidet dein Code, welcher Pfad genommen wird.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zeigt einen Energie-Check mit zwei Pfaden.",
+        "example": true,
+        "codeTemplate": "energie = 45\nverbrauch = 50\nif energie >= verbrauch:\n    print(f\"Sprung möglich! Rest: {energie - verbrauch}%\")\nelse:\n    print(f\"Sprung unmöglich! Fehlt: {verbrauch - energie}%\")\n\ndruck_ok = False\nif druck_ok:\n    print(\"Druckkammern betriebsbereit.\")\nelse:\n    print(\"Druckabfall erkannt!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sprung unmöglich! Fehlt: 5%"
+        }
+      },
+      {
+        "instruction": "Die Variable signale ist schon angelegt. Gib mit if-else Lebensformen entdeckt!, wenn signale mindestens 15 ist, sonst Sektor leer.",
+        "codeTemplate": "signale = 12\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sektor leer."
+        }
+      },
+      {
+        "instruction": "Die Variablen energie und verbrauch sind schon angelegt. Gib mit if-else und einem f-String aus: Sprung möglich! Rest: 30% – oder, falls die Energie nicht reicht, Sprung unmöglich! Fehlt: ...%",
+        "codeTemplate": "energie = 90\nverbrauch = 60\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sprung möglich! Rest: 30%"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Systemprotokoll 4: if-elif-else",
+    "file": "lektion-04.md",
+    "lessonSummary": "Viele Wege im Griff: mit elif prüfst du mehrere Bedingungen nacheinander, und nur der erste passende Pfad läuft.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zeigt eine Rang-Bewertung und eine Waffenwahl.",
+        "example": true,
+        "codeTemplate": "punkte = 750\nif punkte >= 1000:\n    print(\"Fleet-Kommandant!\")\nelif punkte >= 500:\n    print(\"Kapitän!\")\nelif punkte >= 100:\n    print(\"Leutnant!\")\nelse:\n    print(\"Kadett!\")\n\nwaffe = \"Laser\"\nif waffe == \"Laser\":\n    print(\"Laser aktiviert!\")\nelif waffe == \"Plasma\":\n    print(\"Plasmakanone geladen!\")\nelif waffe == \"Ion\":\n    print(\"Ionengeschütz online!\")\nelse:\n    print(\"Unbekannte Waffe!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Kapitän!"
+        }
+      },
+      {
+        "instruction": "Die Variable punkte ist schon angelegt. Gib mit if-elif-else den Rang aus: ab 1000 Fleet-Kommandant, ab 500 Kapitän, ab 100 Leutnant, sonst Kadett. Format: Rang: Leutnant",
+        "codeTemplate": "punkte = 320\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rang: Leutnant"
+        }
+      },
+      {
+        "instruction": "Die Variable waffe ist schon angelegt. Gib bei \"Laser\": Laser aktiviert!, bei \"Plasma\": Plasmakanone geladen!, bei \"Ion\": Ionengeschütz online! und sonst: Unbekannte Waffe! aus.",
+        "codeTemplate": "waffe = \"Plasma\"\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Plasmakanone geladen!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Systemprotokoll 5: and, or, not",
+    "file": "lektion-05.md",
+    "lessonSummary": "Bedingungen kombiniert: and verlangt alles, or reicht eins, und not dreht das Ergebnis um.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zeigt and, or und not.",
+        "example": true,
+        "codeTemplate": "hat_zugangscode = True\nhat_fingerabdruck = True\nif hat_zugangscode and hat_fingerabdruck:\n    print(\"Zugang zum Kommandodeck gewährt!\")\n\nhat_notfallschluessel = False\nhat_ueberbrueckungscode = True\nif hat_notfallschluessel or hat_ueberbrueckungscode:\n    print(\"Du kannst die Tür manuell öffnen!\")\n\nalarm_aktiv = False\nif not alarm_aktiv:\n    print(\"Keine Gefahr – alle Systeme sicher!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Keine Gefahr – alle Systeme sicher!"
+        }
+      },
+      {
+        "instruction": "Die Variablen hat_zugangscode und hat_fingerabdruck sind schon angelegt. Gib mit and und else aus: Zugang zum Kommandodeck gewährt! – oder, wenn nicht beides stimmt, Zugang verweigert!",
+        "codeTemplate": "hat_zugangscode = True\nhat_fingerabdruck = False\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zugang verweigert!"
+        }
+      },
+      {
+        "instruction": "Die Variablen hat_notfallschluessel und hat_ueberbrueckungscode sind schon angelegt. Gib mit or und else aus: Tür wird manuell geöffnet! – oder, wenn beides fehlt, Tür bleibt verschlossen!",
+        "codeTemplate": "hat_notfallschluessel = False\nhat_ueberbrueckungscode = True\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Tür wird manuell geöffnet!"
+        }
+      },
+      {
+        "instruction": "Die Variable schild ist schon angelegt. Nutze not und gib aus: Schilde müssen repariert werden!, wenn schild NICHT größer als 50 ist.",
+        "codeTemplate": "schild = 30\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Schilde müssen repariert werden!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Systemprotokoll 6: Verschachtelte Bedingungen",
+    "file": "lektion-06.md",
+    "lessonSummary": "Entscheidungen in Entscheidungen: mit sauberer Einrückung baust du verschachtelte Pfade.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zeigt eine verschachtelte Bedingung an einer Schleuse.",
+        "example": true,
+        "codeTemplate": "schleuse_verriegelt = True\nrichtiger_code = True\n\nif schleuse_verriegelt:\n    print(\"Die Schleuse ist verriegelt.\")\n    if richtiger_code:\n        print(\"Der Code stimmt – die Schleuse öffnet sich!\")\n    else:\n        print(\"Falscher Code! Zugang verweigert.\")\nelse:\n    print(\"Die Schleuse steht bereits offen.\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Der Code stimmt – die Schleuse öffnet sich!"
+        }
+      },
+      {
+        "instruction": "Die Variablen sind schon angelegt. Baue die verschachtelte Schleusen-Prüfung nach: Ist die Schleuse verriegelt, gib Die Schleuse ist verriegelt. aus und prüfe dann innen den Code (richtig: Der Code stimmt – die Schleuse öffnet sich!, falsch: Falscher Code! Zugang verweigert.). Ist sie nicht verriegelt, gib Die Schleuse steht bereits offen. aus.",
+        "codeTemplate": "schleuse_verriegelt = True\nrichtiger_code = False\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Falscher Code! Zugang verweigert."
+        }
+      },
+      {
+        "instruction": "Die Variablen sektor_sicher und treibstoff sind schon angelegt. Ist der Sektor sicher, prüfe innen den Treibstoff: ab 20 gib Sprung wird gestartet! aus, sonst Treibstoff nachfüllen!. Ist der Sektor nicht sicher, gib Sektor meiden! aus.",
+        "codeTemplate": "sektor_sicher = True\ntreibstoff = 15\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Treibstoff nachfüllen!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug-Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "Vier Entscheidungs-Bugs gefunden und behoben – du liest Fehlermeldungen jetzt wie ein Profi!",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll bei ausreichendem Level Zugriff gewährt! und Willkommen Kommandant! ausgeben. Was ist falsch?",
+        "codeTemplate": "level = 10\nif level >= 10:\nprint(\"Zugriff gewährt!\")\nprint(\"Willkommen Kommandant!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Willkommen Kommandant!"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll prüfen, ob user gleich \"Admin\" ist, und in diesem Fall Hallo Admin! ausgeben. Was ist falsch?",
+        "codeTemplate": "user = \"Admin\"\nif user = \"Admin\":\n    print(\"Hallo Admin!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hallo Admin!"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll System aktiv ausgeben, wenn der Status hoch genug ist, sonst System inaktiv. Was ist falsch?",
+        "codeTemplate": "status = 25\nif status >= 18:\n    print(\"System aktiv\")\nelif:\n    print(\"System inaktiv\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "System aktiv"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #4 – Ziel: Zugang soll nur gewährt werden, wenn die Sicherheitsstufe mindestens 5 ist UND ein Ausweis vorhanden ist. Bei Stufe 3 mit Ausweis soll deshalb Zugang verweigert! erscheinen. Was ist falsch?",
+        "codeTemplate": "sicherheitsstufe = 3\nhat_ausweis = True\nif sicherheitsstufe >= 5 or hat_ausweis:\n    print(\"Zugang gewährt!\")\nelse:\n    print(\"Zugang verweigert!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zugang verweigert!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: Der Sicherheits-Scanner",
+    "file": "mission-01.md",
+    "lessonSummary": "Der Scanner läuft! Mit or und else hast du eine echte Zugangsregel gebaut.",
+    "tasks": [
+      {
+        "instruction": "Die Variablen rang (1-10), hat_ausweis und notfall sind schon angelegt. Prüfe mit if und or, ob rang >= 5, hat_ausweis oder notfall gilt. Gib dann Zugang gewährt aus, sonst mit else Zugang verweigert.",
+        "codeTemplate": "rang = 3\nhat_ausweis = True\nnotfall = False\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zugang gewährt"
+        }
+      },
+      {
+        "instruction": "Gleiche Regel, andere Besucherin: Diesmal hat sie weder einen Ausweis noch liegt ein Notfall vor. Gib Zugang gewährt oder Zugang verweigert aus.",
+        "codeTemplate": "rang = 3\nhat_ausweis = False\nnotfall = False\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zugang verweigert"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: Der Terminal-Zugang",
+    "file": "mission-02.md",
+    "lessonSummary": "Terminal gesichert! Mit if-elif hast du zwei Passwörter unterschieden.",
+    "tasks": [
+      {
+        "instruction": "Die Variablen admin_passwort, gast_passwort und eingabe (das simulierte eingegebene Passwort) sind schon angelegt. Prüfe mit if, ob eingabe gleich admin_passwort ist (Ausgabe: Vollzugriff gewährt), und mit elif, ob sie gleich gast_passwort ist (Ausgabe: Lesezugriff gewährt).",
+        "codeTemplate": "admin_passwort = \"Nova-7\"\ngast_passwort = \"Stern-3\"\neingabe = \"Nova-7\"\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Vollzugriff gewährt"
+        }
+      },
+      {
+        "instruction": "Gleiches Terminal, andere Eingabe: Jetzt wird das Gast-Passwort eingegeben. Gib den passenden Zugriff aus (Vollzugriff gewährt oder Lesezugriff gewährt).",
+        "codeTemplate": "admin_passwort = \"Nova-7\"\ngast_passwort = \"Stern-3\"\neingabe = \"Stern-3\"\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Lesezugriff gewährt"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: Die Missionsbewertung",
+    "file": "mission-03.md",
+    "lessonSummary": "Mission bewertet! Du hast gerechnet, mit and mehrere Bedingungen verknüpft und einen separaten Bonus geprüft.",
+    "tasks": [
+      {
+        "instruction": "Die Variablen level, erfolgspunkte, verluste und zeit sind schon angelegt. Berechne note = erfolgspunkte - (verluste * 10) - (zeit / 5) und gib aus: Note: 80.0",
+        "codeTemplate": "level = 9\nerfolgspunkte = 95\nverluste = 1\nzeit = 25\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Note: 80.0"
+        }
+      },
+      {
+        "instruction": "Die Variablen level, verluste und note sind schon angelegt. Prüfe mit if und and: level >= 10 UND note >= 85 UND verluste == 0 → LEGENDÄR!. Prüfe mit elif: level >= 8 UND note >= 70 UND verluste <= 2 → EXZELLENT!. Sonst (else): Mission bestanden.",
+        "codeTemplate": "level = 9\nverluste = 1\nnote = 80.0\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "EXZELLENT!"
+        }
+      },
+      {
+        "instruction": "Die Variable zeit ist schon angelegt. Prüfe separat mit einem if, ob zeit kleiner als 30 ist, und gib dann aus: +50 Bonus für Blitzmission!",
+        "codeTemplate": "zeit = 25\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "+50 Bonus für Blitzmission!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Das KI-Quiz",
+    "file": "boss-01.md",
+    "lessonSummary": "Quiz ausgewertet! Du hast Antworten geprüft, Punkte gezählt und Noten vergeben.",
+    "tasks": [
+      {
+        "instruction": "Die Variablen frage1 bis frage5 sind schon angelegt. Prüfe jede Antwort mit if-else und gib aus, zum Beispiel Frage 1: Richtig! oder Frage 5: Falsch!",
+        "codeTemplate": "frage1 = True\nfrage2 = True\nfrage3 = False\nfrage4 = True\nfrage5 = False\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Frage 5: Falsch!"
+        }
+      },
+      {
+        "instruction": "Lege punkte = 0 an. Erhöhe punkte für jede richtige Frage um 100 (zum Beispiel punkte = punkte + 100). Vergib die Note A ab 400 Punkten, B ab 300, sonst C. Gib aus: Punkte: 300, Note: B",
+        "codeTemplate": "frage1 = True\nfrage2 = True\nfrage3 = False\nfrage4 = True\nfrage5 = False\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Punkte: 300, Note: B"
+        }
+      },
+      {
+        "instruction": "Die Variable punkte ist schon angelegt. Ab 300 Punkten ist das Quiz bestanden: Gib dann Zertifikat: Bestanden! aus, sonst Zertifikat: Nicht bestanden.",
+        "codeTemplate": "punkte = 300\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zertifikat: Bestanden!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Der Raumschiff-Simulator",
+    "file": "boss-02.md",
+    "lessonSummary": "Simulator bestanden! Fünf Level voller Bedingungen, vom einfachen if bis zur verschachtelten Logik.",
+    "tasks": [
+      {
+        "instruction": "Level 1 – Startsequenz: Die Variablen energie und system_ok sind schon angelegt. Prüfe mit and, ob energie >= 50 UND system_ok gilt. Gib dann Level 1 bestanden aus, sonst Level 1 fehlgeschlagen.",
+        "codeTemplate": "energie = 65\nsystem_ok = False\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level 1 fehlgeschlagen"
+        }
+      },
+      {
+        "instruction": "Level 2 – Kurswahl: Die Variable kurs ist schon angelegt. Gib mit if-else bei \"Nord\": Kurs Nord gesetzt, sonst Kurs Süd gesetzt aus.",
+        "codeTemplate": "kurs = \"Süd\"\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Kurs Süd gesetzt"
+        }
+      },
+      {
+        "instruction": "Level 3 – Geschwindigkeit: Die Variable geschwindigkeit ist schon angelegt. Nutze if-elif-else für fünf Stufen: ab 800 Hyperantrieb, ab 600 Schnellflug, ab 400 Reiseflug, ab 200 Manövrierflug, sonst Schleichfahrt. Format: Stufe: Schnellflug",
+        "codeTemplate": "geschwindigkeit = 640\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stufe: Schnellflug"
+        }
+      },
+      {
+        "instruction": "Level 4 – Systemprüfung: Die Variablen schilde, waffen und antrieb sind schon angelegt. Prüfe verschachtelt: Zuerst schilde >= 50 (sonst Schilde zu schwach), darin waffen >= 50 (sonst Waffen zu schwach), darin antrieb >= 50 (bestanden: Alle Systeme bereit, sonst Antrieb zu schwach).",
+        "codeTemplate": "schilde = 80\nwaffen = 60\nantrieb = 30\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Antrieb zu schwach"
+        }
+      },
+      {
+        "instruction": "Level 5 – Notlandung: Die Variablen treibstoff, atmosphaere und landeplatz (Booleans) sind schon angelegt. Die Landung gelingt, wenn treibstoff >= 20 ODER (atmosphaere UND landeplatz). Gib dann Notlandung möglich aus, sonst Notlandung unmöglich.",
+        "codeTemplate": "treibstoff = 10\natmosphaere = True\nlandeplatz = False\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Notlandung unmöglich"
+        }
+      },
+      {
+        "instruction": "Punktesystem: Die Booleans level1_ok bis level5_ok (bestandene Level) und erfolge = 0 sind schon angelegt. Erhöhe erfolge für jedes bestandene Level um 1 und gib aus: Erfolge: 3 von 5",
+        "codeTemplate": "level1_ok = False\nlevel2_ok = True\nlevel3_ok = True\nlevel4_ok = False\nlevel5_ok = True\nerfolge = 0\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Erfolge: 3 von 5"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Die Galaxie-Mission",
+    "file": "boss-03.md",
+    "lessonSummary": "Galaxie-Mission abgeschlossen! Gefahrenstufen, Ereignisse, verschachtelte Rettungsaktion und Auswertung – alles kombiniert.",
+    "tasks": [
+      {
+        "instruction": "Die Variable gefahrenstufe (1-5) ist schon angelegt. Nutze if-elif-else: 1 = ruhig, 2 = gering, 3 = erhöht, 4 = hoch, 5 = extrem. Format: Gefahrenstufe 4: hoch",
+        "codeTemplate": "gefahrenstufe = 4\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gefahrenstufe 4: hoch"
+        }
+      },
+      {
+        "instruction": "Die Booleans meteor_treffer, piraten_angriff und system_ausfall sind schon angelegt. Prüfe jedes Ereignis mit einem eigenen if und gib bei True aus: Meteoritentreffer!, Piratenangriff! bzw. Systemausfall!",
+        "codeTemplate": "meteor_treffer = True\npiraten_angriff = False\nsystem_ausfall = True\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Systemausfall!"
+        }
+      },
+      {
+        "instruction": "Die Booleans phase1_ok bis phase5_ok und erfolgreiche_phasen = 0 sind schon angelegt. Erhöhe erfolgreiche_phasen für jede gelungene Phase um 1 und gib aus: Erfolgreiche Phasen: 4",
+        "codeTemplate": "phase1_ok = True\nphase2_ok = True\nphase3_ok = False\nphase4_ok = True\nphase5_ok = True\nerfolgreiche_phasen = 0\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Erfolgreiche Phasen: 4"
+        }
+      },
+      {
+        "instruction": "Die Variablen erfolgreiche_phasen und gefahrenstufe sind schon angelegt. Die Mission ist gesichert, wenn erfolgreiche_phasen >= 4 UND gefahrenstufe <= 3. Gib dann Mission gesichert! aus, sonst Mission nicht gesichert.",
+        "codeTemplate": "erfolgreiche_phasen = 4\ngefahrenstufe = 4\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mission nicht gesichert."
+        }
+      },
+      {
+        "instruction": "Sonderaktion: Die Variablen erfolgreiche_phasen und gefahrenstufe sind schon angelegt. Prüfe verschachtelt: Ist gefahrenstufe >= 4, prüfe darin erfolgreiche_phasen < 3 und gib dann Rettungsaktion erforderlich! aus.",
+        "codeTemplate": "erfolgreiche_phasen = 2\ngefahrenstufe = 5\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rettungsaktion erforderlich!"
+        }
+      },
+      {
+        "instruction": "Missionsauswertung: Die Variablen erfolgreiche_phasen und gefahrenstufe sind schon angelegt. Berechne gesamtpunkte = erfolgreiche_phasen * 100 - gefahrenstufe * 20 und erfolgsquote = (erfolgreiche_phasen / 5) * 100. Gib aus: Gesamtpunkte: 320 und Erfolgsquote: 80.0%",
+        "codeTemplate": "erfolgreiche_phasen = 4\ngefahrenstufe = 4\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Erfolgsquote: 80.0%"
+        }
+      }
+    ]
+  }
+]

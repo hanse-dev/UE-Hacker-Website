@@ -1,1 +1,1 @@
-"""### Boss-Quest 2: Der Fluch des Schweige-Drachen"""
+"""**Erklärung:** Text muss in Anführungszeichen stehen. Ohne sie liest Python `Hallo` und `Welt` als Variablennamen – die es nicht gibt."""

@@ -1,1 +1,3 @@
-"""**Explanation:** `stall_number` is a number (Integer), the text before it is a String. Python cannot directly connect these two types with `+` – it's like trying to tie a stone to a thread. `str()` solves this: it converts the number to text."""
+"""### Lesson 2: Variables – Task 1
+
+Store the text "Sunny Valley" in a variable called ranch and print the variable with print()."""

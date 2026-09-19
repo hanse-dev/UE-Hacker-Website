@@ -1,0 +1,521 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Spell Formula 1: The for Loop",
+    "file": "lektion-01.md",
+    "lessonSummary": "Well done! The for loop repeats code – and range(n) counts from 0 for you.",
+    "tasks": [
+      {
+        "instruction": "Run this example and look at the output below.",
+        "example": true,
+        "codeTemplate": "print(\"The Tower of Repetitions opens!\")\nfor i in range(5):\n    print(f\"Run {i}: The value of i is {i}\")\nprint(\"Done!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Run 4: The value of i is 4"
+        }
+      },
+      {
+        "instruction": "Use a for loop with range(3) to print these three lines: Spell 0, Spell 1 and Spell 2 (each on its own line).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Spell 2"
+        }
+      },
+      {
+        "instruction": "Create count = 0, let the loop run 4 times and increase count by 1 each time. Afterwards print exactly: Finished casting: 4 times",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Finished casting: 4 times"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Spell Formula 1: range() with start and end",
+    "file": "lektion-02.md",
+    "lessonSummary": "You can now start counting at any number – but the end never counts!",
+    "tasks": [
+      {
+        "instruction": "Run this example: the 8 is no longer counted!",
+        "example": true,
+        "codeTemplate": "print(\"=== Counting from 3 to 7 ===\")\nfor number in range(3, 8):\n    print(f\"Number: {number}\")\nprint(\"The 8 is not included!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Number: 7"
+        }
+      },
+      {
+        "instruction": "Print the numbers from 10 to 14, each in the form Number: 10, Number: 11 and so on (up to Number: 14).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Number: 14"
+        }
+      },
+      {
+        "instruction": "You climb the tower: print floors 1 to 6, each as Floor 1, Floor 2 … up to Floor 6.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Floor 6"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Spell Formula 1: Step size and counting backwards",
+    "file": "lektion-03.md",
+    "lessonSummary": "With a third number you jump in steps – and with a negative step you count backwards.",
+    "tasks": [
+      {
+        "instruction": "Run this example: first up in steps of two, then backwards.",
+        "example": true,
+        "codeTemplate": "for even in range(0, 11, 2):\n    print(f\"Even number: {even}\")\n\nfor i in range(5, 0, -1):\n    print(f\"{i}...\")\nprint(\"🚀 Launch!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "🚀 Launch!"
+        }
+      },
+      {
+        "instruction": "Count in steps of five from 5 to 25 and print each number as Step: 5, Step: 10 … up to Step: 25.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Step: 25"
+        }
+      },
+      {
+        "instruction": "Start a countdown: count backwards from 5 to 1 and print each number in the form 5..., 4... and so on (down to 1...). Afterwards print Launch!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1..."
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Spell Formula 1: Looping through letters",
+    "file": "lektion-04.md",
+    "lessonSummary": "You can loop through texts too – letter by letter.",
+    "tasks": [
+      {
+        "instruction": "Run this example: the loop goes through the text letter by letter.",
+        "example": true,
+        "codeTemplate": "name = \"Aria\"\nprint(f\"The name is: {name}\")\nfor letter in name:\n    print(f\"  - {letter}\")\nprint(\"Done!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "  - a"
+        }
+      },
+      {
+        "instruction": "Go through the text \"Dragon\" with a for loop and print each letter in the form - D, - r, - a … .",
+        "codeTemplate": "spell = \"Dragon\"\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "- g"
+        }
+      },
+      {
+        "instruction": "Use a for loop to count the letters of spell (variable count, start 0) and print exactly: Letters: 11",
+        "codeTemplate": "spell = \"Thunderbolt\"\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Letters: 11"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Spell Formula 2: The while Loop",
+    "file": "lektion-05.md",
+    "lessonSummary": "The Guardian of the Condition: while repeats as long as the condition is true.",
+    "tasks": [
+      {
+        "instruction": "Run this example.",
+        "example": true,
+        "codeTemplate": "counter = 0\nwhile counter <= 5:\n    print(f\"Counter: {counter}\")\n    counter += 1  # IMPORTANT: otherwise an endless loop!\nprint(\"At 6 the condition becomes false – stop!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Counter: 5"
+        }
+      },
+      {
+        "instruction": "Count from 1 to 4 with a while loop and print each number as Round 1, Round 2 … up to Round 4.",
+        "codeTemplate": "counter = 1\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Round 4"
+        }
+      },
+      {
+        "instruction": "As long as gold is smaller than 100, double it (gold = gold * 2). Afterwards print exactly: Gold: 128",
+        "codeTemplate": "gold = 1\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gold: 128"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Spell Formula 2: The game loop",
+    "file": "lektion-06.md",
+    "lessonSummary": "This is exactly how games work: they run until the health is used up.",
+    "tasks": [
+      {
+        "instruction": "Run this example: the hero loses 20 health every round.",
+        "example": true,
+        "codeTemplate": "health = 100\nround_number = 1\n\nwhile health > 0:\n    damage = 20\n    health -= damage\n    print(f\"Round {round_number}: -{damage} health, left: {health}\")\n    round_number += 1\n\nprint(f\"Game over after {round_number - 1} rounds!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Game over after 5 rounds!"
+        }
+      },
+      {
+        "instruction": "A hero has 50 health and loses 10 per round. Let the loop run until health is no longer greater than 0, and count the rounds. Afterwards print exactly: Hero fallen after 5 rounds",
+        "codeTemplate": "health = 50\nround_number = 0\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hero fallen after 5 rounds"
+        }
+      },
+      {
+        "instruction": "A wizard has 30 mana, every spell costs 8. Cast spells as long as mana is at least 8 (count them in spell_count). Afterwards print exactly: Spells cast: 3, mana left: 6",
+        "codeTemplate": "mana = 30\nspell_count = 0\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Spells cast: 3, mana left: 6"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Spell Formula 3: Nested loops",
+    "file": "lektion-07.md",
+    "lessonSummary": "The Double Spiral: the inner loop runs through completely on every run of the outer one.",
+    "tasks": [
+      {
+        "instruction": "Run this example: three towers with two floors each.",
+        "example": true,
+        "codeTemplate": "print(\"=== The three towers are searched ===\")\nfor tower in range(1, 4):\n    print(f\"Tower {tower}:\")\n    for floor in range(1, 3):\n        print(f\"  Floor {floor} is being searched...\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Floor 2 is being searched..."
+        }
+      },
+      {
+        "instruction": "Use two nested loops to print all rooms: the outer loop counts corridors from 1 to 2, the inner loop doors from 1 to 3. Each line has the form Room 1-1, Room 1-2 … up to Room 2-3.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Room 2-3"
+        }
+      },
+      {
+        "instruction": "With nested loops (outer range(4), inner range(5)) count in the variable count how often the inner loop runs in total. Afterwards print exactly: Total: 20",
+        "codeTemplate": "count = 0\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total: 20"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-08",
+    "section": "lektion",
+    "title": "Spell Formula 3: Patterns of stars",
+    "file": "lektion-08.md",
+    "lessonSummary": "With nested loops you draw whole patterns – row by row.",
+    "tasks": [
+      {
+        "instruction": "Run this example: a rectangle made of stars.",
+        "example": true,
+        "codeTemplate": "for row in range(3):\n    for column in range(4):\n        print(\"⭐\", end=\" \")\n    print()\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "⭐ ⭐ ⭐ ⭐"
+        }
+      },
+      {
+        "instruction": "Draw 3 rows with exactly 5 stars * each (no spaces in between, so *****). Use print(\"*\", end=\"\") in the inner loop and an empty print() after every row.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "*****"
+        }
+      },
+      {
+        "instruction": "Draw a staircase of stars: row 1 has one *, row 2 has two ** and so on up to row 4 with ****. Tip: range(1, 5) for the rows and range(row) for the columns.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "*\n**\n***\n****"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "All bugs found! With loops, the colon, the indentation and the right limits matter.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Goal: The program should print Number 1 up to Number 5. What is wrong?",
+        "codeTemplate": "for i in range(1, 5):\n    print(f\"Number {i}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Number 5"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Goal: The program should print Number 1 up to Number 5. What is wrong?",
+        "codeTemplate": "for i in range(5)\n    print(f\"Number {i+1}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Number 5"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Goal: The program should print Run 0, Run 1 and Run 2, then End. What is wrong?",
+        "codeTemplate": "for i in range(3):\nprint(f\"Run {i}\")\nprint(\"End\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Run 2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: The Number Wizard",
+    "file": "mission-01.md",
+    "lessonSummary": "The Number Wizard is trained: you printed, filtered and added up numbers!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Cast number magic: Use a for loop to print all numbers from 1 to 20, each in the form Number: 1 … Number: 20.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Number: 20"
+        }
+      },
+      {
+        "instruction": "Step 2 – Special numbers: Print only the even numbers from 2 to 20, each in the form Even: 2 … Even: 20.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Even: 20"
+        }
+      },
+      {
+        "instruction": "Step 3 – Magic sum: Calculate the sum of all numbers from 1 to 100 in the variable total (start 0) and print exactly: Total: 5050",
+        "codeTemplate": "total = 0\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total: 5050"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: The Guardian of the Tower",
+    "file": "mission-02.md",
+    "lessonSummary": "You checked all ten floors – with for and while!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Climbing the tower: Go through all floors from 1 to 10 and print for each: Floor 1: All quiet... (up to Floor 10: All quiet...).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Floor 10: All quiet..."
+        }
+      },
+      {
+        "instruction": "Step 2 – Warnings: On floors 3, 6 and 9 print a warning in the form Magical disturbance on floor 3. Tip: range(3, 10, 3).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Magical disturbance on floor 9"
+        }
+      },
+      {
+        "instruction": "Step 3 – Maintenance: Go through all floors from 1 to 10. On floor 7 (compare with ==) print only Floor 7 is closed for repairs, on all others Floor N: All quiet...",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Floor 7 is closed for repairs"
+        }
+      },
+      {
+        "instruction": "Step 4 – Conquer the tower: Use a while loop to climb up from floor 1 as long as floor is smaller than 10 (increase it by 1 each time). Afterwards print exactly: Tower conquered: Floor 10",
+        "codeTemplate": "floor = 1\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Tower conquered: Floor 10"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: The Endless Labyrinth",
+    "file": "mission-03.md",
+    "lessonSummary": "You found the exit – with cleverly chosen conditions!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Find the exit: You are at position = 0 and steps = 0. Use a while loop, as long as position is smaller than 20, to move 2 positions further with every step (increase steps by 1). Afterwards print exactly: Exit reached after 10 steps",
+        "codeTemplate": "position = 0\nsteps = 0\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Exit reached after 10 steps"
+        }
+      },
+      {
+        "instruction": "Step 2 – Status messages: Every 10 steps from 10 to 100 print a message (the position is twice the step), e.g. Step 10: Position 20 and finally Step 100: Position 200. Tip: range(10, 101, 10).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Step 100: Position 200"
+        }
+      },
+      {
+        "instruction": "Step 3 – Lost?: You move 3 positions per step, the exit is at 50. Use a while loop, as long as position is smaller than 50 and steps is smaller than 10. If you are still below 50 afterwards, print exactly: Lost in the labyrinth after 10 steps",
+        "codeTemplate": "position = 0\nsteps = 0\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Lost in the labyrinth after 10 steps"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra Challenge 1: The Magic Number",
+    "file": "boss-01.md",
+    "lessonSummary": "The magic numbers are deciphered – counted, added up and made visible!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Find the numbers: Print all multiples of 7 from 7 to 98, each in the form Magic number: 7 … Magic number: 98. Tip: range(7, 101, 7).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Magic number: 98"
+        }
+      },
+      {
+        "instruction": "Step 2 – Count and add up: Create count = 0 and total = 0, loop over all multiples of 7 up to 98 and afterwards print in one line exactly: Count: 14, Total: 735",
+        "codeTemplate": "count = 0\ntotal = 0\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 14, Total: 735"
+        }
+      },
+      {
+        "instruction": "Step 3 – Visualisation: Use a text row (start empty) and add one star ★ for every magic number (row = row + \"★\"), then print the row. It must contain 14 stars.",
+        "codeTemplate": "row = \"\"\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "★★★★★★★★★★★★★★"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra Challenge 2: The Magic World",
+    "file": "boss-02.md",
+    "lessonSummary": "The magic world stands – the wizard has reached his goal!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Build the grid: Use two nested loops to draw an 8×8 grid of dots. Each row consists of exactly 8 dots ........ (print(\".\", end=\"\") inside, an empty print() after every row).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "........"
+        }
+      },
+      {
+        "instruction": "Step 2 – Place the figures: Draw the grid once more, but put the wizard M at the top left (row 0, column 0) and the goal Z at the bottom right (row 7, column 7). The first row must be M....... and the last one .......Z.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "M......."
+        }
+      },
+      {
+        "instruction": "Step 3 – Movement: The wizard starts at row = 0 and column = 0 and moves diagonally on every turn (both values +1) as long as row is smaller than 7. After every move print: Wizard on row 1, column 1 (up to row 7, column 7).",
+        "codeTemplate": "row = 0\ncolumn = 0\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wizard on row 7, column 7"
+        }
+      },
+      {
+        "instruction": "Step 4 – Goal reached: Also count the moves in moves (start 0). After the loop, if row and column are both 7 (compare with == and and), print: Goal reached after 7 moves",
+        "codeTemplate": "row = 0\ncolumn = 0\nmoves = 0\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Goal reached after 7 moves"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra Challenge 3: The Endless Dungeon",
+    "file": "boss-03.md",
+    "lessonSummary": "The dungeon seems endless – but your loops know when to stop.",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Dungeon loop: The hero has health = 100 and loses 20 health per room. Count the depth (start 0) and loop as long as health is greater than 0. Afterwards print exactly: Hero fallen at depth 5",
+        "codeTemplate": "health = 100\ndepth = 0\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hero fallen at depth 5"
+        }
+      },
+      {
+        "instruction": "Step 2 – Health and mana: health = 100, mana = 50. Every room costs 15 health and 10 mana. Loop as long as health > 0 and mana > 0. Afterwards print exactly: Depth 5, health 25, mana 0",
+        "codeTemplate": "health = 100\nmana = 50\ndepth = 0\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Depth 5, health 25, mana 0"
+        }
+      },
+      {
+        "instruction": "Step 3 – Healing springs: health = 100, damage per room 15. At depth 4 and depth 8 the hero heals 20 health after the damage (if with == and or). Loop as long as health > 0 and afterwards print exactly: Deepest depth: 10",
+        "codeTemplate": "health = 100\ndepth = 0\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Deepest depth: 10"
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,1 @@
+"""**Explanation:** Text must be in quotation marks. Without them Python reads `Hello` and `Horse` as variable names – which don't exist."""

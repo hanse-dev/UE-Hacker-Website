@@ -1,0 +1,1 @@
+print("Willkommen auf dem Reiterhof Sonnental!")

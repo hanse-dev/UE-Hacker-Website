@@ -1,0 +1,1 @@
+"""**Erklärung:** `str()` macht aus der Zahl 5 den Text `"5"`, sonst lassen sich Zahl und Text nicht mit `+` verbinden."""

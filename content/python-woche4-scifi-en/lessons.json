@@ -1,0 +1,495 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "System Log 1: The for Loop",
+    "file": "lektion-01.md",
+    "lessonSummary": "Time loop mastered! A for loop repeats code for every step of range().",
+    "tasks": [
+      {
+        "instruction": "Run this example: a for loop with range(5).",
+        "example": true,
+        "codeTemplate": "for i in range(5):\n    print(f\"Time Cycle {i+1}: Systems synchronized\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Time Cycle 5: Systems synchronized"
+        }
+      },
+      {
+        "instruction": "Use a for loop with range(3) and print the lines Cycle 1: online, Cycle 2: online and Cycle 3: online (print i+1).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Cycle 3: online"
+        }
+      },
+      {
+        "instruction": "Use a for loop with range(4) and print Engine 0: ready up to Engine 3: ready (print i itself, it starts at 0).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Engine 3: ready"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "System Log 2: range() with Start, End and Step",
+    "file": "lektion-02.md",
+    "lessonSummary": "Precision achieved! range() can start anywhere and skip sectors.",
+    "tasks": [
+      {
+        "instruction": "Run this example: scan sectors 3 to 7, then reinforce every second sector.",
+        "example": true,
+        "codeTemplate": "print(\"=== Scanning Sectors 3 to 7 ===\")\nfor sector in range(3, 8):\n    print(f\"Sector {sector}: Scan complete\")\n\nprint(\"=== Every Second Sector ===\")\nfor sector in range(0, 11, 2):\n    print(f\"Sector {sector}: Reinforcement activated\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sector 10: Reinforcement activated"
+        }
+      },
+      {
+        "instruction": "Use range(3, 7) and print Sector 3: scanned up to Sector 6: scanned.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sector 6: scanned"
+        }
+      },
+      {
+        "instruction": "Use range(2, 11, 2) and print Pulse 2, Pulse 4 and so on up to Pulse 10.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Pulse 10"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "System Log 3: Counting Backwards",
+    "file": "lektion-03.md",
+    "lessonSummary": "Countdown complete! A negative step makes range() count backwards.",
+    "tasks": [
+      {
+        "instruction": "Run the hyperspace countdown.",
+        "example": true,
+        "codeTemplate": "for i in range(5, 0, -1):\n    print(f\"{i}...\")\nprint(\"🚀 HYPERSPACE JUMP!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1...\n🚀 HYPERSPACE JUMP!"
+        }
+      },
+      {
+        "instruction": "Count down from 3 to 1 with range(3, 0, -1). Print T-minus 3, T-minus 2, T-minus 1 and then (after the loop) Lift-off!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "T-minus 1\nLift-off!"
+        }
+      },
+      {
+        "instruction": "Use range(10, 0, -3) and print Level 10, Level 7, Level 4 and Level 1. Then print Done after the loop.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level 4\nLevel 1\nDone"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "System Log 4: Loops over Strings",
+    "file": "lektion-04.md",
+    "lessonSummary": "Code decoded letter by letter! A for loop can walk through any text.",
+    "tasks": [
+      {
+        "instruction": "Run this example: the letters of the code ALPHA.",
+        "example": true,
+        "codeTemplate": "code = \"ALPHA\"\nprint(f\"The code is: {code}\")\nprint(\"Letter by letter:\")\nfor letter in code:\n    print(f\"  - {letter}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "  - A"
+        }
+      },
+      {
+        "instruction": "Create code = \"NEXUS\" and print every letter in the format Letter: N, Letter: E and so on (last line: Letter: S).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Letter: S"
+        }
+      },
+      {
+        "instruction": "Create code = \"QUANTUM\". Count its letters with a variable count (start at 0, add 1 per letter) and print exactly: Letters: 7",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Letters: 7"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "System Log 5: The while Loop",
+    "file": "lektion-05.md",
+    "lessonSummary": "Scanner running! A while loop repeats as long as its condition is true.",
+    "tasks": [
+      {
+        "instruction": "Run this example: scan from 0 to 10.",
+        "example": true,
+        "codeTemplate": "scan = 0\nwhile scan <= 10:\n    print(f\"Scan {scan}: Data received\")\n    scan += 1\nprint(\"Scan finished\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Scan 10: Data received"
+        }
+      },
+      {
+        "instruction": "Create count = 3. While count > 0 print Ignition in 3, Ignition in 2, Ignition in 1 (do not forget to reduce count by 1 in the loop).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ignition in 1"
+        }
+      },
+      {
+        "instruction": "Create energy = 100. While energy > 20 subtract 15 and print Energy: 85%, Energy: 70% and so on. The last line must read: Energy: 10%",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energy: 10%"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "System Log 6: while with Counters",
+    "file": "lektion-06.md",
+    "lessonSummary": "Shield under control! Counters inside a while loop track time and values.",
+    "tasks": [
+      {
+        "instruction": "Run the shield generator.",
+        "example": true,
+        "codeTemplate": "energy = 100\nminute = 1\nwhile energy > 20:\n    consumption = 15\n    energy -= consumption\n    print(f\"Minute {minute}: -{consumption} energy, remaining: {energy}%\")\n    minute += 1\nprint(f\"Shield critical after {minute-1} minutes!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Shield critical after 6 minutes!"
+        }
+      },
+      {
+        "instruction": "Create fuel = 50 and minute = 1. While fuel >= 12 subtract 12 and print Minute 1: fuel 38, Minute 2: fuel 26 and so on (increase minute each pass). The last line must read: Minute 4: fuel 2",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Minute 4: fuel 2"
+        }
+      },
+      {
+        "instruction": "Create signal = 1. While signal < 100 double it (signal *= 2) and print Signal: 2, Signal: 4 and so on. The last line must read: Signal: 128",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Signal: 128"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "System Log 7: Nested Loops",
+    "file": "lektion-07.md",
+    "lessonSummary": "Time within time! The inner loop runs completely on every pass of the outer loop.",
+    "tasks": [
+      {
+        "instruction": "Run this example: scan all decks and print a hologram pattern.",
+        "example": true,
+        "codeTemplate": "for deck in range(1, 4):\n    print(f\"Deck {deck}:\")\n    for room in range(1, 3):\n        print(f\"  Room {room} is being scanned...\")\n\nfor row in range(3):\n    for col in range(4):\n        print(\"✨\", end=\" \")\n    print()\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Deck 3:"
+        }
+      },
+      {
+        "instruction": "Use two nested loops: decks 1 to 2 (range(1, 3)) and rooms 1 to 3. Print one line per room in the format Deck 1, room 1. The last line must read: Deck 2, room 3",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Deck 2, room 3"
+        }
+      },
+      {
+        "instruction": "Print a block of * with 3 rows and 4 columns (nested loops, print(\"*\", end=\"\") and an empty print() after each row). The output must be exactly four stars per row on three lines.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "****\n****\n****"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "All bugs found! Loops need the right range, a colon and the correct indentation.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Goal: The program should count the time from 1 to 5 and print each value (Time 1 up to Time 5). What is wrong?",
+        "codeTemplate": "for time in range(1, 5):\n    print(f\"Time {time}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Time 5"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Goal: The program should print System 1 through System 5. What is wrong?",
+        "codeTemplate": "for i in range(5)\n    print(f\"System {i+1}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "System 5"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Goal: The program should print Log 0, Log 1 and Log 2 and then print End once. What is wrong?",
+        "codeTemplate": "for i in range(3):\nprint(f\"Log {i}\")\nprint(\"End\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Log 2\nEnd"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: The Quantum Counter",
+    "file": "mission-01.md",
+    "lessonSummary": "Quantum counter calibrated – you master counting patterns!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Print all numbers from 1 to 20 with a for loop in the format Time: 1, Time: 2 and so on (the last line must read: Time: 20).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Time: 20"
+        }
+      },
+      {
+        "instruction": "Step 2 – First print the even numbers 2 to 20 as Even: 2 … Even: 20. Then print the numbers 20 down to 1 as Countdown: 20 … Countdown: 1 and after the loop the line Liftoff!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Countdown: 1\nLiftoff!"
+        }
+      },
+      {
+        "instruction": "Step 3 – Calculate the sum of all numbers from 1 to 100 with a loop (variable total, start at 0) and print exactly: Sum: 5050",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sum: 5050"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: The Space Station Commander",
+    "file": "mission-02.md",
+    "lessonSummary": "Station under control – every deck checked!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Go through the decks 1 to 10 and print Deck 1: OK, Deck 2: OK and so on (the last line must read: Deck 10: OK).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Deck 10: OK"
+        }
+      },
+      {
+        "instruction": "Step 2 – Extend the loop: for each deck print Deck N: OK. Additionally print ⚠️ Warning on Deck N for the decks 3, 6 and 9 (use if with or) and Bonus on Deck N for the decks 5 and 10. Check: the last line of the whole output must read: Bonus on Deck 10",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bonus on Deck 10"
+        }
+      },
+      {
+        "instruction": "Step 3 – Deck 7 is under maintenance: for Deck 7 print only Deck 7 under maintenance (instead of Deck 7: OK), all other decks 1 to 10 print Deck N: OK. After the loop print ✅ All important decks checked!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Deck 7 under maintenance\nDeck 8: OK"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: The Time Paradox",
+    "file": "mission-03.md",
+    "lessonSummary": "Paradox solved – you found your way back through time!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create year = 2100 and jumps = 0. While year != 2000 jump back 25 years (year -= 25), increase jumps by 1 and print Jump 1: year 2075, Jump 2: year 2050 and so on. The last line must read: Jump 4: year 2000",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Jump 4: year 2000"
+        }
+      },
+      {
+        "instruction": "Step 2 – Create year = 2000 and jumps = 0. While jumps < 5 jump forward 30 years and count the jump. After the loop print exactly: Final year: 2150 and Trapped in the time paradox",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Final year: 2150\nTrapped in the time paradox"
+        }
+      },
+      {
+        "instruction": "Step 3 – Print a status report only for every third jump of 1 to 9: use range(1, 10, 3) and print Status: jump 1, Status: jump 4, Status: jump 7.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Status: jump 7"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra challenge 1: The Prime Number Decryption",
+    "file": "boss-01.md",
+    "lessonSummary": "Codes decrypted – you found every prime number!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Prepare the number range: go through the numbers 2 to 20 and print Testing 2 … Testing 20 (the last line must read: Testing 20).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Testing 20"
+        }
+      },
+      {
+        "instruction": "Step 2 – Test the single number 15: create number = 15 and is_prime = True. Use two nested loops over a and b (both range(2, number)); if a * b == number set is_prime = False. Print exactly: 15 is prime: False",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "15 is prime: False"
+        }
+      },
+      {
+        "instruction": "Step 3 – Test all numbers 2 to 30 the same way. Print every prime as Prime: 2, Prime: 3 … and count them in a variable found (start at 0). After the loop print exactly: Primes found: 10",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Primes found: 10"
+        }
+      },
+      {
+        "instruction": "Step 4 – Visualise the numbers 2 to 30 in one line: for a prime print P, otherwise a dot . (use print(..., end=\"\") and an empty print() at the end). Expected line: PP.P.P...P.P...P.P...P.....P.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "PP.P.P...P.P...P.P...P.....P."
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra challenge 2: The Holodeck",
+    "file": "boss-02.md",
+    "lessonSummary": "Holodeck online – grid, pattern and target under control!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Build the holodeck grid with two nested loops: 8 rows, 8 columns. Print a dot . for every field (print(\".\", end=\"\") and an empty print() after each row). Expected: eight dots per row on eight lines.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "........\n........"
+        }
+      },
+      {
+        "instruction": "Step 2 – Draw the chessboard pattern: create dark = True. For every field print # if dark is True, otherwise a dot; then flip dark (dark = not dark). After each row print a line break and flip dark once more. The first two rows must read #.#.#.#. and .#.#.#.#",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "#.#.#.#.\n.#.#.#.#"
+        }
+      },
+      {
+        "instruction": "Step 3 – Simulate movement: create player_row = 1 and player_col = 1. While player_row < 8 move diagonally (add 1 to both) and print Player on field 2, 2 and so on. The last line must read: Player on field 8, 8",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Player on field 8, 8"
+        }
+      },
+      {
+        "instruction": "Step 4 – Check the target: extend Step 3 with target_row = 8 and target_col = 8. After the loop check with if and and whether the player is on the target and print exactly: 🎯 Target reached!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "🎯 Target reached!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra challenge 3: The Endless Tunnel",
+    "file": "boss-03.md",
+    "lessonSummary": "🎊 Congratulations! You have mastered Week 4 – next up is Week 5: Functions (def, return)!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Program the tunnel loop: create distance = 0. While distance < 10 add 1 and print Portal 1 passed, Portal 2 passed and so on. The last line must read: Portal 10 passed",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Portal 10 passed"
+        }
+      },
+      {
+        "instruction": "Step 2 – Add ship values: fuel = 100 and shield = 60. While fuel > 0 and shield > 0 pass one portal (distance += 1), subtract 20 fuel and 8 shield and print Portal 1: fuel 80, shield 52 and so on. The last line must read: Portal 5: fuel 0, shield 20",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Portal 5: fuel 0, shield 20"
+        }
+      },
+      {
+        "instruction": "Step 3 – After the loop of Step 2 print exactly: Tunnel ended after 5 portals and, with if, the reason: Reason: out of fuel (if fuel <= 0).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Tunnel ended after 5 portals\nReason: out of fuel"
+        }
+      },
+      {
+        "instruction": "Step 4 – Find the best flight: test the fuel use per portal 10, 20 and 30 (for fuel_use in range(10, 31, 10)). For each flight start again with fuel = 100, shield = 60, distance = 0 and fly with the while loop (subtract fuel_use fuel and 8 shield per portal). Keep the largest distance in best_distance (start at 0) and print at the end exactly: Best distance: 8",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Best distance: 8"
+        }
+      }
+    ]
+  }
+]

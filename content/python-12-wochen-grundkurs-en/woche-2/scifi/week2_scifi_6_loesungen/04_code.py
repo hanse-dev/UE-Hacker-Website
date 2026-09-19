@@ -1,4 +1,3 @@
-# Problem: no f-String used
-robot = "R2D2"
-status = 3
-print(f"Hello {robot}! Your status is {status}.")
+pilot = "Nova"
+rank = 7
+print(f"Commander {pilot}, rank {rank}")

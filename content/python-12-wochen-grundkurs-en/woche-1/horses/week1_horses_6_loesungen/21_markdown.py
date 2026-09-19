@@ -1,1 +1,1 @@
-"""### ⭐⭐⭐⭐☆ Boss Quest 3: The Jumping Tournament"""
+"""**Explanation:** Text and number can't be joined with `+`. `str(stall_number)` turns the number into text."""

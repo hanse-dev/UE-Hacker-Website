@@ -1,0 +1,495 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Lesson 1: The for loop",
+    "file": "lektion-01.md",
+    "lessonSummary": "Great! With for and range() you repeat code as often as you like.",
+    "tasks": [
+      {
+        "instruction": "Run this example and see how often the loop runs.",
+        "example": true,
+        "codeTemplate": "for i in range(5):\n    print(f\"Lap {i+1}: The horse trots elegantly\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Lap 5: The horse trots elegantly"
+        }
+      },
+      {
+        "instruction": "Use a for loop with range(3) to print exactly the word Hoofbeat three times (each on its own line).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hoofbeat\nHoofbeat\nHoofbeat"
+        }
+      },
+      {
+        "instruction": "Use range(4) and i+1 to print exactly these lines: Lap 1, Lap 2, Lap 3, Lap 4",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Lap 1\nLap 2\nLap 3\nLap 4"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Lesson 2: range() with start and end",
+    "file": "lektion-02.md",
+    "lessonSummary": "You decide where the numbers start and where they stop!",
+    "tasks": [
+      {
+        "instruction": "Run this example. Notice which hurdle comes last.",
+        "example": true,
+        "codeTemplate": "for hurdle in range(3, 8):\n    print(f\"Hurdle {hurdle}: Jump!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hurdle 7: Jump!"
+        }
+      },
+      {
+        "instruction": "Print hurdles 1 to 6, each exactly like this: Hurdle 1: Jump! (up to Hurdle 6: Jump!)",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hurdle 1: Jump!\nHurdle 2: Jump!\nHurdle 3: Jump!\nHurdle 4: Jump!\nHurdle 5: Jump!\nHurdle 6: Jump!"
+        }
+      },
+      {
+        "instruction": "Print lanes 10 to 13, each exactly like this: Lane 10, Lane 11, Lane 12, Lane 13",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Lane 10\nLane 11\nLane 12\nLane 13"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Lesson 3: Step size and counting backwards",
+    "file": "lektion-03.md",
+    "lessonSummary": "Skip hurdles or count backwards – with the third range() value!",
+    "tasks": [
+      {
+        "instruction": "Run this example: a countdown to the start of the tournament.",
+        "example": true,
+        "codeTemplate": "for i in range(5, 0, -1):\n    print(f\"{i}...\")\nprint(\"🏇 GO!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "5...\n4...\n3...\n2...\n1...\n🏇 GO!"
+        }
+      },
+      {
+        "instruction": "Count down from 3 to 1 with range(3, 0, -1) (each number on its own line), then print exactly Start!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "3\n2\n1\nStart!"
+        }
+      },
+      {
+        "instruction": "Print the odd lane numbers 1 to 9, each exactly like this: Lane 1, Lane 3, Lane 5, Lane 7, Lane 9 (step size 2).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Lane 1\nLane 3\nLane 5\nLane 7\nLane 9"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Lesson 4: Loops over text",
+    "file": "lektion-04.md",
+    "lessonSummary": "Text can be walked through letter by letter, too!",
+    "tasks": [
+      {
+        "instruction": "Run this example and look at the individual letters.",
+        "example": true,
+        "codeTemplate": "name = \"Thunder\"\nprint(f\"The horse's name is: {name}\")\nfor letter in name:\n    print(f\"  - {letter}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "  - r"
+        }
+      },
+      {
+        "instruction": "Go through the name and print each letter exactly like this: - L, - u, - n, - a (each on its own line).",
+        "codeTemplate": "name = \"Luna\"\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "- L\n- u\n- n\n- a"
+        }
+      },
+      {
+        "instruction": "Count how often the letter n appears in the name (with a loop and an if) and print exactly: Count n: 2",
+        "codeTemplate": "name = \"Sunshine\"\ncount = 0\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count n: 2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Lesson 5: The while loop",
+    "file": "lektion-05.md",
+    "lessonSummary": "As long as the condition is true, the while loop keeps going!",
+    "tasks": [
+      {
+        "instruction": "Run this example: counting up to 5.",
+        "example": true,
+        "codeTemplate": "counter = 1\nwhile counter <= 5:\n    print(f\"Hoofbeat {counter}\")\n    counter += 1\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hoofbeat 1\nHoofbeat 2\nHoofbeat 3\nHoofbeat 4\nHoofbeat 5"
+        }
+      },
+      {
+        "instruction": "Use a while loop to print the lines Lap 1 to Lap 4 (the counter starts at 1).",
+        "codeTemplate": "counter = 1\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Lap 1\nLap 2\nLap 3\nLap 4"
+        }
+      },
+      {
+        "instruction": "Add up the numbers 1 to 5 with a while loop in the variable total and print exactly: Total: 15",
+        "codeTemplate": "counter = 1\ntotal = 0\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total: 15"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Lesson 6: while with conditions",
+    "file": "lektion-06.md",
+    "lessonSummary": "The loop runs until the horse is exhausted – the condition decides!",
+    "tasks": [
+      {
+        "instruction": "Run this example and watch when the training ends.",
+        "example": true,
+        "codeTemplate": "stamina = 100\nlap = 1\nwhile stamina > 20:\n    stamina -= 15\n    print(f\"Lap {lap}: {stamina}% left\")\n    lap += 1\nprint(f\"Training finished after {lap-1} laps!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Training finished after 6 laps!"
+        }
+      },
+      {
+        "instruction": "The horse has 50 kg of feed and eats 10 kg per day. Use a while loop (while feed > 0) to print, after each day's feeding, exactly: Feed left: 40 kg, then 30, 20, 10 and 0 kg.",
+        "codeTemplate": "feed = 50\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Feed left: 40 kg\nFeed left: 30 kg\nFeed left: 20 kg\nFeed left: 10 kg\nFeed left: 0 kg"
+        }
+      },
+      {
+        "instruction": "A horse-weight game: weight starts at 1 and is doubled in the loop as long as weight < 100. Afterwards print exactly: Result: 128",
+        "codeTemplate": "weight = 1\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Result: 128"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Lesson 7: Nested loops",
+    "file": "lektion-07.md",
+    "lessonSummary": "A loop inside a loop – the training-plan circuit!",
+    "tasks": [
+      {
+        "instruction": "Run this example: the training plan is worked through.",
+        "example": true,
+        "codeTemplate": "for week in range(1, 4):\n    print(f\"Training week {week}:\")\n    for session in range(1, 3):\n        print(f\"  Session {session} is being completed...\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Training week 3:\n  Session 1 is being completed...\n  Session 2 is being completed..."
+        }
+      },
+      {
+        "instruction": "Use two nested loops (week 1 to 2, session 1 to 2) to print exactly these lines: Week 1, Session 1 / Week 1, Session 2 / Week 2, Session 1 / Week 2, Session 2",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Week 1, Session 1\nWeek 1, Session 2\nWeek 2, Session 1\nWeek 2, Session 2"
+        }
+      },
+      {
+        "instruction": "Draw a rectangle of stars: 3 rows of 4 stars each (print(\"*\", end=\"\") in the inner loop, print() after the inner loop). The output should look exactly like this: ****  ****  ****  (each on its own line).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "****\n****\n****"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "All bugs found! Anyone who understands loops and indentation spots errors like these quickly.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Goal: The program should print Lap 1 to Lap 5 (each on its own line). What is wrong?",
+        "codeTemplate": "for i in range(5):\n    print(f\"Lap {i}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Lap 1\nLap 2\nLap 3\nLap 4\nLap 5"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Goal: The program should print Horse 1 to Horse 5. What is wrong?",
+        "codeTemplate": "for i in range(5)\n    print(f\"Horse {i+1}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Horse 1\nHorse 2\nHorse 3\nHorse 4\nHorse 5"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Goal: The program should print Exercise 0, Exercise 1 and Exercise 2, then Training finished. What is wrong?",
+        "codeTemplate": "for i in range(3):\nprint(f\"Exercise {i}\")\nprint(\"Training finished\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Exercise 0\nExercise 1\nExercise 2\nTraining finished"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: The Counting Rider",
+    "file": "mission-01.md",
+    "lessonSummary": "You count like a pro – every lap is spot on!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Counting laps: Use a for loop to print the horse numbers 1 to 10, each exactly like this: Horse: 1 (up to Horse: 10)",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Horse: 1\nHorse: 2\nHorse: 3\nHorse: 4\nHorse: 5\nHorse: 6\nHorse: 7\nHorse: 8\nHorse: 9\nHorse: 10"
+        }
+      },
+      {
+        "instruction": "Step 2 – Even numbers: Print the even horse numbers from 2 to 10, each exactly like this: Even: 2, Even: 4, Even: 6, Even: 8, Even: 10",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Even: 2\nEven: 4\nEven: 6\nEven: 8\nEven: 10"
+        }
+      },
+      {
+        "instruction": "Step 3 – Training hours: In a loop, add up the numbers 1 to 10 in the variable total and print exactly: Total: 55",
+        "codeTemplate": "total = 0\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total: 55"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: The Stable Manager",
+    "file": "mission-02.md",
+    "lessonSummary": "All stalls checked – the riding ranch runs smoothly!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Stable round: Go through stalls 1 to 5 and print for each exactly: Stall 1: checking... (up to Stall 5)",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stall 1: checking...\nStall 2: checking...\nStall 3: checking...\nStall 4: checking...\nStall 5: checking..."
+        }
+      },
+      {
+        "instruction": "Step 2 – Warnings: Go through stalls 1 to 6. For stall 3 and stall 6 (if with or) print Stall 3: warning and Stall 6: warning, for all the others Stall N: ok.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stall 1: ok\nStall 2: ok\nStall 3: warning\nStall 4: ok\nStall 5: ok\nStall 6: warning"
+        }
+      },
+      {
+        "instruction": "Step 3 – Renovation: Go through stalls 6 to 8. Stall 7 is being renovated and should print Stall 7: renovation, the others Stall 6: checked and Stall 8: checked.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stall 6: checked\nStall 7: renovation\nStall 8: checked"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: The Endurance Training",
+    "file": "mission-03.md",
+    "lessonSummary": "The horse kept going – and you have loops under control!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Stamina drops: The horse starts with stamina = 100 and laps = 0. As long as stamina > 10, it drops by 15 per lap. Count the laps up and print exactly in every lap: Lap 1: Stamina 85 (then 70, 55, 40, 25, 10).",
+        "codeTemplate": "stamina = 100\nlaps = 0\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Lap 1: Stamina 85\nLap 2: Stamina 70\nLap 3: Stamina 55\nLap 4: Stamina 40\nLap 5: Stamina 25\nLap 6: Stamina 10"
+        }
+      },
+      {
+        "instruction": "Step 2 – Stamina down to zero: The stamina starts at 100 and drops by 20 per lap. Use while (as long as stamina > 0) to print exactly after each lap: Stamina: 80, Stamina: 60, Stamina: 40, Stamina: 20, Stamina: 0",
+        "codeTemplate": "stamina = 100\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stamina: 80\nStamina: 60\nStamina: 40\nStamina: 20\nStamina: 0"
+        }
+      },
+      {
+        "instruction": "Step 3 – Report: Here the loop from step 1 runs without any output. Afterwards print exactly: Training finished after 6 laps",
+        "codeTemplate": "stamina = 100\nlaps = 0\nwhile stamina > 10:\n    stamina -= 15\n    laps += 1\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Training finished after 6 laps"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "The Jumping Training",
+    "file": "boss-01.md",
+    "lessonSummary": "The jumping course has been evaluated – every height is right!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Course: The first jump is 90 cm high, each further one 10 cm higher. In a for loop (range(5)) calculate the height as 90 + i*10 and print: Jump 1: 90 cm (up to Jump 5: 130 cm)",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Jump 1: 90 cm\nJump 2: 100 cm\nJump 3: 110 cm\nJump 4: 120 cm\nJump 5: 130 cm"
+        }
+      },
+      {
+        "instruction": "Step 2 – Counting high jumps: Add an if in the loop that counts how many of the 5 jumps are higher than 100 cm, then print exactly: Higher than 100 cm: 3",
+        "codeTemplate": "count = 0\nfor i in range(5):\n    height = 90 + i * 10\n    # 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Higher than 100 cm: 3"
+        }
+      },
+      {
+        "instruction": "Step 3 – Total height: Add up all 5 heights in total and print exactly: Total height: 550 cm",
+        "codeTemplate": "total = 0\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total height: 550 cm"
+        }
+      },
+      {
+        "instruction": "Step 4 – Average: Divide the total height by 5 and print exactly: Average: 110.0 cm",
+        "codeTemplate": "total = 550\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Average: 110.0 cm"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "The Riding Board",
+    "file": "boss-02.md",
+    "lessonSummary": "The riding board is set up – every square sits in the right place!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Build the board: Use two nested loops to create a 4×4 board of dots (print(\".\", end=\"\") inside, print() after the inner loop). The output: ....  ....  ....  ....  (each on its own line).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "....\n....\n....\n...."
+        }
+      },
+      {
+        "instruction": "Step 2 – Place the horse: Build a 3×3 board (rows and columns 0 to 2). The horse P stands at row 1, column 1, everywhere else a dot. Expected output: ...  .P.  ...  (each on its own line).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "...\n.P.\n..."
+        }
+      },
+      {
+        "instruction": "Step 3 – Coordinates: For rows 1 to 2 and columns 1 to 3 (row outside, column inside) print exactly: Square 1-1, Square 1-2, Square 1-3, Square 2-1, Square 2-2, Square 2-3",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Square 1-1\nSquare 1-2\nSquare 1-3\nSquare 2-1\nSquare 2-2\nSquare 2-3"
+        }
+      },
+      {
+        "instruction": "Step 4 – Dressage staircase: Build a staircase of stars: row 1 has 1 star, row 2 two stars, up to row 4 with four stars (outer loop range(1, 5), inner loop range(row)). Output: *  **  ***  ****  (each on its own line).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "*\n**\n***\n****"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "The Marathon Ride",
+    "file": "boss-03.md",
+    "lessonSummary": "🎊 Congratulations! You have mastered Week 4 – next up is Week 5: Functions (def, return)!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Marathon loop: Start with energy = 100 and distance = 0. As long as energy > 0, it drops by 25 per lap and distance rises by 1. In every lap print exactly: Lap 1: Energy 75 (then 50, 25, 0).",
+        "codeTemplate": "energy = 100\ndistance = 0\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Lap 1: Energy 75\nLap 2: Energy 50\nLap 3: Energy 25\nLap 4: Energy 0"
+        }
+      },
+      {
+        "instruction": "Step 2 – Feeding break: Start with energy = 100 and lap = 0. As long as lap < 6, raise lap by 1 and subtract 15 energy. In lap 3 there is a feeding break: then 20 energy is added on top. After every lap print: Lap 1: Energy 85, Lap 2: Energy 70, Lap 3: Energy 75, Lap 4: Energy 60, Lap 5: Energy 45, Lap 6: Energy 30",
+        "codeTemplate": "energy = 100\nlap = 0\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Lap 1: Energy 85\nLap 2: Energy 70\nLap 3: Energy 75\nLap 4: Energy 60\nLap 5: Energy 45\nLap 6: Energy 30"
+        }
+      },
+      {
+        "instruction": "Step 3 – Statistics: Here the marathon loop from step 1 runs without any output. Afterwards print exactly: Distance: 4 laps and on the next line Final energy: 0",
+        "codeTemplate": "energy = 100\ndistance = 0\nwhile energy > 0:\n    energy -= 25\n    distance += 1\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Distance: 4 laps\nFinal energy: 0"
+        }
+      },
+      {
+        "instruction": "Step 4 – Finishing stretch: Count the last laps down with range(3, 0, -1) and print: Laps left: 3, Laps left: 2, Laps left: 1. Afterwards exactly: Finish reached!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Laps left: 3\nLaps left: 2\nLaps left: 1\nFinish reached!"
+        }
+      }
+    ]
+  }
+]

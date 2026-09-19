@@ -1,2 +1,1 @@
-# Problem: Text ohne Anführungszeichen
-print("Hallo Pferd")
+print("Hallo Reiterhof!")

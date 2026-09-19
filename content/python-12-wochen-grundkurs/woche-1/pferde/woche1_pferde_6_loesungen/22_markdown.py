@@ -1,0 +1,1 @@
+"""**Erklärung:** Text und Zahl lassen sich nicht mit `+` verbinden. `str(stallnummer)` wandelt die Zahl in Text um."""

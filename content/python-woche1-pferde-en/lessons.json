@@ -1,0 +1,323 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Lesson 1: print()",
+    "file": "lektion-01.md",
+    "lessonSummary": "Your first call has rung out! With print() you put everything on the screen.",
+    "tasks": [
+      {
+        "instruction": "Run this example and look at the output below.",
+        "example": true,
+        "codeTemplate": "print(\"Hello at the riding ranch!\")\nprint(\"Welcome to Sunny Valley!\")\n\n# An empty line makes things easier to read\nprint()\nprint(\"=== YOUR RIDING BEGINS ===\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Welcome to Sunny Valley!"
+        }
+      },
+      {
+        "instruction": "Use print() to output a greeting of your own that contains the word \"ranch\".",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "ranch"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Lesson 2: Variables",
+    "file": "lektion-02.md",
+    "lessonSummary": "Perfect! Variables let you keep values and change them later.",
+    "tasks": [
+      {
+        "instruction": "Run this example. It shows text and number variables.",
+        "example": true,
+        "codeTemplate": "horse_name = \"Bobby\"   # Text (String)\nhorse_age = 5          # Number (Integer)\n\nprint(horse_name)\nprint(horse_age)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bobby"
+        }
+      },
+      {
+        "instruction": "Store the text \"Sunny Valley\" in a variable called ranch and print the variable with print().",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sunny Valley"
+        }
+      },
+      {
+        "instruction": "Create a variable feed with the value 2. Then change it to 3 and print feed.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Lesson 3: Joining Texts",
+    "file": "lektion-03.md",
+    "lessonSummary": "Exactly how you build whole sentences from texts and numbers – don't forget str() for numbers!",
+    "tasks": [
+      {
+        "instruction": "Run this example – notice where str() is needed.",
+        "example": true,
+        "codeTemplate": "name = \"Stormy\"\nbreed = \"Haflinger\"\nage = 8\n\nprint(\"Horse: \" + name)\nprint(\"Age: \" + str(age) + \" years\")\nprint(name + \" is a \" + breed + \" and \" + str(age) + \" years old.\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stormy is a Haflinger and 8 years old."
+        }
+      },
+      {
+        "instruction": "Create a variable age with the value 5 and use + and str() to print exactly this text: Age: 5",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Age: 5"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Lesson 4: input()",
+    "file": "lektion-04.md",
+    "lessonSummary": "Now your program can talk to people – input() makes it interactive.",
+    "tasks": [
+      {
+        "instruction": "Run this example. An input window opens – enter a horse's name there.",
+        "example": true,
+        "codeTemplate": "horse = input(\"What is your horse's name? \")\nprint(\"Welcome to the ranch, \" + horse + \"!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Welcome to the ranch, "
+        }
+      },
+      {
+        "instruction": "Use input() to ask for your rider's name, store the answer in rider and print: I ride with: (followed by the name)",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "I ride with: "
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Lesson 5: Comments",
+    "file": "lektion-05.md",
+    "lessonSummary": "Comments are your stable notes – Python ignores them, but they help you find your way around your code.",
+    "tasks": [
+      {
+        "instruction": "Run this example. Notice which line is NOT executed.",
+        "example": true,
+        "codeTemplate": "# This line prints the horse's name\nprint(\"Bobby\")\n\nprint(\"5 years old\")  # shows the horse's age\n\nprint(\"This will run\")\n# print(\"This will NOT run\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "This will run"
+        }
+      },
+      {
+        "instruction": "Write a comment of your own and then a print() that outputs exactly: Comment read",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Comment read"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "All bugs found! Reading error messages carefully is half the battle when debugging.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Goal: The program should print the text Hello Horse. What is wrong?",
+        "codeTemplate": "print(Hello Horse)",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hello Horse"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Goal: The program should print My stable is number 12. What is wrong?",
+        "codeTemplate": "stall_number = 12\nprint(\"My stable is number \" + stall_number)",
+        "validation": {
+          "type": "output_contains",
+          "expected": "My stable is number 12"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Goal: The program should print Welcome, Lucky. What is wrong?",
+        "codeTemplate": "horse = \"Lucky\"\nprint(\"Welcome, \" + horses)",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Welcome, Lucky"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: The Stable Helper",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission accomplished – you are a true stable helper!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Use print() to output exactly this sentence: Welcome to Sunny Valley Riding Ranch!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Welcome to Sunny Valley Riding Ranch!"
+        }
+      },
+      {
+        "instruction": "Step 2 – Store the name \"Bobby\" in the variable favourite_horse and use it to output exactly this sentence: My favourite horse is Bobby.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "My favourite horse is Bobby."
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: The Horse Whisperer",
+    "file": "mission-02.md",
+    "lessonSummary": "Feeding plan handed in – all the horses are looked after!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create horse_name = \"Bobby\", feed_type = \"oats\" and amount = 3. Print the heading === FEEDING PLAN === and below it three lines: Horse: ..., Feed: ... and Amount: 3 kg (number with str()!).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Amount: 3 kg"
+        }
+      },
+      {
+        "instruction": "Step 2 – Use the variables from step 1 to print this sentence: Bobby gets 3 kg of oats.",
+        "codeTemplate": "horse_name = \"Bobby\"\nfeed_type = \"oats\"\namount = 3\n\n# Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bobby gets 3 kg of oats."
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: The Riding Tournament",
+    "file": "mission-03.md",
+    "lessonSummary": "The tournament can begin – your participant profile is ready!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Print the heading === TOURNAMENT PROFILE ===, then the lines Rider: ..., Horse: ... and Obstacles: 8 (number with str()!) using these variables.",
+        "codeTemplate": "rider = \"Mia\"\nhorse = \"Bobby\"\nobstacles = 8\n\n# Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Obstacles: 8"
+        }
+      },
+      {
+        "instruction": "Step 2 – Write a sentence from the variables: Mia and Bobby are riding in the tournament today.",
+        "codeTemplate": "rider = \"Mia\"\nhorse = \"Bobby\"\n\n# Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mia and Bobby are riding in the tournament today."
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "The Feed Book",
+    "file": "boss-01.md",
+    "lessonSummary": "The feed book is complete – the riding ranch thanks you!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create four variables line1 to line4, each with one sentence about good feed. Then print the heading === THE FEED BOOK === and after it all four lines.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "=== THE FEED BOOK ==="
+        }
+      },
+      {
+        "instruction": "Step 2 – Sign the book: print Author: (your name) and Rating: 5 carrots. Use a variable and str() for the number.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rating: 5 carrots"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "The Shy Horse",
+    "file": "boss-02.md",
+    "lessonSummary": "The shy horse trusts you – that was real sensitivity!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create three variables step1 to step3, each with one approach step. Print the heading === TRAINING PLAN === and then each step with its number.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "=== TRAINING PLAN ==="
+        }
+      },
+      {
+        "instruction": "Step 2 – Store an expected effect in a variable and print Expected effect: (the effect). Afterwards print Training is being carried out...",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Training is being carried out..."
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "The Jumping Tournament",
+    "file": "boss-03.md",
+    "lessonSummary": "🎊 Congratulations! You have mastered Week 1 – Week 2 is next: data types and variables!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create obstacles = 8 and height = 110 and use str() and + to print exactly this line: Course: 8 obstacles up to 110 cm",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Course: 8 obstacles up to 110 cm"
+        }
+      },
+      {
+        "instruction": "Step 2 – Create level = 4 and print exactly this line: Difficulty: 4 stars",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Difficulty: 4 stars"
+        }
+      }
+    ]
+  }
+]

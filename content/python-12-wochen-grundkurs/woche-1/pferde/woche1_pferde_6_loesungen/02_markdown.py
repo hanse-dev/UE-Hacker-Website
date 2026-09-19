@@ -1,1 +1,1 @@
-"""## 🐛 Debug-Lösungsvorschläge"""
+"""## 📚 Lektionen"""

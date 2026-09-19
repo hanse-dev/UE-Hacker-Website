@@ -1,1 +1,3 @@
-"""**Erklärung:** `stallnummer` ist eine Zahl (Integer), der Text davor ist ein String. Python kann diese zwei Typen nicht direkt mit `+` verbinden – das ist wie versuchen, einen Stein an einen Faden zu knoten. `str()` löst das: es verwandelt die Zahl in Text."""
+"""### Übung 2: Variablen – Aufgabe 1
+
+Speichere den Text "Sonnental" in einer Variable namens hof und gib die Variable mit print() aus."""

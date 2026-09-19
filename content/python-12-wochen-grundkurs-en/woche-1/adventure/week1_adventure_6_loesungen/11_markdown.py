@@ -1,0 +1,1 @@
+"""**Explanation:** `str()` turns the number 20 into the text `"20"`; otherwise number and text cannot be joined with `+`."""

@@ -1,1 +1,3 @@
-"""**Explanation:** Python reads `System` and `online` as variable names – but these variables don't exist. Text must always be in quotation marks so Python knows: this is text, not a variable."""
+"""### System Protocol 1: print()
+
+Use print() to output your own greeting that contains the word "Nebula-7"."""

@@ -1,4 +1,4 @@
-# Problem: Kein f-String verwendet
-pferd = "Comet"
-alter = 6
-print(f"Hallo {pferd}! Du bist {alter} Jahre alt.")
+pferd_name = "Thunder"
+alter = 8
+
+print(f"Hallo {pferd_name}! Du bist {alter} Jahre alt!")

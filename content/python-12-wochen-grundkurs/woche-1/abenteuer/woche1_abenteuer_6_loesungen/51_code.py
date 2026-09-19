@@ -1,0 +1,1 @@
+print("Warnung: Das Portal schließt sich bei Sonnenaufgang – rechtzeitig zurückkehren!")

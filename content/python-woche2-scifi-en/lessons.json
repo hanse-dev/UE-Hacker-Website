@@ -1,0 +1,503 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "System Protocol 1: String Command",
+    "file": "lektion-01.md",
+    "lessonSummary": "Perfect! With f-strings you fuse text and variables into precise messages.",
+    "tasks": [
+      {
+        "instruction": "Run this example: three f-strings with variables and a calculation.",
+        "example": true,
+        "codeTemplate": "# Example 1: Simple f-strings\npilot = \"Zara\"\nrank = 5\nprint(f\"Hello {pilot}!\")\nprint(f\"Your rank: {rank}\")\n\n# Example 2: With calculations\nenergy_a = 75\nenergy_b = 25\nprint(f\"Total energy: {energy_a + energy_b}%\")\n\n# Example 3: Multiple variables\nship = \"Nebula-Falcon\"\ncaptain = \"Orion\"\nmission = \"Expedition Alpha\"\nprint(f\"{ship} under {captain} launches {mission}!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nebula-Falcon under Orion launches Expedition Alpha!"
+        }
+      },
+      {
+        "instruction": "Create the variables pilot = \"Nova\" and rank = 7. Use an f-string to print exactly: Commander Nova, rank 7",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Commander Nova, rank 7"
+        }
+      },
+      {
+        "instruction": "Create energy_a = 60 and energy_b = 25. Let an f-string do the calculation and print exactly: Total energy: 85%",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total energy: 85%"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "System Protocol 2: Strings and type()",
+    "file": "lektion-02.md",
+    "lessonSummary": "Text data decoded! type() reveals the quantum type of any information.",
+    "tasks": [
+      {
+        "instruction": "Run this example and look at the quantum type of the ship name.",
+        "example": true,
+        "codeTemplate": "ship_name = \"Starlight\"\nship_class = \"Cruiser\"\nprint(f\"Ship: {ship_name}\")\nprint(f\"Class: {ship_class}\")\nprint(f\"Type: {type(ship_name)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "<class 'str'>"
+        }
+      },
+      {
+        "instruction": "Create planet = \"Mars\" and print its quantum type with type().",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "<class 'str'>"
+        }
+      },
+      {
+        "instruction": "Create ship_class = \"Cruiser\" and print exactly: Class: Cruiser, type: <class 'str'> (let the f-string fill in the type with type()).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Class: Cruiser, type: <class 'str'>"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "System Protocol 3: Integers",
+    "file": "lektion-03.md",
+    "lessonSummary": "Whole numbers under control! Crew and decks are counted with int.",
+    "tasks": [
+      {
+        "instruction": "Run this example with two integers.",
+        "example": true,
+        "codeTemplate": "crew_count = 250\ndeck_count = 15\nprint(f\"Crew: {crew_count}, Decks: {deck_count}\")\nprint(f\"Type: {type(crew_count)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Crew: 250, Decks: 15"
+        }
+      },
+      {
+        "instruction": "Create crew_count = 300 and deck_count = 12 and print exactly: Crew: 300, Decks: 12",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Crew: 300, Decks: 12"
+        }
+      },
+      {
+        "instruction": "Create deck_count = 12 and print its quantum type with type().",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "<class 'int'>"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "System Protocol 4: Floats",
+    "file": "lektion-04.md",
+    "lessonSummary": "Precision achieved! Floats store decimal numbers for exact measurements.",
+    "tasks": [
+      {
+        "instruction": "Run this example with two floats.",
+        "example": true,
+        "codeTemplate": "speed = 2.5\ncoordinate_x = 127.35\nprint(f\"Speed: {speed} light years/h\")\nprint(f\"Position X: {coordinate_x}\")\nprint(f\"Type: {type(speed)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Speed: 2.5 light years/h"
+        }
+      },
+      {
+        "instruction": "Create speed = 3.7 and coordinate_x = 88.25 and print exactly: Position X: 88.25",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Position X: 88.25"
+        }
+      },
+      {
+        "instruction": "Create speed = 3.7 and print its quantum type with type().",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "<class 'float'>"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "System Protocol 5: Booleans",
+    "file": "lektion-05.md",
+    "lessonSummary": "System states decoded! A Boolean is always either True or False.",
+    "tasks": [
+      {
+        "instruction": "Run this example with two system states.",
+        "example": true,
+        "codeTemplate": "system_online = True\nalarm_active = False\nprint(f\"System online: {system_online}\")\nprint(f\"Alarm active: {alarm_active}\")\nprint(f\"Type: {type(system_online)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "System online: True"
+        }
+      },
+      {
+        "instruction": "Create shield_active = True and reactor_overheated = False and print exactly: Shield active: True",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Shield active: True"
+        }
+      },
+      {
+        "instruction": "Create alarm_active = False and print its quantum type with type().",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "<class 'bool'>"
+        }
+      },
+      {
+        "instruction": "Print the result of the comparison 80 > 50 directly with print().",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "System Protocol 6: Operations",
+    "file": "lektion-06.md",
+    "lessonSummary": "Calculations and text fusion mastered – the data lab runs at full power!",
+    "tasks": [
+      {
+        "instruction": "Run this example: calculations and text operations.",
+        "example": true,
+        "codeTemplate": "# Mathematical operations\nplanets_a = 8\nplanets_b = 4\nprint(f\"Total planets: {planets_a + planets_b}\")\nprint(f\"Difference: {planets_a - planets_b}\")\nprint(f\"Doubled: {planets_a * 2}\")\nprint(f\"Per sector: {planets_a / 2}\")\n\n# String operations\nprefix = \"Neo\"\nsuffix = \"tron\"\nsystem_name = prefix + suffix\nprint(f\"System name: {system_name}\")\nprint(f\"Signal: {prefix * 3}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "System name: Neotron"
+        }
+      },
+      {
+        "instruction": "Create planets = 9. Print exactly: Per sector: 3.0 (divide the planets by 3 inside an f-string).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Per sector: 3.0"
+        }
+      },
+      {
+        "instruction": "Join \"Star\" and \"lab\" with + into a variable system_name and print exactly: System name: Starlab",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "System name: Starlab"
+        }
+      },
+      {
+        "instruction": "Repeat the text \"Ping\" three times with * and print the result.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "PingPingPing"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "System Protocol 7: Type Conversion",
+    "file": "lektion-07.md",
+    "lessonSummary": "Transformation complete! int(), float(), str() and bool() convert any data.",
+    "tasks": [
+      {
+        "instruction": "Run this example: convert text into numbers.",
+        "example": true,
+        "codeTemplate": "temperature_str = \"273\"\ntemperature_int = int(temperature_str)\nprint(f\"Temperature as text: {temperature_str}K (type: {type(temperature_str)})\")\nprint(f\"Temperature as number: {temperature_int}K (type: {type(temperature_int)})\")\n\n# Process sensor data\nsensor_value = \"42.5\"\nvalue_float = float(sensor_value)\nprint(f\"Sensor value {value_float} doubled: {value_float * 2}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sensor value 42.5 doubled: 85.0"
+        }
+      },
+      {
+        "instruction": "Create temperature_str = \"300\", convert it with int() and print exactly: Temperature plus 10: 310K",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Temperature plus 10: 310K"
+        }
+      },
+      {
+        "instruction": "Create sensor_value = \"12.5\", convert it with float() and print exactly: Sensor value tripled: 37.5",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sensor value tripled: 37.5"
+        }
+      },
+      {
+        "instruction": "Create crew = 12 and join it with + into this line, using str(): Crew: 12",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Crew: 12"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "All bugs found! Reading the goal and the error message carefully is half the battle.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Goal: The program should print: Hello R2D2! Your status is 3. What is wrong?",
+        "codeTemplate": "robot = \"R2D2\"\nstatus = 3\nprint(\"Hello robot! Your status is status.\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hello R2D2! Your status is 3."
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Goal: The program should calculate and print the remaining energy: Remaining energy: 50. What is wrong?",
+        "codeTemplate": "energy = \"80\"\nconsumption = 30\nprint(f\"Remaining energy: {energy - consumption}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Remaining energy: 50"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Goal: The program should print: Shield strength: 95 percent. What is wrong?",
+        "codeTemplate": "shield_strength = 95\nprint(f\"Shield strength: shield_strength percent\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Shield strength: 95 percent"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: The Energy Depot",
+    "file": "mission-01.md",
+    "lessonSummary": "Depot checked – energy reserves calculated!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create technician = \"Kira\" (text) and tech_id = 4021 (whole number). Print exactly: Technician Kira, ID 4021",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Technician Kira, ID 4021"
+        }
+      },
+      {
+        "instruction": "Step 2 – Create blocks = 12 (whole number) and energy_per_block = 45.5 (decimal number). Multiply them, store the result in total_energy and print exactly: Total energy: 546.0",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total energy: 546.0"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: The Fleet Analysis",
+    "file": "mission-02.md",
+    "lessonSummary": "Fleet analysed – total strength and average speed determined!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create the variables for all three ships. Print the heading === FLEET ANALYSIS === and then one line per ship in the format Aurora: crew 120, speed 2.5 (the last line must read: Orion: crew 200, speed 1.5).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Orion: crew 200, speed 1.5"
+        }
+      },
+      {
+        "instruction": "Step 2 – Add all crew sizes, store the sum in total_crew and print exactly: Total crew: 400 (create the ship variables again first).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total crew: 400"
+        }
+      },
+      {
+        "instruction": "Step 3 – Add all speeds, divide by 3, store the result in average_speed and print exactly: Average speed: 2.5",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Average speed: 2.5"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: The Asteroid Mining",
+    "file": "mission-03.md",
+    "lessonSummary": "Mining decision made – the more valuable asteroid gets mined!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create variables for both asteroids and calculate both raw values (value_a and value_b). Print two lines in the format Ceres-9 value: 5000.0 – the last line must read: Vesta-3 value: 5400.0",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Vesta-3 value: 5400.0"
+        }
+      },
+      {
+        "instruction": "Step 2 – Compare the values (start from value_a = 5000.0 and value_b = 5400.0): store value_b > value_a in a Boolean variable b_is_better and print exactly: Vesta-3 is more valuable: True",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Vesta-3 is more valuable: True"
+        }
+      },
+      {
+        "instruction": "Step 3 – Calculate the average value of both asteroids and print exactly: Average value: 5200.0 – then print your mining decision: Mining decision: Vesta-3",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Average value: 5200.0"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra challenge 1: The Spaceship Dock",
+    "file": "boss-01.md",
+    "lessonSummary": "Dock under control – every bay monitored!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Store the four ships (names as text, energy as whole numbers) in variables. Print the heading === DOCK PROTOCOL === and then one f-string line per ship in the format Aurora: energy 80% (the last line must read: Lyra: energy 71%).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Lyra: energy 71%"
+        }
+      },
+      {
+        "instruction": "Step 2 – Add all energy values, divide the sum by 4 and print exactly: Average energy: 77.0",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Average energy: 77.0"
+        }
+      },
+      {
+        "instruction": "Step 3 – Print the ship with the highest energy (Highest energy: Orion) and then the total energy requirement at 100 units per ship (4 ships × 100), exactly: Energy requirement: 400. Calculate the requirement, don't just type it.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energy requirement: 400"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra challenge 2: The AI Laboratory",
+    "file": "boss-02.md",
+    "lessonSummary": "AI lab evaluated – the best models found!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create variables for all three models. Print the heading === AI LAB PROTOCOL === and one f-string line per model in the format NovaNet: accuracy 0.92, 1200000 parameters (the last line must read: MiniMind: accuracy 0.75, 300000 parameters).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "MiniMind: accuracy 0.75, 300000 parameters"
+        }
+      },
+      {
+        "instruction": "Step 2 – Add all parameter counts, store the sum in total_params and print exactly: Total parameters: 6500000",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total parameters: 6500000"
+        }
+      },
+      {
+        "instruction": "Step 3 – Add all accuracies (0.92, 0.88, 0.75), divide by 3, store the result in average_acc and print exactly: Average accuracy: 0.85. Also print the best model: Best model: NovaNet",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Average accuracy: 0.85"
+        }
+      },
+      {
+        "instruction": "Step 4 – Mark the high-performers with Boolean variables: compare each accuracy with average_acc = 0.85 (above_1 = acc1 > average_acc etc.) and print exactly: MiniMind above average: False",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "MiniMind above average: False"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra challenge 3: The Space Mission",
+    "file": "boss-03.md",
+    "lessonSummary": "🎊 Congratulations! You have mastered Week 2 – next up is Week 3: Conditions (if-else)!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create variables for both missions. Print the heading === MISSION PROTOCOL === and one f-string line per mission in the format Mars: 200 days, cost 5.0, crew 6, success 0.8 (the last line must read: Europa: 300 days, cost 8.0, crew 9, success 0.75).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Europa: 300 days, cost 8.0, crew 9, success 0.75"
+        }
+      },
+      {
+        "instruction": "Step 2 – Add the total cost of both missions and the total crew deployment. Print exactly: Total cost: 13.0 and Total crew: 15",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total crew: 15"
+        }
+      },
+      {
+        "instruction": "Step 3 – Calculate the expected success (cost × probability) for both missions and print exactly: Expected success Mars: 4.0 and Expected success Europa: 6.0",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Expected success Europa: 6.0"
+        }
+      },
+      {
+        "instruction": "Step 4 – Store exp2 > exp1 (with exp1 = 4.0 and exp2 = 6.0) in a Boolean variable europa_better and print exactly: Europa is more profitable: True",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Europa is more profitable: True"
+        }
+      }
+    ]
+  }
+]

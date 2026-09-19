@@ -1,4 +1,3 @@
-# Problem: = used instead of == for comparison
-user = "Admin"
-if user == "Admin":
-    print("Hello Admin!")
+command = "STOP"
+if command == "STOP":
+    print("Engines halted")

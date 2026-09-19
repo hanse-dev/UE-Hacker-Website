@@ -1,0 +1,323 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Zauberformel 1: print()",
+    "file": "lektion-01.md",
+    "lessonSummary": "Dein erster Zauber sitzt! Mit print() kannst du alles auf den Bildschirm bringen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus und schau dir die Ausgabe unten an.",
+        "example": true,
+        "codeTemplate": "print(\"Hallo Welt!\")\nprint(\"Willkommen in Pyralia!\")\n\n# Eine leere Zeile sorgt für mehr Übersicht\nprint()\nprint(\"=== Dein Programm läuft! ===\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Willkommen in Pyralia!"
+        }
+      },
+      {
+        "instruction": "Gib mit print() einen eigenen Willkommensgruß aus, der das Wort \"Abenteuer\" enthält.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Abenteuer"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Zauberformel 2: Variablen",
+    "file": "lektion-02.md",
+    "lessonSummary": "Perfekt! In Variablen kannst du Werte aufbewahren und später wieder verändern.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zeigt Text- und Zahlen-Variablen.",
+        "example": true,
+        "codeTemplate": "held_name = \"Aragorn\"   # Text (String)\nheld_level = 1          # Zahl (Integer)\n\nprint(held_name)\nprint(held_level)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aragorn"
+        }
+      },
+      {
+        "instruction": "Speichere den Text \"Elfenwald\" in einer Variable namens ort und gib die Variable mit print() aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Elfenwald"
+        }
+      },
+      {
+        "instruction": "Lege eine Variable gold mit dem Wert 50 an. Ändere sie danach auf 150 und gib gold aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "150"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Zauberformel 3: Texte verbinden",
+    "file": "lektion-03.md",
+    "lessonSummary": "Genau so baust du aus Texten und Zahlen ganze Sätze – vergiss str() bei Zahlen nicht!",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus – beachte, wo str() nötig ist.",
+        "example": true,
+        "codeTemplate": "name = \"Legolas\"\nwaffe = \"Bogen\"\npfeile = 20\n\nprint(\"Held: \" + name)\nprint(\"Pfeile: \" + str(pfeile))\nprint(name + \" hat einen \" + waffe + \" mit \" + str(pfeile) + \" Pfeilen.\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Legolas hat einen Bogen mit 20 Pfeilen."
+        }
+      },
+      {
+        "instruction": "Lege eine Variable pfeile mit dem Wert 20 an und gib mit + und str() genau diesen Text aus: Pfeile: 20",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Pfeile: 20"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Zauberformel 4: input()",
+    "file": "lektion-04.md",
+    "lessonSummary": "Jetzt kann dein Programm mit Menschen reden – input() macht es interaktiv.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es öffnet sich ein Eingabefenster – gib dort einen Namen ein.",
+        "example": true,
+        "codeTemplate": "name = input(\"Wie heißt dein Held? \")\nprint(\"Willkommen, \" + name + \"!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Willkommen, "
+        }
+      },
+      {
+        "instruction": "Frage mit input() nach der Waffe deines Helden, speichere die Antwort in waffe und gib aus: Kampfbereit mit: (und dann die Waffe)",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Kampfbereit mit: "
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Zauberformel 5: Kommentare",
+    "file": "lektion-05.md",
+    "lessonSummary": "Kommentare sind deine Geheimnotizen – Python ignoriert sie, aber du findest deinen Code damit leichter wieder.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Achte darauf, welche Zeile NICHT ausgeführt wird.",
+        "example": true,
+        "codeTemplate": "# Diese Zeile gibt den Namen des Helden aus\nprint(\"Aragorn\")\n\nprint(\"Level 5\")  # zeigt das aktuelle Level an\n\nprint(\"Dies wird ausgeführt\")\n# print(\"Dies wird NICHT ausgeführt\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Dies wird ausgeführt"
+        }
+      },
+      {
+        "instruction": "Schreibe einen eigenen Kommentar und danach ein print(), das genau Kommentar gelesen ausgibt.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Kommentar gelesen"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug-Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Fehlermeldungen genau zu lesen ist die halbe Miete beim Debuggen.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll den Text Hallo Welt ausgeben. Was ist falsch?",
+        "codeTemplate": "print(Hallo Welt)",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hallo Welt"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Ich bin 25 Jahre alt. ausgeben. Was ist falsch?",
+        "codeTemplate": "alter = 25\nprint(\"Ich bin \" + alter + \" Jahre alt.\")",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ich bin 25 Jahre alt."
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Willkommen, Gandalf ausgeben. Was ist falsch?",
+        "codeTemplate": "name = \"Gandalf\"\nprint(\"Willkommen, \" + nam)",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Willkommen, Gandalf"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: Der Zauberlehrling",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission geschafft – du bist ein echter Zauberlehrling!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Gib genau diesen Satz mit print() aus: Hallo Pyralia!",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hallo Pyralia!"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Speichere die Zahl 12 in der Variable alter und gib mit str() genau diesen Satz aus: Ich bin 12 Jahre alt.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ich bin 12 Jahre alt."
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: Der Schatzjäger",
+    "file": "mission-02.md",
+    "lessonSummary": "Schatzbericht abgegeben – die Gilde ist stolz auf dich!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Lege schatzname = \"Goldene Krone\", goldwert = 500 und fundort = \"Drachenhöhle\" an. Gib die Überschrift === SCHATZBERICHT === aus und darunter drei Zeilen: Schatz: ..., Wert: 500 Gold und Fundort: ... (Zahl mit str()!).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wert: 500 Gold"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Gib mit den Variablen aus Schritt 1 diesen Satz aus: Goldene Krone wurde in Drachenhöhle für 500 Gold gefunden.",
+        "codeTemplate": "schatzname = \"Goldene Krone\"\ngoldwert = 500\nfundort = \"Drachenhöhle\"\n\n# Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Goldene Krone wurde in Drachenhöhle für 500 Gold gefunden."
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: Der Held des Dorfes",
+    "file": "mission-03.md",
+    "lessonSummary": "Das Dorf ist gerettet – dank deines Heldenprofils!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Gib die Überschrift === HELDENPROFIL === aus, danach die Zeilen Name: ..., Waffe: ..., Level: ... aus den Variablen (Level mit str()!).",
+        "codeTemplate": "heldenname = \"Thorin\"\nwaffe = \"Kriegshammer\"\nlevel = 10\nstaerke = 85\nklasse = \"Krieger\"\n\n# Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 10"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Schreibe einen Satz aus den Variablen: Thorin schwingt seinen Kriegshammer!",
+        "codeTemplate": "heldenname = \"Thorin\"\nwaffe = \"Kriegshammer\"\n\n# Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Thorin schwingt seinen Kriegshammer!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Der Turm des Wissens",
+    "file": "boss-01.md",
+    "lessonSummary": "Das Gedicht ist entschlüsselt – der Turm des Wissens gehört dir!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Lege vier Variablen zeile1 bis zeile4 mit je einem Satz über das Programmieren an. Gib dann die Überschrift === TURM DES WISSENS === aus und danach alle vier Zeilen.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "=== TURM DES WISSENS ==="
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Unterschreibe: Gib Autor: (dein Name) und Bewertung: 5 Sterne aus. Nutze dafür eine Variable und str() für die Sterne.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bewertung: 5 Sterne"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Der Fluch des Schweige-Drachen",
+    "file": "boss-02.md",
+    "lessonSummary": "Der Fluch ist gebrochen – der Dorfälteste kann wieder sprechen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Lege drei Variablen zutat1 bis zutat3 an und gib jede mit einer kurzen Wirkung aus, jeweils in der Form Zutat 1: ... (Wirkung).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zutat 1:"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Speichere einen Zauberspruch in einer Variable und gib ihn aus. Gib danach Zauber wird gewirkt... und zum Schluss Erfolg! Der Fluch ist gebrochen! aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Erfolg! Der Fluch ist gebrochen!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Das Portal der Möglichkeiten",
+    "file": "boss-03.md",
+    "lessonSummary": "🎊 Glückwunsch! Du hast Woche 1 gemeistert – als Nächstes wartet Woche 2: Datentypen und Variablen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Lege x = 10, y = 20 und z = 30 an und gib genau diese Zeile aus: Position: 10, 20, 30 (mit str() und +).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Position: 10, 20, 30"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Schreibe eine Reisewarnung für Portalreisende und beginne sie mit Warnung: ",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Warnung: "
+        }
+      }
+    ]
+  }
+]

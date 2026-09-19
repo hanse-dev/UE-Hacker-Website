@@ -1,0 +1,323 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Übung 1: print()",
+    "file": "lektion-01.md",
+    "lessonSummary": "Dein erster Ruf ist erklungen! Mit print() bringst du alles auf den Bildschirm.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus und schau dir die Ausgabe unten an.",
+        "example": true,
+        "codeTemplate": "print(\"Hallo auf dem Reiterhof!\")\nprint(\"Willkommen im Sonnental!\")\n\n# Eine leere Zeile sorgt für mehr Übersicht\nprint()\nprint(\"=== Dein Reitbeginn ===\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Willkommen im Sonnental!"
+        }
+      },
+      {
+        "instruction": "Gib mit print() eine eigene Begrüßung aus, die das Wort \"Reiterhof\" enthält.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Reiterhof"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Übung 2: Variablen",
+    "file": "lektion-02.md",
+    "lessonSummary": "Perfekt! In Variablen kannst du Werte aufbewahren und später wieder verändern.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zeigt Text- und Zahlen-Variablen.",
+        "example": true,
+        "codeTemplate": "pferd_name = \"Bobby\"   # Text (String)\npferd_alter = 5        # Zahl (Integer)\n\nprint(pferd_name)\nprint(pferd_alter)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bobby"
+        }
+      },
+      {
+        "instruction": "Speichere den Text \"Sonnental\" in einer Variable namens hof und gib die Variable mit print() aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sonnental"
+        }
+      },
+      {
+        "instruction": "Lege eine Variable futter mit dem Wert 2 an. Ändere sie danach auf 3 und gib futter aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Übung 3: Texte verbinden",
+    "file": "lektion-03.md",
+    "lessonSummary": "Genau so baust du aus Texten und Zahlen ganze Sätze – vergiss str() bei Zahlen nicht!",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus – beachte, wo str() nötig ist.",
+        "example": true,
+        "codeTemplate": "name = \"Stormy\"\nrasse = \"Haflinger\"\nalter = 8\n\nprint(\"Pferd: \" + name)\nprint(\"Alter: \" + str(alter) + \" Jahre\")\nprint(name + \" ist ein \" + rasse + \" und \" + str(alter) + \" Jahre alt.\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stormy ist ein Haflinger und 8 Jahre alt."
+        }
+      },
+      {
+        "instruction": "Lege eine Variable alter mit dem Wert 5 an und gib mit + und str() genau diesen Text aus: Alter: 5",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Alter: 5"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Übung 4: input()",
+    "file": "lektion-04.md",
+    "lessonSummary": "Jetzt kann dein Programm mit Menschen reden – input() macht es interaktiv.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es öffnet sich ein Eingabefenster – gib dort einen Pferdenamen ein.",
+        "example": true,
+        "codeTemplate": "pferd = input(\"Wie heißt dein Pferd? \")\nprint(\"Willkommen auf dem Hof, \" + pferd + \"!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Willkommen auf dem Hof, "
+        }
+      },
+      {
+        "instruction": "Frage mit input() nach dem Namen deines Reiters, speichere die Antwort in reiter und gib aus: Ich reite mit: (und dann der Name)",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ich reite mit: "
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Übung 5: Kommentare",
+    "file": "lektion-05.md",
+    "lessonSummary": "Kommentare sind deine Stallnotizen – Python ignoriert sie, aber du findest deinen Code damit leichter wieder.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Achte darauf, welche Zeile NICHT ausgeführt wird.",
+        "example": true,
+        "codeTemplate": "# Diese Zeile gibt den Namen des Pferdes aus\nprint(\"Bobby\")\n\nprint(\"5 Jahre alt\")  # zeigt das Alter des Pferdes an\n\nprint(\"Dies wird ausgeführt\")\n# print(\"Dies wird NICHT ausgeführt\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Dies wird ausgeführt"
+        }
+      },
+      {
+        "instruction": "Schreibe einen eigenen Kommentar und danach ein print(), das genau Kommentar gelesen ausgibt.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Kommentar gelesen"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug-Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Fehlermeldungen genau zu lesen ist die halbe Miete beim Debuggen.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll den Text Hallo Pferd ausgeben. Was ist falsch?",
+        "codeTemplate": "print(Hallo Pferd)",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hallo Pferd"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Mein Stall ist Nummer 12 ausgeben. Was ist falsch?",
+        "codeTemplate": "stallnummer = 12\nprint(\"Mein Stall ist Nummer \" + stallnummer)",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mein Stall ist Nummer 12"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Willkommen, Lucky ausgeben. Was ist falsch?",
+        "codeTemplate": "pferd = \"Lucky\"\nprint(\"Willkommen, \" + pferde)",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Willkommen, Lucky"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: Der Stallhelfer",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission geschafft – du bist ein echter Stallhelfer!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Gib genau diesen Satz mit print() aus: Willkommen auf dem Reiterhof Sonnental!",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Willkommen auf dem Reiterhof Sonnental!"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Speichere den Namen \"Bobby\" in der Variable lieblingspferd und gib damit genau diesen Satz aus: Mein Lieblingspferd ist Bobby.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mein Lieblingspferd ist Bobby."
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: Der Pferdeflüsterer",
+    "file": "mission-02.md",
+    "lessonSummary": "Fütterplan abgegeben – alle Pferde sind versorgt!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Lege pferdename = \"Bobby\", futterart = \"Hafer\" und menge = 3 an. Gib die Überschrift === FÜTTERPLAN === aus und darunter drei Zeilen: Pferd: ..., Futter: ... und Menge: 3 kg (Zahl mit str()!).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Menge: 3 kg"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Gib mit den Variablen aus Schritt 1 diesen Satz aus: Bobby bekommt 3 kg Hafer.",
+        "codeTemplate": "pferdename = \"Bobby\"\nfutterart = \"Hafer\"\nmenge = 3\n\n# Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bobby bekommt 3 kg Hafer."
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: Das Reitturnier",
+    "file": "mission-03.md",
+    "lessonSummary": "Das Turnier kann beginnen – dein Teilnehmerprofil steht!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Gib die Überschrift === TURNIERPROFIL === aus, danach die Zeilen Reiter: ..., Pferd: ... und Hindernisse: 8 (Zahl mit str()!) aus diesen Variablen.",
+        "codeTemplate": "reiter = \"Mia\"\npferd = \"Bobby\"\nhindernisse = 8\n\n# Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hindernisse: 8"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Schreibe einen Satz aus den Variablen: Mia und Bobby reiten heute im Turnier.",
+        "codeTemplate": "reiter = \"Mia\"\npferd = \"Bobby\"\n\n# Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mia und Bobby reiten heute im Turnier."
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Das Futterbuch",
+    "file": "boss-01.md",
+    "lessonSummary": "Das Futterbuch ist vollständig – der Reiterhof dankt dir!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Lege vier Variablen zeile1 bis zeile4 mit je einem Satz über gutes Futter an. Gib dann die Überschrift === DAS FUTTERBUCH === aus und danach alle vier Zeilen.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "=== DAS FUTTERBUCH ==="
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Trage dich ein: Gib Verfasser: (dein Name) und Bewertung: 5 Karotten aus. Nutze dafür eine Variable und str() für die Zahl.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bewertung: 5 Karotten"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Das scheue Pferd",
+    "file": "boss-02.md",
+    "lessonSummary": "Das scheue Pferd vertraut dir – das war Feingefühl!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Lege drei Variablen schritt1 bis schritt3 mit je einem Annäherungsschritt an. Gib die Überschrift === TRAININGSPLAN === aus und danach jeden Schritt mit seiner Nummer.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "=== TRAININGSPLAN ==="
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Speichere eine erwartete Wirkung in einer Variable und gib Erwartete Wirkung: (die Wirkung) aus. Gib danach Training wird durchgeführt... aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Training wird durchgeführt..."
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Das Springturnier",
+    "file": "boss-03.md",
+    "lessonSummary": "🎊 Glückwunsch! Du hast Woche 1 gemeistert – als Nächstes wartet Woche 2: Datentypen und Variablen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Lege hindernisse = 8 und hoehe = 110 an und gib mit str() und + genau diese Zeile aus: Parcours: 8 Hindernisse bis 110 cm",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Parcours: 8 Hindernisse bis 110 cm"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Lege stufe = 4 an und gib genau diese Zeile aus: Schwierigkeit: 4 Sterne",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Schwierigkeit: 4 Sterne"
+        }
+      }
+    ]
+  }
+]

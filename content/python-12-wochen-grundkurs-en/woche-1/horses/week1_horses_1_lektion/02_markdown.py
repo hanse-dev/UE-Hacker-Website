@@ -9,8 +9,10 @@ A **lesson** is like a training session for you and your horse – a fixed exerc
 - 🏆 In the end you could ride entire courses
 
 **In programming we learn:**
-- The basic lessons (commands) of Python
+- The basic lessons (commands) of Python – in Python they are called **functions**
 - How to combine these lessons
-- How to create your own lessons (later)
+- How to create your own lessons (later, in Week 5)
+
+**Important:** Every lesson is a **function** in Python. You **call** it by writing its name followed by parentheses – for example `print('Hello')`. Whatever is inside the parentheses is what you hand to the function.
 
 **Every lesson you learn makes you a better rider/programmer!**"""

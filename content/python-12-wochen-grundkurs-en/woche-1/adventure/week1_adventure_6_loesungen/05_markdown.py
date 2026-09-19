@@ -1,1 +1,3 @@
-"""**Explanation:** `age` is a number (Integer), the text before it is a String. Python cannot directly connect these two types with `+` – it's like trying to tie a stone to a thread. `str()` solves this: it converts the number to text."""
+"""### Spell Formula 2: Variables – Task 1
+
+Store the text "Elvenwood" in a variable called place and print the variable with print()."""

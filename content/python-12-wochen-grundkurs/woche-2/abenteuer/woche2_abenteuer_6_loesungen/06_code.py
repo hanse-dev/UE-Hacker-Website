@@ -1,4 +1,4 @@
-# Problem: String und Integer können nicht addiert werden
-zauberkraft = "100"
-bonus = 50
-print(f"Gesamtkraft: {int(zauberkraft) + bonus}")
+gold = 100
+bonus = 25
+
+print(f"Dein Gold: {gold + bonus}")

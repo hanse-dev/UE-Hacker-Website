@@ -1,1 +1,3 @@
-"""**Erklärung:** `level` ist eine Zahl (Integer), der Text davor ist ein String. Python kann diese zwei Typen nicht direkt mit `+` verbinden – das ist wie versuchen, einen Stein an einen Faden zu knoten. `str()` löst das: es verwandelt die Zahl in Text."""
+"""### Systemprotokoll 2: Variablen – Aufgabe 1
+
+Speichere den Text "Andromeda" in einer Variable namens sektor und gib die Variable mit print() aus."""

@@ -1,0 +1,1 @@
+"""**Erklärung:** Ohne `f` und geschweifte Klammern wird der Variablenname als normaler Text ausgegeben. Richtig: `f"Hallo {pferd}! ..."`."""

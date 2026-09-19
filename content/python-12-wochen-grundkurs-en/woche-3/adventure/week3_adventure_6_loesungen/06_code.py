@@ -1,4 +1,3 @@
-# Problem: = used instead of == for comparison
-name = "Aria"
-if name == "Aria":
-    print("Hello Aria!")
+has_key = True
+if has_key:
+    print("The door opens!")

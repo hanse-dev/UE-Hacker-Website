@@ -1,0 +1,1 @@
+"""**Explanation:** `elif` always needs a condition. Since the second path should simply catch everything else, `else` is the right choice (or `elif age < 5:`)."""

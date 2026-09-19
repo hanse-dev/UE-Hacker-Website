@@ -1,0 +1,1 @@
+"""**Explanation:** `energy` is the text `"80"`, and you can't subtract a number from text. `int()` turns the text into a number first."""

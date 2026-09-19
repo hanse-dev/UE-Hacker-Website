@@ -1,0 +1,1 @@
+"""**Explanation:** `"100"` in quotation marks is a Fire element (text), not a number. Text and number cannot be added (`TypeError`). Convert it with `int()` or write `100` without quotation marks."""

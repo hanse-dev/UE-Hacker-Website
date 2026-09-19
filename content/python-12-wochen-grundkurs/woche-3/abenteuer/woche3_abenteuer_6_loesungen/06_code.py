@@ -1,4 +1,4 @@
-# Problem: = statt == für Vergleich verwendet
-name = "Aria"
-if name == "Aria":
-    print("Hallo Aria!")
+hat_karte = True
+
+if hat_karte:
+    print("Karte gefunden, der Weg ist frei!")

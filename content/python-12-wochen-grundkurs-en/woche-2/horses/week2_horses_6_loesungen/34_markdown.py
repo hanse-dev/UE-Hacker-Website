@@ -1,0 +1,1 @@
+"""**Explanation:** Without an `f` in front of the quotation marks and without curly braces, Python prints `horse` and `age` as plain words. Use an f-string and write the variables in `{}`."""

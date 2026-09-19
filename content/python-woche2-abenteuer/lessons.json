@@ -1,0 +1,539 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Zauberformel 1: f-Strings",
+    "file": "lektion-01.md",
+    "lessonSummary": "Stark! Mit f-Strings baust du Sätze aus Variablen und sogar mit Rechnungen darin.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus und schau dir die Ausgabe unten an.",
+        "example": true,
+        "codeTemplate": "name = \"Aria\"\nlevel = 5\nprint(f\"Hallo {name}!\")\nprint(f\"Du bist Level {level}!\")\n\n# Mit Berechnung in den Klammern\ngold = 100\nbonus = 25\nprint(f\"Dein Gold: {gold + bonus}\")\n\n# Mehrere Variablen in einem Satz\nheld = \"Thorin\"\nklasse = \"Krieger\"\nwaffe = \"Axt\"\nprint(f\"{held} der {klasse} schwingt seine {waffe}!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Thorin der Krieger schwingt seine Axt!"
+        }
+      },
+      {
+        "instruction": "Baue mit einem f-String genau diesen Satz aus den Variablen: Mira reist nach Elfenwald mit 40 Gold.",
+        "codeTemplate": "held = \"Mira\"\nort = \"Elfenwald\"\ngold = 40\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mira reist nach Elfenwald mit 40 Gold."
+        }
+      },
+      {
+        "instruction": "Lass Python im f-String rechnen und gib genau aus: Dein Gold: 125",
+        "codeTemplate": "gold = 100\nbonus = 25\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Dein Gold: 125"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Zauberformel 2: type() und die vier Elemente",
+    "file": "lektion-02.md",
+    "lessonSummary": "Du kennst jetzt die vier Elemente – und mit type() kannst du jedes davon bestimmen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: type() verrät die Natur jedes Werts.",
+        "example": true,
+        "codeTemplate": "zauber = \"Feuerball\"\nlevel = 12\nschaden = 23.5\nmagie_aktiv = True\n\nprint(type(zauber))\nprint(type(level))\nprint(type(schaden))\nprint(type(magie_aktiv))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "<class 'bool'>"
+        }
+      },
+      {
+        "instruction": "Bestimme das Element der Variable level und gib ihren Typ mit print() und type() aus.",
+        "codeTemplate": "level = 12\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "<class 'int'>"
+        }
+      },
+      {
+        "instruction": "Bestimme das Element der Variable schaden und gib ihren Typ aus.",
+        "codeTemplate": "schaden = 23.5\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "<class 'float'>"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Feuer: Text (str) und len()",
+    "file": "lektion-03.md",
+    "lessonSummary": "Feuer-Elemente sind Texte – und len() zählt für dich jedes Zeichen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus.",
+        "example": true,
+        "codeTemplate": "zauber = \"Feuerball\"\nprint(f\"Zauber: {zauber}\")\nprint(f\"Länge: {len(zauber)}\")\nprint(type(zauber))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Länge: 9"
+        }
+      },
+      {
+        "instruction": "Gib mit len() aus, wie viele Zeichen der Zauberspruch hat (Leerzeichen zählen mit).",
+        "codeTemplate": "spruch = \"Lumos Maxima\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "12"
+        }
+      },
+      {
+        "instruction": "Gib mit einem f-String genau aus: Blitzschlag hat 11 Buchstaben. (Die Zahl soll len() berechnen.)",
+        "codeTemplate": "zauber = \"Blitzschlag\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitzschlag hat 11 Buchstaben."
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Erde: Ganze Zahlen (int)",
+    "file": "lektion-04.md",
+    "lessonSummary": "Erd-Elemente sind ganze Zahlen – fest, zählbar und perfekt zum Rechnen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus.",
+        "example": true,
+        "codeTemplate": "level = 12\nlebenspunkte = 150\nprint(f\"Level: {level}, LP: {lebenspunkte}\")\nprint(f\"Element: {type(level)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 12, LP: 150"
+        }
+      },
+      {
+        "instruction": "Lege level = 7 und lebenspunkte = 120 als Variablen an und gib genau diese Zeile mit einem f-String aus: Level: 7, LP: 120",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 7, LP: 120"
+        }
+      },
+      {
+        "instruction": "Berechne den Gesamtverdienst und gib genau aus: Gesamt: 135",
+        "codeTemplate": "tage = 3\ngold_pro_tag = 45\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gesamt: 135"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Wasser: Kommazahlen (float)",
+    "file": "lektion-05.md",
+    "lessonSummary": "Wasser-Elemente fließen: Kommazahlen mit Punkt – und Rechnen mit ihnen ergibt wieder Kommazahlen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus.",
+        "example": true,
+        "codeTemplate": "schaden = 23.5\nprozent = 87.25\nprint(f\"Schaden: {schaden}, Trefferchance: {prozent}%\")\nprint(f\"Element: {type(schaden)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Schaden: 23.5, Trefferchance: 87.25%"
+        }
+      },
+      {
+        "instruction": "Lege trefferchance = 87.25 an und gib genau aus: Trefferchance: 87.25%",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Trefferchance: 87.25%"
+        }
+      },
+      {
+        "instruction": "Berechne die Kosten (Preis mal Anzahl) und gib genau aus: Kosten: 10.0",
+        "codeTemplate": "preis_pro_trank = 2.5\nanzahl = 4\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Kosten: 10.0"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Luft: Wahrheitswerte (bool)",
+    "file": "lektion-06.md",
+    "lessonSummary": "Luft-Elemente sind Schalter: True oder False – und Vergleiche liefern sie dir automatisch.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus.",
+        "example": true,
+        "codeTemplate": "magie_aktiv = True\nvergiftet = False\nlevel = 8\n\nprint(f\"Magie aktiv: {magie_aktiv}\")\nprint(f\"Vergiftet: {vergiftet}\")\nprint(f\"Level über 5: {level > 5}\")\nprint(f\"Element: {type(magie_aktiv)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level über 5: True"
+        }
+      },
+      {
+        "instruction": "Lege kann_fliegen = False an und gib genau aus: Kann fliegen: False",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Kann fliegen: False"
+        }
+      },
+      {
+        "instruction": "Prüfe mit einem Vergleich, ob der Held bereit für den Turm ist (Level mindestens 10), und gib genau aus: Bereit für den Turm: False",
+        "codeTemplate": "level = 8\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bereit für den Turm: False"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Elemente verschmelzen",
+    "file": "lektion-07.md",
+    "lessonSummary": "Zahlen rechnest du, Texte klebst du zusammen – aber Feuer und Erde brauchen eine Umwandlung.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus.",
+        "example": true,
+        "codeTemplate": "gold_a = 150\ngold_b = 75\nprint(f\"Gesamtgold: {gold_a + gold_b}\")\nprint(f\"Differenz: {gold_a - gold_b}\")\nprint(f\"Doppeltes Gold: {gold_a * 2}\")\n\nvorname = \"Luna\"\nnachname = \"Silbermond\"\nprint(vorname + \" \" + nachname)\nprint(vorname * 3)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Doppeltes Gold: 300"
+        }
+      },
+      {
+        "instruction": "Teile gold_a durch 3 und gib genau aus: Geteilt: 50.0",
+        "codeTemplate": "gold_a = 150\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Geteilt: 50.0"
+        }
+      },
+      {
+        "instruction": "Gib den Vornamen dreimal hintereinander aus (ohne Leerzeichen), mit der Text-Wiederholung.",
+        "codeTemplate": "vorname = \"Luna\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "LunaLunaLuna"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-08",
+    "section": "lektion",
+    "title": "Zauberformeln zum Umwandeln: int(), float(), str(), bool()",
+    "file": "lektion-08.md",
+    "lessonSummary": "Mit int(), float(), str() und bool() wandelst du Elemente ineinander um.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus.",
+        "example": true,
+        "codeTemplate": "alter_str = \"25\"\nalter_int = int(alter_str)\nprint(f\"Text: {alter_str} ({type(alter_str)})\")\nprint(f\"Zahl: {alter_int} ({type(alter_int)})\")\nprint(int(3.9))\nprint(float(\"3.5\"))\nprint(bool(0))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zahl: 25 (<class 'int'>)"
+        }
+      },
+      {
+        "instruction": "Wandle den Text in eine ganze Zahl um, addiere 5 und gib das Ergebnis aus.",
+        "codeTemplate": "alter_text = \"25\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "30"
+        }
+      },
+      {
+        "instruction": "Wandle den Text in eine Kommazahl um und verdopple sie. Gib das Ergebnis aus.",
+        "codeTemplate": "preis_text = \"3.5\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "7.0"
+        }
+      },
+      {
+        "instruction": "Verbinde den Text mit dem Level mithilfe von str() und gib genau aus: Level: 9",
+        "codeTemplate": "level = 9\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 9"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-09",
+    "section": "lektion",
+    "title": "Zauberformel input(): Das Orakel befragen",
+    "file": "lektion-09.md",
+    "lessonSummary": "Das Orakel antwortet immer mit Text – mit int() und float() machst du daraus Zahlen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus und tippe im Eingabefenster einen Namen ein, zum Beispiel Blitz.",
+        "example": true,
+        "codeTemplate": "name = input(\"Wie heißt dein Held? \")\nprint(f\"Willkommen, {name}!\")\nprint(type(name))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Willkommen, Blitz!"
+        }
+      },
+      {
+        "instruction": "Frage mit input() nach dem Namen und gib genau aus: Willkommen, Blitz! – Tippe dazu Blitz ein.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Willkommen, Blitz!"
+        }
+      },
+      {
+        "instruction": "Frage mit input() nach dem Level, wandle es mit int() um und gib aus, welches Level er in 5 Levels hat. Tippe 7 ein, dann muss dort stehen: In 5 Levels: Level 12",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "In 5 Levels: Level 12"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug-Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Beim Debuggen hilft es, jeden Typ genau anzuschauen.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Hallo Gandalf! Du bist Level 99! ausgeben. Was ist falsch?",
+        "codeTemplate": "name = \"Gandalf\"\nlevel = 99\nprint(\"Hallo name! Du bist Level level!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hallo Gandalf! Du bist Level 99!"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Gesamtkraft: 150 ausgeben. Was ist falsch?",
+        "codeTemplate": "zauberkraft = \"100\"\nbonus = 50\nprint(f\"Gesamtkraft: {zauberkraft + bonus}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gesamtkraft: 150"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Dein Gold: 300 ausgeben. Was ist falsch?",
+        "codeTemplate": "gold = 250\nprint(f\"Dein Gold: gold + 50\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Dein Gold: 300"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: Die vier Elementsteine",
+    "file": "mission-01.md",
+    "lessonSummary": "Alle vier Elementsteine sitzen auf ihren Sockeln!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – 🔥 Feuer und 🪨 Erde: Lege heldenname = \"Aria\" und kraft = 14 an und gib mit einem f-String genau aus: Aria hat Kraft 14",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria hat Kraft 14"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – 💧 Wasser und 💨 Luft: Lege zauberkraft = 12.5 und kann_fliegen = True an und gib mit einem f-String genau aus: Zauberkraft 12.5, Fliegen: True",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zauberkraft 12.5, Fliegen: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: Die Elementarschmelze",
+    "file": "mission-02.md",
+    "lessonSummary": "Du weißt jetzt, welche Elemente sich direkt verschmelzen lassen – und welche eine Umwandlung brauchen.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – 🔥 und 🪨 verschmelzen: Lege vorname = \"Aria\", nachname = \"Blau\", gold_a = 120 und gold_b = 80 an. Gib mit einem f-String genau aus: Aria Blau hat 200 Gold",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria Blau hat 200 Gold"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – 💧 verschmelzen: Berechne den Durchschnitt der beiden Schadenswerte (Summe geteilt durch 2) und gib genau aus: Durchschnitt: 10.0",
+        "codeTemplate": "schaden_a = 12.5\nschaden_b = 7.5\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Durchschnitt: 10.0"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – 🔥 und 🪨 mit str(): Verbinde den Namen mit dem Level mithilfe von + und str() und gib genau aus: Aria ist Level 5",
+        "codeTemplate": "name = \"Aria\"\nlevel = 5\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria ist Level 5"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: Das Orakel der vier Elemente",
+    "file": "mission-03.md",
+    "lessonSummary": "Das Orakel hat gesprochen: Du hast Eingaben in alle vier Elemente verwandelt!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – 🔥 und 🪨 befragen: Frage mit input() nach dem Namen (tippe Blitz ein) und nach dem Alter (tippe 12 ein, wandle mit int() um). Gib genau aus: Blitz ist in 5 Jahren 17",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz ist in 5 Jahren 17"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – 💧 und 💨: Frage mit input() nach der Zauberkraft (tippe 7.5 ein, wandle mit float() um). Vergleiche, ob sie über 5.0 liegt, und gib genau aus: Zauberkraft 7.5, stark: True",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zauberkraft 7.5, stark: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Der Schatzraum",
+    "file": "boss-01.md",
+    "lessonSummary": "Der Schatzraum ist katalogisiert – Gesamtwert und Durchschnitt sind bekannt – und du weißt, ob Truhe 8 darüber liegt!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Gib die Überschrift === SCHATZRAUM-PROTOKOLL === aus und berechne den Gesamtwert aller acht Truhen. Gib genau aus: Gesamtwert: 1000",
+        "codeTemplate": "truhe1 = 120\ntruhe2 = 80\ntruhe3 = 200\ntruhe4 = 150\ntruhe5 = 50\ntruhe6 = 90\ntruhe7 = 60\ntruhe8 = 250\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gesamtwert: 1000"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Berechne den Durchschnitt (Gesamtwert geteilt durch 8) und gib genau aus: Durchschnitt: 125.0",
+        "codeTemplate": "truhe1 = 120\ntruhe2 = 80\ntruhe3 = 200\ntruhe4 = 150\ntruhe5 = 50\ntruhe6 = 90\ntruhe7 = 60\ntruhe8 = 250\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Durchschnitt: 125.0"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Ist die Truhe 8 mehr wert als der Durchschnitt (Gesamtwert geteilt durch 8)? Vergleiche mit > und gib genau aus: Truhe 8 über Durchschnitt: True",
+        "codeTemplate": "truhe1 = 120\ntruhe2 = 80\ntruhe3 = 200\ntruhe4 = 150\ntruhe5 = 50\ntruhe6 = 90\ntruhe7 = 60\ntruhe8 = 250\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Truhe 8 über Durchschnitt: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Die Zauberwerkstatt",
+    "file": "boss-02.md",
+    "lessonSummary": "Die Zauberwerkstatt ist ausgewertet – mit den richtigen Typen für jede Eigenschaft.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Gib die Überschrift === ZAUBERWERKSTATT-PROTOKOLL === und danach mit f-String für den ersten Zauber genau aus: Feuerball: Stärke 80.0, Komplexität 3",
+        "codeTemplate": "zauber1 = \"Feuerball\"\nstaerke1 = 80.0\nkomplex1 = 3\nzauber2 = \"Frostblitz\"\nstaerke2 = 65.0\nkomplex2 = 2\nzauber3 = \"Sturmruf\"\nstaerke3 = 95.0\nkomplex3 = 5\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Feuerball: Stärke 80.0, Komplexität 3"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Addiere die Komplexität aller drei Zauber und gib genau aus: Gesamtkomplexität: 10",
+        "codeTemplate": "zauber1 = \"Feuerball\"\nstaerke1 = 80.0\nkomplex1 = 3\nzauber2 = \"Frostblitz\"\nstaerke2 = 65.0\nkomplex2 = 2\nzauber3 = \"Sturmruf\"\nstaerke3 = 95.0\nkomplex3 = 5\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gesamtkomplexität: 10"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Berechne die Durchschnittsstärke der drei Zauber und gib genau aus: Durchschnittsstärke: 80.0",
+        "codeTemplate": "zauber1 = \"Feuerball\"\nstaerke1 = 80.0\nkomplex1 = 3\nzauber2 = \"Frostblitz\"\nstaerke2 = 65.0\nkomplex2 = 2\nzauber3 = \"Sturmruf\"\nstaerke3 = 95.0\nkomplex3 = 5\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Durchschnittsstärke: 80.0"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Nutze einen 💨 Luft-Wert: Ist die Stärke von Sturmruf über dem Durchschnitt? Gib genau aus: Sturmruf mächtig: True",
+        "codeTemplate": "zauber1 = \"Feuerball\"\nstaerke1 = 80.0\nkomplex1 = 3\nzauber2 = \"Frostblitz\"\nstaerke2 = 65.0\nkomplex2 = 2\nzauber3 = \"Sturmruf\"\nstaerke3 = 95.0\nkomplex3 = 5\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sturmruf mächtig: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Die Quest-Planung",
+    "file": "boss-03.md",
+    "lessonSummary": "Die Quests sind durchgerechnet – und du weißt, welche sich mehr lohnt!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Gib die Überschrift === QUEST-PROTOKOLL === aus, addiere die Belohnungen beider Quests und gib genau aus: Gesamtbelohnung: 1300",
+        "codeTemplate": "belohnung1 = 500\ndauer1 = 4\ngruppe1 = 5\nchance1 = 0.8\nbelohnung2 = 800\ndauer2 = 7\ngruppe2 = 4\nchance2 = 0.75\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gesamtbelohnung: 1300"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Berechne die erwartete Belohnung (Belohnung mal Wahrscheinlichkeit) für beide Quests. Gib zwei Zeilen aus, die zweite muss genau lauten: Quest 2 erwartet: 600.0",
+        "codeTemplate": "belohnung1 = 500\ndauer1 = 4\ngruppe1 = 5\nchance1 = 0.8\nbelohnung2 = 800\ndauer2 = 7\ngruppe2 = 4\nchance2 = 0.75\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Quest 2 erwartet: 600.0"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Nutze einen 💨 Luft-Wert: Ist die erwartete Belohnung von Quest 2 höher als die von Quest 1? Gib genau aus: Quest 2 rentabler: True",
+        "codeTemplate": "belohnung1 = 500\ndauer1 = 4\ngruppe1 = 5\nchance1 = 0.8\nbelohnung2 = 800\ndauer2 = 7\ngruppe2 = 4\nchance2 = 0.75\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Quest 2 rentabler: True"
+        }
+      }
+    ]
+  }
+]

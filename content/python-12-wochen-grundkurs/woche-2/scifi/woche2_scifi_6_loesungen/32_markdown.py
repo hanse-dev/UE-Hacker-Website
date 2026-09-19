@@ -1,0 +1,1 @@
+"""**Erklärung:** Ohne `f` vor den Anführungszeichen und ohne geschweifte Klammern wird der Text einfach so ausgegeben. Richtig: `f"Hallo {roboter}!"`."""

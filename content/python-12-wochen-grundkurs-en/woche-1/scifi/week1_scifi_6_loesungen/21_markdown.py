@@ -1,1 +1,1 @@
-"""### ⭐⭐⭐⭐☆ Boss Quest 3: The Wormhole"""
+"""**Explanation:** Text and a number can't be joined with `+`. `str(level)` turns the number into text."""

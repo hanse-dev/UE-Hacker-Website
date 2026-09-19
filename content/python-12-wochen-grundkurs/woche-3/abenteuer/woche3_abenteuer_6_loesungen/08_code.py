@@ -1,6 +1,4 @@
-# Problem: elif braucht immer eine Bedingung
-alter = 25
-if alter >= 18:
-    print("Erwachsen")
-else:
-    print("Kind")
+klasse = "Magier"
+
+if klasse == "Magier":
+    print("Willkommen im Turm der Magier!")

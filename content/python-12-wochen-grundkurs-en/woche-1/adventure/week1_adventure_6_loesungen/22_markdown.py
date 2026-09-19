@@ -1,0 +1,1 @@
+"""**Explanation:** text and number cannot be joined with `+`. `str(age)` turns the number into text."""

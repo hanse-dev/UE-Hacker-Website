@@ -1,1 +1,3 @@
-"""**Explanation:** Python expects an indented block. Everything that belongs to an `if`, `for`, `while` or `def` must be indented with 4 spaces."""
+"""### Lesson 1: if – The First Crossroads – Task 1
+
+has_saddle is already there. Use an if to print exactly: You can mount up!"""

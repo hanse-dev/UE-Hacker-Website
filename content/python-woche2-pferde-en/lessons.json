@@ -1,0 +1,479 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Lesson 1: String Gallop",
+    "file": "lektion-01.md",
+    "lessonSummary": "Your messages now gallop along – f-strings glue text and variables together in one go!",
+    "tasks": [
+      {
+        "instruction": "Run this example and look at how the values are filled into the text.",
+        "example": true,
+        "codeTemplate": "horse_name = \"Thunder\"\nage = 8\nprint(f\"Hello {horse_name}!\")\nprint(f\"You are {age} years old!\")\n\nfeed_morning = 3\nfeed_evening = 2\nprint(f\"Daily feed: {feed_morning + feed_evening} kg\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Daily feed: 5 kg"
+        }
+      },
+      {
+        "instruction": "The variables rider and horse are already there. Use an f-string to print exactly this sentence: Sarah rides Luna today.",
+        "codeTemplate": "rider = \"Sarah\"\nhorse = \"Luna\"\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sarah rides Luna today."
+        }
+      },
+      {
+        "instruction": "Create feed_morning = 4 and feed_evening = 3. Use an f-string with a calculation inside the braces to print exactly: Daily feed: 7 kg",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Daily feed: 7 kg"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Lesson 2: Walk and Trot – str and int",
+    "file": "lektion-02.md",
+    "lessonSummary": "Text and whole numbers are no secret to you any more – and type() tells you which is which!",
+    "tasks": [
+      {
+        "instruction": "Run this example: text is a walk (str), a whole number is a trot (int).",
+        "example": true,
+        "codeTemplate": "horse_name = \"Windstorm\"\nbreed = \"Hanoverian\"\nprint(f\"Horse: {horse_name}\")\nprint(f\"Breed: {breed}\")\nprint(f\"Type: {type(horse_name)}\")\n\nage = 7\nheight_cm = 168\nprint(f\"Age: {age} years, Height: {height_cm} cm\")\nprint(f\"Type: {type(age)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Type: <class 'int'>"
+        }
+      },
+      {
+        "instruction": "Create a variable height_cm = 168 and use type() to print its type with print().",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "<class 'int'>"
+        }
+      },
+      {
+        "instruction": "The variable breed is already there. Print exactly this line with an f-string: Type of breed: <class 'str'>  (do not type the type yourself – let type() find it!)",
+        "codeTemplate": "breed = \"Hanoverian\"\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Type of breed: <class 'str'>"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Lesson 3: Canter and Jump – float and bool",
+    "file": "lektion-03.md",
+    "lessonSummary": "Decimal numbers and yes/no values – now you know all four hoofbeat types!",
+    "tasks": [
+      {
+        "instruction": "Run this example: canter (float) and jump (bool).",
+        "example": true,
+        "codeTemplate": "weight = 550.5\nfeed_amount = 4.25\nprint(f\"Weight: {weight} kg, Feed: {feed_amount} kg\")\nprint(f\"Type: {type(weight)}\")\n\nhas_saddle = True\nis_visited = False\nprint(f\"Has saddle: {has_saddle}\")\nprint(f\"Type: {type(has_saddle)}\")\n\nprint(f\"Is 5 greater than 3? {5 > 3}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Type: <class 'bool'>"
+        }
+      },
+      {
+        "instruction": "Create weight = 550.5 and print exactly this line with an f-string: Weight type: <class 'float'>",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Weight type: <class 'float'>"
+        }
+      },
+      {
+        "instruction": "Create has_saddle = True and print exactly this line with an f-string: Saddle type: <class 'bool'>",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Saddle type: <class 'bool'>"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Lesson 4: Calculating with Numbers",
+    "file": "lektion-04.md",
+    "lessonSummary": "Feed calculations, stable planning – Python is your calculator!",
+    "tasks": [
+      {
+        "instruction": "Run this example and look closely at the result of the division.",
+        "example": true,
+        "codeTemplate": "horses_a = 12\nhorses_b = 8\nprint(f\"Total horses: {horses_a + horses_b}\")\nprint(f\"Difference: {horses_a - horses_b}\")\nprint(f\"Double stables: {horses_a * 2}\")\nprint(f\"Horses per box: {horses_a / 4}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Horses per box: 3.0"
+        }
+      },
+      {
+        "instruction": "The variables horses and boxes are already there. Print exactly this line: Horses per box: 3.0 (let Python calculate it!)",
+        "codeTemplate": "horses = 12\nboxes = 4\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Horses per box: 3.0"
+        }
+      },
+      {
+        "instruction": "Create feed = 7 and print exactly this line, with the calculation inside the braces: Double feed: 14 kg",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Double feed: 14 kg"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Lesson 5: Working with Text",
+    "file": "lektion-05.md",
+    "lessonSummary": "Joining and repeating texts – now the stable even whinnies on command!",
+    "tasks": [
+      {
+        "instruction": "Run this example: joining and repeating texts.",
+        "example": true,
+        "codeTemplate": "name = \"Star\"\nsuffix = \"light\"\nfull_name = name + suffix\nprint(f\"Full name: {full_name}\")\nprint(f\"Whinny: {name * 3}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Whinny: StarStarStar"
+        }
+      },
+      {
+        "instruction": "The variables first and second are already there. Join them with + and print exactly: Thunderbolt",
+        "codeTemplate": "first = \"Thunder\"\nsecond = \"bolt\"\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Thunderbolt"
+        }
+      },
+      {
+        "instruction": "Create sound = \"Neigh! \" (with a space at the end) and print the sound three times with one print() and the * sign.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Neigh! Neigh! Neigh!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Lesson 6: Converting Types – int(), float(), str(), bool()",
+    "file": "lektion-06.md",
+    "lessonSummary": "You can turn any type into another – with four handy functions!",
+    "tasks": [
+      {
+        "instruction": "Run this example and compare the types before and after converting.",
+        "example": true,
+        "codeTemplate": "age_text = \"5\"\nage_number = int(age_text)\nprint(f\"Age as text: {age_text} (type: {type(age_text)})\")\nprint(f\"Age as number: {age_number} (type: {type(age_number)})\")\n\nprint(float(\"4.25\") * 2)\nprint(str(12) + \" horses\")\nprint(bool(0))\nprint(bool(\"Thunder\"))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Age as number: 5 (type: <class 'int'>)"
+        }
+      },
+      {
+        "instruction": "The variable price_text holds the text \"4.5\". Convert it with float() and print exactly: Double price: 9.0",
+        "codeTemplate": "price_text = \"4.5\"\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Double price: 9.0"
+        }
+      },
+      {
+        "instruction": "The variable count is already there. Use str() and + to print exactly: Horses: 12  (no f-string this time!)",
+        "codeTemplate": "count = 12\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Horses: 12"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Lesson 7: Processing Input",
+    "file": "lektion-07.md",
+    "lessonSummary": "Whatever a rider types in arrives as text – now you know how to turn it into numbers!",
+    "tasks": [
+      {
+        "instruction": "Run this example: an entry arrives as text and is converted for calculating.",
+        "example": true,
+        "codeTemplate": "# Input simulated (in your own programs: entry = input(\"Hay in kg? \"))\nentry = \"15\"\nnumber = int(entry)\nprint(f\"Entry type: {type(entry)}\")\nprint(f\"{number} kg of hay lasts for {number * 2} days.\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "15 kg of hay lasts for 30 days."
+        }
+      },
+      {
+        "instruction": "The rider entered the text \"20\" (variable entry). Convert it and print exactly: 20 kg of hay lasts for 40 days.",
+        "codeTemplate": "entry = \"20\"\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "20 kg of hay lasts for 40 days."
+        }
+      },
+      {
+        "instruction": "The rider entered the decimal text \"3.5\" (variable entry). Convert it and print exactly: Feed for 2 days: 7.0 kg",
+        "codeTemplate": "entry = \"3.5\"\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Feed for 2 days: 7.0 kg"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "All bugs found! Missing f's and mixed-up types are the classic mistakes of Week 2.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Goal: The program should print Hello Comet! You are 6 years old. What is wrong?",
+        "codeTemplate": "horse = \"Comet\"\nage = 6\nprint(\"Hello horse! You are age years old.\")",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hello Comet! You are 6 years old."
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Goal: The program should print Total feed: 50 kg. What is wrong?",
+        "codeTemplate": "feed_kg = \"10\"\ndays = 5\nprint(f\"Total feed: {feed_kg * days} kg\")",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total feed: 50 kg"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Goal: The program should print Training takes 3 hours. What is wrong?",
+        "codeTemplate": "hours = 3\nprint(f\"Training takes hours hours.\")",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Training takes 3 hours."
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: The Feed Store",
+    "file": "mission-01.md",
+    "lessonSummary": "The feed store is in perfect order – you know how to combine all four hoofbeat types!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create keeper = \"Mia\" (text) and keeper_id = 4711 (whole number). Use an f-string to print exactly: Keeper: Mia (ID 4711)",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Keeper: Mia (ID 4711)"
+        }
+      },
+      {
+        "instruction": "Step 2 – Create bales = 20 (whole number) and bale_weight = 15.5 (decimal number). Print exactly: Bales: 20 at 15.5 kg each",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bales: 20 at 15.5 kg each"
+        }
+      },
+      {
+        "instruction": "Step 3 – bales and bale_weight are already there. Multiply them, store the result in the variable total_weight and print exactly: Total weight: 310.0 kg",
+        "codeTemplate": "bales = 20\nbale_weight = 15.5\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total weight: 310.0 kg"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: The Riding Lesson",
+    "file": "mission-02.md",
+    "lessonSummary": "The riding lesson is planned – every horse gets exactly the time it needs!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create the names horse1 = \"Bobby\", horse2 = \"Luna\", horse3 = \"Storm\" and the riding times (minutes) time1 = 30, time2 = 45, time3 = 60. Print the heading === RIDING LESSON PLAN === and then one line per horse in the form Storm: 60 minutes (Bobby: 30 minutes, Luna: 45 minutes, ...).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Storm: 60 minutes"
+        }
+      },
+      {
+        "instruction": "Step 2 – The three riding times are already there. Add them, store the sum in total_time and print exactly: Total time: 135 minutes",
+        "codeTemplate": "time1 = 30\ntime2 = 45\ntime3 = 60\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total time: 135 minutes"
+        }
+      },
+      {
+        "instruction": "Step 3 – Divide the total time by 3, store the result in average_time and print exactly: Average time: 45.0 minutes",
+        "codeTemplate": "total_time = 135\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Average time: 45.0 minutes"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: The Tournament",
+    "file": "mission-03.md",
+    "lessonSummary": "The tournament is decided – your calculations picked the winner!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create horse1 = \"Thunder\", dressage1 = 68.5, jumping1 = 72.0 and horse2 = \"Luna\", dressage2 = 71.0, jumping2 = 65.5. Store each horse's total (dressage + jumping) in total1 and total2 and print exactly these two lines: Thunder: 140.5 points and Luna: 136.5 points",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Luna: 136.5 points"
+        }
+      },
+      {
+        "instruction": "Step 2 – total1 and total2 are already there. Compare them with > and print exactly: Thunder wins: True",
+        "codeTemplate": "total1 = 140.5\ntotal2 = 136.5\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Thunder wins: True"
+        }
+      },
+      {
+        "instruction": "Step 3 – Calculate the average of both totals, store it in average and print exactly: Average points: 138.5",
+        "codeTemplate": "total1 = 140.5\ntotal2 = 136.5\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Average points: 138.5"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "The Feed Room",
+    "file": "boss-01.md",
+    "lessonSummary": "The feed room is fully catalogued – not a single sack is missing!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create four sacks: type1 = \"oats\", weight1 = 12.5, type2 = \"hay\", weight2 = 20.0, type3 = \"barley\", weight3 = 8.5, type4 = \"carrots\", weight4 = 5.0. Print the heading === FEED ROOM PROTOCOL === and then one line per sack in the form Sack 4: carrots, 5.0 kg (Sack 1: oats, 12.5 kg, ...).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sack 4: carrots, 5.0 kg"
+        }
+      },
+      {
+        "instruction": "Step 2 – The four weights are already there. Add them up (total_weight), divide by 4 (average_weight) and print exactly the lines Total weight: 46.0 kg and Average weight: 11.5 kg",
+        "codeTemplate": "weight1 = 12.5\nweight2 = 20.0\nweight3 = 8.5\nweight4 = 5.0\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Average weight: 11.5 kg"
+        }
+      },
+      {
+        "instruction": "Step 3 – Is sack 2 heavier than the average of all four sacks? Compare with > and print exactly: Sack 2 above average: True",
+        "codeTemplate": "weight1 = 12.5\nweight2 = 20.0\nweight3 = 8.5\nweight4 = 5.0\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sack 2 above average: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "The Training Hall",
+    "file": "boss-02.md",
+    "lessonSummary": "The training hall is analysed – you found the most demanding exercises!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create three exercises: name1 = \"Trot work\", intensity1 = 2.5, duration1 = 30, difficulty1 = 2 / name2 = \"Canter circles\", intensity2 = 4.5, duration2 = 20, difficulty2 = 4 / name3 = \"Cavaletti\", intensity3 = 3.5, duration3 = 45, difficulty3 = 3. Print the heading === TRAINING HALL PROTOCOL === and then one line per exercise in the form Cavaletti: intensity 3.5, 45 min, difficulty 3",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Cavaletti: intensity 3.5, 45 min, difficulty 3"
+        }
+      },
+      {
+        "instruction": "Step 2 – The durations and intensities are already there. Store the total duration in total_duration and the average intensity in average_intensity. Print exactly: Total duration: 95 minutes and Average intensity: 3.5",
+        "codeTemplate": "duration1 = 30\nduration2 = 20\nduration3 = 45\nintensity1 = 2.5\nintensity2 = 4.5\nintensity3 = 3.5\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Average intensity: 3.5"
+        }
+      },
+      {
+        "instruction": "Step 3 – Mark the exercises with a bool: demanding2 is True if intensity2 is greater than average_intensity. Print exactly: Canter circles demanding: True",
+        "codeTemplate": "intensity2 = 4.5\naverage_intensity = 3.5\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Canter circles demanding: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "The Tournament Training",
+    "file": "boss-03.md",
+    "lessonSummary": "🎊 Congratulations! You have mastered Week 2 – Week 3 is next: conditions (if-else)!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create goal1 = \"Jumping\", days1 = 5, cost1 = 250.0, people1 = 10, chance1 = 0.8 and goal2 = \"Dressage\", days2 = 3, cost2 = 180.0, people2 = 8, chance2 = 0.5. Print the heading === TRAINING PROTOCOL === and one line per unit in the form Unit 1: Jumping, 5 days, 250.0 EUR, 10 participants",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Unit 2: Dressage, 3 days, 180.0 EUR, 8 participants"
+        }
+      },
+      {
+        "instruction": "Step 2 – The costs and participants are already there. Add the costs of both units and the participants of both units and print exactly: Total cost: 430.0 EUR and Total participants: 18",
+        "codeTemplate": "cost1 = 250.0\npeople1 = 10\ncost2 = 180.0\npeople2 = 8\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total cost: 430.0 EUR"
+        }
+      },
+      {
+        "instruction": "Step 3 – Forecast the success: expected successes = participants × success probability, for each unit. Print exactly: Expected successes unit 1: 8.0 and Expected successes unit 2: 4.0",
+        "codeTemplate": "people1 = 10\nchance1 = 0.8\npeople2 = 8\nchance2 = 0.5\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Expected successes unit 2: 4.0"
+        }
+      },
+      {
+        "instruction": "Step 4 – Calculate the cost per participant of each unit (cost / participants) and store the bool unit2_cheaper (True if unit 2 costs less per participant). Print exactly: Unit 2 is cheaper per participant: True",
+        "codeTemplate": "cost1 = 250.0\npeople1 = 10\ncost2 = 180.0\npeople2 = 8\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Unit 2 is cheaper per participant: True"
+        }
+      }
+    ]
+  }
+]

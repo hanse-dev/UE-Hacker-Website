@@ -1,1 +1,3 @@
-"""**Erklärung:** Die Variable heißt `pferd`, aber im `print()` steht `pferde` – ein Buchstabe zuviel. Python sucht exakt nach dem Namen `pferde` und findet ihn nicht. Tippfehler in Variablennamen sind einer der häufigsten Anfängerfehler!"""
+"""### Übung 2: Variablen – Aufgabe 2
+
+Lege eine Variable futter mit dem Wert 2 an. Ändere sie danach auf 3 und gib futter aus."""

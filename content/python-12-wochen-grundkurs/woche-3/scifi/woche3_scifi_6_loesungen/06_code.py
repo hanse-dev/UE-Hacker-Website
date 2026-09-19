@@ -1,4 +1,3 @@
-# Problem: = statt == für Vergleich verwendet
-user = "Admin"
-if user == "Admin":
-    print("Hallo Admin!")
+system_online = True
+if system_online:
+    print("Alle Systeme laufen.")

@@ -1,3 +1,3 @@
-# Problem: variable 'statu' does not exist
-status = "Active"
-print("System status: " + status)
+energy = 80
+energy = 45   # the new value overwrites the old one
+print(energy)

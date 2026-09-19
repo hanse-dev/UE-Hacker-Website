@@ -1,1 +1,3 @@
-"""**Explanation:** `=` assigns a value to a variable. To compare you need `==` (two equals signs) – this is one of the most common beginner mistakes!"""
+"""### Magic Formula 1: if – Task 2
+
+Create has_key = True. Use if (without a comparison) to print exactly: The door opens!"""

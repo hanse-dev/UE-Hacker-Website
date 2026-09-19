@@ -1,1 +1,3 @@
-"""**Explanation:** The variable is called `status`, but in `print()` it says `statu` – one letter missing. Python searches exactly for the name `statu` and cannot find it. Typos in variable names are one of the most common beginner errors!"""
+"""### System Protocol 2: Variables – Task 2
+
+Create a variable energy with the value 80. Then change it to 45 and print energy."""

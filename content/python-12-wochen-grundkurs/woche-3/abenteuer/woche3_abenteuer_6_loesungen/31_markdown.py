@@ -1,0 +1,3 @@
+"""### Zauberformel 5: Verschachtelte Bedingungen – Aufgabe 1
+
+Der Held hat diesmal den falschen Schlüssel (richtiger_schluessel = False). Baue dieselbe verschachtelte Prüfung: Ist die Tür verschlossen, gib Die Tür ist verschlossen. aus und prüfe dann innen den Schlüssel: passt er, gib Die Tür öffnet sich! aus, sonst: Dieser Schlüssel passt nicht. – ist die Tür nicht verschlossen, gib Die Tür steht bereits offen. aus."""

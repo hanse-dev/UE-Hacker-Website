@@ -1,0 +1,1 @@
+"""**Explanation:** the variable is called `name`, not `nam`. A typo in the name causes a `NameError`."""

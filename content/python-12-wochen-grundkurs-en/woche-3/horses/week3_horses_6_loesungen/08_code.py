@@ -1,6 +1,3 @@
-# Problem: elif always needs a condition
 age = 8
-if age >= 5:
-    print("Trained")
-else:
-    print("In training")
+if age == 8:
+    print("Correct: The horse is 8 years old")

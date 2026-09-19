@@ -1,3 +1,2 @@
-# Problem: Variable in f-String nicht in geschweifte Klammern
-schildstaerke = 95
-print(f"Schildstärke: {schildstaerke} Prozent")
+deck_anzahl = 15
+print(type(deck_anzahl))

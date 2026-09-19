@@ -1,0 +1,1 @@
+"""**Explanation:** A single `=` assigns a value. To **compare** two values in a condition you need two equals signs: `==`."""

@@ -1,4 +1,3 @@
-# Problem: = used instead of == for comparison
-name = "Thunder"
-if name == "Thunder":
-    print("Hello Thunder!")
+rider_level = 12
+if rider_level >= 10:
+    print("Riding skill reached!")

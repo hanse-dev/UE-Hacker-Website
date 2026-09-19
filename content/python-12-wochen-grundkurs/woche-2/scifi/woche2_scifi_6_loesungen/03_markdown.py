@@ -1,1 +1,3 @@
-"""**Erklärung:** Dieser Code enthält einen Fehler – findest du ihn?"""
+"""### Systemprotokoll 1: f-Strings – Aufgabe 1
+
+Die Variablen pilot und rang sind schon angelegt. Gib mit einem f-String genau diesen Satz aus: Hallo Zara, dein Rang: 5"""

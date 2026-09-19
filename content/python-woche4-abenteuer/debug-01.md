@@ -1,0 +1,5 @@
+# 🐛 Debug-Quest: Der Kreislauf der Macht
+
+Ein Lehrling der Turmwächterin hat versucht, Schleifen zu meistern, aber etwas läuft schief! Jede der drei Aufgaben unten enthält einen **Fehler**. Lies die Fehlermeldung (oder die Ausgabe) genau und finde die Stelle.
+
+> 💡 **Diese Fehler wurden absichtlich eingebaut** – damit du das Debuggen üben kannst!

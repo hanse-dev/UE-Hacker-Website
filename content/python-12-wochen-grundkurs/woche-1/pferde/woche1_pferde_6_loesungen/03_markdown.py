@@ -1,1 +1,3 @@
-"""**Erklärung:** Python liest `Hallo` und `Pferd` als Variablennamen – aber diese Variablen gibt es nicht. Text muss immer in Anführungszeichen stehen, damit Python weiß: das ist Text, keine Variable."""
+"""### Übung 1: print()
+
+Gib mit print() eine eigene Begrüßung aus, die das Wort "Reiterhof" enthält."""

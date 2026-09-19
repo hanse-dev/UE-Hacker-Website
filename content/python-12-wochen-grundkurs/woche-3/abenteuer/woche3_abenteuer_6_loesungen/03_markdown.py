@@ -1,1 +1,3 @@
-"""**Erklärung:** Python erwartet einen eingerückten Block. Alles was zu einem `if`, `for`, `while` oder `def` gehört, muss mit 4 Leerzeichen eingerückt werden."""
+"""### Zauberformel 1: if – Aufgabe 1
+
+Dein Held hat mana = 45. Prüfe mit if, ob mana >= 30 ist, und gib dann genau aus: Der Zauber gelingt!"""

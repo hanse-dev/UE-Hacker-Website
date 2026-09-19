@@ -1,0 +1,1 @@
+"""**Erklärung:** Der f-String war da, aber der Variablenname stand ohne `{}`. Nur in geschweiften Klammern wird der Wert eingesetzt."""

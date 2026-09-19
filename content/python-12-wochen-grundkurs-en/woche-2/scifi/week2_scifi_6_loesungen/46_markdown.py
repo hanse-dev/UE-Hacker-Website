@@ -1,0 +1,1 @@
+"""**Explanation:** The `f` is there, but the variable is missing its curly braces – so `shield_strength` is printed literally instead of its value."""

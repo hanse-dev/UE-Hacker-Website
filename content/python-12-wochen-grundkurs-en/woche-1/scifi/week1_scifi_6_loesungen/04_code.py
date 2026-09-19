@@ -1,2 +1,1 @@
-# Problem: text without quotation marks
-print("System online")
+print("Hello Nebula-7!")

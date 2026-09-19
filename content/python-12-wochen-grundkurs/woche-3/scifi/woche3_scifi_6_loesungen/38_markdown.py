@@ -1,0 +1,1 @@
+"""**Erklärung:** `elif` braucht immer eine Bedingung. Für „alles andere“ nimmt man `else`."""

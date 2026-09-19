@@ -1,0 +1,323 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Spell Formula 1: print()",
+    "file": "lektion-01.md",
+    "lessonSummary": "Your first spell works! With print() you can put anything on the screen.",
+    "tasks": [
+      {
+        "instruction": "Run this example and look at the output below.",
+        "example": true,
+        "codeTemplate": "print(\"Hello, world!\")\nprint(\"Welcome to Pyralia!\")\n\n# An empty line makes things easier to read\nprint()\nprint(\"=== Your program is running! ===\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Welcome to Pyralia!"
+        }
+      },
+      {
+        "instruction": "Use print() to output your own welcome message that contains the word \"adventure\".",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "adventure"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Spell Formula 2: Variables",
+    "file": "lektion-02.md",
+    "lessonSummary": "Perfect! Variables let you keep values and change them later.",
+    "tasks": [
+      {
+        "instruction": "Run this example. It shows text and number variables.",
+        "example": true,
+        "codeTemplate": "hero_name = \"Aria\"   # Text (String)\nhero_level = 1       # Number (Integer)\n\nprint(hero_name)\nprint(hero_level)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria"
+        }
+      },
+      {
+        "instruction": "Store the text \"Elvenwood\" in a variable called place and print the variable with print().",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Elvenwood"
+        }
+      },
+      {
+        "instruction": "Create a variable gold with the value 50. Then change it to 150 and print gold.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "150"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Spell Formula 3: Joining Texts",
+    "file": "lektion-03.md",
+    "lessonSummary": "Exactly how you build whole sentences from texts and numbers – don't forget str() for numbers!",
+    "tasks": [
+      {
+        "instruction": "Run this example – notice where str() is needed.",
+        "example": true,
+        "codeTemplate": "name = \"Legolas\"\nweapon = \"Bow\"\narrows = 20\n\nprint(\"Hero: \" + name)\nprint(\"Arrows: \" + str(arrows))\nprint(name + \" fights with \" + weapon + \" and has \" + str(arrows) + \" arrows.\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Legolas fights with Bow and has 20 arrows."
+        }
+      },
+      {
+        "instruction": "Create a variable arrows with the value 20 and use + and str() to print exactly this text: Arrows: 20",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Arrows: 20"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Spell Formula 4: input()",
+    "file": "lektion-04.md",
+    "lessonSummary": "Now your program can talk to people – input() makes it interactive.",
+    "tasks": [
+      {
+        "instruction": "Run this example. An input window opens – enter a name there.",
+        "example": true,
+        "codeTemplate": "name = input(\"What is your hero's name? \")\nprint(\"Welcome, \" + name + \"!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Welcome, "
+        }
+      },
+      {
+        "instruction": "Use input() to ask for your hero's weapon, store the answer in weapon and print: Battle-ready with: (followed by the weapon)",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Battle-ready with: "
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Spell Formula 5: Comments",
+    "file": "lektion-05.md",
+    "lessonSummary": "Comments are your secret notes – Python ignores them, but they help you find your way around your code.",
+    "tasks": [
+      {
+        "instruction": "Run this example. Notice which line is NOT executed.",
+        "example": true,
+        "codeTemplate": "# This line prints the hero's name\nprint(\"Aragorn\")\n\nprint(\"Level 5\")  # shows the current level\n\nprint(\"This will run\")\n# print(\"This will NOT run\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "This will run"
+        }
+      },
+      {
+        "instruction": "Write a comment of your own, followed by a print() that outputs exactly: Comment read",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Comment read"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "All bugs found! Reading error messages carefully is half the battle when debugging.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Goal: The program should print the text Hello World. What is wrong?",
+        "codeTemplate": "print(Hello World)",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hello World"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Goal: The program should print The hero is 25 years old. What is wrong?",
+        "codeTemplate": "age = 25\nprint(\"The hero is \" + age + \" years old.\")",
+        "validation": {
+          "type": "output_contains",
+          "expected": "The hero is 25 years old."
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Goal: The program should print Welcome, Aria. What is wrong?",
+        "codeTemplate": "name = \"Aria\"\nprint(\"Welcome, \" + nam)",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Welcome, Aria"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: The Apprentice Wizard",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission accomplished – you are a true apprentice wizard!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Use print() to output exactly this sentence: Hello Pyralia!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hello Pyralia!"
+        }
+      },
+      {
+        "instruction": "Step 2 – Store the number 12 in the variable age and use str() to print exactly this sentence: I am 12 years old.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "I am 12 years old."
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: The Treasure Hunter",
+    "file": "mission-02.md",
+    "lessonSummary": "Treasure report handed in – the guild is proud of you!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create treasure_name = \"Golden Crown\", treasure_value = 500 and location = \"Dragon Cave\". Print the heading === TREASURE REPORT === and below it three lines: Treasure: ..., Value: 500 gold and Location: ... (number with str()!).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Value: 500 gold"
+        }
+      },
+      {
+        "instruction": "Step 2 – Using the variables from step 1, print this sentence: Golden Crown was found in Dragon Cave and is worth 500 gold.",
+        "codeTemplate": "treasure_name = \"Golden Crown\"\ntreasure_value = 500\nlocation = \"Dragon Cave\"\n\n# Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Golden Crown was found in Dragon Cave and is worth 500 gold."
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: Village Hero",
+    "file": "mission-03.md",
+    "lessonSummary": "The village is saved – thanks to your hero profile!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Print the heading === HERO PROFILE ===, followed by the lines Name: ..., Weapon: ..., Level: ... using the variables (level with str()!).",
+        "codeTemplate": "hero_name = \"Thorin\"\nweapon = \"War Hammer\"\nlevel = 10\nstrength = 85\nhero_class = \"Warrior\"\n\n# Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 10"
+        }
+      },
+      {
+        "instruction": "Step 2 – Write a sentence using the variables: Thorin swings his War Hammer!",
+        "codeTemplate": "hero_name = \"Thorin\"\nweapon = \"War Hammer\"\n\n# Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Thorin swings his War Hammer!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra challenge 1: The Tower of Knowledge",
+    "file": "boss-01.md",
+    "lessonSummary": "The poem is deciphered – the Tower of Knowledge is yours!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create four variables line1 to line4, each with one sentence about programming. Then print the heading === TOWER OF KNOWLEDGE === followed by all four lines.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "=== TOWER OF KNOWLEDGE ==="
+        }
+      },
+      {
+        "instruction": "Step 2 – Sign it: print Author: (your name) and Rating: 5 stars. Use a variable for this and str() for the stars.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rating: 5 stars"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra challenge 2: The Curse of the Silent Dragon",
+    "file": "boss-02.md",
+    "lessonSummary": "The curse is broken – the village elder can speak again!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create three variables ingredient1 to ingredient3 and print each with a short effect, in the form Ingredient 1: ... (effect).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ingredient 1:"
+        }
+      },
+      {
+        "instruction": "Step 2 – Store a magic spell in a variable and print it. Then print Spell is being cast... and finally Success! The curse is broken!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Success! The curse is broken!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra challenge 3: The Portal of Possibilities",
+    "file": "boss-03.md",
+    "lessonSummary": "🎊 Congratulations! You have mastered Week 1 – next up is Week 2: Data types and variables!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create x = 10, y = 20 and z = 30 and print exactly this line: Position: 10, 20, 30 (using str() and +).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Position: 10, 20, 30"
+        }
+      },
+      {
+        "instruction": "Step 2 – Write a travel warning for portal travellers and start it with Warning: ",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Warning: "
+        }
+      }
+    ]
+  }
+]

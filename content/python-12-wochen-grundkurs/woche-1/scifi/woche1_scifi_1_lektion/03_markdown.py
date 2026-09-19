@@ -2,4 +2,6 @@
 
 **Was es ist:** `print()` ist dein erster Befehl. Er gibt Text auf dem Bildschirm aus.
 
-**Wichtig:** Text muss immer in Anführungszeichen `\"` oder `'` stehen!"""
+**Wichtig:** Text muss immer in Anführungszeichen `\"` oder `'` stehen!
+
+`print` ist der **Name** der Funktion, die Klammern `()` **rufen** sie auf – ohne Klammern passiert nichts!"""

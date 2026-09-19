@@ -1,1 +1,3 @@
-"""**Explanation:** The variable is called `name`, but in `print()` it says `nam` – one letter missing. Python searches exactly for the name `nam` and cannot find it. Typos in variable names are one of the most common beginner errors!"""
+"""### Spell Formula 2: Variables – Task 2
+
+Create a variable gold with the value 50. Then change it to 150 and print gold."""

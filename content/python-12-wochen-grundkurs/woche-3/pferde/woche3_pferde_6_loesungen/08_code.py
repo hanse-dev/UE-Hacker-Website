@@ -1,6 +1,4 @@
-# Problem: elif braucht immer eine Bedingung
-alter = 8
-if alter >= 5:
-    print("Ausgebildet")
-else:
-    print("In Ausbildung")
+pferd_alter = 8
+
+if pferd_alter == 8:
+    print("Das Pferd ist 8 Jahre alt!")

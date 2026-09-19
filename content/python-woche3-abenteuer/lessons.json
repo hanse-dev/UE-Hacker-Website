@@ -1,0 +1,543 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Zauberformel 1: if",
+    "file": "lektion-01.md",
+    "lessonSummary": "Stark! Mit if führt dein Programm Code nur dann aus, wenn eine Bedingung stimmt.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Drei Bedingungen, jeweils mit eingerücktem Block.",
+        "example": true,
+        "codeTemplate": "# Beispiel 1: Zahl prüfen\nlevel = 5\nif level >= 5:\n    print(\"Du bist bereit für die Quest!\")\n\n# Beispiel 2: Wahrheitswert prüfen\nhat_schluessel = True\nif hat_schluessel:\n    print(\"Die Tür öffnet sich!\")\n\n# Beispiel 3: Text prüfen\nzauber = \"Feuerball\"\nif zauber == \"Feuerball\":\n    print(\"Du wirkst einen Feuerball!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Du wirkst einen Feuerball!"
+        }
+      },
+      {
+        "instruction": "Dein Held hat mana = 45. Prüfe mit if, ob mana >= 30 ist, und gib dann genau aus: Der Zauber gelingt!",
+        "codeTemplate": "mana = 45\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Der Zauber gelingt!"
+        }
+      },
+      {
+        "instruction": "Der Held besitzt die Karte (hat_karte = True). Prüfe mit if die Variable hat_karte selbst (ohne Vergleichszeichen) und gib genau aus: Karte gefunden, der Weg ist frei!",
+        "codeTemplate": "hat_karte = True\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Karte gefunden, der Weg ist frei!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Wichtige Operatoren: = oder ==?",
+    "file": "lektion-02.md",
+    "lessonSummary": "Du kennst den Unterschied: = weist zu, == vergleicht.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: `=` weist zu, `==` vergleicht.",
+        "example": true,
+        "codeTemplate": "level = 15          # Zuweisung mit =\nprint(level == 15)  # Vergleich mit ==\nprint(level == 20)\n\nif level == 15:\n    print(\"Richtig: level ist 15\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Richtig: level ist 15"
+        }
+      },
+      {
+        "instruction": "Der Held ist ein Magier (klasse = \"Magier\"). Prüfe mit ==, ob klasse gleich \"Magier\" ist, und gib genau aus: Willkommen im Turm der Magier!",
+        "codeTemplate": "klasse = \"Magier\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Willkommen im Turm der Magier!"
+        }
+      },
+      {
+        "instruction": "Gib das Ergebnis eines Vergleichs mit einem f-String aus: Vergleiche gold mit 50 und gib genau aus: Genau 50 Gold: True",
+        "codeTemplate": "gold = 50\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Genau 50 Gold: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Die Vergleichsrunen",
+    "file": "lektion-03.md",
+    "lessonSummary": "Du beherrschst die Vergleichsrunen: <, <=, >, >= und !=.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Alle Vergleichsrunen im Einsatz.",
+        "example": true,
+        "codeTemplate": "wert = 10\nprint(f\"Wert: {wert}\")\nprint(f\"{wert} < 15: {wert < 15}\")\nprint(f\"{wert} <= 10: {wert <= 10}\")\nprint(f\"{wert} > 5: {wert > 5}\")\nprint(f\"{wert} >= 10: {wert >= 10}\")\nprint(f\"{wert} != 10: {wert != 10}\")\n\ngold = 100\nkosten = 80\nif gold > kosten:\n    print(f\"Kaufen möglich! Übrig: {gold - kosten}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Kaufen möglich! Übrig: 20"
+        }
+      },
+      {
+        "instruction": "Die Kampfkraft des Helden ist 12, der Gegner braucht mindestens 15. Gib mit einem f-String genau aus: Kampfkraft 12 >= 15: False",
+        "codeTemplate": "kraft = 12\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Kampfkraft 12 >= 15: False"
+        }
+      },
+      {
+        "instruction": "Der Held hat gold = 120, der Schild kostet kosten = 90. Prüfe mit if und >, ob er sich den Schild leisten kann, und gib genau aus: Kauf möglich! Übrig: 30 (den Rest rechnest du aus).",
+        "codeTemplate": "gold = 120\nkosten = 90\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Kauf möglich! Übrig: 30"
+        }
+      },
+      {
+        "instruction": "Am Tor steht wache = \"Troll\". Prüfe mit !=, dass die Wache kein Drache ist, und gib genau aus: Der Weg ist sicher!",
+        "codeTemplate": "wache = \"Troll\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Der Weg ist sicher!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Zauberformel 2: if-else",
+    "file": "lektion-04.md",
+    "lessonSummary": "Mit else hast du immer einen Plan B, wenn die Bedingung nicht stimmt.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Zwei Wege – einer wird gewählt.",
+        "example": true,
+        "codeTemplate": "# Erfolg oder Misserfolg\nwurf = 18\nif wurf >= 15:\n    print(\"Kritischer Treffer!\")\nelse:\n    print(\"Normaler Schlag\")\n\n# Altersprüfung\nalter = 17\nif alter >= 18:\n    print(\"Du darfst die Taverne betreten.\")\nelse:\n    print(\"Zu jung für diese Taverne.\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zu jung für diese Taverne."
+        }
+      },
+      {
+        "instruction": "Der Würfelwurf ist diesmal nur wurf = 9. Gib bei wurf >= 15 aus: Kritischer Treffer! – sonst: Normaler Schlag",
+        "codeTemplate": "wurf = 9\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Normaler Schlag"
+        }
+      },
+      {
+        "instruction": "Ein Inventar-Check: Der Held hat gold = 45, der Trank kostet kosten = 50. Reicht das Gold (>=), gib aus: Kauf erfolgreich! – sonst: Nicht genug Gold! Fehlt: 5 (die Differenz rechnest du mit einem f-String aus).",
+        "codeTemplate": "gold = 45\nkosten = 50\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nicht genug Gold! Fehlt: 5"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Zauberformel 3: if-elif-else",
+    "file": "lektion-05.md",
+    "lessonSummary": "Mit elif prüfst du viele Möglichkeiten nacheinander – der erste Treffer gewinnt.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Nur der erste wahre Zweig läuft.",
+        "example": true,
+        "codeTemplate": "xp = 750\nif xp >= 1000:\n    print(\"Rang: Meister!\")\nelif xp >= 500:\n    print(\"Rang: Fortgeschritten!\")\nelif xp >= 100:\n    print(\"Rang: Anfänger!\")\nelse:\n    print(\"Noch viel zu lernen...\")\n\nelement = \"Wasser\"\nif element == \"Feuer\":\n    print(\"Feuerschlag!\")\nelif element == \"Wasser\":\n    print(\"Wasserhose!\")\nelif element == \"Luft\":\n    print(\"Windstoß!\")\nelif element == \"Erde\":\n    print(\"Erdbeben!\")\nelse:\n    print(\"Unbekanntes Element!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wasserhose!"
+        }
+      },
+      {
+        "instruction": "Ein neuer Held hat xp = 320. Gib bei xp >= 1000 aus: Rang: Meister!, bei xp >= 500: Rang: Fortgeschritten!, bei xp >= 100: Rang: Anfänger!, sonst: Noch viel zu lernen...",
+        "codeTemplate": "xp = 320\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rang: Anfänger!"
+        }
+      },
+      {
+        "instruction": "Der Zauberstab reagiert auf das Element. Es ist element = \"Luft\". Gib bei \"Feuer\": Feuerschlag!, bei \"Wasser\": Wasserhose!, bei \"Luft\": Windstoß!, bei \"Erde\": Erdbeben! und sonst: Unbekanntes Element! aus.",
+        "codeTemplate": "element = \"Luft\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Windstoß!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Zauberformel 4: and, or, not",
+    "file": "lektion-06.md",
+    "lessonSummary": "Mit and, or und not verknüpfst du mehrere Bedingungen zu einer.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: and, or, not und eine Heldenklasse aus mehreren Werten.",
+        "example": true,
+        "codeTemplate": "hat_schluessel = True\nhat_fackel = True\nif hat_schluessel and hat_fackel:\n    print(\"Du kannst die dunkle Kammer sicher öffnen!\")\n\nhat_schwert = False\nhat_zauberstab = True\nif hat_schwert or hat_zauberstab:\n    print(\"Du bist bewaffnet und bereit!\")\n\nist_verflucht = False\nif not ist_verflucht:\n    print(\"Du bist frei von jedem Fluch!\")\n\nstaerke = 8\nintelligenz = 12\nif staerke > 10 and intelligenz > 10:\n    print(\"Paladin!\")\nelif staerke > 10:\n    print(\"Krieger!\")\nelif intelligenz > 10:\n    print(\"Magier!\")\nelse:\n    print(\"Abenteurer!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Magier!"
+        }
+      },
+      {
+        "instruction": "and: Die Kammer öffnet sich nur, wenn der Held den Schlüssel UND die Fackel hat. Diesmal ist hat_fackel = False. Gib bei beidem aus: Die Kammer öffnet sich! – sonst: Die Kammer bleibt verschlossen.",
+        "codeTemplate": "hat_schluessel = True\nhat_fackel = False\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Die Kammer bleibt verschlossen."
+        }
+      },
+      {
+        "instruction": "or: Bewaffnet ist, wer Schwert ODER Zauberstab hat. Gib dann aus: Du bist bewaffnet und bereit! – sonst: Du bist wehrlos!",
+        "codeTemplate": "hat_schwert = False\nhat_zauberstab = True\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Du bist bewaffnet und bereit!"
+        }
+      },
+      {
+        "instruction": "not: Der Held ist verflucht (ist_verflucht = True). Prüfe mit not: Ist er NICHT verflucht, gib aus: Du bist frei von jedem Fluch! – sonst: Ein Fluch liegt auf dir!",
+        "codeTemplate": "ist_verflucht = True\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ein Fluch liegt auf dir!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Zauberformel 5: Verschachtelte Bedingungen",
+    "file": "lektion-07.md",
+    "lessonSummary": "Du kannst Bedingungen ineinander schachteln – jede Ebene wird weiter eingerückt.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Die verschlossene Tür.",
+        "example": true,
+        "codeTemplate": "tuer_verschlossen = True\nrichtiger_schluessel = True\n\nif tuer_verschlossen:\n    print(\"Die Tür ist verschlossen.\")\n    if richtiger_schluessel:\n        print(\"Der Schlüssel passt – die Tür öffnet sich!\")\n    else:\n        print(\"Dieser Schlüssel passt nicht.\")\nelse:\n    print(\"Die Tür steht bereits offen.\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Der Schlüssel passt – die Tür öffnet sich!"
+        }
+      },
+      {
+        "instruction": "Der Held hat diesmal den falschen Schlüssel (richtiger_schluessel = False). Baue dieselbe verschachtelte Prüfung: Ist die Tür verschlossen, gib Die Tür ist verschlossen. aus und prüfe dann innen den Schlüssel: passt er, gib Die Tür öffnet sich! aus, sonst: Dieser Schlüssel passt nicht. – ist die Tür nicht verschlossen, gib Die Tür steht bereits offen. aus.",
+        "codeTemplate": "tuer_verschlossen = True\nrichtiger_schluessel = False\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Dieser Schlüssel passt nicht."
+        }
+      },
+      {
+        "instruction": "Das Turnier: Wer ein Ticket hat (hat_ticket = True), wird mit alter geprüft: Ab 14 gib aus: Du darfst am Turnier teilnehmen! – sonst: Zu jung für das Turnier. Ohne Ticket gib aus: Ohne Ticket kein Zutritt.",
+        "codeTemplate": "hat_ticket = True\nalter = 12\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zu jung für das Turnier."
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug-Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Beim Debuggen hilft es, Einrückung, = und == genau anzuschauen.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll bei level >= 10 sowohl Level erreicht! als auch Glückwunsch! ausgeben. Was ist falsch?",
+        "codeTemplate": "level = 10\nif level >= 10:\nprint(\"Level erreicht!\")\nprint(\"Glückwunsch!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level erreicht!"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Hallo Aria! ausgeben, weil name den Wert Aria hat. Was ist falsch?",
+        "codeTemplate": "name = \"Aria\"\nif name = \"Aria\":\n    print(\"Hallo Aria!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hallo Aria!"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll bei alter >= 18 den Text Erwachsen ausgeben, sonst Kind. Was ist falsch?",
+        "codeTemplate": "alter = 25\nif alter >= 18:\n    print(\"Erwachsen\")\nelif:\n    print(\"Kind\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Erwachsen"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #4 – Ziel: Der Held hat genau so viel Gold, wie der Trank kostet, und soll Kauf erfolgreich! ausgeben. Was ist falsch?",
+        "codeTemplate": "gold = 50\nkosten = 50\nif gold > kosten:\n    print(\"Kauf erfolgreich!\")\nelse:\n    print(\"Nicht genug Gold!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Kauf erfolgreich!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: Der Wächter der Brücke",
+    "file": "mission-01.md",
+    "lessonSummary": "Der Wächter lässt dich passieren – oder eben nicht!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Zugang erhalten: Der Held ist alter = 16, hat gold = 12 und hat_pass = False. Prüfe mit if und or (alter >= 18 or gold >= 10 or hat_pass). Gib bei Zugang aus: Durchgang erlaubt – sonst: Durchgang verweigert",
+        "codeTemplate": "alter = 16\ngold = 12\nhat_pass = False\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Durchgang erlaubt"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Ablehnung: Jetzt ist der Held alter = 15, hat nur gold = 3 und hat_pass = False. Nutze dieselbe Regel und gib bei fehlendem Zugang genau aus: Durchgang verweigert",
+        "codeTemplate": "alter = 15\ngold = 3\nhat_pass = False\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Durchgang verweigert"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: Die Schatztruhe",
+    "file": "mission-02.md",
+    "lessonSummary": "Die Truhe hat auf dein Passwort reagiert!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Gast: meister_passwort = \"Drachenfeuer\", gast_passwort = \"Sternenstaub\", die Eingabe ist eingabe = \"Sternenstaub\". Gib bei Meister-Passwort aus: Voller Schatz gewährt, bei Gast-Passwort: Teilschatz gewährt, sonst: Falsches Passwort",
+        "codeTemplate": "meister_passwort = \"Drachenfeuer\"\ngast_passwort = \"Sternenstaub\"\neingabe = \"Sternenstaub\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Teilschatz gewährt"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Meister: Dieselben Passwörter, aber jetzt ist eingabe = \"Drachenfeuer\". Gib genau aus: Voller Schatz gewährt",
+        "codeTemplate": "meister_passwort = \"Drachenfeuer\"\ngast_passwort = \"Sternenstaub\"\neingabe = \"Drachenfeuer\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Voller Schatz gewährt"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Falsches Passwort: Jetzt ist eingabe = \"Zaubertrank\". Gib genau aus: Falsches Passwort",
+        "codeTemplate": "meister_passwort = \"Drachenfeuer\"\ngast_passwort = \"Sternenstaub\"\neingabe = \"Zaubertrank\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Falsches Passwort"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: Die Arena des Champions",
+    "file": "mission-03.md",
+    "lessonSummary": "Die Arena hat deinen Kämpfer bewertet!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Siegquote: Der Kämpfer hat siege = 18 und niederlagen = 2. Berechne siegquote = siege / (siege + niederlagen) und gib genau aus: Siegquote: 0.9",
+        "codeTemplate": "siege = 18\nniederlagen = 2\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Siegquote: 0.9"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Rang: Der Kämpfer hat level = 35 und siegquote = 0.9. Prüfe mit if: level >= 50 und siegquote > 0.8 → LEGENDÄR!, mit elif: level >= 30 und siegquote > 0.6 → MEISTER!, sonst: KÄMPFER",
+        "codeTemplate": "level = 35\nsiegquote = 0.9\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "MEISTER!"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Perfekte Serie: Ein anderer Kämpfer hat siege = 12 und niederlagen = 0. Prüfe separat mit if, ob niederlagen == 0 ist, und gib dann genau aus: +100 Bonus für perfekte Serie!",
+        "codeTemplate": "siege = 12\nniederlagen = 0\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "+100 Bonus für perfekte Serie!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Das Magie-Quiz",
+    "file": "boss-01.md",
+    "lessonSummary": "Das Magie-Quiz ist ausgewertet – mit Note und Zertifikat!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Antworten prüfen: Die Antworten sind antwort_1 = True und antwort_3 = False. Prüfe beide jeweils mit if-else und gib aus: Frage 1: Richtig! oder Frage 1: Falsch! bzw. Frage 3: Richtig! oder Frage 3: Falsch!",
+        "codeTemplate": "antwort_1 = True\nantwort_3 = False\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Frage 3: Falsch!"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Punkte zählen: Fünf Antworten sind gegeben. Starte mit punkte = 0 und addiere für jede richtige Antwort mit einem eigenen if 100 Punkte (punkte = punkte + 100). Gib genau aus: Punkte: 400",
+        "codeTemplate": "antwort_1 = True\nantwort_2 = True\nantwort_3 = False\nantwort_4 = True\nantwort_5 = True\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Punkte: 400"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Note: Ein anderes Quiz endete mit punkte = 300. Gib bei punkte >= 400 aus: Note: A, bei punkte >= 300: Note: B, sonst: Note: C",
+        "codeTemplate": "punkte = 300\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Note: B"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Zertifikat: Bei punkte = 300 (bestanden ab 300) gib aus: Zertifikat: bestanden – sonst: Zertifikat: nicht bestanden",
+        "codeTemplate": "punkte = 300\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zertifikat: bestanden"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Der Dungeon-Simulator",
+    "file": "boss-02.md",
+    "lessonSummary": "Alle fünf Level des Simulators sind geschafft (oder analysiert)!",
+    "tasks": [
+      {
+        "instruction": "Level 1 – Beschwörung: mana = 70 und zauber_bereit = True. Prüfe mit and: mana >= 50 und zauber_bereit. Gib aus: Level 1 bestanden – sonst: Level 1 gescheitert",
+        "codeTemplate": "mana = 70\nzauber_bereit = True\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level 1 bestanden"
+        }
+      },
+      {
+        "instruction": "Level 2 – Wegwahl: Der Held wählt weg = \"Rechts\". Gib bei \"Links\" aus: Du nimmst den linken Pfad. – sonst: Du nimmst den rechten Pfad.",
+        "codeTemplate": "weg = \"Rechts\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Du nimmst den rechten Pfad."
+        }
+      },
+      {
+        "instruction": "Level 3 – Geschwindigkeit: tempo = 65. Gib bei >= 80: Tempo: Blitzschnell, bei >= 60: Tempo: Schnell, bei >= 40: Tempo: Normal, bei >= 20: Tempo: Langsam, sonst: Tempo: Kriechend",
+        "codeTemplate": "tempo = 65\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Tempo: Schnell"
+        }
+      },
+      {
+        "instruction": "Level 4 – Magieprüfung (verschachtelt): schutz = 80, angriff = 60, heilung = 20. Prüfe verschachtelt: Ist schutz >= 50, prüfe innen angriff >= 50, und darin heilung >= 50. Alles erfüllt: Magieprüfung bestanden. Heilung zu niedrig: Heilung zu schwach. Angriff zu niedrig: Angriff zu schwach. Schutz zu niedrig: Schutz zu schwach.",
+        "codeTemplate": "schutz = 80\nangriff = 60\nheilung = 20\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Heilung zu schwach"
+        }
+      },
+      {
+        "instruction": "Level 5 – Flucht: traenke = 5, runen = True, fluchtweg = False. Die Flucht gelingt, wenn traenke >= 3 ODER (runen UND fluchtweg). Setze die Klammern richtig. Gib aus: Flucht gelingt! – sonst: Flucht scheitert!",
+        "codeTemplate": "traenke = 5\nrunen = True\nfluchtweg = False\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Flucht gelingt!"
+        }
+      },
+      {
+        "instruction": "Level 6 – Punktesystem: Die Ergebnisse sind ok_1 = True, ok_2 = False, ok_3 = True, ok_4 = True, ok_5 = False. Starte mit erfolge = 0 und addiere für jedes bestandene Level 1 (erfolge = erfolge + 1). Gib genau aus: Erfolge: 3",
+        "codeTemplate": "ok_1 = True\nok_2 = False\nok_3 = True\nok_4 = True\nok_5 = False\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Erfolge: 3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Die Dungeon-Quest",
+    "file": "boss-03.md",
+    "lessonSummary": "Die Dungeon-Quest ist ausgewertet – Gefahr, Ereignisse, Rettung und Punkte!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Gefahrenstufe: gefahrenstufe = 4. Gib bei 1: Gefahr: Ruhig, bei 2: Gefahr: Wachsam, bei 3: Gefahr: Gefährlich, bei 4: Gefahr: Sehr gefährlich, sonst: Gefahr: Tödlich",
+        "codeTemplate": "gefahrenstufe = 4\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gefahr: Sehr gefährlich"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Zufallsereignisse: monster_angriff = True, falle_ausgeloest = False, schatz_gefunden = True. Prüfe jedes Ereignis mit einem eigenen if und gib aus: Ein Monster greift an! / Eine Falle schnappt zu! / Schatz gefunden!",
+        "codeTemplate": "monster_angriff = True\nfalle_ausgeloest = False\nschatz_gefunden = True\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Schatz gefunden!"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Erfolgsbedingung: phase1_ok = True, phase2_ok = True, phase3_ok = False, phase4_ok = True, phase5_ok = True und gefahrenstufe = 4. Zähle die gelungenen Phasen in erfolgreiche_phasen (mit einem if pro Phase). Die Quest gelingt bei erfolgreiche_phasen >= 4 und gefahrenstufe <= 3. Gib aus: Quest bestanden! – sonst: Quest gescheitert!",
+        "codeTemplate": "phase1_ok = True\nphase2_ok = True\nphase3_ok = False\nphase4_ok = True\nphase5_ok = True\ngefahrenstufe = 4\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Quest gescheitert!"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Sonderaktion (verschachtelt): gefahrenstufe = 5, erfolgreiche_phasen = 2. Prüfe verschachtelt: Ist gefahrenstufe >= 4, prüfe innen erfolgreiche_phasen < 3 und gib aus: Rettung erforderlich! – sonst innen: Der Trupp hält durch. Ist die Gefahr niedriger, gib aus: Keine Gefahr für den Trupp.",
+        "codeTemplate": "gefahrenstufe = 5\nerfolgreiche_phasen = 2\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rettung erforderlich!"
+        }
+      },
+      {
+        "instruction": "Schritt 5 – Gesamtpunkte: erfolgreiche_phasen = 4, gefahrenstufe = 4. Berechne gesamtpunkte = erfolgreiche_phasen * 100 - gefahrenstufe * 20 und gib genau aus: Gesamtpunkte: 320",
+        "codeTemplate": "erfolgreiche_phasen = 4\ngefahrenstufe = 4\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gesamtpunkte: 320"
+        }
+      },
+      {
+        "instruction": "Schritt 6 – Erfolgsquote: Bei erfolgreiche_phasen = 4 von 5 Phasen berechne erfolgsquote = erfolgreiche_phasen / 5 * 100 und gib genau aus: Erfolgsquote: 80.0 Prozent",
+        "codeTemplate": "erfolgreiche_phasen = 4\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Erfolgsquote: 80.0 Prozent"
+        }
+      }
+    ]
+  }
+]

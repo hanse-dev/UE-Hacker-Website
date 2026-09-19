@@ -1,6 +1,3 @@
-# Problem: elif always needs a condition
-age = 25
-if age >= 18:
-    print("Adult")
-else:
-    print("Child")
+level = 15
+if level == 15:
+    print("Correct: level is 15")

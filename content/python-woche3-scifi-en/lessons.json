@@ -1,0 +1,493 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "System Protocol 1: if",
+    "file": "lektion-01.md",
+    "lessonSummary": "Decision made! With if your program only acts when the condition is true.",
+    "tasks": [
+      {
+        "instruction": "Run this example: three simple if-conditions.",
+        "example": true,
+        "codeTemplate": "# Example 1: Simple if-condition\nsecurity_level = 5\nif security_level >= 5:\n    print(\"🎉 Access to main system granted!\")\n\n# Example 2: Checking True/False\nsystem_online = True\nif system_online:\n    print(\"🔑 All systems operational.\")\n\n# Example 3: Checking a command\ncommand = \"START\"\nif command == \"START\":\n    print(\"🚀 Launch sequence initiated!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Launch sequence initiated!"
+        }
+      },
+      {
+        "instruction": "Create security_level = 7. Use if to check security_level >= 5 and print exactly: Access granted",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Access granted"
+        }
+      },
+      {
+        "instruction": "Create command = \"STOP\". Use if to check command == \"STOP\" and print exactly: Engines halted",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Engines halted"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Important Operators: = vs ==",
+    "file": "lektion-02.md",
+    "lessonSummary": "Operators mastered! You know the difference between = and == and the four comparison algorithms.",
+    "tasks": [
+      {
+        "instruction": "Run this example: `=` vs `==` and all four comparison operators.",
+        "example": true,
+        "codeTemplate": "# Example 1: = vs == in comparison\nrank = 15  # Assignment with =\nif rank == 15:  # Comparison with ==\n    print(\"✅ Correct: Rank 15 reached\")\n\n# Example 2: All four comparison operators\nvalue = 42\nprint(f\"Value: {value}\")\nprint(f\"{value} < 50: {value < 50}\")\nprint(f\"{value} <= 42: {value <= 42}\")\nprint(f\"{value} > 30: {value > 30}\")\nprint(f\"{value} >= 42: {value >= 42}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "42 >= 42: True"
+        }
+      },
+      {
+        "instruction": "Create speed = 900 and print exactly: speed > 1000: False (let the f-string calculate the comparison).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "speed > 1000: False"
+        }
+      },
+      {
+        "instruction": "Create level = 10. Use if with == to check whether level is 10 and print exactly: Access level 10 reached!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Access level 10 reached!"
+        }
+      },
+      {
+        "instruction": "Create energy = 15. Use if with < to check whether energy is below 20 and print exactly: Low energy!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Low energy!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "System Protocol 2: if-else",
+    "file": "lektion-03.md",
+    "lessonSummary": "Two paths, one decision! else catches everything that if does not.",
+    "tasks": [
+      {
+        "instruction": "Run this example: three if-else decisions.",
+        "example": true,
+        "codeTemplate": "# Example 1: Scan result\nsignals = 18\nif signals >= 15:\n    print(\"⚔️ Life forms detected!\")\nelse:\n    print(\"💨 Sector empty.\")\n\n# Example 2: System check\npressure_ok = False\nif pressure_ok:\n    print(\"🍺 Pressure chambers operational.\")\nelse:\n    print(\"🚫 Pressure drop detected!\")\n\n# Example 3: Energy check\nenergy = 45\nconsumption = 50\nif energy >= consumption:\n    print(f\"💰 Jump possible! Remaining: {energy - consumption}%\")\nelse:\n    print(f\"❌ Jump impossible! Missing: {consumption - energy}%\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Life forms detected!"
+        }
+      },
+      {
+        "instruction": "Create signals = 9. If signals >= 15, print Life forms detected!, otherwise print exactly: Sector empty.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sector empty."
+        }
+      },
+      {
+        "instruction": "Create energy = 45 and consumption = 50. If energy >= consumption, print f\"Jump possible! Remaining: {energy - consumption}%\", otherwise print exactly: Jump impossible! Missing: 5%",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Jump impossible! Missing: 5%"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "System Protocol 3: if-elif-else",
+    "file": "lektion-04.md",
+    "lessonSummary": "Many paths mastered! elif checks one condition after another – the first true path wins.",
+    "tasks": [
+      {
+        "instruction": "Run this example: a rank rating and a weapon system.",
+        "example": true,
+        "codeTemplate": "# Example 1: Rank rating\npoints = 750\nif points >= 1000:\n    print(\"🏆 Fleet Commander!\")\nelif points >= 500:\n    print(\"⭐ Captain!\")\nelif points >= 100:\n    print(\"🌟 Lieutenant!\")\nelse:\n    print(\"📚 Cadet!\")\n\n# Example 2: Weapon system\nweapon = \"Laser\"\nif weapon == \"Laser\":\n    print(\"🔥 Laser activated!\")\nelif weapon == \"Plasma\":\n    print(\"💧 Plasma cannon loaded!\")\nelif weapon == \"Quantum\":\n    print(\"🌪️ Quantum torpedo ready!\")\nelif weapon == \"Ion\":\n    print(\"⚡ Ion cannon online!\")\nelse:\n    print(\"❓ Unknown weapon!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Captain!"
+        }
+      },
+      {
+        "instruction": "Create points = 120. Rate it: >= 1000 prints Fleet Commander!, >= 500 prints Captain!, >= 100 prints Lieutenant!, otherwise Cadet! – the program must print exactly: Lieutenant!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Lieutenant!"
+        }
+      },
+      {
+        "instruction": "Create weapon = \"Ion\". If it is \"Laser\" print Laser activated!, if it is \"Plasma\" print Plasma cannon loaded!, otherwise print exactly: Unknown weapon!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Unknown weapon!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "System Protocol 4: Logical Operators (and, or, not)",
+    "file": "lektion-05.md",
+    "lessonSummary": "Logic connected! and, or and not let you combine several conditions into one decision.",
+    "tasks": [
+      {
+        "instruction": "Run this example: and, or, not and a ship class that combines them with elif.",
+        "example": true,
+        "codeTemplate": "# Example 1: and – both conditions must be true\nhas_access_code = True\nhas_fingerprint = True\nif has_access_code and has_fingerprint:\n    print(\"🔐👆 Access to the command deck granted!\")\n\n# Example 2: or – one condition is enough\nhas_emergency_key = False\nhas_override_code = True\nif has_emergency_key or has_override_code:\n    print(\"🔓 You can open the door manually!\")\n\n# Example 3: not – flips a truth value\nalarm_active = False\nif not alarm_active:\n    print(\"✅ No danger – all systems secure!\")\n\n# Example 4: and inside an if-elif-else\nshield = 8\nweapons = 12\nif shield > 10 and weapons > 10:\n    print(\"⚔️🧠 Battleship!\")\nelif shield > 10:\n    print(\"💪 Cruiser!\")\nelif weapons > 10:\n    print(\"🧙 Destroyer!\")\nelse:\n    print(\"👤 Frigate!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Destroyer!"
+        }
+      },
+      {
+        "instruction": "Create has_access_code = True and has_fingerprint = False. If BOTH are true (and) print Access granted!, otherwise print exactly: Access denied!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Access denied!"
+        }
+      },
+      {
+        "instruction": "Create has_emergency_key = False and has_override_code = True. If at least ONE is true (or) print exactly: You can open the door manually!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "You can open the door manually!"
+        }
+      },
+      {
+        "instruction": "Create alarm_active = True. If not alarm_active, print All systems secure!, otherwise print exactly: Alarm! Go to your posts!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Alarm! Go to your posts!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "System Protocol 5: Nested Conditions",
+    "file": "lektion-06.md",
+    "lessonSummary": "Deep decisions! Every nesting level needs one more level of indentation.",
+    "tasks": [
+      {
+        "instruction": "Run this example: the locked airlock.",
+        "example": true,
+        "codeTemplate": "# Example: The locked airlock\nairlock_locked = True\nright_code = True\n\nif airlock_locked:\n    print(\"🚪 The airlock is locked.\")\n    if right_code:\n        print(\"🔑 The code is correct – the airlock opens!\")\n    else:\n        print(\"❌ Wrong code! Access denied.\")\nelse:\n    print(\"🚪 The airlock is already open.\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "The code is correct"
+        }
+      },
+      {
+        "instruction": "Create airlock_locked = True and right_code = False. If the airlock is locked, print The airlock is locked. and then check inside: with the right code print The airlock opens!, otherwise print exactly: Wrong code! Access denied.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wrong code! Access denied."
+        }
+      },
+      {
+        "instruction": "Create shield = 60 and weapons = 10. If shield >= 50, print Shields stable. and check inside: if weapons >= 50 print Ready to fight!, otherwise print exactly: Weapons too weak!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Weapons too weak!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "All bugs found! Reading the goal and the error message carefully is half the battle.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Goal: The program should print Access granted! and Welcome Commander! when the level is high enough. What is wrong?",
+        "codeTemplate": "level = 10\nif level >= 10:\nprint(\"Access granted!\")\nprint(\"Welcome Commander!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Welcome Commander!"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Goal: The program should check whether user equals \"Admin\" and, if so, print Hello Admin! What is wrong?",
+        "codeTemplate": "user = \"Admin\"\nif user = \"Admin\":\n    print(\"Hello Admin!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hello Admin!"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Goal: The program should print System active when the status is high enough, otherwise System inactive. What is wrong?",
+        "codeTemplate": "status = 25\nif status >= 18:\n    print(\"System active\")\nelif:\n    print(\"System inactive\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "System active"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: The Security Scanner",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission accomplished! The scanner lets the right people onto the bridge.",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create rank = 6, id_card = False and emergency = False. Print exactly: Rank 6, ID card: False",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rank 6, ID card: False"
+        }
+      },
+      {
+        "instruction": "Step 2 – Create rank = 6, id_card = False and emergency = False. Use if with or: if rank >= 5 or id_card or emergency print Access granted, otherwise print Access denied. It must print exactly: Access granted",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Access granted"
+        }
+      },
+      {
+        "instruction": "Step 3 – Now a visitor arrives: rank = 3, id_card = False, emergency = False. Use the same rule as in step 2. It must print exactly: Access denied",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Access denied"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: The Terminal Access",
+    "file": "mission-02.md",
+    "lessonSummary": "Terminal secured! Only the right password opens the right door.",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create admin_password = \"nebula42\", guest_password = \"visitor7\" and entered = \"visitor7\". Check entered with if/elif/else: admin password → Full access granted, guest password → Read access granted, otherwise → Wrong password! It must print exactly: Read access granted",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Read access granted"
+        }
+      },
+      {
+        "instruction": "Step 2 – Same rules, but now entered = \"hunter2\". It must print exactly: Wrong password!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wrong password!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: The Mission Rating",
+    "file": "mission-03.md",
+    "lessonSummary": "Mission rated! You combined calculations and conditions like a real fleet analyst.",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create level = 9, success_points = 90, losses = 1 and time = 24. Calculate the score and print exactly: Score: 75.2",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Score: 75.2"
+        }
+      },
+      {
+        "instruction": "Step 2 – Create the same variables and the score again. Rate the mission with if/elif/else using the rating levels above. It must print exactly: EXCELLENT!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "EXCELLENT!"
+        }
+      },
+      {
+        "instruction": "Step 3 – With time = 24, check separately with an if whether time < 30 and print exactly: +50 Bonus for lightning mission!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "+50 Bonus for lightning mission!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra challenge 1: The AI Quiz",
+    "file": "boss-01.md",
+    "lessonSummary": "Quiz passed! You counted points and awarded grades with conditions.",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create the variables q1 to q5 with the answers from the table. Check each one with if-else and print Question 1: Correct! or Question 1: Wrong! and so on. The last line must read: Question 5: Wrong!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Question 5: Wrong!"
+        }
+      },
+      {
+        "instruction": "Step 2 – Create q1 to q5 again. Set points = 0 and add 100 with points += 100 for every correct answer (use an if per question). Print exactly: Points: 300",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Points: 300"
+        }
+      },
+      {
+        "instruction": "Step 3 – With points = 300, use if/elif/else to print the grade (>= 400 A, >= 300 B, otherwise C) as Grade: B. Then check with if whether points >= 300 and print Certificate: passed. Both lines must appear.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Certificate: passed"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra challenge 2: The Spaceship Simulator",
+    "file": "boss-02.md",
+    "lessonSummary": "Simulator complete! Five levels, five different kinds of decisions – flown through.",
+    "tasks": [
+      {
+        "instruction": "Level 1: Launch sequence – Create energy = 70 and system_ok = True. If energy >= 50 and system_ok, print Launch sequence started, otherwise Launch aborted. It must print exactly: Launch sequence started",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Launch sequence started"
+        }
+      },
+      {
+        "instruction": "Level 2: Course selection – Create course = \"South\". With if-else print Course: North (for \"North\") or otherwise Course: South. It must print exactly: Course: South",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Course: South"
+        }
+      },
+      {
+        "instruction": "Level 3: Speed – Create speed = 640. Use if-elif-else with 5 levels: >= 800 Speed level 5, >= 600 Speed level 4, >= 400 Speed level 3, >= 200 Speed level 2, otherwise Speed level 1. It must print exactly: Speed level 4",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Speed level 4"
+        }
+      },
+      {
+        "instruction": "Level 4: Systems check – Create shields = 80, weapons = 40 and drive = 90. Use nested ifs: if shields >= 50, check inside whether weapons >= 50; if so, check whether drive >= 50 (All systems ready, otherwise Drive too weak); otherwise Weapons too weak!; if the shields are too low print Shields too weak!. It must print exactly: Weapons too weak!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Weapons too weak!"
+        }
+      },
+      {
+        "instruction": "Level 5: Emergency landing – Create fuel = 10, atmosphere = True and landing_spot = True. If fuel >= 20 or (atmosphere and landing_spot), print Emergency landing possible, otherwise Crash. It must print exactly: Emergency landing possible",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Emergency landing possible"
+        }
+      },
+      {
+        "instruction": "Points system – Create successes = 0 and the level results l1 = True, l2 = True, l3 = False, l4 = True, l5 = True. Add 1 to successes for every passed level (if per level) and print exactly: Successful levels: 4",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Successful levels: 4"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra challenge 3: The Galaxy Mission",
+    "file": "boss-03.md",
+    "lessonSummary": "🎊 Congratulations! You have mastered Week 3 – next up is Week 4: Loops (for, while)!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create phase1_ok to phase5_ok with the results from the table. Set successful_phases = 0 and add 1 for every successful phase (if per phase). Print exactly: Successful phases: 4",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Successful phases: 4"
+        }
+      },
+      {
+        "instruction": "Step 2 – Create danger_level = 3. Use if-elif-else for 5 levels: 1 → Danger: minimal, 2 → Danger: low, 3 → Danger: medium, 4 → Danger: high, otherwise Danger: extreme. It must print exactly: Danger: medium",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Danger: medium"
+        }
+      },
+      {
+        "instruction": "Step 3 – Create meteor_hit = True, pirate_attack = False and system_failure = False. Check each event with its own if and print Meteor hit!, Pirate attack! or System failure! for the events that occurred. It must print exactly: Meteor hit!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Meteor hit!"
+        }
+      },
+      {
+        "instruction": "Step 4 – Create successful_phases = 4 and danger_level = 3. If successful_phases >= 4 and danger_level <= 3, print Mission successful, otherwise Mission failed. It must print exactly: Mission successful",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mission successful"
+        }
+      },
+      {
+        "instruction": "Step 5 – Create successful_phases = 2 and danger_level = 4. Use nested ifs: if danger_level >= 4, check inside whether successful_phases < 3 and print exactly: Rescue operation required!",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rescue operation required!"
+        }
+      },
+      {
+        "instruction": "Step 6 – With successful_phases = 4 and danger_level = 3, calculate total_points = successful_phases * 100 - danger_level * 20 and success_rate = (successful_phases / 5) * 100. Print Total points: 340 and Success rate: 80.0% (let the f-strings fill in the values).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Success rate: 80.0%"
+        }
+      }
+    ]
+  }
+]

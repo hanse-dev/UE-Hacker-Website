@@ -1,0 +1,3 @@
+"""### Extra-Herausforderung 3: Die Raummission – Aufgabe 2
+
+Schritt 2 – Lege Kosten, Crew und Erfolgswahrscheinlichkeit beider Missionen (siehe Tabelle) an. Berechne Gesamtkosten, Gesamtcrew und den erwarteten Erfolg jeder Mission. Speichere in einer Boolean-Variable mit >, ob Titan mehr erwarteten Erfolg hat als Mars. Gib genau diese fünf Zeilen aus: Gesamtkosten: 4500, Gesamtcrew: 32, Erwarteter Erfolg Mars: 750.0, Erwarteter Erfolg Titan: 2250.0 und Titan profitabler: True"""

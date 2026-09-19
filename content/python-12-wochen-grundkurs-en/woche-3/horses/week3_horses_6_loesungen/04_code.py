@@ -1,5 +1,3 @@
-# Problem: code after if not indented
-level = 10
-if level >= 10:
-    print("Riding skill reached!")
-    print("Congratulations!")
+has_saddle = True
+if has_saddle:
+    print("You can mount up!")

@@ -1,1 +1,3 @@
-"""**Erklärung:** Die Variable heißt `name`, aber im `print()` steht `nam` – ein Buchstabe fehlt. Python sucht exakt nach dem Namen `nam` und findet ihn nicht. Tippfehler in Variablennamen sind einer der häufigsten Anfängerfehler!"""
+"""### Zauberformel 2: Variablen – Aufgabe 2
+
+Lege eine Variable gold mit dem Wert 50 an. Ändere sie danach auf 150 und gib gold aus."""

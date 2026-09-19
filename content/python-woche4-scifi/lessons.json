@@ -1,0 +1,495 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Systemprotokoll 1: Die for-Schleife",
+    "file": "lektion-01.md",
+    "lessonSummary": "Zeit-Loop gemeistert! Eine for-Schleife wiederholt Code für jeden Schritt von range().",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: eine for-Schleife mit range(5).",
+        "example": true,
+        "codeTemplate": "for i in range(5):\n    print(f\"Zeit-Zyklus {i+1}: Systeme synchronisiert\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeit-Zyklus 5: Systeme synchronisiert"
+        }
+      },
+      {
+        "instruction": "Nutze eine for-Schleife mit range(3) und gib die Zeilen Zyklus 1: online, Zyklus 2: online und Zyklus 3: online aus (gib i+1 aus).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zyklus 3: online"
+        }
+      },
+      {
+        "instruction": "Nutze eine for-Schleife mit range(4) und gib Triebwerk 0: bereit bis Triebwerk 3: bereit aus (gib i selbst aus, es startet bei 0).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Triebwerk 3: bereit"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Systemprotokoll 2: range() mit Start, Ende und Schrittweite",
+    "file": "lektion-02.md",
+    "lessonSummary": "Präzision erreicht! range() kann überall starten und Sektoren überspringen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: scanne die Sektoren 3 bis 7 und verstärke danach jeden zweiten Sektor.",
+        "example": true,
+        "codeTemplate": "print(\"=== Sektoren 3 bis 7 scannen ===\")\nfor sektor in range(3, 8):\n    print(f\"Sektor {sektor}: Scan abgeschlossen\")\n\nprint(\"=== Jeder zweite Sektor ===\")\nfor sektor in range(0, 11, 2):\n    print(f\"Sektor {sektor}: Verstärkung aktiviert\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sektor 10: Verstärkung aktiviert"
+        }
+      },
+      {
+        "instruction": "Nutze range(3, 7) und gib Sektor 3: gescannt bis Sektor 6: gescannt aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sektor 6: gescannt"
+        }
+      },
+      {
+        "instruction": "Nutze range(2, 11, 2) und gib Puls 2, Puls 4 und so weiter bis Puls 10 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Puls 10"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Systemprotokoll 3: Rückwärts zählen",
+    "file": "lektion-03.md",
+    "lessonSummary": "Countdown abgeschlossen! Mit negativer Schrittweite zählt range() rückwärts.",
+    "tasks": [
+      {
+        "instruction": "Führe den Hypersprung-Countdown aus.",
+        "example": true,
+        "codeTemplate": "for i in range(5, 0, -1):\n    print(f\"{i}...\")\nprint(\"🚀 HYPERSPRUNG!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1...\n🚀 HYPERSPRUNG!"
+        }
+      },
+      {
+        "instruction": "Zähle mit range(3, 0, -1) von 3 bis 1 herunter. Gib T-minus 3, T-minus 2, T-minus 1 und danach (nach der Schleife) Start! aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "T-minus 1\nStart!"
+        }
+      },
+      {
+        "instruction": "Nutze range(10, 0, -3) und gib Stufe 10, Stufe 7, Stufe 4 und Stufe 1 aus. Gib nach der Schleife Fertig aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stufe 4\nStufe 1\nFertig"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Systemprotokoll 4: Schleifen über Strings",
+    "file": "lektion-04.md",
+    "lessonSummary": "Code Buchstabe für Buchstabe entschlüsselt! Eine for-Schleife kann jeden Text durchlaufen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: die Buchstaben des Codes ALPHA.",
+        "example": true,
+        "codeTemplate": "code = \"ALPHA\"\nprint(f\"Der Code lautet: {code}\")\nprint(\"Buchstabe für Buchstabe:\")\nfor buchstabe in code:\n    print(f\"  - {buchstabe}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "  - A"
+        }
+      },
+      {
+        "instruction": "Lege code = \"NEXUS\" an und gib jeden Buchstaben im Format Buchstabe: N, Buchstabe: E und so weiter aus (letzte Zeile: Buchstabe: S).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Buchstabe: S"
+        }
+      },
+      {
+        "instruction": "Lege code = \"QUANTUM\" an. Zähle seine Buchstaben mit einer Variable anzahl (Start bei 0, pro Buchstabe +1) und gib genau aus: Buchstaben: 7",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Buchstaben: 7"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Systemprotokoll 5: Die while-Schleife",
+    "file": "lektion-05.md",
+    "lessonSummary": "Scanner läuft! Eine while-Schleife wiederholt, solange ihre Bedingung wahr ist.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: scanne von 0 bis 10.",
+        "example": true,
+        "codeTemplate": "scan = 0\nwhile scan <= 10:\n    print(f\"Scan {scan}: Daten empfangen\")\n    scan += 1\nprint(\"Scan beendet\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Scan 10: Daten empfangen"
+        }
+      },
+      {
+        "instruction": "Lege zaehler = 3 an. Gib solange zaehler > 0 gilt Zündung in 3, Zündung in 2, Zündung in 1 aus (vergiss nicht, zaehler in der Schleife um 1 zu verringern).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zündung in 1"
+        }
+      },
+      {
+        "instruction": "Lege energie = 100 an. Ziehe solange energie > 20 gilt 15 ab und gib Energie: 85%, Energie: 70% und so weiter aus. Die letzte Zeile muss lauten: Energie: 10%",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energie: 10%"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Systemprotokoll 6: while mit Zählern",
+    "file": "lektion-06.md",
+    "lessonSummary": "Schild unter Kontrolle! Zähler in einer while-Schleife verfolgen Zeit und Werte.",
+    "tasks": [
+      {
+        "instruction": "Führe den Schildgenerator aus.",
+        "example": true,
+        "codeTemplate": "energie = 100\nminute = 1\nwhile energie > 20:\n    verbrauch = 15\n    energie -= verbrauch\n    print(f\"Minute {minute}: -{verbrauch} Energie, Rest: {energie}%\")\n    minute += 1\nprint(f\"Schild kritisch nach {minute-1} Minuten!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Schild kritisch nach 6 Minuten!"
+        }
+      },
+      {
+        "instruction": "Lege treibstoff = 50 und minute = 1 an. Ziehe solange treibstoff >= 12 gilt 12 ab und gib Minute 1: Treibstoff 38, Minute 2: Treibstoff 26 und so weiter aus (erhöhe minute bei jedem Durchlauf). Die letzte Zeile muss lauten: Minute 4: Treibstoff 2",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Minute 4: Treibstoff 2"
+        }
+      },
+      {
+        "instruction": "Lege signal = 1 an. Verdopple solange signal < 100 gilt den Wert (signal *= 2) und gib Signal: 2, Signal: 4 und so weiter aus. Die letzte Zeile muss lauten: Signal: 128",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Signal: 128"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Systemprotokoll 7: Verschachtelte Schleifen",
+    "file": "lektion-07.md",
+    "lessonSummary": "Zeit in der Zeit! Die innere Schleife läuft bei jedem Durchlauf der äußeren komplett durch.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: scanne alle Decks und gib ein Hologramm-Muster aus.",
+        "example": true,
+        "codeTemplate": "for deck in range(1, 4):\n    print(f\"Deck {deck}:\")\n    for raum in range(1, 3):\n        print(f\"  Raum {raum} wird gescannt...\")\n\nfor reihe in range(3):\n    for spalte in range(4):\n        print(\"✨\", end=\" \")\n    print()\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Deck 3:"
+        }
+      },
+      {
+        "instruction": "Nutze zwei verschachtelte Schleifen: Decks 1 bis 2 (range(1, 3)) und Räume 1 bis 3. Gib pro Raum eine Zeile im Format Deck 1, Raum 1 aus. Die letzte Zeile muss lauten: Deck 2, Raum 3",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Deck 2, Raum 3"
+        }
+      },
+      {
+        "instruction": "Gib einen Block aus * mit 3 Reihen und 4 Spalten aus (verschachtelte Schleifen, print(\"*\", end=\"\") und nach jeder Reihe ein leeres print()). Die Ausgabe muss genau vier Sterne pro Reihe in drei Zeilen sein.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "****\n****\n****"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug-Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Fehler gefunden! Schleifen brauchen den richtigen Bereich, einen Doppelpunkt und die richtige Einrückung.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll die Zeit von 1 bis 5 zählen und jeden Wert ausgeben (Zeit 1 bis Zeit 5). Was ist falsch?",
+        "codeTemplate": "for zeit in range(1, 5):\n    print(f\"Zeit {zeit}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeit 5"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll System 1 bis System 5 ausgeben. Was ist falsch?",
+        "codeTemplate": "for i in range(5)\n    print(f\"System {i+1}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "System 5"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Log 0, Log 1 und Log 2 ausgeben und danach einmal Ende. Was ist falsch?",
+        "codeTemplate": "for i in range(3):\nprint(f\"Log {i}\")\nprint(\"Ende\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Log 2\nEnde"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: Der Quanten-Zähler",
+    "file": "mission-01.md",
+    "lessonSummary": "Quanten-Zähler kalibriert – du beherrschst Zählmuster!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Gib mit einer for-Schleife alle Zahlen von 1 bis 20 im Format Zeit: 1, Zeit: 2 und so weiter aus (die letzte Zeile muss lauten: Zeit: 20).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeit: 20"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Gib zuerst die geraden Zahlen 2 bis 20 als Gerade: 2 … Gerade: 20 aus. Gib dann die Zahlen 20 bis 1 als Countdown: 20 … Countdown: 1 aus und nach der Schleife die Zeile Start!",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Countdown: 1\nStart!"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Berechne die Summe aller Zahlen von 1 bis 100 mit einer Schleife (Variable summe, Start bei 0) und gib genau aus: Summe: 5050",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Summe: 5050"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: Der Raumstation-Kommandant",
+    "file": "mission-02.md",
+    "lessonSummary": "Station unter Kontrolle – jedes Deck geprüft!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Gehe die Decks 1 bis 10 durch und gib Deck 1: OK, Deck 2: OK und so weiter aus (die letzte Zeile muss lauten: Deck 10: OK).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Deck 10: OK"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Erweitere die Schleife: Gib für jedes Deck Deck N: OK aus. Gib zusätzlich ⚠️ Warnung auf Deck N für die Decks 3, 6 und 9 aus (nutze if mit or) und Bonus auf Deck N für die Decks 5 und 10. Kontrolle: Die letzte Zeile der gesamten Ausgabe muss lauten: Bonus auf Deck 10",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bonus auf Deck 10"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Deck 7 ist in Wartung: Gib für Deck 7 nur Deck 7 in Wartung aus (statt Deck 7: OK), alle anderen Decks 1 bis 10 geben Deck N: OK aus. Gib nach der Schleife ✅ Alle wichtigen Decks geprüft! aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Deck 7 in Wartung\nDeck 8: OK"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: Das Zeit-Paradoxon",
+    "file": "mission-03.md",
+    "lessonSummary": "Paradoxon gelöst – du hast den Weg durch die Zeit zurückgefunden!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Lege jahr = 2100 und spruenge = 0 an. Springe solange jahr != 2000 gilt 25 Jahre zurück (jahr -= 25), erhöhe spruenge um 1 und gib Sprung 1: Jahr 2075, Sprung 2: Jahr 2050 und so weiter aus. Die letzte Zeile muss lauten: Sprung 4: Jahr 2000",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sprung 4: Jahr 2000"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Lege jahr = 2000 und spruenge = 0 an. Springe solange spruenge < 5 gilt 30 Jahre vorwärts und zähle den Sprung. Gib nach der Schleife genau aus: Endjahr: 2150 und Gefangen im Zeit-Paradoxon",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Endjahr: 2150\nGefangen im Zeit-Paradoxon"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Gib einen Statusbericht nur für jeden dritten Sprung von 1 bis 9 aus: Nutze range(1, 10, 3) und gib Status: Sprung 1, Status: Sprung 4, Status: Sprung 7 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Status: Sprung 7"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Die Primzahl-Entschlüsselung",
+    "file": "boss-01.md",
+    "lessonSummary": "Codes entschlüsselt – du hast jede Primzahl gefunden!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Bereite den Zahlenbereich vor: Gehe die Zahlen 2 bis 20 durch und gib Teste 2 … Teste 20 aus (die letzte Zeile muss lauten: Teste 20).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Teste 20"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Teste die einzelne Zahl 15: Lege zahl = 15 und ist_primzahl = True an. Nutze zwei verschachtelte Schleifen über a und b (beide range(2, zahl)); wenn a * b == zahl, setze ist_primzahl = False. Gib genau aus: 15 ist Primzahl: False",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "15 ist Primzahl: False"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Teste alle Zahlen 2 bis 30 auf dieselbe Weise. Gib jede Primzahl als Primzahl: 2, Primzahl: 3 … aus und zähle sie in einer Variable gefunden (Start bei 0). Gib nach der Schleife genau aus: Primzahlen gefunden: 10",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Primzahlen gefunden: 10"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Visualisiere die Zahlen 2 bis 30 in einer Zeile: Gib für eine Primzahl P aus, sonst einen Punkt . (nutze print(..., end=\"\") und am Ende ein leeres print()). Erwartete Zeile: PP.P.P...P.P...P.P...P.....P.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "PP.P.P...P.P...P.P...P.....P."
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Das Holodeck",
+    "file": "boss-02.md",
+    "lessonSummary": "Holodeck online – Raster, Muster und Ziel unter Kontrolle!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Baue das Holodeck-Raster mit zwei verschachtelten Schleifen: 8 Reihen, 8 Spalten. Gib für jedes Feld einen Punkt . aus (print(\".\", end=\"\") und nach jeder Reihe ein leeres print()). Erwartet: acht Punkte pro Reihe in acht Zeilen.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "........\n........"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Zeichne das Schachbrett-Muster: Lege dunkel = True an. Gib für jedes Feld # aus, wenn dunkel True ist, sonst einen Punkt; kippe danach dunkel (dunkel = not dunkel). Gib nach jeder Reihe einen Zeilenumbruch aus und kippe dunkel noch einmal. Die ersten zwei Reihen müssen #.#.#.#. und .#.#.#.# lauten.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "#.#.#.#.\n.#.#.#.#"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Simuliere die Bewegung: Lege spieler_reihe = 1 und spieler_spalte = 1 an. Bewege die Figur solange spieler_reihe < 8 gilt diagonal (addiere zu beiden 1) und gib Spieler auf Feld 2, 2 und so weiter aus. Die letzte Zeile muss lauten: Spieler auf Feld 8, 8",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Spieler auf Feld 8, 8"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Prüfe das Ziel: Erweitere Schritt 3 um ziel_reihe = 8 und ziel_spalte = 8. Prüfe nach der Schleife mit if und and, ob die Figur auf dem Ziel steht, und gib genau aus: 🎯 Ziel erreicht!",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "🎯 Ziel erreicht!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Der endlose Tunnel",
+    "file": "boss-03.md",
+    "lessonSummary": "🎊 Glückwunsch! Du hast Woche 4 gemeistert – als Nächstes kommt Woche 5: Funktionen (def, return)!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Programmiere die Tunnel-Schleife: Lege distanz = 0 an. Erhöhe solange distanz < 10 gilt um 1 und gib Portal 1 passiert, Portal 2 passiert und so weiter aus. Die letzte Zeile muss lauten: Portal 10 passiert",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Portal 10 passiert"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Füge Schiffswerte hinzu: treibstoff = 100 und schild = 60. Passiere solange treibstoff > 0 and schild > 0 gilt ein Portal (distanz += 1), ziehe 20 Treibstoff und 8 Schild ab und gib Portal 1: Treibstoff 80, Schild 52 und so weiter aus. Die letzte Zeile muss lauten: Portal 5: Treibstoff 0, Schild 20",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Portal 5: Treibstoff 0, Schild 20"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Gib nach der Schleife aus Schritt 2 genau aus: Tunnel endete nach 5 Portalen und mit if den Grund: Grund: Treibstoff leer (wenn treibstoff <= 0).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Tunnel endete nach 5 Portalen\nGrund: Treibstoff leer"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Finde den besten Flug: Teste den Treibstoffverbrauch pro Portal 10, 20 und 30 (for verbrauch in range(10, 31, 10)). Starte für jeden Flug wieder mit treibstoff = 100, schild = 60, distanz = 0 und fliege mit der while-Schleife (ziehe pro Portal verbrauch Treibstoff und 8 Schild ab). Merke die größte Distanz in beste_distanz (Start bei 0) und gib am Ende genau aus: Beste Distanz: 8",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Beste Distanz: 8"
+        }
+      }
+    ]
+  }
+]

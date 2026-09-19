@@ -1,4 +1,3 @@
-# Problem: String und Integer können nicht subtrahiert werden
-energie = "80"
-verbrauch = 30
-print(f"Restenergie: {int(energie) - verbrauch}")
+energie_a = 60
+energie_b = 15
+print(f"Gesamtenergie: {energie_a + energie_b}%")
