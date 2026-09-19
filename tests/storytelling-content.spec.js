@@ -1,4 +1,6 @@
 import { test, expect } from '@playwright/test';
+import fs from 'node:fs';
+import path from 'node:path';
 
 // Regression tests for the storytelling overhaul (see HANDOFF.md, section 3.4).
 // These assert on rendered notebook TEXT so they run fast (no Pyodide/kernel
@@ -28,11 +30,45 @@ async function getCodeCellText(cmHost) {
   return cmHost.locator('.cm-content').innerText();
 }
 
-test.describe('Storytelling-Überarbeitung: Pferde', () => {
-  test('Woche 2: Hufschlag-Typen benannt, kein "Sonnentals"-Tippfehler', async ({ page }) => {
-    const week = await openWeekVariantTab(page, 2, 'Pferde', 'Lektion');
+// Woche 1 (alle Themen) ist im Lektions-Format: die Bugs stehen als Aufgaben in debug-01
+// (python-woche1-lektionen.spec.js prueft das Format selbst) - hier nur die Inhalts-Regeln.
+function debugGoalsTest(themeLabel, variant) {
+  test(`Woche 1 ${themeLabel}: Debug-Bugs nennen ein Ziel, ohne den Fehler zu verraten`, async ({ page }) => {
+    await page.addInitScript((key) => {
+      localStorage.setItem(key, JSON.stringify({
+        version: 1,
+        completedLessonIds: ['lektion-01', 'lektion-02', 'lektion-03', 'lektion-04', 'lektion-05'],
+      }));
+    }, `ue-hacker-interactive-progress-python-woche1-${variant}`);
+    await page.goto(`${COURSE_URL}?week=1&variant=${variant}`);
+    await page.locator('.js-course-tour .stepper-step').nth(5).click();
+    await page.locator('.task-block').first().waitFor({ state: 'visible', timeout: 15000 });
 
-    const text = await week.locator('.notebook-cells').innerText();
+    const text = await page.locator('.lesson-editor-section').innerText();
+    const bugCount = (text.match(/Bug #\d/g) || []).length;
+    const zielCount = (text.match(/Ziel:/g) || []).length;
+    expect(bugCount).toBe(3);
+    expect(zielCount).toBe(bugCount);
+    expect(text).toContain('Das Programm soll den Text');
+
+    // Ziel-Text darf den Fehler selbst nicht verraten (z.B. "fehlende Klammer", "Tippfehler").
+    const spoilerWords = /fehlende[rs]?\s+(Klammer|Anführungszeichen|import)|Tippfehler|falsch geschrieben/i;
+    expect(text).not.toMatch(spoilerWords);
+  });
+}
+
+test.describe('Debug-Ziele Woche 1 (Lektions-Format)', () => {
+  debugGoalsTest('Abenteuer', 'abenteuer');
+  debugGoalsTest('Pferde', 'pferde');
+  debugGoalsTest('Sci-Fi', 'scifi');
+});
+
+test.describe('Storytelling-Überarbeitung: Pferde', () => {
+  test('Woche 2: Hufschlag-Typen benannt, kein "Sonnentals"-Tippfehler', async () => {
+    // Woche 2 ist im Lektions-Format (content/python-woche2-pferde/)
+    const dir = path.join(process.cwd(), 'content/python-woche2-pferde');
+    const text = fs.readdirSync(dir).filter((f) => f.endsWith('.md'))
+      .map((f) => fs.readFileSync(path.join(dir, f), 'utf8')).join('\n');
     expect(text).toContain('Sonnental');
     expect(text).not.toContain('Sonnentals');
     for (const gait of ['Schritt', 'Trab', 'Galopp', 'Sprung']) {
@@ -54,35 +90,10 @@ test.describe('Storytelling-Überarbeitung: Pferde', () => {
     expect(week9Text).not.toContain('Sonnentals');
   });
 
-  test('Woche 1: Debug-Bugs nennen ein Ziel, ohne den Fehler zu verraten', async ({ page }) => {
-    const week = await openWeekVariantTab(page, 1, 'Pferde', 'Debug');
-
-    const text = await week.locator('.notebook-cells').innerText();
-    const bugCount = (text.match(/Bug #\d/g) || []).length;
-    const zielCount = (text.match(/\*\*Ziel:\*\*|Ziel:/g) || []).length;
-    expect(bugCount).toBeGreaterThan(0);
-    expect(zielCount).toBe(bugCount);
-    expect(text).toContain('Das Programm soll den Text');
-
-    const spoilerWords = /fehlende[rs]?\s+(Klammer|Anführungszeichen|import)|Tippfehler|falsch geschrieben/i;
-    expect(text).not.toMatch(spoilerWords);
-  });
 });
 
 test.describe('Storytelling-Überarbeitung: Abenteuer', () => {
-  test('Woche 1: Debug-Bugs nennen ein Ziel, ohne den Fehler zu verraten', async ({ page }) => {
-    const week = await openWeekVariantTab(page, 1, 'Abenteuer', 'Debug');
 
-    const text = await week.locator('.notebook-cells').innerText();
-    const bugCount = (text.match(/Bug #\d/g) || []).length;
-    const zielCount = (text.match(/\*\*Ziel:\*\*|Ziel:/g) || []).length;
-    expect(bugCount).toBeGreaterThan(0);
-    expect(zielCount).toBe(bugCount);
-    expect(text).toContain('Das Programm soll den Text');
-
-    const spoilerWords = /fehlende[rs]?\s+(Klammer|Anführungszeichen|import)|Tippfehler|falsch geschrieben/i;
-    expect(text).not.toMatch(spoilerWords);
-  });
 });
 
 test.describe('Storytelling-Überarbeitung: Sci-Fi', () => {
@@ -144,18 +155,4 @@ test.describe('Storytelling-Überarbeitung: Sci-Fi', () => {
     }
   });
 
-  test('Woche 1: Debug-Bugs nennen ein Ziel, ohne den Fehler zu verraten', async ({ page }) => {
-    const week = await openWeekVariantTab(page, 1, 'Sci-Fi', 'Debug');
-
-    const text = await week.locator('.notebook-cells').innerText();
-    const bugCount = (text.match(/Bug #\d/g) || []).length;
-    const zielCount = (text.match(/\*\*Ziel:\*\*|Ziel:/g) || []).length;
-    expect(bugCount).toBeGreaterThan(0);
-    expect(zielCount).toBe(bugCount);
-    expect(text).toContain('Das Programm soll den Text');
-
-    // Ziel-Text darf den Fehler selbst nicht verraten (z.B. "fehlende Klammer", "Tippfehler").
-    const spoilerWords = /fehlende[rs]?\s+(Klammer|Anführungszeichen|import)|Tippfehler|falsch geschrieben/i;
-    expect(text).not.toMatch(spoilerWords);
-  });
 });

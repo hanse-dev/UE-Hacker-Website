@@ -4,7 +4,7 @@
     <div v-else-if="error" class="error">{{ error }}</div>
 
     <template v-else>
-      <div class="tour-header">
+      <div v-if="!embedded" class="tour-header">
         <div class="tour-breadcrumb">
           <button class="breadcrumb-back" @click="$emit('change-week')">{{ t('jsGrundkurs.backToWeeks') }}</button>
           <span class="breadcrumb-week">{{ weekLabel }}</span>
@@ -12,6 +12,10 @@
           <span class="breadcrumb-lesson">{{ currentBreadcrumbLabel }}</span>
         </div>
         <span class="progress-count">{{ completedCount }} {{ t('lessons.completed') }}</span>
+      </div>
+      <div v-else class="tour-header tour-header-embedded">
+        <span class="breadcrumb-lesson">{{ currentBreadcrumbLabel }}</span>
+        <span class="progress-count">{{ completedCount }} / {{ lessons.length }} {{ t('lessons.completed') }}</span>
       </div>
 
       <div class="progress-stepper">
@@ -25,9 +29,9 @@
                   :class="{
                     done: isCompleted(lesson.id),
                     current: currentLesson?.id === lesson.id,
-                    locked: !isLessonUnlocked(lesson.id, lessons),
+                    locked: !canOpen(lesson),
                   }"
-                  :disabled="!isLessonUnlocked(lesson.id, lessons)"
+                  :disabled="!canOpen(lesson)"
                   :title="lesson.title"
                   @click="selectLesson(lesson)"
                 >
@@ -43,11 +47,47 @@
           </div>
           <span v-if="gi < groupedLessons.length - 1" class="stepper-group-gap"></span>
         </template>
+        <template v-if="hasCheck">
+          <span class="stepper-group-gap"></span>
+          <div class="stepper-group">
+            <span class="stepper-group-label">{{ t('tab.check') }}</span>
+            <div class="stepper-group-dots">
+              <button class="stepper-step" data-open-check :title="t('tab.check')" @click="$emit('open-check')">
+                <span class="stepper-dot">✅</span>
+              </button>
+            </div>
+          </div>
+        </template>
       </div>
 
       <main class="lesson-main" ref="mainEl">
+        <div v-if="choosingBranch" class="branch-choice-page">
+          <h3>{{ t('tour.branch.title') }}</h3>
+          <p>{{ t('tour.branch.intro') }}</p>
+          <div class="branch-tile-grid">
+            <button class="branch-tile" data-branch="boss" @click="chooseBoss">
+              <span class="branch-tile-icon">🔥</span>
+              <strong>{{ t('tour.deepen') }}</strong>
+              <span class="branch-tile-desc">{{ t('tour.branch.deepenDesc') }}</span>
+            </button>
+            <button class="branch-tile" data-branch="check" @click="$emit('open-check')">
+              <span class="branch-tile-icon">✅</span>
+              <strong>{{ t('tab.check') }}</strong>
+              <span class="branch-tile-desc">{{ t('tour.branch.checkDesc') }}</span>
+            </button>
+          </div>
+        </div>
+        <LessonView
+          v-else-if="currentLesson && engine === 'pyodide'"
+          :lesson="currentLesson"
+          :content-path="contentPath"
+          :variant="contentPath"
+          :course-id="courseId"
+          :key="currentLesson.id"
+          @completed="onLessonCompleted"
+        />
         <JsLessonView
-          v-if="currentLesson"
+          v-else-if="currentLesson"
           :lesson="currentLesson"
           :content-path="contentPath"
           :variant="contentPath"
@@ -72,23 +112,34 @@
 <script>
 import { ref, computed, onMounted, watch } from 'vue';
 import JsLessonView from './JsLessonView.vue';
+import LessonView from './LessonView.vue';
 import { useInteractiveProgress } from '../composables/useInteractiveProgress';
 import { useLanguage } from '../composables/useLanguage';
+import { exportSavedCode, importSavedCode } from '../composables/useSavedCode';
 
 const lessonJsonModules = import.meta.glob('../../content/*/lessons.json');
 
 export default {
   name: 'JsCourseTour',
-  components: { JsLessonView },
+  components: { JsLessonView, LessonView },
   props: {
     courseId: { type: String, required: true },
     contentPath: { type: String, required: true },
-    weekLabel: { type: String, required: true },
+    weekLabel: { type: String, default: '' },
+    // 'js-sandbox' (JsLessonView) oder 'pyodide' (LessonView) - gleiche Tour, andere Ausfuehrung.
+    engine: { type: String, default: 'js-sandbox' },
+    // Eingebettet in eine andere Tour (z.B. WeekTourStepper): kein eigener Breadcrumb/Zurueck-Link.
+    embedded: { type: Boolean, default: false },
+    // true: keine sequenzielle Sperre, alle Lektionen sind frei anklickbar.
+    freeNavigation: { type: Boolean, default: false },
+    // true: der Wochen-Check existiert - er steht als letzter Punkt in der Leiste, und nach den
+    // Missionen wird zwischen Extra-Herausforderung und Check gewaehlt.
+    hasCheck: { type: Boolean, default: false },
     showCanvas: { type: Boolean, default: true },
     domMode: { type: Boolean, default: false },
   },
-  emits: ['change-week'],
-  setup(props) {
+  emits: ['change-week', 'open-check'],
+  setup(props, { emit }) {
     const { t } = useLanguage();
     const lessons = ref([]);
     const loading = ref(true);
@@ -152,15 +203,33 @@ export default {
       }
     };
 
+    // Freie Navigation: alle Lektionen sind von Anfang an anklickbar (z.B. zum Umschauen).
+    const canOpen = (lesson) => props.freeNavigation || isLessonUnlocked(lesson.id, lessons.value);
+
+    const choosingBranch = ref(false);
+
     const selectLesson = (lesson) => {
-      if (!isLessonUnlocked(lesson.id, lessons.value)) return;
+      if (!canOpen(lesson)) return;
+      choosingBranch.value = false;
       currentLessonId.value = lesson.id;
     };
 
     const onLessonCompleted = (lessonId) => {
       const idx = lessons.value.findIndex((l) => l.id === lessonId);
-      const nextId = lessons.value[idx + 1]?.id;
-      if (nextId) currentLessonId.value = nextId;
+      const cur = lessons.value[idx];
+      const next = lessons.value[idx + 1];
+      if (props.hasCheck && cur?.section === 'mission' && next?.section === 'boss') {
+        choosingBranch.value = true;
+        return;
+      }
+      if (next) currentLessonId.value = next.id;
+      else if (props.hasCheck) emit('open-check');
+    };
+
+    const chooseBoss = () => {
+      choosingBranch.value = false;
+      const firstBoss = lessons.value.find((l) => l.section === 'boss');
+      if (firstBoss) currentLessonId.value = firstBoss.id;
     };
 
     watch(currentLessonId, (newId, oldId) => {
@@ -174,6 +243,7 @@ export default {
       const reader = new FileReader();
       reader.onload = () => {
         const result = importProgress(reader.result);
+        try { importSavedCode(props.contentPath, JSON.parse(reader.result).savedCode); } catch { /* Fortschritt zaehlt */ }
         if (result.ok) alert(t('lessons.importSuccess'));
         else alert(t('lessons.importFailed') + (result.error || t('jupyter.unknownError')));
       };
@@ -182,7 +252,11 @@ export default {
     };
 
     const exportProgressFile = () => {
-      const json = exportProgress();
+      // Fortschritt + (noch gueltiger) zwischengespeicherter Code, damit man ihn mitnehmen kann
+      const data = JSON.parse(exportProgress());
+      const savedCode = exportSavedCode(props.contentPath);
+      if (Object.keys(savedCode).length) data.savedCode = savedCode;
+      const json = JSON.stringify(data, null, 2);
       const blob = new Blob([json], { type: 'application/json' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
@@ -204,7 +278,9 @@ export default {
       currentBreadcrumbLabel,
       completedCount,
       isCompleted,
-      isLessonUnlocked,
+      canOpen,
+      choosingBranch,
+      chooseBoss,
       selectLesson,
       onLessonCompleted,
       onImportFile,
@@ -232,6 +308,13 @@ export default {
   background: #f8d7da;
   border: 1px solid #f5c6cb;
   border-radius: 8px;
+}
+
+.tour-header-embedded {
+  margin-bottom: 4px;
+  font-size: 0.92em;
+  color: #7c5a94;
+  font-weight: 600;
 }
 
 .tour-header {
@@ -398,4 +481,33 @@ export default {
 .btn-import:hover { background: #e9ecef; }
 
 .file-input { display: none; }
+
+.branch-choice-page {
+  padding: 24px 8px;
+  text-align: center;
+}
+.branch-tile-grid {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.branch-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 240px;
+  padding: 20px 16px;
+  background: #fff;
+  border: 2px solid #e6dcef;
+  border-radius: 12px;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+.branch-tile:hover { border-color: var(--primary-purple, #4a2274); background: #f7f1fb; }
+.branch-tile-icon { font-size: 2em; }
+.branch-tile-desc { font-size: 0.85em; color: #666; }
 </style>

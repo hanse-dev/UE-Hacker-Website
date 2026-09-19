@@ -47,8 +47,16 @@ async function passWeek1Quiz(week) {
   await week.locator('.btn-check-quiz').click();
 }
 
+async function ensureKernel(challenge) {
+  // Der Python-Kernel startet im Check-Schritt nicht von selbst (frueher nur als Nebeneffekt eines
+  // zuvor gemounteten Notebooks) - der Button ist der echte Weg fuer Nutzer:innen.
+  const kernelBtn = challenge.locator('.btn-kernel');
+  if (await kernelBtn.isEnabled()) await kernelBtn.click();
+}
+
 async function passCodingChallenge(week, challengeIndex, code) {
   const challenge = week.locator(`.code-challenge[data-challenge-index="${challengeIndex}"]`);
+  await ensureKernel(challenge);
   await expect(challenge.locator('.btn-check')).toBeEnabled({ timeout: 40000 });
   await challenge.locator('.code-editor').fill(code);
   await challenge.locator('.btn-check').click();
@@ -73,7 +81,7 @@ test.describe('Wochen-Zertifikate', () => {
     // Die alte MissionenPanel-Klickkette (Missionen abhaken) gibt es nicht mehr - in der Tour
     // sind Missionen ein reiner Inhalts-Schritt ohne "Erledigt"-Mechanik, die irgendetwas
     // freischalten könnte. Der Kern des Tests bleibt: Missionen allein lösen kein Zertifikat aus.
-    await page.goto(`${COURSE_URL}?week=1&variant=abenteuer&step=3_missionen`);
+    await page.goto(`${COURSE_URL}?week=12&variant=pferde&step=3_missionen`);
     await expect(page.locator('.tour-content .cell-markdown').first()).toBeVisible({ timeout: 20000 });
     await expect(page.locator('.certificate-reveal')).toHaveCount(0);
   });
@@ -106,7 +114,8 @@ test.describe('Wochen-Zertifikate', () => {
     const week = page;
     const challenge = week.locator('.code-challenge[data-challenge-index="0"]');
     await expect(challenge).toBeVisible({ timeout: 20000 });
-    await expect(challenge.locator('.btn-check')).toBeEnabled({ timeout: 40000 });
+    await ensureKernel(challenge);
+  await expect(challenge.locator('.btn-check')).toBeEnabled({ timeout: 40000 });
 
     await challenge.locator('.code-editor').fill('print("etwas ganz anderes")');
     await challenge.locator('.btn-check').click();
@@ -120,7 +129,8 @@ test.describe('Wochen-Zertifikate', () => {
     const week = page;
     const challenge = week.locator('.code-challenge[data-challenge-index="1"]');
     await expect(challenge).toBeVisible({ timeout: 20000 });
-    await expect(challenge.locator('.btn-check')).toBeEnabled({ timeout: 40000 });
+    await ensureKernel(challenge);
+  await expect(challenge.locator('.btn-check')).toBeEnabled({ timeout: 40000 });
 
     // Den erwarteten Text hart kodieren, ohne die geforderten Variablen anzulegen - die
     // Ausgabe allein passt exakt, die Aufgabe verlangt aber echte name/level-Variablen.
@@ -143,7 +153,8 @@ test.describe('Wochen-Zertifikate', () => {
     const week = page;
     const challenge = week.locator('.code-challenge[data-challenge-index="0"]');
     await expect(challenge).toBeVisible({ timeout: 20000 });
-    await expect(challenge.locator('.btn-check')).toBeEnabled({ timeout: 40000 });
+    await ensureKernel(challenge);
+  await expect(challenge.locator('.btn-check')).toBeEnabled({ timeout: 40000 });
 
     // Hart kodiert, ohne das verlangte "person"-Dictionary anzulegen.
     await challenge.locator('.code-editor').fill('print("Alex")');
@@ -163,7 +174,8 @@ test.describe('Wochen-Zertifikate', () => {
     const week = page;
     const challenge = week.locator('.code-challenge[data-challenge-index="0"]');
     await expect(challenge).toBeVisible({ timeout: 20000 });
-    await expect(challenge.locator('.btn-check')).toBeEnabled({ timeout: 40000 });
+    await ensureKernel(challenge);
+  await expect(challenge.locator('.btn-check')).toBeEnabled({ timeout: 40000 });
 
     // Gar keine Funktion, nur hart kodiert.
     await challenge.locator('.code-editor').fill('print(12)');
@@ -190,7 +202,8 @@ test.describe('Wochen-Zertifikate', () => {
     const week = page;
     const challenge = week.locator('.code-challenge[data-challenge-index="1"]');
     await expect(challenge).toBeVisible({ timeout: 20000 });
-    await expect(challenge.locator('.btn-check')).toBeEnabled({ timeout: 40000 });
+    await ensureKernel(challenge);
+  await expect(challenge.locator('.btn-check')).toBeEnabled({ timeout: 40000 });
 
     await challenge.locator('.code-editor').fill('print(17)');
     await challenge.locator('.btn-check').click();

@@ -83,6 +83,7 @@
         :course-id="courseId"
         :initial-step="initialStep"
         :has-next-week="hasNextWeek"
+        :lesson-content-path="lessonContentPath"
         :key="selectedWeekIndex"
         @change-week="phase = 'week'"
         @change-variant="phase = 'variant'"
@@ -183,6 +184,19 @@ export default {
     const selectedVariantLabel = computed(() =>
       availableVariants.value.find((v) => v.key === selectedWeek.value?.selectedVariant)?.label ?? ''
     );
+
+    // Wochen im Lektions-Format (Format wie der JS-Grundkurs): pro Woche/Thema/Sprache ein Ordner
+    // content/python-woche{N}-{thema}[-en]/ mit lessons.json. Existiert er, ersetzt er die
+    // Notebook-Schritte Lektion/Debug/Missionen/Boss dieser Woche (siehe WeekTourStepper.vue).
+    const lessonFolders = new Set(
+      Object.keys(import.meta.glob('../../content/python-woche*/lessons.json')).map((k) => k.split('/').slice(-2)[0])
+    );
+    const lessonContentPath = computed(() => {
+      const variant = selectedWeek.value?.selectedVariant;
+      if (selectedWeekIndex.value == null || !variant) return null;
+      const name = `python-woche${selectedWeekIndex.value + 1}-${variant}${lang.value === 'en' ? '-en' : ''}`;
+      return lessonFolders.has(name) ? name : null;
+    });
 
     const hasNextWeek = computed(() =>
       selectedWeekIndex.value != null && selectedWeekIndex.value + 1 < weeks.value.length
@@ -343,7 +357,7 @@ export default {
 
     return {
       t, weeks, loading, phase, selectedWeekIndex, selectedWeek, availableVariants, initialStep,
-      selectedVariantLabel, hasNextWeek, weekTheme, weekIcon, selectWeek, selectVariant,
+      selectedVariantLabel, hasNextWeek, lessonContentPath, weekTheme, weekIcon, selectWeek, selectVariant,
       goToNextWeek, courseId: COURSE_ID, isCertificateEarned, countCertificates,
       weekMapRef, setTileRef, tileGridStyle, pathD, mapViewBox,
     };

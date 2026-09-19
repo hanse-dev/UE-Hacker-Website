@@ -68,7 +68,8 @@ test.describe('Einstufung & Check-Tab', () => {
   });
 
   test('Deep-Link öffnet Woche und lädt Notebook', async ({ page }) => {
-    await page.goto(`${COURSE_URL}?week=1&variant=abenteuer&step=1_lektion`);
+    // Woche 1 ist Lektions-Format (python-woche1-lektionen.spec.js) - Notebook-Pfad hier mit Woche 12
+    await page.goto(`${COURSE_URL}?week=12&variant=pferde&step=1_lektion`);
     await expect(page.locator('.tour-content')).toBeVisible({ timeout: 20000 });
     await expect(page.locator('.stepper-step.current')).toContainText('Lektion');
     await expect(page.locator('.cell').first()).toBeVisible({ timeout: 15000 });

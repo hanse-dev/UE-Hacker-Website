@@ -1,4 +1,6 @@
 import { test, expect } from '@playwright/test';
+import fs from 'node:fs';
+import path from 'node:path';
 
 const COURSE_URL = '/kurs/python-12-wochen-grundkurs';
 const VARIANT_KEYS = ['abenteuer', 'pferde', 'scifi'];
@@ -7,18 +9,18 @@ test('Kursseite: 12 Wochen, 3 Varianten, 5 Tour-Schritte + Nachschlagewerke', as
   await page.goto(COURSE_URL);
   await expect(page.locator('.week-tile')).toHaveCount(12);
 
-  await page.locator('.week-tile[data-week="1"]').click();
+  // Woche 1 ist im Lektions-Format (python-woche1-lektionen.spec.js) - Notebook-Schritte: Woche 12
+  await page.locator('.week-tile[data-week="12"]').click();
   await expect(page.locator('.variant-tile')).toHaveCount(3);
 
-  await page.locator('.variant-tile').first().click();
-  // Woche 1 hat alle 5 Tour-Schritte (Lektion/Debug/Missionen/Extra-Herausforderung/Check),
-  // aber (anders als spätere Wochen) noch keine Cheat-Sheets - nur Glossar + Lösungen.
+  await page.locator('.variant-tile').nth(1).click();
+  // Alle 5 Tour-Schritte (Lektion/Debug/Missionen/Extra-Herausforderung/Check) + Nachschlagewerke
   await expect(page.locator('.stepper-step')).toHaveCount(5);
-  await expect(page.locator('.side-menu-reference')).toHaveCount(2);
+  expect(await page.locator('.side-menu-reference').count()).toBeGreaterThanOrEqual(2);
 });
 
 test('Woche 1: Notebook lädt, Schritt- und Varianten-Wechsel', async ({ page }) => {
-  await page.goto(`${COURSE_URL}?week=1&variant=abenteuer&step=1_lektion`);
+  await page.goto(`${COURSE_URL}?week=12&variant=scifi&step=1_lektion`);
   await page.locator('.cell').first().waitFor({ state: 'visible', timeout: 15000 });
   await expect(page.locator('.error')).not.toBeVisible();
 
@@ -67,7 +69,13 @@ async function sweepWeekVariant(page, weekNumber, variantKey) {
   }
 }
 
-for (const weekNumber of [1, 6, 12]) {
+// Wochen im Lektions-Format (content/python-woche{N}-*/) haben keine Notebook-Schritte mehr und
+// werden in python-lektionen-format.spec.js geprüft.
+const lessonWeeks = new Set(
+  fs.readdirSync(path.join(process.cwd(), 'content'))
+    .map((d) => d.match(/^python-woche(\d+)-/)?.[1]).filter(Boolean).map(Number)
+);
+for (const weekNumber of [4, 6, 12].filter((w) => !lessonWeeks.has(w))) {
   for (const variantKey of VARIANT_KEYS) {
     test(`Woche ${weekNumber}/${variantKey}: alle Schritte, Verzweigung und Nachschlagewerke fehlerfrei`, async ({ page }) => {
       test.setTimeout(60000);

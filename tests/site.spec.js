@@ -199,7 +199,7 @@ test.describe('Weitere Kursseiten', () => {
 test.describe('Debug-Notebook-Sicherheit', () => {
   test('Endlosschleife bricht nach ~5s ab statt den Tab einzufrieren', async ({ page }) => {
     test.setTimeout(60000);
-    await page.goto(`${COURSE_URL}?week=1&variant=abenteuer&step=2_debug`);
+    await page.goto(`${COURSE_URL}?week=12&variant=pferde&step=2_debug`);
     await expect(page.locator('.btn-run-cell').first()).toBeVisible({ timeout: 20000 });
 
     // Kernel initialisiert sich beim Mount bereits automatisch — nicht extra klicken

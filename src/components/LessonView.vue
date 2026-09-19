@@ -7,6 +7,7 @@
 
     <div class="lesson-editor-section">
       <p class="editor-hint">{{ t('lesson.editorHint') }}</p>
+      <p class="editor-hint editor-hint-ran">{{ t('jsLesson.ranExplainer') }}</p>
       <div class="editor-header">
         <span class="editor-label">{{ t('lesson.yourCode') }}</span>
         <button
@@ -19,7 +20,8 @@
       </div>
 
       <template v-for="(task, idx) in tasks" :key="idx">
-        <div class="task-block">
+        <div class="task-block" :class="{ 'task-example': task.example }">
+          <span v-if="task.example" class="task-badge">{{ t('jsLesson.badgeExample') }}</span>
           <p class="task-instruction">
             <span v-if="completedTasks.has(idx)" class="task-done">✓</span>
             <span v-else class="task-pending">○</span>
@@ -30,11 +32,14 @@
           </p>
           <textarea
             v-model="taskCodes[idx]"
+            @keydown.tab.exact.prevent="insertIndent($event, idx)"
             class="code-editor"
+            :class="{ 'code-editor-ran': taskRan[idx] }"
             spellcheck="false"
             rows="4"
             :placeholder="t('lesson.taskPrefix') + (idx + 1) + '...'"
           ></textarea>
+          <p v-if="taskRan[idx]" class="code-ran-note">▶ {{ t('jsLesson.alreadyRan') }}</p>
           <div class="editor-actions">
             <button
               @click="runTask(idx)"
@@ -44,6 +49,7 @@
               {{ t('editor.run') }}
             </button>
             <button
+              v-if="!task.example"
               @click="checkTask(idx)"
               :disabled="!kernelReady || checking"
               class="btn-check"
@@ -81,12 +87,13 @@
 </template>
 
 <script>
-import { ref, watch, onMounted, onBeforeUnmount, computed } from 'vue';
+import { ref, watch, onMounted, onBeforeUnmount, computed, nextTick } from 'vue';
 import { usePyodide } from '../composables/usePyodide';
 import { useInteractiveProgress } from '../composables/useInteractiveProgress';
 import { useLanguage } from '../composables/useLanguage';
 import { validateOutput } from '../composables/useTaskValidation';
 import { useLessonContent } from '../composables/useLessonContent';
+import { loadSavedCode, saveLessonCode } from '../composables/useSavedCode';
 
 export default {
   name: 'LessonView',
@@ -143,16 +150,26 @@ export default {
     const taskOutputs = ref([]);
     const taskFeedback = ref([]);
     const taskAttempts = ref([]);
+    const taskRan = ref([]);
     const completedTasks = ref(new Set());
 
     const initTaskState = () => {
       const t = tasks.value;
-      taskCodes.value = t.map((x) => x.codeTemplate ?? '');
+      const templates = t.map((x) => x.codeTemplate ?? '');
+      // Zwischengespeicherten Code (max. 5 Tage alt, nur lokal) wiederherstellen
+      const saved = loadSavedCode(props.contentPath)[props.lesson?.id];
+      taskCodes.value = saved && saved.codes.length === templates.length ? [...saved.codes] : templates;
       taskOutputs.value = t.map(() => null);
       taskFeedback.value = t.map(() => null);
       taskAttempts.value = t.map(() => 0);
+      taskRan.value = t.map(() => false);
       completedTasks.value = new Set();
     };
+
+    watch(taskCodes, (codes) => {
+      if (!props.lesson?.id || !codes.length) return;
+      saveLessonCode(props.contentPath, props.lesson.id, codes, tasks.value.map((x) => x.codeTemplate ?? ''));
+    }, { deep: true });
 
     onMounted(() => {
       initializeKernel();
@@ -177,22 +194,42 @@ export default {
       checking.value = true;
       taskOutputs.value[idx] = null;
       taskFeedback.value[idx] = null;
+      taskRan.value[idx] = true;
 
       const result = await runPython(taskCodes.value[idx]);
       if (!isMounted.value) return;
 
       if (result.success) {
         taskOutputs.value[idx] = result.output || t('jupyter.noOutput');
+        // Beispiel-Aufgaben (`"example": true`) haben keinen Pruefen-Button: ein erfolgreicher
+        // Lauf zaehlt als erledigt.
+        if (tasks.value[idx]?.example) markExampleDone(idx);
       } else {
         taskOutputs.value[idx] = t('editor.errorPrefix') + (result.error || t('jupyter.unknownError'));
       }
       checking.value = false;
     };
 
+    // Tab rueckt ein (4 Leerzeichen, wie in Python ueblich) statt den Fokus aus dem Feld zu springen.
+    const insertIndent = (event, idx) => {
+      const el = event.target;
+      const { selectionStart: start, selectionEnd: end } = el;
+      const code = taskCodes.value[idx] ?? '';
+      taskCodes.value[idx] = code.slice(0, start) + '    ' + code.slice(end);
+      nextTick(() => { el.selectionStart = el.selectionEnd = start + 4; });
+    };
+
+    const markExampleDone = (idx) => {
+      if (completedTasks.value.has(idx)) return;
+      completedTasks.value = new Set([...completedTasks.value, idx]);
+      if (completedTasks.value.size === tasks.value.length) markCompleted(props.lesson.id);
+    };
+
     const checkTask = async (idx) => {
       if (!kernelReady.value) return;
       checking.value = true;
       taskFeedback.value[idx] = null;
+      taskRan.value[idx] = true;
 
       const result = await runPython(taskCodes.value[idx]);
       if (!isMounted.value) return;
@@ -262,6 +299,8 @@ export default {
       taskCodes,
       taskOutputs,
       taskFeedback,
+      taskRan,
+      insertIndent,
       kernelReady,
       kernelStatus,
       initializeKernel,
@@ -577,5 +616,40 @@ a.btn-next {
   margin-top: 12px;
   font-size: 0.9em;
   color: #6c757d;
+}
+
+.task-block.task-example {
+  border-left: 4px solid #ced4da;
+  padding-left: 12px;
+}
+
+.task-badge {
+  display: inline-block;
+  margin-bottom: 6px;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  background: #f1f3f5;
+  color: #868e96;
+}
+
+/* Rahmen zeigt: dieser Code wurde schon mindestens einmal ausgefuehrt. */
+.code-editor.code-editor-ran {
+  border-color: var(--accent-orange, #ff9800);
+  box-shadow: 0 0 0 2px rgba(255, 152, 0, 0.2);
+}
+
+.code-ran-note {
+  margin: 0 0 8px 0;
+  font-size: 0.82em;
+  color: var(--accent-orange, #fb8c00);
+  font-weight: 600;
+}
+
+.editor-hint-ran {
+  margin-top: -6px;
 }
 </style>

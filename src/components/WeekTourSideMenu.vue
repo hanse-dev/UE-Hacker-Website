@@ -32,7 +32,7 @@
       </ul>
     </div>
 
-    <div class="side-menu-section" v-if="referenceItems.length">
+    <div class="side-menu-section" v-if="referenceItems.length || weekZipUrl">
       <h4>{{ t('tour.sideMenu.reference') }}</h4>
       <ul class="side-menu-list">
         <li v-for="ref_ in referenceItems" :key="ref_.key">
@@ -45,6 +45,12 @@
             <span class="side-menu-icon">{{ ref_.icon }}</span>
             <span>{{ ref_.label }}</span>
           </button>
+        </li>
+        <li v-if="weekZipUrl">
+          <a class="side-menu-step side-menu-download" :href="weekZipUrl" download data-week-zip>
+            <span class="side-menu-icon">📦</span>
+            <span>{{ t('tour.sideMenu.downloadWeek') }}</span>
+          </a>
         </li>
       </ul>
     </div>
@@ -62,6 +68,7 @@ export default {
     visitedKeys: { type: Object, default: () => ({}) },
     headings: { type: Array, default: () => [] },
     referenceItems: { type: Array, default: () => [] },
+    weekZipUrl: { type: String, default: null },
     activeReference: { type: String, default: null },
   },
   emits: ['select-step', 'select-heading', 'select-reference'],
@@ -162,5 +169,10 @@ export default {
 
 .side-menu-reference {
   color: #7c5a94;
+}
+
+.side-menu-download {
+  color: #7c5a94;
+  text-decoration: none;
 }
 </style>

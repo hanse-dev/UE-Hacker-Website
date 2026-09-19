@@ -45,23 +45,6 @@
     <div v-else-if="isJsGrundkurs" class="js-grundkurs-wrapper">
       <JsGrundkursTour />
     </div>
-
-    <div v-if="isWeeklyCourse" class="notebook-pack-download">
-      <a href="/python-12-wochen-notebooks.zip" download class="notebook-pack-btn">
-        {{ t('course.download.btn') }}
-      </a>
-      <p class="notebook-pack-hint">{{ t('course.download.hint') }}</p>
-    </div>
-
-    <div v-if="isWeeklyCourse" class="project-banner">
-      <div class="project-banner-text">
-        <strong>{{ t('course.project.banner.title') }}</strong>
-        <p>{{ t('course.project.banner.desc') }}</p>
-      </div>
-      <router-link to="/projekte" class="project-banner-link">
-        {{ t('course.project.banner.link') }}
-      </router-link>
-    </div>
   </section>
   <div v-else class="course-loading">
     <p v-if="loading">{{ t('course.loading') }}</p>
@@ -238,88 +221,6 @@ export default {
 }
 
 .placement-banner-link:hover {
-  background: #3d1b5c;
-}
-
-.notebook-pack-download {
-  background: linear-gradient(135deg, #e8f4f8 0%, #d4ebf2 100%);
-  border: 2px solid #0ea5e9;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 40px;
-}
-
-.notebook-pack-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: #0ea5e9;
-  color: white;
-  padding: 14px 24px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1.05em;
-  transition: all 0.2s;
-}
-
-.notebook-pack-btn:hover {
-  background: #0284c7;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.4);
-}
-
-.course-loading {
-  padding: 20px;
-}
-
-.course-error {
-  color: #b91c1c;
-}
-
-.notebook-pack-hint {
-  margin: 12px 0 0 0;
-  font-size: 0.9em;
-  color: #555;
-}
-
-.project-banner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 40px;
-  padding: 18px 20px;
-  background: #f3eef8;
-  border: 2px solid #c4a8e0;
-  border-radius: 10px;
-}
-
-.project-banner-text strong {
-  display: block;
-  color: var(--primary-purple, #4a2274);
-  margin-bottom: 4px;
-}
-
-.project-banner-text p {
-  margin: 0;
-  color: #444;
-  font-size: 0.95em;
-}
-
-.project-banner-link {
-  background: var(--primary-purple, #4a2274);
-  color: white;
-  text-decoration: none;
-  padding: 10px 16px;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 0.9em;
-  white-space: nowrap;
-}
-
-.project-banner-link:hover {
   background: #3d1b5c;
 }
 

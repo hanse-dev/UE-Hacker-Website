@@ -48,6 +48,8 @@ async function passWeek1CheckForReal(page) {
 
   async function passCoding(index, code) {
     const challenge = page.locator(`.code-challenge[data-challenge-index="${index}"]`);
+    const kernelBtn = challenge.locator('.btn-kernel');
+    if (await kernelBtn.isEnabled()) await kernelBtn.click();
     await expect(challenge.locator('.btn-check')).toBeEnabled({ timeout: 40000 });
     await challenge.locator('.code-editor').fill(code);
     await challenge.locator('.btn-check').click();
@@ -70,11 +72,12 @@ test.describe('12-Wochen-Kurs: Wochen-Tour', () => {
     await page.goto(TOUR_URL);
     await expect(page.locator('.week-tile')).toHaveCount(12);
 
-    await page.locator('.week-tile[data-week="1"]').click();
+    // Woche 12: frühe Wochen sind im Lektions-Format (python-woche1-lektionen.spec.js)
+    await page.locator('.week-tile[data-week="12"]').click();
     await expect(page.locator('.week-tile')).toHaveCount(0); // Wochen-Seite verlassen
     await expect(page.locator('.variant-tile')).toHaveCount(3);
 
-    await page.locator('.variant-tile').first().click();
+    await page.locator('.variant-tile').nth(1).click();
     await expect(page.locator('.variant-tile')).toHaveCount(0); // Themen-Seite verlassen
     await expect(page.locator('.stepper-step.current')).toContainText('Lektion');
     await expect(page.locator('.tour-content .cell-markdown').first()).toBeVisible();
@@ -112,7 +115,7 @@ test.describe('12-Wochen-Kurs: Wochen-Tour', () => {
   });
 
   test('Nach den Missionen führt eine Wahl-Seite zu Extra-Herausforderung oder Check', async ({ page }) => {
-    await page.goto(`${TOUR_URL}?week=1&variant=abenteuer&step=3_missionen`);
+    await page.goto(`${TOUR_URL}?week=12&variant=pferde&step=3_missionen`);
     await expect(page.locator('.stepper-step.current')).toContainText('Missionen');
     await page.locator('.tour-next-btn').click();
 
@@ -132,7 +135,7 @@ test.describe('12-Wochen-Kurs: Wochen-Tour', () => {
   });
 
   test('Check direkt wählen überspringt die Extra-Herausforderung (bleibt unbesucht)', async ({ page }) => {
-    await page.goto(`${TOUR_URL}?week=1&variant=abenteuer&step=3_missionen`);
+    await page.goto(`${TOUR_URL}?week=12&variant=pferde&step=3_missionen`);
     await expect(page.locator('.stepper-step.current')).toContainText('Missionen');
     await page.locator('.tour-next-btn').click();
     await page.locator('[data-branch="4_check"]').click();
@@ -143,7 +146,7 @@ test.describe('12-Wochen-Kurs: Wochen-Tour', () => {
 
   test('Bestandener Check zeigt das Zertifikat und führt zur nächsten Woche', async ({ page }) => {
     test.setTimeout(60000);
-    await page.goto(`${TOUR_URL}?week=1&variant=abenteuer&step=4_check`);
+    await page.goto(`${TOUR_URL}?week=1&variant=pferde&step=4_check`);
     await passWeek1CheckForReal(page);
 
     await expect(page.locator('.certificate-reveal')).toBeVisible();
@@ -157,10 +160,11 @@ test.describe('12-Wochen-Kurs: Wochen-Tour', () => {
     await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(200);
 
     await page.locator('[data-after-check="next-week"]').click();
-    await expect(page).toHaveURL(/week=2&variant=abenteuer/);
+    await expect(page).toHaveURL(/week=2&variant=pferde/);
     await expect(page.locator('.tour-breadcrumb')).toContainText('Woche 2');
-    await expect(page.locator('.tour-breadcrumb')).toContainText('Abenteuer');
-    await expect(page.locator('.stepper-step.current')).toContainText('Lektion');
+    await expect(page.locator('.tour-breadcrumb')).toContainText('Pferde');
+    // Woche 2 ist im Lektions-Format: die eingebettete Lektions-Tour startet auf Lektion 1
+    await expect(page.locator('.js-course-tour .stepper-step.current')).toContainText('1');
     // Scrollt zum Anfang der Lektion selbst (.tour-stepper), nicht zum obersten Seitenrand
     // (Kursbeschreibung/Banner stehen ja weiterhin darüber).
     await expect(page.locator('.tour-stepper')).toBeInViewport({ timeout: 2000 });
@@ -168,7 +172,7 @@ test.describe('12-Wochen-Kurs: Wochen-Tour', () => {
 
   test('Zertifikat erscheint als Abzeichen in der Übersicht und auf der Zertifikate-Seite', async ({ page }) => {
     test.setTimeout(60000);
-    await page.goto(`${TOUR_URL}?week=1&variant=abenteuer&step=4_check`);
+    await page.goto(`${TOUR_URL}?week=1&variant=pferde&step=4_check`);
     await passWeek1CheckForReal(page);
     await expect(page.locator('.certificate-reveal')).toBeVisible();
 
@@ -204,11 +208,12 @@ test.describe('12-Wochen-Kurs: Wochen-Tour', () => {
 
     await page.locator('[data-after-check="next-week"]').click();
     await expect(page).toHaveURL(/week=3&variant=abenteuer/);
-    await expect(page.locator('.stepper-step.current')).toContainText('Lektion');
+    // Woche 3 ist im Lektions-Format: eingebettete Lektions-Tour statt Notebook-Schritte
+    await expect(page.locator('.js-course-tour')).toBeVisible();
   });
 
   test('Seitenmenü lässt sich ein- und ausklappen', async ({ page }) => {
-    await page.goto(`${TOUR_URL}?week=1&variant=abenteuer`);
+    await page.goto(`${TOUR_URL}?week=12&variant=pferde`);
     await expect(page.locator('.tour-side-menu')).toBeVisible();
 
     await page.locator('.side-menu-toggle').click();
@@ -219,7 +224,7 @@ test.describe('12-Wochen-Kurs: Wochen-Tour', () => {
   });
 
   test('Seitenmenü: Sprung zu einem Unterabschnitt scrollt zur passenden Zelle', async ({ page }) => {
-    await page.goto(`${TOUR_URL}?week=1&variant=abenteuer`);
+    await page.goto(`${TOUR_URL}?week=12&variant=pferde`);
     const heading = page.locator('.side-menu-heading').first();
     await expect(heading).toBeVisible();
     const headingText = await heading.textContent();
@@ -230,7 +235,7 @@ test.describe('12-Wochen-Kurs: Wochen-Tour', () => {
   });
 
   test('Seitenmenü: Glossar öffnen und zurück zur Tour behält den Fortschritt', async ({ page }) => {
-    await page.goto(`${TOUR_URL}?week=1&variant=abenteuer`);
+    await page.goto(`${TOUR_URL}?week=12&variant=pferde`);
     await page.locator('.tour-next-btn').click(); // -> Debug
     await expect(page.locator('.stepper-step.current')).toContainText('Debug');
 

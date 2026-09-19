@@ -11,7 +11,8 @@
       </button>
     </div>
 
-    <div class="progress-stepper">
+    <!-- Im Lektions-Format ersetzt die Leiste der eingebetteten Tour (inkl. Check-Punkt) diese hier -->
+    <div v-if="!lessonContentPath" class="progress-stepper">
       <template v-for="(step, i) in steps" :key="step.key">
         <button
           class="stepper-step"
@@ -63,6 +64,17 @@
         <WeekCheckPanel
           v-else-if="!activeReference && viewingStepKey === '4_check'"
           :week-number="weekNumber"
+        />
+        <LessonTour
+          v-else-if="!activeReference && lessonContentPath && viewingStepKey === 'lessons'"
+          :course-id="courseId"
+          :content-path="lessonContentPath"
+          engine="pyodide"
+          embedded
+          free-navigation
+          :has-check="hasCheck"
+          @open-check="viewStep('4_check')"
+          :key="`lessons-${lessonContentPath}`"
         />
         <JupyterNotebook
           v-else-if="activeContentUrl"
@@ -129,6 +141,7 @@
         :visited-keys="visitedKeys"
         :headings="headings"
         :reference-items="referenceItems"
+        :week-zip-url="`/wochen-zips/woche-${weekNumber}.zip`"
         :active-reference="activeReference"
         @select-step="viewStep"
         @select-heading="scrollToCell"
@@ -141,6 +154,7 @@
 <script>
 import { ref, computed, watch } from 'vue';
 import JupyterNotebook from './JupyterNotebook.vue';
+import LessonTour from './JsCourseTour.vue';
 import WeekCheckPanel from './WeekCheckPanel.vue';
 import WeekTourSideMenu from './WeekTourSideMenu.vue';
 import { useLanguage } from '../composables/useLanguage.js';
@@ -166,7 +180,7 @@ const REFERENCE_CONFIG = [
 
 export default {
   name: 'WeekTourStepper',
-  components: { JupyterNotebook, WeekCheckPanel, WeekTourSideMenu },
+  components: { JupyterNotebook, LessonTour, WeekCheckPanel, WeekTourSideMenu },
   props: {
     week: { type: Object, required: true },
     weekNumber: { type: Number, required: true },
@@ -176,6 +190,9 @@ export default {
     courseId: { type: String, required: true },
     initialStep: { type: String, default: null },
     hasNextWeek: { type: Boolean, default: false },
+    // Optional: Inhaltsordner im Lektions-Format (lessons.json). Ersetzt dann die Notebook-Schritte
+    // Lektion/Debug/Missionen/Extra-Herausforderung durch EINE Lektions-Tour (siehe JsCourseTour.vue).
+    lessonContentPath: { type: String, default: null },
   },
   emits: ['change-week', 'change-variant', 'go-next-week'],
   setup(props) {
@@ -188,8 +205,12 @@ export default {
 
     const notebooksForVariant = computed(() => props.week.notebooks?.[props.variant] ?? {});
 
-    const steps = computed(() =>
-      TOUR_STEPS_CONFIG
+    const steps = computed(() => props.lessonContentPath
+      ? [
+          { key: 'lessons', icon: '📚', label: t('tour.lessons') },
+          ...(hasCheck.value ? [{ ...TOUR_STEPS_CONFIG.find((s) => s.key === '4_check'), label: t('tab.check') }] : []),
+        ]
+      : TOUR_STEPS_CONFIG
         .filter((step) => step.key === '4_check' ? hasCheck.value : !!notebooksForVariant.value[step.key]?.renderUrl)
         .map((step) => ({ ...step, label: t(step.labelKey) }))
     );
@@ -338,7 +359,7 @@ export default {
     };
 
     return {
-      t, steps, referenceItems, viewingStepKey, visitedKeys, activeReference, choosingNext, sideMenuOpen,
+      t, steps, hasCheck, referenceItems, viewingStepKey, visitedKeys, activeReference, choosingNext, sideMenuOpen,
       viewStep, viewReference, chooseBranch, nextStep, nextButtonLabel, goNext,
       activeContentKey, activeContentUrl, activeContentDownloadUrl, activeContentDownloadName,
       activeCheatSheet, headings, scrollToCell, referenceLabel,

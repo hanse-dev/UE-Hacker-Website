@@ -81,10 +81,4 @@ test.describe('Projekte-Übersicht', () => {
     await expect(page.locator('.lesson-item.completed')).toHaveCount(1);
     await expect(page.locator('.lesson-item').nth(1)).not.toHaveClass(/locked/);
   });
-
-  test('12-Wochen-Kurs-Banner verlinkt zu den Projekten', async ({ page }) => {
-    await page.goto('/kurs/python-12-wochen-grundkurs');
-    await expect(page.locator('.project-banner')).toBeVisible({ timeout: 15000 });
-    await expect(page.locator('.project-banner-link')).toHaveAttribute('href', '/projekte');
-  });
 });
