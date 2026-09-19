@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { startKernel } from './helpers/kernel.js';
 import checks from '../content/python-checks/index.mjs';
 
 const TOUR_URL = '/kurs/python-12-wochen-grundkurs';
@@ -48,8 +49,7 @@ async function passWeek1CheckForReal(page) {
 
   async function passCoding(index, code) {
     const challenge = page.locator(`.code-challenge[data-challenge-index="${index}"]`);
-    const kernelBtn = challenge.locator('.btn-kernel');
-    if (await kernelBtn.isEnabled()) await kernelBtn.click();
+    await startKernel(challenge);
     await expect(challenge.locator('.btn-check')).toBeEnabled({ timeout: 40000 });
     await challenge.locator('.code-editor').fill(code);
     await challenge.locator('.btn-check').click();

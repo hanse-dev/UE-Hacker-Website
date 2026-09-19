@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { startKernel } from './helpers/kernel.js';
 import checks from '../content/python-checks/index.mjs';
 
 const COURSE_URL = '/kurs/python-12-wochen-grundkurs';
@@ -50,8 +51,7 @@ async function passWeek1Quiz(week) {
 async function ensureKernel(challenge) {
   // Der Python-Kernel startet im Check-Schritt nicht von selbst (frueher nur als Nebeneffekt eines
   // zuvor gemounteten Notebooks) - der Button ist der echte Weg fuer Nutzer:innen.
-  const kernelBtn = challenge.locator('.btn-kernel');
-  if (await kernelBtn.isEnabled()) await kernelBtn.click();
+  await startKernel(challenge);
 }
 
 async function passCodingChallenge(week, challengeIndex, code) {

@@ -1,6 +1,6 @@
 # Handoff — UE Hacker Website
 
-> **Zuletzt aktualisiert:** 2026-09-19
+> **Zuletzt aktualisiert:** 2026-09-20
 > **Aktueller Stand:** `main` ist lokal aktuell (Push nach `origin/main` und Server-Deploy stehen aus —
 > Nutzer deployt selbst, siehe Abschnitt 4 "Betrieb"). Zuletzt gemergt: 12-Wochen-Kurs Woche 12 als
 > Text-Adventure-Abschlussprojekt, List Comprehensions als Kursinhalt (Woche 6), JS-Grundkurs
@@ -62,7 +62,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.40/3.41 | Nav-Link "Projekte", `/profil` mit Abzeichen | Projekt-Fortschritt wird jetzt gesynct (Präfix-Key) |
 | 3.42–3.44 | JS-Grundkurs komplett (9 Wochen), Homepage-Redesign | `JsGrundkursTour.vue`, `example`-Aufgaben |
 | 3.46 | Woche 12: Text-Adventure-Abschlussprojekt statt Turtle | Komposition einziger neuer Begriff; List Comprehension neu in Woche 6 |
-| 3.47/3.48 | Python Woche 1–4 als Einzel-Lektionen (Lektions-Format) | `content/python-woche{N}-*`, Engine `pyodide` in `JsCourseTour`; Woche 3 (Ordner) + 5–12 offen, Lösungen/Glossar noch im alten Stil |
+| 3.47/3.48 | Python Woche 1–4 als Einzel-Lektionen (Woche 3 nachträglich DE/EN angeglichen) (Lektions-Format) | `content/python-woche{N}-*`, Engine `pyodide` in `JsCourseTour`; Woche 3 DE/EN angeglichen; 5–12 offen, Lösungen/Glossar noch im alten Stil |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -77,6 +77,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 **Pyodide / Ausführung**
 - Kein Web Worker: `input()` läuft synchron über `window.prompt()` (65 Notebooks, 3.5). Loop-Guard ist AST-basiert.
 - `turtle` gibt es in Pyodide nicht — eigener Canvas-Shim in `usePyodide.js` (3.32).
+- Kernel in Tests immer über `startKernel()` (`tests/helpers/kernel.js`) starten, nie `if (await btn.isEnabled()) click()` — der Kernel kann dazwischen bereit werden, der Button ist dann deaktiviert und `click()` hängt bis zum Test-Timeout (flaky `zertifikate`/`woche12`).
 - `CodeChallenge` startet den Kernel nicht selbst; Tests klicken `.btn-kernel` explizit (3.47-Lektion, `ensureKernel` in `zertifikate.spec.js`).
 - Namespace-Variablen vor jedem Check-Lauf löschen; `pyodide.globals.delete()` wirft bei unbekanntem Namen → try/catch (3.34). Vor `functionCalls`-Re-Aufruf `__cell_deadline__` neu setzen (3.34).
 

@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { startKernel } from './helpers/kernel.js';
 
 test.describe('Projekte-Übersicht', () => {
   test.beforeEach(async ({ page }) => {
@@ -61,7 +62,7 @@ test.describe('Projekte-Übersicht', () => {
     await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(5, { timeout: 15000 });
     await expect(page.locator('.course-description')).toContainText('Morsecode');
 
-    await page.locator('.btn-kernel').click();
+    await startKernel(page);
     await expect(page.locator('.btn-check').first()).toBeEnabled({ timeout: 40000 });
 
     const task1 = page.locator('.task-block').nth(0);

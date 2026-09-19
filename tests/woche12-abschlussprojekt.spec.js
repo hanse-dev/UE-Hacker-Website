@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { startKernel } from './helpers/kernel.js';
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -19,7 +20,7 @@ test.describe('Woche 12: Abschlussprojekt Text-Adventure', () => {
 
       await page.goto(`${COURSE_URL}?week=12&variant=${v.key}&step=1_lektion`);
       await page.locator('.cell').first().waitFor({ state: 'visible', timeout: 15000 });
-      await page.locator('.btn-kernel').first().click();
+      await startKernel(page);
       await expect(page.locator('.btn-run-all').first()).toBeEnabled({ timeout: 120000 });
       await page.locator('.btn-run-all').first().click();
       // Das Finale endet mit dem Sieg- oder Game-Over-Text - beides ist ein gueltiger Lauf.
@@ -32,7 +33,7 @@ test.describe('Woche 12: Abschlussprojekt Text-Adventure', () => {
       await page.locator('[data-reference-key="6_loesungen"]').click();
       await page.locator('.cell').first().waitFor({ state: 'visible', timeout: 15000 });
       // Kernel kann durch den Wechsel des Nachschlagewerks schon bereit sein (dann ist der Button aus).
-      if (await page.locator('.btn-kernel').first().isEnabled()) await page.locator('.btn-kernel').first().click();
+      await startKernel(page);
       await expect(page.locator('.btn-run-all').first()).toBeEnabled({ timeout: 120000 });
       await page.locator('.btn-run-all').first().click();
       await expect(page.locator('.cell-output').last()).toContainText(/🏆|Crown|Saddle|Crystal/, { timeout: 30000 });

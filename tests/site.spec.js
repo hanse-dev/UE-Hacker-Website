@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { startKernel } from './helpers/kernel.js';
 import { setCodeMirrorContent } from './helpers/codemirror.js';
 
 const INTERACTIVE_URL = '/kurs/python-grundlagen-interaktiv';
@@ -139,7 +140,7 @@ test.describe('Interaktiver Kurs', () => {
     await page.goto(INTERACTIVE_URL);
     await page.locator('.variant-card').first().click();
     await page.waitForSelector('.task-block', { timeout: 20000 });
-    await page.locator('.btn-kernel').click();
+    await startKernel(page);
     await expect(page.locator('.btn-check').first()).toBeEnabled({ timeout: 40000 });
 
     const task = page.locator('.task-block').first();
@@ -170,7 +171,7 @@ test.describe('Cäsar-Chiffre-Projekt', () => {
     await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(5, { timeout: 15000 });
     await expect(page.locator('.course-description')).toContainText('Cäsar-Chiffre');
 
-    await page.locator('.btn-kernel').click();
+    await startKernel(page);
     await expect(page.locator('.btn-check').first()).toBeEnabled({ timeout: 40000 });
 
     const task1 = page.locator('.task-block').nth(0);
