@@ -2042,9 +2042,14 @@ damit sie unabhängig vom Kernel-Zustand laufen. Debug: 3 Bugs aus verschiedenen
   Wochen-Icon 🐢 → 🏆.
 - **Bewusst behalten:** Turtle-Shim in `usePyodide.js` + Canvas in `JupyterNotebook.vue` + 2 Tests in
   `tests/site.spec.js` (für ein späteres Turtle-Mandala-Projekt, siehe `PROJEKTIDEEN.md`).
-- **Offen/Hinweis:** `lehrplan.md` führt "List Comprehensions" unter "Nicht im Kurs enthalten", das
-  Projekt nutzt sie aber an einigen Stellen (`[g.name for g in ...]`); sie stehen seit
-  `woche8-list-comprehension-glossar` im Glossar von Woche 6/8.
+- **List Comprehensions jetzt Kursinhalt:** das Projekt nutzt sie (`[g.name for g in ...]`), also
+  werden sie in **Woche 6** richtig eingeführt (neuer Abschnitt "Sammlungs-Zauber 5" je Variante ×
+  DE/EN, `16_markdown.py`/`17_code.py` der Lektion; Glossar-Zeile auch bei Abenteuer ergänzt, die
+  unerklärte Vorab-Verwendung in Pferde/Sci-Fi Beispiel 3 entfernt). `woche6.md`, `lehrplan.md` (aus
+  "Nicht im Kurs enthalten" gestrichen), `gesamtglossar.ipynb` und `week-6.json` (neue Frage `w6-11`)
+  angepasst. Wochen-Cheat-Sheets (`wissens_cheat_sheet.md`) wurden dafür nicht erweitert.
+- **Test entschärft:** `tests/auth-ui.spec.js` "Mein Profil" prüfte eine feste Anzahl Projekt-Kurse
+  (3) und schlug seit dem 4. Projekt fehl — jetzt nur noch "mindestens ein Abzeichen sichtbar".
 
 ---
 

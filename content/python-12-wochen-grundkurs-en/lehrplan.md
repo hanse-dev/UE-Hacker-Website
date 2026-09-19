@@ -95,6 +95,7 @@ Overview of all concepts per week. Each week has three parallel courses with ide
 - `break` – exit loop early
 - `continue` – skip current round
 - `set` – remove duplicates (short introduction)
+- List comprehensions – build or filter a new list in one line (`[x * 2 for x in list_ if x > 3]`)
 
 **Deepening:** List basics (Week 4), loops, functions
 
@@ -213,7 +214,6 @@ Overview of all concepts per week. Each week has three parallel courses with ide
 
 The following topics are too advanced for a beginner course and are not taught:
 
-- List Comprehensions
 - Decorators / `@property`
 - Abstract classes (`abc.ABC`, `@abstractmethod`)
 - Generators and iterators

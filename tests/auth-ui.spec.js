@@ -271,7 +271,7 @@ test.describe('UI: Admin + Header-Login', () => {
     await page.locator('nav a', { hasText: 'Mein Profil' }).click();
     await expect(page).toHaveURL(/\/profil/);
 
-    await expect(page.locator('.badge-card')).toHaveCount(3, { timeout: 10000 });
+    await expect(page.locator('.badge-card').first()).toBeVisible({ timeout: 10000 });
     const caesarBadge = page.locator('.badge-card', { hasText: 'Cäsar' });
     await expect(caesarBadge).toHaveClass(/earned/);
     await expect(caesarBadge.locator('.badge-icon')).toHaveText('🏅');

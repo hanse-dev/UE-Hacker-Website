@@ -16,4 +16,5 @@
 | `break` | Exit the loop immediately | `if x == 5: break` |
 | `continue` | Skip the current round and move on to the next | `if x == 0: continue` |
 | `set` | A set – like a list but without duplicates and without a fixed order | `set([1,1,2])` → `{1, 2}` |
-| **Algorithm** | A step-by-step solution – like a recipe for the computer | `for x in list_: if x > max: max = x` |"""
+| **Algorithm** | A step-by-step solution – like a recipe for the computer | `for x in list_: if x > max: max = x` |"
+| **List Comprehension** | Short syntax to build a new list from an existing one | `[x for x in list_ if x > 5]` |"""

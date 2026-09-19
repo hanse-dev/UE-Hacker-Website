@@ -27,3 +27,4 @@ Auf der Raumstation verwaltest du Crew-Mitglieder und Missionen in intelligenten
 - **Listen durchsuchen** mit index() und in-Operator
 - **Listen sortieren** mit sort() und sorted()
 - **Listen verschachteln** für komplexe Datenstrukturen
+- **List Comprehensions** nutzen, um aus einer Liste in einer Zeile eine neue zu bauen oder zu filtern

@@ -95,6 +95,7 @@
 - `break` – Schleife vorzeitig beenden
 - `continue` – aktuelle Runde überspringen
 - `set` – Duplikate entfernen (kurze Einführung)
+- List Comprehensions – neue Liste in einer Zeile erzeugen oder filtern (`[x * 2 for x in liste if x > 3]`)
 
 **Vertiefung:** Listen-Grundlagen (Woche 4), Schleifen, Funktionen
 
@@ -213,7 +214,6 @@
 
 Folgende Themen sind für einen Grundkurs zu fortgeschritten und werden nicht gelehrt:
 
-- List Comprehensions
 - Decorators / `@property`
 - Abstrakte Klassen (`abc.ABC`, `@abstractmethod`)
 - Generatoren und Iteratoren

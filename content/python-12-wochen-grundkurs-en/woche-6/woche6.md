@@ -27,3 +27,4 @@ On the space station you manage crew members and missions in intelligent lists.
 - **Search lists** with index() and the in-operator
 - **Sort lists** with sort() and sorted()
 - **Nest lists** for complex data structures
+- **Use list comprehensions** to build or filter a new list from an existing one in one line
