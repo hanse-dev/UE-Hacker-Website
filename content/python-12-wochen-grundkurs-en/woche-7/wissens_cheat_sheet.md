@@ -229,3 +229,12 @@ if "Dog" in animals:
 animals.sort()
 new_list = sorted(animals)
 ```
+
+### List comprehension
+Build a **new** list from a list in one line – transform it or filter it with `if`. The original list stays unchanged.
+
+```python
+numbers = [1, 2, 3, 4, 5]
+doubled = [n * 2 for n in numbers]        # [2, 4, 6, 8, 10]
+big = [n for n in numbers if n > 3]       # [4, 5]
+```
