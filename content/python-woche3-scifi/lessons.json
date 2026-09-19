@@ -64,6 +64,14 @@
           "type": "output_contains",
           "expected": "Kein Start-Befehl."
         }
+      },
+      {
+        "instruction": "Die Variable energie ist schon angelegt. Prüfe mit <, ob energie kleiner als 20 ist, und gib dann aus: Energie niedrig!",
+        "codeTemplate": "energie = 15\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energie niedrig!"
+        }
       }
     ]
   },
@@ -273,6 +281,14 @@
         "validation": {
           "type": "output_contains",
           "expected": "Zugang verweigert"
+        }
+      },
+      {
+        "instruction": "Noch ein Besucher: Rang 6, kein Ausweis, kein Notfall. Gleiche Regel. Gib Zugang gewährt oder Zugang verweigert aus.",
+        "codeTemplate": "rang = 6\nhat_ausweis = False\nnotfall = False\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zugang gewährt"
         }
       }
     ]

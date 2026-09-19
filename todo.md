@@ -19,7 +19,7 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 
 ### 12-Wochen-Kurs: Lektions-Format (Branch `python-woche1-lektionen-format`)
 - [x] Woche 1 + 2 (Abenteuer, Pferde, Sci-Fi; DE + EN) als Einzel-Lektionen im JS-Kurs-Format (siehe HANDOFF.md 3.47)
-- [x] Woche 4 (Schleifen; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.48). Woche 3 fehlt noch.
+- [x] Woche 4 (Schleifen; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.48).
 - [x] Woche 4: DE/EN-Struktur angeglichen (Abenteuer 8, Pferde 7, Sci-Fi 7 Lektionen; IDs/Aufgaben identisch, EN/DE jeweils als Übersetzung der größeren Fassung)
 - [ ] Nutzer-Feedback abwarten, dann entscheiden: Wochen 3, 5–12
 - [ ] Lösungen/Glossar für das neue Format anpassen (Lösungen passen noch zu den freien Original-Aufgaben)
@@ -32,13 +32,19 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 - [ ] Pferde DE Boss 3: "Noch 1 Runden" (Plural bei 1) — kosmetisch, DE+`expected` müssten gemeinsam geändert werden.
 - [ ] `input()`-Beispiele (Zugangscodes/Passwort/Futter-Abfrage) nicht übernommen — braucht `stdin`-Validierung.
 
+#### Nachbesserungen Lektions-Format Woche 3 (Angleichung DE/EN)
+- [ ] Pferde DE `boss-03`: Anweisung nennt "Kein Turniersieg", `expected` ist "Kein Turniersieg." (mit Punkt) — DE + EN vereinheitlichen.
+- [ ] Sci-Fi DE/EN `boss-03`: "Gesamtpunkte: 320 und Erfolgsquote: 80.0%" — unklar, ob eine oder zwei Zeilen, geprüft wird nur `Erfolgsquote: 80.0%`; "in zwei Zeilen" ergänzen (oder `expectedAll`).
+- [ ] Pferde `boss-01` (Note/Zertifikat) hat keinen `else`-Zweig; Sci-Fi `boss-01.md` hat keine Antworttabelle mehr (DE + EN) — bei Bedarf ergänzen.
+- [ ] DE/EN wurden pro Thema aus der größeren Fassung angeglichen; die alten Lösungs-/Glossar-Notebooks von Woche 3 passen nicht mehr zu den Aufgaben (siehe Lösungen/Glossar-Punkt oben).
+
 #### Nachbesserungen Lektions-Format (Woche 1–2)
 Beim Umbau aufgefallen; entweder bewusst so gelassen oder noch offen:
 - [x] `max()` (kam in Woche 2 Abenteuer DE/EN Boss 1 und Pferde EN Boss 1 als Vorgriff vor) durch Vergleich mit `>` ersetzt (Lektions-JSON, Boss-Text, Lösungs-Notebook)
 - [x] `//`, `%`, `**` (nur Sci-Fi EN Woche 2 Lektion 6, im Original und in allen anderen Themen nicht) entfernt
-- [ ] Woche 3: Debug-Bugs uneinheitlich (Abenteuer DE + Sci-Fi DE haben 4 Bugs, die übrigen Themen/Sprachen 3), ebenso Aufgabenzahl bei Missionen/Boss — angleichen (Konzept "identisch zwischen Varianten", siehe INHALTE.md)
-- [ ] Woche 3: `output_contains` prüft pro Aufgabe nur einen String; bei mehreren geforderten Ausgaben (z.B. Boss 1 Schritt 1, Boss 3 Schritt 2/4 Abenteuer DE) und hart codierten `print`s bleibt eine Lücke — Vorschlag: Mehrfach-Erwartung (`expectedAll`) oder `variables`-Check in `JsLessonView`/`LessonView` einführen
-- [ ] Woche 3 Boss 2 (Abenteuer) nutzt Klammern in `or (... and ...)` (leichter Vorgriff auf die Rangfolge von and/or), im Boss-Text erklärt
+- [x] Woche 3: DE/EN je Thema angeglichen (Abenteuer 7 Lektionen + 4 Bugs, Pferde/Sci-Fi 6 Lektionen; IDs/Aufgaben DE = EN, Sci-Fi 4 Bugs, Pferde 3), Struktur per Skript + `python-lektionen-format.spec.js` geprüft
+- [ ] Woche 3: `output_contains` prüft pro Aufgabe nur einen String (auch Abenteuer Lektion 7 Aufgabe 2 ohne Verschachtelung besteht, Boss 1/2/3 aller Themen prüfen nur die letzte Zeile); bei mehreren geforderten Ausgaben (z.B. Boss 1 Schritt 1, Boss 3 Schritt 2/4 Abenteuer DE) und hart codierten `print`s bleibt eine Lücke — Vorschlag: Mehrfach-Erwartung (`expectedAll`) oder `variables`-Check in `JsLessonView`/`LessonView` einführen
+- [ ] Woche 3 Boss 2 (Abenteuer, Level 5: `a or b and c` ohne Klammern besteht ebenfalls) nutzt Klammern in `or (... and ...)` (leichter Vorgriff auf die Rangfolge von and/or), im Boss-Text erklärt
 - [ ] Alte Notebooks (Lektion/Debug/Missionen/Boss) der umgestellten Wochen sind noch im Repo (`_bundle` für den ZIP-Download) — entfernen bzw. ausblenden, sobald alle Wochen umgestellt sind
 - [ ] Extra-Herausforderungen Woche 2 sind teils kleiner als das Original (z.B. 4 statt 8 Schiffe, 3 statt 5 KI-Modelle), weil Listen erst in Woche 6 kommen und `output_contains` nur feste Ausgaben prüft — bei Bedarf in Woche 6 als Wiederholung mit den vollen Mengen nachziehen
 - [ ] `input()`-Aufgaben prüfen nur feste Textteile (Eingabe ist frei), z.B. Woche 2 Lektion "Eingaben" und Mission 3 — eine Prüfung mit vorgegebener Eingabe bräuchte eine neue `validation`-Variante (`stdin`)

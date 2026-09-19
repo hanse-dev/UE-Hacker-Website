@@ -2,7 +2,7 @@
 
 > ⚠️ Schwieriger! Die Extra-Herausforderungen kombinieren alles aus dieser Woche – sie sind freiwillig.
 
-Der Simulator hat 5 Level mit steigenden Anforderungen! In jedem Level brauchst du eine andere Art von Bedingung – von einfachem `if` bis zu `and`/`or` und verschachtelten Prüfungen.
+Der Simulator hat 5 Level mit steigenden Anforderungen – dazu kommt eine Abschluss-Wertung! In jedem Level brauchst du eine andere Art von Bedingung – von einfachem `if` bis zu `and`/`or` und verschachtelten Prüfungen.
 
 Tipp zu Level 5: `and` bindet stärker als `or`. Mit **Klammern** `( )` legst du selbst fest, was zuerst ausgewertet wird.
 

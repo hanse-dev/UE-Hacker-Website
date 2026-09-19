@@ -1,6 +1,6 @@
-# 🐴 Lesson 3: if-else
+# 🔀 Lesson 3: if-else
 
-What should happen when the condition is **not** true? That is what `else` is for: it offers a second path.
+`if-else` offers **two paths**: one when the condition is true, and one for everything else.
 
 ```python
 height = 120
@@ -10,8 +10,6 @@ else:
     print("Challenging jump!")
 ```
 
-- The `if` block runs when the condition is true.
-- The `else` block runs in **all other cases**.
-- `else` needs **no condition** – but it also ends with a colon `:` and its code is indented.
+> 🐴 **Important:** `else` has **no condition** – it applies when the `if` condition is **not** met. `else` also ends with a colon, and the code below it is indented.
 
-Exactly **one** of the two paths is always run.
+Exactly **one** of the two paths is run – never both, never none.

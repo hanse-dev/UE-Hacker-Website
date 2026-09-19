@@ -1,13 +1,7 @@
-# ⭐⭐⭐⭐☆ Extra challenge 1: The AI Quiz
+# ⭐⭐⭐⭐☆ Extra Challenge 1: The AI Quiz
 
-⚠️ **Harder!** This challenge combines everything from this week.
+⚠️ Harder! These tasks combine everything from this week.
 
-Test your knowledge of artificial intelligence! Five quiz answers are stored as Boolean variables (`True` = correct, `False` = wrong):
-
-| Question | 1 | 2 | 3 | 4 | 5 |
-|---|---|---|---|---|---|
-| Answer | `True` | `False` | `True` | `True` | `False` |
-
-Each correct answer is worth **100 points**. Grades: `points >= 400` → A, `points >= 300` → B, otherwise C.
+Test your knowledge of artificial intelligence! Five quiz questions have already been answered (`True` = correct, `False` = wrong). You evaluate them, count points and issue a certificate.
 
 **Bonus (optional, not checked):** Add different difficulty levels!

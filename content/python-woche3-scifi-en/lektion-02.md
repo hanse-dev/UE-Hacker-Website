@@ -1,28 +1,35 @@
-# 📟 Important Operators
+# 📟 System Protocol 2: Comparison Operators
 
-## Assignment vs comparison: `=` vs `==`
+Conditions usually come from **comparisons**. A comparison always gives `True` or `False`.
 
-**This is a crucial difference!**
+## Assignment vs comparison: `=` and `==`
 
-- **`=` (one equals sign)** assigns a value to a variable:
-  ```python
-  level = 10      # store the value 10 in level
-  ```
-- **`==` (two equals signs)** compares two values for equality:
-  ```python
-  if level == 10:     # check WHETHER level is 10
-      print("Access level 10 reached!")
-  ```
+This is a crucial difference:
 
-## The four comparison algorithms
+- **`=` (one equals sign)** assigns a value to a variable: `level = 10`
+- **`==` (two equals signs)** compares two values: `if level == 10:`
+
+> 📡 **Remember:** In conditions always use `==` to compare – never `=`!
+
+## The comparison operators
 
 | Operator | Meaning | Example |
 |---|---|---|
+| `==` | is equal to | `command == "START"` |
+| `!=` | is **not** equal to | `command != "START"` |
 | `<` | less than | `energy < 20` |
 | `<=` | less than or equal | `temperature <= 100` |
 | `>` | greater than | `speed > 1000` |
 | `>=` | greater than or equal | `shield_strength >= 50` |
 
-There is also `!=` for "not equal". A comparison gives you a Boolean: `True` or `False`.
+```python
+energy = 15
+if energy < 20:
+    print("Low energy!")
+```
 
-**Remember:** Always use `==` for comparisons in conditions, never `=`!
+You can also simply print a comparison and you will see `True` or `False`:
+
+```python
+print(42 <= 42)   # True
+```

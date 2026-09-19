@@ -1,21 +1,31 @@
-# ⚖️ Magic Formula 5: Nested Conditions
+# ⚖️ Magic Formula 4: Logical Operators (`and`, `or`, `not`)
 
-An `if` can contain **another `if`** inside it. This is called **nesting**. The inner decision is only made when the outer condition was true.
+Often *one* condition is not enough. With **logical operators** you combine several:
+
+| Operator | Meaning | True when ... |
+|----------|---------|---------------|
+| `and` | and | **both** sides are true |
+| `or` | or | **at least one** side is true |
+| `not` | not | the condition is **false** (flips it) |
 
 ```python
-door_locked = True
-right_key = True
-
-if door_locked:
-    print("The door is locked.")
-    if right_key:
-        print("The key fits - the door opens!")
-    else:
-        print("This key does not fit.")
-else:
-    print("The door is already open.")
+has_key = True
+has_torch = True
+if has_key and has_torch:
+    print("You can safely open the dark chamber!")
 ```
 
-> ⚠️ Every nesting level needs **one more level of indentation** (4 more spaces). The indentation shows Python which code belongs to which path – so be careful!
+```python
+has_sword = False
+has_wand = True
+if has_sword or has_wand:
+    print("You are armed and ready!")
+```
 
-Read it like a tree: first the outer decision (`door_locked`), then – only inside that branch – the inner decision (`right_key`).
+```python
+is_cursed = False
+if not is_cursed:
+    print("You are free of any curse!")
+```
+
+You can also mix them with comparisons, for example `if strength > 10 and intelligence > 10:`.

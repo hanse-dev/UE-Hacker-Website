@@ -1,6 +1,6 @@
-# 🐴 Lesson 4: if-elif-else
+# 🌿 Lesson 4: if-elif-else
 
-Sometimes there are more than two paths. With `elif` (short for "else if") you check further conditions one after another:
+Sometimes two paths are not enough. With **`elif`** (short for "else if") you check further conditions one after another:
 
 ```python
 experience = 750
@@ -14,8 +14,6 @@ else:
     print("Still a lot to practise...")
 ```
 
-- Python checks from top to bottom and runs **only the first** path whose condition is true. All others are skipped.
-- `elif` **always needs a condition**, `else` never does.
-- `else` at the end catches everything that is left (it is optional).
+> 🐴 **Important:** `elif` **always needs a condition**. Python checks from top to bottom and runs only the **first true** path – all others are skipped. `else` at the end catches everything that is left.
 
-> 💡 **Watch the order!** Put the strictest condition first. Otherwise `experience >= 100` would already catch a rider with 750 points.
+That is why the **strictest condition comes first**: with `experience = 750`, `>= 100` would also be true, but `>= 500` comes earlier.

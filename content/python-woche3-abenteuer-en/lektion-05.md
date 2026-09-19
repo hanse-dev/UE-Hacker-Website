@@ -1,44 +1,20 @@
-# ⚖️ Magic Formula 4: Logical Operators
+# ⚖️ Magic Formula 3: if-elif-else
 
-With `and`, `or` and `not` you combine several conditions into one.
-
-| Operator | Meaning | True when ... |
-|----------|---------|---------------|
-| `and` | both | **both** conditions are true |
-| `or` | either | **at least one** condition is true |
-| `not` | flips | the condition is **false** |
+With more than two possibilities, `elif` helps (short for *else if*). Python checks the conditions **from top to bottom** and runs only the **first** true branch:
 
 ```python
-has_key = True
-has_torch = True
-if has_key and has_torch:
-    print("You can safely open the dark chamber!")
-```
-
-```python
-has_sword = False
-has_wand = True
-if has_sword or has_wand:
-    print("You are armed and ready!")
-```
-
-```python
-is_cursed = False
-if not is_cursed:
-    print("You are free of any curse!")
-```
-
-Of course you can use them in an `elif`, too:
-
-```python
-strength = 8
-intelligence = 12
-if strength > 10 and intelligence > 10:
-    print("Paladin!")
-elif strength > 10:
-    print("Warrior!")
-elif intelligence > 10:
-    print("Mage!")
+xp = 750
+if xp >= 1000:
+    print("Master!")
+elif xp >= 500:
+    print("Advanced!")
+elif xp >= 100:
+    print("Beginner!")
 else:
-    print("Adventurer!")
+    print("Still much to learn...")
 ```
+
+- `elif` **always needs a condition** (an `elif:` without a condition is an error)
+- You can use as many `elif` as you like
+- The `else` at the end is optional and catches **everything else**
+- **Order matters:** With `xp = 750`, both `xp >= 500` and `xp >= 100` are true – but only the first hit counts. So always check from strict to loose.

@@ -1,46 +1,22 @@
-# ⚖️ Comparison Operators
+# ⚖️ Important Operators: `=` or `==`?
 
-Conditions are built from **comparisons**. A comparison gives an Air element: `True` or `False`.
+This is a **crucial difference** that trips up many adventurers:
 
-## Assignment vs comparison: `=` vs `==`
-
-This is a crucial difference:
-
-- **`=` (one equals sign)** *assigns* a value to a variable:
-  ```python
-  level = 10      # level now holds 10
-  ```
-- **`==` (two equals signs)** *compares* two values:
-  ```python
-  if level == 10:   # is level equal to 10?
-      print("Level 10 reached!")
-  ```
-
-> ⚠️ In a condition always use `==`, never `=`!
-
-## The comparison runes
-
-| Rune | Meaning | Example | Result (level = 10) |
-|------|---------|---------|---------------------|
-| `==` | equal | `level == 10` | `True` |
-| `!=` | not equal | `level != 10` | `False` |
-| `<` | less than | `level < 15` | `True` |
-| `<=` | less than or equal | `level <= 10` | `True` |
-| `>` | greater than | `level > 5` | `True` |
-| `>=` | greater than or equal | `level >= 10` | `True` |
-
-You can print a comparison directly to see its result:
+- **`=` (one equals sign)** *assigns*: it stores a value in a variable.
+- **`==` (two equals signs)** *compares*: it asks "Are both sides equal?" – and gives back `True` or `False`.
 
 ```python
-value = 10
-print(f"{value} < 15: {value < 15}")
+level = 10        # assignment: level gets the value 10
+if level == 10:   # comparison: is level equal to 10?
+    print("Level 10 reached!")
 ```
 
-And you can use it in a condition, of course:
+A comparison is a value in itself, and you can even print it:
 
 ```python
-gold = 100
-cost = 80
-if gold > cost:
-    print(f"Purchase possible! Remaining: {gold - cost}")
+level = 10
+print(level == 10)   # True
+print(level == 99)   # False
 ```
+
+> **Remember:** In a condition always use `==` to compare, never `=`! A single `=` in an `if` is a syntax error.

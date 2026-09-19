@@ -1,5 +1,5 @@
-# 🐛 Debug Quest: The Apprentice's Decisions
+# 🐛 Debug Quest: The Paths of Decision
 
-A young adventurer tried to cast decision spells, but something went wrong! Each of the three tasks below contains a **bug**. Read the error message (or the output!) carefully, find the spot and fix it.
+A young adventurer tried to cast decision spells, but something went wrong! Each of the tasks below contains a **bug**. Read the error message (or the output) carefully and find the spot.
 
 > 💡 **These bugs were planted on purpose** – so you can practise debugging!

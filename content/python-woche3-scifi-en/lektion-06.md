@@ -1,6 +1,6 @@
-# 📟 System Protocol 5: Nested Conditions
+# 📟 System Protocol 6: Nested Conditions
 
-An `if` can contain **another `if`** inside it – this is called **nesting**. The inner decision is only reached if the outer condition was true.
+An `if` condition may **contain** another `if` condition – this is called **nesting**. That way you first make a rough decision, then a fine one.
 
 ```python
 airlock_locked = True
@@ -16,4 +16,8 @@ else:
     print("The airlock is already open.")
 ```
 
-> ⚠️ **Important:** Every extra nesting level needs **one more level of indentation** (four more spaces). Indentation decides which `else` belongs to which `if`!
+**Every extra level needs another level of indentation.** The indentation shows you and Python which `else` belongs to which `if`: the inner `else` is level with the inner `if`, the outer `else` is level with the outer `if`.
+
+> 📡 **Remember:** First the outer condition, then the inner one. If the outer one is false, the inner one is not even checked.
+
+🎉 You have learned all the protocols of this week – now you are ready for debug, missions and the extra challenges!

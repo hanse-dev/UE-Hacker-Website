@@ -1,18 +1,8 @@
 # ⚖️ Magic Formula 1: `if`
 
-Welcome, wise adventurer! You have reached the **Crossroads of Fate** – a magical place where every decision determines victory or defeat. This week you will learn how your programs make decisions:
+Welcome, wise adventurer! You have reached the **Crossroads of Fate** – a magical place where every decision determines victory or defeat. Here you learn how your program makes **decisions**.
 
-**Your mission this week:**
-- Make decisions with **if**, **if-else** and **if-elif-else**
-- Master **comparison operators** for precise judgments
-- Command **logical connectors** (`and`, `or`, `not`) for complex conditions
-- Understand the **power of indentation** for nested paths
-
-> 💡 **Week 2 recap:** `True` and `False` are the **Air** element (`bool`). Conditions always end up as `True` or `False`.
-
-## The first formula
-
-`if` checks a condition and only runs the code below it when the condition is **true**.
+With `if`, Python checks a **condition** and runs the code below it **only if it is true** (`True`). The result of a condition is a Boolean – just like in week 2!
 
 ```python
 level = 5
@@ -20,20 +10,17 @@ if level >= 5:
     print("You are ready for the quest!")
 ```
 
-> ⚠️ The code after `if` must be **indented** (4 spaces). The line with `if` ends with a colon `:`.
+Two things are important:
 
-An `if` also works directly with an Air element:
+- The condition is followed by a **colon** `:`
+- The code that belongs to the `if` is **indented** (4 spaces). The indentation tells Python: *"This belongs to it."*
+
+If the condition is false, the indented block is simply skipped – nothing happens.
+
+You can also check truth values and text:
 
 ```python
 has_key = True
 if has_key:
     print("The door opens!")
-```
-
-And with text – compare it with `==`:
-
-```python
-spell = "Fireball"
-if spell == "Fireball":
-    print("You cast a Fireball!")
 ```

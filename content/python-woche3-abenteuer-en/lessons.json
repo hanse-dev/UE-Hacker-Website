@@ -4,31 +4,31 @@
     "section": "lektion",
     "title": "Magic Formula 1: if",
     "file": "lektion-01.md",
-    "lessonSummary": "The first path is open! With if your code only acts when the condition is true.",
+    "lessonSummary": "Great! With if your program only runs code when a condition is true.",
     "tasks": [
       {
-        "instruction": "Run this example: three simple if conditions.",
-        "example": true,
-        "codeTemplate": "level = 5\nif level >= 5:\n    print(\"🎉 You are ready for the quest!\")\n\nhas_key = True\nif has_key:\n    print(\"🔑 The door opens!\")\n\nspell = \"Fireball\"\nif spell == \"Fireball\":\n    print(\"🔥 You cast a Fireball!\")\n",
+        "instruction": "Run this example: three conditions, each with an indented block.",
+        "codeTemplate": "# Example 1: check a number\nlevel = 5\nif level >= 5:\n    print(\"You are ready for the quest!\")\n\n# Example 2: check a truth value\nhas_key = True\nif has_key:\n    print(\"The door opens!\")\n\n# Example 3: check text\nspell = \"Fireball\"\nif spell == \"Fireball\":\n    print(\"You cast a Fireball!\")\n",
         "validation": {
           "type": "output_contains",
           "expected": "You cast a Fireball!"
+        },
+        "example": true
+      },
+      {
+        "instruction": "Your hero has mana = 45. Use if to check whether mana >= 30, then print exactly: The spell succeeds!",
+        "codeTemplate": "mana = 45\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "The spell succeeds!"
         }
       },
       {
-        "instruction": "Create level = 5. If level >= 5, print exactly: You are ready for the quest!",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "The hero owns the map (has_map = True). Use if on the variable has_map itself (without a comparison sign) and print exactly: Map found, the way is clear!",
+        "codeTemplate": "has_map = True\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "You are ready for the quest!"
-        }
-      },
-      {
-        "instruction": "Create has_key = True. Use if (without a comparison) to print exactly: The door opens!",
-        "codeTemplate": "# 🎯 Your solution here:\n",
-        "validation": {
-          "type": "output_contains",
-          "expected": "The door opens!"
+          "expected": "Map found, the way is clear!"
         }
       }
     ]
@@ -36,41 +36,33 @@
   {
     "id": "lektion-02",
     "section": "lektion",
-    "title": "Comparison Operators",
+    "title": "Important Operators: = or ==?",
     "file": "lektion-02.md",
-    "lessonSummary": "Well judged! You know the comparison runes and the difference between = and ==.",
+    "lessonSummary": "You know the difference: = assigns, == compares.",
     "tasks": [
       {
-        "instruction": "Run this example: all comparison runes at work.",
-        "example": true,
-        "codeTemplate": "level = 15\nif level == 15:\n    print(\"✅ Correct: level is 15\")\n\nvalue = 10\nprint(f\"Value: {value}\")\nprint(f\"{value} < 15: {value < 15}\")\nprint(f\"{value} <= 10: {value <= 10}\")\nprint(f\"{value} > 5: {value > 5}\")\nprint(f\"{value} >= 10: {value >= 10}\")\nprint(f\"{value} != 10: {value != 10}\")\n\ngold = 100\ncost = 80\nif gold > cost:\n    print(f\"🛍️ Purchase possible! Remaining: {gold - cost}\")\n",
-        "validation": {
-          "type": "output_contains",
-          "expected": "10 >= 10: True"
-        }
-      },
-      {
-        "instruction": "Create level = 15. Use == in an if to print exactly: Correct: level is 15",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "Run this example: `=` assigns, `==` compares.",
+        "codeTemplate": "level = 15          # assignment with =\nprint(level == 15)  # comparison with ==\nprint(level == 20)\n\nif level == 15:\n    print(\"Correct: level is 15\")\n",
         "validation": {
           "type": "output_contains",
           "expected": "Correct: level is 15"
+        },
+        "example": true
+      },
+      {
+        "instruction": "The hero is a mage (hero_class = \"Mage\"). Use == to check whether hero_class equals \"Mage\" and print exactly: Welcome to the Tower of Mages!",
+        "codeTemplate": "hero_class = \"Mage\"\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Welcome to the Tower of Mages!"
         }
       },
       {
-        "instruction": "Create value = 10 and print the result of the comparison with an f-string, exactly: 10 > 5: True",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "Print the result of a comparison with an f-string: compare gold with 50 and print exactly: Exactly 50 gold: True",
+        "codeTemplate": "gold = 50\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "10 > 5: True"
-        }
-      },
-      {
-        "instruction": "Create spell = \"Fireball\". Use != to print exactly: This is not a Frostbolt",
-        "codeTemplate": "# 🎯 Your solution here:\n",
-        "validation": {
-          "type": "output_contains",
-          "expected": "This is not a Frostbolt"
+          "expected": "Exactly 50 gold: True"
         }
       }
     ]
@@ -78,30 +70,72 @@
   {
     "id": "lektion-03",
     "section": "lektion",
-    "title": "Magic Formula 2: if-else",
+    "title": "The Comparison Runes",
     "file": "lektion-03.md",
-    "lessonSummary": "Two paths, one decision! else catches everything the if did not.",
+    "lessonSummary": "You have mastered the comparison runes: <, <=, >, >= and !=.",
     "tasks": [
       {
-        "instruction": "Run this example: three if-else decisions.",
-        "example": true,
-        "codeTemplate": "roll = 18\nif roll >= 15:\n    print(\"⚔️ Critical hit!\")\nelse:\n    print(\"💨 Normal strike\")\n\nage = 17\nif age >= 18:\n    print(\"🍺 You may enter.\")\nelse:\n    print(\"🚫 Too young for this tavern.\")\n\ngold = 45\ncost = 50\nif gold >= cost:\n    print(f\"💰 Purchase successful! Remaining: {gold - cost}\")\nelse:\n    print(f\"❌ Not enough gold! Missing: {cost - gold}\")\n",
+        "instruction": "Run this example: all comparison runes at work.",
+        "codeTemplate": "value = 10\nprint(f\"Value: {value}\")\nprint(f\"{value} < 15: {value < 15}\")\nprint(f\"{value} <= 10: {value <= 10}\")\nprint(f\"{value} > 5: {value > 5}\")\nprint(f\"{value} >= 10: {value >= 10}\")\nprint(f\"{value} != 10: {value != 10}\")\n\ngold = 100\ncost = 80\nif gold > cost:\n    print(f\"Purchase possible! Remaining: {gold - cost}\")\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Not enough gold! Missing: 5"
+          "expected": "Purchase possible! Remaining: 20"
+        },
+        "example": true
+      },
+      {
+        "instruction": "The hero's combat power is 12, the opponent needs at least 15. Print exactly, using an f-string: Combat power 12 >= 15: False",
+        "codeTemplate": "power = 12\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Combat power 12 >= 15: False"
         }
       },
       {
-        "instruction": "Create roll = 8. If roll >= 15 print Critical hit!, otherwise print exactly: Normal strike",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "The hero has gold = 120, the shield costs cost = 90. Use if and > to check whether he can afford the shield, then print exactly: Purchase possible! Remaining: 30 (you calculate the remainder).",
+        "codeTemplate": "gold = 120\ncost = 90\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Purchase possible! Remaining: 30"
+        }
+      },
+      {
+        "instruction": "At the gate stands guard = \"Troll\". Use != to check that the guard is not a dragon and print exactly: The way is safe!",
+        "codeTemplate": "guard = \"Troll\"\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "The way is safe!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Magic Formula 2: if-else",
+    "file": "lektion-04.md",
+    "lessonSummary": "With else you always have a Plan B when the condition is false.",
+    "tasks": [
+      {
+        "instruction": "Run this example: two paths – one gets chosen.",
+        "codeTemplate": "# success or failure\nroll = 18\nif roll >= 15:\n    print(\"Critical hit!\")\nelse:\n    print(\"Normal strike\")\n\n# age check\nage = 17\nif age >= 18:\n    print(\"You may enter the tavern.\")\nelse:\n    print(\"Too young for this tavern.\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Too young for this tavern."
+        },
+        "example": true
+      },
+      {
+        "instruction": "This time the dice roll is only roll = 9. If roll >= 15 print: Critical hit! – otherwise: Normal strike",
+        "codeTemplate": "roll = 9\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Normal strike"
         }
       },
       {
-        "instruction": "Create gold = 45 and cost = 50. If gold >= cost print Purchase successful!, otherwise print exactly the missing amount with an f-string: Not enough gold! Missing: 5",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "An inventory check: the hero has gold = 45, the potion costs cost = 50. If the gold is enough (>=), print: Purchase successful! – otherwise: Not enough gold! Missing: 5 (calculate the difference with an f-string).",
+        "codeTemplate": "gold = 45\ncost = 50\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Not enough gold! Missing: 5"
@@ -110,32 +144,32 @@
     ]
   },
   {
-    "id": "lektion-04",
+    "id": "lektion-05",
     "section": "lektion",
     "title": "Magic Formula 3: if-elif-else",
-    "file": "lektion-04.md",
-    "lessonSummary": "Many paths, one winner! Python takes the first true path and skips the rest.",
+    "file": "lektion-05.md",
+    "lessonSummary": "With elif you check many possibilities in turn – the first hit wins.",
     "tasks": [
       {
-        "instruction": "Run this example: a level rating and an element spell.",
-        "example": true,
-        "codeTemplate": "xp = 750\nif xp >= 1000:\n    print(\"🏆 Master!\")\nelif xp >= 500:\n    print(\"⭐ Advanced!\")\nelif xp >= 100:\n    print(\"🌟 Beginner!\")\nelse:\n    print(\"📚 Still much to learn...\")\n\nelement = \"Water\"\nif element == \"Fire\":\n    print(\"🔥 Fire Strike!\")\nelif element == \"Water\":\n    print(\"💧 Water Torrent!\")\nelif element == \"Air\":\n    print(\"🌪️ Wind Gust!\")\nelif element == \"Earth\":\n    print(\"🗿 Earthquake!\")\nelse:\n    print(\"❓ Unknown element!\")\n",
+        "instruction": "Run this example: only the first true branch runs.",
+        "codeTemplate": "xp = 750\nif xp >= 1000:\n    print(\"Rank: Master!\")\nelif xp >= 500:\n    print(\"Rank: Advanced!\")\nelif xp >= 100:\n    print(\"Rank: Beginner!\")\nelse:\n    print(\"Still much to learn...\")\n\nelement = \"Water\"\nif element == \"Fire\":\n    print(\"Fire Strike!\")\nelif element == \"Water\":\n    print(\"Water Torrent!\")\nelif element == \"Air\":\n    print(\"Wind Gust!\")\nelif element == \"Earth\":\n    print(\"Earthquake!\")\nelse:\n    print(\"Unknown element!\")\n",
         "validation": {
           "type": "output_contains",
           "expected": "Water Torrent!"
-        }
+        },
+        "example": true
       },
       {
-        "instruction": "Create xp = 750. Rate it with if-elif-else: xp >= 1000 prints Master!, xp >= 500 prints Advanced!, xp >= 100 prints Beginner!, otherwise Still much to learn... Your program must print exactly: Advanced!",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "A new hero has xp = 320. If xp >= 1000 print: Rank: Master!, if xp >= 500: Rank: Advanced!, if xp >= 100: Rank: Beginner!, otherwise: Still much to learn...",
+        "codeTemplate": "xp = 320\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Advanced!"
+          "expected": "Rank: Beginner!"
         }
       },
       {
-        "instruction": "Create element = \"Air\". Use if-elif-else with the four elements: Fire prints Fire Strike!, Water prints Water Torrent!, Air prints Wind Gust!, Earth prints Earthquake!, anything else prints Unknown element! Your program must print exactly: Wind Gust!",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "The magic wand reacts to the element. It is element = \"Air\". Print for \"Fire\": Fire Strike!, for \"Water\": Water Torrent!, for \"Air\": Wind Gust!, for \"Earth\": Earthquake! and otherwise: Unknown element!",
+        "codeTemplate": "element = \"Air\"\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Wind Gust!"
@@ -144,77 +178,77 @@
     ]
   },
   {
-    "id": "lektion-05",
+    "id": "lektion-06",
     "section": "lektion",
-    "title": "Magic Formula 4: Logical Operators",
-    "file": "lektion-05.md",
-    "lessonSummary": "Conditions combined! and, or and not let you build precise rules.",
+    "title": "Magic Formula 4: and, or, not",
+    "file": "lektion-06.md",
+    "lessonSummary": "With and, or and not you combine several conditions into one.",
     "tasks": [
       {
-        "instruction": "Run this example: and, or, not and a hero class.",
-        "example": true,
-        "codeTemplate": "has_key = True\nhas_torch = True\nif has_key and has_torch:\n    print(\"🗝️🔥 You can safely open the dark chamber!\")\n\nhas_sword = False\nhas_wand = True\nif has_sword or has_wand:\n    print(\"⚔️ You are armed and ready!\")\n\nis_cursed = False\nif not is_cursed:\n    print(\"✨ You are free of any curse!\")\n\nstrength = 8\nintelligence = 12\nif strength > 10 and intelligence > 10:\n    print(\"⚔️🧠 Paladin!\")\nelif strength > 10:\n    print(\"💪 Warrior!\")\nelif intelligence > 10:\n    print(\"🧙 Mage!\")\nelse:\n    print(\"👤 Adventurer!\")\n",
+        "instruction": "Run this example: and, or, not and a hero class from several values.",
+        "codeTemplate": "has_key = True\nhas_torch = True\nif has_key and has_torch:\n    print(\"You can safely open the dark chamber!\")\n\nhas_sword = False\nhas_wand = True\nif has_sword or has_wand:\n    print(\"You are armed and ready!\")\n\nis_cursed = False\nif not is_cursed:\n    print(\"You are free of any curse!\")\n\nstrength = 8\nintelligence = 12\nif strength > 10 and intelligence > 10:\n    print(\"Paladin!\")\nelif strength > 10:\n    print(\"Warrior!\")\nelif intelligence > 10:\n    print(\"Mage!\")\nelse:\n    print(\"Adventurer!\")\n",
         "validation": {
           "type": "output_contains",
           "expected": "Mage!"
+        },
+        "example": true
+      },
+      {
+        "instruction": "and: The chamber only opens if the hero has the key AND the torch. This time has_torch = False. If both are there, print: The chamber opens! – otherwise: The chamber stays locked.",
+        "codeTemplate": "has_key = True\nhas_torch = False\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "The chamber stays locked."
         }
       },
       {
-        "instruction": "Create has_key = True and has_torch = True. Use and to print exactly: You can safely open the dark chamber!",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "or: Someone is armed if they have a sword OR a wand. Then print: You are armed and ready! – otherwise: You are defenseless!",
+        "codeTemplate": "has_sword = False\nhas_wand = True\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "You can safely open the dark chamber!"
+          "expected": "You are armed and ready!"
         }
       },
       {
-        "instruction": "Create has_sword = False, has_wand = True and is_cursed = False. Use or to print You are armed and ready! and then not to print exactly: You are free of any curse!",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "not: The hero is cursed (is_cursed = True). Check with not: if he is NOT cursed, print: You are free of any curse! – otherwise: A curse lies upon you!",
+        "codeTemplate": "is_cursed = True\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "You are free of any curse!"
-        }
-      },
-      {
-        "instruction": "Create strength = 14 and intelligence = 12. Use if-elif-else with and: both above 10 prints Paladin!, only strength above 10 prints Warrior!, only intelligence above 10 prints Mage!, otherwise Adventurer! Your program must print exactly: Paladin!",
-        "codeTemplate": "# 🎯 Your solution here:\n",
-        "validation": {
-          "type": "output_contains",
-          "expected": "Paladin!"
+          "expected": "A curse lies upon you!"
         }
       }
     ]
   },
   {
-    "id": "lektion-06",
+    "id": "lektion-07",
     "section": "lektion",
     "title": "Magic Formula 5: Nested Conditions",
-    "file": "lektion-06.md",
-    "lessonSummary": "Paths within paths! Every extra level needs one more level of indentation.",
+    "file": "lektion-07.md",
+    "lessonSummary": "You can nest conditions inside each other – every level is indented further.",
     "tasks": [
       {
         "instruction": "Run this example: the locked door.",
-        "example": true,
-        "codeTemplate": "door_locked = True\nright_key = True\n\nif door_locked:\n    print(\"🚪 The door is locked.\")\n    if right_key:\n        print(\"🔑 The key fits - the door opens!\")\n    else:\n        print(\"❌ This key does not fit.\")\nelse:\n    print(\"🚪 The door is already open.\")\n",
+        "codeTemplate": "door_locked = True\nright_key = True\n\nif door_locked:\n    print(\"The door is locked.\")\n    if right_key:\n        print(\"The key fits - the door opens!\")\n    else:\n        print(\"This key does not fit.\")\nelse:\n    print(\"The door is already open.\")\n",
         "validation": {
           "type": "output_contains",
           "expected": "The key fits - the door opens!"
-        }
+        },
+        "example": true
       },
       {
-        "instruction": "Create door_locked = True and right_key = False. Use a nested if so that your program prints exactly: This key does not fit.\nThe program should print The door is locked. first, then decide about the key. If the door is not locked it should print The door is already open.",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "This time the hero has the wrong key (right_key = False). Build the same nested check: if the door is locked, print The door is locked. and then check the key inside: if it fits, print The door opens! – otherwise: This key does not fit. – if the door is not locked, print The door is already open.",
+        "codeTemplate": "door_locked = True\nright_key = False\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
           "expected": "This key does not fit."
         }
       },
       {
-        "instruction": "Create door_locked = False and right_key = True. Use the same nested structure as before (locked door with key check, else already open). Your program must print exactly: The door is already open.",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "The tournament: whoever has a ticket (has_ticket = True) gets checked by age: from 14 on, print: You may take part in the tournament! – otherwise: Too young for the tournament. Without a ticket, print: No ticket, no entry.",
+        "codeTemplate": "has_ticket = True\nage = 12\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "The door is already open."
+          "expected": "Too young for the tournament."
         }
       }
     ]
@@ -224,14 +258,14 @@
     "section": "debug",
     "title": "Debug Quest",
     "file": "debug-01.md",
-    "lessonSummary": "All bugs found! Indentation, = versus == and a lonely elif are classic mistakes at the Crossroads.",
+    "lessonSummary": "All bugs found! When debugging, look closely at indentation, = and ==.",
     "tasks": [
       {
         "instruction": "🐛 Bug #1 – Goal: The program should print both Level reached! and Congratulations! when level >= 10. What is wrong?",
         "codeTemplate": "level = 10\nif level >= 10:\nprint(\"Level reached!\")\nprint(\"Congratulations!\")\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Congratulations!"
+          "expected": "Level reached!"
         }
       },
       {
@@ -243,11 +277,19 @@
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Goal: The program should print Adult when age >= 18, and Child otherwise. What is wrong?",
+        "instruction": "🐛 Bug #3 – Goal: The program should print Adult when age >= 18, otherwise Child. What is wrong?",
         "codeTemplate": "age = 25\nif age >= 18:\n    print(\"Adult\")\nelif:\n    print(\"Child\")\n",
         "validation": {
           "type": "output_contains",
           "expected": "Adult"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #4 – Goal: The hero has exactly as much gold as the potion costs and should print Purchase successful! What is wrong?",
+        "codeTemplate": "gold = 50\ncost = 50\nif gold > cost:\n    print(\"Purchase successful!\")\nelse:\n    print(\"Not enough gold!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Purchase successful!"
         }
       }
     ]
@@ -257,18 +299,10 @@
     "section": "mission",
     "title": "Mission 1: The Bridge Guardian",
     "file": "mission-01.md",
-    "lessonSummary": "The bridge guardian steps aside – you know how to combine conditions with or!",
+    "lessonSummary": "The guardian lets you pass – or not!",
     "tasks": [
       {
-        "instruction": "Step 1 – Capture access data: create age = 16, gold = 12 and has_pass = False. Print exactly: Guardian sees: age 16, gold 12",
-        "codeTemplate": "# 🎯 Your solution here:\n",
-        "validation": {
-          "type": "output_contains",
-          "expected": "Guardian sees: age 16, gold 12"
-        }
-      },
-      {
-        "instruction": "Step 2 – Write the access rule: with the values below, use if and connect the three conditions with or (age >= 18, gold >= 10, has_pass). If one applies, print exactly: Passage granted. Otherwise print: Passage denied",
+        "instruction": "Step 1 – Get access: The hero has age = 16, gold = 12 and has_pass = False. Check with if and or (age >= 18 or gold >= 10 or has_pass). If he gets access, print: Passage granted – otherwise: Passage denied",
         "codeTemplate": "age = 16\ngold = 12\nhas_pass = False\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
@@ -276,11 +310,19 @@
         }
       },
       {
-        "instruction": "Step 3 – Add the rejection: this hero is poor and young. Use the same rule with the values below. Your program must print exactly: Passage denied",
-        "codeTemplate": "age = 12\ngold = 3\nhas_pass = False\n\n# 🎯 Your solution here:\n",
+        "instruction": "Step 2 – Rejection: Now the hero is age = 15, has only gold = 3 and has_pass = False. Use the same rule and, when access is missing, print exactly: Passage denied",
+        "codeTemplate": "age = 15\ngold = 3\nhas_pass = False\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Passage denied"
+        }
+      },
+      {
+        "instruction": "Step 3 – The pass: This hero is only age = 12 and has only gold = 3, but has_pass = True. Use the same rule and print exactly: Passage granted",
+        "codeTemplate": "age = 12\ngold = 3\nhas_pass = True\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Passage granted"
         }
       }
     ]
@@ -290,30 +332,30 @@
     "section": "mission",
     "title": "Mission 2: The Treasure Chest",
     "file": "mission-02.md",
-    "lessonSummary": "The chest opens for the right word – you handled every password!",
+    "lessonSummary": "The chest reacted to your password!",
     "tasks": [
       {
-        "instruction": "Step 1 – Define passwords: create master_password = \"Dragon42\", guest_password = \"Visitor7\" and entered = \"Visitor7\" (simulated input). Print exactly: Entered: Visitor7",
-        "codeTemplate": "# 🎯 Your solution here:\n",
-        "validation": {
-          "type": "output_contains",
-          "expected": "Entered: Visitor7"
-        }
-      },
-      {
-        "instruction": "Step 2 – Write the access check: if entered == master_password print Full treasure granted, elif entered == guest_password print Partial treasure granted, else print Access denied. With the values below your program must print exactly: Partial treasure granted",
-        "codeTemplate": "master_password = \"Dragon42\"\nguest_password = \"Visitor7\"\nentered = \"Visitor7\"\n\n# 🎯 Your solution here:\n",
+        "instruction": "Step 1 – Guest: master_password = \"Dragonfire\", guest_password = \"Stardust\", and the input is entered = \"Stardust\". For the master password print: Full treasure granted, for the guest password: Partial treasure granted, otherwise: Wrong password",
+        "codeTemplate": "master_password = \"Dragonfire\"\nguest_password = \"Stardust\"\nentered = \"Stardust\"\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Partial treasure granted"
         }
       },
       {
-        "instruction": "Step 3 – The master arrives! Use the same check with the values below. Your program must print exactly: Full treasure granted",
-        "codeTemplate": "master_password = \"Dragon42\"\nguest_password = \"Visitor7\"\nentered = \"Dragon42\"\n\n# 🎯 Your solution here:\n",
+        "instruction": "Step 2 – Master: The same passwords, but now entered = \"Dragonfire\". Print exactly: Full treasure granted",
+        "codeTemplate": "master_password = \"Dragonfire\"\nguest_password = \"Stardust\"\nentered = \"Dragonfire\"\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Full treasure granted"
+        }
+      },
+      {
+        "instruction": "Step 3 – Wrong password: Now entered = \"Potion\". Print exactly: Wrong password",
+        "codeTemplate": "master_password = \"Dragonfire\"\nguest_password = \"Stardust\"\nentered = \"Potion\"\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wrong password"
         }
       }
     ]
@@ -321,48 +363,48 @@
   {
     "id": "mission-03",
     "section": "mission",
-    "title": "Mission 3: The Champions Arena",
+    "title": "Mission 3: The Champion's Arena",
     "file": "mission-03.md",
-    "lessonSummary": "The arena cheers! You rated fighters with and, elif and separate bonus checks.",
+    "lessonSummary": "The arena has rated your fighter!",
     "tasks": [
       {
-        "instruction": "Step 1 – Capture fighter data: create level = 35, wins = 18 and losses = 6. Print exactly: Level 35, wins 18, losses 6",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "Step 1 – Win rate: The fighter has wins = 18 and losses = 2. Calculate win_rate = wins / (wins + losses) and print exactly: Win rate: 0.9",
+        "codeTemplate": "wins = 18\nlosses = 2\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Level 35, wins 18, losses 6"
+          "expected": "Win rate: 0.9"
         }
       },
       {
-        "instruction": "Step 2 – Calculate the win rate: win_rate = wins / (wins + losses), then print exactly: Win rate: 0.75",
-        "codeTemplate": "level = 35\nwins = 18\nlosses = 6\n\n# 🎯 Your solution here:\n",
-        "validation": {
-          "type": "output_contains",
-          "expected": "Win rate: 0.75"
-        }
-      },
-      {
-        "instruction": "Step 3 – Check legendary status: with the values below use if level >= 50 and win_rate > 0.8 to print exactly: LEGENDARY!",
-        "codeTemplate": "level = 50\nwins = 20\nlosses = 0\nwin_rate = wins / (wins + losses)\n\n# 🎯 Your solution here:\n",
+        "instruction": "Step 2 – Legendary: A fighter has level = 50 and win_rate = 1.0. Use if with and: if level >= 50 and win_rate > 0.8, print exactly: LEGENDARY!",
+        "codeTemplate": "level = 50\nwin_rate = 1.0\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
           "expected": "LEGENDARY!"
         }
       },
       {
-        "instruction": "Step 4 – Further rating tiers: extend the check into if-elif-else. LEGENDARY! as before, elif level >= 30 and win_rate > 0.6 prints MASTER!, else prints Fighter. With the values below your program must print exactly: MASTER!",
-        "codeTemplate": "level = 35\nwins = 18\nlosses = 6\nwin_rate = wins / (wins + losses)\n\n# 🎯 Your solution here:\n",
+        "instruction": "Step 3 – Rank: The fighter has level = 35 and win_rate = 0.9. Check with if: level >= 50 and win_rate > 0.8 → LEGENDARY!, with elif: level >= 30 and win_rate > 0.6 → MASTER!, otherwise: FIGHTER",
+        "codeTemplate": "level = 35\nwin_rate = 0.9\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
           "expected": "MASTER!"
         }
       },
       {
-        "instruction": "Step 5 – Perfect streak bonus: separately from the rating (its own if) check whether losses == 0. With the values below print exactly: +100 Bonus for perfect streak!",
-        "codeTemplate": "level = 50\nwins = 20\nlosses = 0\nwin_rate = wins / (wins + losses)\n\n# 🎯 Your solution here:\n",
+        "instruction": "Step 4 – Perfect streak: Another fighter has wins = 12 and losses = 0. Check separately with if whether losses == 0 and then print exactly: +100 Bonus for a perfect streak!",
+        "codeTemplate": "wins = 12\nlosses = 0\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "+100 Bonus for perfect streak!"
+          "expected": "+100 Bonus for a perfect streak!"
+        }
+      },
+      {
+        "instruction": "Step 5 – Newcomer: A young fighter has level = 12, wins = 5 and losses = 5. Calculate his win_rate and rate him with the same rank rules as in step 3 (LEGENDARY! / MASTER! / otherwise FIGHTER). Print the fitting rank.",
+        "codeTemplate": "level = 12\nwins = 5\nlosses = 5\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "FIGHTER"
         }
       }
     ]
@@ -370,48 +412,48 @@
   {
     "id": "boss-01",
     "section": "boss",
-    "title": "Extra challenge 1: The Magic Quiz",
+    "title": "Extra Challenge 1: The Magic Quiz",
     "file": "boss-01.md",
-    "lessonSummary": "Quiz solved! You checked answers, counted points and awarded the grade.",
+    "lessonSummary": "The Magic Quiz is graded – with grade and certificate!",
     "tasks": [
       {
-        "instruction": "Step 1 – Create the quiz answers: create q1_correct = True, q2_correct = True, q3_correct = False, q4_correct = True and q5_correct = True. Print exactly: Question 3 correct: False",
-        "codeTemplate": "# 🎯 Your solution here:\n",
-        "validation": {
-          "type": "output_contains",
-          "expected": "Question 3 correct: False"
-        }
-      },
-      {
-        "instruction": "Step 2 – Check each answer individually: with the values below use one if-else per answer and print Question 1: Correct! or Question 1: Wrong! (and so on up to question 5). Your output must contain exactly: Question 3: Wrong!",
-        "codeTemplate": "q1_correct = True\nq2_correct = True\nq3_correct = False\nq4_correct = True\nq5_correct = True\n\n# 🎯 Your solution here:\n",
+        "instruction": "Step 1 – Check answers: The answers are answer_1 = True and answer_3 = False. Check each one with if-else and print: Question 1: Correct! or Question 1: Wrong! and Question 3: Correct! or Question 3: Wrong! respectively",
+        "codeTemplate": "answer_1 = True\nanswer_3 = False\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Question 3: Wrong!"
         }
       },
       {
-        "instruction": "Step 3 – Count points: create points = 0 and add 100 for every correct answer (one if per question). Print exactly: Points: 400",
-        "codeTemplate": "q1_correct = True\nq2_correct = True\nq3_correct = False\nq4_correct = True\nq5_correct = True\n\n# 🎯 Your solution here:\n",
+        "instruction": "Step 2 – Count points: Five answers are given. Start with points = 0 and, for each correct answer, add 100 points with its own if (points = points + 100). Print exactly: Points: 400",
+        "codeTemplate": "answer_1 = True\nanswer_2 = True\nanswer_3 = False\nanswer_4 = True\nanswer_5 = True\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Points: 400"
         }
       },
       {
-        "instruction": "Step 4 – Create the final rating: with points = 400 use if-elif-else: points >= 400 is Grade A, points >= 300 is Grade B, otherwise Grade C. Print exactly: Grade: A",
-        "codeTemplate": "points = 400\n\n# 🎯 Your solution here:\n",
+        "instruction": "Step 3 – Grade: Another quiz ended with points = 300. For points >= 400 print: Grade: A, for points >= 300: Grade: B, otherwise: Grade: C",
+        "codeTemplate": "points = 300\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Grade: A"
+          "expected": "Grade: B"
         }
       },
       {
-        "instruction": "Step 5 – Output the certificate: if points >= 300 the quiz is passed. With the value below print exactly: Magic certificate awarded!  Otherwise print: Quiz not passed",
-        "codeTemplate": "points = 400\n\n# 🎯 Your solution here:\n",
+        "instruction": "Step 4 – Streak bonus: Whoever gets question 1 AND question 2 right earns 50 bonus points. Here answer_1 = True, answer_2 = True and points = 200. Check with and, add the bonus (points = points + 50) and print exactly: Points with bonus: 250",
+        "codeTemplate": "answer_1 = True\nanswer_2 = True\npoints = 200\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Magic certificate awarded!"
+          "expected": "Points with bonus: 250"
+        }
+      },
+      {
+        "instruction": "Step 5 – Certificate: With points = 300 (passed from 300 on) print: Certificate: passed – otherwise: Certificate: not passed",
+        "codeTemplate": "points = 300\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Certificate: passed"
         }
       }
     ]
@@ -419,56 +461,56 @@
   {
     "id": "boss-02",
     "section": "boss",
-    "title": "Extra challenge 2: The Dungeon Simulator",
+    "title": "Extra Challenge 2: The Dungeon Simulator",
     "file": "boss-02.md",
-    "lessonSummary": "The simulator is beaten! Five levels, five different kinds of decisions.",
+    "lessonSummary": "All five levels of the simulator are done (or analysed)!",
     "tasks": [
       {
-        "instruction": "Step 1 – Level 1, summoning: create mana = 70 and spell_ready = True. If mana >= 50 and spell_ready print Level 1 passed: summoning successful, otherwise Level 1 failed. Your program must print exactly: Level 1 passed: summoning successful",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "Level 1 – Summoning: mana = 70 and spell_ready = True. Check with and: mana >= 50 and spell_ready. Print: Level 1 passed – otherwise: Level 1 failed",
+        "codeTemplate": "mana = 70\nspell_ready = True\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Level 1 passed: summoning successful"
+          "expected": "Level 1 passed"
         }
       },
       {
-        "instruction": "Step 2 – Level 2, path choice: create path = \"Left\". Use if-else: Left prints You take the left path, otherwise You take the right path. Your program must print exactly: You take the left path",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "Level 2 – Path choice: The hero chooses path = \"Right\". For \"Left\" print: You take the left path. – otherwise: You take the right path.",
+        "codeTemplate": "path = \"Right\"\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "You take the left path"
+          "expected": "You take the right path."
         }
       },
       {
-        "instruction": "Step 3 – Level 3, speed: with speed = 65 use if-elif-else with 5 tiers: speed >= 90 prints Speed rating: Lightning, >= 70 prints Speed rating: Fast, >= 50 prints Speed rating: Normal, >= 30 prints Speed rating: Slow, otherwise Speed rating: Crawling. Your program must print exactly: Speed rating: Normal",
+        "instruction": "Level 3 – Speed: speed = 65. For >= 80 print: Speed: Lightning, for >= 60: Speed: Fast, for >= 40: Speed: Normal, for >= 20: Speed: Slow, otherwise: Speed: Crawling",
         "codeTemplate": "speed = 65\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Speed rating: Normal"
+          "expected": "Speed: Fast"
         }
       },
       {
-        "instruction": "Step 4 – Level 4, magic trial: with the values below use nested conditions. If shield >= 50: if attack >= 50 print Trial passed with attack, elif healing >= 50 print Trial passed with healing, else print Trial failed: attack and healing too weak. If the shield is below 50 print Trial failed: shield too weak. Your program must print exactly: Trial passed with healing",
-        "codeTemplate": "shield = 60\nattack = 40\nhealing = 55\n\n# 🎯 Your solution here:\n",
+        "instruction": "Level 4 – Magic trial (nested): shield = 80, attack = 60, healing = 20. Check nested: if shield >= 50, check attack >= 50 inside, and inside that healing >= 50. All met: Magic trial passed. Healing too low: Healing too weak. Attack too low: Attack too weak. Shield too low: Shield too weak.",
+        "codeTemplate": "shield = 80\nattack = 60\nhealing = 20\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Trial passed with healing"
+          "expected": "Healing too weak"
         }
       },
       {
-        "instruction": "Step 5 – Level 5, escape: with the values below the hero escapes if potions >= 3 or (runes and escape_route). Print Escape successful, otherwise Escape failed. Your program must print exactly: Escape successful",
-        "codeTemplate": "potions = 1\nrunes = True\nescape_route = True\n\n# 🎯 Your solution here:\n",
+        "instruction": "Level 5 – Escape: potions = 5, runes = True, escape_route = False. The escape works if potions >= 3 OR (runes AND escape_route). Place the parentheses correctly. Print: Escape succeeds! – otherwise: Escape fails!",
+        "codeTemplate": "potions = 5\nrunes = True\nescape_route = False\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Escape successful"
+          "expected": "Escape succeeds!"
         }
       },
       {
-        "instruction": "Step 6 – Points system: create successes = 0. For every passed level add 1 (one if per level, add with successes = successes + 1). Levels passed: level1_ok = True, level2_ok = True, level3_ok = False, level4_ok = True, level5_ok = True. Print exactly: Levels passed: 4 of 5",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "Final score – Points system: The results are ok_1 = True, ok_2 = False, ok_3 = True, ok_4 = True, ok_5 = False. Start with successes = 0 and add 1 for each passed level (successes = successes + 1). Print exactly: Successes: 3",
+        "codeTemplate": "ok_1 = True\nok_2 = False\nok_3 = True\nok_4 = True\nok_5 = False\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Levels passed: 4 of 5"
+          "expected": "Successes: 3"
         }
       }
     ]
@@ -476,56 +518,56 @@
   {
     "id": "boss-03",
     "section": "boss",
-    "title": "Extra challenge 3: The Dungeon Quest",
+    "title": "Extra Challenge 3: The Dungeon Quest",
     "file": "boss-03.md",
-    "lessonSummary": "The quest is complete! You evaluated phases, dangers and events like a true Master of Decisions.",
+    "lessonSummary": "The Dungeon Quest is evaluated – danger, events, rescue and points!",
     "tasks": [
       {
-        "instruction": "Step 1 – Create the quest phases: create phase1_ok = True, phase2_ok = True, phase3_ok = False, phase4_ok = True and phase5_ok = True. Print exactly: Phase 3 ok: False",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "Step 1 – Danger level: danger_level = 4. For 1 print: Danger: Calm, for 2: Danger: Alert, for 3: Danger: Dangerous, for 4: Danger: Very dangerous, otherwise: Danger: Deadly",
+        "codeTemplate": "danger_level = 4\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Phase 3 ok: False"
+          "expected": "Danger: Very dangerous"
         }
       },
       {
-        "instruction": "Step 2 – Write the danger level: with danger_level = 3 use if-elif-else with 5 tiers: 5 prints Danger: Deadly, 4 prints Danger: High, 3 prints Danger: Medium, 2 prints Danger: Low, otherwise Danger: Harmless. Your program must print exactly: Danger: Medium",
-        "codeTemplate": "danger_level = 3\n\n# 🎯 Your solution here:\n",
-        "validation": {
-          "type": "output_contains",
-          "expected": "Danger: Medium"
-        }
-      },
-      {
-        "instruction": "Step 3 – Simulate random events: check each event with its own if. monster_attack prints A monster attacks!, trap_triggered prints A trap is triggered!, treasure_found prints The treasure is found! With the values below your output must contain exactly: The treasure is found!",
+        "instruction": "Step 2 – Random events: monster_attack = True, trap_triggered = False, treasure_found = True. Check each event with its own if and print: A monster attacks! / A trap snaps shut! / Treasure found!",
         "codeTemplate": "monster_attack = True\ntrap_triggered = False\ntreasure_found = True\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "The treasure is found!"
+          "expected": "Treasure found!"
         }
       },
       {
-        "instruction": "Step 4 – Check success conditions: count the successful phases (successful_phases = 0, then add 1 per phase that is True). If successful_phases >= 4 and danger_level <= 3 print Quest succeeded, otherwise Quest failed. Your program must print exactly: Quest succeeded",
-        "codeTemplate": "phase1_ok = True\nphase2_ok = True\nphase3_ok = False\nphase4_ok = True\nphase5_ok = True\ndanger_level = 3\n\n# 🎯 Your solution here:\n",
+        "instruction": "Step 3 – Success condition: phase1_ok = True, phase2_ok = True, phase3_ok = False, phase4_ok = True, phase5_ok = True and danger_level = 4. Count the successful phases in successful_phases (one if per phase). The quest succeeds if successful_phases >= 4 and danger_level <= 3. Print: Quest passed! – otherwise: Quest failed!",
+        "codeTemplate": "phase1_ok = True\nphase2_ok = True\nphase3_ok = False\nphase4_ok = True\nphase5_ok = True\ndanger_level = 4\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Quest succeeded"
+          "expected": "Quest failed!"
         }
       },
       {
-        "instruction": "Step 5 – Special actions: use a nested if. If danger_level >= 4, then check inside: if successful_phases < 3 print Rescue required!, otherwise print Hold the line. If the danger is lower print All quiet. With the values below your program must print exactly: Rescue required!",
-        "codeTemplate": "danger_level = 4\nsuccessful_phases = 2\n\n# 🎯 Your solution here:\n",
+        "instruction": "Step 4 – Special action (nested): danger_level = 5, successful_phases = 2. Check nested: if danger_level >= 4, check successful_phases < 3 inside and print: Rescue required! – otherwise inside: The squad holds out. If the danger is lower, print: No danger for the squad.",
+        "codeTemplate": "danger_level = 5\nsuccessful_phases = 2\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Rescue required!"
         }
       },
       {
-        "instruction": "Step 6 – Quest evaluation: calculate total points = successful_phases * 100 - danger_level * 20 and the success rate = (successful_phases / 5) * 100. With the values below print exactly: Total points: 340, success rate: 80.0%",
-        "codeTemplate": "successful_phases = 4\ndanger_level = 3\n\n# 🎯 Your solution here:\n",
+        "instruction": "Step 5 – Total points: successful_phases = 4, danger_level = 4. Calculate total_points = successful_phases * 100 - danger_level * 20 and print exactly: Total points: 320",
+        "codeTemplate": "successful_phases = 4\ndanger_level = 4\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Total points: 340, success rate: 80.0%"
+          "expected": "Total points: 320"
+        }
+      },
+      {
+        "instruction": "Step 6 – Success rate: With successful_phases = 4 out of 5 phases, calculate success_rate = successful_phases / 5 * 100 and print exactly: Success rate: 80.0 percent",
+        "codeTemplate": "successful_phases = 4\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Success rate: 80.0 percent"
         }
       }
     ]

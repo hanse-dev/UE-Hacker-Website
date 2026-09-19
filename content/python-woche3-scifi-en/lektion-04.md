@@ -1,6 +1,6 @@
-# 📟 System Protocol 3: if-elif-else
+# 📟 System Protocol 4: if-elif-else
 
-`if-elif-else` checks **several conditions one after another**.
+Sometimes there are **more than two** possibilities. That is what `elif` (short for "else if") is for:
 
 ```python
 points = 750
@@ -14,4 +14,21 @@ else:
     print("Cadet!")
 ```
 
-> ⚠️ **Important:** `elif` always needs a condition, `else` never does. Only the **first true** path is executed – the rest is skipped.
+- Python checks the conditions **from top to bottom**.
+- **Only the first true path** is executed, the rest is skipped.
+- `elif` **always needs a condition** (unlike `else`).
+- You may use as many `elif` as you like; the final `else` is optional and catches everything else.
+
+Text can be selected this way too:
+
+```python
+weapon = "Laser"
+if weapon == "Laser":
+    print("Laser activated!")
+elif weapon == "Plasma":
+    print("Plasma cannon loaded!")
+else:
+    print("Unknown weapon!")
+```
+
+> 📡 **Remember:** Order matters! Check the strictest condition first.

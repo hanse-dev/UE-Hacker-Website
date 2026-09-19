@@ -1,9 +1,7 @@
-# ⭐⭐⭐⭐☆ Extra challenge 3: The Tournament Finale
+# ⭐⭐⭐⭐☆ Extra challenge 3: The Grand Tournament
 
 > ⚠️ Harder! The extra challenges combine everything from this week – they are optional.
 
-Run the most important tournament! It has five phases (each either successful or not) and a difficulty from 1 to 5. Evaluate the phases, the difficulty and the random events, then work out the final result.
+Run the most important tournament of the year: five phases, one difficulty level, a few random events and, at the end, the evaluation.
 
 **Bonus (optional, not checked):** Add a team score for team tournaments!
-
-**Title earned: Master of the Crossroads** 🏆

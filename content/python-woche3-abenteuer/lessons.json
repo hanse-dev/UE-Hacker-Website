@@ -316,6 +316,14 @@
           "type": "output_contains",
           "expected": "Durchgang verweigert"
         }
+      },
+      {
+        "instruction": "Schritt 3 – Der Pass: Dieser Held ist nur alter = 12 und hat nur gold = 3, aber hat_pass = True. Nutze dieselbe Regel und gib genau aus: Durchgang erlaubt",
+        "codeTemplate": "alter = 12\ngold = 3\nhat_pass = True\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Durchgang erlaubt"
+        }
       }
     ]
   },
@@ -368,7 +376,15 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Rang: Der Kämpfer hat level = 35 und siegquote = 0.9. Prüfe mit if: level >= 50 und siegquote > 0.8 → LEGENDÄR!, mit elif: level >= 30 und siegquote > 0.6 → MEISTER!, sonst: KÄMPFER",
+        "instruction": "Schritt 2 – Legendär: Ein Kämpfer hat level = 50 und siegquote = 1.0. Prüfe mit if und and: Bei level >= 50 und siegquote > 0.8 gib genau aus: LEGENDÄR!",
+        "codeTemplate": "level = 50\nsiegquote = 1.0\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "LEGENDÄR!"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Rang: Der Kämpfer hat level = 35 und siegquote = 0.9. Prüfe mit if: level >= 50 und siegquote > 0.8 → LEGENDÄR!, mit elif: level >= 30 und siegquote > 0.6 → MEISTER!, sonst: KÄMPFER",
         "codeTemplate": "level = 35\nsiegquote = 0.9\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -376,11 +392,19 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Perfekte Serie: Ein anderer Kämpfer hat siege = 12 und niederlagen = 0. Prüfe separat mit if, ob niederlagen == 0 ist, und gib dann genau aus: +100 Bonus für perfekte Serie!",
+        "instruction": "Schritt 4 – Perfekte Serie: Ein anderer Kämpfer hat siege = 12 und niederlagen = 0. Prüfe separat mit if, ob niederlagen == 0 ist, und gib dann genau aus: +100 Bonus für perfekte Serie!",
         "codeTemplate": "siege = 12\nniederlagen = 0\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": "+100 Bonus für perfekte Serie!"
+        }
+      },
+      {
+        "instruction": "Schritt 5 – Nachwuchs: Ein junger Kämpfer hat level = 12, siege = 5 und niederlagen = 5. Berechne seine siegquote und bewerte ihn mit denselben Rang-Regeln wie in Schritt 3 (LEGENDÄR! / MEISTER! / sonst KÄMPFER). Gib den passenden Rang aus.",
+        "codeTemplate": "level = 12\nsiege = 5\nniederlagen = 5\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "KÄMPFER"
         }
       }
     ]
@@ -417,7 +441,15 @@
         }
       },
       {
-        "instruction": "Schritt 4 – Zertifikat: Bei punkte = 300 (bestanden ab 300) gib aus: Zertifikat: bestanden – sonst: Zertifikat: nicht bestanden",
+        "instruction": "Schritt 4 – Serienbonus: Wer Frage 1 UND Frage 2 richtig hat, bekommt 50 Bonuspunkte. Hier ist antwort_1 = True, antwort_2 = True und punkte = 200. Prüfe mit and, addiere den Bonus (punkte = punkte + 50) und gib genau aus: Punkte mit Bonus: 250",
+        "codeTemplate": "antwort_1 = True\nantwort_2 = True\npunkte = 200\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Punkte mit Bonus: 250"
+        }
+      },
+      {
+        "instruction": "Schritt 5 – Zertifikat: Bei punkte = 300 (bestanden ab 300) gib aus: Zertifikat: bestanden – sonst: Zertifikat: nicht bestanden",
         "codeTemplate": "punkte = 300\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -474,7 +506,7 @@
         }
       },
       {
-        "instruction": "Level 6 – Punktesystem: Die Ergebnisse sind ok_1 = True, ok_2 = False, ok_3 = True, ok_4 = True, ok_5 = False. Starte mit erfolge = 0 und addiere für jedes bestandene Level 1 (erfolge = erfolge + 1). Gib genau aus: Erfolge: 3",
+        "instruction": "Abschluss – Punktesystem: Die Ergebnisse der fünf Level sind ok_1 = True, ok_2 = False, ok_3 = True, ok_4 = True, ok_5 = False. Starte mit erfolge = 0 und addiere für jedes bestandene Level 1 (erfolge = erfolge + 1). Gib genau aus: Erfolge: 3",
         "codeTemplate": "ok_1 = True\nok_2 = False\nok_3 = True\nok_4 = True\nok_5 = False\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

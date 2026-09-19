@@ -1,12 +1,12 @@
-# 🐴 Lesson 5: Logical Operators
+# 🔗 Lesson 5: Logical operators (and, or, not)
 
-With `and`, `or` and `not` you combine several conditions:
+With **`and`**, **`or`** and **`not`** you combine several conditions:
 
 | Operator | Meaning |
 |----------|---------|
 | `and` | **both** conditions must be true |
-| `or` | **at least one** condition must be true |
-| `not` | flips `True` to `False` and the other way round |
+| `or` | **at least one** must be true |
+| `not` | flips a truth value (`True` ↔ `False`) |
 
 ```python
 has_saddle = True
@@ -25,7 +25,7 @@ if has_bridle or has_halter:
 ```python
 is_sick = False
 if not is_sick:
-    print("The horse is healthy and ready to work!")
+    print("The horse is healthy!")
 ```
 
-You can also mix comparisons with `and`/`or`: `if height > 170 and temperament > 7:`
+> 💡 With several combinations, **parentheses** help, e.g. `a or (b and c)` – then it is clear what belongs together.

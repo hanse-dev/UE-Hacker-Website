@@ -1,24 +1,23 @@
-# ⚖️ Magic Formula 2: `if-else`
+# ⚖️ The Comparison Runes
 
-`if-else` offers **two paths**: one for a true condition and one for everything else.
+Besides `==`, Python knows more **comparison operators**. Each one gives `True` or `False`:
 
-```python
-roll = 18
-if roll >= 15:
-    print("Critical hit!")
-else:
-    print("Normal strike")
-```
-
-> ⚠️ `else` needs **no condition** – it runs whenever the `if` was false. It also ends with a colon and its code is indented.
-
-Exactly **one** of the two paths is run – never both, never none.
+| Operator | Meaning | Example |
+|----------|---------|---------|
+| `==` | equal | `level == 10` |
+| `!=` | **not** equal | `level != 10` |
+| `<` | less than | `level < 10` |
+| `<=` | less than or equal | `level <= 10` |
+| `>` | greater than | `level > 10` |
+| `>=` | greater than or equal | `level >= 10` |
 
 ```python
-gold = 45
-cost = 50
-if gold >= cost:
-    print(f"Purchase successful! Remaining: {gold - cost}")
-else:
-    print(f"Not enough gold! Missing: {cost - gold}")
+value = 10
+print(value < 15)    # True
+print(value <= 10)   # True
+print(value > 5)     # True
+print(value >= 11)   # False
+print(value != 10)   # False
 ```
+
+The difference between `>` and `>=` matters: with `gold > cost`, having *exactly* as much gold is not enough, with `gold >= cost` it is!

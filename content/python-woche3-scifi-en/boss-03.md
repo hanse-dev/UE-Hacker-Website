@@ -1,11 +1,7 @@
-# ⭐⭐⭐⭐☆ Extra challenge 3: The Galaxy Mission
+# ⭐⭐⭐⭐☆ Extra Challenge 3: The Galaxy Mission
 
-⚠️ **Harder!** Carry out the most dangerous mission! Its five phases had these results:
+⚠️ Harder! These tasks combine everything from this week.
 
-| Phase | 1 | 2 | 3 | 4 | 5 |
-|---|---|---|---|---|---|
-| OK? | `True` | `True` | `False` | `True` | `True` |
+Carry out the most dangerous mission! Five mission phases have been simulated (`True` = success, `False` = failure), and there is a danger level from 1 to 5.
 
 **Bonus (optional, not checked):** Add a team score for multiplayer missions!
-
-> 🏆 Complete this challenge and you defeat the AI Guardian of Paradoxical Decisions – title earned: **Master of Paths**!

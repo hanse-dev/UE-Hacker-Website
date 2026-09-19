@@ -2,8 +2,8 @@
 
 > ⚠️ Harder! The extra challenges combine everything from this week – they are optional.
 
-Test your knowledge of the magical arts! A quiz has **5 questions**. For each one a Boolean tells you whether the answer was correct (`True`) or wrong (`False`). Each correct answer is worth **100 points**.
+Test your knowledge of the magical arts! The quiz has 5 questions. Each answer is a Boolean (`True` = correct, `False` = wrong). Each correct answer is worth 100 points, then come the grade, a streak bonus and the certificate.
 
-Hint: to add points you can write `points = points + 100`.
+Hint: you count points with `points = points + 100`.
 
 **Bonus (optional, not checked):** Add different difficulty levels!

@@ -92,7 +92,7 @@
         }
       },
       {
-        "instruction": "Regnet es, reitet ihr in der Halle, sonst auf der Weide. Schreibe ein if-else und gib mit den Vorgaben genau aus: Wir reiten in der Halle.  (Bei Sonne wäre die Ausgabe: Perfekt für die Weide!)",
+        "instruction": "Regnet es, reitet ihr in der Halle, sonst auf der Weide. Schreibe ein if-else und gib mit den Vorgaben genau aus: Wir reiten in der Halle. (Bei Sonne wäre die Ausgabe: Perfekt für die Weide!)",
         "codeTemplate": "regnet = True\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

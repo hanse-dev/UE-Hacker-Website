@@ -1,28 +1,31 @@
-# 🐴 Lesson 2: Comparison Operators
+# ⚖️ Lesson 2: Comparison operators
 
-Conditions often compare two values. Python has six comparison operators, and each gives back `True` or `False`:
+Conditions usually come from **comparisons**. A comparison always gives `True` or `False`.
+
+## `=` or `==`?
+
+This is a crucial difference!
+
+- **`=`** **assigns** a value to a variable: `age = 10`
+- **`==`** **compares** two values for equality: `age == 10`
+
+```python
+age = 10          # assignment
+if age == 10:     # comparison
+    print("The horse is 10 years old!")
+```
+
+> 🐴 **Remember:** In a condition always use `==` for comparisons, never `=`!
+
+## The six comparison operators
 
 | Operator | Meaning | Example |
 |----------|---------|---------|
 | `==` | equal to | `age == 10` |
-| `!=` | not equal to | `age != 10` |
+| `!=` | not equal to | `gait != "Gallop"` |
 | `<` | less than | `age < 5` |
 | `<=` | less than or equal | `age <= 5` |
 | `>` | greater than | `age > 15` |
 | `>=` | greater than or equal | `age >= 3` |
 
-## ⚠️ `=` versus `==`
-
-This is the classic mistake:
-
-- **`=`** (one equals sign) **assigns** a value: `age = 10`
-- **`==`** (two equals signs) **compares** two values: `if age == 10:`
-
-In a condition you always need `==` (or another comparison operator), never `=`!
-
-You can even print the result of a comparison:
-
-```python
-height = 160
-print(f"{height} < 165: {height < 165}")
-```
+You can also print a comparison directly: `print(160 < 165)` shows `True`.
