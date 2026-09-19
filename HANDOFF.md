@@ -2009,6 +2009,13 @@ Reine Struktur-/CSS-Änderung, Chip-Interaktion/Filterlogik unverändert — bes
 nötig. `npm run test:checks` (98 Tests) + `npm run build` grün, Desktop-/Mobil-/Aktiv-Filter-Zustand
 per Screenshot verifiziert.
 
+### 3.45 Projektideen-Backlog (`PROJEKTIDEEN.md`)
+
+Neue Datei mit ~40 Projekt-Ideen (Spiele, Web, KI, Logik, Krypto, Kreativ, Daten) inkl. Engine
+(Python/JS), Altersrichtwert und Reihenfolge-Empfehlung, als Vorrat für `kurs-python-projekte` und
+weitere JS-Projekte. Bewusst **nicht** in `CLAUDE.md` eingebunden (würde jede Session unnötig
+aufblähen). Beim Umsetzen eines Projekts dort abhaken. Reine Doku, kein Code.
+
 ---
 
 ## 4. Aktueller technischer Stand
