@@ -1,26 +1,14 @@
-# Beispiel 1: Magische Farben und Füllungen
-import turtle
+# Etappe 3a: Gegenstände sind Objekte – und liegen in den Räumen
+class Gegenstand:
+    def __init__(self, name, beschreibung):
+        self.name = name
+        self.beschreibung = beschreibung
 
-screen = turtle.Screen()
-screen.bgcolor("darkblue")
-pen = turtle.Turtle()
-pen.speed(3)
+welt["eingang"]["gegenstaende"] = [Gegenstand("Fackel", "Sie leuchtet in dunklen Ecken.")]
+welt["halle"]["gegenstaende"] = []
+welt["quelle"]["gegenstaende"] = [Gegenstand("Schwert", "Ein scharfes Schwert, das neben der Quelle im Stein steckt.")]
+welt["schatzkammer"]["gegenstaende"] = [Gegenstand("Schatz", "Der legendäre Schatz von Pyralia!")]
 
-# Magischer Stern
-pen.color("yellow", "orange")
-pen.begin_fill()
-for _ in range(5):
-    pen.forward(100)
-    pen.right(144)
-pen.end_fill()
-
-# Magischer Kreis
-pen.penup()
-pen.goto(150, 0)
-pen.pendown()
-pen.color("cyan", "lightblue")
-pen.begin_fill()
-pen.circle(50)
-pen.end_fill()
-
-turtle.done()
+erster_raum = "eingang"
+erster_gegenstand = welt[erster_raum]["gegenstaende"][0]
+print(f"Im {erster_raum}: {erster_gegenstand.name} – {erster_gegenstand.beschreibung}")

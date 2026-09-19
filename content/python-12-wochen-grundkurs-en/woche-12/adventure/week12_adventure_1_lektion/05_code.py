@@ -1,23 +1,14 @@
-# Example 1: Basic movements
-import turtle
+# Stage 2: Moving through the world
+def go(position, direction):
+    exits = world[position]["exits"]
+    if direction in exits:
+        new_position = exits[direction]
+        describe(new_position)
+        return new_position
+    print("🚫 You can't go that way!")
+    return position
 
-screen = turtle.Screen()
-screen.bgcolor("navy")
-pen = turtle.Turtle()
-pen.speed(5)
-pen.color("gold")
-
-# A magic square
-for _ in range(4):
-    pen.forward(100)
-    pen.left(90)
-
-# A magic triangle
-pen.penup()
-pen.goto(-150, 0)
-pen.pendown()
-for _ in range(3):
-    pen.forward(100)
-    pen.left(120)
-
-turtle.done()
+position = "entrance"
+for command in ["north", "east", "north", "west", "west"]:
+    print(f"\n> {command}")
+    position = go(position, command)

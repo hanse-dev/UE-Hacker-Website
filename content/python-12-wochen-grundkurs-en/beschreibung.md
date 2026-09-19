@@ -10,6 +10,6 @@ For absolute beginners. You don't need any prior knowledge – just curiosity an
 
 ## How is the course structured?
 
-- **12 weeks** – each week has a clear topic: variables, loops, functions, lists, OOP, turtle graphics, and more.
+- **12 weeks** – each week has a clear topic: variables, loops, functions, lists, OOP, a final project, and more.
 - **Three theme worlds** – choose between Adventure, Horse Stables, or Sci-Fi. All teach the same Python knowledge, just with different settings.
 - **Missions & certificates** – each week consists of small missions you master. Complete all of them and pass the week check (quiz + a small coding task), and you earn that week's certificate – proof that you really understood the topic.

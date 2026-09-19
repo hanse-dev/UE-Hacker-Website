@@ -1,22 +1,23 @@
 ---
-title: '📚 Week 12 – Graphical projects with Turtle: The magical canvas!'
+title: '📚 Week 12 – The big final project: Your own text adventure!'
 ---
 
-# 🎯 The challenge: Bringing code to life!
+# 🎯 The challenge: Putting it all together!
 
-You've learned how to write code. Now you learn how to create visible results – colourful graphics, animations and interactive art!
+Over eleven weeks you have learned many tools. Now you combine them into a real game: a **text adventure** that you build yourself and expand as you like.
 
-With Turtle you can make your programs visual and learn through play!
+You will use almost everything from the course – from variables to classes and JSON files.
 
 ## 🎮 Theme worlds to choose from
 
-- **🗺️ Adventure World:** The magical scrolls of Pyralia – create enchanting pictures and runes!
-- **🐴 Horse Stables:** The tournament visualisation board – draw horses, obstacles and riding tracks!
-- **🚀 Sci-Fi World:** The hologram projectors of the Nebula-7 – create space scenes and spaceships!
+- **🗺️ Adventure World:** The dragon cave of Pyralia – find the treasure and defeat the dragon!
+- **🐴 Horse Stables:** The riding stable at night – find the missing foal!
+- **🚀 Sci-Fi World:** Emergency on Nebula-7 – shut down the reactor before it is too late!
 
 # 🎯 Learning goals
-- Import and set up the Turtle module
-- Draw and move shapes
-- Use colours and fills
-- Use loops for patterns
-- Create interactive graphics
+- Build a game world as a nested dictionary
+- Combine functions, conditions and loops into a game loop
+- Use objects inside objects (composition): player, inventory, items
+- Use randomness and classes for enemies and fights
+- Catch wrong input with try/except
+- Save and load a game state as JSON

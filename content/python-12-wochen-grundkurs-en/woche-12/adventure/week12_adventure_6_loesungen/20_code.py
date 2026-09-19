@@ -1,56 +1,50 @@
-import turtle
-import random
+# Boss Quest 1: The complete game state
+def save_full(player, filename="complete.json"):
+    rooms_data = {}
+    for room_name, room in world.items():
+        enemy = room["enemy"]
+        rooms_data[room_name] = {
+            "items": [{"name": i.name, "description": i.description} for i in room["items"]],
+            "enemy_hp": enemy.hp if enemy is not None else None,
+        }
+    data = {
+        "player": {
+            "name": player.name,
+            "position": player.position,
+            "hp": player.hp,
+            "inventory": [{"name": i.name, "description": i.description} for i in player.inventory],
+        },
+        "rooms": rooms_data,
+    }
+    with open(filename, "w", encoding="utf-8") as file:
+        json.dump(data, file, ensure_ascii=False, indent=2)
+    print("💾 Complete game saved.")
 
-screen = turtle.Screen()
-screen.bgcolor("black")
-screen.title("Magic Seal")
+def load_full(filename="complete.json"):
+    try:
+        with open(filename, "r", encoding="utf-8") as file:
+            data = json.load(file)
+    except FileNotFoundError:
+        print("📂 No saved game found.")
+        return None
+    for room_name, state in data["rooms"].items():
+        room = world[room_name]
+        room["items"] = [Item(e["name"], e["description"]) for e in state["items"]]
+        if room["enemy"] is not None:
+            room["enemy"].hp = state["enemy_hp"]
+    s = data["player"]
+    player = Player(s["name"], s["position"])
+    player.hp = s["hp"]
+    for e in s["inventory"]:
+        player.inventory.append(Item(e["name"], e["description"]))
+    print("📂 Complete game loaded.")
+    return player
 
-pen = turtle.Turtle()
-pen.speed(6)
-
-def draw_star(pen, x, y, size, colour):
-    pen.penup()
-    pen.goto(x, y)
-    pen.pendown()
-    pen.color(colour)
-    pen.fillcolor(colour)
-    pen.begin_fill()
-    for _ in range(5):
-        pen.forward(size)
-        pen.right(144)
-    pen.end_fill()
-
-def draw_circle(pen, x, y, radius, colour):
-    pen.penup()
-    pen.goto(x, y - radius)
-    pen.pendown()
-    pen.color(colour)
-    pen.circle(radius)
-
-def draw_hexagon(pen, x, y, size, colour):
-    pen.penup()
-    pen.goto(x, y)
-    pen.pendown()
-    pen.color(colour)
-    for _ in range(6):
-        pen.forward(size)
-        pen.right(60)
-
-draw_circle(pen, 0, 0, 150, "gold")
-draw_hexagon(pen, -80, -40, 80, "cyan")
-draw_star(pen, -30, -20, 60, "red")
-
-magic_colours = ["purple", "blue", "lime", "orange", "pink"]
-for i in range(6):
-    colour = random.choice(magic_colours)
-    draw_circle(pen, 0, 0, 20 + i * 20, colour)
-
-draw_star(pen, -15, -10, 30, "white")
-
-pen.penup()
-pen.goto(0, -180)
-pen.color("gold")
-pen.write("⭐ Magic Seal Activated ⭐", align="center", font=("Arial", 12, "bold"))
-
-pen.hideturtle()
-turtle.done()
+# Test: take the weapon, save, wreck the world, load
+hero = Player("Tom", "spring")
+hero.take("Sword")
+save_full(hero)
+world["spring"]["items"] = [Item("Junk", "Just scrap.")]
+hero = load_full()
+hero.show_inventory()
+print("In the spring contains:", [i.name for i in world["spring"]["items"]])

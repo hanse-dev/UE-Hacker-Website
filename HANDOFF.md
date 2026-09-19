@@ -2016,6 +2016,36 @@ Neue Datei mit ~40 Projekt-Ideen (Spiele, Web, KI, Logik, Krypto, Kreativ, Daten
 weitere JS-Projekte. Bewusst **nicht** in `CLAUDE.md` eingebunden (würde jede Session unnötig
 aufblähen). Beim Umsetzen eines Projekts dort abhaken. Reine Doku, kein Code.
 
+### 3.46 Woche 12: Abschlussprojekt Text-Adventure statt Turtle (Branch `woche12-abschlussprojekt`)
+
+Turtle passte nicht mehr in den 12-Wochen-Kurs (lief nie nativ im Browser, Shim ohne Animation/Events,
+thematisch ein Einzelgänger nach OOP). Woche 12 ist jetzt ein **Abschlussprojekt**: ein Text-Adventure,
+das Woche 1–11 anwendet. Pro Variante eine eigene Story (Abenteuer: Drachenhöhle von Pyralia, Pferde:
+Reiterhof bei Nacht/Fohlen suchen, Sci-Fi: Notfall auf Nebula-7/Reaktor abschalten), gleiche
+Code-Struktur. 6 Etappen in der Lektion (Karte als verschachteltes Dictionary → Bewegung → Inventar/
+Klassen → Kampf mit `random` → `try/except` → JSON speichern/laden). **Einziger neuer Begriff:
+Komposition** ("hat ein") — bewusst ohne Vererbung, weil sie in Woche 11 schon kurz behandelt wird.
+Missionen/Boss/Lösungen beginnen jeweils mit einem **Startpaket** (komplettes Spiel in einer Zelle),
+damit sie unabhängig vom Kernel-Zustand laufen. Debug: 3 Bugs aus verschiedenen Wochen.
+
+- **Content-Erzeugung:** die 36 Notebooks (3 Varianten × DE/EN × 6 Typen) wurden mit einem
+  einmaligen Generator (Themen-Daten + Sprach-Tokens, nicht im Repo) erzeugt und per Playwright in
+  echtem Pyodide durchgelaufen. Änderungen künftig direkt an den `NN_*.py`-Dateien, aber **alle 6
+  Varianten synchron halten** (Code ist strukturell identisch). EN nutzt englische Bezeichner
+  (`Player`, `Item`, `world`, `go north`), Gegenstands-Namen bewusst **einwortig** (`split()` im
+  Befehlsparser).
+- **Checks:** `week-12.json` komplett neu (10 Querschnitts-Fragen, davon 3 `inPlacement`, 2 Coding-
+  Aufgaben mit `variables`/`functionCalls`). Turtle-Distraktoren in `week-5/9/11.json` durch
+  `random`/`json.loads` ersetzt; Projekt-Idee `turtle-welt` in `config.json` → `text-abenteuer`.
+- **Entfernt:** `turtle_cheat_sheet.md` (DE+EN), Turtle-Zweig in `useWeeklyContent.js`; Lehrplan,
+  Beschreibung, `woche12.md`, `gesamtglossar.ipynb`, `INHALTE.md` §3, `KURSPLAN.md` angepasst;
+  Wochen-Icon 🐢 → 🏆.
+- **Bewusst behalten:** Turtle-Shim in `usePyodide.js` + Canvas in `JupyterNotebook.vue` + 2 Tests in
+  `tests/site.spec.js` (für ein späteres Turtle-Mandala-Projekt, siehe `PROJEKTIDEEN.md`).
+- **Offen/Hinweis:** `lehrplan.md` führt "List Comprehensions" unter "Nicht im Kurs enthalten", das
+  Projekt nutzt sie aber an einigen Stellen (`[g.name for g in ...]`); sie stehen seit
+  `woche8-list-comprehension-glossar` im Glossar von Woche 6/8.
+
 ---
 
 ## 4. Aktueller technischer Stand

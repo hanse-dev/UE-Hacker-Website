@@ -1,17 +1,10 @@
-"""# 📖 Glossary – 🏰 Week 12 – Turtle Graphics: The Magic Canvas!
-> You can keep this notebook open all week.
+"""# 📖 Glossary – 🏰 Week 12 – The big final project: The Dragon Cave of Pyralia!
+> You can keep this notebook open all week. In Week 12 you learn **only one** new term, you already know everything else!
 
 | Term | Meaning | Example |
-|------|---------|--------|
-| `turtle` | Python module for graphical drawings | `import turtle` |
-| `turtle.Turtle()` | Create a new Turtle object (the drawing pen) | `t = turtle.Turtle()` |
-| `.forward()` | Move turtle forward (draws a line) | `t.forward(100)` |
-| `.backward()` | Move turtle backward | `t.backward(50)` |
-| `.left()` | Turn turtle left (in degrees) | `t.left(90)` |
-| `.right()` | Turn turtle right (in degrees) | `t.right(45)` |
-| `.color()` | Set pen color | `t.color(\"red\")` |
-| `.fillcolor()` | Set fill color for shapes | `t.fillcolor(\"blue\")` |
-| `.begin_fill()` / `.end_fill()` | Fill the area between these calls | `t.begin_fill()` … `t.end_fill()` |
-| `.circle()` | Draw a circle with given radius | `t.circle(50)` |
-| `.speed()` | Set drawing speed (0 = fastest) | `t.speed(5)` |
-| `.penup()` / `.pendown()` | Lift pen (no drawing) / lower pen (drawing) | `t.penup()` |"""
+|------|---------|---------|
+| **Composition** *(= "has a")* | An object contains other objects | `self.inventory = [Item(...)]` |
+| **Nested dictionary** | A dictionary whose values are dictionaries again | `world["hall"]["exits"]` |
+| `None` | The value for "nothing" – e.g. a room without an enemy | `"enemy": None` |
+| `is not None` | Checks whether something is there | `if enemy is not None:` |
+| **Game loop** | A loop that works through commands and checks the game state | `for text in commands:` |"""

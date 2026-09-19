@@ -1,2 +1,2 @@
-"""# 🔧 Lösungen – 🐴 Woche 12 – Grafische Projekte mit Turtle: Das Turnier-Visualisierungsbrett!
+"""# 🔧 Lösungen – 🐴 Woche 12 – Das große Abschlussprojekt: Der Reiterhof bei Nacht!
 > Erst selber versucht? Dann check hier nach!"""

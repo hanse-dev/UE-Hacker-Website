@@ -1,20 +1,26 @@
-# Example 1: Setting up Turtle
-import turtle
+# Stage 1: The map of the world as a dictionary
+world = {
+    "entrance": {
+        "description": "You are standing at the entrance of the dragon cave. It smells of smoke.",
+        "exits": {"north": "hall"},
+    },
+    "hall": {
+        "description": "A huge hall. Torches flicker on the walls.",
+        "exits": {"south": "entrance", "east": "treasury", "west": "spring"},
+    },
+    "spring": {
+        "description": "A quiet spring. The water sparkles magically.",
+        "exits": {"east": "hall"},
+    },
+    "treasury": {
+        "description": "Gold as far as you can see – and in the middle sleeps the dragon!",
+        "exits": {"west": "hall"},
+    },
+}
 
-# Create a magic drawing scroll
-screen = turtle.Screen()
-screen.title("Magic Drawing Scroll of Pyralia")
-screen.bgcolor("black")
+def describe(room_name):
+    room = world[room_name]
+    print(f"📍 {room_name.capitalize()}: {room['description']}")
+    print("   Exits:", ", ".join(room["exits"]))
 
-# Create a magic pen (Turtle)
-pen = turtle.Turtle()
-pen.speed(1)  # Slow for magical effects
-pen.color("cyan")
-
-# Draw a magic shape
-pen.forward(100)
-pen.left(90)
-pen.forward(100)
-
-# Close the magic drawing scroll
-turtle.done()
+describe("entrance")

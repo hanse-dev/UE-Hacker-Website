@@ -61,7 +61,7 @@ Kurzbeschreibung: Systematischer Python-Einstieg mit Gamification. Drei parallel
 (Abenteuer, Pferde, SciFi). 7 Notebooks pro Woche (Glossar, Lektion, Debug, Missionen, Reflexion, Lösungen, Boss-Quest).
 
 Abgedeckte Themen: print/Variablen → Strings → Bedingungen → Schleifen → Funktionen →
-Listen → Module → Dictionaries → Dateien → OOP → Vererbung → Turtle-Grafik
+Listen → Module → Dictionaries → Dateien → OOP → Vererbung → Abschlussprojekt (Text-Adventure)
 
 ---
 

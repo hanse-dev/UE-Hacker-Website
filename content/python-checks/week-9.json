@@ -41,12 +41,12 @@
       "options": [
         "json",
         "math",
-        "turtle"
+        "random"
       ],
       "options_en": [
         "json",
         "math",
-        "turtle"
+        "random"
       ],
       "correctIndex": 0,
       "explanation": "import json",
@@ -54,12 +54,12 @@
       "optionExplanations": [
         null,
         "math ist für mathematische Berechnungen da, nicht zum Verarbeiten von JSON.",
-        "turtle wird für Grafiken/Zeichnungen verwendet, nicht für JSON."
+        "random erzeugt Zufallszahlen und hat mit dem Speichern von Daten nichts zu tun."
       ],
       "optionExplanations_en": [
         null,
         "math is for mathematical calculations, not for working with JSON.",
-        "turtle is used for drawing graphics, not for JSON."
+        "random generates random numbers and has nothing to do with saving data."
       ]
     },
     {
@@ -282,21 +282,21 @@
         "json.dumps",
         "json.loads",
         "json.dump",
-        "turtle.forward"
+        "random.randint"
       ],
       "options_en": [
         "json.dumps",
         "json.loads",
         "json.dump",
-        "turtle.forward"
+        "random.randint"
       ],
       "correctIndices": [
         0,
         1,
         2
       ],
-      "explanation": "turtle.forward gehört zur Grafik.",
-      "explanation_en": "turtle.forward belongs to graphics, not JSON."
+      "explanation": "random.randint gehört zu Zufallszahlen, nicht zu JSON.",
+      "explanation_en": "random.randint belongs to random numbers, not JSON."
     }
   ],
   "codingChallenges": [

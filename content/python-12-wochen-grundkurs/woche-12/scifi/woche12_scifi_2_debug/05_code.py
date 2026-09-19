@@ -1,9 +1,14 @@
-# Warum bewegt sich das Schiff nicht?
-import turtle
+class Spieler:
+    inventar = []
 
-schiff = turtle.Turtle()
-schiff.shape("turtle")
-schiff.color("red")
-schiff.goto(-100, 0)
-schiff.forward(200)
-# Fehlt etwas?
+    def __init__(self, name):
+        self.name = name
+
+    def nimm(self, thing):
+        self.inventar.append(thing)
+
+mira = Spieler("Mira")
+ben = Spieler("Ben")
+mira.nimm("Zugangskarte")
+print("Mira:", mira.inventar)
+print("Ben:", ben.inventar)

@@ -1,10 +1,14 @@
-# Warum zieht das Pferd eine Linie von der Mitte?
-import turtle
+class Spieler:
+    inventar = []
 
-pferd = turtle.Turtle()
-pferd.shape("turtle")
-pferd.goto(-200, 0)
-pferd.penup()
-pferd.forward(300)
-turtle.done()
-# Was fehlt vor goto()?
+    def __init__(self, name):
+        self.name = name
+
+    def nimm(self, thing):
+        self.inventar.append(thing)
+
+mira = Spieler("Mira")
+ben = Spieler("Ben")
+mira.nimm("Taschenlampe")
+print("Mira:", mira.inventar)
+print("Ben:", ben.inventar)

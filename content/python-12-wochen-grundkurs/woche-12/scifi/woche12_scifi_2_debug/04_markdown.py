@@ -2,4 +2,4 @@
 
 Was ist falsch? Finde und behebe den Fehler!
 
-**Ziel:** Das Schiff soll sichtbar über den Bildschirm fliegen."""
+**Ziel:** Nur Mira soll die `Zugangskarte` im Beutel haben. Ben soll einen leeren Beutel (`[]`) behalten."""

@@ -1,35 +1,26 @@
-# Beispiel 1: Weltraum mit Sternen
-import turtle
-import random
+# Etappe 1: Die Karte der Welt als Dictionary
+welt = {
+    "schleuse": {
+        "beschreibung": "Du stehst in der Schleuse. Rote Warnlichter blinken, und die Station brummt bedrohlich.",
+        "ausgaenge": {"norden": "korridor"},
+    },
+    "korridor": {
+        "beschreibung": "Ein langer Korridor mit vielen Türen. Notbeleuchtung taucht alles in rotes Licht.",
+        "ausgaenge": {"sueden": "schleuse", "osten": "reaktorraum", "westen": "labor"},
+    },
+    "labor": {
+        "beschreibung": "Ein Labor voller Geräte. Auf einem Tisch liegt Werkzeug bereit.",
+        "ausgaenge": {"osten": "korridor"},
+    },
+    "reaktorraum": {
+        "beschreibung": "Der Reaktorraum! Der Reaktor summt – und davor steht ein defekter Wartungsroboter!",
+        "ausgaenge": {"westen": "korridor"},
+    },
+}
 
-# Erstelle das Hologramm-Fenster
-screen = turtle.Screen()
-screen.title("Hologramm-Projektor Nebula-7")
-screen.bgcolor("black")
-screen.setup(800, 600)
+def beschreibe(raum_name):
+    raum = welt[raum_name]
+    print(f"📍 {raum_name.capitalize()}: {raum['beschreibung']}")
+    print("   Ausgänge:", ", ".join(raum["ausgaenge"]))
 
-# Erstelle Sternen-Zeichner
-stern = turtle.Turtle()
-stern.speed(0)
-stern.hideturtle()
-
-# Zeichne zufällige Sterne
-def zeichne_stern(x, y, größe):
-    stern.penup()
-    stern.goto(x, y)
-    stern.pendown()
-    stern.color("white")
-    stern.begin_fill()
-    for _ in range(5):
-        stern.forward(größe)
-        stern.right(144)
-    stern.end_fill()
-
-# Erstelle 100 zufällige Sterne
-for _ in range(100):
-    x = random.randint(-380, 380)
-    y = random.randint(-280, 280)
-    größe = random.randint(1, 5)
-    zeichne_stern(x, y, größe)
-
-turtle.done()
+beschreibe("schleuse")

@@ -1,10 +1,14 @@
-# Why does the horse draw a line from the centre?
-import turtle
+class Player:
+    inventory = []
 
-horse = turtle.Turtle()
-horse.shape("turtle")
-horse.goto(-200, 0)
-horse.penup()
-horse.forward(300)
-turtle.done()
-# What is missing before goto()?
+    def __init__(self, name):
+        self.name = name
+
+    def take(self, thing):
+        self.inventory.append(thing)
+
+mira = Player("Mira")
+ben = Player("Ben")
+mira.take("Flashlight")
+print("Mira:", mira.inventory)
+print("Ben:", ben.inventory)

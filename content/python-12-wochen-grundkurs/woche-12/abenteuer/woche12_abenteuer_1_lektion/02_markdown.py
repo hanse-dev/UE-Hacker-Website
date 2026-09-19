@@ -1,5 +1,11 @@
-"""## Zauberformel 1
+"""## 🗺️ Etappe 1: Die Karte der Welt
 
-**Was es ist:** Das Turtle-Modul ist Pythons magische Zeichenrolle, die es dir ermöglicht, mit Code zu zeichnen.
+*Wissen aus Woche 8: Dictionaries*
 
-**Wichtig:** Importiere immer `turtle` und rufe `turtle.done()` am Ende auf!"""
+Eine Höhle besteht aus Räumen, und jeder Raum hat eine Beschreibung und Ausgänge. Das passt perfekt in ein **Dictionary, das weitere Dictionaries enthält**:
+
+- der äußere Schlüssel ist der Name des Raums (z.B. `"halle"`)
+- der innere Wert ist wieder ein Dictionary mit `"beschreibung"` und `"ausgaenge"`
+- die Ausgänge sind selbst ein Dictionary: Richtung → Name des nächsten Raums
+
+Die Funktion `beschreibe()` (Woche 5) schaut den Raum nach und gibt ihn mit einem f-String (Woche 2) aus."""

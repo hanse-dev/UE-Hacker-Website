@@ -1,1 +1,1 @@
-"""## 🐉 Boss Quest Solutions"""
+"""**Mission 3:** You check the one-word commands **before** the `try` block, because there `split()` would immediately raise a `ValueError` for a single word."""

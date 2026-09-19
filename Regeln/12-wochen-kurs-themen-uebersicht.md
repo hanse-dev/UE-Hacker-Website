@@ -81,9 +81,9 @@
   2. Polymorphismus für flexible Systeme
   3. Magic Methods und Design Patterns
 
-### Woche 12: Grafische Projekte mit Turtle
-- **Thema:** Visuelle Programmierung
+### Woche 12: Abschlussprojekt Text-Adventure
+- **Thema:** Alles zusammen anwenden
 - **Die Kern-Lernpunkte:**
-  1. Turtle-Grafik importieren und einrichten
-  2. Formen zeichnen und bewegen
-  3. Farben und interaktive Grafik
+  1. Spielwelt als verschachteltes Dictionary
+  2. Klassen und Komposition (Spieler, Inventar, Gegenstände)
+  3. Fehler abfangen, Spielstand mit JSON speichern und laden

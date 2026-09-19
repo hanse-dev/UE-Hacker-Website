@@ -1,1 +1,1 @@
-"""## 🐛 Debug Solutions"""
+"""## 🐛 Debug Solution Suggestions"""

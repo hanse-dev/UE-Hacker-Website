@@ -1,35 +1,22 @@
-import turtle, math
+# Mission 2: Der Heiltrank
+welt["labor"]["gegenstaende"].append(Gegenstand("Medkit", "Stellt 10 Lebenspunkte wieder her."))
 
-t = turtle.Turtle()
-screen = turtle.Screen()
-screen.bgcolor("black")
-screen.title("Sonnensystem"); t.speed(0)
+def benutze(self, gegenstand_name):
+    for gegenstand in self.inventar:
+        if gegenstand.name == gegenstand_name:
+            if gegenstand_name == "Medkit":
+                self.hp += 10
+                self.inventar.remove(gegenstand)
+                print(f"🧪 Du benutzt {gegenstand_name}. Du hast jetzt {self.hp} HP.")
+            else:
+                print(f"🤷 Mit {gegenstand_name} kann man hier nichts anfangen.")
+            return
+    print(f"❓ Du hast kein '{gegenstand_name}' im Beutel.")
 
-def planet(radius_bahn, groesse, farbe, name):
-    # Umlaufbahn
-    t.penup(); t.goto(0, -radius_bahn); t.pendown()
-    t.color("gray"); t.circle(radius_bahn)
-    # Planet
-    t.penup(); t.goto(radius_bahn, 0)
-    t.dot(groesse, farbe)
-    t.goto(radius_bahn + groesse, 8)
-    t.color("white"); t.write(name, font=("Arial", 7, "normal"))
+Spieler.benutze = benutze
 
-# Sonne
-t.penup(); t.goto(0, -20); t.dot(40, "yellow")
-
-# Planeten
-planeten = [
-    (60, 8, "gray", "Merkur"),
-    (90, 10, "orange", "Venus"),
-    (120, 11, "blue", "Erde"),
-    (160, 9, "red", "Mars"),
-    (230, 20, "brown", "Jupiter"),
-    (290, 17, "goldenrod", "Saturn"),
-    (340, 13, "lightblue", "Uranus"),
-    (380, 12, "blue", "Neptun"),
-]
-for args in planeten:
-    planet(*args)
-
-t.hideturtle(); turtle.done()
+held = Spieler("Ben", "labor")
+held.hp = 5
+held.nimm("Medkit")
+held.benutze("Medkit")
+held.benutze("Medkit")

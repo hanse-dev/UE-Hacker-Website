@@ -257,7 +257,6 @@ export async function loadWeeklyContent(lang = 'de') {
       const filename = path.split('/').pop() || '';
       let name = 'Cheat Sheet';
       if (filename.includes('wissens')) name = isEn ? '📚 Knowledge Cheat Sheet' : '📚 Wissens-Cheat-Sheet';
-      else if (filename.includes('turtle')) name = '🐢 Turtle Cheat Sheet';
 
       try {
         const contentLoader = await loader();

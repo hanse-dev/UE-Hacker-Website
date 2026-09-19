@@ -113,7 +113,7 @@ const VARIANT_CONFIG = [
 // Übersicht - vor der Themenwahl kennen wir noch keine Variante, daher ein neutrales Symbol.
 const WEEK_ICONS = {
   1: '🚀', 2: '🔤', 3: '🔀', 4: '🔁', 5: '🧩', 6: '📋',
-  7: '🧰', 8: '🗃️', 9: '💾', 10: '🏗️', 11: '🧬', 12: '🐢',
+  7: '🧰', 8: '🗃️', 9: '💾', 10: '🏗️', 11: '🧬', 12: '🏆',
 };
 
 // Rückwärtskompatibel zum alten ?week=&tab=-Schema der früheren Akkordeon-Kursseite

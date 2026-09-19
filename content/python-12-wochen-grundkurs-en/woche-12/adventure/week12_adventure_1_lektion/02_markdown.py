@@ -1,5 +1,11 @@
-"""## Magic Spell 1
+"""## 🗺️ Stage 1: The map of the world
 
-**What it is:** The turtle module is Python's magical drawing scroll that lets you draw with code.
+*Knowledge from Week 8: dictionaries*
 
-**Important:** Always import `turtle` and call `turtle.done()` at the end!"""
+A cave is made of rooms, and every room has a description and exits. That fits perfectly into a **dictionary that contains more dictionaries**:
+
+- the outer key is the name of the room (e.g. `"hall"`)
+- the inner value is another dictionary with `"description"` and `"exits"`
+- the exits are a dictionary themselves: direction → name of the next room
+
+The function `describe()` (Week 5) looks up the room and prints it with an f-string (Week 2)."""

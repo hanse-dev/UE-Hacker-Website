@@ -1,11 +1,14 @@
-# Why does the spaceship draw a line from the centre?
-import turtle
+class Player:
+    inventory = []
 
-screen = turtle.Screen()
-screen.bgcolor("black")
+    def __init__(self, name):
+        self.name = name
 
-ship = turtle.Turtle()
-ship.color("cyan")
-ship.goto(-100, 0)
-ship.forward(200)
-turtle.done()
+    def take(self, thing):
+        self.inventory.append(thing)
+
+mira = Player("Mira")
+ben = Player("Ben")
+mira.take("Keycard")
+print("Mira:", mira.inventory)
+print("Ben:", ben.inventory)

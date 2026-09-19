@@ -1,5 +1,10 @@
-"""## Magic Spell 2
+"""## 🧭 Stage 2: Moving through the world
 
-**What it is:** With turtle commands you can draw different shapes and move the pen.
+*Knowledge from Weeks 3–5: conditions, loops, functions*
 
-**Important:** The turtle always turns at its current position!"""
+Now the game starts moving. The function `go()` uses `if ... in ...` to check whether there is an exit in that direction:
+
+- Yes → the new room is returned (`return`) and described
+- No → a message appears and the player stays where they are
+
+A `for` loop plays a list of commands one after another. Later the game loop takes over."""

@@ -1,3 +1,5 @@
-"""# ⭐ Missionen – 🐴 Woche 12 – Grafische Projekte mit Turtle: Das Turnier-Visualisierungsbrett!
+"""# ⭐ Missionen – 🐴 Woche 12 – Das große Abschlussprojekt: Der Reiterhof bei Nacht!
 
-Die Zeit ist gekommen, deine visuellen Fähigkeiten in echten Herausforderungen zu beweisen!"""
+Der Reiterhof braucht dich! Erweitere den Hof mit neuen Räumen, Gegenständen und Befehlen.
+
+**Wichtig:** Führe zuerst das **Startpaket** aus. Es enthält das komplette Spiel aus der Lektion. Danach löst du jede Mission in ihrer eigenen Zelle."""

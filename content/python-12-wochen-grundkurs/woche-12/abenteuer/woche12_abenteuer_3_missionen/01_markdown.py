@@ -1,3 +1,5 @@
-"""# ⭐ Missionen – 🏰 Woche 12 – Grafische Projekte mit Turtle: Die magische Leinwand!
+"""# ⭐ Missionen – 🏰 Woche 12 – Das große Abschlussprojekt: Die Drachenhöhle von Pyralia!
 
-Die Zeit ist gekommen, deine magischen Zeichenkünste in echten Herausforderungen zu beweisen!"""
+Die Gilde braucht dich! Erweitere die Drachenhöhle mit neuen Räumen, Gegenständen und Befehlen.
+
+**Wichtig:** Führe zuerst das **Startpaket** aus. Es enthält das komplette Spiel aus der Lektion. Danach löst du jede Mission in ihrer eigenen Zelle."""

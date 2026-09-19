@@ -1,1 +1,2 @@
-"""### ⭐⭐☆☆☆ Mission 1: Space Station Nebula-7"""
+"""## ⭐ Mission Solutions
+> First the **starter pack** loads the game fresh – so the solutions are independent of anything you tried before."""

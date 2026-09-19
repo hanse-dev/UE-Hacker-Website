@@ -184,12 +184,12 @@ echte `.ipynb`-Dateien.
 |---|---|
 | Alle | Die magische Evolution / The magical evolution |
 
-### Woche 12 — Turtle Graphics
+### Woche 12 — Abschlussprojekt Text-Adventure
 | Variante | DE Titel | EN Titel |
 |---|---|---|
-| Abenteuer | Die magische Leinwand | *(EN-Titel aus Notebook)* |
-| Pferde | Das Turnier-Visualisierung | *(EN-Titel aus Notebook)* |
-| Sci-Fi | Die Hologramm-Projektoren | *(EN-Titel aus Notebook)* |
+| Abenteuer | Die Drachenhöhle von Pyralia | *(EN-Titel aus Notebook)* |
+| Pferde | Der Reiterhof bei Nacht | *(EN-Titel aus Notebook)* |
+| Sci-Fi | Notfall auf Nebula-7 | *(EN-Titel aus Notebook)* |
 
 ---
 

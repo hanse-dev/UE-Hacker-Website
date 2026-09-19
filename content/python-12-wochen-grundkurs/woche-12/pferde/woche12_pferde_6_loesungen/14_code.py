@@ -1,31 +1,22 @@
-import turtle, random
+# Mission 2: Der Heiltrank
+welt["sattelkammer"]["gegenstaende"].append(Gegenstand("Möhre", "Stellt 10 Lebenspunkte wieder her."))
 
-screen = turtle.Screen()
-screen.bgcolor("lightblue")
-screen.title("Pferderennen!")
-screen.tracer(0)
+def benutze(self, gegenstand_name):
+    for gegenstand in self.inventar:
+        if gegenstand.name == gegenstand_name:
+            if gegenstand_name == "Möhre":
+                self.hp += 10
+                self.inventar.remove(gegenstand)
+                print(f"🧪 Du benutzt {gegenstand_name}. Du hast jetzt {self.hp} HP.")
+            else:
+                print(f"🤷 Mit {gegenstand_name} kann man hier nichts anfangen.")
+            return
+    print(f"❓ Du hast kein '{gegenstand_name}' im Beutel.")
 
-farben = ["red", "blue", "green", "orange", "purple"]
-pferde = []
+Spieler.benutze = benutze
 
-for i, farbe in enumerate(farben):
-    p = turtle.Turtle()
-    p.shape("arrow"); p.color(farbe); p.penup()
-    p.goto(-280, -80 + i * 40)
-    pferde.append(p)
-
-# Ziellinie
-ziel = turtle.Turtle()
-ziel.penup(); ziel.goto(250, -120); ziel.pendown()
-ziel.goto(250, 120); ziel.hideturtle()
-
-for runde in range(200):
-    for pferd in pferde:
-        pferd.forward(random.randint(1, 8))
-    screen.update()
-    sieger = [p for p in pferde if p.xcor() >= 250]
-    if sieger:
-        print(f"Sieger: Pferd {pferde.index(sieger[0])+1}!")
-        break
-
-turtle.done()
+held = Spieler("Ben", "sattelkammer")
+held.hp = 5
+held.nimm("Möhre")
+held.benutze("Möhre")
+held.benutze("Möhre")

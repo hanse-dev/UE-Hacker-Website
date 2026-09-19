@@ -1,3 +1,5 @@
-"""# ⭐ Missionen – 🚀 Woche 12 – Grafische Projekte mit Turtle: Die Hologramm-Projektoren der Nebula-7!
+"""# ⭐ Missionen – 🚀 Woche 12 – Das große Abschlussprojekt: Notfall auf Nebula-7!
 
-Die Zeit ist gekommen, deine holografischen Fähigkeiten in echten Herausforderungen zu beweisen!"""
+Die Crew braucht dich! Erweitere die Station mit neuen Räumen, Gegenständen und Befehlen.
+
+**Wichtig:** Führe zuerst das **Startpaket** aus. Es enthält das komplette Spiel aus der Lektion. Danach löst du jede Mission in ihrer eigenen Zelle."""

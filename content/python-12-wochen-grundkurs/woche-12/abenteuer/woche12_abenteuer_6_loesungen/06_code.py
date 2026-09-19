@@ -1,11 +1,13 @@
-# Problem: end_fill() fehlt
-import turtle
+class Spieler:
+    def __init__(self, name):
+        self.name = name
+        self.inventar = []
 
-pen = turtle.Turtle()
-pen.color("red", "darkred")  # Füllfarbe hinzufügen
-pen.begin_fill()
-for _ in range(5):
-    pen.forward(100)
-    pen.right(144)
-pen.end_fill()  # Fehlende Zeile hinzugefügt
-turtle.done()
+    def nimm(self, thing):
+        self.inventar.append(thing)
+
+mira = Spieler("Mira")
+ben = Spieler("Ben")
+mira.nimm("Fackel")
+print("Mira:", mira.inventar)
+print("Ben:", ben.inventar)

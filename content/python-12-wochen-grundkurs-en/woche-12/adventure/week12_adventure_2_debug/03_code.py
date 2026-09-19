@@ -1,6 +1,5 @@
-# The code doesn't work – why?
-import Turtle
+room = {"description": "A big hall.", "exits": {"north": "cellar", "east": "tower"}}
 
-pen = Turtle()
-pen.forward(100)
-pen.done()
+direction = "west"
+target = room["exits"][direction]
+print(f"You go to {target}.")
