@@ -1,4 +1,4 @@
-"""# 🐛 Debug Quest – 🐴 Week 12 – Turtle Graphics: The Tournament Visualisation Board!
+"""# 🐛 Debug Quest – 🐴 Week 12 – The big final project: The Riding Stable at Night!
 
-An apprentice tried to visualise a tournament, but something went wrong! Find the bugs:
+A riding student built their first text adventure, but it hitches everywhere! The bugs come from different weeks of the course. Find and fix them:
 > 💡 **These bugs were added on purpose** – so you can practise debugging!"""

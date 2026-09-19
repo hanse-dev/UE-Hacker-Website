@@ -10,6 +10,6 @@ Für absolute Einsteiger:innen. Du brauchst keine Vorkenntnisse, nur Neugier und
 
 ## Wie ist der Kurs aufgebaut?
 
-- **12 Wochen** – jede Woche hat ein klares Thema: Variablen, Schleifen, Funktionen, Listen, OOP, Turtle-Grafik und mehr.
+- **12 Wochen** – jede Woche hat ein klares Thema: Variablen, Schleifen, Funktionen, Listen, OOP, ein Abschlussprojekt und mehr.
 - **Drei Themenwelten** – du wählst zwischen Abenteuer, Pferdewirtschaft oder Sci-Fi. Alle vermitteln dasselbe Python-Wissen, nur mit unterschiedlichem Setting.
 - **Missionen & Zertifikate** – jede Woche besteht aus kleinen Missionen, die du meisterst. Erledigst du alle davon und bestehst den Wochen-Check (Quiz + kleine Programmieraufgabe), bekommst du das Zertifikat dieser Woche – dein Nachweis, dass du das Thema wirklich verstanden hast.

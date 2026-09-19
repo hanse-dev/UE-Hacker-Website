@@ -1,17 +1,15 @@
-# Warum ist der Ring unsichtbar?
-import turtle
+import json
 
-planet = turtle.Turtle()
-planet.color("blue")
-planet.penup()
-planet.goto(0, -30)
-planet.pendown()
-planet.circle(30)
-# Jetzt der Ring:
-planet.penup()
-planet.goto(0, -55)
-planet.color("white")
-planet.width(8)
-planet.pendown()
-planet.circle(55)
-turtle.done()
+class Spieler:
+    def __init__(self, name, hp):
+        self.name = name
+        self.hp = hp
+
+mira = Spieler("Mira", 20)
+
+with open("debug_stand.json", "w") as datei:
+    json.dump(mira, datei)
+
+with open("debug_stand.json", "r") as datei:
+    daten = json.load(datei)
+print(daten["name"])

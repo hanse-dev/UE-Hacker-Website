@@ -154,10 +154,14 @@ Je ein Branch pro Punkt, empfohlene Reihenfolge:
       Vererbung"-Checkliste in den Missionen von Pferde+Sci-Fi (× DE/EN) — Abenteuer-Missionen
       hatten die Checkliste nie. Alle Fundstellen per grep verifiziert, danach 0 verbleibende
       Erwähnungen
-- [ ] `woche12-interaktivitaet` — Event-Handling-Beispiel (`onscreenclick`/`onkey`) ergänzen, da
-      "Interaktive Grafik erstellen" bisher unerfülltes Lernziel ist. War blockiert durch den
-      Turtle-Pyodide-Bug (siehe unten) — jetzt entblockt, da der Shim `onscreenclick`/`onkey`/
-      `listen()` bereits als sichere No-Ops unterstützt (nur echtes Event-Wiring fehlt noch)
+- [x] `woche12-abschlussprojekt` (Branch `woche12-abschlussprojekt`) — ersetzt das geplante
+      `woche12-interaktivitaet`: Turtle komplett aus dem Grundkurs entfernt (passte nicht mehr zum
+      Rest, lief zudem nie nativ im Browser). Woche 12 ist jetzt ein **Abschlussprojekt Text-Adventure**
+      (je Variante eine eigene Geschichte: Drachenhöhle / Reiterhof bei Nacht / Notfall auf Nebula-7),
+      wendet alles aus Woche 1–11 an, einziger neuer Begriff: Komposition ("hat ein"). Alle 3
+      Varianten × DE/EN, neue Wochen-Checks, Turtle-Distraktoren in Woche 5/9/11 ersetzt. Details
+      siehe HANDOFF.md 3.46. Der Turtle-Shim bleibt bewusst im Code (für das Backlog-Projekt
+      "Turtle-Mandala", siehe `PROJEKTIDEEN.md`).
 
 ### Turtle-Grafik lief nie im Browser (Branch `turtle-pyodide-shim`, gemergt)
 **Kritischer, unabhängig entdeckter Bug:** Beim Testen von `woche12-interaktivitaet` (s.o.) stellte

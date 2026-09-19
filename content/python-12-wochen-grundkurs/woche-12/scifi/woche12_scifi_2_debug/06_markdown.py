@@ -2,4 +2,4 @@
 
 Was ist falsch? Finde und behebe den Fehler!
 
-**Ziel:** Der Ring soll sichtbar um den Planeten gezeichnet werden."""
+**Ziel:** Das Programm soll den Spielstand in einer Datei speichern und danach den Namen `Mira` aus der Datei ausgeben."""

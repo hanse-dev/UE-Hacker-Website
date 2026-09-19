@@ -1,1 +1,1 @@
-"""### ⭐⭐⭐⭐☆ Mission 3: Das interaktive Sonnensystem"""
+"""**Mission 2:** Die Funktion durchsucht das Inventar mit einer Schleife. Mit `Spieler.benutze = benutze` wird sie nachträglich zur Methode. In einer eigenen Klasse würdest du sie direkt in die Klasse schreiben."""

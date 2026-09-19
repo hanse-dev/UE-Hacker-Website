@@ -1,6 +1,5 @@
-# Der Code funktioniert nicht - warum?
-import Turtle
+raum = {"beschreibung": "Eine große Halle.", "ausgaenge": {"norden": "keller", "osten": "turm"}}
 
-pen = Turtle()
-pen.forward(100)
-pen.done()
+richtung = "westen"
+ziel = raum["ausgaenge"][richtung]
+print(f"Du gehst nach {ziel}.")

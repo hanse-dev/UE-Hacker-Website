@@ -1,26 +1,14 @@
-# Example 1: Magic colours and fills
-import turtle
+# Stage 3a: Items are objects – and they lie in the rooms
+class Item:
+    def __init__(self, name, description):
+        self.name = name
+        self.description = description
 
-screen = turtle.Screen()
-screen.bgcolor("darkblue")
-pen = turtle.Turtle()
-pen.speed(3)
+world["entrance"]["items"] = [Item("Torch", "It shines in dark corners.")]
+world["hall"]["items"] = []
+world["spring"]["items"] = [Item("Sword", "A sharp sword stuck in the stone next to the spring.")]
+world["treasury"]["items"] = [Item("Treasure", "The legendary treasure of Pyralia!")]
 
-# Magic star
-pen.color("yellow", "orange")
-pen.begin_fill()
-for _ in range(5):
-    pen.forward(100)
-    pen.right(144)
-pen.end_fill()
-
-# Magic circle
-pen.penup()
-pen.goto(150, 0)
-pen.pendown()
-pen.color("cyan", "lightblue")
-pen.begin_fill()
-pen.circle(50)
-pen.end_fill()
-
-turtle.done()
+first_room = "entrance"
+first_item = world[first_room]["items"][0]
+print(f"In the {first_room}: {first_item.name} – {first_item.description}")

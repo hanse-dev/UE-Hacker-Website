@@ -1,66 +1,50 @@
-# Lösungsvorschlag Boss-Quest 2 – Das animierte Zaubersiegel
-import turtle
-import random
+# Boss-Quest 1: Der vollständige Spielstand
+def speichern_komplett(spieler, dateiname="komplett.json"):
+    raeume_daten = {}
+    for raum_name, raum in welt.items():
+        gegner = raum["gegner"]
+        raeume_daten[raum_name] = {
+            "gegenstaende": [{"name": g.name, "beschreibung": g.beschreibung} for g in raum["gegenstaende"]],
+            "gegner_hp": gegner.hp if gegner is not None else None,
+        }
+    daten = {
+        "spieler": {
+            "name": spieler.name,
+            "position": spieler.position,
+            "hp": spieler.hp,
+            "inventar": [{"name": g.name, "beschreibung": g.beschreibung} for g in spieler.inventar],
+        },
+        "raeume": raeume_daten,
+    }
+    with open(dateiname, "w", encoding="utf-8") as datei:
+        json.dump(daten, datei, ensure_ascii=False, indent=2)
+    print("💾 Kompletter Spielstand gespeichert.")
 
-screen = turtle.Screen()
-screen.bgcolor("black")
-screen.title("Zaubersiegel")
+def laden_komplett(dateiname="komplett.json"):
+    try:
+        with open(dateiname, "r", encoding="utf-8") as datei:
+            daten = json.load(datei)
+    except FileNotFoundError:
+        print("📂 Kein Spielstand gefunden.")
+        return None
+    for raum_name, zustand in daten["raeume"].items():
+        raum = welt[raum_name]
+        raum["gegenstaende"] = [Gegenstand(e["name"], e["beschreibung"]) for e in zustand["gegenstaende"]]
+        if raum["gegner"] is not None:
+            raum["gegner"].hp = zustand["gegner_hp"]
+    s = daten["spieler"]
+    spieler = Spieler(s["name"], s["position"])
+    spieler.hp = s["hp"]
+    for e in s["inventar"]:
+        spieler.inventar.append(Gegenstand(e["name"], e["beschreibung"]))
+    print("📂 Kompletter Spielstand geladen.")
+    return spieler
 
-stift = turtle.Turtle()
-stift.speed(6)
-
-# Schritt 1: Grundform-Funktionen
-def zeichne_stern(stift, x, y, groesse, farbe):
-    stift.penup()
-    stift.goto(x, y)
-    stift.pendown()
-    stift.color(farbe)
-    stift.fillcolor(farbe)
-    stift.begin_fill()
-    for _ in range(5):
-        stift.forward(groesse)
-        stift.right(144)
-    stift.end_fill()
-
-def zeichne_kreis(stift, x, y, radius, farbe):
-    stift.penup()
-    stift.goto(x, y - radius)
-    stift.pendown()
-    stift.color(farbe)
-    stift.circle(radius)
-
-def zeichne_hexagon(stift, x, y, groesse, farbe):
-    stift.penup()
-    stift.goto(x, y)
-    stift.pendown()
-    stift.color(farbe)
-    for _ in range(6):
-        stift.forward(groesse)
-        stift.right(60)
-
-# Schritt 2: Siegel zusammensetzen
-# Äußerer Kreis
-zeichne_kreis(stift, 0, 0, 150, "gold")
-
-# Mittleres Muster: Hexagon
-zeichne_hexagon(stift, -80, -40, 80, "cyan")
-
-# Innerer Kern: Stern
-zeichne_stern(stift, -30, -20, 60, "red")
-
-# Schritt 3: Farb-Variationen (Bonus: random)
-magische_farben = ["purple", "blue", "lime", "orange", "pink"]
-for i in range(6):
-    farbe = random.choice(magische_farben)
-    zeichne_kreis(stift, 0, 0, 20 + i * 20, farbe)
-
-# Zentrum
-zeichne_stern(stift, -15, -10, 30, "white")
-
-stift.penup()
-stift.goto(0, -180)
-stift.color("gold")
-stift.write("⭐ Zaubersiegel Aktiviert ⭐", align="center", font=("Arial", 12, "bold"))
-
-stift.hideturtle()
-turtle.done()
+# Test: Waffe nehmen, speichern, Welt zerstören, laden
+held = Spieler("Tom", "quelle")
+held.nimm("Schwert")
+speichern_komplett(held)
+welt["quelle"]["gegenstaende"] = [Gegenstand("Müll", "Nur Schrott.")]
+held = laden_komplett()
+held.zeige_inventar()
+print("Im quelle liegt:", [g.name for g in welt["quelle"]["gegenstaende"]])

@@ -1,35 +1,22 @@
-import turtle, random
+# Mission 2: The healing item
+world["tackroom"]["items"].append(Item("Carrot", "Restores 10 hit points."))
 
-screen = turtle.Screen()
-screen.bgcolor("lightblue")
-screen.title("Horse Race!")
-screen.tracer(0)
+def use(self, item_name):
+    for item in self.inventory:
+        if item.name == item_name:
+            if item_name == "Carrot":
+                self.hp += 10
+                self.inventory.remove(item)
+                print(f"🧪 You use the {item_name}. You now have {self.hp} HP.")
+            else:
+                print(f"🤷 You can't do anything with the {item_name} here.")
+            return
+    print(f"❓ You don't have a '{item_name}' in your bag.")
 
-colours = ["red", "blue", "green", "orange", "purple"]
-horses = []
+Player.use = use
 
-for i, colour in enumerate(colours):
-    h = turtle.Turtle()
-    h.shape("arrow")
-    h.color(colour)
-    h.penup()
-    h.goto(-280, -80 + i * 40)
-    horses.append(h)
-
-finish = turtle.Turtle()
-finish.penup()
-finish.goto(250, -120)
-finish.pendown()
-finish.goto(250, 120)
-finish.hideturtle()
-
-for _ in range(200):
-    for horse in horses:
-        horse.forward(random.randint(1, 8))
-    screen.update()
-    winners = [h for h in horses if h.xcor() >= 250]
-    if winners:
-        print(f"Winner: Horse {horses.index(winners[0]) + 1}!")
-        break
-
-turtle.done()
+hero = Player("Ben", "tackroom")
+hero.hp = 5
+hero.take("Carrot")
+hero.use("Carrot")
+hero.use("Carrot")

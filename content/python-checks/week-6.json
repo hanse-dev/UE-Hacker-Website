@@ -297,6 +297,36 @@
       ],
       "explanation": "{\"a\": 1} ist ein Dictionary.",
       "explanation_en": "{\"a\": 1} is a dictionary."
+    },
+    {
+      "id": "w6-11",
+      "type": "multiple_choice",
+      "inPlacement": false,
+      "question": "Was ergibt [x * 2 for x in [1, 2, 3]]?",
+      "question_en": "What does [x * 2 for x in [1, 2, 3]] give?",
+      "options": [
+        "[2, 4, 6]",
+        "[1, 2, 3]",
+        "[1, 4, 9]"
+      ],
+      "options_en": [
+        "[2, 4, 6]",
+        "[1, 2, 3]",
+        "[1, 4, 9]"
+      ],
+      "correctIndex": 0,
+      "explanation": "Die List Comprehension nimmt jedes Element x und rechnet x * 2.",
+      "explanation_en": "The list comprehension takes every element x and calculates x * 2.",
+      "optionExplanations": [
+        null,
+        "Die Original-Liste bleibt unverändert – die Comprehension erzeugt eine neue Liste mit den verdoppelten Werten.",
+        "x * 2 ist das Doppelte, nicht das Quadrat – das Quadrat wäre x * x."
+      ],
+      "optionExplanations_en": [
+        null,
+        "The original list stays unchanged – the comprehension creates a new list with the doubled values.",
+        "x * 2 is double, not the square – the square would be x * x."
+      ]
     }
   ],
   "codingChallenges": [

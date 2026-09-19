@@ -282,21 +282,21 @@
         "Elternklasse",
         "Kindklasse",
         "super()",
-        "turtle.circle"
+        "json.loads"
       ],
       "options_en": [
         "Parent class",
         "Child class",
         "super()",
-        "turtle.circle"
+        "json.loads"
       ],
       "correctIndices": [
         0,
         1,
         2
       ],
-      "explanation": "turtle.circle ist Grafik.",
-      "explanation_en": "turtle.circle is graphics, not inheritance."
+      "explanation": "json.loads gehört zu JSON, nicht zur Vererbung.",
+      "explanation_en": "json.loads belongs to JSON, not inheritance."
     }
   ],
   "codingChallenges": [

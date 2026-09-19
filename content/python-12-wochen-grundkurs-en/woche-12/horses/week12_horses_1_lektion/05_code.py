@@ -1,29 +1,14 @@
-# Example 2: Drawing obstacles
-import turtle
+# Stage 2: Moving through the world
+def go(position, direction):
+    exits = world[position]["exits"]
+    if direction in exits:
+        new_position = exits[direction]
+        describe(new_position)
+        return new_position
+    print("🚫 You can't go that way!")
+    return position
 
-screen = turtle.Screen()
-screen.bgcolor("lightgreen")
-
-obstacle_pen = turtle.Turtle()
-obstacle_pen.speed(3)
-obstacle_pen.color("brown")
-
-def draw_obstacle(x, y, height):
-    obstacle_pen.penup()
-    obstacle_pen.goto(x, y)
-    obstacle_pen.pendown()
-    obstacle_pen.begin_fill()
-    obstacle_pen.fillcolor("saddlebrown")
-    for _ in range(2):
-        obstacle_pen.forward(40)
-        obstacle_pen.left(90)
-        obstacle_pen.forward(height)
-        obstacle_pen.left(90)
-    obstacle_pen.end_fill()
-
-draw_obstacle(-150, -100, 60)
-draw_obstacle(-50, -100, 80)
-draw_obstacle(50, -100, 70)
-draw_obstacle(150, -100, 90)
-
-turtle.done()
+position = "yard"
+for command in ["north", "east", "north", "west", "west"]:
+    print(f"\n> {command}")
+    position = go(position, command)

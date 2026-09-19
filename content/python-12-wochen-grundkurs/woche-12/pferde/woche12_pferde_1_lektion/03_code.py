@@ -1,31 +1,26 @@
-# Beispiel 1: Eine einfache Reitbahn
-import turtle
+# Etappe 1: Die Karte der Welt als Dictionary
+welt = {
+    "hof": {
+        "beschreibung": "Du stehst auf dem Hof. Der Mond scheint, und aus dem Stall hörst du ein leises Wiehern.",
+        "ausgaenge": {"norden": "stallgasse"},
+    },
+    "stallgasse": {
+        "beschreibung": "Eine lange Stallgasse. Rechts und links stehen die Boxen der Pferde.",
+        "ausgaenge": {"sueden": "hof", "osten": "koppel", "westen": "sattelkammer"},
+    },
+    "sattelkammer": {
+        "beschreibung": "Die Sattelkammer riecht nach Leder. An der Wand hängen Sättel und Zaumzeug.",
+        "ausgaenge": {"osten": "stallgasse"},
+    },
+    "koppel": {
+        "beschreibung": "Die nächtliche Koppel. Im Gras steht das Fohlen – und davor ein zorniger Ziegenbock!",
+        "ausgaenge": {"westen": "stallgasse"},
+    },
+}
 
-# Erstelle das Turnier-Feld
-screen = turtle.Screen()
-screen.title("Turnierplatz von Pyralia")
-screen.bgcolor("green")
+def beschreibe(raum_name):
+    raum = welt[raum_name]
+    print(f"📍 {raum_name.capitalize()}: {raum['beschreibung']}")
+    print("   Ausgänge:", ", ".join(raum["ausgaenge"]))
 
-# Erstelle den Bahn-Zeichner
-bahn = turtle.Turtle()
-bahn.speed(5)
-bahn.color("white")
-bahn.pensize(3)
-
-# Zeichne die äußere Bahn
-bahn.penup()
-bahn.goto(-200, -150)
-bahn.pendown()
-for _ in range(2):
-    bahn.forward(400)
-    bahn.left(90)
-    bahn.forward(300)
-    bahn.left(90)
-
-# Mittellinie
-bahn.penup()
-bahn.goto(0, -150)
-bahn.pendown()
-bahn.goto(0, 150)
-
-turtle.done()
+beschreibe("hof")

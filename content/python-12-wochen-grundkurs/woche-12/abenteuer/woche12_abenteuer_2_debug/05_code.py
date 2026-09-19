@@ -1,10 +1,14 @@
-# Warum ist der Stern nicht gefüllt?
-import turtle
+class Spieler:
+    inventar = []
 
-pen = turtle.Turtle()
-pen.color("red")
-pen.begin_fill()
-for _ in range(5):
-    pen.forward(100)
-    pen.right(144)
-# Fehlt etwas?
+    def __init__(self, name):
+        self.name = name
+
+    def nimm(self, thing):
+        self.inventar.append(thing)
+
+mira = Spieler("Mira")
+ben = Spieler("Ben")
+mira.nimm("Fackel")
+print("Mira:", mira.inventar)
+print("Ben:", ben.inventar)

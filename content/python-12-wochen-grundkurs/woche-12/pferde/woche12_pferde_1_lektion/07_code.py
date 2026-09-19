@@ -1,23 +1,14 @@
-# Beispiel 1: Pferd auf der Bahn
-import turtle
-import time
+# Etappe 3a: Gegenstände sind Objekte – und liegen in den Räumen
+class Gegenstand:
+    def __init__(self, name, beschreibung):
+        self.name = name
+        self.beschreibung = beschreibung
 
-screen = turtle.Screen()
-screen.bgcolor("green")
+welt["hof"]["gegenstaende"] = [Gegenstand("Taschenlampe", "Sie leuchtet in dunklen Ecken.")]
+welt["stallgasse"]["gegenstaende"] = []
+welt["sattelkammer"]["gegenstaende"] = [Gegenstand("Stallbesen", "Ein kräftiger Besen. Er hilft, den Ziegenbock zu vertreiben.")]
+welt["koppel"]["gegenstaende"] = [Gegenstand("Fohlen", "Das kleine Fohlen folgt dir vertrauensvoll.")]
 
-# Erstelle ein Pferd
-pferd = turtle.Turtle()
-pferd.shape("turtle")  # Tempär, bis wir eine bessere Form haben
-pferd.color("black")
-pferd.shapesize(2, 1.5)
-pferd.penup()
-
-# Startposition
-pferd.goto(-180, 0)
-
-# Pferd bewegen
-for _ in range(10):
-    pferd.forward(40)
-    time.sleep(0.5)
-
-turtle.done()
+erster_raum = "hof"
+erster_gegenstand = welt[erster_raum]["gegenstaende"][0]
+print(f"Im {erster_raum}: {erster_gegenstand.name} – {erster_gegenstand.beschreibung}")

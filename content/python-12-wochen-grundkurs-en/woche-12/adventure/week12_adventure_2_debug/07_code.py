@@ -1,8 +1,15 @@
-# Why can't you see anything?
-import turtle
+import json
 
-pen = turtle.Turtle()
-pen.speed(0)
-pen.color("white")
-pen.forward(100)
-# What is missing at the end?
+class Player:
+    def __init__(self, name, hp):
+        self.name = name
+        self.hp = hp
+
+mira = Player("Mira", 20)
+
+with open("debug_save.json", "w") as file:
+    json.dump(mira, file)
+
+with open("debug_save.json", "r") as file:
+    data = json.load(file)
+print(data["name"])

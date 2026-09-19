@@ -1,29 +1,26 @@
-# Example 1: A simple riding arena
-import turtle
+# Stage 1: The map of the world as a dictionary
+world = {
+    "yard": {
+        "description": "You are standing in the yard. The moon is shining, and you hear a soft neigh from the stable.",
+        "exits": {"north": "aisle"},
+    },
+    "aisle": {
+        "description": "A long stable aisle. The horses' boxes stand on the left and right.",
+        "exits": {"south": "yard", "east": "paddock", "west": "tackroom"},
+    },
+    "tackroom": {
+        "description": "The tack room smells of leather. Saddles and bridles hang on the wall.",
+        "exits": {"east": "aisle"},
+    },
+    "paddock": {
+        "description": "The paddock at night. The foal stands in the grass – and in front of it an angry billy goat!",
+        "exits": {"west": "aisle"},
+    },
+}
 
-screen = turtle.Screen()
-screen.title("Tournament Ground")
-screen.bgcolor("green")
+def describe(room_name):
+    room = world[room_name]
+    print(f"📍 {room_name.capitalize()}: {room['description']}")
+    print("   Exits:", ", ".join(room["exits"]))
 
-arena = turtle.Turtle()
-arena.speed(5)
-arena.color("white")
-arena.pensize(3)
-
-# Draw outer arena
-arena.penup()
-arena.goto(-200, -150)
-arena.pendown()
-for _ in range(2):
-    arena.forward(400)
-    arena.left(90)
-    arena.forward(300)
-    arena.left(90)
-
-# Centre line
-arena.penup()
-arena.goto(0, -150)
-arena.pendown()
-arena.goto(0, 150)
-
-turtle.done()
+describe("yard")

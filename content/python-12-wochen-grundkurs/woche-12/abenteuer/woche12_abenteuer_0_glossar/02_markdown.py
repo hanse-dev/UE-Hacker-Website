@@ -1,1 +1,1 @@
-"""## Kurzbeispiele"""
+"""## Kurzbeispiel: Komposition"""

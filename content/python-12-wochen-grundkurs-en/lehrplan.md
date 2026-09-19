@@ -95,6 +95,7 @@ Overview of all concepts per week. Each week has three parallel courses with ide
 - `break` – exit loop early
 - `continue` – skip current round
 - `set` – remove duplicates (short introduction)
+- List comprehensions – build or filter a new list in one line (`[x * 2 for x in list_ if x > 3]`)
 
 **Deepening:** List basics (Week 4), loops, functions
 
@@ -190,23 +191,22 @@ Overview of all concepts per week. Each week has three parallel courses with ide
 
 ---
 
-## Week 12 – Graphics with Turtle
+## Week 12 – Final project: text adventure
 
-**New concepts:**
-- `turtle` module – graphical output
-- Basic commands: `forward()`, `backward()`, `left()`, `right()`
-- `color()`, `fillcolor()`, `begin_fill()`, `end_fill()`
-- `circle()`, `speed()`
-- Loops for patterns and animations
+**No new basic concepts** – Week 12 applies everything from Weeks 1–11 in one project:
+- Game world as a nested dictionary (Week 8)
+- Movement with functions, conditions and loops (Weeks 3–5)
+- Inventory as a list, classes `Spieler`, `Gegenstand`, `Gegner` (Weeks 6, 10, 11)
+- Fights with `random` (Week 7)
+- Catching wrong input with `try`/`except` (Week 8)
+- Saving and loading a game state with JSON (Week 9)
 
-**Deepening:** Loops, functions, OOP (Turtle as an object)
+**Only new term:** composition ("has a") – an object contains other objects.
 
-> 💡 **OOP connection:** The `turtle` object is itself a class – `t = turtle.Turtle()`
-> creates an instance. Week 12 thus rounds off the OOP knowledge from Weeks 10–11.
-> **Note:** Turtle requires a local Python installation with `tkinter` –
-> may not work in pure browser environments (JupyterHub etc.).
+> 💡 **OOP connection:** Inheritance ("is a") from Week 11 and composition ("has a") complement each other.
+> The project deliberately uses only composition.
 
-**Learning goals:** Write graphical programs with Turtle, experience OOP in practice.
+**Learning goals:** Plan a complete, multi-part program and assemble it from the building blocks of the course.
 
 ---
 
@@ -214,7 +214,6 @@ Overview of all concepts per week. Each week has three parallel courses with ide
 
 The following topics are too advanced for a beginner course and are not taught:
 
-- List Comprehensions
 - Decorators / `@property`
 - Abstract classes (`abc.ABC`, `@abstractmethod`)
 - Generators and iterators

@@ -1,50 +1,14 @@
-# Beispiel 1: Planetensystem
-import turtle
+# Etappe 3a: Gegenstände sind Objekte – und liegen in den Räumen
+class Gegenstand:
+    def __init__(self, name, beschreibung):
+        self.name = name
+        self.beschreibung = beschreibung
 
-screen = turtle.Screen()
-screen.bgcolor("black")
+welt["schleuse"]["gegenstaende"] = [Gegenstand("Zugangskarte", "Sie öffnet gesicherte Türen.")]
+welt["korridor"]["gegenstaende"] = []
+welt["labor"]["gegenstaende"] = [Gegenstand("Schweißbrenner", "Ein Werkzeug, das auch defekte Roboter stoppt.")]
+welt["reaktorraum"]["gegenstaende"] = [Gegenstand("Notschalter", "Der rote Not-Aus-Schalter des Reaktors.")]
 
-# Planeten-Zeichner
-planet = turtle.Turtle()
-planet.speed(5)
-planet.hideturtle()
-
-# Sonne
-planet.penup()
-planet.goto(0, 0)
-planet.pendown()
-planet.color("yellow")
-planet.begin_fill()
-planet.fillcolor("orange")
-planet.circle(50)
-planet.end_fill()
-
-# Planet 1
-planet.penup()
-planet.goto(150, 0)
-planet.pendown()
-planet.color("blue")
-planet.begin_fill()
-planet.fillcolor("lightblue")
-planet.circle(20)
-planet.end_fill()
-
-# Planet 2 mit Ring
-planet.penup()
-planet.goto(-150, 0)
-planet.pendown()
-planet.color("brown")
-planet.begin_fill()
-planet.fillcolor("tan")
-planet.circle(30)
-planet.end_fill()
-
-# Ring um Planet 2
-planet.penup()
-planet.goto(-150, -30)
-planet.pendown()
-planet.color("gray")
-planet.width(3)
-planet.circle(30, 360)
-
-turtle.done()
+erster_raum = "schleuse"
+erster_gegenstand = welt[erster_raum]["gegenstaende"][0]
+print(f"Im {erster_raum}: {erster_gegenstand.name} – {erster_gegenstand.beschreibung}")

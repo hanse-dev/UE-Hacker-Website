@@ -12,7 +12,3 @@ print(f"Einzigartige Disziplinen: {einzigartige_disziplinen}")
 print("\nAlle Disziplinen:")
 for i, d in enumerate(disziplinen):
     print(f"  Position {i}: {d}")
-
-# List Comprehension (fortgeschritten)
-lange_namen = [d for d in disziplinen if len(d) > 6]
-print(f"\nDisziplinen mit langen Namen: {lange_namen}")

@@ -1,5 +1,10 @@
-"""## Lesson 2
+"""## 🧭 Stage 2: Moving through the world
 
-**What it is:** Obstacles are the challenges in a tournament.
+*Knowledge from Weeks 3–5: conditions, loops, functions*
 
-**Important:** Use functions for repeated obstacles!"""
+Now the game starts moving. The function `go()` uses `if ... in ...` to check whether there is an exit in that direction:
+
+- Yes → the new room is returned (`return`) and described
+- No → a message appears and the player stays where they are
+
+A `for` loop plays a list of commands one after another. Later the game loop takes over."""

@@ -16,4 +16,5 @@
 | `break` | Schleife sofort beenden | `if x == 5: break` |
 | `continue` | Aktuelle Runde überspringen, mit nächster weitermachen | `if x == 0: continue` |
 | `set` | Menge – wie Liste, aber ohne Duplikate und ohne feste Reihenfolge | `set([1,1,2])` → `{1, 2}` |
-| **Algorithmus** | Schritt-für-Schritt-Lösungsweg – wie ein Kochrezept für den Computer | `for x in liste: if x > max: max = x` |"""
+| **Algorithmus** | Schritt-für-Schritt-Lösungsweg – wie ein Kochrezept für den Computer | `for x in liste: if x > max: max = x` |"
+| **List Comprehension** | Kurzschreibweise, um aus einer Liste eine neue zu erzeugen | `[x for x in liste if x > 5]` |"""

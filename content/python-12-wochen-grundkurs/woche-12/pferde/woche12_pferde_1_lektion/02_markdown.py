@@ -1,5 +1,11 @@
-"""## Zauberformel 1
+"""## 🗺️ Etappe 1: Die Karte der Welt
 
-**Was es ist:** Eine Reitbahn ist ein rechteckiger Bereich mit Markierungen und Linien.
+*Wissen aus Woche 8: Dictionaries*
 
-**Wichtig:** Nutze Koordinaten für präzise Platzierung!"""
+Ein Reiterhof besteht aus Räumen und Plätzen, und jeder hat eine Beschreibung und Ausgänge. Das passt perfekt in ein **Dictionary, das weitere Dictionaries enthält**:
+
+- der äußere Schlüssel ist der Name des Raums (z.B. `"stallgasse"`)
+- der innere Wert ist wieder ein Dictionary mit `"beschreibung"` und `"ausgaenge"`
+- die Ausgänge sind selbst ein Dictionary: Richtung → Name des nächsten Raums
+
+Die Funktion `beschreibe()` (Woche 5) schaut den Raum nach und gibt ihn mit einem f-String (Woche 2) aus."""

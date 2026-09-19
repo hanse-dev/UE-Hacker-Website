@@ -2,4 +2,4 @@
 
 Was ist falsch? Finde und behebe den Fehler!
 
-**Ziel:** Der Stern soll auf dem Hintergrund sichtbar gezeichnet werden."""
+**Ziel:** Das Programm soll `🚫 Dort geht es nicht weiter!` ausgeben, wenn es in dieser Richtung keinen Ausgang gibt."""

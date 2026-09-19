@@ -1,20 +1,14 @@
-# Example 3: Horse on the track
-import turtle
-import time
+# Stage 3a: Items are objects – and they lie in the rooms
+class Item:
+    def __init__(self, name, description):
+        self.name = name
+        self.description = description
 
-screen = turtle.Screen()
-screen.bgcolor("green")
+world["yard"]["items"] = [Item("Flashlight", "It shines in dark corners.")]
+world["aisle"]["items"] = []
+world["tackroom"]["items"] = [Item("Broom", "A sturdy broom. It helps to chase off the billy goat.")]
+world["paddock"]["items"] = [Item("Foal", "The little foal follows you trustingly.")]
 
-horse = turtle.Turtle()
-horse.shape("turtle")
-horse.color("black")
-horse.shapesize(2, 1.5)
-horse.penup()
-
-horse.goto(-180, 0)
-
-for _ in range(10):
-    horse.forward(40)
-    time.sleep(0.5)
-
-turtle.done()
+first_room = "yard"
+first_item = world[first_room]["items"][0]
+print(f"In the {first_room}: {first_item.name} – {first_item.description}")

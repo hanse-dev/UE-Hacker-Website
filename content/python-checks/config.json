@@ -24,21 +24,21 @@
       ]
     },
     {
-      "id": "turtle-welt",
-      "title": "Turtle-Welt",
-      "title_en": "Turtle World",
-      "description": "Zeichne eine Szene oder ein kleines Spiel mit Turtle: Haus, Labyrinth oder Fang-den-Punkt. Nutze Schleifen für Muster und Funktionen für wiederkehrende Formen.",
-      "description_en": "Draw a scene or a small game with Turtle: house, maze, or catch-the-dot. Use loops for patterns and functions for repeated shapes.",
+      "id": "text-abenteuer",
+      "title": "Text-Abenteuer",
+      "title_en": "Text Adventure",
+      "description": "Baue dein eigenes Text-Adventure weiter aus: neue Räume als Dictionary, Gegenstände als Klassen, Kämpfe mit random und Speichern mit JSON.",
+      "description_en": "Keep building your own text adventure: new rooms as dictionaries, items as classes, fights with random, and saving with JSON.",
       "skills": [
-        "Turtle",
-        "Schleifen",
-        "Funktionen",
+        "Dicts",
+        "Klassen",
+        "JSON/Dateien",
         "Zufall (optional)"
       ],
       "skills_en": [
-        "Turtle",
-        "Loops",
-        "Functions",
+        "Dicts",
+        "Classes",
+        "JSON/files",
         "Random (optional)"
       ]
     },

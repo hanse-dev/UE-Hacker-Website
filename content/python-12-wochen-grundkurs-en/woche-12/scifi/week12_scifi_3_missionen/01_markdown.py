@@ -1,3 +1,5 @@
-"""# ⭐ Missions – 🚀 Week 12 – Turtle Graphics: The Hologram Projectors of Nebula-7!
+"""# ⭐ Missions – 🚀 Week 12 – The big final project: Emergency on Nebula-7!
 
-The time has come to prove your holographic skills in real challenges!"""
+The crew needs you! Expand the station with new rooms, items and commands.
+
+**Important:** Run the **starter pack** first. It contains the complete game from the lesson. Then you solve each mission in its own cell."""

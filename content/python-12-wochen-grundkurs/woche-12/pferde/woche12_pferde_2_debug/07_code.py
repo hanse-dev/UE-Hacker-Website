@@ -1,13 +1,15 @@
-# Warum ist der Kreis nicht gefüllt?
-import turtle
+import json
 
-screen = turtle.Screen()
-screen.bgcolor("white")
+class Spieler:
+    def __init__(self, name, hp):
+        self.name = name
+        self.hp = hp
 
-bahn = turtle.Turtle()
-bahn.speed(0)
-bahn.color("red")
-bahn.fillcolor("blue")
-bahn.begin_fill()
-bahn.circle(50)
-# Was fehlt am Ende?
+mira = Spieler("Mira", 20)
+
+with open("debug_stand.json", "w") as datei:
+    json.dump(mira, datei)
+
+with open("debug_stand.json", "r") as datei:
+    daten = json.load(datei)
+print(daten["name"])

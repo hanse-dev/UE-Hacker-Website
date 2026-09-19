@@ -1,4 +1,4 @@
-"""# 🐛 Debug-Quest – 🐴 Woche 12 – Grafische Projekte mit Turtle: Das Turnier-Visualisierungsbrett!
+"""# 🐛 Debug-Quest – 🐴 Woche 12 – Das große Abschlussprojekt: Der Reiterhof bei Nacht!
 
-Ein Lehrling hat versucht, ein Turnier zu visualisieren, aber etwas läuft schief! Finde die Fehler:
+Ein Reitschüler hat sein erstes Text-Adventure gebaut, aber es hakt an allen Ecken! Die Fehler stammen aus verschiedenen Wochen des Kurses. Finde und behebe sie:
 > 💡 **Diese Fehler wurden absichtlich eingebaut** – damit du das Debuggen üben kannst!"""

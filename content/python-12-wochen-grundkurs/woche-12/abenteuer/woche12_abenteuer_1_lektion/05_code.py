@@ -1,23 +1,14 @@
-# Beispiel 1: Grundlegende Bewegungen
-import turtle
+# Etappe 2: Sich durch die Welt bewegen
+def gehe(position, richtung):
+    ausgaenge = welt[position]["ausgaenge"]
+    if richtung in ausgaenge:
+        neue_position = ausgaenge[richtung]
+        beschreibe(neue_position)
+        return neue_position
+    print("🚫 Dort geht es nicht weiter!")
+    return position
 
-screen = turtle.Screen()
-screen.bgcolor("navy")
-pen = turtle.Turtle()
-pen.speed(5)
-pen.color("gold")
-
-# Ein magisches Quadrat
-for _ in range(4):
-    pen.forward(100)
-    pen.left(90)
-
-# Ein magisches Dreieck
-pen.penup()
-pen.goto(-150, 0)
-pen.pendown()
-for _ in range(3):
-    pen.forward(100)
-    pen.left(120)
-
-turtle.done()
+position = "eingang"
+for befehl in ["norden", "osten", "norden", "westen", "westen"]:
+    print(f"\n> {befehl}")
+    position = gehe(position, befehl)

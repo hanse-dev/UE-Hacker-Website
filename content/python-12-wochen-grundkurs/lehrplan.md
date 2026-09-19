@@ -95,6 +95,7 @@
 - `break` – Schleife vorzeitig beenden
 - `continue` – aktuelle Runde überspringen
 - `set` – Duplikate entfernen (kurze Einführung)
+- List Comprehensions – neue Liste in einer Zeile erzeugen oder filtern (`[x * 2 for x in liste if x > 3]`)
 
 **Vertiefung:** Listen-Grundlagen (Woche 4), Schleifen, Funktionen
 
@@ -190,23 +191,22 @@
 
 ---
 
-## Woche 12 – Grafik mit Turtle
+## Woche 12 – Abschlussprojekt: Text-Adventure
 
-**Neue Konzepte:**
-- `turtle` Modul – grafische Ausgabe
-- Grundbefehle: `forward()`, `backward()`, `left()`, `right()`
-- `color()`, `fillcolor()`, `begin_fill()`, `end_fill()`
-- `circle()`, `speed()`
-- Schleifen für Muster und Animationen
+**Keine neuen Grundkonzepte** – Woche 12 wendet alles aus Woche 1–11 in einem Projekt an:
+- Spielwelt als verschachteltes Dictionary (Woche 8)
+- Bewegung mit Funktionen, Bedingungen und Schleifen (Woche 3–5)
+- Inventar als Liste, Klassen `Spieler`, `Gegenstand`, `Gegner` (Woche 6, 10, 11)
+- Kämpfe mit `random` (Woche 7)
+- Falsche Eingaben mit `try`/`except` abfangen (Woche 8)
+- Spielstand speichern und laden mit JSON (Woche 9)
 
-**Vertiefung:** Schleifen, Funktionen, OOP (Turtle als Objekt)
+**Einziger neuer Begriff:** Komposition ("hat ein") – ein Objekt enthält andere Objekte.
 
-> 💡 **OOP-Verbindung:** Das `turtle`-Objekt ist selbst eine Klasse – `t = turtle.Turtle()`
-> erstellt eine Instanz. Damit rundet Woche 12 das OOP-Wissen aus Wochen 10–11 ab.
-> **Hinweis:** Turtle benötigt eine lokale Python-Installation mit `tkinter` –
-> in reinen Browser-Umgebungen (JupyterHub etc.) ggf. nicht ausführbar.
+> 💡 **OOP-Verbindung:** Vererbung ("ist ein") aus Woche 11 und Komposition ("hat ein") ergänzen sich.
+> Im Projekt kommt bewusst nur Komposition vor.
 
-**Lernziele:** Grafische Programme mit Turtle schreiben, OOP in der Praxis erleben.
+**Lernziele:** Ein komplettes, mehrteiliges Programm planen und aus den Bausteinen des Kurses zusammensetzen.
 
 ---
 
@@ -214,7 +214,6 @@
 
 Folgende Themen sind für einen Grundkurs zu fortgeschritten und werden nicht gelehrt:
 
-- List Comprehensions
 - Decorators / `@property`
 - Abstrakte Klassen (`abc.ABC`, `@abstractmethod`)
 - Generatoren und Iteratoren

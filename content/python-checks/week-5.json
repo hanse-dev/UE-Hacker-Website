@@ -282,21 +282,21 @@
         "def",
         "Name der Funktion",
         "Klammern",
-        "import turtle immer"
+        "import random immer"
       ],
       "options_en": [
         "def",
         "Function name",
         "Parentheses",
-        "import turtle always"
+        "import random always"
       ],
       "correctIndices": [
         0,
         1,
         2
       ],
-      "explanation": "import turtle braucht man nur für Grafik.",
-      "explanation_en": "You only need import turtle for graphics."
+      "explanation": "import random braucht man nur, wenn man Zufallszahlen erzeugen will.",
+      "explanation_en": "You only need import random when you want to generate random numbers."
     }
   ],
   "codingChallenges": [

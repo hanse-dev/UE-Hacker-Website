@@ -1,5 +1,5 @@
 """### 🐛 Bug #3
 
-What is wrong? Find and fix the bug!
+What's wrong? Find and fix the bug!
 
-**Goal:** The program should draw a circle filled with blue and a red outline."""
+**Goal:** The program should save the game state in a file and then print the name `Mira` from the file."""

@@ -1,7 +1,0 @@
-print()
-print("🎉 Boss-Quest abgeschlossen!")
-print("🏆 Du hast den Kommandanten besiegt!")
-print("⭐ Titel erhalten: Hologramm-Meister der Nebula-7")
-print()
-print("🎊 GLÜCKWUNSCH! Du hast Woche 12 gemeistert!")
-print("📚 Nächste Woche: Deine eigenen Projekte!")

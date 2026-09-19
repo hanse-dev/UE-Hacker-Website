@@ -1,1 +1,1 @@
-"""### ⭐⭐⭐⭐☆ Mission 3: The Interactive Solar System"""
+"""**Mission 2:** The function searches the inventory with a loop. With `Player.use = use` it later becomes a method. In your own class you would write it directly inside the class."""

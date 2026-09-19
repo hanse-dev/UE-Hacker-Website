@@ -1,15 +1,5 @@
-# Why are the stars invisible?
-import turtle
+room = {"description": "A big hall.", "exits": {"north": "cellar", "east": "tower"}}
 
-screen = turtle.Screen()
-screen.bgcolor("white")
-
-star = turtle.Turtle()
-star.color("white")
-star.begin_fill()
-star.fillcolor("white")
-for _ in range(5):
-    star.forward(20)
-    star.right(144)
-star.end_fill()
-turtle.done()
+direction = "west"
+target = room["exits"][direction]
+print(f"You go to {target}.")

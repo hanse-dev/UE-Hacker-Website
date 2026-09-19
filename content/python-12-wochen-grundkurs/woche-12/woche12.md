@@ -1,22 +1,23 @@
 ---
-title: '📚 Woche 12 – Grafische Projekte mit Turtle: Die magische Leinwand!'
+title: '📚 Woche 12 – Das große Abschlussprojekt: Dein eigenes Text-Adventure!'
 ---
 
-# 🎯 Die Herausforderung: Code zum Leben erwecken!
+# 🎯 Die Herausforderung: Alles zusammen!
 
-Du hast gelernt, wie man Code schreibt. Jetzt lernst du, wie man sichtbare Ergebnisse erzeugt - farbenfrohe Grafiken, Animationen und interaktive Kunst!
+Du hast in elf Wochen viele Werkzeuge kennengelernt. Jetzt setzt du sie zu einem echten Spiel zusammen: einem **Text-Adventure**, das du selbst baust und beliebig erweiterst.
 
-Mit Turtle kannst du deine Programme visuell machen und spielerisch lernen!
+Dabei wendest du fast alles aus dem Kurs an – von Variablen bis zu Klassen und JSON-Dateien.
 
 ## 🎮 Themenwelten zur Auswahl
 
-- **🗺️ Abenteuer-Welt:** Die magischen Zeichenrollen von Pyralia – erschaffe zauberhafte Bilder und Runen!
-- **🐴 Pferdewirtschaft:** Das Turnier-Visualisierungsbrett – zeichne Pferde, Hindernisse und Reitbahnen!
-- **🚀 Sci-Fi-Welt:** Die Hologramm-Projektoren der Nebula-7 – erstelle Weltraum-Szenen und Raumschiffe!
+- **🗺️ Abenteuer-Welt:** Die Drachenhöhle von Pyralia – finde den Schatz und besiege den Drachen!
+- **🐴 Pferdewirtschaft:** Der Reiterhof bei Nacht – finde das verschwundene Fohlen!
+- **🚀 Sci-Fi-Welt:** Notfall auf Nebula-7 – schalte den Reaktor ab, bevor es zu spät ist!
 
 # 🎯 Lernziele
-- Turtle-Modul importieren und einrichten
-- Formen zeichnen und bewegen
-- Farben und Füllungen verwenden
-- Schleifen für Muster nutzen
-- Interaktive Grafik erstellen
+- Eine Spielwelt als verschachteltes Dictionary aufbauen
+- Funktionen, Bedingungen und Schleifen zu einer Spielschleife verbinden
+- Objekte in Objekten nutzen (Komposition): Spieler, Inventar, Gegenstände
+- Zufall und Klassen für Gegner und Kämpfe einsetzen
+- Falsche Eingaben mit try/except abfangen
+- Einen Spielstand als JSON speichern und laden

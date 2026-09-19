@@ -1,0 +1,47 @@
+# Etappe 4: Zufall und ein Gegner
+import random
+
+class Gegner:
+    def __init__(self, name, hp, staerke):
+        self.name = name
+        self.hp = hp
+        self.staerke = staerke
+
+    def ist_besiegt(self):
+        return self.hp <= 0
+
+# Nur ein Raum hat einen echten Gegner – alle anderen haben keinen (None)
+welt["schleuse"]["gegner"] = None
+welt["korridor"]["gegner"] = None
+welt["labor"]["gegner"] = None
+welt["reaktorraum"]["gegner"] = Gegner("Wartungsroboter", 15, 6)
+
+def hat_gegenstand(spieler, name):
+    for gegenstand in spieler.inventar:
+        if gegenstand.name == name:
+            return True
+    return False
+
+def kampf(spieler, gegner):
+    print(f"⚔️ Kampf: {spieler.name} gegen {gegner.name}!")
+    bonus = 3 if hat_gegenstand(spieler, "Schweißbrenner") else 0
+    while spieler.hp > 0 and not gegner.ist_besiegt():
+        schaden = random.randint(1, 6) + bonus
+        gegner.hp -= schaden
+        print(f"   Du triffst für {schaden} Schaden. ({gegner.name}: {max(gegner.hp, 0)} HP)")
+        if gegner.ist_besiegt():
+            break
+        gegenschlag = random.randint(1, gegner.staerke)
+        spieler.hp -= gegenschlag
+        print(f"   {gegner.name} trifft dich für {gegenschlag}. ({spieler.name}: {max(spieler.hp, 0)} HP)")
+    return spieler.hp > 0
+
+def pruefe_gegner(spieler):
+    gegner = welt[spieler.position]["gegner"]
+    if gegner is not None and not gegner.ist_besiegt():
+        if kampf(spieler, gegner):
+            print(f"🎉 Du hast den {gegner.name} besiegt!")
+
+# Zum Ausprobieren: ein Übungs-Kampf mit einem Testhelden und einem Übungs-Gegner
+testheld = Spieler("Testheld", "reaktorraum")
+kampf(testheld, Gegner("Übungs-Wartungsroboter", 15, 6))

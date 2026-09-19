@@ -1,5 +1,6 @@
-"""# 🐉 Boss Quests – 🚀 Week 12 – Turtle Graphics: The Hologram Projectors of Nebula-7!
-> ⚠️ Harder! Combines everything from this week.
+"""# 🐉 Boss Quests – 🚀 Week 12 – The big final project: Emergency on Nebula-7!
+> ⚠️ Harder! Combines everything from the course.
 
-**⚠️ WARNING:** These quests are extremely difficult! They combine all Turtle concepts.
-"""
+**⚠️ ATTENTION:** These quests are the final exam of your course! They combine all concepts from the 12 weeks.
+
+Run the **starter pack** first. Then the boss quests show you: Are you really a master of Nebula-7?"""

@@ -1,10 +1,14 @@
-# Why is the star not filled?
-import turtle
+class Player:
+    inventory = []
 
-pen = turtle.Turtle()
-pen.color("red")
-pen.begin_fill()
-for _ in range(5):
-    pen.forward(100)
-    pen.right(144)
-# Is something missing?
+    def __init__(self, name):
+        self.name = name
+
+    def take(self, thing):
+        self.inventory.append(thing)
+
+mira = Player("Mira")
+ben = Player("Ben")
+mira.take("Torch")
+print("Mira:", mira.inventory)
+print("Ben:", ben.inventory)

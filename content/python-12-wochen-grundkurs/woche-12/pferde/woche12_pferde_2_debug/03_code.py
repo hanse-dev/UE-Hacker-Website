@@ -1,12 +1,5 @@
-# Warum sieht man das Hindernis nicht?
-import turtle
+raum = {"beschreibung": "Eine große Halle.", "ausgaenge": {"norden": "keller", "osten": "turm"}}
 
-hindernis = turtle.Turtle()
-hindernis.color("brown")
-hindernis.penup()
-hindernis.goto(-50, -50)
-# Was fehlt hier?
-hindernis.forward(100)
-hindernis.left(90)
-hindernis.forward(80)
-turtle.done()
+richtung = "westen"
+ziel = raum["ausgaenge"][richtung]
+print(f"Du gehst nach {ziel}.")

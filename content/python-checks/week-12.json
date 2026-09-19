@@ -1,321 +1,350 @@
 {
-  "title": "Woche 12 – Turtle-Grafik",
-  "title_en": "Week 12 – Turtle graphics",
+  "title": "Woche 12 – Abschlussprojekt Text-Adventure",
+  "title_en": "Week 12 – Final project: text adventure",
   "questions": [
     {
       "id": "w12-1",
       "type": "multiple_choice",
       "inPlacement": true,
-      "question": "Welches Modul zeichnet mit der Schildkröte?",
-      "question_en": "Which module draws with the turtle?",
+      "question": "Wie speicherst du die Karte eines Spiels mit Räumen und Ausgängen am besten?",
+      "question_en": "What is the best way to store the map of a game with rooms and exits?",
       "options": [
-        "turtle",
-        "json",
-        "random"
+        "Als Dictionary, dessen Werte wieder Dictionaries sind",
+        "Als ein einziger langer Text",
+        "Als Liste, die nur Zahlen enthält"
       ],
       "options_en": [
-        "turtle",
-        "json",
-        "random"
+        "As a dictionary whose values are dictionaries again",
+        "As one single long text",
+        "As a list that contains only numbers"
       ],
       "correctIndex": 0,
-      "explanation": "import turtle",
-      "explanation_en": "You import it with: import turtle",
+      "explanation": "Ein verschachteltes Dictionary speichert pro Raum Beschreibung und Ausgänge.",
+      "explanation_en": "A nested dictionary stores the description and exits for each room.",
       "optionExplanations": [
         null,
-        "json wird zum Speichern/Lesen von Daten genutzt, nicht zum Zeichnen — dafür ist das turtle-Modul da.",
-        "random erzeugt Zufallszahlen, zeichnet aber nichts — zum Zeichnen braucht man das turtle-Modul."
+        "In einem langen Text kann man einzelne Räume und Ausgänge nicht gezielt nachschlagen.",
+        "Zahlen allein können keine Beschreibungen und Ausgänge mit Namen speichern."
       ],
       "optionExplanations_en": [
         null,
-        "json is used for saving/reading data, not for drawing — that's what the turtle module is for.",
-        "random generates random numbers but doesn't draw anything — drawing needs the turtle module."
+        "In one long text you cannot look up individual rooms and exits directly.",
+        "Numbers alone cannot store descriptions and named exits."
       ]
     },
     {
       "id": "w12-2",
       "type": "multiple_choice",
       "inPlacement": true,
-      "question": "Was macht turtle.forward(100)?",
-      "question_en": "What does turtle.forward(100) do?",
+      "question": "Was bedeutet Komposition bei Objekten?",
+      "question_en": "What does composition mean for objects?",
       "options": [
-        "Geht 100 Schritte vor",
-        "Dreht um 100 Grad",
-        "Löscht alles"
+        "Ein Objekt enthält andere Objekte (\"hat ein\")",
+        "Eine Klasse erbt von einer anderen Klasse (\"ist ein\")",
+        "Ein Objekt wird nach Gebrauch gelöscht"
       ],
       "options_en": [
-        "Moves 100 steps forward",
-        "Turns 100 degrees",
-        "Clears everything"
+        "An object contains other objects (\"has a\")",
+        "A class inherits from another class (\"is a\")",
+        "An object is deleted after use"
       ],
       "correctIndex": 0,
-      "explanation": "forward = vorwärts.",
-      "explanation_en": "forward = move forward.",
+      "explanation": "Beispiel: Ein Spieler hat ein Inventar voller Gegenstand-Objekte.",
+      "explanation_en": "Example: a player has an inventory full of item objects.",
       "optionExplanations": [
         null,
-        "Drehen übernehmen right()/left() mit einem Winkel — forward() bewegt die Schildkröte nur geradeaus.",
-        "Zum Löschen gibt es z.B. clear() — forward() bewegt die Schildkröte nur vorwärts, löscht nichts."
+        "Das ist Vererbung (\"ist ein\"), bei Komposition geht es um \"hat ein\".",
+        "Mit dem Löschen von Objekten hat Komposition nichts zu tun."
       ],
       "optionExplanations_en": [
         null,
-        "Turning is done with right()/left() and an angle — forward() just moves the turtle straight ahead.",
-        "Clearing is done with clear(), for example — forward() only moves the turtle forward, it clears nothing."
+        "That is inheritance (\"is a\"); composition is about \"has a\".",
+        "Composition has nothing to do with deleting objects."
       ]
     },
     {
       "id": "w12-3",
       "type": "multiple_choice",
       "inPlacement": true,
-      "question": "Was macht turtle.right(90)?",
-      "question_en": "What does turtle.right(90) do?",
+      "question": "Jeder Spieler soll ein eigenes Inventar haben. Wo steht `self.inventar = []`?",
+      "question_en": "Every player should have their own inventory. Where does `self.inventar = []` belong?",
       "options": [
-        "Dreht 90 Grad nach rechts",
-        "Geht 90 Schritte",
-        "Speichert JSON"
+        "In __init__",
+        "Direkt in der Klasse, außerhalb jeder Methode",
+        "In einer for-Schleife"
       ],
       "options_en": [
-        "Turns 90 degrees right",
-        "Moves 90 steps",
-        "Saves JSON"
+        "In __init__",
+        "Directly in the class, outside any method",
+        "In a for loop"
       ],
       "correctIndex": 0,
-      "explanation": "right/left steuern die Richtung.",
-      "explanation_en": "right/left control the direction.",
+      "explanation": "In __init__ bekommt jedes neue Objekt seine eigene Liste.",
+      "explanation_en": "In __init__ every new object gets its own list.",
       "optionExplanations": [
         null,
-        "Das Vorwärtsgehen übernimmt forward() — right() dreht die Schildkröte nur, ohne sich zu bewegen.",
-        "right() hat nichts mit JSON oder Dateien zu tun — es dreht nur die Blickrichtung der Schildkröte."
+        "Dann teilen sich alle Spieler dieselbe Liste – legt einer etwas hinein, haben es alle.",
+        "In einer Schleife würde die Liste immer wieder neu und leer angelegt."
       ],
       "optionExplanations_en": [
         null,
-        "Moving forward is done with forward() — right() only turns the turtle, without moving it.",
-        "right() has nothing to do with JSON or files — it just turns the direction the turtle is facing."
+        "Then all players share the same list – if one puts something in, everyone has it.",
+        "In a loop the list would be created again and again, empty every time."
       ]
     },
     {
       "id": "w12-4",
       "type": "multiple_choice",
       "inPlacement": false,
-      "question": "Was macht turtle.penup()?",
-      "question_en": "What does turtle.penup() do?",
+      "question": "Wofür steht `None` in einem Spiel, z.B. bei `\"gegner\": None`?",
+      "question_en": "What does `None` mean in a game, e.g. in `\"gegner\": None`?",
       "options": [
-        "Stift anheben",
-        "Stift dicker machen",
-        "Fenster schließen"
+        "Für \"nichts da\" – der Raum hat keinen Gegner",
+        "Für die Zahl 0",
+        "Für einen leeren Text"
       ],
       "options_en": [
-        "Lifts the pen",
-        "Makes the pen thicker",
-        "Closes the window"
+        "For \"nothing there\" – the room has no enemy",
+        "For the number 0",
+        "For an empty text"
       ],
       "correctIndex": 0,
-      "explanation": "penup = kein Strich.",
-      "explanation_en": "penup = no line is drawn.",
+      "explanation": "None bedeutet \"kein Wert\" und wird mit `is None` geprüft.",
+      "explanation_en": "None means \"no value\" and is checked with `is None`.",
       "optionExplanations": [
         null,
-        "Die Stiftdicke ändert man z.B. mit pensize() — penup() hebt den Stift nur an, sodass keine Linie gezeichnet wird.",
-        "Das Fenster schließt sich dadurch nicht — penup() hebt nur den Stift an, die Bewegung hinterlässt danach keine Spur mehr."
+        "0 ist eine Zahl, None ist ein eigener Wert für \"nichts\".",
+        "Ein leerer Text ist \"\", das ist etwas anderes als None."
       ],
       "optionExplanations_en": [
         null,
-        "Pen thickness is changed with pensize(), for example — penup() only lifts the pen so no line gets drawn.",
-        "This doesn't close the window — penup() only lifts the pen, so movement afterwards leaves no trace."
+        "0 is a number, None is its own value meaning \"nothing\".",
+        "An empty text is \"\", which is different from None."
       ]
     },
     {
       "id": "w12-5",
       "type": "multiple_choice",
       "inPlacement": false,
-      "question": "Was macht turtle.pendown()?",
-      "question_en": "What does turtle.pendown() do?",
+      "question": "Wie prüfst du sicher, ob es in eine Richtung einen Ausgang gibt?",
+      "question_en": "How do you safely check whether there is an exit in a direction?",
       "options": [
-        "Stift senken",
-        "Programm beenden",
-        "Farbe löschen"
+        "if richtung in ausgaenge:",
+        "if ausgaenge[richtung] == None:",
+        "if ausgaenge.richtung:"
       ],
       "options_en": [
-        "Lowers the pen",
-        "Ends the program",
-        "Clears the color"
+        "if richtung in ausgaenge:",
+        "if ausgaenge[richtung] == None:",
+        "if ausgaenge.richtung:"
       ],
       "correctIndex": 0,
-      "explanation": "pendown = Stift runter.",
-      "explanation_en": "pendown = pen goes down.",
+      "explanation": "`in` prüft die Schlüssel, ohne einen KeyError auszulösen.",
+      "explanation_en": "`in` checks the keys without raising a KeyError.",
       "optionExplanations": [
         null,
-        "pendown() beendet das Programm nicht — es senkt nur den Stift, sodass wieder gezeichnet wird.",
-        "Die Farbe bleibt dabei erhalten — pendown() senkt nur den Stift, damit die Bewegung wieder eine Linie zeichnet."
+        "Fehlt der Schlüssel, wirft schon der Zugriff ausgaenge[richtung] einen KeyError.",
+        "Dictionaries nutzen Schlüssel in eckigen Klammern, keinen Punkt."
       ],
       "optionExplanations_en": [
         null,
-        "pendown() doesn't end the program — it only lowers the pen, so drawing starts again.",
-        "The color stays unchanged — pendown() only lowers the pen, so movement draws a line again."
+        "If the key is missing, the access ausgaenge[richtung] itself raises a KeyError.",
+        "Dictionaries use keys in square brackets, not a dot."
       ]
     },
     {
       "id": "w12-6",
       "type": "multiple_choice",
       "inPlacement": false,
-      "question": "Was macht turtle.circle(50)?",
-      "question_en": "What does turtle.circle(50) do?",
+      "question": "Welcher Fehler tritt bei `aktion, ziel = \"hallo\".split()` auf?",
+      "question_en": "Which error occurs with `aktion, ziel = \"hallo\".split()`?",
       "options": [
-        "Zeichnet einen Kreis",
-        "Macht ein Quadrat",
-        "Zeichnet einen Kreis mit Durchmesser 50"
+        "ValueError",
+        "KeyError",
+        "FileNotFoundError"
       ],
       "options_en": [
-        "Draws a circle",
-        "Makes a square",
-        "Draws a circle with diameter 50"
+        "ValueError",
+        "KeyError",
+        "FileNotFoundError"
       ],
       "correctIndex": 0,
-      "explanation": "circle = Kreis.",
-      "explanation_en": "circle = draws a circle.",
+      "explanation": "split() liefert nur ein Wort, aber es sollen zwei Variablen gefüllt werden.",
+      "explanation_en": "split() returns only one word, but two variables should be filled.",
       "optionExplanations": [
         null,
-        "Für ein Quadrat bräuchte man forward()/right() in einer Schleife — circle() zeichnet immer einen Kreis (oder Bogen).",
-        "Die Zahl bei circle() ist der Radius, nicht der Durchmesser — der Kreis hat hier also Radius 50 (Durchmesser 100)."
+        "Ein KeyError entsteht bei einem fehlenden Dictionary-Schlüssel, hier gibt es keins.",
+        "Ein FileNotFoundError entsteht beim Öffnen einer fehlenden Datei."
       ],
       "optionExplanations_en": [
         null,
-        "A square would need forward()/right() inside a loop — circle() always draws a circle (or an arc).",
-        "The number passed to circle() is the radius, not the diameter — so this circle has radius 50 (diameter 100)."
+        "A KeyError comes from a missing dictionary key, there is none here.",
+        "A FileNotFoundError comes from opening a missing file."
       ]
     },
     {
       "id": "w12-7",
       "type": "multiple_choice",
       "inPlacement": false,
-      "question": "Was macht turtle.color(\"red\")?",
-      "question_en": "What does turtle.color(\"red\") do?",
+      "question": "Kann `json.dump()` ein eigenes Objekt (z.B. einen Spieler) direkt speichern?",
+      "question_en": "Can `json.dump()` save a custom object (e.g. a player) directly?",
       "options": [
-        "setzt die Stiftfarbe",
-        "löscht den Bildschirm",
-        "startet Musik"
+        "Nein – zuerst in ein Dictionary umwandeln",
+        "Ja, das geht mit jedem Objekt",
+        "Nur wenn die Klasse vererbt wurde"
       ],
       "options_en": [
-        "sets the pen color",
-        "clears the screen",
-        "starts music"
+        "No – convert it into a dictionary first",
+        "Yes, it works with any object",
+        "Only if the class uses inheritance"
       ],
       "correctIndex": 0,
-      "explanation": "Farbe fürs Zeichnen.",
-      "explanation_en": "It's the color used for drawing.",
+      "explanation": "JSON kennt nur Dictionaries, Listen, Texte, Zahlen und Wahrheitswerte.",
+      "explanation_en": "JSON only knows dictionaries, lists, texts, numbers and booleans.",
       "optionExplanations": [
         null,
-        "Zum Löschen des Bildschirms gibt es clear() — color() ändert nur die Farbe, mit der gezeichnet wird.",
-        "turtle kann keine Musik abspielen — color() legt nur die Zeichenfarbe fest."
+        "Bei eigenen Objekten kommt ein TypeError: not JSON serializable.",
+        "Vererbung ändert nichts daran, dass JSON eigene Klassen nicht kennt."
       ],
       "optionExplanations_en": [
         null,
-        "Clearing the screen is done with clear() — color() only changes the color used for drawing.",
-        "turtle can't play music — color() only sets the drawing color."
+        "Custom objects raise a TypeError: not JSON serializable.",
+        "Inheritance does not change the fact that JSON does not know custom classes."
       ]
     },
     {
       "id": "w12-8",
       "type": "multiple_choice",
       "inPlacement": false,
-      "question": "Womit zeichnet man Muster effizient?",
-      "question_en": "How do you draw patterns efficiently?",
+      "question": "Was liefert `random.randint(1, 6)`?",
+      "question_en": "What does `random.randint(1, 6)` return?",
       "options": [
-        "Mit Schleifen",
-        "Nur mit copy-paste",
-        "Ohne forward"
+        "Eine zufällige ganze Zahl von 1 bis 6",
+        "Eine Kommazahl zwischen 1 und 6",
+        "Immer die Zahl 6"
       ],
       "options_en": [
-        "With loops",
-        "Only with copy-paste",
-        "Without forward"
+        "A random whole number from 1 to 6",
+        "A decimal number between 1 and 6",
+        "Always the number 6"
       ],
       "correctIndex": 0,
-      "explanation": "for + forward/right.",
-      "explanation_en": "Use a for loop with forward/right.",
+      "explanation": "randint liefert eine ganze Zahl, beide Grenzen sind eingeschlossen.",
+      "explanation_en": "randint returns a whole number, both limits are included.",
       "optionExplanations": [
         null,
-        "Copy-Paste funktioniert zwar, ist aber unnötig aufwändig — eine Schleife wiederholt denselben Code viel effizienter.",
-        "Ohne forward() bewegt sich die Schildkröte gar nicht — Muster entstehen gerade durch forward() (und right()) in einer Schleife."
+        "Kommazahlen liefert random.random() bzw. random.uniform().",
+        "Bei jedem Aufruf kann eine andere Zahl herauskommen, nicht immer die 6."
       ],
       "optionExplanations_en": [
         null,
-        "Copy-paste works, but it's needlessly tedious — a loop repeats the same code much more efficiently.",
-        "Without forward() the turtle doesn't move at all — patterns are made exactly by forward() (and right()) inside a loop."
+        "Decimal numbers come from random.random() or random.uniform().",
+        "Every call can return a different number, not always 6."
       ]
     },
     {
       "id": "w12-9",
-      "type": "multiple_choice",
+      "type": "multiple_select",
       "inPlacement": false,
-      "question": "Was macht turtle.goto(x, y)?",
-      "question_en": "What does turtle.goto(x, y) do?",
+      "question": "Welche Beziehungen sind Komposition (\"hat ein\")?",
+      "question_en": "Which relations are composition (\"has a\")?",
       "options": [
-        "Geht zur Position x, y",
-        "Nur Farbe ändern",
-        "Programm beenden"
+        "Ein Spieler hat ein Inventar",
+        "Ein Raum hat einen Gegner",
+        "Ein Krieger ist ein Held",
+        "Ein Drache ist ein Gegner"
       ],
       "options_en": [
-        "Goes to position x, y",
-        "Only changes color",
-        "Ends the program"
+        "A player has an inventory",
+        "A room has an enemy",
+        "A warrior is a hero",
+        "A dragon is an enemy"
       ],
-      "correctIndex": 0,
-      "explanation": "goto = Position anfahren.",
-      "explanation_en": "goto = move to a position.",
-      "optionExplanations": [
-        null,
-        "Die Farbe ändert man mit color() — goto() bewegt die Schildkröte zu einer bestimmten Position.",
-        "goto() beendet das Programm nicht — es bewegt die Schildkröte nur zu den angegebenen Koordinaten."
+      "correctIndices": [
+        0,
+        1
       ],
-      "optionExplanations_en": [
-        null,
-        "Color is changed with color() — goto() moves the turtle to a specific position.",
-        "goto() doesn't end the program — it only moves the turtle to the given coordinates."
-      ]
+      "explanation": "\"Ist ein\" (Krieger, Drache) ist Vererbung, \"hat ein\" (Inventar, Gegner) ist Komposition.",
+      "explanation_en": "\"Is a\" (warrior, dragon) is inheritance, \"has a\" (inventory, enemy) is composition."
     },
     {
       "id": "w12-10",
       "type": "multiple_select",
       "inPlacement": false,
-      "question": "Welche Befehle gehören zu Turtle?",
-      "question_en": "Which commands belong to Turtle?",
+      "question": "Was brauchst du, um einen Spielstand sicher zu speichern und zu laden?",
+      "question_en": "What do you need to save and load a game state safely?",
       "options": [
-        "forward",
-        "right",
-        "circle",
-        "json.loads"
+        "json.dump und json.load",
+        "with open(...)",
+        "try/except für eine fehlende Datei",
+        "import random für den Dateinamen"
       ],
       "options_en": [
-        "forward",
-        "right",
-        "circle",
-        "json.loads"
+        "json.dump and json.load",
+        "with open(...)",
+        "try/except for a missing file",
+        "import random for the file name"
       ],
       "correctIndices": [
         0,
         1,
         2
       ],
-      "explanation": "json.loads gehört zu Dateien/JSON.",
-      "explanation_en": "json.loads belongs to files/JSON, not Turtle."
+      "explanation": "random hat mit Dateien nichts zu tun – die drei anderen Bausteine bilden zusammen das Speichern und Laden.",
+      "explanation_en": "random has nothing to do with files – the other three building blocks together make saving and loading."
     }
   ],
   "codingChallenges": [
     {
-      "instruction": "Importiere das turtle-Modul und gib danach \"Turtle bereit!\" aus.",
-      "instruction_en": "Import the turtle module and then print \"Turtle bereit!\".",
+      "instruction": "Erstelle ein Dictionary raum mit den Schlüsseln \"name\" (Wert \"Halle\") und \"ausgaenge\" (ein weiteres Dictionary mit dem Eintrag \"norden\": \"keller\"). Gib mit raum[\"ausgaenge\"][\"norden\"] den Namen des Raums im Norden aus.",
+      "instruction_en": "Create a dictionary raum with the keys \"name\" (value \"Halle\") and \"ausgaenge\" (another dictionary with the entry \"norden\": \"keller\"). Use raum[\"ausgaenge\"][\"norden\"] to print the name of the room to the north.",
       "codeTemplate": "",
       "validation": {
         "type": "output_contains",
-        "expected": "Turtle bereit!"
+        "expected": "keller",
+        "variables": {
+          "raum": {
+            "name": "Halle",
+            "ausgaenge": {
+              "norden": "keller"
+            }
+          }
+        }
       }
     },
     {
-      "instruction": "Importiere das turtle-Modul. Nutze zusätzlich eine Schleife, um 4-mal \"Seite gezeichnet\" auszugeben (wie bei den 4 Seiten eines Quadrats).",
-      "instruction_en": "Import the turtle module. Also use a loop to print \"Seite gezeichnet\" 4 times (like the 4 sides of a square).",
+      "instruction": "Schreibe eine Funktion kann_gehen(raum, richtung), die True zurückgibt, wenn die Richtung in raum[\"ausgaenge\"] vorkommt, sonst False. Rufe sie mit {\"ausgaenge\": {\"norden\": \"keller\"}} und \"norden\" auf und gib das Ergebnis aus.",
+      "instruction_en": "Write a function kann_gehen(raum, richtung) that returns True if the direction is in raum[\"ausgaenge\"], otherwise False. Call it with {\"ausgaenge\": {\"norden\": \"keller\"}} and \"norden\" and print the result.",
       "codeTemplate": "",
       "validation": {
         "type": "output_contains",
-        "expected": "Seite gezeichnet"
+        "expected": "True",
+        "functionCalls": [
+          {
+            "name": "kann_gehen",
+            "args": [
+              {
+                "ausgaenge": {
+                  "sueden": "hof"
+                }
+              },
+              "sueden"
+            ],
+            "expected": true
+          },
+          {
+            "name": "kann_gehen",
+            "args": [
+              {
+                "ausgaenge": {
+                  "sueden": "hof"
+                }
+              },
+              "osten"
+            ],
+            "expected": false
+          }
+        ]
       }
     }
   ]

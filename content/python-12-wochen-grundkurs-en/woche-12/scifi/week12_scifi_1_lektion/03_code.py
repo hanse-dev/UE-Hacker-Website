@@ -1,32 +1,26 @@
-# Example 1: Space background with random stars
-import turtle
-import random
+# Stage 1: The map of the world as a dictionary
+world = {
+    "airlock": {
+        "description": "You are standing in the airlock. Red warning lights blink, and the station hums menacingly.",
+        "exits": {"north": "corridor"},
+    },
+    "corridor": {
+        "description": "A long corridor with many doors. Emergency lighting bathes everything in red.",
+        "exits": {"south": "airlock", "east": "reactor", "west": "lab"},
+    },
+    "lab": {
+        "description": "A lab full of equipment. Tools lie ready on a table.",
+        "exits": {"east": "corridor"},
+    },
+    "reactor": {
+        "description": "The reactor room! The reactor hums – and in front of it stands a broken maintenance robot!",
+        "exits": {"west": "corridor"},
+    },
+}
 
-screen = turtle.Screen()
-screen.bgcolor("black")
-screen.title("Nebula-7 Star Field")
+def describe(room_name):
+    room = world[room_name]
+    print(f"📍 {room_name.capitalize()}: {room['description']}")
+    print("   Exits:", ", ".join(room["exits"]))
 
-star = turtle.Turtle()
-star.speed(0)
-star.color("white")
-star.hideturtle()
-
-def draw_star(x, y, size):
-    star.penup()
-    star.goto(x, y)
-    star.pendown()
-    star.begin_fill()
-    star.fillcolor("white")
-    for _ in range(5):
-        star.forward(size)
-        star.right(144)
-    star.end_fill()
-
-# Draw 100 random stars
-for _ in range(100):
-    x = random.randint(-380, 380)
-    y = random.randint(-280, 280)
-    size = random.randint(3, 10)
-    draw_star(x, y, size)
-
-turtle.done()
+describe("airlock")

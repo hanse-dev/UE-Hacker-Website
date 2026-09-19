@@ -1,21 +1,15 @@
-# Why is the planet ring invisible?
-import turtle
+import json
 
-screen = turtle.Screen()
-screen.bgcolor("white")  # White background
+class Player:
+    def __init__(self, name, hp):
+        self.name = name
+        self.hp = hp
 
-planet = turtle.Turtle()
-planet.speed(0)
-planet.fillcolor("tan")
-planet.begin_fill()
-planet.circle(30)
-planet.end_fill()
+mira = Player("Mira", 20)
 
-# Ring
-planet.penup()
-planet.goto(0, -40)
-planet.pendown()
-planet.color("white")
-planet.width(4)
-planet.circle(45)
-turtle.done()
+with open("debug_save.json", "w") as file:
+    json.dump(mira, file)
+
+with open("debug_save.json", "r") as file:
+    data = json.load(file)
+print(data["name"])

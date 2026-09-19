@@ -1,44 +1,14 @@
-# Example 3: Planet system
-import turtle
+# Stage 3a: Items are objects – and they lie in the rooms
+class Item:
+    def __init__(self, name, description):
+        self.name = name
+        self.description = description
 
-screen = turtle.Screen()
-screen.bgcolor("black")
-screen.title("Nebula-7 Planetary System")
+world["airlock"]["items"] = [Item("Keycard", "It opens secured doors.")]
+world["corridor"]["items"] = []
+world["lab"]["items"] = [Item("Cutter", "A tool that also stops broken robots.")]
+world["reactor"]["items"] = [Item("Powerkey", "The red emergency shutdown key of the reactor.")]
 
-pen = turtle.Turtle()
-pen.speed(0)
-pen.hideturtle()
-
-# Sun
-pen.penup()
-pen.goto(0, -50)
-pen.fillcolor("orange")
-pen.begin_fill()
-pen.circle(50)
-pen.end_fill()
-
-# Planet 1
-pen.penup()
-pen.goto(120, -20)
-pen.fillcolor("lightblue")
-pen.begin_fill()
-pen.circle(20)
-pen.end_fill()
-
-# Planet 2 with ring
-pen.penup()
-pen.goto(230, -30)
-pen.fillcolor("tan")
-pen.begin_fill()
-pen.circle(30)
-pen.end_fill()
-# Ring
-pen.penup()
-pen.goto(230, -40)
-pen.color("gray")
-pen.pendown()
-pen.width(4)
-pen.circle(45)
-pen.width(1)
-
-turtle.done()
+first_room = "airlock"
+first_item = world[first_room]["items"][0]
+print(f"In the {first_room}: {first_item.name} – {first_item.description}")

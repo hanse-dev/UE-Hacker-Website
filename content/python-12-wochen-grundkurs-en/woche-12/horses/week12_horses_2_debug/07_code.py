@@ -1,13 +1,15 @@
-# Why is the circle not filled?
-import turtle
+import json
 
-screen = turtle.Screen()
-screen.bgcolor("white")
+class Player:
+    def __init__(self, name, hp):
+        self.name = name
+        self.hp = hp
 
-arena = turtle.Turtle()
-arena.speed(0)
-arena.color("red")
-arena.fillcolor("blue")
-arena.begin_fill()
-arena.circle(50)
-# What is missing at the end?
+mira = Player("Mira", 20)
+
+with open("debug_save.json", "w") as file:
+    json.dump(mira, file)
+
+with open("debug_save.json", "r") as file:
+    data = json.load(file)
+print(data["name"])

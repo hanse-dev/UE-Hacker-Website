@@ -1,5 +1,10 @@
-"""## Lesson 2
+"""## 🧭 Stage 2: Moving through the world
 
-**What it is:** Drawing a spaceship from geometric shapes using forward and right.
+*Knowledge from Weeks 3–5: conditions, loops, functions*
 
-**Important:** Use `penup()` and `goto()` to position the turtle before drawing!"""
+Now the game starts moving. The function `go()` uses `if ... in ...` to check whether there is an exit in that direction:
+
+- Yes → the new room is returned (`return`) and described
+- No → a message appears and the player stays where they are
+
+A `for` loop plays a list of commands one after another. Later the game loop takes over."""

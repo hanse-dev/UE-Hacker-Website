@@ -1,1 +1,1 @@
-"""## Quick Examples"""
+"""## Quick example: Composition"""
