@@ -55,21 +55,20 @@ Seit der Zellen-Format-Umstellung ist jedes Notebook ein Ordner mit einer `.py`-
 
 ---
 
-## Kursplan (Lehrpläne einzelner Kurse)
-
-@KURSPLAN.md
-
----
-
 ## Offene Aufgaben
 
 @todo.md
 
 ---
 
-## Inhaltsdatei-Übersicht & Zusammenhänge
+## Bei Bedarf lesen (nicht automatisch geladen — hält den Start-Kontext klein)
 
-@INHALTE.md
+- `INHALTE.md` — Dateistruktur/Kopplungen; **vor jeder Inhaltsänderung** (Notebooks, Lektionen, Manifeste, `kurse.json`) lesen
+- `KURSPLAN.md` — Lehrpläne der einzelnen Kurse; bei Curriculum-/Kurs-Planung
+- `PROJEKTIDEEN.md` — Ideen-Backlog für neue Projekt-Kurse
+- `docs/archiv/HANDOFF-historie.md` — ausführliche Feature-Historie (Abschnitte 3.1–3.46), z.B. `grep -n "^### 3.32"`;
+  nur bei Fragen "warum ist das so gebaut?"
+- `docs/archiv/todo-erledigt.md` — erledigte Aufgaben/Branches
 
 ---
 

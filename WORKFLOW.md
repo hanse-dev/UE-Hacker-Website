@@ -47,6 +47,17 @@ Kurzübersicht der wichtigsten Kopplungen:
 - **Missionen/Punkte ändern** → `rewards-manifest.json` und `rewards-manifest-en.json`
 - **Kursmetadaten ändern** → `public/kurse.json` (inkl. `title_en`, `description_en`) und ggf. `beschreibung.md` in beiden Sprachordnern
 
+## Nach jeder Änderung committen
+
+**Nach jeder abgeschlossenen Änderung sofort einen Commit anlegen** — nicht Änderungen sammeln und
+am Ende der Session in einem Riesen-Commit bündeln. Eine "Änderung" ist eine in sich stimmige
+Einheit (ein Bugfix, ein Feature-Schritt, eine Content-Korrektur, eine Doku-Umstrukturierung).
+
+- Ein Commit pro Einheit, mit aussagekräftiger Nachricht; nur die dazugehörigen Dateien stagen
+  (keine fremden, uncommitteten Änderungen mitnehmen).
+- Das gilt auch für Sub-Agenten-Ergebnisse und für Claude Code: nicht auf eine Aufforderung warten.
+- Pushen und Mergen nach `main` bleibt davon getrennt (erst wenn das Thema fertig/getestet ist).
+
 ## Nach jedem Commit
 
 Nach jedem `git commit` prüfen:
@@ -67,11 +78,20 @@ Nach jedem `git commit` prüfen:
 vollständiges Änderungsprotokoll für immer wachsen — die Commit-Historie (`git log`/`git show`)
 ist die dauerhafte, verlässliche Quelle für Details.
 
-- **Nach dem Mergen eines Branches nach `main`:** den zugehörigen Abschnitt in HANDOFF.md
-  Abschnitt 3 (Feature-Historie) von einer vollständigen Erzählung auf 2–3 Zeilen kürzen
-  (Branch-/PR-Name, worum es ging, Verweis auf die Commit-Historie für Details). Eine kurze
-  "Gelernte Regel"-Zeile darf bleiben, wenn sie ein wiederverwendbares Muster festhält (z.B. ein
-  Bug-Typ, der wieder auftreten könnte) — die Schritt-für-Schritt-Story nicht.
+`HANDOFF.md` und `todo.md` werden per `@` in **jede** Session und jeden Sub-Agenten geladen — sie
+sind "heiß" und müssen klein bleiben (Richtwert: HANDOFF.md < 25 KB, todo.md < 10 KB). Ausführliches
+liegt "kalt" unter `docs/archiv/` (nicht importiert, nur bei Bedarf gelesen).
+
+- **Während der Arbeit an einem Branch:** den Feature-Abschnitt ausführlich in HANDOFF.md Abschnitt 3
+  schreiben (als `### 3.NN`), solange der Branch noch nicht gemergt ist.
+- **Nach dem Mergen nach `main`:** den vollständigen Abschnitt unverändert ans Ende von
+  `docs/archiv/HANDOFF-historie.md` verschieben. In HANDOFF.md bleibt nur eine Zeile in der
+  Tabelle in Abschnitt 3 (Nr., Thema, Kern) — die Nummer ist die Referenz ins Archiv. Wiederverwendbare
+  Fallstricke (Bug-Typen, die wieder auftreten können) als Zeile in "Gelernte Regeln" übernehmen.
+- **`todo.md`:** erledigte (`[x]`) Blöcke und "Fertige Branches" nach `docs/archiv/todo-erledigt.md`
+  verschieben; in `todo.md` nur offene Punkte und "Nächste Themen".
 - Abschnitt 5 (Offene Aufgaben) und Abschnitt 7 (Schnellstart) bleiben immer knapp und aktuell —
   das sind die Abschnitte, die eine neue Session tatsächlich zuerst braucht.
-- Faustregel: wenn Abschnitt 3 spürbar länger wird als Abschnitt 5+7 zusammen, ist Aufräumen fällig.
+- Faustregel: wenn `HANDOFF.md` über 25 KB wächst, ist Aufräumen fällig.
+- `INHALTE.md`, `KURSPLAN.md`, `PROJEKTIDEEN.md` sind bewusst **nicht** importiert (siehe CLAUDE.md,
+  "Bei Bedarf lesen") — bei Inhaltsänderungen `INHALTE.md` Abschnitt 6 aktiv lesen.
