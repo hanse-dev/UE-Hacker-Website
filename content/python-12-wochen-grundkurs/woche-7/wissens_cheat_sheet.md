@@ -229,3 +229,12 @@ if "Hund" in tiere:
 tiere.sort()
 neu = sorted(tiere)
 ```
+
+### List Comprehension
+Aus einer Liste in einer Zeile eine **neue** Liste bauen – umwandeln oder mit `if` filtern. Die Original-Liste bleibt unverändert.
+
+```python
+zahlen = [1, 2, 3, 4, 5]
+doppelt = [z * 2 for z in zahlen]         # [2, 4, 6, 8, 10]
+gross = [z for z in zahlen if z > 3]      # [4, 5]
+```
