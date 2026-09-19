@@ -4,6 +4,7 @@ import { setCodeMirrorContent } from './helpers/codemirror.js';
 const INTERACTIVE_URL = '/kurs/python-grundlagen-interaktiv';
 const COURSE_URL = '/kurs/python-12-wochen-grundkurs';
 const PLACEMENT_URL = '/kurs/python-einstufung';
+const JS_GRUNDKURS_URL = '/kurs/js-grundkurs';
 
 test.describe('Home & Navigation', () => {
   test.beforeEach(async ({ page }) => {
@@ -15,18 +16,42 @@ test.describe('Home & Navigation', () => {
   test('Home zeigt CTAs und Kern-Kurse', async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('#hero')).toBeVisible();
-    await expect(page.locator('.cta-button')).toHaveCount(3);
-    await expect(page.locator('a.cta-button[href="/kurs/python-einstufung"]')).toBeVisible();
-    await expect(page.locator('a.cta-button[href="/kurs/python-12-wochen-grundkurs"]')).toBeVisible();
-    await expect(page.locator('a.cta-button[href="/kurs/python-grundlagen-interaktiv"]')).toBeVisible();
+    await expect(page.locator('.cta-button')).toHaveCount(2);
+    await expect(page.locator('a.cta-button[href="#kurse-uebersicht"]')).toBeVisible();
+    await expect(page.locator('a.cta-button[href="/projekte"]')).toBeVisible();
 
-    // Home filtert Kurse: 12-Wochen + Interaktiv immer sichtbar, andere nur mit Termin.
-    // Projekt-Kurse (type: 'projekt') erscheinen hier nicht mehr — die haben eine eigene
+    // Home filtert Kurse: 12-Wochen + Interaktiv + JS-Grundkurs immer sichtbar, andere nur mit
+    // Termin. Projekt-Kurse (type: 'projekt') erscheinen hier nicht mehr — die haben eine eigene
     // Übersicht unter /projekte, verlinkt über den Projekte-Teaser.
-    await expect(page.locator('#kurse-uebersicht .course-card')).toHaveCount(2);
+    await expect(page.locator('#kurse-uebersicht .course-card')).toHaveCount(3);
     await expect(page.locator('a.course-link[href="/kurs/python-12-wochen-grundkurs"]')).toBeVisible();
     await expect(page.locator('a.course-link[href="/kurs/python-grundlagen-interaktiv"]')).toBeVisible();
+    await expect(page.locator(`a.course-link[href="${JS_GRUNDKURS_URL}"]`)).toBeVisible();
     await expect(page.locator('.projekte-teaser-link')).toBeVisible();
+    await expect(page.locator('a.placement-hint-link[href="/kurs/python-einstufung"]')).toBeVisible();
+
+    // Kurskarten zeigen ein Format-Badge (Einstieg/Grundkurs, siehe VISION.md-Format-Modell)
+    await expect(page.locator('.course-format-badge')).toHaveCount(3);
+  });
+
+  test('Hero-CTA "Kurse" springt zur Kursübersicht, "Projekte" öffnet die Projekte-Seite', async ({ page }) => {
+    await page.goto('/');
+    await page.locator('a.cta-button[href="#kurse-uebersicht"]').click();
+    await expect(page).toHaveURL(/#kurse-uebersicht/);
+    await expect(page.locator('#kurse-uebersicht')).toBeInViewport();
+
+    await page.goto('/');
+    await page.locator('a.cta-button[href="/projekte"]').click();
+    await expect(page).toHaveURL(/\/projekte/);
+    await expect(page.locator('.projekt-card').first()).toBeVisible({ timeout: 15000 });
+  });
+
+  test('Home-Kursliste öffnet den JS-Grundkurs mit korrektem Titel', async ({ page }) => {
+    await page.goto('/');
+    await page.locator(`a.course-link[href="${JS_GRUNDKURS_URL}"]`).click();
+    await expect(page).toHaveURL(/js-grundkurs/);
+    await expect(page.locator('.course-detail > h1')).toHaveText('JavaScript-Grundkurs');
+    await expect(page.locator('.week-tile')).toHaveCount(9, { timeout: 15000 });
   });
 
   test('Header-Nav verlinkt direkt zu den Projekten', async ({ page }) => {
@@ -40,7 +65,7 @@ test.describe('Home & Navigation', () => {
 
   test('Home-CTA Einstufung öffnet Placement-Kurs', async ({ page }) => {
     await page.goto('/');
-    await page.locator('a.cta-button[href="/kurs/python-einstufung"]').click();
+    await page.locator('a.placement-hint-link[href="/kurs/python-einstufung"]').click();
     await expect(page).toHaveURL(/python-einstufung/);
     await expect(page.locator('.course-detail > h1')).toHaveText(/Einstufung|Placement/);
     await expect(page.locator('.placement-intro, .placement-results, .quiz-question').first()).toBeVisible({
@@ -55,7 +80,7 @@ test.describe('Home & Navigation', () => {
     await expect(page.locator('.settings-modal')).toBeVisible();
     await page.locator('.settings-modal .lang-switcher button', { hasText: 'EN' }).click();
     await page.locator('.settings-close').click();
-    await expect(page.locator('a.cta-button[href="/kurs/python-einstufung"]')).toContainText(/Placement/i);
+    await expect(page.locator('a.placement-hint-link[href="/kurs/python-einstufung"]')).toContainText(/Placement/i);
     await expect(page.locator('#kurse-uebersicht h2')).toContainText(/Course/i);
     await expect(page.locator('#kurse-uebersicht .course-card').first()).toContainText(/Week|Interactive|Basics/i);
   });

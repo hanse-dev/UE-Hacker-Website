@@ -1,0 +1,163 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Abschlussprojekt: Ein Mini-Quiz",
+    "file": "lektion-01.md",
+    "lessonSummary": "Super! Funktion, Array und Klasse greifen hier schon ganz selbstverständlich ineinander.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. gibFrage liest die Frage an einem gegebenen Index aus dem Array.",
+        "example": true,
+        "codeTemplate": "class Frage {\n  constructor(frage, antwort) {\n    this.frage = frage;\n    this.antwort = antwort;\n  }\n}\n\nlet fragen = [\n  new Frage('Hauptstadt von Frankreich?', 'Paris'),\n  new Frage('2 + 2?', '4'),\n];\n\nfunction gibFrage(index) {\n  return fragen[index].frage;\n}\n\nconsole.log(gibFrage(0));\n",
+        "validation": { "type": "output_contains", "expected": "Hauptstadt von Frankreich?" }
+      },
+      {
+        "instruction": "Schreibe eine Funktion gibAntwort, die den Index einer Frage entgegennimmt und die zugehörige Antwort aus fragen zurückgibt. Rufe sie mit 1 auf und gib das Ergebnis aus.",
+        "codeTemplate": "class Frage {\n  constructor(frage, antwort) {\n    this.frage = frage;\n    this.antwort = antwort;\n  }\n}\n\nlet fragen = [\n  new Frage('Hauptstadt von Frankreich?', 'Paris'),\n  new Frage('2 + 2?', '4'),\n  new Frage('Farbe des Himmels?', 'blau'),\n];\n\n// Dein Code hier\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "4",
+          "functionCalls": [{ "name": "gibAntwort", "args": [2], "expected": "blau" }]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Eine Frage auf der Übungsfläche anzeigen",
+    "file": "lektion-02.md",
+    "lessonSummary": "Stark! Array-Zugriff, Objekt-Property und DOM-Zuweisung in einer Zeile kombiniert.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Die erste Frage erscheint jetzt auf der Übungsfläche statt nur in der Konsole.",
+        "example": true,
+        "codeTemplate": "class Frage {\n  constructor(frage, antwort) {\n    this.frage = frage;\n    this.antwort = antwort;\n  }\n}\n\nlet fragen = [\n  new Frage('Hauptstadt von Frankreich?', 'Paris'),\n  new Frage('2 + 2?', '4'),\n  new Frage('Farbe des Himmels?', 'blau'),\n];\n\ndocument.querySelector('#text').textContent = fragen[0].frage;\n",
+        "validation": { "type": "dom_text", "target": "text", "text": "Hauptstadt von Frankreich?" }
+      },
+      {
+        "instruction": "Gegeben ist das Array fragen. Zeige die Frage mit Index 2 ('Farbe des Himmels?') im Element #text an.",
+        "codeTemplate": "class Frage {\n  constructor(frage, antwort) {\n    this.frage = frage;\n    this.antwort = antwort;\n  }\n}\n\nlet fragen = [\n  new Frage('Hauptstadt von Frankreich?', 'Paris'),\n  new Frage('2 + 2?', '4'),\n  new Frage('Farbe des Himmels?', 'blau'),\n];\n\n// Dein Code hier\n",
+        "validation": { "type": "dom_text", "target": "text", "text": "Farbe des Himmels?" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Die Antwort per Klick aufdecken",
+    "file": "lektion-03.md",
+    "lessonSummary": "Gut gemacht! Array + Objekt + Klick-Listener sind die Grundlage vieler interaktiver Web-Apps.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Klicke danach auf den Knopf – die Antwort erscheint in der Anzeige.",
+        "example": true,
+        "codeTemplate": "class Frage {\n  constructor(frage, antwort) {\n    this.frage = frage;\n    this.antwort = antwort;\n  }\n}\n\nlet fragen = [\n  new Frage('Hauptstadt von Frankreich?', 'Paris'),\n  new Frage('2 + 2?', '4'),\n];\n\nlet knopf = document.querySelector('#knopf');\nknopf.addEventListener('click', () => {\n  document.querySelector('#anzeige').textContent = fragen[0].antwort;\n});\n",
+        "validation": { "type": "dom_click_text", "click": "knopf", "target": "anzeige", "text": "Paris" }
+      },
+      {
+        "instruction": "Gegeben ist das Array fragen. Füge dem Knopf einen Klick-Listener hinzu, der bei Klick die Antwort der Frage mit Index 1 ('4') in #anzeige zeigt.",
+        "codeTemplate": "class Frage {\n  constructor(frage, antwort) {\n    this.frage = frage;\n    this.antwort = antwort;\n  }\n}\n\nlet fragen = [\n  new Frage('Hauptstadt von Frankreich?', 'Paris'),\n  new Frage('2 + 2?', '4'),\n  new Frage('Farbe des Himmels?', 'blau'),\n];\n\n// Dein Code hier\n",
+        "validation": { "type": "dom_click_text", "click": "knopf", "target": "anzeige", "text": "4" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Durch alle Fragen klicken",
+    "file": "lektion-04.md",
+    "lessonSummary": "Perfekt! Eine Zähler-Variable + Bedingung lassen dich durch ein ganzes Array klicken.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Klicke viermal – nach der letzten Frage erscheint 'Fertig!'.",
+        "example": true,
+        "codeTemplate": "class Frage {\n  constructor(frage, antwort) {\n    this.frage = frage;\n    this.antwort = antwort;\n  }\n}\n\nlet fragen = [\n  new Frage('Hauptstadt von Frankreich?', 'Paris'),\n  new Frage('2 + 2?', '4'),\n  new Frage('Farbe des Himmels?', 'blau'),\n];\n\nlet index = 0;\nlet knopf = document.querySelector('#knopf');\nknopf.addEventListener('click', () => {\n  if (index < fragen.length) {\n    document.querySelector('#text').textContent = fragen[index].frage;\n    index++;\n  } else {\n    document.querySelector('#text').textContent = 'Fertig!';\n  }\n});\n",
+        "validation": { "type": "dom_click_text", "click": "knopf", "target": "text", "text": "Fertig!", "clicks": 4 }
+      },
+      {
+        "instruction": "Gegeben ist ein Array namen mit 2 Einträgen. Zeige bei jedem Klick den nächsten Namen in #anzeige, nach dem letzten Namen 'Ende!'.",
+        "codeTemplate": "let namen = ['Anna', 'Ben'];\n\n// Dein Code hier\n",
+        "validation": { "type": "dom_click_text", "click": "knopf", "target": "anzeige", "text": "Ende!", "clicks": 3 }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Den Punktestand auswerten",
+    "file": "lektion-05.md",
+    "lessonSummary": "Geschafft! Funktion, Array-Auswertung und Klick-Anzeige – ein komplettes kleines Programm.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Klicke danach auf den Knopf – die Anzahl richtiger Antworten erscheint.",
+        "example": true,
+        "codeTemplate": "let antworten = [\n  { richtig: true },\n  { richtig: false },\n  { richtig: true },\n];\n\nfunction zaehleRichtige(liste) {\n  let anzahl = 0;\n  for (const a of liste) {\n    if (a.richtig) {\n      anzahl++;\n    }\n  }\n  return anzahl;\n}\n\nlet knopf = document.querySelector('#knopf');\nknopf.addEventListener('click', () => {\n  document.querySelector('#anzeige').textContent = zaehleRichtige(antworten);\n});\n",
+        "validation": { "type": "dom_click_text", "click": "knopf", "target": "anzeige", "text": "2" }
+      },
+      {
+        "instruction": "Gegeben ist das Array ergebnisse. Schreibe eine Funktion zaehleRichtige (wie im Beispiel) und einen Klick-Listener, der die Anzahl richtiger Einträge in #anzeige anzeigt.",
+        "codeTemplate": "let ergebnisse = [\n  { richtig: false },\n  { richtig: true },\n  { richtig: true },\n  { richtig: true },\n];\n\n// Dein Code hier\n",
+        "validation": { "type": "dom_click_text", "click": "knopf", "target": "anzeige", "text": "3" }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Fehlersuche",
+    "file": "debug-01.md",
+    "lessonSummary": "Gut gemacht! Du hast Fehler über mehrere Konzepte hinweg gefunden – genau wie in echten Projekten.",
+    "tasks": [
+      {
+        "instruction": "Dieser Code zeigt die Antwort statt der Frage. Ziel: Er soll die Frage anzeigen ('Hauptstadt von Frankreich?').",
+        "codeTemplate": "class Frage {\n  constructor(frage, antwort) {\n    this.frage = frage;\n    this.antwort = antwort;\n  }\n}\n\nlet fragen = [\n  new Frage('Hauptstadt von Frankreich?', 'Paris'),\n];\n\ndocument.querySelector('#text').textContent = fragen[0].antwort;\n",
+        "validation": { "type": "dom_text", "target": "text", "text": "Hauptstadt von Frankreich?" }
+      },
+      {
+        "instruction": "Dieser Code zeigt nach jedem Klick immer dieselbe Frage. Ziel: Nach dem zweiten Klick soll '2 + 2?' angezeigt werden.",
+        "codeTemplate": "class Frage {\n  constructor(frage, antwort) {\n    this.frage = frage;\n    this.antwort = antwort;\n  }\n}\n\nlet fragen = [\n  new Frage('Hauptstadt von Frankreich?', 'Paris'),\n  new Frage('2 + 2?', '4'),\n];\n\nlet index = 0;\nlet knopf = document.querySelector('#knopf');\nknopf.addEventListener('click', () => {\n  document.querySelector('#text').textContent = fragen[index].frage;\n});\n",
+        "validation": { "type": "dom_click_text", "click": "knopf", "target": "text", "text": "2 + 2?", "clicks": 2 }
+      },
+      {
+        "instruction": "Dieser Code zeigt nach Klick 'undefined' an. Ziel: Er soll '2' anzeigen.",
+        "codeTemplate": "function zaehleRichtige(liste) {\n  let anzahl = 0;\n  for (const a of liste) {\n    if (a.richtig) {\n      anzahl++;\n    }\n  }\n}\n\nlet antworten = [{ richtig: true }, { richtig: true }];\nlet knopf = document.querySelector('#knopf');\nknopf.addEventListener('click', () => {\n  document.querySelector('#anzeige').textContent = zaehleRichtige(antworten);\n});\n",
+        "validation": { "type": "dom_click_text", "click": "knopf", "target": "anzeige", "text": "2" }
+      },
+      {
+        "instruction": "Dieser Code zeigt direkt beim ersten Klick 'Fertig!' an. Ziel: Er soll beim ersten Klick 'Hauptstadt von Frankreich?' anzeigen.",
+        "codeTemplate": "class Frage {\n  constructor(frage, antwort) {\n    this.frage = frage;\n    this.antwort = antwort;\n  }\n}\n\nlet fragen = [\n  new Frage('Hauptstadt von Frankreich?', 'Paris'),\n  new Frage('2 + 2?', '4'),\n];\n\nlet index = 0;\nlet knopf = document.querySelector('#knopf');\nknopf.addEventListener('click', () => {\n  if (index > fragen.length) {\n    document.querySelector('#text').textContent = fragen[index].frage;\n    index++;\n  } else {\n    document.querySelector('#text').textContent = 'Fertig!';\n  }\n});\n",
+        "validation": { "type": "dom_click_text", "click": "knopf", "target": "text", "text": "Hauptstadt von Frankreich?" }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Deine Mission",
+    "file": "mission-01.md",
+    "lessonSummary": "Starke Leistung! Du hast ein eigenes kleines interaktives Programm aus lauter bekannten Bausteinen gebaut.",
+    "tasks": [
+      {
+        "instruction": "Schreibe eine Funktion anzahlBestanden, die ein Array von Objekten mit Property punkte entgegennimmt und zurückgibt, wie viele davon mindestens 50 Punkte haben. Rufe sie mit [{ punkte: 80 }, { punkte: 30 }, { punkte: 60 }] auf und gib das Ergebnis aus.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "2",
+          "functionCalls": [{ "name": "anzahlBestanden", "args": [[{ "punkte": 20 }, { "punkte": 55 }, { "punkte": 90 }, { "punkte": 10 }]], "expected": 2 }]
+        }
+      },
+      {
+        "instruction": "Gegeben ist ein Array mitglieder mit 3 Namen. Zeige bei jedem Klick auf #knopf den nächsten Namen in #text an; nach dem letzten Namen soll 'Alle vorgestellt!' erscheinen.",
+        "codeTemplate": "let mitglieder = ['Lea', 'Tom', 'Mia'];\n\n// Dein Code hier\n",
+        "validation": { "type": "dom_click_text", "click": "knopf", "target": "text", "text": "Alle vorgestellt!", "clicks": 4 }
+      },
+      {
+        "instruction": "Baue eine Klick-Zähler-Logik, die bei jedem Klick auf #knopf einen Punktestand um 10 erhöht und in #anzeige anzeigt. Ab 30 Punkten soll stattdessen 'Level geschafft!' angezeigt werden.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "type": "dom_click_text", "click": "knopf", "target": "anzeige", "text": "Level geschafft!", "clicks": 3 }
+      }
+    ]
+  }
+]

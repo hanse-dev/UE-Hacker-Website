@@ -9,9 +9,12 @@
 > sechs Lektionen "Fang den Ball". Ein direkter "Projekte"-Link im Header
 > (`nav-projekte-link`, 3.40). **Neu:** Login-gated `/profil`-Seite mit Abschluss-Abzeichen pro
 > Projekt-Kurs (`profil-abschluss-badges`, 3.41) — dabei auch Projekt-Kurs-Fortschritt erstmals mit
-> dem Account synchronisiert (war vorher nur pro Browser gültig). **Server-Deploy steht weiterhin
-> aus** — Code muss noch nach `origin/main` gepusht und auf dem Produktions-Server ausgerollt
-> werden (siehe Abschnitt 4 "Betrieb", Nutzer deployt selbst).
+> dem Account synchronisiert (war vorher nur pro Browser gültig). **Neu (Branch
+> `js-grundkurs-woche1-experiment`):** kompletter 9-Wochen JS-Grundkurs fertig und auf der Seite
+> eingebunden (3.43), dazu eine konsistentere Homepage — Format-Badges auf Kurskarten, Hero auf 2
+> CTAs reduziert, Projekte-Teaser/Unterstützer auf einheitliche Karten-Optik umgestellt (3.44).
+> **Server-Deploy steht weiterhin aus** — Code muss noch nach `origin/main` gepusht und auf dem
+> Produktions-Server ausgerollt werden (siehe Abschnitt 4 "Betrieb", Nutzer deployt selbst).
 > **Ziel dieser Datei:** Kontext für die nächste Session (Mensch oder Claude), ohne Chat-Historie.
 
 Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`, `INHALTE.md`, `todo.md`.
@@ -1369,10 +1372,9 @@ nicht in `useTaskValidation.js`): `canvas_not_blank` (irgendein gezeichneter Pix
 `canvas_changed` (Pixel unterscheiden sich vor/nach `ms` Millisekunden — beweist eine wirklich
 laufende Animationsschleife). `useTaskValidation.js` bekam dafür einen kleinen, rückwärts-
 kompatiblen Guard: fehlt `validation.expected`, gilt die Ausgabe-Prüfung als bestanden (reine
-Canvas-/Funktions-Aufgaben brauchen keine `console.log`-Ausgabe). Neues optionales
-Aufgaben-Feld `"check": "self"` (Default `"auto"`) für Aufgaben, die sich nicht automatisch
-prüfen lassen (freies Ausprobieren) — ein "Ich hab's ausprobiert"-Button zählt dann zum
-Fortschritt, analog zum bestehenden Missionen-Muster.
+Canvas-/Funktions-Aufgaben brauchen keine `console.log`-Ausgabe). Optionales Aufgaben-Feld
+`"check": "self"` (ein "Ich hab's ausprobiert"-Button statt echter Prüfung) — **später wieder
+entfernt, siehe "Sechster Nachtrag" unten.**
 
 **Zwei echte Bugs beim Testen gefunden und gefixt, nicht nur Test-Artefakte:**
 1. `DataCloneError: ... could not be cloned` beim `postMessage` von `functionCalls`-Argumenten —
@@ -1505,6 +1507,12 @@ eines Substrings per DOM-`Range`-API (`range.setStart/setEnd` + `getBoundingClie
 Tooltips als eigenes DOM-Element an, das nicht Teil des Vue-Templates ist, eine gescopte Regel
 würde es nie erreichen.
 
+**Sechster Nachtrag (`"check": "self"` wieder entfernt):** Nutzer-Feedback beim Ausprobieren von
+`js-grundkurs-woche1` (siehe 3.42): für echte Aufgaben reicht Ausführen + Prüfen, ein dritter
+Button ("Ich hab's ausprobiert") war unnötige Komplexität. Komplett aus `JsLessonView.vue`
+entfernt — betraf beide JS-Kurse gleichermaßen (`js-spielewerkstatt` UND das Experiment). Details
+siehe 3.42.
+
 ### 3.40 Header-Nav: direkter "Projekte"-Link (Branch `nav-projekte-link`)
 
 Kleine, eigenständige Ergänzung: `App.vue`s Header-Nav hatte neben "Home"/"Kurse" keinen direkten
@@ -1550,6 +1558,456 @@ nach vollständigem Kurs, unvollständiger Kurs bleibt gesperrt; Sync-Test). `np
 zur bewusst niedrigen Schwelle des Formats. Eigener Branch von `main` (nicht auf
 `kurs-js-spielewerkstatt` aufgesetzt, obwohl dort entwickelt) — das Feature ist unabhängig vom
 JS-Kurs und gilt für alle Projekt-Kurse gleichermaßen, siehe WORKFLOW.md "ein Thema = ein Branch".
+
+### 3.42 JS-Kurse: Selbsteinschätzungs-Button entfernt (Branch `js-grundkurs-woche1-experiment`)
+
+Nutzer-Feedback beim Ausprobieren des unverlinkten Experiments `js-grundkurs-woche1` (Lektion/
+Debug/Mission-Struktur, siehe unten "Experiment: JS-Grundkurs Woche 1"): der "Ich hab's
+ausprobiert"-Button (`check: "self"`, eingeführt in 3.39) sollte für echte Aufgaben gar nicht
+existieren — Ausführen + Prüfen reicht. Komplett aus `JsLessonView.vue` entfernt (Template,
+`markSelfChecked()`, `.btn-selfcheck`-CSS, `jsLesson.selfCheckBtn`/`.selfCheckDone`-Locale-Keys) —
+betraf beide JS-Kurse gleichermaßen, da beide dieselbe Komponente teilen.
+
+**Alle bisherigen `check: "self"`-Aufgaben auf echte `validation` umgestellt** (Nutzer-Entscheidung
+auf Nachfrage: keine Ausnahme, auch die schon produktive `js-spielewerkstatt`):
+- **Demo-Beispiele** ("Führe dieses Beispiel aus…", `codeTemplate` bereits korrekt): bekamen eine
+  `validation`, die zum unveränderten Code passt (z.B. `canvas_not_blank` bei einem bereits
+  zeichnenden Beispiel, `functionCalls` bei einer Funktionsdemo) — die Prüfung besteht dann sofort
+  beim ersten Klick auf "Prüfen", ohne dass am Code etwas geändert werden muss.
+- **Zwei echte "freie" Aufgaben** (js-grundkurs-woche1 Lektion 5 "bau dein eigenes Programm" und
+  Mission "eigener Rechner mit Zahlen deiner Wahl") ließen sich nicht automatisch prüfen, ohne die
+  Kreativität einzuschränken — nach Rückfrage umformuliert zu konkreten, deterministischen
+  Aufgaben (feste Zahlen, feste Erwartung), gleiche Schwierigkeit, jetzt aber prüfbar.
+- **Eine Ausnahme, die ersatzlos entfernt wurde:** die const-Neuzuweisungs-Fehlerdemo
+  (js-grundkurs-woche1 Lektion 2) kann durch die Natur der Sache nie eine `checkTask()`-Prüfung
+  bestehen — ein Laufzeitfehler gilt dort immer als Fehlschlag, nie als Erfolg. Da dasselbe
+  Beispiel bereits identisch im Lektionstext (`lektion-02.md`) steht, wurde die Aufgabe komplett
+  gestrichen statt eine neue "erwarteter Fehler"-Validierung zu bauen (Lektion 2 hat seither nur
+  noch 2 statt 3 Aufgaben — unterschiedliche Aufgabenzahl pro Lektion ist bereits ein etabliertes
+  Muster, siehe `js-spielewerkstatt` Lektion 5 mit 4 statt 3 Aufgaben).
+
+`js-spielewerkstatt` Lektion 6, letzte Aufgabe ("Spiel eine ganze Runde durch") hatte gar kein
+`codeTemplate` und keine Prüfung — jetzt `canvas_changed` (beweist eine tatsächlich laufende
+Animationsschleife, das strengste sinnvolle Kriterium für "das ganze Spiel funktioniert").
+
+**Getestet:** `tests/js-spielewerkstatt.spec.js` — Test umbenannt/umgeschrieben (prüft jetzt
+`.btn-selfcheck` existiert nicht mehr UND dass alle drei Aufgaben der ersten Lektion per "Prüfen"
+bestehen, inkl. der beiden unveränderten Demo-Aufgaben). `tests/js-grundkurs-woche1-experiment.spec.js`
+— `completeLesson()`-Helper umgebaut (Array statt Objekt, `null` = unverändert ausführen). Volle
+`npm run test:checks`-Suite grün.
+
+**Nachtrag 1 (Stepper-Struktur wie beim Python-12-Wochen-Kurs, nur fürs Experiment):** Nutzer-
+Vergleich: der Python-Kurs nutzt seit 3.36 eine Fortschritts-Leiste mit verbundenen Kullern
+(`WeekTourStepper.vue`) + Breadcrumb-Navigation statt einer Seitenleisten-Liste — Wunsch, dasselbe
+Muster auf `js-grundkurs-woche1` zu übertragen. Nutzer-Entscheidung auf Rückfrage: **nur für dieses
+Experiment** (nicht `ProjectCourse.vue` selbst, betrifft also nicht `js-spielewerkstatt` oder die
+anderen Projekt-Kurse), und **ein Kuller pro Lektion** (7 insgesamt: 5×Lektion, 1×Debug, 1×Mission)
+statt einer Kachel-Seite pro Abschnitt — direkteste Übertragung, da jede Python-Woche im Stepper
+genau einen Kuller pro Notebook-Typ hat und hier jede Lektion einem Notebook entspricht. Neue,
+eigenständige Datei `src/views/experiment/JsCourseTour.vue` (bewusst **nicht** in `ProjectCourse.vue`
+integriert — eigener Lektions-Loader, eigene Fortschritts-Anbindung über das schon bestehende
+`useInteractiveProgress`, rendert `JsLessonView.vue` direkt ohne Sidebar). Kullern sind nach
+`section` gruppiert (Label "LEKTION"/"DEBUG"/"MISSION" über der jeweiligen Gruppe, kleine Lücke
+zwischen Gruppen statt einer durchgehenden Linie), Breadcrumb zeigt "Woche 1: JavaScript-Grundlagen
+› {Abschnitt} {Position}" (z.B. "Lektion 2", oder nur "Debug" wenn der Abschnitt nur eine Lektion
+hat). Gesperrte Kullern sind `disabled` (kein Klick möglich), Sequenz-Freischaltung unverändert über
+`isLessonUnlocked` aus `useInteractiveProgress.js`. `JsGrundkursWoche1View.vue` rendert jetzt
+`<JsCourseTour>` statt `<ProjectCourse>`.
+
+**Nachtrag 2 (Beispiel- vs. Pflicht-Aufgaben klar unterschieden):** Nutzer-Feedback direkt danach:
+nach der Umstellung aus Nachtrag 1 (oben) sahen alle Aufgaben gleich aus (gleicher Button-Satz,
+gleiche Optik) — unklar, welche Aufgabe wirklich gelöst werden muss und welche nur zum Ausprobieren
+dient. Neues optionales Aufgaben-Feld `"example": true` in `lessons.json` (Gegenteil: kein Feld =
+Pflichtaufgabe) — rein visuelles/Verhaltensmerkmal, **keine** Rückkehr zum entfernten
+`check: "self"`-Mechanismus (Nachtrag oben) und **keine** eigene Validierungslogik. Regel für die
+Zuordnung: eine Aufgabe ist `example`, wenn ihr `codeTemplate` bereits vollständig/korrekt ist und
+unverändert eine bestandene Prüfung ergäbe (reines "anschauen"); alles, was einen leeren/unfertigen
+Stub verlangt oder eine versteckte `solution` zum Einfügen hat, bleibt Pflichtaufgabe. In
+`JsLessonView.vue`: Beispiel-Aufgaben zeigen nur "Ausführen" (kein "Prüfen"-Button) und einen
+grauen "🔍 Beispiel – nur ausführen"-Badge mit grauem linkem Rahmen; Pflichtaufgaben zeigen beide
+Buttons und einen orangen "✏️ Deine Aufgabe"-Badge mit orangem linkem Rahmen. Ein erfolgreicher Lauf
+einer Beispiel-Aufgabe zählt automatisch als erledigt (`markExampleDone()`, analog zu `finishCheck()`
+für Pflichtaufgaben, aber ohne Feedback-Banner — das sichtbare ✓ neben der Aufgabe reicht). Alle
+8+8 vorhandenen Demo-Aufgaben in `js-grundkurs-woche1` und `js-spielewerkstatt` (beide Kurse, gleiche
+Komponente) entsprechend mit `"example": true` markiert. Getestet: `tests/js-spielewerkstatt.spec.js`
+(Test umbenannt, prüft jetzt `.task-example`/`.task-required`-Klassen, Badge-Sichtbarkeit und
+fehlenden `.btn-check` bei Beispiel-Aufgaben) + `tests/js-grundkurs-woche1-experiment.spec.js`
+(`completeLesson()`-Helper klickt bei `null`-Einträgen jetzt "Ausführen" + wartet auf `.task-done`
+statt "Prüfen" + `.feedback-success`). Volle `npm run test:checks`-Suite (78 Tests) grün, Build ok.
+
+**Nachtrag 3 (Beispiele physisch nach vorn, Pflichtaufgabe immer zuletzt):** direkter Folge-Wunsch:
+"Prüfen"-Aufgaben sollen immer die letzten einer Lektion sein — revidiert die bewusste Entscheidung
+aus Nachtrag 2, wegen des Scaffoldings in `js-spielewerkstatt` Lektion 3 nicht umzusortieren. Jetzt
+umgesetzt: pro Lektion stabil sortiert (alle `example`-Aufgaben zuerst, in ihrer bisherigen
+Reihenfolge, danach alle Pflichtaufgaben, ebenfalls in ihrer bisherigen Reihenfolge) — betraf
+`js-grundkurs-woche1` Lektion 1/3/4 und `js-spielewerkstatt` Lektion 1/3/5 (die übrigen Lektionen
+hatten bereits diese Form). Bei Lektion 3 (`js-spielewerkstatt`) wandert das Demo-Beispiel (komplette
+Animationsschleife) jetzt vor die Funktionsaufgabe `naechstePosition` — funktioniert weiterhin gut,
+da das Demo ohnehin in sich geschlossen ist (ruft `naechstePosition` nicht auf). Dabei nebenbei einen
+Formulierungsfehler gefunden und gefixt: die letzte Aufgabe derselben Lektion ("größeres Tempo")
+verlangte tatsächlich eigenen Code (leerer Stub + `solution`-Reveal), ihre Instruktion war aber noch
+im alten "Führe dieses Beispiel aus"-Wortlaut formuliert — jetzt "Baue die Schleife nochmal...".
+Getestet: alle betroffenen Task-Index-Referenzen in `tests/js-spielewerkstatt.spec.js` und
+`tests/js-grundkurs-woche1-experiment.spec.js` auf die neuen Positionen angepasst (u.a.
+`completeLesson()`-Aufrufe, `.task-block.nth(N)`-Locators). Volle `npm run test:checks`-Suite
+(78 Tests) grün, Build ok.
+
+### 3.43 JS-Grundkurs: Curriculum-Plan, komplette Wochen 2-9 + Seiten-Integration (Branch `js-grundkurs-woche1-experiment`)
+
+Nutzer-Wunsch: ein Lehrplan für den JS-Grundkurs (bisher nur Woche 1 als unverlinktes Experiment,
+siehe 3.42). Ergebnis der Planung: neuer Abschnitt "JavaScript-Track: Grundkurs" in `KURSPLAN.md`
+(9 Wochen, leichtes Format ohne Themen-Varianten — Lektion → Debug → Mission, kein Quiz/
+Zertifikat), `VISION.md`s Track-Tabelle entsprechend aktualisiert (dabei nebenbei einen veralteten
+Status-Marker korrigiert: `js-spielewerkstatt` stand noch auf 🚧 "nächstes konkretes Thema", ist
+aber längst gemergt — jetzt ✅). Wochenplan: 1 JS-Grundlagen ✅ · 2 Bedingungen ✅ · 3 Schleifen ·
+4 Funktionen · 5 Arrays · 6 Objekte · 7 DOM & Interaktivität · 8 Abschlussprojekt · 9 Objekte als
+Blaupause (Klassen, bewusst ohne Vererbung/Polymorphismus — analog zur Kürzung in
+`python-12-wochen-grundkurs` Woche 11, siehe 3.31).
+
+**Mehrwochen-Architektur:** `content/js-grundkurs-woche1/` war für genau eine Woche gebaut
+(`JsCourseTour.vue` mit hart codiertem "Woche 1"-Breadcrumb, `JsGrundkursWoche1View.vue` als
+einzige Route). Neue `JsGrundkursTour.vue` (ersetzt `JsGrundkursWoche1View.vue`, Route jetzt
+`/experiment/js-grundkurs` statt `/experiment/js-grundkurs-woche1`) davor geschaltet: einfaches
+Kachel-Grid mit 9 Wochen (statische `WEEK_DEFS`-Liste, keine Markdown-Frontmatter-Pipeline wie
+`useWeeklyContent.js` beim Python-Kurs — lohnt sich nur wegen Varianten/Cheat-Sheets, hier
+unnötig), Verfügbarkeit pro Woche wird zur Laufzeit über dasselbe
+`import.meta.glob('content/*/lessons.json')`-Pattern geprüft (Wochen ohne Content-Ordner zeigen
+automatisch "🚧 kommt noch", keine manuell gepflegte Zähler-Konstante nötig). `JsCourseTour.vue`
+bekam einen neuen Pflicht-Prop `weekLabel` (ersetzt den hart codierten Breadcrumb-Text) und einen
+`change-week`-Emit für den neuen "← Andere Woche wählen"-Link.
+
+**Bewusste Entscheidungen (Abweichung vom Python-Kurs-Vorbild, mit Begründung):**
+- **Wochen sind frei anklickbar**, keine Sperre nach Abschluss der Vorwoche — entspricht dem
+  bestehenden Verhalten der Python-Wochenkacheln (`WeekTour.vue`: 🎓-Badge bei Abschluss, aber
+  nie gesperrt). Nur Lektionen **innerhalb** einer Woche bleiben sequenziell gesperrt.
+- **Fortschritt bleibt pro Woche eine eigene `useInteractiveProgress`-Instanz** (eigener
+  localStorage-Key pro Woche, wie schon bei Woche 1) statt einer kursweiten Instanz über alle 9
+  Wochen — `useInteractiveProgress.js` selbst wurde nicht angefasst. Da Wochen ohnehin frei
+  wählbar sind, spielt harte Cross-Week-Sequenzierung keine Rolle; eine kursweite Instanz hätte
+  eager das Laden aller 9 `lessons.json` zu einem flachen Array gebraucht, ohne echten Nutzen.
+- **Kein "Nächste Woche"-Button, kein SVG-Pfad wie bei `WeekTour.vue`** — bewusst simpler
+  gehalten, passend zum "leichten Format" ohne Zertifikat/Erfolgs-Reveal.
+- **Deep-Link nur `?week=N`** (kein `variant`/`step` wie beim Python-Kurs, da keine Varianten
+  existieren).
+
+**Woche 2 ("Bedingungen"):** 5 Lektionen (Vergleichsoperatoren → if/else → else-if-Ketten →
+&&/||/! → verschachtelte Bedingungen), je ein Beispiel-Task + ein Pflicht-Task, plus 4
+Debug-Aufgaben (`=` statt `===`, `elseif`-Tippfehler als Syntaxfehler, vertauschte if/else-Zweige
+bei `||`, `===`-Typstrenge zwischen String und Zahl) und 3 Mission-Aufgaben (Rabatt-Rechner,
+UND-Verknüpfung, else-if-Kette) — alle deterministisch mit festen Eingabewerten, analog zu Woche
+1. Jede `codeTemplate`/Erwartung wurde vor dem Schreiben der `lessons.json` per `node -e`
+gegenverifiziert (Buggy- **und** Fixed-Variante jeder Debug-Aufgabe), inklusive einer Prüfung auf
+Substring-Kollisionen bei den `output_contains`-Erwartungen (z.B. "gerade" ist Substring von
+"ungerade" — Ausgabetexte deshalb bewusst als `<Zahl> ist gerade`/`<Zahl> ist ungerade` formuliert,
+damit die Erwartung eindeutig bleibt).
+
+**Getestet (Woche 2):** `tests/js-grundkurs-woche1-experiment.spec.js` komplett überarbeitet
+(Datei-Name beibehalten trotz erweitertem Scope, um Testhistorie nicht unnötig zu zerschneiden) —
+neue Tests für die Wochenauswahl (9 Kacheln, Wochen 1+2 verfügbar, Rest gesperrt, gesperrte Kachel
+reagiert nicht auf Klick), Breadcrumb-Rücksprung, `?week=`-Deep-Link, plus ein kompletter Durchlauf
+aller 7 Lektionen von Woche 2 (analog zum bestehenden Woche-1-Durchlauf). Volle
+`npm run test:checks` (82 Tests, 1 bekannter Flake in `js-spielewerkstatt.spec.js`s
+CodeMirror-Autocomplete-Test — isoliert mit `--repeat-each=3` als weiterhin nur zeitkritisch, nicht
+regressiert bestätigt) grün, `npm run build` ok, Wochenauswahl + Woche 2 zusätzlich per Screenshot
+visuell verifiziert.
+
+**Nachtrag (Woche 3, "Schleifen"):** direkter Folge-Auftrag ("weiter mit 3"), gleiches Vorgehen wie
+Woche 2 — 5 Lektionen (`for` → `while` → `break`/`continue` → `for...of` über Strings → Schleife +
+Bedingung kombiniert), 4 Debug-Aufgaben, 3 Mission-Aufgaben. **Bewusst keine echte Endlosschleife
+als Debug-Bug verwendet**, obwohl "vergessenes Inkrement" ein naheliegender Klassiker wäre: die
+JS-Sandbox hat (anders als Pyodide, siehe 3.5) keinen AST-Loop-Guard, nur einen
+`RUN_TIMEOUT_MS`-Timeout auf Elternseite (`useJsSandbox.js`) — der lässt die UI nach 5s mit einer
+generischen "timeout"-Fehlermeldung weiterlaufen, aber das durchlaufende iframe rechnet im
+Hintergrund weiter, bis es beim nächsten Klick neu aufgebaut wird. Technisch kein Absturz, aber
+eine schlechte erste Debug-Erfahrung (5s hängen + unklare Meldung) und unnötig langsame Tests —
+stattdessen 4 Bugs gewählt, die alle garantiert terminieren (Off-by-one in der `for`-Bedingung,
+`while`-Bedingung die von Anfang an `false` ist, `break` statt `continue` vertauscht, `for...in`
+statt `for...of` über einen String — iteriert String-Indizes statt Zeichen, ebenfalls ein
+realistischer Anfängerfehler). Alle Buggy- **und** Fixed-Varianten sowie alle Beispiel-/
+Pflichtaufgaben-Snippets vorab per `node -e` verifiziert (inkl. Substring-Kollisionsprüfung wie
+bei Woche 2). Getestet: gleiches Testmuster wie Woche 2 (Wochenauswahl-Test auf "Woche 4 zuerst
+gesperrt" angepasst, neuer `?week=3`-Deep-Link-Test, kompletter 7-Lektionen-Durchlauf). Volle
+`npm run test:checks` (84 Tests, diesmal auch der sonst gelegentlich flakende
+CodeMirror-Autocomplete-Test grün) + `npm run build` grün.
+
+**Nachtrag (Woche 4, "Funktionen"):** direkter Folge-Auftrag ("weiter mit 4"). 5 Lektionen
+(Funktion + Parameter/`return` → mehrere Parameter → Wiederverwendbarkeit → Arrow-Functions →
+Funktionen mit Schleife/Bedingung kombiniert), 4 Debug-Aufgaben, 3 Mission-Aufgaben — erste Woche,
+die `functionCalls` nutzt (Funktion wird nach dem Prüfen nochmal mit einem nie genannten Wert
+aufgerufen, gleicher Mechanismus wie in `js-spielewerkstatt`/Python-Wochen-Checks, siehe 3.34).
+
+**Wichtige, beim Verifizieren gefundene Sandbox-Einschränkung:** `functionCalls` ruft die Funktion
+über eine **zweite, separate** `(0, eval)(name)`-Auswertung im selben iframe auf (RPC `call`,
+losgelöst vom ursprünglichen `run()`-Aufruf). Per Node-Test nachgestellt und bestätigt: `function
+name(){}`-Deklarationen und `var`-Zuweisungen überleben das (werden zu echten Properties des
+globalen Objekts), aber `const`/`let`-Zuweisungen (inkl. `const fn = (x) => ...`) und
+`class`-Deklarationen sind nur innerhalb des **einen** ursprünglichen `eval()`-Aufrufs sichtbar —
+eine spätere, separate `eval()`-Abfrage wirft `ReferenceError: ... is not defined`. Praktische
+Konsequenz für Lektion 4 (Arrow-Functions): die Pflichtaufgabe verlangt bewusst eine idiomatische
+`const`-Arrow-Function, bekommt aber **keine** `functionCalls`-Prüfung (nur `output_contains` +
+`variables`, beide lesen aus dem ursprünglichen `run()`-Aufruf und sind davon nicht betroffen) —
+eine `functionCalls`-Prüfung hätte dort selbst bei korrekter Lösung mit einem Referenzfehler
+fehlgeschlagen. **Relevant für spätere Wochen:** Woche 9 (Klassen) kann aus demselben Grund keine
+`functionCalls`-Prüfung auf Klassen-Methoden nutzen — muss bei der Umsetzung berücksichtigt werden
+(siehe `todo.md`).
+
+Debug-Bugs bewusst mit unterschiedlichen, klar unterscheidbaren Symptomen gewählt (nicht alle
+"undefined"): fehlendes `return` (→ "undefined"), vertauschte Argument-Reihenfolge beim Aufruf (→
+falsche Zahl), vergessener Aufruf mit `()` (→ leere Ausgabe, da `JSON.stringify` einer Funktion in
+der Sandbox `undefined` liefert und beim `join()` zu einem leeren String wird — empirisch mit
+Node nachgestellt, nicht nur vermutet), fehlendes `return` in einer Arrow-Function mit `{}` (→
+"undefined", bewusste Wiederholung desselben Kernfehlers in der anderen Funktions-Syntax). Alle
+Buggy-/Fixed-Varianten und alle `functionCalls`-Hidden-Tests vorab per `node -e` verifiziert.
+Getestet: gleiches Testmuster wie Woche 2/3, Wochenauswahl-Test auf "Woche 5 zuerst gesperrt"
+angepasst, neuer `?week=4`-Deep-Link-Test, kompletter 7-Lektionen-Durchlauf (bestätigt
+`functionCalls` auch im echten Browser, nicht nur in der Node-Simulation). Volle
+`npm run test:checks` (86 Tests) + `npm run build` grün.
+
+**Nachtrag (Woche 5 "Arrays" + Woche 6 "Objekte"):** direkter Folge-Auftrag ("mach einfach weiter
+mit 5 und 6"), beide Wochen im selben Zug umgesetzt, gleiches Vorgehen wie zuvor.
+
+Woche 5: 5 Lektionen (Array + Index → push/pop → length → for...of über ein Array → Array +
+Bedingung kombiniert), 4 Debug-Aufgaben, 3 Mission-Aufgaben (Funktionen, die ein Array-Argument
+entgegennehmen — erste Nutzung von Arrays als `functionCalls`-Argument).
+
+**Zweite, beim Verifizieren gefundene Sandbox-/Validierungs-Einschränkung** (analog zur
+`const`/`let`-Sache aus Woche 4): `valuesMatch()` in `useTaskValidation.js` vergleicht Objekte
+rekursiv Property für Property, **Arrays aber nur per strikter Referenzgleichheit** (`Array.isArray`
+schließt Arrays explizit von der rekursiven Objekt-Prüfung aus, dann greift `actual === expected` —
+zwei inhaltsgleiche, aber unterschiedliche Array-Objekte sind in JS nie `===`). Ein `variables`-
+oder `functionCalls.expected`-Wert, der ein Array ist, würde also **selbst bei korrekter Lösung
+immer fehlschlagen**. Per Node-Test verifiziert (`valuesMatch([1,2,3],[1,2,3])` → `false`). Deshalb
+validieren alle Woche-5/6-Aufgaben nur **Skalare, die aus einem Array abgeleitet sind** (Summe,
+Anzahl, größter Wert, einzelnes Element) — nie das Array selbst als erwarteter Wert. Ein Array als
+**Argument** einer `functionCalls`-Aufgabe ist dagegen unproblematisch (dort wird nur die
+Rückgabe verglichen, nicht das Argument selbst).
+
+Woche 6: 5 Lektionen (Objekt-Literal + Punkt-Notation → Properties ändern/hinzufügen → Methoden
+mit `this` → Array aus Objekten → Objekte + Schleife + Bedingung kombiniert), 4 Debug-Aufgaben, 3
+Mission-Aufgaben. Objekte (im Gegensatz zu Arrays) unterstützen die rekursive
+`variables`/`functionCalls`-Prüfung ganz normal (per Node-Test bestätigt: verschachtelter
+Objekt-Vergleich funktioniert) — deshalb dürfen hier `variables`-Checks direkt ein Objekt-Literal
+als erwarteten Wert nutzen (z.B. `{"haustier": {"art": "Hund", "alter": 3}}`), anders als bei
+Woche 5s Arrays. Für Objekt-**Methoden** (Lektion 3) gilt weiterhin die Woche-4-Einschränkung —
+diese Aufgabe bekommt bewusst keine `functionCalls`-Prüfung (Methode hängt an einem `let`-Objekt,
+würde bei der separaten Re-Evaluation nicht gefunden). Debug-Bugs decken die vier typischsten
+Objekt-Fehler ab: Punkt- statt Klammer-Notation bei einem Property-Namen aus einer Variable,
+vergessener Methodenaufruf mit `()`, Tippfehler im Property-Namen, falsche Property beim
+Durchgehen eines Arrays aus Objekten.
+
+Alle Buggy-/Fixed-Varianten, alle `functionCalls`-Hidden-Tests und die Objekt-/Array-
+Validierungsannahmen vorab per `node -e` verifiziert (inkl. der beiden oben beschriebenen
+Sandbox-Einschränkungen). Getestet: gleiches Testmuster wie die Vorwochen (Wochenauswahl-Test auf
+"Woche 7 zuerst gesperrt" angepasst, neue `?week=5`/`?week=6`-Deep-Link-Tests, je ein kompletter
+7-Lektionen-Durchlauf pro Woche — dabei eine **eigene** Testfalle gefunden und gefixt: bei
+Aufgaben mit vorbefülltem `codeTemplate` (z.B. `let namen = [...]` vor "// Dein Code hier") muss
+der Test-Ersatzcode diese Zeile erneut enthalten, da `setCodeMirrorContent()` den kompletten
+Editor-Inhalt ersetzt statt daran anzuhängen — 5 Testfälle initial vergessen, beim ersten Lauf
+sofort als `ReferenceError` sichtbar geworden, korrigiert). Volle `npm run test:checks`
+(90 Tests) + `npm run build` grün.
+
+**Nachtrag (Woche 7 "DOM & Interaktivität" + Woche 8 "Abschlussprojekt" + Woche 9 "Objekte als
+Blaupause"):** direkter Folge-Auftrag ("weiter mit 7, 8 und 9"), alle drei Wochen im selben Zug
+umgesetzt — damit ist der komplette 9-Wochen-Plan aus `KURSPLAN.md` fertig.
+
+**Neue Architektur für Woche 7 (musste vor dem Content gebaut werden, siehe `todo.md`-Vormerkung):**
+die Sandbox (`useJsSandbox.js`) hatte bisher nur ein Canvas (`#spielfeld`) für
+`js-spielewerkstatt` — für DOM-Aufgaben kam ein neues, festes DOM-Übungs-Markup dazu
+(`#dom-uebung`: `#ueberschrift`, `#text`, `#knopf`, `#anzeige`) plus zwei neue `validation.type`-
+Werte: `dom_text` (`{target, text}`, liest `textContent` nach dem Lauf) und `dom_click_text`
+(`{click, target, text, clicks?}`, simuliert `clicks`-mal `.click()` auf dem Knopf und liest dann
+`textContent` des Ziel-Elements). **Wichtig:** beide nutzen bewusst `validation.text`, nicht
+`validation.expected` — hätte `expected` geheißen, würde `validateOutput()`s generischer
+Ausgabe-Fallback-Check fälschlich gegen die (meist leere) Konsolen-Ausgabe prüfen und die Aufgabe
+immer durchfallen lassen (gleiches Muster wie schon bei `canvas_not_blank`/`canvas_changed`, die
+aus genau diesem Grund auch kein `expected` nutzen). Sandbox-seitig: `document.getElementById`,
+`el.click()` (feuert echte `click`-Events an registrierte `addEventListener`-Handler) und
+`el.textContent` funktionieren im `sandbox="allow-scripts"`-iframe unverändert wie im normalen
+Browser — keine Sonderbehandlung nötig.
+
+**Gefundener und gefixter Bug beim ersten Screenshot-Check:** Canvas (300px, immer im DOM) und das
+neue `#dom-uebung`-Markup standen beide gleichzeitig im selben iframe-Body — bei der festen
+300px-iframe-Höhe (`JsSandboxFrame.vue`) füllte allein das Canvas schon die komplette Höhe, die
+DOM-Übungsfläche darunter war unsichtbar abgeschnitten. Gefixt, indem `buildSandboxHtml()` jetzt
+zwei srcdoc-Varianten erzeugt (`'canvas'`/`'dom'`-Modus, per CSS `display:none` auf das jeweils
+ungenutzte Element) statt einer gemeinsamen — neuer `domMode`-Prop durchgereicht von
+`JsGrundkursTour.vue` (Wochen 7+8, derselbe Wert wie `showCanvas`, da hier immer zusammen gebraucht)
+über `JsCourseTour.vue`/`JsLessonView.vue` bis `JsSandboxFrame.vue`. `js-spielewerkstatt`
+(`ProjectCourse.vue`) übergibt `domMode` nie → Default `false` → unverändertes Canvas-Verhalten,
+per vollem `js-spielewerkstatt.spec.js`-Lauf nach dem Fix bestätigt (keine Regression).
+
+Woche 7: 5 Lektionen (`document.querySelector` + `.textContent` lesen → Text ändern →
+`addEventListener('click', ...)` → Zähler-Variable zwischen Klicks → Klick + Bedingung
+kombiniert), 4 Debug-Aufgaben (fehlendes `#` vor einer ID, Tippfehler im Event-Namen, falsches
+Ziel-Element im Handler, Reihenfolge zwischen Anzeigen und Erhöhen vertauscht), 3
+Mission-Aufgaben. `showCanvas`/`domMode` werden für diese Woche erstmals `true` (bisher immer
+`false` für den ganzen Grundkurs) — Nutzer:innen können den echten Knopf im iframe auch von Hand
+anklicken, bevor sie "Prüfen" drücken (kein Zusatzaufwand, folgt automatisch aus einem echten,
+interaktiven iframe).
+
+Woche 8 (Abschlussprojekt, bewusst kein neues Konzept): baut ein kleines Mini-Quiz
+(Array-aus-Objekten-Fragenkatalog, click-basiertes Weiterschalten mit Zähler+Bedingung, Funktion
+zum Auszählen richtiger Antworten) inkrementell über 5 Lektionen auf, kombiniert dabei explizit
+Konzepte aus Woche 2–7. 4 Debug-Aufgaben und 3 Mission-Aufgaben kombinieren ebenfalls mehrere
+Wochen in einem Bug/einer Aufgabe (z.B. Array-Index + DOM-Zuweisung in derselben Zeile) statt nur
+ein Einzelkonzept. **Zur Verifikation** ein kleiner Node-DOM-Shim gebaut (`querySelector`/
+`textContent`/`addEventListener`/`.click()` nachgebildet) statt nur reiner JS-Logik zu simulieren
+— fing tatsächlich alle Klick-Zähl-Grenzfälle (z.B. "nach dem 3. Klick") vor dem echten
+Playwright-Lauf ab.
+
+Woche 9 (Klassen, bewusst ohne Vererbung/Polymorphismus): 5 Lektionen (`class`+`constructor` →
+Methoden mit `this` → mehrere unabhängige Instanzen → Array aus Instanzen → Instanzen + Schleife +
+Bedingung), 4 Debug-Aufgaben, 3 Mission-Aufgaben. **Bestätigt die in Woche 4 vorhergesagte
+Einschränkung** (todo.md-Vormerkung): keine der Aufgaben nutzt `functionCalls` auf einer
+Klassen-Methode — alle validieren nur über `output_contains`/`variables`. Dabei zwei neue
+Erkenntnisse präzise nachgewiesen (beide per `node -e`, bevor der Content geschrieben wurde):
+(1) `class`-Deklarationen verhalten sich wie `let`/`const`, nicht wie `function` — eine später
+per separatem `eval()` gesuchte Klasse wirft `ReferenceError`, exakt wie bei Woche 4 für Arrow-
+Functions gezeigt. (2) Ein `variables`-Check **kann** trotzdem eine ganze Klassen-Instanz
+validieren (z.B. `{"meinBuch": {"titel": "Der Hobbit", "seiten": 310}}`) — `JSON.stringify()`
+einer Instanz liefert nur ihre eigenen Daten-Properties (per `this.x = ...` im `constructor`
+gesetzt), Methoden landen auf dem Prototyp und tauchen dort gar nicht auf, stören die rekursive
+Objekt-Prüfung in `valuesMatch()` also nicht. Zwei der vier Debug-Bugs werfen bewusst einen
+echten JS-Fehler (Klassenkonstruktor ohne `new` aufgerufen; `this.` in einer Methode vergessen,
+dadurch `ReferenceError`) — beide per `node -e` als echte Laufzeitfehler bestätigt, nicht nur
+angenommen.
+
+**Getestet (alle drei Wochen):** gleiches Testmuster wie die Vorwochen — Wochenauswahl-Test
+umgeschrieben (alle 9 Wochen jetzt verfügbar, keine "kommt noch"-Kachel mehr übrig), neue
+`?week=7`/`?week=8`/`?week=9`-Deep-Link-Tests (der Woche-7-Test prüft zusätzlich, dass das
+Sandbox-iframe nach "Ausführen" sichtbar wird), je ein kompletter 7-Lektionen-Durchlauf pro Woche.
+Volle `npm run test:checks` (96 Tests) + `npm run build` grün, `js-spielewerkstatt.spec.js`
+separat gegengeprüft (keine Regression durch die Sandbox-Architekturänderung). Visuell per
+Screenshot verifiziert (dabei den Canvas/DOM-Überlappungs-Bug gefunden, siehe oben).
+
+**Nachtrag (Woche 8 ↔ 9 getauscht):** berechtigter Nutzer-Einwand — ein "Abschlussprojekt" sollte
+eigentlich alles einschließen können, auch das zuletzt gelernte Konzept, stand hier aber bewusst
+*vor* den Klassen. Reihenfolge getauscht: **Woche 8 = Objekte als Blaupause (Klassen)**,
+**Woche 9 = Abschlussprojekt**. Umsetzung: Content-Ordner komplett vertauscht (`content/
+js-grundkurs-woche8/` ↔ `js-grundkurs-woche9/`, per `mv` über ein drittes Temp-Verzeichnis, keine
+Datei einzeln verschoben), `WEEK_DEFS` in `JsGrundkursTour.vue` angepasst (Titel + `sandboxVisible`
+jetzt auf Woche 9 statt Woche 8). Ein hart codierter Wochenverweis im Klassen-Content
+("Woche 9, Lektion 2" in `lektion-05.md`) auf "Woche 8" korrigiert — per grep nach `Woche 8`/
+`Woche 9`/`week8`/`week9` verifiziert, dass das der einzige betroffene Verweis war.
+
+**Abschlussprojekt inhaltlich erweitert, nicht nur verschoben:** das Fragen-Array des Mini-Quiz
+(bisher Objekt-Literale `{ frage, antwort }`) nutzt jetzt eine eigene `Frage`-Klasse
+(`constructor(frage, antwort)`), passend zur neuen Reihenfolge — in allen Lektionen, Debug-Aufgaben
+und dem Beispiel von Lektion 4, die mit dem Fragen-Array arbeiten (Lektion 1–4, Debug 1/2/4).
+Bewusst **nicht** überall Klassen erzwungen: die `{ richtig: bool }`-Auswertung in Lektion 5/
+Debug 3 und die übrigen Mission-Aufgaben (Punkte-Objekte, Namens-Arrays) bleiben einfache
+Objekt-Literale bzw. Arrays aus Primitiven — nicht jede Datenstruktur muss eine Klasse sein, das
+wäre eine erzwungene, nicht lehrreiche Abstraktion gewesen. Da Property-Zugriff auf eine
+Klassen-Instanz (`instanz.frage`) sich identisch verhält wie auf ein Objekt-Literal
+(`objekt.frage`), blieben alle bereits verifizierten Validierungswerte (Ziel-Texte, Klick-Zahlen)
+unverändert korrekt — nur die Erzeuger-Syntax (`new Frage(...)` statt `{ frage: ..., antwort: ... }`)
+musste in den `codeTemplate`-Strings ausgetauscht werden.
+
+**Getestet:** beide betroffenen Wochentests im Testfile vollständig neu geschrieben (nicht nur
+umbenannt) — der ehemalige Woche-8-Test (Quiz) wandert mit allen Klassen-Anpassungen zu
+"Woche 9", der ehemalige Woche-9-Test (Klassen) wird unverändert zu "Woche 8" (nur die
+`?week=`-Zahl ändert sich). `?week=8`/`?week=9`-Deep-Link-Tests auf die getauschten Titel
+("Objekte als Blaupause" bei 8, "Abschlussprojekt" bei 9) angepasst. Volle `npm run test:checks`
+(96 Tests) + `npm run build` weiterhin grün.
+
+**Nachtrag (auf der Seite eingebunden, nicht mehr unverlinktes Experiment):** direkter
+Folge-Auftrag ("kannst du das auf die Seite einbinden?"). Der Kurs ist jetzt ein echter,
+verlinkter Kurs wie jeder andere — kein `/experiment/...`-Sonderpfad mehr.
+
+- **Dateien verschoben** (von "Experiment" zu echtem Code, wie schon beim Python-Kurs in 3.36):
+  `src/views/experiment/JsCourseTour.vue`/`JsGrundkursTour.vue` → `src/components/` (relative
+  Imports/Globs entsprechend angepasst, ein Verzeichnis-Level weniger). `src/views/experiment/`
+  danach leer und entfernt.
+- **Neuer Content-Ordner `content/js-grundkurs/`** mit nur einer `beschreibung.md` (Kursbeschreibung
+  für die Detailseite) — die eigentlichen 9 Wochen bleiben in ihren bestehenden
+  `content/js-grundkurs-woche{N}/`-Ordnern, unverändert.
+- **Neuer `kurse.json`-Eintrag** `js-grundkurs` (Titel/Beschreibung DE+EN, `contentPath:
+  "js-grundkurs"` für die `beschreibung.md` — DE-first, die Lektionen selbst bleiben
+  unübersetzt wie beim restlichen Kurs).
+- **`CourseDetail.vue`:** neuer hart codierter Dispatch-Zweig `isJsGrundkurs = props.id ===
+  'js-grundkurs'` (analog zu `isWeeklyCourse`/`isPlacementCourse` — bewusst kein generisches
+  `type`-Feld wie bei Projekt-Kursen, da es bisher nur diesen einen Grundkurs seiner Art gibt),
+  rendert `<JsGrundkursTour />`. `CourseAppointments` (Termine-Anzeige) für diese Kursart
+  ausgeblendet, analog zu den anderen selbstständigen Kursformaten.
+- **`JsGrundkursTour.vue` bereinigt:** das "🧪 Experiment: unverlinkt"-Banner und der doppelte
+  `<h1>JavaScript-Grundkurs</h1>` (jetzt redundant, `CourseDetail.vue` zeigt Titel + Beschreibung
+  bereits selbst) entfernt.
+- **Router:** die alte Route `/experiment/js-grundkurs` gelöscht — `/kurs/js-grundkurs` läuft
+  automatisch über die bestehende generische `/kurs/:id`-Route.
+- **`Home.vue`:** `js-grundkurs` zur `ALWAYS_VISIBLE_KURSE`-Liste hinzugefügt (wie
+  `python-12-wochen-grundkurs`/`python-grundlagen-interaktiv`), erscheint jetzt in der
+  "Kursübersicht" auf der Startseite. Bewusst **kein** Hero-CTA-Button (die sind für die
+  etablierten Python-Haupttracks reserviert) — die normale Kursliste ist sichtbar genug für einen
+  ersten Kurs seiner Art.
+
+**Wichtiger Bug beim Umbau gefunden:** `package.json`s `test:checks`-Skript referenzierte noch den
+alten Dateinamen `tests/js-grundkurs-woche1-experiment.spec.js`, nachdem die Testdatei zu
+`tests/js-grundkurs.spec.js` umbenannt wurde (passend zur "kein Experiment mehr"-Umbenennung) —
+Playwright fand die Datei über den veralteten Pfad nicht mehr, `test:checks` lief danach
+klaglos mit 23 fehlenden Tests weiter (kein Fehler, nur eine viel niedrigere Testanzahl). Erst am
+unerwartet niedrigen Gesamt-Zähler (74 statt ~97) aufgefallen, nicht an einer Fehlermeldung — eine
+Erinnerung, bei Dateiumbenennungen aktiv nach Referenzen in `package.json`-Skripten zu grep'en,
+nicht nur im Code selbst.
+
+**Getestet:** `tests/js-grundkurs-woche1-experiment.spec.js` → `tests/js-grundkurs.spec.js`
+umbenannt, alle 24 `/experiment/js-grundkurs`-URLs auf `/kurs/js-grundkurs` umgestellt,
+Beschreibungskommentar/`describe()`-Name nicht mehr als "Experiment" formuliert.
+`tests/site.spec.js`: "Home zeigt CTAs und Kern-Kurse" auf 3 statt 2 `.course-card`s angepasst
+(neuer Kurs), neuer Test "Home-Kursliste öffnet den JS-Grundkurs mit korrektem Titel" (Klick auf
+die Kurskarte → `.course-detail > h1` zeigt "JavaScript-Grundkurs" → 9 Wochen-Kacheln sichtbar).
+Volle `npm run test:checks` (97 Tests, nach dem `package.json`-Fix) + `npm run build` grün.
+Visuell per Screenshot verifiziert: Kurskarte auf der Startseite, komplette Kursseite mit
+Beschreibung + Wochenauswahl, kein Experiment-Banner mehr sichtbar.
+
+### 3.44 Homepage: konsistenteres Design (gleicher Branch, Nachtrag)
+
+Nutzer-Wunsch nach einer "gleichförmigeren, strukturierteren" Startseite (ursprünglich auf einem
+separaten `home-redesign`-Branch begonnen, dann auf ausdrücklichen Wunsch — "wir haben aber auch
+einen JavaScript-Kurs" — hierher zusammengeführt, damit der neue `js-grundkurs`-Karten-Eintrag die
+gleiche Optik bekommt). Vier Unstimmigkeiten behoben: Projekte-Teaser hatte einen eigenen
+lila-getönten Kasten-Stil statt der Karten-Optik (weiß, `var(--border-color)`, Radius 12px) aller
+anderen Sections — jetzt weißer Kasten mit orangem linken Akzentrand statt vollflächigem Lila. Die
+Unterstützer-Karten standen einzeln übereinander statt in einem gemeinsamen Grid wie Kurse/Termine
+— neues `.unterstuetzer-list`-Grid, Karten-Optik an `.course-card`/`.termin-card` angeglichen. Der
+Hero hatte drei gleich gewichtete CTA-Buttons; der Einstufungstest ist aber eher ein
+Diagnose-Tool als ein "hier starten"-Kurs — jetzt nur noch 2 CTA-Buttons + ein kleinerer
+Hinweistext-Link darunter (Details zu den finalen 2 Buttons siehe Nachtrag unten). Kurskarten
+zeigen jetzt ein optionales Format-Badge (neues `format`-Feld in `kurse.json`, z.B.
+`"einstieg"`/`"grundkurs"`, neue `courseFormat.*`-Locale-Keys) — macht `VISION.md`s
+Einstieg/Grundkurs-Formatmodell auf der Seite selbst sichtbar; alle drei Home-Kurskarten
+(Python-Interaktiv, Python-12-Wochen, JS-Grundkurs) bekamen dabei ein Badge. `npm run test:checks`
++ `npm run build` grün, Desktop- und Mobil-Ansicht per Screenshot verifiziert.
+
+**Nachtrag (Hero nochmal generalisiert):** die ersten 2 Hero-CTAs verlinkten noch fest auf die
+zwei Python-Kurse ("Zum 12-Wochen-Kurs", "Python Grundlagen – Interaktiv") — seit der JS-Grundkurs-
+Karte in der Kursübersicht ist das nicht mehr repräsentativ (ignoriert JavaScript komplett).
+Nutzer-Wunsch: Hero bekommt zwei sprachneutrale Buttons, **"Zu den Kursen"** (Sprungmarke `<a
+href="#kurse-uebersicht">`, kein `router-link` nötig, da Kursübersicht bereits auf derselben Seite
+liegt) und **"Zu den Projekten"** (`/projekte`, identisches Ziel wie der Projekte-Teaser weiter
+unten). Der Einstufungstest-Hinweis wanderte dabei aus dem Hero direkt unter die
+"Kursübersicht"-Überschrift (`.placement-hint`/`.placement-hint-link`, vormals
+`.hero-placement-hint`/`.hero-placement-link` — umbenannt, da nicht mehr im Hero). Hero-Untertitel
+"Lerne Python..." → "Lerne Python oder JavaScript...", ebenfalls sprachneutral. Alte Locale-Keys
+`home.cta.weekly`/`home.cta.interactive` entfernt (nur noch in Home.vue verwendet, keine anderen
+Referenzen), neue `home.cta.courses`/`home.cta.projects`. Tests: CTA-Href-Selektoren auf
+`#kurse-uebersicht`/`/projekte` umgestellt, neuer Test "Hero-CTA 'Kurse' springt zur Kursübersicht,
+'Projekte' öffnet die Projekte-Seite" (prüft echten Klick + `toBeInViewport()`/Navigation, nicht
+nur den `href`). `npm run test:checks` (98 Tests) + `npm run build` grün.
+
+**Nachtrag (`ProjekteView.vue`-Filter gruppiert):** Nutzer-Feedback zur `/projekte`-Filterleiste
+(Sprache/Level/Thema/Dauer) — die vier Filter-Gruppen standen bisher in einem einzigen
+`flex-wrap`-Container ohne eigene Überschrift, wirkten je nach Fensterbreite unregelmäßig verteilt
+(mal zwei Gruppen in einer Zeile, mal nicht) und ohne erkennbaren Rahmen, was zusammengehört. Jetzt:
+eigener `.filters-header` (Titel "Filtern nach" + der "Filter zurücksetzen"-Button rechtsbündig
+daneben, mit Trennlinie darunter) und ein `.filter-grid` (`grid-template-columns: repeat(auto-fit,
+minmax(160px, 1fr))`) statt freiem `flex-wrap` — Sprache/Level/Dauer richten sich sauber
+nebeneinander aus, Thema (die Gruppe mit den meisten Chips) bekommt über `.filter-group-wide`
+(`grid-column: 1 / -1`) eine eigene volle Zeile. Jede Kategorie-Beschriftung bekam zusätzlich ein
+Icon (🌐/🎯/🏷️/⏱️, neuer `projekte.filter.title`-Key "Filtern nach") für schnellere Scanbarkeit.
+Reine Struktur-/CSS-Änderung, Chip-Interaktion/Filterlogik unverändert — bestehende
+`tests/projekte.spec.js`-Tests (filtern nach Chip-Text) blieben unverändert grün, kein neuer Test
+nötig. `npm run test:checks` (98 Tests) + `npm run build` grün, Desktop-/Mobil-/Aktiv-Filter-Zustand
+per Screenshot verifiziert.
 
 ---
 

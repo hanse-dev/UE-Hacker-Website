@@ -22,19 +22,36 @@ export const SANDBOX_CANVAS_ID = 'spielfeld';
 // `let`/`const` landen dort in der persistenten globalen lexikalischen Umgebung des Realms und
 // bleiben ueber den ganzen Lauf hinweg per Bezeichner (`(0, eval)(name)`) abrufbar - unabhaengig
 // davon, ob der Name mit `function`, `var`, `let` oder `const` deklariert wurde.
-function buildSandboxHtml() {
+// `mode: 'dom'` (js-grundkurs Woche 7/8) zeigt die feste DOM-Uebungsflaeche statt des Canvas -
+// beide gleichzeitig gestapelt anzuzeigen wuerde bei der festen 300px-iframe-Hoehe (siehe
+// JsSandboxFrame.vue) dazu fuehren, dass die DOM-Elemente unterhalb des Canvas abgeschnitten und
+// unsichtbar bleiben (per Screenshot gefunden). Das Canvas-Element existiert im DOM-Modus trotzdem
+// weiter (nur unsichtbar) - die Canvas-RPC-Handler (readCanvasData etc.) brauchen kein Sonderfall,
+// `getElementById` funktioniert unabhaengig von `display: none`.
+function buildSandboxHtml(mode) {
+  const isDom = mode === 'dom';
   return `<!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'">
 <style>
-  html, body { margin: 0; padding: 0; background: #eef2f7; }
-  canvas { display: block; background: #eef2f7; }
+  html, body { margin: 0; padding: 0; background: #eef2f7; font-family: sans-serif; }
+  canvas { display: ${isDom ? 'none' : 'block'}; background: #eef2f7; }
+  #dom-uebung { display: ${isDom ? 'block' : 'none'}; padding: 14px; }
+  #dom-uebung h2 { margin: 0 0 8px 0; font-size: 1.1em; }
+  #dom-uebung p { margin: 0 0 10px 0; }
+  #dom-uebung button { font: inherit; padding: 6px 16px; cursor: pointer; }
 </style>
 </head>
 <body>
 <canvas id="${SANDBOX_CANVAS_ID}" width="400" height="300"></canvas>
+<div id="dom-uebung">
+  <h2 id="ueberschrift">Willkommen</h2>
+  <p id="text">Hier steht ein Text.</p>
+  <button id="knopf" type="button">Klick mich</button>
+  <p id="anzeige">0</p>
+</div>
 <script>
 (function () {
   var CH = '${CHANNEL}';
@@ -89,26 +106,31 @@ function buildSandboxHtml() {
 
     if (msg.type === 'run') {
       consoleBuffer = [];
-      var ok = true, error = null;
+      var ok = true, error = null, capturedVars = null;
       try {
-        (0, eval)(msg.code);
+        var runCode = msg.code;
+        var names = msg.varNames || [];
+        // let/const ueberleben (anders als var/function) nur innerhalb DIESES EINEN eval()-Aufrufs -
+        // eine spaetere, separate eval()-Auswertung (z.B. ein nachfolgendes 'get') sieht sie nicht
+        // mehr, selbst wenn beide synchron im selben Tick laufen (getestet/verifiziert). Deshalb
+        // werden angefragte Variablen HIER als Anhaengsel an denselben eval()-Aufruf gehaengt, noch
+        // bevor der Aufrufkontext des Schueler-Codes verschwindet.
+        if (names.length) {
+          var tail = ';(function(){var __out__={};';
+          for (var i = 0; i < names.length; i++) {
+            var n = names[i];
+            tail += 'try{__out__[' + JSON.stringify(n) + ']=' + n + ';}catch(e){}';
+          }
+          tail += 'return __out__;})()';
+          runCode = runCode + tail;
+        }
+        var evalResult = (0, eval)(runCode);
+        if (names.length) capturedVars = cloneSafe(evalResult);
       } catch (err) {
         ok = false;
         error = err && err.message ? err.message : String(err);
       }
-      send({ type: 'runResult', ok: ok, output: consoleBuffer.join('\\n'), error: error });
-      return;
-    }
-
-    if (msg.type === 'get') {
-      var gok = true, gval, gerr;
-      try {
-        gval = cloneSafe((0, eval)(msg.name));
-      } catch (err) {
-        gok = false;
-        gerr = err && err.message ? err.message : String(err);
-      }
-      send({ type: 'result', reqId: msg.reqId, ok: gok, value: gval, error: gerr });
+      send({ type: 'runResult', ok: ok, output: consoleBuffer.join('\\n'), error: error, variables: capturedVars });
       return;
     }
 
@@ -153,6 +175,24 @@ function buildSandboxHtml() {
         return;
       }
     }
+
+    if (msg.type === 'dom') {
+      if (msg.mode === 'text') {
+        var el = document.getElementById(msg.target);
+        send({ type: 'result', reqId: msg.reqId, ok: true, value: el ? el.textContent : null });
+        return;
+      }
+      if (msg.mode === 'clickText') {
+        var btn = document.getElementById(msg.click);
+        var n = msg.clicks || 1;
+        for (var k = 0; k < n; k++) {
+          if (btn) btn.click();
+        }
+        var targetEl = document.getElementById(msg.target);
+        send({ type: 'result', reqId: msg.reqId, ok: true, value: targetEl ? targetEl.textContent : null });
+        return;
+      }
+    }
   });
 
   function heartbeat() {
@@ -171,15 +211,22 @@ function buildSandboxHtml() {
 </html>`;
 }
 
-const SANDBOX_SRCDOC = buildSandboxHtml();
+// Zwei fertige srcdoc-Varianten statt bei jedem Komponenten-Mount neu zu bauen (bleibt fuer alle
+// Instanzen desselben Modus ein gemeinsamer, unveraenderlicher String).
+const SANDBOX_SRCDOC_CANVAS = buildSandboxHtml('canvas');
+const SANDBOX_SRCDOC_DOM = buildSandboxHtml('dom');
 
 /**
  * Kapselt Aufbau/Neustart des Sandbox-iframes und das postMessage-RPC-Protokoll zum Ausfuehren von
  * JS-Code darin. Jeder `run()`/`restart()` baut das iframe komplett neu (Vue-`:key`-Bump) - Reset
  * ist der Normalfall, kein Sonderfall, dadurch entfaellt jede Namespace-Hygiene zwischen Laeufen
  * (anders als beim geteilten Pyodide-Kernel in usePyodide.js).
+ *
+ * @param {'canvas'|'dom'} mode - 'canvas' (Default) zeigt das Zeichen-Canvas (js-spielewerkstatt),
+ *   'dom' zeigt stattdessen die feste DOM-Uebungsflaeche (js-grundkurs Woche 7/8).
  */
-export function useJsSandbox() {
+export function useJsSandbox(mode = 'canvas') {
+  const srcdoc = mode === 'dom' ? SANDBOX_SRCDOC_DOM : SANDBOX_SRCDOC_CANVAS;
   const iframeEl = ref(null);
   const frameKey = ref(0);
   const ready = ref(false);
@@ -219,7 +266,7 @@ export function useJsSandbox() {
       if (entry) {
         clearTimeout(entry.timer);
         pending.delete('run');
-        entry.resolve({ success: msg.ok, output: msg.output || '', error: msg.error });
+        entry.resolve({ success: msg.ok, output: msg.output || '', error: msg.error, variables: msg.variables || null });
       }
       return;
     }
@@ -267,7 +314,7 @@ export function useJsSandbox() {
     await waitForReady();
   };
 
-  const run = async (code) => {
+  const run = async (code, varNames) => {
     await rebuildFrame();
     return new Promise((resolve) => {
       const timer = setTimeout(() => {
@@ -275,13 +322,8 @@ export function useJsSandbox() {
         resolve({ success: false, output: '', error: 'timeout' });
       }, RUN_TIMEOUT_MS);
       pending.set('run', { resolve, timer });
-      post({ type: 'run', code });
+      post({ type: 'run', code, varNames });
     });
-  };
-
-  const getVariable = async (name) => {
-    const r = await rpc('get', { name });
-    return r.ok ? r.value : undefined;
   };
 
   const callFunction = async (name, args) => rpc('call', { name, args });
@@ -294,6 +336,16 @@ export function useJsSandbox() {
   const checkCanvasChanged = async (ms) => {
     const r = await rpc('canvas', { mode: 'changed', ms });
     return !!r.value;
+  };
+
+  const checkDomText = async (target) => {
+    const r = await rpc('dom', { mode: 'text', target });
+    return r.value;
+  };
+
+  const checkDomClickText = async (click, target, clicks) => {
+    const r = await rpc('dom', { mode: 'clickText', click, target, clicks });
+    return r.value;
   };
 
   const restart = async () => rebuildFrame();
@@ -317,14 +369,15 @@ export function useJsSandbox() {
   return {
     iframeEl,
     frameKey,
-    srcdoc: SANDBOX_SRCDOC,
+    srcdoc,
     ready,
     alive,
     run,
-    getVariable,
     callFunction,
     checkCanvasNotBlank,
     checkCanvasChanged,
+    checkDomText,
+    checkDomClickText,
     restart,
   };
 }

@@ -1,0 +1,178 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Hallo, JavaScript!",
+    "file": "lektion-01.md",
+    "lessonSummary": "Super! console.log() ist dein wichtigstes Werkzeug, um zu sehen, was dein Code gerade tut.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus und schau dir die Ausgabe unten an.",
+        "example": true,
+        "codeTemplate": "console.log('Hallo Welt!');\n",
+        "validation": { "type": "output_contains", "expected": "Hallo Welt!" }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus – es zeigt mehrere console.log-Zeilen hintereinander, mit einem Kommentar dazwischen.",
+        "example": true,
+        "codeTemplate": "// Probier hier herum\nconsole.log('Erste Zeile');\nconsole.log('Zweite Zeile');\n",
+        "validation": { "type": "output_contains", "expected": "Zweite Zeile" }
+      },
+      {
+        "instruction": "Gib mit console.log() einen eigenen Text aus, der das Wort \"JavaScript\" enthält.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "type": "output_contains", "expected": "JavaScript" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Werte merken mit Variablen",
+    "file": "lektion-02.md",
+    "lessonSummary": "Genau so speichern Programme sich Werte – let für veränderliche, const für feste Werte.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zeigt, wie sich der Wert einer let-Variable ändern lässt.",
+        "example": true,
+        "codeTemplate": "let punkte = 0;\nconsole.log(punkte);\n\npunkte = 5;\nconsole.log(punkte);\n",
+        "validation": { "variables": { "punkte": 5 } }
+      },
+      {
+        "instruction": "Erstelle eine Variable lieblingszahl und weise ihr den Wert 7 zu.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "variables": { "lieblingszahl": 7 } }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Zahlen, Text und Wahrheitswerte",
+    "file": "lektion-03.md",
+    "lessonSummary": "Zahl, Text und Wahrheitswert – die drei Datentypen, denen du am häufigsten begegnest.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zeigt, was typeof für die drei Datentypen ausgibt.",
+        "example": true,
+        "codeTemplate": "console.log(typeof 42);\nconsole.log(typeof 'Katze');\nconsole.log(typeof true);\n",
+        "validation": { "type": "output_contains", "expected": "boolean" }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus – was gibt typeof für eine Variable ohne Anführungszeichen aus?",
+        "example": true,
+        "codeTemplate": "// Probier hier herum\nlet meinWert = 3.5;\nconsole.log(typeof meinWert);\n",
+        "validation": { "type": "output_contains", "expected": "number" }
+      },
+      {
+        "instruction": "Erstelle drei Variablen: zahl mit dem Wert 42, text mit dem Wert 'Katze' und wahrheitswert mit dem Wert true.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "variables": { "zahl": 42, "text": "Katze", "wahrheitswert": true } }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Rechnen und Text verbinden",
+    "file": "lektion-04.md",
+    "lessonSummary": "Template-Literals mit Backticks und ${...} machen Ausgaben mit eingebauten Werten viel übersichtlicher.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zeigt Rechnen mit Zahlen und eine Template-Literal.",
+        "example": true,
+        "codeTemplate": "let a = 4;\nlet b = 3;\nconsole.log(a + b);\nconsole.log(`Die Summe von ${a} und ${b} ist ${a + b}`);\n",
+        "validation": { "type": "output_contains", "expected": "Die Summe von 4 und 3 ist 7" }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus – es zeigt die anderen Rechenoperationen: -, * und /.",
+        "example": true,
+        "codeTemplate": "let a = 10;\nlet b = 4;\nconsole.log(a - b);\nconsole.log(a * b);\nconsole.log(a / b);\n",
+        "validation": { "type": "output_contains", "expected": "2.5" }
+      },
+      {
+        "instruction": "Berechne die Summe der Zahlen 15 und 27 und gib sie mit einer Template-Literal aus, zum Beispiel so: `Summe: ${...}`",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "type": "output_contains", "expected": "42" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Dein erstes kleines Programm",
+    "file": "lektion-05.md",
+    "lessonSummary": "Geschafft! Variablen, Datentypen, Rechnen und Ausgeben – die Grundbausteine für jedes JavaScript-Programm.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es berechnet die Fläche eines Rechtecks und gibt sie aus.",
+        "example": true,
+        "codeTemplate": "let breite = 8;\nlet hoehe = 5;\nlet flaeche = breite * hoehe;\n\nconsole.log(`Ein Rechteck mit ${breite} × ${hoehe} hat die Fläche ${flaeche}`);\n",
+        "validation": { "type": "output_contains", "expected": "Fläche 40" }
+      },
+      {
+        "instruction": "Berechne die Fläche eines Rechtecks mit breite = 9 und hoehe = 6. Speichere das Ergebnis in einer Variable flaeche und gib es aus.",
+        "codeTemplate": "let breite = 9;\nlet hoehe = 6;\n\n// Dein Code hier\n",
+        "validation": { "type": "output_contains", "expected": "54", "variables": { "flaeche": 54 } }
+      },
+      {
+        "instruction": "Berechne, wie viele Minuten ein Tag hat (24 Stunden × 60 Minuten). Speichere das Ergebnis in einer Variable minuten und gib es mit einer Template-Literal aus, zum Beispiel: `Ein Tag hat ${...} Minuten`",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "type": "output_contains", "expected": "1440", "variables": { "minuten": 1440 } }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Fehlersuche",
+    "file": "debug-01.md",
+    "lessonSummary": "Gut gemacht! Fehlermeldungen genau zu lesen ist eine der wichtigsten Fähigkeiten beim Programmieren.",
+    "tasks": [
+      {
+        "instruction": "Dieser Code wirft einen Fehler. Ziel: Er soll den Text \"Willkommen\" ausgeben.",
+        "codeTemplate": "console.log(Willkommen);\n",
+        "validation": { "type": "output_contains", "expected": "Willkommen" }
+      },
+      {
+        "instruction": "Dieser Code wirft einen Fehler. Ziel: Er soll die Zahl 10 ausgeben.",
+        "codeTemplate": "Const zahl = 10;\nconsole.log(zahl);\n",
+        "validation": { "type": "output_contains", "expected": "10" }
+      },
+      {
+        "instruction": "Dieser Code wirft einen Fehler. Ziel: Er soll den Text \"Hund\" ausgeben.",
+        "codeTemplate": "let text = 'Hund;\nconsole.log(text);\n",
+        "validation": { "type": "output_contains", "expected": "Hund" }
+      },
+      {
+        "instruction": "Dieser Code wirft einen Fehler. Ziel: Er soll \"Summe: 8\" ausgeben.",
+        "codeTemplate": "let a = 5;\nlet b = 3;\nconsole.log('Summe: ' a + b);\n",
+        "validation": { "type": "output_contains", "expected": "Summe: 8" }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Deine Mission",
+    "file": "mission-01.md",
+    "lessonSummary": "Starke Leistung! Du hast alles aus dieser Woche selbstständig angewendet, ganz ohne Beispiel vorweg.",
+    "tasks": [
+      {
+        "instruction": "Ein Rechteck ist 12 breit und 4 hoch. Berechne den Umfang (2 × (breite + höhe)) in einer Variable umfang und die Fläche (breite × höhe) in einer Variable flaeche.",
+        "codeTemplate": "let breite = 12;\nlet hoehe = 4;\n\n// Dein Code hier\n",
+        "validation": { "variables": { "umfang": 32, "flaeche": 48 } }
+      },
+      {
+        "instruction": "Wandle 50 Fahrenheit in Celsius um: celsius = (fahrenheit - 32) * 5 / 9. Speichere das Ergebnis in einer Variable celsius.",
+        "codeTemplate": "let fahrenheit = 50;\n\n// Dein Code hier\n",
+        "validation": { "variables": { "celsius": 10 } }
+      },
+      {
+        "instruction": "Berechne 8 × 6 und gib das Ergebnis mit einer Template-Literal aus, zum Beispiel so: `Ergebnis: ${...}`",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "type": "output_contains", "expected": "48" }
+      }
+    ]
+  }
+]

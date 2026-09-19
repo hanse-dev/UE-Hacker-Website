@@ -4,9 +4,8 @@
       <h2>{{ t('home.hero.title') }}</h2>
       <p>{{ t('home.hero.subtitle') }}</p>
       <div class="hero-buttons">
-        <router-link to="/kurs/python-12-wochen-grundkurs" class="cta-button">{{ t('home.cta.weekly') }}</router-link>
-        <router-link to="/kurs/python-grundlagen-interaktiv" class="cta-button cta-button-secondary">{{ t('home.cta.interactive') }}</router-link>
-        <router-link to="/kurs/python-einstufung" class="cta-button cta-button-secondary">{{ t('home.cta.placement') }}</router-link>
+        <a href="#kurse-uebersicht" class="cta-button">{{ t('home.cta.courses') }}</a>
+        <router-link to="/projekte" class="cta-button cta-button-secondary">{{ t('home.cta.projects') }}</router-link>
       </div>
     </section>
 
@@ -27,8 +26,13 @@
 
     <section id="kurse-uebersicht">
       <h2>{{ t('home.courses.title') }}</h2>
+      <p class="placement-hint">
+        {{ t('home.cta.placementHint') }}
+        <router-link to="/kurs/python-einstufung" class="placement-hint-link">{{ t('home.cta.placement') }} →</router-link>
+      </p>
       <div class="course-list">
         <div v-for="kurs in kurse" :key="kurs.id" class="course-card">
+          <span v-if="kurs.format" class="course-format-badge">{{ t(`courseFormat.${kurs.format}`) }}</span>
           <h3>{{ lang === 'en' && kurs.title_en ? kurs.title_en : kurs.title }}</h3>
           <p>{{ lang === 'en' && kurs.description_en ? kurs.description_en : kurs.description }}</p>
           <router-link :to="`/kurs/${kurs.id}`" class="course-link">{{ t('home.course.moreInfo') }}</router-link>
@@ -48,24 +52,26 @@
 
     <section id="unterstuetzer">
       <h2>{{ t('home.supporters.title') }}</h2>
-      <div class="unterstuetzer-card">
-        <div class="unterstuetzer-content">
-          <img src="@/assets/itscouts-logo.jpeg" alt="ITScouts Logo" class="unterstuetzer-logo">
-          <div class="unterstuetzer-text">
-            <h3>ITScouts</h3>
-            <p>{{ t('home.itscouts.desc') }}</p>
-            <a href="https://www.faw.de/luebeck/projekte/it-scout" target="_blank" rel="noopener noreferrer" class="mehr-infos-link">{{ t('home.moreInfo') }}</a>
+      <div class="unterstuetzer-list">
+        <div class="unterstuetzer-card">
+          <div class="unterstuetzer-content">
+            <img src="@/assets/itscouts-logo.jpeg" alt="ITScouts Logo" class="unterstuetzer-logo">
+            <div class="unterstuetzer-text">
+              <h3>ITScouts</h3>
+              <p>{{ t('home.itscouts.desc') }}</p>
+              <a href="https://www.faw.de/luebeck/projekte/it-scout" target="_blank" rel="noopener noreferrer" class="mehr-infos-link">{{ t('home.moreInfo') }}</a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="unterstuetzer-card">
-        <div class="unterstuetzer-content">
-          <img src="@/assets/logo_dlc_beta.svg" alt="DLC Logo" class="unterstuetzer-logo">
-          <div class="unterstuetzer-text">
-            <h3>DLC - Digital Learning Center</h3>
-            <p>{{ t('home.dlc.desc') }}</p>
-            <a href="https://dlc.sh" target="_blank" rel="noopener noreferrer" class="mehr-infos-link">{{ t('home.moreInfo') }}</a>
+        <div class="unterstuetzer-card">
+          <div class="unterstuetzer-content">
+            <img src="@/assets/logo_dlc_beta.svg" alt="DLC Logo" class="unterstuetzer-logo">
+            <div class="unterstuetzer-text">
+              <h3>DLC - Digital Learning Center</h3>
+              <p>{{ t('home.dlc.desc') }}</p>
+              <a href="https://dlc.sh" target="_blank" rel="noopener noreferrer" class="mehr-infos-link">{{ t('home.moreInfo') }}</a>
+            </div>
           </div>
         </div>
       </div>
@@ -160,7 +166,7 @@ export default {
       await fetchKurse();
 
       // Filter courses — Projekt-Kurse haben eine eigene Übersicht unter /projekte
-      const ALWAYS_VISIBLE_KURSE = ['python-12-wochen-grundkurs', 'python-grundlagen-interaktiv'];
+      const ALWAYS_VISIBLE_KURSE = ['python-12-wochen-grundkurs', 'python-grundlagen-interaktiv', 'js-grundkurs'];
       kurse.value = kurse.value.filter(kurs => {
         if (kurs.type === 'projekt') {
           return false;
@@ -206,16 +212,48 @@ export default {
 </script>
 
 <style scoped>
+.placement-hint {
+  margin: -14px 0 24px;
+  color: #666;
+  font-size: 0.95em;
+}
+
+.placement-hint-link {
+  display: inline-block;
+  margin-left: 6px;
+  color: var(--primary-purple, #4a2274);
+  font-weight: 700;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.placement-hint-link:hover {
+  color: #3d1b5c;
+}
+
+.course-format-badge {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: #f3eef8;
+  color: var(--primary-purple, #4a2274);
+  font-size: 0.75em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
 .projekte-teaser-card {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin: 2rem 0;
   padding: 20px 24px;
-  background: #f3eef8;
-  border: 2px solid #c4a8e0;
+  background: #fafafa;
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-left: 6px solid var(--accent-orange, #ff9800);
   border-radius: 12px;
 }
 
@@ -251,12 +289,17 @@ export default {
   margin-bottom: 15px;
 }
 
+.unterstuetzer-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+}
+
 .unterstuetzer-card {
-  background: #f8f9fa;
-  border-radius: 8px;
-  padding: 2rem;
-  margin: 2rem 0;
-  border: 1px solid #e9ecef;
+  background: #fafafa;
+  border-radius: 12px;
+  padding: 25px;
+  border: 1px solid var(--border-color, #e0e0e0);
 }
 
 .unterstuetzer-content {

@@ -1,0 +1,155 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Wiederholen mit der for-Schleife",
+    "file": "lektion-01.md",
+    "lessonSummary": "Super! Mit for-Schleifen wiederholst du Code, ohne ihn mehrfach abzutippen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zählt mit einer for-Schleife von 1 bis 5 hoch.",
+        "example": true,
+        "codeTemplate": "for (let i = 1; i <= 5; i++) {\n  console.log(i);\n}\n",
+        "validation": { "type": "output_contains", "expected": "4\n5" }
+      },
+      {
+        "instruction": "Nutze eine for-Schleife, um die Summe der Zahlen von 1 bis 10 zu berechnen. Speichere das Ergebnis in einer Variable summe.",
+        "codeTemplate": "let summe = 0;\n\n// Dein Code hier\n",
+        "validation": { "variables": { "summe": 55 } }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Wiederholen mit der while-Schleife",
+    "file": "lektion-02.md",
+    "lessonSummary": "Stark! Eine while-Schleife läuft, solange eine Bedingung zutrifft – praktisch, wenn du die Anzahl der Durchläufe vorher nicht kennst.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Eine while-Schleife zählt rückwärts von 5 bis 1.",
+        "example": true,
+        "codeTemplate": "let n = 5;\nwhile (n > 0) {\n  console.log(n);\n  n--;\n}\nconsole.log('Start!');\n",
+        "validation": { "type": "output_contains", "expected": "Start!" }
+      },
+      {
+        "instruction": "Nutze eine while-Schleife: addiere so lange 3 auf summe (Start 0), bis summe mindestens 20 beträgt. Zähle in schritte, wie oft addiert wurde.",
+        "codeTemplate": "let summe = 0;\nlet schritte = 0;\n\n// Dein Code hier\n",
+        "validation": { "variables": { "summe": 21, "schritte": 7 } }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Schleifen steuern: break und continue",
+    "file": "lektion-03.md",
+    "lessonSummary": "Gut gemacht! break beendet eine Schleife sofort, continue überspringt nur den aktuellen Durchlauf.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. break beendet die Schleife komplett, sobald i gleich 6 ist.",
+        "example": true,
+        "codeTemplate": "for (let i = 1; i <= 10; i++) {\n  if (i === 6) {\n    break;\n  }\n  console.log(i);\n}\nconsole.log('Fertig');\n",
+        "validation": { "type": "output_contains", "expected": "5\nFertig" }
+      },
+      {
+        "instruction": "Gib mit einer for-Schleife alle Zahlen von 1 bis 10 aus – überspringe dabei die 5 mit continue.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "type": "output_contains", "expected": "4\n6" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Schleife über einen Text: for...of",
+    "file": "lektion-04.md",
+    "lessonSummary": "Perfekt! Mit for...of gehst du Zeichen für Zeichen durch einen Text.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Eine for...of-Schleife gibt jeden Buchstaben von 'Katze' einzeln aus.",
+        "example": true,
+        "codeTemplate": "let wort = 'Katze';\nfor (const zeichen of wort) {\n  console.log(zeichen);\n}\n",
+        "validation": { "type": "output_contains", "expected": "t\nz" }
+      },
+      {
+        "instruction": "Zähle mit einer for...of-Schleife, wie oft der Buchstabe 'a' im Wort 'banane' vorkommt. Speichere das Ergebnis in einer Variable anzahl.",
+        "codeTemplate": "let wort = 'banane';\nlet anzahl = 0;\n\n// Dein Code hier\n",
+        "validation": { "variables": { "anzahl": 2 } }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Schleifen und Bedingungen kombinieren",
+    "file": "lektion-05.md",
+    "lessonSummary": "Geschafft! Schleifen und Bedingungen zusammen lassen dich große Datenmengen gezielt auswerten.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zählt mit einer Schleife + Bedingung, wie viele Zahlen von 1 bis 10 gerade sind.",
+        "example": true,
+        "codeTemplate": "let anzahlGerade = 0;\nfor (let i = 1; i <= 10; i++) {\n  if (i % 2 === 0) {\n    anzahlGerade++;\n  }\n}\nconsole.log(`Gerade Zahlen: ${anzahlGerade}`);\n",
+        "validation": { "type": "output_contains", "expected": "Gerade Zahlen: 5" }
+      },
+      {
+        "instruction": "Zähle mit einer Schleife, wie viele Zahlen von 1 bis 20 durch 3 teilbar sind. Speichere das Ergebnis in einer Variable anzahl.",
+        "codeTemplate": "let anzahl = 0;\n\n// Dein Code hier\n",
+        "validation": { "variables": { "anzahl": 6 } }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Fehlersuche",
+    "file": "debug-01.md",
+    "lessonSummary": "Gut gemacht! Off-by-one-Fehler und vertauschte Schleifen-Wörter sind typische Stolperfallen – jetzt kennst du sie.",
+    "tasks": [
+      {
+        "instruction": "Dieser Code gibt nur 1 bis 4 aus. Ziel: Er soll die Zahlen 1 bis 5 ausgeben.",
+        "codeTemplate": "for (let i = 1; i < 5; i++) {\n  console.log(i);\n}\n",
+        "validation": { "type": "output_contains", "expected": "4\n5" }
+      },
+      {
+        "instruction": "Dieser Code gibt gar nichts aus. Ziel: Er soll dreimal 'Piep' ausgeben.",
+        "codeTemplate": "let i = 3;\nwhile (i < 3) {\n  console.log('Piep');\n  i++;\n}\n",
+        "validation": { "type": "output_contains", "expected": "Piep\nPiep\nPiep" }
+      },
+      {
+        "instruction": "Dieser Code bricht die Schleife komplett ab. Ziel: Er soll alle Zahlen von 1 bis 5 außer der 3 ausgeben.",
+        "codeTemplate": "for (let i = 1; i <= 5; i++) {\n  if (i === 3) {\n    break;\n  }\n  console.log(i);\n}\n",
+        "validation": { "type": "output_contains", "expected": "4\n5" }
+      },
+      {
+        "instruction": "Dieser Code gibt Zahlen statt Buchstaben aus. Ziel: Er soll die Buchstaben von 'Baum' einzeln ausgeben (B, a, u, m).",
+        "codeTemplate": "let wort = 'Baum';\nfor (const zeichen in wort) {\n  console.log(zeichen);\n}\n",
+        "validation": { "type": "output_contains", "expected": "a\nu" }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Deine Mission",
+    "file": "mission-01.md",
+    "lessonSummary": "Starke Leistung! Du hast Schleifen ganz selbstständig zum Zählen, Summieren und Filtern eingesetzt.",
+    "tasks": [
+      {
+        "instruction": "Berechne mit einer for-Schleife die Summe aller geraden Zahlen von 1 bis 20. Speichere das Ergebnis in einer Variable summe.",
+        "codeTemplate": "let summe = 0;\n\n// Dein Code hier\n",
+        "validation": { "variables": { "summe": 110 } }
+      },
+      {
+        "instruction": "Nutze eine while-Schleife: ziehe von zahl = 100 so lange 7 ab, bis das Ergebnis negativ wird. Zähle in versuche, wie oft abgezogen wurde.",
+        "codeTemplate": "let zahl = 100;\nlet versuche = 0;\n\n// Dein Code hier\n",
+        "validation": { "variables": { "versuche": 15 } }
+      },
+      {
+        "instruction": "Gib mit einer Schleife alle Zahlen von 1 bis 15 aus – überspringe dabei alle durch 3 teilbaren Zahlen mit continue.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "type": "output_contains", "expected": "2\n4" }
+      }
+    ]
+  }
+]

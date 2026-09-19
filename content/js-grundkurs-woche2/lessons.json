@@ -1,0 +1,155 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Vergleichen mit ===, <, >",
+    "file": "lektion-01.md",
+    "lessonSummary": "Perfekt! Mit Vergleichsoperatoren bekommst du aus zwei Werten einen Wahrheitswert – die Basis für jede Entscheidung im Code.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es vergleicht zwei Zahlen mit >, === und !==.",
+        "example": true,
+        "codeTemplate": "let a = 7;\nlet b = 3;\nconsole.log(a > b);\nconsole.log(a === b);\nconsole.log(a !== b);\n",
+        "validation": { "type": "output_contains", "expected": "false" }
+      },
+      {
+        "instruction": "Erstelle eine Variable istVolljaehrig, die true ist, wenn alter mindestens 18 ist.",
+        "codeTemplate": "let alter = 20;\n\n// Dein Code hier\n",
+        "validation": { "variables": { "istVolljaehrig": true } }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Entscheidungen mit if und else",
+    "file": "lektion-02.md",
+    "lessonSummary": "Super! if und else lassen deinen Code unterschiedliche Wege einschlagen, je nachdem was zutrifft.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es prüft mit % (Modulo), ob eine Zahl gerade oder ungerade ist.",
+        "example": true,
+        "codeTemplate": "let zahl = 8;\nif (zahl % 2 === 0) {\n  console.log(`${zahl} ist gerade`);\n} else {\n  console.log(`${zahl} ist ungerade`);\n}\n",
+        "validation": { "type": "output_contains", "expected": "8 ist gerade" }
+      },
+      {
+        "instruction": "Schreibe if/else, das für zahl = 7 ausgibt, ob sie gerade oder ungerade ist – im Format `<Zahl> ist gerade` bzw. `<Zahl> ist ungerade` (nutze eine Template-Literal wie im Beispiel).",
+        "codeTemplate": "let zahl = 7;\n\n// Dein Code hier\n",
+        "validation": { "type": "output_contains", "expected": "7 ist ungerade" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Mehrere Fälle mit else if",
+    "file": "lektion-03.md",
+    "lessonSummary": "Stark! Mit else if kannst du beliebig viele Fälle nacheinander prüfen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es bestimmt aus einer Punktzahl eine Notenstufe mit einer else-if-Kette.",
+        "example": true,
+        "codeTemplate": "let punkte = 82;\nif (punkte >= 90) {\n  console.log('Note: Sehr gut');\n} else if (punkte >= 75) {\n  console.log('Note: Gut');\n} else if (punkte >= 50) {\n  console.log('Note: Befriedigend');\n} else {\n  console.log('Note: Nicht bestanden');\n}\n",
+        "validation": { "type": "output_contains", "expected": "Note: Gut" }
+      },
+      {
+        "instruction": "Schreibe eine else-if-Kette für temperatur = 5: ist sie kleiner als 10, gib `<Zahl> Grad: kalt` aus. Ist sie kleiner als 20, gib `<Zahl> Grad: mild` aus. Sonst gib `<Zahl> Grad: warm` aus.",
+        "codeTemplate": "let temperatur = 5;\n\n// Dein Code hier\n",
+        "validation": { "type": "output_contains", "expected": "5 Grad: kalt" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Bedingungen verknüpfen: &&, || und !",
+    "file": "lektion-04.md",
+    "lessonSummary": "Gut gemacht! &&, || und ! verbinden mehrere Bedingungen zu einer einzigen Entscheidung.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zeigt &&, || und ! mit zwei Wahrheitswerten.",
+        "example": true,
+        "codeTemplate": "let sonne = true;\nlet warm = false;\nconsole.log(`Beides: ${sonne && warm}`);\nconsole.log(`Mindestens eins: ${sonne || warm}`);\nconsole.log(`Nicht warm: ${!warm}`);\n",
+        "validation": { "type": "output_contains", "expected": "Beides: false" }
+      },
+      {
+        "instruction": "Ein Achterbahn-Fahrgast braucht mindestens 12 Jahre UND mindestens 140 cm Größe. Erstelle für alter = 14 und groesse = 150 eine Variable darfFahren mit dem Ergebnis.",
+        "codeTemplate": "let alter = 14;\nlet groesse = 150;\n\n// Dein Code hier\n",
+        "validation": { "variables": { "darfFahren": true } }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Bedingungen verschachteln",
+    "file": "lektion-05.md",
+    "lessonSummary": "Geschafft! Verschachtelte Bedingungen lassen dich mehrstufige Entscheidungen treffen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Ein inneres if wird nur geprüft, wenn das äußere zutrifft.",
+        "example": true,
+        "codeTemplate": "let eingeloggt = true;\nlet hatTicket = true;\n\nif (eingeloggt) {\n  if (hatTicket) {\n    console.log('Zutritt gewährt');\n  } else {\n    console.log('Bitte Ticket kaufen');\n  }\n} else {\n  console.log('Bitte zuerst einloggen');\n}\n",
+        "validation": { "type": "output_contains", "expected": "Zutritt gewährt" }
+      },
+      {
+        "instruction": "Schreibe eine verschachtelte Bedingung für strom = true und schluessel = false: ist strom nicht vorhanden, gib 'Kein Strom' aus. Ist strom da, prüfe zusätzlich schluessel – gib bei vorhandenem Schlüssel 'Maschine startet' aus, sonst 'Schlüssel fehlt'.",
+        "codeTemplate": "let strom = true;\nlet schluessel = false;\n\n// Dein Code hier\n",
+        "validation": { "type": "output_contains", "expected": "Schlüssel fehlt" }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Fehlersuche",
+    "file": "debug-01.md",
+    "lessonSummary": "Gut gemacht! Genaues Lesen von Bedingungen und Fehlermeldungen ist eine Kernfähigkeit.",
+    "tasks": [
+      {
+        "instruction": "Dieser Code gibt immer 'zehn' aus. Ziel: Er soll bei zahl = 5 'nicht zehn' ausgeben.",
+        "codeTemplate": "let zahl = 5;\nif (zahl = 10) {\n  console.log('zehn');\n} else {\n  console.log('nicht zehn');\n}\n",
+        "validation": { "type": "output_contains", "expected": "nicht zehn" }
+      },
+      {
+        "instruction": "Dieser Code wirft einen Fehler. Ziel: Er soll bei signal = 'rot' den Text 'Stopp' ausgeben.",
+        "codeTemplate": "let signal = 'rot';\n\nif (signal === 'rot') {\n  console.log('Stopp');\n} elseif (signal === 'gruen') {\n  console.log('Los');\n} else {\n  console.log('Vorsicht');\n}\n",
+        "validation": { "type": "output_contains", "expected": "Stopp" }
+      },
+      {
+        "instruction": "Dieser Code gibt das Gegenteil von dem aus, was gemeint ist. Ziel: Er soll bei hatTicket = true (oder hatAusweis = true) 'Einlass gewährt' ausgeben.",
+        "codeTemplate": "let hatTicket = true;\nlet hatAusweis = false;\n\nif (hatTicket || hatAusweis) {\n  console.log('Einlass verweigert');\n} else {\n  console.log('Einlass gewährt');\n}\n",
+        "validation": { "type": "output_contains", "expected": "Einlass gewährt" }
+      },
+      {
+        "instruction": "Dieser Code gibt immer 'Falsch, versuch es nochmal.' aus. Ziel: Er soll bei einer Eingabe von 42 'Richtig!' ausgeben.",
+        "codeTemplate": "let antwort = '42';\n\nif (antwort === 42) {\n  console.log('Richtig!');\n} else {\n  console.log('Falsch, versuch es nochmal.');\n}\n",
+        "validation": { "type": "output_contains", "expected": "Richtig!" }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Deine Mission",
+    "file": "mission-01.md",
+    "lessonSummary": "Starke Leistung! Du hast Vergleiche und Bedingungen ganz selbstständig angewendet.",
+    "tasks": [
+      {
+        "instruction": "Ein Einkauf ab 50€ bekommt 10% Rabatt, sonst keinen. Berechne für einkaufswert = 80 den Rabatt in Euro in einer Variable rabatt.",
+        "codeTemplate": "let einkaufswert = 80;\n\n// Dein Code hier\n",
+        "validation": { "variables": { "rabatt": 8 } }
+      },
+      {
+        "instruction": "Ein Probetraining ist erlaubt ab 16 Jahren UND mindestens 150 cm Größe. Speichere für alter = 15 und groesse = 170 das Ergebnis in einer Variable darfTeilnehmen.",
+        "codeTemplate": "let alter = 15;\nlet groesse = 170;\n\n// Dein Code hier\n",
+        "validation": { "variables": { "darfTeilnehmen": false } }
+      },
+      {
+        "instruction": "Schreibe eine else-if-Kette für farbe = 'gelb': gib bei 'rot' 'Stopp!' aus, bei 'gelb' 'Achtung!', bei 'gruen' 'Los!', sonst 'Unbekanntes Signal'.",
+        "codeTemplate": "let farbe = 'gelb';\n\n// Dein Code hier\n",
+        "validation": { "type": "output_contains", "expected": "Achtung!" }
+      }
+    ]
+  }
+]

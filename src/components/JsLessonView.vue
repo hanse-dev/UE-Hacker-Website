@@ -9,10 +9,11 @@
       <p class="editor-hint">{{ t('jsLesson.editorHint') }}</p>
       <p class="editor-hint editor-hint-ran">{{ t('jsLesson.ranExplainer') }}</p>
 
-      <JsSandboxFrame ref="sandboxEl" />
-
       <template v-for="(task, idx) in tasks" :key="idx">
-        <div class="task-block">
+        <div class="task-block" :class="isExample(idx) ? 'task-example' : 'task-required'">
+          <span class="task-badge" :class="isExample(idx) ? 'badge-example' : 'badge-required'">
+            {{ isExample(idx) ? t('jsLesson.badgeExample') : t('jsLesson.badgeRequired') }}
+          </span>
           <p class="task-instruction">
             <span v-if="completedTasks.has(idx)" class="task-done">✓</span>
             <span v-else class="task-pending">○</span>
@@ -29,22 +30,15 @@
               {{ t('editor.run') }}
             </button>
             <button
-              v-if="task.check !== 'self'"
+              v-if="!isExample(idx)"
               @click="checkTask(idx)"
               :disabled="checking"
               class="btn-check"
             >
               {{ checking ? t('editor.checking') : t('editor.check') }}
             </button>
-            <button
-              v-else-if="!completedTasks.has(idx)"
-              @click="markSelfChecked(idx)"
-              class="btn-selfcheck"
-            >
-              {{ t('jsLesson.selfCheckBtn') }}
-            </button>
-            <span v-else class="task-status-label">{{ t('jsLesson.selfCheckDone') }}</span>
           </div>
+          <JsSandboxFrame v-if="taskRan[idx]" :ref="(el) => setSandboxRef(idx, el)" :show-canvas="showCanvas" :dom-mode="domMode" />
           <details v-if="task.solution" class="solution-reveal">
             <summary>{{ t('jsLesson.showSolution') }}</summary>
             <pre class="solution-code">{{ task.solution }}</pre>
@@ -75,7 +69,7 @@
 </template>
 
 <script>
-import { ref, watch, onMounted, onBeforeUnmount, computed } from 'vue';
+import { ref, watch, onMounted, onBeforeUnmount, computed, nextTick } from 'vue';
 import JsSandboxFrame from './JsSandboxFrame.vue';
 import JsCodeCell from './JsCodeCell.vue';
 import { useInteractiveProgress } from '../composables/useInteractiveProgress';
@@ -91,13 +85,20 @@ export default {
     contentPath: { type: String, required: true },
     variant: { type: String, default: 'kinder' },
     courseId: { type: String, default: 'python-grundlagen-interaktiv' },
+    showCanvas: { type: Boolean, default: true },
+    domMode: { type: Boolean, default: false },
   },
   emits: ['completed', 'next'],
   setup(props, { emit }) {
     const { lang, t } = useLanguage();
     const { markCompleted } = useInteractiveProgress(props.variant, props.courseId);
 
-    const sandboxEl = ref(null);
+    // Eine eigene Sandbox-Instanz pro Aufgabe statt einer geteilten am Lektionsanfang - jeder Lauf
+    // baut das iframe ohnehin komplett neu auf (kein geteilter Zustand zwischen Laeufen, siehe
+    // useJsSandbox.js), es gibt also nichts zu teilen. Dadurch entfaellt das Hin-und-Herspringen
+    // zwischen einer Canvas oben und der gerade bearbeiteten Aufgabe weiter unten.
+    const sandboxEls = ref([]);
+    const setSandboxRef = (idx, el) => { sandboxEls.value[idx] = el; };
     const checking = ref(false);
     const isMounted = ref(true);
     const { lessonContent, loadGlossary, loadContent, instructionWithGlossary } = useLessonContent(isMounted);
@@ -106,6 +107,12 @@ export default {
       const list = props.lesson?.tasks;
       return Array.isArray(list) ? list : [];
     });
+
+    // Beispiel-Aufgaben (bereits fertiger, unveraenderter codeTemplate zum Anschauen) brauchen
+    // keinen "Pruefen"-Button - nur "Ausfuehren". Deine-Aufgabe-Aufgaben (leerer/unfertiger
+    // codeTemplate, echte Erwartung) brauchen beides. Reines Anzeige-/Verhaltensmerkmal, keine
+    // eigene Validierung - jede Aufgabe hat weiterhin ein `validation`-Objekt.
+    const isExample = (idx) => !!tasks.value[idx]?.example;
 
     const allTasksComplete = computed(() => {
       const list = tasks.value;
@@ -129,6 +136,7 @@ export default {
       taskAttempts.value = list.map(() => 0);
       taskRan.value = list.map(() => false);
       completedTasks.value = new Set();
+      sandboxEls.value = [];
     };
 
     onMounted(() => {
@@ -149,10 +157,12 @@ export default {
     );
 
     // Ein Rechteck zu zeichnen erzeugt keine console.log-Ausgabe - ohne diesen Hinweis wirkt die
-    // "Ausgabe"-Box faelschlich leer, obwohl oben im Spielfeld sichtbar etwas passiert ist.
-    const withCanvasNote = async (rawOutput) => {
-      const drew = await sandboxEl.value.checkCanvasNotBlank();
+    // "Ausgabe"-Box faelschlich leer, obwohl oben im Spielfeld sichtbar etwas passiert ist. Nur
+    // relevant, wenn diese Lektion ueberhaupt ein sichtbares Canvas hat (showCanvas).
+    const withCanvasNote = async (idx, rawOutput) => {
       const trimmed = (rawOutput || '').trim();
+      if (!props.showCanvas) return trimmed || t('jsLesson.noOutput');
+      const drew = await sandboxEls.value[idx].checkCanvasNotBlank();
       if (drew) return trimmed ? `${trimmed}\n\n${t('jsLesson.canvasNote')}` : t('jsLesson.canvasNote');
       return trimmed || t('jsLesson.noOutput');
     };
@@ -162,16 +172,30 @@ export default {
       checking.value = true;
       taskOutputs.value[idx] = null;
       taskFeedback.value[idx] = null;
+      // Sandbox-Frame wird erst bei der ersten Ausfuehrung ueberhaupt gemountet (v-if="taskRan[idx]")
+      // - vorher gibt es nichts zu sehen, und jedes gemountete Frame startet eine dauerhaft
+      // laufende requestAnimationFrame-Heartbeat-Schleife (useJsSandbox.js), die sonst fuer jede
+      // Aufgabe einer Lektion gleichzeitig liefe, auch fuer noch nie angeklickte.
       taskRan.value[idx] = true;
-      sandboxEl.value.scrollIntoView();
+      await nextTick();
+      sandboxEls.value[idx].scrollIntoView();
 
-      const result = await sandboxEl.value.run(taskCodes.value[idx]);
+      const result = await sandboxEls.value[idx].run(taskCodes.value[idx]);
       if (!isMounted.value) return;
 
       taskOutputs.value[idx] = result.success
-        ? await withCanvasNote(result.output)
+        ? await withCanvasNote(idx, result.output)
         : t('editor.errorPrefix') + (result.error || t('jsLesson.unknownError'));
+      // Beispiel-Aufgaben haben keinen "Pruefen"-Button - ein erfolgreicher Lauf zaehlt hier schon
+      // als "gesehen/erledigt", damit die Lektion trotzdem abschliessbar bleibt.
+      if (result.success && isExample(idx)) markExampleDone(idx);
       checking.value = false;
+    };
+
+    const markExampleDone = (idx) => {
+      if (completedTasks.value.has(idx)) return;
+      completedTasks.value = new Set([...completedTasks.value, idx]);
+      if (completedTasks.value.size === tasks.value.length) markCompleted(props.lesson.id);
     };
 
     const checkTask = async (idx) => {
@@ -179,10 +203,12 @@ export default {
       checking.value = true;
       taskFeedback.value[idx] = null;
       taskRan.value[idx] = true;
-      sandboxEl.value.scrollIntoView();
+      await nextTick();
+      sandboxEls.value[idx].scrollIntoView();
 
       const validation = tasks.value[idx]?.validation || {};
-      const result = await sandboxEl.value.run(taskCodes.value[idx]);
+      const varNames = Object.keys(validation.variables || {});
+      const result = await sandboxEls.value[idx].run(taskCodes.value[idx], varNames);
       if (!isMounted.value) return;
 
       if (!result.success) {
@@ -193,29 +219,37 @@ export default {
         checking.value = false;
         return;
       }
-      taskOutputs.value[idx] = await withCanvasNote(result.output);
+      taskOutputs.value[idx] = await withCanvasNote(idx, result.output);
 
-      let canvasOk = true;
+      // Canvas- und DOM-Checks laufen ausserhalb von validateOutput() - beide fragen den lebenden
+      // Sandbox-Zustand per RPC ab (Pixel-Daten bzw. echtes DOM-Auslesen/Klick-Simulation), nicht
+      // die Konsolen-Ausgabe. `validation.expected` bleibt fuer diese Typen bewusst leer (die
+      // dom_*-Typen nutzen stattdessen `validation.text`), sonst wuerde validateOutput()s
+      // Ausgabe-Fallback-Check faelschlich gegen die (meist leere) Konsolen-Ausgabe pruefen.
+      let extraChecksOk = true;
       if (validation.type === 'canvas_not_blank') {
-        canvasOk = await sandboxEl.value.checkCanvasNotBlank();
+        extraChecksOk = await sandboxEls.value[idx].checkCanvasNotBlank();
       } else if (validation.type === 'canvas_changed') {
-        canvasOk = await sandboxEl.value.checkCanvasChanged(validation.ms || 400);
+        extraChecksOk = await sandboxEls.value[idx].checkCanvasChanged(validation.ms || 400);
+      } else if (validation.type === 'dom_text') {
+        const text = await sandboxEls.value[idx].checkDomText(validation.target);
+        extraChecksOk = typeof text === 'string' && text.trim() === validation.text;
+      } else if (validation.type === 'dom_click_text') {
+        const text = await sandboxEls.value[idx].checkDomClickText(validation.click, validation.target, validation.clicks);
+        extraChecksOk = typeof text === 'string' && text.trim() === validation.text;
       }
       if (!isMounted.value) return;
 
-      const actualVars = {};
-      for (const name of Object.keys(validation.variables || {})) {
-        actualVars[name] = await sandboxEl.value.getVariable(name);
-      }
+      const actualVars = result.variables || {};
 
       const functionResults = [];
       for (const fc of validation.functionCalls || []) {
-        const r = await sandboxEl.value.callFunction(fc.name, fc.args);
+        const r = await sandboxEls.value[idx].callFunction(fc.name, fc.args);
         functionResults.push({ expected: fc.expected, actual: r.ok ? r.value : undefined, error: !r.ok });
       }
       if (!isMounted.value) return;
 
-      const valid = canvasOk && validateOutput(result.output, validation, actualVars, functionResults);
+      const valid = extraChecksOk && validateOutput(result.output, validation, actualVars, functionResults);
 
       if (valid) {
         completedTasks.value = new Set([...completedTasks.value, idx]);
@@ -249,14 +283,6 @@ export default {
       }
     };
 
-    const markSelfChecked = (idx) => {
-      if (completedTasks.value.has(idx)) return;
-      completedTasks.value = new Set([...completedTasks.value, idx]);
-      taskFeedback.value[idx] = null;
-      const total = tasks.value.length;
-      if (completedTasks.value.size === total) markCompleted(props.lesson.id);
-    };
-
     const goToNext = () => {
       emit('completed', props.lesson.id);
     };
@@ -265,16 +291,16 @@ export default {
       lang,
       t,
       lessonContent,
-      sandboxEl,
+      setSandboxRef,
       checking,
       tasks,
+      isExample,
       taskCodes,
       taskOutputs,
       taskFeedback,
       taskRan,
       runTask,
       checkTask,
-      markSelfChecked,
       goToNext,
       allTasksComplete,
       lessonSummary,
@@ -359,13 +385,44 @@ export default {
 .task-block {
   margin-bottom: 24px;
   padding-bottom: 24px;
+  padding-left: 14px;
   border-bottom: 1px solid #dee2e6;
+  border-left: 4px solid transparent;
+}
+
+.task-block.task-required {
+  border-left-color: var(--accent-orange, #ff9800);
+}
+
+.task-block.task-example {
+  border-left-color: #ced4da;
 }
 
 .task-block:last-child {
   margin-bottom: 0;
   padding-bottom: 0;
   border-bottom: none;
+}
+
+.task-badge {
+  display: inline-block;
+  margin-bottom: 6px;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.badge-example {
+  background: #f1f3f5;
+  color: #868e96;
+}
+
+.badge-required {
+  background: #fff3e0;
+  color: var(--accent-orange, #fb8c00);
 }
 
 .task-instruction {
@@ -523,21 +580,6 @@ a.btn-next {
   background: #6c757d;
   cursor: not-allowed;
   opacity: 0.6;
-}
-
-.btn-selfcheck {
-  background: var(--accent-yellow, #fdd835);
-  color: #4a3800;
-  border: none;
-  padding: 10px 24px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.btn-selfcheck:hover {
-  filter: brightness(0.95);
 }
 
 .output-display {

@@ -1,0 +1,183 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Eigene Funktionen schreiben",
+    "file": "lektion-01.md",
+    "lessonSummary": "Super! Mit function und return verpackst du Code in einen wiederverwendbaren Baustein.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Die Funktion verdoppleZahl wird zweimal mit unterschiedlichen Werten aufgerufen.",
+        "example": true,
+        "codeTemplate": "function verdoppleZahl(zahl) {\n  return zahl * 2;\n}\n\nconsole.log(verdoppleZahl(3));\nconsole.log(verdoppleZahl(10));\n",
+        "validation": { "type": "output_contains", "expected": "6\n20" }
+      },
+      {
+        "instruction": "Schreibe eine Funktion quadriere, die eine Zahl entgegennimmt und ihr Quadrat (Zahl mal Zahl) zurückgibt. Rufe sie mit 6 auf und gib das Ergebnis aus.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "36",
+          "functionCalls": [{ "name": "quadriere", "args": [9], "expected": 81 }]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Mehrere Parameter",
+    "file": "lektion-02.md",
+    "lessonSummary": "Stark! Mehrere Parameter lassen eine Funktion mit beliebig vielen Eingabewerten arbeiten.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. addiere nimmt zwei Parameter entgegen und gibt ihre Summe zurück.",
+        "example": true,
+        "codeTemplate": "function addiere(a, b) {\n  return a + b;\n}\n\nconsole.log(addiere(4, 5));\n",
+        "validation": { "type": "output_contains", "expected": "9" }
+      },
+      {
+        "instruction": "Schreibe eine Funktion rechteckFlaeche, die breite und hoehe entgegennimmt und die Fläche zurückgibt. Rufe sie mit 6 und 3 auf und gib das Ergebnis aus.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "18",
+          "functionCalls": [{ "name": "rechteckFlaeche", "args": [8, 5], "expected": 40 }]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Warum Funktionen? Wiederverwendbarkeit",
+    "file": "lektion-03.md",
+    "lessonSummary": "Gut gemacht! Eine Funktion schreibst du einmal, nutzt sie aber beliebig oft mit neuen Werten.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. istVolljaehrig wird dreimal mit unterschiedlichen Werten aufgerufen.",
+        "example": true,
+        "codeTemplate": "function istVolljaehrig(alter) {\n  return alter >= 18;\n}\n\nconsole.log(istVolljaehrig(15));\nconsole.log(istVolljaehrig(20));\nconsole.log(istVolljaehrig(18));\n",
+        "validation": { "type": "output_contains", "expected": "true\ntrue" }
+      },
+      {
+        "instruction": "Schreibe eine Funktion istGerade, die true zurückgibt, wenn eine übergebene Zahl gerade ist, sonst false. Rufe sie mit 8 auf und gib das Ergebnis aus.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "true",
+          "functionCalls": [{ "name": "istGerade", "args": [7], "expected": false }]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Kurzschreibweise: Arrow-Functions",
+    "file": "lektion-04.md",
+    "lessonSummary": "Perfekt! Arrow-Functions sind eine kürzere Schreibweise – gleiche Funktionsweise, weniger Tipparbeit.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. verdopple und verdoppleKurz tun exakt dasselbe – einmal als function, einmal als Arrow-Function.",
+        "example": true,
+        "codeTemplate": "function verdopple(x) {\n  return x * 2;\n}\n\nconst verdoppleKurz = (x) => x * 2;\n\nconsole.log(verdopple(4));\nconsole.log(verdoppleKurz(4));\n",
+        "validation": { "type": "output_contains", "expected": "8\n8" }
+      },
+      {
+        "instruction": "Schreibe eine Arrow-Function halbiere, die eine Zahl entgegennimmt und die Hälfte zurückgibt. Rufe sie mit 10 auf, speichere das Ergebnis in einer Variable ergebnis und gib es aus.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "type": "output_contains", "expected": "5", "variables": { "ergebnis": 5 } }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Funktionen mit allem kombinieren",
+    "file": "lektion-05.md",
+    "lessonSummary": "Geschafft! Funktionen können Variablen, Bedingungen und Schleifen enthalten – alles, was du bisher gelernt hast.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. summeBis nutzt intern eine for-Schleife, um die Summe von 1 bis n zu berechnen.",
+        "example": true,
+        "codeTemplate": "function summeBis(n) {\n  let summe = 0;\n  for (let i = 1; i <= n; i++) {\n    summe += i;\n  }\n  return summe;\n}\n\nconsole.log(summeBis(5));\n",
+        "validation": { "type": "output_contains", "expected": "15" }
+      },
+      {
+        "instruction": "Schreibe eine Funktion summeBis, die eine Zahl n entgegennimmt und die Summe aller Zahlen von 1 bis n zurückgibt (nutze eine Schleife). Rufe sie mit 10 auf und gib das Ergebnis aus.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "55",
+          "functionCalls": [{ "name": "summeBis", "args": [20], "expected": 210 }]
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Fehlersuche",
+    "file": "debug-01.md",
+    "lessonSummary": "Gut gemacht! Vergessenes return und vertauschte Argumente sind typische Stolperfallen bei Funktionen.",
+    "tasks": [
+      {
+        "instruction": "Dieser Code gibt 'undefined' aus. Ziel: Er soll 12 ausgeben (4 mal 3).",
+        "codeTemplate": "function verdreifache(zahl) {\n  zahl * 3;\n}\n\nconsole.log(verdreifache(4));\n",
+        "validation": { "type": "output_contains", "expected": "12" }
+      },
+      {
+        "instruction": "Dieser Code gibt 0.2 aus. Ziel: Er soll 5 ausgeben (10 geteilt durch 2).",
+        "codeTemplate": "function teile(zaehler, nenner) {\n  return zaehler / nenner;\n}\n\nconsole.log(teile(2, 10));\n",
+        "validation": { "type": "output_contains", "expected": "5" }
+      },
+      {
+        "instruction": "Dieser Code gibt gar nichts aus. Ziel: Er soll 'Blau' ausgeben.",
+        "codeTemplate": "function nenneFarbe() {\n  return 'Blau';\n}\n\nconsole.log(nenneFarbe);\n",
+        "validation": { "type": "output_contains", "expected": "Blau" }
+      },
+      {
+        "instruction": "Dieser Code gibt 'undefined' aus. Ziel: Er soll 10 ausgeben (5 mal 2).",
+        "codeTemplate": "const verdopple = (zahl) => {\n  zahl * 2;\n};\n\nconsole.log(verdopple(5));\n",
+        "validation": { "type": "output_contains", "expected": "10" }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Deine Mission",
+    "file": "mission-01.md",
+    "lessonSummary": "Starke Leistung! Du hast eigene Funktionen mit Parametern, Rückgabewerten und Schleifen geschrieben.",
+    "tasks": [
+      {
+        "instruction": "Schreibe eine Funktion kubik, die eine Zahl entgegennimmt und ihre dritte Potenz (Zahl mal Zahl mal Zahl) zurückgibt. Rufe sie mit 3 auf und gib das Ergebnis aus.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "27",
+          "functionCalls": [{ "name": "kubik", "args": [4], "expected": 64 }]
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion maximum, die drei Zahlen a, b und c entgegennimmt und die größte davon zurückgibt. Rufe sie mit 3, 9 und 5 auf und gib das Ergebnis aus.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "9",
+          "functionCalls": [{ "name": "maximum", "args": [2, 1, 7], "expected": 7 }]
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion zaehleVorkommen, die einen Text und ein Zeichen entgegennimmt und zurückgibt, wie oft das Zeichen im Text vorkommt (nutze eine for...of-Schleife). Rufe sie mit 'banane' und 'a' auf und gib das Ergebnis aus.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "2",
+          "functionCalls": [{ "name": "zaehleVorkommen", "args": ["Ananas", "a"], "expected": 2 }]
+        }
+      }
+    ]
+  }
+]

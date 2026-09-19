@@ -123,6 +123,17 @@
 .lesson-title { flex: 1; font-size: 0.95em; }
 .lesson-check { color: #28a745; font-weight: bold; }
 
+.section-header {
+  margin: 16px 0 6px 0;
+  padding: 0 12px;
+  font-size: 0.75em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #999;
+}
+.section-header:first-child { margin-top: 0; }
+
 .sidebar-actions {
   margin-top: 20px;
   padding-top: 16px;

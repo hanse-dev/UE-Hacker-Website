@@ -1,0 +1,167 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Objekte: zusammengehörige Werte bündeln",
+    "file": "lektion-01.md",
+    "lessonSummary": "Super! Ein Objekt ordnet Werte nach Namen statt nach Position – lesbar mit der Punkt-Notation.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. person.name und person.alter lesen die jeweilige Property aus.",
+        "example": true,
+        "codeTemplate": "let person = { name: 'Alex', alter: 12 };\nconsole.log(person.name);\nconsole.log(person.alter);\n",
+        "validation": { "type": "output_contains", "expected": "Alex\n12" }
+      },
+      {
+        "instruction": "Erstelle ein Objekt haustier mit den Properties art (Wert 'Hund') und alter (Wert 3).",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "variables": { "haustier": { "art": "Hund", "alter": 3 } } }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Properties ändern und hinzufügen",
+    "file": "lektion-02.md",
+    "lessonSummary": "Stark! Mit Punkt- oder Klammer-Notation kannst du Properties verändern und neue hinzufügen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. auto.farbe wird geändert, auto.baujahr neu hinzugefügt.",
+        "example": true,
+        "codeTemplate": "let auto = { marke: 'VW', farbe: 'rot' };\nauto.farbe = 'blau';\nauto['baujahr'] = 2020;\nconsole.log(auto);\n",
+        "validation": { "type": "output_contains", "expected": "\"farbe\":\"blau\"" }
+      },
+      {
+        "instruction": "Gegeben ist ein Objekt konto mit stand:100. Erhöhe konto.stand um 50 (Einzahlung).",
+        "codeTemplate": "let konto = { stand: 100 };\n\n// Dein Code hier\n",
+        "validation": { "variables": { "konto": { "stand": 150 } } }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Methoden: Funktionen in Objekten",
+    "file": "lektion-03.md",
+    "lessonSummary": "Gut gemacht! Eine Methode ist eine Funktion in einem Objekt, this zeigt auf das Objekt selbst.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Die Methode verdoppeln nutzt this.wert, um auf die eigene Property zuzugreifen.",
+        "example": true,
+        "codeTemplate": "let rechner = {\n  wert: 10,\n  verdoppeln() {\n    return this.wert * 2;\n  }\n};\n\nconsole.log(rechner.verdoppeln());\n",
+        "validation": { "type": "output_contains", "expected": "20" }
+      },
+      {
+        "instruction": "Erstelle ein Objekt wuerfel mit der Property seitenlaenge (Wert 4) und einer Methode volumen(), die seitenlaenge hoch 3 zurückgibt (seitenlaenge mal seitenlaenge mal seitenlaenge). Rufe wuerfel.volumen() auf und gib das Ergebnis aus.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "type": "output_contains", "expected": "64" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Ein Array aus Objekten",
+    "file": "lektion-04.md",
+    "lessonSummary": "Perfekt! Ein Array aus Objekten ist das Standardmuster für echte Datenlisten.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Eine for...of-Schleife gibt für jede Person Name und Note aus.",
+        "example": true,
+        "codeTemplate": "let schueler = [\n  { name: 'Mia', note: 2 },\n  { name: 'Jonas', note: 1 },\n];\n\nfor (const person of schueler) {\n  console.log(`${person.name}: ${person.note}`);\n}\n",
+        "validation": { "type": "output_contains", "expected": "Jonas: 1" }
+      },
+      {
+        "instruction": "Gegeben ist ein Array team mit drei Objekten (name, punkte). Gib mit einer Schleife für jede Person 'NAME hat PUNKTE Punkte' aus (z.B. 'Lea hat 12 Punkte').",
+        "codeTemplate": "let team = [\n  { name: 'Lea', punkte: 12 },\n  { name: 'Tom', punkte: 7 },\n  { name: 'Mia', punkte: 19 },\n];\n\n// Dein Code hier\n",
+        "validation": { "type": "output_contains", "expected": "Tom hat 7 Punkte" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Objekte, Schleifen und Bedingungen kombinieren",
+    "file": "lektion-05.md",
+    "lessonSummary": "Geschafft! Schleife + Bedingung über ein Array aus Objekten ist die Grundlage jeder Datenauswertung.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zählt mit Schleife + Bedingung, wie viele Tiere Hunde sind.",
+        "example": true,
+        "codeTemplate": "let tiere = [\n  { name: 'Bello', art: 'Hund' },\n  { name: 'Mimi', art: 'Katze' },\n  { name: 'Rex', art: 'Hund' },\n];\n\nlet anzahlHunde = 0;\nfor (const tier of tiere) {\n  if (tier.art === 'Hund') {\n    anzahlHunde++;\n  }\n}\nconsole.log(`Hunde: ${anzahlHunde}`);\n",
+        "validation": { "type": "output_contains", "expected": "Hunde: 2" }
+      },
+      {
+        "instruction": "Gegeben ist ein Array bestellungen mit Objekten (artikel, preis). Berechne die Summe aller Preise, bei denen artikel gleich 'Buch' ist. Speichere das Ergebnis in einer Variable summe.",
+        "codeTemplate": "let bestellungen = [\n  { artikel: 'Buch', preis: 12 },\n  { artikel: 'Stift', preis: 2 },\n  { artikel: 'Buch', preis: 8 },\n  { artikel: 'Heft', preis: 3 },\n];\n\n// Dein Code hier\n",
+        "validation": { "variables": { "summe": 20 } }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Fehlersuche",
+    "file": "debug-01.md",
+    "lessonSummary": "Gut gemacht! Tippfehler im Property-Namen und vergessene Methodenaufrufe sind typische Stolperfallen bei Objekten.",
+    "tasks": [
+      {
+        "instruction": "Dieser Code gibt 'undefined' aus. Ziel: Er soll 12 ausgeben (den Wert der Property, die in eigenschaft benannt ist).",
+        "codeTemplate": "let person = { name: 'Alex', alter: 12 };\nlet eigenschaft = 'alter';\nconsole.log(person.eigenschaft);\n",
+        "validation": { "type": "output_contains", "expected": "12" }
+      },
+      {
+        "instruction": "Dieser Code gibt gar nichts aus. Ziel: Er soll 20 ausgeben.",
+        "codeTemplate": "let rechner = {\n  wert: 10,\n  verdoppeln() {\n    return this.wert * 2;\n  }\n};\n\nconsole.log(rechner.verdoppeln);\n",
+        "validation": { "type": "output_contains", "expected": "20" }
+      },
+      {
+        "instruction": "Dieser Code gibt 'undefined' aus. Ziel: Er soll 'Harry Potter' ausgeben.",
+        "codeTemplate": "let buch = { nam: 'Harry Potter', seiten: 320 };\nconsole.log(buch.name);\n",
+        "validation": { "type": "output_contains", "expected": "Harry Potter" }
+      },
+      {
+        "instruction": "Dieser Code gibt zweimal 'undefined' aus. Ziel: Er soll 'Lea' und 'Tom' ausgeben.",
+        "codeTemplate": "let team = [\n  { name: 'Lea', punkte: 12 },\n  { name: 'Tom', punkte: 7 },\n];\n\nfor (const person of team) {\n  console.log(person.vorname);\n}\n",
+        "validation": { "type": "output_contains", "expected": "Lea\nTom" }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Deine Mission",
+    "file": "mission-01.md",
+    "lessonSummary": "Starke Leistung! Du hast Funktionen geschrieben, die Objekte und Arrays aus Objekten auswerten.",
+    "tasks": [
+      {
+        "instruction": "Schreibe eine Funktion vorstellen, die ein Objekt mit den Properties name und alter entgegennimmt und den Text 'NAME ist ALTER Jahre alt' zurückgibt. Rufe sie mit { name: 'Mia', alter: 11 } auf und gib das Ergebnis aus.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mia ist 11 Jahre alt",
+          "functionCalls": [{ "name": "vorstellen", "args": [{ "name": "Ben", "alter": 9 }], "expected": "Ben ist 9 Jahre alt" }]
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion gesamtPreis, die ein Array von Objekten (mit Property preis) entgegennimmt und die Summe aller Preise zurückgibt. Rufe sie mit [{ preis: 5 }, { preis: 12 }, { preis: 3 }] auf und gib das Ergebnis aus.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "20",
+          "functionCalls": [{ "name": "gesamtPreis", "args": [[{ "preis": 10 }, { "preis": 10 }, { "preis": 10 }]], "expected": 30 }]
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion zaehleArt, die ein Array von Objekten (mit Property art) und eine gesuchte Art entgegennimmt und zurückgibt, wie viele Objekte diese Art haben. Rufe sie mit [{ art: 'Hund' }, { art: 'Katze' }, { art: 'Hund' }] und 'Hund' auf und gib das Ergebnis aus.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "2",
+          "functionCalls": [{ "name": "zaehleArt", "args": [[{ "art": "Vogel" }, { "art": "Vogel" }, { "art": "Fisch" }, { "art": "Vogel" }], "Vogel"], "expected": 3 }]
+        }
+      }
+    ]
+  }
+]

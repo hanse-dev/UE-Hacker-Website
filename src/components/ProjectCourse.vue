@@ -22,20 +22,23 @@
       <aside class="lessons-sidebar" :class="{ 'sidebar-mobile-open': sidebarOpen }">
         <h3>{{ t('lessons.title') }}</h3>
         <ul class="lessons-list">
-          <li
-            v-for="(lesson, idx) in lessons"
-            :key="lesson.id"
-            :class="['lesson-item', {
-              active: currentLesson?.id === lesson.id,
-              completed: isCompleted(lesson.id),
-              locked: !isLessonUnlocked(lesson.id, lessons),
-            }]"
-            @click="selectLesson(lesson)"
-          >
-            <span class="lesson-number">{{ idx + 1 }}</span>
-            <span class="lesson-title">{{ lesson.title }}</span>
-            <span v-if="isCompleted(lesson.id)" class="lesson-check">✓</span>
-          </li>
+          <template v-for="(lesson, idx) in lessons" :key="lesson.id">
+            <li v-if="isNewSection(idx)" class="section-header">
+              {{ t('lessons.section.' + lesson.section) }}
+            </li>
+            <li
+              :class="['lesson-item', {
+                active: currentLesson?.id === lesson.id,
+                completed: isCompleted(lesson.id),
+                locked: !isLessonUnlocked(lesson.id, lessons),
+              }]"
+              @click="selectLesson(lesson)"
+            >
+              <span class="lesson-number">{{ idx + 1 }}</span>
+              <span class="lesson-title">{{ lesson.title }}</span>
+              <span v-if="isCompleted(lesson.id)" class="lesson-check">✓</span>
+            </li>
+          </template>
         </ul>
 
         <div class="sidebar-actions">
@@ -66,6 +69,7 @@
           :content-path="contentPath"
           :variant="contentPath"
           :course-id="courseId"
+          :show-canvas="showCanvas"
           @completed="onLessonCompleted"
         />
       </main>
@@ -89,6 +93,9 @@ export default {
     courseId: { type: String, required: true },
     contentPath: { type: String, required: true },
     engine: { type: String, default: 'pyodide' },
+    // Nur fuer engine: 'js-sandbox' relevant - ob das Canvas/iframe sichtbar sein soll (z.B. fuer
+    // einen Spiele-Kurs) oder ausgeblendet bleibt, weil der Kurs nie zeichnet.
+    showCanvas: { type: Boolean, default: true },
   },
   setup(props) {
     const { lang, t } = useLanguage();
@@ -115,6 +122,16 @@ export default {
       if (!lessons.value.length) return 0;
       return Math.round((completedCount.value / lessons.value.length) * 100);
     });
+
+    // Optionales `section`-Feld in lessons.json (z.B. 'lektion'/'debug'/'mission') gruppiert die
+    // Sidebar-Liste mit Ueberschriften, ohne die zugrunde liegende sequenzielle Freischaltung zu
+    // aendern - Kurse ohne dieses Feld (Cäsar-Chiffre, Morsecode, ...) zeigen weiterhin keine
+    // Ueberschriften.
+    const isNewSection = (idx) => {
+      const lesson = lessons.value[idx];
+      if (!lesson?.section) return false;
+      return idx === 0 || lessons.value[idx - 1]?.section !== lesson.section;
+    };
 
     const loadLessons = async () => {
       loading.value = true;
@@ -197,6 +214,7 @@ export default {
       completedCount,
       isCompleted,
       isLessonUnlocked,
+      isNewSection,
       selectLesson,
       onLessonCompleted,
       onImportFile,

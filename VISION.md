@@ -50,7 +50,7 @@ Variante braucht nur ihre eigene Sprache als Vorwissen.
 | Track | Einstieg | Grundkurs | Projekt-Kurse | Vertiefung |
 |---|---|---|---|---|
 | **Python** | `python-grundlagen-interaktiv` ✅ | `python-12-wochen-grundkurs` ✅ | `projekt-caesar-chiffre` ✅ · weitere geplant (`kurs-python-projekte` 📋) | 💡 Spieleprogrammierung mit Pygame Zero (alternativer/früherer Einstieg, siehe `KURSPLAN.md` Kurs 1) · 💡 RPG/OOP-Advanced (`KURSPLAN.md` Kurs 3 Track A, baut auf Wochen 10–11 auf) |
-| **JavaScript** | 💡 noch keiner (Idee: leichter interaktiver Einstieg analog Python) | 💡 evtl. langfristig, im bewährten Storytelling-/Wochenformat wie Python — nicht dringend, nicht entschieden | `projekt-js-spielewerkstatt` 🚧 nächstes konkretes Thema | 💡 Browser-Spiel Advanced (`KURSPLAN.md` Kurs 3 Track B) — Voraussetzung ist der JS-Projekt-Kurs, **nicht** der Python-Grundkurs |
+| **JavaScript** | 💡 noch keiner (Idee: leichter interaktiver Einstieg analog Python) | `js-grundkurs` 🚧 nächstes konkretes Thema — 9 Wochen, leichtes Format ohne Themen-Varianten (siehe `KURSPLAN.md`), kein Voraussetzungsverhältnis zu den Projekt-Kursen | `projekt-js-spielewerkstatt` ✅ | 💡 Browser-Spiel Advanced (`KURSPLAN.md` Kurs 3 Track B) — Voraussetzung ist der JS-Projekt-Kurs, **nicht** der Python-Grundkurs |
 | **KI/ML** | – | 💡 `kurs-ki-labor` (`KURSPLAN.md` Kurs 4) — **einzige legitime Cross-Track-Voraussetzung: Python-Grundkurs** | – | – |
 | **Datenbanken** | – | 💡 noch nicht ausgearbeitet — andockbar an Python- oder JS-Backend-Inhalte, da SQL sprachneutral ist | – | – |
 | **Web** (HTML/CSS + JS) | – | 💡 eher als Erweiterung des JS-Tracks als eigenständiger Track | – | – |
@@ -74,10 +74,6 @@ Status-Legende: ✅ vorhanden · 🚧 nächstes konkretes Thema (Branch/Plan exi
 
 ## Offene Fragen (bewusst nicht entschieden)
 
-- Braucht JavaScript langfristig einen eigenen 12-Wochen-Grundkurs, oder reicht eine wachsende
-  Kette aus Projekt-Kursen (wie die Spielewerkstatt)? Tendenz: falls ja, im bewährten
-  Storytelling-/Wochenformat wie der Python-Kurs, da sich die Grundlagen dort gut vermitteln
-  lassen — aber nicht dringend.
 - Datenbanken- und Web-Track sind noch nicht ausgearbeitet, nur als Themenfelder vorgemerkt.
 - Reihenfolge/Priorität zwischen KI-Track und weiteren Python-Projekt-Kursen ist offen (siehe
   `todo.md` "Nächste Themen").

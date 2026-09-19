@@ -1,0 +1,167 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Arrays: mehrere Werte in einer Variable",
+    "file": "lektion-01.md",
+    "lessonSummary": "Super! Ein Array speichert eine ganze Liste von Werten – der Index startet bei 0.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. farben[0] ist das erste Element, farben[2] das dritte.",
+        "example": true,
+        "codeTemplate": "let farben = ['rot', 'gruen', 'blau'];\nconsole.log(farben[0]);\nconsole.log(farben[2]);\n",
+        "validation": { "type": "output_contains", "expected": "rot\nblau" }
+      },
+      {
+        "instruction": "Erstelle ein Array zahlen mit den Werten 10, 20, 30. Speichere den Wert an Index 1 in einer Variable mittlererWert.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "variables": { "mittlererWert": 20 } }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Elemente hinzufügen und entfernen: push und pop",
+    "file": "lektion-02.md",
+    "lessonSummary": "Stark! push fügt hinten an, pop entfernt das letzte Element wieder.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. push fügt 'Eier' hinzu, pop entfernt das letzte Element wieder.",
+        "example": true,
+        "codeTemplate": "let einkaufsliste = ['Brot', 'Milch'];\neinkaufsliste.push('Eier');\nconsole.log(einkaufsliste);\n\neinkaufsliste.pop();\nconsole.log(einkaufsliste);\n",
+        "validation": { "type": "output_contains", "expected": "[\"Brot\",\"Milch\"]" }
+      },
+      {
+        "instruction": "Erstelle ein leeres Array warteschlange. Füge nacheinander 'Anna', 'Ben' und 'Cem' mit push hinzu. Entferne danach das letzte Element mit pop. Speichere die verbleibende Länge in einer Variable laenge.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "variables": { "laenge": 2 } }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Die Länge eines Arrays: length",
+    "file": "lektion-03.md",
+    "lessonSummary": "Gut gemacht! Mit .length und .length - 1 kommst du an die Anzahl und das letzte Element.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. tiere.length zählt die Elemente, tiere[tiere.length - 1] holt das letzte.",
+        "example": true,
+        "codeTemplate": "let tiere = ['Hund', 'Katze', 'Maus', 'Vogel'];\nconsole.log(tiere.length);\nconsole.log(tiere[tiere.length - 1]);\n",
+        "validation": { "type": "output_contains", "expected": "4\nVogel" }
+      },
+      {
+        "instruction": "Gegeben ist ein Array namen mit 5 Einträgen. Speichere die Anzahl der Einträge in einer Variable anzahl und den letzten Eintrag in einer Variable letzter.",
+        "codeTemplate": "let namen = ['Lea', 'Tom', 'Mia', 'Jan', 'Zoe'];\n\n// Dein Code hier\n",
+        "validation": { "variables": { "anzahl": 5, "letzter": "Zoe" } }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Schleife über ein Array",
+    "file": "lektion-04.md",
+    "lessonSummary": "Perfekt! Mit for...of gehst du jedes Element eines Arrays einzeln durch.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Eine for...of-Schleife gibt jeden Punktestand einzeln aus.",
+        "example": true,
+        "codeTemplate": "let punkte = [12, 7, 19, 3];\nfor (const punkt of punkte) {\n  console.log(punkt);\n}\n",
+        "validation": { "type": "output_contains", "expected": "19\n3" }
+      },
+      {
+        "instruction": "Gib mit einer for...of-Schleife jeden Eintrag aus dem Array staedte aus, jeweils mit dem Zusatz ' ist dabei!' (z.B. 'Berlin ist dabei!').",
+        "codeTemplate": "let staedte = ['Berlin', 'Hamburg', 'Koeln'];\n\n// Dein Code hier\n",
+        "validation": { "type": "output_contains", "expected": "Hamburg ist dabei!" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Arrays und Bedingungen kombinieren",
+    "file": "lektion-05.md",
+    "lessonSummary": "Geschafft! Schleife + Bedingung lassen dich gezielt nur bestimmte Array-Elemente auswerten.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zählt mit Schleife + Bedingung, wie viele Zahlen im Array gerade sind.",
+        "example": true,
+        "codeTemplate": "let zahlen = [4, 9, 15, 22, 7];\nlet anzahlGerade = 0;\nfor (const zahl of zahlen) {\n  if (zahl % 2 === 0) {\n    anzahlGerade++;\n  }\n}\nconsole.log(`Gerade Zahlen: ${anzahlGerade}`);\n",
+        "validation": { "type": "output_contains", "expected": "Gerade Zahlen: 2" }
+      },
+      {
+        "instruction": "Gegeben ist ein Array preise. Berechne mit einer Schleife die Summe aller Preise, die mindestens 10 sind. Speichere das Ergebnis in einer Variable summe.",
+        "codeTemplate": "let preise = [5, 12, 8, 20, 15, 3];\n\n// Dein Code hier\n",
+        "validation": { "variables": { "summe": 47 } }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Fehlersuche",
+    "file": "debug-01.md",
+    "lessonSummary": "Gut gemacht! Index-0-Zählung und .length-Fallstricke sind typische Stolperfallen bei Arrays.",
+    "tasks": [
+      {
+        "instruction": "Dieser Code gibt 'Birne' aus. Ziel: Er soll das erste Element ('Apfel') ausgeben.",
+        "codeTemplate": "let obst = ['Apfel', 'Birne', 'Kirsche'];\nconsole.log(obst[1]);\n",
+        "validation": { "type": "output_contains", "expected": "Apfel" }
+      },
+      {
+        "instruction": "Dieser Code gibt 'undefined' aus. Ziel: Er soll das letzte Element ('blau') ausgeben.",
+        "codeTemplate": "let farben = ['rot', 'gruen', 'blau'];\nconsole.log(farben[farben.length]);\n",
+        "validation": { "type": "output_contains", "expected": "blau" }
+      },
+      {
+        "instruction": "Dieser Code gibt 3 aus. Ziel: Er soll das Array selbst ausgeben (['a','b','c']).",
+        "codeTemplate": "let liste = ['a', 'b'];\nlet ergebnis = liste.push('c');\nconsole.log(ergebnis);\n",
+        "validation": { "type": "output_contains", "expected": "[\"a\",\"b\",\"c\"]" }
+      },
+      {
+        "instruction": "Dieser Code gibt eine Zeile zu viel aus ('undefined' am Ende). Ziel: Er soll genau die 4 Noten ausgeben, sonst nichts.",
+        "codeTemplate": "let noten = [2, 3, 1, 4];\nfor (let i = 0; i <= noten.length; i++) {\n  console.log(noten[i]);\n}\n",
+        "validation": { "type": "output_equals", "expected": "2\n3\n1\n4" }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Deine Mission",
+    "file": "mission-01.md",
+    "lessonSummary": "Starke Leistung! Du hast Funktionen geschrieben, die ganze Arrays auswerten.",
+    "tasks": [
+      {
+        "instruction": "Schreibe eine Funktion summeArray, die ein Array von Zahlen entgegennimmt und die Summe aller Werte zurückgibt. Rufe sie mit [3, 7, 2] auf und gib das Ergebnis aus.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "12",
+          "functionCalls": [{ "name": "summeArray", "args": [[10, 20, 5]], "expected": 35 }]
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion groesstesElement, die ein Array von Zahlen entgegennimmt und den größten Wert zurückgibt. Rufe sie mit [4, 9, 2, 15, 6] auf und gib das Ergebnis aus.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "15",
+          "functionCalls": [{ "name": "groesstesElement", "args": [[1, 8, 3]], "expected": 8 }]
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion zaehleUeber, die ein Array von Zahlen und eine Grenze entgegennimmt und zurückgibt, wie viele Werte im Array größer als die Grenze sind. Rufe sie mit [5, 12, 8, 20, 3] und der Grenze 10 auf und gib das Ergebnis aus.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "2",
+          "functionCalls": [{ "name": "zaehleUeber", "args": [[1, 2, 3, 4, 5], 2], "expected": 3 }]
+        }
+      }
+    ]
+  }
+]

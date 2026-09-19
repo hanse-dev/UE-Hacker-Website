@@ -9,6 +9,7 @@
   },
   {
     "id": "python-grundlagen-interaktiv",
+    "format": "einstieg",
     "title": "Python Grundlagen – Interaktiv",
     "title_en": "Python Basics – Interactive",
     "description": "Kurze Erklärungen und kleine Programmieraufgaben. Löse jede Aufgabe direkt im Browser – erst wenn sie stimmt, geht es weiter.",
@@ -17,11 +18,21 @@
   },
   {
     "id": "python-12-wochen-grundkurs",
+    "format": "grundkurs",
     "title": "12-Wochen Python Grundkurs",
     "title_en": "12-Week Python Beginner Course",
     "description": "Alles, was du für den Einstieg in Python brauchst. Von den Grundlagen bis zu deinem ersten eigenen Projekt.",
     "description_en": "Everything you need to get started with Python. From the basics to your first own project.",
     "contentPath": "python-12-wochen-grundkurs"
+  },
+  {
+    "id": "js-grundkurs",
+    "format": "grundkurs",
+    "title": "JavaScript-Grundkurs",
+    "title_en": "JavaScript Beginner Course",
+    "description": "Von Null zu eigenen JavaScript-Programmen: Bedingungen, Schleifen, Funktionen, Arrays, Objekte, DOM-Interaktivität, Klassen und ein Abschlussprojekt, das alles verbindet.",
+    "description_en": "From zero to your own JavaScript programs: conditions, loops, functions, arrays, objects, DOM interactivity, classes, and a capstone project that ties it all together.",
+    "contentPath": "js-grundkurs"
   },
   {
     "id": "projekt-caesar-chiffre",

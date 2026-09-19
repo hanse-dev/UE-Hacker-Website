@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <CourseAppointments v-if="!isInteractiveCourse && !isPlacementCourse && !isProjectCourse" :termine="courseTermine" />
+    <CourseAppointments v-if="!isInteractiveCourse && !isPlacementCourse && !isProjectCourse && !isJsGrundkurs" :termine="courseTermine" />
 
     <div v-if="isInteractiveCourse" class="interactive-course-wrapper">
       <InteractiveCourse :content-path="course.contentPath" />
@@ -41,6 +41,10 @@
     </div>
 
     <WeekTour v-else-if="isWeeklyCourse" />
+
+    <div v-else-if="isJsGrundkurs" class="js-grundkurs-wrapper">
+      <JsGrundkursTour />
+    </div>
 
     <div v-if="isWeeklyCourse" class="notebook-pack-download">
       <a href="/python-12-wochen-notebooks.zip" download class="notebook-pack-btn">
@@ -72,6 +76,7 @@ import WeekTour from '../components/WeekTour.vue';
 import InteractiveCourse from '../components/InteractiveCourse.vue';
 import PlacementCourse from '../components/PlacementCourse.vue';
 import ProjectCourse from '../components/ProjectCourse.vue';
+import JsGrundkursTour from '../components/JsGrundkursTour.vue';
 import { loadCourseData } from '../composables/useCourseData';
 import { useLanguage } from '../composables/useLanguage.js';
 
@@ -93,6 +98,7 @@ export default {
     InteractiveCourse,
     PlacementCourse,
     ProjectCourse,
+    JsGrundkursTour,
   },
   props: {
     id: { type: String, required: true },
@@ -109,6 +115,7 @@ export default {
     const isInteractiveCourse = computed(() => props.id === 'python-grundlagen-interaktiv');
     const isPlacementCourse = computed(() => props.id === 'python-einstufung');
     const isProjectCourse = computed(() => course.value?.type === 'projekt');
+    const isJsGrundkurs = computed(() => props.id === 'js-grundkurs');
 
     const courseStructureSteps = computed(() =>
       STRUCTURE_STEPS_CONFIG.map((step) => ({ ...step, title: t(step.titleKey), desc: t(step.descKey) }))
@@ -159,6 +166,7 @@ export default {
       isInteractiveCourse,
       isPlacementCourse,
       isProjectCourse,
+      isJsGrundkurs,
       id: toRef(props, 'id'),
       courseStructureSteps,
       t,
@@ -178,6 +186,11 @@ export default {
 }
 
 .project-course-wrapper {
+  margin-top: 20px;
+  overflow: visible;
+}
+
+.js-grundkurs-wrapper {
   margin-top: 20px;
   overflow: visible;
 }
