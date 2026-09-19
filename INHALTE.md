@@ -16,6 +16,7 @@ Dieses Dokument beschreibt, welche Dateien zusammengehören und was bei Änderun
 | `projekt-morsecode` | `content/morsecode/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON) |
 | `projekt-zahlendetektiv` | `content/zahlendetektiv/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON) |
 | `projekt-js-spielewerkstatt` | `content/js-spielewerkstatt/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON, `engine: "js-sandbox"`) |
+| `js-grundkurs` | `content/js-grundkurs/` (Beschreibung) + `content/js-grundkurs-woche{1-9}/` (Wochen) | *(keine EN-Version)* | Grundkurs (Markdown + JSON, `engine: "js-sandbox"`, eigene Mehrwochen-Struktur) |
 
 Alle Projekt-Kurse (`type: "projekt"` in `kurse.json`) sind gesammelt und filterbar unter
 **`/projekte`** (`src/views/ProjekteView.vue`) zu finden — nach Sprache, Level, Thema/Tags und
@@ -24,6 +25,18 @@ Dauer. Sie erscheinen bewusst *nicht* mehr in der normalen Kursliste auf der Sta
 `projekt-js-spielewerkstatt` ist der erste Projekt-Kurs mit `engine: "js-sandbox"` statt Pyodide —
 `ProjectCourse.vue` rendert je nach diesem Feld `LessonView.vue` (Python/Pyodide, Default) oder
 `JsLessonView.vue` (JavaScript, eigene iframe-Sandbox). Details siehe Abschnitt 6.
+
+`js-grundkurs` ist ein **Grundkurs** (nicht Projekt-Kurs, siehe `VISION.md`s Format-Definitionen),
+9 Wochen, dieselbe `js-sandbox`-Engine wie `js-spielewerkstatt`, aber eine eigene Content-Struktur:
+`content/js-grundkurs/beschreibung.md` liefert nur die Kursbeschreibung auf der Detailseite,
+die eigentlichen Lektionen liegen in 9 unabhängigen Ordnern `content/js-grundkurs-woche{N}/`
+(je ein eigenes `lessons.json`, Schema wie bei Projekt-Kursen). `CourseDetail.vue` hat dafür einen
+eigenen, hart codierten Dispatch-Zweig (`isJsGrundkurs`, analog zu `isWeeklyCourse`/
+`isPlacementCourse` — kein generisches `type`-Feld wie bei Projekt-Kursen, da es bisher nur diesen
+einen Kurs seiner Art gibt), der `JsGrundkursTour.vue`/`JsCourseTour.vue`
+(`src/components/`) rendert. Wochen sind frei wählbar (keine Freischaltung nach Abschluss der
+Vorwoche), nur Lektionen innerhalb einer Woche sind sequenziell gesperrt. Details siehe
+`KURSPLAN.md` "JavaScript-Track: Grundkurs" und `HANDOFF.md` 3.43.
 
 Kurs-Metadaten (Titel, Beschreibung) → `public/kurse.json` (enthält `title`, `title_en`, `description`, `description_en`)
 
@@ -324,9 +337,11 @@ Ordner-Mapping (immer paarweise anpassen):
       wirklich laufende `requestAnimationFrame`-Schleife, nicht nur ein einzelnes Standbild).
       Fehlt `validation.expected`, wird die Ausgabe-Prüfung übersprungen (für reine Canvas-/
       Funktions-Aufgaben ohne geforderte `console.log`-Ausgabe).
-- [ ] Optionales Aufgaben-Feld `"check": "self"` (Default `"auto"`): statt einer automatischen
-      Prüfung gibt es nur einen "Ich hab's ausprobiert"-Button — für Aufgaben, die sich nicht
-      sinnvoll automatisch prüfen lassen (freies Ausprobieren, eigene Ideen einbauen).
+- [ ] Jede Aufgabe braucht eine echte `validation` — es gibt bewusst **keinen** Selbsteinschätzungs-
+      Button ("Ich hab's ausprobiert") mehr, jede Aufgabe (auch Demo-Beispiele mit bereits fertigem
+      `codeTemplate`) wird über Ausführen + Prüfen automatisch geprüft. Ein Demo-Beispiel bekommt
+      dafür eine `validation`, die zum unveränderten `codeTemplate` passt (z.B. `canvas_not_blank`
+      bei einem bereits zeichnenden Beispiel) — die Prüfung besteht dann sofort beim ersten Klick.
 - [ ] Jede Aufgabe muss eigenständig lauffähig sein — jeder Lauf (Ausführen/Prüfen) baut das
       iframe komplett neu auf, es gibt **keinen** geteilten Namespace zwischen Aufgaben (anders
       als beim Pyodide-Kernel, der über eine ganze Lektion hinweg erhalten bleibt).
@@ -351,6 +366,7 @@ Ordner-Mapping (immer paarweise anpassen):
 | JS-Projekt-Kurs – Lektion anzeigen (Pendant zu `LessonView.vue`) | `src/components/JsLessonView.vue` |
 | JS-Sandbox – iframe + RPC-Protokoll (Ausführen/Prüfen/Canvas) | `src/composables/useJsSandbox.js`, `src/components/JsSandboxFrame.vue` |
 | JS-Code-Editor mit IntelliSense/Tab (CodeMirror) | `src/components/JsCodeCell.vue` |
+| JS-Grundkurs – Wochenauswahl + Wochen-Stepper | `src/components/JsGrundkursTour.vue`, `src/components/JsCourseTour.vue` |
 | Fortschritts-Widget (12-Wochen) | `src/components/FortschrittWidget.vue` |
 | Missionen-Panel | `src/components/MissionenPanel.vue` |
 | Profilseite (Login-gated) + Projekt-Abschluss-Abzeichen | `src/views/ProfilView.vue`, `src/composables/useProjectBadges.js` |

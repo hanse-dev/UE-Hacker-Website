@@ -2,7 +2,51 @@
 
 ## Now
 
-*(Nichts aktuell offen — `kurs-projekte-uebersicht`, `kurs-js-spielewerkstatt`,
+### JS-Grundkurs (Branch `js-grundkurs-woche1-experiment`)
+Curriculum-Plan siehe `KURSPLAN.md` "JavaScript-Track: Grundkurs" (9 Wochen, leichtes Format).
+- [x] Mehrwochen-Architektur (Wochenauswahl `JsGrundkursTour.vue`, `?week=`-Deep-Link, freie
+      Wochen-Navigation, `JsCourseTour.vue` um `weekLabel`-Prop erweitert) — siehe HANDOFF.md 3.43
+- [x] Woche 1: JS-Grundlagen (siehe HANDOFF.md 3.42)
+- [x] Woche 2: Bedingungen (siehe HANDOFF.md 3.43)
+- [x] Woche 3: Schleifen (siehe HANDOFF.md 3.43 Nachtrag)
+- [x] Woche 4: Funktionen (siehe HANDOFF.md 3.43 Nachtrag) — führt `functionCalls`-Hidden-Tests
+      ein; dabei gefundene Sandbox-Einschränkung für Woche 9 relevant (s.u.)
+- [x] Woche 5: Arrays (siehe HANDOFF.md 3.43 Nachtrag) — **Achtung:** `variables`/
+      `functionCalls.expected` können kein Array als erwarteten Wert nutzen (`valuesMatch()`
+      vergleicht Arrays nur per `===`, nie inhaltlich — würde selbst bei korrekter Lösung immer
+      fehlschlagen). Nur Skalare validieren, die aus einem Array abgeleitet sind (Summe, Anzahl,
+      Element). Ein Array als reines Funktions-**Argument** ist dagegen unproblematisch.
+- [x] Woche 6: Objekte (siehe HANDOFF.md 3.43 Nachtrag) — Objekte unterstützen (anders als Arrays)
+      die rekursive `variables`/`functionCalls`-Prüfung ganz normal, ein Objekt-Literal darf also
+      direkt als erwarteter Wert genutzt werden.
+- [x] Woche 7: DOM & Interaktivität (siehe HANDOFF.md 3.43 Nachtrag) — neue `validation.type`-Werte
+      `dom_text`/`dom_click_text` (Feld `text`, bewusst nicht `expected` — siehe HANDOFF.md),
+      festes DOM-Übungs-Markup `#dom-uebung` in `useJsSandbox.js`. Dabei einen echten Bug gefunden:
+      Canvas + DOM-Markup gleichzeitig im iframe sprengte die feste 300px-Höhe — gelöst mit zwei
+      srcdoc-Varianten (`domMode`-Prop, durchgereicht bis `JsSandboxFrame.vue`), `js-spielewerkstatt`
+      unverändert (Default `false`).
+- [x] Woche 8: Objekte als Blaupause (Klassen, siehe HANDOFF.md 3.43 Nachtrag) — bestätigt: keine
+      `functionCalls`-Hidden-Tests auf Klassen-Methoden möglich (wie in Woche 4 vorhergesagt),
+      `variables`-Checks auf ganze Instanzen funktionieren aber (JSON.stringify einer Instanz
+      enthält nur Properties, keine Prototyp-Methoden). **Ursprünglich Woche 9**, auf Nutzer-Wunsch
+      mit dem Abschlussprojekt getauscht (siehe HANDOFF.md 3.43 Nachtrag "Woche 8 ↔ 9 getauscht") —
+      ein Abschlussprojekt sollte alles einschließen können, auch Klassen.
+- [x] Woche 9: Abschlussprojekt (siehe HANDOFF.md 3.43 Nachtrag) — Mini-Quiz kombiniert Wochen 2-8,
+      inkl. einer eigenen `Frage`-Klasse für das Fragen-Array, bewusst kein neues Konzept.
+- [x] Auf der Seite eingebunden (siehe HANDOFF.md 3.43 Nachtrag "auf der Seite eingebunden") —
+      echter `kurse.json`-Eintrag `js-grundkurs`, `/kurs/js-grundkurs` über `CourseDetail.vue`
+      (neuer `isJsGrundkurs`-Zweig), in der Startseiten-Kursübersicht sichtbar. Kein
+      `/experiment/...`-Pfad mehr, `src/views/experiment/` entfernt (Dateien nach
+      `src/components/` verschoben). **Der komplette 9-Wochen-Plan aus KURSPLAN.md ist damit
+      fertig und live im normalen Kurs-Menü** — kein offener Punkt mehr zu diesem Thema.
+- [x] Homepage konsistenter gestaltet (siehe HANDOFF.md 3.44) — Format-Badges auf Kurskarten
+      (`kurse.json`-Feld `format`), Projekte-Teaser/Unterstützer auf einheitliche Karten-Optik
+      umgestellt, Hero auf 2 sprachneutrale CTAs ("Zu den Kursen"/"Zu den Projekten") reduziert,
+      Einstufungstest-Hinweis von dort in die Kursübersicht verschoben.
+- [x] `/projekte`-Filterleiste gruppiert (siehe HANDOFF.md 3.44 Nachtrag) — eigene Überschrift
+      "Filtern nach" + Reset-Button rechtsbündig, Grid statt freiem Wrap, Icons pro Kategorie.
+
+*(Sonst nichts weiter offen — `kurs-projekte-uebersicht`, `kurs-js-spielewerkstatt`,
 `profil-abschluss-badges` und `nav-projekte-link` sind alle nach `main` gemergt, siehe
 "Fertige Branches" unten. Server-Deploy steht noch aus, siehe HANDOFF.md Abschnitt 5 "Betrieb".)*
 

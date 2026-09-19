@@ -1,0 +1,155 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Elemente finden: document.querySelector",
+    "file": "lektion-01.md",
+    "lessonSummary": "Super! Mit document.querySelector('#id') findest du jedes Element auf der Übungsfläche.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es liest den Text der Überschrift aus und gibt ihn in der Konsole aus.",
+        "example": true,
+        "codeTemplate": "let ueberschrift = document.querySelector('#ueberschrift');\nconsole.log(ueberschrift.textContent);\n",
+        "validation": { "type": "output_contains", "expected": "Willkommen" }
+      },
+      {
+        "instruction": "Lies den Text des Elements mit der ID 'text' aus und speichere ihn in einer Variable inhalt.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "variables": { "inhalt": "Hier steht ein Text." } }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Text verändern",
+    "file": "lektion-02.md",
+    "lessonSummary": "Stark! Du hast gerade eine echte Webseite mit eigenem Code verändert.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Schau dir die Übungsfläche rechts an – die Überschrift hat sich geändert.",
+        "example": true,
+        "codeTemplate": "let ueberschrift = document.querySelector('#ueberschrift');\nueberschrift.textContent = 'Hallo JavaScript!';\n",
+        "validation": { "type": "dom_text", "target": "ueberschrift", "text": "Hallo JavaScript!" }
+      },
+      {
+        "instruction": "Ändere den Text des Elements mit der ID 'text' zu 'Ich habe das geändert!'.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "type": "dom_text", "target": "text", "text": "Ich habe das geändert!" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Auf Klicks reagieren: addEventListener",
+    "file": "lektion-03.md",
+    "lessonSummary": "Gut gemacht! addEventListener lässt deinen Code auf echte Klicks reagieren.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Klicke danach selbst auf den Knopf auf der Übungsfläche und beobachte die Anzeige.",
+        "example": true,
+        "codeTemplate": "let knopf = document.querySelector('#knopf');\nknopf.addEventListener('click', () => {\n  document.querySelector('#anzeige').textContent = 'Geklickt!';\n});\n",
+        "validation": { "type": "dom_click_text", "click": "knopf", "target": "anzeige", "text": "Geklickt!" }
+      },
+      {
+        "instruction": "Füge dem Knopf (#knopf) einen Klick-Listener hinzu, der den Text von #anzeige auf 'Danke fürs Klicken!' setzt.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "type": "dom_click_text", "click": "knopf", "target": "anzeige", "text": "Danke fürs Klicken!" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Einen Zähler bauen",
+    "file": "lektion-04.md",
+    "lessonSummary": "Perfekt! Eine Variable außerhalb der Klick-Funktion bleibt zwischen Klicks erhalten.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Klicke danach mehrfach auf den Knopf und beobachte, wie die Anzeige hochzählt.",
+        "example": true,
+        "codeTemplate": "let zaehlerWert = 0;\nlet knopf = document.querySelector('#knopf');\nknopf.addEventListener('click', () => {\n  zaehlerWert++;\n  document.querySelector('#anzeige').textContent = zaehlerWert;\n});\n",
+        "validation": { "type": "dom_click_text", "click": "knopf", "target": "anzeige", "text": "1" }
+      },
+      {
+        "instruction": "Baue einen Klicker, der bei jedem Klick auf #knopf den Wert in #anzeige um 5 erhöht (beginnend bei 0).",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "type": "dom_click_text", "click": "knopf", "target": "anzeige", "text": "5" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Klicks und Bedingungen kombinieren",
+    "file": "lektion-05.md",
+    "lessonSummary": "Geschafft! Innerhalb einer Klick-Funktion kannst du alles nutzen, was du bisher gelernt hast.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Klicke dreimal auf den Knopf – ab dem dritten Klick erscheint 'Geschafft!'.",
+        "example": true,
+        "codeTemplate": "let zaehlerWert = 0;\nlet knopf = document.querySelector('#knopf');\nknopf.addEventListener('click', () => {\n  zaehlerWert++;\n  if (zaehlerWert >= 3) {\n    document.querySelector('#anzeige').textContent = 'Geschafft!';\n  } else {\n    document.querySelector('#anzeige').textContent = zaehlerWert;\n  }\n});\n",
+        "validation": { "type": "dom_click_text", "click": "knopf", "target": "anzeige", "text": "Geschafft!", "clicks": 3 }
+      },
+      {
+        "instruction": "Baue eine Klick-Zähler-Logik: bei jedem Klick auf #knopf wird der Zähler um 1 erhöht. Ab dem 5. Klick soll #anzeige 'Maximum erreicht!' anzeigen, davor die aktuelle Zahl.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "type": "dom_click_text", "click": "knopf", "target": "anzeige", "text": "Maximum erreicht!", "clicks": 5 }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Fehlersuche",
+    "file": "debug-01.md",
+    "lessonSummary": "Gut gemacht! Fehlendes # vor einer ID und Tippfehler im Event-Namen sind typische Stolperfallen bei DOM-Code.",
+    "tasks": [
+      {
+        "instruction": "Dieser Code wirft einen Fehler. Ziel: Er soll die Überschrift zu 'Neu!' ändern.",
+        "codeTemplate": "let ueberschrift = document.querySelector('ueberschrift');\nueberschrift.textContent = 'Neu!';\n",
+        "validation": { "type": "dom_text", "target": "ueberschrift", "text": "Neu!" }
+      },
+      {
+        "instruction": "Dieser Code reagiert nicht auf den Klick. Ziel: Er soll bei einem Klick 'Erfolg!' in #anzeige anzeigen.",
+        "codeTemplate": "let knopf = document.querySelector('#knopf');\nknopf.addEventListener('cilck', () => {\n  document.querySelector('#anzeige').textContent = 'Erfolg!';\n});\n",
+        "validation": { "type": "dom_click_text", "click": "knopf", "target": "anzeige", "text": "Erfolg!" }
+      },
+      {
+        "instruction": "Dieser Code ändert das falsche Element. Ziel: Ein Klick soll den Text von #anzeige auf 'Geklickt!' ändern.",
+        "codeTemplate": "let knopf = document.querySelector('#knopf');\nknopf.addEventListener('click', () => {\n  document.querySelector('#text').textContent = 'Geklickt!';\n});\n",
+        "validation": { "type": "dom_click_text", "click": "knopf", "target": "anzeige", "text": "Geklickt!" }
+      },
+      {
+        "instruction": "Dieser Code zeigt nach dem ersten Klick noch '0' an. Ziel: Er soll nach dem ersten Klick '1' anzeigen.",
+        "codeTemplate": "let zaehlerWert = 0;\nlet knopf = document.querySelector('#knopf');\nknopf.addEventListener('click', () => {\n  document.querySelector('#anzeige').textContent = zaehlerWert;\n  zaehlerWert++;\n});\n",
+        "validation": { "type": "dom_click_text", "click": "knopf", "target": "anzeige", "text": "1" }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Deine Mission",
+    "file": "mission-01.md",
+    "lessonSummary": "Starke Leistung! Du hast eine echte Webseite mit eigenem Code interaktiv gemacht.",
+    "tasks": [
+      {
+        "instruction": "Ändere den Text der Überschrift (#ueberschrift) zu 'Mission gestartet!'.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "type": "dom_text", "target": "ueberschrift", "text": "Mission gestartet!" }
+      },
+      {
+        "instruction": "Füge dem Knopf (#knopf) einen Klick-Listener hinzu: bei Klick soll #text den Wert 'Mission erfüllt!' bekommen.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "type": "dom_click_text", "click": "knopf", "target": "text", "text": "Mission erfüllt!" }
+      },
+      {
+        "instruction": "Baue einen Zähler: bei jedem Klick auf #knopf soll #anzeige um 2 erhöht werden. Ab dem 3. Klick soll stattdessen 'Fertig!' angezeigt werden.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "type": "dom_click_text", "click": "knopf", "target": "anzeige", "text": "Fertig!", "clicks": 3 }
+      }
+    ]
+  }
+]

@@ -65,6 +65,49 @@ Listen → Module → Dictionaries → Dateien → OOP → Vererbung → Turtle-
 
 ---
 
+## JavaScript-Track: Grundkurs
+**Zielgruppe:** ab 12 Jahre | **Dauer:** 9 Wochen | **Voraussetzungen:** keine
+
+Systematischer JS-Einstieg im Browser (eigene iframe-Sandbox, kein Setup nötig). **Eigenständig
+neben `projekt-js-spielewerkstatt`** — kein Voraussetzungsverhältnis in beide Richtungen, beide
+sind unabhängige Einstiegspunkte in den JS-Track (siehe `VISION.md`). Bewusst leichteres Format
+als der Python-12-Wochen-Kurs: ein Track ohne Themen-Varianten (Abenteuer/Pferde/Sci-Fi), kein
+Glossar/Boss-Quest/Lösungen/Zertifikat — pro Woche nur **Lektion → Debug → Mission**.
+
+### Wochenplan
+
+| Woche | Thema | Lerninhalt |
+|-------|-------|------------|
+| 1 | JS-Grundlagen | `console.log`, `let`/`const`, Datentypen (number/string/boolean, `typeof`), Rechnen + Template-Literals |
+| 2 | Bedingungen | Vergleichsoperatoren, `if`/`else`/`else if`, `&&`/`\|\|`/`!`, verschachtelte Bedingungen |
+| 3 | Schleifen | `for`, `while`, `break`/`continue`, Schleife über Strings |
+| 4 | Funktionen | `function`, Parameter/Rückgabewert, kurze Einführung Arrow-Functions |
+| 5 | Arrays | Array anlegen, Index, `push`/`pop`, `length`, Schleife über Array |
+| 6 | Objekte | Objekt-Literale, Properties lesen/schreiben, Methoden in Objekten, Array aus Objekten |
+| 7 | DOM & Interaktivität | `querySelector`, Text ändern, `addEventListener` (Klick) — Brücke zu Canvas/Spielen |
+| 8 | Objekte als Blaupause | Klassen, `constructor`, Methoden, `this` — bewusst **ohne** Vererbung/Polymorphismus (zu fortgeschritten für den Rahmen, analog zur Kürzung in `python-12-wochen-grundkurs` Woche 11) |
+| 9 | Abschlussprojekt | Kombination aus Woche 2–8, inkl. Klassen (z.B. kleine To-Do-Liste oder klickbares Quiz), kein neues Konzept |
+
+### Lernziele
+- Variablen, Datentypen, Bedingungen, Schleifen und Funktionen in JavaScript anwenden
+- Mit Arrays und Objekten einfache Datensammlungen modellieren
+- Eine Webseite über den DOM verändern und auf Klicks reagieren
+- Eigene Daten als Klassen (Blaupausen) strukturieren
+
+### Technisch
+- **Tool:** eigene iframe-Sandbox (`useJsSandbox.js`, wie `projekt-js-spielewerkstatt`), kein Pyodide
+- **Format:** ein Track, kein Themen-Varianten-System, kein Quiz/Zertifikat/PDF
+- **Offener technischer Punkt:** Woche 7 (DOM) braucht einen neuen `validation.type` — bisher gibt
+  es nur `output_contains`/`variables`/`functionCalls`/`canvas_*`, nichts, das einen DOM-Zustand
+  prüft
+- **Offener struktureller Punkt:** Mehrwochen-Navigation ist noch nicht entschieden — aktuell ist
+  `js-grundkurs-woche1` (unverlinktes Experiment, siehe `HANDOFF.md` 3.42) ein einzelner,
+  eigenständiger Content-Ordner mit eigenem Stepper (`JsCourseTour.vue`), gebaut für genau eine
+  Woche. Für 9 Wochen braucht es entweder eine Wochen-Auswahl wie beim Python-Kurs
+  (`WeekTour.vue`) oder eine andere Lösung — zu klären, sobald Woche 2 umgesetzt wird
+
+---
+
 ## Vertiefungen: Spieleprogrammierung Advanced
 **Zielgruppe:** ab 14 Jahre | **Dauer:** 10 Wochen
 
@@ -165,8 +208,9 @@ Python-Interesse, ab 12:
   → 12-Wochen-Grundkurs (Python-Track)
   → Spieleprogrammierung Advanced Track A (Python-Track) oder KI-Grundlagen (KI-Track)
 
-Web/JS-Interesse, ab 14 (kein Python nötig):
-  → js-spielewerkstatt (JS-Track, Projekt-Kurs)
+Web/JS-Interesse, ab 12 (kein Python nötig):
+  → js-grundkurs (JS-Track, Grundkurs) optional, für mehr Struktur
+  → js-spielewerkstatt (JS-Track, Projekt-Kurs) — unabhängig vom Grundkurs, gleichwertiger Einstieg
   → Spieleprogrammierung Advanced, Track B: Browser-Spiel (JS-Track)
 
 KI-Interesse, ab 14:

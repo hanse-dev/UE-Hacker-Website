@@ -1,5 +1,5 @@
 <template>
-  <div class="js-sandbox-wrapper">
+  <div class="js-sandbox-wrapper" v-show="showCanvas">
     <iframe
       ref="iframeEl"
       :key="frameKey"
@@ -23,12 +23,27 @@ import { useLanguage } from '../composables/useLanguage';
 
 export default {
   name: 'JsSandboxFrame',
+  props: {
+    // Das iframe bleibt in jedem Fall gemountet (es ist die eigentliche Ausfuehrungsumgebung,
+    // nicht nur eine Anzeige) - showCanvas steuert nur, ob es sichtbar ist. Kurse ohne Canvas-
+    // Zeichnen (z.B. die meisten js-grundkurs-Wochen) brauchen keine leere graue Box zu zeigen,
+    // die Ausgabe-Box unter dem Code-Editor reicht dort. Seit js-grundkurs Woche 7 (DOM &
+    // Interaktivitaet) blendet derselbe Schalter zusaetzlich das feste DOM-Uebungs-Markup
+    // (#dom-uebung in useJsSandbox.js) ein/aus - beides sitzt im selben iframe, es gibt keinen
+    // separaten Schalter dafuer.
+    showCanvas: { type: Boolean, default: true },
+    // Steuert, welcher Inhalt im iframe angezeigt wird (Canvas vs. feste DOM-Uebungsflaeche) -
+    // unabhaengig von showCanvas, das nur die Sichtbarkeit des ganzen Sandbox-Bereichs regelt.
+    // Siehe useJsSandbox.js fuer die beiden srcdoc-Varianten.
+    domMode: { type: Boolean, default: false },
+  },
   setup(props, { expose }) {
     const { t } = useLanguage();
     const {
       iframeEl, frameKey, srcdoc, ready, alive,
-      run, getVariable, callFunction, checkCanvasNotBlank, checkCanvasChanged, restart,
-    } = useJsSandbox();
+      run, callFunction, checkCanvasNotBlank, checkCanvasChanged,
+      checkDomText, checkDomClickText, restart,
+    } = useJsSandbox(props.domMode ? 'dom' : 'canvas');
 
     // Chromium drosselt requestAnimationFrame in einem (cross-origin/opaken) iframe, das gerade
     // ausserhalb des sichtbaren Viewports liegt (bestaetigt: praktisch 0 Frames off-screen vs.
@@ -41,7 +56,10 @@ export default {
       iframeEl.value?.scrollIntoView({ behavior: 'auto', block: 'center' });
     };
 
-    expose({ run, getVariable, callFunction, checkCanvasNotBlank, checkCanvasChanged, restart, scrollIntoView });
+    expose({
+      run, callFunction, checkCanvasNotBlank, checkCanvasChanged,
+      checkDomText, checkDomClickText, restart, scrollIntoView,
+    });
 
     return { iframeEl, frameKey, srcdoc, ready, alive, restart, t };
   },

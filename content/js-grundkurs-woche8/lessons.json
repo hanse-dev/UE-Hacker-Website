@@ -1,0 +1,159 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Klassen: Blaupausen für Objekte",
+    "file": "lektion-01.md",
+    "lessonSummary": "Super! Eine Klasse ist eine Blaupause, mit der du beliebig viele gleichartige Objekte erzeugst.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. new Haustier(...) erzeugt eine neue Instanz, der constructor setzt ihre Properties.",
+        "example": true,
+        "codeTemplate": "class Haustier {\n  constructor(name, art) {\n    this.name = name;\n    this.art = art;\n  }\n}\n\nlet bello = new Haustier('Bello', 'Hund');\nconsole.log(bello.name, bello.art);\n",
+        "validation": { "type": "output_contains", "expected": "Bello Hund" }
+      },
+      {
+        "instruction": "Erstelle eine Klasse Buch mit constructor(titel, seiten). Erzeuge eine Instanz meinBuch mit dem Titel 'Der Hobbit' und 310 Seiten.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "variables": { "meinBuch": { "titel": "Der Hobbit", "seiten": 310 } } }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Methoden in Klassen",
+    "file": "lektion-02.md",
+    "lessonSummary": "Stark! Eine Methode funktioniert für jede Instanz mit ihren eigenen Werten.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. flaeche() nutzt this.breite und this.hoehe der jeweiligen Instanz.",
+        "example": true,
+        "codeTemplate": "class Rechteck {\n  constructor(breite, hoehe) {\n    this.breite = breite;\n    this.hoehe = hoehe;\n  }\n  flaeche() {\n    return this.breite * this.hoehe;\n  }\n}\n\nlet r = new Rechteck(5, 3);\nconsole.log(r.flaeche());\n",
+        "validation": { "type": "output_contains", "expected": "15" }
+      },
+      {
+        "instruction": "Erstelle eine Klasse Kreis mit constructor(radius) und einer Methode flaeche(), die Math.round(Math.PI * radius * radius) zurückgibt. Erzeuge eine Instanz mit radius 4 und gib das Ergebnis von flaeche() aus.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "type": "output_contains", "expected": "50" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Mehrere Instanzen derselben Klasse",
+    "file": "lektion-03.md",
+    "lessonSummary": "Gut gemacht! Jede Instanz hat ihre eigenen Property-Werte, unabhängig von allen anderen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. spieler1 und spieler2 sind zwei unabhängige Instanzen derselben Klasse.",
+        "example": true,
+        "codeTemplate": "class Spieler {\n  constructor(name, punkte) {\n    this.name = name;\n    this.punkte = punkte;\n  }\n}\n\nlet spieler1 = new Spieler('Mia', 10);\nlet spieler2 = new Spieler('Jonas', 25);\nconsole.log(spieler1.punkte, spieler2.punkte);\n",
+        "validation": { "type": "output_contains", "expected": "10 25" }
+      },
+      {
+        "instruction": "Erstelle eine Klasse Konto mit constructor(inhaber, stand) und einer Methode einzahlen(betrag), die this.stand um betrag erhöht und zurückgibt. Erzeuge konto1 (Alex, 100) und konto2 (Sam, 50). Zahle auf konto1 30 ein und gib das Ergebnis aus.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "130",
+          "variables": { "konto1": { "stand": 130 }, "konto2": { "stand": 50 } }
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Ein Array aus Instanzen",
+    "file": "lektion-04.md",
+    "lessonSummary": "Perfekt! Ein Array aus Instanzen funktioniert genau wie ein Array aus Objekt-Literalen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Eine for...of-Schleife gibt für jedes Tier Name und Art aus.",
+        "example": true,
+        "codeTemplate": "class Tier {\n  constructor(name, art) {\n    this.name = name;\n    this.art = art;\n  }\n}\n\nlet tiere = [\n  new Tier('Bello', 'Hund'),\n  new Tier('Mimi', 'Katze'),\n];\n\nfor (const tier of tiere) {\n  console.log(`${tier.name}: ${tier.art}`);\n}\n",
+        "validation": { "type": "output_contains", "expected": "Mimi: Katze" }
+      },
+      {
+        "instruction": "Erstelle eine Klasse Produkt mit constructor(name, preis). Erzeuge ein Array produkte mit drei Instanzen: Apfel (2), Brot (3), Milch (1). Gib mit einer Schleife für jedes Produkt 'NAME: PREIS€' aus.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "type": "output_contains", "expected": "Brot: 3€" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Instanzen, Schleifen und Bedingungen kombinieren",
+    "file": "lektion-05.md",
+    "lessonSummary": "Geschafft! Ein Array aus Instanzen lässt sich genau wie jedes andere Array auswerten.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zählt, wie viele Spieler-Instanzen mindestens 50 Punkte haben.",
+        "example": true,
+        "codeTemplate": "class Spieler {\n  constructor(name, punkte) {\n    this.name = name;\n    this.punkte = punkte;\n  }\n}\n\nlet spieler = [\n  new Spieler('Mia', 45),\n  new Spieler('Jonas', 82),\n  new Spieler('Zoe', 30),\n];\n\nlet anzahlGut = 0;\nfor (const s of spieler) {\n  if (s.punkte >= 50) {\n    anzahlGut++;\n  }\n}\nconsole.log(`Bestanden: ${anzahlGut}`);\n",
+        "validation": { "type": "output_contains", "expected": "Bestanden: 1" }
+      },
+      {
+        "instruction": "Erstelle eine Klasse Produkt mit constructor(name, preis). Erzeuge ein Array produkte mit vier Instanzen: Apfel (2), Buch (15), Brot (3), Kopfhoerer (25). Berechne mit einer Schleife die Summe der Preise aller Produkte, die mindestens 10 kosten. Speichere das Ergebnis in einer Variable summe.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "variables": { "summe": 40 } }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Fehlersuche",
+    "file": "debug-01.md",
+    "lessonSummary": "Gut gemacht! Vergessenes this. und vergessenes new sind typische Stolperfallen bei Klassen.",
+    "tasks": [
+      {
+        "instruction": "Dieser Code gibt 'undefined 12' aus. Ziel: Er soll 'Alex 12' ausgeben.",
+        "codeTemplate": "class Person {\n  constructor(name, alter) {\n    name = name;\n    this.alter = alter;\n  }\n}\n\nlet p = new Person('Alex', 12);\nconsole.log(p.name, p.alter);\n",
+        "validation": { "type": "output_contains", "expected": "Alex 12" }
+      },
+      {
+        "instruction": "Dieser Code wirft einen Fehler. Ziel: Er soll ein Hund-Objekt mit dem Namen 'Rex' erzeugen und 'Rex' ausgeben.",
+        "codeTemplate": "class Hund {\n  constructor(name) {\n    this.name = name;\n  }\n}\n\nlet mein = Hund('Rex');\nconsole.log(mein);\n",
+        "validation": { "type": "output_contains", "expected": "Rex" }
+      },
+      {
+        "instruction": "Dieser Code wirft einen Fehler. Ziel: Er soll 1 ausgeben.",
+        "codeTemplate": "class Zaehler {\n  constructor() {\n    this.wert = 0;\n  }\n  erhoehen() {\n    wert++;\n    return wert;\n  }\n}\n\nlet z = new Zaehler();\nconsole.log(z.erhoehen());\n",
+        "validation": { "type": "output_contains", "expected": "1" }
+      },
+      {
+        "instruction": "Dieser Code gibt gar nichts aus. Ziel: Er soll 20 ausgeben.",
+        "codeTemplate": "class Rechteck {\n  constructor(breite, hoehe) {\n    this.breite = breite;\n    this.hoehe = hoehe;\n  }\n  flaeche() {\n    return this.breite * this.hoehe;\n  }\n}\n\nlet r = new Rechteck(4, 5);\nconsole.log(r.flaeche);\n",
+        "validation": { "type": "output_contains", "expected": "20" }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Deine Mission",
+    "file": "mission-01.md",
+    "lessonSummary": "Starke Leistung! Du hast eigene Klassen mit Methoden geschrieben und Instanzen davon ausgewertet.",
+    "tasks": [
+      {
+        "instruction": "Erstelle eine Klasse Auto mit constructor(marke, tempo) und einer Methode beschleunigen(), die this.tempo um 10 erhöht und zurückgibt. Erzeuge ein Auto mit marke 'Tesla' und tempo 50. Rufe beschleunigen() zweimal auf und gib das Ergebnis des zweiten Aufrufs aus.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "type": "output_contains", "expected": "70" }
+      },
+      {
+        "instruction": "Erstelle eine Klasse Vorrat mit constructor(name, menge) und einer Methode istLeer(), die true zurückgibt wenn this.menge gleich 0 ist, sonst false. Erzeuge einen Vorrat mit name 'Mehl' und menge 0. Gib das Ergebnis von istLeer() aus.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "type": "output_contains", "expected": "true" }
+      },
+      {
+        "instruction": "Erstelle eine Klasse Bestellung mit constructor(artikel, menge). Erzeuge ein Array bestellungen mit drei Instanzen: Schrauben (12), Naegel (3), Bretter (6). Zähle mit einer Schleife, wie viele Bestellungen eine menge von mindestens 5 haben. Gib das Ergebnis aus.",
+        "codeTemplate": "// Dein Code hier\n",
+        "validation": { "type": "output_contains", "expected": "2" }
+      }
+    ]
+  }
+]

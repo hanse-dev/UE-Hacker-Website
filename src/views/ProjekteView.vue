@@ -6,78 +6,83 @@
     </section>
 
     <section v-if="!loading" class="projekte-filters">
-      <div class="filter-group">
-        <span class="filter-label">{{ t('projekte.filter.language') }}</span>
-        <div class="filter-chips">
-          <button
-            v-for="lang_ in languageOptions"
-            :key="lang_"
-            type="button"
-            class="filter-chip"
-            :class="{ active: selectedLanguages.includes(lang_) }"
-            @click="toggle(selectedLanguages, lang_)"
-          >
-            {{ languageLabel(lang_) }}
-          </button>
-        </div>
+      <div class="filters-header">
+        <h3 class="filters-title">{{ t('projekte.filter.title') }}</h3>
+        <button
+          v-if="hasActiveFilters"
+          type="button"
+          class="filter-reset"
+          @click="resetFilters"
+        >
+          {{ t('projekte.filter.reset') }}
+        </button>
       </div>
 
-      <div class="filter-group">
-        <span class="filter-label">{{ t('projekte.filter.level') }}</span>
-        <div class="filter-chips">
-          <button
-            v-for="level in levelOptions"
-            :key="level"
-            type="button"
-            class="filter-chip"
-            :class="{ active: selectedLevels.includes(level) }"
-            @click="toggle(selectedLevels, level)"
-          >
-            {{ t(`projectLevel.${level}`) }}
-          </button>
+      <div class="filter-grid">
+        <div class="filter-group">
+          <span class="filter-label">{{ t('projekte.filter.language') }}</span>
+          <div class="filter-chips">
+            <button
+              v-for="lang_ in languageOptions"
+              :key="lang_"
+              type="button"
+              class="filter-chip"
+              :class="{ active: selectedLanguages.includes(lang_) }"
+              @click="toggle(selectedLanguages, lang_)"
+            >
+              {{ languageLabel(lang_) }}
+            </button>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <span class="filter-label">{{ t('projekte.filter.level') }}</span>
+          <div class="filter-chips">
+            <button
+              v-for="level in levelOptions"
+              :key="level"
+              type="button"
+              class="filter-chip"
+              :class="{ active: selectedLevels.includes(level) }"
+              @click="toggle(selectedLevels, level)"
+            >
+              {{ t(`projectLevel.${level}`) }}
+            </button>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <span class="filter-label">{{ t('projekte.filter.duration') }}</span>
+          <div class="filter-chips">
+            <button
+              v-for="duration in durationOptions"
+              :key="duration"
+              type="button"
+              class="filter-chip"
+              :class="{ active: selectedDurations.includes(duration) }"
+              @click="toggle(selectedDurations, duration)"
+            >
+              {{ t(`projectDuration.${duration}`) }}
+            </button>
+          </div>
+        </div>
+
+        <div class="filter-group filter-group-wide">
+          <span class="filter-label">{{ t('projekte.filter.tags') }}</span>
+          <div class="filter-chips">
+            <button
+              v-for="tag in tagOptions"
+              :key="tag"
+              type="button"
+              class="filter-chip"
+              :class="{ active: selectedTags.includes(tag) }"
+              @click="toggle(selectedTags, tag)"
+            >
+              {{ t(`projectTag.${tag}`) }}
+            </button>
+          </div>
         </div>
       </div>
-
-      <div class="filter-group">
-        <span class="filter-label">{{ t('projekte.filter.tags') }}</span>
-        <div class="filter-chips">
-          <button
-            v-for="tag in tagOptions"
-            :key="tag"
-            type="button"
-            class="filter-chip"
-            :class="{ active: selectedTags.includes(tag) }"
-            @click="toggle(selectedTags, tag)"
-          >
-            {{ t(`projectTag.${tag}`) }}
-          </button>
-        </div>
-      </div>
-
-      <div class="filter-group">
-        <span class="filter-label">{{ t('projekte.filter.duration') }}</span>
-        <div class="filter-chips">
-          <button
-            v-for="duration in durationOptions"
-            :key="duration"
-            type="button"
-            class="filter-chip"
-            :class="{ active: selectedDurations.includes(duration) }"
-            @click="toggle(selectedDurations, duration)"
-          >
-            {{ t(`projectDuration.${duration}`) }}
-          </button>
-        </div>
-      </div>
-
-      <button
-        v-if="hasActiveFilters"
-        type="button"
-        class="filter-reset"
-        @click="resetFilters"
-      >
-        {{ t('projekte.filter.reset') }}
-      </button>
     </section>
 
     <p v-if="!loading" class="projekte-count">
@@ -251,21 +256,43 @@ export default {
 }
 
 .projekte-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  align-items: flex-end;
   background: #f8f9fa;
   border: 1px solid #e9ecef;
   border-radius: 10px;
-  padding: 16px 20px;
+  padding: 18px 20px;
   margin-bottom: 16px;
+}
+
+.filters-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.filters-title {
+  margin: 0;
+  font-size: 1em;
+  color: var(--primary-purple, #4a2274);
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 18px 28px;
+}
+
+.filter-group-wide {
+  grid-column: 1 / -1;
 }
 
 .filter-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .filter-label {
