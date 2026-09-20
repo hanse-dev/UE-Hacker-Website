@@ -1,0 +1,471 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Spell Formula 1: Defining a function",
+    "file": "lektion-01.md",
+    "lessonSummary": "Great! You wrote your first spell formula and cast it several times.",
+    "tasks": [
+      {
+        "instruction": "Run this example: One formula is defined once and called twice.",
+        "example": true,
+        "codeTemplate": "def greet_hero():\n    print(\"Welcome, brave hero!\")\n    print(\"Your adventure begins now!\")\n\ngreet_hero()\ngreet_hero()\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Your adventure begins now!"
+        }
+      },
+      {
+        "instruction": "Define a function cast_spell() that prints exactly Fireball! and call it three times.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Fireball!\nFireball!\nFireball!"
+        }
+      },
+      {
+        "instruction": "Define a function heal() that prints exactly You are healed! Call it once, then print exactly Done! (outside the function).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "You are healed!\nDone!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Spell Formula 1: One parameter",
+    "file": "lektion-02.md",
+    "lessonSummary": "Nice! Your spell formula can now work with different ingredients.",
+    "tasks": [
+      {
+        "instruction": "Run this example: The same formula greets two different heroes.",
+        "example": true,
+        "codeTemplate": "def greet(name):\n    print(f\"Welcome, {name}!\")\n\ngreet(\"Aria\")\ngreet(\"Thorin\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Welcome, Thorin!"
+        }
+      },
+      {
+        "instruction": "Write a function cast_spell(spell) that prints You cast: <spell>! Call it with \"Fireball\" and then with \"Lightning\".",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "You cast: Fireball!\nYou cast: Lightning!"
+        }
+      },
+      {
+        "instruction": "Write a function show_level(level) that prints Level: <level> Call it with the numbers 5 and 12 (without quotes).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 5\nLevel: 12"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Spell Formula 1: Several parameters",
+    "file": "lektion-03.md",
+    "lessonSummary": "Great! Your formulas now take several ingredients in the right order.",
+    "tasks": [
+      {
+        "instruction": "Run this example: Three arguments fill three parameters – in the right order.",
+        "example": true,
+        "codeTemplate": "def create_character(name, class_name, level):\n    print(f\"Name: {name}\")\n    print(f\"Class: {class_name}\")\n    print(f\"Level: {level}\")\n\ncreate_character(\"Aria\", \"Mage\", 5)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Class: Mage"
+        }
+      },
+      {
+        "instruction": "Write a function strike(weapon, damage) that prints You hit with <weapon> for <damage> damage! Call it with (\"Sword\", 12) and then with (\"Axe\", 20).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "You hit with Sword for 12 damage!\nYou hit with Axe for 20 damage!"
+        }
+      },
+      {
+        "instruction": "The function trade_goods(given, received) is already finished. Call it so that it prints exactly You trade 2 herbs for 1 potion Watch the order of the arguments!",
+        "codeTemplate": "def trade_goods(given, received):\n    print(f\"You trade {given} for {received}\")\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "You trade 2 herbs for 1 potion"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Spell Formula 2: Returning values with return",
+    "file": "lektion-04.md",
+    "lessonSummary": "Magical! Your formulas now deliver results you can keep calculating with.",
+    "tasks": [
+      {
+        "instruction": "Run this example: The result is stored and used right away.",
+        "example": true,
+        "codeTemplate": "def calculate_damage(base, multiplier):\n    return base * multiplier\n\ndamage = calculate_damage(10, 2)\nprint(f\"Hit: {damage} damage\")\nprint(f\"Critical: {calculate_damage(20, 5)} damage\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Critical: 100 damage"
+        }
+      },
+      {
+        "instruction": "Write a function double(number) that returns number * 2 with return. Then print exactly Double: 42 by using double(21).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Double: 42"
+        }
+      },
+      {
+        "instruction": "Write a function calculate_mana(level, base_mana) that returns level * base_mana. Store calculate_mana(4, 10) in the variable mana and print exactly Mana: 40",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mana: 40"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Spell Formula 2: return or print?",
+    "file": "lektion-05.md",
+    "lessonSummary": "Well spotted! You now know when a formula prints and when it returns.",
+    "tasks": [
+      {
+        "instruction": "Run this example: A function without return gives back None.",
+        "example": true,
+        "codeTemplate": "def show_inventory():\n    print(\"Sword, Shield, Healing Potion\")\n\nresult = show_inventory()\nprint(f\"Return value: {result}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Return value: None"
+        }
+      },
+      {
+        "instruction": "The function calculate_loot calculates the loot but does not return it – that is why it prints Loot: None. Add return so that exactly Loot: 42 is printed.",
+        "codeTemplate": "def calculate_loot(gold, silver):\n    total = gold + silver\n\nloot = calculate_loot(30, 12)\nprint(f\"Loot: {loot}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Loot: 42"
+        }
+      },
+      {
+        "instruction": "Write a function total_cost(price, amount) that returns price * amount. Use it: total = total_cost(15, 4), gold = 100 - total. Print exactly Gold left: 40",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gold left: 40"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Spell Formula 2: Decisions and loops in functions",
+    "file": "lektion-06.md",
+    "lessonSummary": "Masterful! Your formulas can now decide and repeat.",
+    "tasks": [
+      {
+        "instruction": "Run this example: The function returns a different text depending on the level.",
+        "example": true,
+        "codeTemplate": "def check_level(level):\n    if level >= 10:\n        return \"Ready for the quest!\"\n    else:\n        return f\"{10 - level} more levels needed\"\n\nprint(check_level(5))\nprint(check_level(12))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "5 more levels needed"
+        }
+      },
+      {
+        "instruction": "Write a function is_strong(damage) that returns True if damage is at least 50, otherwise False. Print is_strong(80) and then is_strong(20) with print.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True\nFalse"
+        }
+      },
+      {
+        "instruction": "Write a function sum_to(n) that adds all numbers from 1 to n with a for loop and returns the sum. Print exactly Sum: 55 by using sum_to(10).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sum: 55"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Spell Formula 3: Docstrings and good names",
+    "file": "lektion-07.md",
+    "lessonSummary": "Excellent! Your formulas now have descriptions and good names.",
+    "tasks": [
+      {
+        "instruction": "Run this example: The docstring is shown with __doc__.",
+        "example": true,
+        "codeTemplate": "def calculate_healing(base, multiplier):\n    \"\"\"Calculates the amount of healing.\"\"\"\n    return base * multiplier\n\nprint(calculate_healing.__doc__)\nprint(calculate_healing(10, 2))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Calculates the amount of healing."
+        }
+      },
+      {
+        "instruction": "Write a function show_title() with the docstring \"Shows the hero's title.\" (in triple quotes) that prints Master of Spell Formulas First print show_title.__doc__, then call the function.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Shows the hero's title.\nMaster of Spell Formulas"
+        }
+      },
+      {
+        "instruction": "The function is called cd(b, m) – a bad name. Rename it to calculate_damage(base, multiplier) (also the parameters in the body) so the call below works and prints exactly Damage: 21",
+        "codeTemplate": "def cd(b, m):\n    return b * m\n\nprint(f\"Damage: {calculate_damage(7, 3)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Damage: 21"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "All bugs found! With functions, indentation, the parentheses on the call and return matter.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Goal: The program should print Welcome, hero! What is wrong?",
+        "codeTemplate": "def greet_hero():\nprint(\"Welcome, hero!\")\n\ngreet_hero()\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Welcome, hero!"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Goal: The program should print Damage: 10 (for strength 5). What is wrong?",
+        "codeTemplate": "def calculate_damage(strength):\n    return strength * 2\n\nresult = calculate_damage\nprint(f\"Damage: {result}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Damage: 10"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Goal: The program should print Sum: 8. What is wrong?",
+        "codeTemplate": "def add(a, b):\n    result = a + b\n\ntotal = add(5, 3)\nprint(f\"Sum: {total}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sum: 8"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: The Spell Apprentice",
+    "file": "mission-01.md",
+    "lessonSummary": "The Spell Apprentice is trained: You wrote formulas, called them and delivered results!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Greeting spell: Write a function greet_mage() that prints exactly Welcome, mage! Call it twice.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Welcome, mage!\nWelcome, mage!"
+        }
+      },
+      {
+        "instruction": "Step 2 – Mana calculation: Write a function calculate_mana(level, base_mana) that returns level * base_mana. Print exactly Mana: 60 by using calculate_mana(5, 12).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mana: 60"
+        }
+      },
+      {
+        "instruction": "Step 3 – Spell possible? Write a function is_spell_possible(mana_cost, current_mana) that returns True if current_mana is at least mana_cost, otherwise False. Print Fireball: True (cost 30, mana 50) and then Lightning: False (cost 40, mana 25).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Fireball: True\nLightning: False"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: The Character Smith",
+    "file": "mission-02.md",
+    "lessonSummary": "The Character Smith is done: Your functions now build complete heroes!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Health: Write a function calculate_health(level, class_name) that returns level * 20 for the class \"Warrior\" and level * 10 for every other class. Print exactly Warrior: 60 (level 3) and Mage: 30 (level 3) with it.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Warrior: 60\nMage: 30"
+        }
+      },
+      {
+        "instruction": "Step 2 – Title: Write a function create_title(name, class_name) that returns the text <name> the <class_name>. Print exactly Aria the Mage by printing create_title(\"Aria\", \"Mage\").",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria the Mage"
+        }
+      },
+      {
+        "instruction": "Step 3 – Character sheet: The functions from steps 1 and 2 are provided. Write show_character_sheet(name, class_name, level) that prints three lines: the title, Health: <health> and Level: <level>. Call it with (\"Thorin\", \"Warrior\", 4).",
+        "codeTemplate": "def calculate_health(level, class_name):\n    if class_name == \"Warrior\":\n        return level * 20\n    else:\n        return level * 10\n\ndef create_title(name, class_name):\n    return f\"{name} the {class_name}\"\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Thorin the Warrior\nHealth: 80\nLevel: 4"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: The Quest Machine",
+    "file": "mission-03.md",
+    "lessonSummary": "The Quest Machine is running: Reward, requirement and display work hand in hand!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Reward: Write a function calculate_reward(difficulty) that returns difficulty * 50. Print exactly Reward: 150 by using calculate_reward(3).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Reward: 150"
+        }
+      },
+      {
+        "instruction": "Step 2 – Requirement: Write a function can_do_quest(level, difficulty) that returns True if level is at least difficulty * 2, otherwise False. Print Quest 3: True (level 8) and then Quest 5: False (level 8).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Quest 3: True\nQuest 5: False"
+        }
+      },
+      {
+        "instruction": "Step 3 – Quest display: The two functions are provided. Write show_quest(name, difficulty, level): It prints <name>: reward <reward> if the hero may do the quest, otherwise <name>: too hard. Call it with (\"Dragon Hunt\", 4, 9) and (\"Treasure Hunt\", 2, 3).",
+        "codeTemplate": "def calculate_reward(difficulty):\n    return difficulty * 50\n\ndef can_do_quest(level, difficulty):\n    return level >= difficulty * 2\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Dragon Hunt: reward 200\nTreasure Hunt: too hard"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra Challenge 1: The Spell Generator",
+    "file": "boss-01.md",
+    "lessonSummary": "The Spell Generator runs: Names, power and display fit together!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Spell name: Write a function spell_name(element, level) that returns the text <element>-L<level>. Print exactly Spell: FIRE-L3 by using spell_name(\"FIRE\", 3).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Spell: FIRE-L3"
+        }
+      },
+      {
+        "instruction": "Step 2 – Power: Write a function calculate_power(element, level): For \"FIRE\" the power is level * 30, for \"WATER\" level * 20, for everything else level * 15. At level 3 print FIRE: 90, WATER: 60 and EARTH: 45 (each calculated, in this order).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "FIRE: 90\nWATER: 60\nEARTH: 45"
+        }
+      },
+      {
+        "instruction": "Step 3 – Generator: Both functions are provided. Write show_spell(element, level) that prints <name> has power <power>, and call it in a for loop for FIRE with the levels 1 to 3.",
+        "codeTemplate": "def spell_name(element, level):\n    return f\"{element}-L{level}\"\n\ndef calculate_power(element, level):\n    if element == \"FIRE\":\n        return level * 30\n    elif element == \"WATER\":\n        return level * 20\n    else:\n        return level * 15\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "FIRE-L1 has power 30\nFIRE-L2 has power 60\nFIRE-L3 has power 90"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra Challenge 2: The Guild Manager",
+    "file": "boss-02.md",
+    "lessonSummary": "The Guild Manager stands: Costs, budget and report work together!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Costs: Write a function calculate_costs(mages, days) that returns mages * days * 5. Print exactly Costs: 150 by using calculate_costs(6, 5).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Costs: 150"
+        }
+      },
+      {
+        "instruction": "Step 2 – Affordable? Write a function is_affordable(costs, gold) that returns True if gold is at least costs, otherwise False. Print Affordable: True (costs 150, gold 200) and then Affordable: False (costs 150, gold 100).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Affordable: True\nAffordable: False"
+        }
+      },
+      {
+        "instruction": "Step 3 – Report: Both functions are provided. Write guild_report(department, mages, days, gold) that prints three lines: Department <department>, Costs: <costs> and Affordable: <True/False>. Call it with (\"Fire\", 6, 5, 200).",
+        "codeTemplate": "def calculate_costs(mages, days):\n    return mages * days * 5\n\ndef is_affordable(costs, gold):\n    return gold >= costs\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Department Fire\nCosts: 150\nAffordable: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra Challenge 3: The Battle Simulation",
+    "file": "boss-03.md",
+    "lessonSummary": "The Battle Simulation runs: Damage, rounds and result fit together!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Damage: Write a function calculate_damage(base, armor) that returns base - armor, but never less than 0. Print Damage: 25 (base 40, armor 15) and then Damage: 0 (base 10, armor 30).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Damage: 25\nDamage: 0"
+        }
+      },
+      {
+        "instruction": "Step 2 – Battle round: Write a function battle_round(health, damage) that returns the new health (health - damage, but never below 0). Start with health = 100, call battle_round(health, 25) twice (store the result in health again) and print Health: <health> after each call.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Health: 75\nHealth: 50"
+        }
+      },
+      {
+        "instruction": "Step 3 – Battle: battle_round is provided. Write simulate_battle(health, damage, rounds): A for loop (round 1 to rounds) calls battle_round each time and prints Round <number>: Health <health> At the end the function returns the health. Call it with (100, 30, 4), store the result in final and print Final: <final>",
+        "codeTemplate": "def battle_round(health, damage):\n    new_health = health - damage\n    if new_health < 0:\n        return 0\n    return new_health\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Round 1: Health 70\nRound 2: Health 40\nRound 3: Health 10\nRound 4: Health 0\nFinal: 0"
+        }
+      }
+    ]
+  }
+]

@@ -21,7 +21,8 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 - [x] Woche 1 + 2 (Abenteuer, Pferde, Sci-Fi; DE + EN) als Einzel-Lektionen im JS-Kurs-Format (siehe HANDOFF.md 3.47)
 - [x] Woche 4 (Schleifen; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.48).
 - [x] Woche 4: DE/EN-Struktur angeglichen (Abenteuer 8, Pferde 7, Sci-Fi 7 Lektionen; IDs/Aufgaben identisch, EN/DE jeweils als Übersetzung der größeren Fassung)
-- [ ] Nutzer-Feedback abwarten, dann entscheiden: Wochen 3, 5–12
+- [x] Woche 5 (Funktionen; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.49), ohne Sub-Agenten aus einer Datenquelle pro Thema erzeugt
+- [ ] Nutzer-Feedback abwarten, dann entscheiden: Wochen 6–12
 - [ ] Lösungen/Glossar für das neue Format anpassen (Lösungen passen noch zu den freien Original-Aufgaben)
 
 #### Nachbesserungen Lektions-Format Woche 4
@@ -37,6 +38,13 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 - [ ] Sci-Fi DE/EN `boss-03`: "Gesamtpunkte: 320 und Erfolgsquote: 80.0%" — unklar, ob eine oder zwei Zeilen, geprüft wird nur `Erfolgsquote: 80.0%`; "in zwei Zeilen" ergänzen (oder `expectedAll`).
 - [ ] Pferde `boss-01` (Note/Zertifikat) hat keinen `else`-Zweig; Sci-Fi `boss-01.md` hat keine Antworttabelle mehr (DE + EN) — bei Bedarf ergänzen.
 - [ ] DE/EN wurden pro Thema aus der größeren Fassung angeglichen; die alten Lösungs-/Glossar-Notebooks von Woche 3 passen nicht mehr zu den Aufgaben (siehe Lösungen/Glossar-Punkt oben).
+
+#### Nachbesserungen Lektions-Format Woche 5 (Funktionen)
+- [ ] Vorgriffe im Original (Listen, Dictionaries, `random`, `try/except`, `help()`, Quest-/Kampf-Listen) wurden ersetzt: Missionen/Boss nutzen nur Zahlen, Text, `if`/`elif`/`for`. In Woche 6/8 als Wiederholung mit den Original-Aufgaben nachziehen (z.B. `erstelle_charakter` → Dictionary, `speichere_zauber(buch, zauber)` → Liste, Zufallszauber mit `random`).
+- [ ] `LessonView` prüft nur die Ausgabe (`output_contains`): dass eine Funktion wirklich mit `def` definiert wurde, wird nicht geprüft (hart codiertes `print` besteht). Vorschlag: `functionCalls` (gibt es schon im Check-Schritt/`CodeChallenge`) auch in `LessonView` auswerten.
+- [ ] Lösungs-/Glossar-Notebooks Woche 5 (`content/python-12-wochen-grundkurs*/woche-5/*`) passen nicht zu den konkretisierten Aufgaben (Original mit Dictionaries/Listen/`random`), Glossar erwähnt Docstring-Stile (`Args:`/`Returns:`) und `help()` — bereinigen.
+- [ ] Woche-5-Themenbezeichner sind zwischen DE und EN nicht gleich (DE `berechne_schaden`, EN `calculate_damage`) — bewusst, wie in Woche 4.
+- [ ] Debug Bug #1 (fehlende Einrückung nach `def`) erzeugt einen `IndentationError`; Bug #2 ruft die Funktion ohne Klammern auf (Ausgabe `<function ...>`), Bug #3 hat kein `return` (`None`) — bewusst die drei typischen Funktionsfehler.
 
 #### Nachbesserungen Lektions-Format (Woche 1–2)
 Beim Umbau aufgefallen; entweder bewusst so gelassen oder noch offen:

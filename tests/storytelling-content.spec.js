@@ -129,8 +129,12 @@ test.describe('Storytelling-Überarbeitung: Sci-Fi', () => {
   });
 
   test('Woche 6/8: Boss-Quest 2 ist nicht mehr der Woche-5-Klon', async ({ page }) => {
-    const week5 = await openWeekVariantTab(page, 5, 'Sci-Fi', 'Boss-Quest');
-    const week5Text = await week5.locator('.notebook-cells').innerText();
+    // Woche 5 ist seit dem Lektions-Format kein Notebook mehr im Kurs (kein `.cell` in der Tour) -
+    // die Original-Boss-Quest liegt weiter als Nachschlagewerk-Quelle im Repo, daher aus der Datei lesen.
+    const week5Text = fs.readFileSync(
+      path.join(process.cwd(), 'content/python-12-wochen-grundkurs/woche-5/scifi/woche5_scifi_5_boss/04_markdown.py'),
+      'utf-8',
+    );
     expect(week5Text).toContain('Der Raumstation-Manager');
 
     const week6 = await openWeekVariantTab(page, 6, 'Sci-Fi', 'Boss-Quest');

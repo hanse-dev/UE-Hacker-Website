@@ -1,0 +1,471 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "System Log 1: Defining a protocol",
+    "file": "lektion-01.md",
+    "lessonSummary": "Great! You wrote your first system protocol and ran it several times.",
+    "tasks": [
+      {
+        "instruction": "Run this example: One protocol is defined once and called twice.",
+        "example": true,
+        "codeTemplate": "def start_scan():\n    print(\"Scan started...\")\n    print(\"Checking sector!\")\n\nstart_scan()\nstart_scan()\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Checking sector!"
+        }
+      },
+      {
+        "instruction": "Define a function charge_energy() that prints exactly Energy charged! and call it three times.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energy charged!\nEnergy charged!\nEnergy charged!"
+        }
+      },
+      {
+        "instruction": "Define a function open_hatch() that prints exactly Hatch open. Call it once, then print exactly Done! (outside the function).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hatch open.\nDone!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "System Log 2: One parameter",
+    "file": "lektion-02.md",
+    "lessonSummary": "Nice! Your protocol can now work with different inputs.",
+    "tasks": [
+      {
+        "instruction": "Run this example: The same protocol reports two different crew members.",
+        "example": true,
+        "codeTemplate": "def report(name):\n    print(f\"Hello, {name}!\")\n\nreport(\"Nova\")\nreport(\"Kira\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hello, Kira!"
+        }
+      },
+      {
+        "instruction": "Write a function scan_planet(planet) that prints Scanning: <planet> Call it with \"Mars\" and then with \"Titan\".",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Scanning: Mars\nScanning: Titan"
+        }
+      },
+      {
+        "instruction": "Write a function show_energy(energy) that prints Energy: <energy> % Call it with the numbers 80 and 35 (without quotes).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energy: 80 %\nEnergy: 35 %"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "System Log 3: Several parameters",
+    "file": "lektion-03.md",
+    "lessonSummary": "Great! Your protocols now take several inputs in the right order.",
+    "tasks": [
+      {
+        "instruction": "Run this example: Three arguments fill three parameters – in the right order.",
+        "example": true,
+        "codeTemplate": "def register_crew(name, role, level):\n    print(f\"Name: {name}\")\n    print(f\"Role: {role}\")\n    print(f\"Level: {level}\")\n\nregister_crew(\"Nova\", \"Pilot\", 5)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Role: Pilot"
+        }
+      },
+      {
+        "instruction": "Write a function fire(weapon, power) that prints Shot with <weapon>: <power> energy Call it with (\"Laser\", 40) and then with (\"Plasma\", 75).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Shot with Laser: 40 energy\nShot with Plasma: 75 energy"
+        }
+      },
+      {
+        "instruction": "The function send_message(recipient, text) is already finished. Call it so that it prints exactly To Nova: Course correct Watch the order of the arguments!",
+        "codeTemplate": "def send_message(recipient, text):\n    print(f\"To {recipient}: {text}\")\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "To Nova: Course correct"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "System Log 4: Returning values with return",
+    "file": "lektion-04.md",
+    "lessonSummary": "Nice! Your protocols now deliver results you can keep calculating with.",
+    "tasks": [
+      {
+        "instruction": "Run this example: The result is stored and used right away.",
+        "example": true,
+        "codeTemplate": "def calculate_usage(modules, output):\n    return modules * output\n\nusage = calculate_usage(3, 20)\nprint(f\"Usage: {usage} kW\")\nprint(f\"Full load: {calculate_usage(10, 50)} kW\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Full load: 500 kW"
+        }
+      },
+      {
+        "instruction": "Write a function double_shield(level) that returns level * 2 with return. Print exactly Shield doubled: 14 by using double_shield(7).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Shield doubled: 14"
+        }
+      },
+      {
+        "instruction": "Write a function calculate_credits(jobs, per_job) that returns jobs * per_job. Store calculate_credits(5, 40) in the variable credits and print exactly Cyber Credits: 200",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Cyber Credits: 200"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "System Log 5: return or print?",
+    "file": "lektion-05.md",
+    "lessonSummary": "Well spotted! You now know when a protocol prints and when it returns.",
+    "tasks": [
+      {
+        "instruction": "Run this example: A function without return gives back None.",
+        "example": true,
+        "codeTemplate": "def show_status():\n    print(\"All systems running.\")\n\nresult = show_status()\nprint(f\"Return value: {result}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Return value: None"
+        }
+      },
+      {
+        "instruction": "The function calculate_supplies calculates the need but does not return it – that is why it prints Supplies: None. Add return so that exactly Supplies: 21 is printed.",
+        "codeTemplate": "def calculate_supplies(crew, days):\n    total = crew * days\n\nsupplies = calculate_supplies(7, 3)\nprint(f\"Supplies: {supplies}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Supplies: 21"
+        }
+      },
+      {
+        "instruction": "Write a function total_price(price, amount) that returns price * amount. Use it: total = total_price(30, 3), credits = 100 - total. Print exactly Credits left: 10",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Credits left: 10"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "System Log 6: Decisions and loops in functions",
+    "file": "lektion-06.md",
+    "lessonSummary": "Masterful! Your protocols can now decide and repeat.",
+    "tasks": [
+      {
+        "instruction": "Run this example: The function returns a different text depending on the shield strength.",
+        "example": true,
+        "codeTemplate": "def check_shield(shield):\n    if shield >= 50:\n        return \"Shield stable!\"\n    else:\n        return f\"{50 - shield} % to go until stable\"\n\nprint(check_shield(20))\nprint(check_shield(75))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "30 % to go until stable"
+        }
+      },
+      {
+        "instruction": "Write a function is_fast(speed) that returns True if speed is at least 100, otherwise False. Print is_fast(150) and then is_fast(60) with print.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True\nFalse"
+        }
+      },
+      {
+        "instruction": "Write a function count_signals(sectors) that adds all numbers from 1 to sectors with a for loop (sector 1 sends 1 signal, sector 2 sends two signals, …) and returns the sum. Print exactly Signals: 55 by using count_signals(10).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Signals: 55"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "System Log 7: Docstrings and good names",
+    "file": "lektion-07.md",
+    "lessonSummary": "Excellent! Your protocols now have descriptions and good names.",
+    "tasks": [
+      {
+        "instruction": "Run this example: The docstring is shown with __doc__.",
+        "example": true,
+        "codeTemplate": "def calculate_fuel(distance):\n    \"\"\"Calculates the fuel requirement.\"\"\"\n    return distance * 3\n\nprint(calculate_fuel.__doc__)\nprint(calculate_fuel(10))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Calculates the fuel requirement."
+        }
+      },
+      {
+        "instruction": "Write a function show_alarm() with the docstring \"Shows the alarm status.\" (in triple quotes) that prints Alarm: All quiet. First print show_alarm.__doc__, then call the function.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Shows the alarm status.\nAlarm: All quiet."
+        }
+      },
+      {
+        "instruction": "The function is called cs(l, w) – a bad name. Rename it to calculate_cargo_space(length, width) (also the parameters in the body) so the call below works and prints exactly Cargo space: 21",
+        "codeTemplate": "def cs(l, w):\n    return l * w\n\nprint(f\"Cargo space: {calculate_cargo_space(7, 3)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Cargo space: 21"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "All bugs found! With functions, indentation, the parentheses on the call and return matter.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Goal: The program should print Scan running! What is wrong?",
+        "codeTemplate": "def start_scan():\nprint(\"Scan running!\")\n\nstart_scan()\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Scan running!"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Goal: The program should print Energy: 10 (for 5 modules). What is wrong?",
+        "codeTemplate": "def calculate_energy(modules):\n    return modules * 2\n\nresult = calculate_energy\nprint(f\"Energy: {result}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energy: 10"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Goal: The program should print Credits: 8. What is wrong?",
+        "codeTemplate": "def add_credits(a, b):\n    result = a + b\n\ncredits = add_credits(5, 3)\nprint(f\"Credits: {credits}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Credits: 8"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: The Ship Technician Apprentice",
+    "file": "mission-01.md",
+    "lessonSummary": "The Ship Technician Apprentice is trained: You wrote protocols, called them and delivered results!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Greeting: Write a function greet_crew() that prints exactly Welcome aboard! Call it twice.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Welcome aboard!\nWelcome aboard!"
+        }
+      },
+      {
+        "instruction": "Step 2 – Calculate energy: Write a function calculate_energy(modules, output) that returns modules * output. Print exactly Energy: 60 by using calculate_energy(5, 12).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energy: 60"
+        }
+      },
+      {
+        "instruction": "Step 3 – Enough energy? Write a function is_energy_ok(demand, supply) that returns True if supply is at least demand, otherwise False. Print Drive: True (demand 30, supply 50) and then Weapons: False (demand 40, supply 25).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Drive: True\nWeapons: False"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: The Mission Planner",
+    "file": "mission-02.md",
+    "lessonSummary": "The Mission Planner stands: Your functions now build complete mission reports!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Profit: Write a function calculate_profit(jobs, failures) that returns jobs * 10 - failures * 5. Print exactly Profit: 70 by using calculate_profit(8, 2).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Profit: 70"
+        }
+      },
+      {
+        "instruction": "Step 2 – ID: Write a function create_id(name, number) that returns the text <number>: <name> Print exactly 7: Nova by printing create_id(\"Nova\", 7).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "7: Nova"
+        }
+      },
+      {
+        "instruction": "Step 3 – Mission report: The functions from steps 1 and 2 are provided. Write show_mission_report(name, number, jobs, failures) that prints three lines: the ID, Profit: <profit> and Failures: <failures> Call it with (\"Nova\", 7, 8, 2).",
+        "codeTemplate": "def calculate_profit(jobs, failures):\n    return jobs * 10 - failures * 5\n\ndef create_id(name, number):\n    return f\"{number}: {name}\"\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "7: Nova\nProfit: 70\nFailures: 2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: The Maintenance Calculator",
+    "file": "mission-03.md",
+    "lessonSummary": "The Maintenance Calculator runs: Duration, energy check and display work hand in hand!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Duration: Write a function calculate_maintenance(hours) that returns hours * 5 (minutes). Print exactly Maintenance: 40 minutes by using calculate_maintenance(8).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Maintenance: 40 minutes"
+        }
+      },
+      {
+        "instruction": "Step 2 – Serviceable? Write a function is_serviceable(energy, duration) that returns True if energy is at least duration * 2, otherwise False. Print Nebula: True (energy 90, duration 40) and then Comet: False (energy 60, duration 40).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nebula: True\nComet: False"
+        }
+      },
+      {
+        "instruction": "Step 3 – Maintenance display: The two functions are provided. Write show_maintenance(ship, energy, hours): It prints <ship>: maintenance <duration> minutes if the ship may be serviced, otherwise <ship>: needs recharge. Call it with (\"Nebula\", 90, 8) and (\"Comet\", 60, 8).",
+        "codeTemplate": "def calculate_maintenance(hours):\n    return hours * 5\n\ndef is_serviceable(energy, duration):\n    return energy >= duration * 2\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nebula: maintenance 40 minutes\nComet: needs recharge"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra Challenge 1: The Shield System",
+    "file": "boss-01.md",
+    "lessonSummary": "The Shield System runs: Bonus, shield strength and display fit together!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Shield bonus: Write a function calculate_shield_bonus(modules): From 5 modules there are 20 bonus points, from 3 modules 10, otherwise 0. For 6, 4 and 1 modules print Bonus: 20, Bonus: 10 and Bonus: 0 one after another.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bonus: 20\nBonus: 10\nBonus: 0"
+        }
+      },
+      {
+        "instruction": "Step 2 – Shield strength: calculate_shield_bonus is provided. Write calculate_shield(energy, modules) that returns energy * 3 + shield bonus. Print exactly Shield: 110 by using calculate_shield(30, 6).",
+        "codeTemplate": "def calculate_shield_bonus(modules):\n    if modules >= 5:\n        return 20\n    elif modules >= 3:\n        return 10\n    else:\n        return 0\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Shield: 110"
+        }
+      },
+      {
+        "instruction": "Step 3 – Display: Both functions are provided. Write show_shield(name, energy, modules) that prints <name>: shield <strength>, and call it in a for loop for \"Nova\" with energy 30 and the module counts 2, 4 and 6 (range(2, 7, 2)).",
+        "codeTemplate": "def calculate_shield_bonus(modules):\n    if modules >= 5:\n        return 20\n    elif modules >= 3:\n        return 10\n    else:\n        return 0\n\ndef calculate_shield(energy, modules):\n    return energy * 3 + calculate_shield_bonus(modules)\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova: shield 90\nNova: shield 100\nNova: shield 110"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra Challenge 2: The Fleet Manager",
+    "file": "boss-02.md",
+    "lessonSummary": "The Fleet Manager stands: Demand, supply and report work together!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Fuel: Write a function calculate_fuel(ships, days) that returns ships * days * 4. Print exactly Fuel: 280 by using calculate_fuel(10, 7).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Fuel: 280"
+        }
+      },
+      {
+        "instruction": "Step 2 – Is the supply enough? Write a function is_fuel_enough(demand, supply) that returns True if supply is at least demand, otherwise False. Print Enough: True (demand 280, supply 300) and then Enough: False (demand 280, supply 200).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Enough: True\nEnough: False"
+        }
+      },
+      {
+        "instruction": "Step 3 – Report: Both functions are provided. Write fleet_report(fleet, ships, days, supply) that prints three lines: Fleet <fleet>, Fuel: <demand> and Enough: <True/False>. Call it with (\"Alpha\", 10, 7, 300).",
+        "codeTemplate": "def calculate_fuel(ships, days):\n    return ships * days * 4\n\ndef is_fuel_enough(demand, supply):\n    return supply >= demand\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Fleet Alpha\nFuel: 280\nEnough: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra Challenge 3: The Chase",
+    "file": "boss-03.md",
+    "lessonSummary": "The Chase runs: Speed, legs and result fit together!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Speed: Write a function calculate_speed(base, ballast) that returns base - ballast, but never less than 0. Print Speed: 25 (base 40, ballast 15) and then Speed: 0 (base 10, ballast 30).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Speed: 25\nSpeed: 0"
+        }
+      },
+      {
+        "instruction": "Step 2 – Leg: Write a function fly_leg(distance, speed) that returns the new remaining distance (distance - speed, but never below 0). Start with distance = 100, call fly_leg(distance, 25) twice (store the result in distance again) and print Distance: <distance> after each call.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Distance: 75\nDistance: 50"
+        }
+      },
+      {
+        "instruction": "Step 3 – Chase: fly_leg is provided. Write simulate_chase(distance, speed, legs): A for loop (leg 1 to legs) calls fly_leg each time and prints Leg <number>: <distance> km to go At the end the function returns the remaining distance. Call it with (100, 30, 4), store the result in left and print Left: <left>",
+        "codeTemplate": "def fly_leg(distance, speed):\n    remaining = distance - speed\n    if remaining < 0:\n        return 0\n    return remaining\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Leg 1: 70 km to go\nLeg 2: 40 km to go\nLeg 3: 10 km to go\nLeg 4: 0 km to go\nLeft: 0"
+        }
+      }
+    ]
+  }
+]

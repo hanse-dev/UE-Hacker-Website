@@ -1,0 +1,471 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Zauberformel 1: Eine Funktion definieren",
+    "file": "lektion-01.md",
+    "lessonSummary": "Stark! Du hast deine erste Zauberformel geschrieben und mehrfach gewirkt.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Eine Formel wird einmal definiert und zweimal aufgerufen.",
+        "example": true,
+        "codeTemplate": "def gruesse_held():\n    print(\"Willkommen, tapferer Held!\")\n    print(\"Dein Abenteuer beginnt jetzt!\")\n\ngruesse_held()\ngruesse_held()\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Dein Abenteuer beginnt jetzt!"
+        }
+      },
+      {
+        "instruction": "Definiere eine Funktion zaubere(), die genau Feuerball! ausgibt, und rufe sie dreimal auf.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Feuerball!\nFeuerball!\nFeuerball!"
+        }
+      },
+      {
+        "instruction": "Definiere eine Funktion heile(), die genau Du wirst geheilt! ausgibt. Rufe sie einmal auf und gib danach (außerhalb der Funktion) genau Fertig! aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Du wirst geheilt!\nFertig!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Zauberformel 1: Ein Parameter",
+    "file": "lektion-02.md",
+    "lessonSummary": "Prima! Deine Zauberformel kann jetzt mit unterschiedlichen Zutaten arbeiten.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Dieselbe Formel begrüßt zwei verschiedene Helden.",
+        "example": true,
+        "codeTemplate": "def begruesse(name):\n    print(f\"Willkommen, {name}!\")\n\nbegruesse(\"Aria\")\nbegruesse(\"Thorin\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Willkommen, Thorin!"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion wirke_zauber(zauber), die Du wirkst: <zauber>! ausgibt. Rufe sie mit \"Feuerball\" und danach mit \"Blitz\" auf.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Du wirkst: Feuerball!\nDu wirkst: Blitz!"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion zeige_level(level), die Level: <level> ausgibt. Rufe sie mit den Zahlen 5 und 12 auf (ohne Anführungszeichen).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 5\nLevel: 12"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Zauberformel 1: Mehrere Parameter",
+    "file": "lektion-03.md",
+    "lessonSummary": "Stark! Deine Formeln nehmen jetzt mehrere Zutaten in der richtigen Reihenfolge entgegen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Drei Argumente füllen drei Parameter – in der richtigen Reihenfolge.",
+        "example": true,
+        "codeTemplate": "def erstelle_charakter(name, klasse, level):\n    print(f\"Name: {name}\")\n    print(f\"Klasse: {klasse}\")\n    print(f\"Level: {level}\")\n\nerstelle_charakter(\"Aria\", \"Magierin\", 5)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Klasse: Magierin"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion schlage(waffe, schaden), die Du triffst mit <waffe> für <schaden> Schaden! ausgibt. Rufe sie mit (\"Schwert\", 12) und danach mit (\"Axt\", 20) auf.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Du triffst mit Schwert für 12 Schaden!\nDu triffst mit Axt für 20 Schaden!"
+        }
+      },
+      {
+        "instruction": "Die Funktion tausche_ware(gegeben, erhalten) ist schon fertig. Rufe sie so auf, dass genau Du tauschst 2 Kräuter gegen 1 Trank ausgegeben wird. Achte auf die Reihenfolge der Argumente!",
+        "codeTemplate": "def tausche_ware(gegeben, erhalten):\n    print(f\"Du tauschst {gegeben} gegen {erhalten}\")\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Du tauschst 2 Kräuter gegen 1 Trank"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Zauberformel 2: Werte zurückgeben mit return",
+    "file": "lektion-04.md",
+    "lessonSummary": "Magisch! Deine Formeln liefern jetzt Ergebnisse, mit denen du weiterrechnen kannst.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Das Ergebnis wird gespeichert und direkt weiterverwendet.",
+        "example": true,
+        "codeTemplate": "def berechne_schaden(basis, multiplikator):\n    return basis * multiplikator\n\nschaden = berechne_schaden(10, 2)\nprint(f\"Schlag: {schaden} Schaden\")\nprint(f\"Kritisch: {berechne_schaden(20, 5)} Schaden\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Kritisch: 100 Schaden"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion verdopple(zahl), die zahl * 2 mit return zurückgibt. Gib danach genau Doppelt: 42 aus, indem du verdopple(21) einsetzt.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Doppelt: 42"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion berechne_mana(level, basis_mana), die level * basis_mana zurückgibt. Speichere berechne_mana(4, 10) in der Variable mana und gib genau Mana: 40 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mana: 40"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Zauberformel 2: return oder print?",
+    "file": "lektion-05.md",
+    "lessonSummary": "Klar erkannt! Du weißt jetzt, wann eine Formel ausgibt und wann sie zurückgibt.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Eine Funktion ohne return gibt None zurück.",
+        "example": true,
+        "codeTemplate": "def zeige_inventar():\n    print(\"Schwert, Schild, Heiltrank\")\n\nergebnis = zeige_inventar()\nprint(f\"Rückgabewert: {ergebnis}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rückgabewert: None"
+        }
+      },
+      {
+        "instruction": "Die Funktion berechne_beute berechnet die Beute, gibt sie aber nicht zurück – deshalb steht bei Beute: None. Ergänze return, sodass genau Beute: 42 ausgegeben wird.",
+        "codeTemplate": "def berechne_beute(gold, silber):\n    gesamt = gold + silber\n\nbeute = berechne_beute(30, 12)\nprint(f\"Beute: {beute}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Beute: 42"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion kosten_gesamt(preis, anzahl), die preis * anzahl zurückgibt. Rechne damit: gesamt = kosten_gesamt(15, 4), gold = 100 - gesamt. Gib genau Gold übrig: 40 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gold übrig: 40"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Zauberformel 2: Entscheidungen und Schleifen in Funktionen",
+    "file": "lektion-06.md",
+    "lessonSummary": "Meisterhaft! Deine Formeln können jetzt entscheiden und wiederholen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Die Funktion liefert je nach Level einen anderen Text.",
+        "example": true,
+        "codeTemplate": "def pruefe_level(level):\n    if level >= 10:\n        return \"Bereit für die Quest!\"\n    else:\n        return f\"Noch {10 - level} Level nötig\"\n\nprint(pruefe_level(5))\nprint(pruefe_level(12))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Noch 5 Level nötig"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion ist_stark(schaden), die True zurückgibt, wenn schaden mindestens 50 ist, sonst False. Gib ist_stark(80) und danach ist_stark(20) mit print aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True\nFalse"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion summe_bis(n), die mit einer for-Schleife alle Zahlen von 1 bis n addiert und die Summe zurückgibt. Gib genau Summe: 55 aus, indem du summe_bis(10) einsetzt.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Summe: 55"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Zauberformel 3: Docstrings und gute Namen",
+    "file": "lektion-07.md",
+    "lessonSummary": "Großartig! Deine Formeln haben jetzt Beschreibungen und gute Namen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Der Docstring wird mit __doc__ angezeigt.",
+        "example": true,
+        "codeTemplate": "def berechne_heilung(basis, multiplikator):\n    \"\"\"Berechnet die Heilungsmenge.\"\"\"\n    return basis * multiplikator\n\nprint(berechne_heilung.__doc__)\nprint(berechne_heilung(10, 2))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Berechnet die Heilungsmenge."
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion zeige_titel() mit dem Docstring \"Zeigt den Titel des Helden.\" (in dreifachen Anführungszeichen), die Meister der Zauberformeln ausgibt. Gib zuerst zeige_titel.__doc__ aus und rufe danach die Funktion auf.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeigt den Titel des Helden.\nMeister der Zauberformeln"
+        }
+      },
+      {
+        "instruction": "Die Funktion heißt bs(b, m) – ein schlechter Name. Benenne sie in berechne_schaden(basis, multiplikator) um (auch die Parameter im Rumpf), damit der Aufruf darunter funktioniert und genau Schaden: 21 ausgibt.",
+        "codeTemplate": "def bs(b, m):\n    return b * m\n\nprint(f\"Schaden: {berechne_schaden(7, 3)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Schaden: 21"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug-Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Bei Funktionen zählen Einrückung, die Klammern beim Aufruf und return.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Willkommen, Held! ausgeben. Was ist falsch?",
+        "codeTemplate": "def gruesse_held():\nprint(\"Willkommen, Held!\")\n\ngruesse_held()\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Willkommen, Held!"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Schaden: 10 ausgeben (bei Stärke 5). Was ist falsch?",
+        "codeTemplate": "def berechne_schaden(staerke):\n    return staerke * 2\n\nergebnis = berechne_schaden\nprint(f\"Schaden: {ergebnis}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Schaden: 10"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Summe: 8 ausgeben. Was ist falsch?",
+        "codeTemplate": "def addiere(a, b):\n    ergebnis = a + b\n\nsumme = addiere(5, 3)\nprint(f\"Summe: {summe}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Summe: 8"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: Der Zauber-Lehrling",
+    "file": "mission-01.md",
+    "lessonSummary": "Der Zauber-Lehrling ist ausgebildet: Du hast Formeln geschrieben, aufgerufen und Ergebnisse geliefert!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Begrüßungszauber: Schreibe eine Funktion begruesse_magier(), die genau Willkommen, Magier! ausgibt. Rufe sie zweimal auf.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Willkommen, Magier!\nWillkommen, Magier!"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Mana-Berechnung: Schreibe eine Funktion berechne_mana(level, basis_mana), die level * basis_mana zurückgibt. Gib genau Mana: 60 aus, indem du berechne_mana(5, 12) einsetzt.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mana: 60"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Zauber möglich? Schreibe eine Funktion ist_zauber_moeglich(mana_kosten, aktuelles_mana), die True zurückgibt, wenn aktuelles_mana mindestens mana_kosten beträgt, sonst False. Gib Feuerball: True (Kosten 30, Mana 50) und danach Blitz: False (Kosten 40, Mana 25) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Feuerball: True\nBlitz: False"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: Der Charakter-Schmied",
+    "file": "mission-02.md",
+    "lessonSummary": "Der Charakter-Schmied ist fertig: Deine Funktionen bauen jetzt komplette Helden zusammen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Lebenspunkte: Schreibe eine Funktion berechne_leben(level, klasse), die für die Klasse \"Krieger\" level * 20 zurückgibt und für jede andere Klasse level * 10. Gib damit genau Krieger: 60 (Level 3) und Magier: 30 (Level 3) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Krieger: 60\nMagier: 30"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Titel: Schreibe eine Funktion erstelle_titel(name, klasse), die den Text <name> der <klasse> zurückgibt. Gib genau Aria der Magierin aus, indem du erstelle_titel(\"Aria\", \"Magierin\") mit print ausgibst.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria der Magierin"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Charakterbogen: Die Funktionen aus Schritt 1 und 2 sind vorgegeben. Schreibe zeige_charakterbogen(name, klasse, level), die drei Zeilen ausgibt: den Titel, Leben: <Lebenspunkte> und Level: <level>. Rufe sie mit (\"Thorin\", \"Krieger\", 4) auf.",
+        "codeTemplate": "def berechne_leben(level, klasse):\n    if klasse == \"Krieger\":\n        return level * 20\n    else:\n        return level * 10\n\ndef erstelle_titel(name, klasse):\n    return f\"{name} der {klasse}\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Thorin der Krieger\nLeben: 80\nLevel: 4"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: Die Quest-Maschine",
+    "file": "mission-03.md",
+    "lessonSummary": "Die Quest-Maschine läuft: Belohnung, Voraussetzung und Anzeige arbeiten Hand in Hand!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Belohnung: Schreibe eine Funktion berechne_belohnung(schwierigkeit), die schwierigkeit * 50 zurückgibt. Gib genau Belohnung: 150 aus, indem du berechne_belohnung(3) einsetzt.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Belohnung: 150"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Voraussetzung: Schreibe eine Funktion darf_quest(level, schwierigkeit), die True zurückgibt, wenn level mindestens schwierigkeit * 2 ist, sonst False. Gib Quest 3: True (Level 8) und danach Quest 5: False (Level 8) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Quest 3: True\nQuest 5: False"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Quest-Anzeige: Die beiden Funktionen sind vorgegeben. Schreibe zeige_quest(name, schwierigkeit, level): Sie gibt <name>: Belohnung <Belohnung> aus, wenn der Held die Quest darf, sonst <name>: zu schwer. Rufe sie mit (\"Drachenjagd\", 4, 9) und (\"Schatzsuche\", 2, 3) auf.",
+        "codeTemplate": "def berechne_belohnung(schwierigkeit):\n    return schwierigkeit * 50\n\ndef darf_quest(level, schwierigkeit):\n    return level >= schwierigkeit * 2\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Drachenjagd: Belohnung 200\nSchatzsuche: zu schwer"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Der Zauber-Generator",
+    "file": "boss-01.md",
+    "lessonSummary": "Der Zauber-Generator läuft: Namen, Macht und Anzeige greifen ineinander!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Zaubername: Schreibe eine Funktion zauber_name(element, stufe), die den Text <element>-L<stufe> zurückgibt. Gib genau Zauber: FEUER-L3 aus, indem du zauber_name(\"FEUER\", 3) einsetzt.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zauber: FEUER-L3"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Macht: Schreibe eine Funktion berechne_macht(element, stufe): Für \"FEUER\" ist die Macht stufe * 30, für \"WASSER\" stufe * 20, für alles andere stufe * 15. Gib bei Stufe 3 FEUER: 90, WASSER: 60 und ERDE: 45 aus (jeweils berechnet, in dieser Reihenfolge).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "FEUER: 90\nWASSER: 60\nERDE: 45"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Generator: Beide Funktionen sind vorgegeben. Schreibe zeige_zauber(element, stufe), die <Name> hat Macht <Macht> ausgibt, und rufe sie in einer for-Schleife für FEUER mit den Stufen 1 bis 3 auf.",
+        "codeTemplate": "def zauber_name(element, stufe):\n    return f\"{element}-L{stufe}\"\n\ndef berechne_macht(element, stufe):\n    if element == \"FEUER\":\n        return stufe * 30\n    elif element == \"WASSER\":\n        return stufe * 20\n    else:\n        return stufe * 15\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "FEUER-L1 hat Macht 30\nFEUER-L2 hat Macht 60\nFEUER-L3 hat Macht 90"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Der Gilden-Manager",
+    "file": "boss-02.md",
+    "lessonSummary": "Der Gilden-Manager steht: Kosten, Budget und Bericht arbeiten zusammen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Kosten: Schreibe eine Funktion berechne_kosten(magier, tage), die magier * tage * 5 zurückgibt. Gib genau Kosten: 150 aus, indem du berechne_kosten(6, 5) einsetzt.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Kosten: 150"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Bezahlbar? Schreibe eine Funktion ist_bezahlbar(kosten, gold), die True zurückgibt, wenn gold mindestens kosten beträgt, sonst False. Gib Bezahlbar: True (Kosten 150, Gold 200) und danach Bezahlbar: False (Kosten 150, Gold 100) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bezahlbar: True\nBezahlbar: False"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Bericht: Beide Funktionen sind vorgegeben. Schreibe gildenbericht(abteilung, magier, tage, gold), die drei Zeilen ausgibt: Abteilung <abteilung>, Kosten: <Kosten> und Bezahlbar: <True/False>. Rufe sie mit (\"Feuer\", 6, 5, 200) auf.",
+        "codeTemplate": "def berechne_kosten(magier, tage):\n    return magier * tage * 5\n\ndef ist_bezahlbar(kosten, gold):\n    return gold >= kosten\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Abteilung Feuer\nKosten: 150\nBezahlbar: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Die Kampf-Simulation",
+    "file": "boss-03.md",
+    "lessonSummary": "Die Kampf-Simulation läuft: Schaden, Runden und Ergebnis greifen ineinander!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Schaden: Schreibe eine Funktion berechne_schaden(basis, ruestung), die basis - ruestung zurückgibt, aber niemals weniger als 0. Gib Schaden: 25 (Basis 40, Rüstung 15) und danach Schaden: 0 (Basis 10, Rüstung 30) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Schaden: 25\nSchaden: 0"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Kampfrunde: Schreibe eine Funktion kampfrunde(leben, schaden), die das neue Leben zurückgibt (leben - schaden, aber nie unter 0). Starte mit leben = 100, rufe zweimal kampfrunde(leben, 25) auf (Ergebnis wieder in leben speichern) und gib nach jedem Aufruf Leben: <leben> aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Leben: 75\nLeben: 50"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Kampf: kampfrunde ist vorgegeben. Schreibe simuliere_kampf(leben, schaden, runden): Eine for-Schleife (Runde 1 bis runden) ruft jedes Mal kampfrunde auf und gibt Runde <Nummer>: Leben <leben> aus. Am Ende gibt die Funktion das Leben zurück. Rufe sie mit (100, 30, 4) auf, speichere das Ergebnis in ende und gib Ende: <ende> aus.",
+        "codeTemplate": "def kampfrunde(leben, schaden):\n    neues_leben = leben - schaden\n    if neues_leben < 0:\n        return 0\n    return neues_leben\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Runde 1: Leben 70\nRunde 2: Leben 40\nRunde 3: Leben 10\nRunde 4: Leben 0\nEnde: 0"
+        }
+      }
+    ]
+  }
+]

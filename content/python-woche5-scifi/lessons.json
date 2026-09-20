@@ -1,0 +1,471 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Systemprotokoll 1: Ein Protokoll definieren",
+    "file": "lektion-01.md",
+    "lessonSummary": "Stark! Du hast dein erstes Systemprotokoll geschrieben und mehrfach ausgeführt.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Ein Protokoll wird einmal definiert und zweimal aufgerufen.",
+        "example": true,
+        "codeTemplate": "def starte_scan():\n    print(\"Scan gestartet...\")\n    print(\"Sektor wird geprüft!\")\n\nstarte_scan()\nstarte_scan()\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sektor wird geprüft!"
+        }
+      },
+      {
+        "instruction": "Definiere eine Funktion lade_energie(), die genau Energie geladen! ausgibt, und rufe sie dreimal auf.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energie geladen!\nEnergie geladen!\nEnergie geladen!"
+        }
+      },
+      {
+        "instruction": "Definiere eine Funktion oeffne_luke(), die genau Luke offen. ausgibt. Rufe sie einmal auf und gib danach (außerhalb der Funktion) genau Fertig! aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Luke offen.\nFertig!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Systemprotokoll 2: Ein Parameter",
+    "file": "lektion-02.md",
+    "lessonSummary": "Prima! Dein Protokoll kann jetzt mit unterschiedlichen Eingaben arbeiten.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Dasselbe Protokoll meldet zwei verschiedene Crewmitglieder.",
+        "example": true,
+        "codeTemplate": "def melde(name):\n    print(f\"Hallo, {name}!\")\n\nmelde(\"Nova\")\nmelde(\"Kira\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hallo, Kira!"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion scanne_planet(planet), die Scanne: <planet> ausgibt. Rufe sie mit \"Mars\" und danach mit \"Titan\" auf.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Scanne: Mars\nScanne: Titan"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion zeige_energie(energie), die Energie: <energie> % ausgibt. Rufe sie mit den Zahlen 80 und 35 auf (ohne Anführungszeichen).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energie: 80 %\nEnergie: 35 %"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Systemprotokoll 3: Mehrere Parameter",
+    "file": "lektion-03.md",
+    "lessonSummary": "Stark! Deine Protokolle nehmen jetzt mehrere Eingaben in der richtigen Reihenfolge entgegen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Drei Argumente füllen drei Parameter – in der richtigen Reihenfolge.",
+        "example": true,
+        "codeTemplate": "def registriere_crew(name, rolle, level):\n    print(f\"Name: {name}\")\n    print(f\"Rolle: {rolle}\")\n    print(f\"Level: {level}\")\n\nregistriere_crew(\"Nova\", \"Pilotin\", 5)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rolle: Pilotin"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion feuere(waffe, staerke), die Schuss mit <waffe>: <staerke> Energie ausgibt. Rufe sie mit (\"Laser\", 40) und danach mit (\"Plasma\", 75) auf.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Schuss mit Laser: 40 Energie\nSchuss mit Plasma: 75 Energie"
+        }
+      },
+      {
+        "instruction": "Die Funktion sende_nachricht(empfaenger, text) ist schon fertig. Rufe sie so auf, dass genau An Nova: Kurs korrekt ausgegeben wird. Achte auf die Reihenfolge der Argumente!",
+        "codeTemplate": "def sende_nachricht(empfaenger, text):\n    print(f\"An {empfaenger}: {text}\")\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "An Nova: Kurs korrekt"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Systemprotokoll 4: Werte zurückgeben mit return",
+    "file": "lektion-04.md",
+    "lessonSummary": "Prima! Deine Protokolle liefern jetzt Ergebnisse, mit denen du weiterrechnen kannst.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Das Ergebnis wird gespeichert und direkt weiterverwendet.",
+        "example": true,
+        "codeTemplate": "def berechne_verbrauch(module, leistung):\n    return module * leistung\n\nverbrauch = berechne_verbrauch(3, 20)\nprint(f\"Verbrauch: {verbrauch} kW\")\nprint(f\"Volllast: {berechne_verbrauch(10, 50)} kW\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Volllast: 500 kW"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion verdopple_schild(stufe), die stufe * 2 mit return zurückgibt. Gib genau Schild doppelt: 14 aus, indem du verdopple_schild(7) einsetzt.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Schild doppelt: 14"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion berechne_credits(auftraege, pro_auftrag), die auftraege * pro_auftrag zurückgibt. Speichere berechne_credits(5, 40) in der Variable credits und gib genau Cyber Credits: 200 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Cyber Credits: 200"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Systemprotokoll 5: return oder print?",
+    "file": "lektion-05.md",
+    "lessonSummary": "Klar erkannt! Du weißt jetzt, wann ein Protokoll ausgibt und wann es zurückgibt.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Eine Funktion ohne return gibt None zurück.",
+        "example": true,
+        "codeTemplate": "def zeige_status():\n    print(\"Alle Systeme laufen.\")\n\nergebnis = zeige_status()\nprint(f\"Rückgabewert: {ergebnis}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rückgabewert: None"
+        }
+      },
+      {
+        "instruction": "Die Funktion berechne_vorrat berechnet den Bedarf, gibt ihn aber nicht zurück – deshalb steht bei Vorrat: None. Ergänze return, sodass genau Vorrat: 21 ausgegeben wird.",
+        "codeTemplate": "def berechne_vorrat(crew, tage):\n    gesamt = crew * tage\n\nvorrat = berechne_vorrat(7, 3)\nprint(f\"Vorrat: {vorrat}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Vorrat: 21"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion preis_gesamt(preis, anzahl), die preis * anzahl zurückgibt. Rechne damit: gesamt = preis_gesamt(30, 3), credits = 100 - gesamt. Gib genau Credits übrig: 10 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Credits übrig: 10"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Systemprotokoll 6: Entscheidungen und Schleifen in Funktionen",
+    "file": "lektion-06.md",
+    "lessonSummary": "Meisterhaft! Deine Protokolle können jetzt entscheiden und wiederholen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Die Funktion liefert je nach Schildstärke einen anderen Text.",
+        "example": true,
+        "codeTemplate": "def pruefe_schild(schild):\n    if schild >= 50:\n        return \"Schild stabil!\"\n    else:\n        return f\"Noch {50 - schild} % bis stabil\"\n\nprint(pruefe_schild(20))\nprint(pruefe_schild(75))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Noch 30 % bis stabil"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion ist_schnell(geschwindigkeit), die True zurückgibt, wenn geschwindigkeit mindestens 100 ist, sonst False. Gib ist_schnell(150) und danach ist_schnell(60) mit print aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True\nFalse"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion zaehle_signale(sektoren), die mit einer for-Schleife alle Zahlen von 1 bis sektoren addiert (Sektor 1 sendet 1 Signal, Sektor 2 zwei Signale, …) und die Summe zurückgibt. Gib genau Signale: 55 aus, indem du zaehle_signale(10) einsetzt.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Signale: 55"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Systemprotokoll 7: Docstrings und gute Namen",
+    "file": "lektion-07.md",
+    "lessonSummary": "Großartig! Deine Protokolle haben jetzt Beschreibungen und gute Namen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Der Docstring wird mit __doc__ angezeigt.",
+        "example": true,
+        "codeTemplate": "def berechne_treibstoff(distanz):\n    \"\"\"Berechnet den Treibstoffbedarf.\"\"\"\n    return distanz * 3\n\nprint(berechne_treibstoff.__doc__)\nprint(berechne_treibstoff(10))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Berechnet den Treibstoffbedarf."
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion zeige_alarm() mit dem Docstring \"Zeigt den Alarmstatus.\" (in dreifachen Anführungszeichen), die Alarm: Alles ruhig. ausgibt. Gib zuerst zeige_alarm.__doc__ aus und rufe danach die Funktion auf.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeigt den Alarmstatus.\nAlarm: Alles ruhig."
+        }
+      },
+      {
+        "instruction": "Die Funktion heißt fr(l, b) – ein schlechter Name. Benenne sie in berechne_frachtraum(laenge, breite) um (auch die Parameter im Rumpf), damit der Aufruf darunter funktioniert und genau Frachtraum: 21 ausgibt.",
+        "codeTemplate": "def fr(l, b):\n    return l * b\n\nprint(f\"Frachtraum: {berechne_frachtraum(7, 3)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Frachtraum: 21"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug-Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Bei Funktionen zählen Einrückung, die Klammern beim Aufruf und return.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Scan läuft! ausgeben. Was ist falsch?",
+        "codeTemplate": "def starte_scan():\nprint(\"Scan läuft!\")\n\nstarte_scan()\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Scan läuft!"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Energie: 10 ausgeben (bei 5 Modulen). Was ist falsch?",
+        "codeTemplate": "def berechne_energie(module):\n    return module * 2\n\nergebnis = berechne_energie\nprint(f\"Energie: {ergebnis}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energie: 10"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Credits: 8 ausgeben. Was ist falsch?",
+        "codeTemplate": "def addiere_credits(a, b):\n    ergebnis = a + b\n\ncredits = addiere_credits(5, 3)\nprint(f\"Credits: {credits}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Credits: 8"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: Der Bordtechniker-Lehrling",
+    "file": "mission-01.md",
+    "lessonSummary": "Der Bordtechniker-Lehrling ist ausgebildet: Du hast Protokolle geschrieben, aufgerufen und Ergebnisse geliefert!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Begrüßung: Schreibe eine Funktion begruesse_crew(), die genau Willkommen an Bord! ausgibt. Rufe sie zweimal auf.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Willkommen an Bord!\nWillkommen an Bord!"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Energie berechnen: Schreibe eine Funktion berechne_energie(module, leistung), die module * leistung zurückgibt. Gib genau Energie: 60 aus, indem du berechne_energie(5, 12) einsetzt.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energie: 60"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Energie ausreichend? Schreibe eine Funktion ist_energie_ok(bedarf, vorrat), die True zurückgibt, wenn vorrat mindestens bedarf beträgt, sonst False. Gib Antrieb: True (Bedarf 30, Vorrat 50) und danach Waffen: False (Bedarf 40, Vorrat 25) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Antrieb: True\nWaffen: False"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: Der Missions-Planer",
+    "file": "mission-02.md",
+    "lessonSummary": "Der Missions-Planer steht: Deine Funktionen bauen jetzt komplette Missionsberichte zusammen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Gewinn: Schreibe eine Funktion berechne_gewinn(auftraege, fehlschlaege), die auftraege * 10 - fehlschlaege * 5 zurückgibt. Gib genau Gewinn: 70 aus, indem du berechne_gewinn(8, 2) einsetzt.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gewinn: 70"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Kennung: Schreibe eine Funktion erstelle_kennung(name, nummer), die den Text <nummer>: <name> zurückgibt. Gib genau 7: Nova aus, indem du erstelle_kennung(\"Nova\", 7) mit print ausgibst.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "7: Nova"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Missionsbericht: Die Funktionen aus Schritt 1 und 2 sind vorgegeben. Schreibe zeige_missionsbericht(name, nummer, auftraege, fehlschlaege), die drei Zeilen ausgibt: die Kennung, Gewinn: <Gewinn> und Fehlschläge: <fehlschlaege>. Rufe sie mit (\"Nova\", 7, 8, 2) auf.",
+        "codeTemplate": "def berechne_gewinn(auftraege, fehlschlaege):\n    return auftraege * 10 - fehlschlaege * 5\n\ndef erstelle_kennung(name, nummer):\n    return f\"{nummer}: {name}\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "7: Nova\nGewinn: 70\nFehlschläge: 2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: Der Wartungs-Rechner",
+    "file": "mission-03.md",
+    "lessonSummary": "Der Wartungs-Rechner läuft: Dauer, Energie-Prüfung und Anzeige arbeiten Hand in Hand!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Dauer: Schreibe eine Funktion berechne_wartung(stunden), die stunden * 5 (Minuten) zurückgibt. Gib genau Wartung: 40 Minuten aus, indem du berechne_wartung(8) einsetzt.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wartung: 40 Minuten"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Wartbar? Schreibe eine Funktion ist_wartbar(energie, dauer), die True zurückgibt, wenn energie mindestens dauer * 2 ist, sonst False. Gib Nebula: True (Energie 90, Dauer 40) und danach Comet: False (Energie 60, Dauer 40) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nebula: True\nComet: False"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Wartungsanzeige: Die beiden Funktionen sind vorgegeben. Schreibe zeige_wartung(schiff, energie, stunden): Sie gibt <schiff>: Wartung <Dauer> Minuten aus, wenn das Schiff gewartet werden darf, sonst <schiff>: braucht Aufladung. Rufe sie mit (\"Nebula\", 90, 8) und (\"Comet\", 60, 8) auf.",
+        "codeTemplate": "def berechne_wartung(stunden):\n    return stunden * 5\n\ndef ist_wartbar(energie, dauer):\n    return energie >= dauer * 2\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nebula: Wartung 40 Minuten\nComet: braucht Aufladung"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Das Schild-System",
+    "file": "boss-01.md",
+    "lessonSummary": "Das Schild-System läuft: Bonus, Schildstärke und Anzeige greifen ineinander!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Schildbonus: Schreibe eine Funktion berechne_schildbonus(module): Ab 5 Modulen gibt es 20 Bonuspunkte, ab 3 Modulen 10, sonst 0. Gib für 6, 4 und 1 Modul nacheinander Bonus: 20, Bonus: 10 und Bonus: 0 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bonus: 20\nBonus: 10\nBonus: 0"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Schildstärke: berechne_schildbonus ist vorgegeben. Schreibe berechne_schild(energie, module), die energie * 3 + Schildbonus zurückgibt. Gib genau Schild: 110 aus, indem du berechne_schild(30, 6) einsetzt.",
+        "codeTemplate": "def berechne_schildbonus(module):\n    if module >= 5:\n        return 20\n    elif module >= 3:\n        return 10\n    else:\n        return 0\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Schild: 110"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Anzeige: Beide Funktionen sind vorgegeben. Schreibe zeige_schild(name, energie, module), die <name>: Schild <Schildstärke> ausgibt, und rufe sie in einer for-Schleife für \"Nova\" mit Energie 30 und den Modulzahlen 2, 4 und 6 auf (range(2, 7, 2)).",
+        "codeTemplate": "def berechne_schildbonus(module):\n    if module >= 5:\n        return 20\n    elif module >= 3:\n        return 10\n    else:\n        return 0\n\ndef berechne_schild(energie, module):\n    return energie * 3 + berechne_schildbonus(module)\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova: Schild 90\nNova: Schild 100\nNova: Schild 110"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Der Flotten-Manager",
+    "file": "boss-02.md",
+    "lessonSummary": "Der Flotten-Manager steht: Bedarf, Vorrat und Bericht arbeiten zusammen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Treibstoff: Schreibe eine Funktion berechne_treibstoff(schiffe, tage), die schiffe * tage * 4 zurückgibt. Gib genau Treibstoff: 280 aus, indem du berechne_treibstoff(10, 7) einsetzt.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Treibstoff: 280"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Reicht der Vorrat? Schreibe eine Funktion reicht_treibstoff(bedarf, vorrat), die True zurückgibt, wenn vorrat mindestens bedarf beträgt, sonst False. Gib Reicht: True (Bedarf 280, Vorrat 300) und danach Reicht: False (Bedarf 280, Vorrat 200) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Reicht: True\nReicht: False"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Bericht: Beide Funktionen sind vorgegeben. Schreibe flottenbericht(flotte, schiffe, tage, vorrat), die drei Zeilen ausgibt: Flotte <flotte>, Treibstoff: <Bedarf> und Reicht: <True/False>. Rufe sie mit (\"Alpha\", 10, 7, 300) auf.",
+        "codeTemplate": "def berechne_treibstoff(schiffe, tage):\n    return schiffe * tage * 4\n\ndef reicht_treibstoff(bedarf, vorrat):\n    return vorrat >= bedarf\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Flotte Alpha\nTreibstoff: 280\nReicht: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Die Verfolgungsjagd",
+    "file": "boss-03.md",
+    "lessonSummary": "Die Verfolgungsjagd läuft: Tempo, Etappen und Ergebnis greifen ineinander!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Tempo: Schreibe eine Funktion berechne_tempo(basis, ballast), die basis - ballast zurückgibt, aber niemals weniger als 0. Gib Tempo: 25 (Basis 40, Ballast 15) und danach Tempo: 0 (Basis 10, Ballast 30) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Tempo: 25\nTempo: 0"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Etappe: Schreibe eine Funktion fliege_etappe(distanz, tempo), die die neue Restdistanz zurückgibt (distanz - tempo, aber nie unter 0). Starte mit distanz = 100, rufe zweimal fliege_etappe(distanz, 25) auf (Ergebnis wieder in distanz speichern) und gib nach jedem Aufruf Distanz: <distanz> aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Distanz: 75\nDistanz: 50"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Jagd: fliege_etappe ist vorgegeben. Schreibe simuliere_jagd(distanz, tempo, etappen): Eine for-Schleife (Etappe 1 bis etappen) ruft jedes Mal fliege_etappe auf und gibt Etappe <Nummer>: Noch <distanz> km aus. Am Ende gibt die Funktion die Restdistanz zurück. Rufe sie mit (100, 30, 4) auf, speichere das Ergebnis in rest und gib Rest: <rest> aus.",
+        "codeTemplate": "def fliege_etappe(distanz, tempo):\n    rest = distanz - tempo\n    if rest < 0:\n        return 0\n    return rest\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Etappe 1: Noch 70 km\nEtappe 2: Noch 40 km\nEtappe 3: Noch 10 km\nEtappe 4: Noch 0 km\nRest: 0"
+        }
+      }
+    ]
+  }
+]

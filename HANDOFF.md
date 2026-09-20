@@ -62,7 +62,8 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.40/3.41 | Nav-Link "Projekte", `/profil` mit Abzeichen | Projekt-Fortschritt wird jetzt gesynct (Präfix-Key) |
 | 3.42–3.44 | JS-Grundkurs komplett (9 Wochen), Homepage-Redesign | `JsGrundkursTour.vue`, `example`-Aufgaben |
 | 3.46 | Woche 12: Text-Adventure-Abschlussprojekt statt Turtle | Komposition einziger neuer Begriff; List Comprehension neu in Woche 6 |
-| 3.47/3.48 | Python Woche 1–4 als Einzel-Lektionen (Woche 3 nachträglich DE/EN angeglichen) (Lektions-Format) | `content/python-woche{N}-*`, Engine `pyodide` in `JsCourseTour`; Woche 3 DE/EN angeglichen; 5–12 offen, Lösungen/Glossar noch im alten Stil |
+| 3.47/3.48 | Python Woche 1–4 als Einzel-Lektionen (Woche 3 nachträglich DE/EN angeglichen) (Lektions-Format) | `content/python-woche{N}-*`, Engine `pyodide` in `JsCourseTour`; Woche 3 DE/EN angeglichen; Woche 5 fertig; 6–12 offen, Lösungen/Glossar noch im alten Stil |
+| 3.49 | Python Woche 5 (Funktionen) als Einzel-Lektionen | 7 Lektionen + Debug (3 Bugs) + 3 Missionen + 3 Extra-Herausforderungen je Thema, DE = EN; Generator im Scratchpad (nicht im Repo), jede Aufgabe mit `python3` geprüft; Vorgriffe (Listen/Dict/`random`) ersetzt, siehe `todo.md` |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
