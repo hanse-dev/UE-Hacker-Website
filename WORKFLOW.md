@@ -47,6 +47,14 @@ liegengelassen**. Entweder:
 2. **dokumentieren**, damit es später überarbeitet werden kann: Eintrag in `todo.md` (Abschnitt
    "Nachbesserungen") mit Fundstelle (Datei), was auffiel, warum es so blieb und Vorschlag zur Lösung.
 
+**Nacharbeiten gleich miterledigen:** Solche Arbeiten (Vorgriffe in die passende spätere Woche nachziehen,
+bewusst weggelassene Inhalte wieder aufnehmen, gekürzte Mengen mit den Original-Mengen wiederholen,
+generische Namen themenspezifisch machen, veraltete Tests/Doku anpassen) werden **im selben Zug erledigt**,
+sobald der Grund dafür bekannt ist — nicht als Punkt in `todo.md` geparkt und später abgefragt. In `todo.md`
+kommt nur, was **wirklich nicht jetzt** geht (z.B. hängt von noch nicht umgestellten Wochen ab), mit Begründung.
+**Flaky Tests** (einzeln grün, im Volllauf/unter Last rot) werden nicht toleriert oder wiederholt, sondern mit
+`test.skip`/`describe.skip` und einem Kommentar zum Grund abgeschaltet.
+
 **Sub-Agenten:** Das Prompt-Briefing muss diese Regel enthalten. Sie fixen, was in ihren eigenen
 Dateien liegt, und melden alles andere unter **"Auffälligkeiten (nicht behoben)"** mit Datei, Grund und
 Lösungsvorschlag — die aufrufende Session überträgt das in `todo.md` bzw. behebt es selbst. Sie ändern
