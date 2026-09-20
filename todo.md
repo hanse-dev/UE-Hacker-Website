@@ -48,9 +48,11 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 - [ ] Debug Bug #1 (fehlende Einrückung nach `def`) erzeugt einen `IndentationError`; Bug #2 ruft die Funktion ohne Klammern auf (Ausgabe `<function ...>`), Bug #3 hat kein `return` (`None`) — bewusst die drei typischen Funktionsfehler.
 
 #### Nachbesserungen Lektions-Format Woche 6 (Listen)
-- [ ] Aus dem Original bewusst weggelassen: `set()`/`list(set(...))` (Duplikate entfernen), `.upper()`/String-Methoden in der List Comprehension, `sorted(..., key=...)`, Slicing (`liste[0:3]`), `extend()` nur im Text; Dictionaries in Boss-Quest 3 (dort Liste `[name, ziel, schwierigkeit]`) → Dictionaries in Woche 8 als Wiederholung nachziehen.
-- [ ] Woche-4-Vorgriffe (Pferde Mission 1 bis 20 statt 10 Hürden, Boss 5 statt 10 Sprünge, Abenteuer/Sci-Fi mit `random`/`%`/`input()`) sind in Woche 6 noch NICHT mit den vollen Original-Mengen wiederholt — nur `break`/`continue` und Listen mit Schleifen sind drin. Woche-2-Extras (8 Schiffe, 5 KI-Modelle als Liste) ebenfalls offen.
-- [ ] Code-Bezeichner in Pferde/Sci-Fi Boss 3 heißen `quest` (`erstelle_quest`, `suche_quests`) obwohl es Turniere/Missionen sind — bewusst generisch gehalten (ein Skelett für alle Themen), bei Bedarf themenspezifisch umbenennen.
+- [x] Aus dem Original wieder aufgenommen: Slicing (`[0:3]`, `[-2:]`, `[1::2]`), `extend()`, `sorted(set(...))`, `sorted(..., key=len)`, `.upper()` in der List Comprehension (je eine Zusatzaufgabe in Lektion 2/3/5/6/9).
+- [x] Woche-2-Extras (8 Truhen/Säcke/Module, 5 Zauber/Übungen/KI-Modelle) und Woche-4-Mengen (Zahlen 1–20 gerade/rückwärts, sortierte Ereignis-Liste) mit den vollen Original-Mengen als Extra-Herausforderung 4 "Wiederholung" nachgezogen.
+- [x] Boss 3 themenspezifisch benannt (Pferde `erstelle_turnier`/`turniere`, Sci-Fi `erstelle_mission`/`missionen`).
+- [ ] Nur Wiederholung mit Listen: Die restlichen Woche-4-Vorgriffe brauchen Dinge, die erst später kommen — `random` (Zufallshöhen, Zufallsereignisse → Woche 7), `%` und `input()` (Primzahltest, Schachbrett `(zeile + spalte) % 2`) — und der 8×8-Grid-/Bewegungs-Boss (verschachtelte Listen + Schleifen). Bei Woche 7 (random) bzw. einem Grid-Projekt nachziehen.
+- [ ] Dictionaries aus den Originalen (Boss-Quest 3 dort mit Dictionary) → Woche 8 als Wiederholung nachziehen.
 - [ ] Woche 6 wurde aus einem gemeinsamen Skelett + Themen-Vokabular erzeugt (Generator liegt nur im Scratchpad, nicht im Repo) — Texte sind daher zwischen den Themen strukturell gleich, nur Vokabular/Geschichte unterscheiden sich.
 - [ ] Lösungs-/Glossar-Notebooks Woche 6 passen nicht zu den konkretisierten Aufgaben (Original mit `set`, Dictionaries, `random`).
 

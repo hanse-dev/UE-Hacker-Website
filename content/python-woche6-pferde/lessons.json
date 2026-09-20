@@ -64,6 +64,14 @@
           "type": "output_contains",
           "expected": "['Stella', 'Blitz', 'Luna', 'Fuchs', 'Balu']"
         }
+      },
+      {
+        "instruction": "Die Liste pferde ist vorgegeben. Gib mit einem Ausschnitt [0:3] die ersten drei Einträge und in der nächsten Zeile mit [-2:] die letzten zwei aus: ['Sturmwind', 'Blitz', 'Luna'] und ['Fuchs', 'Balu']",
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\", \"Fuchs\", \"Balu\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Sturmwind', 'Blitz', 'Luna']\n['Fuchs', 'Balu']"
+        }
       }
     ]
   },
@@ -97,6 +105,14 @@
         "validation": {
           "type": "output_contains",
           "expected": "Erstes: Stella"
+        }
+      },
+      {
+        "instruction": "Die Liste pferde ist vorgegeben. Hänge mit extend() die drei Einträge Nova, Rex und Mila in einem Zug an und gib genau Anzahl: 6 aus (len).",
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 6"
         }
       }
     ]
@@ -166,6 +182,14 @@
           "type": "output_contains",
           "expected": "Anzahl Sturmwind: 3\nPosition Blitz: 1"
         }
+      },
+      {
+        "instruction": "Die Liste pferde (mit doppelten Einträgen) ist vorgegeben. Erzeuge mit sorted(set(pferde)) die Liste ohne Doppelte und gib sie aus: ['Blitz', 'Fuchs', 'Luna', 'Sturmwind']",
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Sturmwind\", \"Luna\", \"Sturmwind\", \"Fuchs\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Blitz', 'Fuchs', 'Luna', 'Sturmwind']"
+        }
       }
     ]
   },
@@ -199,6 +223,14 @@
         "validation": {
           "type": "output_contains",
           "expected": "['Sturmwind', 'Luna', 'Fuchs', 'Blitz', 'Balu']\n['Sturmwind', 'Blitz', 'Luna', 'Fuchs', 'Balu']"
+        }
+      },
+      {
+        "instruction": "Die Liste pferde ist vorgegeben. Sortiere sie mit sorted(..., key=len) nach der Länge der Einträge und gib das Ergebnis aus: ['Luna', 'Balu', 'Blitz', 'Fuchs', 'Sturmwind']",
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\", \"Fuchs\", \"Balu\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Luna', 'Balu', 'Blitz', 'Fuchs', 'Sturmwind']"
         }
       }
     ]
@@ -301,6 +333,14 @@
         "validation": {
           "type": "output_contains",
           "expected": "[7, 12, 5]"
+        }
+      },
+      {
+        "instruction": "Die Liste pferde ist vorgegeben. Baue mit einer List Comprehension die Liste laut, in der jeder Eintrag mit .upper() in Großbuchstaben steht, und gib sie aus: ['STURMWIND', 'BLITZ', 'LUNA', 'FUCHS', 'BALU']",
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\", \"Fuchs\", \"Balu\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['STURMWIND', 'BLITZ', 'LUNA', 'FUCHS', 'BALU']"
         }
       }
     ]
@@ -511,7 +551,7 @@
     "lessonSummary": "Die Datenbank steht: Anlegen, Suchen und Auswerten mit Listen und Funktionen!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Anlegen: Schreibe eine Funktion erstelle_quest(name, ziel, schwierigkeit), die eine Liste [name, ziel, schwierigkeit] zurückgibt. Lege quests = [] an, füge mit append() erstelle_quest(\"Springturnier\", \"Halle\", 4) hinzu und gib quests[0] aus: ['Springturnier', 'Halle', 4]",
+        "instruction": "Schritt 1 – Anlegen: Schreibe eine Funktion erstelle_turnier(name, ort, schwierigkeit), die eine Liste [name, ort, schwierigkeit] zurückgibt. Lege turniere = [] an, füge mit append() erstelle_turnier(\"Springturnier\", \"Halle\", 4) hinzu und gib turniere[0] aus: ['Springturnier', 'Halle', 4]",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -519,19 +559,68 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Suchen: Die Liste quests = [[\"Springturnier\", \"Halle\", 4], [\"Dressurturnier\", \"Platz\", 2], [\"Ausritt\", \"Wald\", 3]] ist vorgegeben. Schreibe suche_quests(questliste, begriff), die alle Quests zurückgibt, in deren Namen (Index 0) der Begriff vorkommt. Suche nach \"turnier\" und gib genau Gefunden: 2 aus (len).",
-        "codeTemplate": "quests = [[\"Springturnier\", \"Halle\", 4], [\"Dressurturnier\", \"Platz\", 2], [\"Ausritt\", \"Wald\", 3]]\n# 🎯 Deine Lösung hier:\n",
+        "instruction": "Schritt 2 – Suchen: Die Liste turniere = [[\"Springturnier\", \"Halle\", 4], [\"Dressurturnier\", \"Platz\", 2], [\"Ausritt\", \"Wald\", 3]] ist vorgegeben. Schreibe suche_turniere(liste, begriff), die alle Turniere zurückgibt, in deren Namen (Index 0) der Begriff vorkommt. Suche nach \"turnier\" und gib genau Gefunden: 2 aus (len).",
+        "codeTemplate": "turniere = [[\"Springturnier\", \"Halle\", 4], [\"Dressurturnier\", \"Platz\", 2], [\"Ausritt\", \"Wald\", 3]]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Gefunden: 2"
         }
       },
       {
-        "instruction": "Schritt 3 – Auswerten: quests ist vorgegeben (Schwierigkeit an Index 2). Schreibe quest_statistik(questliste): Sie zählt mit einer for-Schleife alle Quests und alle schweren (Schwierigkeit mindestens 3; leichtere überspringst du mit continue) und gibt Quests: <Anzahl> und Schwere Quests: <Anzahl> aus. Rufe sie mit quests auf.",
-        "codeTemplate": "quests = [[\"Springturnier\", \"Halle\", 4], [\"Dressurturnier\", \"Platz\", 2], [\"Ausritt\", \"Wald\", 3]]\n# 🎯 Deine Lösung hier:\n",
+        "instruction": "Schritt 3 – Auswerten: turniere ist vorgegeben (Schwierigkeit an Index 2). Schreibe turnier_statistik(liste): Sie zählt mit einer for-Schleife alle Turniere und alle schweren (Schwierigkeit mindestens 3; leichtere überspringst du mit continue) und gibt Turniere: <Anzahl> und Schwere Turniere: <Anzahl> aus. Rufe sie mit turniere auf.",
+        "codeTemplate": "turniere = [[\"Springturnier\", \"Halle\", 4], [\"Dressurturnier\", \"Platz\", 2], [\"Ausritt\", \"Wald\", 3]]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Quests: 3\nSchwere Quests: 2"
+          "expected": "Turniere: 3\nSchwere Turniere: 2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-04",
+    "section": "boss",
+    "title": "Extra-Herausforderung 4: Der große Futterraum",
+    "file": "boss-04.md",
+    "lessonSummary": "Die große Wiederholung ist geschafft: Volle Mengen, Listen und Auswertungen aus den Wochen 2 bis 6!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Alle acht Einträge: Die Listen namen (8 Einträge) und werte (8 Zahlen) sind vorgegeben. Gib mit einer for-Schleife über range(len(namen)) jeden Eintrag als <Name>: <Wert> Portionen aus – alle acht, jeweils in einer Zeile.",
+        "codeTemplate": "namen = [\"Hafer\", \"Heu\", \"Kraftfutter\", \"Müsli\", \"Karotten\", \"Äpfel\", \"Stroh\", \"Mash\"]\nwerte = [120, 45, 300, 80, 210, 15, 95, 95]\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hafer: 120 Portionen\nHeu: 45 Portionen\nKraftfutter: 300 Portionen\nMüsli: 80 Portionen\nKarotten: 210 Portionen\nÄpfel: 15 Portionen\nStroh: 95 Portionen\nMash: 95 Portionen"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Auswertung: Die beiden Listen sind vorgegeben. Berechne mit for-Schleifen die Summe aller Werte, den Durchschnitt (Summe geteilt durch len), den höchsten Wert samt Namen und wie viele Werte unter dem Durchschnitt liegen. Gib genau aus: Gesamt: 960, Durchschnitt: 120.0, Höchster: Kraftfutter (300) und Unter dem Durchschnitt: 5 – jeweils in einer eigenen Zeile.",
+        "codeTemplate": "namen = [\"Hafer\", \"Heu\", \"Kraftfutter\", \"Müsli\", \"Karotten\", \"Äpfel\", \"Stroh\", \"Mash\"]\nwerte = [120, 45, 300, 80, 210, 15, 95, 95]\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gesamt: 960\nDurchschnitt: 120.0\nHöchster: Kraftfutter (300)\nUnter dem Durchschnitt: 5"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Über dem Durchschnitt: Die Liste staerken = [80, 55, 95, 40, 70] ist vorgegeben. Berechne den Durchschnitt (Summe geteilt durch len) und baue mit einer List Comprehension die Liste ueber mit allen Werten, die größer als der Durchschnitt sind. Gib genau Durchschnitt: 68.0 und in der nächsten Zeile [80, 95, 70] aus.",
+        "codeTemplate": "staerken = [80, 55, 95, 40, 70]\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Durchschnitt: 68.0\n[80, 95, 70]"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Zahlen von 1 bis 20: Baue die Liste zahlen mit einer for-Schleife und append() (1 bis 20, alle zwanzig). Gib Anzahl: 20, danach mit einem Ausschnitt [1::2] die geraden Zahlen und zuletzt mit sorted(..., reverse=True)[:5] die fünf größten Zahlen aus: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20] und [20, 19, 18, 17, 16]",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 20\n[2, 4, 6, 8, 10, 12, 14, 16, 18, 20]\n[20, 19, 18, 17, 16]"
+        }
+      },
+      {
+        "instruction": "Schritt 5 – Ereignisse sortiert: Die Liste ereignisse = [\"Regen\", \"Sonne\", \"Wind\", \"Nebel\"] ist vorgegeben. Gib mit einer for-Schleife über sorted(ereignisse) jedes Ereignis als - <Ereignis> aus, in dieser Reihenfolge: Nebel, Regen, Sonne, Wind",
+        "codeTemplate": "ereignisse = [\"Regen\", \"Sonne\", \"Wind\", \"Nebel\"]\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "- Nebel\n- Regen\n- Sonne\n- Wind"
         }
       }
     ]

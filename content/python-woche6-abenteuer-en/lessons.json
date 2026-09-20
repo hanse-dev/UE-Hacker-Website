@@ -64,6 +64,14 @@
           "type": "output_contains",
           "expected": "['Key', 'Crystal', 'Amulet', 'Crown', 'Ring']"
         }
+      },
+      {
+        "instruction": "The list treasures is provided. Print the first three entries with a slice [0:3] and on the next line the last two with [-2:]: ['Gold', 'Crystal', 'Amulet'] and ['Crown', 'Ring']",
+        "codeTemplate": "treasures = [\"Gold\", \"Crystal\", \"Amulet\", \"Crown\", \"Ring\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Gold', 'Crystal', 'Amulet']\n['Crown', 'Ring']"
+        }
       }
     ]
   },
@@ -97,6 +105,14 @@
         "validation": {
           "type": "output_contains",
           "expected": "First: Key"
+        }
+      },
+      {
+        "instruction": "The list treasures is provided. Attach the three entries Ruby, Emerald and Dagger in one go with extend() and print exactly Count: 6 (len).",
+        "codeTemplate": "treasures = [\"Gold\", \"Crystal\", \"Amulet\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 6"
         }
       }
     ]
@@ -166,6 +182,14 @@
           "type": "output_contains",
           "expected": "Count Gold: 3\nPosition Crystal: 1"
         }
+      },
+      {
+        "instruction": "The list treasures (with duplicate entries) is provided. Create the list without duplicates with sorted(set(treasures)) and print it: ['Amulet', 'Crown', 'Crystal', 'Gold']",
+        "codeTemplate": "treasures = [\"Gold\", \"Crystal\", \"Gold\", \"Amulet\", \"Gold\", \"Crown\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Amulet', 'Crown', 'Crystal', 'Gold']"
+        }
       }
     ]
   },
@@ -199,6 +223,14 @@
         "validation": {
           "type": "output_contains",
           "expected": "['Ring', 'Gold', 'Crystal', 'Crown', 'Amulet']\n['Gold', 'Crystal', 'Amulet', 'Crown', 'Ring']"
+        }
+      },
+      {
+        "instruction": "The list treasures is provided. Sort it by the length of the entries with sorted(..., key=len) and print the result: ['Gold', 'Ring', 'Crown', 'Amulet', 'Crystal']",
+        "codeTemplate": "treasures = [\"Gold\", \"Crystal\", \"Amulet\", \"Crown\", \"Ring\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Gold', 'Ring', 'Crown', 'Amulet', 'Crystal']"
         }
       }
     ]
@@ -301,6 +333,14 @@
         "validation": {
           "type": "output_contains",
           "expected": "[7, 12, 5]"
+        }
+      },
+      {
+        "instruction": "The list treasures is provided. Build the list loud with a list comprehension in which every entry is in capital letters via .upper(), and print it: ['GOLD', 'CRYSTAL', 'AMULET', 'CROWN', 'RING']",
+        "codeTemplate": "treasures = [\"Gold\", \"Crystal\", \"Amulet\", \"Crown\", \"Ring\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['GOLD', 'CRYSTAL', 'AMULET', 'CROWN', 'RING']"
         }
       }
     ]
@@ -519,7 +559,7 @@
         }
       },
       {
-        "instruction": "Step 2 – Search: The list quests = [[\"Dragon Hunt\", \"Mountain\", 4], [\"Treasure Hunt\", \"Cave\", 2], [\"Riddle Forest\", \"Forest\", 3]] is provided. Write search_quests(quest_list, term) that returns all quests whose name (index 0) contains the term. Search for \"Hunt\" and print exactly Found: 2 (len).",
+        "instruction": "Step 2 – Search: The list quests = [[\"Dragon Hunt\", \"Mountain\", 4], [\"Treasure Hunt\", \"Cave\", 2], [\"Riddle Forest\", \"Forest\", 3]] is provided. Write search_quests(items, term) that returns all quests whose name (index 0) contains the term. Search for \"Hunt\" and print exactly Found: 2 (len).",
         "codeTemplate": "quests = [[\"Dragon Hunt\", \"Mountain\", 4], [\"Treasure Hunt\", \"Cave\", 2], [\"Riddle Forest\", \"Forest\", 3]]\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
@@ -527,11 +567,60 @@
         }
       },
       {
-        "instruction": "Step 3 – Evaluate: quests is provided (difficulty at index 2). Write quest_statistics(quest_list): It counts all quests and all hard ones with a for loop (difficulty at least 3; you skip easier ones with continue) and prints Quests: <count> and Hard quests: <count>. Call it with quests.",
+        "instruction": "Step 3 – Evaluate: quests is provided (difficulty at index 2). Write quest_statistics(items): It counts all quests and all hard ones with a for loop (difficulty at least 3; you skip easier ones with continue) and prints Quests: <count> and Hard quests: <count>. Call it with quests.",
         "codeTemplate": "quests = [[\"Dragon Hunt\", \"Mountain\", 4], [\"Treasure Hunt\", \"Cave\", 2], [\"Riddle Forest\", \"Forest\", 3]]\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Quests: 3\nHard quests: 2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-04",
+    "section": "boss",
+    "title": "Extra Challenge 4: The Great Treasure Room",
+    "file": "boss-04.md",
+    "lessonSummary": "The big review is done: full quantities, lists and evaluations from weeks 2 to 6!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – All eight entries: The lists names (8 entries) and values (8 numbers) are provided. Use a for loop over range(len(names)) to print every entry as <name>: <value> Gold – all eight, one per line.",
+        "codeTemplate": "names = [\"Silver chest\", \"Gold chest\", \"Dragon hoard\", \"Wizard shrine\", \"Elf jug\", \"Rune casket\", \"Pirate chest\", \"Crystal box\"]\nvalues = [120, 45, 300, 80, 210, 15, 95, 95]\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Silver chest: 120 Gold\nGold chest: 45 Gold\nDragon hoard: 300 Gold\nWizard shrine: 80 Gold\nElf jug: 210 Gold\nRune casket: 15 Gold\nPirate chest: 95 Gold\nCrystal box: 95 Gold"
+        }
+      },
+      {
+        "instruction": "Step 2 – Evaluation: The two lists are provided. Use for loops to calculate the sum of all values, the average (sum divided by len), the highest value together with its name and how many values are below the average. Print exactly: Total: 960, Average: 120.0, Highest: Dragon hoard (300) and Below average: 5 – each on its own line.",
+        "codeTemplate": "names = [\"Silver chest\", \"Gold chest\", \"Dragon hoard\", \"Wizard shrine\", \"Elf jug\", \"Rune casket\", \"Pirate chest\", \"Crystal box\"]\nvalues = [120, 45, 300, 80, 210, 15, 95, 95]\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total: 960\nAverage: 120.0\nHighest: Dragon hoard (300)\nBelow average: 5"
+        }
+      },
+      {
+        "instruction": "Step 3 – Above average: The list strengths = [80, 55, 95, 40, 70] is provided. Calculate the average (sum divided by len) and build the list above with a list comprehension containing all values greater than the average. Print exactly Average: 68.0 and on the next line [80, 95, 70].",
+        "codeTemplate": "strengths = [80, 55, 95, 40, 70]\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Average: 68.0\n[80, 95, 70]"
+        }
+      },
+      {
+        "instruction": "Step 4 – Numbers from 1 to 20: Build the list numbers with a for loop and append() (1 to 20, all twenty). Print Count: 20, then the even numbers with a slice [1::2] and finally the five largest numbers with sorted(..., reverse=True)[:5]: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20] and [20, 19, 18, 17, 16]",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 20\n[2, 4, 6, 8, 10, 12, 14, 16, 18, 20]\n[20, 19, 18, 17, 16]"
+        }
+      },
+      {
+        "instruction": "Step 5 – Events sorted: The list events = [\"Whisper\", \"Glow\", \"Secret door\", \"Fog\"] is provided. Use a for loop over sorted(events) to print every event as - <event>, in this order: Fog, Glow, Secret door, Whisper",
+        "codeTemplate": "events = [\"Whisper\", \"Glow\", \"Secret door\", \"Fog\"]\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "- Fog\n- Glow\n- Secret door\n- Whisper"
         }
       }
     ]

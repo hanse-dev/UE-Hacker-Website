@@ -11,5 +11,6 @@ numbers.reverse()                   # flip the order
 - **`sorted(list)`** returns a **sorted copy** – the original stays as it is
 - **`reverse=True`** sorts **descending**: `sort(reverse=True)`
 - **`list.reverse()`** just flips the current order (without sorting)
+- **`sorted(list, key=len)`** sorts by the **length** of the entries (shortest first) instead of alphabetically
 
 > ⚠️ It is **`reverse=True`** – do not write just `reverse` in the parentheses.

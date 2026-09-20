@@ -10,4 +10,6 @@ big = [value for value in damage if value > 4]       # [7, 12, 5]
 
 Read it from left to right: *"Take `value * 2` for every `value` in `damage`."* An `if` at the end **filters**: only matching entries go into the new list.
 
+**Working with text:** `word.upper()` turns a text into **CAPITAL LETTERS** – that works inside a comprehension too: `[w.upper() for w in list]`.
+
 > 💡 The original list stays unchanged – you always get a **new** list.

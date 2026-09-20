@@ -16,3 +16,11 @@ module[0] = "Kern"   # Eintrag ersetzen
 - Mit `liste[1] = "neu"` **ersetzt** du einen Eintrag
 
 **Listen in Listen:** Ein Eintrag darf selbst eine Liste sein. Mit zwei Indizes greifst du hinein: `party[1][0]` ist der erste Eintrag der zweiten Teilliste.
+
+**Ausschnitte (Slicing):** Mit `liste[von:bis]` holst du einen **Teil** der Liste – der Endindex gehört **nicht** mehr dazu:
+
+```python
+print(module[0:3])    # Index 0, 1, 2
+print(module[-2:])    # die letzten zwei
+print(module[1::2])   # jeder zweite Eintrag, ab Index 1
+```

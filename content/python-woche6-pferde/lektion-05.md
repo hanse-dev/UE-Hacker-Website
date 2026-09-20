@@ -12,3 +12,4 @@ print(pferde.count("Sturmwind"))      # wie oft kommt er vor?
 - **`liste.index(x)`** liefert die **Position** des ersten Treffers (gibt es `x` nicht, kommt ein Fehler – prüfe vorher mit `in`)
 - **`liste.count(x)`** zählt, **wie oft** `x` vorkommt
 - Das Wort **`in`** funktioniert auch bei Text: `"Gold" in "Goldmünze"` ist `True`
+- **`set(liste)`** entfernt **Doppelte**, hat aber keine feste Reihenfolge – `sorted(set(liste))` liefert die Einträge ohne Doppelte in alphabetischer Reihenfolge

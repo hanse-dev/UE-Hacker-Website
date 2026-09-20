@@ -64,7 +64,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.46 | Woche 12: Text-Adventure-Abschlussprojekt statt Turtle | Komposition einziger neuer Begriff; List Comprehension neu in Woche 6 |
 | 3.47/3.48 | Python Woche 1–4 als Einzel-Lektionen (Woche 3 nachträglich DE/EN angeglichen) (Lektions-Format) | `content/python-woche{N}-*`, Engine `pyodide` in `JsCourseTour`; Woche 3 DE/EN angeglichen; Woche 5 + 6 fertig; 7–12 offen, Lösungen/Glossar noch im alten Stil |
 | 3.49 | Python Woche 5 (Funktionen) als Einzel-Lektionen | 7 Lektionen + Debug (3 Bugs) + 3 Missionen + 3 Extra-Herausforderungen je Thema, DE = EN; Generator im Scratchpad (nicht im Repo), jede Aufgabe mit `python3` geprüft; Vorgriffe (Listen/Dict/`random`) ersetzt, siehe `todo.md` |
-| 3.50 | Python Woche 6 (Listen) als Einzel-Lektionen | 9 Lektionen + Debug (3 Bugs) + 3 Missionen + 3 Extra-Herausforderungen je Thema, DE = EN; aus einem Skelett + Themen-Vokabular erzeugt (Scratchpad), jede Aufgabe mit `python3` geprüft; nimmt die Woche-4/5-Vorgriffe (Listen, `break`/`continue`) auf, Dictionaries/`random` bleiben für Woche 7/8 |
+| 3.50 | Python Woche 6 (Listen) als Einzel-Lektionen | 9 Lektionen + Debug (3 Bugs) + 3 Missionen + 4 Extra-Herausforderungen (4 = Wiederholung mit den vollen Mengen aus Woche 2/4) je Thema, DE = EN; aus einem Skelett + Themen-Vokabular erzeugt (Scratchpad), jede Aufgabe mit `python3` geprüft; nimmt die Woche-4/5-Vorgriffe (Listen, `break`/`continue`) auf, Dictionaries/`random` bleiben für Woche 7/8 |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 

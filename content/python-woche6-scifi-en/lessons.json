@@ -64,6 +64,14 @@
           "type": "output_contains",
           "expected": "['Core', 'Sensor', 'Shield', 'Radar', 'Radio']"
         }
+      },
+      {
+        "instruction": "The list modules is provided. Print the first three entries with a slice [0:3] and on the next line the last two with [-2:]: ['Drive', 'Sensor', 'Shield'] and ['Radar', 'Radio']",
+        "codeTemplate": "modules = [\"Drive\", \"Sensor\", \"Shield\", \"Radar\", \"Radio\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Drive', 'Sensor', 'Shield']\n['Radar', 'Radio']"
+        }
       }
     ]
   },
@@ -97,6 +105,14 @@
         "validation": {
           "type": "output_contains",
           "expected": "First: Core"
+        }
+      },
+      {
+        "instruction": "The list modules is provided. Attach the three entries Laser, Scanner and Reactor in one go with extend() and print exactly Count: 6 (len).",
+        "codeTemplate": "modules = [\"Drive\", \"Sensor\", \"Shield\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 6"
         }
       }
     ]
@@ -166,6 +182,14 @@
           "type": "output_contains",
           "expected": "Count Drive: 3\nPosition Sensor: 1"
         }
+      },
+      {
+        "instruction": "The list modules (with duplicate entries) is provided. Create the list without duplicates with sorted(set(modules)) and print it: ['Drive', 'Radar', 'Sensor', 'Shield']",
+        "codeTemplate": "modules = [\"Drive\", \"Sensor\", \"Drive\", \"Shield\", \"Drive\", \"Radar\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Drive', 'Radar', 'Sensor', 'Shield']"
+        }
       }
     ]
   },
@@ -199,6 +223,14 @@
         "validation": {
           "type": "output_contains",
           "expected": "['Shield', 'Sensor', 'Radio', 'Radar', 'Drive']\n['Drive', 'Sensor', 'Shield', 'Radar', 'Radio']"
+        }
+      },
+      {
+        "instruction": "The list modules is provided. Sort it by the length of the entries with sorted(..., key=len) and print the result: ['Drive', 'Radar', 'Radio', 'Sensor', 'Shield']",
+        "codeTemplate": "modules = [\"Drive\", \"Sensor\", \"Shield\", \"Radar\", \"Radio\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Drive', 'Radar', 'Radio', 'Sensor', 'Shield']"
         }
       }
     ]
@@ -301,6 +333,14 @@
         "validation": {
           "type": "output_contains",
           "expected": "[7, 12, 5]"
+        }
+      },
+      {
+        "instruction": "The list modules is provided. Build the list loud with a list comprehension in which every entry is in capital letters via .upper(), and print it: ['DRIVE', 'SENSOR', 'SHIELD', 'RADAR', 'RADIO']",
+        "codeTemplate": "modules = [\"Drive\", \"Sensor\", \"Shield\", \"Radar\", \"Radio\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['DRIVE', 'SENSOR', 'SHIELD', 'RADAR', 'RADIO']"
         }
       }
     ]
@@ -511,7 +551,7 @@
     "lessonSummary": "The database stands: creating, searching and evaluating with lists and functions!",
     "tasks": [
       {
-        "instruction": "Step 1 – Create: Write a function create_quest(name, goal, difficulty) that returns a list [name, goal, difficulty]. Create quests = [], add create_quest(\"Scan Mission\", \"Mars\", 4) with append() and print quests[0]: ['Scan Mission', 'Mars', 4]",
+        "instruction": "Step 1 – Create: Write a function create_mission(name, goal, difficulty) that returns a list [name, goal, difficulty]. Create missions = [], add create_mission(\"Scan Mission\", \"Mars\", 4) with append() and print missions[0]: ['Scan Mission', 'Mars', 4]",
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
@@ -519,19 +559,68 @@
         }
       },
       {
-        "instruction": "Step 2 – Search: The list quests = [[\"Scan Mission\", \"Mars\", 4], [\"Rescue Mission\", \"Titan\", 2], [\"Repair Flight\", \"Station\", 3]] is provided. Write search_quests(quest_list, term) that returns all quests whose name (index 0) contains the term. Search for \"Mission\" and print exactly Found: 2 (len).",
-        "codeTemplate": "quests = [[\"Scan Mission\", \"Mars\", 4], [\"Rescue Mission\", \"Titan\", 2], [\"Repair Flight\", \"Station\", 3]]\n# 🎯 Your solution here:\n",
+        "instruction": "Step 2 – Search: The list missions = [[\"Scan Mission\", \"Mars\", 4], [\"Rescue Mission\", \"Titan\", 2], [\"Repair Flight\", \"Station\", 3]] is provided. Write search_missions(items, term) that returns all missions whose name (index 0) contains the term. Search for \"Mission\" and print exactly Found: 2 (len).",
+        "codeTemplate": "missions = [[\"Scan Mission\", \"Mars\", 4], [\"Rescue Mission\", \"Titan\", 2], [\"Repair Flight\", \"Station\", 3]]\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Found: 2"
         }
       },
       {
-        "instruction": "Step 3 – Evaluate: quests is provided (difficulty at index 2). Write quest_statistics(quest_list): It counts all quests and all hard ones with a for loop (difficulty at least 3; you skip easier ones with continue) and prints Quests: <count> and Hard quests: <count>. Call it with quests.",
-        "codeTemplate": "quests = [[\"Scan Mission\", \"Mars\", 4], [\"Rescue Mission\", \"Titan\", 2], [\"Repair Flight\", \"Station\", 3]]\n# 🎯 Your solution here:\n",
+        "instruction": "Step 3 – Evaluate: missions is provided (difficulty at index 2). Write mission_statistics(items): It counts all missions and all hard ones with a for loop (difficulty at least 3; you skip easier ones with continue) and prints Missions: <count> and Hard missions: <count>. Call it with missions.",
+        "codeTemplate": "missions = [[\"Scan Mission\", \"Mars\", 4], [\"Rescue Mission\", \"Titan\", 2], [\"Repair Flight\", \"Station\", 3]]\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Quests: 3\nHard quests: 2"
+          "expected": "Missions: 3\nHard missions: 2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-04",
+    "section": "boss",
+    "title": "Extra Challenge 4: The Big Spare Parts Depot",
+    "file": "boss-04.md",
+    "lessonSummary": "The big review is done: full quantities, lists and evaluations from weeks 2 to 6!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – All eight entries: The lists names (8 entries) and values (8 numbers) are provided. Use a for loop over range(len(names)) to print every entry as <name>: <value> energy – all eight, one per line.",
+        "codeTemplate": "names = [\"Reactor\", \"Sensor\", \"Drive\", \"Shield\", \"Radio\", \"Radar\", \"Scanner\", \"Core\"]\nvalues = [120, 45, 300, 80, 210, 15, 95, 95]\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Reactor: 120 energy\nSensor: 45 energy\nDrive: 300 energy\nShield: 80 energy\nRadio: 210 energy\nRadar: 15 energy\nScanner: 95 energy\nCore: 95 energy"
+        }
+      },
+      {
+        "instruction": "Step 2 – Evaluation: The two lists are provided. Use for loops to calculate the sum of all values, the average (sum divided by len), the highest value together with its name and how many values are below the average. Print exactly: Total: 960, Average: 120.0, Highest: Drive (300) and Below average: 5 – each on its own line.",
+        "codeTemplate": "names = [\"Reactor\", \"Sensor\", \"Drive\", \"Shield\", \"Radio\", \"Radar\", \"Scanner\", \"Core\"]\nvalues = [120, 45, 300, 80, 210, 15, 95, 95]\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total: 960\nAverage: 120.0\nHighest: Drive (300)\nBelow average: 5"
+        }
+      },
+      {
+        "instruction": "Step 3 – Above average: The list strengths = [80, 55, 95, 40, 70] is provided. Calculate the average (sum divided by len) and build the list above with a list comprehension containing all values greater than the average. Print exactly Average: 68.0 and on the next line [80, 95, 70].",
+        "codeTemplate": "strengths = [80, 55, 95, 40, 70]\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Average: 68.0\n[80, 95, 70]"
+        }
+      },
+      {
+        "instruction": "Step 4 – Numbers from 1 to 20: Build the list numbers with a for loop and append() (1 to 20, all twenty). Print Count: 20, then the even numbers with a slice [1::2] and finally the five largest numbers with sorted(..., reverse=True)[:5]: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20] and [20, 19, 18, 17, 16]",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 20\n[2, 4, 6, 8, 10, 12, 14, 16, 18, 20]\n[20, 19, 18, 17, 16]"
+        }
+      },
+      {
+        "instruction": "Step 5 – Events sorted: The list events = [\"Asteroid\", \"Solar storm\", \"Alien\", \"Nebula\"] is provided. Use a for loop over sorted(events) to print every event as - <event>, in this order: Alien, Asteroid, Nebula, Solar storm",
+        "codeTemplate": "events = [\"Asteroid\", \"Solar storm\", \"Alien\", \"Nebula\"]\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "- Alien\n- Asteroid\n- Nebula\n- Solar storm"
         }
       }
     ]

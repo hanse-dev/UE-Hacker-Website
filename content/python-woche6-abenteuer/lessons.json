@@ -64,6 +64,14 @@
           "type": "output_contains",
           "expected": "['Schlüssel', 'Kristall', 'Amulett', 'Krone', 'Ring']"
         }
+      },
+      {
+        "instruction": "Die Liste schaetze ist vorgegeben. Gib mit einem Ausschnitt [0:3] die ersten drei Einträge und in der nächsten Zeile mit [-2:] die letzten zwei aus: ['Gold', 'Kristall', 'Amulett'] und ['Krone', 'Ring']",
+        "codeTemplate": "schaetze = [\"Gold\", \"Kristall\", \"Amulett\", \"Krone\", \"Ring\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Gold', 'Kristall', 'Amulett']\n['Krone', 'Ring']"
+        }
       }
     ]
   },
@@ -97,6 +105,14 @@
         "validation": {
           "type": "output_contains",
           "expected": "Erstes: Schlüssel"
+        }
+      },
+      {
+        "instruction": "Die Liste schaetze ist vorgegeben. Hänge mit extend() die drei Einträge Rubin, Smaragd und Dolch in einem Zug an und gib genau Anzahl: 6 aus (len).",
+        "codeTemplate": "schaetze = [\"Gold\", \"Kristall\", \"Amulett\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 6"
         }
       }
     ]
@@ -166,6 +182,14 @@
           "type": "output_contains",
           "expected": "Anzahl Gold: 3\nPosition Kristall: 1"
         }
+      },
+      {
+        "instruction": "Die Liste schaetze (mit doppelten Einträgen) ist vorgegeben. Erzeuge mit sorted(set(schaetze)) die Liste ohne Doppelte und gib sie aus: ['Amulett', 'Gold', 'Kristall', 'Krone']",
+        "codeTemplate": "schaetze = [\"Gold\", \"Kristall\", \"Gold\", \"Amulett\", \"Gold\", \"Krone\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Amulett', 'Gold', 'Kristall', 'Krone']"
+        }
       }
     ]
   },
@@ -199,6 +223,14 @@
         "validation": {
           "type": "output_contains",
           "expected": "['Ring', 'Krone', 'Kristall', 'Gold', 'Amulett']\n['Gold', 'Kristall', 'Amulett', 'Krone', 'Ring']"
+        }
+      },
+      {
+        "instruction": "Die Liste schaetze ist vorgegeben. Sortiere sie mit sorted(..., key=len) nach der Länge der Einträge und gib das Ergebnis aus: ['Gold', 'Ring', 'Krone', 'Amulett', 'Kristall']",
+        "codeTemplate": "schaetze = [\"Gold\", \"Kristall\", \"Amulett\", \"Krone\", \"Ring\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Gold', 'Ring', 'Krone', 'Amulett', 'Kristall']"
         }
       }
     ]
@@ -301,6 +333,14 @@
         "validation": {
           "type": "output_contains",
           "expected": "[7, 12, 5]"
+        }
+      },
+      {
+        "instruction": "Die Liste schaetze ist vorgegeben. Baue mit einer List Comprehension die Liste laut, in der jeder Eintrag mit .upper() in Großbuchstaben steht, und gib sie aus: ['GOLD', 'KRISTALL', 'AMULETT', 'KRONE', 'RING']",
+        "codeTemplate": "schaetze = [\"Gold\", \"Kristall\", \"Amulett\", \"Krone\", \"Ring\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['GOLD', 'KRISTALL', 'AMULETT', 'KRONE', 'RING']"
         }
       }
     ]
@@ -519,7 +559,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Suchen: Die Liste quests = [[\"Drachenjagd\", \"Berg\", 4], [\"Schatzjagd\", \"Höhle\", 2], [\"Rätselwald\", \"Wald\", 3]] ist vorgegeben. Schreibe suche_quests(questliste, begriff), die alle Quests zurückgibt, in deren Namen (Index 0) der Begriff vorkommt. Suche nach \"jagd\" und gib genau Gefunden: 2 aus (len).",
+        "instruction": "Schritt 2 – Suchen: Die Liste quests = [[\"Drachenjagd\", \"Berg\", 4], [\"Schatzjagd\", \"Höhle\", 2], [\"Rätselwald\", \"Wald\", 3]] ist vorgegeben. Schreibe suche_quests(liste, begriff), die alle Quests zurückgibt, in deren Namen (Index 0) der Begriff vorkommt. Suche nach \"jagd\" und gib genau Gefunden: 2 aus (len).",
         "codeTemplate": "quests = [[\"Drachenjagd\", \"Berg\", 4], [\"Schatzjagd\", \"Höhle\", 2], [\"Rätselwald\", \"Wald\", 3]]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -527,11 +567,60 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Auswerten: quests ist vorgegeben (Schwierigkeit an Index 2). Schreibe quest_statistik(questliste): Sie zählt mit einer for-Schleife alle Quests und alle schweren (Schwierigkeit mindestens 3; leichtere überspringst du mit continue) und gibt Quests: <Anzahl> und Schwere Quests: <Anzahl> aus. Rufe sie mit quests auf.",
+        "instruction": "Schritt 3 – Auswerten: quests ist vorgegeben (Schwierigkeit an Index 2). Schreibe quest_statistik(liste): Sie zählt mit einer for-Schleife alle Quests und alle schweren (Schwierigkeit mindestens 3; leichtere überspringst du mit continue) und gibt Quests: <Anzahl> und Schwere Quests: <Anzahl> aus. Rufe sie mit quests auf.",
         "codeTemplate": "quests = [[\"Drachenjagd\", \"Berg\", 4], [\"Schatzjagd\", \"Höhle\", 2], [\"Rätselwald\", \"Wald\", 3]]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Quests: 3\nSchwere Quests: 2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-04",
+    "section": "boss",
+    "title": "Extra-Herausforderung 4: Der große Schatzraum",
+    "file": "boss-04.md",
+    "lessonSummary": "Die große Wiederholung ist geschafft: Volle Mengen, Listen und Auswertungen aus den Wochen 2 bis 6!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Alle acht Einträge: Die Listen namen (8 Einträge) und werte (8 Zahlen) sind vorgegeben. Gib mit einer for-Schleife über range(len(namen)) jeden Eintrag als <Name>: <Wert> Gold aus – alle acht, jeweils in einer Zeile.",
+        "codeTemplate": "namen = [\"Silberkiste\", \"Goldtruhe\", \"Drachenhort\", \"Zauberschrein\", \"Elfenkrug\", \"Runenschatulle\", \"Piratenkiste\", \"Kristallbox\"]\nwerte = [120, 45, 300, 80, 210, 15, 95, 95]\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Silberkiste: 120 Gold\nGoldtruhe: 45 Gold\nDrachenhort: 300 Gold\nZauberschrein: 80 Gold\nElfenkrug: 210 Gold\nRunenschatulle: 15 Gold\nPiratenkiste: 95 Gold\nKristallbox: 95 Gold"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Auswertung: Die beiden Listen sind vorgegeben. Berechne mit for-Schleifen die Summe aller Werte, den Durchschnitt (Summe geteilt durch len), den höchsten Wert samt Namen und wie viele Werte unter dem Durchschnitt liegen. Gib genau aus: Gesamt: 960, Durchschnitt: 120.0, Höchster: Drachenhort (300) und Unter dem Durchschnitt: 5 – jeweils in einer eigenen Zeile.",
+        "codeTemplate": "namen = [\"Silberkiste\", \"Goldtruhe\", \"Drachenhort\", \"Zauberschrein\", \"Elfenkrug\", \"Runenschatulle\", \"Piratenkiste\", \"Kristallbox\"]\nwerte = [120, 45, 300, 80, 210, 15, 95, 95]\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gesamt: 960\nDurchschnitt: 120.0\nHöchster: Drachenhort (300)\nUnter dem Durchschnitt: 5"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Über dem Durchschnitt: Die Liste staerken = [80, 55, 95, 40, 70] ist vorgegeben. Berechne den Durchschnitt (Summe geteilt durch len) und baue mit einer List Comprehension die Liste ueber mit allen Werten, die größer als der Durchschnitt sind. Gib genau Durchschnitt: 68.0 und in der nächsten Zeile [80, 95, 70] aus.",
+        "codeTemplate": "staerken = [80, 55, 95, 40, 70]\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Durchschnitt: 68.0\n[80, 95, 70]"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Zahlen von 1 bis 20: Baue die Liste zahlen mit einer for-Schleife und append() (1 bis 20, alle zwanzig). Gib Anzahl: 20, danach mit einem Ausschnitt [1::2] die geraden Zahlen und zuletzt mit sorted(..., reverse=True)[:5] die fünf größten Zahlen aus: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20] und [20, 19, 18, 17, 16]",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 20\n[2, 4, 6, 8, 10, 12, 14, 16, 18, 20]\n[20, 19, 18, 17, 16]"
+        }
+      },
+      {
+        "instruction": "Schritt 5 – Ereignisse sortiert: Die Liste ereignisse = [\"Flüstern\", \"Leuchten\", \"Geheimtür\", \"Nebel\"] ist vorgegeben. Gib mit einer for-Schleife über sorted(ereignisse) jedes Ereignis als - <Ereignis> aus, in dieser Reihenfolge: Flüstern, Geheimtür, Leuchten, Nebel",
+        "codeTemplate": "ereignisse = [\"Flüstern\", \"Leuchten\", \"Geheimtür\", \"Nebel\"]\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "- Flüstern\n- Geheimtür\n- Leuchten\n- Nebel"
         }
       }
     ]

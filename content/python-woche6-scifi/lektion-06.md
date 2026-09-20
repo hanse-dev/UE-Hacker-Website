@@ -11,5 +11,6 @@ zahlen.reverse()                    # Reihenfolge umdrehen
 - **`sorted(liste)`** liefert eine **sortierte Kopie** – das Original bleibt, wie es ist
 - **`reverse=True`** sortiert **absteigend**: `sort(reverse=True)`
 - **`liste.reverse()`** dreht nur die aktuelle Reihenfolge um (ohne zu sortieren)
+- **`sorted(liste, key=len)`** sortiert nach der **Länge** der Einträge (kürzeste zuerst) statt nach dem Alphabet
 
 > ⚠️ Es heißt **`reverse=True`** – schreibe nicht nur `reverse` in die Klammer.

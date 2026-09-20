@@ -16,3 +16,11 @@ modules[0] = "Core"   # replace an entry
 - With `list[1] = "new"` you **replace** an entry
 
 **Lists in lists:** An entry may itself be a list. With two indices you reach inside: `party[1][0]` is the first entry of the second sub-list.
+
+**Slices:** With `list[start:stop]` you take a **part** of the list – the end index is **not** included any more:
+
+```python
+print(modules[0:3])    # index 0, 1, 2
+print(modules[-2:])    # the last two
+print(modules[1::2])   # every second entry, from index 1
+```
