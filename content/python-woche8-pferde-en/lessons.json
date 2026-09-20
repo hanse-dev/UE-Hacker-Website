@@ -1,0 +1,552 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Exercise 1: Creating and reading profile cards",
+    "file": "lektion-01.md",
+    "lessonSummary": "Great! You create dictionaries and read values by their key.",
+    "tasks": [
+      {
+        "instruction": "Run this example: create a dictionary and read from it.",
+        "example": true,
+        "codeTemplate": "horse = {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120}\nprint(horse)\nprint(\"Name:\", horse[\"name\"])\nprint(f\"Age: {horse['age']}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Age: 8"
+        }
+      },
+      {
+        "instruction": "Create a dictionary horse with the keys name (\"Blitz\"), breed (\"Hanoverian\"), age (8) and points (120). Print exactly Name: Blitz and on the next line Age: 8 (access with []).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Blitz\nAge: 8"
+        }
+      },
+      {
+        "instruction": "The dictionary horse is given. Print the number of entries with len() as Number of properties: 4 and on the next line Breed: Hanoverian.",
+        "codeTemplate": "horse = {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Number of properties: 4\nBreed: Hanoverian"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Exercise 2: Changing, adding and removing",
+    "file": "lektion-02.md",
+    "lessonSummary": "Nice! You change values, add entries and remove them again.",
+    "tasks": [
+      {
+        "instruction": "Run this example: change, add, remove.",
+        "example": true,
+        "codeTemplate": "horse = {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120}\nhorse[\"age\"] = horse[\"age\"] + 1\nhorse[\"wins\"] = 3\nremoved = horse.pop(\"points\")\nprint(f\"Age now: {horse['age']}\")\nprint(f\"Removed: {removed}\")\nprint(f\"Properties: {len(horse)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Properties: 4"
+        }
+      },
+      {
+        "instruction": "The dictionary horse is given. Increase age with += 1 and add the new key wins with the value 3. Print exactly Age: 9 and on the next line Wins: 3.",
+        "codeTemplate": "horse = {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Age: 9\nWins: 3"
+        }
+      },
+      {
+        "instruction": "The dictionary horse is given. Remove the key breed with pop() and print the removed value as Removed: Hanoverian. Then delete the key points with del and print Properties: 2 (len).",
+        "codeTemplate": "horse = {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Removed: Hanoverian\nProperties: 2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Exercise 3: Safe access with get() and in",
+    "file": "lektion-03.md",
+    "lessonSummary": "Well done! You ask with get() and in instead of risking a KeyError.",
+    "tasks": [
+      {
+        "instruction": "Run this example: get() with a default value and in.",
+        "example": true,
+        "codeTemplate": "horse = {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120}\nprint(\"Name:\", horse.get(\"name\"))\nprint(\"Wins:\", horse.get(\"wins\", 0))\nprint(\"Present:\", \"wins\" in horse)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Present: False"
+        }
+      },
+      {
+        "instruction": "The dictionary horse is given (without wins). Fetch the value of wins with get() and default value 0 and print exactly Wins: 0.",
+        "codeTemplate": "horse = {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wins: 0"
+        }
+      },
+      {
+        "instruction": "The dictionary horse is given. Check with in and print exactly age present: True and on the next line wins present: False.",
+        "codeTemplate": "horse = {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "age present: True\nwins present: False"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Exercise 4: Looping through dictionaries",
+    "file": "lektion-04.md",
+    "lessonSummary": "Great! You walk through a dictionary with keys(), values() and items().",
+    "tasks": [
+      {
+        "instruction": "Run this example: items() and values().",
+        "example": true,
+        "codeTemplate": "feed = {\"Oats\": 3, \"Hay\": 5, \"Carrots\": 2}\nfor name, amount in feed.items():\n    print(f\"{name}: {amount}\")\ntotal = 0\nfor amount in feed.values():\n    total += amount\nprint(f\"Total: {total}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total: 10"
+        }
+      },
+      {
+        "instruction": "The dictionary feed is given (Feed store: name and amount). With items(), print each entry as Name: Amount on its own line, e.g. Oats: 3.",
+        "codeTemplate": "feed = {\"Oats\": 3, \"Hay\": 5, \"Carrots\": 2}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Oats: 3\nHay: 5\nCarrots: 2"
+        }
+      },
+      {
+        "instruction": "The dictionary feed is given. Add up all amounts with values() and print exactly Total: 10 and on the next line Kinds: 3 (len).",
+        "codeTemplate": "feed = {\"Oats\": 3, \"Hay\": 5, \"Carrots\": 2}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total: 10\nKinds: 3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Exercise 5: Tuples",
+    "file": "lektion-05.md",
+    "lessonSummary": "Nice! You pack values into tuples and unpack them again.",
+    "tasks": [
+      {
+        "instruction": "Run this example: create, read and unpack a tuple.",
+        "example": true,
+        "codeTemplate": "gear = (\"Saddle\", 15, \"Leather\")\nprint(gear)\nprint(\"Length:\", len(gear))\nprint(\"First:\", gear[0])\nname, value, kind = gear\nprint(f\"Value: {value}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Value: 15"
+        }
+      },
+      {
+        "instruction": "Create the tuple gear = (\"Saddle\", 15, \"Leather\") and unpack it into name, value and kind. Print exactly Name: Saddle and on the next line Kind: Leather.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Saddle\nKind: Leather"
+        }
+      },
+      {
+        "instruction": "Two points are given as tuples. Calculate the distance as the difference of the x values plus the difference of the y values (goal minus start, all positive) and print exactly Distance: 7.",
+        "codeTemplate": "start = (2, 3)\ngoal = (6, 6)\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Distance: 7"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Exercise 6: Immutable and catching errors",
+    "file": "lektion-06.md",
+    "lessonSummary": "Masterful! You catch errors with try/except instead of letting your program crash.",
+    "tasks": [
+      {
+        "instruction": "Run this example: catch three kinds of errors.",
+        "example": true,
+        "codeTemplate": "gear = (\"Saddle\", 15, \"Leather\")\nfeed = {\"Oats\": 3, \"Hay\": 5, \"Carrots\": 2}\ntry:\n    gear[1] = 99\nexcept TypeError:\n    print(\"Error: tuples are immutable\")\ntry:\n    print(feed[\"Sugar beet\"])\nexcept KeyError:\n    print(\"Error: not in store\")\ntry:\n    number = int(\"ten\")\nexcept ValueError:\n    print(\"Error: not a number\")\nprint(\"Carry on\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Carry on"
+        }
+      },
+      {
+        "instruction": "The tuple gear is given. In a try block, try to set gear[1] = 99, catch the TypeError and print exactly Error: protected.",
+        "codeTemplate": "gear = (\"Saddle\", 15, \"Leather\")\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Error: protected"
+        }
+      },
+      {
+        "instruction": "The dictionary feed is given. In a try block, try to read feed[\"Sugar beet\"], catch the KeyError and print exactly Not in store: Sugar beet.",
+        "codeTemplate": "feed = {\"Oats\": 3, \"Hay\": 5, \"Carrots\": 2}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Not in store: Sugar beet"
+        }
+      },
+      {
+        "instruction": "The input text = \"ten\" is given. In a try block, convert it to number with int(). Catch the ValueError and then set number = 0. Print exactly Number: 0.",
+        "codeTemplate": "text = \"ten\"\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Number: 0"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Exercise 7: Nested structures",
+    "file": "lektion-07.md",
+    "lessonSummary": "World class! You nest dictionaries, lists and tuples.",
+    "tasks": [
+      {
+        "instruction": "Run this example: read nested data and filter.",
+        "example": true,
+        "codeTemplate": "horse = {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120, \"equipment\": {\"saddle\": \"Leather\", \"blanket\": \"Wool\"}}\nprint(f\"Saddle: {horse['equipment']['saddle']}\")\nhorses = [\n    {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120},\n    {\"name\": \"Storm\", \"breed\": \"Haflinger\", \"age\": 12, \"points\": 150},\n    {\"name\": \"Luna\", \"breed\": \"Icelandic\", \"age\": 6, \"points\": 90},\n]\nprint(f\"Count: {len(horses)}\")\nstrong = [e[\"name\"] for e in horses if e[\"age\"] > 7]\nprint(f\"Strong: {strong}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Strong: ['Blitz', 'Storm']"
+        }
+      },
+      {
+        "instruction": "The list horses with three dictionaries is given. Print exactly Count: 3 and on the next line Last: Luna (name of the last entry, index -1).",
+        "codeTemplate": "horses = [\n    {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120},\n    {\"name\": \"Storm\", \"breed\": \"Haflinger\", \"age\": 12, \"points\": 150},\n    {\"name\": \"Luna\", \"breed\": \"Icelandic\", \"age\": 6, \"points\": 90},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 3\nLast: Luna"
+        }
+      },
+      {
+        "instruction": "The dictionary horse contains the sub-entry equipment and is given. Print exactly Saddle: Leather and on the next line Blanket: Wool.",
+        "codeTemplate": "horse = {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120, \"equipment\": {\"saddle\": \"Leather\", \"blanket\": \"Wool\"}}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Saddle: Leather\nBlanket: Wool"
+        }
+      },
+      {
+        "instruction": "The list horses is given. With a list comprehension, collect the names of all entries whose age is greater than 7 into strong and print exactly Strong: ['Blitz', 'Storm'].",
+        "codeTemplate": "horses = [\n    {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120},\n    {\"name\": \"Storm\", \"breed\": \"Haflinger\", \"age\": 12, \"points\": 150},\n    {\"name\": \"Luna\", \"breed\": \"Icelandic\", \"age\": 6, \"points\": 90},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Strong: ['Blitz', 'Storm']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "All bugs found! With dictionaries and tuples, commas, keys and immutability matter.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Goal: The program should print Name: Blitz. What is wrong?",
+        "codeTemplate": "horse = {\n    \"name\": \"Blitz\"\n    \"breed\": \"Hanoverian\"\n}\nprint(\"Name:\", horse[\"name\"])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Blitz"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Goal: The program should print Position: (150, 200). What is wrong?",
+        "codeTemplate": "position = (100, 200)\nposition[0] = 150\nprint(\"Position:\", position)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Position: (150, 200)"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Goal: The program should print Age: 8. What is wrong?",
+        "codeTemplate": "horse = {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120}\nprint(\"Age:\", horse[\"Age\"])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Age: 8"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: The Stable Cards",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission accomplished: You created, changed and read your first profile card!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create a profile card: Create the dictionary horse with name (\"Blitz\"), breed (\"Hanoverian\"), age (8) and points (120). Print exactly Blitz, Hanoverian, Age 8 (use an f-string with the values).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz, Hanoverian, Age 8"
+        }
+      },
+      {
+        "instruction": "Step 2 – Change and add: The dictionary horse is given. Increase age by 1, add wins with the value 3 and print exactly Age: 9 and on the next line Wins: 3.",
+        "codeTemplate": "horse = {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Age: 9\nWins: 3"
+        }
+      },
+      {
+        "instruction": "Step 3 – List of profile cards: The list horses is given. Print exactly Count: 3 and on the next line Second: Storm (name of the second entry).",
+        "codeTemplate": "horses = [\n    {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120},\n    {\"name\": \"Storm\", \"breed\": \"Haflinger\", \"age\": 12, \"points\": 150},\n    {\"name\": \"Luna\", \"breed\": \"Icelandic\", \"age\": 6, \"points\": 90},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 3\nSecond: Storm"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: The Gear Shelf",
+    "file": "mission-02.md",
+    "lessonSummary": "Mission accomplished: Tuples, unpacking and a catalog work together!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Unpack a tuple: The tuple gear is given. Unpack it into name, value and kind and print exactly Gear: Saddle, Value: 15 and Kind: Leather on three lines.",
+        "codeTemplate": "gear = (\"Saddle\", 15, \"Leather\")\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gear: Saddle\nValue: 15\nKind: Leather"
+        }
+      },
+      {
+        "instruction": "Step 2 – Catalog: The dictionary catalog (name → tuple) is given. Print exactly Value: 15 (second element of the tuple of Saddle) and on the next line Entries: 2.",
+        "codeTemplate": "catalog = {\"Saddle\": (\"Saddle\", 15, \"Leather\"), \"Blanket\": (\"Blanket\", 5, \"Wool\")}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Value: 15\nEntries: 2"
+        }
+      },
+      {
+        "instruction": "Step 3 – Distance: Write a function distance(a, b) that receives two point tuples (x, y) and returns the difference of the x values plus that of the y values (b minus a, all positive). For (2, 3) and (6, 6) print exactly Distance: 7.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Distance: 7"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: The Horse Roster",
+    "file": "mission-03.md",
+    "lessonSummary": "Mission accomplished: Searching, counting and averaging across a whole list of profile cards!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Loop: The list horses with four dictionaries is given. Print each entry as Name: Age on its own line, e.g. Blitz: 8.",
+        "codeTemplate": "horses = [\n    {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120},\n    {\"name\": \"Storm\", \"breed\": \"Haflinger\", \"age\": 12, \"points\": 150},\n    {\"name\": \"Luna\", \"breed\": \"Icelandic\", \"age\": 6, \"points\": 90},\n    {\"name\": \"Wind\", \"breed\": \"Hanoverian\", \"age\": 7, \"points\": 110},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz: 8\nStorm: 12\nLuna: 6\nWind: 7"
+        }
+      },
+      {
+        "instruction": "Step 2 – Search: The list horses is given. Write a function find_horses(items, kind) that returns the names of all entries with this breed as a list. For \"Hanoverian\" print exactly Found: ['Blitz', 'Wind'].",
+        "codeTemplate": "horses = [\n    {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120},\n    {\"name\": \"Storm\", \"breed\": \"Haflinger\", \"age\": 12, \"points\": 150},\n    {\"name\": \"Luna\", \"breed\": \"Icelandic\", \"age\": 6, \"points\": 90},\n    {\"name\": \"Wind\", \"breed\": \"Hanoverian\", \"age\": 7, \"points\": 110},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Found: ['Blitz', 'Wind']"
+        }
+      },
+      {
+        "instruction": "Step 3 – Statistics: The list horses is given. Calculate the average of age (sum divided by len) and print exactly Average: 8.25.",
+        "codeTemplate": "horses = [\n    {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120},\n    {\"name\": \"Storm\", \"breed\": \"Haflinger\", \"age\": 12, \"points\": 150},\n    {\"name\": \"Luna\", \"breed\": \"Icelandic\", \"age\": 6, \"points\": 90},\n    {\"name\": \"Wind\", \"breed\": \"Hanoverian\", \"age\": 7, \"points\": 110},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Average: 8.25"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra Challenge 1: The Trophy Catalog",
+    "file": "boss-01.md",
+    "lessonSummary": "The catalog stands: create entries, filter, sum up and sort!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Entry: Create the dictionary entry with name (\"Gold cup\"), value (800) and place (\"Hall\"). Print exactly Name: Gold cup, Value: 800.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Gold cup, Value: 800"
+        }
+      },
+      {
+        "instruction": "Step 2 – Collection: The list trophies with three dictionaries is given. Print exactly Entries: 3 and on the next line Last place: Arena.",
+        "codeTemplate": "trophies = [\n    {\"name\": \"Gold cup\", \"value\": 800, \"place\": \"Hall\"},\n    {\"name\": \"Silver ribbon\", \"value\": 300, \"place\": \"Stable\"},\n    {\"name\": \"Honor prize\", \"value\": 650, \"place\": \"Arena\"},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Entries: 3\nLast place: Arena"
+        }
+      },
+      {
+        "instruction": "Step 3 – Filter and sum: Count all entries with value above 500 and add up all values. Print exactly Above 500: 2 and on the next line Total value: 1750.",
+        "codeTemplate": "trophies = [\n    {\"name\": \"Gold cup\", \"value\": 800, \"place\": \"Hall\"},\n    {\"name\": \"Silver ribbon\", \"value\": 300, \"place\": \"Stable\"},\n    {\"name\": \"Honor prize\", \"value\": 650, \"place\": \"Arena\"},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Above 500: 2\nTotal value: 1750"
+        }
+      },
+      {
+        "instruction": "Step 4 – Sort: Collect all value values in the list values and sort them in descending order (sorted with reverse=True). Print exactly Values: [800, 650, 300].",
+        "codeTemplate": "trophies = [\n    {\"name\": \"Gold cup\", \"value\": 800, \"place\": \"Hall\"},\n    {\"name\": \"Silver ribbon\", \"value\": 300, \"place\": \"Stable\"},\n    {\"name\": \"Honor prize\", \"value\": 650, \"place\": \"Arena\"},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Values: [800, 650, 300]"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra Challenge 2: The Course Manager",
+    "file": "boss-02.md",
+    "lessonSummary": "The manager runs: nested dictionaries searched, compared and evaluated!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Setup: The nested dictionary zones is given (Course → dictionary with obstacle, prize, difficulty). Print each Course as Name: obstacle / prize, e.g. Meadow: Ditch / Ribbon.",
+        "codeTemplate": "zones = {\n    \"Meadow\": {\"obstacle\": \"Ditch\", \"prize\": \"Ribbon\", \"difficulty\": 3},\n    \"Forest\": {\"obstacle\": \"Water jump\", \"prize\": \"Cup\", \"difficulty\": 5},\n    \"Moor\": {\"obstacle\": \"Wall\", \"prize\": \"Medal\", \"difficulty\": 8},\n}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Meadow: Ditch / Ribbon\nForest: Water jump / Cup\nMoor: Wall / Medal"
+        }
+      },
+      {
+        "instruction": "Step 2 – Most dangerous: The dictionary zones is given. Find the Course with the highest difficulty and print exactly Most dangerous: Moor (8).",
+        "codeTemplate": "zones = {\n    \"Meadow\": {\"obstacle\": \"Ditch\", \"prize\": \"Ribbon\", \"difficulty\": 3},\n    \"Forest\": {\"obstacle\": \"Water jump\", \"prize\": \"Cup\", \"difficulty\": 5},\n    \"Moor\": {\"obstacle\": \"Wall\", \"prize\": \"Medal\", \"difficulty\": 8},\n}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Most dangerous: Moor (8)"
+        }
+      },
+      {
+        "instruction": "Step 3 – Who may enter? The character has strong = 5. In the list enterable, collect the names of all zones whose difficulty is at most strong and print exactly Enterable: ['Meadow', 'Forest'].",
+        "codeTemplate": "zones = {\n    \"Meadow\": {\"obstacle\": \"Ditch\", \"prize\": \"Ribbon\", \"difficulty\": 3},\n    \"Forest\": {\"obstacle\": \"Water jump\", \"prize\": \"Cup\", \"difficulty\": 5},\n    \"Moor\": {\"obstacle\": \"Wall\", \"prize\": \"Medal\", \"difficulty\": 8},\n}\nstrong = 5\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Enterable: ['Meadow', 'Forest']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra Challenge 3: The Stable Archive",
+    "file": "boss-03.md",
+    "lessonSummary": "The archive stands: searching, counting and a ranking from four profile cards!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create: Create the list horses with four dictionaries (keys name, breed, age): Blitz (Hanoverian, 8), Storm (Haflinger, 12), Luna (Icelandic, 6), Wind (Hanoverian, 7). Print exactly Count: 4.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 4"
+        }
+      },
+      {
+        "instruction": "Step 2 – Search: The list horses is given. Write a function find_horses(items, kind) that returns the names with this breed. Print exactly Hanoverian: 2 and on the next line Haflinger: 1 (number of hits).",
+        "codeTemplate": "horses = [\n    {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120},\n    {\"name\": \"Storm\", \"breed\": \"Haflinger\", \"age\": 12, \"points\": 150},\n    {\"name\": \"Luna\", \"breed\": \"Icelandic\", \"age\": 6, \"points\": 90},\n    {\"name\": \"Wind\", \"breed\": \"Hanoverian\", \"age\": 7, \"points\": 110},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hanoverian: 2\nHaflinger: 1"
+        }
+      },
+      {
+        "instruction": "Step 3 – Ranking: The list horses is given. Collect all age values, sort them in descending order and find the name with the highest value. Print exactly Best: Storm and on the next line Ranking: [12, 8, 7, 6].",
+        "codeTemplate": "horses = [\n    {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120},\n    {\"name\": \"Storm\", \"breed\": \"Haflinger\", \"age\": 12, \"points\": 150},\n    {\"name\": \"Luna\", \"breed\": \"Icelandic\", \"age\": 6, \"points\": 90},\n    {\"name\": \"Wind\", \"breed\": \"Hanoverian\", \"age\": 7, \"points\": 110},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Best: Storm\nRanking: [12, 8, 7, 6]"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-04",
+    "section": "boss",
+    "title": "Extra Challenge 4: The Great Stable Archive",
+    "file": "boss-04.md",
+    "lessonSummary": "The great review is done: functions, lists and randomness from weeks 5 to 7 – now with dictionaries!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Function with return (week 5): Write create_horse(name, kind, level) that returns a dictionary with the keys name, breed, age. Call it with (\"Blitz\", \"Hanoverian\", 8) and print exactly Created: Blitz and on the next line Age: 8.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Created: Blitz\nAge: 8"
+        }
+      },
+      {
+        "instruction": "Step 2 – List of dictionaries (week 5/6): Write create_training(name, difficulty) that returns a dictionary with name, difficulty and status \"open\". Create the list trainings and add three Training entries with append() (Practice jumping / 1, Plan a ride / 2, Groom the coat / 3). Print exactly Training count: 3 and on the next line Status: open (status of the first one).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Training count: 3\nStatus: open"
+        }
+      },
+      {
+        "instruction": "Step 3 – Find the largest value (week 6): The dictionary prices (name → price) is given. Find the most expensive item with a loop and print exactly Most expensive item: Oats (30).",
+        "codeTemplate": "prices = {\"Oats\": 30, \"Hay\": 5, \"Carrots\": 10}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Most expensive item: Oats (30)"
+        }
+      },
+      {
+        "instruction": "Step 4 – Counting with a dictionary: In word = \"horsestable\", count how often each letter occurs. Use counter = {} and counter[c] = counter.get(c, 0) + 1. Print exactly s: 2.",
+        "codeTemplate": "word = \"horsestable\"\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "s: 2"
+        }
+      },
+      {
+        "instruction": "Step 5 – Randomness (week 7): The dictionary feed is given. With random.choice(list(feed.keys())), draw a name into drawn and print exactly Drawn valid: True (drawn in feed).",
+        "codeTemplate": "feed = {\"Oats\": 3, \"Hay\": 5, \"Carrots\": 2}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Drawn valid: True"
+        }
+      },
+      {
+        "instruction": "Step 6 – Catch errors (week 5/8): The dictionary feed is given. Write amount_of(name) that returns the amount – or 0 if the name is missing (try/except KeyError). Print exactly Oats: 3 and on the next line Sugar beet: 0.",
+        "codeTemplate": "feed = {\"Oats\": 3, \"Hay\": 5, \"Carrots\": 2}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Oats: 3\nSugar beet: 0"
+        }
+      }
+    ]
+  }
+]

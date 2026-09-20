@@ -1,0 +1,552 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Archive Spell 1: Creating and reading profile cards",
+    "file": "lektion-01.md",
+    "lessonSummary": "Great! You create dictionaries and read values by their key.",
+    "tasks": [
+      {
+        "instruction": "Run this example: create a dictionary and read from it.",
+        "example": true,
+        "codeTemplate": "hero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\nprint(hero)\nprint(\"Name:\", hero[\"name\"])\nprint(f\"Level: {hero['level']}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 15"
+        }
+      },
+      {
+        "instruction": "Create a dictionary hero with the keys name (\"Aria\"), class (\"Mage\"), level (15) and hp (120). Print exactly Name: Aria and on the next line Level: 15 (access with []).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Aria\nLevel: 15"
+        }
+      },
+      {
+        "instruction": "The dictionary hero is given. Print the number of entries with len() as Number of properties: 4 and on the next line Class: Mage.",
+        "codeTemplate": "hero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Number of properties: 4\nClass: Mage"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Archive Spell 2: Changing, adding and removing",
+    "file": "lektion-02.md",
+    "lessonSummary": "Nice! You change values, add entries and remove them again.",
+    "tasks": [
+      {
+        "instruction": "Run this example: change, add, remove.",
+        "example": true,
+        "codeTemplate": "hero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\nhero[\"level\"] = hero[\"level\"] + 1\nhero[\"mana\"] = 80\nremoved = hero.pop(\"hp\")\nprint(f\"Level now: {hero['level']}\")\nprint(f\"Removed: {removed}\")\nprint(f\"Properties: {len(hero)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Properties: 4"
+        }
+      },
+      {
+        "instruction": "The dictionary hero is given. Increase level with += 1 and add the new key mana with the value 80. Print exactly Level: 16 and on the next line Mana: 80.",
+        "codeTemplate": "hero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 16\nMana: 80"
+        }
+      },
+      {
+        "instruction": "The dictionary hero is given. Remove the key class with pop() and print the removed value as Removed: Mage. Then delete the key hp with del and print Properties: 2 (len).",
+        "codeTemplate": "hero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Removed: Mage\nProperties: 2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Archive Spell 3: Safe access with get() and in",
+    "file": "lektion-03.md",
+    "lessonSummary": "Well done! You ask with get() and in instead of risking a KeyError.",
+    "tasks": [
+      {
+        "instruction": "Run this example: get() with a default value and in.",
+        "example": true,
+        "codeTemplate": "hero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\nprint(\"Name:\", hero.get(\"name\"))\nprint(\"Mana:\", hero.get(\"mana\", 0))\nprint(\"Present:\", \"mana\" in hero)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Present: False"
+        }
+      },
+      {
+        "instruction": "The dictionary hero is given (without mana). Fetch the value of mana with get() and default value 0 and print exactly Mana: 0.",
+        "codeTemplate": "hero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mana: 0"
+        }
+      },
+      {
+        "instruction": "The dictionary hero is given. Check with in and print exactly level present: True and on the next line mana present: False.",
+        "codeTemplate": "hero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "level present: True\nmana present: False"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Archive Spell 4: Looping through dictionaries",
+    "file": "lektion-04.md",
+    "lessonSummary": "Great! You walk through a dictionary with keys(), values() and items().",
+    "tasks": [
+      {
+        "instruction": "Run this example: items() and values().",
+        "example": true,
+        "codeTemplate": "bag = {\"Potion\": 3, \"Torch\": 5, \"Rope\": 2}\nfor name, amount in bag.items():\n    print(f\"{name}: {amount}\")\ntotal = 0\nfor amount in bag.values():\n    total += amount\nprint(f\"Total: {total}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total: 10"
+        }
+      },
+      {
+        "instruction": "The dictionary bag is given (Bag: name and amount). With items(), print each entry as Name: Amount on its own line, e.g. Potion: 3.",
+        "codeTemplate": "bag = {\"Potion\": 3, \"Torch\": 5, \"Rope\": 2}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Potion: 3\nTorch: 5\nRope: 2"
+        }
+      },
+      {
+        "instruction": "The dictionary bag is given. Add up all amounts with values() and print exactly Total: 10 and on the next line Kinds: 3 (len).",
+        "codeTemplate": "bag = {\"Potion\": 3, \"Torch\": 5, \"Rope\": 2}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total: 10\nKinds: 3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Archive Spell 5: Tuples",
+    "file": "lektion-05.md",
+    "lessonSummary": "Nice! You pack values into tuples and unpack them again.",
+    "tasks": [
+      {
+        "instruction": "Run this example: create, read and unpack a tuple.",
+        "example": true,
+        "codeTemplate": "artifact = (\"Fire staff\", 15, \"Fire\")\nprint(artifact)\nprint(\"Length:\", len(artifact))\nprint(\"First:\", artifact[0])\nname, value, kind = artifact\nprint(f\"Value: {value}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Value: 15"
+        }
+      },
+      {
+        "instruction": "Create the tuple artifact = (\"Fire staff\", 15, \"Fire\") and unpack it into name, value and kind. Print exactly Name: Fire staff and on the next line Kind: Fire.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Fire staff\nKind: Fire"
+        }
+      },
+      {
+        "instruction": "Two points are given as tuples. Calculate the distance as the difference of the x values plus the difference of the y values (goal minus start, all positive) and print exactly Distance: 7.",
+        "codeTemplate": "start = (2, 3)\ngoal = (6, 6)\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Distance: 7"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Archive Spell 6: Immutable and catching errors",
+    "file": "lektion-06.md",
+    "lessonSummary": "Masterful! You catch errors with try/except instead of letting your program crash.",
+    "tasks": [
+      {
+        "instruction": "Run this example: catch three kinds of errors.",
+        "example": true,
+        "codeTemplate": "artifact = (\"Fire staff\", 15, \"Fire\")\nbag = {\"Potion\": 3, \"Torch\": 5, \"Rope\": 2}\ntry:\n    artifact[1] = 99\nexcept TypeError:\n    print(\"Error: tuples are immutable\")\ntry:\n    print(bag[\"Dragon egg\"])\nexcept KeyError:\n    print(\"Error: not in store\")\ntry:\n    number = int(\"ten\")\nexcept ValueError:\n    print(\"Error: not a number\")\nprint(\"Carry on\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Carry on"
+        }
+      },
+      {
+        "instruction": "The tuple artifact is given. In a try block, try to set artifact[1] = 99, catch the TypeError and print exactly Error: protected.",
+        "codeTemplate": "artifact = (\"Fire staff\", 15, \"Fire\")\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Error: protected"
+        }
+      },
+      {
+        "instruction": "The dictionary bag is given. In a try block, try to read bag[\"Dragon egg\"], catch the KeyError and print exactly Not in store: Dragon egg.",
+        "codeTemplate": "bag = {\"Potion\": 3, \"Torch\": 5, \"Rope\": 2}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Not in store: Dragon egg"
+        }
+      },
+      {
+        "instruction": "The input text = \"ten\" is given. In a try block, convert it to number with int(). Catch the ValueError and then set number = 0. Print exactly Number: 0.",
+        "codeTemplate": "text = \"ten\"\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Number: 0"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Archive Spell 7: Nested structures",
+    "file": "lektion-07.md",
+    "lessonSummary": "World class! You nest dictionaries, lists and tuples.",
+    "tasks": [
+      {
+        "instruction": "Run this example: read nested data and filter.",
+        "example": true,
+        "codeTemplate": "hero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120, \"equipment\": {\"weapon\": \"Staff\", \"armor\": \"Robe\"}}\nprint(f\"Weapon: {hero['equipment']['weapon']}\")\nheroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n]\nprint(f\"Count: {len(heroes)}\")\nstrong = [e[\"name\"] for e in heroes if e[\"level\"] > 14]\nprint(f\"Strong: {strong}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Strong: ['Aria', 'Thorin']"
+        }
+      },
+      {
+        "instruction": "The list heroes with three dictionaries is given. Print exactly Count: 3 and on the next line Last: Luna (name of the last entry, index -1).",
+        "codeTemplate": "heroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 3\nLast: Luna"
+        }
+      },
+      {
+        "instruction": "The dictionary hero contains the sub-entry equipment and is given. Print exactly Weapon: Staff and on the next line Armor: Robe.",
+        "codeTemplate": "hero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120, \"equipment\": {\"weapon\": \"Staff\", \"armor\": \"Robe\"}}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Weapon: Staff\nArmor: Robe"
+        }
+      },
+      {
+        "instruction": "The list heroes is given. With a list comprehension, collect the names of all entries whose level is greater than 14 into strong and print exactly Strong: ['Aria', 'Thorin'].",
+        "codeTemplate": "heroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Strong: ['Aria', 'Thorin']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "All bugs found! With dictionaries and tuples, commas, keys and immutability matter.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Goal: The program should print Name: Aria. What is wrong?",
+        "codeTemplate": "hero = {\n    \"name\": \"Aria\"\n    \"class\": \"Mage\"\n}\nprint(\"Name:\", hero[\"name\"])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Aria"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Goal: The program should print Position: (150, 200). What is wrong?",
+        "codeTemplate": "position = (100, 200)\nposition[0] = 150\nprint(\"Position:\", position)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Position: (150, 200)"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Goal: The program should print Level: 15. What is wrong?",
+        "codeTemplate": "hero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\nprint(\"Level:\", hero[\"Level\"])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 15"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: The Profile Master",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission accomplished: You created, changed and read your first profile card!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create a profile card: Create the dictionary hero with name (\"Aria\"), class (\"Mage\"), level (15) and hp (120). Print exactly Aria, Mage, Level 15 (use an f-string with the values).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria, Mage, Level 15"
+        }
+      },
+      {
+        "instruction": "Step 2 – Change and add: The dictionary hero is given. Increase level by 1, add mana with the value 80 and print exactly Level: 16 and on the next line Mana: 80.",
+        "codeTemplate": "hero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 16\nMana: 80"
+        }
+      },
+      {
+        "instruction": "Step 3 – List of profile cards: The list heroes is given. Print exactly Count: 3 and on the next line Second: Thorin (name of the second entry).",
+        "codeTemplate": "heroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 3\nSecond: Thorin"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: The Artifact Master",
+    "file": "mission-02.md",
+    "lessonSummary": "Mission accomplished: Tuples, unpacking and a catalog work together!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Unpack a tuple: The tuple artifact is given. Unpack it into name, value and kind and print exactly Artifact: Fire staff, Value: 15 and Kind: Fire on three lines.",
+        "codeTemplate": "artifact = (\"Fire staff\", 15, \"Fire\")\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Artifact: Fire staff\nValue: 15\nKind: Fire"
+        }
+      },
+      {
+        "instruction": "Step 2 – Catalog: The dictionary catalog (name → tuple) is given. Print exactly Value: 15 (second element of the tuple of Fire staff) and on the next line Entries: 2.",
+        "codeTemplate": "catalog = {\"Fire staff\": (\"Fire staff\", 15, \"Fire\"), \"Ice ring\": (\"Ice ring\", 5, \"Ice\")}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Value: 15\nEntries: 2"
+        }
+      },
+      {
+        "instruction": "Step 3 – Distance: Write a function distance(a, b) that receives two point tuples (x, y) and returns the difference of the x values plus that of the y values (b minus a, all positive). For (2, 3) and (6, 6) print exactly Distance: 7.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Distance: 7"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: The Hero Guild",
+    "file": "mission-03.md",
+    "lessonSummary": "Mission accomplished: Searching, counting and averaging across a whole list of profile cards!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Loop: The list heroes with four dictionaries is given. Print each entry as Name: Level on its own line, e.g. Aria: 15.",
+        "codeTemplate": "heroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n    {\"name\": \"Mira\", \"class\": \"Mage\", \"level\": 13, \"hp\": 110},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria: 15\nThorin: 18\nLuna: 12\nMira: 13"
+        }
+      },
+      {
+        "instruction": "Step 2 – Search: The list heroes is given. Write a function find_heroes(items, kind) that returns the names of all entries with this class as a list. For \"Mage\" print exactly Found: ['Aria', 'Mira'].",
+        "codeTemplate": "heroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n    {\"name\": \"Mira\", \"class\": \"Mage\", \"level\": 13, \"hp\": 110},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Found: ['Aria', 'Mira']"
+        }
+      },
+      {
+        "instruction": "Step 3 – Statistics: The list heroes is given. Calculate the average of level (sum divided by len) and print exactly Average: 14.5.",
+        "codeTemplate": "heroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n    {\"name\": \"Mira\", \"class\": \"Mage\", \"level\": 13, \"hp\": 110},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Average: 14.5"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra Challenge 1: The Treasure Catalog",
+    "file": "boss-01.md",
+    "lessonSummary": "The catalog stands: create entries, filter, sum up and sort!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Entry: Create the dictionary entry with name (\"Gold crown\"), value (800) and place (\"Tower\"). Print exactly Name: Gold crown, Value: 800.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Gold crown, Value: 800"
+        }
+      },
+      {
+        "instruction": "Step 2 – Collection: The list treasures with three dictionaries is given. Print exactly Entries: 3 and on the next line Last place: Cave.",
+        "codeTemplate": "treasures = [\n    {\"name\": \"Gold crown\", \"value\": 800, \"place\": \"Tower\"},\n    {\"name\": \"Silver cup\", \"value\": 300, \"place\": \"Cellar\"},\n    {\"name\": \"Ruby\", \"value\": 650, \"place\": \"Cave\"},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Entries: 3\nLast place: Cave"
+        }
+      },
+      {
+        "instruction": "Step 3 – Filter and sum: Count all entries with value above 500 and add up all values. Print exactly Above 500: 2 and on the next line Total value: 1750.",
+        "codeTemplate": "treasures = [\n    {\"name\": \"Gold crown\", \"value\": 800, \"place\": \"Tower\"},\n    {\"name\": \"Silver cup\", \"value\": 300, \"place\": \"Cellar\"},\n    {\"name\": \"Ruby\", \"value\": 650, \"place\": \"Cave\"},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Above 500: 2\nTotal value: 1750"
+        }
+      },
+      {
+        "instruction": "Step 4 – Sort: Collect all value values in the list values and sort them in descending order (sorted with reverse=True). Print exactly Values: [800, 650, 300].",
+        "codeTemplate": "treasures = [\n    {\"name\": \"Gold crown\", \"value\": 800, \"place\": \"Tower\"},\n    {\"name\": \"Silver cup\", \"value\": 300, \"place\": \"Cellar\"},\n    {\"name\": \"Ruby\", \"value\": 650, \"place\": \"Cave\"},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Values: [800, 650, 300]"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra Challenge 2: The Dungeon Manager",
+    "file": "boss-02.md",
+    "lessonSummary": "The manager runs: nested dictionaries searched, compared and evaluated!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Setup: The nested dictionary zones is given (Level → dictionary with monster, treasure, difficulty). Print each Level as Name: monster / treasure, e.g. Cellar: Rat / Silver.",
+        "codeTemplate": "zones = {\n    \"Cellar\": {\"monster\": \"Rat\", \"treasure\": \"Silver\", \"difficulty\": 3},\n    \"Cave\": {\"monster\": \"Troll\", \"treasure\": \"Gold\", \"difficulty\": 5},\n    \"Tower\": {\"monster\": \"Dragon\", \"treasure\": \"Crown\", \"difficulty\": 8},\n}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Cellar: Rat / Silver\nCave: Troll / Gold\nTower: Dragon / Crown"
+        }
+      },
+      {
+        "instruction": "Step 2 – Most dangerous: The dictionary zones is given. Find the Level with the highest difficulty and print exactly Most dangerous: Tower (8).",
+        "codeTemplate": "zones = {\n    \"Cellar\": {\"monster\": \"Rat\", \"treasure\": \"Silver\", \"difficulty\": 3},\n    \"Cave\": {\"monster\": \"Troll\", \"treasure\": \"Gold\", \"difficulty\": 5},\n    \"Tower\": {\"monster\": \"Dragon\", \"treasure\": \"Crown\", \"difficulty\": 8},\n}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Most dangerous: Tower (8)"
+        }
+      },
+      {
+        "instruction": "Step 3 – Who may enter? The character has strong = 5. In the list enterable, collect the names of all zones whose difficulty is at most strong and print exactly Enterable: ['Cellar', 'Cave'].",
+        "codeTemplate": "zones = {\n    \"Cellar\": {\"monster\": \"Rat\", \"treasure\": \"Silver\", \"difficulty\": 3},\n    \"Cave\": {\"monster\": \"Troll\", \"treasure\": \"Gold\", \"difficulty\": 5},\n    \"Tower\": {\"monster\": \"Dragon\", \"treasure\": \"Crown\", \"difficulty\": 8},\n}\nstrong = 5\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Enterable: ['Cellar', 'Cave']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra Challenge 3: The Hero Archive",
+    "file": "boss-03.md",
+    "lessonSummary": "The archive stands: searching, counting and a ranking from four profile cards!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create: Create the list heroes with four dictionaries (keys name, class, level): Aria (Mage, 15), Thorin (Warrior, 18), Luna (Rogue, 12), Mira (Mage, 13). Print exactly Count: 4.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 4"
+        }
+      },
+      {
+        "instruction": "Step 2 – Search: The list heroes is given. Write a function find_heroes(items, kind) that returns the names with this class. Print exactly Mage: 2 and on the next line Warrior: 1 (number of hits).",
+        "codeTemplate": "heroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n    {\"name\": \"Mira\", \"class\": \"Mage\", \"level\": 13, \"hp\": 110},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mage: 2\nWarrior: 1"
+        }
+      },
+      {
+        "instruction": "Step 3 – Ranking: The list heroes is given. Collect all level values, sort them in descending order and find the name with the highest value. Print exactly Best: Thorin and on the next line Ranking: [18, 15, 13, 12].",
+        "codeTemplate": "heroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n    {\"name\": \"Mira\", \"class\": \"Mage\", \"level\": 13, \"hp\": 110},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Best: Thorin\nRanking: [18, 15, 13, 12]"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-04",
+    "section": "boss",
+    "title": "Extra Challenge 4: The Great Guild Archive",
+    "file": "boss-04.md",
+    "lessonSummary": "The great review is done: functions, lists and randomness from weeks 5 to 7 – now with dictionaries!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Function with return (week 5): Write create_hero(name, kind, level) that returns a dictionary with the keys name, class, level. Call it with (\"Aria\", \"Mage\", 15) and print exactly Created: Aria and on the next line Level: 15.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Created: Aria\nLevel: 15"
+        }
+      },
+      {
+        "instruction": "Step 2 – List of dictionaries (week 5/6): Write create_quest(name, difficulty) that returns a dictionary with name, difficulty and status \"open\". Create the list quests and add three Quest entries with append() (Defeat the dragon / 1, Find the treasure / 2, Save the village / 3). Print exactly Quest count: 3 and on the next line Status: open (status of the first one).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Quest count: 3\nStatus: open"
+        }
+      },
+      {
+        "instruction": "Step 3 – Find the largest value (week 6): The dictionary prices (name → price) is given. Find the most expensive item with a loop and print exactly Most expensive item: Potion (30).",
+        "codeTemplate": "prices = {\"Potion\": 30, \"Torch\": 5, \"Rope\": 10}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Most expensive item: Potion (30)"
+        }
+      },
+      {
+        "instruction": "Step 4 – Counting with a dictionary: In word = \"adventure\", count how often each letter occurs. Use counter = {} and counter[c] = counter.get(c, 0) + 1. Print exactly e: 2.",
+        "codeTemplate": "word = \"adventure\"\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "e: 2"
+        }
+      },
+      {
+        "instruction": "Step 5 – Randomness (week 7): The dictionary bag is given. With random.choice(list(bag.keys())), draw a name into drawn and print exactly Drawn valid: True (drawn in bag).",
+        "codeTemplate": "bag = {\"Potion\": 3, \"Torch\": 5, \"Rope\": 2}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Drawn valid: True"
+        }
+      },
+      {
+        "instruction": "Step 6 – Catch errors (week 5/8): The dictionary bag is given. Write amount_of(name) that returns the amount – or 0 if the name is missing (try/except KeyError). Print exactly Potion: 3 and on the next line Dragon egg: 0.",
+        "codeTemplate": "bag = {\"Potion\": 3, \"Torch\": 5, \"Rope\": 2}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Potion: 3\nDragon egg: 0"
+        }
+      }
+    ]
+  }
+]

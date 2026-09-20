@@ -1,0 +1,552 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Übung 1: Steckbriefe erstellen und lesen",
+    "file": "lektion-01.md",
+    "lessonSummary": "Stark! Du legst Dictionaries an und liest Werte über ihren Schlüssel.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Ein Dictionary anlegen und lesen.",
+        "example": true,
+        "codeTemplate": "pferd = {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120}\nprint(pferd)\nprint(\"Name:\", pferd[\"name\"])\nprint(f\"Alter: {pferd['alter']}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Alter: 8"
+        }
+      },
+      {
+        "instruction": "Lege ein Dictionary pferd an mit den Schlüsseln name (\"Blitz\"), rasse (\"Hannoveraner\"), alter (8) und punkte (120). Gib genau Name: Blitz und in der nächsten Zeile Alter: 8 aus (Zugriff mit []).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Blitz\nAlter: 8"
+        }
+      },
+      {
+        "instruction": "Das Dictionary pferd ist vorgegeben. Gib mit len() die Zahl der Einträge als Anzahl Eigenschaften: 4 aus und in der nächsten Zeile Rasse: Hannoveraner.",
+        "codeTemplate": "pferd = {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl Eigenschaften: 4\nRasse: Hannoveraner"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Übung 2: Ändern, ergänzen und entfernen",
+    "file": "lektion-02.md",
+    "lessonSummary": "Prima! Du änderst Werte, ergänzt Einträge und entfernst sie wieder.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: ändern, ergänzen, entfernen.",
+        "example": true,
+        "codeTemplate": "pferd = {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120}\npferd[\"alter\"] = pferd[\"alter\"] + 1\npferd[\"siege\"] = 3\nentfernt = pferd.pop(\"punkte\")\nprint(f\"Alter jetzt: {pferd['alter']}\")\nprint(f\"Entfernt: {entfernt}\")\nprint(f\"Eigenschaften: {len(pferd)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Eigenschaften: 4"
+        }
+      },
+      {
+        "instruction": "Das Dictionary pferd ist vorgegeben. Erhöhe alter mit += 1 und ergänze den neuen Schlüssel siege mit dem Wert 3. Gib genau Alter: 9 und in der nächsten Zeile Siege: 3 aus.",
+        "codeTemplate": "pferd = {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Alter: 9\nSiege: 3"
+        }
+      },
+      {
+        "instruction": "Das Dictionary pferd ist vorgegeben. Entferne mit pop() den Schlüssel rasse und gib den entfernten Wert als Entfernt: Hannoveraner aus. Lösche danach mit del den Schlüssel punkte und gib Eigenschaften: 2 aus (len).",
+        "codeTemplate": "pferd = {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Entfernt: Hannoveraner\nEigenschaften: 2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Übung 3: Sicher zugreifen mit get() und in",
+    "file": "lektion-03.md",
+    "lessonSummary": "Klasse! Du fragst mit get() und in, statt einen KeyError zu riskieren.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: get() mit Standardwert und in.",
+        "example": true,
+        "codeTemplate": "pferd = {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120}\nprint(\"Name:\", pferd.get(\"name\"))\nprint(\"Siege:\", pferd.get(\"siege\", 0))\nprint(\"Vorhanden:\", \"siege\" in pferd)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Vorhanden: False"
+        }
+      },
+      {
+        "instruction": "Das Dictionary pferd ist vorgegeben (ohne siege). Hole mit get() den Wert von siege mit Standardwert 0 und gib genau Siege: 0 aus.",
+        "codeTemplate": "pferd = {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Siege: 0"
+        }
+      },
+      {
+        "instruction": "Das Dictionary pferd ist vorgegeben. Prüfe mit in und gib genau alter vorhanden: True und in der nächsten Zeile siege vorhanden: False aus.",
+        "codeTemplate": "pferd = {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "alter vorhanden: True\nsiege vorhanden: False"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Übung 4: Dictionaries durchlaufen",
+    "file": "lektion-04.md",
+    "lessonSummary": "Stark! Du läufst mit keys(), values() und items() durch ein Dictionary.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: items() und values().",
+        "example": true,
+        "codeTemplate": "futter = {\"Hafer\": 3, \"Heu\": 5, \"Möhren\": 2}\nfor name, anzahl in futter.items():\n    print(f\"{name}: {anzahl}\")\ngesamt = 0\nfor anzahl in futter.values():\n    gesamt += anzahl\nprint(f\"Gesamt: {gesamt}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gesamt: 10"
+        }
+      },
+      {
+        "instruction": "Das Dictionary futter ist vorgegeben (Futterlager: Name und Anzahl). Gib mit items() jeden Eintrag als Name: Anzahl in einer eigenen Zeile aus, z. B. Hafer: 3.",
+        "codeTemplate": "futter = {\"Hafer\": 3, \"Heu\": 5, \"Möhren\": 2}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hafer: 3\nHeu: 5\nMöhren: 2"
+        }
+      },
+      {
+        "instruction": "Das Dictionary futter ist vorgegeben. Addiere mit values() alle Anzahlen und gib genau Gesamt: 10 und in der nächsten Zeile Sorten: 3 aus (len).",
+        "codeTemplate": "futter = {\"Hafer\": 3, \"Heu\": 5, \"Möhren\": 2}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gesamt: 10\nSorten: 3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Übung 5: Tupel",
+    "file": "lektion-05.md",
+    "lessonSummary": "Prima! Du packst Werte in Tupel und entpackst sie wieder.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Tupel anlegen, lesen und entpacken.",
+        "example": true,
+        "codeTemplate": "zubehoer = (\"Sattel\", 15, \"Leder\")\nprint(zubehoer)\nprint(\"Länge:\", len(zubehoer))\nprint(\"Erstes:\", zubehoer[0])\nname, wert, sorte = zubehoer\nprint(f\"Wert: {wert}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wert: 15"
+        }
+      },
+      {
+        "instruction": "Lege das Tupel zubehoer = (\"Sattel\", 15, \"Leder\") an und entpacke es in name, wert und sorte. Gib genau Name: Sattel und in der nächsten Zeile Art: Leder aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Sattel\nArt: Leder"
+        }
+      },
+      {
+        "instruction": "Zwei Punkte sind als Tupel gegeben. Berechne den Abstand als Unterschied der x-Werte plus Unterschied der y-Werte (ziel minus start, alles positiv) und gib genau Abstand: 7 aus.",
+        "codeTemplate": "start = (2, 3)\nziel = (6, 6)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Abstand: 7"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Übung 6: Unveränderlich und Fehler abfangen",
+    "file": "lektion-06.md",
+    "lessonSummary": "Meisterhaft! Du fängst Fehler mit try/except ab, statt dass dein Programm abstürzt.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: drei Fehlerarten abfangen.",
+        "example": true,
+        "codeTemplate": "zubehoer = (\"Sattel\", 15, \"Leder\")\nfutter = {\"Hafer\": 3, \"Heu\": 5, \"Möhren\": 2}\ntry:\n    zubehoer[1] = 99\nexcept TypeError:\n    print(\"Fehler: Tupel sind unveränderlich\")\ntry:\n    print(futter[\"Zuckerrüben\"])\nexcept KeyError:\n    print(\"Fehler: nicht im Lager\")\ntry:\n    zahl = int(\"zehn\")\nexcept ValueError:\n    print(\"Fehler: keine Zahl\")\nprint(\"Weiter geht es\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Weiter geht es"
+        }
+      },
+      {
+        "instruction": "Das Tupel zubehoer ist vorgegeben. Versuche in einem try-Block zubehoer[1] = 99 zu setzen, fange den TypeError ab und gib genau Fehler: geschützt aus.",
+        "codeTemplate": "zubehoer = (\"Sattel\", 15, \"Leder\")\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Fehler: geschützt"
+        }
+      },
+      {
+        "instruction": "Das Dictionary futter ist vorgegeben. Versuche in einem try-Block futter[\"Zuckerrüben\"] zu lesen, fange den KeyError ab und gib genau Nicht im Lager: Zuckerrüben aus.",
+        "codeTemplate": "futter = {\"Hafer\": 3, \"Heu\": 5, \"Möhren\": 2}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nicht im Lager: Zuckerrüben"
+        }
+      },
+      {
+        "instruction": "Die Eingabe eingabe = \"zehn\" ist vorgegeben. Wandle sie in einem try-Block mit int() in zahl um. Fange den ValueError ab und setze dann zahl = 0. Gib genau Zahl: 0 aus.",
+        "codeTemplate": "eingabe = \"zehn\"\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zahl: 0"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Übung 7: Verschachtelte Strukturen",
+    "file": "lektion-07.md",
+    "lessonSummary": "Weltklasse! Du verschachtelst Dictionaries, Listen und Tupel.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: verschachtelt lesen und filtern.",
+        "example": true,
+        "codeTemplate": "pferd = {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120, \"ausruestung\": {\"sattel\": \"Leder\", \"decke\": \"Wolle\"}}\nprint(f\"Sattel: {pferd['ausruestung']['sattel']}\")\npferde = [\n    {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120},\n    {\"name\": \"Sturm\", \"rasse\": \"Haflinger\", \"alter\": 12, \"punkte\": 150},\n    {\"name\": \"Luna\", \"rasse\": \"Isländer\", \"alter\": 6, \"punkte\": 90},\n]\nprint(f\"Anzahl: {len(pferde)}\")\nstarke = [e[\"name\"] for e in pferde if e[\"alter\"] > 7]\nprint(f\"Starke: {starke}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Starke: ['Blitz', 'Sturm']"
+        }
+      },
+      {
+        "instruction": "Die Liste pferde mit drei Dictionaries ist vorgegeben. Gib genau Anzahl: 3 und in der nächsten Zeile Letzter: Luna aus (Name des letzten Eintrags, Index -1).",
+        "codeTemplate": "pferde = [\n    {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120},\n    {\"name\": \"Sturm\", \"rasse\": \"Haflinger\", \"alter\": 12, \"punkte\": 150},\n    {\"name\": \"Luna\", \"rasse\": \"Isländer\", \"alter\": 6, \"punkte\": 90},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 3\nLetzter: Luna"
+        }
+      },
+      {
+        "instruction": "Das Dictionary pferd enthält den Unter-Eintrag ausruestung und ist vorgegeben. Gib genau Sattel: Leder und in der nächsten Zeile Decke: Wolle aus.",
+        "codeTemplate": "pferd = {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120, \"ausruestung\": {\"sattel\": \"Leder\", \"decke\": \"Wolle\"}}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sattel: Leder\nDecke: Wolle"
+        }
+      },
+      {
+        "instruction": "Die Liste pferde ist vorgegeben. Sammle mit einer List Comprehension die Namen aller Einträge, deren alter größer als 7 ist, in starke und gib genau Starke: ['Blitz', 'Sturm'] aus.",
+        "codeTemplate": "pferde = [\n    {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120},\n    {\"name\": \"Sturm\", \"rasse\": \"Haflinger\", \"alter\": 12, \"punkte\": 150},\n    {\"name\": \"Luna\", \"rasse\": \"Isländer\", \"alter\": 6, \"punkte\": 90},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Starke: ['Blitz', 'Sturm']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug-Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Bei Dictionaries und Tupeln zählen Kommas, Schlüssel und Unveränderlichkeit.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Name: Blitz ausgeben. Was ist falsch?",
+        "codeTemplate": "pferd = {\n    \"name\": \"Blitz\"\n    \"rasse\": \"Hannoveraner\"\n}\nprint(\"Name:\", pferd[\"name\"])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Blitz"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Position: (150, 200) ausgeben. Was ist falsch?",
+        "codeTemplate": "position = (100, 200)\nposition[0] = 150\nprint(\"Position:\", position)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Position: (150, 200)"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Alter: 8 ausgeben. Was ist falsch?",
+        "codeTemplate": "pferd = {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120}\nprint(\"Alter:\", pferd[\"Alter\"])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Alter: 8"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: Die Stallkarten",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission geschafft: Du hast deinen ersten Steckbrief angelegt, geändert und gelesen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Steckbrief anlegen: Lege das Dictionary pferd mit name (\"Blitz\"), rasse (\"Hannoveraner\"), alter (8) und punkte (120) an. Gib genau Blitz, Hannoveraner, Alter 8 aus (mit f-String aus den Werten).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz, Hannoveraner, Alter 8"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Ändern und ergänzen: Das Dictionary pferd ist vorgegeben. Erhöhe alter um 1, ergänze siege mit dem Wert 3 und gib genau Alter: 9 und in der nächsten Zeile Siege: 3 aus.",
+        "codeTemplate": "pferd = {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Alter: 9\nSiege: 3"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Liste von Steckbriefen: Die Liste pferde ist vorgegeben. Gib genau Anzahl: 3 und in der nächsten Zeile Zweiter: Sturm aus (Name des zweiten Eintrags).",
+        "codeTemplate": "pferde = [\n    {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120},\n    {\"name\": \"Sturm\", \"rasse\": \"Haflinger\", \"alter\": 12, \"punkte\": 150},\n    {\"name\": \"Luna\", \"rasse\": \"Isländer\", \"alter\": 6, \"punkte\": 90},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 3\nZweiter: Sturm"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: Das Zubehör-Regal",
+    "file": "mission-02.md",
+    "lessonSummary": "Mission geschafft: Tupel, Unpacking und ein Katalog greifen ineinander!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Tupel entpacken: Das Tupel zubehoer ist vorgegeben. Entpacke es in name, wert und sorte und gib genau Zubehör: Sattel, Wert: 15 und Art: Leder in drei Zeilen aus.",
+        "codeTemplate": "zubehoer = (\"Sattel\", 15, \"Leder\")\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zubehör: Sattel\nWert: 15\nArt: Leder"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Katalog: Das Dictionary katalog (Name → Tupel) ist vorgegeben. Gib genau Wert: 15 (zweites Element des Tupels von Sattel) und in der nächsten Zeile Einträge: 2 aus.",
+        "codeTemplate": "katalog = {\"Sattel\": (\"Sattel\", 15, \"Leder\"), \"Decke\": (\"Decke\", 5, \"Wolle\")}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wert: 15\nEinträge: 2"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Abstand: Schreibe eine Funktion abstand(a, b), die zwei Punkt-Tupel (x, y) bekommt und den Unterschied der x-Werte plus den der y-Werte (b minus a, alles positiv) zurückgibt. Gib für (2, 3) und (6, 6) genau Abstand: 7 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Abstand: 7"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: Der Pferdebestand",
+    "file": "mission-03.md",
+    "lessonSummary": "Mission geschafft: Suchen, Zählen und Durchschnitt über eine ganze Liste von Steckbriefen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Durchlaufen: Die Liste pferde mit vier Dictionaries ist vorgegeben. Gib jeden Eintrag als Name: Alter in einer eigenen Zeile aus, z. B. Blitz: 8.",
+        "codeTemplate": "pferde = [\n    {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120},\n    {\"name\": \"Sturm\", \"rasse\": \"Haflinger\", \"alter\": 12, \"punkte\": 150},\n    {\"name\": \"Luna\", \"rasse\": \"Isländer\", \"alter\": 6, \"punkte\": 90},\n    {\"name\": \"Wind\", \"rasse\": \"Hannoveraner\", \"alter\": 7, \"punkte\": 110},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz: 8\nSturm: 12\nLuna: 6\nWind: 7"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Suchen: Die Liste pferde ist vorgegeben. Schreibe eine Funktion finde_pferde(liste, art), die die Namen aller Einträge mit dieser rasse als Liste zurückgibt. Gib für \"Hannoveraner\" genau Gefunden: ['Blitz', 'Wind'] aus.",
+        "codeTemplate": "pferde = [\n    {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120},\n    {\"name\": \"Sturm\", \"rasse\": \"Haflinger\", \"alter\": 12, \"punkte\": 150},\n    {\"name\": \"Luna\", \"rasse\": \"Isländer\", \"alter\": 6, \"punkte\": 90},\n    {\"name\": \"Wind\", \"rasse\": \"Hannoveraner\", \"alter\": 7, \"punkte\": 110},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gefunden: ['Blitz', 'Wind']"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Statistik: Die Liste pferde ist vorgegeben. Berechne den Durchschnitt von alter (Summe geteilt durch len) und gib genau Durchschnitt: 8.25 aus.",
+        "codeTemplate": "pferde = [\n    {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120},\n    {\"name\": \"Sturm\", \"rasse\": \"Haflinger\", \"alter\": 12, \"punkte\": 150},\n    {\"name\": \"Luna\", \"rasse\": \"Isländer\", \"alter\": 6, \"punkte\": 90},\n    {\"name\": \"Wind\", \"rasse\": \"Hannoveraner\", \"alter\": 7, \"punkte\": 110},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Durchschnitt: 8.25"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Der Pokal-Katalog",
+    "file": "boss-01.md",
+    "lessonSummary": "Der Katalog steht: Einträge anlegen, filtern, summieren und sortieren!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Eintrag: Lege das Dictionary eintrag mit name (\"Goldpokal\"), wert (800) und ort (\"Halle\") an. Gib genau Name: Goldpokal, Wert: 800 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Goldpokal, Wert: 800"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Sammlung: Die Liste pokale mit drei Dictionaries ist vorgegeben. Gib genau Einträge: 3 und in der nächsten Zeile Letzter Ort: Reitplatz aus.",
+        "codeTemplate": "pokale = [\n    {\"name\": \"Goldpokal\", \"wert\": 800, \"ort\": \"Halle\"},\n    {\"name\": \"Silberschleife\", \"wert\": 300, \"ort\": \"Stall\"},\n    {\"name\": \"Ehrenpreis\", \"wert\": 650, \"ort\": \"Reitplatz\"},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Einträge: 3\nLetzter Ort: Reitplatz"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Filtern und summieren: Zähle alle Einträge mit wert über 500 und addiere alle Werte. Gib genau Über 500: 2 und in der nächsten Zeile Gesamtwert: 1750 aus.",
+        "codeTemplate": "pokale = [\n    {\"name\": \"Goldpokal\", \"wert\": 800, \"ort\": \"Halle\"},\n    {\"name\": \"Silberschleife\", \"wert\": 300, \"ort\": \"Stall\"},\n    {\"name\": \"Ehrenpreis\", \"wert\": 650, \"ort\": \"Reitplatz\"},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Über 500: 2\nGesamtwert: 1750"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Sortieren: Sammle alle wert-Werte in der Liste werte und sortiere sie absteigend (sorted mit reverse=True). Gib genau Werte: [800, 650, 300] aus.",
+        "codeTemplate": "pokale = [\n    {\"name\": \"Goldpokal\", \"wert\": 800, \"ort\": \"Halle\"},\n    {\"name\": \"Silberschleife\", \"wert\": 300, \"ort\": \"Stall\"},\n    {\"name\": \"Ehrenpreis\", \"wert\": 650, \"ort\": \"Reitplatz\"},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Werte: [800, 650, 300]"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Der Parcours-Manager",
+    "file": "boss-02.md",
+    "lessonSummary": "Der Manager läuft: Verschachtelte Dictionaries durchsucht, verglichen und ausgewertet!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Aufbau: Das verschachtelte Dictionary zonen ist vorgegeben (Strecke → Dictionary mit hindernis, preis, schwierigkeit). Gib jede Strecke als Name: hindernis / preis aus, z. B. Wiese: Graben / Schleife.",
+        "codeTemplate": "zonen = {\n    \"Wiese\": {\"hindernis\": \"Graben\", \"preis\": \"Schleife\", \"schwierigkeit\": 3},\n    \"Wald\": {\"hindernis\": \"Wassergraben\", \"preis\": \"Pokal\", \"schwierigkeit\": 5},\n    \"Moor\": {\"hindernis\": \"Mauer\", \"preis\": \"Medaille\", \"schwierigkeit\": 8},\n}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wiese: Graben / Schleife\nWald: Wassergraben / Pokal\nMoor: Mauer / Medaille"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Gefährlichste: Das Dictionary zonen ist vorgegeben. Finde die Strecke mit der höchsten schwierigkeit und gib genau Gefährlichste: Moor (8) aus.",
+        "codeTemplate": "zonen = {\n    \"Wiese\": {\"hindernis\": \"Graben\", \"preis\": \"Schleife\", \"schwierigkeit\": 3},\n    \"Wald\": {\"hindernis\": \"Wassergraben\", \"preis\": \"Pokal\", \"schwierigkeit\": 5},\n    \"Moor\": {\"hindernis\": \"Mauer\", \"preis\": \"Medaille\", \"schwierigkeit\": 8},\n}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gefährlichste: Moor (8)"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Wer darf hinein? Die Figur hat stark = 5. Sammle in der Liste betretbar die Namen aller Zonen, deren schwierigkeit höchstens stark ist, und gib genau Betretbar: ['Wiese', 'Wald'] aus.",
+        "codeTemplate": "zonen = {\n    \"Wiese\": {\"hindernis\": \"Graben\", \"preis\": \"Schleife\", \"schwierigkeit\": 3},\n    \"Wald\": {\"hindernis\": \"Wassergraben\", \"preis\": \"Pokal\", \"schwierigkeit\": 5},\n    \"Moor\": {\"hindernis\": \"Mauer\", \"preis\": \"Medaille\", \"schwierigkeit\": 8},\n}\nstark = 5\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Betretbar: ['Wiese', 'Wald']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Das Stall-Archiv",
+    "file": "boss-03.md",
+    "lessonSummary": "Das Archiv steht: Suchen, Zählen und eine Rangliste aus vier Steckbriefen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Anlegen: Lege die Liste pferde mit vier Dictionaries (Schlüssel name, rasse, alter) an: Blitz (Hannoveraner, 8), Sturm (Haflinger, 12), Luna (Isländer, 6), Wind (Hannoveraner, 7). Gib genau Anzahl: 4 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 4"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Suche: Die Liste pferde ist vorgegeben. Schreibe eine Funktion finde_pferde(liste, art), die die Namen mit dieser rasse zurückgibt. Gib genau Hannoveraner: 2 und in der nächsten Zeile Haflinger: 1 aus (Anzahl der Treffer).",
+        "codeTemplate": "pferde = [\n    {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120},\n    {\"name\": \"Sturm\", \"rasse\": \"Haflinger\", \"alter\": 12, \"punkte\": 150},\n    {\"name\": \"Luna\", \"rasse\": \"Isländer\", \"alter\": 6, \"punkte\": 90},\n    {\"name\": \"Wind\", \"rasse\": \"Hannoveraner\", \"alter\": 7, \"punkte\": 110},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hannoveraner: 2\nHaflinger: 1"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Rangliste: Die Liste pferde ist vorgegeben. Sammle alle alter-Werte, sortiere sie absteigend und finde den Namen mit dem höchsten Wert. Gib genau Bester: Sturm und in der nächsten Zeile Rangliste: [12, 8, 7, 6] aus.",
+        "codeTemplate": "pferde = [\n    {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120},\n    {\"name\": \"Sturm\", \"rasse\": \"Haflinger\", \"alter\": 12, \"punkte\": 150},\n    {\"name\": \"Luna\", \"rasse\": \"Isländer\", \"alter\": 6, \"punkte\": 90},\n    {\"name\": \"Wind\", \"rasse\": \"Hannoveraner\", \"alter\": 7, \"punkte\": 110},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bester: Sturm\nRangliste: [12, 8, 7, 6]"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-04",
+    "section": "boss",
+    "title": "Extra-Herausforderung 4: Das große Stallarchiv",
+    "file": "boss-04.md",
+    "lessonSummary": "Die große Wiederholung ist geschafft: Funktionen, Listen und Zufall aus Woche 5 bis 7 – jetzt mit Dictionaries!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Funktion mit Rückgabe (Woche 5): Schreibe erstelle_pferd(name, art, stufe), die ein Dictionary mit den Schlüsseln name, rasse, alter zurückgibt. Rufe sie mit (\"Blitz\", \"Hannoveraner\", 8) auf und gib genau Erstellt: Blitz und in der nächsten Zeile Alter: 8 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Erstellt: Blitz\nAlter: 8"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Liste von Dictionaries (Woche 5/6): Schreibe erstelle_training(name, schwierigkeit), die ein Dictionary mit name, schwierigkeit und status \"offen\" zurückgibt. Lege die Liste trainings an und füge mit append() drei Training-Einträge hinzu (Springen üben / 1, Ausritt planen / 2, Fell pflegen / 3). Gib genau Training-Anzahl: 3 und in der nächsten Zeile Status: offen aus (Status des ersten).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Training-Anzahl: 3\nStatus: offen"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Größten Wert finden (Woche 6): Das Dictionary preise (Name → Preis) ist vorgegeben. Finde mit einer Schleife den teuersten Posten und gib genau Teuerster Posten: Hafer (30) aus.",
+        "codeTemplate": "preise = {\"Hafer\": 30, \"Heu\": 5, \"Möhren\": 10}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Teuerster Posten: Hafer (30)"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Zählen mit Dictionary: Zähle in wort = \"pferdestall\", wie oft jeder Buchstabe vorkommt. Nutze zaehler = {} und zaehler[b] = zaehler.get(b, 0) + 1. Gib genau l: 2 aus.",
+        "codeTemplate": "wort = \"pferdestall\"\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "l: 2"
+        }
+      },
+      {
+        "instruction": "Schritt 5 – Zufall (Woche 7): Das Dictionary futter ist vorgegeben. Ziehe mit random.choice(list(futter.keys())) einen Namen in gezogen und gib genau Gezogen gültig: True aus (gezogen in futter).",
+        "codeTemplate": "futter = {\"Hafer\": 3, \"Heu\": 5, \"Möhren\": 2}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gezogen gültig: True"
+        }
+      },
+      {
+        "instruction": "Schritt 6 – Fehler abfangen (Woche 5/8): Das Dictionary futter ist vorgegeben. Schreibe menge_von(name), die die Anzahl zurückgibt – oder 0, wenn der Name fehlt (try/except KeyError). Gib genau Hafer: 3 und in der nächsten Zeile Zuckerrüben: 0 aus.",
+        "codeTemplate": "futter = {\"Hafer\": 3, \"Heu\": 5, \"Möhren\": 2}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hafer: 3\nZuckerrüben: 0"
+        }
+      }
+    ]
+  }
+]
