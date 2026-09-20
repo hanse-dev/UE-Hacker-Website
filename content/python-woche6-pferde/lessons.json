@@ -1,0 +1,539 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Übung 1: Listen erstellen",
+    "file": "lektion-01.md",
+    "lessonSummary": "Stark! Du hast Listen erstellt und ihre Länge gemessen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Eine leere Liste, eine Text-Liste und eine Zahlen-Liste.",
+        "example": true,
+        "codeTemplate": "leer = []\npferde = [\"Sturmwind\", \"Blitz\", \"Luna\", \"Fuchs\", \"Balu\"]\nzahlen = [1, 5, 10, 15, 20]\nprint(f\"Leer: {leer}\")\nprint(f\"Liste: {pferde}\")\nprint(f\"Zahlen: {zahlen}\")\nprint(f\"Anzahl: {len(pferde)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 5"
+        }
+      },
+      {
+        "instruction": "Lege eine Liste pferde mit den fünf Texten Sturmwind, Blitz, Luna, Fuchs und Balu an (in dieser Reihenfolge). Gib danach genau Anzahl: 5 aus, indem du len() benutzt.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 5"
+        }
+      },
+      {
+        "instruction": "Lege eine leere Liste leer an. Gib danach Leer: [] aus (setze die Liste in den Text ein) und in der nächsten Zeile Länge: 0 (mit len()).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Leer: []\nLänge: 0"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Übung 2: Auf Einträge zugreifen",
+    "file": "lektion-02.md",
+    "lessonSummary": "Prima! Du greifst per Index auf Einträge zu und kannst sie ändern.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Erster, letzter Eintrag und eine Liste in einer Liste.",
+        "example": true,
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\", \"Fuchs\", \"Balu\"]\nprint(f\"Erstes: {pferde[0]}\")\nprint(f\"Letztes: {pferde[-1]}\")\nparty = [[\"Anna\", \"Springen\", 15], [\"Ben\", \"Dressur\", 12]]\nprint(f\"Name des zweiten: {party[1][0]}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Letztes: Balu"
+        }
+      },
+      {
+        "instruction": "Die Liste pferde ist vorgegeben. Gib den zweiten Eintrag als Zweites: Blitz und den vorletzten als Vorletztes: Fuchs aus (mit den Indizes 1 und -2).",
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\", \"Fuchs\", \"Balu\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zweites: Blitz\nVorletztes: Fuchs"
+        }
+      },
+      {
+        "instruction": "Die Liste pferde ist vorgegeben. Ersetze den ersten Eintrag durch Stella und gib die Liste mit print() aus. Sie muss danach so aussehen: ['Stella', 'Blitz', 'Luna', 'Fuchs', 'Balu']",
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\", \"Fuchs\", \"Balu\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Stella', 'Blitz', 'Luna', 'Fuchs', 'Balu']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Übung 3: Einträge hinzufügen",
+    "file": "lektion-03.md",
+    "lessonSummary": "Stark! Deine Listen wachsen mit append() und insert().",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: append, insert und zwei Listen mit + verbinden.",
+        "example": true,
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\"]\npferde.append(\"Nova\")\npferde.insert(0, \"Stella\")\nprint(pferde)\nmehr = pferde + [\"Rex\"]\nprint(f\"Verbunden: {mehr}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Verbunden: ['Stella', 'Sturmwind', 'Blitz', 'Luna', 'Nova', 'Rex']"
+        }
+      },
+      {
+        "instruction": "Die Liste pferde ist vorgegeben. Füge mit append() erst Nova und dann Rex hinzu und gib die Liste aus. Sie muss so aussehen: ['Sturmwind', 'Blitz', 'Luna', 'Nova', 'Rex']",
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Sturmwind', 'Blitz', 'Luna', 'Nova', 'Rex']"
+        }
+      },
+      {
+        "instruction": "Die Liste pferde ist vorgegeben. Setze mit insert() den Eintrag Stella an den Anfang (Index 0) und gib genau Erstes: Stella aus (mit pferde[0]).",
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Erstes: Stella"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Übung 4: Einträge entfernen",
+    "file": "lektion-04.md",
+    "lessonSummary": "Prima! Du kannst Einträge gezielt entfernen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: remove, pop und pop(0).",
+        "example": true,
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\", \"Fuchs\", \"Balu\"]\npferde.remove(\"Fuchs\")\nletzter = pferde.pop()\nerster = pferde.pop(0)\nprint(f\"Entfernt: {letzter} und {erster}\")\nprint(pferde)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Entfernt: Balu und Sturmwind"
+        }
+      },
+      {
+        "instruction": "Die Liste pferde ist vorgegeben. Entferne mit remove() den Eintrag Fuchs und gib die Liste aus. Sie muss so aussehen: ['Sturmwind', 'Blitz', 'Luna', 'Balu']",
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\", \"Fuchs\", \"Balu\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Sturmwind', 'Blitz', 'Luna', 'Balu']"
+        }
+      },
+      {
+        "instruction": "Die Liste pferde ist vorgegeben. Nimm mit pop() das letzte Element heraus und speichere es in entfernt. Gib genau Entfernt: Balu und in der nächsten Zeile Übrig: 4 aus (len).",
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\", \"Fuchs\", \"Balu\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Entfernt: Balu\nÜbrig: 4"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Übung 5: Suchen und zählen",
+    "file": "lektion-05.md",
+    "lessonSummary": "Klasse! Du findest Einträge, prüfst ihr Vorhandensein und zählst sie.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: in, index und count.",
+        "example": true,
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Sturmwind\", \"Luna\", \"Sturmwind\", \"Fuchs\"]\nprint(f\"Enthalten: {\"Blitz\" in pferde}\")\nprint(f\"Position: {pferde.index(\"Blitz\")}\")\nprint(f\"Anzahl: {pferde.count(\"Sturmwind\")}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 3"
+        }
+      },
+      {
+        "instruction": "Die Liste pferde ist vorgegeben. Prüfe mit in und gib genau Vorhanden: True für Blitz und in der nächsten Zeile Vorhanden: False für Nova aus.",
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\", \"Fuchs\", \"Balu\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Vorhanden: True\nVorhanden: False"
+        }
+      },
+      {
+        "instruction": "Die Liste pferde (mit doppelten Einträgen) ist vorgegeben. Gib mit count() genau Anzahl Sturmwind: 3 und in der nächsten Zeile mit index() genau Position Blitz: 1 aus.",
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Sturmwind\", \"Luna\", \"Sturmwind\", \"Fuchs\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl Sturmwind: 3\nPosition Blitz: 1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Übung 6: Sortieren",
+    "file": "lektion-06.md",
+    "lessonSummary": "Sortiert! Du ordnest Listen mit sort(), sorted() und reverse().",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: sort, sorted mit reverse=True und das unveränderte Original.",
+        "example": true,
+        "codeTemplate": "zahlen = [5, 2, 8, 1]\nkopie = sorted(zahlen, reverse=True)\nprint(f\"Kopie: {kopie}\")\nprint(f\"Original: {zahlen}\")\nzahlen.sort()\nprint(f\"Sortiert: {zahlen}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sortiert: [1, 2, 5, 8]"
+        }
+      },
+      {
+        "instruction": "Die Liste pferde ist vorgegeben. Sortiere sie mit sort() und gib sie aus. Sie muss so aussehen: ['Balu', 'Blitz', 'Fuchs', 'Luna', 'Sturmwind']",
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\", \"Fuchs\", \"Balu\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Balu', 'Blitz', 'Fuchs', 'Luna', 'Sturmwind']"
+        }
+      },
+      {
+        "instruction": "Die Liste pferde ist vorgegeben. Erzeuge mit sorted(..., reverse=True) eine absteigende Kopie kopie. Gib zuerst kopie und danach pferde aus – das Original bleibt unverändert: ['Sturmwind', 'Luna', 'Fuchs', 'Blitz', 'Balu'] und ['Sturmwind', 'Blitz', 'Luna', 'Fuchs', 'Balu']",
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\", \"Fuchs\", \"Balu\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Sturmwind', 'Luna', 'Fuchs', 'Blitz', 'Balu']\n['Sturmwind', 'Blitz', 'Luna', 'Fuchs', 'Balu']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Übung 7: Listen und Schleifen",
+    "file": "lektion-07.md",
+    "lessonSummary": "Stark! Du läufst mit for durch Listen und übergibst sie an Funktionen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: for-Schleife und enumerate.",
+        "example": true,
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\"]\nfor eintrag in pferde:\n    print(f\"Eintrag: {eintrag}\")\nfor nr, eintrag in enumerate(pferde):\n    print(f\"{nr}: {eintrag}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "2: Luna"
+        }
+      },
+      {
+        "instruction": "Die Liste werte = [12, 8, 15, 5] ist vorgegeben. Addiere alle Werte mit einer for-Schleife in der Variable summe (Start 0) und gib genau Summe: 40 aus.",
+        "codeTemplate": "werte = [12, 8, 15, 5]\nsumme = 0\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Summe: 40"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion fuege_hinzu(liste, eintrag), die den Eintrag mit append() an die Liste hängt (ohne return!). Lege pferde = [\"Sturmwind\", \"Blitz\", \"Luna\"] an, rufe die Funktion mit Nova auf und gib die Liste aus. Sie muss so aussehen: ['Sturmwind', 'Blitz', 'Luna', 'Nova']",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Sturmwind', 'Blitz', 'Luna', 'Nova']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-08",
+    "section": "lektion",
+    "title": "Übung 8: break und continue",
+    "file": "lektion-08.md",
+    "lessonSummary": "Perfekt! Du steuerst Schleifen mit break und continue.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: break beendet die Suche, continue überspringt einen Eintrag.",
+        "example": true,
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\", \"Fuchs\", \"Balu\"]\nfor eintrag in pferde:\n    if eintrag == \"Luna\":\n        print(\"Gefunden!\")\n        break\n    print(eintrag)\nfor eintrag in pferde:\n    if eintrag == \"Blitz\":\n        continue\n    print(f\"- {eintrag}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "- Balu"
+        }
+      },
+      {
+        "instruction": "Die Liste pferde ist vorgegeben. Laufe mit for durch die Liste und gib jeden Eintrag als Prüfe: <Eintrag> aus. Ist der Eintrag Luna, gib danach Gefunden! aus und beende die Schleife mit break.",
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\", \"Fuchs\", \"Balu\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Prüfe: Sturmwind\nPrüfe: Blitz\nPrüfe: Luna\nGefunden!"
+        }
+      },
+      {
+        "instruction": "Die Liste pferde ist vorgegeben. Gib jeden Eintrag als - <Eintrag> aus, außer Blitz: Den überspringst du mit continue.",
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\", \"Fuchs\", \"Balu\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "- Sturmwind\n- Luna\n- Fuchs\n- Balu"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-09",
+    "section": "lektion",
+    "title": "Übung 9: List Comprehension",
+    "file": "lektion-09.md",
+    "lessonSummary": "Elegant! Du baust Listen in einem Zug.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Umwandeln und Filtern in einer Zeile.",
+        "example": true,
+        "codeTemplate": "schaden = [3, 7, 12, 5]\nverdoppelt = [wert * 2 for wert in schaden]\ngrosse = [wert for wert in schaden if wert > 4]\nprint(f\"Verdoppelt: {verdoppelt}\")\nprint(f\"Große: {grosse}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Große: [7, 12, 5]"
+        }
+      },
+      {
+        "instruction": "Die Liste zahlen = [3, 7, 12, 5] ist vorgegeben. Baue mit einer List Comprehension die Liste verdoppelt (jeder Wert mal 2) und gib sie aus: [6, 14, 24, 10]",
+        "codeTemplate": "zahlen = [3, 7, 12, 5]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "[6, 14, 24, 10]"
+        }
+      },
+      {
+        "instruction": "Die Liste zahlen = [3, 7, 12, 5] ist vorgegeben. Baue mit einer List Comprehension und einem if die Liste gross, die nur Werte über 4 enthält, und gib sie aus: [7, 12, 5]",
+        "codeTemplate": "zahlen = [3, 7, 12, 5]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "[7, 12, 5]"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug-Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Bei Listen zählen die Klammer, der Index und reverse=True.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll die Liste ausgeben: Liste: ['Sturmwind', 'Blitz', 'Luna']. Was ist falsch?",
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\"\nprint(f\"Liste: {pferde}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Liste: ['Sturmwind', 'Blitz', 'Luna']"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll den letzten Eintrag der Liste ausgeben: Luna. Was ist falsch?",
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\"]\nprint(pferde[3])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Luna"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll die Liste absteigend sortiert ausgeben: [15, 10, 5, 1]. Was ist falsch?",
+        "codeTemplate": "level = [1, 5, 10, 15]\nlevel.sort(reverse)\nprint(level)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "[15, 10, 5, 1]"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: Der Stall-Sammler",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission geschafft: Du hast eine Liste angelegt, erweitert, umgebaut und sortiert!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Anlegen und ergänzen: Lege pferde = [\"Sturmwind\", \"Blitz\", \"Luna\", \"Fuchs\", \"Balu\"] an, füge mit append() nacheinander Nova, Rex und Mila hinzu und gib genau Anzahl: 8 aus (len).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 8"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Umbauen: Die Liste pferde ist vorgegeben. Setze mit insert() den Eintrag Stella an den Anfang, entferne mit remove() den Eintrag Fuchs und gib genau Erstes: Stella und in der nächsten Zeile Position: 2 (die mit index() ermittelte Position von Blitz) aus.",
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\", \"Fuchs\", \"Balu\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Erstes: Stella\nPosition: 2"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Sortieren: Die Liste pferde ist vorgegeben. Sortiere sie mit sort() und gib genau Erstes: Balu und in der nächsten Zeile Letztes: Sturmwind aus.",
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\", \"Fuchs\", \"Balu\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Erstes: Balu\nLetztes: Sturmwind"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: Der Stallplan-Manager",
+    "file": "mission-02.md",
+    "lessonSummary": "Mission geschafft: Du prüfst, entnimmst und zeigst Einträge mit Listen und Funktionen an!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Prüfen: Lege pferde = [\"Sturmwind\", \"Blitz\", \"Luna\"] an. Prüfe mit in und gib genau Blitz vorhanden: True und in der nächsten Zeile Nova vorhanden: False aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz vorhanden: True\nNova vorhanden: False"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Entnehmen: Die Liste pferde ist vorgegeben. Nimm mit pop() den letzten Eintrag heraus und gib genau Benutzt: Balu aus. Nimm danach mit pop(0) den ersten heraus und gib in der nächsten Zeile Weg: Sturmwind aus.",
+        "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\", \"Fuchs\", \"Balu\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Benutzt: Balu\nWeg: Sturmwind"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Anzeigen: Schreibe eine Funktion zeige_liste(liste), die mit enumerate() jeden Eintrag als <Nummer>: <Eintrag> ausgibt (Nummer ab 1: nutze nr + 1). Rufe sie mit pferde = [\"Sturmwind\", \"Blitz\", \"Luna\"] auf.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1: Sturmwind\n2: Blitz\n3: Luna"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: Die Reiter-Gruppe",
+    "file": "mission-03.md",
+    "lessonSummary": "Mission geschafft: Du verwaltest Listen in Listen und wertest sie mit Schleifen aus!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Anlegen: Lege gilde = [[\"Anna\", \"Springen\", 15], [\"Ben\", \"Dressur\", 12], [\"Clara\", \"Voltigieren\", 8]] an (jeder Eintrag ist [Name, Klasse, Level]). Gib genau Ben: Dressur aus – Name und Klasse des zweiten Eintrags per gilde[1][0] und gilde[1][1].",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ben: Dressur"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Erweitern: gilde (mit drei Einträgen) ist vorgegeben. Füge mit append() den Eintrag [\"David\", \"Western\", 10] hinzu. Gib danach Mitglieder: 4 (len) und in der nächsten Zeile Gesamtlevel: 45 aus – berechnet mit einer for-Schleife über die Level (Index 2).",
+        "codeTemplate": "gilde = [[\"Anna\", \"Springen\", 15], [\"Ben\", \"Dressur\", 12], [\"Clara\", \"Voltigieren\", 8]]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mitglieder: 4\nGesamtlevel: 45"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Den Stärksten finden: gilde (mit vier Einträgen) ist vorgegeben. Suche mit einer for-Schleife den Eintrag mit dem höchsten Level (merke ihn dir in stärkster) und gib genau Stärkster: Anna aus.",
+        "codeTemplate": "gilde = [[\"Anna\", \"Springen\", 15], [\"Ben\", \"Dressur\", 12], [\"Clara\", \"Voltigieren\", 8]]\ngilde.append([\"David\", \"Western\", 10])\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stärkster: Anna"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Der Futter-Katalog",
+    "file": "boss-01.md",
+    "lessonSummary": "Der Katalog steht: Funktionen, Listen und Filter arbeiten zusammen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Einträge erzeugen: Schreibe eine Funktion erzeuge_eintrag(material, nummer), die den Text <material>-<nummer> zurückgibt. Lege katalog = [] an und füge mit einer for-Schleife (nummer 1 bis 10) für \"Hafer\" jeden Eintrag mit append() hinzu. Gib Anzahl: 10 und in der nächsten Zeile den letzten Eintrag aus (Hafer-10).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 10\nHafer-10"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Durchschnitt: Schreibe eine Funktion berechne_durchschnitt(werte), die die Werte mit einer for-Schleife addiert und die Summe geteilt durch len(werte) zurückgibt. Gib genau Durchschnitt: 25.0 aus, indem du berechne_durchschnitt([10, 20, 30, 40]) einsetzt.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Durchschnitt: 25.0"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Filtern: Die Liste eintraege = [\"Hafer-1\", \"Heu-2\", \"Hafer-3\", \"Müsli-4\"] ist vorgegeben. Schreibe filtere_eintraege(liste, suchbegriff), die eine neue Liste mit allen Einträgen zurückgibt, die den Suchbegriff enthalten (suchbegriff in eintrag). Gib das Ergebnis für \"Hafer\" aus (['Hafer-1', 'Hafer-3']) und in der nächsten Zeile Treffer: 2.",
+        "codeTemplate": "eintraege = [\"Hafer-1\", \"Heu-2\", \"Hafer-3\", \"Müsli-4\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Hafer-1', 'Hafer-3']\nTreffer: 2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Der Stall-Planer",
+    "file": "boss-02.md",
+    "lessonSummary": "Die Fächer sind eingerichtet: Verschachtelte Listen, Funktionen und break arbeiten zusammen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Fächer anlegen: Schreibe eine Funktion erstelle_faecher(anzahl, plaetze), die eine Liste mit anzahl Fächern zurückgibt – jedes Fach ist eine Liste mit plaetze Einträgen \"leer\" (zwei verschachtelte Schleifen mit append()). Gib erstelle_faecher(3, 2) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "[['leer', 'leer'], ['leer', 'leer'], ['leer', 'leer']]"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Einlagern: erstelle_faecher ist vorgegeben. Schreibe platziere(faecher, index, name): Sie sucht im Fach mit diesem Index den ersten Platz mit \"leer\", trägt den Namen dort ein und beendet die Suche mit break. Lege faecher = erstelle_faecher(3, 2) an, lagere Hafer und Heu in Fach 1 ein und gib faecher aus.",
+        "codeTemplate": "def erstelle_faecher(anzahl, plaetze):\n    faecher = []\n    for _nr in range(anzahl):\n        fach = []\n        for _platz in range(plaetze):\n            fach.append(\"leer\")\n        faecher.append(fach)\n    return faecher\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "[['leer', 'leer'], ['Hafer', 'Heu'], ['leer', 'leer']]"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Übersicht: Beide Funktionen sind vorgegeben. Schreibe zeige_uebersicht(faecher): Mit enumerate() gibt sie jedes Fach als Fach <Nummer>: <Liste> aus (Nummer ab 1) und danach Fächer: <Anzahl>. Rufe sie für die Fächer aus Schritt 2 auf.",
+        "codeTemplate": "def erstelle_faecher(anzahl, plaetze):\n    faecher = []\n    for _nr in range(anzahl):\n        fach = []\n        for _platz in range(plaetze):\n            fach.append(\"leer\")\n        faecher.append(fach)\n    return faecher\n\ndef platziere(faecher, index, name):\n    fach = faecher[index]\n    for platz in range(len(fach)):\n        if fach[platz] == \"leer\":\n            fach[platz] = name\n            break\n\nfaecher = erstelle_faecher(3, 2)\nplatziere(faecher, 1, \"Hafer\")\nplatziere(faecher, 1, \"Heu\")\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Fach 1: ['leer', 'leer']\nFach 2: ['Hafer', 'Heu']\nFach 3: ['leer', 'leer']\nFächer: 3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Die Turnier-Datenbank",
+    "file": "boss-03.md",
+    "lessonSummary": "Die Datenbank steht: Anlegen, Suchen und Auswerten mit Listen und Funktionen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Anlegen: Schreibe eine Funktion erstelle_quest(name, ziel, schwierigkeit), die eine Liste [name, ziel, schwierigkeit] zurückgibt. Lege quests = [] an, füge mit append() erstelle_quest(\"Springturnier\", \"Halle\", 4) hinzu und gib quests[0] aus: ['Springturnier', 'Halle', 4]",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Springturnier', 'Halle', 4]"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Suchen: Die Liste quests = [[\"Springturnier\", \"Halle\", 4], [\"Dressurturnier\", \"Platz\", 2], [\"Ausritt\", \"Wald\", 3]] ist vorgegeben. Schreibe suche_quests(questliste, begriff), die alle Quests zurückgibt, in deren Namen (Index 0) der Begriff vorkommt. Suche nach \"turnier\" und gib genau Gefunden: 2 aus (len).",
+        "codeTemplate": "quests = [[\"Springturnier\", \"Halle\", 4], [\"Dressurturnier\", \"Platz\", 2], [\"Ausritt\", \"Wald\", 3]]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gefunden: 2"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Auswerten: quests ist vorgegeben (Schwierigkeit an Index 2). Schreibe quest_statistik(questliste): Sie zählt mit einer for-Schleife alle Quests und alle schweren (Schwierigkeit mindestens 3; leichtere überspringst du mit continue) und gibt Quests: <Anzahl> und Schwere Quests: <Anzahl> aus. Rufe sie mit quests auf.",
+        "codeTemplate": "quests = [[\"Springturnier\", \"Halle\", 4], [\"Dressurturnier\", \"Platz\", 2], [\"Ausritt\", \"Wald\", 3]]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Quests: 3\nSchwere Quests: 2"
+        }
+      }
+    ]
+  }
+]

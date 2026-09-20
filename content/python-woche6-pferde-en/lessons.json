@@ -1,0 +1,539 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Lesson 1: Creating lists",
+    "file": "lektion-01.md",
+    "lessonSummary": "Great! You created lists and measured their length.",
+    "tasks": [
+      {
+        "instruction": "Run this example: An empty list, a text list and a number list.",
+        "example": true,
+        "codeTemplate": "leer = []\nhorses = [\"Stormwind\", \"Lightning\", \"Luna\", \"Fox\", \"Balu\"]\nzahlen = [1, 5, 10, 15, 20]\nprint(f\"Empty: {leer}\")\nprint(f\"List: {horses}\")\nprint(f\"Numbers: {zahlen}\")\nprint(f\"Count: {len(horses)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 5"
+        }
+      },
+      {
+        "instruction": "Create a list horses with the five texts Stormwind, Lightning, Luna, Fox and Balu (in this order). Then print exactly Count: 5 by using len().",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 5"
+        }
+      },
+      {
+        "instruction": "Create an empty list called empty. Then print Empty: [] (put the list into the text) and on the next line Length: 0 (with len()).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Empty: []\nLength: 0"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Lesson 2: Accessing entries",
+    "file": "lektion-02.md",
+    "lessonSummary": "Nice! You access entries by index and can change them.",
+    "tasks": [
+      {
+        "instruction": "Run this example: First and last entry and a list inside a list.",
+        "example": true,
+        "codeTemplate": "horses = [\"Stormwind\", \"Lightning\", \"Luna\", \"Fox\", \"Balu\"]\nprint(f\"First: {horses[0]}\")\nprint(f\"Last: {horses[-1]}\")\nparty = [[\"Anna\", \"Jumping\", 15], [\"Ben\", \"Dressage\", 12]]\nprint(f\"Name of the second: {party[1][0]}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Last: Balu"
+        }
+      },
+      {
+        "instruction": "The list horses is provided. Print the second entry as Second: Lightning and the second to last as Second to last: Fox (using the indices 1 and -2).",
+        "codeTemplate": "horses = [\"Stormwind\", \"Lightning\", \"Luna\", \"Fox\", \"Balu\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Second: Lightning\nSecond to last: Fox"
+        }
+      },
+      {
+        "instruction": "The list horses is provided. Replace the first entry with Stella and print the list with print(). It must then look like this: ['Stella', 'Lightning', 'Luna', 'Fox', 'Balu']",
+        "codeTemplate": "horses = [\"Stormwind\", \"Lightning\", \"Luna\", \"Fox\", \"Balu\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Stella', 'Lightning', 'Luna', 'Fox', 'Balu']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Lesson 3: Adding entries",
+    "file": "lektion-03.md",
+    "lessonSummary": "Great! Your lists grow with append() and insert().",
+    "tasks": [
+      {
+        "instruction": "Run this example: append, insert and joining two lists with +.",
+        "example": true,
+        "codeTemplate": "horses = [\"Stormwind\", \"Lightning\", \"Luna\"]\nhorses.append(\"Nova\")\nhorses.insert(0, \"Stella\")\nprint(horses)\nmehr = horses + [\"Rex\"]\nprint(f\"Joined: {mehr}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Joined: ['Stella', 'Stormwind', 'Lightning', 'Luna', 'Nova', 'Rex']"
+        }
+      },
+      {
+        "instruction": "The list horses is provided. Use append() to add Nova and then Rex and print the list. It must look like this: ['Stormwind', 'Lightning', 'Luna', 'Nova', 'Rex']",
+        "codeTemplate": "horses = [\"Stormwind\", \"Lightning\", \"Luna\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Stormwind', 'Lightning', 'Luna', 'Nova', 'Rex']"
+        }
+      },
+      {
+        "instruction": "The list horses is provided. Use insert() to put the entry Stella at the start (index 0) and print exactly First: Stella (using horses[0]).",
+        "codeTemplate": "horses = [\"Stormwind\", \"Lightning\", \"Luna\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "First: Stella"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Lesson 4: Removing entries",
+    "file": "lektion-04.md",
+    "lessonSummary": "Nice! You can remove entries on purpose.",
+    "tasks": [
+      {
+        "instruction": "Run this example: remove, pop and pop(0).",
+        "example": true,
+        "codeTemplate": "horses = [\"Stormwind\", \"Lightning\", \"Luna\", \"Fox\", \"Balu\"]\nhorses.remove(\"Fox\")\nletzter = horses.pop()\nerster = horses.pop(0)\nprint(f\"Removed: {letzter} and {erster}\")\nprint(horses)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Removed: Balu and Stormwind"
+        }
+      },
+      {
+        "instruction": "The list horses is provided. Use remove() to remove the entry Fox and print the list. It must look like this: ['Stormwind', 'Lightning', 'Luna', 'Balu']",
+        "codeTemplate": "horses = [\"Stormwind\", \"Lightning\", \"Luna\", \"Fox\", \"Balu\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Stormwind', 'Lightning', 'Luna', 'Balu']"
+        }
+      },
+      {
+        "instruction": "The list horses is provided. Take the last element out with pop() and store it in removed. Print exactly Removed: Balu and on the next line Left: 4 (len).",
+        "codeTemplate": "horses = [\"Stormwind\", \"Lightning\", \"Luna\", \"Fox\", \"Balu\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Removed: Balu\nLeft: 4"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Lesson 5: Searching and counting",
+    "file": "lektion-05.md",
+    "lessonSummary": "Great! You find entries, check whether they exist and count them.",
+    "tasks": [
+      {
+        "instruction": "Run this example: in, index and count.",
+        "example": true,
+        "codeTemplate": "horses = [\"Stormwind\", \"Lightning\", \"Stormwind\", \"Luna\", \"Stormwind\", \"Fox\"]\nprint(f\"Contained: {\"Lightning\" in horses}\")\nprint(f\"Position: {horses.index(\"Lightning\")}\")\nprint(f\"Count: {horses.count(\"Stormwind\")}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 3"
+        }
+      },
+      {
+        "instruction": "The list horses is provided. Check with in and print exactly Present: True for Lightning and on the next line Present: False for Nova.",
+        "codeTemplate": "horses = [\"Stormwind\", \"Lightning\", \"Luna\", \"Fox\", \"Balu\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Present: True\nPresent: False"
+        }
+      },
+      {
+        "instruction": "The list horses (with duplicate entries) is provided. Print exactly Count Stormwind: 3 with count() and on the next line exactly Position Lightning: 1 with index().",
+        "codeTemplate": "horses = [\"Stormwind\", \"Lightning\", \"Stormwind\", \"Luna\", \"Stormwind\", \"Fox\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count Stormwind: 3\nPosition Lightning: 1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Lesson 6: Sorting",
+    "file": "lektion-06.md",
+    "lessonSummary": "Sorted! You order lists with sort(), sorted() and reverse().",
+    "tasks": [
+      {
+        "instruction": "Run this example: sort, sorted with reverse=True and the unchanged original.",
+        "example": true,
+        "codeTemplate": "zahlen = [5, 2, 8, 1]\nkopie = sorted(zahlen, reverse=True)\nprint(f\"Copy: {kopie}\")\nprint(f\"Original: {zahlen}\")\nzahlen.sort()\nprint(f\"Sorted: {zahlen}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sorted: [1, 2, 5, 8]"
+        }
+      },
+      {
+        "instruction": "The list horses is provided. Sort it with sort() and print it. It must look like this: ['Balu', 'Fox', 'Lightning', 'Luna', 'Stormwind']",
+        "codeTemplate": "horses = [\"Stormwind\", \"Lightning\", \"Luna\", \"Fox\", \"Balu\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Balu', 'Fox', 'Lightning', 'Luna', 'Stormwind']"
+        }
+      },
+      {
+        "instruction": "The list horses is provided. Create a descending copy copy with sorted(..., reverse=True). Print copy first and then horses – the original stays unchanged: ['Stormwind', 'Luna', 'Lightning', 'Fox', 'Balu'] and ['Stormwind', 'Lightning', 'Luna', 'Fox', 'Balu']",
+        "codeTemplate": "horses = [\"Stormwind\", \"Lightning\", \"Luna\", \"Fox\", \"Balu\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Stormwind', 'Luna', 'Lightning', 'Fox', 'Balu']\n['Stormwind', 'Lightning', 'Luna', 'Fox', 'Balu']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Lesson 7: Lists and loops",
+    "file": "lektion-07.md",
+    "lessonSummary": "Great! You loop through lists with for and pass them to functions.",
+    "tasks": [
+      {
+        "instruction": "Run this example: for loop and enumerate.",
+        "example": true,
+        "codeTemplate": "horses = [\"Stormwind\", \"Lightning\", \"Luna\"]\nfor eintrag in horses:\n    print(f\"Entry: {eintrag}\")\nfor nr, eintrag in enumerate(horses):\n    print(f\"{nr}: {eintrag}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "2: Luna"
+        }
+      },
+      {
+        "instruction": "The list values = [12, 8, 15, 5] is provided. Add all values with a for loop in the variable total (start 0) and print exactly Total: 40.",
+        "codeTemplate": "values = [12, 8, 15, 5]\ntotal = 0\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total: 40"
+        }
+      },
+      {
+        "instruction": "Write a function add_entry(items, entry) that attaches the entry to the list with append() (without return!). Create horses = [\"Stormwind\", \"Lightning\", \"Luna\"], call the function with Nova and print the list. It must look like this: ['Stormwind', 'Lightning', 'Luna', 'Nova']",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Stormwind', 'Lightning', 'Luna', 'Nova']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-08",
+    "section": "lektion",
+    "title": "Lesson 8: break and continue",
+    "file": "lektion-08.md",
+    "lessonSummary": "Perfect! You steer loops with break and continue.",
+    "tasks": [
+      {
+        "instruction": "Run this example: break ends the search, continue skips an entry.",
+        "example": true,
+        "codeTemplate": "horses = [\"Stormwind\", \"Lightning\", \"Luna\", \"Fox\", \"Balu\"]\nfor eintrag in horses:\n    if eintrag == \"Luna\":\n        print(\"Found!\")\n        break\n    print(eintrag)\nfor eintrag in horses:\n    if eintrag == \"Lightning\":\n        continue\n    print(f\"- {eintrag}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "- Balu"
+        }
+      },
+      {
+        "instruction": "The list horses is provided. Loop through it with for and print every entry as Check: <entry>. If the entry is Luna, then print Found! and end the loop with break.",
+        "codeTemplate": "horses = [\"Stormwind\", \"Lightning\", \"Luna\", \"Fox\", \"Balu\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Check: Stormwind\nCheck: Lightning\nCheck: Luna\nFound!"
+        }
+      },
+      {
+        "instruction": "The list horses is provided. Print every entry as - <entry>, except Lightning: you skip that one with continue.",
+        "codeTemplate": "horses = [\"Stormwind\", \"Lightning\", \"Luna\", \"Fox\", \"Balu\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "- Stormwind\n- Luna\n- Fox\n- Balu"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-09",
+    "section": "lektion",
+    "title": "Lesson 9: List comprehension",
+    "file": "lektion-09.md",
+    "lessonSummary": "Elegant! You build lists in one go.",
+    "tasks": [
+      {
+        "instruction": "Run this example: transforming and filtering in one line.",
+        "example": true,
+        "codeTemplate": "schaden = [3, 7, 12, 5]\nverdoppelt = [wert * 2 for wert in schaden]\ngrosse = [wert for wert in schaden if wert > 4]\nprint(f\"Doubled: {verdoppelt}\")\nprint(f\"Big: {grosse}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Big: [7, 12, 5]"
+        }
+      },
+      {
+        "instruction": "The list numbers = [3, 7, 12, 5] is provided. Build the list doubled (every value times 2) with a list comprehension and print it: [6, 14, 24, 10]",
+        "codeTemplate": "numbers = [3, 7, 12, 5]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "[6, 14, 24, 10]"
+        }
+      },
+      {
+        "instruction": "The list numbers = [3, 7, 12, 5] is provided. Build the list big with a list comprehension and an if that only contains values above 4, and print it: [7, 12, 5]",
+        "codeTemplate": "numbers = [3, 7, 12, 5]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "[7, 12, 5]"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "All bugs found! With lists, the bracket, the index and reverse=True matter.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Goal: The program should print the list: List: ['Stormwind', 'Lightning', 'Luna']. What is wrong?",
+        "codeTemplate": "horses = [\"Stormwind\", \"Lightning\", \"Luna\"\nprint(f\"List: {horses}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "List: ['Stormwind', 'Lightning', 'Luna']"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Goal: The program should print the last entry of the list: Luna. What is wrong?",
+        "codeTemplate": "horses = [\"Stormwind\", \"Lightning\", \"Luna\"]\nprint(horses[3])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Luna"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Goal: The program should print the list sorted in descending order: [15, 10, 5, 1]. What is wrong?",
+        "codeTemplate": "level = [1, 5, 10, 15]\nlevel.sort(reverse)\nprint(level)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "[15, 10, 5, 1]"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: The Stable Collector",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission accomplished: You created, extended, rebuilt and sorted a list!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create and extend: Create horses = [\"Stormwind\", \"Lightning\", \"Luna\", \"Fox\", \"Balu\"], add Nova, Rex and Mila one after another with append() and print exactly Count: 8 (len).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 8"
+        }
+      },
+      {
+        "instruction": "Step 2 – Rebuild: The list horses is provided. Use insert() to put the entry Stella at the start, remove the entry Fox with remove() and print exactly First: Stella and on the next line Position: 2 (the position of Lightning found with index()).",
+        "codeTemplate": "horses = [\"Stormwind\", \"Lightning\", \"Luna\", \"Fox\", \"Balu\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "First: Stella\nPosition: 2"
+        }
+      },
+      {
+        "instruction": "Step 3 – Sort: The list horses is provided. Sort it with sort() and print exactly First: Balu and on the next line Last: Stormwind.",
+        "codeTemplate": "horses = [\"Stormwind\", \"Lightning\", \"Luna\", \"Fox\", \"Balu\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "First: Balu\nLast: Stormwind"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: The Stable Plan Manager",
+    "file": "mission-02.md",
+    "lessonSummary": "Mission accomplished: You check, take out and display entries with lists and functions!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Check: Create horses = [\"Stormwind\", \"Lightning\", \"Luna\"]. Check with in and print exactly Lightning present: True and on the next line Nova present: False.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Lightning present: True\nNova present: False"
+        }
+      },
+      {
+        "instruction": "Step 2 – Take out: The list horses is provided. Take out the last entry with pop() and print exactly Used: Balu. Then take out the first one with pop(0) and print on the next line Gone: Stormwind.",
+        "codeTemplate": "horses = [\"Stormwind\", \"Lightning\", \"Luna\", \"Fox\", \"Balu\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Used: Balu\nGone: Stormwind"
+        }
+      },
+      {
+        "instruction": "Step 3 – Display: Write a function show_list(items) that prints every entry as <number>: <entry> with enumerate() (number from 1: use nr + 1). Call it with horses = [\"Stormwind\", \"Lightning\", \"Luna\"].",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1: Stormwind\n2: Lightning\n3: Luna"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: The Riding Group",
+    "file": "mission-03.md",
+    "lessonSummary": "Mission accomplished: You manage lists in lists and evaluate them with loops!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create: Create guild = [[\"Anna\", \"Jumping\", 15], [\"Ben\", \"Dressage\", 12], [\"Clara\", \"Vaulting\", 8]] (every entry is [name, class, level]). Print exactly Ben: Dressage – name and class of the second entry via guild[1][0] and guild[1][1].",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ben: Dressage"
+        }
+      },
+      {
+        "instruction": "Step 2 – Extend: guild (with three entries) is provided. Add the entry [\"David\", \"Western\", 10] with append(). Then print Members: 4 (len) and on the next line Total level: 45 – calculated with a for loop over the levels (index 2).",
+        "codeTemplate": "guild = [[\"Anna\", \"Jumping\", 15], [\"Ben\", \"Dressage\", 12], [\"Clara\", \"Vaulting\", 8]]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Members: 4\nTotal level: 45"
+        }
+      },
+      {
+        "instruction": "Step 3 – Find the strongest: guild (with four entries) is provided. Use a for loop to find the entry with the highest level (remember it in strongest) and print exactly Strongest: Anna.",
+        "codeTemplate": "guild = [[\"Anna\", \"Jumping\", 15], [\"Ben\", \"Dressage\", 12], [\"Clara\", \"Vaulting\", 8]]\nguild.append([\"David\", \"Western\", 10])\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Strongest: Anna"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra Challenge 1: The Feed Catalog",
+    "file": "boss-01.md",
+    "lessonSummary": "The catalog stands: functions, lists and filters work together!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create entries: Write a function create_entry(material, number) that returns the text <material>-<number>. Create catalog = [] and use a for loop (number 1 to 10) to add every entry for \"Oats\" with append(). Print Count: 10 and on the next line the last entry (Oats-10).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 10\nOats-10"
+        }
+      },
+      {
+        "instruction": "Step 2 – Average: Write a function calculate_average(values) that adds the values with a for loop and returns the sum divided by len(values). Print exactly Average: 25.0 by using calculate_average([10, 20, 30, 40]).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Average: 25.0"
+        }
+      },
+      {
+        "instruction": "Step 3 – Filter: The list entries = [\"Oats-1\", \"Hay-2\", \"Oats-3\", \"Muesli-4\"] is provided. Write filter_entries(items, term) that returns a new list with all entries containing the search term (term in entry). Print the result for \"Oats\" (['Oats-1', 'Oats-3']) and on the next line Hits: 2.",
+        "codeTemplate": "entries = [\"Oats-1\", \"Hay-2\", \"Oats-3\", \"Muesli-4\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Oats-1', 'Oats-3']\nHits: 2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra Challenge 2: The Stable Planner",
+    "file": "boss-02.md",
+    "lessonSummary": "The compartments are set up: nested lists, functions and break work together!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create compartments: Write a function create_compartments(count, spots) that returns a list with count compartments – every compartment is a list with spots entries \"empty\" (two nested loops with append()). Print create_compartments(3, 2).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "[['empty', 'empty'], ['empty', 'empty'], ['empty', 'empty']]"
+        }
+      },
+      {
+        "instruction": "Step 2 – Store: create_compartments is provided. Write place(compartments, index, name): It looks in the compartment with this index for the first spot with \"empty\", enters the name there and ends the search with break. Create compartments = create_compartments(3, 2), store Oats and Hay in compartment 1 and print compartments.",
+        "codeTemplate": "def create_compartments(count, spots):\n    compartments = []\n    for _nr in range(count):\n        compartment = []\n        for _spot in range(spots):\n            compartment.append(\"empty\")\n        compartments.append(compartment)\n    return compartments\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "[['empty', 'empty'], ['Oats', 'Hay'], ['empty', 'empty']]"
+        }
+      },
+      {
+        "instruction": "Step 3 – Overview: Both functions are provided. Write show_overview(compartments): With enumerate() it prints every compartment as Compartment <number>: <list> (number from 1) and afterwards Compartments: <count>. Call it for the compartments from step 2.",
+        "codeTemplate": "def create_compartments(count, spots):\n    compartments = []\n    for _nr in range(count):\n        compartment = []\n        for _spot in range(spots):\n            compartment.append(\"empty\")\n        compartments.append(compartment)\n    return compartments\n\ndef place(compartments, index, name):\n    compartment = compartments[index]\n    for spot in range(len(compartment)):\n        if compartment[spot] == \"empty\":\n            compartment[spot] = name\n            break\n\ncompartments = create_compartments(3, 2)\nplace(compartments, 1, \"Oats\")\nplace(compartments, 1, \"Hay\")\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Compartment 1: ['empty', 'empty']\nCompartment 2: ['Oats', 'Hay']\nCompartment 3: ['empty', 'empty']\nCompartments: 3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra Challenge 3: The Tournament Database",
+    "file": "boss-03.md",
+    "lessonSummary": "The database stands: creating, searching and evaluating with lists and functions!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create: Write a function create_quest(name, goal, difficulty) that returns a list [name, goal, difficulty]. Create quests = [], add create_quest(\"Jumping Show\", \"Arena\", 4) with append() and print quests[0]: ['Jumping Show', 'Arena', 4]",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Jumping Show', 'Arena', 4]"
+        }
+      },
+      {
+        "instruction": "Step 2 – Search: The list quests = [[\"Jumping Show\", \"Arena\", 4], [\"Dressage Show\", \"Ring\", 2], [\"Trail Ride\", \"Forest\", 3]] is provided. Write search_quests(quest_list, term) that returns all quests whose name (index 0) contains the term. Search for \"Show\" and print exactly Found: 2 (len).",
+        "codeTemplate": "quests = [[\"Jumping Show\", \"Arena\", 4], [\"Dressage Show\", \"Ring\", 2], [\"Trail Ride\", \"Forest\", 3]]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Found: 2"
+        }
+      },
+      {
+        "instruction": "Step 3 – Evaluate: quests is provided (difficulty at index 2). Write quest_statistics(quest_list): It counts all quests and all hard ones with a for loop (difficulty at least 3; you skip easier ones with continue) and prints Quests: <count> and Hard quests: <count>. Call it with quests.",
+        "codeTemplate": "quests = [[\"Jumping Show\", \"Arena\", 4], [\"Dressage Show\", \"Ring\", 2], [\"Trail Ride\", \"Forest\", 3]]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Quests: 3\nHard quests: 2"
+        }
+      }
+    ]
+  }
+]

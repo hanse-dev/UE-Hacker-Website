@@ -137,8 +137,11 @@ test.describe('Storytelling-Überarbeitung: Sci-Fi', () => {
     );
     expect(week5Text).toContain('Der Raumstation-Manager');
 
-    const week6 = await openWeekVariantTab(page, 6, 'Sci-Fi', 'Boss-Quest');
-    const week6Text = await week6.locator('.notebook-cells').innerText();
+    // Woche 6 ist ebenfalls im Lektions-Format (siehe oben) - Original-Boss-Quest aus der Quelldatei lesen.
+    const week6Text = fs.readFileSync(
+      path.join(process.cwd(), 'content/python-12-wochen-grundkurs/woche-6/scifi/woche6_scifi_5_boss/04_markdown.py'),
+      'utf-8',
+    );
     expect(week6Text).toContain('Der Hangar-Verwalter');
     expect(week6Text).not.toContain('Der Raumstation-Manager');
 

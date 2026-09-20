@@ -22,7 +22,8 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 - [x] Woche 4 (Schleifen; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.48).
 - [x] Woche 4: DE/EN-Struktur angeglichen (Abenteuer 8, Pferde 7, Sci-Fi 7 Lektionen; IDs/Aufgaben identisch, EN/DE jeweils als Übersetzung der größeren Fassung)
 - [x] Woche 5 (Funktionen; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.49), ohne Sub-Agenten aus einer Datenquelle pro Thema erzeugt
-- [ ] Nutzer-Feedback abwarten, dann entscheiden: Wochen 6–12
+- [x] Woche 6 (Listen; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.50): 9 Lektionen, Debug, 3 Missionen, 3 Extra-Herausforderungen je Thema, DE = EN; enthält die nachgezogenen Vorgriffe (Listen, `append`, `break`/`continue`, Funktionen mit Listen)
+- [ ] Nutzer-Feedback abwarten, dann entscheiden: Wochen 7–12
 - [ ] Lösungen/Glossar für das neue Format anpassen (Lösungen passen noch zu den freien Original-Aufgaben)
 
 #### Nachbesserungen Lektions-Format Woche 4
@@ -40,11 +41,18 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 - [ ] DE/EN wurden pro Thema aus der größeren Fassung angeglichen; die alten Lösungs-/Glossar-Notebooks von Woche 3 passen nicht mehr zu den Aufgaben (siehe Lösungen/Glossar-Punkt oben).
 
 #### Nachbesserungen Lektions-Format Woche 5 (Funktionen)
-- [ ] Vorgriffe im Original (Listen, Dictionaries, `random`, `try/except`, `help()`, Quest-/Kampf-Listen) wurden ersetzt: Missionen/Boss nutzen nur Zahlen, Text, `if`/`elif`/`for`. In Woche 6/8 als Wiederholung mit den Original-Aufgaben nachziehen (z.B. `erstelle_charakter` → Dictionary, `speichere_zauber(buch, zauber)` → Liste, Zufallszauber mit `random`).
+- [ ] Vorgriffe im Original (Listen, Dictionaries, `random`, `try/except`, `help()`, Quest-/Kampf-Listen) wurden ersetzt: Missionen/Boss nutzen nur Zahlen, Text, `if`/`elif`/`for`. **Listen-Anteil ist in Woche 6 nachgezogen** (Zauberbuch/Katalog als Liste, Statistik, Funktionen mit Listen). Noch offen: Dictionaries (`erstelle_charakter`, Quest-Dictionary) → Woche 8, Zufallszauber/`random` → Woche 7.
 - [ ] `LessonView` prüft nur die Ausgabe (`output_contains`): dass eine Funktion wirklich mit `def` definiert wurde, wird nicht geprüft (hart codiertes `print` besteht). Vorschlag: `functionCalls` (gibt es schon im Check-Schritt/`CodeChallenge`) auch in `LessonView` auswerten.
 - [ ] Lösungs-/Glossar-Notebooks Woche 5 (`content/python-12-wochen-grundkurs*/woche-5/*`) passen nicht zu den konkretisierten Aufgaben (Original mit Dictionaries/Listen/`random`), Glossar erwähnt Docstring-Stile (`Args:`/`Returns:`) und `help()` — bereinigen.
 - [ ] Woche-5-Themenbezeichner sind zwischen DE und EN nicht gleich (DE `berechne_schaden`, EN `calculate_damage`) — bewusst, wie in Woche 4.
 - [ ] Debug Bug #1 (fehlende Einrückung nach `def`) erzeugt einen `IndentationError`; Bug #2 ruft die Funktion ohne Klammern auf (Ausgabe `<function ...>`), Bug #3 hat kein `return` (`None`) — bewusst die drei typischen Funktionsfehler.
+
+#### Nachbesserungen Lektions-Format Woche 6 (Listen)
+- [ ] Aus dem Original bewusst weggelassen: `set()`/`list(set(...))` (Duplikate entfernen), `.upper()`/String-Methoden in der List Comprehension, `sorted(..., key=...)`, Slicing (`liste[0:3]`), `extend()` nur im Text; Dictionaries in Boss-Quest 3 (dort Liste `[name, ziel, schwierigkeit]`) → Dictionaries in Woche 8 als Wiederholung nachziehen.
+- [ ] Woche-4-Vorgriffe (Pferde Mission 1 bis 20 statt 10 Hürden, Boss 5 statt 10 Sprünge, Abenteuer/Sci-Fi mit `random`/`%`/`input()`) sind in Woche 6 noch NICHT mit den vollen Original-Mengen wiederholt — nur `break`/`continue` und Listen mit Schleifen sind drin. Woche-2-Extras (8 Schiffe, 5 KI-Modelle als Liste) ebenfalls offen.
+- [ ] Code-Bezeichner in Pferde/Sci-Fi Boss 3 heißen `quest` (`erstelle_quest`, `suche_quests`) obwohl es Turniere/Missionen sind — bewusst generisch gehalten (ein Skelett für alle Themen), bei Bedarf themenspezifisch umbenennen.
+- [ ] Woche 6 wurde aus einem gemeinsamen Skelett + Themen-Vokabular erzeugt (Generator liegt nur im Scratchpad, nicht im Repo) — Texte sind daher zwischen den Themen strukturell gleich, nur Vokabular/Geschichte unterscheiden sich.
+- [ ] Lösungs-/Glossar-Notebooks Woche 6 passen nicht zu den konkretisierten Aufgaben (Original mit `set`, Dictionaries, `random`).
 
 #### Nachbesserungen Lektions-Format (Woche 1–2)
 Beim Umbau aufgefallen; entweder bewusst so gelassen oder noch offen:
