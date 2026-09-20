@@ -1,0 +1,544 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Archiv-Zauber 1: Module importieren",
+    "file": "lektion-01.md",
+    "lessonSummary": "Stark! Du holst dir fertige Werkzeuge mit import, as und from.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Drei Wege, math zu importieren.",
+        "example": true,
+        "codeTemplate": "import math\nimport math as m\nfrom math import sqrt\nprint(f\"Ganz: {math.sqrt(16)}\")\nprint(f\"Spitzname: {m.sqrt(25)}\")\nprint(f\"Einzeln: {sqrt(36)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Einzeln: 6.0"
+        }
+      },
+      {
+        "instruction": "Importiere math mit dem Spitznamen m und gib genau Wurzel: 7.0 aus, indem du m.sqrt(49) einsetzt.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wurzel: 7.0"
+        }
+      },
+      {
+        "instruction": "Hole dir mit from math import nur ceil und floor. Gib genau Aufgerundet: 4 (für 3.2) und in der nächsten Zeile Abgerundet: 3 (für 3.8) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aufgerundet: 4\nAbgerundet: 3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Archiv-Zauber 2: Zufallszahlen",
+    "file": "lektion-02.md",
+    "lessonSummary": "Prima! Du würfelst mit random und machst Zufall wiederholbar.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: randint, uniform und seed.",
+        "example": true,
+        "codeTemplate": "import random\nwurf = random.randint(1, 6)\nprint(f\"Wurf im Bereich: {1 <= wurf <= 6}\")\nkomma = random.uniform(10, 20)\nprint(f\"Kommazahl im Bereich: {10 <= komma <= 20}\")\nrandom.seed(7)\na = random.randint(1, 100)\nrandom.seed(7)\nb = random.randint(1, 100)\nprint(f\"Seed wirkt: {a == b}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Seed wirkt: True"
+        }
+      },
+      {
+        "instruction": "Wirf zwanzigmal mit random.randint(1, 6) in einer for-Schleife. Setze alle_ok = True am Anfang und auf False, sobald ein Wurf nicht zwischen 1 und 6 liegt. Gib danach genau Alle im Bereich: True aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Alle im Bereich: True"
+        }
+      },
+      {
+        "instruction": "Setze random.seed(5), ziehe erste = random.randint(1, 100), setze random.seed(5) noch einmal und ziehe zweite = random.randint(1, 100). Gib genau Gleich: True aus (erste == zweite).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gleich: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Archiv-Zauber 3: Zufällig auswählen und mischen",
+    "file": "lektion-03.md",
+    "lessonSummary": "Klasse! Du wählst, ziehst und mischst Einträge per Zufall.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: choice, sample und shuffle mit Eigenschaften-Prüfung.",
+        "example": true,
+        "codeTemplate": "import random\nregale = [\"Regal der Elemente\", \"Regal der Tiere\", \"Regal der Sterne\", \"Regal der Schatten\", \"Regal der Helden\"]\neins = random.choice(regale)\nprint(f\"Gewählt ist in der Liste: {eins in regale}\")\ndrei = random.sample(regale, 3)\nprint(f\"Verschiedene gezogen: {len(set(drei))}\")\nmischung = regale.copy()\nrandom.shuffle(mischung)\nprint(f\"Gleiche Einträge: {sorted(mischung) == sorted(regale)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gleiche Einträge: True"
+        }
+      },
+      {
+        "instruction": "Die Liste regale ist vorgegeben. Wähle mit random.choice() einen Eintrag und gib genau Enthalten: True aus (gewählt in regale).",
+        "codeTemplate": "regale = [\"Regal der Elemente\", \"Regal der Tiere\", \"Regal der Sterne\", \"Regal der Schatten\", \"Regal der Helden\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Enthalten: True"
+        }
+      },
+      {
+        "instruction": "Die Liste regale ist vorgegeben. Ziehe mit random.sample() drei Einträge in gezogen, mische gezogen mit random.shuffle() und gib genau Anzahl: 3 und in der nächsten Zeile Verschieden: True aus (len(set(gezogen)) == 3).",
+        "codeTemplate": "regale = [\"Regal der Elemente\", \"Regal der Tiere\", \"Regal der Sterne\", \"Regal der Schatten\", \"Regal der Helden\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 3\nVerschieden: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Archiv-Zauber 4: Das string-Modul",
+    "file": "lektion-04.md",
+    "lessonSummary": "Stark! Du schmiedest Schlüssel aus Zeichensammlungen und Zufall.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Ein Schlüssel aus Buchstaben und Ziffern.",
+        "example": true,
+        "codeTemplate": "import random\nimport string\nalphabet = string.ascii_letters + string.digits\nschluessel = \"\".join([random.choice(alphabet) for _nr in range(8)])\nprint(f\"Alphabet: {len(alphabet)}\")\nprint(f\"Schlüssel-Länge: {len(schluessel)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Schlüssel-Länge: 8"
+        }
+      },
+      {
+        "instruction": "Gib mit dem string-Modul genau Buchstaben: 52 (len von ascii_letters) und in der nächsten Zeile Ziffern: 10 (len von digits) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Buchstaben: 52\nZiffern: 10"
+        }
+      },
+      {
+        "instruction": "Schmiede einen Schlüssel aus 10 zufälligen Zeichen (Buchstaben und Ziffern) mit \"\".join und random.choice. Gib genau Länge: 10 und in der nächsten Zeile Nur erlaubte Zeichen: True aus (prüfe jedes Zeichen mit einer for-Schleife und in).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Länge: 10\nNur erlaubte Zeichen: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Archiv-Zauber 5: Zeit mit time und datetime",
+    "file": "lektion-05.md",
+    "lessonSummary": "Prima! Du wartest, misst Zeit und liest die Uhr.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Warten, Zeit messen und die Uhr lesen.",
+        "example": true,
+        "codeTemplate": "import time\nfrom datetime import datetime\nstart = time.time()\ntime.sleep(0.1)\nende = time.time()\nprint(f\"Gewartet: {ende - start >= 0.05}\")\njetzt = datetime.now()\nprint(f\"Stunde gültig: {0 <= jetzt.hour <= 23}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gewartet: True"
+        }
+      },
+      {
+        "instruction": "Miss mit time.time() vor und nach time.sleep(0.2) die Wartezeit und gib genau Lange genug gewartet: True aus (Differenz mindestens 0.15).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Lange genug gewartet: True"
+        }
+      },
+      {
+        "instruction": "Hole mit from datetime import datetime die aktuelle Zeit in jetzt. Gib genau Stunde gültig: True (0 bis 23) und in der nächsten Zeile Jahr hat 4 Stellen: True aus (len(jetzt.strftime(\"%Y\")) == 4).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stunde gültig: True\nJahr hat 4 Stellen: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Archiv-Zauber 6: math und Rechenoperatoren",
+    "file": "lektion-06.md",
+    "lessonSummary": "Rechenstark! Du nutzt math, Potenzen, Rest und ganzzahlige Division.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: math-Funktionen und die drei Operatoren.",
+        "example": true,
+        "codeTemplate": "import math\nprint(f\"Wurzel: {math.sqrt(16)}\")\nprint(f\"Aufgerundet: {math.ceil(3.2)}\")\nprint(f\"Potenz: {2 ** 3}\")\nprint(f\"Ganzzahlig: {17 // 5}\")\nprint(f\"Rest: {17 % 5}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rest: 2"
+        }
+      },
+      {
+        "instruction": "Berechne die Kreisfläche für den Radius 10 mit math.pi * radius ** 2, runde auf 2 Stellen und gib genau Fläche: 314.16 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Fläche: 314.16"
+        }
+      },
+      {
+        "instruction": "Teile 17 durch 5: Gib genau Ganzzahlig: 3 (mit //) und in der nächsten Zeile Rest: 2 (mit %) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ganzzahlig: 3\nRest: 2"
+        }
+      },
+      {
+        "instruction": "Prüfe mit %, ob die Zahl 14 gerade ist, und gib genau 14 ist gerade: True aus (zahl % 2 == 0).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "14 ist gerade: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Archiv-Zauber 7: Mehr math: Fakultät, ggT und Primzahlen",
+    "file": "lektion-07.md",
+    "lessonSummary": "Meisterhaft! Du kombinierst math, Funktionen, Schleifen und den Rest-Operator.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: factorial, gcd, lcm und sin.",
+        "example": true,
+        "codeTemplate": "import math\nprint(f\"Fakultät: {math.factorial(5)}\")\nprint(f\"GGT: {math.gcd(24, 36)}\")\nprint(f\"KGV: {math.lcm(12, 15)}\")\nprint(f\"Sinus: {round(math.sin(math.radians(90)), 1)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "GGT: 12"
+        }
+      },
+      {
+        "instruction": "Berechne mit math die Fakultät von 6 und den größten gemeinsamen Teiler von 48 und 18. Gib genau Fakultät: 720 und in der nächsten Zeile GGT: 6 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Fakultät: 720\nGGT: 6"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion ist_primzahl(n) wie im Beispiel oben (mit for und %). Gib genau 17: True und in der nächsten Zeile 18: False aus (mit ist_primzahl(17) und ist_primzahl(18)).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "17: True\n18: False"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug-Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Bei Modulen zählen import, der richtige Funktionsname und der richtige Modul-Bestandteil.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Wurzel: 4.0 ausgeben. Was ist falsch?",
+        "codeTemplate": "print(f\"Wurzel: {math.sqrt(16)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wurzel: 4.0"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Wurzel: 5.0 ausgeben. Was ist falsch?",
+        "codeTemplate": "import math\nprint(f\"Wurzel: {math.wurzel(25)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wurzel: 5.0"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Buchstaben: 52 ausgeben. Was ist falsch?",
+        "codeTemplate": "import string\nprint(f\"Buchstaben: {len(string.ascii_letter)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Buchstaben: 52"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: Das Wächter-Siegel",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission geschafft: Du hast drei Module gerufen und ihre Kraft bewiesen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Drei Module: Importiere random, time und string (mindestens eines mit as). Gib genau Zufall im Bereich: True (randint(1, 6) liegt zwischen 1 und 6), in der nächsten Zeile Buchstaben: 52 und dann Zeit vergeht: True aus (time.time() ist größer als 0).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zufall im Bereich: True\nBuchstaben: 52\nZeit vergeht: True"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Warte-Ritual: Erzeuge mit random.uniform(0.1, 0.3) eine Wartezeit, gib Ritual beginnt aus, warte mit time.sleep() genau so lange und gib danach Ritual vollendet aus. Gib zum Schluss Gewartet: True aus (gemessene Zeit mindestens 0.08).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ritual beginnt\nRitual vollendet\nGewartet: True"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Fragment: Ziehe mit random.choice() einen Buchstaben aus string.ascii_letters in fragment. Gib genau Fragment gültig: True (fragment ist in ascii_letters) und in der nächsten Zeile Länge: 1 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Fragment gültig: True\nLänge: 1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: Die Orakel-Kammer",
+    "file": "mission-02.md",
+    "lessonSummary": "Mission geschafft: Würfel, Auswahl und Mischen – alles per Zufall im Griff!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Drei Würfe: Wirf dreimal mit random.randint(1, 6) und speichere die Würfe mit append() in der Liste wuerfe (Start []). Gib genau Würfe: 3 (len) und in der nächsten Zeile Alle im Bereich: True aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Würfe: 3\nAlle im Bereich: True"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Auswählen: Die Liste regale ist vorgegeben. Wähle mit random.choice() einen Eintrag und gib genau Gewählt gültig: True aus.",
+        "codeTemplate": "regale = [\"Regal der Elemente\", \"Regal der Tiere\", \"Regal der Sterne\", \"Regal der Schatten\", \"Regal der Helden\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gewählt gültig: True"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Ziehen und mischen: Die Liste regale mit sechs Einträgen ([\"Regal der Elemente\", \"Regal der Tiere\", \"Regal der Sterne\", \"Regal der Schatten\", \"Regal der Helden\", \"Regal der Runen\"]) ist vorgegeben. Ziehe mit random.sample() drei Einträge in gezogen, mische sie mit random.shuffle() und gib genau Anzahl: 3 und in der nächsten Zeile Verschieden: True aus.",
+        "codeTemplate": "regale = [\"Regal der Elemente\", \"Regal der Tiere\", \"Regal der Sterne\", \"Regal der Schatten\", \"Regal der Helden\", \"Regal der Runen\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 3\nVerschieden: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: Die Runenschmiede",
+    "file": "mission-03.md",
+    "lessonSummary": "Mission geschafft: Alphabet, Schlüssel und Tageszeit greifen ineinander!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Alphabet: Baue aus string.ascii_letters und string.digits (zusammengefügt mit +) das Alphabet und gib genau Alphabet: 62 Zeichen aus (len).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Alphabet: 62 Zeichen"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Schlüssel: Schmiede mit random.choice, einer List Comprehension und \"\".join einen Schlüssel aus 8 Zeichen des Alphabets. Gib genau Länge: 8 und in der nächsten Zeile Nur erlaubte Zeichen: True aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Länge: 8\nNur erlaubte Zeichen: True"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Tageszeit: Lies mit datetime.now().hour die Stunde. Ist sie von 6 bis einschließlich 17, ist es \"Tag\", sonst \"Nacht\" (speichere das Wort in tageszeit). Gib genau Tageszeit gültig: True aus (tageszeit ist \"Tag\" oder \"Nacht\").",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Tageszeit gültig: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Der Würfelturm des Archivars",
+    "file": "boss-01.md",
+    "lessonSummary": "Der Würfelturm steht: Würfeln, Gewinner finden und ein ganzes Turnier auswerten!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Würfeln: Drei Spieler würfeln je einmal mit random.randint(1, 6). Speichere die Würfe in der Liste wuerfe (append) und gib genau Spieler: 3 und in der nächsten Zeile Alle im Bereich: True aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Spieler: 3\nAlle im Bereich: True"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Gewinner: Schreibe eine Funktion finde_gewinner(wuerfe), die den Index des höchsten Wurfs zurückgibt (bei Gleichstand der erste). Gib für [4, 6, 2] genau Gewinner: Spieler 2 aus (Index + 1).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gewinner: Spieler 2"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Turnier: finde_gewinner ist vorgegeben. Spiele 5 Runden: In jeder Runde würfeln 3 Spieler (random.randint(1, 6)), der Gewinner bekommt einen Sieg in der Liste siege = [0, 0, 0]. Zähle danach die Siege zusammen und gib genau Siege insgesamt: 5 aus.",
+        "codeTemplate": "import random\n\ndef finde_gewinner(wuerfe):\n    beste = 0\n    for i in range(len(wuerfe)):\n        if wuerfe[i] > wuerfe[beste]:\n            beste = i\n    return beste\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Siege insgesamt: 5"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Das Namens-Orakel",
+    "file": "boss-02.md",
+    "lessonSummary": "Das Orakel spricht: Rune, Prophezeiung und Horoskop entstehen aus Zufall und Text!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Glücks-Rune: Der Name steht in name = \"Aria\". Ziehe mit random.choice() so viele Großbuchstaben aus string.ascii_uppercase, wie der Name Buchstaben hat, und füge sie mit \"\".join zur Glücks-Rune zusammen. Gib genau Länge stimmt: True (len(rune) == len(name)) und in der nächsten Zeile Nur Großbuchstaben: True aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Länge stimmt: True\nNur Großbuchstaben: True"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Prophezeiung: Die Liste prophezeiungen mit sechs Sprüchen ist vorgegeben. Wähle mit random.choice() eine aus und gib genau Prophezeiung gültig: True aus (Spruch in der Liste).",
+        "codeTemplate": "prophezeiungen = [\"Ein Drache wird dich beschützen\", \"Ein Schatz wartet im Norden\", \"Vertraue dem Mann mit dem Hut\", \"Der Mond zeigt dir den Weg\", \"Hüte dich vor dem dritten Tor\", \"Ein alter Freund kehrt zurück\"]\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Prophezeiung gültig: True"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Horoskop: Setze name = \"Aria\", ziehe eine Rune (ein zufälliger Großbuchstabe) und einen Spruch aus prophezeiungen und baue mit einem f-String horoskop = <name> – <Rune>: <Spruch>. Gib genau Name enthalten: True (name in horoskop) und in der nächsten Zeile Spruch enthalten: True aus.",
+        "codeTemplate": "prophezeiungen = [\"Ein Drache wird dich beschützen\", \"Ein Schatz wartet im Norden\", \"Vertraue dem Mann mit dem Hut\", \"Der Mond zeigt dir den Weg\", \"Hüte dich vor dem dritten Tor\", \"Ein alter Freund kehrt zurück\"]\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name enthalten: True\nSpruch enthalten: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Der Zufalls-Dungeon",
+    "file": "boss-03.md",
+    "lessonSummary": "Der Zufalls-Dungeon steht: Räume, Monster und Leben – jedes Mal neu!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Räume: Die Liste typen = [\"Schatzkammer\", \"Falle\", \"Leerer Raum\"] ist vorgegeben. Wähle mit einer List Comprehension und random.choice() fünf zufällige Räume in raeume und gib genau Räume: 5 und in der nächsten Zeile Alle gültig: True aus.",
+        "codeTemplate": "typen = [\"Schatzkammer\", \"Falle\", \"Leerer Raum\"]\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Räume: 5\nAlle gültig: True"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Monster: Die Liste monster = [\"Goblin\", \"Ork\", \"Drache\"] ist vorgegeben. Gehe fünf Räume durch: Ist random.randint(0, 1) gleich 1, steht im Raum ein zufälliges Monster (random.choice), sonst der Text \"leer\". Sammle die Inhalte mit append() in inhalte und zähle die Monster (Inhalte ungleich \"leer\") in monster_anzahl. Gib genau Räume: 5 und in der nächsten Zeile Anzahl passt: True aus (monster_anzahl liegt zwischen 0 und 5).",
+        "codeTemplate": "monster = [\"Goblin\", \"Ork\", \"Drache\"]\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Räume: 5\nAnzahl passt: True"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Leben: Schreibe eine Funktion berechne_leben(monster_anzahl): Der Held braucht 1 Leben pro 2 Monster, aufgerundet – rechne (monster_anzahl + 1) // 2. Gib genau Leben: 3 (für 5 Monster), in der nächsten Zeile Leben: 2 (für 4) und dann Leben: 0 (für 0) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Leben: 3\nLeben: 2\nLeben: 0"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-04",
+    "section": "boss",
+    "title": "Extra-Herausforderung 4: Die große Zufallsprobe",
+    "file": "boss-04.md",
+    "lessonSummary": "Die große Wiederholung ist geschafft: Zufall, Zufallswege, Primzahlen und ein Schachbrett aus Woche 4 bis 7!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Zufallswerte: Erzeuge in einer for-Schleife zehn zufällige Ganzzahlen zwischen 60 und 140 (random.randint) und speichere sie mit append() in werte. Gib genau Anzahl: 10, in der nächsten Zeile Alle im Bereich: True und dann Höchster mindestens Durchschnitt: True aus (Durchschnitt = Summe geteilt durch len).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 10\nAlle im Bereich: True\nHöchster mindestens Durchschnitt: True"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Zufalls-Ereignisse: Die Liste ereignisse = [\"Flüstern\", \"Leuchten\", \"Geheimtür\", \"Nebel\"] ist vorgegeben. Wähle für zehn Stockwerke je ein zufälliges Ereignis (random.choice) und sammle sie in der Liste verlauf. Gib genau Ereignisse: 10 und in der nächsten Zeile Alle gültig: True aus.",
+        "codeTemplate": "ereignisse = [\"Flüstern\", \"Leuchten\", \"Geheimtür\", \"Nebel\"]\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ereignisse: 10\nAlle gültig: True"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Zufallsweg: Starte bei position = 0 mit der Liste karte = [0] und schritte = 0. Wiederhole mit while, solange schritte kleiner als 100 ist: Wähle mit random.choice([-1, 1]) einen Schritt, addiere ihn zur Position, hänge die Position an karte an und erhöhe schritte. Beende die Schleife mit break, wenn die Position 5 erreicht. Gib genau Höchstens 100 Schritte: True und in der nächsten Zeile Karte passt: True aus (len(karte) == schritte + 1).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Höchstens 100 Schritte: True\nKarte passt: True"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Zufalls-Fähigkeit: Schreibe eine Funktion wuerfle_faehigkeit(), die mit random.choice() eine Fähigkeit aus [\"Feuerball\", \"Blitz\", \"Heilung\"] zurückgibt. Rufe sie 20-mal auf und gib genau Alle gültig: True aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Alle gültig: True"
+        }
+      },
+      {
+        "instruction": "Schritt 5 – Primzahlen bis 100: Sammle mit einer for-Schleife (2 bis 100) und einer inneren Schleife mit % alle Primzahlen in der Liste primzahlen. Gib genau Anzahl: 25 und in der nächsten Zeile Größte: 97 aus (letzter Eintrag).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 25\nGrößte: 97"
+        }
+      },
+      {
+        "instruction": "Schritt 6 – Schachbrett: Baue ein 8×8-Brett aus zwei verschachtelten Schleifen. Auf Feld (zeile, spalte) steht \"#\", wenn (zeile + spalte) % 2 == 0 ist, sonst \".\". Gib die ersten zwei Zeilen aus (jede Zeile: die Zeichen mit \" \".join zusammengefügt): # . # . # . # . und darunter . # . # . # . #",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "# . # . # . # .\n. # . # . # . #"
+        }
+      },
+      {
+        "instruction": "Schritt 7 – Figur über das Feld: Baue ein 8×8-Feld als Liste von Listen (zwei verschachtelte Schleifen mit append(), jedes Feld 0). Die Figur startet bei figur = [0, 0], das Ziel ist ziel = [7, 7]. Wiederhole mit while True: Ist figur gleich ziel, beende mit break. Sonst geht die Figur nach rechts (figur[1] += 1), solange figur[1] kleiner als 7 ist, und danach nach unten (figur[0] += 1). Zähle die Züge. Gib genau Züge: 14 und in der nächsten Zeile Ziel erreicht: True aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Züge: 14\nZiel erreicht: True"
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,544 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Lesson 1: Importing modules",
+    "file": "lektion-01.md",
+    "lessonSummary": "Great! You fetch ready-made tools with import, as and from.",
+    "tasks": [
+      {
+        "instruction": "Run this example: three ways to import math.",
+        "example": true,
+        "codeTemplate": "import math\nimport math as m\nfrom math import sqrt\nprint(f\"Whole: {math.sqrt(16)}\")\nprint(f\"Nickname: {m.sqrt(25)}\")\nprint(f\"Single: {sqrt(36)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Single: 6.0"
+        }
+      },
+      {
+        "instruction": "Import math with the nickname m and print exactly Root: 7.0 by using m.sqrt(49).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Root: 7.0"
+        }
+      },
+      {
+        "instruction": "Fetch only ceil and floor with from math import. Print exactly Rounded up: 4 (for 3.2) and on the next line Rounded down: 3 (for 3.8).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rounded up: 4\nRounded down: 3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Lesson 2: Random numbers",
+    "file": "lektion-02.md",
+    "lessonSummary": "Nice! You roll dice with random and make chance repeatable.",
+    "tasks": [
+      {
+        "instruction": "Run this example: randint, uniform and seed.",
+        "example": true,
+        "codeTemplate": "import random\nwurf = random.randint(1, 6)\nprint(f\"Roll in range: {1 <= wurf <= 6}\")\nkomma = random.uniform(10, 20)\nprint(f\"Decimal in range: {10 <= komma <= 20}\")\nrandom.seed(7)\na = random.randint(1, 100)\nrandom.seed(7)\nb = random.randint(1, 100)\nprint(f\"Seed works: {a == b}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Seed works: True"
+        }
+      },
+      {
+        "instruction": "Roll random.randint(1, 6) twenty times in a for loop. Set all_ok = True at the start and to False as soon as a roll is not between 1 and 6. Then print exactly All in range: True.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "All in range: True"
+        }
+      },
+      {
+        "instruction": "Set random.seed(5), draw first = random.randint(1, 100), set random.seed(5) once more and draw second = random.randint(1, 100). Print exactly Same: True (first == second).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Same: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Lesson 3: Choosing and shuffling at random",
+    "file": "lektion-03.md",
+    "lessonSummary": "Great! You choose, draw and shuffle entries at random.",
+    "tasks": [
+      {
+        "instruction": "Run this example: choice, sample and shuffle with property checks.",
+        "example": true,
+        "codeTemplate": "import random\ntools = [\"Curry comb\", \"Hoof pick\", \"Saddle\", \"Bridle\", \"Brush\"]\neins = random.choice(tools)\nprint(f\"Chosen is in the list: {eins in tools}\")\ndrei = random.sample(tools, 3)\nprint(f\"Different drawn: {len(set(drei))}\")\nmischung = tools.copy()\nrandom.shuffle(mischung)\nprint(f\"Same entries: {sorted(mischung) == sorted(tools)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Same entries: True"
+        }
+      },
+      {
+        "instruction": "The list tools is provided. Choose an entry with random.choice() and print exactly Contained: True (chosen in tools).",
+        "codeTemplate": "tools = [\"Curry comb\", \"Hoof pick\", \"Saddle\", \"Bridle\", \"Brush\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Contained: True"
+        }
+      },
+      {
+        "instruction": "The list tools is provided. Draw three entries into drawn with random.sample(), shuffle drawn with random.shuffle() and print exactly Count: 3 and on the next line Different: True (len(set(drawn)) == 3).",
+        "codeTemplate": "tools = [\"Curry comb\", \"Hoof pick\", \"Saddle\", \"Bridle\", \"Brush\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 3\nDifferent: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Lesson 4: The string module",
+    "file": "lektion-04.md",
+    "lessonSummary": "Great! You forge keys from character collections and chance.",
+    "tasks": [
+      {
+        "instruction": "Run this example: a key from letters and digits.",
+        "example": true,
+        "codeTemplate": "import random\nimport string\nalphabet = string.ascii_letters + string.digits\nschluessel = \"\".join([random.choice(alphabet) for _nr in range(8)])\nprint(f\"Alphabet: {len(alphabet)}\")\nprint(f\"Key length: {len(schluessel)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Key length: 8"
+        }
+      },
+      {
+        "instruction": "Use the string module to print exactly Letters: 52 (len of ascii_letters) and on the next line Digits: 10 (len of digits).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Letters: 52\nDigits: 10"
+        }
+      },
+      {
+        "instruction": "Forge a key of 10 random characters (letters and digits) with \"\".join and random.choice. Print exactly Length: 10 and on the next line Only allowed characters: True (check every character with a for loop and in).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Length: 10\nOnly allowed characters: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Lesson 5: Time with time and datetime",
+    "file": "lektion-05.md",
+    "lessonSummary": "Nice! You wait, measure time and read the clock.",
+    "tasks": [
+      {
+        "instruction": "Run this example: waiting, measuring time and reading the clock.",
+        "example": true,
+        "codeTemplate": "import time\nfrom datetime import datetime\nstart = time.time()\ntime.sleep(0.1)\nende = time.time()\nprint(f\"Waited: {ende - start >= 0.05}\")\njetzt = datetime.now()\nprint(f\"Hour valid: {0 <= jetzt.hour <= 23}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Waited: True"
+        }
+      },
+      {
+        "instruction": "Measure the waiting time with time.time() before and after time.sleep(0.2) and print exactly Waited long enough: True (difference at least 0.15).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Waited long enough: True"
+        }
+      },
+      {
+        "instruction": "Fetch the current time into now with from datetime import datetime. Print exactly Hour valid: True (0 to 23) and on the next line Year has 4 digits: True (len(now.strftime(\"%Y\")) == 4).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hour valid: True\nYear has 4 digits: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Lesson 6: math and calculation operators",
+    "file": "lektion-06.md",
+    "lessonSummary": "Strong at maths! You use math, powers, remainder and whole-number division.",
+    "tasks": [
+      {
+        "instruction": "Run this example: math functions and the three operators.",
+        "example": true,
+        "codeTemplate": "import math\nprint(f\"Root: {math.sqrt(16)}\")\nprint(f\"Rounded up: {math.ceil(3.2)}\")\nprint(f\"Power: {2 ** 3}\")\nprint(f\"Whole: {17 // 5}\")\nprint(f\"Remainder: {17 % 5}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Remainder: 2"
+        }
+      },
+      {
+        "instruction": "Calculate the circle area for radius 10 with math.pi * radius ** 2, round to 2 places and print exactly Area: 314.16.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Area: 314.16"
+        }
+      },
+      {
+        "instruction": "Divide 17 by 5: Print exactly Whole: 3 (with //) and on the next line Remainder: 2 (with %).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Whole: 3\nRemainder: 2"
+        }
+      },
+      {
+        "instruction": "Check with % whether the number 14 is even and print exactly 14 is even: True (number % 2 == 0).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "14 is even: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Lesson 7: More math: factorial, gcd and primes",
+    "file": "lektion-07.md",
+    "lessonSummary": "Masterful! You combine math, functions, loops and the remainder operator.",
+    "tasks": [
+      {
+        "instruction": "Run this example: factorial, gcd, lcm and sin.",
+        "example": true,
+        "codeTemplate": "import math\nprint(f\"Factorial: {math.factorial(5)}\")\nprint(f\"GGT: {math.gcd(24, 36)}\")\nprint(f\"KGV: {math.lcm(12, 15)}\")\nprint(f\"Sine: {round(math.sin(math.radians(90)), 1)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "GGT: 12"
+        }
+      },
+      {
+        "instruction": "Use math to calculate the factorial of 6 and the greatest common divisor of 48 and 18. Print exactly Factorial: 720 and on the next line GCD: 6.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Factorial: 720\nGCD: 6"
+        }
+      },
+      {
+        "instruction": "Write a function is_prime(n) like in the example above (with for and %). Print exactly 17: True and on the next line 18: False (with is_prime(17) and is_prime(18)).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "17: True\n18: False"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "All bugs found! With modules, import, the right function name and the right module part matter.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Goal: The program should print Root: 4.0. What is wrong?",
+        "codeTemplate": "print(f\"Root: {math.sqrt(16)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Root: 4.0"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Goal: The program should print Root: 5.0. What is wrong?",
+        "codeTemplate": "import math\nprint(f\"Root: {math.root(25)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Root: 5.0"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Goal: The program should print Letters: 52. What is wrong?",
+        "codeTemplate": "import string\nprint(f\"Letters: {len(string.ascii_letter)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Letters: 52"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: The Three Boxes",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission accomplished: You called three modules and proved their power!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Three modules: Import random, time and string (at least one with as). Print exactly Random in range: True (randint(1, 6) is between 1 and 6), on the next line Letters: 52 and then Time passes: True (time.time() is greater than 0).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Random in range: True\nLetters: 52\nTime passes: True"
+        }
+      },
+      {
+        "instruction": "Step 2 – Waiting ritual: Create a waiting time with random.uniform(0.1, 0.3), print Ritual begins, wait exactly that long with time.sleep() and afterwards print Ritual complete. Finally print Waited: True (measured time at least 0.08).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ritual begins\nRitual complete\nWaited: True"
+        }
+      },
+      {
+        "instruction": "Step 3 – Fragment: Draw a letter from string.ascii_letters into fragment with random.choice(). Print exactly Fragment valid: True (fragment is in ascii_letters) and on the next line Length: 1.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Fragment valid: True\nLength: 1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: The Raffle Stand",
+    "file": "mission-02.md",
+    "lessonSummary": "Mission accomplished: dice, choosing and shuffling – all chance under control!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Three rolls: Roll random.randint(1, 6) three times and store the rolls with append() in the list rolls (start []). Print exactly Rolls: 3 (len) and on the next line All in range: True.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rolls: 3\nAll in range: True"
+        }
+      },
+      {
+        "instruction": "Step 2 – Choose: The list tools is provided. Choose an entry with random.choice() and print exactly Chosen valid: True.",
+        "codeTemplate": "tools = [\"Curry comb\", \"Hoof pick\", \"Saddle\", \"Bridle\", \"Brush\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Chosen valid: True"
+        }
+      },
+      {
+        "instruction": "Step 3 – Draw and shuffle: The list tools with six entries ([\"Curry comb\", \"Hoof pick\", \"Saddle\", \"Bridle\", \"Brush\", \"Blanket\"]) is provided. Draw three entries into drawn with random.sample(), shuffle them with random.shuffle() and print exactly Count: 3 and on the next line Different: True.",
+        "codeTemplate": "tools = [\"Curry comb\", \"Hoof pick\", \"Saddle\", \"Bridle\", \"Brush\", \"Blanket\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 3\nDifferent: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: The Key Forge",
+    "file": "mission-03.md",
+    "lessonSummary": "Mission accomplished: alphabet, key and time of day fit together!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Alphabet: Build the alphabet from string.ascii_letters and string.digits (joined with +) and print exactly Alphabet: 62 characters (len).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Alphabet: 62 characters"
+        }
+      },
+      {
+        "instruction": "Step 2 – Key: Forge a key of 8 characters from the alphabet with random.choice, a list comprehension and \"\".join. Print exactly Length: 8 and on the next line Only allowed characters: True.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Length: 8\nOnly allowed characters: True"
+        }
+      },
+      {
+        "instruction": "Step 3 – Time of day: Read the hour with datetime.now().hour. If it is from 6 up to and including 17 it is \"Day\", otherwise \"Night\" (store the word in daytime). Print exactly Time of day valid: True (daytime is \"Day\" or \"Night\").",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Time of day valid: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra Challenge 1: The Dice Course",
+    "file": "boss-01.md",
+    "lessonSummary": "The dice tower stands: rolling, finding the winner and evaluating a whole tournament!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Rolling: Three players roll random.randint(1, 6) once each. Store the rolls in the list rolls (append) and print exactly Players: 3 and on the next line All in range: True.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Players: 3\nAll in range: True"
+        }
+      },
+      {
+        "instruction": "Step 2 – Winner: Write a function find_winner(rolls) that returns the index of the highest roll (the first one on a tie). For [4, 6, 2] print exactly Winner: Player 2 (index + 1).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Winner: Player 2"
+        }
+      },
+      {
+        "instruction": "Step 3 – Tournament: find_winner is provided. Play 5 rounds: in every round 3 players roll (random.randint(1, 6)) and the winner gets a win in the list wins = [0, 0, 0]. Then add up the wins and print exactly Wins in total: 5.",
+        "codeTemplate": "import random\n\ndef find_winner(rolls):\n    best = 0\n    for i in range(len(rolls)):\n        if rolls[i] > rolls[best]:\n            best = i\n    return best\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wins in total: 5"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra Challenge 2: The Lucky Horseshoe",
+    "file": "boss-02.md",
+    "lessonSummary": "The oracle speaks: rune, prophecy and horoscope arise from chance and text!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Lucky rune: The name is in name = \"Anna\". Draw as many capital letters from string.ascii_uppercase with random.choice() as the name has letters and join them with \"\".join into the lucky rune. Print exactly Length matches: True (len(rune) == len(name)) and on the next line Only capitals: True.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Length matches: True\nOnly capitals: True"
+        }
+      },
+      {
+        "instruction": "Step 2 – Prophecy: The list prophecies with six sayings is provided. Choose one with random.choice() and print exactly Prophecy valid: True (saying in the list).",
+        "codeTemplate": "prophecies = [\"Today will be your day\", \"A tournament win lies ahead\", \"Keep the reins loose\", \"The wind carries you\", \"Reward your horse with a carrot\", \"A new friend waits in the stable\"]\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Prophecy valid: True"
+        }
+      },
+      {
+        "instruction": "Step 3 – Horoscope: Set name = \"Anna\", draw a rune (a random capital letter) and a saying from prophecies and build horoscope = <name> – <rune>: <saying> with an f-string. Print exactly Name included: True (name in horoscope) and on the next line Saying included: True.",
+        "codeTemplate": "prophecies = [\"Today will be your day\", \"A tournament win lies ahead\", \"Keep the reins loose\", \"The wind carries you\", \"Reward your horse with a carrot\", \"A new friend waits in the stable\"]\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name included: True\nSaying included: True"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra Challenge 3: The Random Trail Ride",
+    "file": "boss-03.md",
+    "lessonSummary": "The random dungeon stands: rooms, monsters and lives – new every time!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Rooms: The list types = [\"Arena\", \"Pasture\", \"Stable\"] is provided. Choose five random rooms into rooms with a list comprehension and random.choice() and print exactly Rooms: 5 and on the next line All valid: True.",
+        "codeTemplate": "types = [\"Arena\", \"Pasture\", \"Stable\"]\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rooms: 5\nAll valid: True"
+        }
+      },
+      {
+        "instruction": "Step 2 – Monsters: The list monsters = [\"Oxer\", \"Ditch\", \"Wall\"] is provided. Go through five rooms: If random.randint(0, 1) equals 1, the room holds a random monster (random.choice), otherwise the text \"empty\". Collect the contents with append() in contents and count the monsters (contents not equal to \"empty\") in monster_count. Print exactly Rooms: 5 and on the next line Count fits: True (monster_count is between 0 and 5).",
+        "codeTemplate": "monsters = [\"Oxer\", \"Ditch\", \"Wall\"]\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rooms: 5\nCount fits: True"
+        }
+      },
+      {
+        "instruction": "Step 3 – Lives: Write a function calculate_lives(monster_count): The hero needs 1 life per 2 monsters, rounded up – calculate (monster_count + 1) // 2. Print exactly Lives: 3 (for 5 monsters), on the next line Lives: 2 (for 4) and then Lives: 0 (for 0).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Lives: 3\nLives: 2\nLives: 0"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-04",
+    "section": "boss",
+    "title": "Extra Challenge 4: The Great Chance Test",
+    "file": "boss-04.md",
+    "lessonSummary": "The big review is done: chance, random walks, primes and a chessboard from weeks 4 to 7!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Random values: In a for loop create ten random whole numbers between 60 and 140 (random.randint) and store them with append() in values. Print exactly Count: 10, on the next line All in range: True and then Highest at least average: True (average = sum divided by len).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 10\nAll in range: True\nHighest at least average: True"
+        }
+      },
+      {
+        "instruction": "Step 2 – Random events: The list events = [\"Rain\", \"Sun\", \"Wind\", \"Fog\"] is provided. Choose one random event for each of ten floors (random.choice) and collect them in the list log. Print exactly Events: 10 and on the next line All valid: True.",
+        "codeTemplate": "events = [\"Rain\", \"Sun\", \"Wind\", \"Fog\"]\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Events: 10\nAll valid: True"
+        }
+      },
+      {
+        "instruction": "Step 3 – Random walk: Start at position = 0 with the list path = [0] and steps = 0. Repeat with while as long as steps is less than 100: Choose a step with random.choice([-1, 1]), add it to the position, append the position to path and increase steps. End the loop with break when the position reaches 5. Print exactly At most 100 steps: True and on the next line Path fits: True (len(path) == steps + 1).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "At most 100 steps: True\nPath fits: True"
+        }
+      },
+      {
+        "instruction": "Step 4 – Random ability: Write a function roll_ability() that returns an ability from [\"Trot\", \"Gallop\", \"Jump\"] with random.choice(). Call it 20 times and print exactly All valid: True.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "All valid: True"
+        }
+      },
+      {
+        "instruction": "Step 5 – Primes up to 100: Collect all primes in the list primes with a for loop (2 to 100) and an inner loop with %. Print exactly Count: 25 and on the next line Largest: 97 (last entry).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 25\nLargest: 97"
+        }
+      },
+      {
+        "instruction": "Step 6 – Chessboard: Build an 8×8 board from two nested loops. On square (row, column) there is a \"#\" if (row + column) % 2 == 0, otherwise \".\". Print the first two rows (each row: the characters joined with \" \".join): # . # . # . # . and below it . # . # . # . #",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "# . # . # . # .\n. # . # . # . #"
+        }
+      },
+      {
+        "instruction": "Step 7 – Piece across the field: Build an 8×8 field as a list of lists (two nested loops with append(), every square 0). The piece starts at piece = [0, 0], the goal is goal = [7, 7]. Repeat with while True: If piece equals goal, end with break. Otherwise the piece moves right (piece[1] += 1) as long as piece[1] is less than 7, and then down (piece[0] += 1). Count the moves. Print exactly Moves: 14 and on the next line Goal reached: True.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Moves: 14\nGoal reached: True"
+        }
+      }
+    ]
+  }
+]

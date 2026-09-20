@@ -23,7 +23,8 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 - [x] Woche 4: DE/EN-Struktur angeglichen (Abenteuer 8, Pferde 7, Sci-Fi 7 Lektionen; IDs/Aufgaben identisch, EN/DE jeweils als Übersetzung der größeren Fassung)
 - [x] Woche 5 (Funktionen; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.49), ohne Sub-Agenten aus einer Datenquelle pro Thema erzeugt
 - [x] Woche 6 (Listen; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.50): 9 Lektionen, Debug, 3 Missionen, 3 Extra-Herausforderungen je Thema, DE = EN; enthält die nachgezogenen Vorgriffe (Listen, `append`, `break`/`continue`, Funktionen mit Listen)
-- [ ] Nutzer-Feedback abwarten, dann entscheiden: Wochen 7–12
+- [x] Woche 7 (Module; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.51): 7 Lektionen, Debug, 3 Missionen, 4 Extra-Herausforderungen je Thema, DE = EN; Zufalls-Aufgaben prüfen Eigenschaften statt fester Werte; nimmt die Woche-4/5-Vorgriffe mit `random`, `%` und Feld auf (Extra-Herausforderung 4)
+- [ ] Nutzer-Feedback abwarten, dann entscheiden: Wochen 8–12
 - [ ] Lösungen/Glossar für das neue Format anpassen (Lösungen passen noch zu den freien Original-Aufgaben)
 
 #### Nachbesserungen Lektions-Format Woche 4
@@ -51,10 +52,16 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 - [x] Aus dem Original wieder aufgenommen: Slicing (`[0:3]`, `[-2:]`, `[1::2]`), `extend()`, `sorted(set(...))`, `sorted(..., key=len)`, `.upper()` in der List Comprehension (je eine Zusatzaufgabe in Lektion 2/3/5/6/9).
 - [x] Woche-2-Extras (8 Truhen/Säcke/Module, 5 Zauber/Übungen/KI-Modelle) und Woche-4-Mengen (Zahlen 1–20 gerade/rückwärts, sortierte Ereignis-Liste) mit den vollen Original-Mengen als Extra-Herausforderung 4 "Wiederholung" nachgezogen.
 - [x] Boss 3 themenspezifisch benannt (Pferde `erstelle_turnier`/`turniere`, Sci-Fi `erstelle_mission`/`missionen`).
-- [ ] Nur Wiederholung mit Listen: Die restlichen Woche-4-Vorgriffe brauchen Dinge, die erst später kommen — `random` (Zufallshöhen, Zufallsereignisse → Woche 7), `%` und `input()` (Primzahltest, Schachbrett `(zeile + spalte) % 2`) — und der 8×8-Grid-/Bewegungs-Boss (verschachtelte Listen + Schleifen). Bei Woche 7 (random) bzw. einem Grid-Projekt nachziehen.
+- [x] Woche-4-Vorgriffe mit `random`, `%` und dem 8×8-Feld sind in Woche 7 (Extra-Herausforderung 4) nachgezogen (Zufallswerte/-ereignisse/-weg, Primzahlen bis 100, Schachbrett, Figur über das Feld). Offen nur: `input()`-Aufgaben (braucht `stdin`-Validierung, siehe Woche 1–2/4-Nachbesserungen).
 - [ ] Dictionaries aus den Originalen (Boss-Quest 3 dort mit Dictionary) → Woche 8 als Wiederholung nachziehen.
 - [ ] Woche 6 wurde aus einem gemeinsamen Skelett + Themen-Vokabular erzeugt (Generator liegt nur im Scratchpad, nicht im Repo) — Texte sind daher zwischen den Themen strukturell gleich, nur Vokabular/Geschichte unterscheiden sich.
 - [ ] Lösungs-/Glossar-Notebooks Woche 6 passen nicht zu den konkretisierten Aufgaben (Original mit `set`, Dictionaries, `random`).
+
+#### Nachbesserungen Lektions-Format Woche 7 (Module)
+- [ ] Zufalls-Aufgaben prüfen nur Eigenschaften (Bereich, "in der Liste", Anzahl), nie feste Zufallswerte — ein hart codierter `print` besteht wie überall (siehe Woche-5-Punkt zu `functionCalls`/Struktur-Prüfung).
+- [ ] Aus dem Original weggelassen: `time.sleep(1)`-Rituale mit Sekunden (hier < 0,3 s, damit Tests/Aufgaben schnell laufen), `random.random()`/`uniform`-Ausgaben mit `:.3f`, Winkelfunktionen `tan`/Logarithmen (nur `sin`+`radians`, `factorial`/`gcd`/`lcm`), `math.tau`/`inf`, `input()` im Namens-Orakel (dort fester Name), `input()` im Dungeon-Bonus (nur Bonus-Text).
+- [ ] Lösungs-/Glossar-Notebooks Woche 7 passen nicht zu den konkretisierten Aufgaben (Original mit Ausgabe von Zufallswerten und `input()`).
+- [ ] Woche 7 wurde wie Woche 6 aus einem Skelett + Themen-Vokabular erzeugt (Generator nur im Scratchpad); alle Referenzlösungen von Woche 5–7 wurden zusätzlich in Pyodide (node_modules, Python 3.13) ausgeführt — die App nutzt Pyodide 0.24.1 (Python 3.11), dort nicht separat geprüft.
 
 #### Nachbesserungen Lektions-Format (Woche 1–2)
 Beim Umbau aufgefallen; entweder bewusst so gelassen oder noch offen:
