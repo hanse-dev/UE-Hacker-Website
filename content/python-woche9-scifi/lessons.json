@@ -1,0 +1,576 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Daten-Log 1: Dateien schreiben und lesen",
+    "file": "lektion-01.md",
+    "lessonSummary": "Stark! Du schreibst Text in eine Datei und liest ihn wieder ein.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: eine Datei schreiben und wieder lesen.",
+        "example": true,
+        "codeTemplate": "with open(\"bordbuch.txt\", \"w\") as f:\n    f.write(\"Bordbuch Nebula-7\\n\")\n    f.write(\"Status: Aktiv\\n\")\nwith open(\"bordbuch.txt\", \"r\") as f:\n    inhalt = f.read()\nprint(inhalt)\nprint(\"Zeichen:\", len(inhalt))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeichen: 32"
+        }
+      },
+      {
+        "instruction": "Schreibe die Zeile Bordbuch Nebula-7 (mit \\n am Ende) in die Datei bordbuch.txt. Lies die Datei danach mit read() und gib genau Inhalt: Bordbuch Nebula-7 aus (mit strip(), damit der Zeilenumbruch verschwindet).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Inhalt: Bordbuch Nebula-7"
+        }
+      },
+      {
+        "instruction": "Die Datei bordbuch.txt mit drei Zeilen wird vorgegeben angelegt. Lies sie mit read() in inhalt und gib genau Zeilen: 3 aus (Anzahl der Zeilenumbrüche mit inhalt.count(\"\\n\")).",
+        "codeTemplate": "with open(\"bordbuch.txt\", \"w\") as f:\n    f.write(\"Bordbuch Nebula-7\\n\")\n    f.write(\"Status: Aktiv\\n\")\n    f.write(\"Signal empfangen\\n\")\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeilen: 3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Daten-Log 2: Zeilenweise lesen und anhängen",
+    "file": "lektion-02.md",
+    "lessonSummary": "Prima! Du liest zeilenweise, hängst mit \"a\" an und zerlegst Zeilen mit split().",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: schreiben, anhängen, zeilenweise lesen.",
+        "example": true,
+        "codeTemplate": "with open(\"bordbuch.txt\", \"w\") as f:\n    f.write(\"Bordbuch Nebula-7\\n\")\n    f.write(\"Status: Aktiv\\n\")\nwith open(\"bordbuch.txt\", \"a\") as f:\n    f.write(\"Signal empfangen\\n\")\nanzahl = 0\nwith open(\"bordbuch.txt\", \"r\") as f:\n    for zeile in f:\n        print(zeile.strip())\n        anzahl += 1\nprint(\"Zeilen:\", anzahl)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeilen: 3"
+        }
+      },
+      {
+        "instruction": "Die Datei bordbuch.txt mit zwei Zeilen wird vorgegeben angelegt. Hänge mit \"a\" die Zeile Signal empfangen an und gib danach die Datei zeilenweise aus (for zeile in f, mit strip()), jede Zeile einzeln.",
+        "codeTemplate": "with open(\"bordbuch.txt\", \"w\") as f:\n    f.write(\"Bordbuch Nebula-7\\n\")\n    f.write(\"Status: Aktiv\\n\")\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bordbuch Nebula-7\nStatus: Aktiv\nSignal empfangen"
+        }
+      },
+      {
+        "instruction": "Die Datei liste.txt mit Zeilen wie Nova,4 wird vorgegeben angelegt. Lies sie zeilenweise, zerlege jede Zeile mit split(\",\") und gib jeden Eintrag als Name: Zahl aus, z. B. Nova: 4.",
+        "codeTemplate": "with open(\"liste.txt\", \"w\") as f:\n    f.write(\"Nova,4\\n\")\n    f.write(\"Rex,6\\n\")\n    f.write(\"Zara,3\\n\")\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova: 4\nRex: 6\nZara: 3"
+        }
+      },
+      {
+        "instruction": "Die Datei bordbuch.txt mit drei Zeilen wird vorgegeben angelegt. Lies alle Zeilen mit readlines() in zeilen und gib genau Zeilen: 3 und in der nächsten Zeile Erste: Bordbuch Nebula-7 aus (mit strip()).",
+        "codeTemplate": "with open(\"bordbuch.txt\", \"w\") as f:\n    f.write(\"Bordbuch Nebula-7\\n\")\n    f.write(\"Status: Aktiv\\n\")\n    f.write(\"Signal empfangen\\n\")\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeilen: 3\nErste: Bordbuch Nebula-7"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Daten-Log 3: Wenn die Datei fehlt",
+    "file": "lektion-03.md",
+    "lessonSummary": "Klasse! Du fängst FileNotFoundError ab und prüfst mit os, ob es eine Datei gibt.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: fehlende Datei, exists und remove.",
+        "example": true,
+        "codeTemplate": "import os\ntry:\n    with open(\"fehlt.txt\", \"r\") as f:\n        print(f.read())\nexcept FileNotFoundError:\n    print(\"Fehler: Datei fehlt\")\nwith open(\"bordbuch.txt\", \"w\") as f:\n    f.write(\"Bordbuch Nebula-7\\n\")\nprint(\"Vorhanden:\", os.path.exists(\"bordbuch.txt\"))\nos.remove(\"bordbuch.txt\")\nprint(\"Danach:\", os.path.exists(\"bordbuch.txt\"))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Danach: False"
+        }
+      },
+      {
+        "instruction": "Versuche die Datei fehlt.txt (die es nicht gibt) in einem try-Block zu lesen, fange den FileNotFoundError ab und gib genau Keine Datei: fehlt.txt aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Keine Datei: fehlt.txt"
+        }
+      },
+      {
+        "instruction": "Importiere os. Schreibe die Zeile Bordbuch Nebula-7 in die Datei bordbuch.txt, gib genau Vorhanden: True aus (os.path.exists), lösche die Datei mit os.remove() und gib in der nächsten Zeile Vorhanden: False aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Vorhanden: True\nVorhanden: False"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion lese_oder_leer(name), die den Inhalt der Datei zurückgibt – oder \"\" (leerer Text), wenn es sie nicht gibt (try/except FileNotFoundError). Gib genau Leer: True für fehlt.txt aus. Schreibe danach Bordbuch Nebula-7 in bordbuch.txt und gib Inhalt: Bordbuch Nebula-7 aus (strip()).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Leer: True\nInhalt: Bordbuch Nebula-7"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Daten-Log 4: JSON-Text: dumps und loads",
+    "file": "lektion-04.md",
+    "lessonSummary": "Stark! Du verwandelst Dictionaries in JSON-Text und wieder zurück.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: dumps und loads.",
+        "example": true,
+        "codeTemplate": "import json\nmitglied = {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120}\ntext = json.dumps(mitglied)\nprint(text)\nzurueck = json.loads(text)\nprint(\"Zurück:\", zurueck[\"name\"])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zurück: Nova"
+        }
+      },
+      {
+        "instruction": "Das Dictionary mitglied ist vorgegeben. Wandle es mit json.dumps() in einen Text und gib den Text genau so aus: {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120}",
+        "codeTemplate": "import json\nmitglied = {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120}"
+        }
+      },
+      {
+        "instruction": "Der JSON-Text text ist vorgegeben. Wandle ihn mit json.loads() in ein Dictionary daten zurück und gib genau Name: Nova und in der nächsten Zeile Rang plus 1: 5 aus (der Wert ist eine echte Zahl).",
+        "codeTemplate": "import json\ntext = '{\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120}'\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Nova\nRang plus 1: 5"
+        }
+      },
+      {
+        "instruction": "Packe {\"pos\": (3, 4)} mit json.dumps() in Text und lies ihn mit json.loads() zurück (in zurueck). Gib genau Liste: True (zurueck[\"pos\"] == [3, 4]) und in der nächsten Zeile Tupel: False (zurueck[\"pos\"] == (3, 4)) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Liste: True\nTupel: False"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Daten-Log 5: JSON-Dateien: dump und load",
+    "file": "lektion-05.md",
+    "lessonSummary": "Prima! Du speicherst Dictionaries und Listen dauerhaft in JSON-Dateien.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: speichern und laden.",
+        "example": true,
+        "codeTemplate": "import json\nmitglied = {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120}\nwith open(\"mitglied.json\", \"w\") as f:\n    json.dump(mitglied, f, indent=2)\nwith open(\"mitglied.json\", \"r\") as f:\n    geladen = json.load(f)\nprint(\"Geladen:\", geladen[\"name\"])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Geladen: Nova"
+        }
+      },
+      {
+        "instruction": "Das Dictionary mitglied ist vorgegeben. Speichere es mit json.dump() in mitglied.json, lade es mit json.load() in geladen und gib genau Geladen: Nova und in der nächsten Zeile Gleich: True aus (geladen == mitglied).",
+        "codeTemplate": "import json\nmitglied = {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Geladen: Nova\nGleich: True"
+        }
+      },
+      {
+        "instruction": "Die Datei mitglied.json mit dem Dictionary mitglied wird vorgegeben angelegt. Lade sie, erhöhe rang um 1, speichere sie wieder in dieselbe Datei, lade sie erneut und gib genau Rang: 5 aus.",
+        "codeTemplate": "import json\nmitglied = {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120}\nwith open(\"mitglied.json\", \"w\") as f:\n    json.dump(mitglied, f)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rang: 5"
+        }
+      },
+      {
+        "instruction": "Die Liste crew mit drei Dictionaries ist vorgegeben. Speichere sie in mitglied.json, lade sie in geladen und gib genau Anzahl: 3 und in der nächsten Zeile Letzter: Zara aus.",
+        "codeTemplate": "import json\ncrew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 3\nLetzter: Zara"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Daten-Log 6: CSV-Tabellen: writer und reader",
+    "file": "lektion-06.md",
+    "lessonSummary": "Meisterhaft! Du schreibst und liest Tabellen im CSV-Format.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: CSV schreiben, lesen und rechnen.",
+        "example": true,
+        "codeTemplate": "import csv\nwith open(\"crew.csv\", \"w\", newline=\"\") as f:\n    w = csv.writer(f)\n    w.writerow([\"name\", \"rang\"])\n    w.writerow([\"Nova\", 4])\n    w.writerow([\"Rex\", 6])\n    w.writerow([\"Zara\", 3])\nsumme = 0\nwith open(\"crew.csv\", \"r\") as f:\n    r = csv.reader(f)\n    next(r)\n    for zeile in r:\n        summe += int(zeile[1])\nprint(\"Summe:\", summe)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Summe: 13"
+        }
+      },
+      {
+        "instruction": "Schreibe mit csv.writer die Datei crew.csv: Kopfzeile name,rang und drei Zeilen (Nova, 4), (Rex, 6), (Zara, 3). Lies sie mit csv.reader, überspringe die Kopfzeile mit next() und gib genau Zeilen: 3 aus (Anzahl der Datenzeilen).",
+        "codeTemplate": "import csv\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeilen: 3"
+        }
+      },
+      {
+        "instruction": "Die Datei crew.csv wird vorgegeben angelegt (Kopfzeile + drei Zeilen). Lies sie, überspringe die Kopfzeile und addiere alle Werte der zweiten Spalte mit int(). Gib genau Summe: 13 aus.",
+        "codeTemplate": "import csv\nwith open(\"crew.csv\", \"w\", newline=\"\") as f:\n    w = csv.writer(f)\n    w.writerow([\"name\", \"rang\"])\n    w.writerow([\"Nova\", 4])\n    w.writerow([\"Rex\", 6])\n    w.writerow([\"Zara\", 3])\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Summe: 13"
+        }
+      },
+      {
+        "instruction": "Die Datei crew.csv wird vorgegeben angelegt. Lies die erste Datenzeile mit next() (nach der Kopfzeile) in erste. Gib genau Text: 44 (erste[1] + erste[1] verkettet Texte) und in der nächsten Zeile Zahl: 8 (int(erste[1]) * 2) aus.",
+        "codeTemplate": "import csv\nwith open(\"crew.csv\", \"w\", newline=\"\") as f:\n    w = csv.writer(f)\n    w.writerow([\"name\", \"rang\"])\n    w.writerow([\"Nova\", 4])\n    w.writerow([\"Rex\", 6])\n    w.writerow([\"Zara\", 3])\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Text: 44\nZahl: 8"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Daten-Log 7: CSV mit DictReader und Formate wechseln",
+    "file": "lektion-07.md",
+    "lessonSummary": "Weltklasse! Du liest Tabellen als Dictionaries und wandelst zwischen JSON und CSV um.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: DictWriter und DictReader.",
+        "example": true,
+        "codeTemplate": "import csv\ncrew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n]\nwith open(\"crew.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"rolle\", \"rang\", \"energie\"])\n    w.writeheader()\n    w.writerows(crew)\nwith open(\"crew.csv\", \"r\") as f:\n    zeilen = list(csv.DictReader(f))\nprint(\"Zeilen:\", len(zeilen))\nprint(\"Erster:\", zeilen[0][\"name\"])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Erster: Nova"
+        }
+      },
+      {
+        "instruction": "Die Liste crew ist vorgegeben. Schreibe sie mit csv.DictWriter (fieldnames name, rolle, rang, energie, writeheader, writerows) in crew.csv, lies sie mit csv.DictReader in eine Liste zeilen und gib genau Zeilen: 3 und in der nächsten Zeile Erster: Nova aus.",
+        "codeTemplate": "import csv\ncrew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeilen: 3\nErster: Nova"
+        }
+      },
+      {
+        "instruction": "Die CSV-Datei crew.csv wird vorgegeben angelegt. Lies sie mit csv.DictReader, wandle rang jeder Zeile mit int() um und sammle die Zeilen in eintraege. Speichere eintraege mit json.dump() in mitglied.json, lade sie wieder und gib genau Anzahl: 3 und in der nächsten Zeile Summe: 13 aus (Summe der rang-Werte).",
+        "codeTemplate": "import csv\ncrew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n]\nwith open(\"crew.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"rolle\", \"rang\", \"energie\"])\n    w.writeheader()\n    w.writerows(crew)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 3\nSumme: 13"
+        }
+      },
+      {
+        "instruction": "Die JSON-Datei mitglied.json mit einer Liste von Dictionaries wird vorgegeben angelegt. Lade sie und schreibe sie mit csv.DictWriter in crew.csv (fieldnames name, rolle, rang, energie). Lies die CSV mit csv.DictReader zurück und gib genau Zeilen: 3 und in der nächsten Zeile Felder: ['name', 'rolle', 'rang', 'energie'] aus (leser.fieldnames).",
+        "codeTemplate": "import json\ncrew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n]\nwith open(\"mitglied.json\", \"w\") as f:\n    json.dump(crew, f)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeilen: 3\nFelder: ['name', 'rolle', 'rang', 'energie']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug-Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Bei Dateien zählen der richtige Modus, dumps/loads und der Unterschied zwischen Text und Zahl.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Hallo aus der Datei lesen und ausgeben. Was ist falsch?",
+        "codeTemplate": "with open(\"test.txt\", \"w\") as f:\n    f.write(\"Hallo\")\n    inhalt = f.read()\nprint(inhalt)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hallo"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Name: Test ausgeben. Was ist falsch?",
+        "codeTemplate": "import json\ndaten = {\"name\": \"Test\"}\ntext = json.dumps(daten)\nergebnis = json.load(text)\nprint(\"Name:\", ergebnis[\"name\"])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Test"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Rang plus 1: 5 ausgeben. Was ist falsch?",
+        "codeTemplate": "import csv\nwith open(\"test.csv\", \"w\", newline=\"\") as f:\n    csv.writer(f).writerows([[\"name\", \"rang\"], [\"Nova\", 4]])\nwith open(\"test.csv\", \"r\") as f:\n    zeilen = list(csv.reader(f))\nprint(\"Rang plus 1:\", zeilen[1][1] + 1)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rang plus 1: 5"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: Das Bordbuch",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission geschafft: Du hast eine Textdatei geschrieben, angehängt und sicher gelesen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Schreiben und lesen: Schreibe die drei Zeilen Bordbuch Nebula-7, Status: Aktiv und Signal empfangen in die Datei bordbuch.txt und lies sie mit read() wieder ein. Gib genau Zeilen: 3 (Anzahl der \\n) und in der nächsten Zeile Erste: Bordbuch Nebula-7 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeilen: 3\nErste: Bordbuch Nebula-7"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Anhängen: Die Datei bordbuch.txt mit drei Zeilen wird vorgegeben angelegt. Hänge Update: Sonde gestartet an, lies alle Zeilen mit readlines() und gib genau Zeilen: 4 und in der nächsten Zeile Letzte: Update: Sonde gestartet aus (mit strip()).",
+        "codeTemplate": "with open(\"bordbuch.txt\", \"w\") as f:\n    f.write(\"Bordbuch Nebula-7\\n\")\n    f.write(\"Status: Aktiv\\n\")\n    f.write(\"Signal empfangen\\n\")\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeilen: 4\nLetzte: Update: Sonde gestartet"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Sicher zählen: Die Datei bordbuch.txt wird vorgegeben angelegt. Schreibe eine Funktion zeilen_zaehlen(name), die die Zahl der Zeilen zurückgibt – oder 0, wenn die Datei fehlt (try/except FileNotFoundError). Gib genau bordbuch.txt: 3 und in der nächsten Zeile fehlt.txt: 0 aus.",
+        "codeTemplate": "with open(\"bordbuch.txt\", \"w\") as f:\n    f.write(\"Bordbuch Nebula-7\\n\")\n    f.write(\"Status: Aktiv\\n\")\n    f.write(\"Signal empfangen\\n\")\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "bordbuch.txt: 3\nfehlt.txt: 0"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: Das JSON-Archiv",
+    "file": "mission-02.md",
+    "lessonSummary": "Mission geschafft: Steckbriefe überleben jetzt jeden Neustart!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Speichern und laden: Das Dictionary mitglied ist vorgegeben. Speichere es mit json.dump() in mitglied.json, lade es in geladen und gib genau Name: Nova und in der nächsten Zeile Rang: 4 aus.",
+        "codeTemplate": "import json\nmitglied = {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Nova\nRang: 4"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Ändern und speichern: Die Datei mitglied.json mit dem Dictionary mitglied wird vorgegeben angelegt. Lade sie, ergänze schild mit dem Wert 80, speichere sie wieder, lade sie erneut und gib genau Schild: 80 und in der nächsten Zeile Eigenschaften: 5 aus.",
+        "codeTemplate": "import json\nmitglied = {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120}\nwith open(\"mitglied.json\", \"w\") as f:\n    json.dump(mitglied, f)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Schild: 80\nEigenschaften: 5"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Liste speichern und auswerten: Die Datei mitglied.json mit drei Dictionaries wird vorgegeben angelegt. Lade die Liste und finde mit einer Schleife den Eintrag mit dem höchsten rang. Gib genau Bester: Rex aus.",
+        "codeTemplate": "import json\ncrew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n]\nwith open(\"mitglied.json\", \"w\") as f:\n    json.dump(crew, f)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bester: Rex"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: Die Crew-Tabelle",
+    "file": "mission-03.md",
+    "lessonSummary": "Mission geschafft: Tabellen schreiben, lesen und auswerten – das war Datenverarbeitung!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Tabelle schreiben: Die Liste crew mit vier Dictionaries ist vorgegeben. Schreibe sie mit csv.DictWriter (fieldnames name, rolle, rang, energie) in crew.csv und lies sie mit csv.DictReader zurück. Gib genau Zeilen: 4 aus.",
+        "codeTemplate": "import csv\ncrew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n    {\"name\": \"Kai\", \"rolle\": \"Pilotin\", \"rang\": 5, \"energie\": 110},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeilen: 4"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Auswerten: Die Datei crew.csv mit vier Zeilen wird vorgegeben angelegt. Lies sie mit csv.DictReader, addiere die rang-Werte (int!) und gib genau Summe: 18 und in der nächsten Zeile Durchschnitt: 4.5 aus.",
+        "codeTemplate": "import csv\ncrew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n    {\"name\": \"Kai\", \"rolle\": \"Pilotin\", \"rang\": 5, \"energie\": 110},\n]\nwith open(\"crew.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"rolle\", \"rang\", \"energie\"])\n    w.writeheader()\n    w.writerows(crew)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Summe: 18\nDurchschnitt: 4.5"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Filtern: Die Datei crew.csv mit vier Zeilen wird vorgegeben angelegt. Sammle die Namen aller Zeilen, deren rang (als Zahl) größer als 3 ist, in der Liste starke und gib genau Starke: ['Nova', 'Rex', 'Kai'] aus.",
+        "codeTemplate": "import csv\ncrew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n    {\"name\": \"Kai\", \"rolle\": \"Pilotin\", \"rang\": 5, \"energie\": 110},\n]\nwith open(\"crew.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"rolle\", \"rang\", \"energie\"])\n    w.writeheader()\n    w.writerows(crew)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Starke: ['Nova', 'Rex', 'Kai']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Das Logbuch",
+    "file": "boss-01.md",
+    "lessonSummary": "Das Tagebuch steht: schreiben, anhängen und nummeriert vorlesen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Einträge schreiben: Die Liste eintraege (Signal empfangen, Sonde gestartet, Hülle repariert) und datum sind vorgegeben. Schreibe jeden Eintrag als Zeile datum + \" \" + Eintrag in die Datei tagebuch.txt und lies sie mit readlines() zurück. Gib genau Einträge: 3 und in der nächsten Zeile Erste Zeile: Tag 42 Signal empfangen aus.",
+        "codeTemplate": "datum = \"Tag 42\"\neintraege = [\"Signal empfangen\", \"Sonde gestartet\", \"Hülle repariert\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Einträge: 3\nErste Zeile: Tag 42 Signal empfangen"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Anhängen: datum ist vorgegeben, tagebuch.txt wird mit drei Zeilen angelegt. Hänge mit \"a\" den Eintrag Tag 42 Energiezelle geladen an und gib genau Einträge: 4 und in der nächsten Zeile Letzter: Tag 42 Energiezelle geladen aus.",
+        "codeTemplate": "datum = \"Tag 42\"\nwith open(\"tagebuch.txt\", \"w\") as f:\n    f.write(datum + \" Signal empfangen\\n\")\n    f.write(datum + \" Sonde gestartet\\n\")\n    f.write(datum + \" Hülle repariert\\n\")\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Einträge: 4\nLetzter: Tag 42 Energiezelle geladen"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Nummeriert ausgeben: datum ist vorgegeben, tagebuch.txt wird mit drei Zeilen angelegt. Lies die Datei zeilenweise und gib jede Zeile mit Nummer aus, z. B. 1: Tag 42 Signal empfangen (zähle mit einer Variable nummer).",
+        "codeTemplate": "datum = \"Tag 42\"\nwith open(\"tagebuch.txt\", \"w\") as f:\n    f.write(datum + \" Signal empfangen\\n\")\n    f.write(datum + \" Sonde gestartet\\n\")\n    f.write(datum + \" Hülle repariert\\n\")\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1: Tag 42 Signal empfangen\n2: Tag 42 Sonde gestartet\n3: Tag 42 Hülle repariert"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Die Sternkarte",
+    "file": "boss-02.md",
+    "lessonSummary": "Die Karte ist gepflegt: speichern, laden, erweitern und den wertvollsten Ort finden!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Speichern und laden: Das Dictionary karte (Ort → Dictionary mit koordinaten als Tupel und wert) ist vorgegeben. Speichere es mit json.dump() in karte.json, lade es in geladen und gib genau Orte: 3 und in der nächsten Zeile Koordinaten: [10, 20] aus (geladen[\"Kristallkern\"][\"koordinaten\"] – das Tupel ist jetzt eine Liste).",
+        "codeTemplate": "import json\nkarte = {\n    \"Kristallkern\": {\"koordinaten\": (10, 20), \"wert\": 800},\n    \"Sensorchip\": {\"koordinaten\": (30, 40), \"wert\": 300},\n    \"Antimaterie\": {\"koordinaten\": (50, 60), \"wert\": 650},\n}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Orte: 3\nKoordinaten: [10, 20]"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Ort hinzufügen: Die Datei karte.json mit drei Orten wird vorgegeben angelegt. Lade sie, ergänze den Ort Energiezelle mit koordinaten [70, 80] und wert 400, speichere sie wieder, lade sie erneut und gib genau Orte: 4 aus.",
+        "codeTemplate": "import json\nkarte = {\n    \"Kristallkern\": {\"koordinaten\": (10, 20), \"wert\": 800},\n    \"Sensorchip\": {\"koordinaten\": (30, 40), \"wert\": 300},\n    \"Antimaterie\": {\"koordinaten\": (50, 60), \"wert\": 650},\n}\nwith open(\"karte.json\", \"w\") as f:\n    json.dump(karte, f)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Orte: 4"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Wertvollster Ort: Die Datei karte.json mit vier Orten wird vorgegeben angelegt. Lade sie und finde den Ort mit dem höchsten wert. Gib genau Wertvollster: Kristallkern (800) aus.",
+        "codeTemplate": "import json\nkarte = {\n    \"Kristallkern\": {\"koordinaten\": (10, 20), \"wert\": 800},\n    \"Sensorchip\": {\"koordinaten\": (30, 40), \"wert\": 300},\n    \"Antimaterie\": {\"koordinaten\": (50, 60), \"wert\": 650},\n}\nkarte[\"Energiezelle\"] = {\"koordinaten\": [70, 80], \"wert\": 400}\nwith open(\"karte.json\", \"w\") as f:\n    json.dump(karte, f)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wertvollster: Kristallkern (800)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Das Missionslog",
+    "file": "boss-03.md",
+    "lessonSummary": "Das Questlog steht: speichern, abschließen, zählen und einen Bericht schreiben!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Quests speichern: Die Liste quests mit drei Mission-Dictionaries ist vorgegeben. Speichere sie in questlog.json, lade sie in geladen und gib genau Mission-Anzahl: 3 und in der nächsten Zeile Status: offen aus (Status der ersten).",
+        "codeTemplate": "import json\nquests = [\n    {\"name\": \"Signal orten\", \"schwierigkeit\": 1, \"status\": \"offen\"},\n    {\"name\": \"Sonde starten\", \"schwierigkeit\": 2, \"status\": \"offen\"},\n    {\"name\": \"Hülle reparieren\", \"schwierigkeit\": 3, \"status\": \"offen\"},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mission-Anzahl: 3\nStatus: offen"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Abschließen: Die Datei questlog.json mit drei Einträgen wird vorgegeben angelegt. Lade sie, setze den Status des ersten Eintrags auf \"abgeschlossen\", speichere sie wieder, lade sie erneut und gib genau Erste: abgeschlossen aus.",
+        "codeTemplate": "import json\nquests = [\n    {\"name\": \"Signal orten\", \"schwierigkeit\": 1, \"status\": \"offen\"},\n    {\"name\": \"Sonde starten\", \"schwierigkeit\": 2, \"status\": \"offen\"},\n    {\"name\": \"Hülle reparieren\", \"schwierigkeit\": 3, \"status\": \"offen\"},\n]\nwith open(\"questlog.json\", \"w\") as f:\n    json.dump(quests, f)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Erste: abgeschlossen"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Bericht: Die Datei questlog.json wird vorgegeben angelegt (erster Eintrag \"abgeschlossen\"). Lade sie, zähle die Einträge mit Status \"abgeschlossen\" in fertig und schreibe die Zeile Abgeschlossen: 1 (mit fertig) in die Datei bericht.txt. Lies bericht.txt wieder ein und gib genau Bericht: Abgeschlossen: 1 aus (mit strip()).",
+        "codeTemplate": "import json\nquests = [\n    {\"name\": \"Signal orten\", \"schwierigkeit\": 1, \"status\": \"offen\"},\n    {\"name\": \"Sonde starten\", \"schwierigkeit\": 2, \"status\": \"offen\"},\n    {\"name\": \"Hülle reparieren\", \"schwierigkeit\": 3, \"status\": \"offen\"},\n]\nquests[0][\"status\"] = \"abgeschlossen\"\nwith open(\"questlog.json\", \"w\") as f:\n    json.dump(quests, f)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bericht: Abgeschlossen: 1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-04",
+    "section": "boss",
+    "title": "Extra-Herausforderung 4: Das große Datenarchiv",
+    "file": "boss-04.md",
+    "lessonSummary": "Die große Wiederholung ist geschafft: Funktionen, Listen, Zufall und Dictionaries – jetzt mit Dateien!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Funktionen (Woche 5): Das Dictionary mitglied ist vorgegeben. Schreibe speichere(daten, name) (json.dump in Datei name) und lade(name) (json.load, gibt das Dictionary zurück). Speichere mitglied in mitglied.json, lade es zurück und gib genau Gleich: True aus.",
+        "codeTemplate": "import json\nmitglied = {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gleich: True"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Fehler abfangen (Woche 8): Das Dictionary mitglied ist vorgegeben. Schreibe lade_sicher(name), die {} zurückgibt, wenn die Datei fehlt (try/except FileNotFoundError). Gib genau Leer: True für gibt_es_nicht.json aus. Speichere mitglied in mitglied.json und gib danach Name: Nova aus (lade_sicher).",
+        "codeTemplate": "import json\nmitglied = {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Leer: True\nName: Nova"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Listen filtern (Woche 6): Die CSV-Datei crew.csv wird vorgegeben angelegt. Sammle die Namen aller Zeilen mit rang größer als 3 in der Liste starke, speichere starke mit json.dump() in mitglied.json, lade sie zurück und gib genau Starke: ['Nova', 'Rex'] aus.",
+        "codeTemplate": "import csv\ncrew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n]\nwith open(\"crew.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"rolle\", \"rang\", \"energie\"])\n    w.writeheader()\n    w.writerows(crew)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Starke: ['Nova', 'Rex']"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Zufall (Woche 7): Schreibe zehn Zufallszahlen von 1 bis 100 (random.randint), je eine pro Zeile, in die Datei zahlen.txt. Lies sie zeilenweise zurück und wandle sie mit int() um (Liste zahlen). Gib genau Anzahl: 10 und in der nächsten Zeile Alle im Bereich: True aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 10\nAlle im Bereich: True"
+        }
+      },
+      {
+        "instruction": "Schritt 5 – Dictionary zählen und speichern (Woche 8): wort = \"raumstation\" ist vorgegeben. Zähle mit zaehler[b] = zaehler.get(b, 0) + 1, wie oft jeder Buchstabe vorkommt, speichere zaehler mit json.dump() in zaehler.json, lade ihn zurück und gib genau a: 2 aus.",
+        "codeTemplate": "import json\nwort = \"raumstation\"\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "a: 2"
+        }
+      },
+      {
+        "instruction": "Schritt 6 – Aufräumen: Importiere os. Schreibe die Datei aufraeumen.txt mit dem Text Test, lösche sie mit os.remove() und gib genau Gelöscht: True aus (os.path.exists ist False).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gelöscht: True"
+        }
+      }
+    ]
+  }
+]

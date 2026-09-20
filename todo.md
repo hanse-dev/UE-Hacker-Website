@@ -25,7 +25,8 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 - [x] Woche 6 (Listen; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.50): 9 Lektionen, Debug, 3 Missionen, 3 Extra-Herausforderungen je Thema, DE = EN; enthält die nachgezogenen Vorgriffe (Listen, `append`, `break`/`continue`, Funktionen mit Listen)
 - [x] Woche 7 (Module; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.51): 7 Lektionen, Debug, 3 Missionen, 4 Extra-Herausforderungen je Thema, DE = EN; Zufalls-Aufgaben prüfen Eigenschaften statt fester Werte; nimmt die Woche-4/5-Vorgriffe mit `random`, `%` und Feld auf (Extra-Herausforderung 4)
 - [x] Woche 8 (Dictionaries/Tupel; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.52): 7 Lektionen, Debug, 3 Missionen, 4 Extra-Herausforderungen je Thema, DE = EN; enthält die nachgezogenen Dictionary-/`try/except`-Vorgriffe aus Woche 5/6
-- [ ] Nutzer-Feedback abwarten, dann entscheiden: Wochen 9–12
+- [x] Woche 9 (JSON und Dateien; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.53): 7 Lektionen, Debug, 3 Missionen, 4 Extra-Herausforderungen je Thema, DE = EN
+- [ ] Nutzer-Feedback abwarten, dann entscheiden: Wochen 10–12
 - [ ] Lösungen/Glossar für das neue Format anpassen (Lösungen passen noch zu den freien Original-Aufgaben)
 
 #### Nachbesserungen Lektions-Format Woche 4
@@ -82,6 +83,13 @@ Beim Umbau aufgefallen; entweder bewusst so gelassen oder noch offen:
 - [ ] Wie überall: `dict`/`try`-Struktur wird nicht geprüft, hart codierte `print`s bestehen (siehe Woche-5-Punkt zu `functionCalls`).
 - [ ] Lösungs-/Glossar-Notebooks Woche 8 passen nicht zu den konkretisierten Aufgaben.
 - [ ] Woche 8 wurde wie Woche 6/7 aus einem Skelett + Themen-Vokabular erzeugt (Generator nur im Scratchpad); Aufgaben teils identisch zwischen den Themen, nur Vokabular unterscheidet sich.
+
+#### Nachbesserungen Lektions-Format Woche 9 (JSON und Dateien)
+- [ ] `input()`-Aufgaben aus dem Original (Boss 1 Tagebuch, Eintrag per `input()`) durch vorgegebene Einträge ersetzt, `input()` nur als Bonus — braucht die `stdin`-Validierung (siehe Woche 1–2/4-Nachbesserungen).
+- [ ] Dateien liegen im Pyodide-Dateisystem und bleiben zwischen Aufgaben (und Läufen) bestehen; jede Aufgabe schreibt ihre Dateien deshalb selbst. Ob das Dateisystem beim Kernel-Neustart geleert wird, in der App nicht separat geprüft.
+- [ ] Aus dem Original weggelassen: `f.writelines()`, `json.dumps(indent=2)`-Ausgabe als Prüfung, `csv.DictWriter` mit `extrasaction`, `with open(..., "x")`; nur `indent`/Umlaut-Escapes (`\\u00e4`) sind als Hinweis erwähnt.
+- [ ] Lösungs-/Glossar-Notebooks Woche 9 passen nicht zu den konkretisierten Aufgaben.
+- [ ] Woche 9 wurde wie Woche 6–8 aus einem Skelett + Themen-Vokabular erzeugt (Generator nur im Scratchpad).
 
 ---
 

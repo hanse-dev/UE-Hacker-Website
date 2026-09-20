@@ -76,12 +76,12 @@ test.describe('Storytelling-Überarbeitung: Pferde', () => {
     }
   });
 
-  test('Woche 9: eigene Rahmengeschichte statt Woche-8-Duplikat', async ({ page }) => {
-    const week8 = await openWeekVariantTab(page, 8, 'Pferde', 'Lektion');
-    const week8Text = await week8.locator('.notebook-cells').innerText();
-
-    const week9 = await openWeekVariantTab(page, 9, 'Pferde', 'Lektion');
-    const week9Text = await week9.locator('.notebook-cells').innerText();
+  test('Woche 9: eigene Rahmengeschichte statt Woche-8-Duplikat', async () => {
+    // Woche 8 und 9 sind im Lektions-Format (kein `.cell` in der Tour) - Original-Einleitung aus der Quelldatei lesen.
+    const intro = (w) => fs.readFileSync(
+      path.join(process.cwd(), `content/python-12-wochen-grundkurs/woche-${w}/pferde/woche${w}_pferde_1_lektion/01_markdown.py`), 'utf-8');
+    const week8Text = intro(8);
+    const week9Text = intro(9);
 
     expect(week9Text).toContain('Zuchtbücher von Sonnental');
     // The two weeks must not share their opening story paragraph anymore.
@@ -128,7 +128,7 @@ test.describe('Storytelling-Überarbeitung: Sci-Fi', () => {
     }
   });
 
-  test('Woche 6/8: Boss-Quest 2 ist nicht mehr der Woche-5-Klon', async ({ page }) => {
+  test('Woche 6/8: Boss-Quest 2 ist nicht mehr der Woche-5-Klon', async () => {
     // Woche 5 ist seit dem Lektions-Format kein Notebook mehr im Kurs (kein `.cell` in der Tour) -
     // die Original-Boss-Quest liegt weiter als Nachschlagewerk-Quelle im Repo, daher aus der Datei lesen.
     const week5Text = fs.readFileSync(
@@ -145,8 +145,11 @@ test.describe('Storytelling-Überarbeitung: Sci-Fi', () => {
     expect(week6Text).toContain('Der Hangar-Verwalter');
     expect(week6Text).not.toContain('Der Raumstation-Manager');
 
-    const week8 = await openWeekVariantTab(page, 8, 'Sci-Fi', 'Boss-Quest');
-    const week8Text = await week8.locator('.notebook-cells').innerText();
+    // Woche 8 ist ebenfalls im Lektions-Format - Original-Boss-Quest aus der Quelldatei lesen.
+    const week8Text = fs.readFileSync(
+      path.join(process.cwd(), 'content/python-12-wochen-grundkurs/woche-8/scifi/woche8_scifi_5_boss/04_markdown.py'),
+      'utf-8',
+    );
     expect(week8Text).toContain('Die Sensor-Matrix');
     expect(week8Text).not.toContain('Der Raumstation-Manager');
   });
