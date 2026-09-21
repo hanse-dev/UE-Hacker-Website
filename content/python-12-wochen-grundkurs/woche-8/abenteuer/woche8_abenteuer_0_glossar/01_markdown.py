@@ -8,7 +8,6 @@
 | **Wert (Value)** | Inhalt eines Eintrags | `held[\"level\"]` → `5` |
 | `.get()` | Sicherer Zugriff – kein Fehler wenn Schlüssel fehlt | `held.get(\"xp\", 0)` |
 | `.pop()` | Eintrag löschen und Wert zurückgeben | `held.pop(\"level\")` |
-| `.update()` | Mehrere Einträge auf einmal hinzufügen oder ändern | `held.update({\"level\": 2})` |
 | `.keys()` | Alle Schlüssel als Liste | `held.keys()` |
 | `.values()` | Alle Werte als Liste | `held.values()` |
 | `.items()` | Alle Schlüssel-Wert-Paare – nützlich für Schleifen | `for k, v in held.items():` |

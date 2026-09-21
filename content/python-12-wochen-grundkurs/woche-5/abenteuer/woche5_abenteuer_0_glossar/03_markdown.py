@@ -4,7 +4,7 @@
 
 | Begriff | Bedeutung | Beispiel |
 |---------|-----------|----------|
-| `len()` | Länge eines Textes oder einer Liste | `len(\"Hallo\")` → `5` |
+| `len()` | Länge eines Textes | `len(\"Hallo\")` → `5` |
 | `type()` | Datentyp prüfen | `type(42)` → `<class 'int'>` |
 
 
@@ -12,6 +12,6 @@
 
 | Begriff | Bedeutung | Beispiel |
 |---------|-----------|----------|
-| **Liste** `[]` | Geordnete Sammlung | `[\"Aria\", \"Borin\"]` |
-| `for` | Schleife über eine Sammlung | `for item in liste:` |
+| `while` | Schleife – wiederholt, solange die Bedingung wahr ist | `while x < 10:` |
+| `for` | Schleife über eine Zahlenfolge | `for i in range(3):` |
 """

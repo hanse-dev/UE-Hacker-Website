@@ -5,7 +5,7 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 
 ## Offen
 
-- [ ] Glossar-Notebooks (`0_glossar`) von Woche 3–12 an die konkretisierten Aufgaben angleichen (erwähnen teils Vorgriffe/Themen der Original-Aufgaben, z. B. Listen in Woche 4, Docstring-Stile in Woche 5). Lösungen aller Wochen 1–12 sind aus den Referenzlösungen der Aufgaben erzeugt (`tests/python-lektionen-format.spec.js` prüft, dass jede Aufgabe ihre Lösung hat).
+- [x] Glossar-Notebooks (`0_glossar`) Woche 3–12 an die Lektionen angeglichen: Vorgriffe entfernt (Woche 4 Listen/`append`/Index, Woche 5 `try`/`except` in Pferde+Sci-Fi, Woche 8 `.update()`), Wiederholungs-Verweise korrigiert (Woche 5–7, 9), Woche-6-Tabelle repariert und um Listen ergänzt, Woche 10 Doppelzeile; Test `Glossare: keine Vorgriffe` in `tests/storytelling-content.spec.js`. Bewusst gelassen: `snake_case`/Algorithmus/Instanz (Konzepte ohne eigene Aufgabe), Woche 7 Pferde/Sci-Fi mit kleinerer Begriffsliste als Abenteuer.
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken) —
       **zurückgestellt** (Nutzer will erst später deployen). Backup-Cron auf dem Server einrichten
       (Befehl siehe HANDOFF.md Abschnitt 4); externe Sicherung der Backups bewusst nicht mitgebaut.
@@ -33,7 +33,7 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 #### Nachbesserungen Lektions-Format Woche 4
 - [ ] Vorgriffe im Original (`break`/`continue`, `random`, Listen, `%`, `input()`) wurden in Missionen/Boss durch feste Werte, `if`/`or` und `while`-Bedingungen ersetzt, Mengen teils kleiner (z.B. Pferde Mission 1 bis 10 statt 20, Boss 1 5 statt 10 Sprünge). In Woche 6 als Wiederholung mit den vollen Original-Aufgaben nachziehen.
 - [ ] Debug Bug #1 war im Original eine Endlosschleife (5s-Timeout), jetzt Off-by-one — bewusst so.
-- [ ] Glossar (`0_glossar`) und Lernziele-Checkliste der Original-Missionen erwähnen Listen/`append` (Vorgriff auf Woche 6) — bereinigen. Lösungs-Notebooks passen weiter zu den freien Original-Aufgaben.
+- [x] Glossar (Woche 4) bereinigt. [ ] Lernziele-Checkliste der Original-Missionen erwähnt noch Listen/`append` (Vorgriff auf Woche 6) — bereinigen. Lösungs-Notebooks passen weiter zu den freien Original-Aufgaben.
 - [x] `end=""` ist jetzt in Pferde DE/EN und Sci-Fi EN Lektion 7 erklärt; mehrzeilige `expected` mit `\n` (82 Aufgaben) in der App per Wegwerf-Test bestätigt.
 - [x] Pferde DE Boss 3: "Noch 1 Runden" (Plural bei 1) — kosmetisch, DE+`expected` müssten gemeinsam geändert werden.
 - [ ] `input()`-Beispiele (Zugangscodes/Passwort/Futter-Abfrage) nicht übernommen — die `stdin`-Validierung gibt es jetzt (`validation.stdin`, siehe INHALTE.md); die Aufgaben selbst sind noch nicht (wieder) ergänzt.

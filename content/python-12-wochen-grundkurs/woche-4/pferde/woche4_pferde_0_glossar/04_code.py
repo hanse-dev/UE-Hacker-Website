@@ -1,7 +1,6 @@
-# for-Schleife über eine Liste
-pferde = ["Bobby", "Blitz", "Moritz"]
-for pferd in pferde:
-    print("Pferd:", pferd)
+# for-Schleife über einen Text
+for buchstabe in "Drache":
+    print("Buchstabe:", buchstabe)
 
 # range() – Zahlenfolge
 for i in range(3):
@@ -13,9 +12,5 @@ while futter > 0:
     print("Futter:", futter, "kg")
     futter = futter - 1
 
-# Listen-Grundlagen
-stall = []
-stall.append("Haflinger")
-stall.append("Andalusier")
-print(stall[0])   # Haflinger
-print(len(stall)) # 2
+# len() – Länge eines Textes
+print(len("Drache"))  # 6

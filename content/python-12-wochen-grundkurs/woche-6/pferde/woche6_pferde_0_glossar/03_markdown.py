@@ -4,9 +4,7 @@
 
 | Begriff | Bedeutung | Beispiel |
 |---------|-----------|----------|
-| **Liste** `[]` | Geordnete Sammlung | `[\"Aria\", \"Borin\"]` |
-| `.append()` | Element hinzufügen | `liste.append(\"neu\")` |
-| `for` | Schleife über eine Sammlung | `for item in liste:` |
+| `for` | Schleife über eine Zahlenfolge | `for i in range(3):` |
 
 
 ### Aus Woche 5

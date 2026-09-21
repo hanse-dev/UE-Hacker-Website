@@ -7,7 +7,6 @@ print(held.get("xp", 0))    # 0 (Standardwert)
 
 # Ändern und löschen
 held["level"] = 6
-held.update({"gold": 150})
 held.pop("gold")
 
 # Iteration

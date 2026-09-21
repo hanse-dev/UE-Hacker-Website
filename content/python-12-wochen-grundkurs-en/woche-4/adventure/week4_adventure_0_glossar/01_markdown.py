@@ -3,10 +3,7 @@
 
 | Term | Meaning | Example |
 |------|---------|--------|
-| `for` | Loop – goes through every element of a collection | `for item in list_:` |
+| `for` | Loop – goes through every character of a text or every number of a sequence | `for letter in \"Dragon\":` |
 | `range()` | Creates a sequence of numbers | `range(5)` → `0, 1, 2, 3, 4` |
 | `while` | Loop – repeats as long as a condition is true | `while x < 10:` |
-| **List** `[]` | Ordered collection of values | `[\"Aria\", \"Borin\", \"Lena\"]` |
-| `.append()` | Add an element to the end of a list | `list_.append(\"new\")` |
-| **Index** | Position of an element in the list (starts at 0) | `list_[0]` → first element |
-| `len()` | Number of elements in a list | `len([1, 2, 3])` → `3` |"""
+| `len()` | Number of characters in a text | `len(\"Dragon\")` → `6` |"""

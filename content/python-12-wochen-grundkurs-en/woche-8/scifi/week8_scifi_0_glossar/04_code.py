@@ -7,7 +7,6 @@ print(ship.get("weapons", 0))  # 0 (default value)
 
 # Modify and delete
 ship["crew"] = 160
-ship.update({"class": "Sovereign"})
 ship.pop("class")
 
 # Iteration

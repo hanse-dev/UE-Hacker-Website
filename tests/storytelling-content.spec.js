@@ -167,3 +167,38 @@ test.describe('Storytelling-Überarbeitung: Sci-Fi', () => {
   });
 
 });
+
+// Glossare (0_glossar) duerfen keine Begriffe aus spaeteren Wochen erklaeren (Vorgriffe):
+// Woche 4 kennt noch keine Listen, try/except kommt erst in Woche 8.
+test.describe('Glossare: keine Vorgriffe', () => {
+  const bases = ['python-12-wochen-grundkurs', 'python-12-wochen-grundkurs-en'];
+  const glossarText = (week) => bases.flatMap((base) => {
+    const weekDir = path.join('content', base, `woche-${week}`);
+    return fs.readdirSync(weekDir, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name).flatMap((variant) => {
+      const dir = fs.readdirSync(path.join(weekDir, variant)).find((n) => n.endsWith('_0_glossar'));
+      const gdir = path.join(weekDir, variant, dir);
+      return fs.readdirSync(gdir).filter((f) => /^\d\d_.*\.py$/.test(f))
+        .map((f) => ({ id: `${base}/${variant}/${f}`, text: fs.readFileSync(path.join(gdir, f), 'utf8') }));
+    });
+  });
+
+  test('Woche 4: keine Listen (Liste/append/Index)', () => {
+    for (const { id, text } of glossarText(4)) {
+      expect(text, id).not.toMatch(/\.append\(|\*\*(Liste|List|Index)\*\*|\blist_\b|\bliste\b/);
+    }
+  });
+
+  for (const week of [3, 4, 5, 6, 7]) {
+    test(`Woche ${week}: kein try/except vor Woche 8`, () => {
+      for (const { id, text } of glossarText(week)) {
+        expect(text, id).not.toMatch(/\btry\b|\bexcept\b/);
+      }
+    });
+  }
+
+  test('Woche 6: Tabelle ohne kaputte Zeilen', () => {
+    for (const { id, text } of glossarText(6)) {
+      expect(text, id).not.toMatch(/\|"$/m);
+    }
+  });
+});
