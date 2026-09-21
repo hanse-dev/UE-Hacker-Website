@@ -5,6 +5,7 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 
 ## Offen
 
+- [ ] Glossar-Notebooks (`0_glossar`) von Woche 3–12 an die konkretisierten Aufgaben angleichen (erwähnen teils Vorgriffe/Themen der Original-Aufgaben, z. B. Listen in Woche 4, Docstring-Stile in Woche 5). Lösungen aller Wochen 1–12 sind aus den Referenzlösungen der Aufgaben erzeugt (`tests/python-lektionen-format.spec.js` prüft, dass jede Aufgabe ihre Lösung hat).
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken) —
       **zurückgestellt** (Nutzer will erst später deployen). Backup-Cron auf dem Server einrichten
       (Befehl siehe HANDOFF.md Abschnitt 4); externe Sicherung der Backups bewusst nicht mitgebaut.
@@ -27,7 +28,7 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 - [x] Woche 8 (Dictionaries/Tupel; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.52): 7 Lektionen, Debug, 3 Missionen, 4 Extra-Herausforderungen je Thema, DE = EN; enthält die nachgezogenen Dictionary-/`try/except`-Vorgriffe aus Woche 5/6
 - [x] Woche 9 (JSON und Dateien; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.53): 7 Lektionen, Debug, 3 Missionen, 4 Extra-Herausforderungen je Thema, DE = EN
 - [x] Woche 10 (OOP Grundlagen), Woche 11 (OOP Fortgeschritten), Woche 12 (Text-Adventure-Abschlussprojekt; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.54): je 7 Lektionen/Etappen, Debug, 3 Missionen, 4 Extra-Herausforderungen, DE = EN
-- [ ] Lösungen/Glossar für das neue Format anpassen (Lösungen passen noch zu den freien Original-Aufgaben)
+- [x] Lösungs-Notebooks passen zu den Aufgaben (aus Referenzlösungen erzeugt, siehe Abschnitt „Lösungen“ oben). Glossar: siehe offener Punkt „Glossar-Notebooks“.
 
 #### Nachbesserungen Lektions-Format Woche 4
 - [ ] Vorgriffe im Original (`break`/`continue`, `random`, Listen, `%`, `input()`) wurden in Missionen/Boss durch feste Werte, `if`/`or` und `while`-Bedingungen ersetzt, Mengen teils kleiner (z.B. Pferde Mission 1 bis 10 statt 20, Boss 1 5 statt 10 Sprünge). In Woche 6 als Wiederholung mit den vollen Original-Aufgaben nachziehen.
@@ -41,12 +42,12 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 - [x] Pferde DE `boss-03`: Anweisung nennt "Kein Turniersieg", `expected` ist "Kein Turniersieg." (mit Punkt) — DE + EN vereinheitlichen.
 - [x] Sci-Fi DE/EN `boss-03`: "Gesamtpunkte: 320 und Erfolgsquote: 80.0%" — unklar, ob eine oder zwei Zeilen, geprüft wird nur `Erfolgsquote: 80.0%`; "in zwei Zeilen" ergänzen (oder `expectedAll`).
 - [ ] Pferde `boss-01` (Note/Zertifikat) hat keinen `else`-Zweig; Sci-Fi `boss-01.md` hat keine Antworttabelle mehr (DE + EN) — bei Bedarf ergänzen.
-- [ ] DE/EN wurden pro Thema aus der größeren Fassung angeglichen; die alten Lösungs-/Glossar-Notebooks von Woche 3 passen nicht mehr zu den Aufgaben (siehe Lösungen/Glossar-Punkt oben).
+- [x] Lösungs-Notebooks passen zu den Aufgaben (aus Referenzlösungen erzeugt, siehe Abschnitt „Lösungen“ oben). Glossar: siehe offener Punkt „Glossar-Notebooks“.
 
 #### Nachbesserungen Lektions-Format Woche 5 (Funktionen)
 - [ ] Vorgriffe im Original (Listen, Dictionaries, `random`, `try/except`, `help()`, Quest-/Kampf-Listen) wurden ersetzt: Missionen/Boss nutzen nur Zahlen, Text, `if`/`elif`/`for`. **Listen-Anteil ist in Woche 6 nachgezogen** (Zauberbuch/Katalog als Liste, Statistik, Funktionen mit Listen). Dictionaries (`erstelle_*`, Quest-Dictionary) sind in Woche 8 (Extra-Herausforderung 4) nachgezogen, `random` in Woche 7.
 - [x] `LessonView` prüfte nur die Ausgabe: **erledigt** über `validation.codeContains` (Woche 3–12 automatisch aus der Aufgabenstellung abgeleitet, siehe INHALTE.md); hart codiertes `print` besteht dort nicht mehr. Vorschlag: `functionCalls` (gibt es schon im Check-Schritt/`CodeChallenge`) auch in `LessonView` auswerten.
-- [ ] Lösungs-/Glossar-Notebooks Woche 5 (`content/python-12-wochen-grundkurs*/woche-5/*`) passen nicht zu den konkretisierten Aufgaben (Original mit Dictionaries/Listen/`random`), Glossar erwähnt Docstring-Stile (`Args:`/`Returns:`) und `help()` — bereinigen.
+- [x] Lösungs-Notebooks Woche 5 passen zu den Aufgaben (aus Referenzlösungen erzeugt, siehe Abschnitt „Lösungen“ oben). Glossar: siehe offener Punkt „Glossar-Notebooks“.
 - [ ] Woche-5-Themenbezeichner sind zwischen DE und EN nicht gleich (DE `berechne_schaden`, EN `calculate_damage`) — bewusst, wie in Woche 4.
 - [ ] Debug Bug #1 (fehlende Einrückung nach `def`) erzeugt einen `IndentationError`; Bug #2 ruft die Funktion ohne Klammern auf (Ausgabe `<function ...>`), Bug #3 hat kein `return` (`None`) — bewusst die drei typischen Funktionsfehler.
 
@@ -57,12 +58,12 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 - [x] Woche-4-Vorgriffe mit `random`, `%` und dem 8×8-Feld sind in Woche 7 (Extra-Herausforderung 4) nachgezogen (Zufallswerte/-ereignisse/-weg, Primzahlen bis 100, Schachbrett, Figur über das Feld). Offen nur: `input()`-Aufgaben (braucht `stdin`-Validierung, siehe Woche 1–2/4-Nachbesserungen).
 - [x] Dictionaries aus den Originalen sind in Woche 8 (Extra-Herausforderung 4) als Wiederholung nachgezogen.
 - [ ] Woche 6 wurde aus einem gemeinsamen Skelett + Themen-Vokabular erzeugt (Generator liegt nur im Scratchpad, nicht im Repo) — Texte sind daher zwischen den Themen strukturell gleich, nur Vokabular/Geschichte unterscheiden sich.
-- [ ] Lösungs-/Glossar-Notebooks Woche 6 passen nicht zu den konkretisierten Aufgaben (Original mit `set`, Dictionaries, `random`).
+- [x] Lösungs-Notebooks Woche 6 passen zu den Aufgaben (aus Referenzlösungen erzeugt, siehe Abschnitt „Lösungen“ oben). Glossar: siehe offener Punkt „Glossar-Notebooks“.
 
 #### Nachbesserungen Lektions-Format Woche 7 (Module)
 - [ ] Zufalls-Aufgaben prüfen nur Eigenschaften (Bereich, "in der Liste", Anzahl), nie feste Zufallswerte; ein `import random` ist über `codeContains` (`import`) nur teilweise erzwungen — dass `random` wirklich benutzt wird, bleibt ungeprüft.
 - [ ] Aus dem Original weggelassen: `time.sleep(1)`-Rituale mit Sekunden (hier < 0,3 s, damit Tests/Aufgaben schnell laufen), `random.random()`/`uniform`-Ausgaben mit `:.3f`, Winkelfunktionen `tan`/Logarithmen (nur `sin`+`radians`, `factorial`/`gcd`/`lcm`), `math.tau`/`inf`, `input()` im Namens-Orakel (dort fester Name), `input()` im Dungeon-Bonus (nur Bonus-Text).
-- [ ] Lösungs-/Glossar-Notebooks Woche 7 passen nicht zu den konkretisierten Aufgaben (Original mit Ausgabe von Zufallswerten und `input()`).
+- [x] Lösungs-Notebooks Woche 7 passen zu den Aufgaben (aus Referenzlösungen erzeugt, siehe Abschnitt „Lösungen“ oben). Glossar: siehe offener Punkt „Glossar-Notebooks“.
 - [ ] Woche 7 wurde wie Woche 6 aus einem Skelett + Themen-Vokabular erzeugt (Generator nur im Scratchpad); alle Referenzlösungen von Woche 5–7 wurden zusätzlich in Pyodide (node_modules, Python 3.13) ausgeführt — die App nutzt Pyodide 0.24.1 (Python 3.11), dort nicht separat geprüft.
 
 #### Nachbesserungen Lektions-Format (Woche 1–2)
@@ -81,7 +82,7 @@ Beim Umbau aufgefallen; entweder bewusst so gelassen oder noch offen:
 #### Nachbesserungen Lektions-Format Woche 8 (Dictionaries/Tupel)
 - [ ] Aus dem Original weggelassen: verschachteltes Questsystem mit Tupel-Belohnungen und Tupel als Dictionary-Schlüssel als Aufgabe (nur als Erklärung in Lektion 7), Tupel-Methoden `index()`/`count()`, Bonus-Teile ungeprüft. Grund: `output_contains` prüft nur feste Ausgaben.
 - [x] `dict`/`try`-Struktur: `try`/`except`, `def`, `json.*`, `csv.*` werden jetzt über `validation.codeContains` geprüft (siehe Woche 5); `dict` selbst nicht (kein eindeutiger Baustein).
-- [ ] Lösungs-/Glossar-Notebooks Woche 8 passen nicht zu den konkretisierten Aufgaben.
+- [x] Lösungs-Notebooks Woche 8 passen zu den Aufgaben (aus Referenzlösungen erzeugt, siehe Abschnitt „Lösungen“ oben). Glossar: siehe offener Punkt „Glossar-Notebooks“.
 - [ ] Woche 8 wurde wie Woche 6/7 aus einem Skelett + Themen-Vokabular erzeugt (Generator nur im Scratchpad); Aufgaben teils identisch zwischen den Themen, nur Vokabular unterscheidet sich.
 
 #### Nachbesserungen Lektions-Format Woche 10–12 (OOP, Text-Adventure)
@@ -97,7 +98,7 @@ Beim Umbau aufgefallen; entweder bewusst so gelassen oder noch offen:
 - [ ] `input()`-Aufgaben aus dem Original (Boss 1 Tagebuch, Eintrag per `input()`) durch vorgegebene Einträge ersetzt, `input()` nur als Bonus — `validation.stdin` gibt es jetzt; als Aufgabe nachziehen.
 - [ ] Dateien liegen im Pyodide-Dateisystem und bleiben zwischen Aufgaben (und Läufen) bestehen; jede Aufgabe schreibt ihre Dateien deshalb selbst. Ob das Dateisystem beim Kernel-Neustart geleert wird, in der App nicht separat geprüft.
 - [ ] Aus dem Original weggelassen: `f.writelines()`, `json.dumps(indent=2)`-Ausgabe als Prüfung, `csv.DictWriter` mit `extrasaction`, `with open(..., "x")`; nur `indent`/Umlaut-Escapes (`\\u00e4`) sind als Hinweis erwähnt.
-- [ ] Lösungs-/Glossar-Notebooks Woche 9 passen nicht zu den konkretisierten Aufgaben.
+- [x] Lösungs-Notebooks Woche 9 passen zu den Aufgaben (aus Referenzlösungen erzeugt, siehe Abschnitt „Lösungen“ oben). Glossar: siehe offener Punkt „Glossar-Notebooks“.
 - [ ] Woche 9 wurde wie Woche 6–8 aus einem Skelett + Themen-Vokabular erzeugt (Generator nur im Scratchpad).
 
 ---

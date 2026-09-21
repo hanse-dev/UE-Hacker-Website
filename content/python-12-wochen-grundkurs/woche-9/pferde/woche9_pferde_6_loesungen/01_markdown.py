@@ -1,2 +1,2 @@
-"""# 🔧 Lösungen – 🐴 Woche 9 – JSON-Dateien und I/O: Die Stall-Archive des Reiterhofs
-> Erst selber versucht? Dann check hier nach!"""
+"""# 🔧 Woche 9 – Lösungen
+> Erst selber versucht? Dann check hier nach! Es gibt oft mehrere richtige Wege – das hier sind mögliche Lösungen zu den Aufgaben der Lektionen."""

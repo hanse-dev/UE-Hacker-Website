@@ -1,0 +1,3 @@
+"""### Übung 7: CSV mit DictReader und Formate wechseln – Aufgabe 3
+
+Die JSON-Datei pferd.json mit einer Liste von Dictionaries wird vorgegeben angelegt. Lade sie und schreibe sie mit csv.DictWriter in pferde.csv (fieldnames name, rasse, alter, punkte). Lies die CSV mit csv.DictReader zurück und gib genau Zeilen: 3 und in der nächsten Zeile Felder: ['name', 'rasse', 'alter', 'punkte'] aus (leser.fieldnames)."""

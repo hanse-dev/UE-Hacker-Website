@@ -1,0 +1,3 @@
+"""### Extra Challenge 3: The Quest Log – Task 1
+
+Step 1 – Save quests: The list quests with three Quest dictionaries is given. Save it into questlog.json, load it into loaded and print exactly Quest count: 3 and on the next line Status: open (status of the first)."""

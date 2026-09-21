@@ -1,0 +1,3 @@
+"""### Archiv-Zauber 7: CSV mit DictReader und Formate wechseln – Aufgabe 3
+
+Die JSON-Datei held.json mit einer Liste von Dictionaries wird vorgegeben angelegt. Lade sie und schreibe sie mit csv.DictWriter in helden.csv (fieldnames name, klasse, level, leben). Lies die CSV mit csv.DictReader zurück und gib genau Zeilen: 3 und in der nächsten Zeile Felder: ['name', 'klasse', 'level', 'leben'] aus (leser.fieldnames)."""
