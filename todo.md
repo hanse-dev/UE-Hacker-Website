@@ -33,7 +33,7 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 #### Nachbesserungen Lektions-Format Woche 4
 - [ ] Vorgriffe im Original (`break`/`continue`, `random`, Listen, `%`, `input()`) wurden in Missionen/Boss durch feste Werte, `if`/`or` und `while`-Bedingungen ersetzt, Mengen teils kleiner (z.B. Pferde Mission 1 bis 10 statt 20, Boss 1 5 statt 10 Sprünge). In Woche 6 als Wiederholung mit den vollen Original-Aufgaben nachziehen.
 - [ ] Debug Bug #1 war im Original eine Endlosschleife (5s-Timeout), jetzt Off-by-one — bewusst so.
-- [x] Glossar (Woche 4) bereinigt. [ ] Lernziele-Checkliste der Original-Missionen erwähnt noch Listen/`append` (Vorgriff auf Woche 6) — bereinigen. Lösungs-Notebooks passen weiter zu den freien Original-Aufgaben.
+- [x] Glossar (Woche 4) bereinigt. [x] Lernziele-Checklisten der Original-Missionen (Woche 4: Listen/`append`/Index/`break`/`continue`; Woche 5: `try/except`) bereinigt. Offen bleibt: die Original-Missionen/-Boss-Notebooks selbst enthalten Listen-Aufgaben (Bonus/Boss), sie liegen nur noch im ZIP (siehe „Alte Notebooks“). Lösungs-Notebooks passen weiter zu den freien Original-Aufgaben.
 - [x] `end=""` ist jetzt in Pferde DE/EN und Sci-Fi EN Lektion 7 erklärt; mehrzeilige `expected` mit `\n` (82 Aufgaben) in der App per Wegwerf-Test bestätigt.
 - [x] Pferde DE Boss 3: "Noch 1 Runden" (Plural bei 1) — kosmetisch, DE+`expected` müssten gemeinsam geändert werden.
 - [ ] `input()`-Beispiele (Zugangscodes/Passwort/Futter-Abfrage) nicht übernommen — die `stdin`-Validierung gibt es jetzt (`validation.stdin`, siehe INHALTE.md); die Aufgaben selbst sind noch nicht (wieder) ergänzt.

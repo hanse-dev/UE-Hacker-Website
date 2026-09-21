@@ -2,9 +2,8 @@
 
 Check for yourself whether you have mastered these skills:
 
-- ☐ Write `for` loops over lists
+- ☐ Write `for` loops over strings
 - ☐ Use `range()` for number sequences
 - ☐ Write `while` loops with conditions
-- ☐ Create simple lists and use `append()`
-- ☐ Access list elements by index
+- ☐ Create nested loops
 """

@@ -3,7 +3,16 @@
 // Nachschlagewerk "Loesungen". Standard ist Woche 1 (43 Zellen): die Loesungen der spaeteren Wochen haben
 // bis zu ~100 CodeMirror-Zellen und brauchen unter Last (mehrere Sessions auf dem Rechner) laenger als 30 s.
 export async function openSolutionsNotebook(page, variant = 'abenteuer', week = 1, timeout = 30000) {
-  await page.goto(`/kurs/python-12-wochen-grundkurs?week=${week}&variant=${variant}`);
-  await page.locator('[data-reference-key="6_loesungen"]').click();
-  await page.locator('.notebook-cells .cell').first().waitFor({ state: 'visible', timeout });
+  const open = async (waitMs) => {
+    await page.goto(`/kurs/python-12-wochen-grundkurs?week=${week}&variant=${variant}`);
+    await page.locator('[data-reference-key="6_loesungen"]').click();
+    await page.locator('.notebook-cells .cell').first().waitFor({ state: 'visible', timeout: waitMs });
+  };
+  // Im Volllauf (mehrere Worker, Vite-Dev-Server) landet die Seite gelegentlich wieder auf der
+  // Kursuebersicht (Seiten-Reload nach dem Klick) - ein einmaliges erneutes Oeffnen faengt das ab.
+  try {
+    await open(Math.min(timeout, 20000));
+  } catch {
+    await open(timeout);
+  }
 }

@@ -4,8 +4,7 @@ Check yourself whether you have mastered these skills:
 
 - ☐ Use for loops with range()
 - ☐ Control while loops with conditions
-- ☐ Loop over strings and lists
-- ☐ Use break and continue correctly
+- ☐ Loop over strings
 - ☐ Create nested loops
 - ☐ Recognize and avoid infinite loops
 

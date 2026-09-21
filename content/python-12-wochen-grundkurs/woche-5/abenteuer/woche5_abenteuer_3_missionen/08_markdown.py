@@ -6,5 +6,4 @@
 - ☐ `return`-Werte nutzen
 - ☐ Docstrings schreiben
 - ☐ Schreibregeln beachten (`snake_case`)
-- ☐ Fehler mit `try/except` abfangen
 """

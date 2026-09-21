@@ -5,5 +5,4 @@ Check for yourself:
 - ☐ Define functions with `def` and parameters
 - ☐ Use `return` values
 - ☐ Write docstrings
-- ☐ Follow naming rules (`snake_case`)
-- ☐ Catch errors with `try/except`"""
+- ☐ Follow naming rules (`snake_case`)"""
