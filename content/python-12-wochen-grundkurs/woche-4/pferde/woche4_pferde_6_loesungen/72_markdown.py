@@ -1,0 +1,3 @@
+"""### Das Marathon-Reiten – Aufgabe 2
+
+Schritt 2 – Futter-Pause: Start mit energie = 100 und runde = 0. Solange runde < 6 ist, erhöhe runde um 1 und ziehe 15 Energie ab. In Runde 3 gibt es eine Futter-Pause: dann kommen zusätzlich 20 Energie dazu. Gib nach jeder Runde aus: Runde 1: Energie 85, Runde 2: Energie 70, Runde 3: Energie 75, Runde 4: Energie 60, Runde 5: Energie 45, Runde 6: Energie 30"""
