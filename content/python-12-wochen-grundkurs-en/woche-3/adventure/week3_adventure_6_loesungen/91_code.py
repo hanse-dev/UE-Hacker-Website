@@ -1,0 +1,22 @@
+phase1_ok = True
+phase2_ok = True
+phase3_ok = False
+phase4_ok = True
+phase5_ok = True
+danger_level = 4
+successful_phases = 0
+if phase1_ok:
+    successful_phases = successful_phases + 1
+if phase2_ok:
+    successful_phases = successful_phases + 1
+if phase3_ok:
+    successful_phases = successful_phases + 1
+if phase4_ok:
+    successful_phases = successful_phases + 1
+if phase5_ok:
+    successful_phases = successful_phases + 1
+
+if successful_phases >= 4 and danger_level <= 3:
+    print("Quest passed!")
+else:
+    print("Quest failed!")

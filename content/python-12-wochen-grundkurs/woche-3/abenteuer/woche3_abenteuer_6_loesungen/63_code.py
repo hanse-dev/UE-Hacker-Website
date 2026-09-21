@@ -1,12 +1,10 @@
-antwort_1 = True
-antwort_3 = False
-
-if antwort_1:
-    print("Frage 1: Richtig!")
+level = 12
+siege = 5
+niederlagen = 5
+siegquote = siege / (siege + niederlagen)
+if level >= 50 and siegquote > 0.8:
+    print("LEGENDÄR!")
+elif level >= 30 and siegquote > 0.6:
+    print("MEISTER!")
 else:
-    print("Frage 1: Falsch!")
-
-if antwort_3:
-    print("Frage 3: Richtig!")
-else:
-    print("Frage 3: Falsch!")
+    print("KÄMPFER")

@@ -1,1 +1,0 @@
-"""**Erklärung:** `"80"` mit Anführungszeichen ist ein String, mit dem man nicht rechnen kann (`TypeError`). Entweder `energie = 80` schreiben oder mit `int(energie)` umwandeln."""

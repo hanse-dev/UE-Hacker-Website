@@ -1,3 +1,3 @@
-"""### Mission 3: The Tournament – Task 3
+"""### Mission 3: The Tournament – Task 4
 
-Step 3 – time = 48 is already there. In a separate if (not an elif!) check whether time < 60 and print exactly: +10 bonus for perfect time!"""
+Step 4 – Time bonus: In its own **separate** if, check whether time < 60, then print exactly: +10 bonus for perfect time!"""

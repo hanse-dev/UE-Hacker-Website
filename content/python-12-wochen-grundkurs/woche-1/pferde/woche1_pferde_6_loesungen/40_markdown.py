@@ -1,3 +1,3 @@
-"""### Das Futterbuch – Aufgabe 1
+"""### Das Springturnier – Aufgabe 1
 
-Schritt 1 – Lege vier Variablen zeile1 bis zeile4 mit je einem Satz über gutes Futter an. Gib dann die Überschrift === DAS FUTTERBUCH === aus und danach alle vier Zeilen."""
+Schritt 1 – Lege hindernisse = 8 und hoehe = 110 an und gib mit str() und + genau diese Zeile aus: Parcours: 8 Hindernisse bis 110 cm"""

@@ -1,3 +1,3 @@
-"""### Mission 3: The Tournament – Task 1
+"""### Mission 3: The Tournament – Task 2
 
-Step 1 – Create points = 95, errors = 0 and time = 55. Calculate the score with the formula above, store it in score and print exactly: Score: 89.5"""
+Step 2 – Check for gold: Use and to check whether score >= 85 AND errors == 0, then print exactly: 🥇 GOLD!"""

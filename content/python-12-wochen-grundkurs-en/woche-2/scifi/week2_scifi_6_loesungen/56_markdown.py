@@ -1,3 +1,3 @@
-"""### Mission 2: The Fleet Analysis – Task 3
+"""### Mission 3: The Asteroid Mining – Task 3
 
-Step 3 – Add all speeds, divide by 3, store the result in average_speed and print exactly: Average speed: 2.5"""
+Step 3 – Calculate the average value of both asteroids and print exactly: Average value: 5200.0 – then print your mining decision: Mining decision: Vesta-3"""

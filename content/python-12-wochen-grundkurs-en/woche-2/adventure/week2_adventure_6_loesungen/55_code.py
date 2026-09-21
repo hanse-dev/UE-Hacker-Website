@@ -1,3 +1,3 @@
-first_name = "Luna"
-last_name = "Silvermoon"
-print(f"Name: {first_name} {last_name}")
+text = "Level: "
+level = 7
+print(text + str(level))

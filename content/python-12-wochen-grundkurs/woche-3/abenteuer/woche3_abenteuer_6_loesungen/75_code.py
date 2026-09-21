@@ -1,12 +1,7 @@
-tempo = 65
+mana = 70
+zauber_bereit = True
 
-if tempo >= 80:
-    print("Tempo: Blitzschnell")
-elif tempo >= 60:
-    print("Tempo: Schnell")
-elif tempo >= 40:
-    print("Tempo: Normal")
-elif tempo >= 20:
-    print("Tempo: Langsam")
+if mana >= 50 and zauber_bereit:
+    print("Level 1 bestanden")
 else:
-    print("Tempo: Kriechend")
+    print("Level 1 gescheitert")

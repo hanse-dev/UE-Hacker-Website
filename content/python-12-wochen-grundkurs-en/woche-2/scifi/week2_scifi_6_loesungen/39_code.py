@@ -1,3 +1,3 @@
-robot = "R2D2"
-status = 3
-print(f"Hello {robot}! Your status is {status}.")
+energy = int("80")
+consumption = 30
+print(f"Remaining energy: {energy - consumption}")

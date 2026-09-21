@@ -1,4 +1,3 @@
-level = 10
-if level >= 10:
-    print("Reitfertigkeit erreicht!")
-    print("Glückwunsch!")
+name = "Thunder"
+if name == "Thunder":
+    print("Hallo Thunder!")

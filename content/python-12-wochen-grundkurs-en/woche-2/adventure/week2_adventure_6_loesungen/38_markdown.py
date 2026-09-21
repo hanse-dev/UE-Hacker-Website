@@ -1,1 +1,3 @@
-"""**Explanation:** without an `f` and curly braces, `name` and `level` are just plain text. Use an f-string: `f"Hello {name}! ..."`."""
+"""### Debug Quest – Task 3
+
+🐛 Bug #3 – Goal: The program should print Your gold: 300. What is wrong?"""

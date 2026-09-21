@@ -1,0 +1,1 @@
+print("Welcome to Sunny Valley Riding Ranch!")

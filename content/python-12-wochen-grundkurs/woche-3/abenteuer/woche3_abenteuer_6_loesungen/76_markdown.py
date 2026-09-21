@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 2: Der Dungeon-Simulator – Aufgabe 4
+"""### Extra-Herausforderung 2: Der Dungeon-Simulator – Aufgabe 2
 
-Level 4 – Magieprüfung (verschachtelt): schutz = 80, angriff = 60, heilung = 20. Prüfe verschachtelt: Ist schutz >= 50, prüfe innen angriff >= 50, und darin heilung >= 50. Alles erfüllt: Magieprüfung bestanden. Heilung zu niedrig: Heilung zu schwach. Angriff zu niedrig: Angriff zu schwach. Schutz zu niedrig: Schutz zu schwach."""
+Level 2 – Wegwahl: Der Held wählt weg = \"Rechts\". Gib bei \"Links\" aus: Du nimmst den linken Pfad. – sonst: Du nimmst den rechten Pfad."""

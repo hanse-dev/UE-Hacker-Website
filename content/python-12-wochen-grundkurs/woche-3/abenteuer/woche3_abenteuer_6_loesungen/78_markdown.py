@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 2: Der Dungeon-Simulator – Aufgabe 5
+"""### Extra-Herausforderung 2: Der Dungeon-Simulator – Aufgabe 3
 
-Level 5 – Flucht: traenke = 5, runen = True, fluchtweg = False. Die Flucht gelingt, wenn traenke >= 3 ODER (runen UND fluchtweg). Setze die Klammern richtig. Gib aus: Flucht gelingt! – sonst: Flucht scheitert!"""
+Level 3 – Geschwindigkeit: tempo = 65. Gib bei >= 80: Tempo: Blitzschnell, bei >= 60: Tempo: Schnell, bei >= 40: Tempo: Normal, bei >= 20: Tempo: Langsam, sonst: Tempo: Kriechend"""

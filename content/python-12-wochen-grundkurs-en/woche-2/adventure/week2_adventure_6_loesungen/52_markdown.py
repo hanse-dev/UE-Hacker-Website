@@ -1,3 +1,3 @@
-"""### Mission 1: The Four Elemental Stones – Task 4
+"""### Mission 2: The Elemental Fusion – Task 3
 
-Step 4 – 💨 Air Stone: create can_fly = True and print exactly: Can fly: True"""
+Step 3 – Fusing two 💧 Water Stones: calculate the average of the two damage values and print exactly: Average damage: 10.0"""

@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 2: Die Zauberwerkstatt – Aufgabe 4
+"""### Extra-Herausforderung 3: Die Quest-Planung – Aufgabe 2
 
-Schritt 4 – Nutze einen 💨 Luft-Wert: Ist die Stärke von Sturmruf über dem Durchschnitt? Gib genau aus: Sturmruf mächtig: True"""
+Schritt 2 – Berechne die erwartete Belohnung (Belohnung mal Wahrscheinlichkeit) für beide Quests. Gib zwei Zeilen aus, die zweite muss genau lauten: Quest 2 erwartet: 600.0"""

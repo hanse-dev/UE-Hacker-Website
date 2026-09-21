@@ -1,3 +1,3 @@
-"""### Mission 2: Die Reitstunde – Aufgabe 3
+"""### Mission 3: Das Turnier – Aufgabe 3
 
-Schritt 3 – Durchschnittszeit: Teile die Gesamtzeit durch 3, speichere das Ergebnis in durchschnitt und gib genau aus: Durchschnitt: 45.0 Minuten"""
+Schritt 3 – Durchschnitt: Berechne den Durchschnitt beider Gesamtpunkte (Summe geteilt durch 2) und gib genau aus: Durchschnitt: 137.5 Punkte"""

@@ -1,3 +1,3 @@
-"""### Systemprotokoll 4: input()
+"""### Systemprotokoll 5: Kommentare
 
-Frage mit input() nach dem Namen des Schiffs, speichere die Antwort in schiff und gib aus: Wir fliegen mit der (und dann der Schiffsname)"""
+Schreibe einen eigenen Kommentar und danach ein print(), das genau Kommentar gelesen ausgibt."""

@@ -1,12 +1,7 @@
+erfolgreiche_phasen = 4
 schwierigkeit = 4
 
-if schwierigkeit == 1:
-    print("Stufe: Anfänger")
-elif schwierigkeit == 2:
-    print("Stufe: Leicht")
-elif schwierigkeit == 3:
-    print("Stufe: Mittel")
-elif schwierigkeit == 4:
-    print("Stufe: Schwer")
+if erfolgreiche_phasen >= 4 and schwierigkeit <= 3:
+    print("Turniersieg!")
 else:
-    print("Stufe: Extrem")
+    print("Kein Turniersieg.")

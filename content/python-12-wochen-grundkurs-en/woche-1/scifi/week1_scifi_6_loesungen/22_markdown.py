@@ -1,3 +1,3 @@
-"""### Debug Quest – Task 3
+"""### Mission 1: The Cadet – Task 2
 
-🐛 Bug #3 – Goal: The program should print System status: Active. What is wrong?"""
+Step 2 – Store the number 4711 in the variable service_number and use str() to output exactly this sentence: My service number is 4711."""

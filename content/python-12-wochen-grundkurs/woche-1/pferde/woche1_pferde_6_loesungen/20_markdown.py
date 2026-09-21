@@ -1,3 +1,5 @@
-"""### Debug-Quest – Aufgabe 2
+"""## ⭐ Missionen
 
-🐛 Bug #2 – Ziel: Das Programm soll Mein Stall ist Nummer 12 ausgeben. Was ist falsch?"""
+### Mission 1: Der Stallhelfer – Aufgabe 1
+
+Schritt 1 – Gib genau diesen Satz mit print() aus: Willkommen auf dem Reiterhof Sonnental!"""

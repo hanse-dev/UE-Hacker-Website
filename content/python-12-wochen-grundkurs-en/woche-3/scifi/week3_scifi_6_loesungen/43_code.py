@@ -1,4 +1,7 @@
 rank = 6
-id_card = False
+has_id_card = False
 emergency = False
-print(f"Rank {rank}, ID card: {id_card}")
+if rank >= 5 or has_id_card or emergency:
+    print("Access granted")
+else:
+    print("Access denied")

@@ -1,3 +1,3 @@
-"""### Der Hindernis-Simulator – Aufgabe 3
+"""### Der Hindernis-Simulator – Aufgabe 5
 
-Level 3 – Geschwindigkeit: Fünf Stufen per if-elif-else nach tempo: unter 20 Sehr langsam, unter 40 Langsam, unter 60 Mittel, unter 80 Schnell, sonst Rasant. Gib mit Präfix aus: Level 3: Schnell"""
+Level 5 – Abmeldung: Bestanden, wenn zeit <= 60 ODER (fehler == 0 UND stil >= 80). Gib dann genau aus: Level 5: Abmeldung bestanden"""

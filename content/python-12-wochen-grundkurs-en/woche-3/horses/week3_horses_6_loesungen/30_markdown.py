@@ -1,3 +1,7 @@
-"""### Debug Quest – Task 1
+"""## 🐛 Debug Quest
 
-🐛 Bug #1 – Goal: The program should print both Riding skill reached! and Congratulations! when level >= 10. What is wrong?"""
+### Debug Quest – Task 1
+
+🐛 Bug #1 – Goal: When level >= 10, the program should print both Riding skill reached! and Congratulations! What is wrong?
+
+**Explanation:** After `if ...:` the block must be indented. Without the indentation Python raises an `IndentationError`."""

@@ -1,3 +1,4 @@
-total_time = 135
-average_time = total_time / 3
-print(f"Average time: {average_time} minutes")
+total1 = 140.5
+total2 = 136.5
+average = (total1 + total2) / 2
+print(f"Average points: {average}")

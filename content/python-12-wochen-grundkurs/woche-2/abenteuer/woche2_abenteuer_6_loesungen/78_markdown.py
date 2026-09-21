@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Die Quest-Planung – Aufgabe 1
+"""### Extra-Herausforderung 3: Die Quest-Planung – Aufgabe 3
 
-Schritt 1 – Gib die Überschrift === QUEST-PROTOKOLL === aus, addiere die Belohnungen beider Quests und gib genau aus: Gesamtbelohnung: 1300"""
+Schritt 3 – Nutze einen 💨 Luft-Wert: Ist die erwartete Belohnung von Quest 2 höher als die von Quest 1? Gib genau aus: Quest 2 rentabler: True"""

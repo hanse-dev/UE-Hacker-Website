@@ -1,3 +1,3 @@
-"""### Mission 3: The Champions Arena – Task 2
+"""### Mission 3: The Champion's Arena – Task 2
 
-Step 2 – Calculate the win rate: win_rate = wins / (wins + losses), then print exactly: Win rate: 0.75"""
+Step 2 – Legendary: A fighter has level = 50 and win_rate = 1.0. Use if with and: if level >= 50 and win_rate > 0.8, print exactly: LEGENDARY!"""

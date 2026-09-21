@@ -1,7 +1,9 @@
-stable_master_pw = "hay123"
-groom_pw = "oats456"
-entered = "oats456"
-if entered == stable_master_pw:
+stable_master_password = "Horseshoe"
+groom_password = "Carrot"
+entered = "Banana"
+if entered == stable_master_password:
     print("Full access granted")
-elif entered == groom_pw:
+elif entered == groom_password:
     print("Feed access granted")
+else:
+    print("Wrong password")

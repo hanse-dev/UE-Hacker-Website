@@ -1,3 +1,3 @@
-"""### Debug Quest – Task 1
+"""### Debug Quest – Task 2
 
-🐛 Bug #1 – Goal: The program should print Hello Gandalf! You are Level 99! What is wrong?"""
+🐛 Bug #2 – Goal: The program should print Total power: 150. What is wrong?"""

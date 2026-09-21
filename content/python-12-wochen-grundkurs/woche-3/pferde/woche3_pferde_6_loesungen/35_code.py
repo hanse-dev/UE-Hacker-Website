@@ -1,3 +1,5 @@
-name = "Thunder"
-if name == "Thunder":
-    print("Hallo Thunder!")
+alter = 8
+if alter >= 5:
+    print("Ausgebildet")
+else:
+    print("In Ausbildung")

@@ -1,1 +1,3 @@
-"""**Explanation:** the calculation is outside the curly braces, so it is printed as text. Put it inside: `{gold + 50}`."""
+"""### Mission 1: The Four Elemental Stones – Task 3
+
+Step 3 – 💧 Water Stone: create magic_power = 12.5 and print exactly: Magic power: 12.5"""

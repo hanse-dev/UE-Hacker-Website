@@ -1,3 +1,3 @@
-"""### Das große Turnier – Aufgabe 4
+"""### Das große Turnier – Aufgabe 6
 
-Schritt 4 – Erfolgsbedingung: Bei erfolgreiche_phasen >= 4 UND schwierigkeit <= 3 gib Turniersieg! aus, sonst Kein Turniersieg. Hier soll genau erscheinen: Kein Turniersieg."""
+Schritt 6 – Auswertung: Gesamtpunkte = erfolgreiche_phasen * 100 - schwierigkeit * 20, Erfolgsquote = (erfolgreiche_phasen / 5) * 100. Gib mit einem f-String genau aus: Gesamtpunkte: 320, Erfolgsquote: 80.0%"""

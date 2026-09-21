@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 2: Der Dungeon-Simulator – Aufgabe 6
+"""### Extra-Herausforderung 2: Der Dungeon-Simulator – Aufgabe 4
 
-Level 6 – Punktesystem: Die Ergebnisse sind ok_1 = True, ok_2 = False, ok_3 = True, ok_4 = True, ok_5 = False. Starte mit erfolge = 0 und addiere für jedes bestandene Level 1 (erfolge = erfolge + 1). Gib genau aus: Erfolge: 3"""
+Level 4 – Magieprüfung (verschachtelt): schutz = 80, angriff = 60, heilung = 20. Prüfe verschachtelt: Ist schutz >= 50, prüfe innen angriff >= 50, und darin heilung >= 50. Alles erfüllt: Magieprüfung bestanden. Heilung zu niedrig: Heilung zu schwach. Angriff zu niedrig: Angriff zu schwach. Schutz zu niedrig: Schutz zu schwach."""

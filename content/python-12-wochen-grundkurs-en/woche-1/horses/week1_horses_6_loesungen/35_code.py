@@ -1,8 +1,5 @@
-rider = "Mia"
-horse = "Bobby"
-obstacles = 8
+author = "Mia"
+rating = 5
 
-print("=== TOURNAMENT PROFILE ===")
-print("Rider: " + rider)
-print("Horse: " + horse)
-print("Obstacles: " + str(obstacles))
+print("Author: " + author)
+print("Rating: " + str(rating) + " carrots")

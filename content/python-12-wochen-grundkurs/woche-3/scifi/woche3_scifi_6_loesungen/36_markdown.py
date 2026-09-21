@@ -1,3 +1,3 @@
-"""### Debug-Quest – Aufgabe 3
+"""### Debug-Quest – Aufgabe 4
 
-🐛 Bug #3 – Ziel: Das Programm soll System aktiv ausgeben, wenn der Status hoch genug ist, sonst System inaktiv. Was ist falsch?"""
+🐛 Bug #4 – Ziel: Zugang soll nur gewährt werden, wenn die Sicherheitsstufe mindestens 5 ist UND ein Ausweis vorhanden ist. Bei Stufe 3 mit Ausweis soll deshalb Zugang verweigert! erscheinen. Was ist falsch?"""

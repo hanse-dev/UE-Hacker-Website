@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 1: Das Magie-Quiz – Aufgabe 1
+"""### Mission 3: Die Arena des Champions – Aufgabe 5
 
-Schritt 1 – Antworten prüfen: Die Antworten sind antwort_1 = True und antwort_3 = False. Prüfe beide jeweils mit if-else und gib aus: Frage 1: Richtig! oder Frage 1: Falsch! bzw. Frage 3: Richtig! oder Frage 3: Falsch!"""
+Schritt 5 – Nachwuchs: Ein junger Kämpfer hat level = 12, siege = 5 und niederlagen = 5. Berechne seine siegquote und bewerte ihn mit denselben Rang-Regeln wie in Schritt 3 (LEGENDÄR! / MEISTER! / sonst KÄMPFER). Gib den passenden Rang aus."""

@@ -1,2 +1,8 @@
-favourite_horse = "Bobby"
-print("My favourite horse is " + favourite_horse + ".")
+rider = "Mia"
+horse = "Bobby"
+obstacles = 8
+
+print("=== TOURNAMENT PROFILE ===")
+print("Rider: " + rider)
+print("Horse: " + horse)
+print("Obstacles: " + str(obstacles))

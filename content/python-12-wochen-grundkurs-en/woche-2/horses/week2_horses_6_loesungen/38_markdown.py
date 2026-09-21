@@ -1,3 +1,3 @@
-"""### Debug Quest – Task 3
+"""### Mission 1: The Feed Store – Task 2
 
-🐛 Bug #3 – Goal: The program should print Training takes 3 hours. What is wrong?"""
+Step 2 – Create bales = 20 (whole number) and bale_weight = 15.5 (decimal number). Print exactly: Bales: 20 at 15.5 kg each"""

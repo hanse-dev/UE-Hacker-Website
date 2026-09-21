@@ -1,3 +1,3 @@
-"""### Mission 3: The Shuttle Pilot – Task 2
+"""### Extra challenge 2: The AI Virus – Task 1
 
-Step 2 – Start the countdown: output Launch in: and then, on its own line, 3... 2... 1... Launch!"""
+Step 1 – Create three variables step1 to step3, each with one cleaning step. Output the heading === ANTIVIRUS PROTOCOL === and then each step with its number."""

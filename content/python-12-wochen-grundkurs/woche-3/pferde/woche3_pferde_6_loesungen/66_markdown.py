@@ -1,3 +1,3 @@
-"""### Das Reiter-Quiz – Aufgabe 4
+"""### Der Hindernis-Simulator – Aufgabe 2
 
-Schritt 4 – Zertifikat: Bei mindestens 300 Punkten gib genau aus: 🎓 Reiter-Zertifikat: bestanden!"""
+Level 2 – Gangwahl: Bei gangart \"Schritt\" gib Level 2: Ruhiger Schritt aus, sonst Level 2: Zügiger Trab. Hier soll genau erscheinen: Level 2: Zügiger Trab"""

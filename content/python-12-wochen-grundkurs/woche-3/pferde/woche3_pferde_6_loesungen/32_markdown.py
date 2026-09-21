@@ -1,5 +1,5 @@
-"""### Debug-Quest – Aufgabe 1
+"""### Debug-Quest – Aufgabe 2
 
-🐛 Bug #1 – Ziel: Das Programm soll bei level >= 10 sowohl Reitfertigkeit erreicht! als auch Glückwunsch! ausgeben. Was ist falsch?
+🐛 Bug #2 – Ziel: Das Programm soll Hallo Thunder! ausgeben, weil name den Wert Thunder hat. Was ist falsch?
 
-**Erklärung:** Der Code nach dem `if` muss eingerückt sein – sonst weiß Python nicht, was zur Bedingung gehört (IndentationError)."""
+**Erklärung:** In einer Bedingung wird mit `==` verglichen. Ein einzelnes `=` ist die Zuweisung und hier nicht erlaubt."""

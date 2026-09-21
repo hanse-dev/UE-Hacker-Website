@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 2: Der Dungeon-Simulator – Aufgabe 3
+"""### Extra-Herausforderung 2: Der Dungeon-Simulator – Aufgabe 1
 
-Level 3 – Geschwindigkeit: tempo = 65. Gib bei >= 80: Tempo: Blitzschnell, bei >= 60: Tempo: Schnell, bei >= 40: Tempo: Normal, bei >= 20: Tempo: Langsam, sonst: Tempo: Kriechend"""
+Level 1 – Beschwörung: mana = 70 und zauber_bereit = True. Prüfe mit and: mana >= 50 und zauber_bereit. Gib aus: Level 1 bestanden – sonst: Level 1 gescheitert"""

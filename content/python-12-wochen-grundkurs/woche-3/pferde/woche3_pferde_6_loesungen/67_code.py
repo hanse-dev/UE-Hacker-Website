@@ -1,4 +1,6 @@
-punkte = 300
+gangart = "Trab"
 
-if punkte >= 300:
-    print("🎓 Reiter-Zertifikat: bestanden!")
+if gangart == "Schritt":
+    print("Level 2: Ruhiger Schritt")
+else:
+    print("Level 2: Zügiger Trab")

@@ -1,3 +1,3 @@
-"""### Mission 2: The Terminal Access – Task 1
+"""### Mission 3: The Mission Rating – Task 1
 
-Step 1 – Create admin_password = "nebula42", guest_password = "visitor7" and entered = "visitor7". Check entered with if/elif/else: admin password → Full access granted, guest password → Read access granted, otherwise → Wrong password! It must print exactly: Read access granted"""
+The variables level, success_points, losses and time are already created. Calculate score = success_points - (losses * 10) - (time / 5) and print: Score: 80.0"""

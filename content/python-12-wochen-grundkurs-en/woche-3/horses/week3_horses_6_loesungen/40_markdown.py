@@ -1,3 +1,3 @@
-"""### Mission 1: The Stable Guard – Task 1
+"""### Mission 1: The Stable Guard – Task 3
 
-Step 1 – Create age = 10 (integer) and has_helmet = True (Boolean). Print exactly: Rider: age 10, helmet True (use an f-string with both variables)."""
+Step 3 – Rejection: Add an else and in that case print exactly: Access denied. Here the rider has neither the age nor a helmet nor permission."""

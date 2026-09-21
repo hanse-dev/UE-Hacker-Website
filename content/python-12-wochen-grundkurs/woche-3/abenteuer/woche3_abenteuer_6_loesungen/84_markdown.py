@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Die Dungeon-Quest – Aufgabe 2
+"""### Extra-Herausforderung 2: Der Dungeon-Simulator – Aufgabe 6
 
-Schritt 2 – Zufallsereignisse: monster_angriff = True, falle_ausgeloest = False, schatz_gefunden = True. Prüfe jedes Ereignis mit einem eigenen if und gib aus: Ein Monster greift an! / Eine Falle schnappt zu! / Schatz gefunden!"""
+Abschluss – Punktesystem: Die Ergebnisse der fünf Level sind ok_1 = True, ok_2 = False, ok_3 = True, ok_4 = True, ok_5 = False. Starte mit erfolge = 0 und addiere für jedes bestandene Level 1 (erfolge = erfolge + 1). Gib genau aus: Erfolge: 3"""

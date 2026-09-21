@@ -8,5 +8,6 @@ zauber3 = "Sturmruf"
 staerke3 = 95.0
 komplex3 = 5
 
-gesamt = komplex1 + komplex2 + komplex3
-print(f"Gesamtkomplexität: {gesamt}")
+durchschnitt = (staerke1 + staerke2 + staerke3) / 3
+maechtig = staerke3 > durchschnitt
+print(f"Sturmruf mächtig: {maechtig}")

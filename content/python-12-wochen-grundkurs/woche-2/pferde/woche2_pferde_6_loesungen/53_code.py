@@ -1,5 +1,4 @@
-ballen = 20
-gewicht_pro_ballen = 15.5
+gesamtzeit = 135
 
-gesamtgewicht = ballen * gewicht_pro_ballen
-print(f"Gesamtgewicht: {gesamtgewicht} kg")
+durchschnitt = gesamtzeit / 3
+print(f"Durchschnitt: {durchschnitt} Minuten")

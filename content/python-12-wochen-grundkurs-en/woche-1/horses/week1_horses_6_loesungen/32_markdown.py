@@ -1,3 +1,5 @@
-"""### Mission 2: The Horse Whisperer – Task 2
+"""## 🔥 Extra Challenges
 
-Step 2 – Use the variables from step 1 to print this sentence: Bobby gets 3 kg of oats."""
+### The Feed Book – Task 1
+
+Step 1 – Create four variables line1 to line4, each with one sentence about good feed. Then print the heading === THE FEED BOOK === and after it all four lines."""

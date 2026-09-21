@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Die Dungeon-Quest – Aufgabe 3
+"""### Extra-Herausforderung 3: Die Dungeon-Quest – Aufgabe 1
 
-Schritt 3 – Erfolgsbedingung: phase1_ok = True, phase2_ok = True, phase3_ok = False, phase4_ok = True, phase5_ok = True und gefahrenstufe = 4. Zähle die gelungenen Phasen in erfolgreiche_phasen (mit einem if pro Phase). Die Quest gelingt bei erfolgreiche_phasen >= 4 und gefahrenstufe <= 3. Gib aus: Quest bestanden! – sonst: Quest gescheitert!"""
+Schritt 1 – Gefahrenstufe: gefahrenstufe = 4. Gib bei 1: Gefahr: Ruhig, bei 2: Gefahr: Wachsam, bei 3: Gefahr: Gefährlich, bei 4: Gefahr: Sehr gefährlich, sonst: Gefahr: Tödlich"""

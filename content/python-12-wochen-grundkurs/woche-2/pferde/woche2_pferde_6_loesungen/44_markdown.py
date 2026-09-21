@@ -1,3 +1,3 @@
-"""### Debug-Quest – Aufgabe 3
+"""### Mission 1: Das Futterlager – Aufgabe 2
 
-🐛 Bug #3 – Ziel: Das Programm soll Training dauert 3 Stunden. ausgeben. Was ist falsch?"""
+Schritt 2 – Heuballen erfassen: Speichere ballen = 20 (Ganzzahl) und gewicht_pro_ballen = 15.5 (Kommazahl) und gib genau aus: Ballen: 20, je 15.5 kg"""

@@ -1,1 +1,3 @@
-"""**Erklärung:** Ohne `f` vor den Anführungszeichen und ohne geschweifte Klammern wird der Text einfach so ausgegeben. Richtig: `f"Hallo {roboter}!"`."""
+"""### Debug-Quest – Aufgabe 3
+
+🐛 Bug #3 – Ziel: Das Programm soll ausgeben: Schildstärke: 95 Prozent. Was ist falsch?"""

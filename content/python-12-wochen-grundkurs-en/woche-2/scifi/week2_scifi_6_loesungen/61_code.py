@@ -1,4 +1,6 @@
-value_a = 5000.0
-value_b = 5400.0
-b_is_better = value_b > value_a
-print(f"Vesta-3 is more valuable: {b_is_better}")
+energy1 = 80
+energy2 = 65
+energy3 = 92
+energy4 = 71
+average = (energy1 + energy2 + energy3 + energy4) / 4
+print(f"Average energy: {average}")

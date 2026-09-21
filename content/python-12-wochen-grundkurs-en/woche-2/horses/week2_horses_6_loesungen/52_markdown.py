@@ -1,3 +1,3 @@
-"""### Mission 2: The Riding Lesson – Task 3
+"""### Mission 3: The Tournament – Task 3
 
-Step 3 – Divide the total time by 3, store the result in average_time and print exactly: Average time: 45.0 minutes"""
+Step 3 – Calculate the average of both totals, store it in average and print exactly: Average points: 138.5"""

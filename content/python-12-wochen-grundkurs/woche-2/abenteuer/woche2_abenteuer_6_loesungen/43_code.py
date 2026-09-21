@@ -1,3 +1,3 @@
-name = "Gandalf"
-level = 99
-print(f"Hallo {name}! Du bist Level {level}!")
+zauberkraft = int("100")
+bonus = 50
+print(f"Gesamtkraft: {zauberkraft + bonus}")

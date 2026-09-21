@@ -1,3 +1,5 @@
-"""### Mission 2: Die Flottenanalyse – Aufgabe 2
+"""## 🔥 Extra-Herausforderungen
 
-Schritt 2 – Lege die Variablen crew1 bis crew3 und tempo1 bis tempo3 wie in der Tabelle an. Berechne die Summe aller Crews und den Durchschnitt aller Geschwindigkeiten (Summe geteilt durch 3) und gib genau diese zwei Zeilen aus: Gesamtcrew: 300 und Durchschnittsgeschwindigkeit: 3.5"""
+### Extra-Herausforderung 1: Das Raumschiff-Dock – Aufgabe 1
+
+Schritt 1 – Lege für alle vier Schiffe Variablen für Name und Energie an. Gib die Überschrift === DOCK-PROTOKOLL === aus und danach pro Schiff eine Zeile in diesem Format (Beispiel Dock 1): Dock 1: Aurora (Energie 80)"""

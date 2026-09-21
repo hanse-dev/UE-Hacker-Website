@@ -1,2 +1,2 @@
-hero_name = "Aria"
-print(f"Hero: {hero_name}")
+can_fly = True
+print(f"Can fly: {can_fly}")

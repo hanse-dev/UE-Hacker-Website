@@ -1,3 +1,3 @@
-"""### Debug-Quest – Aufgabe 1
+"""### Debug-Quest – Aufgabe 2
 
-🐛 Bug #1 – Ziel: Das Programm soll ausgeben: Hallo R2D2! Dein Status ist 3. Was ist falsch?"""
+🐛 Bug #2 – Ziel: Das Programm soll die verbleibende Energie berechnen und Restenergie: 50 ausgeben. Was ist falsch?"""

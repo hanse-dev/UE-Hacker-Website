@@ -1,1 +1,0 @@
-"""**Erklärung:** Mit `or` reicht schon eine wahre Bedingung. Weil beide Voraussetzungen gleichzeitig gelten sollen, braucht man `and`."""

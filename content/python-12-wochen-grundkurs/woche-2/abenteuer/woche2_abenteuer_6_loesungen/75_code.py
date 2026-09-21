@@ -1,12 +1,11 @@
-zauber1 = "Feuerball"
-staerke1 = 80.0
-komplex1 = 3
-zauber2 = "Frostblitz"
-staerke2 = 65.0
-komplex2 = 2
-zauber3 = "Sturmruf"
-staerke3 = 95.0
-komplex3 = 5
+belohnung1 = 500
+dauer1 = 4
+gruppe1 = 5
+chance1 = 0.8
+belohnung2 = 800
+dauer2 = 7
+gruppe2 = 4
+chance2 = 0.75
 
-durchschnitt = (staerke1 + staerke2 + staerke3) / 3
-print(f"Durchschnittsstärke: {durchschnitt}")
+print("=== QUEST-PROTOKOLL ===")
+print(f"Gesamtbelohnung: {belohnung1 + belohnung2}")

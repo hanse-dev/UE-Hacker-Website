@@ -1,5 +1,5 @@
-alter = 8
-if alter >= 5:
-    print("Ausgebildet")
-else:
-    print("In Ausbildung")
+alter = 10
+hat_helm = True
+hat_erlaubnis = False
+
+print(f"Alter: {alter}, Helm: {hat_helm}")

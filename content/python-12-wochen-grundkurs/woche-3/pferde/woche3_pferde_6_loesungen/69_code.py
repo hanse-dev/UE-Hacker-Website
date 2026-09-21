@@ -1,5 +1,12 @@
-pferd_groesse = 1.65
-reiter_gewicht = 70
+tempo = 72
 
-if pferd_groesse >= 1.60 and reiter_gewicht <= 80:
-    print("Level 1: Aufsitzen erlaubt")
+if tempo < 20:
+    print("Level 3: Sehr langsam")
+elif tempo < 40:
+    print("Level 3: Langsam")
+elif tempo < 60:
+    print("Level 3: Mittel")
+elif tempo < 80:
+    print("Level 3: Schnell")
+else:
+    print("Level 3: Rasant")

@@ -1,11 +1,5 @@
-line1 = "A program is a magic spell"
-line2 = "that the computer understands."
-line3 = "Say the formulas correctly"
-line4 = "and the machine will dance."
+x = 10
+y = 20
+z = 30
 
-print("=== TOWER OF KNOWLEDGE ===")
-print("------------------------")
-print(line1)
-print(line2)
-print(line3)
-print(line4)
+print("Position: " + str(x) + ", " + str(y) + ", " + str(z))

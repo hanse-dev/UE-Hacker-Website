@@ -1,3 +1,3 @@
-"""### Spell Formula 4: input()
+"""### Spell Formula 5: Comments
 
-Use input() to ask for your hero's weapon, store the answer in weapon and print: Battle-ready with: (followed by the weapon)"""
+Write a comment of your own, followed by a print() that outputs exactly: Comment read"""

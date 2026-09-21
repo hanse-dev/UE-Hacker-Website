@@ -1,7 +1,6 @@
-mana = 70
-zauber_bereit = True
-
-if mana >= 50 and zauber_bereit:
-    print("Level 1 bestanden")
-else:
-    print("Level 1 gescheitert")
+antwort_1 = True
+antwort_2 = True
+punkte = 200
+if antwort_1 and antwort_2:
+    punkte = punkte + 50
+print(f"Punkte mit Bonus: {punkte}")

@@ -1,5 +1,1 @@
-author = "Aria"
-stars = 5
-
-print("Author: " + author)
-print("Rating: " + str(stars) + " stars")
+print("Warning: The portal closes at sunrise - return in good time!")

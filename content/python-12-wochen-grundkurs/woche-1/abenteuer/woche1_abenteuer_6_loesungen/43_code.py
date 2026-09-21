@@ -1,5 +1,1 @@
-autor = "Aria"
-sterne = 5
-
-print("Autor: " + autor)
-print("Bewertung: " + str(sterne) + " Sterne")
+print("Warnung: Das Portal schließt sich bei Sonnenaufgang – rechtzeitig zurückkehren!")

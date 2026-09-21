@@ -1,2 +1,5 @@
-service_number = 4711
-print("My service number is " + str(service_number) + ".")
+shuttle = 7
+destination = "Mars"
+
+print("=== FLIGHT PROTOCOL ===")
+print("Shuttle " + str(shuttle) + " is flying to the destination " + destination + ".")

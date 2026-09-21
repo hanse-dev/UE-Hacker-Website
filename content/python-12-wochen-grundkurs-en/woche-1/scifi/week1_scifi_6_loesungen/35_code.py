@@ -1,5 +1,5 @@
-shuttle = 7
-destination = "Mars"
+author = "Commander Vega"
+stars = 5
 
-print("=== FLIGHT PROTOCOL ===")
-print("Shuttle " + str(shuttle) + " is flying to the destination " + destination + ".")
+print("Author: " + author)
+print("Rating: " + str(stars) + " stars")

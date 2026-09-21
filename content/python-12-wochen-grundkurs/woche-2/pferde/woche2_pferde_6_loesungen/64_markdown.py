@@ -1,3 +1,3 @@
-"""### Mission 3: Das Turnier – Aufgabe 3
+"""### Der Futterraum – Aufgabe 3
 
-Schritt 3 – Durchschnitt: Berechne den Durchschnitt beider Gesamtpunkte (Summe geteilt durch 2) und gib genau aus: Durchschnitt: 137.5 Punkte"""
+Schritt 3 – Durchschnitt: Teile das Gesamtgewicht durch 8 und gib genau aus: Durchschnitt: 25.0 kg"""

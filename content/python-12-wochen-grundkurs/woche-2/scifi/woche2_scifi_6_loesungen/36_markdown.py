@@ -1,3 +1,3 @@
-"""### Debug-Quest – Aufgabe 3
+"""### Mission 1: Das Energiedepot – Aufgabe 2
 
-🐛 Bug #3 – Ziel: Das Programm soll ausgeben: Schildstärke: 95 Prozent. Was ist falsch?"""
+Schritt 2 – Lege bloecke = 12 (Integer) und energie_pro_block = 45.5 (Float) an. Multipliziere beide in einer Variable gesamt und gib genau diese Zeile aus: Gesamtenergie: 546.0"""

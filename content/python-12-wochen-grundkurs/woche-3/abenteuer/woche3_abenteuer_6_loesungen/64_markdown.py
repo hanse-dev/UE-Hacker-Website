@@ -1,3 +1,5 @@
-"""### Extra-Herausforderung 1: Das Magie-Quiz – Aufgabe 2
+"""## 🔥 Extra-Herausforderungen
 
-Schritt 2 – Punkte zählen: Fünf Antworten sind gegeben. Starte mit punkte = 0 und addiere für jede richtige Antwort mit einem eigenen if 100 Punkte (punkte = punkte + 100). Gib genau aus: Punkte: 400"""
+### Extra-Herausforderung 1: Das Magie-Quiz – Aufgabe 1
+
+Schritt 1 – Antworten prüfen: Die Antworten sind antwort_1 = True und antwort_3 = False. Prüfe beide jeweils mit if-else und gib aus: Frage 1: Richtig! oder Frage 1: Falsch! bzw. Frage 3: Richtig! oder Frage 3: Falsch!"""

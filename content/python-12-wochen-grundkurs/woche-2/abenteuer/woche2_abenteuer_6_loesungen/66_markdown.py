@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 1: Der Schatzraum – Aufgabe 2
+"""### Extra-Herausforderung 2: Die Zauberwerkstatt – Aufgabe 1
 
-Schritt 2 – Berechne den Durchschnitt (Gesamtwert geteilt durch 8) und gib genau aus: Durchschnitt: 125.0"""
+Schritt 1 – Gib die Überschrift === ZAUBERWERKSTATT-PROTOKOLL === und danach mit f-String für den ersten Zauber genau aus: Feuerball: Stärke 80.0, Komplexität 3"""

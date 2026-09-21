@@ -1,2 +1,2 @@
-weapon = input("Their weapon: ")
-print("Battle-ready with: " + weapon)
+# This line is just a note for me
+print("Comment read")

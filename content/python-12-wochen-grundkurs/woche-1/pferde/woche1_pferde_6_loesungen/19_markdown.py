@@ -1,1 +1,0 @@
-"""**Erklärung:** Text muss in Anführungszeichen stehen. Ohne sie liest Python `Hallo` und `Pferd` als Variablennamen – die es nicht gibt."""

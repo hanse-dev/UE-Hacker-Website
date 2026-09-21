@@ -1,4 +1,11 @@
-ferrum_wert = 500 * 0.8 * 12
-aurum_wert = 200 * 0.5 * 40
-print(f"Ferrum: {ferrum_wert}")
-print(f"Aurum: {aurum_wert}")
+energie1 = 80
+energie2 = 65
+energie3 = 90
+energie4 = 55
+schiffe = 4
+
+durchschnitt = (energie1 + energie2 + energie3 + energie4) / schiffe
+bedarf = schiffe * 100
+print(f"Durchschnitt: {durchschnitt}")
+print(f"Gesamtbedarf: {bedarf}")
+print("Bestes Schiff: Cirrus")

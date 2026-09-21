@@ -1,14 +1,5 @@
-name1 = "Orion"
-crew1 = 120
-tempo1 = 2.5
-name2 = "Vega"
-crew2 = 80
-tempo2 = 3.5
-name3 = "Sirius"
-crew3 = 100
-tempo3 = 4.5
-
-print("=== FLOTTENANALYSE ===")
-print(f"{name1}: Crew {crew1}, Geschwindigkeit {tempo1}")
-print(f"{name2}: Crew {crew2}, Geschwindigkeit {tempo2}")
-print(f"{name3}: Crew {crew3}, Geschwindigkeit {tempo3}")
+ferrum_wert = 500 * 0.8 * 12
+aurum_wert = 200 * 0.5 * 40
+durchschnitt = (ferrum_wert + aurum_wert) / 2
+print("Abbau: Ferrum")
+print(f"Durchschnittswert: {durchschnitt}")

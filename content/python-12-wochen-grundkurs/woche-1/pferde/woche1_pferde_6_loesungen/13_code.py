@@ -1,2 +1,2 @@
-reiter = input("Name: ")
-print("Ich reite mit: " + reiter)
+# Diese Zeile ist nur eine Notiz für mich
+print("Kommentar gelesen")

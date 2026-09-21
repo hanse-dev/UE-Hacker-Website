@@ -1,1 +1,0 @@
-print("Warning: The portal closes at sunrise - return in good time!")

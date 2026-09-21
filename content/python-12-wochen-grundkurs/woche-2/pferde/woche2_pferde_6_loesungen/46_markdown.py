@@ -1,1 +1,3 @@
-"""**Erklärung:** Der f-String war da, aber der Variablenname stand ohne `{}`. Nur in geschweiften Klammern wird der Wert eingesetzt."""
+"""### Mission 1: Das Futterlager – Aufgabe 3
+
+Schritt 3 – Gesamtgewicht berechnen: Multipliziere Ballen und Gewicht pro Ballen, speichere es in gesamtgewicht und gib genau aus: Gesamtgewicht: 310.0 kg"""

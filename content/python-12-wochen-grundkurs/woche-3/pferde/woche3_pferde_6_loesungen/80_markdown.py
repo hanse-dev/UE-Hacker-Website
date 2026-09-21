@@ -1,3 +1,3 @@
-"""### Das große Turnier – Aufgabe 1
+"""### Das große Turnier – Aufgabe 3
 
-Schritt 1 – Phasen zählen: Zähle mit erfolgreiche_phasen = 0 und += 1 alle Phasen, die True sind, und gib mit einem f-String genau aus: Erfolgreiche Phasen: 4"""
+Schritt 3 – Zufallsereignisse: Prüfe jedes Ereignis mit einem eigenen if. Umgeworfen → Ereignis: Hindernis umgeworfen!, scheut → Ereignis: Das Pferd scheut!, verrutscht → Ereignis: Sattel verrutscht! Hier soll genau erscheinen: Ereignis: Das Pferd scheut!"""

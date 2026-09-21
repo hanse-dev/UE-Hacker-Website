@@ -1,3 +1,3 @@
-"""### Debug Quest – Task 1
+"""### Magic Formula 5: Nested Conditions – Task 2
 
-🐛 Bug #1 – Goal: The program should print both Level reached! and Congratulations! when level >= 10. What is wrong?"""
+The tournament: whoever has a ticket (has_ticket = True) gets checked by age: from 14 on, print: You may take part in the tournament! – otherwise: Too young for the tournament. Without a ticket, print: No ticket, no entry."""

@@ -1,11 +1,14 @@
-crew1 = 120
-crew2 = 80
-crew3 = 100
-tempo1 = 2.5
-tempo2 = 3.5
-tempo3 = 4.5
+name1 = "Aurora"
+energie1 = 80
+name2 = "Borealis"
+energie2 = 65
+name3 = "Cirrus"
+energie3 = 90
+name4 = "Dione"
+energie4 = 55
 
-gesamtcrew = crew1 + crew2 + crew3
-durchschnitt = (tempo1 + tempo2 + tempo3) / 3
-print(f"Gesamtcrew: {gesamtcrew}")
-print(f"Durchschnittsgeschwindigkeit: {durchschnitt}")
+print("=== DOCK-PROTOKOLL ===")
+print(f"Dock 1: {name1} (Energie {energie1})")
+print(f"Dock 2: {name2} (Energie {energie2})")
+print(f"Dock 3: {name3} (Energie {energie3})")
+print(f"Dock 4: {name4} (Energie {energie4})")

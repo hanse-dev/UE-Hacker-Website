@@ -1,2 +1,3 @@
-strength = 40
-print(f"Strength: {strength}")
+first_name = "Luna"
+last_name = "Silvermoon"
+print(f"Name: {first_name} {last_name}")

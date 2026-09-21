@@ -1,1 +1,3 @@
-"""**Explanation:** Without curly braces the words `robot` and `status` are printed as plain text. In an f-string, variables must be written in `{}` – and the string needs the `f` in front."""
+"""### Debug Quest – Task 3
+
+🐛 Bug #3 – Goal: The program should print: Shield strength: 95 percent. What is wrong?"""

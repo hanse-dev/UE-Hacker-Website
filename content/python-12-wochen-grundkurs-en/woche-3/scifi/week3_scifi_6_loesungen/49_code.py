@@ -1,9 +1,6 @@
-admin_password = "nebula42"
-guest_password = "visitor7"
-entered = "visitor7"
-if entered == admin_password:
-    print("Full access granted")
-elif entered == guest_password:
-    print("Read access granted")
-else:
-    print("Wrong password!")
+level = 9
+success_points = 95
+losses = 1
+time = 25
+score = success_points - (losses * 10) - (time / 5)
+print(f"Score: {score}")

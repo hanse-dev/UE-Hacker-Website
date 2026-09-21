@@ -1,3 +1,3 @@
-"""### Mission 1: The Stable Guard – Task 2
+"""### Mission 2: The Feed Dispenser – Task 1
 
-Step 2 – age = 10, has_helmet = False and has_permission = True are already there. If age >= 12 or has_helmet or has_permission print exactly: Access granted – otherwise print: Access denied"""
+Step 1 – Set the passwords: Create stable_master_password = \"Horseshoe\", groom_password = \"Carrot\" and entered = \"Carrot\" and print exactly, using an f-string: Entered: Carrot"""

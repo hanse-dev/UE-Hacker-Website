@@ -1,3 +1,3 @@
-"""### Das Schiffslogbuch – Aufgabe 1
+"""### Das Wurmloch – Aufgabe 1
 
-Schritt 1 – Lege vier Variablen zeile1 bis zeile4 mit je einem Satz über die Raumfahrt an. Gib dann die Überschrift === SCHIFFSLOGBUCH === aus und danach alle vier Zeilen."""
+Schritt 1 – Lege farbe = \"blau\", form = \"spiralförmig\" und stabilitaet = 85 an und gib genau diese Zeile aus: Wurmloch: blau, spiralförmig, Stabilität 85%"""

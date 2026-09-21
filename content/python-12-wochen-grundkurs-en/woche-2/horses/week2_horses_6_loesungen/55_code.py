@@ -1,10 +1,13 @@
-horse1 = "Thunder"
-dressage1 = 68.5
-jumping1 = 72.0
-horse2 = "Luna"
-dressage2 = 71.0
-jumping2 = 65.5
-total1 = dressage1 + jumping1
-total2 = dressage2 + jumping2
-print(f"{horse1}: {total1} points")
-print(f"{horse2}: {total2} points")
+type1 = "oats"
+weight1 = 12.5
+type2 = "hay"
+weight2 = 20.0
+type3 = "barley"
+weight3 = 8.5
+type4 = "carrots"
+weight4 = 5.0
+print("=== FEED ROOM PROTOCOL ===")
+print(f"Sack 1: {type1}, {weight1} kg")
+print(f"Sack 2: {type2}, {weight2} kg")
+print(f"Sack 3: {type3}, {weight3} kg")
+print(f"Sack 4: {type4}, {weight4} kg")

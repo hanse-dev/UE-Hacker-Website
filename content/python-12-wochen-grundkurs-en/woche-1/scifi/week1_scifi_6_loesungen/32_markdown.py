@@ -1,3 +1,5 @@
-"""### Mission 2: The Data Technician – Task 2
+"""## 🔥 Extra Challenges
 
-Step 2 – Using the variables from step 1, output this sentence: The Shuttle NX-42 has 6 crew members."""
+### Extra challenge 1: The Ship's Log – Task 1
+
+Step 1 – Create four variables line1 to line4, each with a sentence about space travel. Then output the heading === SHIP'S LOG === followed by all four lines."""

@@ -1,3 +1,3 @@
-"""### Debug Quest – Task 1
+"""### Debug Quest – Task 2
 
-🐛 Bug #1 – Goal: The program should print Access granted! and Welcome Commander! when the level is high enough. What is wrong?"""
+🐛 Bug #2 – Goal: The program should check whether user equals \"Admin\" and, if so, print Hello Admin! What is wrong?"""

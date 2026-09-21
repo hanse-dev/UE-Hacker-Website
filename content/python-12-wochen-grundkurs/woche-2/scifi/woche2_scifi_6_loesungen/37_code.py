@@ -1,2 +1,4 @@
-schildstaerke = 95
-print(f"Schildstärke: {schildstaerke} Prozent")
+bloecke = 12
+energie_pro_block = 45.5
+gesamt = bloecke * energie_pro_block
+print(f"Gesamtenergie: {gesamt}")

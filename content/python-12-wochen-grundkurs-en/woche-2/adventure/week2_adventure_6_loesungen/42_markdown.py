@@ -1,3 +1,3 @@
-"""### Debug Quest – Task 3
+"""### Mission 1: The Four Elemental Stones – Task 2
 
-🐛 Bug #3 – Goal: The program should print Your gold: 300. What is wrong?"""
+Step 2 – 🪨 Earth Stone: create strength = 40 and print exactly: Strength: 40"""

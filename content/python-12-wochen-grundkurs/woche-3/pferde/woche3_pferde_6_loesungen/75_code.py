@@ -1,10 +1,18 @@
-hoehe = 80
-breite = 40
+level1_ok = True
+level2_ok = True
+level3_ok = False
+level4_ok = False
+level5_ok = True
 
-if hoehe >= 70:
-    if breite >= 50:
-        print("Level 4: Hindernis gemeistert")
-    else:
-        print("Level 4: Breite reicht nicht")
-else:
-    print("Level 4: Zu niedrig")
+erfolge = 0
+if level1_ok:
+    erfolge += 1
+if level2_ok:
+    erfolge += 1
+if level3_ok:
+    erfolge += 1
+if level4_ok:
+    erfolge += 1
+if level5_ok:
+    erfolge += 1
+print(f"Erfolge: {erfolge} von 5")

@@ -1,3 +1,0 @@
-"""### Extra challenge 2: The Dungeon Simulator – Task 4
-
-Step 4 – Level 4, magic trial: with the values below use nested conditions. If shield >= 50: if attack >= 50 print Trial passed with attack, elif healing >= 50 print Trial passed with healing, else print Trial failed: attack and healing too weak. If the shield is below 50 print Trial failed: shield too weak. Your program must print exactly: Trial passed with healing"""

@@ -1,4 +1,5 @@
-gesamtzeit = 135
+luna_gesamt = 140
+thunder_gesamt = 135
 
-durchschnitt = gesamtzeit / 3
-print(f"Durchschnitt: {durchschnitt} Minuten")
+durchschnitt = (luna_gesamt + thunder_gesamt) / 2
+print(f"Durchschnitt: {durchschnitt} Punkte")

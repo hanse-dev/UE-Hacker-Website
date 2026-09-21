@@ -1,4 +1,6 @@
-ballen = 20
-gewicht_pro_ballen = 15.5
+zeit1 = 30
+zeit2 = 45
+zeit3 = 60
 
-print(f"Ballen: {ballen}, je {gewicht_pro_ballen} kg")
+gesamtzeit = zeit1 + zeit2 + zeit3
+print(f"Gesamtzeit: {gesamtzeit} Minuten")

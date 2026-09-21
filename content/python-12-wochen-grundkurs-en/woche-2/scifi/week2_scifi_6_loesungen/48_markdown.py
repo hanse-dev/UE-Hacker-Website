@@ -1,3 +1,3 @@
-"""### Mission 1: The Energy Depot – Task 1
+"""### Mission 2: The Fleet Analysis – Task 2
 
-Step 1 – Create technician = "Kira" (text) and tech_id = 4021 (whole number). Print exactly: Technician Kira, ID 4021"""
+Step 2 – Add all crew sizes, store the sum in total_crew and print exactly: Total crew: 400 (create the ship variables again first)."""

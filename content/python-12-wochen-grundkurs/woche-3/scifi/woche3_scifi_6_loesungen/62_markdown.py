@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 1: Das KI-Quiz – Aufgabe 3
+"""### Extra-Herausforderung 2: Der Raumschiff-Simulator – Aufgabe 2
 
-Die Variable punkte ist schon angelegt. Ab 300 Punkten ist das Quiz bestanden: Gib dann Zertifikat: Bestanden! aus, sonst Zertifikat: Nicht bestanden."""
+Level 2 – Kurswahl: Die Variable kurs ist schon angelegt. Gib mit if-else bei \"Nord\": Kurs Nord gesetzt, sonst Kurs Süd gesetzt aus."""

@@ -1,3 +1,3 @@
-"""### Mission 3: Der Asteroiden-Mining – Aufgabe 2
+"""### Extra-Herausforderung 2: Das KI-Labor – Aufgabe 1
 
-Schritt 2 – Vergleiche die Rohwerte aus Schritt 1 (Ferrum 4800.0, Aurum 4000.0): Gib Abbau: Ferrum für den wertvolleren Asteroiden aus und berechne den Durchschnitt beider Werte: Durchschnittswert: 4400.0"""
+Schritt 1 – Lege für die drei Modelle Variablen für Name (String), Genauigkeit (Float) und Parameter (Integer) an. Gib die Überschrift === KI-LABOR-PROTOKOLL === aus und pro Modell eine Zeile in diesem Format (Beispiel Nexus): Nexus: Genauigkeit 92.0, Parameter 5000000"""

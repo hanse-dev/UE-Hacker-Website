@@ -1,3 +1,3 @@
-"""### Mission 3: The Tournament – Task 3
+"""### The Feed Room – Task 3
 
-Step 3 – Calculate the average of both totals, store it in average and print exactly: Average points: 138.5"""
+Step 3 – Is sack 2 heavier than the average of all four sacks? Compare with > and print exactly: Sack 2 above average: True"""

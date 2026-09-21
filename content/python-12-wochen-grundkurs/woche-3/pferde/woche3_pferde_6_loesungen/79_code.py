@@ -1,18 +1,12 @@
-level1_ok = True
-level2_ok = True
-level3_ok = False
-level4_ok = False
-level5_ok = True
+schwierigkeit = 4
 
-erfolge = 0
-if level1_ok:
-    erfolge += 1
-if level2_ok:
-    erfolge += 1
-if level3_ok:
-    erfolge += 1
-if level4_ok:
-    erfolge += 1
-if level5_ok:
-    erfolge += 1
-print(f"Erfolge: {erfolge} von 5")
+if schwierigkeit == 1:
+    print("Stufe: Anfänger")
+elif schwierigkeit == 2:
+    print("Stufe: Leicht")
+elif schwierigkeit == 3:
+    print("Stufe: Mittel")
+elif schwierigkeit == 4:
+    print("Stufe: Schwer")
+else:
+    print("Stufe: Extrem")

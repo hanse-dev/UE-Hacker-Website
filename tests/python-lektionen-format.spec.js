@@ -83,16 +83,17 @@ test.describe('Lektions-Format: Wochen-Tour', () => {
   }
 });
 
-// Woche 10-12: das Nachschlagewerk "Loesungen" ist aus den Referenzloesungen der Aufgaben erzeugt (eine Zelle je
+// Wochen mit passenden Lösungen (SOLUTION_WEEKS wächst, sobald eine Woche fertig ist): das Nachschlagewerk "Loesungen" ist aus den Referenzloesungen der Aufgaben erzeugt (eine Zelle je
 // Aufgabe) - jede Aufgabenstellung muss dort stehen, sonst passen Loesungen und Aufgaben nicht mehr zusammen.
-test.describe('Lektions-Format: Lösungen passen zu den Aufgaben (Woche 10-12)', () => {
+const SOLUTION_WEEKS = [1, 2, 3, 10, 11, 12];
+test.describe('Lektions-Format: Lösungen passen zu den Aufgaben', () => {
   const EN_THEME = { abenteuer: 'adventure', pferde: 'horses', scifi: 'scifi' };
-  for (const week of WEEKS.filter((w) => w >= 10)) for (const theme of THEMES) for (const lang of LANGS) {
+  for (const week of SOLUTION_WEEKS) for (const theme of THEMES) for (const lang of LANGS) {
     test(`Woche ${week} ${theme} ${lang}: jede Aufgabe hat ihre Lösung`, () => {
       const dir = lang === 'en'
         ? path.join(CONTENT, 'python-12-wochen-grundkurs-en', `woche-${week}`, EN_THEME[theme], `week${week}_${EN_THEME[theme]}_6_loesungen`)
         : path.join(CONTENT, 'python-12-wochen-grundkurs', `woche-${week}`, theme, `woche${week}_${theme}_6_loesungen`);
-      const files = fs.readdirSync(dir).filter((f) => /^\d\d_(markdown|code)\.py$/.test(f)).sort();
+      const files = fs.readdirSync(dir).filter((f) => /^\d+_(markdown|code)\.py$/.test(f)).sort();
       const md = files.filter((f) => f.endsWith('_markdown.py')).map((f) => fs.readFileSync(path.join(dir, f), 'utf8')).join('\n').replace(/\\"/g, '"').replace(/\\\\/g, '\\');
       const own = readLessons(folder(week, theme, lang)).flatMap((l) => l.tasks.filter((t) => !t.example));
       for (const t of own) expect(md, t.instruction.slice(0, 60)).toContain(t.instruction);

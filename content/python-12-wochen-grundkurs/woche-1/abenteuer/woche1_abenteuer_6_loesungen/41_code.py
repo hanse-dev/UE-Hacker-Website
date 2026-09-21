@@ -1,11 +1,5 @@
-zeile1 = "Ein Programm ist ein Zauberspruch,"
-zeile2 = "den der Computer versteht."
-zeile3 = "Wer die Formeln richtig sagt,"
-zeile4 = "bringt die Maschine zum Tanzen."
+x = 10
+y = 20
+z = 30
 
-print("=== TURM DES WISSENS ===")
-print("------------------------")
-print(zeile1)
-print(zeile2)
-print(zeile3)
-print(zeile4)
+print("Position: " + str(x) + ", " + str(y) + ", " + str(z))
