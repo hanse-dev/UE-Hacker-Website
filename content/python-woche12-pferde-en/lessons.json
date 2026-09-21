@@ -70,7 +70,10 @@
         "codeTemplate": "world = {\n    \"yard\": {\n        \"description\": \"You stand in the yard. The moon is shining, and you hear a soft whinny from the stable.\",\n        \"exits\": {\"north\": \"aisle\"},\n    },\n    \"aisle\": {\n        \"description\": \"A long stable aisle. The horses' stalls are on both sides.\",\n        \"exits\": {\"south\": \"yard\", \"east\": \"paddock\", \"west\": \"saddlery\"},\n    },\n    \"saddlery\": {\"description\": \"The saddlery smells of leather. Saddles and bridles hang on the wall.\", \"exits\": {\"east\": \"aisle\"}},\n    \"paddock\": {\"description\": \"The paddock at night. The foal stands in the grass – and in front of it an angry goat!\", \"exits\": {\"west\": \"aisle\"}},\n}\n\ndef describe(room_name):\n    room = world[room_name]\n    print(f\"📍 {room_name.capitalize()}: {room['description']}\")\n    print(\"   Exits:\", \", \".join(room[\"exits\"]))\n\ndef go(position, direction):\n    exits = world[position][\"exits\"]\n    if direction in exits:\n        new_position = exits[direction]\n        describe(new_position)\n        return new_position\n    print(\"🚫 You can't go that way!\")\n    return position\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Position: paddock"
+          "expected": "Position: paddock",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -104,7 +107,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Flashlight"
+          "expected": "Flashlight",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
         }
       },
       {
@@ -188,7 +195,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "False\nTrue"
+          "expected": "False\nTrue",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
         }
       },
       {
@@ -230,7 +241,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Invalid command"
+          "expected": "Invalid command",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       },
       {
@@ -272,7 +287,11 @@
         "codeTemplate": "world = {\n    \"yard\": {\n        \"description\": \"You stand in the yard. The moon is shining, and you hear a soft whinny from the stable.\",\n        \"exits\": {\"north\": \"aisle\"},\n    },\n    \"aisle\": {\n        \"description\": \"A long stable aisle. The horses' stalls are on both sides.\",\n        \"exits\": {\"south\": \"yard\", \"east\": \"paddock\", \"west\": \"saddlery\"},\n    },\n    \"saddlery\": {\"description\": \"The saddlery smells of leather. Saddles and bridles hang on the wall.\", \"exits\": {\"east\": \"aisle\"}},\n    \"paddock\": {\"description\": \"The paddock at night. The foal stands in the grass – and in front of it an angry goat!\", \"exits\": {\"west\": \"aisle\"}},\n}\n\ndef describe(room_name):\n    room = world[room_name]\n    print(f\"📍 {room_name.capitalize()}: {room['description']}\")\n    print(\"   Exits:\", \", \".join(room[\"exits\"]))\n\ndef go(position, direction):\n    exits = world[position][\"exits\"]\n    if direction in exits:\n        new_position = exits[direction]\n        describe(new_position)\n        return new_position\n    print(\"🚫 You can't go that way!\")\n    return position\n\nclass Item:\n    def __init__(self, name, description):\n        self.name = name\n        self.description = description\n\nworld[\"yard\"][\"items\"] = [Item(\"Flashlight\", \"It lights up dark corners.\")]\nworld[\"aisle\"][\"items\"] = []\nworld[\"saddlery\"][\"items\"] = [Item(\"Broom\", \"A sturdy broom. It helps to chase away the goat.\")]\nworld[\"paddock\"][\"items\"] = [Item(\"Foal\", \"The little foal follows you trustfully.\")]\n\nclass Player:\n    def __init__(self, name, position):\n        self.name = name\n        self.position = position\n        self.hp = 20\n        self.inventory = []\n\n    def go(self, direction):\n        exits = world[self.position][\"exits\"]\n        if direction in exits:\n            self.position = exits[direction]\n            describe(self.position)\n            self.look_around()\n        else:\n            print(\"🚫 You can't go that way!\")\n\n    def look_around(self):\n        items = world[self.position][\"items\"]\n        if items:\n            names = [g.name for g in items]\n            print(\"👀 You see:\", \", \".join(names))\n        else:\n            print(\"👀 Nothing lies here.\")\n\n    def take(self, item_name):\n        room = world[self.position]\n        for item in room[\"items\"]:\n            if item.name == item_name:\n                room[\"items\"].remove(item)\n                self.inventory.append(item)\n                print(f\"🎒 You take: {item.name} – {item.description}\")\n                return\n        print(f\"❓ There is no '{item_name}' here.\")\n\n    def show_inventory(self):\n        if self.inventory:\n            names = [g.name for g in self.inventory]\n            print(\"🎒 In the bag:\", \", \".join(names))\n        else:\n            print(\"🎒 Your bag is empty.\")\n\nplayer = Player(\"Mira\", \"yard\")\nplayer.take(\"Flashlight\")\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "{\"name\": \"Mira\", \"position\": \"yard\", \"hp\": 20, \"inventory\": [\"Flashlight\"]}"
+          "expected": "{\"name\": \"Mira\", \"position\": \"yard\", \"hp\": 20, \"inventory\": [\"Flashlight\"]}",
+          "codeContains": [
+            "json.dumps",
+            "import"
+          ]
         }
       },
       {
@@ -280,7 +299,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "📂 There is no saved game yet."
+          "expected": "📂 There is no saved game yet.",
+          "codeContains": [
+            "json.load"
+          ]
         }
       },
       {
@@ -478,7 +500,11 @@
         "codeTemplate": "world = {\n    \"yard\": {\n        \"description\": \"You stand in the yard. The moon is shining, and you hear a soft whinny from the stable.\",\n        \"exits\": {\"north\": \"aisle\"},\n    },\n    \"aisle\": {\n        \"description\": \"A long stable aisle. The horses' stalls are on both sides.\",\n        \"exits\": {\"south\": \"yard\", \"east\": \"paddock\", \"west\": \"saddlery\"},\n    },\n    \"saddlery\": {\"description\": \"The saddlery smells of leather. Saddles and bridles hang on the wall.\", \"exits\": {\"east\": \"aisle\"}},\n    \"paddock\": {\"description\": \"The paddock at night. The foal stands in the grass – and in front of it an angry goat!\", \"exits\": {\"west\": \"aisle\"}},\n}\n\ndef describe(room_name):\n    room = world[room_name]\n    print(f\"📍 {room_name.capitalize()}: {room['description']}\")\n    print(\"   Exits:\", \", \".join(room[\"exits\"]))\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True"
+          "expected": "True",
+          "codeContains": [
+            "json.dumps",
+            "json.loads"
+          ]
         }
       },
       {
@@ -486,7 +512,11 @@
         "codeTemplate": "world = {\n    \"yard\": {\n        \"description\": \"You stand in the yard. The moon is shining, and you hear a soft whinny from the stable.\",\n        \"exits\": {\"north\": \"aisle\"},\n    },\n    \"aisle\": {\n        \"description\": \"A long stable aisle. The horses' stalls are on both sides.\",\n        \"exits\": {\"south\": \"yard\", \"east\": \"paddock\", \"west\": \"saddlery\"},\n    },\n    \"saddlery\": {\"description\": \"The saddlery smells of leather. Saddles and bridles hang on the wall.\", \"exits\": {\"east\": \"aisle\"}},\n    \"paddock\": {\"description\": \"The paddock at night. The foal stands in the grass – and in front of it an angry goat!\", \"exits\": {\"west\": \"aisle\"}},\n}\n\ndef describe(room_name):\n    room = world[room_name]\n    print(f\"📍 {room_name.capitalize()}: {room['description']}\")\n    print(\"   Exits:\", \", \".join(room[\"exits\"]))\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Rooms: 4"
+          "expected": "Rooms: 4",
+          "codeContains": [
+            "json.dump",
+            "json.load"
+          ]
         }
       },
       {
@@ -527,7 +557,10 @@
         "codeTemplate": "scores = {\"Mira\": 120, \"Tom\": 90, \"Lena\": 150}\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Count: 3"
+          "expected": "Count: 3",
+          "codeContains": [
+            "json.dump"
+          ]
         }
       }
     ]
@@ -552,7 +585,10 @@
         "codeTemplate": "world = {\n    \"yard\": {\n        \"description\": \"You stand in the yard. The moon is shining, and you hear a soft whinny from the stable.\",\n        \"exits\": {\"north\": \"aisle\"},\n    },\n    \"aisle\": {\n        \"description\": \"A long stable aisle. The horses' stalls are on both sides.\",\n        \"exits\": {\"south\": \"yard\", \"east\": \"paddock\", \"west\": \"saddlery\"},\n    },\n    \"saddlery\": {\"description\": \"The saddlery smells of leather. Saddles and bridles hang on the wall.\", \"exits\": {\"east\": \"aisle\"}},\n    \"paddock\": {\"description\": \"The paddock at night. The foal stands in the grass – and in front of it an angry goat!\", \"exits\": {\"west\": \"aisle\"}},\n}\n\ndef describe(room_name):\n    room = world[room_name]\n    print(f\"📍 {room_name.capitalize()}: {room['description']}\")\n    print(\"   Exits:\", \", \".join(room[\"exits\"]))\n\ndef go(position, direction):\n    exits = world[position][\"exits\"]\n    if direction in exits:\n        new_position = exits[direction]\n        describe(new_position)\n        return new_position\n    print(\"🚫 You can't go that way!\")\n    return position\n\nclass Item:\n    def __init__(self, name, description):\n        self.name = name\n        self.description = description\n\nworld[\"yard\"][\"items\"] = [Item(\"Flashlight\", \"It lights up dark corners.\")]\nworld[\"aisle\"][\"items\"] = []\nworld[\"saddlery\"][\"items\"] = [Item(\"Broom\", \"A sturdy broom. It helps to chase away the goat.\")]\nworld[\"paddock\"][\"items\"] = [Item(\"Foal\", \"The little foal follows you trustfully.\")]\n\nclass Player:\n    def __init__(self, name, position):\n        self.name = name\n        self.position = position\n        self.hp = 20\n        self.inventory = []\n\n    def go(self, direction):\n        exits = world[self.position][\"exits\"]\n        if direction in exits:\n            self.position = exits[direction]\n            describe(self.position)\n            self.look_around()\n        else:\n            print(\"🚫 You can't go that way!\")\n\n    def look_around(self):\n        items = world[self.position][\"items\"]\n        if items:\n            names = [g.name for g in items]\n            print(\"👀 You see:\", \", \".join(names))\n        else:\n            print(\"👀 Nothing lies here.\")\n\n    def take(self, item_name):\n        room = world[self.position]\n        for item in room[\"items\"]:\n            if item.name == item_name:\n                room[\"items\"].remove(item)\n                self.inventory.append(item)\n                print(f\"🎒 You take: {item.name} – {item.description}\")\n                return\n        print(f\"❓ There is no '{item_name}' here.\")\n\n    def show_inventory(self):\n        if self.inventory:\n            names = [g.name for g in self.inventory]\n            print(\"🎒 In the bag:\", \", \".join(names))\n        else:\n            print(\"🎒 Your bag is empty.\")\n\nimport random\n\nclass Enemy:\n    def __init__(self, name, hp, strength):\n        self.name = name\n        self.hp = hp\n        self.strength = strength\n\n    def is_defeated(self):\n        return self.hp <= 0\n\nworld[\"yard\"][\"enemy\"] = None\nworld[\"aisle\"][\"enemy\"] = None\nworld[\"saddlery\"][\"enemy\"] = None\nworld[\"paddock\"][\"enemy\"] = Enemy(\"Goat\", 15, 6)\n\ndef has_item(player, name):\n    for item in player.inventory:\n        if item.name == name:\n            return True\n    return False\n\ndef fight(player, enemy):\n    print(f\"⚔️ Fight: {player.name} against {enemy.name}!\")\n    bonus = 3 if has_item(player, \"Broom\") else 0\n    while player.hp > 0 and not enemy.is_defeated():\n        damage = random.randint(1, 6) + bonus\n        enemy.hp -= damage\n        print(f\"   You hit for {damage} damage. ({enemy.name}: {max(enemy.hp, 0)} HP)\")\n        if enemy.is_defeated():\n            break\n        counter = random.randint(1, enemy.strength)\n        player.hp -= counter\n        print(f\"   {enemy.name} hits you for {counter}. ({player.name}: {max(player.hp, 0)} HP)\")\n    return player.hp > 0\n\ndef check_enemy(player):\n    enemy = world[player.position][\"enemy\"]\n    if enemy is not None and not enemy.is_defeated():\n        if fight(player, enemy):\n            print(f\"🎉 {enemy.name} was defeated!\")\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "HP: 20"
+          "expected": "HP: 20",
+          "codeContains": [
+            "super()"
+          ]
         }
       },
       {
@@ -560,7 +596,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Flashlight – It lights up dark corners."
+          "expected": "Flashlight – It lights up dark corners.",
+          "codeContains": [
+            "__init__",
+            "__str__"
+          ]
         }
       },
       {
@@ -568,7 +608,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Count: 0"
+          "expected": "Count: 0",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       }
     ]

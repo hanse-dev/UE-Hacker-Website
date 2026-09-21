@@ -190,7 +190,11 @@
         "codeTemplate": "zubehoer = (\"Sattel\", 15, \"Leder\")\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Fehler: geschützt"
+          "expected": "Fehler: geschützt",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       },
       {
@@ -198,7 +202,11 @@
         "codeTemplate": "futter = {\"Hafer\": 3, \"Heu\": 5, \"Möhren\": 2}\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Nicht im Lager: Zuckerrüben"
+          "expected": "Nicht im Lager: Zuckerrüben",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       },
       {
@@ -206,7 +214,11 @@
         "codeTemplate": "eingabe = \"zehn\"\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Zahl: 0"
+          "expected": "Zahl: 0",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       }
     ]
@@ -347,7 +359,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Abstand: 7"
+          "expected": "Abstand: 7",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -372,7 +387,10 @@
         "codeTemplate": "pferde = [\n    {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120},\n    {\"name\": \"Sturm\", \"rasse\": \"Haflinger\", \"alter\": 12, \"punkte\": 150},\n    {\"name\": \"Luna\", \"rasse\": \"Isländer\", \"alter\": 6, \"punkte\": 90},\n    {\"name\": \"Wind\", \"rasse\": \"Hannoveraner\", \"alter\": 7, \"punkte\": 110},\n]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Gefunden: ['Blitz', 'Wind']"
+          "expected": "Gefunden: ['Blitz', 'Wind']",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -479,7 +497,10 @@
         "codeTemplate": "pferde = [\n    {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120},\n    {\"name\": \"Sturm\", \"rasse\": \"Haflinger\", \"alter\": 12, \"punkte\": 150},\n    {\"name\": \"Luna\", \"rasse\": \"Isländer\", \"alter\": 6, \"punkte\": 90},\n    {\"name\": \"Wind\", \"rasse\": \"Hannoveraner\", \"alter\": 7, \"punkte\": 110},\n]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Hannoveraner: 2\nHaflinger: 1"
+          "expected": "Hannoveraner: 2\nHaflinger: 1",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -544,7 +565,11 @@
         "codeTemplate": "futter = {\"Hafer\": 3, \"Heu\": 5, \"Möhren\": 2}\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Hafer: 3\nZuckerrüben: 0"
+          "expected": "Hafer: 3\nZuckerrüben: 0",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       }
     ]

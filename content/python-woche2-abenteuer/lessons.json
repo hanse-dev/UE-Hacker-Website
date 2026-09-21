@@ -300,7 +300,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Willkommen, Blitz!"
+          "expected": "Willkommen, Blitz!",
+          "stdin": [
+            "Blitz"
+          ]
         }
       },
       {
@@ -308,7 +311,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "In 5 Levels: Level 12"
+          "expected": "In 5 Levels: Level 12",
+          "stdin": [
+            "7"
+          ]
         }
       }
     ]
@@ -416,7 +422,11 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Blitz ist in 5 Jahren 17"
+          "expected": "Blitz ist in 5 Jahren 17",
+          "stdin": [
+            "Blitz",
+            "12"
+          ]
         }
       },
       {
@@ -424,7 +434,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Zauberkraft 7.5, stark: True"
+          "expected": "Zauberkraft 7.5, stark: True",
+          "stdin": [
+            "7.5"
+          ]
         }
       }
     ]

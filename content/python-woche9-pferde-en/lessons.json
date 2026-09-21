@@ -96,7 +96,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "No file: missing.txt"
+          "expected": "No file: missing.txt",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       },
       {
@@ -112,7 +116,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Empty: True\nContent: Stable book of the farm"
+          "expected": "Empty: True\nContent: Stable book of the farm",
+          "codeContains": [
+            "def",
+            "try",
+            "except"
+          ]
         }
       }
     ]
@@ -138,7 +147,10 @@
         "codeTemplate": "import json\nhorse = {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120}\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "{\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120}"
+          "expected": "{\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120}",
+          "codeContains": [
+            "json.dumps"
+          ]
         }
       },
       {
@@ -146,7 +158,10 @@
         "codeTemplate": "import json\ntext = '{\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120}'\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Name: Blitz\nAge plus 1: 9"
+          "expected": "Name: Blitz\nAge plus 1: 9",
+          "codeContains": [
+            "json.loads"
+          ]
         }
       },
       {
@@ -154,7 +169,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "List: True\nTuple: False"
+          "expected": "List: True\nTuple: False",
+          "codeContains": [
+            "json.dumps",
+            "json.loads"
+          ]
         }
       }
     ]
@@ -180,7 +199,11 @@
         "codeTemplate": "import json\nhorse = {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120}\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Loaded: Blitz\nEqual: True"
+          "expected": "Loaded: Blitz\nEqual: True",
+          "codeContains": [
+            "json.dump",
+            "json.load"
+          ]
         }
       },
       {
@@ -222,7 +245,11 @@
         "codeTemplate": "import csv\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Rows: 3"
+          "expected": "Rows: 3",
+          "codeContains": [
+            "csv.writer",
+            "csv.reader"
+          ]
         }
       },
       {
@@ -264,7 +291,11 @@
         "codeTemplate": "import csv\nhorses = [\n    {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120},\n    {\"name\": \"Storm\", \"breed\": \"Haflinger\", \"age\": 12, \"points\": 150},\n    {\"name\": \"Luna\", \"breed\": \"Icelandic\", \"age\": 6, \"points\": 90},\n]\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Rows: 3\nFirst: Blitz"
+          "expected": "Rows: 3\nFirst: Blitz",
+          "codeContains": [
+            "csv.DictWriter",
+            "csv.DictReader"
+          ]
         }
       },
       {
@@ -272,7 +303,11 @@
         "codeTemplate": "import csv\nhorses = [\n    {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120},\n    {\"name\": \"Storm\", \"breed\": \"Haflinger\", \"age\": 12, \"points\": 150},\n    {\"name\": \"Luna\", \"breed\": \"Icelandic\", \"age\": 6, \"points\": 90},\n]\nwith open(\"horses.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"breed\", \"age\", \"points\"])\n    w.writeheader()\n    w.writerows(horses)\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Count: 3\nTotal: 26"
+          "expected": "Count: 3\nTotal: 26",
+          "codeContains": [
+            "csv.DictReader",
+            "json.dump"
+          ]
         }
       },
       {
@@ -280,7 +315,11 @@
         "codeTemplate": "import json\nhorses = [\n    {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120},\n    {\"name\": \"Storm\", \"breed\": \"Haflinger\", \"age\": 12, \"points\": 150},\n    {\"name\": \"Luna\", \"breed\": \"Icelandic\", \"age\": 6, \"points\": 90},\n]\nwith open(\"horse.json\", \"w\") as f:\n    json.dump(horses, f)\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Rows: 3\nFields: ['name', 'breed', 'age', 'points']"
+          "expected": "Rows: 3\nFields: ['name', 'breed', 'age', 'points']",
+          "codeContains": [
+            "csv.DictWriter",
+            "csv.DictReader"
+          ]
         }
       }
     ]
@@ -346,7 +385,12 @@
         "codeTemplate": "with open(\"stable_book.txt\", \"w\") as f:\n    f.write(\"Stable book of the farm\\n\")\n    f.write(\"Status: Open\\n\")\n    f.write(\"Ride planned\\n\")\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "stable_book.txt: 3\nmissing.txt: 0"
+          "expected": "stable_book.txt: 3\nmissing.txt: 0",
+          "codeContains": [
+            "def",
+            "try",
+            "except"
+          ]
         }
       }
     ]
@@ -363,7 +407,10 @@
         "codeTemplate": "import json\nhorse = {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120}\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Name: Blitz\nAge: 8"
+          "expected": "Name: Blitz\nAge: 8",
+          "codeContains": [
+            "json.dump"
+          ]
         }
       },
       {
@@ -396,7 +443,11 @@
         "codeTemplate": "import csv\nhorses = [\n    {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120},\n    {\"name\": \"Storm\", \"breed\": \"Haflinger\", \"age\": 12, \"points\": 150},\n    {\"name\": \"Luna\", \"breed\": \"Icelandic\", \"age\": 6, \"points\": 90},\n    {\"name\": \"Wind\", \"breed\": \"Hanoverian\", \"age\": 7, \"points\": 110},\n]\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Rows: 4"
+          "expected": "Rows: 4",
+          "codeContains": [
+            "csv.DictWriter",
+            "csv.DictReader"
+          ]
         }
       },
       {
@@ -404,7 +455,10 @@
         "codeTemplate": "import csv\nhorses = [\n    {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120},\n    {\"name\": \"Storm\", \"breed\": \"Haflinger\", \"age\": 12, \"points\": 150},\n    {\"name\": \"Luna\", \"breed\": \"Icelandic\", \"age\": 6, \"points\": 90},\n    {\"name\": \"Wind\", \"breed\": \"Hanoverian\", \"age\": 7, \"points\": 110},\n]\nwith open(\"horses.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"breed\", \"age\", \"points\"])\n    w.writeheader()\n    w.writerows(horses)\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Total: 33\nAverage: 8.25"
+          "expected": "Total: 33\nAverage: 8.25",
+          "codeContains": [
+            "csv.DictReader"
+          ]
         }
       },
       {
@@ -462,7 +516,10 @@
         "codeTemplate": "import json\nmap_data = {\n    \"Gold cup\": {\"coordinates\": (10, 20), \"value\": 800},\n    \"Silver ribbon\": {\"coordinates\": (30, 40), \"value\": 300},\n    \"Honor prize\": {\"coordinates\": (50, 60), \"value\": 650},\n}\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Places: 3\nCoordinates: [10, 20]"
+          "expected": "Places: 3\nCoordinates: [10, 20]",
+          "codeContains": [
+            "json.dump"
+          ]
         }
       },
       {
@@ -528,7 +585,11 @@
         "codeTemplate": "import json\nhorse = {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120}\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Equal: True"
+          "expected": "Equal: True",
+          "codeContains": [
+            "json.dump",
+            "json.load"
+          ]
         }
       },
       {
@@ -536,7 +597,11 @@
         "codeTemplate": "import json\nhorse = {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120}\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Empty: True\nName: Blitz"
+          "expected": "Empty: True\nName: Blitz",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       },
       {
@@ -544,7 +609,10 @@
         "codeTemplate": "import csv\nhorses = [\n    {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120},\n    {\"name\": \"Storm\", \"breed\": \"Haflinger\", \"age\": 12, \"points\": 150},\n    {\"name\": \"Luna\", \"breed\": \"Icelandic\", \"age\": 6, \"points\": 90},\n]\nwith open(\"horses.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"breed\", \"age\", \"points\"])\n    w.writeheader()\n    w.writerows(horses)\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Strong: ['Blitz', 'Storm']"
+          "expected": "Strong: ['Blitz', 'Storm']",
+          "codeContains": [
+            "json.dump"
+          ]
         }
       },
       {
@@ -560,7 +628,10 @@
         "codeTemplate": "import json\nword = \"horsestable\"\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "s: 2"
+          "expected": "s: 2",
+          "codeContains": [
+            "json.dump"
+          ]
         }
       },
       {

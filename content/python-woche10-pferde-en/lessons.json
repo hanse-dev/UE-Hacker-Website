@@ -20,7 +20,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Blitz has Level 3"
+          "expected": "Blitz has Level 3",
+          "codeContains": [
+            "class"
+          ]
         }
       },
       {
@@ -54,7 +57,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Blitz 4 100"
+          "expected": "Blitz 4 100",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
         }
       },
       {
@@ -88,7 +95,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "I am Blitz, Level 2."
+          "expected": "I am Blitz, Level 2.",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
         }
       },
       {
@@ -104,7 +115,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Blitz trains: Level 3"
+          "expected": "Blitz trains: Level 3",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
         }
       }
     ]
@@ -138,7 +153,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True\nFalse"
+          "expected": "True\nFalse",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
         }
       },
       {
@@ -180,7 +199,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Wins: 3"
+          "expected": "Wins: 3",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
         }
       },
       {
@@ -214,7 +237,10 @@
         "codeTemplate": "class Horse:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def gallop(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Blitz\nStella\nSturm"
+          "expected": "Blitz\nStella\nSturm",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -322,7 +348,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Show saddle: 50"
+          "expected": "Show saddle: 50",
+          "codeContains": [
+            "__init__"
+          ]
         }
       },
       {
@@ -355,7 +384,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Blitz: 15\nStella: 18\nSturm: 12"
+          "expected": "Blitz: 15\nStella: 18\nSturm: 12",
+          "codeContains": [
+            "__init__"
+          ]
         }
       },
       {
@@ -388,7 +420,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Energy: 0"
+          "expected": "Energy: 0",
+          "codeContains": [
+            "__init__"
+          ]
         }
       },
       {
@@ -404,7 +439,10 @@
         "codeTemplate": "class Horse:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def gallop(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Rounds: 4"
+          "expected": "Rounds: 4",
+          "codeContains": [
+            "while"
+          ]
         }
       }
     ]
@@ -454,7 +492,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Stella: 30"
+          "expected": "Stella: 30",
+          "codeContains": [
+            "__init__"
+          ]
         }
       },
       {
@@ -528,7 +569,10 @@
         "codeTemplate": "class Horse:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def gallop(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True"
+          "expected": "True",
+          "codeContains": [
+            "import"
+          ]
         }
       },
       {
@@ -544,7 +588,11 @@
         "codeTemplate": "class Horse:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def gallop(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "{\"name\": \"Blitz\", \"level\": 4}\nBlitz"
+          "expected": "{\"name\": \"Blitz\", \"level\": 4}\nBlitz",
+          "codeContains": [
+            "json.dumps",
+            "json.loads"
+          ]
         }
       }
     ]

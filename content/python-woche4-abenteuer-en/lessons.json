@@ -20,7 +20,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Spell 2"
+          "expected": "Spell 2",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -122,7 +125,10 @@
         "codeTemplate": "spell = \"Dragon\"\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "- g"
+          "expected": "- g",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -130,7 +136,10 @@
         "codeTemplate": "spell = \"Thunderbolt\"\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Letters: 11"
+          "expected": "Letters: 11",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]
@@ -156,7 +165,10 @@
         "codeTemplate": "counter = 1\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Round 4"
+          "expected": "Round 4",
+          "codeContains": [
+            "while"
+          ]
         }
       },
       {
@@ -316,7 +328,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Number: 20"
+          "expected": "Number: 20",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -373,7 +388,10 @@
         "codeTemplate": "floor = 1\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Tower conquered: Floor 10"
+          "expected": "Tower conquered: Floor 10",
+          "codeContains": [
+            "while"
+          ]
         }
       }
     ]
@@ -390,7 +408,10 @@
         "codeTemplate": "position = 0\nsteps = 0\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Exit reached after 10 steps"
+          "expected": "Exit reached after 10 steps",
+          "codeContains": [
+            "while"
+          ]
         }
       },
       {
@@ -406,7 +427,10 @@
         "codeTemplate": "position = 0\nsteps = 0\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Lost in the labyrinth after 10 steps"
+          "expected": "Lost in the labyrinth after 10 steps",
+          "codeContains": [
+            "while"
+          ]
         }
       }
     ]

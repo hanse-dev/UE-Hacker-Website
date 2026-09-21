@@ -20,7 +20,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Feuerball!\nFeuerball!\nFeuerball!"
+          "expected": "Feuerball!\nFeuerball!\nFeuerball!",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -28,7 +31,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Du wirst geheilt!\nFertig!"
+          "expected": "Du wirst geheilt!\nFertig!",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -54,7 +60,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Du wirkst: Feuerball!\nDu wirkst: Blitz!"
+          "expected": "Du wirkst: Feuerball!\nDu wirkst: Blitz!",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -62,7 +71,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Level: 5\nLevel: 12"
+          "expected": "Level: 5\nLevel: 12",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -88,7 +100,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Du triffst mit Schwert für 12 Schaden!\nDu triffst mit Axt für 20 Schaden!"
+          "expected": "Du triffst mit Schwert für 12 Schaden!\nDu triffst mit Axt für 20 Schaden!",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -122,7 +137,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Doppelt: 42"
+          "expected": "Doppelt: 42",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -130,7 +148,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Mana: 40"
+          "expected": "Mana: 40",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -164,7 +185,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Gold übrig: 40"
+          "expected": "Gold übrig: 40",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -190,7 +214,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True\nFalse"
+          "expected": "True\nFalse",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -198,7 +225,11 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Summe: 55"
+          "expected": "Summe: 55",
+          "codeContains": [
+            "def",
+            "for"
+          ]
         }
       }
     ]
@@ -224,7 +255,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Zeigt den Titel des Helden.\nMeister der Zauberformeln"
+          "expected": "Zeigt den Titel des Helden.\nMeister der Zauberformeln",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -282,7 +316,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Willkommen, Magier!\nWillkommen, Magier!"
+          "expected": "Willkommen, Magier!\nWillkommen, Magier!",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -290,7 +327,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Mana: 60"
+          "expected": "Mana: 60",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -298,7 +338,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Feuerball: True\nBlitz: False"
+          "expected": "Feuerball: True\nBlitz: False",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -315,7 +358,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Krieger: 60\nMagier: 30"
+          "expected": "Krieger: 60\nMagier: 30",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -323,7 +369,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Aria der Magierin"
+          "expected": "Aria der Magierin",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -348,7 +397,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Belohnung: 150"
+          "expected": "Belohnung: 150",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -356,7 +408,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Quest 3: True\nQuest 5: False"
+          "expected": "Quest 3: True\nQuest 5: False",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -381,7 +436,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Zauber: FEUER-L3"
+          "expected": "Zauber: FEUER-L3",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -389,7 +447,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "FEUER: 90\nWASSER: 60\nERDE: 45"
+          "expected": "FEUER: 90\nWASSER: 60\nERDE: 45",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -397,7 +458,10 @@
         "codeTemplate": "def zauber_name(element, stufe):\n    return f\"{element}-L{stufe}\"\n\ndef berechne_macht(element, stufe):\n    if element == \"FEUER\":\n        return stufe * 30\n    elif element == \"WASSER\":\n        return stufe * 20\n    else:\n        return stufe * 15\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "FEUER-L1 hat Macht 30\nFEUER-L2 hat Macht 60\nFEUER-L3 hat Macht 90"
+          "expected": "FEUER-L1 hat Macht 30\nFEUER-L2 hat Macht 60\nFEUER-L3 hat Macht 90",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]
@@ -414,7 +478,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Kosten: 150"
+          "expected": "Kosten: 150",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -422,7 +489,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Bezahlbar: True\nBezahlbar: False"
+          "expected": "Bezahlbar: True\nBezahlbar: False",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -447,7 +517,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Schaden: 25\nSchaden: 0"
+          "expected": "Schaden: 25\nSchaden: 0",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -455,7 +528,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Leben: 75\nLeben: 50"
+          "expected": "Leben: 75\nLeben: 50",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -463,7 +539,10 @@
         "codeTemplate": "def kampfrunde(leben, schaden):\n    neues_leben = leben - schaden\n    if neues_leben < 0:\n        return 0\n    return neues_leben\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Runde 1: Leben 70\nRunde 2: Leben 40\nRunde 3: Leben 10\nRunde 4: Leben 0\nEnde: 0"
+          "expected": "Runde 1: Leben 70\nRunde 2: Leben 40\nRunde 3: Leben 10\nRunde 4: Leben 0\nEnde: 0",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]

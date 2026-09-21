@@ -102,11 +102,14 @@
         }
       },
       {
-        "instruction": "Frage mit input() nach dem Namen deines Reiters, speichere die Antwort in reiter und gib aus: Ich reite mit: (und dann der Name)",
+        "instruction": "Frage mit input() nach dem Namen deines Reiters, speichere die Antwort in reiter und gib aus: Ich reite mit: (und dann der Name) (Beim Prüfen wird automatisch Mira eingegeben.)",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Ich reite mit: "
+          "expected": "Ich reite mit: Mira",
+          "stdin": [
+            "Mira"
+          ]
         }
       }
     ]

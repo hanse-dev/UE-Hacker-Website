@@ -1,33 +1,27 @@
-class TournamentParticipant:
-    def __init__(self, rider, horse, discipline):
-        self.rider = rider
-        self.horse = horse
-        self.discipline = discipline
-        self.points = 0
+class Horse:
+    def __init__(self, name, level=1, energy=100):
+        self.name = name
+        self.level = level
+        self.energy = energy
 
-    def score(self, technique, style, time):
-        self.points = (technique + style) * 10 - time
-        return self.points
+    def introduce(self):
+        print(f"I am {self.name}, Level {self.level}.")
 
-    def result(self):
-        print(f"🏇 {self.rider} on {self.horse} | {self.discipline} | {self.points} points")
+    def train(self):
+        self.level += 1
+        print(f"{self.name} trains: Level {self.level}")
 
-t1 = TournamentParticipant("Lisa", "Thunder", "Dressage")
-t2 = TournamentParticipant("Tom", "Luna", "Jumping")
-t3 = TournamentParticipant("Sarah", "Storm", "Dressage")
+    def gallop(self, kosten):
+        self.energy -= kosten
+        if self.energy < 0:
+            self.energy = 0
 
-t1.score(9, 8, 5)
-t2.score(7, 9, 3)
-t3.score(10, 10, 8)
+    def rest(self, menge):
+        self.energy += menge
+        if self.energy > 100:
+            self.energy = 100
 
-participants = [t1, t2, t3]
-participants.sort(key=lambda t: t.points, reverse=True)
-print("=== Tournament Result ===")
-for i, t in enumerate(participants, 1):
-    print(f"  {i}. ", end="")
-    t.result()
-
-print()
-print("🎉 Challenge completed!")
-print("🏆 You have defeated the Master Rider!")
-print("⭐ Title earned: Horse Whisperer")
+horse = Horse("Blitz", energy=20)
+horse.rest(50)
+horse.rest(50)
+print(f"Energy: {horse.energy}")

@@ -190,7 +190,11 @@
         "codeTemplate": "artifact = (\"Fire staff\", 15, \"Fire\")\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Error: protected"
+          "expected": "Error: protected",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       },
       {
@@ -198,7 +202,11 @@
         "codeTemplate": "bag = {\"Potion\": 3, \"Torch\": 5, \"Rope\": 2}\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Not in store: Dragon egg"
+          "expected": "Not in store: Dragon egg",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       },
       {
@@ -206,7 +214,11 @@
         "codeTemplate": "text = \"ten\"\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Number: 0"
+          "expected": "Number: 0",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       }
     ]
@@ -347,7 +359,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Distance: 7"
+          "expected": "Distance: 7",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -372,7 +387,10 @@
         "codeTemplate": "heroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n    {\"name\": \"Mira\", \"class\": \"Mage\", \"level\": 13, \"hp\": 110},\n]\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Found: ['Aria', 'Mira']"
+          "expected": "Found: ['Aria', 'Mira']",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -479,7 +497,10 @@
         "codeTemplate": "heroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n    {\"name\": \"Mira\", \"class\": \"Mage\", \"level\": 13, \"hp\": 110},\n]\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Mage: 2\nWarrior: 1"
+          "expected": "Mage: 2\nWarrior: 1",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -544,7 +565,11 @@
         "codeTemplate": "bag = {\"Potion\": 3, \"Torch\": 5, \"Rope\": 2}\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Potion: 3\nDragon egg: 0"
+          "expected": "Potion: 3\nDragon egg: 0",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       }
     ]

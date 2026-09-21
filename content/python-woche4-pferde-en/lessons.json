@@ -20,7 +20,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Hoofbeat\nHoofbeat\nHoofbeat"
+          "expected": "Hoofbeat\nHoofbeat\nHoofbeat",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -156,7 +159,10 @@
         "codeTemplate": "counter = 1\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Lap 1\nLap 2\nLap 3\nLap 4"
+          "expected": "Lap 1\nLap 2\nLap 3\nLap 4",
+          "codeContains": [
+            "while"
+          ]
         }
       },
       {
@@ -164,7 +170,10 @@
         "codeTemplate": "counter = 1\ntotal = 0\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Total: 15"
+          "expected": "Total: 15",
+          "codeContains": [
+            "while"
+          ]
         }
       }
     ]
@@ -190,7 +199,10 @@
         "codeTemplate": "feed = 50\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Feed left: 40 kg\nFeed left: 30 kg\nFeed left: 20 kg\nFeed left: 10 kg\nFeed left: 0 kg"
+          "expected": "Feed left: 40 kg\nFeed left: 30 kg\nFeed left: 20 kg\nFeed left: 10 kg\nFeed left: 0 kg",
+          "codeContains": [
+            "while"
+          ]
         }
       },
       {
@@ -282,7 +294,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Horse: 1\nHorse: 2\nHorse: 3\nHorse: 4\nHorse: 5\nHorse: 6\nHorse: 7\nHorse: 8\nHorse: 9\nHorse: 10"
+          "expected": "Horse: 1\nHorse: 2\nHorse: 3\nHorse: 4\nHorse: 5\nHorse: 6\nHorse: 7\nHorse: 8\nHorse: 9\nHorse: 10",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -356,7 +371,10 @@
         "codeTemplate": "stamina = 100\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Stamina: 80\nStamina: 60\nStamina: 40\nStamina: 20\nStamina: 0"
+          "expected": "Stamina: 80\nStamina: 60\nStamina: 40\nStamina: 20\nStamina: 0",
+          "codeContains": [
+            "while"
+          ]
         }
       },
       {
@@ -381,7 +399,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Jump 1: 90 cm\nJump 2: 100 cm\nJump 3: 110 cm\nJump 4: 120 cm\nJump 5: 130 cm"
+          "expected": "Jump 1: 90 cm\nJump 2: 100 cm\nJump 3: 110 cm\nJump 4: 120 cm\nJump 5: 130 cm",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {

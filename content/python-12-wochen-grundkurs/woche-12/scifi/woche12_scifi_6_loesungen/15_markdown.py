@@ -1,1 +1,0 @@
-"""**Mission 3:** Die Einwort-Befehle prüfst du **vor** dem `try`-Block, denn dort würde `split()` bei nur einem Wort sofort einen `ValueError` auslösen."""

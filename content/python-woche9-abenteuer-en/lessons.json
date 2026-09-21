@@ -96,7 +96,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "No file: missing.txt"
+          "expected": "No file: missing.txt",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       },
       {
@@ -112,7 +116,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Empty: True\nContent: Pyralia Quest Log"
+          "expected": "Empty: True\nContent: Pyralia Quest Log",
+          "codeContains": [
+            "def",
+            "try",
+            "except"
+          ]
         }
       }
     ]
@@ -138,7 +147,10 @@
         "codeTemplate": "import json\nhero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "{\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}"
+          "expected": "{\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}",
+          "codeContains": [
+            "json.dumps"
+          ]
         }
       },
       {
@@ -146,7 +158,10 @@
         "codeTemplate": "import json\ntext = '{\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}'\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Name: Aria\nLevel plus 1: 16"
+          "expected": "Name: Aria\nLevel plus 1: 16",
+          "codeContains": [
+            "json.loads"
+          ]
         }
       },
       {
@@ -154,7 +169,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "List: True\nTuple: False"
+          "expected": "List: True\nTuple: False",
+          "codeContains": [
+            "json.dumps",
+            "json.loads"
+          ]
         }
       }
     ]
@@ -180,7 +199,11 @@
         "codeTemplate": "import json\nhero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Loaded: Aria\nEqual: True"
+          "expected": "Loaded: Aria\nEqual: True",
+          "codeContains": [
+            "json.dump",
+            "json.load"
+          ]
         }
       },
       {
@@ -222,7 +245,11 @@
         "codeTemplate": "import csv\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Rows: 3"
+          "expected": "Rows: 3",
+          "codeContains": [
+            "csv.writer",
+            "csv.reader"
+          ]
         }
       },
       {
@@ -264,7 +291,11 @@
         "codeTemplate": "import csv\nheroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n]\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Rows: 3\nFirst: Aria"
+          "expected": "Rows: 3\nFirst: Aria",
+          "codeContains": [
+            "csv.DictWriter",
+            "csv.DictReader"
+          ]
         }
       },
       {
@@ -272,7 +303,11 @@
         "codeTemplate": "import csv\nheroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n]\nwith open(\"heroes.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"class\", \"level\", \"hp\"])\n    w.writeheader()\n    w.writerows(heroes)\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Count: 3\nTotal: 45"
+          "expected": "Count: 3\nTotal: 45",
+          "codeContains": [
+            "csv.DictReader",
+            "json.dump"
+          ]
         }
       },
       {
@@ -280,7 +315,11 @@
         "codeTemplate": "import json\nheroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n]\nwith open(\"hero.json\", \"w\") as f:\n    json.dump(heroes, f)\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Rows: 3\nFields: ['name', 'class', 'level', 'hp']"
+          "expected": "Rows: 3\nFields: ['name', 'class', 'level', 'hp']",
+          "codeContains": [
+            "csv.DictWriter",
+            "csv.DictReader"
+          ]
         }
       }
     ]
@@ -346,7 +385,11 @@
         "codeTemplate": "with open(\"quest_log.txt\", \"w\") as f:\n    f.write(\"Pyralia Quest Log\\n\")\n    f.write(\"Status: Active\\n\")\n    f.write(\"Monster defeated\\n\")\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "quest_log.txt: 3\nmissing.txt: 0"
+          "expected": "quest_log.txt: 3\nmissing.txt: 0",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       }
     ]
@@ -363,7 +406,10 @@
         "codeTemplate": "import json\nhero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Name: Aria\nLevel: 15"
+          "expected": "Name: Aria\nLevel: 15",
+          "codeContains": [
+            "json.dump"
+          ]
         }
       },
       {
@@ -396,7 +442,11 @@
         "codeTemplate": "import csv\nheroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n    {\"name\": \"Mira\", \"class\": \"Mage\", \"level\": 13, \"hp\": 110},\n]\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Rows: 4"
+          "expected": "Rows: 4",
+          "codeContains": [
+            "csv.DictWriter",
+            "csv.DictReader"
+          ]
         }
       },
       {
@@ -404,7 +454,10 @@
         "codeTemplate": "import csv\nheroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n    {\"name\": \"Mira\", \"class\": \"Mage\", \"level\": 13, \"hp\": 110},\n]\nwith open(\"heroes.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"class\", \"level\", \"hp\"])\n    w.writeheader()\n    w.writerows(heroes)\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Total: 58\nAverage: 14.5"
+          "expected": "Total: 58\nAverage: 14.5",
+          "codeContains": [
+            "csv.DictReader"
+          ]
         }
       },
       {
@@ -462,7 +515,10 @@
         "codeTemplate": "import json\nmap_data = {\n    \"Gold crown\": {\"coordinates\": (10, 20), \"value\": 800},\n    \"Silver cup\": {\"coordinates\": (30, 40), \"value\": 300},\n    \"Ruby\": {\"coordinates\": (50, 60), \"value\": 650},\n}\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Places: 3\nCoordinates: [10, 20]"
+          "expected": "Places: 3\nCoordinates: [10, 20]",
+          "codeContains": [
+            "json.dump"
+          ]
         }
       },
       {
@@ -528,7 +584,11 @@
         "codeTemplate": "import json\nhero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Equal: True"
+          "expected": "Equal: True",
+          "codeContains": [
+            "json.dump",
+            "json.load"
+          ]
         }
       },
       {
@@ -536,7 +596,11 @@
         "codeTemplate": "import json\nhero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Empty: True\nName: Aria"
+          "expected": "Empty: True\nName: Aria",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       },
       {
@@ -544,7 +608,10 @@
         "codeTemplate": "import csv\nheroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n]\nwith open(\"heroes.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"class\", \"level\", \"hp\"])\n    w.writeheader()\n    w.writerows(heroes)\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Strong: ['Aria', 'Thorin']"
+          "expected": "Strong: ['Aria', 'Thorin']",
+          "codeContains": [
+            "json.dump"
+          ]
         }
       },
       {
@@ -560,7 +627,10 @@
         "codeTemplate": "import json\nword = \"adventure\"\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "e: 2"
+          "expected": "e: 2",
+          "codeContains": [
+            "json.dump"
+          ]
         }
       },
       {

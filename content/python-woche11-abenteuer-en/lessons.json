@@ -20,7 +20,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "I am Aria."
+          "expected": "I am Aria.",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
         }
       },
       {
@@ -36,7 +40,10 @@
         "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\nclass Warrior(Hero):\n    pass\n\nclass Mage(Hero):\n    pass\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True\nFalse"
+          "expected": "True\nFalse",
+          "codeContains": [
+            "isinstance"
+          ]
         }
       }
     ]
@@ -104,7 +111,10 @@
         "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Aria 45"
+          "expected": "Aria 45",
+          "codeContains": [
+            "super()"
+          ]
         }
       },
       {
@@ -112,7 +122,10 @@
         "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Thorin 50"
+          "expected": "Thorin 50",
+          "codeContains": [
+            "super()"
+          ]
         }
       },
       {
@@ -154,7 +167,10 @@
         "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n    def power(self):\n        return 10\n\nclass Warrior(Hero):\n    def __init__(self, name, strength=30):\n        super().__init__(name)\n        self.strength = strength\n\n    def fight(self):\n        print(f\"{self.name} swings the sword.\")\n\n    def power(self):\n        return self.strength\n\nclass Mage(Hero):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def fight(self):\n        print(f\"{self.name} casts a fireball.\")\n\n    def power(self):\n        return self.mana\n\nteam = [Warrior(\"Aria\"), Mage(\"Thorin\"), Warrior(\"Luna\"), Hero(\"Thorin\")]\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Count: 2"
+          "expected": "Count: 2",
+          "codeContains": [
+            "isinstance"
+          ]
         }
       },
       {
@@ -188,7 +204,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Aria (5)"
+          "expected": "Aria (5)",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__str__"
+          ]
         }
       },
       {
@@ -204,7 +225,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "[Hero('Aria'), Hero('Thorin')]"
+          "expected": "[Hero('Aria'), Hero('Thorin')]",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__repr__"
+          ]
         }
       }
     ]
@@ -230,7 +256,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True\nFalse"
+          "expected": "True\nFalse",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__eq__"
+          ]
         }
       },
       {
@@ -272,7 +303,13 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Supply: 30"
+          "expected": "Supply: 30",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__add__",
+            "__str__"
+          ]
         }
       },
       {
@@ -280,7 +317,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "3"
+          "expected": "3",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__len__"
+          ]
         }
       },
       {
@@ -346,7 +388,10 @@
         "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Aria: 30"
+          "expected": "Aria: 30",
+          "codeContains": [
+            "super()"
+          ]
         }
       },
       {
@@ -404,7 +449,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Aria (5)"
+          "expected": "Aria (5)",
+          "codeContains": [
+            "__init__",
+            "__str__"
+          ]
         }
       },
       {
@@ -437,7 +486,10 @@
         "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n    def power(self):\n        return 10\n\nclass Warrior(Hero):\n    def __init__(self, name, strength=30):\n        super().__init__(name)\n        self.strength = strength\n\n    def fight(self):\n        print(f\"{self.name} swings the sword.\")\n\n    def power(self):\n        return self.strength\n\nclass Mage(Hero):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def fight(self):\n        print(f\"{self.name} casts a fireball.\")\n\n    def power(self):\n        return self.mana\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True\nTrue\nFalse"
+          "expected": "True\nTrue\nFalse",
+          "codeContains": [
+            "isinstance"
+          ]
         }
       },
       {
@@ -503,7 +555,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True"
+          "expected": "True",
+          "codeContains": [
+            "__init__",
+            "__add__",
+            "__eq__"
+          ]
         }
       },
       {
@@ -511,7 +568,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Team: 2"
+          "expected": "Team: 2",
+          "codeContains": [
+            "__init__",
+            "__len__",
+            "__str__"
+          ]
         }
       },
       {
@@ -519,7 +581,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Supply: 10\nSupply: 20\nSupply: 30"
+          "expected": "Supply: 10\nSupply: 20\nSupply: 30",
+          "codeContains": [
+            "__init__",
+            "__lt__",
+            "__str__"
+          ]
         }
       }
     ]
@@ -552,7 +619,10 @@
         "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n    def power(self):\n        return 10\n\nclass Warrior(Hero):\n    def __init__(self, name, strength=30):\n        super().__init__(name)\n        self.strength = strength\n\n    def fight(self):\n        print(f\"{self.name} swings the sword.\")\n\n    def power(self):\n        return self.strength\n\nclass Mage(Hero):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def fight(self):\n        print(f\"{self.name} casts a fireball.\")\n\n    def power(self):\n        return self.mana\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "{\"typ\": \"Warrior\", \"name\": \"Aria\"}"
+          "expected": "{\"typ\": \"Warrior\", \"name\": \"Aria\"}",
+          "codeContains": [
+            "json.dumps"
+          ]
         }
       },
       {
@@ -560,7 +630,10 @@
         "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n    def power(self):\n        return 10\n\nclass Warrior(Hero):\n    def __init__(self, name, strength=30):\n        super().__init__(name)\n        self.strength = strength\n\n    def fight(self):\n        print(f\"{self.name} swings the sword.\")\n\n    def power(self):\n        return self.strength\n\nclass Mage(Hero):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def fight(self):\n        print(f\"{self.name} casts a fireball.\")\n\n    def power(self):\n        return self.mana\n\nklassen = {\"Warrior\": Warrior, \"Mage\": Mage}\ntext = '{\"typ\": \"Warrior\", \"name\": \"Aria\"}'\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Aria swings the sword."
+          "expected": "Aria swings the sword.",
+          "codeContains": [
+            "json.loads"
+          ]
         }
       }
     ]

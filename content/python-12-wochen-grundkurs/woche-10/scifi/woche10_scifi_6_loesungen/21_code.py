@@ -1,32 +1,27 @@
-class Alien:
-    def __init__(self, name, planet, gefaehrlichkeit, intelligenz):
+class Roboter:
+    def __init__(self, name, level=1, energie=100):
         self.name = name
-        self.planet = planet
-        self.gefaehrlichkeit = gefaehrlichkeit
-        self.intelligenz = intelligenz
+        self.level = level
+        self.energie = energie
 
-    def analysieren(self):
-        stufe = "HOCH" if self.gefaehrlichkeit >= 8 else ("MITTEL" if self.gefaehrlichkeit >= 5 else "GERING")
-        print(f"🔬 {self.name} (Planet: {self.planet}) | Gefahr: {stufe} | IQ: {self.intelligenz}")
+    def stelle_vor(self):
+        print(f"Ich bin {self.name}, Level {self.level}.")
 
-    def kontakt(self):
-        if self.intelligenz >= 7:
-            print(f"{self.name} kann kommunizieren!")
-        else:
-            print(f"{self.name} reagiert instinktiv.")
+    def aktualisiere(self):
+        self.level += 1
+        print(f"{self.name} bekommt ein Update: Level {self.level}")
 
-bestiarium = [
-    Alien("Zorgon", "Kepler-22b", 9, 4),
-    Alien("Luminar", "Gliese-667c", 3, 10),
-    Alien("Krakon", "HD 40307g", 7, 6),
-]
+    def arbeite(self, kosten):
+        self.energie -= kosten
+        if self.energie < 0:
+            self.energie = 0
 
-print("=== Alien-Bestiarium ===")
-for alien in bestiarium:
-    alien.analysieren()
-    alien.kontakt()
-    print()
+    def lade_auf(self, menge):
+        self.energie += menge
+        if self.energie > 100:
+            self.energie = 100
 
-print("🎉 Mission abgeschlossen!")
-print("🏆 Du hast den Konstrukteur-Meister besiegt!")
-print("⭐ Titel erhalten: System-Architekt")
+roboter = Roboter("Nova", energie=20)
+roboter.lade_auf(50)
+roboter.lade_auf(50)
+print(f"Energie: {roboter.energie}")

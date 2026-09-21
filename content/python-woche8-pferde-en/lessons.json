@@ -190,7 +190,11 @@
         "codeTemplate": "gear = (\"Saddle\", 15, \"Leather\")\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Error: protected"
+          "expected": "Error: protected",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       },
       {
@@ -198,7 +202,11 @@
         "codeTemplate": "feed = {\"Oats\": 3, \"Hay\": 5, \"Carrots\": 2}\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Not in store: Sugar beet"
+          "expected": "Not in store: Sugar beet",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       },
       {
@@ -206,7 +214,11 @@
         "codeTemplate": "text = \"ten\"\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Number: 0"
+          "expected": "Number: 0",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       }
     ]
@@ -347,7 +359,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Distance: 7"
+          "expected": "Distance: 7",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -372,7 +387,10 @@
         "codeTemplate": "horses = [\n    {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120},\n    {\"name\": \"Storm\", \"breed\": \"Haflinger\", \"age\": 12, \"points\": 150},\n    {\"name\": \"Luna\", \"breed\": \"Icelandic\", \"age\": 6, \"points\": 90},\n    {\"name\": \"Wind\", \"breed\": \"Hanoverian\", \"age\": 7, \"points\": 110},\n]\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Found: ['Blitz', 'Wind']"
+          "expected": "Found: ['Blitz', 'Wind']",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -479,7 +497,10 @@
         "codeTemplate": "horses = [\n    {\"name\": \"Blitz\", \"breed\": \"Hanoverian\", \"age\": 8, \"points\": 120},\n    {\"name\": \"Storm\", \"breed\": \"Haflinger\", \"age\": 12, \"points\": 150},\n    {\"name\": \"Luna\", \"breed\": \"Icelandic\", \"age\": 6, \"points\": 90},\n    {\"name\": \"Wind\", \"breed\": \"Hanoverian\", \"age\": 7, \"points\": 110},\n]\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Hanoverian: 2\nHaflinger: 1"
+          "expected": "Hanoverian: 2\nHaflinger: 1",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -544,7 +565,11 @@
         "codeTemplate": "feed = {\"Oats\": 3, \"Hay\": 5, \"Carrots\": 2}\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Oats: 3\nSugar beet: 0"
+          "expected": "Oats: 3\nSugar beet: 0",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       }
     ]

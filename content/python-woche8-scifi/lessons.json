@@ -190,7 +190,11 @@
         "codeTemplate": "bauteil = (\"Schildmodul\", 15, \"Energie\")\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Fehler: geschützt"
+          "expected": "Fehler: geschützt",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       },
       {
@@ -198,7 +202,11 @@
         "codeTemplate": "lager = {\"Batterie\": 3, \"Kabel\": 5, \"Sensor\": 2}\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Nicht im Lager: Warpkern"
+          "expected": "Nicht im Lager: Warpkern",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       },
       {
@@ -206,7 +214,11 @@
         "codeTemplate": "eingabe = \"zehn\"\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Zahl: 0"
+          "expected": "Zahl: 0",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       }
     ]
@@ -347,7 +359,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Abstand: 7"
+          "expected": "Abstand: 7",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -372,7 +387,10 @@
         "codeTemplate": "crew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n    {\"name\": \"Kai\", \"rolle\": \"Pilotin\", \"rang\": 5, \"energie\": 110},\n]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Gefunden: ['Nova', 'Kai']"
+          "expected": "Gefunden: ['Nova', 'Kai']",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -479,7 +497,10 @@
         "codeTemplate": "crew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n    {\"name\": \"Kai\", \"rolle\": \"Pilotin\", \"rang\": 5, \"energie\": 110},\n]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Pilotin: 2\nIngenieur: 1"
+          "expected": "Pilotin: 2\nIngenieur: 1",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -544,7 +565,11 @@
         "codeTemplate": "lager = {\"Batterie\": 3, \"Kabel\": 5, \"Sensor\": 2}\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Batterie: 3\nWarpkern: 0"
+          "expected": "Batterie: 3\nWarpkern: 0",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       }
     ]

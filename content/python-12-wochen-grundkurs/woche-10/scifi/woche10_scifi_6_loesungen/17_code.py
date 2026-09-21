@@ -1,25 +1,27 @@
-class Raumschiff:
-    def __init__(self, name, typ, crew_staerke, schild=100):
+class Roboter:
+    def __init__(self, name, level=1, energie=100):
         self.name = name
-        self.typ = typ
-        self.crew_staerke = crew_staerke
-        self.schild = schild
+        self.level = level
+        self.energie = energie
 
-    def vorstellen(self):
-        print(f"🛸 {self.name} | {self.typ} | Crew: {self.crew_staerke} | Schild: {self.schild}%")
+    def stelle_vor(self):
+        print(f"Ich bin {self.name}, Level {self.level}.")
 
-    def angreifen(self, ziel):
-        schaden = self.crew_staerke * 2
-        ziel.schild = max(0, ziel.schild - schaden)
-        print(f"{self.name} greift {ziel.name} an! Schaden: {schaden}. Schild: {ziel.schild}%")
+    def aktualisiere(self):
+        self.level += 1
+        print(f"{self.name} bekommt ein Update: Level {self.level}")
 
-    def reparieren(self):
-        self.schild = min(100, self.schild + 25)
-        print(f"{self.name} repariert. Schild: {self.schild}%")
+    def arbeite(self, kosten):
+        self.energie -= kosten
+        if self.energie < 0:
+            self.energie = 0
 
-nova = Raumschiff("Nova-Hawk", "Kampfschiff", 30)
-defender = Raumschiff("Defender", "Kreuzer", 20, 80)
-nova.vorstellen()
-defender.vorstellen()
-nova.angreifen(defender)
-defender.reparieren()
+    def lade_auf(self, menge):
+        self.energie += menge
+        if self.energie > 100:
+            self.energie = 100
+
+roboter = Roboter("Nova")
+roboter.arbeite(40)
+roboter.arbeite(70)
+print(f"Energie: {roboter.energie}")

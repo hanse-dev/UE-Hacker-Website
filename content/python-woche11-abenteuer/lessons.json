@@ -20,7 +20,11 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Ich bin Aria."
+          "expected": "Ich bin Aria.",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
         }
       },
       {
@@ -36,7 +40,10 @@
         "codeTemplate": "class Held:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def kaempfe(self):\n        print(f\"{self.name} kämpft mit bloßen Händen.\")\n\nclass Krieger(Held):\n    pass\n\nclass Magier(Held):\n    pass\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True\nFalse"
+          "expected": "True\nFalse",
+          "codeContains": [
+            "isinstance"
+          ]
         }
       }
     ]
@@ -104,7 +111,10 @@
         "codeTemplate": "class Held:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def kaempfe(self):\n        print(f\"{self.name} kämpft mit bloßen Händen.\")\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Aria 45"
+          "expected": "Aria 45",
+          "codeContains": [
+            "super()"
+          ]
         }
       },
       {
@@ -112,7 +122,10 @@
         "codeTemplate": "class Held:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def kaempfe(self):\n        print(f\"{self.name} kämpft mit bloßen Händen.\")\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Thorin 50"
+          "expected": "Thorin 50",
+          "codeContains": [
+            "super()"
+          ]
         }
       },
       {
@@ -154,7 +167,10 @@
         "codeTemplate": "class Held:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def kaempfe(self):\n        print(f\"{self.name} kämpft mit bloßen Händen.\")\n\n    def kraft(self):\n        return 10\n\nclass Krieger(Held):\n    def __init__(self, name, staerke=30):\n        super().__init__(name)\n        self.staerke = staerke\n\n    def kaempfe(self):\n        print(f\"{self.name} schwingt das Schwert.\")\n\n    def kraft(self):\n        return self.staerke\n\nclass Magier(Held):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def kaempfe(self):\n        print(f\"{self.name} wirft einen Feuerball.\")\n\n    def kraft(self):\n        return self.mana\n\nteam = [Krieger(\"Aria\"), Magier(\"Thorin\"), Krieger(\"Luna\"), Held(\"Thorin\")]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Anzahl: 2"
+          "expected": "Anzahl: 2",
+          "codeContains": [
+            "isinstance"
+          ]
         }
       },
       {
@@ -188,7 +204,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Aria (5)"
+          "expected": "Aria (5)",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__str__"
+          ]
         }
       },
       {
@@ -204,7 +225,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "[Held('Aria'), Held('Thorin')]"
+          "expected": "[Held('Aria'), Held('Thorin')]",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__repr__"
+          ]
         }
       }
     ]
@@ -230,7 +256,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True\nFalse"
+          "expected": "True\nFalse",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__eq__"
+          ]
         }
       },
       {
@@ -272,7 +303,13 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Vorrat: 30"
+          "expected": "Vorrat: 30",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__add__",
+            "__str__"
+          ]
         }
       },
       {
@@ -280,7 +317,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "3"
+          "expected": "3",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__len__"
+          ]
         }
       },
       {
@@ -346,7 +388,10 @@
         "codeTemplate": "class Held:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def kaempfe(self):\n        print(f\"{self.name} kämpft mit bloßen Händen.\")\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Aria: 30"
+          "expected": "Aria: 30",
+          "codeContains": [
+            "super()"
+          ]
         }
       },
       {
@@ -404,7 +449,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Aria (5)"
+          "expected": "Aria (5)",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__str__"
+          ]
         }
       },
       {
@@ -437,7 +487,10 @@
         "codeTemplate": "class Held:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def kaempfe(self):\n        print(f\"{self.name} kämpft mit bloßen Händen.\")\n\n    def kraft(self):\n        return 10\n\nclass Krieger(Held):\n    def __init__(self, name, staerke=30):\n        super().__init__(name)\n        self.staerke = staerke\n\n    def kaempfe(self):\n        print(f\"{self.name} schwingt das Schwert.\")\n\n    def kraft(self):\n        return self.staerke\n\nclass Magier(Held):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def kaempfe(self):\n        print(f\"{self.name} wirft einen Feuerball.\")\n\n    def kraft(self):\n        return self.mana\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True\nTrue\nFalse"
+          "expected": "True\nTrue\nFalse",
+          "codeContains": [
+            "isinstance"
+          ]
         }
       },
       {
@@ -503,7 +556,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True"
+          "expected": "True",
+          "codeContains": [
+            "__init__",
+            "__add__",
+            "__eq__"
+          ]
         }
       },
       {
@@ -511,7 +569,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Team: 2"
+          "expected": "Team: 2",
+          "codeContains": [
+            "__init__",
+            "__len__",
+            "__str__"
+          ]
         }
       },
       {
@@ -519,7 +582,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Vorrat: 10\nVorrat: 20\nVorrat: 30"
+          "expected": "Vorrat: 10\nVorrat: 20\nVorrat: 30",
+          "codeContains": [
+            "__init__",
+            "__lt__",
+            "__str__"
+          ]
         }
       }
     ]
@@ -552,7 +620,10 @@
         "codeTemplate": "class Held:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def kaempfe(self):\n        print(f\"{self.name} kämpft mit bloßen Händen.\")\n\n    def kraft(self):\n        return 10\n\nclass Krieger(Held):\n    def __init__(self, name, staerke=30):\n        super().__init__(name)\n        self.staerke = staerke\n\n    def kaempfe(self):\n        print(f\"{self.name} schwingt das Schwert.\")\n\n    def kraft(self):\n        return self.staerke\n\nclass Magier(Held):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def kaempfe(self):\n        print(f\"{self.name} wirft einen Feuerball.\")\n\n    def kraft(self):\n        return self.mana\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "{\"typ\": \"Krieger\", \"name\": \"Aria\"}"
+          "expected": "{\"typ\": \"Krieger\", \"name\": \"Aria\"}",
+          "codeContains": [
+            "json.dumps"
+          ]
         }
       },
       {
@@ -560,7 +631,10 @@
         "codeTemplate": "class Held:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def kaempfe(self):\n        print(f\"{self.name} kämpft mit bloßen Händen.\")\n\n    def kraft(self):\n        return 10\n\nclass Krieger(Held):\n    def __init__(self, name, staerke=30):\n        super().__init__(name)\n        self.staerke = staerke\n\n    def kaempfe(self):\n        print(f\"{self.name} schwingt das Schwert.\")\n\n    def kraft(self):\n        return self.staerke\n\nclass Magier(Held):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def kaempfe(self):\n        print(f\"{self.name} wirft einen Feuerball.\")\n\n    def kraft(self):\n        return self.mana\n\nklassen = {\"Krieger\": Krieger, \"Magier\": Magier}\ntext = '{\"typ\": \"Krieger\", \"name\": \"Aria\"}'\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Aria schwingt das Schwert."
+          "expected": "Aria schwingt das Schwert.",
+          "codeContains": [
+            "json.loads"
+          ]
         }
       }
     ]

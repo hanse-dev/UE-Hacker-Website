@@ -102,11 +102,14 @@
         }
       },
       {
-        "instruction": "Use input() to ask for your hero's weapon, store the answer in weapon and print: Battle-ready with: (followed by the weapon)",
+        "instruction": "Use input() to ask for your hero's weapon, store the answer in weapon and print: Battle-ready with: (followed by the weapon) (When checking, Warhammer is entered automatically.)",
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Battle-ready with: "
+          "expected": "Battle-ready with: Warhammer",
+          "stdin": [
+            "Warhammer"
+          ]
         }
       }
     ]

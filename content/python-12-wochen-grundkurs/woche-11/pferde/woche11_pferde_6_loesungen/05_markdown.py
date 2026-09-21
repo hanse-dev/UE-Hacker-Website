@@ -1,1 +1,0 @@
-"""**Erklärung:** `super().__init__()` muss mit den richtigen Parametern aufgerufen werden – genau so viele und in der gleichen Reihenfolge wie der Elternklassen-Konstruktor erwartet. Sonst fehlen Attribute."""

@@ -1,1 +1,0 @@
-"""**Bug #1 – Erklärung:** Der Zugriff auf einen Schlüssel, den es nicht gibt, wirft einen `KeyError`. Prüfe vorher mit `in`, ob der Schlüssel existiert – so wie es `gehe()` in der Lektion macht."""

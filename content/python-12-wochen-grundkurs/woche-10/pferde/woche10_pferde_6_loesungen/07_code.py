@@ -1,11 +1,8 @@
-# Problem: Methoden brauchen immer self als ersten Parameter – ohne self kann
-# die Methode nicht auf self.name zugreifen (sie weiß nicht, welches Pferd gemeint ist).
 class Pferd:
-    def __init__(self, name):
+    def __init__(self, name, level=1, energie=100):
         self.name = name
-    
-    def galoppieren(self):
-        print(f"{self.name} galoppiert! 🐎")
+        self.level = level
+        self.energie = energie
 
-pferd = Pferd("Spirit")
-pferd.galoppieren()
+pferd = Pferd("Blitz", 4)
+print(f"{pferd.name} {pferd.level} {pferd.energie}")

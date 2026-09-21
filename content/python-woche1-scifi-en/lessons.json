@@ -102,11 +102,14 @@
         }
       },
       {
-        "instruction": "Ask for the name of the ship with input(), store the answer in ship and print: We are flying the (followed by the ship's name)",
+        "instruction": "Ask for the name of the ship with input(), store the answer in ship and print: We are flying the (followed by the ship's name) (When checking, Nebula is entered automatically.)",
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "We are flying the "
+          "expected": "We are flying the Nebula",
+          "stdin": [
+            "Nebula"
+          ]
         }
       }
     ]

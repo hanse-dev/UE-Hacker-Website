@@ -96,7 +96,11 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Keine Datei: fehlt.txt"
+          "expected": "Keine Datei: fehlt.txt",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       },
       {
@@ -112,7 +116,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Leer: True\nInhalt: Bordbuch Nebula-7"
+          "expected": "Leer: True\nInhalt: Bordbuch Nebula-7",
+          "codeContains": [
+            "def",
+            "try",
+            "except"
+          ]
         }
       }
     ]
@@ -138,7 +147,10 @@
         "codeTemplate": "import json\nmitglied = {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120}\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "{\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120}"
+          "expected": "{\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120}",
+          "codeContains": [
+            "json.dumps"
+          ]
         }
       },
       {
@@ -146,7 +158,10 @@
         "codeTemplate": "import json\ntext = '{\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120}'\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Name: Nova\nRang plus 1: 5"
+          "expected": "Name: Nova\nRang plus 1: 5",
+          "codeContains": [
+            "json.loads"
+          ]
         }
       },
       {
@@ -154,7 +169,11 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Liste: True\nTupel: False"
+          "expected": "Liste: True\nTupel: False",
+          "codeContains": [
+            "json.dumps",
+            "json.loads"
+          ]
         }
       }
     ]
@@ -180,7 +199,11 @@
         "codeTemplate": "import json\nmitglied = {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120}\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Geladen: Nova\nGleich: True"
+          "expected": "Geladen: Nova\nGleich: True",
+          "codeContains": [
+            "json.dump",
+            "json.load"
+          ]
         }
       },
       {
@@ -222,7 +245,11 @@
         "codeTemplate": "import csv\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Zeilen: 3"
+          "expected": "Zeilen: 3",
+          "codeContains": [
+            "csv.writer",
+            "csv.reader"
+          ]
         }
       },
       {
@@ -264,7 +291,11 @@
         "codeTemplate": "import csv\ncrew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Zeilen: 3\nErster: Nova"
+          "expected": "Zeilen: 3\nErster: Nova",
+          "codeContains": [
+            "csv.DictWriter",
+            "csv.DictReader"
+          ]
         }
       },
       {
@@ -272,7 +303,11 @@
         "codeTemplate": "import csv\ncrew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n]\nwith open(\"crew.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"rolle\", \"rang\", \"energie\"])\n    w.writeheader()\n    w.writerows(crew)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Anzahl: 3\nSumme: 13"
+          "expected": "Anzahl: 3\nSumme: 13",
+          "codeContains": [
+            "csv.DictReader",
+            "json.dump"
+          ]
         }
       },
       {
@@ -280,7 +315,11 @@
         "codeTemplate": "import json\ncrew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n]\nwith open(\"mitglied.json\", \"w\") as f:\n    json.dump(crew, f)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Zeilen: 3\nFelder: ['name', 'rolle', 'rang', 'energie']"
+          "expected": "Zeilen: 3\nFelder: ['name', 'rolle', 'rang', 'energie']",
+          "codeContains": [
+            "csv.DictWriter",
+            "csv.DictReader"
+          ]
         }
       }
     ]
@@ -346,7 +385,12 @@
         "codeTemplate": "with open(\"bordbuch.txt\", \"w\") as f:\n    f.write(\"Bordbuch Nebula-7\\n\")\n    f.write(\"Status: Aktiv\\n\")\n    f.write(\"Signal empfangen\\n\")\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "bordbuch.txt: 3\nfehlt.txt: 0"
+          "expected": "bordbuch.txt: 3\nfehlt.txt: 0",
+          "codeContains": [
+            "def",
+            "try",
+            "except"
+          ]
         }
       }
     ]
@@ -363,7 +407,10 @@
         "codeTemplate": "import json\nmitglied = {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120}\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Name: Nova\nRang: 4"
+          "expected": "Name: Nova\nRang: 4",
+          "codeContains": [
+            "json.dump"
+          ]
         }
       },
       {
@@ -396,7 +443,11 @@
         "codeTemplate": "import csv\ncrew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n    {\"name\": \"Kai\", \"rolle\": \"Pilotin\", \"rang\": 5, \"energie\": 110},\n]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Zeilen: 4"
+          "expected": "Zeilen: 4",
+          "codeContains": [
+            "csv.DictWriter",
+            "csv.DictReader"
+          ]
         }
       },
       {
@@ -404,7 +455,10 @@
         "codeTemplate": "import csv\ncrew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n    {\"name\": \"Kai\", \"rolle\": \"Pilotin\", \"rang\": 5, \"energie\": 110},\n]\nwith open(\"crew.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"rolle\", \"rang\", \"energie\"])\n    w.writeheader()\n    w.writerows(crew)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Summe: 18\nDurchschnitt: 4.5"
+          "expected": "Summe: 18\nDurchschnitt: 4.5",
+          "codeContains": [
+            "csv.DictReader"
+          ]
         }
       },
       {
@@ -462,7 +516,10 @@
         "codeTemplate": "import json\nkarte = {\n    \"Kristallkern\": {\"koordinaten\": (10, 20), \"wert\": 800},\n    \"Sensorchip\": {\"koordinaten\": (30, 40), \"wert\": 300},\n    \"Antimaterie\": {\"koordinaten\": (50, 60), \"wert\": 650},\n}\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Orte: 3\nKoordinaten: [10, 20]"
+          "expected": "Orte: 3\nKoordinaten: [10, 20]",
+          "codeContains": [
+            "json.dump"
+          ]
         }
       },
       {
@@ -528,7 +585,11 @@
         "codeTemplate": "import json\nmitglied = {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120}\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Gleich: True"
+          "expected": "Gleich: True",
+          "codeContains": [
+            "json.dump",
+            "json.load"
+          ]
         }
       },
       {
@@ -536,7 +597,11 @@
         "codeTemplate": "import json\nmitglied = {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120}\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Leer: True\nName: Nova"
+          "expected": "Leer: True\nName: Nova",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       },
       {
@@ -544,7 +609,10 @@
         "codeTemplate": "import csv\ncrew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n]\nwith open(\"crew.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"rolle\", \"rang\", \"energie\"])\n    w.writeheader()\n    w.writerows(crew)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Starke: ['Nova', 'Rex']"
+          "expected": "Starke: ['Nova', 'Rex']",
+          "codeContains": [
+            "json.dump"
+          ]
         }
       },
       {
@@ -560,7 +628,10 @@
         "codeTemplate": "import json\nwort = \"raumstation\"\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "a: 2"
+          "expected": "a: 2",
+          "codeContains": [
+            "json.dump"
+          ]
         }
       },
       {

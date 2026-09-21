@@ -20,7 +20,11 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Ich bin Nova."
+          "expected": "Ich bin Nova.",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
         }
       },
       {
@@ -36,7 +40,10 @@
         "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\nclass Kampfroboter(Roboter):\n    pass\n\nclass Reparaturroboter(Roboter):\n    pass\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True\nFalse"
+          "expected": "True\nFalse",
+          "codeContains": [
+            "isinstance"
+          ]
         }
       }
     ]
@@ -104,7 +111,10 @@
         "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Nova 45"
+          "expected": "Nova 45",
+          "codeContains": [
+            "super()"
+          ]
         }
       },
       {
@@ -112,7 +122,10 @@
         "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Orbit 50"
+          "expected": "Orbit 50",
+          "codeContains": [
+            "super()"
+          ]
         }
       },
       {
@@ -154,7 +167,10 @@
         "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n    def kraft(self):\n        return 10\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n    def kraft(self):\n        return self.panzer\n\nclass Reparaturroboter(Roboter):\n    def __init__(self, name, werkzeuge=50):\n        super().__init__(name)\n        self.werkzeuge = werkzeuge\n\n    def arbeite(self):\n        print(f\"{self.name} repariert die Hülle.\")\n\n    def kraft(self):\n        return self.werkzeuge\n\nteam = [Kampfroboter(\"Nova\"), Reparaturroboter(\"Orbit\"), Kampfroboter(\"Zeta\"), Roboter(\"Orbit\")]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Anzahl: 2"
+          "expected": "Anzahl: 2",
+          "codeContains": [
+            "isinstance"
+          ]
         }
       },
       {
@@ -188,7 +204,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Nova (5)"
+          "expected": "Nova (5)",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__str__"
+          ]
         }
       },
       {
@@ -204,7 +225,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "[Roboter('Nova'), Roboter('Orbit')]"
+          "expected": "[Roboter('Nova'), Roboter('Orbit')]",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__repr__"
+          ]
         }
       }
     ]
@@ -230,7 +256,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True\nFalse"
+          "expected": "True\nFalse",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__eq__"
+          ]
         }
       },
       {
@@ -272,7 +303,13 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Vorrat: 30"
+          "expected": "Vorrat: 30",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__add__",
+            "__str__"
+          ]
         }
       },
       {
@@ -280,7 +317,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "3"
+          "expected": "3",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__len__"
+          ]
         }
       },
       {
@@ -346,7 +388,10 @@
         "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Nova: 30"
+          "expected": "Nova: 30",
+          "codeContains": [
+            "super()"
+          ]
         }
       },
       {
@@ -404,7 +449,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Nova (5)"
+          "expected": "Nova (5)",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__str__"
+          ]
         }
       },
       {
@@ -437,7 +487,10 @@
         "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n    def kraft(self):\n        return 10\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n    def kraft(self):\n        return self.panzer\n\nclass Reparaturroboter(Roboter):\n    def __init__(self, name, werkzeuge=50):\n        super().__init__(name)\n        self.werkzeuge = werkzeuge\n\n    def arbeite(self):\n        print(f\"{self.name} repariert die Hülle.\")\n\n    def kraft(self):\n        return self.werkzeuge\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True\nTrue\nFalse"
+          "expected": "True\nTrue\nFalse",
+          "codeContains": [
+            "isinstance"
+          ]
         }
       },
       {
@@ -503,7 +556,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True"
+          "expected": "True",
+          "codeContains": [
+            "__init__",
+            "__add__",
+            "__eq__"
+          ]
         }
       },
       {
@@ -511,7 +569,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Team: 2"
+          "expected": "Team: 2",
+          "codeContains": [
+            "__init__",
+            "__len__",
+            "__str__"
+          ]
         }
       },
       {
@@ -519,7 +582,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Vorrat: 10\nVorrat: 20\nVorrat: 30"
+          "expected": "Vorrat: 10\nVorrat: 20\nVorrat: 30",
+          "codeContains": [
+            "__init__",
+            "__lt__",
+            "__str__"
+          ]
         }
       }
     ]
@@ -552,7 +620,10 @@
         "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n    def kraft(self):\n        return 10\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n    def kraft(self):\n        return self.panzer\n\nclass Reparaturroboter(Roboter):\n    def __init__(self, name, werkzeuge=50):\n        super().__init__(name)\n        self.werkzeuge = werkzeuge\n\n    def arbeite(self):\n        print(f\"{self.name} repariert die Hülle.\")\n\n    def kraft(self):\n        return self.werkzeuge\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "{\"typ\": \"Kampfroboter\", \"name\": \"Nova\"}"
+          "expected": "{\"typ\": \"Kampfroboter\", \"name\": \"Nova\"}",
+          "codeContains": [
+            "json.dumps"
+          ]
         }
       },
       {
@@ -560,7 +631,10 @@
         "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n    def kraft(self):\n        return 10\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n    def kraft(self):\n        return self.panzer\n\nclass Reparaturroboter(Roboter):\n    def __init__(self, name, werkzeuge=50):\n        super().__init__(name)\n        self.werkzeuge = werkzeuge\n\n    def arbeite(self):\n        print(f\"{self.name} repariert die Hülle.\")\n\n    def kraft(self):\n        return self.werkzeuge\n\nklassen = {\"Kampfroboter\": Kampfroboter, \"Reparaturroboter\": Reparaturroboter}\ntext = '{\"typ\": \"Kampfroboter\", \"name\": \"Nova\"}'\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Nova feuert den Laser ab."
+          "expected": "Nova feuert den Laser ab.",
+          "codeContains": [
+            "json.loads"
+          ]
         }
       }
     ]

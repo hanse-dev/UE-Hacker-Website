@@ -20,7 +20,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "The coat shines!\nThe coat shines!\nThe coat shines!"
+          "expected": "The coat shines!\nThe coat shines!\nThe coat shines!",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -28,7 +31,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "The horse eats hay.\nDone!"
+          "expected": "The horse eats hay.\nDone!",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -54,7 +60,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Well done, Stormwind!\nWell done, Lightning!"
+          "expected": "Well done, Stormwind!\nWell done, Lightning!",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -62,7 +71,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Age: 4 years\nAge: 9 years"
+          "expected": "Age: 4 years\nAge: 9 years",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -88,7 +100,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Jump over Oxer: 120 cm\nJump over Water jump: 90 cm"
+          "expected": "Jump over Oxer: 120 cm\nJump over Water jump: 90 cm",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -122,7 +137,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Double: 8 kg"
+          "expected": "Double: 8 kg",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -130,7 +148,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Hoof points: 60"
+          "expected": "Hoof points: 60",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -164,7 +185,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Money left: 50"
+          "expected": "Money left: 50",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -190,7 +214,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True\nFalse"
+          "expected": "True\nFalse",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -198,7 +225,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Jumps: 55"
+          "expected": "Jumps: 55",
+          "codeContains": [
+            "def",
+            "for"
+          ]
         }
       }
     ]
@@ -224,7 +255,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Shows the most important stable rule.\nAlways close the door!"
+          "expected": "Shows the most important stable rule.\nAlways close the door!",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -282,7 +316,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Welcome to the stable!\nWelcome to the stable!"
+          "expected": "Welcome to the stable!\nWelcome to the stable!",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -290,7 +327,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Feed: 24 kg"
+          "expected": "Feed: 24 kg",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -298,7 +338,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Barn: True\nPasture: False"
+          "expected": "Barn: True\nPasture: False",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -315,7 +358,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Points: 70"
+          "expected": "Points: 70",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -323,7 +369,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "7: Stormwind"
+          "expected": "7: Stormwind",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -348,7 +397,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Duration: 40 minutes"
+          "expected": "Duration: 40 minutes",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -356,7 +408,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Stormwind: True\nLightning: False"
+          "expected": "Stormwind: True\nLightning: False",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -381,7 +436,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Bonus: 20\nBonus: 10\nBonus: 0"
+          "expected": "Bonus: 20\nBonus: 10\nBonus: 0",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -397,7 +455,10 @@
         "codeTemplate": "def calculate_time_bonus(seconds):\n    if seconds <= 60:\n        return 20\n    elif seconds <= 90:\n        return 10\n    else:\n        return 0\n\ndef calculate_total(faults, seconds):\n    return 100 - faults * 4 + calculate_time_bonus(seconds)\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Stormwind: 120 points\nStormwind: 116 points\nStormwind: 112 points"
+          "expected": "Stormwind: 120 points\nStormwind: 116 points\nStormwind: 112 points",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]
@@ -414,7 +475,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Feed costs: 280"
+          "expected": "Feed costs: 280",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -422,7 +486,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Enough: True\nEnough: False"
+          "expected": "Enough: True\nEnough: False",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -447,7 +514,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Speed: 25\nSpeed: 0"
+          "expected": "Speed: 25\nSpeed: 0",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -455,7 +525,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Distance: 75\nDistance: 50"
+          "expected": "Distance: 75\nDistance: 50",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -463,7 +536,10 @@
         "codeTemplate": "def run_lap(distance, speed):\n    remaining = distance - speed\n    if remaining < 0:\n        return 0\n    return remaining\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Lap 1: 70 m to go\nLap 2: 40 m to go\nLap 3: 10 m to go\nLap 4: 0 m to go\nLeft: 0"
+          "expected": "Lap 1: 70 m to go\nLap 2: 40 m to go\nLap 3: 10 m to go\nLap 4: 0 m to go\nLeft: 0",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]

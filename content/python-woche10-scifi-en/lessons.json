@@ -20,7 +20,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Nova has Level 3"
+          "expected": "Nova has Level 3",
+          "codeContains": [
+            "class"
+          ]
         }
       },
       {
@@ -54,7 +57,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Nova 4 100"
+          "expected": "Nova 4 100",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
         }
       },
       {
@@ -88,7 +95,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "I am Nova, Level 2."
+          "expected": "I am Nova, Level 2.",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
         }
       },
       {
@@ -104,7 +115,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Nova gets an upgrade: Level 3"
+          "expected": "Nova gets an upgrade: Level 3",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
         }
       }
     ]
@@ -138,7 +153,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True\nFalse"
+          "expected": "True\nFalse",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
         }
       },
       {
@@ -180,7 +199,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Wins: 3"
+          "expected": "Wins: 3",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
         }
       },
       {
@@ -214,7 +237,10 @@
         "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Nova\nOrbit\nZeta"
+          "expected": "Nova\nOrbit\nZeta",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -322,7 +348,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Plasma laser: 50"
+          "expected": "Plasma laser: 50",
+          "codeContains": [
+            "__init__"
+          ]
         }
       },
       {
@@ -355,7 +384,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Nova: 15\nOrbit: 18\nZeta: 12"
+          "expected": "Nova: 15\nOrbit: 18\nZeta: 12",
+          "codeContains": [
+            "__init__"
+          ]
         }
       },
       {
@@ -388,7 +420,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Energy: 0"
+          "expected": "Energy: 0",
+          "codeContains": [
+            "__init__"
+          ]
         }
       },
       {
@@ -404,7 +439,10 @@
         "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Rounds: 4"
+          "expected": "Rounds: 4",
+          "codeContains": [
+            "while"
+          ]
         }
       }
     ]
@@ -454,7 +492,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Orbit: 30"
+          "expected": "Orbit: 30",
+          "codeContains": [
+            "__init__"
+          ]
         }
       },
       {
@@ -528,7 +569,10 @@
         "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True"
+          "expected": "True",
+          "codeContains": [
+            "import"
+          ]
         }
       },
       {
@@ -544,7 +588,11 @@
         "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "{\"name\": \"Nova\", \"level\": 4}\nNova"
+          "expected": "{\"name\": \"Nova\", \"level\": 4}\nNova",
+          "codeContains": [
+            "json.dumps",
+            "json.loads"
+          ]
         }
       }
     ]

@@ -70,7 +70,10 @@
         "codeTemplate": "welt = {\n    \"schleuse\": {\n        \"beschreibung\": \"Du stehst in der Schleuse. Rote Warnlichter blinken, und die Station brummt bedrohlich.\",\n        \"ausgaenge\": {\"norden\": \"korridor\"},\n    },\n    \"korridor\": {\n        \"beschreibung\": \"Ein langer Korridor mit vielen Türen. Notbeleuchtung taucht alles in rotes Licht.\",\n        \"ausgaenge\": {\"sueden\": \"schleuse\", \"osten\": \"reaktorraum\", \"westen\": \"labor\"},\n    },\n    \"labor\": {\"beschreibung\": \"Ein Labor voller Geräte. Auf einem Tisch liegt Werkzeug bereit.\", \"ausgaenge\": {\"osten\": \"korridor\"}},\n    \"reaktorraum\": {\"beschreibung\": \"Der Reaktorraum! Der Reaktor summt – und davor steht ein defekter Wartungsroboter!\", \"ausgaenge\": {\"westen\": \"korridor\"}},\n}\n\ndef beschreibe(room_name):\n    raum = welt[room_name]\n    print(f\"📍 {room_name.capitalize()}: {raum['beschreibung']}\")\n    print(\"   Ausgänge:\", \", \".join(raum[\"ausgaenge\"]))\n\ndef gehe(position, richtung):\n    ausgaenge = welt[position][\"ausgaenge\"]\n    if richtung in ausgaenge:\n        neue_position = ausgaenge[richtung]\n        beschreibe(neue_position)\n        return neue_position\n    print(\"🚫 Dort geht es nicht weiter!\")\n    return position\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Position: reaktorraum"
+          "expected": "Position: reaktorraum",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -104,7 +107,11 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Zugangskarte"
+          "expected": "Zugangskarte",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
         }
       },
       {
@@ -188,7 +195,11 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "False\nTrue"
+          "expected": "False\nTrue",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
         }
       },
       {
@@ -230,7 +241,11 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Ungültiger Befehl"
+          "expected": "Ungültiger Befehl",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       },
       {
@@ -272,7 +287,11 @@
         "codeTemplate": "welt = {\n    \"schleuse\": {\n        \"beschreibung\": \"Du stehst in der Schleuse. Rote Warnlichter blinken, und die Station brummt bedrohlich.\",\n        \"ausgaenge\": {\"norden\": \"korridor\"},\n    },\n    \"korridor\": {\n        \"beschreibung\": \"Ein langer Korridor mit vielen Türen. Notbeleuchtung taucht alles in rotes Licht.\",\n        \"ausgaenge\": {\"sueden\": \"schleuse\", \"osten\": \"reaktorraum\", \"westen\": \"labor\"},\n    },\n    \"labor\": {\"beschreibung\": \"Ein Labor voller Geräte. Auf einem Tisch liegt Werkzeug bereit.\", \"ausgaenge\": {\"osten\": \"korridor\"}},\n    \"reaktorraum\": {\"beschreibung\": \"Der Reaktorraum! Der Reaktor summt – und davor steht ein defekter Wartungsroboter!\", \"ausgaenge\": {\"westen\": \"korridor\"}},\n}\n\ndef beschreibe(room_name):\n    raum = welt[room_name]\n    print(f\"📍 {room_name.capitalize()}: {raum['beschreibung']}\")\n    print(\"   Ausgänge:\", \", \".join(raum[\"ausgaenge\"]))\n\ndef gehe(position, richtung):\n    ausgaenge = welt[position][\"ausgaenge\"]\n    if richtung in ausgaenge:\n        neue_position = ausgaenge[richtung]\n        beschreibe(neue_position)\n        return neue_position\n    print(\"🚫 Dort geht es nicht weiter!\")\n    return position\n\nclass Gegenstand:\n    def __init__(self, name, beschreibung):\n        self.name = name\n        self.beschreibung = beschreibung\n\nwelt[\"schleuse\"][\"gegenstaende\"] = [Gegenstand(\"Zugangskarte\", \"Sie öffnet gesicherte Türen.\")]\nwelt[\"korridor\"][\"gegenstaende\"] = []\nwelt[\"labor\"][\"gegenstaende\"] = [Gegenstand(\"Schweißbrenner\", \"Ein Werkzeug, das auch defekte Roboter stoppt.\")]\nwelt[\"reaktorraum\"][\"gegenstaende\"] = [Gegenstand(\"Notschalter\", \"Der rote Not-Aus-Schalter des Reaktors.\")]\n\nclass Spieler:\n    def __init__(self, name, position):\n        self.name = name\n        self.position = position\n        self.hp = 20\n        self.inventar = []\n\n    def gehe(self, richtung):\n        ausgaenge = welt[self.position][\"ausgaenge\"]\n        if richtung in ausgaenge:\n            self.position = ausgaenge[richtung]\n            beschreibe(self.position)\n            self.umschauen()\n        else:\n            print(\"🚫 Dort geht es nicht weiter!\")\n\n    def umschauen(self):\n        gegenstaende = welt[self.position][\"gegenstaende\"]\n        if gegenstaende:\n            namen = [g.name for g in gegenstaende]\n            print(\"👀 Du siehst:\", \", \".join(namen))\n        else:\n            print(\"👀 Hier liegt nichts.\")\n\n    def nimm(self, item_name):\n        raum = welt[self.position]\n        for gegenstand in raum[\"gegenstaende\"]:\n            if gegenstand.name == item_name:\n                raum[\"gegenstaende\"].remove(gegenstand)\n                self.inventar.append(gegenstand)\n                print(f\"🎒 Du nimmst: {gegenstand.name} – {gegenstand.beschreibung}\")\n                return\n        print(f\"❓ Hier gibt es kein '{item_name}'.\")\n\n    def zeige_inventar(self):\n        if self.inventar:\n            namen = [g.name for g in self.inventar]\n            print(\"🎒 Im Beutel:\", \", \".join(namen))\n        else:\n            print(\"🎒 Dein Beutel ist leer.\")\n\nspieler = Spieler(\"Mira\", \"schleuse\")\nspieler.nimm(\"Zugangskarte\")\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "{\"name\": \"Mira\", \"position\": \"schleuse\", \"hp\": 20, \"inventar\": [\"Zugangskarte\"]}"
+          "expected": "{\"name\": \"Mira\", \"position\": \"schleuse\", \"hp\": 20, \"inventar\": [\"Zugangskarte\"]}",
+          "codeContains": [
+            "json.dumps",
+            "import"
+          ]
         }
       },
       {
@@ -280,7 +299,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "📂 Es gibt noch keinen Spielstand."
+          "expected": "📂 Es gibt noch keinen Spielstand.",
+          "codeContains": [
+            "json.load"
+          ]
         }
       },
       {
@@ -478,7 +500,11 @@
         "codeTemplate": "welt = {\n    \"schleuse\": {\n        \"beschreibung\": \"Du stehst in der Schleuse. Rote Warnlichter blinken, und die Station brummt bedrohlich.\",\n        \"ausgaenge\": {\"norden\": \"korridor\"},\n    },\n    \"korridor\": {\n        \"beschreibung\": \"Ein langer Korridor mit vielen Türen. Notbeleuchtung taucht alles in rotes Licht.\",\n        \"ausgaenge\": {\"sueden\": \"schleuse\", \"osten\": \"reaktorraum\", \"westen\": \"labor\"},\n    },\n    \"labor\": {\"beschreibung\": \"Ein Labor voller Geräte. Auf einem Tisch liegt Werkzeug bereit.\", \"ausgaenge\": {\"osten\": \"korridor\"}},\n    \"reaktorraum\": {\"beschreibung\": \"Der Reaktorraum! Der Reaktor summt – und davor steht ein defekter Wartungsroboter!\", \"ausgaenge\": {\"westen\": \"korridor\"}},\n}\n\ndef beschreibe(room_name):\n    raum = welt[room_name]\n    print(f\"📍 {room_name.capitalize()}: {raum['beschreibung']}\")\n    print(\"   Ausgänge:\", \", \".join(raum[\"ausgaenge\"]))\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True"
+          "expected": "True",
+          "codeContains": [
+            "json.dumps",
+            "json.loads"
+          ]
         }
       },
       {
@@ -486,7 +512,11 @@
         "codeTemplate": "welt = {\n    \"schleuse\": {\n        \"beschreibung\": \"Du stehst in der Schleuse. Rote Warnlichter blinken, und die Station brummt bedrohlich.\",\n        \"ausgaenge\": {\"norden\": \"korridor\"},\n    },\n    \"korridor\": {\n        \"beschreibung\": \"Ein langer Korridor mit vielen Türen. Notbeleuchtung taucht alles in rotes Licht.\",\n        \"ausgaenge\": {\"sueden\": \"schleuse\", \"osten\": \"reaktorraum\", \"westen\": \"labor\"},\n    },\n    \"labor\": {\"beschreibung\": \"Ein Labor voller Geräte. Auf einem Tisch liegt Werkzeug bereit.\", \"ausgaenge\": {\"osten\": \"korridor\"}},\n    \"reaktorraum\": {\"beschreibung\": \"Der Reaktorraum! Der Reaktor summt – und davor steht ein defekter Wartungsroboter!\", \"ausgaenge\": {\"westen\": \"korridor\"}},\n}\n\ndef beschreibe(room_name):\n    raum = welt[room_name]\n    print(f\"📍 {room_name.capitalize()}: {raum['beschreibung']}\")\n    print(\"   Ausgänge:\", \", \".join(raum[\"ausgaenge\"]))\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Räume: 4"
+          "expected": "Räume: 4",
+          "codeContains": [
+            "json.dump",
+            "json.load"
+          ]
         }
       },
       {
@@ -527,7 +557,10 @@
         "codeTemplate": "bestenliste = {\"Mira\": 120, \"Tom\": 90, \"Lena\": 150}\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Anzahl: 3"
+          "expected": "Anzahl: 3",
+          "codeContains": [
+            "json.dump"
+          ]
         }
       }
     ]
@@ -552,7 +585,10 @@
         "codeTemplate": "welt = {\n    \"schleuse\": {\n        \"beschreibung\": \"Du stehst in der Schleuse. Rote Warnlichter blinken, und die Station brummt bedrohlich.\",\n        \"ausgaenge\": {\"norden\": \"korridor\"},\n    },\n    \"korridor\": {\n        \"beschreibung\": \"Ein langer Korridor mit vielen Türen. Notbeleuchtung taucht alles in rotes Licht.\",\n        \"ausgaenge\": {\"sueden\": \"schleuse\", \"osten\": \"reaktorraum\", \"westen\": \"labor\"},\n    },\n    \"labor\": {\"beschreibung\": \"Ein Labor voller Geräte. Auf einem Tisch liegt Werkzeug bereit.\", \"ausgaenge\": {\"osten\": \"korridor\"}},\n    \"reaktorraum\": {\"beschreibung\": \"Der Reaktorraum! Der Reaktor summt – und davor steht ein defekter Wartungsroboter!\", \"ausgaenge\": {\"westen\": \"korridor\"}},\n}\n\ndef beschreibe(room_name):\n    raum = welt[room_name]\n    print(f\"📍 {room_name.capitalize()}: {raum['beschreibung']}\")\n    print(\"   Ausgänge:\", \", \".join(raum[\"ausgaenge\"]))\n\ndef gehe(position, richtung):\n    ausgaenge = welt[position][\"ausgaenge\"]\n    if richtung in ausgaenge:\n        neue_position = ausgaenge[richtung]\n        beschreibe(neue_position)\n        return neue_position\n    print(\"🚫 Dort geht es nicht weiter!\")\n    return position\n\nclass Gegenstand:\n    def __init__(self, name, beschreibung):\n        self.name = name\n        self.beschreibung = beschreibung\n\nwelt[\"schleuse\"][\"gegenstaende\"] = [Gegenstand(\"Zugangskarte\", \"Sie öffnet gesicherte Türen.\")]\nwelt[\"korridor\"][\"gegenstaende\"] = []\nwelt[\"labor\"][\"gegenstaende\"] = [Gegenstand(\"Schweißbrenner\", \"Ein Werkzeug, das auch defekte Roboter stoppt.\")]\nwelt[\"reaktorraum\"][\"gegenstaende\"] = [Gegenstand(\"Notschalter\", \"Der rote Not-Aus-Schalter des Reaktors.\")]\n\nclass Spieler:\n    def __init__(self, name, position):\n        self.name = name\n        self.position = position\n        self.hp = 20\n        self.inventar = []\n\n    def gehe(self, richtung):\n        ausgaenge = welt[self.position][\"ausgaenge\"]\n        if richtung in ausgaenge:\n            self.position = ausgaenge[richtung]\n            beschreibe(self.position)\n            self.umschauen()\n        else:\n            print(\"🚫 Dort geht es nicht weiter!\")\n\n    def umschauen(self):\n        gegenstaende = welt[self.position][\"gegenstaende\"]\n        if gegenstaende:\n            namen = [g.name for g in gegenstaende]\n            print(\"👀 Du siehst:\", \", \".join(namen))\n        else:\n            print(\"👀 Hier liegt nichts.\")\n\n    def nimm(self, item_name):\n        raum = welt[self.position]\n        for gegenstand in raum[\"gegenstaende\"]:\n            if gegenstand.name == item_name:\n                raum[\"gegenstaende\"].remove(gegenstand)\n                self.inventar.append(gegenstand)\n                print(f\"🎒 Du nimmst: {gegenstand.name} – {gegenstand.beschreibung}\")\n                return\n        print(f\"❓ Hier gibt es kein '{item_name}'.\")\n\n    def zeige_inventar(self):\n        if self.inventar:\n            namen = [g.name for g in self.inventar]\n            print(\"🎒 Im Beutel:\", \", \".join(namen))\n        else:\n            print(\"🎒 Dein Beutel ist leer.\")\n\nimport random\n\nclass Gegner:\n    def __init__(self, name, hp, staerke):\n        self.name = name\n        self.hp = hp\n        self.staerke = staerke\n\n    def ist_besiegt(self):\n        return self.hp <= 0\n\nwelt[\"schleuse\"][\"gegner\"] = None\nwelt[\"korridor\"][\"gegner\"] = None\nwelt[\"labor\"][\"gegner\"] = None\nwelt[\"reaktorraum\"][\"gegner\"] = Gegner(\"Wartungsroboter\", 15, 6)\n\ndef hat_gegenstand(spieler, name):\n    for gegenstand in spieler.inventar:\n        if gegenstand.name == name:\n            return True\n    return False\n\ndef kampf(spieler, gegner):\n    print(f\"⚔️ Kampf: {spieler.name} gegen {gegner.name}!\")\n    bonus = 3 if hat_gegenstand(spieler, \"Schweißbrenner\") else 0\n    while spieler.hp > 0 and not gegner.ist_besiegt():\n        schaden = random.randint(1, 6) + bonus\n        gegner.hp -= schaden\n        print(f\"   Du triffst für {schaden} Schaden. ({gegner.name}: {max(gegner.hp, 0)} HP)\")\n        if gegner.ist_besiegt():\n            break\n        gegenschlag = random.randint(1, gegner.staerke)\n        spieler.hp -= gegenschlag\n        print(f\"   {gegner.name} trifft dich für {gegenschlag}. ({spieler.name}: {max(spieler.hp, 0)} HP)\")\n    return spieler.hp > 0\n\ndef pruefe_gegner(spieler):\n    gegner = welt[spieler.position][\"gegner\"]\n    if gegner is not None and not gegner.ist_besiegt():\n        if kampf(spieler, gegner):\n            print(f\"🎉 {gegner.name} wurde besiegt!\")\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "HP: 20"
+          "expected": "HP: 20",
+          "codeContains": [
+            "super()"
+          ]
         }
       },
       {
@@ -560,7 +596,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Zugangskarte – Sie öffnet gesicherte Türen."
+          "expected": "Zugangskarte – Sie öffnet gesicherte Türen.",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__str__"
+          ]
         }
       },
       {
@@ -568,7 +609,11 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Anzahl: 0"
+          "expected": "Anzahl: 0",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       }
     ]

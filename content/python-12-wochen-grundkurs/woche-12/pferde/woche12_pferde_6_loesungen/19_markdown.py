@@ -1,1 +1,0 @@
-"""**Boss-Quest 1:** Der Spielstand enthält jetzt zwei Teile: den Spieler und ein Dictionary mit dem Zustand jedes Raums. Beim Laden werden die Gegenstände jedes Raums aus den gespeicherten Daten neu erzeugt."""

@@ -489,11 +489,11 @@
         }
       },
       {
-        "instruction": "Step 4 – Winning condition: If successful_phases >= 4 AND difficulty <= 3 print Tournament win!, otherwise No tournament win. Here exactly this should appear: No tournament win.",
+        "instruction": "Step 4 – Winning condition: If successful_phases >= 4 AND difficulty <= 3 print Tournament win!, otherwise No tournament win. Here exactly this should appear: No tournament win (the final period is not part of it).",
         "codeTemplate": "successful_phases = 4\ndifficulty = 4\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "No tournament win."
+          "expected": "No tournament win"
         }
       },
       {

@@ -1,6 +1,7 @@
-# Problem: Klassen müssen mit einem Großbuchstaben beginnen
 class Pferd:
-    name = "Stormy"
+    pass
 
-mein_pferd = Pferd()
-print(mein_pferd.name)
+pferd = Pferd()
+pferd.name = "Blitz"
+pferd.level = 3
+print(f"{pferd.name} hat Level {pferd.level}")

@@ -102,11 +102,14 @@
         }
       },
       {
-        "instruction": "Frage mit input() nach dem Namen des Schiffs, speichere die Antwort in schiff und gib aus: Wir fliegen mit der (und dann der Schiffsname)",
+        "instruction": "Frage mit input() nach dem Namen des Schiffs, speichere die Antwort in schiff und gib aus: Wir fliegen mit der (und dann der Schiffsname) (Beim Prüfen wird automatisch Nebula eingegeben.)",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Wir fliegen mit der "
+          "expected": "Wir fliegen mit der Nebula",
+          "stdin": [
+            "Nebula"
+          ]
         }
       }
     ]

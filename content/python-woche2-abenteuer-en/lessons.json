@@ -262,11 +262,14 @@
         }
       },
       {
-        "instruction": "Ask the oracle for an age with input(), convert the answer with int() and print: In 5 years you will be ... (with the calculated age). Enter a number when asked.",
+        "instruction": "Ask the oracle for an age with input(), convert the answer with int() and print: In 5 years you will be ... (with the calculated age). Enter 20 when asked.",
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "In 5 years you will be "
+          "expected": "In 5 years you will be 25",
+          "stdin": [
+            "20"
+          ]
         }
       }
     ]
@@ -394,11 +397,15 @@
     "lessonSummary": "The oracle is satisfied: you asked, converted and prophesied like a true master!",
     "tasks": [
       {
-        "instruction": "Step 1 – Consult 🔥 Fire and 🪨 Earth: ask for the seeker's name with input() and for their age (converted with int()). Print exactly two lines: Prophecy for ...: (with the name) and In 10 years you will be ... (with age + 10). Enter a name and a number when asked.",
+        "instruction": "Step 1 – Consult 🔥 Fire and 🪨 Earth: ask for the seeker's name with input() and for their age (converted with int()). Print exactly two lines: Prophecy for ...: (with the name) and In 10 years you will be ... (with age + 10). Enter Blitz and 12 when asked.",
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Prophecy for "
+          "expected": "In 10 years you will be 22",
+          "stdin": [
+            "Blitz",
+            "12"
+          ]
         }
       },
       {
@@ -406,7 +413,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Strong magic: True"
+          "expected": "Strong magic: True",
+          "stdin": [
+            "7.5"
+          ]
         }
       }
     ]

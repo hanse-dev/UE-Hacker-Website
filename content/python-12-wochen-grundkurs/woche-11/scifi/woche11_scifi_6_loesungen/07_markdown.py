@@ -1,1 +1,0 @@
-"""**Erklärung:** `__add__` soll ein neues Objekt desselben Typs zurückgeben, damit das Ergebnis weiterverwendet werden kann. Eine einfache Zahl zurückzugeben würde bedeuten, dass der Typ verloren geht."""

@@ -256,7 +256,10 @@
         "codeTemplate": "werte = [12, 8, 15, 5]\nsumme = 0\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Summe: 40"
+          "expected": "Summe: 40",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -264,7 +267,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "['Antrieb', 'Sensor', 'Schild', 'Laser']"
+          "expected": "['Antrieb', 'Sensor', 'Schild', 'Laser']",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -439,7 +445,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "1: Antrieb\n2: Sensor\n3: Schild"
+          "expected": "1: Antrieb\n2: Sensor\n3: Schild",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -464,7 +473,10 @@
         "codeTemplate": "gilde = [[\"Nova\", \"Pilotin\", 15], [\"Kira\", \"Technikerin\", 12], [\"Juno\", \"Ärztin\", 8]]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Mitglieder: 4\nGesamtlevel: 45"
+          "expected": "Mitglieder: 4\nGesamtlevel: 45",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -472,7 +484,10 @@
         "codeTemplate": "gilde = [[\"Nova\", \"Pilotin\", 15], [\"Kira\", \"Technikerin\", 12], [\"Juno\", \"Ärztin\", 8]]\ngilde.append([\"Rex\", \"Ingenieur\", 10])\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Stärkster: Nova"
+          "expected": "Stärkster: Nova",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]
@@ -489,7 +504,11 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Anzahl: 10\nChip-10"
+          "expected": "Anzahl: 10\nChip-10",
+          "codeContains": [
+            "def",
+            "for"
+          ]
         }
       },
       {
@@ -497,7 +516,11 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Durchschnitt: 25.0"
+          "expected": "Durchschnitt: 25.0",
+          "codeContains": [
+            "def",
+            "for"
+          ]
         }
       },
       {
@@ -522,7 +545,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "[['leer', 'leer'], ['leer', 'leer'], ['leer', 'leer']]"
+          "expected": "[['leer', 'leer'], ['leer', 'leer'], ['leer', 'leer']]",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -555,7 +581,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "['Scan-Mission', 'Mars', 4]"
+          "expected": "['Scan-Mission', 'Mars', 4]",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -571,7 +600,10 @@
         "codeTemplate": "missionen = [[\"Scan-Mission\", \"Mars\", 4], [\"Rettungs-Mission\", \"Titan\", 2], [\"Reparaturflug\", \"Station\", 3]]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Missionen: 3\nSchwere Missionen: 2"
+          "expected": "Missionen: 3\nSchwere Missionen: 2",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]
@@ -588,7 +620,10 @@
         "codeTemplate": "namen = [\"Reaktor\", \"Sensor\", \"Antrieb\", \"Schild\", \"Funk\", \"Radar\", \"Scanner\", \"Kern\"]\nwerte = [120, 45, 300, 80, 210, 15, 95, 95]\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Reaktor: 120 Energie\nSensor: 45 Energie\nAntrieb: 300 Energie\nSchild: 80 Energie\nFunk: 210 Energie\nRadar: 15 Energie\nScanner: 95 Energie\nKern: 95 Energie"
+          "expected": "Reaktor: 120 Energie\nSensor: 45 Energie\nAntrieb: 300 Energie\nSchild: 80 Energie\nFunk: 210 Energie\nRadar: 15 Energie\nScanner: 95 Energie\nKern: 95 Energie",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -596,7 +631,10 @@
         "codeTemplate": "namen = [\"Reaktor\", \"Sensor\", \"Antrieb\", \"Schild\", \"Funk\", \"Radar\", \"Scanner\", \"Kern\"]\nwerte = [120, 45, 300, 80, 210, 15, 95, 95]\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Gesamt: 960\nDurchschnitt: 120.0\nHöchster: Antrieb (300)\nUnter dem Durchschnitt: 5"
+          "expected": "Gesamt: 960\nDurchschnitt: 120.0\nHöchster: Antrieb (300)\nUnter dem Durchschnitt: 5",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -612,7 +650,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Anzahl: 20\n[2, 4, 6, 8, 10, 12, 14, 16, 18, 20]\n[20, 19, 18, 17, 16]"
+          "expected": "Anzahl: 20\n[2, 4, 6, 8, 10, 12, 14, 16, 18, 20]\n[20, 19, 18, 17, 16]",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -620,7 +661,10 @@
         "codeTemplate": "ereignisse = [\"Asteroid\", \"Sonnensturm\", \"Alien\", \"Nebel\"]\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "- Alien\n- Asteroid\n- Nebel\n- Sonnensturm"
+          "expected": "- Alien\n- Asteroid\n- Nebel\n- Sonnensturm",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]

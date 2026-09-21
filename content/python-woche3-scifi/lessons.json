@@ -477,7 +477,7 @@
         "codeTemplate": "erfolgreiche_phasen = 4\ngefahrenstufe = 4\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Mission nicht gesichert."
+          "expected": "Mission nicht gesichert"
         }
       },
       {
@@ -489,11 +489,11 @@
         }
       },
       {
-        "instruction": "Missionsauswertung: Die Variablen erfolgreiche_phasen und gefahrenstufe sind schon angelegt. Berechne gesamtpunkte = erfolgreiche_phasen * 100 - gefahrenstufe * 20 und erfolgsquote = (erfolgreiche_phasen / 5) * 100. Gib aus: Gesamtpunkte: 320 und Erfolgsquote: 80.0%",
+        "instruction": "Missionsauswertung: Die Variablen erfolgreiche_phasen und gefahrenstufe sind schon angelegt. Berechne gesamtpunkte = erfolgreiche_phasen * 100 - gefahrenstufe * 20 und erfolgsquote = (erfolgreiche_phasen / 5) * 100. Gib in einer Zeile aus: Gesamtpunkte: 320, Erfolgsquote: 80.0%",
         "codeTemplate": "erfolgreiche_phasen = 4\ngefahrenstufe = 4\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Erfolgsquote: 80.0%"
+          "expected": "Gesamtpunkte: 320, Erfolgsquote: 80.0%"
         }
       }
     ]

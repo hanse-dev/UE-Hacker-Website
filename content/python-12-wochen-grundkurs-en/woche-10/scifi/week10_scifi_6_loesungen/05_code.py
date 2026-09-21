@@ -1,9 +1,12 @@
-# Problem: __init__ needs self as first parameter – otherwise Python doesn't know
-# on which object the attributes (name, power_level) should be stored.
-class Cyborg:
-    def __init__(self, name, power_level):
-        self.name = name
-        self.power_level = power_level
+class Robot:
+    pass
 
-terminator = Cyborg("T-800", 9000)
-print(terminator.name)
+robot = Robot()
+robot.name = "Nova"
+robot.level = 1
+robot2 = Robot()
+robot2.name = "Orbit"
+robot2.level = 1
+robot.level = 5
+print(f"{robot.name}: {robot.level}")
+print(f"{robot2.name}: {robot2.level}")

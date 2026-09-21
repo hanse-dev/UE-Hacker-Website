@@ -1,32 +1,27 @@
 class Horse:
-    def __init__(self, name, breed, age, energy=100):
+    def __init__(self, name, level=1, energy=100):
         self.name = name
-        self.breed = breed
-        self.age = age
+        self.level = level
         self.energy = energy
 
     def introduce(self):
-        print(f"🐴 {self.name} | {self.breed} | {self.age} years | Energy: {self.energy}%")
+        print(f"I am {self.name}, Level {self.level}.")
 
-    def train(self, hours):
-        cost = hours * 10
-        self.energy = max(0, self.energy - cost)
-        print(f"{self.name} trained {hours}h. Energy now: {self.energy}%")
+    def train(self):
+        self.level += 1
+        print(f"{self.name} trains: Level {self.level}")
 
-    def rest(self):
-        self.energy = min(100, self.energy + 30)
-        print(f"{self.name} is resting. Energy: {self.energy}%")
+    def gallop(self, kosten):
+        self.energy -= kosten
+        if self.energy < 0:
+            self.energy = 0
 
-thunder = Horse("Thunder", "Hanoverian", 6)
-luna = Horse("Luna", "Haflinger", 4)
-storm = Horse("Storm", "Arabian", 10)
+    def rest(self, menge):
+        self.energy += menge
+        if self.energy > 100:
+            self.energy = 100
 
-horses = [thunder, luna, storm]
-for h in horses:
-    h.introduce()
-
-oldest = max(horses, key=lambda h: h.age)
-print(f"\nOldest horse: {oldest.name} ({oldest.age} years)")
-
-thunder.train(3)
-thunder.rest()
+horse = Horse("Blitz")
+horse.gallop(40)
+horse.gallop(70)
+print(f"Energy: {horse.energy}")

@@ -1,0 +1,29 @@
+class Pferd:
+    def __init__(self, name, level=1, energie=100):
+        self.name = name
+        self.level = level
+        self.energie = energie
+
+    def stelle_vor(self):
+        print(f"Ich bin {self.name}, Level {self.level}.")
+
+    def trainiere(self):
+        self.level += 1
+        print(f"{self.name} trainiert: Level {self.level}")
+
+    def galoppiere(self, kosten):
+        self.energie -= kosten
+        if self.energie < 0:
+            self.energie = 0
+
+    def ruhe_aus(self, menge):
+        self.energie += menge
+        if self.energie > 100:
+            self.energie = 100
+
+pferd = Pferd("Blitz")
+runden = 0
+while pferd.energie > 0:
+    pferd.galoppiere(30)
+    runden += 1
+print(f"Runden: {runden}")

@@ -1,2 +1,2 @@
-"""# 🔧 Lösungen – 🏰 Woche 10 – OOP Grundlagen: Die magischen Blaupausen!
-> Erst selber versucht? Dann check hier nach!"""
+"""# 🔧 Woche 10 – Lösungen
+> Erst selber versucht? Dann check hier nach! Es gibt oft mehrere richtige Wege – das hier sind mögliche Lösungen zu den Aufgaben der Lektionen."""

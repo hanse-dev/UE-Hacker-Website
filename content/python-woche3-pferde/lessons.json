@@ -489,11 +489,11 @@
         }
       },
       {
-        "instruction": "Schritt 4 – Erfolgsbedingung: Bei erfolgreiche_phasen >= 4 UND schwierigkeit <= 3 gib Turniersieg! aus, sonst Kein Turniersieg. Hier soll genau erscheinen: Kein Turniersieg.",
+        "instruction": "Schritt 4 – Erfolgsbedingung: Bei erfolgreiche_phasen >= 4 UND schwierigkeit <= 3 gib Turniersieg! aus, sonst Kein Turniersieg. Hier soll genau erscheinen: Kein Turniersieg (der Punkt am Ende gehört nicht dazu).",
         "codeTemplate": "erfolgreiche_phasen = 4\nschwierigkeit = 4\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Kein Turniersieg."
+          "expected": "Kein Turniersieg"
         }
       },
       {

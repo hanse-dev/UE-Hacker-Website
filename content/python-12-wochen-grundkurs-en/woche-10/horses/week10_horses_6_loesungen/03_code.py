@@ -1,6 +1,7 @@
-# Problem: Class names must start with a capital letter
 class Horse:
-    name = "Stormy"
+    pass
 
-my_horse = Horse()
-print(my_horse.name)
+horse = Horse()
+horse.name = "Blitz"
+horse.level = 3
+print(f"{horse.name} has Level {horse.level}")

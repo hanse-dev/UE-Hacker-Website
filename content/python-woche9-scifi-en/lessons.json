@@ -96,7 +96,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "No file: missing.txt"
+          "expected": "No file: missing.txt",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       },
       {
@@ -112,7 +116,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Empty: True\nContent: Ship log Nebula-7"
+          "expected": "Empty: True\nContent: Ship log Nebula-7",
+          "codeContains": [
+            "def",
+            "try",
+            "except"
+          ]
         }
       }
     ]
@@ -138,7 +147,10 @@
         "codeTemplate": "import json\nmember = {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120}\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "{\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120}"
+          "expected": "{\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120}",
+          "codeContains": [
+            "json.dumps"
+          ]
         }
       },
       {
@@ -146,7 +158,10 @@
         "codeTemplate": "import json\ntext = '{\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120}'\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Name: Nova\nRank plus 1: 5"
+          "expected": "Name: Nova\nRank plus 1: 5",
+          "codeContains": [
+            "json.loads"
+          ]
         }
       },
       {
@@ -154,7 +169,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "List: True\nTuple: False"
+          "expected": "List: True\nTuple: False",
+          "codeContains": [
+            "json.dumps",
+            "json.loads"
+          ]
         }
       }
     ]
@@ -180,7 +199,11 @@
         "codeTemplate": "import json\nmember = {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120}\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Loaded: Nova\nEqual: True"
+          "expected": "Loaded: Nova\nEqual: True",
+          "codeContains": [
+            "json.dump",
+            "json.load"
+          ]
         }
       },
       {
@@ -222,7 +245,11 @@
         "codeTemplate": "import csv\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Rows: 3"
+          "expected": "Rows: 3",
+          "codeContains": [
+            "csv.writer",
+            "csv.reader"
+          ]
         }
       },
       {
@@ -264,7 +291,11 @@
         "codeTemplate": "import csv\ncrew = [\n    {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120},\n    {\"name\": \"Rex\", \"role\": \"Engineer\", \"rank\": 6, \"energy\": 150},\n    {\"name\": \"Zara\", \"role\": \"Botanist\", \"rank\": 3, \"energy\": 90},\n]\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Rows: 3\nFirst: Nova"
+          "expected": "Rows: 3\nFirst: Nova",
+          "codeContains": [
+            "csv.DictWriter",
+            "csv.DictReader"
+          ]
         }
       },
       {
@@ -272,7 +303,11 @@
         "codeTemplate": "import csv\ncrew = [\n    {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120},\n    {\"name\": \"Rex\", \"role\": \"Engineer\", \"rank\": 6, \"energy\": 150},\n    {\"name\": \"Zara\", \"role\": \"Botanist\", \"rank\": 3, \"energy\": 90},\n]\nwith open(\"crew.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"role\", \"rank\", \"energy\"])\n    w.writeheader()\n    w.writerows(crew)\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Count: 3\nTotal: 13"
+          "expected": "Count: 3\nTotal: 13",
+          "codeContains": [
+            "csv.DictReader",
+            "json.dump"
+          ]
         }
       },
       {
@@ -280,7 +315,11 @@
         "codeTemplate": "import json\ncrew = [\n    {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120},\n    {\"name\": \"Rex\", \"role\": \"Engineer\", \"rank\": 6, \"energy\": 150},\n    {\"name\": \"Zara\", \"role\": \"Botanist\", \"rank\": 3, \"energy\": 90},\n]\nwith open(\"member.json\", \"w\") as f:\n    json.dump(crew, f)\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Rows: 3\nFields: ['name', 'role', 'rank', 'energy']"
+          "expected": "Rows: 3\nFields: ['name', 'role', 'rank', 'energy']",
+          "codeContains": [
+            "csv.DictWriter",
+            "csv.DictReader"
+          ]
         }
       }
     ]
@@ -346,7 +385,12 @@
         "codeTemplate": "with open(\"ship_log.txt\", \"w\") as f:\n    f.write(\"Ship log Nebula-7\\n\")\n    f.write(\"Status: Active\\n\")\n    f.write(\"Signal received\\n\")\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "ship_log.txt: 3\nmissing.txt: 0"
+          "expected": "ship_log.txt: 3\nmissing.txt: 0",
+          "codeContains": [
+            "def",
+            "try",
+            "except"
+          ]
         }
       }
     ]
@@ -363,7 +407,10 @@
         "codeTemplate": "import json\nmember = {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120}\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Name: Nova\nRank: 4"
+          "expected": "Name: Nova\nRank: 4",
+          "codeContains": [
+            "json.dump"
+          ]
         }
       },
       {
@@ -396,7 +443,11 @@
         "codeTemplate": "import csv\ncrew = [\n    {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120},\n    {\"name\": \"Rex\", \"role\": \"Engineer\", \"rank\": 6, \"energy\": 150},\n    {\"name\": \"Zara\", \"role\": \"Botanist\", \"rank\": 3, \"energy\": 90},\n    {\"name\": \"Kai\", \"role\": \"Pilot\", \"rank\": 5, \"energy\": 110},\n]\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Rows: 4"
+          "expected": "Rows: 4",
+          "codeContains": [
+            "csv.DictWriter",
+            "csv.DictReader"
+          ]
         }
       },
       {
@@ -404,7 +455,10 @@
         "codeTemplate": "import csv\ncrew = [\n    {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120},\n    {\"name\": \"Rex\", \"role\": \"Engineer\", \"rank\": 6, \"energy\": 150},\n    {\"name\": \"Zara\", \"role\": \"Botanist\", \"rank\": 3, \"energy\": 90},\n    {\"name\": \"Kai\", \"role\": \"Pilot\", \"rank\": 5, \"energy\": 110},\n]\nwith open(\"crew.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"role\", \"rank\", \"energy\"])\n    w.writeheader()\n    w.writerows(crew)\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Total: 18\nAverage: 4.5"
+          "expected": "Total: 18\nAverage: 4.5",
+          "codeContains": [
+            "csv.DictReader"
+          ]
         }
       },
       {
@@ -462,7 +516,10 @@
         "codeTemplate": "import json\nmap_data = {\n    \"Crystal core\": {\"coordinates\": (10, 20), \"value\": 800},\n    \"Sensor chip\": {\"coordinates\": (30, 40), \"value\": 300},\n    \"Antimatter\": {\"coordinates\": (50, 60), \"value\": 650},\n}\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Places: 3\nCoordinates: [10, 20]"
+          "expected": "Places: 3\nCoordinates: [10, 20]",
+          "codeContains": [
+            "json.dump"
+          ]
         }
       },
       {
@@ -528,7 +585,11 @@
         "codeTemplate": "import json\nmember = {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120}\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Equal: True"
+          "expected": "Equal: True",
+          "codeContains": [
+            "json.dump",
+            "json.load"
+          ]
         }
       },
       {
@@ -536,7 +597,11 @@
         "codeTemplate": "import json\nmember = {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120}\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Empty: True\nName: Nova"
+          "expected": "Empty: True\nName: Nova",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       },
       {
@@ -544,7 +609,10 @@
         "codeTemplate": "import csv\ncrew = [\n    {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120},\n    {\"name\": \"Rex\", \"role\": \"Engineer\", \"rank\": 6, \"energy\": 150},\n    {\"name\": \"Zara\", \"role\": \"Botanist\", \"rank\": 3, \"energy\": 90},\n]\nwith open(\"crew.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"role\", \"rank\", \"energy\"])\n    w.writeheader()\n    w.writerows(crew)\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Strong: ['Nova', 'Rex']"
+          "expected": "Strong: ['Nova', 'Rex']",
+          "codeContains": [
+            "json.dump"
+          ]
         }
       },
       {
@@ -560,7 +628,10 @@
         "codeTemplate": "import json\nword = \"spacestation\"\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "a: 2"
+          "expected": "a: 2",
+          "codeContains": [
+            "json.dump"
+          ]
         }
       },
       {

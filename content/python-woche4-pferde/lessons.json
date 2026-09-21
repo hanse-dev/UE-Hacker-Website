@@ -20,7 +20,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Hufschlag\nHufschlag\nHufschlag"
+          "expected": "Hufschlag\nHufschlag\nHufschlag",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -156,7 +159,10 @@
         "codeTemplate": "zaehler = 1\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Runde 1\nRunde 2\nRunde 3\nRunde 4"
+          "expected": "Runde 1\nRunde 2\nRunde 3\nRunde 4",
+          "codeContains": [
+            "while"
+          ]
         }
       },
       {
@@ -164,7 +170,10 @@
         "codeTemplate": "zaehler = 1\nsumme = 0\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Summe: 15"
+          "expected": "Summe: 15",
+          "codeContains": [
+            "while"
+          ]
         }
       }
     ]
@@ -190,7 +199,10 @@
         "codeTemplate": "futter = 50\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Futter übrig: 40 kg\nFutter übrig: 30 kg\nFutter übrig: 20 kg\nFutter übrig: 10 kg\nFutter übrig: 0 kg"
+          "expected": "Futter übrig: 40 kg\nFutter übrig: 30 kg\nFutter übrig: 20 kg\nFutter übrig: 10 kg\nFutter übrig: 0 kg",
+          "codeContains": [
+            "while"
+          ]
         }
       },
       {
@@ -282,7 +294,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Pferd: 1\nPferd: 2\nPferd: 3\nPferd: 4\nPferd: 5\nPferd: 6\nPferd: 7\nPferd: 8\nPferd: 9\nPferd: 10"
+          "expected": "Pferd: 1\nPferd: 2\nPferd: 3\nPferd: 4\nPferd: 5\nPferd: 6\nPferd: 7\nPferd: 8\nPferd: 9\nPferd: 10",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -356,7 +371,10 @@
         "codeTemplate": "ausdauer = 100\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Ausdauer: 80\nAusdauer: 60\nAusdauer: 40\nAusdauer: 20\nAusdauer: 0"
+          "expected": "Ausdauer: 80\nAusdauer: 60\nAusdauer: 40\nAusdauer: 20\nAusdauer: 0",
+          "codeContains": [
+            "while"
+          ]
         }
       },
       {
@@ -381,7 +399,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Sprung 1: 90 cm\nSprung 2: 100 cm\nSprung 3: 110 cm\nSprung 4: 120 cm\nSprung 5: 130 cm"
+          "expected": "Sprung 1: 90 cm\nSprung 2: 100 cm\nSprung 3: 110 cm\nSprung 4: 120 cm\nSprung 5: 130 cm",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -483,11 +504,11 @@
         }
       },
       {
-        "instruction": "Schritt 4 – Zieleinlauf: Zähle mit range(3, 0, -1) die letzten Runden herunter und gib aus: Noch 3 Runden, Noch 2 Runden, Noch 1 Runden. Danach genau: Ziel erreicht!",
+        "instruction": "Schritt 4 – Zieleinlauf: Zähle mit range(3, 0, -1) die letzten Runden herunter und gib aus: Runden übrig: 3, Runden übrig: 2, Runden übrig: 1. Danach genau: Ziel erreicht!",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Noch 3 Runden\nNoch 2 Runden\nNoch 1 Runden\nZiel erreicht!"
+          "expected": "Runden übrig: 3\nRunden übrig: 2\nRunden übrig: 1\nZiel erreicht!"
         }
       }
     ]

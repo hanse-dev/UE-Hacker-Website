@@ -20,7 +20,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "I am Blitz."
+          "expected": "I am Blitz.",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
         }
       },
       {
@@ -36,7 +40,10 @@
         "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\nclass Racehorse(Horse):\n    pass\n\nclass Jumper(Horse):\n    pass\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True\nFalse"
+          "expected": "True\nFalse",
+          "codeContains": [
+            "isinstance"
+          ]
         }
       }
     ]
@@ -104,7 +111,10 @@
         "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Blitz 45"
+          "expected": "Blitz 45",
+          "codeContains": [
+            "super()"
+          ]
         }
       },
       {
@@ -112,7 +122,10 @@
         "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Stella 50"
+          "expected": "Stella 50",
+          "codeContains": [
+            "super()"
+          ]
         }
       },
       {
@@ -154,7 +167,10 @@
         "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n    def power(self):\n        return 10\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed=30):\n        super().__init__(name)\n        self.speed = speed\n\n    def run(self):\n        print(f\"{self.name} sprints down the track.\")\n\n    def power(self):\n        return self.speed\n\nclass Jumper(Horse):\n    def __init__(self, name, height=50):\n        super().__init__(name)\n        self.height = height\n\n    def run(self):\n        print(f\"{self.name} jumps the fence.\")\n\n    def power(self):\n        return self.height\n\nteam = [Racehorse(\"Blitz\"), Jumper(\"Stella\"), Racehorse(\"Sturm\"), Horse(\"Stella\")]\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Count: 2"
+          "expected": "Count: 2",
+          "codeContains": [
+            "isinstance"
+          ]
         }
       },
       {
@@ -188,7 +204,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Blitz (5)"
+          "expected": "Blitz (5)",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__str__"
+          ]
         }
       },
       {
@@ -204,7 +225,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "[Horse('Blitz'), Horse('Stella')]"
+          "expected": "[Horse('Blitz'), Horse('Stella')]",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__repr__"
+          ]
         }
       }
     ]
@@ -230,7 +256,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True\nFalse"
+          "expected": "True\nFalse",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__eq__"
+          ]
         }
       },
       {
@@ -272,7 +303,13 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Supply: 30"
+          "expected": "Supply: 30",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__add__",
+            "__str__"
+          ]
         }
       },
       {
@@ -280,7 +317,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "3"
+          "expected": "3",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__len__"
+          ]
         }
       },
       {
@@ -346,7 +388,10 @@
         "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Blitz: 30"
+          "expected": "Blitz: 30",
+          "codeContains": [
+            "super()"
+          ]
         }
       },
       {
@@ -404,7 +449,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Blitz (5)"
+          "expected": "Blitz (5)",
+          "codeContains": [
+            "__init__",
+            "__str__"
+          ]
         }
       },
       {
@@ -437,7 +486,10 @@
         "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n    def power(self):\n        return 10\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed=30):\n        super().__init__(name)\n        self.speed = speed\n\n    def run(self):\n        print(f\"{self.name} sprints down the track.\")\n\n    def power(self):\n        return self.speed\n\nclass Jumper(Horse):\n    def __init__(self, name, height=50):\n        super().__init__(name)\n        self.height = height\n\n    def run(self):\n        print(f\"{self.name} jumps the fence.\")\n\n    def power(self):\n        return self.height\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True\nTrue\nFalse"
+          "expected": "True\nTrue\nFalse",
+          "codeContains": [
+            "isinstance"
+          ]
         }
       },
       {
@@ -503,7 +555,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True"
+          "expected": "True",
+          "codeContains": [
+            "__init__",
+            "__add__",
+            "__eq__"
+          ]
         }
       },
       {
@@ -511,7 +568,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Team: 2"
+          "expected": "Team: 2",
+          "codeContains": [
+            "__init__",
+            "__len__",
+            "__str__"
+          ]
         }
       },
       {
@@ -519,7 +581,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Supply: 10\nSupply: 20\nSupply: 30"
+          "expected": "Supply: 10\nSupply: 20\nSupply: 30",
+          "codeContains": [
+            "__init__",
+            "__lt__",
+            "__str__"
+          ]
         }
       }
     ]
@@ -552,7 +619,10 @@
         "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n    def power(self):\n        return 10\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed=30):\n        super().__init__(name)\n        self.speed = speed\n\n    def run(self):\n        print(f\"{self.name} sprints down the track.\")\n\n    def power(self):\n        return self.speed\n\nclass Jumper(Horse):\n    def __init__(self, name, height=50):\n        super().__init__(name)\n        self.height = height\n\n    def run(self):\n        print(f\"{self.name} jumps the fence.\")\n\n    def power(self):\n        return self.height\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "{\"typ\": \"Racehorse\", \"name\": \"Blitz\"}"
+          "expected": "{\"typ\": \"Racehorse\", \"name\": \"Blitz\"}",
+          "codeContains": [
+            "json.dumps"
+          ]
         }
       },
       {
@@ -560,7 +630,10 @@
         "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n    def power(self):\n        return 10\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed=30):\n        super().__init__(name)\n        self.speed = speed\n\n    def run(self):\n        print(f\"{self.name} sprints down the track.\")\n\n    def power(self):\n        return self.speed\n\nclass Jumper(Horse):\n    def __init__(self, name, height=50):\n        super().__init__(name)\n        self.height = height\n\n    def run(self):\n        print(f\"{self.name} jumps the fence.\")\n\n    def power(self):\n        return self.height\n\nklassen = {\"Racehorse\": Racehorse, \"Jumper\": Jumper}\ntext = '{\"typ\": \"Racehorse\", \"name\": \"Blitz\"}'\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Blitz sprints down the track."
+          "expected": "Blitz sprints down the track.",
+          "codeContains": [
+            "json.loads"
+          ]
         }
       }
     ]

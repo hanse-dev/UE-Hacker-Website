@@ -1,6 +1,7 @@
-# Problem: Klassen müssen mit einem Großbuchstaben beginnen
-class Raumschiff:
-    name = "Enterprise"
+class Roboter:
+    pass
 
-schiff = Raumschiff()
-print(schiff.name)
+roboter = Roboter()
+roboter.name = "Nova"
+roboter.level = 3
+print(f"{roboter.name} hat Level {roboter.level}")

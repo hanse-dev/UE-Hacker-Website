@@ -190,7 +190,11 @@
         "codeTemplate": "artefakt = (\"Feuerstab\", 15, \"Feuer\")\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Fehler: geschützt"
+          "expected": "Fehler: geschützt",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       },
       {
@@ -198,7 +202,11 @@
         "codeTemplate": "beutel = {\"Heiltrank\": 3, \"Fackel\": 5, \"Seil\": 2}\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Nicht im Lager: Drachenei"
+          "expected": "Nicht im Lager: Drachenei",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       },
       {
@@ -206,7 +214,11 @@
         "codeTemplate": "eingabe = \"zehn\"\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Zahl: 0"
+          "expected": "Zahl: 0",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       }
     ]
@@ -347,7 +359,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Abstand: 7"
+          "expected": "Abstand: 7",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -372,7 +387,10 @@
         "codeTemplate": "helden = [\n    {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120},\n    {\"name\": \"Thorin\", \"klasse\": \"Krieger\", \"level\": 18, \"leben\": 150},\n    {\"name\": \"Luna\", \"klasse\": \"Schurkin\", \"level\": 12, \"leben\": 90},\n    {\"name\": \"Mira\", \"klasse\": \"Magierin\", \"level\": 13, \"leben\": 110},\n]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Gefunden: ['Aria', 'Mira']"
+          "expected": "Gefunden: ['Aria', 'Mira']",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -479,7 +497,10 @@
         "codeTemplate": "helden = [\n    {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120},\n    {\"name\": \"Thorin\", \"klasse\": \"Krieger\", \"level\": 18, \"leben\": 150},\n    {\"name\": \"Luna\", \"klasse\": \"Schurkin\", \"level\": 12, \"leben\": 90},\n    {\"name\": \"Mira\", \"klasse\": \"Magierin\", \"level\": 13, \"leben\": 110},\n]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Magierin: 2\nKrieger: 1"
+          "expected": "Magierin: 2\nKrieger: 1",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -544,7 +565,11 @@
         "codeTemplate": "beutel = {\"Heiltrank\": 3, \"Fackel\": 5, \"Seil\": 2}\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Heiltrank: 3\nDrachenei: 0"
+          "expected": "Heiltrank: 3\nDrachenei: 0",
+          "codeContains": [
+            "try",
+            "except"
+          ]
         }
       }
     ]

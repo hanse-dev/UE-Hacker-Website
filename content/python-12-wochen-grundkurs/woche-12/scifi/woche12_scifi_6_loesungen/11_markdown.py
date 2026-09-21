@@ -1,1 +1,0 @@
-"""**Mission 1:** Ein neuer Raum ist ein neuer Eintrag im Dictionary. Wichtig sind alle vier Schlüssel (`beschreibung`, `ausgaenge`, `gegenstaende`, `gegner`) – sonst gibt es später einen `KeyError`. Vergiss den Ausgang im Nachbarraum nicht, sonst ist der neue Raum unerreichbar!"""

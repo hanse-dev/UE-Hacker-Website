@@ -20,7 +20,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "I am Nova."
+          "expected": "I am Nova.",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
         }
       },
       {
@@ -36,7 +40,10 @@
         "codeTemplate": "class Robot:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def work(self):\n        print(f\"{self.name} idles.\")\n\nclass BattleRobot(Robot):\n    pass\n\nclass RepairRobot(Robot):\n    pass\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True\nFalse"
+          "expected": "True\nFalse",
+          "codeContains": [
+            "isinstance"
+          ]
         }
       }
     ]
@@ -104,7 +111,10 @@
         "codeTemplate": "class Robot:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def work(self):\n        print(f\"{self.name} idles.\")\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Nova 45"
+          "expected": "Nova 45",
+          "codeContains": [
+            "super()"
+          ]
         }
       },
       {
@@ -112,7 +122,10 @@
         "codeTemplate": "class Robot:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def work(self):\n        print(f\"{self.name} idles.\")\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Orbit 50"
+          "expected": "Orbit 50",
+          "codeContains": [
+            "super()"
+          ]
         }
       },
       {
@@ -154,7 +167,10 @@
         "codeTemplate": "class Robot:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def work(self):\n        print(f\"{self.name} idles.\")\n\n    def power(self):\n        return 10\n\nclass BattleRobot(Robot):\n    def __init__(self, name, armor=30):\n        super().__init__(name)\n        self.armor = armor\n\n    def work(self):\n        print(f\"{self.name} fires the laser.\")\n\n    def power(self):\n        return self.armor\n\nclass RepairRobot(Robot):\n    def __init__(self, name, tools=50):\n        super().__init__(name)\n        self.tools = tools\n\n    def work(self):\n        print(f\"{self.name} repairs the hull.\")\n\n    def power(self):\n        return self.tools\n\nteam = [BattleRobot(\"Nova\"), RepairRobot(\"Orbit\"), BattleRobot(\"Zeta\"), Robot(\"Orbit\")]\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Count: 2"
+          "expected": "Count: 2",
+          "codeContains": [
+            "isinstance"
+          ]
         }
       },
       {
@@ -188,7 +204,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Nova (5)"
+          "expected": "Nova (5)",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__str__"
+          ]
         }
       },
       {
@@ -204,7 +225,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "[Robot('Nova'), Robot('Orbit')]"
+          "expected": "[Robot('Nova'), Robot('Orbit')]",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__repr__"
+          ]
         }
       }
     ]
@@ -230,7 +256,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True\nFalse"
+          "expected": "True\nFalse",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__eq__"
+          ]
         }
       },
       {
@@ -272,7 +303,13 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Supply: 30"
+          "expected": "Supply: 30",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__add__",
+            "__str__"
+          ]
         }
       },
       {
@@ -280,7 +317,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "3"
+          "expected": "3",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__len__"
+          ]
         }
       },
       {
@@ -346,7 +388,10 @@
         "codeTemplate": "class Robot:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def work(self):\n        print(f\"{self.name} idles.\")\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Nova: 30"
+          "expected": "Nova: 30",
+          "codeContains": [
+            "super()"
+          ]
         }
       },
       {
@@ -404,7 +449,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Nova (5)"
+          "expected": "Nova (5)",
+          "codeContains": [
+            "__init__",
+            "__str__"
+          ]
         }
       },
       {
@@ -437,7 +486,10 @@
         "codeTemplate": "class Robot:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def work(self):\n        print(f\"{self.name} idles.\")\n\n    def power(self):\n        return 10\n\nclass BattleRobot(Robot):\n    def __init__(self, name, armor=30):\n        super().__init__(name)\n        self.armor = armor\n\n    def work(self):\n        print(f\"{self.name} fires the laser.\")\n\n    def power(self):\n        return self.armor\n\nclass RepairRobot(Robot):\n    def __init__(self, name, tools=50):\n        super().__init__(name)\n        self.tools = tools\n\n    def work(self):\n        print(f\"{self.name} repairs the hull.\")\n\n    def power(self):\n        return self.tools\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True\nTrue\nFalse"
+          "expected": "True\nTrue\nFalse",
+          "codeContains": [
+            "isinstance"
+          ]
         }
       },
       {
@@ -503,7 +555,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "True"
+          "expected": "True",
+          "codeContains": [
+            "__init__",
+            "__add__",
+            "__eq__"
+          ]
         }
       },
       {
@@ -511,7 +568,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Team: 2"
+          "expected": "Team: 2",
+          "codeContains": [
+            "__init__",
+            "__len__",
+            "__str__"
+          ]
         }
       },
       {
@@ -519,7 +581,12 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Supply: 10\nSupply: 20\nSupply: 30"
+          "expected": "Supply: 10\nSupply: 20\nSupply: 30",
+          "codeContains": [
+            "__init__",
+            "__lt__",
+            "__str__"
+          ]
         }
       }
     ]
@@ -552,7 +619,10 @@
         "codeTemplate": "class Robot:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def work(self):\n        print(f\"{self.name} idles.\")\n\n    def power(self):\n        return 10\n\nclass BattleRobot(Robot):\n    def __init__(self, name, armor=30):\n        super().__init__(name)\n        self.armor = armor\n\n    def work(self):\n        print(f\"{self.name} fires the laser.\")\n\n    def power(self):\n        return self.armor\n\nclass RepairRobot(Robot):\n    def __init__(self, name, tools=50):\n        super().__init__(name)\n        self.tools = tools\n\n    def work(self):\n        print(f\"{self.name} repairs the hull.\")\n\n    def power(self):\n        return self.tools\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "{\"typ\": \"BattleRobot\", \"name\": \"Nova\"}"
+          "expected": "{\"typ\": \"BattleRobot\", \"name\": \"Nova\"}",
+          "codeContains": [
+            "json.dumps"
+          ]
         }
       },
       {
@@ -560,7 +630,10 @@
         "codeTemplate": "class Robot:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def work(self):\n        print(f\"{self.name} idles.\")\n\n    def power(self):\n        return 10\n\nclass BattleRobot(Robot):\n    def __init__(self, name, armor=30):\n        super().__init__(name)\n        self.armor = armor\n\n    def work(self):\n        print(f\"{self.name} fires the laser.\")\n\n    def power(self):\n        return self.armor\n\nclass RepairRobot(Robot):\n    def __init__(self, name, tools=50):\n        super().__init__(name)\n        self.tools = tools\n\n    def work(self):\n        print(f\"{self.name} repairs the hull.\")\n\n    def power(self):\n        return self.tools\n\nklassen = {\"BattleRobot\": BattleRobot, \"RepairRobot\": RepairRobot}\ntext = '{\"typ\": \"BattleRobot\", \"name\": \"Nova\"}'\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Nova fires the laser."
+          "expected": "Nova fires the laser.",
+          "codeContains": [
+            "json.loads"
+          ]
         }
       }
     ]

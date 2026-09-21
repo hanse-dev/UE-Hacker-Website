@@ -1,0 +1,3 @@
+"""### Etappe 2: Sich bewegen – Aufgabe 2
+
+Welt und `gehe()` sind vorgegeben. Gehe mit einer `for`-Schleife die Befehle norden und osten ab (Start hof) und gib genau Position: koppel aus."""

@@ -477,7 +477,7 @@
         "codeTemplate": "successful_phases = 4\ndanger_level = 4\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Mission not secured."
+          "expected": "Mission not secured"
         }
       },
       {
@@ -489,11 +489,11 @@
         }
       },
       {
-        "instruction": "Mission evaluation: The variables successful_phases and danger_level are already created. Calculate total_points = successful_phases * 100 - danger_level * 20 and success_rate = (successful_phases / 5) * 100. Print: Total points: 320 and Success rate: 80.0%",
+        "instruction": "Mission evaluation: The variables successful_phases and danger_level are already created. Calculate total_points = successful_phases * 100 - danger_level * 20 and success_rate = (successful_phases / 5) * 100. Print on one line: Total points: 320, Success rate: 80.0%",
         "codeTemplate": "successful_phases = 4\ndanger_level = 4\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Success rate: 80.0%"
+          "expected": "Total points: 320, Success rate: 80.0%"
         }
       }
     ]

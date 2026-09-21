@@ -1,33 +1,27 @@
-class Turnierteilnehmer:
-    def __init__(self, reiter, pferd, disziplin):
-        self.reiter = reiter
-        self.pferd = pferd
-        self.disziplin = disziplin
-        self.punkte = 0
+class Pferd:
+    def __init__(self, name, level=1, energie=100):
+        self.name = name
+        self.level = level
+        self.energie = energie
 
-    def bewerten(self, technik, stil, zeit):
-        self.punkte = (technik + stil) * 10 - zeit
-        return self.punkte
+    def stelle_vor(self):
+        print(f"Ich bin {self.name}, Level {self.level}.")
 
-    def ergebnis(self):
-        print(f"🏇 {self.reiter} auf {self.pferd} | {self.disziplin} | {self.punkte} Punkte")
+    def trainiere(self):
+        self.level += 1
+        print(f"{self.name} trainiert: Level {self.level}")
 
-t1 = Turnierteilnehmer("Lisa", "Thunder", "Dressur")
-t2 = Turnierteilnehmer("Tom", "Luna", "Springen")
-t3 = Turnierteilnehmer("Sarah", "Storm", "Dressur")
+    def galoppiere(self, kosten):
+        self.energie -= kosten
+        if self.energie < 0:
+            self.energie = 0
 
-t1.bewerten(9, 8, 5)
-t2.bewerten(7, 9, 3)
-t3.bewerten(10, 10, 8)
+    def ruhe_aus(self, menge):
+        self.energie += menge
+        if self.energie > 100:
+            self.energie = 100
 
-teilnehmer = [t1, t2, t3]
-teilnehmer.sort(key=lambda t: t.punkte, reverse=True)
-print("=== Turnierergebnis ===")
-for i, t in enumerate(teilnehmer, 1):
-    print(f"  {i}. ", end="")
-    t.ergebnis()
-
-print()
-print("🎉 Herausforderung abgeschlossen!")
-print("🏆 Du hast die Meisterreiterin besiegt!")
-print("⭐ Titel erhalten: Pferdeflüsterer")
+pferd = Pferd("Blitz", energie=20)
+pferd.ruhe_aus(50)
+pferd.ruhe_aus(50)
+print(f"Energie: {pferd.energie}")

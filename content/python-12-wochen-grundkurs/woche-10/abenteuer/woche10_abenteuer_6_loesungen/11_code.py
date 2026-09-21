@@ -1,26 +1,10 @@
-# Schritt 1: Klasse Schwert anlegen
-class Schwert:
-    def __init__(self, name, schaden, material):
+class Held:
+    def __init__(self, name, level):
         self.name = name
-        self.schaden = schaden
-        self.material = material
-    
-    # Bonus: Angriff-Methode
-    def angriff(self):
-        return f"{self.name} schlägt zu und verursacht {self.schaden} Schaden!"
+        self.level = level
 
-# Schritt 2: Erstes Objekt erstellen
-excalibur = Schwert("Excalibur", 50, "Stahl")
-print("=== Schwert 1 ===")
-print(f"Name: {excalibur.name}")
-print(f"Schaden: {excalibur.schaden}")
-print(f"Material: {excalibur.material}")
-print(excalibur.angriff())
+    def stelle_vor(self):
+        print(f"Ich bin {self.name}, Level {self.level}.")
 
-# Schritt 3: Zweites Schwert
-feuerschwert = Schwert("Feuerschwert", 75, "Drachenstahl")
-print("\n=== Schwert 2 ===")
-print(f"Name: {feuerschwert.name}")
-print(f"Schaden: {feuerschwert.schaden}")
-print(f"Material: {feuerschwert.material}")
-print(feuerschwert.angriff())
+held = Held("Aria", 2)
+held.stelle_vor()

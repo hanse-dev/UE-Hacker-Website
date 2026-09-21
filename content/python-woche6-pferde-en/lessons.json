@@ -256,7 +256,10 @@
         "codeTemplate": "values = [12, 8, 15, 5]\ntotal = 0\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Total: 40"
+          "expected": "Total: 40",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -264,7 +267,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "['Stormwind', 'Lightning', 'Luna', 'Nova']"
+          "expected": "['Stormwind', 'Lightning', 'Luna', 'Nova']",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -439,7 +445,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "1: Stormwind\n2: Lightning\n3: Luna"
+          "expected": "1: Stormwind\n2: Lightning\n3: Luna",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -464,7 +473,10 @@
         "codeTemplate": "guild = [[\"Anna\", \"Jumping\", 15], [\"Ben\", \"Dressage\", 12], [\"Clara\", \"Vaulting\", 8]]\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Members: 4\nTotal level: 45"
+          "expected": "Members: 4\nTotal level: 45",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -472,7 +484,10 @@
         "codeTemplate": "guild = [[\"Anna\", \"Jumping\", 15], [\"Ben\", \"Dressage\", 12], [\"Clara\", \"Vaulting\", 8]]\nguild.append([\"David\", \"Western\", 10])\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Strongest: Anna"
+          "expected": "Strongest: Anna",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]
@@ -489,7 +504,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Count: 10\nOats-10"
+          "expected": "Count: 10\nOats-10",
+          "codeContains": [
+            "def",
+            "for"
+          ]
         }
       },
       {
@@ -497,7 +516,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Average: 25.0"
+          "expected": "Average: 25.0",
+          "codeContains": [
+            "def",
+            "for"
+          ]
         }
       },
       {
@@ -522,7 +545,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "[['empty', 'empty'], ['empty', 'empty'], ['empty', 'empty']]"
+          "expected": "[['empty', 'empty'], ['empty', 'empty'], ['empty', 'empty']]",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -555,7 +581,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "['Jumping Show', 'Arena', 4]"
+          "expected": "['Jumping Show', 'Arena', 4]",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -571,7 +600,10 @@
         "codeTemplate": "tournaments = [[\"Jumping Show\", \"Arena\", 4], [\"Dressage Show\", \"Ring\", 2], [\"Trail Ride\", \"Forest\", 3]]\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Tournaments: 3\nHard tournaments: 2"
+          "expected": "Tournaments: 3\nHard tournaments: 2",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]
@@ -588,7 +620,10 @@
         "codeTemplate": "names = [\"Oats\", \"Hay\", \"Concentrate\", \"Muesli\", \"Carrots\", \"Apples\", \"Straw\", \"Mash\"]\nvalues = [120, 45, 300, 80, 210, 15, 95, 95]\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Oats: 120 portions\nHay: 45 portions\nConcentrate: 300 portions\nMuesli: 80 portions\nCarrots: 210 portions\nApples: 15 portions\nStraw: 95 portions\nMash: 95 portions"
+          "expected": "Oats: 120 portions\nHay: 45 portions\nConcentrate: 300 portions\nMuesli: 80 portions\nCarrots: 210 portions\nApples: 15 portions\nStraw: 95 portions\nMash: 95 portions",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -596,7 +631,10 @@
         "codeTemplate": "names = [\"Oats\", \"Hay\", \"Concentrate\", \"Muesli\", \"Carrots\", \"Apples\", \"Straw\", \"Mash\"]\nvalues = [120, 45, 300, 80, 210, 15, 95, 95]\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Total: 960\nAverage: 120.0\nHighest: Concentrate (300)\nBelow average: 5"
+          "expected": "Total: 960\nAverage: 120.0\nHighest: Concentrate (300)\nBelow average: 5",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -612,7 +650,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Count: 20\n[2, 4, 6, 8, 10, 12, 14, 16, 18, 20]\n[20, 19, 18, 17, 16]"
+          "expected": "Count: 20\n[2, 4, 6, 8, 10, 12, 14, 16, 18, 20]\n[20, 19, 18, 17, 16]",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -620,7 +661,10 @@
         "codeTemplate": "events = [\"Rain\", \"Sun\", \"Wind\", \"Fog\"]\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "- Fog\n- Rain\n- Sun\n- Wind"
+          "expected": "- Fog\n- Rain\n- Sun\n- Wind",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]

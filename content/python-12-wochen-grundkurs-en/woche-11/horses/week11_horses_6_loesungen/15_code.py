@@ -1,47 +1,17 @@
-# Solution suggestion Mission 3 – The Champion Register
-
-# Step 1: Class Champion
-class Champion:
-    def __init__(self, name, breed, points):
+class Horse:
+    def __init__(self, name):
         self.name = name
-        self.breed = breed
-        self.points = points
 
-    # Step 2: Magic Methods
-    def __str__(self):
-        return f"🏆 {self.name} ({self.breed}), Points: {self.points}"
+    def introduce(self):
+        print(f"I am {self.name}.")
 
-    def __add__(self, other):
-        return self.points + other.points
+    def run(self):
+        print(f"{self.name} trots gently.")
 
-    def __len__(self):
-        return self.points
+class Racehorse(Horse):
+    def __init__(self, name, speed=30):
+        super().__init__(name)
+        self.speed = speed
 
-    # Bonus
-    def __eq__(self, other):
-        return self.points == other.points
-
-    def __lt__(self, other):
-        return self.points < other.points
-
-# Step 3: Testing
-champ1 = Champion("Valencia", "Andalusian", 2850)
-champ2 = Champion("Pegasus", "Thoroughbred", 3100)
-
-print(champ1)
-print(champ2)
-
-total_points = champ1 + champ2
-print(f"Combined score: {total_points}")
-
-print(f"Valencia's points (len): {len(champ1)}")
-
-print(f"Same points? {champ1 == champ2}")
-print(f"Valencia has fewer points than Pegasus? {champ1 < champ2}")
-
-# Output champion register
-register = [champ1, champ2, Champion("Stardust", "Haflinger", 2600)]
-print()
-print("=== CHAMPION REGISTER ===")
-for rank, champ in enumerate(sorted(register, key=len, reverse=True), 1):
-    print(f"Rank {rank}: {champ}")
+k = Racehorse("Blitz", 45)
+print(k.name, k.speed)
