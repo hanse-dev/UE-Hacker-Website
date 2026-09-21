@@ -1,0 +1,568 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "KI-Modul 1: Vererbung",
+    "file": "lektion-01.md",
+    "lessonSummary": "Stark! Deine Kind-Klasse erbt alles von den Eltern.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: eine Kind-Klasse erbt eine Methode.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\nclass Kampfroboter(Roboter):\n    pass\n\nk = Kampfroboter(\"Nova\")\nk.stelle_vor()\nprint(isinstance(k, Roboter))\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ich bin Nova.\nTrue"
+        }
+      },
+      {
+        "instruction": "Schreibe die Klasse Roboter mit `__init__(self, name)` und `stelle_vor(self)` (gibt Ich bin Nova. aus) und die Kind-Klasse Kampfroboter(Roboter) nur mit `pass`. Erzeuge Kampfroboter(\"Nova\") und rufe `stelle_vor()` auf.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ich bin Nova."
+        }
+      },
+      {
+        "instruction": "Die Klasse Roboter ist vorgegeben. Schreibe Reparaturroboter(Roboter) mit einer **neuen** Methode `lade_waffe(self)`, die Orbit lädt den Laser. ausgibt (Name aus `self`). Erzeuge Reparaturroboter(\"Orbit\") und rufe erst `stelle_vor()`, dann `lade_waffe()` auf.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ich bin Orbit.\nOrbit lädt den Laser."
+        }
+      },
+      {
+        "instruction": "Die Klassen Roboter, Kampfroboter(Roboter) und Reparaturroboter(Roboter) sind vorgegeben. Erzeuge Kampfroboter(\"Nova\") und prüfe mit `isinstance`, ob es zu Roboter gehört und ob zu Reparaturroboter. Gib beide Ergebnisse in zwei Zeilen aus.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\nclass Kampfroboter(Roboter):\n    pass\n\nclass Reparaturroboter(Roboter):\n    pass\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True\nFalse"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "KI-Modul 2: Methoden überschreiben",
+    "file": "lektion-02.md",
+    "lessonSummary": "Prima! Kinder dürfen Dinge anders machen als ihre Eltern.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: eine überschriebene Methode.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\nclass Kampfroboter(Roboter):\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\nRoboter(\"Nova\").arbeite()\nKampfroboter(\"Orbit\").arbeite()\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova läuft im Leerlauf.\nOrbit feuert den Laser ab."
+        }
+      },
+      {
+        "instruction": "Die Klasse Roboter ist vorgegeben. Schreibe Kampfroboter(Roboter) und überschreibe `arbeite(self)` so, dass Nova feuert den Laser ab. ausgegeben wird (Name aus `self`). Erzeuge Kampfroboter(\"Nova\") und rufe die Methode auf.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova feuert den Laser ab."
+        }
+      },
+      {
+        "instruction": "Die Klasse Roboter ist vorgegeben. Überschreibe `arbeite` in Reparaturroboter(Roboter) (gibt repariert die Hülle. nach dem Namen aus). Rufe `arbeite()` für Roboter(\"Zeta\") und für Reparaturroboter(\"Orbit\") auf – erst Zeta, dann Orbit.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeta läuft im Leerlauf.\nOrbit repariert die Hülle."
+        }
+      },
+      {
+        "instruction": "Die Klasse Roboter ist vorgegeben. Überschreibe in Kampfroboter(Roboter) die Methode `stelle_vor(self)` so, dass Ich bin Nova, Kampfroboter. ausgegeben wird (Name aus `self`, Klassenname als Text). Erzeuge Kampfroboter(\"Nova\") und rufe sie auf.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ich bin Nova, Kampfroboter."
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "KI-Modul 3: super() und __init__",
+    "file": "lektion-03.md",
+    "lessonSummary": "Klasse! Du verbindest Eltern und Kind mit super().",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: ein Konstruktor mit super().",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\nk = Kampfroboter(\"Nova\", 45)\nprint(k.name, k.panzer)\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova 45"
+        }
+      },
+      {
+        "instruction": "Die Klasse Roboter ist vorgegeben. Schreibe Kampfroboter(Roboter) mit `__init__(self, name, panzer=30)`, das per `super().__init__(name)` den Namen setzt und `panzer` speichert. Erzeuge Kampfroboter(\"Nova\", 45) und gib genau Nova 45 aus.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova 45"
+        }
+      },
+      {
+        "instruction": "Die Klasse Roboter ist vorgegeben. Schreibe Reparaturroboter(Roboter) mit `__init__(self, name, werkzeuge=50)` und `super()`. Erzeuge Reparaturroboter(\"Orbit\" ohne zweiten Wert) und gib genau Orbit 50 aus.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Orbit 50"
+        }
+      },
+      {
+        "instruction": "Die Klassen Roboter und Kampfroboter (mit überschriebener `arbeite`) sind vorgegeben. Schreibe Elite(Kampfroboter), das `arbeite` überschreibt: erst `super().arbeite()`, dann eine zweite Zeile Nova ist ein Meister!. Erzeuge Elite(\"Nova\") und rufe `arbeite()` auf.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova feuert den Laser ab.\nNova ist ein Meister!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "KI-Modul 4: Polymorphismus",
+    "file": "lektion-04.md",
+    "lessonSummary": "Super! Eine Schleife, viele Verhaltensweisen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: dieselbe Methode, drei Klassen.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n    def kraft(self):\n        return 10\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n    def kraft(self):\n        return self.panzer\n\nclass Reparaturroboter(Roboter):\n    def __init__(self, name, werkzeuge=50):\n        super().__init__(name)\n        self.werkzeuge = werkzeuge\n\n    def arbeite(self):\n        print(f\"{self.name} repariert die Hülle.\")\n\n    def kraft(self):\n        return self.werkzeuge\n\nteam = [Roboter(\"Zeta\"), Kampfroboter(\"Nova\"), Reparaturroboter(\"Orbit\")]\nfor f in team:\n    f.arbeite()\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeta läuft im Leerlauf.\nNova feuert den Laser ab.\nOrbit repariert die Hülle."
+        }
+      },
+      {
+        "instruction": "Die Klassen Roboter, Kampfroboter und Reparaturroboter sind vorgegeben. Schreibe eine Funktion `los(figur)`, die `figur.arbeite()` aufruft. Rufe sie nacheinander für Kampfroboter(\"Nova\") und Reparaturroboter(\"Orbit\") auf.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n    def kraft(self):\n        return 10\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n    def kraft(self):\n        return self.panzer\n\nclass Reparaturroboter(Roboter):\n    def __init__(self, name, werkzeuge=50):\n        super().__init__(name)\n        self.werkzeuge = werkzeuge\n\n    def arbeite(self):\n        print(f\"{self.name} repariert die Hülle.\")\n\n    def kraft(self):\n        return self.werkzeuge\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova feuert den Laser ab.\nOrbit repariert die Hülle."
+        }
+      },
+      {
+        "instruction": "Die Klassen sind vorgegeben, ebenso die Liste `team = [Kampfroboter(\"Nova\"), Reparaturroboter(\"Orbit\"), Kampfroboter(\"Zeta\"), Roboter(\"Orbit\")]`. Zähle mit `isinstance`, wie viele Objekte zu Kampfroboter gehören, und gib genau Anzahl: 2 aus.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n    def kraft(self):\n        return 10\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n    def kraft(self):\n        return self.panzer\n\nclass Reparaturroboter(Roboter):\n    def __init__(self, name, werkzeuge=50):\n        super().__init__(name)\n        self.werkzeuge = werkzeuge\n\n    def arbeite(self):\n        print(f\"{self.name} repariert die Hülle.\")\n\n    def kraft(self):\n        return self.werkzeuge\n\nteam = [Kampfroboter(\"Nova\"), Reparaturroboter(\"Orbit\"), Kampfroboter(\"Zeta\"), Roboter(\"Orbit\")]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 2"
+        }
+      },
+      {
+        "instruction": "Die Klassen sind vorgegeben. Schreibe eine **eigene** Klasse Zuschauer **ohne Eltern** mit `arbeite(self)`, die Die Crew jubelt. ausgibt. Rufe `arbeite()` für eine Liste mit Kampfroboter(\"Nova\") und Zuschauer() nacheinander auf (Duck Typing).",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n    def kraft(self):\n        return 10\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n    def kraft(self):\n        return self.panzer\n\nclass Reparaturroboter(Roboter):\n    def __init__(self, name, werkzeuge=50):\n        super().__init__(name)\n        self.werkzeuge = werkzeuge\n\n    def arbeite(self):\n        print(f\"{self.name} repariert die Hülle.\")\n\n    def kraft(self):\n        return self.werkzeuge\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova feuert den Laser ab.\nDie Crew jubelt."
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "KI-Modul 5: __str__ und __repr__",
+    "file": "lektion-05.md",
+    "lessonSummary": "Prima! Deine Objekte können sich jetzt als Text zeigen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: __str__ und __repr__.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        return f\"{self.name} ({self.level})\"\n\n    def __repr__(self):\n        return f\"Roboter('{self.name}', {self.level})\"\n\nk = Roboter(\"Nova\", 5)\nprint(k)\nprint([k])\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova (5)\n[Roboter('Nova', 5)]"
+        }
+      },
+      {
+        "instruction": "Schreibe die Klasse Roboter mit `__init__(self, name, level)` und einer Methode `__str__`, die `name (level)` **zurückgibt**. Erzeuge Roboter(\"Nova\", 5) und gib das Objekt direkt mit `print` aus (genau Nova (5)).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova (5)"
+        }
+      },
+      {
+        "instruction": "Die Klasse Roboter mit `__str__` ist vorgegeben. Lege die Liste `team` mit Roboter(\"Nova\", 5) und Roboter(\"Orbit\", 7) an und gib genau Team: Nova (5), Orbit (7) aus – Texte mit `\", \".join([str(f) for f in team])` verbinden.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        return f\"{self.name} ({self.level})\"\n\n    def __lt__(self, other):\n        return self.level < other.level\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Team: Nova (5), Orbit (7)"
+        }
+      },
+      {
+        "instruction": "Schreibe die Klasse Roboter mit `__init__(self, name)` und `__repr__`, das `Roboter('name')` zurückgibt. Gib die Liste `[Roboter(\"Nova\"), Roboter(\"Orbit\")]` mit `print` aus (Ergebnis: [Roboter('Nova'), Roboter('Orbit')]).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "[Roboter('Nova'), Roboter('Orbit')]"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "KI-Modul 6: Vergleichen und sortieren",
+    "file": "lektion-06.md",
+    "lessonSummary": "Stark! Deine Objekte lassen sich vergleichen und sortieren.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: vergleichen und sortieren.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __eq__(self, other):\n        return self.level == other.level\n\n    def __lt__(self, other):\n        return self.level < other.level\n\na = Roboter(\"Nova\", 5)\nb = Roboter(\"Orbit\", 9)\nprint(a == b)\nprint(a < b)\nfor f in sorted([b, a]):\n    print(f.name)\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "False\nTrue\nNova\nOrbit"
+        }
+      },
+      {
+        "instruction": "Schreibe die Klasse Roboter mit `__init__(self, name, level)` und `__eq__` (gleich, wenn das `level` gleich ist). Vergleiche Roboter(\"Nova\", 5) mit Roboter(\"Orbit\", 5) und mit Roboter(\"Zeta\", 8) und gib beide Ergebnisse in zwei Zeilen aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True\nFalse"
+        }
+      },
+      {
+        "instruction": "Die Klasse Roboter mit `__lt__` ist vorgegeben. Lege `team` mit Roboter(\"Nova\", 5), Roboter(\"Orbit\", 9) und Roboter(\"Zeta\", 2) an, sortiere mit `sorted(team)` und gib die Namen in der sortierten Reihenfolge Zeile für Zeile aus.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        return f\"{self.name} ({self.level})\"\n\n    def __lt__(self, other):\n        return self.level < other.level\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeta\nNova\nOrbit"
+        }
+      },
+      {
+        "instruction": "Die Klasse Roboter mit `__lt__` und `__str__` ist vorgegeben. Sortiere `team` mit Roboter(\"Nova\", 5), Roboter(\"Orbit\", 9), Roboter(\"Zeta\", 2) mit `sorted(team, reverse=True)` und gib das erste Element mit `print` aus (genau Orbit (9)).",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        return f\"{self.name} ({self.level})\"\n\n    def __lt__(self, other):\n        return self.level < other.level\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Orbit (9)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "KI-Modul 7: Rechnen und zählen: __add__ und __len__",
+    "file": "lektion-07.md",
+    "lessonSummary": "Klasse! Deine Objekte können rechnen und gezählt werden.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: __add__ und __len__.",
+        "codeTemplate": "class Vorrat:\n    def __init__(self, menge):\n        self.menge = menge\n\n    def __add__(self, other):\n        return Vorrat(self.menge + other.menge)\n\n    def __str__(self):\n        return f\"Vorrat: {self.menge}\"\n\na = Vorrat(10)\nb = Vorrat(20)\nprint(a + b)\n\nclass Team:\n    def __init__(self):\n        self.mitglieder = []\n\n    def __len__(self):\n        return len(self.mitglieder)\n\nt = Team()\nt.mitglieder.append(\"Nova\")\nt.mitglieder.append(\"Orbit\")\nprint(len(t))\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Vorrat: 30\n2"
+        }
+      },
+      {
+        "instruction": "Schreibe die Klasse Vorrat mit `__init__(self, menge)`, `__add__` (gibt ein neues Vorrat mit der Summe zurück) und `__str__` (gibt Vorrat: Zahl zurück). Gib Vorrat(10) + Vorrat(20) aus (genau Vorrat: 30).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Vorrat: 30"
+        }
+      },
+      {
+        "instruction": "Schreibe die Klasse Team mit `__init__(self)` (leere Liste `mitglieder`) und `__len__(self)`, das die Länge der Liste zurückgibt. Füge Nova, Orbit und Zeta hinzu und gib `len(team)` aus (3).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "3"
+        }
+      },
+      {
+        "instruction": "Die Klasse Vorrat mit `__add__` und `__str__` ist vorgegeben. Die Liste `lager = [Vorrat(10), Vorrat(20), Vorrat(30)]` wird mit einer Schleife zusammengezählt (Start `gesamt = Vorrat(0)`, dann `gesamt = gesamt + v`). Gib `gesamt` aus (genau Vorrat: 60).",
+        "codeTemplate": "class Vorrat:\n    def __init__(self, menge):\n        self.menge = menge\n\n    def __add__(self, other):\n        return Vorrat(self.menge + other.menge)\n\n    def __str__(self):\n        return f\"Vorrat: {self.menge}\"\n\nlager = [Vorrat(10), Vorrat(20), Vorrat(30)]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Vorrat: 60"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug-Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Bei Vererbung zählen `super().__init__`, die Eltern-Klasse in Klammern und `return` in `__str__`.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Nova ausgeben. Was ist falsch?",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer):\n        self.panzer = panzer\n\nk = Kampfroboter(\"Nova\", 30)\nprint(k.name)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Ich bin Nova. ausgeben. Was ist falsch?",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\nclass Kampfroboter:\n    def lade_waffe(self):\n        print(\"lädt den Laser.\")\n\nk = Kampfroboter(\"Nova\")\nk.stelle_vor()\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ich bin Nova."
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Nova (5) ausgeben. Was ist falsch?",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        print(f\"{self.name} ({self.level})\")\n\nprint(Roboter(\"Nova\", 5))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova (5)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: Die Kind-Klasse",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission geschafft: Du hast vererbt, überschrieben und `super()` benutzt!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Erben: Die Klasse Roboter ist vorgegeben. Schreibe Kampfroboter(Roboter) nur mit `pass`, erzeuge Kampfroboter(\"Nova\") und rufe `stelle_vor()` auf.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ich bin Nova."
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Neues Attribut: Die Klasse Roboter ist vorgegeben. Schreibe Kampfroboter(Roboter) mit `__init__(self, name, panzer=30)` (mit `super()`). Erzeuge Kampfroboter(\"Nova\") und gib genau Nova: 30 aus.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova: 30"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Überschreiben: Die Klasse Roboter ist vorgegeben. Überschreibe `arbeite` in Kampfroboter(Roboter) (gibt Nova feuert den Laser ab. aus) und rufe sie für Kampfroboter(\"Nova\") auf.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova feuert den Laser ab."
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: Das Team",
+    "file": "mission-02.md",
+    "lessonSummary": "Mission geschafft: Du steuerst ein gemischtes Team über eine gemeinsame Methode!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Alle handeln: Die Klassen Roboter, Kampfroboter und Reparaturroboter sind vorgegeben. Lege `team` mit Kampfroboter(\"Nova\"), Reparaturroboter(\"Orbit\") und Roboter(\"Zeta\") an und rufe bei jedem `arbeite()` auf.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n    def kraft(self):\n        return 10\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n    def kraft(self):\n        return self.panzer\n\nclass Reparaturroboter(Roboter):\n    def __init__(self, name, werkzeuge=50):\n        super().__init__(name)\n        self.werkzeuge = werkzeuge\n\n    def arbeite(self):\n        print(f\"{self.name} repariert die Hülle.\")\n\n    def kraft(self):\n        return self.werkzeuge\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova feuert den Laser ab.\nOrbit repariert die Hülle.\nZeta läuft im Leerlauf."
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Gesamtkraft: Die Klassen (mit `kraft()`) sind vorgegeben, ebenso `team = [Kampfroboter(\"Nova\"), Reparaturroboter(\"Orbit\"), Roboter(\"Zeta\")]` (Kraft 30, 50 und 10). Addiere alle `kraft()` und gib genau Summe: 90 aus.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n    def kraft(self):\n        return 10\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n    def kraft(self):\n        return self.panzer\n\nclass Reparaturroboter(Roboter):\n    def __init__(self, name, werkzeuge=50):\n        super().__init__(name)\n        self.werkzeuge = werkzeuge\n\n    def arbeite(self):\n        print(f\"{self.name} repariert die Hülle.\")\n\n    def kraft(self):\n        return self.werkzeuge\n\nteam = [Kampfroboter(\"Nova\"), Reparaturroboter(\"Orbit\"), Roboter(\"Zeta\")]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Summe: 90"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Der Stärkste: Die Klassen und `team` (Kraft 30, 50, 10) sind vorgegeben. Schreibe `staerkster(team)`, die das Objekt mit der größten `kraft()` zurückgibt, und gib genau Stärkster: Orbit aus.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n    def kraft(self):\n        return 10\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n    def kraft(self):\n        return self.panzer\n\nclass Reparaturroboter(Roboter):\n    def __init__(self, name, werkzeuge=50):\n        super().__init__(name)\n        self.werkzeuge = werkzeuge\n\n    def arbeite(self):\n        print(f\"{self.name} repariert die Hülle.\")\n\n    def kraft(self):\n        return self.werkzeuge\n\nteam = [Kampfroboter(\"Nova\"), Reparaturroboter(\"Orbit\"), Roboter(\"Zeta\")]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stärkster: Orbit"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: Die Zauber-Methoden",
+    "file": "mission-03.md",
+    "lessonSummary": "Mission geschafft: `__str__`, `__lt__` und `__add__` gehören jetzt zu deinem Werkzeugkasten!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Ausgeben: Schreibe die Klasse Roboter mit `__init__(self, name, level)` und `__str__` (gibt `name (level)` zurück). Gib Roboter(\"Nova\", 5) mit `print` aus (genau Nova (5)).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova (5)"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Sortieren: Die Klasse Roboter mit `__lt__` und `__str__` ist vorgegeben. Sortiere die Liste [Roboter(\"Nova\", 5), Roboter(\"Orbit\", 9), Roboter(\"Zeta\", 2)] mit `sorted` und gib jedes Objekt mit `print` aus.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        return f\"{self.name} ({self.level})\"\n\n    def __lt__(self, other):\n        return self.level < other.level\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeta (2)\nNova (5)\nOrbit (9)"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Addieren: Die Klasse Vorrat mit `__add__` und `__str__` ist vorgegeben. Gib Vorrat(15) + Vorrat(25) + Vorrat(5) aus (genau Vorrat: 45).",
+        "codeTemplate": "class Vorrat:\n    def __init__(self, menge):\n        self.menge = menge\n\n    def __add__(self, other):\n        return Vorrat(self.menge + other.menge)\n\n    def __str__(self):\n        return f\"Vorrat: {self.menge}\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Vorrat: 45"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Drei Ebenen",
+    "file": "boss-01.md",
+    "lessonSummary": "Geschafft: Du kennst Klassen-Ketten und `super()` über mehrere Ebenen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1: Die Klassen Roboter, Kampfroboter, Reparaturroboter sind vorgegeben. Schreibe Elite(Kampfroboter) mit `pass`, erzeuge Elite(\"Nova\") und prüfe mit `isinstance` auf Roboter, Kampfroboter und Reparaturroboter (drei Zeilen).",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n    def kraft(self):\n        return 10\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n    def kraft(self):\n        return self.panzer\n\nclass Reparaturroboter(Roboter):\n    def __init__(self, name, werkzeuge=50):\n        super().__init__(name)\n        self.werkzeuge = werkzeuge\n\n    def arbeite(self):\n        print(f\"{self.name} repariert die Hülle.\")\n\n    def kraft(self):\n        return self.werkzeuge\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True\nTrue\nFalse"
+        }
+      },
+      {
+        "instruction": "Schritt 2: Die Klassen sind vorgegeben. Schreibe Elite(Kampfroboter), das `arbeite` überschreibt: erst `super().arbeite()`, dann Nova ist ein Meister!. Rufe es für Elite(\"Nova\") auf.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n    def kraft(self):\n        return 10\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n    def kraft(self):\n        return self.panzer\n\nclass Reparaturroboter(Roboter):\n    def __init__(self, name, werkzeuge=50):\n        super().__init__(name)\n        self.werkzeuge = werkzeuge\n\n    def arbeite(self):\n        print(f\"{self.name} repariert die Hülle.\")\n\n    def kraft(self):\n        return self.werkzeuge\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova feuert den Laser ab.\nNova ist ein Meister!"
+        }
+      },
+      {
+        "instruction": "Schritt 3: Die Klassen sind vorgegeben. Schreibe Elite(Kampfroboter), das `kraft` überschreibt und **doppelt** so viel wie die Eltern zurückgibt (`super().kraft() * 2`). Gib genau Kraft: 60 für Elite(\"Nova\") aus.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n    def kraft(self):\n        return 10\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n    def kraft(self):\n        return self.panzer\n\nclass Reparaturroboter(Roboter):\n    def __init__(self, name, werkzeuge=50):\n        super().__init__(name)\n        self.werkzeuge = werkzeuge\n\n    def arbeite(self):\n        print(f\"{self.name} repariert die Hülle.\")\n\n    def kraft(self):\n        return self.werkzeuge\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Kraft: 60"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Die Arena",
+    "file": "boss-02.md",
+    "lessonSummary": "Geschafft: Polymorphismus im Wettkampf!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1: Die Klassen (mit `kraft()`) und `team = [Kampfroboter(\"Nova\", 40), Reparaturroboter(\"Orbit\", 25), Roboter(\"Zeta\")]` sind vorgegeben. Addiere alle Kräfte und gib genau Summe: 75 aus.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n    def kraft(self):\n        return 10\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n    def kraft(self):\n        return self.panzer\n\nclass Reparaturroboter(Roboter):\n    def __init__(self, name, werkzeuge=50):\n        super().__init__(name)\n        self.werkzeuge = werkzeuge\n\n    def arbeite(self):\n        print(f\"{self.name} repariert die Hülle.\")\n\n    def kraft(self):\n        return self.werkzeuge\n\nteam = [Kampfroboter(\"Nova\", 40), Reparaturroboter(\"Orbit\", 25), Roboter(\"Zeta\")]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Summe: 75"
+        }
+      },
+      {
+        "instruction": "Schritt 2: Die Klassen und `team` (Kraft 40, 25, 10) sind vorgegeben. Zähle, wie viele Objekte eine Kraft von mindestens 30 haben, und gib genau Anzahl: 1 aus.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n    def kraft(self):\n        return 10\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n    def kraft(self):\n        return self.panzer\n\nclass Reparaturroboter(Roboter):\n    def __init__(self, name, werkzeuge=50):\n        super().__init__(name)\n        self.werkzeuge = werkzeuge\n\n    def arbeite(self):\n        print(f\"{self.name} repariert die Hülle.\")\n\n    def kraft(self):\n        return self.werkzeuge\n\nteam = [Kampfroboter(\"Nova\", 40), Reparaturroboter(\"Orbit\", 25), Roboter(\"Zeta\")]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 1"
+        }
+      },
+      {
+        "instruction": "Schritt 3: Die Klassen und `team` (Kraft 40, 25, 10) sind vorgegeben. Schreibe `kraft_von(figur)`, die `figur.kraft()` zurückgibt, sortiere mit `sorted(team, key=kraft_von)` und gib die Namen Zeile für Zeile aus.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n    def kraft(self):\n        return 10\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n    def kraft(self):\n        return self.panzer\n\nclass Reparaturroboter(Roboter):\n    def __init__(self, name, werkzeuge=50):\n        super().__init__(name)\n        self.werkzeuge = werkzeuge\n\n    def arbeite(self):\n        print(f\"{self.name} repariert die Hülle.\")\n\n    def kraft(self):\n        return self.werkzeuge\n\nteam = [Kampfroboter(\"Nova\", 40), Reparaturroboter(\"Orbit\", 25), Roboter(\"Zeta\")]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeta\nOrbit\nNova"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Zahlen mit Magie",
+    "file": "boss-03.md",
+    "lessonSummary": "Geschafft: Deine Vorrat-Klasse verhält sich fast wie eine Zahl!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1: Schreibe Vorrat mit `__init__(self, menge)`, `__add__` und `__eq__` (gleich, wenn die menge gleich ist). Gib `Vorrat(10) + Vorrat(40) == Vorrat(50)` aus (True).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True"
+        }
+      },
+      {
+        "instruction": "Schritt 2: Schreibe Team mit `__init__(self)` (leere Liste `mitglieder`), `__len__` und `__str__` (gibt Team: Anzahl zurück). Füge Nova und Orbit hinzu und gib das Objekt mit `print` aus (genau Team: 2).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Team: 2"
+        }
+      },
+      {
+        "instruction": "Schritt 3: Schreibe Vorrat mit `__init__(self, menge)`, `__lt__` (kleiner, wenn `menge` kleiner ist) und `__str__` (gibt Vorrat: Zahl zurück), sortiere [Vorrat(30), Vorrat(10), Vorrat(20)] und gib jedes Element aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Vorrat: 10\nVorrat: 20\nVorrat: 30"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-04",
+    "section": "boss",
+    "title": "Extra-Herausforderung 4: Alles zusammen",
+    "file": "boss-04.md",
+    "lessonSummary": "Geschafft: Vererbung, Dictionaries, Zufall und JSON arbeiten zusammen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Dictionary der Klassen: Die Klassen sind vorgegeben. Baue `klassen = {\"Kampfroboter\": Kampfroboter, \"Reparaturroboter\": Reparaturroboter}` und erzeuge über den Namen `klassen[\"Kampfroboter\"](\"Nova\")` ein Objekt. Rufe `arbeite()` auf.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n    def kraft(self):\n        return 10\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n    def kraft(self):\n        return self.panzer\n\nclass Reparaturroboter(Roboter):\n    def __init__(self, name, werkzeuge=50):\n        super().__init__(name)\n        self.werkzeuge = werkzeuge\n\n    def arbeite(self):\n        print(f\"{self.name} repariert die Hülle.\")\n\n    def kraft(self):\n        return self.werkzeuge\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova feuert den Laser ab."
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Zufall: Die Klassen sind vorgegeben. Wähle mit `random.choice([Kampfroboter, Reparaturroboter])` eine Klasse, erzeuge daraus ein Objekt und gib `isinstance(objekt, Roboter)` aus (True).",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n    def kraft(self):\n        return 10\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n    def kraft(self):\n        return self.panzer\n\nclass Reparaturroboter(Roboter):\n    def __init__(self, name, werkzeuge=50):\n        super().__init__(name)\n        self.werkzeuge = werkzeuge\n\n    def arbeite(self):\n        print(f\"{self.name} repariert die Hülle.\")\n\n    def kraft(self):\n        return self.werkzeuge\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – JSON speichern: Die Klassen sind vorgegeben. Erzeuge Kampfroboter(\"Nova\") und baue `daten = {\"typ\": type(f).__name__, \"name\": f.name}` (`type(f).__name__` liefert den Klassennamen als Text). Gib `json.dumps(daten)` aus.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n    def kraft(self):\n        return 10\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n    def kraft(self):\n        return self.panzer\n\nclass Reparaturroboter(Roboter):\n    def __init__(self, name, werkzeuge=50):\n        super().__init__(name)\n        self.werkzeuge = werkzeuge\n\n    def arbeite(self):\n        print(f\"{self.name} repariert die Hülle.\")\n\n    def kraft(self):\n        return self.werkzeuge\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{\"typ\": \"Kampfroboter\", \"name\": \"Nova\"}"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – JSON laden: Die Klassen und der Text `text = '{\"typ\": \"Kampfroboter\", \"name\": \"Nova\"}'` sind vorgegeben. Lies ihn mit `json.loads`, suche die Klasse im Dictionary `klassen` und baue das Objekt neu auf. Rufe `arbeite()` auf.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n    def kraft(self):\n        return 10\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n    def kraft(self):\n        return self.panzer\n\nclass Reparaturroboter(Roboter):\n    def __init__(self, name, werkzeuge=50):\n        super().__init__(name)\n        self.werkzeuge = werkzeuge\n\n    def arbeite(self):\n        print(f\"{self.name} repariert die Hülle.\")\n\n    def kraft(self):\n        return self.werkzeuge\n\nklassen = {\"Kampfroboter\": Kampfroboter, \"Reparaturroboter\": Reparaturroboter}\ntext = '{\"typ\": \"Kampfroboter\", \"name\": \"Nova\"}'\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova feuert den Laser ab."
+        }
+      }
+    ]
+  }
+]

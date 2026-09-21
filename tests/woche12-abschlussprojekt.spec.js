@@ -1,9 +1,12 @@
 import { test, expect } from '@playwright/test';
 import { startKernel } from './helpers/kernel.js';
+import { openSolutionsNotebook } from './helpers/notebook.js';
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 
-// Woche 12 ist das Abschlussprojekt "Text-Adventure" (kein Turtle mehr). Die Notebooks bestehen aus
+// Woche 12 ist das Abschlussprojekt "Text-Adventure" (kein Turtle mehr). Im Lektions-Format laeuft die Lektion
+// als Einzel-Aufgaben (Referenzloesungen per python3 geprueft); als echtes Notebook gibt es noch das Nachschlagewerk
+// "Loesungen". Die Notebooks bestehen aus
 // langen, zusammenhaengenden Code-Zellen (Startpaket, Klassen, Kampf mit random, JSON-Speichern) -
 // nur ein echter Lauf in Pyodide zeigt, ob alles zusammen funktioniert.
 const COURSE_URL = '/kurs/python-12-wochen-grundkurs';
@@ -15,29 +18,20 @@ const VARIANTS = [
 
 test.describe('Woche 12: Abschlussprojekt Text-Adventure', () => {
   for (const v of VARIANTS) {
-    test(`${v.key}: Lektion (DE) und Loesungen (EN) laufen fehlerfrei in Pyodide`, async ({ page }) => {
+    test(`${v.key}: Lösungs-Notebook (DE und EN) läuft fehlerfrei in Pyodide`, async ({ page }) => {
       test.setTimeout(150000);
 
-      await page.goto(`${COURSE_URL}?week=12&variant=${v.key}&step=1_lektion`);
-      await page.locator('.cell').first().waitFor({ state: 'visible', timeout: 15000 });
-      await startKernel(page);
-      await expect(page.locator('.btn-run-all').first()).toBeEnabled({ timeout: 120000 });
-      await page.locator('.btn-run-all').first().click();
-      // Das Finale endet mit dem Sieg- oder Game-Over-Text - beides ist ein gueltiger Lauf.
-      await expect(page.locator('.cell-output').last()).toContainText(/🏆|💀/, { timeout: 30000 });
-      await expect(page.locator('.output-error')).toHaveCount(0);
-
-      await page.evaluate(() => localStorage.setItem('ue-hacker-lang', 'en'));
-      await page.goto(`${COURSE_URL}?week=12&variant=${v.key}&step=1_lektion`);
-      await page.locator('.cell').first().waitFor({ state: 'visible', timeout: 15000 });
-      await page.locator('[data-reference-key="6_loesungen"]').click();
-      await page.locator('.cell').first().waitFor({ state: 'visible', timeout: 15000 });
-      // Kernel kann durch den Wechsel des Nachschlagewerks schon bereit sein (dann ist der Button aus).
-      await startKernel(page);
-      await expect(page.locator('.btn-run-all').first()).toBeEnabled({ timeout: 120000 });
-      await page.locator('.btn-run-all').first().click();
-      await expect(page.locator('.cell-output').last()).toContainText(/🏆|Crown|Saddle|Crystal/, { timeout: 30000 });
-      await expect(page.locator('.output-error')).toHaveCount(0);
+      for (const lang of ['de', 'en']) {
+        await page.addInitScript((l) => localStorage.setItem('ue-hacker-lang', l), lang);
+        await openSolutionsNotebook(page, v.key);
+        // Kernel kann durch den Wechsel des Nachschlagewerks schon bereit sein (dann ist der Button aus).
+        await startKernel(page);
+        await expect(page.locator('.btn-run-all').first()).toBeEnabled({ timeout: 120000 });
+        await page.locator('.btn-run-all').first().click();
+        // Das Finale endet mit dem Sieg- oder Game-Over-Text - beides ist ein gueltiger Lauf.
+        await expect(page.locator('.cell-output').last()).toContainText(/🏆|💀/, { timeout: 30000 });
+        await expect(page.locator('.output-error')).toHaveCount(0);
+      }
     });
   }
 

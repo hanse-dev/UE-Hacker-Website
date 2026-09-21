@@ -26,7 +26,7 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 - [x] Woche 7 (Module; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.51): 7 Lektionen, Debug, 3 Missionen, 4 Extra-Herausforderungen je Thema, DE = EN; Zufalls-Aufgaben prüfen Eigenschaften statt fester Werte; nimmt die Woche-4/5-Vorgriffe mit `random`, `%` und Feld auf (Extra-Herausforderung 4)
 - [x] Woche 8 (Dictionaries/Tupel; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.52): 7 Lektionen, Debug, 3 Missionen, 4 Extra-Herausforderungen je Thema, DE = EN; enthält die nachgezogenen Dictionary-/`try/except`-Vorgriffe aus Woche 5/6
 - [x] Woche 9 (JSON und Dateien; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.53): 7 Lektionen, Debug, 3 Missionen, 4 Extra-Herausforderungen je Thema, DE = EN
-- [ ] Nutzer-Feedback abwarten, dann entscheiden: Wochen 10–12
+- [x] Woche 10 (OOP Grundlagen), Woche 11 (OOP Fortgeschritten), Woche 12 (Text-Adventure-Abschlussprojekt; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.54): je 7 Lektionen/Etappen, Debug, 3 Missionen, 4 Extra-Herausforderungen, DE = EN
 - [ ] Lösungen/Glossar für das neue Format anpassen (Lösungen passen noch zu den freien Original-Aufgaben)
 
 #### Nachbesserungen Lektions-Format Woche 4
@@ -83,6 +83,14 @@ Beim Umbau aufgefallen; entweder bewusst so gelassen oder noch offen:
 - [ ] Wie überall: `dict`/`try`-Struktur wird nicht geprüft, hart codierte `print`s bestehen (siehe Woche-5-Punkt zu `functionCalls`).
 - [ ] Lösungs-/Glossar-Notebooks Woche 8 passen nicht zu den konkretisierten Aufgaben.
 - [ ] Woche 8 wurde wie Woche 6/7 aus einem Skelett + Themen-Vokabular erzeugt (Generator nur im Scratchpad); Aufgaben teils identisch zwischen den Themen, nur Vokabular unterscheidet sich.
+
+#### Nachbesserungen Lektions-Format Woche 10–12 (OOP, Text-Adventure)
+- [ ] Wie überall: Struktur (`class`, `super()`, Magic Methods) wird nicht geprüft, hart codierte `print`s bestehen (siehe Woche-5-Punkt zu `functionCalls`). Objekt-Aufgaben ließen sich mit `variables` (Attribute) prüfen — Vorschlag: für Klassen-Aufgaben `variables` ergänzen.
+- [ ] Woche 12: Lektion ist in 7 Etappen mit kleinen, einzeln geprüften Aufgaben statt einem durchlaufenden Spiel-Notebook; das Original (Startpaket-Zellen, `spiele()` mit Zufalls-Kampf) liegt nur noch als Nachschlagewerk „Lösungen“ (und `woche12_*_1_lektion`) im Repo. Kampf-Aufgaben nutzen 1-HP-Gegner, damit die Prüfung deterministisch ist.
+- [ ] Aus den Originalen weggelassen: Operator-Polymorphismus mit `__add__` auf Goldstücken als Beispiel (jetzt `Supply`/`Vorrat`), `__getitem__`, `input()`-Befehlsschleife in Woche 12 (Befehle stehen als Liste, braucht `stdin`-Validierung), Bonus-Teile ungeprüft.
+- [ ] Lösungs-/Glossar-Notebooks Woche 10–12 passen nicht zu den konkretisierten Aufgaben.
+- [ ] Woche 10–12 wurden wie Woche 6–9 aus einem Skelett + Themen-Vokabular erzeugt (Generator nur im Scratchpad); Aufgaben teils identisch zwischen den Themen, nur Vokabular unterscheidet sich. EN nutzt englische Bezeichner (`Player`, `world`, `go north`).
+- [ ] Alte Notebooks (Lektion/Debug/Missionen/Boss) aller Wochen sind noch im Repo (`_bundle` für den ZIP-Download) — jetzt, wo alle Wochen umgestellt sind, entfernen bzw. ausblenden (`tests/storytelling-content.spec.js` liest noch aus den Quelldateien von Woche 5/8/9/11/12).
 
 #### Nachbesserungen Lektions-Format Woche 9 (JSON und Dateien)
 - [ ] `input()`-Aufgaben aus dem Original (Boss 1 Tagebuch, Eintrag per `input()`) durch vorgegebene Einträge ersetzt, `input()` nur als Bonus — braucht die `stdin`-Validierung (siehe Woche 1–2/4-Nachbesserungen).

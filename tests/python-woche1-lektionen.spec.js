@@ -216,9 +216,9 @@ test.describe('Python Woche 1 Abenteuer als Einzel-Lektionen', () => {
     await expect(editor).toHaveValue('if True:\n    ');
   });
 
-  test('andere Wochen behalten die Notebook-Schritte', async ({ page }) => {
+  test('auch Woche 12 ist im Lektions-Format (keine Notebook-Schritte mehr)', async ({ page }) => {
     await page.goto('/kurs/python-12-wochen-grundkurs?week=12&variant=abenteuer');
-    await expect(page.locator('.js-course-tour')).toHaveCount(0);
-    await expect(page.locator('.tour-stepper > .progress-stepper [data-step-key="1_lektion"]')).toBeVisible();
+    await expect(page.locator('.js-course-tour')).toBeVisible({ timeout: 20000 });
+    await expect(page.locator('.tour-stepper > .progress-stepper')).toHaveCount(0);
   });
 });

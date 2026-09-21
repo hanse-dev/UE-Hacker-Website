@@ -97,18 +97,18 @@ test.describe('Storytelling-Überarbeitung: Abenteuer', () => {
 });
 
 test.describe('Storytelling-Überarbeitung: Sci-Fi', () => {
-  test('Woche 11: Lektion-Code ist syntaktisch korrekt (def/self vorhanden)', async ({ page }) => {
-    const week = await openWeekVariantTab(page, 11, 'Sci-Fi', 'Lektion');
-
-    const text = await week.locator('.notebook-cells').innerText();
+  test('Woche 11: Lektion-Code ist syntaktisch korrekt (def/self vorhanden)', async () => {
+    // Woche 11 ist im Lektions-Format (kein `.cell` in der Tour) - Original-Lektion aus den Quelldateien lesen.
+    const dir = path.join(process.cwd(), 'content/python-12-wochen-grundkurs/woche-11/scifi/woche11_scifi_1_lektion');
+    const files = fs.readdirSync(dir).filter((f) => /^\d+_(markdown|code)\.py$/.test(f)).sort();
+    const text = files.map((f) => fs.readFileSync(path.join(dir, f), 'utf-8')).join('\n');
     expect(text).toContain('Raumstation Nebula-7');
     expect(text).not.toContain('Evolution-Station Alpha-7');
 
-    const codeCells = week.locator('.cell-code .cm-host');
-    const count = await codeCells.count();
-    expect(count).toBeGreaterThan(0);
-    for (let i = 0; i < count; i++) {
-      const code = await getCodeCellText(codeCells.nth(i));
+    const codeFiles = files.filter((f) => f.endsWith('_code.py'));
+    expect(codeFiles.length).toBeGreaterThan(0);
+    for (const f of codeFiles) {
+      const code = fs.readFileSync(path.join(dir, f), 'utf-8');
       // The original bug: every method inside a class was missing "def" and/or
       // "self" (e.g. "aktivieren():" instead of "def aktivieren(self):", or
       // "def __init__(id, name):" instead of "def __init__(self, id, name):").
@@ -154,15 +154,16 @@ test.describe('Storytelling-Überarbeitung: Sci-Fi', () => {
     expect(week8Text).not.toContain('Der Raumstation-Manager');
   });
 
-  test('Woche 12: Debug-Bugs verraten die Lösung nicht im Kommentar', async ({ page }) => {
-    const week = await openWeekVariantTab(page, 12, 'Sci-Fi', 'Debug');
-
-    const codeCells = week.locator('.cell-code .cm-host');
-    const count = await codeCells.count();
-    for (let i = 0; i < count; i++) {
-      const code = await getCodeCellText(codeCells.nth(i));
-      expect(code).not.toMatch(/#\s*Bug:/i);
+  test('Woche 12: Debug-Bugs verraten die Lösung nicht im Kommentar', async () => {
+    // Woche 12 ist im Lektions-Format - Original-Debug-Notebook aus den Quelldateien, dazu die neuen Debug-Aufgaben.
+    const dir = path.join(process.cwd(), 'content/python-12-wochen-grundkurs/woche-12/scifi/woche12_scifi_2_debug');
+    const codes = fs.readdirSync(dir).filter((f) => f.endsWith('_code.py')).map((f) => fs.readFileSync(path.join(dir, f), 'utf-8'));
+    expect(codes.length).toBeGreaterThan(0);
+    for (const lang of ['', '-en']) {
+      const lessons = JSON.parse(fs.readFileSync(path.join(process.cwd(), `content/python-woche12-scifi${lang}/lessons.json`), 'utf-8'));
+      for (const t of lessons.find((l) => l.id === 'debug-01').tasks) codes.push(t.codeTemplate);
     }
+    for (const code of codes) expect(code).not.toMatch(/#\s*Bug:/i);
   });
 
 });

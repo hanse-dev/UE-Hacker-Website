@@ -1,0 +1,568 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Breeding Exercise 1: Inheritance",
+    "file": "lektion-01.md",
+    "lessonSummary": "Great! Your child class inherits everything from its parent.",
+    "tasks": [
+      {
+        "instruction": "Run this example: a child class inherits a method.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\nclass Racehorse(Horse):\n    pass\n\nk = Racehorse(\"Blitz\")\nk.introduce()\nprint(isinstance(k, Horse))\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "I am Blitz.\nTrue"
+        }
+      },
+      {
+        "instruction": "Write the class Horse with `__init__(self, name)` and `introduce(self)` (prints I am Blitz.) and the child class Racehorse(Horse) with only `pass`. Create Racehorse(\"Blitz\") and call `introduce()`.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "I am Blitz."
+        }
+      },
+      {
+        "instruction": "The class Horse is given. Write Jumper(Horse) with a **new** method `start(self)` that prints Stella leaves the starting box. (name from `self`). Create Jumper(\"Stella\") and call `introduce()` first, then `start()`.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "I am Stella.\nStella leaves the starting box."
+        }
+      },
+      {
+        "instruction": "The classes Horse, Racehorse(Horse) and Jumper(Horse) are given. Create Racehorse(\"Blitz\") and check with `isinstance` whether it belongs to Horse and whether it belongs to Jumper. Print both results on two lines.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\nclass Racehorse(Horse):\n    pass\n\nclass Jumper(Horse):\n    pass\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True\nFalse"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Breeding Exercise 2: Overriding Methods",
+    "file": "lektion-02.md",
+    "lessonSummary": "Nice! Children may do things differently from their parents.",
+    "tasks": [
+      {
+        "instruction": "Run this example: an overridden method.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\nclass Racehorse(Horse):\n    def run(self):\n        print(f\"{self.name} sprints down the track.\")\n\nHorse(\"Blitz\").run()\nRacehorse(\"Stella\").run()\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz trots gently.\nStella sprints down the track."
+        }
+      },
+      {
+        "instruction": "The class Horse is given. Write Racehorse(Horse) and override `run(self)` so that Blitz sprints down the track. is printed (name from `self`). Create Racehorse(\"Blitz\") and call the method.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz sprints down the track."
+        }
+      },
+      {
+        "instruction": "The class Horse is given. Override `run` in Jumper(Horse) (prints jumps the fence. after the name). Call `run()` for Horse(\"Sturm\") and for Jumper(\"Stella\") – Sturm first, then Stella.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sturm trots gently.\nStella jumps the fence."
+        }
+      },
+      {
+        "instruction": "The class Horse is given. In Racehorse(Horse) override the method `introduce(self)` so that I am Blitz, Racehorse. is printed (name from `self`, class name as text). Create Racehorse(\"Blitz\") and call it.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "I am Blitz, Racehorse."
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Breeding Exercise 3: super() and __init__",
+    "file": "lektion-03.md",
+    "lessonSummary": "Well done! You connect parent and child with super().",
+    "tasks": [
+      {
+        "instruction": "Run this example: a constructor with super().",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed=30):\n        super().__init__(name)\n        self.speed = speed\n\nk = Racehorse(\"Blitz\", 45)\nprint(k.name, k.speed)\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz 45"
+        }
+      },
+      {
+        "instruction": "The class Horse is given. Write Racehorse(Horse) with `__init__(self, name, speed=30)` that sets the name via `super().__init__(name)` and stores `speed`. Create Racehorse(\"Blitz\", 45) and print exactly Blitz 45.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz 45"
+        }
+      },
+      {
+        "instruction": "The class Horse is given. Write Jumper(Horse) with `__init__(self, name, height=50)` and `super()`. Create Jumper(\"Stella\") without a second value and print exactly Stella 50.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stella 50"
+        }
+      },
+      {
+        "instruction": "The classes Horse and Racehorse (with an overridden `run`) are given. Write Champion(Racehorse) that overrides `run`: first `super().run()`, then a second line Blitz is a master!. Create Champion(\"Blitz\") and call `run()`.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed=30):\n        super().__init__(name)\n        self.speed = speed\n\n    def run(self):\n        print(f\"{self.name} sprints down the track.\")\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz sprints down the track.\nBlitz is a master!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Breeding Exercise 4: Polymorphism",
+    "file": "lektion-04.md",
+    "lessonSummary": "Super! One loop, many behaviours.",
+    "tasks": [
+      {
+        "instruction": "Run this example: the same method, three classes.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n    def power(self):\n        return 10\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed=30):\n        super().__init__(name)\n        self.speed = speed\n\n    def run(self):\n        print(f\"{self.name} sprints down the track.\")\n\n    def power(self):\n        return self.speed\n\nclass Jumper(Horse):\n    def __init__(self, name, height=50):\n        super().__init__(name)\n        self.height = height\n\n    def run(self):\n        print(f\"{self.name} jumps the fence.\")\n\n    def power(self):\n        return self.height\n\nteam = [Horse(\"Sturm\"), Racehorse(\"Blitz\"), Jumper(\"Stella\")]\nfor f in team:\n    f.run()\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sturm trots gently.\nBlitz sprints down the track.\nStella jumps the fence."
+        }
+      },
+      {
+        "instruction": "The classes Horse, Racehorse and Jumper are given. Write a function `los(figure)` that calls `figure.run()`. Call it for Racehorse(\"Blitz\") and Jumper(\"Stella\") one after the other.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n    def power(self):\n        return 10\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed=30):\n        super().__init__(name)\n        self.speed = speed\n\n    def run(self):\n        print(f\"{self.name} sprints down the track.\")\n\n    def power(self):\n        return self.speed\n\nclass Jumper(Horse):\n    def __init__(self, name, height=50):\n        super().__init__(name)\n        self.height = height\n\n    def run(self):\n        print(f\"{self.name} jumps the fence.\")\n\n    def power(self):\n        return self.height\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz sprints down the track.\nStella jumps the fence."
+        }
+      },
+      {
+        "instruction": "The classes are given, and so is the list `team = [Racehorse(\"Blitz\"), Jumper(\"Stella\"), Racehorse(\"Sturm\"), Horse(\"Stella\")]`. Count with `isinstance` how many objects belong to Racehorse and print exactly Count: 2.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n    def power(self):\n        return 10\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed=30):\n        super().__init__(name)\n        self.speed = speed\n\n    def run(self):\n        print(f\"{self.name} sprints down the track.\")\n\n    def power(self):\n        return self.speed\n\nclass Jumper(Horse):\n    def __init__(self, name, height=50):\n        super().__init__(name)\n        self.height = height\n\n    def run(self):\n        print(f\"{self.name} jumps the fence.\")\n\n    def power(self):\n        return self.height\n\nteam = [Racehorse(\"Blitz\"), Jumper(\"Stella\"), Racehorse(\"Sturm\"), Horse(\"Stella\")]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 2"
+        }
+      },
+      {
+        "instruction": "The classes are given. Write your **own** class Spectator **without parents** with `run(self)` that prints The crowd applauds.. Call `run()` for a list with Racehorse(\"Blitz\") and Spectator() one after the other (duck typing).",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n    def power(self):\n        return 10\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed=30):\n        super().__init__(name)\n        self.speed = speed\n\n    def run(self):\n        print(f\"{self.name} sprints down the track.\")\n\n    def power(self):\n        return self.speed\n\nclass Jumper(Horse):\n    def __init__(self, name, height=50):\n        super().__init__(name)\n        self.height = height\n\n    def run(self):\n        print(f\"{self.name} jumps the fence.\")\n\n    def power(self):\n        return self.height\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz sprints down the track.\nThe crowd applauds."
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Breeding Exercise 5: __str__ and __repr__",
+    "file": "lektion-05.md",
+    "lessonSummary": "Nice! Your objects can now show themselves as text.",
+    "tasks": [
+      {
+        "instruction": "Run this example: __str__ and __repr__.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        return f\"{self.name} ({self.level})\"\n\n    def __repr__(self):\n        return f\"Horse('{self.name}', {self.level})\"\n\nk = Horse(\"Blitz\", 5)\nprint(k)\nprint([k])\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz (5)\n[Horse('Blitz', 5)]"
+        }
+      },
+      {
+        "instruction": "Write the class Horse with `__init__(self, name, level)` and a method `__str__` that **returns** `name (level)`. Create Horse(\"Blitz\", 5) and print the object directly with `print` (exactly Blitz (5)).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz (5)"
+        }
+      },
+      {
+        "instruction": "The class Horse with `__str__` is given. Create the list `team` with Horse(\"Blitz\", 5) and Horse(\"Stella\", 7) and print exactly Team: Blitz (5), Stella (7) – join the texts with `\", \".join([str(f) for f in team])`.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        return f\"{self.name} ({self.level})\"\n\n    def __lt__(self, other):\n        return self.level < other.level\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Team: Blitz (5), Stella (7)"
+        }
+      },
+      {
+        "instruction": "Write the class Horse with `__init__(self, name)` and `__repr__` that returns `Horse('name')`. Print the list `[Horse(\"Blitz\"), Horse(\"Stella\")]` with `print` (result: [Horse('Blitz'), Horse('Stella')]).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "[Horse('Blitz'), Horse('Stella')]"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Breeding Exercise 6: Comparing and Sorting",
+    "file": "lektion-06.md",
+    "lessonSummary": "Strong! Your objects can be compared and sorted.",
+    "tasks": [
+      {
+        "instruction": "Run this example: comparing and sorting.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __eq__(self, other):\n        return self.level == other.level\n\n    def __lt__(self, other):\n        return self.level < other.level\n\na = Horse(\"Blitz\", 5)\nb = Horse(\"Stella\", 9)\nprint(a == b)\nprint(a < b)\nfor f in sorted([b, a]):\n    print(f.name)\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "False\nTrue\nBlitz\nStella"
+        }
+      },
+      {
+        "instruction": "Write the class Horse with `__init__(self, name, level)` and `__eq__` (equal if the `level` is equal). Compare Horse(\"Blitz\", 5) with Horse(\"Stella\", 5) and with Horse(\"Sturm\", 8) and print both results on two lines.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True\nFalse"
+        }
+      },
+      {
+        "instruction": "The class Horse with `__lt__` is given. Create `team` with Horse(\"Blitz\", 5), Horse(\"Stella\", 9) and Horse(\"Sturm\", 2), sort with `sorted(team)` and print the names in sorted order line by line.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        return f\"{self.name} ({self.level})\"\n\n    def __lt__(self, other):\n        return self.level < other.level\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sturm\nBlitz\nStella"
+        }
+      },
+      {
+        "instruction": "The class Horse with `__lt__` and `__str__` is given. Sort `team` with Horse(\"Blitz\", 5), Horse(\"Stella\", 9), Horse(\"Sturm\", 2) with `sorted(team, reverse=True)` and print the first element with `print` (exactly Stella (9)).",
+        "codeTemplate": "class Horse:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        return f\"{self.name} ({self.level})\"\n\n    def __lt__(self, other):\n        return self.level < other.level\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stella (9)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Breeding Exercise 7: Calculating and Counting: __add__ and __len__",
+    "file": "lektion-07.md",
+    "lessonSummary": "Well done! Your objects can calculate and be counted.",
+    "tasks": [
+      {
+        "instruction": "Run this example: __add__ and __len__.",
+        "codeTemplate": "class Supply:\n    def __init__(self, amount):\n        self.amount = amount\n\n    def __add__(self, other):\n        return Supply(self.amount + other.amount)\n\n    def __str__(self):\n        return f\"Supply: {self.amount}\"\n\na = Supply(10)\nb = Supply(20)\nprint(a + b)\n\nclass Team:\n    def __init__(self):\n        self.mitglieder = []\n\n    def __len__(self):\n        return len(self.mitglieder)\n\nt = Team()\nt.mitglieder.append(\"Blitz\")\nt.mitglieder.append(\"Stella\")\nprint(len(t))\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Supply: 30\n2"
+        }
+      },
+      {
+        "instruction": "Write the class Supply with `__init__(self, amount)`, `__add__` (returns a new Supply with the sum) and `__str__` (returns Supply: number). Print Supply(10) + Supply(20) (exactly Supply: 30).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Supply: 30"
+        }
+      },
+      {
+        "instruction": "Write the class Team with `__init__(self)` (empty list `mitglieder`) and `__len__(self)` that returns the length of the list. Add Blitz, Stella and Sturm and print `len(team)` (3).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "3"
+        }
+      },
+      {
+        "instruction": "The class Supply with `__add__` and `__str__` is given. The list `lager = [Supply(10), Supply(20), Supply(30)]` is added up with a loop (start `total = Supply(0)`, then `total = total + v`). Print `total` (exactly Supply: 60).",
+        "codeTemplate": "class Supply:\n    def __init__(self, amount):\n        self.amount = amount\n\n    def __add__(self, other):\n        return Supply(self.amount + other.amount)\n\n    def __str__(self):\n        return f\"Supply: {self.amount}\"\n\nlager = [Supply(10), Supply(20), Supply(30)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Supply: 60"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "All bugs found! With inheritance `super().__init__`, the parent class in brackets and `return` in `__str__` matter.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Goal: The program should print Blitz. What is wrong?",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed):\n        self.speed = speed\n\nk = Racehorse(\"Blitz\", 30)\nprint(k.name)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Goal: The program should print I am Blitz. What is wrong?",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\nclass Racehorse:\n    def start(self):\n        print(\"leaves the starting box.\")\n\nk = Racehorse(\"Blitz\")\nk.introduce()\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "I am Blitz."
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Goal: The program should print Blitz (5). What is wrong?",
+        "codeTemplate": "class Horse:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        print(f\"{self.name} ({self.level})\")\n\nprint(Horse(\"Blitz\", 5))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz (5)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: The Child Class",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission accomplished: you inherited, overrode and used `super()`!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – inherit: the class Horse is given. Write Racehorse(Horse) with only `pass`, create Racehorse(\"Blitz\") and call `introduce()`.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "I am Blitz."
+        }
+      },
+      {
+        "instruction": "Step 2 – new attribute: the class Horse is given. Write Racehorse(Horse) with `__init__(self, name, speed=30)` (with `super()`). Create Racehorse(\"Blitz\") and print exactly Blitz: 30.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz: 30"
+        }
+      },
+      {
+        "instruction": "Step 3 – override: the class Horse is given. Override `run` in Racehorse(Horse) (prints Blitz sprints down the track.) and call it for Racehorse(\"Blitz\").",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz sprints down the track."
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: The Team",
+    "file": "mission-02.md",
+    "lessonSummary": "Mission accomplished: you control a mixed team through one common method!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – everyone acts: the classes Horse, Racehorse and Jumper are given. Create `team` with Racehorse(\"Blitz\"), Jumper(\"Stella\") and Horse(\"Sturm\") and call `run()` on each.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n    def power(self):\n        return 10\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed=30):\n        super().__init__(name)\n        self.speed = speed\n\n    def run(self):\n        print(f\"{self.name} sprints down the track.\")\n\n    def power(self):\n        return self.speed\n\nclass Jumper(Horse):\n    def __init__(self, name, height=50):\n        super().__init__(name)\n        self.height = height\n\n    def run(self):\n        print(f\"{self.name} jumps the fence.\")\n\n    def power(self):\n        return self.height\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz sprints down the track.\nStella jumps the fence.\nSturm trots gently."
+        }
+      },
+      {
+        "instruction": "Step 2 – total power: the classes (with `power()`) are given, and so is `team = [Racehorse(\"Blitz\"), Jumper(\"Stella\"), Horse(\"Sturm\")]` (power 30, 50 and 10). Add up all `power()` and print exactly Sum: 90.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n    def power(self):\n        return 10\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed=30):\n        super().__init__(name)\n        self.speed = speed\n\n    def run(self):\n        print(f\"{self.name} sprints down the track.\")\n\n    def power(self):\n        return self.speed\n\nclass Jumper(Horse):\n    def __init__(self, name, height=50):\n        super().__init__(name)\n        self.height = height\n\n    def run(self):\n        print(f\"{self.name} jumps the fence.\")\n\n    def power(self):\n        return self.height\n\nteam = [Racehorse(\"Blitz\"), Jumper(\"Stella\"), Horse(\"Sturm\")]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sum: 90"
+        }
+      },
+      {
+        "instruction": "Step 3 – the strongest: the classes and `team` (power 30, 50, 10) are given. Write `strongest(team)` that returns the object with the largest `power()` and print exactly Strongest: Stella.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n    def power(self):\n        return 10\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed=30):\n        super().__init__(name)\n        self.speed = speed\n\n    def run(self):\n        print(f\"{self.name} sprints down the track.\")\n\n    def power(self):\n        return self.speed\n\nclass Jumper(Horse):\n    def __init__(self, name, height=50):\n        super().__init__(name)\n        self.height = height\n\n    def run(self):\n        print(f\"{self.name} jumps the fence.\")\n\n    def power(self):\n        return self.height\n\nteam = [Racehorse(\"Blitz\"), Jumper(\"Stella\"), Horse(\"Sturm\")]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Strongest: Stella"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: The Magic Methods",
+    "file": "mission-03.md",
+    "lessonSummary": "Mission accomplished: `__str__`, `__lt__` and `__add__` are now part of your toolbox.",
+    "tasks": [
+      {
+        "instruction": "Step 1 – print: write the class Horse with `__init__(self, name, level)` and `__str__` (returns `name (level)`). Print Horse(\"Blitz\", 5) with `print` (exactly Blitz (5)).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz (5)"
+        }
+      },
+      {
+        "instruction": "Step 2 – sort: the class Horse with `__lt__` and `__str__` is given. Sort the list [Horse(\"Blitz\", 5), Horse(\"Stella\", 9), Horse(\"Sturm\", 2)] with `sorted` and print each object with `print`.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        return f\"{self.name} ({self.level})\"\n\n    def __lt__(self, other):\n        return self.level < other.level\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sturm (2)\nBlitz (5)\nStella (9)"
+        }
+      },
+      {
+        "instruction": "Step 3 – add: the class Supply with `__add__` and `__str__` is given. Print Supply(15) + Supply(25) + Supply(5) (exactly Supply: 45).",
+        "codeTemplate": "class Supply:\n    def __init__(self, amount):\n        self.amount = amount\n\n    def __add__(self, other):\n        return Supply(self.amount + other.amount)\n\n    def __str__(self):\n        return f\"Supply: {self.amount}\"\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Supply: 45"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra Challenge 1: Three Levels",
+    "file": "boss-01.md",
+    "lessonSummary": "Done: you know class chains and `super()` across several levels!",
+    "tasks": [
+      {
+        "instruction": "Step 1: the classes Horse, Racehorse, Jumper are given. Write Champion(Racehorse) with `pass`, create Champion(\"Blitz\") and check with `isinstance` for Horse, Racehorse and Jumper (three lines).",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n    def power(self):\n        return 10\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed=30):\n        super().__init__(name)\n        self.speed = speed\n\n    def run(self):\n        print(f\"{self.name} sprints down the track.\")\n\n    def power(self):\n        return self.speed\n\nclass Jumper(Horse):\n    def __init__(self, name, height=50):\n        super().__init__(name)\n        self.height = height\n\n    def run(self):\n        print(f\"{self.name} jumps the fence.\")\n\n    def power(self):\n        return self.height\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True\nTrue\nFalse"
+        }
+      },
+      {
+        "instruction": "Step 2: the classes are given. Write Champion(Racehorse) that overrides `run`: first `super().run()`, then Blitz is a master!. Call it for Champion(\"Blitz\").",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n    def power(self):\n        return 10\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed=30):\n        super().__init__(name)\n        self.speed = speed\n\n    def run(self):\n        print(f\"{self.name} sprints down the track.\")\n\n    def power(self):\n        return self.speed\n\nclass Jumper(Horse):\n    def __init__(self, name, height=50):\n        super().__init__(name)\n        self.height = height\n\n    def run(self):\n        print(f\"{self.name} jumps the fence.\")\n\n    def power(self):\n        return self.height\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz sprints down the track.\nBlitz is a master!"
+        }
+      },
+      {
+        "instruction": "Step 3: the classes are given. Write Champion(Racehorse) that overrides `power` and returns **twice** as much as its parent (`super().power() * 2`). Print exactly Power: 60 for Champion(\"Blitz\").",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n    def power(self):\n        return 10\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed=30):\n        super().__init__(name)\n        self.speed = speed\n\n    def run(self):\n        print(f\"{self.name} sprints down the track.\")\n\n    def power(self):\n        return self.speed\n\nclass Jumper(Horse):\n    def __init__(self, name, height=50):\n        super().__init__(name)\n        self.height = height\n\n    def run(self):\n        print(f\"{self.name} jumps the fence.\")\n\n    def power(self):\n        return self.height\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Power: 60"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra Challenge 2: The Arena",
+    "file": "boss-02.md",
+    "lessonSummary": "Done: polymorphism in competition!",
+    "tasks": [
+      {
+        "instruction": "Step 1: the classes (with `power()`) and `team = [Racehorse(\"Blitz\", 40), Jumper(\"Stella\", 25), Horse(\"Sturm\")]` are given. Add all powers and print exactly Sum: 75.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n    def power(self):\n        return 10\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed=30):\n        super().__init__(name)\n        self.speed = speed\n\n    def run(self):\n        print(f\"{self.name} sprints down the track.\")\n\n    def power(self):\n        return self.speed\n\nclass Jumper(Horse):\n    def __init__(self, name, height=50):\n        super().__init__(name)\n        self.height = height\n\n    def run(self):\n        print(f\"{self.name} jumps the fence.\")\n\n    def power(self):\n        return self.height\n\nteam = [Racehorse(\"Blitz\", 40), Jumper(\"Stella\", 25), Horse(\"Sturm\")]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sum: 75"
+        }
+      },
+      {
+        "instruction": "Step 2: the classes and `team` (power 40, 25, 10) are given. Count how many objects have a power of at least 30 and print exactly Count: 1.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n    def power(self):\n        return 10\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed=30):\n        super().__init__(name)\n        self.speed = speed\n\n    def run(self):\n        print(f\"{self.name} sprints down the track.\")\n\n    def power(self):\n        return self.speed\n\nclass Jumper(Horse):\n    def __init__(self, name, height=50):\n        super().__init__(name)\n        self.height = height\n\n    def run(self):\n        print(f\"{self.name} jumps the fence.\")\n\n    def power(self):\n        return self.height\n\nteam = [Racehorse(\"Blitz\", 40), Jumper(\"Stella\", 25), Horse(\"Sturm\")]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 1"
+        }
+      },
+      {
+        "instruction": "Step 3: the classes and `team` (power 40, 25, 10) are given. Write `power_of(figure)` that returns `figure.power()`, sort with `sorted(team, key=power_of)` and print the names line by line.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n    def power(self):\n        return 10\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed=30):\n        super().__init__(name)\n        self.speed = speed\n\n    def run(self):\n        print(f\"{self.name} sprints down the track.\")\n\n    def power(self):\n        return self.speed\n\nclass Jumper(Horse):\n    def __init__(self, name, height=50):\n        super().__init__(name)\n        self.height = height\n\n    def run(self):\n        print(f\"{self.name} jumps the fence.\")\n\n    def power(self):\n        return self.height\n\nteam = [Racehorse(\"Blitz\", 40), Jumper(\"Stella\", 25), Horse(\"Sturm\")]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sturm\nStella\nBlitz"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra Challenge 3: Numbers with Magic",
+    "file": "boss-03.md",
+    "lessonSummary": "Done: your Supply class behaves almost like a number!",
+    "tasks": [
+      {
+        "instruction": "Step 1: write Supply with `__init__(self, amount)`, `__add__` and `__eq__` (equal if the amount is equal). Print `Supply(10) + Supply(40) == Supply(50)` (True).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True"
+        }
+      },
+      {
+        "instruction": "Step 2: write Team with `__init__(self)` (empty list `mitglieder`), `__len__` and `__str__` (returns Team: number). Add Blitz and Stella and print the object with `print` (exactly Team: 2).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Team: 2"
+        }
+      },
+      {
+        "instruction": "Step 3: write Supply with `__init__(self, amount)`, `__lt__` (smaller if `amount` is smaller) and `__str__` (returns Supply: number), sort [Supply(30), Supply(10), Supply(20)] and print every element.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Supply: 10\nSupply: 20\nSupply: 30"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-04",
+    "section": "boss",
+    "title": "Extra Challenge 4: Everything Together",
+    "file": "boss-04.md",
+    "lessonSummary": "Done: inheritance, dictionaries, randomness and JSON work together!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – dictionary of classes: the classes are given. Build `klassen = {\"Racehorse\": Racehorse, \"Jumper\": Jumper}` and create an object through the name `klassen[\"Racehorse\"](\"Blitz\")`. Call `run()`.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n    def power(self):\n        return 10\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed=30):\n        super().__init__(name)\n        self.speed = speed\n\n    def run(self):\n        print(f\"{self.name} sprints down the track.\")\n\n    def power(self):\n        return self.speed\n\nclass Jumper(Horse):\n    def __init__(self, name, height=50):\n        super().__init__(name)\n        self.height = height\n\n    def run(self):\n        print(f\"{self.name} jumps the fence.\")\n\n    def power(self):\n        return self.height\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz sprints down the track."
+        }
+      },
+      {
+        "instruction": "Step 2 – randomness: the classes are given. Pick a class with `random.choice([Racehorse, Jumper])`, create an object from it and print `isinstance(object, Horse)` (True).",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n    def power(self):\n        return 10\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed=30):\n        super().__init__(name)\n        self.speed = speed\n\n    def run(self):\n        print(f\"{self.name} sprints down the track.\")\n\n    def power(self):\n        return self.speed\n\nclass Jumper(Horse):\n    def __init__(self, name, height=50):\n        super().__init__(name)\n        self.height = height\n\n    def run(self):\n        print(f\"{self.name} jumps the fence.\")\n\n    def power(self):\n        return self.height\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True"
+        }
+      },
+      {
+        "instruction": "Step 3 – save as JSON: the classes are given. Create Racehorse(\"Blitz\") and build `daten = {\"typ\": type(f).__name__, \"name\": f.name}` (`type(f).__name__` gives the class name as text). Print `json.dumps(daten)`.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n    def power(self):\n        return 10\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed=30):\n        super().__init__(name)\n        self.speed = speed\n\n    def run(self):\n        print(f\"{self.name} sprints down the track.\")\n\n    def power(self):\n        return self.speed\n\nclass Jumper(Horse):\n    def __init__(self, name, height=50):\n        super().__init__(name)\n        self.height = height\n\n    def run(self):\n        print(f\"{self.name} jumps the fence.\")\n\n    def power(self):\n        return self.height\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{\"typ\": \"Racehorse\", \"name\": \"Blitz\"}"
+        }
+      },
+      {
+        "instruction": "Step 4 – load JSON: the classes and the text `text = '{\"typ\": \"Racehorse\", \"name\": \"Blitz\"}'` are given. Read it with `json.loads`, look up the class in the dictionary `klassen` and rebuild the object. Call `run()`.",
+        "codeTemplate": "class Horse:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def run(self):\n        print(f\"{self.name} trots gently.\")\n\n    def power(self):\n        return 10\n\nclass Racehorse(Horse):\n    def __init__(self, name, speed=30):\n        super().__init__(name)\n        self.speed = speed\n\n    def run(self):\n        print(f\"{self.name} sprints down the track.\")\n\n    def power(self):\n        return self.speed\n\nclass Jumper(Horse):\n    def __init__(self, name, height=50):\n        super().__init__(name)\n        self.height = height\n\n    def run(self):\n        print(f\"{self.name} jumps the fence.\")\n\n    def power(self):\n        return self.height\n\nklassen = {\"Racehorse\": Racehorse, \"Jumper\": Jumper}\ntext = '{\"typ\": \"Racehorse\", \"name\": \"Blitz\"}'\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz sprints down the track."
+        }
+      }
+    ]
+  }
+]
