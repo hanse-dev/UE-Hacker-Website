@@ -28,8 +28,9 @@ test.describe('Woche 12: Abschlussprojekt Text-Adventure', () => {
         await startKernel(page);
         await expect(page.locator('.btn-run-all').first()).toBeEnabled({ timeout: 120000 });
         await page.locator('.btn-run-all').first().click();
-        // Das Finale endet mit dem Sieg- oder Game-Over-Text - beides ist ein gueltiger Lauf.
-        await expect(page.locator('.cell-output').last()).toContainText(/🏆|💀/, { timeout: 30000 });
+        // Die Loesungen sind je Aufgabe eine Zelle (kein durchlaufendes Spiel mehr): Lauf ist gueltig, wenn die
+        // letzte Zelle ausgefuehrt wurde und nirgends ein Fehler steht.
+        await expect(page.locator('.cell-output').last()).toContainText(/\S/, { timeout: 60000 });
         await expect(page.locator('.output-error')).toHaveCount(0);
       }
     });

@@ -5,6 +5,8 @@ import {
   scoreQuizAnswers,
   getCorrectIndices,
   explanationForAnswer,
+  validateOutput,
+  missingCodeParts,
 } from '../src/composables/useTaskValidation.js';
 
 function shuffleList(items) {
@@ -165,5 +167,30 @@ test.describe('Checks: Logik & Content', () => {
       });
       expect(shuffled.options[shuffled.correctIndex]).toBe('print("Hi")');
     }
+  });
+});
+
+
+test.describe('Aufgaben-Validierung: codeContains (Struktur-Pruefung)', () => {
+  const v = { type: 'output_contains', expected: 'Hallo', codeContains: ['def', 'super()'] };
+
+  test('hart codiertes print besteht nicht, richtige Struktur schon', () => {
+    expect(validateOutput('Hallo', v, undefined, undefined, 'print("Hallo")')).toBe(false);
+    expect(validateOutput('Hallo', v, undefined, undefined, 'def f():\n    super().x()\nprint("Hallo")')).toBe(true);
+  });
+
+  test('ohne mitgegebenen Code (CodeChallenge) wird die Struktur nicht geprueft', () => {
+    expect(validateOutput('Hallo', v)).toBe(true);
+  });
+
+  test('Kommentare zaehlen nicht, Woerter werden ganz gematcht', () => {
+    expect(missingCodeParts('# def super()\nundefined = 1', v)).toEqual(['def', 'super()']);
+    expect(missingCodeParts('def a():\n    return super().b()', v)).toEqual([]);
+    expect(missingCodeParts('json.dumps(x)', { codeContains: ['json.dump'] })).toEqual(['json.dump']);
+    expect(missingCodeParts('json.dump(x, f)', { codeContains: ['json.dump'] })).toEqual([]);
+  });
+
+  test('falsche Ausgabe faellt trotz richtiger Struktur durch', () => {
+    expect(validateOutput('Tschuess', v, undefined, undefined, 'def f():\n    super().x()')).toBe(false);
   });
 });

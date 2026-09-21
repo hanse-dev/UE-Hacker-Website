@@ -222,3 +222,43 @@ test.describe('Python Woche 1 Abenteuer als Einzel-Lektionen', () => {
     await expect(page.locator('.tour-stepper > .progress-stepper')).toHaveCount(0);
   });
 });
+
+test.describe('Aufgaben-Pruefung: Struktur und vorgegebene Eingaben', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => localStorage.removeItem('ue-hacker-lang'));
+  });
+
+  async function startKernel(page) {
+    await page.locator('.btn-kernel').click({ force: true });
+    await expect(page.locator('.btn-kernel')).toBeDisabled({ timeout: 60000 });
+  }
+
+  test('for-Aufgabe: hart codierte Ausgabe wird abgelehnt, echte Schleife besteht', async ({ page }) => {
+    await page.goto('/kurs/python-12-wochen-grundkurs?week=4&variant=pferde');
+    await startKernel(page);
+    const task = page.locator('.task-block').nth(1);
+    await task.locator('.code-editor').fill('print("Hufschlag")\nprint("Hufschlag")\nprint("Hufschlag")');
+    await task.locator('.btn-check').click();
+    await expect(task.locator('.feedback-error')).toContainText('for', { timeout: 10000 });
+    await task.locator('.code-editor').fill('for i in range(3):\n    print("Hufschlag")');
+    await task.locator('.btn-check').click();
+    await expect(task.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+  });
+
+  test('input()-Aufgabe: Pruefen nutzt die vorgegebene Eingabe, kein Eingabefenster', async ({ page }) => {
+    let dialogs = 0;
+    page.on('dialog', (d) => { dialogs += 1; d.dismiss(); });
+    await page.goto('/kurs/python-12-wochen-grundkurs?week=1&variant=abenteuer');
+    await page.locator('.js-course-tour .stepper-step').nth(3).click(); // Lektion 4: input()
+    await startKernel(page);
+    const task = page.locator('.task-block').nth(1);
+    await task.locator('.code-editor').fill('waffe = input("Waffe? ")\nprint("Kampfbereit mit: " + waffe)');
+    await task.locator('.btn-check').click();
+    await expect(task.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+    expect(dialogs).toBe(0);
+    // falsche Verarbeitung der Eingabe besteht nicht
+    await task.locator('.code-editor').fill('waffe = input("Waffe? ")\nprint("Kampfbereit mit: Schwert")');
+    await task.locator('.btn-check').click();
+    await expect(task.locator('.feedback-error')).toBeVisible({ timeout: 10000 });
+  });
+});

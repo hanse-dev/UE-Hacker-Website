@@ -50,6 +50,10 @@ from io import StringIO
 from js import window, document
 
 def browser_input(prompt=''):
+    # Pruefung mit vorgegebenen Eingaben (validation.stdin, LessonView): kein Eingabefenster
+    queue = getattr(window, 'ueStdinQueue', None)
+    if queue is not None:
+        return str(queue.shift()) if queue.length > 0 else ''
     result = window.prompt(str(prompt))
     return result if result is not None else ''
 

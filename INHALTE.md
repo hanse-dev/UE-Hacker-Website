@@ -297,6 +297,17 @@ Ordner-Mapping (immer paarweise anpassen):
 - [ ] Einträge in `rewards-manifest.json` + `rewards-manifest-en.json`
 - [ ] Ggf. Download-ZIP neu generieren (`npm run build:cells && npm run pack:notebooks`)
 
+### Python-Lektions-Format (`content/python-woche{N}-{thema}[-en]/lessons.json`): Prüf-Felder
+- [ ] `validation.expected` — Teilstring der Ausgabe (Pflicht, `output_contains`).
+- [ ] `validation.codeContains` (optional, Array) — Bausteine, die im Code der Lernenden stehen müssen
+      (`def`, `class`, `super()`, `try`, `except`, `while`, `for`, `import`, `__str__` …, `json.dumps` …).
+      Kommentarzeilen zählen nicht, Wörter werden ganz gematcht. Nie bei Beispielen, und nie ein Baustein, der
+      schon im vorgegebenen `codeTemplate` steht (Test in `python-lektionen-format.spec.js`). Für Woche 3–12
+      wird das aus der Aufgabenstellung abgeleitet (`Schreibe eine Funktion` → `def`, `for-Schleife` → `for` …).
+- [ ] `validation.stdin` (optional, Array aus Texten) — Antworten für `input()` beim **Prüfen** (kein
+      Eingabefenster, Ausgabe deterministisch); **Ausführen** öffnet weiter das Eingabefenster. In der
+      Aufgabe nennen, was automatisch eingegeben wird, und `expected` darauf stützen.
+
 ### Wenn du einen Projekt-Kurs hinzufügst (wie Cäsar-Chiffre, Morsecode, Zahlen-Detektiv):
 - [ ] Neuer Ordner `content/{contentPath}/`: `beschreibung.md`, `lektion-01.md`…`lektion-NN.md`,
       `lessons.json` (Schema wie beim interaktiven Kurs: `id`/`title`/`file`/`lessonSummary`/
