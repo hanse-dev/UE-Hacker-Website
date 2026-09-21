@@ -1,0 +1,3 @@
+"""### Extra Challenge 3: The Random Trail Ride – Task 2
+
+Step 2 – Monsters: The list monsters = [\"Oxer\", \"Ditch\", \"Wall\"] is provided. Go through five rooms: If random.randint(0, 1) equals 1, the room holds a random monster (random.choice), otherwise the text \"empty\". Collect the contents with append() in contents and count the monsters (contents not equal to \"empty\") in monster_count. Print exactly Rooms: 5 and on the next line Count fits: True (monster_count is between 0 and 5)."""

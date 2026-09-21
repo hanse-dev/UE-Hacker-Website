@@ -1,0 +1,3 @@
+"""### Extra-Herausforderung 3: Der Zufalls-Ausritt – Aufgabe 2
+
+Schritt 2 – Monster: Die Liste monster = [\"Oxer\", \"Graben\", \"Mauer\"] ist vorgegeben. Gehe fünf Räume durch: Ist random.randint(0, 1) gleich 1, steht im Raum ein zufälliges Monster (random.choice), sonst der Text \"leer\". Sammle die Inhalte mit append() in inhalte und zähle die Monster (Inhalte ungleich \"leer\") in monster_anzahl. Gib genau Räume: 5 und in der nächsten Zeile Anzahl passt: True aus (monster_anzahl liegt zwischen 0 und 5)."""

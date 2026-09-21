@@ -1,2 +1,2 @@
-"""# 🔧 Solutions – 🚀 Week 7 – Modules and Libraries: The Module Banks of the Space Station
-> Tried it yourself first? Then check here!"""
+"""# 🔧 Week 7 – Solutions
+> Tried it yourself first? Then check here! There are often several right ways – these are possible solutions to the tasks in the lessons."""
