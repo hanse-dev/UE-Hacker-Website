@@ -1,6 +1,3 @@
-# Problem: Dictionary nicht geschlossen
-schiff = {
-    "name": "Nebula-Explorer",
-    "typ": "Forschung"
-}
-print(f"Schiff: {schiff}")
+mitglied = {"name": "Nova", "rolle": "Pilotin", "rang": 4, "energie": 120}
+print(f"Name: {mitglied['name']}")
+print(f"Rang: {mitglied['rang']}")

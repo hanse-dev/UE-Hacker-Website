@@ -1,0 +1,3 @@
+"""### Extra-Herausforderung 4: Das große Datenarchiv – Aufgabe 2
+
+Schritt 2 – Liste von Dictionaries (Woche 5/6): Schreibe erstelle_mission(name, schwierigkeit), die ein Dictionary mit name, schwierigkeit und status \"offen\" zurückgibt. Lege die Liste missionen an und füge mit append() drei Mission-Einträge hinzu (Signal orten / 1, Sonde starten / 2, Hülle reparieren / 3). Gib genau Mission-Anzahl: 3 und in der nächsten Zeile Status: offen aus (Status des ersten)."""

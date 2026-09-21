@@ -1,0 +1,3 @@
+"""### Extra-Herausforderung 4: Das große Stallarchiv – Aufgabe 2
+
+Schritt 2 – Liste von Dictionaries (Woche 5/6): Schreibe erstelle_training(name, schwierigkeit), die ein Dictionary mit name, schwierigkeit und status \"offen\" zurückgibt. Lege die Liste trainings an und füge mit append() drei Training-Einträge hinzu (Springen üben / 1, Ausritt planen / 2, Fell pflegen / 3). Gib genau Training-Anzahl: 3 und in der nächsten Zeile Status: offen aus (Status des ersten)."""
