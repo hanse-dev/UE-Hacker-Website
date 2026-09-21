@@ -1,0 +1,3 @@
+"""### Extra-Herausforderung 3: Die Kampf-Simulation – Aufgabe 3
+
+Schritt 3 – Kampf: kampfrunde ist vorgegeben. Schreibe simuliere_kampf(leben, schaden, runden): Eine for-Schleife (Runde 1 bis runden) ruft jedes Mal kampfrunde auf und gibt Runde <Nummer>: Leben <leben> aus. Am Ende gibt die Funktion das Leben zurück. Rufe sie mit (100, 30, 4) auf, speichere das Ergebnis in ende und gib Ende: <ende> aus."""

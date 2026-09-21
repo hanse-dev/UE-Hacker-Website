@@ -1,2 +1,2 @@
-"""# 🔧 Lösungen – 🚀 Woche 5 – Funktionen: Die Systemprotokolle
-> Erst selber versucht? Dann check hier nach!"""
+"""# 🔧 Woche 5 – Lösungen
+> Erst selber versucht? Dann check hier nach! Es gibt oft mehrere richtige Wege – das hier sind mögliche Lösungen zu den Aufgaben der Lektionen."""

@@ -85,7 +85,7 @@ test.describe('Lektions-Format: Wochen-Tour', () => {
 
 // Wochen mit passenden Lösungen (SOLUTION_WEEKS wächst, sobald eine Woche fertig ist): das Nachschlagewerk "Loesungen" ist aus den Referenzloesungen der Aufgaben erzeugt (eine Zelle je
 // Aufgabe) - jede Aufgabenstellung muss dort stehen, sonst passen Loesungen und Aufgaben nicht mehr zusammen.
-const SOLUTION_WEEKS = [1, 2, 3, 4, 10, 11, 12];
+const SOLUTION_WEEKS = [1, 2, 3, 4, 5, 10, 11, 12];
 test.describe('Lektions-Format: Lösungen passen zu den Aufgaben', () => {
   const EN_THEME = { abenteuer: 'adventure', pferde: 'horses', scifi: 'scifi' };
   for (const week of SOLUTION_WEEKS) for (const theme of THEMES) for (const lang of LANGS) {

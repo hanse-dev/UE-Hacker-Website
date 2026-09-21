@@ -1,2 +1,2 @@
-"""# 🔧 Solutions – 🐴 Week 5 – Functions: The Training Routines
-> Tried it yourself first? Then check here!"""
+"""# 🔧 Week 5 – Solutions
+> Tried it yourself first? Then check here! There are often several right ways – these are possible solutions to the tasks in the lessons."""
