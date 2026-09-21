@@ -1,0 +1,3 @@
+"""### Extra-Herausforderung 1: Der Schatzkammer-Katalog – Aufgabe 3
+
+Schritt 3 – Filtern: Die Liste eintraege = [\"Gold-1\", \"Silber-2\", \"Gold-3\", \"Kristall-4\"] ist vorgegeben. Schreibe filtere_eintraege(liste, suchbegriff), die eine neue Liste mit allen Einträgen zurückgibt, die den Suchbegriff enthalten (suchbegriff in eintrag). Gib das Ergebnis für \"Gold\" aus (['Gold-1', 'Gold-3']) und in der nächsten Zeile Treffer: 2."""

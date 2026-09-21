@@ -1,0 +1,3 @@
+"""### Extra-Herausforderung 3: Die Turnier-Datenbank – Aufgabe 2
+
+Schritt 2 – Suchen: Die Liste turniere = [[\"Springturnier\", \"Halle\", 4], [\"Dressurturnier\", \"Platz\", 2], [\"Ausritt\", \"Wald\", 3]] ist vorgegeben. Schreibe suche_turniere(liste, begriff), die alle Turniere zurückgibt, in deren Namen (Index 0) der Begriff vorkommt. Suche nach \"turnier\" und gib genau Gefunden: 2 aus (len)."""

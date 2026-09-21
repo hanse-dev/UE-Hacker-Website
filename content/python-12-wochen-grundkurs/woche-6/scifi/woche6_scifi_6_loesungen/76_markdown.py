@@ -1,0 +1,3 @@
+"""### Extra-Herausforderung 1: Der Chip-Katalog – Aufgabe 3
+
+Schritt 3 – Filtern: Die Liste eintraege = [\"Chip-1\", \"Kabel-2\", \"Chip-3\", \"Modul-4\"] ist vorgegeben. Schreibe filtere_eintraege(liste, suchbegriff), die eine neue Liste mit allen Einträgen zurückgibt, die den Suchbegriff enthalten (suchbegriff in eintrag). Gib das Ergebnis für \"Chip\" aus (['Chip-1', 'Chip-3']) und in der nächsten Zeile Treffer: 2."""

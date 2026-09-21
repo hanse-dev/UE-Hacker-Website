@@ -1,3 +1,2 @@
-# Problem: list not closed
-horses = ["Thunder", "Luna", "Storm"]
-print(f"Horses: {horses}")
+horses = ["Stormwind", "Lightning", "Luna", "Fox", "Balu"]
+print(f"Count: {len(horses)}")

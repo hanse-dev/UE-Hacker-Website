@@ -1,3 +1,2 @@
-# Problem: Liste nicht geschlossen
-systeme = ["Waffensystem", "Schildsystem", "Antriebssystem"]
-print(f"Systeme: {systeme}")
+module = ["Antrieb", "Sensor", "Schild", "Radar", "Funk"]
+print(f"Anzahl: {len(module)}")

@@ -1,2 +1,2 @@
-"""# 🔧 Solutions – 🚀 Week 6 – Lists: The Data Banks of the Space Station
-> Tried it yourself first? Then check here!"""
+"""# 🔧 Week 6 – Solutions
+> Tried it yourself first? Then check here! There are often several right ways – these are possible solutions to the tasks in the lessons."""

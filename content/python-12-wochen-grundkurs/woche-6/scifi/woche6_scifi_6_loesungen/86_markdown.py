@@ -1,0 +1,3 @@
+"""### Extra-Herausforderung 3: Die Missions-Datenbank – Aufgabe 2
+
+Schritt 2 – Suchen: Die Liste missionen = [[\"Scan-Mission\", \"Mars\", 4], [\"Rettungs-Mission\", \"Titan\", 2], [\"Reparaturflug\", \"Station\", 3]] ist vorgegeben. Schreibe suche_missionen(liste, begriff), die alle Missionen zurückgibt, in deren Namen (Index 0) der Begriff vorkommt. Suche nach \"Mission\" und gib genau Gefunden: 2 aus (len)."""

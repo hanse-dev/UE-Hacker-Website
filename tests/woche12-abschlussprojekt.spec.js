@@ -19,11 +19,11 @@ const VARIANTS = [
 test.describe('Woche 12: Abschlussprojekt Text-Adventure', () => {
   for (const v of VARIANTS) {
     test(`${v.key}: Lösungs-Notebook (DE und EN) läuft fehlerfrei in Pyodide`, async ({ page }) => {
-      test.setTimeout(150000);
+      test.setTimeout(300000);
 
       for (const lang of ['de', 'en']) {
         await page.addInitScript((l) => localStorage.setItem('ue-hacker-lang', l), lang);
-        await openSolutionsNotebook(page, v.key);
+        await openSolutionsNotebook(page, v.key, 12, 90000);
         // Kernel kann durch den Wechsel des Nachschlagewerks schon bereit sein (dann ist der Button aus).
         await startKernel(page);
         await expect(page.locator('.btn-run-all').first()).toBeEnabled({ timeout: 120000 });

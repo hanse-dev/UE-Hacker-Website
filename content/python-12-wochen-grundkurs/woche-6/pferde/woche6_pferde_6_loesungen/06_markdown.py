@@ -1,1 +1,3 @@
-"""**Erklärung:** Python kennt `reverse` nicht. Entweder ist der Name falsch geschrieben, oder die Variable wurde noch nicht angelegt."""
+"""### Übung 2: Auf Einträge zugreifen – Aufgabe 1
+
+Die Liste pferde ist vorgegeben. Gib den zweiten Eintrag als Zweites: Blitz und den vorletzten als Vorletztes: Fuchs aus (mit den Indizes 1 und -2)."""
