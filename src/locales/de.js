@@ -266,6 +266,8 @@ export default {
   'lesson.hintSoft':          'Noch nicht ganz – schau dir deine Ausgabe oben an und vergleiche sie mit der Aufgabenstellung.',
   'lesson.hintStructure':     'Die Ausgabe stimmt – aber die Aufgabe verlangt, dass du im Code {items} benutzt.',
   'lesson.hintExpected':      'Die Ausgabe stimmt noch nicht. Erwartet wurde etwas mit: "{expected}"',
+  'lesson.showSolution':      'Lösung anzeigen',
+  'lesson.solutionLabel':     'Lösung:',
 
   // ── JS-Sandbox-Lektion (JsLessonView.vue + JsSandboxFrame.vue) ───────────
   'jsLesson.editorHint':   'Dein Code läuft in einem eigenen, abgeschotteten Bereich. Schau dir zuerst das Beispiel an und führe es aus – danach bist du an der Reihe. Jeder Klick auf „Ausführen"/„Prüfen" startet frisch neu.',

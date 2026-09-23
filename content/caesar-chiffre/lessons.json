@@ -8,11 +8,13 @@
       {
         "instruction": "Gib mit ord() den Zeichencode von 'a' aus.",
         "codeTemplate": "",
+        "solution": "print(ord('a'))",
         "validation": { "type": "output_contains", "expected": "97" }
       },
       {
         "instruction": "Gib mit chr() heraus, welcher Buchstabe zum Zeichencode 100 gehört.",
         "codeTemplate": "",
+        "solution": "print(chr(100))",
         "isBonus": true,
         "validation": { "type": "output_contains", "expected": "d" }
       }
@@ -27,11 +29,13 @@
       {
         "instruction": "Verschiebe den Buchstaben 'y' um 3 Stellen (mit Wraparound) und gib das Ergebnis aus.",
         "codeTemplate": "",
+        "solution": "start = ord('a')\nposition = ord('y') - start\nneue_position = (position + 3) % 26\nprint(chr(start + neue_position))",
         "validation": { "type": "output_contains", "expected": "b" }
       },
       {
         "instruction": "Bonus: Verschiebe 'z' um 1 Stelle. Was kommt heraus?",
         "codeTemplate": "",
+        "solution": "start = ord('a')\nposition = ord('z') - start\nneue_position = (position + 1) % 26\nprint(chr(start + neue_position))",
         "isBonus": true,
         "validation": { "type": "output_contains", "expected": "a" }
       }
@@ -45,7 +49,8 @@
     "tasks": [
       {
         "instruction": "Schreibe die Funktion verschluesseln(text, verschiebung) (wie in der Lektion erklärt) und gib verschluesseln('hallo', 3) aus.",
-        "codeTemplate": "def verschluesseln(text, verschiebung):\n    ergebnis = \"\"\n    for zeichen in text:\n        if zeichen.isalpha():\n            start = ord('a')\n            position = ord(zeichen) - start\n            neue_position = (position + verschiebung) % 26\n            ergebnis = ergebnis + chr(start + neue_position)\n        else:\n            ergebnis = ergebnis + zeichen\n    return ergebnis\n\n# dein Aufruf hier\n",
+        "codeTemplate": "def verschluesseln(text, verschiebung):\n    # dein Code hier\n    pass\n\n# dein Aufruf hier\n",
+        "solution": "def verschluesseln(text, verschiebung):\n    ergebnis = \"\"\n    for zeichen in text:\n        if zeichen.isalpha():\n            start = ord('a')\n            position = ord(zeichen) - start\n            neue_position = (position + verschiebung) % 26\n            ergebnis = ergebnis + chr(start + neue_position)\n        else:\n            ergebnis = ergebnis + zeichen\n    return ergebnis\n\nprint(verschluesseln('hallo', 3))",
         "validation": { "type": "output_contains", "expected": "kdoor" }
       }
     ]
@@ -59,6 +64,7 @@
       {
         "instruction": "Definiere verschluesseln und entschluesseln (entschluesseln ruft verschluesseln mit negativer Verschiebung auf) und gib entschluesseln('kdoor', 3) aus.",
         "codeTemplate": "def verschluesseln(text, verschiebung):\n    ergebnis = \"\"\n    for zeichen in text:\n        if zeichen.isalpha():\n            start = ord('a')\n            position = ord(zeichen) - start\n            neue_position = (position + verschiebung) % 26\n            ergebnis = ergebnis + chr(start + neue_position)\n        else:\n            ergebnis = ergebnis + zeichen\n    return ergebnis\n\ndef entschluesseln(text, verschiebung):\n    # dein Code hier\n    pass\n\n# dein Aufruf hier\n",
+        "solution": "def verschluesseln(text, verschiebung):\n    ergebnis = \"\"\n    for zeichen in text:\n        if zeichen.isalpha():\n            start = ord('a')\n            position = ord(zeichen) - start\n            neue_position = (position + verschiebung) % 26\n            ergebnis = ergebnis + chr(start + neue_position)\n        else:\n            ergebnis = ergebnis + zeichen\n    return ergebnis\n\ndef entschluesseln(text, verschiebung):\n    return verschluesseln(text, -verschiebung)\n\nprint(entschluesseln('kdoor', 3))",
         "validation": { "type": "output_contains", "expected": "hallo" }
       }
     ]
@@ -73,6 +79,7 @@
       {
         "instruction": "Probiere mit einer Schleife über range(26) alle Verschiebungen für den Geheimtext 'uwtojpy' aus und gib jede Möglichkeit aus. Eine Zeile ergibt ein echtes Wort!",
         "codeTemplate": "def verschluesseln(text, verschiebung):\n    ergebnis = \"\"\n    for zeichen in text:\n        if zeichen.isalpha():\n            start = ord('a')\n            position = ord(zeichen) - start\n            neue_position = (position + verschiebung) % 26\n            ergebnis = ergebnis + chr(start + neue_position)\n        else:\n            ergebnis = ergebnis + zeichen\n    return ergebnis\n\ndef entschluesseln(text, verschiebung):\n    return verschluesseln(text, -verschiebung)\n\ngeheimtext = \"uwtojpy\"\n# deine Schleife hier\n",
+        "solution": "def verschluesseln(text, verschiebung):\n    ergebnis = \"\"\n    for zeichen in text:\n        if zeichen.isalpha():\n            start = ord('a')\n            position = ord(zeichen) - start\n            neue_position = (position + verschiebung) % 26\n            ergebnis = ergebnis + chr(start + neue_position)\n        else:\n            ergebnis = ergebnis + zeichen\n    return ergebnis\n\ndef entschluesseln(text, verschiebung):\n    return verschluesseln(text, -verschiebung)\n\ngeheimtext = \"uwtojpy\"\nfor verschiebung in range(26):\n    print(entschluesseln(geheimtext, verschiebung))",
         "validation": { "type": "output_contains", "expected": "projekt" }
       }
     ]

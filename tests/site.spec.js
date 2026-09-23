@@ -189,6 +189,20 @@ test.describe('Cäsar-Chiffre-Projekt', () => {
     await expect(page.locator('.lesson-item.completed')).toHaveCount(1);
     await expect(page.locator('.lesson-item').nth(1)).not.toHaveClass(/locked/);
   });
+
+  test('Lösung wird erst nach Klick auf "Lösung anzeigen" sichtbar', async ({ page }) => {
+    test.setTimeout(60000);
+    await page.goto('/kurs/projekt-caesar-chiffre');
+    await page.waitForSelector('.task-block', { timeout: 15000 });
+
+    const task = page.locator('.task-block').first();
+    await expect(task.locator('.solution-code')).toHaveCount(0);
+    await expect(task.locator('.btn-solution')).toBeVisible();
+
+    await task.locator('.btn-solution').click();
+    await expect(task.locator('.solution-code')).toContainText("print(ord('a'))");
+    await expect(task.locator('.btn-solution')).toHaveCount(0);
+  });
 });
 
 test.describe('Weitere Kursseiten', () => {
