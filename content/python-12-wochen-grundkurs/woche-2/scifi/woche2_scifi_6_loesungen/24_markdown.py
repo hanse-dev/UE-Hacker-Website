@@ -1,3 +1,3 @@
-"""### Systemprotokoll 5: Typen umwandeln – Aufgabe 2
+"""### Systemprotokoll 6: Rechenoperationen – Aufgabe 1
 
-Die Variable sensor = \"18.5\" ist angelegt. Wandle sie mit float() um, verdopple sie und gib genau diese Zeile aus: Doppelter Wert: 37.0"""
+Lege planeten = 9 an. Gib genau aus: Pro Sektor: 3.0 (teile die Planeten in einem f-String durch 3)."""

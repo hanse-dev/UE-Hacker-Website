@@ -1,3 +1,2 @@
-techniker = "Vega"
-techniker_id = 4711
-print(f"Techniker {techniker} (ID {techniker_id})")
+crew = 12
+print("Crew: " + str(crew))

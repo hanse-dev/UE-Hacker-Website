@@ -1,5 +1,5 @@
 """## 📚 Lektionen
 
-### Systemprotokoll 1: f-Strings – Aufgabe 1
+### Systemprotokoll 1: String-Befehl – Aufgabe 1
 
-Die Variablen pilot und rang sind schon angelegt. Gib mit einem f-String genau diesen Satz aus: Hallo Zara, dein Rang: 5"""
+Lege pilot = "Nova" und rang = 7 an. Gib mit einem f-String genau aus: Commander Nova, Rang 7"""

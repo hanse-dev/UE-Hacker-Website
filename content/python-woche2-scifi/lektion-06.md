@@ -1,29 +1,16 @@
-# 🔄 Systemprotokoll 5: Typen umwandeln
+# 📟 Systemprotokoll 6: Rechenoperationen
 
-Sensoren liefern Daten oft als **Text**: `"273"` ist ein String, mit dem du nicht rechnen kannst. Die Lösung sind vier **Systemprotokolle** (Funktionen) zum Umwandeln – du gibst den Wert in die Klammern, sie liefern ihn im neuen Typ zurück:
+**Mit Zahlen** kannst du rechnen:
 
-| Funktion | Macht daraus | Beispiel | Ergebnis |
-|---|---|---|---|
-| `int()` | ganze Zahl | `int("273")` | `273` |
-| `float()` | Kommazahl | `float("42.5")` | `42.5` |
-| `str()` | Text | `str(5)` | `"5"` |
-| `bool()` | Ja/Nein | `bool(1)` | `True` |
+| Operator | Bedeutung | Beispiel |
+|---|---|---|
+| `+` `-` | addieren, subtrahieren | `8 + 4` → `12` |
+| `*` | multiplizieren | `8 * 2` → `16` |
+| `/` | teilen (Ergebnis ist ein Float!) | `8 / 2` → `4.0` |
 
-`bool()` liefert bei `0` und leerem Text `""` den Wert `False`, sonst `True`.
+**Mit Text** funktionieren zwei Operationen:
 
-```python
-temperatur_str = "273"
-temperatur_int = int(temperatur_str)
-print(temperatur_int + 1)   # 274 – jetzt kannst du rechnen!
-```
+- `+` **verbindet** Texte: `"Neo" + "tron"` → `"Neotron"`
+- `*` **wiederholt** Text: `"Ping" * 3` → `"PingPingPing"`
 
-## Eingaben des Benutzers
-
-Auch `input()` (aus Woche 1) liefert **immer** einen String – auch wenn jemand eine Zahl tippt. Wandle die Antwort erst um:
-
-```python
-alter = int(input("Wie alt ist dein Schiff? "))
-print(alter + 1)
-```
-
-> 📡 **Merke:** Bekommst du `"80" - 30`-Fehler, ist meist ein Text im Spiel, der eine Zahl sein sollte – `int()` oder `float()` hilft!
+> ⚠️ Nicht alles lässt sich kombinieren: `"Crew: " + 5` verursacht einen Fehler – Text und Zahl passen nicht zusammen. Mehr dazu im nächsten Protokoll!

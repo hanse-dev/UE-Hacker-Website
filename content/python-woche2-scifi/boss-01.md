@@ -1,14 +1,14 @@
-# ⭐⭐⭐⭐☆ Extra-Herausforderung 1: Das Raumschiff-Dock
+# ⭐⭐⭐⭐☆ Extra-Herausforderung 1: Das Raumschiffdock
 
-> ⚠️ Schwieriger! Die Extra-Herausforderungen kombinieren alles aus dieser Woche – sie sind freiwillig.
+⚠️ **Schwerer!** Diese Herausforderung kombiniert alles aus dieser Woche.
 
-Das Dock hat vier Andockstellen. Jede braucht Überwachung! Die Schiffe und ihre Energielevel:
+Das Dock überwacht seine Schiffe. Vier Schiffe sind aktuell angedockt:
 
-| Dock | Schiff | Energie |
-|---|---|---|
-| 1 | Aurora | 80 |
-| 2 | Borealis | 65 |
-| 3 | Cirrus | 90 |
-| 4 | Dione | 55 |
+| Schiff | Energielevel |
+|---|---|
+| Aurora | 80 |
+| Vega | 65 |
+| Orion | 92 |
+| Lyra | 71 |
 
 **Bonus (freiwillig, ohne Prüfung):** Zähle und gib aus, wie viele Schiffe unter dem Durchschnitt liegen!

@@ -1,3 +1,2 @@
-energie = 120
-verbrauch = 45
-print(f"Restenergie: {energie - verbrauch}")
+geschwindigkeit = 3.7
+print(type(geschwindigkeit))

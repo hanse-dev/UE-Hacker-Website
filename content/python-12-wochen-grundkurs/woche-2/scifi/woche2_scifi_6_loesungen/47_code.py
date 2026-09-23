@@ -1,14 +1,10 @@
-name1 = "Aurora"
-energie1 = 80
-name2 = "Borealis"
-energie2 = 65
-name3 = "Cirrus"
-energie3 = 90
-name4 = "Dione"
-energie4 = 55
-
-print("=== DOCK-PROTOKOLL ===")
-print(f"Dock 1: {name1} (Energie {energie1})")
-print(f"Dock 2: {name2} (Energie {energie2})")
-print(f"Dock 3: {name3} (Energie {energie3})")
-print(f"Dock 4: {name4} (Energie {energie4})")
+print("=== FLOTTENANALYSE ===")
+aurora_crew = 120
+aurora_geschwindigkeit = 2.5
+vega_crew = 80
+vega_geschwindigkeit = 3.5
+orion_crew = 200
+orion_geschwindigkeit = 1.5
+print(f"Aurora: Crew {aurora_crew}, Geschwindigkeit {aurora_geschwindigkeit}")
+print(f"Vega: Crew {vega_crew}, Geschwindigkeit {vega_geschwindigkeit}")
+print(f"Orion: Crew {orion_crew}, Geschwindigkeit {orion_geschwindigkeit}")

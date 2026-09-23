@@ -3,45 +3,6 @@
 Erledigtes (frühere Abschnitte "Now" + "Fertige Branches") steht kalt in `docs/archiv/todo-erledigt.md` —
 nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte und die nächsten Themen.
 
-## Laufend: Woche 2 DE/EN angleichen (Branch `python-lektionen-nacharbeiten`)
-
-**Für die nächste Session — hier genau weitermachen:**
-
-Ziel: Wie bei Woche 3/4 wird pro Variante die *größere* Fassung zur Referenz, die andere Sprache wird
-1:1 übersetzt (gleiche Lektionsanzahl/-IDs/Aufgabenanzahl, `validation.expected` lokalisiert). Vorgehen
-pro Variante: DE/EN-`lessons.json` + alle `.md`-Dateien der Zielsprache neu schreiben (Referenz als
-Vorlage), Referenzlösungen von Hand schreiben und mit `python3` prüfen (je Aufgabe: `exec()` gegen
-`validation.expected`/`codeContains`/`stdin`), `6_loesungen`-Zellenordner neu erzeugen (Format: siehe
-ein beliebiger bestehender `*_6_loesungen`-Ordner — `### <Lektionstitel> – Aufgabe/Task N` + Code,
-Abschnittsüberschrift beim ersten Task eines neuen `section`-Werts), `build_cell_notebooks.py` laufen
-lassen, dann `python-lektionen-format.spec.js` für die Variante prüfen.
-
-- [x] Abenteuer + Pferde fertig, committet und nach `main` gemergt (`npm run test:checks` grün,
-      340 Tests). Details siehe `docs/archiv/todo-erledigt.md`.
-- [ ] **Sci-Fi (ausnahmsweise umgekehrt: EN war größer — 7 Lektionen/46 Aufgaben — DE wird an EN
-      angeglichen):** **mitten in der Arbeit, nichts committet oder gestaged:**
-      - [x] `content/python-woche2-scifi/lessons.json` komplett neu geschrieben (14 Einträge, 46
-        Aufgaben, Struktur/IDs = EN)
-      - [x] `.md`-Dateien neu geschrieben: `lektion-01` bis `lektion-07`, `debug-01`, `mission-01`
-      - [ ] **Fehlen noch:** `mission-02.md`, `mission-03.md`, `boss-01.md`, `boss-02.md`,
-        `boss-03.md` (liegen noch mit altem, nicht mehr passendem DE-Text da — Referenztext auf
-        Englisch in `content/python-woche2-scifi-en/{mission-02,mission-03,boss-01,boss-02,boss-03}.md`,
-        einfach übersetzen, Tabellen/Zahlen 1:1 übernehmen)
-      - [ ] Referenzlösungen für alle 39 Nicht-Beispiel-Aufgaben schreiben und mit `python3` gegen
-        `validation` prüfen (Beispiel-Prüfskript: für jede Aufgabe den Code `exec()`-en, `stdout`
-        gegen `expected` prüfen, bei `stdin` die Werte der Reihe nach als `input()`-Antworten
-        durchreichen) — beim Abbruch einer früheren Session lag ein fertiges, geprüftes Lösungs-Dict
-        nur im Scratchpad (nicht im Repo, laut Konvention "Generator/Solver nur im Scratchpad" —
-        siehe Gelernte Regeln in HANDOFF.md), ist mit der Session weg und muss neu geschrieben werden.
-      - [ ] `content/python-12-wochen-grundkurs/woche-2/scifi/woche2_scifi_6_loesungen/` mit den 39
-        Lösungen neu erzeugen (Format s.o.), dann `npm run build:cells`
-      - [ ] Prüfen: `npx playwright test tests/python-lektionen-format.spec.js -g "scifi"`,
-        `python3 scripts/build_lesson_bundle.py`
-- [ ] Nach Sci-Fi: `npm run test:checks` voll grün, dann committen, `todo.md`/`HANDOFF.md`
-      aktualisieren (Abschnitt 3, neue Nummer nach 3.55), danach **erst weiter mit den
-      input()-Wochen (Punkt 4) und den Kleinigkeiten (Punkt 5)** aus dem ursprünglichen
-      5-Punkte-Plan des Nutzers.
-
 ## Offen
 
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken) —

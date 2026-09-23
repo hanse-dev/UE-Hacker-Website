@@ -1,10 +1,12 @@
-# ⭐⭐⭐⭐☆ Mission 3: Der Asteroiden-Mining
+# ⭐⭐⭐⭐☆ Mission 3: Der Asteroidenabbau
 
-Berechne den Ertrag aus dem Asteroiden-Mining! Der **Rohwert** eines Asteroiden ist: Mineralgehalt (kg) × Reinheit × Wert pro kg.
+Berechne den Ertrag aus dem Asteroidenabbau! Zwei Asteroiden stehen zur Verfügung:
 
 | Asteroid | Mineralgehalt (kg) | Reinheit (0–1) | Wert pro kg |
 |---|---|---|---|
-| Ferrum | 500 | 0.8 | 12 |
-| Aurum | 200 | 0.5 | 40 |
+| Ceres-9 | 500 | 0.8 | 12.5 |
+| Vesta-3 | 300 | 0.9 | 20.0 |
 
-**Bonus (freiwillig, ohne Prüfung):** Berechne, wie viel mehr Wert der bessere Asteroid hat!
+Der **Rohwert** ist: Mineralgehalt × Reinheit × Wert pro kg.
+
+**Bonus (freiwillig, ohne Prüfung):** Berechne, um wie viel wertvoller der bessere Asteroid ist!

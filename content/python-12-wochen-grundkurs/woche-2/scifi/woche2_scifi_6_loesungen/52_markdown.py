@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 2: Das KI-Labor – Aufgabe 2
+"""### Mission 3: Der Asteroiden-Mining – Aufgabe 1
 
-Schritt 2 – Lege die Genauigkeiten (92.0, 85.0, 78.0) und Parameterzahlen (5000000, 12000000, 800000) an. Berechne die Summe aller Parameter und den Durchschnitt der Genauigkeiten (Summe geteilt durch 3). Speichere mit > (größer als) in Boolean-Variablen, ob Nexus und Pulsar über dem Durchschnitt liegen. Gib genau diese vier Zeilen aus: Gesamtparameter: 17800000, Durchschnittsgenauigkeit: 85.0, Nexus über Durchschnitt: True und Pulsar über Durchschnitt: False"""
+Schritt 1 – Lege Variablen für beide Asteroiden an und berechne beide Rohwerte (wert_a und wert_b). Gib zwei Zeilen im Format Ceres-9 Wert: 5000.0 aus – die letzte Zeile muss lauten: Vesta-3 Wert: 5400.0"""

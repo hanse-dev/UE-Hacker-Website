@@ -1,2 +1,2 @@
-crew = 250
-print("Crew: " + str(crew))
+system_name = "Stern" + "labor"
+print(f"Systemname: {system_name}")

@@ -1,3 +1,3 @@
-pilot = "Zara"
-rang = 5
-print(f"Hallo {pilot}, dein Rang: {rang}")
+pilot = "Nova"
+rang = 7
+print(f"Commander {pilot}, Rang {rang}")

@@ -1,13 +1,13 @@
 # ⭐⭐⭐⭐⭐ Extra-Herausforderung 2: Das KI-Labor
 
-> ⚠️ Schwieriger! Die Extra-Herausforderungen kombinieren alles aus dieser Woche – sie sind freiwillig.
+⚠️ **Schwerer!** Im KI-Labor experimentierst du mit neuronalen Netzen. Drei Modelle werden getestet:
 
-Im KI-Labor experimentierst du mit neuronalen Netzen! Drei Modelle stehen zur Auswahl:
+| Modell | Genauigkeit (0–1) | Parameter | Trainingszeit (h) |
+|---|---|---|---|
+| NovaNet | 0.92 | 1200000 | 4.5 |
+| DeepCore | 0.88 | 5000000 | 12.0 |
+| MiniMind | 0.75 | 300000 | 1.5 |
 
-| Modell | Genauigkeit (%) | Parameter |
-|---|---|---|
-| Nexus | 92.0 | 5000000 |
-| Orakel | 85.0 | 12000000 |
-| Pulsar | 78.0 | 800000 |
+Wähle für jede Eigenschaft den passenden Datentyp: Text, Ganzzahl oder Dezimalzahl.
 
-**Bonus (freiwillig, ohne Prüfung):** Berechne die Effizienz (Genauigkeit / Parameter × 1000000) für jedes Modell!
+**Bonus (freiwillig, ohne Prüfung):** Berechne die Effizienz (Genauigkeit / Parameter × 1.000.000) für jedes Modell!

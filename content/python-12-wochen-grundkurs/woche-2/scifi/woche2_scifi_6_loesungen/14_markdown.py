@@ -1,3 +1,3 @@
-"""### Systemprotokoll 3: Rechnen – Aufgabe 1
+"""### Systemprotokoll 4: Kommazahlen – Aufgabe 1
 
-Lege crew = 250 und decks = 10 an. Berechne mit / die Crew pro Deck und gib genau diese Zeile aus: Crew pro Deck: 25.0"""
+Lege geschwindigkeit = 3.7 und koordinate_x = 88.25 an und gib genau aus: Position X: 88.25"""

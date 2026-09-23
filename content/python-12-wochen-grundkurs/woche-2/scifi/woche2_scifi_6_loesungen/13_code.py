@@ -1,2 +1,2 @@
-alarm_aktiv = False
-print(f"Alarm aktiv: {alarm_aktiv}")
+deck_anzahl = 12
+print(type(deck_anzahl))

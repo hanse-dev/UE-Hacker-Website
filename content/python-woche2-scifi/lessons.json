@@ -2,33 +2,33 @@
   {
     "id": "lektion-01",
     "section": "lektion",
-    "title": "Systemprotokoll 1: f-Strings",
+    "title": "Systemprotokoll 1: String-Befehl",
     "file": "lektion-01.md",
-    "lessonSummary": "Starke Arbeit! Mit f-Strings baust du Meldungen, in die Variablen und Rechnungen direkt hineinpassen.",
+    "lessonSummary": "Perfekt! Mit f-Strings verschmilzt du Text und Variablen zu präzisen Nachrichten.",
     "tasks": [
       {
-        "instruction": "Führe dieses Beispiel aus. Es zeigt einfache f-Strings, Rechnen in den Klammern und mehrere Variablen.",
+        "instruction": "Führe dieses Beispiel aus: drei f-Strings mit Variablen und einer Berechnung.",
         "example": true,
-        "codeTemplate": "pilot = \"Zara\"\nrang = 5\nprint(f\"Hallo {pilot}!\")\nprint(f\"Dein Rang: {rang}\")\n\nenergie_a = 75\nenergie_b = 25\nprint(f\"Gesamtenergie: {energie_a + energie_b}%\")\n\nschiff = \"Nebula-Falcon\"\nkapitaen = \"Orion\"\nmission = \"Expedition Alpha\"\nprint(f\"{schiff} unter {kapitaen} startet {mission}!\")\n",
+        "codeTemplate": "# Beispiel 1: Einfache f-Strings\npilot = \"Zara\"\nrang = 5\nprint(f\"Hallo {pilot}!\")\nprint(f\"Dein Rang: {rang}\")\n\n# Beispiel 2: Mit Berechnungen\nenergie_a = 75\nenergie_b = 25\nprint(f\"Gesamtenergie: {energie_a + energie_b}%\")\n\n# Beispiel 3: Mehrere Variablen\nschiff = \"Nebula-Falke\"\nkapitaen = \"Orion\"\nmission = \"Expedition Alpha\"\nprint(f\"{schiff} unter {kapitaen} startet {mission}!\")\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Nebula-Falcon unter Orion startet Expedition Alpha!"
+          "expected": "Nebula-Falke unter Orion startet Expedition Alpha!"
         }
       },
       {
-        "instruction": "Die Variablen pilot und rang sind schon angelegt. Gib mit einem f-String genau diesen Satz aus: Hallo Zara, dein Rang: 5",
-        "codeTemplate": "pilot = \"Zara\"\nrang = 5\n# 🎯 Deine Lösung hier:\n",
+        "instruction": "Lege pilot = \"Nova\" und rang = 7 an. Gib mit einem f-String genau aus: Commander Nova, Rang 7",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Hallo Zara, dein Rang: 5"
+          "expected": "Commander Nova, Rang 7"
         }
       },
       {
-        "instruction": "Die Variablen energie_a und energie_b sind schon angelegt. Gib mit einem f-String und einer Rechnung in den Klammern genau diesen Text aus: Gesamtenergie: 75%",
-        "codeTemplate": "energie_a = 60\nenergie_b = 15\n# 🎯 Deine Lösung hier:\n",
+        "instruction": "Lege energie_a = 60 und energie_b = 25 an. Lass einen f-String rechnen und gib genau aus: Gesamtenergie: 85%",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Gesamtenergie: 75%"
+          "expected": "Gesamtenergie: 85%"
         }
       }
     ]
@@ -36,33 +36,33 @@
   {
     "id": "lektion-02",
     "section": "lektion",
-    "title": "Systemprotokoll 2: Strings und Integer",
+    "title": "Systemprotokoll 2: Strings und type()",
     "file": "lektion-02.md",
-    "lessonSummary": "Du kennst jetzt String und Integer – und mit type() kannst du jeden Typ überprüfen.",
+    "lessonSummary": "Textdaten entschlüsselt! type() verrät den Quanten-Typ jeder Information.",
     "tasks": [
       {
-        "instruction": "Führe dieses Beispiel aus und schau dir die Typen an.",
+        "instruction": "Führe dieses Beispiel aus und schau dir den Quanten-Typ des Schiffsnamens an.",
         "example": true,
-        "codeTemplate": "schiff_name = \"Starlight\"\nklasse = \"Kreuzer\"\nprint(f\"Schiff: {schiff_name}\")\nprint(f\"Klasse: {klasse}\")\nprint(f\"Typ: {type(schiff_name)}\")\n\ncrew_anzahl = 250\ndeck_anzahl = 15\nprint(f\"Crew: {crew_anzahl}, Decks: {deck_anzahl}\")\nprint(f\"Typ: {type(crew_anzahl)}\")\n",
+        "codeTemplate": "schiff_name = \"Starlight\"\nschiff_klasse = \"Kreuzer\"\nprint(f\"Schiff: {schiff_name}\")\nprint(f\"Klasse: {schiff_klasse}\")\nprint(f\"Typ: {type(schiff_name)}\")\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Typ: <class 'int'>"
+          "expected": "<class 'str'>"
         }
       },
       {
-        "instruction": "Lege eine Variable deck_anzahl mit dem Wert 15 an und gib mit print() und type() aus, welchen Typ sie hat.",
+        "instruction": "Lege planet = \"Mars\" an und gib seinen Quanten-Typ mit type() aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "<class 'int'>"
+          "expected": "<class 'str'>"
         }
       },
       {
-        "instruction": "Lege eine Variable sektor mit dem Text \"Orion\" an und gib mit einem f-String genau diese Zeile aus: Typ: <class 'str'>",
+        "instruction": "Lege schiff_klasse = \"Kreuzer\" an und gib genau aus: Klasse: Kreuzer, Typ: <class 'str'> (lass den f-String den Typ mit type() einsetzen).",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Typ: <class 'str'>"
+          "expected": "Klasse: Kreuzer, Typ: <class 'str'>"
         }
       }
     ]
@@ -70,33 +70,33 @@
   {
     "id": "lektion-03",
     "section": "lektion",
-    "title": "Systemprotokoll 2: Floats und Booleans",
+    "title": "Systemprotokoll 3: Ganze Zahlen",
     "file": "lektion-03.md",
-    "lessonSummary": "Zwei weitere Quanten-Typen im Griff: Float für Kommazahlen, Boolean für Ja/Nein.",
+    "lessonSummary": "Ganze Zahlen unter Kontrolle! Crew und Decks werden mit int gezählt.",
     "tasks": [
       {
-        "instruction": "Führe dieses Beispiel aus.",
+        "instruction": "Führe dieses Beispiel mit zwei ganzen Zahlen aus.",
         "example": true,
-        "codeTemplate": "geschwindigkeit = 2.5\nkoordinate_x = 127.35\nprint(f\"Geschwindigkeit: {geschwindigkeit} Lichtjahre/h\")\nprint(f\"Position X: {koordinate_x}\")\nprint(f\"Typ: {type(geschwindigkeit)}\")\n\nsystem_online = True\nalarm_aktiv = False\nprint(f\"System online: {system_online}\")\nprint(f\"Alarm aktiv: {alarm_aktiv}\")\nprint(f\"Typ: {type(system_online)}\")\n",
+        "codeTemplate": "crew_anzahl = 250\ndeck_anzahl = 15\nprint(f\"Crew: {crew_anzahl}, Decks: {deck_anzahl}\")\nprint(f\"Typ: {type(crew_anzahl)}\")\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Typ: <class 'bool'>"
+          "expected": "Crew: 250, Decks: 15"
         }
       },
       {
-        "instruction": "Lege eine Variable reaktor_leistung mit dem Wert 99.9 an und gib genau diese Zeile aus: Typ: <class 'float'>",
+        "instruction": "Lege crew_anzahl = 300 und deck_anzahl = 12 an und gib genau aus: Crew: 300, Decks: 12",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Typ: <class 'float'>"
+          "expected": "Crew: 300, Decks: 12"
         }
       },
       {
-        "instruction": "Lege eine Variable alarm_aktiv mit dem Wert False an und gib genau diese Zeile aus: Alarm aktiv: False",
+        "instruction": "Lege deck_anzahl = 12 an und gib den Quanten-Typ mit type() aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Alarm aktiv: False"
+          "expected": "<class 'int'>"
         }
       }
     ]
@@ -104,33 +104,33 @@
   {
     "id": "lektion-04",
     "section": "lektion",
-    "title": "Systemprotokoll 3: Rechnen",
+    "title": "Systemprotokoll 4: Kommazahlen",
     "file": "lektion-04.md",
-    "lessonSummary": "Perfekt gerechnet! Merke: Ein Schrägstrich / liefert immer einen Float.",
+    "lessonSummary": "Präzision erreicht! Floats speichern Kommazahlen für exakte Messwerte.",
     "tasks": [
       {
-        "instruction": "Führe dieses Beispiel aus.",
+        "instruction": "Führe dieses Beispiel mit zwei Kommazahlen aus.",
         "example": true,
-        "codeTemplate": "planeten_a = 8\nplaneten_b = 4\nprint(f\"Gesamtplaneten: {planeten_a + planeten_b}\")\nprint(f\"Differenz: {planeten_a - planeten_b}\")\nprint(f\"Verdopplung: {planeten_a * 2}\")\nprint(f\"Pro Sektor: {planeten_a / 2}\")\n",
+        "codeTemplate": "geschwindigkeit = 2.5\nkoordinate_x = 127.35\nprint(f\"Geschwindigkeit: {geschwindigkeit} Lichtjahre/h\")\nprint(f\"Position X: {koordinate_x}\")\nprint(f\"Typ: {type(geschwindigkeit)}\")\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Pro Sektor: 4.0"
+          "expected": "Geschwindigkeit: 2.5 Lichtjahre/h"
         }
       },
       {
-        "instruction": "Lege crew = 250 und decks = 10 an. Berechne mit / die Crew pro Deck und gib genau diese Zeile aus: Crew pro Deck: 25.0",
+        "instruction": "Lege geschwindigkeit = 3.7 und koordinate_x = 88.25 an und gib genau aus: Position X: 88.25",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Crew pro Deck: 25.0"
+          "expected": "Position X: 88.25"
         }
       },
       {
-        "instruction": "Lege energie = 120 und verbrauch = 45 an. Berechne die Restenergie und gib genau diese Zeile aus: Restenergie: 75",
+        "instruction": "Lege geschwindigkeit = 3.7 an und gib den Quanten-Typ mit type() aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Restenergie: 75"
+          "expected": "<class 'float'>"
         }
       }
     ]
@@ -138,33 +138,41 @@
   {
     "id": "lektion-05",
     "section": "lektion",
-    "title": "Systemprotokoll 4: Texte verbinden",
+    "title": "Systemprotokoll 5: Wahrheitswerte",
     "file": "lektion-05.md",
-    "lessonSummary": "Texte lassen sich mit + verketten und mit * vervielfachen – aber nur Text mit Text!",
+    "lessonSummary": "Systemzustände entschlüsselt! Ein Boolean ist immer entweder True oder False.",
     "tasks": [
       {
-        "instruction": "Führe dieses Beispiel aus.",
+        "instruction": "Führe dieses Beispiel mit zwei Systemzuständen aus.",
         "example": true,
-        "codeTemplate": "prefix = \"Neo\"\nsuffix = \"tron\"\nsystem_name = prefix + suffix\nprint(f\"Systemname: {system_name}\")\nprint(f\"Signal: {prefix * 3}\")\n",
+        "codeTemplate": "system_online = True\nalarm_aktiv = False\nprint(f\"System online: {system_online}\")\nprint(f\"Alarm aktiv: {alarm_aktiv}\")\nprint(f\"Typ: {type(system_online)}\")\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Systemname: Neotron"
+          "expected": "System online: True"
         }
       },
       {
-        "instruction": "Die Variablen teil_a und teil_b sind schon angelegt. Verbinde sie mit + zu einer Variable stationsname und gib genau diese Zeile aus: Station: StarBase",
-        "codeTemplate": "teil_a = \"Star\"\nteil_b = \"Base\"\n# 🎯 Deine Lösung hier:\n",
-        "validation": {
-          "type": "output_contains",
-          "expected": "Station: StarBase"
-        }
-      },
-      {
-        "instruction": "Lege signal = \"Ping\" an. Wiederhole es mit * dreimal und gib genau diese Zeile aus: Signal: PingPingPing",
+        "instruction": "Lege schild_aktiv = True und reaktor_ueberhitzt = False an und gib genau aus: Schild aktiv: True",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Signal: PingPingPing"
+          "expected": "Schild aktiv: True"
+        }
+      },
+      {
+        "instruction": "Lege alarm_aktiv = False an und gib den Quanten-Typ mit type() aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "<class 'bool'>"
+        }
+      },
+      {
+        "instruction": "Gib das Ergebnis des Vergleichs 80 > 50 direkt mit print() aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True"
         }
       }
     ]
@@ -172,41 +180,83 @@
   {
     "id": "lektion-06",
     "section": "lektion",
-    "title": "Systemprotokoll 5: Typen umwandeln",
+    "title": "Systemprotokoll 6: Rechenoperationen",
     "file": "lektion-06.md",
-    "lessonSummary": "Genau so werden Sensordaten verarbeitbar: Erst mit int() oder float() umwandeln, dann rechnen!",
+    "lessonSummary": "Berechnungen und Text-Verschmelzung gemeistert – das Datenlabor läuft auf Hochtouren!",
     "tasks": [
       {
-        "instruction": "Führe dieses Beispiel aus.",
+        "instruction": "Führe dieses Beispiel aus: Berechnungen und Text-Operationen.",
         "example": true,
-        "codeTemplate": "temperatur_str = \"273\"\ntemperatur_int = int(temperatur_str)\nprint(f\"Temperatur als Text: {temperatur_str}K (Typ: {type(temperatur_str)})\")\nprint(f\"Temperatur als Zahl: {temperatur_int}K (Typ: {type(temperatur_int)})\")\n\nsensor_wert = \"42.5\"\nwert_float = float(sensor_wert)\nprint(f\"Sensorwert {wert_float} verdoppelt: {wert_float * 2}\")\n\nprint(bool(0), bool(5))\n",
+        "codeTemplate": "# Mathematische Operationen\nplaneten_a = 8\nplaneten_b = 4\nprint(f\"Gesamtplaneten: {planeten_a + planeten_b}\")\nprint(f\"Differenz: {planeten_a - planeten_b}\")\nprint(f\"Verdoppelt: {planeten_a * 2}\")\nprint(f\"Pro Sektor: {planeten_a / 2}\")\n\n# String-Operationen\npraefix = \"Neo\"\nsuffix = \"tron\"\nsystem_name = praefix + suffix\nprint(f\"Systemname: {system_name}\")\nprint(f\"Signal: {praefix * 3}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Systemname: Neotron"
+        }
+      },
+      {
+        "instruction": "Lege planeten = 9 an. Gib genau aus: Pro Sektor: 3.0 (teile die Planeten in einem f-String durch 3).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Pro Sektor: 3.0"
+        }
+      },
+      {
+        "instruction": "Verbinde \"Stern\" und \"labor\" mit + zu einer Variable system_name und gib genau aus: Systemname: Sternlabor",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Systemname: Sternlabor"
+        }
+      },
+      {
+        "instruction": "Wiederhole den Text \"Ping\" mit * dreimal und gib das Ergebnis aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "PingPingPing"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Systemprotokoll 7: Typumwandlung",
+    "file": "lektion-07.md",
+    "lessonSummary": "Transformation abgeschlossen! int(), float(), str() und bool() wandeln jede Information um.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Text in Zahlen umwandeln.",
+        "example": true,
+        "codeTemplate": "temperatur_str = \"273\"\ntemperatur_int = int(temperatur_str)\nprint(f\"Temperatur als Text: {temperatur_str}K (Typ: {type(temperatur_str)})\")\nprint(f\"Temperatur als Zahl: {temperatur_int}K (Typ: {type(temperatur_int)})\")\n\n# Sensordaten verarbeiten\nsensor_wert = \"42.5\"\nwert_float = float(sensor_wert)\nprint(f\"Sensorwert {wert_float} verdoppelt: {wert_float * 2}\")\n",
         "validation": {
           "type": "output_contains",
           "expected": "Sensorwert 42.5 verdoppelt: 85.0"
         }
       },
       {
-        "instruction": "Die Variable temperatur_str = \"273\" ist angelegt. Wandle sie mit int() um, rechne 1 dazu und gib genau diese Zeile aus: Temperatur nach Erwärmung: 274",
-        "codeTemplate": "temperatur_str = \"273\"\n# 🎯 Deine Lösung hier:\n",
-        "validation": {
-          "type": "output_contains",
-          "expected": "Temperatur nach Erwärmung: 274"
-        }
-      },
-      {
-        "instruction": "Die Variable sensor = \"18.5\" ist angelegt. Wandle sie mit float() um, verdopple sie und gib genau diese Zeile aus: Doppelter Wert: 37.0",
-        "codeTemplate": "sensor = \"18.5\"\n# 🎯 Deine Lösung hier:\n",
-        "validation": {
-          "type": "output_contains",
-          "expected": "Doppelter Wert: 37.0"
-        }
-      },
-      {
-        "instruction": "Lege crew = 250 an und gib mit + und str() genau diesen Text aus: Crew: 250",
+        "instruction": "Lege temperatur_str = \"300\" an, wandle sie mit int() um und gib genau aus: Temperatur plus 10: 310K",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Crew: 250"
+          "expected": "Temperatur plus 10: 310K"
+        }
+      },
+      {
+        "instruction": "Lege sensor_wert = \"12.5\" an, wandle sie mit float() um und gib genau aus: Sensorwert verdreifacht: 37.5",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sensorwert verdreifacht: 37.5"
+        }
+      },
+      {
+        "instruction": "Lege crew = 12 an und verbinde sie mit + zu dieser Zeile, mit str(): Crew: 12",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Crew: 12"
         }
       }
     ]
@@ -216,7 +266,7 @@
     "section": "debug",
     "title": "Debug-Quest",
     "file": "debug-01.md",
-    "lessonSummary": "Alle Bugs gefunden! Typen und f-Strings sind die häufigsten Stolperfallen.",
+    "lessonSummary": "Alle Bugs gefunden! Ziel und Fehlermeldung genau zu lesen ist die halbe Miete.",
     "tasks": [
       {
         "instruction": "🐛 Bug #1 – Ziel: Das Programm soll ausgeben: Hallo R2D2! Dein Status ist 3. Was ist falsch?",
@@ -227,11 +277,11 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll die verbleibende Energie berechnen und Restenergie: 50 ausgeben. Was ist falsch?",
-        "codeTemplate": "energie = \"80\"\nverbrauch = 30\nprint(f\"Restenergie: {energie - verbrauch}\")\n",
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll die verbleibende Energie berechnen und ausgeben: Verbleibende Energie: 50. Was ist falsch?",
+        "codeTemplate": "energie = \"80\"\nverbrauch = 30\nprint(f\"Verbleibende Energie: {energie - verbrauch}\")\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Restenergie: 50"
+          "expected": "Verbleibende Energie: 50"
         }
       },
       {
@@ -249,18 +299,18 @@
     "section": "mission",
     "title": "Mission 1: Das Energiedepot",
     "file": "mission-01.md",
-    "lessonSummary": "Energiedepot geprüft! Ganzzahl mal Kommazahl ergibt immer einen Float.",
+    "lessonSummary": "Depot geprüft – Energiereserven berechnet!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Lege techniker = \"Vega\" (String) und techniker_id = 4711 (Integer) an und gib mit einem f-String genau diese Zeile aus: Techniker Vega (ID 4711)",
+        "instruction": "Schritt 1 – Lege techniker = \"Kira\" (Text) und techniker_id = 4021 (ganze Zahl) an. Gib genau aus: Techniker Kira, ID 4021",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Techniker Vega (ID 4711)"
+          "expected": "Techniker Kira, ID 4021"
         }
       },
       {
-        "instruction": "Schritt 2 – Lege bloecke = 12 (Integer) und energie_pro_block = 45.5 (Float) an. Multipliziere beide in einer Variable gesamt und gib genau diese Zeile aus: Gesamtenergie: 546.0",
+        "instruction": "Schritt 2 – Lege bloecke = 12 (ganze Zahl) und energie_pro_block = 45.5 (Kommazahl) an. Multipliziere sie, speichere das Ergebnis in gesamtenergie und gib genau aus: Gesamtenergie: 546.0",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -274,22 +324,30 @@
     "section": "mission",
     "title": "Mission 2: Die Flottenanalyse",
     "file": "mission-02.md",
-    "lessonSummary": "Flotte analysiert! Summen und Durchschnitte sind die Grundlage jeder Auswertung.",
+    "lessonSummary": "Flotte analysiert – Gesamtstärke und Durchschnittsgeschwindigkeit ermittelt!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Lege für die drei Schiffe (siehe Tabelle) Variablen für Name, Crew und Geschwindigkeit an. Gib die Überschrift === FLOTTENANALYSE === aus und danach für jedes Schiff eine Zeile in diesem Format (Beispiel Orion): Orion: Crew 120, Geschwindigkeit 2.5",
+        "instruction": "Schritt 1 – Lege die Variablen für alle drei Schiffe an. Gib die Überschrift === FLOTTENANALYSE === aus und danach eine Zeile pro Schiff im Format Aurora: Crew 120, Geschwindigkeit 2.5 (die letzte Zeile muss lauten: Orion: Crew 200, Geschwindigkeit 1.5).",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Sirius: Crew 100, Geschwindigkeit 4.5"
+          "expected": "Orion: Crew 200, Geschwindigkeit 1.5"
         }
       },
       {
-        "instruction": "Schritt 2 – Lege die Variablen crew1 bis crew3 und tempo1 bis tempo3 wie in der Tabelle an. Berechne die Summe aller Crews und den Durchschnitt aller Geschwindigkeiten (Summe geteilt durch 3) und gib genau diese zwei Zeilen aus: Gesamtcrew: 300 und Durchschnittsgeschwindigkeit: 3.5",
+        "instruction": "Schritt 2 – Addiere alle Crew-Größen, speichere die Summe in gesamt_crew und gib genau aus: Gesamt-Crew: 400 (lege die Schiffs-Variablen dafür erneut an).",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Durchschnittsgeschwindigkeit: 3.5"
+          "expected": "Gesamt-Crew: 400"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Addiere alle Geschwindigkeiten, teile durch 3, speichere das Ergebnis in durchschnitt_geschwindigkeit und gib genau aus: Durchschnittsgeschwindigkeit: 2.5",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Durchschnittsgeschwindigkeit: 2.5"
         }
       }
     ]
@@ -299,22 +357,30 @@
     "section": "mission",
     "title": "Mission 3: Der Asteroiden-Mining",
     "file": "mission-03.md",
-    "lessonSummary": "Ertrag berechnet! Mit Mineralgehalt, Reinheit und Preis rechnest du wie ein echter Bergbauingenieur.",
+    "lessonSummary": "Mining-Entscheidung getroffen – der wertvollere Asteroid wird abgebaut!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Lege für beide Asteroiden Variablen an (siehe Tabelle) und berechne den Rohwert jedes Asteroiden. Gib genau diese zwei Zeilen aus: Ferrum: 4800.0 und Aurum: 4000.0",
+        "instruction": "Schritt 1 – Lege Variablen für beide Asteroiden an und berechne beide Rohwerte (wert_a und wert_b). Gib zwei Zeilen im Format Ceres-9 Wert: 5000.0 aus – die letzte Zeile muss lauten: Vesta-3 Wert: 5400.0",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Aurum: 4000.0"
+          "expected": "Vesta-3 Wert: 5400.0"
         }
       },
       {
-        "instruction": "Schritt 2 – Vergleiche die Rohwerte aus Schritt 1 (Ferrum 4800.0, Aurum 4000.0): Gib Abbau: Ferrum für den wertvolleren Asteroiden aus und berechne den Durchschnitt beider Werte: Durchschnittswert: 4400.0",
+        "instruction": "Schritt 2 – Vergleiche die Werte (starte mit wert_a = 5000.0 und wert_b = 5400.0): speichere wert_b > wert_a in der Boolean-Variable b_ist_besser und gib genau aus: Vesta-3 ist wertvoller: True",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Durchschnittswert: 4400.0"
+          "expected": "Vesta-3 ist wertvoller: True"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Berechne den Durchschnittswert beider Asteroiden und gib genau aus: Durchschnittswert: 5200.0 – gib danach deine Mining-Entscheidung aus: Mining-Entscheidung: Vesta-3",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Durchschnittswert: 5200.0"
         }
       }
     ]
@@ -324,22 +390,30 @@
     "section": "boss",
     "title": "Extra-Herausforderung 1: Das Raumschiff-Dock",
     "file": "boss-01.md",
-    "lessonSummary": "Dock überwacht! Du hast Namen, Zahlen und f-Strings zu einem echten Protokoll kombiniert.",
+    "lessonSummary": "Dock unter Kontrolle – jede Bucht überwacht!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Lege für alle vier Schiffe Variablen für Name und Energie an. Gib die Überschrift === DOCK-PROTOKOLL === aus und danach pro Schiff eine Zeile in diesem Format (Beispiel Dock 1): Dock 1: Aurora (Energie 80)",
+        "instruction": "Schritt 1 – Speichere die vier Schiffe (Namen als Text, Energie als ganze Zahlen) in Variablen. Gib die Überschrift === DOCK-PROTOKOLL === aus und danach eine f-String-Zeile pro Schiff im Format Aurora: Energie 80% (die letzte Zeile muss lauten: Lyra: Energie 71%).",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Dock 4: Dione (Energie 55)"
+          "expected": "Lyra: Energie 71%"
         }
       },
       {
-        "instruction": "Schritt 2 – Lege die vier Energielevel (80, 65, 90, 55) an. Berechne den Durchschnitt (Summe geteilt durch 4) und den Gesamtbedarf (4 Schiffe mal 100 Einheiten). Das Schiff mit der höchsten Energie ist Cirrus. Gib genau diese drei Zeilen aus: Durchschnitt: 72.5, Gesamtbedarf: 400 und Bestes Schiff: Cirrus",
+        "instruction": "Schritt 2 – Addiere alle Energiewerte, teile die Summe durch 4 und gib genau aus: Durchschnittsenergie: 77.0",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Bestes Schiff: Cirrus"
+          "expected": "Durchschnittsenergie: 77.0"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Gib das Schiff mit der höchsten Energie aus (Höchste Energie: Orion) und danach den gesamten Energiebedarf bei 100 Einheiten pro Schiff (4 Schiffe × 100), genau: Energiebedarf: 400. Berechne den Bedarf, tippe ihn nicht einfach ein.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energiebedarf: 400"
         }
       }
     ]
@@ -349,22 +423,38 @@
     "section": "boss",
     "title": "Extra-Herausforderung 2: Das KI-Labor",
     "file": "boss-02.md",
-    "lessonSummary": "KI-Labor ausgewertet! Mit Summen, Durchschnitten und Booleans hast du echte Daten analysiert.",
+    "lessonSummary": "KI-Labor ausgewertet – die besten Modelle gefunden!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Lege für die drei Modelle Variablen für Name (String), Genauigkeit (Float) und Parameter (Integer) an. Gib die Überschrift === KI-LABOR-PROTOKOLL === aus und pro Modell eine Zeile in diesem Format (Beispiel Nexus): Nexus: Genauigkeit 92.0, Parameter 5000000",
+        "instruction": "Schritt 1 – Lege Variablen für alle drei Modelle an. Gib die Überschrift === KI-LABOR-PROTOKOLL === aus und eine f-String-Zeile pro Modell im Format NovaNet: Genauigkeit 0.92, 1200000 Parameter (die letzte Zeile muss lauten: MiniMind: Genauigkeit 0.75, 300000 Parameter).",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Pulsar: Genauigkeit 78.0, Parameter 800000"
+          "expected": "MiniMind: Genauigkeit 0.75, 300000 Parameter"
         }
       },
       {
-        "instruction": "Schritt 2 – Lege die Genauigkeiten (92.0, 85.0, 78.0) und Parameterzahlen (5000000, 12000000, 800000) an. Berechne die Summe aller Parameter und den Durchschnitt der Genauigkeiten (Summe geteilt durch 3). Speichere mit > (größer als) in Boolean-Variablen, ob Nexus und Pulsar über dem Durchschnitt liegen. Gib genau diese vier Zeilen aus: Gesamtparameter: 17800000, Durchschnittsgenauigkeit: 85.0, Nexus über Durchschnitt: True und Pulsar über Durchschnitt: False",
+        "instruction": "Schritt 2 – Addiere alle Parameterzahlen, speichere die Summe in gesamt_parameter und gib genau aus: Gesamtparameter: 6500000",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Pulsar über Durchschnitt: False"
+          "expected": "Gesamtparameter: 6500000"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Addiere alle Genauigkeiten (0.92, 0.88, 0.75), teile durch 3, speichere das Ergebnis in durchschnitt_genauigkeit und gib genau aus: Durchschnittsgenauigkeit: 0.85. Gib danach das beste Modell aus: Bestes Modell: NovaNet",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Durchschnittsgenauigkeit: 0.85"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Markiere die Spitzenmodelle mit Boolean-Variablen: vergleiche jede Genauigkeit mit durchschnitt_genauigkeit = 0.85 (ueber_1 = genauigkeit1 > durchschnitt_genauigkeit usw.) und gib genau aus: MiniMind über Durchschnitt: False",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "MiniMind über Durchschnitt: False"
         }
       }
     ]
@@ -374,22 +464,38 @@
     "section": "boss",
     "title": "Extra-Herausforderung 3: Die Raummission",
     "file": "boss-03.md",
-    "lessonSummary": "Mission geplant! Du hast Kosten, Crew und Erfolgschancen sauber verrechnet.",
+    "lessonSummary": "🎊 Glückwunsch! Du hast Woche 2 gemeistert – als Nächstes wartet Woche 3: Bedingungen (if-else)!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Lege für beide Missionen Variablen an. Gib die Überschrift === MISSIONS-PROTOKOLL === aus und pro Mission eine Zeile in diesem Format (Beispiel Mars): Mars: 200 Tage, Kosten 1500, Crew 12, Erfolg 0.5",
+        "instruction": "Schritt 1 – Lege Variablen für beide Missionen an. Gib die Überschrift === MISSIONS-PROTOKOLL === aus und eine f-String-Zeile pro Mission im Format Mars: 200 Tage, Kosten 5.0, Crew 6, Erfolg 0.8 (die letzte Zeile muss lauten: Europa: 300 Tage, Kosten 8.0, Crew 9, Erfolg 0.75).",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Titan: 400 Tage, Kosten 3000, Crew 20, Erfolg 0.75"
+          "expected": "Europa: 300 Tage, Kosten 8.0, Crew 9, Erfolg 0.75"
         }
       },
       {
-        "instruction": "Schritt 2 – Lege Kosten, Crew und Erfolgswahrscheinlichkeit beider Missionen (siehe Tabelle) an. Berechne Gesamtkosten, Gesamtcrew und den erwarteten Erfolg jeder Mission. Speichere in einer Boolean-Variable mit >, ob Titan mehr erwarteten Erfolg hat als Mars. Gib genau diese fünf Zeilen aus: Gesamtkosten: 4500, Gesamtcrew: 32, Erwarteter Erfolg Mars: 750.0, Erwarteter Erfolg Titan: 2250.0 und Titan profitabler: True",
+        "instruction": "Schritt 2 – Addiere die Gesamtkosten beider Missionen und den gesamten Crew-Einsatz. Gib genau aus: Gesamtkosten: 13.0 und Gesamt-Crew: 15",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Titan profitabler: True"
+          "expected": "Gesamt-Crew: 15"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Berechne den erwarteten Erfolg (Kosten × Wahrscheinlichkeit) für beide Missionen und gib genau aus: Erwarteter Erfolg Mars: 4.0 und Erwarteter Erfolg Europa: 6.0",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Erwarteter Erfolg Europa: 6.0"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Speichere exp2 > exp1 (mit exp1 = 4.0 und exp2 = 6.0) in einer Boolean-Variable europa_besser und gib genau aus: Europa ist rentabler: True",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Europa ist rentabler: True"
         }
       }
     ]

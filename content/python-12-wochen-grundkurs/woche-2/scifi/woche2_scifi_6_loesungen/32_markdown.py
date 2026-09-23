@@ -1,3 +1,3 @@
-"""### Debug-Quest – Aufgabe 3
+"""### Systemprotokoll 7: Typumwandlung – Aufgabe 2
 
-🐛 Bug #3 – Ziel: Das Programm soll ausgeben: Schildstärke: 95 Prozent. Was ist falsch?"""
+Lege sensor_wert = "12.5" an, wandle sie mit float() um und gib genau aus: Sensorwert verdreifacht: 37.5"""

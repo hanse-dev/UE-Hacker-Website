@@ -1,12 +1,14 @@
 # ⭐⭐⭐⭐☆ Extra-Herausforderung 3: Die Raummission
 
-> ⚠️ Schwieriger! Die Extra-Herausforderungen kombinieren alles aus dieser Woche – sie sind freiwillig.
+⚠️ **Schwerer!** Plane die nächste große Raummission. Zwei Missionen stehen zur Entscheidung:
 
-Plane die nächste große Raummission! Zwei Missionen stehen zur Wahl. Der **erwartete Erfolg** ist Kosten × Erfolgswahrscheinlichkeit.
-
-| Mission | Dauer (Tage) | Kosten | Crew | Erfolgswahrscheinlichkeit |
+| Mission | Dauer (Tage) | Kosten (Millionen) | Besatzung | Erfolgswahrscheinlichkeit |
 |---|---|---|---|---|
-| Mars | 200 | 1500 | 12 | 0.5 |
-| Titan | 400 | 3000 | 20 | 0.75 |
+| Mars | 200 | 5.0 | 6 | 0.8 |
+| Europa | 300 | 8.0 | 9 | 0.75 |
 
-**Bonus (freiwillig, ohne Prüfung):** Berechne die Kosten pro Crewmitglied für jede Mission!
+Der **erwartete Erfolg** ist: Kosten × Erfolgswahrscheinlichkeit.
+
+**Bonus (freiwillig, ohne Prüfung):** Berechne die Kosten pro Besatzungsmitglied für jede Mission!
+
+> 🏆 Schließe diese Herausforderung ab und du besiegst den Gestaltwandler der instabilen Daten – Titel erhalten: **Meister der Quantentypen**!

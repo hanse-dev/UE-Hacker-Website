@@ -1,3 +1,3 @@
-crew = 250
-decks = 10
-print(f"Crew pro Deck: {crew / decks}")
+geschwindigkeit = 3.7
+koordinate_x = 88.25
+print(f"Position X: {koordinate_x}")

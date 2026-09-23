@@ -1,5 +1,3 @@
-"""## 🔥 Extra-Herausforderungen
+"""### Mission 2: Die Flottenanalyse – Aufgabe 1
 
-### Extra-Herausforderung 1: Das Raumschiff-Dock – Aufgabe 1
-
-Schritt 1 – Lege für alle vier Schiffe Variablen für Name und Energie an. Gib die Überschrift === DOCK-PROTOKOLL === aus und danach pro Schiff eine Zeile in diesem Format (Beispiel Dock 1): Dock 1: Aurora (Energie 80)"""
+Schritt 1 – Lege die Variablen für alle drei Schiffe an. Gib die Überschrift === FLOTTENANALYSE === aus und danach eine Zeile pro Schiff im Format Aurora: Crew 120, Geschwindigkeit 2.5 (die letzte Zeile muss lauten: Orion: Crew 200, Geschwindigkeit 1.5)."""

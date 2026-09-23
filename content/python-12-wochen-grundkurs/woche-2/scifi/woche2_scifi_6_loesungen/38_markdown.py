@@ -1,3 +1,3 @@
-"""### Mission 2: Die Flottenanalyse – Aufgabe 1
+"""### Debug-Quest – Aufgabe 2
 
-Schritt 1 – Lege für die drei Schiffe (siehe Tabelle) Variablen für Name, Crew und Geschwindigkeit an. Gib die Überschrift === FLOTTENANALYSE === aus und danach für jedes Schiff eine Zeile in diesem Format (Beispiel Orion): Orion: Crew 120, Geschwindigkeit 2.5"""
+🐛 Bug #2 – Ziel: Das Programm soll die verbleibende Energie berechnen und ausgeben: Verbleibende Energie: 50. Was ist falsch?"""

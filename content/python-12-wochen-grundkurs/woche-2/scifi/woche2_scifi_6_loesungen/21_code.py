@@ -1,2 +1,2 @@
-signal = "Ping"
-print(f"Signal: {signal * 3}")
+alarm_aktiv = False
+print(type(alarm_aktiv))

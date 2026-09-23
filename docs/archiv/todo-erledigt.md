@@ -436,6 +436,13 @@ Session, siehe WORKFLOW.md "HANDOFF.md aufräumen"). Offene Reste stehen weiter 
 - [x] Woche 3: DE/EN je Thema angeglichen (Abenteuer 7 Lektionen + 4 Bugs, Pferde/Sci-Fi 6 Lektionen; IDs/Aufgaben DE = EN, Sci-Fi 4 Bugs, Pferde 3), Struktur per Skript + `python-lektionen-format.spec.js` geprüft
 - [x] Alte Notebooks (Lektion/Debug/Missionen/Boss) aller Wochen entfernt (waren nicht mehr in der Tour, nur noch ZIP-Download-Quelle). ZIP-Download baut jetzt `scripts/build_lesson_bundle.py` direkt aus dem Lektions-Format + Referenzlösungen: eine lauffähige `.py`-Datei je Woche/Variante/Sprache (Glossar, Lektionen, Debug, Missionen, Extra-Herausforderungen inkl. Lösungen), DE **und** EN (vorher nur DE). `scripts/pack_notebooks.py` neu geschrieben, `NOTEBOOK_TYPES` in `useWeeklyContent.js` auf `0_glossar`/`6_loesungen` reduziert, veraltete Tests (`notebooks.spec.js`, `wochen-tour.spec.js`, `storytelling-content.spec.js`) auf das Lektions-Format umgestellt. Dabei gefunden und mitbehoben: `JsCourseTour.vue` sprang beim Öffnen von Glossar/Lösungen mitten in einer Lektion zurück auf Lektion 1 (Komponente wird beim Referenz-Wechsel neu gemountet) — startet jetzt bei der ersten noch offenen Lektion.
 - [x] `input()`-Aufgaben (Woche 1, 2) prüfen jetzt mit `validation.stdin` und der daraus berechneten Ausgabe statt nur festen Textteilen.
+- [x] Woche 2 DE/EN angeglichen (Branch `python-lektionen-nacharbeiten`): Abenteuer + Pferde (größere
+      Fassung als Referenz), Sci-Fi ausnahmsweise umgekehrt (EN war größer — 7 Lektionen/46 Aufgaben —
+      DE wurde an EN angeglichen). Sci-Fi: `lessons.json` + alle `.md`-Dateien neu geschrieben,
+      39 Referenzlösungen (Beispiel-Aufgaben ausgenommen) einzeln mit `python3` gegen `validation`
+      geprüft, `woche2_scifi_6_loesungen`-Zellenordner neu erzeugt, `build:cells`/
+      `python-lektionen-format.spec.js`/`build_lesson_bundle.py` grün, `npm run test:checks` voll
+      grün (340 Tests).
 
 #### Woche 8 (Dictionaries/Tupel)
 - [x] `dict`/`try`-Struktur: `try`/`except`, `def`, `json.*`, `csv.*` werden über `validation.codeContains` geprüft (siehe Woche 5); `dict` selbst nicht (kein eindeutiger Baustein).

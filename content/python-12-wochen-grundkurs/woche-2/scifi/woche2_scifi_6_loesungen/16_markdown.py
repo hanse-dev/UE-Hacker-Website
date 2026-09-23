@@ -1,3 +1,3 @@
-"""### Systemprotokoll 3: Rechnen – Aufgabe 2
+"""### Systemprotokoll 4: Kommazahlen – Aufgabe 2
 
-Lege energie = 120 und verbrauch = 45 an. Berechne die Restenergie und gib genau diese Zeile aus: Restenergie: 75"""
+Lege geschwindigkeit = 3.7 an und gib den Quanten-Typ mit type() aus."""

@@ -1,3 +1,3 @@
-"""### Debug-Quest – Aufgabe 2
+"""### Systemprotokoll 7: Typumwandlung – Aufgabe 1
 
-🐛 Bug #2 – Ziel: Das Programm soll die verbleibende Energie berechnen und Restenergie: 50 ausgeben. Was ist falsch?"""
+Lege temperatur_str = "300" an, wandle sie mit int() um und gib genau aus: Temperatur plus 10: 310K"""

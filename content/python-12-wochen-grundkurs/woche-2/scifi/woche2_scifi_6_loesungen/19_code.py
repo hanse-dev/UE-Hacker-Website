@@ -1,4 +1,3 @@
-teil_a = "Star"
-teil_b = "Base"
-stationsname = teil_a + teil_b
-print(f"Station: {stationsname}")
+schild_aktiv = True
+reaktor_ueberhitzt = False
+print(f"Schild aktiv: {schild_aktiv}")

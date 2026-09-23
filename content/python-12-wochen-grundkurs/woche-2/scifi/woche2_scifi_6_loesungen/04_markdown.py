@@ -1,3 +1,3 @@
-"""### Systemprotokoll 1: f-Strings – Aufgabe 2
+"""### Systemprotokoll 1: String-Befehl – Aufgabe 2
 
-Die Variablen energie_a und energie_b sind schon angelegt. Gib mit einem f-String und einer Rechnung in den Klammern genau diesen Text aus: Gesamtenergie: 75%"""
+Lege energie_a = 60 und energie_b = 25 an. Lass einen f-String rechnen und gib genau aus: Gesamtenergie: 85%"""

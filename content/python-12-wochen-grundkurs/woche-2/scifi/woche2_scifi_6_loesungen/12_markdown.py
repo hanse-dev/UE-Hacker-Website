@@ -1,3 +1,3 @@
-"""### Systemprotokoll 2: Floats und Booleans – Aufgabe 2
+"""### Systemprotokoll 3: Ganze Zahlen – Aufgabe 2
 
-Lege eine Variable alarm_aktiv mit dem Wert False an und gib genau diese Zeile aus: Alarm aktiv: False"""
+Lege deck_anzahl = 12 an und gib den Quanten-Typ mit type() aus."""

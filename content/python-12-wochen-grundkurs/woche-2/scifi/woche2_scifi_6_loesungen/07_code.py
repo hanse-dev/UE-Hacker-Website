@@ -1,2 +1,2 @@
-deck_anzahl = 15
-print(type(deck_anzahl))
+planet = "Mars"
+print(type(planet))

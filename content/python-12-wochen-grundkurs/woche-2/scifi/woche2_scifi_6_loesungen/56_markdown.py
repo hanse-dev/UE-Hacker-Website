@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Die Raummission – Aufgabe 2
+"""### Mission 3: Der Asteroiden-Mining – Aufgabe 3
 
-Schritt 2 – Lege Kosten, Crew und Erfolgswahrscheinlichkeit beider Missionen (siehe Tabelle) an. Berechne Gesamtkosten, Gesamtcrew und den erwarteten Erfolg jeder Mission. Speichere in einer Boolean-Variable mit >, ob Titan mehr erwarteten Erfolg hat als Mars. Gib genau diese fünf Zeilen aus: Gesamtkosten: 4500, Gesamtcrew: 32, Erwarteter Erfolg Mars: 750.0, Erwarteter Erfolg Titan: 2250.0 und Titan profitabler: True"""
+Schritt 3 – Berechne den Durchschnittswert beider Asteroiden und gib genau aus: Durchschnittswert: 5200.0 – gib danach deine Mining-Entscheidung aus: Mining-Entscheidung: Vesta-3"""

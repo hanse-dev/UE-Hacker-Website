@@ -1,21 +1,21 @@
-# 🧬 Systemprotokoll 2: Strings und Integer
+# 📟 Systemprotokoll 2: Strings und type()
 
-Jede Information auf der Nebula-7 hat einen **Quanten-Typ** – wie die Aggregatzustände der Materie. Heute die ersten zwei:
+Jede Information auf der Nebula-7 hat einen **Quanten-Typ** – wie die vier Aggregatzustände. Python kennt vier Grundtypen:
 
-| Typ | Python-Name | Bedeutung | Beispiel |
-|---|---|---|---|
-| **String** | `str` | Text | `"Starlight"` |
-| **Integer** | `int` | ganze Zahl | `250` |
+| Typ | Python-Name | Beispiel |
+|---|---|---|
+| Text | `str` (String) | `"Starlight"` |
+| Ganze Zahl | `int` (Integer) | `250` |
+| Kommazahl | `float` (Float) | `2.5` |
+| Wahrheitswert | `bool` (Boolean) | `True` |
 
-## Den Typ herausfinden mit `type()`
-
-`type()` ist ein **Systemprotokoll** (also eine **Funktion**, Aufruf mit Klammern!): Du gibst ihr einen Wert in die Klammern, und sie sagt dir dessen Typ.
+Die Funktion `type()` zeigt dir den Quanten-Typ jeder Information:
 
 ```python
-crew_anzahl = 250
-print(type(crew_anzahl))
+schiff_name = "Starlight"
+print(type(schiff_name))   # <class 'str'>
 ```
 
-Ausgabe: `<class 'int'>` – also ein Integer. Bei Text steht dort `<class 'str'>`.
+## 🔤 Strings – Textdaten
 
-> 📡 **Merke:** `"250"` (mit Anführungszeichen) ist ein **String**, `250` (ohne) ist ein **Integer**. Sieht ähnlich aus, verhält sich aber ganz anders!
+Ein **String** ist jeder Text in Anführungszeichen – auch wenn er wie eine Zahl aussieht: `"250"` ist Text, keine Zahl!

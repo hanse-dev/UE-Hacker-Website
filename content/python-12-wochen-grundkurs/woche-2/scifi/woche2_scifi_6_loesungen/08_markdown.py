@@ -1,3 +1,3 @@
-"""### Systemprotokoll 2: Strings und Integer – Aufgabe 2
+"""### Systemprotokoll 2: Strings und type() – Aufgabe 2
 
-Lege eine Variable sektor mit dem Text \"Orion\" an und gib mit einem f-String genau diese Zeile aus: Typ: <class 'str'>"""
+Lege schiff_klasse = "Kreuzer" an und gib genau aus: Klasse: Kreuzer, Typ: <class 'str'> (lass den f-String den Typ mit type() einsetzen)."""

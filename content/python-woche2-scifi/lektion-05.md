@@ -1,15 +1,13 @@
-# 🔗 Systemprotokoll 4: Texte verbinden
+# 📟 Systemprotokoll 5: Wahrheitswerte
 
-Auch Strings kannst du „verrechnen":
-
-- **`+`** klebt zwei Texte aneinander (**Verketten**): `"Neo" + "tron"` ergibt `"Neotron"`
-- **`*`** wiederholt einen Text: `"Ping" * 3` ergibt `"PingPingPing"`
+Ein **Boolean** (`bool`) hat nur zwei mögliche Werte: `True` oder `False` – wie ein Schalter, der an oder aus ist. Perfekt für Systemzustände.
 
 ```python
-prefix = "Neo"
-suffix = "tron"
-print(prefix + suffix)   # Neotron
-print(prefix * 3)        # NeoNeoNeo
+system_online = True
+alarm_aktiv = False
+print(type(system_online))   # <class 'bool'>
 ```
 
-> 📡 **Merke:** Nicht alle Typen passen zusammen! `"Neo" + 5` (Text plus Zahl) ist ein Fehler. Im nächsten Protokoll lernst du, wie du Typen ineinander umwandelst.
+> ⚠️ **Wichtig:** Schreibe `True` und `False` mit großem Anfangsbuchstaben und **ohne** Anführungszeichen – `"True"` in Anführungszeichen wäre nur Text!
+
+Booleans entstehen auch aus Vergleichen: `80 > 50` ergibt `True`.

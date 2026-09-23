@@ -1,11 +1,13 @@
 # ⭐⭐⭐☆☆ Mission 2: Die Flottenanalyse
 
-Analysiere die Flottenformation und berechne die Statistiken! Die Flotte besteht aus drei Schiffen:
+Analysiere die Flottenformation und berechne die Statistiken. Nutze diese drei Schiffe:
 
-| Schiff | Crew | Geschwindigkeit |
+| Schiff | Besatzung | Geschwindigkeit |
 |---|---|---|
-| Orion | 120 | 2.5 |
+| Aurora | 120 | 2.5 |
 | Vega | 80 | 3.5 |
-| Sirius | 100 | 4.5 |
+| Orion | 200 | 1.5 |
 
-**Bonus (freiwillig, ohne Prüfung):** Berechne die durchschnittliche Crewgröße!
+Speichere die Namen als Text, die Besatzungsgrößen als Ganzzahlen und die Geschwindigkeiten als Dezimalzahlen in Variablen.
+
+**Bonus (freiwillig, ohne Prüfung):** Berechne die durchschnittliche Besatzungsgröße!

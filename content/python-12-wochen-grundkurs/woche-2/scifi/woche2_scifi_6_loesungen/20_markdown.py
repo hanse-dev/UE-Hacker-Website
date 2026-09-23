@@ -1,3 +1,3 @@
-"""### Systemprotokoll 4: Texte verbinden – Aufgabe 2
+"""### Systemprotokoll 5: Wahrheitswerte – Aufgabe 2
 
-Lege signal = \"Ping\" an. Wiederhole es mit * dreimal und gib genau diese Zeile aus: Signal: PingPingPing"""
+Lege alarm_aktiv = False an und gib den Quanten-Typ mit type() aus."""

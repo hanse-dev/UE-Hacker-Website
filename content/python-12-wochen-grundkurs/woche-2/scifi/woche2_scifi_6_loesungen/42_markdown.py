@@ -1,3 +1,5 @@
-"""### Mission 3: Der Asteroiden-Mining – Aufgabe 1
+"""## ⭐ Missionen
 
-Schritt 1 – Lege für beide Asteroiden Variablen an (siehe Tabelle) und berechne den Rohwert jedes Asteroiden. Gib genau diese zwei Zeilen aus: Ferrum: 4800.0 und Aurum: 4000.0"""
+### Mission 1: Das Energiedepot – Aufgabe 1
+
+Schritt 1 – Lege techniker = "Kira" (Text) und techniker_id = 4021 (ganze Zahl) an. Gib genau aus: Techniker Kira, ID 4021"""

@@ -1,3 +1,3 @@
-"""### Systemprotokoll 4: Texte verbinden – Aufgabe 1
+"""### Systemprotokoll 5: Wahrheitswerte – Aufgabe 1
 
-Die Variablen teil_a und teil_b sind schon angelegt. Verbinde sie mit + zu einer Variable stationsname und gib genau diese Zeile aus: Station: StarBase"""
+Lege schild_aktiv = True und reaktor_ueberhitzt = False an und gib genau aus: Schild aktiv: True"""
