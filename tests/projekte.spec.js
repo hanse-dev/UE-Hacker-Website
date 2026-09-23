@@ -21,6 +21,14 @@ test.describe('Projekte-Übersicht', () => {
     await expect(page.locator('a[href="/kurs/projekt-js-snake"]')).toBeVisible();
   });
 
+  test('Projekt-Karte ist ganzflächig klickbar, nicht nur der "Jetzt starten"-Link', async ({ page }) => {
+    await page.goto('/projekte');
+    await expect(page.locator('.projekt-card')).toHaveCount(6, { timeout: 15000 });
+
+    await page.locator('a.projekt-card[href="/kurs/projekt-caesar-chiffre"] h3').click();
+    await expect(page).toHaveURL(/projekt-caesar-chiffre/);
+  });
+
   test('Level-Filter "Fortgeschritten" reduziert auf Zahlen-Detektiv, Vigenère-Chiffre und Snake', async ({ page }) => {
     await page.goto('/projekte');
     await expect(page.locator('.projekt-card')).toHaveCount(6, { timeout: 15000 });

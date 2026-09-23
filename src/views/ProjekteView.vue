@@ -93,7 +93,12 @@
       <div v-if="loading" class="loading">{{ t('projekte.loading') }}</div>
       <p v-else-if="!filteredProjects.length" class="projekte-empty">{{ t('projekte.noResults') }}</p>
       <div v-else class="course-list">
-        <div v-for="projekt in filteredProjects" :key="projekt.id" class="course-card projekt-card">
+        <router-link
+          v-for="projekt in filteredProjects"
+          :key="projekt.id"
+          :to="`/kurs/${projekt.id}`"
+          class="course-card projekt-card"
+        >
           <div class="projekt-badges">
             <span class="badge badge-language">{{ languageLabel(projekt.language) }}</span>
             <span class="badge badge-level">{{ t(`projectLevel.${projekt.level}`) }}</span>
@@ -105,8 +110,8 @@
             <span v-for="tag in projekt.tags" :key="tag" class="tag-chip">{{ t(`projectTag.${tag}`) }}</span>
           </div>
           <p class="projekt-lessons">{{ projekt.lessonCount }} {{ t('projekte.lessonsLabel') }}</p>
-          <router-link :to="`/kurs/${projekt.id}`" class="course-link">{{ t('projekte.startBtn') }}</router-link>
-        </div>
+          <span class="course-link">{{ t('projekte.startBtn') }}</span>
+        </router-link>
       </div>
     </section>
   </div>
@@ -350,6 +355,12 @@ export default {
 .projekte-empty {
   color: #666;
   padding: 20px 0;
+}
+
+.projekt-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
 }
 
 .projekt-badges {
