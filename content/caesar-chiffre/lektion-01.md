@@ -8,8 +8,8 @@ Damit du das in Python bauen kannst, brauchst du zwei Funktionen, die Buchstaben
 - `chr(zahl)` macht das Gegenteil: aus einer Zahl wird wieder ein Buchstabe, z.B. `chr(97)` → `'a'`
 
 ```python
-print(ord('a'))   # 97
-print(chr(97))    # a
+print(ord('m'))   # 109
+print(chr(66))     # B
 ```
 
 Mit diesen beiden Werkzeugen kannst du gleich Buchstaben "rechnen" – das ist die Grundlage der ganzen Cäsar-Chiffre.
