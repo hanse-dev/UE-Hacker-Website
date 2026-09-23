@@ -1,5 +1,15 @@
 # Workflow-Regeln
 
+## Keine Sub-Agenten (Agent-Tool) für dieses Projekt
+
+**Keine Sub-Agenten spawnen, auch nicht für Recherche/Exploration.** Jeder Sub-Agent lädt
+`CLAUDE.md` samt aller `@`-Imports (`VISION.md`, `todo.md`, `HANDOFF.md`, `WORKFLOW.md`) neu —
+das verbraucht bei parallelen/mehreren Spawns unnötig viele Tokens gleichzeitig, ohne
+projektspezifischen Nutzen gegenüber sequenzieller Arbeit in der Hauptsession. Stattdessen:
+Aufgaben nacheinander in der Hauptsession erledigen (Read/Grep/Bash direkt nutzen), auch wenn
+das bedeutet, dass Recherche und Umsetzung mehr Turns brauchen. Ausnahme nur, wenn der Nutzer
+explizit einen Sub-Agenten verlangt.
+
 ## Git: Ein Thema = ein Branch
 
 **Immer einen neuen Branch anlegen, wenn ein neues Thema beginnt.**
