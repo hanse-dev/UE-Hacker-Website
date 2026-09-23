@@ -31,12 +31,12 @@
         <router-link to="/kurs/python-einstufung" class="placement-hint-link">{{ t('home.cta.placement') }} →</router-link>
       </p>
       <div class="course-list">
-        <div v-for="kurs in kurse" :key="kurs.id" class="course-card">
+        <router-link v-for="kurs in kurse" :key="kurs.id" :to="`/kurs/${kurs.id}`" class="course-card">
           <span v-if="kurs.format" class="course-format-badge">{{ t(`courseFormat.${kurs.format}`) }}</span>
           <h3>{{ lang === 'en' && kurs.title_en ? kurs.title_en : kurs.title }}</h3>
           <p>{{ lang === 'en' && kurs.description_en ? kurs.description_en : kurs.description }}</p>
-          <router-link :to="`/kurs/${kurs.id}`" class="course-link">{{ t('home.course.moreInfo') }}</router-link>
-        </div>
+          <span class="course-link">{{ t('home.course.moreInfo') }}</span>
+        </router-link>
       </div>
     </section>
 
@@ -212,6 +212,12 @@ export default {
 </script>
 
 <style scoped>
+.course-list .course-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
 .placement-hint {
   margin: -14px 0 24px;
   color: #666;

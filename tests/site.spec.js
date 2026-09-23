@@ -26,9 +26,9 @@ test.describe('Home & Navigation', () => {
     // Termin. Projekt-Kurse (type: 'projekt') erscheinen hier nicht mehr — die haben eine eigene
     // Übersicht unter /projekte, verlinkt über den Projekte-Teaser.
     await expect(page.locator('#kurse-uebersicht .course-card')).toHaveCount(3);
-    await expect(page.locator('a.course-link[href="/kurs/python-12-wochen-grundkurs"]')).toBeVisible();
-    await expect(page.locator('a.course-link[href="/kurs/python-grundlagen-interaktiv"]')).toBeVisible();
-    await expect(page.locator(`a.course-link[href="${JS_GRUNDKURS_URL}"]`)).toBeVisible();
+    await expect(page.locator('a.course-card[href="/kurs/python-12-wochen-grundkurs"]')).toBeVisible();
+    await expect(page.locator('a.course-card[href="/kurs/python-grundlagen-interaktiv"]')).toBeVisible();
+    await expect(page.locator(`a.course-card[href="${JS_GRUNDKURS_URL}"]`)).toBeVisible();
     await expect(page.locator('.projekte-teaser-link')).toBeVisible();
     await expect(page.locator('a.placement-hint-link[href="/kurs/python-einstufung"]')).toBeVisible();
 
@@ -48,9 +48,10 @@ test.describe('Home & Navigation', () => {
     await expect(page.locator('.projekt-card').first()).toBeVisible({ timeout: 15000 });
   });
 
-  test('Home-Kursliste öffnet den JS-Grundkurs mit korrektem Titel', async ({ page }) => {
+  test('Home-Kursliste öffnet den JS-Grundkurs mit korrektem Titel per Klick auf die ganze Karte', async ({ page }) => {
     await page.goto('/');
-    await page.locator(`a.course-link[href="${JS_GRUNDKURS_URL}"]`).click();
+    // Die ganze Kurskarte ist klickbar, nicht nur der "Mehr erfahren"-Link
+    await page.locator(`a.course-card[href="${JS_GRUNDKURS_URL}"] h3`).click();
     await expect(page).toHaveURL(/js-grundkurs/);
     await expect(page.locator('.course-detail > h1')).toHaveText('JavaScript-Grundkurs');
     await expect(page.locator('.week-tile')).toHaveCount(9, { timeout: 15000 });
