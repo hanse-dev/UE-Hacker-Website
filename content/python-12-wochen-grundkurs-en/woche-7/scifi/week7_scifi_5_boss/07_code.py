@@ -1,7 +1,0 @@
-print()
-print("🎉 Boss Quest completed!")
-print("🏆 You have defeated the Code Archivist of Infinite Functions!")
-print("⭐ Title received: Master of Modules")
-print()
-print("🎊 CONGRATULATIONS! You have mastered Week 7!")
-print("📚 Next week: Dictionaries and Tuples!")

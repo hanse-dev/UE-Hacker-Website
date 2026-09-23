@@ -1,7 +1,0 @@
-print()
-print("🎉 Boss-Quest abgeschlossen!")
-print("🏆 Du hast den Daten-Archivar der unendlichen Arrays besiegt!")
-print("⭐ Titel erhalten: Meister der Daten-Sammlungen")
-print()
-print("🎊 GLÜCKWUNSCH! Du hast Woche 6 gemeistert!")
-print("📚 Nächste Woche: Module und Bibliotheken (math, random)!")

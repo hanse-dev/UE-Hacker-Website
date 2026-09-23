@@ -16,7 +16,7 @@ Dieses Dokument beschreibt, welche Dateien zusammengehören und was bei Änderun
 | `projekt-morsecode` | `content/morsecode/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON) |
 | `projekt-zahlendetektiv` | `content/zahlendetektiv/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON) |
 | `projekt-js-spielewerkstatt` | `content/js-spielewerkstatt/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON, `engine: "js-sandbox"`) |
-| *(Lektions-Format)* Woche 1, 2, 4 | `content/python-woche{N}-{abenteuer\|pferde\|scifi}/` | `content/python-woche{N}-{thema}-en/` | Markdown + JSON, Pyodide; ersetzt die Notebook-Schritte Lektion/Debug/Missionen/Boss dieser Woche/Variante/Sprache; Lösungs-Notebook wird passend neu geschrieben |
+| *(Lektions-Format)* Woche 1–12 (alle) | `content/python-woche{N}-{abenteuer\|pferde\|scifi}/` | `content/python-woche{N}-{thema}-en/` | Markdown + JSON, Pyodide; ersetzt die Notebook-Schritte Lektion/Debug/Missionen/Boss jeder Woche/Variante/Sprache (siehe HANDOFF.md 3.47–3.54). Die alten `1_lektion`/`2_debug`/`3_missionen`/`5_boss`-Zellenordner gibt es nicht mehr — nur `0_glossar` und `6_loesungen` bleiben als Notebooks (Nachschlagewerke, siehe unten). |
 | `js-grundkurs` | `content/js-grundkurs/` (Beschreibung) + `content/js-grundkurs-woche{1-9}/` (Wochen) | *(keine EN-Version)* | Grundkurs (Markdown + JSON, `engine: "js-sandbox"`, eigene Mehrwochen-Struktur) |
 
 Alle Projekt-Kurse (`type: "projekt"` in `kurse.json`) sind gesammelt und filterbar unter
@@ -91,20 +91,29 @@ erzeugt (`scripts/build_cell_notebooks.py`) und sind gitignored — **nur die nu
 | `pferde/` | `horses/` | `woche{N}_pferde_{typ}/` | `week{N}_horses_{typ}/` |
 | `scifi/` | `scifi/` | `woche{N}_scifi_{typ}/` | `week{N}_scifi_{typ}/` |
 
-### Notebook-Typen (6 Ordner pro Woche/Variante)
+### Notebook-Typen (2 Ordner pro Woche/Variante — nur noch Nachschlagewerke)
+
+Seit alle Wochen im Lektions-Format sind (HANDOFF.md 3.47–3.54), sind Lektion/Debug/Missionen/Boss
+kein Notebook-Schritt mehr (siehe Abschnitt 1) — nur diese zwei Typen bleiben als Zellenordner:
 
 | Kürzel | Inhalt |
 |---|---|
 | `0_glossar` | Begriffserklärungen für die Woche |
-| `1_lektion` | Hauptlektion mit Erklärungen und Beispielen |
-| `2_debug` | Fehlersuche-Aufgaben |
-| `3_missionen` | Hauptaufgaben der Woche |
-| `5_boss` | Boss-Quest (Abschlussaufgabe) |
-| `6_loesungen` | Musterlösungen |
+| `6_loesungen` | Musterlösungen zu den Aufgaben der Lektionen (eine Zelle je Aufgabe) |
 
 **Ausnahme:** Cheat-Sheets (`wissens_cheat_sheet.ipynb`) und `gesamtglossar.ipynb` sind NICHT Teil
 dieser Umstellung — eigene, unabhängige Pipeline (`scripts/md_to_cheatsheet_notebook.py`), bleiben
 echte `.ipynb`-Dateien.
+
+### Offline-ZIP-Download (`public/wochen-zips/`)
+
+`scripts/build_lesson_bundle.py` baut aus dem Lektions-Format (`lessons.json` + `lektion-*.md` usw.)
+und den Referenzlösungen (`*_6_loesungen`-Zellenordner) **eine einzige, direkt mit `python3` lauffähige
+`.py`-Datei je Woche/Variante/Sprache** (Glossar, Lektionen, Debug-Quest, Missionen und Extra-
+Herausforderungen inklusive Lösungen als Kommentare/Code) — kein Jupyter/Zellen-Format nötig für den
+Download. `scripts/pack_notebooks.py` packt das je Woche (`woche-{N}.zip`/`woche-{N}-en.zip`) und als
+Gesamtpaket (`python-12-wochen-notebooks.zip`). Nichts davon wird committed (wie `_bundle`/`_generated`,
+läuft bei jedem `npm run dev`/`npm run build` neu über `pack:notebooks`).
 
 ---
 
@@ -247,12 +256,23 @@ Jeder Ordner enthält dieselben Dateien:
 
 ## 6. Was muss gleichzeitig geändert werden?
 
-### Wenn du ein Notebook inhaltlich änderst (12-Wochen-Kurs):
+### Wenn du ein Notebook inhaltlich änderst (12-Wochen-Kurs, nur noch Glossar/Lösungen — `typ` ∈ `{0_glossar, 6_loesungen}`):
 - [ ] DE: die einzelnen Zell-Dateien unter
       `content/python-12-wochen-grundkurs/woche-{N}/{variante}/woche{N}_{variante}_{typ}/NN_*.py`
 - [ ] EN: `content/python-12-wochen-grundkurs-en/woche-{N}/{en_variante}/week{N}_{en_variante}_{typ}/NN_*.py`
 - [ ] `_generated/`/`_bundle/` **nicht** von Hand anfassen — werden bei `npm run dev`/`npm run build`
       automatisch aus den `NN_*.py`-Dateien neu erzeugt (`scripts/build_cell_notebooks.py`)
+- [ ] Änderst du `6_loesungen`, muss die Anzahl/Reihenfolge der Lösungs-Code-Zellen weiter zu den
+      nicht-Beispiel-Aufgaben der zugehörigen `lessons.json` passen (`python-lektionen-format.spec.js`
+      prüft das) — sonst weicht auch der ZIP-Download (`scripts/build_lesson_bundle.py`) ab.
+
+### Wenn du eine Lektion/Mission/Boss-Etappe im Lektions-Format änderst (12-Wochen-Kurs, Woche 1–12):
+- [ ] `content/python-woche{N}-{thema}[-en]/lessons.json` (Aufgaben/`codeTemplate`/`validation`) und
+      die zugehörige `lektion-XX.md`/`debug-XX.md`/`mission-XX.md`/`boss-XX.md` (Erzähltext)
+- [ ] Passende Referenzlösung in `..._6_loesungen` (siehe oben) nachziehen
+- [ ] DE **und** EN (eigener `-en`-Ordner, kein gemeinsamer Content wie beim interaktiven Kurs)
+- [ ] Kein Build-Schritt nötig — der ZIP-Download liest `lessons.json` und die Markdown-Dateien
+      direkt (`scripts/build_lesson_bundle.py`, läuft bei `npm run dev`/`npm run build`)
 
 ### Wenn du Missionen änderst:
 - [ ] `public/rewards-manifest.json`

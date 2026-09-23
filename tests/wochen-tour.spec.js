@@ -72,15 +72,17 @@ test.describe('12-Wochen-Kurs: Wochen-Tour', () => {
     await page.goto(TOUR_URL);
     await expect(page.locator('.week-tile')).toHaveCount(12);
 
-    // Woche 12: frühe Wochen sind im Lektions-Format (python-woche1-lektionen.spec.js)
+    // Woche 12 ist (wie alle Wochen) im Lektions-Format: die eingebettete Lektions-Tour
+    // (JsCourseTour.vue, Klasse .js-course-tour) ersetzt die alten Notebook-Schritte.
     await page.locator('.week-tile[data-week="12"]').click();
     await expect(page.locator('.week-tile')).toHaveCount(0); // Wochen-Seite verlassen
     await expect(page.locator('.variant-tile')).toHaveCount(3);
 
     await page.locator('.variant-tile').nth(1).click();
     await expect(page.locator('.variant-tile')).toHaveCount(0); // Themen-Seite verlassen
-    await expect(page.locator('.stepper-step.current')).toContainText('Lektion');
-    await expect(page.locator('.tour-content .cell-markdown').first()).toBeVisible();
+    await expect(page.locator('.js-course-tour .stepper-step').first()).toHaveClass(/current/);
+    await expect(page.locator('.js-course-tour .breadcrumb-lesson')).toContainText('1');
+    await expect(page.locator('.task-block').first()).toBeVisible();
   });
 
   test('Wochen-Pfad: Schlangen-Anordnung platziert den Zeilenumbruch senkrecht statt quer über das Raster', async ({ page }) => {
@@ -114,35 +116,10 @@ test.describe('12-Wochen-Kurs: Wochen-Tour', () => {
     await expect(page.locator('.week-tile')).toHaveCount(12);
   });
 
-  test('Nach den Missionen führt eine Wahl-Seite zu Extra-Herausforderung oder Check', async ({ page }) => {
-    await page.goto(`${TOUR_URL}?week=12&variant=pferde&step=3_missionen`);
-    await expect(page.locator('.stepper-step.current')).toContainText('Missionen');
-    await page.locator('.tour-next-btn').click();
-
-    await expect(page.locator('.branch-choice-page')).toBeVisible();
-    await expect(page.locator('[data-branch="5_boss"]')).toContainText('Extra-Herausforderung');
-    await expect(page.locator('[data-branch="4_check"]')).toContainText('Check');
-    // Während der Wahl ist kein Tour-Schritt als "aktuell" markiert
-    await expect(page.locator('.stepper-step.current')).toHaveCount(0);
-
-    await page.locator('[data-branch="5_boss"]').click();
-    await expect(page.locator('.stepper-step.current')).toContainText('Extra-Herausforderung');
-    await expect(page.locator('.stepper-step[data-step-key="5_boss"].done')).toHaveCount(1);
-
-    await page.locator('.tour-next-btn').click();
-    await expect(page.locator('.stepper-step.current')).toContainText('Check');
-    await expect(page.locator('.week-check-panel')).toBeVisible();
-  });
-
-  test('Check direkt wählen überspringt die Extra-Herausforderung (bleibt unbesucht)', async ({ page }) => {
-    await page.goto(`${TOUR_URL}?week=12&variant=pferde&step=3_missionen`);
-    await expect(page.locator('.stepper-step.current')).toContainText('Missionen');
-    await page.locator('.tour-next-btn').click();
-    await page.locator('[data-branch="4_check"]').click();
-
-    await expect(page.locator('.stepper-step.current')).toContainText('Check');
-    await expect(page.locator('.stepper-step[data-step-key="5_boss"].done')).toHaveCount(0);
-  });
+  // Die Wahl-Seite nach den Missionen (Extra-Herausforderung oder Check) gehört seit dem
+  // Lektions-Format zur eingebetteten Lektions-Tour (JsCourseTour.vue) und wird dort - mit
+  // echten geloesten Aufgaben statt nur Navigation - bereits geprueft, siehe
+  // python-woche1-lektionen.spec.js ("mission-03 lösen -> Wahl-Seite statt direkt Extra-Herausforderung").
 
   test('Bestandener Check zeigt das Zertifikat und führt zur nächsten Woche', async ({ page }) => {
     test.setTimeout(60000);
@@ -224,7 +201,11 @@ test.describe('12-Wochen-Kurs: Wochen-Tour', () => {
   });
 
   test('Seitenmenü: Sprung zu einem Unterabschnitt scrollt zur passenden Zelle', async ({ page }) => {
+    // Unterabschnitte (Seitenmenü "Abschnitte") gibt es nur innerhalb eines Notebooks - im
+    // Lektions-Format also nur in den Nachschlagewerken (Glossar/Lösungen), nicht in den Lektionen
+    // selbst (siehe WeekTourStepper.vue: `headings` kommt aus dem aktuell offenen Notebook).
     await page.goto(`${TOUR_URL}?week=12&variant=pferde`);
+    await page.locator('[data-reference-key="6_loesungen"]').click();
     const heading = page.locator('.side-menu-heading').first();
     await expect(heading).toBeVisible();
     const headingText = await heading.textContent();
@@ -235,15 +216,24 @@ test.describe('12-Wochen-Kurs: Wochen-Tour', () => {
   });
 
   test('Seitenmenü: Glossar öffnen und zurück zur Tour behält den Fortschritt', async ({ page }) => {
+    // "Fortschritt" ist seit dem Lektions-Format die erste noch offene Lektion in der
+    // eingebetteten Lektions-Tour (JsCourseTour.vue). Die Komponente wird beim Umschalten auf ein
+    // Nachschlagewerk (v-if-Zweig in WeekTourStepper.vue) neu gemountet - ohne die Fixierung in
+    // JsCourseTour.vue (siehe dort) würde das immer auf Lektion 1 zurückspringen.
+    await page.addInitScript(() => {
+      localStorage.setItem('ue-hacker-interactive-progress-python-woche12-pferde', JSON.stringify({
+        version: 1, courseId: 'python-12-wochen-grundkurs', variant: 'python-woche12-pferde',
+        completedLessonIds: ['lektion-01'],
+      }));
+    });
     await page.goto(`${TOUR_URL}?week=12&variant=pferde`);
-    await page.locator('.tour-next-btn').click(); // -> Debug
-    await expect(page.locator('.stepper-step.current')).toContainText('Debug');
+    await expect(page.locator('.js-course-tour .breadcrumb-lesson')).toContainText('2');
 
     await page.locator('[data-reference-key="0_glossar"]').click();
     await expect(page.locator('.tour-reference-banner')).toBeVisible();
-    await expect(page.locator('.stepper-step.current')).toHaveCount(0);
+    await expect(page.locator('.js-course-tour')).toHaveCount(0);
 
     await page.locator('.tour-back-btn').click();
-    await expect(page.locator('.stepper-step.current')).toContainText('Debug');
+    await expect(page.locator('.js-course-tour .breadcrumb-lesson')).toContainText('2');
   });
 });

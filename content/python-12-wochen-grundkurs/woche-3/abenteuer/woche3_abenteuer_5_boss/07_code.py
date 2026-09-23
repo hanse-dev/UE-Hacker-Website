@@ -1,7 +1,0 @@
-print()
-print("🎉 Boss-Quest abgeschlossen!")
-print("🏆 Du hast die Sphinx der rätselhaften Wege besiegt!")
-print("⭐ Titel erhalten: Meister der Entscheidungen")
-print()
-print("🎊 GLÜCKWUNSCH! Du hast Woche 3 gemeistert!")
-print("📚 Nächste Woche: Schleifen (for, while)!")

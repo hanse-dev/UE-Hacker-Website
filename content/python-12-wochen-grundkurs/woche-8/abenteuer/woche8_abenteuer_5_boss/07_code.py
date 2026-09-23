@@ -1,7 +1,0 @@
-print()
-print("🎉 Boss-Quest abgeschlossen!")
-print("🏆 Du hast den Archivar des Gildenarchivs besiegt!")
-print("⭐ Titel erhalten: Meister der Steckbriefe")
-print()
-print("🎊 GLÜCKWUNSCH! Du hast Woche 8 gemeistert!")
-print("📚 Nächste Woche: JSON-Dateien und I/O!")

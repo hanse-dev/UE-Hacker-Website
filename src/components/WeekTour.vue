@@ -58,7 +58,7 @@
         </div>
 
         <div class="week-zip-download">
-          <a :href="`/wochen-zips/woche-${selectedWeekIndex + 1}.zip`" download class="btn-week-zip">
+          <a :href="`/wochen-zips/woche-${selectedWeekIndex + 1}${lang === 'en' ? '-en' : ''}.zip`" download class="btn-week-zip">
             {{ t('week.download.week').replace('{n}', selectedWeekIndex + 1) }}
           </a>
           <span class="week-zip-hint">{{ t('week.download.week.hint') }}</span>
@@ -356,7 +356,7 @@ export default {
     watch(lang, load);
 
     return {
-      t, weeks, loading, phase, selectedWeekIndex, selectedWeek, availableVariants, initialStep,
+      t, lang, weeks, loading, phase, selectedWeekIndex, selectedWeek, availableVariants, initialStep,
       selectedVariantLabel, hasNextWeek, lessonContentPath, weekTheme, weekIcon, selectWeek, selectVariant,
       goToNextWeek, courseId: COURSE_ID, isCertificateEarned, countCertificates,
       weekMapRef, setTileRef, tileGridStyle, pathD, mapViewBox,

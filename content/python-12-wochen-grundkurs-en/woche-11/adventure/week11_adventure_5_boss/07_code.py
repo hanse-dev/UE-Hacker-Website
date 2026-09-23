@@ -1,7 +1,0 @@
-print()
-print("🎉 Boss Quest completed!")
-print("🏆 You have defeated the Archmage!")
-print("⭐ Title earned: Master of the OOP Arts")
-print()
-print("🎊 CONGRATULATIONS! You have mastered Week 11!")
-print("📚 Next week: Graphical projects with Turtle!")

@@ -1,7 +1,0 @@
-print()
-print("🎉 Boss-Quest abgeschlossen!")
-print("🏆 Du hast den Meister der unendlichen Runden besiegt!")
-print("⭐ Titel erhalten: Meister der Trainingsroutinen")
-print()
-print("🎊 GLÜCKWUNSCH! Du hast Woche 5 gemeistert!")
-print("📚 Nächste Woche: Listen (Listen erstellen, bearbeiten, durchsuchen)!")

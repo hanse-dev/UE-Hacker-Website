@@ -1,7 +1,0 @@
-print()
-print('🎉 Boss-Quest abgeschlossen!')
-print('🏆 Du hast den Schreiber der unendlichen Rollen besiegt!')
-print('⭐ Titel erhalten: Meister der Schriftrollen')
-print()
-print('🎊 GLÜCKWUNSCH! Du hast Woche 9 gemeistert!')
-print('📚 Nächste Woche: Objektorientierung!')

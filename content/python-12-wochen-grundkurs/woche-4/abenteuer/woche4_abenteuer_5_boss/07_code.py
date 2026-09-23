@@ -1,7 +1,0 @@
-print()
-print("🎉 Boss-Quest abgeschlossen!")
-print("🏆 Du hast den unendlichen Zyklop besiegt!")
-print("⭐ Titel erhalten: Meister der Kreisläufe")
-print()
-print("🎊 GLÜCKWUNSCH! Du hast Woche 4 gemeistert!")
-print("📚 Nächste Woche: Funktionen (def, return)!")

@@ -8,28 +8,6 @@ import path from 'node:path';
 
 const COURSE_URL = '/kurs/python-12-wochen-grundkurs';
 
-const VARIANT_KEY = { Pferde: 'pferde', Abenteuer: 'abenteuer', 'Sci-Fi': 'scifi' };
-const STEP_KEY = {
-  Lektion: '1_lektion', Debug: '2_debug', Missionen: '3_missionen',
-  'Boss-Quest': '5_boss', Check: '4_check', Lösungen: '6_loesungen', Glossar: '0_glossar',
-};
-
-// Direkter Deep-Link statt Akkordeon-Klick (Woche/Thema/Schritt in einem goto()) - die neue
-// Wochen-Tour zeigt ohnehin immer nur eine Woche gleichzeitig, kein Scoping mehr nötig.
-async function openWeekVariantTab(page, weekNumber, variantLabel, tabLabel) {
-  const variant = VARIANT_KEY[variantLabel];
-  const step = STEP_KEY[tabLabel];
-  await page.goto(`${COURSE_URL}?week=${weekNumber}&variant=${variant}&step=${step}`);
-  await page.locator('.cell').first().waitFor({ state: 'visible', timeout: 15000 });
-  return page;
-}
-
-// Notebook-Code-Zellen nutzen seit der Zellen-Format-Umstellung CodeMirror statt einer
-// <textarea class="code-editor"> - .inputValue() funktioniert dort nicht mehr.
-async function getCodeCellText(cmHost) {
-  return cmHost.locator('.cm-content').innerText();
-}
-
 // Woche 1 (alle Themen) ist im Lektions-Format: die Bugs stehen als Aufgaben in debug-01
 // (python-woche1-lektionen.spec.js prueft das Format selbst) - hier nur die Inhalts-Regeln.
 function debugGoalsTest(themeLabel, variant) {
@@ -77,17 +55,16 @@ test.describe('Storytelling-Überarbeitung: Pferde', () => {
   });
 
   test('Woche 9: eigene Rahmengeschichte statt Woche-8-Duplikat', async () => {
-    // Woche 8 und 9 sind im Lektions-Format (kein `.cell` in der Tour) - Original-Einleitung aus der Quelldatei lesen.
+    // Woche 8 und 9 sind im Lektions-Format (content/python-woche{8,9}-pferde/lektion-01.md).
     const intro = (w) => fs.readFileSync(
-      path.join(process.cwd(), `content/python-12-wochen-grundkurs/woche-${w}/pferde/woche${w}_pferde_1_lektion/01_markdown.py`), 'utf-8');
+      path.join(process.cwd(), `content/python-woche${w}-pferde/lektion-01.md`), 'utf-8');
     const week8Text = intro(8);
     const week9Text = intro(9);
 
-    expect(week9Text).toContain('Zuchtbücher von Sonnental');
-    // The two weeks must not share their opening story paragraph anymore.
-    const week8Intro = week8Text.split('\n').slice(0, 6).join('\n');
-    expect(week9Text).not.toContain(week8Intro);
     expect(week9Text).not.toContain('Sonnentals');
+    // The two weeks must not share their opening story paragraph.
+    const week8Intro = week8Text.split('\n').slice(0, 4).join('\n');
+    expect(week9Text).not.toContain(week8Intro);
   });
 
 });
@@ -98,17 +75,20 @@ test.describe('Storytelling-Überarbeitung: Abenteuer', () => {
 
 test.describe('Storytelling-Überarbeitung: Sci-Fi', () => {
   test('Woche 11: Lektion-Code ist syntaktisch korrekt (def/self vorhanden)', async () => {
-    // Woche 11 ist im Lektions-Format (kein `.cell` in der Tour) - Original-Lektion aus den Quelldateien lesen.
-    const dir = path.join(process.cwd(), 'content/python-12-wochen-grundkurs/woche-11/scifi/woche11_scifi_1_lektion');
-    const files = fs.readdirSync(dir).filter((f) => /^\d+_(markdown|code)\.py$/.test(f)).sort();
-    const text = files.map((f) => fs.readFileSync(path.join(dir, f), 'utf-8')).join('\n');
+    // Woche 11 ist im Lektions-Format (content/python-woche11-scifi/).
+    const dir = path.join(process.cwd(), 'content/python-woche11-scifi');
+    const mdFiles = fs.readdirSync(dir).filter((f) => f.endsWith('.md'));
+    const text = mdFiles.map((f) => fs.readFileSync(path.join(dir, f), 'utf-8')).join('\n');
     expect(text).toContain('Raumstation Nebula-7');
     expect(text).not.toContain('Evolution-Station Alpha-7');
 
-    const codeFiles = files.filter((f) => f.endsWith('_code.py'));
-    expect(codeFiles.length).toBeGreaterThan(0);
-    for (const f of codeFiles) {
-      const code = fs.readFileSync(path.join(dir, f), 'utf-8');
+    const lessons = JSON.parse(fs.readFileSync(path.join(dir, 'lessons.json'), 'utf-8'));
+    const codeSnippets = [
+      ...mdFiles.map((f) => fs.readFileSync(path.join(dir, f), 'utf-8')),
+      ...lessons.flatMap((l) => l.tasks.map((t) => t.codeTemplate)),
+    ];
+    expect(codeSnippets.length).toBeGreaterThan(0);
+    for (const code of codeSnippets) {
       // The original bug: every method inside a class was missing "def" and/or
       // "self" (e.g. "aktivieren():" instead of "def aktivieren(self):", or
       // "def __init__(id, name):" instead of "def __init__(self, id, name):").
@@ -129,40 +109,28 @@ test.describe('Storytelling-Überarbeitung: Sci-Fi', () => {
   });
 
   test('Woche 6/8: Boss-Quest 2 ist nicht mehr der Woche-5-Klon', async () => {
-    // Woche 5 ist seit dem Lektions-Format kein Notebook mehr im Kurs (kein `.cell` in der Tour) -
-    // die Original-Boss-Quest liegt weiter als Nachschlagewerk-Quelle im Repo, daher aus der Datei lesen.
-    const week5Text = fs.readFileSync(
-      path.join(process.cwd(), 'content/python-12-wochen-grundkurs/woche-5/scifi/woche5_scifi_5_boss/04_markdown.py'),
-      'utf-8',
-    );
-    expect(week5Text).toContain('Der Raumstation-Manager');
+    // Woche 5, 6, 8 sind im Lektions-Format (content/python-woche{N}-scifi/boss-02.md) -
+    // die zweite Extra-Herausforderung jeder Woche muss einen eigenen Titel haben.
+    const bossTwoTitle = (w) => fs.readFileSync(
+      path.join(process.cwd(), `content/python-woche${w}-scifi/boss-02.md`), 'utf-8',
+    ).split('\n')[0];
+    const week5Title = bossTwoTitle(5);
+    const week6Title = bossTwoTitle(6);
+    const week8Title = bossTwoTitle(8);
 
-    // Woche 6 ist ebenfalls im Lektions-Format (siehe oben) - Original-Boss-Quest aus der Quelldatei lesen.
-    const week6Text = fs.readFileSync(
-      path.join(process.cwd(), 'content/python-12-wochen-grundkurs/woche-6/scifi/woche6_scifi_5_boss/04_markdown.py'),
-      'utf-8',
-    );
-    expect(week6Text).toContain('Der Hangar-Verwalter');
-    expect(week6Text).not.toContain('Der Raumstation-Manager');
-
-    // Woche 8 ist ebenfalls im Lektions-Format - Original-Boss-Quest aus der Quelldatei lesen.
-    const week8Text = fs.readFileSync(
-      path.join(process.cwd(), 'content/python-12-wochen-grundkurs/woche-8/scifi/woche8_scifi_5_boss/04_markdown.py'),
-      'utf-8',
-    );
-    expect(week8Text).toContain('Die Sensor-Matrix');
-    expect(week8Text).not.toContain('Der Raumstation-Manager');
+    expect(week6Title).not.toBe(week5Title);
+    expect(week8Title).not.toBe(week5Title);
+    expect(week8Title).not.toBe(week6Title);
   });
 
   test('Woche 12: Debug-Bugs verraten die Lösung nicht im Kommentar', async () => {
-    // Woche 12 ist im Lektions-Format - Original-Debug-Notebook aus den Quelldateien, dazu die neuen Debug-Aufgaben.
-    const dir = path.join(process.cwd(), 'content/python-12-wochen-grundkurs/woche-12/scifi/woche12_scifi_2_debug');
-    const codes = fs.readdirSync(dir).filter((f) => f.endsWith('_code.py')).map((f) => fs.readFileSync(path.join(dir, f), 'utf-8'));
-    expect(codes.length).toBeGreaterThan(0);
+    // Woche 12 ist im Lektions-Format (content/python-woche12-scifi[-en]/lessons.json).
+    const codes = [];
     for (const lang of ['', '-en']) {
       const lessons = JSON.parse(fs.readFileSync(path.join(process.cwd(), `content/python-woche12-scifi${lang}/lessons.json`), 'utf-8'));
       for (const t of lessons.find((l) => l.id === 'debug-01').tasks) codes.push(t.codeTemplate);
     }
+    expect(codes.length).toBeGreaterThan(0);
     for (const code of codes) expect(code).not.toMatch(/#\s*Bug:/i);
   });
 

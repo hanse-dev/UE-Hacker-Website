@@ -50,12 +50,11 @@ function parseWeekMarkdown(body) {
   return { shortDesc, lernziele, lernzieleFull };
 }
 
+// Seit alle Wochen im Lektions-Format sind (siehe HANDOFF.md 3.47-3.54), gibt es nur noch diese
+// zwei Notebook-Typen als eigenständige Zellen-Ordner - Lektion/Debug/Missionen/Boss kommen aus
+// content/python-woche{N}-{thema}[-en]/lessons.json (useLessonContent.js), nicht mehr von hier.
 const NOTEBOOK_TYPES = [
   '0_glossar',
-  '1_lektion',
-  '2_debug',
-  '3_missionen',
-  '5_boss',
   '6_loesungen',
 ];
 

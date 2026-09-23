@@ -141,7 +141,7 @@
         :visited-keys="visitedKeys"
         :headings="headings"
         :reference-items="referenceItems"
-        :week-zip-url="`/wochen-zips/woche-${weekNumber}.zip`"
+        :week-zip-url="`/wochen-zips/woche-${weekNumber}${lang === 'en' ? '-en' : ''}.zip`"
         :active-reference="activeReference"
         @select-step="viewStep"
         @select-heading="scrollToCell"
@@ -359,7 +359,7 @@ export default {
     };
 
     return {
-      t, steps, hasCheck, referenceItems, viewingStepKey, visitedKeys, activeReference, choosingNext, sideMenuOpen,
+      t, lang, steps, hasCheck, referenceItems, viewingStepKey, visitedKeys, activeReference, choosingNext, sideMenuOpen,
       viewStep, viewReference, chooseBranch, nextStep, nextButtonLabel, goNext,
       activeContentKey, activeContentUrl, activeContentDownloadUrl, activeContentDownloadName,
       activeCheatSheet, headings, scrollToCell, referenceLabel,

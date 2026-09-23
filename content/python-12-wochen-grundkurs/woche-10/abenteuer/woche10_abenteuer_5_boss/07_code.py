@@ -1,7 +1,0 @@
-print()
-print("🎉 Boss-Quest abgeschlossen!")
-print("🏆 Du hast den Meister der Handwerkszünfte besiegt!")
-print("⭐ Titel erhalten: Meister der Blaupausen")
-print()
-print("🎊 GLÜCKWUNSCH! Du hast Woche 10 gemeistert!")
-print("📚 Nächste Woche: OOP Fortgeschritten - Vererbung und Polymorphismus!")

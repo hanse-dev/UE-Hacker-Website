@@ -193,7 +193,12 @@ export default {
         const mod = await loader();
         lessons.value = mod.default || [];
         if (lessons.value.length && !currentLessonId.value) {
-          currentLessonId.value = lessons.value[0].id;
+          // Bei jedem (Neu-)Mount auf der ersten noch nicht abgeschlossenen Lektion weitermachen,
+          // nicht immer bei Lektion 1 - sonst geht die Position verloren, sobald diese Komponente
+          // neu gemountet wird (z.B. eingebettet in WeekTourStepper.vue: Glossar/Lösungen öffnen
+          // und zurück wechselt den v-if-Zweig und damit die Komponenten-Instanz).
+          const firstOpen = lessons.value.find((l) => !isCompleted(l.id));
+          currentLessonId.value = (firstOpen || lessons.value[0]).id;
         }
       } catch (e) {
         console.error('Could not load lessons:', e);
