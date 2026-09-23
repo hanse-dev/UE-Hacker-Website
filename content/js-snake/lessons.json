@@ -1,0 +1,205 @@
+[
+  {
+    "id": "lektion-01",
+    "title": "Das Spielfeld als Raster",
+    "file": "lektion-01.md",
+    "lessonSummary": "Gut! Damit kannst du jede Rasterposition in echte Pixel-Koordinaten umrechnen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus und schau dir das Spielfeld oben an – ein Segment an Rasterposition (5, 5).",
+        "example": true,
+        "codeTemplate": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nconst groesse = 20;\n\nctx.fillStyle = 'limegreen';\nctx.fillRect(5 * groesse, 5 * groesse, groesse, groesse);\n",
+        "validation": { "type": "canvas_not_blank" }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus – eine andere Rasterposition (10, 3) und eine andere Farbe.",
+        "example": true,
+        "codeTemplate": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nconst groesse = 20;\n\nctx.fillStyle = 'red';\nctx.fillRect(10 * groesse, 3 * groesse, groesse, groesse);\n",
+        "validation": { "type": "canvas_not_blank" }
+      },
+      {
+        "instruction": "Jetzt du: zeichne dein eigenes Segment an einer Rasterposition deiner Wahl. Denk an die Umrechnung gitterX * groesse.",
+        "codeTemplate": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nconst groesse = 20;\n\n// Dein Code hier\n",
+        "validation": { "type": "canvas_not_blank" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "title": "Die Schlange als Liste von Segmenten",
+    "file": "lektion-02.md",
+    "lessonSummary": "Genau so durchsuchst du gleich auch die Schlange, um Kollisionen zu erkennen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zeichnet eine ganze Schlange aus drei Segmenten mit einer for...of-Schleife.",
+        "example": true,
+        "codeTemplate": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nconst groesse = 20;\n\nconst schlange = [\n  { x: 5, y: 5 },\n  { x: 4, y: 5 },\n  { x: 3, y: 5 },\n];\n\nctx.fillStyle = 'limegreen';\nfor (const segment of schlange) {\n  ctx.fillRect(segment.x * groesse, segment.y * groesse, groesse, groesse);\n}\n",
+        "validation": { "type": "canvas_not_blank" }
+      },
+      {
+        "instruction": "Schreibe istSegmentAn(schlange, x, y): gibt true zurück, wenn irgendein Segment im Array die Position (x, y) hat, sonst false.",
+        "codeTemplate": "function istSegmentAn(schlange, x, y) {\n  // Dein Code hier\n}\n",
+        "validation": {
+          "functionCalls": [
+            { "name": "istSegmentAn", "args": [[{ "x": 5, "y": 5 }, { "x": 4, "y": 5 }], 5, 5], "expected": true },
+            { "name": "istSegmentAn", "args": [[{ "x": 5, "y": 5 }, { "x": 4, "y": 5 }], 2, 2], "expected": false },
+            { "name": "istSegmentAn", "args": [[{ "x": 5, "y": 5 }, { "x": 4, "y": 5 }], 4, 5], "expected": true }
+          ]
+        }
+      },
+      {
+        "instruction": "Jetzt du: baue dein eigenes Array mit mindestens 3 Segmenten und zeichne es mit einer for...of-Schleife.",
+        "codeTemplate": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nconst groesse = 20;\n\n// Dein Code hier: eigenes Array + Schleife zum Zeichnen\n",
+        "validation": { "type": "canvas_not_blank" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "title": "Steuerung: Pfeiltaste wird Richtung",
+    "file": "lektion-03.md",
+    "lessonSummary": "Genau so berechnest du gleich bei jedem Frame die neue Kopf-Position deiner Schlange.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zeigt, wie eine Taste in ein Richtungs-Objekt übersetzt wird.",
+        "example": true,
+        "codeTemplate": "function richtungFuerTaste(taste) {\n  if (taste === 'ArrowUp') return { x: 0, y: -1 };\n  if (taste === 'ArrowDown') return { x: 0, y: 1 };\n  if (taste === 'ArrowLeft') return { x: -1, y: 0 };\n  if (taste === 'ArrowRight') return { x: 1, y: 0 };\n  return { x: 0, y: 0 };\n}\n\nconsole.log(richtungFuerTaste('ArrowRight'));\n",
+        "validation": {
+          "functionCalls": [
+            { "name": "richtungFuerTaste", "args": ["ArrowUp"], "expected": { "x": 0, "y": -1 } },
+            { "name": "richtungFuerTaste", "args": ["ArrowDown"], "expected": { "x": 0, "y": 1 } },
+            { "name": "richtungFuerTaste", "args": ["ArrowLeft"], "expected": { "x": -1, "y": 0 } },
+            { "name": "richtungFuerTaste", "args": ["ArrowRight"], "expected": { "x": 1, "y": 0 } },
+            { "name": "richtungFuerTaste", "args": ["a"], "expected": { "x": 0, "y": 0 } }
+          ]
+        }
+      },
+      {
+        "instruction": "Schreibe richtungFuerTaste(taste) selbst (wie im Beispiel: 'ArrowUp' → {x:0,y:-1}, 'ArrowDown' → {x:0,y:1}, 'ArrowLeft' → {x:-1,y:0}, 'ArrowRight' → {x:1,y:0}, sonst {x:0,y:0}).",
+        "codeTemplate": "function richtungFuerTaste(taste) {\n  // Dein Code hier\n}\n",
+        "validation": {
+          "functionCalls": [
+            { "name": "richtungFuerTaste", "args": ["ArrowUp"], "expected": { "x": 0, "y": -1 } },
+            { "name": "richtungFuerTaste", "args": ["ArrowDown"], "expected": { "x": 0, "y": 1 } },
+            { "name": "richtungFuerTaste", "args": ["ArrowLeft"], "expected": { "x": -1, "y": 0 } },
+            { "name": "richtungFuerTaste", "args": ["ArrowRight"], "expected": { "x": 1, "y": 0 } },
+            { "name": "richtungFuerTaste", "args": ["a"], "expected": { "x": 0, "y": 0 } }
+          ]
+        }
+      },
+      {
+        "instruction": "Schreibe naechsterKopf(kopf, richtung): gibt ein neues Objekt mit kopf.x + richtung.x und kopf.y + richtung.y zurück.",
+        "codeTemplate": "function naechsterKopf(kopf, richtung) {\n  // Dein Code hier\n}\n",
+        "validation": {
+          "functionCalls": [
+            { "name": "naechsterKopf", "args": [{ "x": 5, "y": 5 }, { "x": 1, "y": 0 }], "expected": { "x": 6, "y": 5 } },
+            { "name": "naechsterKopf", "args": [{ "x": 5, "y": 5 }, { "x": 0, "y": -1 }], "expected": { "x": 5, "y": 4 } },
+            { "name": "naechsterKopf", "args": [{ "x": 0, "y": 0 }, { "x": -1, "y": 0 }], "expected": { "x": -1, "y": 0 } }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "title": "Die Schlange bewegt sich wirklich",
+    "file": "lektion-04.md",
+    "lessonSummary": "Dein Schlangenkopf bewegt sich jetzt wirklich – requestAnimationFrame ist das Herzstück jeder Spielschleife.",
+    "tasks": [
+      {
+        "instruction": "Führe diese komplette Animationsschleife aus und beobachte den Kopf über das Raster wandern.",
+        "example": true,
+        "codeTemplate": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nconst groesse = 20;\nlet kopf = { x: 0, y: 5 };\n\nfunction frame() {\n  ctx.clearRect(0, 0, canvas.width, canvas.height);\n  ctx.fillStyle = 'limegreen';\n  ctx.fillRect(kopf.x * groesse, kopf.y * groesse, groesse, groesse);\n\n  kopf = { x: kopf.x + 1, y: kopf.y };\n\n  requestAnimationFrame(frame);\n}\n\nframe();\n",
+        "validation": { "type": "canvas_changed", "ms": 400 }
+      },
+      {
+        "instruction": "Schreibe gibNeueLaenge(laenge, gewachsen): bei gewachsen === true gibt sie laenge + 1 zurück, sonst unverändert laenge.",
+        "codeTemplate": "function gibNeueLaenge(laenge, gewachsen) {\n  // Dein Code hier\n}\n",
+        "validation": {
+          "functionCalls": [
+            { "name": "gibNeueLaenge", "args": [3, true], "expected": 4 },
+            { "name": "gibNeueLaenge", "args": [3, false], "expected": 3 }
+          ]
+        }
+      },
+      {
+        "instruction": "Jetzt du: baue die Animationsschleife selbst nach. Bewege kopf bei jedem Frame um ein Kästchen, bevor requestAnimationFrame den nächsten Frame anstößt.",
+        "codeTemplate": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nconst groesse = 20;\nlet kopf = { x: 0, y: 5 };\n\nfunction frame() {\n  ctx.clearRect(0, 0, canvas.width, canvas.height);\n  ctx.fillStyle = 'limegreen';\n  ctx.fillRect(kopf.x * groesse, kopf.y * groesse, groesse, groesse);\n\n  // Dein Code hier: bewege kopf um ein Kaestchen\n\n  requestAnimationFrame(frame);\n}\n\nframe();\n",
+        "validation": { "type": "canvas_changed", "ms": 400 }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "title": "Game Over: Kollision mit sich selbst und dem Rand",
+    "file": "lektion-05.md",
+    "lessonSummary": "Damit hast du echte Kollisionserkennung für Snake gebaut – Selbstkollision und Randkollision.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zeigt, warum du bei Objekten x und y einzeln statt das ganze Objekt mit === vergleichen musst.",
+        "example": true,
+        "codeTemplate": "const a = { x: 1, y: 1 };\nconst b = { x: 1, y: 1 };\nconsole.log(a === b);\nconsole.log(a.x === b.x && a.y === b.y);\n",
+        "validation": { "type": "output_contains", "expected": "true" }
+      },
+      {
+        "instruction": "Schreibe istSelbstKollision(kopf, koerper): gibt true zurück, wenn der Kopf dieselbe Position wie irgendein Segment im koerper-Array hat.",
+        "codeTemplate": "function istSelbstKollision(kopf, koerper) {\n  // Dein Code hier\n}\n",
+        "validation": {
+          "functionCalls": [
+            { "name": "istSelbstKollision", "args": [{ "x": 5, "y": 5 }, [{ "x": 4, "y": 5 }, { "x": 5, "y": 5 }]], "expected": true },
+            { "name": "istSelbstKollision", "args": [{ "x": 5, "y": 5 }, [{ "x": 4, "y": 5 }, { "x": 3, "y": 5 }]], "expected": false },
+            { "name": "istSelbstKollision", "args": [{ "x": 0, "y": 0 }, []], "expected": false }
+          ]
+        }
+      },
+      {
+        "instruction": "Schreibe istRandKollision(kopf, spaltenAnzahl, zeilenAnzahl): gibt true zurück, wenn kopf.x oder kopf.y negativ oder außerhalb des Rasters ist.",
+        "codeTemplate": "function istRandKollision(kopf, spaltenAnzahl, zeilenAnzahl) {\n  // Dein Code hier\n}\n",
+        "validation": {
+          "functionCalls": [
+            { "name": "istRandKollision", "args": [{ "x": 5, "y": 5 }, 20, 15], "expected": false },
+            { "name": "istRandKollision", "args": [{ "x": -1, "y": 5 }, 20, 15], "expected": true },
+            { "name": "istRandKollision", "args": [{ "x": 20, "y": 5 }, 20, 15], "expected": true },
+            { "name": "istRandKollision", "args": [{ "x": 5, "y": 15 }, 20, 15], "expected": true },
+            { "name": "istRandKollision", "args": [{ "x": 0, "y": 0 }, 20, 15], "expected": false }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "title": "Dein Spiel, dein Stil",
+    "file": "lektion-06.md",
+    "lessonSummary": "Geschafft! Du hast dein eigenes Snake-Spiel gebaut – vom Raster über wachsende Segmente bis zur Kollisionserkennung.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es zeigt, wie Math.floor eine Kommazahl abrundet.",
+        "example": true,
+        "codeTemplate": "console.log(Math.floor(9.7));\nconsole.log(Math.floor(3.2));\n",
+        "validation": { "type": "output_contains", "expected": "9" }
+      },
+      {
+        "instruction": "Schreibe punkteFuerLaenge(laenge): Die Schlange startet mit 3 Segmenten, jedes zusätzliche Segment gibt 10 Punkte (nutze Math.max, damit es nie negativ wird).",
+        "codeTemplate": "function punkteFuerLaenge(laenge) {\n  // Dein Code hier\n}\n",
+        "validation": {
+          "functionCalls": [
+            { "name": "punkteFuerLaenge", "args": [3], "expected": 0 },
+            { "name": "punkteFuerLaenge", "args": [4], "expected": 10 },
+            { "name": "punkteFuerLaenge", "args": [6], "expected": 30 }
+          ]
+        }
+      },
+      {
+        "instruction": "Bau eine eigene Idee ein – eine zweite Farbe, ein Hindernis, ein Extra-Leben. Was auch immer dir einfällt! Wichtig: es muss etwas auf dem Spielfeld zu sehen sein.",
+        "codeTemplate": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\n\n// Deine eigene Idee hier\n",
+        "validation": { "type": "canvas_not_blank" }
+      },
+      {
+        "instruction": "Spiel eine ganze Runde durch – von der ersten Zeile bis zum Game Over. Wichtig: damit die Aufgabe als erledigt zählt, muss sich wirklich etwas auf dem Spielfeld bewegen (z.B. dein wandernder Schlangenkopf).",
+        "codeTemplate": "// Bau hier dein ganzes Spiel zusammen – oder kopiere deine Teile aus den vorherigen Lektionen.\n",
+        "validation": { "type": "canvas_changed", "ms": 400 }
+      }
+    ]
+  }
+]

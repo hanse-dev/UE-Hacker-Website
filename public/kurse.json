@@ -96,6 +96,19 @@
     "contentPath": "js-spielewerkstatt"
   },
   {
+    "id": "projekt-js-snake",
+    "type": "projekt",
+    "engine": "js-sandbox",
+    "language": "javascript",
+    "level": "fortgeschritten",
+    "tags": ["spiele", "logikraetsel"],
+    "title": "Projekt: Snake",
+    "title_en": "Project: Snake",
+    "description": "Baue den Klassiker selbst: eine Schlange aus Array-Segmenten, die mit den Pfeiltasten gesteuert wird, beim Fressen wächst und bei einer Kollision mit sich selbst oder dem Rand das Spiel beendet. Baut auf der JS-Spielewerkstatt auf.",
+    "description_en": "Build the classic yourself: a snake made of array segments, steered with the arrow keys, that grows when it eats and ends the game on collision with itself or the wall. Builds on the JS Game Workshop.",
+    "contentPath": "js-snake"
+  },
+  {
     "id": "ferienkurse",
     "title": "Meet & Code - Herbstferienprogramm Al für Teenager",
     "title_en": "Meet & Code - Autumn Holiday Programme AI for Teenagers",

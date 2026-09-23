@@ -9,17 +9,17 @@ in `todo.md`, das Format-/Track-Modell in `VISION.md`.
 **Alter:** Richtwert für die Zielgruppe.
 
 Schon umgesetzt (nicht mehr hier): Cäsar-Chiffre, Morsecode, Zahlen-Detektiv, JS-Spielewerkstatt,
-Vigenère-Chiffre.
+Vigenère-Chiffre, Snake.
 
 ## Empfohlene Reihenfolge (Vorschlag)
 1. ~~Vigenère-Chiffre~~ ✅ umgesetzt
-2. Snake (🟨, Sandbox kann Canvas + Loop schon)
+2. ~~Snake~~ ✅ umgesetzt
 3. Text-Adventure (🐍, passt zu den Themen Abenteuer/Pferde/Sci-Fi)
 
 ---
 
 ## 🎮 Spiele
-- [ ] **Snake** 🟨 — Segmente als Liste, Wachsen beim Fressen, Game-Over bei Selbstkollision. Ab 12.
+- [x] **Snake** 🟨 — Segmente als Liste, Wachsen beim Fressen, Game-Over bei Selbstkollision. Ab 12.
 - [ ] **Flappy-Klon** 🟨 — Schwerkraft + Sprung per Taste, Röhren als Array aus Objekten. Ab 12.
 - [ ] **Space Invaders light** 🟨 — Gegner-Raster, Schüsse, Kollision; gut als Klassen-Übung. Ab 13.
 - [ ] **Memory** 🟨 — Karten aufdecken/vergleichen, Zustandsmaschine, auch per DOM ohne Canvas. Ab 9.

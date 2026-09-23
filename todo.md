@@ -77,12 +77,14 @@ mit Filtern unter `/projekte`. Ein weiteres Projekt braucht nur noch einen Conte
 `kurse.json`-Eintrag (siehe `INHALTE.md` §6), keine neue Komponente.
 - [x] Vigenère-Chiffre (`content/vigenere-chiffre`, 5 Lektionen, DE, `projekt-vigenere-chiffre`) —
       baut direkt auf der Cäsar-Chiffre auf, Tests in `tests/projekte.spec.js` ergänzt/angepasst
-- [ ] 1–2 weitere Projekt-Ideen ausarbeiten (Sprints im Cäsar-Chiffre-Stil, ~5 Lektionen) —
+- [x] Snake (`content/js-snake`, 6 Lektionen, DE, `projekt-js-snake`, JS-Sandbox/Canvas) — baut auf
+      der JS-Spielewerkstatt auf, Tests in `tests/projekte.spec.js` ergänzt/angepasst
+- [ ] 0–1 weitere Projekt-Idee ausarbeiten (Sprint im Cäsar-Chiffre-Stil, ~5 Lektionen) —
       Ideen-Backlog mit ~40 Vorschlägen (Spiele, Web, KI, Logik, Krypto, Kreativ, Daten) samt
-      Reihenfolge-Empfehlung in `PROJEKTIDEEN.md` (empfohlen als Nächstes: Snake 🟨, danach
-      Text-Adventure 🐍); beim Umsetzen dort abhaken
+      Reihenfolge-Empfehlung in `PROJEKTIDEEN.md` (empfohlen als Nächstes: Text-Adventure 🐍); beim
+      Umsetzen dort abhaken
 - [ ] Projektideen aus Einstufung ggf. hier ausbauen
-- [ ] DE (+ EN nach Bedarf) — Vigenère ist bewusst DE-first wie Morsecode/Zahlen-Detektiv
+- [ ] DE (+ EN nach Bedarf) — Vigenère/Snake sind bewusst DE-first wie Morsecode/Zahlen-Detektiv
 - [ ] Smoke-Test → PR nach `main`
 
 ### 2. KI-Labor — Branch `kurs-ki-labor`
