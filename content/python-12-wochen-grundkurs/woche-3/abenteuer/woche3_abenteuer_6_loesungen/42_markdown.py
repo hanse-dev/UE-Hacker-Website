@@ -1,5 +1,5 @@
-"""### Debug-Quest – Bug #4
+"""## ⭐ Missionen
 
-🐛 Bug #4 – Ziel: Der Held hat genau so viel Gold, wie der Trank kostet, und soll Kauf erfolgreich! ausgeben. Was ist falsch?
+### Mission 1: Der Wächter der Brücke – Aufgabe 1
 
-**Fehler:** Das Programm läuft ohne Fehlermeldung, aber `>` ist bei *genau gleich viel* Gold falsch. Gemeint ist "größer **oder gleich**": `>=`."""
+Schritt 1 – Zugang erhalten: Der Held ist alter = 16, hat gold = 12 und hat_pass = False. Prüfe mit if und or (alter >= 18 or gold >= 10 or hat_pass). Gib bei Zugang aus: Durchgang erlaubt – sonst: Durchgang verweigert"""

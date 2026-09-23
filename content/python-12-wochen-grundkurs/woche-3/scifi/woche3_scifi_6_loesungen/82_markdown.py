@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Die Galaxie-Mission – Aufgabe 4
+"""### Extra-Herausforderung 3: Die Galaxie-Mission – Aufgabe 6
 
-Die Variablen erfolgreiche_phasen und gefahrenstufe sind schon angelegt. Die Mission ist gesichert, wenn erfolgreiche_phasen >= 4 UND gefahrenstufe <= 3. Gib dann Mission gesichert! aus, sonst Mission nicht gesichert."""
+Missionsauswertung: Die Variablen erfolgreiche_phasen und gefahrenstufe sind schon angelegt. Berechne gesamtpunkte = erfolgreiche_phasen * 100 - gefahrenstufe * 20 und erfolgsquote = (erfolgreiche_phasen / 5) * 100. Gib in einer Zeile aus: Gesamtpunkte: 320, Erfolgsquote: 80.0%"""

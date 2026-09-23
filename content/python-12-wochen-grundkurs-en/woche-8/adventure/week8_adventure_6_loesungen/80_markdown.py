@@ -1,0 +1,3 @@
+"""### Extra Challenge 4: The Great Guild Archive – Task 2
+
+Step 2 – List of dictionaries (week 5/6): Write create_quest(name, difficulty) that returns a dictionary with name, difficulty and status \"open\". Create the list quests and add three Quest entries with append() (Defeat the dragon / 1, Find the treasure / 2, Save the village / 3). Print exactly Quest count: 3 and on the next line Status: open (status of the first one)."""

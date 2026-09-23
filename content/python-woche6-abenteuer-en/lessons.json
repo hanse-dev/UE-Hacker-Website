@@ -256,7 +256,10 @@
         "codeTemplate": "values = [12, 8, 15, 5]\ntotal = 0\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Total: 40"
+          "expected": "Total: 40",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -264,7 +267,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "['Gold', 'Crystal', 'Amulet', 'Ruby']"
+          "expected": "['Gold', 'Crystal', 'Amulet', 'Ruby']",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -439,7 +445,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "1: Gold\n2: Crystal\n3: Amulet"
+          "expected": "1: Gold\n2: Crystal\n3: Amulet",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -464,7 +473,10 @@
         "codeTemplate": "guild = [[\"Aria\", \"Mage\", 15], [\"Thorin\", \"Warrior\", 12], [\"Luna\", \"Rogue\", 8]]\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Members: 4\nTotal level: 45"
+          "expected": "Members: 4\nTotal level: 45",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -472,7 +484,10 @@
         "codeTemplate": "guild = [[\"Aria\", \"Mage\", 15], [\"Thorin\", \"Warrior\", 12], [\"Luna\", \"Rogue\", 8]]\nguild.append([\"Finn\", \"Archer\", 10])\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Strongest: Aria"
+          "expected": "Strongest: Aria",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]
@@ -489,7 +504,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Count: 10\nGold-10"
+          "expected": "Count: 10\nGold-10",
+          "codeContains": [
+            "def",
+            "for"
+          ]
         }
       },
       {
@@ -497,7 +516,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Average: 25.0"
+          "expected": "Average: 25.0",
+          "codeContains": [
+            "def",
+            "for"
+          ]
         }
       },
       {
@@ -522,7 +545,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "[['empty', 'empty'], ['empty', 'empty'], ['empty', 'empty']]"
+          "expected": "[['empty', 'empty'], ['empty', 'empty'], ['empty', 'empty']]",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -555,7 +581,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "['Dragon Hunt', 'Mountain', 4]"
+          "expected": "['Dragon Hunt', 'Mountain', 4]",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -571,7 +600,10 @@
         "codeTemplate": "quests = [[\"Dragon Hunt\", \"Mountain\", 4], [\"Treasure Hunt\", \"Cave\", 2], [\"Riddle Forest\", \"Forest\", 3]]\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Quests: 3\nHard quests: 2"
+          "expected": "Quests: 3\nHard quests: 2",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]
@@ -588,7 +620,10 @@
         "codeTemplate": "names = [\"Silver chest\", \"Gold chest\", \"Dragon hoard\", \"Wizard shrine\", \"Elf jug\", \"Rune casket\", \"Pirate chest\", \"Crystal box\"]\nvalues = [120, 45, 300, 80, 210, 15, 95, 95]\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Silver chest: 120 Gold\nGold chest: 45 Gold\nDragon hoard: 300 Gold\nWizard shrine: 80 Gold\nElf jug: 210 Gold\nRune casket: 15 Gold\nPirate chest: 95 Gold\nCrystal box: 95 Gold"
+          "expected": "Silver chest: 120 Gold\nGold chest: 45 Gold\nDragon hoard: 300 Gold\nWizard shrine: 80 Gold\nElf jug: 210 Gold\nRune casket: 15 Gold\nPirate chest: 95 Gold\nCrystal box: 95 Gold",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -596,7 +631,10 @@
         "codeTemplate": "names = [\"Silver chest\", \"Gold chest\", \"Dragon hoard\", \"Wizard shrine\", \"Elf jug\", \"Rune casket\", \"Pirate chest\", \"Crystal box\"]\nvalues = [120, 45, 300, 80, 210, 15, 95, 95]\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Total: 960\nAverage: 120.0\nHighest: Dragon hoard (300)\nBelow average: 5"
+          "expected": "Total: 960\nAverage: 120.0\nHighest: Dragon hoard (300)\nBelow average: 5",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -612,7 +650,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Count: 20\n[2, 4, 6, 8, 10, 12, 14, 16, 18, 20]\n[20, 19, 18, 17, 16]"
+          "expected": "Count: 20\n[2, 4, 6, 8, 10, 12, 14, 16, 18, 20]\n[20, 19, 18, 17, 16]",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -620,7 +661,10 @@
         "codeTemplate": "events = [\"Whisper\", \"Glow\", \"Secret door\", \"Fog\"]\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "- Fog\n- Glow\n- Secret door\n- Whisper"
+          "expected": "- Fog\n- Glow\n- Secret door\n- Whisper",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]

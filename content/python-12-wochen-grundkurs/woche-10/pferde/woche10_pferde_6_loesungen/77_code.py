@@ -1,0 +1,32 @@
+class Pferd:
+    def __init__(self, name, level=1, energie=100):
+        self.name = name
+        self.level = level
+        self.energie = energie
+
+    def stelle_vor(self):
+        print(f"Ich bin {self.name}, Level {self.level}.")
+
+    def trainiere(self):
+        self.level += 1
+        print(f"{self.name} trainiert: Level {self.level}")
+
+    def galoppiere(self, kosten):
+        self.energie -= kosten
+        if self.energie < 0:
+            self.energie = 0
+
+    def ruhe_aus(self, menge):
+        self.energie += menge
+        if self.energie > 100:
+            self.energie = 100
+
+gruppe = [Pferd("Blitz", 3, 80), Pferd("Stella", 8, 30), Pferd("Sturm", 5, 60)]
+def zaehle_fitte(gruppe):
+    anzahl = 0
+    for h in gruppe:
+        if h.energie > 50:
+            anzahl += 1
+    return anzahl
+
+print(f"Fitte: {zaehle_fitte(gruppe)}")

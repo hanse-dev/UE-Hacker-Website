@@ -1,1 +1,0 @@
-"""**Bug #3 – Explanation:** `json.dump()` can only save simple data types (dictionaries, lists, texts, numbers) – not a custom `Player` object. First build a dictionary from the attributes, just like `save_game()` does in the lesson."""

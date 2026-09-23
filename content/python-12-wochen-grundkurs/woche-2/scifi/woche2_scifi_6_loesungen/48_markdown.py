@@ -1,3 +1,3 @@
-"""### Mission 3: Der Asteroiden-Mining – Aufgabe 1
+"""### Extra-Herausforderung 1: Das Raumschiff-Dock – Aufgabe 2
 
-Schritt 1 – Lege für beide Asteroiden Variablen an (siehe Tabelle) und berechne den Rohwert jedes Asteroiden. Gib genau diese zwei Zeilen aus: Ferrum: 4800.0 und Aurum: 4000.0"""
+Schritt 2 – Lege die vier Energielevel (80, 65, 90, 55) an. Berechne den Durchschnitt (Summe geteilt durch 4) und den Gesamtbedarf (4 Schiffe mal 100 Einheiten). Das Schiff mit der höchsten Energie ist Cirrus. Gib genau diese drei Zeilen aus: Durchschnitt: 72.5, Gesamtbedarf: 400 und Bestes Schiff: Cirrus"""

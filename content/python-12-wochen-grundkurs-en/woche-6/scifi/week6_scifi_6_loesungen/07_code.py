@@ -1,4 +1,3 @@
-# Problem: reverse must be a keyword argument, not a bare variable
-level = [1, 5, 10, 15]
-level.sort(reverse=True)
-print(level)
+modules = ["Drive", "Sensor", "Shield", "Radar", "Radio"]
+print(f"Second: {modules[1]}")
+print(f"Second to last: {modules[-2]}")

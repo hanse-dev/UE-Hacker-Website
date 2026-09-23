@@ -1,7 +1,9 @@
-rank = 6
-id_card = False
-emergency = False
-if rank >= 5 or id_card or emergency:
-    print("Access granted")
+admin_password = "Nova-7"
+guest_password = "Star-3"
+entered = "Nova-7"
+if entered == admin_password:
+    print("Full access granted")
+elif entered == guest_password:
+    print("Read access granted")
 else:
     print("Access denied")

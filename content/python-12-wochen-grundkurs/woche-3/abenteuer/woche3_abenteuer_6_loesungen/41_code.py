@@ -1,5 +1,6 @@
-alter = 25
-if alter >= 18:
-    print("Erwachsen")
+gold = 50
+kosten = 50
+if gold >= kosten:
+    print("Kauf erfolgreich!")
 else:
-    print("Kind")
+    print("Nicht genug Gold!")

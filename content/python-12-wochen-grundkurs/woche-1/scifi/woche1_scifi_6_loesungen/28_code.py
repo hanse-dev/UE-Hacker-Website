@@ -1,1 +1,0 @@
-print("Willkommen auf der Nebula-7!")

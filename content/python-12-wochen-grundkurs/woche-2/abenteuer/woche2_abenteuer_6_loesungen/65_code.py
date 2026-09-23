@@ -7,6 +7,5 @@ truhe6 = 90
 truhe7 = 60
 truhe8 = 250
 
-print("=== SCHATZRAUM-PROTOKOLL ===")
-gesamt = truhe1 + truhe2 + truhe3 + truhe4 + truhe5 + truhe6 + truhe7 + truhe8
-print(f"Gesamtwert: {gesamt}")
+durchschnitt = (truhe1 + truhe2 + truhe3 + truhe4 + truhe5 + truhe6 + truhe7 + truhe8) / 8
+print("Truhe 8 über Durchschnitt: " + str(truhe8 > durchschnitt))

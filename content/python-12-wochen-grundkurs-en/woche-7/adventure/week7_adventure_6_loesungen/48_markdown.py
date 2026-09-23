@@ -1,0 +1,3 @@
+"""### Mission 2: The Oracle Chamber – Task 3
+
+Step 3 – Draw and shuffle: The list shelves with six entries ([\"Shelf of Elements\", \"Shelf of Animals\", \"Shelf of Stars\", \"Shelf of Shadows\", \"Shelf of Heroes\", \"Shelf of Runes\"]) is provided. Draw three entries into drawn with random.sample(), shuffle them with random.shuffle() and print exactly Count: 3 and on the next line Different: True."""

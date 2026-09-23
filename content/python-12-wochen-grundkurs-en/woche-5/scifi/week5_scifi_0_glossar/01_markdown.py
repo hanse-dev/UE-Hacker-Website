@@ -8,8 +8,4 @@
 | **Argument** | Value passed when calling the function | `add(3, 5)` |
 | `return` | Send a result back from the function | `return a + b` |
 | **Docstring** | Description of a function in triple quotes | `\"\"\"What the function does\"\"\"` |
-| `snake_case` | Naming rule: connect words with underscores | `my_function()` |
-| `try` | Run code and prepare for errors | `try:` |
-| `except` | Catch and handle errors | `except ValueError:` |
-| `ValueError` | Error when a value has the wrong type | `int(\"abc\")` → `ValueError` |
-| `TypeError` | Error when types don't match | `\"hi\" + 5` → `TypeError` |"""
+| `snake_case` | Naming rule: connect words with underscores | `my_function()` |"""

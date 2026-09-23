@@ -1,3 +1,3 @@
-"""### Mission 2: The Data Technician – Task 1
+"""### Mission 3: The Shuttle Pilot – Task 2
 
-Step 1 – Create ship_type = "Shuttle", registration = "NX-42" and crew = 6. Output the heading === SHIP PROTOCOL === and below it three lines: Type: ..., Registration: ... and Crew: 6 (number with str()!)."""
+Step 2 – Start the countdown: output Launch in: and then, on its own line, 3... 2... 1... Launch!"""

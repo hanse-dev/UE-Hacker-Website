@@ -7,7 +7,6 @@ print(schiff.get("waffen", 0))   # 0 (Standardwert)
 
 # Ändern und löschen
 schiff["crew"] = 160
-schiff.update({"klasse": "Sovereign"})
 schiff.pop("klasse")
 
 # Iteration

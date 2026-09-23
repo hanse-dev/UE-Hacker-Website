@@ -1,9 +1,12 @@
-# Problem: __init__ braucht self als ersten Parameter – sonst weiß Python nicht,
-# auf welchem Objekt die Attribute (name, level) gespeichert werden sollen.
-class Reiter:
-    def __init__(self, name, level):
-        self.name = name
-        self.level = level
+class Pferd:
+    pass
 
-maria = Reiter("Maria", 3)
-print(maria.name)
+pferd = Pferd()
+pferd.name = "Blitz"
+pferd.level = 1
+pferd2 = Pferd()
+pferd2.name = "Stella"
+pferd2.level = 1
+pferd.level = 5
+print(f"{pferd.name}: {pferd.level}")
+print(f"{pferd2.name}: {pferd2.level}")

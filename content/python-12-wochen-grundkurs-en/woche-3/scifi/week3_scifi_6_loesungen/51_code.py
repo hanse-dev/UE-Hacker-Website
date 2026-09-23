@@ -1,9 +1,9 @@
-admin_password = "nebula42"
-guest_password = "visitor7"
-entered = "hunter2"
-if entered == admin_password:
-    print("Full access granted")
-elif entered == guest_password:
-    print("Read access granted")
+level = 9
+losses = 1
+score = 80.0
+if level >= 10 and score >= 85 and losses == 0:
+    print("LEGENDARY!")
+elif level >= 8 and score >= 70 and losses <= 2:
+    print("EXCELLENT!")
 else:
-    print("Wrong password!")
+    print("Mission completed.")

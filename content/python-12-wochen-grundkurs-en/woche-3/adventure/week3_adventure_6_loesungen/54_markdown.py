@@ -1,3 +1,3 @@
-"""### Mission 3: The Champions Arena – Task 1
+"""### Mission 3: The Champion's Arena – Task 1
 
-Step 1 – Capture fighter data: create level = 35, wins = 18 and losses = 6. Print exactly: Level 35, wins 18, losses 6"""
+Step 1 – Win rate: The fighter has wins = 18 and losses = 2. Calculate win_rate = wins / (wins + losses) and print exactly: Win rate: 0.9"""

@@ -1,1 +1,0 @@
-"""**Erklärung:** Die Variable heißt `name`, nicht `nam`. Ein Tippfehler im Namen ergibt einen `NameError`."""

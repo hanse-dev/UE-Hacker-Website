@@ -1,19 +1,12 @@
 antwort_1 = True
-antwort_2 = True
 antwort_3 = False
-antwort_4 = True
-antwort_5 = True
 
-punkte = 0
 if antwort_1:
-    punkte = punkte + 100
-if antwort_2:
-    punkte = punkte + 100
-if antwort_3:
-    punkte = punkte + 100
-if antwort_4:
-    punkte = punkte + 100
-if antwort_5:
-    punkte = punkte + 100
+    print("Frage 1: Richtig!")
+else:
+    print("Frage 1: Falsch!")
 
-print(f"Punkte: {punkte}")
+if antwort_3:
+    print("Frage 3: Richtig!")
+else:
+    print("Frage 3: Falsch!")

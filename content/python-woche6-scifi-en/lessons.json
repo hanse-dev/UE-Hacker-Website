@@ -256,7 +256,10 @@
         "codeTemplate": "values = [12, 8, 15, 5]\ntotal = 0\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Total: 40"
+          "expected": "Total: 40",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -264,7 +267,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "['Drive', 'Sensor', 'Shield', 'Laser']"
+          "expected": "['Drive', 'Sensor', 'Shield', 'Laser']",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -439,7 +445,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "1: Drive\n2: Sensor\n3: Shield"
+          "expected": "1: Drive\n2: Sensor\n3: Shield",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -464,7 +473,10 @@
         "codeTemplate": "guild = [[\"Nova\", \"Pilot\", 15], [\"Kira\", \"Technician\", 12], [\"Juno\", \"Doctor\", 8]]\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Members: 4\nTotal level: 45"
+          "expected": "Members: 4\nTotal level: 45",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -472,7 +484,10 @@
         "codeTemplate": "guild = [[\"Nova\", \"Pilot\", 15], [\"Kira\", \"Technician\", 12], [\"Juno\", \"Doctor\", 8]]\nguild.append([\"Rex\", \"Engineer\", 10])\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Strongest: Nova"
+          "expected": "Strongest: Nova",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]
@@ -489,7 +504,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Count: 10\nChip-10"
+          "expected": "Count: 10\nChip-10",
+          "codeContains": [
+            "def",
+            "for"
+          ]
         }
       },
       {
@@ -497,7 +516,11 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Average: 25.0"
+          "expected": "Average: 25.0",
+          "codeContains": [
+            "def",
+            "for"
+          ]
         }
       },
       {
@@ -522,7 +545,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "[['empty', 'empty'], ['empty', 'empty'], ['empty', 'empty']]"
+          "expected": "[['empty', 'empty'], ['empty', 'empty'], ['empty', 'empty']]",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -555,7 +581,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "['Scan Mission', 'Mars', 4]"
+          "expected": "['Scan Mission', 'Mars', 4]",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -571,7 +600,10 @@
         "codeTemplate": "missions = [[\"Scan Mission\", \"Mars\", 4], [\"Rescue Mission\", \"Titan\", 2], [\"Repair Flight\", \"Station\", 3]]\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Missions: 3\nHard missions: 2"
+          "expected": "Missions: 3\nHard missions: 2",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]
@@ -588,7 +620,10 @@
         "codeTemplate": "names = [\"Reactor\", \"Sensor\", \"Drive\", \"Shield\", \"Radio\", \"Radar\", \"Scanner\", \"Core\"]\nvalues = [120, 45, 300, 80, 210, 15, 95, 95]\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Reactor: 120 energy\nSensor: 45 energy\nDrive: 300 energy\nShield: 80 energy\nRadio: 210 energy\nRadar: 15 energy\nScanner: 95 energy\nCore: 95 energy"
+          "expected": "Reactor: 120 energy\nSensor: 45 energy\nDrive: 300 energy\nShield: 80 energy\nRadio: 210 energy\nRadar: 15 energy\nScanner: 95 energy\nCore: 95 energy",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -596,7 +631,10 @@
         "codeTemplate": "names = [\"Reactor\", \"Sensor\", \"Drive\", \"Shield\", \"Radio\", \"Radar\", \"Scanner\", \"Core\"]\nvalues = [120, 45, 300, 80, 210, 15, 95, 95]\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Total: 960\nAverage: 120.0\nHighest: Drive (300)\nBelow average: 5"
+          "expected": "Total: 960\nAverage: 120.0\nHighest: Drive (300)\nBelow average: 5",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -612,7 +650,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Count: 20\n[2, 4, 6, 8, 10, 12, 14, 16, 18, 20]\n[20, 19, 18, 17, 16]"
+          "expected": "Count: 20\n[2, 4, 6, 8, 10, 12, 14, 16, 18, 20]\n[20, 19, 18, 17, 16]",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -620,7 +661,10 @@
         "codeTemplate": "events = [\"Asteroid\", \"Solar storm\", \"Alien\", \"Nebula\"]\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "- Alien\n- Asteroid\n- Nebula\n- Solar storm"
+          "expected": "- Alien\n- Asteroid\n- Nebula\n- Solar storm",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]

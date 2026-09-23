@@ -1,14 +1,6 @@
-schutz = 80
-angriff = 60
-heilung = 20
+weg = "Rechts"
 
-if schutz >= 50:
-    if angriff >= 50:
-        if heilung >= 50:
-            print("Magieprüfung bestanden")
-        else:
-            print("Heilung zu schwach")
-    else:
-        print("Angriff zu schwach")
+if weg == "Links":
+    print("Du nimmst den linken Pfad.")
 else:
-    print("Schutz zu schwach")
+    print("Du nimmst den rechten Pfad.")

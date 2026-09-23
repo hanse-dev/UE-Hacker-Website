@@ -1,0 +1,607 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Übung 1: Klassen und Objekte",
+    "file": "lektion-01.md",
+    "lessonSummary": "Stark! Du baust eine Klasse und erzeugst Objekte mit Attributen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: eine Klasse, ein Objekt, zwei Attribute.",
+        "codeTemplate": "class Pferd:\n    pass\n\npferd = Pferd()\npferd.name = \"Blitz\"\npferd.level = 1\nprint(pferd.name, pferd.level)\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz 1"
+        }
+      },
+      {
+        "instruction": "Lege eine Klasse Pferd mit `pass` an. Erzeuge ein Objekt pferd, setze `name` auf Blitz und `level` auf 3 und gib mit einem f-String genau Blitz hat Level 3 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz hat Level 3",
+          "codeContains": [
+            "class"
+          ]
+        }
+      },
+      {
+        "instruction": "Die leere Klasse Pferd ist vorgegeben. Erzeuge zwei Objekte pferd (Blitz, level 1) und pferd2 (Stella, level 1). Erhöhe nur bei pferd das Level auf 5 und gib in zwei Zeilen Blitz: 5 und Stella: 1 aus.",
+        "codeTemplate": "class Pferd:\n    pass\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz: 5\nStella: 1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Übung 2: Der Konstruktor __init__",
+    "file": "lektion-02.md",
+    "lessonSummary": "Prima! Dein Konstruktor setzt die Startwerte für jedes neue Objekt.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: ein Konstruktor mit Standardwert.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1):\n        self.name = name\n        self.level = level\n\na = Pferd(\"Blitz\")\nb = Pferd(\"Stella\", 5)\nprint(a.name, a.level)\nprint(b.name, b.level)\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stella 5"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Klasse Pferd mit `__init__(self, name, level=1, energie=100)`, die alle drei Werte speichert. Erzeuge pferd = Pferd(\"Blitz\", 4) und gib mit einem f-String genau Blitz 4 100 aus (name, level, energie).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz 4 100",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "Die Klasse Pferd mit `__init__(self, name, level=1)` ist vorgegeben. Erzeuge ein Objekt Sturm ohne Level und ein Objekt Stella mit Level 7 und gib Sturm: Level 1 und Stella: Level 7 in zwei Zeilen aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1):\n        self.name = name\n        self.level = level\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sturm: Level 1\nStella: Level 7"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Übung 3: Methoden und self",
+    "file": "lektion-03.md",
+    "lessonSummary": "Klasse! Deine Objekte können jetzt etwas tun.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: eine Methode mit self.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1):\n        self.name = name\n        self.level = level\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\npferd = Pferd(\"Blitz\")\npferd.stelle_vor()\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ich bin Blitz, Level 1."
+        }
+      },
+      {
+        "instruction": "Schreibe eine Klasse Pferd mit `__init__(self, name, level)` und der Methode `stelle_vor(self)`, die Ich bin Blitz, Level 2. ausgibt (Name und Level aus `self`). Erzeuge Pferd(\"Blitz\", 2) und rufe die Methode auf.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ich bin Blitz, Level 2.",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "Die Klasse Pferd mit Methode `stelle_vor()` ist vorgegeben. Erzeuge Pferd(\"Stella\", 4) und Pferd(\"Sturm\", 6) und rufe bei beiden `stelle_vor()` auf.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1, energie=100):\n        self.name = name\n        self.level = level\n        self.energie = energie\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\n    def trainiere(self):\n        self.level += 1\n        print(f\"{self.name} trainiert: Level {self.level}\")\n\n    def galoppiere(self, kosten):\n        self.energie -= kosten\n        if self.energie < 0:\n            self.energie = 0\n\n    def ruhe_aus(self, menge):\n        self.energie += menge\n        if self.energie > 100:\n            self.energie = 100\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ich bin Stella, Level 4.\nIch bin Sturm, Level 6."
+        }
+      },
+      {
+        "instruction": "Schreibe eine Klasse Pferd mit `__init__(self, name)` (level startet bei 1) und der Methode `trainiere(self)`, die das Level um 1 erhöht und Blitz trainiert: Level 3 ausgibt. Erzeuge Pferd(\"Blitz\") und rufe `trainiere()` zweimal auf.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz trainiert: Level 3",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Übung 4: Methoden mit Parametern und return",
+    "file": "lektion-04.md",
+    "lessonSummary": "Super! Deine Methoden nehmen Werte an und geben Ergebnisse zurück.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: eine Methode mit Parameter und eine mit return.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, energie=100):\n        self.name = name\n        self.energie = energie\n\n    def galoppiere(self, kosten):\n        self.energie -= kosten\n\n    def ist_muede(self):\n        return self.energie < 20\n\npferd = Pferd(\"Blitz\")\npferd.galoppiere(30)\nprint(pferd.energie)\nprint(pferd.ist_muede())\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "70\nFalse"
+        }
+      },
+      {
+        "instruction": "Die Klasse Pferd ist vorgegeben (`galoppiere(kosten)` senkt die energie, sie fällt nie unter 0). Erzeuge Pferd(\"Blitz\"), rufe `galoppiere(40)` und `galoppiere(70)` auf und gib genau Energie: 0 aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1, energie=100):\n        self.name = name\n        self.level = level\n        self.energie = energie\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\n    def trainiere(self):\n        self.level += 1\n        print(f\"{self.name} trainiert: Level {self.level}\")\n\n    def galoppiere(self, kosten):\n        self.energie -= kosten\n        if self.energie < 0:\n            self.energie = 0\n\n    def ruhe_aus(self, menge):\n        self.energie += menge\n        if self.energie > 100:\n            self.energie = 100\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energie: 0"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Klasse Pferd mit `__init__(self, name, energie)` und einer Methode `ist_muede(self)`, die **True** zurückgibt, wenn die energie kleiner als 20 ist (sonst False). Gib die Ergebnisse für Pferd(\"Blitz\", 10) und Pferd(\"Stella\", 80) aus (zwei Zeilen).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True\nFalse",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "Die Klasse Pferd ist vorgegeben (`ruhe_aus(menge)` erhöht die energie, höchstens bis 100). Erzeuge Pferd(\"Blitz\", energie=20), rufe `ruhe_aus(50)` zweimal auf und gib genau Energie: 100 aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1, energie=100):\n        self.name = name\n        self.level = level\n        self.energie = energie\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\n    def trainiere(self):\n        self.level += 1\n        print(f\"{self.name} trainiert: Level {self.level}\")\n\n    def galoppiere(self, kosten):\n        self.energie -= kosten\n        if self.energie < 0:\n            self.energie = 0\n\n    def ruhe_aus(self, menge):\n        self.energie += menge\n        if self.energie > 100:\n            self.energie = 100\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energie: 100"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Übung 5: Den Zustand ändern",
+    "file": "lektion-05.md",
+    "lessonSummary": "Stark! Deine Objekte merken sich ihren Zustand.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: ein Zähler im Objekt.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n        self.siege = 0\n\n    def gewinne(self):\n        self.siege += 1\n\npferd = Pferd(\"Blitz\")\npferd.gewinne()\npferd.gewinne()\nprint(pferd.siege)\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "2"
+        }
+      },
+      {
+        "instruction": "Die Klasse Pferd ist vorgegeben. Erzeuge Pferd(\"Blitz\"), rufe `galoppiere(30)`, dann `ruhe_aus(50)` (höchstens 100!) und dann `galoppiere(20)` auf. Gib genau Energie: 80 aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1, energie=100):\n        self.name = name\n        self.level = level\n        self.energie = energie\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\n    def trainiere(self):\n        self.level += 1\n        print(f\"{self.name} trainiert: Level {self.level}\")\n\n    def galoppiere(self, kosten):\n        self.energie -= kosten\n        if self.energie < 0:\n            self.energie = 0\n\n    def ruhe_aus(self, menge):\n        self.energie += menge\n        if self.energie > 100:\n            self.energie = 100\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energie: 80"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Klasse Pferd mit `__init__(self, name)` (Attribut `siege` startet bei 0) und der Methode `gewinne(self)`, die `siege` um 1 erhöht. Rufe sie dreimal auf und gib genau Siege: 3 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Siege: 3",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "Die Klasse Pferd ist vorgegeben. Erzeuge Pferd(\"Blitz\"), rufe `trainiere()` dreimal auf und gib danach genau Level: 4 aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1, energie=100):\n        self.name = name\n        self.level = level\n        self.energie = energie\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\n    def trainiere(self):\n        self.level += 1\n        print(f\"{self.name} trainiert: Level {self.level}\")\n\n    def galoppiere(self, kosten):\n        self.energie -= kosten\n        if self.energie < 0:\n            self.energie = 0\n\n    def ruhe_aus(self, menge):\n        self.energie += menge\n        if self.energie > 100:\n            self.energie = 100\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 4"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Übung 6: Objekte in Listen",
+    "file": "lektion-06.md",
+    "lessonSummary": "Prima! Du verwaltest ganze Gruppen von Objekten.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Objekte in einer Liste durchlaufen.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\ngruppe = [Pferd(\"Blitz\", 3), Pferd(\"Stella\", 8), Pferd(\"Sturm\", 5)]\nfor h in gruppe:\n    print(h.name, h.level)\n\nstarke = [h.name for h in gruppe if h.level >= 5]\nprint(starke)\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Stella', 'Sturm']"
+        }
+      },
+      {
+        "instruction": "Die Klasse Pferd ist vorgegeben. Lege die Liste `gruppe` mit Pferd(\"Blitz\", 3), Pferd(\"Stella\", 8) und Pferd(\"Sturm\", 5) an und gib mit einer `for`-Schleife jeden Namen in einer eigenen Zeile aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1, energie=100):\n        self.name = name\n        self.level = level\n        self.energie = energie\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\n    def trainiere(self):\n        self.level += 1\n        print(f\"{self.name} trainiert: Level {self.level}\")\n\n    def galoppiere(self, kosten):\n        self.energie -= kosten\n        if self.energie < 0:\n            self.energie = 0\n\n    def ruhe_aus(self, menge):\n        self.energie += menge\n        if self.energie > 100:\n            self.energie = 100\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz\nStella\nSturm",
+          "codeContains": [
+            "for"
+          ]
+        }
+      },
+      {
+        "instruction": "Die Klasse Pferd und die Liste `gruppe` (Level 3, 8, 5) sind vorgegeben. Finde mit einer Schleife das Objekt mit dem höchsten Level und gib genau Stärkster: Stella aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1, energie=100):\n        self.name = name\n        self.level = level\n        self.energie = energie\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\n    def trainiere(self):\n        self.level += 1\n        print(f\"{self.name} trainiert: Level {self.level}\")\n\n    def galoppiere(self, kosten):\n        self.energie -= kosten\n        if self.energie < 0:\n            self.energie = 0\n\n    def ruhe_aus(self, menge):\n        self.energie += menge\n        if self.energie > 100:\n            self.energie = 100\n\ngruppe = [Pferd(\"Blitz\", 3), Pferd(\"Stella\", 8), Pferd(\"Sturm\", 5)]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stärkster: Stella"
+        }
+      },
+      {
+        "instruction": "Die Klasse Pferd und die Liste `gruppe` (Level 3, 8, 5) sind vorgegeben. Baue mit einer List Comprehension die Liste `starke` aller Namen mit Level ab 5 und gib sie mit `print(starke)` aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1, energie=100):\n        self.name = name\n        self.level = level\n        self.energie = energie\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\n    def trainiere(self):\n        self.level += 1\n        print(f\"{self.name} trainiert: Level {self.level}\")\n\n    def galoppiere(self, kosten):\n        self.energie -= kosten\n        if self.energie < 0:\n            self.energie = 0\n\n    def ruhe_aus(self, menge):\n        self.energie += menge\n        if self.energie > 100:\n            self.energie = 100\n\ngruppe = [Pferd(\"Blitz\", 3), Pferd(\"Stella\", 8), Pferd(\"Sturm\", 5)]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Stella', 'Sturm']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Übung 7: Objekte an Funktionen übergeben",
+    "file": "lektion-07.md",
+    "lessonSummary": "Klasse! Du weißt jetzt, wie Objekte und Funktionen zusammenspielen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: zwei Namen für ein Objekt.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\na = Pferd(\"Blitz\", 1)\nb = a\nb.level = 10\nprint(a.level)\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "10"
+        }
+      },
+      {
+        "instruction": "Die Klasse Pferd ist vorgegeben. Schreibe eine Funktion `staerkere(a, b)`, die das Objekt mit dem höheren Level zurückgibt. Vergleiche Pferd(\"Blitz\", 4) und Pferd(\"Stella\", 9) und gib genau Sieger: Stella aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1, energie=100):\n        self.name = name\n        self.level = level\n        self.energie = energie\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\n    def trainiere(self):\n        self.level += 1\n        print(f\"{self.name} trainiert: Level {self.level}\")\n\n    def galoppiere(self, kosten):\n        self.energie -= kosten\n        if self.energie < 0:\n            self.energie = 0\n\n    def ruhe_aus(self, menge):\n        self.energie += menge\n        if self.energie > 100:\n            self.energie = 100\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sieger: Stella"
+        }
+      },
+      {
+        "instruction": "Die Klasse Pferd und das Objekt `pferd = Pferd(\"Blitz\")` sind vorgegeben. Gib dem Objekt einen zweiten Namen `zweiter`, setze über `zweiter` das Level auf 9 und gib über `pferd` genau Blitz: Level 9 aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1, energie=100):\n        self.name = name\n        self.level = level\n        self.energie = energie\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\n    def trainiere(self):\n        self.level += 1\n        print(f\"{self.name} trainiert: Level {self.level}\")\n\n    def galoppiere(self, kosten):\n        self.energie -= kosten\n        if self.energie < 0:\n            self.energie = 0\n\n    def ruhe_aus(self, menge):\n        self.energie += menge\n        if self.energie > 100:\n            self.energie = 100\n\npferd = Pferd(\"Blitz\")\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz: Level 9"
+        }
+      },
+      {
+        "instruction": "Die Klasse Pferd und die Liste `gruppe` (Level 3, 8, 5) sind vorgegeben. Schreibe eine Funktion `trainiere_alle(gruppe)`, die bei allen `level += 1` rechnet (ohne return). Rufe sie auf und gib genau Summe: 19 aus (Summe aller Level).",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1, energie=100):\n        self.name = name\n        self.level = level\n        self.energie = energie\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\n    def trainiere(self):\n        self.level += 1\n        print(f\"{self.name} trainiert: Level {self.level}\")\n\n    def galoppiere(self, kosten):\n        self.energie -= kosten\n        if self.energie < 0:\n            self.energie = 0\n\n    def ruhe_aus(self, menge):\n        self.energie += menge\n        if self.energie > 100:\n            self.energie = 100\n\ngruppe = [Pferd(\"Blitz\", 3), Pferd(\"Stella\", 8), Pferd(\"Sturm\", 5)]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Summe: 19"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug-Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Bei Klassen zählen die Argumente von `__init__`, `self.` vor jedem Attribut und `self` in jeder Methode.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Blitz ausgeben. Was ist falsch?",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\npferd = Pferd()\nprint(pferd.name)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Blitz ausgeben. Was ist falsch?",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level):\n        name = name\n        level = level\n\npferd = Pferd(\"Blitz\", 3)\nprint(pferd.name)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Ich bin Blitz ausgeben. Was ist falsch?",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor():\n        print(f\"Ich bin {self.name}\")\n\npferd = Pferd(\"Blitz\")\npferd.stelle_vor()\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ich bin Blitz"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: Die erste Blaupause",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission geschafft: Du hast eine Klasse geschrieben, Objekte erzeugt und eine Methode ergänzt!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Klasse anlegen: Schreibe eine Klasse Sattel mit `__init__(self, name, wert)`. Erzeuge sattel = Sattel(\"Turniersattel\", 50) und gib genau Turniersattel: 50 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Turniersattel: 50",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Zusammenrechnen: Die Klasse Sattel ist vorgegeben. Erzeuge Sattel(\"Turniersattel\", 50) und Sattel(\"Reitdecke\", 35) und gib genau Zusammen: 85 aus (Summe der wert-Attribute).",
+        "codeTemplate": "class Sattel:\n    def __init__(self, name, wert):\n        self.name = name\n        self.wert = wert\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zusammen: 85"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Methode: Schreibe die Klasse Sattel mit einer Methode `info(self)`, die `name (wert)` als Text **zurückgibt**, z. B. Turniersattel (50). Gib `info()` für Sattel(\"Turniersattel\", 50) und Sattel(\"Reitdecke\", 35) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Turniersattel (50)\nReitdecke (35)",
+          "codeContains": [
+            "class"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: Die Gruppe",
+    "file": "mission-02.md",
+    "lessonSummary": "Mission geschafft: Du verwaltest Objekte in einer Liste!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Gruppe anlegen: Schreibe die Klasse Pferd mit `__init__(self, name, level=1, energie=100)`. Erzeuge Blitz (Level 15), Stella (Level 18) und Sturm (Level 12) und gib pro Objekt eine Zeile wie Blitz: 15 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz: 15\nStella: 18\nSturm: 12",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Den Schwächsten finden: Die Klasse Pferd und die Liste `gruppe` (Level 15, 18, 12) sind vorgegeben. Gib genau Schwächster: Sturm aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1, energie=100):\n        self.name = name\n        self.level = level\n        self.energie = energie\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\n    def trainiere(self):\n        self.level += 1\n        print(f\"{self.name} trainiert: Level {self.level}\")\n\n    def galoppiere(self, kosten):\n        self.energie -= kosten\n        if self.energie < 0:\n            self.energie = 0\n\n    def ruhe_aus(self, menge):\n        self.energie += menge\n        if self.energie > 100:\n            self.energie = 100\n\ngruppe = [Pferd(\"Blitz\", 15), Pferd(\"Stella\", 18), Pferd(\"Sturm\", 12)]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Schwächster: Sturm"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Alle trainieren: Die Klasse Pferd und die Liste `gruppe` (Level 15, 18, 12) sind vorgegeben. Rufe bei jedem Objekt `trainiere()` auf und gib genau Summe: 48 aus (Summe aller Level danach).",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1, energie=100):\n        self.name = name\n        self.level = level\n        self.energie = energie\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\n    def trainiere(self):\n        self.level += 1\n        print(f\"{self.name} trainiert: Level {self.level}\")\n\n    def galoppiere(self, kosten):\n        self.energie -= kosten\n        if self.energie < 0:\n            self.energie = 0\n\n    def ruhe_aus(self, menge):\n        self.energie += menge\n        if self.energie > 100:\n            self.energie = 100\n\ngruppe = [Pferd(\"Blitz\", 15), Pferd(\"Stella\", 18), Pferd(\"Sturm\", 12)]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Summe: 48"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: Der Zustand",
+    "file": "mission-03.md",
+    "lessonSummary": "Mission geschafft: Deine Objekte verwalten ihren Zustand selbst!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Klasse mit Zustand: Schreibe eine Klasse Pferd mit `__init__(self, name)` (energie startet bei 100) und `galoppiere(self, kosten)`, die energie senkt (nie unter 0). Erzeuge Pferd(\"Blitz\"), rufe `galoppiere(40)` dreimal auf und gib genau Energie: 0 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energie: 0",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Prüf-Funktion: Die Klasse Pferd ist vorgegeben. Schreibe `erschoepft(figur)`, die True zurückgibt, wenn die energie 0 ist. Erzeuge Pferd(\"Blitz\"), gib `erschoepft(pferd)` aus, rufe `galoppiere(100)` auf und gib es noch einmal aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1, energie=100):\n        self.name = name\n        self.level = level\n        self.energie = energie\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\n    def trainiere(self):\n        self.level += 1\n        print(f\"{self.name} trainiert: Level {self.level}\")\n\n    def galoppiere(self, kosten):\n        self.energie -= kosten\n        if self.energie < 0:\n            self.energie = 0\n\n    def ruhe_aus(self, menge):\n        self.energie += menge\n        if self.energie > 100:\n            self.energie = 100\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "False\nTrue"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Runden zählen: Die Klasse Pferd ist vorgegeben. Rufe mit einer `while`-Schleife `galoppiere(30)` auf, bis die energie 0 ist, und zähle die Runden. Gib genau Runden: 4 aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1, energie=100):\n        self.name = name\n        self.level = level\n        self.energie = energie\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\n    def trainiere(self):\n        self.level += 1\n        print(f\"{self.name} trainiert: Level {self.level}\")\n\n    def galoppiere(self, kosten):\n        self.energie -= kosten\n        if self.energie < 0:\n            self.energie = 0\n\n    def ruhe_aus(self, menge):\n        self.energie += menge\n        if self.energie > 100:\n            self.energie = 100\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Runden: 4",
+          "codeContains": [
+            "while"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Das Lager",
+    "file": "boss-01.md",
+    "lessonSummary": "Geschafft: Lager, Suche und Summe – alles mit Objekten!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1: Die Klasse Sattel ist vorgegeben. Lege die Liste `lager` mit Sattel(\"Turniersattel\", 50), Sattel(\"Reitdecke\", 35) und Sattel(\"Halfter\", 20) an und gib pro Gegenstand eine Zeile wie Turniersattel: 50 aus.",
+        "codeTemplate": "class Sattel:\n    def __init__(self, name, wert):\n        self.name = name\n        self.wert = wert\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Turniersattel: 50\nReitdecke: 35\nHalfter: 20"
+        }
+      },
+      {
+        "instruction": "Schritt 2: Die Klasse Sattel und die Liste `lager` (50, 35, 20) sind vorgegeben. Finde den Gegenstand mit dem höchsten wert und gib genau Stärkster: Turniersattel aus.",
+        "codeTemplate": "class Sattel:\n    def __init__(self, name, wert):\n        self.name = name\n        self.wert = wert\n\nlager = [Sattel(\"Turniersattel\", 50), Sattel(\"Reitdecke\", 35), Sattel(\"Halfter\", 20)]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stärkster: Turniersattel"
+        }
+      },
+      {
+        "instruction": "Schritt 3: Die Klasse Sattel und die Liste `lager` (50, 35, 20) sind vorgegeben. Berechne die Summe aller wert-Attribute und gib genau Summe: 105 aus.",
+        "codeTemplate": "class Sattel:\n    def __init__(self, name, wert):\n        self.name = name\n        self.wert = wert\n\nlager = [Sattel(\"Turniersattel\", 50), Sattel(\"Reitdecke\", 35), Sattel(\"Halfter\", 20)]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Summe: 105"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Das Duell",
+    "file": "boss-02.md",
+    "lessonSummary": "Geschafft: Deine Objekte kämpfen gegeneinander!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1: Schreibe eine Klasse Pferd mit `__init__(self, name, level)` (energie startet bei 50) und der Methode `greife_an(self, ziel)`, die `level * 5` von der energie des Ziels abzieht. Blitz (Level 4) greift Stella (Level 2) an – gib genau Stella: 30 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stella: 30",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2: Die Klasse Pferd mit `greife_an` ist vorgegeben. Blitz (Level 4) und Stella (Level 2) schlagen abwechselnd zu (zuerst Blitz), bis einer 0 oder weniger energie hat. Gib genau Sieger: Blitz aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n        self.energie = 50\n\n    def greife_an(self, ziel):\n        ziel.energie -= self.level * 5\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sieger: Blitz"
+        }
+      },
+      {
+        "instruction": "Schritt 3: Die Klasse Pferd mit `greife_an` ist vorgegeben. Zähle in dem Duell Blitz (Level 4) gegen Stella (Level 2) die Runden (eine Runde = beide schlagen zu, der Kampf endet, sobald einer besiegt ist) und gib genau Runden: 3 aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n        self.energie = 50\n\n    def greife_an(self, ziel):\n        ziel.energie -= self.level * 5\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Runden: 3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Das Team",
+    "file": "boss-03.md",
+    "lessonSummary": "Geschafft: Du steuerst ein ganzes Team über Funktionen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1: Die Klasse Pferd und die Liste `gruppe` (mit energie 80, 30 und 60) sind vorgegeben. Schreibe `zaehle_fitte(gruppe)`, die zählt, wie viele Objekte mehr als 50 energie haben, und gib genau Fitte: 2 aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1, energie=100):\n        self.name = name\n        self.level = level\n        self.energie = energie\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\n    def trainiere(self):\n        self.level += 1\n        print(f\"{self.name} trainiert: Level {self.level}\")\n\n    def galoppiere(self, kosten):\n        self.energie -= kosten\n        if self.energie < 0:\n            self.energie = 0\n\n    def ruhe_aus(self, menge):\n        self.energie += menge\n        if self.energie > 100:\n            self.energie = 100\n\ngruppe = [Pferd(\"Blitz\", 3, 80), Pferd(\"Stella\", 8, 30), Pferd(\"Sturm\", 5, 60)]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Fitte: 2"
+        }
+      },
+      {
+        "instruction": "Schritt 2: Die Klasse Pferd und die Liste `gruppe` (energie 80, 30, 60) sind vorgegeben. Rufe bei allen `ruhe_aus(50)` auf und gib danach pro Objekt eine Zeile wie Stella: 80 aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1, energie=100):\n        self.name = name\n        self.level = level\n        self.energie = energie\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\n    def trainiere(self):\n        self.level += 1\n        print(f\"{self.name} trainiert: Level {self.level}\")\n\n    def galoppiere(self, kosten):\n        self.energie -= kosten\n        if self.energie < 0:\n            self.energie = 0\n\n    def ruhe_aus(self, menge):\n        self.energie += menge\n        if self.energie > 100:\n            self.energie = 100\n\ngruppe = [Pferd(\"Blitz\", 3, 80), Pferd(\"Stella\", 8, 30), Pferd(\"Sturm\", 5, 60)]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz: 100\nStella: 80\nSturm: 100"
+        }
+      },
+      {
+        "instruction": "Schritt 3: Die Klasse Pferd und die Liste `gruppe` (energie 80, 30, 60) sind vorgegeben. Finde das Objekt mit der geringsten energie und gib genau Schwächster: Stella aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1, energie=100):\n        self.name = name\n        self.level = level\n        self.energie = energie\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\n    def trainiere(self):\n        self.level += 1\n        print(f\"{self.name} trainiert: Level {self.level}\")\n\n    def galoppiere(self, kosten):\n        self.energie -= kosten\n        if self.energie < 0:\n            self.energie = 0\n\n    def ruhe_aus(self, menge):\n        self.energie += menge\n        if self.energie > 100:\n            self.energie = 100\n\ngruppe = [Pferd(\"Blitz\", 3, 80), Pferd(\"Stella\", 8, 30), Pferd(\"Sturm\", 5, 60)]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Schwächster: Stella"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-04",
+    "section": "boss",
+    "title": "Extra-Herausforderung 4: Die große Zunft",
+    "file": "boss-04.md",
+    "lessonSummary": "Geschafft: Klassen arbeiten mit allem zusammen, was du gelernt hast!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Funktionen und Listen: Die Klasse Pferd ist vorgegeben. Schreibe `erstelle_figur(name, level)`, die ein Objekt zurückgibt. Lege `gruppe` mit erstelle_figur(\"Blitz\", 2) und erstelle_figur(\"Stella\", 5) an und gib genau Gruppe: 2 aus (Länge der Liste).",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1, energie=100):\n        self.name = name\n        self.level = level\n        self.energie = energie\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\n    def trainiere(self):\n        self.level += 1\n        print(f\"{self.name} trainiert: Level {self.level}\")\n\n    def galoppiere(self, kosten):\n        self.energie -= kosten\n        if self.energie < 0:\n            self.energie = 0\n\n    def ruhe_aus(self, menge):\n        self.energie += menge\n        if self.energie > 100:\n            self.energie = 100\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gruppe: 2"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Zufall: Die Klasse Pferd ist vorgegeben. Erzeuge pferd = Pferd(\"Blitz\", random.randint(1, 5)) (`import random`) und gib `1 <= pferd.level <= 5` aus – das Ergebnis muss True sein.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1, energie=100):\n        self.name = name\n        self.level = level\n        self.energie = energie\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\n    def trainiere(self):\n        self.level += 1\n        print(f\"{self.name} trainiert: Level {self.level}\")\n\n    def galoppiere(self, kosten):\n        self.energie -= kosten\n        if self.energie < 0:\n            self.energie = 0\n\n    def ruhe_aus(self, menge):\n        self.energie += menge\n        if self.energie > 100:\n            self.energie = 100\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True",
+          "codeContains": [
+            "import"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Dictionary: Die Klasse Pferd und die Liste `gruppe` (Level 3, 8, 5) sind vorgegeben. Baue ein Dictionary `register`, das jeden Namen auf sein Objekt abbildet, und gib genau Level: 8 für den Eintrag Stella aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1, energie=100):\n        self.name = name\n        self.level = level\n        self.energie = energie\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\n    def trainiere(self):\n        self.level += 1\n        print(f\"{self.name} trainiert: Level {self.level}\")\n\n    def galoppiere(self, kosten):\n        self.energie -= kosten\n        if self.energie < 0:\n            self.energie = 0\n\n    def ruhe_aus(self, menge):\n        self.energie += menge\n        if self.energie > 100:\n            self.energie = 100\n\ngruppe = [Pferd(\"Blitz\", 3), Pferd(\"Stella\", 8), Pferd(\"Sturm\", 5)]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 8"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – JSON: Die Klasse Pferd ist vorgegeben. Erzeuge Pferd(\"Blitz\", 4), baue daraus das Dictionary `daten` (`name`, `level`) und gib `json.dumps(daten)` aus. Lies den Text mit `json.loads` zurück und erzeuge daraus ein neues Objekt – gib zuletzt dessen Namen aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level=1, energie=100):\n        self.name = name\n        self.level = level\n        self.energie = energie\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\n    def trainiere(self):\n        self.level += 1\n        print(f\"{self.name} trainiert: Level {self.level}\")\n\n    def galoppiere(self, kosten):\n        self.energie -= kosten\n        if self.energie < 0:\n            self.energie = 0\n\n    def ruhe_aus(self, menge):\n        self.energie += menge\n        if self.energie > 100:\n            self.energie = 100\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{\"name\": \"Blitz\", \"level\": 4}\nBlitz",
+          "codeContains": [
+            "json.dumps",
+            "json.loads"
+          ]
+        }
+      }
+    ]
+  }
+]

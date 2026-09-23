@@ -1,3 +1,3 @@
-"""### Mission 1: Das Energiedepot – Aufgabe 2
+"""### Mission 3: Der Asteroiden-Mining – Aufgabe 1
 
-Schritt 2 – Lege bloecke = 12 (Integer) und energie_pro_block = 45.5 (Float) an. Multipliziere beide in einer Variable gesamt und gib genau diese Zeile aus: Gesamtenergie: 546.0"""
+Schritt 1 – Lege für beide Asteroiden Variablen an (siehe Tabelle) und berechne den Rohwert jedes Asteroiden. Gib genau diese zwei Zeilen aus: Ferrum: 4800.0 und Aurum: 4000.0"""

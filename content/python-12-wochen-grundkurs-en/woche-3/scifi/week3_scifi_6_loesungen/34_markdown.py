@@ -1,1 +1,3 @@
-"""**Explanation:** The code after `if` must be indented. Without indentation Python does not know which lines belong to the `if`. Both `print` lines need four spaces."""
+"""### Debug Quest – Task 3
+
+🐛 Bug #3 – Goal: The program should print System active if the status is high enough, otherwise System inactive. What is wrong?"""

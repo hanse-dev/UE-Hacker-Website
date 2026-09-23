@@ -1,3 +1,3 @@
-"""### Übung 4: input()
+"""### Übung 5: Kommentare
 
-Frage mit input() nach dem Namen deines Reiters, speichere die Antwort in reiter und gib aus: Ich reite mit: (und dann der Name)"""
+Schreibe einen eigenen Kommentar und danach ein print(), das genau Kommentar gelesen ausgibt."""

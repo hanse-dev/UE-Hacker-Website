@@ -1,6 +1,5 @@
-weg = "Rechts"
-
-if weg == "Links":
-    print("Du nimmst den linken Pfad.")
+punkte = 300
+if punkte >= 300:
+    print("Zertifikat: bestanden")
 else:
-    print("Du nimmst den rechten Pfad.")
+    print("Zertifikat: nicht bestanden")

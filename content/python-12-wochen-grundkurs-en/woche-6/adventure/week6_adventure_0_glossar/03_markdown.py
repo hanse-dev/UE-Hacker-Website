@@ -4,9 +4,7 @@
 
 | Term | Meaning | Example |
 |------|---------|--------|
-| **List** `[]` | Ordered collection | `[\"Aria\", \"Borin\"]` |
-| `.append()` | Add an element | `list_.append(\"new\")` |
-| `for` | Loop over a collection | `for item in list_:` |
+| `for` | Loop over a sequence of numbers | `for i in range(3):` |
 
 
 ### From Week 5

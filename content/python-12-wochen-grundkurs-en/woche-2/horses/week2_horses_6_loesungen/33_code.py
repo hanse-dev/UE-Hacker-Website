@@ -1,3 +1,3 @@
-horse = "Comet"
-age = 6
-print(f"Hello {horse}! You are {age} years old.")
+feed_kg = "10"
+days = 5
+print(f"Total feed: {int(feed_kg) * days} kg")

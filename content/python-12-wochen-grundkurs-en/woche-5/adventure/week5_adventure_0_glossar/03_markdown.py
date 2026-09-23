@@ -4,7 +4,7 @@
 
 | Term | Meaning | Example |
 |------|---------|--------|
-| `len()` | Length of a text or list | `len(\"Hello\")` → `5` |
+| `len()` | Length of a text | `len(\"Hello\")` → `5` |
 | `type()` | Check data type | `type(42)` → `<class 'int'>` |
 
 
@@ -12,6 +12,6 @@
 
 | Term | Meaning | Example |
 |------|---------|--------|
-| **List** `[]` | Ordered collection | `[\"Aria\", \"Borin\"]` |
-| `for` | Loop over a collection | `for item in list_:` |
+| `while` | Loop – repeats as long as the condition is true | `while x < 10:` |
+| `for` | Loop over a sequence of numbers | `for i in range(3):` |
 """

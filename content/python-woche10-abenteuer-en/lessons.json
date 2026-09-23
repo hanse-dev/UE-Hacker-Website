@@ -1,0 +1,600 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Blueprint Spell 1: Classes and Objects",
+    "file": "lektion-01.md",
+    "lessonSummary": "Great! You build a class and create objects with attributes.",
+    "tasks": [
+      {
+        "instruction": "Run this example: a class, an object, two attributes.",
+        "codeTemplate": "class Hero:\n    pass\n\nhero = Hero()\nhero.name = \"Aria\"\nhero.level = 1\nprint(hero.name, hero.level)\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria 1"
+        }
+      },
+      {
+        "instruction": "Create a class Hero with `pass`. Create an object hero, set `name` to Aria and `level` to 3 and print exactly Aria has Level 3 with an f-string.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria has Level 3",
+          "codeContains": [
+            "class"
+          ]
+        }
+      },
+      {
+        "instruction": "The empty class Hero is given. Create two objects hero (Aria, level 1) and hero2 (Thorin, level 1). Raise the level to 5 only for hero and print Aria: 5 and Thorin: 1 on two lines.",
+        "codeTemplate": "class Hero:\n    pass\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria: 5\nThorin: 1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Blueprint Spell 2: The Constructor __init__",
+    "file": "lektion-02.md",
+    "lessonSummary": "Nice! Your constructor sets the starting values for every new object.",
+    "tasks": [
+      {
+        "instruction": "Run this example: a constructor with a default value.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1):\n        self.name = name\n        self.level = level\n\na = Hero(\"Aria\")\nb = Hero(\"Thorin\", 5)\nprint(a.name, a.level)\nprint(b.name, b.level)\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Thorin 5"
+        }
+      },
+      {
+        "instruction": "Write a class Hero with `__init__(self, name, level=1, energy=100)` that stores all three values. Create hero = Hero(\"Aria\", 4) and print exactly Aria 4 100 with an f-string (name, level, energy).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria 4 100",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "The class Hero with `__init__(self, name, level=1)` is given. Create an object Luna without a level and an object Thorin with level 7 and print Luna: Level 1 and Thorin: Level 7 on two lines.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1):\n        self.name = name\n        self.level = level\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Luna: Level 1\nThorin: Level 7"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Blueprint Spell 3: Methods and self",
+    "file": "lektion-03.md",
+    "lessonSummary": "Well done! Your objects can now do something.",
+    "tasks": [
+      {
+        "instruction": "Run this example: a method with self.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1):\n        self.name = name\n        self.level = level\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\nhero = Hero(\"Aria\")\nhero.introduce()\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "I am Aria, Level 1."
+        }
+      },
+      {
+        "instruction": "Write a class Hero with `__init__(self, name, level)` and the method `introduce(self)` that prints I am Aria, Level 2. (name and level from `self`). Create Hero(\"Aria\", 2) and call the method.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "I am Aria, Level 2.",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "The class Hero with the method `introduce()` is given. Create Hero(\"Thorin\", 4) and Hero(\"Luna\", 6) and call `introduce()` on both.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def fight(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "I am Thorin, Level 4.\nI am Luna, Level 6."
+        }
+      },
+      {
+        "instruction": "Write a class Hero with `__init__(self, name)` (level starts at 1) and the method `train(self)` that raises the level by 1 and prints Aria trains: Level 3. Create Hero(\"Aria\") and call `train()` twice.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria trains: Level 3",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Blueprint Spell 4: Methods with Parameters and return",
+    "file": "lektion-04.md",
+    "lessonSummary": "Super! Your methods take values and return results.",
+    "tasks": [
+      {
+        "instruction": "Run this example: a method with a parameter and one with return.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, energy=100):\n        self.name = name\n        self.energy = energy\n\n    def fight(self, kosten):\n        self.energy -= kosten\n\n    def is_tired(self):\n        return self.energy < 20\n\nhero = Hero(\"Aria\")\nhero.fight(30)\nprint(hero.energy)\nprint(hero.is_tired())\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "70\nFalse"
+        }
+      },
+      {
+        "instruction": "The class Hero is given (`fight(kosten)` lowers the energy, it never drops below 0). Create Hero(\"Aria\"), call `fight(40)` and `fight(70)` and print exactly Energy: 0.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def fight(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energy: 0"
+        }
+      },
+      {
+        "instruction": "Write a class Hero with `__init__(self, name, energy)` and a method `is_tired(self)` that returns **True** if the energy is below 20 (otherwise False). Print the results for Hero(\"Aria\", 10) and Hero(\"Thorin\", 80) (two lines).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True\nFalse",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "The class Hero is given (`rest(menge)` raises the energy, at most up to 100). Create Hero(\"Aria\", energy=20), call `rest(50)` twice and print exactly Energy: 100.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def fight(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energy: 100"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Blueprint Spell 5: Changing the State",
+    "file": "lektion-05.md",
+    "lessonSummary": "Strong! Your objects remember their state.",
+    "tasks": [
+      {
+        "instruction": "Run this example: a counter inside the object.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n        self.wins = 0\n\n    def win(self):\n        self.wins += 1\n\nhero = Hero(\"Aria\")\nhero.win()\nhero.win()\nprint(hero.wins)\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "2"
+        }
+      },
+      {
+        "instruction": "The class Hero is given. Create Hero(\"Aria\"), call `fight(30)`, then `rest(50)` (at most 100!) and then `fight(20)`. Print exactly Energy: 80.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def fight(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energy: 80"
+        }
+      },
+      {
+        "instruction": "Write a class Hero with `__init__(self, name)` (attribute `wins` starts at 0) and the method `win(self)` that raises `wins` by 1. Call it three times and print exactly Wins: 3.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wins: 3",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "The class Hero is given. Create Hero(\"Aria\"), call `train()` three times and then print exactly Level: 4.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def fight(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 4"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Blueprint Spell 6: Objects in Lists",
+    "file": "lektion-06.md",
+    "lessonSummary": "Nice! You manage whole groups of objects.",
+    "tasks": [
+      {
+        "instruction": "Run this example: looping over objects in a list.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\ngruppe = [Hero(\"Aria\", 3), Hero(\"Thorin\", 8), Hero(\"Luna\", 5)]\nfor h in gruppe:\n    print(h.name, h.level)\n\nstarke = [h.name for h in gruppe if h.level >= 5]\nprint(starke)\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Thorin', 'Luna']"
+        }
+      },
+      {
+        "instruction": "The class Hero is given. Create the list `gruppe` with Hero(\"Aria\", 3), Hero(\"Thorin\", 8) and Hero(\"Luna\", 5) and print every name on its own line with a `for` loop.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def fight(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria\nThorin\nLuna",
+          "codeContains": [
+            "for"
+          ]
+        }
+      },
+      {
+        "instruction": "The class Hero and the list `gruppe` (levels 3, 8, 5) are given. Find the object with the highest level with a loop and print exactly Strongest: Thorin.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def fight(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\ngruppe = [Hero(\"Aria\", 3), Hero(\"Thorin\", 8), Hero(\"Luna\", 5)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Strongest: Thorin"
+        }
+      },
+      {
+        "instruction": "The class Hero and the list `gruppe` (levels 3, 8, 5) are given. Build the list `starke` of all names with level 5 or more with a list comprehension and print it with `print(starke)`.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def fight(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\ngruppe = [Hero(\"Aria\", 3), Hero(\"Thorin\", 8), Hero(\"Luna\", 5)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Thorin', 'Luna']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Blueprint Spell 7: Passing Objects to Functions",
+    "file": "lektion-07.md",
+    "lessonSummary": "Well done! You now know how objects and functions work together.",
+    "tasks": [
+      {
+        "instruction": "Run this example: two names for one object.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\na = Hero(\"Aria\", 1)\nb = a\nb.level = 10\nprint(a.level)\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "10"
+        }
+      },
+      {
+        "instruction": "The class Hero is given. Write a function `stronger(a, b)` that returns the object with the higher level. Compare Hero(\"Aria\", 4) and Hero(\"Thorin\", 9) and print exactly Winner: Thorin.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def fight(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Winner: Thorin"
+        }
+      },
+      {
+        "instruction": "The class Hero and the object `hero = Hero(\"Aria\")` are given. Give the object a second name `zweiter`, set the level to 9 through `zweiter` and print exactly Aria: Level 9 through `hero`.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def fight(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\nhero = Hero(\"Aria\")\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria: Level 9"
+        }
+      },
+      {
+        "instruction": "The class Hero and the list `gruppe` (levels 3, 8, 5) are given. Write a function `train_all(gruppe)` that does `level += 1` for everyone (no return). Call it and print exactly Sum: 19 (sum of all levels).",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def fight(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\ngruppe = [Hero(\"Aria\", 3), Hero(\"Thorin\", 8), Hero(\"Luna\", 5)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sum: 19"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "All bugs found! With classes the arguments of `__init__`, `self.` before every attribute and `self` in every method matter.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Goal: The program should print Aria. What is wrong?",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\nhero = Hero()\nprint(hero.name)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Goal: The program should print Aria. What is wrong?",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level):\n        name = name\n        level = level\n\nhero = Hero(\"Aria\", 3)\nprint(hero.name)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Goal: The program should print I am Aria. What is wrong?",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce():\n        print(f\"I am {self.name}\")\n\nhero = Hero(\"Aria\")\nhero.introduce()\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "I am Aria"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: The First Blueprint",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission accomplished: you wrote a class, created objects and added a method!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – create the class: write a class Sword with `__init__(self, name, value)`. Create sword = Sword(\"Excalibur\", 50) and print exactly Excalibur: 50.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Excalibur: 50",
+          "codeContains": [
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 2 – add up: the class Sword is given. Create Sword(\"Excalibur\", 50) and Sword(\"Nightblade\", 35) and print exactly Together: 85 (sum of the value attributes).",
+        "codeTemplate": "class Sword:\n    def __init__(self, name, value):\n        self.name = name\n        self.value = value\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Together: 85"
+        }
+      },
+      {
+        "instruction": "Step 3 – method: write the class Sword with a method `info(self)` that **returns** `name (value)` as text, e.g. Excalibur (50). Print `info()` for Sword(\"Excalibur\", 50) and Sword(\"Nightblade\", 35).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Excalibur (50)\nNightblade (35)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: The Group",
+    "file": "mission-02.md",
+    "lessonSummary": "Mission accomplished: you manage objects in a list!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – create the group: write the class Hero with `__init__(self, name, level=1, energy=100)`. Create Aria (level 15), Thorin (level 18) and Luna (level 12) and print one line per object like Aria: 15.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria: 15\nThorin: 18\nLuna: 12",
+          "codeContains": [
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 2 – find the weakest: the class Hero and the list `gruppe` (levels 15, 18, 12) are given. Print exactly Weakest: Luna.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def fight(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\ngruppe = [Hero(\"Aria\", 15), Hero(\"Thorin\", 18), Hero(\"Luna\", 12)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Weakest: Luna"
+        }
+      },
+      {
+        "instruction": "Step 3 – train everyone: the class Hero and the list `gruppe` (levels 15, 18, 12) are given. Call `train()` on every object and print exactly Sum: 48 (sum of all levels afterwards).",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def fight(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\ngruppe = [Hero(\"Aria\", 15), Hero(\"Thorin\", 18), Hero(\"Luna\", 12)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sum: 48"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: The State",
+    "file": "mission-03.md",
+    "lessonSummary": "Mission accomplished: your objects manage their own state!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – class with state: write a class Hero with `__init__(self, name)` (energy starts at 100) and `fight(self, kosten)` that lowers energy (never below 0). Create Hero(\"Aria\"), call `fight(40)` three times and print exactly Energy: 0.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energy: 0",
+          "codeContains": [
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 2 – check function: the class Hero is given. Write `exhausted(figure)` that returns True if the energy is 0. Create Hero(\"Aria\"), print `exhausted(hero)`, call `fight(100)` and print it once more.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def fight(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "False\nTrue"
+        }
+      },
+      {
+        "instruction": "Step 3 – count rounds: the class Hero is given. With a `while` loop call `fight(30)` until the energy is 0 and count the rounds. Print exactly Rounds: 4.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def fight(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rounds: 4",
+          "codeContains": [
+            "while"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra Challenge 1: The Depot",
+    "file": "boss-01.md",
+    "lessonSummary": "Done: depot, search and sum – all with objects!",
+    "tasks": [
+      {
+        "instruction": "Step 1: the class Sword is given. Create the list `lager` with Sword(\"Excalibur\", 50), Sword(\"Nightblade\", 35) and Sword(\"Iron dagger\", 20) and print one line per item like Excalibur: 50.",
+        "codeTemplate": "class Sword:\n    def __init__(self, name, value):\n        self.name = name\n        self.value = value\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Excalibur: 50\nNightblade: 35\nIron dagger: 20"
+        }
+      },
+      {
+        "instruction": "Step 2: the class Sword and the list `lager` (50, 35, 20) are given. Find the item with the highest value and print exactly Strongest: Excalibur.",
+        "codeTemplate": "class Sword:\n    def __init__(self, name, value):\n        self.name = name\n        self.value = value\n\nlager = [Sword(\"Excalibur\", 50), Sword(\"Nightblade\", 35), Sword(\"Iron dagger\", 20)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Strongest: Excalibur"
+        }
+      },
+      {
+        "instruction": "Step 3: the class Sword and the list `lager` (50, 35, 20) are given. Calculate the sum of all value attributes and print exactly Sum: 105.",
+        "codeTemplate": "class Sword:\n    def __init__(self, name, value):\n        self.name = name\n        self.value = value\n\nlager = [Sword(\"Excalibur\", 50), Sword(\"Nightblade\", 35), Sword(\"Iron dagger\", 20)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sum: 105"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra Challenge 2: The Duel",
+    "file": "boss-02.md",
+    "lessonSummary": "Done: your objects fight each other!",
+    "tasks": [
+      {
+        "instruction": "Step 1: write a class Hero with `__init__(self, name, level)` (energy starts at 50) and the method `attack(self, ziel)` that subtracts `level * 5` from the target's energy. Aria (level 4) attacks Thorin (level 2) – print exactly Thorin: 30.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Thorin: 30",
+          "codeContains": [
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 2: the class Hero with `attack` is given. Aria (level 4) and Thorin (level 2) strike in turns (Aria first) until one has 0 or less energy. Print exactly Winner: Aria.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n        self.energy = 50\n\n    def attack(self, ziel):\n        ziel.energy -= self.level * 5\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Winner: Aria"
+        }
+      },
+      {
+        "instruction": "Step 3: the class Hero with `attack` is given. In the duel Aria (level 4) against Thorin (level 2) count the rounds (one round = both strike, the fight ends as soon as one is beaten) and print exactly Rounds: 3.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n        self.energy = 50\n\n    def attack(self, ziel):\n        ziel.energy -= self.level * 5\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rounds: 3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra Challenge 3: The Team",
+    "file": "boss-03.md",
+    "lessonSummary": "Done: you control a whole team through functions!",
+    "tasks": [
+      {
+        "instruction": "Step 1: the class Hero and the list `gruppe` (with energy 80, 30 and 60) are given. Write `count_fit(gruppe)` that counts how many objects have more than 50 energy and print exactly Fit: 2.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def fight(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\ngruppe = [Hero(\"Aria\", 3, 80), Hero(\"Thorin\", 8, 30), Hero(\"Luna\", 5, 60)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Fit: 2"
+        }
+      },
+      {
+        "instruction": "Step 2: the class Hero and the list `gruppe` (energy 80, 30, 60) are given. Call `rest(50)` on all of them and then print one line per object like Thorin: 80.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def fight(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\ngruppe = [Hero(\"Aria\", 3, 80), Hero(\"Thorin\", 8, 30), Hero(\"Luna\", 5, 60)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria: 100\nThorin: 80\nLuna: 100"
+        }
+      },
+      {
+        "instruction": "Step 3: the class Hero and the list `gruppe` (energy 80, 30, 60) are given. Find the object with the lowest energy and print exactly Weakest: Thorin.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def fight(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\ngruppe = [Hero(\"Aria\", 3, 80), Hero(\"Thorin\", 8, 30), Hero(\"Luna\", 5, 60)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Weakest: Thorin"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-04",
+    "section": "boss",
+    "title": "Extra Challenge 4: The Great Guild",
+    "file": "boss-04.md",
+    "lessonSummary": "Done: classes work together with everything you have learned!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – functions and lists: the class Hero is given. Write `create_figure(name, level)` that returns an object. Create `gruppe` with create_figure(\"Aria\", 2) and create_figure(\"Thorin\", 5) and print exactly Group: 2 (length of the list).",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def fight(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Group: 2"
+        }
+      },
+      {
+        "instruction": "Step 2 – randomness: the class Hero is given. Create hero = Hero(\"Aria\", random.randint(1, 5)) (`import random`) and print `1 <= hero.level <= 5` – the result must be True.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def fight(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True",
+          "codeContains": [
+            "import"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 3 – dictionary: the class Hero and the list `gruppe` (levels 3, 8, 5) are given. Build a dictionary `register` that maps every name to its object and print exactly Level: 8 for the entry Thorin.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def fight(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\ngruppe = [Hero(\"Aria\", 3), Hero(\"Thorin\", 8), Hero(\"Luna\", 5)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 8"
+        }
+      },
+      {
+        "instruction": "Step 4 – JSON: the class Hero is given. Create Hero(\"Aria\", 4), build the dictionary `daten` (`name`, `level`) from it and print `json.dumps(daten)`. Read the text back with `json.loads` and create a new object from it – finally print its name.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def train(self):\n        self.level += 1\n        print(f\"{self.name} trains: Level {self.level}\")\n\n    def fight(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def rest(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{\"name\": \"Aria\", \"level\": 4}\nAria",
+          "codeContains": [
+            "json.dumps",
+            "json.loads"
+          ]
+        }
+      }
+    ]
+  }
+]

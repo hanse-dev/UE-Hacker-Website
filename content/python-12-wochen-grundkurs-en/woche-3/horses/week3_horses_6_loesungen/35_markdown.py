@@ -1,1 +1,0 @@
-"""**Explanation:** A single `=` assigns a value, but a condition needs a comparison. Use `==` to compare."""

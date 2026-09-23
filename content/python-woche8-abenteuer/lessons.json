@@ -1,0 +1,577 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Archiv-Zauber 1: Steckbriefe erstellen und lesen",
+    "file": "lektion-01.md",
+    "lessonSummary": "Stark! Du legst Dictionaries an und liest Werte über ihren Schlüssel.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Ein Dictionary anlegen und lesen.",
+        "example": true,
+        "codeTemplate": "held = {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120}\nprint(held)\nprint(\"Name:\", held[\"name\"])\nprint(f\"Level: {held['level']}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 15"
+        }
+      },
+      {
+        "instruction": "Lege ein Dictionary held an mit den Schlüsseln name (\"Aria\"), klasse (\"Magierin\"), level (15) und leben (120). Gib genau Name: Aria und in der nächsten Zeile Level: 15 aus (Zugriff mit []).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Aria\nLevel: 15"
+        }
+      },
+      {
+        "instruction": "Das Dictionary held ist vorgegeben. Gib mit len() die Zahl der Einträge als Anzahl Eigenschaften: 4 aus und in der nächsten Zeile Klasse: Magierin.",
+        "codeTemplate": "held = {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl Eigenschaften: 4\nKlasse: Magierin"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Archiv-Zauber 2: Ändern, ergänzen und entfernen",
+    "file": "lektion-02.md",
+    "lessonSummary": "Prima! Du änderst Werte, ergänzt Einträge und entfernst sie wieder.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: ändern, ergänzen, entfernen.",
+        "example": true,
+        "codeTemplate": "held = {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120}\nheld[\"level\"] = held[\"level\"] + 1\nheld[\"mana\"] = 80\nentfernt = held.pop(\"leben\")\nprint(f\"Level jetzt: {held['level']}\")\nprint(f\"Entfernt: {entfernt}\")\nprint(f\"Eigenschaften: {len(held)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Eigenschaften: 4"
+        }
+      },
+      {
+        "instruction": "Das Dictionary held ist vorgegeben. Erhöhe level mit += 1 und ergänze den neuen Schlüssel mana mit dem Wert 80. Gib genau Level: 16 und in der nächsten Zeile Mana: 80 aus.",
+        "codeTemplate": "held = {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 16\nMana: 80"
+        }
+      },
+      {
+        "instruction": "Das Dictionary held ist vorgegeben. Entferne mit pop() den Schlüssel klasse und gib den entfernten Wert als Entfernt: Magierin aus. Lösche danach mit del den Schlüssel leben und gib Eigenschaften: 2 aus (len).",
+        "codeTemplate": "held = {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Entfernt: Magierin\nEigenschaften: 2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Archiv-Zauber 3: Sicher zugreifen mit get() und in",
+    "file": "lektion-03.md",
+    "lessonSummary": "Klasse! Du fragst mit get() und in, statt einen KeyError zu riskieren.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: get() mit Standardwert und in.",
+        "example": true,
+        "codeTemplate": "held = {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120}\nprint(\"Name:\", held.get(\"name\"))\nprint(\"Mana:\", held.get(\"mana\", 0))\nprint(\"Vorhanden:\", \"mana\" in held)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Vorhanden: False"
+        }
+      },
+      {
+        "instruction": "Das Dictionary held ist vorgegeben (ohne mana). Hole mit get() den Wert von mana mit Standardwert 0 und gib genau Mana: 0 aus.",
+        "codeTemplate": "held = {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mana: 0"
+        }
+      },
+      {
+        "instruction": "Das Dictionary held ist vorgegeben. Prüfe mit in und gib genau level vorhanden: True und in der nächsten Zeile mana vorhanden: False aus.",
+        "codeTemplate": "held = {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "level vorhanden: True\nmana vorhanden: False"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Archiv-Zauber 4: Dictionaries durchlaufen",
+    "file": "lektion-04.md",
+    "lessonSummary": "Stark! Du läufst mit keys(), values() und items() durch ein Dictionary.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: items() und values().",
+        "example": true,
+        "codeTemplate": "beutel = {\"Heiltrank\": 3, \"Fackel\": 5, \"Seil\": 2}\nfor name, anzahl in beutel.items():\n    print(f\"{name}: {anzahl}\")\ngesamt = 0\nfor anzahl in beutel.values():\n    gesamt += anzahl\nprint(f\"Gesamt: {gesamt}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gesamt: 10"
+        }
+      },
+      {
+        "instruction": "Das Dictionary beutel ist vorgegeben (Beutel: Name und Anzahl). Gib mit items() jeden Eintrag als Name: Anzahl in einer eigenen Zeile aus, z. B. Heiltrank: 3.",
+        "codeTemplate": "beutel = {\"Heiltrank\": 3, \"Fackel\": 5, \"Seil\": 2}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Heiltrank: 3\nFackel: 5\nSeil: 2"
+        }
+      },
+      {
+        "instruction": "Das Dictionary beutel ist vorgegeben. Addiere mit values() alle Anzahlen und gib genau Gesamt: 10 und in der nächsten Zeile Sorten: 3 aus (len).",
+        "codeTemplate": "beutel = {\"Heiltrank\": 3, \"Fackel\": 5, \"Seil\": 2}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gesamt: 10\nSorten: 3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Archiv-Zauber 5: Tupel",
+    "file": "lektion-05.md",
+    "lessonSummary": "Prima! Du packst Werte in Tupel und entpackst sie wieder.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Tupel anlegen, lesen und entpacken.",
+        "example": true,
+        "codeTemplate": "artefakt = (\"Feuerstab\", 15, \"Feuer\")\nprint(artefakt)\nprint(\"Länge:\", len(artefakt))\nprint(\"Erstes:\", artefakt[0])\nname, wert, sorte = artefakt\nprint(f\"Wert: {wert}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wert: 15"
+        }
+      },
+      {
+        "instruction": "Lege das Tupel artefakt = (\"Feuerstab\", 15, \"Feuer\") an und entpacke es in name, wert und sorte. Gib genau Name: Feuerstab und in der nächsten Zeile Art: Feuer aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Feuerstab\nArt: Feuer"
+        }
+      },
+      {
+        "instruction": "Zwei Punkte sind als Tupel gegeben. Berechne den Abstand als Unterschied der x-Werte plus Unterschied der y-Werte (ziel minus start, alles positiv) und gib genau Abstand: 7 aus.",
+        "codeTemplate": "start = (2, 3)\nziel = (6, 6)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Abstand: 7"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Archiv-Zauber 6: Unveränderlich und Fehler abfangen",
+    "file": "lektion-06.md",
+    "lessonSummary": "Meisterhaft! Du fängst Fehler mit try/except ab, statt dass dein Programm abstürzt.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: drei Fehlerarten abfangen.",
+        "example": true,
+        "codeTemplate": "artefakt = (\"Feuerstab\", 15, \"Feuer\")\nbeutel = {\"Heiltrank\": 3, \"Fackel\": 5, \"Seil\": 2}\ntry:\n    artefakt[1] = 99\nexcept TypeError:\n    print(\"Fehler: Tupel sind unveränderlich\")\ntry:\n    print(beutel[\"Drachenei\"])\nexcept KeyError:\n    print(\"Fehler: nicht im Lager\")\ntry:\n    zahl = int(\"zehn\")\nexcept ValueError:\n    print(\"Fehler: keine Zahl\")\nprint(\"Weiter geht es\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Weiter geht es"
+        }
+      },
+      {
+        "instruction": "Das Tupel artefakt ist vorgegeben. Versuche in einem try-Block artefakt[1] = 99 zu setzen, fange den TypeError ab und gib genau Fehler: geschützt aus.",
+        "codeTemplate": "artefakt = (\"Feuerstab\", 15, \"Feuer\")\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Fehler: geschützt",
+          "codeContains": [
+            "try",
+            "except"
+          ]
+        }
+      },
+      {
+        "instruction": "Das Dictionary beutel ist vorgegeben. Versuche in einem try-Block beutel[\"Drachenei\"] zu lesen, fange den KeyError ab und gib genau Nicht im Lager: Drachenei aus.",
+        "codeTemplate": "beutel = {\"Heiltrank\": 3, \"Fackel\": 5, \"Seil\": 2}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nicht im Lager: Drachenei",
+          "codeContains": [
+            "try",
+            "except"
+          ]
+        }
+      },
+      {
+        "instruction": "Die Eingabe eingabe = \"zehn\" ist vorgegeben. Wandle sie in einem try-Block mit int() in zahl um. Fange den ValueError ab und setze dann zahl = 0. Gib genau Zahl: 0 aus.",
+        "codeTemplate": "eingabe = \"zehn\"\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zahl: 0",
+          "codeContains": [
+            "try",
+            "except"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Archiv-Zauber 7: Verschachtelte Strukturen",
+    "file": "lektion-07.md",
+    "lessonSummary": "Weltklasse! Du verschachtelst Dictionaries, Listen und Tupel.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: verschachtelt lesen und filtern.",
+        "example": true,
+        "codeTemplate": "held = {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120, \"ausruestung\": {\"waffe\": \"Stab\", \"ruestung\": \"Robe\"}}\nprint(f\"Waffe: {held['ausruestung']['waffe']}\")\nhelden = [\n    {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120},\n    {\"name\": \"Thorin\", \"klasse\": \"Krieger\", \"level\": 18, \"leben\": 150},\n    {\"name\": \"Luna\", \"klasse\": \"Schurkin\", \"level\": 12, \"leben\": 90},\n]\nprint(f\"Anzahl: {len(helden)}\")\nstarke = [e[\"name\"] for e in helden if e[\"level\"] > 14]\nprint(f\"Starke: {starke}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Starke: ['Aria', 'Thorin']"
+        }
+      },
+      {
+        "instruction": "Die Liste helden mit drei Dictionaries ist vorgegeben. Gib genau Anzahl: 3 und in der nächsten Zeile Letzter: Luna aus (Name des letzten Eintrags, Index -1).",
+        "codeTemplate": "helden = [\n    {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120},\n    {\"name\": \"Thorin\", \"klasse\": \"Krieger\", \"level\": 18, \"leben\": 150},\n    {\"name\": \"Luna\", \"klasse\": \"Schurkin\", \"level\": 12, \"leben\": 90},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 3\nLetzter: Luna"
+        }
+      },
+      {
+        "instruction": "Das Dictionary held enthält den Unter-Eintrag ausruestung und ist vorgegeben. Gib genau Waffe: Stab und in der nächsten Zeile Rüstung: Robe aus.",
+        "codeTemplate": "held = {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120, \"ausruestung\": {\"waffe\": \"Stab\", \"ruestung\": \"Robe\"}}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Waffe: Stab\nRüstung: Robe"
+        }
+      },
+      {
+        "instruction": "Die Liste helden ist vorgegeben. Sammle mit einer List Comprehension die Namen aller Einträge, deren level größer als 14 ist, in starke und gib genau Starke: ['Aria', 'Thorin'] aus.",
+        "codeTemplate": "helden = [\n    {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120},\n    {\"name\": \"Thorin\", \"klasse\": \"Krieger\", \"level\": 18, \"leben\": 150},\n    {\"name\": \"Luna\", \"klasse\": \"Schurkin\", \"level\": 12, \"leben\": 90},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Starke: ['Aria', 'Thorin']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug-Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Bei Dictionaries und Tupeln zählen Kommas, Schlüssel und Unveränderlichkeit.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Name: Aria ausgeben. Was ist falsch?",
+        "codeTemplate": "held = {\n    \"name\": \"Aria\"\n    \"klasse\": \"Magierin\"\n}\nprint(\"Name:\", held[\"name\"])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Aria"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Position: (150, 200) ausgeben. Was ist falsch?",
+        "codeTemplate": "position = (100, 200)\nposition[0] = 150\nprint(\"Position:\", position)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Position: (150, 200)"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Level: 15 ausgeben. Was ist falsch?",
+        "codeTemplate": "held = {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120}\nprint(\"Level:\", held[\"Level\"])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 15"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: Der Steckbrief-Meister",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission geschafft: Du hast deinen ersten Steckbrief angelegt, geändert und gelesen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Steckbrief anlegen: Lege das Dictionary held mit name (\"Aria\"), klasse (\"Magierin\"), level (15) und leben (120) an. Gib genau Aria, Magierin, Level 15 aus (mit f-String aus den Werten).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria, Magierin, Level 15"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Ändern und ergänzen: Das Dictionary held ist vorgegeben. Erhöhe level um 1, ergänze mana mit dem Wert 80 und gib genau Level: 16 und in der nächsten Zeile Mana: 80 aus.",
+        "codeTemplate": "held = {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 16\nMana: 80"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Liste von Steckbriefen: Die Liste helden ist vorgegeben. Gib genau Anzahl: 3 und in der nächsten Zeile Zweiter: Thorin aus (Name des zweiten Eintrags).",
+        "codeTemplate": "helden = [\n    {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120},\n    {\"name\": \"Thorin\", \"klasse\": \"Krieger\", \"level\": 18, \"leben\": 150},\n    {\"name\": \"Luna\", \"klasse\": \"Schurkin\", \"level\": 12, \"leben\": 90},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 3\nZweiter: Thorin"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: Der Artefakt-Meister",
+    "file": "mission-02.md",
+    "lessonSummary": "Mission geschafft: Tupel, Unpacking und ein Katalog greifen ineinander!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Tupel entpacken: Das Tupel artefakt ist vorgegeben. Entpacke es in name, wert und sorte und gib genau Artefakt: Feuerstab, Wert: 15 und Art: Feuer in drei Zeilen aus.",
+        "codeTemplate": "artefakt = (\"Feuerstab\", 15, \"Feuer\")\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Artefakt: Feuerstab\nWert: 15\nArt: Feuer"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Katalog: Das Dictionary katalog (Name → Tupel) ist vorgegeben. Gib genau Wert: 15 (zweites Element des Tupels von Feuerstab) und in der nächsten Zeile Einträge: 2 aus.",
+        "codeTemplate": "katalog = {\"Feuerstab\": (\"Feuerstab\", 15, \"Feuer\"), \"Eisring\": (\"Eisring\", 5, \"Eis\")}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wert: 15\nEinträge: 2"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Abstand: Schreibe eine Funktion abstand(a, b), die zwei Punkt-Tupel (x, y) bekommt und den Unterschied der x-Werte plus den der y-Werte (b minus a, alles positiv) zurückgibt. Gib für (2, 3) und (6, 6) genau Abstand: 7 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Abstand: 7",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: Die Helden-Gilde",
+    "file": "mission-03.md",
+    "lessonSummary": "Mission geschafft: Suchen, Zählen und Durchschnitt über eine ganze Liste von Steckbriefen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Durchlaufen: Die Liste helden mit vier Dictionaries ist vorgegeben. Gib jeden Eintrag als Name: Level in einer eigenen Zeile aus, z. B. Aria: 15.",
+        "codeTemplate": "helden = [\n    {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120},\n    {\"name\": \"Thorin\", \"klasse\": \"Krieger\", \"level\": 18, \"leben\": 150},\n    {\"name\": \"Luna\", \"klasse\": \"Schurkin\", \"level\": 12, \"leben\": 90},\n    {\"name\": \"Mira\", \"klasse\": \"Magierin\", \"level\": 13, \"leben\": 110},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria: 15\nThorin: 18\nLuna: 12\nMira: 13"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Suchen: Die Liste helden ist vorgegeben. Schreibe eine Funktion finde_helden(liste, art), die die Namen aller Einträge mit dieser klasse als Liste zurückgibt. Gib für \"Magierin\" genau Gefunden: ['Aria', 'Mira'] aus.",
+        "codeTemplate": "helden = [\n    {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120},\n    {\"name\": \"Thorin\", \"klasse\": \"Krieger\", \"level\": 18, \"leben\": 150},\n    {\"name\": \"Luna\", \"klasse\": \"Schurkin\", \"level\": 12, \"leben\": 90},\n    {\"name\": \"Mira\", \"klasse\": \"Magierin\", \"level\": 13, \"leben\": 110},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gefunden: ['Aria', 'Mira']",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Statistik: Die Liste helden ist vorgegeben. Berechne den Durchschnitt von level (Summe geteilt durch len) und gib genau Durchschnitt: 14.5 aus.",
+        "codeTemplate": "helden = [\n    {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120},\n    {\"name\": \"Thorin\", \"klasse\": \"Krieger\", \"level\": 18, \"leben\": 150},\n    {\"name\": \"Luna\", \"klasse\": \"Schurkin\", \"level\": 12, \"leben\": 90},\n    {\"name\": \"Mira\", \"klasse\": \"Magierin\", \"level\": 13, \"leben\": 110},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Durchschnitt: 14.5"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Der Schatz-Steckbrief",
+    "file": "boss-01.md",
+    "lessonSummary": "Der Katalog steht: Einträge anlegen, filtern, summieren und sortieren!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Eintrag: Lege das Dictionary eintrag mit name (\"Goldkrone\"), wert (800) und ort (\"Turm\") an. Gib genau Name: Goldkrone, Wert: 800 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Goldkrone, Wert: 800"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Sammlung: Die Liste schaetze mit drei Dictionaries ist vorgegeben. Gib genau Einträge: 3 und in der nächsten Zeile Letzter Ort: Höhle aus.",
+        "codeTemplate": "schaetze = [\n    {\"name\": \"Goldkrone\", \"wert\": 800, \"ort\": \"Turm\"},\n    {\"name\": \"Silberkelch\", \"wert\": 300, \"ort\": \"Keller\"},\n    {\"name\": \"Rubin\", \"wert\": 650, \"ort\": \"Höhle\"},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Einträge: 3\nLetzter Ort: Höhle"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Filtern und summieren: Zähle alle Einträge mit wert über 500 und addiere alle Werte. Gib genau Über 500: 2 und in der nächsten Zeile Gesamtwert: 1750 aus.",
+        "codeTemplate": "schaetze = [\n    {\"name\": \"Goldkrone\", \"wert\": 800, \"ort\": \"Turm\"},\n    {\"name\": \"Silberkelch\", \"wert\": 300, \"ort\": \"Keller\"},\n    {\"name\": \"Rubin\", \"wert\": 650, \"ort\": \"Höhle\"},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Über 500: 2\nGesamtwert: 1750"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Sortieren: Sammle alle wert-Werte in der Liste werte und sortiere sie absteigend (sorted mit reverse=True). Gib genau Werte: [800, 650, 300] aus.",
+        "codeTemplate": "schaetze = [\n    {\"name\": \"Goldkrone\", \"wert\": 800, \"ort\": \"Turm\"},\n    {\"name\": \"Silberkelch\", \"wert\": 300, \"ort\": \"Keller\"},\n    {\"name\": \"Rubin\", \"wert\": 650, \"ort\": \"Höhle\"},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Werte: [800, 650, 300]"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Der Dungeon-Manager",
+    "file": "boss-02.md",
+    "lessonSummary": "Der Manager läuft: Verschachtelte Dictionaries durchsucht, verglichen und ausgewertet!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Aufbau: Das verschachtelte Dictionary zonen ist vorgegeben (Ebene → Dictionary mit monster, schatz, schwierigkeit). Gib jede Ebene als Name: monster / schatz aus, z. B. Keller: Ratte / Silber.",
+        "codeTemplate": "zonen = {\n    \"Keller\": {\"monster\": \"Ratte\", \"schatz\": \"Silber\", \"schwierigkeit\": 3},\n    \"Höhle\": {\"monster\": \"Troll\", \"schatz\": \"Gold\", \"schwierigkeit\": 5},\n    \"Turm\": {\"monster\": \"Drache\", \"schatz\": \"Krone\", \"schwierigkeit\": 8},\n}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Keller: Ratte / Silber\nHöhle: Troll / Gold\nTurm: Drache / Krone"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Gefährlichste: Das Dictionary zonen ist vorgegeben. Finde die Ebene mit der höchsten schwierigkeit und gib genau Gefährlichste: Turm (8) aus.",
+        "codeTemplate": "zonen = {\n    \"Keller\": {\"monster\": \"Ratte\", \"schatz\": \"Silber\", \"schwierigkeit\": 3},\n    \"Höhle\": {\"monster\": \"Troll\", \"schatz\": \"Gold\", \"schwierigkeit\": 5},\n    \"Turm\": {\"monster\": \"Drache\", \"schatz\": \"Krone\", \"schwierigkeit\": 8},\n}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gefährlichste: Turm (8)"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Wer darf hinein? Die Figur hat stark = 5. Sammle in der Liste betretbar die Namen aller Zonen, deren schwierigkeit höchstens stark ist, und gib genau Betretbar: ['Keller', 'Höhle'] aus.",
+        "codeTemplate": "zonen = {\n    \"Keller\": {\"monster\": \"Ratte\", \"schatz\": \"Silber\", \"schwierigkeit\": 3},\n    \"Höhle\": {\"monster\": \"Troll\", \"schatz\": \"Gold\", \"schwierigkeit\": 5},\n    \"Turm\": {\"monster\": \"Drache\", \"schatz\": \"Krone\", \"schwierigkeit\": 8},\n}\nstark = 5\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Betretbar: ['Keller', 'Höhle']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Das Helden-Archiv",
+    "file": "boss-03.md",
+    "lessonSummary": "Das Archiv steht: Suchen, Zählen und eine Rangliste aus vier Steckbriefen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Anlegen: Lege die Liste helden mit vier Dictionaries (Schlüssel name, klasse, level) an: Aria (Magierin, 15), Thorin (Krieger, 18), Luna (Schurkin, 12), Mira (Magierin, 13). Gib genau Anzahl: 4 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 4"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Suche: Die Liste helden ist vorgegeben. Schreibe eine Funktion finde_helden(liste, art), die die Namen mit dieser klasse zurückgibt. Gib genau Magierin: 2 und in der nächsten Zeile Krieger: 1 aus (Anzahl der Treffer).",
+        "codeTemplate": "helden = [\n    {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120},\n    {\"name\": \"Thorin\", \"klasse\": \"Krieger\", \"level\": 18, \"leben\": 150},\n    {\"name\": \"Luna\", \"klasse\": \"Schurkin\", \"level\": 12, \"leben\": 90},\n    {\"name\": \"Mira\", \"klasse\": \"Magierin\", \"level\": 13, \"leben\": 110},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Magierin: 2\nKrieger: 1",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Rangliste: Die Liste helden ist vorgegeben. Sammle alle level-Werte, sortiere sie absteigend und finde den Namen mit dem höchsten Wert. Gib genau Bester: Thorin und in der nächsten Zeile Rangliste: [18, 15, 13, 12] aus.",
+        "codeTemplate": "helden = [\n    {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120},\n    {\"name\": \"Thorin\", \"klasse\": \"Krieger\", \"level\": 18, \"leben\": 150},\n    {\"name\": \"Luna\", \"klasse\": \"Schurkin\", \"level\": 12, \"leben\": 90},\n    {\"name\": \"Mira\", \"klasse\": \"Magierin\", \"level\": 13, \"leben\": 110},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bester: Thorin\nRangliste: [18, 15, 13, 12]"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-04",
+    "section": "boss",
+    "title": "Extra-Herausforderung 4: Das große Gildenarchiv",
+    "file": "boss-04.md",
+    "lessonSummary": "Die große Wiederholung ist geschafft: Funktionen, Listen und Zufall aus Woche 5 bis 7 – jetzt mit Dictionaries!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Funktion mit Rückgabe (Woche 5): Schreibe erstelle_held(name, art, stufe), die ein Dictionary mit den Schlüsseln name, klasse, level zurückgibt. Rufe sie mit (\"Aria\", \"Magierin\", 15) auf und gib genau Erstellt: Aria und in der nächsten Zeile Level: 15 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Erstellt: Aria\nLevel: 15"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Liste von Dictionaries (Woche 5/6): Schreibe erstelle_quest(name, schwierigkeit), die ein Dictionary mit name, schwierigkeit und status \"offen\" zurückgibt. Lege die Liste quests an und füge mit append() drei Quest-Einträge hinzu (Drache besiegen / 1, Schatz finden / 2, Dorf retten / 3). Gib genau Quest-Anzahl: 3 und in der nächsten Zeile Status: offen aus (Status des ersten).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Quest-Anzahl: 3\nStatus: offen"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Größten Wert finden (Woche 6): Das Dictionary preise (Name → Preis) ist vorgegeben. Finde mit einer Schleife den teuersten Posten und gib genau Teuerster Posten: Heiltrank (30) aus.",
+        "codeTemplate": "preise = {\"Heiltrank\": 30, \"Fackel\": 5, \"Seil\": 10}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Teuerster Posten: Heiltrank (30)"
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Zählen mit Dictionary: Zähle in wort = \"abenteuer\", wie oft jeder Buchstabe vorkommt. Nutze zaehler = {} und zaehler[b] = zaehler.get(b, 0) + 1. Gib genau e: 3 aus.",
+        "codeTemplate": "wort = \"abenteuer\"\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "e: 3"
+        }
+      },
+      {
+        "instruction": "Schritt 5 – Zufall (Woche 7): Das Dictionary beutel ist vorgegeben. Ziehe mit random.choice(list(beutel.keys())) einen Namen in gezogen und gib genau Gezogen gültig: True aus (gezogen in beutel).",
+        "codeTemplate": "beutel = {\"Heiltrank\": 3, \"Fackel\": 5, \"Seil\": 2}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gezogen gültig: True"
+        }
+      },
+      {
+        "instruction": "Schritt 6 – Fehler abfangen (Woche 5/8): Das Dictionary beutel ist vorgegeben. Schreibe menge_von(name), die die Anzahl zurückgibt – oder 0, wenn der Name fehlt (try/except KeyError). Gib genau Heiltrank: 3 und in der nächsten Zeile Drachenei: 0 aus.",
+        "codeTemplate": "beutel = {\"Heiltrank\": 3, \"Fackel\": 5, \"Seil\": 2}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Heiltrank: 3\nDrachenei: 0",
+          "codeContains": [
+            "try",
+            "except"
+          ]
+        }
+      }
+    ]
+  }
+]

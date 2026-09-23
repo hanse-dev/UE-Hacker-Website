@@ -264,6 +264,7 @@ export default {
   'lesson.allTasksDone':      'Correct! You completed all tasks.',
   'lesson.taskDoneRemaining': 'Correct! Task {n} done. {r} task(s) remaining.',
   'lesson.hintSoft':          'Not quite yet — check the output above and compare it with the task.',
+  'lesson.hintStructure':     'The output is right – but the task asks you to use {items} in your code.',
   'lesson.hintExpected':      'Output doesn\'t match yet. Expected something containing: "{expected}"',
 
   // ── JS sandbox lesson (JsLessonView.vue + JsSandboxFrame.vue) ────────────

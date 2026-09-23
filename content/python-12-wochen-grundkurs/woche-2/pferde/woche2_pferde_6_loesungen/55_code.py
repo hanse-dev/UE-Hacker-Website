@@ -1,11 +1,13 @@
-pferd1 = "Luna"
-zeit1 = 30
-pferd2 = "Thunder"
-zeit2 = 45
-pferd3 = "Comet"
-zeit3 = 60
+luna_name = "Luna"
+luna_alter = 8
+luna_dressur = 72
+luna_springen = 68
+thunder_name = "Thunder"
+thunder_alter = 9
+thunder_dressur = 65
+thunder_springen = 70
 
-print("=== REITSTUNDEN-PLAN ===")
-print(f"{pferd1}: {zeit1} Minuten")
-print(f"{pferd2}: {zeit2} Minuten")
-print(f"{pferd3}: {zeit3} Minuten")
+luna_gesamt = luna_dressur + luna_springen
+thunder_gesamt = thunder_dressur + thunder_springen
+print(f"{luna_name}: {luna_gesamt} Punkte")
+print(f"{thunder_name}: {thunder_gesamt} Punkte")

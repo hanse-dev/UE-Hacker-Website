@@ -1,0 +1,646 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Archive Spell 1: Writing and reading files",
+    "file": "lektion-01.md",
+    "lessonSummary": "Great! You write text into a file and read it back.",
+    "tasks": [
+      {
+        "instruction": "Run this example: write a file and read it back.",
+        "example": true,
+        "codeTemplate": "with open(\"quest_log.txt\", \"w\") as f:\n    f.write(\"Pyralia Quest Log\\n\")\n    f.write(\"Status: Active\\n\")\nwith open(\"quest_log.txt\", \"r\") as f:\n    content = f.read()\nprint(content)\nprint(\"Characters:\", len(content))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Characters: 33"
+        }
+      },
+      {
+        "instruction": "Write the line Pyralia Quest Log (with \\n at the end) into the file quest_log.txt. Then read the file with read() and print exactly Content: Pyralia Quest Log (use strip() so the line break disappears).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Content: Pyralia Quest Log"
+        }
+      },
+      {
+        "instruction": "The file quest_log.txt with three lines is created for you. Read it with read() into content and print exactly Lines: 3 (number of line breaks with content.count(\"\\n\")).",
+        "codeTemplate": "with open(\"quest_log.txt\", \"w\") as f:\n    f.write(\"Pyralia Quest Log\\n\")\n    f.write(\"Status: Active\\n\")\n    f.write(\"Monster defeated\\n\")\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Lines: 3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Archive Spell 2: Reading line by line and appending",
+    "file": "lektion-02.md",
+    "lessonSummary": "Nice! You read line by line, append with \"a\" and split lines with split().",
+    "tasks": [
+      {
+        "instruction": "Run this example: write, append, read line by line.",
+        "example": true,
+        "codeTemplate": "with open(\"quest_log.txt\", \"w\") as f:\n    f.write(\"Pyralia Quest Log\\n\")\n    f.write(\"Status: Active\\n\")\nwith open(\"quest_log.txt\", \"a\") as f:\n    f.write(\"Monster defeated\\n\")\ncount = 0\nwith open(\"quest_log.txt\", \"r\") as f:\n    for line in f:\n        print(line.strip())\n        count += 1\nprint(\"Lines:\", count)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Lines: 3"
+        }
+      },
+      {
+        "instruction": "The file quest_log.txt with two lines is created for you. Append the line Monster defeated with \"a\" and then print the file line by line (for line in f, with strip()), each line on its own.",
+        "codeTemplate": "with open(\"quest_log.txt\", \"w\") as f:\n    f.write(\"Pyralia Quest Log\\n\")\n    f.write(\"Status: Active\\n\")\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Pyralia Quest Log\nStatus: Active\nMonster defeated"
+        }
+      },
+      {
+        "instruction": "The file list.txt with lines like Aria,15 is created for you. Read it line by line, split each line with split(\",\") and print each entry as Name: Number, e.g. Aria: 15.",
+        "codeTemplate": "with open(\"list.txt\", \"w\") as f:\n    f.write(\"Aria,15\\n\")\n    f.write(\"Thorin,18\\n\")\n    f.write(\"Luna,12\\n\")\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria: 15\nThorin: 18\nLuna: 12"
+        }
+      },
+      {
+        "instruction": "The file quest_log.txt with three lines is created for you. Read all lines with readlines() into lines and print exactly Lines: 3 and on the next line First: Pyralia Quest Log (with strip()).",
+        "codeTemplate": "with open(\"quest_log.txt\", \"w\") as f:\n    f.write(\"Pyralia Quest Log\\n\")\n    f.write(\"Status: Active\\n\")\n    f.write(\"Monster defeated\\n\")\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Lines: 3\nFirst: Pyralia Quest Log"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Archive Spell 3: When the file is missing",
+    "file": "lektion-03.md",
+    "lessonSummary": "Well done! You catch FileNotFoundError and check with os whether a file exists.",
+    "tasks": [
+      {
+        "instruction": "Run this example: a missing file, exists and remove.",
+        "example": true,
+        "codeTemplate": "import os\ntry:\n    with open(\"missing.txt\", \"r\") as f:\n        print(f.read())\nexcept FileNotFoundError:\n    print(\"Error: file missing\")\nwith open(\"quest_log.txt\", \"w\") as f:\n    f.write(\"Pyralia Quest Log\\n\")\nprint(\"Exists:\", os.path.exists(\"quest_log.txt\"))\nos.remove(\"quest_log.txt\")\nprint(\"Afterwards:\", os.path.exists(\"quest_log.txt\"))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Afterwards: False"
+        }
+      },
+      {
+        "instruction": "In a try block, try to read the file missing.txt (which does not exist), catch the FileNotFoundError and print exactly No file: missing.txt.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "No file: missing.txt",
+          "codeContains": [
+            "try",
+            "except"
+          ]
+        }
+      },
+      {
+        "instruction": "Import os. Write the line Pyralia Quest Log into the file quest_log.txt, print exactly Exists: True (os.path.exists), delete the file with os.remove() and print Exists: False on the next line.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Exists: True\nExists: False"
+        }
+      },
+      {
+        "instruction": "Write a function read_or_empty(name) that returns the content of the file – or \"\" (empty text) if it does not exist (try/except FileNotFoundError). Print exactly Empty: True for missing.txt. Then write Pyralia Quest Log into quest_log.txt and print Content: Pyralia Quest Log (strip()).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Empty: True\nContent: Pyralia Quest Log",
+          "codeContains": [
+            "def",
+            "try",
+            "except"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Archive Spell 4: JSON text: dumps and loads",
+    "file": "lektion-04.md",
+    "lessonSummary": "Great! You turn dictionaries into JSON text and back.",
+    "tasks": [
+      {
+        "instruction": "Run this example: dumps and loads.",
+        "example": true,
+        "codeTemplate": "import json\nhero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\ntext = json.dumps(hero)\nprint(text)\nback = json.loads(text)\nprint(\"Back:\", back[\"name\"])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Back: Aria"
+        }
+      },
+      {
+        "instruction": "The dictionary hero is given. Turn it into text with json.dumps() and print the text exactly like this: {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}",
+        "codeTemplate": "import json\nhero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}",
+          "codeContains": [
+            "json.dumps"
+          ]
+        }
+      },
+      {
+        "instruction": "The JSON text text is given. Turn it back into a dictionary data with json.loads() and print exactly Name: Aria and on the next line Level plus 1: 16 (the value is a real number).",
+        "codeTemplate": "import json\ntext = '{\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}'\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Aria\nLevel plus 1: 16",
+          "codeContains": [
+            "json.loads"
+          ]
+        }
+      },
+      {
+        "instruction": "Pack {\"pos\": (3, 4)} into text with json.dumps() and read it back with json.loads() (into back). Print exactly List: True (back[\"pos\"] == [3, 4]) and on the next line Tuple: False (back[\"pos\"] == (3, 4)).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "List: True\nTuple: False",
+          "codeContains": [
+            "json.dumps",
+            "json.loads"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Archive Spell 5: JSON files: dump and load",
+    "file": "lektion-05.md",
+    "lessonSummary": "Nice! You store dictionaries and lists permanently in JSON files.",
+    "tasks": [
+      {
+        "instruction": "Run this example: save and load.",
+        "example": true,
+        "codeTemplate": "import json\nhero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\nwith open(\"hero.json\", \"w\") as f:\n    json.dump(hero, f, indent=2)\nwith open(\"hero.json\", \"r\") as f:\n    loaded = json.load(f)\nprint(\"Loaded:\", loaded[\"name\"])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Loaded: Aria"
+        }
+      },
+      {
+        "instruction": "The dictionary hero is given. Save it with json.dump() into hero.json, load it with json.load() into loaded and print exactly Loaded: Aria and on the next line Equal: True (loaded == hero).",
+        "codeTemplate": "import json\nhero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Loaded: Aria\nEqual: True",
+          "codeContains": [
+            "json.dump",
+            "json.load"
+          ]
+        }
+      },
+      {
+        "instruction": "The file hero.json with the dictionary hero is created for you. Load it, increase level by 1, save it again into the same file, load it once more and print exactly Level: 16.",
+        "codeTemplate": "import json\nhero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\nwith open(\"hero.json\", \"w\") as f:\n    json.dump(hero, f)\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 16"
+        }
+      },
+      {
+        "instruction": "The list heroes with three dictionaries is given. Save it into hero.json, load it into loaded and print exactly Count: 3 and on the next line Last: Luna.",
+        "codeTemplate": "import json\nheroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 3\nLast: Luna"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Archive Spell 6: CSV tables: writer and reader",
+    "file": "lektion-06.md",
+    "lessonSummary": "Masterful! You write and read tables in CSV format.",
+    "tasks": [
+      {
+        "instruction": "Run this example: write CSV, read it and calculate.",
+        "example": true,
+        "codeTemplate": "import csv\nwith open(\"heroes.csv\", \"w\", newline=\"\") as f:\n    w = csv.writer(f)\n    w.writerow([\"name\", \"level\"])\n    w.writerow([\"Aria\", 15])\n    w.writerow([\"Thorin\", 18])\n    w.writerow([\"Luna\", 12])\ntotal = 0\nwith open(\"heroes.csv\", \"r\") as f:\n    r = csv.reader(f)\n    next(r)\n    for row in r:\n        total += int(row[1])\nprint(\"Total:\", total)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total: 45"
+        }
+      },
+      {
+        "instruction": "With csv.writer, write the file heroes.csv: header row name,level and three rows (Aria, 15), (Thorin, 18), (Luna, 12). Read it with csv.reader, skip the header with next() and print exactly Rows: 3 (number of data rows).",
+        "codeTemplate": "import csv\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rows: 3",
+          "codeContains": [
+            "csv.writer",
+            "csv.reader"
+          ]
+        }
+      },
+      {
+        "instruction": "The file heroes.csv is created for you (header row + three rows). Read it, skip the header and add up all values of the second column with int(). Print exactly Total: 45.",
+        "codeTemplate": "import csv\nwith open(\"heroes.csv\", \"w\", newline=\"\") as f:\n    w = csv.writer(f)\n    w.writerow([\"name\", \"level\"])\n    w.writerow([\"Aria\", 15])\n    w.writerow([\"Thorin\", 18])\n    w.writerow([\"Luna\", 12])\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total: 45"
+        }
+      },
+      {
+        "instruction": "The file heroes.csv is created for you. Read the first data row with next() (after the header) into first. Print exactly Text: 1515 (first[1] + first[1] joins texts) and on the next line Number: 30 (int(first[1]) * 2).",
+        "codeTemplate": "import csv\nwith open(\"heroes.csv\", \"w\", newline=\"\") as f:\n    w = csv.writer(f)\n    w.writerow([\"name\", \"level\"])\n    w.writerow([\"Aria\", 15])\n    w.writerow([\"Thorin\", 18])\n    w.writerow([\"Luna\", 12])\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Text: 1515\nNumber: 30"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Archive Spell 7: CSV with DictReader and switching formats",
+    "file": "lektion-07.md",
+    "lessonSummary": "World class! You read tables as dictionaries and convert between JSON and CSV.",
+    "tasks": [
+      {
+        "instruction": "Run this example: DictWriter and DictReader.",
+        "example": true,
+        "codeTemplate": "import csv\nheroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n]\nwith open(\"heroes.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"class\", \"level\", \"hp\"])\n    w.writeheader()\n    w.writerows(heroes)\nwith open(\"heroes.csv\", \"r\") as f:\n    rows = list(csv.DictReader(f))\nprint(\"Rows:\", len(rows))\nprint(\"First:\", rows[0][\"name\"])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "First: Aria"
+        }
+      },
+      {
+        "instruction": "The list heroes is given. Write it with csv.DictWriter (fieldnames name, class, level, hp, writeheader, writerows) into heroes.csv, read it with csv.DictReader into a list rows and print exactly Rows: 3 and on the next line First: Aria.",
+        "codeTemplate": "import csv\nheroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rows: 3\nFirst: Aria",
+          "codeContains": [
+            "csv.DictWriter",
+            "csv.DictReader"
+          ]
+        }
+      },
+      {
+        "instruction": "The CSV file heroes.csv is created for you. Read it with csv.DictReader, convert level of each row with int() and collect the rows in entries. Save entries with json.dump() into hero.json, load it again and print exactly Count: 3 and on the next line Total: 45 (sum of the level values).",
+        "codeTemplate": "import csv\nheroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n]\nwith open(\"heroes.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"class\", \"level\", \"hp\"])\n    w.writeheader()\n    w.writerows(heroes)\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 3\nTotal: 45",
+          "codeContains": [
+            "csv.DictReader",
+            "json.dump"
+          ]
+        }
+      },
+      {
+        "instruction": "The JSON file hero.json with a list of dictionaries is created for you. Load it and write it with csv.DictWriter into heroes.csv (fieldnames name, class, level, hp). Read the CSV back with csv.DictReader and print exactly Rows: 3 and on the next line Fields: ['name', 'class', 'level', 'hp'] (reader.fieldnames).",
+        "codeTemplate": "import json\nheroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n]\nwith open(\"hero.json\", \"w\") as f:\n    json.dump(heroes, f)\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rows: 3\nFields: ['name', 'class', 'level', 'hp']",
+          "codeContains": [
+            "csv.DictWriter",
+            "csv.DictReader"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "All bugs found! With files, the right mode, dumps/loads and the difference between text and number matter.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Goal: The program should read Hello from the file and print it. What is wrong?",
+        "codeTemplate": "with open(\"test.txt\", \"w\") as f:\n    f.write(\"Hello\")\n    content = f.read()\nprint(content)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hello"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Goal: The program should print Name: Test. What is wrong?",
+        "codeTemplate": "import json\ndata = {\"name\": \"Test\"}\ntext = json.dumps(data)\nresult = json.load(text)\nprint(\"Name:\", result[\"name\"])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Test"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Goal: The program should print Level plus 1: 16. What is wrong?",
+        "codeTemplate": "import csv\nwith open(\"test.csv\", \"w\", newline=\"\") as f:\n    csv.writer(f).writerows([[\"name\", \"level\"], [\"Aria\", 15]])\nwith open(\"test.csv\", \"r\") as f:\n    rows = list(csv.reader(f))\nprint(\"Level plus 1:\", rows[1][1] + 1)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level plus 1: 16"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: The First Scroll",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission accomplished: You wrote, appended to and safely read a text file!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Write and read: Write the three lines Pyralia Quest Log, Status: Active and Monster defeated into the file quest_log.txt and read it back with read(). Print exactly Lines: 3 (number of \\n) and on the next line First: Pyralia Quest Log.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Lines: 3\nFirst: Pyralia Quest Log"
+        }
+      },
+      {
+        "instruction": "Step 2 – Append: The file quest_log.txt with three lines is created for you. Append Update: Treasure found, read all lines with readlines() and print exactly Lines: 4 and on the next line Last: Update: Treasure found (with strip()).",
+        "codeTemplate": "with open(\"quest_log.txt\", \"w\") as f:\n    f.write(\"Pyralia Quest Log\\n\")\n    f.write(\"Status: Active\\n\")\n    f.write(\"Monster defeated\\n\")\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Lines: 4\nLast: Update: Treasure found"
+        }
+      },
+      {
+        "instruction": "Step 3 – Count safely: The file quest_log.txt is created for you. Write a function count_lines(name) that returns the number of lines – or 0 if the file is missing (try/except FileNotFoundError). Print exactly quest_log.txt: 3 and on the next line missing.txt: 0.",
+        "codeTemplate": "with open(\"quest_log.txt\", \"w\") as f:\n    f.write(\"Pyralia Quest Log\\n\")\n    f.write(\"Status: Active\\n\")\n    f.write(\"Monster defeated\\n\")\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "quest_log.txt: 3\nmissing.txt: 0",
+          "codeContains": [
+            "try",
+            "except"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: The JSON Archive",
+    "file": "mission-02.md",
+    "lessonSummary": "Mission accomplished: Profile cards now survive every restart!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Save and load: The dictionary hero is given. Save it with json.dump() into hero.json, load it into loaded and print exactly Name: Aria and on the next line Level: 15.",
+        "codeTemplate": "import json\nhero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Aria\nLevel: 15",
+          "codeContains": [
+            "json.dump"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 2 – Change and save: The file hero.json with the dictionary hero is created for you. Load it, add mana with the value 80, save it again, load it once more and print exactly Mana: 80 and on the next line Properties: 5.",
+        "codeTemplate": "import json\nhero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\nwith open(\"hero.json\", \"w\") as f:\n    json.dump(hero, f)\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mana: 80\nProperties: 5"
+        }
+      },
+      {
+        "instruction": "Step 3 – Save a list and evaluate it: The file hero.json with three dictionaries is created for you. Load the list and find the entry with the highest level using a loop. Print exactly Best: Thorin.",
+        "codeTemplate": "import json\nheroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n]\nwith open(\"hero.json\", \"w\") as f:\n    json.dump(heroes, f)\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Best: Thorin"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: The Hero Table",
+    "file": "mission-03.md",
+    "lessonSummary": "Mission accomplished: writing, reading and evaluating tables – that was data processing!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Write a table: The list heroes with four dictionaries is given. Write it with csv.DictWriter (fieldnames name, class, level, hp) into heroes.csv and read it back with csv.DictReader. Print exactly Rows: 4.",
+        "codeTemplate": "import csv\nheroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n    {\"name\": \"Mira\", \"class\": \"Mage\", \"level\": 13, \"hp\": 110},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rows: 4",
+          "codeContains": [
+            "csv.DictWriter",
+            "csv.DictReader"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 2 – Evaluate: The file heroes.csv with four rows is created for you. Read it with csv.DictReader, add up the level values (int!) and print exactly Total: 58 and on the next line Average: 14.5.",
+        "codeTemplate": "import csv\nheroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n    {\"name\": \"Mira\", \"class\": \"Mage\", \"level\": 13, \"hp\": 110},\n]\nwith open(\"heroes.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"class\", \"level\", \"hp\"])\n    w.writeheader()\n    w.writerows(heroes)\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total: 58\nAverage: 14.5",
+          "codeContains": [
+            "csv.DictReader"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 3 – Filter: The file heroes.csv with four rows is created for you. Collect the names of all rows whose level (as a number) is greater than 14 in the list strong and print exactly Strong: ['Aria', 'Thorin'].",
+        "codeTemplate": "import csv\nheroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n    {\"name\": \"Mira\", \"class\": \"Mage\", \"level\": 13, \"hp\": 110},\n]\nwith open(\"heroes.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"class\", \"level\", \"hp\"])\n    w.writeheader()\n    w.writerows(heroes)\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Strong: ['Aria', 'Thorin']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra Challenge 1: The Hero Diary",
+    "file": "boss-01.md",
+    "lessonSummary": "The diary stands: write, append and read out with numbers!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Write entries: The list entries (Entered the dragon cave, Found the gold crown, Defeated the troll) and date are given. Write each entry as the line date + \" \" + entry into the file diary.txt and read it back with readlines(). Print exactly Entries: 3 and on the next line First line: Mar 15 Entered the dragon cave.",
+        "codeTemplate": "date = \"Mar 15\"\nentries = [\"Entered the dragon cave\", \"Found the gold crown\", \"Defeated the troll\"]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Entries: 3\nFirst line: Mar 15 Entered the dragon cave"
+        }
+      },
+      {
+        "instruction": "Step 2 – Append: date is given, diary.txt is created with three lines. Append the entry Mar 15 Rested by the campfire with \"a\" and print exactly Entries: 4 and on the next line Last: Mar 15 Rested by the campfire.",
+        "codeTemplate": "date = \"Mar 15\"\nwith open(\"diary.txt\", \"w\") as f:\n    f.write(date + \" Entered the dragon cave\\n\")\n    f.write(date + \" Found the gold crown\\n\")\n    f.write(date + \" Defeated the troll\\n\")\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Entries: 4\nLast: Mar 15 Rested by the campfire"
+        }
+      },
+      {
+        "instruction": "Step 3 – Print numbered: date is given, diary.txt is created with three lines. Read the file line by line and print each line with a number, e.g. 1: Mar 15 Entered the dragon cave (count with a variable number).",
+        "codeTemplate": "date = \"Mar 15\"\nwith open(\"diary.txt\", \"w\") as f:\n    f.write(date + \" Entered the dragon cave\\n\")\n    f.write(date + \" Found the gold crown\\n\")\n    f.write(date + \" Defeated the troll\\n\")\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1: Mar 15 Entered the dragon cave\n2: Mar 15 Found the gold crown\n3: Mar 15 Defeated the troll"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra Challenge 2: The Treasure Map",
+    "file": "boss-02.md",
+    "lessonSummary": "The map is kept up to date: save, load, extend and find the most valuable place!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Save and load: The dictionary map_data (place → dictionary with coordinates as a tuple and value) is given. Save it with json.dump() into map.json, load it into loaded and print exactly Places: 3 and on the next line Coordinates: [10, 20] (loaded[\"Gold crown\"][\"coordinates\"] – the tuple is now a list).",
+        "codeTemplate": "import json\nmap_data = {\n    \"Gold crown\": {\"coordinates\": (10, 20), \"value\": 800},\n    \"Silver cup\": {\"coordinates\": (30, 40), \"value\": 300},\n    \"Ruby\": {\"coordinates\": (50, 60), \"value\": 650},\n}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Places: 3\nCoordinates: [10, 20]",
+          "codeContains": [
+            "json.dump"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 2 – Add a place: The file map.json with three places is created for you. Load it, add the place Emerald with coordinates [70, 80] and value 400, save it again, load it once more and print exactly Places: 4.",
+        "codeTemplate": "import json\nmap_data = {\n    \"Gold crown\": {\"coordinates\": (10, 20), \"value\": 800},\n    \"Silver cup\": {\"coordinates\": (30, 40), \"value\": 300},\n    \"Ruby\": {\"coordinates\": (50, 60), \"value\": 650},\n}\nwith open(\"map.json\", \"w\") as f:\n    json.dump(map_data, f)\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Places: 4"
+        }
+      },
+      {
+        "instruction": "Step 3 – Most valuable place: The file map.json with four places is created for you. Load it and find the place with the highest value. Print exactly Most valuable: Gold crown (800).",
+        "codeTemplate": "import json\nmap_data = {\n    \"Gold crown\": {\"coordinates\": (10, 20), \"value\": 800},\n    \"Silver cup\": {\"coordinates\": (30, 40), \"value\": 300},\n    \"Ruby\": {\"coordinates\": (50, 60), \"value\": 650},\n}\nmap_data[\"Emerald\"] = {\"coordinates\": [70, 80], \"value\": 400}\nwith open(\"map.json\", \"w\") as f:\n    json.dump(map_data, f)\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Most valuable: Gold crown (800)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra Challenge 3: The Quest Log",
+    "file": "boss-03.md",
+    "lessonSummary": "The quest log stands: save, complete, count and write a report!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Save quests: The list quests with three Quest dictionaries is given. Save it into questlog.json, load it into loaded and print exactly Quest count: 3 and on the next line Status: open (status of the first).",
+        "codeTemplate": "import json\nquests = [\n    {\"name\": \"Defeat the dragon\", \"difficulty\": 1, \"status\": \"open\"},\n    {\"name\": \"Find the treasure\", \"difficulty\": 2, \"status\": \"open\"},\n    {\"name\": \"Save the village\", \"difficulty\": 3, \"status\": \"open\"},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Quest count: 3\nStatus: open"
+        }
+      },
+      {
+        "instruction": "Step 2 – Complete: The file questlog.json with three entries is created for you. Load it, set the status of the first entry to \"done\", save it again, load it once more and print exactly First: done.",
+        "codeTemplate": "import json\nquests = [\n    {\"name\": \"Defeat the dragon\", \"difficulty\": 1, \"status\": \"open\"},\n    {\"name\": \"Find the treasure\", \"difficulty\": 2, \"status\": \"open\"},\n    {\"name\": \"Save the village\", \"difficulty\": 3, \"status\": \"open\"},\n]\nwith open(\"questlog.json\", \"w\") as f:\n    json.dump(quests, f)\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "First: done"
+        }
+      },
+      {
+        "instruction": "Step 3 – Report: The file questlog.json is created for you (first entry \"done\"). Load it, count the entries with status \"done\" into finished and write the line Completed: 1 (using finished) into the file report.txt. Read report.txt again and print exactly Report: Completed: 1 (with strip()).",
+        "codeTemplate": "import json\nquests = [\n    {\"name\": \"Defeat the dragon\", \"difficulty\": 1, \"status\": \"open\"},\n    {\"name\": \"Find the treasure\", \"difficulty\": 2, \"status\": \"open\"},\n    {\"name\": \"Save the village\", \"difficulty\": 3, \"status\": \"open\"},\n]\nquests[0][\"status\"] = \"done\"\nwith open(\"questlog.json\", \"w\") as f:\n    json.dump(quests, f)\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Report: Completed: 1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-04",
+    "section": "boss",
+    "title": "Extra Challenge 4: The Great Scriptorium",
+    "file": "boss-04.md",
+    "lessonSummary": "The great review is done: functions, lists, randomness and dictionaries – now with files!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Functions (week 5): The dictionary hero is given. Write save(data, name) (json.dump into file name) and load(name) (json.load, returns the dictionary). Save hero into hero.json, load it back and print exactly Equal: True.",
+        "codeTemplate": "import json\nhero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Equal: True",
+          "codeContains": [
+            "json.dump",
+            "json.load"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 2 – Catch errors (week 8): The dictionary hero is given. Write safe_load(name) that returns {} if the file is missing (try/except FileNotFoundError). Print exactly Empty: True for does_not_exist.json. Save hero into hero.json and then print Name: Aria (safe_load).",
+        "codeTemplate": "import json\nhero = {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Empty: True\nName: Aria",
+          "codeContains": [
+            "try",
+            "except"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 3 – Filter lists (week 6): The CSV file heroes.csv is created for you. Collect the names of all rows with level greater than 14 in the list strong, save strong with json.dump() into hero.json, load it back and print exactly Strong: ['Aria', 'Thorin'].",
+        "codeTemplate": "import csv\nheroes = [\n    {\"name\": \"Aria\", \"class\": \"Mage\", \"level\": 15, \"hp\": 120},\n    {\"name\": \"Thorin\", \"class\": \"Warrior\", \"level\": 18, \"hp\": 150},\n    {\"name\": \"Luna\", \"class\": \"Rogue\", \"level\": 12, \"hp\": 90},\n]\nwith open(\"heroes.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"class\", \"level\", \"hp\"])\n    w.writeheader()\n    w.writerows(heroes)\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Strong: ['Aria', 'Thorin']",
+          "codeContains": [
+            "json.dump"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 4 – Randomness (week 7): Write ten random numbers from 1 to 100 (random.randint), one per line, into the file numbers.txt. Read them back line by line and convert them with int() (list numbers). Print exactly Count: 10 and on the next line All in range: True.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 10\nAll in range: True"
+        }
+      },
+      {
+        "instruction": "Step 5 – Count with a dictionary and save (week 8): word = \"adventure\" is given. With counter[c] = counter.get(c, 0) + 1, count how often each letter occurs, save counter with json.dump() into counter.json, load it back and print exactly e: 2.",
+        "codeTemplate": "import json\nword = \"adventure\"\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "e: 2",
+          "codeContains": [
+            "json.dump"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 6 – Clean up: Import os. Write the file cleanup.txt with the text Test, delete it with os.remove() and print exactly Deleted: True (os.path.exists is False).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Deleted: True"
+        }
+      }
+    ]
+  }
+]

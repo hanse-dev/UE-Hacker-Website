@@ -1,3 +1,3 @@
-"""### Mission 1: The Stable Helper – Task 2
+"""### Mission 3: The Riding Tournament – Task 1
 
-Step 2 – Store the name "Bobby" in the variable favourite_horse and use it to output exactly this sentence: My favourite horse is Bobby."""
+Step 1 – Print the heading === TOURNAMENT PROFILE ===, then the lines Rider: ..., Horse: ... and Obstacles: 8 (number with str()!) using these variables."""

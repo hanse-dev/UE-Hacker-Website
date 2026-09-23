@@ -1,1 +1,5 @@
-"""**Erklärung:** Python kann diese Zeile nicht lesen – schau genau hin. Oft fehlt ein `:`, eine Klammer oder ein Anführungszeichen."""
+"""## 📚 Lektionen
+
+### Übung 1: Listen erstellen – Aufgabe 1
+
+Lege eine Liste pferde mit den fünf Texten Sturmwind, Blitz, Luna, Fuchs und Balu an (in dieser Reihenfolge). Gib danach genau Anzahl: 5 aus, indem du len() benutzt."""

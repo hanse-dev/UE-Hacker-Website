@@ -14,7 +14,7 @@
  *   genannten Eingabewert (von der aufrufenden Komponente ermittelt). Deckt auf, wenn eine
  *   Funktion nur zufaellig fuer das eine vorgerechnete Beispiel das richtige Ergebnis liefert.
  */
-export function validateOutput(output, validation, variables, functionResults) {
+export function validateOutput(output, validation, variables, functionResults, code) {
   if (!validation) return true;
   const { type, expected } = validation;
   const out = (output || '').trim();
@@ -38,6 +38,9 @@ export function validateOutput(output, validation, variables, functionResults) {
   }
   if (!outputOk) return false;
 
+  // Struktur-Pruefung: nur wenn der Aufrufer den eingereichten Code mitgibt (LessonView).
+  if (code !== undefined && missingCodeParts(code, validation).length > 0) return false;
+
   if (validation.variables) {
     const ok = Object.entries(validation.variables).every(([name, expectedValue]) => {
       if (!variables || !(name in variables)) return false;
@@ -53,6 +56,24 @@ export function validateOutput(output, validation, variables, functionResults) {
   }
 
   return true;
+}
+
+/**
+ * `validation.codeContains`: Bausteine, die im Code der Lernenden vorkommen muessen (z.B. `def`, `class`,
+ * `super()`, `try`), damit ein hart codiertes `print` nicht besteht. Kommentarzeilen zaehlen nicht;
+ * Woerter werden ganz gematcht (`def` trifft nicht `undefined`). Texte in Anfuehrungszeichen werden
+ * nicht ausgeklammert - bewusst einfach gehalten.
+ * @returns {string[]} die fehlenden Bausteine (leer = alles da)
+ */
+export function missingCodeParts(code, validation) {
+  const required = validation?.codeContains;
+  if (!Array.isArray(required) || required.length === 0) return [];
+  const source = String(code || '').split('\n').filter((line) => !line.trim().startsWith('#')).join('\n');
+  return required.filter((token) => {
+    const escaped = token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const pattern = (/^\w/.test(token) ? '\\b' : '') + escaped + (/\w$/.test(token) ? '\\b' : '');
+    return !new RegExp(pattern).test(source);
+  });
 }
 
 /**

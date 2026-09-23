@@ -1,0 +1,641 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Evolution Spell 1: Inheritance",
+    "file": "lektion-01.md",
+    "lessonSummary": "Great! Your child class inherits everything from its parent.",
+    "tasks": [
+      {
+        "instruction": "Run this example: a child class inherits a method.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\nclass Warrior(Hero):\n    pass\n\nk = Warrior(\"Aria\")\nk.introduce()\nprint(isinstance(k, Hero))\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "I am Aria.\nTrue"
+        }
+      },
+      {
+        "instruction": "Write the class Hero with `__init__(self, name)` and `introduce(self)` (prints I am Aria.) and the child class Warrior(Hero) with only `pass`. Create Warrior(\"Aria\") and call `introduce()`.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "I am Aria.",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "The class Hero is given. Write Mage(Hero) with a **new** method `draw_weapon(self)` that prints Thorin draws the sword. (name from `self`). Create Mage(\"Thorin\") and call `introduce()` first, then `draw_weapon()`.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "I am Thorin.\nThorin draws the sword."
+        }
+      },
+      {
+        "instruction": "The classes Hero, Warrior(Hero) and Mage(Hero) are given. Create Warrior(\"Aria\") and check with `isinstance` whether it belongs to Hero and whether it belongs to Mage. Print both results on two lines.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\nclass Warrior(Hero):\n    pass\n\nclass Mage(Hero):\n    pass\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True\nFalse",
+          "codeContains": [
+            "isinstance"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Evolution Spell 2: Overriding Methods",
+    "file": "lektion-02.md",
+    "lessonSummary": "Nice! Children may do things differently from their parents.",
+    "tasks": [
+      {
+        "instruction": "Run this example: an overridden method.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\nclass Warrior(Hero):\n    def fight(self):\n        print(f\"{self.name} swings the sword.\")\n\nHero(\"Aria\").fight()\nWarrior(\"Thorin\").fight()\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria fights bare-handed.\nThorin swings the sword."
+        }
+      },
+      {
+        "instruction": "The class Hero is given. Write Warrior(Hero) and override `fight(self)` so that Aria swings the sword. is printed (name from `self`). Create Warrior(\"Aria\") and call the method.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria swings the sword."
+        }
+      },
+      {
+        "instruction": "The class Hero is given. Override `fight` in Mage(Hero) (prints casts a fireball. after the name). Call `fight()` for Hero(\"Luna\") and for Mage(\"Thorin\") – Luna first, then Thorin.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Luna fights bare-handed.\nThorin casts a fireball."
+        }
+      },
+      {
+        "instruction": "The class Hero is given. In Warrior(Hero) override the method `introduce(self)` so that I am Aria, Warrior. is printed (name from `self`, class name as text). Create Warrior(\"Aria\") and call it.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "I am Aria, Warrior."
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Evolution Spell 3: super() and __init__",
+    "file": "lektion-03.md",
+    "lessonSummary": "Well done! You connect parent and child with super().",
+    "tasks": [
+      {
+        "instruction": "Run this example: a constructor with super().",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\nclass Warrior(Hero):\n    def __init__(self, name, strength=30):\n        super().__init__(name)\n        self.strength = strength\n\nk = Warrior(\"Aria\", 45)\nprint(k.name, k.strength)\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria 45"
+        }
+      },
+      {
+        "instruction": "The class Hero is given. Write Warrior(Hero) with `__init__(self, name, strength=30)` that sets the name via `super().__init__(name)` and stores `strength`. Create Warrior(\"Aria\", 45) and print exactly Aria 45.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria 45",
+          "codeContains": [
+            "super()"
+          ]
+        }
+      },
+      {
+        "instruction": "The class Hero is given. Write Mage(Hero) with `__init__(self, name, mana=50)` and `super()`. Create Mage(\"Thorin\") without a second value and print exactly Thorin 50.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Thorin 50",
+          "codeContains": [
+            "super()"
+          ]
+        }
+      },
+      {
+        "instruction": "The classes Hero and Warrior (with an overridden `fight`) are given. Write Master(Warrior) that overrides `fight`: first `super().fight()`, then a second line Aria is a master!. Create Master(\"Aria\") and call `fight()`.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\nclass Warrior(Hero):\n    def __init__(self, name, strength=30):\n        super().__init__(name)\n        self.strength = strength\n\n    def fight(self):\n        print(f\"{self.name} swings the sword.\")\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria swings the sword.\nAria is a master!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Evolution Spell 4: Polymorphism",
+    "file": "lektion-04.md",
+    "lessonSummary": "Super! One loop, many behaviours.",
+    "tasks": [
+      {
+        "instruction": "Run this example: the same method, three classes.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n    def power(self):\n        return 10\n\nclass Warrior(Hero):\n    def __init__(self, name, strength=30):\n        super().__init__(name)\n        self.strength = strength\n\n    def fight(self):\n        print(f\"{self.name} swings the sword.\")\n\n    def power(self):\n        return self.strength\n\nclass Mage(Hero):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def fight(self):\n        print(f\"{self.name} casts a fireball.\")\n\n    def power(self):\n        return self.mana\n\nteam = [Hero(\"Luna\"), Warrior(\"Aria\"), Mage(\"Thorin\")]\nfor f in team:\n    f.fight()\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Luna fights bare-handed.\nAria swings the sword.\nThorin casts a fireball."
+        }
+      },
+      {
+        "instruction": "The classes Hero, Warrior and Mage are given. Write a function `los(figure)` that calls `figure.fight()`. Call it for Warrior(\"Aria\") and Mage(\"Thorin\") one after the other.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n    def power(self):\n        return 10\n\nclass Warrior(Hero):\n    def __init__(self, name, strength=30):\n        super().__init__(name)\n        self.strength = strength\n\n    def fight(self):\n        print(f\"{self.name} swings the sword.\")\n\n    def power(self):\n        return self.strength\n\nclass Mage(Hero):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def fight(self):\n        print(f\"{self.name} casts a fireball.\")\n\n    def power(self):\n        return self.mana\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria swings the sword.\nThorin casts a fireball."
+        }
+      },
+      {
+        "instruction": "The classes are given, and so is the list `team = [Warrior(\"Aria\"), Mage(\"Thorin\"), Warrior(\"Luna\"), Hero(\"Thorin\")]`. Count with `isinstance` how many objects belong to Warrior and print exactly Count: 2.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n    def power(self):\n        return 10\n\nclass Warrior(Hero):\n    def __init__(self, name, strength=30):\n        super().__init__(name)\n        self.strength = strength\n\n    def fight(self):\n        print(f\"{self.name} swings the sword.\")\n\n    def power(self):\n        return self.strength\n\nclass Mage(Hero):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def fight(self):\n        print(f\"{self.name} casts a fireball.\")\n\n    def power(self):\n        return self.mana\n\nteam = [Warrior(\"Aria\"), Mage(\"Thorin\"), Warrior(\"Luna\"), Hero(\"Thorin\")]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 2",
+          "codeContains": [
+            "isinstance"
+          ]
+        }
+      },
+      {
+        "instruction": "The classes are given. Write your **own** class Spectator **without parents** with `fight(self)` that prints The crowd cheers.. Call `fight()` for a list with Warrior(\"Aria\") and Spectator() one after the other (duck typing).",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n    def power(self):\n        return 10\n\nclass Warrior(Hero):\n    def __init__(self, name, strength=30):\n        super().__init__(name)\n        self.strength = strength\n\n    def fight(self):\n        print(f\"{self.name} swings the sword.\")\n\n    def power(self):\n        return self.strength\n\nclass Mage(Hero):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def fight(self):\n        print(f\"{self.name} casts a fireball.\")\n\n    def power(self):\n        return self.mana\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria swings the sword.\nThe crowd cheers."
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Evolution Spell 5: __str__ and __repr__",
+    "file": "lektion-05.md",
+    "lessonSummary": "Nice! Your objects can now show themselves as text.",
+    "tasks": [
+      {
+        "instruction": "Run this example: __str__ and __repr__.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        return f\"{self.name} ({self.level})\"\n\n    def __repr__(self):\n        return f\"Hero('{self.name}', {self.level})\"\n\nk = Hero(\"Aria\", 5)\nprint(k)\nprint([k])\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria (5)\n[Hero('Aria', 5)]"
+        }
+      },
+      {
+        "instruction": "Write the class Hero with `__init__(self, name, level)` and a method `__str__` that **returns** `name (level)`. Create Hero(\"Aria\", 5) and print the object directly with `print` (exactly Aria (5)).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria (5)",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__str__"
+          ]
+        }
+      },
+      {
+        "instruction": "The class Hero with `__str__` is given. Create the list `team` with Hero(\"Aria\", 5) and Hero(\"Thorin\", 7) and print exactly Team: Aria (5), Thorin (7) – join the texts with `\", \".join([str(f) for f in team])`.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        return f\"{self.name} ({self.level})\"\n\n    def __lt__(self, other):\n        return self.level < other.level\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Team: Aria (5), Thorin (7)"
+        }
+      },
+      {
+        "instruction": "Write the class Hero with `__init__(self, name)` and `__repr__` that returns `Hero('name')`. Print the list `[Hero(\"Aria\"), Hero(\"Thorin\")]` with `print` (result: [Hero('Aria'), Hero('Thorin')]).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "[Hero('Aria'), Hero('Thorin')]",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__repr__"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Evolution Spell 6: Comparing and Sorting",
+    "file": "lektion-06.md",
+    "lessonSummary": "Strong! Your objects can be compared and sorted.",
+    "tasks": [
+      {
+        "instruction": "Run this example: comparing and sorting.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __eq__(self, other):\n        return self.level == other.level\n\n    def __lt__(self, other):\n        return self.level < other.level\n\na = Hero(\"Aria\", 5)\nb = Hero(\"Thorin\", 9)\nprint(a == b)\nprint(a < b)\nfor f in sorted([b, a]):\n    print(f.name)\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "False\nTrue\nAria\nThorin"
+        }
+      },
+      {
+        "instruction": "Write the class Hero with `__init__(self, name, level)` and `__eq__` (equal if the `level` is equal). Compare Hero(\"Aria\", 5) with Hero(\"Thorin\", 5) and with Hero(\"Luna\", 8) and print both results on two lines.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True\nFalse",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__eq__"
+          ]
+        }
+      },
+      {
+        "instruction": "The class Hero with `__lt__` is given. Create `team` with Hero(\"Aria\", 5), Hero(\"Thorin\", 9) and Hero(\"Luna\", 2), sort with `sorted(team)` and print the names in sorted order line by line.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        return f\"{self.name} ({self.level})\"\n\n    def __lt__(self, other):\n        return self.level < other.level\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Luna\nAria\nThorin"
+        }
+      },
+      {
+        "instruction": "The class Hero with `__lt__` and `__str__` is given. Sort `team` with Hero(\"Aria\", 5), Hero(\"Thorin\", 9), Hero(\"Luna\", 2) with `sorted(team, reverse=True)` and print the first element with `print` (exactly Thorin (9)).",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        return f\"{self.name} ({self.level})\"\n\n    def __lt__(self, other):\n        return self.level < other.level\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Thorin (9)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Evolution Spell 7: Calculating and Counting: __add__ and __len__",
+    "file": "lektion-07.md",
+    "lessonSummary": "Well done! Your objects can calculate and be counted.",
+    "tasks": [
+      {
+        "instruction": "Run this example: __add__ and __len__.",
+        "codeTemplate": "class Supply:\n    def __init__(self, amount):\n        self.amount = amount\n\n    def __add__(self, other):\n        return Supply(self.amount + other.amount)\n\n    def __str__(self):\n        return f\"Supply: {self.amount}\"\n\na = Supply(10)\nb = Supply(20)\nprint(a + b)\n\nclass Team:\n    def __init__(self):\n        self.mitglieder = []\n\n    def __len__(self):\n        return len(self.mitglieder)\n\nt = Team()\nt.mitglieder.append(\"Aria\")\nt.mitglieder.append(\"Thorin\")\nprint(len(t))\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Supply: 30\n2"
+        }
+      },
+      {
+        "instruction": "Write the class Supply with `__init__(self, amount)`, `__add__` (returns a new Supply with the sum) and `__str__` (returns Supply: number). Print Supply(10) + Supply(20) (exactly Supply: 30).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Supply: 30",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__add__",
+            "__str__"
+          ]
+        }
+      },
+      {
+        "instruction": "Write the class Team with `__init__(self)` (empty list `mitglieder`) and `__len__(self)` that returns the length of the list. Add Aria, Thorin and Luna and print `len(team)` (3).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "3",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__len__"
+          ]
+        }
+      },
+      {
+        "instruction": "The class Supply with `__add__` and `__str__` is given. The list `lager = [Supply(10), Supply(20), Supply(30)]` is added up with a loop (start `total = Supply(0)`, then `total = total + v`). Print `total` (exactly Supply: 60).",
+        "codeTemplate": "class Supply:\n    def __init__(self, amount):\n        self.amount = amount\n\n    def __add__(self, other):\n        return Supply(self.amount + other.amount)\n\n    def __str__(self):\n        return f\"Supply: {self.amount}\"\n\nlager = [Supply(10), Supply(20), Supply(30)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Supply: 60"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "All bugs found! With inheritance `super().__init__`, the parent class in brackets and `return` in `__str__` matter.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Goal: The program should print Aria. What is wrong?",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\nclass Warrior(Hero):\n    def __init__(self, name, strength):\n        self.strength = strength\n\nk = Warrior(\"Aria\", 30)\nprint(k.name)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Goal: The program should print I am Aria. What is wrong?",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\nclass Warrior:\n    def draw_weapon(self):\n        print(\"draws the sword.\")\n\nk = Warrior(\"Aria\")\nk.introduce()\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "I am Aria."
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Goal: The program should print Aria (5). What is wrong?",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        print(f\"{self.name} ({self.level})\")\n\nprint(Hero(\"Aria\", 5))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria (5)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: The Child Class",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission accomplished: you inherited, overrode and used `super()`!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – inherit: the class Hero is given. Write Warrior(Hero) with only `pass`, create Warrior(\"Aria\") and call `introduce()`.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "I am Aria."
+        }
+      },
+      {
+        "instruction": "Step 2 – new attribute: the class Hero is given. Write Warrior(Hero) with `__init__(self, name, strength=30)` (with `super()`). Create Warrior(\"Aria\") and print exactly Aria: 30.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria: 30",
+          "codeContains": [
+            "super()"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 3 – override: the class Hero is given. Override `fight` in Warrior(Hero) (prints Aria swings the sword.) and call it for Warrior(\"Aria\").",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria swings the sword."
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: The Team",
+    "file": "mission-02.md",
+    "lessonSummary": "Mission accomplished: you control a mixed team through one common method!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – everyone acts: the classes Hero, Warrior and Mage are given. Create `team` with Warrior(\"Aria\"), Mage(\"Thorin\") and Hero(\"Luna\") and call `fight()` on each.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n    def power(self):\n        return 10\n\nclass Warrior(Hero):\n    def __init__(self, name, strength=30):\n        super().__init__(name)\n        self.strength = strength\n\n    def fight(self):\n        print(f\"{self.name} swings the sword.\")\n\n    def power(self):\n        return self.strength\n\nclass Mage(Hero):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def fight(self):\n        print(f\"{self.name} casts a fireball.\")\n\n    def power(self):\n        return self.mana\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria swings the sword.\nThorin casts a fireball.\nLuna fights bare-handed."
+        }
+      },
+      {
+        "instruction": "Step 2 – total power: the classes (with `power()`) are given, and so is `team = [Warrior(\"Aria\"), Mage(\"Thorin\"), Hero(\"Luna\")]` (power 30, 50 and 10). Add up all `power()` and print exactly Sum: 90.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n    def power(self):\n        return 10\n\nclass Warrior(Hero):\n    def __init__(self, name, strength=30):\n        super().__init__(name)\n        self.strength = strength\n\n    def fight(self):\n        print(f\"{self.name} swings the sword.\")\n\n    def power(self):\n        return self.strength\n\nclass Mage(Hero):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def fight(self):\n        print(f\"{self.name} casts a fireball.\")\n\n    def power(self):\n        return self.mana\n\nteam = [Warrior(\"Aria\"), Mage(\"Thorin\"), Hero(\"Luna\")]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sum: 90"
+        }
+      },
+      {
+        "instruction": "Step 3 – the strongest: the classes and `team` (power 30, 50, 10) are given. Write `strongest(team)` that returns the object with the largest `power()` and print exactly Strongest: Thorin.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n    def power(self):\n        return 10\n\nclass Warrior(Hero):\n    def __init__(self, name, strength=30):\n        super().__init__(name)\n        self.strength = strength\n\n    def fight(self):\n        print(f\"{self.name} swings the sword.\")\n\n    def power(self):\n        return self.strength\n\nclass Mage(Hero):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def fight(self):\n        print(f\"{self.name} casts a fireball.\")\n\n    def power(self):\n        return self.mana\n\nteam = [Warrior(\"Aria\"), Mage(\"Thorin\"), Hero(\"Luna\")]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Strongest: Thorin"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: The Magic Methods",
+    "file": "mission-03.md",
+    "lessonSummary": "Mission accomplished: `__str__`, `__lt__` and `__add__` are now part of your toolbox.",
+    "tasks": [
+      {
+        "instruction": "Step 1 – print: write the class Hero with `__init__(self, name, level)` and `__str__` (returns `name (level)`). Print Hero(\"Aria\", 5) with `print` (exactly Aria (5)).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria (5)",
+          "codeContains": [
+            "__init__",
+            "__str__"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 2 – sort: the class Hero with `__lt__` and `__str__` is given. Sort the list [Hero(\"Aria\", 5), Hero(\"Thorin\", 9), Hero(\"Luna\", 2)] with `sorted` and print each object with `print`.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        return f\"{self.name} ({self.level})\"\n\n    def __lt__(self, other):\n        return self.level < other.level\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Luna (2)\nAria (5)\nThorin (9)"
+        }
+      },
+      {
+        "instruction": "Step 3 – add: the class Supply with `__add__` and `__str__` is given. Print Supply(15) + Supply(25) + Supply(5) (exactly Supply: 45).",
+        "codeTemplate": "class Supply:\n    def __init__(self, amount):\n        self.amount = amount\n\n    def __add__(self, other):\n        return Supply(self.amount + other.amount)\n\n    def __str__(self):\n        return f\"Supply: {self.amount}\"\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Supply: 45"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra Challenge 1: Three Levels",
+    "file": "boss-01.md",
+    "lessonSummary": "Done: you know class chains and `super()` across several levels!",
+    "tasks": [
+      {
+        "instruction": "Step 1: the classes Hero, Warrior, Mage are given. Write Master(Warrior) with `pass`, create Master(\"Aria\") and check with `isinstance` for Hero, Warrior and Mage (three lines).",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n    def power(self):\n        return 10\n\nclass Warrior(Hero):\n    def __init__(self, name, strength=30):\n        super().__init__(name)\n        self.strength = strength\n\n    def fight(self):\n        print(f\"{self.name} swings the sword.\")\n\n    def power(self):\n        return self.strength\n\nclass Mage(Hero):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def fight(self):\n        print(f\"{self.name} casts a fireball.\")\n\n    def power(self):\n        return self.mana\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True\nTrue\nFalse",
+          "codeContains": [
+            "isinstance"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 2: the classes are given. Write Master(Warrior) that overrides `fight`: first `super().fight()`, then Aria is a master!. Call it for Master(\"Aria\").",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n    def power(self):\n        return 10\n\nclass Warrior(Hero):\n    def __init__(self, name, strength=30):\n        super().__init__(name)\n        self.strength = strength\n\n    def fight(self):\n        print(f\"{self.name} swings the sword.\")\n\n    def power(self):\n        return self.strength\n\nclass Mage(Hero):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def fight(self):\n        print(f\"{self.name} casts a fireball.\")\n\n    def power(self):\n        return self.mana\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria swings the sword.\nAria is a master!"
+        }
+      },
+      {
+        "instruction": "Step 3: the classes are given. Write Master(Warrior) that overrides `power` and returns **twice** as much as its parent (`super().power() * 2`). Print exactly Power: 60 for Master(\"Aria\").",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n    def power(self):\n        return 10\n\nclass Warrior(Hero):\n    def __init__(self, name, strength=30):\n        super().__init__(name)\n        self.strength = strength\n\n    def fight(self):\n        print(f\"{self.name} swings the sword.\")\n\n    def power(self):\n        return self.strength\n\nclass Mage(Hero):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def fight(self):\n        print(f\"{self.name} casts a fireball.\")\n\n    def power(self):\n        return self.mana\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Power: 60"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra Challenge 2: The Arena",
+    "file": "boss-02.md",
+    "lessonSummary": "Done: polymorphism in competition!",
+    "tasks": [
+      {
+        "instruction": "Step 1: the classes (with `power()`) and `team = [Warrior(\"Aria\", 40), Mage(\"Thorin\", 25), Hero(\"Luna\")]` are given. Add all powers and print exactly Sum: 75.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n    def power(self):\n        return 10\n\nclass Warrior(Hero):\n    def __init__(self, name, strength=30):\n        super().__init__(name)\n        self.strength = strength\n\n    def fight(self):\n        print(f\"{self.name} swings the sword.\")\n\n    def power(self):\n        return self.strength\n\nclass Mage(Hero):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def fight(self):\n        print(f\"{self.name} casts a fireball.\")\n\n    def power(self):\n        return self.mana\n\nteam = [Warrior(\"Aria\", 40), Mage(\"Thorin\", 25), Hero(\"Luna\")]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sum: 75"
+        }
+      },
+      {
+        "instruction": "Step 2: the classes and `team` (power 40, 25, 10) are given. Count how many objects have a power of at least 30 and print exactly Count: 1.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n    def power(self):\n        return 10\n\nclass Warrior(Hero):\n    def __init__(self, name, strength=30):\n        super().__init__(name)\n        self.strength = strength\n\n    def fight(self):\n        print(f\"{self.name} swings the sword.\")\n\n    def power(self):\n        return self.strength\n\nclass Mage(Hero):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def fight(self):\n        print(f\"{self.name} casts a fireball.\")\n\n    def power(self):\n        return self.mana\n\nteam = [Warrior(\"Aria\", 40), Mage(\"Thorin\", 25), Hero(\"Luna\")]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 1"
+        }
+      },
+      {
+        "instruction": "Step 3: the classes and `team` (power 40, 25, 10) are given. Write `power_of(figure)` that returns `figure.power()`, sort with `sorted(team, key=power_of)` and print the names line by line.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n    def power(self):\n        return 10\n\nclass Warrior(Hero):\n    def __init__(self, name, strength=30):\n        super().__init__(name)\n        self.strength = strength\n\n    def fight(self):\n        print(f\"{self.name} swings the sword.\")\n\n    def power(self):\n        return self.strength\n\nclass Mage(Hero):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def fight(self):\n        print(f\"{self.name} casts a fireball.\")\n\n    def power(self):\n        return self.mana\n\nteam = [Warrior(\"Aria\", 40), Mage(\"Thorin\", 25), Hero(\"Luna\")]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Luna\nThorin\nAria"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra Challenge 3: Numbers with Magic",
+    "file": "boss-03.md",
+    "lessonSummary": "Done: your Supply class behaves almost like a number!",
+    "tasks": [
+      {
+        "instruction": "Step 1: write Supply with `__init__(self, amount)`, `__add__` and `__eq__` (equal if the amount is equal). Print `Supply(10) + Supply(40) == Supply(50)` (True).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True",
+          "codeContains": [
+            "__init__",
+            "__add__",
+            "__eq__"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 2: write Team with `__init__(self)` (empty list `mitglieder`), `__len__` and `__str__` (returns Team: number). Add Aria and Thorin and print the object with `print` (exactly Team: 2).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Team: 2",
+          "codeContains": [
+            "__init__",
+            "__len__",
+            "__str__"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 3: write Supply with `__init__(self, amount)`, `__lt__` (smaller if `amount` is smaller) and `__str__` (returns Supply: number), sort [Supply(30), Supply(10), Supply(20)] and print every element.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Supply: 10\nSupply: 20\nSupply: 30",
+          "codeContains": [
+            "__init__",
+            "__lt__",
+            "__str__"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-04",
+    "section": "boss",
+    "title": "Extra Challenge 4: Everything Together",
+    "file": "boss-04.md",
+    "lessonSummary": "Done: inheritance, dictionaries, randomness and JSON work together!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – dictionary of classes: the classes are given. Build `klassen = {\"Warrior\": Warrior, \"Mage\": Mage}` and create an object through the name `klassen[\"Warrior\"](\"Aria\")`. Call `fight()`.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n    def power(self):\n        return 10\n\nclass Warrior(Hero):\n    def __init__(self, name, strength=30):\n        super().__init__(name)\n        self.strength = strength\n\n    def fight(self):\n        print(f\"{self.name} swings the sword.\")\n\n    def power(self):\n        return self.strength\n\nclass Mage(Hero):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def fight(self):\n        print(f\"{self.name} casts a fireball.\")\n\n    def power(self):\n        return self.mana\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria swings the sword."
+        }
+      },
+      {
+        "instruction": "Step 2 – randomness: the classes are given. Pick a class with `random.choice([Warrior, Mage])`, create an object from it and print `isinstance(object, Hero)` (True).",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n    def power(self):\n        return 10\n\nclass Warrior(Hero):\n    def __init__(self, name, strength=30):\n        super().__init__(name)\n        self.strength = strength\n\n    def fight(self):\n        print(f\"{self.name} swings the sword.\")\n\n    def power(self):\n        return self.strength\n\nclass Mage(Hero):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def fight(self):\n        print(f\"{self.name} casts a fireball.\")\n\n    def power(self):\n        return self.mana\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True"
+        }
+      },
+      {
+        "instruction": "Step 3 – save as JSON: the classes are given. Create Warrior(\"Aria\") and build `daten = {\"typ\": type(f).__name__, \"name\": f.name}` (`type(f).__name__` gives the class name as text). Print `json.dumps(daten)`.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n    def power(self):\n        return 10\n\nclass Warrior(Hero):\n    def __init__(self, name, strength=30):\n        super().__init__(name)\n        self.strength = strength\n\n    def fight(self):\n        print(f\"{self.name} swings the sword.\")\n\n    def power(self):\n        return self.strength\n\nclass Mage(Hero):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def fight(self):\n        print(f\"{self.name} casts a fireball.\")\n\n    def power(self):\n        return self.mana\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{\"typ\": \"Warrior\", \"name\": \"Aria\"}",
+          "codeContains": [
+            "json.dumps"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 4 – load JSON: the classes and the text `text = '{\"typ\": \"Warrior\", \"name\": \"Aria\"}'` are given. Read it with `json.loads`, look up the class in the dictionary `klassen` and rebuild the object. Call `fight()`.",
+        "codeTemplate": "class Hero:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce(self):\n        print(f\"I am {self.name}.\")\n\n    def fight(self):\n        print(f\"{self.name} fights bare-handed.\")\n\n    def power(self):\n        return 10\n\nclass Warrior(Hero):\n    def __init__(self, name, strength=30):\n        super().__init__(name)\n        self.strength = strength\n\n    def fight(self):\n        print(f\"{self.name} swings the sword.\")\n\n    def power(self):\n        return self.strength\n\nclass Mage(Hero):\n    def __init__(self, name, mana=50):\n        super().__init__(name)\n        self.mana = mana\n\n    def fight(self):\n        print(f\"{self.name} casts a fireball.\")\n\n    def power(self):\n        return self.mana\n\nklassen = {\"Warrior\": Warrior, \"Mage\": Mage}\ntext = '{\"typ\": \"Warrior\", \"name\": \"Aria\"}'\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria swings the sword.",
+          "codeContains": [
+            "json.loads"
+          ]
+        }
+      }
+    ]
+  }
+]

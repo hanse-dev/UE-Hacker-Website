@@ -8,7 +8,6 @@
 | **Value** | Content of an entry | `hero[\"level\"]` → `5` |
 | `.get()` | Safe access – no error if key is missing | `hero.get(\"xp\", 0)` |
 | `.pop()` | Delete an entry and return its value | `hero.pop(\"level\")` |
-| `.update()` | Add or change multiple entries at once | `hero.update({\"level\": 2})` |
 | `.keys()` | All keys as a list | `hero.keys()` |
 | `.values()` | All values as a list | `hero.values()` |
 | `.items()` | All key-value pairs – useful for loops | `for k, v in hero.items():` |

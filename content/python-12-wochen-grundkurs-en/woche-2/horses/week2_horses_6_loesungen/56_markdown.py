@@ -1,3 +1,3 @@
-"""### Mission 3: The Tournament – Task 2
+"""### The Feed Room – Task 2
 
-Step 2 – total1 and total2 are already there. Compare them with > and print exactly: Thunder wins: True"""
+Step 2 – The four weights are already there. Add them up (total_weight), divide by 4 (average_weight) and print exactly the lines Total weight: 46.0 kg and Average weight: 11.5 kg"""

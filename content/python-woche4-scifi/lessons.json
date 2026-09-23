@@ -20,7 +20,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Zyklus 3: online"
+          "expected": "Zyklus 3: online",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -28,7 +31,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Triebwerk 3: bereit"
+          "expected": "Triebwerk 3: bereit",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]
@@ -282,7 +288,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Zeit: 20"
+          "expected": "Zeit: 20",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -487,7 +496,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Beste Distanz: 8"
+          "expected": "Beste Distanz: 8",
+          "codeContains": [
+            "while"
+          ]
         }
       }
     ]

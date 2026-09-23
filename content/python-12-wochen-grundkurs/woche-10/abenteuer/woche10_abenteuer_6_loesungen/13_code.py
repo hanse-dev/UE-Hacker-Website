@@ -1,22 +1,25 @@
-# Schritt 1: Klasse Magier anlegen
-class Magier:
-    def __init__(self, name, level=1, zauber="Feuerball", element="Feuer"):
+class Held:
+    def __init__(self, name, level=1, energie=100):
         self.name = name
         self.level = level
-        self.zauber = zauber
-        self.element = element  # Bonus
+        self.energie = energie
 
-# Schritt 2: Drei Magier erstellen
-merlin = Magier("Merlin", level=15, zauber="Blitz", element="Blitz")
-gandalf = Magier("Gandalf", level=20, zauber="Licht", element="Licht")
-dumbledore = Magier("Dumbledore", level=18, zauber="Expelliarmus", element="Arcana")
+    def stelle_vor(self):
+        print(f"Ich bin {self.name}, Level {self.level}.")
 
-magier_liste = [merlin, gandalf, dumbledore]
+    def trainiere(self):
+        self.level += 1
+        print(f"{self.name} trainiert: Level {self.level}")
 
-print("=== Magiergilde ===")
-for m in magier_liste:
-    print(f"{m.name}: Level {m.level} ({m.element})")
+    def kaempfe(self, kosten):
+        self.energie -= kosten
+        if self.energie < 0:
+            self.energie = 0
 
-# Schritt 3: Stärksten finden
-staerkster = max(magier_liste, key=lambda m: m.level)
-print(f"\nStärkster Magier: {staerkster.name} (Level {staerkster.level})")
+    def ruhe_aus(self, menge):
+        self.energie += menge
+        if self.energie > 100:
+            self.energie = 100
+
+Held("Thorin", 4).stelle_vor()
+Held("Luna", 6).stelle_vor()

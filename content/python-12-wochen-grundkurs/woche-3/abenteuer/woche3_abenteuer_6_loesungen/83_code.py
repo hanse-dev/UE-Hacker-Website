@@ -1,12 +1,8 @@
-gefahrenstufe = 4
+traenke = 5
+runen = True
+fluchtweg = False
 
-if gefahrenstufe == 1:
-    print("Gefahr: Ruhig")
-elif gefahrenstufe == 2:
-    print("Gefahr: Wachsam")
-elif gefahrenstufe == 3:
-    print("Gefahr: Gefährlich")
-elif gefahrenstufe == 4:
-    print("Gefahr: Sehr gefährlich")
+if traenke >= 3 or (runen and fluchtweg):
+    print("Flucht gelingt!")
 else:
-    print("Gefahr: Tödlich")
+    print("Flucht scheitert!")

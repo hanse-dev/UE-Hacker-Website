@@ -1,2 +1,1 @@
-level = 3
-print("Sicherheitsstufe: " + str(level))
+print("Willkommen auf der Nebula-7!")

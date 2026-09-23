@@ -1,3 +1,2 @@
-zauberkraft = int("100")
-bonus = 50
-print(f"Gesamtkraft: {zauberkraft + bonus}")
+gold = 250
+print(f"Dein Gold: {gold + 50}")

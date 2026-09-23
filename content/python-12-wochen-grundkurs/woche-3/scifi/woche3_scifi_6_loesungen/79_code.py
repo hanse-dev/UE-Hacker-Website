@@ -1,9 +1,6 @@
-meteor_treffer = True
-piraten_angriff = False
-system_ausfall = True
-if meteor_treffer:
-    print("Meteoritentreffer!")
-if piraten_angriff:
-    print("Piratenangriff!")
-if system_ausfall:
-    print("Systemausfall!")
+erfolgreiche_phasen = 4
+gefahrenstufe = 4
+if erfolgreiche_phasen >= 4 and gefahrenstufe <= 3:
+    print("Mission gesichert!")
+else:
+    print("Mission nicht gesichert.")

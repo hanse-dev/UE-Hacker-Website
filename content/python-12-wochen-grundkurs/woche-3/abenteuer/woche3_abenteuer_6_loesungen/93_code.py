@@ -1,4 +1,10 @@
-erfolgreiche_phasen = 4
+gefahrenstufe = 5
+erfolgreiche_phasen = 2
 
-erfolgsquote = erfolgreiche_phasen / 5 * 100
-print(f"Erfolgsquote: {erfolgsquote} Prozent")
+if gefahrenstufe >= 4:
+    if erfolgreiche_phasen < 3:
+        print("Rettung erforderlich!")
+    else:
+        print("Der Trupp hält durch.")
+else:
+    print("Keine Gefahr für den Trupp.")

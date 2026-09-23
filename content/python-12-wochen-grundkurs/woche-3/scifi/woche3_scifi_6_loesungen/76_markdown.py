@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Die Galaxie-Mission – Aufgabe 1
+"""### Extra-Herausforderung 3: Die Galaxie-Mission – Aufgabe 3
 
-Die Variable gefahrenstufe (1-5) ist schon angelegt. Nutze if-elif-else: 1 = ruhig, 2 = gering, 3 = erhöht, 4 = hoch, 5 = extrem. Format: Gefahrenstufe 4: hoch"""
+Die Booleans phase1_ok bis phase5_ok und erfolgreiche_phasen = 0 sind schon angelegt. Erhöhe erfolgreiche_phasen für jede gelungene Phase um 1 und gib aus: Erfolgreiche Phasen: 4"""

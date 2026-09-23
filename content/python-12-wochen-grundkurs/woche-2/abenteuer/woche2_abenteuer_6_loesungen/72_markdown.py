@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 2: Die Zauberwerkstatt – Aufgabe 2
+"""### Extra-Herausforderung 2: Die Zauberwerkstatt – Aufgabe 4
 
-Schritt 2 – Addiere die Komplexität aller drei Zauber und gib genau aus: Gesamtkomplexität: 10"""
+Schritt 4 – Nutze einen 💨 Luft-Wert: Ist die Stärke von Sturmruf über dem Durchschnitt? Gib genau aus: Sturmruf mächtig: True"""

@@ -1,0 +1,3 @@
+"""### Extra-Herausforderung 2: Die Sternkarte – Aufgabe 1
+
+Schritt 1 – Speichern und laden: Das Dictionary karte (Ort → Dictionary mit koordinaten als Tupel und wert) ist vorgegeben. Speichere es mit json.dump() in karte.json, lade es in geladen und gib genau Orte: 3 und in der nächsten Zeile Koordinaten: [10, 20] aus (geladen[\"Kristallkern\"][\"koordinaten\"] – das Tupel ist jetzt eine Liste)."""

@@ -1,1 +1,0 @@
-"""**Explanation:** `feed_kg` is the *text* `"10"`. Text times a number repeats the text (`"10"` five times), it does not calculate. Convert it first with `int(feed_kg)`."""

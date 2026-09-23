@@ -1,3 +1,5 @@
-"""### Debug Quest – Task 2
+"""## ⭐ Missions
 
-🐛 Bug #2 – Goal: The program should print The hero is 25 years old. What is wrong?"""
+### Mission 1: The Apprentice Wizard – Task 1
+
+Step 1 – Use print() to output exactly this sentence: Hello Pyralia!"""

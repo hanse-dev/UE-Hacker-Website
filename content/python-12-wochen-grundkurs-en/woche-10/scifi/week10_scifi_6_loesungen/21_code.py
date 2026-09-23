@@ -1,35 +1,27 @@
-class Alien:
-    def __init__(self, name, planet, danger_level, intelligence):
+class Robot:
+    def __init__(self, name, level=1, energy=100):
         self.name = name
-        self.planet = planet
-        self.danger_level = danger_level
-        self.intelligence = intelligence
+        self.level = level
+        self.energy = energy
 
-    def analyse(self):
-        level = "HIGH" if self.danger_level >= 8 else ("MEDIUM" if self.danger_level >= 5 else "LOW")
-        print(f"🔬 {self.name} (Planet: {self.planet}) | Danger: {level} | IQ: {self.intelligence}")
+    def introduce(self):
+        print(f"I am {self.name}, Level {self.level}.")
 
-    def communicate(self):
-        if self.intelligence >= 7:
-            print(f"{self.name} can communicate!")
-        else:
-            print(f"{self.name} responds instinctively.")
+    def upgrade(self):
+        self.level += 1
+        print(f"{self.name} gets an upgrade: Level {self.level}")
 
-bestiary = [
-    Alien("Zorgon", "Kepler-22b", 9, 4),
-    Alien("Luminar", "Gliese-667c", 3, 10),
-    Alien("Krakon", "HD 40307g", 7, 6),
-]
+    def work(self, kosten):
+        self.energy -= kosten
+        if self.energy < 0:
+            self.energy = 0
 
-print("=== Alien Bestiary ===")
-for alien in bestiary:
-    alien.analyse()
-    alien.communicate()
-    print()
+    def recharge(self, menge):
+        self.energy += menge
+        if self.energy > 100:
+            self.energy = 100
 
-most_dangerous = max(bestiary, key=lambda a: a.danger_level)
-print(f"Most dangerous: {most_dangerous.name} (danger level {most_dangerous.danger_level})")
-
-print("🎉 Mission completed!")
-print("🏆 You have defeated the Constructor Master!")
-print("⭐ Title earned: System Architect")
+robot = Robot("Nova", energy=20)
+robot.recharge(50)
+robot.recharge(50)
+print(f"Energy: {robot.energy}")

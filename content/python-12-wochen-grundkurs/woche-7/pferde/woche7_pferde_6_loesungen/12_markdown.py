@@ -1,1 +1,3 @@
-"""### ⭐⭐⭐☆☆ Mission 2: Der Rechen-Bock"""
+"""### Übung 3: Zufällig auswählen und mischen – Aufgabe 2
+
+Die Liste werkzeuge ist vorgegeben. Ziehe mit random.sample() drei Einträge in gezogen, mische gezogen mit random.shuffle() und gib genau Anzahl: 3 und in der nächsten Zeile Verschieden: True aus (len(set(gezogen)) == 3)."""

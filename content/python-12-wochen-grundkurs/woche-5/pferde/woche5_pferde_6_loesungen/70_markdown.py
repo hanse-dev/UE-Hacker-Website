@@ -1,0 +1,3 @@
+"""### Extra-Herausforderung 3: Das große Rennen – Aufgabe 3
+
+Schritt 3 – Rennen: renne_runde ist vorgegeben. Schreibe simuliere_rennen(strecke, tempo, runden): Eine for-Schleife (Runde 1 bis runden) ruft jedes Mal renne_runde auf und gibt Runde <Nummer>: Noch <strecke> m aus. Am Ende gibt die Funktion die Reststrecke zurück. Rufe sie mit (100, 30, 4) auf, speichere das Ergebnis in rest und gib Rest: <rest> aus."""

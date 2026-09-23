@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Die Dungeon-Quest – Aufgabe 1
+"""### Extra-Herausforderung 2: Der Dungeon-Simulator – Aufgabe 5
 
-Schritt 1 – Gefahrenstufe: gefahrenstufe = 4. Gib bei 1: Gefahr: Ruhig, bei 2: Gefahr: Wachsam, bei 3: Gefahr: Gefährlich, bei 4: Gefahr: Sehr gefährlich, sonst: Gefahr: Tödlich"""
+Level 5 – Flucht: traenke = 5, runen = True, fluchtweg = False. Die Flucht gelingt, wenn traenke >= 3 ODER (runen UND fluchtweg). Setze die Klammern richtig. Gib aus: Flucht gelingt! – sonst: Flucht scheitert!"""

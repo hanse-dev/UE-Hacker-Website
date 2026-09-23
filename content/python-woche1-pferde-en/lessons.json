@@ -102,11 +102,14 @@
         }
       },
       {
-        "instruction": "Use input() to ask for your rider's name, store the answer in rider and print: I ride with: (followed by the name)",
+        "instruction": "Use input() to ask for your rider's name, store the answer in rider and print: I ride with: (followed by the name) (When checking, Mira is entered automatically.)",
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "I ride with: "
+          "expected": "I ride with: Mira",
+          "stdin": [
+            "Mira"
+          ]
         }
       }
     ]

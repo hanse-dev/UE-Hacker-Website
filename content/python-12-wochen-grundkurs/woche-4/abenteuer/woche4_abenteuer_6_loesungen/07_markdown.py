@@ -1,1 +1,0 @@
-"""**Erklärung:** Python erwartet einen eingerückten Block. Alles was zu einem `for` gehört, muss mit 4 Leerzeichen eingerückt sein. Das abschließende `print(\"Ende\")` bleibt jedoch ohne Einrückung – es gehört nicht zur Schleife."""

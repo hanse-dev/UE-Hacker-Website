@@ -1,5 +1,5 @@
-"""### Debug-Quest – Aufgabe 2
+"""### Debug-Quest – Aufgabe 3
 
-🐛 Bug #2 – Ziel: Das Programm soll Hallo Thunder! ausgeben, weil name den Wert Thunder hat. Was ist falsch?
+🐛 Bug #3 – Ziel: Das Programm soll bei alter >= 5 den Text Ausgebildet ausgeben. Was ist falsch?
 
-**Erklärung:** In einer Bedingung wird mit `==` verglichen. Ein einzelnes `=` ist die Zuweisung und hier nicht erlaubt."""
+**Erklärung:** `elif` braucht immer eine eigene Bedingung. Für den Restfall ohne Bedingung nimmst du `else`."""

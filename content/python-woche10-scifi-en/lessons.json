@@ -1,0 +1,600 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "System Protocol 1: Classes and Objects",
+    "file": "lektion-01.md",
+    "lessonSummary": "Great! You build a class and create objects with attributes.",
+    "tasks": [
+      {
+        "instruction": "Run this example: a class, an object, two attributes.",
+        "codeTemplate": "class Robot:\n    pass\n\nrobot = Robot()\nrobot.name = \"Nova\"\nrobot.level = 1\nprint(robot.name, robot.level)\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova 1"
+        }
+      },
+      {
+        "instruction": "Create a class Robot with `pass`. Create an object robot, set `name` to Nova and `level` to 3 and print exactly Nova has Level 3 with an f-string.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova has Level 3",
+          "codeContains": [
+            "class"
+          ]
+        }
+      },
+      {
+        "instruction": "The empty class Robot is given. Create two objects robot (Nova, level 1) and robot2 (Orbit, level 1). Raise the level to 5 only for robot and print Nova: 5 and Orbit: 1 on two lines.",
+        "codeTemplate": "class Robot:\n    pass\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova: 5\nOrbit: 1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "System Protocol 2: The Constructor __init__",
+    "file": "lektion-02.md",
+    "lessonSummary": "Nice! Your constructor sets the starting values for every new object.",
+    "tasks": [
+      {
+        "instruction": "Run this example: a constructor with a default value.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1):\n        self.name = name\n        self.level = level\n\na = Robot(\"Nova\")\nb = Robot(\"Orbit\", 5)\nprint(a.name, a.level)\nprint(b.name, b.level)\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Orbit 5"
+        }
+      },
+      {
+        "instruction": "Write a class Robot with `__init__(self, name, level=1, energy=100)` that stores all three values. Create robot = Robot(\"Nova\", 4) and print exactly Nova 4 100 with an f-string (name, level, energy).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova 4 100",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "The class Robot with `__init__(self, name, level=1)` is given. Create an object Zeta without a level and an object Orbit with level 7 and print Zeta: Level 1 and Orbit: Level 7 on two lines.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1):\n        self.name = name\n        self.level = level\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeta: Level 1\nOrbit: Level 7"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "System Protocol 3: Methods and self",
+    "file": "lektion-03.md",
+    "lessonSummary": "Well done! Your objects can now do something.",
+    "tasks": [
+      {
+        "instruction": "Run this example: a method with self.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1):\n        self.name = name\n        self.level = level\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\nrobot = Robot(\"Nova\")\nrobot.introduce()\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "I am Nova, Level 1."
+        }
+      },
+      {
+        "instruction": "Write a class Robot with `__init__(self, name, level)` and the method `introduce(self)` that prints I am Nova, Level 2. (name and level from `self`). Create Robot(\"Nova\", 2) and call the method.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "I am Nova, Level 2.",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "The class Robot with the method `introduce()` is given. Create Robot(\"Orbit\", 4) and Robot(\"Zeta\", 6) and call `introduce()` on both.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "I am Orbit, Level 4.\nI am Zeta, Level 6."
+        }
+      },
+      {
+        "instruction": "Write a class Robot with `__init__(self, name)` (level starts at 1) and the method `upgrade(self)` that raises the level by 1 and prints Nova gets an upgrade: Level 3. Create Robot(\"Nova\") and call `upgrade()` twice.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova gets an upgrade: Level 3",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "System Protocol 4: Methods with Parameters and return",
+    "file": "lektion-04.md",
+    "lessonSummary": "Super! Your methods take values and return results.",
+    "tasks": [
+      {
+        "instruction": "Run this example: a method with a parameter and one with return.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, energy=100):\n        self.name = name\n        self.energy = energy\n\n    def work(self, kosten):\n        self.energy -= kosten\n\n    def is_tired(self):\n        return self.energy < 20\n\nrobot = Robot(\"Nova\")\nrobot.work(30)\nprint(robot.energy)\nprint(robot.is_tired())\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "70\nFalse"
+        }
+      },
+      {
+        "instruction": "The class Robot is given (`work(kosten)` lowers the energy, it never drops below 0). Create Robot(\"Nova\"), call `work(40)` and `work(70)` and print exactly Energy: 0.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energy: 0"
+        }
+      },
+      {
+        "instruction": "Write a class Robot with `__init__(self, name, energy)` and a method `is_tired(self)` that returns **True** if the energy is below 20 (otherwise False). Print the results for Robot(\"Nova\", 10) and Robot(\"Orbit\", 80) (two lines).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True\nFalse",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "The class Robot is given (`recharge(menge)` raises the energy, at most up to 100). Create Robot(\"Nova\", energy=20), call `recharge(50)` twice and print exactly Energy: 100.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energy: 100"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "System Protocol 5: Changing the State",
+    "file": "lektion-05.md",
+    "lessonSummary": "Strong! Your objects remember their state.",
+    "tasks": [
+      {
+        "instruction": "Run this example: a counter inside the object.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name):\n        self.name = name\n        self.wins = 0\n\n    def win(self):\n        self.wins += 1\n\nrobot = Robot(\"Nova\")\nrobot.win()\nrobot.win()\nprint(robot.wins)\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "2"
+        }
+      },
+      {
+        "instruction": "The class Robot is given. Create Robot(\"Nova\"), call `work(30)`, then `recharge(50)` (at most 100!) and then `work(20)`. Print exactly Energy: 80.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energy: 80"
+        }
+      },
+      {
+        "instruction": "Write a class Robot with `__init__(self, name)` (attribute `wins` starts at 0) and the method `win(self)` that raises `wins` by 1. Call it three times and print exactly Wins: 3.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wins: 3",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "The class Robot is given. Create Robot(\"Nova\"), call `upgrade()` three times and then print exactly Level: 4.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 4"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "System Protocol 6: Objects in Lists",
+    "file": "lektion-06.md",
+    "lessonSummary": "Nice! You manage whole groups of objects.",
+    "tasks": [
+      {
+        "instruction": "Run this example: looping over objects in a list.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\ngruppe = [Robot(\"Nova\", 3), Robot(\"Orbit\", 8), Robot(\"Zeta\", 5)]\nfor h in gruppe:\n    print(h.name, h.level)\n\nstarke = [h.name for h in gruppe if h.level >= 5]\nprint(starke)\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Orbit', 'Zeta']"
+        }
+      },
+      {
+        "instruction": "The class Robot is given. Create the list `gruppe` with Robot(\"Nova\", 3), Robot(\"Orbit\", 8) and Robot(\"Zeta\", 5) and print every name on its own line with a `for` loop.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova\nOrbit\nZeta",
+          "codeContains": [
+            "for"
+          ]
+        }
+      },
+      {
+        "instruction": "The class Robot and the list `gruppe` (levels 3, 8, 5) are given. Find the object with the highest level with a loop and print exactly Strongest: Orbit.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\ngruppe = [Robot(\"Nova\", 3), Robot(\"Orbit\", 8), Robot(\"Zeta\", 5)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Strongest: Orbit"
+        }
+      },
+      {
+        "instruction": "The class Robot and the list `gruppe` (levels 3, 8, 5) are given. Build the list `starke` of all names with level 5 or more with a list comprehension and print it with `print(starke)`.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\ngruppe = [Robot(\"Nova\", 3), Robot(\"Orbit\", 8), Robot(\"Zeta\", 5)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Orbit', 'Zeta']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "System Protocol 7: Passing Objects to Functions",
+    "file": "lektion-07.md",
+    "lessonSummary": "Well done! You now know how objects and functions work together.",
+    "tasks": [
+      {
+        "instruction": "Run this example: two names for one object.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\na = Robot(\"Nova\", 1)\nb = a\nb.level = 10\nprint(a.level)\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "10"
+        }
+      },
+      {
+        "instruction": "The class Robot is given. Write a function `stronger(a, b)` that returns the object with the higher level. Compare Robot(\"Nova\", 4) and Robot(\"Orbit\", 9) and print exactly Winner: Orbit.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Winner: Orbit"
+        }
+      },
+      {
+        "instruction": "The class Robot and the object `robot = Robot(\"Nova\")` are given. Give the object a second name `zweiter`, set the level to 9 through `zweiter` and print exactly Nova: Level 9 through `robot`.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\nrobot = Robot(\"Nova\")\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova: Level 9"
+        }
+      },
+      {
+        "instruction": "The class Robot and the list `gruppe` (levels 3, 8, 5) are given. Write a function `train_all(gruppe)` that does `level += 1` for everyone (no return). Call it and print exactly Sum: 19 (sum of all levels).",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\ngruppe = [Robot(\"Nova\", 3), Robot(\"Orbit\", 8), Robot(\"Zeta\", 5)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sum: 19"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "All bugs found! With classes the arguments of `__init__`, `self.` before every attribute and `self` in every method matter.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Goal: The program should print Nova. What is wrong?",
+        "codeTemplate": "class Robot:\n    def __init__(self, name):\n        self.name = name\n\nrobot = Robot()\nprint(robot.name)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Goal: The program should print Nova. What is wrong?",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level):\n        name = name\n        level = level\n\nrobot = Robot(\"Nova\", 3)\nprint(robot.name)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Goal: The program should print I am Nova. What is wrong?",
+        "codeTemplate": "class Robot:\n    def __init__(self, name):\n        self.name = name\n\n    def introduce():\n        print(f\"I am {self.name}\")\n\nrobot = Robot(\"Nova\")\nrobot.introduce()\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "I am Nova"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: The First Blueprint",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission accomplished: you wrote a class, created objects and added a method!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – create the class: write a class Tool with `__init__(self, name, value)`. Create tool = Tool(\"Plasma laser\", 50) and print exactly Plasma laser: 50.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Plasma laser: 50",
+          "codeContains": [
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 2 – add up: the class Tool is given. Create Tool(\"Plasma laser\", 50) and Tool(\"Ion blaster\", 35) and print exactly Together: 85 (sum of the value attributes).",
+        "codeTemplate": "class Tool:\n    def __init__(self, name, value):\n        self.name = name\n        self.value = value\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Together: 85"
+        }
+      },
+      {
+        "instruction": "Step 3 – method: write the class Tool with a method `info(self)` that **returns** `name (value)` as text, e.g. Plasma laser (50). Print `info()` for Tool(\"Plasma laser\", 50) and Tool(\"Ion blaster\", 35).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Plasma laser (50)\nIon blaster (35)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: The Group",
+    "file": "mission-02.md",
+    "lessonSummary": "Mission accomplished: you manage objects in a list!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – create the group: write the class Robot with `__init__(self, name, level=1, energy=100)`. Create Nova (level 15), Orbit (level 18) and Zeta (level 12) and print one line per object like Nova: 15.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova: 15\nOrbit: 18\nZeta: 12",
+          "codeContains": [
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 2 – find the weakest: the class Robot and the list `gruppe` (levels 15, 18, 12) are given. Print exactly Weakest: Zeta.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\ngruppe = [Robot(\"Nova\", 15), Robot(\"Orbit\", 18), Robot(\"Zeta\", 12)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Weakest: Zeta"
+        }
+      },
+      {
+        "instruction": "Step 3 – train everyone: the class Robot and the list `gruppe` (levels 15, 18, 12) are given. Call `upgrade()` on every object and print exactly Sum: 48 (sum of all levels afterwards).",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\ngruppe = [Robot(\"Nova\", 15), Robot(\"Orbit\", 18), Robot(\"Zeta\", 12)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sum: 48"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: The State",
+    "file": "mission-03.md",
+    "lessonSummary": "Mission accomplished: your objects manage their own state!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – class with state: write a class Robot with `__init__(self, name)` (energy starts at 100) and `work(self, kosten)` that lowers energy (never below 0). Create Robot(\"Nova\"), call `work(40)` three times and print exactly Energy: 0.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Energy: 0",
+          "codeContains": [
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 2 – check function: the class Robot is given. Write `exhausted(figure)` that returns True if the energy is 0. Create Robot(\"Nova\"), print `exhausted(robot)`, call `work(100)` and print it once more.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "False\nTrue"
+        }
+      },
+      {
+        "instruction": "Step 3 – count rounds: the class Robot is given. With a `while` loop call `work(30)` until the energy is 0 and count the rounds. Print exactly Rounds: 4.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rounds: 4",
+          "codeContains": [
+            "while"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra Challenge 1: The Depot",
+    "file": "boss-01.md",
+    "lessonSummary": "Done: depot, search and sum – all with objects!",
+    "tasks": [
+      {
+        "instruction": "Step 1: the class Tool is given. Create the list `lager` with Tool(\"Plasma laser\", 50), Tool(\"Ion blaster\", 35) and Tool(\"Welding torch\", 20) and print one line per item like Plasma laser: 50.",
+        "codeTemplate": "class Tool:\n    def __init__(self, name, value):\n        self.name = name\n        self.value = value\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Plasma laser: 50\nIon blaster: 35\nWelding torch: 20"
+        }
+      },
+      {
+        "instruction": "Step 2: the class Tool and the list `lager` (50, 35, 20) are given. Find the item with the highest value and print exactly Strongest: Plasma laser.",
+        "codeTemplate": "class Tool:\n    def __init__(self, name, value):\n        self.name = name\n        self.value = value\n\nlager = [Tool(\"Plasma laser\", 50), Tool(\"Ion blaster\", 35), Tool(\"Welding torch\", 20)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Strongest: Plasma laser"
+        }
+      },
+      {
+        "instruction": "Step 3: the class Tool and the list `lager` (50, 35, 20) are given. Calculate the sum of all value attributes and print exactly Sum: 105.",
+        "codeTemplate": "class Tool:\n    def __init__(self, name, value):\n        self.name = name\n        self.value = value\n\nlager = [Tool(\"Plasma laser\", 50), Tool(\"Ion blaster\", 35), Tool(\"Welding torch\", 20)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sum: 105"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra Challenge 2: The Duel",
+    "file": "boss-02.md",
+    "lessonSummary": "Done: your objects fight each other!",
+    "tasks": [
+      {
+        "instruction": "Step 1: write a class Robot with `__init__(self, name, level)` (energy starts at 50) and the method `attack(self, ziel)` that subtracts `level * 5` from the target's energy. Nova (level 4) attacks Orbit (level 2) – print exactly Orbit: 30.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Orbit: 30",
+          "codeContains": [
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 2: the class Robot with `attack` is given. Nova (level 4) and Orbit (level 2) strike in turns (Nova first) until one has 0 or less energy. Print exactly Winner: Nova.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n        self.energy = 50\n\n    def attack(self, ziel):\n        ziel.energy -= self.level * 5\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Winner: Nova"
+        }
+      },
+      {
+        "instruction": "Step 3: the class Robot with `attack` is given. In the duel Nova (level 4) against Orbit (level 2) count the rounds (one round = both strike, the fight ends as soon as one is beaten) and print exactly Rounds: 3.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n        self.energy = 50\n\n    def attack(self, ziel):\n        ziel.energy -= self.level * 5\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rounds: 3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra Challenge 3: The Team",
+    "file": "boss-03.md",
+    "lessonSummary": "Done: you control a whole team through functions!",
+    "tasks": [
+      {
+        "instruction": "Step 1: the class Robot and the list `gruppe` (with energy 80, 30 and 60) are given. Write `count_fit(gruppe)` that counts how many objects have more than 50 energy and print exactly Fit: 2.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\ngruppe = [Robot(\"Nova\", 3, 80), Robot(\"Orbit\", 8, 30), Robot(\"Zeta\", 5, 60)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Fit: 2"
+        }
+      },
+      {
+        "instruction": "Step 2: the class Robot and the list `gruppe` (energy 80, 30, 60) are given. Call `recharge(50)` on all of them and then print one line per object like Orbit: 80.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\ngruppe = [Robot(\"Nova\", 3, 80), Robot(\"Orbit\", 8, 30), Robot(\"Zeta\", 5, 60)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova: 100\nOrbit: 80\nZeta: 100"
+        }
+      },
+      {
+        "instruction": "Step 3: the class Robot and the list `gruppe` (energy 80, 30, 60) are given. Find the object with the lowest energy and print exactly Weakest: Orbit.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\ngruppe = [Robot(\"Nova\", 3, 80), Robot(\"Orbit\", 8, 30), Robot(\"Zeta\", 5, 60)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Weakest: Orbit"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-04",
+    "section": "boss",
+    "title": "Extra Challenge 4: The Great Guild",
+    "file": "boss-04.md",
+    "lessonSummary": "Done: classes work together with everything you have learned!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – functions and lists: the class Robot is given. Write `create_figure(name, level)` that returns an object. Create `gruppe` with create_figure(\"Nova\", 2) and create_figure(\"Orbit\", 5) and print exactly Group: 2 (length of the list).",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Group: 2"
+        }
+      },
+      {
+        "instruction": "Step 2 – randomness: the class Robot is given. Create robot = Robot(\"Nova\", random.randint(1, 5)) (`import random`) and print `1 <= robot.level <= 5` – the result must be True.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True",
+          "codeContains": [
+            "import"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 3 – dictionary: the class Robot and the list `gruppe` (levels 3, 8, 5) are given. Build a dictionary `register` that maps every name to its object and print exactly Level: 8 for the entry Orbit.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\ngruppe = [Robot(\"Nova\", 3), Robot(\"Orbit\", 8), Robot(\"Zeta\", 5)]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 8"
+        }
+      },
+      {
+        "instruction": "Step 4 – JSON: the class Robot is given. Create Robot(\"Nova\", 4), build the dictionary `daten` (`name`, `level`) from it and print `json.dumps(daten)`. Read the text back with `json.loads` and create a new object from it – finally print its name.",
+        "codeTemplate": "class Robot:\n    def __init__(self, name, level=1, energy=100):\n        self.name = name\n        self.level = level\n        self.energy = energy\n\n    def introduce(self):\n        print(f\"I am {self.name}, Level {self.level}.\")\n\n    def upgrade(self):\n        self.level += 1\n        print(f\"{self.name} gets an upgrade: Level {self.level}\")\n\n    def work(self, kosten):\n        self.energy -= kosten\n        if self.energy < 0:\n            self.energy = 0\n\n    def recharge(self, menge):\n        self.energy += menge\n        if self.energy > 100:\n            self.energy = 100\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{\"name\": \"Nova\", \"level\": 4}\nNova",
+          "codeContains": [
+            "json.dumps",
+            "json.loads"
+          ]
+        }
+      }
+    ]
+  }
+]

@@ -1,4 +1,2 @@
-# Problem: code after for was not indented
-for i in range(3):
-    print(f"Log {i}")
-print("End")
+for sector in range(3, 7):
+    print(f"Sector {sector}: scanned")

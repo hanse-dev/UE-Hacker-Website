@@ -1,3 +1,3 @@
-"""### Mission 2: Die Reitstunde – Aufgabe 2
+"""### Mission 3: Das Turnier – Aufgabe 2
 
-Schritt 2 – Gesamtzeit: Addiere alle drei Reitzeiten in der Variable gesamtzeit und gib genau aus: Gesamtzeit: 135 Minuten"""
+Schritt 2 – Sieger bestimmen: Vergleiche die Gesamtpunkte mit > und gib genau aus: Luna hat mehr Punkte: True"""

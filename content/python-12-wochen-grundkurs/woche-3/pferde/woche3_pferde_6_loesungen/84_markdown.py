@@ -1,3 +1,3 @@
-"""### Das große Turnier – Aufgabe 3
+"""### Das große Turnier – Aufgabe 5
 
-Schritt 3 – Zufallsereignisse: Prüfe jedes Ereignis mit einem eigenen if. Umgeworfen → Ereignis: Hindernis umgeworfen!, scheut → Ereignis: Das Pferd scheut!, verrutscht → Ereignis: Sattel verrutscht! Hier soll genau erscheinen: Ereignis: Das Pferd scheut!"""
+Schritt 5 – Sonderaktion (verschachtelt): Ist schwierigkeit >= 4, prüfe innen erfolgreiche_phasen < 3 und gib dann genau aus: Zusatztraining erforderlich!"""

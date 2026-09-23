@@ -1,1 +1,0 @@
-"""**Erklärung:** `json.load()` erwartet ein Datei-Objekt, kein String. Für einen String gibt es `json.loads()` (mit s am Ende, für \"string\"). Hier haben wir einen JSON-String, also muss `loads()` verwendet werden."""

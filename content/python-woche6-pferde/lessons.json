@@ -256,7 +256,10 @@
         "codeTemplate": "werte = [12, 8, 15, 5]\nsumme = 0\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Summe: 40"
+          "expected": "Summe: 40",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -264,7 +267,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "['Sturmwind', 'Blitz', 'Luna', 'Nova']"
+          "expected": "['Sturmwind', 'Blitz', 'Luna', 'Nova']",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -439,7 +445,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "1: Sturmwind\n2: Blitz\n3: Luna"
+          "expected": "1: Sturmwind\n2: Blitz\n3: Luna",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -464,7 +473,10 @@
         "codeTemplate": "gilde = [[\"Anna\", \"Springen\", 15], [\"Ben\", \"Dressur\", 12], [\"Clara\", \"Voltigieren\", 8]]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Mitglieder: 4\nGesamtlevel: 45"
+          "expected": "Mitglieder: 4\nGesamtlevel: 45",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -472,7 +484,10 @@
         "codeTemplate": "gilde = [[\"Anna\", \"Springen\", 15], [\"Ben\", \"Dressur\", 12], [\"Clara\", \"Voltigieren\", 8]]\ngilde.append([\"David\", \"Western\", 10])\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Stärkster: Anna"
+          "expected": "Stärkster: Anna",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]
@@ -489,7 +504,11 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Anzahl: 10\nHafer-10"
+          "expected": "Anzahl: 10\nHafer-10",
+          "codeContains": [
+            "def",
+            "for"
+          ]
         }
       },
       {
@@ -497,7 +516,11 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Durchschnitt: 25.0"
+          "expected": "Durchschnitt: 25.0",
+          "codeContains": [
+            "def",
+            "for"
+          ]
         }
       },
       {
@@ -522,7 +545,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "[['leer', 'leer'], ['leer', 'leer'], ['leer', 'leer']]"
+          "expected": "[['leer', 'leer'], ['leer', 'leer'], ['leer', 'leer']]",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -555,7 +581,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "['Springturnier', 'Halle', 4]"
+          "expected": "['Springturnier', 'Halle', 4]",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -571,7 +600,10 @@
         "codeTemplate": "turniere = [[\"Springturnier\", \"Halle\", 4], [\"Dressurturnier\", \"Platz\", 2], [\"Ausritt\", \"Wald\", 3]]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Turniere: 3\nSchwere Turniere: 2"
+          "expected": "Turniere: 3\nSchwere Turniere: 2",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]
@@ -588,7 +620,10 @@
         "codeTemplate": "namen = [\"Hafer\", \"Heu\", \"Kraftfutter\", \"Müsli\", \"Karotten\", \"Äpfel\", \"Stroh\", \"Mash\"]\nwerte = [120, 45, 300, 80, 210, 15, 95, 95]\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Hafer: 120 Portionen\nHeu: 45 Portionen\nKraftfutter: 300 Portionen\nMüsli: 80 Portionen\nKarotten: 210 Portionen\nÄpfel: 15 Portionen\nStroh: 95 Portionen\nMash: 95 Portionen"
+          "expected": "Hafer: 120 Portionen\nHeu: 45 Portionen\nKraftfutter: 300 Portionen\nMüsli: 80 Portionen\nKarotten: 210 Portionen\nÄpfel: 15 Portionen\nStroh: 95 Portionen\nMash: 95 Portionen",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -596,7 +631,10 @@
         "codeTemplate": "namen = [\"Hafer\", \"Heu\", \"Kraftfutter\", \"Müsli\", \"Karotten\", \"Äpfel\", \"Stroh\", \"Mash\"]\nwerte = [120, 45, 300, 80, 210, 15, 95, 95]\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Gesamt: 960\nDurchschnitt: 120.0\nHöchster: Kraftfutter (300)\nUnter dem Durchschnitt: 5"
+          "expected": "Gesamt: 960\nDurchschnitt: 120.0\nHöchster: Kraftfutter (300)\nUnter dem Durchschnitt: 5",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -612,7 +650,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Anzahl: 20\n[2, 4, 6, 8, 10, 12, 14, 16, 18, 20]\n[20, 19, 18, 17, 16]"
+          "expected": "Anzahl: 20\n[2, 4, 6, 8, 10, 12, 14, 16, 18, 20]\n[20, 19, 18, 17, 16]",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -620,7 +661,10 @@
         "codeTemplate": "ereignisse = [\"Regen\", \"Sonne\", \"Wind\", \"Nebel\"]\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "- Nebel\n- Regen\n- Sonne\n- Wind"
+          "expected": "- Nebel\n- Regen\n- Sonne\n- Wind",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]

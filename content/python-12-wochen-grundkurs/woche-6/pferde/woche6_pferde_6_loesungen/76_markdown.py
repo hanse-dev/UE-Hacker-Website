@@ -1,0 +1,3 @@
+"""### Extra-Herausforderung 1: Der Futter-Katalog – Aufgabe 3
+
+Schritt 3 – Filtern: Die Liste eintraege = [\"Hafer-1\", \"Heu-2\", \"Hafer-3\", \"Müsli-4\"] ist vorgegeben. Schreibe filtere_eintraege(liste, suchbegriff), die eine neue Liste mit allen Einträgen zurückgibt, die den Suchbegriff enthalten (suchbegriff in eintrag). Gib das Ergebnis für \"Hafer\" aus (['Hafer-1', 'Hafer-3']) und in der nächsten Zeile Treffer: 2."""

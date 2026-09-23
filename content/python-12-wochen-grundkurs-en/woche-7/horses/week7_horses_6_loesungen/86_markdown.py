@@ -1,0 +1,3 @@
+"""### Extra Challenge 4: The Great Chance Test – Task 7
+
+Step 7 – Piece across the field: Build an 8×8 field as a list of lists (two nested loops with append(), every square 0). The piece starts at piece = [0, 0], the goal is goal = [7, 7]. Repeat with while True: If piece equals goal, end with break. Otherwise the piece moves right (piece[1] += 1) as long as piece[1] is less than 7, and then down (piece[0] += 1). Count the moves. Print exactly Moves: 14 and on the next line Goal reached: True."""

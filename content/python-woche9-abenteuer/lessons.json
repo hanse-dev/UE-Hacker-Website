@@ -1,0 +1,647 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Archiv-Zauber 1: Dateien schreiben und lesen",
+    "file": "lektion-01.md",
+    "lessonSummary": "Stark! Du schreibst Text in eine Datei und liest ihn wieder ein.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: eine Datei schreiben und wieder lesen.",
+        "example": true,
+        "codeTemplate": "with open(\"quest_log.txt\", \"w\") as f:\n    f.write(\"Pyralia Quest-Log\\n\")\n    f.write(\"Status: Aktiv\\n\")\nwith open(\"quest_log.txt\", \"r\") as f:\n    inhalt = f.read()\nprint(inhalt)\nprint(\"Zeichen:\", len(inhalt))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeichen: 32"
+        }
+      },
+      {
+        "instruction": "Schreibe die Zeile Pyralia Quest-Log (mit \\n am Ende) in die Datei quest_log.txt. Lies die Datei danach mit read() und gib genau Inhalt: Pyralia Quest-Log aus (mit strip(), damit der Zeilenumbruch verschwindet).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Inhalt: Pyralia Quest-Log"
+        }
+      },
+      {
+        "instruction": "Die Datei quest_log.txt mit drei Zeilen wird vorgegeben angelegt. Lies sie mit read() in inhalt und gib genau Zeilen: 3 aus (Anzahl der Zeilenumbrüche mit inhalt.count(\"\\n\")).",
+        "codeTemplate": "with open(\"quest_log.txt\", \"w\") as f:\n    f.write(\"Pyralia Quest-Log\\n\")\n    f.write(\"Status: Aktiv\\n\")\n    f.write(\"Monster besiegt\\n\")\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeilen: 3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Archiv-Zauber 2: Zeilenweise lesen und anhängen",
+    "file": "lektion-02.md",
+    "lessonSummary": "Prima! Du liest zeilenweise, hängst mit \"a\" an und zerlegst Zeilen mit split().",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: schreiben, anhängen, zeilenweise lesen.",
+        "example": true,
+        "codeTemplate": "with open(\"quest_log.txt\", \"w\") as f:\n    f.write(\"Pyralia Quest-Log\\n\")\n    f.write(\"Status: Aktiv\\n\")\nwith open(\"quest_log.txt\", \"a\") as f:\n    f.write(\"Monster besiegt\\n\")\nanzahl = 0\nwith open(\"quest_log.txt\", \"r\") as f:\n    for zeile in f:\n        print(zeile.strip())\n        anzahl += 1\nprint(\"Zeilen:\", anzahl)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeilen: 3"
+        }
+      },
+      {
+        "instruction": "Die Datei quest_log.txt mit zwei Zeilen wird vorgegeben angelegt. Hänge mit \"a\" die Zeile Monster besiegt an und gib danach die Datei zeilenweise aus (for zeile in f, mit strip()), jede Zeile einzeln.",
+        "codeTemplate": "with open(\"quest_log.txt\", \"w\") as f:\n    f.write(\"Pyralia Quest-Log\\n\")\n    f.write(\"Status: Aktiv\\n\")\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Pyralia Quest-Log\nStatus: Aktiv\nMonster besiegt"
+        }
+      },
+      {
+        "instruction": "Die Datei liste.txt mit Zeilen wie Aria,15 wird vorgegeben angelegt. Lies sie zeilenweise, zerlege jede Zeile mit split(\",\") und gib jeden Eintrag als Name: Zahl aus, z. B. Aria: 15.",
+        "codeTemplate": "with open(\"liste.txt\", \"w\") as f:\n    f.write(\"Aria,15\\n\")\n    f.write(\"Thorin,18\\n\")\n    f.write(\"Luna,12\\n\")\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Aria: 15\nThorin: 18\nLuna: 12"
+        }
+      },
+      {
+        "instruction": "Die Datei quest_log.txt mit drei Zeilen wird vorgegeben angelegt. Lies alle Zeilen mit readlines() in zeilen und gib genau Zeilen: 3 und in der nächsten Zeile Erste: Pyralia Quest-Log aus (mit strip()).",
+        "codeTemplate": "with open(\"quest_log.txt\", \"w\") as f:\n    f.write(\"Pyralia Quest-Log\\n\")\n    f.write(\"Status: Aktiv\\n\")\n    f.write(\"Monster besiegt\\n\")\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeilen: 3\nErste: Pyralia Quest-Log"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Archiv-Zauber 3: Wenn die Datei fehlt",
+    "file": "lektion-03.md",
+    "lessonSummary": "Klasse! Du fängst FileNotFoundError ab und prüfst mit os, ob es eine Datei gibt.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: fehlende Datei, exists und remove.",
+        "example": true,
+        "codeTemplate": "import os\ntry:\n    with open(\"fehlt.txt\", \"r\") as f:\n        print(f.read())\nexcept FileNotFoundError:\n    print(\"Fehler: Datei fehlt\")\nwith open(\"quest_log.txt\", \"w\") as f:\n    f.write(\"Pyralia Quest-Log\\n\")\nprint(\"Vorhanden:\", os.path.exists(\"quest_log.txt\"))\nos.remove(\"quest_log.txt\")\nprint(\"Danach:\", os.path.exists(\"quest_log.txt\"))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Danach: False"
+        }
+      },
+      {
+        "instruction": "Versuche die Datei fehlt.txt (die es nicht gibt) in einem try-Block zu lesen, fange den FileNotFoundError ab und gib genau Keine Datei: fehlt.txt aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Keine Datei: fehlt.txt",
+          "codeContains": [
+            "try",
+            "except"
+          ]
+        }
+      },
+      {
+        "instruction": "Importiere os. Schreibe die Zeile Pyralia Quest-Log in die Datei quest_log.txt, gib genau Vorhanden: True aus (os.path.exists), lösche die Datei mit os.remove() und gib in der nächsten Zeile Vorhanden: False aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Vorhanden: True\nVorhanden: False"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion lese_oder_leer(name), die den Inhalt der Datei zurückgibt – oder \"\" (leerer Text), wenn es sie nicht gibt (try/except FileNotFoundError). Gib genau Leer: True für fehlt.txt aus. Schreibe danach Pyralia Quest-Log in quest_log.txt und gib Inhalt: Pyralia Quest-Log aus (strip()).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Leer: True\nInhalt: Pyralia Quest-Log",
+          "codeContains": [
+            "def",
+            "try",
+            "except"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Archiv-Zauber 4: JSON-Text: dumps und loads",
+    "file": "lektion-04.md",
+    "lessonSummary": "Stark! Du verwandelst Dictionaries in JSON-Text und wieder zurück.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: dumps und loads.",
+        "example": true,
+        "codeTemplate": "import json\nheld = {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120}\ntext = json.dumps(held)\nprint(text)\nzurueck = json.loads(text)\nprint(\"Zurück:\", zurueck[\"name\"])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zurück: Aria"
+        }
+      },
+      {
+        "instruction": "Das Dictionary held ist vorgegeben. Wandle es mit json.dumps() in einen Text und gib den Text genau so aus: {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120}",
+        "codeTemplate": "import json\nheld = {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120}",
+          "codeContains": [
+            "json.dumps"
+          ]
+        }
+      },
+      {
+        "instruction": "Der JSON-Text text ist vorgegeben. Wandle ihn mit json.loads() in ein Dictionary daten zurück und gib genau Name: Aria und in der nächsten Zeile Level plus 1: 16 aus (der Wert ist eine echte Zahl).",
+        "codeTemplate": "import json\ntext = '{\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120}'\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Aria\nLevel plus 1: 16",
+          "codeContains": [
+            "json.loads"
+          ]
+        }
+      },
+      {
+        "instruction": "Packe {\"pos\": (3, 4)} mit json.dumps() in Text und lies ihn mit json.loads() zurück (in zurueck). Gib genau Liste: True (zurueck[\"pos\"] == [3, 4]) und in der nächsten Zeile Tupel: False (zurueck[\"pos\"] == (3, 4)) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Liste: True\nTupel: False",
+          "codeContains": [
+            "json.dumps",
+            "json.loads"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Archiv-Zauber 5: JSON-Dateien: dump und load",
+    "file": "lektion-05.md",
+    "lessonSummary": "Prima! Du speicherst Dictionaries und Listen dauerhaft in JSON-Dateien.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: speichern und laden.",
+        "example": true,
+        "codeTemplate": "import json\nheld = {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120}\nwith open(\"held.json\", \"w\") as f:\n    json.dump(held, f, indent=2)\nwith open(\"held.json\", \"r\") as f:\n    geladen = json.load(f)\nprint(\"Geladen:\", geladen[\"name\"])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Geladen: Aria"
+        }
+      },
+      {
+        "instruction": "Das Dictionary held ist vorgegeben. Speichere es mit json.dump() in held.json, lade es mit json.load() in geladen und gib genau Geladen: Aria und in der nächsten Zeile Gleich: True aus (geladen == held).",
+        "codeTemplate": "import json\nheld = {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Geladen: Aria\nGleich: True",
+          "codeContains": [
+            "json.dump",
+            "json.load"
+          ]
+        }
+      },
+      {
+        "instruction": "Die Datei held.json mit dem Dictionary held wird vorgegeben angelegt. Lade sie, erhöhe level um 1, speichere sie wieder in dieselbe Datei, lade sie erneut und gib genau Level: 16 aus.",
+        "codeTemplate": "import json\nheld = {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120}\nwith open(\"held.json\", \"w\") as f:\n    json.dump(held, f)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 16"
+        }
+      },
+      {
+        "instruction": "Die Liste helden mit drei Dictionaries ist vorgegeben. Speichere sie in held.json, lade sie in geladen und gib genau Anzahl: 3 und in der nächsten Zeile Letzter: Luna aus.",
+        "codeTemplate": "import json\nhelden = [\n    {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120},\n    {\"name\": \"Thorin\", \"klasse\": \"Krieger\", \"level\": 18, \"leben\": 150},\n    {\"name\": \"Luna\", \"klasse\": \"Schurkin\", \"level\": 12, \"leben\": 90},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 3\nLetzter: Luna"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Archiv-Zauber 6: CSV-Tabellen: writer und reader",
+    "file": "lektion-06.md",
+    "lessonSummary": "Meisterhaft! Du schreibst und liest Tabellen im CSV-Format.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: CSV schreiben, lesen und rechnen.",
+        "example": true,
+        "codeTemplate": "import csv\nwith open(\"helden.csv\", \"w\", newline=\"\") as f:\n    w = csv.writer(f)\n    w.writerow([\"name\", \"level\"])\n    w.writerow([\"Aria\", 15])\n    w.writerow([\"Thorin\", 18])\n    w.writerow([\"Luna\", 12])\nsumme = 0\nwith open(\"helden.csv\", \"r\") as f:\n    r = csv.reader(f)\n    next(r)\n    for zeile in r:\n        summe += int(zeile[1])\nprint(\"Summe:\", summe)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Summe: 45"
+        }
+      },
+      {
+        "instruction": "Schreibe mit csv.writer die Datei helden.csv: Kopfzeile name,level und drei Zeilen (Aria, 15), (Thorin, 18), (Luna, 12). Lies sie mit csv.reader, überspringe die Kopfzeile mit next() und gib genau Zeilen: 3 aus (Anzahl der Datenzeilen).",
+        "codeTemplate": "import csv\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeilen: 3",
+          "codeContains": [
+            "csv.writer",
+            "csv.reader"
+          ]
+        }
+      },
+      {
+        "instruction": "Die Datei helden.csv wird vorgegeben angelegt (Kopfzeile + drei Zeilen). Lies sie, überspringe die Kopfzeile und addiere alle Werte der zweiten Spalte mit int(). Gib genau Summe: 45 aus.",
+        "codeTemplate": "import csv\nwith open(\"helden.csv\", \"w\", newline=\"\") as f:\n    w = csv.writer(f)\n    w.writerow([\"name\", \"level\"])\n    w.writerow([\"Aria\", 15])\n    w.writerow([\"Thorin\", 18])\n    w.writerow([\"Luna\", 12])\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Summe: 45"
+        }
+      },
+      {
+        "instruction": "Die Datei helden.csv wird vorgegeben angelegt. Lies die erste Datenzeile mit next() (nach der Kopfzeile) in erste. Gib genau Text: 1515 (erste[1] + erste[1] verkettet Texte) und in der nächsten Zeile Zahl: 30 (int(erste[1]) * 2) aus.",
+        "codeTemplate": "import csv\nwith open(\"helden.csv\", \"w\", newline=\"\") as f:\n    w = csv.writer(f)\n    w.writerow([\"name\", \"level\"])\n    w.writerow([\"Aria\", 15])\n    w.writerow([\"Thorin\", 18])\n    w.writerow([\"Luna\", 12])\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Text: 1515\nZahl: 30"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Archiv-Zauber 7: CSV mit DictReader und Formate wechseln",
+    "file": "lektion-07.md",
+    "lessonSummary": "Weltklasse! Du liest Tabellen als Dictionaries und wandelst zwischen JSON und CSV um.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: DictWriter und DictReader.",
+        "example": true,
+        "codeTemplate": "import csv\nhelden = [\n    {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120},\n    {\"name\": \"Thorin\", \"klasse\": \"Krieger\", \"level\": 18, \"leben\": 150},\n    {\"name\": \"Luna\", \"klasse\": \"Schurkin\", \"level\": 12, \"leben\": 90},\n]\nwith open(\"helden.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"klasse\", \"level\", \"leben\"])\n    w.writeheader()\n    w.writerows(helden)\nwith open(\"helden.csv\", \"r\") as f:\n    zeilen = list(csv.DictReader(f))\nprint(\"Zeilen:\", len(zeilen))\nprint(\"Erster:\", zeilen[0][\"name\"])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Erster: Aria"
+        }
+      },
+      {
+        "instruction": "Die Liste helden ist vorgegeben. Schreibe sie mit csv.DictWriter (fieldnames name, klasse, level, leben, writeheader, writerows) in helden.csv, lies sie mit csv.DictReader in eine Liste zeilen und gib genau Zeilen: 3 und in der nächsten Zeile Erster: Aria aus.",
+        "codeTemplate": "import csv\nhelden = [\n    {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120},\n    {\"name\": \"Thorin\", \"klasse\": \"Krieger\", \"level\": 18, \"leben\": 150},\n    {\"name\": \"Luna\", \"klasse\": \"Schurkin\", \"level\": 12, \"leben\": 90},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeilen: 3\nErster: Aria",
+          "codeContains": [
+            "csv.DictWriter",
+            "csv.DictReader"
+          ]
+        }
+      },
+      {
+        "instruction": "Die CSV-Datei helden.csv wird vorgegeben angelegt. Lies sie mit csv.DictReader, wandle level jeder Zeile mit int() um und sammle die Zeilen in eintraege. Speichere eintraege mit json.dump() in held.json, lade sie wieder und gib genau Anzahl: 3 und in der nächsten Zeile Summe: 45 aus (Summe der level-Werte).",
+        "codeTemplate": "import csv\nhelden = [\n    {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120},\n    {\"name\": \"Thorin\", \"klasse\": \"Krieger\", \"level\": 18, \"leben\": 150},\n    {\"name\": \"Luna\", \"klasse\": \"Schurkin\", \"level\": 12, \"leben\": 90},\n]\nwith open(\"helden.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"klasse\", \"level\", \"leben\"])\n    w.writeheader()\n    w.writerows(helden)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 3\nSumme: 45",
+          "codeContains": [
+            "csv.DictReader",
+            "json.dump"
+          ]
+        }
+      },
+      {
+        "instruction": "Die JSON-Datei held.json mit einer Liste von Dictionaries wird vorgegeben angelegt. Lade sie und schreibe sie mit csv.DictWriter in helden.csv (fieldnames name, klasse, level, leben). Lies die CSV mit csv.DictReader zurück und gib genau Zeilen: 3 und in der nächsten Zeile Felder: ['name', 'klasse', 'level', 'leben'] aus (leser.fieldnames).",
+        "codeTemplate": "import json\nhelden = [\n    {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120},\n    {\"name\": \"Thorin\", \"klasse\": \"Krieger\", \"level\": 18, \"leben\": 150},\n    {\"name\": \"Luna\", \"klasse\": \"Schurkin\", \"level\": 12, \"leben\": 90},\n]\nwith open(\"held.json\", \"w\") as f:\n    json.dump(helden, f)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeilen: 3\nFelder: ['name', 'klasse', 'level', 'leben']",
+          "codeContains": [
+            "csv.DictWriter",
+            "csv.DictReader"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug-Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Bei Dateien zählen der richtige Modus, dumps/loads und der Unterschied zwischen Text und Zahl.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Hallo aus der Datei lesen und ausgeben. Was ist falsch?",
+        "codeTemplate": "with open(\"test.txt\", \"w\") as f:\n    f.write(\"Hallo\")\n    inhalt = f.read()\nprint(inhalt)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hallo"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Name: Test ausgeben. Was ist falsch?",
+        "codeTemplate": "import json\ndaten = {\"name\": \"Test\"}\ntext = json.dumps(daten)\nergebnis = json.load(text)\nprint(\"Name:\", ergebnis[\"name\"])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Test"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Level plus 1: 16 ausgeben. Was ist falsch?",
+        "codeTemplate": "import csv\nwith open(\"test.csv\", \"w\", newline=\"\") as f:\n    csv.writer(f).writerows([[\"name\", \"level\"], [\"Aria\", 15]])\nwith open(\"test.csv\", \"r\") as f:\n    zeilen = list(csv.reader(f))\nprint(\"Level plus 1:\", zeilen[1][1] + 1)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level plus 1: 16"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: Die erste Schriftrolle",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission geschafft: Du hast eine Textdatei geschrieben, angehängt und sicher gelesen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Schreiben und lesen: Schreibe die drei Zeilen Pyralia Quest-Log, Status: Aktiv und Monster besiegt in die Datei quest_log.txt und lies sie mit read() wieder ein. Gib genau Zeilen: 3 (Anzahl der \\n) und in der nächsten Zeile Erste: Pyralia Quest-Log aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeilen: 3\nErste: Pyralia Quest-Log"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Anhängen: Die Datei quest_log.txt mit drei Zeilen wird vorgegeben angelegt. Hänge Update: Schatz gefunden an, lies alle Zeilen mit readlines() und gib genau Zeilen: 4 und in der nächsten Zeile Letzte: Update: Schatz gefunden aus (mit strip()).",
+        "codeTemplate": "with open(\"quest_log.txt\", \"w\") as f:\n    f.write(\"Pyralia Quest-Log\\n\")\n    f.write(\"Status: Aktiv\\n\")\n    f.write(\"Monster besiegt\\n\")\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeilen: 4\nLetzte: Update: Schatz gefunden"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Sicher zählen: Die Datei quest_log.txt wird vorgegeben angelegt. Schreibe eine Funktion zeilen_zaehlen(name), die die Zahl der Zeilen zurückgibt – oder 0, wenn die Datei fehlt (try/except FileNotFoundError). Gib genau quest_log.txt: 3 und in der nächsten Zeile fehlt.txt: 0 aus.",
+        "codeTemplate": "with open(\"quest_log.txt\", \"w\") as f:\n    f.write(\"Pyralia Quest-Log\\n\")\n    f.write(\"Status: Aktiv\\n\")\n    f.write(\"Monster besiegt\\n\")\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "quest_log.txt: 3\nfehlt.txt: 0",
+          "codeContains": [
+            "def",
+            "try",
+            "except"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: Das JSON-Archiv",
+    "file": "mission-02.md",
+    "lessonSummary": "Mission geschafft: Steckbriefe überleben jetzt jeden Neustart!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Speichern und laden: Das Dictionary held ist vorgegeben. Speichere es mit json.dump() in held.json, lade es in geladen und gib genau Name: Aria und in der nächsten Zeile Level: 15 aus.",
+        "codeTemplate": "import json\nheld = {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Aria\nLevel: 15",
+          "codeContains": [
+            "json.dump"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Ändern und speichern: Die Datei held.json mit dem Dictionary held wird vorgegeben angelegt. Lade sie, ergänze mana mit dem Wert 80, speichere sie wieder, lade sie erneut und gib genau Mana: 80 und in der nächsten Zeile Eigenschaften: 5 aus.",
+        "codeTemplate": "import json\nheld = {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120}\nwith open(\"held.json\", \"w\") as f:\n    json.dump(held, f)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mana: 80\nEigenschaften: 5"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Liste speichern und auswerten: Die Datei held.json mit drei Dictionaries wird vorgegeben angelegt. Lade die Liste und finde mit einer Schleife den Eintrag mit dem höchsten level. Gib genau Bester: Thorin aus.",
+        "codeTemplate": "import json\nhelden = [\n    {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120},\n    {\"name\": \"Thorin\", \"klasse\": \"Krieger\", \"level\": 18, \"leben\": 150},\n    {\"name\": \"Luna\", \"klasse\": \"Schurkin\", \"level\": 12, \"leben\": 90},\n]\nwith open(\"held.json\", \"w\") as f:\n    json.dump(helden, f)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bester: Thorin"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: Die Helden-Tabelle",
+    "file": "mission-03.md",
+    "lessonSummary": "Mission geschafft: Tabellen schreiben, lesen und auswerten – das war Datenverarbeitung!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Tabelle schreiben: Die Liste helden mit vier Dictionaries ist vorgegeben. Schreibe sie mit csv.DictWriter (fieldnames name, klasse, level, leben) in helden.csv und lies sie mit csv.DictReader zurück. Gib genau Zeilen: 4 aus.",
+        "codeTemplate": "import csv\nhelden = [\n    {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120},\n    {\"name\": \"Thorin\", \"klasse\": \"Krieger\", \"level\": 18, \"leben\": 150},\n    {\"name\": \"Luna\", \"klasse\": \"Schurkin\", \"level\": 12, \"leben\": 90},\n    {\"name\": \"Mira\", \"klasse\": \"Magierin\", \"level\": 13, \"leben\": 110},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zeilen: 4",
+          "codeContains": [
+            "csv.DictWriter",
+            "csv.DictReader"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Auswerten: Die Datei helden.csv mit vier Zeilen wird vorgegeben angelegt. Lies sie mit csv.DictReader, addiere die level-Werte (int!) und gib genau Summe: 58 und in der nächsten Zeile Durchschnitt: 14.5 aus.",
+        "codeTemplate": "import csv\nhelden = [\n    {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120},\n    {\"name\": \"Thorin\", \"klasse\": \"Krieger\", \"level\": 18, \"leben\": 150},\n    {\"name\": \"Luna\", \"klasse\": \"Schurkin\", \"level\": 12, \"leben\": 90},\n    {\"name\": \"Mira\", \"klasse\": \"Magierin\", \"level\": 13, \"leben\": 110},\n]\nwith open(\"helden.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"klasse\", \"level\", \"leben\"])\n    w.writeheader()\n    w.writerows(helden)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Summe: 58\nDurchschnitt: 14.5",
+          "codeContains": [
+            "csv.DictReader"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Filtern: Die Datei helden.csv mit vier Zeilen wird vorgegeben angelegt. Sammle die Namen aller Zeilen, deren level (als Zahl) größer als 14 ist, in der Liste starke und gib genau Starke: ['Aria', 'Thorin'] aus.",
+        "codeTemplate": "import csv\nhelden = [\n    {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120},\n    {\"name\": \"Thorin\", \"klasse\": \"Krieger\", \"level\": 18, \"leben\": 150},\n    {\"name\": \"Luna\", \"klasse\": \"Schurkin\", \"level\": 12, \"leben\": 90},\n    {\"name\": \"Mira\", \"klasse\": \"Magierin\", \"level\": 13, \"leben\": 110},\n]\nwith open(\"helden.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"klasse\", \"level\", \"leben\"])\n    w.writeheader()\n    w.writerows(helden)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Starke: ['Aria', 'Thorin']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Das Helden-Tagebuch",
+    "file": "boss-01.md",
+    "lessonSummary": "Das Tagebuch steht: schreiben, anhängen und nummeriert vorlesen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Einträge schreiben: Die Liste eintraege (Drachenhöhle betreten, Goldkrone gefunden, Troll besiegt) und datum sind vorgegeben. Schreibe jeden Eintrag als Zeile datum + \" \" + Eintrag in die Datei tagebuch.txt und lies sie mit readlines() zurück. Gib genau Einträge: 3 und in der nächsten Zeile Erste Zeile: 15.03. Drachenhöhle betreten aus.",
+        "codeTemplate": "datum = \"15.03.\"\neintraege = [\"Drachenhöhle betreten\", \"Goldkrone gefunden\", \"Troll besiegt\"]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Einträge: 3\nErste Zeile: 15.03. Drachenhöhle betreten"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Anhängen: datum ist vorgegeben, tagebuch.txt wird mit drei Zeilen angelegt. Hänge mit \"a\" den Eintrag 15.03. Rast am Lagerfeuer an und gib genau Einträge: 4 und in der nächsten Zeile Letzter: 15.03. Rast am Lagerfeuer aus.",
+        "codeTemplate": "datum = \"15.03.\"\nwith open(\"tagebuch.txt\", \"w\") as f:\n    f.write(datum + \" Drachenhöhle betreten\\n\")\n    f.write(datum + \" Goldkrone gefunden\\n\")\n    f.write(datum + \" Troll besiegt\\n\")\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Einträge: 4\nLetzter: 15.03. Rast am Lagerfeuer"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Nummeriert ausgeben: datum ist vorgegeben, tagebuch.txt wird mit drei Zeilen angelegt. Lies die Datei zeilenweise und gib jede Zeile mit Nummer aus, z. B. 1: 15.03. Drachenhöhle betreten (zähle mit einer Variable nummer).",
+        "codeTemplate": "datum = \"15.03.\"\nwith open(\"tagebuch.txt\", \"w\") as f:\n    f.write(datum + \" Drachenhöhle betreten\\n\")\n    f.write(datum + \" Goldkrone gefunden\\n\")\n    f.write(datum + \" Troll besiegt\\n\")\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1: 15.03. Drachenhöhle betreten\n2: 15.03. Goldkrone gefunden\n3: 15.03. Troll besiegt"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Die Schatzkarte",
+    "file": "boss-02.md",
+    "lessonSummary": "Die Karte ist gepflegt: speichern, laden, erweitern und den wertvollsten Ort finden!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Speichern und laden: Das Dictionary karte (Ort → Dictionary mit koordinaten als Tupel und wert) ist vorgegeben. Speichere es mit json.dump() in karte.json, lade es in geladen und gib genau Orte: 3 und in der nächsten Zeile Koordinaten: [10, 20] aus (geladen[\"Goldkrone\"][\"koordinaten\"] – das Tupel ist jetzt eine Liste).",
+        "codeTemplate": "import json\nkarte = {\n    \"Goldkrone\": {\"koordinaten\": (10, 20), \"wert\": 800},\n    \"Silberkelch\": {\"koordinaten\": (30, 40), \"wert\": 300},\n    \"Rubin\": {\"koordinaten\": (50, 60), \"wert\": 650},\n}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Orte: 3\nKoordinaten: [10, 20]",
+          "codeContains": [
+            "json.dump"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Ort hinzufügen: Die Datei karte.json mit drei Orten wird vorgegeben angelegt. Lade sie, ergänze den Ort Smaragd mit koordinaten [70, 80] und wert 400, speichere sie wieder, lade sie erneut und gib genau Orte: 4 aus.",
+        "codeTemplate": "import json\nkarte = {\n    \"Goldkrone\": {\"koordinaten\": (10, 20), \"wert\": 800},\n    \"Silberkelch\": {\"koordinaten\": (30, 40), \"wert\": 300},\n    \"Rubin\": {\"koordinaten\": (50, 60), \"wert\": 650},\n}\nwith open(\"karte.json\", \"w\") as f:\n    json.dump(karte, f)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Orte: 4"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Wertvollster Ort: Die Datei karte.json mit vier Orten wird vorgegeben angelegt. Lade sie und finde den Ort mit dem höchsten wert. Gib genau Wertvollster: Goldkrone (800) aus.",
+        "codeTemplate": "import json\nkarte = {\n    \"Goldkrone\": {\"koordinaten\": (10, 20), \"wert\": 800},\n    \"Silberkelch\": {\"koordinaten\": (30, 40), \"wert\": 300},\n    \"Rubin\": {\"koordinaten\": (50, 60), \"wert\": 650},\n}\nkarte[\"Smaragd\"] = {\"koordinaten\": [70, 80], \"wert\": 400}\nwith open(\"karte.json\", \"w\") as f:\n    json.dump(karte, f)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wertvollster: Goldkrone (800)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Das Questlog",
+    "file": "boss-03.md",
+    "lessonSummary": "Das Questlog steht: speichern, abschließen, zählen und einen Bericht schreiben!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Quests speichern: Die Liste quests mit drei Quest-Dictionaries ist vorgegeben. Speichere sie in questlog.json, lade sie in geladen und gib genau Quest-Anzahl: 3 und in der nächsten Zeile Status: offen aus (Status der ersten).",
+        "codeTemplate": "import json\nquests = [\n    {\"name\": \"Drache besiegen\", \"schwierigkeit\": 1, \"status\": \"offen\"},\n    {\"name\": \"Schatz finden\", \"schwierigkeit\": 2, \"status\": \"offen\"},\n    {\"name\": \"Dorf retten\", \"schwierigkeit\": 3, \"status\": \"offen\"},\n]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Quest-Anzahl: 3\nStatus: offen"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Abschließen: Die Datei questlog.json mit drei Einträgen wird vorgegeben angelegt. Lade sie, setze den Status des ersten Eintrags auf \"abgeschlossen\", speichere sie wieder, lade sie erneut und gib genau Erste: abgeschlossen aus.",
+        "codeTemplate": "import json\nquests = [\n    {\"name\": \"Drache besiegen\", \"schwierigkeit\": 1, \"status\": \"offen\"},\n    {\"name\": \"Schatz finden\", \"schwierigkeit\": 2, \"status\": \"offen\"},\n    {\"name\": \"Dorf retten\", \"schwierigkeit\": 3, \"status\": \"offen\"},\n]\nwith open(\"questlog.json\", \"w\") as f:\n    json.dump(quests, f)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Erste: abgeschlossen"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Bericht: Die Datei questlog.json wird vorgegeben angelegt (erster Eintrag \"abgeschlossen\"). Lade sie, zähle die Einträge mit Status \"abgeschlossen\" in fertig und schreibe die Zeile Abgeschlossen: 1 (mit fertig) in die Datei bericht.txt. Lies bericht.txt wieder ein und gib genau Bericht: Abgeschlossen: 1 aus (mit strip()).",
+        "codeTemplate": "import json\nquests = [\n    {\"name\": \"Drache besiegen\", \"schwierigkeit\": 1, \"status\": \"offen\"},\n    {\"name\": \"Schatz finden\", \"schwierigkeit\": 2, \"status\": \"offen\"},\n    {\"name\": \"Dorf retten\", \"schwierigkeit\": 3, \"status\": \"offen\"},\n]\nquests[0][\"status\"] = \"abgeschlossen\"\nwith open(\"questlog.json\", \"w\") as f:\n    json.dump(quests, f)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Bericht: Abgeschlossen: 1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-04",
+    "section": "boss",
+    "title": "Extra-Herausforderung 4: Die große Schreibstube",
+    "file": "boss-04.md",
+    "lessonSummary": "Die große Wiederholung ist geschafft: Funktionen, Listen, Zufall und Dictionaries – jetzt mit Dateien!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Funktionen (Woche 5): Das Dictionary held ist vorgegeben. Schreibe speichere(daten, name) (json.dump in Datei name) und lade(name) (json.load, gibt das Dictionary zurück). Speichere held in held.json, lade es zurück und gib genau Gleich: True aus.",
+        "codeTemplate": "import json\nheld = {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gleich: True",
+          "codeContains": [
+            "json.dump",
+            "json.load"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Fehler abfangen (Woche 8): Das Dictionary held ist vorgegeben. Schreibe lade_sicher(name), die {} zurückgibt, wenn die Datei fehlt (try/except FileNotFoundError). Gib genau Leer: True für gibt_es_nicht.json aus. Speichere held in held.json und gib danach Name: Aria aus (lade_sicher).",
+        "codeTemplate": "import json\nheld = {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120}\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Leer: True\nName: Aria",
+          "codeContains": [
+            "try",
+            "except"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Listen filtern (Woche 6): Die CSV-Datei helden.csv wird vorgegeben angelegt. Sammle die Namen aller Zeilen mit level größer als 14 in der Liste starke, speichere starke mit json.dump() in held.json, lade sie zurück und gib genau Starke: ['Aria', 'Thorin'] aus.",
+        "codeTemplate": "import csv\nhelden = [\n    {\"name\": \"Aria\", \"klasse\": \"Magierin\", \"level\": 15, \"leben\": 120},\n    {\"name\": \"Thorin\", \"klasse\": \"Krieger\", \"level\": 18, \"leben\": 150},\n    {\"name\": \"Luna\", \"klasse\": \"Schurkin\", \"level\": 12, \"leben\": 90},\n]\nwith open(\"helden.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"klasse\", \"level\", \"leben\"])\n    w.writeheader()\n    w.writerows(helden)\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Starke: ['Aria', 'Thorin']",
+          "codeContains": [
+            "json.dump"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 4 – Zufall (Woche 7): Schreibe zehn Zufallszahlen von 1 bis 100 (random.randint), je eine pro Zeile, in die Datei zahlen.txt. Lies sie zeilenweise zurück und wandle sie mit int() um (Liste zahlen). Gib genau Anzahl: 10 und in der nächsten Zeile Alle im Bereich: True aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 10\nAlle im Bereich: True"
+        }
+      },
+      {
+        "instruction": "Schritt 5 – Dictionary zählen und speichern (Woche 8): wort = \"abenteuer\" ist vorgegeben. Zähle mit zaehler[b] = zaehler.get(b, 0) + 1, wie oft jeder Buchstabe vorkommt, speichere zaehler mit json.dump() in zaehler.json, lade ihn zurück und gib genau e: 3 aus.",
+        "codeTemplate": "import json\nwort = \"abenteuer\"\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "e: 3",
+          "codeContains": [
+            "json.dump"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 6 – Aufräumen: Importiere os. Schreibe die Datei aufraeumen.txt mit dem Text Test, lösche sie mit os.remove() und gib genau Gelöscht: True aus (os.path.exists ist False).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gelöscht: True"
+        }
+      }
+    ]
+  }
+]

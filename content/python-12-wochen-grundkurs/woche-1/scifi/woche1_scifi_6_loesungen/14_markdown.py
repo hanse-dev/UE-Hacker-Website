@@ -1,3 +1,5 @@
-"""### Systemprotokoll 5: Kommentare
+"""## 🐛 Debug-Quest
 
-Schreibe einen eigenen Kommentar und danach ein print(), das genau Kommentar gelesen ausgibt."""
+### Debug-Quest – Aufgabe 1
+
+🐛 Bug #1 – Ziel: Das Programm soll den Text System online ausgeben. Was ist falsch?"""

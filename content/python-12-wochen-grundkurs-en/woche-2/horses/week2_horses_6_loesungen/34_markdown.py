@@ -1,1 +1,3 @@
-"""**Explanation:** Without an `f` in front of the quotation marks and without curly braces, Python prints `horse` and `age` as plain words. Use an f-string and write the variables in `{}`."""
+"""### Debug Quest – Task 3
+
+🐛 Bug #3 – Goal: The program should print Training takes 3 hours. What is wrong?"""

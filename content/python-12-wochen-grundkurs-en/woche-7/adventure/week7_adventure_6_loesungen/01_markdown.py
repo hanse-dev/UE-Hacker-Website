@@ -1,2 +1,2 @@
-"""# 🔧 Solutions – ⚔️ Week 7 – Modules and Libraries: The Library of Borrowed Magic
-> Already tried it yourself? Check here!"""
+"""# 🔧 Week 7 – Solutions
+> Tried it yourself first? Then check here! There are often several right ways – these are possible solutions to the tasks in the lessons."""

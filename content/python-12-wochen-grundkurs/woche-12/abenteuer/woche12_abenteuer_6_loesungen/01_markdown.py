@@ -1,2 +1,2 @@
-"""# 🔧 Lösungen – 🏰 Woche 12 – Das große Abschlussprojekt: Die Drachenhöhle von Pyralia!
-> Erst selber versucht? Dann check hier nach!"""
+"""# 🔧 Woche 12 – Lösungen
+> Erst selber versucht? Dann check hier nach! Es gibt oft mehrere richtige Wege – das hier sind mögliche Lösungen zu den Aufgaben der Lektionen."""

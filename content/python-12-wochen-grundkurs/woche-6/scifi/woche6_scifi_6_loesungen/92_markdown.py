@@ -1,0 +1,3 @@
+"""### Extra-Herausforderung 4: Das große Ersatzteillager – Aufgabe 2
+
+Schritt 2 – Auswertung: Die beiden Listen sind vorgegeben. Berechne mit for-Schleifen die Summe aller Werte, den Durchschnitt (Summe geteilt durch len), den höchsten Wert samt Namen und wie viele Werte unter dem Durchschnitt liegen. Gib genau aus: Gesamt: 960, Durchschnitt: 120.0, Höchster: Antrieb (300) und Unter dem Durchschnitt: 5 – jeweils in einer eigenen Zeile."""

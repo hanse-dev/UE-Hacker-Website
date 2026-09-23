@@ -76,12 +76,12 @@ test.describe('Storytelling-Überarbeitung: Pferde', () => {
     }
   });
 
-  test('Woche 9: eigene Rahmengeschichte statt Woche-8-Duplikat', async ({ page }) => {
-    const week8 = await openWeekVariantTab(page, 8, 'Pferde', 'Lektion');
-    const week8Text = await week8.locator('.notebook-cells').innerText();
-
-    const week9 = await openWeekVariantTab(page, 9, 'Pferde', 'Lektion');
-    const week9Text = await week9.locator('.notebook-cells').innerText();
+  test('Woche 9: eigene Rahmengeschichte statt Woche-8-Duplikat', async () => {
+    // Woche 8 und 9 sind im Lektions-Format (kein `.cell` in der Tour) - Original-Einleitung aus der Quelldatei lesen.
+    const intro = (w) => fs.readFileSync(
+      path.join(process.cwd(), `content/python-12-wochen-grundkurs/woche-${w}/pferde/woche${w}_pferde_1_lektion/01_markdown.py`), 'utf-8');
+    const week8Text = intro(8);
+    const week9Text = intro(9);
 
     expect(week9Text).toContain('Zuchtbücher von Sonnental');
     // The two weeks must not share their opening story paragraph anymore.
@@ -97,18 +97,18 @@ test.describe('Storytelling-Überarbeitung: Abenteuer', () => {
 });
 
 test.describe('Storytelling-Überarbeitung: Sci-Fi', () => {
-  test('Woche 11: Lektion-Code ist syntaktisch korrekt (def/self vorhanden)', async ({ page }) => {
-    const week = await openWeekVariantTab(page, 11, 'Sci-Fi', 'Lektion');
-
-    const text = await week.locator('.notebook-cells').innerText();
+  test('Woche 11: Lektion-Code ist syntaktisch korrekt (def/self vorhanden)', async () => {
+    // Woche 11 ist im Lektions-Format (kein `.cell` in der Tour) - Original-Lektion aus den Quelldateien lesen.
+    const dir = path.join(process.cwd(), 'content/python-12-wochen-grundkurs/woche-11/scifi/woche11_scifi_1_lektion');
+    const files = fs.readdirSync(dir).filter((f) => /^\d+_(markdown|code)\.py$/.test(f)).sort();
+    const text = files.map((f) => fs.readFileSync(path.join(dir, f), 'utf-8')).join('\n');
     expect(text).toContain('Raumstation Nebula-7');
     expect(text).not.toContain('Evolution-Station Alpha-7');
 
-    const codeCells = week.locator('.cell-code .cm-host');
-    const count = await codeCells.count();
-    expect(count).toBeGreaterThan(0);
-    for (let i = 0; i < count; i++) {
-      const code = await getCodeCellText(codeCells.nth(i));
+    const codeFiles = files.filter((f) => f.endsWith('_code.py'));
+    expect(codeFiles.length).toBeGreaterThan(0);
+    for (const f of codeFiles) {
+      const code = fs.readFileSync(path.join(dir, f), 'utf-8');
       // The original bug: every method inside a class was missing "def" and/or
       // "self" (e.g. "aktivieren():" instead of "def aktivieren(self):", or
       // "def __init__(id, name):" instead of "def __init__(self, id, name):").
@@ -128,7 +128,7 @@ test.describe('Storytelling-Überarbeitung: Sci-Fi', () => {
     }
   });
 
-  test('Woche 6/8: Boss-Quest 2 ist nicht mehr der Woche-5-Klon', async ({ page }) => {
+  test('Woche 6/8: Boss-Quest 2 ist nicht mehr der Woche-5-Klon', async () => {
     // Woche 5 ist seit dem Lektions-Format kein Notebook mehr im Kurs (kein `.cell` in der Tour) -
     // die Original-Boss-Quest liegt weiter als Nachschlagewerk-Quelle im Repo, daher aus der Datei lesen.
     const week5Text = fs.readFileSync(
@@ -145,21 +145,60 @@ test.describe('Storytelling-Überarbeitung: Sci-Fi', () => {
     expect(week6Text).toContain('Der Hangar-Verwalter');
     expect(week6Text).not.toContain('Der Raumstation-Manager');
 
-    const week8 = await openWeekVariantTab(page, 8, 'Sci-Fi', 'Boss-Quest');
-    const week8Text = await week8.locator('.notebook-cells').innerText();
+    // Woche 8 ist ebenfalls im Lektions-Format - Original-Boss-Quest aus der Quelldatei lesen.
+    const week8Text = fs.readFileSync(
+      path.join(process.cwd(), 'content/python-12-wochen-grundkurs/woche-8/scifi/woche8_scifi_5_boss/04_markdown.py'),
+      'utf-8',
+    );
     expect(week8Text).toContain('Die Sensor-Matrix');
     expect(week8Text).not.toContain('Der Raumstation-Manager');
   });
 
-  test('Woche 12: Debug-Bugs verraten die Lösung nicht im Kommentar', async ({ page }) => {
-    const week = await openWeekVariantTab(page, 12, 'Sci-Fi', 'Debug');
+  test('Woche 12: Debug-Bugs verraten die Lösung nicht im Kommentar', async () => {
+    // Woche 12 ist im Lektions-Format - Original-Debug-Notebook aus den Quelldateien, dazu die neuen Debug-Aufgaben.
+    const dir = path.join(process.cwd(), 'content/python-12-wochen-grundkurs/woche-12/scifi/woche12_scifi_2_debug');
+    const codes = fs.readdirSync(dir).filter((f) => f.endsWith('_code.py')).map((f) => fs.readFileSync(path.join(dir, f), 'utf-8'));
+    expect(codes.length).toBeGreaterThan(0);
+    for (const lang of ['', '-en']) {
+      const lessons = JSON.parse(fs.readFileSync(path.join(process.cwd(), `content/python-woche12-scifi${lang}/lessons.json`), 'utf-8'));
+      for (const t of lessons.find((l) => l.id === 'debug-01').tasks) codes.push(t.codeTemplate);
+    }
+    for (const code of codes) expect(code).not.toMatch(/#\s*Bug:/i);
+  });
 
-    const codeCells = week.locator('.cell-code .cm-host');
-    const count = await codeCells.count();
-    for (let i = 0; i < count; i++) {
-      const code = await getCodeCellText(codeCells.nth(i));
-      expect(code).not.toMatch(/#\s*Bug:/i);
+});
+
+// Glossare (0_glossar) duerfen keine Begriffe aus spaeteren Wochen erklaeren (Vorgriffe):
+// Woche 4 kennt noch keine Listen, try/except kommt erst in Woche 8.
+test.describe('Glossare: keine Vorgriffe', () => {
+  const bases = ['python-12-wochen-grundkurs', 'python-12-wochen-grundkurs-en'];
+  const glossarText = (week) => bases.flatMap((base) => {
+    const weekDir = path.join('content', base, `woche-${week}`);
+    return fs.readdirSync(weekDir, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name).flatMap((variant) => {
+      const dir = fs.readdirSync(path.join(weekDir, variant)).find((n) => n.endsWith('_0_glossar'));
+      const gdir = path.join(weekDir, variant, dir);
+      return fs.readdirSync(gdir).filter((f) => /^\d\d_.*\.py$/.test(f))
+        .map((f) => ({ id: `${base}/${variant}/${f}`, text: fs.readFileSync(path.join(gdir, f), 'utf8') }));
+    });
+  });
+
+  test('Woche 4: keine Listen (Liste/append/Index)', () => {
+    for (const { id, text } of glossarText(4)) {
+      expect(text, id).not.toMatch(/\.append\(|\*\*(Liste|List|Index)\*\*|\blist_\b|\bliste\b/);
     }
   });
 
+  for (const week of [3, 4, 5, 6, 7]) {
+    test(`Woche ${week}: kein try/except vor Woche 8`, () => {
+      for (const { id, text } of glossarText(week)) {
+        expect(text, id).not.toMatch(/\btry\b|\bexcept\b/);
+      }
+    });
+  }
+
+  test('Woche 6: Tabelle ohne kaputte Zeilen', () => {
+    for (const { id, text } of glossarText(6)) {
+      expect(text, id).not.toMatch(/\|"$/m);
+    }
+  });
 });

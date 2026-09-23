@@ -28,7 +28,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Rounded up: 4\nRounded down: 3"
+          "expected": "Rounded up: 4\nRounded down: 3",
+          "codeContains": [
+            "import"
+          ]
         }
       }
     ]
@@ -54,7 +57,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "All in range: True"
+          "expected": "All in range: True",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -130,7 +136,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Length: 10\nOnly allowed characters: True"
+          "expected": "Length: 10\nOnly allowed characters: True",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]
@@ -164,7 +173,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Hour valid: True\nYear has 4 digits: True"
+          "expected": "Hour valid: True\nYear has 4 digits: True",
+          "codeContains": [
+            "import"
+          ]
         }
       }
     ]
@@ -240,7 +252,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "17: True\n18: False"
+          "expected": "17: True\n18: False",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -397,7 +412,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Winner: Player 2"
+          "expected": "Winner: Player 2",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -471,7 +489,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Lives: 3\nLives: 2\nLives: 0"
+          "expected": "Lives: 3\nLives: 2\nLives: 0",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -488,7 +509,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Count: 10\nAll in range: True\nHighest at least average: True"
+          "expected": "Count: 10\nAll in range: True\nHighest at least average: True",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -504,7 +528,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "At most 100 steps: True\nPath fits: True"
+          "expected": "At most 100 steps: True\nPath fits: True",
+          "codeContains": [
+            "while"
+          ]
         }
       },
       {
@@ -512,7 +539,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "All valid: True"
+          "expected": "All valid: True",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -520,7 +550,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Count: 25\nLargest: 97"
+          "expected": "Count: 25\nLargest: 97",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -536,7 +569,10 @@
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Moves: 14\nGoal reached: True"
+          "expected": "Moves: 14\nGoal reached: True",
+          "codeContains": [
+            "while"
+          ]
         }
       }
     ]

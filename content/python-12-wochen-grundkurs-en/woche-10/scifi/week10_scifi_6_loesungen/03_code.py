@@ -1,6 +1,7 @@
-# Problem: Class names must start with a capital letter
-class Spaceship:
-    name = "Enterprise"
+class Robot:
+    pass
 
-ship = Spaceship()
-print(ship.name)
+robot = Robot()
+robot.name = "Nova"
+robot.level = 3
+print(f"{robot.name} has Level {robot.level}")

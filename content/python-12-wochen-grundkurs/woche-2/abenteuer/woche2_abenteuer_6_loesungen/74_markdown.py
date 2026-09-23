@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 2: Die Zauberwerkstatt – Aufgabe 3
+"""### Extra-Herausforderung 3: Die Quest-Planung – Aufgabe 1
 
-Schritt 3 – Berechne die Durchschnittsstärke der drei Zauber und gib genau aus: Durchschnittsstärke: 80.0"""
+Schritt 1 – Gib die Überschrift === QUEST-PROTOKOLL === aus, addiere die Belohnungen beider Quests und gib genau aus: Gesamtbelohnung: 1300"""

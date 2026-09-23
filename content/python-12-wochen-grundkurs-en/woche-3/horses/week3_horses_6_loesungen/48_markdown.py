@@ -1,3 +1,3 @@
-"""### Mission 2: The Feed Dispenser – Task 2
+"""### Mission 3: The Tournament – Task 1
 
-Now somebody types a wrong password. Extend the chain with an else so that the program prints exactly: Wrong password: no feed today"""
+Step 1 – Calculate the total score: Calculate score using the formula and print exactly, using an f-string: Score: 89.5"""

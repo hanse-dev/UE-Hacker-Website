@@ -1,3 +1,3 @@
-"""### Der Hindernis-Simulator – Aufgabe 2
+"""### Der Hindernis-Simulator – Aufgabe 4
 
-Level 2 – Gangwahl: Bei gangart "Schritt" gib Level 2: Ruhiger Schritt aus, sonst Level 2: Zügiger Trab. Hier soll genau erscheinen: Level 2: Zügiger Trab"""
+Level 4 – Hindernisprüfung (verschachtelt): Ist hoehe >= 70, prüfe innen breite >= 50: ja → Level 4: Hindernis gemeistert, nein → Level 4: Breite reicht nicht. Ist hoehe niedriger → Level 4: Zu niedrig. Hier soll genau erscheinen: Level 4: Breite reicht nicht"""

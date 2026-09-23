@@ -1,0 +1,642 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Zuchtübung 1: Vererbung",
+    "file": "lektion-01.md",
+    "lessonSummary": "Stark! Deine Kind-Klasse erbt alles von den Eltern.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: eine Kind-Klasse erbt eine Methode.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\nclass Rennpferd(Pferd):\n    pass\n\nk = Rennpferd(\"Blitz\")\nk.stelle_vor()\nprint(isinstance(k, Pferd))\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ich bin Blitz.\nTrue"
+        }
+      },
+      {
+        "instruction": "Schreibe die Klasse Pferd mit `__init__(self, name)` und `stelle_vor(self)` (gibt Ich bin Blitz. aus) und die Kind-Klasse Rennpferd(Pferd) nur mit `pass`. Erzeuge Rennpferd(\"Blitz\") und rufe `stelle_vor()` auf.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ich bin Blitz.",
+          "codeContains": [
+            "class",
+            "__init__"
+          ]
+        }
+      },
+      {
+        "instruction": "Die Klasse Pferd ist vorgegeben. Schreibe Springpferd(Pferd) mit einer **neuen** Methode `starte(self)`, die Stella startet aus der Box. ausgibt (Name aus `self`). Erzeuge Springpferd(\"Stella\") und rufe erst `stelle_vor()`, dann `starte()` auf.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ich bin Stella.\nStella startet aus der Box."
+        }
+      },
+      {
+        "instruction": "Die Klassen Pferd, Rennpferd(Pferd) und Springpferd(Pferd) sind vorgegeben. Erzeuge Rennpferd(\"Blitz\") und prüfe mit `isinstance`, ob es zu Pferd gehört und ob zu Springpferd. Gib beide Ergebnisse in zwei Zeilen aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\nclass Rennpferd(Pferd):\n    pass\n\nclass Springpferd(Pferd):\n    pass\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True\nFalse",
+          "codeContains": [
+            "isinstance"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Zuchtübung 2: Methoden überschreiben",
+    "file": "lektion-02.md",
+    "lessonSummary": "Prima! Kinder dürfen Dinge anders machen als ihre Eltern.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: eine überschriebene Methode.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\nclass Rennpferd(Pferd):\n    def laufe(self):\n        print(f\"{self.name} sprintet über die Bahn.\")\n\nPferd(\"Blitz\").laufe()\nRennpferd(\"Stella\").laufe()\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz trabt gemütlich.\nStella sprintet über die Bahn."
+        }
+      },
+      {
+        "instruction": "Die Klasse Pferd ist vorgegeben. Schreibe Rennpferd(Pferd) und überschreibe `laufe(self)` so, dass Blitz sprintet über die Bahn. ausgegeben wird (Name aus `self`). Erzeuge Rennpferd(\"Blitz\") und rufe die Methode auf.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz sprintet über die Bahn."
+        }
+      },
+      {
+        "instruction": "Die Klasse Pferd ist vorgegeben. Überschreibe `laufe` in Springpferd(Pferd) (gibt springt über das Hindernis. nach dem Namen aus). Rufe `laufe()` für Pferd(\"Sturm\") und für Springpferd(\"Stella\") auf – erst Sturm, dann Stella.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sturm trabt gemütlich.\nStella springt über das Hindernis."
+        }
+      },
+      {
+        "instruction": "Die Klasse Pferd ist vorgegeben. Überschreibe in Rennpferd(Pferd) die Methode `stelle_vor(self)` so, dass Ich bin Blitz, Rennpferd. ausgegeben wird (Name aus `self`, Klassenname als Text). Erzeuge Rennpferd(\"Blitz\") und rufe sie auf.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ich bin Blitz, Rennpferd."
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Zuchtübung 3: super() und __init__",
+    "file": "lektion-03.md",
+    "lessonSummary": "Klasse! Du verbindest Eltern und Kind mit super().",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: ein Konstruktor mit super().",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\nclass Rennpferd(Pferd):\n    def __init__(self, name, tempo=30):\n        super().__init__(name)\n        self.tempo = tempo\n\nk = Rennpferd(\"Blitz\", 45)\nprint(k.name, k.tempo)\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz 45"
+        }
+      },
+      {
+        "instruction": "Die Klasse Pferd ist vorgegeben. Schreibe Rennpferd(Pferd) mit `__init__(self, name, tempo=30)`, das per `super().__init__(name)` den Namen setzt und `tempo` speichert. Erzeuge Rennpferd(\"Blitz\", 45) und gib genau Blitz 45 aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz 45",
+          "codeContains": [
+            "super()"
+          ]
+        }
+      },
+      {
+        "instruction": "Die Klasse Pferd ist vorgegeben. Schreibe Springpferd(Pferd) mit `__init__(self, name, hoehe=50)` und `super()`. Erzeuge Springpferd(\"Stella\" ohne zweiten Wert) und gib genau Stella 50 aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stella 50",
+          "codeContains": [
+            "super()"
+          ]
+        }
+      },
+      {
+        "instruction": "Die Klassen Pferd und Rennpferd (mit überschriebener `laufe`) sind vorgegeben. Schreibe Champion(Rennpferd), das `laufe` überschreibt: erst `super().laufe()`, dann eine zweite Zeile Blitz ist ein Meister!. Erzeuge Champion(\"Blitz\") und rufe `laufe()` auf.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\nclass Rennpferd(Pferd):\n    def __init__(self, name, tempo=30):\n        super().__init__(name)\n        self.tempo = tempo\n\n    def laufe(self):\n        print(f\"{self.name} sprintet über die Bahn.\")\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz sprintet über die Bahn.\nBlitz ist ein Meister!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Zuchtübung 4: Polymorphismus",
+    "file": "lektion-04.md",
+    "lessonSummary": "Super! Eine Schleife, viele Verhaltensweisen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: dieselbe Methode, drei Klassen.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n    def kraft(self):\n        return 10\n\nclass Rennpferd(Pferd):\n    def __init__(self, name, tempo=30):\n        super().__init__(name)\n        self.tempo = tempo\n\n    def laufe(self):\n        print(f\"{self.name} sprintet über die Bahn.\")\n\n    def kraft(self):\n        return self.tempo\n\nclass Springpferd(Pferd):\n    def __init__(self, name, hoehe=50):\n        super().__init__(name)\n        self.hoehe = hoehe\n\n    def laufe(self):\n        print(f\"{self.name} springt über das Hindernis.\")\n\n    def kraft(self):\n        return self.hoehe\n\nteam = [Pferd(\"Sturm\"), Rennpferd(\"Blitz\"), Springpferd(\"Stella\")]\nfor f in team:\n    f.laufe()\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sturm trabt gemütlich.\nBlitz sprintet über die Bahn.\nStella springt über das Hindernis."
+        }
+      },
+      {
+        "instruction": "Die Klassen Pferd, Rennpferd und Springpferd sind vorgegeben. Schreibe eine Funktion `los(figur)`, die `figur.laufe()` aufruft. Rufe sie nacheinander für Rennpferd(\"Blitz\") und Springpferd(\"Stella\") auf.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n    def kraft(self):\n        return 10\n\nclass Rennpferd(Pferd):\n    def __init__(self, name, tempo=30):\n        super().__init__(name)\n        self.tempo = tempo\n\n    def laufe(self):\n        print(f\"{self.name} sprintet über die Bahn.\")\n\n    def kraft(self):\n        return self.tempo\n\nclass Springpferd(Pferd):\n    def __init__(self, name, hoehe=50):\n        super().__init__(name)\n        self.hoehe = hoehe\n\n    def laufe(self):\n        print(f\"{self.name} springt über das Hindernis.\")\n\n    def kraft(self):\n        return self.hoehe\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz sprintet über die Bahn.\nStella springt über das Hindernis."
+        }
+      },
+      {
+        "instruction": "Die Klassen sind vorgegeben, ebenso die Liste `team = [Rennpferd(\"Blitz\"), Springpferd(\"Stella\"), Rennpferd(\"Sturm\"), Pferd(\"Stella\")]`. Zähle mit `isinstance`, wie viele Objekte zu Rennpferd gehören, und gib genau Anzahl: 2 aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n    def kraft(self):\n        return 10\n\nclass Rennpferd(Pferd):\n    def __init__(self, name, tempo=30):\n        super().__init__(name)\n        self.tempo = tempo\n\n    def laufe(self):\n        print(f\"{self.name} sprintet über die Bahn.\")\n\n    def kraft(self):\n        return self.tempo\n\nclass Springpferd(Pferd):\n    def __init__(self, name, hoehe=50):\n        super().__init__(name)\n        self.hoehe = hoehe\n\n    def laufe(self):\n        print(f\"{self.name} springt über das Hindernis.\")\n\n    def kraft(self):\n        return self.hoehe\n\nteam = [Rennpferd(\"Blitz\"), Springpferd(\"Stella\"), Rennpferd(\"Sturm\"), Pferd(\"Stella\")]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 2",
+          "codeContains": [
+            "isinstance"
+          ]
+        }
+      },
+      {
+        "instruction": "Die Klassen sind vorgegeben. Schreibe eine **eigene** Klasse Zuschauer **ohne Eltern** mit `laufe(self)`, die Das Publikum klatscht. ausgibt. Rufe `laufe()` für eine Liste mit Rennpferd(\"Blitz\") und Zuschauer() nacheinander auf (Duck Typing).",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n    def kraft(self):\n        return 10\n\nclass Rennpferd(Pferd):\n    def __init__(self, name, tempo=30):\n        super().__init__(name)\n        self.tempo = tempo\n\n    def laufe(self):\n        print(f\"{self.name} sprintet über die Bahn.\")\n\n    def kraft(self):\n        return self.tempo\n\nclass Springpferd(Pferd):\n    def __init__(self, name, hoehe=50):\n        super().__init__(name)\n        self.hoehe = hoehe\n\n    def laufe(self):\n        print(f\"{self.name} springt über das Hindernis.\")\n\n    def kraft(self):\n        return self.hoehe\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz sprintet über die Bahn.\nDas Publikum klatscht."
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Zuchtübung 5: __str__ und __repr__",
+    "file": "lektion-05.md",
+    "lessonSummary": "Prima! Deine Objekte können sich jetzt als Text zeigen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: __str__ und __repr__.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        return f\"{self.name} ({self.level})\"\n\n    def __repr__(self):\n        return f\"Pferd('{self.name}', {self.level})\"\n\nk = Pferd(\"Blitz\", 5)\nprint(k)\nprint([k])\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz (5)\n[Pferd('Blitz', 5)]"
+        }
+      },
+      {
+        "instruction": "Schreibe die Klasse Pferd mit `__init__(self, name, level)` und einer Methode `__str__`, die `name (level)` **zurückgibt**. Erzeuge Pferd(\"Blitz\", 5) und gib das Objekt direkt mit `print` aus (genau Blitz (5)).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz (5)",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__str__"
+          ]
+        }
+      },
+      {
+        "instruction": "Die Klasse Pferd mit `__str__` ist vorgegeben. Lege die Liste `team` mit Pferd(\"Blitz\", 5) und Pferd(\"Stella\", 7) an und gib genau Team: Blitz (5), Stella (7) aus – Texte mit `\", \".join([str(f) for f in team])` verbinden.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        return f\"{self.name} ({self.level})\"\n\n    def __lt__(self, other):\n        return self.level < other.level\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Team: Blitz (5), Stella (7)"
+        }
+      },
+      {
+        "instruction": "Schreibe die Klasse Pferd mit `__init__(self, name)` und `__repr__`, das `Pferd('name')` zurückgibt. Gib die Liste `[Pferd(\"Blitz\"), Pferd(\"Stella\")]` mit `print` aus (Ergebnis: [Pferd('Blitz'), Pferd('Stella')]).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "[Pferd('Blitz'), Pferd('Stella')]",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__repr__"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Zuchtübung 6: Vergleichen und sortieren",
+    "file": "lektion-06.md",
+    "lessonSummary": "Stark! Deine Objekte lassen sich vergleichen und sortieren.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: vergleichen und sortieren.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __eq__(self, other):\n        return self.level == other.level\n\n    def __lt__(self, other):\n        return self.level < other.level\n\na = Pferd(\"Blitz\", 5)\nb = Pferd(\"Stella\", 9)\nprint(a == b)\nprint(a < b)\nfor f in sorted([b, a]):\n    print(f.name)\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "False\nTrue\nBlitz\nStella"
+        }
+      },
+      {
+        "instruction": "Schreibe die Klasse Pferd mit `__init__(self, name, level)` und `__eq__` (gleich, wenn das `level` gleich ist). Vergleiche Pferd(\"Blitz\", 5) mit Pferd(\"Stella\", 5) und mit Pferd(\"Sturm\", 8) und gib beide Ergebnisse in zwei Zeilen aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True\nFalse",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__eq__"
+          ]
+        }
+      },
+      {
+        "instruction": "Die Klasse Pferd mit `__lt__` ist vorgegeben. Lege `team` mit Pferd(\"Blitz\", 5), Pferd(\"Stella\", 9) und Pferd(\"Sturm\", 2) an, sortiere mit `sorted(team)` und gib die Namen in der sortierten Reihenfolge Zeile für Zeile aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        return f\"{self.name} ({self.level})\"\n\n    def __lt__(self, other):\n        return self.level < other.level\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sturm\nBlitz\nStella"
+        }
+      },
+      {
+        "instruction": "Die Klasse Pferd mit `__lt__` und `__str__` ist vorgegeben. Sortiere `team` mit Pferd(\"Blitz\", 5), Pferd(\"Stella\", 9), Pferd(\"Sturm\", 2) mit `sorted(team, reverse=True)` und gib das erste Element mit `print` aus (genau Stella (9)).",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        return f\"{self.name} ({self.level})\"\n\n    def __lt__(self, other):\n        return self.level < other.level\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stella (9)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Zuchtübung 7: Rechnen und zählen: __add__ und __len__",
+    "file": "lektion-07.md",
+    "lessonSummary": "Klasse! Deine Objekte können rechnen und gezählt werden.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: __add__ und __len__.",
+        "codeTemplate": "class Vorrat:\n    def __init__(self, menge):\n        self.menge = menge\n\n    def __add__(self, other):\n        return Vorrat(self.menge + other.menge)\n\n    def __str__(self):\n        return f\"Vorrat: {self.menge}\"\n\na = Vorrat(10)\nb = Vorrat(20)\nprint(a + b)\n\nclass Team:\n    def __init__(self):\n        self.mitglieder = []\n\n    def __len__(self):\n        return len(self.mitglieder)\n\nt = Team()\nt.mitglieder.append(\"Blitz\")\nt.mitglieder.append(\"Stella\")\nprint(len(t))\n",
+        "example": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Vorrat: 30\n2"
+        }
+      },
+      {
+        "instruction": "Schreibe die Klasse Vorrat mit `__init__(self, menge)`, `__add__` (gibt ein neues Vorrat mit der Summe zurück) und `__str__` (gibt Vorrat: Zahl zurück). Gib Vorrat(10) + Vorrat(20) aus (genau Vorrat: 30).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Vorrat: 30",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__add__",
+            "__str__"
+          ]
+        }
+      },
+      {
+        "instruction": "Schreibe die Klasse Team mit `__init__(self)` (leere Liste `mitglieder`) und `__len__(self)`, das die Länge der Liste zurückgibt. Füge Blitz, Stella und Sturm hinzu und gib `len(team)` aus (3).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "3",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__len__"
+          ]
+        }
+      },
+      {
+        "instruction": "Die Klasse Vorrat mit `__add__` und `__str__` ist vorgegeben. Die Liste `lager = [Vorrat(10), Vorrat(20), Vorrat(30)]` wird mit einer Schleife zusammengezählt (Start `gesamt = Vorrat(0)`, dann `gesamt = gesamt + v`). Gib `gesamt` aus (genau Vorrat: 60).",
+        "codeTemplate": "class Vorrat:\n    def __init__(self, menge):\n        self.menge = menge\n\n    def __add__(self, other):\n        return Vorrat(self.menge + other.menge)\n\n    def __str__(self):\n        return f\"Vorrat: {self.menge}\"\n\nlager = [Vorrat(10), Vorrat(20), Vorrat(30)]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Vorrat: 60"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug-Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Bei Vererbung zählen `super().__init__`, die Eltern-Klasse in Klammern und `return` in `__str__`.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Blitz ausgeben. Was ist falsch?",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\nclass Rennpferd(Pferd):\n    def __init__(self, name, tempo):\n        self.tempo = tempo\n\nk = Rennpferd(\"Blitz\", 30)\nprint(k.name)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Ich bin Blitz. ausgeben. Was ist falsch?",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\nclass Rennpferd:\n    def starte(self):\n        print(\"startet aus der Box.\")\n\nk = Rennpferd(\"Blitz\")\nk.stelle_vor()\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ich bin Blitz."
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Blitz (5) ausgeben. Was ist falsch?",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        print(f\"{self.name} ({self.level})\")\n\nprint(Pferd(\"Blitz\", 5))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz (5)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: Die Kind-Klasse",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission geschafft: Du hast vererbt, überschrieben und `super()` benutzt!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Erben: Die Klasse Pferd ist vorgegeben. Schreibe Rennpferd(Pferd) nur mit `pass`, erzeuge Rennpferd(\"Blitz\") und rufe `stelle_vor()` auf.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ich bin Blitz."
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Neues Attribut: Die Klasse Pferd ist vorgegeben. Schreibe Rennpferd(Pferd) mit `__init__(self, name, tempo=30)` (mit `super()`). Erzeuge Rennpferd(\"Blitz\") und gib genau Blitz: 30 aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz: 30",
+          "codeContains": [
+            "super()"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Überschreiben: Die Klasse Pferd ist vorgegeben. Überschreibe `laufe` in Rennpferd(Pferd) (gibt Blitz sprintet über die Bahn. aus) und rufe sie für Rennpferd(\"Blitz\") auf.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz sprintet über die Bahn."
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: Das Team",
+    "file": "mission-02.md",
+    "lessonSummary": "Mission geschafft: Du steuerst ein gemischtes Team über eine gemeinsame Methode!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Alle handeln: Die Klassen Pferd, Rennpferd und Springpferd sind vorgegeben. Lege `team` mit Rennpferd(\"Blitz\"), Springpferd(\"Stella\") und Pferd(\"Sturm\") an und rufe bei jedem `laufe()` auf.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n    def kraft(self):\n        return 10\n\nclass Rennpferd(Pferd):\n    def __init__(self, name, tempo=30):\n        super().__init__(name)\n        self.tempo = tempo\n\n    def laufe(self):\n        print(f\"{self.name} sprintet über die Bahn.\")\n\n    def kraft(self):\n        return self.tempo\n\nclass Springpferd(Pferd):\n    def __init__(self, name, hoehe=50):\n        super().__init__(name)\n        self.hoehe = hoehe\n\n    def laufe(self):\n        print(f\"{self.name} springt über das Hindernis.\")\n\n    def kraft(self):\n        return self.hoehe\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz sprintet über die Bahn.\nStella springt über das Hindernis.\nSturm trabt gemütlich."
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Gesamtkraft: Die Klassen (mit `kraft()`) sind vorgegeben, ebenso `team = [Rennpferd(\"Blitz\"), Springpferd(\"Stella\"), Pferd(\"Sturm\")]` (Kraft 30, 50 und 10). Addiere alle `kraft()` und gib genau Summe: 90 aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n    def kraft(self):\n        return 10\n\nclass Rennpferd(Pferd):\n    def __init__(self, name, tempo=30):\n        super().__init__(name)\n        self.tempo = tempo\n\n    def laufe(self):\n        print(f\"{self.name} sprintet über die Bahn.\")\n\n    def kraft(self):\n        return self.tempo\n\nclass Springpferd(Pferd):\n    def __init__(self, name, hoehe=50):\n        super().__init__(name)\n        self.hoehe = hoehe\n\n    def laufe(self):\n        print(f\"{self.name} springt über das Hindernis.\")\n\n    def kraft(self):\n        return self.hoehe\n\nteam = [Rennpferd(\"Blitz\"), Springpferd(\"Stella\"), Pferd(\"Sturm\")]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Summe: 90"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Der Stärkste: Die Klassen und `team` (Kraft 30, 50, 10) sind vorgegeben. Schreibe `staerkster(team)`, die das Objekt mit der größten `kraft()` zurückgibt, und gib genau Stärkster: Stella aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n    def kraft(self):\n        return 10\n\nclass Rennpferd(Pferd):\n    def __init__(self, name, tempo=30):\n        super().__init__(name)\n        self.tempo = tempo\n\n    def laufe(self):\n        print(f\"{self.name} sprintet über die Bahn.\")\n\n    def kraft(self):\n        return self.tempo\n\nclass Springpferd(Pferd):\n    def __init__(self, name, hoehe=50):\n        super().__init__(name)\n        self.hoehe = hoehe\n\n    def laufe(self):\n        print(f\"{self.name} springt über das Hindernis.\")\n\n    def kraft(self):\n        return self.hoehe\n\nteam = [Rennpferd(\"Blitz\"), Springpferd(\"Stella\"), Pferd(\"Sturm\")]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Stärkster: Stella"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: Die Zauber-Methoden",
+    "file": "mission-03.md",
+    "lessonSummary": "Mission geschafft: `__str__`, `__lt__` und `__add__` gehören jetzt zu deinem Werkzeugkasten!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Ausgeben: Schreibe die Klasse Pferd mit `__init__(self, name, level)` und `__str__` (gibt `name (level)` zurück). Gib Pferd(\"Blitz\", 5) mit `print` aus (genau Blitz (5)).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz (5)",
+          "codeContains": [
+            "class",
+            "__init__",
+            "__str__"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Sortieren: Die Klasse Pferd mit `__lt__` und `__str__` ist vorgegeben. Sortiere die Liste [Pferd(\"Blitz\", 5), Pferd(\"Stella\", 9), Pferd(\"Sturm\", 2)] mit `sorted` und gib jedes Objekt mit `print` aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        return f\"{self.name} ({self.level})\"\n\n    def __lt__(self, other):\n        return self.level < other.level\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sturm (2)\nBlitz (5)\nStella (9)"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Addieren: Die Klasse Vorrat mit `__add__` und `__str__` ist vorgegeben. Gib Vorrat(15) + Vorrat(25) + Vorrat(5) aus (genau Vorrat: 45).",
+        "codeTemplate": "class Vorrat:\n    def __init__(self, menge):\n        self.menge = menge\n\n    def __add__(self, other):\n        return Vorrat(self.menge + other.menge)\n\n    def __str__(self):\n        return f\"Vorrat: {self.menge}\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Vorrat: 45"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Drei Ebenen",
+    "file": "boss-01.md",
+    "lessonSummary": "Geschafft: Du kennst Klassen-Ketten und `super()` über mehrere Ebenen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1: Die Klassen Pferd, Rennpferd, Springpferd sind vorgegeben. Schreibe Champion(Rennpferd) mit `pass`, erzeuge Champion(\"Blitz\") und prüfe mit `isinstance` auf Pferd, Rennpferd und Springpferd (drei Zeilen).",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n    def kraft(self):\n        return 10\n\nclass Rennpferd(Pferd):\n    def __init__(self, name, tempo=30):\n        super().__init__(name)\n        self.tempo = tempo\n\n    def laufe(self):\n        print(f\"{self.name} sprintet über die Bahn.\")\n\n    def kraft(self):\n        return self.tempo\n\nclass Springpferd(Pferd):\n    def __init__(self, name, hoehe=50):\n        super().__init__(name)\n        self.hoehe = hoehe\n\n    def laufe(self):\n        print(f\"{self.name} springt über das Hindernis.\")\n\n    def kraft(self):\n        return self.hoehe\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True\nTrue\nFalse",
+          "codeContains": [
+            "isinstance"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2: Die Klassen sind vorgegeben. Schreibe Champion(Rennpferd), das `laufe` überschreibt: erst `super().laufe()`, dann Blitz ist ein Meister!. Rufe es für Champion(\"Blitz\") auf.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n    def kraft(self):\n        return 10\n\nclass Rennpferd(Pferd):\n    def __init__(self, name, tempo=30):\n        super().__init__(name)\n        self.tempo = tempo\n\n    def laufe(self):\n        print(f\"{self.name} sprintet über die Bahn.\")\n\n    def kraft(self):\n        return self.tempo\n\nclass Springpferd(Pferd):\n    def __init__(self, name, hoehe=50):\n        super().__init__(name)\n        self.hoehe = hoehe\n\n    def laufe(self):\n        print(f\"{self.name} springt über das Hindernis.\")\n\n    def kraft(self):\n        return self.hoehe\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz sprintet über die Bahn.\nBlitz ist ein Meister!"
+        }
+      },
+      {
+        "instruction": "Schritt 3: Die Klassen sind vorgegeben. Schreibe Champion(Rennpferd), das `kraft` überschreibt und **doppelt** so viel wie die Eltern zurückgibt (`super().kraft() * 2`). Gib genau Kraft: 60 für Champion(\"Blitz\") aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n    def kraft(self):\n        return 10\n\nclass Rennpferd(Pferd):\n    def __init__(self, name, tempo=30):\n        super().__init__(name)\n        self.tempo = tempo\n\n    def laufe(self):\n        print(f\"{self.name} sprintet über die Bahn.\")\n\n    def kraft(self):\n        return self.tempo\n\nclass Springpferd(Pferd):\n    def __init__(self, name, hoehe=50):\n        super().__init__(name)\n        self.hoehe = hoehe\n\n    def laufe(self):\n        print(f\"{self.name} springt über das Hindernis.\")\n\n    def kraft(self):\n        return self.hoehe\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Kraft: 60"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Die Arena",
+    "file": "boss-02.md",
+    "lessonSummary": "Geschafft: Polymorphismus im Wettkampf!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1: Die Klassen (mit `kraft()`) und `team = [Rennpferd(\"Blitz\", 40), Springpferd(\"Stella\", 25), Pferd(\"Sturm\")]` sind vorgegeben. Addiere alle Kräfte und gib genau Summe: 75 aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n    def kraft(self):\n        return 10\n\nclass Rennpferd(Pferd):\n    def __init__(self, name, tempo=30):\n        super().__init__(name)\n        self.tempo = tempo\n\n    def laufe(self):\n        print(f\"{self.name} sprintet über die Bahn.\")\n\n    def kraft(self):\n        return self.tempo\n\nclass Springpferd(Pferd):\n    def __init__(self, name, hoehe=50):\n        super().__init__(name)\n        self.hoehe = hoehe\n\n    def laufe(self):\n        print(f\"{self.name} springt über das Hindernis.\")\n\n    def kraft(self):\n        return self.hoehe\n\nteam = [Rennpferd(\"Blitz\", 40), Springpferd(\"Stella\", 25), Pferd(\"Sturm\")]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Summe: 75"
+        }
+      },
+      {
+        "instruction": "Schritt 2: Die Klassen und `team` (Kraft 40, 25, 10) sind vorgegeben. Zähle, wie viele Objekte eine Kraft von mindestens 30 haben, und gib genau Anzahl: 1 aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n    def kraft(self):\n        return 10\n\nclass Rennpferd(Pferd):\n    def __init__(self, name, tempo=30):\n        super().__init__(name)\n        self.tempo = tempo\n\n    def laufe(self):\n        print(f\"{self.name} sprintet über die Bahn.\")\n\n    def kraft(self):\n        return self.tempo\n\nclass Springpferd(Pferd):\n    def __init__(self, name, hoehe=50):\n        super().__init__(name)\n        self.hoehe = hoehe\n\n    def laufe(self):\n        print(f\"{self.name} springt über das Hindernis.\")\n\n    def kraft(self):\n        return self.hoehe\n\nteam = [Rennpferd(\"Blitz\", 40), Springpferd(\"Stella\", 25), Pferd(\"Sturm\")]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anzahl: 1"
+        }
+      },
+      {
+        "instruction": "Schritt 3: Die Klassen und `team` (Kraft 40, 25, 10) sind vorgegeben. Schreibe `kraft_von(figur)`, die `figur.kraft()` zurückgibt, sortiere mit `sorted(team, key=kraft_von)` und gib die Namen Zeile für Zeile aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n    def kraft(self):\n        return 10\n\nclass Rennpferd(Pferd):\n    def __init__(self, name, tempo=30):\n        super().__init__(name)\n        self.tempo = tempo\n\n    def laufe(self):\n        print(f\"{self.name} sprintet über die Bahn.\")\n\n    def kraft(self):\n        return self.tempo\n\nclass Springpferd(Pferd):\n    def __init__(self, name, hoehe=50):\n        super().__init__(name)\n        self.hoehe = hoehe\n\n    def laufe(self):\n        print(f\"{self.name} springt über das Hindernis.\")\n\n    def kraft(self):\n        return self.hoehe\n\nteam = [Rennpferd(\"Blitz\", 40), Springpferd(\"Stella\", 25), Pferd(\"Sturm\")]\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sturm\nStella\nBlitz"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Zahlen mit Magie",
+    "file": "boss-03.md",
+    "lessonSummary": "Geschafft: Deine Vorrat-Klasse verhält sich fast wie eine Zahl!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1: Schreibe Vorrat mit `__init__(self, menge)`, `__add__` und `__eq__` (gleich, wenn die menge gleich ist). Gib `Vorrat(10) + Vorrat(40) == Vorrat(50)` aus (True).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True",
+          "codeContains": [
+            "__init__",
+            "__add__",
+            "__eq__"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2: Schreibe Team mit `__init__(self)` (leere Liste `mitglieder`), `__len__` und `__str__` (gibt Team: Anzahl zurück). Füge Blitz und Stella hinzu und gib das Objekt mit `print` aus (genau Team: 2).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Team: 2",
+          "codeContains": [
+            "__init__",
+            "__len__",
+            "__str__"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 3: Schreibe Vorrat mit `__init__(self, menge)`, `__lt__` (kleiner, wenn `menge` kleiner ist) und `__str__` (gibt Vorrat: Zahl zurück), sortiere [Vorrat(30), Vorrat(10), Vorrat(20)] und gib jedes Element aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Vorrat: 10\nVorrat: 20\nVorrat: 30",
+          "codeContains": [
+            "__init__",
+            "__lt__",
+            "__str__"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-04",
+    "section": "boss",
+    "title": "Extra-Herausforderung 4: Alles zusammen",
+    "file": "boss-04.md",
+    "lessonSummary": "Geschafft: Vererbung, Dictionaries, Zufall und JSON arbeiten zusammen!",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Dictionary der Klassen: Die Klassen sind vorgegeben. Baue `klassen = {\"Rennpferd\": Rennpferd, \"Springpferd\": Springpferd}` und erzeuge über den Namen `klassen[\"Rennpferd\"](\"Blitz\")` ein Objekt. Rufe `laufe()` auf.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n    def kraft(self):\n        return 10\n\nclass Rennpferd(Pferd):\n    def __init__(self, name, tempo=30):\n        super().__init__(name)\n        self.tempo = tempo\n\n    def laufe(self):\n        print(f\"{self.name} sprintet über die Bahn.\")\n\n    def kraft(self):\n        return self.tempo\n\nclass Springpferd(Pferd):\n    def __init__(self, name, hoehe=50):\n        super().__init__(name)\n        self.hoehe = hoehe\n\n    def laufe(self):\n        print(f\"{self.name} springt über das Hindernis.\")\n\n    def kraft(self):\n        return self.hoehe\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz sprintet über die Bahn."
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Zufall: Die Klassen sind vorgegeben. Wähle mit `random.choice([Rennpferd, Springpferd])` eine Klasse, erzeuge daraus ein Objekt und gib `isinstance(objekt, Pferd)` aus (True).",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n    def kraft(self):\n        return 10\n\nclass Rennpferd(Pferd):\n    def __init__(self, name, tempo=30):\n        super().__init__(name)\n        self.tempo = tempo\n\n    def laufe(self):\n        print(f\"{self.name} sprintet über die Bahn.\")\n\n    def kraft(self):\n        return self.tempo\n\nclass Springpferd(Pferd):\n    def __init__(self, name, hoehe=50):\n        super().__init__(name)\n        self.hoehe = hoehe\n\n    def laufe(self):\n        print(f\"{self.name} springt über das Hindernis.\")\n\n    def kraft(self):\n        return self.hoehe\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True"
+        }
+      },
+      {
+        "instruction": "Schritt 3 – JSON speichern: Die Klassen sind vorgegeben. Erzeuge Rennpferd(\"Blitz\") und baue `daten = {\"typ\": type(f).__name__, \"name\": f.name}` (`type(f).__name__` liefert den Klassennamen als Text). Gib `json.dumps(daten)` aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n    def kraft(self):\n        return 10\n\nclass Rennpferd(Pferd):\n    def __init__(self, name, tempo=30):\n        super().__init__(name)\n        self.tempo = tempo\n\n    def laufe(self):\n        print(f\"{self.name} sprintet über die Bahn.\")\n\n    def kraft(self):\n        return self.tempo\n\nclass Springpferd(Pferd):\n    def __init__(self, name, hoehe=50):\n        super().__init__(name)\n        self.hoehe = hoehe\n\n    def laufe(self):\n        print(f\"{self.name} springt über das Hindernis.\")\n\n    def kraft(self):\n        return self.hoehe\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{\"typ\": \"Rennpferd\", \"name\": \"Blitz\"}",
+          "codeContains": [
+            "json.dumps"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 4 – JSON laden: Die Klassen und der Text `text = '{\"typ\": \"Rennpferd\", \"name\": \"Blitz\"}'` sind vorgegeben. Lies ihn mit `json.loads`, suche die Klasse im Dictionary `klassen` und baue das Objekt neu auf. Rufe `laufe()` auf.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n    def kraft(self):\n        return 10\n\nclass Rennpferd(Pferd):\n    def __init__(self, name, tempo=30):\n        super().__init__(name)\n        self.tempo = tempo\n\n    def laufe(self):\n        print(f\"{self.name} sprintet über die Bahn.\")\n\n    def kraft(self):\n        return self.tempo\n\nclass Springpferd(Pferd):\n    def __init__(self, name, hoehe=50):\n        super().__init__(name)\n        self.hoehe = hoehe\n\n    def laufe(self):\n        print(f\"{self.name} springt über das Hindernis.\")\n\n    def kraft(self):\n        return self.hoehe\n\nklassen = {\"Rennpferd\": Rennpferd, \"Springpferd\": Springpferd}\ntext = '{\"typ\": \"Rennpferd\", \"name\": \"Blitz\"}'\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blitz sprintet über die Bahn.",
+          "codeContains": [
+            "json.loads"
+          ]
+        }
+      }
+    ]
+  }
+]

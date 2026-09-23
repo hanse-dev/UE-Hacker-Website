@@ -1,3 +1,3 @@
-"""### Mission 3: The Oracle of the Four Elements – Task 1
+"""### Extra challenge 1: The Treasure Room – Task 2
 
-Step 1 – Consult 🔥 Fire and 🪨 Earth: ask for the seeker's name with input() and for their age (converted with int()). Print exactly two lines: Prophecy for ...: (with the name) and In 10 years you will be ... (with age + 10). Enter a name and a number when asked."""
+Step 2 – Calculate the total value and the average of all eight chests (divide by 8) and print exactly: Total: 1100 gold, average: 137.5 gold"""

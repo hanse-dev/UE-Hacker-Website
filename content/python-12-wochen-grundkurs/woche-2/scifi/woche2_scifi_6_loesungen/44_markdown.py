@@ -1,3 +1,3 @@
-"""### Mission 2: Die Flottenanalyse – Aufgabe 1
+"""### Mission 3: Der Asteroiden-Mining – Aufgabe 2
 
-Schritt 1 – Lege für die drei Schiffe (siehe Tabelle) Variablen für Name, Crew und Geschwindigkeit an. Gib die Überschrift === FLOTTENANALYSE === aus und danach für jedes Schiff eine Zeile in diesem Format (Beispiel Orion): Orion: Crew 120, Geschwindigkeit 2.5"""
+Schritt 2 – Vergleiche die Rohwerte aus Schritt 1 (Ferrum 4800.0, Aurum 4000.0): Gib Abbau: Ferrum für den wertvolleren Asteroiden aus und berechne den Durchschnitt beider Werte: Durchschnittswert: 4400.0"""

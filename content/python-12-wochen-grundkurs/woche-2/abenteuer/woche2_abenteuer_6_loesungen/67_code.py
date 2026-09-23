@@ -1,11 +1,12 @@
-truhe1 = 120
-truhe2 = 80
-truhe3 = 200
-truhe4 = 150
-truhe5 = 50
-truhe6 = 90
-truhe7 = 60
-truhe8 = 250
+zauber1 = "Feuerball"
+staerke1 = 80.0
+komplex1 = 3
+zauber2 = "Frostblitz"
+staerke2 = 65.0
+komplex2 = 2
+zauber3 = "Sturmruf"
+staerke3 = 95.0
+komplex3 = 5
 
-gesamt = truhe1 + truhe2 + truhe3 + truhe4 + truhe5 + truhe6 + truhe7 + truhe8
-print(f"Durchschnitt: {gesamt / 8}")
+print("=== ZAUBERWERKSTATT-PROTOKOLL ===")
+print(f"{zauber1}: Stärke {staerke1}, Komplexität {komplex1}")

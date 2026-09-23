@@ -1,0 +1,3 @@
+"""### Extra-Herausforderung 3: Die Missions-Datenbank – Aufgabe 3
+
+Schritt 3 – Auswerten: missionen ist vorgegeben (Schwierigkeit an Index 2). Schreibe missions_statistik(liste): Sie zählt mit einer for-Schleife alle Missionen und alle schweren (Schwierigkeit mindestens 3; leichtere überspringst du mit continue) und gibt Missionen: <Anzahl> und Schwere Missionen: <Anzahl> aus. Rufe sie mit missionen auf."""

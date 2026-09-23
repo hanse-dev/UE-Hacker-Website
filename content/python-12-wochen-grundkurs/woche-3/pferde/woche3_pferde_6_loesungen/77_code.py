@@ -1,6 +1,18 @@
-zeit = 75
-fehler = 0
-stil = 85
+phase1_ok = True
+phase2_ok = True
+phase3_ok = False
+phase4_ok = True
+phase5_ok = True
 
-if zeit <= 60 or (fehler == 0 and stil >= 80):
-    print("Level 5: Abmeldung bestanden")
+erfolgreiche_phasen = 0
+if phase1_ok:
+    erfolgreiche_phasen += 1
+if phase2_ok:
+    erfolgreiche_phasen += 1
+if phase3_ok:
+    erfolgreiche_phasen += 1
+if phase4_ok:
+    erfolgreiche_phasen += 1
+if phase5_ok:
+    erfolgreiche_phasen += 1
+print(f"Erfolgreiche Phasen: {erfolgreiche_phasen}")

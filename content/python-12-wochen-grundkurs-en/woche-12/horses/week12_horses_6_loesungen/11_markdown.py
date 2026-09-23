@@ -1,1 +1,0 @@
-"""**Mission 1:** A new room is a new entry in the dictionary. All four keys matter (`description`, `exits`, `items`, `enemy`) – otherwise there will be a `KeyError` later. Don't forget the exit in the neighbouring room, or the new room is unreachable!"""

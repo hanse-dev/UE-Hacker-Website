@@ -1,3 +1,3 @@
-"""### Der Hindernis-Simulator – Aufgabe 4
+"""### Der Hindernis-Simulator – Aufgabe 6
 
-Level 4 – Hindernisprüfung (verschachtelt): Ist hoehe >= 70, prüfe innen breite >= 50: ja → Level 4: Hindernis gemeistert, nein → Level 4: Breite reicht nicht. Ist hoehe niedriger → Level 4: Zu niedrig. Hier soll genau erscheinen: Level 4: Breite reicht nicht"""
+Punktesystem – Zähle mit erfolge = 0 und erfolge += 1 pro bestandenem Level (die Ergebnisse stehen schon in den Variablen) und gib mit einem f-String genau aus: Erfolge: 3 von 5"""

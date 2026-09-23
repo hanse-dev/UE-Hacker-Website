@@ -1,11 +1,17 @@
-gefahrenstufe = 4
-if gefahrenstufe == 1:
-    print("Gefahrenstufe 1: ruhig")
-elif gefahrenstufe == 2:
-    print("Gefahrenstufe 2: gering")
-elif gefahrenstufe == 3:
-    print("Gefahrenstufe 3: erhöht")
-elif gefahrenstufe == 4:
-    print("Gefahrenstufe 4: hoch")
-else:
-    print("Gefahrenstufe 5: extrem")
+phase1_ok = True
+phase2_ok = True
+phase3_ok = False
+phase4_ok = True
+phase5_ok = True
+erfolgreiche_phasen = 0
+if phase1_ok:
+    erfolgreiche_phasen = erfolgreiche_phasen + 1
+if phase2_ok:
+    erfolgreiche_phasen = erfolgreiche_phasen + 1
+if phase3_ok:
+    erfolgreiche_phasen = erfolgreiche_phasen + 1
+if phase4_ok:
+    erfolgreiche_phasen = erfolgreiche_phasen + 1
+if phase5_ok:
+    erfolgreiche_phasen = erfolgreiche_phasen + 1
+print(f"Erfolgreiche Phasen: {erfolgreiche_phasen}")

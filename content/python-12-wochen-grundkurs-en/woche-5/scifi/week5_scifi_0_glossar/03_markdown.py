@@ -12,6 +12,6 @@
 
 | Term | Meaning | Example |
 |------|---------|--------|
-| **List** `[]` | Ordered collection | `[\"Aria\", \"Borin\"]` |
-| `for` | Loop over a collection | `for item in list_:` |
+| `while` | Loop – repeats as long as the condition is true | `while x < 10:` |
+| `for` | Loop over a sequence of numbers | `for i in range(3):` |
 """

@@ -1,3 +1,3 @@
-"""### Mission 1: The Four Elemental Stones – Task 2
+"""### Mission 2: The Elemental Fusion – Task 1
 
-Step 2 – 🪨 Earth Stone: create strength = 40 and print exactly: Strength: 40"""
+Step 1 – Fusing two 🔥 Fire Stones: create first_name = \"Luna\" and last_name = \"Silvermoon\" and use an f-string to print exactly: Name: Luna Silvermoon"""

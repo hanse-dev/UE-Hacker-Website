@@ -82,7 +82,7 @@ test.describe('Wochen-Zertifikate', () => {
     // sind Missionen ein reiner Inhalts-Schritt ohne "Erledigt"-Mechanik, die irgendetwas
     // freischalten könnte. Der Kern des Tests bleibt: Missionen allein lösen kein Zertifikat aus.
     await page.goto(`${COURSE_URL}?week=12&variant=pferde&step=3_missionen`);
-    await expect(page.locator('.tour-content .cell-markdown').first()).toBeVisible({ timeout: 20000 });
+    await expect(page.locator('.tour-content').first()).toBeVisible({ timeout: 20000 });
     await expect(page.locator('.certificate-reveal')).toHaveCount(0);
   });
 

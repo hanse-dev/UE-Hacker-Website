@@ -1,1 +1,0 @@
-"""**Erklärung:** Ein einzelnes `=` weist zu, zum Vergleichen braucht man `==`."""

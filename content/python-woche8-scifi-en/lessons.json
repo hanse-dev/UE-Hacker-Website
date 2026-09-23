@@ -1,0 +1,577 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Data Log 1: Creating and reading profile cards",
+    "file": "lektion-01.md",
+    "lessonSummary": "Great! You create dictionaries and read values by their key.",
+    "tasks": [
+      {
+        "instruction": "Run this example: create a dictionary and read from it.",
+        "example": true,
+        "codeTemplate": "member = {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120}\nprint(member)\nprint(\"Name:\", member[\"name\"])\nprint(f\"Rank: {member['rank']}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rank: 4"
+        }
+      },
+      {
+        "instruction": "Create a dictionary member with the keys name (\"Nova\"), role (\"Pilot\"), rank (4) and energy (120). Print exactly Name: Nova and on the next line Rank: 4 (access with []).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Nova\nRank: 4"
+        }
+      },
+      {
+        "instruction": "The dictionary member is given. Print the number of entries with len() as Number of properties: 4 and on the next line Role: Pilot.",
+        "codeTemplate": "member = {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Number of properties: 4\nRole: Pilot"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Data Log 2: Changing, adding and removing",
+    "file": "lektion-02.md",
+    "lessonSummary": "Nice! You change values, add entries and remove them again.",
+    "tasks": [
+      {
+        "instruction": "Run this example: change, add, remove.",
+        "example": true,
+        "codeTemplate": "member = {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120}\nmember[\"rank\"] = member[\"rank\"] + 1\nmember[\"shield\"] = 80\nremoved = member.pop(\"energy\")\nprint(f\"Rank now: {member['rank']}\")\nprint(f\"Removed: {removed}\")\nprint(f\"Properties: {len(member)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Properties: 4"
+        }
+      },
+      {
+        "instruction": "The dictionary member is given. Increase rank with += 1 and add the new key shield with the value 80. Print exactly Rank: 5 and on the next line Shield: 80.",
+        "codeTemplate": "member = {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rank: 5\nShield: 80"
+        }
+      },
+      {
+        "instruction": "The dictionary member is given. Remove the key role with pop() and print the removed value as Removed: Pilot. Then delete the key energy with del and print Properties: 2 (len).",
+        "codeTemplate": "member = {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Removed: Pilot\nProperties: 2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Data Log 3: Safe access with get() and in",
+    "file": "lektion-03.md",
+    "lessonSummary": "Well done! You ask with get() and in instead of risking a KeyError.",
+    "tasks": [
+      {
+        "instruction": "Run this example: get() with a default value and in.",
+        "example": true,
+        "codeTemplate": "member = {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120}\nprint(\"Name:\", member.get(\"name\"))\nprint(\"Shield:\", member.get(\"shield\", 0))\nprint(\"Present:\", \"shield\" in member)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Present: False"
+        }
+      },
+      {
+        "instruction": "The dictionary member is given (without shield). Fetch the value of shield with get() and default value 0 and print exactly Shield: 0.",
+        "codeTemplate": "member = {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Shield: 0"
+        }
+      },
+      {
+        "instruction": "The dictionary member is given. Check with in and print exactly rank present: True and on the next line shield present: False.",
+        "codeTemplate": "member = {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "rank present: True\nshield present: False"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Data Log 4: Looping through dictionaries",
+    "file": "lektion-04.md",
+    "lessonSummary": "Great! You walk through a dictionary with keys(), values() and items().",
+    "tasks": [
+      {
+        "instruction": "Run this example: items() and values().",
+        "example": true,
+        "codeTemplate": "stock = {\"Battery\": 3, \"Cable\": 5, \"Sensor\": 2}\nfor name, amount in stock.items():\n    print(f\"{name}: {amount}\")\ntotal = 0\nfor amount in stock.values():\n    total += amount\nprint(f\"Total: {total}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total: 10"
+        }
+      },
+      {
+        "instruction": "The dictionary stock is given (Stock: name and amount). With items(), print each entry as Name: Amount on its own line, e.g. Battery: 3.",
+        "codeTemplate": "stock = {\"Battery\": 3, \"Cable\": 5, \"Sensor\": 2}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Battery: 3\nCable: 5\nSensor: 2"
+        }
+      },
+      {
+        "instruction": "The dictionary stock is given. Add up all amounts with values() and print exactly Total: 10 and on the next line Kinds: 3 (len).",
+        "codeTemplate": "stock = {\"Battery\": 3, \"Cable\": 5, \"Sensor\": 2}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total: 10\nKinds: 3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Data Log 5: Tuples",
+    "file": "lektion-05.md",
+    "lessonSummary": "Nice! You pack values into tuples and unpack them again.",
+    "tasks": [
+      {
+        "instruction": "Run this example: create, read and unpack a tuple.",
+        "example": true,
+        "codeTemplate": "part = (\"Shield module\", 15, \"Energy\")\nprint(part)\nprint(\"Length:\", len(part))\nprint(\"First:\", part[0])\nname, value, kind = part\nprint(f\"Value: {value}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Value: 15"
+        }
+      },
+      {
+        "instruction": "Create the tuple part = (\"Shield module\", 15, \"Energy\") and unpack it into name, value and kind. Print exactly Name: Shield module and on the next line Kind: Energy.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Shield module\nKind: Energy"
+        }
+      },
+      {
+        "instruction": "Two points are given as tuples. Calculate the distance as the difference of the x values plus the difference of the y values (goal minus start, all positive) and print exactly Distance: 7.",
+        "codeTemplate": "start = (2, 3)\ngoal = (6, 6)\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Distance: 7"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "section": "lektion",
+    "title": "Data Log 6: Immutable and catching errors",
+    "file": "lektion-06.md",
+    "lessonSummary": "Masterful! You catch errors with try/except instead of letting your program crash.",
+    "tasks": [
+      {
+        "instruction": "Run this example: catch three kinds of errors.",
+        "example": true,
+        "codeTemplate": "part = (\"Shield module\", 15, \"Energy\")\nstock = {\"Battery\": 3, \"Cable\": 5, \"Sensor\": 2}\ntry:\n    part[1] = 99\nexcept TypeError:\n    print(\"Error: tuples are immutable\")\ntry:\n    print(stock[\"Warp core\"])\nexcept KeyError:\n    print(\"Error: not in store\")\ntry:\n    number = int(\"ten\")\nexcept ValueError:\n    print(\"Error: not a number\")\nprint(\"Carry on\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Carry on"
+        }
+      },
+      {
+        "instruction": "The tuple part is given. In a try block, try to set part[1] = 99, catch the TypeError and print exactly Error: protected.",
+        "codeTemplate": "part = (\"Shield module\", 15, \"Energy\")\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Error: protected",
+          "codeContains": [
+            "try",
+            "except"
+          ]
+        }
+      },
+      {
+        "instruction": "The dictionary stock is given. In a try block, try to read stock[\"Warp core\"], catch the KeyError and print exactly Not in store: Warp core.",
+        "codeTemplate": "stock = {\"Battery\": 3, \"Cable\": 5, \"Sensor\": 2}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Not in store: Warp core",
+          "codeContains": [
+            "try",
+            "except"
+          ]
+        }
+      },
+      {
+        "instruction": "The input text = \"ten\" is given. In a try block, convert it to number with int(). Catch the ValueError and then set number = 0. Print exactly Number: 0.",
+        "codeTemplate": "text = \"ten\"\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Number: 0",
+          "codeContains": [
+            "try",
+            "except"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Data Log 7: Nested structures",
+    "file": "lektion-07.md",
+    "lessonSummary": "World class! You nest dictionaries, lists and tuples.",
+    "tasks": [
+      {
+        "instruction": "Run this example: read nested data and filter.",
+        "example": true,
+        "codeTemplate": "member = {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120, \"equipment\": {\"tool\": \"Laser\", \"suit\": \"Spacesuit\"}}\nprint(f\"Tool: {member['equipment']['tool']}\")\ncrew = [\n    {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120},\n    {\"name\": \"Rex\", \"role\": \"Engineer\", \"rank\": 6, \"energy\": 150},\n    {\"name\": \"Zara\", \"role\": \"Botanist\", \"rank\": 3, \"energy\": 90},\n]\nprint(f\"Count: {len(crew)}\")\nstrong = [e[\"name\"] for e in crew if e[\"rank\"] > 3]\nprint(f\"Strong: {strong}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Strong: ['Nova', 'Rex']"
+        }
+      },
+      {
+        "instruction": "The list crew with three dictionaries is given. Print exactly Count: 3 and on the next line Last: Zara (name of the last entry, index -1).",
+        "codeTemplate": "crew = [\n    {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120},\n    {\"name\": \"Rex\", \"role\": \"Engineer\", \"rank\": 6, \"energy\": 150},\n    {\"name\": \"Zara\", \"role\": \"Botanist\", \"rank\": 3, \"energy\": 90},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 3\nLast: Zara"
+        }
+      },
+      {
+        "instruction": "The dictionary member contains the sub-entry equipment and is given. Print exactly Tool: Laser and on the next line Suit: Spacesuit.",
+        "codeTemplate": "member = {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120, \"equipment\": {\"tool\": \"Laser\", \"suit\": \"Spacesuit\"}}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Tool: Laser\nSuit: Spacesuit"
+        }
+      },
+      {
+        "instruction": "The list crew is given. With a list comprehension, collect the names of all entries whose rank is greater than 3 into strong and print exactly Strong: ['Nova', 'Rex'].",
+        "codeTemplate": "crew = [\n    {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120},\n    {\"name\": \"Rex\", \"role\": \"Engineer\", \"rank\": 6, \"energy\": 150},\n    {\"name\": \"Zara\", \"role\": \"Botanist\", \"rank\": 3, \"energy\": 90},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Strong: ['Nova', 'Rex']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug Quest",
+    "file": "debug-01.md",
+    "lessonSummary": "All bugs found! With dictionaries and tuples, commas, keys and immutability matter.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Goal: The program should print Name: Nova. What is wrong?",
+        "codeTemplate": "member = {\n    \"name\": \"Nova\"\n    \"role\": \"Pilot\"\n}\nprint(\"Name:\", member[\"name\"])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Nova"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Goal: The program should print Position: (150, 200). What is wrong?",
+        "codeTemplate": "position = (100, 200)\nposition[0] = 150\nprint(\"Position:\", position)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Position: (150, 200)"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Goal: The program should print Rank: 4. What is wrong?",
+        "codeTemplate": "member = {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120}\nprint(\"Rank:\", member[\"Rank\"])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rank: 4"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission 1: The Crew Files",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission accomplished: You created, changed and read your first profile card!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create a profile card: Create the dictionary member with name (\"Nova\"), role (\"Pilot\"), rank (4) and energy (120). Print exactly Nova, Pilot, Rank 4 (use an f-string with the values).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova, Pilot, Rank 4"
+        }
+      },
+      {
+        "instruction": "Step 2 – Change and add: The dictionary member is given. Increase rank by 1, add shield with the value 80 and print exactly Rank: 5 and on the next line Shield: 80.",
+        "codeTemplate": "member = {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Rank: 5\nShield: 80"
+        }
+      },
+      {
+        "instruction": "Step 3 – List of profile cards: The list crew is given. Print exactly Count: 3 and on the next line Second: Rex (name of the second entry).",
+        "codeTemplate": "crew = [\n    {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120},\n    {\"name\": \"Rex\", \"role\": \"Engineer\", \"rank\": 6, \"energy\": 150},\n    {\"name\": \"Zara\", \"role\": \"Botanist\", \"rank\": 3, \"energy\": 90},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 3\nSecond: Rex"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-02",
+    "section": "mission",
+    "title": "Mission 2: The Parts Shelf",
+    "file": "mission-02.md",
+    "lessonSummary": "Mission accomplished: Tuples, unpacking and a catalog work together!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Unpack a tuple: The tuple part is given. Unpack it into name, value and kind and print exactly Part: Shield module, Value: 15 and Kind: Energy on three lines.",
+        "codeTemplate": "part = (\"Shield module\", 15, \"Energy\")\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Part: Shield module\nValue: 15\nKind: Energy"
+        }
+      },
+      {
+        "instruction": "Step 2 – Catalog: The dictionary catalog (name → tuple) is given. Print exactly Value: 15 (second element of the tuple of Shield module) and on the next line Entries: 2.",
+        "codeTemplate": "catalog = {\"Shield module\": (\"Shield module\", 15, \"Energy\"), \"Sensor chip\": (\"Sensor chip\", 5, \"Data\")}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Value: 15\nEntries: 2"
+        }
+      },
+      {
+        "instruction": "Step 3 – Distance: Write a function distance(a, b) that receives two point tuples (x, y) and returns the difference of the x values plus that of the y values (b minus a, all positive). For (2, 3) and (6, 6) print exactly Distance: 7.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Distance: 7",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-03",
+    "section": "mission",
+    "title": "Mission 3: The Station Crew",
+    "file": "mission-03.md",
+    "lessonSummary": "Mission accomplished: Searching, counting and averaging across a whole list of profile cards!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Loop: The list crew with four dictionaries is given. Print each entry as Name: Rank on its own line, e.g. Nova: 4.",
+        "codeTemplate": "crew = [\n    {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120},\n    {\"name\": \"Rex\", \"role\": \"Engineer\", \"rank\": 6, \"energy\": 150},\n    {\"name\": \"Zara\", \"role\": \"Botanist\", \"rank\": 3, \"energy\": 90},\n    {\"name\": \"Kai\", \"role\": \"Pilot\", \"rank\": 5, \"energy\": 110},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nova: 4\nRex: 6\nZara: 3\nKai: 5"
+        }
+      },
+      {
+        "instruction": "Step 2 – Search: The list crew is given. Write a function find_crew(items, kind) that returns the names of all entries with this role as a list. For \"Pilot\" print exactly Found: ['Nova', 'Kai'].",
+        "codeTemplate": "crew = [\n    {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120},\n    {\"name\": \"Rex\", \"role\": \"Engineer\", \"rank\": 6, \"energy\": 150},\n    {\"name\": \"Zara\", \"role\": \"Botanist\", \"rank\": 3, \"energy\": 90},\n    {\"name\": \"Kai\", \"role\": \"Pilot\", \"rank\": 5, \"energy\": 110},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Found: ['Nova', 'Kai']",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 3 – Statistics: The list crew is given. Calculate the average of rank (sum divided by len) and print exactly Average: 4.5.",
+        "codeTemplate": "crew = [\n    {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120},\n    {\"name\": \"Rex\", \"role\": \"Engineer\", \"rank\": 6, \"energy\": 150},\n    {\"name\": \"Zara\", \"role\": \"Botanist\", \"rank\": 3, \"energy\": 90},\n    {\"name\": \"Kai\", \"role\": \"Pilot\", \"rank\": 5, \"energy\": 110},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Average: 4.5"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra Challenge 1: The Find Catalog",
+    "file": "boss-01.md",
+    "lessonSummary": "The catalog stands: create entries, filter, sum up and sort!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Entry: Create the dictionary entry with name (\"Crystal core\"), value (800) and place (\"Hangar\"). Print exactly Name: Crystal core, Value: 800.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Name: Crystal core, Value: 800"
+        }
+      },
+      {
+        "instruction": "Step 2 – Collection: The list finds with three dictionaries is given. Print exactly Entries: 3 and on the next line Last place: Bridge.",
+        "codeTemplate": "finds = [\n    {\"name\": \"Crystal core\", \"value\": 800, \"place\": \"Hangar\"},\n    {\"name\": \"Sensor chip\", \"value\": 300, \"place\": \"Lab\"},\n    {\"name\": \"Antimatter\", \"value\": 650, \"place\": \"Bridge\"},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Entries: 3\nLast place: Bridge"
+        }
+      },
+      {
+        "instruction": "Step 3 – Filter and sum: Count all entries with value above 500 and add up all values. Print exactly Above 500: 2 and on the next line Total value: 1750.",
+        "codeTemplate": "finds = [\n    {\"name\": \"Crystal core\", \"value\": 800, \"place\": \"Hangar\"},\n    {\"name\": \"Sensor chip\", \"value\": 300, \"place\": \"Lab\"},\n    {\"name\": \"Antimatter\", \"value\": 650, \"place\": \"Bridge\"},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Above 500: 2\nTotal value: 1750"
+        }
+      },
+      {
+        "instruction": "Step 4 – Sort: Collect all value values in the list values and sort them in descending order (sorted with reverse=True). Print exactly Values: [800, 650, 300].",
+        "codeTemplate": "finds = [\n    {\"name\": \"Crystal core\", \"value\": 800, \"place\": \"Hangar\"},\n    {\"name\": \"Sensor chip\", \"value\": 300, \"place\": \"Lab\"},\n    {\"name\": \"Antimatter\", \"value\": 650, \"place\": \"Bridge\"},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Values: [800, 650, 300]"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra Challenge 2: The Deck Manager",
+    "file": "boss-02.md",
+    "lessonSummary": "The manager runs: nested dictionaries searched, compared and evaluated!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Setup: The nested dictionary zones is given (Deck → dictionary with danger, find, difficulty). Print each Deck as Name: danger / find, e.g. Hangar: Meteorite / Crystal.",
+        "codeTemplate": "zones = {\n    \"Hangar\": {\"danger\": \"Meteorite\", \"find\": \"Crystal\", \"difficulty\": 3},\n    \"Lab\": {\"danger\": \"Radiation\", \"find\": \"Sensor\", \"difficulty\": 5},\n    \"Bridge\": {\"danger\": \"Storm\", \"find\": \"Star chart\", \"difficulty\": 8},\n}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hangar: Meteorite / Crystal\nLab: Radiation / Sensor\nBridge: Storm / Star chart"
+        }
+      },
+      {
+        "instruction": "Step 2 – Most dangerous: The dictionary zones is given. Find the Deck with the highest difficulty and print exactly Most dangerous: Bridge (8).",
+        "codeTemplate": "zones = {\n    \"Hangar\": {\"danger\": \"Meteorite\", \"find\": \"Crystal\", \"difficulty\": 3},\n    \"Lab\": {\"danger\": \"Radiation\", \"find\": \"Sensor\", \"difficulty\": 5},\n    \"Bridge\": {\"danger\": \"Storm\", \"find\": \"Star chart\", \"difficulty\": 8},\n}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Most dangerous: Bridge (8)"
+        }
+      },
+      {
+        "instruction": "Step 3 – Who may enter? The character has strong = 5. In the list enterable, collect the names of all zones whose difficulty is at most strong and print exactly Enterable: ['Hangar', 'Lab'].",
+        "codeTemplate": "zones = {\n    \"Hangar\": {\"danger\": \"Meteorite\", \"find\": \"Crystal\", \"difficulty\": 3},\n    \"Lab\": {\"danger\": \"Radiation\", \"find\": \"Sensor\", \"difficulty\": 5},\n    \"Bridge\": {\"danger\": \"Storm\", \"find\": \"Star chart\", \"difficulty\": 8},\n}\nstrong = 5\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Enterable: ['Hangar', 'Lab']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra Challenge 3: The Crew Archive",
+    "file": "boss-03.md",
+    "lessonSummary": "The archive stands: searching, counting and a ranking from four profile cards!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Create: Create the list crew with four dictionaries (keys name, role, rank): Nova (Pilot, 4), Rex (Engineer, 6), Zara (Botanist, 3), Kai (Pilot, 5). Print exactly Count: 4.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Count: 4"
+        }
+      },
+      {
+        "instruction": "Step 2 – Search: The list crew is given. Write a function find_crew(items, kind) that returns the names with this role. Print exactly Pilot: 2 and on the next line Engineer: 1 (number of hits).",
+        "codeTemplate": "crew = [\n    {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120},\n    {\"name\": \"Rex\", \"role\": \"Engineer\", \"rank\": 6, \"energy\": 150},\n    {\"name\": \"Zara\", \"role\": \"Botanist\", \"rank\": 3, \"energy\": 90},\n    {\"name\": \"Kai\", \"role\": \"Pilot\", \"rank\": 5, \"energy\": 110},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Pilot: 2\nEngineer: 1",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Step 3 – Ranking: The list crew is given. Collect all rank values, sort them in descending order and find the name with the highest value. Print exactly Best: Rex and on the next line Ranking: [6, 5, 4, 3].",
+        "codeTemplate": "crew = [\n    {\"name\": \"Nova\", \"role\": \"Pilot\", \"rank\": 4, \"energy\": 120},\n    {\"name\": \"Rex\", \"role\": \"Engineer\", \"rank\": 6, \"energy\": 150},\n    {\"name\": \"Zara\", \"role\": \"Botanist\", \"rank\": 3, \"energy\": 90},\n    {\"name\": \"Kai\", \"role\": \"Pilot\", \"rank\": 5, \"energy\": 110},\n]\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Best: Rex\nRanking: [6, 5, 4, 3]"
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-04",
+    "section": "boss",
+    "title": "Extra Challenge 4: The Great Data Archive",
+    "file": "boss-04.md",
+    "lessonSummary": "The great review is done: functions, lists and randomness from weeks 5 to 7 – now with dictionaries!",
+    "tasks": [
+      {
+        "instruction": "Step 1 – Function with return (week 5): Write create_member(name, kind, level) that returns a dictionary with the keys name, role, rank. Call it with (\"Nova\", \"Pilot\", 4) and print exactly Created: Nova and on the next line Rank: 4.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Created: Nova\nRank: 4"
+        }
+      },
+      {
+        "instruction": "Step 2 – List of dictionaries (week 5/6): Write create_mission(name, difficulty) that returns a dictionary with name, difficulty and status \"open\". Create the list missions and add three Mission entries with append() (Locate the signal / 1, Launch the probe / 2, Repair the hull / 3). Print exactly Mission count: 3 and on the next line Status: open (status of the first one).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mission count: 3\nStatus: open"
+        }
+      },
+      {
+        "instruction": "Step 3 – Find the largest value (week 6): The dictionary prices (name → price) is given. Find the most expensive item with a loop and print exactly Most expensive item: Battery (30).",
+        "codeTemplate": "prices = {\"Battery\": 30, \"Cable\": 5, \"Sensor\": 10}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Most expensive item: Battery (30)"
+        }
+      },
+      {
+        "instruction": "Step 4 – Counting with a dictionary: In word = \"spacestation\", count how often each letter occurs. Use counter = {} and counter[c] = counter.get(c, 0) + 1. Print exactly a: 2.",
+        "codeTemplate": "word = \"spacestation\"\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "a: 2"
+        }
+      },
+      {
+        "instruction": "Step 5 – Randomness (week 7): The dictionary stock is given. With random.choice(list(stock.keys())), draw a name into drawn and print exactly Drawn valid: True (drawn in stock).",
+        "codeTemplate": "stock = {\"Battery\": 3, \"Cable\": 5, \"Sensor\": 2}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Drawn valid: True"
+        }
+      },
+      {
+        "instruction": "Step 6 – Catch errors (week 5/8): The dictionary stock is given. Write amount_of(name) that returns the amount – or 0 if the name is missing (try/except KeyError). Print exactly Battery: 3 and on the next line Warp core: 0.",
+        "codeTemplate": "stock = {\"Battery\": 3, \"Cable\": 5, \"Sensor\": 2}\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Battery: 3\nWarp core: 0",
+          "codeContains": [
+            "try",
+            "except"
+          ]
+        }
+      }
+    ]
+  }
+]

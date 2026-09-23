@@ -1,0 +1,3 @@
+"""### Extra Challenge 4: The Great Data Archive – Task 2
+
+Step 2 – List of dictionaries (week 5/6): Write create_mission(name, difficulty) that returns a dictionary with name, difficulty and status \"open\". Create the list missions and add three Mission entries with append() (Locate the signal / 1, Launch the probe / 2, Repair the hull / 3). Print exactly Mission count: 3 and on the next line Status: open (status of the first one)."""

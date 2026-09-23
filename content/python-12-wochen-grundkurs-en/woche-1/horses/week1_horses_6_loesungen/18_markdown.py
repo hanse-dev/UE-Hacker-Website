@@ -1,1 +1,3 @@
-"""**Explanation:** Text must be in quotation marks. Without them Python reads `Hello` and `Horse` as variable names – which don't exist."""
+"""### Debug Quest – Task 3
+
+🐛 Bug #3 – Goal: The program should print Welcome, Lucky. What is wrong?"""

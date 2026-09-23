@@ -39,6 +39,19 @@ test.describe('Lektions-Format: Content-Integrität', () => {
           expect(t.instruction).toBeTruthy();
           expect(typeof t.codeTemplate).toBe('string');
           expect(t.validation?.expected ?? t.validation?.variables).toBeTruthy();
+          // Struktur-Pflichtbausteine duerfen nicht schon im vorgegebenen Code stehen (sonst sinnlos), nie bei Beispielen
+          if (t.validation.codeContains) {
+            expect(t.example, `${l.id}: codeContains bei Beispiel`).toBeFalsy();
+            const given = t.codeTemplate.split('\n').filter((x) => !x.trim().startsWith('#')).join('\n');
+            for (const tok of t.validation.codeContains) {
+              const re = new RegExp((/^\w/.test(tok) ? '\\b' : '') + tok.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + (/\w$/.test(tok) ? '\\b' : ''));
+              expect(re.test(given), `${l.id}: ${tok} steht schon im vorgegebenen Code`).toBe(false);
+            }
+          }
+          // vorgegebene Eingaben fuer input(): Liste von Texten, nur wenn der Code input() nutzt (Beispiele ausgenommen)
+          if (t.validation.stdin) {
+            expect(Array.isArray(t.validation.stdin) && t.validation.stdin.every((x) => typeof x === 'string')).toBe(true);
+          }
         }
       }
       const sections = new Set(lessons.map((l) => l.section));
@@ -66,6 +79,25 @@ test.describe('Lektions-Format: Wochen-Tour', () => {
       await page.locator('[data-reference-key="6_loesungen"]').click();
       await expect(page.locator('.notebook-cells .cell').first()).toBeVisible({ timeout: 15000 });
       await expect(page.locator('.error')).toHaveCount(0);
+    });
+  }
+});
+
+// Wochen mit passenden Lösungen (alle Wochen): das Nachschlagewerk "Loesungen" ist aus den Referenzloesungen der Aufgaben erzeugt (eine Zelle je
+// Aufgabe) - jede Aufgabenstellung muss dort stehen, sonst passen Loesungen und Aufgaben nicht mehr zusammen.
+const SOLUTION_WEEKS = WEEKS; // alle Wochen 1-12
+test.describe('Lektions-Format: Lösungen passen zu den Aufgaben', () => {
+  const EN_THEME = { abenteuer: 'adventure', pferde: 'horses', scifi: 'scifi' };
+  for (const week of SOLUTION_WEEKS) for (const theme of THEMES) for (const lang of LANGS) {
+    test(`Woche ${week} ${theme} ${lang}: jede Aufgabe hat ihre Lösung`, () => {
+      const dir = lang === 'en'
+        ? path.join(CONTENT, 'python-12-wochen-grundkurs-en', `woche-${week}`, EN_THEME[theme], `week${week}_${EN_THEME[theme]}_6_loesungen`)
+        : path.join(CONTENT, 'python-12-wochen-grundkurs', `woche-${week}`, theme, `woche${week}_${theme}_6_loesungen`);
+      const files = fs.readdirSync(dir).filter((f) => /^\d+_(markdown|code)\.py$/.test(f)).sort();
+      const md = files.filter((f) => f.endsWith('_markdown.py')).map((f) => fs.readFileSync(path.join(dir, f), 'utf8')).join('\n').replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+      const own = readLessons(folder(week, theme, lang)).flatMap((l) => l.tasks.filter((t) => !t.example));
+      for (const t of own) expect(md, t.instruction.slice(0, 60)).toContain(t.instruction);
+      expect(files.filter((f) => f.endsWith('_code.py')).length).toBe(own.length);
     });
   }
 });

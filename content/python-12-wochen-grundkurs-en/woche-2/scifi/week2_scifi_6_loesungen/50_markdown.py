@@ -1,3 +1,3 @@
-"""### Mission 1: The Energy Depot – Task 2
+"""### Mission 2: The Fleet Analysis – Task 3
 
-Step 2 – Create blocks = 12 (whole number) and energy_per_block = 45.5 (decimal number). Multiply them, store the result in total_energy and print exactly: Total energy: 546.0"""
+Step 3 – Add all speeds, divide by 3, store the result in average_speed and print exactly: Average speed: 2.5"""

@@ -1,1 +1,0 @@
-"""**Boss Quest 1:** The saved game now has two parts: the player and a dictionary with the state of every room. When loading, the items of every room are created again from the saved data."""

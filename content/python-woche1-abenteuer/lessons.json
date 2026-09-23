@@ -102,11 +102,14 @@
         }
       },
       {
-        "instruction": "Frage mit input() nach der Waffe deines Helden, speichere die Antwort in waffe und gib aus: Kampfbereit mit: (und dann die Waffe)",
+        "instruction": "Frage mit input() nach der Waffe deines Helden, speichere die Antwort in waffe und gib aus: Kampfbereit mit: (und dann die Waffe) (Beim Prüfen wird automatisch Kriegshammer eingegeben.)",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Kampfbereit mit: "
+          "expected": "Kampfbereit mit: Kriegshammer",
+          "stdin": [
+            "Kriegshammer"
+          ]
         }
       }
     ]

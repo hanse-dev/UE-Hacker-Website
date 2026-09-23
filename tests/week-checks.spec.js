@@ -67,12 +67,14 @@ test.describe('Einstufung & Check-Tab', () => {
     }, STORAGE_KEY);
   });
 
-  test('Deep-Link öffnet Woche und lädt Notebook', async ({ page }) => {
-    // Woche 1 ist Lektions-Format (python-woche1-lektionen.spec.js) - Notebook-Pfad hier mit Woche 12
+  test('Deep-Link öffnet Woche und lädt Lektion und Notebook', async ({ page }) => {
+    // Alle Wochen sind Lektions-Format (python-lektionen-format.spec.js) - ein echtes Notebook gibt es nur
+    // noch als Nachschlagewerk "Lösungen".
     await page.goto(`${COURSE_URL}?week=12&variant=pferde&step=1_lektion`);
     await expect(page.locator('.tour-content')).toBeVisible({ timeout: 20000 });
-    await expect(page.locator('.stepper-step.current')).toContainText('Lektion');
-    await expect(page.locator('.cell').first()).toBeVisible({ timeout: 15000 });
+    await expect(page.locator('.js-course-tour .stepper-step.current')).toBeVisible({ timeout: 15000 });
+    await page.locator('[data-reference-key="6_loesungen"]').click();
+    await expect(page.locator('.notebook-cells .cell').first()).toBeVisible({ timeout: 15000 });
   });
 
   test('Check-Tab: Multi-Select erlaubt mehrere Antworten', async ({ page }) => {

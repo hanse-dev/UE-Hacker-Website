@@ -1,3 +1,3 @@
-"""### Das Schiffslogbuch – Aufgabe 2
+"""### Das Wurmloch – Aufgabe 2
 
-Schritt 2 – Trage dich ein: Gib Autor: (dein Name) und Bewertung: 5 Sterne aus. Nutze dafür eine Variable und str() für die Zahl."""
+Schritt 2 – Gib die Überschrift === NAVIGATIONSWARNUNG === aus und darunter eine eigene Warnung für vorbeifliegende Schiffe."""

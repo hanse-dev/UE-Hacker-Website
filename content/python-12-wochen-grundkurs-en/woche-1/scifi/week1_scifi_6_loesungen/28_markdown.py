@@ -1,3 +1,3 @@
-"""### Mission 1: The Cadet – Task 2
+"""### Mission 3: The Shuttle Pilot – Task 1
 
-Step 2 – Store the number 4711 in the variable service_number and use str() to output exactly this sentence: My service number is 4711."""
+Step 1 – Output the heading === FLIGHT PROTOCOL ===, then this sentence built from the variables: Shuttle 7 is flying to the destination Mars. (number with str()!)"""

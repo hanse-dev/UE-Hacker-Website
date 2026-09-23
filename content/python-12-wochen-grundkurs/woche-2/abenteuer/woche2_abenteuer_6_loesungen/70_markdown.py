@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 2: Die Zauberwerkstatt – Aufgabe 1
+"""### Extra-Herausforderung 2: Die Zauberwerkstatt – Aufgabe 3
 
-Schritt 1 – Gib die Überschrift === ZAUBERWERKSTATT-PROTOKOLL === und danach mit f-String für den ersten Zauber genau aus: Feuerball: Stärke 80.0, Komplexität 3"""
+Schritt 3 – Berechne die Durchschnittsstärke der drei Zauber und gib genau aus: Durchschnittsstärke: 80.0"""

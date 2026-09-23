@@ -1,8 +1,4 @@
-horse_name = "Bobby"
-feed_type = "oats"
-amount = 3
+rider = "Mia"
+horse = "Bobby"
 
-print("=== FEEDING PLAN ===")
-print("Horse: " + horse_name)
-print("Feed: " + feed_type)
-print("Amount: " + str(amount) + " kg")
+print(rider + " and " + horse + " are riding in the tournament today.")

@@ -1,1 +1,3 @@
-"""**Explanation:** The word `hours` inside the text is just text. To insert the value of the variable it has to be in curly braces: `{hours}`."""
+"""### Mission 1: The Feed Store – Task 3
+
+Step 3 – bales and bale_weight are already there. Multiply them, store the result in the variable total_weight and print exactly: Total weight: 310.0 kg"""

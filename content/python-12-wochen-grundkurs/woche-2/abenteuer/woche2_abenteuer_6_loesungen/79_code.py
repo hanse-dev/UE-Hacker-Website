@@ -7,5 +7,5 @@ dauer2 = 7
 gruppe2 = 4
 chance2 = 0.75
 
-print("=== QUEST-PROTOKOLL ===")
-print(f"Gesamtbelohnung: {belohnung1 + belohnung2}")
+rentabler = belohnung2 * chance2 > belohnung1 * chance1
+print(f"Quest 2 rentabler: {rentabler}")

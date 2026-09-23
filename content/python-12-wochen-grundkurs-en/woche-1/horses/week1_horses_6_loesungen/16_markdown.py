@@ -1,3 +1,3 @@
-"""### Debug Quest – Task 1
+"""### Debug Quest – Task 2
 
-🐛 Bug #1 – Goal: The program should print the text Hello Horse. What is wrong?"""
+🐛 Bug #2 – Goal: The program should print My stable is number 12. What is wrong?"""

@@ -1,3 +1,3 @@
-"""### Mission 3: The Shuttle Pilot – Task 1
+"""### Extra challenge 1: The Ship's Log – Task 2
 
-Step 1 – Output the heading === FLIGHT PROTOCOL ===, then this sentence built from the variables: Shuttle 7 is flying to the destination Mars. (number with str()!)"""
+Step 2 – Sign the log: output Author: (your name) and Rating: 5 stars. Use a variable and str() for the number."""

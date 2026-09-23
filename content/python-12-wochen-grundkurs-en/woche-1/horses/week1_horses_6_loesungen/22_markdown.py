@@ -1,3 +1,3 @@
-"""### Debug Quest – Task 3
+"""### Mission 1: The Stable Helper – Task 2
 
-🐛 Bug #3 – Goal: The program should print Welcome, Lucky. What is wrong?"""
+Step 2 – Store the name \"Bobby\" in the variable favourite_horse and use it to output exactly this sentence: My favourite horse is Bobby."""

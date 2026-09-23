@@ -1,1 +1,0 @@
-"""**Bug #1 – Explanation:** Accessing a key that does not exist raises a `KeyError`. Check with `in` first whether the key exists – just like `go()` does in the lesson."""

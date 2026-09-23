@@ -1,3 +1,3 @@
-"""### Mission 1: The Stable Helper – Task 1
+"""### Mission 2: The Horse Whisperer – Task 2
 
-Step 1 – Use print() to output exactly this sentence: Welcome to Sunny Valley Riding Ranch!"""
+Step 2 – Use the variables from step 1 to print this sentence: Bobby gets 3 kg of oats."""

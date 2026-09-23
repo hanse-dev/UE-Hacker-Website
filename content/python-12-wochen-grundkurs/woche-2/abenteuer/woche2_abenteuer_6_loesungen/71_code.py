@@ -8,5 +8,5 @@ zauber3 = "Sturmruf"
 staerke3 = 95.0
 komplex3 = 5
 
-print("=== ZAUBERWERKSTATT-PROTOKOLL ===")
-print(f"{zauber1}: Stärke {staerke1}, Komplexität {komplex1}")
+durchschnitt = (staerke1 + staerke2 + staerke3) / 3
+print(f"Durchschnittsstärke: {durchschnitt}")

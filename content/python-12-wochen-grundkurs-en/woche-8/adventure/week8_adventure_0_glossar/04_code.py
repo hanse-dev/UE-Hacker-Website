@@ -7,7 +7,6 @@ print(hero.get("xp", 0))    # 0 (default value)
 
 # Modify and delete
 hero["level"] = 6
-hero.update({"gold": 150})
 hero.pop("gold")
 
 # Iteration

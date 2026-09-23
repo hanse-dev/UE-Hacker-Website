@@ -1,4 +1,9 @@
-master_password = "Dragon42"
-guest_password = "Visitor7"
-entered = "Visitor7"
-print(f"Entered: {entered}")
+master_password = "Dragonfire"
+guest_password = "Stardust"
+entered = "Stardust"
+if entered == master_password:
+    print("Full treasure granted")
+elif entered == guest_password:
+    print("Partial treasure granted")
+else:
+    print("Wrong password")

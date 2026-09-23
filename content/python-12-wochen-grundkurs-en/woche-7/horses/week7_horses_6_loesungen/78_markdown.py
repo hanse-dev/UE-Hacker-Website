@@ -1,0 +1,3 @@
+"""### Extra Challenge 4: The Great Chance Test – Task 3
+
+Step 3 – Random walk: Start at position = 0 with the list path = [0] and steps = 0. Repeat with while as long as steps is less than 100: Choose a step with random.choice([-1, 1]), add it to the position, append the position to path and increase steps. End the loop with break when the position reaches 5. Print exactly At most 100 steps: True and on the next line Path fits: True (len(path) == steps + 1)."""

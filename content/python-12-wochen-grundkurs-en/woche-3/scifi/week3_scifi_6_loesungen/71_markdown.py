@@ -1,3 +1,0 @@
-"""### Extra challenge 2: The Spaceship Simulator – Task 4
-
-Level 4: Systems check – Create shields = 80, weapons = 40 and drive = 90. Use nested ifs: if shields >= 50, check inside whether weapons >= 50; if so, check whether drive >= 50 (All systems ready, otherwise Drive too weak); otherwise Weapons too weak!; if the shields are too low print Shields too weak!. It must print exactly: Weapons too weak!"""

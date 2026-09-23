@@ -288,11 +288,14 @@
         }
       },
       {
-        "instruction": "Frage mit input() nach dem Alter deines Pferdes, wandle die Antwort mit int() um und gib aus: Nächstes Jahr: (Alter plus 1) Jahre",
+        "instruction": "Frage mit input() nach dem Alter deines Pferdes, wandle die Antwort mit int() um und gib aus: Nächstes Jahr: (Alter plus 1) Jahre (Beim Prüfen wird automatisch 8 eingegeben.)",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Nächstes Jahr: "
+          "expected": "Nächstes Jahr: 9",
+          "stdin": [
+            "8"
+          ]
         }
       }
     ]

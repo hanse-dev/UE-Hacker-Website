@@ -1,1 +1,0 @@
-"""**Bug #3 – Erklärung:** `json.dump()` kann nur einfache Datentypen (Dictionaries, Listen, Texte, Zahlen) speichern – kein eigenes `Spieler`-Objekt. Baue zuerst ein Dictionary aus den Attributen, so wie es `speichern()` in der Lektion macht."""

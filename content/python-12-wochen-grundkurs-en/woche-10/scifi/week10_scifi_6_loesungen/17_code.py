@@ -1,32 +1,27 @@
-class Spaceship:
-    def __init__(self, name, ship_type, crew_strength, shield=100):
+class Robot:
+    def __init__(self, name, level=1, energy=100):
         self.name = name
-        self.ship_type = ship_type
-        self.crew_strength = crew_strength
-        self.shield = shield
+        self.level = level
+        self.energy = energy
 
     def introduce(self):
-        print(f"🛸 {self.name} | {self.ship_type} | Crew: {self.crew_strength} | Shield: {self.shield}%")
+        print(f"I am {self.name}, Level {self.level}.")
 
-    def attack(self, target):
-        damage = self.crew_strength * 2
-        target.shield = max(0, target.shield - damage)
-        print(f"{self.name} attacks {target.name}! Damage: {damage}. Shield: {target.shield}%")
+    def upgrade(self):
+        self.level += 1
+        print(f"{self.name} gets an upgrade: Level {self.level}")
 
-    def repair(self):
-        self.shield = min(100, self.shield + 25)
-        print(f"{self.name} repaired. Shield: {self.shield}%")
+    def work(self, kosten):
+        self.energy -= kosten
+        if self.energy < 0:
+            self.energy = 0
 
-nova = Spaceship("Nova-Hawk", "Warship", 30)
-defender = Spaceship("Defender", "Cruiser", 20, 80)
-scout = Spaceship("Scout-1", "Fighter", 5)
+    def recharge(self, menge):
+        self.energy += menge
+        if self.energy > 100:
+            self.energy = 100
 
-fleet = [nova, defender, scout]
-for ship in fleet:
-    ship.introduce()
-
-largest_crew = max(fleet, key=lambda s: s.crew_strength)
-print(f"\nLargest crew: {largest_crew.name} ({largest_crew.crew_strength})")
-
-nova.attack(defender)
-defender.repair()
+robot = Robot("Nova")
+robot.work(40)
+robot.work(70)
+print(f"Energy: {robot.energy}")

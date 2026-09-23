@@ -1,3 +1,3 @@
-"""### Mission 1: The Security Scanner – Task 2
+"""### Mission 2: The Terminal Access – Task 1
 
-Step 2 – Create rank = 6, id_card = False and emergency = False. Use if with or: if rank >= 5 or id_card or emergency print Access granted, otherwise print Access denied. It must print exactly: Access granted"""
+The variables admin_password, guest_password and entered (the simulated password that was typed in) are already created. Use if to check whether entered equals admin_password (output: Full access granted), and elif to check whether it equals guest_password (output: Read access granted)."""

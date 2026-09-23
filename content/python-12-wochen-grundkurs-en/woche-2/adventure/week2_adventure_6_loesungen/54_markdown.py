@@ -1,3 +1,3 @@
-"""### Mission 2: The Elemental Fusion – Task 1
+"""### Mission 2: The Elemental Fusion – Task 4
 
-Step 1 – Fusing two 🔥 Fire Stones: create first_name = "Luna" and last_name = "Silvermoon" and use an f-string to print exactly: Name: Luna Silvermoon"""
+Step 4 – Fusing 🔥 Fire and 🪨 Earth: use + and str() (not an f-string!) to print exactly: Level: 7"""

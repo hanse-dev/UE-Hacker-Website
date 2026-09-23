@@ -1,3 +1,3 @@
-"""### Mission 3: The Mission Rating – Task 3
+"""### Extra Challenge 1: The AI Quiz – Task 2
 
-Step 3 – With time = 24, check separately with an if whether time < 30 and print exactly: +50 Bonus for lightning mission!"""
+Create points = 0. Increase points by 100 for every correct question (for example points = points + 100). Award grade A from 400 points, B from 300, otherwise C. Print: Points: 300, Grade: B"""

@@ -7,7 +7,6 @@ print(pferd.get("gewicht", 0)) # 0 (Standardwert)
 
 # Ändern und löschen
 pferd["alter"] = 6
-pferd.update({"rasse": "Andalusier"})
 pferd.pop("rasse")
 
 # Iteration

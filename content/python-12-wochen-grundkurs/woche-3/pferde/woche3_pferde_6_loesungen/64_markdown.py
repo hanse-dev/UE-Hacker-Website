@@ -1,3 +1,3 @@
-"""### Das Reiter-Quiz – Aufgabe 3
+"""### Der Hindernis-Simulator – Aufgabe 1
 
-Schritt 3 – Note: Ab 400 Punkten Note A, ab 300 Note B. Gib genau aus: Note: B"""
+Level 1 – Aufsitzen: Erlaubt ist es, wenn pferd_groesse >= 1.60 UND reiter_gewicht <= 80. Gib dann genau aus: Level 1: Aufsitzen erlaubt"""

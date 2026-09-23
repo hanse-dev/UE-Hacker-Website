@@ -1,0 +1,3 @@
+"""### Extra-Herausforderung 4: Die große Zufallsprobe – Aufgabe 3
+
+Schritt 3 – Zufallsweg: Starte bei position = 0 mit der Liste karte = [0] und schritte = 0. Wiederhole mit while, solange schritte kleiner als 100 ist: Wähle mit random.choice([-1, 1]) einen Schritt, addiere ihn zur Position, hänge die Position an karte an und erhöhe schritte. Beende die Schleife mit break, wenn die Position 5 erreicht. Gib genau Höchstens 100 Schritte: True und in der nächsten Zeile Karte passt: True aus (len(karte) == schritte + 1)."""

@@ -1,25 +1,27 @@
 class Pferd:
-    def __init__(self, name, rasse, alter, energie=100):
+    def __init__(self, name, level=1, energie=100):
         self.name = name
-        self.rasse = rasse
-        self.alter = alter
+        self.level = level
         self.energie = energie
 
-    def vorstellen(self):
-        print(f"🐴 {self.name} | {self.rasse} | {self.alter} Jahre | Energie: {self.energie}%")
+    def stelle_vor(self):
+        print(f"Ich bin {self.name}, Level {self.level}.")
 
-    def trainieren(self, stunden):
-        verbrauch = stunden * 10
-        self.energie = max(0, self.energie - verbrauch)
-        print(f"{self.name} trainierte {stunden}h. Energie jetzt: {self.energie}%")
+    def trainiere(self):
+        self.level += 1
+        print(f"{self.name} trainiert: Level {self.level}")
 
-    def ausruhen(self):
-        self.energie = min(100, self.energie + 30)
-        print(f"{self.name} ruht sich aus. Energie: {self.energie}%")
+    def galoppiere(self, kosten):
+        self.energie -= kosten
+        if self.energie < 0:
+            self.energie = 0
 
-thunder = Pferd("Thunder", "Hannoveraner", 6)
-luna = Pferd("Luna", "Haflinger", 4)
-thunder.vorstellen()
-thunder.trainieren(3)
-thunder.ausruhen()
-luna.vorstellen()
+    def ruhe_aus(self, menge):
+        self.energie += menge
+        if self.energie > 100:
+            self.energie = 100
+
+pferd = Pferd("Blitz")
+pferd.galoppiere(40)
+pferd.galoppiere(70)
+print(f"Energie: {pferd.energie}")

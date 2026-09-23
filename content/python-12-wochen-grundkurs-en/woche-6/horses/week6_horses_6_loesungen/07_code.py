@@ -1,4 +1,3 @@
-# Problem: reverse is a boolean keyword argument, not a standalone variable
-level = [1, 5, 10, 15]
-level.sort(reverse=True)
-print(level)
+horses = ["Stormwind", "Lightning", "Luna", "Fox", "Balu"]
+print(f"Second: {horses[1]}")
+print(f"Second to last: {horses[-2]}")

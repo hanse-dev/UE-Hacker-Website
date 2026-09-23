@@ -28,7 +28,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Aufgerundet: 4\nAbgerundet: 3"
+          "expected": "Aufgerundet: 4\nAbgerundet: 3",
+          "codeContains": [
+            "import"
+          ]
         }
       }
     ]
@@ -54,7 +57,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Alle im Bereich: True"
+          "expected": "Alle im Bereich: True",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -130,7 +136,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Länge: 10\nNur erlaubte Zeichen: True"
+          "expected": "Länge: 10\nNur erlaubte Zeichen: True",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]
@@ -164,7 +173,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Stunde gültig: True\nJahr hat 4 Stellen: True"
+          "expected": "Stunde gültig: True\nJahr hat 4 Stellen: True",
+          "codeContains": [
+            "import"
+          ]
         }
       }
     ]
@@ -240,7 +252,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "17: True\n18: False"
+          "expected": "17: True\n18: False",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -397,7 +412,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Gewinner: Spieler 2"
+          "expected": "Gewinner: Spieler 2",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -471,7 +489,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Leben: 3\nLeben: 2\nLeben: 0"
+          "expected": "Leben: 3\nLeben: 2\nLeben: 0",
+          "codeContains": [
+            "def"
+          ]
         }
       }
     ]
@@ -488,7 +509,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Anzahl: 10\nAlle im Bereich: True\nHöchster mindestens Durchschnitt: True"
+          "expected": "Anzahl: 10\nAlle im Bereich: True\nHöchster mindestens Durchschnitt: True",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -504,7 +528,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Höchstens 100 Schritte: True\nKarte passt: True"
+          "expected": "Höchstens 100 Schritte: True\nKarte passt: True",
+          "codeContains": [
+            "while"
+          ]
         }
       },
       {
@@ -512,7 +539,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Alle gültig: True"
+          "expected": "Alle gültig: True",
+          "codeContains": [
+            "def"
+          ]
         }
       },
       {
@@ -520,7 +550,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Anzahl: 25\nGrößte: 97"
+          "expected": "Anzahl: 25\nGrößte: 97",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -536,7 +569,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Züge: 14\nZiel erreicht: True"
+          "expected": "Züge: 14\nZiel erreicht: True",
+          "codeContains": [
+            "while"
+          ]
         }
       }
     ]

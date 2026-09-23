@@ -1,3 +1,5 @@
-name = "Aria"
-if name == "Aria":
-    print("Hallo Aria!")
+alter = 25
+if alter >= 18:
+    print("Erwachsen")
+else:
+    print("Kind")

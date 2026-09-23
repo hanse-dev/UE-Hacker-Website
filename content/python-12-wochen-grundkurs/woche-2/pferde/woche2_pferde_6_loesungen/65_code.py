@@ -1,5 +1,4 @@
-luna_gesamt = 140
-thunder_gesamt = 135
+gesamt = 200.0
 
-durchschnitt = (luna_gesamt + thunder_gesamt) / 2
-print(f"Durchschnitt: {durchschnitt} Punkte")
+durchschnitt = gesamt / 8
+print(f"Durchschnitt: {durchschnitt} kg")

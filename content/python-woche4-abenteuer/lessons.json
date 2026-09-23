@@ -20,7 +20,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Zauber 2"
+          "expected": "Zauber 2",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -122,7 +125,10 @@
         "codeTemplate": "zauber = \"Drache\"\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "- e"
+          "expected": "- e",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -130,7 +136,10 @@
         "codeTemplate": "zauber = \"Blitzschlag\"\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Buchstaben: 11"
+          "expected": "Buchstaben: 11",
+          "codeContains": [
+            "for"
+          ]
         }
       }
     ]
@@ -156,7 +165,10 @@
         "codeTemplate": "zaehler = 1\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Runde 4"
+          "expected": "Runde 4",
+          "codeContains": [
+            "while"
+          ]
         }
       },
       {
@@ -316,7 +328,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Zahl: 20"
+          "expected": "Zahl: 20",
+          "codeContains": [
+            "for"
+          ]
         }
       },
       {
@@ -373,7 +388,10 @@
         "codeTemplate": "stockwerk = 1\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Turm bezwungen: Stockwerk 10"
+          "expected": "Turm bezwungen: Stockwerk 10",
+          "codeContains": [
+            "while"
+          ]
         }
       }
     ]
@@ -390,7 +408,10 @@
         "codeTemplate": "position = 0\nschritte = 0\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Ausgang erreicht nach 10 Schritten"
+          "expected": "Ausgang erreicht nach 10 Schritten",
+          "codeContains": [
+            "while"
+          ]
         }
       },
       {
@@ -406,7 +427,10 @@
         "codeTemplate": "position = 0\nschritte = 0\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Verloren im Labyrinth nach 10 Schritten"
+          "expected": "Verloren im Labyrinth nach 10 Schritten",
+          "codeContains": [
+            "while"
+          ]
         }
       }
     ]

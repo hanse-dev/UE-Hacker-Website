@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { startKernel } from './helpers/kernel.js';
 import { setCodeMirrorContent } from './helpers/codemirror.js';
+import { openSolutionsNotebook } from './helpers/notebook.js';
 
 const INTERACTIVE_URL = '/kurs/python-grundlagen-interaktiv';
 const COURSE_URL = '/kurs/python-12-wochen-grundkurs';
@@ -200,7 +201,7 @@ test.describe('Weitere Kursseiten', () => {
 test.describe('Debug-Notebook-Sicherheit', () => {
   test('Endlosschleife bricht nach ~5s ab statt den Tab einzufrieren', async ({ page }) => {
     test.setTimeout(60000);
-    await page.goto(`${COURSE_URL}?week=12&variant=pferde&step=2_debug`);
+    await openSolutionsNotebook(page, 'pferde');
     await expect(page.locator('.btn-run-cell').first()).toBeVisible({ timeout: 20000 });
 
     // Kernel initialisiert sich beim Mount bereits automatisch — nicht extra klicken
@@ -232,10 +233,10 @@ test.describe('Turtle-Grafik im Browser (Pyodide-Shim)', () => {
   // das im Browser keinen Anzeige-Server hat) — siehe HANDOFF.md. usePyodide.js
   // registriert stattdessen einen eigenen Shim, der auf <canvas> zeichnet.
   test('import turtle wirft keinen ModuleNotFoundError mehr und zeichnet sichtbar', async ({ page }) => {
-    test.setTimeout(60000);
-    await page.goto(`${COURSE_URL}?week=12&variant=abenteuer&step=1_lektion`);
+    test.setTimeout(150000); // Pyodide-Start unter Last (Volllauf, 4 Worker) kann > 30 s dauern
+    await openSolutionsNotebook(page, 'abenteuer', 1, 90000);
     const runBtn = page.locator('.btn-run-cell').first();
-    await expect(runBtn).toBeEnabled({ timeout: 40000 });
+    await expect(runBtn).toBeEnabled({ timeout: 90000 });
 
     const editor = page.locator('.cm-host').first();
     await setCodeMirrorContent(
@@ -266,10 +267,10 @@ test.describe('Turtle-Grafik im Browser (Pyodide-Shim)', () => {
   });
 
   test('begin_fill()/end_fill() füllt eine Form sichtbar', async ({ page }) => {
-    test.setTimeout(60000);
-    await page.goto(`${COURSE_URL}?week=12&variant=abenteuer&step=1_lektion`);
+    test.setTimeout(150000); // Pyodide-Start unter Last (Volllauf, 4 Worker) kann > 30 s dauern
+    await openSolutionsNotebook(page, 'abenteuer', 1, 90000);
     const runBtn = page.locator('.btn-run-cell').first();
-    await expect(runBtn).toBeEnabled({ timeout: 40000 });
+    await expect(runBtn).toBeEnabled({ timeout: 90000 });
 
     const editor = page.locator('.cm-host').first();
     await setCodeMirrorContent(

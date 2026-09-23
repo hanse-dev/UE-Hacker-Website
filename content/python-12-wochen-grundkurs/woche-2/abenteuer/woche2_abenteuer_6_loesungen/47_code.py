@@ -1,2 +1,3 @@
-gold = 250
-print(f"Dein Gold: {gold + 50}")
+heldenname = "Aria"
+kraft = 14
+print(f"{heldenname} hat Kraft {kraft}")

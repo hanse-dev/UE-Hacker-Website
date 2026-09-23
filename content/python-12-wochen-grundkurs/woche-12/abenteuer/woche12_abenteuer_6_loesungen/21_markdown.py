@@ -1,1 +1,0 @@
-"""**Boss-Quest 2:** Eine Beispiel-Lösung mit einer neuen Welt. Da die Funktionen den Namen `welt` nutzen, genügt die Zuweisung. Deine eigene Welt darf natürlich ganz anders aussehen!"""

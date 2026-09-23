@@ -1,7 +1,6 @@
-# for loop over a list
-heroes = ["Aria", "Borin", "Lena"]
-for hero in heroes:
-    print("Hero:", hero)
+# for loop over a text
+for letter in "Dragon":
+    print("Letter:", letter)
 
 # range() – number sequence
 for i in range(3):
@@ -13,9 +12,5 @@ while lives > 0:
     print("Lives:", lives)
     lives = lives - 1
 
-# List basics
-party = []
-party.append("Mage")
-party.append("Warrior")
-print(party[0])   # Mage
-print(len(party)) # 2
+# len() – length of a text
+print(len("Dragon"))  # 6

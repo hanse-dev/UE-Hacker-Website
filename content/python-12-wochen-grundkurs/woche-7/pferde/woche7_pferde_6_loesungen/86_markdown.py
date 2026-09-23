@@ -1,0 +1,3 @@
+"""### Extra-Herausforderung 4: Die große Zufallsprobe – Aufgabe 7
+
+Schritt 7 – Figur über das Feld: Baue ein 8×8-Feld als Liste von Listen (zwei verschachtelte Schleifen mit append(), jedes Feld 0). Die Figur startet bei figur = [0, 0], das Ziel ist ziel = [7, 7]. Wiederhole mit while True: Ist figur gleich ziel, beende mit break. Sonst geht die Figur nach rechts (figur[1] += 1), solange figur[1] kleiner als 7 ist, und danach nach unten (figur[0] += 1). Zähle die Züge. Gib genau Züge: 14 und in der nächsten Zeile Ziel erreicht: True aus."""

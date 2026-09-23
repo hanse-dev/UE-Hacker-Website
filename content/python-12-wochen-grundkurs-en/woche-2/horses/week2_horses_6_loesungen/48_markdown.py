@@ -1,3 +1,3 @@
-"""### Mission 2: The Riding Lesson – Task 1
+"""### Mission 3: The Tournament – Task 1
 
-Step 1 – Create the names horse1 = "Bobby", horse2 = "Luna", horse3 = "Storm" and the riding times (minutes) time1 = 30, time2 = 45, time3 = 60. Print the heading === RIDING LESSON PLAN === and then one line per horse in the form Storm: 60 minutes (Bobby: 30 minutes, Luna: 45 minutes, ...)."""
+Step 1 – Create horse1 = \"Thunder\", dressage1 = 68.5, jumping1 = 72.0 and horse2 = \"Luna\", dressage2 = 71.0, jumping2 = 65.5. Store each horse's total (dressage + jumping) in total1 and total2 and print exactly these two lines: Thunder: 140.5 points and Luna: 136.5 points"""

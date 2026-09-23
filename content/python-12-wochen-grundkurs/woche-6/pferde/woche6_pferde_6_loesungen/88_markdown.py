@@ -1,0 +1,3 @@
+"""### Extra-Herausforderung 3: Die Turnier-Datenbank – Aufgabe 3
+
+Schritt 3 – Auswerten: turniere ist vorgegeben (Schwierigkeit an Index 2). Schreibe turnier_statistik(liste): Sie zählt mit einer for-Schleife alle Turniere und alle schweren (Schwierigkeit mindestens 3; leichtere überspringst du mit continue) und gibt Turniere: <Anzahl> und Schwere Turniere: <Anzahl> aus. Rufe sie mit turniere auf."""

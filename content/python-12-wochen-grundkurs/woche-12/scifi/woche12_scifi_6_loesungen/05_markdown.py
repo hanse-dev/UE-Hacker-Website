@@ -1,1 +1,0 @@
-"""**Bug #2 – Erklärung:** `inventar = []` steht in der Klasse und nicht in `__init__`. Damit ist es **eine einzige Liste, die sich alle Spieler teilen**. Steht `self.inventar = []` in `__init__`, bekommt jeder Spieler seine eigene Liste."""

@@ -1,5 +1,3 @@
-verfasser = "Mia"
-karotten = 5
+stufe = 4
 
-print("Verfasser: " + verfasser)
-print("Bewertung: " + str(karotten) + " Karotten")
+print("Schwierigkeit: " + str(stufe) + " Sterne")

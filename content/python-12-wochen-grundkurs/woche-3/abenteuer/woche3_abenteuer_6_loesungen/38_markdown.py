@@ -1,5 +1,3 @@
-"""### Debug-Quest – Bug #2
+"""### Debug-Quest – Aufgabe 3
 
-🐛 Bug #2 – Ziel: Das Programm soll Hallo Aria! ausgeben, weil name den Wert Aria hat. Was ist falsch?
-
-**Fehler:** In der Bedingung steht `=` (Zuweisung) statt `==` (Vergleich). Ein einzelnes `=` in einem `if` ist ein Syntaxfehler."""
+🐛 Bug #3 – Ziel: Das Programm soll bei alter >= 18 den Text Erwachsen ausgeben, sonst Kind. Was ist falsch?"""

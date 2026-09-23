@@ -1,11 +1,7 @@
-geschwindigkeit = 640
-if geschwindigkeit >= 800:
-    print("Stufe: Hyperantrieb")
-elif geschwindigkeit >= 600:
-    print("Stufe: Schnellflug")
-elif geschwindigkeit >= 400:
-    print("Stufe: Reiseflug")
-elif geschwindigkeit >= 200:
-    print("Stufe: Manövrierflug")
+treibstoff = 10
+atmosphaere = True
+landeplatz = False
+if treibstoff >= 20 or (atmosphaere and landeplatz):
+    print("Notlandung möglich")
 else:
-    print("Stufe: Schleichfahrt")
+    print("Notlandung unmöglich")

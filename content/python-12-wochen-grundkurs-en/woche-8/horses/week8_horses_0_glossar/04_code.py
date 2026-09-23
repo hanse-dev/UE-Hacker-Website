@@ -7,7 +7,6 @@ print(horse.get("weight", 0))   # 0 (default value)
 
 # Change and delete
 horse["age"] = 6
-horse.update({"breed": "Andalusian"})
 horse.pop("breed")
 
 # Iteration

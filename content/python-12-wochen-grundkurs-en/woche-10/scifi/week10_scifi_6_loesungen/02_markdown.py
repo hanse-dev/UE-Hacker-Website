@@ -1,1 +1,5 @@
-"""**Explanation:** This code contains a bug – can you find it?"""
+"""## 📚 Lessons
+
+### System Protocol 1: Classes and Objects – Task 1
+
+Create a class Robot with `pass`. Create an object robot, set `name` to Nova and `level` to 3 and print exactly Nova has Level 3 with an f-string."""

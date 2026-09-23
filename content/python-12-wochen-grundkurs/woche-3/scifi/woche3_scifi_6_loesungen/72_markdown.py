@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 2: Der Raumschiff-Simulator – Aufgabe 5
+"""### Extra-Herausforderung 3: Die Galaxie-Mission – Aufgabe 1
 
-Level 5 – Notlandung: Die Variablen treibstoff, atmosphaere und landeplatz (Booleans) sind schon angelegt. Die Landung gelingt, wenn treibstoff >= 20 ODER (atmosphaere UND landeplatz). Gib dann Notlandung möglich aus, sonst Notlandung unmöglich."""
+Die Variable gefahrenstufe (1-5) ist schon angelegt. Nutze if-elif-else: 1 = ruhig, 2 = gering, 3 = erhöht, 4 = hoch, 5 = extrem. Format: Gefahrenstufe 4: hoch"""

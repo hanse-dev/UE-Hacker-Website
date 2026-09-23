@@ -1,1 +1,0 @@
-"""**Erklärung:** Klassennamen müssen mit einem Großbuchstaben beginnen – das ist in Python Konvention. Methoden brauchen außerdem immer `self` als ersten Parameter, damit sie wissen, zu welchem Objekt sie gehören."""

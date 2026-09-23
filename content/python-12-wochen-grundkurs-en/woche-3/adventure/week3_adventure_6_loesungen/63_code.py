@@ -1,7 +1,10 @@
-level = 50
-wins = 20
-losses = 0
+level = 12
+wins = 5
+losses = 5
 win_rate = wins / (wins + losses)
-
-if losses == 0:
-    print("+100 Bonus for perfect streak!")
+if level >= 50 and win_rate > 0.8:
+    print("LEGENDARY!")
+elif level >= 30 and win_rate > 0.6:
+    print("MASTER!")
+else:
+    print("FIGHTER")

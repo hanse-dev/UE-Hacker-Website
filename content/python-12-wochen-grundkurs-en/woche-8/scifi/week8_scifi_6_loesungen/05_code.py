@@ -1,4 +1,3 @@
-# Problem: tuples cannot be changed – use a list instead
-coordinates = [100, 200, 300]  # use a list
-coordinates[0] = 150
-print(f"Coordinates: {coordinates}")
+member = {"name": "Nova", "role": "Pilot", "rank": 4, "energy": 120}
+print(f"Number of properties: {len(member)}")
+print(f"Role: {member['role']}")

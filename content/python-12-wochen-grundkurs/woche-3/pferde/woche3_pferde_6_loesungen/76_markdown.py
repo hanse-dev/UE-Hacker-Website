@@ -1,3 +1,3 @@
-"""### Der Hindernis-Simulator – Aufgabe 5
+"""### Das große Turnier – Aufgabe 1
 
-Level 5 – Abmeldung: Bestanden, wenn zeit <= 60 ODER (fehler == 0 UND stil >= 80). Gib dann genau aus: Level 5: Abmeldung bestanden"""
+Schritt 1 – Phasen zählen: Zähle mit erfolgreiche_phasen = 0 und += 1 alle Phasen, die True sind, und gib mit einem f-String genau aus: Erfolgreiche Phasen: 4"""

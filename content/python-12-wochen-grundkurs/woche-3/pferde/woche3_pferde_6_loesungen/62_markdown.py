@@ -1,3 +1,3 @@
-"""### Das Reiter-Quiz – Aufgabe 2
+"""### Das Reiter-Quiz – Aufgabe 4
 
-Schritt 2 – Punkte zählen: Addiere für jede richtige Antwort mit punkte += 100 und gib mit einem f-String genau aus: Punkte: 300"""
+Schritt 4 – Zertifikat: Bei mindestens 300 Punkten gib genau aus: 🎓 Reiter-Zertifikat: bestanden!"""

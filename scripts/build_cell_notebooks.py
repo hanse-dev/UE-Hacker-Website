@@ -21,7 +21,7 @@ COURSE_ROOTS = [
 def is_cell_dir(d: Path) -> bool:
     if d.name in ("_generated", "_bundle"):
         return False
-    return any(d.glob("[0-9][0-9]_markdown.py")) or any(d.glob("[0-9][0-9]_code.py"))
+    return any(d.glob("[0-9][0-9]*_markdown.py")) or any(d.glob("[0-9][0-9]*_code.py"))
 
 
 def build_json(cell_dir: Path, name: str):

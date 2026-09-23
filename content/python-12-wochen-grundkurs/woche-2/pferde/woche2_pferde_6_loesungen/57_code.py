@@ -1,6 +1,4 @@
-zeit1 = 30
-zeit2 = 45
-zeit3 = 60
+luna_gesamt = 140
+thunder_gesamt = 135
 
-gesamtzeit = zeit1 + zeit2 + zeit3
-print(f"Gesamtzeit: {gesamtzeit} Minuten")
+print(f"Luna hat mehr Punkte: {luna_gesamt > thunder_gesamt}")

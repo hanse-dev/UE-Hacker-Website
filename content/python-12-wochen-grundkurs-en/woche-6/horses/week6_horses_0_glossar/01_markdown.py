@@ -3,6 +3,10 @@
 
 | Term | Meaning | Example |
 |------|---------|-------|
+| **List** `[]` | Ordered collection of values | `[\"Aria\", \"Borin\", \"Lena\"]` |
+| `.append()` | Add an element to the end of a list | `list_.append(\"new\")` |
+| **Index** | Position of an element in the list (starts at 0) | `list_[0]` → first element |
+| `len()` | Number of elements in a list | `len([1, 2, 3])` → `3` |
 | `.insert()` | Insert an element at a specific position | `list_.insert(1, \"x\")` |
 | `.remove()` | Remove the first occurrence of an element | `list_.remove(\"x\")` |
 | `.pop()` | Remove and return the last (or a specific) element | `list_.pop()` |

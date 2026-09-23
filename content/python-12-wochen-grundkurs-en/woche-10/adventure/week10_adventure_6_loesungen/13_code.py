@@ -1,22 +1,25 @@
-# Step 1: Create class Wizard
-class Wizard:
-    def __init__(self, name, level=1, spell="Fireball", element="Fire"):
+class Hero:
+    def __init__(self, name, level=1, energy=100):
         self.name = name
         self.level = level
-        self.spell = spell
-        self.element = element  # Bonus
+        self.energy = energy
 
-# Step 2: Create three wizards
-merlin = Wizard("Merlin", level=15, spell="Lightning", element="Lightning")
-gandalf = Wizard("Gandalf", level=20, spell="Light", element="Light")
-dumbledore = Wizard("Dumbledore", level=18, spell="Expelliarmus", element="Arcane")
+    def introduce(self):
+        print(f"I am {self.name}, Level {self.level}.")
 
-wizard_list = [merlin, gandalf, dumbledore]
+    def train(self):
+        self.level += 1
+        print(f"{self.name} trains: Level {self.level}")
 
-print("=== Wizards' Guild ===")
-for w in wizard_list:
-    print(f"{w.name}: Level {w.level} ({w.element})")
+    def fight(self, kosten):
+        self.energy -= kosten
+        if self.energy < 0:
+            self.energy = 0
 
-# Step 3: Find the strongest
-strongest = max(wizard_list, key=lambda w: w.level)
-print(f"\nStrongest wizard: {strongest.name} (Level {strongest.level})")
+    def rest(self, menge):
+        self.energy += menge
+        if self.energy > 100:
+            self.energy = 100
+
+Hero("Thorin", 4).introduce()
+Hero("Luna", 6).introduce()

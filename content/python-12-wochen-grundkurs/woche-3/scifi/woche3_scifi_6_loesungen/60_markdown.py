@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 1: Das KI-Quiz – Aufgabe 2
+"""### Extra-Herausforderung 2: Der Raumschiff-Simulator – Aufgabe 1
 
-Lege punkte = 0 an. Erhöhe punkte für jede richtige Frage um 100 (zum Beispiel punkte = punkte + 100). Vergib die Note A ab 400 Punkten, B ab 300, sonst C. Gib aus: Punkte: 300, Note: B"""
+Level 1 – Startsequenz: Die Variablen energie und system_ok sind schon angelegt. Prüfe mit and, ob energie >= 50 UND system_ok gilt. Gib dann Level 1 bestanden aus, sonst Level 1 fehlgeschlagen."""

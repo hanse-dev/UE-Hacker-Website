@@ -1,5 +1,5 @@
-"""### Debug-Quest – Bug #3
+"""## ⭐ Missionen
 
-🐛 Bug #3 – Ziel: Das Programm soll Dein Gold: 300 ausgeben. Was ist falsch?
+### Mission 1: Die vier Elementsteine – Aufgabe 1
 
-**Fehler:** Die Rechnung steht nicht in geschweiften Klammern, daher gibt Python sie als Text aus. Mit `{gold + 50}` wird sie berechnet."""
+Schritt 1 – 🔥 Feuer und 🪨 Erde: Lege heldenname = \"Aria\" und kraft = 14 an und gib mit einem f-String genau aus: Aria hat Kraft 14"""

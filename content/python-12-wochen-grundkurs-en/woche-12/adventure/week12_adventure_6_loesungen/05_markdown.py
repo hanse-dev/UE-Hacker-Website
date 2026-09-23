@@ -1,1 +1,0 @@
-"""**Bug #2 – Explanation:** `inventory = []` is in the class and not in `__init__`. That makes it **one single list shared by all players**. With `self.inventory = []` in `__init__`, every player gets their own list."""

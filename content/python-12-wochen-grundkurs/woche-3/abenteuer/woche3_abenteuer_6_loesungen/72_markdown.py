@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 2: Der Dungeon-Simulator – Aufgabe 2
+"""### Extra-Herausforderung 1: Das Magie-Quiz – Aufgabe 5
 
-Level 2 – Wegwahl: Der Held wählt weg = "Rechts". Gib bei "Links" aus: Du nimmst den linken Pfad. – sonst: Du nimmst den rechten Pfad."""
+Schritt 5 – Zertifikat: Bei punkte = 300 (bestanden ab 300) gib aus: Zertifikat: bestanden – sonst: Zertifikat: nicht bestanden"""

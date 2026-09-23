@@ -1,0 +1,3 @@
+"""### Extra-Herausforderung 3: Die Verfolgungsjagd – Aufgabe 3
+
+Schritt 3 – Jagd: fliege_etappe ist vorgegeben. Schreibe simuliere_jagd(distanz, tempo, etappen): Eine for-Schleife (Etappe 1 bis etappen) ruft jedes Mal fliege_etappe auf und gibt Etappe <Nummer>: Noch <distanz> km aus. Am Ende gibt die Funktion die Restdistanz zurück. Rufe sie mit (100, 30, 4) auf, speichere das Ergebnis in rest und gib Rest: <rest> aus."""

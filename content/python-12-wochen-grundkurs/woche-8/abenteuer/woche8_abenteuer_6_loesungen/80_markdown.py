@@ -1,0 +1,3 @@
+"""### Extra-Herausforderung 4: Das große Gildenarchiv – Aufgabe 2
+
+Schritt 2 – Liste von Dictionaries (Woche 5/6): Schreibe erstelle_quest(name, schwierigkeit), die ein Dictionary mit name, schwierigkeit und status \"offen\" zurückgibt. Lege die Liste quests an und füge mit append() drei Quest-Einträge hinzu (Drache besiegen / 1, Schatz finden / 2, Dorf retten / 3). Gib genau Quest-Anzahl: 3 und in der nächsten Zeile Status: offen aus (Status des ersten)."""

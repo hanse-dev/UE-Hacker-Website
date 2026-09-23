@@ -1,2 +1,2 @@
-"""# 🔧 Lösungen – 🚀 Woche 6 – Listen: Die Daten-Bänke der Raumstation
-> Erst selber versucht? Dann check hier nach!"""
+"""# 🔧 Woche 6 – Lösungen
+> Erst selber versucht? Dann check hier nach! Es gibt oft mehrere richtige Wege – das hier sind mögliche Lösungen zu den Aufgaben der Lektionen."""

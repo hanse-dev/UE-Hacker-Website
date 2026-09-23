@@ -1,1 +1,3 @@
-"""**Erklärung:** Python kennt `reverse` nicht. Entweder ist der Name falsch geschrieben, oder die Variable wurde noch nicht angelegt."""
+"""### Datenprotokoll 2: Auf Einträge zugreifen – Aufgabe 1
+
+Die Liste module ist vorgegeben. Gib den zweiten Eintrag als Zweites: Sensor und den vorletzten als Vorletztes: Radar aus (mit den Indizes 1 und -2)."""

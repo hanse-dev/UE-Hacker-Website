@@ -1,4 +1,4 @@
-level = 35
 wins = 18
-losses = 6
-print(f"Level {level}, wins {wins}, losses {losses}")
+losses = 2
+win_rate = wins / (wins + losses)
+print(f"Win rate: {win_rate}")

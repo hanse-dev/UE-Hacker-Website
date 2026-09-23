@@ -4,8 +4,7 @@
 
 - ☐ for-Schleifen mit range() verwenden
 - ☐ while-Schleifen mit Bedingungen steuern
-- ☐ Schleifen über Strings und Listen
-- ☐ break und continue richtig einsetzen
+- ☐ Schleifen über Strings
 - ☐ Verschachtelte Schleifen erstellen
 - ☐ Endlosschleifen erkennen und vermeiden
 

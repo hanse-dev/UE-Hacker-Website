@@ -1,1 +1,0 @@
-"""**Explanation:** Python expects an indented block. Everything that belongs to a `for` must be indented with 4 spaces. The closing `print(\"Done\")` stays without indentation – it does not belong to the loop."""

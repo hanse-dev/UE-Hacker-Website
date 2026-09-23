@@ -1,3 +1,3 @@
-"""### Das große Turnier – Aufgabe 2
+"""### Das große Turnier – Aufgabe 4
 
-Schritt 2 – Schwierigkeitsstufe: Fünf Stufen per if-elif-else nach schwierigkeit: 1 Anfänger, 2 Leicht, 3 Mittel, 4 Schwer, sonst Extrem. Gib mit Präfix aus: Stufe: Schwer"""
+Schritt 4 – Erfolgsbedingung: Bei erfolgreiche_phasen >= 4 UND schwierigkeit <= 3 gib Turniersieg! aus, sonst Kein Turniersieg. Hier soll genau erscheinen: Kein Turniersieg (der Punkt am Ende gehört nicht dazu)."""

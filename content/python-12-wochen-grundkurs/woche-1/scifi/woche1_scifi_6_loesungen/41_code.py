@@ -1,11 +1,5 @@
-zeile1 = "Sterne funkeln kalt und weit,"
-zeile2 = "unser Schiff durchquert die Zeit."
-zeile3 = "Jeder Sprung ein neues Ziel,"
-zeile4 = "die Galaxis ist unser Spiel."
+farbe = "blau"
+form = "spiralförmig"
+stabilitaet = 85
 
-print("=== SCHIFFSLOGBUCH ===")
-print("----------------------")
-print(zeile1)
-print(zeile2)
-print(zeile3)
-print(zeile4)
+print("Wurmloch: " + farbe + ", " + form + ", Stabilität " + str(stabilitaet) + "%")

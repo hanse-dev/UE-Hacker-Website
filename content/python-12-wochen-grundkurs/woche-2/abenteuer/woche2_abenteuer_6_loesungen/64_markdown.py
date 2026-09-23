@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 1: Der Schatzraum – Aufgabe 1
+"""### Extra-Herausforderung 1: Der Schatzraum – Aufgabe 3
 
-Schritt 1 – Gib die Überschrift === SCHATZRAUM-PROTOKOLL === aus und berechne den Gesamtwert aller acht Truhen. Gib genau aus: Gesamtwert: 1000"""
+Schritt 3 – Ist die Truhe 8 mehr wert als der Durchschnitt (Gesamtwert geteilt durch 8)? Vergleiche mit > und gib genau aus: Truhe 8 über Durchschnitt: True"""

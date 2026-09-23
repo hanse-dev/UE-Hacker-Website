@@ -1,1 +1,0 @@
-"""**Boss Quest 2:** A sample solution with a new world. Since the functions use the name `world`, the assignment is enough. Your own world can of course look completely different!"""

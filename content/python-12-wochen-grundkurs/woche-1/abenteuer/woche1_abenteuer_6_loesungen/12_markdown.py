@@ -1,3 +1,3 @@
-"""### Zauberformel 4: input()
+"""### Zauberformel 5: Kommentare
 
-Frage mit input() nach der Waffe deines Helden, speichere die Antwort in waffe und gib aus: Kampfbereit mit: (und dann die Waffe)"""
+Schreibe einen eigenen Kommentar und danach ein print(), das genau Kommentar gelesen ausgibt."""

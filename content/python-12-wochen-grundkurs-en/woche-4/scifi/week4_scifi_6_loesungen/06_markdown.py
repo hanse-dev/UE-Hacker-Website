@@ -1,1 +1,3 @@
-"""**Explanation:** Python expects an indented block. Everything that belongs to an `if`, `for`, `while` or `def` must be indented with 4 spaces."""
+"""### System Log 2: range() with Start, End and Step – Task 1
+
+Use range(3, 7) and print Sector 3: scanned up to Sector 6: scanned."""

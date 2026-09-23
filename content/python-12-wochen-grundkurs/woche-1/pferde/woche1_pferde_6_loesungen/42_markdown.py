@@ -1,3 +1,3 @@
-"""### Das Futterbuch – Aufgabe 2
+"""### Das Springturnier – Aufgabe 2
 
-Schritt 2 – Trage dich ein: Gib Verfasser: (dein Name) und Bewertung: 5 Karotten aus. Nutze dafür eine Variable und str() für die Zahl."""
+Schritt 2 – Lege stufe = 4 an und gib genau diese Zeile aus: Schwierigkeit: 4 Sterne"""

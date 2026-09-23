@@ -1,1 +1,3 @@
-"""**Explanation:** The code that belongs to an `if` must be indented. Without indentation Python reports an `IndentationError`. Indent both `print` lines by four spaces."""
+"""### Debug Quest – Task 2
+
+🐛 Bug #2 – Goal: The program should print Hello Thunder!, because name has the value Thunder. What is wrong?"""

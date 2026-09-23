@@ -1,3 +1,3 @@
-"""### Mission 1: The Feed Store – Task 2
+"""### Mission 2: The Riding Lesson – Task 2
 
-Step 2 – Create bales = 20 (whole number) and bale_weight = 15.5 (decimal number). Print exactly: Bales: 20 at 15.5 kg each"""
+Step 2 – The three riding times are already there. Add them, store the sum in total_time and print exactly: Total time: 135 minutes"""

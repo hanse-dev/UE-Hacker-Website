@@ -1,1 +1,0 @@
-"""**Erklärung:** `futter_kg` ist der **Text** `"10"`. Text mal 5 wiederholt den Text (`"1010101010"`), statt zu rechnen. Mit `int()` wird daraus eine Zahl."""

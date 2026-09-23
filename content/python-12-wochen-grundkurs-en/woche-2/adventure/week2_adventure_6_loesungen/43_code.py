@@ -1,2 +1,2 @@
-gold = 250
-print(f"Your gold: {gold + 50}")
+strength = 40
+print(f"Strength: {strength}")

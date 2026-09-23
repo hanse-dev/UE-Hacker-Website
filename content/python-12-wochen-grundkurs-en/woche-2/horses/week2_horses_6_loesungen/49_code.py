@@ -1,10 +1,10 @@
-horse1 = "Bobby"
+horse1 = "Thunder"
+dressage1 = 68.5
+jumping1 = 72.0
 horse2 = "Luna"
-horse3 = "Storm"
-time1 = 30
-time2 = 45
-time3 = 60
-print("=== RIDING LESSON PLAN ===")
-print(f"{horse1}: {time1} minutes")
-print(f"{horse2}: {time2} minutes")
-print(f"{horse3}: {time3} minutes")
+dressage2 = 71.0
+jumping2 = 65.5
+total1 = dressage1 + jumping1
+total2 = dressage2 + jumping2
+print(f"{horse1}: {total1} points")
+print(f"{horse2}: {total2} points")

@@ -1,4 +1,3 @@
-# Problem: Tupel können nicht geändert werden
-koordinaten = [100, 200, 300]  # Liste verwenden
-koordinaten[0] = 150
-print(f"Koordinaten: {koordinaten}")
+mitglied = {"name": "Nova", "rolle": "Pilotin", "rang": 4, "energie": 120}
+print(f"Anzahl Eigenschaften: {len(mitglied)}")
+print(f"Rolle: {mitglied['rolle']}")

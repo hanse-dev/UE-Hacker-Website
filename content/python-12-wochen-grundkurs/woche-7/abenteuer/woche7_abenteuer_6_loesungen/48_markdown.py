@@ -1,0 +1,3 @@
+"""### Mission 2: Die Orakel-Kammer – Aufgabe 3
+
+Schritt 3 – Ziehen und mischen: Die Liste regale mit sechs Einträgen ([\"Regal der Elemente\", \"Regal der Tiere\", \"Regal der Sterne\", \"Regal der Schatten\", \"Regal der Helden\", \"Regal der Runen\"]) ist vorgegeben. Ziehe mit random.sample() drei Einträge in gezogen, mische sie mit random.shuffle() und gib genau Anzahl: 3 und in der nächsten Zeile Verschieden: True aus."""

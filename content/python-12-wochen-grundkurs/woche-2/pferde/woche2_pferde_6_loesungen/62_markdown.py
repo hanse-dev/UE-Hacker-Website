@@ -1,3 +1,3 @@
-"""### Mission 3: Das Turnier – Aufgabe 2
+"""### Der Futterraum – Aufgabe 2
 
-Schritt 2 – Sieger bestimmen: Vergleiche die Gesamtpunkte mit > und gib genau aus: Luna hat mehr Punkte: True"""
+Schritt 2 – Gesamtgewicht: Addiere alle 8 Gewichte in gesamt und gib genau aus: Gesamtgewicht: 200.0 kg"""

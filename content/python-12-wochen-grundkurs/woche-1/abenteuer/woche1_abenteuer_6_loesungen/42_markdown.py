@@ -1,3 +1,3 @@
-"""### Der Turm des Wissens – Aufgabe 2
+"""### Das Portal der Möglichkeiten – Aufgabe 2
 
-Schritt 2 – Unterschreibe: Gib Autor: (dein Name) und Bewertung: 5 Sterne aus. Nutze dafür eine Variable und str() für die Sterne."""
+Schritt 2 – Schreibe eine Reisewarnung für Portalreisende und beginne sie mit Warnung: """

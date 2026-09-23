@@ -1,1 +1,0 @@
-"""**Explanation:** Text and number can't be joined with `+`. `str(stall_number)` turns the number into text."""

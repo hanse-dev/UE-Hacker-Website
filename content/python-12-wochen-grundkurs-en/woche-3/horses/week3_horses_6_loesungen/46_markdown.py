@@ -1,3 +1,3 @@
-"""### Mission 2: The Feed Dispenser – Task 1
+"""### Mission 2: The Feed Dispenser – Task 3
 
-The passwords and the entered password are already there. If entered == stable_master_pw print Full access granted, elif entered == groom_pw print exactly: Feed access granted"""
+Step 3 – Wrong password: Add an else that prints Wrong password. Here the input is a banana, so exactly this should appear: Wrong password"""

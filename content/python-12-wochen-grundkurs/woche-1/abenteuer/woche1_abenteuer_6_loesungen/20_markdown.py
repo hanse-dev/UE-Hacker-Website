@@ -1,3 +1,5 @@
-"""### Debug-Quest – Aufgabe 2
+"""## ⭐ Missionen
 
-🐛 Bug #2 – Ziel: Das Programm soll Ich bin 25 Jahre alt. ausgeben. Was ist falsch?"""
+### Mission 1: Der Zauberlehrling – Aufgabe 1
+
+Schritt 1 – Gib genau diesen Satz mit print() aus: Hallo Pyralia!"""

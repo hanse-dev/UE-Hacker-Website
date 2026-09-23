@@ -8,8 +8,4 @@
 | **Argument** | Wert der beim Aufruf übergeben wird | `add(3, 5)` |
 | `return` | Ergebnis aus der Funktion zurückgeben | `return a + b` |
 | **Docstring** | Beschreibung einer Funktion in dreifachen Anführungszeichen | `\"\"\"Was die Funktion tut\"\"\"` |
-| `snake_case` | Schreibregel: Wörter mit Unterstrich verbinden | `meine_funktion()` |
-| `try` | Code ausführen und auf Fehler vorbereiten | `try:` |
-| `except` | Fehler abfangen und behandeln | `except ValueError:` |
-| `ValueError` | Fehler wenn ein Wert den falschen Typ hat | `int(\"abc\")` → `ValueError` |
-| `TypeError` | Fehler wenn Typen nicht zusammenpassen | `\"hi\" + 5` → `TypeError` |"""
+| `snake_case` | Schreibregel: Wörter mit Unterstrich verbinden | `meine_funktion()` |"""

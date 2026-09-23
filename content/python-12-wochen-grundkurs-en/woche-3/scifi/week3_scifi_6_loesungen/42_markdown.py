@@ -1,3 +1,3 @@
-"""### Mission 1: The Security Scanner – Task 1
+"""### Mission 1: The Security Scanner – Task 3
 
-Step 1 – Create rank = 6, id_card = False and emergency = False. Print exactly: Rank 6, ID card: False"""
+A third visitor: rank 6, no ID card, no emergency. Same rule. Print Access granted or Access denied."""

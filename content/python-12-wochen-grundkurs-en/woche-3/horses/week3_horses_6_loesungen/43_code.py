@@ -1,7 +1,5 @@
-age = 10
-has_helmet = False
-has_permission = True
-if age >= 12 or has_helmet or has_permission:
-    print("Access granted")
-else:
-    print("Access denied")
+stable_master_password = "Horseshoe"
+groom_password = "Carrot"
+entered = "Carrot"
+
+print(f"Entered: {entered}")
