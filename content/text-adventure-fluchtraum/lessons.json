@@ -1,0 +1,157 @@
+[
+  {
+    "id": "lektion-01",
+    "title": "Ein Raum als Dictionary",
+    "file": "lektion-01.md",
+    "lessonSummary": "Ein Raum ist ein Dictionary mit einer Beschreibung und einem verschachtelten Dictionary voller Ausgänge.",
+    "tasks": [
+      {
+        "instruction": "Erstelle ein Dictionary raum mit den Schlüsseln 'beschreibung' (Wert: 'Du wachst in einer alten Bibliothek auf. Ein Vorhängeschloss versperrt die Tür nach Norden.') und 'ausgaenge' (ein Dictionary mit 'westen': 'arbeitszimmer'). Gib raum['beschreibung'] und danach raum['ausgaenge']['westen'] aus.",
+        "codeTemplate": "",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Du wachst in einer alten Bibliothek auf. Ein Vorhängeschloss versperrt die Tür nach Norden.\narbeitszimmer",
+          "codeContains": ["ausgaenge"]
+        }
+      },
+      {
+        "instruction": "Bonus: Erstelle ein zweites Dictionary raum2 mit 'beschreibung': 'Ein dunkler Keller.' und 'ausgaenge': {'treppe': 'bibliothek'}. Gib raum2['ausgaenge']['treppe'] aus.",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "bibliothek",
+          "codeContains": ["ausgaenge"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "title": "Mehrere Räume verknüpfen",
+    "file": "lektion-02.md",
+    "lessonSummary": "Ein Dictionary aus Räumen plus aktueller_raum – so bewegst du dich zwischen mehreren Räumen.",
+    "tasks": [
+      {
+        "instruction": "Bewege dich von der Bibliothek aus nach Westen: Schlage raeume[aktueller_raum]['ausgaenge']['westen'] nach, speichere das Ergebnis in aktueller_raum und gib anschließend raeume[aktueller_raum]['beschreibung'] aus.",
+        "codeTemplate": "raeume = {\n    \"bibliothek\": {\n        \"beschreibung\": \"Du stehst in der Bibliothek. Ein Vorhängeschloss versperrt die Tür nach Norden.\",\n        \"ausgaenge\": {\"westen\": \"arbeitszimmer\"}\n    },\n    \"arbeitszimmer\": {\n        \"beschreibung\": \"Ein verstaubter Schreibtisch steht hier. In einer Schublade liegt etwas Glänzendes.\",\n        \"ausgaenge\": {\"osten\": \"bibliothek\"}\n    }\n}\naktueller_raum = \"bibliothek\"\n\n# dein Code hier: wechsle nach Westen und gib die neue Raumbeschreibung aus\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ein verstaubter Schreibtisch steht hier. In einer Schublade liegt etwas Glänzendes.",
+          "codeContains": ["ausgaenge"]
+        }
+      },
+      {
+        "instruction": "Bonus: Du stehst jetzt im Arbeitszimmer (aktueller_raum = 'arbeitszimmer'). Gehe von dort aus nach Osten zurück in die Bibliothek und gib die Raumbeschreibung aus.",
+        "codeTemplate": "raeume = {\n    \"bibliothek\": {\n        \"beschreibung\": \"Du stehst in der Bibliothek. Ein Vorhängeschloss versperrt die Tür nach Norden.\",\n        \"ausgaenge\": {\"westen\": \"arbeitszimmer\"}\n    },\n    \"arbeitszimmer\": {\n        \"beschreibung\": \"Ein verstaubter Schreibtisch steht hier. In einer Schublade liegt etwas Glänzendes.\",\n        \"ausgaenge\": {\"osten\": \"bibliothek\"}\n    }\n}\naktueller_raum = \"arbeitszimmer\"\n\n# dein Code hier\n",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Du stehst in der Bibliothek. Ein Vorhängeschloss versperrt die Tür nach Norden.",
+          "codeContains": ["ausgaenge"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "title": "Das Inventar",
+    "file": "lektion-03.md",
+    "lessonSummary": "Eine leere Liste plus append() – so sammelst du Gegenstände ein und prüfst später mit in, ob sie dabei sind.",
+    "tasks": [
+      {
+        "instruction": "Füge mit append() den Gegenstand 'schluessel' zur leeren Liste inventar hinzu und gib anschließend print(inventar) aus.",
+        "codeTemplate": "inventar = []\n# dein Code hier\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['schluessel']",
+          "codeContains": ["append"]
+        }
+      },
+      {
+        "instruction": "Bonus: Im Inventar liegt bisher nur eine Münze. Prüfe mit if ... in inventar, ob 'schluessel' im Inventar ist. Ist er es nicht, gib 'Kein Schlüssel gefunden.' aus, sonst 'Du hast den Schlüssel!'.",
+        "codeTemplate": "inventar = []\ninventar.append(\"muenze\")\n\n# dein Code hier\n",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Kein Schlüssel gefunden.",
+          "codeContains": ["in"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "title": "Verschlossene Türen",
+    "file": "lektion-04.md",
+    "lessonSummary": "Dictionary-Lookup plus in-Prüfung kombiniert: Manche Türen öffnen sich nur mit dem passenden Gegenstand im Inventar.",
+    "tasks": [
+      {
+        "instruction": "Das Inventar ist noch leer. Schreibe ein if/else: Nur wenn 'schluessel' im inventar ist, darfst du über raeume[aktueller_raum]['ausgaenge']['norden'] nach Norden gehen (aktueller_raum aktualisieren, neue Beschreibung ausgeben). Ohne Schlüssel gib 'Die Tür ist verschlossen. Du brauchst einen Schlüssel.' aus.",
+        "codeTemplate": "raeume = {\n    \"bibliothek\": {\n        \"beschreibung\": \"Du stehst in der Bibliothek.\",\n        \"ausgaenge\": {\"norden\": \"flur\"}\n    },\n    \"flur\": {\n        \"beschreibung\": \"Ein kühler Luftzug streicht durch den Flur. Du bist frei!\",\n        \"ausgaenge\": {}\n    }\n}\naktueller_raum = \"bibliothek\"\ninventar = []\n\n# dein Code hier\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Die Tür ist verschlossen. Du brauchst einen Schlüssel.",
+          "codeContains": ["in"]
+        }
+      },
+      {
+        "instruction": "Bonus: Diesmal liegt der Schlüssel schon im Inventar (inventar = ['schluessel']). Schreibe dasselbe if/else wie eben – jetzt sollte sich die Tür öffnen und die Beschreibung des Flurs ausgegeben werden.",
+        "codeTemplate": "raeume = {\n    \"bibliothek\": {\n        \"beschreibung\": \"Du stehst in der Bibliothek.\",\n        \"ausgaenge\": {\"norden\": \"flur\"}\n    },\n    \"flur\": {\n        \"beschreibung\": \"Ein kühler Luftzug streicht durch den Flur. Du bist frei!\",\n        \"ausgaenge\": {}\n    }\n}\naktueller_raum = \"bibliothek\"\ninventar = [\"schluessel\"]\n\n# dein Code hier\n",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ein kühler Luftzug streicht durch den Flur. Du bist frei!",
+          "codeContains": ["in"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "title": "Befehle einlesen",
+    "file": "lektion-05.md",
+    "lessonSummary": "input() plus split() verwandeln einen getippten Satz wie 'gehe westen' in einzelne Wörter, die dein Code auswerten kann.",
+    "tasks": [
+      {
+        "instruction": "Lies mit input() einen Befehl ein und zerlege ihn mit split() in teile. Wenn teile[0] == 'gehe' ist, gib 'Du gehst nach ' + teile[1] aus. (Beim Prüfen wird automatisch 'gehe westen' eingegeben.)",
+        "codeTemplate": "befehl = input(\"Was tust du? \")\nteile = befehl.split()\n\n# dein Code hier\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Du gehst nach westen",
+          "codeContains": ["split"],
+          "stdin": ["gehe westen"]
+        }
+      },
+      {
+        "instruction": "Bonus: Erweitere die Abfrage: Wenn teile[0] == 'nimm' ist, gib 'Du nimmst ' + teile[1] aus. (Beim Prüfen wird automatisch 'nimm schluessel' eingegeben.)",
+        "codeTemplate": "befehl = input(\"Was tust du? \")\nteile = befehl.split()\n\n# dein Code hier\n",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Du nimmst schluessel",
+          "codeContains": ["split"],
+          "stdin": ["nimm schluessel"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "title": "Mehrere Enden — dein Fluchtraum",
+    "file": "lektion-06.md",
+    "lessonSummary": "Geschafft! Dein Fluchtraum ist spielbar: Räume als Dictionary, Inventar als Liste, Befehle per input() – bis zum Ende in der while-Schleife.",
+    "tasks": [
+      {
+        "instruction": "Vervollständige den nimm-Zweig: Füge teile[1] mit append() zum inventar hinzu und gib 'Du nimmst: ' + teile[1] aus. Beim Prüfen wird automatisch die Befehlsfolge 'gehe westen', 'nimm schluessel', 'gehe osten', 'gehe norden' eingegeben – damit solltest du am Ende den Flur erreichen.",
+        "codeTemplate": "raeume = {\n    \"bibliothek\": {\n        \"beschreibung\": \"Du stehst in der Bibliothek. Ein Vorhängeschloss versperrt die Tür nach Norden.\",\n        \"ausgaenge\": {\"westen\": \"arbeitszimmer\", \"norden\": \"flur\"}\n    },\n    \"arbeitszimmer\": {\n        \"beschreibung\": \"Ein verstaubter Schreibtisch steht hier. In einer Schublade liegt etwas Glänzendes.\",\n        \"ausgaenge\": {\"osten\": \"bibliothek\"}\n    },\n    \"flur\": {\n        \"beschreibung\": \"Ein kühler Luftzug streicht durch den Flur. Du bist frei!\",\n        \"ausgaenge\": {}\n    }\n}\n\naktueller_raum = \"bibliothek\"\ninventar = []\n\nwhile aktueller_raum != \"flur\":\n    befehl = input(\"Was tust du? \")\n    teile = befehl.split()\n\n    if teile[0] == \"gehe\":\n        richtung = teile[1]\n        if richtung in raeume[aktueller_raum][\"ausgaenge\"]:\n            ziel = raeume[aktueller_raum][\"ausgaenge\"][richtung]\n            if ziel == \"flur\" and \"schluessel\" not in inventar:\n                print(\"Die Tür ist verschlossen. Du brauchst einen Schlüssel.\")\n            else:\n                aktueller_raum = ziel\n                print(raeume[aktueller_raum][\"beschreibung\"])\n        else:\n            print(\"Dort geht es nicht weiter.\")\n    elif teile[0] == \"nimm\":\n        # dein Code hier\n        pass\n\nprint(\"Du hast die Bibliothek verlassen!\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Du hast die Bibliothek verlassen!",
+          "codeContains": ["append"],
+          "stdin": ["gehe westen", "nimm schluessel", "gehe osten", "gehe norden"]
+        }
+      }
+    ]
+  }
+]

@@ -109,6 +109,18 @@
     "contentPath": "js-snake"
   },
   {
+    "id": "projekt-text-adventure",
+    "type": "projekt",
+    "language": "python",
+    "level": "fortgeschritten",
+    "tags": ["spiele", "logikraetsel"],
+    "title": "Projekt: Text-Adventure – Der Fluchtraum",
+    "title_en": "Project: Text Adventure – The Escape Room",
+    "description": "Baue deinen eigenen Fluchtraum: mehrere Räume als Dictionary, ein Inventar als Liste, eine verschlossene Tür – und am Ende ein Spiel, das echte Befehle wie 'gehe norden' oder 'nimm schlüssel' per input() einliest.",
+    "description_en": "Build your own escape room: several rooms as a dictionary, an inventory as a list, a locked door – and in the end a game that reads real commands like 'go north' or 'take key' via input().",
+    "contentPath": "text-adventure-fluchtraum"
+  },
+  {
     "id": "ferienkurse",
     "title": "Meet & Code - Herbstferienprogramm Al für Teenager",
     "title_en": "Meet & Code - Autumn Holiday Programme AI for Teenagers",

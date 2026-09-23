@@ -79,10 +79,10 @@ mit Filtern unter `/projekte`. Ein weiteres Projekt braucht nur noch einen Conte
       baut direkt auf der Cäsar-Chiffre auf, Tests in `tests/projekte.spec.js` ergänzt/angepasst
 - [x] Snake (`content/js-snake`, 6 Lektionen, DE, `projekt-js-snake`, JS-Sandbox/Canvas) — baut auf
       der JS-Spielewerkstatt auf, Tests in `tests/projekte.spec.js` ergänzt/angepasst
-- [ ] 0–1 weitere Projekt-Idee ausarbeiten (Sprint im Cäsar-Chiffre-Stil, ~5 Lektionen) —
-      Ideen-Backlog mit ~40 Vorschlägen (Spiele, Web, KI, Logik, Krypto, Kreativ, Daten) samt
-      Reihenfolge-Empfehlung in `PROJEKTIDEEN.md` (empfohlen als Nächstes: Text-Adventure 🐍); beim
-      Umsetzen dort abhaken
+- [x] Text-Adventure (`content/text-adventure-fluchtraum`, 6 Lektionen, DE, `projekt-text-adventure`) —
+      Räume als verschachteltes Dictionary, Inventar als Liste, verschlossene Tür, Befehle per
+      `input()`/`split()` (`validation.stdin`), Kapitel 6 kombiniert alles in einer `while`-Schleife
+      mit Sieg-/Dauerschleifen-Ende; Tests in `tests/projekte.spec.js` ergänzt/angepasst
 - [ ] Projektideen aus Einstufung ggf. hier ausbauen
 - [ ] DE (+ EN nach Bedarf) — Vigenère/Snake sind bewusst DE-first wie Morsecode/Zahlen-Detektiv
 - [ ] Smoke-Test → PR nach `main`

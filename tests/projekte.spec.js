@@ -12,37 +12,39 @@ test.describe('Projekte-Übersicht', () => {
 
   test('zeigt alle Projekt-Karten', async ({ page }) => {
     await page.goto('/projekte');
-    await expect(page.locator('.projekt-card')).toHaveCount(6, { timeout: 15000 });
+    await expect(page.locator('.projekt-card')).toHaveCount(7, { timeout: 15000 });
     await expect(page.locator('a[href="/kurs/projekt-caesar-chiffre"]')).toBeVisible();
     await expect(page.locator('a[href="/kurs/projekt-vigenere-chiffre"]')).toBeVisible();
     await expect(page.locator('a[href="/kurs/projekt-morsecode"]')).toBeVisible();
     await expect(page.locator('a[href="/kurs/projekt-zahlendetektiv"]')).toBeVisible();
     await expect(page.locator('a[href="/kurs/projekt-js-spielewerkstatt"]')).toBeVisible();
     await expect(page.locator('a[href="/kurs/projekt-js-snake"]')).toBeVisible();
+    await expect(page.locator('a[href="/kurs/projekt-text-adventure"]')).toBeVisible();
   });
 
   test('Projekt-Karte ist ganzflächig klickbar, nicht nur der "Jetzt starten"-Link', async ({ page }) => {
     await page.goto('/projekte');
-    await expect(page.locator('.projekt-card')).toHaveCount(6, { timeout: 15000 });
+    await expect(page.locator('.projekt-card')).toHaveCount(7, { timeout: 15000 });
 
     await page.locator('a.projekt-card[href="/kurs/projekt-caesar-chiffre"] h3').click();
     await expect(page).toHaveURL(/projekt-caesar-chiffre/);
   });
 
-  test('Level-Filter "Fortgeschritten" reduziert auf Zahlen-Detektiv, Vigenère-Chiffre und Snake', async ({ page }) => {
+  test('Level-Filter "Fortgeschritten" reduziert auf Zahlen-Detektiv, Vigenère-Chiffre, Snake und Text-Adventure', async ({ page }) => {
     await page.goto('/projekte');
-    await expect(page.locator('.projekt-card')).toHaveCount(6, { timeout: 15000 });
+    await expect(page.locator('.projekt-card')).toHaveCount(7, { timeout: 15000 });
 
     await page.locator('.filter-chip', { hasText: 'Fortgeschritten' }).click();
-    await expect(page.locator('.projekt-card')).toHaveCount(3);
+    await expect(page.locator('.projekt-card')).toHaveCount(4);
     await expect(page.locator('a[href="/kurs/projekt-zahlendetektiv"]')).toBeVisible();
     await expect(page.locator('a[href="/kurs/projekt-vigenere-chiffre"]')).toBeVisible();
     await expect(page.locator('a[href="/kurs/projekt-js-snake"]')).toBeVisible();
+    await expect(page.locator('a[href="/kurs/projekt-text-adventure"]')).toBeVisible();
   });
 
   test('Tag-Filter "Kryptografie" zeigt Cäsar- und Vigenère-Chiffre', async ({ page }) => {
     await page.goto('/projekte');
-    await expect(page.locator('.projekt-card')).toHaveCount(6, { timeout: 15000 });
+    await expect(page.locator('.projekt-card')).toHaveCount(7, { timeout: 15000 });
 
     await page.locator('.filter-chip', { hasText: 'Kryptografie' }).click();
     await expect(page.locator('.projekt-card')).toHaveCount(2);
@@ -52,7 +54,7 @@ test.describe('Projekte-Übersicht', () => {
 
   test('Sprach-Filter "JavaScript" zeigt Spielewerkstatt und Snake', async ({ page }) => {
     await page.goto('/projekte');
-    await expect(page.locator('.projekt-card')).toHaveCount(6, { timeout: 15000 });
+    await expect(page.locator('.projekt-card')).toHaveCount(7, { timeout: 15000 });
 
     await page.locator('.filter-chip', { hasText: 'JavaScript' }).click();
     await expect(page.locator('.projekt-card')).toHaveCount(2);
@@ -62,13 +64,13 @@ test.describe('Projekte-Übersicht', () => {
 
   test('Zurücksetzen-Button stellt alle Projekte wieder her', async ({ page }) => {
     await page.goto('/projekte');
-    await expect(page.locator('.projekt-card')).toHaveCount(6, { timeout: 15000 });
+    await expect(page.locator('.projekt-card')).toHaveCount(7, { timeout: 15000 });
 
     await page.locator('.filter-chip', { hasText: 'Fortgeschritten' }).click();
-    await expect(page.locator('.projekt-card')).toHaveCount(3);
+    await expect(page.locator('.projekt-card')).toHaveCount(4);
 
     await page.locator('.filter-reset').click();
-    await expect(page.locator('.projekt-card')).toHaveCount(6);
+    await expect(page.locator('.projekt-card')).toHaveCount(7);
   });
 
   test('Morsecode-Projekt lädt und Lektion 1 lösen schaltet Lektion 2 frei', async ({ page }) => {
@@ -141,6 +143,33 @@ test.describe('Projekte-Übersicht', () => {
     await setCodeMirrorContent(
       task2.locator('.cm-host'),
       "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nconst groesse = 20;\nctx.fillStyle = 'limegreen';\nctx.fillRect(2 * groesse, 2 * groesse, groesse, groesse);"
+    );
+    await task2.locator('.btn-check').click();
+    await expect(task2.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+
+    await expect(page.locator('.lesson-item.completed')).toHaveCount(1);
+    await expect(page.locator('.lesson-item').nth(1)).not.toHaveClass(/locked/);
+  });
+
+  test('Text-Adventure-Projekt lädt und Lektion 1 lösen schaltet Lektion 2 frei', async ({ page }) => {
+    test.setTimeout(60000);
+    await page.goto('/kurs/projekt-text-adventure');
+    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(6, { timeout: 15000 });
+    await expect(page.locator('.course-description')).toContainText('Fluchtraum');
+
+    await startKernel(page);
+    await expect(page.locator('.btn-check').first()).toBeEnabled({ timeout: 40000 });
+
+    const task1 = page.locator('.task-block').nth(0);
+    await task1.locator('.code-editor').fill(
+      'raum = {\n    "beschreibung": "Du wachst in einer alten Bibliothek auf. Ein Vorhängeschloss versperrt die Tür nach Norden.",\n    "ausgaenge": {"westen": "arbeitszimmer"}\n}\nprint(raum["beschreibung"])\nprint(raum["ausgaenge"]["westen"])'
+    );
+    await task1.locator('.btn-check').click();
+    await expect(task1.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+
+    const task2 = page.locator('.task-block').nth(1);
+    await task2.locator('.code-editor').fill(
+      'raum2 = {\n    "beschreibung": "Ein dunkler Keller.",\n    "ausgaenge": {"treppe": "bibliothek"}\n}\nprint(raum2["ausgaenge"]["treppe"])'
     );
     await task2.locator('.btn-check').click();
     await expect(task2.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
