@@ -116,6 +116,15 @@ test.describe('12-Wochen-Kurs: Wochen-Tour', () => {
     await expect(page.locator('.week-tile')).toHaveCount(12);
   });
 
+  test('Auf der ersten Lektion gibt es keinen "Weiter zu Check"-Sprung, der die Lektionen überspringt', async ({ page }) => {
+    await page.goto(`${TOUR_URL}?week=1&variant=pferde`);
+    await expect(page.locator('.js-course-tour .stepper-step').first()).toHaveClass(/current/);
+    // Die äußere Wochen-Tour (WeekTourStepper.vue) darf hier keinen eigenen "Weiter"-Button
+    // anbieten, der auf den Check-Schritt springt - die eingebettete Lektions-Tour navigiert
+    // sich selbst und meldet "open-check" erst nach der letzten Lektion/Extra-Herausforderung.
+    await expect(page.locator('.tour-next-btn')).toHaveCount(0);
+  });
+
   // Die Wahl-Seite nach den Missionen (Extra-Herausforderung oder Check) gehört seit dem
   // Lektions-Format zur eingebetteten Lektions-Tour (JsCourseTour.vue) und wird dort - mit
   // echten geloesten Aufgaben statt nur Navigation - bereits geprueft, siehe

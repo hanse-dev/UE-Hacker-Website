@@ -110,6 +110,14 @@ Wochen-ZIP-Download. Auf Wunsch entfernt (288 Ordner, ca. 2.600 Dateien) und den
   Umschalten des `v-if`-Zweigs in `WeekTourStepper.vue` neu gemountet wird und `currentLessonId`
   dabei verlorenging — startet jetzt bei der ersten noch nicht abgeschlossenen Lektion statt immer
   bei der ersten.
+- **Nachträglich gefunden und behoben:** `WeekTourStepper.vue` zeigte schon auf der ersten Lektion
+  einen "Weiter zu Check"-Button, der die Lektionen/Missionen komplett überspringen ließ — die
+  äußere Steps-Liste hat im Lektions-Format nur `['lessons', '4_check']`, `nextStep` war beim
+  Schritt `lessons` also immer sofort der Check, unabhängig vom Fortschritt in der eingebetteten
+  Lektions-Tour. Der äußere "Weiter"-Bereich wird jetzt ausgeblendet, solange die eingebettete Tour
+  läuft — die navigiert sich ohnehin selbst und meldet `open-check` erst nach der letzten
+  Lektion/Extra-Herausforderung. Test: `tests/wochen-tour.spec.js` ("Auf der ersten Lektion gibt es
+  keinen 'Weiter zu Check'-Sprung...").
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 

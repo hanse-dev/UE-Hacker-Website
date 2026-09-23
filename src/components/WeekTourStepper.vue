@@ -87,7 +87,13 @@
           :key="`${weekNumber}-${variant}-${activeContentKey}`"
         />
 
-        <div v-if="!activeReference && !choosingNext" class="tour-tail">
+        <!-- Im Lektions-Format (Schritt "lessons") navigiert die eingebetteten Tour sich selbst
+             und meldet "open-check" erst, wenn die Lektionen wirklich durch sind - hier keinen
+             zusätzlichen "Weiter zu Check"-Sprung anbieten, der die Lektionen überspringen würde. -->
+        <div
+          v-if="!activeReference && !choosingNext && !(lessonContentPath && viewingStepKey === 'lessons')"
+          class="tour-tail"
+        >
           <button
             v-if="viewingStepKey !== '4_check' && nextStep"
             class="tour-next-btn"
