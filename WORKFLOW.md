@@ -105,6 +105,12 @@ ist die dauerhafte, verlässliche Quelle für Details.
 sind "heiß" und müssen klein bleiben (Richtwert: HANDOFF.md < 25 KB, todo.md < 10 KB). Ausführliches
 liegt "kalt" unter `docs/archiv/` (nicht importiert, nur bei Bedarf gelesen).
 
+- **Bei jedem Task, nicht erst wenn die Schwelle gerissen ist:** proaktiv prüfen, ob erledigte
+  Punkte in `todo.md`/`HANDOFF.md` inzwischen archiviert werden können, ob sich Punkte doppeln oder
+  veraltete Referenzen stehen geblieben sind — diese Dateien werden bei jeder Session/jedem
+  Sub-Agenten per `@` geladen und kosten dort Tokens, auch wenn die KB-Schwelle noch nicht
+  überschritten ist. Reines Aufschieben bis zum nächsten großen Aufräum-Task lässt die Dateien
+  unnötig aufblähen.
 - **Während der Arbeit an einem Branch:** den Feature-Abschnitt ausführlich in HANDOFF.md Abschnitt 3
   schreiben (als `### 3.NN`), solange der Branch noch nicht gemergt ist.
 - **Nach dem Mergen nach `main`:** den vollständigen Abschnitt unverändert ans Ende von

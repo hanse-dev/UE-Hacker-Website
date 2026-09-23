@@ -385,3 +385,81 @@ und Server-Deploy bewusst zurückgestellt (siehe HANDOFF.md).
 
 ---
 
+
+## Lektions-Format Woche 1–12 — abgeschlossene Nachbesserungen
+
+Ausgelagert aus `todo.md` am 2026-09-23 (Kontext-Hygiene: erledigte Punkte kosten Tokens in jeder
+Session, siehe WORKFLOW.md "HANDOFF.md aufräumen"). Offene Reste stehen weiter in `todo.md`.
+
+- [x] Glossar-Notebooks (`0_glossar`) Woche 3–12 an die Lektionen angeglichen: Vorgriffe entfernt (Woche 4 Listen/`append`/Index, Woche 5 `try`/`except` in Pferde+Sci-Fi, Woche 8 `.update()`), Wiederholungs-Verweise korrigiert (Woche 5–7, 9), Woche-6-Tabelle repariert und um Listen ergänzt, Woche 10 Doppelzeile; Test `Glossare: keine Vorgriffe` in `tests/storytelling-content.spec.js`. Bewusst gelassen: `snake_case`/Algorithmus/Instanz (Konzepte ohne eigene Aufgabe), Woche 7 Pferde/Sci-Fi mit kleinerer Begriffsliste als Abenteuer.
+
+### 12-Wochen-Kurs: Lektions-Format (Branch `python-woche1-lektionen-format`)
+- [x] Woche 1 + 2 (Abenteuer, Pferde, Sci-Fi; DE + EN) als Einzel-Lektionen im JS-Kurs-Format (siehe HANDOFF.md 3.47)
+- [x] Woche 4 (Schleifen; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.48).
+- [x] Woche 4: DE/EN-Struktur angeglichen (Abenteuer 8, Pferde 7, Sci-Fi 7 Lektionen; IDs/Aufgaben identisch, EN/DE jeweils als Übersetzung der größeren Fassung)
+- [x] Woche 5 (Funktionen; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.49), ohne Sub-Agenten aus einer Datenquelle pro Thema erzeugt
+- [x] Woche 6 (Listen; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.50): 9 Lektionen, Debug, 3 Missionen, 3 Extra-Herausforderungen je Thema, DE = EN; enthält die nachgezogenen Vorgriffe (Listen, `append`, `break`/`continue`, Funktionen mit Listen)
+- [x] Woche 7 (Module; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.51): 7 Lektionen, Debug, 3 Missionen, 4 Extra-Herausforderungen je Thema, DE = EN; Zufalls-Aufgaben prüfen Eigenschaften statt fester Werte; nimmt die Woche-4/5-Vorgriffe mit `random`, `%` und Feld auf (Extra-Herausforderung 4)
+- [x] Woche 8 (Dictionaries/Tupel; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.52): 7 Lektionen, Debug, 3 Missionen, 4 Extra-Herausforderungen je Thema, DE = EN; enthält die nachgezogenen Dictionary-/`try/except`-Vorgriffe aus Woche 5/6
+- [x] Woche 9 (JSON und Dateien; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.53): 7 Lektionen, Debug, 3 Missionen, 4 Extra-Herausforderungen je Thema, DE = EN
+- [x] Woche 10 (OOP Grundlagen), Woche 11 (OOP Fortgeschritten), Woche 12 (Text-Adventure-Abschlussprojekt; Abenteuer, Pferde, Sci-Fi; DE + EN) im Lektions-Format (siehe HANDOFF.md 3.54): je 7 Lektionen/Etappen, Debug, 3 Missionen, 4 Extra-Herausforderungen, DE = EN
+- [x] Lösungs-Notebooks passen zu den Aufgaben (aus Referenzlösungen erzeugt, siehe Abschnitt „Lösungen“ oben). Glossar: siehe offener Punkt „Glossar-Notebooks“.
+
+#### Woche 4
+- [x] Glossar (Woche 4) bereinigt. Lernziele-Checklisten der Original-Missionen (Woche 4: Listen/`append`/Index/`break`/`continue`; Woche 5: `try/except`) bereinigt. Offen blieb damals: die Original-Missionen/-Boss-Notebooks selbst enthielten Listen-Aufgaben (Bonus/Boss), lagen nur noch im ZIP — seit 3.55 sind die alten Notebooks ganz entfernt, der ZIP-Download wird aus dem Lektions-Format generiert.
+- [x] `end=""` ist jetzt in Pferde DE/EN und Sci-Fi EN Lektion 7 erklärt; mehrzeilige `expected` mit `\n` (82 Aufgaben) in der App per Wegwerf-Test bestätigt.
+- [x] Pferde DE Boss 3: "Noch 1 Runden" (Plural bei 1) — kosmetisch, DE+`expected` gemeinsam geändert.
+
+#### Woche 3 (Angleichung DE/EN)
+- [x] Pferde DE `boss-03`: Anweisung nennt "Kein Turniersieg", `expected` ist "Kein Turniersieg." (mit Punkt) — DE + EN vereinheitlicht.
+- [x] Sci-Fi DE/EN `boss-03`: "Gesamtpunkte: 320 und Erfolgsquote: 80.0%" — "in zwei Zeilen" ergänzt.
+- [x] Lösungs-Notebooks passen zu den Aufgaben (aus Referenzlösungen erzeugt).
+
+#### Woche 5 (Funktionen)
+- [x] `LessonView` prüfte nur die Ausgabe: erledigt über `validation.codeContains` (Woche 3–12 automatisch aus der Aufgabenstellung abgeleitet, siehe INHALTE.md); hart codiertes `print` besteht dort nicht mehr.
+- [x] Lösungs-Notebooks Woche 5 passen zu den Aufgaben.
+
+#### Woche 6 (Listen)
+- [x] Aus dem Original wieder aufgenommen: Slicing (`[0:3]`, `[-2:]`, `[1::2]`), `extend()`, `sorted(set(...))`, `sorted(..., key=len)`, `.upper()` in der List Comprehension (je eine Zusatzaufgabe in Lektion 2/3/5/6/9).
+- [x] Woche-2-Extras (8 Truhen/Säcke/Module, 5 Zauber/Übungen/KI-Modelle) und Woche-4-Mengen (Zahlen 1–20 gerade/rückwärts, sortierte Ereignis-Liste) mit den vollen Original-Mengen als Extra-Herausforderung 4 "Wiederholung" nachgezogen.
+- [x] Boss 3 themenspezifisch benannt (Pferde `erstelle_turnier`/`turniere`, Sci-Fi `erstelle_mission`/`missionen`).
+- [x] Woche-4-Vorgriffe mit `random`, `%` und dem 8×8-Feld sind in Woche 7 (Extra-Herausforderung 4) nachgezogen (Zufallswerte/-ereignisse/-weg, Primzahlen bis 100, Schachbrett, Figur über das Feld).
+- [x] Dictionaries aus den Originalen sind in Woche 8 (Extra-Herausforderung 4) als Wiederholung nachgezogen.
+- [x] Lösungs-Notebooks Woche 6 passen zu den Aufgaben.
+
+#### Woche 7 (Module)
+- [x] Lösungs-Notebooks Woche 7 passen zu den Aufgaben.
+
+#### Woche 1–2
+- [x] `max()` (kam in Woche 2 Abenteuer DE/EN Boss 1 und Pferde EN Boss 1 als Vorgriff vor) durch Vergleich mit `>` ersetzt (Lektions-JSON, Boss-Text, Lösungs-Notebook)
+- [x] `//`, `%`, `**` (nur Sci-Fi EN Woche 2 Lektion 6, im Original und in allen anderen Themen nicht) entfernt
+- [x] Woche 3: DE/EN je Thema angeglichen (Abenteuer 7 Lektionen + 4 Bugs, Pferde/Sci-Fi 6 Lektionen; IDs/Aufgaben DE = EN, Sci-Fi 4 Bugs, Pferde 3), Struktur per Skript + `python-lektionen-format.spec.js` geprüft
+- [x] Alte Notebooks (Lektion/Debug/Missionen/Boss) aller Wochen entfernt (waren nicht mehr in der Tour, nur noch ZIP-Download-Quelle). ZIP-Download baut jetzt `scripts/build_lesson_bundle.py` direkt aus dem Lektions-Format + Referenzlösungen: eine lauffähige `.py`-Datei je Woche/Variante/Sprache (Glossar, Lektionen, Debug, Missionen, Extra-Herausforderungen inkl. Lösungen), DE **und** EN (vorher nur DE). `scripts/pack_notebooks.py` neu geschrieben, `NOTEBOOK_TYPES` in `useWeeklyContent.js` auf `0_glossar`/`6_loesungen` reduziert, veraltete Tests (`notebooks.spec.js`, `wochen-tour.spec.js`, `storytelling-content.spec.js`) auf das Lektions-Format umgestellt. Dabei gefunden und mitbehoben: `JsCourseTour.vue` sprang beim Öffnen von Glossar/Lösungen mitten in einer Lektion zurück auf Lektion 1 (Komponente wird beim Referenz-Wechsel neu gemountet) — startet jetzt bei der ersten noch offenen Lektion.
+- [x] `input()`-Aufgaben (Woche 1, 2) prüfen jetzt mit `validation.stdin` und der daraus berechneten Ausgabe statt nur festen Textteilen.
+
+#### Woche 8 (Dictionaries/Tupel)
+- [x] `dict`/`try`-Struktur: `try`/`except`, `def`, `json.*`, `csv.*` werden über `validation.codeContains` geprüft (siehe Woche 5); `dict` selbst nicht (kein eindeutiger Baustein).
+- [x] Lösungs-Notebooks Woche 8 passen zu den Aufgaben.
+
+#### Woche 10–12 (OOP, Text-Adventure)
+- [x] Struktur (`class`, `super()`, Magic Methods, `isinstance`) wird über `validation.codeContains` geprüft; Rest-Lücke: Bausteine in Texten/Kommentaren zählen nicht als Umgehung, aber `print("class")` zählt als Vorkommen (bewusst einfach).
+- [x] Lösungs-Notebooks Woche 10–12 sind aus den Referenzlösungen der Aufgaben neu erzeugt (eine Zelle je Aufgabe, Debug mit Erklärung). Offen blieb nur das Glossar von Woche 10–12 (erwähnt teils Themen der Original-Aufgaben).
+- [x] `tests/storytelling-content.spec.js` liest aus dem Lektions-Format (Woche 5/8/9/11/12) statt aus den entfernten alten Notebook-Quelldateien.
+
+#### Woche 9 (JSON und Dateien)
+- [x] Lösungs-Notebooks Woche 9 passen zu den Aufgaben.
+
+### JavaScript-Spielewerkstatt — Branch `kurs-js-spielewerkstatt` ✅ gemergt
+Ersetzt die frühere Idee einer Python-Spiele-Werkstatt: Pyodides synchrones "einmal ausführen"-
+Modell ist mit einer echten Spiele-Loop (requestAnimationFrame, laufende Tasten-/Maus-Events)
+unvereinbar (siehe HANDOFF.md 3.32) — daher JavaScript statt Python, mit einer neuen
+iframe-Sandbox-Ausführungsumgebung. Kompaktes Projekt (6 Lektionen, wie Cäsar-Chiffre), erstes
+Spiel "Fang den Ball". Details siehe HANDOFF.md 3.39.
+- [x] Neue JS-Sandbox-Ausführungsumgebung (`useJsSandbox.js`, iframe-basiert, kein Worker)
+- [x] `engine`-Prop an `ProjectCourse.vue`/`CourseDetail.vue` ergänzt (Default `'pyodide'`)
+- [x] Kursmetadaten in `kurse.json` (`engine: "js-sandbox"`, `language: "javascript"`, `level`,
+      neuer Tag `spiele` im Projekte-Filter-Vokabular, inkl. neuer `projectTag.spiele`-Locale-Keys)
+- [x] Content: 6 Lektionen "Fang den Ball" (DE-first, kein `-en`-Ordner wie Cäsar-Chiffre)
+- [x] Playwright-Tests (`tests/js-spielewerkstatt.spec.js`, 12 Tests) + `tests/projekte.spec.js`
+      angepasst → volle `test:checks`-Suite grün.
+- [x] `KURSPLAN.md`/`VISION.md` geprüft — keine Abweichung vom dortigen Track-Modell nötig (JS-Projekt-Kurs passt unverändert ins bestehende Schema)

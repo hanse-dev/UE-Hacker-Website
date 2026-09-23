@@ -2,9 +2,9 @@
 
 > **Zuletzt aktualisiert:** 2026-09-23
 > **Aktueller Stand:** `main` ist lokal aktuell (Push nach `origin/main` und Server-Deploy stehen aus —
-> Nutzer deployt selbst, siehe Abschnitt 4 "Betrieb"). Zuletzt gemergt: Lösungen aller Wochen 1–12,
-> Glossar-Bereinigung, Lernziele-Checklisten. Branch `python-lektionen-nacharbeiten` (offen): alte
-> Notebooks entfernt, ZIP-Download neu aus dem Lektions-Format gebaut (siehe 3.55).
+> Nutzer deployt selbst, siehe Abschnitt 4 "Betrieb"). Zuletzt gemergt: alte Notebooks entfernt/
+> ZIP-Download neu gebaut (3.55), Woche 2 Abenteuer+Pferde DE/EN angeglichen (3.56). Branch
+> `python-lektionen-nacharbeiten` (offen): Woche 2 Sci-Fi DE/EN angleichen läuft noch, siehe `todo.md`.
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
 > Chat-Historie. Sie wird per `@` in jede Session geladen — **klein halten** (Richtwert < 25 KB).
 > Die ausführliche Feature-Historie liegt kalt in `docs/archiv/HANDOFF-historie.md` (nicht importiert).
@@ -68,56 +68,9 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.51 | Python Woche 7 (Module) als Einzel-Lektionen | 7 Lektionen + Debug + 3 Missionen + 4 Extra-Herausforderungen je Thema, DE = EN; Zufall wird über Eigenschaften geprüft (30 Testläufe im Generator), `%`/`//`/`random`/Feld-Vorgriffe aus Woche 4/5 in Extra-Herausforderung 4 nachgezogen |
 | 3.52 | Python Woche 8 (Dictionaries/Tupel) als Einzel-Lektionen | 7 Lektionen (Dictionary, ändern, `get`/`in`, Durchlaufen, Tupel, `try/except`, verschachtelt) + Debug (3 Bugs) + 3 Missionen + 4 Extra-Herausforderungen je Thema, DE = EN; Extra 4 zieht die Vorgriffe aus Woche 5–7 nach (`erstelle_*`-Funktion, Quest-Dictionary, Zählen mit `get`, `random.choice` auf Schlüsseln, `try/except KeyError`); Generator im Scratchpad, jede Referenzlösung mit `python3` ausgeführt |
 | 3.53 | Python Woche 9 (JSON und Dateien) als Einzel-Lektionen | 7 Lektionen (`open`/`with`, zeilenweise + `"a"`, `FileNotFoundError`/`os`, `json.dumps`/`loads`, `json.dump`/`load`, `csv.writer`/`reader`, `DictReader`/`DictWriter` + JSON↔CSV) + Debug (3 Bugs) + 3 Missionen + 4 Extra-Herausforderungen je Thema, DE = EN; jede Aufgabe legt ihre Dateien selbst an (Pyodide-Dateisystem bleibt zwischen Aufgaben bestehen); Extra 4 nimmt Funktionen/Listen/`random`/Dictionaries aus Woche 5–8 auf; alle 630 Referenzlösungen von Woche 8+9 zusätzlich in Pyodide (node_modules) ausgeführt |
-| 3.55 | Alte Notebooks entfernt, ZIP-Download neu aus dem Lektions-Format | siehe unten (noch nicht gemergt) |
+| 3.55 | Alte Notebooks entfernt, ZIP-Download neu aus dem Lektions-Format | `scripts/build_lesson_bundle.py` baut Download direkt aus dem Lektions-Format, DE+EN |
+| 3.56 | Woche 2: Abenteuer + Pferde DE/EN angeglichen | größere Fassung als Referenz (wie Woche 3/4); Sci-Fi läuft noch, siehe `todo.md` |
 | 3.54 | Python Woche 10–12 (OOP Grundlagen, OOP Fortgeschritten, Text-Adventure) als Einzel-Lektionen | Woche 10: 7 Lektionen (Klasse/Objekt, `__init__`, Methoden/`self`, Parameter/`return`, Zustand, Objekte in Listen, Objekte an Funktionen); Woche 11: 7 Lektionen (Vererbung/`isinstance`, Überschreiben, `super()`, Polymorphismus/Duck Typing, `__str__`/`__repr__`, `__eq__`/`__lt__`/`sorted`, `__add__`/`__len__`); Woche 12: 7 Etappen (Karte, Bewegung, Gegenstände, Spieler/Komposition, Gegner/Kampf, `try/except`, Speichern/Finale) mit den Themen-Welten aus 3.46; je Woche Debug (3 Bugs) + 3 Missionen + 4 Extra-Herausforderungen, DE = EN. Generator (`lib.py`, `w10.py`–`w12.py`, Skelett + Vokabular) nur im Scratchpad; jede Referenzlösung und jeder Bug/Fix mit `python3` geprüft (Setup darf die Erwartung nicht schon erfüllen). Kampf-Aufgaben nutzen 1-HP-Gegner (deterministisch). **Damit gibt es in der Tour keine Notebook-Woche mehr:** Tests, die ein echtes Notebook brauchen, nutzen `tests/helpers/notebook.js` (`openSolutionsNotebook`, Nachschlagewerk „Lösungen“). **Nachbesserungen (3.54b):** `validation.codeContains` (Struktur-Pflichtbausteine, Woche 3–12 aus der Aufgabenstellung abgeleitet) und `validation.stdin` (vorgegebene `input()`-Eingaben beim Prüfen; Woche 1/2 umgestellt) in `LessonView`/`useTaskValidation`/`usePyodide`; Lösungen Woche 10–12 aus den Referenzlösungen neu erzeugt; Woche-3/4-Kosmetik (Plural, Punkt, Zeilenformat). **Lösungen Woche 1–12** (2.972 Aufgaben, DE+EN, alle Themen) sind je Aufgabe eine Zelle mit einer Referenzlösung, die per `python3` gegen `expected`, `codeContains` und `stdin` geprüft wurde (Zufalls-Aufgaben 5×); Generator/Solver nur im Scratchpad, Themen einer Woche teilen das Skelett und wurden per Wortersetzung aus Abenteuer abgeleitet + Einzelfälle von Hand. **Glossare Woche 3–12** (3.54c) an die Lektionen angeglichen (keine Vorgriffe mehr, Test in `storytelling-content.spec.js`). Lösungs-Ordner mit > 99 Zellen bräuchten 3-stellige Zellnamen (`build_cell_notebooks.py` kann das). |
-
-### 3.55 — Alte Notebooks entfernt, ZIP-Download neu aus dem Lektions-Format (Branch `python-lektionen-nacharbeiten`, noch nicht gemergt)
-
-Seit 3.47–3.54 sind alle 12 Wochen im Lektions-Format — die alten `1_lektion`/`2_debug`/
-`3_missionen`/`5_boss`-Zellenordner (`content/python-12-wochen-grundkurs[-en]/woche-{N}/{variante}/
-...`) waren kein Tour-Schritt mehr, lagen aber noch im Repo und speisten nur noch den
-Wochen-ZIP-Download. Auf Wunsch entfernt (288 Ordner, ca. 2.600 Dateien) und den Download neu gebaut:
-
-- **`scripts/build_lesson_bundle.py`** (neu): baut aus dem Lektions-Format
-  (`content/python-woche{N}-{thema}[-en]/lessons.json` + `lektion-*.md`/`debug-*.md`/`mission-*.md`/
-  `boss-*.md`) und den Referenzlösungen (`*_6_loesungen`-Zellenordner) **eine einzige, direkt mit
-  `python3` lauffähige `.py`-Datei je Woche/Variante/Sprache** — Glossar, Lektionen, Debug-Quest,
-  Missionen, Extra-Herausforderungen, jeweils mit Aufgabenstellung als Kommentar und Lösung/
-  Beispielcode direkt darunter. Erzählte Aufgaben werden über die Position (n-te nicht-Beispiel-
-  Aufgabe ↔ n-te Lösungs-Zelle) zugeordnet — genau die Zuordnung, die
-  `python-lektionen-format.spec.js` ("Lösungen passen zu den Aufgaben") schon länger prüft, jetzt
-  zusätzlich in `build_bundle()` per `assert` abgesichert. Jede erzeugte Datei wird sofort mit
-  `compile()` geprüft (Fehler bricht den Build ab, kein stilles Weiterlaufen). Kein Jupyter-/Zellen-
-  Format-Setup mehr nötig für den Download — "weniger Setup" war der Wunsch dazu.
-- **`scripts/pack_notebooks.py`** neu geschrieben: packt die generierten Dateien statt der alten
-  `_bundle/*.py`. Nebenbei erledigt: **ZIP-Download gibt es jetzt auch auf Englisch**
-  (`woche-{N}-en.zip`, vorher nur DE — stand als bekannte Altlast in Abschnitt 5). Download-Links
-  (`WeekTour.vue`, `WeekTourStepper.vue`) hängen `-en` an, wenn `lang === 'en'`.
-- `NOTEBOOK_TYPES` in `useWeeklyContent.js` auf `0_glossar`/`6_loesungen` reduziert (die einzigen
-  verbleibenden Zellenordner-Typen).
-- **Tests auf das Lektions-Format umgestellt** (lasen vorher direkt aus den jetzt gelöschten alten
-  Notebook-Dateien, dadurch schon vorher z.T. kaputt): `tests/storytelling-content.spec.js` (5
-  Regressionstests, u.a. Boss-Quest-Dedup, Debug-Spoiler-Check), `tests/notebooks.spec.js` (auf
-  eine verbliebene Prüfung reduziert — der Rest ist längst durch `python-lektionen-format.spec.js`
-  abgedeckt), `tests/wochen-tour.spec.js` (7 von 10 Tests liefen bereits **vor** dieser Änderung ins
-  Leere, weil sie noch auf die alte wochen-Ebene-Notebook-Navigation zielten, die es seit 3.54 nicht
-  mehr gibt — `npm test` lief nur nie automatisch, siehe Abschnitt 4 "Tests"). Neuer Test
-  `tests/lesson-bundle-generator.spec.js` (führt den Generator aus, prüft alle 72 Dateien
-  kompilieren fehlerfrei — als Regressionstest verifiziert: schlägt fehl, wenn eine `lessons.json`
-  und ihre Lösungen auseinanderlaufen).
-- **Dabei gefunden und mitbehoben:** `JsCourseTour.vue` sprang beim Öffnen eines Nachschlagewerks
-  (Glossar/Lösungen) mitten in einer Lektion zurück auf Lektion 1, weil die Komponente beim
-  Umschalten des `v-if`-Zweigs in `WeekTourStepper.vue` neu gemountet wird und `currentLessonId`
-  dabei verlorenging — startet jetzt bei der ersten noch nicht abgeschlossenen Lektion statt immer
-  bei der ersten.
-- **Nachträglich gefunden und behoben:** `WeekTourStepper.vue` zeigte schon auf der ersten Lektion
-  einen "Weiter zu Check"-Button, der die Lektionen/Missionen komplett überspringen ließ — die
-  äußere Steps-Liste hat im Lektions-Format nur `['lessons', '4_check']`, `nextStep` war beim
-  Schritt `lessons` also immer sofort der Check, unabhängig vom Fortschritt in der eingebetteten
-  Lektions-Tour. Der äußere "Weiter"-Bereich wird jetzt ausgeblendet, solange die eingebettete Tour
-  läuft — die navigiert sich ohnehin selbst und meldet `open-check` erst nach der letzten
-  Lektion/Extra-Herausforderung. Test: `tests/wochen-tour.spec.js` ("Auf der ersten Lektion gibt es
-  keinen 'Weiter zu Check'-Sprung...").
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -154,6 +107,7 @@ Wochen-ZIP-Download. Auf Wunsch entfernt (288 Ordner, ca. 2.600 Dateien) und den
 - Neue `LessonView.vue`-Kurse: Glob-Listen sind seit 3.38 Wildcards — nur Content-Ordner + `kurse.json` nötig.
 - Deep-Links `?week=&tab=` (Einstufung, Cäsar-Chiffre) bewusst unverändert lassen, `WeekTour.vue` übersetzt intern (3.36).
 - cspell: Wörterbücher brauchen `"import"`, nicht nur `"dictionaries"`; Ausgabe muss im Repo liegen (3.8/3.9).
+- Komponente wird beim Umschalten eines `v-if`-Zweigs neu gemountet → lokaler State (z.B. aktuelle Lektion) geht verloren, wenn er nicht vom Parent gehalten wird; beim Neu-Mount auf den zuletzt sinnvollen Zustand zurückfallen, nicht immer auf den Anfang (3.55).
 
 **Betrieb**
 - SQLite nur per `VACUUM INTO` sichern (WAL), nie `cp`; nie `git clean -fdx` ohne `api/data/` auszuschließen (Abschnitt 4).

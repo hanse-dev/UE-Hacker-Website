@@ -2040,3 +2040,60 @@ bleibt Notebook.
 ### 3.48 Python Woche 4 (Schleifen) im Lektions-Format (Branch `python-woche1-lektionen-format`)
 
 Alle 6 Ordner `content/python-woche4-{abenteuer|pferde|scifi}[-en]/` per Sub-Agenten erstellt (Muster: Woche 2), jede Aufgabe mit `python3` gegen Referenzlösung/Stub geprüft. `tests/python-lektionen-format.spec.js` deckt Woche 4 mit ab (`WEEKS = [1, 2, 4]`); dabei einen Fehler gefunden und gefixt (Abenteuer EN hatte `section: "mission"` statt `"boss"` bei `boss-*`). DE/EN-Struktur danach angeglichen (Abenteuer 8, Pferde 7, Sci-Fi 7 Lektionen, gleiche IDs/Aufgaben; die kleinere Sprache wurde jeweils als Übersetzung der größeren neu aufgebaut). Mehrzeilige `expected` mit `\n` in der App bestätigt. Offen: Vorgriffe in Missionen/Boss vereinfacht — Details in `todo.md` "Nachbesserungen Lektions-Format Woche 4".
+
+### 3.55 — Alte Notebooks entfernt, ZIP-Download neu aus dem Lektions-Format (Branch `python-lektionen-nacharbeiten`, gemergt)
+
+Seit 3.47–3.54 sind alle 12 Wochen im Lektions-Format — die alten `1_lektion`/`2_debug`/
+`3_missionen`/`5_boss`-Zellenordner (`content/python-12-wochen-grundkurs[-en]/woche-{N}/{variante}/
+...`) waren kein Tour-Schritt mehr, lagen aber noch im Repo und speisten nur noch den
+Wochen-ZIP-Download. Auf Wunsch entfernt (288 Ordner, ca. 2.600 Dateien) und den Download neu gebaut:
+
+- **`scripts/build_lesson_bundle.py`** (neu): baut aus dem Lektions-Format
+  (`content/python-woche{N}-{thema}[-en]/lessons.json` + `lektion-*.md`/`debug-*.md`/`mission-*.md`/
+  `boss-*.md`) und den Referenzlösungen (`*_6_loesungen`-Zellenordner) **eine einzige, direkt mit
+  `python3` lauffähige `.py`-Datei je Woche/Variante/Sprache** — Glossar, Lektionen, Debug-Quest,
+  Missionen, Extra-Herausforderungen, jeweils mit Aufgabenstellung als Kommentar und Lösung/
+  Beispielcode direkt darunter. Erzählte Aufgaben werden über die Position (n-te nicht-Beispiel-
+  Aufgabe ↔ n-te Lösungs-Zelle) zugeordnet — genau die Zuordnung, die
+  `python-lektionen-format.spec.js` ("Lösungen passen zu den Aufgaben") schon länger prüft, jetzt
+  zusätzlich in `build_bundle()` per `assert` abgesichert. Jede erzeugte Datei wird sofort mit
+  `compile()` geprüft (Fehler bricht den Build ab, kein stilles Weiterlaufen). Kein Jupyter-/Zellen-
+  Format-Setup mehr nötig für den Download — "weniger Setup" war der Wunsch dazu.
+- **`scripts/pack_notebooks.py`** neu geschrieben: packt die generierten Dateien statt der alten
+  `_bundle/*.py`. Nebenbei erledigt: **ZIP-Download gibt es jetzt auch auf Englisch**
+  (`woche-{N}-en.zip`, vorher nur DE — stand als bekannte Altlast in Abschnitt 5). Download-Links
+  (`WeekTour.vue`, `WeekTourStepper.vue`) hängen `-en` an, wenn `lang === 'en'`.
+- `NOTEBOOK_TYPES` in `useWeeklyContent.js` auf `0_glossar`/`6_loesungen` reduziert (die einzigen
+  verbleibenden Zellenordner-Typen).
+- **Tests auf das Lektions-Format umgestellt** (lasen vorher direkt aus den jetzt gelöschten alten
+  Notebook-Dateien, dadurch schon vorher z.T. kaputt): `tests/storytelling-content.spec.js` (5
+  Regressionstests, u.a. Boss-Quest-Dedup, Debug-Spoiler-Check), `tests/notebooks.spec.js` (auf
+  eine verbliebene Prüfung reduziert — der Rest ist längst durch `python-lektionen-format.spec.js`
+  abgedeckt), `tests/wochen-tour.spec.js` (7 von 10 Tests liefen bereits **vor** dieser Änderung ins
+  Leere, weil sie noch auf die alte wochen-Ebene-Notebook-Navigation zielten, die es seit 3.54 nicht
+  mehr gibt — `npm test` lief nur nie automatisch, siehe Abschnitt 4 "Tests"). Neuer Test
+  `tests/lesson-bundle-generator.spec.js` (führt den Generator aus, prüft alle 72 Dateien
+  kompilieren fehlerfrei — als Regressionstest verifiziert: schlägt fehl, wenn eine `lessons.json`
+  und ihre Lösungen auseinanderlaufen).
+- **Dabei gefunden und mitbehoben:** `JsCourseTour.vue` sprang beim Öffnen eines Nachschlagewerks
+  (Glossar/Lösungen) mitten in einer Lektion zurück auf Lektion 1, weil die Komponente beim
+  Umschalten des `v-if`-Zweigs in `WeekTourStepper.vue` neu gemountet wird und `currentLessonId`
+  dabei verlorenging — startet jetzt bei der ersten noch nicht abgeschlossenen Lektion statt immer
+  bei der ersten.
+- **Nachträglich gefunden und behoben:** `WeekTourStepper.vue` zeigte schon auf der ersten Lektion
+  einen "Weiter zu Check"-Button, der die Lektionen/Missionen komplett überspringen ließ — die
+  äußere Steps-Liste hat im Lektions-Format nur `['lessons', '4_check']`, `nextStep` war beim
+  Schritt `lessons` also immer sofort der Check, unabhängig vom Fortschritt in der eingebetteten
+  Lektions-Tour. Der äußere "Weiter"-Bereich wird jetzt ausgeblendet, solange die eingebettete Tour
+  läuft — die navigiert sich ohnehin selbst und meldet `open-check` erst nach der letzten
+  Lektion/Extra-Herausforderung. Test: `tests/wochen-tour.spec.js` ("Auf der ersten Lektion gibt es
+  keinen 'Weiter zu Check'-Sprung...").
+
+### 3.56 — Woche 2: Abenteuer + Pferde DE/EN angeglichen (Branch `python-lektionen-nacharbeiten`, gemergt)
+
+Wie bei Woche 3/4 wird pro Variante die größere Fassung zur Referenz, die andere Sprache wird 1:1
+übersetzt (gleiche Lektionsanzahl/-IDs/Aufgabenanzahl, lokalisierte `validation.expected`).
+Abenteuer: DE (9 Lektionen/48 Aufgaben) war größer, EN angeglichen. Pferde: DE (9 Lektionen/50
+Aufgaben) war größer, EN angeglichen. Referenzlösungen neu erzeugt (`6_loesungen`-Zellenordner),
+`npm run test:checks` voll grün (340 Tests). Sci-Fi (EN größer, DE wird angeglichen) läuft noch,
+siehe `todo.md` "Laufend".
