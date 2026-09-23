@@ -470,3 +470,25 @@ Spiel "Fang den Ball". Details siehe HANDOFF.md 3.39.
 - [x] Playwright-Tests (`tests/js-spielewerkstatt.spec.js`, 12 Tests) + `tests/projekte.spec.js`
       angepasst → volle `test:checks`-Suite grün.
 - [x] `KURSPLAN.md`/`VISION.md` geprüft — keine Abweichung vom dortigen Track-Modell nötig (JS-Projekt-Kurs passt unverändert ins bestehende Schema)
+
+### Python-Projekt-Sprints — Branch `kurs-python-projekte` ✅ gemergt
+Drei weitere Projekt-Kurse aus dem Ideen-Backlog (`PROJEKTIDEEN.md`) ausgearbeitet, alle über die
+bestehende `ProjectCourse.vue`/`LessonView.vue`-Infrastruktur (nur Content-Ordner + `kurse.json`-
+Eintrag, keine neue Komponente). Details siehe HANDOFF.md 3.58/3.59/3.60.
+- [x] Vigenère-Chiffre (`content/vigenere-chiffre`, 5 Lektionen, DE, `projekt-vigenere-chiffre`,
+      Level `fortgeschritten`) — baut direkt auf der Cäsar-Chiffre auf
+- [x] Snake (`content/js-snake`, 6 Lektionen, DE, `projekt-js-snake`, JS-Sandbox/Canvas, Level
+      `fortgeschritten`) — baut auf der JS-Spielewerkstatt auf
+- [x] Text-Adventure/Fluchtraum (`content/text-adventure-fluchtraum`, 6 Lektionen, DE,
+      `projekt-text-adventure`, Level `fortgeschritten`) — Räume als verschachteltes Dictionary,
+      Inventar als Liste, verschlossene Tür, Befehle per `input()`/`split()`; entdeckte dabei einen
+      wichtigen Fallstrick: `validation.variables`/`functionCalls` werden in `LessonView.vue` nie
+      geprüft (der Aufruf übergibt diese Parameter nicht) — für Python-Projekt-Kurse deshalb
+      `output_contains`/`codeContains` statt `variables` nutzen (siehe HANDOFF.md "Gelernte Regeln")
+- [x] Alle Referenzlösungen (Vigenère mit `python3`, Snake-Funktionen mit `node`, Text-Adventure
+      inkl. `stdin`-Befehlsfolgen mit `python3`) einzeln geprüft
+- [x] `tests/projekte.spec.js` um je einen End-to-End-Test pro Projekt erweitert, Karten-/Filter-
+      Zählungen laufend auf die wachsende Projektzahl angepasst (zuletzt 7 Projekte, Fortgeschritten
+      trifft 4) → volle `test:checks`-Suite grün
+- [x] DE-first für alle drei (wie Morsecode/Zahlen-Detektiv) — EN-Versionen bleiben offen, siehe
+      `todo.md` "Offen"

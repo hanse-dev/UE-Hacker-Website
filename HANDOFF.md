@@ -1,9 +1,9 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-09-23
-> **Aktueller Stand:** `main` ist lokal aktuell (Push nach `origin/main` und Server-Deploy stehen aus —
-> Nutzer deployt selbst, siehe Abschnitt 4 "Betrieb"). Branch `kurs-python-projekte` (offen):
-> Vigenère-Chiffre (3.58), Snake (3.59) und Text-Adventure/Fluchtraum (3.60) hinzugefügt,
+> **Aktueller Stand:** Branch `kurs-python-projekte` ist gemergt und gelöscht — Vigenère-Chiffre
+> (3.58), Snake (3.59) und Text-Adventure/Fluchtraum (3.60) sind auf `main`. Push nach
+> `origin/main` und Server-Deploy stehen aus (Nutzer deployt selbst, siehe Abschnitt 4 "Betrieb").
 > `npm run test:checks` grün (344 Tests).
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
 > Chat-Historie. Sie wird per `@` in jede Session geladen — **klein halten** (Richtwert < 25 KB).
@@ -213,8 +213,8 @@ Ausführlich in `todo.md`. Kurzfassung:
 - Zertifikat-PDF: E-Mail-Versand später (hängt an der Kontakt-Adresse, nicht selbst erfinden).
 - Überlegung (nicht entschieden): dritte Sprache; UI-Ternarys sind schon auf `t()`, offen nur Content-Suffixe.
 
-**Nächste Kurs-Themen (je eigener Branch von `main`, nicht mischen):** `kurs-python-projekte`
-(Ideen in `PROJEKTIDEEN.md`), danach `kurs-ki-labor`. Roadmap: `VISION.md`.
+**Nächstes Kurs-Thema (eigener Branch von `main`):** `kurs-ki-labor` (siehe `todo.md`). Weitere
+Projekt-Kurs-Ideen in `PROJEKTIDEEN.md`. Roadmap: `VISION.md`.
 
 **Bewusst nicht geplant:** öffentliches Sign-up, Mailversand/Kontaktformular, Supabase als Pflicht.
 

@@ -66,32 +66,13 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 
 ## Nächste Themen (je eigener Branch von `main`)
 
-Reihenfolge empfohlen: 1 → 2. Nicht mischen. (Branch-Namen ohne `cursor/`-Präfix.)
 Gesamt-Roadmap/Track-Modell (welche Sprache/welches Thema baut auf was auf) siehe `VISION.md`.
-JavaScript-Spielewerkstatt (früher Punkt 1) ist bereits gemergt (Details in
-`docs/archiv/todo-erledigt.md`).
+Python-Projekt-Sprints (Vigenère-Chiffre, Snake, Text-Adventure) sind bereits gemergt (Details in
+`docs/archiv/todo-erledigt.md`); weitere Ideen im Backlog `PROJEKTIDEEN.md`, DE-first, EN-Versionen
+noch offen (siehe "Offen" oben).
 
-### 1. Python-Projekt-Sprints — Branch `kurs-python-projekte`
-Die Infrastruktur dafür existiert bereits: generalisiertes `ProjectCourse.vue`, Projekte-Übersicht
-mit Filtern unter `/projekte`. Ein weiteres Projekt braucht nur noch einen Content-Ordner +
-`kurse.json`-Eintrag (siehe `INHALTE.md` §6), keine neue Komponente.
-- [x] Vigenère-Chiffre (`content/vigenere-chiffre`, 5 Lektionen, DE, `projekt-vigenere-chiffre`) —
-      baut direkt auf der Cäsar-Chiffre auf, Tests in `tests/projekte.spec.js` ergänzt/angepasst
-- [x] Snake (`content/js-snake`, 6 Lektionen, DE, `projekt-js-snake`, JS-Sandbox/Canvas) — baut auf
-      der JS-Spielewerkstatt auf, Tests in `tests/projekte.spec.js` ergänzt/angepasst
-- [x] Text-Adventure (`content/text-adventure-fluchtraum`, 6 Lektionen, DE, `projekt-text-adventure`) —
-      Räume als verschachteltes Dictionary, Inventar als Liste, verschlossene Tür, Befehle per
-      `input()`/`split()` (`validation.stdin`), Kapitel 6 kombiniert alles in einer `while`-Schleife
-      mit Sieg-/Dauerschleifen-Ende; Tests in `tests/projekte.spec.js` ergänzt/angepasst
-- [ ] Projektideen aus Einstufung ggf. hier ausbauen
-- [ ] DE (+ EN nach Bedarf) — Vigenère/Snake sind bewusst DE-first wie Morsecode/Zahlen-Detektiv
-- [ ] Smoke-Test → PR nach `main`
-
-### 2. KI-Labor — Branch `kurs-ki-labor`
+### 1. KI-Labor — Branch `kurs-ki-labor`
 Baut auf dem Python-Track auf (12-Wochen-Grundkurs), siehe `VISION.md`/`KURSPLAN.md` Kurs 4
 "KI-Grundlagen". Breitere Zielgruppe, Fokus auf Prompts/Grenzen/Schul-Nutzen.
 - [ ] Kursmetadaten + Content
 - [ ] Smoke-Test → PR nach `main`
-
-**Hinweis:** Zweites Thema erst starten, wenn das erste gemerged ist (oder bewusst parallel nur
-wenn Kapazität klar ist).
