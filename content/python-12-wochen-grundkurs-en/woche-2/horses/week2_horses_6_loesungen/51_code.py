@@ -1,3 +1,5 @@
-total1 = 140.5
-total2 = 136.5
-print(f"Thunder wins: {total1 > total2}")
+time1 = 30
+time2 = 45
+time3 = 60
+total_time = time1 + time2 + time3
+print(f"Total time: {total_time} minutes")

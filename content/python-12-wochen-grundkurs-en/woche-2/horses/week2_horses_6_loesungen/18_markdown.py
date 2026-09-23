@@ -1,3 +1,3 @@
-"""### Lesson 5: Working with Text – Task 1
+"""### Lesson 5: Jump – Truth Values (bool) – Task 1
 
-The variables first and second are already there. Join them with + and print exactly: Thunderbolt"""
+Create is_healthy = True and use an f-string to print exactly: Healthy: True"""

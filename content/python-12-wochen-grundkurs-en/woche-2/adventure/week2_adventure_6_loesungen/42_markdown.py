@@ -1,3 +1,3 @@
-"""### Mission 1: The Four Elemental Stones – Task 2
+"""### Debug Quest – Task 2
 
-Step 2 – 🪨 Earth Stone: create strength = 40 and print exactly: Strength: 40"""
+🐛 Bug #2 – Goal: The program should print Total power: 150 What is wrong?"""

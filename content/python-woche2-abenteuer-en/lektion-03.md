@@ -1,21 +1,20 @@
-# 🪨 Element 2: Earth – Whole Numbers (`int`)
+# 🔥 Fire: Text (`str`)
 
-**Earth** is solid and countable: level, gold, hit points. A whole number has **no decimal point and no quotation marks**.
+The Fire element is **text**: names, spells, sentences. Text always sits in quotation marks.
 
 ```python
-level = 12
-hit_points = 150
-print(f"Level: {level}, HP: {hit_points}")
-print(type(level))   # <class 'int'>
+spell = "Fireball"
+description = "A mighty fire spell"
+print(f"Spell: {spell}")
 ```
 
-You can calculate with Earth elements:
+## `len()` – the length meter
 
-| Operation | Sign | Example | Result |
-|-----------|------|---------|--------|
-| add | `+` | `150 + 75` | `225` |
-| subtract | `-` | `150 - 75` | `75` |
-| multiply | `*` | `150 * 2` | `300` |
-| divide | `/` | `150 / 3` | `50.0` (divisions always give a Water element!) |
+`len()` is also a spell formula (function): you give it a text, and it hands you back the **number of characters**. Spaces count too!
 
-> ⚠️ `"12"` with quotation marks is **not** Earth but Fire – it is only text that looks like a number.
+```python
+name = "Aria"
+print(len(name))    # 4
+```
+
+> 💡 A number in quotation marks is also text: `"42"` is a Fire element, `42` is an Earth element.

@@ -1,3 +1,4 @@
-total_time = 135
-average_time = total_time / 3
-print(f"Average time: {average_time} minutes")
+bales = 20
+weight_per_bale = 15.5
+total_weight = bales * weight_per_bale
+print(f"Total weight: {total_weight} kg")

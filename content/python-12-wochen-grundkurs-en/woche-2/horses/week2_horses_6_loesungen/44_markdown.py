@@ -1,3 +1,3 @@
-"""### Mission 2: The Riding Lesson – Task 2
+"""### Mission 1: The Feed Store – Task 2
 
-Step 2 – The three riding times are already there. Add them, store the sum in total_time and print exactly: Total time: 135 minutes"""
+Step 2 – record hay bales: Store bales = 20 (whole number) and weight_per_bale = 15.5 (decimal number) and print exactly: Bales: 20, at 15.5 kg each"""

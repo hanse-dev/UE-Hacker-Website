@@ -1,5 +1,3 @@
-time1 = 30
-time2 = 45
-time3 = 60
-total_time = time1 + time2 + time3
-print(f"Total time: {total_time} minutes")
+bales = 20
+weight_per_bale = 15.5
+print(f"Bales: {bales}, at {weight_per_bale} kg each")

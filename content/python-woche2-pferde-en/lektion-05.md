@@ -1,16 +1,14 @@
-# 🐴 Lesson 5: Working with Text
+# 🦘 Lesson 5: Jump – Truth Values
 
-Texts (`str`) can be calculated with, too – but in their own way:
+A jump succeeds or it fails – there are only **two states**. In the same way a **boolean** (`bool`) only knows two values: `True` and `False`.
 
-- `+` **joins** two texts into one: `"Star" + "light"` gives `"Starlight"`
-- `*` **repeats** a text: `"Ha" * 3` gives `"HaHaHa"`
+> ⚠️ Write them exactly like this: capital **T** or **F**, **without** quotation marks!
 
 ```python
-name = "Star"
-suffix = "light"
-full_name = name + suffix
-print(f"Full name: {full_name}")
-print(f"Whinny: {name * 3}")
+has_saddle = True
+is_visited = False
+print(f"Has saddle: {has_saddle}")
+print(type(has_saddle))   # <class 'bool'>
 ```
 
-> 🐴 **Careful:** `+` only works between two texts – or between two numbers. A text and a number can't be joined directly. You will see how to fix that in the next lesson!
+Truth values also come from **comparisons**: `age > 5` asks "Is the age greater than 5?" and gives `True` or `False`.

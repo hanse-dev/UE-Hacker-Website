@@ -1,3 +1,3 @@
-"""### Element 2: 🪨 Earth (int) – Task 1
+"""### Fire: Text (str) and len() – Task 1
 
-Create shield = 30 and armour = 15. Print exactly this sentence, with the sum calculated inside the f-string: Total defence: 45"""
+Use len() to print how many characters the spell has (spaces count too)."""

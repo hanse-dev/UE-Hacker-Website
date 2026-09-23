@@ -1,3 +1,2 @@
-power = float(input("Magic power: "))
-strong = power > 5.0
-print(f"Strong magic: {strong}")
+power = float(input("Spell power? "))
+print(f"Spell power {power}, strong: {power > 5.0}")

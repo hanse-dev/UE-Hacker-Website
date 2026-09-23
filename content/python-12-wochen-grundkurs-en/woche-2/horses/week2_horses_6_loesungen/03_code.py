@@ -1,3 +1,3 @@
-rider = "Sarah"
-horse = "Luna"
-print(f"{rider} rides {horse} today.")
+horse_name = "Thunder"
+age = 8
+print(f"Hello {horse_name}! You are {age} years old!")

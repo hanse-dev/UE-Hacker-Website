@@ -1,19 +1,18 @@
-# 💧 Element 3: Water – Decimal Numbers (`float`)
+# 🪨 Earth: Whole Numbers (`int`)
 
-**Water** flows and is never quite exact: damage values, percentages, speeds. A decimal number has a **decimal point** (not a comma!).
-
-```python
-damage = 23.5
-percent = 87.25
-print(f"Damage: {damage}, hit chance: {percent}%")
-print(type(damage))   # <class 'float'>
-```
-
-Calculating with a Water element always gives Water:
+The Earth element is a **whole number**: level, gold, hit points. It sits **without** quotation marks.
 
 ```python
-print(23.5 * 2)   # 47.0
-print(10 / 4)     # 2.5
+level = 12
+hit_points = 150
+print(f"Level: {level}, HP: {hit_points}")
+print(type(level))     # <class 'int'>
 ```
 
-> 💡 Even `5.0` is Water – the decimal point decides, not the value.
+You can calculate with Earth elements: `+`, `-`, `*` and `/`.
+
+```python
+days = 3
+gold_per_day = 45
+print(f"Total: {days * gold_per_day}")
+```

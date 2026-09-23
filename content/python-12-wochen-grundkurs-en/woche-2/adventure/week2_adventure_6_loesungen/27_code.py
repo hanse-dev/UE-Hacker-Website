@@ -1,2 +1,2 @@
-number = int("40")
-print(f"Result: {number + 2}")
+gold_a = 150
+print(f"Divided: {gold_a / 3}")

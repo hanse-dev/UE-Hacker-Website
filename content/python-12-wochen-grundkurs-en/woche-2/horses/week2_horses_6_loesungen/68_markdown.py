@@ -1,3 +1,3 @@
-"""### The Tournament Training – Task 2
+"""### The Training Hall – Task 1
 
-Step 2 – The costs and participants are already there. Add the costs of both units and the participants of both units and print exactly: Total cost: 430.0 EUR and Total participants: 18"""
+Step 1 – description: create exercise1 = \"Circles\" (intensity 3.5, duration 20 minutes) and exercise2 = \"Canter Intervals\" (intensity 4.0, duration 30 minutes). Print the heading === TRAINING HALL PROTOCOL === and then with f-strings exactly: Circles: intensity 3.5, 20 minutes and Canter Intervals: intensity 4.0, 30 minutes"""

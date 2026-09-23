@@ -1,2 +1,2 @@
-feed = 7
-print(f"Double feed: {feed * 2} kg")
+height_m = 1.68
+print(type(height_m))

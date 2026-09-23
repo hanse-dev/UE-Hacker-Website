@@ -1,5 +1,5 @@
 """## 📚 Lessons
 
-### Lesson 1: String Gallop – Task 1
+### Lesson 1: f-strings – Task 1
 
-The variables rider and horse are already there. Use an f-string to print exactly this sentence: Sarah rides Luna today."""
+Use an f-string to print exactly this sentence: Hello Thunder! You are 8 years old!"""

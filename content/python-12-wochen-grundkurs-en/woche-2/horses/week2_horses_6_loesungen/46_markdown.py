@@ -1,3 +1,3 @@
-"""### Mission 2: The Riding Lesson – Task 3
+"""### Mission 1: The Feed Store – Task 3
 
-Step 3 – Divide the total time by 3, store the result in average_time and print exactly: Average time: 45.0 minutes"""
+Step 3 – calculate total weight: multiply bales and weight per bale, store it in total_weight and print exactly: Total weight: 310.0 kg"""

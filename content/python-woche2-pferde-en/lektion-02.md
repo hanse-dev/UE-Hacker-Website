@@ -1,22 +1,23 @@
-# 🐴 Lesson 2: Walk and Trot – `str` and `int`
+# 🚶 Lesson 2: Walk – Text
 
-Every piece of information at the riding ranch has a **type** – just like a horse shows one of four gaits. You recognise a gait by its rhythm, and you recognise the type of a value with the function **`type()`**.
+Every piece of information at the stables has a **type** – just like a horse shows one of four gaits. The four gait types:
 
-| Hoofbeat type | Gait | Technical term | Example | Why the gait fits |
-|---------------|------|----------------|---------|-------------------|
-| 🚶 Walk | calm, steady | `str` (text) | `"Thunder"` | Walk is the gait for talking and communicating |
-| 🐎 Trot | firmly timed, countable | `int` (whole number) | `7` | Trot has a clear, countable two-beat rhythm |
-| 🏇 Canter | flowing, never quite the same | `float` (decimal number) | `4.25` | Canter is a flowing three-beat |
-| 🦘 Jump | cleared or not | `bool` (truth value) | `True` / `False` | A jump is either cleared or knocked down |
+| Gait type | Movement | Technical term | Example |
+|-----------|----------|-----------------|---------|
+| 🚶 Walk | calm, steady | `str` (text) | `"Thunder"` |
+| 🐎 Trot | firmly timed, countable | `int` (whole number) | `7` |
+| 🏇 Canter | flowing, never quite the same | `float` (decimal number) | `4.25` |
+| 🦘 Jump | done or not | `bool` (truth value) | `True` / `False` |
 
-In this lesson you meet the first two:
-
-- 🚶 **`str`** – text in quotation marks: `"Windstorm"`
-- 🐎 **`int`** – whole numbers without quotation marks: `168`
+You recognise the type with the **function `type()`**. Give it a value in the parentheses, and it tells you the type:
 
 ```python
-print(type("Windstorm"))   # <class 'str'>
-print(type(168))           # <class 'int'>
+horse_name = "Windstorm"
+print(type(horse_name))   # <class 'str'>
 ```
 
-> 🐴 **Remember:** `type()` is a function like `print()` – you hand it a value in the parentheses and it tells you the hoofbeat type. Use `print(type(...))` to see the answer.
+## 🚶 Walk: `str`
+
+A **string** is text – anything in quotation marks. Walk is the gait for talking and communicating.
+
+> ⚠️ Even `"7"` is text, because it sits in quotation marks – even though it holds a digit!

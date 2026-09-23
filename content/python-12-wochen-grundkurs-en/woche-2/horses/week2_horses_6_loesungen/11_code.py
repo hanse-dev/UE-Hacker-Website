@@ -1,2 +1,2 @@
-weight = 550.5
-print(f"Weight type: {type(weight)}")
+age = 9
+print(f"Age: {age} years")

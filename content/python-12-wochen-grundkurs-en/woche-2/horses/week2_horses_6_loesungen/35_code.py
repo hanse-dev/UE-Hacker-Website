@@ -1,2 +1,2 @@
-hours = 3
-print(f"Training takes {hours} hours.")
+age = int(input("Horse age? "))
+print(f"Next year: {age + 1}")

@@ -1,3 +1,3 @@
-keeper = "Mia"
-keeper_id = 4711
-print(f"Keeper: {keeper} (ID {keeper_id})")
+horse = "Comet"
+age = 6
+print(f"Hello {horse}! You are {age} years old.")

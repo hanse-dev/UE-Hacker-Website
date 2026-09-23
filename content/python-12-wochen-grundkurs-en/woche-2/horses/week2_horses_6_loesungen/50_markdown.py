@@ -1,3 +1,3 @@
-"""### Mission 3: The Tournament – Task 2
+"""### Mission 2: The Riding Lesson – Task 2
 
-Step 2 – total1 and total2 are already there. Compare them with > and print exactly: Thunder wins: True"""
+Step 2 – total time: add up all three riding times in the variable total_time and print exactly: Total time: 135 minutes"""

@@ -1,19 +1,11 @@
-spell1_name = "Fireball"
-spell1_power = 85.0
-spell1_complexity = 3
-spell1_duration = 2
-
-spell2_name = "Frostbolt"
-spell2_power = 60.0
-spell2_complexity = 2
-spell2_duration = 1
-
-spell3_name = "Storm"
-spell3_power = 95.0
-spell3_complexity = 5
-spell3_duration = 4
-
-print("=== SPELL WORKSHOP LOG ===")
-print(f"{spell1_name}: power {spell1_power}, complexity {spell1_complexity}, duration {spell1_duration}s")
-print(f"{spell2_name}: power {spell2_power}, complexity {spell2_complexity}, duration {spell2_duration}s")
-print(f"{spell3_name}: power {spell3_power}, complexity {spell3_complexity}, duration {spell3_duration}s")
+spell1 = "Fireball"
+power1 = 80.0
+complexity1 = 3
+spell2 = "Frostbolt"
+power2 = 65.0
+complexity2 = 2
+spell3 = "Storm"
+power3 = 95.0
+complexity3 = 5
+print("=== SPELL WORKSHOP PROTOCOL ===")
+print(f"{spell1}: power {power1}, complexity {complexity1}")

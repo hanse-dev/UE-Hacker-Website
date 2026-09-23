@@ -1,3 +1,3 @@
-"""### Mission 2: The Elemental Fusion – Task 2
+"""### Mission 2: The Elemental Fusion – Task 1
 
-Step 2 – Fusing two 🪨 Earth Stones: add the two gold amounts and print exactly: Total gold: 225"""
+Step 1 – fusing 🔥 and 🪨: Create first_name = \"Aria\", last_name = \"Blue\", gold_a = 120 and gold_b = 80. Print exactly with an f-string: Aria Blue has 200 gold"""

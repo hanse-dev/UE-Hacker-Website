@@ -1,3 +1,3 @@
-"""### Lesson 3: Canter and Jump – float and bool – Task 2
+"""### Lesson 3: Trot – Whole Numbers (int) – Task 2
 
-Create has_saddle = True and print exactly this line with an f-string: Saddle type: <class 'bool'>"""
+A horse is 168 cm tall, a pony 138 cm. Store the difference in the variable difference and print exactly: Difference: 30 cm"""

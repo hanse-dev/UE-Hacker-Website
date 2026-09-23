@@ -1,2 +1,2 @@
-shield = 30
-print(type(shield))
+spell = "Thunderstrike"
+print(f"{spell} has {len(spell)} letters.")

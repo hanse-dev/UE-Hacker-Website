@@ -1,5 +1,3 @@
-"""## 🐛 Debug Quest
+"""### Lesson 8: Converting Types – Task 1
 
-### Debug Quest – Task 1
-
-🐛 Bug #1 – Goal: The program should print Hello Comet! You are 6 years old. What is wrong?"""
+Convert the text kg_text with int() and print exactly: 15 kg of hay will last 30 days."""

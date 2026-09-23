@@ -1,3 +1,5 @@
-"""### Mission 1: The Four Elemental Stones – Task 4
+"""## ⭐ Missions
 
-Step 4 – 💨 Air Stone: create can_fly = True and print exactly: Can fly: True"""
+### Mission 1: The Four Elemental Stones – Task 1
+
+Step 1 – 🔥 Fire and 🪨 Earth: Create hero_name = \"Aria\" and power = 14 and print exactly with an f-string: Aria has power 14"""

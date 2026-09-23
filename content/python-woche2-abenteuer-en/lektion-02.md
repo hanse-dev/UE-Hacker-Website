@@ -1,27 +1,22 @@
-# 🔥 Element 1: Fire – Text (`str`)
+# 🔥🪨💧💨 Spell Formula 2: type() and the Four Elements
 
-The Tower Guardian shows you the four elemental stones. Each has its own **nature** – in Python we call this the **type** of a variable.
+The Tower Guardian shows you the four elemental stones. Each has its own **nature** – in Python we call this the **type** of a value.
 
 | Element | Type | Technical term | Example | Nature |
-|---------|------|----------------|---------|--------|
+|---------|------|-----------------|---------|--------|
 | 🔥 Fire | Text | `str` | `"Fireball"` | spoken words, names, spells |
 | 🪨 Earth | Whole number | `int` | `42` | solid and countable – level, gold, points |
 | 💧 Water | Decimal number | `float` | `3.14` | flowing, never quite exact – percentages, damage |
-| 💨 Air | Truth value | `bool` | `True` / `False` | invisible, either there or not – switches |
+| 💨 Air | Truth value | `bool` | `True` / `False` | invisible, only there or not there – switches |
 
-We start with **🔥 Fire**: text, or *string*. Anything between quotation marks is Fire.
+## `type()` – the element finder
 
-## Two new spell formulas
-
-Two functions help you to recognise an element:
-
-- `type(x)` – reveals the element (type) of a variable
-- `len(x)` – counts the length of a Fire element (the letters of a text)
-
-Remember: a spell formula is cast with **parentheses**, and the ingredient goes inside.
+`type()` is also a **spell formula (function)**, just like `print()` from Week 1: you call it with parentheses and give it a value inside. It hands you back the type:
 
 ```python
 name = "Aria"
-print(type(name))   # <class 'str'>  -> Fire element
-print(len(name))    # 4
+print(type(name))    # <class 'str'>  -> Fire element
+print(type(42))      # <class 'int'>  -> Earth element
 ```
+
+Note: `type()` only **returns** the type – it only becomes visible once you print it with `print()`.

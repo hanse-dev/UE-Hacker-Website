@@ -1,2 +1,3 @@
-hero_name = "Aria"
-print(f"Hero: {hero_name}")
+name = "Gandalf"
+level = 99
+print(f"Hello {name}! You are Level {level}!")

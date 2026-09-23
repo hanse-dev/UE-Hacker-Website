@@ -1,2 +1,2 @@
-age = int(input("How old are you? "))
-print(f"In 5 years you will be {age + 5}")
+price_text = "3.5"
+print(float(price_text) * 2)

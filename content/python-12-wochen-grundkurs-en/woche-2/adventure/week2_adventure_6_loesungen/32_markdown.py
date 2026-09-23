@@ -1,3 +1,3 @@
-"""### Consulting the Oracle: input()
+"""### Conversion Spells: int(), float(), str(), bool() – Task 2
 
-Ask the oracle for an age with input(), convert the answer with int() and print: In 5 years you will be ... (with the calculated age). Enter 20 when asked."""
+Convert the text into a decimal number and double it. Print the result."""

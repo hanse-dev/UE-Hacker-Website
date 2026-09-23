@@ -1,5 +1,3 @@
-"""## 🐛 Debug Quest
+"""### Conversion Spells: int(), float(), str(), bool() – Task 3
 
-### Debug Quest – Task 1
-
-🐛 Bug #1 – Goal: The program should print Hello Gandalf! You are Level 99! What is wrong?"""
+Join the text with the level using str() and print exactly: Level: 9"""

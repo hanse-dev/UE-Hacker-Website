@@ -1,3 +1,3 @@
-"""### Fusing Elements – Task 2
+"""### Air: Truth Values (bool) – Task 2
 
-Create name = \"Luna\" and print the name three times in a row (using *), so the output contains: LunaLunaLuna"""
+Use a comparison to check whether the hero is ready for the tower (level at least 10) and print exactly: Ready for the tower: False"""

@@ -1,2 +1,3 @@
-damage = 23.5
-print(f"Critical hit: {damage * 2}")
+level = 7
+hit_points = 120
+print(f"Level: {level}, HP: {hit_points}")

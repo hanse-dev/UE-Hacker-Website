@@ -1,16 +1,24 @@
-# 🔮 Consulting the Oracle
+# 🔄 Conversion Spells
 
-You already know `input()` from Week 1 – it is a spell formula that consults the oracle. The answer is **always a 🔥 Fire element (string)** – even if someone types a number! For 🪨 Earth or 💧 Water you have to convert the answer:
+Conversions are also **spell formulas (functions)** – you call them with parentheses and give them the value to convert. They hand back the converted value.
+
+| Spell formula | Converts into ... | Example |
+|----------------|--------------------|---------|
+| `int()` | 🪨 whole number | `int("25")` → `25` |
+| `float()` | 💧 decimal number | `float("3.5")` → `3.5` |
+| `str()` | 🔥 text | `str(50)` → `"50"` |
+| `bool()` | 💨 truth value | `bool(0)` → `False` |
 
 ```python
-name = input("What is your name? ")          # Fire (str)
-age = int(input("How old are you? "))        # Fire -> Earth (str -> int)
-power = float(input("Magic power? "))        # Fire -> Water (str -> float)
+age_text = "25"                  # Fire
+age = int(age_text)              # Fire -> Earth
+print(age + 5)                   # 30
+
+gold = 50
+print("Gold: " + str(gold))      # Earth -> Fire, now it fits with text
 ```
 
-You see a **spell inside a spell**: `input()` is cast first, then `int()` converts its result.
-
-```python
-level = int(input("Level? "))
-print(f"In 5 levels you will be Level {level + 5}.")
-```
+**Good to know:**
+- `int(3.9)` cuts off the decimal places and gives `3` (it does **not** round).
+- `int("abc")` doesn't work – only text that really looks like a number can be converted.
+- `bool()` gives `False` for `0` and the empty text `""`, otherwise `True`.

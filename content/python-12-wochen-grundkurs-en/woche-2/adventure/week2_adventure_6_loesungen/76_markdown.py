@@ -1,3 +1,3 @@
-"""### Extra challenge 3: The Quest Planning – Task 3
+"""### Extra Challenge 3: The Quest Planning – Task 2
 
-Step 3 – Forecast the success: expected reward = reward x success probability. Print exactly: Expected rewards: 400.0 and 150.0"""
+Step 2 – Calculate the expected reward (reward times probability) for both quests. Print two lines, the second must read exactly: Quest 2 expected: 600.0"""

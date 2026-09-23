@@ -1,20 +1,14 @@
-# 🐴 Lesson 4: Calculating with Numbers
+# 🏇 Lesson 4: Canter – Decimal Numbers
 
-With `int` and `float` you can calculate just like with a calculator:
+The canter is a flowing three-beat, never quite exactly the same. Fittingly, **floats** (`float`) are **decimal numbers** – like the weight (`550.5`) or a feed amount (`4.25`).
 
-| Sign | Meaning | Example | Result |
-|------|---------|---------|--------|
-| `+` | add | `12 + 8` | `20` |
-| `-` | subtract | `12 - 8` | `4` |
-| `*` | multiply | `12 * 2` | `24` |
-| `/` | divide | `12 / 4` | `3.0` |
-
-**Watch out:** the division `/` **always** gives a `float`, even if it comes out evenly: `12 / 4` is `3.0`, not `3`.
+> ⚠️ Python writes the decimal separator as a **point**: `4.25`, not `4,25`!
 
 ```python
-horses_a = 12
-horses_b = 8
-print(f"Total horses: {horses_a + horses_b}")
+weight = 550.5
+feed_amount = 4.25
+print(f"Weight: {weight} kg, feed: {feed_amount} kg")
+print(type(weight))   # <class 'float'>
 ```
 
-You can put calculations right inside the braces of an f-string – or store the result in a new variable first.
+As soon as a number has a point, it's a `float` – even `5.0` is a decimal number, while `5` is a whole number.

@@ -1,3 +1,5 @@
-"""### Mission 2: The Riding Lesson – Task 1
+"""## ⭐ Missions
 
-Step 1 – Create the names horse1 = \"Bobby\", horse2 = \"Luna\", horse3 = \"Storm\" and the riding times (minutes) time1 = 30, time2 = 45, time3 = 60. Print the heading === RIDING LESSON PLAN === and then one line per horse in the form Storm: 60 minutes (Bobby: 30 minutes, Luna: 45 minutes, ...)."""
+### Mission 1: The Feed Store – Task 1
+
+Step 1 – name the caretaker: Create caretaker = \"Mia\" (text) and caretaker_id = 7 (whole number) and use an f-string to print exactly: Caretaker: Mia (ID 7)"""

@@ -1,32 +1,27 @@
-# 🔄 Conversion Spells
+# ⚗️ Fusing Elements
 
-To change an element from one nature into another you cast a **conversion spell** – and these are all **functions** too, just like `print()` and `type()`. They are named after the element they create:
+How you combine elements depends on their type.
 
-| Spell formula | Creates | Example | Result |
-|---------------|---------|---------|--------|
-| `int(x)` | 🪨 Earth (whole number) | `int("25")` | `25` |
-| `float(x)` | 💧 Water (decimal number) | `float("7.5")` | `7.5` |
-| `str(x)` | 🔥 Fire (text) | `str(20)` | `"20"` |
-| `bool(x)` | 💨 Air (truth value) | `bool(0)` | `False` |
+## 🪨 Earth and 💧 Water: calculating
 
 ```python
-age_str = "25"              # Fire – only text
-age_int = int(age_str)      # Earth – now a real number
-print(age_int + 5)          # 30
+gold_a = 150
+gold_b = 75
+print(gold_a + gold_b)    # 225
+print(gold_a - gold_b)    # 75
+print(gold_a * 2)         # 300
+print(gold_a / 3)         # 50.0  (dividing always gives a decimal number!)
 ```
 
-**`str()` makes fusion possible:**
+## 🔥 Fire: gluing and repeating
 
 ```python
-level = 7
-print("Level: " + str(level))   # Level: 7
+first_name = "Luna"
+last_name = "Silvermoon"
+print(first_name + " " + last_name)    # Luna Silvermoon
+print(first_name * 3)                  # LunaLunaLuna
 ```
 
-**`bool()`:** `0`, `0.0` and empty text `""` become `False`; everything else becomes `True`.
+## Not everything fuses
 
-```python
-print(bool(0))       # False
-print(bool("Aria"))  # True
-```
-
-> ⚠️ `int("hello")` does not work – only text that really looks like a number can be converted.
+🔥 Fire (text) and 🪨 Earth (number) resist a direct fusion with `+`: `"Level: " + 5` is an error. For that you need a conversion – that's coming in the next lesson.

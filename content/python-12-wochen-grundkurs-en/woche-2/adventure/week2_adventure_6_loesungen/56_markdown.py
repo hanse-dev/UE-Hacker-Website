@@ -1,3 +1,3 @@
 """### Mission 3: The Oracle of the Four Elements – Task 1
 
-Step 1 – Consult 🔥 Fire and 🪨 Earth: ask for the seeker's name with input() and for their age (converted with int()). Print exactly two lines: Prophecy for ...: (with the name) and In 10 years you will be ... (with age + 10). Enter Blitz and 12 when asked."""
+Step 1 – asking 🔥 and 🪨: Ask with input() for the name (type Blitz) and the age (type 12, convert with int()). Print exactly: Blitz will be 17 in 5 years"""

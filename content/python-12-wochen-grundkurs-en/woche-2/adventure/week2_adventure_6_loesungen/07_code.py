@@ -1,2 +1,2 @@
-spell = "Frostbolt"
-print(f"{spell} has {len(spell)} letters.")
+level = 12
+print(type(level))

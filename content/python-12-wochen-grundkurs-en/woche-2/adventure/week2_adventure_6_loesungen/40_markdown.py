@@ -1,5 +1,5 @@
-"""## ⭐ Missions
+"""## 🐛 Debug Quest
 
-### Mission 1: The Four Elemental Stones – Task 1
+### Debug Quest – Task 1
 
-Step 1 – 🔥 Fire Stone: create hero_name = \"Aria\" and print exactly: Hero: Aria"""
+🐛 Bug #1 – Goal: The program should print Hello Gandalf! You are Level 99! What is wrong?"""

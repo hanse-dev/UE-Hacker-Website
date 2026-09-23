@@ -1,2 +1,2 @@
-magic_power = 12.5
-print(f"Magic power: {magic_power}")
+gold = 250
+print(f"Your gold: {gold + 50}")

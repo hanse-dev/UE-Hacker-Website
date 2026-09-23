@@ -1,3 +1,3 @@
-"""### Lesson 7: Processing Input – Task 1
+"""### Lesson 7: Calculating with Text – Task 1
 
-The rider entered the text \"20\" (variable entry). Convert it and print exactly: 20 kg of hay lasts for 40 days."""
+Join the two texts into full_name and print exactly: Full name: Morningstar"""

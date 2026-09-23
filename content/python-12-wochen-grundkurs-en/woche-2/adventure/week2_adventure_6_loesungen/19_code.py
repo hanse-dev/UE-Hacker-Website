@@ -1,3 +1,2 @@
-can_fly = True
-poisoned = False
-print(f"Can fly: {can_fly}")
+hit_chance = 87.25
+print(f"Hit chance: {hit_chance}%")

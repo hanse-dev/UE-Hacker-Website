@@ -1,16 +1,11 @@
-quest1_goal = "Dragon Hunt"
-quest1_days = 5
-quest1_reward = 500
-quest1_group = 4
-quest1_success = 0.8
-
-quest2_goal = "Forest Escort"
-quest2_days = 3
-quest2_reward = 300
-quest2_group = 2
-quest2_success = 0.5
-
-expected1 = quest1_reward * quest1_success
-expected2 = quest2_reward * quest2_success
-better = expected1 > expected2
-print(f"Quest 1 is more profitable: {better}")
+reward1 = 500
+duration1 = 4
+group1 = 5
+chance1 = 0.8
+reward2 = 800
+duration2 = 7
+group2 = 4
+chance2 = 0.75
+expected1 = reward1 * chance1
+expected2 = reward2 * chance2
+print(f"Quest 2 more profitable: {expected2 > expected1}")

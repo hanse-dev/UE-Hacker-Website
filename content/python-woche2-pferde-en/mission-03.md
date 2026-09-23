@@ -1,5 +1,5 @@
 # ⭐⭐⭐⭐☆ Mission 3: The Tournament
 
-The best horses compete in the tournament! Two horses, each with dressage and jumping points. Record them, calculate the total points, find out who wins and print the result.
+The best horses compete at the tournament! Luna and Thunder enter dressage and jumping. Record their scores, calculate the totals and use a comparison to find out who is ahead.
 
-**Bonus (optional, not checked):** Print a victory announcement for the winner in your own words!
+**Bonus (optional, not checked):** Calculate how many more points the winner has!

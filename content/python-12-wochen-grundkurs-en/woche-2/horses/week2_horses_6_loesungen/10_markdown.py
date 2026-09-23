@@ -1,3 +1,3 @@
-"""### Lesson 3: Canter and Jump – float and bool – Task 1
+"""### Lesson 3: Trot – Whole Numbers (int) – Task 1
 
-Create weight = 550.5 and print exactly this line with an f-string: Weight type: <class 'float'>"""
+Create age = 9 and use an f-string to print exactly: Age: 9 years"""

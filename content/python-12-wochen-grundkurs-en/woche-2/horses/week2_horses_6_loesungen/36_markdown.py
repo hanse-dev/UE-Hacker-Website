@@ -1,5 +1,5 @@
-"""## ⭐ Missions
+"""## 🐛 Debug Quest
 
-### Mission 1: The Feed Store – Task 1
+### Debug Quest – Task 1
 
-Step 1 – Create keeper = \"Mia\" (text) and keeper_id = 4711 (whole number). Use an f-string to print exactly: Keeper: Mia (ID 4711)"""
+🐛 Bug #1 – Goal: The program should print Hello Comet! You are 6 years old. What is wrong?"""

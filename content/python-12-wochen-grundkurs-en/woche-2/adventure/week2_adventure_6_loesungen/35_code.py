@@ -1,3 +1,2 @@
-name = "Gandalf"
-level = 99
-print(f"Hello {name}! You are Level {level}!")
+level = 9
+print("Level: " + str(level))

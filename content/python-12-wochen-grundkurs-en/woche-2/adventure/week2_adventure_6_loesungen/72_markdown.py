@@ -1,3 +1,3 @@
-"""### Extra challenge 3: The Quest Planning – Task 1
+"""### Extra Challenge 2: The Spell Workshop – Task 4
 
-Step 1 – Create the variables quest1_goal, quest1_days, quest1_reward, quest1_group, quest1_success (and the same for quest2). Print the heading === QUEST LOG === and one line per quest in the form: Forest Escort: 3 days, reward 300, group 2, success 0.5"""
+Step 4 – Use a 💨 Air value: Is the power of Storm above the average? Print exactly: Storm powerful: True"""

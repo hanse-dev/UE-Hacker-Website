@@ -1,3 +1,3 @@
-"""### Element 1: 🔥 Fire (str) – Task 1
+"""### Spell Formula 2: type() and the Four Elements – Task 1
 
-Store the spell name \"Frostbolt\" in a variable spell and use an f-string with len() to print exactly: Frostbolt has 9 letters."""
+Determine the element of the variable level and print its type with print() and type()."""

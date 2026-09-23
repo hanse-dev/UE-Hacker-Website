@@ -1,3 +1,3 @@
-"""### Debug Quest – Task 2
+"""### Lesson 8: Converting Types – Task 2
 
-🐛 Bug #2 – Goal: The program should print Total feed: 50 kg. What is wrong?"""
+Convert the text portion_text with float(), double the portion and print exactly: Double portion: 9.0 kg"""

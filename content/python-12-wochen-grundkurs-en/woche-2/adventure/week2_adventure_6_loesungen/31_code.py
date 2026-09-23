@@ -1,2 +1,2 @@
-level = 7
-print("Level: " + str(level))
+age_text = "25"
+print(int(age_text) + 5)

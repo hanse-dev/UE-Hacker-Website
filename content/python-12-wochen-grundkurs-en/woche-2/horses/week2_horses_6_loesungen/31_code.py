@@ -1,3 +1,3 @@
-horse = "Comet"
-age = 6
-print(f"Hello {horse}! You are {age} years old.")
+kg_text = "15"
+kg = int(kg_text)
+print(f"{kg} kg of hay will last {kg * 2} days.")

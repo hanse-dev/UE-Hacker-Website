@@ -1,2 +1,2 @@
-gold = 250
-print(f"Your gold: {gold + 50}")
+level = int(input("Level? "))
+print(f"In 5 levels: Level {level + 5}")

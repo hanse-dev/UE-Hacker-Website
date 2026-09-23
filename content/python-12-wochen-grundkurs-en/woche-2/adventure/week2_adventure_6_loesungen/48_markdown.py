@@ -1,3 +1,3 @@
-"""### Mission 2: The Elemental Fusion – Task 1
+"""### Mission 1: The Four Elemental Stones – Task 2
 
-Step 1 – Fusing two 🔥 Fire Stones: create first_name = \"Luna\" and last_name = \"Silvermoon\" and use an f-string to print exactly: Name: Luna Silvermoon"""
+Step 2 – 💧 Water and 💨 Air: Create spell_power = 12.5 and can_fly = True and print exactly with an f-string: Spell power 12.5, flying: True"""

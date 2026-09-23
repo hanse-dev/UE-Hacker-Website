@@ -1,2 +1,2 @@
-name = "Luna"
-print(name * 3)
+level = 8
+print(f"Ready for the tower: {level >= 10}")

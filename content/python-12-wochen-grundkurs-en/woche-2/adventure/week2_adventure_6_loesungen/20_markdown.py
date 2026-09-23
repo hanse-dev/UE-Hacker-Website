@@ -1,3 +1,3 @@
-"""### Element 4: 💨 Air (bool) – Task 2
+"""### Water: Decimal Numbers (float) – Task 2
 
-Create hit_points = 150. Use a comparison inside an f-string to print exactly: Strong: True (a hero is strong if hit_points is greater than 100)."""
+Calculate the cost (price times amount) and print exactly: Cost: 10.0"""

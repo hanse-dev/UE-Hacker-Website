@@ -1,3 +1,3 @@
-"""### Element 4: 💨 Air (bool) – Task 1
+"""### Water: Decimal Numbers (float) – Task 1
 
-Create can_fly = True and poisoned = False. Print exactly: Can fly: True"""
+Create hit_chance = 87.25 and print exactly: Hit chance: 87.25%"""

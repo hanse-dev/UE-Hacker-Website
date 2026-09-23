@@ -1,3 +1,3 @@
-"""### Extra challenge 3: The Quest Planning – Task 4
+"""### Extra Challenge 3: The Quest Planning – Task 3
 
-Step 4 – Use 💨 Air: store in a variable whether quest 1 has the higher expected reward than quest 2 and print exactly: Quest 1 is more profitable: True"""
+Step 3 – Use a 💨 Air value: Is the expected reward of quest 2 higher than quest 1's? Print exactly: Quest 2 more profitable: True"""

@@ -1,3 +1,3 @@
-"""### The Training Hall – Task 2
+"""### The Feed Room – Task 2
 
-Step 2 – The durations and intensities are already there. Store the total duration in total_duration and the average intensity in average_intensity. Print exactly: Total duration: 95 minutes and Average intensity: 3.5"""
+Step 2 – total weight: add up all 8 weights in total and print exactly: Total weight: 200.0 kg"""

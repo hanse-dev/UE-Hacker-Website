@@ -1,3 +1,3 @@
-"""### Conversion Spells: int(), float(), str(), bool() – Task 3
+"""### Conversion Spells: int(), float(), str(), bool() – Task 1
 
-Create level = 7 and use + and str() (not an f-string!) to print exactly: Level: 7"""
+Convert the text into a whole number, add 5 and print the result."""

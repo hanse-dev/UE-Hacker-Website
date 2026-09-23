@@ -1,19 +1,16 @@
-# 🐴 Lesson 7: Processing Input
+# 🔤 Lesson 7: Calculating with Text
 
-Remember `input()` from Week 1? Here comes the catch: **`input()` always returns a `str`** – even if the rider types a number!
+Strings have operators too:
 
-```python
-entry = input("How many kg of hay? ")   # rider types 15
-print(type(entry))                      # <class 'str'>
-```
-
-To calculate with the entry, convert it first:
+- **`+`** glues texts together: `"Star" + "light"` gives `"Starlight"`
+- **`*`** repeats a text: `"Neigh! " * 3` gives `"Neigh! Neigh! Neigh! "`
 
 ```python
-number = int(entry)
-print(f"{number} kg of hay lasts for {number * 2} days.")
+name = "Star"
+suffix = "light"
+full_name = name + suffix
+print(f"Full name: {full_name}")
+print(f"Neigh: {name * 3}")
 ```
 
-For decimal numbers use `float(entry)` instead.
-
-In the exercises below the input is **simulated** – the text is already in a variable, as if the rider had just typed it. In your own programs you can replace it with a real `input()` any time.
+> ⚠️ Text and numbers **cannot** be mixed with `+` (`"Age: " + 5` gives an error). For that you need `str()` or an f-string – more on that in the next lesson.

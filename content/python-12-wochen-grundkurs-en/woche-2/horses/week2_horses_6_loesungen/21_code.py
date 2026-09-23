@@ -1,2 +1,2 @@
-sound = "Neigh! "
-print(sound * 3)
+age = 7
+print(age > 10)

@@ -1,3 +1,3 @@
-"""### Lesson 4: Calculating with Numbers – Task 1
+"""### Lesson 4: Canter – Decimal Numbers (float) – Task 1
 
-The variables horses and boxes are already there. Print exactly this line: Horses per box: 3.0 (let Python calculate it!)"""
+A horse eats 4.25 kg of feed per day. Print for 2 days exactly: Feed for 2 days: 8.5 kg"""

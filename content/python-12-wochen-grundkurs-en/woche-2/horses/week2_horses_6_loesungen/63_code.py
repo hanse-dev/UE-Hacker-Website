@@ -1,10 +1,10 @@
-duration1 = 30
-duration2 = 20
-duration3 = 45
-intensity1 = 2.5
-intensity2 = 4.5
-intensity3 = 3.5
-total_duration = duration1 + duration2 + duration3
-average_intensity = (intensity1 + intensity2 + intensity3) / 3
-print(f"Total duration: {total_duration} minutes")
-print(f"Average intensity: {average_intensity}")
+sack_1 = 25.5
+sack_2 = 20.0
+sack_3 = 30.5
+sack_4 = 25.0
+sack_5 = 22.5
+sack_6 = 28.0
+sack_7 = 24.0
+sack_8 = 24.5
+total = sack_1 + sack_2 + sack_3 + sack_4 + sack_5 + sack_6 + sack_7 + sack_8
+print(f"Total weight: {total} kg")

@@ -1,3 +1,3 @@
-"""### Element 2: 🪨 Earth (int) – Task 2
+"""### Fire: Text (str) and len() – Task 2
 
-Create shield = 30 and use type() to print its element."""
+Use an f-string to print exactly: Thunderstrike has 13 letters. (len() must compute the number.)"""

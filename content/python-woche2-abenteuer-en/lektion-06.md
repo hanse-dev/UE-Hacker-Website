@@ -1,28 +1,24 @@
-# ⚗️ Fusing Elements
+# 💨 Air: Truth Values (`bool`)
 
-**What it is:** how you combine and change elements of the same nature.
-
-## 🪨 Fusing Earth (numbers)
+The Air element only knows **two values**: `True` or `False` – **capitalised** and **without** quotation marks. Like a switch: on or off.
 
 ```python
-gold_a = 150
-gold_b = 75
-print(f"Total gold: {gold_a + gold_b}")
-print(f"Difference: {gold_a - gold_b}")
-print(f"Double gold: {gold_a * 2}")
-print(f"Divided: {gold_a / 3}")
+magic_active = True
+poisoned = False
+print(f"Magic active: {magic_active}")
+print(type(magic_active))    # <class 'bool'>
 ```
 
-## 🔥 Fusing Fire (texts)
+Comparisons automatically give you a truth value:
 
-Texts can be joined with `+` and repeated with `*`:
+| Comparison | Meaning |
+|------------|---------|
+| `a > b` / `a < b` | greater than / less than |
+| `a >= b` / `a <= b` | greater-or-equal / less-or-equal |
+| `a == b` | equal (careful: **two** equals signs!) |
+| `a != b` | not equal |
 
 ```python
-first_name = "Luna"
-last_name = "Silvermoon"
-full_name = first_name + " " + last_name
-print(full_name)            # Luna Silvermoon
-print(first_name * 3)       # LunaLunaLuna
+level = 8
+print(level >= 10)    # False
 ```
-
-> ⚠️ Fire and Earth resist direct fusion: `"Level: " + 5` causes a `TypeError`. You need a **conversion** – that is the next chapter!

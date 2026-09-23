@@ -1,3 +1,2 @@
-magic_power = int("100")
-bonus = 50
-print(f"Total power: {magic_power + bonus}")
+name = input("What is your hero's name? ")
+print(f"Welcome, {name}!")

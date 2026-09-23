@@ -1,3 +1,3 @@
-"""### Lesson 5: Working with Text – Task 2
+"""### Lesson 5: Jump – Truth Values (bool) – Task 2
 
-Create sound = \"Neigh! \" (with a space at the end) and print the sound three times with one print() and the * sign."""
+Compare the age with 10 and print the result of the comparison `age > 10` with print()."""

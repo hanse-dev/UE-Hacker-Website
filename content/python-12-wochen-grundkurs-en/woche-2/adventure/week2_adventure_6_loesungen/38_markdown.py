@@ -1,3 +1,3 @@
-"""### Debug Quest – Task 3
+"""### Spell Formula input(): Consulting the Oracle – Task 2
 
-🐛 Bug #3 – Goal: The program should print Your gold: 300. What is wrong?"""
+Ask for the level with input(), convert it with int() and print the level in 5 levels. Type 7, then it must read: In 5 levels: Level 12"""

@@ -4,28 +4,28 @@
     "section": "lektion",
     "title": "Spell Formula 1: f-strings",
     "file": "lektion-01.md",
-    "lessonSummary": "Wonderful! f-strings are the common tongue for all elements – shorter and clearer than + and str().",
+    "lessonSummary": "Great! With f-strings you build sentences from variables and even do maths inside them.",
     "tasks": [
       {
-        "instruction": "Run this example: three ways to use f-strings.",
+        "instruction": "Run this example and look at the output below.",
         "example": true,
-        "codeTemplate": "name = \"Aria\"\nlevel = 5\nprint(f\"Hello {name}!\")\nprint(f\"You are Level {level}!\")\n\ngold = 100\nbonus = 25\nprint(f\"Your gold: {gold + bonus}\")\n\nhero = \"Thorin\"\ncharacter_class = \"Warrior\"\nweapon = \"Axe\"\nprint(f\"{hero} the {character_class} swings their {weapon}!\")\n",
+        "codeTemplate": "name = \"Aria\"\nlevel = 5\nprint(f\"Hello {name}!\")\nprint(f\"You are Level {level}!\")\n\n# Calculating inside the braces\ngold = 100\nbonus = 25\nprint(f\"Your gold: {gold + bonus}\")\n\n# Several variables in one sentence\nhero = \"Thorin\"\nhero_class = \"Warrior\"\nweapon = \"Axe\"\nprint(f\"{hero} the {hero_class} swings their {weapon}!\")\n",
         "validation": {
           "type": "output_contains",
           "expected": "Thorin the Warrior swings their Axe!"
         }
       },
       {
-        "instruction": "Create the variables hero = \"Thorin\" and gold = 100. Use an f-string to print exactly this sentence: Thorin has 100 gold.",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "Use an f-string to build exactly this sentence from the variables: Mira travels to Elven Forest with 40 gold.",
+        "codeTemplate": "hero = \"Mira\"\nplace = \"Elven Forest\"\ngold = 40\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Thorin has 100 gold."
+          "expected": "Mira travels to Elven Forest with 40 gold."
         }
       },
       {
-        "instruction": "Create gold = 100 and bonus = 25. Put the calculation directly inside the curly braces of an f-string and print exactly: Your gold: 125",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "Let Python calculate inside the f-string and print exactly: Your gold: 125",
+        "codeTemplate": "gold = 100\nbonus = 25\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Your gold: 125"
@@ -36,98 +36,30 @@
   {
     "id": "lektion-02",
     "section": "lektion",
-    "title": "Element 1: 🔥 Fire (str)",
+    "title": "Spell Formula 2: type() and the Four Elements",
     "file": "lektion-02.md",
-    "lessonSummary": "The Fire element is yours! Text lives between quotation marks – and len() counts its letters.",
+    "lessonSummary": "You now know the four elements – and type() lets you determine each of them.",
     "tasks": [
       {
-        "instruction": "Run this example: Fire elements and their type.",
+        "instruction": "Run this example: type() reveals the nature of every value.",
         "example": true,
-        "codeTemplate": "spell = \"Fireball\"\ndescription = \"A powerful fire spell\"\nprint(f\"Spell: {spell}\")\nprint(f\"Element: {type(spell)}\")\nprint(f\"The spell name has {len(spell)} letters.\")\n",
+        "codeTemplate": "spell = \"Fireball\"\nlevel = 12\ndamage = 23.5\nmagic_active = True\n\nprint(type(spell))\nprint(type(level))\nprint(type(damage))\nprint(type(magic_active))\n",
         "validation": {
           "type": "output_contains",
-          "expected": "<class 'str'>"
+          "expected": "<class 'bool'>"
         }
       },
       {
-        "instruction": "Store the spell name \"Frostbolt\" in a variable spell and use an f-string with len() to print exactly: Frostbolt has 9 letters.",
-        "codeTemplate": "# 🎯 Your solution here:\n",
-        "validation": {
-          "type": "output_contains",
-          "expected": "Frostbolt has 9 letters."
-        }
-      },
-      {
-        "instruction": "Create a variable motto = \"Courage\" and use type() to print its element.",
-        "codeTemplate": "# 🎯 Your solution here:\n",
-        "validation": {
-          "type": "output_contains",
-          "expected": "<class 'str'>"
-        }
-      }
-    ]
-  },
-  {
-    "id": "lektion-03",
-    "section": "lektion",
-    "title": "Element 2: 🪨 Earth (int)",
-    "file": "lektion-03.md",
-    "lessonSummary": "The Earth element is solid: whole numbers you can count and calculate with.",
-    "tasks": [
-      {
-        "instruction": "Run this example: Earth elements.",
-        "example": true,
-        "codeTemplate": "level = 12\nhit_points = 150\nprint(f\"Level: {level}, HP: {hit_points}\")\nprint(f\"Element: {type(level)}\")\nprint(f\"In 3 levels you will be Level {level + 3}.\")\n",
-        "validation": {
-          "type": "output_contains",
-          "expected": "Level: 12, HP: 150"
-        }
-      },
-      {
-        "instruction": "Create shield = 30 and armour = 15. Print exactly this sentence, with the sum calculated inside the f-string: Total defence: 45",
-        "codeTemplate": "# 🎯 Your solution here:\n",
-        "validation": {
-          "type": "output_contains",
-          "expected": "Total defence: 45"
-        }
-      },
-      {
-        "instruction": "Create shield = 30 and use type() to print its element.",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "Determine the element of the variable level and print its type with print() and type().",
+        "codeTemplate": "level = 12\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
           "expected": "<class 'int'>"
         }
-      }
-    ]
-  },
-  {
-    "id": "lektion-04",
-    "section": "lektion",
-    "title": "Element 3: 💧 Water (float)",
-    "file": "lektion-04.md",
-    "lessonSummary": "The Water element flows: decimal numbers for damage, percentages and everything in between.",
-    "tasks": [
-      {
-        "instruction": "Run this example: Water elements.",
-        "example": true,
-        "codeTemplate": "damage = 23.5\npercent = 87.25\nprint(f\"Damage: {damage}, hit chance: {percent}%\")\nprint(f\"Element: {type(damage)}\")\nprint(f\"Double damage: {damage * 2}\")\n",
-        "validation": {
-          "type": "output_contains",
-          "expected": "Damage: 23.5, hit chance: 87.25%"
-        }
       },
       {
-        "instruction": "Create damage = 23.5 and print exactly this sentence, with the doubling calculated inside the f-string: Critical hit: 47.0",
-        "codeTemplate": "# 🎯 Your solution here:\n",
-        "validation": {
-          "type": "output_contains",
-          "expected": "Critical hit: 47.0"
-        }
-      },
-      {
-        "instruction": "Create magic_power = 12.5 and use type() to print its element.",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "Determine the element of the variable damage and print its type.",
+        "codeTemplate": "damage = 23.5\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
           "expected": "<class 'float'>"
@@ -136,35 +68,103 @@
     ]
   },
   {
-    "id": "lektion-05",
+    "id": "lektion-03",
     "section": "lektion",
-    "title": "Element 4: 💨 Air (bool)",
-    "file": "lektion-05.md",
-    "lessonSummary": "The Air element is either there or not: True or False – the basis for every decision.",
+    "title": "Fire: Text (str) and len()",
+    "file": "lektion-03.md",
+    "lessonSummary": "Fire elements are text – and len() counts every character for you.",
     "tasks": [
       {
-        "instruction": "Run this example: Air elements.",
+        "instruction": "Run this example.",
         "example": true,
-        "codeTemplate": "magic_active = True\npoisoned = False\nprint(f\"Magic active: {magic_active}\")\nprint(f\"Poisoned: {poisoned}\")\nprint(f\"Element: {type(magic_active)}\")\n",
+        "codeTemplate": "spell = \"Fireball\"\nprint(f\"Spell: {spell}\")\nprint(f\"Length: {len(spell)}\")\nprint(type(spell))\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Magic active: True"
+          "expected": "Length: 8"
         }
       },
       {
-        "instruction": "Create can_fly = True and poisoned = False. Print exactly: Can fly: True",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "Use len() to print how many characters the spell has (spaces count too).",
+        "codeTemplate": "phrase = \"Lumos Maxima\"\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Can fly: True"
+          "expected": "12"
         }
       },
       {
-        "instruction": "Create hit_points = 150. Use a comparison inside an f-string to print exactly: Strong: True (a hero is strong if hit_points is greater than 100).",
+        "instruction": "Use an f-string to print exactly: Thunderstrike has 13 letters. (len() must compute the number.)",
+        "codeTemplate": "spell = \"Thunderstrike\"\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Thunderstrike has 13 letters."
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Earth: Whole Numbers (int)",
+    "file": "lektion-04.md",
+    "lessonSummary": "Earth elements are whole numbers – solid, countable and perfect for calculating.",
+    "tasks": [
+      {
+        "instruction": "Run this example.",
+        "example": true,
+        "codeTemplate": "level = 12\nhit_points = 150\nprint(f\"Level: {level}, HP: {hit_points}\")\nprint(f\"Element: {type(level)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Level: 12, HP: 150"
+        }
+      },
+      {
+        "instruction": "Create the variables level = 7 and hit_points = 120 and print exactly this line with an f-string: Level: 7, HP: 120",
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Strong: True"
+          "expected": "Level: 7, HP: 120"
+        }
+      },
+      {
+        "instruction": "Calculate the total earnings and print exactly: Total: 135",
+        "codeTemplate": "days = 3\ngold_per_day = 45\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total: 135"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Water: Decimal Numbers (float)",
+    "file": "lektion-05.md",
+    "lessonSummary": "Water elements flow: decimal numbers with a point – and calculating with them gives decimal numbers again.",
+    "tasks": [
+      {
+        "instruction": "Run this example.",
+        "example": true,
+        "codeTemplate": "damage = 23.5\nhit_chance = 87.25\nprint(f\"Damage: {damage}, hit chance: {hit_chance}%\")\nprint(f\"Element: {type(damage)}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Damage: 23.5, hit chance: 87.25%"
+        }
+      },
+      {
+        "instruction": "Create hit_chance = 87.25 and print exactly: Hit chance: 87.25%",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hit chance: 87.25%"
+        }
+      },
+      {
+        "instruction": "Calculate the cost (price times amount) and print exactly: Cost: 10.0",
+        "codeTemplate": "price_per_potion = 2.5\namount = 4\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Cost: 10.0"
         }
       }
     ]
@@ -172,30 +172,64 @@
   {
     "id": "lektion-06",
     "section": "lektion",
-    "title": "Fusing Elements",
+    "title": "Air: Truth Values (bool)",
     "file": "lektion-06.md",
-    "lessonSummary": "Fusion done! Numbers calculate, texts join – and each element has its own rules.",
+    "lessonSummary": "Air elements are switches: True or False – and comparisons hand them to you automatically.",
     "tasks": [
       {
-        "instruction": "Run this example: fusing numbers and texts.",
+        "instruction": "Run this example.",
         "example": true,
-        "codeTemplate": "gold_a = 150\ngold_b = 75\nprint(f\"Total gold: {gold_a + gold_b}\")\nprint(f\"Difference: {gold_a - gold_b}\")\nprint(f\"Double gold: {gold_a * 2}\")\n\nfirst_name = \"Luna\"\nlast_name = \"Silvermoon\"\nfull_name = first_name + \" \" + last_name\nprint(f\"Full name: {full_name}\")\nprint(f\"Name x3: {first_name * 3}\")\n",
+        "codeTemplate": "magic_active = True\npoisoned = False\nlevel = 8\n\nprint(f\"Magic active: {magic_active}\")\nprint(f\"Poisoned: {poisoned}\")\nprint(f\"Level above 5: {level > 5}\")\nprint(f\"Element: {type(magic_active)}\")\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Full name: Luna Silvermoon"
+          "expected": "Level above 5: True"
         }
       },
       {
-        "instruction": "Create gold_a = 150 and gold_b = 75. Print exactly: Total gold: 225 (calculate the sum in the f-string).",
+        "instruction": "Create can_fly = False and print exactly: Can fly: False",
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Total gold: 225"
+          "expected": "Can fly: False"
         }
       },
       {
-        "instruction": "Create name = \"Luna\" and print the name three times in a row (using *), so the output contains: LunaLunaLuna",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "Use a comparison to check whether the hero is ready for the tower (level at least 10) and print exactly: Ready for the tower: False",
+        "codeTemplate": "level = 8\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ready for the tower: False"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Fusing Elements",
+    "file": "lektion-07.md",
+    "lessonSummary": "You calculate with numbers, you glue texts together – but Fire and Earth need a conversion.",
+    "tasks": [
+      {
+        "instruction": "Run this example.",
+        "example": true,
+        "codeTemplate": "gold_a = 150\ngold_b = 75\nprint(f\"Total gold: {gold_a + gold_b}\")\nprint(f\"Difference: {gold_a - gold_b}\")\nprint(f\"Double gold: {gold_a * 2}\")\n\nfirst_name = \"Luna\"\nlast_name = \"Silvermoon\"\nprint(first_name + \" \" + last_name)\nprint(first_name * 3)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Double gold: 300"
+        }
+      },
+      {
+        "instruction": "Divide gold_a by 3 and print exactly: Divided: 50.0",
+        "codeTemplate": "gold_a = 150\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Divided: 50.0"
+        }
+      },
+      {
+        "instruction": "Print the first name three times in a row (no spaces) using text repetition.",
+        "codeTemplate": "first_name = \"Luna\"\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
           "expected": "LunaLunaLuna"
@@ -204,71 +238,82 @@
     ]
   },
   {
-    "id": "lektion-07",
+    "id": "lektion-08",
     "section": "lektion",
     "title": "Conversion Spells: int(), float(), str(), bool()",
-    "file": "lektion-07.md",
-    "lessonSummary": "You can now transform elements: int(), float(), str() and bool() change one nature into another.",
+    "file": "lektion-08.md",
+    "lessonSummary": "With int(), float(), str() and bool() you convert elements into one another.",
     "tasks": [
       {
-        "instruction": "Run this example: converting elements.",
+        "instruction": "Run this example.",
         "example": true,
-        "codeTemplate": "age_str = \"25\"\nage_int = int(age_str)\nprint(f\"Age as Fire element: {age_str} ({type(age_str)})\")\nprint(f\"Age as Earth element: {age_int} ({type(age_int)})\")\nprint(f\"Age as Water element: {float(age_int)}\")\nprint(\"Level: \" + str(7))\nprint(bool(0), bool(\"Aria\"))\n",
+        "codeTemplate": "age_str = \"25\"\nage_int = int(age_str)\nprint(f\"Text: {age_str} ({type(age_str)})\")\nprint(f\"Number: {age_int} ({type(age_int)})\")\nprint(int(3.9))\nprint(float(\"3.5\"))\nprint(bool(0))\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Age as Earth element: 25"
+          "expected": "Number: 25 (<class 'int'>)"
         }
       },
       {
-        "instruction": "Convert the text \"40\" into a number with int(), add 2 and print exactly: Result: 42",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "Convert the text into a whole number, add 5 and print the result.",
+        "codeTemplate": "age_text = \"25\"\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Result: 42"
+          "expected": "30"
         }
       },
       {
-        "instruction": "Convert the text \"7.5\" into a decimal number with float(), add 1 and print exactly: Result: 8.5",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "Convert the text into a decimal number and double it. Print the result.",
+        "codeTemplate": "price_text = \"3.5\"\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Result: 8.5"
+          "expected": "7.0"
         }
       },
       {
-        "instruction": "Create level = 7 and use + and str() (not an f-string!) to print exactly: Level: 7",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "Join the text with the level using str() and print exactly: Level: 9",
+        "codeTemplate": "level = 9\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Level: 7"
+          "expected": "Level: 9"
         }
       }
     ]
   },
   {
-    "id": "lektion-08",
+    "id": "lektion-09",
     "section": "lektion",
-    "title": "Consulting the Oracle: input()",
-    "file": "lektion-08.md",
-    "lessonSummary": "The oracle has spoken! input() always gives Fire – convert the answer with int() or float() when you need a number.",
+    "title": "Spell Formula input(): Consulting the Oracle",
+    "file": "lektion-09.md",
+    "lessonSummary": "The oracle always answers with text – int() and float() turn its answers into numbers.",
     "tasks": [
       {
-        "instruction": "Run this example and answer the oracle's questions (enter a name and a level as a number).",
+        "instruction": "Run this example and type a name into the input box, for example Blitz.",
         "example": true,
-        "codeTemplate": "name = input(\"What is your hero's name? \")\nlevel = int(input(\"What level are they? \"))\n\nprint(f\"Welcome, {name}!\")\nprint(f\"In 5 levels you will reach level {level + 5}.\")\n",
+        "codeTemplate": "name = input(\"What is your hero's name? \")\nprint(f\"Welcome, {name}!\")\nprint(type(name))\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Welcome, "
+          "expected": "Welcome, Blitz!"
         }
       },
       {
-        "instruction": "Ask the oracle for an age with input(), convert the answer with int() and print: In 5 years you will be ... (with the calculated age). Enter 20 when asked.",
+        "instruction": "Ask for the name with input() and print exactly: Welcome, Blitz! – type Blitz.",
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "In 5 years you will be 25",
+          "expected": "Welcome, Blitz!",
           "stdin": [
-            "20"
+            "Blitz"
+          ]
+        }
+      },
+      {
+        "instruction": "Ask for the level with input(), convert it with int() and print the level in 5 levels. Type 7, then it must read: In 5 levels: Level 12",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "In 5 levels: Level 12",
+          "stdin": [
+            "7"
           ]
         }
       }
@@ -279,7 +324,7 @@
     "section": "debug",
     "title": "Debug Quest",
     "file": "debug-01.md",
-    "lessonSummary": "All bugs found! Mixing up elements is the classic mistake at the Elemental Tower.",
+    "lessonSummary": "All bugs found! When debugging, it helps to look closely at each type.",
     "tasks": [
       {
         "instruction": "🐛 Bug #1 – Goal: The program should print Hello Gandalf! You are Level 99! What is wrong?",
@@ -290,15 +335,15 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Goal: The program should print Total power: 150. What is wrong?",
-        "codeTemplate": "magic_power = \"100\"\nbonus = 50\nprint(f\"Total power: {magic_power + bonus}\")\n",
+        "instruction": "🐛 Bug #2 – Goal: The program should print Total power: 150 What is wrong?",
+        "codeTemplate": "spell_power = \"100\"\nbonus = 50\nprint(f\"Total power: {spell_power + bonus}\")\n",
         "validation": {
           "type": "output_contains",
           "expected": "Total power: 150"
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Goal: The program should print Your gold: 300. What is wrong?",
+        "instruction": "🐛 Bug #3 – Goal: The program should print Your gold: 300 What is wrong?",
         "codeTemplate": "gold = 250\nprint(f\"Your gold: gold + 50\")\n",
         "validation": {
           "type": "output_contains",
@@ -312,38 +357,22 @@
     "section": "mission",
     "title": "Mission 1: The Four Elemental Stones",
     "file": "mission-01.md",
-    "lessonSummary": "All four pedestals are filled – you have mastered Fire, Earth, Water and Air!",
+    "lessonSummary": "All four elemental stones sit on their pedestals!",
     "tasks": [
       {
-        "instruction": "Step 1 – 🔥 Fire Stone: create hero_name = \"Aria\" and print exactly: Hero: Aria",
+        "instruction": "Step 1 – 🔥 Fire and 🪨 Earth: Create hero_name = \"Aria\" and power = 14 and print exactly with an f-string: Aria has power 14",
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Hero: Aria"
+          "expected": "Aria has power 14"
         }
       },
       {
-        "instruction": "Step 2 – 🪨 Earth Stone: create strength = 40 and print exactly: Strength: 40",
+        "instruction": "Step 2 – 💧 Water and 💨 Air: Create spell_power = 12.5 and can_fly = True and print exactly with an f-string: Spell power 12.5, flying: True",
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Strength: 40"
-        }
-      },
-      {
-        "instruction": "Step 3 – 💧 Water Stone: create magic_power = 12.5 and print exactly: Magic power: 12.5",
-        "codeTemplate": "# 🎯 Your solution here:\n",
-        "validation": {
-          "type": "output_contains",
-          "expected": "Magic power: 12.5"
-        }
-      },
-      {
-        "instruction": "Step 4 – 💨 Air Stone: create can_fly = True and print exactly: Can fly: True",
-        "codeTemplate": "# 🎯 Your solution here:\n",
-        "validation": {
-          "type": "output_contains",
-          "expected": "Can fly: True"
+          "expected": "Spell power 12.5, flying: True"
         }
       }
     ]
@@ -353,38 +382,30 @@
     "section": "mission",
     "title": "Mission 2: The Elemental Fusion",
     "file": "mission-02.md",
-    "lessonSummary": "The fusion chamber is quiet again – you know what can be fused directly and what needs a conversion.",
+    "lessonSummary": "Now you know which elements fuse directly – and which need a conversion.",
     "tasks": [
       {
-        "instruction": "Step 1 – Fusing two 🔥 Fire Stones: create first_name = \"Luna\" and last_name = \"Silvermoon\" and use an f-string to print exactly: Name: Luna Silvermoon",
+        "instruction": "Step 1 – fusing 🔥 and 🪨: Create first_name = \"Aria\", last_name = \"Blue\", gold_a = 120 and gold_b = 80. Print exactly with an f-string: Aria Blue has 200 gold",
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Name: Luna Silvermoon"
+          "expected": "Aria Blue has 200 gold"
         }
       },
       {
-        "instruction": "Step 2 – Fusing two 🪨 Earth Stones: add the two gold amounts and print exactly: Total gold: 225",
-        "codeTemplate": "gold_a = 150\ngold_b = 75\n\n# 🎯 Your solution here:\n",
-        "validation": {
-          "type": "output_contains",
-          "expected": "Total gold: 225"
-        }
-      },
-      {
-        "instruction": "Step 3 – Fusing two 💧 Water Stones: calculate the average of the two damage values and print exactly: Average damage: 10.0",
+        "instruction": "Step 2 – fusing 💧: Calculate the average of the two damage values (sum divided by 2) and print exactly: Average: 10.0",
         "codeTemplate": "damage_a = 12.5\ndamage_b = 7.5\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Average damage: 10.0"
+          "expected": "Average: 10.0"
         }
       },
       {
-        "instruction": "Step 4 – Fusing 🔥 Fire and 🪨 Earth: use + and str() (not an f-string!) to print exactly: Level: 7",
-        "codeTemplate": "text = \"Level: \"\nlevel = 7\n\n# 🎯 Your solution here:\n",
+        "instruction": "Step 3 – 🔥 and 🪨 with str(): Join the name with the level using + and str() and print exactly: Aria is Level 5",
+        "codeTemplate": "name = \"Aria\"\nlevel = 5\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Level: 7"
+          "expected": "Aria is Level 5"
         }
       }
     ]
@@ -394,14 +415,14 @@
     "section": "mission",
     "title": "Mission 3: The Oracle of the Four Elements",
     "file": "mission-03.md",
-    "lessonSummary": "The oracle is satisfied: you asked, converted and prophesied like a true master!",
+    "lessonSummary": "The oracle has spoken: you turned inputs into all four elements!",
     "tasks": [
       {
-        "instruction": "Step 1 – Consult 🔥 Fire and 🪨 Earth: ask for the seeker's name with input() and for their age (converted with int()). Print exactly two lines: Prophecy for ...: (with the name) and In 10 years you will be ... (with age + 10). Enter Blitz and 12 when asked.",
+        "instruction": "Step 1 – asking 🔥 and 🪨: Ask with input() for the name (type Blitz) and the age (type 12, convert with int()). Print exactly: Blitz will be 17 in 5 years",
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "In 10 years you will be 22",
+          "expected": "Blitz will be 17 in 5 years",
           "stdin": [
             "Blitz",
             "12"
@@ -409,11 +430,11 @@
         }
       },
       {
-        "instruction": "Step 2 – Consult 💧 Water and 💨 Air: ask for a magic power with input(), convert it with float() and store True or False in strong depending on whether it is above 5.0. Print exactly: Strong magic: True (when asked, enter 7.5).",
+        "instruction": "Step 2 – 💧 and 💨: Ask with input() for the spell power (type 7.5, convert with float()). Compare whether it is above 5.0 and print exactly: Spell power 7.5, strong: True",
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Strong magic: True",
+          "expected": "Spell power 7.5, strong: True",
           "stdin": [
             "7.5"
           ]
@@ -424,32 +445,32 @@
   {
     "id": "boss-01",
     "section": "boss",
-    "title": "Extra challenge 1: The Treasure Room",
+    "title": "Extra Challenge 1: The Treasure Room",
     "file": "boss-01.md",
-    "lessonSummary": "All eight chests catalogued – the treasure room is in order!",
+    "lessonSummary": "The treasure room is catalogued – total value and average are known – and you know whether chest 8 is above it!",
     "tasks": [
       {
-        "instruction": "Step 1 – Create chest1 to chest8 with the gold values above. Print the heading === TREASURE ROOM LOG === and then one line per chest in the form: Chest 1 holds 120 gold. (use f-strings).",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "Step 1 – Print the heading === TREASURE ROOM PROTOCOL === and calculate the total value of all eight chests. Print exactly: Total value: 1000",
+        "codeTemplate": "chest1 = 120\nchest2 = 80\nchest3 = 200\nchest4 = 150\nchest5 = 50\nchest6 = 90\nchest7 = 60\nchest8 = 250\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Chest 8 holds 100 gold."
+          "expected": "Total value: 1000"
         }
       },
       {
-        "instruction": "Step 2 – Calculate the total value and the average of all eight chests (divide by 8) and print exactly: Total: 1100 gold, average: 137.5 gold",
-        "codeTemplate": "chest1 = 120\nchest2 = 80\nchest3 = 200\nchest4 = 150\nchest5 = 90\nchest6 = 300\nchest7 = 60\nchest8 = 100\n\n# 🎯 Your solution here:\n",
+        "instruction": "Step 2 – Calculate the average (total value divided by 8) and print exactly: Average: 125.0",
+        "codeTemplate": "chest1 = 120\nchest2 = 80\nchest3 = 200\nchest4 = 150\nchest5 = 50\nchest6 = 90\nchest7 = 60\nchest8 = 250\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Total: 1100 gold, average: 137.5 gold"
+          "expected": "Average: 125.0"
         }
       },
       {
-        "instruction": "Step 3 – Is chest 6 worth more than the average (total divided by 8)? Compare with > and print exactly: Chest 6 above average: True",
-        "codeTemplate": "chest1 = 120\nchest2 = 80\nchest3 = 200\nchest4 = 150\nchest5 = 90\nchest6 = 300\nchest7 = 60\nchest8 = 100\n\n# 🎯 Your solution here:\n",
+        "instruction": "Step 3 – Is chest 8 worth more than the average (total value divided by 8)? Compare with > and print exactly: Chest 8 above average: True",
+        "codeTemplate": "chest1 = 120\nchest2 = 80\nchest3 = 200\nchest4 = 150\nchest5 = 50\nchest6 = 90\nchest7 = 60\nchest8 = 250\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Chest 6 above average: True"
+          "expected": "Chest 8 above average: True"
         }
       }
     ]
@@ -457,32 +478,40 @@
   {
     "id": "boss-02",
     "section": "boss",
-    "title": "Extra challenge 2: The Spell Workshop",
+    "title": "Extra Challenge 2: The Spell Workshop",
     "file": "boss-02.md",
-    "lessonSummary": "The workshop hums with power – and every spell has the right data type!",
+    "lessonSummary": "The spell workshop is evaluated – with the right types for every property.",
     "tasks": [
       {
-        "instruction": "Step 1 – Create the variables spell1_name, spell1_power, spell1_complexity, spell1_duration (and the same for spell2 and spell3). Print the heading === SPELL WORKSHOP LOG === and one line per spell in the form: Storm: power 95.0, complexity 5, duration 4s",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "Step 1 – Print the heading === SPELL WORKSHOP PROTOCOL === and then, with an f-string, for the first spell print exactly: Fireball: power 80.0, complexity 3",
+        "codeTemplate": "spell1 = \"Fireball\"\npower1 = 80.0\ncomplexity1 = 3\nspell2 = \"Frostbolt\"\npower2 = 65.0\ncomplexity2 = 2\nspell3 = \"Storm\"\npower3 = 95.0\ncomplexity3 = 5\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Storm: power 95.0, complexity 5, duration 4s"
+          "expected": "Fireball: power 80.0, complexity 3"
         }
       },
       {
-        "instruction": "Step 2 – Add up the complexity of all three spells and calculate the average power. Print exactly: Total complexity: 10, average power: 80.0",
-        "codeTemplate": "spell1_name = \"Fireball\"\nspell1_power = 85.0\nspell1_complexity = 3\nspell1_duration = 2\n\nspell2_name = \"Frostbolt\"\nspell2_power = 60.0\nspell2_complexity = 2\nspell2_duration = 1\n\nspell3_name = \"Storm\"\nspell3_power = 95.0\nspell3_complexity = 5\nspell3_duration = 4\n\n# 🎯 Your solution here:\n",
+        "instruction": "Step 2 – Add up the complexity of all three spells and print exactly: Total complexity: 10",
+        "codeTemplate": "spell1 = \"Fireball\"\npower1 = 80.0\ncomplexity1 = 3\nspell2 = \"Frostbolt\"\npower2 = 65.0\ncomplexity2 = 2\nspell3 = \"Storm\"\npower3 = 95.0\ncomplexity3 = 5\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Total complexity: 10, average power: 80.0"
+          "expected": "Total complexity: 10"
         }
       },
       {
-        "instruction": "Step 3 – Use 💨 Air: for each spell, store in a variable whether its power is above the average (80.0), then print exactly three lines in the form: Frostbolt above average: False",
-        "codeTemplate": "spell1_name = \"Fireball\"\nspell1_power = 85.0\nspell1_complexity = 3\nspell1_duration = 2\n\nspell2_name = \"Frostbolt\"\nspell2_power = 60.0\nspell2_complexity = 2\nspell2_duration = 1\n\nspell3_name = \"Storm\"\nspell3_power = 95.0\nspell3_complexity = 5\nspell3_duration = 4\n\naverage_power = (spell1_power + spell2_power + spell3_power) / 3\n\n# 🎯 Your solution here:\n",
+        "instruction": "Step 3 – Calculate the average power of the three spells and print exactly: Average power: 80.0",
+        "codeTemplate": "spell1 = \"Fireball\"\npower1 = 80.0\ncomplexity1 = 3\nspell2 = \"Frostbolt\"\npower2 = 65.0\ncomplexity2 = 2\nspell3 = \"Storm\"\npower3 = 95.0\ncomplexity3 = 5\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Frostbolt above average: False"
+          "expected": "Average power: 80.0"
+        }
+      },
+      {
+        "instruction": "Step 4 – Use a 💨 Air value: Is the power of Storm above the average? Print exactly: Storm powerful: True",
+        "codeTemplate": "spell1 = \"Fireball\"\npower1 = 80.0\ncomplexity1 = 3\nspell2 = \"Frostbolt\"\npower2 = 65.0\ncomplexity2 = 2\nspell3 = \"Storm\"\npower3 = 95.0\ncomplexity3 = 5\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Storm powerful: True"
         }
       }
     ]
@@ -490,40 +519,32 @@
   {
     "id": "boss-03",
     "section": "boss",
-    "title": "Extra challenge 3: The Quest Planning",
+    "title": "Extra Challenge 3: The Quest Planning",
     "file": "boss-03.md",
-    "lessonSummary": "The quests are planned – you even know which one pays off more!",
+    "lessonSummary": "The quests are calculated – and you know which one pays off more!",
     "tasks": [
       {
-        "instruction": "Step 1 – Create the variables quest1_goal, quest1_days, quest1_reward, quest1_group, quest1_success (and the same for quest2). Print the heading === QUEST LOG === and one line per quest in the form: Forest Escort: 3 days, reward 300, group 2, success 0.5",
-        "codeTemplate": "# 🎯 Your solution here:\n",
+        "instruction": "Step 1 – Print the heading === QUEST PROTOCOL ===, add up the rewards of both quests and print exactly: Total reward: 1300",
+        "codeTemplate": "reward1 = 500\nduration1 = 4\ngroup1 = 5\nchance1 = 0.8\nreward2 = 800\nduration2 = 7\ngroup2 = 4\nchance2 = 0.75\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Forest Escort: 3 days, reward 300, group 2, success 0.5"
+          "expected": "Total reward: 1300"
         }
       },
       {
-        "instruction": "Step 2 – Add up the total reward and the total group size and print exactly: Total reward: 800, total group size: 6",
-        "codeTemplate": "quest1_goal = \"Dragon Hunt\"\nquest1_days = 5\nquest1_reward = 500\nquest1_group = 4\nquest1_success = 0.8\n\nquest2_goal = \"Forest Escort\"\nquest2_days = 3\nquest2_reward = 300\nquest2_group = 2\nquest2_success = 0.5\n\n# 🎯 Your solution here:\n",
+        "instruction": "Step 2 – Calculate the expected reward (reward times probability) for both quests. Print two lines, the second must read exactly: Quest 2 expected: 600.0",
+        "codeTemplate": "reward1 = 500\nduration1 = 4\ngroup1 = 5\nchance1 = 0.8\nreward2 = 800\nduration2 = 7\ngroup2 = 4\nchance2 = 0.75\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Total reward: 800, total group size: 6"
+          "expected": "Quest 2 expected: 600.0"
         }
       },
       {
-        "instruction": "Step 3 – Forecast the success: expected reward = reward x success probability. Print exactly: Expected rewards: 400.0 and 150.0",
-        "codeTemplate": "quest1_goal = \"Dragon Hunt\"\nquest1_days = 5\nquest1_reward = 500\nquest1_group = 4\nquest1_success = 0.8\n\nquest2_goal = \"Forest Escort\"\nquest2_days = 3\nquest2_reward = 300\nquest2_group = 2\nquest2_success = 0.5\n\n# 🎯 Your solution here:\n",
+        "instruction": "Step 3 – Use a 💨 Air value: Is the expected reward of quest 2 higher than quest 1's? Print exactly: Quest 2 more profitable: True",
+        "codeTemplate": "reward1 = 500\nduration1 = 4\ngroup1 = 5\nchance1 = 0.8\nreward2 = 800\nduration2 = 7\ngroup2 = 4\nchance2 = 0.75\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Expected rewards: 400.0 and 150.0"
-        }
-      },
-      {
-        "instruction": "Step 4 – Use 💨 Air: store in a variable whether quest 1 has the higher expected reward than quest 2 and print exactly: Quest 1 is more profitable: True",
-        "codeTemplate": "quest1_goal = \"Dragon Hunt\"\nquest1_days = 5\nquest1_reward = 500\nquest1_group = 4\nquest1_success = 0.8\n\nquest2_goal = \"Forest Escort\"\nquest2_days = 3\nquest2_reward = 300\nquest2_group = 2\nquest2_success = 0.5\n\nexpected1 = quest1_reward * quest1_success\nexpected2 = quest2_reward * quest2_success\n\n# 🎯 Your solution here:\n",
-        "validation": {
-          "type": "output_contains",
-          "expected": "Quest 1 is more profitable: True"
+          "expected": "Quest 2 more profitable: True"
         }
       }
     ]

@@ -1,3 +1,3 @@
-"""### The Tournament Training – Task 3
+"""### The Training Hall – Task 2
 
-Step 3 – Forecast the success: expected successes = participants × success probability, for each unit. Print exactly: Expected successes unit 1: 8.0 and Expected successes unit 2: 4.0"""
+Step 2 – total duration: add up all five durations in total_duration and print exactly: Total duration: 120 minutes"""

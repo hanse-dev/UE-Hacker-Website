@@ -1,3 +1,3 @@
-"""### Element 3: 💧 Water (float) – Task 1
+"""### Earth: Whole Numbers (int) – Task 1
 
-Create damage = 23.5 and print exactly this sentence, with the doubling calculated inside the f-string: Critical hit: 47.0"""
+Create the variables level = 7 and hit_points = 120 and print exactly this line with an f-string: Level: 7, HP: 120"""

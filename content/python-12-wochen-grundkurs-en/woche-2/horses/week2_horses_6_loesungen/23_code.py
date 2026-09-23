@@ -1,3 +1,3 @@
-price_text = "4.5"
-price = float(price_text)
-print(f"Double price: {price * 2}")
+horses = 12
+boxes = 4
+print(f"Horses per box: {horses / boxes}")

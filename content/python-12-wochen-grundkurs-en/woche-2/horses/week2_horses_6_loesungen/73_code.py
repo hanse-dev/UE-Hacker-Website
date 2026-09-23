@@ -1,8 +1,6 @@
-cost1 = 250.0
-people1 = 10
-cost2 = 180.0
-people2 = 8
-per1 = cost1 / people1
-per2 = cost2 / people2
-unit2_cheaper = per2 < per1
-print(f"Unit 2 is cheaper per participant: {unit2_cheaper}")
+i1 = 3.5
+i2 = 4.0
+i3 = 2.5
+i4 = 4.5
+i5 = 1.5
+print(f"Average intensity: {(i1 + i2 + i3 + i4 + i5) / 5}")

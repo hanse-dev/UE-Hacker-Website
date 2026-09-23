@@ -1,3 +1,3 @@
-"""### Conversion Spells: int(), float(), str(), bool() – Task 2
+"""### Fusing Elements – Task 2
 
-Convert the text \"7.5\" into a decimal number with float(), add 1 and print exactly: Result: 8.5"""
+Print the first name three times in a row (no spaces) using text repetition."""

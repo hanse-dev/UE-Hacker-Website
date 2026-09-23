@@ -1,20 +1,19 @@
-# 🐴 Lesson 6: Converting Types
+# 🧮 Lesson 6: Calculating with Numbers
 
-Not all types can be combined directly. `"5" + 3` causes an error, because a text and a number are different hoofbeat types. The solution: **convert** the type. Python has one function for every type:
+With `int` and `float`, Python calculates like a pocket calculator:
 
-| Function | Turns the value into ... | Example | Result |
-|----------|--------------------------|---------|--------|
-| `int()` | a whole number | `int("5")` | `5` |
-| `float()` | a decimal number | `float("4.25")` | `4.25` |
-| `str()` | a text | `str(12)` | `"12"` |
-| `bool()` | a truth value | `bool(0)` | `False` |
+| Sign | Meaning | Example | Result |
+|------|---------|---------|--------|
+| `+` | plus | `12 + 8` | `20` |
+| `-` | minus | `12 - 8` | `4` |
+| `*` | times | `12 * 2` | `24` |
+| `/` | divided | `12 / 4` | `3.0` |
+
+> 🐴 **Remember:** A division with `/` **always** gives a `float` – even when the result comes out even (`12 / 4` is `3.0`).
 
 ```python
-age_text = "5"
-age_number = int(age_text)
-print(age_number + 3)     # 8
+horses_a = 12
+horses_b = 8
+print(f"Total horses: {horses_a + horses_b}")
+print(f"Horses per box: {horses_a / 4}")
 ```
-
-**Good to know about `bool()`:** `0` and the empty text `""` become `False`, everything else becomes `True`.
-
-Only convertible things work: `int("Thunder")` causes a `ValueError`, because "Thunder" is not a number.

@@ -1,5 +1,5 @@
 # ⭐⭐⭐☆☆ Mission 2: The Riding Lesson
 
-Plan a perfect riding lesson for several horses! Store names and riding times in variables, print the lesson plan and calculate the total and average time.
+Plan a perfect riding lesson for several horses! Record three horses with their riding times, print the schedule and calculate the total and average time.
 
-**Bonus (optional, not checked):** Give every horse a difficulty level and calculate the average difficulty!
+**Bonus (optional, not checked):** Calculate the average difficulty if you give each horse a difficulty from 1 to 5!

@@ -1,3 +1,3 @@
-"""### Element 1: 🔥 Fire (str) – Task 2
+"""### Spell Formula 2: type() and the Four Elements – Task 2
 
-Create a variable motto = \"Courage\" and use type() to print its element."""
+Determine the element of the variable damage and print its type."""

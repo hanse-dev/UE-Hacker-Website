@@ -1,2 +1,2 @@
-power = float("7.5")
-print(f"Result: {power + 1}")
+first_name = "Luna"
+print(first_name * 3)

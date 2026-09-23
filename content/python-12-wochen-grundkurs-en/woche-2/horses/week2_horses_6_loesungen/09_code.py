@@ -1,2 +1,2 @@
-breed = "Hanoverian"
-print(f"Type of breed: {type(breed)}")
+hoof_number = "7"
+print(type(hoof_number))

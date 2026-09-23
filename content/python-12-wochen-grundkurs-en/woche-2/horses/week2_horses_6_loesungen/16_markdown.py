@@ -1,3 +1,3 @@
-"""### Lesson 4: Calculating with Numbers – Task 2
+"""### Lesson 4: Canter – Decimal Numbers (float) – Task 2
 
-Create feed = 7 and print exactly this line, with the calculation inside the braces: Double feed: 14 kg"""
+Create the variable height_m with the value 1.68 and print its type with type()."""

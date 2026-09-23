@@ -1,3 +1,3 @@
-"""### Mission 1: The Four Elemental Stones – Task 3
+"""### Debug Quest – Task 3
 
-Step 3 – 💧 Water Stone: create magic_power = 12.5 and print exactly: Magic power: 12.5"""
+🐛 Bug #3 – Goal: The program should print Your gold: 300 What is wrong?"""

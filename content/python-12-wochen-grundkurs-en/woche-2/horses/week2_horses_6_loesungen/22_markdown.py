@@ -1,3 +1,3 @@
-"""### Lesson 6: Converting Types – int(), float(), str(), bool() – Task 1
+"""### Lesson 6: Calculating with Numbers – Task 1
 
-The variable price_text holds the text \"4.5\". Convert it with float() and print exactly: Double price: 9.0"""
+12 horses stand in 4 boxes. Print exactly: Horses per box: 3.0"""

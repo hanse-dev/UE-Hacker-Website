@@ -1,3 +1,3 @@
-feed_kg = "10"
-days = 5
-print(f"Total feed: {int(feed_kg) * days} kg")
+portion_text = "4.5"
+portion = float(portion_text)
+print(f"Double portion: {portion * 2} kg")

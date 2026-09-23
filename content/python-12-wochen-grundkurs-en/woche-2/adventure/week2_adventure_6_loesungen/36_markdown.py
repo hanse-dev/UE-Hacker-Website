@@ -1,3 +1,3 @@
-"""### Debug Quest – Task 2
+"""### Spell Formula input(): Consulting the Oracle – Task 1
 
-🐛 Bug #2 – Goal: The program should print Total power: 150. What is wrong?"""
+Ask for the name with input() and print exactly: Welcome, Blitz! – type Blitz."""
