@@ -1,0 +1,79 @@
+[
+  {
+    "id": "lektion-01",
+    "title": "Was ist eine Vigenère-Chiffre?",
+    "file": "lektion-01.md",
+    "lessonSummary": "Genau so berechnest du die Verschiebungen der einzelnen Schlüsselbuchstaben.",
+    "tasks": [
+      {
+        "instruction": "Berechne mit ord() die Verschiebung, die der Buchstabe 'm' liefert (wie viele Plätze er hinter 'a' im Alphabet steht) und gib sie aus.",
+        "codeTemplate": "",
+        "validation": { "type": "output_contains", "expected": "12" }
+      },
+      {
+        "instruction": "Bonus: Berechne die Verschiebung, die der Buchstabe 'z' liefert.",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "25" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "title": "Das Schlüsselwort wiederholen",
+    "file": "lektion-02.md",
+    "lessonSummary": "Mit dem Modulo-Trick findest du für jede Position im Text den passenden Schlüsselbuchstaben – egal wie lang der Text ist.",
+    "tasks": [
+      {
+        "instruction": "Vervollständige die Schleife: baue durch Wiederholen von schluesselwort ('ok') einen String wiederholt, der genauso lang ist wie text ('baum'), und gib ihn aus.",
+        "codeTemplate": "text = \"baum\"\nschluesselwort = \"ok\"\nwiederholt = \"\"\nfor i in range(len(text)):\n    # dein Code hier: nimm schluesselwort[i % len(schluesselwort)] und haenge es an wiederholt an\n    pass\n\nprint(wiederholt)\n",
+        "validation": { "type": "output_contains", "expected": "okok" }
+      },
+      {
+        "instruction": "Bonus: Was passiert, wenn das Schlüsselwort länger ist als der Text? Baue wiederholt für text = 'hi' und schluesselwort = 'geheim' (gleiche Schleife wie eben) und gib es aus.",
+        "codeTemplate": "",
+        "isBonus": true,
+        "validation": { "type": "output_contains", "expected": "ge" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "title": "Die Verschlüsselungsfunktion",
+    "file": "lektion-03.md",
+    "lessonSummary": "Deine Vigenère-Verschlüsselung steht – jeder Buchstabe wird jetzt mit seiner eigenen Verschiebung aus dem Schlüsselwort verändert.",
+    "tasks": [
+      {
+        "instruction": "Schreibe die Funktion verschluesseln(text, schluesselwort) (wie in der Lektion erklärt) und gib verschluesseln('hallo', 'key') aus.",
+        "codeTemplate": "def verschluesseln(text, schluesselwort):\n    ergebnis = \"\"\n    schluessel_index = 0\n    for zeichen in text:\n        if zeichen.isalpha():\n            start = ord('a')\n            position = ord(zeichen) - start\n            schluessel_buchstabe = schluesselwort[schluessel_index % len(schluesselwort)]\n            verschiebung = ord(schluessel_buchstabe) - start\n            neue_position = (position + verschiebung) % 26\n            ergebnis = ergebnis + chr(start + neue_position)\n            schluessel_index = schluessel_index + 1\n        else:\n            ergebnis = ergebnis + zeichen\n    return ergebnis\n\n# dein Aufruf hier\n",
+        "validation": { "type": "output_contains", "expected": "rejvs" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "title": "Die Entschlüsselungsfunktion",
+    "file": "lektion-04.md",
+    "lessonSummary": "Verschlüsseln und Entschlüsseln – deine Vigenère-Chiffre funktioniert jetzt in beide Richtungen.",
+    "tasks": [
+      {
+        "instruction": "Definiere entschluesseln(text, schluesselwort) (wie in der Lektion erklärt: Verschiebung abziehen statt addieren) und gib entschluesseln('rejvs', 'key') aus.",
+        "codeTemplate": "def entschluesseln(text, schluesselwort):\n    ergebnis = \"\"\n    schluessel_index = 0\n    for zeichen in text:\n        if zeichen.isalpha():\n            start = ord('a')\n            position = ord(zeichen) - start\n            schluessel_buchstabe = schluesselwort[schluessel_index % len(schluesselwort)]\n            # dein Code hier\n            pass\n            schluessel_index = schluessel_index + 1\n        else:\n            ergebnis = ergebnis + zeichen\n    return ergebnis\n\n# dein Aufruf hier\n",
+        "validation": { "type": "output_contains", "expected": "hallo" }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "title": "Warum ist Vigenère schwerer zu knacken?",
+    "file": "lektion-05.md",
+    "lessonSummary": "Geschafft! Du hast dein zweites eigenes Verschlüsselungsprojekt gebaut – und verstanden, warum ein längeres Schlüsselwort echten Schutz bietet.",
+    "tasks": [
+      {
+        "instruction": "Der Geheimtext 'surmhnw' wurde mit einem einzelnen Buchstaben als Schlüsselwort verschlüsselt (das ist eigentlich nur eine Cäsar-Chiffre in Verkleidung). Probiere mit einer Schleife alle 26 Buchstaben als Schlüsselwort aus (so wie beim Cäsar-Knacker) und gib jedes Ergebnis aus. Eine Zeile ergibt ein echtes Wort!",
+        "codeTemplate": "def entschluesseln(text, schluesselwort):\n    ergebnis = \"\"\n    schluessel_index = 0\n    for zeichen in text:\n        if zeichen.isalpha():\n            start = ord('a')\n            position = ord(zeichen) - start\n            schluessel_buchstabe = schluesselwort[schluessel_index % len(schluesselwort)]\n            verschiebung = ord(schluessel_buchstabe) - start\n            neue_position = (position - verschiebung) % 26\n            ergebnis = ergebnis + chr(start + neue_position)\n            schluessel_index = schluessel_index + 1\n        else:\n            ergebnis = ergebnis + zeichen\n    return ergebnis\n\ngeheim = \"surmhnw\"\n# deine Schleife hier\n",
+        "validation": { "type": "output_contains", "expected": "projekt" }
+      }
+    ]
+  }
+]

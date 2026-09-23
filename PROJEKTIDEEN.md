@@ -8,10 +8,11 @@ in `todo.md`, das Format-/Track-Modell in `VISION.md`.
 **Engine:** 🐍 Python/Pyodide (synchron, kein Spiele-Loop) · 🟨 JS-Sandbox (Canvas/DOM, rAF möglich).
 **Alter:** Richtwert für die Zielgruppe.
 
-Schon umgesetzt (nicht mehr hier): Cäsar-Chiffre, Morsecode, Zahlen-Detektiv, JS-Spielewerkstatt.
+Schon umgesetzt (nicht mehr hier): Cäsar-Chiffre, Morsecode, Zahlen-Detektiv, JS-Spielewerkstatt,
+Vigenère-Chiffre.
 
 ## Empfohlene Reihenfolge (Vorschlag)
-1. Vigenère-Chiffre oder Passwort-Stärke-Checker (🐍, baut direkt auf Cäsar auf)
+1. ~~Vigenère-Chiffre~~ ✅ umgesetzt
 2. Snake (🟨, Sandbox kann Canvas + Loop schon)
 3. Text-Adventure (🐍, passt zu den Themen Abenteuer/Pferde/Sci-Fi)
 
@@ -47,7 +48,7 @@ Schon umgesetzt (nicht mehr hier): Cäsar-Chiffre, Morsecode, Zahlen-Detektiv, J
 - [ ] **Wolf, Ziege, Kohl** 🐍 — Zustandsraum-Rätsel per Programm lösen. Ab 11.
 
 ## 🔐 Krypto & Sicherheit
-- [ ] **Vigenère-Chiffre** 🐍 — Schlüsselwort, logischer Nachfolger von Cäsar. Ab 13.
+- [x] **Vigenère-Chiffre** 🐍 — Schlüsselwort, logischer Nachfolger von Cäsar. Ab 13.
 - [ ] **Passwort-Stärke-Checker** 🐍 — Brute-Force-Dauer, Rechnen mit Möglichkeiten. Ab 12.
 - [ ] **XOR-Geheimschrift** 🐍 — Bits verstehen, Ver-/Entschlüsseln mit derselben Funktion. Ab 15.
 - [ ] **Häufigkeitsanalyse** 🐍 — Cäsar-Nachricht ohne Schlüssel knacken. Ab 14.

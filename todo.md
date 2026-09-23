@@ -75,11 +75,14 @@ JavaScript-Spielewerkstatt (früher Punkt 1) ist bereits gemergt (Details in
 Die Infrastruktur dafür existiert bereits: generalisiertes `ProjectCourse.vue`, Projekte-Übersicht
 mit Filtern unter `/projekte`. Ein weiteres Projekt braucht nur noch einen Content-Ordner +
 `kurse.json`-Eintrag (siehe `INHALTE.md` §6), keine neue Komponente.
-- [ ] 2–3 weitere Projekt-Ideen ausarbeiten (Sprints im Cäsar-Chiffre-Stil, ~5 Lektionen) —
+- [x] Vigenère-Chiffre (`content/vigenere-chiffre`, 5 Lektionen, DE, `projekt-vigenere-chiffre`) —
+      baut direkt auf der Cäsar-Chiffre auf, Tests in `tests/projekte.spec.js` ergänzt/angepasst
+- [ ] 1–2 weitere Projekt-Ideen ausarbeiten (Sprints im Cäsar-Chiffre-Stil, ~5 Lektionen) —
       Ideen-Backlog mit ~40 Vorschlägen (Spiele, Web, KI, Logik, Krypto, Kreativ, Daten) samt
-      Reihenfolge-Empfehlung in `PROJEKTIDEEN.md`; beim Umsetzen dort abhaken
+      Reihenfolge-Empfehlung in `PROJEKTIDEEN.md` (empfohlen als Nächstes: Snake 🟨, danach
+      Text-Adventure 🐍); beim Umsetzen dort abhaken
 - [ ] Projektideen aus Einstufung ggf. hier ausbauen
-- [ ] DE (+ EN nach Bedarf)
+- [ ] DE (+ EN nach Bedarf) — Vigenère ist bewusst DE-first wie Morsecode/Zahlen-Detektiv
 - [ ] Smoke-Test → PR nach `main`
 
 ### 2. KI-Labor — Branch `kurs-ki-labor`

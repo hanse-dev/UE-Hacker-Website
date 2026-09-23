@@ -47,6 +47,18 @@
     "contentPath": "caesar-chiffre"
   },
   {
+    "id": "projekt-vigenere-chiffre",
+    "type": "projekt",
+    "language": "python",
+    "level": "fortgeschritten",
+    "tags": ["kryptografie", "knobelaufgabe"],
+    "title": "Projekt: Vigenère-Chiffre",
+    "title_en": "Project: Vigenère Cipher",
+    "description": "Der Nachfolger deiner Cäsar-Chiffre: Verschlüssle mit einem ganzen Schlüsselwort statt einer festen Verschiebung und verstehe, warum das jahrhundertelang als unknackbar galt. Baut auf dem Cäsar-Chiffre-Projekt auf.",
+    "description_en": "The successor to your Caesar cipher: encrypt with a whole keyword instead of a fixed shift, and understand why it was considered unbreakable for centuries. Builds on the Caesar cipher project.",
+    "contentPath": "vigenere-chiffre"
+  },
+  {
     "id": "projekt-morsecode",
     "type": "projekt",
     "language": "python",
