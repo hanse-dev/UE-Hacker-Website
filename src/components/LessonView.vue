@@ -69,14 +69,17 @@
 
       <div v-if="allTasksComplete" class="lesson-complete-box">
         <p class="lesson-summary">{{ lessonSummary }}</p>
-        <router-link
-          v-if="lesson.nextCourseId"
-          :to="'/kurs/' + lesson.nextCourseId"
-          class="btn-next"
-        >
-          {{ t('lesson.goToWeeklyCourse') }}
-        </router-link>
-        <button v-else @click="goToNext" class="btn-next">{{ t('lesson.nextLesson') }}</button>
+        <ProjectCompletionBox v-if="isProjectCourse && isLastLesson" :next-course-id="lesson.nextCourseId" />
+        <template v-else>
+          <router-link
+            v-if="lesson.nextCourseId"
+            :to="'/kurs/' + lesson.nextCourseId"
+            class="btn-next"
+          >
+            {{ t('lesson.goToWeeklyCourse') }}
+          </router-link>
+          <button v-else @click="goToNext" class="btn-next">{{ t('lesson.nextLesson') }}</button>
+        </template>
       </div>
 
       <div v-if="kernelStatus" class="kernel-status">
@@ -94,9 +97,11 @@ import { useLanguage } from '../composables/useLanguage';
 import { validateOutput, missingCodeParts } from '../composables/useTaskValidation';
 import { useLessonContent } from '../composables/useLessonContent';
 import { loadSavedCode, saveLessonCode } from '../composables/useSavedCode';
+import ProjectCompletionBox from './ProjectCompletionBox.vue';
 
 export default {
   name: 'LessonView',
+  components: { ProjectCompletionBox },
   props: {
     lesson: {
       type: Object,
@@ -113,6 +118,17 @@ export default {
     courseId: {
       type: String,
       default: 'python-grundlagen-interaktiv',
+    },
+    // true nur bei ProjectCourse.vue (Projekt-Kurse) - steuert, ob am Ende der letzten Lektion
+    // ProjectCompletionBox (Abzeichen-Hinweis + zurueck zu /projekte) statt des generischen
+    // "Weiter"-Buttons erscheint.
+    isProjectCourse: {
+      type: Boolean,
+      default: false,
+    },
+    isLastLesson: {
+      type: Boolean,
+      default: false,
     },
   },
   emits: ['completed', 'next'],

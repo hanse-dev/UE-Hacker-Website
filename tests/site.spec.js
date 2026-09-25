@@ -189,6 +189,56 @@ test.describe('Cäsar-Chiffre-Projekt', () => {
     await expect(page.locator('.lesson-item.completed')).toHaveCount(1);
     await expect(page.locator('.lesson-item').nth(1)).not.toHaveClass(/locked/);
   });
+
+  test('Letzte Lektion abschließen zeigt Abzeichen-Hinweis und Link zu weiteren Projekten', async ({ page }) => {
+    test.setTimeout(60000);
+    // Lektion 1-4 schon erledigt (direkt im Fortschritts-Storage), damit nur die letzte Lektion
+    // geloest werden muss - spart 4 Kernel-Checks pro Testlauf.
+    await page.addInitScript(() => {
+      localStorage.setItem(
+        'ue-hacker-interactive-progress-caesar-chiffre',
+        JSON.stringify({
+          version: 1,
+          courseId: 'projekt-caesar-chiffre',
+          variant: 'caesar-chiffre',
+          completedLessonIds: ['lektion-01', 'lektion-02', 'lektion-03', 'lektion-04'],
+        })
+      );
+    });
+    await page.goto('/kurs/projekt-caesar-chiffre');
+    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(5, { timeout: 15000 });
+    await page.locator('.lesson-item').nth(4).click();
+    await expect(page.locator('.task-block')).toHaveCount(1, { timeout: 10000 });
+
+    await startKernel(page);
+    await expect(page.locator('.btn-check').first()).toBeEnabled({ timeout: 40000 });
+
+    const task = page.locator('.task-block').first();
+    await task.locator('.code-editor').fill(
+      'def verschluesseln(text, verschiebung):\n' +
+      '    ergebnis = ""\n' +
+      '    for zeichen in text:\n' +
+      '        if zeichen.isalpha():\n' +
+      "            start = ord('a')\n" +
+      '            position = ord(zeichen) - start\n' +
+      '            neue_position = (position + verschiebung) % 26\n' +
+      '            ergebnis = ergebnis + chr(start + neue_position)\n' +
+      '        else:\n' +
+      '            ergebnis = ergebnis + zeichen\n' +
+      '    return ergebnis\n\n' +
+      'def entschluesseln(text, verschiebung):\n' +
+      '    return verschluesseln(text, -verschiebung)\n\n' +
+      'geheimtext = "uwtojpy"\n' +
+      'for versuch in range(26):\n' +
+      '    print(entschluesseln(geheimtext, versuch))'
+    );
+    await task.locator('.btn-check').click();
+    await expect(task.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+
+    await expect(page.locator('.project-completion')).toBeVisible();
+    await expect(page.locator('.completion-badge-hint')).toContainText('Abzeichen');
+    await expect(page.locator('a.btn-next[href="/projekte"]')).toBeVisible();
+  });
 });
 
 test.describe('Weitere Kursseiten', () => {

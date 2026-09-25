@@ -266,6 +266,9 @@ export default {
   'lesson.hintSoft':          'Not quite yet — check the output above and compare it with the task.',
   'lesson.hintStructure':     'The output is right – but the task asks you to use {items} in your code.',
   'lesson.hintExpected':      'Output doesn\'t match yet. Expected something containing: "{expected}"',
+  'lesson.viewBadge':         'Your badge is waiting in your profile!',
+  'lesson.loginForBadge':     'Log in to earn a badge for this project.',
+  'lesson.moreProjects':      'Discover more projects',
 
   // ── JS sandbox lesson (JsLessonView.vue + JsSandboxFrame.vue) ────────────
   'jsLesson.editorHint':   'Your code runs in its own sandboxed area. First look at the example and run it – then it\'s your turn. Every click on "Run"/"Check" starts fresh.',

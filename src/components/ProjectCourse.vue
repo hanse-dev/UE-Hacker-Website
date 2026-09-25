@@ -61,6 +61,8 @@
           :content-path="contentPath"
           :variant="contentPath"
           :course-id="courseId"
+          :is-project-course="true"
+          :is-last-lesson="isLastLesson"
           @completed="onLessonCompleted"
         />
         <JsLessonView
@@ -70,6 +72,8 @@
           :variant="contentPath"
           :course-id="courseId"
           :show-canvas="showCanvas"
+          :is-project-course="true"
+          :is-last-lesson="isLastLesson"
           @completed="onLessonCompleted"
         />
       </main>
@@ -116,6 +120,10 @@ export default {
 
     const currentLesson = computed(() =>
       lessons.value.find((l) => l.id === currentLessonId.value) || lessons.value[0]
+    );
+
+    const isLastLesson = computed(() =>
+      lessons.value.length > 0 && currentIndex.value === lessons.value.length - 1
     );
 
     const progressPercent = computed(() => {
@@ -210,6 +218,7 @@ export default {
       mainEl,
       currentLesson,
       currentIndex,
+      isLastLesson,
       progressPercent,
       completedCount,
       isCompleted,
