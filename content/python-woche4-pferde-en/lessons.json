@@ -510,6 +510,18 @@
           "type": "output_contains",
           "expected": "Laps left: 3\nLaps left: 2\nLaps left: 1\nFinish reached!"
         }
+      },
+      {
+        "instruction": "Step 5 – Feeding check: Use a while loop to repeatedly ask for the amount of hay in kg (input(), convert with int()) until an amount of at least 2 kg is entered. On too little hay print Not enough hay!, afterwards print exactly Feeding: 3 kg. (When checking, 1 and then 3 are entered automatically.)",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Not enough hay!\nFeeding: 3 kg",
+          "stdin": [
+            "1",
+            "3"
+          ]
+        }
       }
     ]
   }

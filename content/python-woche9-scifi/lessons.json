@@ -501,6 +501,17 @@
           "type": "output_contains",
           "expected": "1: Tag 42 Signal empfangen\n2: Tag 42 Sonde gestartet\n3: Tag 42 Hülle repariert"
         }
+      },
+      {
+        "instruction": "Schritt 4 – Eigener Eintrag: datum und tagebuch.txt sind wie in Schritt 2 vorgegeben (drei Zeilen). Frage mit input() nach einem neuen Eintrag, hänge ihn mit \"a\" als datum + \" \" + Eintrag an tagebuch.txt an und gib danach genau Einträge: 4 aus. (Beim Prüfen wird automatisch Kurs korrigiert eingegeben.)",
+        "codeTemplate": "datum = \"Tag 42\"\nwith open(\"tagebuch.txt\", \"w\") as f:\n    f.write(datum + \" Signal empfangen\\n\")\n    f.write(datum + \" Sonde gestartet\\n\")\n    f.write(datum + \" Hülle repariert\\n\")\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Einträge: 4",
+          "stdin": [
+            "Kurs korrigiert"
+          ]
+        }
       }
     ]
   },

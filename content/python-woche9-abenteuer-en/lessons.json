@@ -500,6 +500,17 @@
           "type": "output_contains",
           "expected": "1: Mar 15 Entered the dragon cave\n2: Mar 15 Found the gold crown\n3: Mar 15 Defeated the troll"
         }
+      },
+      {
+        "instruction": "Step 4 – Your own entry: date and diary.txt are given as in Step 2 (three lines). Use input() to ask for a new entry, append it with \"a\" as date + \" \" + entry to diary.txt, and afterwards print exactly Entries: 4. (When checking, Found a treasure is entered automatically.)",
+        "codeTemplate": "date = \"Mar 15\"\nwith open(\"diary.txt\", \"w\") as f:\n    f.write(date + \" Entered the dragon cave\\n\")\n    f.write(date + \" Found the gold crown\\n\")\n    f.write(date + \" Defeated the troll\\n\")\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Entries: 4",
+          "stdin": [
+            "Found a treasure"
+          ]
+        }
       }
     ]
   },
