@@ -90,9 +90,9 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
   test('Woche 1 anklicken öffnet die Wochen-Tour, "Andere Woche wählen" führt zurück', async ({ page }) => {
     await page.goto('/kurs/ki-labor');
     await page.locator('.week-tile').nth(0).click();
-    // 7 Lektionen (5 Lektion + Debug + Mission) + 1 Check-Punkt, da content/ki-labor-checks/
-    // week-1.json existiert (hasCheck=true).
-    await expect(page.locator('.stepper-step')).toHaveCount(8, { timeout: 15000 });
+    // 10 Lektionen (5 Lektion + Debug + Mission + 3 Extra-Herausforderung) + 1 Check-Punkt, da
+    // content/ki-labor-checks/week-1.json existiert (hasCheck=true).
+    await expect(page.locator('.stepper-step')).toHaveCount(11, { timeout: 15000 });
     await expect(page.locator('.tour-breadcrumb')).toContainText('Woche 1');
 
     await page.locator('.breadcrumb-back').click();
@@ -100,17 +100,18 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
     await expect(page.locator('.stepper-step')).toHaveCount(0);
   });
 
-  test('Deep-Link ?week=1 öffnet direkt die Wochen-Tour, gruppierte Kullern Lektion/Debug/Mission/Check', async ({ page }) => {
+  test('Deep-Link ?week=1 öffnet direkt die Wochen-Tour, gruppierte Kullern Lektion/Debug/Mission/Extra-Herausforderung/Check', async ({ page }) => {
     await page.goto('/kurs/ki-labor?week=1');
-    await expect(page.locator('.stepper-step')).toHaveCount(8, { timeout: 15000 });
+    await expect(page.locator('.stepper-step')).toHaveCount(11, { timeout: 15000 });
     await expect(page.locator('.tour-breadcrumb')).toContainText('Woche 1');
     await expect(page.locator('.tour-breadcrumb')).toContainText('Was ist KI?');
 
     const groupLabels = page.locator('.stepper-group-label');
-    await expect(groupLabels).toHaveCount(4);
+    await expect(groupLabels).toHaveCount(5);
     await expect(groupLabels.nth(0)).toHaveText(/lektion/i);
     await expect(groupLabels.nth(1)).toHaveText(/debug/i);
     await expect(groupLabels.nth(2)).toHaveText(/mission/i);
+    await expect(groupLabels.nth(3)).toHaveText(/extra-herausforderung/i);
     await expect(page.locator('[data-open-check]')).toBeVisible();
   });
 
@@ -237,8 +238,56 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
     await expect(page.locator('.progress-count')).toContainText('7 abgeschlossen');
     await expect(page.locator('.lesson-complete-box')).toBeVisible();
 
-    // Letzte Lektion (Mission) abgeschlossen, kein Boss-Abschnitt -> "Weiter" springt direkt
-    // zum Wochen-Check statt zu einer Wahl-Seite (siehe JsCourseTour.vue onLessonCompleted).
+    // Mission abgeschlossen, danach folgt ein Boss-Abschnitt (Extra-Herausforderung) UND ein
+    // Check -> "Weiter" zeigt eine Wahl-Seite statt direkt zum Check zu springen.
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.branch-choice-page')).toBeVisible();
+    await page.locator('[data-branch="check"]').click();
+    await expect(page.locator('.week-check-panel')).toBeVisible({ timeout: 15000 });
+  });
+
+  test('Extra-Herausforderung: Wahl-Seite führt zu den 3 Boss-Lektionen, alle 3 loesen schaltet den Check frei', async ({ page }) => {
+    test.setTimeout(60000);
+    await page.addInitScript((key) => {
+      localStorage.setItem(key, JSON.stringify({
+        version: 1,
+        completedLessonIds: ['lektion-01', 'lektion-02', 'lektion-03', 'lektion-04', 'lektion-05', 'debug-01'],
+      }));
+    }, PROGRESS_KEY);
+    await page.goto('/kurs/ki-labor?week=1');
+    // Mission (noch nicht abgeschlossen) frisch lösen, das triggert onLessonCompleted -> Wahl-Seite.
+    await page.locator('.stepper-step').nth(6).click();
+    await initKernel(page);
+    await solve(page, [
+      'def temperatur_gefuehl(temperatur):\n    if temperatur > 25:\n        return "heiß"\n    elif temperatur < 5:\n        return "kalt"\n    else:\n        return "mild"\n\nprint(f"Gefühl: {temperatur_gefuehl(30)}")\nprint(f"Gefühl: {temperatur_gefuehl(2)}")',
+      'def kleidungs_tipp(temperatur, regen):\n    if regen:\n        return "Regenjacke"\n    elif temperatur > 25:\n        return "T-Shirt"\n    elif temperatur < 5:\n        return "Winterjacke"\n    else:\n        return "Pullover"\n\nprint(f"Tipp: {kleidungs_tipp(30, False)}")\nprint(f"Tipp: {kleidungs_tipp(2, True)}")',
+      'def temperatur_gefuehl(temperatur):\n    if temperatur > 25:\n        return "heiß"\n    elif temperatur < 5:\n        return "kalt"\n    else:\n        return "mild"\n\ndef kleidungs_tipp(temperatur, regen):\n    if regen:\n        return "Regenjacke"\n    elif temperatur > 25:\n        return "T-Shirt"\n    elif temperatur < 5:\n        return "Winterjacke"\n    else:\n        return "Pullover"\n\ndef wetterbericht(temperatur, regen):\n    gefuehl = temperatur_gefuehl(temperatur)\n    tipp = kleidungs_tipp(temperatur, regen)\n    return f"Es ist {gefuehl}. Trage: {tipp}"\n\nprint(wetterbericht(30, False))\nprint(wetterbericht(2, True))',
+    ]);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.branch-choice-page')).toBeVisible();
+    await page.locator('[data-branch="boss"]').click();
+
+    await solve(page, [
+      'def note(punkte):\n    if punkte >= 90:\n        return "A"\n    elif punkte >= 75:\n        return "B"\n    elif punkte >= 60:\n        return "C"\n    elif punkte >= 40:\n        return "D"\n    else:\n        return "F"\n\nprint(note(95))\nprint(note(65))\nprint(note(10))',
+      'def note(punkte):\n    if punkte >= 90:\n        return "A"\n    elif punkte >= 75:\n        return "B"\n    elif punkte >= 60:\n        return "C"\n    elif punkte >= 40:\n        return "D"\n    else:\n        return "F"\n\ndef bestehensquote(punkte_liste):\n    bestanden = 0\n    for punkte in punkte_liste:\n        if note(punkte) != "F":\n            bestanden += 1\n    return round(bestanden / len(punkte_liste) * 100)\n\nprint(bestehensquote([95, 65, 10, 80]))',
+      'def note(punkte):\n    if punkte >= 90:\n        return "A"\n    elif punkte >= 75:\n        return "B"\n    elif punkte >= 60:\n        return "C"\n    elif punkte >= 40:\n        return "D"\n    else:\n        return "F"\n\ndef bestehensquote(punkte_liste):\n    bestanden = 0\n    for punkte in punkte_liste:\n        if note(punkte) != "F":\n            bestanden += 1\n    return round(bestanden / len(punkte_liste) * 100)\n\ndef zusammenfassung(punkte, punkte_liste):\n    eigene_note = note(punkte)\n    quote = bestehensquote(punkte_liste)\n    return f"Note: {eigene_note}, Klasse bestanden: {quote}%"\n\nprint(zusammenfassung(95, [95, 65, 10, 80]))',
+    ]);
+    await page.locator('.btn-next').click();
+
+    await solve(page, [
+      'beispiele = [("hund", "Tier"), ("katze", "Tier"), ("spinne", "Tier"), ("rose", "Pflanze"), ("baum", "Pflanze")]\n\ndef finde_antwort(frage, beispiele):\n    for eingabe, antwort in beispiele:\n        if eingabe == frage:\n            return antwort\n    return "unbekannt"\n\nprint(finde_antwort("hund", beispiele))\nprint(finde_antwort("stein", beispiele))',
+      'beispiele = [("hund", "Tier"), ("katze", "Tier"), ("spinne", "Tier"), ("rose", "Pflanze"), ("baum", "Pflanze")]\n\ndef zaehle_kategorie(beispiele, kategorie):\n    anzahl = 0\n    for eingabe, antwort in beispiele:\n        if antwort == kategorie:\n            anzahl += 1\n    return anzahl\n\nprint(zaehle_kategorie(beispiele, "Tier"))\nprint(zaehle_kategorie(beispiele, "Pflanze"))',
+      'beispiele = [("hund", "Tier"), ("katze", "Tier"), ("spinne", "Tier"), ("rose", "Pflanze"), ("baum", "Pflanze")]\n\ndef zaehle_kategorie(beispiele, kategorie):\n    anzahl = 0\n    for eingabe, antwort in beispiele:\n        if antwort == kategorie:\n            anzahl += 1\n    return anzahl\n\ndef haeufigste_kategorie(beispiele):\n    kategorien = set(antwort for _, antwort in beispiele)\n    beste = None\n    bester_wert = -1\n    for kategorie in kategorien:\n        anzahl = zaehle_kategorie(beispiele, kategorie)\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste = kategorie\n    return beste\n\nprint(haeufigste_kategorie(beispiele))',
+    ]);
+    await page.locator('.btn-next').click();
+
+    await solve(page, [
+      'modell = {"hund": "Tier", "katze": "Tier", "rose": "Pflanze", "baum": "Pflanze"}\n\ndef vorhersage_sicherheit(modell, eingabe):\n    if eingabe in modell:\n        return f"Sicher: {modell[eingabe]}"\n    else:\n        return "Unsicher: unbekannt"\n\nprint(vorhersage_sicherheit(modell, "hund"))\nprint(vorhersage_sicherheit(modell, "vogel"))',
+      'modell = {"hund": "Tier", "katze": "Tier", "rose": "Pflanze", "baum": "Pflanze"}\n\ndef teste_modell(modell, testfaelle):\n    richtig = 0\n    for eingabe, erwartet in testfaelle:\n        if modell.get(eingabe, "unbekannt") == erwartet:\n            richtig += 1\n    return richtig\n\nprint(teste_modell(modell, [("hund", "Tier"), ("rose", "Pflanze"), ("vogel", "Tier")]))',
+      'modell = {"hund": "Tier", "katze": "Tier", "rose": "Pflanze", "baum": "Pflanze"}\n\ndef teste_modell(modell, testfaelle):\n    richtig = 0\n    for eingabe, erwartet in testfaelle:\n        if modell.get(eingabe, "unbekannt") == erwartet:\n            richtig += 1\n    return richtig\n\ndef genauigkeit(modell, testfaelle):\n    richtig = teste_modell(modell, testfaelle)\n    prozent = round(richtig / len(testfaelle) * 100)\n    return f"Genauigkeit: {prozent}%"\n\nprint(genauigkeit(modell, [("hund", "Tier"), ("rose", "Pflanze"), ("vogel", "Tier")]))',
+    ]);
+    // Letzte Lektion (boss-03) abgeschlossen, kein weiterer Boss -> "Weiter" springt direkt zum
+    // Wochen-Check (kein Mission->Boss-Uebergang mehr, also keine erneute Wahl-Seite).
     await page.locator('.btn-next').click();
     await expect(page.locator('.week-check-panel')).toBeVisible({ timeout: 15000 });
   });

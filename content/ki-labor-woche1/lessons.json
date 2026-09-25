@@ -189,5 +189,113 @@
         }
       }
     ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Der Noten-Rechner",
+    "file": "boss-01.md",
+    "lessonSummary": "Starke Leistung! Dein Regel-System berechnet jetzt sogar eine Klassen-Statistik.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Noten: Schreibe eine Funktion note(punkte), die 'A' zurückgibt ab 90 Punkten, 'B' ab 75, 'C' ab 60, 'D' ab 40, sonst 'F'. Gib damit genau A (für 95), C (für 65) und F (für 10) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "A\nC\nF",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Bestehensquote: Schreibe eine Funktion bestehensquote(punkte_liste), die mit note() aus Schritt 1 (erneut schreiben) zählt, wie viele Ergebnisse nicht 'F' sind, und den Anteil in Prozent (gerundet mit round()) zurückgibt. Gib damit genau 75 aus für [95, 65, 10, 80].",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "75",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Zusammenfassung: Schreibe eine Funktion zusammenfassung(punkte, punkte_liste), die note() und bestehensquote() (beide erneut schreiben) benutzt und den Text 'Note: <note>, Klasse bestanden: <quote>%' zurückgibt. Gib damit genau Note: A, Klasse bestanden: 75% aus, für punkte=95 und punkte_liste=[95, 65, 10, 80].",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Note: A, Klasse bestanden: 75%",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Der Beispiel-Sammler",
+    "file": "boss-02.md",
+    "lessonSummary": "Stark! Du hast jetzt einen kleinen Kategorien-Zähler auf deiner Beispiel-Liste gebaut.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Sammlung: Erstelle eine Liste beispiele mit den 5 Paaren ('hund', 'Tier'), ('katze', 'Tier'), ('spinne', 'Tier'), ('rose', 'Pflanze'), ('baum', 'Pflanze'). Schreibe die Funktion finde_antwort(frage, beispiele) aus Lektion 3 erneut. Gib damit genau Tier (für 'hund') und danach unbekannt (für 'stein') aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Tier\nunbekannt",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Zählen: Schreibe eine Funktion zaehle_kategorie(beispiele, kategorie), die zählt, wie viele Einträge in beispiele die gegebene Kategorie als zweites Element haben. Gib damit genau 3 (für 'Tier') und danach 2 (für 'Pflanze') aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "3\n2",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Häufigste Kategorie: Schreibe eine Funktion haeufigste_kategorie(beispiele), die mit zaehle_kategorie() (erneut schreiben) herausfindet, welche Kategorie am häufigsten vorkommt, und sie zurückgibt. Gib damit genau Tier aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Tier",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Der Vorhersage-Tester",
+    "file": "boss-03.md",
+    "lessonSummary": "Sehr stark! Du hast jetzt gemessen, wie genau ein Modell auf echten Testfällen wirklich ist.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Modell: Erstelle ein Dictionary modell mit 'hund': 'Tier', 'katze': 'Tier', 'rose': 'Pflanze', 'baum': 'Pflanze'. Schreibe die Funktion vorhersage_sicherheit(modell, eingabe) aus Lektion 5 erneut. Gib damit genau Sicher: Tier (für 'hund') und danach Unsicher: unbekannt (für 'vogel') aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sicher: Tier\nUnsicher: unbekannt",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Testen: Schreibe eine Funktion teste_modell(modell, testfaelle), wobei testfaelle eine Liste aus (eingabe, erwartete_antwort)-Paaren ist. Zähle mit modell.get(eingabe, 'unbekannt'), wie viele Vorhersagen mit der erwarteten Antwort übereinstimmen, und gib die Anzahl zurück. Gib damit genau 2 aus für testfaelle = [('hund', 'Tier'), ('rose', 'Pflanze'), ('vogel', 'Tier')].",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "2",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Genauigkeit: Schreibe eine Funktion genauigkeit(modell, testfaelle), die teste_modell() (erneut schreiben) benutzt und den Text 'Genauigkeit: <prozent>%' zurückgibt (Prozent gerundet mit round()). Gib damit genau Genauigkeit: 67% aus, für dasselbe modell und dieselben testfaelle wie in Schritt 2.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Genauigkeit: 67%",
+          "codeContains": ["def"]
+        }
+      }
+    ]
   }
 ]

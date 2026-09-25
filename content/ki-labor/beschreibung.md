@@ -18,8 +18,10 @@ Funktionen, Listen und Dictionaries umgehen können.
 
 - **8 Wochen** – jede Woche hat ein klares Thema: von "Was ist KI?" über nächste Nachbarn,
   Entscheidungsbäume und neuronale Netze bis zu Grenzen und Ethik.
-- **Lektion → Debug → Mission** – jede Woche startet mit Beispielen zum Ausprobieren, gefolgt von
-  Fehlersuche-Aufgaben und einer eigenständigen Mission ohne Vorlage.
+- **Lektion → Debug → Mission → Extra-Herausforderung → Wochen-Check** – jede Woche startet mit
+  Beispielen zum Ausprobieren, gefolgt von Fehlersuche-Aufgaben, einer eigenständigen Mission ohne
+  Vorlage, einer freiwilligen schwereren Extra-Herausforderung und einem Quiz+Coding-Check, der
+  dir ein Wochen-Zertifikat einbringt.
 - **Wochen frei wählbar** – kein Zwang, der Reihe nach vorzugehen. Innerhalb einer Woche schalten
   sich die Lektionen nacheinander frei.
 - **Keine zusätzlichen Bibliotheken** – dein Code läuft direkt im Browser (Pyodide), ohne
