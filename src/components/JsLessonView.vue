@@ -55,14 +55,17 @@
 
       <div v-if="allTasksComplete" class="lesson-complete-box">
         <p class="lesson-summary">{{ lessonSummary }}</p>
-        <router-link
-          v-if="lesson.nextCourseId"
-          :to="'/kurs/' + lesson.nextCourseId"
-          class="btn-next"
-        >
-          {{ t('lesson.goToWeeklyCourse') }}
-        </router-link>
-        <button v-else @click="goToNext" class="btn-next">{{ t('lesson.nextLesson') }}</button>
+        <ProjectCompletionBox v-if="isProjectCourse && isLastLesson" :next-course-id="lesson.nextCourseId" />
+        <template v-else>
+          <router-link
+            v-if="lesson.nextCourseId"
+            :to="'/kurs/' + lesson.nextCourseId"
+            class="btn-next"
+          >
+            {{ t('lesson.goToWeeklyCourse') }}
+          </router-link>
+          <button v-else @click="goToNext" class="btn-next">{{ t('lesson.nextLesson') }}</button>
+        </template>
       </div>
     </div>
   </div>
@@ -76,10 +79,11 @@ import { useInteractiveProgress } from '../composables/useInteractiveProgress';
 import { useLanguage } from '../composables/useLanguage';
 import { validateOutput } from '../composables/useTaskValidation';
 import { useLessonContent } from '../composables/useLessonContent';
+import ProjectCompletionBox from './ProjectCompletionBox.vue';
 
 export default {
   name: 'JsLessonView',
-  components: { JsSandboxFrame, JsCodeCell },
+  components: { JsSandboxFrame, JsCodeCell, ProjectCompletionBox },
   props: {
     lesson: { type: Object, required: true },
     contentPath: { type: String, required: true },
@@ -87,6 +91,11 @@ export default {
     courseId: { type: String, default: 'python-grundlagen-interaktiv' },
     showCanvas: { type: Boolean, default: true },
     domMode: { type: Boolean, default: false },
+    // true nur bei ProjectCourse.vue (Projekt-Kurse) - steuert, ob am Ende der letzten Lektion
+    // ProjectCompletionBox (Abzeichen-Hinweis + zurueck zu /projekte) statt des generischen
+    // "Weiter"-Buttons erscheint.
+    isProjectCourse: { type: Boolean, default: false },
+    isLastLesson: { type: Boolean, default: false },
   },
   emits: ['completed', 'next'],
   setup(props, { emit }) {

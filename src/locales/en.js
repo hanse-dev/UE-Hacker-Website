@@ -268,6 +268,9 @@ export default {
   'lesson.hintExpected':      'Output doesn\'t match yet. Expected something containing: "{expected}"',
   'lesson.showSolution':      'Show solution',
   'lesson.solutionLabel':     'Solution:',
+  'lesson.viewBadge':         'Your badge is waiting in your profile!',
+  'lesson.loginForBadge':     'Log in to earn a badge for this project.',
+  'lesson.moreProjects':      'Discover more projects',
 
   // ── JS sandbox lesson (JsLessonView.vue + JsSandboxFrame.vue) ────────────
   'jsLesson.editorHint':   'Your code runs in its own sandboxed area. First look at the example and run it – then it\'s your turn. Every click on "Run"/"Check" starts fresh.',

@@ -268,6 +268,9 @@ export default {
   'lesson.hintExpected':      'Die Ausgabe stimmt noch nicht. Erwartet wurde etwas mit: "{expected}"',
   'lesson.showSolution':      'Lösung anzeigen',
   'lesson.solutionLabel':     'Lösung:',
+  'lesson.viewBadge':         'Dein Abzeichen wartet in deinem Profil!',
+  'lesson.loginForBadge':     'Melde dich an, um ein Abzeichen für dieses Projekt zu bekommen.',
+  'lesson.moreProjects':      'Weitere Projekte entdecken',
 
   // ── JS-Sandbox-Lektion (JsLessonView.vue + JsSandboxFrame.vue) ───────────
   'jsLesson.editorHint':   'Dein Code läuft in einem eigenen, abgeschotteten Bereich. Schau dir zuerst das Beispiel an und führe es aus – danach bist du an der Reihe. Jeder Klick auf „Ausführen"/„Prüfen" startet frisch neu.',
