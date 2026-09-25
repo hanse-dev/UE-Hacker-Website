@@ -28,4 +28,4 @@ fi
 echo ""
 echo "Fertig. Als nächstes:"
 echo "  cp $DIR/.env.example $DIR/.env   # und ausfüllen"
-echo "  $VENV_DIR/bin/python3 $DIR/create-account-printout.py <benutzername> kinder"
+echo "  python3 $DIR/create-account-printout.py <benutzername> kinder   # startet sich selbst im venv neu"

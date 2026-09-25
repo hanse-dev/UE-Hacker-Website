@@ -7,6 +7,7 @@ Setup: siehe scripts/local-tools/README.md
 import argparse
 import getpass
 import json
+import os
 import secrets
 import subprocess
 import sys
@@ -19,6 +20,22 @@ from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 VENDOR_MXW01 = SCRIPT_DIR / "vendor" / "mxw01" / "MXW01print.py"
+VENV_PYTHON = SCRIPT_DIR / "venv" / "bin" / "python3"
+
+
+def reexec_in_venv() -> None:
+    """Startet das Skript im venv (Pillow/bleak/matplotlib) neu, falls es gerade unter
+    einem anderen Interpreter läuft — verhindert 'ModuleNotFoundError: PIL', egal ob
+    mit python3 oder venv/bin/python3 aufgerufen.
+
+    venv/bin/python3 ist meist nur ein Symlink auf den System-Interpreter — .resolve()
+    würde also beide als identisch behandeln. sys.prefix zeigt dagegen zuverlässig auf
+    den venv-Ordner, sobald man tatsächlich über venv/bin/python3 gestartet wurde."""
+    if not VENV_PYTHON.exists():
+        return
+    if sys.prefix == str(VENV_PYTHON.parent.parent):
+        return
+    os.execv(str(VENV_PYTHON), [str(VENV_PYTHON), str(Path(__file__).resolve()), *sys.argv[1:]])
 
 # Kurze, eindeutige deutsche Wörter für Passwörter (keine Umlaute/ß, damit sie sich leicht
 # abtippen lassen) — bewusst klein gehalten, nicht als vollständige Wortliste gedacht.
@@ -185,6 +202,8 @@ def print_receipt(image_path: Path, printer_address: str) -> None:
 
 
 def main() -> None:
+    reexec_in_venv()
+
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("username", help="Gewünschter Benutzername (2-40 Zeichen, a-z/A-Z/0-9/._-)")
     parser.add_argument("age_group", choices=["kinder", "jugendliche"], help="Altersgruppe")

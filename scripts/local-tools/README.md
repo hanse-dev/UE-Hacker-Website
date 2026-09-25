@@ -16,8 +16,9 @@ cp .env.example .env
 ```
 
 `setup-printer-tool.sh` legt ein eigenes virtuelles Environment (`venv/`) an, weil macOS/Homebrew-
-Python systemweite `pip install`s verweigert (PEP 668, `externally-managed-environment`). Das
-Skript danach immer über `venv/bin/python3` starten, nicht über das System-`python3`.
+Python systemweite `pip install`s verweigert (PEP 668, `externally-managed-environment`).
+`create-account-printout.py` startet sich beim Aufruf automatisch im `venv/` neu, falls es
+vorhanden ist — egal ob man es mit `python3` oder `venv/bin/python3` aufruft.
 
 Bluetooth-MAC-Adresse des Druckers finden: Systemeinstellungen/Bluetooth-Scanner oder eine
 BLE-Scanner-App, Gerät heißt "MX01W". Details siehe `vendor/mxw01/README.md` nach dem Setup.
@@ -29,7 +30,7 @@ LICENSE-Datei im Original-Repo, daher nicht mit committen; `venv/` ist wie übli
 ## Benutzung
 
 ```bash
-venv/bin/python3 create-account-printout.py <benutzername> kinder      # oder: jugendliche
+python3 create-account-printout.py <benutzername> kinder      # oder: jugendliche
 ```
 
 Fragt nach dem Admin-Passwort (falls nicht in `.env` gesetzt), legt den Account über
