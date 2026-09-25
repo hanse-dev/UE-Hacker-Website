@@ -15,6 +15,8 @@ else
   echo "MXW01-Tool liegt schon unter $VENDOR_DIR — überspringe Klonen."
 fi
 
+python3 "$DIR/patch-mxw01.py"
+
 if [ ! -d "$VENV_DIR" ]; then
   # macOS/Homebrew-Python verweigert systemweite pip-Installs (PEP 668) — daher venv
   python3 -m venv "$VENV_DIR"

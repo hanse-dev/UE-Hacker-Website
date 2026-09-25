@@ -181,7 +181,7 @@ def build_receipt_image(username: str, password: str, server_url: str) -> Path:
                 x = frame_left + padding + max(0, (inner_width - text_w) // 2)
             else:
                 x = frame_left + padding
-            draw.text((x, y), text, font=f, fill=0)
+            draw.text((x, y), text, font=f, fill=0, stroke_width=1, stroke_fill=0)
         y += h
 
     out_path = Path(tempfile.mkstemp(suffix=".png")[1])

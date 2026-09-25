@@ -20,8 +20,17 @@ Python systemweite `pip install`s verweigert (PEP 668, `externally-managed-envir
 `create-account-printout.py` startet sich beim Aufruf automatisch im `venv/` neu, falls es
 vorhanden ist — egal ob man es mit `python3` oder `venv/bin/python3` aufruft.
 
-Bluetooth-MAC-Adresse des Druckers finden: Systemeinstellungen/Bluetooth-Scanner oder eine
-BLE-Scanner-App, Gerät heißt "MX01W". Details siehe `vendor/mxw01/README.md` nach dem Setup.
+`setup-printer-tool.sh` patcht das geklonte MXW01-Tool außerdem automatisch (`patch-mxw01.py`):
+Ohne Pause zwischen den kleinen Daten-Häppchen beim Senden verwirft macOS (CoreBluetooth) Bluetooth-
+Writes stillschweigend — der Drucker verbindet sich zwar, druckt/fördert aber nichts und sendet auch
+keine Fehlermeldung, nur ein stilles Timeout ("Warning: AA notification not received"). Falls
+`vendor/` schon vor diesem Fix angelegt wurde: `python3 patch-mxw01.py` einmal manuell nachholen.
+
+Drucker-Adresse finden: `python3 scan-bluetooth.py` (Drucker muss an/wach sein, Gerätename
+"MXW01"). **Auf macOS ist das keine echte Bluetooth-MAC**, sondern eine app-spezifische
+CoreBluetooth-UUID (z.B. `A652E1F0-...`) — CoreBluetooth gibt aus Datenschutzgründen keine echten
+MAC-Adressen heraus. Die "echte" MAC (z.B. von der Verpackung oder einer Handy-App) funktioniert
+auf macOS nicht mit `bleak`. Details siehe `vendor/mxw01/README.md` nach dem Setup.
 
 `vendor/` und `venv/` werden von `.gitignore` ausgeschlossen (das MXW01-Tool hat keine
 LICENSE-Datei im Original-Repo, daher nicht mit committen; `venv/` ist wie üblich lokal).
