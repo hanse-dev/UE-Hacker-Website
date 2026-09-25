@@ -1,0 +1,313 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Der Abstand zwischen zwei Zahlen",
+    "file": "lektion-01.md",
+    "lessonSummary": "Mit abs() misst du, wie weit zwei Zahlen voneinander entfernt sind – die Grundlage für k-NN.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: den Abstand zwischen zwei Gewichten mit abs() berechnen.",
+        "example": true,
+        "codeTemplate": "gewicht_a = 30\ngewicht_b = 25\nabstand = abs(gewicht_a - gewicht_b)\nprint(abstand)\n",
+        "validation": { "type": "output_contains", "expected": "5" }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: welcher von zwei Nachbarn liegt näher an einem Zielwert?",
+        "example": true,
+        "codeTemplate": "ziel = 28\nnachbar1 = 30\nnachbar2 = 10\n\nabstand1 = abs(ziel - nachbar1)\nabstand2 = abs(ziel - nachbar2)\nprint(abstand1)\nprint(abstand2)\n",
+        "validation": { "type": "output_contains", "expected": "2\n18" }
+      },
+      {
+        "instruction": "Berechne mit abs() den Abstand zwischen den Körpergrößen 160 und 145 und gib ihn aus. Berechne danach den Abstand zwischen 160 und 200 und gib auch diesen aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "15\n40"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Der Abstand zwischen zwei Beispielen",
+    "file": "lektion-02.md",
+    "lessonSummary": "Mit math.sqrt() und der euklidischen Distanz misst du den Abstand zwischen Beispielen mit mehreren Merkmalen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: die euklidische Distanz zwischen zwei Beispielen mit zwei Merkmalen.",
+        "example": true,
+        "codeTemplate": "import math\n\na = {\"beine\": 4, \"gewicht\": 30}\nb = {\"beine\": 4, \"gewicht\": 25}\n\nabstand = math.sqrt((a[\"beine\"] - b[\"beine\"]) ** 2 + (a[\"gewicht\"] - b[\"gewicht\"]) ** 2)\nprint(abstand)\n",
+        "validation": { "type": "output_contains", "expected": "5.0" }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: eine Abstandsfunktion, die zwei Nachbarn mit einem Ziel vergleicht.",
+        "example": true,
+        "codeTemplate": "import math\n\ndef abstand(a, b):\n    return math.sqrt((a[\"beine\"] - b[\"beine\"]) ** 2 + (a[\"gewicht\"] - b[\"gewicht\"]) ** 2)\n\nziel = {\"beine\": 4, \"gewicht\": 28}\nhund = {\"beine\": 4, \"gewicht\": 30}\nspatz = {\"beine\": 2, \"gewicht\": 0.03}\n\nprint(abstand(ziel, hund))\nprint(abstand(ziel, spatz))\n",
+        "validation": { "type": "output_contains", "expected": "2.0\n28.041414015701847" }
+      },
+      {
+        "instruction": "Schreibe eine Funktion abstand(a, b), die die euklidische Distanz zwischen zwei Dictionaries mit den Merkmalen 'x' und 'y' berechnet (math.sqrt und **2). Berechne mit ihr den Abstand zwischen {'x': 0, 'y': 0} und {'x': 3, 'y': 4} und gib ihn aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "5.0",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Der nächste Nachbar",
+    "file": "lektion-03.md",
+    "lessonSummary": "Der nächste Nachbar ist das Trainingsbeispiel mit dem kleinsten Abstand – sein Label wird zur Vorhersage (1-NN).",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: den nächsten Nachbarn in einer kleinen Trainingsliste finden.",
+        "example": true,
+        "codeTemplate": "import math\n\ndef abstand(a, b):\n    return math.sqrt((a[\"beine\"] - b[\"beine\"]) ** 2 + (a[\"gewicht\"] - b[\"gewicht\"]) ** 2)\n\ntrainingsdaten = [\n    {\"beine\": 4, \"gewicht\": 30, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 0.03, \"art\": \"Vogel\"},\n]\nneu = {\"beine\": 4, \"gewicht\": 28}\n\nbester_abstand = None\nnaechster = None\nfor beispiel in trainingsdaten:\n    d = abstand(neu, beispiel)\n    if bester_abstand is None or d < bester_abstand:\n        bester_abstand = d\n        naechster = beispiel\n\nprint(naechster[\"art\"])\n",
+        "validation": { "type": "output_contains", "expected": "Saeugetier" }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: den nächsten Nachbarn als wiederverwendbare Funktion.",
+        "example": true,
+        "codeTemplate": "import math\n\ndef abstand(a, b):\n    return math.sqrt((a[\"beine\"] - b[\"beine\"]) ** 2 + (a[\"gewicht\"] - b[\"gewicht\"]) ** 2)\n\ndef naechster_nachbar(trainingsdaten, neu):\n    bester_abstand = None\n    naechster = None\n    for beispiel in trainingsdaten:\n        d = abstand(neu, beispiel)\n        if bester_abstand is None or d < bester_abstand:\n            bester_abstand = d\n            naechster = beispiel\n    return naechster[\"art\"]\n\ntrainingsdaten = [\n    {\"beine\": 4, \"gewicht\": 30, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 0.03, \"art\": \"Vogel\"},\n    {\"beine\": 6, \"gewicht\": 0.001, \"art\": \"Insekt\"},\n]\n\nprint(naechster_nachbar(trainingsdaten, {\"beine\": 6, \"gewicht\": 0.002}))\nprint(naechster_nachbar(trainingsdaten, {\"beine\": 4, \"gewicht\": 25}))\n",
+        "validation": { "type": "output_contains", "expected": "Insekt\nSaeugetier" }
+      },
+      {
+        "instruction": "Erstelle eine Liste trainingsdaten mit den drei Dictionaries {'beine': 4, 'gewicht': 30, 'art': 'Saeugetier'}, {'beine': 2, 'gewicht': 0.03, 'art': 'Vogel'} und {'beine': 8, 'gewicht': 0.0002, 'art': 'Spinnentier'}. Schreibe eine Funktion abstand(a, b) und eine Funktion naechster_nachbar(trainingsdaten, neu) wie im Beispiel. Finde den nächsten Nachbarn für neu = {'beine': 8, 'gewicht': 0.0001} und gib dessen 'art' aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Spinnentier",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Zählen mit einem Dictionary & die k nächsten Nachbarn",
+    "file": "lektion-04.md",
+    "lessonSummary": "Ein Dictionary zählt, wie oft jedes Label vorkommt; sorted() + Slicing holen die k nächsten Nachbarn.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: zählen, wie oft jedes Label in einer Liste vorkommt.",
+        "example": true,
+        "codeTemplate": "labels = [\"Saeugetier\", \"Vogel\", \"Saeugetier\", \"Saeugetier\", \"Vogel\"]\n\nanzahl_je_kategorie = {}\nfor label in labels:\n    anzahl_je_kategorie[label] = anzahl_je_kategorie.get(label, 0) + 1\n\nprint(anzahl_je_kategorie)\n",
+        "validation": { "type": "output_contains", "expected": "{'Saeugetier': 3, 'Vogel': 2}" }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: die k=2 nächsten Nachbarn mit sorted() und Slicing holen.",
+        "example": true,
+        "codeTemplate": "import math\n\ndef abstand(a, b):\n    return math.sqrt((a[\"beine\"] - b[\"beine\"]) ** 2 + (a[\"gewicht\"] - b[\"gewicht\"]) ** 2)\n\ntrainingsdaten = [\n    {\"beine\": 4, \"gewicht\": 30, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 0.03, \"art\": \"Vogel\"},\n    {\"beine\": 4, \"gewicht\": 25, \"art\": \"Saeugetier\"},\n]\nneu = {\"beine\": 4, \"gewicht\": 28}\n\ndef abstand_zu_neu(beispiel):\n    return abstand(neu, beispiel)\n\nsortiert = sorted(trainingsdaten, key=abstand_zu_neu)\nk = 2\nnaechste = sortiert[:k]\n\nfor beispiel in naechste:\n    print(beispiel[\"art\"])\n",
+        "validation": { "type": "output_contains", "expected": "Saeugetier\nSaeugetier" }
+      },
+      {
+        "instruction": "Erstelle eine Liste trainingsdaten mit den vier Dictionaries {'beine': 4, 'gewicht': 30, 'art': 'Saeugetier'}, {'beine': 2, 'gewicht': 0.03, 'art': 'Vogel'}, {'beine': 4, 'gewicht': 25, 'art': 'Saeugetier'} und {'beine': 2, 'gewicht': 0.02, 'art': 'Vogel'}. Schreibe eine Funktion abstand(a, b), sortiere trainingsdaten mit sorted() nach dem Abstand zu neu = {'beine': 3, 'gewicht': 20}, nimm mit Slicing die k=3 nächsten, und zähle mit einem Dictionary, wie oft jedes 'art'-Label unter ihnen vorkommt. Gib das Zähl-Dictionary aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'Saeugetier': 2, 'Vogel': 1}",
+          "codeContains": ["def", "sorted("]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Der komplette k-NN-Klassifikator",
+    "file": "lektion-05.md",
+    "lessonSummary": "Abstand, k nächste Nachbarn und Mehrheitsentscheid zusammen ergeben deinen ersten kompletten Klassifikator.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: den kompletten k-NN-Klassifikator mit unterschiedlichen k-Werten aufrufen.",
+        "example": true,
+        "codeTemplate": "import math\n\ndef abstand(a, b):\n    return math.sqrt((a[\"beine\"] - b[\"beine\"]) ** 2 + (a[\"gewicht\"] - b[\"gewicht\"]) ** 2)\n\ndef knn_klassifiziere(trainingsdaten, neu, k):\n    def abstand_zu_neu(beispiel):\n        return abstand(neu, beispiel)\n\n    sortiert = sorted(trainingsdaten, key=abstand_zu_neu)\n    naechste = sortiert[:k]\n    labels = [beispiel[\"art\"] for beispiel in naechste]\n\n    anzahl_je_kategorie = {}\n    for label in labels:\n        anzahl_je_kategorie[label] = anzahl_je_kategorie.get(label, 0) + 1\n\n    beste_kategorie = None\n    bester_wert = -1\n    for kategorie in anzahl_je_kategorie:\n        anzahl = anzahl_je_kategorie[kategorie]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_kategorie = kategorie\n    return beste_kategorie\n\ntrainingsdaten = [\n    {\"beine\": 4, \"gewicht\": 30, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 0.03, \"art\": \"Vogel\"},\n    {\"beine\": 4, \"gewicht\": 25, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 0.02, \"art\": \"Vogel\"},\n]\n\nprint(knn_klassifiziere(trainingsdaten, {\"beine\": 3, \"gewicht\": 20}, 3))\nprint(knn_klassifiziere(trainingsdaten, {\"beine\": 2, \"gewicht\": 0.01}, 1))\n",
+        "validation": { "type": "output_contains", "expected": "Saeugetier\nVogel" }
+      },
+      {
+        "instruction": "Kopiere abstand(a, b) und knn_klassifiziere(trainingsdaten, neu, k) sowie die Liste trainingsdaten aus dem Beispiel oben. Rufe knn_klassifiziere() mit neu = {'beine': 4, 'gewicht': 27} und k=3 auf und gib das Ergebnis aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Saeugetier",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug: Der kaputte Klassifikator",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Ein fehlendes return, ein falscher Vergleich (Farthest statt Nearest) und ein fehlender Standardwert bei der Zählung.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Der nächste Nachbar von {'x': 0, 'y': 1} soll 'A' sein (Abstand 1.0, am nächsten von allen). Was ist falsch?",
+        "codeTemplate": "import math\n\ndef abstand(a, b):\n    math.sqrt((a[\"x\"] - b[\"x\"]) ** 2 + (a[\"y\"] - b[\"y\"]) ** 2)\n\ndef naechster_nachbar(trainingsdaten, neu):\n    bester_abstand = None\n    naechster = None\n    for beispiel in trainingsdaten:\n        d = abstand(neu, beispiel)\n        if bester_abstand is None or d < bester_abstand:\n            bester_abstand = d\n            naechster = beispiel\n    return naechster[\"art\"]\n\ntrainingsdaten = [\n    {\"x\": 0, \"y\": 0, \"art\": \"A\"},\n    {\"x\": 10, \"y\": 10, \"art\": \"B\"},\n    {\"x\": 1, \"y\": 1, \"art\": \"C\"},\n]\n\nprint(naechster_nachbar(trainingsdaten, {\"x\": 0, \"y\": 1}))\n",
+        "validation": { "type": "output_contains", "expected": "A" }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Der nächste Nachbar von {'x': 0, 'y': 1} soll 'A' sein (Abstand 1.0, am nächsten von allen). Was ist falsch?",
+        "codeTemplate": "import math\n\ndef abstand(a, b):\n    return math.sqrt((a[\"x\"] - b[\"x\"]) ** 2 + (a[\"y\"] - b[\"y\"]) ** 2)\n\ndef naechster_nachbar(trainingsdaten, neu):\n    bester_abstand = None\n    naechster = None\n    for beispiel in trainingsdaten:\n        d = abstand(neu, beispiel)\n        if bester_abstand is None or d > bester_abstand:\n            bester_abstand = d\n            naechster = beispiel\n    return naechster[\"art\"]\n\ntrainingsdaten = [\n    {\"x\": 0, \"y\": 0, \"art\": \"A\"},\n    {\"x\": 10, \"y\": 10, \"art\": \"B\"},\n    {\"x\": 1, \"y\": 1, \"art\": \"C\"},\n]\n\nprint(naechster_nachbar(trainingsdaten, {\"x\": 0, \"y\": 1}))\n",
+        "validation": { "type": "output_contains", "expected": "A" }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Das Zähl-Dictionary soll {'Saeugetier': 2, 'Vogel': 1} ausgeben. Was ist falsch?",
+        "codeTemplate": "def zaehle_labels(labels):\n    anzahl_je_kategorie = {}\n    for label in labels:\n        anzahl_je_kategorie[label] = anzahl_je_kategorie[label] + 1\n    return anzahl_je_kategorie\n\nlabels = [\"Saeugetier\", \"Vogel\", \"Saeugetier\"]\nprint(zaehle_labels(labels))\n",
+        "validation": { "type": "output_contains", "expected": "{'Saeugetier': 2, 'Vogel': 1}" }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission: Der Nachbarschafts-Detektiv",
+    "file": "mission-01.md",
+    "lessonSummary": "Starke Leistung! Du hast einen eigenen Frucht-Datensatz gebaut und mit 1-NN klassifiziert, ganz ohne Vorlage.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Datensatz: Erstelle eine Liste trainingsdaten mit den drei Dictionaries {'suesse': 8, 'groesse': 3, 'frucht': 'Kirsche'}, {'suesse': 3, 'groesse': 15, 'frucht': 'Zitrone'} und {'suesse': 9, 'groesse': 4, 'frucht': 'Kirsche'}. Schreibe eine Funktion namen_liste(trainingsdaten), die eine Liste aller 'frucht'-Werte zurückgibt, und gib sie aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Kirsche', 'Zitrone', 'Kirsche']",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Abstand: Schreibe eine Funktion abstand(a, b), die die euklidische Distanz zwischen den Merkmalen 'suesse' und 'groesse' zweier Dictionaries berechnet (math.sqrt, **2). Nutze deine Liste trainingsdaten aus Schritt 1 (erneut erstellen) und berechne den Abstand zwischen ihrem ersten und zweiten Eintrag. Gib ihn aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "13.0",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Nächster Nachbar: Schreibe eine Funktion naechster_nachbar(trainingsdaten, neu), die mit abstand() (erneut schreiben) den nächsten Nachbarn findet und dessen 'frucht' zurückgibt. Nutze deine Liste trainingsdaten (erneut erstellen) und finde den nächsten Nachbarn für neu = {'suesse': 9, 'groesse': 5}. Gib genau Kirsche aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Kirsche",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Der gewichtete Nachbar",
+    "file": "boss-01.md",
+    "lessonSummary": "Stark! Du hast Nachbarn per Abstand gewichtet und einen gewichteten Mehrheitsentscheid gebaut.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Gewicht: Schreibe eine Funktion gewicht(abstand), die 1 / abstand zurückgibt (je kleiner der Abstand, desto größer das Gewicht). Ist abstand genau 0, soll die Funktion 1000000 zurückgeben (Division durch 0 vermeiden). Gib gewicht(2) und danach gewicht(0) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0.5\n1000000",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Gewichtete Stimmen: Schreibe eine Funktion gewichtete_stimmen(nachbarn_mit_abstand), die eine Liste von Tupeln (label, abstand) durchgeht und mit gewicht() (erneut schreiben) ein Dictionary label -> summiertes Gewicht aufbaut. Nutze [('A', 1), ('B', 2), ('A', 4)] und gib das Dictionary aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'A': 1.25, 'B': 0.5}",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Gewichteter Sieger: Schreibe eine Funktion gewichteter_sieger(nachbarn_mit_abstand), die gewichtete_stimmen() (erneut schreiben) benutzt und das Label mit dem höchsten summierten Gewicht zurückgibt (ohne max(), Schleife). Nutze dieselbe Liste [('A', 1), ('B', 2), ('A', 4)] wie in Schritt 2. Gib genau A aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "A",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Der richtige Wert für k",
+    "file": "boss-02.md",
+    "lessonSummary": "Sehr stark! Du hast die Genauigkeit eines Klassifikators berechnet und den besten Wert für k gefunden.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Eine Vorhersage prüfen: Schreibe eine Funktion ist_richtig(vorhersage, erwartet), die True zurückgibt, wenn vorhersage == erwartet, sonst False. Gib ist_richtig('Katze', 'Katze') und danach ist_richtig('Katze', 'Hund') aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True\nFalse",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Genauigkeit berechnen: Schreibe eine Funktion genauigkeit(vorhersagen, erwartete_werte), die mit ist_richtig() (erneut schreiben) zählt, wie viele Vorhersagen richtig waren, und den Anteil in Prozent zurückgibt (gerundet mit round()). Nutze vorhersagen = ['Katze', 'Hund', 'Katze', 'Vogel'] und erwartete_werte = ['Katze', 'Katze', 'Katze', 'Vogel']. Gib genau 75 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "75",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Mehrere k vergleichen: Schreibe eine Funktion beste_genauigkeit(ergebnisse_je_k), die ein Dictionary k -> genauigkeit durchgeht und das k mit der höchsten Genauigkeit zurückgibt (ohne max(), Schleife). Nutze {1: 60, 3: 80, 5: 75} und gib genau 3 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "3",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Mehr als zwei Klassen",
+    "file": "boss-03.md",
+    "lessonSummary": "Stark! Du hast Unentschieden bei mehreren Klassen erkannt und mit dem nächsten Nachbarn aufgelöst.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Kategorien sammeln: Schreibe eine Funktion sammle_kategorien(trainingsdaten), die eine Liste aller einzigartigen 'art'-Werte zurückgibt (jede Kategorie nur einmal, mit einer Schleife und einer if-Prüfung 'not in', ohne set()). Nutze trainingsdaten = [{'art': 'Hund'}, {'art': 'Katze'}, {'art': 'Hund'}, {'art': 'Vogel'}]. Gib genau ['Hund', 'Katze', 'Vogel'] aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Hund', 'Katze', 'Vogel']",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Unentschieden erkennen: Schreibe eine Funktion ist_unentschieden(anzahl_je_kategorie), die True zurückgibt, wenn mindestens zwei Kategorien denselben (höchsten) Zählwert haben, sonst False. Gib das Ergebnis für {'Hund': 2, 'Katze': 2, 'Vogel': 1} und danach für {'Hund': 3, 'Katze': 1} aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True\nFalse",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Bei Unentschieden den nächsten nehmen: Schreibe eine Funktion entscheide(anzahl_je_kategorie, sortierte_nachbarn), die bei einem Unentschieden (mit ist_unentschieden(), erneut schreiben) das 'art'-Label des allerersten (nächsten) Nachbarn aus sortierte_nachbarn zurückgibt, sonst das Label mit dem höchsten Zählwert (ohne max(), Schleife). Nutze anzahl_je_kategorie = {'Hund': 2, 'Katze': 2} und sortierte_nachbarn = [{'art': 'Katze'}, {'art': 'Hund'}, {'art': 'Hund'}, {'art': 'Katze'}]. Gib genau Katze aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Katze",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  }
+]

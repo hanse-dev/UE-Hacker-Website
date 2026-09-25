@@ -6,7 +6,7 @@ import checks from '../content/ki-labor-checks/index.mjs';
 // dieselbe Wochenauswahl (KiLaborTour.vue, Kopie von JsGrundkursTour.vue) und dieselbe generische
 // Wochen-Tour (JsCourseTour.vue), aber engine="pyodide" (LessonView.vue) statt js-sandbox - wie
 // im 12-Wochen-Python-Kurs. Algorithmen werden komplett in reinem Python selbst geschrieben, kein
-// scikit-learn. Bislang ist nur Woche 1 ("Was ist KI?") umgesetzt, Wochen 2-8 sind "kommt noch".
+// scikit-learn. Bislang sind Woche 1-3 umgesetzt, Wochen 4-8 sind "kommt noch".
 //
 // Quiz + Zertifikat nutzen dasselbe System wie der 12-Wochen-Kurs (useWeekChecks.js/
 // WeekCheckPanel.vue/CodeChallenge.vue/useCertificatePdf.js), jetzt um einen courseKey-Parameter
@@ -15,6 +15,7 @@ import checks from '../content/ki-labor-checks/index.mjs';
 // Woche 1 im KI-Labor nicht mit Woche 1 im Python-Kurs kollidiert (siehe HANDOFF.md).
 const PROGRESS_KEY = 'ue-hacker-interactive-progress-ki-labor-woche1';
 const PROGRESS_KEY_WEEK2 = 'ue-hacker-interactive-progress-ki-labor-woche2';
+const PROGRESS_KEY_WEEK3 = 'ue-hacker-interactive-progress-ki-labor-woche3';
 
 function findQuestion(text) {
   const normalized = text.replace(/^\d+\.\s*/, '').trim();
@@ -78,16 +79,17 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
     }, PROGRESS_KEY);
   });
 
-  test('Wochenauswahl: 8 Kacheln, Woche 1+2 verfügbar, Rest "kommt noch"', async ({ page }) => {
+  test('Wochenauswahl: 8 Kacheln, Woche 1-3 verfügbar, Rest "kommt noch"', async ({ page }) => {
     await page.goto('/kurs/ki-labor');
     await page.locator('.btn-start-course').click();
     await expect(page.locator('.week-tile')).toHaveCount(8);
     await expect(page.locator('.week-tile').nth(0)).not.toBeDisabled();
     await expect(page.locator('.week-tile').nth(1)).not.toBeDisabled();
-    for (let i = 2; i < 8; i++) {
+    await expect(page.locator('.week-tile').nth(2)).not.toBeDisabled();
+    for (let i = 3; i < 8; i++) {
       await expect(page.locator('.week-tile').nth(i)).toBeDisabled();
     }
-    await expect(page.locator('.week-tile-badge')).toHaveCount(6);
+    await expect(page.locator('.week-tile-badge')).toHaveCount(5);
   });
 
   test('Woche 1 anklicken öffnet die Wochen-Tour, "Andere Woche wählen" führt zurück', async ({ page }) => {
@@ -128,8 +130,17 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
     await expect(page.locator('.tour-breadcrumb')).toContainText('Daten sind alles');
   });
 
-  test('Deep-Link ?week=3 (noch nicht verfügbar) zeigt die Wochenauswahl statt der Tour', async ({ page }) => {
+  test('Deep-Link ?week=3 öffnet direkt die Wochen-Tour', async ({ page }) => {
     await page.goto('/kurs/ki-labor?week=3');
+    // 10 Lektionen (5 Lektion + Debug + Mission + 3 Extra-Herausforderung) + 1 Check-Punkt, da
+    // content/ki-labor-checks/week-3.json existiert (hasCheck=true).
+    await expect(page.locator('.stepper-step')).toHaveCount(11, { timeout: 15000 });
+    await expect(page.locator('.tour-breadcrumb')).toContainText('Woche 3');
+    await expect(page.locator('.tour-breadcrumb')).toContainText('Nächste Nachbarn');
+  });
+
+  test('Deep-Link ?week=4 (noch nicht verfügbar) zeigt die Wochenauswahl statt der Tour', async ({ page }) => {
+    await page.goto('/kurs/ki-labor?week=4');
     await expect(page.locator('.week-tile')).toHaveCount(8);
     await expect(page.locator('.stepper-step')).toHaveCount(0);
   });
@@ -428,6 +439,130 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
       page,
       1,
       'tiere = [{"name": "Hund", "gewicht": 30}, {"name": "Spatz"}, {"name": "Katze", "gewicht": 4}]\n\ndef namen_mit_merkmal(tiere, merkmal):\n    return [t["name"] for t in tiere if merkmal in t]\n\nprint(namen_mit_merkmal(tiere, "gewicht"))'
+    );
+
+    await expect(page.locator('.certificate-reveal')).toBeVisible({ timeout: 10000 });
+  });
+
+  test('Woche 3: Debug-Lektion mit fehlendem return/falschem Vergleich/fehlendem Zähl-Standardwert', async ({ page }) => {
+    await page.addInitScript((key) => {
+      localStorage.setItem(key, JSON.stringify({
+        version: 1,
+        completedLessonIds: ['lektion-01', 'lektion-02', 'lektion-03', 'lektion-04', 'lektion-05'],
+      }));
+    }, PROGRESS_KEY_WEEK3);
+    await page.goto('/kurs/ki-labor?week=3');
+    await page.locator('.stepper-step').nth(5).click();
+    await initKernel(page);
+
+    const first = page.locator('.task-block').first();
+    await first.locator('.btn-check').click();
+    await expect(first.locator('.feedback-error')).toBeVisible({ timeout: 10000 });
+
+    const naechsterNachbarFixed = 'import math\n\ndef abstand(a, b):\n    return math.sqrt((a["x"] - b["x"]) ** 2 + (a["y"] - b["y"]) ** 2)\n\ndef naechster_nachbar(trainingsdaten, neu):\n    bester_abstand = None\n    naechster = None\n    for beispiel in trainingsdaten:\n        d = abstand(neu, beispiel)\n        if bester_abstand is None or d < bester_abstand:\n            bester_abstand = d\n            naechster = beispiel\n    return naechster["art"]\n\ntrainingsdaten = [\n    {"x": 0, "y": 0, "art": "A"},\n    {"x": 10, "y": 10, "art": "B"},\n    {"x": 1, "y": 1, "art": "C"},\n]\n\nprint(naechster_nachbar(trainingsdaten, {"x": 0, "y": 1}))';
+
+    await solve(page, [
+      naechsterNachbarFixed,
+      naechsterNachbarFixed,
+      'def zaehle_labels(labels):\n    anzahl_je_kategorie = {}\n    for label in labels:\n        anzahl_je_kategorie[label] = anzahl_je_kategorie.get(label, 0) + 1\n    return anzahl_je_kategorie\n\nlabels = ["Saeugetier", "Vogel", "Saeugetier"]\nprint(zaehle_labels(labels))',
+    ]);
+  });
+
+  test('Kompletter Durchlauf Woche 3: alle Lektionen, Extra-Herausforderungen und der Wochen-Check', async ({ page }) => {
+    test.setTimeout(120000);
+    await page.goto('/kurs/ki-labor?week=3');
+    await initKernel(page);
+
+    await solve(page, [null, null, 'print(abs(160 - 145))\nprint(abs(160 - 200))']);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('1 abgeschlossen');
+
+    await solve(page, [null, null, 'import math\n\ndef abstand(a, b):\n    return math.sqrt((a["x"] - b["x"]) ** 2 + (a["y"] - b["y"]) ** 2)\n\nprint(abstand({"x": 0, "y": 0}, {"x": 3, "y": 4}))']);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('2 abgeschlossen');
+
+    await solve(page, [
+      null,
+      null,
+      'import math\n\ndef abstand(a, b):\n    return math.sqrt((a["beine"] - b["beine"]) ** 2 + (a["gewicht"] - b["gewicht"]) ** 2)\n\ndef naechster_nachbar(trainingsdaten, neu):\n    bester_abstand = None\n    naechster = None\n    for beispiel in trainingsdaten:\n        d = abstand(neu, beispiel)\n        if bester_abstand is None or d < bester_abstand:\n            bester_abstand = d\n            naechster = beispiel\n    return naechster["art"]\n\ntrainingsdaten = [{"beine": 4, "gewicht": 30, "art": "Saeugetier"}, {"beine": 2, "gewicht": 0.03, "art": "Vogel"}, {"beine": 8, "gewicht": 0.0002, "art": "Spinnentier"}]\nprint(naechster_nachbar(trainingsdaten, {"beine": 8, "gewicht": 0.0001}))',
+    ]);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('3 abgeschlossen');
+
+    await solve(page, [
+      null,
+      null,
+      'import math\n\ndef abstand(a, b):\n    return math.sqrt((a["beine"] - b["beine"]) ** 2 + (a["gewicht"] - b["gewicht"]) ** 2)\n\ntrainingsdaten = [{"beine": 4, "gewicht": 30, "art": "Saeugetier"}, {"beine": 2, "gewicht": 0.03, "art": "Vogel"}, {"beine": 4, "gewicht": 25, "art": "Saeugetier"}, {"beine": 2, "gewicht": 0.02, "art": "Vogel"}]\nneu = {"beine": 3, "gewicht": 20}\n\ndef abstand_zu_neu(beispiel):\n    return abstand(neu, beispiel)\n\nsortiert = sorted(trainingsdaten, key=abstand_zu_neu)\nnaechste = sortiert[:3]\n\nzaehl = {}\nfor beispiel in naechste:\n    label = beispiel["art"]\n    zaehl[label] = zaehl.get(label, 0) + 1\nprint(zaehl)',
+    ]);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('4 abgeschlossen');
+
+    const knnKlassifiziere = 'import math\n\ndef abstand(a, b):\n    return math.sqrt((a["beine"] - b["beine"]) ** 2 + (a["gewicht"] - b["gewicht"]) ** 2)\n\ndef knn_klassifiziere(trainingsdaten, neu, k):\n    def abstand_zu_neu(beispiel):\n        return abstand(neu, beispiel)\n\n    sortiert = sorted(trainingsdaten, key=abstand_zu_neu)\n    naechste = sortiert[:k]\n    labels = [beispiel["art"] for beispiel in naechste]\n\n    anzahl_je_kategorie = {}\n    for label in labels:\n        anzahl_je_kategorie[label] = anzahl_je_kategorie.get(label, 0) + 1\n\n    beste_kategorie = None\n    bester_wert = -1\n    for kategorie in anzahl_je_kategorie:\n        anzahl = anzahl_je_kategorie[kategorie]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_kategorie = kategorie\n    return beste_kategorie\n\ntrainingsdaten = [{"beine": 4, "gewicht": 30, "art": "Saeugetier"}, {"beine": 2, "gewicht": 0.03, "art": "Vogel"}, {"beine": 4, "gewicht": 25, "art": "Saeugetier"}, {"beine": 2, "gewicht": 0.02, "art": "Vogel"}]\n';
+    await solve(page, [
+      null,
+      `${knnKlassifiziere}print(knn_klassifiziere(trainingsdaten, {"beine": 4, "gewicht": 27}, 3))`,
+    ]);
+    await expect(page.locator('.progress-count')).toContainText('5 abgeschlossen');
+    await expect(page.locator('.lesson-complete-box')).toBeVisible();
+    await page.locator('.btn-next').click();
+
+    // Debug-Lektion (fixe Loesungen, s.o.).
+    const naechsterNachbarFixed = 'import math\n\ndef abstand(a, b):\n    return math.sqrt((a["x"] - b["x"]) ** 2 + (a["y"] - b["y"]) ** 2)\n\ndef naechster_nachbar(trainingsdaten, neu):\n    bester_abstand = None\n    naechster = None\n    for beispiel in trainingsdaten:\n        d = abstand(neu, beispiel)\n        if bester_abstand is None or d < bester_abstand:\n            bester_abstand = d\n            naechster = beispiel\n    return naechster["art"]\n\ntrainingsdaten = [\n    {"x": 0, "y": 0, "art": "A"},\n    {"x": 10, "y": 10, "art": "B"},\n    {"x": 1, "y": 1, "art": "C"},\n]\n\nprint(naechster_nachbar(trainingsdaten, {"x": 0, "y": 1}))';
+    await solve(page, [
+      naechsterNachbarFixed,
+      naechsterNachbarFixed,
+      'def zaehle_labels(labels):\n    anzahl_je_kategorie = {}\n    for label in labels:\n        anzahl_je_kategorie[label] = anzahl_je_kategorie.get(label, 0) + 1\n    return anzahl_je_kategorie\n\nlabels = ["Saeugetier", "Vogel", "Saeugetier"]\nprint(zaehle_labels(labels))',
+    ]);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('6 abgeschlossen');
+
+    // Mission: eigener Frucht-Datensatz + 1-NN.
+    await solve(page, [
+      'trainingsdaten = [{"suesse": 8, "groesse": 3, "frucht": "Kirsche"}, {"suesse": 3, "groesse": 15, "frucht": "Zitrone"}, {"suesse": 9, "groesse": 4, "frucht": "Kirsche"}]\n\ndef namen_liste(trainingsdaten):\n    return [t["frucht"] for t in trainingsdaten]\n\nprint(namen_liste(trainingsdaten))',
+      'import math\n\ntrainingsdaten = [{"suesse": 8, "groesse": 3, "frucht": "Kirsche"}, {"suesse": 3, "groesse": 15, "frucht": "Zitrone"}, {"suesse": 9, "groesse": 4, "frucht": "Kirsche"}]\n\ndef abstand(a, b):\n    return math.sqrt((a["suesse"] - b["suesse"]) ** 2 + (a["groesse"] - b["groesse"]) ** 2)\n\nprint(abstand(trainingsdaten[0], trainingsdaten[1]))',
+      'import math\n\ntrainingsdaten = [{"suesse": 8, "groesse": 3, "frucht": "Kirsche"}, {"suesse": 3, "groesse": 15, "frucht": "Zitrone"}, {"suesse": 9, "groesse": 4, "frucht": "Kirsche"}]\n\ndef abstand(a, b):\n    return math.sqrt((a["suesse"] - b["suesse"]) ** 2 + (a["groesse"] - b["groesse"]) ** 2)\n\ndef naechster_nachbar(trainingsdaten, neu):\n    bester_abstand = None\n    naechster = None\n    for beispiel in trainingsdaten:\n        d = abstand(neu, beispiel)\n        if bester_abstand is None or d < bester_abstand:\n            bester_abstand = d\n            naechster = beispiel\n    return naechster["frucht"]\n\nprint(naechster_nachbar(trainingsdaten, {"suesse": 9, "groesse": 5}))',
+    ]);
+    await expect(page.locator('.progress-count')).toContainText('7 abgeschlossen');
+
+    // Mission abgeschlossen, danach folgt ein Boss-Abschnitt (Extra-Herausforderung) UND ein
+    // Check -> "Weiter" zeigt eine Wahl-Seite statt direkt zum Check zu springen.
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.branch-choice-page')).toBeVisible();
+    await page.locator('[data-branch="boss"]').click();
+
+    // Boss 1: gewichteter Nachbar.
+    await solve(page, [
+      'def gewicht(abstand):\n    if abstand == 0:\n        return 1000000\n    return 1 / abstand\n\nprint(gewicht(2))\nprint(gewicht(0))',
+      'def gewicht(abstand):\n    if abstand == 0:\n        return 1000000\n    return 1 / abstand\n\ndef gewichtete_stimmen(nachbarn_mit_abstand):\n    stimmen = {}\n    for label, abstand in nachbarn_mit_abstand:\n        stimmen[label] = stimmen.get(label, 0) + gewicht(abstand)\n    return stimmen\n\nprint(gewichtete_stimmen([("A", 1), ("B", 2), ("A", 4)]))',
+      'def gewicht(abstand):\n    if abstand == 0:\n        return 1000000\n    return 1 / abstand\n\ndef gewichtete_stimmen(nachbarn_mit_abstand):\n    stimmen = {}\n    for label, abstand in nachbarn_mit_abstand:\n        stimmen[label] = stimmen.get(label, 0) + gewicht(abstand)\n    return stimmen\n\ndef gewichteter_sieger(nachbarn_mit_abstand):\n    stimmen = gewichtete_stimmen(nachbarn_mit_abstand)\n    beste = None\n    bester_wert = -1\n    for label in stimmen:\n        if stimmen[label] > bester_wert:\n            bester_wert = stimmen[label]\n            beste = label\n    return beste\n\nprint(gewichteter_sieger([("A", 1), ("B", 2), ("A", 4)]))',
+    ]);
+    await page.locator('.btn-next').click();
+
+    // Boss 2: der richtige Wert fuer k.
+    await solve(page, [
+      'def ist_richtig(vorhersage, erwartet):\n    return vorhersage == erwartet\n\nprint(ist_richtig("Katze", "Katze"))\nprint(ist_richtig("Katze", "Hund"))',
+      'def ist_richtig(vorhersage, erwartet):\n    return vorhersage == erwartet\n\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if ist_richtig(vorhersagen[i], erwartete_werte[i]):\n            richtig += 1\n    return round(richtig / len(vorhersagen) * 100)\n\nprint(genauigkeit(["Katze", "Hund", "Katze", "Vogel"], ["Katze", "Katze", "Katze", "Vogel"]))',
+      'def beste_genauigkeit(ergebnisse_je_k):\n    bestes_k = None\n    bester_wert = -1\n    for k in ergebnisse_je_k:\n        if ergebnisse_je_k[k] > bester_wert:\n            bester_wert = ergebnisse_je_k[k]\n            bestes_k = k\n    return bestes_k\n\nprint(beste_genauigkeit({1: 60, 3: 80, 5: 75}))',
+    ]);
+    await page.locator('.btn-next').click();
+
+    // Boss 3: mehr als zwei Klassen.
+    await solve(page, [
+      'def sammle_kategorien(trainingsdaten):\n    kategorien = []\n    for beispiel in trainingsdaten:\n        if beispiel["art"] not in kategorien:\n            kategorien.append(beispiel["art"])\n    return kategorien\n\nprint(sammle_kategorien([{"art": "Hund"}, {"art": "Katze"}, {"art": "Hund"}, {"art": "Vogel"}]))',
+      'def ist_unentschieden(anzahl_je_kategorie):\n    werte = list(anzahl_je_kategorie.values())\n    bester_wert = -1\n    for wert in werte:\n        if wert > bester_wert:\n            bester_wert = wert\n    anzahl_bester = 0\n    for wert in werte:\n        if wert == bester_wert:\n            anzahl_bester += 1\n    return anzahl_bester >= 2\n\nprint(ist_unentschieden({"Hund": 2, "Katze": 2, "Vogel": 1}))\nprint(ist_unentschieden({"Hund": 3, "Katze": 1}))',
+      'def ist_unentschieden(anzahl_je_kategorie):\n    werte = list(anzahl_je_kategorie.values())\n    bester_wert = -1\n    for wert in werte:\n        if wert > bester_wert:\n            bester_wert = wert\n    anzahl_bester = 0\n    for wert in werte:\n        if wert == bester_wert:\n            anzahl_bester += 1\n    return anzahl_bester >= 2\n\ndef entscheide(anzahl_je_kategorie, sortierte_nachbarn):\n    if ist_unentschieden(anzahl_je_kategorie):\n        return sortierte_nachbarn[0]["art"]\n    beste_kategorie = None\n    bester_wert = -1\n    for kategorie in anzahl_je_kategorie:\n        anzahl = anzahl_je_kategorie[kategorie]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_kategorie = kategorie\n    return beste_kategorie\n\nprint(entscheide({"Hund": 2, "Katze": 2}, [{"art": "Katze"}, {"art": "Hund"}, {"art": "Hund"}, {"art": "Katze"}]))',
+    ]);
+    // Letzte Lektion (boss-03) abgeschlossen, kein weiterer Boss -> "Weiter" springt direkt zum
+    // Wochen-Check (kein Mission->Boss-Uebergang mehr, also keine erneute Wahl-Seite).
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.week-check-panel')).toBeVisible({ timeout: 15000 });
+
+    await passWeekQuiz(page);
+    await passCodingChallenge(page, 0, 'import math\n\ndef abstand(a, b):\n    return math.sqrt((a["x"] - b["x"]) ** 2 + (a["y"] - b["y"]) ** 2)\n\nprint(abstand({"x": 0, "y": 0}, {"x": 6, "y": 8}))');
+    await passCodingChallenge(
+      page,
+      1,
+      'labels = ["Hund", "Katze", "Hund", "Hund", "Katze"]\n\nanzahl_je_kategorie = {}\nfor label in labels:\n    anzahl_je_kategorie[label] = anzahl_je_kategorie.get(label, 0) + 1\n\nprint(anzahl_je_kategorie)'
     );
 
     await expect(page.locator('.certificate-reveal')).toBeVisible({ timeout: 10000 });

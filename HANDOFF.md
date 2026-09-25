@@ -1,8 +1,8 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-09-25
-> **Aktueller Stand:** `main` ist aktuell. KI-Labor Woche 1+2 fertig (Wochen 3–8 offen, siehe
-> Abschnitt 5). Profil zeigt Wochen-Zertifikate aus allen Kursen mit Wochen-Check (Python +
+> **Aktueller Stand:** `main` ist aktuell, Branch `ki-labor-woche3` fügt Woche 3 "Nächste
+> Nachbarn (k-NN)" hinzu (Wochen 4–8 offen, siehe Abschnitt 5). Profil zeigt Wochen-Zertifikate aus allen Kursen mit Wochen-Check (Python +
 > KI-Labor) inkl. direktem PDF-Download (3.69/3.70); ein "Kurs starten"-Gate blendet bei den 3
 > Wochen-Tour-Kursen Beschreibung/Struktur-Erklärung vor der eigentlichen Kurs-Tour aus (3.69).
 > Die beiden klar umsetzbaren `input()`-Lücken aus `todo.md` (Woche 4 + 9) sind geschlossen (3.71).
@@ -83,6 +83,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.69 | Profil zeigt Wochen-Zertifikate + "Kurs starten"-Gate | `useCourseCertificates.js` neu; `CourseDetail.vue` blendet Beschreibung/Struktur hinter einem Start-Button aus |
 | 3.70 | Profil: PDF-Download direkt am Zertifikat | `loadWeekLernziele()` (Python) + `src/data/kiLaborWeeks.js` (KI-Labor) liefern die Lernziele fürs PDF |
 | 3.71 | Woche 4 + 9: `input()`-Lücken aus `todo.md` geschlossen | Neuer `validation.stdin`-Schritt je Thema (Woche 4 Boss-3, Woche 9 Boss-1 "Eigener Eintrag"), DE+EN, ans Ende der Lektion/Notebook-Zellfolge angehängt statt eingefügt |
+| 3.72 | KI-Labor: Woche 3 "Nächste Nachbarn (k-NN)" | 5 Lektionen (Abstand, euklidische Distanz, 1-NN, Dictionary-Zählen + k nächste, kompletter k-NN-Klassifikator) + Debug + Mission + 3 Extra-Herausforderungen (gewichteter k-NN, Genauigkeit/bestes k, Unentschieden bei >2 Klassen) + eigener Wochen-Check |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -261,10 +262,9 @@ Ausführlich in `todo.md`. Kurzfassung:
 - Zertifikat-PDF: E-Mail-Versand später (hängt an der Kontakt-Adresse, nicht selbst erfinden).
 - Überlegung (nicht entschieden): dritte Sprache; UI-Ternarys sind schon auf `t()`, offen nur Content-Suffixe.
 
-**Laufendes Kurs-Thema (siehe todo.md):** KI-Labor Woche 1+2 fertig, Wochen 3–8 offen (Nächste
-Nachbarn/k-NN, Training & Test, Entscheidungsbäume, Neuronale Netze I+II, Grenzen & Ethik —
-Wochenplan siehe `KURSPLAN.md`). Weitere Projekt-Kurs-Ideen in `PROJEKTIDEEN.md`. Roadmap:
-`VISION.md`.
+**Laufendes Kurs-Thema (siehe todo.md):** KI-Labor Woche 1–3 fertig, Wochen 4–8 offen (Training &
+Test, Entscheidungsbäume, Neuronale Netze I+II, Grenzen & Ethik — Wochenplan siehe `KURSPLAN.md`).
+Weitere Projekt-Kurs-Ideen in `PROJEKTIDEEN.md`. Roadmap: `VISION.md`.
 
 **Bewusst nicht geplant:** öffentliches Sign-up, Mailversand/Kontaktformular, Supabase als Pflicht.
 

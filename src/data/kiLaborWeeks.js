@@ -22,7 +22,16 @@ export const KI_LABOR_WEEKS = [
       'Merkmale und Label eines Datensatzes trennen können',
     ],
   },
-  { number: 3, title: 'Nächste Nachbarn (k-NN)', lernziele: [] },
+  {
+    number: 3,
+    title: 'Nächste Nachbarn (k-NN)',
+    lernziele: [
+      'Den Abstand zwischen zwei Beispielen mit mehreren Merkmalen berechnen können (euklidische Distanz)',
+      'Den nächsten Nachbarn (1-NN) in einem Trainingsdatensatz finden können',
+      'Die k nächsten Nachbarn holen und mit einem Mehrheitsentscheid klassifizieren können (k-NN)',
+      'Einen kompletten k-NN-Klassifikator komplett selbst in Python schreiben können',
+    ],
+  },
   { number: 4, title: 'Training & Test', lernziele: [] },
   { number: 5, title: 'Entscheidungsbäume', lernziele: [] },
   { number: 6, title: 'Neuronale Netze I', lernziele: [] },

@@ -1,0 +1,139 @@
+{
+  "title": "Woche 3 – Nächste Nachbarn (k-NN)",
+  "title_en": "Week 3 – Nearest Neighbors (k-NN)",
+  "questions": [
+    {
+      "id": "kil3-1",
+      "type": "multiple_choice",
+      "question": "Was misst der Abstand zwischen zwei Beispielen bei k-NN?",
+      "options": [
+        "Wie ähnlich sich ihre Merkmale sind – je kleiner der Abstand, desto ähnlicher",
+        "Wie viele Merkmale ein Beispiel insgesamt hat",
+        "Wie oft ein Label im Trainingsdatensatz vorkommt"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ein kleiner Abstand bedeutet, dass sich zwei Beispiele in ihren Merkmalen sehr ähnlich sind.",
+      "optionExplanations": [
+        null,
+        "Die Anzahl der Merkmale ist bei allen Beispielen im Datensatz gleich, das misst der Abstand nicht.",
+        "Wie oft ein Label vorkommt, hat nichts mit dem Abstand zwischen zwei Beispielen zu tun."
+      ]
+    },
+    {
+      "id": "kil3-2",
+      "type": "multiple_choice",
+      "question": "Was macht math.sqrt() bei der euklidischen Distanz?",
+      "options": [
+        "Zieht die Wurzel aus der Summe der quadrierten Differenzen",
+        "Rundet das Ergebnis auf eine ganze Zahl",
+        "Sortiert die Merkmale nach ihrer Größe"
+      ],
+      "correctIndex": 0,
+      "explanation": "Erst werden die Differenzen quadriert und addiert, dann zieht math.sqrt() die Wurzel daraus.",
+      "optionExplanations": [
+        null,
+        "Zum Runden gibt es round(), nicht math.sqrt().",
+        "math.sqrt() sortiert nichts, es berechnet nur die Wurzel einer Zahl."
+      ]
+    },
+    {
+      "id": "kil3-3",
+      "type": "multiple_choice",
+      "question": "Was bedeutet das 'k' im Namen k-NN?",
+      "options": [
+        "Wie viele der nächsten Nachbarn befragt werden",
+        "Wie viele Merkmale ein Beispiel hat",
+        "Wie viele Trainingsdaten es maximal geben darf"
+      ],
+      "correctIndex": 0,
+      "explanation": "k gibt an, wie viele der nächstgelegenen Trainingsbeispiele für die Vorhersage befragt werden.",
+      "optionExplanations": [
+        null,
+        "Die Anzahl der Merkmale ist unabhängig vom Wert von k.",
+        "k begrenzt nicht die Größe des Trainingsdatensatzes."
+      ]
+    },
+    {
+      "id": "kil3-4",
+      "type": "multiple_choice",
+      "question": "Bei k=1 (1-NN): welches Label bekommt ein neues Beispiel als Vorhersage?",
+      "options": [
+        "Das Label des allernächsten Trainingsbeispiels",
+        "Das häufigste Label im gesamten Trainingsdatensatz",
+        "Ein zufällig ausgewähltes Label"
+      ],
+      "correctIndex": 0,
+      "explanation": "Bei k=1 wird nur der eine nächste Nachbar befragt, sein Label wird zur Vorhersage.",
+      "optionExplanations": [
+        null,
+        "Das würde alle anderen Merkmale ignorieren – k-NN schaut gezielt auf die Nachbarn.",
+        "k-NN trifft die Vorhersage nicht zufällig, sondern anhand der Nachbarn."
+      ]
+    },
+    {
+      "id": "kil3-5",
+      "type": "multiple_choice",
+      "question": "Bei k=3 und einem Mehrheitsentscheid: wie wird die Vorhersage bestimmt?",
+      "options": [
+        "Das Label, das unter den 3 nächsten Nachbarn am häufigsten vorkommt, wird gewählt",
+        "Es wird immer das Label des nächsten der 3 Nachbarn genommen",
+        "Alle 3 Labels werden gleichzeitig als Vorhersage zurückgegeben"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ein Mehrheitsentscheid zählt die Labels der k nächsten Nachbarn und wählt das häufigste.",
+      "optionExplanations": [
+        null,
+        "Das wäre wieder nur 1-NN – bei k=3 zählen alle drei Nachbarn mit.",
+        "k-NN gibt genau eine Vorhersage zurück, kein Bündel aus mehreren Labels."
+      ]
+    },
+    {
+      "id": "kil3-6",
+      "type": "multiple_select",
+      "question": "Welche der folgenden Dinge braucht ein k-NN-Klassifikator?",
+      "options": [
+        "Trainingsdaten mit bekannten Labels",
+        "Eine Methode, um den Abstand zwischen zwei Beispielen zu berechnen",
+        "Eine Internetverbindung",
+        "Eine Grafikkarte (GPU)"
+      ],
+      "correctIndices": [0, 1]
+    },
+    {
+      "id": "kil3-7",
+      "type": "multiple_choice",
+      "question": "Was gibt sorted(trainingsdaten, key=abstand_zu_neu) zurück?",
+      "options": [
+        "Eine neue, nach dem Abstand sortierte Liste – trainingsdaten selbst bleibt unverändert",
+        "Denselben trainingsdaten-Wert, jetzt aber in sortierter Reihenfolge verändert",
+        "Nur das eine Element mit dem kleinsten Abstand"
+      ],
+      "correctIndex": 0,
+      "explanation": "sorted() erzeugt immer eine neue, sortierte Liste – die Originalliste wird dabei nicht verändert.",
+      "optionExplanations": [
+        null,
+        "sorted() verändert die Originalliste nicht (anders als die Methode .sort()).",
+        "sorted() gibt die komplette sortierte Liste zurück, nicht nur ein einzelnes Element."
+      ]
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Schreibe eine Funktion abstand(a, b), die die euklidische Distanz zwischen zwei Dictionaries mit den Merkmalen 'x' und 'y' berechnet (math.sqrt, **2). Gib damit genau den Abstand zwischen {'x': 0, 'y': 0} und {'x': 6, 'y': 8} aus.",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "10.0",
+        "codeContains": ["def"]
+      }
+    },
+    {
+      "instruction": "Erstelle eine Liste labels mit den Werten ['Hund', 'Katze', 'Hund', 'Hund', 'Katze']. Zähle mit einem Dictionary (label.get(...)-Technik), wie oft jedes Label vorkommt, und gib das Zähl-Dictionary aus.",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "{'Hund': 3, 'Katze': 2}"
+      }
+    }
+  ]
+}

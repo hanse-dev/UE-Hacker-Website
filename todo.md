@@ -82,7 +82,7 @@ k-NN, Entscheidungsbaum und ein kleines neuronales Netz komplett selbst in reine
       `CodeChallenge.vue`/`useCertificatePdf.js` um `courseKey` generalisiert, eigener
       Content-Ordner `content/ki-labor-checks/`, bisher nur Woche 1 (7 Fragen + 2 Coding-Aufgaben)
 - [x] Woche 2 "Daten sind alles" (+ Extra-Herausforderungen + eigener Wochen-Check)
-- [ ] Woche 3 "Nächste Nachbarn (k-NN)" (+ Extra-Herausforderungen + eigener Wochen-Check)
+- [x] Woche 3 "Nächste Nachbarn (k-NN)" (+ Extra-Herausforderungen + eigener Wochen-Check)
 - [ ] Woche 4 "Training & Test" (+ Extra-Herausforderungen + eigener Wochen-Check)
 - [ ] Woche 5 "Entscheidungsbäume" (+ Extra-Herausforderungen + eigener Wochen-Check)
 - [ ] Woche 6 "Neuronale Netze I" (+ Extra-Herausforderungen + eigener Wochen-Check)
