@@ -7,14 +7,12 @@ console.log(Math.floor(9.7));   // 9
 console.log(Math.floor(3.2));   // 3
 ```
 
-Ein einfaches Punktesystem: Die Schlange startet mit 3 Segmenten, für jedes zusätzliche Segment gibt es 10 Punkte:
+Ein einfaches Punktesystem: Die Schlange startet mit 3 Segmenten, für jedes zusätzliche Segment gibt es 10 Punkte. So läuft das Prinzip ab:
 
-```js
+```
 function punkteFuerLaenge(laenge) {
-  return Math.max(0, (laenge - 3) * 10);
+  gib zurück: Math.max(0, (laenge minus 3) mal 10)
 }
-
-console.log(punkteFuerLaenge(6));   // 30
 ```
 
 Jetzt ist dein Snake-Projekt komplett: Raster (Lektion 1), Segmente als Array (Lektion 2), Steuerung (Lektion 3), Bewegungsloop (Lektion 4) und Kollisionserkennung (Lektion 5) – bau daraus dein eigenes, vollständiges Spiel!

@@ -19,8 +19,7 @@ while aktueller_raum != "flur":
         else:
             print("Dort geht es nicht weiter.")
     elif teile[0] == "nimm":
-        inventar.append(teile[1])
-        print("Du nimmst: " + teile[1])
+        # dein Teil: Gegenstand ins Inventar aufnehmen und eine Meldung ausgeben
 
 print("Du hast die Bibliothek verlassen!")
 ```

@@ -22,14 +22,14 @@ for (const segment of schlange) {
 }
 ```
 
-Um später zu prüfen, ob an einer bestimmten Position schon ein Segment liegt (wichtig für die Kollisionserkennung in einer späteren Lektion), durchsuchst du das Array mit einer Schleife:
+Um später zu prüfen, ob an einer bestimmten Position schon ein Segment liegt (wichtig für die Kollisionserkennung in einer späteren Lektion), durchsuchst du das Array mit einer Schleife. So läuft das Prinzip ab:
 
-```js
+```
 function istSegmentAn(schlange, x, y) {
-  for (const segment of schlange) {
-    if (segment.x === x && segment.y === y) return true;
-  }
-  return false;
+  für jedes segment in schlange:
+    wenn segment.x gleich x UND segment.y gleich y ist:
+      gib true zurück
+  gib false zurück (kein Segment gefunden)
 }
 ```
 

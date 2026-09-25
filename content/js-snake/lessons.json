@@ -39,6 +39,7 @@
       {
         "instruction": "Schreibe istSegmentAn(schlange, x, y): gibt true zurück, wenn irgendein Segment im Array die Position (x, y) hat, sonst false.",
         "codeTemplate": "function istSegmentAn(schlange, x, y) {\n  // Dein Code hier\n}\n",
+        "solution": "function istSegmentAn(schlange, x, y) {\n  for (const segment of schlange) {\n    if (segment.x === x && segment.y === y) return true;\n  }\n  return false;\n}",
         "validation": {
           "functionCalls": [
             { "name": "istSegmentAn", "args": [[{ "x": 5, "y": 5 }, { "x": 4, "y": 5 }], 5, 5], "expected": true },
@@ -61,22 +62,22 @@
     "lessonSummary": "Genau so berechnest du gleich bei jedem Frame die neue Kopf-Position deiner Schlange.",
     "tasks": [
       {
-        "instruction": "Führe dieses Beispiel aus. Es zeigt, wie eine Taste in ein Richtungs-Objekt übersetzt wird.",
+        "instruction": "Führe dieses Beispiel aus. Es zeigt das Muster einer if-Kette, die je nach Eingabe einen anderen Wert zurückgibt.",
         "example": true,
-        "codeTemplate": "function richtungFuerTaste(taste) {\n  if (taste === 'ArrowUp') return { x: 0, y: -1 };\n  if (taste === 'ArrowDown') return { x: 0, y: 1 };\n  if (taste === 'ArrowLeft') return { x: -1, y: 0 };\n  if (taste === 'ArrowRight') return { x: 1, y: 0 };\n  return { x: 0, y: 0 };\n}\n\nconsole.log(richtungFuerTaste('ArrowRight'));\n",
+        "codeTemplate": "function anzahlBeine(tier) {\n  if (tier === 'spinne') return 8;\n  if (tier === 'hund') return 4;\n  if (tier === 'vogel') return 2;\n  return 0;\n}\n\nconsole.log(anzahlBeine('hund'));\n",
         "validation": {
           "functionCalls": [
-            { "name": "richtungFuerTaste", "args": ["ArrowUp"], "expected": { "x": 0, "y": -1 } },
-            { "name": "richtungFuerTaste", "args": ["ArrowDown"], "expected": { "x": 0, "y": 1 } },
-            { "name": "richtungFuerTaste", "args": ["ArrowLeft"], "expected": { "x": -1, "y": 0 } },
-            { "name": "richtungFuerTaste", "args": ["ArrowRight"], "expected": { "x": 1, "y": 0 } },
-            { "name": "richtungFuerTaste", "args": ["a"], "expected": { "x": 0, "y": 0 } }
+            { "name": "anzahlBeine", "args": ["spinne"], "expected": 8 },
+            { "name": "anzahlBeine", "args": ["hund"], "expected": 4 },
+            { "name": "anzahlBeine", "args": ["vogel"], "expected": 2 },
+            { "name": "anzahlBeine", "args": ["katze"], "expected": 0 }
           ]
         }
       },
       {
-        "instruction": "Schreibe richtungFuerTaste(taste) selbst (wie im Beispiel: 'ArrowUp' → {x:0,y:-1}, 'ArrowDown' → {x:0,y:1}, 'ArrowLeft' → {x:-1,y:0}, 'ArrowRight' → {x:1,y:0}, sonst {x:0,y:0}).",
+        "instruction": "Schreibe richtungFuerTaste(taste) selbst (genau wie im Beispiel eine if-Kette, nur mit anderen Fällen): 'ArrowUp' → {x:0,y:-1}, 'ArrowDown' → {x:0,y:1}, 'ArrowLeft' → {x:-1,y:0}, 'ArrowRight' → {x:1,y:0}, sonst {x:0,y:0}.",
         "codeTemplate": "function richtungFuerTaste(taste) {\n  // Dein Code hier\n}\n",
+        "solution": "function richtungFuerTaste(taste) {\n  if (taste === 'ArrowUp') return { x: 0, y: -1 };\n  if (taste === 'ArrowDown') return { x: 0, y: 1 };\n  if (taste === 'ArrowLeft') return { x: -1, y: 0 };\n  if (taste === 'ArrowRight') return { x: 1, y: 0 };\n  return { x: 0, y: 0 };\n}",
         "validation": {
           "functionCalls": [
             { "name": "richtungFuerTaste", "args": ["ArrowUp"], "expected": { "x": 0, "y": -1 } },
@@ -90,6 +91,7 @@
       {
         "instruction": "Schreibe naechsterKopf(kopf, richtung): gibt ein neues Objekt mit kopf.x + richtung.x und kopf.y + richtung.y zurück.",
         "codeTemplate": "function naechsterKopf(kopf, richtung) {\n  // Dein Code hier\n}\n",
+        "solution": "function naechsterKopf(kopf, richtung) {\n  return { x: kopf.x + richtung.x, y: kopf.y + richtung.y };\n}",
         "validation": {
           "functionCalls": [
             { "name": "naechsterKopf", "args": [{ "x": 5, "y": 5 }, { "x": 1, "y": 0 }], "expected": { "x": 6, "y": 5 } },
@@ -115,6 +117,7 @@
       {
         "instruction": "Schreibe gibNeueLaenge(laenge, gewachsen): bei gewachsen === true gibt sie laenge + 1 zurück, sonst unverändert laenge.",
         "codeTemplate": "function gibNeueLaenge(laenge, gewachsen) {\n  // Dein Code hier\n}\n",
+        "solution": "function gibNeueLaenge(laenge, gewachsen) {\n  return gewachsen ? laenge + 1 : laenge;\n}",
         "validation": {
           "functionCalls": [
             { "name": "gibNeueLaenge", "args": [3, true], "expected": 4 },
@@ -125,6 +128,7 @@
       {
         "instruction": "Jetzt du: baue die Animationsschleife selbst nach. Bewege kopf bei jedem Frame um ein Kästchen, bevor requestAnimationFrame den nächsten Frame anstößt.",
         "codeTemplate": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nconst groesse = 20;\nlet kopf = { x: 0, y: 5 };\n\nfunction frame() {\n  ctx.clearRect(0, 0, canvas.width, canvas.height);\n  ctx.fillStyle = 'limegreen';\n  ctx.fillRect(kopf.x * groesse, kopf.y * groesse, groesse, groesse);\n\n  // Dein Code hier: bewege kopf um ein Kaestchen\n\n  requestAnimationFrame(frame);\n}\n\nframe();\n",
+        "solution": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nconst groesse = 20;\nlet kopf = { x: 0, y: 5 };\n\nfunction frame() {\n  ctx.clearRect(0, 0, canvas.width, canvas.height);\n  ctx.fillStyle = 'limegreen';\n  ctx.fillRect(kopf.x * groesse, kopf.y * groesse, groesse, groesse);\n\n  kopf = { x: kopf.x + 1, y: kopf.y };\n\n  requestAnimationFrame(frame);\n}\n\nframe();",
         "validation": { "type": "canvas_changed", "ms": 400 }
       }
     ]
@@ -144,6 +148,7 @@
       {
         "instruction": "Schreibe istSelbstKollision(kopf, koerper): gibt true zurück, wenn der Kopf dieselbe Position wie irgendein Segment im koerper-Array hat.",
         "codeTemplate": "function istSelbstKollision(kopf, koerper) {\n  // Dein Code hier\n}\n",
+        "solution": "function istSelbstKollision(kopf, koerper) {\n  for (const segment of koerper) {\n    if (segment.x === kopf.x && segment.y === kopf.y) return true;\n  }\n  return false;\n}",
         "validation": {
           "functionCalls": [
             { "name": "istSelbstKollision", "args": [{ "x": 5, "y": 5 }, [{ "x": 4, "y": 5 }, { "x": 5, "y": 5 }]], "expected": true },
@@ -155,6 +160,7 @@
       {
         "instruction": "Schreibe istRandKollision(kopf, spaltenAnzahl, zeilenAnzahl): gibt true zurück, wenn kopf.x oder kopf.y negativ oder außerhalb des Rasters ist.",
         "codeTemplate": "function istRandKollision(kopf, spaltenAnzahl, zeilenAnzahl) {\n  // Dein Code hier\n}\n",
+        "solution": "function istRandKollision(kopf, spaltenAnzahl, zeilenAnzahl) {\n  return kopf.x < 0 || kopf.x >= spaltenAnzahl || kopf.y < 0 || kopf.y >= zeilenAnzahl;\n}",
         "validation": {
           "functionCalls": [
             { "name": "istRandKollision", "args": [{ "x": 5, "y": 5 }, 20, 15], "expected": false },
@@ -182,6 +188,7 @@
       {
         "instruction": "Schreibe punkteFuerLaenge(laenge): Die Schlange startet mit 3 Segmenten, jedes zusätzliche Segment gibt 10 Punkte (nutze Math.max, damit es nie negativ wird).",
         "codeTemplate": "function punkteFuerLaenge(laenge) {\n  // Dein Code hier\n}\n",
+        "solution": "function punkteFuerLaenge(laenge) {\n  return Math.max(0, (laenge - 3) * 10);\n}",
         "validation": {
           "functionCalls": [
             { "name": "punkteFuerLaenge", "args": [3], "expected": 0 },

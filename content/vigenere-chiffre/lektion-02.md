@@ -9,15 +9,15 @@ b a u m
 o k o k
 ```
 
-Um herauszufinden, welcher Schlüsselbuchstabe zu welcher Position im Text gehört, nutzt du den **Modulo-Operator** `%` – genau wie beim Wraparound in deiner Cäsar-Chiffre:
+Um herauszufinden, welcher Schlüsselbuchstabe zu welcher Position im Text gehört, nutzt du den **Modulo-Operator** `%` – genau wie beim Wraparound in deiner Cäsar-Chiffre. So läuft das Prinzip ab:
 
-```python
+```
 schluesselwort = "ok"
-position = 3
-buchstabe = schluesselwort[position % len(schluesselwort)]
-print(buchstabe)   # k
+position = 5
+index = position modulo Länge von schluesselwort
+buchstabe = schluesselwort an der Stelle index
 ```
 
-`3 % 2` ergibt `1` – also den zweiten Buchstaben (`k`) von `"ok"`. Egal wie lang der Text ist, `% len(schluesselwort)` sorgt dafür, dass der Index immer wieder von vorne beim Schlüsselwort anfängt.
+`5 % 2` ergibt `1` – also den zweiten Buchstaben von `"ok"`. Egal wie lang der Text ist, `% len(schluesselwort)` sorgt dafür, dass der Index immer wieder von vorne beim Schlüsselwort anfängt.
 
 > 💡 Modulo (`%`) und der Wraparound-Trick kommen direkt aus [Lektion 2 deines Cäsar-Chiffre-Projekts](/kurs/projekt-caesar-chiffre).

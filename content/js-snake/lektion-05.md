@@ -9,22 +9,22 @@ console.log(a === b);                     // false – zwei verschiedene Objekte
 console.log(a.x === b.x && a.y === b.y);  // true – aber ihre Werte stimmen überein
 ```
 
-Deshalb vergleichst du bei der Kollisionserkennung immer `x` und `y` einzeln, nie das ganze Objekt auf einmal. Für die Selbstkollision prüfst du, ob der Kopf dieselbe Position wie irgendein Körper-Segment hat:
+Deshalb vergleichst du bei der Kollisionserkennung immer `x` und `y` einzeln, nie das ganze Objekt auf einmal. Für die Selbstkollision prüfst du, ob der Kopf dieselbe Position wie irgendein Körper-Segment hat. So läuft das Prinzip ab:
 
-```js
+```
 function istSelbstKollision(kopf, koerper) {
-  for (const segment of koerper) {
-    if (segment.x === kopf.x && segment.y === kopf.y) return true;
-  }
-  return false;
+  für jedes segment in koerper:
+    wenn segment.x gleich kopf.x UND segment.y gleich kopf.y ist:
+      gib true zurück
+  gib false zurück
 }
 ```
 
 Für die Randkollision reicht ein einfacher Bereichs-Check: Ist der Kopf negativ oder größer/gleich der Anzahl Spalten bzw. Zeilen, ist er über den Rand hinaus.
 
-```js
+```
 function istRandKollision(kopf, spaltenAnzahl, zeilenAnzahl) {
-  return kopf.x < 0 || kopf.x >= spaltenAnzahl || kopf.y < 0 || kopf.y >= zeilenAnzahl;
+  gib zurück: kopf.x kleiner 0 ODER kopf.x mindestens spaltenAnzahl ODER kopf.y kleiner 0 ODER kopf.y mindestens zeilenAnzahl
 }
 ```
 
