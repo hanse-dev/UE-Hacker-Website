@@ -8,8 +8,12 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken) —
       **zurückgestellt** (Nutzer will erst später deployen). Backup-Cron auf dem Server einrichten
       (Befehl siehe HANDOFF.md Abschnitt 4); externe Sicherung der Backups bewusst nicht mitgebaut.
-- [ ] Tippfehler-Pass (`cspell`): `.vue`-Prosa (Ternary-/`t()`-Texte) und Interaktiv-/Projekt-Kurse noch
-      nicht geprüft.
+- [ ] Tippfehler-Pass (`cspell`): UI-Texte (`locales/de.js`/`en.js`) und die 12-Wochen-Notebooks sind
+      geprüft (Phase 1+2, `docs/archiv/HANDOFF-historie.md` 3.8–3.10). Noch nicht geprüft: alles seit
+      dem Lektions-Format (`content/python-woche*`), JS-Grundkurs, Interaktiv-Kurse, Projekt-Kurse.
+- [ ] Projekt-Kurse (Cäsar, Vigenère, Morsecode, Zahlen-Detektiv, JS-Spielewerkstatt, Snake,
+      Text-Adventure): nur DE-Content, EN fehlt noch (`kurse.json` hat bereits `title_en` für alle 7,
+      `lessons.json`/`lektion-*.md` sind nur deutsch).
 - [ ] Weitere Sprache neben DE/EN? Noch keine Entscheidung, kein Ziel. UI-Texte laufen bereits über
       `t()` (`locales/de.js`/`en.js`); offen bliebe nur der Content: `_en`-Feld-Suffix in
       `content/python-checks/week-{N}.json`, `-en`-Ordner-Suffix in `useCourseData.js`. Größter
@@ -56,7 +60,7 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
   deshalb selbst (ob das Dateisystem beim Kernel-Neustart geleert wird, nicht separat geprüft). Aus
   dem Original weggelassen: `f.writelines()`, `json.dumps(indent=2)`-Ausgabe als Prüfung,
   `csv.DictWriter` mit `extrasaction`, `with open(..., "x")`.
-- **Woche 10–12:** Woche 2 DE/EN-Angleichung läuft bereits, siehe "Laufend" oben. Woche 12 ist in
+- **Woche 10–12:** Woche 12 ist in
   7 Etappen mit kleinen, einzeln geprüften Aufgaben statt einem durchlaufenden Spiel-Notebook;
   Kampf-Aufgaben nutzen 1-HP-Gegner für deterministische Prüfung. Aus den Originalen weggelassen:
   Operator-Polymorphismus mit `__add__`, `__getitem__`, `input()`-Befehlsschleife in Woche 12
@@ -68,8 +72,8 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 
 Gesamt-Roadmap/Track-Modell (welche Sprache/welches Thema baut auf was auf) siehe `VISION.md`.
 Python-Projekt-Sprints (Vigenère-Chiffre, Snake, Text-Adventure) sind bereits gemergt (Details in
-`docs/archiv/todo-erledigt.md`); weitere Ideen im Backlog `PROJEKTIDEEN.md`, DE-first, EN-Versionen
-noch offen (siehe "Offen" oben).
+`docs/archiv/todo-erledigt.md`); weitere Ideen im Backlog `PROJEKTIDEEN.md`, DE-first (EN-Versionen
+siehe "Offen" oben).
 
 ### 1. KI-Labor — Branch `kurs-ki-labor`
 Baut auf dem Python-Track auf (12-Wochen-Grundkurs), siehe `VISION.md`/`KURSPLAN.md` Kurs 4

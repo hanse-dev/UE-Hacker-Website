@@ -2097,3 +2097,49 @@ Abenteuer: DE (9 Lektionen/48 Aufgaben) war größer, EN angeglichen. Pferde: DE
 Aufgaben) war größer, EN angeglichen. Referenzlösungen neu erzeugt (`6_loesungen`-Zellenordner),
 `npm run test:checks` voll grün (340 Tests). Sci-Fi (EN größer, DE wird angeglichen) läuft noch,
 siehe `todo.md` "Laufend".
+
+### 3.54 — Python Woche 10–12 (OOP Grundlagen, OOP Fortgeschritten, Text-Adventure) als Einzel-Lektionen
+
+Woche 10: 7 Lektionen (Klasse/Objekt, `__init__`, Methoden/`self`, Parameter/`return`, Zustand,
+Objekte in Listen, Objekte an Funktionen); Woche 11: 7 Lektionen (Vererbung/`isinstance`,
+Überschreiben, `super()`, Polymorphismus/Duck Typing, `__str__`/`__repr__`, `__eq__`/`__lt__`/
+`sorted`, `__add__`/`__len__`); Woche 12: 7 Etappen (Karte, Bewegung, Gegenstände, Spieler/
+Komposition, Gegner/Kampf, `try/except`, Speichern/Finale) mit den Themen-Welten aus 3.46; je Woche
+Debug (3 Bugs) + 3 Missionen + 4 Extra-Herausforderungen, DE = EN. Generator (`lib.py`, `w10.py`–
+`w12.py`, Skelett + Vokabular) nur im Scratchpad; jede Referenzlösung und jeder Bug/Fix mit
+`python3` geprüft (Setup darf die Erwartung nicht schon erfüllen). Kampf-Aufgaben nutzen
+1-HP-Gegner (deterministisch). **Damit gibt es in der Tour keine Notebook-Woche mehr:** Tests, die
+ein echtes Notebook brauchen, nutzen `tests/helpers/notebook.js` (`openSolutionsNotebook`,
+Nachschlagewerk „Lösungen“). **Nachbesserungen (3.54b):** `validation.codeContains`
+(Struktur-Pflichtbausteine, Woche 3–12 aus der Aufgabenstellung abgeleitet) und `validation.stdin`
+(vorgegebene `input()`-Eingaben beim Prüfen; Woche 1/2 umgestellt) in
+`LessonView`/`useTaskValidation`/`usePyodide`; Lösungen Woche 10–12 aus den Referenzlösungen neu
+erzeugt; Woche-3/4-Kosmetik (Plural, Punkt, Zeilenformat). **Lösungen Woche 1–12** (2.972
+Aufgaben, DE+EN, alle Themen) sind je Aufgabe eine Zelle mit einer Referenzlösung, die per
+`python3` gegen `expected`, `codeContains` und `stdin` geprüft wurde (Zufalls-Aufgaben 5×);
+Generator/Solver nur im Scratchpad, Themen einer Woche teilen das Skelett und wurden per
+Wortersetzung aus Abenteuer abgeleitet + Einzelfälle von Hand. **Glossare Woche 3–12** (3.54c) an
+die Lektionen angeglichen (keine Vorgriffe mehr, Test in `storytelling-content.spec.js`).
+Lösungs-Ordner mit > 99 Zellen bräuchten 3-stellige Zellnamen (`build_cell_notebooks.py` kann das).
+
+### 3.61 — Alle 7 Projekt-Kurse auf "selbst schreiben + Lösung auf Wunsch" umgestellt (Branch `projekt-caesar-eigener-code`, gemergt)
+
+**Cäsar/Vigenère/Morsecode/Zahlen-Detektiv** (`LessonView.vue`, Pyodide): `codeTemplate` blankt den
+Funktionskörper nur, wenn die Funktion in der Lektion neu eingeführt wird; schon vorher gebaute
+Funktionen bleiben als Gerüst (Ausnahme: reine "Beobachte"-Aufgaben ohne eigene Schreibarbeit, z.B.
+Zahlenrater-Finale, bleiben komplett vorgegeben). Neuer "Lösung anzeigen"-Button (`t()`-Keys
+`lesson.showSolution`/`solutionLabel`), verschwindet bei erledigter Aufgabe. **Text-Adventure**:
+`codeTemplate`s waren schon leer (kein Umbau nötig) — nur die Lektions-Erklärtexte gaben die exakte
+Lösung direkt vorher als lauffähigen Code preis (bis hin zu identischen Meldungstexten), jetzt
+Pseudocode. **Snake** (`JsLessonView.vue`, JS-Sandbox — hatte bereits eine `task.solution`/
+`<details>`-Lösungs-Anzeige aus 3.39/3.43): Lektion 3 hatte eine "Beispiel"-Aufgabe, die exakt die
+folgende "Pflicht"-Aufgabe (`richtungFuerTaste`) vorwegnahm — anders als das etablierte Muster aus
+der JS-Spielewerkstatt (Beispiel = andere Funktion, die nur das Prinzip zeigt, z.B. `verdopple` vor
+`bewegeSchlaeger`); Beispiel jetzt auf eine eigene, unabhängige Demo-Funktion (`anzahlBeine`)
+umgestellt. **JS-Spielewerkstatt** (das Vorbild selbst): fast durchgehend sauber, nur Lektion 6
+zeigte `tempoFuer` komplett im Erklärtext identisch zur Aufgabe — jetzt Pseudocode; fehlende
+`solution`-Felder bei den Haupt-Schreibaufgaben ergänzt. Alle Referenzlösungen mit `python3`/`node`
+geprüft. Jede Aufgabe (außer echten Freestyle-/Beobachte-Aufgaben) hat jetzt ein `solution`-Feld.
+Test: `tests/site.spec.js` "Lösung wird erst nach Klick...". **Gelernte Regel:** eine Lektion darf
+ihre eigene folgende Aufgabe nicht vorwegnehmen — weder als lauffähiger Code im Erklärtext noch als
+identische "Beispiel"-Aufgabe; Beispiele zeigen das Prinzip an einer *anderen* Instanz.
