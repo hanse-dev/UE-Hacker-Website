@@ -156,3 +156,7 @@ public/**/*.zip
 
 # Lokale Backups
 _backups/
+
+# Lokales Admin-Tool (Account anlegen + Thermodrucker-Ausdruck) — läuft nur lokal, nie deployed.
+# MXW01-Tool wird per setup-printer-tool.sh geklont, hat keine LICENSE-Datei → nicht committen.
+scripts/local-tools/vendor/

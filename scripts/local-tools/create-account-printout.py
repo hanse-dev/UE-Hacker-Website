@@ -1,0 +1,250 @@
+#!/usr/bin/env python3
+"""Legt einen Account auf der UE Hacker Website an und druckt die Zugangsdaten
+auf einem MXW01-Thermodrucker aus. Läuft nur lokal, nie auf dem Server.
+
+Setup: siehe scripts/local-tools/README.md
+"""
+import argparse
+import getpass
+import json
+import os
+import secrets
+import subprocess
+import sys
+import tempfile
+import urllib.error
+import urllib.parse
+import urllib.request
+from datetime import date
+from pathlib import Path
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+VENDOR_MXW01 = SCRIPT_DIR / "vendor" / "mxw01" / "MXW01print.py"
+VENV_PYTHON = SCRIPT_DIR / "venv" / "bin" / "python3"
+
+
+def reexec_in_venv() -> None:
+    """Startet das Skript im venv (Pillow/bleak/matplotlib) neu, falls es gerade unter
+    einem anderen Interpreter läuft — verhindert 'ModuleNotFoundError: PIL', egal ob
+    mit python3 oder venv/bin/python3 aufgerufen.
+
+    venv/bin/python3 ist meist nur ein Symlink auf den System-Interpreter — .resolve()
+    würde also beide als identisch behandeln. sys.prefix zeigt dagegen zuverlässig auf
+    den venv-Ordner, sobald man tatsächlich über venv/bin/python3 gestartet wurde."""
+    if not VENV_PYTHON.exists():
+        return
+    if sys.prefix == str(VENV_PYTHON.parent.parent):
+        return
+    os.execv(str(VENV_PYTHON), [str(VENV_PYTHON), str(Path(__file__).resolve()), *sys.argv[1:]])
+
+# Kurze, eindeutige deutsche Wörter für Passwörter (keine Umlaute/ß, damit sie sich leicht
+# abtippen lassen) — bewusst klein gehalten, nicht als vollständige Wortliste gedacht.
+PASSWORD_WORDS = [
+    "Apfel", "Baum", "Berg", "Blume", "Boot", "Brot", "Delfin", "Drache", "Ecke", "Elefant",
+    "Feuer", "Fisch", "Fuchs", "Garten", "Gitarre", "Hafen", "Hase", "Held", "Herbst", "Himmel",
+    "Honig", "Hund", "Hut", "Igel", "Insel", "Katze", "Keks", "Kiwi", "Koffer", "Komet",
+    "Konig", "Kranich", "Kuchen", "Lampe", "Lowe", "Mantel", "Meer", "Mond", "Muschel", "Nebel",
+    "Nudel", "Ozean", "Panda", "Pilz", "Planet", "Pirat", "Rakete", "Ritter", "Roboter", "Sand",
+    "Schiff", "Schnee", "See", "Sommer", "Stern", "Sturm", "Tiger", "Traum", "Tunnel", "Turm",
+    "Vogel", "Wald", "Wal", "Welle", "Wiese", "Wind", "Winter", "Wolke", "Zauber", "Ziege",
+    "Zirkus", "Zug",
+]
+
+
+def load_env_file(path: Path) -> dict:
+    values = {}
+    if not path.exists():
+        return values
+    for line in path.read_text().splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, _, value = line.partition("=")
+        values[key.strip()] = value.strip()
+    return values
+
+
+def normalize_server_url(url: str) -> str:
+    """Kodiert einen Umlaut-Hostnamen (z.B. übergangshacker.de) als Punycode —
+    sonst schickt urllib den Host-Header unkodiert und der Server kappt die Verbindung."""
+    parts = urllib.parse.urlsplit(url)
+    host = parts.hostname or ""
+    try:
+        ascii_host = host.encode("idna").decode("ascii")
+    except UnicodeError:
+        ascii_host = host
+    if parts.port:
+        ascii_netloc = f"{ascii_host}:{parts.port}"
+    else:
+        ascii_netloc = ascii_host
+    return urllib.parse.urlunsplit((parts.scheme, ascii_netloc, parts.path, parts.query, parts.fragment))
+
+
+def generate_password() -> str:
+    word1, word2 = secrets.choice(PASSWORD_WORDS), secrets.choice(PASSWORD_WORDS)
+    digits = f"{secrets.randbelow(100):02d}"
+    return f"{word1}-{word2}-{digits}"
+
+
+def api_request(url: str, payload: dict, token: str | None = None) -> dict:
+    headers = {"Content-Type": "application/json"}
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    req = urllib.request.Request(
+        url, data=json.dumps(payload).encode(), headers=headers, method="POST"
+    )
+    try:
+        with urllib.request.urlopen(req) as resp:
+            return json.load(resp)
+    except urllib.error.HTTPError as e:
+        body = e.read().decode(errors="replace")
+        sys.exit(f"Fehler bei {url}: {e.code} {body}")
+
+
+def build_receipt_image(username: str, password: str, server_url: str) -> Path:
+    from PIL import Image, ImageDraw, ImageFont
+
+    width = 384
+    margin = 14  # Abstand Rahmen zu Papierrand
+    padding = 14  # Abstand Inhalt zu Rahmen
+    inner_width = width - 2 * margin - 2 * padding
+    domain = server_url.replace("https://", "").replace("http://", "").rstrip("/")
+
+    def font(size: int, bold: bool):
+        name = "DejaVuSans-Bold.ttf" if bold else "DejaVuSans.ttf"
+        try:
+            return ImageFont.truetype(name, size)
+        except OSError:
+            return ImageFont.load_default()
+
+    # (Text, Schriftgröße, fett, zentriert) — Reihenfolge der Zeilen im Rahmen
+    rows = [
+        ("UE HACKER", 26, True, True),
+        ("Zugangsausweis", 16, False, True),
+        ("RULE", 0, False, False),  # Trennlinie, kein Text
+        ("Name", 14, False, False),
+        (username, 24, True, False),
+        ("", 6, False, False),
+        ("Passwort", 14, False, False),
+        (password, 24, True, False),
+        ("RULE", 0, False, False),
+        (domain, 14, False, True),
+        (date.today().isoformat(), 12, False, True),
+    ]
+
+    scratch = Image.new("L", (width, 10))
+    draw = ImageDraw.Draw(scratch)
+    row_heights = []
+    content_height = 0
+    for text, size, bold, centered in rows:
+        if text == "RULE":
+            h = 16
+        else:
+            f = font(size, bold)
+            bbox = draw.textbbox((0, 0), text or " ", font=f)
+            h = (bbox[3] - bbox[1]) + 8
+        row_heights.append(h)
+        content_height += h
+
+    frame_top = margin
+    frame_height = padding * 2 + content_height
+    total_height = frame_top + frame_height + margin
+    frame_left = margin
+    frame_right = width - margin
+
+    img = Image.new("L", (width, total_height), color=255)
+    draw = ImageDraw.Draw(img)
+
+    # Doppelter Rahmen, wie ein Ausweis/Badge
+    draw.rectangle(
+        [frame_left, frame_top, frame_right, frame_top + frame_height],
+        outline=0, width=3,
+    )
+    draw.rectangle(
+        [frame_left + 6, frame_top + 6, frame_right - 6, frame_top + frame_height - 6],
+        outline=0, width=1,
+    )
+
+    y = frame_top + padding
+    for (text, size, bold, centered), h in zip(rows, row_heights):
+        if text == "RULE":
+            line_y = y + h // 2
+            draw.line(
+                [frame_left + padding, line_y, frame_right - padding, line_y],
+                fill=0, width=1,
+            )
+        elif text:
+            f = font(size, bold)
+            bbox = draw.textbbox((0, 0), text, font=f)
+            text_w = bbox[2] - bbox[0]
+            if centered:
+                x = frame_left + padding + max(0, (inner_width - text_w) // 2)
+            else:
+                x = frame_left + padding
+            draw.text((x, y), text, font=f, fill=0)
+        y += h
+
+    out_path = Path(tempfile.mkstemp(suffix=".png")[1])
+    img.save(out_path)
+    return out_path
+
+
+def print_receipt(image_path: Path, printer_address: str) -> None:
+    if not VENDOR_MXW01.exists():
+        sys.exit(
+            f"MXW01-Tool fehlt unter {VENDOR_MXW01}.\n"
+            f"Erst ausführen: {SCRIPT_DIR / 'setup-printer-tool.sh'}"
+        )
+    subprocess.run(
+        [sys.executable, str(VENDOR_MXW01), "-i", str(image_path), "-d", printer_address],
+        check=True,
+    )
+
+
+def main() -> None:
+    reexec_in_venv()
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("username", help="Gewünschter Benutzername (2-40 Zeichen, a-z/A-Z/0-9/._-)")
+    parser.add_argument("age_group", choices=["kinder", "jugendliche"], help="Altersgruppe")
+    parser.add_argument("--server-url", help="Überschreibt ACCOUNT_SERVER_URL aus .env")
+    parser.add_argument("--printer-address", help="Überschreibt MXW01_PRINTER_ADDRESS aus .env")
+    parser.add_argument("--no-print", action="store_true", help="Nur Account anlegen, nicht drucken")
+    args = parser.parse_args()
+
+    env = load_env_file(SCRIPT_DIR / ".env")
+    server_url_raw = (args.server_url or env.get("ACCOUNT_SERVER_URL") or "").rstrip("/")
+    server_url = normalize_server_url(server_url_raw) if server_url_raw else ""
+    printer_address = args.printer_address or env.get("MXW01_PRINTER_ADDRESS")
+    admin_password = env.get("ADMIN_PASSWORD") or getpass.getpass("Admin-Passwort der Website: ")
+
+    if not server_url:
+        sys.exit("ACCOUNT_SERVER_URL fehlt (in scripts/local-tools/.env setzen oder --server-url übergeben).")
+
+    password = generate_password()
+
+    login = api_request(f"{server_url}/api/admin/login", {"password": admin_password})
+    token = login["token"]
+
+    api_request(
+        f"{server_url}/api/admin/users",
+        {"username": args.username, "password": password, "ageGroup": args.age_group},
+        token=token,
+    )
+    print(f"Account '{args.username}' angelegt. Passwort: {password}")
+
+    if args.no_print:
+        return
+
+    if not printer_address:
+        sys.exit("MXW01_PRINTER_ADDRESS fehlt (in scripts/local-tools/.env setzen oder --printer-address übergeben).")
+
+    image_path = build_receipt_image(args.username, password, server_url_raw)
+    try:
+        print_receipt(image_path, printer_address)
+    finally:
+        image_path.unlink(missing_ok=True)
+
+
+if __name__ == "__main__":
+    main()
