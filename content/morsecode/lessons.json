@@ -8,11 +8,13 @@
       {
         "instruction": "Gib mit MORSE['s'] das Morsezeichen für den Buchstaben 's' aus.",
         "codeTemplate": "MORSE = {\n    'a': '.-', 'b': '-...', 'c': '-.-.', 'd': '-..', 'e': '.', 'f': '..-.',\n    'g': '--.', 'h': '....', 'i': '..', 'j': '.---', 'k': '-.-', 'l': '.-..',\n    'm': '--', 'n': '-.', 'o': '---', 'p': '.--.', 'q': '--.-', 'r': '.-.',\n    's': '...', 't': '-', 'u': '..-', 'v': '...-', 'w': '.--', 'x': '-..-',\n    'y': '-.--', 'z': '--..'\n}\n\n# dein Code hier\n",
+        "solution": "MORSE = {\n    'a': '.-', 'b': '-...', 'c': '-.-.', 'd': '-..', 'e': '.', 'f': '..-.',\n    'g': '--.', 'h': '....', 'i': '..', 'j': '.---', 'k': '-.-', 'l': '.-..',\n    'm': '--', 'n': '-.', 'o': '---', 'p': '.--.', 'q': '--.-', 'r': '.-.',\n    's': '...', 't': '-', 'u': '..-', 'v': '...-', 'w': '.--', 'x': '-..-',\n    'y': '-.--', 'z': '--..'\n}\n\nprint(MORSE['s'])",
         "validation": { "type": "output_contains", "expected": "..." }
       },
       {
         "instruction": "Bonus: Gib das Morsezeichen für 'o' aus. Erkennst du SOS in ... --- ...?",
         "codeTemplate": "MORSE = {\n    'a': '.-', 'b': '-...', 'c': '-.-.', 'd': '-..', 'e': '.', 'f': '..-.',\n    'g': '--.', 'h': '....', 'i': '..', 'j': '.---', 'k': '-.-', 'l': '.-..',\n    'm': '--', 'n': '-.', 'o': '---', 'p': '.--.', 'q': '--.-', 'r': '.-.',\n    's': '...', 't': '-', 'u': '..-', 'v': '...-', 'w': '.--', 'x': '-..-',\n    'y': '-.--', 'z': '--..'\n}\n\n# dein Code hier\n",
+        "solution": "MORSE = {\n    'a': '.-', 'b': '-...', 'c': '-.-.', 'd': '-..', 'e': '.', 'f': '..-.',\n    'g': '--.', 'h': '....', 'i': '..', 'j': '.---', 'k': '-.-', 'l': '.-..',\n    'm': '--', 'n': '-.', 'o': '---', 'p': '.--.', 'q': '--.-', 'r': '.-.',\n    's': '...', 't': '-', 'u': '..-', 'v': '...-', 'w': '.--', 'x': '-..-',\n    'y': '-.--', 'z': '--..'\n}\n\nprint(MORSE['o'])",
         "isBonus": true,
         "validation": { "type": "output_contains", "expected": "---" }
       }
@@ -26,12 +28,14 @@
     "tasks": [
       {
         "instruction": "Ruf in_morse('hi') auf und gib das Ergebnis aus.",
-        "codeTemplate": "MORSE = {\n    'a': '.-', 'b': '-...', 'c': '-.-.', 'd': '-..', 'e': '.', 'f': '..-.',\n    'g': '--.', 'h': '....', 'i': '..', 'j': '.---', 'k': '-.-', 'l': '.-..',\n    'm': '--', 'n': '-.', 'o': '---', 'p': '.--.', 'q': '--.-', 'r': '.-.',\n    's': '...', 't': '-', 'u': '..-', 'v': '...-', 'w': '.--', 'x': '-..-',\n    'y': '-.--', 'z': '--..'\n}\n\ndef in_morse(text):\n    ergebnis = []\n    for zeichen in text:\n        ergebnis.append(MORSE[zeichen])\n    return \" \".join(ergebnis)\n\n# dein Aufruf hier\n",
+        "codeTemplate": "MORSE = {\n    'a': '.-', 'b': '-...', 'c': '-.-.', 'd': '-..', 'e': '.', 'f': '..-.',\n    'g': '--.', 'h': '....', 'i': '..', 'j': '.---', 'k': '-.-', 'l': '.-..',\n    'm': '--', 'n': '-.', 'o': '---', 'p': '.--.', 'q': '--.-', 'r': '.-.',\n    's': '...', 't': '-', 'u': '..-', 'v': '...-', 'w': '.--', 'x': '-..-',\n    'y': '-.--', 'z': '--..'\n}\n\ndef in_morse(text):\n    # dein Code hier\n    pass\n\n# dein Aufruf hier\n",
+        "solution": "MORSE = {\n    'a': '.-', 'b': '-...', 'c': '-.-.', 'd': '-..', 'e': '.', 'f': '..-.',\n    'g': '--.', 'h': '....', 'i': '..', 'j': '.---', 'k': '-.-', 'l': '.-..',\n    'm': '--', 'n': '-.', 'o': '---', 'p': '.--.', 'q': '--.-', 'r': '.-.',\n    's': '...', 't': '-', 'u': '..-', 'v': '...-', 'w': '.--', 'x': '-..-',\n    'y': '-.--', 'z': '--..'\n}\n\ndef in_morse(text):\n    ergebnis = []\n    for zeichen in text:\n        ergebnis.append(MORSE[zeichen])\n    return \" \".join(ergebnis)\n\nprint(in_morse('hi'))",
         "validation": { "type": "output_contains", "expected": ".... .." }
       },
       {
         "instruction": "Bonus: Ruf in_morse('sos') auf.",
         "codeTemplate": "MORSE = {\n    'a': '.-', 'b': '-...', 'c': '-.-.', 'd': '-..', 'e': '.', 'f': '..-.',\n    'g': '--.', 'h': '....', 'i': '..', 'j': '.---', 'k': '-.-', 'l': '.-..',\n    'm': '--', 'n': '-.', 'o': '---', 'p': '.--.', 'q': '--.-', 'r': '.-.',\n    's': '...', 't': '-', 'u': '..-', 'v': '...-', 'w': '.--', 'x': '-..-',\n    'y': '-.--', 'z': '--..'\n}\n\ndef in_morse(text):\n    ergebnis = []\n    for zeichen in text:\n        ergebnis.append(MORSE[zeichen])\n    return \" \".join(ergebnis)\n\n# dein Aufruf hier\n",
+        "solution": "MORSE = {\n    'a': '.-', 'b': '-...', 'c': '-.-.', 'd': '-..', 'e': '.', 'f': '..-.',\n    'g': '--.', 'h': '....', 'i': '..', 'j': '.---', 'k': '-.-', 'l': '.-..',\n    'm': '--', 'n': '-.', 'o': '---', 'p': '.--.', 'q': '--.-', 'r': '.-.',\n    's': '...', 't': '-', 'u': '..-', 'v': '...-', 'w': '.--', 'x': '-..-',\n    'y': '-.--', 'z': '--..'\n}\n\ndef in_morse(text):\n    ergebnis = []\n    for zeichen in text:\n        ergebnis.append(MORSE[zeichen])\n    return \" \".join(ergebnis)\n\nprint(in_morse('sos'))",
         "isBonus": true,
         "validation": { "type": "output_contains", "expected": "... --- ..." }
       }
@@ -45,7 +49,8 @@
     "tasks": [
       {
         "instruction": "Ruf aus_morse(\"... --- ...\") auf und gib das Ergebnis aus.",
-        "codeTemplate": "MORSE = {\n    'a': '.-', 'b': '-...', 'c': '-.-.', 'd': '-..', 'e': '.', 'f': '..-.',\n    'g': '--.', 'h': '....', 'i': '..', 'j': '.---', 'k': '-.-', 'l': '.-..',\n    'm': '--', 'n': '-.', 'o': '---', 'p': '.--.', 'q': '--.-', 'r': '.-.',\n    's': '...', 't': '-', 'u': '..-', 'v': '...-', 'w': '.--', 'x': '-..-',\n    'y': '-.--', 'z': '--..'\n}\n\nMORSE_UMGEKEHRT = {code: buchstabe for buchstabe, code in MORSE.items()}\n\ndef aus_morse(code):\n    zeichen_codes = code.split(\" \")\n    ergebnis = \"\"\n    for c in zeichen_codes:\n        ergebnis = ergebnis + MORSE_UMGEKEHRT[c]\n    return ergebnis\n\n# dein Aufruf hier\n",
+        "codeTemplate": "MORSE = {\n    'a': '.-', 'b': '-...', 'c': '-.-.', 'd': '-..', 'e': '.', 'f': '..-.',\n    'g': '--.', 'h': '....', 'i': '..', 'j': '.---', 'k': '-.-', 'l': '.-..',\n    'm': '--', 'n': '-.', 'o': '---', 'p': '.--.', 'q': '--.-', 'r': '.-.',\n    's': '...', 't': '-', 'u': '..-', 'v': '...-', 'w': '.--', 'x': '-..-',\n    'y': '-.--', 'z': '--..'\n}\n\nMORSE_UMGEKEHRT = {code: buchstabe for buchstabe, code in MORSE.items()}\n\ndef aus_morse(code):\n    # dein Code hier\n    pass\n\n# dein Aufruf hier\n",
+        "solution": "MORSE = {\n    'a': '.-', 'b': '-...', 'c': '-.-.', 'd': '-..', 'e': '.', 'f': '..-.',\n    'g': '--.', 'h': '....', 'i': '..', 'j': '.---', 'k': '-.-', 'l': '.-..',\n    'm': '--', 'n': '-.', 'o': '---', 'p': '.--.', 'q': '--.-', 'r': '.-.',\n    's': '...', 't': '-', 'u': '..-', 'v': '...-', 'w': '.--', 'x': '-..-',\n    'y': '-.--', 'z': '--..'\n}\n\nMORSE_UMGEKEHRT = {code: buchstabe for buchstabe, code in MORSE.items()}\n\ndef aus_morse(code):\n    zeichen_codes = code.split(\" \")\n    ergebnis = \"\"\n    for c in zeichen_codes:\n        ergebnis = ergebnis + MORSE_UMGEKEHRT[c]\n    return ergebnis\n\nprint(aus_morse(\"... --- ...\"))",
         "validation": { "type": "output_contains", "expected": "sos" }
       }
     ]
@@ -59,6 +64,7 @@
       {
         "instruction": "Vervollständige in_morse_sicher: benutze MORSE.get(zeichen, '?') statt MORSE[zeichen]. Ruf danach in_morse_sicher('hi!') auf.",
         "codeTemplate": "MORSE = {\n    'a': '.-', 'b': '-...', 'c': '-.-.', 'd': '-..', 'e': '.', 'f': '..-.',\n    'g': '--.', 'h': '....', 'i': '..', 'j': '.---', 'k': '-.-', 'l': '.-..',\n    'm': '--', 'n': '-.', 'o': '---', 'p': '.--.', 'q': '--.-', 'r': '.-.',\n    's': '...', 't': '-', 'u': '..-', 'v': '...-', 'w': '.--', 'x': '-..-',\n    'y': '-.--', 'z': '--..'\n}\n\ndef in_morse_sicher(text):\n    ergebnis = []\n    for zeichen in text:\n        # dein Code hier: benutze MORSE.get(...) statt MORSE[...]\n        pass\n    return \" \".join(ergebnis)\n\n# dein Aufruf hier\n",
+        "solution": "MORSE = {\n    'a': '.-', 'b': '-...', 'c': '-.-.', 'd': '-..', 'e': '.', 'f': '..-.',\n    'g': '--.', 'h': '....', 'i': '..', 'j': '.---', 'k': '-.-', 'l': '.-..',\n    'm': '--', 'n': '-.', 'o': '---', 'p': '.--.', 'q': '--.-', 'r': '.-.',\n    's': '...', 't': '-', 'u': '..-', 'v': '...-', 'w': '.--', 'x': '-..-',\n    'y': '-.--', 'z': '--..'\n}\n\ndef in_morse_sicher(text):\n    ergebnis = []\n    for zeichen in text:\n        ergebnis.append(MORSE.get(zeichen, '?'))\n    return \" \".join(ergebnis)\n\nprint(in_morse_sicher('hi!'))",
         "validation": { "type": "output_contains", "expected": ".... .. ?" }
       }
     ]
@@ -72,6 +78,7 @@
       {
         "instruction": "Vervollständige uebersetze(text, richtung) und ruf sie einmal mit 'code' und einmal mit 'text' als Richtung auf.",
         "codeTemplate": "MORSE = {\n    'a': '.-', 'b': '-...', 'c': '-.-.', 'd': '-..', 'e': '.', 'f': '..-.',\n    'g': '--.', 'h': '....', 'i': '..', 'j': '.---', 'k': '-.-', 'l': '.-..',\n    'm': '--', 'n': '-.', 'o': '---', 'p': '.--.', 'q': '--.-', 'r': '.-.',\n    's': '...', 't': '-', 'u': '..-', 'v': '...-', 'w': '.--', 'x': '-..-',\n    'y': '-.--', 'z': '--..'\n}\nMORSE_UMGEKEHRT = {code: buchstabe for buchstabe, code in MORSE.items()}\n\ndef in_morse_sicher(text):\n    ergebnis = []\n    for zeichen in text:\n        ergebnis.append(MORSE.get(zeichen, '?'))\n    return \" \".join(ergebnis)\n\ndef aus_morse(code):\n    zeichen_codes = code.split(\" \")\n    ergebnis = \"\"\n    for c in zeichen_codes:\n        ergebnis = ergebnis + MORSE_UMGEKEHRT[c]\n    return ergebnis\n\ndef uebersetze(text, richtung):\n    # dein Code hier: bei richtung == 'code' -> in_morse_sicher, sonst -> aus_morse\n    pass\n\nprint(uebersetze('sos', 'code'))\nprint(uebersetze(\"... --- ...\", 'text'))\n",
+        "solution": "MORSE = {\n    'a': '.-', 'b': '-...', 'c': '-.-.', 'd': '-..', 'e': '.', 'f': '..-.',\n    'g': '--.', 'h': '....', 'i': '..', 'j': '.---', 'k': '-.-', 'l': '.-..',\n    'm': '--', 'n': '-.', 'o': '---', 'p': '.--.', 'q': '--.-', 'r': '.-.',\n    's': '...', 't': '-', 'u': '..-', 'v': '...-', 'w': '.--', 'x': '-..-',\n    'y': '-.--', 'z': '--..'\n}\nMORSE_UMGEKEHRT = {code: buchstabe for buchstabe, code in MORSE.items()}\n\ndef in_morse_sicher(text):\n    ergebnis = []\n    for zeichen in text:\n        ergebnis.append(MORSE.get(zeichen, '?'))\n    return \" \".join(ergebnis)\n\ndef aus_morse(code):\n    zeichen_codes = code.split(\" \")\n    ergebnis = \"\"\n    for c in zeichen_codes:\n        ergebnis = ergebnis + MORSE_UMGEKEHRT[c]\n    return ergebnis\n\ndef uebersetze(text, richtung):\n    if richtung == 'code':\n        return in_morse_sicher(text)\n    else:\n        return aus_morse(text)\n\nprint(uebersetze('sos', 'code'))\nprint(uebersetze(\"... --- ...\", 'text'))",
         "validation": { "type": "output_contains", "expected": "sos" }
       }
     ]

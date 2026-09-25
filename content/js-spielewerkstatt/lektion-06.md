@@ -2,11 +2,11 @@
 
 Du hast jetzt alle Bausteine für „Fang den Ball" selbst gebaut: ein Spielfeld, einen steuerbaren Schläger, eine Animationsschleife, Kollisionserkennung und einen Punktestand. Zeit, das Spiel schwerer – und zu deinem eigenen zu machen.
 
-Ein einfacher Trick für eine Schwierigkeitskurve: das Tempo des Balls mit dem Punktestand steigen lassen.
+Ein einfacher Trick für eine Schwierigkeitskurve: das Tempo des Balls mit dem Punktestand steigen lassen. So läuft das Prinzip ab:
 
-```js
+```
 function tempoFuer(punkte) {
-  return 3 + Math.floor(punkte / 5);
+  gib zurück: Grundtempo + Math.floor(punkte / 5)
 }
 ```
 
