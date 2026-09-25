@@ -80,6 +80,7 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
 
   test('Wochenauswahl: 8 Kacheln, Woche 1+2 verfügbar, Rest "kommt noch"', async ({ page }) => {
     await page.goto('/kurs/ki-labor');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.week-tile')).toHaveCount(8);
     await expect(page.locator('.week-tile').nth(0)).not.toBeDisabled();
     await expect(page.locator('.week-tile').nth(1)).not.toBeDisabled();
@@ -91,6 +92,7 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
 
   test('Woche 1 anklicken öffnet die Wochen-Tour, "Andere Woche wählen" führt zurück', async ({ page }) => {
     await page.goto('/kurs/ki-labor');
+    await page.locator('.btn-start-course').click();
     await page.locator('.week-tile').nth(0).click();
     // 10 Lektionen (5 Lektion + Debug + Mission + 3 Extra-Herausforderung) + 1 Check-Punkt, da
     // content/ki-labor-checks/week-1.json existiert (hasCheck=true).

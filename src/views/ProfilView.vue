@@ -30,6 +30,34 @@
           </router-link>
         </div>
       </section>
+
+      <section class="profil-certificates">
+        <h2>{{ t('profil.certificates.title') }}</h2>
+        <p class="profil-certificates-hint">{{ t('profil.certificates.hint') }}</p>
+
+        <p v-if="certLoading" class="profil-loading">{{ t('profil.loading') }}</p>
+        <div v-else v-for="course in certCourses" :key="course.courseKey" class="cert-course-block">
+          <h3 class="cert-course-title">
+            {{ lang === 'en' && course.title_en ? course.title_en : course.title }}
+            <span class="cert-course-count">{{ course.earnedCount }}/{{ course.weeks.length }} 🎓</span>
+          </h3>
+          <div class="badge-grid">
+            <router-link
+              v-for="week in course.weeks"
+              :key="week.weekNumber"
+              :to="`/kurs/${course.courseId}?week=${week.weekNumber}`"
+              class="badge-card"
+              :class="{ earned: week.earned }"
+            >
+              <span class="badge-icon">{{ week.earned ? '🎓' : '🔒' }}</span>
+              <span class="badge-title">{{ t('week.label') }} {{ week.weekNumber }}</span>
+              <span class="badge-status">
+                {{ lang === 'en' && week.title_en ? week.title_en : week.title }}
+              </span>
+            </router-link>
+          </div>
+        </div>
+      </section>
     </template>
   </div>
 </template>
@@ -39,6 +67,7 @@ import { onMounted, watch } from 'vue';
 import { useAuth } from '../composables/useAuth.js';
 import { useLanguage } from '../composables/useLanguage.js';
 import { useProjectBadges } from '../composables/useProjectBadges.js';
+import { useCourseCertificates } from '../composables/useCourseCertificates.js';
 
 export default {
   name: 'ProfilView',
@@ -46,17 +75,23 @@ export default {
     const { t, lang } = useLanguage();
     const { user, isLoggedIn } = useAuth();
     const { badges, loading, load } = useProjectBadges();
+    const { courses: certCourses, loading: certLoading, load: loadCertificates } = useCourseCertificates();
+
+    const loadAll = () => {
+      load();
+      loadCertificates();
+    };
 
     onMounted(() => {
-      if (isLoggedIn.value) load();
+      if (isLoggedIn.value) loadAll();
     });
     // Direkter Login-/Logout-Wechsel auf dieser Seite (ohne Neuladen) soll die Abzeichen sofort
     // laden bzw. den Login-Hinweis zeigen, nicht den Stand vom Seitenaufruf behalten.
     watch(isLoggedIn, (now) => {
-      if (now) load();
+      if (now) loadAll();
     });
 
-    return { t, lang, user, isLoggedIn, badges, loading };
+    return { t, lang, user, isLoggedIn, badges, loading, certCourses, certLoading };
   },
 };
 </script>
@@ -144,5 +179,41 @@ export default {
 .badge-card.earned .badge-status {
   color: #8a6d00;
   font-weight: 600;
+}
+
+.profil-certificates {
+  margin-top: 40px;
+}
+
+.profil-certificates h2 {
+  margin-bottom: 4px;
+}
+
+.profil-certificates-hint {
+  color: #666;
+  font-size: 0.9em;
+  margin: 0 0 20px 0;
+}
+
+.cert-course-block {
+  margin-bottom: 28px;
+}
+
+.cert-course-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1em;
+  color: #333;
+  margin: 0 0 12px 0;
+}
+
+.cert-course-count {
+  font-size: 0.8em;
+  font-weight: 600;
+  color: #7c3aed;
+  background: #f3ecfe;
+  border-radius: 999px;
+  padding: 2px 10px;
 }
 </style>

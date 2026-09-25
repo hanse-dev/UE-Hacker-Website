@@ -1,54 +1,67 @@
 <template>
   <section class="course-detail" v-if="course">
-    <h1>{{ courseTitle }}</h1>
-    <div v-if="description || isWeeklyCourse" class="course-description">
-      <div v-if="description" v-html="description"></div>
+    <template v-if="!isFocusableCourse || !started">
+      <h1>{{ courseTitle }}</h1>
+      <div v-if="description || isWeeklyCourse" class="course-description">
+        <div v-if="description" v-html="description"></div>
 
-      <div v-if="isWeeklyCourse || isInteractiveCourse" class="placement-banner">
-        <p>{{ t('course.placement.banner') }}</p>
-        <router-link to="/kurs/python-einstufung" class="placement-banner-link">
-          {{ t('course.placement.link') }}
-        </router-link>
-      </div>
+        <div v-if="isWeeklyCourse || isInteractiveCourse" class="placement-banner">
+          <p>{{ t('course.placement.banner') }}</p>
+          <router-link to="/kurs/python-einstufung" class="placement-banner-link">
+            {{ t('course.placement.link') }}
+          </router-link>
+        </div>
 
-      <div v-if="isWeeklyCourse" class="course-structure">
-        <p class="course-structure-intro">{{ t('course.structure.intro') }}</p>
-        <div class="course-structure-tabs">
-          <div class="course-structure-tab" v-for="step in courseStructureSteps" :key="step.key">
-            <span class="course-structure-icon">{{ step.icon }}</span>
-            <div class="course-structure-text">
-              <strong>{{ step.title }}</strong>
-              <span>{{ step.desc }}</span>
+        <div v-if="isWeeklyCourse" class="course-structure">
+          <p class="course-structure-intro">{{ t('course.structure.intro') }}</p>
+          <div class="course-structure-tabs">
+            <div class="course-structure-tab" v-for="step in courseStructureSteps" :key="step.key">
+              <span class="course-structure-icon">{{ step.icon }}</span>
+              <div class="course-structure-text">
+                <strong>{{ step.title }}</strong>
+                <span>{{ step.desc }}</span>
+              </div>
             </div>
           </div>
+          <p class="course-structure-reference">{{ t('course.structure.reference') }}</p>
         </div>
-        <p class="course-structure-reference">{{ t('course.structure.reference') }}</p>
       </div>
-    </div>
 
-    <CourseAppointments v-if="!isInteractiveCourse && !isPlacementCourse && !isProjectCourse && !isJsGrundkurs && !isKiLabor" :termine="courseTermine" />
+      <CourseAppointments v-if="!isInteractiveCourse && !isPlacementCourse && !isProjectCourse && !isJsGrundkurs && !isKiLabor" :termine="courseTermine" />
 
-    <div v-if="isInteractiveCourse" class="interactive-course-wrapper">
-      <InteractiveCourse :content-path="course.contentPath" />
-    </div>
+      <button v-if="isFocusableCourse" class="btn-start-course" @click="startCourse">
+        {{ t('course.start.button') }}
+      </button>
 
-    <div v-else-if="isPlacementCourse" class="placement-course-wrapper">
-      <PlacementCourse />
-    </div>
+      <div v-if="isInteractiveCourse" class="interactive-course-wrapper">
+        <InteractiveCourse :content-path="course.contentPath" />
+      </div>
 
-    <div v-else-if="isProjectCourse" class="project-course-wrapper">
-      <ProjectCourse :course-id="id" :content-path="course.contentPath" :engine="course.engine" />
-    </div>
+      <div v-else-if="isPlacementCourse" class="placement-course-wrapper">
+        <PlacementCourse />
+      </div>
 
-    <WeekTour v-else-if="isWeeklyCourse" />
+      <div v-else-if="isProjectCourse" class="project-course-wrapper">
+        <ProjectCourse :course-id="id" :content-path="course.contentPath" :engine="course.engine" />
+      </div>
+    </template>
 
-    <div v-else-if="isJsGrundkurs" class="grundkurs-tour-wrapper">
-      <JsGrundkursTour />
-    </div>
+    <template v-else>
+      <h1>{{ courseTitle }}</h1>
+      <button class="btn-back-to-overview" @click="backToOverview">
+        {{ t('course.backToOverview') }}
+      </button>
 
-    <div v-else-if="isKiLabor" class="grundkurs-tour-wrapper">
-      <KiLaborTour />
-    </div>
+      <WeekTour v-if="isWeeklyCourse" />
+
+      <div v-else-if="isJsGrundkurs" class="grundkurs-tour-wrapper">
+        <JsGrundkursTour />
+      </div>
+
+      <div v-else-if="isKiLabor" class="grundkurs-tour-wrapper">
+        <KiLaborTour />
+      </div>
+    </template>
   </section>
   <div v-else class="course-loading">
     <p v-if="loading">{{ t('course.loading') }}</p>
@@ -58,6 +71,7 @@
 
 <script>
 import { ref, onMounted, computed, watch, toRef } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import CourseAppointments from '../components/CourseAppointments.vue';
 import WeekTour from '../components/WeekTour.vue';
 import InteractiveCourse from '../components/InteractiveCourse.vue';
@@ -94,6 +108,8 @@ export default {
   },
   setup(props) {
     const { lang, t } = useLanguage();
+    const route = useRoute();
+    const router = useRouter();
 
     const course = ref(null);
     const description = ref('');
@@ -106,6 +122,30 @@ export default {
     const isProjectCourse = computed(() => course.value?.type === 'projekt');
     const isJsGrundkurs = computed(() => props.id === 'js-grundkurs');
     const isKiLabor = computed(() => props.id === 'ki-labor');
+
+    // "Kurs starten"-Gate für die Wochen-Tour-Kurse (12-Wochen-Grundkurs, JS-Grundkurs, KI-Labor):
+    // erst Titel/Beschreibung/Kursstruktur-Erklärung, dann ein eigener, fokussierter Bildschirm
+    // nur mit der Wochenauswahl/Tour selbst - kein Umschalten mitten in einer Lektion. Ein
+    // vorhandener ?week=-Deep-Link (z.B. aus dem Profil "Zertifikat ansehen") überspringt die
+    // Start-Seite direkt, sonst müsste man dort erneut auf "Kurs starten" klicken.
+    const isFocusableCourse = computed(() => isWeeklyCourse.value || isJsGrundkurs.value || isKiLabor.value);
+    const started = ref(!!route.query.week || route.query.started === '1');
+
+    const startCourse = () => {
+      started.value = true;
+      router.replace({ query: { ...route.query, started: '1' } });
+    };
+
+    const backToOverview = () => {
+      started.value = false;
+      const query = { ...route.query };
+      delete query.started;
+      delete query.week;
+      delete query.variant;
+      delete query.step;
+      delete query.tab;
+      router.replace({ query });
+    };
 
     const courseStructureSteps = computed(() =>
       STRUCTURE_STEPS_CONFIG.map((step) => ({ ...step, title: t(step.titleKey), desc: t(step.descKey) }))
@@ -136,8 +176,13 @@ export default {
 
     onMounted(loadCourse);
 
-    // Same component instance is reused when switching /kurs/:id → must reload
-    watch(() => props.id, loadCourse);
+    // Same component instance is reused when switching /kurs/:id → must reload, and the
+    // "Kurs starten"-Gate must re-evaluate for the new course's query params instead of keeping
+    // the previous course's started-state.
+    watch(() => props.id, () => {
+      started.value = !!route.query.week || route.query.started === '1';
+      loadCourse();
+    });
 
     watch(lang, async () => {
       if (course.value) {
@@ -158,6 +203,10 @@ export default {
       isProjectCourse,
       isJsGrundkurs,
       isKiLabor,
+      isFocusableCourse,
+      started,
+      startCourse,
+      backToOverview,
       id: toRef(props, 'id'),
       courseStructureSteps,
       t,
@@ -169,6 +218,40 @@ export default {
 <style scoped>
 .course-detail {
   padding: 20px;
+}
+
+.btn-start-course {
+  display: block;
+  margin: 28px auto 0;
+  background: var(--primary-purple, #4a2274);
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 10px;
+  font-size: 1.15em;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.btn-start-course:hover {
+  background: #3d1b5c;
+  transform: translateY(-1px);
+}
+
+.btn-back-to-overview {
+  background: none;
+  border: none;
+  color: var(--primary-purple, #4a2274);
+  font-size: 0.9em;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 0;
+  margin-bottom: 8px;
+}
+
+.btn-back-to-overview:hover {
+  text-decoration: underline;
 }
 
 .interactive-course-wrapper {

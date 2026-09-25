@@ -143,6 +143,7 @@ test.describe('UI: Admin + Header-Login', () => {
     await expect(page.locator('.settings-modal')).toContainText(username);
 
     await page.goto(COURSE_URL);
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.certificates-link')).toBeVisible({ timeout: 20000 });
     await page.locator('.certificates-link').click();
 
@@ -192,6 +193,7 @@ test.describe('UI: Admin + Header-Login', () => {
     await expect(page.locator('.settings-modal')).toContainText(username);
 
     await page.goto(COURSE_URL);
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.certificates-link')).toBeVisible({ timeout: 20000 });
     await page.locator('.certificates-link').click();
 
@@ -235,6 +237,7 @@ test.describe('UI: Admin + Header-Login', () => {
     await expect(page.locator('.settings-modal')).toContainText(username);
 
     await page.goto(COURSE_URL);
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.certificates-link')).toBeVisible({ timeout: 20000 });
     await page.locator('.certificates-link').click();
 
@@ -294,6 +297,60 @@ test.describe('UI: Admin + Header-Login', () => {
     await expect(morseBadge).not.toHaveClass(/earned/);
     await expect(morseBadge.locator('.badge-icon')).toHaveText('🔒');
     await expect(morseBadge.locator('.badge-status')).toContainText('0/5');
+  });
+
+  test('Mein Profil: Zertifikate aus mehreren Kursen (Python + KI-Labor) erscheinen im eigenen Abschnitt', async ({ page, request }) => {
+    const username = `profilcert_${Date.now()}`;
+    const adminLogin = await request.post(`${API}/api/admin/login`, {
+      data: { password: ADMIN_PASSWORD },
+    });
+    const { token: adminToken } = await adminLogin.json();
+    await request.post(`${API}/api/admin/users`, {
+      headers: { Authorization: `Bearer ${adminToken}` },
+      data: { username, password: 'pass1234', ageGroup: 'jugendliche' },
+    });
+
+    await page.addInitScript(() => {
+      // Python-Woche 1 bestanden, KI-Labor-Woche 1 noch nicht - jeder Kurs hat einen eigenen
+      // Storage-Key (siehe useWeekChecks.js storageKeyFor), damit sich beide "Woche 1" nicht
+      // gegenseitig überschreiben.
+      localStorage.setItem('ue-hacker-week-checks', JSON.stringify({
+        version: 1,
+        weeks: { '1': { quizPassed: true, codingPassed: { 0: true, 1: true }, at: new Date().toISOString() } },
+        placement: null,
+      }));
+    });
+
+    await page.goto('/');
+    await page.locator('.options-btn').click();
+    await page.locator('.settings-modal .auth-btn.primary', { hasText: /Anmelden|Log in/ }).click();
+    await page.locator('.settings-modal input').nth(0).fill(username);
+    await page.locator('.settings-modal input[type="password"]').fill('pass1234');
+    await page.locator('.settings-modal .auth-btn.primary').click();
+    await expect(page.locator('.settings-modal')).toContainText(username);
+    await page.locator('.settings-close').click();
+
+    await page.goto('/profil');
+    await expect(page.locator('.cert-course-block')).toHaveCount(2, { timeout: 10000 });
+
+    const pythonBlock = page.locator('.cert-course-block', { hasText: 'Python 12-Wochen-Grundkurs' });
+    await expect(pythonBlock.locator('.cert-course-count')).toContainText('1/12');
+    const pythonWeek1 = pythonBlock.locator('.badge-card').first();
+    await expect(pythonWeek1).toHaveClass(/earned/);
+    await expect(pythonWeek1.locator('.badge-icon')).toHaveText('🎓');
+    const pythonWeek2 = pythonBlock.locator('.badge-card').nth(1);
+    await expect(pythonWeek2).not.toHaveClass(/earned/);
+    await expect(pythonWeek2.locator('.badge-icon')).toHaveText('🔒');
+
+    const kiLaborBlock = page.locator('.cert-course-block', { hasText: 'KI-Labor' });
+    await expect(kiLaborBlock.locator('.cert-course-count')).toContainText('0/2');
+    await expect(kiLaborBlock.locator('.badge-card')).toHaveCount(2);
+    await expect(kiLaborBlock.locator('.badge-card').first()).not.toHaveClass(/earned/);
+
+    // Ein Klick auf ein verliehenes Zertifikat führt direkt in die Wochen-Tour dieses Kurses.
+    await pythonWeek1.click();
+    await expect(page).toHaveURL(/\/kurs\/python-12-wochen-grundkurs\?week=1/);
+    await expect(page.locator('.course-structure')).toHaveCount(0);
   });
 
   test('Mein Profil: Projekt-Fortschritt wird über den Account synchronisiert', async ({ page, request }) => {

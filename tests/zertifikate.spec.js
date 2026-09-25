@@ -224,6 +224,7 @@ test.describe('Wochen-Zertifikate', () => {
     });
 
     await page.goto(COURSE_URL);
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.certificates-link')).toBeVisible({ timeout: 20000 });
     await page.locator('.certificates-link').click();
     // "Meine Zertifikate" startet mit start-expanded bereits aufgeklappt - kein Klick auf
@@ -247,6 +248,7 @@ test.describe('Wochen-Zertifikate', () => {
     });
 
     await page.goto(COURSE_URL);
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.certificates-link')).toBeVisible({ timeout: 20000 });
     await page.locator('.certificates-link').click();
 

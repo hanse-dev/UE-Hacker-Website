@@ -99,6 +99,8 @@ export default {
   'course.structure.reference': '📖 Glossary, 🔧 sample solutions and cheat sheets are always available via the side menu – no matter your progress.',
   'course.placement.banner': 'Not sure where to start? Take the placement test first – same questions as the Check tab in each week.',
   'course.placement.link': 'Go to placement →',
+  'course.start.button': '🚀 Start course',
+  'course.backToOverview': '← Course details',
   'course.download.btn':  '📦 Download all notebooks as a pack',
   'course.download.hint': 'Zip with all 12 weeks (Adventure, Horses, Sci-Fi) + Cheat Sheets – for working in Jupyter or VS Code.',
   'course.project.banner.title': 'Done with the course (or already partway through)? Time for your first own project!',
@@ -365,4 +367,6 @@ export default {
   'profil.badges.hint': 'Finish a project completely to unlock its badge.',
   'profil.loading': 'Loading badges …',
   'profil.badges.earned': 'Done! 🎉',
+  'profil.certificates.title': 'My Certificates',
+  'profil.certificates.hint': 'Pass the quiz and both coding challenges of a week to unlock its certificate.',
 };

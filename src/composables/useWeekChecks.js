@@ -43,6 +43,15 @@ export function clearWeekChecksCache() {
   weekChecksCache.clear();
 }
 
+/** Alle courseKeys, die einen `content/<courseKey>-checks/`-Ordner haben (aktuell 'python',
+ *  'ki-labor') - fürs Zertifikate-Raster im Profil (useCourseCertificates.js), ohne die
+ *  Kurs-Liste dort hart zu codieren. */
+export function listCertificateCourseKeys() {
+  return Object.keys(configModule)
+    .map((key) => key.match(/\.\.\/\.\.\/content\/(.+)-checks\/config\.json$/)?.[1])
+    .filter(Boolean);
+}
+
 export function localizeQuestion(q, lang = 'de') {
   if (lang !== 'en') return q;
   return {
