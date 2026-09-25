@@ -1,13 +1,11 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-09-25
-> **Aktueller Stand:** Branch `woche4-woche9-input-nachziehen` (noch nicht gemergt): die beiden
-> klar umsetzbaren `input()`-Lücken aus `todo.md` geschlossen (3.71) — Woche 4 (Zugangscode/
-> Futter-Abfrage/Docking-Code) und Woche 9 (Tagebuch-Eigeneintrag), je Thema + DE/EN, mit
-> `validation.stdin`. Davor (`main`): KI-Labor Woche 1+2 fertig (Wochen 3–8 offen, siehe
+> **Aktueller Stand:** `main` ist aktuell. KI-Labor Woche 1+2 fertig (Wochen 3–8 offen, siehe
 > Abschnitt 5). Profil zeigt Wochen-Zertifikate aus allen Kursen mit Wochen-Check (Python +
 > KI-Labor) inkl. direktem PDF-Download (3.69/3.70); ein "Kurs starten"-Gate blendet bei den 3
 > Wochen-Tour-Kursen Beschreibung/Struktur-Erklärung vor der eigentlichen Kurs-Tour aus (3.69).
+> Die beiden klar umsetzbaren `input()`-Lücken aus `todo.md` (Woche 4 + 9) sind geschlossen (3.71).
 > Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4 "Betrieb").
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
 > Chat-Historie. Sie wird per `@` in jede Session geladen — **klein halten** (Richtwert < 25 KB).
@@ -84,7 +82,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.68 | KI-Labor: Woche 2 "Daten sind alles" | 5 Lektionen + Debug + Mission + 3 Extra-Herausforderungen + eigener Wochen-Check |
 | 3.69 | Profil zeigt Wochen-Zertifikate + "Kurs starten"-Gate | `useCourseCertificates.js` neu; `CourseDetail.vue` blendet Beschreibung/Struktur hinter einem Start-Button aus |
 | 3.70 | Profil: PDF-Download direkt am Zertifikat | `loadWeekLernziele()` (Python) + `src/data/kiLaborWeeks.js` (KI-Labor) liefern die Lernziele fürs PDF |
-| 3.71 🚧 | Woche 4 + 9: `input()`-Lücken aus `todo.md` geschlossen (Branch `woche4-woche9-input-nachziehen`) | Von den in `todo.md` dokumentierten Lektions-Format-Lücken auf Nutzerwunsch bewusst nur die beiden klar umsetzbaren erledigt (die größeren Punkte wie das `output_contains`-Mehrfach-Ausgaben-Problem Woche 1–2 oder die diversen "aus dem Original weggelassen"-Listen Woche 7–12 bleiben offen in `todo.md`). Woche 4 Boss-3 bekam je Thema einen neuen letzten Schritt mit `validation.stdin` (Abenteuer: Zugangscode zur Geheimtür, Pferde: Futter-Abfrage mit Mindestmenge, Sci-Fi: Docking-Code), Woche 9 Boss-1 ("Tagebuch") einen neuen Schritt 4 "Eigener Eintrag" (bisher waren alle Tagebucheinträge hart codiert). Je 6 Kombinationen (3 Themen × DE/EN), alle Referenzlösungen mit `python3` geprüft (inkl. Datei-I/O-Fälle in Woche 9 in einem Temp-Verzeichnis). Neue Aufgaben wurden als **letzte** Aufgabe ihrer Lektion angehängt (`lessons.json`) bzw. als neues Zell-Paar ans Ende der jeweiligen `_6_loesungen`-Notebook-Ordner (nicht an ihre "eigentliche" Position mitten in der Zellfolge) — Cell-Dateien sind fortlaufend nummeriert, eine Einfügung mittendrin hätte alle nachfolgenden Zellen umnummerieren müssen; der Test `tests/python-lektionen-format.spec.js` ("Lösungen passen zu den Aufgaben") prüft nur, dass jede Aufgaben-Instruction irgendwo im Markdown vorkommt und die Zellenzahl stimmt, nicht die Reihenfolge. |
+| 3.71 | Woche 4 + 9: `input()`-Lücken aus `todo.md` geschlossen | Neuer `validation.stdin`-Schritt je Thema (Woche 4 Boss-3, Woche 9 Boss-1 "Eigener Eintrag"), DE+EN, ans Ende der Lektion/Notebook-Zellfolge angehängt statt eingefügt |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 

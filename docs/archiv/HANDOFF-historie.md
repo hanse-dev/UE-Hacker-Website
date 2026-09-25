@@ -2416,3 +2416,22 @@ login-gated. `tests/auth-ui.spec.js`: bestehender Mehrkurs-Zertifikate-Test um
 Download-Button-Sichtbarkeit (nur bei verliehenen Zertifikaten) und einen echten PDF-Download samt
 Dateinamen-Prüfung erweitert, Navigations-Klick auf `.badge-card-link` statt `.badge-card`
 umgestellt.
+
+
+### 3.71 — Woche 4 + 9: input()-Lücken aus todo.md geschlossen (Branch `woche4-woche9-input-nachziehen`, gemergt)
+
+Von den in `todo.md` dokumentierten Lektions-Format-Lücken auf Nutzerwunsch bewusst nur die beiden
+klar umsetzbaren erledigt (die größeren Punkte wie das `output_contains`-Mehrfach-Ausgaben-Problem
+Woche 1–2 oder die diversen "aus dem Original weggelassen"-Listen Woche 7–12 bleiben offen in
+`todo.md`). Woche 4 Boss-3 bekam je Thema einen neuen letzten Schritt mit `validation.stdin`
+(Abenteuer: Zugangscode zur Geheimtür, Pferde: Futter-Abfrage mit Mindestmenge, Sci-Fi:
+Docking-Code), Woche 9 Boss-1 ("Tagebuch") einen neuen Schritt 4 "Eigener Eintrag" (bisher waren
+alle Tagebucheinträge hart codiert). Je 6 Kombinationen (3 Themen × DE/EN), alle Referenzlösungen
+mit `python3` geprüft (inkl. Datei-I/O-Fälle in Woche 9 in einem Temp-Verzeichnis).
+
+Neue Aufgaben wurden als **letzte** Aufgabe ihrer Lektion angehängt (`lessons.json`) bzw. als neues
+Zell-Paar ans Ende der jeweiligen `_6_loesungen`-Notebook-Ordner (nicht an ihre "eigentliche"
+Position mitten in der Zellfolge) — Cell-Dateien sind fortlaufend nummeriert, eine Einfügung
+mittendrin hätte alle nachfolgenden Zellen umnummerieren müssen; der Test
+`tests/python-lektionen-format.spec.js` ("Lösungen passen zu den Aufgaben") prüft nur, dass jede
+Aufgaben-Instruction irgendwo im Markdown vorkommt und die Zellenzahl stimmt, nicht die Reihenfolge.
