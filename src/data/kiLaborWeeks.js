@@ -53,7 +53,17 @@ export const KI_LABOR_WEEKS = [
       'Unter mehreren Merkmalen automatisch das trennschärfste auswählen können',
     ],
   },
-  { number: 6, title: 'Neuronale Netze I', lernziele: [] },
+  {
+    number: 6,
+    title: 'Neuronale Netze I',
+    lernziele: [
+      'Erklären können, wie ein künstliches Neuron Eingaben gewichtet, aufsummiert und mit einem Schwellenwert vergleicht',
+      'Die gewichtete Summe mehrerer Eingaben selbst berechnen können (mit zip())',
+      'Eine Sprungfunktion (Aktivierung) schreiben können, die anhand eines Schwellenwerts 0 oder 1 zurückgibt',
+      'Logische Gatter (UND, ODER, NAND) allein durch andere Gewichte/Schwellenwerte mit einem einzigen Neuron nachbauen können',
+      'Die Grenze eines einzelnen Neurons verstehen (kein XOR lösbar) und begründen können, warum',
+    ],
+  },
   { number: 7, title: 'Neuronale Netze II', lernziele: [] },
   { number: 8, title: 'Grenzen & Ethik', lernziele: [] },
 ];

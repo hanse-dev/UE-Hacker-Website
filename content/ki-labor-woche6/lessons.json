@@ -1,0 +1,381 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Was ist ein künstliches Neuron?",
+    "file": "lektion-01.md",
+    "lessonSummary": "Ein künstliches Neuron gewichtet mehrere Eingaben, summiert sie auf und vergleicht die Summe mit einem Schwellenwert - feuert sie oder nicht.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: ein Neuron mit zwei gewichteten Eingaben und einem Schwellenwert.",
+        "example": true,
+        "codeTemplate": "def neuron(eingaben, gewichte, schwelle):\n    summe = 0\n    for i in range(len(eingaben)):\n        summe += eingaben[i] * gewichte[i]\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\nprint(neuron([1, 0], [2, 3], 2))\nprint(neuron([0, 0], [2, 3], 2))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1\n0"
+        }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: dasselbe Neuron mit unterschiedlichen Eingaben in einer Schleife.",
+        "example": true,
+        "codeTemplate": "def neuron(eingaben, gewichte, schwelle):\n    summe = 0\n    for i in range(len(eingaben)):\n        summe += eingaben[i] * gewichte[i]\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\nalle_eingaben = [[0, 0], [0, 1], [1, 0], [1, 1]]\nfor e in alle_eingaben:\n    print(neuron(e, [1, 1], 1))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0\n1\n1\n1"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion feueralarm(rauch, hitze), die 1 zurückgibt, wenn rauch * 2 + hitze * 3 >= 5 ist, sonst 0. Gib feueralarm(1, 1) und feueralarm(0, 1) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1\n0"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Die gewichtete Summe",
+    "file": "lektion-02.md",
+    "lessonSummary": "gewichtete_summe() multipliziert jede Eingabe mit ihrem Gewicht (per zip()) und summiert alles auf - für beliebig viele Eingaben.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: die gewichtete Summe zweier Werte-Listen mit zip() berechnen.",
+        "example": true,
+        "codeTemplate": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\nprint(gewichtete_summe([1, 0, 1], [2, 5, 3]))\nprint(gewichtete_summe([0, 1, 1], [2, 5, 3]))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "5\n8"
+        }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: die gewichtete Summe für mehrere Sensor-Messungen in einer Schleife berechnen.",
+        "example": true,
+        "codeTemplate": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\nsensor_messungen = [[1, 0, 1], [0, 0, 0], [1, 1, 1]]\ngewichte = [2, 5, 3]\nfor m in sensor_messungen:\n    print(gewichtete_summe(m, gewichte))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "5\n0\n10"
+        }
+      },
+      {
+        "instruction": "Schreibe gewichtete_summe(eingaben, gewichte) wie im Beispiel (mit zip()). Berechne gewichtete_summe([3, 4], [2, 1]) und gewichtete_summe([1, 1], [2, 1]) und gib beide aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "10\n3",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Die Sprungfunktion",
+    "file": "lektion-03.md",
+    "lessonSummary": "aktivierung() vergleicht die gewichtete Summe mit dem Schwellenwert (>=) und gibt 1 oder 0 zurück - kombiniert mit gewichtete_summe() ergibt das ein komplettes Neuron.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: die Sprungfunktion an der Schwelle selbst testen.",
+        "example": true,
+        "codeTemplate": "def aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\nprint(aktivierung(5, 5))\nprint(aktivierung(4, 5))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1\n0"
+        }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: gewichtete_summe() und aktivierung() zu einem kompletten neuron() kombinieren.",
+        "example": true,
+        "codeTemplate": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, schwelle):\n    summe = gewichtete_summe(eingaben, gewichte)\n    return aktivierung(summe, schwelle)\n\nalle_eingaben = [[0, 0], [0, 1], [1, 0], [1, 1]]\nfor e in alle_eingaben:\n    print(neuron(e, [1, 1], 2))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0\n0\n0\n1"
+        }
+      },
+      {
+        "instruction": "Schreibe gewichtete_summe(eingaben, gewichte), aktivierung(summe, schwelle) und neuron(eingaben, gewichte, schwelle) wie im Beispiel. Rufe neuron([0, 0], [1, 1], 1) und neuron([1, 0], [1, 1], 1) auf und gib beide Ergebnisse aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0\n1",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Logische Gatter von Hand nachbauen",
+    "file": "lektion-04.md",
+    "lessonSummary": "Mit denselben Bausteinen (gewichtete_summe/aktivierung/neuron) lassen sich UND, ODER und NAND allein durch andere Gewichte/Schwellenwerte nachbauen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: mit gleichen Gewichten, aber unterschiedlichem Schwellenwert, ein UND- und ein ODER-Gatter bauen.",
+        "example": true,
+        "codeTemplate": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, schwelle):\n    summe = gewichtete_summe(eingaben, gewichte)\n    return aktivierung(summe, schwelle)\n\nalle_eingaben = [[0, 0], [0, 1], [1, 0], [1, 1]]\ngewichte = [1, 1]\nfor e in alle_eingaben:\n    print(neuron(e, gewichte, 2))\nfor e in alle_eingaben:\n    print(neuron(e, gewichte, 1))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0\n0\n0\n1\n0\n1\n1\n1"
+        }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: mit negativen Gewichten ein NAND-Gatter (umgekehrtes UND) bauen.",
+        "example": true,
+        "codeTemplate": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, schwelle):\n    summe = gewichtete_summe(eingaben, gewichte)\n    return aktivierung(summe, schwelle)\n\nalle_eingaben = [[0, 0], [0, 1], [1, 0], [1, 1]]\nfor e in alle_eingaben:\n    print(neuron(e, [-1, -1], -1))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1\n1\n1\n0"
+        }
+      },
+      {
+        "instruction": "Kopiere gewichtete_summe(eingaben, gewichte), aktivierung(summe, schwelle) und neuron(eingaben, gewichte, schwelle) aus dem Beispiel. Baue ein NOR-Gatter (umgekehrtes ODER) mit gewichte=[-1, -1] und schwelle=0. Teste es mit alle_eingaben = [[0, 0], [0, 1], [1, 0], [1, 1]] in einer Schleife und gib jedes Ergebnis aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1\n0\n0\n0",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Warum XOR nicht geht",
+    "file": "lektion-05.md",
+    "lessonSummary": "Ein einzelnes Neuron kann UND/ODER/NAND nachbauen, aber niemals XOR perfekt lösen - egal welche Gewichte/Schwellenwerte man ausprobiert, bleibt mindestens ein Fehler übrig.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: zwei verschiedene Gewichts-Kombinationen gegen die XOR-Wahrheitstabelle testen - beide bleiben fehlerhaft.",
+        "example": true,
+        "codeTemplate": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, schwelle):\n    summe = gewichtete_summe(eingaben, gewichte)\n    return aktivierung(summe, schwelle)\n\ndef anzahl_fehler(vorhersagen, erwartete_werte):\n    fehler = 0\n    for i in range(len(vorhersagen)):\n        if vorhersagen[i] != erwartete_werte[i]:\n            fehler += 1\n    return fehler\n\nalle_eingaben = [[0, 0], [0, 1], [1, 0], [1, 1]]\nxor_erwartet = [0, 1, 1, 0]\n\nvorhersagen1 = [neuron(e, [1, 1], 1) for e in alle_eingaben]\nprint(vorhersagen1)\nprint(anzahl_fehler(vorhersagen1, xor_erwartet))\n\nvorhersagen2 = [neuron(e, [1, 1], 2) for e in alle_eingaben]\nprint(vorhersagen2)\nprint(anzahl_fehler(vorhersagen2, xor_erwartet))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "[0, 1, 1, 1]\n1\n[0, 0, 0, 1]\n3"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion anzahl_fehler(vorhersagen, erwartete_werte), die zählt, wie oft sich vorhersagen und erwartete_werte an derselben Stelle unterscheiden. Nutze vorhersagen = [0, 1, 1, 1] und erwartete_werte = [0, 1, 1, 0] (die XOR-Wahrheitstabelle). Gib anzahl_fehler(vorhersagen, erwartete_werte) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug: Das schweigende Neuron",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Eine fehlende Aufsummierung (+=), ein Vergleich mit der falschen Richtung (> statt >=) und ein Aufruf, der die Summe komplett ignoriert.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: gewichtete_summe([1, 2, 3], [1, 1, 1]) soll 6 ergeben (die Summe aller Produkte). Was ist falsch?",
+        "codeTemplate": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe = e * g\n    return summe\n\nprint(gewichtete_summe([1, 2, 3], [1, 1, 1]))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "6"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: aktivierung(5, 5) soll 1 zurückgeben (erreicht die Summe genau den Schwellenwert, zählt das schon als aktiviert). Was ist falsch?",
+        "codeTemplate": "def aktivierung(summe, schwelle):\n    if summe > schwelle:\n        return 1\n    else:\n        return 0\n\nprint(aktivierung(5, 5))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: neuron([1, 1], [1, 1], 5) soll 0 zurückgeben (die gewichtete Summe ist 2, deutlich unter dem Schwellenwert 5). Was ist falsch?",
+        "codeTemplate": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, schwelle):\n    summe = gewichtete_summe(eingaben, gewichte)\n    return aktivierung(schwelle, schwelle)\n\nprint(neuron([1, 1], [1, 1], 5))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission: Dein eigenes Alarmsystem",
+    "file": "mission-01.md",
+    "lessonSummary": "Starke Leistung! Du hast ein eigenes 3-Sensoren-Neuron gebaut, das mit gewichteter Summe und Sprungfunktion entscheidet, ob Alarm ausgelöst wird - ganz ohne Vorlage.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Gewichtete Summe: Schreibe gewichtete_summe(eingaben, gewichte) wie in dieser Woche (mit zip()). Rufe gewichtete_summe([2, 0, 1], [3, 4, 5]) und gewichtete_summe([1, 1, 1], [3, 4, 5]) auf und gib beide Ergebnisse aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "11\n12",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Neuron bauen: Schreibe zusätzlich aktivierung(summe, schwelle) und neuron(eingaben, gewichte, schwelle) wie in dieser Woche. Dein Alarmsystem hat drei Sensoren (rauch, hitze, gas) mit gewichte=[1, 1, 1] und schwelle=2 (mindestens zwei von drei müssen auslösen). Rufe neuron([1, 1, 0], [1, 1, 1], 2) und neuron([1, 0, 0], [1, 1, 1], 2) auf und gib beide Ergebnisse aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1\n0",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Alarmsystem testen: Nutze alle Funktionen aus den Schritten davor (erneut schreiben) mit denselben Gewichten [1, 1, 1] und Schwelle 2. Erstelle messungen = [[0, 0, 0], [1, 0, 0], [1, 1, 0], [1, 1, 1]], rufe für jede Messung neuron() in einer Schleife auf und gib jedes Ergebnis aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0\n0\n1\n1",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Ein Sensor zählt doppelt",
+    "file": "boss-01.md",
+    "lessonSummary": "Stark! Du hast gesehen, dass ein höher gewichteter Sensor allein reichen kann - aber auch mehrere niedrig gewichtete Sensoren zusammen genug Gewicht auf die Waage bringen.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Gleich gewichtet: Schreibe gewichtete_summe(eingaben, gewichte), aktivierung(summe, schwelle) und neuron(eingaben, gewichte, schwelle) wie in dieser Woche. Rufe neuron([1, 1, 1, 0], [1, 1, 1, 1], 3) und neuron([1, 1, 0, 0], [1, 1, 1, 1], 3) auf (vier gleich gewichtete Sensoren, Schwelle 3) und gib beide Ergebnisse aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1\n0",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Ein Sensor zählt doppelt: Wiederhole Schritt 1 (alle Funktionen erneut schreiben), aber nutze jetzt gewichte=[2, 1, 1, 1] statt gleicher Gewichte (Schwelle bleibt 3). Rufe neuron() erneut mit denselben zwei Eingaben [1, 1, 1, 0] und [1, 1, 0, 0] auf und gib beide Ergebnisse aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1\n1",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Nur der wichtige Sensor vs. alle unwichtigen: Wiederhole Schritt 2 (alle Funktionen erneut schreiben, gewichte=[2, 1, 1, 1], schwelle=3). Rufe neuron([1, 0, 0, 0], gewichte, 3) auf (nur der wichtige Sensor aktiv) und neuron([0, 1, 1, 1], gewichte, 3) (nur die drei unwichtigen aktiv) und gib beide Ergebnisse aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0\n1",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Wie stark ändert der Schwellenwert das Verhalten?",
+    "file": "boss-02.md",
+    "lessonSummary": "Sehr stark! Du hast gesehen, dass Schwelle 2 bei drei gleich gewichteten Sensoren exakt einem Mehrheitsentscheid entspricht (100% Genauigkeit), Schwelle 1 dagegen deutlich abweicht.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Schwelle 1 (mindestens ein Sensor): Schreibe gewichtete_summe(eingaben, gewichte), aktivierung(summe, schwelle) und neuron(eingaben, gewichte, schwelle) wie in dieser Woche. Erstelle kombinationen = [[0,0,0], [0,0,1], [0,1,0], [0,1,1], [1,0,0], [1,0,1], [1,1,0], [1,1,1]] (alle 8 Kombinationen aus drei 0/1-Sensoren). Rufe für jede Kombination neuron(k, [1, 1, 1], 1) in einer Schleife auf und gib jedes Ergebnis aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0\n1\n1\n1\n1\n1\n1\n1",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Schwelle 3 (alle drei Sensoren nötig): Wiederhole Schritt 1 (alle Funktionen und dieselbe kombinationen-Liste erneut schreiben), aber rufe neuron(k, [1, 1, 1], 3) auf statt Schwelle 1. Gib jedes Ergebnis aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0\n0\n0\n0\n0\n0\n0\n1",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Genauigkeit gegen den Mehrheitsentscheid: Wiederhole Schritt 1 (alle Funktionen und dieselbe kombinationen-Liste erneut schreiben). Schreibe zusätzlich ist_richtig(vorhersage, erwartet) und genauigkeit(vorhersagen, erwartete_werte) (wie in Woche 4). Berechne erwartete_werte = [1 if sum(k) >= 2 else 0 for k in kombinationen] (der Mehrheitsentscheid 'mindestens 2 von 3'). Sage kombinationen zuerst mit neuron(k, [1, 1, 1], 2) vorher und gib die Genauigkeit gegen erwartete_werte aus, dann dasselbe mit neuron(k, [1, 1, 1], 1) und gib auch diese Genauigkeit aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "100\n62",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Beweis per Ausprobieren – kein Neuron löst XOR",
+    "file": "boss-03.md",
+    "lessonSummary": "Beeindruckend! Du hast systematisch viele Gewichts-Kombinationen durchprobiert und gezeigt: keine einzige löst XOR perfekt - während für UND sehr wohl eine passende Kombination existiert.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Eine weitere Kombination testen: Schreibe gewichtete_summe(eingaben, gewichte), aktivierung(summe, schwelle), neuron(eingaben, gewichte, schwelle) und anzahl_fehler(vorhersagen, erwartete_werte) wie in dieser Woche. Nutze alle_eingaben = [[0, 0], [0, 1], [1, 0], [1, 1]] und xor_erwartet = [0, 1, 1, 0]. Sage alle_eingaben mit neuron(e, [1, -1], 1) vorher (Liste vorhersagen per List Comprehension) und gib zuerst vorhersagen, dann anzahl_fehler(vorhersagen, xor_erwartet) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "[0, 0, 1, 0]\n1",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Systematisch durchprobieren: Wiederhole Schritt 1 (alle Funktionen und dieselben Listen erneut schreiben). Zähle in treffer_xor, wie viele Kombinationen aus w1 in range(-2, 3), w2 in range(-2, 3) und schwelle in range(-2, 3) mit neuron(e, [w1, w2], schwelle) eine Vorhersage mit anzahl_fehler(vorhersagen, xor_erwartet) == 0 ergeben (drei verschachtelte Schleifen). Gib treffer_xor aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Vergleich mit UND: Wiederhole Schritt 2 (alle Funktionen, alle_eingaben und die Suche für treffer_xor erneut). Führe dieselbe Suche zusätzlich für and_erwartet = [0, 0, 0, 1] durch (Ergebnis in treffer_and) - für UND sollte mindestens eine Kombination 0 Fehler erreichen. Gib zuerst treffer_xor, dann treffer_and aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0\n1",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  }
+]
