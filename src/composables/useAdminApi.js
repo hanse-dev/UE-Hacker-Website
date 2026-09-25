@@ -1,10 +1,17 @@
+import { ref } from 'vue';
+
 const ADMIN_TOKEN_KEY = 'ue-hacker-admin-token';
 
+// Geteilter reaktiver Ref, damit z.B. der Nav-Link in App.vue mitbekommt,
+// wenn in AdminView.vue ein Admin-Login/-Logout passiert.
+export const adminToken = ref(sessionStorage.getItem(ADMIN_TOKEN_KEY) || '');
+
 export function getAdminToken() {
-  return sessionStorage.getItem(ADMIN_TOKEN_KEY) || '';
+  return adminToken.value;
 }
 
 export function setAdminToken(token) {
+  adminToken.value = token || '';
   if (token) sessionStorage.setItem(ADMIN_TOKEN_KEY, token);
   else sessionStorage.removeItem(ADMIN_TOKEN_KEY);
 }

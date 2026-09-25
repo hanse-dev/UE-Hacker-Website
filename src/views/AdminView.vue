@@ -3,21 +3,29 @@
     <h1>{{ t('admin.title') }}</h1>
     <p class="admin-intro">{{ t('admin.intro') }}</p>
 
-    <div v-if="!token" class="admin-login-card">
+    <form v-if="!token" class="admin-login-card" @submit.prevent="login">
+      <input
+        type="text"
+        name="username"
+        autocomplete="username"
+        value="admin"
+        hidden
+        readonly
+      >
       <label class="field">
         <span>{{ t('admin.adminPassword') }}</span>
         <input
           v-model="password"
           type="password"
+          name="password"
           autocomplete="current-password"
-          @keydown.enter="login"
         >
       </label>
       <p v-if="error" class="error">{{ error }}</p>
-      <button type="button" class="btn-primary" :disabled="busy" @click="login">
+      <button type="submit" class="btn-primary" :disabled="busy">
         {{ busy ? t('admin.working') : t('admin.login') }}
       </button>
-    </div>
+    </form>
 
     <template v-else>
       <div class="admin-toolbar">
@@ -86,7 +94,7 @@
 import { ref, onMounted } from 'vue';
 import { useLanguage } from '../composables/useLanguage.js';
 import {
-  getAdminToken,
+  adminToken as token,
   setAdminToken,
   adminLogin,
   listUsers,
@@ -99,7 +107,6 @@ export default {
   name: 'AdminView',
   setup() {
     const { t, lang } = useLanguage();
-    const token = ref(getAdminToken());
     const password = ref('');
     const users = ref([]);
     const busy = ref(false);
@@ -130,7 +137,6 @@ export default {
       } catch (e) {
         if (e.status === 401) {
           setAdminToken('');
-          token.value = '';
         }
         error.value = e.message || t('admin.error');
       } finally {
@@ -144,7 +150,6 @@ export default {
       try {
         const data = await adminLogin(password.value);
         setAdminToken(data.token);
-        token.value = data.token;
         password.value = '';
         await refresh();
       } catch (e) {
@@ -156,7 +161,6 @@ export default {
 
     const logout = () => {
       setAdminToken('');
-      token.value = '';
       users.value = [];
     };
 

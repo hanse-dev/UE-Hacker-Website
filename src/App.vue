@@ -15,6 +15,7 @@
         <router-link :to="{ path: '/', hash: '#kurse-uebersicht' }">{{ t('nav.courses') }}</router-link>
         <router-link to="/projekte">{{ t('nav.projects') }}</router-link>
         <router-link v-if="isLoggedIn" to="/profil">{{ t('nav.profile') }}</router-link>
+        <router-link v-if="isAdminLoggedIn" to="/admin">{{ t('nav.admin') }}</router-link>
         <button
           type="button"
           class="options-btn"
@@ -98,33 +99,35 @@
         </template>
 
         <template v-else>
-          <p class="login-hint">{{ t('auth.loginHint') }}</p>
-          <label class="login-field">
-            <span>{{ t('auth.username') }}</span>
-            <input
-              v-model="loginUsername"
-              autocomplete="username"
-              @keydown.enter="submitLogin"
-            >
-          </label>
-          <label class="login-field">
-            <span>{{ t('auth.password') }}</span>
-            <input
-              v-model="loginPassword"
-              type="password"
-              autocomplete="current-password"
-              @keydown.enter="submitLogin"
-            >
-          </label>
-          <p v-if="authError" class="login-error">{{ authError }}</p>
-          <div class="login-actions">
-            <button type="button" class="auth-btn ghost" @click="showLoginForm = false">
-              {{ t('auth.cancel') }}
-            </button>
-            <button type="button" class="auth-btn primary" :disabled="authBusy" @click="submitLogin">
-              {{ authBusy ? t('auth.working') : t('auth.login') }}
-            </button>
-          </div>
+          <form @submit.prevent="submitLogin">
+            <p class="login-hint">{{ t('auth.loginHint') }}</p>
+            <label class="login-field">
+              <span>{{ t('auth.username') }}</span>
+              <input
+                v-model="loginUsername"
+                name="username"
+                autocomplete="username"
+              >
+            </label>
+            <label class="login-field">
+              <span>{{ t('auth.password') }}</span>
+              <input
+                v-model="loginPassword"
+                type="password"
+                name="password"
+                autocomplete="current-password"
+              >
+            </label>
+            <p v-if="authError" class="login-error">{{ authError }}</p>
+            <div class="login-actions">
+              <button type="button" class="auth-btn ghost" @click="showLoginForm = false">
+                {{ t('auth.cancel') }}
+              </button>
+              <button type="submit" class="auth-btn primary" :disabled="authBusy">
+                {{ authBusy ? t('auth.working') : t('auth.login') }}
+              </button>
+            </div>
+          </form>
         </template>
       </div>
     </div>
@@ -136,6 +139,7 @@ import { computed, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useLanguage } from './composables/useLanguage.js';
 import { useAuth } from './composables/useAuth.js';
+import { adminToken } from './composables/useAdminApi.js';
 
 export default {
   name: 'App',
@@ -144,6 +148,7 @@ export default {
     const showHomeLink   = computed(() => route.path !== '/');
     const isCourseDetail = computed(() => route.path.startsWith('/kurs/'));
     const isTeaser       = computed(() => route.path === '/teaser');
+    const isAdminLoggedIn = computed(() => !!adminToken.value);
     const { lang, t, setLang } = useLanguage();
     const {
       user,
@@ -195,6 +200,7 @@ export default {
       showHomeLink,
       isCourseDetail,
       isTeaser,
+      isAdminLoggedIn,
       lang,
       t,
       setLang,

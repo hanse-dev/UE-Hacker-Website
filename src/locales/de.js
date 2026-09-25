@@ -4,6 +4,7 @@ export default {
   'nav.courses': 'Kurse',
   'nav.projects': 'Projekte',
   'nav.profile': 'Mein Profil',
+  'nav.admin': 'Admin',
   'footer.copyright': '© 2026 Übergangshacker. Alle Rechte vorbehalten.',
 
   // ── Admin ───────────────────────────────────────────────────────────────
