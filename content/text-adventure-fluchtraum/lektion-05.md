@@ -6,19 +6,19 @@ Bisher hast du Richtungen und Gegenstände fest in den Code geschrieben. Ein ric
 befehl = input("Was tust du? ")
 teile = befehl.split()
 
-print(teile[0])   # "gehe"
-print(teile[1])   # "westen"
+print(teile[0])
+print(teile[1])
 ```
 
 `split()` ohne Argument trennt einen String an jeder Lücke und gibt eine Liste der einzelnen Wörter zurück. `teile[0]` ist dann das Verb ("gehe", "nimm"), `teile[1]` das Ziel (die Richtung oder der Gegenstand).
 
-Damit kannst du unterscheiden, was zu tun ist:
+Damit kannst du unterscheiden, was zu tun ist. So läuft das Prinzip ab:
 
-```python
-if teile[0] == "gehe":
-    print("Du gehst nach " + teile[1])
-elif teile[0] == "nimm":
-    print("Du nimmst " + teile[1])
+```
+wenn teile[0] gleich "gehe" ist:
+    gib eine Meldung mit der Richtung (teile[1]) aus
+sonst wenn teile[0] gleich "nimm" ist:
+    gib eine Meldung mit dem Gegenstand (teile[1]) aus
 ```
 
 > 💡 Beim Prüfen deiner Aufgabe wird der Befehl automatisch "eingetippt" – du siehst also kein Eingabefenster, aber dein Code bekommt trotzdem einen echten Text über `input()`.

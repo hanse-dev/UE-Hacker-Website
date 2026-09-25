@@ -17,12 +17,12 @@ raeume = {
 aktueller_raum = "gang"
 ```
 
-Um sich zu bewegen, schlägst du zuerst im aktuellen Raum den gewünschten Ausgang nach, und aktualisierst dann `aktueller_raum`:
+Um sich zu bewegen, schlägst du zuerst im aktuellen Raum den gewünschten Ausgang nach, und aktualisierst dann `aktueller_raum`. So läuft das Prinzip ab:
 
-```python
-naechster_raum = raeume[aktueller_raum]["ausgaenge"]["norden"]
+```
+naechster_raum = raeume[aktueller_raum]["ausgaenge"] an der gewünschten Richtung
 aktueller_raum = naechster_raum
-print(raeume[aktueller_raum]["beschreibung"])
+gib die Beschreibung des neuen aktueller_raum aus
 ```
 
 `raeume[aktueller_raum]` findet also immer den *gerade aktiven* Raum – ändert sich `aktueller_raum`, "springst" du sofort zu einem anderen Eintrag im Dictionary.

@@ -44,6 +44,7 @@
       {
         "instruction": "Schreibe eine Funktion bewegeSchlaeger(x, taste), die die neue x-Position zurückgibt: bei 'ArrowLeft' 20 Pixel nach links, bei 'ArrowRight' 20 Pixel nach rechts, sonst bleibt x gleich. Die Position darf nie kleiner als 0 oder größer als 320 werden.",
         "codeTemplate": "function bewegeSchlaeger(x, taste) {\n  // Dein Code hier\n}\n",
+        "solution": "function bewegeSchlaeger(x, taste) {\n  let neueX = x;\n  if (taste === 'ArrowLeft') neueX -= 20;\n  if (taste === 'ArrowRight') neueX += 20;\n  if (neueX < 0) neueX = 0;\n  if (neueX > 320) neueX = 320;\n  return neueX;\n}",
         "validation": {
           "functionCalls": [
             { "name": "bewegeSchlaeger", "args": [160, "ArrowLeft"], "expected": 140 },
@@ -85,6 +86,7 @@
       {
         "instruction": "Schreibe eine Funktion naechstePosition(y, tempo), die die neue y-Position zurückgibt (einfach y + tempo).",
         "codeTemplate": "function naechstePosition(y, tempo) {\n  // Dein Code hier\n}\n",
+        "solution": "function naechstePosition(y, tempo) {\n  return y + tempo;\n}",
         "validation": {
           "functionCalls": [
             { "name": "naechstePosition", "args": [0, 3], "expected": 3 },
@@ -96,6 +98,7 @@
       {
         "instruction": "Jetzt du: baue die Schleife selbst nach. Erhöhe ballY bei jedem Frame, damit der Ball faellt, bevor requestAnimationFrame den nächsten Frame anstößt.",
         "codeTemplate": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nlet ballY = 0;\n\nfunction frame() {\n  ctx.clearRect(0, 0, canvas.width, canvas.height);\n  ctx.fillStyle = 'orange';\n  ctx.beginPath();\n  ctx.arc(200, ballY, 10, 0, Math.PI * 2);\n  ctx.fill();\n\n  // Dein Code hier: erhöhe ballY, damit der Ball faellt\n\n  requestAnimationFrame(frame);\n}\n\nframe();\n",
+        "solution": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nlet ballY = 0;\n\nfunction frame() {\n  ctx.clearRect(0, 0, canvas.width, canvas.height);\n  ctx.fillStyle = 'orange';\n  ctx.beginPath();\n  ctx.arc(200, ballY, 10, 0, Math.PI * 2);\n  ctx.fill();\n\n  ballY = ballY + 2;\n\n  requestAnimationFrame(frame);\n}\n\nframe();",
         "validation": { "type": "canvas_changed", "ms": 400 }
       },
       {
@@ -126,6 +129,7 @@
       {
         "instruction": "Schreibe istTreffer(ballX, ballY, schlaegerX). Der Schläger ist 80 Pixel breit, seine linke Kante liegt bei schlaegerX. Ein Treffer ist es, wenn der Ball y >= 270 erreicht hat UND ballX zwischen schlaegerX und schlaegerX + 80 liegt.",
         "codeTemplate": "function istTreffer(ballX, ballY, schlaegerX) {\n  // Dein Code hier\n}\n",
+        "solution": "function istTreffer(ballX, ballY, schlaegerX) {\n  return ballY >= 270 && ballX >= schlaegerX && ballX <= schlaegerX + 80;\n}",
         "validation": {
           "functionCalls": [
             { "name": "istTreffer", "args": [200, 280, 160], "expected": true },
@@ -178,6 +182,7 @@
       {
         "instruction": "Schreibe naechsterPunktestand(punkte, treffer). Bei treffer === true gibt sie punkte + 1 zurück, sonst unverändert punkte.",
         "codeTemplate": "function naechsterPunktestand(punkte, treffer) {\n  // Dein Code hier\n}\n",
+        "solution": "function naechsterPunktestand(punkte, treffer) {\n  return treffer ? punkte + 1 : punkte;\n}",
         "validation": {
           "functionCalls": [
             { "name": "naechsterPunktestand", "args": [0, true], "expected": 1 },
@@ -208,6 +213,7 @@
       {
         "instruction": "Schreibe tempoFuer(punkte). Das Grundtempo ist 3; alle 5 Punkte wird der Ball 1 schneller (nutze Math.floor).",
         "codeTemplate": "function tempoFuer(punkte) {\n  // Dein Code hier\n}\n",
+        "solution": "function tempoFuer(punkte) {\n  return 3 + Math.floor(punkte / 5);\n}",
         "validation": {
           "functionCalls": [
             { "name": "tempoFuer", "args": [0], "expected": 3 },

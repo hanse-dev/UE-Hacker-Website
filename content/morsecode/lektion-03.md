@@ -4,15 +4,17 @@ Jetzt willst du die andere Richtung: aus Morsecode wieder lesbaren Text machen. 
 
 ```python
 MORSE_UMGEKEHRT = {code: buchstabe for buchstabe, code in MORSE.items()}
+```
 
+Mit diesem umgekehrten Dictionary baust du jetzt die Rückrichtung. So läuft das Prinzip ab:
+
+```
 def aus_morse(code):
     zeichen_codes = code.split(" ")
     ergebnis = ""
-    for c in zeichen_codes:
-        ergebnis = ergebnis + MORSE_UMGEKEHRT[c]
-    return ergebnis
-
-print(aus_morse("... --- ..."))   # sos
+    für jedes c in zeichen_codes:
+        hänge MORSE_UMGEKEHRT[c] an ergebnis an
+    gib ergebnis zurück
 ```
 
-`code.split(" ")` zerlegt den Morsecode-String an jedem Leerzeichen wieder in seine einzelnen Zeichen-Codes.
+`code.split(" ")` zerlegt den Morsecode-String an jedem Leerzeichen wieder in seine einzelnen Zeichen-Codes. Rufst du z.B. `aus_morse(".... .")` auf, kommt `"he"` heraus.

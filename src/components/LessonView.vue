@@ -64,6 +64,19 @@
           <div v-if="taskFeedback[idx]" :class="['feedback', taskFeedback[idx].success ? 'feedback-success' : 'feedback-error']">
             {{ taskFeedback[idx].message }}
           </div>
+          <div v-if="task.solution && !completedTasks.has(idx)" class="solution-box">
+            <button
+              v-if="!solutionShown.has(idx)"
+              @click="showSolution(idx)"
+              class="btn-solution"
+            >
+              {{ t('lesson.showSolution') }}
+            </button>
+            <template v-else>
+              <p class="solution-label">{{ t('lesson.solutionLabel') }}</p>
+              <pre class="solution-code">{{ task.solution }}</pre>
+            </template>
+          </div>
         </div>
       </template>
 
@@ -152,6 +165,7 @@ export default {
     const taskAttempts = ref([]);
     const taskRan = ref([]);
     const completedTasks = ref(new Set());
+    const solutionShown = ref(new Set());
 
     const initTaskState = () => {
       const t = tasks.value;
@@ -164,6 +178,12 @@ export default {
       taskAttempts.value = t.map(() => 0);
       taskRan.value = t.map(() => false);
       completedTasks.value = new Set();
+      solutionShown.value = new Set();
+    };
+
+    // Loesung wird nur auf Klick sichtbar - kein automatisches Verraten, siehe hintSoft/hintExpected.
+    const showSolution = (idx) => {
+      solutionShown.value = new Set([...solutionShown.value, idx]);
     };
 
     watch(taskCodes, (codes) => {
@@ -319,6 +339,8 @@ export default {
       taskOutputs,
       taskFeedback,
       taskRan,
+      solutionShown,
+      showSolution,
       insertIndent,
       kernelReady,
       kernelStatus,
@@ -670,5 +692,43 @@ a.btn-next {
 
 .editor-hint-ran {
   margin-top: -6px;
+}
+
+.solution-box {
+  margin-top: 12px;
+}
+
+.btn-solution {
+  background: transparent;
+  color: #6c757d;
+  border: 1px dashed #adb5bd;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85em;
+}
+
+.btn-solution:hover {
+  background: #f1f3f5;
+  color: #333;
+}
+
+.solution-label {
+  margin: 0 0 6px 0;
+  font-size: 0.82em;
+  font-weight: 600;
+  color: #6c757d;
+}
+
+.solution-code {
+  margin: 0;
+  padding: 12px;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  font-family: 'Courier New', Consolas, Monaco, monospace;
+  font-size: 13px;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 </style>

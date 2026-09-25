@@ -21,11 +21,12 @@ function frame() {
 frame();
 ```
 
-`ctx.clearRect()` löscht das ganze Spielfeld vor jedem Frame – sonst würden die alten Positionen als Spur stehen bleiben. Wächst die Schlange später um ein Segment, musst du außerdem ihre Länge im Blick behalten:
+`ctx.clearRect()` löscht das ganze Spielfeld vor jedem Frame – sonst würden die alten Positionen als Spur stehen bleiben. Wächst die Schlange später um ein Segment, musst du außerdem ihre Länge im Blick behalten. So läuft das Prinzip ab:
 
-```js
+```
 function gibNeueLaenge(laenge, gewachsen) {
-  return gewachsen ? laenge + 1 : laenge;
+  wenn gewachsen wahr ist: gib laenge + 1 zurück
+  sonst: gib laenge unverändert zurück
 }
 ```
 
