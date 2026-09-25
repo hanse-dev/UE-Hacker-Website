@@ -117,10 +117,10 @@ def api_request(url: str, payload: dict, token: str | None = None) -> dict:
         sys.exit(f"Fehler bei {url}: {e.code} {body}")
 
 
-RECEIPT_FONT_SCALE = 1.4  # hier anpassen, um den ganzen Ausdruck größer/kleiner zu machen
+DEFAULT_RECEIPT_FONT_SCALE = 1.2
 
 
-def build_receipt_image(username: str, password: str, server_url: str) -> Path:
+def build_receipt_image(username: str, password: str, server_url: str, font_scale: float) -> Path:
     from PIL import Image, ImageDraw, ImageFont
 
     width = 384
@@ -130,7 +130,7 @@ def build_receipt_image(username: str, password: str, server_url: str) -> Path:
     domain = server_url.replace("https://", "").replace("http://", "").rstrip("/")
 
     def scaled(size: int) -> int:
-        return round(size * RECEIPT_FONT_SCALE)
+        return round(size * font_scale)
 
     def font_path(bold: bool) -> str | None:
         try:
@@ -171,10 +171,10 @@ def build_receipt_image(username: str, password: str, server_url: str) -> Path:
         ("Zugangsausweis", scaled(16), False, True),
         ("RULE", 0, False, False),  # Trennlinie, kein Text
         ("Name", scaled(14), False, False),
-        (username, scaled(24), True, False),
+        (username, scaled(24), False, False),
         ("", scaled(6), False, False),
         ("Passwort", scaled(14), False, False),
-        (password, scaled(24), True, False),
+        (password, scaled(24), False, False),
         ("RULE", 0, False, False),
         (domain, scaled(14), False, True),
         (date.today().isoformat(), scaled(12), False, True),
@@ -267,6 +267,10 @@ def main() -> None:
     env = load_env_file(SCRIPT_DIR / ".env")
     server_url_raw = (args.server_url or env.get("ACCOUNT_SERVER_URL") or "").rstrip("/")
     printer_address = args.printer_address or env.get("MXW01_PRINTER_ADDRESS")
+    try:
+        font_scale = float(env.get("RECEIPT_FONT_SCALE") or DEFAULT_RECEIPT_FONT_SCALE)
+    except ValueError:
+        sys.exit(f"RECEIPT_FONT_SCALE in .env ist keine Zahl: {env.get('RECEIPT_FONT_SCALE')!r}")
 
     if args.reprint:
         account = load_last_account()
@@ -304,7 +308,7 @@ def main() -> None:
     if not printer_address:
         sys.exit("MXW01_PRINTER_ADDRESS fehlt (in scripts/local-tools/.env setzen oder --printer-address übergeben).")
 
-    image_path = build_receipt_image(username, password, server_url_raw)
+    image_path = build_receipt_image(username, password, server_url_raw, font_scale)
     try:
         print_receipt(image_path, printer_address)
     finally:

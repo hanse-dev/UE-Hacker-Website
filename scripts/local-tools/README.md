@@ -62,6 +62,6 @@ aber deutlich mehr Kombinationen als ein 4-stelliger PIN.
 
 ## Größe des Ausdrucks anpassen
 
-`RECEIPT_FONT_SCALE` oben in `create-account-printout.py` (Default `1.4`) skaliert den ganzen
-Ausdruck. Benutzername/Passwort werden automatisch verkleinert, falls sie sonst über den Rahmen
-hinausragen würden (z.B. bei sehr langen Benutzernamen).
+`RECEIPT_FONT_SCALE` in `.env` (Default `1.2`, falls nicht gesetzt) skaliert den ganzen Ausdruck.
+Benutzername/Passwort werden automatisch verkleinert, falls sie sonst über den Rahmen hinausragen
+würden (z.B. bei sehr langen Benutzernamen).
