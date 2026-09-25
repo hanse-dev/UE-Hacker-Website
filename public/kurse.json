@@ -35,6 +35,15 @@
     "contentPath": "js-grundkurs"
   },
   {
+    "id": "ki-labor",
+    "format": "grundkurs",
+    "title": "KI-Labor",
+    "title_en": "AI Lab",
+    "description": "Verstehe, wie Künstliche Intelligenz wirklich funktioniert – indem du die Algorithmen selbst in Python programmierst. Vom nächsten Nachbarn über Entscheidungsbäume bis zum eigenen kleinen neuronalen Netz.",
+    "description_en": "Understand how artificial intelligence really works – by programming the algorithms yourself in Python. From nearest neighbors through decision trees to your own small neural network.",
+    "contentPath": "ki-labor"
+  },
+  {
     "id": "projekt-caesar-chiffre",
     "type": "projekt",
     "language": "python",

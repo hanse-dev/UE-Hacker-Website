@@ -1,12 +1,13 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-09-25
-> **Aktueller Stand:** Backup-Cron-Pfad in HANDOFF korrigiert + Docker-Prod-Build lokal verifiziert
-> (`api/src/scripts/backup-db.js`, nicht `src/...` — der dokumentierte Befehl wäre im Cron sonst mit
-> `MODULE_NOT_FOUND` fehlgeschlagen), Tippfehler-Pass (cspell) auf Lektions-Format/JS-Grundkurs/
-> Interaktiv-/Projekt-Kurse ausgeweitet (3.65, 0 echte Tippfehler gefunden, 280 Wörter ergänzt,
-> `lint:spelling` läuft jetzt sauber über allen Content). Push nach `origin/main` ist erledigt;
-> Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4 "Betrieb").
+> **Aktueller Stand:** Branch `kurs-ki-labor` (noch nicht gemergt): Kursplan für das neue KI-Labor
+> auf selbstgebaute Algorithmen statt scikit-learn umgestellt, Grundgerüst (Wochenauswahl,
+> `kurse.json`, Routing) + Woche 1 "Was ist KI?" fertig und getestet (3.66). Wochen 2–8 offen,
+> nächste Session macht hier weiter. Vorheriger Stand: Backup-Cron-Pfad in HANDOFF korrigiert +
+> Docker-Prod-Build lokal verifiziert, Tippfehler-Pass (cspell) auf Lektions-Format/JS-Grundkurs/
+> Interaktiv-/Projekt-Kurse ausgeweitet (3.65). Server-Deploy steht weiter aus (Nutzer deployt
+> selbst, siehe Abschnitt 4 "Betrieb").
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
 > Chat-Historie. Sie wird per `@` in jede Session geladen — **klein halten** (Richtwert < 25 KB).
 > Die ausführliche Feature-Historie liegt kalt in `docs/archiv/HANDOFF-historie.md` (nicht importiert).
@@ -82,6 +83,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.63 | Lokales Tool: Account anlegen + Thermodrucker-Ausdruck | `scripts/local-tools/create-account-printout.py`, nicht deployed, legt Account über Admin-API an und druckt Ausweis-Beleg auf MXW01-Drucker; macOS braucht CoreBluetooth-UUID statt MAC + Write-Pacing-Patch (`patch-mxw01.py`), mit echtem Drucker getestet |
 | 3.64 | Login-Formulare für Passwort-Manager + Admin-Nav-Link nur bei Login | Admin-/Account-Login jetzt echte `<form>`s mit `name`-Attributen (1Password-Autofill); "Admin"-Nav-Link nur sichtbar bei aktivem Admin-Token |
 | 3.65 | Tippfehler-Pass (cspell) auf Lektions-Format/JS-Grundkurs/Interaktiv-/Projekt-Kurse | `lint:spelling`-Scope um `content/python-woche*`, `content/js-grundkurs*`, `content/python-grundlagen-interaktiv*` und alle 7 Projekt-Kurse erweitert; 0 echte Tippfehler in 1306 Dateien (verdächtige Kandidaten wie `cilck` waren ein absichtlicher Debug-Bug, `mcvbg`/`rejvs` Chiffretext-Beispiele, `gibtsnicht.json` ein Test-Dateiname, `n`-präfigierte Wörter JSON-`\n`-Escape-Artefakte); 280 legitime Wörter (deutsche Kleinschreibungs-Substantive, Figuren-/Ortsnamen) in `cspell.json` ergänzt |
+| 3.66 🚧 | KI-Labor gestartet (Branch `kurs-ki-labor`, noch nicht gemergt) — Kursplan + Woche 1 | Kursplan (`KURSPLAN.md`/`VISION.md`/`todo.md`/`PROJEKTIDEEN.md`) auf selbstgebaute Algorithmen statt scikit-learn umgestellt (Wasm-Download zu schwer, kein Live-LLM wegen API-Kosten/WebGPU), 8 Wochen ohne Themen-Varianten; Aufbau wie `js-grundkurs`, aber im Lektions-Format des 12-Wochen-Kurses (Lektion→Debug→Mission, `output_contains`/`codeContains`, keine `variables`/`functionCalls` — LessonView.vue unterstützt die nicht) statt JS-Sandbox-Format; neue Komponente `KiLaborTour.vue` (Kopie von `JsGrundkursTour.vue`, `engine="pyodide"` in `JsCourseTour`), `isKiLabor`-Sonderfall in `CourseDetail.vue`, `kurse.json`-Eintrag, `content/ki-labor` (Beschreibung) + `content/ki-labor-woche1` (5 Lektionen "Was ist KI?" + Debug + Mission, alle Referenzlösungen mit `python3` geprüft); `jsGrundkurs.*`-t()-Keys zu `weekPicker.*` umbenannt (jetzt von beiden Kursen geteilt); `tests/ki-labor.spec.js` neu, `tests/site.spec.js` Kurskarten-Zahl 3→4; Wochen 2–8 offen, siehe `todo.md` |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -242,8 +244,10 @@ Ausführlich in `todo.md`. Kurzfassung:
 - Zertifikat-PDF: E-Mail-Versand später (hängt an der Kontakt-Adresse, nicht selbst erfinden).
 - Überlegung (nicht entschieden): dritte Sprache; UI-Ternarys sind schon auf `t()`, offen nur Content-Suffixe.
 
-**Nächstes Kurs-Thema (eigener Branch von `main`):** `kurs-ki-labor` (siehe `todo.md`). Weitere
-Projekt-Kurs-Ideen in `PROJEKTIDEEN.md`. Roadmap: `VISION.md`.
+**Laufendes Kurs-Thema (Branch `kurs-ki-labor`, siehe todo.md):** Woche 1 fertig, Wochen 2–8 offen
+(Nächste Nachbarn/k-NN, Training & Test, Entscheidungsbäume, Neuronale Netze I+II, Grenzen &
+Ethik — Wochenplan siehe `KURSPLAN.md`). Weitere Projekt-Kurs-Ideen in `PROJEKTIDEEN.md`. Roadmap:
+`VISION.md`.
 
 **Bewusst nicht geplant:** öffentliches Sign-up, Mailversand/Kontaktformular, Supabase als Pflicht.
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="js-grundkurs-tour">
+  <div class="ki-labor-tour">
     <template v-if="phase === 'week'">
       <p class="choose-week-title">{{ t('weekPicker.chooseWeekTitle') }}</p>
       <div class="week-grid">
@@ -20,11 +20,10 @@
 
     <JsCourseTour
       v-else
-      :course-id="`js-grundkurs-woche${selectedWeekNumber}`"
-      :content-path="`js-grundkurs-woche${selectedWeekNumber}`"
+      engine="pyodide"
+      :course-id="`ki-labor-woche${selectedWeekNumber}`"
+      :content-path="`ki-labor-woche${selectedWeekNumber}`"
       :week-label="`${t('week.label')} ${selectedWeekNumber}: ${selectedWeekTitle}`"
-      :show-canvas="selectedWeekSandboxVisible"
-      :dom-mode="selectedWeekSandboxVisible"
       @change-week="phase = 'week'"
     />
   </div>
@@ -36,22 +35,19 @@ import { useRoute, useRouter } from 'vue-router';
 import JsCourseTour from './JsCourseTour.vue';
 import { useLanguage } from '../composables/useLanguage';
 
-// Statische Titel-Liste statt eines Markdown-Frontmatter-Parsers wie beim Python-Kurs
-// (useWeeklyContent.js) - lohnt sich dort nur wegen Themen-Varianten + Cheat-Sheets/Downloads,
-// die es hier bewusst nicht gibt. Titel 1:1 aus KURSPLAN.md "JavaScript-Track: Grundkurs".
-// `sandboxVisible`: nur Wochen, deren Aufgaben das feste DOM-Uebungs-Markup (#dom-uebung in
-// useJsSandbox.js) brauchen, zeigen das Sandbox-iframe ueberhaupt an - alle anderen Wochen
-// kommen ganz ohne sichtbaren Sandbox-Bereich aus (die Ausgabe-Box unter dem Editor reicht).
+// Gleiches Muster wie JsGrundkursTour.vue: statische Titel-Liste statt Markdown-Frontmatter-Parser
+// (lohnt sich nur bei Themen-Varianten/Cheat-Sheets, die es hier bewusst nicht gibt), Titel 1:1
+// aus KURSPLAN.md "KI-Track: KI-Grundlagen". engine="pyodide" statt js-sandbox - gleiche Tour
+// (JsCourseTour.vue), andere Ausfuehrung (LessonView.vue statt JsLessonView.vue).
 const WEEK_DEFS = [
-  { number: 1, title: 'JS-Grundlagen' },
-  { number: 2, title: 'Bedingungen' },
-  { number: 3, title: 'Schleifen' },
-  { number: 4, title: 'Funktionen' },
-  { number: 5, title: 'Arrays' },
-  { number: 6, title: 'Objekte' },
-  { number: 7, title: 'DOM & Interaktivität', sandboxVisible: true },
-  { number: 8, title: 'Objekte als Blaupause' },
-  { number: 9, title: 'Abschlussprojekt', sandboxVisible: true },
+  { number: 1, title: 'Was ist KI?' },
+  { number: 2, title: 'Daten sind alles' },
+  { number: 3, title: 'Nächste Nachbarn (k-NN)' },
+  { number: 4, title: 'Training & Test' },
+  { number: 5, title: 'Entscheidungsbäume' },
+  { number: 6, title: 'Neuronale Netze I' },
+  { number: 7, title: 'Neuronale Netze II' },
+  { number: 8, title: 'Grenzen & Ethik' },
 ];
 
 // Gleiches Glob-Pattern wie in JsCourseTour.vue - hier nur zum Pruefen, welche Wochen ueberhaupt
@@ -59,7 +55,7 @@ const WEEK_DEFS = [
 const lessonJsonModules = import.meta.glob('../../content/*/lessons.json');
 
 export default {
-  name: 'JsGrundkursTour',
+  name: 'KiLaborTour',
   components: { JsCourseTour },
   setup() {
     const { t } = useLanguage();
@@ -71,16 +67,12 @@ export default {
     const weeks = computed(() =>
       WEEK_DEFS.map((w) => ({
         ...w,
-        available: `../../content/js-grundkurs-woche${w.number}/lessons.json` in lessonJsonModules,
+        available: `../../content/ki-labor-woche${w.number}/lessons.json` in lessonJsonModules,
       }))
     );
 
     const selectedWeekTitle = computed(
       () => WEEK_DEFS.find((w) => w.number === selectedWeekNumber.value)?.title || ''
-    );
-
-    const selectedWeekSandboxVisible = computed(
-      () => !!WEEK_DEFS.find((w) => w.number === selectedWeekNumber.value)?.sandboxVisible
     );
 
     const selectWeek = (number) => {
@@ -99,13 +91,13 @@ export default {
       }
     });
 
-    return { t, phase, weeks, selectedWeekNumber, selectedWeekTitle, selectedWeekSandboxVisible, selectWeek };
+    return { t, phase, weeks, selectedWeekNumber, selectedWeekTitle, selectWeek };
   },
 };
 </script>
 
 <style scoped>
-.js-grundkurs-tour {
+.ki-labor-tour {
   max-width: 1200px;
   margin: 0 auto;
 }

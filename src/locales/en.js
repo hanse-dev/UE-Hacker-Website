@@ -225,9 +225,9 @@ export default {
   'lessons.importFailed':   'Import failed: ',
 
   // ── JS-Grundkurs: week selector (JsGrundkursTour.vue) ─────────────────────
-  'jsGrundkurs.chooseWeekTitle': 'Choose a week',
-  'jsGrundkurs.comingSoon':      '🚧 coming soon',
-  'jsGrundkurs.backToWeeks':     '← Choose another week',
+  'weekPicker.chooseWeekTitle': 'Choose a week',
+  'weekPicker.comingSoon':      '🚧 coming soon',
+  'weekPicker.backToWeeks':     '← Choose another week',
 
   // ── Interactive course: variant selector ─────────────────────────────────
   'interactive.whoFor':        'Who is this course for?',

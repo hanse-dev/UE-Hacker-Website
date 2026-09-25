@@ -81,5 +81,13 @@ Baut auf dem Python-Track auf (12-Wochen-Grundkurs), siehe `VISION.md`/`KURSPLAN
 "KI-Track: KI-Grundlagen". 8 Wochen, ohne Themen-Varianten (wie `js-grundkurs`). Bewusst kein
 scikit-learn/pandas (Wasm-Download zu schwer) und kein Live-LLM (Kosten/WebGPU) — stattdessen
 k-NN, Entscheidungsbaum und ein kleines neuronales Netz komplett selbst in reinem Python gebaut.
-- [ ] Kursmetadaten + Content (Wochenplan siehe `KURSPLAN.md`)
-- [ ] Smoke-Test → PR nach `main`
+- [x] Kursmetadaten + Grundgerüst (Wochenauswahl `KiLaborTour.vue`, `kurse.json`, Routing)
+- [x] Woche 1 "Was ist KI?" (5 Lektionen + Debug + Mission), `tests/ki-labor.spec.js`
+- [ ] Woche 2 "Daten sind alles"
+- [ ] Woche 3 "Nächste Nachbarn (k-NN)"
+- [ ] Woche 4 "Training & Test"
+- [ ] Woche 5 "Entscheidungsbäume"
+- [ ] Woche 6 "Neuronale Netze I"
+- [ ] Woche 7 "Neuronale Netze II"
+- [ ] Woche 8 "Grenzen & Ethik"
+- [ ] Smoke-Test aller Wochen → PR nach `main`

@@ -6,7 +6,7 @@
     <template v-else>
       <div v-if="!embedded" class="tour-header">
         <div class="tour-breadcrumb">
-          <button class="breadcrumb-back" @click="$emit('change-week')">{{ t('jsGrundkurs.backToWeeks') }}</button>
+          <button class="breadcrumb-back" @click="$emit('change-week')">{{ t('weekPicker.backToWeeks') }}</button>
           <span class="breadcrumb-week">{{ weekLabel }}</span>
           <span class="breadcrumb-sep">›</span>
           <span class="breadcrumb-lesson">{{ currentBreadcrumbLabel }}</span>

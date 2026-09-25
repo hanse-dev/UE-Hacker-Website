@@ -224,10 +224,10 @@ export default {
   'lessons.importSuccess':  'Fortschritt wurde importiert.',
   'lessons.importFailed':   'Import fehlgeschlagen: ',
 
-  // ── JS-Grundkurs: Wochenauswahl (JsGrundkursTour.vue) ─────────────────────
-  'jsGrundkurs.chooseWeekTitle': 'Wähle eine Woche',
-  'jsGrundkurs.comingSoon':      '🚧 kommt noch',
-  'jsGrundkurs.backToWeeks':     '← Andere Woche wählen',
+  // ── Wochenauswahl themenloser Grundkurse (JsGrundkursTour.vue, KiLaborTour.vue) ──
+  'weekPicker.chooseWeekTitle': 'Wähle eine Woche',
+  'weekPicker.comingSoon':      '🚧 kommt noch',
+  'weekPicker.backToWeeks':     '← Andere Woche wählen',
 
   // ── Interactive course: variant selector ─────────────────────────────────
   'interactive.whoFor':        'Für wen ist dieser Kurs?',
