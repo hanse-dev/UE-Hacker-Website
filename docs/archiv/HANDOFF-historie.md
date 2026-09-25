@@ -2143,3 +2143,49 @@ geprüft. Jede Aufgabe (außer echten Freestyle-/Beobachte-Aufgaben) hat jetzt e
 Test: `tests/site.spec.js` "Lösung wird erst nach Klick...". **Gelernte Regel:** eine Lektion darf
 ihre eigene folgende Aufgabe nicht vorwegnehmen — weder als lauffähiger Code im Erklärtext noch als
 identische "Beispiel"-Aufgabe; Beispiele zeigen das Prinzip an einer *anderen* Instanz.
+
+### 3.63 — Lokales Tool: Account anlegen + Thermodrucker-Ausdruck (Branch `lokales-tool-account-drucker`, gemergt)
+
+Neues, bewusst nicht deploytes Skript `scripts/local-tools/create-account-printout.py`: legt einen
+Account über die bestehende Admin-API (`POST /api/admin/login` + `/api/admin/users`) an, generiert
+ein Passwort aus zwei zufälligen deutschen Wörtern + zwei Ziffern (z.B. `Igel-Zug-79` — kurz genug
+zum Abschreiben) und druckt einen Ausweis-artigen Beleg (doppelter Rahmen, Titel "UE HACKER",
+Name/Passwort-Felder, gebaut mit Pillow) auf einem MXW01-Thermodrucker
+(github.com/PinThePenguinOne/MXW01_Thermal-Printer-Tool) aus. Läuft nur lokal, nie im
+Docker/Build/Deploy.
+
+Das MXW01-Tool wird per `setup-printer-tool.sh` geklont (Original-Repo hat keine LICENSE-Datei,
+daher nicht committed — `vendor/` und `venv/` sind gitignored). Das Setup-Skript legt zusätzlich
+ein eigenes `venv/` an, weil macOS/Homebrew-Python systemweite `pip install`s verweigert (PEP 668).
+`create-account-printout.py` erkennt beim Start selbst, ob es im venv läuft (`sys.prefix` gegen den
+venv-Ordner vergleichen — **nicht** `Path(...).resolve()`, weil `venv/bin/python3` nur ein Symlink
+auf den System-Interpreter ist und `.resolve()` beide Pfade fälschlich als identisch behandelt) und
+startet sich sonst selbst über `venv/bin/python3` neu (`os.execv`) — funktioniert egal mit welchem
+`python3` man es aufruft.
+
+**Gelernte Regel (IDN-Domains):** Die Ziel-Domain enthält ein `ü` (übergangshacker.de). `urllib`
+schickt den Host-Header bei Unicode-Hostnamen unkodiert, der Server/Reverse-Proxy kappt die
+Verbindung ohne jede Antwort (`RemoteDisconnected`, kein aussagekräftiger Fehler). Fix: Hostname vor
+jedem Request über `.encode('idna')` in Punycode wandeln, auf dem gedruckten Beleg aber die
+lesbare Original-Domain anzeigen.
+
+### 3.64 — Login-Formulare für Passwort-Manager + Admin-Nav-Link nur bei aktivem Login (Branch `login-autofill-1password`, gemergt)
+
+Admin-Login (`AdminView.vue`) und Account-Login (`App.vue`) waren keine echten `<form>`-Elemente
+und hatten keine `name`-Attribute — 1Password (und vermutlich andere Passwort-Manager) erkannten und
+speicherten die Logins dadurch nicht zuverlässig. Beide jetzt `<form @submit.prevent>` mit
+`name="username"`/`name="password"` und `type="submit"`-Button. Der Admin-Login hat nur ein
+Passwortfeld (ein einzelnes geteiltes Admin-Passwort, kein Benutzername) — dafür ein verstecktes,
+aber im DOM vorhandenes `username`-Feld mit festem Wert `"admin"` ergänzt, damit Passwort-Manager
+ein vollständiges Login-Paar zum Speichern haben.
+
+Zusätzlich: neuer "Admin"-Link in der Hauptnavigation, aber nur sichtbar solange ein Admin-Token
+existiert (sessionStorage) — kein öffentlich sichtbarer Link zu `/admin`. Dafür ist `adminToken` in
+`useAdminApi.js` jetzt ein geteilter reaktiver `ref` statt eines lokalen Refs pro Komponente, damit
+`App.vue` (Nav) mitbekommt, wenn in `AdminView.vue` ein Admin-Login/-Logout passiert; `AdminView.vue`
+nutzt diesen Ref jetzt direkt statt eine eigene Kopie synchron zu halten. Test in
+`tests/auth-ui.spec.js`: Link erscheint nach Login, bleibt beim Navigieren sichtbar, verschwindet
+nach Logout.
+
+Die Accounts-Verwaltung selbst (Liste/Bearbeiten/Löschen unter `/admin`) existierte bereits seit
+PR #2 (`AdminView.vue`) — war dem Nutzer nur nicht bekannt, kein neuer Code nötig.

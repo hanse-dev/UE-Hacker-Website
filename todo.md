@@ -5,6 +5,10 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 
 ## Offen
 
+- [ ] `HANDOFF.md` liegt knapp über dem 25-KB-Richtwert (WORKFLOW.md). Grund: Tabellenzeilen 3.53–3.61
+      in Abschnitt 3 sind noch volle Absätze statt einzeiliger "Kern in einem Satz"-Zusammenfassungen
+      (Detail steht eigentlich schon in `docs/archiv/HANDOFF-historie.md`). Bei Gelegenheit auf eine
+      Zeile pro Eintrag kürzen.
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken) —
       **zurückgestellt** (Nutzer will erst später deployen). Backup-Cron auf dem Server einrichten
       (Befehl siehe HANDOFF.md Abschnitt 4); externe Sicherung der Backups bewusst nicht mitgebaut.

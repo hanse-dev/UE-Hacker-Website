@@ -1,12 +1,11 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-09-25
-> **Aktueller Stand:** Branches `kurs-python-projekte`, `projekt-caesar-eigener-code` und
-> `projekt-abschluss-badge-link` sind gemergt und gelöscht. Alle 7 Projekt-Kurse (3.61) nutzen
-> jetzt "selbst schreiben + Lösung auf Wunsch" statt vorausgefüllter Templates, und der
-> Abschluss-Screen der letzten Projekt-Lektion zeigt einen Abzeichen-Hinweis + Link zu /projekte
-> (3.62). Push nach `origin/main` und Server-Deploy stehen aus (Nutzer deployt selbst, siehe
-> Abschnitt 4 "Betrieb").
+> **Aktueller Stand:** Branches `lokales-tool-account-drucker` und `login-autofill-1password` sind
+> gemergt und gelöscht. Neu: lokales (nicht deploytes) Skript zum Account-Anlegen +
+> Thermodrucker-Ausdruck (3.63), Login-Formulare 1Password-fähig gemacht + "Admin"-Nav-Link nur bei
+> aktivem Admin-Login sichtbar (3.64). Push nach `origin/main` und Server-Deploy stehen aus (Nutzer
+> deployt selbst, siehe Abschnitt 4 "Betrieb").
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
 > Chat-Historie. Sie wird per `@` in jede Session geladen — **klein halten** (Richtwert < 25 KB).
 > Die ausführliche Feature-Historie liegt kalt in `docs/archiv/HANDOFF-historie.md` (nicht importiert).
@@ -78,7 +77,9 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.59 | Projekt-Kurs Snake (Nachfolger JS-Spielewerkstatt, JS-Sandbox/Canvas) | `content/js-snake` (6 Lektionen, DE-first): Raster→Segment-Array→Steuerung/Bewegung→Animationsloop→Selbst-/Randkollision→eigenes Spiel; `kurse.json`-Eintrag `projekt-js-snake` (`engine: js-sandbox`, Level `fortgeschritten`, Tags `spiele`/`logikraetsel`); alle Pure-Funktionen (inkl. Objekt-Rückgabewerte wie `naechsterKopf`) mit `node` geprüft, `functionCalls`-Validierung nie mit Array als `expected` (nur `===`-Vergleich, siehe HANDOFF-Fallstricke); `tests/projekte.spec.js` um eigenen Funktions-Test erweitert, Karten-/Filter-Tests auf 6 Projekte angepasst (Fortgeschritten trifft jetzt 3, JavaScript-Filter 2 Projekte) |
 | 3.60 | Projekt-Kurs Text-Adventure/Fluchtraum | `content/text-adventure-fluchtraum` (6 Lektionen, DE-first, Pyodide): Raum als Dictionary → mehrere Räume verknüpft → Inventar als Liste → verschlossene Tür (Dictionary-Lookup + `in`-Prüfung kombiniert) → Befehle per `input()`/`split()` → Kapitel 6 verbindet alles in einer `while`-Schleife (Sieg = Flur erreicht, ohne Schlüssel läuft die Schleife endlos = zweites Ende); `kurse.json`-Eintrag `projekt-text-adventure` (Level `fortgeschritten`, Tags `spiele`/`logikraetsel`); alle 11 Referenzlösungen (inkl. `stdin`-Befehlsfolgen) mit `python3` geprüft, `validation.variables`/`functionCalls` bewusst **nicht** genutzt (in `LessonView.vue` wird `validateOutput` ohne den `variables`/`functionResults`-Parameter aufgerufen — diese Felder würden dort niemals bestehen, siehe HANDOFF-Fallstricke); `tests/projekte.spec.js` um eigenen Lektions-Test erweitert, Karten-/Filter-Tests auf 7 Projekte angepasst (Fortgeschritten trifft jetzt 4) |
 | 3.61 | Alle 7 Projekt-Kurse auf "selbst schreiben + Lösung auf Wunsch" umgestellt | `codeTemplate` blankt nur neu eingeführte Funktionskörper, neuer "Lösung anzeigen"-Button; Snake-Beispielaufgabe/JS-Spielewerkstatt-Erklärtext entschärft (nahmen die folgende Aufgabe vorweg); jede Aufgabe hat jetzt ein `solution`-Feld; Regel dazu unten unter "Gelernte Regeln" |
-| 3.62 | Projekt-Abschluss zeigt Abzeichen-Hinweis + Link zu /projekte | Neue Komponente `ProjectCompletionBox.vue` (Link zu `/profil`, Text je nach `isLoggedIn`, + Link zu `/projekte`, optional zusätzlich `nextCourseId`-Link wie bei Cäsar). `LessonView.vue`/`JsLessonView.vue` bekommen Props `isProjectCourse`/`isLastLesson` (nur bei `allTasksComplete && isProjectCourse && isLastLesson` ersetzt sie den generischen "Weiter"-Button); `ProjectCourse.vue` berechnet `isLastLesson` (`currentIndex === lessons.length - 1`) und setzt `isProjectCourse` fest auf `true`. Andere Kurse (Interaktiv-Kurs, JS-Grundkurs) nutzen dieselben Komponenten weiter unverändert, da die neuen Props dort `false` bleiben. Test: `tests/site.spec.js` "Letzte Lektion abschließen zeigt Abzeichen-Hinweis...", seedet Fortschritt direkt im `localStorage` statt 4 Lektionen live zu lösen. |
+| 3.62 | Projekt-Abschluss zeigt Abzeichen-Hinweis + Link zu /projekte | Neue Komponente `ProjectCompletionBox.vue`, ersetzt bei der letzten Projekt-Lektion den generischen "Weiter"-Button |
+| 3.63 | Lokales Tool: Account anlegen + Thermodrucker-Ausdruck | `scripts/local-tools/create-account-printout.py`, nicht deployed, legt Account über Admin-API an und druckt Ausweis-Beleg auf MXW01-Drucker; MXW01-Tool wird lokal geklont (keine LICENSE, daher gitignored) |
+| 3.64 | Login-Formulare für Passwort-Manager + Admin-Nav-Link nur bei Login | Admin-/Account-Login jetzt echte `<form>`s mit `name`-Attributen (1Password-Autofill); "Admin"-Nav-Link nur sichtbar bei aktivem Admin-Token |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -118,6 +119,22 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 - Deep-Links `?week=&tab=` (Einstufung, Cäsar-Chiffre) bewusst unverändert lassen, `WeekTour.vue` übersetzt intern (3.36).
 - cspell: Wörterbücher brauchen `"import"`, nicht nur `"dictionaries"`; Ausgabe muss im Repo liegen (3.8/3.9).
 - Komponente wird beim Umschalten eines `v-if`-Zweigs neu gemountet → lokaler State (z.B. aktuelle Lektion) geht verloren, wenn er nicht vom Parent gehalten wird; beim Neu-Mount auf den zuletzt sinnvollen Zustand zurückfallen, nicht immer auf den Anfang (3.55).
+- Login-Felder für Passwort-Manager-Autofill (1Password u.ä.) brauchen ein echtes `<form>` +
+  `name`-Attribute auf den Inputs, sonst werden sie oft nicht erkannt/gespeichert; bei reinem
+  Passwort-Login (kein Benutzername im Datenmodell, z.B. Admin) ein verstecktes `username`-Feld mit
+  festem Wert ergänzen, damit ein vollständiges Login-Paar entsteht (3.64).
+- Reaktiver Zustand, der über mehrere Komponenten synchron bleiben muss (z.B. Admin-Token für
+  Nav + AdminView), gehört als ein geteilter `ref` in die Composable — nicht als lokaler Ref pro
+  Komponente, der bei jeder Aktion manuell nachgezogen wird (3.64).
+
+**Lokale Tools (`scripts/local-tools/`, laufen nie im Deploy)**
+- IDN-Domains (Umlaute, z.B. `übergangshacker.de`) vor jedem `urllib`-Request per `.encode('idna')`
+  in Punycode wandeln — sonst schickt Python den Host-Header unkodiert, der Server/Reverse-Proxy
+  kappt die Verbindung ohne jede Fehlermeldung (`RemoteDisconnected`) (3.63).
+- macOS/Homebrew-Python verweigert systemweite `pip install`s (PEP 668) → lokale Tools brauchen ein
+  eigenes `venv/`. Um automatisch dorthin zu wechseln (egal mit welchem `python3` aufgerufen): über
+  `sys.prefix` prüfen, **nicht** `Path(sys.executable).resolve()` — `venv/bin/python3` ist nur ein
+  Symlink auf den System-Interpreter, `.resolve()` hält beide fälschlich für identisch (3.63).
 
 **Betrieb**
 - SQLite nur per `VACUUM INTO` sichern (WAL), nie `cp`; nie `git clean -fdx` ohne `api/data/` auszuschließen (Abschnitt 4).
