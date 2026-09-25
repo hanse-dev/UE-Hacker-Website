@@ -59,11 +59,12 @@ export default {
     weekNumber: { type: Number, required: true },
     challengeIndex: { type: Number, default: 0 },
     label: { type: String, default: '' },
+    courseKey: { type: String, default: 'python' },
   },
   setup(props) {
     const { lang, t } = useLanguage();
     const { kernelReady, kernelStatus, initializeKernel, runPython, pyodideRef } = usePyodide();
-    const { markCodingPassed, isCodingChallengePassed } = useWeekChecks();
+    const { markCodingPassed, isCodingChallengePassed } = useWeekChecks(props.courseKey);
 
     const challenge = ref(null);
     const code = ref('');
@@ -86,7 +87,7 @@ export default {
 
     const load = async () => {
       try {
-        const data = await loadWeekChecks();
+        const data = await loadWeekChecks(props.courseKey);
         const challenges = data?.weeks?.[String(props.weekNumber)]?.codingChallenges || [];
         challenge.value = challenges[props.challengeIndex] || null;
         code.value = challenge.value?.codeTemplate ?? '';

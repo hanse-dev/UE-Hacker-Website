@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import checks from '../content/ki-labor-checks/index.mjs';
 
 // KI-Labor (Route /kurs/ki-labor, echter Kurs mit kurse.json-Eintrag, ueber CourseDetail.vue
 // eingebunden wie js-grundkurs). 8 Wochen, siehe KURSPLAN.md "KI-Track: KI-Grundlagen". Nutzt
@@ -6,13 +7,73 @@ import { test, expect } from '@playwright/test';
 // Wochen-Tour (JsCourseTour.vue), aber engine="pyodide" (LessonView.vue) statt js-sandbox - wie
 // im 12-Wochen-Python-Kurs. Algorithmen werden komplett in reinem Python selbst geschrieben, kein
 // scikit-learn. Bislang ist nur Woche 1 ("Was ist KI?") umgesetzt, Wochen 2-8 sind "kommt noch".
+//
+// Quiz + Zertifikat nutzen dasselbe System wie der 12-Wochen-Kurs (useWeekChecks.js/
+// WeekCheckPanel.vue/CodeChallenge.vue/useCertificatePdf.js), jetzt um einen courseKey-Parameter
+// generalisiert ('ki-labor' statt dem Default 'python') - eigener Storage-Key
+// ('ue-hacker-week-checks-ki-labor') und eigener Content-Ordner (content/ki-labor-checks/), damit
+// Woche 1 im KI-Labor nicht mit Woche 1 im Python-Kurs kollidiert (siehe HANDOFF.md).
 const PROGRESS_KEY = 'ue-hacker-interactive-progress-ki-labor-woche1';
+
+function findQuestion(text) {
+  const normalized = text.replace(/^\d+\.\s*/, '').trim();
+  for (const week of Object.values(checks.weeks)) {
+    for (const q of week.questions) {
+      if (q.question === normalized) return q;
+    }
+  }
+  return null;
+}
+
+function correctOptionTexts(q) {
+  if (q.type === 'multiple_select') return q.correctIndices.map((i) => q.options[i]);
+  return [q.options[q.correctIndex]];
+}
+
+async function clickOptionByExactText(card, opt) {
+  const buttons = card.locator('.option-btn');
+  const count = await buttons.count();
+  for (let i = 0; i < count; i++) {
+    const text = (await buttons.nth(i).innerText()).replace(/^[☐☑]\s*/, '').trim();
+    if (text === opt) {
+      await buttons.nth(i).click();
+      return;
+    }
+  }
+  throw new Error(`Option not found: ${opt}`);
+}
+
+async function passWeek1Quiz(page) {
+  const cards = page.locator('.quiz-question');
+  await expect(cards.first()).toBeVisible({ timeout: 20000 });
+  const count = await cards.count();
+  for (let i = 0; i < count; i++) {
+    const card = cards.nth(i);
+    const raw = await card.locator('.question-text').innerText();
+    const q = findQuestion(raw);
+    expect(q, `Unbekannte Frage: ${raw}`).toBeTruthy();
+    for (const opt of correctOptionTexts(q)) {
+      await clickOptionByExactText(card, opt);
+    }
+  }
+  await page.locator('.btn-check-quiz').click();
+}
+
+async function passCodingChallenge(page, challengeIndex, code) {
+  const challenge = page.locator(`.code-challenge[data-challenge-index="${challengeIndex}"]`);
+  await challenge.locator('.btn-kernel').click({ force: true });
+  await expect(challenge.locator('.btn-check')).toBeEnabled({ timeout: 40000 });
+  await challenge.locator('.code-editor').fill(code);
+  await challenge.locator('.btn-check').click();
+  await expect(challenge.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+}
 
 test.describe('KI-Labor (Wochenauswahl)', () => {
   test.beforeEach(async ({ page }) => {
     await page.addInitScript((key) => {
       localStorage.removeItem('ue-hacker-lang');
       localStorage.removeItem(key);
+      localStorage.removeItem('ue-hacker-week-checks-ki-labor');
     }, PROGRESS_KEY);
   });
 
@@ -29,7 +90,9 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
   test('Woche 1 anklicken öffnet die Wochen-Tour, "Andere Woche wählen" führt zurück', async ({ page }) => {
     await page.goto('/kurs/ki-labor');
     await page.locator('.week-tile').nth(0).click();
-    await expect(page.locator('.stepper-step')).toHaveCount(7, { timeout: 15000 });
+    // 7 Lektionen (5 Lektion + Debug + Mission) + 1 Check-Punkt, da content/ki-labor-checks/
+    // week-1.json existiert (hasCheck=true).
+    await expect(page.locator('.stepper-step')).toHaveCount(8, { timeout: 15000 });
     await expect(page.locator('.tour-breadcrumb')).toContainText('Woche 1');
 
     await page.locator('.breadcrumb-back').click();
@@ -37,17 +100,18 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
     await expect(page.locator('.stepper-step')).toHaveCount(0);
   });
 
-  test('Deep-Link ?week=1 öffnet direkt die Wochen-Tour, gruppierte Kullern Lektion/Debug/Mission', async ({ page }) => {
+  test('Deep-Link ?week=1 öffnet direkt die Wochen-Tour, gruppierte Kullern Lektion/Debug/Mission/Check', async ({ page }) => {
     await page.goto('/kurs/ki-labor?week=1');
-    await expect(page.locator('.stepper-step')).toHaveCount(7, { timeout: 15000 });
+    await expect(page.locator('.stepper-step')).toHaveCount(8, { timeout: 15000 });
     await expect(page.locator('.tour-breadcrumb')).toContainText('Woche 1');
     await expect(page.locator('.tour-breadcrumb')).toContainText('Was ist KI?');
 
     const groupLabels = page.locator('.stepper-group-label');
-    await expect(groupLabels).toHaveCount(3);
+    await expect(groupLabels).toHaveCount(4);
     await expect(groupLabels.nth(0)).toHaveText(/lektion/i);
     await expect(groupLabels.nth(1)).toHaveText(/debug/i);
     await expect(groupLabels.nth(2)).toHaveText(/mission/i);
+    await expect(page.locator('[data-open-check]')).toBeVisible();
   });
 
   test('Deep-Link ?week=2 (noch nicht verfügbar) zeigt die Wochenauswahl statt der Tour', async ({ page }) => {
@@ -172,5 +236,39 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
     ]);
     await expect(page.locator('.progress-count')).toContainText('7 abgeschlossen');
     await expect(page.locator('.lesson-complete-box')).toBeVisible();
+
+    // Letzte Lektion (Mission) abgeschlossen, kein Boss-Abschnitt -> "Weiter" springt direkt
+    // zum Wochen-Check statt zu einer Wahl-Seite (siehe JsCourseTour.vue onLessonCompleted).
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.week-check-panel')).toBeVisible({ timeout: 15000 });
+  });
+
+  test('Wochen-Check: Quiz allein reicht nicht, Quiz + beide Coding-Aufgaben verleiht das Zertifikat', async ({ page }) => {
+    test.setTimeout(60000);
+    await page.addInitScript((key) => {
+      localStorage.setItem(key, JSON.stringify({
+        version: 1,
+        completedLessonIds: ['lektion-01', 'lektion-02', 'lektion-03', 'lektion-04', 'lektion-05', 'debug-01', 'mission-01'],
+      }));
+    }, PROGRESS_KEY);
+    await page.goto('/kurs/ki-labor?week=1');
+    await page.locator('[data-open-check]').click();
+    await expect(page.locator('.week-check-panel')).toBeVisible({ timeout: 15000 });
+
+    await passWeek1Quiz(page);
+    await expect(page.locator('.certificate-reveal')).toHaveCount(0);
+
+    await passCodingChallenge(page, 0, 'def ist_erwachsen(alter):\n    return alter >= 18\n\nprint(ist_erwachsen(20))\nprint(ist_erwachsen(15))');
+    await expect(page.locator('.certificate-reveal')).toHaveCount(0);
+
+    await passCodingChallenge(
+      page,
+      1,
+      'modell = {"hund": "Tier", "baum": "Pflanze"}\n\ndef klassifiziere(eingabe, modell):\n    return modell.get(eingabe, "unbekannt")\n\nprint(klassifiziere("hund", modell))\nprint(klassifiziere("stein", modell))'
+    );
+
+    await expect(page.locator('.certificate-reveal')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('.certificate-login-hint')).toBeVisible();
+    await expect(page.locator('.btn-certificate-pdf')).toHaveCount(0);
   });
 });

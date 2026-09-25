@@ -76,7 +76,7 @@ function sanitizeForFilename(text) {
     .replace(/^_+|_+$/g, '');
 }
 
-export async function generateCertificatePdfBytes({ weekNumber, weekTitle, lernziele, learnerName, lang = 'de' }) {
+export async function generateCertificatePdfBytes({ weekNumber, weekTitle, lernziele, learnerName, lang = 'de', courseTitle }) {
   const { PDFDocument, StandardFonts, rgb } = await import('pdf-lib');
   const t = TEXT[lang] || TEXT.de;
 
@@ -141,7 +141,8 @@ export async function generateCertificatePdfBytes({ weekNumber, weekTitle, lernz
   drawCentered(t.certificate.toUpperCase(), cursorY, { size: 30, useFont: fontBold, color: gold });
 
   cursorY -= 34;
-  drawCentered(COURSE_TITLE[lang] || COURSE_TITLE.de, cursorY, { size: 14, color: gray });
+  const courseTitleText = (courseTitle && (courseTitle[lang] || courseTitle.de)) || COURSE_TITLE[lang] || COURSE_TITLE.de;
+  drawCentered(courseTitleText, cursorY, { size: 14, color: gray });
 
   cursorY -= 40;
   drawCentered(t.awardedTo, cursorY, { size: 13, color: gray });

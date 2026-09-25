@@ -83,11 +83,14 @@ scikit-learn/pandas (Wasm-Download zu schwer) und kein Live-LLM (Kosten/WebGPU) 
 k-NN, Entscheidungsbaum und ein kleines neuronales Netz komplett selbst in reinem Python gebaut.
 - [x] Kursmetadaten + Grundgerüst (Wochenauswahl `KiLaborTour.vue`, `kurse.json`, Routing)
 - [x] Woche 1 "Was ist KI?" (5 Lektionen + Debug + Mission), `tests/ki-labor.spec.js`
-- [ ] Woche 2 "Daten sind alles"
-- [ ] Woche 3 "Nächste Nachbarn (k-NN)"
-- [ ] Woche 4 "Training & Test"
-- [ ] Woche 5 "Entscheidungsbäume"
-- [ ] Woche 6 "Neuronale Netze I"
-- [ ] Woche 7 "Neuronale Netze II"
-- [ ] Woche 8 "Grenzen & Ethik"
+- [x] Quiz + Wochen-Zertifikat (wie 12-Wochen-Kurs) — `useWeekChecks.js`/`WeekCheckPanel.vue`/
+      `CodeChallenge.vue`/`useCertificatePdf.js` um `courseKey` generalisiert, eigener
+      Content-Ordner `content/ki-labor-checks/`, bisher nur Woche 1 (7 Fragen + 2 Coding-Aufgaben)
+- [ ] Woche 2 "Daten sind alles" (+ eigener Wochen-Check)
+- [ ] Woche 3 "Nächste Nachbarn (k-NN)" (+ eigener Wochen-Check)
+- [ ] Woche 4 "Training & Test" (+ eigener Wochen-Check)
+- [ ] Woche 5 "Entscheidungsbäume" (+ eigener Wochen-Check)
+- [ ] Woche 6 "Neuronale Netze I" (+ eigener Wochen-Check)
+- [ ] Woche 7 "Neuronale Netze II" (+ eigener Wochen-Check)
+- [ ] Woche 8 "Grenzen & Ethik" (+ eigener Wochen-Check)
 - [ ] Smoke-Test aller Wochen → PR nach `main`

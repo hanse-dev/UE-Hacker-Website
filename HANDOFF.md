@@ -3,11 +3,13 @@
 > **Zuletzt aktualisiert:** 2026-09-25
 > **Aktueller Stand:** Branch `kurs-ki-labor` (noch nicht gemergt): Kursplan für das neue KI-Labor
 > auf selbstgebaute Algorithmen statt scikit-learn umgestellt, Grundgerüst (Wochenauswahl,
-> `kurse.json`, Routing) + Woche 1 "Was ist KI?" fertig und getestet (3.66). Wochen 2–8 offen,
-> nächste Session macht hier weiter. Vorheriger Stand: Backup-Cron-Pfad in HANDOFF korrigiert +
-> Docker-Prod-Build lokal verifiziert, Tippfehler-Pass (cspell) auf Lektions-Format/JS-Grundkurs/
-> Interaktiv-/Projekt-Kurse ausgeweitet (3.65). Server-Deploy steht weiter aus (Nutzer deployt
-> selbst, siehe Abschnitt 4 "Betrieb").
+> `kurse.json`, Routing) + Woche 1 "Was ist KI?" fertig und getestet (3.66); Quiz+Zertifikat auf
+> Nutzerwunsch nachgezogen (3.67) — das bislang python-only System dafür kurs-fähig gemacht
+> (`useWeekChecks.js`/`WeekCheckPanel.vue`/`CodeChallenge.vue`/`useCertificatePdf.js` um
+> `courseKey` erweitert). Wochen 2–8 offen, nächste Session macht hier weiter. Vorheriger Stand:
+> Backup-Cron-Pfad in HANDOFF korrigiert + Docker-Prod-Build lokal verifiziert, Tippfehler-Pass
+> (cspell) auf Lektions-Format/JS-Grundkurs/Interaktiv-/Projekt-Kurse ausgeweitet (3.65).
+> Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4 "Betrieb").
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
 > Chat-Historie. Sie wird per `@` in jede Session geladen — **klein halten** (Richtwert < 25 KB).
 > Die ausführliche Feature-Historie liegt kalt in `docs/archiv/HANDOFF-historie.md` (nicht importiert).
@@ -84,6 +86,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.64 | Login-Formulare für Passwort-Manager + Admin-Nav-Link nur bei Login | Admin-/Account-Login jetzt echte `<form>`s mit `name`-Attributen (1Password-Autofill); "Admin"-Nav-Link nur sichtbar bei aktivem Admin-Token |
 | 3.65 | Tippfehler-Pass (cspell) auf Lektions-Format/JS-Grundkurs/Interaktiv-/Projekt-Kurse | `lint:spelling`-Scope um `content/python-woche*`, `content/js-grundkurs*`, `content/python-grundlagen-interaktiv*` und alle 7 Projekt-Kurse erweitert; 0 echte Tippfehler in 1306 Dateien (verdächtige Kandidaten wie `cilck` waren ein absichtlicher Debug-Bug, `mcvbg`/`rejvs` Chiffretext-Beispiele, `gibtsnicht.json` ein Test-Dateiname, `n`-präfigierte Wörter JSON-`\n`-Escape-Artefakte); 280 legitime Wörter (deutsche Kleinschreibungs-Substantive, Figuren-/Ortsnamen) in `cspell.json` ergänzt |
 | 3.66 🚧 | KI-Labor gestartet (Branch `kurs-ki-labor`, noch nicht gemergt) — Kursplan + Woche 1 | Kursplan (`KURSPLAN.md`/`VISION.md`/`todo.md`/`PROJEKTIDEEN.md`) auf selbstgebaute Algorithmen statt scikit-learn umgestellt (Wasm-Download zu schwer, kein Live-LLM wegen API-Kosten/WebGPU), 8 Wochen ohne Themen-Varianten; Aufbau wie `js-grundkurs`, aber im Lektions-Format des 12-Wochen-Kurses (Lektion→Debug→Mission, `output_contains`/`codeContains`, keine `variables`/`functionCalls` — LessonView.vue unterstützt die nicht) statt JS-Sandbox-Format; neue Komponente `KiLaborTour.vue` (Kopie von `JsGrundkursTour.vue`, `engine="pyodide"` in `JsCourseTour`), `isKiLabor`-Sonderfall in `CourseDetail.vue`, `kurse.json`-Eintrag, `content/ki-labor` (Beschreibung) + `content/ki-labor-woche1` (5 Lektionen "Was ist KI?" + Debug + Mission, alle Referenzlösungen mit `python3` geprüft); `jsGrundkurs.*`-t()-Keys zu `weekPicker.*` umbenannt (jetzt von beiden Kursen geteilt); `tests/ki-labor.spec.js` neu, `tests/site.spec.js` Kurskarten-Zahl 3→4; Wochen 2–8 offen, siehe `todo.md` |
+| 3.67 🚧 | KI-Labor: Quiz + Wochen-Zertifikat nachgezogen (Branch `kurs-ki-labor`) | Nutzerwunsch nach 3.66: Wochen-Check+Zertifikat wie im 12-Wochen-Kurs, nicht nur Lektion/Debug/Mission. Das bis dahin fest auf den Python-Kurs verdrahtete System (`content/python-checks/`, Storage-Key `ue-hacker-week-checks` ohne Kurs-Bezug) um einen `courseKey`-Parameter generalisiert (Default `'python'` = unverändertes Verhalten, keine Migration): `useWeekChecks.js` (Content-Glob `content/*-checks/`, Storage-Key `ue-hacker-week-checks-<courseKey>`, Fortschritts-Refs jetzt eine `Map` pro `courseKey` statt ein Singleton-Ref), `WeekCheckPanel.vue`/`CodeChallenge.vue` (neue `courseKey`-Prop durchgereicht), `useCertificatePdf.js` (neuer `courseTitle`-Parameter statt hart codiertem "Python 12-Wochen-Grundkurs"); `useProgressSync.js` von fixem `'ue-hacker-week-checks'`-Key auf Präfix-Match umgestellt, damit der neue Kurs-Key mitsynct. `KiLaborTour.vue` bekam einen dritten Zustand (`phase: 'check'`) mit eigenem Zertifikat-Reveal (Kopie der Logik aus `WeekTourStepper.vue`, aber ohne dessen Themen-Varianten-/Notebook-Komplexität) statt Wiederverwendung von `WeekTourStepper.vue` selbst (das zeigt immer einen Themen-Breadcrumb, den es hier nicht geben soll). Neuer Content-Ordner `content/ki-labor-checks/` (`config.json`, `week-1.json` mit 7 Quizfragen + 2 Coding-Aufgaben, `index.mjs`-Node-Loader wie bei `python-checks`), alle Coding-Referenzlösungen mit `python3` geprüft. `tests/ki-labor.spec.js` um Check-Flow erweitert (36 bestehende Python-Check-Tests liefen unverändert grün); `lint:spelling`-Scope um `content/ki-labor*` erweitert. |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -130,6 +133,14 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 - Reaktiver Zustand, der über mehrere Komponenten synchron bleiben muss (z.B. Admin-Token für
   Nav + AdminView), gehört als ein geteilter `ref` in die Composable — nicht als lokaler Ref pro
   Komponente, der bei jeder Aktion manuell nachgezogen wird (3.64).
+- Ein Composable/System, das nur für **einen** Kurs gebaut wurde (Content-Pfad + Storage-Key ohne
+  Kurs-Bezug fest verdrahtet, z.B. `useWeekChecks.js` vor 3.67), lässt sich nicht einfach an eine
+  zweite Stelle durchreichen — der Fortschritt beider Kurse würde sich sonst denselben
+  `localStorage`-Key und Content-Ordner teilen. Beim Verallgemeinern: ein `courseKey`-Parameter mit
+  Default = bisherigem Verhalten (keine Migration bestehender Nutzerdaten nötig), Storage-Key/
+  Content-Glob-Pfad davon ableiten, und **immer** die komplette bestehende Test-Suite des
+  Erstnutzers (hier: alle `zertifikate.spec.js`/`week-checks*.spec.js`-Tests) gegenlaufen lassen,
+  nicht nur den neuen Kurs testen (3.67).
 
 **Lokale Tools (`scripts/local-tools/`, laufen nie im Deploy)**
 - IDN-Domains (Umlaute, z.B. `übergangshacker.de`) vor jedem `urllib`-Request per `.encode('idna')`

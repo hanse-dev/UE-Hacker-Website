@@ -6,34 +6,41 @@ export { scoreQuizAnswers, isQuizPassed };
 
 const STORAGE_KEY = 'ue-hacker-week-checks';
 
-const configModule = import.meta.glob('../../content/python-checks/config.json');
-const weekModules = import.meta.glob('../../content/python-checks/week-*.json');
+// Ein Ordner `<courseKey>-checks/` pro Kurs (aktuell `python-checks`, `ki-labor-checks`) -
+// courseKey === 'python' ist der ursprüngliche 12-Wochen-Kurs (Default, keine Migration nötig).
+const configModule = import.meta.glob('../../content/*-checks/config.json');
+const weekModules = import.meta.glob('../../content/*-checks/week-*.json');
 
-let cachedWeeks = null;
+const weekChecksCache = new Map();
 
-export async function loadWeekChecks() {
+export async function loadWeekChecks(courseKey = 'python') {
+  const dir = `${courseKey}-checks`;
   // Always read fresh modules so content edits show up after Vite HMR
-  const configLoader = configModule['../../content/python-checks/config.json'];
-  if (!configLoader) throw new Error('config.json not found');
+  const configLoader = configModule[`../../content/${dir}/config.json`];
+  if (!configLoader) throw new Error(`config.json not found for ${dir}`);
   const configMod = await configLoader();
   const config = configMod.default || configMod;
 
   const weeks = {};
+  const prefix = `../../content/${dir}/week-`;
   await Promise.all(
-    Object.entries(weekModules).map(async ([key, loader]) => {
-      const num = key.match(/week-(\d+)\.json$/)[1];
-      const mod = await loader();
-      weeks[num] = mod.default || mod;
-    })
+    Object.entries(weekModules)
+      .filter(([key]) => key.startsWith(prefix))
+      .map(async ([key, loader]) => {
+        const num = key.match(/week-(\d+)\.json$/)[1];
+        const mod = await loader();
+        weeks[num] = mod.default || mod;
+      })
   );
 
-  cachedWeeks = { ...config, weeks };
-  return cachedWeeks;
+  const data = { ...config, weeks };
+  weekChecksCache.set(courseKey, data);
+  return data;
 }
 
 /** Clear cache (useful after hot reload / tests). */
 export function clearWeekChecksCache() {
-  cachedWeeks = null;
+  weekChecksCache.clear();
 }
 
 export function localizeQuestion(q, lang = 'de') {
@@ -196,34 +203,56 @@ export function hasWeekCheck(data, weekNumber) {
   return (data?.weeks?.[String(weekNumber)]?.questions?.length || 0) > 0;
 }
 
-function loadProgress() {
+// courseKey === 'python' behält den ursprünglichen Storage-Key (Bestandsdaten/Sync bleiben
+// unangetastet); jeder andere Kurs bekommt einen eigenen, damit z.B. "Woche 1" im KI-Labor nicht
+// denselben Fortschritt wie "Woche 1" im Python-Kurs anzeigt.
+function storageKeyFor(courseKey) {
+  return courseKey === 'python' ? STORAGE_KEY : `${STORAGE_KEY}-${courseKey}`;
+}
+
+function loadProgress(storageKey) {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(storageKey);
     return raw ? JSON.parse(raw) : { version: 1, weeks: {}, placement: null };
   } catch {
     return { version: 1, weeks: {}, placement: null };
   }
 }
 
-function saveProgress(state) {
+function saveProgress(storageKey, state) {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    touchSyncKey(STORAGE_KEY);
+    localStorage.setItem(storageKey, JSON.stringify(state));
+    touchSyncKey(storageKey);
   } catch (e) {
     console.error('Week checks progress save failed:', e);
   }
 }
 
-const progress = ref(loadProgress());
-watch(progress, (s) => saveProgress(s), { deep: true });
+// Ein reaktiver Fortschritts-Ref pro Kurs, lazy angelegt und danach wiederverwendet (Singleton
+// pro courseKey) - so bleibt jeder Aufrufer von useWeekChecks(courseKey) über denselben Ref
+// synchron, ohne dass jede Komponente ihren eigenen State haelt.
+const progressRefs = new Map();
 
-if (typeof window !== 'undefined') {
-  window.addEventListener(PROGRESS_APPLIED_EVENT, () => {
-    progress.value = loadProgress();
-  });
+function getProgressRef(courseKey) {
+  let entry = progressRefs.get(courseKey);
+  if (entry) return entry.progress;
+
+  const storageKey = storageKeyFor(courseKey);
+  const progress = ref(loadProgress(storageKey));
+  watch(progress, (s) => saveProgress(storageKey, s), { deep: true });
+
+  if (typeof window !== 'undefined') {
+    window.addEventListener(PROGRESS_APPLIED_EVENT, () => {
+      progress.value = loadProgress(storageKey);
+    });
+  }
+
+  progressRefs.set(courseKey, { progress, storageKey });
+  return progress;
 }
 
-export function useWeekChecks() {
+export function useWeekChecks(courseKey = 'python') {
+  const progress = getProgressRef(courseKey);
   // Der Wochen-Check besteht aus zwei unabhängig abschließbaren Teilen: Quiz + Coding-Aufgaben.
   // Es gibt pro Woche mehrere Coding-Aufgaben (aktuell 2: leicht + schwerer) — codingPassed hält
   // pro Challenge-Index ein eigenes Flag. isWeekCheckPassed() ist die "vollständig bestanden"-

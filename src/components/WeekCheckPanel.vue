@@ -19,8 +19,8 @@
         @completed="onPassed"
         @failed="onFailed"
       />
-      <CodeChallenge :week-number="weekNumber" :challenge-index="0" :label="t('check.challenge.easy')" />
-      <CodeChallenge :week-number="weekNumber" :challenge-index="1" :label="t('check.challenge.harder')" />
+      <CodeChallenge :week-number="weekNumber" :challenge-index="0" :label="t('check.challenge.easy')" :course-key="courseKey" />
+      <CodeChallenge :week-number="weekNumber" :challenge-index="1" :label="t('check.challenge.harder')" :course-key="courseKey" />
       <p v-if="quizPassed && codingPassed" class="check-fully-done">
         {{ t('check.fullyDone') }}
       </p>
@@ -40,10 +40,11 @@ export default {
   components: { QuizStep, CodeChallenge },
   props: {
     weekNumber: { type: Number, required: true },
+    courseKey: { type: String, default: 'python' },
   },
   setup(props) {
     const { lang, t } = useLanguage();
-    const { markQuizPassed, isWeekCheckPassed, isQuizPassedForWeek, isCodingPassedForWeek } = useWeekChecks();
+    const { markQuizPassed, isWeekCheckPassed, isQuizPassedForWeek, isCodingPassedForWeek } = useWeekChecks(props.courseKey);
     const data = ref(null);
     const loading = ref(true);
     const questions = ref([]);
@@ -62,7 +63,7 @@ export default {
     const load = async () => {
       loading.value = true;
       try {
-        data.value = await loadWeekChecks();
+        data.value = await loadWeekChecks(props.courseKey);
         pickQuestions();
       } catch (e) {
         console.error(e);

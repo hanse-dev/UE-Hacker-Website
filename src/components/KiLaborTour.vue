@@ -19,13 +19,52 @@
     </template>
 
     <JsCourseTour
-      v-else
+      v-else-if="phase === 'tour'"
       engine="pyodide"
       :course-id="`ki-labor-woche${selectedWeekNumber}`"
       :content-path="`ki-labor-woche${selectedWeekNumber}`"
       :week-label="`${t('week.label')} ${selectedWeekNumber}: ${selectedWeekTitle}`"
+      :has-check="selectedWeekHasCheck"
       @change-week="phase = 'week'"
+      @open-check="phase = 'check'"
     />
+
+    <div v-else class="ki-labor-check">
+      <div class="tour-breadcrumb">
+        <button class="breadcrumb-back" @click="phase = 'tour'">{{ t('tour.backToTour') }}</button>
+        <span class="breadcrumb-week">{{ t('week.label') }} {{ selectedWeekNumber }}: {{ selectedWeekTitle }}</span>
+      </div>
+
+      <WeekCheckPanel :week-number="selectedWeekNumber" course-key="ki-labor" />
+
+      <div v-if="checkPassed" class="certificate-reveal">
+        <div class="certificate-badge">🎓</div>
+        <h3>{{ t('tour.certificate.title') }}</h3>
+        <p>{{ t('tour.certificate.earned').replace('{week}', `${t('week.label')} ${selectedWeekNumber}: ${selectedWeekTitle}`) }}</p>
+
+        <div v-if="isLoggedIn" class="certificate-name-row">
+          <label :for="`ki-labor-cert-name-${selectedWeekNumber}`">{{ t('progress.certificate.name.label') }}</label>
+          <input
+            :id="`ki-labor-cert-name-${selectedWeekNumber}`"
+            type="text"
+            :value="certificateName"
+            @input="setCertificateName($event.target.value)"
+          />
+        </div>
+        <button v-if="isLoggedIn" class="btn-certificate-pdf" :disabled="pdfBusy" @click="onDownloadPdf">
+          {{ pdfBusy ? t('progress.certificate.generating') : t('progress.certificate.download') }}
+        </button>
+        <p v-else class="certificate-login-hint">{{ t('progress.certificate.loginRequired') }}</p>
+      </div>
+      <p v-else class="tour-check-pending">{{ t('tour.certificate.pending') }}</p>
+
+      <div class="after-check-choice">
+        <button class="tile after-check-tile" @click="phase = 'week'">{{ t('tour.afterCheck.overview') }}</button>
+        <button v-if="nextWeekAvailable" class="tile after-check-tile" @click="selectWeek(selectedWeekNumber + 1)">
+          {{ t('tour.afterCheck.nextWeek') }}
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -33,32 +72,51 @@
 import { ref, computed, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import JsCourseTour from './JsCourseTour.vue';
+import WeekCheckPanel from './WeekCheckPanel.vue';
 import { useLanguage } from '../composables/useLanguage';
+import { useAuth } from '../composables/useAuth';
+import { useWeekChecks } from '../composables/useWeekChecks';
+import { downloadCertificatePdf } from '../composables/useCertificatePdf';
+
+const CERTIFICATE_NAME_KEY = 'ue-hacker-certificate-name';
+const COURSE_TITLE = { de: 'KI-Labor', en: 'AI Lab' };
 
 // Gleiches Muster wie JsGrundkursTour.vue: statische Titel-Liste statt Markdown-Frontmatter-Parser
 // (lohnt sich nur bei Themen-Varianten/Cheat-Sheets, die es hier bewusst nicht gibt), Titel 1:1
 // aus KURSPLAN.md "KI-Track: KI-Grundlagen". engine="pyodide" statt js-sandbox - gleiche Tour
-// (JsCourseTour.vue), andere Ausfuehrung (LessonView.vue statt JsLessonView.vue).
+// (JsCourseTour.vue), andere Ausfuehrung (LessonView.vue statt JsLessonView.vue). Lernziele nur
+// fuer die Zertifikat-PDF (kein Markdown-Parser wie useWeeklyContent.js fuer den 12-Wochen-Kurs).
 const WEEK_DEFS = [
-  { number: 1, title: 'Was ist KI?' },
-  { number: 2, title: 'Daten sind alles' },
-  { number: 3, title: 'Nächste Nachbarn (k-NN)' },
-  { number: 4, title: 'Training & Test' },
-  { number: 5, title: 'Entscheidungsbäume' },
-  { number: 6, title: 'Neuronale Netze I' },
-  { number: 7, title: 'Neuronale Netze II' },
-  { number: 8, title: 'Grenzen & Ethik' },
+  {
+    number: 1,
+    title: 'Was ist KI?',
+    lernziele: [
+      'Den Unterschied zwischen Regeln schreiben und aus Beispielen lernen erklären können',
+      'Die Begriffe Trainingsdaten, Label, Modell und Vorhersage kennen und anwenden können',
+      'Grenzen von KI benennen können (wenige/einseitige Trainingsdaten, kein echtes Verständnis)',
+    ],
+  },
+  { number: 2, title: 'Daten sind alles', lernziele: [] },
+  { number: 3, title: 'Nächste Nachbarn (k-NN)', lernziele: [] },
+  { number: 4, title: 'Training & Test', lernziele: [] },
+  { number: 5, title: 'Entscheidungsbäume', lernziele: [] },
+  { number: 6, title: 'Neuronale Netze I', lernziele: [] },
+  { number: 7, title: 'Neuronale Netze II', lernziele: [] },
+  { number: 8, title: 'Grenzen & Ethik', lernziele: [] },
 ];
 
 // Gleiches Glob-Pattern wie in JsCourseTour.vue - hier nur zum Pruefen, welche Wochen ueberhaupt
 // einen Content-Ordner haben (Verfuegbarkeit), nicht zum Laden der Lektionen selbst.
 const lessonJsonModules = import.meta.glob('../../content/*/lessons.json');
+const weekCheckModules = import.meta.glob('../../content/ki-labor-checks/week-*.json');
 
 export default {
   name: 'KiLaborTour',
-  components: { JsCourseTour },
+  components: { JsCourseTour, WeekCheckPanel },
   setup() {
-    const { t } = useLanguage();
+    const { t, lang } = useLanguage();
+    const { isLoggedIn, user } = useAuth();
+    const { isWeekCheckPassed } = useWeekChecks('ki-labor');
     const route = useRoute();
     const router = useRouter();
     const phase = ref('week');
@@ -71,8 +129,13 @@ export default {
       }))
     );
 
-    const selectedWeekTitle = computed(
-      () => WEEK_DEFS.find((w) => w.number === selectedWeekNumber.value)?.title || ''
+    const selectedWeek = computed(() => WEEK_DEFS.find((w) => w.number === selectedWeekNumber.value));
+    const selectedWeekTitle = computed(() => selectedWeek.value?.title || '');
+    const selectedWeekHasCheck = computed(
+      () => `../../content/ki-labor-checks/week-${selectedWeekNumber.value}.json` in weekCheckModules
+    );
+    const nextWeekAvailable = computed(() =>
+      weeks.value.some((w) => w.number === selectedWeekNumber.value + 1 && w.available)
     );
 
     const selectWeek = (number) => {
@@ -91,7 +154,47 @@ export default {
       }
     });
 
-    return { t, phase, weeks, selectedWeekNumber, selectedWeekTitle, selectWeek };
+    // ── Zertifikat-Reveal nach bestandenem Check (siehe WeekTourStepper.vue, hier ohne
+    //    Notebook/Themen-Varianten-Komplexität) ──────────────────────────────────────────────
+    const checkPassed = computed(() => isWeekCheckPassed(selectedWeekNumber.value));
+    const certificateName = ref(localStorage.getItem(CERTIFICATE_NAME_KEY) || user.value?.username || '');
+    const setCertificateName = (value) => {
+      certificateName.value = value;
+      localStorage.setItem(CERTIFICATE_NAME_KEY, value);
+    };
+    const pdfBusy = ref(false);
+    const onDownloadPdf = async () => {
+      pdfBusy.value = true;
+      try {
+        await downloadCertificatePdf({
+          weekNumber: selectedWeekNumber.value,
+          weekTitle: selectedWeekTitle.value,
+          lernziele: selectedWeek.value?.lernziele || [],
+          learnerName: certificateName.value || user.value?.username || '',
+          lang: lang.value,
+          courseTitle: COURSE_TITLE,
+        });
+      } finally {
+        pdfBusy.value = false;
+      }
+    };
+
+    return {
+      t,
+      phase,
+      weeks,
+      selectedWeekNumber,
+      selectedWeekTitle,
+      selectedWeekHasCheck,
+      nextWeekAvailable,
+      selectWeek,
+      isLoggedIn,
+      checkPassed,
+      certificateName,
+      setCertificateName,
+      pdfBusy,
+      onDownloadPdf,
+    };
   },
 };
 </script>
@@ -163,5 +266,123 @@ export default {
 .week-tile-badge {
   font-size: 0.75em;
   color: #868e96;
+}
+
+.ki-labor-check {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.tour-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.92em;
+  color: #7c5a94;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.breadcrumb-back {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: #7c5a94;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.breadcrumb-back:hover {
+  color: var(--primary-purple, #4a2274);
+}
+
+.breadcrumb-week {
+  color: var(--primary-purple, #4a2274);
+}
+
+.certificate-reveal {
+  margin-top: 20px;
+  padding: 24px;
+  background: #fff9e6;
+  border: 2px solid #ffe69c;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.certificate-badge {
+  font-size: 2.5em;
+}
+
+.certificate-reveal h3 {
+  margin: 8px 0 4px;
+  color: var(--primary-purple, #4a2274);
+}
+
+.certificate-name-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin: 14px 0;
+}
+
+.certificate-name-row input {
+  padding: 8px 12px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  font-size: 1em;
+  text-align: center;
+}
+
+.btn-certificate-pdf {
+  background: var(--primary-purple, #4a2274);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-certificate-pdf:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.certificate-login-hint {
+  color: #6c757d;
+  font-size: 0.9em;
+}
+
+.tour-check-pending {
+  margin-top: 16px;
+  color: #6c757d;
+  font-style: italic;
+}
+
+.after-check-choice {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.after-check-tile {
+  background: #fff;
+  border: 2px solid #e6dcef;
+  border-radius: 10px;
+  padding: 10px 18px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  color: var(--primary-purple, #4a2274);
+}
+
+.after-check-tile:hover {
+  border-color: var(--primary-purple, #4a2274);
+  background: #f7f1fb;
 }
 </style>
