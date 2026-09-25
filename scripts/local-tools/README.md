@@ -10,22 +10,26 @@ Passwort direkt auf einem MXW01-Thermodrucker aus.
 
 ```bash
 cd scripts/local-tools
-./setup-printer-tool.sh                       # klont das MXW01-Tool nach vendor/mxw01
-pip install -r vendor/mxw01/requirements.txt   # Pillow, bleak, matplotlib
+./setup-printer-tool.sh   # klont das MXW01-Tool nach vendor/mxw01, legt venv/ an, installiert Pillow/bleak/matplotlib
 cp .env.example .env
 # .env ausfüllen: ACCOUNT_SERVER_URL, MXW01_PRINTER_ADDRESS (ADMIN_PASSWORD optional)
 ```
 
+`setup-printer-tool.sh` legt ein eigenes virtuelles Environment (`venv/`) an, weil macOS/Homebrew-
+Python systemweite `pip install`s verweigert (PEP 668, `externally-managed-environment`). Das
+Skript danach immer über `venv/bin/python3` starten, nicht über das System-`python3`.
+
 Bluetooth-MAC-Adresse des Druckers finden: Systemeinstellungen/Bluetooth-Scanner oder eine
 BLE-Scanner-App, Gerät heißt "MX01W". Details siehe `vendor/mxw01/README.md` nach dem Setup.
 
-`vendor/` wird von `.gitignore` ausgeschlossen (das MXW01-Tool hat keine LICENSE-Datei im
-Original-Repo, daher nicht mit committen). `.env` ist ebenfalls gitignored.
+`vendor/` und `venv/` werden von `.gitignore` ausgeschlossen (das MXW01-Tool hat keine
+LICENSE-Datei im Original-Repo, daher nicht mit committen; `venv/` ist wie üblich lokal).
+`.env` ist ebenfalls gitignored.
 
 ## Benutzung
 
 ```bash
-python3 create-account-printout.py <benutzername> kinder      # oder: jugendliche
+venv/bin/python3 create-account-printout.py <benutzername> kinder      # oder: jugendliche
 ```
 
 Fragt nach dem Admin-Passwort (falls nicht in `.env` gesetzt), legt den Account über
