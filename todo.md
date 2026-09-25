@@ -77,7 +77,9 @@ Python-Projekt-Sprints (Vigenère-Chiffre, Snake, Text-Adventure) sind bereits g
 siehe "Offen" oben).
 
 ### 1. KI-Labor — Branch `kurs-ki-labor`
-Baut auf dem Python-Track auf (12-Wochen-Grundkurs), siehe `VISION.md`/`KURSPLAN.md` Kurs 4
-"KI-Grundlagen". Breitere Zielgruppe, Fokus auf Prompts/Grenzen/Schul-Nutzen.
-- [ ] Kursmetadaten + Content
+Baut auf dem Python-Track auf (12-Wochen-Grundkurs), siehe `VISION.md`/`KURSPLAN.md`
+"KI-Track: KI-Grundlagen". 8 Wochen, ohne Themen-Varianten (wie `js-grundkurs`). Bewusst kein
+scikit-learn/pandas (Wasm-Download zu schwer) und kein Live-LLM (Kosten/WebGPU) — stattdessen
+k-NN, Entscheidungsbaum und ein kleines neuronales Netz komplett selbst in reinem Python gebaut.
+- [ ] Kursmetadaten + Content (Wochenplan siehe `KURSPLAN.md`)
 - [ ] Smoke-Test → PR nach `main`
