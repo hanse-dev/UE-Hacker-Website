@@ -2205,3 +2205,214 @@ nach Logout.
 
 Die Accounts-Verwaltung selbst (Liste/Bearbeiten/Löschen unter `/admin`) existierte bereits seit
 PR #2 (`AdminView.vue`) — war dem Nutzer nur nicht bekannt, kein neuer Code nötig.
+
+### 3.49 — Python Woche 5 (Funktionen) als Einzel-Lektionen (gemergt)
+
+7 Lektionen + Debug (3 Bugs) + 3 Missionen + 3 Extra-Herausforderungen je Thema, DE = EN.
+Generator im Scratchpad (nicht im Repo), jede Aufgabe mit `python3` geprüft. Vorgriffe im
+Original (Listen/Dictionaries/`random`) durch andere Lösungswege ersetzt, siehe `todo.md`.
+
+### 3.50 — Python Woche 6 (Listen) als Einzel-Lektionen (gemergt)
+
+9 Lektionen + Debug (3 Bugs) + 3 Missionen + 4 Extra-Herausforderungen (die vierte = Wiederholung
+mit den vollen Mengen aus Woche 2/4) je Thema, DE = EN. Aus einem gemeinsamen Skelett +
+Themen-Vokabular erzeugt (Scratchpad), jede Aufgabe mit `python3` geprüft. Nimmt die
+Woche-4/5-Vorgriffe (Listen, `break`/`continue`) auf; Dictionaries/`random` bleiben für Woche 7/8.
+
+### 3.51 — Python Woche 7 (Module) als Einzel-Lektionen (gemergt)
+
+7 Lektionen + Debug + 3 Missionen + 4 Extra-Herausforderungen je Thema, DE = EN. Zufall wird über
+Eigenschaften geprüft (30 Testläufe im Generator statt fester Werte). `%`/`//`/`random`/
+Feld-Vorgriffe aus Woche 4/5 in Extra-Herausforderung 4 nachgezogen.
+
+### 3.52 — Python Woche 8 (Dictionaries/Tupel) als Einzel-Lektionen (gemergt)
+
+7 Lektionen (Dictionary, ändern, `get`/`in`, Durchlaufen, Tupel, `try/except`, verschachtelt) +
+Debug (3 Bugs) + 3 Missionen + 4 Extra-Herausforderungen je Thema, DE = EN. Extra 4 zieht die
+Vorgriffe aus Woche 5–7 nach (`erstelle_*`-Funktion, Quest-Dictionary, Zählen mit `get`,
+`random.choice` auf Schlüsseln, `try/except KeyError`). Generator im Scratchpad, jede
+Referenzlösung mit `python3` ausgeführt.
+
+### 3.53 — Python Woche 9 (JSON und Dateien) als Einzel-Lektionen (gemergt)
+
+7 Lektionen (`open`/`with`, zeilenweise + `"a"`, `FileNotFoundError`/`os`, `json.dumps`/`loads`,
+`json.dump`/`load`, `csv.writer`/`reader`, `DictReader`/`DictWriter` + JSON↔CSV) + Debug (3 Bugs) +
+3 Missionen + 4 Extra-Herausforderungen je Thema, DE = EN. Jede Aufgabe legt ihre Dateien selbst an
+(Pyodide-Dateisystem bleibt zwischen Aufgaben bestehen); Extra 4 nimmt Funktionen/Listen/
+`random`/Dictionaries aus Woche 5–8 auf. Alle 630 Referenzlösungen von Woche 8+9 zusätzlich in
+Pyodide (node_modules) ausgeführt.
+
+### 3.57 — Woche 2: Sci-Fi DE/EN angeglichen (gemergt)
+
+Ausnahmsweise umgekehrt zu Woche 2 Abenteuer/Pferde (3.56): die EN-Fassung war größer (7
+Lektionen/46 Aufgaben), DE wurde an EN angeglichen statt umgekehrt. 39 Referenzlösungen einzeln
+mit `python3` geprüft, `woche2_scifi_6_loesungen` neu erzeugt.
+
+### 3.58 — Projekt-Kurs Vigenère-Chiffre, Nachfolger Cäsar-Chiffre (gemergt)
+
+`content/vigenere-chiffre` (5 Lektionen, DE-first), `kurse.json`-Eintrag
+`projekt-vigenere-chiffre` (Level `fortgeschritten`, Tags `kryptografie`/`knobelaufgabe`); alle
+Referenzlösungen mit `python3` geprüft. `tests/projekte.spec.js` um eigenen Funktions-Test
+erweitert, bestehende Karten-/Filter-Tests auf 5 Projekte angepasst (Fortgeschritten/Kryptografie
+treffen jetzt je 2 statt 1 Projekt).
+
+### 3.59 — Projekt-Kurs Snake, Nachfolger JS-Spielewerkstatt (JS-Sandbox/Canvas) (gemergt)
+
+`content/js-snake` (6 Lektionen, DE-first): Raster → Segment-Array → Steuerung/Bewegung →
+Animationsloop → Selbst-/Randkollision → eigenes Spiel. `kurse.json`-Eintrag `projekt-js-snake`
+(`engine: js-sandbox`, Level `fortgeschritten`, Tags `spiele`/`logikraetsel`). Alle
+Pure-Funktionen (inkl. Objekt-Rückgabewerte wie `naechsterKopf`) mit `node` geprüft;
+`functionCalls`-Validierung nie mit einem Array als `expected` (nur `===`-Vergleich, siehe
+"Gelernte Regeln" in `HANDOFF.md`). `tests/projekte.spec.js` um eigenen Funktions-Test erweitert,
+Karten-/Filter-Tests auf 6 Projekte angepasst (Fortgeschritten trifft jetzt 3,
+JavaScript-Filter 2 Projekte).
+
+### 3.60 — Projekt-Kurs Text-Adventure/Fluchtraum (gemergt)
+
+`content/text-adventure-fluchtraum` (6 Lektionen, DE-first, Pyodide): Raum als Dictionary →
+mehrere Räume verknüpft → Inventar als Liste → verschlossene Tür (Dictionary-Lookup +
+`in`-Prüfung kombiniert) → Befehle per `input()`/`split()` → Kapitel 6 verbindet alles in einer
+`while`-Schleife (Sieg = Flur erreicht, ohne Schlüssel läuft die Schleife endlos = zweites Ende).
+`kurse.json`-Eintrag `projekt-text-adventure` (Level `fortgeschritten`, Tags
+`spiele`/`logikraetsel`); alle 11 Referenzlösungen (inkl. `stdin`-Befehlsfolgen) mit `python3`
+geprüft, `validation.variables`/`functionCalls` bewusst **nicht** genutzt (`LessonView.vue` ruft
+`validateOutput` ohne die Parameter `variables`/`functionResults` auf — diese Felder würden dort
+niemals bestehen, siehe "Gelernte Regeln" in `HANDOFF.md`). `tests/projekte.spec.js` um eigenen
+Lektions-Test erweitert, Karten-/Filter-Tests auf 7 Projekte angepasst (Fortgeschritten trifft
+jetzt 4).
+
+### 3.62 — Projekt-Abschluss zeigt Abzeichen-Hinweis + Link zu /projekte (gemergt)
+
+Neue Komponente `ProjectCompletionBox.vue`, ersetzt bei der letzten Projekt-Lektion den
+generischen "Weiter"-Button.
+
+### 3.65 — Tippfehler-Pass (cspell) auf Lektions-Format/JS-Grundkurs/Interaktiv-/Projekt-Kurse (gemergt)
+
+`lint:spelling`-Scope um `content/python-woche*`, `content/js-grundkurs*`,
+`content/python-grundlagen-interaktiv*` und alle 7 Projekt-Kurse erweitert. 0 echte Tippfehler in
+1306 Dateien (verdächtige Kandidaten wie `cilck` waren ein absichtlicher Debug-Bug, `mcvbg`/`rejvs`
+Chiffretext-Beispiele, `gibtsnicht.json` ein Test-Dateiname, `n`-präfigierte Wörter
+JSON-`\n`-Escape-Artefakte). 280 legitime Wörter (deutsche Kleinschreibungs-Substantive,
+Figuren-/Ortsnamen) in `cspell.json` ergänzt.
+
+### 3.66 — KI-Labor gestartet: Kursplan + Woche 1 "Was ist KI?" (Branch `kurs-ki-labor`, gemergt)
+
+Kursplan (`KURSPLAN.md`/`VISION.md`/`todo.md`/`PROJEKTIDEEN.md`) auf selbstgebaute Algorithmen
+statt scikit-learn umgestellt (Wasm-Download zu schwer, kein Live-LLM wegen API-Kosten/WebGPU), 8
+Wochen ohne Themen-Varianten. Aufbau wie `js-grundkurs`, aber im Lektions-Format des
+12-Wochen-Kurses (Lektion→Debug→Mission, `output_contains`/`codeContains`, keine
+`variables`/`functionCalls` — `LessonView.vue` unterstützt die nicht) statt JS-Sandbox-Format.
+Neue Komponente `KiLaborTour.vue` (Kopie von `JsGrundkursTour.vue`, `engine="pyodide"` in
+`JsCourseTour`), `isKiLabor`-Sonderfall in `CourseDetail.vue`, `kurse.json`-Eintrag,
+`content/ki-labor` (Beschreibung) + `content/ki-labor-woche1` (5 Lektionen "Was ist KI?" + Debug +
+Mission, alle Referenzlösungen mit `python3` geprüft). `jsGrundkurs.*`-`t()`-Keys zu
+`weekPicker.*` umbenannt (jetzt von beiden Kursen geteilt). `tests/ki-labor.spec.js` neu,
+`tests/site.spec.js` Kurskarten-Zahl 3→4.
+
+### 3.67 — KI-Labor: Quiz + Wochen-Zertifikat nachgezogen (Branch `kurs-ki-labor`, gemergt)
+
+Nutzerwunsch nach 3.66: Wochen-Check+Zertifikat wie im 12-Wochen-Kurs, nicht nur
+Lektion/Debug/Mission. Das bis dahin fest auf den Python-Kurs verdrahtete System
+(`content/python-checks/`, Storage-Key `ue-hacker-week-checks` ohne Kurs-Bezug) um einen
+`courseKey`-Parameter generalisiert (Default `'python'` = unverändertes Verhalten, keine
+Migration): `useWeekChecks.js` (Content-Glob `content/*-checks/`, Storage-Key
+`ue-hacker-week-checks-<courseKey>`, Fortschritts-Refs jetzt eine `Map` pro `courseKey` statt ein
+Singleton-Ref), `WeekCheckPanel.vue`/`CodeChallenge.vue` (neue `courseKey`-Prop durchgereicht),
+`useCertificatePdf.js` (neuer `courseTitle`-Parameter statt hart codiertem "Python
+12-Wochen-Grundkurs"); `useProgressSync.js` von fixem `'ue-hacker-week-checks'`-Key auf
+Präfix-Match umgestellt, damit der neue Kurs-Key mitsynct. `KiLaborTour.vue` bekam einen dritten
+Zustand (`phase: 'check'`) mit eigenem Zertifikat-Reveal (Kopie der Logik aus
+`WeekTourStepper.vue`, aber ohne dessen Themen-Varianten-/Notebook-Komplexität) statt
+Wiederverwendung von `WeekTourStepper.vue` selbst (das zeigt immer einen Themen-Breadcrumb, den es
+hier nicht geben soll). Neuer Content-Ordner `content/ki-labor-checks/` (`config.json`,
+`week-1.json` mit 7 Quizfragen + 2 Coding-Aufgaben, `index.mjs`-Node-Loader wie bei
+`python-checks`), alle Coding-Referenzlösungen mit `python3` geprüft. Zusätzlich (auf Nachfrage
+"hat Woche 1 auch Hausaufgaben?") 3 Extra-Herausforderungen (`boss-01..03`, Abschnitt `boss`) nach
+der Mission ergänzt — löst zusammen mit `hasCheck` automatisch die Wahl-Seite aus
+`JsCourseTour.vue` aus (Extra-Herausforderung optional vs. direkt zum Check). `tests/ki-labor.spec.js`
+um Check-Flow und Boss-Wahl-Seite erweitert (36 bestehende Python-Check-Tests liefen unverändert
+grün); `lint:spelling`-Scope um `content/ki-labor*` erweitert.
+
+### 3.68 — KI-Labor: Woche 2 "Daten sind alles" (Branch `kurs-ki-labor`, gemergt)
+
+Im Stil von Woche 1: `content/ki-labor-woche2` mit 5 Lektionen (Datensatz als Liste von
+Dictionaries → mehrere Merkmale pro Beispiel → Muster per List Comprehension filtern → fehlende
+Werte mit `.get(schluessel, standard)` abfangen → Merkmale/Label trennen) + Debug (3 Bugs:
+fehlendes `return`, `>` statt `>=` an der Zählgrenze, `tier["gewicht"]` statt `.get(...)` bei
+fehlendem Schlüssel — Bug 3 crasht absichtlich mit `KeyError`, anders als die nicht-crashenden
+Bugs in Woche 1) + Mission "Der Tier-Datensammler" (3 Schritte) + 3 Extra-Herausforderungen
+(Min/Max/Spannweite, Merkmalsvergleich mit Ähnlichkeit in Prozent — baut bewusst den
+Distanzvergleich vor, den Woche 3 (k-NN) braucht —, Datensatz-Vollständigkeitsprüfung) + eigener
+Wochen-Check (`content/ki-labor-checks/week-2.json`, 7 Quizfragen + 2 Coding-Aufgaben).
+`KiLaborTour.vue` WEEK_DEFS um Woche-2-Lernziele ergänzt (für die Zertifikat-PDF). Alle
+Referenzlösungen (Lektionen, Debug, Mission, Boss, Check) einzeln mit `python3` geprüft, inkl. der
+absichtlich falschen Bug-Versionen (produzieren nachweislich falsche Ausgabe/Absturz vor dem Fix).
+`tests/ki-labor.spec.js`: Wochenauswahl-Test auf 2 verfügbare Wochen angepasst, Deep-Link-Test für
+`?week=2` ergänzt (der alte "noch nicht verfügbar"-Test wandert auf `?week=3`), neuer Debug- und
+ein kompletter Durchlauf-Test für Woche 2 (Lektionen bis Zertifikat) — `passWeek1Quiz` zu
+`passWeekQuiz` umbenannt, da die Funktion wochenunabhängig ist. `lint:spelling` lief ohne Änderung
+am Scope durch (`content/ki-labor*` deckt Woche 2 schon ab), 13 neue legitime Wörter in
+`cspell.json` ergänzt.
+
+### 3.69 — Profil zeigt Wochen-Zertifikate + "Kurs starten"-Gate (Branch `profil-zertifikate-kurs-fokus`, gemergt)
+
+Nutzerwunsch: (1) im Profil auch Wochen-Zertifikate sehen, nicht nur Projekt-Abzeichen; (2) ein
+Kurs öffnen soll nicht sofort die volle Beschreibung+Struktur-Erklärung+Termine zeigen, sondern
+erst nach einem "Kurs starten"-Klick auf einer eigenen, fokussierten Seite nur mit der
+Wochenauswahl/Tour.
+
+**(1)** `useWeekChecks.js` bekam `listCertificateCourseKeys()` (liest die bestehende
+`content/*-checks/`-Glob-Liste aus, kein Duplikat), neue Composable `useCourseCertificates.js`
+baut daraus pro Kurs (aktuell Python + KI-Labor, statisches `COURSE_INFO`-Mapping wie schon bei
+`useCertificatePdf.js`/`KiLaborTour.vue`) eine Liste aller Wochen mit Titel + `earned`-Status (nur
+Wochen, für die tatsächlich Check-Content existiert — keine "kommt noch"-Kacheln für inhaltlich
+noch nicht fertige Wochen). `ProfilView.vue` bekam einen neuen Abschnitt "Meine Zertifikate" (ein
+Block pro Kurs, `badge-grid`/`badge-card`-Stil wiederverwendet), jede Kachel verlinkt auf
+`/kurs/<id>?week=<n>`.
+
+**(2)** `CourseDetail.vue`: neuer `isFocusableCourse`-Computed (12-Wochen-Grundkurs, JS-Grundkurs,
+KI-Labor) + `started`-Ref, initialisiert aus `?week=`/`?started=1` in der URL (Deep-Links, z.B. aus
+dem neuen Zertifikate-Abschnitt, überspringen die Start-Seite direkt). "Kurs starten" setzt
+`started=true` und spiegelt das per `router.replace` als `?started=1` in die URL (übersteht
+Reload); "← Kursbeschreibung" räumt `started`/`week`/`variant`/`step`/`tab` wieder aus der Query.
+Im gestarteten Zustand verschwinden Beschreibung/Platzierungs-Banner/Kursstruktur-Grid/Termine
+komplett, nur `<h1>` + Zurück-Link + die Tour-Komponente (`WeekTour`/`JsGrundkursTour`/
+`KiLaborTour`) bleiben stehen — deren eigene Wochenauswahl-Bildschirme (bereits vorhanden) sind
+jetzt die "neue Seite, wo man sich die Woche raussucht".
+
+**Testfolgen:** jede bisherige Playwright-Zeile, die einen Wochen-Tour-Kurs ohne `?week=`-Query
+öffnete und sofort `.week-tile`/`.certificates-link` erwartete, brauchte einen zusätzlichen
+`.btn-start-course`-Klick davor (`site.spec.js`, `js-grundkurs.spec.js`, `ki-labor.spec.js`,
+`wochen-tour.spec.js`, `zertifikate.spec.js`, `auth-ui.spec.js` — alle Deep-Links mit `?week=`
+liefen unverändert durch, da `started` daraus automatisch `true` wird); `h1` blieb absichtlich ein
+direkter `.course-detail > h1`-Kind-Selektor (nicht in einen Header-`<div>` verschachtelt), weil
+ein bestehender Test genau darauf prüft. Neue Tests: 2 in `site.spec.js` (Gate blendet Struktur
+aus + Reload behält `started`, Deep-Link überspringt die Start-Seite), 1 in `auth-ui.spec.js`
+(Zertifikate aus 2 Kursen, verliehen/gesperrt, Klick führt in die richtige Kurs-Tour).
+
+### 3.70 — Profil: PDF-Download direkt am Zertifikat (Branch `profil-zertifikate-kurs-fokus`, gemergt)
+
+Nutzerfrage nach 3.69: die Lernziele pro Woche sind doch fester Content, warum nicht einfach laden
+statt auf den Kurs zu verlinken? Zwei neue, wiederverwendbare Lernziele-Quellen statt Duplikat im
+Profil: **Python** bekam `loadWeekLernziele(lang)` in `useWeeklyContent.js` — ein schlankes
+Geschwister von `loadWeeklyContent()`, das nur das Wochen-Markdown lädt und mit dem bestehenden
+`parseWeekMarkdown()` parst (Titel + `lernzieleFull`), ohne die teuren Notebook-/Bundle-/
+Download-Globs mitzuladen, die `loadWeeklyContent()` sonst für die volle Kurs-Tour braucht.
+**KI-Labor** hatte seine Lernziele als lokale `WEEK_DEFS`-Konstante direkt in `KiLaborTour.vue` —
+nach `src/data/kiLaborWeeks.js` verschoben (`KI_LABOR_WEEKS`/`KI_LABOR_COURSE_TITLE`),
+`KiLaborTour.vue` importiert von dort statt eigener Deklaration (reiner Ort-Wechsel, keine
+Verhaltensänderung). `useCourseCertificates.js` lädt jetzt zusätzlich zum Check-Status auch die
+Lernziele pro Woche (`loadLernzieleByWeek(courseKey, lang)`, courseKey-Verzweigung zwischen den
+beiden Quellen) und hängt sie an jeden Wochen-Eintrag. `ProfilView.vue`: `badge-card` ist jetzt
+ein `<div>` mit einem `<router-link class="badge-card-link">` für die Navigation und einem
+separaten `<button class="btn-certificate-pdf">` für verliehene Zertifikate (ein `<button>` durfte
+nicht mehr in den `<a>` verschachtelt sein) — ein Namensfeld über allen Kursblöcken (gleicher
+`localStorage`-Key `ue-hacker-certificate-name` wie `FortschrittWidget.vue`/`KiLaborTour.vue`, ein
+Name für alle Zertifikate), `pdfBusyKey` verhindert Doppelklicks pro Woche+Kurs. Ein
+Sprachwechsel auf der Profilseite lädt die Zertifikate neu (`watch(lang, ...)`), weil die
+Python-Lernziele jetzt sprachabhängig aus dem Frontmatter kommen. Kein Login-Hinweis am Button
+nötig (anders als `FortschrittWidget.vue`/`KiLaborTour.vue`) — `/profil` ist schon komplett
+login-gated. `tests/auth-ui.spec.js`: bestehender Mehrkurs-Zertifikate-Test um
+Download-Button-Sichtbarkeit (nur bei verliehenen Zertifikaten) und einen echten PDF-Download samt
+Dateinamen-Prüfung erweitert, Navigations-Klick auf `.badge-card-link` statt `.badge-card`
+umgestellt.

@@ -5,10 +5,6 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 
 ## Offen
 
-- [ ] `HANDOFF.md` liegt knapp über dem 25-KB-Richtwert (WORKFLOW.md). Grund: Tabellenzeilen 3.53–3.61
-      in Abschnitt 3 sind noch volle Absätze statt einzeiliger "Kern in einem Satz"-Zusammenfassungen
-      (Detail steht eigentlich schon in `docs/archiv/HANDOFF-historie.md`). Bei Gelegenheit auf eine
-      Zeile pro Eintrag kürzen.
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken) —
       **zurückgestellt** (Nutzer will erst später deployen). Backup-Cron auf dem Server einrichten
       (Befehl siehe HANDOFF.md Abschnitt 4); externe Sicherung der Backups bewusst nicht mitgebaut.
@@ -76,7 +72,7 @@ Python-Projekt-Sprints (Vigenère-Chiffre, Snake, Text-Adventure) sind bereits g
 `docs/archiv/todo-erledigt.md`); weitere Ideen im Backlog `PROJEKTIDEEN.md`, DE-first (EN-Versionen
 siehe "Offen" oben).
 
-### 1. KI-Labor — Branch `kurs-ki-labor`
+### 1. KI-Labor — neuer Branch pro Woche (Woche 1+2 bereits gemergt)
 Baut auf dem Python-Track auf (12-Wochen-Grundkurs), siehe `VISION.md`/`KURSPLAN.md`
 "KI-Track: KI-Grundlagen". 8 Wochen, ohne Themen-Varianten (wie `js-grundkurs`). Bewusst kein
 scikit-learn/pandas (Wasm-Download zu schwer) und kein Live-LLM (Kosten/WebGPU) — stattdessen
