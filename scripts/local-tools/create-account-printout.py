@@ -18,7 +18,19 @@ from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 VENDOR_MXW01 = SCRIPT_DIR / "vendor" / "mxw01" / "MXW01print.py"
-PASSWORD_ALPHABET = "23456789ABCDEFGHJKMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz"  # ohne 0/O/1/l/I
+
+# Kurze, eindeutige deutsche Wörter für Passwörter (keine Umlaute/ß, damit sie sich leicht
+# abtippen lassen) — bewusst klein gehalten, nicht als vollständige Wortliste gedacht.
+PASSWORD_WORDS = [
+    "Apfel", "Baum", "Berg", "Blume", "Boot", "Brot", "Delfin", "Drache", "Ecke", "Elefant",
+    "Feuer", "Fisch", "Fuchs", "Garten", "Gitarre", "Hafen", "Hase", "Held", "Herbst", "Himmel",
+    "Honig", "Hund", "Hut", "Igel", "Insel", "Katze", "Keks", "Kiwi", "Koffer", "Komet",
+    "Konig", "Kranich", "Kuchen", "Lampe", "Lowe", "Mantel", "Meer", "Mond", "Muschel", "Nebel",
+    "Nudel", "Ozean", "Panda", "Pilz", "Planet", "Pirat", "Rakete", "Ritter", "Roboter", "Sand",
+    "Schiff", "Schnee", "See", "Sommer", "Stern", "Sturm", "Tiger", "Traum", "Tunnel", "Turm",
+    "Vogel", "Wald", "Wal", "Welle", "Wiese", "Wind", "Winter", "Wolke", "Zauber", "Ziege",
+    "Zirkus", "Zug",
+]
 
 
 def load_env_file(path: Path) -> dict:
@@ -34,8 +46,10 @@ def load_env_file(path: Path) -> dict:
     return values
 
 
-def generate_password(length: int = 12) -> str:
-    return "".join(secrets.choice(PASSWORD_ALPHABET) for _ in range(length))
+def generate_password() -> str:
+    word1, word2 = secrets.choice(PASSWORD_WORDS), secrets.choice(PASSWORD_WORDS)
+    digits = f"{secrets.randbelow(100):02d}"
+    return f"{word1}-{word2}-{digits}"
 
 
 def api_request(url: str, payload: dict, token: str | None = None) -> dict:

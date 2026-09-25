@@ -35,5 +35,5 @@ Reichweite).
 
 ## Passwort-Format
 
-12 Zeichen aus einem Alphabet ohne leicht verwechselbare Zeichen (kein `0/O`, `1/l/I`) —
-gut lesbar und abtippbar für Kinder/Jugendliche.
+Zwei zufällige deutsche Wörter + zwei Ziffern, z.B. `Igel-Zug-79` — kurz genug zum Abschreiben,
+aber deutlich mehr Kombinationen als ein 4-stelliger PIN.
