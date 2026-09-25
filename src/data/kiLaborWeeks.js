@@ -32,7 +32,16 @@ export const KI_LABOR_WEEKS = [
       'Einen kompletten k-NN-Klassifikator komplett selbst in Python schreiben können',
     ],
   },
-  { number: 4, title: 'Training & Test', lernziele: [] },
+  {
+    number: 4,
+    title: 'Training & Test',
+    lernziele: [
+      'Einen Datensatz mit Slicing in Trainings- und Testdaten aufteilen können',
+      'Die Genauigkeit eines Klassifikators (Anteil richtiger Vorhersagen) selbst berechnen können',
+      'Vorhersagen für einen kompletten Testdatensatz sammeln und mit den erwarteten Werten vergleichen können',
+      'Overfitting an einem absichtlich zu kleinen/unrepräsentativen Trainingsdatensatz erkennen können',
+    ],
+  },
   { number: 5, title: 'Entscheidungsbäume', lernziele: [] },
   { number: 6, title: 'Neuronale Netze I', lernziele: [] },
   { number: 7, title: 'Neuronale Netze II', lernziele: [] },

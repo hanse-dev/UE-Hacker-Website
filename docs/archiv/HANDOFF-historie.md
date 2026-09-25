@@ -2435,3 +2435,13 @@ Position mitten in der Zellfolge) — Cell-Dateien sind fortlaufend nummeriert, 
 mittendrin hätte alle nachfolgenden Zellen umnummerieren müssen; der Test
 `tests/python-lektionen-format.spec.js` ("Lösungen passen zu den Aufgaben") prüft nur, dass jede
 Aufgaben-Instruction irgendwo im Markdown vorkommt und die Zellenzahl stimmt, nicht die Reihenfolge.
+
+---
+
+### Frühe PRs #1–#3 (vor der Abschnitts-Nummerierung 3.NN)
+
+| PR | Branch | Inhalt |
+|----|--------|--------|
+| #1 | `python-lernpfad-quiz` | Einstufung + Wochen-Checks, Tests, alter Lernpfad entfernt |
+| #2 | `admin-login` | Express+SQLite API, Admin, Login, Progress/Notebook-Sync, Single-Port-Deploy |
+| #3 | `fix-notebook-sync-loop` | Hotfix: Notebook-Blink-/Reload-Schleife bei eingeloggt+Sync |

@@ -1,0 +1,139 @@
+{
+  "title": "Woche 4 – Training & Test",
+  "title_en": "Week 4 – Training & Test",
+  "questions": [
+    {
+      "id": "kil4-1",
+      "type": "multiple_choice",
+      "question": "Warum reicht es nicht, einen Klassifikator mit denselben Daten zu testen, mit denen er trainiert wurde?",
+      "options": [
+        "Man erfährt so nicht, wie gut er bei neuen, unbekannten Beispielen abschneidet",
+        "Python erlaubt es technisch gar nicht, dieselben Daten zweimal zu benutzen",
+        "Die Genauigkeit wäre dann immer 0%"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ein Klassifikator könnte die Trainingsdaten einfach 'auswendig' kennen – erst echte, unbekannte Testdaten zeigen, ob er wirklich verallgemeinert.",
+      "optionExplanations": [
+        null,
+        "Technisch ist das kein Problem – der Grund ist inhaltlich, nicht syntaktisch.",
+        "Im Gegenteil: Auf den Trainingsdaten selbst ist die Genauigkeit oft besonders hoch."
+      ]
+    },
+    {
+      "id": "kil4-2",
+      "type": "multiple_choice",
+      "question": "Was macht daten[:4] mit einer Liste daten?",
+      "options": [
+        "Gibt eine neue Liste mit den ersten 4 Elementen zurück",
+        "Gibt eine neue Liste mit allen Elementen außer den ersten 4 zurück",
+        "Löscht die ersten 4 Elemente aus daten"
+      ],
+      "correctIndex": 0,
+      "explanation": "Slicing mit [:4] liefert die ersten 4 Elemente einer Liste, die Originalliste bleibt unverändert.",
+      "optionExplanations": [
+        null,
+        "Das wäre daten[4:] – der Doppelpunkt vor der Zahl schneidet ab, danach schneidet er weg.",
+        "Slicing verändert die Originalliste nicht, es erzeugt eine neue."
+      ]
+    },
+    {
+      "id": "kil4-3",
+      "type": "multiple_choice",
+      "question": "Was berechnet die Genauigkeit (accuracy)?",
+      "options": [
+        "Den Anteil der richtigen Vorhersagen an allen Vorhersagen, in Prozent",
+        "Wie schnell der Klassifikator eine Vorhersage berechnet",
+        "Wie viele Trainingsbeispiele es insgesamt gibt"
+      ],
+      "correctIndex": 0,
+      "explanation": "Genauigkeit zählt, wie viele Vorhersagen mit den erwarteten Werten übereinstimmen, und gibt das als Prozentsatz aus.",
+      "optionExplanations": [
+        null,
+        "Die Geschwindigkeit hat nichts mit der Genauigkeit einer Vorhersage zu tun.",
+        "Die Anzahl der Trainingsbeispiele ist unabhängig von der gemessenen Genauigkeit."
+      ]
+    },
+    {
+      "id": "kil4-4",
+      "type": "multiple_choice",
+      "question": "Was bedeutet Overfitting?",
+      "options": [
+        "Ein Modell hat sich an die konkreten Trainingsbeispiele überangepasst, statt das dahinterliegende Muster zu lernen",
+        "Ein Modell ist zu langsam, um alle Trainingsdaten zu verarbeiten",
+        "Ein Modell hat zu viele Merkmale und stürzt deshalb ab"
+      ],
+      "correctIndex": 0,
+      "explanation": "Overfitting bedeutet, dass ein Modell auf den Trainingsdaten sehr gut, auf neuen Daten aber schlecht abschneidet, weil es Details statt Muster gelernt hat.",
+      "optionExplanations": [
+        null,
+        "Overfitting ist ein inhaltliches Problem der Vorhersagequalität, kein Geschwindigkeitsproblem.",
+        "Zu viele Merkmale führen nicht automatisch zu einem Absturz – das Problem bei Overfitting ist ein anderes."
+      ]
+    },
+    {
+      "id": "kil4-5",
+      "type": "multiple_choice",
+      "question": "Ein Modell hat 100% Genauigkeit auf den Trainingsdaten, aber nur 20% auf echten Testdaten. Was deutet das an?",
+      "options": [
+        "Overfitting – das Modell hat die Trainingsdaten auswendig gelernt, statt zu verallgemeinern",
+        "Das Modell ist perfekt, weil die Trainings-Genauigkeit zählt",
+        "Ein Programmierfehler, der immer zu genau diesem Muster führt"
+      ],
+      "correctIndex": 0,
+      "explanation": "Eine große Lücke zwischen Trainings- und Test-Genauigkeit ist ein klassisches Anzeichen für Overfitting.",
+      "optionExplanations": [
+        null,
+        "Nur die Testdaten zeigen, wie gut ein Modell wirklich bei neuen Beispielen abschneidet.",
+        "Diese Lücke ist ein bekanntes, inhaltliches Phänomen (Overfitting), kein Programmierfehler."
+      ]
+    },
+    {
+      "id": "kil4-6",
+      "type": "multiple_select",
+      "question": "Welche der folgenden Dinge helfen dabei, Overfitting zu erkennen oder zu vermeiden?",
+      "options": [
+        "Genauigkeit auf echten, unbenutzten Testdaten messen",
+        "Genug und repräsentative Trainingsdaten verwenden",
+        "Immer nur mit den Trainingsdaten selbst testen",
+        "Den Wert für k zufällig bei jedem Aufruf neu würfeln"
+      ],
+      "correctIndices": [0, 1]
+    },
+    {
+      "id": "kil4-7",
+      "type": "multiple_choice",
+      "question": "Warum kann ein einzelner Ausreißer im Trainingsdatensatz bei k=1 eine Vorhersage kippen, bei k=3 aber nicht?",
+      "options": [
+        "Bei k=1 zählt nur der eine nächste Nachbar, bei k=3 wird der Ausreißer von den anderen Nachbarn überstimmt",
+        "k=1 ist ein Programmierfehler und funktioniert generell nicht",
+        "Bei k=3 werden Ausreißer automatisch aus den Trainingsdaten gelöscht"
+      ],
+      "correctIndex": 0,
+      "explanation": "Bei k=1 entscheidet ein einzelner Nachbar allein – ist er ein Ausreißer, wird die Vorhersage falsch. Bei größerem k gleichen mehrere Stimmen das aus.",
+      "optionExplanations": [
+        null,
+        "k=1 ist gültig und funktioniert – es ist nur anfälliger für einzelne Ausreißer.",
+        "Nichts wird gelöscht – bei größerem k zählen einfach mehr Nachbarn mit, die den Ausreißer überstimmen können."
+      ]
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Schreibe eine Funktion genauigkeit(vorhersagen, erwartete_werte), die (mit einer Hilfsfunktion ist_richtig(vorhersage, erwartet)) den Anteil der richtigen Vorhersagen in Prozent zurückgibt (gerundet mit round()). Nutze vorhersagen = ['Hund', 'Katze', 'Hund', 'Vogel'] und erwartete_werte = ['Hund', 'Hund', 'Hund', 'Vogel']. Gib genau 75 aus.",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "75",
+        "codeContains": ["def"]
+      }
+    },
+    {
+      "instruction": "Erstelle eine Liste daten mit den sechs Dictionaries {'x': 1}, {'x': 2}, {'x': 3}, {'x': 4}, {'x': 5} und {'x': 6}. Teile sie mit Slicing in trainingsdaten (die ersten 4) und testdaten (die letzten 2) auf. Gib len(trainingsdaten) und len(testdaten) aus.",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "4\n2"
+      }
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-09-25
-> **Aktueller Stand:** `main` ist aktuell, Branch `ki-labor-woche3` fügt Woche 3 "Nächste
-> Nachbarn (k-NN)" hinzu (Wochen 4–8 offen, siehe Abschnitt 5). Profil zeigt Wochen-Zertifikate aus allen Kursen mit Wochen-Check (Python +
+> **Aktueller Stand:** `main` ist aktuell, Branch `ki-labor-woche4` fügt Woche 4 "Training & Test"
+> hinzu (Wochen 5–8 offen, siehe Abschnitt 5). Profil zeigt Wochen-Zertifikate aus allen Kursen mit Wochen-Check (Python +
 > KI-Labor) inkl. direktem PDF-Download (3.69/3.70); ein "Kurs starten"-Gate blendet bei den 3
 > Wochen-Tour-Kursen Beschreibung/Struktur-Erklärung vor der eigentlichen Kurs-Tour aus (3.69).
 > Die beiden klar umsetzbaren `input()`-Lücken aus `todo.md` (Woche 4 + 9) sind geschlossen (3.71).
@@ -24,15 +24,11 @@ Lernplattform für Kinder/Jugendliche (Python) — Vue 3 + Vite, Notebooks unter
 
 ---
 
-## 2. Git / PRs (erledigt)
+## 2. Git
 
-| PR | Branch | Inhalt |
-|----|--------|--------|
-| #1 | `python-lernpfad-quiz` | Einstufung + Wochen-Checks, Tests, alter Lernpfad entfernt |
-| #2 | `admin-login` | Express+SQLite API, Admin, Login, Progress/Notebook-Sync, Single-Port-Deploy |
-| #3 | `fix-notebook-sync-loop` | Hotfix: Notebook-Blink-/Reload-Schleife bei eingeloggt+Sync |
-
-`main` ist der Integrationsstand. Feature-Branches oben sind historisch; neue Arbeit immer **neu von `main`**.
+`main` ist der Integrationsstand, neue Arbeit immer **neu von `main`** in einem eigenen Branch
+(siehe `WORKFLOW.md`). Die frühen PRs #1–#3 (vor der Abschnitts-Nummerierung 3.NN unten) stehen im
+Archiv (`docs/archiv/HANDOFF-historie.md`).
 
 ---
 
@@ -84,6 +80,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.70 | Profil: PDF-Download direkt am Zertifikat | `loadWeekLernziele()` (Python) + `src/data/kiLaborWeeks.js` (KI-Labor) liefern die Lernziele fürs PDF |
 | 3.71 | Woche 4 + 9: `input()`-Lücken aus `todo.md` geschlossen | Neuer `validation.stdin`-Schritt je Thema (Woche 4 Boss-3, Woche 9 Boss-1 "Eigener Eintrag"), DE+EN, ans Ende der Lektion/Notebook-Zellfolge angehängt statt eingefügt |
 | 3.72 | KI-Labor: Woche 3 "Nächste Nachbarn (k-NN)" | 5 Lektionen (Abstand, euklidische Distanz, 1-NN, Dictionary-Zählen + k nächste, kompletter k-NN-Klassifikator) + Debug + Mission + 3 Extra-Herausforderungen (gewichteter k-NN, Genauigkeit/bestes k, Unentschieden bei >2 Klassen) + eigener Wochen-Check |
+| 3.73 | KI-Labor: Woche 4 "Training & Test" | 5 Lektionen (Trainings-/Testdaten trennen, Genauigkeit, Vorhersagen sammeln, alles zusammenfügen, Overfitting an zu kleinem Datensatz) + Debug + Mission + 3 Extra-Herausforderungen (Ausreißer bei k=1 vs. k=3, Trainingsgröße, Overfitting-Erkennung) + eigener Wochen-Check |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -262,8 +259,8 @@ Ausführlich in `todo.md`. Kurzfassung:
 - Zertifikat-PDF: E-Mail-Versand später (hängt an der Kontakt-Adresse, nicht selbst erfinden).
 - Überlegung (nicht entschieden): dritte Sprache; UI-Ternarys sind schon auf `t()`, offen nur Content-Suffixe.
 
-**Laufendes Kurs-Thema (siehe todo.md):** KI-Labor Woche 1–3 fertig, Wochen 4–8 offen (Training &
-Test, Entscheidungsbäume, Neuronale Netze I+II, Grenzen & Ethik — Wochenplan siehe `KURSPLAN.md`).
+**Laufendes Kurs-Thema (siehe todo.md):** KI-Labor Woche 1–4 fertig, Wochen 5–8 offen
+(Entscheidungsbäume, Neuronale Netze I+II, Grenzen & Ethik — Wochenplan siehe `KURSPLAN.md`).
 Weitere Projekt-Kurs-Ideen in `PROJEKTIDEEN.md`. Roadmap: `VISION.md`.
 
 **Bewusst nicht geplant:** öffentliches Sign-up, Mailversand/Kontaktformular, Supabase als Pflicht.

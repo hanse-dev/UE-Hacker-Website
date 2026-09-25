@@ -1,0 +1,369 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Trainings- und Testdaten trennen",
+    "file": "lektion-01.md",
+    "lessonSummary": "Mit Slicing teilst du einen Datensatz in Trainings- und Testdaten - nur so testest du ehrlich, ob dein Klassifikator wirklich verallgemeinert.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: einen Datensatz mit Slicing in Trainings- und Testdaten aufteilen.",
+        "example": true,
+        "codeTemplate": "daten = [\n    {\"beine\": 4, \"gewicht\": 30, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 0.03, \"art\": \"Vogel\"},\n    {\"beine\": 4, \"gewicht\": 25, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 0.02, \"art\": \"Vogel\"},\n    {\"beine\": 8, \"gewicht\": 0.0002, \"art\": \"Spinnentier\"},\n    {\"beine\": 6, \"gewicht\": 0.001, \"art\": \"Insekt\"},\n]\n\ntrainingsdaten = daten[:4]\ntestdaten = daten[4:]\n\nprint(len(trainingsdaten))\nprint(len(testdaten))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "4\n2"
+        }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: welche Tiere landen in den Testdaten?",
+        "example": true,
+        "codeTemplate": "daten = [\n    {\"beine\": 4, \"gewicht\": 30, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 0.03, \"art\": \"Vogel\"},\n    {\"beine\": 4, \"gewicht\": 25, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 0.02, \"art\": \"Vogel\"},\n    {\"beine\": 8, \"gewicht\": 0.0002, \"art\": \"Spinnentier\"},\n    {\"beine\": 6, \"gewicht\": 0.001, \"art\": \"Insekt\"},\n]\n\ntestdaten = daten[4:]\nfor beispiel in testdaten:\n    print(beispiel[\"art\"])\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Spinnentier\nInsekt"
+        }
+      },
+      {
+        "instruction": "Erstelle eine Liste daten mit den acht Dictionaries {'beine': 4, 'gewicht': 30, 'art': 'Saeugetier'}, {'beine': 4, 'gewicht': 25, 'art': 'Saeugetier'}, {'beine': 2, 'gewicht': 3, 'art': 'Vogel'}, {'beine': 2, 'gewicht': 4, 'art': 'Vogel'}, {'beine': 6, 'gewicht': 0.001, 'art': 'Insekt'}, {'beine': 8, 'gewicht': 0.0002, 'art': 'Spinnentier'}, {'beine': 4, 'gewicht': 28, 'art': 'Saeugetier'} und {'beine': 2, 'gewicht': 5, 'art': 'Vogel'}. Teile sie mit Slicing in trainingsdaten (die ersten 5) und testdaten (die letzten 3) auf. Gib len(trainingsdaten) und len(testdaten) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "5\n3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Genauigkeit berechnen",
+    "file": "lektion-02.md",
+    "lessonSummary": "ist_richtig() vergleicht eine Vorhersage mit dem erwarteten Wert, genauigkeit() zählt daraus den Anteil richtiger Vorhersagen in Prozent.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: eine einzelne Vorhersage mit ist_richtig() prüfen.",
+        "example": true,
+        "codeTemplate": "def ist_richtig(vorhersage, erwartet):\n    return vorhersage == erwartet\n\nprint(ist_richtig(\"Hund\", \"Hund\"))\nprint(ist_richtig(\"Hund\", \"Katze\"))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True\nFalse"
+        }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: die Genauigkeit über mehrere Vorhersagen berechnen.",
+        "example": true,
+        "codeTemplate": "def ist_richtig(vorhersage, erwartet):\n    return vorhersage == erwartet\n\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if ist_richtig(vorhersagen[i], erwartete_werte[i]):\n            richtig += 1\n    return round(richtig / len(vorhersagen) * 100)\n\nvorhersagen = [\"Saeugetier\", \"Vogel\", \"Insekt\", \"Vogel\"]\nerwartete_werte = [\"Saeugetier\", \"Vogel\", \"Vogel\", \"Vogel\"]\n\nprint(genauigkeit(vorhersagen, erwartete_werte))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "75"
+        }
+      },
+      {
+        "instruction": "Schreibe ist_richtig(vorhersage, erwartet) und genauigkeit(vorhersagen, erwartete_werte) wie im Beispiel. Nutze vorhersagen = ['A', 'B', 'A', 'A'] und erwartete_werte = ['A', 'B', 'B', 'A']. Gib die Genauigkeit aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "75",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Vorhersagen für den ganzen Testdatensatz sammeln",
+    "file": "lektion-03.md",
+    "lessonSummary": "Mit einer Schleife über die Testdaten und knn_klassifiziere() sammelst du eine Vorhersage je Testbeispiel - die Grundlage für die Genauigkeitsmessung.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: für jedes Testbeispiel eine Vorhersage sammeln.",
+        "example": true,
+        "codeTemplate": "import math\n\ndef abstand(a, b):\n    return math.sqrt((a[\"beine\"] - b[\"beine\"]) ** 2 + (a[\"gewicht\"] - b[\"gewicht\"]) ** 2)\n\ndef knn_klassifiziere(trainingsdaten, neu, k):\n    def abstand_zu_neu(beispiel):\n        return abstand(neu, beispiel)\n\n    sortiert = sorted(trainingsdaten, key=abstand_zu_neu)\n    naechste = sortiert[:k]\n    labels = [beispiel[\"art\"] for beispiel in naechste]\n\n    anzahl_je_kategorie = {}\n    for label in labels:\n        anzahl_je_kategorie[label] = anzahl_je_kategorie.get(label, 0) + 1\n\n    beste_kategorie = None\n    bester_wert = -1\n    for kategorie in anzahl_je_kategorie:\n        anzahl = anzahl_je_kategorie[kategorie]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_kategorie = kategorie\n    return beste_kategorie\n\ntrainingsdaten = [\n    {\"beine\": 4, \"gewicht\": 30, \"art\": \"Saeugetier\"},\n    {\"beine\": 4, \"gewicht\": 25, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 3, \"art\": \"Vogel\"},\n    {\"beine\": 2, \"gewicht\": 4, \"art\": \"Vogel\"},\n]\ntestdaten = [\n    {\"beine\": 4, \"gewicht\": 28, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 5, \"art\": \"Vogel\"},\n]\n\nvorhersagen = []\nfor beispiel in testdaten:\n    vorhersagen.append(knn_klassifiziere(trainingsdaten, beispiel, 3))\n\nprint(vorhersagen)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Saeugetier', 'Vogel']"
+        }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: die Vorhersagen mit den erwarteten Werten vergleichen.",
+        "example": true,
+        "codeTemplate": "import math\n\ndef abstand(a, b):\n    return math.sqrt((a[\"beine\"] - b[\"beine\"]) ** 2 + (a[\"gewicht\"] - b[\"gewicht\"]) ** 2)\n\ndef knn_klassifiziere(trainingsdaten, neu, k):\n    def abstand_zu_neu(beispiel):\n        return abstand(neu, beispiel)\n\n    sortiert = sorted(trainingsdaten, key=abstand_zu_neu)\n    naechste = sortiert[:k]\n    labels = [beispiel[\"art\"] for beispiel in naechste]\n\n    anzahl_je_kategorie = {}\n    for label in labels:\n        anzahl_je_kategorie[label] = anzahl_je_kategorie.get(label, 0) + 1\n\n    beste_kategorie = None\n    bester_wert = -1\n    for kategorie in anzahl_je_kategorie:\n        anzahl = anzahl_je_kategorie[kategorie]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_kategorie = kategorie\n    return beste_kategorie\n\ndef ist_richtig(vorhersage, erwartet):\n    return vorhersage == erwartet\n\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if ist_richtig(vorhersagen[i], erwartete_werte[i]):\n            richtig += 1\n    return round(richtig / len(vorhersagen) * 100)\n\ntrainingsdaten = [\n    {\"beine\": 4, \"gewicht\": 30, \"art\": \"Saeugetier\"},\n    {\"beine\": 4, \"gewicht\": 25, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 3, \"art\": \"Vogel\"},\n    {\"beine\": 2, \"gewicht\": 4, \"art\": \"Vogel\"},\n]\ntestdaten = [\n    {\"beine\": 4, \"gewicht\": 28, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 5, \"art\": \"Vogel\"},\n]\n\nvorhersagen = []\nfor beispiel in testdaten:\n    vorhersagen.append(knn_klassifiziere(trainingsdaten, beispiel, 3))\nerwartete_werte = [beispiel[\"art\"] for beispiel in testdaten]\n\nprint(genauigkeit(vorhersagen, erwartete_werte))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "100"
+        }
+      },
+      {
+        "instruction": "Kopiere abstand(a, b) und knn_klassifiziere(trainingsdaten, neu, k) aus dem Beispiel oben, mit derselben trainingsdaten-Liste (die vier Tiere). Erstelle testdaten mit {'beine': 4, 'gewicht': 26, 'art': 'Saeugetier'} und {'beine': 2, 'gewicht': 4.5, 'art': 'Vogel'}. Sage mit k=3 für jedes Beispiel in testdaten die 'art' vorher, sammle die Ergebnisse in einer Liste vorhersagen und gib sie aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Saeugetier', 'Vogel']",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Trainieren und testen: alles zusammenfügen",
+    "file": "lektion-04.md",
+    "lessonSummary": "Aufteilen, vorhersagen und die Genauigkeit berechnen - zusammen ergibt das den kompletten Trainings-Test-Ablauf.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: den kompletten Trainings-Test-Ablauf als eine Funktion.",
+        "example": true,
+        "codeTemplate": "import math\n\ndef abstand(a, b):\n    return math.sqrt((a[\"beine\"] - b[\"beine\"]) ** 2 + (a[\"gewicht\"] - b[\"gewicht\"]) ** 2)\n\ndef knn_klassifiziere(trainingsdaten, neu, k):\n    def abstand_zu_neu(beispiel):\n        return abstand(neu, beispiel)\n\n    sortiert = sorted(trainingsdaten, key=abstand_zu_neu)\n    naechste = sortiert[:k]\n    labels = [beispiel[\"art\"] for beispiel in naechste]\n\n    anzahl_je_kategorie = {}\n    for label in labels:\n        anzahl_je_kategorie[label] = anzahl_je_kategorie.get(label, 0) + 1\n\n    beste_kategorie = None\n    bester_wert = -1\n    for kategorie in anzahl_je_kategorie:\n        anzahl = anzahl_je_kategorie[kategorie]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_kategorie = kategorie\n    return beste_kategorie\n\ndef ist_richtig(vorhersage, erwartet):\n    return vorhersage == erwartet\n\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if ist_richtig(vorhersagen[i], erwartete_werte[i]):\n            richtig += 1\n    return round(richtig / len(vorhersagen) * 100)\n\ndef trainiere_und_teste(daten, split, k):\n    trainingsdaten = daten[:split]\n    testdaten = daten[split:]\n\n    vorhersagen = []\n    for beispiel in testdaten:\n        vorhersagen.append(knn_klassifiziere(trainingsdaten, beispiel, k))\n\n    erwartete_werte = [beispiel[\"art\"] for beispiel in testdaten]\n    return genauigkeit(vorhersagen, erwartete_werte)\n\ndaten = [\n    {\"beine\": 4, \"gewicht\": 30, \"art\": \"Saeugetier\"},\n    {\"beine\": 4, \"gewicht\": 25, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 3, \"art\": \"Vogel\"},\n    {\"beine\": 2, \"gewicht\": 4, \"art\": \"Vogel\"},\n    {\"beine\": 4, \"gewicht\": 28, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 20, \"art\": \"Vogel\"},\n]\n\nprint(trainiere_und_teste(daten, 4, 3))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "50"
+        }
+      },
+      {
+        "instruction": "Kopiere abstand(a, b), knn_klassifiziere(trainingsdaten, neu, k), ist_richtig(vorhersage, erwartet), genauigkeit(vorhersagen, erwartete_werte) und trainiere_und_teste(daten, split, k) aus dem Beispiel oben (mit derselben daten-Liste). Rufe trainiere_und_teste() mit split=5 und k=1 auf und gib das Ergebnis aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Overfitting: wenn zu wenig Trainingsdaten reichen",
+    "file": "lektion-05.md",
+    "lessonSummary": "Ein winziger, unrepräsentativer Trainingsdatensatz kann 100% Genauigkeit auf sich selbst erreichen, aber bei echten Testdaten trotzdem komplett danebenliegen - das ist Overfitting.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: die Genauigkeit auf den Trainingsdaten selbst mit der Genauigkeit auf echten Testdaten vergleichen.",
+        "example": true,
+        "codeTemplate": "import math\n\ndef abstand(a, b):\n    return math.sqrt((a[\"beine\"] - b[\"beine\"]) ** 2 + (a[\"gewicht\"] - b[\"gewicht\"]) ** 2)\n\ndef knn_klassifiziere(trainingsdaten, neu, k):\n    def abstand_zu_neu(beispiel):\n        return abstand(neu, beispiel)\n\n    sortiert = sorted(trainingsdaten, key=abstand_zu_neu)\n    naechste = sortiert[:k]\n    labels = [beispiel[\"art\"] for beispiel in naechste]\n\n    anzahl_je_kategorie = {}\n    for label in labels:\n        anzahl_je_kategorie[label] = anzahl_je_kategorie.get(label, 0) + 1\n\n    beste_kategorie = None\n    bester_wert = -1\n    for kategorie in anzahl_je_kategorie:\n        anzahl = anzahl_je_kategorie[kategorie]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_kategorie = kategorie\n    return beste_kategorie\n\ndef ist_richtig(vorhersage, erwartet):\n    return vorhersage == erwartet\n\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if ist_richtig(vorhersagen[i], erwartete_werte[i]):\n            richtig += 1\n    return round(richtig / len(vorhersagen) * 100)\n\ntrainingsdaten = [\n    {\"beine\": 4, \"gewicht\": 5, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 30, \"art\": \"Vogel\"},\n]\n\nvorhersagen_training = [knn_klassifiziere(trainingsdaten, b, 1) for b in trainingsdaten]\nerwartete_training = [b[\"art\"] for b in trainingsdaten]\nprint(genauigkeit(vorhersagen_training, erwartete_training))\n\ntestdaten = [\n    {\"beine\": 4, \"gewicht\": 30, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 3, \"art\": \"Vogel\"},\n]\nvorhersagen_test = [knn_klassifiziere(trainingsdaten, b, 1) for b in testdaten]\nerwartete_test = [b[\"art\"] for b in testdaten]\nprint(genauigkeit(vorhersagen_test, erwartete_test))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "100\n0"
+        }
+      },
+      {
+        "instruction": "Kopiere abstand(a, b), knn_klassifiziere(trainingsdaten, neu, k), ist_richtig(vorhersage, erwartet) und genauigkeit(vorhersagen, erwartete_werte) aus dem Beispiel oben. Erstelle trainingsdaten mit denselben zwei Ausreißern ({'beine': 4, 'gewicht': 5, 'art': 'Saeugetier'} und {'beine': 2, 'gewicht': 30, 'art': 'Vogel'}). Erstelle testdaten mit {'beine': 4, 'gewicht': 32, 'art': 'Saeugetier'} und {'beine': 2, 'gewicht': 2, 'art': 'Vogel'} (zwei typische Tiere). Sage mit k=1 vorher, sammle die Vorhersagen und gib die Genauigkeit auf testdaten aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug: Der unehrliche Test",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Eine fehlende Zählung (+= 1), eine sich überschneidende Trainings-/Testaufteilung und ein Vergleich gegen die falsche Liste.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Bei vorhersagen = ['A', 'B', 'A'] und erwartete_werte = ['A', 'B', 'B'] soll die Genauigkeit 67 sein (2 von 3 richtig, gerundet). Was ist falsch?",
+        "codeTemplate": "def ist_richtig(vorhersage, erwartet):\n    return vorhersage == erwartet\n\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if ist_richtig(vorhersagen[i], erwartete_werte[i]):\n            richtig\n    return round(richtig / len(vorhersagen) * 100)\n\nvorhersagen = [\"A\", \"B\", \"A\"]\nerwartete_werte = [\"A\", \"B\", \"B\"]\nprint(genauigkeit(vorhersagen, erwartete_werte))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "67"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: trainingsdaten soll 4 Elemente haben und testdaten 2 Elemente – zusammen alle 6, ohne dass sich ein Element in beiden Listen wiederfindet. Was ist falsch?",
+        "codeTemplate": "daten = [\n    {\"beine\": 4, \"gewicht\": 30, \"art\": \"Saeugetier\"},\n    {\"beine\": 4, \"gewicht\": 25, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 3, \"art\": \"Vogel\"},\n    {\"beine\": 2, \"gewicht\": 4, \"art\": \"Vogel\"},\n    {\"beine\": 4, \"gewicht\": 28, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 5, \"art\": \"Vogel\"},\n]\nsplit = 4\ntrainingsdaten = daten[:split + 1]\ntestdaten = daten[split:]\nprint(len(trainingsdaten))\nprint(len(testdaten))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "4\n2"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Die Genauigkeit soll 50 sein (die zweite Vorhersage 'Vogel' ist falsch, weil 'Saeugetier' erwartet war). Was ist falsch?",
+        "codeTemplate": "def ist_richtig(vorhersage, erwartet):\n    return vorhersage == erwartet\n\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if ist_richtig(vorhersagen[i], erwartete_werte[i]):\n            richtig += 1\n    return round(richtig / len(vorhersagen) * 100)\n\nvorhersagen = [\"Saeugetier\", \"Vogel\"]\nerwartete_werte = [\"Saeugetier\", \"Saeugetier\"]\nprint(genauigkeit(vorhersagen, vorhersagen))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "50"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission: Der ehrliche Test",
+    "file": "mission-01.md",
+    "lessonSummary": "Starke Leistung! Du hast einen eigenen Frucht-Datensatz aufgeteilt, vorhergesagt und die Genauigkeit gemessen, ganz ohne Vorlage.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Aufteilen: Erstelle eine Liste daten mit den sechs Dictionaries {'suesse': 8, 'groesse': 3, 'frucht': 'Kirsche'}, {'suesse': 9, 'groesse': 4, 'frucht': 'Kirsche'}, {'suesse': 3, 'groesse': 15, 'frucht': 'Zitrone'}, {'suesse': 2, 'groesse': 16, 'frucht': 'Zitrone'}, {'suesse': 8, 'groesse': 4, 'frucht': 'Kirsche'} und {'suesse': 3, 'groesse': 14, 'frucht': 'Zitrone'}. Teile sie mit Slicing in trainingsdaten (die ersten 4) und testdaten (die letzten 2) auf. Gib len(trainingsdaten) und len(testdaten) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "4\n2"
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Vorhersagen: Nutze dieselbe Aufteilung (erneut erstellen). Schreibe abstand(a, b) für die Merkmale 'suesse' und 'groesse' und knn_klassifiziere(trainingsdaten, neu, k) wie in Woche 3 (Mehrheitsentscheid über die k nächsten Nachbarn). Sage mit k=3 für jedes Beispiel in testdaten die 'frucht' vorher, sammle die Ergebnisse in einer Liste vorhersagen und gib sie aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Kirsche', 'Zitrone']",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Genauigkeit: Nutze vorhersagen aus Schritt 2 (erneut berechnen) und erstelle erwartete_werte = [beispiel['frucht'] for beispiel in testdaten]. Schreibe ist_richtig(vorhersage, erwartet) und genauigkeit(vorhersagen, erwartete_werte) wie in dieser Woche und gib die Genauigkeit aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "100",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Ein störrischer Ausreißer",
+    "file": "boss-01.md",
+    "lessonSummary": "Stark! Du hast gesehen, wie ein einzelner Ausreißer bei k=1 die Vorhersage kippt, bei k=3 aber überstimmt wird.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Ausreißer bei k=1: Schreibe abstand(a, b), knn_klassifiziere(trainingsdaten, neu, k) und sammle_vorhersagen(trainingsdaten, testdaten, k), die für jedes Beispiel in testdaten mit knn_klassifiziere() eine Vorhersage sammelt und die Liste zurückgibt. Nutze trainingsdaten = [{'beine': 2, 'gewicht': 3, 'art': 'Vogel'}, {'beine': 2, 'gewicht': 4, 'art': 'Vogel'}, {'beine': 2, 'gewicht': 5, 'art': 'Vogel'}, {'beine': 3, 'gewicht': 9, 'art': 'Saeugetier'}, {'beine': 4, 'gewicht': 25, 'art': 'Saeugetier'}, {'beine': 4, 'gewicht': 28, 'art': 'Saeugetier'}, {'beine': 4, 'gewicht': 30, 'art': 'Saeugetier'}] (der vierte Eintrag ist ein Ausreißer – als Saeugetier markiert, aber mitten im Vogel-Bereich) und testdaten = [{'beine': 3, 'gewicht': 10, 'art': 'Vogel'}, {'beine': 4, 'gewicht': 27, 'art': 'Saeugetier'}]. Rufe sammle_vorhersagen() mit k=1 auf und gib das Ergebnis aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Saeugetier', 'Saeugetier']",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Derselbe Ausreißer bei k=3: Wiederhole Schritt 1 mit denselben Daten (alle Funktionen erneut schreiben), aber rufe sammle_vorhersagen() jetzt mit k=3 statt k=1 auf und gib das Ergebnis aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Vogel', 'Saeugetier']",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Genauigkeit vergleichen: Schreibe zusätzlich ist_richtig(vorhersage, erwartet) und genauigkeit(vorhersagen, erwartete_werte). Nutze erwartete_werte = [beispiel['art'] for beispiel in testdaten] und die Vorhersagen aus Schritt 1 (k=1) und Schritt 2 (k=3, beide erneut berechnen). Gib zuerst die Genauigkeit bei k=1, dann bei k=3 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "50\n100",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Mehr Trainingsdaten, bessere Vorhersage?",
+    "file": "boss-02.md",
+    "lessonSummary": "Sehr stark! Du hast gezeigt, dass wenige, einseitige Trainingsdaten eine schlechtere Genauigkeit liefern als ein vollständiger Datensatz.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Wenig Trainingsdaten: Schreibe abstand(a, b), knn_klassifiziere(trainingsdaten, neu, k), ist_richtig(vorhersage, erwartet) und genauigkeit(vorhersagen, erwartete_werte). Nutze daten = [{'beine': 2, 'gewicht': 3, 'art': 'Vogel'}, {'beine': 2, 'gewicht': 4, 'art': 'Vogel'}, {'beine': 2, 'gewicht': 5, 'art': 'Vogel'}, {'beine': 4, 'gewicht': 25, 'art': 'Saeugetier'}, {'beine': 4, 'gewicht': 28, 'art': 'Saeugetier'}, {'beine': 4, 'gewicht': 30, 'art': 'Saeugetier'}] und testdaten = [{'beine': 3, 'gewicht': 10, 'art': 'Vogel'}, {'beine': 4, 'gewicht': 27, 'art': 'Saeugetier'}]. Nimm mit Slicing nur die ersten 2 Einträge von daten als trainingsdaten, sage testdaten mit k=1 vorher und gib die Genauigkeit aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "50",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Alle Trainingsdaten: Wiederhole Schritt 1 (alle Funktionen erneut schreiben, dieselben daten und testdaten), aber nutze jetzt alle 6 Einträge von daten als trainingsdaten. Gib die Genauigkeit aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "100",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Vergleichen: Schreibe eine Funktion vergleiche_trainingsgroessen(daten, split_klein, split_gross, testdaten, k), die mit daten[:split_klein] bzw. daten[:split_gross] als jeweilige trainingsdaten (mit denselben Hilfsfunktionen wie oben, erneut schreiben) beide Genauigkeiten berechnet und als Tupel (genauigkeit_klein, genauigkeit_gross) zurückgibt. Rufe sie mit denselben daten/testdaten, split_klein=2 und split_gross=6 auf und gib das Ergebnis aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "(50, 100)",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Erkennt Overfitting",
+    "file": "boss-03.md",
+    "lessonSummary": "Stark! Du hast die Lücke zwischen Trainings- und Test-Genauigkeit gemessen und automatisch erkannt, ob ein Modell overfittet.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Trainings-Genauigkeit: Schreibe abstand(a, b), knn_klassifiziere(trainingsdaten, neu, k), ist_richtig(vorhersage, erwartet) und genauigkeit(vorhersagen, erwartete_werte). Nutze trainingsdaten = [{'beine': 4, 'gewicht': 5, 'art': 'Saeugetier'}, {'beine': 2, 'gewicht': 30, 'art': 'Vogel'}] (zwei Ausreißer, wie in Lektion 5). Sage mit k=1 jedes Trainingsbeispiel anhand der Trainingsdaten selbst vorher und gib die Genauigkeit aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "100",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Test-Genauigkeit: Wiederhole Schritt 1 (alle Funktionen erneut schreiben, dieselben trainingsdaten), aber sage jetzt testdaten = [{'beine': 4, 'gewicht': 30, 'art': 'Saeugetier'}, {'beine': 2, 'gewicht': 3, 'art': 'Vogel'}] (zwei typische Tiere) vorher und gib die Genauigkeit aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Overfitting erkennen: Schreibe eine Funktion ist_overfitting(trainings_genauigkeit, test_genauigkeit, schwelle), die True zurückgibt, wenn (trainings_genauigkeit - test_genauigkeit) größer als schwelle ist, sonst False. Nutze die Werte aus Schritt 1 (100) und Schritt 2 (0) mit schwelle=20 und gib das Ergebnis aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "True",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  }
+]
