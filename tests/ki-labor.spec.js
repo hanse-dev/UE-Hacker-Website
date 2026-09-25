@@ -14,6 +14,7 @@ import checks from '../content/ki-labor-checks/index.mjs';
 // ('ue-hacker-week-checks-ki-labor') und eigener Content-Ordner (content/ki-labor-checks/), damit
 // Woche 1 im KI-Labor nicht mit Woche 1 im Python-Kurs kollidiert (siehe HANDOFF.md).
 const PROGRESS_KEY = 'ue-hacker-interactive-progress-ki-labor-woche1';
+const PROGRESS_KEY_WEEK2 = 'ue-hacker-interactive-progress-ki-labor-woche2';
 
 function findQuestion(text) {
   const normalized = text.replace(/^\d+\.\s*/, '').trim();
@@ -43,7 +44,7 @@ async function clickOptionByExactText(card, opt) {
   throw new Error(`Option not found: ${opt}`);
 }
 
-async function passWeek1Quiz(page) {
+async function passWeekQuiz(page) {
   const cards = page.locator('.quiz-question');
   await expect(cards.first()).toBeVisible({ timeout: 20000 });
   const count = await cards.count();
@@ -77,14 +78,15 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
     }, PROGRESS_KEY);
   });
 
-  test('Wochenauswahl: 8 Kacheln, nur Woche 1 verfügbar, Rest "kommt noch"', async ({ page }) => {
+  test('Wochenauswahl: 8 Kacheln, Woche 1+2 verfügbar, Rest "kommt noch"', async ({ page }) => {
     await page.goto('/kurs/ki-labor');
     await expect(page.locator('.week-tile')).toHaveCount(8);
     await expect(page.locator('.week-tile').nth(0)).not.toBeDisabled();
-    for (let i = 1; i < 8; i++) {
+    await expect(page.locator('.week-tile').nth(1)).not.toBeDisabled();
+    for (let i = 2; i < 8; i++) {
       await expect(page.locator('.week-tile').nth(i)).toBeDisabled();
     }
-    await expect(page.locator('.week-tile-badge')).toHaveCount(7);
+    await expect(page.locator('.week-tile-badge')).toHaveCount(6);
   });
 
   test('Woche 1 anklicken öffnet die Wochen-Tour, "Andere Woche wählen" führt zurück', async ({ page }) => {
@@ -115,8 +117,17 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
     await expect(page.locator('[data-open-check]')).toBeVisible();
   });
 
-  test('Deep-Link ?week=2 (noch nicht verfügbar) zeigt die Wochenauswahl statt der Tour', async ({ page }) => {
+  test('Deep-Link ?week=2 öffnet direkt die Wochen-Tour', async ({ page }) => {
     await page.goto('/kurs/ki-labor?week=2');
+    // 10 Lektionen (5 Lektion + Debug + Mission + 3 Extra-Herausforderung) + 1 Check-Punkt, da
+    // content/ki-labor-checks/week-2.json existiert (hasCheck=true).
+    await expect(page.locator('.stepper-step')).toHaveCount(11, { timeout: 15000 });
+    await expect(page.locator('.tour-breadcrumb')).toContainText('Woche 2');
+    await expect(page.locator('.tour-breadcrumb')).toContainText('Daten sind alles');
+  });
+
+  test('Deep-Link ?week=3 (noch nicht verfügbar) zeigt die Wochenauswahl statt der Tour', async ({ page }) => {
+    await page.goto('/kurs/ki-labor?week=3');
     await expect(page.locator('.week-tile')).toHaveCount(8);
     await expect(page.locator('.stepper-step')).toHaveCount(0);
   });
@@ -304,7 +315,7 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
     await page.locator('[data-open-check]').click();
     await expect(page.locator('.week-check-panel')).toBeVisible({ timeout: 15000 });
 
-    await passWeek1Quiz(page);
+    await passWeekQuiz(page);
     await expect(page.locator('.certificate-reveal')).toHaveCount(0);
 
     await passCodingChallenge(page, 0, 'def ist_erwachsen(alter):\n    return alter >= 18\n\nprint(ist_erwachsen(20))\nprint(ist_erwachsen(15))');
@@ -319,5 +330,104 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
     await expect(page.locator('.certificate-reveal')).toBeVisible({ timeout: 10000 });
     await expect(page.locator('.certificate-login-hint')).toBeVisible();
     await expect(page.locator('.btn-certificate-pdf')).toHaveCount(0);
+  });
+
+  test('Woche 2: Debug-Lektion mit fehlendem return/falschem Vergleich/fehlendem .get()-Standardwert', async ({ page }) => {
+    await page.addInitScript((key) => {
+      localStorage.setItem(key, JSON.stringify({
+        version: 1,
+        completedLessonIds: ['lektion-01', 'lektion-02', 'lektion-03', 'lektion-04', 'lektion-05'],
+      }));
+    }, PROGRESS_KEY_WEEK2);
+    await page.goto('/kurs/ki-labor?week=2');
+    await page.locator('.stepper-step').nth(5).click();
+    await initKernel(page);
+
+    const first = page.locator('.task-block').first();
+    await first.locator('.btn-check').click();
+    await expect(first.locator('.feedback-error')).toBeVisible({ timeout: 10000 });
+
+    await solve(page, [
+      'def durchschnittsgewicht(tiere):\n    summe = 0\n    for tier in tiere:\n        summe += tier["gewicht"]\n    return summe / len(tiere)\n\ntiere = [{"gewicht": 10}, {"gewicht": 20}, {"gewicht": 30}]\nprint(durchschnittsgewicht(tiere))',
+      'def zaehle_vierbeiner(tiere):\n    anzahl = 0\n    for tier in tiere:\n        if tier["beine"] >= 4:\n            anzahl += 1\n    return anzahl\n\ntiere = [{"beine": 4}, {"beine": 4}, {"beine": 2}]\nprint(zaehle_vierbeiner(tiere))',
+      'def gewicht_oder_unbekannt(tier):\n    return tier.get("gewicht", "unbekannt")\n\nvogel = {"name": "Spatz"}\nprint(gewicht_oder_unbekannt(vogel))',
+    ]);
+  });
+
+  test('Kompletter Durchlauf Woche 2: alle Lektionen, Extra-Herausforderungen und der Wochen-Check', async ({ page }) => {
+    test.setTimeout(120000);
+    await page.goto('/kurs/ki-labor?week=2');
+    await initKernel(page);
+
+    await solve(page, [null, null, 'fahrzeuge = [{"name": "Auto", "raeder": 4}, {"name": "Motorrad", "raeder": 2}, {"name": "Lkw", "raeder": 6}]\nfor f in fahrzeuge:\n    print(f"{f[\'name\']} hat {f[\'raeder\']} Räder")']);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('1 abgeschlossen');
+
+    await solve(page, [null, null, 'personen = [{"name": "Anna", "alter": 12, "grosse": 150}, {"name": "Ben", "alter": 15, "grosse": 170}]\nfor p in personen:\n    print(f"{p[\'name\']}: {p[\'alter\']} Jahre, {p[\'grosse\']}cm")']);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('2 abgeschlossen');
+
+    await solve(page, [null, null, 'schueler = [{"name": "Anna", "note": 2}, {"name": "Ben", "note": 4}, {"name": "Cem", "note": 1}]\nprint([s["name"] for s in schueler if s["note"] < 3])']);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('3 abgeschlossen');
+
+    await solve(page, [null, null, 'autos = [{"marke": "VW", "ps": 90}, {"marke": "Audi"}, {"marke": "BMW", "ps": 150}]\nfor a in autos:\n    print(f"{a[\'marke\']}: {a.get(\'ps\', \'unbekannt\')}")']);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('4 abgeschlossen');
+
+    await solve(page, [null, null, 'pflanzen = [{"hoehe": 30, "typ": "Blume"}, {"hoehe": 200, "typ": "Baum"}, {"hoehe": 15, "typ": "Blume"}]\nhoehen = [p["hoehe"] for p in pflanzen]\ntypen = [p["typ"] for p in pflanzen]\nprint(hoehen)\nprint(typen)']);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('5 abgeschlossen');
+
+    await solve(page, [
+      'def durchschnittsgewicht(tiere):\n    summe = 0\n    for tier in tiere:\n        summe += tier["gewicht"]\n    return summe / len(tiere)\n\ntiere = [{"gewicht": 10}, {"gewicht": 20}, {"gewicht": 30}]\nprint(durchschnittsgewicht(tiere))',
+      'def zaehle_vierbeiner(tiere):\n    anzahl = 0\n    for tier in tiere:\n        if tier["beine"] >= 4:\n            anzahl += 1\n    return anzahl\n\ntiere = [{"beine": 4}, {"beine": 4}, {"beine": 2}]\nprint(zaehle_vierbeiner(tiere))',
+      'def gewicht_oder_unbekannt(tier):\n    return tier.get("gewicht", "unbekannt")\n\nvogel = {"name": "Spatz"}\nprint(gewicht_oder_unbekannt(vogel))',
+    ]);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('6 abgeschlossen');
+
+    await solve(page, [
+      'tiere = [{"name": "Hund", "beine": 4, "gewicht": 30}, {"name": "Spatz", "beine": 2, "gewicht": 0.03}, {"name": "Biene", "beine": 6, "gewicht": 0.001}]\ndef namen_liste(tiere):\n    return [t["name"] for t in tiere]\n\nprint(namen_liste(tiere))',
+      'tiere = [{"name": "Hund", "beine": 4, "gewicht": 30}, {"name": "Spatz", "beine": 2, "gewicht": 0.03}, {"name": "Biene", "beine": 6, "gewicht": 0.001}]\ndef durchschnitt(tiere, merkmal):\n    summe = 0\n    for t in tiere:\n        summe += t[merkmal]\n    return summe / len(tiere)\n\nprint(durchschnitt(tiere, "beine"))',
+      'tiere = [{"name": "Hund", "beine": 4, "gewicht": 30}, {"name": "Spatz", "beine": 2, "gewicht": 0.03}, {"name": "Biene", "beine": 6, "gewicht": 0.001}]\ndef ueber_schwelle(tiere, merkmal, schwelle):\n    return [t["name"] for t in tiere if t[merkmal] > schwelle]\n\nprint(ueber_schwelle(tiere, "gewicht", 1))',
+    ]);
+    await expect(page.locator('.progress-count')).toContainText('7 abgeschlossen');
+
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.branch-choice-page')).toBeVisible();
+    await page.locator('[data-branch="boss"]').click();
+
+    await solve(page, [
+      'def maximum(tiere, merkmal):\n    hoechster = tiere[0][merkmal]\n    for tier in tiere:\n        if tier[merkmal] > hoechster:\n            hoechster = tier[merkmal]\n    return hoechster\n\ntiere = [{"name": "Hund", "beine": 4}, {"name": "Spatz", "beine": 2}, {"name": "Spinne", "beine": 8}]\nprint(maximum(tiere, "beine"))',
+      'def minimum(tiere, merkmal):\n    kleinster = tiere[0][merkmal]\n    for tier in tiere:\n        if tier[merkmal] < kleinster:\n            kleinster = tier[merkmal]\n    return kleinster\n\ntiere = [{"name": "Hund", "beine": 4}, {"name": "Spatz", "beine": 2}, {"name": "Spinne", "beine": 8}]\nprint(minimum(tiere, "beine"))',
+      'def maximum(tiere, merkmal):\n    hoechster = tiere[0][merkmal]\n    for tier in tiere:\n        if tier[merkmal] > hoechster:\n            hoechster = tier[merkmal]\n    return hoechster\n\ndef minimum(tiere, merkmal):\n    kleinster = tiere[0][merkmal]\n    for tier in tiere:\n        if tier[merkmal] < kleinster:\n            kleinster = tier[merkmal]\n    return kleinster\n\ndef spannweite(tiere, merkmal):\n    return maximum(tiere, merkmal) - minimum(tiere, merkmal)\n\ntiere = [{"name": "Hund", "beine": 4}, {"name": "Spatz", "beine": 2}, {"name": "Spinne", "beine": 8}]\nprint(spannweite(tiere, "beine"))',
+    ]);
+    await page.locator('.btn-next').click();
+
+    await solve(page, [
+      'def zaehle_uebereinstimmungen(a, b):\n    anzahl = 0\n    for schluessel in a:\n        if schluessel in b and a[schluessel] == b[schluessel]:\n            anzahl += 1\n    return anzahl\n\na = {"beine": 4, "farbe": "braun", "laut": "Wuff"}\nb = {"beine": 4, "farbe": "braun", "laut": "Miau"}\nprint(zaehle_uebereinstimmungen(a, b))',
+      'def zaehle_uebereinstimmungen(a, b):\n    anzahl = 0\n    for schluessel in a:\n        if schluessel in b and a[schluessel] == b[schluessel]:\n            anzahl += 1\n    return anzahl\n\ndef aehnlichstes_tier(ziel, tiere):\n    bestes = None\n    beste_anzahl = -1\n    for tier in tiere:\n        anzahl = zaehle_uebereinstimmungen(ziel, tier)\n        if anzahl > beste_anzahl:\n            beste_anzahl = anzahl\n            bestes = tier["name"]\n    return bestes\n\ntiere = [{"name": "Katze", "beine": 4, "farbe": "schwarz"}, {"name": "Hund", "beine": 4, "farbe": "braun"}]\nziel = {"beine": 4, "farbe": "braun"}\nprint(aehnlichstes_tier(ziel, tiere))',
+      'def zaehle_uebereinstimmungen(a, b):\n    anzahl = 0\n    for schluessel in a:\n        if schluessel in b and a[schluessel] == b[schluessel]:\n            anzahl += 1\n    return anzahl\n\ndef aehnlichkeit_prozent(a, b):\n    anzahl = zaehle_uebereinstimmungen(a, b)\n    return round(anzahl / len(a) * 100)\n\na = {"beine": 4, "farbe": "braun", "laut": "Wuff"}\nb = {"beine": 4, "farbe": "braun", "laut": "Miau"}\nprint(aehnlichkeit_prozent(a, b))',
+    ]);
+    await page.locator('.btn-next').click();
+
+    await solve(page, [
+      'def fehlt_merkmal(tiere, merkmal):\n    return [t["name"] for t in tiere if merkmal not in t]\n\ntiere = [{"name": "Hund", "beine": 4}, {"name": "Spatz"}, {"name": "Biene", "beine": 6}]\nprint(fehlt_merkmal(tiere, "beine"))',
+      'def fehlt_merkmal(tiere, merkmal):\n    return [t["name"] for t in tiere if merkmal not in t]\n\ndef vollstaendigkeit(tiere, merkmal):\n    fehlend = len(fehlt_merkmal(tiere, merkmal))\n    return round((len(tiere) - fehlend) / len(tiere) * 100)\n\ntiere = [{"name": "Hund", "beine": 4}, {"name": "Spatz"}, {"name": "Biene", "beine": 6}]\nprint(vollstaendigkeit(tiere, "beine"))',
+      'def fehlt_merkmal(tiere, merkmal):\n    return [t["name"] for t in tiere if merkmal not in t]\n\ndef namen_ohne_luecke(tiere, merkmal):\n    fehlende_namen = fehlt_merkmal(tiere, merkmal)\n    return [t["name"] for t in tiere if t["name"] not in fehlende_namen]\n\ntiere = [{"name": "Hund", "beine": 4}, {"name": "Spatz"}, {"name": "Biene", "beine": 6}]\nprint(namen_ohne_luecke(tiere, "beine"))',
+    ]);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.week-check-panel')).toBeVisible({ timeout: 15000 });
+
+    await passWeekQuiz(page);
+    await passCodingChallenge(page, 0, 'def ist_erwachsen(alter):\n    return alter >= 18\n\nprint(ist_erwachsen(20))\nprint(ist_erwachsen(15))');
+    await passCodingChallenge(
+      page,
+      1,
+      'tiere = [{"name": "Hund", "gewicht": 30}, {"name": "Spatz"}, {"name": "Katze", "gewicht": 4}]\n\ndef namen_mit_merkmal(tiere, merkmal):\n    return [t["name"] for t in tiere if merkmal in t]\n\nprint(namen_mit_merkmal(tiere, "gewicht"))'
+    );
+
+    await expect(page.locator('.certificate-reveal')).toBeVisible({ timeout: 10000 });
   });
 });

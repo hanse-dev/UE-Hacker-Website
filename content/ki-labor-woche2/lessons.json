@@ -1,0 +1,315 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Ein Datensatz ist eine Liste von Beispielen",
+    "file": "lektion-01.md",
+    "lessonSummary": "Ein Datensatz ist eine Liste von Beispielen, jedes Beispiel ein Dictionary mit Merkmalen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: ein Tier-Datensatz als Liste von Dictionaries.",
+        "example": true,
+        "codeTemplate": "tiere = [\n    {\"name\": \"Hund\", \"beine\": 4, \"gewicht\": 30},\n    {\"name\": \"Spatz\", \"beine\": 2, \"gewicht\": 0.03},\n    {\"name\": \"Biene\", \"beine\": 6, \"gewicht\": 0.001},\n]\n\nfor tier in tiere:\n    print(tier[\"name\"])\n",
+        "validation": { "type": "output_contains", "expected": "Hund\nSpatz\nBiene" }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: gezielter Zugriff auf ein einzelnes Merkmal.",
+        "example": true,
+        "codeTemplate": "tiere = [\n    {\"name\": \"Hund\", \"beine\": 4},\n    {\"name\": \"Spatz\", \"beine\": 2},\n]\n\nfor tier in tiere:\n    print(tier[\"name\"], \"hat\", tier[\"beine\"], \"Beine\")\n",
+        "validation": { "type": "output_contains", "expected": "Hund hat 4 Beine\nSpatz hat 2 Beine" }
+      },
+      {
+        "instruction": "Erstelle eine Liste fahrzeuge mit den drei Dictionaries {'name': 'Auto', 'raeder': 4}, {'name': 'Motorrad', 'raeder': 2} und {'name': 'Lkw', 'raeder': 6}. Gib mit einer Schleife für jedes Fahrzeug genau '<name> hat <raeder> Räder' aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Auto hat 4 Räder\nMotorrad hat 2 Räder\nLkw hat 6 Räder"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Mehrere Merkmale pro Beispiel",
+    "file": "lektion-02.md",
+    "lessonSummary": "Ein Beispiel kann mehrere Merkmale gleichzeitig haben, nicht nur eines.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: ein Tier mit drei Merkmalen gleichzeitig.",
+        "example": true,
+        "codeTemplate": "tiere = [\n    {\"name\": \"Hund\", \"beine\": 4, \"gewicht\": 30, \"fell\": True},\n    {\"name\": \"Spatz\", \"beine\": 2, \"gewicht\": 0.03, \"fell\": False},\n]\n\nfor tier in tiere:\n    print(tier[\"name\"], tier[\"beine\"], tier[\"gewicht\"], tier[\"fell\"])\n",
+        "validation": { "type": "output_contains", "expected": "Hund 4 30 True\nSpatz 2 0.03 False" }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: mehrere Merkmale in einem f-String zusammengesetzt.",
+        "example": true,
+        "codeTemplate": "tiere = [\n    {\"name\": \"Hund\", \"beine\": 4, \"gewicht\": 30},\n    {\"name\": \"Spatz\", \"beine\": 2, \"gewicht\": 0.03},\n]\n\nfor tier in tiere:\n    print(f\"{tier['name']}: {tier['beine']} Beine, {tier['gewicht']}kg\")\n",
+        "validation": { "type": "output_contains", "expected": "Hund: 4 Beine, 30kg\nSpatz: 2 Beine, 0.03kg" }
+      },
+      {
+        "instruction": "Erstelle eine Liste personen mit {'name': 'Anna', 'alter': 12, 'grosse': 150} und {'name': 'Ben', 'alter': 15, 'grosse': 170}. Gib für jede Person genau '<name>: <alter> Jahre, <grosse>cm' aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Anna: 12 Jahre, 150cm\nBen: 15 Jahre, 170cm"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Muster von Auge suchen",
+    "file": "lektion-03.md",
+    "lessonSummary": "Mit einer List Comprehension filterst du Beispiele heraus, die eine Bedingung erfüllen – Muster von Auge finden.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: alle Vierbeiner aus dem Datensatz herausfiltern.",
+        "example": true,
+        "codeTemplate": "tiere = [\n    {\"name\": \"Hund\", \"beine\": 4},\n    {\"name\": \"Spatz\", \"beine\": 2},\n    {\"name\": \"Katze\", \"beine\": 4},\n    {\"name\": \"Ente\", \"beine\": 2},\n]\n\nvierbeiner = [tier[\"name\"] for tier in tiere if tier[\"beine\"] == 4]\nprint(vierbeiner)\n",
+        "validation": { "type": "output_contains", "expected": "['Hund', 'Katze']" }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: alle Tiere über einer Gewichtsschwelle herausfiltern.",
+        "example": true,
+        "codeTemplate": "tiere = [\n    {\"name\": \"Hund\", \"gewicht\": 30},\n    {\"name\": \"Spatz\", \"gewicht\": 0.03},\n    {\"name\": \"Elefant\", \"gewicht\": 5000},\n]\n\nschwer = [tier[\"name\"] for tier in tiere if tier[\"gewicht\"] > 10]\nprint(schwer)\n",
+        "validation": { "type": "output_contains", "expected": "['Hund', 'Elefant']" }
+      },
+      {
+        "instruction": "Erstelle eine Liste schueler mit {'name': 'Anna', 'note': 2}, {'name': 'Ben', 'note': 4} und {'name': 'Cem', 'note': 1}. Gib mit einer List Comprehension genau eine Liste der Namen aller Schüler mit note kleiner als 3 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Anna', 'Cem']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Datenqualität: Fehlende Werte",
+    "file": "lektion-04.md",
+    "lessonSummary": "Mit .get(schluessel, standardwert) stürzt dein Programm bei fehlenden Merkmalen nicht ab.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: fehlende Werte mit .get() abfangen.",
+        "example": true,
+        "codeTemplate": "tiere = [\n    {\"name\": \"Hund\", \"gewicht\": 30},\n    {\"name\": \"Spatz\"},\n]\n\nfor tier in tiere:\n    gewicht = tier.get(\"gewicht\", \"unbekannt\")\n    print(tier[\"name\"], gewicht)\n",
+        "validation": { "type": "output_contains", "expected": "Hund 30\nSpatz unbekannt" }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: zählen, wie vielen Beispielen ein Merkmal fehlt.",
+        "example": true,
+        "codeTemplate": "tiere = [\n    {\"name\": \"Hund\", \"gewicht\": 30},\n    {\"name\": \"Spatz\"},\n    {\"name\": \"Katze\", \"gewicht\": 4},\n]\n\nfehlend = 0\nfor tier in tiere:\n    if \"gewicht\" not in tier:\n        fehlend += 1\n\nprint(fehlend)\n",
+        "validation": { "type": "output_contains", "expected": "1" }
+      },
+      {
+        "instruction": "Erstelle eine Liste autos mit {'marke': 'VW', 'ps': 90}, {'marke': 'Audi'} und {'marke': 'BMW', 'ps': 150}. Gib für jedes Auto mit .get(...) genau '<marke>: <ps>' aus, wobei fehlende PS-Werte als 'unbekannt' ausgegeben werden.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "VW: 90\nAudi: unbekannt\nBMW: 150"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Merkmale und Label trennen",
+    "file": "lektion-05.md",
+    "lessonSummary": "Merkmale (Features) und Label eines Datensatzes werden getrennt – die Grundlage für Vorhersagen ab Woche 3.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Merkmale und Labels in zwei getrennte Listen aufteilen.",
+        "example": true,
+        "codeTemplate": "tiere = [\n    {\"beine\": 4, \"gewicht\": 30, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 0.03, \"art\": \"Vogel\"},\n]\n\nmerkmale = [{\"beine\": t[\"beine\"], \"gewicht\": t[\"gewicht\"]} for t in tiere]\nlabels = [t[\"art\"] for t in tiere]\n\nprint(merkmale)\nprint(labels)\n",
+        "validation": { "type": "output_contains", "expected": "[{'beine': 4, 'gewicht': 30}, {'beine': 2, 'gewicht': 0.03}]\n['Saeugetier', 'Vogel']" }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: aus den getrennten Labels zählen, wie oft eine Kategorie vorkommt.",
+        "example": true,
+        "codeTemplate": "tiere = [\n    {\"beine\": 4, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"art\": \"Vogel\"},\n    {\"beine\": 6, \"art\": \"Insekt\"},\n]\n\nlabels = [t[\"art\"] for t in tiere]\nanzahl_saeugetiere = labels.count(\"Saeugetier\")\nprint(anzahl_saeugetiere)\n",
+        "validation": { "type": "output_contains", "expected": "1" }
+      },
+      {
+        "instruction": "Erstelle eine Liste pflanzen mit {'hoehe': 30, 'typ': 'Blume'}, {'hoehe': 200, 'typ': 'Baum'} und {'hoehe': 15, 'typ': 'Blume'}. Erstelle daraus zwei Listen: hoehen (nur die hoehe-Werte) und typen (nur die typ-Werte). Gib zuerst hoehen und dann typen aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "[30, 200, 15]\n['Blume', 'Baum', 'Blume']"
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug: Kaputte Datensätze",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Ein fehlendes return, ein zu enger Vergleich und ein fehlender Standardwert bei .get().",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll 20.0 ausgeben (Durchschnitt aus 10, 20, 30). Was ist falsch?",
+        "codeTemplate": "def durchschnittsgewicht(tiere):\n    summe = 0\n    for tier in tiere:\n        summe += tier[\"gewicht\"]\n    summe / len(tiere)\n\ntiere = [{\"gewicht\": 10}, {\"gewicht\": 20}, {\"gewicht\": 30}]\nprint(durchschnittsgewicht(tiere))\n",
+        "validation": { "type": "output_contains", "expected": "20.0" }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Tiere mit genau 4 Beinen sollen als Vierbeiner mitgezählt werden. Für die Liste sollen genau 2 gezählt werden. Was ist falsch?",
+        "codeTemplate": "def zaehle_vierbeiner(tiere):\n    anzahl = 0\n    for tier in tiere:\n        if tier[\"beine\"] > 4:\n            anzahl += 1\n    return anzahl\n\ntiere = [{\"beine\": 4}, {\"beine\": 4}, {\"beine\": 2}]\nprint(zaehle_vierbeiner(tiere))\n",
+        "validation": { "type": "output_contains", "expected": "2" }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Fehlt einem Tier das Merkmal gewicht, soll 'unbekannt' ausgegeben werden, statt das Programm abstürzen zu lassen. Was ist falsch?",
+        "codeTemplate": "def gewicht_oder_unbekannt(tier):\n    return tier[\"gewicht\"]\n\nvogel = {\"name\": \"Spatz\"}\nprint(gewicht_oder_unbekannt(vogel))\n",
+        "validation": { "type": "output_contains", "expected": "unbekannt" }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission: Der Tier-Datensammler",
+    "file": "mission-01.md",
+    "lessonSummary": "Starke Leistung! Du hast einen eigenen Tier-Datensatz gebaut und ausgewertet, ganz ohne Vorlage.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Datensatz: Erstelle eine Liste tiere mit den drei Dictionaries {'name': 'Hund', 'beine': 4, 'gewicht': 30}, {'name': 'Spatz', 'beine': 2, 'gewicht': 0.03} und {'name': 'Biene', 'beine': 6, 'gewicht': 0.001}. Schreibe eine Funktion namen_liste(tiere), die eine Liste aller 'name'-Werte zurückgibt, und gib sie aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Hund', 'Spatz', 'Biene']",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Durchschnitt: Schreibe eine Funktion durchschnitt(tiere, merkmal), die den Durchschnittswert eines Merkmals über alle Tiere berechnet und zurückgibt. Nutze deine Liste tiere aus Schritt 1 (erneut erstellen). Gib damit genau 4.0 aus (für 'beine').",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "4.0",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Filtern: Schreibe eine Funktion ueber_schwelle(tiere, merkmal, schwelle), die eine Liste aller 'name'-Werte der Tiere zurückgibt, deren merkmal größer als schwelle ist. Nutze deine Liste tiere (erneut erstellen) und rufe die Funktion mit merkmal='gewicht', schwelle=1 auf. Gib genau ['Hund'] aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Hund']",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Der Größte und der Kleinste",
+    "file": "boss-01.md",
+    "lessonSummary": "Stark! Du hast jetzt Maximum, Minimum und Spannweite eines Merkmals selbst berechnet.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Maximum: Schreibe eine Funktion maximum(tiere, merkmal), die den höchsten Wert des Merkmals in der Liste tiere zurückgibt (ohne die eingebaute Funktion max()). Erstelle dazu die Liste tiere mit {'name': 'Hund', 'beine': 4}, {'name': 'Spatz', 'beine': 2} und {'name': 'Spinne', 'beine': 8}. Gib damit genau 8 aus (für 'beine').",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "8",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Minimum: Schreibe eine Funktion minimum(tiere, merkmal), analog zu maximum() aber für den kleinsten Wert (ohne die eingebaute Funktion min()). Nutze dieselbe Liste tiere (erneut erstellen). Gib damit genau 2 aus (für 'beine').",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "2",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Spannweite: Schreibe eine Funktion spannweite(tiere, merkmal), die maximum() und minimum() (beide erneut schreiben) benutzt und die Differenz zurückgibt. Gib damit genau 6 aus (für 'beine', dieselbe Liste).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "6",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Der Merkmals-Vergleicher",
+    "file": "boss-02.md",
+    "lessonSummary": "Sehr stark! Du hast gemessen, wie ähnlich sich zwei Beispiele Merkmal für Merkmal sind.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Übereinstimmungen zählen: Schreibe eine Funktion zaehle_uebereinstimmungen(a, b), die zählt, wie viele gemeinsame Schlüssel in den Dictionaries a und b denselben Wert haben. Gib damit genau 2 aus für a={'beine': 4, 'farbe': 'braun', 'laut': 'Wuff'} und b={'beine': 4, 'farbe': 'braun', 'laut': 'Miau'}.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "2",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Ähnlichstes Tier finden: Schreibe eine Funktion aehnlichstes_tier(ziel, tiere), die mit zaehle_uebereinstimmungen() (erneut schreiben) das Tier mit den meisten Übereinstimmungen zu ziel zurückgibt (den Namen). Nutze tiere = [{'name': 'Katze', 'beine': 4, 'farbe': 'schwarz'}, {'name': 'Hund', 'beine': 4, 'farbe': 'braun'}] und ziel = {'beine': 4, 'farbe': 'braun'}. Gib genau Hund aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hund",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Ähnlichkeit in Prozent: Schreibe eine Funktion aehnlichkeit_prozent(a, b), die zaehle_uebereinstimmungen() (erneut schreiben) benutzt und den Anteil übereinstimmender Schlüssel in Prozent zurückgibt (gerundet mit round()). Gib damit genau 67 aus, für dieselben a und b wie in Schritt 1.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "67",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Der Datensatz-Prüfer",
+    "file": "boss-03.md",
+    "lessonSummary": "Stark! Du hast einen Datensatz auf fehlende Werte geprüft und seine Vollständigkeit berechnet.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Fehlende Werte finden: Schreibe eine Funktion fehlt_merkmal(tiere, merkmal), die eine Liste der 'name'-Werte aller Tiere zurückgibt, denen das merkmal fehlt. Nutze tiere = [{'name': 'Hund', 'beine': 4}, {'name': 'Spatz'}, {'name': 'Biene', 'beine': 6}]. Gib genau ['Spatz'] aus (für 'beine').",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Spatz']",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Vollständigkeit: Schreibe eine Funktion vollstaendigkeit(tiere, merkmal), die mit fehlt_merkmal() (erneut schreiben) den Anteil (in Prozent, gerundet mit round()) der Tiere zurückgibt, denen das Merkmal NICHT fehlt. Nutze dieselbe Liste. Gib genau 67 aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "67",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Bereinigen: Schreibe eine Funktion namen_ohne_luecke(tiere, merkmal), die mit fehlt_merkmal() (erneut schreiben) eine Liste aller Tier-Namen zurückgibt, denen das Merkmal NICHT fehlt. Nutze dieselbe Liste tiere. Gib damit genau ['Hund', 'Biene'] aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "['Hund', 'Biene']",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  }
+]

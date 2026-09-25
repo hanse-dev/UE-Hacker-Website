@@ -1,0 +1,140 @@
+{
+  "title": "Woche 2 – Daten sind alles",
+  "title_en": "Week 2 – Data is everything",
+  "questions": [
+    {
+      "id": "kil2-1",
+      "type": "multiple_choice",
+      "question": "Was ist ein Merkmal (Feature) eines Beispiels?",
+      "options": [
+        "Ein einzelner Wert, der ein Beispiel beschreibt, z.B. beine oder gewicht",
+        "Die richtige Antwort zu einem Beispiel",
+        "Der Name der Programmiersprache"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ein Merkmal (Feature) ist einer der Werte, die ein Beispiel beschreiben – nicht das Label.",
+      "optionExplanations": [
+        null,
+        "Die richtige Antwort zu einem Beispiel ist das Label, nicht ein Merkmal.",
+        "Der Sprachname hat nichts mit einem Merkmal zu tun."
+      ]
+    },
+    {
+      "id": "kil2-2",
+      "type": "multiple_choice",
+      "question": "tiere ist eine Liste von Dictionaries. Wie greifst du auf das Merkmal 'gewicht' des ersten Tiers zu?",
+      "options": [
+        "tiere[0]['gewicht']",
+        "tiere.gewicht[0]",
+        "gewicht[tiere][0]"
+      ],
+      "correctIndex": 0,
+      "explanation": "Erst der Index für das Element der Liste, dann der Schlüssel für das Merkmal im Dictionary.",
+      "optionExplanations": [
+        null,
+        "Diese Schreibweise gibt es in Python nicht.",
+        "Diese Reihenfolge – Merkmal vor Liste – funktioniert nicht."
+      ]
+    },
+    {
+      "id": "kil2-3",
+      "type": "multiple_choice",
+      "question": "Was macht tier.get('gewicht', 'unbekannt'), wenn der Schlüssel 'gewicht' in tier fehlt?",
+      "options": [
+        "Gibt 'unbekannt' zurück, statt abzustürzen",
+        "Wirft einen KeyError",
+        "Fügt 'gewicht': 'unbekannt' automatisch zu tier hinzu"
+      ],
+      "correctIndex": 0,
+      "explanation": ".get(schluessel, standardwert) gibt bei einem fehlenden Schlüssel den Standardwert zurück.",
+      "optionExplanations": [
+        null,
+        "Ein KeyError entsteht nur bei tier['gewicht'], nicht bei .get(...).",
+        "tier.get(...) verändert das Dictionary nicht."
+      ]
+    },
+    {
+      "id": "kil2-4",
+      "type": "multiple_choice",
+      "question": "Was passiert bei tier['gewicht'], wenn der Schlüssel 'gewicht' in tier nicht existiert?",
+      "options": [
+        "Das Programm stürzt mit einem KeyError ab",
+        "Es wird automatisch None zurückgegeben",
+        "Der Schlüssel wird automatisch mit 0 angelegt"
+      ],
+      "correctIndex": 0,
+      "explanation": "Der eckige-Klammern-Zugriff wirft bei einem fehlenden Schlüssel einen KeyError – anders als .get().",
+      "optionExplanations": [
+        null,
+        "None kommt nur bei .get() ohne Treffer zurück, nicht bei [ ].",
+        "Python legt Schlüssel nicht automatisch an."
+      ]
+    },
+    {
+      "id": "kil2-5",
+      "type": "multiple_choice",
+      "question": "Warum werden Merkmale (Features) und Label eines Datensatzes oft in zwei getrennte Listen aufgeteilt?",
+      "options": [
+        "Damit ein Modell bei einer Vorhersage nur die Merkmale sieht, nicht schon die Antwort",
+        "Weil Python sonst nicht mit Dictionaries umgehen kann",
+        "Weil getrennte Listen schneller laufen als Dictionaries"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ein Modell soll aus den Merkmalen das Label vorhersagen – sieht es das Label vorher, wäre die Vorhersage bedeutungslos.",
+      "optionExplanations": [
+        null,
+        "Python kann problemlos mit Dictionaries umgehen.",
+        "Der Geschwindigkeitsunterschied ist hier nicht der Grund."
+      ]
+    },
+    {
+      "id": "kil2-6",
+      "type": "multiple_select",
+      "question": "Welche der folgenden Dinge sind typische Probleme echter Datensätze?",
+      "options": [
+        "Fehlende Werte bei einzelnen Beispielen",
+        "Einseitige/unausgewogene Daten",
+        "Zu kurze Variablennamen",
+        "Zu viele Leerzeichen im Code"
+      ],
+      "correctIndices": [0, 1]
+    },
+    {
+      "id": "kil2-7",
+      "type": "multiple_choice",
+      "question": "Was tut [t['name'] for t in tiere if t['beine'] == 4]?",
+      "options": [
+        "Gibt eine neue Liste mit den Namen aller Tiere mit genau 4 Beinen zurück",
+        "Gibt die Anzahl der Tiere mit 4 Beinen zurück",
+        "Verändert die Original-Liste tiere"
+      ],
+      "correctIndex": 0,
+      "explanation": "Eine List Comprehension mit if baut eine neue, gefilterte Liste – die Originalliste bleibt unverändert.",
+      "optionExplanations": [
+        null,
+        "Das Ergebnis ist eine Liste von Namen, keine Zahl.",
+        "List Comprehensions erzeugen eine neue Liste, statt die alte zu verändern."
+      ]
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Schreibe eine Funktion ist_erwachsen(alter), die True zurückgibt, wenn alter mindestens 18 ist, sonst False. Gib damit genau True (für 20) und danach False (für 15) aus.",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "True\nFalse",
+        "codeContains": ["def"]
+      }
+    },
+    {
+      "instruction": "Erstelle eine Liste tiere mit {'name': 'Hund', 'gewicht': 30}, {'name': 'Spatz'} und {'name': 'Katze', 'gewicht': 4}. Schreibe eine Funktion namen_mit_merkmal(tiere, merkmal), die eine Liste der Namen aller Tiere zurückgibt, denen das merkmal NICHT fehlt. Gib damit genau ['Hund', 'Katze'] aus (für 'gewicht').",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "['Hund', 'Katze']",
+        "codeContains": ["def"]
+      }
+    }
+  ]
+}
