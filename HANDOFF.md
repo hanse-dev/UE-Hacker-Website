@@ -1,12 +1,12 @@
 # Handoff — UE Hacker Website
 
-> **Zuletzt aktualisiert:** 2026-09-25
-> **Aktueller Stand:** `main` ist aktuell, Branch `ki-labor-woche4` fügt Woche 5 "Entscheidungsbäume"
-> hinzu (Wochen 6–8 offen, siehe Abschnitt 5). Profil zeigt Wochen-Zertifikate aus allen Kursen mit Wochen-Check (Python +
-> KI-Labor) inkl. direktem PDF-Download (3.69/3.70); ein "Kurs starten"-Gate blendet bei den 3
-> Wochen-Tour-Kursen Beschreibung/Struktur-Erklärung vor der eigentlichen Kurs-Tour aus (3.69).
-> Die beiden klar umsetzbaren `input()`-Lücken aus `todo.md` (Woche 4 + 9) sind geschlossen (3.71).
-> Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4 "Betrieb").
+> **Zuletzt aktualisiert:** 2026-09-26
+> **Aktueller Stand:** `main` ist aktuell und enthält KI-Labor Woche 1–5 (Wochen 6–8 offen, siehe
+> Abschnitt 5, jeweils neuer Branch pro Woche). Profil zeigt Wochen-Zertifikate aus allen Kursen mit
+> Wochen-Check (Python + KI-Labor) inkl. direktem PDF-Download (3.69/3.70); ein "Kurs starten"-Gate
+> blendet bei den 3 Wochen-Tour-Kursen Beschreibung/Struktur-Erklärung vor der eigentlichen
+> Kurs-Tour aus (3.69). Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4
+> "Betrieb").
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
 > Chat-Historie. Sie wird per `@` in jede Session geladen — **klein halten** (Richtwert < 25 KB).
 > Die ausführliche Feature-Historie liegt kalt in `docs/archiv/HANDOFF-historie.md` (nicht importiert).
