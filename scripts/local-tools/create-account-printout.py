@@ -101,6 +101,9 @@ def api_request(url: str, payload: dict, token: str | None = None) -> dict:
         sys.exit(f"Fehler bei {url}: {e.code} {body}")
 
 
+RECEIPT_FONT_SCALE = 1.4  # hier anpassen, um den ganzen Ausdruck größer/kleiner zu machen
+
+
 def build_receipt_image(username: str, password: str, server_url: str) -> Path:
     from PIL import Image, ImageDraw, ImageFont
 
@@ -110,26 +113,55 @@ def build_receipt_image(username: str, password: str, server_url: str) -> Path:
     inner_width = width - 2 * margin - 2 * padding
     domain = server_url.replace("https://", "").replace("http://", "").rstrip("/")
 
-    def font(size: int, bold: bool):
-        name = "DejaVuSans-Bold.ttf" if bold else "DejaVuSans.ttf"
+    def scaled(size: int) -> int:
+        return round(size * RECEIPT_FONT_SCALE)
+
+    def font_path(bold: bool) -> str | None:
         try:
-            return ImageFont.truetype(name, size)
-        except OSError:
-            return ImageFont.load_default()
+            from matplotlib import font_manager
+            weight = "bold" if bold else "normal"
+            props = font_manager.FontProperties(family="DejaVu Sans", weight=weight)
+            return font_manager.findfont(props, fallback_to_default=True)
+        except Exception:
+            return None
+
+    _font_paths = {False: font_path(False), True: font_path(True)}
+
+    def font(size: int, bold: bool):
+        path = _font_paths[bold]
+        if path:
+            try:
+                return ImageFont.truetype(path, size)
+            except OSError:
+                pass
+        return ImageFont.load_default()
+
+    def font_fit(text: str, size: int, bold: bool, max_width: int):
+        """Verkleinert die Schrift schrittweise, falls der Text sonst über den Rahmen hinausragen würde
+        (z.B. bei einem langen Benutzernamen)."""
+        f = font(size, bold)
+        scratch_draw = ImageDraw.Draw(Image.new("L", (1, 1)))
+        while size > 10:
+            bbox = scratch_draw.textbbox((0, 0), text, font=f)
+            if bbox[2] - bbox[0] <= max_width:
+                break
+            size -= 2
+            f = font(size, bold)
+        return f
 
     # (Text, Schriftgröße, fett, zentriert) — Reihenfolge der Zeilen im Rahmen
     rows = [
-        ("UE HACKER", 26, True, True),
-        ("Zugangsausweis", 16, False, True),
+        ("UE HACKER", scaled(26), True, True),
+        ("Zugangsausweis", scaled(16), False, True),
         ("RULE", 0, False, False),  # Trennlinie, kein Text
-        ("Name", 14, False, False),
-        (username, 24, True, False),
-        ("", 6, False, False),
-        ("Passwort", 14, False, False),
-        (password, 24, True, False),
+        ("Name", scaled(14), False, False),
+        (username, scaled(24), True, False),
+        ("", scaled(6), False, False),
+        ("Passwort", scaled(14), False, False),
+        (password, scaled(24), True, False),
         ("RULE", 0, False, False),
-        (domain, 14, False, True),
-        (date.today().isoformat(), 12, False, True),
+        (domain, scaled(14), False, True),
+        (date.today().isoformat(), scaled(12), False, True),
     ]
 
     scratch = Image.new("L", (width, 10))
@@ -140,7 +172,7 @@ def build_receipt_image(username: str, password: str, server_url: str) -> Path:
         if text == "RULE":
             h = 16
         else:
-            f = font(size, bold)
+            f = font_fit(text or " ", size, bold, inner_width)
             bbox = draw.textbbox((0, 0), text or " ", font=f)
             h = (bbox[3] - bbox[1]) + 8
         row_heights.append(h)
@@ -174,7 +206,7 @@ def build_receipt_image(username: str, password: str, server_url: str) -> Path:
                 fill=0, width=1,
             )
         elif text:
-            f = font(size, bold)
+            f = font_fit(text, size, bold, inner_width)
             bbox = draw.textbbox((0, 0), text, font=f)
             text_w = bbox[2] - bbox[0]
             if centered:
