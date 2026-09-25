@@ -1,5 +1,7 @@
 import { ref } from 'vue';
 import { loadWeekChecks, listCertificateCourseKeys, useWeekChecks } from './useWeekChecks';
+import { loadWeekLernziele } from './useWeeklyContent';
+import { KI_LABOR_WEEKS } from '../data/kiLaborWeeks.js';
 
 // Kleines, statisches Mapping courseKey -> Kurs-Route/Titel, analog zu den COURSE_TITLE-
 // Konstanten in useCertificatePdf.js/KiLaborTour.vue. Bewusst kein generischer Registry-Mechanismus
@@ -18,6 +20,28 @@ const COURSE_INFO = {
   },
 };
 
+// Lernziele je Kurs für die Zertifikat-PDF (siehe useCertificatePdf.js) - pro courseKey anders
+// beschafft: Python hat sie in den Wochen-Notebooks als Markdown-Frontmatter (loadWeekLernziele,
+// sprachabhängig), das KI-Labor in einer statischen Liste (kiLaborWeeks.js, bisher nur Deutsch).
+async function loadLernzieleByWeek(courseKey, lang) {
+  if (courseKey === 'python') {
+    const byWeek = await loadWeekLernziele(lang);
+    const result = {};
+    for (const [weekNumber, week] of Object.entries(byWeek)) {
+      result[weekNumber] = week.lernzieleFull || [];
+    }
+    return result;
+  }
+  if (courseKey === 'ki-labor') {
+    const result = {};
+    for (const week of KI_LABOR_WEEKS) {
+      result[week.number] = week.lernziele || [];
+    }
+    return result;
+  }
+  return {};
+}
+
 /**
  * Zertifikate für alle Kurse mit Wochen-Check (aktuell Python-Grundkurs + KI-Labor) - fürs
  * Profil (ProfilView.vue). Nur Wochen, für die tatsächlich Check-Content existiert, tauchen auf
@@ -27,14 +51,17 @@ export function useCourseCertificates() {
   const courses = ref([]);
   const loading = ref(true);
 
-  const load = async () => {
+  const load = async (lang = 'de') => {
     loading.value = true;
     try {
       const courseKeys = listCertificateCourseKeys().filter((key) => COURSE_INFO[key]);
       courses.value = await Promise.all(
         courseKeys.map(async (courseKey) => {
           const info = COURSE_INFO[courseKey];
-          const data = await loadWeekChecks(courseKey);
+          const [data, lernzieleByWeek] = await Promise.all([
+            loadWeekChecks(courseKey),
+            loadLernzieleByWeek(courseKey, lang),
+          ]);
           const { isWeekCheckPassed } = useWeekChecks(courseKey);
           const weekNumbers = Object.keys(data.weeks || {})
             .map(Number)
@@ -47,6 +74,7 @@ export function useCourseCertificates() {
               title: week.title,
               title_en: week.title_en,
               earned: isWeekCheckPassed(weekNumber, totalChallenges),
+              lernziele: lernzieleByWeek[weekNumber] || [],
             };
           });
           return {

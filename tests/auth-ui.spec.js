@@ -347,8 +347,18 @@ test.describe('UI: Admin + Header-Login', () => {
     await expect(kiLaborBlock.locator('.badge-card')).toHaveCount(2);
     await expect(kiLaborBlock.locator('.badge-card').first()).not.toHaveClass(/earned/);
 
+    // Nur verliehene Zertifikate haben einen Download-Button.
+    await expect(pythonWeek1.locator('.btn-certificate-pdf')).toBeVisible();
+    await expect(pythonWeek2.locator('.btn-certificate-pdf')).toHaveCount(0);
+
+    await page.locator('#profil-certificate-name').fill('Max Mustermann');
+    const downloadPromise = page.waitForEvent('download');
+    await pythonWeek1.locator('.btn-certificate-pdf').click();
+    const download = await downloadPromise;
+    expect(download.suggestedFilename()).toMatch(/^Zertifikat_Woche_1_Max_Mustermann\.pdf$/);
+
     // Ein Klick auf ein verliehenes Zertifikat führt direkt in die Wochen-Tour dieses Kurses.
-    await pythonWeek1.click();
+    await pythonWeek1.locator('.badge-card-link').click();
     await expect(page).toHaveURL(/\/kurs\/python-12-wochen-grundkurs\?week=1/);
     await expect(page.locator('.course-structure')).toHaveCount(0);
   });

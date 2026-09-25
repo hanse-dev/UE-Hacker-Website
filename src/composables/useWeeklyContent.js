@@ -78,6 +78,36 @@ function emptyWeek(weekNum, label = 'Woche') {
   });
 }
 
+// Nur Titel + Lernziele pro Woche, ohne Notebooks/Downloads/Cheat-Sheets - für die
+// Zertifikat-PDF im Profil (useCourseCertificates.js), wo die volle loadWeeklyContent() (lädt
+// auch alle Notebook-/Bundle-/Download-URLs) unnötig viel wäre. Genau ein .md pro Woche
+// (variantenunabhängig, siehe content/python-12-wochen-grundkurs/woche-N/wocheN.md) - ein
+// Zertifikat gilt für alle Varianten gleich.
+export async function loadWeekLernziele(lang = 'de') {
+  const isEn = lang === 'en';
+  const weekModules = isEn
+    ? import.meta.glob('../../content/python-12-wochen-grundkurs-en/woche-*/*.md', { query: '?raw' })
+    : import.meta.glob('../../content/python-12-wochen-grundkurs/woche-*/*.md', { query: '?raw' });
+
+  const result = {};
+  await Promise.all(
+    Object.entries(weekModules).map(async ([path, loader]) => {
+      if (path.includes('cheat_sheet') || path.includes('cheat-sheet')) return;
+      const weekMatch = path.match(/woche-(\d+)/);
+      if (!weekMatch) return;
+      const weekNum = parseInt(weekMatch[1], 10);
+      const rawContent = (await loader()).default;
+      const parsed = fm(rawContent);
+      const { lernzieleFull } = parseWeekMarkdown(parsed.body);
+      result[weekNum] = {
+        title: parsed.attributes.title || `${isEn ? 'Week' : 'Woche'} ${weekNum}`,
+        lernzieleFull,
+      };
+    })
+  );
+  return result;
+}
+
 export async function loadWeeklyContent(lang = 'de') {
   const isEn = lang === 'en';
 
