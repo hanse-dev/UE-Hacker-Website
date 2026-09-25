@@ -12,6 +12,7 @@ import subprocess
 import sys
 import tempfile
 import urllib.error
+import urllib.parse
 import urllib.request
 from datetime import date
 from pathlib import Path
@@ -44,6 +45,22 @@ def load_env_file(path: Path) -> dict:
         key, _, value = line.partition("=")
         values[key.strip()] = value.strip()
     return values
+
+
+def normalize_server_url(url: str) -> str:
+    """Kodiert einen Umlaut-Hostnamen (z.B. übergangshacker.de) als Punycode —
+    sonst schickt urllib den Host-Header unkodiert und der Server kappt die Verbindung."""
+    parts = urllib.parse.urlsplit(url)
+    host = parts.hostname or ""
+    try:
+        ascii_host = host.encode("idna").decode("ascii")
+    except UnicodeError:
+        ascii_host = host
+    if parts.port:
+        ascii_netloc = f"{ascii_host}:{parts.port}"
+    else:
+        ascii_netloc = ascii_host
+    return urllib.parse.urlunsplit((parts.scheme, ascii_netloc, parts.path, parts.query, parts.fragment))
 
 
 def generate_password() -> str:
@@ -177,7 +194,8 @@ def main() -> None:
     args = parser.parse_args()
 
     env = load_env_file(SCRIPT_DIR / ".env")
-    server_url = (args.server_url or env.get("ACCOUNT_SERVER_URL") or "").rstrip("/")
+    server_url_raw = (args.server_url or env.get("ACCOUNT_SERVER_URL") or "").rstrip("/")
+    server_url = normalize_server_url(server_url_raw) if server_url_raw else ""
     printer_address = args.printer_address or env.get("MXW01_PRINTER_ADDRESS")
     admin_password = env.get("ADMIN_PASSWORD") or getpass.getpass("Admin-Passwort der Website: ")
 
@@ -202,7 +220,7 @@ def main() -> None:
     if not printer_address:
         sys.exit("MXW01_PRINTER_ADDRESS fehlt (in scripts/local-tools/.env setzen oder --printer-address übergeben).")
 
-    image_path = build_receipt_image(args.username, password, server_url)
+    image_path = build_receipt_image(args.username, password, server_url_raw)
     try:
         print_receipt(image_path, printer_address)
     finally:
