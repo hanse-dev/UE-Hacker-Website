@@ -71,19 +71,10 @@ def build_receipt_image(username: str, password: str, server_url: str) -> Path:
     from PIL import Image, ImageDraw, ImageFont
 
     width = 384
+    margin = 14  # Abstand Rahmen zu Papierrand
+    padding = 14  # Abstand Inhalt zu Rahmen
+    inner_width = width - 2 * margin - 2 * padding
     domain = server_url.replace("https://", "").replace("http://", "").rstrip("/")
-    lines = [
-        ("UE Hacker Zugang", 28, True),
-        ("", 10, False),
-        ("Benutzername:", 18, False),
-        (username, 26, True),
-        ("", 8, False),
-        ("Passwort:", 18, False),
-        (password, 26, True),
-        ("", 12, False),
-        (domain, 16, False),
-        (date.today().isoformat(), 14, False),
-    ]
 
     def font(size: int, bold: bool):
         name = "DejaVuSans-Bold.ttf" if bold else "DejaVuSans.ttf"
@@ -92,26 +83,70 @@ def build_receipt_image(username: str, password: str, server_url: str) -> Path:
         except OSError:
             return ImageFont.load_default()
 
+    # (Text, Schriftgröße, fett, zentriert) — Reihenfolge der Zeilen im Rahmen
+    rows = [
+        ("UE HACKER", 26, True, True),
+        ("Zugangsausweis", 16, False, True),
+        ("RULE", 0, False, False),  # Trennlinie, kein Text
+        ("Name", 14, False, False),
+        (username, 24, True, False),
+        ("", 6, False, False),
+        ("Passwort", 14, False, False),
+        (password, 24, True, False),
+        ("RULE", 0, False, False),
+        (domain, 14, False, True),
+        (date.today().isoformat(), 12, False, True),
+    ]
+
     scratch = Image.new("L", (width, 10))
     draw = ImageDraw.Draw(scratch)
     row_heights = []
-    total_height = 10
-    for text, size, bold in lines:
-        f = font(size, bold)
-        bbox = draw.textbbox((0, 0), text or " ", font=f)
-        h = (bbox[3] - bbox[1]) + 10
+    content_height = 0
+    for text, size, bold, centered in rows:
+        if text == "RULE":
+            h = 16
+        else:
+            f = font(size, bold)
+            bbox = draw.textbbox((0, 0), text or " ", font=f)
+            h = (bbox[3] - bbox[1]) + 8
         row_heights.append(h)
-        total_height += h
+        content_height += h
 
-    img = Image.new("L", (width, total_height + 10), color=255)
+    frame_top = margin
+    frame_height = padding * 2 + content_height
+    total_height = frame_top + frame_height + margin
+    frame_left = margin
+    frame_right = width - margin
+
+    img = Image.new("L", (width, total_height), color=255)
     draw = ImageDraw.Draw(img)
-    y = 10
-    for (text, size, bold), h in zip(lines, row_heights):
-        if text:
+
+    # Doppelter Rahmen, wie ein Ausweis/Badge
+    draw.rectangle(
+        [frame_left, frame_top, frame_right, frame_top + frame_height],
+        outline=0, width=3,
+    )
+    draw.rectangle(
+        [frame_left + 6, frame_top + 6, frame_right - 6, frame_top + frame_height - 6],
+        outline=0, width=1,
+    )
+
+    y = frame_top + padding
+    for (text, size, bold, centered), h in zip(rows, row_heights):
+        if text == "RULE":
+            line_y = y + h // 2
+            draw.line(
+                [frame_left + padding, line_y, frame_right - padding, line_y],
+                fill=0, width=1,
+            )
+        elif text:
             f = font(size, bold)
             bbox = draw.textbbox((0, 0), text, font=f)
             text_w = bbox[2] - bbox[0]
-            x = max(0, (width - text_w) // 2)
+            if centered:
+                x = frame_left + padding + max(0, (inner_width - text_w) // 2)
+            else:
+                x = frame_left + padding
             draw.text((x, y), text, font=f, fill=0)
         y += h
 
