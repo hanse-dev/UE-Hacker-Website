@@ -3,9 +3,10 @@
 > **Zuletzt aktualisiert:** 2026-09-25
 > **Aktueller Stand:** Branches `lokales-tool-account-drucker` und `login-autofill-1password` sind
 > gemergt und gelöscht. Neu: lokales (nicht deploytes) Skript zum Account-Anlegen +
-> Thermodrucker-Ausdruck (3.63), Login-Formulare 1Password-fähig gemacht + "Admin"-Nav-Link nur bei
-> aktivem Admin-Login sichtbar (3.64). Push nach `origin/main` und Server-Deploy stehen aus (Nutzer
-> deployt selbst, siehe Abschnitt 4 "Betrieb").
+> Thermodrucker-Ausdruck (3.63, mit echtem Drucker verifiziert — inkl. macOS-Bluetooth-UUID- und
+> Write-Pacing-Fix), Login-Formulare 1Password-fähig gemacht + "Admin"-Nav-Link nur bei aktivem
+> Admin-Login sichtbar (3.64). Push nach `origin/main` und Server-Deploy stehen aus (Nutzer deployt
+> selbst, siehe Abschnitt 4 "Betrieb").
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
 > Chat-Historie. Sie wird per `@` in jede Session geladen — **klein halten** (Richtwert < 25 KB).
 > Die ausführliche Feature-Historie liegt kalt in `docs/archiv/HANDOFF-historie.md` (nicht importiert).
@@ -78,7 +79,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.60 | Projekt-Kurs Text-Adventure/Fluchtraum | `content/text-adventure-fluchtraum` (6 Lektionen, DE-first, Pyodide): Raum als Dictionary → mehrere Räume verknüpft → Inventar als Liste → verschlossene Tür (Dictionary-Lookup + `in`-Prüfung kombiniert) → Befehle per `input()`/`split()` → Kapitel 6 verbindet alles in einer `while`-Schleife (Sieg = Flur erreicht, ohne Schlüssel läuft die Schleife endlos = zweites Ende); `kurse.json`-Eintrag `projekt-text-adventure` (Level `fortgeschritten`, Tags `spiele`/`logikraetsel`); alle 11 Referenzlösungen (inkl. `stdin`-Befehlsfolgen) mit `python3` geprüft, `validation.variables`/`functionCalls` bewusst **nicht** genutzt (in `LessonView.vue` wird `validateOutput` ohne den `variables`/`functionResults`-Parameter aufgerufen — diese Felder würden dort niemals bestehen, siehe HANDOFF-Fallstricke); `tests/projekte.spec.js` um eigenen Lektions-Test erweitert, Karten-/Filter-Tests auf 7 Projekte angepasst (Fortgeschritten trifft jetzt 4) |
 | 3.61 | Alle 7 Projekt-Kurse auf "selbst schreiben + Lösung auf Wunsch" umgestellt | `codeTemplate` blankt nur neu eingeführte Funktionskörper, neuer "Lösung anzeigen"-Button; Snake-Beispielaufgabe/JS-Spielewerkstatt-Erklärtext entschärft (nahmen die folgende Aufgabe vorweg); jede Aufgabe hat jetzt ein `solution`-Feld; Regel dazu unten unter "Gelernte Regeln" |
 | 3.62 | Projekt-Abschluss zeigt Abzeichen-Hinweis + Link zu /projekte | Neue Komponente `ProjectCompletionBox.vue`, ersetzt bei der letzten Projekt-Lektion den generischen "Weiter"-Button |
-| 3.63 | Lokales Tool: Account anlegen + Thermodrucker-Ausdruck | `scripts/local-tools/create-account-printout.py`, nicht deployed, legt Account über Admin-API an und druckt Ausweis-Beleg auf MXW01-Drucker; MXW01-Tool wird lokal geklont (keine LICENSE, daher gitignored) |
+| 3.63 | Lokales Tool: Account anlegen + Thermodrucker-Ausdruck | `scripts/local-tools/create-account-printout.py`, nicht deployed, legt Account über Admin-API an und druckt Ausweis-Beleg auf MXW01-Drucker; macOS braucht CoreBluetooth-UUID statt MAC + Write-Pacing-Patch (`patch-mxw01.py`), mit echtem Drucker getestet |
 | 3.64 | Login-Formulare für Passwort-Manager + Admin-Nav-Link nur bei Login | Admin-/Account-Login jetzt echte `<form>`s mit `name`-Attributen (1Password-Autofill); "Admin"-Nav-Link nur sichtbar bei aktivem Admin-Token |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
@@ -135,6 +136,11 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   eigenes `venv/`. Um automatisch dorthin zu wechseln (egal mit welchem `python3` aufgerufen): über
   `sys.prefix` prüfen, **nicht** `Path(sys.executable).resolve()` — `venv/bin/python3` ist nur ein
   Symlink auf den System-Interpreter, `.resolve()` hält beide fälschlich für identisch (3.63).
+- `bleak`/BLE auf macOS: CoreBluetooth liefert keine echte Bluetooth-MAC, sondern eine app-spezifische
+  UUID (aus Datenschutzgründen) — die "echte" MAC von Verpackung/Handy-App funktioniert dort nicht,
+  per Scan ermitteln. Und: "write without response"-Pakete ganz ohne Pause zwischen den Häppchen
+  verwirft macOS oft stillschweigend (kein Fehler, nur ein stilles Timeout beim Warten auf die
+  Geräte-Bestätigung) — kleine Pause (~10ms) zwischen den Writes einbauen (3.63).
 
 **Betrieb**
 - SQLite nur per `VACUUM INTO` sichern (WAL), nie `cp`; nie `git clean -fdx` ohne `api/data/` auszuschließen (Abschnitt 4).

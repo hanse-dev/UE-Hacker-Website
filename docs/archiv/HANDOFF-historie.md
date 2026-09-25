@@ -2169,6 +2169,22 @@ Verbindung ohne jede Antwort (`RemoteDisconnected`, kein aussagekräftiger Fehle
 jedem Request über `.encode('idna')` in Punycode wandeln, auf dem gedruckten Beleg aber die
 lesbare Original-Domain anzeigen.
 
+**Nachtrag (direkt auf `main`, kein eigener Branch — Bugfix am gerade gemergten Feature):**
+Beim ersten echten Testdruck zwei weitere reale Probleme gefunden und mit dem tatsächlichen Drucker
+verifiziert:
+- **macOS liefert keine echte Bluetooth-MAC:** CoreBluetooth gibt aus Datenschutzgründen eine
+  app-spezifische UUID zurück (z.B. `A652E1F0-...`) statt der "echten" MAC von Verpackung/App —
+  genau dieser Wert muss in `MXW01_PRINTER_ADDRESS` stehen. Neues `scan-bluetooth.py` listet
+  erreichbare BLE-Geräte samt der richtigen Adresse.
+- **Drucker verband sich, druckte/förderte aber nichts:** stilles Timeout ("AA notification not
+  received"), keine Fehlermeldung. Ursache: `MXW01print.py` schickt Druckdaten in 20-Byte-Häppchen
+  ganz ohne Pause als "write without response" — macOS verwirft solche Rapid-Fire-Writes oft
+  stillschweigend statt einen Fehler zu melden. Neues `patch-mxw01.py` fügt 10ms Pause zwischen den
+  Häppchen ein, `setup-printer-tool.sh` wendet es automatisch nach jedem Klonen an (nötig, weil
+  `vendor/` gitignored ist und bei jedem Setup neu geklont wird).
+- Außerdem: Ausdruck-Text etwas fetter (`stroke_width=1` beim Zeichnen), auf Nutzerwunsch nach dem
+  ersten sichtbaren Testdruck.
+
 ### 3.64 — Login-Formulare für Passwort-Manager + Admin-Nav-Link nur bei aktivem Login (Branch `login-autofill-1password`, gemergt)
 
 Admin-Login (`AdminView.vue`) und Account-Login (`App.vue`) waren keine echten `<form>`-Elemente
