@@ -91,46 +91,43 @@ Einheit (ein Bugfix, ein Feature-Schritt, eine Content-Korrektur, eine Doku-Umst
 - Das gilt auch für Sub-Agenten-Ergebnisse und für Claude Code: nicht auf eine Aufforderung warten.
 - Pushen und Mergen nach `main` bleibt davon getrennt (erst wenn das Thema fertig/getestet ist).
 
-## Nach jedem Commit
+## Nach JEDEM Commit: Kontext-Dateien aktualisieren UND aufräumen
 
-Nach jedem `git commit` prüfen:
-- Welche Aufgaben aus `todo.md` wurden durch diesen Commit erledigt?
-- Diese Einträge in `todo.md` von `[ ]` auf `[x]` setzen.
-- `todo.md` mit in den nächsten Commit aufnehmen, oder direkt committen.
+**Pflicht bei jedem einzelnen Commit, ohne explizite Aufforderung** — nicht nur am Ende eines
+Branches, nicht nur beim Merge, nicht nur "wenn mal Zeit ist". `CLAUDE.md` lädt `VISION.md`,
+`todo.md`, `HANDOFF.md` und `WORKFLOW.md` per `@` automatisch in **jede** Session und jeden
+Sub-Agenten — diese vier Dateien sind der "heiße" Kontext, der bei jeder einzelnen Anfrage
+mitgeladen wird und Tokens kostet, ganz unabhängig davon, ob irgendeine KB-Schwelle überschritten
+ist. Sie sollen einen schnellen Einstieg ermöglichen, nicht als vollständiges Änderungsprotokoll
+für immer wachsen — die Commit-Historie (`git log`/`git show`) ist die dauerhafte, verlässliche
+Quelle für Details. Ausführliches liegt "kalt" unter `docs/archiv/` (nicht importiert, nur bei
+Bedarf gelesen).
 
-## Handoff automatisch aktualisieren
+Nach jedem `git commit`:
 
-**Vor jedem Commit** ohne explizite Aufforderung:
-1. `HANDOFF.md` aktualisieren (letzter Commit, was wurde gemacht, was ist offen)
-2. `todo.md` prüfen und erledigte Punkte markieren
-3. `HANDOFF.md` und `todo.md` mit in denselben Commit aufnehmen (kein Extra-Commit)
+1. **Aktualisieren:** `HANDOFF.md` (letzter Commit, was wurde gemacht, was ist offen) und `todo.md`
+   (welche Punkte hat dieser Commit erledigt → `[ ]` auf `[x]`) auf den neuen Stand bringen.
+2. **Aufräumen, nicht nur ergänzen — bei genau diesem Commit, nicht als späterer Extra-Task:**
+   prüfen, ob `HANDOFF.md`, `todo.md`, `VISION.md` oder `WORKFLOW.md` jetzt etwas Erledigtes,
+   Doppeltes, Widersprüchliches oder Veraltetes enthalten (abgeschlossene Punkte, überholte
+   Branch-/Datei-Referenzen) — und das sofort bereinigen. Reines Anhängen ohne Aufräumen lässt
+   diese Dateien unbegrenzt wachsen; "beim nächsten Mal" ist keine Option.
+   - Faustregel für sofortiges Handeln: wenn `HANDOFF.md` über 25 KB oder `todo.md` über 10 KB
+     wächst, ist Aufräumen **in diesem Commit** fällig.
+   - **Während der Arbeit an einem Branch** darf der Feature-Abschnitt ausführlich in HANDOFF.md
+     Abschnitt 3 stehen (als `### 3.NN`) — das ist befristet, kein Freibrief, die Aufräum-Pflicht
+     bei den übrigen Commits auf diesem Branch auszusetzen.
+   - **Nach dem Mergen nach `main`** (spätestens jetzt): den vollständigen Abschnitt unverändert ans
+     Ende von `docs/archiv/HANDOFF-historie.md` verschieben, in HANDOFF.md bleibt nur eine
+     Tabellenzeile (Nr., Thema, Kern) als Referenz ins Archiv; wiederverwendbare Fallstricke als
+     Zeile in "Gelernte Regeln" übernehmen. `todo.md`: erledigte (`[x]`) Blöcke und "Fertige
+     Branches" nach `docs/archiv/todo-erledigt.md` verschieben. Gemergte/gelöschte Branch-Namen aus
+     der Top-Zusammenfassung und Abschnitt 5/7 entfernen.
+3. Alle so aktualisierten Dateien **mit in denselben Commit** aufnehmen (kein Extra-Commit) — außer
+   das Aufräumen selbst ist die einzige Änderung, dann ist ein eigener, sofortiger Commit richtig.
 
-## HANDOFF.md aufräumen (gegen unbegrenztes Wachstum)
+Abschnitt 5 (Offene Aufgaben) und Abschnitt 7 (Schnellstart) in HANDOFF.md bleiben immer knapp und
+aktuell — das sind die Abschnitte, die eine neue Session tatsächlich zuerst braucht.
 
-`HANDOFF.md` soll einen schnellen Einstieg in eine neue Session ermöglichen, nicht als
-vollständiges Änderungsprotokoll für immer wachsen — die Commit-Historie (`git log`/`git show`)
-ist die dauerhafte, verlässliche Quelle für Details.
-
-`HANDOFF.md` und `todo.md` werden per `@` in **jede** Session und jeden Sub-Agenten geladen — sie
-sind "heiß" und müssen klein bleiben (Richtwert: HANDOFF.md < 25 KB, todo.md < 10 KB). Ausführliches
-liegt "kalt" unter `docs/archiv/` (nicht importiert, nur bei Bedarf gelesen).
-
-- **Bei jedem Task, nicht erst wenn die Schwelle gerissen ist:** proaktiv prüfen, ob erledigte
-  Punkte in `todo.md`/`HANDOFF.md` inzwischen archiviert werden können, ob sich Punkte doppeln oder
-  veraltete Referenzen stehen geblieben sind — diese Dateien werden bei jeder Session/jedem
-  Sub-Agenten per `@` geladen und kosten dort Tokens, auch wenn die KB-Schwelle noch nicht
-  überschritten ist. Reines Aufschieben bis zum nächsten großen Aufräum-Task lässt die Dateien
-  unnötig aufblähen.
-- **Während der Arbeit an einem Branch:** den Feature-Abschnitt ausführlich in HANDOFF.md Abschnitt 3
-  schreiben (als `### 3.NN`), solange der Branch noch nicht gemergt ist.
-- **Nach dem Mergen nach `main`:** den vollständigen Abschnitt unverändert ans Ende von
-  `docs/archiv/HANDOFF-historie.md` verschieben. In HANDOFF.md bleibt nur eine Zeile in der
-  Tabelle in Abschnitt 3 (Nr., Thema, Kern) — die Nummer ist die Referenz ins Archiv. Wiederverwendbare
-  Fallstricke (Bug-Typen, die wieder auftreten können) als Zeile in "Gelernte Regeln" übernehmen.
-- **`todo.md`:** erledigte (`[x]`) Blöcke und "Fertige Branches" nach `docs/archiv/todo-erledigt.md`
-  verschieben; in `todo.md` nur offene Punkte und "Nächste Themen".
-- Abschnitt 5 (Offene Aufgaben) und Abschnitt 7 (Schnellstart) bleiben immer knapp und aktuell —
-  das sind die Abschnitte, die eine neue Session tatsächlich zuerst braucht.
-- Faustregel: wenn `HANDOFF.md` über 25 KB wächst, ist Aufräumen fällig.
-- `INHALTE.md`, `KURSPLAN.md`, `PROJEKTIDEEN.md` sind bewusst **nicht** importiert (siehe CLAUDE.md,
-  "Bei Bedarf lesen") — bei Inhaltsänderungen `INHALTE.md` Abschnitt 6 aktiv lesen.
+`INHALTE.md`, `KURSPLAN.md`, `PROJEKTIDEEN.md` sind bewusst **nicht** importiert (siehe CLAUDE.md,
+"Bei Bedarf lesen") — bei Inhaltsänderungen `INHALTE.md` Abschnitt 6 aktiv lesen.
