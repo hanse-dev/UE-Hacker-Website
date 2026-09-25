@@ -15,6 +15,7 @@
         <router-link :to="{ path: '/', hash: '#kurse-uebersicht' }">{{ t('nav.courses') }}</router-link>
         <router-link to="/projekte">{{ t('nav.projects') }}</router-link>
         <router-link v-if="isLoggedIn" to="/profil">{{ t('nav.profile') }}</router-link>
+        <router-link v-if="isAdminLoggedIn" to="/admin">{{ t('nav.admin') }}</router-link>
         <button
           type="button"
           class="options-btn"
@@ -138,6 +139,7 @@ import { computed, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useLanguage } from './composables/useLanguage.js';
 import { useAuth } from './composables/useAuth.js';
+import { adminToken } from './composables/useAdminApi.js';
 
 export default {
   name: 'App',
@@ -146,6 +148,7 @@ export default {
     const showHomeLink   = computed(() => route.path !== '/');
     const isCourseDetail = computed(() => route.path.startsWith('/kurs/'));
     const isTeaser       = computed(() => route.path === '/teaser');
+    const isAdminLoggedIn = computed(() => !!adminToken.value);
     const { lang, t, setLang } = useLanguage();
     const {
       user,
@@ -197,6 +200,7 @@ export default {
       showHomeLink,
       isCourseDetail,
       isTeaser,
+      isAdminLoggedIn,
       lang,
       t,
       setLang,

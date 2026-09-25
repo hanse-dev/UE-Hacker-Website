@@ -94,7 +94,7 @@
 import { ref, onMounted } from 'vue';
 import { useLanguage } from '../composables/useLanguage.js';
 import {
-  getAdminToken,
+  adminToken as token,
   setAdminToken,
   adminLogin,
   listUsers,
@@ -107,7 +107,6 @@ export default {
   name: 'AdminView',
   setup() {
     const { t, lang } = useLanguage();
-    const token = ref(getAdminToken());
     const password = ref('');
     const users = ref([]);
     const busy = ref(false);
@@ -138,7 +137,6 @@ export default {
       } catch (e) {
         if (e.status === 401) {
           setAdminToken('');
-          token.value = '';
         }
         error.value = e.message || t('admin.error');
       } finally {
@@ -152,7 +150,6 @@ export default {
       try {
         const data = await adminLogin(password.value);
         setAdminToken(data.token);
-        token.value = data.token;
         password.value = '';
         await refresh();
       } catch (e) {
@@ -164,7 +161,6 @@ export default {
 
     const logout = () => {
       setAdminToken('');
-      token.value = '';
       users.value = [];
     };
 

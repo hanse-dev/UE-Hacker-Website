@@ -15,6 +15,15 @@ test.describe('UI: Admin + Header-Login', () => {
     await page.locator('.admin-login-card .btn-primary').click();
 
     await expect(page.locator('.admin-toolbar')).toBeVisible();
+
+    // Nav-Link "Admin" erscheint nach Admin-Login und bleibt beim Navigieren sichtbar
+    const adminNavLink = page.locator('nav a[href="/admin"]');
+    await expect(adminNavLink).toBeVisible();
+    await page.goto('/');
+    await expect(adminNavLink).toBeVisible();
+    await adminNavLink.click();
+    await expect(page).toHaveURL(/\/admin$/);
+
     await page.locator('.admin-toolbar .btn-primary').click();
 
     await expect(page.locator('.modal-card')).toBeVisible();
@@ -34,6 +43,10 @@ test.describe('UI: Admin + Header-Login', () => {
     });
     const body = await listed.json();
     expect(body.users.some((u) => u.username === username)).toBeTruthy();
+
+    // Nav-Link verschwindet nach Admin-Logout wieder
+    await page.locator('.admin-toolbar .btn-secondary').click();
+    await expect(adminNavLink).toHaveCount(0);
   });
 
   test('Optionen: Anmelden, Sync, Abmelden', async ({ page, request }) => {
