@@ -33,9 +33,8 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
   ungeprüfte "Freestyle"-Aufgabe pro Woche ergänzen. Vergleiche mit `>` (Boolean-Kapitel Woche 2)
   werden für "Sieger/über Durchschnitt" genutzt, weil `if` erst in Woche 3 kommt — bewusst so.
 - **Woche 4:** Debug Bug #1 war im Original eine Endlosschleife (5s-Timeout), jetzt Off-by-one —
-  bewusst so. `input()`-Beispiele (Zugangscodes/Passwort/Futter-Abfrage) nicht übernommen — die
-  `stdin`-Validierung gibt es jetzt (`validation.stdin`), die Aufgaben selbst sind noch nicht
-  (wieder) ergänzt.
+  bewusst so. `input()`-Aufgabe (Zugangscode/Futter-Abfrage/Docking-Code) mit `validation.stdin`
+  je Thema als letzter Boss-3-Schritt nachgezogen (DE+EN, mit `python3` geprüft) — erledigt.
 - **Woche 5:** Vorgriffe im Original (Listen/Dictionaries/`random`/`try-except`/`help()`) wurden
   ersetzt und größtenteils in späteren Wochen nachgezogen (Listen → Woche 6, Dictionaries →
   Woche 8, `random` → Woche 7). Themenbezeichner zwischen DE/EN nicht gleich (DE
@@ -51,8 +50,8 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 - **Woche 8:** Aus dem Original weggelassen: verschachteltes Questsystem mit Tupel-Belohnungen/
   Tupel als Dictionary-Schlüssel als Aufgabe (nur als Erklärung in Lektion 7), Tupel-Methoden
   `index()`/`count()`, Bonus-Teile ungeprüft (Grund: `output_contains` prüft nur feste Ausgaben).
-- **Woche 9:** `input()`-Aufgaben aus dem Original (Boss 1 Tagebuch) durch vorgegebene Einträge
-  ersetzt, `input()` nur als Bonus — als Aufgabe mit `validation.stdin` nachziehen. Dateien liegen
+- **Woche 9:** `input()`-Aufgabe (Boss 1 Tagebuch, "Eigener Eintrag") mit `validation.stdin` als
+  vierter Schritt je Thema nachgezogen (DE+EN, mit `python3` geprüft) — erledigt. Dateien liegen
   im Pyodide-Dateisystem und bleiben zwischen Aufgaben bestehen; jede Aufgabe schreibt ihre Dateien
   deshalb selbst (ob das Dateisystem beim Kernel-Neustart geleert wird, nicht separat geprüft). Aus
   dem Original weggelassen: `f.writelines()`, `json.dumps(indent=2)`-Ausgabe als Prüfung,

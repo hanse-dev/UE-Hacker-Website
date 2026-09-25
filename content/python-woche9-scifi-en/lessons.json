@@ -501,6 +501,17 @@
           "type": "output_contains",
           "expected": "1: Day 42 Signal received\n2: Day 42 Probe launched\n3: Day 42 Hull repaired"
         }
+      },
+      {
+        "instruction": "Step 4 – Your own entry: date and diary.txt are given as in Step 2 (three lines). Use input() to ask for a new entry, append it with \"a\" as date + \" \" + entry to diary.txt, and afterwards print exactly Entries: 4. (When checking, Corrected course is entered automatically.)",
+        "codeTemplate": "date = \"Day 42\"\nwith open(\"diary.txt\", \"w\") as f:\n    f.write(date + \" Signal received\\n\")\n    f.write(date + \" Probe launched\\n\")\n    f.write(date + \" Hull repaired\\n\")\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Entries: 4",
+          "stdin": [
+            "Corrected course"
+          ]
+        }
       }
     ]
   },

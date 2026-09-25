@@ -501,6 +501,17 @@
           "type": "output_contains",
           "expected": "1: Mar 15 Groomed Storm\n2: Mar 15 Rode to the forest\n3: Mar 15 Finished jump training"
         }
+      },
+      {
+        "instruction": "Step 4 – Your own entry: date and diary.txt are given as in Step 2 (three lines). Use input() to ask for a new entry, append it with \"a\" as date + \" \" + entry to diary.txt, and afterwards print exactly Entries: 4. (When checking, Brushed the coat is entered automatically.)",
+        "codeTemplate": "date = \"Mar 15\"\nwith open(\"diary.txt\", \"w\") as f:\n    f.write(date + \" Groomed Storm\\n\")\n    f.write(date + \" Rode to the forest\\n\")\n    f.write(date + \" Finished jump training\\n\")\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Entries: 4",
+          "stdin": [
+            "Brushed the coat"
+          ]
+        }
       }
     ]
   },

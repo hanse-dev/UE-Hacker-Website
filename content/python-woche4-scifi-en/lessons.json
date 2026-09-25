@@ -501,6 +501,18 @@
             "while"
           ]
         }
+      },
+      {
+        "instruction": "Step 5 – Docking code: Use a while loop to repeatedly ask for the docking code until \"Nova7\" is entered. On a wrong entry print Access denied., on the correct entry print Docking approved!. (When checking, 'X1' and then 'Nova7' are entered automatically.)",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Access denied.\nDocking approved!",
+          "stdin": [
+            "X1",
+            "Nova7"
+          ]
+        }
       }
     ]
   }

@@ -501,6 +501,18 @@
             "while"
           ]
         }
+      },
+      {
+        "instruction": "Schritt 5 – Docking-Code: Frage mit einer while-Schleife wiederholt nach dem Docking-Code, bis \"Nova7\" eingegeben wird. Gib bei falscher Eingabe Zugriff verweigert. aus, bei richtiger Eingabe Andockung erlaubt!. (Beim Prüfen werden nacheinander 'X1' und 'Nova7' eingegeben.)",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zugriff verweigert.\nAndockung erlaubt!",
+          "stdin": [
+            "X1",
+            "Nova7"
+          ]
+        }
       }
     ]
   }

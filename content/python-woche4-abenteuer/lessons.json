@@ -539,6 +539,18 @@
           "type": "output_contains",
           "expected": "Tiefste Tiefe: 10"
         }
+      },
+      {
+        "instruction": "Schritt 4 – Geheime Tür: Vor einer geheimen Tür wacht eine while-Schleife. Frage mit input() wiederholt nach dem Losungswort, bis \"Drachenzahn\" eingegeben wird. Gib bei jeder falschen Eingabe Die Tür bleibt verschlossen. aus, bei der richtigen Eingabe Die Tür öffnet sich!. (Beim Prüfen werden nacheinander 'Schwert' und 'Drachenzahn' eingegeben.)",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Die Tür bleibt verschlossen.\nDie Tür öffnet sich!",
+          "stdin": [
+            "Schwert",
+            "Drachenzahn"
+          ]
+        }
       }
     ]
   }
