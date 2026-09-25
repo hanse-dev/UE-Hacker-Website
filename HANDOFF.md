@@ -184,12 +184,12 @@ automatisch auch auf dem Host sichtbar.
 
 ```bash
 npm run backup:db                 # lokal (nutzt DATA_DIR/DB_PATH wie die App selbst)
-docker compose exec app node src/scripts/backup-db.js   # im laufenden Prod-Container
+docker compose exec app node api/src/scripts/backup-db.js   # im laufenden Prod-Container
 ```
 
 **Empfehlung für den Server:** ein Cron-Job, z.B. täglich um 3 Uhr:
 ```
-0 3 * * * cd /pfad/zum/repo && docker compose exec -T app node src/scripts/backup-db.js >> /var/log/ue-hacker-backup.log 2>&1
+0 3 * * * cd /pfad/zum/repo && docker compose exec -T app node api/src/scripts/backup-db.js >> /var/log/ue-hacker-backup.log 2>&1
 ```
 Die Backups selbst liegen weiterhin auf demselben Server-Volume — für echten Schutz vor
 Datenverlust (Festplattendefekt, versehentliches Löschen) zusätzlich regelmäßig extern sichern
