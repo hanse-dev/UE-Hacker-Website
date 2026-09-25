@@ -21,6 +21,7 @@ from pathlib import Path
 SCRIPT_DIR = Path(__file__).resolve().parent
 VENDOR_MXW01 = SCRIPT_DIR / "vendor" / "mxw01" / "MXW01print.py"
 VENV_PYTHON = SCRIPT_DIR / "venv" / "bin" / "python3"
+LAST_ACCOUNT_FILE = SCRIPT_DIR / ".last-account.json"
 
 
 def reexec_in_venv() -> None:
@@ -80,8 +81,23 @@ def normalize_server_url(url: str) -> str:
     return urllib.parse.urlunsplit((parts.scheme, ascii_netloc, parts.path, parts.query, parts.fragment))
 
 
+def save_last_account(username: str, password: str, age_group: str, server_url_raw: str) -> None:
+    LAST_ACCOUNT_FILE.write_text(json.dumps({
+        "username": username,
+        "password": password,
+        "ageGroup": age_group,
+        "serverUrlRaw": server_url_raw,
+    }))
+
+
+def load_last_account() -> dict:
+    if not LAST_ACCOUNT_FILE.exists():
+        sys.exit(f"Kein zuvor angelegter Account gefunden ({LAST_ACCOUNT_FILE} existiert nicht).")
+    return json.loads(LAST_ACCOUNT_FILE.read_text())
+
+
 def generate_password() -> str:
-    word1, word2 = secrets.choice(PASSWORD_WORDS), secrets.choice(PASSWORD_WORDS)
+    word1, word2 = secrets.SystemRandom().sample(PASSWORD_WORDS, 2)
     digits = f"{secrets.randbelow(100):02d}"
     return f"{word1}-{word2}-{digits}"
 
@@ -237,33 +253,50 @@ def main() -> None:
     reexec_in_venv()
 
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("username", help="Gewünschter Benutzername (2-40 Zeichen, a-z/A-Z/0-9/._-)")
-    parser.add_argument("age_group", choices=["kinder", "jugendliche"], help="Altersgruppe")
+    parser.add_argument("username", nargs="?", help="Gewünschter Benutzername (2-40 Zeichen, a-z/A-Z/0-9/._-)")
+    parser.add_argument("age_group", nargs="?", choices=["kinder", "jugendliche"], help="Altersgruppe")
     parser.add_argument("--server-url", help="Überschreibt ACCOUNT_SERVER_URL aus .env")
     parser.add_argument("--printer-address", help="Überschreibt MXW01_PRINTER_ADDRESS aus .env")
     parser.add_argument("--no-print", action="store_true", help="Nur Account anlegen, nicht drucken")
+    parser.add_argument(
+        "--reprint", action="store_true",
+        help="Zuletzt angelegten Account erneut drucken (kein neuer Account, keine username/age_group nötig) — z.B. wenn der Druck vorher fehlgeschlagen ist",
+    )
     args = parser.parse_args()
 
     env = load_env_file(SCRIPT_DIR / ".env")
     server_url_raw = (args.server_url or env.get("ACCOUNT_SERVER_URL") or "").rstrip("/")
-    server_url = normalize_server_url(server_url_raw) if server_url_raw else ""
     printer_address = args.printer_address or env.get("MXW01_PRINTER_ADDRESS")
-    admin_password = env.get("ADMIN_PASSWORD") or getpass.getpass("Admin-Passwort der Website: ")
 
-    if not server_url:
-        sys.exit("ACCOUNT_SERVER_URL fehlt (in scripts/local-tools/.env setzen oder --server-url übergeben).")
+    if args.reprint:
+        account = load_last_account()
+        username = account["username"]
+        password = account["password"]
+        print(f"Drucke zuletzt angelegten Account erneut: '{username}'")
+    else:
+        if not args.username or not args.age_group:
+            parser.error("username und age_group sind nötig (außer bei --reprint)")
 
-    password = generate_password()
+        server_url = normalize_server_url(server_url_raw) if server_url_raw else ""
+        if not server_url:
+            sys.exit("ACCOUNT_SERVER_URL fehlt (in scripts/local-tools/.env setzen oder --server-url übergeben).")
 
-    login = api_request(f"{server_url}/api/admin/login", {"password": admin_password})
-    token = login["token"]
+        admin_password = env.get("ADMIN_PASSWORD") or getpass.getpass("Admin-Passwort der Website: ")
+        username = args.username
+        password = generate_password()
 
-    api_request(
-        f"{server_url}/api/admin/users",
-        {"username": args.username, "password": password, "ageGroup": args.age_group},
-        token=token,
-    )
-    print(f"Account '{args.username}' angelegt. Passwort: {password}")
+        login = api_request(f"{server_url}/api/admin/login", {"password": admin_password})
+        token = login["token"]
+
+        api_request(
+            f"{server_url}/api/admin/users",
+            {"username": username, "password": password, "ageGroup": args.age_group},
+            token=token,
+        )
+        print(f"Account '{username}' angelegt. Passwort: {password}")
+        # Vor dem Druckversuch speichern — falls der Druck fehlschlägt, kann man mit
+        # --reprint denselben Account (ohne neue Account-Anlage) erneut drucken.
+        save_last_account(username, password, args.age_group, server_url_raw)
 
     if args.no_print:
         return
@@ -271,7 +304,7 @@ def main() -> None:
     if not printer_address:
         sys.exit("MXW01_PRINTER_ADDRESS fehlt (in scripts/local-tools/.env setzen oder --printer-address übergeben).")
 
-    image_path = build_receipt_image(args.username, password, server_url_raw)
+    image_path = build_receipt_image(username, password, server_url_raw)
     try:
         print_receipt(image_path, printer_address)
     finally:

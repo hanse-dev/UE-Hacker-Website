@@ -47,7 +47,21 @@ Fragt nach dem Admin-Passwort (falls nicht in `.env` gesetzt), legt den Account 
 und Datum. Mit `--no-print` nur anlegen, ohne zu drucken (z.B. zum Testen ohne Drucker in
 Reichweite).
 
+Schlägt der Druck fehl (Drucker außer Reichweite, Bluetooth-Fehler, Papier leer), muss **kein**
+neuer Account angelegt werden — der zuletzt angelegte Account wird lokal gemerkt
+(`.last-account.json`, gitignored, Klartext-Passwort) und lässt sich erneut drucken:
+
+```bash
+python3 create-account-printout.py --reprint
+```
+
 ## Passwort-Format
 
 Zwei zufällige deutsche Wörter + zwei Ziffern, z.B. `Igel-Zug-79` — kurz genug zum Abschreiben,
 aber deutlich mehr Kombinationen als ein 4-stelliger PIN.
+
+## Größe des Ausdrucks anpassen
+
+`RECEIPT_FONT_SCALE` oben in `create-account-printout.py` (Default `1.4`) skaliert den ganzen
+Ausdruck. Benutzername/Passwort werden automatisch verkleinert, falls sie sonst über den Rahmen
+hinausragen würden (z.B. bei sehr langen Benutzernamen).
