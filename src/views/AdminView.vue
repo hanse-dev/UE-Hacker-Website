@@ -3,21 +3,29 @@
     <h1>{{ t('admin.title') }}</h1>
     <p class="admin-intro">{{ t('admin.intro') }}</p>
 
-    <div v-if="!token" class="admin-login-card">
+    <form v-if="!token" class="admin-login-card" @submit.prevent="login">
+      <input
+        type="text"
+        name="username"
+        autocomplete="username"
+        value="admin"
+        hidden
+        readonly
+      >
       <label class="field">
         <span>{{ t('admin.adminPassword') }}</span>
         <input
           v-model="password"
           type="password"
+          name="password"
           autocomplete="current-password"
-          @keydown.enter="login"
         >
       </label>
       <p v-if="error" class="error">{{ error }}</p>
-      <button type="button" class="btn-primary" :disabled="busy" @click="login">
+      <button type="submit" class="btn-primary" :disabled="busy">
         {{ busy ? t('admin.working') : t('admin.login') }}
       </button>
-    </div>
+    </form>
 
     <template v-else>
       <div class="admin-toolbar">

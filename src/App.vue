@@ -98,33 +98,35 @@
         </template>
 
         <template v-else>
-          <p class="login-hint">{{ t('auth.loginHint') }}</p>
-          <label class="login-field">
-            <span>{{ t('auth.username') }}</span>
-            <input
-              v-model="loginUsername"
-              autocomplete="username"
-              @keydown.enter="submitLogin"
-            >
-          </label>
-          <label class="login-field">
-            <span>{{ t('auth.password') }}</span>
-            <input
-              v-model="loginPassword"
-              type="password"
-              autocomplete="current-password"
-              @keydown.enter="submitLogin"
-            >
-          </label>
-          <p v-if="authError" class="login-error">{{ authError }}</p>
-          <div class="login-actions">
-            <button type="button" class="auth-btn ghost" @click="showLoginForm = false">
-              {{ t('auth.cancel') }}
-            </button>
-            <button type="button" class="auth-btn primary" :disabled="authBusy" @click="submitLogin">
-              {{ authBusy ? t('auth.working') : t('auth.login') }}
-            </button>
-          </div>
+          <form @submit.prevent="submitLogin">
+            <p class="login-hint">{{ t('auth.loginHint') }}</p>
+            <label class="login-field">
+              <span>{{ t('auth.username') }}</span>
+              <input
+                v-model="loginUsername"
+                name="username"
+                autocomplete="username"
+              >
+            </label>
+            <label class="login-field">
+              <span>{{ t('auth.password') }}</span>
+              <input
+                v-model="loginPassword"
+                type="password"
+                name="password"
+                autocomplete="current-password"
+              >
+            </label>
+            <p v-if="authError" class="login-error">{{ authError }}</p>
+            <div class="login-actions">
+              <button type="button" class="auth-btn ghost" @click="showLoginForm = false">
+                {{ t('auth.cancel') }}
+              </button>
+              <button type="submit" class="auth-btn primary" :disabled="authBusy">
+                {{ authBusy ? t('auth.working') : t('auth.login') }}
+              </button>
+            </div>
+          </form>
         </template>
       </div>
     </div>
