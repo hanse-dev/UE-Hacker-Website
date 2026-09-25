@@ -1,8 +1,8 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-09-25
-> **Aktueller Stand:** `main` ist aktuell, Branch `ki-labor-woche4` fügt Woche 4 "Training & Test"
-> hinzu (Wochen 5–8 offen, siehe Abschnitt 5). Profil zeigt Wochen-Zertifikate aus allen Kursen mit Wochen-Check (Python +
+> **Aktueller Stand:** `main` ist aktuell, Branch `ki-labor-woche4` fügt Woche 5 "Entscheidungsbäume"
+> hinzu (Wochen 6–8 offen, siehe Abschnitt 5). Profil zeigt Wochen-Zertifikate aus allen Kursen mit Wochen-Check (Python +
 > KI-Labor) inkl. direktem PDF-Download (3.69/3.70); ein "Kurs starten"-Gate blendet bei den 3
 > Wochen-Tour-Kursen Beschreibung/Struktur-Erklärung vor der eigentlichen Kurs-Tour aus (3.69).
 > Die beiden klar umsetzbaren `input()`-Lücken aus `todo.md` (Woche 4 + 9) sind geschlossen (3.71).
@@ -81,6 +81,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.71 | Woche 4 + 9: `input()`-Lücken aus `todo.md` geschlossen | Neuer `validation.stdin`-Schritt je Thema (Woche 4 Boss-3, Woche 9 Boss-1 "Eigener Eintrag"), DE+EN, ans Ende der Lektion/Notebook-Zellfolge angehängt statt eingefügt |
 | 3.72 | KI-Labor: Woche 3 "Nächste Nachbarn (k-NN)" | 5 Lektionen (Abstand, euklidische Distanz, 1-NN, Dictionary-Zählen + k nächste, kompletter k-NN-Klassifikator) + Debug + Mission + 3 Extra-Herausforderungen (gewichteter k-NN, Genauigkeit/bestes k, Unentschieden bei >2 Klassen) + eigener Wochen-Check |
 | 3.73 | KI-Labor: Woche 4 "Training & Test" | 5 Lektionen (Trainings-/Testdaten trennen, Genauigkeit, Vorhersagen sammeln, alles zusammenfügen, Overfitting an zu kleinem Datensatz) + Debug + Mission + 3 Extra-Herausforderungen (Ausreißer bei k=1 vs. k=3, Trainingsgröße, Overfitting-Erkennung) + eigener Wochen-Check |
+| 3.74 | KI-Labor: Woche 5 "Entscheidungsbäume" | 5 Lektionen (Schwellenwert-Entscheidung, Aufteilen+Reinheit messen, besten Trennwert automatisch finden, Baum bauen+klassifizieren, bestes Merkmal wählen) + Debug + Mission + 3 Extra-Herausforderungen (irrelevantes Merkmal ignorieren, Baum auf Testdaten prüfen, unvollkommener Baum vs. Baseline) + eigener Wochen-Check; alle Beispiele/Lösungen mit `python3` geprüft |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -259,8 +260,8 @@ Ausführlich in `todo.md`. Kurzfassung:
 - Zertifikat-PDF: E-Mail-Versand später (hängt an der Kontakt-Adresse, nicht selbst erfinden).
 - Überlegung (nicht entschieden): dritte Sprache; UI-Ternarys sind schon auf `t()`, offen nur Content-Suffixe.
 
-**Laufendes Kurs-Thema (siehe todo.md):** KI-Labor Woche 1–4 fertig, Wochen 5–8 offen
-(Entscheidungsbäume, Neuronale Netze I+II, Grenzen & Ethik — Wochenplan siehe `KURSPLAN.md`).
+**Laufendes Kurs-Thema (siehe todo.md):** KI-Labor Woche 1–5 fertig, Wochen 6–8 offen
+(Neuronale Netze I+II, Grenzen & Ethik — Wochenplan siehe `KURSPLAN.md`).
 Weitere Projekt-Kurs-Ideen in `PROJEKTIDEEN.md`. Roadmap: `VISION.md`.
 
 **Bewusst nicht geplant:** öffentliches Sign-up, Mailversand/Kontaktformular, Supabase als Pflicht.

@@ -6,7 +6,7 @@ import checks from '../content/ki-labor-checks/index.mjs';
 // dieselbe Wochenauswahl (KiLaborTour.vue, Kopie von JsGrundkursTour.vue) und dieselbe generische
 // Wochen-Tour (JsCourseTour.vue), aber engine="pyodide" (LessonView.vue) statt js-sandbox - wie
 // im 12-Wochen-Python-Kurs. Algorithmen werden komplett in reinem Python selbst geschrieben, kein
-// scikit-learn. Bislang sind Woche 1-3 umgesetzt, Wochen 4-8 sind "kommt noch".
+// scikit-learn. Bislang sind Woche 1-5 umgesetzt, Wochen 6-8 sind "kommt noch".
 //
 // Quiz + Zertifikat nutzen dasselbe System wie der 12-Wochen-Kurs (useWeekChecks.js/
 // WeekCheckPanel.vue/CodeChallenge.vue/useCertificatePdf.js), jetzt um einen courseKey-Parameter
@@ -17,6 +17,7 @@ const PROGRESS_KEY = 'ue-hacker-interactive-progress-ki-labor-woche1';
 const PROGRESS_KEY_WEEK2 = 'ue-hacker-interactive-progress-ki-labor-woche2';
 const PROGRESS_KEY_WEEK3 = 'ue-hacker-interactive-progress-ki-labor-woche3';
 const PROGRESS_KEY_WEEK4 = 'ue-hacker-interactive-progress-ki-labor-woche4';
+const PROGRESS_KEY_WEEK5 = 'ue-hacker-interactive-progress-ki-labor-woche5';
 
 function findQuestion(text) {
   const normalized = text.replace(/^\d+\.\s*/, '').trim();
@@ -80,17 +81,17 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
     }, PROGRESS_KEY);
   });
 
-  test('Wochenauswahl: 8 Kacheln, Woche 1-4 verfügbar, Rest "kommt noch"', async ({ page }) => {
+  test('Wochenauswahl: 8 Kacheln, Woche 1-5 verfügbar, Rest "kommt noch"', async ({ page }) => {
     await page.goto('/kurs/ki-labor');
     await page.locator('.btn-start-course').click();
     await expect(page.locator('.week-tile')).toHaveCount(8);
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 5; i++) {
       await expect(page.locator('.week-tile').nth(i)).not.toBeDisabled();
     }
-    for (let i = 4; i < 8; i++) {
+    for (let i = 5; i < 8; i++) {
       await expect(page.locator('.week-tile').nth(i)).toBeDisabled();
     }
-    await expect(page.locator('.week-tile-badge')).toHaveCount(4);
+    await expect(page.locator('.week-tile-badge')).toHaveCount(3);
   });
 
   test('Woche 1 anklicken öffnet die Wochen-Tour, "Andere Woche wählen" führt zurück', async ({ page }) => {
@@ -149,8 +150,17 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
     await expect(page.locator('.tour-breadcrumb')).toContainText('Training & Test');
   });
 
-  test('Deep-Link ?week=5 (noch nicht verfügbar) zeigt die Wochenauswahl statt der Tour', async ({ page }) => {
+  test('Deep-Link ?week=5 öffnet direkt die Wochen-Tour', async ({ page }) => {
     await page.goto('/kurs/ki-labor?week=5');
+    // 10 Lektionen (5 Lektion + Debug + Mission + 3 Extra-Herausforderung) + 1 Check-Punkt, da
+    // content/ki-labor-checks/week-5.json existiert (hasCheck=true).
+    await expect(page.locator('.stepper-step')).toHaveCount(11, { timeout: 15000 });
+    await expect(page.locator('.tour-breadcrumb')).toContainText('Woche 5');
+    await expect(page.locator('.tour-breadcrumb')).toContainText('Entscheidungsbäume');
+  });
+
+  test('Deep-Link ?week=6 (noch nicht verfügbar) zeigt die Wochenauswahl statt der Tour', async ({ page }) => {
+    await page.goto('/kurs/ki-labor?week=6');
     await expect(page.locator('.week-tile')).toHaveCount(8);
     await expect(page.locator('.stepper-step')).toHaveCount(0);
   });
@@ -683,6 +693,129 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
       page,
       1,
       'daten = [{\'x\': 1}, {\'x\': 2}, {\'x\': 3}, {\'x\': 4}, {\'x\': 5}, {\'x\': 6}]\ntrainingsdaten = daten[:4]\ntestdaten = daten[4:]\nprint(len(trainingsdaten))\nprint(len(testdaten))'
+    );
+
+    await expect(page.locator('.certificate-reveal')).toBeVisible({ timeout: 10000 });
+  });
+
+  test('Woche 5: Debug-Lektion mit fehlender Zählung/falscher Vergleichsrichtung/falschem Vergleich', async ({ page }) => {
+    await page.addInitScript((key) => {
+      localStorage.setItem(key, JSON.stringify({
+        version: 1,
+        completedLessonIds: ['lektion-01', 'lektion-02', 'lektion-03', 'lektion-04', 'lektion-05'],
+      }));
+    }, PROGRESS_KEY_WEEK5);
+    await page.goto('/kurs/ki-labor?week=5');
+    await page.locator('.stepper-step').nth(5).click();
+    await initKernel(page);
+
+    const first = page.locator('.task-block').first();
+    await first.locator('.btn-check').click();
+    await expect(first.locator('.feedback-error')).toBeVisible({ timeout: 10000 });
+
+    await solve(page, [
+      'def mehrheitsklasse(teil):\n    anzahl_je_klasse = {}\n    for beispiel in teil:\n        anzahl_je_klasse[beispiel["schirm"]] = anzahl_je_klasse.get(beispiel["schirm"], 0) + 1\n\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl_je_klasse:\n        anzahl = anzahl_je_klasse[klasse]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_klasse = klasse\n    return beste_klasse\n\nteil = [{"schirm": "nein"}, {"schirm": "ja"}, {"schirm": "ja"}]\nprint(mehrheitsklasse(teil))',
+      'def teile_bei_schwellenwert(daten, merkmal, schwelle):\n    links = [b for b in daten if b[merkmal] < schwelle]\n    rechts = [b for b in daten if b[merkmal] >= schwelle]\n    return links, rechts\n\ndaten = [{"regen": 10}, {"regen": 50}, {"regen": 90}]\nlinks, rechts = teile_bei_schwellenwert(daten, "regen", 50)\nprint(len(links))\nprint(len(rechts))',
+      'def mehrheitsklasse(teil):\n    anzahl_je_klasse = {}\n    for beispiel in teil:\n        anzahl_je_klasse[beispiel["schirm"]] = anzahl_je_klasse.get(beispiel["schirm"], 0) + 1\n\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl_je_klasse:\n        anzahl = anzahl_je_klasse[klasse]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_klasse = klasse\n    return beste_klasse\n\ndef anzahl_falsch(teil):\n    mehrheit = mehrheitsklasse(teil)\n    falsch = 0\n    for beispiel in teil:\n        if beispiel["schirm"] != mehrheit:\n            falsch += 1\n    return falsch\n\nteil = [{"schirm": "ja"}, {"schirm": "ja"}, {"schirm": "nein"}]\nprint(anzahl_falsch(teil))',
+    ]);
+  });
+
+  test('Kompletter Durchlauf Woche 5: alle Lektionen, Extra-Herausforderungen und der Wochen-Check', async ({ page }) => {
+    test.setTimeout(120000);
+    await page.goto('/kurs/ki-labor?week=5');
+    await initKernel(page);
+
+    // Lektion 1: Was ist ein Entscheidungsbaum?
+    await solve(page, [null, null, 'def party_drinnen(temperatur):\n    if temperatur < 15:\n        return "drinnen"\n    else:\n        return "draußen"\n\nprint(party_drinnen(10))\nprint(party_drinnen(25))']);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('1 abgeschlossen');
+
+    // Lektion 2: Wie gut ist eine Aufteilung?
+    await solve(page, [null, null, 'def teile_bei_schwellenwert(daten, merkmal, schwelle):\n    links = [b for b in daten if b[merkmal] < schwelle]\n    rechts = [b for b in daten if b[merkmal] >= schwelle]\n    return links, rechts\n\ndef mehrheitsklasse(teil):\n    anzahl_je_klasse = {}\n    for beispiel in teil:\n        anzahl_je_klasse[beispiel["schirm"]] = anzahl_je_klasse.get(beispiel["schirm"], 0) + 1\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl_je_klasse:\n        anzahl = anzahl_je_klasse[klasse]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_klasse = klasse\n    return beste_klasse\n\ndef anzahl_falsch(teil):\n    mehrheit = mehrheitsklasse(teil)\n    falsch = 0\n    for beispiel in teil:\n        if beispiel["schirm"] != mehrheit:\n            falsch += 1\n    return falsch\n\ndaten = [\n    {"regen": 80, "temperatur": 18, "schirm": "ja"},\n    {"regen": 90, "temperatur": 25, "schirm": "ja"},\n    {"regen": 70, "temperatur": 10, "schirm": "ja"},\n    {"regen": 60, "temperatur": 30, "schirm": "ja"},\n    {"regen": 20, "temperatur": 22, "schirm": "nein"},\n    {"regen": 10, "temperatur": 15, "schirm": "nein"},\n    {"regen": 30, "temperatur": 28, "schirm": "nein"},\n    {"regen": 15, "temperatur": 12, "schirm": "nein"},\n]\n\nlinks25, rechts25 = teile_bei_schwellenwert(daten, "regen", 25)\nprint(anzahl_falsch(links25) + anzahl_falsch(rechts25))\nlinks45, rechts45 = teile_bei_schwellenwert(daten, "regen", 45)\nprint(anzahl_falsch(links45) + anzahl_falsch(rechts45))']);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('2 abgeschlossen');
+
+    // Lektion 3: Automatisch den besten Trennwert finden.
+    await solve(page, [null, 'def teile_bei_schwellenwert(daten, merkmal, schwelle):\n    links = [b for b in daten if b[merkmal] < schwelle]\n    rechts = [b for b in daten if b[merkmal] >= schwelle]\n    return links, rechts\n\ndef mehrheitsklasse(teil):\n    anzahl_je_klasse = {}\n    for beispiel in teil:\n        anzahl_je_klasse[beispiel["bestanden"]] = anzahl_je_klasse.get(beispiel["bestanden"], 0) + 1\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl_je_klasse:\n        anzahl = anzahl_je_klasse[klasse]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_klasse = klasse\n    return beste_klasse\n\ndef anzahl_falsch(teil):\n    mehrheit = mehrheitsklasse(teil)\n    falsch = 0\n    for beispiel in teil:\n        if beispiel["bestanden"] != mehrheit:\n            falsch += 1\n    return falsch\n\ndef bester_schwellenwert(daten, merkmal):\n    werte = sorted(set(b[merkmal] for b in daten))\n    beste_schwelle = None\n    wenigste_fehler = None\n    for i in range(len(werte) - 1):\n        kandidat = (werte[i] + werte[i + 1]) / 2\n        links, rechts = teile_bei_schwellenwert(daten, merkmal, kandidat)\n        fehler = anzahl_falsch(links) + anzahl_falsch(rechts)\n        if wenigste_fehler is None or fehler < wenigste_fehler:\n            wenigste_fehler = fehler\n            beste_schwelle = kandidat\n    return beste_schwelle, wenigste_fehler\n\ndaten = [\n    {"punkte": 20, "bestanden": "nein"},\n    {"punkte": 35, "bestanden": "nein"},\n    {"punkte": 60, "bestanden": "ja"},\n    {"punkte": 75, "bestanden": "ja"},\n]\nprint(bester_schwellenwert(daten, "punkte"))']);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('3 abgeschlossen');
+
+    // Lektion 4: Der Baum selbst.
+    await solve(page, [null, 'def teile_bei_schwellenwert(daten, merkmal, schwelle):\n    links = [b for b in daten if b[merkmal] < schwelle]\n    rechts = [b for b in daten if b[merkmal] >= schwelle]\n    return links, rechts\n\ndef mehrheitsklasse(teil):\n    anzahl_je_klasse = {}\n    for beispiel in teil:\n        anzahl_je_klasse[beispiel["schirm"]] = anzahl_je_klasse.get(beispiel["schirm"], 0) + 1\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl_je_klasse:\n        anzahl = anzahl_je_klasse[klasse]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_klasse = klasse\n    return beste_klasse\n\ndef anzahl_falsch(teil):\n    mehrheit = mehrheitsklasse(teil)\n    falsch = 0\n    for beispiel in teil:\n        if beispiel["schirm"] != mehrheit:\n            falsch += 1\n    return falsch\n\ndef bester_schwellenwert(daten, merkmal):\n    werte = sorted(set(b[merkmal] for b in daten))\n    beste_schwelle = None\n    wenigste_fehler = None\n    for i in range(len(werte) - 1):\n        kandidat = (werte[i] + werte[i + 1]) / 2\n        links, rechts = teile_bei_schwellenwert(daten, merkmal, kandidat)\n        fehler = anzahl_falsch(links) + anzahl_falsch(rechts)\n        if wenigste_fehler is None or fehler < wenigste_fehler:\n            wenigste_fehler = fehler\n            beste_schwelle = kandidat\n    return beste_schwelle, wenigste_fehler\n\ndef baue_baum(daten, merkmal):\n    schwelle, _ = bester_schwellenwert(daten, merkmal)\n    links, rechts = teile_bei_schwellenwert(daten, merkmal, schwelle)\n    return {\n        "merkmal": merkmal,\n        "schwelle": schwelle,\n        "links": mehrheitsklasse(links),\n        "rechts": mehrheitsklasse(rechts),\n    }\n\ndaten = [\n    {"regen": 80, "temperatur": 18, "schirm": "ja"},\n    {"regen": 90, "temperatur": 25, "schirm": "ja"},\n    {"regen": 70, "temperatur": 10, "schirm": "ja"},\n    {"regen": 60, "temperatur": 30, "schirm": "ja"},\n    {"regen": 20, "temperatur": 22, "schirm": "nein"},\n    {"regen": 10, "temperatur": 15, "schirm": "nein"},\n    {"regen": 30, "temperatur": 28, "schirm": "nein"},\n    {"regen": 15, "temperatur": 12, "schirm": "nein"},\n]\n\nprint(baue_baum(daten, "temperatur"))']);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('4 abgeschlossen');
+
+    // Lektion 5: Das beste Merkmal wählen.
+    await solve(page, [null, 'def teile_bei_schwellenwert(daten, merkmal, schwelle):\n    links = [b for b in daten if b[merkmal] < schwelle]\n    rechts = [b for b in daten if b[merkmal] >= schwelle]\n    return links, rechts\n\ndef mehrheitsklasse(teil):\n    anzahl_je_klasse = {}\n    for beispiel in teil:\n        anzahl_je_klasse[beispiel["schirm"]] = anzahl_je_klasse.get(beispiel["schirm"], 0) + 1\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl_je_klasse:\n        anzahl = anzahl_je_klasse[klasse]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_klasse = klasse\n    return beste_klasse\n\ndef anzahl_falsch(teil):\n    mehrheit = mehrheitsklasse(teil)\n    falsch = 0\n    for beispiel in teil:\n        if beispiel["schirm"] != mehrheit:\n            falsch += 1\n    return falsch\n\ndef bester_schwellenwert(daten, merkmal):\n    werte = sorted(set(b[merkmal] for b in daten))\n    beste_schwelle = None\n    wenigste_fehler = None\n    for i in range(len(werte) - 1):\n        kandidat = (werte[i] + werte[i + 1]) / 2\n        links, rechts = teile_bei_schwellenwert(daten, merkmal, kandidat)\n        fehler = anzahl_falsch(links) + anzahl_falsch(rechts)\n        if wenigste_fehler is None or fehler < wenigste_fehler:\n            wenigste_fehler = fehler\n            beste_schwelle = kandidat\n    return beste_schwelle, wenigste_fehler\n\ndef bestes_merkmal(daten, merkmale):\n    bestes = None\n    wenigste_fehler = None\n    for merkmal in merkmale:\n        _, fehler = bester_schwellenwert(daten, merkmal)\n        if wenigste_fehler is None or fehler < wenigste_fehler:\n            wenigste_fehler = fehler\n            bestes = merkmal\n    return bestes\n\ndaten = [\n    {"regen": 80, "temperatur": 18, "schirm": "ja"},\n    {"regen": 90, "temperatur": 25, "schirm": "ja"},\n    {"regen": 70, "temperatur": 10, "schirm": "ja"},\n    {"regen": 60, "temperatur": 30, "schirm": "ja"},\n    {"regen": 20, "temperatur": 22, "schirm": "nein"},\n    {"regen": 10, "temperatur": 15, "schirm": "nein"},\n    {"regen": 30, "temperatur": 28, "schirm": "nein"},\n    {"regen": 15, "temperatur": 12, "schirm": "nein"},\n]\n\nprint(bestes_merkmal(daten, ["temperatur", "regen"]))']);
+    await expect(page.locator('.progress-count')).toContainText('5 abgeschlossen');
+    await expect(page.locator('.lesson-complete-box')).toBeVisible();
+    await page.locator('.btn-next').click();
+
+    // Debug-Lektion (fixe Loesungen, s.o.).
+    await solve(page, [
+      'def mehrheitsklasse(teil):\n    anzahl_je_klasse = {}\n    for beispiel in teil:\n        anzahl_je_klasse[beispiel["schirm"]] = anzahl_je_klasse.get(beispiel["schirm"], 0) + 1\n\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl_je_klasse:\n        anzahl = anzahl_je_klasse[klasse]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_klasse = klasse\n    return beste_klasse\n\nteil = [{"schirm": "nein"}, {"schirm": "ja"}, {"schirm": "ja"}]\nprint(mehrheitsklasse(teil))',
+      'def teile_bei_schwellenwert(daten, merkmal, schwelle):\n    links = [b for b in daten if b[merkmal] < schwelle]\n    rechts = [b for b in daten if b[merkmal] >= schwelle]\n    return links, rechts\n\ndaten = [{"regen": 10}, {"regen": 50}, {"regen": 90}]\nlinks, rechts = teile_bei_schwellenwert(daten, "regen", 50)\nprint(len(links))\nprint(len(rechts))',
+      'def mehrheitsklasse(teil):\n    anzahl_je_klasse = {}\n    for beispiel in teil:\n        anzahl_je_klasse[beispiel["schirm"]] = anzahl_je_klasse.get(beispiel["schirm"], 0) + 1\n\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl_je_klasse:\n        anzahl = anzahl_je_klasse[klasse]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_klasse = klasse\n    return beste_klasse\n\ndef anzahl_falsch(teil):\n    mehrheit = mehrheitsklasse(teil)\n    falsch = 0\n    for beispiel in teil:\n        if beispiel["schirm"] != mehrheit:\n            falsch += 1\n    return falsch\n\nteil = [{"schirm": "ja"}, {"schirm": "ja"}, {"schirm": "nein"}]\nprint(anzahl_falsch(teil))',
+    ]);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('6 abgeschlossen');
+
+    // Mission: eigener Pflanzen-Datensatz aufteilen, besten Trennwert finden, Baum bauen.
+    await solve(page, [
+      'def teile_bei_schwellenwert(daten, merkmal, schwelle):\n    links = [b for b in daten if b[merkmal] < schwelle]\n    rechts = [b for b in daten if b[merkmal] >= schwelle]\n    return links, rechts\n\npflanzen = [\n    {"bodenfeuchtigkeit": 10, "giessen": "ja"},\n    {"bodenfeuchtigkeit": 15, "giessen": "ja"},\n    {"bodenfeuchtigkeit": 20, "giessen": "ja"},\n    {"bodenfeuchtigkeit": 70, "giessen": "nein"},\n    {"bodenfeuchtigkeit": 80, "giessen": "nein"},\n    {"bodenfeuchtigkeit": 75, "giessen": "nein"},\n]\nlinks, rechts = teile_bei_schwellenwert(pflanzen, "bodenfeuchtigkeit", 40)\nprint(len(links))\nprint(len(rechts))',
+      'def teile_bei_schwellenwert(daten, merkmal, schwelle):\n    links = [b for b in daten if b[merkmal] < schwelle]\n    rechts = [b for b in daten if b[merkmal] >= schwelle]\n    return links, rechts\n\ndef mehrheitsklasse(teil):\n    anzahl_je_klasse = {}\n    for beispiel in teil:\n        anzahl_je_klasse[beispiel["giessen"]] = anzahl_je_klasse.get(beispiel["giessen"], 0) + 1\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl_je_klasse:\n        anzahl = anzahl_je_klasse[klasse]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_klasse = klasse\n    return beste_klasse\n\ndef anzahl_falsch(teil):\n    mehrheit = mehrheitsklasse(teil)\n    falsch = 0\n    for beispiel in teil:\n        if beispiel["giessen"] != mehrheit:\n            falsch += 1\n    return falsch\n\ndef bester_schwellenwert(daten, merkmal):\n    werte = sorted(set(b[merkmal] for b in daten))\n    beste_schwelle = None\n    wenigste_fehler = None\n    for i in range(len(werte) - 1):\n        kandidat = (werte[i] + werte[i + 1]) / 2\n        links, rechts = teile_bei_schwellenwert(daten, merkmal, kandidat)\n        fehler = anzahl_falsch(links) + anzahl_falsch(rechts)\n        if wenigste_fehler is None or fehler < wenigste_fehler:\n            wenigste_fehler = fehler\n            beste_schwelle = kandidat\n    return beste_schwelle, wenigste_fehler\n\npflanzen = [\n    {"bodenfeuchtigkeit": 10, "giessen": "ja"},\n    {"bodenfeuchtigkeit": 15, "giessen": "ja"},\n    {"bodenfeuchtigkeit": 20, "giessen": "ja"},\n    {"bodenfeuchtigkeit": 70, "giessen": "nein"},\n    {"bodenfeuchtigkeit": 80, "giessen": "nein"},\n    {"bodenfeuchtigkeit": 75, "giessen": "nein"},\n]\nprint(bester_schwellenwert(pflanzen, "bodenfeuchtigkeit"))',
+      'def teile_bei_schwellenwert(daten, merkmal, schwelle):\n    links = [b for b in daten if b[merkmal] < schwelle]\n    rechts = [b for b in daten if b[merkmal] >= schwelle]\n    return links, rechts\n\ndef mehrheitsklasse(teil):\n    anzahl_je_klasse = {}\n    for beispiel in teil:\n        anzahl_je_klasse[beispiel["giessen"]] = anzahl_je_klasse.get(beispiel["giessen"], 0) + 1\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl_je_klasse:\n        anzahl = anzahl_je_klasse[klasse]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_klasse = klasse\n    return beste_klasse\n\ndef anzahl_falsch(teil):\n    mehrheit = mehrheitsklasse(teil)\n    falsch = 0\n    for beispiel in teil:\n        if beispiel["giessen"] != mehrheit:\n            falsch += 1\n    return falsch\n\ndef bester_schwellenwert(daten, merkmal):\n    werte = sorted(set(b[merkmal] for b in daten))\n    beste_schwelle = None\n    wenigste_fehler = None\n    for i in range(len(werte) - 1):\n        kandidat = (werte[i] + werte[i + 1]) / 2\n        links, rechts = teile_bei_schwellenwert(daten, merkmal, kandidat)\n        fehler = anzahl_falsch(links) + anzahl_falsch(rechts)\n        if wenigste_fehler is None or fehler < wenigste_fehler:\n            wenigste_fehler = fehler\n            beste_schwelle = kandidat\n    return beste_schwelle, wenigste_fehler\n\ndef baue_baum(daten, merkmal):\n    schwelle, _ = bester_schwellenwert(daten, merkmal)\n    links, rechts = teile_bei_schwellenwert(daten, merkmal, schwelle)\n    return {\n        "merkmal": merkmal,\n        "schwelle": schwelle,\n        "links": mehrheitsklasse(links),\n        "rechts": mehrheitsklasse(rechts),\n    }\n\ndef klassifiziere(baum, beispiel):\n    if beispiel[baum["merkmal"]] < baum["schwelle"]:\n        return baum["links"]\n    else:\n        return baum["rechts"]\n\npflanzen = [\n    {"bodenfeuchtigkeit": 10, "giessen": "ja"},\n    {"bodenfeuchtigkeit": 15, "giessen": "ja"},\n    {"bodenfeuchtigkeit": 20, "giessen": "ja"},\n    {"bodenfeuchtigkeit": 70, "giessen": "nein"},\n    {"bodenfeuchtigkeit": 80, "giessen": "nein"},\n    {"bodenfeuchtigkeit": 75, "giessen": "nein"},\n]\nbaum = baue_baum(pflanzen, "bodenfeuchtigkeit")\nprint(klassifiziere(baum, {"bodenfeuchtigkeit": 5}))\nprint(klassifiziere(baum, {"bodenfeuchtigkeit": 90}))',
+    ]);
+    await expect(page.locator('.progress-count')).toContainText('7 abgeschlossen');
+
+    // Mission abgeschlossen, danach folgt ein Boss-Abschnitt (Extra-Herausforderung) UND ein
+    // Check -> "Weiter" zeigt eine Wahl-Seite statt direkt zum Check zu springen.
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.branch-choice-page')).toBeVisible();
+    await page.locator('[data-branch="boss"]').click();
+
+    const helferFunktionen = 'def teile_bei_schwellenwert(daten, merkmal, schwelle):\n    links = [b for b in daten if b[merkmal] < schwelle]\n    rechts = [b for b in daten if b[merkmal] >= schwelle]\n    return links, rechts\n\ndef mehrheitsklasse(teil):\n    anzahl_je_klasse = {}\n    for beispiel in teil:\n        anzahl_je_klasse[beispiel["schirm"]] = anzahl_je_klasse.get(beispiel["schirm"], 0) + 1\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl_je_klasse:\n        anzahl = anzahl_je_klasse[klasse]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_klasse = klasse\n    return beste_klasse\n\ndef anzahl_falsch(teil):\n    mehrheit = mehrheitsklasse(teil)\n    falsch = 0\n    for beispiel in teil:\n        if beispiel["schirm"] != mehrheit:\n            falsch += 1\n    return falsch\n\ndef bester_schwellenwert(daten, merkmal):\n    werte = sorted(set(b[merkmal] for b in daten))\n    beste_schwelle = None\n    wenigste_fehler = None\n    for i in range(len(werte) - 1):\n        kandidat = (werte[i] + werte[i + 1]) / 2\n        links, rechts = teile_bei_schwellenwert(daten, merkmal, kandidat)\n        fehler = anzahl_falsch(links) + anzahl_falsch(rechts)\n        if wenigste_fehler is None or fehler < wenigste_fehler:\n            wenigste_fehler = fehler\n            beste_schwelle = kandidat\n    return beste_schwelle, wenigste_fehler\n\ndef bestes_merkmal(daten, merkmale):\n    bestes = None\n    wenigste_fehler = None\n    for merkmal in merkmale:\n        _, fehler = bester_schwellenwert(daten, merkmal)\n        if wenigste_fehler is None or fehler < wenigste_fehler:\n            wenigste_fehler = fehler\n            bestes = merkmal\n    return bestes\n\n';
+    const datenB1 = 'daten = [\n    {"regen": 80, "temperatur": 18, "wochentag": 3, "schirm": "ja"},\n    {"regen": 90, "temperatur": 25, "wochentag": 6, "schirm": "ja"},\n    {"regen": 70, "temperatur": 10, "wochentag": 1, "schirm": "ja"},\n    {"regen": 60, "temperatur": 30, "wochentag": 5, "schirm": "ja"},\n    {"regen": 20, "temperatur": 22, "wochentag": 2, "schirm": "nein"},\n    {"regen": 10, "temperatur": 15, "wochentag": 7, "schirm": "nein"},\n    {"regen": 30, "temperatur": 28, "wochentag": 4, "schirm": "nein"},\n    {"regen": 15, "temperatur": 12, "wochentag": 1, "schirm": "nein"},\n]\n';
+
+    // Boss 1: drei Merkmale, nur eines zaehlt.
+    await solve(page, [
+      helferFunktionen + datenB1 + 'print(bestes_merkmal(daten, ["temperatur", "wochentag", "regen"]))',
+      helferFunktionen + datenB1 + 'print(bestes_merkmal(daten, ["wochentag", "regen", "temperatur"]))',
+      helferFunktionen + datenB1 + 'print(bester_schwellenwert(daten, "regen")[1])\nprint(bester_schwellenwert(daten, "temperatur")[1])\nprint(bester_schwellenwert(daten, "wochentag")[1])',
+    ]);
+    await page.locator('.btn-next').click();
+
+    const baumFunktionen = helferFunktionen + 'def baue_baum(daten, merkmal):\n    schwelle, _ = bester_schwellenwert(daten, merkmal)\n    links, rechts = teile_bei_schwellenwert(daten, merkmal, schwelle)\n    return {\n        "merkmal": merkmal,\n        "schwelle": schwelle,\n        "links": mehrheitsklasse(links),\n        "rechts": mehrheitsklasse(rechts),\n    }\n\ndef klassifiziere(baum, beispiel):\n    if beispiel[baum["merkmal"]] < baum["schwelle"]:\n        return baum["links"]\n    return baum["rechts"]\n\ndef ist_richtig(vorhersage, erwartet):\n    return vorhersage == erwartet\n\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if ist_richtig(vorhersagen[i], erwartete_werte[i]):\n            richtig += 1\n    return round(richtig / len(vorhersagen) * 100)\n\n';
+    const trainingsdatenB2 = 'trainingsdaten = [\n    {"regen": 80, "temperatur": 18, "schirm": "ja"},\n    {"regen": 90, "temperatur": 25, "schirm": "ja"},\n    {"regen": 70, "temperatur": 10, "schirm": "ja"},\n    {"regen": 20, "temperatur": 22, "schirm": "nein"},\n    {"regen": 10, "temperatur": 15, "schirm": "nein"},\n    {"regen": 30, "temperatur": 28, "schirm": "nein"},\n]\n';
+    const testdatenB2 = 'testdaten = [\n    {"regen": 65, "temperatur": 20, "schirm": "ja"},\n    {"regen": 12, "temperatur": 18, "schirm": "nein"},\n]\n';
+
+    // Boss 2: Baum trainieren, auf echten Testdaten pruefen.
+    await solve(page, [
+      baumFunktionen + trainingsdatenB2 + 'bestes = bestes_merkmal(trainingsdaten, ["regen", "temperatur"])\nbaum = baue_baum(trainingsdaten, bestes)\nprint(baum)',
+      baumFunktionen + trainingsdatenB2 + testdatenB2 + 'bestes = bestes_merkmal(trainingsdaten, ["regen", "temperatur"])\nbaum = baue_baum(trainingsdaten, bestes)\nvorhersagen = [klassifiziere(baum, b) for b in testdaten]\nerwartete_werte = [b["schirm"] for b in testdaten]\nprint(genauigkeit(vorhersagen, erwartete_werte))',
+      baumFunktionen + trainingsdatenB2 + testdatenB2 + 'baum = baue_baum(trainingsdaten, "temperatur")\nvorhersagen = [klassifiziere(baum, b) for b in testdaten]\nerwartete_werte = [b["schirm"] for b in testdaten]\nprint(genauigkeit(vorhersagen, erwartete_werte))',
+    ]);
+    await page.locator('.btn-next').click();
+
+    const datenB3 = 'daten = [\n    {"regen": 80, "schirm": "ja"},\n    {"regen": 75, "schirm": "ja"},\n    {"regen": 55, "schirm": "ja"},\n    {"regen": 45, "schirm": "nein"},\n    {"regen": 40, "schirm": "ja"},\n    {"regen": 35, "schirm": "nein"},\n    {"regen": 20, "schirm": "nein"},\n    {"regen": 15, "schirm": "nein"},\n]\n';
+
+    // Boss 3: wenn keine Schwelle perfekt trennt.
+    await solve(page, [
+      helferFunktionen + datenB3 + 'print(bester_schwellenwert(daten, "regen"))',
+      baumFunktionen + datenB3 + 'baum = baue_baum(daten, "regen")\nvorhersagen = [klassifiziere(baum, b) for b in daten]\nerwartete_werte = [b["schirm"] for b in daten]\nprint(genauigkeit(vorhersagen, erwartete_werte))',
+      baumFunktionen + datenB3 + 'baum = baue_baum(daten, "regen")\nvorhersagen = [klassifiziere(baum, b) for b in daten]\nerwartete_werte = [b["schirm"] for b in daten]\nprint(genauigkeit(vorhersagen, erwartete_werte))\nbaseline = [mehrheitsklasse(daten) for _ in daten]\nprint(genauigkeit(baseline, erwartete_werte))',
+    ]);
+    // Letzte Lektion (boss-03) abgeschlossen, kein weiterer Boss -> "Weiter" springt direkt zum
+    // Wochen-Check (kein Mission->Boss-Uebergang mehr, also keine erneute Wahl-Seite).
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.week-check-panel')).toBeVisible({ timeout: 15000 });
+
+    await passWeekQuiz(page);
+    await passCodingChallenge(page, 0, 'def teile_bei_schwellenwert(daten, merkmal, schwelle):\n    links = [b for b in daten if b[merkmal] < schwelle]\n    rechts = [b for b in daten if b[merkmal] >= schwelle]\n    return links, rechts\n\ndef mehrheitsklasse(teil):\n    anzahl_je_klasse = {}\n    for beispiel in teil:\n        anzahl_je_klasse[beispiel["wert"]] = anzahl_je_klasse.get(beispiel["wert"], 0) + 1\n    beste = None\n    bester_wert = -1\n    for klasse in anzahl_je_klasse:\n        if anzahl_je_klasse[klasse] > bester_wert:\n            bester_wert = anzahl_je_klasse[klasse]\n            beste = klasse\n    return beste\n\ndaten = [{"x": 10, "wert": "A"}, {"x": 20, "wert": "A"}, {"x": 50, "wert": "B"}, {"x": 60, "wert": "B"}]\nlinks, rechts = teile_bei_schwellenwert(daten, "x", 35)\nprint(mehrheitsklasse(links))\nprint(mehrheitsklasse(rechts))');
+    await passCodingChallenge(
+      page,
+      1,
+      'def klassifiziere(baum, beispiel):\n    if beispiel[baum["merkmal"]] < baum["schwelle"]:\n        return baum["links"]\n    return baum["rechts"]\n\nbaum = {"merkmal": "x", "schwelle": 35, "links": "A", "rechts": "B"}\nprint(klassifiziere(baum, {"x": 15}))\nprint(klassifiziere(baum, {"x": 80}))'
     );
 
     await expect(page.locator('.certificate-reveal')).toBeVisible({ timeout: 10000 });

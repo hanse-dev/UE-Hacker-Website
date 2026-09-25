@@ -1,0 +1,363 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Was ist ein Entscheidungsbaum?",
+    "file": "lektion-01.md",
+    "lessonSummary": "Ein Entscheidungsbaum stellt Ja/Nein-Fragen zu Merkmalen - schon eine einzelne if/else-Funktion mit einem Schwellenwert ist ein winziger Baum.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: eine einfache if/else-Entscheidung anhand eines Schwellenwerts.",
+        "example": true,
+        "codeTemplate": "def schirm_mitnehmen(regen_prozent):\n    if regen_prozent >= 50:\n        return \"ja\"\n    else:\n        return \"nein\"\n\nprint(schirm_mitnehmen(80))\nprint(schirm_mitnehmen(20))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "ja\nnein"
+        }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: dieselbe Entscheidung für mehrere Werte in einer Schleife.",
+        "example": true,
+        "codeTemplate": "def schirm_mitnehmen(regen_prozent):\n    if regen_prozent >= 50:\n        return \"ja\"\n    else:\n        return \"nein\"\n\nregenwerte = [80, 90, 20, 10]\nfor regen in regenwerte:\n    print(schirm_mitnehmen(regen))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "ja\nja\nnein\nnein"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion party_drinnen(temperatur), die 'drinnen' zurückgibt, wenn temperatur kleiner als 15 ist, sonst 'draußen'. Gib party_drinnen(10) und party_drinnen(25) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "drinnen\ndraußen"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Wie gut ist eine Aufteilung?",
+    "file": "lektion-02.md",
+    "lessonSummary": "teile_bei_schwellenwert() zerlegt Daten in zwei Gruppen, mehrheitsklasse() und anzahl_falsch() messen, wie rein (fehlerfrei) diese Aufteilung ist.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Daten bei einem Schwellenwert in zwei Gruppen aufteilen.",
+        "example": true,
+        "codeTemplate": "def teile_bei_schwellenwert(daten, merkmal, schwelle):\n    links = [b for b in daten if b[merkmal] < schwelle]\n    rechts = [b for b in daten if b[merkmal] >= schwelle]\n    return links, rechts\n\ndaten = [\n    {\"regen\": 80, \"temperatur\": 18, \"schirm\": \"ja\"},\n    {\"regen\": 90, \"temperatur\": 25, \"schirm\": \"ja\"},\n    {\"regen\": 70, \"temperatur\": 10, \"schirm\": \"ja\"},\n    {\"regen\": 60, \"temperatur\": 30, \"schirm\": \"ja\"},\n    {\"regen\": 20, \"temperatur\": 22, \"schirm\": \"nein\"},\n    {\"regen\": 10, \"temperatur\": 15, \"schirm\": \"nein\"},\n    {\"regen\": 30, \"temperatur\": 28, \"schirm\": \"nein\"},\n    {\"regen\": 15, \"temperatur\": 12, \"schirm\": \"nein\"},\n]\n\nlinks, rechts = teile_bei_schwellenwert(daten, \"regen\", 50)\nprint(len(links))\nprint(len(rechts))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "4\n4"
+        }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: die Mehrheitsklasse und die Fehleranzahl je Gruppe berechnen.",
+        "example": true,
+        "codeTemplate": "def teile_bei_schwellenwert(daten, merkmal, schwelle):\n    links = [b for b in daten if b[merkmal] < schwelle]\n    rechts = [b for b in daten if b[merkmal] >= schwelle]\n    return links, rechts\n\ndef mehrheitsklasse(teil):\n    anzahl_je_klasse = {}\n    for beispiel in teil:\n        anzahl_je_klasse[beispiel[\"schirm\"]] = anzahl_je_klasse.get(beispiel[\"schirm\"], 0) + 1\n\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl_je_klasse:\n        anzahl = anzahl_je_klasse[klasse]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_klasse = klasse\n    return beste_klasse\n\ndef anzahl_falsch(teil):\n    mehrheit = mehrheitsklasse(teil)\n    falsch = 0\n    for beispiel in teil:\n        if beispiel[\"schirm\"] != mehrheit:\n            falsch += 1\n    return falsch\n\ndaten = [\n    {\"regen\": 80, \"temperatur\": 18, \"schirm\": \"ja\"},\n    {\"regen\": 90, \"temperatur\": 25, \"schirm\": \"ja\"},\n    {\"regen\": 70, \"temperatur\": 10, \"schirm\": \"ja\"},\n    {\"regen\": 60, \"temperatur\": 30, \"schirm\": \"ja\"},\n    {\"regen\": 20, \"temperatur\": 22, \"schirm\": \"nein\"},\n    {\"regen\": 10, \"temperatur\": 15, \"schirm\": \"nein\"},\n    {\"regen\": 30, \"temperatur\": 28, \"schirm\": \"nein\"},\n    {\"regen\": 15, \"temperatur\": 12, \"schirm\": \"nein\"},\n]\n\nlinks, rechts = teile_bei_schwellenwert(daten, \"regen\", 50)\nprint(mehrheitsklasse(links))\nprint(mehrheitsklasse(rechts))\nprint(anzahl_falsch(links))\nprint(anzahl_falsch(rechts))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "nein\nja\n0\n0"
+        }
+      },
+      {
+        "instruction": "Schreibe teile_bei_schwellenwert(daten, merkmal, schwelle), mehrheitsklasse(teil) und anzahl_falsch(teil) wie im Beispiel, mit derselben daten-Liste (die acht Wetter-Beispiele mit regen/temperatur/schirm). Teile bei schwelle=25 auf und gib anzahl_falsch(links) + anzahl_falsch(rechts) aus. Teile die Daten dann erneut bei schwelle=45 auf und gib die Summe ebenfalls aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1\n0",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Automatisch den besten Trennwert finden",
+    "file": "lektion-03.md",
+    "lessonSummary": "bester_schwellenwert() probiert automatisch alle sinnvollen Trennwerte aus und behält den mit den wenigsten Fehlern.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: den besten Schwellenwert für zwei verschiedene Merkmale automatisch finden.",
+        "example": true,
+        "codeTemplate": "def teile_bei_schwellenwert(daten, merkmal, schwelle):\n    links = [b for b in daten if b[merkmal] < schwelle]\n    rechts = [b for b in daten if b[merkmal] >= schwelle]\n    return links, rechts\n\ndef mehrheitsklasse(teil):\n    anzahl_je_klasse = {}\n    for beispiel in teil:\n        anzahl_je_klasse[beispiel[\"schirm\"]] = anzahl_je_klasse.get(beispiel[\"schirm\"], 0) + 1\n\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl_je_klasse:\n        anzahl = anzahl_je_klasse[klasse]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_klasse = klasse\n    return beste_klasse\n\ndef anzahl_falsch(teil):\n    mehrheit = mehrheitsklasse(teil)\n    falsch = 0\n    for beispiel in teil:\n        if beispiel[\"schirm\"] != mehrheit:\n            falsch += 1\n    return falsch\n\ndef bester_schwellenwert(daten, merkmal):\n    werte = sorted(set(b[merkmal] for b in daten))\n    beste_schwelle = None\n    wenigste_fehler = None\n    for i in range(len(werte) - 1):\n        kandidat = (werte[i] + werte[i + 1]) / 2\n        links, rechts = teile_bei_schwellenwert(daten, merkmal, kandidat)\n        fehler = anzahl_falsch(links) + anzahl_falsch(rechts)\n        if wenigste_fehler is None or fehler < wenigste_fehler:\n            wenigste_fehler = fehler\n            beste_schwelle = kandidat\n    return beste_schwelle, wenigste_fehler\n\ndaten = [\n    {\"regen\": 80, \"temperatur\": 18, \"schirm\": \"ja\"},\n    {\"regen\": 90, \"temperatur\": 25, \"schirm\": \"ja\"},\n    {\"regen\": 70, \"temperatur\": 10, \"schirm\": \"ja\"},\n    {\"regen\": 60, \"temperatur\": 30, \"schirm\": \"ja\"},\n    {\"regen\": 20, \"temperatur\": 22, \"schirm\": \"nein\"},\n    {\"regen\": 10, \"temperatur\": 15, \"schirm\": \"nein\"},\n    {\"regen\": 30, \"temperatur\": 28, \"schirm\": \"nein\"},\n    {\"regen\": 15, \"temperatur\": 12, \"schirm\": \"nein\"},\n]\n\nprint(bester_schwellenwert(daten, \"regen\"))\nprint(bester_schwellenwert(daten, \"temperatur\"))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "(45.0, 0)\n(11.0, 3)"
+        }
+      },
+      {
+        "instruction": "Kopiere teile_bei_schwellenwert(daten, merkmal, schwelle), mehrheitsklasse(teil) (Label-Feld 'bestanden'), anzahl_falsch(teil) und bester_schwellenwert(daten, merkmal) aus dem Beispiel. Erstelle eine Liste daten mit den vier Dictionaries {'punkte': 20, 'bestanden': 'nein'}, {'punkte': 35, 'bestanden': 'nein'}, {'punkte': 60, 'bestanden': 'ja'} und {'punkte': 75, 'bestanden': 'ja'}. Rufe bester_schwellenwert(daten, 'punkte') auf und gib das Ergebnis aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "(47.5, 0)",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Der Baum selbst",
+    "file": "lektion-04.md",
+    "lessonSummary": "baue_baum() speichert Merkmal, Schwelle und Vorhersage je Seite in einem Dictionary, klassifiziere() nutzt es, um neue Beispiele vorherzusagen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: einen Baum bauen und damit neue Beispiele klassifizieren.",
+        "example": true,
+        "codeTemplate": "def teile_bei_schwellenwert(daten, merkmal, schwelle):\n    links = [b for b in daten if b[merkmal] < schwelle]\n    rechts = [b for b in daten if b[merkmal] >= schwelle]\n    return links, rechts\n\ndef mehrheitsklasse(teil):\n    anzahl_je_klasse = {}\n    for beispiel in teil:\n        anzahl_je_klasse[beispiel[\"schirm\"]] = anzahl_je_klasse.get(beispiel[\"schirm\"], 0) + 1\n\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl_je_klasse:\n        anzahl = anzahl_je_klasse[klasse]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_klasse = klasse\n    return beste_klasse\n\ndef anzahl_falsch(teil):\n    mehrheit = mehrheitsklasse(teil)\n    falsch = 0\n    for beispiel in teil:\n        if beispiel[\"schirm\"] != mehrheit:\n            falsch += 1\n    return falsch\n\ndef bester_schwellenwert(daten, merkmal):\n    werte = sorted(set(b[merkmal] for b in daten))\n    beste_schwelle = None\n    wenigste_fehler = None\n    for i in range(len(werte) - 1):\n        kandidat = (werte[i] + werte[i + 1]) / 2\n        links, rechts = teile_bei_schwellenwert(daten, merkmal, kandidat)\n        fehler = anzahl_falsch(links) + anzahl_falsch(rechts)\n        if wenigste_fehler is None or fehler < wenigste_fehler:\n            wenigste_fehler = fehler\n            beste_schwelle = kandidat\n    return beste_schwelle, wenigste_fehler\n\ndef baue_baum(daten, merkmal):\n    schwelle, _ = bester_schwellenwert(daten, merkmal)\n    links, rechts = teile_bei_schwellenwert(daten, merkmal, schwelle)\n    return {\n        \"merkmal\": merkmal,\n        \"schwelle\": schwelle,\n        \"links\": mehrheitsklasse(links),\n        \"rechts\": mehrheitsklasse(rechts),\n    }\n\ndef klassifiziere(baum, beispiel):\n    if beispiel[baum[\"merkmal\"]] < baum[\"schwelle\"]:\n        return baum[\"links\"]\n    else:\n        return baum[\"rechts\"]\n\ndaten = [\n    {\"regen\": 80, \"temperatur\": 18, \"schirm\": \"ja\"},\n    {\"regen\": 90, \"temperatur\": 25, \"schirm\": \"ja\"},\n    {\"regen\": 70, \"temperatur\": 10, \"schirm\": \"ja\"},\n    {\"regen\": 60, \"temperatur\": 30, \"schirm\": \"ja\"},\n    {\"regen\": 20, \"temperatur\": 22, \"schirm\": \"nein\"},\n    {\"regen\": 10, \"temperatur\": 15, \"schirm\": \"nein\"},\n    {\"regen\": 30, \"temperatur\": 28, \"schirm\": \"nein\"},\n    {\"regen\": 15, \"temperatur\": 12, \"schirm\": \"nein\"},\n]\n\nbaum = baue_baum(daten, \"regen\")\nprint(baum)\nprint(klassifiziere(baum, {\"regen\": 65, \"temperatur\": 20}))\nprint(klassifiziere(baum, {\"regen\": 5, \"temperatur\": 20}))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'merkmal': 'regen', 'schwelle': 45.0, 'links': 'nein', 'rechts': 'ja'}\nja\nnein"
+        }
+      },
+      {
+        "instruction": "Kopiere teile_bei_schwellenwert(daten, merkmal, schwelle), mehrheitsklasse(teil), anzahl_falsch(teil), bester_schwellenwert(daten, merkmal) und baue_baum(daten, merkmal) aus dem Beispiel, mit derselben daten-Liste. Baue jetzt einen Baum für das Merkmal 'temperatur' statt 'regen' (baue_baum(daten, 'temperatur')) und gib ihn aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'merkmal': 'temperatur', 'schwelle': 11.0, 'links': 'ja', 'rechts': 'nein'}",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Das beste Merkmal wählen",
+    "file": "lektion-05.md",
+    "lessonSummary": "bestes_merkmal() vergleicht mehrere Merkmale und wählt automatisch das, das die Daten am saubersten trennt.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: automatisch das beste von zwei Merkmalen wählen.",
+        "example": true,
+        "codeTemplate": "def teile_bei_schwellenwert(daten, merkmal, schwelle):\n    links = [b for b in daten if b[merkmal] < schwelle]\n    rechts = [b for b in daten if b[merkmal] >= schwelle]\n    return links, rechts\n\ndef mehrheitsklasse(teil):\n    anzahl_je_klasse = {}\n    for beispiel in teil:\n        anzahl_je_klasse[beispiel[\"schirm\"]] = anzahl_je_klasse.get(beispiel[\"schirm\"], 0) + 1\n\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl_je_klasse:\n        anzahl = anzahl_je_klasse[klasse]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_klasse = klasse\n    return beste_klasse\n\ndef anzahl_falsch(teil):\n    mehrheit = mehrheitsklasse(teil)\n    falsch = 0\n    for beispiel in teil:\n        if beispiel[\"schirm\"] != mehrheit:\n            falsch += 1\n    return falsch\n\ndef bester_schwellenwert(daten, merkmal):\n    werte = sorted(set(b[merkmal] for b in daten))\n    beste_schwelle = None\n    wenigste_fehler = None\n    for i in range(len(werte) - 1):\n        kandidat = (werte[i] + werte[i + 1]) / 2\n        links, rechts = teile_bei_schwellenwert(daten, merkmal, kandidat)\n        fehler = anzahl_falsch(links) + anzahl_falsch(rechts)\n        if wenigste_fehler is None or fehler < wenigste_fehler:\n            wenigste_fehler = fehler\n            beste_schwelle = kandidat\n    return beste_schwelle, wenigste_fehler\n\ndef bestes_merkmal(daten, merkmale):\n    bestes = None\n    wenigste_fehler = None\n    for merkmal in merkmale:\n        _, fehler = bester_schwellenwert(daten, merkmal)\n        if wenigste_fehler is None or fehler < wenigste_fehler:\n            wenigste_fehler = fehler\n            bestes = merkmal\n    return bestes\n\ndaten = [\n    {\"regen\": 80, \"temperatur\": 18, \"schirm\": \"ja\"},\n    {\"regen\": 90, \"temperatur\": 25, \"schirm\": \"ja\"},\n    {\"regen\": 70, \"temperatur\": 10, \"schirm\": \"ja\"},\n    {\"regen\": 60, \"temperatur\": 30, \"schirm\": \"ja\"},\n    {\"regen\": 20, \"temperatur\": 22, \"schirm\": \"nein\"},\n    {\"regen\": 10, \"temperatur\": 15, \"schirm\": \"nein\"},\n    {\"regen\": 30, \"temperatur\": 28, \"schirm\": \"nein\"},\n    {\"regen\": 15, \"temperatur\": 12, \"schirm\": \"nein\"},\n]\n\nprint(bestes_merkmal(daten, [\"regen\", \"temperatur\"]))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "regen"
+        }
+      },
+      {
+        "instruction": "Kopiere teile_bei_schwellenwert(daten, merkmal, schwelle), mehrheitsklasse(teil), anzahl_falsch(teil), bester_schwellenwert(daten, merkmal) und bestes_merkmal(daten, merkmale) aus dem Beispiel, mit derselben daten-Liste. Rufe bestes_merkmal(daten, ['temperatur', 'regen']) auf - diesmal in umgekehrter Reihenfolge - und gib das Ergebnis aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "regen",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug: Der wacklige Baum",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Eine fehlende Zählung (+= 1), ein Vergleich mit der falschen Seite bei der Aufteilung und ein Vergleich gegen die falsche Variable.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Bei teil mit einem 'nein' und zwei 'ja' soll mehrheitsklasse() 'ja' zurückgeben (die häufigere Klasse). Was ist falsch?",
+        "codeTemplate": "def mehrheitsklasse(teil):\n    anzahl_je_klasse = {}\n    for beispiel in teil:\n        anzahl_je_klasse[beispiel[\"schirm\"]] = anzahl_je_klasse.get(beispiel[\"schirm\"], 0)\n\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl_je_klasse:\n        anzahl = anzahl_je_klasse[klasse]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_klasse = klasse\n    return beste_klasse\n\nteil = [{\"schirm\": \"nein\"}, {\"schirm\": \"ja\"}, {\"schirm\": \"ja\"}]\nprint(mehrheitsklasse(teil))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "ja"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Bei schwelle=50 sollen alle 3 Elemente aufgeteilt werden (1 links, 2 rechts) - ein Wert, der genau dem Schwellenwert entspricht, gehört zur rechten Seite. Was ist falsch?",
+        "codeTemplate": "def teile_bei_schwellenwert(daten, merkmal, schwelle):\n    links = [b for b in daten if b[merkmal] < schwelle]\n    rechts = [b for b in daten if b[merkmal] > schwelle]\n    return links, rechts\n\ndaten = [{\"regen\": 10}, {\"regen\": 50}, {\"regen\": 90}]\nlinks, rechts = teile_bei_schwellenwert(daten, \"regen\", 50)\nprint(len(links))\nprint(len(rechts))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1\n2"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Bei teil mit zwei 'ja' und einem 'nein' soll anzahl_falsch() 1 zurückgeben (das eine 'nein' weicht von der Mehrheit 'ja' ab). Was ist falsch?",
+        "codeTemplate": "def mehrheitsklasse(teil):\n    anzahl_je_klasse = {}\n    for beispiel in teil:\n        anzahl_je_klasse[beispiel[\"schirm\"]] = anzahl_je_klasse.get(beispiel[\"schirm\"], 0) + 1\n\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl_je_klasse:\n        anzahl = anzahl_je_klasse[klasse]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_klasse = klasse\n    return beste_klasse\n\ndef anzahl_falsch(teil):\n    mehrheit = mehrheitsklasse(teil)\n    falsch = 0\n    for beispiel in teil:\n        if mehrheit != mehrheit:\n            falsch += 1\n    return falsch\n\nteil = [{\"schirm\": \"ja\"}, {\"schirm\": \"ja\"}, {\"schirm\": \"nein\"}]\nprint(anzahl_falsch(teil))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission: Gießen oder nicht?",
+    "file": "mission-01.md",
+    "lessonSummary": "Starke Leistung! Du hast einen eigenen Pflanzen-Datensatz aufgeteilt, den besten Trennwert gefunden und einen Baum gebaut, der für neue Werte vorhersagt - ganz ohne Vorlage.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Aufteilen: Erstelle eine Liste pflanzen mit den sechs Dictionaries {'bodenfeuchtigkeit': 10, 'giessen': 'ja'}, {'bodenfeuchtigkeit': 15, 'giessen': 'ja'}, {'bodenfeuchtigkeit': 20, 'giessen': 'ja'}, {'bodenfeuchtigkeit': 70, 'giessen': 'nein'}, {'bodenfeuchtigkeit': 80, 'giessen': 'nein'} und {'bodenfeuchtigkeit': 75, 'giessen': 'nein'}. Schreibe teile_bei_schwellenwert(daten, merkmal, schwelle) wie in dieser Woche und teile pflanzen beim Merkmal 'bodenfeuchtigkeit' mit schwelle=40 auf. Gib len(links) und len(rechts) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "3\n3",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Bester Trennwert: Nutze dieselbe pflanzen-Liste (erneut erstellen). Schreibe zusätzlich mehrheitsklasse(teil) und anzahl_falsch(teil) (Label-Feld 'giessen') sowie bester_schwellenwert(daten, merkmal) wie in dieser Woche. Rufe bester_schwellenwert(pflanzen, 'bodenfeuchtigkeit') auf und gib das Ergebnis aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "(45.0, 0)",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Baum bauen: Nutze pflanzen und alle Funktionen aus den Schritten davor (erneut schreiben), plus baue_baum(daten, merkmal) und klassifiziere(baum, beispiel) wie in dieser Woche. Baue einen Baum für 'bodenfeuchtigkeit', klassifiziere damit {'bodenfeuchtigkeit': 5} und {'bodenfeuchtigkeit': 90} und gib beide Ergebnisse aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "ja\nnein",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Drei Merkmale, nur eines zählt",
+    "file": "boss-01.md",
+    "lessonSummary": "Stark! Du hast gezeigt, dass bestes_merkmal() auch bei mehreren Merkmalen und wechselnder Reihenfolge zuverlässig das trennschärfste findet.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Bestes Merkmal finden: Schreibe teile_bei_schwellenwert(daten, merkmal, schwelle), mehrheitsklasse(teil), anzahl_falsch(teil), bester_schwellenwert(daten, merkmal) und bestes_merkmal(daten, merkmale) wie in dieser Woche. Nutze daten = [{'regen': 80, 'temperatur': 18, 'wochentag': 3, 'schirm': 'ja'}, {'regen': 90, 'temperatur': 25, 'wochentag': 6, 'schirm': 'ja'}, {'regen': 70, 'temperatur': 10, 'wochentag': 1, 'schirm': 'ja'}, {'regen': 60, 'temperatur': 30, 'wochentag': 5, 'schirm': 'ja'}, {'regen': 20, 'temperatur': 22, 'wochentag': 2, 'schirm': 'nein'}, {'regen': 10, 'temperatur': 15, 'wochentag': 7, 'schirm': 'nein'}, {'regen': 30, 'temperatur': 28, 'wochentag': 4, 'schirm': 'nein'} und {'regen': 15, 'temperatur': 12, 'wochentag': 1, 'schirm': 'nein'}. Rufe bestes_merkmal(daten, ['temperatur', 'wochentag', 'regen']) auf und gib das Ergebnis aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "regen",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Andere Reihenfolge: Wiederhole Schritt 1 (alle Funktionen erneut schreiben, dieselbe daten-Liste), aber rufe bestes_merkmal() jetzt mit der Liste ['wochentag', 'regen', 'temperatur'] auf (eine andere Reihenfolge) und gib das Ergebnis aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "regen",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Fehler vergleichen: Nutze dieselbe daten-Liste und dieselben Funktionen (erneut schreiben). Gib nacheinander bester_schwellenwert(daten, 'regen')[1], bester_schwellenwert(daten, 'temperatur')[1] und bester_schwellenwert(daten, 'wochentag')[1] aus (jeweils die Fehleranzahl des besten Trennwerts).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0\n3\n3",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Baum trainieren, auf echten Testdaten prüfen",
+    "file": "boss-02.md",
+    "lessonSummary": "Sehr stark! Du hast einen Baum auf Trainingsdaten gebaut und seine Genauigkeit ehrlich auf Testdaten gemessen - und gesehen, wie sehr die Wahl des Merkmals zählt.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Baum auf Trainingsdaten: Schreibe teile_bei_schwellenwert(daten, merkmal, schwelle), mehrheitsklasse(teil), anzahl_falsch(teil), bester_schwellenwert(daten, merkmal), bestes_merkmal(daten, merkmale) und baue_baum(daten, merkmal) wie in dieser Woche. Nutze trainingsdaten = [{'regen': 80, 'temperatur': 18, 'schirm': 'ja'}, {'regen': 90, 'temperatur': 25, 'schirm': 'ja'}, {'regen': 70, 'temperatur': 10, 'schirm': 'ja'}, {'regen': 20, 'temperatur': 22, 'schirm': 'nein'}, {'regen': 10, 'temperatur': 15, 'schirm': 'nein'} und {'regen': 30, 'temperatur': 28, 'schirm': 'nein'}. Finde mit bestes_merkmal(trainingsdaten, ['regen', 'temperatur']) das beste Merkmal, baue damit einen Baum und gib ihn aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'merkmal': 'regen', 'schwelle': 50.0, 'links': 'nein', 'rechts': 'ja'}",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Genauigkeit auf Testdaten: Wiederhole Schritt 1 (alle Funktionen erneut schreiben, dieselben trainingsdaten). Schreibe zusätzlich klassifiziere(baum, beispiel), ist_richtig(vorhersage, erwartet) und genauigkeit(vorhersagen, erwartete_werte) (wie in Woche 4). Nutze testdaten = [{'regen': 65, 'temperatur': 20, 'schirm': 'ja'}, {'regen': 12, 'temperatur': 18, 'schirm': 'nein'}], sage beide mit dem Baum aus Schritt 1 vorher und gib die Genauigkeit aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "100",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Schlechteres Merkmal: Wiederhole Schritt 2 (alle Funktionen erneut schreiben, dieselben trainingsdaten/testdaten), aber baue den Baum diesmal erzwungen mit baue_baum(trainingsdaten, 'temperatur') statt mit dem besten Merkmal. Sage testdaten damit vorher und gib die Genauigkeit aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "50",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Wenn keine Schwelle perfekt trennt",
+    "file": "boss-03.md",
+    "lessonSummary": "Stark! Du hast gesehen, dass auch ein unvollkommener Baum mit ein paar Fehlern eine einfache Baseline deutlich schlagen kann.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Bester Trennwert bei überlappenden Klassen: Schreibe teile_bei_schwellenwert(daten, merkmal, schwelle), mehrheitsklasse(teil), anzahl_falsch(teil) und bester_schwellenwert(daten, merkmal) wie in dieser Woche. Nutze daten = [{'regen': 80, 'schirm': 'ja'}, {'regen': 75, 'schirm': 'ja'}, {'regen': 55, 'schirm': 'ja'}, {'regen': 45, 'schirm': 'nein'}, {'regen': 40, 'schirm': 'ja'}, {'regen': 35, 'schirm': 'nein'}, {'regen': 20, 'schirm': 'nein'} und {'regen': 15, 'schirm': 'nein'} (hier passt kein Schwellenwert perfekt). Rufe bester_schwellenwert(daten, 'regen') auf und gib das Ergebnis aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "(37.5, 1)",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Genauigkeit des Baums: Wiederhole Schritt 1 (alle Funktionen erneut schreiben, dieselbe daten-Liste). Schreibe zusätzlich baue_baum(daten, merkmal), klassifiziere(baum, beispiel), ist_richtig(vorhersage, erwartet) und genauigkeit(vorhersagen, erwartete_werte). Baue einen Baum für 'regen', sage damit alle Beispiele aus daten selbst vorher und gib die Genauigkeit aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "88",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Vergleich mit der Baseline: Wiederhole Schritt 2 (alle Funktionen erneut schreiben, dieselbe daten-Liste). Berechne zusätzlich eine Baseline: mehrheitsklasse(daten) als Vorhersage für jedes einzelne Beispiel (immer dieselbe Klasse). Gib zuerst die Genauigkeit des Baums (wie in Schritt 2), dann die Genauigkeit der Baseline aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "88\n50",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  }
+]

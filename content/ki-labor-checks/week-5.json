@@ -1,0 +1,140 @@
+{
+  "title": "Woche 5 – Entscheidungsbäume",
+  "title_en": "Week 5 – Decision Trees",
+  "questions": [
+    {
+      "id": "kil5-1",
+      "type": "multiple_choice",
+      "question": "Was ist ein Schwellenwert (englisch: threshold) bei einem Entscheidungsbaum?",
+      "options": [
+        "Ein Wert, an dem ein Merkmal in eine 'links'- und eine 'rechts'-Gruppe aufgeteilt wird",
+        "Die Anzahl der Trainingsbeispiele in einem Datensatz",
+        "Der Name des Merkmals, das gerade geprüft wird"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ein Schwellenwert ist der Vergleichswert einer Ja/Nein-Frage wie 'ist regen >= 50?' - er entscheidet, auf welche Seite ein Beispiel fällt.",
+      "optionExplanations": [
+        null,
+        "Die Anzahl der Beispiele hat nichts mit dem Vergleichswert einer Aufteilung zu tun.",
+        "Der Merkmalsname (z.B. 'regen') ist etwas anderes als der Zahlenwert, mit dem verglichen wird."
+      ]
+    },
+    {
+      "id": "kil5-2",
+      "type": "multiple_choice",
+      "question": "Was gibt mehrheitsklasse(teil) zurück?",
+      "options": [
+        "Die Klasse, die in dieser Gruppe von Beispielen am häufigsten vorkommt",
+        "Die Anzahl aller Beispiele in der Gruppe",
+        "Den kleinsten Merkmalswert in der Gruppe"
+      ],
+      "correctIndex": 0,
+      "explanation": "mehrheitsklasse() zählt, wie oft jede Klasse in der Gruppe vorkommt, und gibt die häufigste zurück - das wird die Vorhersage für diese Seite des Baums.",
+      "optionExplanations": [
+        null,
+        "Das wäre len(teil) - mehrheitsklasse() liefert eine Klasse, keine Zahl.",
+        "Merkmalswerte spielen hier keine Rolle, nur die Klassen (das Label) zählen."
+      ]
+    },
+    {
+      "id": "kil5-3",
+      "type": "multiple_choice",
+      "question": "Wofür steht die 'Fehleranzahl' (anzahl_falsch), die eine Aufteilung bewertet?",
+      "options": [
+        "Wie viele Beispiele in einer Gruppe von der Mehrheitsklasse dieser Gruppe abweichen",
+        "Wie viele Zeilen Code die Funktion hat",
+        "Wie oft das Programm bei der Ausführung abstürzt"
+      ],
+      "correctIndex": 0,
+      "explanation": "Je weniger Beispiele von der Mehrheitsklasse abweichen, desto 'reiner' und besser ist eine Aufteilung - 0 Fehler heißt: die Gruppe enthält nur eine einzige Klasse.",
+      "optionExplanations": [
+        null,
+        "Die Codelänge hat nichts mit der Qualität einer Datenaufteilung zu tun.",
+        "Ein Absturz ist ein Programmfehler, kein Maß für die Reinheit einer Aufteilung."
+      ]
+    },
+    {
+      "id": "kil5-4",
+      "type": "multiple_choice",
+      "question": "Wie findet bester_schwellenwert() den besten Trennwert für ein Merkmal?",
+      "options": [
+        "Es probiert mehrere Kandidaten aus (Mittelwerte zwischen benachbarten sortierten Werten) und behält den mit den wenigsten Fehlern",
+        "Es nimmt immer automatisch den Durchschnitt aller Werte des Merkmals",
+        "Es fragt bei jedem Aufruf den Menschen, welcher Wert sinnvoll wäre"
+      ],
+      "correctIndex": 0,
+      "explanation": "bester_schwellenwert() testet systematisch mehrere mögliche Trennwerte und wählt den, bei dem teile_bei_schwellenwert() + anzahl_falsch() die wenigsten Fehler ergeben.",
+      "optionExplanations": [
+        null,
+        "Der reine Durchschnitt aller Werte wäre kein guter Trennwert, wenn die Klassen sich woanders trennen lassen.",
+        "Das Programm probiert die Kandidaten selbst aus, ganz ohne Rückfrage."
+      ]
+    },
+    {
+      "id": "kil5-5",
+      "type": "multiple_choice",
+      "question": "Merkmal A trennt einen Datensatz mit 0 Fehlern, Merkmal B mit 3 Fehlern. Welches Merkmal wählt bestes_merkmal()?",
+      "options": [
+        "Merkmal A, weil es die Daten sauberer (mit weniger Fehlern) trennt",
+        "Merkmal B, weil höhere Fehlerzahlen automatisch besser sind",
+        "Es wählt zufällig eines der beiden Merkmale"
+      ],
+      "correctIndex": 0,
+      "explanation": "bestes_merkmal() vergleicht die Fehleranzahl jedes Merkmals bei seinem besten Trennwert und wählt das Merkmal mit den wenigsten Fehlern.",
+      "optionExplanations": [
+        null,
+        "Weniger Fehler sind besser, nicht mehr - eine höhere Fehlerzahl bedeutet eine schlechtere Trennung.",
+        "Die Wahl ist nicht zufällig - sie richtet sich nach der gemessenen Fehleranzahl."
+      ]
+    },
+    {
+      "id": "kil5-6",
+      "type": "multiple_select",
+      "question": "Was gehört zu einem einfachen, einstufigen Entscheidungsbaum, wie du ihn diese Woche gebaut hast?",
+      "options": [
+        "Ein Merkmal (z.B. 'regen'), bei dem verglichen wird",
+        "Ein Schwellenwert, an dem aufgeteilt wird",
+        "Eine Vorhersage-Klasse für die linke und eine für die rechte Seite",
+        "Ein zufälliger Münzwurf bei jeder Vorhersage"
+      ],
+      "correctIndices": [0, 1, 2]
+    },
+    {
+      "id": "kil5-7",
+      "type": "multiple_choice",
+      "question": "Warum kann selbst der beste Schwellenwert manchmal Fehler übrig lassen (Fehleranzahl > 0)?",
+      "options": [
+        "Weil sich die Werte der beiden Klassen bei diesem Merkmal überschneiden - keine einzelne Schwelle trennt sie perfekt",
+        "Weil bester_schwellenwert() einen Programmierfehler hat und nie ganz genau rechnet",
+        "Weil Python Zahlen ab einer bestimmten Größe nicht mehr vergleichen kann"
+      ],
+      "correctIndex": 0,
+      "explanation": "Wenn Beispiele beider Klassen ähnliche Werte im gleichen Merkmal haben, gibt es keinen Schwellenwert, der sie vollständig trennt - der Baum bleibt dann unvollkommen, ist aber oft trotzdem deutlich besser als eine reine Ratequote.",
+      "optionExplanations": [
+        null,
+        "Das ist kein Bug - es ist ein inhaltliches Merkmal überlappender Daten.",
+        "Python kann beliebig große Zahlen vergleichen - das ist nicht der Grund."
+      ]
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Schreibe teile_bei_schwellenwert(daten, merkmal, schwelle) und mehrheitsklasse(teil) (Label-Feld 'wert'). Nutze daten = [{'x': 10, 'wert': 'A'}, {'x': 20, 'wert': 'A'}, {'x': 50, 'wert': 'B'}, {'x': 60, 'wert': 'B'}]. Teile bei schwelle=35 auf und gib mehrheitsklasse() für links und für rechts aus.",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "A\nB",
+        "codeContains": ["def"]
+      }
+    },
+    {
+      "instruction": "Schreibe eine Funktion klassifiziere(baum, beispiel), die anhand von baum['merkmal'] und baum['schwelle'] entscheidet, ob baum['links'] oder baum['rechts'] zurückgegeben wird. Nutze baum = {'merkmal': 'x', 'schwelle': 35, 'links': 'A', 'rechts': 'B'} und gib klassifiziere(baum, {'x': 15}) und klassifiziere(baum, {'x': 80}) aus.",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "A\nB",
+        "codeContains": ["def"]
+      }
+    }
+  ]
+}

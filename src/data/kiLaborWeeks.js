@@ -42,7 +42,17 @@ export const KI_LABOR_WEEKS = [
       'Overfitting an einem absichtlich zu kleinen/unrepräsentativen Trainingsdatensatz erkennen können',
     ],
   },
-  { number: 5, title: 'Entscheidungsbäume', lernziele: [] },
+  {
+    number: 5,
+    title: 'Entscheidungsbäume',
+    lernziele: [
+      'Daten anhand eines Schwellenwerts in zwei Gruppen aufteilen können',
+      'Die Reinheit einer Aufteilung mit Mehrheitsklasse und Fehleranzahl messen können',
+      'Automatisch den besten Schwellenwert für ein Merkmal finden können',
+      'Einen einfachen Entscheidungsbaum bauen und damit neue Beispiele klassifizieren können',
+      'Unter mehreren Merkmalen automatisch das trennschärfste auswählen können',
+    ],
+  },
   { number: 6, title: 'Neuronale Netze I', lernziele: [] },
   { number: 7, title: 'Neuronale Netze II', lernziele: [] },
   { number: 8, title: 'Grenzen & Ethik', lernziele: [] },
