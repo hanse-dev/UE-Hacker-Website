@@ -12,9 +12,6 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken) —
       **zurückgestellt** (Nutzer will erst später deployen). Backup-Cron auf dem Server einrichten
       (Befehl siehe HANDOFF.md Abschnitt 4); externe Sicherung der Backups bewusst nicht mitgebaut.
-- [ ] Tippfehler-Pass (`cspell`): UI-Texte (`locales/de.js`/`en.js`) und die 12-Wochen-Notebooks sind
-      geprüft (Phase 1+2, `docs/archiv/HANDOFF-historie.md` 3.8–3.10). Noch nicht geprüft: alles seit
-      dem Lektions-Format (`content/python-woche*`), JS-Grundkurs, Interaktiv-Kurse, Projekt-Kurse.
 - [ ] Projekt-Kurse (Cäsar, Vigenère, Morsecode, Zahlen-Detektiv, JS-Spielewerkstatt, Snake,
       Text-Adventure): nur DE-Content, EN fehlt noch (`kurse.json` hat bereits `title_en` für alle 7,
       `lessons.json`/`lektion-*.md` sind nur deutsch).
