@@ -70,6 +70,7 @@ test.describe('12-Wochen-Kurs: Wochen-Tour', () => {
 
   test('Kachel-Flow: Woche wählen -> Thema wählen -> Tour startet auf Lektion', async ({ page }) => {
     await page.goto(TOUR_URL);
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.week-tile')).toHaveCount(12);
 
     // Woche 12 ist (wie alle Wochen) im Lektions-Format: die eingebettete Lektions-Tour
@@ -88,6 +89,7 @@ test.describe('12-Wochen-Kurs: Wochen-Tour', () => {
   test('Wochen-Pfad: Schlangen-Anordnung platziert den Zeilenumbruch senkrecht statt quer über das Raster', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto(TOUR_URL);
+    await page.locator('.btn-start-course').click();
     // Spaltenzahl kommt aus dem tatsächlich gerenderten Grid (auto-fill, abhängig vom Seiten-
     // Layout drumherum) - die letzte Woche der ersten Zeile hat die Wochennummer == Spaltenzahl.
     const cols = await page.locator('.week-tile-grid').evaluate(

@@ -1,7 +1,7 @@
 <template>
   <div class="js-grundkurs-tour">
     <template v-if="phase === 'week'">
-      <p class="choose-week-title">{{ t('jsGrundkurs.chooseWeekTitle') }}</p>
+      <p class="choose-week-title">{{ t('weekPicker.chooseWeekTitle') }}</p>
       <div class="week-grid">
         <button
           v-for="week in weeks"
@@ -13,7 +13,7 @@
         >
           <span class="week-tile-number">{{ t('week.label') }} {{ week.number }}</span>
           <span class="week-tile-title">{{ week.title }}</span>
-          <span v-if="!week.available" class="week-tile-badge">{{ t('jsGrundkurs.comingSoon') }}</span>
+          <span v-if="!week.available" class="week-tile-badge">{{ t('weekPicker.comingSoon') }}</span>
         </button>
       </div>
     </template>

@@ -34,11 +34,14 @@ Vigenère-Chiffre, Snake, Text-Adventure.
       erst eine Erweiterung/Prüfung. Ab 14.
 
 ## 🤖 KI / ML (Voraussetzung: Python-Grundkurs, siehe `VISION.md`)
-- [ ] **Tier-Klassifikator per k-NN** 🐍 — Merkmale (Gewicht/Größe), ohne Bibliotheken (~10 Zeilen). Ab 13.
+k-NN und Bias-Experiment sind jetzt Teil des Grundkurses `kurs-ki-labor` (Woche 3 bzw. 8, siehe
+`KURSPLAN.md`) statt eigener Projekt-Kurse — dort geblieben als mögliche spätere Vertiefung nach
+dem Grundkurs.
+- [ ] **Tier-Klassifikator per k-NN** 🐍 — Merkmale (Gewicht/Größe), ohne Bibliotheken (~10 Zeilen). Ab 13. *(Basisversion bereits in `kurs-ki-labor` Woche 3)*
 - [ ] **Spam-Filter (Naive Bayes light)** 🐍 — Wörter zählen, eigene Trainings-Mails. Ab 14.
 - [ ] **Regel-Chatbot (ELIZA)** 🐍 — Muster + Antwortvorlagen; Diskussion "Ist das KI?". Ab 12.
 - [ ] **Tic-Tac-Toe mit Minimax** 🐍 — Baumsuche, unbesiegbarer Gegner. Ab 15.
-- [ ] **Bias-Experiment** 🐍 — Mini-Datensatz mit schiefer Verteilung, Modell entscheidet unfair; Ethik-Diskussion. Ab 14.
+- [ ] **Bias-Experiment** 🐍 — Mini-Datensatz mit schiefer Verteilung, Modell entscheidet unfair; Ethik-Diskussion. Ab 14. *(Basisversion bereits in `kurs-ki-labor` Woche 8)*
 
 ## 🧩 Logik & Knobeln
 - [ ] **Sudoku-Prüfer** 🐍 — gültig/ungültig, verschachtelte Schleifen + Mengen. Ab 13.

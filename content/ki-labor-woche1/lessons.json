@@ -1,0 +1,301 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Regeln, die du selbst schreibst",
+    "file": "lektion-01.md",
+    "lessonSummary": "Klassisches Programmieren: Du schreibst jede Regel selbst, der Computer führt sie stur aus.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: eine Regel entscheidet, ob es 'heiß' ist.",
+        "example": true,
+        "codeTemplate": "def einschaetzung(temperatur):\n    if temperatur > 25:\n        return \"Es ist heiß!\"\n    else:\n        return \"Es ist nicht heiß.\"\n\nprint(einschaetzung(30))\nprint(einschaetzung(15))\n",
+        "validation": { "type": "output_contains", "expected": "Es ist heiß!\nEs ist nicht heiß." }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: mit elif prüfst du mehrere Regeln hintereinander.",
+        "example": true,
+        "codeTemplate": "def wetter_gefuehl(temperatur):\n    if temperatur > 25:\n        return \"heiß\"\n    elif temperatur < 5:\n        return \"kalt\"\n    else:\n        return \"mild\"\n\nprint(wetter_gefuehl(30))\nprint(wetter_gefuehl(2))\nprint(wetter_gefuehl(15))\n",
+        "validation": { "type": "output_contains", "expected": "heiß\nkalt\nmild" }
+      },
+      {
+        "instruction": "Schreibe eine Funktion ist_bestanden(punkte), die 'bestanden' zurückgibt, wenn punkte mindestens 50 sind, sonst 'nicht bestanden'. Gib damit genau bestanden (für 70 Punkte) und danach nicht bestanden (für 30 Punkte) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "bestanden\nnicht bestanden",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Immer mehr Sonderfälle",
+    "file": "lektion-02.md",
+    "lessonSummary": "Je mehr Sonderfälle es gibt, desto mehr Regeln müsstest du von Hand schreiben – das ist ein Grund für KI.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: ein Tier wird anhand der Beinanzahl klassifiziert.",
+        "example": true,
+        "codeTemplate": "def klassifiziere_tier(beine):\n    if beine == 4:\n        return \"Vierbeiner\"\n    elif beine == 2:\n        return \"Zweibeiner\"\n    elif beine == 6:\n        return \"Insekt\"\n    elif beine == 8:\n        return \"Spinnentier\"\n    else:\n        return \"Unbekannt\"\n\nprint(klassifiziere_tier(4))\nprint(klassifiziere_tier(8))\n",
+        "validation": { "type": "output_contains", "expected": "Vierbeiner\nSpinnentier" }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: eine Qualle hat 0 Beine – was gibt die Funktion dafür aus?",
+        "example": true,
+        "codeTemplate": "def klassifiziere_tier(beine):\n    if beine == 4:\n        return \"Vierbeiner\"\n    elif beine == 2:\n        return \"Zweibeiner\"\n    elif beine == 6:\n        return \"Insekt\"\n    elif beine == 8:\n        return \"Spinnentier\"\n    else:\n        return \"Unbekannt\"\n\nprint(klassifiziere_tier(0))\n",
+        "validation": { "type": "output_contains", "expected": "Unbekannt" }
+      },
+      {
+        "instruction": "Schreibe eine Funktion klassifiziere_tier(beine) mit den gleichen Regeln wie im Beispiel, aber ergänze eine neue Regel: 0 Beine soll 'Ohne Beine' ergeben (statt 'Unbekannt'). Gib damit genau Ohne Beine (für 0) und danach Unbekannt (für 100) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ohne Beine\nUnbekannt",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Lernen statt Regeln schreiben",
+    "file": "lektion-03.md",
+    "lessonSummary": "Statt Regeln zu schreiben, sammelst du Beispiele – der erste Schritt weg vom klassischen Programmieren.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: statt if/elif-Regeln gibt es jetzt eine Liste von Beispielen, in der nachgeschlagen wird.",
+        "example": true,
+        "codeTemplate": "beispiele = [\n    (\"katze\", \"Säugetier\"),\n    (\"spinne\", \"Spinnentier\"),\n    (\"biene\", \"Insekt\"),\n]\n\ndef finde_antwort(frage, beispiele):\n    for eingabe, antwort in beispiele:\n        if eingabe == frage:\n            return antwort\n    return \"unbekannt\"\n\nprint(finde_antwort(\"katze\", beispiele))\nprint(finde_antwort(\"hai\", beispiele))\n",
+        "validation": { "type": "output_contains", "expected": "Säugetier\nunbekannt" }
+      },
+      {
+        "instruction": "Erstelle eine Liste eigene_beispiele mit den drei Paaren ('apfel', 'Obst'), ('karotte', 'Gemüse') und ('banane', 'Obst'). Nutze die Funktion finde_antwort aus dem Beispiel (schreibe sie erneut), um genau Obst (für 'apfel') und danach unbekannt (für 'brot') auszugeben.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Obst\nunbekannt",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "KI-Wortschatz",
+    "file": "lektion-04.md",
+    "lessonSummary": "Trainingsdaten, Label, Modell, Vorhersage – vier Begriffe, die dich den ganzen Kurs begleiten.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: ein Dictionary dient hier als ganz einfaches Modell.",
+        "example": true,
+        "codeTemplate": "modell = {\n    \"apfel\": \"Obst\",\n    \"karotte\": \"Gemüse\",\n    \"kirsche\": \"Obst\",\n}\n\neingabe = \"apfel\"\nvorhersage = modell.get(eingabe, \"unbekannt\")\nprint(vorhersage)\n\neingabe2 = \"brot\"\nvorhersage2 = modell.get(eingabe2, \"unbekannt\")\nprint(vorhersage2)\n",
+        "validation": { "type": "output_contains", "expected": "Obst\nunbekannt" }
+      },
+      {
+        "instruction": "Erstelle ein Dictionary eigenes_modell mit 'hund': 'Tier', 'katze': 'Tier' und 'rose': 'Pflanze'. Gib mit .get(...) genau Tier (für 'hund') und danach unbekannt (für 'auto') aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Tier\nunbekannt"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Was KI (noch) nicht kann",
+    "file": "lektion-05.md",
+    "lessonSummary": "Ein Modell ist nur so gut wie seine Trainingsdaten – wenige oder einseitige Beispiele führen zu schlechten Vorhersagen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: das Modell kennt nur zwei Tiere und weiß bei allem anderen nicht weiter.",
+        "example": true,
+        "codeTemplate": "kleines_modell = {\"hund\": \"Tier\", \"katze\": \"Tier\"}\n\ndef vorhersage_sicherheit(modell, eingabe):\n    if eingabe in modell:\n        return f\"Sicher: {modell[eingabe]}\"\n    else:\n        return \"Unsicher: unbekannt\"\n\nprint(vorhersage_sicherheit(kleines_modell, \"hund\"))\nprint(vorhersage_sicherheit(kleines_modell, \"vogel\"))\n",
+        "validation": { "type": "output_contains", "expected": "Sicher: Tier\nUnsicher: unbekannt" }
+      },
+      {
+        "instruction": "Schreibe die Funktion vorhersage_sicherheit(modell, eingabe) aus dem Beispiel erneut. Erstelle ein Dictionary mein_modell mit 'sonne': 'Stern' und rufe die Funktion einmal mit 'sonne' und einmal mit 'mond' auf. Gib damit genau Sicher: Stern und danach Unsicher: unbekannt aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sicher: Stern\nUnsicher: unbekannt",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug: Kaputte Regeln",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Ein fehlendes return, ein zu enger Vergleich und eine zu breite Bedingung am Anfang einer elif-Kette.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll heiß ausgeben. Was ist falsch?",
+        "codeTemplate": "def einschaetzung(temperatur):\n    if temperatur > 25:\n        \"heiß\"\n    else:\n        \"nicht heiß\"\n\nprint(einschaetzung(30))\n",
+        "validation": { "type": "output_contains", "expected": "heiß" }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Bei genau 50 Punkten soll bestanden ausgegeben werden. Was ist falsch?",
+        "codeTemplate": "def ist_bestanden(punkte):\n    if punkte > 50:\n        return \"bestanden\"\n    else:\n        return \"nicht bestanden\"\n\nprint(ist_bestanden(50))\n",
+        "validation": { "type": "output_contains", "expected": "bestanden" }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Bei 80 Punkten soll bestanden ausgegeben werden. Was ist falsch?",
+        "codeTemplate": "def note_beschreibung(punkte):\n    if punkte >= 0:\n        return \"mangelhaft\"\n    elif punkte >= 50:\n        return \"bestanden\"\n    else:\n        return \"unbekannt\"\n\nprint(note_beschreibung(80))\n",
+        "validation": { "type": "output_contains", "expected": "bestanden" }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission: Der Wetterberater",
+    "file": "mission-01.md",
+    "lessonSummary": "Starke Leistung! Du hast einen kompletten Regel-Berater gebaut, ganz ohne Vorlage.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Gefühl: Schreibe eine Funktion temperatur_gefuehl(temperatur), die 'heiß' zurückgibt bei über 25 Grad, 'kalt' bei unter 5 Grad, sonst 'mild'. Gib damit genau Gefühl: heiß (für 30 Grad) und danach Gefühl: kalt (für 2 Grad) aus, im Format Gefühl: <ergebnis>.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gefühl: heiß\nGefühl: kalt",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Kleidung: Schreibe eine Funktion kleidungs_tipp(temperatur, regen), die 'Regenjacke' zurückgibt, wenn regen True ist, sonst 'T-Shirt' bei über 25 Grad, 'Winterjacke' bei unter 5 Grad und sonst 'Pullover'. Gib damit genau Tipp: T-Shirt (für 30 Grad, kein Regen) und danach Tipp: Regenjacke (für 2 Grad, Regen) aus, im Format Tipp: <ergebnis>.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Tipp: T-Shirt\nTipp: Regenjacke",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Wetterbericht: Schreibe eine Funktion wetterbericht(temperatur, regen), die deine beiden Funktionen aus Schritt 1 und 2 (erneut geschrieben) benutzt und den Text 'Es ist <gefuehl>. Trage: <tipp>' zurückgibt. Gib damit genau Es ist heiß. Trage: T-Shirt (für 30 Grad, kein Regen) und danach Es ist kalt. Trage: Regenjacke (für 2 Grad, Regen) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Es ist heiß. Trage: T-Shirt\nEs ist kalt. Trage: Regenjacke",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Der Noten-Rechner",
+    "file": "boss-01.md",
+    "lessonSummary": "Starke Leistung! Dein Regel-System berechnet jetzt sogar eine Klassen-Statistik.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Noten: Schreibe eine Funktion note(punkte), die 'A' zurückgibt ab 90 Punkten, 'B' ab 75, 'C' ab 60, 'D' ab 40, sonst 'F'. Gib damit genau A (für 95), C (für 65) und F (für 10) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "A\nC\nF",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Bestehensquote: Schreibe eine Funktion bestehensquote(punkte_liste), die mit note() aus Schritt 1 (erneut schreiben) zählt, wie viele Ergebnisse nicht 'F' sind, und den Anteil in Prozent (gerundet mit round()) zurückgibt. Gib damit genau 75 aus für [95, 65, 10, 80].",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "75",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Zusammenfassung: Schreibe eine Funktion zusammenfassung(punkte, punkte_liste), die note() und bestehensquote() (beide erneut schreiben) benutzt und den Text 'Note: <note>, Klasse bestanden: <quote>%' zurückgibt. Gib damit genau Note: A, Klasse bestanden: 75% aus, für punkte=95 und punkte_liste=[95, 65, 10, 80].",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Note: A, Klasse bestanden: 75%",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Der Beispiel-Sammler",
+    "file": "boss-02.md",
+    "lessonSummary": "Stark! Du hast jetzt einen kleinen Kategorien-Zähler auf deiner Beispiel-Liste gebaut.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Sammlung: Erstelle eine Liste beispiele mit den 5 Paaren ('hund', 'Tier'), ('katze', 'Tier'), ('spinne', 'Tier'), ('rose', 'Pflanze'), ('baum', 'Pflanze'). Schreibe die Funktion finde_antwort(frage, beispiele) aus Lektion 3 erneut. Gib damit genau Tier (für 'hund') und danach unbekannt (für 'stein') aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Tier\nunbekannt",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Zählen: Schreibe eine Funktion zaehle_kategorie(beispiele, kategorie), die zählt, wie viele Einträge in beispiele die gegebene Kategorie als zweites Element haben. Gib damit genau 3 (für 'Tier') und danach 2 (für 'Pflanze') aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "3\n2",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Häufigste Kategorie: Schreibe eine Funktion haeufigste_kategorie(beispiele), die mit zaehle_kategorie() (erneut schreiben) herausfindet, welche Kategorie am häufigsten vorkommt, und sie zurückgibt. Gib damit genau Tier aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Tier",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Der Vorhersage-Tester",
+    "file": "boss-03.md",
+    "lessonSummary": "Sehr stark! Du hast jetzt gemessen, wie genau ein Modell auf echten Testfällen wirklich ist.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Modell: Erstelle ein Dictionary modell mit 'hund': 'Tier', 'katze': 'Tier', 'rose': 'Pflanze', 'baum': 'Pflanze'. Schreibe die Funktion vorhersage_sicherheit(modell, eingabe) aus Lektion 5 erneut. Gib damit genau Sicher: Tier (für 'hund') und danach Unsicher: unbekannt (für 'vogel') aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Sicher: Tier\nUnsicher: unbekannt",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Testen: Schreibe eine Funktion teste_modell(modell, testfaelle), wobei testfaelle eine Liste aus (eingabe, erwartete_antwort)-Paaren ist. Zähle mit modell.get(eingabe, 'unbekannt'), wie viele Vorhersagen mit der erwarteten Antwort übereinstimmen, und gib die Anzahl zurück. Gib damit genau 2 aus für testfaelle = [('hund', 'Tier'), ('rose', 'Pflanze'), ('vogel', 'Tier')].",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "2",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Genauigkeit: Schreibe eine Funktion genauigkeit(modell, testfaelle), die teste_modell() (erneut schreiben) benutzt und den Text 'Genauigkeit: <prozent>%' zurückgibt (Prozent gerundet mit round()). Gib damit genau Genauigkeit: 67% aus, für dasselbe modell und dieselben testfaelle wie in Schritt 2.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Genauigkeit: 67%",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  }
+]

@@ -159,37 +159,37 @@ aber wer schon die Spielewerkstatt gemacht hat, startet hier mit Vorwissen.
 pandas/scikit-learn sind Python)
 
 Einführung in Künstliche Intelligenz – ohne tiefe Mathematik. Fokus auf Konzepte verstehen,
-ausprobieren und reflektieren. Schüler trainieren eigene Modelle und sehen was KI kann und nicht kann.
-
-### Themen-Varianten
-- 🗺️ **Abenteuer:** KI-Orakel vorhersagt Dungeon-Ausgänge, KI erkennt Monster-Typen
-- 🐴 **Pferde:** KI erkennt Gangarten, sagt Siegchancen voraus, empfiehlt Futterpläne
-- 🚀 **Sci-Fi:** KI navigiert Raumschiff, erkennt Alien-Signale, klassifiziert Planeten
+indem die Algorithmen **komplett selbst in reinem Python geschrieben** werden (kein scikit-learn,
+kein zusätzliches Paket) — Schüler sehen dadurch wirklich, was beim Lernen passiert, statt eine
+Library aufzurufen. Bewusster Verzicht auf Prompting/Chatbot-Nutzung als Kursthema: das bringen
+Schüler:innen bereits mit, hier soll verstanden werden, was dahinter passiert. **Kein
+Themen-Varianten-Format** (wie `js-grundkurs`) — ein fester, algorithmus-zentrierter Aufbau.
 
 ### Wochenplan
 
-| Woche | Thema | Lerninhalt |
+| Woche | Thema | Was wird selbst gebaut |
 |-------|-------|------------|
-| 1 | Was ist KI? | KI vs. Programmierung, Anwendungen, Chancen & Grenzen |
-| 2 | Daten sind alles | Datensätze verstehen, bereinigen, visualisieren (pandas, matplotlib) |
-| 3 | Klassifikation | KI lernt unterscheiden – k-Nearest-Neighbors intuitiv erklärt |
-| 4 | Training & Test | Overfitting, Trainings-/Testdaten, Genauigkeit messen |
-| 5 | Entscheidungsbäume | Decision Trees visuell, eigener Classifier |
-| 6 | Neuronale Netze | Wie ein Netz "denkt" – visuell ohne tiefe Mathematik |
-| 7 | Sprachverarbeitung | Texte klassifizieren, einfacher Spam-Filter |
-| 8 | KI & Ethik | Bias, Fairness, Datenschutz – Was darf KI, was nicht? |
+| 1 | Was ist KI? | Regelbasiert vs. lernend – an einem einfachen Beispiel gegenübergestellt |
+| 2 | Daten sind alles | Eigene kleine Datensätze als Listen/Dictionaries anlegen, Muster von Auge suchen |
+| 3 | Nächste Nachbarn (k-NN) | Erster Klassifikator komplett selbst geschrieben: Distanz berechnen, Mehrheitsentscheid |
+| 4 | Training & Test | Trainings-/Testdaten trennen, Genauigkeit selbst berechnen, Overfitting an absichtlich zu kleinem Datensatz zeigen |
+| 5 | Entscheidungsbäume | Eigener einfacher if/else-Baum aus Daten abgeleitet |
+| 6 | Neuronale Netze I | Ein einzelnes Neuron von Hand: Gewichte, Summe, Schwellenwert (Perceptron) |
+| 7 | Neuronale Netze II | Kleines Netz mit versteckter Schicht, Gewichte lernen lassen (z.B. XOR oder 3×3-Pixel-Mustererkennung) |
+| 8 | Grenzen & Ethik | Bias-Experiment (schiefer Datensatz → unfaires Modell), kurze Einordnung "was macht ChatGPT anders", Datenschutz |
 
 ### Lernziele
 - Unterschied KI / klassische Programmierung verstehen
 - Eigene Datensätze erstellen und aufbereiten
-- Einfache ML-Modelle trainieren und evaluieren (scikit-learn)
-- Ergebnisse visualisieren und interpretieren
-- Ethische Fragen rund um KI diskutieren
+- k-NN, Entscheidungsbaum und ein kleines neuronales Netz von Grund auf selbst implementieren
+- Genauigkeit/Overfitting selbst messen und interpretieren
+- Ethische Fragen (Bias, Datenschutz) rund um KI diskutieren
 
 ### Technisch
-- **Libraries:** pandas, matplotlib, scikit-learn
-- **Kein eigenes GPU nötig** – alles läuft auf kleinen Datensätzen lokal
-- Pyodide im Browser möglich für einfache Beispiele, komplexere Modelle lokal
+- **Keine zusätzlichen Libraries** – reines Python, läuft im nackten Pyodide-Kernel (kein
+  scikit-learn/pandas: wasm-Build zieht scipy mit, mehrere zehn MB Download, zu schwer für
+  Schul-WLAN/ältere Geräte)
+- **Kein eigenes GPU nötig, keine API-Kosten** – alles läuft lokal auf kleinen, selbst erstellten Datensätzen im Browser
 
 ---
 
@@ -225,6 +225,5 @@ KI-Interesse, ab 14:
 - [ ] Entscheidung: Pygame Zero oder anderes Framework für den Spieleprogrammierung-Grundkurs?
 - [ ] Technisch: Läuft Pygame Zero in Pyodide/Browser oder braucht es lokale Installation?
 - [ ] Spieleprogrammierung Grundkurs: Themen-Varianten bestätigen oder festes Thema ohne Varianten?
-- [ ] KI-Grundlagen: Datensätze vorbereiten (eigene oder öffentliche wie Iris, Titanic)?
 - [ ] Reihenfolge/Priorität zwischen KI-Track und weiteren Python-Projekt-Kursen — siehe `todo.md`
       "Nächste Themen".

@@ -1,0 +1,140 @@
+{
+  "title": "Woche 1 – Was ist KI?",
+  "title_en": "Week 1 – What is AI?",
+  "questions": [
+    {
+      "id": "kil1-1",
+      "type": "multiple_choice",
+      "question": "Was ist beim klassischen Programmieren (z.B. mit if/elif) der Kern des Vorgehens?",
+      "options": [
+        "Der Mensch schreibt jede Regel selbst",
+        "Der Computer sammelt selbstständig Beispiele",
+        "Es gibt gar keine Regeln"
+      ],
+      "correctIndex": 0,
+      "explanation": "Bei klassischen Regeln entscheidet der Mensch jeden Fall selbst und schreibt ihn als if/elif.",
+      "optionExplanations": [
+        null,
+        "Das beschreibt eher maschinelles Lernen, nicht klassische Regeln.",
+        "Auch klassisches Programmieren funktioniert über Regeln, nur schreibt sie ein Mensch."
+      ]
+    },
+    {
+      "id": "kil1-2",
+      "type": "multiple_choice",
+      "question": "Was ist ein Trainingsdatensatz?",
+      "options": [
+        "Die Beispiele, aus denen ein Modell etwas ableitet",
+        "Eine Liste aller Fehlermeldungen eines Programms",
+        "Der Name der Programmiersprache"
+      ],
+      "correctIndex": 0,
+      "explanation": "Trainingsdaten sind die Beispiele, mit denen ein Modell 'lernt'.",
+      "optionExplanations": [
+        null,
+        "Fehlermeldungen haben nichts mit Trainingsdaten zu tun.",
+        "Der Sprachname ist kein Trainingsdatensatz."
+      ]
+    },
+    {
+      "id": "kil1-3",
+      "type": "multiple_choice",
+      "question": "Was ist ein Label bei einem Trainingsbeispiel wie (\"katze\", \"Säugetier\")?",
+      "options": [
+        "Die richtige Antwort zu diesem Beispiel, hier 'Säugetier'",
+        "Der Name der Variable",
+        "Eine Fehlermeldung"
+      ],
+      "correctIndex": 0,
+      "explanation": "Das Label ist die richtige/erwartete Antwort zu einem Beispiel.",
+      "optionExplanations": [
+        null,
+        "Der Variablenname hat nichts mit dem Label zu tun.",
+        "Ein Label ist keine Fehlermeldung."
+      ]
+    },
+    {
+      "id": "kil1-4",
+      "type": "multiple_choice",
+      "question": "modell.get(eingabe, \"unbekannt\") statt modell[eingabe] – warum?",
+      "options": [
+        "Damit das Programm nicht abstürzt, wenn eingabe nicht im Dictionary vorkommt",
+        "Weil .get() schneller rechnet",
+        "Es gibt keinen Unterschied"
+      ],
+      "correctIndex": 0,
+      "explanation": "modell[eingabe] wirft einen KeyError, wenn der Schlüssel fehlt – .get(..., Standardwert) gibt stattdessen den Standardwert zurück.",
+      "optionExplanations": [
+        null,
+        "Der Geschwindigkeitsunterschied ist hier nicht der Grund.",
+        "Der Unterschied ist entscheidend: [ ] stürzt ab, .get() nicht."
+      ]
+    },
+    {
+      "id": "kil1-5",
+      "type": "multiple_choice",
+      "question": "Ein Modell wurde nur mit den Beispielen 'hund' und 'katze' trainiert. Was passiert bei der Eingabe 'vogel'?",
+      "options": [
+        "Das Modell kann damit nichts anfangen – 'vogel' kommt in den Trainingsdaten nicht vor",
+        "Das Modell errät den Vogel garantiert richtig",
+        "Das Programm stürzt zwingend ab"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ein Modell kann nur Muster erkennen, die in seinen Trainingsdaten vorkommen.",
+      "optionExplanations": [
+        null,
+        "Ohne passendes Trainingsbeispiel kann das Modell nichts 'garantiert' wissen.",
+        "Ein Absturz ist kein zwingendes Ergebnis – mit .get(..., 'unbekannt') z.B. nicht."
+      ]
+    },
+    {
+      "id": "kil1-6",
+      "type": "multiple_select",
+      "question": "Welche der folgenden Dinge können zu schlechten Vorhersagen eines Modells führen?",
+      "options": [
+        "Zu wenige Trainingsbeispiele",
+        "Einseitige/schiefe Trainingsdaten",
+        "Zu lange Variablennamen im Code",
+        "Zu viele Kommentare im Code"
+      ],
+      "correctIndices": [0, 1]
+    },
+    {
+      "id": "kil1-7",
+      "type": "multiple_choice",
+      "question": "Was bedeutet 'Vorhersage' (Prediction)?",
+      "options": [
+        "Die Antwort des Modells für eine neue, ihm noch nicht bekannte Eingabe",
+        "Das exakte Kopieren eines Trainingsbeispiels",
+        "Ein Fehler im Code"
+      ],
+      "correctIndex": 0,
+      "explanation": "Die Vorhersage ist die Antwort, die ein Modell für eine neue Eingabe abgibt.",
+      "optionExplanations": [
+        null,
+        "Eine Vorhersage ist keine reine Kopie eines bekannten Beispiels.",
+        "Eine Vorhersage ist kein Fehler, sondern das eigentliche Ergebnis des Modells."
+      ]
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Schreibe eine Funktion ist_erwachsen(alter), die True zurückgibt, wenn alter mindestens 18 ist, sonst False. Gib damit genau True (für 20) und danach False (für 15) aus.",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "True\nFalse",
+        "codeContains": ["def"]
+      }
+    },
+    {
+      "instruction": "Erstelle ein Dictionary modell mit 'hund': 'Tier' und 'baum': 'Pflanze'. Schreibe eine Funktion klassifiziere(eingabe, modell), die modell.get(eingabe, 'unbekannt') zurückgibt. Gib damit genau Tier (für 'hund') und danach unbekannt (für 'stein') aus.",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "Tier\nunbekannt",
+        "codeContains": ["def"]
+      }
+    }
+  ]
+}

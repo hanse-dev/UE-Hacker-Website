@@ -50,8 +50,8 @@ Variante braucht nur ihre eigene Sprache als Vorwissen.
 | Track | Einstieg | Grundkurs | Projekt-Kurse | Vertiefung |
 |---|---|---|---|---|
 | **Python** | `python-grundlagen-interaktiv` ✅ | `python-12-wochen-grundkurs` ✅ | `projekt-caesar-chiffre` ✅ · weitere geplant (`kurs-python-projekte` 📋) | 💡 Spieleprogrammierung mit Pygame Zero (alternativer/früherer Einstieg, siehe `KURSPLAN.md` Kurs 1) · 💡 RPG/OOP-Advanced (`KURSPLAN.md` Kurs 3 Track A, baut auf Wochen 10–11 auf) |
-| **JavaScript** | 💡 noch keiner (Idee: leichter interaktiver Einstieg analog Python) | `js-grundkurs` 🚧 nächstes konkretes Thema — 9 Wochen, leichtes Format ohne Themen-Varianten (siehe `KURSPLAN.md`), kein Voraussetzungsverhältnis zu den Projekt-Kursen | `projekt-js-spielewerkstatt` ✅ | 💡 Browser-Spiel Advanced (`KURSPLAN.md` Kurs 3 Track B) — Voraussetzung ist der JS-Projekt-Kurs, **nicht** der Python-Grundkurs |
-| **KI/ML** | – | 💡 `kurs-ki-labor` (`KURSPLAN.md` Kurs 4) — **einzige legitime Cross-Track-Voraussetzung: Python-Grundkurs** | – | – |
+| **JavaScript** | 💡 noch keiner (Idee: leichter interaktiver Einstieg analog Python) | `js-grundkurs` ✅ — 9 Wochen, leichtes Format ohne Themen-Varianten (siehe `KURSPLAN.md`), kein Voraussetzungsverhältnis zu den Projekt-Kursen | `projekt-js-spielewerkstatt` ✅ | 💡 Browser-Spiel Advanced (`KURSPLAN.md` Kurs 3 Track B) — Voraussetzung ist der JS-Projekt-Kurs, **nicht** der Python-Grundkurs |
+| **KI/ML** | – | `kurs-ki-labor` 🚧 nächstes konkretes Thema — 8 Wochen, ohne Themen-Varianten (siehe `KURSPLAN.md`), Algorithmen (k-NN, Entscheidungsbaum, kleines neuronales Netz) komplett in reinem Python selbst gebaut statt mit scikit-learn — **einzige legitime Cross-Track-Voraussetzung: Python-Grundkurs** | – | – |
 | **Datenbanken** | – | 💡 noch nicht ausgearbeitet — andockbar an Python- oder JS-Backend-Inhalte, da SQL sprachneutral ist | – | – |
 | **Web** (HTML/CSS + JS) | – | 💡 eher als Erweiterung des JS-Tracks als eigenständiger Track | – | – |
 

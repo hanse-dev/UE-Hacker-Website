@@ -7,6 +7,7 @@ const INTERACTIVE_URL = '/kurs/python-grundlagen-interaktiv';
 const COURSE_URL = '/kurs/python-12-wochen-grundkurs';
 const PLACEMENT_URL = '/kurs/python-einstufung';
 const JS_GRUNDKURS_URL = '/kurs/js-grundkurs';
+const KI_LABOR_URL = '/kurs/ki-labor';
 
 test.describe('Home & Navigation', () => {
   test.beforeEach(async ({ page }) => {
@@ -22,18 +23,19 @@ test.describe('Home & Navigation', () => {
     await expect(page.locator('a.cta-button[href="#kurse-uebersicht"]')).toBeVisible();
     await expect(page.locator('a.cta-button[href="/projekte"]')).toBeVisible();
 
-    // Home filtert Kurse: 12-Wochen + Interaktiv + JS-Grundkurs immer sichtbar, andere nur mit
-    // Termin. Projekt-Kurse (type: 'projekt') erscheinen hier nicht mehr — die haben eine eigene
-    // Übersicht unter /projekte, verlinkt über den Projekte-Teaser.
-    await expect(page.locator('#kurse-uebersicht .course-card')).toHaveCount(3);
+    // Home filtert Kurse: 12-Wochen + Interaktiv + JS-Grundkurs + KI-Labor immer sichtbar, andere
+    // nur mit Termin. Projekt-Kurse (type: 'projekt') erscheinen hier nicht mehr — die haben eine
+    // eigene Übersicht unter /projekte, verlinkt über den Projekte-Teaser.
+    await expect(page.locator('#kurse-uebersicht .course-card')).toHaveCount(4);
     await expect(page.locator('a.course-card[href="/kurs/python-12-wochen-grundkurs"]')).toBeVisible();
     await expect(page.locator('a.course-card[href="/kurs/python-grundlagen-interaktiv"]')).toBeVisible();
     await expect(page.locator(`a.course-card[href="${JS_GRUNDKURS_URL}"]`)).toBeVisible();
+    await expect(page.locator(`a.course-card[href="${KI_LABOR_URL}"]`)).toBeVisible();
     await expect(page.locator('.projekte-teaser-link')).toBeVisible();
     await expect(page.locator('a.placement-hint-link[href="/kurs/python-einstufung"]')).toBeVisible();
 
     // Kurskarten zeigen ein Format-Badge (Einstieg/Grundkurs, siehe VISION.md-Format-Modell)
-    await expect(page.locator('.course-format-badge')).toHaveCount(3);
+    await expect(page.locator('.course-format-badge')).toHaveCount(4);
   });
 
   test('Hero-CTA "Kurse" springt zur Kursübersicht, "Projekte" öffnet die Projekte-Seite', async ({ page }) => {
@@ -54,6 +56,7 @@ test.describe('Home & Navigation', () => {
     await page.locator(`a.course-card[href="${JS_GRUNDKURS_URL}"] h3`).click();
     await expect(page).toHaveURL(/js-grundkurs/);
     await expect(page.locator('.course-detail > h1')).toHaveText('JavaScript-Grundkurs');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.week-tile')).toHaveCount(9, { timeout: 15000 });
   });
 
@@ -108,6 +111,33 @@ test.describe('12-Wochen-Kurs UI', () => {
     await expect(page.locator('.course-structure')).toBeVisible({ timeout: 20000 });
     await expect(page.locator('.course-structure-tab')).toHaveCount(7);
     await expect(page.locator('.course-structure-tab', { hasText: 'Check' })).toBeVisible();
+  });
+
+  test('"Kurs starten" blendet Beschreibung/Struktur aus und zeigt nur noch die Wochen-Tour; "Kursbeschreibung" führt zurück', async ({ page }) => {
+    await page.goto(COURSE_URL);
+    await expect(page.locator('.course-structure')).toBeVisible({ timeout: 20000 });
+    await expect(page.locator('.week-tile')).toHaveCount(0);
+
+    await page.locator('.btn-start-course').click();
+    await expect(page.locator('.week-tile')).toHaveCount(12, { timeout: 15000 });
+    await expect(page.locator('.course-structure')).toHaveCount(0);
+    await expect(page.locator('.placement-banner')).toHaveCount(0);
+    await expect(page).toHaveURL(/started=1/);
+
+    // Ein Reload muss die fokussierte Kurs-Ansicht behalten (started steht in der URL).
+    await page.reload();
+    await expect(page.locator('.week-tile')).toHaveCount(12, { timeout: 15000 });
+
+    await page.locator('.btn-back-to-overview').click();
+    await expect(page.locator('.course-structure')).toBeVisible({ timeout: 15000 });
+    await expect(page.locator('.week-tile')).toHaveCount(0);
+    await expect(page).not.toHaveURL(/started=1/);
+  });
+
+  test('Deep-Link ?week=1&variant=abenteuer überspringt die Start-Seite direkt in die Tour', async ({ page }) => {
+    await page.goto(`${COURSE_URL}?week=1&variant=abenteuer`);
+    await expect(page.locator('.course-structure')).toHaveCount(0);
+    await expect(page.locator('.js-course-tour, .stepper-step').first()).toBeVisible({ timeout: 15000 });
   });
 });
 

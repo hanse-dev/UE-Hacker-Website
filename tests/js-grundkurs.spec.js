@@ -65,6 +65,7 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
 
   test('Wochenauswahl: alle 9 Wochen verfügbar, keine "kommt noch"-Kachel mehr', async ({ page }) => {
     await page.goto('/kurs/js-grundkurs');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.week-tile')).toHaveCount(9);
 
     for (let i = 0; i < 9; i++) {
@@ -75,6 +76,7 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
 
   test('Woche 1 anklicken öffnet die Wochen-Tour, "Andere Woche wählen" führt zurück', async ({ page }) => {
     await page.goto('/kurs/js-grundkurs');
+    await page.locator('.btn-start-course').click();
     await page.locator('.week-tile').nth(0).click();
     await expect(page.locator('.stepper-step')).toHaveCount(7, { timeout: 15000 });
     await expect(page.locator('.tour-breadcrumb')).toContainText('Woche 1');
@@ -148,6 +150,7 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
 
   test('Seite laedt mit Stepper (7 Kullern in 3 Abschnitten Lektion/Debug/Mission) und Breadcrumb, ohne sichtbares Canvas', async ({ page }) => {
     await page.goto('/kurs/js-grundkurs');
+    await page.locator('.btn-start-course').click();
     await page.locator('.week-tile').nth(0).click();
     await expect(page.locator('.stepper-step')).toHaveCount(7, { timeout: 15000 });
     await expect(page.locator('.btn-kernel')).toHaveCount(0);

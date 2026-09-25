@@ -99,6 +99,8 @@ export default {
   'course.structure.reference': '📖 Glossar, 🔧 Musterlösungen und Cheat-Sheets sind jederzeit über das Seitenmenü erreichbar – unabhängig vom Fortschritt.',
   'course.placement.banner': 'Unsicher, wo du starten sollst? Mach zuerst den Einstufungstest – gleiche Fragen wie im Check-Tab der Wochen.',
   'course.placement.link': 'Zur Einstufung →',
+  'course.start.button': '🚀 Kurs starten',
+  'course.backToOverview': '← Kursbeschreibung',
   'course.download.btn':  '📦 Alle Notebooks als Pack herunterladen',
   'course.download.hint': 'Zip mit allen 12 Wochen (Abenteuer, Pferde, Sci-Fi) + Cheat Sheets – zum Arbeiten in Jupyter oder VS Code.',
   'course.project.banner.title': 'Fertig mit dem Kurs (oder schon mittendrin)? Zeit für dein erstes eigenes Projekt!',
@@ -224,10 +226,10 @@ export default {
   'lessons.importSuccess':  'Fortschritt wurde importiert.',
   'lessons.importFailed':   'Import fehlgeschlagen: ',
 
-  // ── JS-Grundkurs: Wochenauswahl (JsGrundkursTour.vue) ─────────────────────
-  'jsGrundkurs.chooseWeekTitle': 'Wähle eine Woche',
-  'jsGrundkurs.comingSoon':      '🚧 kommt noch',
-  'jsGrundkurs.backToWeeks':     '← Andere Woche wählen',
+  // ── Wochenauswahl themenloser Grundkurse (JsGrundkursTour.vue, KiLaborTour.vue) ──
+  'weekPicker.chooseWeekTitle': 'Wähle eine Woche',
+  'weekPicker.comingSoon':      '🚧 kommt noch',
+  'weekPicker.backToWeeks':     '← Andere Woche wählen',
 
   // ── Interactive course: variant selector ─────────────────────────────────
   'interactive.whoFor':        'Für wen ist dieser Kurs?',
@@ -365,4 +367,6 @@ export default {
   'profil.badges.hint': 'Schließe ein Projekt komplett ab, um sein Abzeichen freizuschalten.',
   'profil.loading': 'Lade Abzeichen …',
   'profil.badges.earned': 'Geschafft! 🎉',
+  'profil.certificates.title': 'Meine Zertifikate',
+  'profil.certificates.hint': 'Bestehe Quiz und beide Coding-Aufgaben einer Woche, um ihr Zertifikat freizuschalten.',
 };

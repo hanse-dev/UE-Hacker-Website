@@ -6,8 +6,12 @@ export const PROGRESS_APPLIED_EVENT = 'ue-hacker-progress-applied';
 
 const FIXED_SYNC_KEYS = [
   'ue-hacker-fortschritt',
-  'ue-hacker-week-checks',
 ];
+
+// 'ue-hacker-week-checks' (Python-Kurs, kein Suffix) und 'ue-hacker-week-checks-<courseKey>'
+// (z.B. KI-Labor, siehe useWeekChecks.js storageKeyFor) - ein Praefix statt fester Liste, damit
+// ein neuer Kurs mit eigenem Wochen-Check automatisch mitsynct.
+const WEEK_CHECKS_PREFIX = 'ue-hacker-week-checks';
 
 const NOTEBOOK_PREFIX = 'ue-hacker-notebook-state-';
 // Deckt sowohl die Interaktiv-Kurs-Varianten (kinder/jugendliche) als auch jeden Projekt-Kurs ab
@@ -39,7 +43,9 @@ function saveMeta(meta) {
 export function isSyncableKey(key) {
   if (!key || key === SYNC_META_KEY) return false;
   if (FIXED_SYNC_KEYS.includes(key)) return true;
-  return key.startsWith(NOTEBOOK_PREFIX) || key.startsWith(INTERACTIVE_PROGRESS_PREFIX);
+  return key.startsWith(NOTEBOOK_PREFIX)
+    || key.startsWith(INTERACTIVE_PROGRESS_PREFIX)
+    || key.startsWith(WEEK_CHECKS_PREFIX);
 }
 
 export function touchSyncKey(key, at = new Date().toISOString()) {
