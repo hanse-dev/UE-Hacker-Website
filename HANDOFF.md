@@ -2,11 +2,11 @@
 
 > **Zuletzt aktualisiert:** 2026-09-27
 > **Aktueller Stand:** `main` enthält KI-Labor Woche 1–8 (kompletter Kursplan, siehe Abschnitt 5) —
-> offen ist nur noch ein abschließender Smoke-Test aller Wochen. Details zu 3.69–3.83 (Zertifikate/
-> PDF, Skip-Aufgaben, Login-Fortschritt, Pre-commit/Pre-push u.a.) stehen in der Tabelle unten
-> (Abschnitt 3). Branch `admin-termine-verwaltung` (3.84, noch nicht gemergt): Termine lassen sich
-> jetzt im Admin-Panel verwalten statt nur per Hand in `public/termine.json`. Server-Deploy steht
-> weiter aus (Nutzer deployt selbst, siehe Abschnitt 4 "Betrieb").
+> offen ist nur noch ein abschließender Smoke-Test aller Wochen. Details zu 3.69–3.84 (Zertifikate/
+> PDF, Skip-Aufgaben, Login-Fortschritt, Pre-commit/Pre-push, Admin-Termine-Verwaltung u.a.) stehen
+> in der Tabelle unten (Abschnitt 3). Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe
+> Abschnitt 4 "Betrieb") — nach dem nächsten Deploy den einmaligen Termine-Import laufen lassen
+> (Abschnitt 5).
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
 > Chat-Historie. Sie wird per `@` in jede Session geladen — **klein halten** (Richtwert < 25 KB).
 > Die ausführliche Feature-Historie liegt kalt in `docs/archiv/HANDOFF-historie.md` (nicht importiert).
