@@ -18,6 +18,7 @@ const PROGRESS_KEY_WEEK2 = 'ue-hacker-interactive-progress-ki-labor-woche2';
 const PROGRESS_KEY_WEEK3 = 'ue-hacker-interactive-progress-ki-labor-woche3';
 const PROGRESS_KEY_WEEK4 = 'ue-hacker-interactive-progress-ki-labor-woche4';
 const PROGRESS_KEY_WEEK5 = 'ue-hacker-interactive-progress-ki-labor-woche5';
+const PROGRESS_KEY_WEEK7 = 'ue-hacker-interactive-progress-ki-labor-woche7';
 
 function findQuestion(text) {
   const normalized = text.replace(/^\d+\.\s*/, '').trim();
@@ -81,17 +82,22 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
     }, PROGRESS_KEY);
   });
 
-  test('Wochenauswahl: 8 Kacheln, Woche 1-5 verfügbar, Rest "kommt noch"', async ({ page }) => {
+  test('Wochenauswahl: 8 Kacheln, Woche 1-5 und 7 verfügbar, Woche 6+8 "kommt noch"', async ({ page }) => {
+    // Woche 6 "Neuronale Netze I" entsteht parallel auf einem eigenen Branch und ist hier noch
+    // nicht vorhanden - Woche 7 baut inhaltlich zwar darauf auf, hat aber einen eigenen
+    // Content-Ordner und ist unabhaengig von Woche 6 verfuegbar (Glob-basierte "available"-Pruefung
+    // in KiLaborTour.vue, nicht sequenziell). Nach dem Merge beider Wochen-Branches sind alle
+    // Wochen 1-7 verfuegbar.
     await page.goto('/kurs/ki-labor');
     await page.locator('.btn-start-course').click();
     await expect(page.locator('.week-tile')).toHaveCount(8);
-    for (let i = 0; i < 5; i++) {
+    for (const i of [0, 1, 2, 3, 4, 6]) {
       await expect(page.locator('.week-tile').nth(i)).not.toBeDisabled();
     }
-    for (let i = 5; i < 8; i++) {
+    for (const i of [5, 7]) {
       await expect(page.locator('.week-tile').nth(i)).toBeDisabled();
     }
-    await expect(page.locator('.week-tile-badge')).toHaveCount(3);
+    await expect(page.locator('.week-tile-badge')).toHaveCount(2);
   });
 
   test('Woche 1 anklicken öffnet die Wochen-Tour, "Andere Woche wählen" führt zurück', async ({ page }) => {
@@ -163,6 +169,15 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
     await page.goto('/kurs/ki-labor?week=6');
     await expect(page.locator('.week-tile')).toHaveCount(8);
     await expect(page.locator('.stepper-step')).toHaveCount(0);
+  });
+
+  test('Deep-Link ?week=7 öffnet direkt die Wochen-Tour', async ({ page }) => {
+    await page.goto('/kurs/ki-labor?week=7');
+    // 10 Lektionen (5 Lektion + Debug + Mission + 3 Extra-Herausforderung) + 1 Check-Punkt, da
+    // content/ki-labor-checks/week-7.json existiert (hasCheck=true).
+    await expect(page.locator('.stepper-step')).toHaveCount(11, { timeout: 15000 });
+    await expect(page.locator('.tour-breadcrumb')).toContainText('Woche 7');
+    await expect(page.locator('.tour-breadcrumb')).toContainText('Neuronale Netze II');
   });
 
   async function initKernel(page) {
@@ -817,6 +832,127 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
       1,
       'def klassifiziere(baum, beispiel):\n    if beispiel[baum["merkmal"]] < baum["schwelle"]:\n        return baum["links"]\n    return baum["rechts"]\n\nbaum = {"merkmal": "x", "schwelle": 35, "links": "A", "rechts": "B"}\nprint(klassifiziere(baum, {"x": 15}))\nprint(klassifiziere(baum, {"x": 80}))'
     );
+
+    await expect(page.locator('.certificate-reveal')).toBeVisible({ timeout: 10000 });
+  });
+
+  test('Woche 7: Debug-Lektion mit falscher Schwellenwert-Richtung/fehlendem Bias/falscher Indizierung', async ({ page }) => {
+    await page.addInitScript((key) => {
+      localStorage.setItem(key, JSON.stringify({
+        version: 1,
+        completedLessonIds: ['lektion-01', 'lektion-02', 'lektion-03', 'lektion-04', 'lektion-05'],
+      }));
+    }, PROGRESS_KEY_WEEK7);
+    await page.goto('/kurs/ki-labor?week=7');
+    await page.locator('.stepper-step').nth(5).click();
+    await initKernel(page);
+
+    const first = page.locator('.task-block').first();
+    await first.locator('.btn-check').click();
+    await expect(first.locator('.feedback-error')).toBeVisible({ timeout: 10000 });
+
+    await solve(page, [
+      'def step(x):\n    if x >= 0:\n        return 1\n    else:\n        return 0\n\nprint(step(0))\nprint(step(3))\nprint(step(-1))',
+      'def step(x):\n    if x >= 0:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, bias):\n    gewichtete_summe = 0\n    for i in range(len(eingaben)):\n        gewichtete_summe += eingaben[i] * gewichte[i]\n    gewichtete_summe += bias\n    return step(gewichtete_summe)\n\nprint(neuron([0, 0], [1, 1], -1.5))',
+      'def step(x):\n    if x >= 0:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, bias):\n    gewichtete_summe = 0\n    for i in range(len(eingaben)):\n        gewichtete_summe += eingaben[i] * gewichte[i]\n    gewichtete_summe += bias\n    return step(gewichtete_summe)\n\ndef vorwaerts(eingaben, versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias):\n    versteckte_ausgaben = []\n    for i in range(len(versteckte_gewichte)):\n        versteckte_ausgaben.append(neuron(eingaben, versteckte_gewichte[i], versteckte_bias[i]))\n    return neuron(versteckte_ausgaben, ausgabe_gewichte, ausgabe_bias)\n\nversteckte_gewichte = [[1, 1], [-1, -1]]\nversteckte_bias = [-0.5, 1.5]\nausgabe_gewichte = [1, 1]\nausgabe_bias = -1.5\n\nprint(vorwaerts([1, 1], versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias))',
+    ]);
+  });
+
+  test('Kompletter Durchlauf Woche 7: alle Lektionen, Extra-Herausforderungen und der Wochen-Check', async ({ page }) => {
+    test.setTimeout(120000);
+    await page.goto('/kurs/ki-labor?week=7');
+    await initKernel(page);
+
+    const NEURON_DEF = 'def step(x):\n    if x >= 0:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, bias):\n    gewichtete_summe = 0\n    for i in range(len(eingaben)):\n        gewichtete_summe += eingaben[i] * gewichte[i]\n    gewichtete_summe += bias\n    return step(gewichtete_summe)\n\n';
+    const VORWAERTS_DEF = NEURON_DEF + 'def vorwaerts(eingaben, versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias):\n    versteckte_ausgaben = []\n    for i in range(len(versteckte_gewichte)):\n        versteckte_ausgaben.append(neuron(eingaben, versteckte_gewichte[i], versteckte_bias[i]))\n    return neuron(versteckte_ausgaben, ausgabe_gewichte, ausgabe_bias)\n\n';
+    const GENAUIGKEIT_DEF = 'def ist_richtig(vorhersage, erwartet):\n    return vorhersage == erwartet\n\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if ist_richtig(vorhersagen[i], erwartete_werte[i]):\n            richtig += 1\n    return round(richtig / len(vorhersagen) * 100)\n\n';
+    const NETZ_GEWICHTE = 'versteckte_gewichte = [[1, 1], [-1, -1]]\nversteckte_bias = [-0.5, 1.5]\nausgabe_gewichte = [1, 1]\nausgabe_bias = -1.5\n';
+    const XOR_TABELLE = 'xor_tabelle = [\n    ([0, 0], 0),\n    ([0, 1], 1),\n    ([1, 0], 1),\n    ([1, 1], 0),\n]\n';
+    const TRAIN_DEF = 'import random\n\n' + VORWAERTS_DEF + 'def bewertung(parameter, tabelle):\n    versteckte_gewichte = [[parameter[0], parameter[1]], [parameter[3], parameter[4]]]\n    versteckte_bias = [parameter[2], parameter[5]]\n    ausgabe_gewichte = [parameter[6], parameter[7]]\n    ausgabe_bias = parameter[8]\n    richtig = 0\n    for eingaben, erwartet in tabelle:\n        vorhersage = vorwaerts(eingaben, versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias)\n        if vorhersage == erwartet:\n            richtig += 1\n    return richtig / len(tabelle) * 100\n\ndef trainiere(tabelle, neustarts, schritte):\n    beste_parameter = None\n    beste_bewertung = -1\n    for _ in range(neustarts):\n        parameter = [random.uniform(-1, 1) for _ in range(9)]\n        aktuelle_bewertung = bewertung(parameter, tabelle)\n        for _ in range(schritte):\n            index = random.randrange(len(parameter))\n            alter_wert = parameter[index]\n            parameter[index] = alter_wert + random.uniform(-1, 1)\n            neue_bewertung = bewertung(parameter, tabelle)\n            if neue_bewertung >= aktuelle_bewertung:\n                aktuelle_bewertung = neue_bewertung\n            else:\n                parameter[index] = alter_wert\n        if aktuelle_bewertung > beste_bewertung:\n            beste_bewertung = aktuelle_bewertung\n            beste_parameter = parameter\n        if beste_bewertung == 100:\n            break\n    return beste_parameter, beste_bewertung\n\n';
+
+    // Lektion 1: Wiederholung: Ein Neuron entscheidet.
+    await solve(page, [null, null, NEURON_DEF + 'print(neuron([0, 0], [-1, -1], 1.5))\nprint(neuron([0, 1], [-1, -1], 1.5))\nprint(neuron([1, 0], [-1, -1], 1.5))\nprint(neuron([1, 1], [-1, -1], 1.5))']);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('1 abgeschlossen');
+
+    // Lektion 2: Warum ein einzelnes Neuron nicht reicht.
+    await solve(page, [null, null, NEURON_DEF + 'def anzahl_richtig(gewichte, bias, tabelle):\n    richtig = 0\n    for eingaben, erwartet in tabelle:\n        if neuron(eingaben, gewichte, bias) == erwartet:\n            richtig += 1\n    return richtig\n\n' + XOR_TABELLE + 'bestes_ergebnis = 0\nwerte = [-3, -2, -1, 0, 1, 2, 3]\nfor w1 in werte:\n    for w2 in werte:\n        for b in werte:\n            ergebnis = anzahl_richtig([w1, w2], b, xor_tabelle)\n            if ergebnis > bestes_ergebnis:\n                bestes_ergebnis = ergebnis\nprint(bestes_ergebnis)']);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('2 abgeschlossen');
+
+    // Lektion 3: Eine versteckte Schicht.
+    await solve(page, [null, VORWAERTS_DEF + NETZ_GEWICHTE + 'print(vorwaerts([1, 1], versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias))\nprint(vorwaerts([0, 0], versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias))']);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('3 abgeschlossen');
+
+    // Lektion 4: Gewichte lernen lassen.
+    await solve(page, [null, TRAIN_DEF + XOR_TABELLE + 'random.seed(3)\nbeste_parameter, beste_bewertung = trainiere(xor_tabelle, 40, 60)\nprint(beste_bewertung)']);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('4 abgeschlossen');
+
+    // Lektion 5: Alles zusammen.
+    await solve(page, [null, VORWAERTS_DEF + GENAUIGKEIT_DEF + XOR_TABELLE + 'erwartete_werte = [erwartet for _, erwartet in xor_tabelle]\n\nbaseline_vorhersagen = [neuron(e, [-1, -1], 1.5) for e, _ in xor_tabelle]\nprint(baseline_vorhersagen)\nprint(genauigkeit(baseline_vorhersagen, erwartete_werte))']);
+    await expect(page.locator('.progress-count')).toContainText('5 abgeschlossen');
+    await expect(page.locator('.lesson-complete-box')).toBeVisible();
+    await page.locator('.btn-next').click();
+
+    // Debug-Lektion (fixe Loesungen, s.o.).
+    await solve(page, [
+      'def step(x):\n    if x >= 0:\n        return 1\n    else:\n        return 0\n\nprint(step(0))\nprint(step(3))\nprint(step(-1))',
+      NEURON_DEF + 'print(neuron([0, 0], [1, 1], -1.5))',
+      VORWAERTS_DEF + NETZ_GEWICHTE + 'print(vorwaerts([1, 1], versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias))',
+    ]);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('6 abgeschlossen');
+
+    // Mission: Lichtschalter-Raetsel.
+    await solve(page, [
+      NEURON_DEF + 'print(neuron([1, 1], [1, 1], -1.5))\nprint(neuron([0, 1], [1, 1], -1.5))',
+      VORWAERTS_DEF + 'schalter_tabelle = [([0, 0], 0), ([0, 1], 1), ([1, 0], 1), ([1, 1], 0)]\n' + NETZ_GEWICHTE + 'for eingaben, erwartet in schalter_tabelle:\n    print(vorwaerts(eingaben, versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias))',
+      VORWAERTS_DEF + GENAUIGKEIT_DEF + 'schalter_tabelle = [([0, 0], 0), ([0, 1], 1), ([1, 0], 1), ([1, 1], 0)]\n' + NETZ_GEWICHTE + 'vorhersagen = [vorwaerts(e, versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias) for e, _ in schalter_tabelle]\nerwartete_werte = [erwartet for _, erwartet in schalter_tabelle]\nprint(genauigkeit(vorhersagen, erwartete_werte))',
+    ]);
+    await expect(page.locator('.progress-count')).toContainText('7 abgeschlossen');
+
+    // Mission abgeschlossen, danach folgt ein Boss-Abschnitt (Extra-Herausforderung) UND ein
+    // Check -> "Weiter" zeigt eine Wahl-Seite statt direkt zum Check zu springen.
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.branch-choice-page')).toBeVisible();
+    await page.locator('[data-branch="boss"]').click();
+
+    const XNOR_TABELLE = 'xnor_tabelle = [([0, 0], 1), ([0, 1], 0), ([1, 0], 0), ([1, 1], 1)]\n';
+    const XNOR_AUSGABE = 'ausgabe_gewichte = [-1, -1]\nausgabe_bias = 1.5\n';
+    const VERSTECKT = 'versteckte_gewichte = [[1, 1], [-1, -1]]\nversteckte_bias = [-0.5, 1.5]\n';
+
+    // Boss 1: XNOR - das Gegenteil von XOR.
+    await solve(page, [
+      VORWAERTS_DEF + VERSTECKT + XNOR_AUSGABE + 'vorhersagen = [vorwaerts(e, versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias) for e in [[0, 0], [0, 1], [1, 0], [1, 1]]]\nprint(vorhersagen)',
+      VORWAERTS_DEF + GENAUIGKEIT_DEF + VERSTECKT + XNOR_AUSGABE + XNOR_TABELLE + 'vorhersagen = [vorwaerts(e, versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias) for e, _ in xnor_tabelle]\nerwartete_werte = [erwartet for _, erwartet in xnor_tabelle]\nprint(genauigkeit(vorhersagen, erwartete_werte))',
+      NEURON_DEF + 'def anzahl_richtig(gewichte, bias, tabelle):\n    richtig = 0\n    for eingaben, erwartet in tabelle:\n        if neuron(eingaben, gewichte, bias) == erwartet:\n            richtig += 1\n    return richtig\n\n' + XNOR_TABELLE + 'bestes_ergebnis = 0\nwerte = [-2, -1, 0, 1, 2]\nfor w1 in werte:\n    for w2 in werte:\n        for b in werte:\n            ergebnis = anzahl_richtig([w1, w2], b, xnor_tabelle)\n            if ergebnis > bestes_ergebnis:\n                bestes_ergebnis = ergebnis\nprint(bestes_ergebnis)',
+    ]);
+    await page.locator('.btn-next').click();
+
+    // Boss 2: Ein Netz fuer XNOR selbst trainieren.
+    await solve(page, [
+      TRAIN_DEF + XNOR_TABELLE + 'random.seed(0)\nbeste_parameter, beste_bewertung = trainiere(xnor_tabelle, 40, 60)\nprint(beste_bewertung)',
+      TRAIN_DEF + GENAUIGKEIT_DEF + XNOR_TABELLE + 'random.seed(0)\nbeste_parameter, beste_bewertung = trainiere(xnor_tabelle, 40, 60)\nversteckte_gewichte = [[beste_parameter[0], beste_parameter[1]], [beste_parameter[3], beste_parameter[4]]]\nversteckte_bias = [beste_parameter[2], beste_parameter[5]]\nausgabe_gewichte = [beste_parameter[6], beste_parameter[7]]\nausgabe_bias = beste_parameter[8]\nvorhersagen = [vorwaerts(e, versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias) for e, _ in xnor_tabelle]\nerwartete_werte = [erwartet for _, erwartet in xnor_tabelle]\nprint(genauigkeit(vorhersagen, erwartete_werte))',
+      TRAIN_DEF + XNOR_TABELLE + 'random.seed(5)\n_, wenig = trainiere(xnor_tabelle, 3, 5)\nprint(wenig)\nrandom.seed(0)\n_, viel = trainiere(xnor_tabelle, 40, 60)\nprint(viel)',
+    ]);
+    await page.locator('.btn-next').click();
+
+    // Boss 3: 3x3-Pixel-Mustererkennung.
+    await solve(page, [
+      NEURON_DEF + 'x_muster = [1, 0, 1, 0, 1, 0, 1, 0, 1]\nl_muster = [1, 0, 0, 1, 0, 0, 1, 1, 1]\nprint(neuron(x_muster, x_muster, -4))\nprint(neuron(l_muster, x_muster, -4))',
+      NEURON_DEF + 'x_muster = [1, 0, 1, 0, 1, 0, 1, 0, 1]\nx_muster_luecke = [0, 0, 1, 0, 1, 0, 1, 0, 1]\nprint(neuron(x_muster_luecke, x_muster, -4))',
+      NEURON_DEF + 'x_muster = [1, 0, 1, 0, 1, 0, 1, 0, 1]\nx_muster_luecke = [0, 0, 1, 0, 1, 0, 1, 0, 1]\nprint(neuron(x_muster, x_muster, -4.5))\nprint(neuron(x_muster_luecke, x_muster, -4.5))',
+    ]);
+    // Letzte Lektion (boss-03) abgeschlossen, kein weiterer Boss -> "Weiter" springt direkt zum
+    // Wochen-Check (kein Mission->Boss-Uebergang mehr, also keine erneute Wahl-Seite).
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.week-check-panel')).toBeVisible({ timeout: 15000 });
+
+    await passWeekQuiz(page);
+    await passCodingChallenge(page, 0, NEURON_DEF + 'print(neuron([1, 1], [1, 1], -1.5))\nprint(neuron([1, 0], [1, 1], -1.5))');
+    await passCodingChallenge(page, 1, VORWAERTS_DEF + NETZ_GEWICHTE + 'print(vorwaerts([0, 1], versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias))\nprint(vorwaerts([1, 0], versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias))');
 
     await expect(page.locator('.certificate-reveal')).toBeVisible({ timeout: 10000 });
   });
