@@ -161,6 +161,39 @@ test.describe('Interaktiver Kurs', () => {
     });
   });
 
+  test('Glossar-Tooltip: verschachtelte Begriffe (z.B. "Wert" in der Erklärung von "Variable") brechen das title-Attribut nicht auf', async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem('ue-hacker-interactive-progress-kinder', JSON.stringify({
+        version: 1,
+        courseId: 'python-grundlagen-interaktiv',
+        variant: 'kinder',
+        completedLessonIds: ['lektion-01'],
+      }));
+    });
+    await page.goto(INTERACTIVE_URL);
+    await expect(page.locator('.variant-card').first()).toBeVisible({ timeout: 15000 });
+    await page.locator('.variant-card').first().click();
+    await expect(page.locator('.lessons-list .lesson-item').first()).toBeVisible({ timeout: 15000 });
+    await page.locator('.lesson-item').nth(1).click();
+
+    const task = page.locator('.task-block').first();
+    const term = task.locator('.glossary-term', { hasText: 'Variable' });
+    await expect(term).toHaveCount(1);
+    await expect(term).not.toContainText('span');
+
+    const title = await term.getAttribute('title');
+    expect(title).not.toContain('<span');
+    expect(title).toBe(
+      'Ein Speicherplatz für einen Wert. Du weist einen Wert zu (z.B. name = "Python") und kannst ihn später verwenden.'
+    );
+
+    // Vor dem Fix landete die Erklärung von "Wert" (das selbst wieder ein Glossar-Begriff ist)
+    // als sichtbarer Text statt im title-Attribut, weil die Begriffe sequenziell auf dem
+    // wachsenden HTML-String ersetzt wurden statt in einem Durchlauf über den Originaltext.
+    await expect(task).not.toContainText('Speicherplatz für einen');
+    await expect(task).toContainText('Speichere "Drache" in einer Variable namens tier');
+  });
+
   test('Placement-Banner auch auf Interaktiv-Kurs', async ({ page }) => {
     await page.goto(INTERACTIVE_URL);
     await expect(page.locator('.placement-banner')).toBeVisible({ timeout: 15000 });
