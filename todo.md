@@ -5,15 +5,21 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 
 ## Offen
 
-- [ ] Seit 3.80 (HANDOFF.md) prüft `validateOutput()` in Lektionsaufgaben nur noch die Ausgabe.
-      Rund 40 JS-Aufgaben (js-grundkurs-woche1/2/3/5/6/7/8, js-spielewerkstatt, js-snake, per
-      `grep`-Suche über `variables`/`functionCalls` ohne eigenes `expected` gefunden) hatten aber
-      **nie** ein `output_contains`, sondern verließen sich allein auf `variables`/`functionCalls` -
-      diese Aufgaben prüfen jetzt gar nichts mehr (bestehen schon, wenn der Code fehlerfrei läuft).
-      Zurückgestellt, weil es 40 einzelne Content-Entscheidungen sind (welcher `console.log`-Text
-      pro Aufgabe sinnvoll und nicht die Lösung verrät) - kein mechanischer Fix. Vorschlag: pro
-      Aufgabe ein passendes `output_contains` ergänzen (z.B. den Rückgabewert der Funktion für den
-      Beispiel-Fall ausgeben lassen).
+- [ ] Echte Jupyter-Notebooks (.ipynb) fürs Offline-Üben: `scripts/build_lesson_notebook.py`
+      (neu) baut aus dem Lektions-Format je Woche/Variante/Sprache ein Aufgaben- + ein
+      Lösungs-Notebook (`public/wochen-notebooks/`, gitignored wie die ZIP-Downloads). Bisher nur
+      für Woche 4 Abenteuer (DE) erzeugt und geprüft (Lösungscode komplett mit `python3`
+      durchlaufen lassen, inkl. der `input()`-Aufgabe) — noch **nicht** verkabelt in
+      `pack_notebooks.py`/`package.json` (`prebuild`) oder als Download-Link im Frontend. Vor der
+      vollen Verkabelung: alle 12 Wochen × 3 Varianten × 2 Sprachen einmal durchlaufen lassen
+      (Assertion prüft Aufgaben-/Lösungsanzahl automatisch), dann Download-UI entscheiden (eigener
+      Button neben dem bestehenden ZIP-Download? nur bestimmte Wochen?).
+      Nebenbei entdeckt: `scripts/build_lesson_bundle.py` (`load_glossary()`) liest nur
+      `*_markdown.py`-Zellen des Glossars — die Kurzbeispiel-Code-Zelle (`*_code.py`, z.B.
+      `woche4_abenteuer_0_glossar/04_code.py`) fehlt dadurch im flachen `_komplett.py`/
+      `_complete.py`-Download alle Wochen. `build_lesson_notebook.py` liest beide Zelltypen und hat
+      die Lücke daher nicht. Nicht selbst gefixt, weil das den bestehenden, produktiv genutzten
+      Bundle-Build für alle Wochen ändert — erst zusammen mit der Notebook-Verkabelung angehen.
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken) —
       **zurückgestellt** (Nutzer will erst später deployen). Backup-Cron auf dem Server einrichten
       (Befehl siehe HANDOFF.md Abschnitt 4); externe Sicherung der Backups bewusst nicht mitgebaut.

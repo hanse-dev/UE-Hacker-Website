@@ -154,6 +154,9 @@ content/python-12-wochen-grundkurs*/**/_bundle/
 # Generierte Download-Pakete (scripts/pack_notebooks.py)
 public/**/*.zip
 
+# Generierte Jupyter-Notebooks fuer Offline-Nutzung (scripts/build_lesson_notebook.py)
+public/wochen-notebooks/
+
 # Lokale Backups
 _backups/
 
