@@ -216,8 +216,7 @@ export default {
       sandboxEls.value[idx].scrollIntoView();
 
       const validation = tasks.value[idx]?.validation || {};
-      const varNames = Object.keys(validation.variables || {});
-      const result = await sandboxEls.value[idx].run(taskCodes.value[idx], varNames);
+      const result = await sandboxEls.value[idx].run(taskCodes.value[idx]);
       if (!isMounted.value) return;
 
       if (!result.success) {
@@ -249,16 +248,7 @@ export default {
       }
       if (!isMounted.value) return;
 
-      const actualVars = result.variables || {};
-
-      const functionResults = [];
-      for (const fc of validation.functionCalls || []) {
-        const r = await sandboxEls.value[idx].callFunction(fc.name, fc.args);
-        functionResults.push({ expected: fc.expected, actual: r.ok ? r.value : undefined, error: !r.ok });
-      }
-      if (!isMounted.value) return;
-
-      const valid = extraChecksOk && validateOutput(result.output, validation, actualVars, functionResults);
+      const valid = extraChecksOk && validateOutput(result.output, validation);
 
       if (valid) {
         completedTasks.value = new Set([...completedTasks.value, idx]);

@@ -236,7 +236,10 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
     await expect(task0.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
   });
 
-  test('Mission: Hart-codierte Ausgabe ohne echte Variablen besteht nicht', async ({ page }) => {
+  test('Mission: in Lektionsaufgaben zaehlt nur die Ausgabe, auch hart codiert', async ({ page }) => {
+    // Bewusste Entscheidung (siehe useTaskValidation.js `structuralChecksOk`): normale
+    // Lektions-/Missionsaufgaben pruefen nur die Ausgabe, nicht ob dafuer echte Variablen
+    // angelegt wurden - das gilt nur noch fuer den zertifikatsrelevanten Wochen-Check.
     await page.addInitScript(() => {
       localStorage.setItem(
         'ue-hacker-interactive-progress-js-grundkurs-woche1',
@@ -255,13 +258,6 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
     const task0 = page.locator('.task-block').nth(0);
     await setCodeMirrorContent(task0.locator('.cm-host'), "console.log('umfang: 32, flaeche: 48');");
     await task0.locator('.btn-check').click();
-    await expect(task0.locator('.feedback-error')).toBeVisible({ timeout: 10000 });
-
-    await setCodeMirrorContent(
-      task0.locator('.cm-host'),
-      'let breite = 12;\nlet hoehe = 4;\n\nlet umfang = 2 * (breite + hoehe);\nlet flaeche = breite * hoehe;'
-    );
-    await task0.locator('.btn-check').click();
     await expect(task0.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
   });
 
@@ -275,11 +271,6 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
 
     // Lektion 2 wird automatisch als naechste Lektion angezeigt (onLessonCompleted).
     await expect(page.locator('.task-block').nth(1)).toBeVisible();
-    // Variablen-Check: schlaegt fehl, wenn nur die Ausgabe stimmt, aber die Variable fehlt.
-    const l2task1 = page.locator('.task-block').nth(1);
-    await setCodeMirrorContent(l2task1.locator('.cm-host'), "console.log('7');");
-    await l2task1.locator('.btn-check').click();
-    await expect(l2task1.locator('.feedback-error')).toBeVisible({ timeout: 10000 });
     // Lektion 2 hat nur 2 Aufgaben (Demo + Variablen-Check) - die frühere dritte Aufgabe (const-
     // Fehler-Demo) ist jetzt Teil des Lektionstexts, nicht mehr eine eigene Aufgabe.
     await completeLesson(page, [null, 'let lieblingszahl = 7;']);

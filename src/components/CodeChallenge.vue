@@ -41,7 +41,7 @@
 import { ref, computed, onMounted, watch } from 'vue';
 import { usePyodide } from '../composables/usePyodide';
 import { useWeekChecks, loadWeekChecks } from '../composables/useWeekChecks';
-import { validateOutput } from '../composables/useTaskValidation';
+import { validateOutput, structuralChecksOk } from '../composables/useTaskValidation';
 import { useLanguage } from '../composables/useLanguage';
 
 // Skalare (str/int/float/bool) kommen von Pyodide schon als JS-Wert. Komplexere Werte (z.B. ein
@@ -164,7 +164,8 @@ export default {
         }
       });
 
-      const valid = validateOutput(result.output, challenge.value?.validation, actualVars, functionResults);
+      const valid = validateOutput(result.output, challenge.value?.validation)
+        && structuralChecksOk(challenge.value?.validation, actualVars, functionResults);
       if (valid) {
         markCodingPassed(props.weekNumber, props.challengeIndex);
         feedback.value = {

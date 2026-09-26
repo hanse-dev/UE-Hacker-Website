@@ -4,17 +4,12 @@
 
 /**
  * @param {string} output - stdout der ausgefuehrten Zelle
- * @param {object} validation - { type, expected, variables?, functionCalls? }.
- * @param {object} [variables] - tatsaechliche Werte aus dem Python-Namespace nach der Ausfuehrung
- *   (Variablenname → Wert), von der aufrufenden Komponente aus `pyodide.globals` ausgelesen.
- *   Verhindert, dass eine Aufgabe durch bloßes Ausgeben des erwarteten Texts umgangen wird, ohne
- *   die geforderten Variablen tatsaechlich anzulegen.
- * @param {Array<{expected: any, actual?: any, error?: boolean}>} [functionResults] - Ergebnisse
- *   eines erneuten Aufrufs der geforderten Funktion(en) mit einem in der Aufgabenstellung nie
- *   genannten Eingabewert (von der aufrufenden Komponente ermittelt). Deckt auf, wenn eine
- *   Funktion nur zufaellig fuer das eine vorgerechnete Beispiel das richtige Ergebnis liefert.
+ * @param {object} validation - { type, expected }.
+ *
+ * Prueft bewusst nur die Ausgabe - nicht, wie sie zustande kam. Fuer den Wochen-Check
+ * (`CodeChallenge.vue`, zertifikatsrelevant) gibt es dafuer zusaetzlich `structuralChecksOk()`.
  */
-export function validateOutput(output, validation, variables, functionResults, code) {
+export function validateOutput(output, validation) {
   if (!validation) return true;
   const { type, expected } = validation;
   const out = (output || '').trim();
@@ -23,27 +18,36 @@ export function validateOutput(output, validation, variables, functionResults, c
   // bestimmte Ausgabe, nur echte Werte/Funktionsaufrufe oder einen Canvas-Zustand - dafuer laesst
   // `validation` das Feld `expected` bewusst weg. Kein bestehendes validation-Objekt im Repo laesst
   // `expected` weg, das ist also rueckwirkend kompatibel.
-  let outputOk = true;
-  if (expected !== undefined) {
-    switch (type) {
-      case 'output_contains':
-        // Bewusst tolerant: Groß-/Kleinschreibung, mehrfache/rand-staendige Leerzeichen und
-        // Satzzeichen am Ende sind fuer den Lerninhalt nicht relevant und sollen eine sonst
-        // richtige Loesung nicht durchfallen lassen. `output_equals` bleibt exakt (prueft
-        // teils bewusst auch auf ungewollte Extra-Ausgabe).
-        outputOk = normalizeForComparison(out).includes(normalizeForComparison(expected));
-        break;
-      case 'output_equals':
-        outputOk = out === expected;
-        break;
-      default:
-        outputOk = normalizeForComparison(out).includes(normalizeForComparison(expected));
-    }
-  }
-  if (!outputOk) return false;
+  if (expected === undefined) return true;
 
-  // Struktur-Pruefung: nur wenn der Aufrufer den eingereichten Code mitgibt (LessonView).
-  if (code !== undefined && missingCodeParts(code, validation).length > 0) return false;
+  switch (type) {
+    case 'output_contains':
+      // Bewusst tolerant: Groß-/Kleinschreibung, mehrfache/rand-staendige Leerzeichen und
+      // Satzzeichen am Ende sind fuer den Lerninhalt nicht relevant und sollen eine sonst
+      // richtige Loesung nicht durchfallen lassen. `output_equals` bleibt exakt (prueft
+      // teils bewusst auch auf ungewollte Extra-Ausgabe).
+      return normalizeForComparison(out).includes(normalizeForComparison(expected));
+    case 'output_equals':
+      return out === expected;
+    default:
+      return normalizeForComparison(out).includes(normalizeForComparison(expected));
+  }
+}
+
+/**
+ * Zusaetzlich zu `validateOutput()`: prueft, ob die geforderten Variablen/Funktionsergebnisse
+ * wirklich vorliegen - verhindert, dass der Wochen-Check (Zertifikat) durch bloßes Ausgeben des
+ * erwarteten Texts umgangen wird, ohne die Variablen/Funktionen tatsaechlich anzulegen. Bewusst
+ * nur fuer `CodeChallenge.vue` (Wochen-Check) genutzt, nicht fuer normale Lektionsaufgaben
+ * (`LessonView.vue`/`JsLessonView.vue`) - dort zaehlt nur die Ausgabe.
+ * @param {object} [variables] - tatsaechliche Werte aus dem Namespace nach der Ausfuehrung.
+ * @param {Array<{expected: any, actual?: any, error?: boolean}>} [functionResults] - Ergebnisse
+ *   eines erneuten Aufrufs der geforderten Funktion(en) mit einem in der Aufgabenstellung nie
+ *   genannten Eingabewert. Deckt auf, wenn eine Funktion nur zufaellig fuer das eine
+ *   vorgerechnete Beispiel das richtige Ergebnis liefert.
+ */
+export function structuralChecksOk(validation, variables, functionResults) {
+  if (!validation) return true;
 
   if (validation.variables) {
     const ok = Object.entries(validation.variables).every(([name, expectedValue]) => {
@@ -73,24 +77,6 @@ function normalizeForComparison(str) {
     .replace(/\s+/g, ' ')
     .trim()
     .replace(/[.,!?:;]+$/, '');
-}
-
-/**
- * `validation.codeContains`: Bausteine, die im Code der Lernenden vorkommen muessen (z.B. `def`, `class`,
- * `super()`, `try`), damit ein hart codiertes `print` nicht besteht. Kommentarzeilen zaehlen nicht;
- * Woerter werden ganz gematcht (`def` trifft nicht `undefined`). Texte in Anfuehrungszeichen werden
- * nicht ausgeklammert - bewusst einfach gehalten.
- * @returns {string[]} die fehlenden Bausteine (leer = alles da)
- */
-export function missingCodeParts(code, validation) {
-  const required = validation?.codeContains;
-  if (!Array.isArray(required) || required.length === 0) return [];
-  const source = String(code || '').split('\n').filter((line) => !line.trim().startsWith('#')).join('\n');
-  return required.filter((token) => {
-    const escaped = token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const pattern = (/^\w/.test(token) ? '\\b' : '') + escaped + (/\w$/.test(token) ? '\\b' : '');
-    return !new RegExp(pattern).test(source);
-  });
 }
 
 /**

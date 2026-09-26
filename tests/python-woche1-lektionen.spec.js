@@ -233,13 +233,16 @@ test.describe('Aufgaben-Pruefung: Struktur und vorgegebene Eingaben', () => {
     await expect(page.locator('.btn-kernel')).toBeDisabled({ timeout: 60000 });
   }
 
-  test('for-Aufgabe: hart codierte Ausgabe wird abgelehnt, echte Schleife besteht', async ({ page }) => {
+  test('for-Aufgabe: in Lektionsaufgaben zaehlt nur die Ausgabe, auch hart codiert', async ({ page }) => {
+    // Bewusste Entscheidung (siehe useTaskValidation.js `structuralChecksOk`): `codeContains`
+    // (hier: das Wort "for" im Code) wird in normalen Lektionsaufgaben nicht mehr erzwungen -
+    // nur die Ausgabe zaehlt. Eine echte Schleife besteht weiterhin.
     await page.goto('/kurs/python-12-wochen-grundkurs?week=4&variant=pferde');
     await startKernel(page);
     const task = page.locator('.task-block').nth(1);
     await task.locator('.code-editor').fill('print("Hufschlag")\nprint("Hufschlag")\nprint("Hufschlag")');
     await task.locator('.btn-check').click();
-    await expect(task.locator('.feedback-error')).toContainText('for', { timeout: 10000 });
+    await expect(task.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
     await task.locator('.code-editor').fill('for i in range(3):\n    print("Hufschlag")');
     await task.locator('.btn-check').click();
     await expect(task.locator('.feedback-success')).toBeVisible({ timeout: 10000 });

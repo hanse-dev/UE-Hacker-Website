@@ -6,7 +6,7 @@ import {
   getCorrectIndices,
   explanationForAnswer,
   validateOutput,
-  missingCodeParts,
+  structuralChecksOk,
 } from '../src/composables/useTaskValidation.js';
 
 function shuffleList(items) {
@@ -171,27 +171,39 @@ test.describe('Checks: Logik & Content', () => {
 });
 
 
-test.describe('Aufgaben-Validierung: codeContains (Struktur-Pruefung)', () => {
-  const v = { type: 'output_contains', expected: 'Hallo', codeContains: ['def', 'super()'] };
-
-  test('hart codiertes print besteht nicht, richtige Struktur schon', () => {
-    expect(validateOutput('Hallo', v, undefined, undefined, 'print("Hallo")')).toBe(false);
-    expect(validateOutput('Hallo', v, undefined, undefined, 'def f():\n    super().x()\nprint("Hallo")')).toBe(true);
-  });
-
-  test('ohne mitgegebenen Code (CodeChallenge) wird die Struktur nicht geprueft', () => {
+test.describe('validateOutput prueft in Lektionsaufgaben (LessonView/JsLessonView) nur die Ausgabe', () => {
+  test('codeContains/variables/functionCalls in der validation werden ignoriert - nur die Ausgabe zaehlt', () => {
+    const v = {
+      type: 'output_contains',
+      expected: 'Hallo',
+      codeContains: ['def', 'super()'],
+      variables: { x: 5 },
+      functionCalls: [{ name: 'f', args: [], expected: 1 }],
+    };
+    // Ein hart codiertes print("Hallo") ohne def/super()/echte Variablen/Funktionen reicht -
+    // bewusste Entscheidung: in normalen Lektionsaufgaben zaehlt nur die Ausgabe (kein Zertifikat).
     expect(validateOutput('Hallo', v)).toBe(true);
+    expect(validateOutput('Tschuess', v)).toBe(false);
+  });
+});
+
+test.describe('structuralChecksOk (nur Wochen-Check/Zertifikat, CodeChallenge.vue)', () => {
+  test('variables muessen wirklich im Namespace stehen, nicht nur die Ausgabe stimmen', () => {
+    const v = { type: 'output_contains', expected: 'Hallo', variables: { x: 5 } };
+    expect(structuralChecksOk(v, { x: 5 }, [])).toBe(true);
+    expect(structuralChecksOk(v, { x: 6 }, [])).toBe(false);
+    expect(structuralChecksOk(v, undefined, [])).toBe(false);
   });
 
-  test('Kommentare zaehlen nicht, Woerter werden ganz gematcht', () => {
-    expect(missingCodeParts('# def super()\nundefined = 1', v)).toEqual(['def', 'super()']);
-    expect(missingCodeParts('def a():\n    return super().b()', v)).toEqual([]);
-    expect(missingCodeParts('json.dumps(x)', { codeContains: ['json.dump'] })).toEqual(['json.dump']);
-    expect(missingCodeParts('json.dump(x, f)', { codeContains: ['json.dump'] })).toEqual([]);
+  test('functionCalls muessen mit einem neuen Eingabewert das erwartete Ergebnis liefern', () => {
+    const v = { type: 'output_contains', expected: 'Hallo', functionCalls: [{ name: 'f', expected: 9 }] };
+    expect(structuralChecksOk(v, {}, [{ expected: 9, actual: 9 }])).toBe(true);
+    expect(structuralChecksOk(v, {}, [{ expected: 9, actual: 4 }])).toBe(false);
+    expect(structuralChecksOk(v, {}, [{ expected: 9, error: true }])).toBe(false);
   });
 
-  test('falsche Ausgabe faellt trotz richtiger Struktur durch', () => {
-    expect(validateOutput('Tschuess', v, undefined, undefined, 'def f():\n    super().x()')).toBe(false);
+  test('ohne variables/functionCalls in der validation immer erfuellt', () => {
+    expect(structuralChecksOk({ type: 'output_contains', expected: 'Hallo' })).toBe(true);
   });
 });
 
