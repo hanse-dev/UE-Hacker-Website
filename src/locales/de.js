@@ -261,6 +261,8 @@ export default {
   'lesson.taskPrefix':        'Aufgabe ',
   'lesson.taskDone':          '(erledigt)',
   'lesson.taskPending':       '(noch offen)',
+  'lesson.taskSkipped':       '(übersprungen)',
+  'lesson.skipTask':          'Überspringen',
   'lesson.goToWeeklyCourse':  'Zum 12-Wochen Python Grundkurs',
   'lesson.nextLesson':        'Weiter zur nächsten Lektion',
   'lesson.defaultSummary':    'Super, du hast diese Lektion abgeschlossen!',

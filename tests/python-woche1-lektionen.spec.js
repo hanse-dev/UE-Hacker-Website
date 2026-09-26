@@ -248,6 +248,26 @@ test.describe('Aufgaben-Pruefung: Struktur und vorgegebene Eingaben', () => {
     await expect(task.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
   });
 
+  test('Aufgabe ueberspringen: erscheint erst nach 2 Fehlversuchen, zaehlt fuer den Lektions-Abschluss', async ({ page }) => {
+    await page.goto('/kurs/python-12-wochen-grundkurs?week=4&variant=pferde');
+    await startKernel(page);
+    const task = page.locator('.task-block').nth(1);
+
+    await expect(task.locator('.btn-skip')).toHaveCount(0);
+    await task.locator('.code-editor').fill('print("ganz falsch")');
+    await task.locator('.btn-check').click();
+    await expect(task.locator('.feedback-error')).toBeVisible({ timeout: 10000 });
+    await expect(task.locator('.btn-skip')).toHaveCount(0);
+
+    await task.locator('.btn-check').click();
+    await expect(task.locator('.feedback-error')).toBeVisible({ timeout: 10000 });
+    await expect(task.locator('.btn-skip')).toBeVisible();
+
+    await task.locator('.btn-skip').click();
+    await expect(task.locator('.task-skipped')).toBeVisible();
+    await expect(task.locator('.btn-skip')).toHaveCount(0);
+  });
+
   test('input()-Aufgabe: Pruefen nutzt die vorgegebene Eingabe, kein Eingabefenster', async ({ page }) => {
     let dialogs = 0;
     page.on('dialog', (d) => { dialogs += 1; d.dismiss(); });

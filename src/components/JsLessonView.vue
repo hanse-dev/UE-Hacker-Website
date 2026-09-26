@@ -16,10 +16,12 @@
           </span>
           <p class="task-instruction">
             <span v-if="completedTasks.has(idx)" class="task-done">✓</span>
+            <span v-else-if="skippedTasks.has(idx)" class="task-skipped">⏭</span>
             <span v-else class="task-pending">○</span>
             <span v-html="instructionWithGlossary(task.instruction || t('lesson.taskPrefix') + (idx + 1))"></span>
             <span v-if="completedTasks.has(idx)" class="task-status-label">{{ t('lesson.taskDone') }}</span>
-            <span v-else-if="!completedTasks.has(idx) && completedTasks.size > 0" class="task-status-label">{{ t('lesson.taskPending') }}</span>
+            <span v-else-if="skippedTasks.has(idx)" class="task-status-label">{{ t('lesson.taskSkipped') }}</span>
+            <span v-else-if="completedTasks.size > 0" class="task-status-label">{{ t('lesson.taskPending') }}</span>
           </p>
           <div class="code-editor-wrapper" :class="{ 'code-editor-ran': taskRan[idx] }">
             <JsCodeCell v-model="taskCodes[idx]" />
@@ -36,6 +38,14 @@
               class="btn-check"
             >
               {{ checking ? t('editor.checking') : t('editor.check') }}
+            </button>
+            <button
+              v-if="!isExample(idx) && !isTaskDone(idx) && (taskAttempts[idx] || 0) >= 2"
+              @click="skipTask(idx)"
+              :disabled="checking"
+              class="btn-skip"
+            >
+              {{ t('lesson.skipTask') }}
             </button>
           </div>
           <JsSandboxFrame v-if="taskRan[idx]" :ref="(el) => setSandboxRef(idx, el)" :show-canvas="showCanvas" :dom-mode="domMode" />
@@ -123,9 +133,15 @@ export default {
     // eigene Validierung - jede Aufgabe hat weiterhin ein `validation`-Objekt.
     const isExample = (idx) => !!tasks.value[idx]?.example;
 
+    // Uebersprungene Aufgaben zaehlen fuer den Lektions-Abschluss wie erledigt (damit man nicht
+    // blockiert bleibt), bleiben aber optisch als "uebersprungen" erkennbar statt als geloest -
+    // gilt bewusst nur fuer normale Lektionsaufgaben, nicht fuer den Wochen-Check (CodeChallenge.vue).
+    const doneCount = computed(() => new Set([...completedTasks.value, ...skippedTasks.value]).size);
+    const isTaskDone = (idx) => completedTasks.value.has(idx) || skippedTasks.value.has(idx);
+
     const allTasksComplete = computed(() => {
       const list = tasks.value;
-      return list.length > 0 && completedTasks.value.size === list.length;
+      return list.length > 0 && doneCount.value === list.length;
     });
 
     const lessonSummary = computed(() => props.lesson?.lessonSummary || t('lesson.defaultSummary'));
@@ -136,6 +152,7 @@ export default {
     const taskAttempts = ref([]);
     const taskRan = ref([]);
     const completedTasks = ref(new Set());
+    const skippedTasks = ref(new Set());
 
     const initTaskState = () => {
       const list = tasks.value;
@@ -145,7 +162,15 @@ export default {
       taskAttempts.value = list.map(() => 0);
       taskRan.value = list.map(() => false);
       completedTasks.value = new Set();
+      skippedTasks.value = new Set();
       sandboxEls.value = [];
+    };
+
+    const skipTask = (idx) => {
+      if (isTaskDone(idx)) return;
+      skippedTasks.value = new Set([...skippedTasks.value, idx]);
+      taskFeedback.value[idx] = null;
+      if (doneCount.value === tasks.value.length) markCompleted(props.lesson.id);
     };
 
     onMounted(() => {
@@ -204,7 +229,7 @@ export default {
     const markExampleDone = (idx) => {
       if (completedTasks.value.has(idx)) return;
       completedTasks.value = new Set([...completedTasks.value, idx]);
-      if (completedTasks.value.size === tasks.value.length) markCompleted(props.lesson.id);
+      if (doneCount.value === tasks.value.length) markCompleted(props.lesson.id);
     };
 
     const checkTask = async (idx) => {
@@ -252,6 +277,11 @@ export default {
 
       if (valid) {
         completedTasks.value = new Set([...completedTasks.value, idx]);
+        if (skippedTasks.value.has(idx)) {
+          const next = new Set(skippedTasks.value);
+          next.delete(idx);
+          skippedTasks.value = next;
+        }
         finishCheck(idx);
       } else {
         taskAttempts.value[idx] = (taskAttempts.value[idx] || 0) + 1;
@@ -269,7 +299,7 @@ export default {
 
     const finishCheck = (idx) => {
       const total = tasks.value.length;
-      const done = completedTasks.value.size;
+      const done = doneCount.value;
       if (done === total) {
         markCompleted(props.lesson.id);
         taskFeedback.value[idx] = { success: true, message: t('lesson.allTasksDone') };
@@ -304,6 +334,10 @@ export default {
       allTasksComplete,
       lessonSummary,
       completedTasks,
+      skippedTasks,
+      skipTask,
+      isTaskDone,
+      taskAttempts,
       instructionWithGlossary,
     };
   },
@@ -443,6 +477,11 @@ export default {
   margin-right: 6px;
 }
 
+.task-skipped {
+  color: #d9822b;
+  margin-right: 6px;
+}
+
 .task-status-label {
   font-weight: 400;
   color: #6c757d;
@@ -577,6 +616,26 @@ a.btn-next {
 
 .btn-check:disabled {
   background: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-skip {
+  background: transparent;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.btn-skip:hover:not(:disabled) {
+  background: #f8f9fa;
+  border-color: #adb5bd;
+}
+
+.btn-skip:disabled {
   cursor: not-allowed;
   opacity: 0.6;
 }
