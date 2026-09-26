@@ -7,7 +7,7 @@ import {
   loginUser,
   setUserSession,
 } from './useAuthApi.js';
-import { syncNow } from './useProgressSync.js';
+import { loadAccountProgress, syncNow } from './useProgressSync.js';
 
 const user = ref(getUserInfo());
 const token = ref(getUserToken());
@@ -36,7 +36,7 @@ export function useAuth() {
       setUserSession(data.token, data.user);
       token.value = data.token;
       user.value = data.user;
-      await syncNow({ reason: 'login' });
+      await loadAccountProgress();
       loginOpen.value = false;
       return true;
     } catch (e) {
