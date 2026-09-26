@@ -26,6 +26,11 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
       Aufwand wäre der Content selbst (444 Notebooks × Sprache). Keine neue i18n-Library nötig.
 - [ ] `kurs-python-spiele` — Idee verworfen zugunsten von `kurs-js-spielewerkstatt`: Pyodides
       synchrones Ausführungsmodell ist mit einer echten Spiele-Loop unvereinbar (Archiv HANDOFF 3.32).
+- [ ] Branch `offline-jupyter-notebook-converter` (WIP, unmerged): Konverter Lektions-Format →
+      echte `.ipynb` fürs Offline-Üben (12-Wochen-Kurs komplett verkabelt in `pack_notebooks.py`;
+      KI-Labor/Projekt-Kurse haben eigene Generatoren, aber noch keinen Download-Button/Verkabelung).
+      Liegt derzeit ~10 Commits hinter `main` zurück (diverse seither gemergte Branches) — vor
+      dem Weiterarbeiten erst rebasen/mergen, sonst wächst der Konflikt-Aufwand weiter.
 
 ### Offene Nachbesserungen Lektions-Format (nach Woche)
 
