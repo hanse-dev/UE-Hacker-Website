@@ -24,11 +24,13 @@
           <span v-if="task.example" class="task-badge">{{ t('jsLesson.badgeExample') }}</span>
           <p class="task-instruction">
             <span v-if="completedTasks.has(idx)" class="task-done">✓</span>
+            <span v-else-if="skippedTasks.has(idx)" class="task-skipped">⏭</span>
             <span v-else class="task-pending">○</span>
             <span v-if="task.isBonus" class="task-bonus-badge">Bonus</span>
             <span v-html="instructionWithGlossary(task.instruction || t('lesson.taskPrefix') + (idx + 1))"></span>
             <span v-if="completedTasks.has(idx)" class="task-status-label">{{ t('lesson.taskDone') }}</span>
-            <span v-else-if="!completedTasks.has(idx) && completedTasks.size > 0" class="task-status-label">{{ t('lesson.taskPending') }}</span>
+            <span v-else-if="skippedTasks.has(idx)" class="task-status-label">{{ t('lesson.taskSkipped') }}</span>
+            <span v-else-if="completedTasks.size > 0" class="task-status-label">{{ t('lesson.taskPending') }}</span>
           </p>
           <textarea
             v-model="taskCodes[idx]"
@@ -55,6 +57,14 @@
               class="btn-check"
             >
               {{ checking ? t('editor.checking') : t('editor.check') }}
+            </button>
+            <button
+              v-if="!task.example && !isTaskDone(idx) && (taskAttempts[idx] || 0) >= 2"
+              @click="skipTask(idx)"
+              :disabled="checking"
+              class="btn-skip"
+            >
+              {{ t('lesson.skipTask') }}
             </button>
           </div>
           <div v-if="taskOutputs[idx] !== null" class="output-display">
@@ -168,9 +178,15 @@ export default {
       return [];
     });
 
+    // Uebersprungene Aufgaben zaehlen fuer den Lektions-Abschluss wie erledigt (damit man nicht
+    // blockiert bleibt), bleiben aber optisch als "uebersprungen" erkennbar statt als geloest -
+    // gilt bewusst nur fuer normale Lektionsaufgaben, nicht fuer den Wochen-Check (CodeChallenge.vue).
+    const doneCount = computed(() => new Set([...completedTasks.value, ...skippedTasks.value]).size);
+    const isTaskDone = (idx) => completedTasks.value.has(idx) || skippedTasks.value.has(idx);
+
     const allTasksComplete = computed(() => {
       const t = tasks.value;
-      return t.length > 0 && completedTasks.value.size === t.length;
+      return t.length > 0 && doneCount.value === t.length;
     });
 
     const lessonSummary = computed(() => props.lesson?.lessonSummary || t('lesson.defaultSummary'));
@@ -181,6 +197,7 @@ export default {
     const taskAttempts = ref([]);
     const taskRan = ref([]);
     const completedTasks = ref(new Set());
+    const skippedTasks = ref(new Set());
     const solutionShown = ref(new Set());
 
     const initTaskState = () => {
@@ -194,12 +211,20 @@ export default {
       taskAttempts.value = t.map(() => 0);
       taskRan.value = t.map(() => false);
       completedTasks.value = new Set();
+      skippedTasks.value = new Set();
       solutionShown.value = new Set();
     };
 
     // Loesung wird nur auf Klick sichtbar - kein automatisches Verraten, siehe hintSoft/hintExpected.
     const showSolution = (idx) => {
       solutionShown.value = new Set([...solutionShown.value, idx]);
+    };
+
+    const skipTask = (idx) => {
+      if (isTaskDone(idx)) return;
+      skippedTasks.value = new Set([...skippedTasks.value, idx]);
+      taskFeedback.value[idx] = null;
+      if (doneCount.value === tasks.value.length) markCompleted(props.lesson.id);
     };
 
     watch(taskCodes, (codes) => {
@@ -258,7 +283,7 @@ export default {
     const markExampleDone = (idx) => {
       if (completedTasks.value.has(idx)) return;
       completedTasks.value = new Set([...completedTasks.value, idx]);
-      if (completedTasks.value.size === tasks.value.length) markCompleted(props.lesson.id);
+      if (doneCount.value === tasks.value.length) markCompleted(props.lesson.id);
     };
 
     const checkTask = async (idx) => {
@@ -295,8 +320,13 @@ export default {
 
       if (valid) {
         completedTasks.value = new Set([...completedTasks.value, idx]);
+        if (skippedTasks.value.has(idx)) {
+          const next = new Set(skippedTasks.value);
+          next.delete(idx);
+          skippedTasks.value = next;
+        }
         const total = tasks.value.length;
-        const done = completedTasks.value.size;
+        const done = doneCount.value;
         if (done === total) {
           markCompleted(props.lesson.id);
           taskFeedback.value[idx] = {
@@ -357,6 +387,10 @@ export default {
       allTasksComplete,
       lessonSummary,
       completedTasks,
+      skippedTasks,
+      skipTask,
+      isTaskDone,
+      taskAttempts,
       instructionWithGlossary,
     };
   },
@@ -490,6 +524,11 @@ export default {
 
 .task-pending {
   color: #adb5bd;
+  margin-right: 6px;
+}
+
+.task-skipped {
+  color: #d9822b;
   margin-right: 6px;
 }
 
@@ -637,6 +676,26 @@ a.btn-next {
 
 .btn-check:disabled {
   background: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-skip {
+  background: transparent;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.btn-skip:hover:not(:disabled) {
+  background: #f8f9fa;
+  border-color: #adb5bd;
+}
+
+.btn-skip:disabled {
   cursor: not-allowed;
   opacity: 0.6;
 }

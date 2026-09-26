@@ -8,8 +8,10 @@
 > Kurs-Tour aus (3.69). `output_contains`-Aufgabenprüfung toleriert jetzt Groß-/Kleinschreibung,
 > Leerzeichen und Satzzeichen am Ende (3.78). Normale Lektionsaufgaben (LessonView/JsLessonView)
 > prüfen jetzt nur noch die Ausgabe, nicht mehr Code-Struktur/Variablen/Funktionsaufrufe; der
-> zertifikatsrelevante Wochen-Check behält diese Prüfung (3.80). Server-Deploy steht weiter aus
-> (Nutzer deployt selbst, siehe Abschnitt 4 "Betrieb").
+> zertifikatsrelevante Wochen-Check behält diese Prüfung (3.80). Normale Lektionsaufgaben lassen
+> sich nach 2 Fehlversuchen überspringen (LessonView/JsLessonView, sichtbar als "übersprungen"
+> markiert, zählt für den Lektions-Abschluss, 3.81). Server-Deploy steht weiter aus (Nutzer deployt
+> selbst, siehe Abschnitt 4 "Betrieb").
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
 > Chat-Historie. Sie wird per `@` in jede Session geladen — **klein halten** (Richtwert < 25 KB).
 > Die ausführliche Feature-Historie liegt kalt in `docs/archiv/HANDOFF-historie.md` (nicht importiert).
@@ -91,6 +93,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.78 | `output_contains` toleriert Groß-/Kleinschreibung, Leerzeichen, Satzzeichen am Ende | `output_equals` bleibt bewusst exakt (prüft teils auf ungewollte Extra-Ausgabe); Test in `week-checks-logic.spec.js` |
 | 3.79 | Interaktiv-Kurs: Lektionstexte ausführlicher (Kinder + Jugendliche, DE) | reine Textüberarbeitung, keine Logikänderung |
 | 3.80 | Lektionsaufgaben prüfen nur noch die Ausgabe, nicht mehr Code-Struktur/Variablen | `validation.codeContains`/`variables`/`functionCalls` sind in `LessonView.vue`/`JsLessonView.vue` nicht mehr blockierend; `useTaskValidation.js` trennt `validateOutput()` (nur Ausgabe) von `structuralChecksOk()` (nur noch für `CodeChallenge.vue`/Wochen-Check) |
+| 3.81 | Lektionsaufgaben überspringbar (nach 2 Fehlversuchen) | Neuer `.btn-skip` in `LessonView.vue`/`JsLessonView.vue`, `skippedTasks`-Set zählt für den Lektions-Abschluss mit, bleibt aber optisch "übersprungen" (⏭) statt "erledigt" (✓); löst man die Aufgabe danach doch noch, wandert sie zu "erledigt". Gilt nicht für `CodeChallenge.vue` (Wochen-Check). |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 

@@ -209,6 +209,26 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
     await expect(task2.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
   });
 
+  test('Aufgabe ueberspringen: erscheint erst nach 2 Fehlversuchen, zaehlt fuer den Lektions-Abschluss', async ({ page }) => {
+    await page.goto('/kurs/js-grundkurs?week=1');
+    await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
+
+    const task2 = page.locator('.task-block').nth(2);
+    await expect(task2.locator('.btn-skip')).toHaveCount(0);
+    await setCodeMirrorContent(task2.locator('.cm-host'), "console.log('ganz falsch');");
+    await task2.locator('.btn-check').click();
+    await expect(task2.locator('.feedback-error')).toBeVisible({ timeout: 10000 });
+    await expect(task2.locator('.btn-skip')).toHaveCount(0);
+
+    await task2.locator('.btn-check').click();
+    await expect(task2.locator('.feedback-error')).toBeVisible({ timeout: 10000 });
+    await expect(task2.locator('.btn-skip')).toBeVisible();
+
+    await task2.locator('.btn-skip').click();
+    await expect(task2.locator('.task-skipped')).toBeVisible();
+    await expect(task2.locator('.btn-skip')).toHaveCount(0);
+  });
+
   test('Debug: kaputter Code schlaegt fehl, reparierter Code besteht', async ({ page }) => {
     // Debug-Abschnitt ist erst frei, wenn alle 5 Lektionen abgeschlossen sind.
     await page.addInitScript(() => {
