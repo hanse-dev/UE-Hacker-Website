@@ -189,10 +189,14 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     await expect(solution.locator('.solution-code')).toContainText('bewegeSchlaeger');
   });
 
-  test('Funktionsaufgabe mit versteckten Testfaellen: nur echte Loesung besteht', async ({ page }) => {
+  test('Funktionsaufgabe mit versteckten Testfaellen: JsLessonView prueft nur die Ausgabe, nicht mehr die versteckten Faelle', async ({ page }) => {
     test.setTimeout(30000);
-    // Lektion 2 ist erst frei, wenn Lektion 1 abgeschlossen ist - Fortschritt vorab setzen statt
-    // ihn hier erst manuell durchzuklicken (das ist bereits durch einen anderen Test abgedeckt).
+    // Bewusste Entscheidung (siehe useTaskValidation.js `structuralChecksOk`): normale
+    // Lektionsaufgaben pruefen nur noch die Ausgabe. Eine Aufgabe, die (wie diese) nur
+    // `functionCalls` ohne eigenes `expected` nutzt, hat dadurch gar keine Ausgabe-Anforderung
+    // mehr und besteht schon, sobald der Code fehlerfrei laeuft - auch mit einer Scheinloesung,
+    // die nur den einen vorgerechneten Fall trifft. Das gilt nur fuer normale Lektionsaufgaben,
+    // nicht fuer den zertifikatsrelevanten Wochen-Check (`CodeChallenge.vue`/`structuralChecksOk`).
     await page.addInitScript(() => {
       localStorage.setItem(
         'ue-hacker-interactive-progress-js-spielewerkstatt',
@@ -206,11 +210,9 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     // Task 0 ist wieder das lauffähige Beispiel (verdopple) - die Schreibaufgabe ist Task 1.
     const task1 = page.locator('.task-block').nth(1);
 
-    // Funktioniert nur fuer den einen vorgerechneten Fall, nicht fuer die Randfaelle -
-    // muss an den versteckten Testfaellen scheitern (beweist: keine Scheinloesung besteht).
     await setCodeMirrorContent(task1.locator('.cm-host'), 'function bewegeSchlaeger(x, taste) {\n  return 140;\n}');
     await task1.locator('.btn-check').click();
-    await expect(task1.locator('.feedback-error')).toBeVisible({ timeout: 10000 });
+    await expect(task1.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
 
     await setCodeMirrorContent(
       task1.locator('.cm-host'),

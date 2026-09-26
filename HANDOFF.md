@@ -6,8 +6,10 @@
 > Wochen-Check (Python + KI-Labor) inkl. direktem PDF-Download (3.69/3.70); ein "Kurs starten"-Gate
 > blendet bei den 3 Wochen-Tour-Kursen Beschreibung/Struktur-Erklärung vor der eigentlichen
 > Kurs-Tour aus (3.69). `output_contains`-Aufgabenprüfung toleriert jetzt Groß-/Kleinschreibung,
-> Leerzeichen und Satzzeichen am Ende (3.78). Server-Deploy steht weiter aus (Nutzer deployt selbst,
-> siehe Abschnitt 4 "Betrieb").
+> Leerzeichen und Satzzeichen am Ende (3.78). Normale Lektionsaufgaben (LessonView/JsLessonView)
+> prüfen jetzt nur noch die Ausgabe, nicht mehr Code-Struktur/Variablen/Funktionsaufrufe; der
+> zertifikatsrelevante Wochen-Check behält diese Prüfung (3.80). Server-Deploy steht weiter aus
+> (Nutzer deployt selbst, siehe Abschnitt 4 "Betrieb").
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
 > Chat-Historie. Sie wird per `@` in jede Session geladen — **klein halten** (Richtwert < 25 KB).
 > Die ausführliche Feature-Historie liegt kalt in `docs/archiv/HANDOFF-historie.md` (nicht importiert).
@@ -88,6 +90,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.77 | KI-Labor: Woche 8 "Grenzen & Ethik" (letzte Woche des Kurses) | 5 Lektionen (schiefe Trainingsdaten, Accuracy-Paradox, Baum übernimmt den Bias, Ausgleich per Undersampling, Chatbots/Datenschutz-Analogie) + Debug + Mission (eigener Bias-Datensatz ausgleichen) + 3 Extra-Herausforderungen (3-Klassen-Bias, Oversampling, Grenzen von Anonymisierung) + eigener Wochen-Check; kein "nächste Woche"-Button mehr nach dem Zertifikat, alle Beispiele/Lösungen mit `python3` geprüft |
 | 3.78 | `output_contains` toleriert Groß-/Kleinschreibung, Leerzeichen, Satzzeichen am Ende | `output_equals` bleibt bewusst exakt (prüft teils auf ungewollte Extra-Ausgabe); Test in `week-checks-logic.spec.js` |
 | 3.79 | Interaktiv-Kurs: Lektionstexte ausführlicher (Kinder + Jugendliche, DE) | reine Textüberarbeitung, keine Logikänderung |
+| 3.80 | Lektionsaufgaben prüfen nur noch die Ausgabe, nicht mehr Code-Struktur/Variablen | `validation.codeContains`/`variables`/`functionCalls` sind in `LessonView.vue`/`JsLessonView.vue` nicht mehr blockierend; `useTaskValidation.js` trennt `validateOutput()` (nur Ausgabe) von `structuralChecksOk()` (nur noch für `CodeChallenge.vue`/Wochen-Check) |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -107,7 +110,14 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 - Kernel in Tests immer über `startKernel()` (`tests/helpers/kernel.js`) starten, nie `if (await btn.isEnabled()) click()` — der Kernel kann dazwischen bereit werden, der Button ist dann deaktiviert und `click()` hängt bis zum Test-Timeout (flaky `zertifikate`/`woche12`).
 - `CodeChallenge` startet den Kernel nicht selbst; Tests klicken `.btn-kernel` explizit (3.47-Lektion, `ensureKernel` in `zertifikate.spec.js`).
 - Namespace-Variablen vor jedem Check-Lauf löschen; `pyodide.globals.delete()` wirft bei unbekanntem Namen → try/catch (3.34). Vor `functionCalls`-Re-Aufruf `__cell_deadline__` neu setzen (3.34).
-- `validation.variables`/`validation.functionCalls` in `lessons.json` **nie** für Python-Inhalte nutzen, die über `LessonView.vue` laufen (12-Wochen-Kurs, Python-Projekt-Kurse): `LessonView.vue` ruft `validateOutput()` ohne die Parameter `variables`/`functionResults` auf (nur `CodeChallenge.vue`/`JsLessonView.vue` für den JS-Grundkurs tun das) — ein `validation.variables`-Feld würde dort jede Aufgabe permanent durchfallen lassen. Für Python-Projekt-Kurse stattdessen `output_contains` (mehrzeilig über `\n`) + `codeContains` nutzen (3.60).
+- Seit 3.80 prüft `validateOutput()` (in `LessonView.vue`/`JsLessonView.vue`, also allen normalen
+  Lektionsaufgaben) **nur noch die Ausgabe** — `validation.codeContains`/`variables`/`functionCalls`
+  in `lessons.json` werden dort ignoriert (bewusst: kein Blockieren mehr durch Code-Struktur). Eine
+  Aufgabe **ohne** eigenes `expected`, die sich bisher allein auf `variables`/`functionCalls` verließ
+  (z.B. reine "lege diese Variable an"-Aufgaben), besteht dadurch schon, wenn der Code fehlerfrei
+  läuft — bei neuen solchen Aufgaben immer ein `expected` (`output_contains`) ergänzen, sonst prüft
+  nichts mehr. Nur der zertifikatsrelevante Wochen-Check (`CodeChallenge.vue`) nutzt weiterhin
+  `structuralChecksOk()` und braucht echte `variables`/`functionCalls`.
 
 **JS-Sandbox (`js-spielewerkstatt`, `js-grundkurs`)**
 - `functionCalls` sieht nur `function`-Deklarationen und `var`; `const`/`let`/`class` sind beim zweiten `eval` weg → keine `functionCalls` auf Arrow-Functions/Klassen-Methoden (3.43).

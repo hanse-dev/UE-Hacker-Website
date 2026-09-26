@@ -5,6 +5,15 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 
 ## Offen
 
+- [ ] Seit 3.80 (HANDOFF.md) prüft `validateOutput()` in Lektionsaufgaben nur noch die Ausgabe.
+      Rund 40 JS-Aufgaben (js-grundkurs-woche1/2/3/5/6/7/8, js-spielewerkstatt, js-snake, per
+      `grep`-Suche über `variables`/`functionCalls` ohne eigenes `expected` gefunden) hatten aber
+      **nie** ein `output_contains`, sondern verließen sich allein auf `variables`/`functionCalls` -
+      diese Aufgaben prüfen jetzt gar nichts mehr (bestehen schon, wenn der Code fehlerfrei läuft).
+      Zurückgestellt, weil es 40 einzelne Content-Entscheidungen sind (welcher `console.log`-Text
+      pro Aufgabe sinnvoll und nicht die Lösung verrät) - kein mechanischer Fix. Vorschlag: pro
+      Aufgabe ein passendes `output_contains` ergänzen (z.B. den Rückgabewert der Funktion für den
+      Beispiel-Fall ausgeben lassen).
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken) —
       **zurückgestellt** (Nutzer will erst später deployen). Backup-Cron auf dem Server einrichten
       (Befehl siehe HANDOFF.md Abschnitt 4); externe Sicherung der Backups bewusst nicht mitgebaut.

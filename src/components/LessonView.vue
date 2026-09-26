@@ -107,7 +107,7 @@ import { ref, watch, onMounted, onBeforeUnmount, computed, nextTick } from 'vue'
 import { usePyodide } from '../composables/usePyodide';
 import { useInteractiveProgress } from '../composables/useInteractiveProgress';
 import { useLanguage } from '../composables/useLanguage';
-import { validateOutput, missingCodeParts } from '../composables/useTaskValidation';
+import { validateOutput } from '../composables/useTaskValidation';
 import { useLessonContent } from '../composables/useLessonContent';
 import { loadSavedCode, saveLessonCode } from '../composables/useSavedCode';
 import ProjectCompletionBox from './ProjectCompletionBox.vue';
@@ -291,7 +291,7 @@ export default {
       }
 
       const validation = tasks.value[idx]?.validation;
-      const valid = validateOutput(result.output, validation, undefined, undefined, taskCodes.value[idx]);
+      const valid = validateOutput(result.output, validation);
 
       if (valid) {
         completedTasks.value = new Set([...completedTasks.value, idx]);
@@ -312,16 +312,6 @@ export default {
         }
       } else {
         taskAttempts.value[idx] = (taskAttempts.value[idx] || 0) + 1;
-        // Ausgabe stimmt, aber ein geforderter Baustein (def/class/try ...) fehlt im Code
-        const missing = missingCodeParts(taskCodes.value[idx], validation);
-        if (missing.length > 0 && validateOutput(result.output, { ...validation, codeContains: undefined })) {
-          taskFeedback.value[idx] = {
-            success: false,
-            message: t('lesson.hintStructure').replace('{items}', missing.map((m) => `\`${m}\``).join(', ')),
-          };
-          checking.value = false;
-          return;
-        }
         // Erster Fehlversuch: nur ein sanfter Hinweis, kein Lösungsverrat.
         // Ab dem zweiten Fehlversuch: die erwartete Teilzeichenkette zeigen, damit niemand
         // dauerhaft feststeckt.
