@@ -3,8 +3,11 @@
 > **Zuletzt aktualisiert:** 2026-09-27
 > **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.85 (Zertifikate/PDF,
 > Skip-Aufgaben, Login-Fortschritt, Pre-commit/Pre-push, Admin-Termine, Interaktiv-Kurs-Überarbeitung).
-> Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4) — nach dem nächsten Deploy
-> den einmaligen Termine-Import laufen lassen (Abschnitt 5).
+> Branch `offline-jupyter-notebook-converter` (WIP, dieser Branch, gerade auf `main` rebast): neuer
+> Konverter Lektions-Format → echte `.ipynb` fürs Offline-Üben (3.86, bisher nur Woche 4 Abenteuer DE
+> erzeugt+geprüft, Verkabelung ins Frontend offen) + Bugfix Glossar-Tooltip bei verschachtelten
+> Begriffen (3.87). Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4) — nach
+> dem nächsten Deploy den einmaligen Termine-Import laufen lassen (Abschnitt 5).
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
 > Chat-Historie. Sie wird per `@` in jede Session geladen — **klein halten** (Richtwert < 25 KB).
 > Die ausführliche Feature-Historie liegt kalt in `docs/archiv/HANDOFF-historie.md` (nicht importiert).
@@ -74,6 +77,8 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.83 | Pre-commit/Pre-push zweistufig statt vollem `test:checks` bei jedem Commit | `scripts/test-changed.mjs` mappt (staged) geänderte Dateien auf betroffene Specs (Pre-commit, `npm run test:precommit`); voller `test:checks` läuft jetzt im neuen Pre-push-Hook |
 | 3.84 | Termine jetzt im Admin-Panel verwaltbar statt nur per Hand in `public/termine.json` | Neue `termine`-Tabelle (SQLite) + `/api/termine` (öffentlich, GET) + `/api/admin/termine` (CRUD); `AdminView.vue` hat einen zweiten Tab „Termine“; einmaliger Umzug per `api/src/scripts/import-termine-json.js` (Seed-Datei `api/src/scripts/termine-seed.json` aus der bisherigen `public/termine.json`) |
 | 3.85 | Interaktiv-Kurs: Editor-Erklärungen, flexible Lektionen (5 Aufgaben, mind. 2 nötig) + Beispiel-Aufgabe | Nutzer-Feedback "zu viele Annahmen, was zu tun ist" (Branch `interaktiv-kurs-erklaerung`, noch nicht gemergt): `lesson.editorHint` erklärt Ausführen vs. Prüfen, neuer bedingter Hinweis für `___`-Lücken; `LessonView.vue` bekommt `lesson.minSolved` (macht eine Lektion "flexibel" - mehr Aufgaben als nötig, Rest sofort überspringbar statt erst nach 2 Fehlversuchen); Kinder/Jugendliche-Variante auf 5 Aufgaben/Lektion + vorangestellte Beispiel-Aufgabe erweitert, `sum()`-Erklärungslücke (Kinder) geschlossen |
+| 3.86 | (WIP) Konverter Lektions-Format → echte Jupyter-Notebooks fürs Offline-Üben | Branch `offline-jupyter-notebook-converter`, noch nicht gemergt: `scripts/build_lesson_notebook.py`, Ausgabe unter `public/wochen-notebooks/` (gitignored); bisher nur Woche 4 Abenteuer DE erzeugt+geprüft, Verkabelung in `pack_notebooks.py`/Frontend offen (siehe `todo.md`) |
+| 3.87 | Bugfix: Glossar-Tooltip bricht bei verschachtelten Begriffen (z.B. "Wert" in "Variable") | `useLessonContent.js`: ein kombinierter Regex-Durchlauf über den Originaltext statt sequenziellem Ersetzen auf wachsendem Output; Test in `tests/site.spec.js` |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -88,6 +93,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 - Punkte-/Item-System und lokales Fortschritt-Skript **nicht** wieder einführen; Zertifikat = nur Wochen-Check, ein Zertifikat pro Woche, PDF login-gated (3.12/3.13).
 - Quizfragen `multiple_choice`: `optionExplanations` mitpflegen, `explanation_en` echt übersetzen; `shuffleQuestionOptions()` muss Text+Erklärung als Paar mischen (3.17). Schwelle nie als exakten Bruch (2/3 → `0.66`, 3.6).
 - Projekt-Kurse: der Erklärtext einer Lektion darf die direkt folgende Aufgabe nicht vorwegnehmen — weder als lauffähiger Code (Pseudocode nutzen, siehe 3.61), noch als "Beispiel"-Aufgabe, die exakt dieselbe Funktion wie die nächste "Pflicht"-Aufgabe zeigt (Beispiel muss eine *andere* Instanz desselben Prinzips sein, wie `verdopple` vor `bewegeSchlaeger` in js-spielewerkstatt).
+- Glossar-Begriffe im Interaktiv-Kurs (`useLessonContent.js`) nie sequenziell auf dem wachsenden Output ersetzen, wenn ein Begriff im Erklärtext eines anderen vorkommt (z.B. "Wert" in der Erklärung von "Variable") — ein späterer Treffer landet dann im schon eingefügten `title`-Attribut und bricht es auf. Immer ein einziger kombinierter Regex-Durchlauf über den Originaltext (3.79).
 
 **Pyodide / Ausführung**
 - Kein Web Worker: `input()` läuft synchron über `window.prompt()` (65 Notebooks, 3.5). Loop-Guard ist AST-basiert.
@@ -250,6 +256,10 @@ Ausführlich in `todo.md`. Kurzfassung:
 
 **Nächstes Kurs-Thema:** noch nicht entschieden (KI-Track weiter vs. weitere Python-Projekt-Kurse,
 siehe `VISION.md` "Offene Fragen"). Ideen-Backlog: `PROJEKTIDEEN.md`.
+
+**Laufender Branch `offline-jupyter-notebook-converter`:** Konverter-Skript fertig für Woche 4
+Abenteuer DE (3.86), Verkabelung in `pack_notebooks.py`/Frontend + restliche Wochen/Varianten/
+Sprachen offen (Details `todo.md`).
 
 **Bewusst nicht geplant:** öffentliches Sign-up, Mailversand/Kontaktformular, Supabase als Pflicht.
 
