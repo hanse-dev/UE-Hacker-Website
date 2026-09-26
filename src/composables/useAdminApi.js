@@ -65,3 +65,19 @@ export function updateUser(id, payload) {
 export function deleteUser(id) {
   return request(`/api/admin/users/${id}`, { method: 'DELETE' });
 }
+
+export function listTermine() {
+  return request('/api/admin/termine');
+}
+
+export function createTermin(payload) {
+  return request('/api/admin/termine', { method: 'POST', body: payload });
+}
+
+export function updateTermin(id, payload) {
+  return request(`/api/admin/termine/${id}`, { method: 'PATCH', body: payload });
+}
+
+export function deleteTermin(id) {
+  return request(`/api/admin/termine/${id}`, { method: 'DELETE' });
+}

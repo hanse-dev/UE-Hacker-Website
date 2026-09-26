@@ -113,7 +113,7 @@ export default {
 
     const fetchTermine = async () => {
       try {
-        const response = await fetch(assetUrl('termine.json'));
+        const response = await fetch('/api/termine');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

@@ -65,7 +65,7 @@ export async function loadCourseData(courseId, lang = 'de') {
     }
 
     try {
-      const response = await fetch(assetUrl('termine.json'));
+      const response = await fetch('/api/termine');
       const allTermine = await response.json();
       const today = new Date();
       today.setHours(0, 0, 0, 0);

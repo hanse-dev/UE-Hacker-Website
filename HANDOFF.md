@@ -1,12 +1,12 @@
 # Handoff — UE Hacker Website
 
-> **Zuletzt aktualisiert:** 2026-09-26
+> **Zuletzt aktualisiert:** 2026-09-27
 > **Aktueller Stand:** `main` enthält KI-Labor Woche 1–8 (kompletter Kursplan, siehe Abschnitt 5) —
-> offen ist nur noch ein abschließender Smoke-Test aller Wochen. Details zu 3.69–3.82 (Zertifikate/
-> PDF, Skip-Aufgaben, Login-Fortschritt u.a.) stehen in der Tabelle unten (Abschnitt 3). Neu: der
-> volle `test:checks`-Lauf ist kein Pre-commit-Zwang mehr, sondern läuft gemappt pro Commit
-> (`scripts/test-changed.mjs`) und komplett vor dem Push (3.83). Server-Deploy steht weiter aus
-> (Nutzer deployt selbst, siehe Abschnitt 4 "Betrieb").
+> offen ist nur noch ein abschließender Smoke-Test aller Wochen. Details zu 3.69–3.83 (Zertifikate/
+> PDF, Skip-Aufgaben, Login-Fortschritt, Pre-commit/Pre-push u.a.) stehen in der Tabelle unten
+> (Abschnitt 3). Branch `admin-termine-verwaltung` (3.84, noch nicht gemergt): Termine lassen sich
+> jetzt im Admin-Panel verwalten statt nur per Hand in `public/termine.json`. Server-Deploy steht
+> weiter aus (Nutzer deployt selbst, siehe Abschnitt 4 "Betrieb").
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
 > Chat-Historie. Sie wird per `@` in jede Session geladen — **klein halten** (Richtwert < 25 KB).
 > Die ausführliche Feature-Historie liegt kalt in `docs/archiv/HANDOFF-historie.md` (nicht importiert).
@@ -91,6 +91,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.81 | Lektionsaufgaben überspringbar (nach 2 Fehlversuchen) | Neuer `.btn-skip` in `LessonView.vue`/`JsLessonView.vue`, `skippedTasks`-Set zählt für den Lektions-Abschluss mit, bleibt aber optisch "übersprungen" (⏭) statt "erledigt" (✓); löst man die Aufgabe danach doch noch, wandert sie zu "erledigt". Gilt nicht für `CodeChallenge.vue` (Wochen-Check). |
 | 3.82 | Login ersetzt lokalen Fortschritt durch Account-Stand statt zu mergen | `loadAccountProgress()`/`replaceLocalProgress()` in `useProgressSync.js`, nur beim expliziten Login (`useAuth.js`) genutzt; `restoreSession()`/`syncNow()` beim Seiten-Reload bleiben beim Merge nach `updatedAt` |
 | 3.83 | Pre-commit/Pre-push zweistufig statt vollem `test:checks` bei jedem Commit | `scripts/test-changed.mjs` mappt (staged) geänderte Dateien auf betroffene Specs (Pre-commit, `npm run test:precommit`); voller `test:checks` läuft jetzt im neuen Pre-push-Hook |
+| 3.84 | Termine jetzt im Admin-Panel verwaltbar statt nur per Hand in `public/termine.json` | Neue `termine`-Tabelle (SQLite) + `/api/termine` (öffentlich, GET) + `/api/admin/termine` (CRUD); `AdminView.vue` hat einen zweiten Tab „Termine“; einmaliger Umzug per `api/src/scripts/import-termine-json.js` (Seed-Datei `api/src/scripts/termine-seed.json` aus der bisherigen `public/termine.json`) |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -276,6 +277,11 @@ Ausführlich in `todo.md`. Kurzfassung:
       (Wochen-Tour, nicht Akkordeon).
 - [ ] Backup-Cron auf dem Server einrichten (Befehl siehe Abschnitt 4, Pfad korrigiert 3.65);
       externe Sicherung der Backups bewusst nicht mitgebaut.
+- [ ] Nach dem Merge von `admin-termine-verwaltung`: auf dem Server einmalig
+      `docker compose exec app node api/src/scripts/import-termine-json.js` laufen lassen, um die
+      bisherigen `public/termine.json`-Einträge (jetzt Seed unter `api/src/scripts/termine-seed.json`)
+      in die neue `termine`-Tabelle zu übernehmen. Danach laufen Termine nur noch über das
+      Admin-Panel, nicht mehr über die Datei.
 
 **Inhalte**
 - Interaktiv-Kurs: "Ausführen vs. Prüfen"/Weiter-Flow — braucht konkretes Nutzer-Feedback.
@@ -329,6 +335,9 @@ Roadmap: `VISION.md`.
   Leerzeichen, Satzzeichen am Ende egal) — `output_equals` bleibt exakt. Beim Schreiben neuer
   Aufgaben mit `output_equals` bewusst bleiben, wenn genau das der Lernpunkt ist (z.B. "keine
   Extra-Ausgabe").
+- Termine (Home + Kursseiten) kommen seit 3.84 aus der `termine`-Tabelle über `/api/termine`, nicht
+  mehr aus `public/termine.json` — diese Datei nicht wieder als Datenquelle einführen. Pflege nur
+  noch über das Admin-Panel (`/admin` → Tab „Termine“).
 
 ---
 
