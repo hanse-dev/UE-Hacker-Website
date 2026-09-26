@@ -12,12 +12,13 @@ Ergaenzt scripts/build_lesson_bundle.py (baut EIN flaches .py-Skript ohne Jupyte
 echtes Notebook-Format fuer Leute, die lieber in Jupyter/VS Code offline arbeiten. Nutzt Glossar/
 Loesungen/Lektionstexte aus denselben Quellen, liest sie aber nur (schreibt nichts zurueck).
 
-Wird momentan NICHT von pack_notebooks.py aufgerufen - erst nach Review/Freigabe verkabeln.
+Wird von scripts/pack_notebooks.py aufgerufen (nur im Speicher, nichts wird hier auf die Platte
+geschrieben - siehe build_all_notebook_pairs()); der --check/--out-CLI-Modus unten schreibt fuers
+manuelle Testen zusaetzlich auf die Platte.
 """
 import ast
 import json
 import re
-import uuid
 from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -33,6 +34,7 @@ from build_lesson_bundle import (  # noqa: E402
     parse_markdown_cell,
     week_theme_title,
 )
+from notebook_utils import code_cell, markdown_cell, notebook, write_notebook  # noqa: E402
 
 SECTION_HEADER = {
     "lektion": {"de": "📚 Lektionen", "en": "📚 Lessons"},
@@ -40,44 +42,6 @@ SECTION_HEADER = {
     "mission": {"de": "⭐ Missionen", "en": "⭐ Missions"},
     "boss": {"de": "🔥 Extra-Herausforderungen", "en": "🔥 Extra Challenges"},
 }
-
-NBFORMAT_METADATA = {
-    "kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"},
-    "language_info": {"name": "python", "version": "3.10.0"},
-}
-
-
-def to_source(text: str) -> list[str]:
-    """Text -> nbformat 'source'-Zeilenliste (jede Zeile inkl. '\\n', letzte ohne)."""
-    lines = text.split("\n")
-    if not lines:
-        return []
-    return [line + "\n" for line in lines[:-1]] + [lines[-1]]
-
-
-def new_cell_id() -> str:
-    """nbformat >= 4.5 verlangt eine id pro Zelle (sonst MissingIDFieldWarning)."""
-    return uuid.uuid4().hex[:8]
-
-
-def markdown_cell(text: str) -> dict:
-    return {
-        "cell_type": "markdown",
-        "id": new_cell_id(),
-        "metadata": {},
-        "source": to_source(text.strip("\n")),
-    }
-
-
-def code_cell(code: str) -> dict:
-    return {
-        "cell_type": "code",
-        "id": new_cell_id(),
-        "execution_count": None,
-        "metadata": {},
-        "outputs": [],
-        "source": to_source(code.rstrip("\n")),
-    }
 
 
 def load_glossary_cells(glossar_dir: Path) -> list[dict]:
@@ -205,12 +169,7 @@ def build_notebook_pair(week: int, variant: dict, lang: str) -> tuple[str, dict,
                     compile(code, f"<woche{week}-{variant_dir}-{lang}-cell>", "exec")
                 cells.append(code_cell(code))
 
-        return {
-            "cells": cells,
-            "metadata": NBFORMAT_METADATA,
-            "nbformat": 4,
-            "nbformat_minor": 5,
-        }
+        return notebook(cells)
 
     tasks_nb = build_one(with_solutions=False)
     solutions_nb = build_one(with_solutions=True)
@@ -268,13 +227,8 @@ def main():
                 )
                 if not args.check:
                     week_dir = out_root / f"woche-{week}"
-                    week_dir.mkdir(parents=True, exist_ok=True)
-                    (week_dir / tasks_filename).write_text(
-                        json.dumps(tasks_nb, indent=1, ensure_ascii=False), encoding="utf-8"
-                    )
-                    (week_dir / solutions_filename).write_text(
-                        json.dumps(solutions_nb, indent=1, ensure_ascii=False), encoding="utf-8"
-                    )
+                    write_notebook(week_dir / tasks_filename, tasks_nb)
+                    write_notebook(week_dir / solutions_filename, solutions_nb)
                     print(f"✓ {week_dir / tasks_filename}")
                     print(f"✓ {week_dir / solutions_filename}")
                 count += 2
