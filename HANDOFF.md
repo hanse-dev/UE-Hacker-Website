@@ -1,12 +1,10 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-09-27
-> **Aktueller Stand:** `main` enthält KI-Labor Woche 1–8 (kompletter Kursplan, siehe Abschnitt 5) —
-> offen ist nur noch ein abschließender Smoke-Test aller Wochen. Details zu 3.69–3.84 (Zertifikate/
-> PDF, Skip-Aufgaben, Login-Fortschritt, Pre-commit/Pre-push, Admin-Termine-Verwaltung u.a.) stehen
-> in der Tabelle unten (Abschnitt 3, inkl. 3.85 Interaktiv-Kurs-Überarbeitung). Server-Deploy steht
-> weiter aus (Nutzer deployt selbst, siehe Abschnitt 4 "Betrieb") — nach dem nächsten Deploy den
-> einmaligen Termine-Import laufen lassen (Abschnitt 5).
+> **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.85 (Zertifikate/PDF,
+> Skip-Aufgaben, Login-Fortschritt, Pre-commit/Pre-push, Admin-Termine, Interaktiv-Kurs-Überarbeitung).
+> Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4) — nach dem nächsten Deploy
+> den einmaligen Termine-Import laufen lassen (Abschnitt 5).
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
 > Chat-Historie. Sie wird per `@` in jede Session geladen — **klein halten** (Richtwert < 25 KB).
 > Die ausführliche Feature-Historie liegt kalt in `docs/archiv/HANDOFF-historie.md` (nicht importiert).
@@ -38,27 +36,10 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 
 | Nr. | Thema | Kern in einem Satz |
 |---|---|---|
-| 3.1–3.3 | Einstufung/Checks, Admin+Sync (Express+SQLite), Sync-Loop-Fix | PR #1–#3 |
-| 3.4 | Storytelling-Überarbeitung 12-Wochen-Kurs | Regressionstests: `tests/storytelling-content.spec.js` |
-| 3.5 | Debug-Notebook-Sicherheit | AST-Loop-Guard (5s) in `usePyodide.js`, bewusst kein Web Worker (`input()`) |
-| 3.6/3.15/3.17 | Einstufungstest-Fixes, Distraktoren, personalisierte Falsch-Erklärungen | `optionExplanations(_en)` nur bei `multiple_choice` |
-| 3.7 | Interaktiv-Kurs: gestufter Hinweis | 2. Fehlversuch zeigt erst den erwarteten Wert |
-| 3.8–3.10 | Tippfehler-Pass (cspell) | alle 444 Notebooks geprüft; `.vue`-Prosa/Interaktiv-Kurse offen |
-| 3.11 | Cäsar-Chiffre (erstes Projekt) | Grundlage für `ProjectCourse.vue` |
-| 3.12–3.14 | Wochen-Zertifikate statt Punktesystem, PDF-Download, XP-Texte entfernt | Zertifikat = nur Wochen-Check |
-| 3.16 | Debug-Ziele Pferde+Abenteuer | `**Ziel:**`-Zeilen |
-| 3.18 | `weeks.json` → `config.json` + `week-N.json` | Node-Loader `content/python-checks/index.mjs` |
-| 3.19–3.23 | Refactoring 2–6 (CSS, WeekSection, LessonView, Placement, Ternary→`t()`) | Plan abgeschlossen |
-| 3.24–3.31 | Curriculum-Lücken 12-Wochen-Kurs | Woche 1/3/4/5/6/7/8/11 inhaltlich bereinigt |
-| 3.32 | Turtle lief nie im Browser → eigener Canvas-Shim | bleibt im Code für spätere Mandala-Projekt |
-| 3.33 | Zellen-Format (`NN_*.py` statt `.ipynb`), CodeMirror 6 | `_generated`/`_bundle` gitignored |
-| 3.34 | Wochen-Check: `variables`/`functionCalls`-Validierung | Hardcoding der Ausgabe reicht nicht mehr |
-| 3.35/3.36 | Geführte Wochen-Tour wird echte Kursseite | `WeekTour.vue`; alte Akkordeon-UI entfernt |
-| 3.37/3.45 | `VISION.md`, `PROJEKTIDEEN.md` | reine Doku |
-| 3.38 | Projekte-Übersicht `/projekte` + Filter, Morsecode, Zahlen-Detektiv | Neuer Projekt-Kurs = Content-Ordner + `kurse.json` |
-| 3.39 | JS-Spielewerkstatt (iframe-Sandbox) | `useJsSandbox.js`, `JsLessonView.vue`, `JsCodeCell.vue` |
-| 3.40/3.41 | Nav-Link "Projekte", `/profil` mit Abzeichen | Projekt-Fortschritt wird jetzt gesynct (Präfix-Key) |
-| 3.42–3.44 | JS-Grundkurs komplett (9 Wochen), Homepage-Redesign | `JsGrundkursTour.vue`, `example`-Aufgaben |
+| 3.1–3.17 | Grundlagen: Einstufung/Checks, Admin+Sync (Express+SQLite), Debug-Notebook-Sicherheit (AST-Loop-Guard), Cäsar-Chiffre, Wochen-Zertifikate statt Punktesystem, Tippfehler-Pass | Details im Archiv |
+| 3.18–3.31 | Refactorings + Curriculum-Lücken 12-Wochen-Kurs (Woche 1/3/4/5/6/7/8/11 bereinigt) | `config.json`/`week-N.json` statt `weeks.json` |
+| 3.32–3.36 | Turtle-Canvas-Shim, Zellen-Format (`NN_*.py` statt `.ipynb`, CodeMirror 6), Wochen-Check-Validierung, `WeekTour.vue` statt Akkordeon | |
+| 3.37–3.44 | `VISION.md`/`PROJEKTIDEEN.md`, Projekte-Übersicht `/projekte`, JS-Spielewerkstatt (iframe-Sandbox), `/profil` mit Abzeichen, JS-Grundkurs (9 Wochen) | |
 | 3.46 | Woche 12: Text-Adventure-Abschlussprojekt statt Turtle | Komposition einziger neuer Begriff; List Comprehension neu in Woche 6 |
 | 3.47/3.48 | Python Woche 1–4 als Einzel-Lektionen (Woche 3 nachträglich DE/EN angeglichen) (Lektions-Format) | `content/python-woche{N}-*`, Engine `pyodide` in `JsCourseTour`; Woche 3 DE/EN angeglichen; Woche 5–12 fertig; Lösungen aller Wochen aus Referenzlösungen (Glossar noch im alten Stil) |
 | 3.49–3.53 | Python Woche 5–9 (Funktionen, Listen, Module, Dictionaries/Tupel, JSON/Dateien) als Einzel-Lektionen | je Thema 7–9 Lektionen + Debug + 3 Missionen + 3–4 Extra-Herausforderungen, DE = EN, jede Referenzlösung mit `python3` geprüft |
@@ -98,9 +79,11 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 
 **Content / Notebooks**
 - Bulk-Edits an JSON/Notebooks nie per volle Reserialisierung, sondern gezielte Text-Ersetzung + `json.loads()` danach (3.12, 3.16). Seit 3.33 sind 12-Wochen-Notebooks Zellen-Ordner (`NN_*.py`) — keine `.ipynb` als Quelle wieder einführen.
-- Debug-Bugs müssen vom Kernel-Zustand unabhängig sein und dürfen die Lösung nicht verraten (3.4). Nach Notebook-Änderung Code-Zellen mit gemeinsamem Namespace per `python3` ausführen.
-- Ein "Fund" aus einer Variante gilt nicht automatisch für alle: vor Massenänderungen alle 3 Varianten × DE/EN per grep prüfen (3.26–3.30).
-- Neue Aufgabe zu einer bestehenden Lektion im Lektions-Format hinzufügen: in `lessons.json` einfach ans Ende von `tasks` anhängen (egal an welche Lektion sie inhaltlich gehört), UND im passenden `_N_loesungen`-Notebook-Ordner ein neues Markdown+Code-Zell-Paar mit der **höchsten** Nummer ans Ende anhängen — nie mittendrin einfügen, sonst müssen alle nachfolgenden Zellen umnummeriert werden. Der Test `tests/python-lektionen-format.spec.js` prüft nur Textvorkommen + Zellenzahl, nicht die Reihenfolge (3.71).
+- Debug-Bugs müssen vom Kernel-Zustand unabhängig sein und dürfen die Lösung nicht verraten. Nach Notebook-Änderung Code-Zellen mit gemeinsamem Namespace per `python3` ausführen.
+- Ein "Fund" aus einer Variante gilt nicht automatisch für alle: vor Massenänderungen alle 3 Varianten × DE/EN grep-prüfen.
+- Neue Aufgabe im Lektions-Format: in `lessons.json` ans Ende von `tasks` anhängen und im passenden
+  `_N_loesungen`-Notebook-Ordner ein neues Markdown+Code-Zell-Paar mit der **höchsten** Nummer ans
+  Ende — nie mittendrin einfügen (sonst müssen alle folgenden Zellen umnummeriert werden).
 - Standard-PDF-Fonts (pdf-lib/Helvetica) können kein Emoji — Content-Texte vorher per `sanitizeForPdfFont` filtern (3.13).
 - Punkte-/Item-System und lokales Fortschritt-Skript **nicht** wieder einführen; Zertifikat = nur Wochen-Check, ein Zertifikat pro Woche, PDF login-gated (3.12/3.13).
 - Quizfragen `multiple_choice`: `optionExplanations` mitpflegen, `explanation_en` echt übersetzen; `shuffleQuestionOptions()` muss Text+Erklärung als Paar mischen (3.17). Schwelle nie als exakten Bruch (2/3 → `0.66`, 3.6).
@@ -109,88 +92,70 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 **Pyodide / Ausführung**
 - Kein Web Worker: `input()` läuft synchron über `window.prompt()` (65 Notebooks, 3.5). Loop-Guard ist AST-basiert.
 - `turtle` gibt es in Pyodide nicht — eigener Canvas-Shim in `usePyodide.js` (3.32).
-- Kernel in Tests immer über `startKernel()` (`tests/helpers/kernel.js`) starten, nie `if (await btn.isEnabled()) click()` — der Kernel kann dazwischen bereit werden, der Button ist dann deaktiviert und `click()` hängt bis zum Test-Timeout (flaky `zertifikate`/`woche12`).
-- `CodeChallenge` startet den Kernel nicht selbst; Tests klicken `.btn-kernel` explizit (3.47-Lektion, `ensureKernel` in `zertifikate.spec.js`).
-- Namespace-Variablen vor jedem Check-Lauf löschen; `pyodide.globals.delete()` wirft bei unbekanntem Namen → try/catch (3.34). Vor `functionCalls`-Re-Aufruf `__cell_deadline__` neu setzen (3.34).
-- Seit 3.80 prüft `validateOutput()` (in `LessonView.vue`/`JsLessonView.vue`, also allen normalen
-  Lektionsaufgaben) **nur noch die Ausgabe** — `validation.codeContains`/`variables`/`functionCalls`
-  in `lessons.json` werden dort ignoriert (bewusst: kein Blockieren mehr durch Code-Struktur). Eine
-  Aufgabe **ohne** eigenes `expected`, die sich bisher allein auf `variables`/`functionCalls` verließ
-  (z.B. reine "lege diese Variable an"-Aufgaben), besteht dadurch schon, wenn der Code fehlerfrei
-  läuft — bei neuen solchen Aufgaben immer ein `expected` (`output_contains`) ergänzen, sonst prüft
-  nichts mehr. Nur der zertifikatsrelevante Wochen-Check (`CodeChallenge.vue`) nutzt weiterhin
-  `structuralChecksOk()` und braucht echte `variables`/`functionCalls`.
+- Kernel in Tests immer über `startKernel()` starten, nie `if (await btn.isEnabled()) click()` — der
+  Button kann dazwischen deaktiviert werden, `click()` hängt dann bis zum Timeout (flaky Tests).
+- `CodeChallenge` startet den Kernel nicht selbst; Tests klicken `.btn-kernel` explizit.
+- Namespace-Variablen vor jedem Check-Lauf löschen; `pyodide.globals.delete()` wirft bei unbekanntem
+  Namen → try/catch. Vor `functionCalls`-Re-Aufruf `__cell_deadline__` neu setzen.
+- Seit 3.80 prüft `validateOutput()` (`LessonView.vue`/`JsLessonView.vue`) **nur noch die Ausgabe** —
+  `codeContains`/`variables`/`functionCalls` werden dort ignoriert. Neue Aufgaben ohne eigenes
+  `output_contains` bestehen dann schon bei fehlerfreiem Code — immer ein `expected` ergänzen. Nur
+  der Wochen-Check (`CodeChallenge.vue`) nutzt weiterhin `structuralChecksOk()` mit echten Checks.
 
 **JS-Sandbox (`js-spielewerkstatt`, `js-grundkurs`)**
-- `functionCalls` sieht nur `function`-Deklarationen und `var`; `const`/`let`/`class` sind beim zweiten `eval` weg → keine `functionCalls` auf Arrow-Functions/Klassen-Methoden (3.43).
-- `valuesMatch()` vergleicht Arrays nur per `===` → nie ein Array als `expected`; nur daraus abgeleitete Skalare validieren. Objekte gehen rekursiv (3.43).
-- `dom_text`/`dom_click_text` nutzen `validation.text`, nicht `expected` (sonst greift der Ausgabe-Fallback); `canvas_*` analog (3.43).
-- Chromium drosselt `requestAnimationFrame` in Off-screen-iframes → `scrollIntoView()` vor dem Lauf (3.39). `postMessage` nur mit reinen Werten (`JSON.parse(JSON.stringify())`, Vue-Proxies lassen sich nicht klonen).
-- Keine echte Endlosschleife als Debug-Bug (kein Loop-Guard in der JS-Sandbox, nur 5s-Timeout).
+- `functionCalls` sieht nur `function`-Deklarationen/`var`; keine Arrow-Functions/Klassen-Methoden (3.43).
+- `valuesMatch()` vergleicht Arrays nur per `===` → nie ein Array als `expected`, nur abgeleitete Skalare.
+- `dom_text`/`dom_click_text`/`canvas_*` nutzen `validation.text`, nicht `expected`.
+- Chromium drosselt `requestAnimationFrame` in Off-screen-iframes → `scrollIntoView()` vor dem Lauf.
+  `postMessage` nur mit reinen Werten (Vue-Proxies lassen sich nicht klonen).
+- Keine echte Endlosschleife als Debug-Bug (kein Loop-Guard, nur 5s-Timeout).
 
 **Vue / CSS / Tests**
 - `@import` in `<style scoped>` bekommt einen anderen Scope-Hash → in separaten **unscoped** `<style>`-Block. Vor CSS-Extraktion Klassennamen repo-weit grep-prüfen (3.19, 3.20).
 - Watcher, die nach dem Rendern scrollen: `flush: 'post'` (3.39).
 - Sync darf nach Server-Apply keinen vollen Notebook-Re-Fetch auslösen (Blink-Schleife, 3.3).
-- Seit Woche 12 im Lektions-Format ist kein Kurs-Schritt mehr ein Notebook: Tests, die `.cell`/`.btn-run-cell`/`.btn-run-all` brauchen, öffnen das Nachschlagewerk „Lösungen“ über `openSolutionsNotebook()` (`tests/helpers/notebook.js`); 15 s reichen dort unter Last nicht (30 s).
-- CodeMirror ist keine `<textarea>`: Tests nutzen `tests/helpers/codemirror.js` (`setCodeMirrorContent`, `hoverOverCodeMirrorText`).
-- Beim Umbenennen von Testdateien `package.json`-Skripte mitprüfen — Playwright ignoriert fehlende Dateien stillschweigend, nur der Test-Zähler sinkt (3.43).
-- `test:auth` nutzt Port 5174 mit Proxy-Header; läuft dort schon ein "nackter" Vite, kommen 502er → `lsof -nP -iTCP:5174 -sTCP:LISTEN` (3.36).
-- Neue `LessonView.vue`-Kurse: Glob-Listen sind seit 3.38 Wildcards — nur Content-Ordner + `kurse.json` nötig.
-- Deep-Links `?week=&tab=` (Einstufung, Cäsar-Chiffre) bewusst unverändert lassen, `WeekTour.vue` übersetzt intern (3.36).
-- cspell: Wörterbücher brauchen `"import"`, nicht nur `"dictionaries"`; Ausgabe muss im Repo liegen (3.8/3.9).
-- Komponente wird beim Umschalten eines `v-if`-Zweigs neu gemountet → lokaler State (z.B. aktuelle Lektion) geht verloren, wenn er nicht vom Parent gehalten wird; beim Neu-Mount auf den zuletzt sinnvollen Zustand zurückfallen, nicht immer auf den Anfang (3.55).
-- Login-Felder für Passwort-Manager-Autofill (1Password u.ä.) brauchen ein echtes `<form>` +
-  `name`-Attribute auf den Inputs, sonst werden sie oft nicht erkannt/gespeichert; bei reinem
-  Passwort-Login (kein Benutzername im Datenmodell, z.B. Admin) ein verstecktes `username`-Feld mit
-  festem Wert ergänzen, damit ein vollständiges Login-Paar entsteht (3.64).
-- Reaktiver Zustand, der über mehrere Komponenten synchron bleiben muss (z.B. Admin-Token für
-  Nav + AdminView), gehört als ein geteilter `ref` in die Composable — nicht als lokaler Ref pro
-  Komponente, der bei jeder Aktion manuell nachgezogen wird (3.64).
-- Ein Composable/System, das nur für **einen** Kurs gebaut wurde (Content-Pfad + Storage-Key ohne
-  Kurs-Bezug fest verdrahtet, z.B. `useWeekChecks.js` vor 3.67), lässt sich nicht einfach an eine
-  zweite Stelle durchreichen — der Fortschritt beider Kurse würde sich sonst denselben
-  `localStorage`-Key und Content-Ordner teilen. Beim Verallgemeinern: ein `courseKey`-Parameter mit
-  Default = bisherigem Verhalten (keine Migration bestehender Nutzerdaten nötig), Storage-Key/
-  Content-Glob-Pfad davon ableiten, und **immer** die komplette bestehende Test-Suite des
-  Erstnutzers (hier: alle `zertifikate.spec.js`/`week-checks*.spec.js`-Tests) gegenlaufen lassen,
-  nicht nur den neuen Kurs testen (3.67).
-- Ein Bildschirm hinter einen Klick-Button setzen (z.B. "Kurs starten") heißt: **jeder** Test, der
-  bisher direkt auf diesen Bildschirm navigiert ist, braucht den Klick jetzt davor — repo-weit nach
-  der bisherigen bloßen `page.goto(...)`-Zeile grep-suchen (nicht nur die offensichtlichen
-  Test-Dateien), Deep-Links mit Query-Parametern, die den neuen Gate-Zustand ohnehin auf "schon
-  offen" setzen, brauchen dagegen keine Änderung (3.69).
-- CSS-Kind-Selektoren wie `.course-detail > h1` in Tests sind ein stilles Kopplungsrisiko: ein neu
-  eingefügter Wrapper-`<div>` um ein Element bricht sie, ohne dass der Test einen offensichtlichen
-  Grund nennt. Vor dem Verschachteln eines Elements, das anderswo per direktem Kind-Selektor
-  angesprochen wird, repo-weit nach genau diesem Selektor suchen (3.69).
-- Der volle `test:checks`-Lauf dauert ~2 Minuten (381 Tests, viele mit echtem Pyodide-Kernel) —
-  mehr Playwright-Worker bringen kaum etwas (Bottleneck ist Browser-/Interpreter-Zeit, nicht CPU).
-  Deshalb läuft er nicht mehr bei jedem Commit, sondern nur noch vor dem Push; Pre-commit nutzt
-  `scripts/test-changed.mjs`, das geänderte Dateien auf betroffene Specs mappt. Neue Komponenten/
-  Composables/Content-Ordner brauchen dort eine eigene Regel (`RULES`), sonst greift beim nächsten
-  Mal nur das Sicherheitsnetz (voller Lauf bei unbekannten Dateien) — kein Fehler, aber auch kein
-  Geschwindigkeitsgewinn (3.83).
-- Wird eine Lektion (`LessonView.vue`) über `lesson.minSolved` "flexibel" (mehr Aufgaben als nötig,
-  Rest von Anfang an überspringbar statt erst nach 2 Fehlversuchen), dürfen ihre Aufgaben sich
-  **nicht** mehr auf Variablen aus einer vorherigen Aufgabe verlassen: der Pyodide-Kernel-Namespace
-  ist zwar über die ganze Lektion geteilt, aber eine sofort übersprungene Aufgabe hat ihren Code nie
-  ausgeführt — eine später referenzierte Variable existiert dann nicht. Jede Aufgabe muss ihre Daten
-  (Liste/Dictionary/Variable) selbst neu anlegen, statt auf eine frühere Aufgabe zu bauen (3.85).
+- Seit Woche 12 ist kein Kurs-Schritt mehr ein Notebook: Tests, die `.cell`/`.btn-run-cell` brauchen,
+  öffnen „Lösungen“ über `openSolutionsNotebook()` (30s-Timeout, 15s reicht unter Last nicht).
+- CodeMirror ist keine `<textarea>`: Tests nutzen `tests/helpers/codemirror.js`.
+- Beim Umbenennen von Testdateien `package.json`-Skripte mitprüfen — Playwright ignoriert fehlende
+  Dateien stillschweigend, nur der Test-Zähler sinkt (3.43).
+- `test:auth` nutzt Port 5174 mit Proxy-Header; läuft dort ein "nackter" Vite, kommen 502er (3.36).
+- Neue `LessonView.vue`-Kurse: Glob-Listen sind Wildcards — nur Content-Ordner + `kurse.json` nötig.
+- Deep-Links `?week=&tab=` (Einstufung, Cäsar-Chiffre) bewusst unverändert lassen, `WeekTour.vue`
+  übersetzt intern.
+- cspell: Wörterbücher brauchen `"import"`, nicht nur `"dictionaries"`.
+- Komponente wird beim Umschalten eines `v-if`-Zweigs neu gemountet → lokaler State geht verloren,
+  wenn er nicht vom Parent gehalten wird; beim Neu-Mount auf sinnvollen Zustand zurückfallen (3.55).
+- Login-Felder für Passwort-Manager-Autofill brauchen ein echtes `<form>` + `name`-Attribute; bei
+  reinem Passwort-Login (kein Benutzername im Modell, z.B. Admin) ein verstecktes `username`-Feld
+  mit festem Wert ergänzen (3.64).
+- Reaktiver Zustand über mehrere Komponenten (z.B. Admin-Token) gehört als geteilter `ref` in die
+  Composable, nicht als lokaler Ref pro Komponente (3.64).
+- Ein Composable, das nur für **einen** Kurs gebaut wurde (Storage-Key/Content-Pfad fest verdrahtet),
+  braucht beim Verallgemeinern einen `courseKey`-Parameter mit Default = bisheriges Verhalten, und
+  **immer** die komplette bestehende Test-Suite des Erstnutzers gegenlaufen lassen, nicht nur den
+  neuen Kurs (3.67).
+- Ein Bildschirm hinter einen Klick-Button setzen (z.B. "Kurs starten") heißt: repo-weit nach
+  bisherigen `page.goto(...)`-Zeilen grep-suchen, die jetzt den Klick davor brauchen — Deep-Links
+  mit Query-Parametern, die den Gate-Zustand ohnehin öffnen, brauchen keine Änderung (3.69).
+- CSS-Kind-Selektoren wie `.course-detail > h1` in Tests brechen stillschweigend, wenn ein neuer
+  Wrapper-`<div>` dazwischenkommt — vor dem Verschachteln repo-weit nach dem Selektor suchen (3.69).
+- `test:checks` (~2 Min, 381 Tests) läuft nicht mehr bei jedem Commit, sondern nur vor dem Push;
+  Pre-commit nutzt `scripts/test-changed.mjs` (mappt geänderte Dateien → Specs). Neue Komponenten/
+  Composables/Content-Ordner brauchen dort eine eigene Regel in `RULES`, sonst greift nur das
+  Sicherheitsnetz (voller Lauf) statt des schnellen Pfads (3.83).
+- `lesson.minSolved` (flexible Lektion, Rest von Anfang an überspringbar) heißt: Aufgaben dürfen
+  sich nicht auf Variablen aus einer vorherigen Aufgabe verlassen — eine übersprungene Aufgabe hat
+  ihren Code nie ausgeführt (3.85).
 
 **Lokale Tools (`scripts/local-tools/`, laufen nie im Deploy)**
-- IDN-Domains (Umlaute, z.B. `übergangshacker.de`) vor jedem `urllib`-Request per `.encode('idna')`
-  in Punycode wandeln — sonst schickt Python den Host-Header unkodiert, der Server/Reverse-Proxy
-  kappt die Verbindung ohne jede Fehlermeldung (`RemoteDisconnected`) (3.63).
-- macOS/Homebrew-Python verweigert systemweite `pip install`s (PEP 668) → lokale Tools brauchen ein
-  eigenes `venv/`. Um automatisch dorthin zu wechseln (egal mit welchem `python3` aufgerufen): über
-  `sys.prefix` prüfen, **nicht** `Path(sys.executable).resolve()` — `venv/bin/python3` ist nur ein
-  Symlink auf den System-Interpreter, `.resolve()` hält beide fälschlich für identisch (3.63).
-- `bleak`/BLE auf macOS: CoreBluetooth liefert keine echte Bluetooth-MAC, sondern eine app-spezifische
-  UUID (aus Datenschutzgründen) — die "echte" MAC von Verpackung/Handy-App funktioniert dort nicht,
-  per Scan ermitteln. Und: "write without response"-Pakete ganz ohne Pause zwischen den Häppchen
-  verwirft macOS oft stillschweigend (kein Fehler, nur ein stilles Timeout beim Warten auf die
-  Geräte-Bestätigung) — kleine Pause (~10ms) zwischen den Writes einbauen (3.63).
+- IDN-Domains (Umlaute) vor jedem `urllib`-Request per `.encode('idna')` in Punycode wandeln, sonst
+  kappt der Server die Verbindung ohne Fehlermeldung (3.63).
+- macOS/Homebrew-Python verweigert systemweite `pip install`s (PEP 668) → eigenes `venv/`; zum
+  Erkennen `sys.prefix` prüfen, nicht `Path(sys.executable).resolve()` (venv-Symlink täuscht sonst
+  Identität mit System-Interpreter vor) (3.63).
+- `bleak`/BLE auf macOS: CoreBluetooth liefert eine app-spezifische UUID statt der echten MAC (per
+  Scan ermitteln); Writes ohne kleine Pause (~10ms) zwischen den Häppchen verwirft macOS still (3.63).
 
 **Betrieb**
 - SQLite nur per `VACUUM INTO` sichern (WAL), nie `cp`; nie `git clean -fdx` ohne `api/data/` auszuschließen (Abschnitt 4).
@@ -218,19 +183,15 @@ docker compose up -d --build app
 curl -s http://127.0.0.1:8080/api/health
 ```
 
-SQLite bleibt in `./api/data/` (Volume). Env-Änderung → Container **recreate**, nicht nur rebuild.
-Ein `git pull` + `docker compose up -d --build app` lässt Nutzerdaten unangetastet — die DB liegt
-als Bind-Mount auf dem Host, nicht im Container, und ist gitignored. **Einzige echte Gefahr:**
-`git clean -fdx` im Repo-Verzeichnis würde die ungetrackte `.sqlite`-Datei löschen, weil sie
-technisch im Working Tree liegt — nie in einem Deploy-Skript ohne Ausschluss von `api/data/`.
+SQLite bleibt in `./api/data/` (Bind-Mount, gitignored). Env-Änderung → Container **recreate**, nicht
+nur rebuild. `git pull` + Rebuild lässt Nutzerdaten unangetastet. **Einzige echte Gefahr:**
+`git clean -fdx` würde die ungetrackte `.sqlite`-Datei löschen — nie ohne Ausschluss von `api/data/`.
 
 ### DB-Backup
 
-`api/src/scripts/backup-db.js` zieht per `VACUUM INTO` eine konsistente Kopie der SQLite-DB (sicher
-auch im laufenden Betrieb dank WAL-Modus — ein simples `cp` könnte sonst mitten in einem
-Schreibvorgang eine kaputte Kopie erzeugen) und behält per Retention nur die N neuesten Backups
-(Default 14, über `BACKUP_KEEP` einstellbar). Landet unter `api/data/backups/` — dank Bind-Mount
-automatisch auch auf dem Host sichtbar.
+`api/src/scripts/backup-db.js` zieht per `VACUUM INTO` eine konsistente Kopie (sicher im laufenden
+Betrieb dank WAL, ein `cp` könnte eine kaputte Kopie erzeugen) und behält per Retention nur die N
+neuesten Backups (Default 14, `BACKUP_KEEP`). Landet unter `api/data/backups/`.
 
 ```bash
 npm run backup:db                 # lokal (nutzt DATA_DIR/DB_PATH wie die App selbst)
@@ -241,11 +202,8 @@ docker compose exec app node api/src/scripts/backup-db.js   # im laufenden Prod-
 ```
 0 3 * * * cd /pfad/zum/repo && docker compose exec -T app node api/src/scripts/backup-db.js >> /var/log/ue-hacker-backup.log 2>&1
 ```
-Die Backups selbst liegen weiterhin auf demselben Server-Volume — für echten Schutz vor
-Datenverlust (Festplattendefekt, versehentliches Löschen) zusätzlich regelmäßig extern sichern
-(z.B. `rsync`/`rclone` von `api/data/backups/` auf einen anderen Host oder Cloud-Speicher). Das ist
-mit den Bordmitteln hier noch nicht abgedeckt — bewusst nicht mitgebaut, da das von der jeweiligen
-Server-/Backup-Infrastruktur abhängt.
+Externe Sicherung der Backups (z.B. `rsync`/`rclone` auf einen anderen Host) ist bewusst nicht
+mitgebaut — hängt von der jeweiligen Server-Infrastruktur ab.
 
 ### Tests
 
@@ -278,17 +236,11 @@ content/python-checks/config.json, week-{N}.json, index.mjs (Node-Loader für Te
 Ausführlich in `todo.md`. Kurzfassung:
 
 **Betrieb**
-- [ ] Server-Deploy (Nutzer deployt selbst: `git pull` + `docker compose up -d --build app`).
-      `npm run build` triggert `build:cells`/`pack:notebooks` automatisch über `prebuild` (lokal per
-      Docker-Build+Health-Check verifiziert, 3.65). Danach `/kurs/python-12-wochen-grundkurs` prüfen
-      (Wochen-Tour, nicht Akkordeon).
-- [ ] Backup-Cron auf dem Server einrichten (Befehl siehe Abschnitt 4, Pfad korrigiert 3.65);
-      externe Sicherung der Backups bewusst nicht mitgebaut.
-- [ ] Nach dem Merge von `admin-termine-verwaltung`: auf dem Server einmalig
-      `docker compose exec app node api/src/scripts/import-termine-json.js` laufen lassen, um die
-      bisherigen `public/termine.json`-Einträge (jetzt Seed unter `api/src/scripts/termine-seed.json`)
-      in die neue `termine`-Tabelle zu übernehmen. Danach laufen Termine nur noch über das
-      Admin-Panel, nicht mehr über die Datei.
+- [ ] Server-Deploy (`git pull` + `docker compose up -d --build app`), danach
+      `/kurs/python-12-wochen-grundkurs` prüfen (Wochen-Tour).
+- [ ] Backup-Cron auf dem Server einrichten (Befehl siehe Abschnitt 4).
+- [ ] Nach dem Deploy einmalig `docker compose exec app node api/src/scripts/import-termine-json.js`
+      laufen lassen (übernimmt `termine-seed.json` in die neue `termine`-Tabelle).
 
 **Inhalte**
 - Interaktiv-Kurs: "Ausführen vs. Prüfen"/Weiter-Flow — braucht konkretes Nutzer-Feedback.
@@ -296,9 +248,8 @@ Ausführlich in `todo.md`. Kurzfassung:
 - Zertifikat-PDF: E-Mail-Versand später (hängt an der Kontakt-Adresse, nicht selbst erfinden).
 - Überlegung (nicht entschieden): dritte Sprache; UI-Ternarys sind schon auf `t()`, offen nur Content-Suffixe.
 
-**Laufendes Kurs-Thema (siehe todo.md):** KI-Labor komplett (Woche 1–8), nur noch ein
-abschließender Smoke-Test aller Wochen offen. Weitere Projekt-Kurs-Ideen in `PROJEKTIDEEN.md`.
-Roadmap: `VISION.md`.
+**Nächstes Kurs-Thema:** noch nicht entschieden (KI-Track weiter vs. weitere Python-Projekt-Kurse,
+siehe `VISION.md` "Offene Fragen"). Ideen-Backlog: `PROJEKTIDEEN.md`.
 
 **Bewusst nicht geplant:** öffentliches Sign-up, Mailversand/Kontaktformular, Supabase als Pflicht.
 
@@ -320,34 +271,24 @@ Roadmap: `VISION.md`.
   einen Test in `tests/*.spec.js` bzw. `api/src/scripts/*.test.js` (`WORKFLOW.md`) — nicht nur
   manuell verifizieren
 - Inhaltsänderungen: `INHALTE.md` Abschnitt 6 (DE/EN, Manifeste, `kurse.json`)
-- 12-Wochen-Kurs-Notebooks sind seit 3.33 **kein `.ipynb` mehr** — Zellen-Ordner mit `NN_*.py`-
-  Dateien, `_generated`/`_bundle` sind generiert (gitignored, `scripts/build_cell_notebooks.py`).
-  Nicht versehentlich wieder rohe `.ipynb`-Dateien als Quelle einführen.
-- Missionen/Belohnungen kennen seit `wochen-zertifikate` **keine Punkte/Items mehr** — nur noch
-  Zertifikate (siehe 3.12). Nicht versehentlich wieder ein Punktesystem einführen.
-- Zertifikat = **nur** Wochen-Check (Quiz + beide Coding-Aufgaben), **ein** Zertifikat pro Woche
-  (keine Varianten-Aufteilung). Missionen/Boss-Quests sind reine Übung, keine Voraussetzung — nicht
-  versehentlich wieder an Missionen koppeln oder wieder 3 Varianten-Zertifikate einführen.
-- Kein lokales Fortschritt-Skript mehr (`scripts/fortschritt.py` entfernt) — Fortschritt-Sync läuft
-  über den Account (Login), nicht über CLI-Skript + manuellen JSON-Import. Nicht wieder einführen.
-- Zertifikat-PDF-Download ist **login-gated** — ohne Account nur ein Hinweistext, kein Button. Nicht
-  versehentlich für alle (auch rein lokalen Fortschritt ohne Login) freischalten.
-- Falsch-Antwort-Erklärungen (`optionExplanations`/`optionExplanations_en` in `weeks.json`, siehe
-  3.17) gibt es **nur** bei `multiple_choice`-Fragen, bewusst nicht bei `multiple_select` (mehrere
-  Antworten können gleichzeitig falsch sein). Beim Hinzufügen neuer Quizfragen dieses Feld mit
-  ausfüllen, sonst fällt die UI automatisch auf die geteilte `explanation` zurück (kein Bug, aber
-  weniger hilfreich) — und `explanation_en` muss eine echte Übersetzung sein, nicht identisch zu
-  `explanation` (Test dafür in `tests/week-checks-logic.spec.js`).
-- `validation.type: "output_contains"` prüft seit 3.78 tolerant (Groß-/Kleinschreibung, mehrfache
-  Leerzeichen, Satzzeichen am Ende egal) — `output_equals` bleibt exakt. Beim Schreiben neuer
-  Aufgaben mit `output_equals` bewusst bleiben, wenn genau das der Lernpunkt ist (z.B. "keine
-  Extra-Ausgabe").
-- Termine (Home + Kursseiten) kommen seit 3.84 aus der `termine`-Tabelle über `/api/termine`, nicht
-  mehr aus `public/termine.json` — diese Datei nicht wieder als Datenquelle einführen. Pflege nur
-  noch über das Admin-Panel (`/admin` → Tab „Termine“).
+- 12-Wochen-Kurs-Notebooks sind seit 3.33 **kein `.ipynb` mehr** — Zellen-Ordner mit `NN_*.py`,
+  `_generated`/`_bundle` generiert (gitignored). Nicht wieder rohe `.ipynb`-Quellen einführen.
+- Missionen/Belohnungen kennen **keine Punkte/Items mehr** — nur Zertifikate. Nicht wieder
+  einführen.
+- Zertifikat = **nur** Wochen-Check (Quiz + beide Coding-Aufgaben), **ein** Zertifikat pro Woche.
+  Missionen/Boss-Quests sind reine Übung, keine Voraussetzung.
+- Kein lokales Fortschritt-Skript mehr — Fortschritt-Sync läuft über den Account (Login).
+- Zertifikat-PDF-Download ist **login-gated** — ohne Account nur Hinweistext, kein Button.
+- Falsch-Antwort-Erklärungen (`optionExplanations(_en)` in `weeks.json`) gibt es **nur** bei
+  `multiple_choice`, bewusst nicht bei `multiple_select`. Bei neuen Quizfragen mitpflegen, sonst
+  fällt die UI auf die geteilte `explanation` zurück; `explanation_en` muss echt übersetzt sein.
+- `validation.type: "output_contains"` prüft tolerant (Groß-/Kleinschreibung, Leerzeichen,
+  Satzzeichen am Ende egal) — `output_equals` bleibt exakt, bewusst nutzen wenn "keine
+  Extra-Ausgabe" der Lernpunkt ist.
+- Termine kommen aus der `termine`-Tabelle über `/api/termine`, nicht mehr aus
+  `public/termine.json` — Pflege nur über Admin-Panel (`/admin` → Tab „Termine“).
 
 ---
-
 
 ## 7. Schnellstart für Claude in der nächsten Session
 
