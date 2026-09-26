@@ -25,6 +25,14 @@
       <button @click="checkCode" :disabled="!kernelReady || checking" class="btn-check">
         {{ checking ? t('editor.checking') : t('editor.check') }}
       </button>
+      <button
+        v-if="challenge?.codeTemplate && code !== challenge.codeTemplate"
+        @click="resetCode"
+        :disabled="checking"
+        class="btn-reset"
+      >
+        {{ t('editor.reset') }}
+      </button>
     </div>
     <div v-if="output !== null" class="challenge-output">
       <strong>{{ t('editor.output') }}</strong>
@@ -102,6 +110,12 @@ export default {
       feedback.value = null;
       load();
     });
+
+    const resetCode = () => {
+      code.value = challenge.value?.codeTemplate ?? '';
+      output.value = null;
+      feedback.value = null;
+    };
 
     const runCode = async () => {
       if (!kernelReady.value) return;
@@ -197,6 +211,7 @@ export default {
       checking,
       runCode,
       checkCode,
+      resetCode,
     };
   },
 };
@@ -280,7 +295,8 @@ export default {
 }
 
 .btn-run,
-.btn-check {
+.btn-check,
+.btn-reset {
   border: none;
   padding: 8px 18px;
   border-radius: 6px;
@@ -303,6 +319,22 @@ export default {
 .btn-check {
   background: var(--accent-orange, #ff9800);
   color: white;
+}
+
+.btn-reset {
+  background: transparent;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+}
+
+.btn-reset:hover:not(:disabled) {
+  background: #f8f9fa;
+  border-color: #adb5bd;
+}
+
+.btn-reset:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .challenge-output {
