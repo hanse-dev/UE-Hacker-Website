@@ -10,8 +10,9 @@
 > prüfen jetzt nur noch die Ausgabe, nicht mehr Code-Struktur/Variablen/Funktionsaufrufe; der
 > zertifikatsrelevante Wochen-Check behält diese Prüfung (3.80). Normale Lektionsaufgaben lassen
 > sich nach 2 Fehlversuchen überspringen (LessonView/JsLessonView, sichtbar als "übersprungen"
-> markiert, zählt für den Lektions-Abschluss, 3.81). Server-Deploy steht weiter aus (Nutzer deployt
-> selbst, siehe Abschnitt 4 "Betrieb").
+> markiert, zählt für den Lektions-Abschluss, 3.81). Login ersetzt beim expliziten Login-Vorgang
+> den kompletten lokalen Fortschritt durch den Account-Stand statt zu mergen — Reload bleibt beim
+> Merge (3.82). Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4 "Betrieb").
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
 > Chat-Historie. Sie wird per `@` in jede Session geladen — **klein halten** (Richtwert < 25 KB).
 > Die ausführliche Feature-Historie liegt kalt in `docs/archiv/HANDOFF-historie.md` (nicht importiert).
@@ -94,6 +95,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.79 | Interaktiv-Kurs: Lektionstexte ausführlicher (Kinder + Jugendliche, DE) | reine Textüberarbeitung, keine Logikänderung |
 | 3.80 | Lektionsaufgaben prüfen nur noch die Ausgabe, nicht mehr Code-Struktur/Variablen | `validation.codeContains`/`variables`/`functionCalls` sind in `LessonView.vue`/`JsLessonView.vue` nicht mehr blockierend; `useTaskValidation.js` trennt `validateOutput()` (nur Ausgabe) von `structuralChecksOk()` (nur noch für `CodeChallenge.vue`/Wochen-Check) |
 | 3.81 | Lektionsaufgaben überspringbar (nach 2 Fehlversuchen) | Neuer `.btn-skip` in `LessonView.vue`/`JsLessonView.vue`, `skippedTasks`-Set zählt für den Lektions-Abschluss mit, bleibt aber optisch "übersprungen" (⏭) statt "erledigt" (✓); löst man die Aufgabe danach doch noch, wandert sie zu "erledigt". Gilt nicht für `CodeChallenge.vue` (Wochen-Check). |
+| 3.82 | Login ersetzt lokalen Fortschritt durch Account-Stand statt zu mergen | `loadAccountProgress()`/`replaceLocalProgress()` in `useProgressSync.js`, nur beim expliziten Login (`useAuth.js`) genutzt; `restoreSession()`/`syncNow()` beim Seiten-Reload bleiben beim Merge nach `updatedAt` |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -293,7 +295,10 @@ Roadmap: `VISION.md`.
   wurde entfernt)
 - Jede Verhaltensänderung braucht einen Playwright-Test (`WORKFLOW.md`) — reine Text-/Typo-Korrekturen sind ausgenommen
 - Accounts: Admin legt an; `ageGroup` kinder|jugendliche; ein Mensch = ein Account
-- Sync: per-key Merge nach `updatedAt`
+- Sync: per-key Merge nach `updatedAt` beim Seiten-Reload (`restoreSession`/`syncNow`). Beim
+  expliziten Login (`loadAccountProgress`) wird dagegen **nicht** gemergt: der Account-Stand
+  ersetzt den kompletten lokalen Fortschritt (auch beim allerersten Login mit leerem Account,
+  bewusst so — kein Sonderfall, siehe 3.82). Grund: geteilter Rechner, Nutzerwechsel beim Login.
 - Prod: ein Container `app`, Port 8080, API serviert Static
 - SQLite bleibt; Node ≥ 22 wegen `node:sqlite`
 - Vor Commit: `test:checks`; Auth-Änderungen zusätzlich `test:auth`; Verhaltensänderungen brauchen
