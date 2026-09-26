@@ -64,7 +64,17 @@ export const KI_LABOR_WEEKS = [
       'Die Grenze eines einzelnen Neurons verstehen (kein XOR lösbar) und begründen können, warum',
     ],
   },
-  { number: 7, title: 'Neuronale Netze II', lernziele: [] },
+  {
+    number: 7,
+    title: 'Neuronale Netze II',
+    lernziele: [
+      'Erklären können, warum ein einzelnes Neuron XOR nicht lösen kann (nicht linear trennbar)',
+      'Ein kleines Netz mit einer versteckten Schicht aus mehreren Neuronen von Hand bauen können',
+      'Einen Vorwärtslauf durch versteckte Schicht und Ausgabe-Neuron selbst schreiben können',
+      'Gewichte eines kleinen Netzes per Zufalls-Suche selbst trainieren lassen können',
+      'Die Genauigkeit eines trainierten Netzes mit der eines einzelnen Neurons vergleichen können',
+    ],
+  },
   { number: 8, title: 'Grenzen & Ethik', lernziele: [] },
 ];
 

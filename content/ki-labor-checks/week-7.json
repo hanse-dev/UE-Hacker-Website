@@ -1,0 +1,140 @@
+{
+  "title": "Woche 7 – Neuronale Netze II",
+  "title_en": "Week 7 – Neural Networks II",
+  "questions": [
+    {
+      "id": "kil7-1",
+      "type": "multiple_choice",
+      "question": "Warum kann ein einzelnes Neuron die Aufgabe XOR nicht lösen?",
+      "options": [
+        "Weil ein einzelnes Neuron die Welt nur mit einer geraden Linie trennen kann, XOR aber nicht linear trennbar ist",
+        "Weil ein einzelnes Neuron nur mit ganzen Zahlen rechnen kann",
+        "Weil ein einzelnes Neuron höchstens eine Eingabe verarbeiten kann"
+      ],
+      "correctIndex": 0,
+      "explanation": "Bei XOR liegen die 'richtigen' Fälle (0,1) und (1,0) diagonal gegenüber den 'falschen' Fällen (0,0) und (1,1) - keine einzelne gerade Trennlinie schafft das, egal welche Gewichte man wählt.",
+      "optionExplanations": [
+        null,
+        "neuron() rechnet auch mit Kommazahlen (Gewichte, Bias) - das ist nicht der Grund.",
+        "neuron() nimmt eine ganze Liste von Eingaben entgegen, z.B. zwei Zahlen bei XOR - das ist kein Problem."
+      ]
+    },
+    {
+      "id": "kil7-2",
+      "type": "multiple_choice",
+      "question": "Was macht eine 'versteckte Schicht' in einem kleinen neuronalen Netz?",
+      "options": [
+        "Mehrere Neuronen verarbeiten dieselbe Eingabe parallel, ihre Ausgaben werden dann zusammen in ein weiteres Neuron gegeben",
+        "Sie versteckt das Ergebnis, damit man es nicht sehen kann",
+        "Sie speichert die Trainingsdaten dauerhaft ab"
+      ],
+      "correctIndex": 0,
+      "explanation": "Die versteckten Neuronen liegen zwischen Eingabe und Ausgabe - ihre einzelnen Ausgaben (z.B. eines OR- und eines NAND-Gatters) werden zu einer neuen Liste, die dann in das Ausgabe-Neuron geht (vorwaerts()).",
+      "optionExplanations": [
+        null,
+        "'Versteckt' heißt nur, dass die Werte nicht die endgültige Ausgabe sind, nicht dass etwas absichtlich verborgen wird.",
+        "Ein neuronales Netz speichert hier keine Trainingsdaten - nur Gewichte und Bias."
+      ]
+    },
+    {
+      "id": "kil7-3",
+      "type": "multiple_choice",
+      "question": "Was gibt vorwaerts(eingaben, versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias) zurück?",
+      "options": [
+        "Die Ausgabe des letzten Neurons, nachdem die Eingabe zuerst durch alle versteckten Neuronen gelaufen ist",
+        "Eine Liste aller Zwischenwerte der versteckten Neuronen, ohne Ausgabe-Neuron",
+        "Die Anzahl der versteckten Neuronen"
+      ],
+      "correctIndex": 0,
+      "explanation": "vorwaerts() berechnet zuerst die Ausgabe jedes versteckten Neurons, sammelt diese in einer Liste und gibt diese Liste dann als Eingabe in das Ausgabe-Neuron - zurückgegeben wird dessen Ergebnis.",
+      "optionExplanations": [
+        null,
+        "Die versteckten Ausgaben sind nur ein Zwischenschritt - vorwaerts() geht noch einen Schritt weiter zum Ausgabe-Neuron.",
+        "Die Anzahl der Neuronen steckt in der Länge von versteckte_gewichte, nicht im Rückgabewert von vorwaerts()."
+      ]
+    },
+    {
+      "id": "kil7-4",
+      "type": "multiple_select",
+      "question": "Was macht trainiere() beim automatischen Lernen der Gewichte?",
+      "options": [
+        "Es startet mehrmals mit zufälligen Gewichten (Neustarts)",
+        "Es probiert bei jedem Start viele kleine zufällige Änderungen an einem Gewicht aus (Schritte)",
+        "Es behält eine Änderung nur, wenn sie die Bewertung nicht schlechter macht",
+        "Es berechnet die exakt beste Lösung mit einer mathematischen Formel, ganz ohne Ausprobieren"
+      ],
+      "correctIndices": [0, 1, 2]
+    },
+    {
+      "id": "kil7-5",
+      "type": "multiple_choice",
+      "question": "Wofür wird random.seed(0) vor dem Training verwendet?",
+      "options": [
+        "Damit die 'zufälligen' Zahlen bei jedem Lauf gleich sind und das Ergebnis reproduzierbar wird",
+        "Damit das Training garantiert schneller läuft",
+        "Damit alle Gewichte automatisch auf 0 gesetzt werden"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ohne random.seed() wäre random.uniform()/random.randrange() bei jedem Lauf anders - mit einem festen Seed bekommt man bei gleichem Code immer dasselbe Ergebnis, was zum Nachvollziehen und Testen wichtig ist.",
+      "optionExplanations": [
+        null,
+        "Der Seed hat keinen Einfluss auf die Geschwindigkeit - nur darauf, welche 'zufälligen' Werte gezogen werden.",
+        "random.seed() setzt keine Gewichte, sondern nur den Startpunkt des Zufallsgenerators - die Gewichte selbst starten weiterhin zufällig zwischen -1 und 1."
+      ]
+    },
+    {
+      "id": "kil7-6",
+      "type": "multiple_choice",
+      "question": "Bei einem Training mit random.seed(0) und trainiere(xor_tabelle, 40, 60) liegt die zurückgegebene Bewertung am Ende bei 100.0. Ein anderes Training mit nur trainiere(xor_tabelle, 3, 5) (wenig Neustarts, wenig Schritte) liefert dagegen nur 50.0. Was folgt daraus?",
+      "options": [
+        "Zu wenig Trainingszeit (Neustarts/Schritte) kann bei einer schlechteren Lösung hängen bleiben, mehr Zeit findet eher die bessere",
+        "Das Training mit weniger Zeit ist immer die bessere Wahl, weil es schneller fertig ist",
+        "Die Bewertung hat nichts mit der Trainingszeit zu tun, das ist reiner Zufall"
+      ],
+      "correctIndex": 0,
+      "explanation": "Mit wenigen Neustarts und Schritten hat der Zufalls-Suchprozess kaum eine Chance, eine gute Lösung zu finden - mit mehr Versuchen steigen die Chancen deutlich, bei XOR/XNOR sogar bis auf 100%.",
+      "optionExplanations": [
+        null,
+        "Schneller heißt hier nicht besser - eine niedrigere Genauigkeit bedeutet, dass das Netz die Aufgabe schlechter löst.",
+        "Die Trainingszeit beeinflusst direkt, wie viele Möglichkeiten das Training ausprobieren kann - das ist kein reiner Zufall."
+      ]
+    },
+    {
+      "id": "kil7-7",
+      "type": "multiple_choice",
+      "question": "Das trainierte Netz erreicht auf xor_tabelle 100% Genauigkeit, das beste einzelne Neuron (egal welche Gewichte) nur 75%. Was zeigt dieser Vergleich?",
+      "options": [
+        "Mehrere verbundene Neuronen können Aufgaben lösen, an denen ein einzelnes Neuron grundsätzlich scheitert",
+        "75% ist eigentlich besser als 100%, weil weniger Rechenaufwand nötig ist",
+        "Der Unterschied ist nur Zufall und hätte auch andersherum ausfallen können"
+      ],
+      "correctIndex": 0,
+      "explanation": "Kein einzelnes Neuron schafft bei XOR mehr als 75% (Lektion 2) - das ist keine Frage des Trainings, sondern eine grundsätzliche Grenze eines einzelnen Neurons. Erst die versteckte Schicht macht 100% möglich.",
+      "optionExplanations": [
+        null,
+        "Bei der Genauigkeit ist ein höherer Prozentwert immer besser, nicht der geringere Rechenaufwand.",
+        "Das Ergebnis ist kein Zufall: die Bruteforce-Suche in Lektion 2 zeigt, dass wirklich kein Gewichte/Bias-Paar mehr als 3 von 4 schafft."
+      ]
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Schreibe step(x) und neuron(eingaben, gewichte, bias) wie in dieser Woche. Baue ein einzelnes Neuron mit gewichte=[1, 1] und bias=-1.5 (AND-Gatter). Gib neuron([1, 1], [1, 1], -1.5) und neuron([1, 0], [1, 1], -1.5) aus.",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "1\n0",
+        "codeContains": ["def"]
+      }
+    },
+    {
+      "instruction": "Schreibe step(x), neuron(eingaben, gewichte, bias) und vorwaerts(eingaben, versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias) wie in dieser Woche. Nutze versteckte_gewichte = [[1, 1], [-1, -1]], versteckte_bias = [-0.5, 1.5], ausgabe_gewichte = [1, 1], ausgabe_bias = -1.5. Gib vorwaerts([0, 1], ...) und vorwaerts([1, 0], ...) aus.",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "1\n1",
+        "codeContains": ["def"]
+      }
+    }
+  ]
+}
