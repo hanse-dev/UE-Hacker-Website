@@ -1,0 +1,366 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Wenn Trainingsdaten schief sind",
+    "file": "lektion-01.md",
+    "lessonSummary": "anzahl_je_klasse() zaehlt, wie oft jede Klasse in den Trainingsdaten vorkommt - ein schiefer (unausgewogener) Datensatz hat fuer eine Klasse sehr viel mehr Beispiele als fuer eine andere.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: die Klassen in einem Ticket-Datensatz zählen.",
+        "example": true,
+        "codeTemplate": "def anzahl_je_klasse(daten, label_feld):\n    anzahl = {}\n    for beispiel in daten:\n        anzahl[beispiel[label_feld]] = anzahl.get(beispiel[label_feld], 0) + 1\n    return anzahl\n\ndef mehrheitsklasse(daten, label_feld):\n    anzahl = anzahl_je_klasse(daten, label_feld)\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl:\n        if anzahl[klasse] > bester_wert:\n            bester_wert = anzahl[klasse]\n            beste_klasse = klasse\n    return beste_klasse\n\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if vorhersagen[i] == erwartete_werte[i]:\n            richtig += 1\n    return round(richtig / len(vorhersagen) * 100)\n\ndef genauigkeit_je_klasse(daten, label_feld, vorhersage_funktion):\n    ergebnis = {}\n    for klasse in anzahl_je_klasse(daten, label_feld):\n        teil = [b for b in daten if b[label_feld] == klasse]\n        vorhersagen = [vorhersage_funktion(b) for b in teil]\n        erwartete_werte = [klasse for _ in teil]\n        ergebnis[klasse] = genauigkeit(vorhersagen, erwartete_werte)\n    return ergebnis\n\ntickets = [\n    {\"wartezeit\": 5, \"dringend\": \"nein\"},\n    {\"wartezeit\": 10, \"dringend\": \"nein\"},\n    {\"wartezeit\": 15, \"dringend\": \"nein\"},\n    {\"wartezeit\": 20, \"dringend\": \"nein\"},\n    {\"wartezeit\": 25, \"dringend\": \"nein\"},\n    {\"wartezeit\": 30, \"dringend\": \"nein\"},\n    {\"wartezeit\": 35, \"dringend\": \"nein\"},\n    {\"wartezeit\": 40, \"dringend\": \"nein\"},\n    {\"wartezeit\": 22, \"dringend\": \"ja\"},\n    {\"wartezeit\": 27, \"dringend\": \"ja\"},\n]\n\nprint(anzahl_je_klasse(tickets, \"dringend\"))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'nein': 8, 'ja': 2}"
+        }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: die Mehrheitsklasse bestimmen und die Gesamt-Genauigkeit einer Basislinie berechnen, die immer diese Klasse vorhersagt.",
+        "example": true,
+        "codeTemplate": "def anzahl_je_klasse(daten, label_feld):\n    anzahl = {}\n    for beispiel in daten:\n        anzahl[beispiel[label_feld]] = anzahl.get(beispiel[label_feld], 0) + 1\n    return anzahl\n\ndef mehrheitsklasse(daten, label_feld):\n    anzahl = anzahl_je_klasse(daten, label_feld)\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl:\n        if anzahl[klasse] > bester_wert:\n            bester_wert = anzahl[klasse]\n            beste_klasse = klasse\n    return beste_klasse\n\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if vorhersagen[i] == erwartete_werte[i]:\n            richtig += 1\n    return round(richtig / len(vorhersagen) * 100)\n\ndef genauigkeit_je_klasse(daten, label_feld, vorhersage_funktion):\n    ergebnis = {}\n    for klasse in anzahl_je_klasse(daten, label_feld):\n        teil = [b for b in daten if b[label_feld] == klasse]\n        vorhersagen = [vorhersage_funktion(b) for b in teil]\n        erwartete_werte = [klasse for _ in teil]\n        ergebnis[klasse] = genauigkeit(vorhersagen, erwartete_werte)\n    return ergebnis\n\ntickets = [\n    {\"wartezeit\": 5, \"dringend\": \"nein\"},\n    {\"wartezeit\": 10, \"dringend\": \"nein\"},\n    {\"wartezeit\": 15, \"dringend\": \"nein\"},\n    {\"wartezeit\": 20, \"dringend\": \"nein\"},\n    {\"wartezeit\": 25, \"dringend\": \"nein\"},\n    {\"wartezeit\": 30, \"dringend\": \"nein\"},\n    {\"wartezeit\": 35, \"dringend\": \"nein\"},\n    {\"wartezeit\": 40, \"dringend\": \"nein\"},\n    {\"wartezeit\": 22, \"dringend\": \"ja\"},\n    {\"wartezeit\": 27, \"dringend\": \"ja\"},\n]\n\nbasis = mehrheitsklasse(tickets, \"dringend\")\nprint(basis)\nprint(genauigkeit([basis for _ in tickets], [b[\"dringend\"] for b in tickets]))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "nein\n80"
+        }
+      },
+      {
+        "instruction": "Schreibe anzahl_je_klasse(daten, label_feld) wie im Beispiel. Nutze nachrichten = [acht Dictionaries {'grossbuchstaben_anteil': A, 'kategorie': 'kein_spam'} mit A in [4, 8, 12, 16, 20, 24, 28, 32]] plus [zwei Dictionaries {'grossbuchstaben_anteil': A, 'kategorie': 'spam'} mit A in [18, 22]]. Gib anzahl_je_klasse(nachrichten, 'kategorie') aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'kein_spam': 8, 'spam': 2}",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Der Trick mit der Genauigkeit",
+    "file": "lektion-02.md",
+    "lessonSummary": "genauigkeit_je_klasse() misst die Genauigkeit fuer jede Klasse einzeln - eine hohe Gesamt-Genauigkeit kann eine Klasse komplett verstecken, die nie richtig erkannt wird.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: die Genauigkeit je Klasse für eine Basislinie berechnen, die immer die Mehrheitsklasse vorhersagt.",
+        "example": true,
+        "codeTemplate": "def anzahl_je_klasse(daten, label_feld):\n    anzahl = {}\n    for beispiel in daten:\n        anzahl[beispiel[label_feld]] = anzahl.get(beispiel[label_feld], 0) + 1\n    return anzahl\n\ndef mehrheitsklasse(daten, label_feld):\n    anzahl = anzahl_je_klasse(daten, label_feld)\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl:\n        if anzahl[klasse] > bester_wert:\n            bester_wert = anzahl[klasse]\n            beste_klasse = klasse\n    return beste_klasse\n\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if vorhersagen[i] == erwartete_werte[i]:\n            richtig += 1\n    return round(richtig / len(vorhersagen) * 100)\n\ndef genauigkeit_je_klasse(daten, label_feld, vorhersage_funktion):\n    ergebnis = {}\n    for klasse in anzahl_je_klasse(daten, label_feld):\n        teil = [b for b in daten if b[label_feld] == klasse]\n        vorhersagen = [vorhersage_funktion(b) for b in teil]\n        erwartete_werte = [klasse for _ in teil]\n        ergebnis[klasse] = genauigkeit(vorhersagen, erwartete_werte)\n    return ergebnis\n\ntickets = [\n    {\"wartezeit\": 5, \"dringend\": \"nein\"},\n    {\"wartezeit\": 10, \"dringend\": \"nein\"},\n    {\"wartezeit\": 15, \"dringend\": \"nein\"},\n    {\"wartezeit\": 20, \"dringend\": \"nein\"},\n    {\"wartezeit\": 25, \"dringend\": \"nein\"},\n    {\"wartezeit\": 30, \"dringend\": \"nein\"},\n    {\"wartezeit\": 35, \"dringend\": \"nein\"},\n    {\"wartezeit\": 40, \"dringend\": \"nein\"},\n    {\"wartezeit\": 22, \"dringend\": \"ja\"},\n    {\"wartezeit\": 27, \"dringend\": \"ja\"},\n]\n\nbasis = mehrheitsklasse(tickets, \"dringend\")\nprint(genauigkeit_je_klasse(tickets, \"dringend\", lambda b: basis))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'nein': 100, 'ja': 0}"
+        }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: Gesamt-Genauigkeit und Genauigkeit je Klasse für dieselbe Basislinie nebeneinander ausgeben.",
+        "example": true,
+        "codeTemplate": "def anzahl_je_klasse(daten, label_feld):\n    anzahl = {}\n    for beispiel in daten:\n        anzahl[beispiel[label_feld]] = anzahl.get(beispiel[label_feld], 0) + 1\n    return anzahl\n\ndef mehrheitsklasse(daten, label_feld):\n    anzahl = anzahl_je_klasse(daten, label_feld)\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl:\n        if anzahl[klasse] > bester_wert:\n            bester_wert = anzahl[klasse]\n            beste_klasse = klasse\n    return beste_klasse\n\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if vorhersagen[i] == erwartete_werte[i]:\n            richtig += 1\n    return round(richtig / len(vorhersagen) * 100)\n\ndef genauigkeit_je_klasse(daten, label_feld, vorhersage_funktion):\n    ergebnis = {}\n    for klasse in anzahl_je_klasse(daten, label_feld):\n        teil = [b for b in daten if b[label_feld] == klasse]\n        vorhersagen = [vorhersage_funktion(b) for b in teil]\n        erwartete_werte = [klasse for _ in teil]\n        ergebnis[klasse] = genauigkeit(vorhersagen, erwartete_werte)\n    return ergebnis\n\ntickets = [\n    {\"wartezeit\": 5, \"dringend\": \"nein\"},\n    {\"wartezeit\": 10, \"dringend\": \"nein\"},\n    {\"wartezeit\": 15, \"dringend\": \"nein\"},\n    {\"wartezeit\": 20, \"dringend\": \"nein\"},\n    {\"wartezeit\": 25, \"dringend\": \"nein\"},\n    {\"wartezeit\": 30, \"dringend\": \"nein\"},\n    {\"wartezeit\": 35, \"dringend\": \"nein\"},\n    {\"wartezeit\": 40, \"dringend\": \"nein\"},\n    {\"wartezeit\": 22, \"dringend\": \"ja\"},\n    {\"wartezeit\": 27, \"dringend\": \"ja\"},\n]\n\nbasis = mehrheitsklasse(tickets, \"dringend\")\nprint(genauigkeit([basis for _ in tickets], [b[\"dringend\"] for b in tickets]))\nprint(genauigkeit_je_klasse(tickets, \"dringend\", lambda b: basis))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "80\n{'nein': 100, 'ja': 0}"
+        }
+      },
+      {
+        "instruction": "Schreibe anzahl_je_klasse(daten, label_feld), mehrheitsklasse(daten, label_feld), genauigkeit(vorhersagen, erwartete_werte) und genauigkeit_je_klasse(daten, label_feld, vorhersage_funktion) wie im Beispiel. Nutze dieselbe nachrichten-Liste wie in Lektion 1 (erneut erstellen). Bilde die Mehrheitsklasse-Basislinie und gib genauigkeit_je_klasse() für diese Basislinie aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'kein_spam': 100, 'spam': 0}",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Ein Baum lernt die Schieflage mit",
+    "file": "lektion-03.md",
+    "lessonSummary": "Auch ein Entscheidungsbaum aus Woche 5 uebernimmt die Schieflage schiefer Trainingsdaten, weil bester_schwellenwert() nur die Gesamt-Fehler minimiert, nicht die Fehler je Klasse.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: einen Entscheidungsbaum (wie in Woche 5) auf dem schiefen Ticket-Datensatz bauen und die Genauigkeit je Klasse messen.",
+        "example": true,
+        "codeTemplate": "def anzahl_je_klasse(daten, label_feld):\n    anzahl = {}\n    for beispiel in daten:\n        anzahl[beispiel[label_feld]] = anzahl.get(beispiel[label_feld], 0) + 1\n    return anzahl\n\ndef mehrheitsklasse(daten, label_feld):\n    anzahl = anzahl_je_klasse(daten, label_feld)\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl:\n        if anzahl[klasse] > bester_wert:\n            bester_wert = anzahl[klasse]\n            beste_klasse = klasse\n    return beste_klasse\n\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if vorhersagen[i] == erwartete_werte[i]:\n            richtig += 1\n    return round(richtig / len(vorhersagen) * 100)\n\ndef genauigkeit_je_klasse(daten, label_feld, vorhersage_funktion):\n    ergebnis = {}\n    for klasse in anzahl_je_klasse(daten, label_feld):\n        teil = [b for b in daten if b[label_feld] == klasse]\n        vorhersagen = [vorhersage_funktion(b) for b in teil]\n        erwartete_werte = [klasse for _ in teil]\n        ergebnis[klasse] = genauigkeit(vorhersagen, erwartete_werte)\n    return ergebnis\n\ndef teile_bei_schwellenwert(daten, merkmal, schwelle):\n    links = [b for b in daten if b[merkmal] < schwelle]\n    rechts = [b for b in daten if b[merkmal] >= schwelle]\n    return links, rechts\n\ndef anzahl_falsch(teil, label_feld):\n    mehrheit = mehrheitsklasse(teil, label_feld)\n    falsch = 0\n    for beispiel in teil:\n        if beispiel[label_feld] != mehrheit:\n            falsch += 1\n    return falsch\n\ndef bester_schwellenwert(daten, merkmal, label_feld):\n    werte = sorted(set(b[merkmal] for b in daten))\n    beste_schwelle = None\n    wenigste_fehler = None\n    for i in range(len(werte) - 1):\n        kandidat = (werte[i] + werte[i + 1]) / 2\n        links, rechts = teile_bei_schwellenwert(daten, merkmal, kandidat)\n        fehler = anzahl_falsch(links, label_feld) + anzahl_falsch(rechts, label_feld)\n        if wenigste_fehler is None or fehler < wenigste_fehler:\n            wenigste_fehler = fehler\n            beste_schwelle = kandidat\n    return beste_schwelle, wenigste_fehler\n\ndef baue_baum(daten, merkmal, label_feld):\n    schwelle, _ = bester_schwellenwert(daten, merkmal, label_feld)\n    links, rechts = teile_bei_schwellenwert(daten, merkmal, schwelle)\n    return {\n        \"merkmal\": merkmal,\n        \"schwelle\": schwelle,\n        \"links\": mehrheitsklasse(links, label_feld),\n        \"rechts\": mehrheitsklasse(rechts, label_feld),\n    }\n\ndef klassifiziere(baum, beispiel):\n    if beispiel[baum[\"merkmal\"]] < baum[\"schwelle\"]:\n        return baum[\"links\"]\n    return baum[\"rechts\"]\n\ntickets = [\n    {\"wartezeit\": 5, \"dringend\": \"nein\"},\n    {\"wartezeit\": 10, \"dringend\": \"nein\"},\n    {\"wartezeit\": 15, \"dringend\": \"nein\"},\n    {\"wartezeit\": 20, \"dringend\": \"nein\"},\n    {\"wartezeit\": 25, \"dringend\": \"nein\"},\n    {\"wartezeit\": 30, \"dringend\": \"nein\"},\n    {\"wartezeit\": 35, \"dringend\": \"nein\"},\n    {\"wartezeit\": 40, \"dringend\": \"nein\"},\n    {\"wartezeit\": 22, \"dringend\": \"ja\"},\n    {\"wartezeit\": 27, \"dringend\": \"ja\"},\n]\n\nbaum = baue_baum(tickets, \"wartezeit\", \"dringend\")\nprint(baum)\nprint(genauigkeit_je_klasse(tickets, \"dringend\", lambda b: klassifiziere(baum, b)))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'merkmal': 'wartezeit', 'schwelle': 7.5, 'links': 'nein', 'rechts': 'nein'}\n{'nein': 100, 'ja': 0}"
+        }
+      },
+      {
+        "instruction": "Kopiere teile_bei_schwellenwert(daten, merkmal, schwelle), mehrheitsklasse(daten, label_feld), anzahl_je_klasse(daten, label_feld), anzahl_falsch(teil, label_feld), bester_schwellenwert(daten, merkmal, label_feld), baue_baum(daten, merkmal, label_feld), klassifiziere(baum, beispiel), genauigkeit(vorhersagen, erwartete_werte) und genauigkeit_je_klasse(daten, label_feld, vorhersage_funktion) aus dem Beispiel. Nutze dieselbe nachrichten-Liste wie in Lektion 1 (erneut erstellen). Baue einen Baum für 'grossbuchstaben_anteil' und gib ihn sowie die Genauigkeit je Klasse aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'merkmal': 'grossbuchstaben_anteil', 'schwelle': 6.0, 'links': 'kein_spam', 'rechts': 'kein_spam'}\n{'kein_spam': 100, 'spam': 0}",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Ausgewogene Daten dagegen",
+    "file": "lektion-04.md",
+    "lessonSummary": "Undersampling gleicht Trainingsdaten aus, indem von der grossen Klasse nur so viele Beispiele behalten werden wie die kleine Klasse hat - das aendert, was der Baum lernt, nicht ob er 'besser' ist.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: einen Baum auf einem ausgewogenen (verkleinerten) Ticket-Datensatz trainieren und ihn dann auf allen zehn ursprünglichen Tickets testen.",
+        "example": true,
+        "codeTemplate": "def anzahl_je_klasse(daten, label_feld):\n    anzahl = {}\n    for beispiel in daten:\n        anzahl[beispiel[label_feld]] = anzahl.get(beispiel[label_feld], 0) + 1\n    return anzahl\n\ndef mehrheitsklasse(daten, label_feld):\n    anzahl = anzahl_je_klasse(daten, label_feld)\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl:\n        if anzahl[klasse] > bester_wert:\n            bester_wert = anzahl[klasse]\n            beste_klasse = klasse\n    return beste_klasse\n\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if vorhersagen[i] == erwartete_werte[i]:\n            richtig += 1\n    return round(richtig / len(vorhersagen) * 100)\n\ndef genauigkeit_je_klasse(daten, label_feld, vorhersage_funktion):\n    ergebnis = {}\n    for klasse in anzahl_je_klasse(daten, label_feld):\n        teil = [b for b in daten if b[label_feld] == klasse]\n        vorhersagen = [vorhersage_funktion(b) for b in teil]\n        erwartete_werte = [klasse for _ in teil]\n        ergebnis[klasse] = genauigkeit(vorhersagen, erwartete_werte)\n    return ergebnis\n\ndef teile_bei_schwellenwert(daten, merkmal, schwelle):\n    links = [b for b in daten if b[merkmal] < schwelle]\n    rechts = [b for b in daten if b[merkmal] >= schwelle]\n    return links, rechts\n\ndef anzahl_falsch(teil, label_feld):\n    mehrheit = mehrheitsklasse(teil, label_feld)\n    falsch = 0\n    for beispiel in teil:\n        if beispiel[label_feld] != mehrheit:\n            falsch += 1\n    return falsch\n\ndef bester_schwellenwert(daten, merkmal, label_feld):\n    werte = sorted(set(b[merkmal] for b in daten))\n    beste_schwelle = None\n    wenigste_fehler = None\n    for i in range(len(werte) - 1):\n        kandidat = (werte[i] + werte[i + 1]) / 2\n        links, rechts = teile_bei_schwellenwert(daten, merkmal, kandidat)\n        fehler = anzahl_falsch(links, label_feld) + anzahl_falsch(rechts, label_feld)\n        if wenigste_fehler is None or fehler < wenigste_fehler:\n            wenigste_fehler = fehler\n            beste_schwelle = kandidat\n    return beste_schwelle, wenigste_fehler\n\ndef baue_baum(daten, merkmal, label_feld):\n    schwelle, _ = bester_schwellenwert(daten, merkmal, label_feld)\n    links, rechts = teile_bei_schwellenwert(daten, merkmal, schwelle)\n    return {\n        \"merkmal\": merkmal,\n        \"schwelle\": schwelle,\n        \"links\": mehrheitsklasse(links, label_feld),\n        \"rechts\": mehrheitsklasse(rechts, label_feld),\n    }\n\ndef klassifiziere(baum, beispiel):\n    if beispiel[baum[\"merkmal\"]] < baum[\"schwelle\"]:\n        return baum[\"links\"]\n    return baum[\"rechts\"]\n\ntickets = [\n    {\"wartezeit\": 5, \"dringend\": \"nein\"},\n    {\"wartezeit\": 10, \"dringend\": \"nein\"},\n    {\"wartezeit\": 15, \"dringend\": \"nein\"},\n    {\"wartezeit\": 20, \"dringend\": \"nein\"},\n    {\"wartezeit\": 25, \"dringend\": \"nein\"},\n    {\"wartezeit\": 30, \"dringend\": \"nein\"},\n    {\"wartezeit\": 35, \"dringend\": \"nein\"},\n    {\"wartezeit\": 40, \"dringend\": \"nein\"},\n    {\"wartezeit\": 22, \"dringend\": \"ja\"},\n    {\"wartezeit\": 27, \"dringend\": \"ja\"},\n]\n\ntickets_ausgewogen = [\n    {\"wartezeit\": 5, \"dringend\": \"nein\"},\n    {\"wartezeit\": 10, \"dringend\": \"nein\"},\n    {\"wartezeit\": 22, \"dringend\": \"ja\"},\n    {\"wartezeit\": 27, \"dringend\": \"ja\"},\n]\nbaum2 = baue_baum(tickets_ausgewogen, \"wartezeit\", \"dringend\")\nprint(baum2)\nprint(genauigkeit_je_klasse(tickets, \"dringend\", lambda b: klassifiziere(baum2, b)))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'merkmal': 'wartezeit', 'schwelle': 16.0, 'links': 'nein', 'rechts': 'ja'}\n{'nein': 38, 'ja': 100}"
+        }
+      },
+      {
+        "instruction": "Kopiere alle Hilfsfunktionen (teile_bei_schwellenwert, mehrheitsklasse, anzahl_je_klasse, anzahl_falsch, bester_schwellenwert, baue_baum, klassifiziere, genauigkeit, genauigkeit_je_klasse) aus dem Beispiel. Nutze dieselbe nachrichten-Liste wie in Lektion 1 (erneut erstellen). Erstelle nachrichten_ausgewogen mit den vier Einträgen {'grossbuchstaben_anteil': 4, 'kategorie': 'kein_spam'}, {'grossbuchstaben_anteil': 8, 'kategorie': 'kein_spam'}, {'grossbuchstaben_anteil': 18, 'kategorie': 'spam'} und {'grossbuchstaben_anteil': 22, 'kategorie': 'spam'}. Baue damit einen Baum und teste ihn auf allen zehn nachrichten. Gib den Baum und die Genauigkeit je Klasse aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'merkmal': 'grossbuchstaben_anteil', 'schwelle': 13.0, 'links': 'kein_spam', 'rechts': 'spam'}\n{'kein_spam': 38, 'spam': 100}",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Grenzen von KI: Chatbots und Datenschutz",
+    "file": "lektion-05.md",
+    "lessonSummary": "Sprachmodelle lernen selbstueberwacht (naechstes Wort vorhersagen, ohne Labels) statt aus beschrifteten Daten wie unsere Klassifikatoren - und uebernehmen dabei Bias aus ihren Trainingstexten; Anonymisierung schuetzt personenbezogene Daten, aber nicht perfekt.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: aus ein paar Beispielsätzen zählen, welche Wörter am häufigsten nach einem bestimmten Wort folgen (eine winzige Miniatur des 'nächstes Wort vorhersagen'-Prinzips hinter Sprachmodellen).",
+        "example": true,
+        "codeTemplate": "texte = [\n    [\"die\", \"katze\", \"schläft\", \"auf\", \"dem\", \"sofa\"],\n    [\"der\", \"hund\", \"schläft\", \"auf\", \"dem\", \"teppich\"],\n    [\"die\", \"katze\", \"spielt\", \"mit\", \"dem\", \"ball\"],\n]\n\ndef naechste_woerter(texte, wort):\n    kandidaten = {}\n    for satz in texte:\n        for i in range(len(satz) - 1):\n            if satz[i] == wort:\n                naechstes = satz[i + 1]\n                kandidaten[naechstes] = kandidaten.get(naechstes, 0) + 1\n    return kandidaten\n\nprint(naechste_woerter(texte, \"katze\"))\nprint(naechste_woerter(texte, \"schläft\"))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'schläft': 1, 'spielt': 1}\n{'auf': 2}"
+        }
+      },
+      {
+        "instruction": "Schreibe eine Funktion anonymisiere(profil), die ein neues Dictionary zurückgibt: 'name' und 'email' werden durch None ersetzt, 'alter' und 'plz' bleiben unverändert. Wende sie auf profile = [{'name': 'Mia', 'email': 'mia@example.com', 'alter': 13, 'plz': '10115'}, {'name': 'Ben', 'email': 'ben@example.com', 'alter': 15, 'plz': '80331'}] an und gib beide anonymisierten Profile aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'name': None, 'email': None, 'alter': 13, 'plz': '10115'}\n{'name': None, 'email': None, 'alter': 15, 'plz': '80331'}",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug: Verzerrte Zahlen",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Eine fehlende Zaehlung (+= 1), ein umgedrehter Vergleich bei der Genauigkeit und ein Filter, der die falsche Klasse herausfiltert.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: Bei daten mit den Kategorien 'spam', 'kein_spam', 'spam' soll anzahl_je_klasse() {'spam': 2, 'kein_spam': 1} zurückgeben. Was ist falsch?",
+        "codeTemplate": "def anzahl_je_klasse(daten, label_feld):\n    anzahl = {}\n    for beispiel in daten:\n        anzahl[beispiel[label_feld]] = anzahl.get(beispiel[label_feld], 0)\n    return anzahl\n\ndaten = [{\"kategorie\": \"spam\"}, {\"kategorie\": \"kein_spam\"}, {\"kategorie\": \"spam\"}]\nprint(anzahl_je_klasse(daten, \"kategorie\"))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'spam': 2, 'kein_spam': 1}"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: Bei vorhersagen=['ja', 'nein', 'ja'] und erwartete_werte=['ja', 'nein', 'nein'] soll genauigkeit() 67 zurückgeben (2 von 3 Werten stimmen überein). Was ist falsch?",
+        "codeTemplate": "def genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if vorhersagen[i] != erwartete_werte[i]:\n            richtig += 1\n    return round(richtig / len(vorhersagen) * 100)\n\nprint(genauigkeit([\"ja\", \"nein\", \"ja\"], [\"ja\", \"nein\", \"nein\"]))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "67"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: Bei daten=[{'kategorie': 'spam'}, {'kategorie': 'kein_spam'}] und einer Vorhersage-Funktion, die immer die echte Kategorie zurückgibt (also perfekt vorhersagt), soll genauigkeit_je_klasse() {'spam': 100, 'kein_spam': 100} liefern. Was ist falsch?",
+        "codeTemplate": "def anzahl_je_klasse(daten, label_feld):\n    anzahl = {}\n    for beispiel in daten:\n        anzahl[beispiel[label_feld]] = anzahl.get(beispiel[label_feld], 0) + 1\n    return anzahl\n\ndef mehrheitsklasse(daten, label_feld):\n    anzahl = anzahl_je_klasse(daten, label_feld)\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl:\n        if anzahl[klasse] > bester_wert:\n            bester_wert = anzahl[klasse]\n            beste_klasse = klasse\n    return beste_klasse\n\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if vorhersagen[i] == erwartete_werte[i]:\n            richtig += 1\n    return round(richtig / len(vorhersagen) * 100)\n\ndef genauigkeit_je_klasse(daten, label_feld, vorhersage_funktion):\n    ergebnis = {}\n    for klasse in anzahl_je_klasse(daten, label_feld):\n        teil = [b for b in daten if b[label_feld] == klasse]\n        vorhersagen = [vorhersage_funktion(b) for b in teil]\n        erwartete_werte = [klasse for _ in teil]\n        ergebnis[klasse] = genauigkeit(vorhersagen, erwartete_werte)\n    return ergebnis\n\n\ndef genauigkeit_je_klasse(daten, label_feld, vorhersage_funktion):\n    ergebnis = {}\n    for klasse in anzahl_je_klasse(daten, label_feld):\n        teil = [b for b in daten if b[label_feld] != klasse]\n        vorhersagen = [vorhersage_funktion(b) for b in teil]\n        erwartete_werte = [klasse for _ in teil]\n        ergebnis[klasse] = genauigkeit(vorhersagen, erwartete_werte)\n    return ergebnis\n\ndaten = [{\"kategorie\": \"spam\"}, {\"kategorie\": \"kein_spam\"}]\nprint(genauigkeit_je_klasse(daten, \"kategorie\", lambda b: b[\"kategorie\"]))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'spam': 100, 'kein_spam': 100}"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission: Der faire Bewertungs-Filter",
+    "file": "mission-01.md",
+    "lessonSummary": "Starke Leistung! Du hast einen eigenen schiefen Bewertungs-Datensatz gebaut, seinen Bias mit genauigkeit_je_klasse() sichtbar gemacht und mit ausgewogenen Daten gezeigt, wie sich das aendern laesst - ganz ohne Vorlage.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Klassen zählen: Erstelle eine Liste bewertungen mit acht Dictionaries {'wortanzahl': W, 'beschwerde': 'nein'} für W in [5, 10, 15, 20, 25, 30, 35, 40] und zwei Dictionaries {'wortanzahl': W, 'beschwerde': 'ja'} für W in [22, 27]. Schreibe anzahl_je_klasse(daten, label_feld) wie in dieser Woche und gib anzahl_je_klasse(bewertungen, 'beschwerde') aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'nein': 8, 'ja': 2}",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Basislinie: Nutze dieselbe bewertungen-Liste (erneut erstellen). Schreibe zusätzlich mehrheitsklasse(daten, label_feld), genauigkeit(vorhersagen, erwartete_werte) und genauigkeit_je_klasse(daten, label_feld, vorhersage_funktion) wie in dieser Woche. Bilde die Mehrheitsklasse-Basislinie für bewertungen und gib genauigkeit_je_klasse() für diese Basislinie aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'nein': 100, 'ja': 0}",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Baum und Ausgleich: Nutze bewertungen und alle Funktionen aus den Schritten davor (erneut schreiben), plus teile_bei_schwellenwert(daten, merkmal, schwelle), anzahl_falsch(teil, label_feld), bester_schwellenwert(daten, merkmal, label_feld), baue_baum(daten, merkmal, label_feld) und klassifiziere(baum, beispiel) wie in dieser Woche. Baue einen Baum für 'wortanzahl' und gib genauigkeit_je_klasse() für diesen Baum aus. Erstelle danach bewertungen_ausgewogen mit den vier Einträgen {'wortanzahl': 5, 'beschwerde': 'nein'}, {'wortanzahl': 10, 'beschwerde': 'nein'}, {'wortanzahl': 22, 'beschwerde': 'ja'} und {'wortanzahl': 27, 'beschwerde': 'ja'}, baue damit einen zweiten Baum und gib genauigkeit_je_klasse() für diesen zweiten Baum getestet auf der originalen bewertungen-Liste aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'nein': 100, 'ja': 0}\n{'nein': 38, 'ja': 100}",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: Wenn eine von drei Klassen fast verschwindet",
+    "file": "boss-01.md",
+    "lessonSummary": "Stark! Du hast gezeigt, dass der Bias-Effekt mit mehr Klassen noch deutlicher wird - eine Basislinie mit 60% Gesamt-Genauigkeit hat zwei von drei Klassen komplett ignoriert.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Datensatz mit drei Klassen: Schreibe anzahl_je_klasse(daten, label_feld) wie in dieser Woche. Erstelle prioritaet als Liste aus sechs Dictionaries {'wartezeit': W, 'stufe': 'niedrig'} für W in [5, 8, 11, 14, 17, 20], drei Dictionaries {'wartezeit': W, 'stufe': 'mittel'} für W in [25, 28, 31] und einem Dictionary {'wartezeit': 60, 'stufe': 'hoch'}. Gib anzahl_je_klasse(prioritaet, 'stufe') aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'niedrig': 6, 'mittel': 3, 'hoch': 1}",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Basislinie: Wiederhole Schritt 1 (dieselbe prioritaet-Liste, Funktion erneut schreiben). Schreibe zusätzlich mehrheitsklasse(daten, label_feld) und genauigkeit(vorhersagen, erwartete_werte). Bilde die Mehrheitsklasse-Basislinie und gib sie sowie die Gesamt-Genauigkeit dieser Basislinie aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "niedrig\n60",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Genauigkeit je Klasse: Wiederhole Schritt 2 (alle Funktionen erneut schreiben, dieselbe prioritaet-Liste). Schreibe zusätzlich genauigkeit_je_klasse(daten, label_feld, vorhersage_funktion) und gib sie für die Mehrheitsklasse-Basislinie aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'niedrig': 100, 'mittel': 0, 'hoch': 0}",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Bias beheben durch Duplizieren statt Wegschneiden",
+    "file": "boss-02.md",
+    "lessonSummary": "Sehr stark! Du hast per Oversampling die kleine Klasse dupliziert statt die grosse wegzuschneiden - der Baum erkennt jetzt beide dringenden Tickets UND behaelt mehr von der urspruenglichen Genauigkeit bei nicht-dringenden Tickets als beim Undersampling in Lektion 4.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Oversampling: Schreibe anzahl_je_klasse(daten, label_feld) wie in dieser Woche. Nutze tickets wie in dieser Woche (die zehn Support-Tickets). Erstelle tickets_oversampled als tickets plus sechs weitere Einträge: dreimal {'wartezeit': 22, 'dringend': 'ja'} und dreimal {'wartezeit': 27, 'dringend': 'ja'} (die beiden 'ja'-Tickets dupliziert, bis 'ja' genauso oft vorkommt wie 'nein'). Gib anzahl_je_klasse(tickets_oversampled, 'dringend') aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'nein': 8, 'ja': 8}",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Baum trainieren: Wiederhole Schritt 1 (dieselbe tickets_oversampled-Liste, Funktion erneut schreiben). Schreibe zusätzlich teile_bei_schwellenwert(daten, merkmal, schwelle), mehrheitsklasse(daten, label_feld), anzahl_falsch(teil, label_feld), bester_schwellenwert(daten, merkmal, label_feld) und baue_baum(daten, merkmal, label_feld) wie in dieser Woche. Baue einen Baum für 'wartezeit' auf tickets_oversampled und gib ihn aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'merkmal': 'wartezeit', 'schwelle': 21.0, 'links': 'nein', 'rechts': 'ja'}",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Auf allen Tickets testen: Wiederhole Schritt 2 (alle Funktionen erneut schreiben, dieselbe tickets_oversampled-Liste). Schreibe zusätzlich klassifiziere(baum, beispiel), genauigkeit(vorhersagen, erwartete_werte) und genauigkeit_je_klasse(daten, label_feld, vorhersage_funktion). Teste den Baum aus Schritt 2 auf den ursprünglichen zehn tickets (nicht tickets_oversampled) und gib die Genauigkeit je Klasse aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "{'nein': 50, 'ja': 100}",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: Wie gut schützt Anonymisierung wirklich?",
+    "file": "boss-03.md",
+    "lessonSummary": "Stark! Du hast gesehen, dass vier von sechs Profilen allein durch Postleitzahl + genaues Alter eindeutig identifizierbar waren - und dass eine Alters-Verallgemeinerung das auf null senkt.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Eindeutigkeit vor der Verallgemeinerung: Schreibe gruppenzaehler(profile, felder), das für jede Kombination der angegebenen Felder zählt, wie oft sie vorkommt (nutze ein Tuple aus den Feldwerten als Dictionary-Schlüssel), und anzahl_eindeutiger(anzahl), das zählt, wie viele Gruppen genau 1 Eintrag haben. Nutze profile = [{'plz': '10115', 'alter': 13}, {'plz': '10115', 'alter': 15}, {'plz': '80331', 'alter': 13}, {'plz': '10115', 'alter': 13}, {'plz': '80331', 'alter': 17}, {'plz': '10115', 'alter': 16}]. Gib anzahl_eindeutiger(gruppenzaehler(profile, ['plz', 'alter'])) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "4",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Alter verallgemeinern: Wiederhole Schritt 1 (dieselben Funktionen und dieselbe profile-Liste, erneut schreiben). Schreibe zusätzlich altersgruppe(alter), das ein Jahrzehnt als Text zurückgibt (z.B. 13 → '10-19', mit start = (alter // 10) * 10 und dem Text f'{start}-{start + 9}'). Erstelle profile_verallgemeinert mit denselben plz-Werten, aber 'altersgruppe' statt 'alter'. Gib anzahl_eindeutiger(gruppenzaehler(profile_verallgemeinert, ['plz', 'altersgruppe'])) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0",
+          "codeContains": [
+            "def"
+          ]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Vergleich: Wiederhole Schritt 2 (alle Funktionen erneut schreiben, dieselbe profile-Liste). Gib zuerst anzahl_eindeutiger() vor der Verallgemeinerung (Schritt 1) und danach nach der Verallgemeinerung (Schritt 2) aus, jeweils in einer eigenen Zeile.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "4\n0",
+          "codeContains": [
+            "def"
+          ]
+        }
+      }
+    ]
+  }
+]

@@ -75,7 +75,17 @@ export const KI_LABOR_WEEKS = [
       'Die Genauigkeit eines trainierten Netzes mit der eines einzelnen Neurons vergleichen können',
     ],
   },
-  { number: 8, title: 'Grenzen & Ethik', lernziele: [] },
+  {
+    number: 8,
+    title: 'Grenzen & Ethik',
+    lernziele: [
+      'Erklären können, warum ein schiefer (unausgewogener) Trainingsdatensatz zu einem unfairen Modell führt',
+      'Die Genauigkeit je Klasse messen und von der (irreführenden) Gesamt-Genauigkeit unterscheiden können',
+      'Einen schiefen Datensatz durch Under- oder Oversampling ausgleichen und den Effekt vergleichen können',
+      'Den Unterschied zwischen selbstständig gebauten Klassifikatoren und Sprachmodellen wie ChatGPT einordnen können',
+      'Grundlegende Datenschutz-Risiken bei KI-Systemen benennen können (u.a. Grenzen der Anonymisierung)',
+    ],
+  },
 ];
 
 export const KI_LABOR_COURSE_TITLE = { de: 'KI-Labor', en: 'AI Lab' };

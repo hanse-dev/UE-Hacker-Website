@@ -87,5 +87,5 @@ k-NN, Entscheidungsbaum und ein kleines neuronales Netz komplett selbst in reine
 - [x] Woche 5 "Entscheidungsbäume" (+ Extra-Herausforderungen + eigener Wochen-Check)
 - [x] Woche 6 "Neuronale Netze I" (+ Extra-Herausforderungen + eigener Wochen-Check)
 - [x] Woche 7 "Neuronale Netze II" (+ Extra-Herausforderungen + eigener Wochen-Check)
-- [ ] Woche 8 "Grenzen & Ethik" (+ Extra-Herausforderungen + eigener Wochen-Check)
+- [x] Woche 8 "Grenzen & Ethik" (+ Extra-Herausforderungen + eigener Wochen-Check)
 - [ ] Smoke-Test aller Wochen → PR nach `main`
