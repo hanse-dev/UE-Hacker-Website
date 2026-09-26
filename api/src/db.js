@@ -28,6 +28,21 @@ db.exec(`
     payload TEXT NOT NULL DEFAULT '{}',
     updated_at TEXT NOT NULL
   );
+
+  CREATE TABLE IF NOT EXISTS termine (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    date TEXT NOT NULL,
+    time TEXT NOT NULL,
+    location TEXT NOT NULL,
+    topic TEXT NOT NULL,
+    link TEXT NOT NULL,
+    cancelled INTEGER NOT NULL DEFAULT 0,
+    recurring INTEGER NOT NULL DEFAULT 0,
+    valid_from TEXT,
+    valid_until TEXT,
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL
+  );
 `);
 
 export default db;

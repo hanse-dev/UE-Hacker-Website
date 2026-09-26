@@ -5,6 +5,12 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 
 ## Offen
 
+- [ ] `HANDOFF.md` liegt (Stand 3.84) bei ~31 KB, über dem in `WORKFLOW.md` genannten Richtwert
+      (25 KB) für sofortiges Aufräumen. Das eigentliche Aufräumen (ältere `### 3.NN`-Abschnitte nach
+      `docs/archiv/HANDOFF-historie.md` verschieben, nur Tabellenzeile + ggf. "Gelernte Regel"
+      behalten) wurde hier bewusst zurückgestellt, um es nicht in den fachfremden Branch
+      `admin-termine-verwaltung` zu mischen (Ein-Branch-ein-Thema-Regel) — eigener kleiner
+      Aufräum-Commit auf `main` nachholen.
 - [ ] Seit 3.80 (HANDOFF.md) prüft `validateOutput()` in Lektionsaufgaben nur noch die Ausgabe.
       Rund 40 JS-Aufgaben (js-grundkurs-woche1/2/3/5/6/7/8, js-spielewerkstatt, js-snake, per
       `grep`-Suche über `variables`/`functionCalls` ohne eigenes `expected` gefunden) hatten aber

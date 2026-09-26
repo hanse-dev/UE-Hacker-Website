@@ -6,7 +6,9 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { checkAdminPassword, createAdminToken } from './auth.js';
 import adminUsersRouter from './routes/adminUsers.js';
+import adminTermineRouter from './routes/adminTermine.js';
 import authRouter from './routes/auth.js';
+import termineRouter from './routes/termine.js';
 import './db.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -42,7 +44,9 @@ app.post('/api/admin/login', (req, res) => {
 });
 
 app.use('/api/admin', adminUsersRouter);
+app.use('/api/admin', adminTermineRouter);
 app.use('/api', authRouter);
+app.use('/api', termineRouter);
 
 const serveStatic = fs.existsSync(staticDir);
 if (serveStatic) {

@@ -49,6 +49,46 @@ test.describe('UI: Admin + Header-Login', () => {
     await expect(adminNavLink).toHaveCount(0);
   });
 
+  test('Admin: Termin über die Termine-Verwaltung anlegen, bearbeiten und löschen', async ({ page, request }) => {
+    const topic = `UI-Testtermin ${Date.now()}`;
+
+    await page.goto('/admin');
+    await page.locator('.admin-login-card input[type="password"]').fill(ADMIN_PASSWORD);
+    await page.locator('.admin-login-card .btn-primary').click();
+    await expect(page.locator('.admin-tabs')).toBeVisible();
+
+    await page.locator('.admin-tab', { hasText: /Termine|Appointments/ }).click();
+    await page.locator('.admin-termine .btn-primary').click();
+
+    await expect(page.locator('.modal-card')).toBeVisible();
+    await page.locator('.modal-card input').nth(0).fill('Montag, 01.02.27');
+    await page.locator('.modal-card input').nth(1).fill('17:00 - 18:00 Uhr');
+    await page.locator('.modal-card input').nth(2).fill('Online');
+    await page.locator('.modal-card input').nth(3).fill(topic);
+    await page.locator('.modal-card input').nth(4).fill('/kurs/python-12-wochen-grundkurs');
+    await page.locator('.modal-card .btn-primary').click();
+
+    await expect(page.locator('.admin-termine .admin-table')).toContainText(topic);
+
+    // Der neue Termin ist auch öffentlich sichtbar, ganz ohne Admin-Login.
+    const publicList = await request.get(`${API}/api/termine`);
+    const publicTermine = await publicList.json();
+    expect(publicTermine.some((t) => t.topic === topic)).toBeTruthy();
+
+    // Bearbeiten: als abgesagt markieren
+    const row = page.locator('.admin-termine .admin-table tr', { hasText: topic });
+    await row.locator('.btn-link').first().click();
+    await expect(page.locator('.modal-card')).toBeVisible();
+    await page.locator('.modal-card input[type="checkbox"]').first().check();
+    await page.locator('.modal-card .btn-primary').click();
+    await expect(row.locator('.badge-cancelled')).toBeVisible();
+
+    // Löschen
+    page.once('dialog', (dialog) => dialog.accept());
+    await row.locator('.btn-link.danger').click();
+    await expect(page.locator('.admin-termine')).not.toContainText(topic);
+  });
+
   test('Optionen: Anmelden, Sync, Abmelden', async ({ page, request }) => {
     const username = `learner_${Date.now()}`;
     const adminLogin = await request.post(`${API}/api/admin/login`, {
