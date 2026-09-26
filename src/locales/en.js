@@ -275,7 +275,10 @@ export default {
 
   // ── Lesson view (interactive lessons / Caesar cipher) ────────────────────
   'lesson.loading':           'Loading lesson...',
-  'lesson.editorHint':        'Python loads automatically when you open the page (~30 sec). Write your code and click "Check" once "Python ready" appears.',
+  'lesson.editorHint':        'Python loads automatically when you open the page (~30 sec). Write your code in the box below. "Run" only shows the output, "Check" also checks whether the task is solved – click "Check" once "Python ready" appears.',
+  'lesson.blankHint':         'Wherever the template shows ___ (three underscores), something is still missing: replace exactly the ___ with your own code (e.g. a piece of text, a number, or a variable name) – leave the rest of the line as it is.',
+  'lesson.flexibleHint':      'This lesson has {total} tasks, but you only need to solve at least {min} of them to move on – you can skip the rest at any time with "Skip".',
+  'lesson.flexibleProgress':  'Solved so far: {solved} of at least {min} required tasks.',
   'lesson.yourCode':          'Your Code',
   'lesson.taskPrefix':        'Task ',
   'lesson.taskDone':          '(done)',

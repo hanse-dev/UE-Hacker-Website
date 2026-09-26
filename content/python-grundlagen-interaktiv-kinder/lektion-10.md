@@ -22,4 +22,11 @@ verdoppeln([1, 2, 3])  # gibt 2, 4, 6 aus
 
 Die Funktion `verdoppeln` bekommt eine ganze Liste als Parameter übergeben und geht sie dann selbst mit einer Schleife durch – genau so bauen richtige Programmierer:innen ihre Werkzeuge: kleine Bausteine, die man beliebig kombinieren kann.
 
+Python bringt außerdem ein paar fertige Helfer mit, die dir Arbeit abnehmen. `sum()` zählt zum Beispiel alle Zahlen einer Liste zusammen – du musst dafür keine eigene Schleife schreiben:
+
+```python
+zahlen = [1, 2, 3, 4, 5]
+print(sum(zahlen))  # gibt 15 aus
+```
+
 Du bist bereit für den großen Kurs! Im 12-Wochen-Grundkurs baust du auf genau diesem Wissen auf und lernst, ganze Spiele und Geschichten selbst zu programmieren. 🚀

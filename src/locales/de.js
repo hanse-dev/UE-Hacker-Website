@@ -275,7 +275,10 @@ export default {
 
   // ── Lesson view (interactive lessons / Cäsar-Chiffre) ────────────────────
   'lesson.loading':           'Lektion wird geladen...',
-  'lesson.editorHint':        'Python wird beim Öffnen automatisch geladen (~30 Sek.). Schreibe deinen Code und klicke auf „Prüfen", sobald „Python bereit" angezeigt wird.',
+  'lesson.editorHint':        'Python wird beim Öffnen automatisch geladen (~30 Sek.). Schreibe deinen Code in das Feld unten. Mit „Ausführen" siehst du nur die Ausgabe, mit „Prüfen" wird zusätzlich kontrolliert, ob die Aufgabe gelöst ist – klicke „Prüfen", sobald „Python bereit" angezeigt wird.',
+  'lesson.blankHint':         'Wo in der Vorlage ___ (drei Unterstriche) steht, fehlt noch etwas: Ersetze genau das ___ durch deinen eigenen Code (z.B. einen Text, eine Zahl oder einen Variablennamen) – den Rest der Zeile lässt du stehen.',
+  'lesson.flexibleHint':      'Diese Lektion hat {total} Aufgaben, aber du musst nur mindestens {min} davon lösen, um weiterzugehen – den Rest kannst du jederzeit mit „Überspringen" auslassen.',
+  'lesson.flexibleProgress':  'Bisher gelöst: {solved} von mindestens {min} nötigen Aufgaben.',
   'lesson.yourCode':          'Dein Code',
   'lesson.taskPrefix':        'Aufgabe ',
   'lesson.taskDone':          '(erledigt)',

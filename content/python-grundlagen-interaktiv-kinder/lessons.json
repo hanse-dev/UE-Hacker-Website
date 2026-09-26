@@ -4,16 +4,59 @@
     "title": "Dein erstes Programm 🎉",
     "file": "lektion-01.md",
     "lessonSummary": "Wahnsinn, das war super! 🌟 Du kannst jetzt mit print() Text auf dem Bildschirm erscheinen lassen!",
+    "minSolved": 2,
     "tasks": [
+      {
+        "instruction": "Schau dir dieses Beispiel an und führe es aus.",
+        "example": true,
+        "codeTemplate": "print(\"Willkommen im Zauberkurs!\")\n# Kommentare wie diese hier ignoriert Python einfach\nprint(\"Los geht's!\")",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Willkommen im Zauberkurs"
+        }
+      },
       {
         "instruction": "Sag der Welt Hallo! Gib \"Hallo Welt\" aus.",
         "codeTemplate": "print(\"___\")",
-        "validation": { "type": "output_contains", "expected": "Hallo Welt" }
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hallo Welt"
+        }
       },
       {
         "instruction": "Gib \"Ich lerne Python!\" aus.",
         "codeTemplate": "print(\"___\")",
-        "validation": { "type": "output_contains", "expected": "Ich lerne Python" }
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ich lerne Python"
+        }
+      },
+      {
+        "instruction": "Gib die Zahl 2024 aus (ohne Anführungszeichen).",
+        "codeTemplate": "print(___)",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "2024"
+        }
+      },
+      {
+        "instruction": "Gib zwei Zeilen aus: zuerst \"Start\", dann \"Ziel\".",
+        "codeTemplate": "print(\"___\")\nprint(\"___\")",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ziel"
+        }
+      },
+      {
+        "instruction": "Schreibe zuerst einen Kommentar mit # (ein beliebiger Text), dann gib \"Fertig!\" aus.",
+        "codeTemplate": "# ___\nprint(\"___\")",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Fertig"
+        }
       }
     ]
   },
@@ -22,16 +65,59 @@
     "title": "Variablen – dein Gedächtnis 🧠",
     "file": "lektion-02.md",
     "lessonSummary": "Prima! 🎉 Du hast gelernt, Werte in Variablen zu speichern. Wie eine Schatztruhe!",
+    "minSolved": 2,
     "tasks": [
+      {
+        "instruction": "Schau dir dieses Beispiel an und führe es aus.",
+        "example": true,
+        "codeTemplate": "gedaechtnis = \"Ich merke mir das!\"\nprint(gedaechtnis)",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ich merke mir das"
+        }
+      },
       {
         "instruction": "Speichere \"Drache\" in einer Variable namens tier und gib sie aus.",
         "codeTemplate": "tier = \"___\"\nprint(tier)",
-        "validation": { "type": "output_contains", "expected": "Drache" }
+        "validation": {
+          "type": "output_contains",
+          "expected": "Drache"
+        }
       },
       {
         "instruction": "Speichere die Zahl 100 in einer Variable namens punkte und gib sie aus.",
         "codeTemplate": "punkte = ___\nprint(punkte)",
-        "validation": { "type": "output_contains", "expected": "100" }
+        "validation": {
+          "type": "output_contains",
+          "expected": "100"
+        }
+      },
+      {
+        "instruction": "Erstelle eine Variable name mit dem Wert \"Lina\" und gib sie aus.",
+        "codeTemplate": "name = \"___\"\nprint(name)",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Lina"
+        }
+      },
+      {
+        "instruction": "Überschreibe die Variable tier zuerst mit \"Hund\" (ausgeben), dann mit \"Katze\" (ausgeben).",
+        "codeTemplate": "tier = \"___\"\nprint(tier)\ntier = \"___\"\nprint(tier)",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Katze"
+        }
+      },
+      {
+        "instruction": "Erstelle zwei Variablen tier mit \"Papagei\" und farbe mit \"bunt\", und gib beide aus.",
+        "codeTemplate": "tier = \"___\"\nfarbe = \"___\"\nprint(tier)\nprint(farbe)",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "bunt"
+        }
       }
     ]
   },
@@ -40,16 +126,59 @@
     "title": "Zahlen und Rechnen 🔢",
     "file": "lektion-03.md",
     "lessonSummary": "Toll! 🧮 Du kannst Python jetzt als Taschenrechner nutzen!",
+    "minSolved": 2,
     "tasks": [
+      {
+        "instruction": "Schau dir dieses Beispiel an und führe es aus.",
+        "example": true,
+        "codeTemplate": "apfel = 3\nbirne = 5\nprint(apfel + birne)",
+        "validation": {
+          "type": "output_contains",
+          "expected": "8"
+        }
+      },
       {
         "instruction": "Ein Einhorn hat 10 Magiepunkte, ein Drache hat 7. Gib ihre Summe aus.",
         "codeTemplate": "einhorn = 10\ndrache = 7\nprint(___ + ___)",
-        "validation": { "type": "output_contains", "expected": "17" }
+        "validation": {
+          "type": "output_contains",
+          "expected": "17"
+        }
       },
       {
         "instruction": "Du hast 6 Zaubertränke und bekommst 4 dazu. Gib das Produkt aus (6 * 4).",
         "codeTemplate": "print(___ * ___)",
-        "validation": { "type": "output_contains", "expected": "24" }
+        "validation": {
+          "type": "output_contains",
+          "expected": "24"
+        }
+      },
+      {
+        "instruction": "Ein Ritter hat 12 Goldmünzen und gibt 5 davon aus. Gib die verbleibende Anzahl aus (Subtraktion).",
+        "codeTemplate": "gold = 12\nausgegeben = 5\nprint(___ - ___)",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "7"
+        }
+      },
+      {
+        "instruction": "Teile 20 Kekse gerecht auf 4 Kinder auf. Gib aus, wie viele jedes Kind bekommt (Division /).",
+        "codeTemplate": "kekse = 20\nkinder = 4\nprint(___ / ___)",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "5.0"
+        }
+      },
+      {
+        "instruction": "Du hast 22 Bonbons und packst sie in Tüten zu je 5. Gib aus, wie viele volle Tüten es sind (//) und wie viele Bonbons übrig bleiben (%).",
+        "codeTemplate": "bonbons = 22\nprint(bonbons // 5)\nprint(bonbons % 5)",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "4"
+        }
       }
     ]
   },
@@ -58,16 +187,59 @@
     "title": "Datentypen – was steckt dahinter? 🔍",
     "file": "lektion-datentypen.md",
     "lessonSummary": "Klasse! 🔍 Du kennst jetzt die wichtigsten Datentypen in Python!",
+    "minSolved": 2,
     "tasks": [
+      {
+        "instruction": "Schau dir dieses Beispiel an und führe es aus.",
+        "example": true,
+        "codeTemplate": "print(type(10))\nprint(type(\"Text\"))",
+        "validation": {
+          "type": "output_contains",
+          "expected": "int"
+        }
+      },
       {
         "instruction": "Finde heraus, welchen Typ die Zahl 7 hat. Nutze type().",
         "codeTemplate": "print(type(___))",
-        "validation": { "type": "output_contains", "expected": "int" }
+        "validation": {
+          "type": "output_contains",
+          "expected": "int"
+        }
       },
       {
         "instruction": "Finde heraus, welchen Typ \"Zauberspruch\" hat.",
         "codeTemplate": "print(type(\"___\"))",
-        "validation": { "type": "output_contains", "expected": "str" }
+        "validation": {
+          "type": "output_contains",
+          "expected": "str"
+        }
+      },
+      {
+        "instruction": "Finde heraus, welchen Typ 3.14 hat.",
+        "codeTemplate": "print(type(___))",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "float"
+        }
+      },
+      {
+        "instruction": "Finde heraus, welchen Typ True hat.",
+        "codeTemplate": "print(type(___))",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "bool"
+        }
+      },
+      {
+        "instruction": "Wandle den Text \"5\" in eine Zahl um (int()) und addiere 1 dazu. Gib das Ergebnis aus.",
+        "codeTemplate": "text_zahl = \"5\"\nzahl = int(___)\nprint(zahl + 1)",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "6"
+        }
       }
     ]
   },
@@ -76,16 +248,59 @@
     "title": "f-Strings – Text und Variablen mischen ✨",
     "file": "lektion-04.md",
     "lessonSummary": "Geschafft! ✨ Du kannst Variablen jetzt elegant in Texte einbauen!",
+    "minSolved": 2,
     "tasks": [
+      {
+        "instruction": "Schau dir dieses Beispiel an und führe es aus.",
+        "example": true,
+        "codeTemplate": "name = \"Nova\"\nprint(f\"Willkommen, {name}!\")",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Willkommen, Nova"
+        }
+      },
       {
         "instruction": "Erstelle eine Variable tier mit deinem Lieblingstier und gib \"Mein Lieblingstier ist ein/e ___!\" aus.",
         "codeTemplate": "tier = \"___\"\nprint(f\"Mein Lieblingstier ist ein/e {___}!\")",
-        "validation": { "type": "output_contains", "expected": "Lieblingstier" }
+        "validation": {
+          "type": "output_contains",
+          "expected": "Lieblingstier"
+        }
       },
       {
         "instruction": "Erstelle eine Variable alter mit deinem Alter und gib \"Ich bin ___ Jahre alt.\" aus.",
         "codeTemplate": "alter = ___\nprint(f\"Ich bin {___} Jahre alt.\")",
-        "validation": { "type": "output_contains", "expected": "Jahre alt" }
+        "validation": {
+          "type": "output_contains",
+          "expected": "Jahre alt"
+        }
+      },
+      {
+        "instruction": "Erstelle eine Variable stadt mit \"Berlin\" und gib mit einem f-String \"Ich wohne in Berlin!\" aus.",
+        "codeTemplate": "stadt = \"___\"\nprint(f\"Ich wohne in {___}!\")",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ich wohne in Berlin"
+        }
+      },
+      {
+        "instruction": "Erstelle punkte = 15 und gib mit einem f-String \"Nach dem Bonus hast du 30 Punkte!\" aus (rechne direkt in der geschweiften Klammer).",
+        "codeTemplate": "punkte = 15\nprint(f\"Nach dem Bonus hast du {___ * 2} Punkte!\")",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "30 Punkte"
+        }
+      },
+      {
+        "instruction": "Erstelle tier = \"Fuchs\" und gib mit einem f-String \"Das ist ein Fuchs!\" aus.",
+        "codeTemplate": "tier = \"___\"\nprint(f\"Das ist ein {___}!\")",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Das ist ein Fuchs"
+        }
       }
     ]
   },
@@ -94,16 +309,59 @@
     "title": "Entscheidungen mit if 🤔",
     "file": "lektion-05.md",
     "lessonSummary": "Ausgezeichnet! 🤔 Du kannst Python jetzt Entscheidungen treffen lassen!",
+    "minSolved": 2,
     "tasks": [
+      {
+        "instruction": "Schau dir dieses Beispiel an und führe es aus.",
+        "example": true,
+        "codeTemplate": "wetter = \"Regen\"\nif wetter == \"Regen\":\n    print(\"Nimm einen Schirm mit!\")\nelse:\n    print(\"Sonnenbrille nicht vergessen!\")",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Schirm"
+        }
+      },
       {
         "instruction": "Ein Drache hat 80 Lebenspunkte. Wenn er mehr als 50 hat, gib \"Der Drache ist stark!\" aus.",
         "codeTemplate": "leben = 80\nif leben > ___:\n    print(\"___\")",
-        "validation": { "type": "output_contains", "expected": "stark" }
+        "validation": {
+          "type": "output_contains",
+          "expected": "stark"
+        }
       },
       {
         "instruction": "Wenn ein Tier \"Hund\" ist, gib \"Wuff!\" aus, sonst \"Miau!\".",
         "codeTemplate": "tier = \"Hund\"\nif tier == \"Hund\":\n    print(\"___\")\nelse:\n    print(\"___\")",
-        "validation": { "type": "output_contains", "expected": "Wuff" }
+        "validation": {
+          "type": "output_contains",
+          "expected": "Wuff"
+        }
+      },
+      {
+        "instruction": "Ein Spieler hat 3 Leben. Wenn er 0 oder weniger Leben hat, gib \"Game Over\" aus, sonst \"Weiterspielen!\".",
+        "codeTemplate": "leben = 3\nif leben <= ___:\n    print(\"Game Over\")\nelse:\n    print(\"___\")",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Weiterspielen"
+        }
+      },
+      {
+        "instruction": "Prüfe, ob die Zahl 10 gleich 10 ist. Wenn ja, gib \"Gleich!\" aus.",
+        "codeTemplate": "zahl = 10\nif zahl == ___:\n    print(\"___\")",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gleich"
+        }
+      },
+      {
+        "instruction": "Ein Drache hat 5 Punkte, ein Ritter hat 8. Wenn der Ritter mehr Punkte hat, gib \"Ritter gewinnt!\" aus, sonst \"Drache gewinnt!\".",
+        "codeTemplate": "drache = 5\nritter = 8\nif ritter > ___:\n    print(\"___\")\nelse:\n    print(\"Drache gewinnt!\")",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Ritter gewinnt"
+        }
       }
     ]
   },
@@ -112,16 +370,59 @@
     "title": "Schleifen mit for 🔄",
     "file": "lektion-06.md",
     "lessonSummary": "Perfekt! 🔄 Du kannst Code jetzt mit for-Schleifen wiederholen!",
+    "minSolved": 2,
     "tasks": [
+      {
+        "instruction": "Schau dir dieses Beispiel an und führe es aus.",
+        "example": true,
+        "codeTemplate": "for i in range(3):\n    print(\"Zauberspruch!\")",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zauberspruch"
+        }
+      },
       {
         "instruction": "Füttere deinen Drachen 3 Mal! Gib \"Nom nom!\" dreimal aus (mit range).",
         "codeTemplate": "for i in range(___):\n    print(\"___\")",
-        "validation": { "type": "output_contains", "expected": "Nom" }
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nom"
+        }
       },
       {
         "instruction": "Gib die Zahlen 0, 1 und 2 aus (nutze range und die Schleifenvariable).",
         "codeTemplate": "for i in range(___):\n    print(___)",
-        "validation": { "type": "output_contains", "expected": "0" }
+        "validation": {
+          "type": "output_contains",
+          "expected": "0"
+        }
+      },
+      {
+        "instruction": "Gib 5 Mal \"Juhu!\" aus (mit einer Schleife).",
+        "codeTemplate": "for i in range(___):\n    print(\"___\")",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Juhu"
+        }
+      },
+      {
+        "instruction": "Gehe mit einer Schleife über die Liste [\"Rot\", \"Grün\", \"Blau\"] und gib jede Farbe aus.",
+        "codeTemplate": "farben = [\"Rot\", \"Grün\", \"Blau\"]\nfor farbe in farben:\n    print(___)",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Blau"
+        }
+      },
+      {
+        "instruction": "Zähle mit einer Schleife von 0 bis 4 (range) und gib jede Zahl mit \"Zahl: \" davor aus (f-String).",
+        "codeTemplate": "for i in range(___):\n    print(f\"Zahl: {___}\")",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zahl: 4"
+        }
       }
     ]
   },
@@ -130,16 +431,59 @@
     "title": "Listen – viele Werte auf einmal 📋",
     "file": "lektion-07.md",
     "lessonSummary": "Super! 📋 Du kannst jetzt mehrere Werte in einer Liste speichern!",
+    "minSolved": 2,
     "tasks": [
+      {
+        "instruction": "Schau dir dieses Beispiel an und führe es aus.",
+        "example": true,
+        "codeTemplate": "schaetze = [\"Gold\", \"Diamant\", \"Perle\"]\nprint(schaetze[0])\nprint(schaetze[-1])",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gold"
+        }
+      },
       {
         "instruction": "Erstelle eine Liste mit \"Drache\", \"Einhorn\", \"Phönix\" und gib das erste Tier aus.",
         "codeTemplate": "tiere = [\"___\", \"___\", \"___\"]\nprint(tiere[___])",
-        "validation": { "type": "output_contains", "expected": "Drache" }
+        "validation": {
+          "type": "output_contains",
+          "expected": "Drache"
+        }
       },
       {
-        "instruction": "Gib das letzte Tier aus deiner Liste aus (Index -1).",
-        "codeTemplate": "print(tiere[___])",
-        "validation": { "type": "output_contains", "expected": "Phönix" }
+        "instruction": "Erstelle die Liste mit \"Drache\", \"Einhorn\", \"Phönix\" erneut und gib das letzte Tier aus (Index -1).",
+        "codeTemplate": "tiere = [\"Drache\", \"Einhorn\", \"Phönix\"]\nprint(tiere[___])",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Phönix"
+        }
+      },
+      {
+        "instruction": "Erstelle eine Liste zahlen mit 10, 20, 30 und gib das mittlere Element aus (Index 1).",
+        "codeTemplate": "zahlen = [10, 20, 30]\nprint(zahlen[___])",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "20"
+        }
+      },
+      {
+        "instruction": "Erstelle eine Liste tiere mit \"Hund\" und \"Katze\", füge \"Löwe\" mit .append() hinzu und gib die Länge aus.",
+        "codeTemplate": "tiere = [\"Hund\", \"Katze\"]\ntiere.append(\"___\")\nprint(len(tiere))",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "3"
+        }
+      },
+      {
+        "instruction": "Erstelle eine leere Liste namen = [] und füge mit .append() zweimal einen Namen hinzu, dann gib die Liste aus.",
+        "codeTemplate": "namen = []\nnamen.append(\"___\")\nnamen.append(\"___\")\nprint(namen)",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "]"
+        }
       }
     ]
   },
@@ -148,16 +492,59 @@
     "title": "Funktionen – dein eigener Zauberspruch 🪄",
     "file": "lektion-08.md",
     "lessonSummary": "Stark! 🪄 Du kannst jetzt eigene Funktionen zaubern!",
+    "minSolved": 2,
     "tasks": [
+      {
+        "instruction": "Schau dir dieses Beispiel an und führe es aus.",
+        "example": true,
+        "codeTemplate": "def klatsche():\n    print(\"Klatsch!\")\n\nklatsche()",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Klatsch"
+        }
+      },
       {
         "instruction": "Definiere eine Funktion zaubern(), die \"Abrakadabra!\" ausgibt, und rufe sie auf.",
         "codeTemplate": "def zaubern():\n    print(\"___\")\n\nzaubern()",
-        "validation": { "type": "output_contains", "expected": "Abrakadabra" }
+        "validation": {
+          "type": "output_contains",
+          "expected": "Abrakadabra"
+        }
       },
       {
         "instruction": "Definiere eine Funktion verdoppeln(zahl), die eine Zahl verdoppelt und ausgibt. Rufe sie mit 6 auf.",
         "codeTemplate": "def verdoppeln(zahl):\n    print(___ * 2)\n\nverdoppeln(___)",
-        "validation": { "type": "output_contains", "expected": "12" }
+        "validation": {
+          "type": "output_contains",
+          "expected": "12"
+        }
+      },
+      {
+        "instruction": "Definiere eine Funktion quadrat(zahl), die eine Zahl mit sich selbst multipliziert und ausgibt. Rufe sie mit 5 auf.",
+        "codeTemplate": "def quadrat(zahl):\n    print(___ * ___)\n\nquadrat(5)",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "25"
+        }
+      },
+      {
+        "instruction": "Definiere eine Funktion begruesse(), die \"Willkommen, Abenteurer!\" ausgibt, und rufe sie zweimal auf.",
+        "codeTemplate": "def begruesse():\n    print(\"___\")\n\nbegruesse()\nbegruesse()",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Willkommen"
+        }
+      },
+      {
+        "instruction": "Definiere eine Funktion addiere(a, b), die beide Zahlen addiert und ausgibt. Rufe sie mit 3 und 4 auf.",
+        "codeTemplate": "def addiere(a, b):\n    print(___ + ___)\n\naddiere(3, 4)",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "7"
+        }
       }
     ]
   },
@@ -166,16 +553,59 @@
     "title": "Dictionaries – das Tierlexikon 📖",
     "file": "lektion-09.md",
     "lessonSummary": "Sehr gut! 📖 Du kannst jetzt Schlüssel-Wert-Paare in Dictionaries speichern!",
+    "minSolved": 2,
     "tasks": [
+      {
+        "instruction": "Schau dir dieses Beispiel an und führe es aus.",
+        "example": true,
+        "codeTemplate": "farben = {\"Himmel\": \"blau\", \"Gras\": \"grün\"}\nprint(farben[\"Himmel\"])",
+        "validation": {
+          "type": "output_contains",
+          "expected": "blau"
+        }
+      },
       {
         "instruction": "Erstelle ein Dictionary mit \"Hund\" → \"bellt\" und \"Katze\" → \"miaut\". Gib aus, was der Hund macht.",
         "codeTemplate": "geraeusche = {\"Hund\": \"___\", \"Katze\": \"___\"}\nprint(geraeusche[\"___\"])",
-        "validation": { "type": "output_contains", "expected": "bellt" }
+        "validation": {
+          "type": "output_contains",
+          "expected": "bellt"
+        }
       },
       {
-        "instruction": "Gib aus, was die Katze macht.",
-        "codeTemplate": "print(geraeusche[\"___\"])",
-        "validation": { "type": "output_contains", "expected": "miaut" }
+        "instruction": "Erstelle das Dictionary erneut mit \"Hund\" → \"bellt\" und \"Katze\" → \"miaut\", und gib aus, was die Katze macht.",
+        "codeTemplate": "geraeusche = {\"Hund\": \"bellt\", \"Katze\": \"miaut\"}\nprint(geraeusche[\"___\"])",
+        "validation": {
+          "type": "output_contains",
+          "expected": "miaut"
+        }
+      },
+      {
+        "instruction": "Erstelle ein Dictionary punkte mit \"Anna\" → 10 und \"Ben\" → 20. Gib Bens Punkte aus.",
+        "codeTemplate": "punkte = {\"Anna\": 10, \"Ben\": ___}\nprint(punkte[\"___\"])",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "20"
+        }
+      },
+      {
+        "instruction": "Erstelle ein Dictionary tier_infos mit \"Vogel\" → \"zwitschert\". Füge einen neuen Eintrag \"Fisch\" → \"blubbert\" hinzu und gib ihn aus.",
+        "codeTemplate": "tier_infos = {\"Vogel\": \"zwitschert\"}\ntier_infos[\"___\"] = \"___\"\nprint(tier_infos[\"Fisch\"])",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "blubbert"
+        }
+      },
+      {
+        "instruction": "Erstelle ein Dictionary steckbrief mit \"Name\" → \"Lina\" und \"Alter\" → 9. Gib beide Werte aus.",
+        "codeTemplate": "steckbrief = {\"Name\": \"___\", \"Alter\": ___}\nprint(steckbrief[\"Name\"])\nprint(steckbrief[\"Alter\"])",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "9"
+        }
       }
     ]
   },
@@ -185,16 +615,59 @@
     "file": "lektion-10.md",
     "lessonSummary": "Fantastisch! 🏆 Du hast alle Python-Grundlagen gemeistert! Du bist bereit für den 12-Wochen-Kurs!",
     "nextCourseId": "python-12-wochen-grundkurs",
+    "minSolved": 2,
     "tasks": [
+      {
+        "instruction": "Schau dir dieses Beispiel an und führe es aus.",
+        "example": true,
+        "codeTemplate": "tiere = [\"Fuchs\", \"Bär\", \"Eule\"]\nfor tier in tiere:\n    print(f\"Hallo, {tier}!\")",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hallo"
+        }
+      },
       {
         "instruction": "Erstelle eine Liste [2, 4, 6] und gib jede Zahl verdoppelt aus (mit einer for-Schleife).",
         "codeTemplate": "zahlen = [2, 4, 6]\nfor z in zahlen:\n    print(___ * 2)",
-        "validation": { "type": "output_contains", "expected": "4" }
+        "validation": {
+          "type": "output_contains",
+          "expected": "4"
+        }
       },
       {
         "instruction": "Erstelle eine Funktion summe(zahlen), die die Summe einer Liste ausgibt. Rufe sie mit [1, 2, 3, 4, 5] auf.",
         "codeTemplate": "def summe(zahlen):\n    print(sum(___))\n\nsumme([1, 2, 3, 4, 5])",
-        "validation": { "type": "output_contains", "expected": "15" }
+        "validation": {
+          "type": "output_contains",
+          "expected": "15"
+        }
+      },
+      {
+        "instruction": "Erstelle ein Dictionary haustiere mit \"Hund\" → \"bellt\" und \"Katze\" → \"miaut\". Gib mit einer for-Schleife für jedes Tier aus, was es macht.",
+        "codeTemplate": "haustiere = {\"Hund\": \"bellt\", \"Katze\": \"miaut\"}\nfor tier in haustiere:\n    print(f\"{tier}: {haustiere[___]}\")",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "bellt"
+        }
+      },
+      {
+        "instruction": "Definiere eine Funktion ist_gross(zahl), die \"groß\" ausgibt, wenn die Zahl größer als 10 ist, sonst \"klein\". Rufe sie mit 15 auf.",
+        "codeTemplate": "def ist_gross(zahl):\n    if zahl > ___:\n        print(\"groß\")\n    else:\n        print(\"klein\")\n\nist_gross(___)",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "groß"
+        }
+      },
+      {
+        "instruction": "Erstelle eine Liste [1, 2, 3], verdopple jede Zahl mit einer Schleife in eine neue Liste (append) und gib die Summe der neuen Liste aus (sum()).",
+        "codeTemplate": "zahlen = [1, 2, 3]\nverdoppelt = []\nfor z in zahlen:\n    verdoppelt.append(z * 2)\nprint(sum(___))",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "12"
+        }
       }
     ]
   }
