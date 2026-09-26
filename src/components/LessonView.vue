@@ -7,6 +7,7 @@
 
     <div class="lesson-editor-section">
       <p class="editor-hint">{{ t('lesson.editorHint') }}</p>
+      <p v-if="hasBlankPlaceholder" class="editor-hint editor-hint-blank">{{ t('lesson.blankHint') }}</p>
       <p class="editor-hint editor-hint-ran">{{ t('jsLesson.ranExplainer') }}</p>
       <div class="editor-header">
         <span class="editor-label">{{ t('lesson.yourCode') }}</span>
@@ -190,6 +191,10 @@ export default {
     });
 
     const lessonSummary = computed(() => props.lesson?.lessonSummary || t('lesson.defaultSummary'));
+
+    // Nur der Interaktiv-Kurs nutzt "___"-Luecken in codeTemplate (12-Wochen-Kurs/Projekt-Kurse
+    // geben vollstaendige Vorlagen mit Kommentaren) - Hinweis daher nur zeigen, wenn er zutrifft.
+    const hasBlankPlaceholder = computed(() => tasks.value.some((x) => (x.codeTemplate || '').includes('___')));
 
     const taskCodes = ref([]);
     const taskOutputs = ref([]);
@@ -386,6 +391,7 @@ export default {
       goToNext,
       allTasksComplete,
       lessonSummary,
+      hasBlankPlaceholder,
       completedTasks,
       skippedTasks,
       skipTask,
@@ -757,6 +763,11 @@ a.btn-next {
 
 .editor-hint-ran {
   margin-top: -6px;
+}
+
+.editor-hint-blank {
+  font-weight: 600;
+  color: var(--primary-purple, #4a2274);
 }
 
 .solution-box {
