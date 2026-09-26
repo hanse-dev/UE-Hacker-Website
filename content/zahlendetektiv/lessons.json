@@ -78,6 +78,7 @@
       {
         "instruction": "Ruf rate_zahl(42) auf und schau dir an, wie schnell der Computer die Zahl findet.",
         "codeTemplate": "def rate_zahl(ziel, minimum=1, maximum=100):\n    versuche = 0\n    while minimum <= maximum:\n        versuche += 1\n        mitte = (minimum + maximum) // 2\n        print(f\"Versuch {versuche}: ist es {mitte}?\")\n        if mitte == ziel:\n            print(f\"Richtig! Ich habe {ziel} in {versuche} Versuchen erraten.\")\n            return versuche\n        elif mitte < ziel:\n            minimum = mitte + 1\n        else:\n            maximum = mitte - 1\n\n# dein Aufruf hier\n",
+        "solution": "def rate_zahl(ziel, minimum=1, maximum=100):\n    versuche = 0\n    while minimum <= maximum:\n        versuche += 1\n        mitte = (minimum + maximum) // 2\n        print(f\"Versuch {versuche}: ist es {mitte}?\")\n        if mitte == ziel:\n            print(f\"Richtig! Ich habe {ziel} in {versuche} Versuchen erraten.\")\n            return versuche\n        elif mitte < ziel:\n            minimum = mitte + 1\n        else:\n            maximum = mitte - 1\n\nrate_zahl(42)",
         "validation": { "type": "output_contains", "expected": "Richtig! Ich habe 42 in 7 Versuchen erraten." }
       }
     ]
