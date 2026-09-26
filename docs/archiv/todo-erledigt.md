@@ -492,3 +492,22 @@ Eintrag, keine neue Komponente). Details siehe HANDOFF.md 3.58/3.59/3.60.
       trifft 4) → volle `test:checks`-Suite grün
 - [x] DE-first für alle drei (wie Morsecode/Zahlen-Detektiv) — EN-Versionen bleiben offen, siehe
       `todo.md` "Offen"
+
+### KI-Labor (8 Wochen, Branches `ki-labor-woche1`…`ki-labor-woche8`) ✅ gemergt
+Baut auf dem Python-Track auf (12-Wochen-Grundkurs), siehe `VISION.md`/`KURSPLAN.md`
+"KI-Track: KI-Grundlagen". 8 Wochen, ohne Themen-Varianten (wie `js-grundkurs`). Bewusst kein
+scikit-learn/pandas (Wasm-Download zu schwer) und kein Live-LLM (Kosten/WebGPU) — stattdessen
+k-NN, Entscheidungsbaum und ein kleines neuronales Netz komplett selbst in reinem Python gebaut.
+- [x] Kursmetadaten + Grundgerüst (Wochenauswahl `KiLaborTour.vue`, `kurse.json`, Routing)
+- [x] Woche 1 "Was ist KI?" (5 Lektionen + Debug + Mission + 3 Extra-Herausforderungen), `tests/ki-labor.spec.js`
+- [x] Quiz + Wochen-Zertifikat (wie 12-Wochen-Kurs) — `useWeekChecks.js`/`WeekCheckPanel.vue`/
+      `CodeChallenge.vue`/`useCertificatePdf.js` um `courseKey` generalisiert, eigener
+      Content-Ordner `content/ki-labor-checks/`, bisher nur Woche 1 (7 Fragen + 2 Coding-Aufgaben)
+- [x] Woche 2 "Daten sind alles" (+ Extra-Herausforderungen + eigener Wochen-Check)
+- [x] Woche 3 "Nächste Nachbarn (k-NN)" (+ Extra-Herausforderungen + eigener Wochen-Check)
+- [x] Woche 4 "Training & Test" (+ Extra-Herausforderungen + eigener Wochen-Check)
+- [x] Woche 5 "Entscheidungsbäume" (+ Extra-Herausforderungen + eigener Wochen-Check)
+- [x] Woche 6 "Neuronale Netze I" (+ Extra-Herausforderungen + eigener Wochen-Check)
+- [x] Woche 7 "Neuronale Netze II" (+ Extra-Herausforderungen + eigener Wochen-Check)
+- [x] Woche 8 "Grenzen & Ethik" (+ Extra-Herausforderungen + eigener Wochen-Check)
+- [x] Smoke-Test aller Wochen → PR nach `main` (`npm run test:checks`: 377 passed, 7 skipped)

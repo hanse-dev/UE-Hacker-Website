@@ -67,25 +67,7 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 ## Nächste Themen (je eigener Branch von `main`)
 
 Gesamt-Roadmap/Track-Modell (welche Sprache/welches Thema baut auf was auf) siehe `VISION.md`.
-Python-Projekt-Sprints (Vigenère-Chiffre, Snake, Text-Adventure) sind bereits gemergt (Details in
-`docs/archiv/todo-erledigt.md`); weitere Ideen im Backlog `PROJEKTIDEEN.md`, DE-first (EN-Versionen
+KI-Labor (8 Wochen) und die Python-Projekt-Sprints (Vigenère-Chiffre, Snake, Text-Adventure) sind
+bereits gemergt (Details in `docs/archiv/todo-erledigt.md`). Nächstes Thema noch nicht entschieden
+(siehe `VISION.md` "Offene Fragen"); Ideen-Backlog in `PROJEKTIDEEN.md`, DE-first (EN-Versionen
 siehe "Offen" oben).
-
-### 1. KI-Labor — neuer Branch pro Woche (Woche 1+2 bereits gemergt)
-Baut auf dem Python-Track auf (12-Wochen-Grundkurs), siehe `VISION.md`/`KURSPLAN.md`
-"KI-Track: KI-Grundlagen". 8 Wochen, ohne Themen-Varianten (wie `js-grundkurs`). Bewusst kein
-scikit-learn/pandas (Wasm-Download zu schwer) und kein Live-LLM (Kosten/WebGPU) — stattdessen
-k-NN, Entscheidungsbaum und ein kleines neuronales Netz komplett selbst in reinem Python gebaut.
-- [x] Kursmetadaten + Grundgerüst (Wochenauswahl `KiLaborTour.vue`, `kurse.json`, Routing)
-- [x] Woche 1 "Was ist KI?" (5 Lektionen + Debug + Mission + 3 Extra-Herausforderungen), `tests/ki-labor.spec.js`
-- [x] Quiz + Wochen-Zertifikat (wie 12-Wochen-Kurs) — `useWeekChecks.js`/`WeekCheckPanel.vue`/
-      `CodeChallenge.vue`/`useCertificatePdf.js` um `courseKey` generalisiert, eigener
-      Content-Ordner `content/ki-labor-checks/`, bisher nur Woche 1 (7 Fragen + 2 Coding-Aufgaben)
-- [x] Woche 2 "Daten sind alles" (+ Extra-Herausforderungen + eigener Wochen-Check)
-- [x] Woche 3 "Nächste Nachbarn (k-NN)" (+ Extra-Herausforderungen + eigener Wochen-Check)
-- [x] Woche 4 "Training & Test" (+ Extra-Herausforderungen + eigener Wochen-Check)
-- [x] Woche 5 "Entscheidungsbäume" (+ Extra-Herausforderungen + eigener Wochen-Check)
-- [x] Woche 6 "Neuronale Netze I" (+ Extra-Herausforderungen + eigener Wochen-Check)
-- [x] Woche 7 "Neuronale Netze II" (+ Extra-Herausforderungen + eigener Wochen-Check)
-- [x] Woche 8 "Grenzen & Ethik" (+ Extra-Herausforderungen + eigener Wochen-Check)
-- [ ] Smoke-Test aller Wochen → PR nach `main`
