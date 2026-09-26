@@ -39,12 +39,26 @@ das stillschweigend wieder kaputt machen, ohne dass es auffällt.
   keinen neuen Test, aber bei Content mit eingebetteter Logik (z. B. Datentypen-Reihenfolge in
   Quizfragen) im Zweifel lieber einen Test ergänzen als weglassen
 
-## Pre-commit Hook (Checks)
+## Pre-commit/Pre-push Hooks (Checks)
 
-Beim Commit läuft automatisch `npm run test:checks` (Einstufung, Check-Tab, Home, Interaktiv-Smoke, Storytelling-Content-Regressionen).
+Der volle `test:checks`-Lauf (14 Spec-Dateien, ~2 Minuten) läuft nicht mehr bei jedem Commit,
+sondern zweistufig, damit schnelle Zwischen-Commits nicht durch die komplette Suite ausgebremst
+werden:
 
+- **Pre-commit:** `npm run test:precommit` → `scripts/test-changed.mjs --staged` mappt die staged
+  Dateien auf die betroffenen Specs (z.B. `LessonView.vue` → nur die Python-Lektions-Specs) und
+  lässt nur die laufen (meist Sekunden statt Minuten). Passt eine geänderte Datei zu keiner Regel,
+  oder gehört sie zu einer als "Kern" markierten Datei (z.B. `useTaskValidation.js`,
+  `locales/*.js`, `App.vue`), läuft als Sicherheitsnetz automatisch die volle Suite.
+- **Pre-push:** `npm run test:checks` (voll) läuft automatisch vor jedem `git push` — das ist das
+  eigentliche Sicherheitsnetz vor dem Merge nach `main`.
+- Mapping-Regeln liegen in `scripts/test-changed.mjs` (`RULES`/`CORE_PREFIXES`); bei neuen
+  Komponenten/Composables/Content-Ordnern dort eine Regel ergänzen, sonst greift beim nächsten Mal
+  nur das Sicherheitsnetz (voller Lauf).
+- Manuell: `npm run test:changed` (Arbeitsverzeichnis + Branch-Diff zu `main`, nicht nur staged),
+  `npm run test:changed -- --dry-run` zeigt nur, welche Specs laufen würden, ohne sie zu starten.
 - Einmalig nach Clone: `npm install` (setzt `core.hooksPath` auf `.githooks`) und ggf. `npx playwright install chromium`
-- Überspringen: `SKIP_CHECKS=1 git commit …` oder `git commit --no-verify`
+- Überspringen: `SKIP_CHECKS=1 git commit …` / `SKIP_CHECKS=1 git push …` oder `--no-verify`
 - Voller Notebook-Test weiterhin manuell: `npm test`
 
 ## Auffälligkeiten: fixen oder dokumentieren (gilt auch für Sub-Agenten)

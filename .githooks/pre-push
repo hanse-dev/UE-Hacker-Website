@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+# Pre-push: läuft die volle Playwright-Check-Suite (test:checks). Der
+# Pre-commit-Hook prüft pro Commit nur die betroffenen Specs (schnell) —
+# hier läuft vor dem Push das komplette Sicherheitsnetz.
+# Skip once with:  SKIP_CHECKS=1 git push ...
+# Or bypass hooks: git push --no-verify
+
+if [ "$SKIP_CHECKS" = "1" ] || [ "$SKIP_CHECKS" = "true" ]; then
+  echo "⏭  SKIP_CHECKS set — volle Playwright-Suite vor dem Push übersprungen."
+  exit 0
+fi
+
+echo "▶  Running npm run test:checks (volle Suite vor dem Push) …"
+npm run test:checks
+status=$?
+
+if [ $status -ne 0 ]; then
+  echo ""
+  echo "✖  Checks failed — push aborted."
+  echo "   Fix the failures, or skip with: SKIP_CHECKS=1 git push …"
+  exit $status
+fi
+
+echo "✔  Checks passed."
+exit 0

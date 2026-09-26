@@ -2,17 +2,11 @@
 
 > **Zuletzt aktualisiert:** 2026-09-26
 > **Aktueller Stand:** `main` enthält KI-Labor Woche 1–8 (kompletter Kursplan, siehe Abschnitt 5) —
-> offen ist nur noch ein abschließender Smoke-Test aller Wochen. Profil zeigt Wochen-Zertifikate aus allen Kursen mit
-> Wochen-Check (Python + KI-Labor) inkl. direktem PDF-Download (3.69/3.70); ein "Kurs starten"-Gate
-> blendet bei den 3 Wochen-Tour-Kursen Beschreibung/Struktur-Erklärung vor der eigentlichen
-> Kurs-Tour aus (3.69). `output_contains`-Aufgabenprüfung toleriert jetzt Groß-/Kleinschreibung,
-> Leerzeichen und Satzzeichen am Ende (3.78). Normale Lektionsaufgaben (LessonView/JsLessonView)
-> prüfen jetzt nur noch die Ausgabe, nicht mehr Code-Struktur/Variablen/Funktionsaufrufe; der
-> zertifikatsrelevante Wochen-Check behält diese Prüfung (3.80). Normale Lektionsaufgaben lassen
-> sich nach 2 Fehlversuchen überspringen (LessonView/JsLessonView, sichtbar als "übersprungen"
-> markiert, zählt für den Lektions-Abschluss, 3.81). Login ersetzt beim expliziten Login-Vorgang
-> den kompletten lokalen Fortschritt durch den Account-Stand statt zu mergen — Reload bleibt beim
-> Merge (3.82). Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4 "Betrieb").
+> offen ist nur noch ein abschließender Smoke-Test aller Wochen. Details zu 3.69–3.82 (Zertifikate/
+> PDF, Skip-Aufgaben, Login-Fortschritt u.a.) stehen in der Tabelle unten (Abschnitt 3). Neu: der
+> volle `test:checks`-Lauf ist kein Pre-commit-Zwang mehr, sondern läuft gemappt pro Commit
+> (`scripts/test-changed.mjs`) und komplett vor dem Push (3.83). Server-Deploy steht weiter aus
+> (Nutzer deployt selbst, siehe Abschnitt 4 "Betrieb").
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
 > Chat-Historie. Sie wird per `@` in jede Session geladen — **klein halten** (Richtwert < 25 KB).
 > Die ausführliche Feature-Historie liegt kalt in `docs/archiv/HANDOFF-historie.md` (nicht importiert).
@@ -96,6 +90,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.80 | Lektionsaufgaben prüfen nur noch die Ausgabe, nicht mehr Code-Struktur/Variablen | `validation.codeContains`/`variables`/`functionCalls` sind in `LessonView.vue`/`JsLessonView.vue` nicht mehr blockierend; `useTaskValidation.js` trennt `validateOutput()` (nur Ausgabe) von `structuralChecksOk()` (nur noch für `CodeChallenge.vue`/Wochen-Check) |
 | 3.81 | Lektionsaufgaben überspringbar (nach 2 Fehlversuchen) | Neuer `.btn-skip` in `LessonView.vue`/`JsLessonView.vue`, `skippedTasks`-Set zählt für den Lektions-Abschluss mit, bleibt aber optisch "übersprungen" (⏭) statt "erledigt" (✓); löst man die Aufgabe danach doch noch, wandert sie zu "erledigt". Gilt nicht für `CodeChallenge.vue` (Wochen-Check). |
 | 3.82 | Login ersetzt lokalen Fortschritt durch Account-Stand statt zu mergen | `loadAccountProgress()`/`replaceLocalProgress()` in `useProgressSync.js`, nur beim expliziten Login (`useAuth.js`) genutzt; `restoreSession()`/`syncNow()` beim Seiten-Reload bleiben beim Merge nach `updatedAt` |
+| 3.83 | Pre-commit/Pre-push zweistufig statt vollem `test:checks` bei jedem Commit | `scripts/test-changed.mjs` mappt (staged) geänderte Dateien auf betroffene Specs (Pre-commit, `npm run test:precommit`); voller `test:checks` läuft jetzt im neuen Pre-push-Hook |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -167,6 +162,13 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   eingefügter Wrapper-`<div>` um ein Element bricht sie, ohne dass der Test einen offensichtlichen
   Grund nennt. Vor dem Verschachteln eines Elements, das anderswo per direktem Kind-Selektor
   angesprochen wird, repo-weit nach genau diesem Selektor suchen (3.69).
+- Der volle `test:checks`-Lauf dauert ~2 Minuten (381 Tests, viele mit echtem Pyodide-Kernel) —
+  mehr Playwright-Worker bringen kaum etwas (Bottleneck ist Browser-/Interpreter-Zeit, nicht CPU).
+  Deshalb läuft er nicht mehr bei jedem Commit, sondern nur noch vor dem Push; Pre-commit nutzt
+  `scripts/test-changed.mjs`, das geänderte Dateien auf betroffene Specs mappt. Neue Komponenten/
+  Composables/Content-Ordner brauchen dort eine eigene Regel (`RULES`), sonst greift beim nächsten
+  Mal nur das Sicherheitsnetz (voller Lauf bei unbekannten Dateien) — kein Fehler, aber auch kein
+  Geschwindigkeitsgewinn (3.83).
 
 **Lokale Tools (`scripts/local-tools/`, laufen nie im Deploy)**
 - IDN-Domains (Umlaute, z.B. `übergangshacker.de`) vor jedem `urllib`-Request per `.encode('idna')`

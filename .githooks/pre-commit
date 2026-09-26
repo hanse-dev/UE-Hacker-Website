@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
-# Pre-commit: run Einstufung/Check Playwright suite.
+# Pre-commit: läuft nur die Playwright-Specs, die zu den staged Dateien passen
+# (scripts/test-changed.mjs) — schnelles Feedback pro Commit. Der volle
+# test:checks-Lauf ist stattdessen Pflicht vor dem Push (siehe .githooks/pre-push).
 # Skip once with:  SKIP_CHECKS=1 git commit ...
 # Or bypass hooks: git commit --no-verify
 
@@ -8,8 +10,8 @@ if [ "$SKIP_CHECKS" = "1" ] || [ "$SKIP_CHECKS" = "true" ]; then
   exit 0
 fi
 
-echo "▶  Running npm run test:checks …"
-npm run test:checks
+echo "▶  Running npm run test:precommit (nur betroffene Specs) …"
+npm run test:precommit
 status=$?
 
 if [ $status -ne 0 ]; then
