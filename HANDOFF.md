@@ -1,8 +1,9 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-09-26
-> **Aktueller Stand:** `main` ist aktuell und enthält KI-Labor Woche 1–5 (Wochen 6–8 offen, siehe
-> Abschnitt 5, jeweils neuer Branch pro Woche). Profil zeigt Wochen-Zertifikate aus allen Kursen mit
+> **Aktueller Stand:** `main` enthält KI-Labor Woche 1–5; dieser Branch (`ki-labor-woche6`) fügt
+> Woche 6 "Neuronale Netze I" hinzu (Wochen 7–8 offen, siehe Abschnitt 5, jeweils neuer Branch pro
+> Woche). Profil zeigt Wochen-Zertifikate aus allen Kursen mit
 > Wochen-Check (Python + KI-Labor) inkl. direktem PDF-Download (3.69/3.70); ein "Kurs starten"-Gate
 > blendet bei den 3 Wochen-Tour-Kursen Beschreibung/Struktur-Erklärung vor der eigentlichen
 > Kurs-Tour aus (3.69). Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4
@@ -82,6 +83,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.72 | KI-Labor: Woche 3 "Nächste Nachbarn (k-NN)" | 5 Lektionen (Abstand, euklidische Distanz, 1-NN, Dictionary-Zählen + k nächste, kompletter k-NN-Klassifikator) + Debug + Mission + 3 Extra-Herausforderungen (gewichteter k-NN, Genauigkeit/bestes k, Unentschieden bei >2 Klassen) + eigener Wochen-Check |
 | 3.73 | KI-Labor: Woche 4 "Training & Test" | 5 Lektionen (Trainings-/Testdaten trennen, Genauigkeit, Vorhersagen sammeln, alles zusammenfügen, Overfitting an zu kleinem Datensatz) + Debug + Mission + 3 Extra-Herausforderungen (Ausreißer bei k=1 vs. k=3, Trainingsgröße, Overfitting-Erkennung) + eigener Wochen-Check |
 | 3.74 | KI-Labor: Woche 5 "Entscheidungsbäume" | 5 Lektionen (Schwellenwert-Entscheidung, Aufteilen+Reinheit messen, besten Trennwert automatisch finden, Baum bauen+klassifizieren, bestes Merkmal wählen) + Debug + Mission + 3 Extra-Herausforderungen (irrelevantes Merkmal ignorieren, Baum auf Testdaten prüfen, unvollkommener Baum vs. Baseline) + eigener Wochen-Check; alle Beispiele/Lösungen mit `python3` geprüft |
+| 3.75 | KI-Labor: Woche 6 "Neuronale Netze I" | 5 Lektionen (gewichtete Summe, Sprungfunktion, komplettes Neuron, logische Gatter UND/ODER/NAND/NOR per Gewichte/Schwellenwert, XOR-Grenze eines einzelnen Neurons) + Debug + Mission + 3 Extra-Herausforderungen (gewichtete Sensoren, Schwellenwert-Vergleich per Genauigkeit, systematischer XOR-Beweis) + eigener Wochen-Check; kein Gewichte-Lernen (Perzeptron-Lernregel folgt in Woche 7), alle Beispiele/Lösungen mit `python3` geprüft |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -260,8 +262,8 @@ Ausführlich in `todo.md`. Kurzfassung:
 - Zertifikat-PDF: E-Mail-Versand später (hängt an der Kontakt-Adresse, nicht selbst erfinden).
 - Überlegung (nicht entschieden): dritte Sprache; UI-Ternarys sind schon auf `t()`, offen nur Content-Suffixe.
 
-**Laufendes Kurs-Thema (siehe todo.md):** KI-Labor Woche 1–5 fertig, Wochen 6–8 offen
-(Neuronale Netze I+II, Grenzen & Ethik — Wochenplan siehe `KURSPLAN.md`).
+**Laufendes Kurs-Thema (siehe todo.md):** KI-Labor Woche 1–6 fertig, Wochen 7–8 offen
+(Neuronale Netze II, Grenzen & Ethik — Wochenplan siehe `KURSPLAN.md`).
 Weitere Projekt-Kurs-Ideen in `PROJEKTIDEEN.md`. Roadmap: `VISION.md`.
 
 **Bewusst nicht geplant:** öffentliches Sign-up, Mailversand/Kontaktformular, Supabase als Pflicht.

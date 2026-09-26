@@ -18,6 +18,7 @@ const PROGRESS_KEY_WEEK2 = 'ue-hacker-interactive-progress-ki-labor-woche2';
 const PROGRESS_KEY_WEEK3 = 'ue-hacker-interactive-progress-ki-labor-woche3';
 const PROGRESS_KEY_WEEK4 = 'ue-hacker-interactive-progress-ki-labor-woche4';
 const PROGRESS_KEY_WEEK5 = 'ue-hacker-interactive-progress-ki-labor-woche5';
+const PROGRESS_KEY_WEEK6 = 'ue-hacker-interactive-progress-ki-labor-woche6';
 
 function findQuestion(text) {
   const normalized = text.replace(/^\d+\.\s*/, '').trim();
@@ -81,17 +82,17 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
     }, PROGRESS_KEY);
   });
 
-  test('Wochenauswahl: 8 Kacheln, Woche 1-5 verfügbar, Rest "kommt noch"', async ({ page }) => {
+  test('Wochenauswahl: 8 Kacheln, Woche 1-6 verfügbar, Rest "kommt noch"', async ({ page }) => {
     await page.goto('/kurs/ki-labor');
     await page.locator('.btn-start-course').click();
     await expect(page.locator('.week-tile')).toHaveCount(8);
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 6; i++) {
       await expect(page.locator('.week-tile').nth(i)).not.toBeDisabled();
     }
-    for (let i = 5; i < 8; i++) {
+    for (let i = 6; i < 8; i++) {
       await expect(page.locator('.week-tile').nth(i)).toBeDisabled();
     }
-    await expect(page.locator('.week-tile-badge')).toHaveCount(3);
+    await expect(page.locator('.week-tile-badge')).toHaveCount(2);
   });
 
   test('Woche 1 anklicken öffnet die Wochen-Tour, "Andere Woche wählen" führt zurück', async ({ page }) => {
@@ -159,8 +160,17 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
     await expect(page.locator('.tour-breadcrumb')).toContainText('Entscheidungsbäume');
   });
 
-  test('Deep-Link ?week=6 (noch nicht verfügbar) zeigt die Wochenauswahl statt der Tour', async ({ page }) => {
+  test('Deep-Link ?week=6 öffnet direkt die Wochen-Tour', async ({ page }) => {
     await page.goto('/kurs/ki-labor?week=6');
+    // 10 Lektionen (5 Lektion + Debug + Mission + 3 Extra-Herausforderung) + 1 Check-Punkt, da
+    // content/ki-labor-checks/week-6.json existiert (hasCheck=true).
+    await expect(page.locator('.stepper-step')).toHaveCount(11, { timeout: 15000 });
+    await expect(page.locator('.tour-breadcrumb')).toContainText('Woche 6');
+    await expect(page.locator('.tour-breadcrumb')).toContainText('Neuronale Netze I');
+  });
+
+  test('Deep-Link ?week=7 (noch nicht verfügbar) zeigt die Wochenauswahl statt der Tour', async ({ page }) => {
+    await page.goto('/kurs/ki-labor?week=7');
     await expect(page.locator('.week-tile')).toHaveCount(8);
     await expect(page.locator('.stepper-step')).toHaveCount(0);
   });
@@ -816,6 +826,126 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
       page,
       1,
       'def klassifiziere(baum, beispiel):\n    if beispiel[baum["merkmal"]] < baum["schwelle"]:\n        return baum["links"]\n    return baum["rechts"]\n\nbaum = {"merkmal": "x", "schwelle": 35, "links": "A", "rechts": "B"}\nprint(klassifiziere(baum, {"x": 15}))\nprint(klassifiziere(baum, {"x": 80}))'
+    );
+
+    await expect(page.locator('.certificate-reveal')).toBeVisible({ timeout: 10000 });
+  });
+
+  test('Woche 6: Debug-Lektion mit fehlender Aufsummierung/falschem Vergleich/ignorierter Summe', async ({ page }) => {
+    await page.addInitScript((key) => {
+      localStorage.setItem(key, JSON.stringify({
+        version: 1,
+        completedLessonIds: ['lektion-01', 'lektion-02', 'lektion-03', 'lektion-04', 'lektion-05'],
+      }));
+    }, PROGRESS_KEY_WEEK6);
+    await page.goto('/kurs/ki-labor?week=6');
+    await page.locator('.stepper-step').nth(5).click();
+    await initKernel(page);
+
+    const first = page.locator('.task-block').first();
+    await first.locator('.btn-check').click();
+    await expect(first.locator('.feedback-error')).toBeVisible({ timeout: 10000 });
+
+    await solve(page, [
+      'def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\nprint(gewichtete_summe([1, 2, 3], [1, 1, 1]))',
+      'def aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\nprint(aktivierung(5, 5))',
+      'def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, schwelle):\n    summe = gewichtete_summe(eingaben, gewichte)\n    return aktivierung(summe, schwelle)\n\nprint(neuron([1, 1], [1, 1], 5))',
+    ]);
+  });
+
+  test('Kompletter Durchlauf Woche 6: alle Lektionen, Extra-Herausforderungen und der Wochen-Check', async ({ page }) => {
+    test.setTimeout(120000);
+    await page.goto('/kurs/ki-labor?week=6');
+    await initKernel(page);
+
+    const helferFunktionen = 'def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, schwelle):\n    summe = gewichtete_summe(eingaben, gewichte)\n    return aktivierung(summe, schwelle)\n\n';
+
+    // Lektion 1: Was ist ein künstliches Neuron?
+    await solve(page, [null, null, 'def feueralarm(rauch, hitze):\n    if rauch * 2 + hitze * 3 >= 5:\n        return 1\n    else:\n        return 0\n\nprint(feueralarm(1, 1))\nprint(feueralarm(0, 1))']);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('1 abgeschlossen');
+
+    // Lektion 2: Die gewichtete Summe.
+    await solve(page, [null, null, 'def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\nprint(gewichtete_summe([3, 4], [2, 1]))\nprint(gewichtete_summe([1, 1], [2, 1]))']);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('2 abgeschlossen');
+
+    // Lektion 3: Die Sprungfunktion.
+    await solve(page, [null, null, helferFunktionen + 'print(neuron([0, 0], [1, 1], 1))\nprint(neuron([1, 0], [1, 1], 1))']);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('3 abgeschlossen');
+
+    // Lektion 4: Logische Gatter von Hand nachbauen (NOR).
+    await solve(page, [null, null, helferFunktionen + 'alle_eingaben = [[0, 0], [0, 1], [1, 0], [1, 1]]\nfor e in alle_eingaben:\n    print(neuron(e, [-1, -1], 0))']);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('4 abgeschlossen');
+
+    // Lektion 5: Warum XOR nicht geht.
+    await solve(page, [null, 'def anzahl_fehler(vorhersagen, erwartete_werte):\n    fehler = 0\n    for i in range(len(vorhersagen)):\n        if vorhersagen[i] != erwartete_werte[i]:\n            fehler += 1\n    return fehler\n\nvorhersagen = [0, 1, 1, 1]\nerwartete_werte = [0, 1, 1, 0]\nprint(anzahl_fehler(vorhersagen, erwartete_werte))']);
+    await expect(page.locator('.progress-count')).toContainText('5 abgeschlossen');
+    await expect(page.locator('.lesson-complete-box')).toBeVisible();
+    await page.locator('.btn-next').click();
+
+    // Debug-Lektion (fixe Loesungen, s.o.).
+    await solve(page, [
+      'def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\nprint(gewichtete_summe([1, 2, 3], [1, 1, 1]))',
+      'def aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\nprint(aktivierung(5, 5))',
+      'def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, schwelle):\n    summe = gewichtete_summe(eingaben, gewichte)\n    return aktivierung(summe, schwelle)\n\nprint(neuron([1, 1], [1, 1], 5))',
+    ]);
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.progress-count')).toContainText('6 abgeschlossen');
+
+    // Mission: eigenes Alarmsystem, gewichtete Summe -> Neuron -> mehrere Sensor-Messungen testen.
+    await solve(page, [
+      'def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\nprint(gewichtete_summe([2, 0, 1], [3, 4, 5]))\nprint(gewichtete_summe([1, 1, 1], [3, 4, 5]))',
+      helferFunktionen + 'print(neuron([1, 1, 0], [1, 1, 1], 2))\nprint(neuron([1, 0, 0], [1, 1, 1], 2))',
+      helferFunktionen + 'messungen = [[0, 0, 0], [1, 0, 0], [1, 1, 0], [1, 1, 1]]\nfor m in messungen:\n    print(neuron(m, [1, 1, 1], 2))',
+    ]);
+    await expect(page.locator('.progress-count')).toContainText('7 abgeschlossen');
+
+    // Mission abgeschlossen, danach folgt ein Boss-Abschnitt (Extra-Herausforderung) UND ein
+    // Check -> "Weiter" zeigt eine Wahl-Seite statt direkt zum Check zu springen.
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.branch-choice-page')).toBeVisible();
+    await page.locator('[data-branch="boss"]').click();
+
+    // Boss 1: ein Sensor zaehlt doppelt.
+    await solve(page, [
+      helferFunktionen + 'print(neuron([1, 1, 1, 0], [1, 1, 1, 1], 3))\nprint(neuron([1, 1, 0, 0], [1, 1, 1, 1], 3))',
+      helferFunktionen + 'print(neuron([1, 1, 1, 0], [2, 1, 1, 1], 3))\nprint(neuron([1, 1, 0, 0], [2, 1, 1, 1], 3))',
+      helferFunktionen + 'gewichte = [2, 1, 1, 1]\nprint(neuron([1, 0, 0, 0], gewichte, 3))\nprint(neuron([0, 1, 1, 1], gewichte, 3))',
+    ]);
+    await page.locator('.btn-next').click();
+
+    const kombiListe = 'kombinationen = [[0,0,0],[0,0,1],[0,1,0],[0,1,1],[1,0,0],[1,0,1],[1,1,0],[1,1,1]]\n';
+
+    // Boss 2: wie stark aendert der Schwellenwert das Verhalten.
+    await solve(page, [
+      helferFunktionen + kombiListe + 'for k in kombinationen:\n    print(neuron(k, [1, 1, 1], 1))',
+      helferFunktionen + kombiListe + 'for k in kombinationen:\n    print(neuron(k, [1, 1, 1], 3))',
+      helferFunktionen + 'def ist_richtig(vorhersage, erwartet):\n    return vorhersage == erwartet\n\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if ist_richtig(vorhersagen[i], erwartete_werte[i]):\n            richtig += 1\n    return round(richtig / len(vorhersagen) * 100)\n\n' + kombiListe + 'erwartete_werte = [1 if sum(k) >= 2 else 0 for k in kombinationen]\nvorhersagen2 = [neuron(k, [1, 1, 1], 2) for k in kombinationen]\nprint(genauigkeit(vorhersagen2, erwartete_werte))\nvorhersagen1 = [neuron(k, [1, 1, 1], 1) for k in kombinationen]\nprint(genauigkeit(vorhersagen1, erwartete_werte))',
+    ]);
+    await page.locator('.btn-next').click();
+
+    const helferFunktionenXor = helferFunktionen + 'def anzahl_fehler(vorhersagen, erwartete_werte):\n    fehler = 0\n    for i in range(len(vorhersagen)):\n        if vorhersagen[i] != erwartete_werte[i]:\n            fehler += 1\n    return fehler\n\n';
+
+    // Boss 3: Beweis per Ausprobieren - kein Neuron loest XOR.
+    await solve(page, [
+      helferFunktionenXor + 'alle_eingaben = [[0, 0], [0, 1], [1, 0], [1, 1]]\nxor_erwartet = [0, 1, 1, 0]\nvorhersagen = [neuron(e, [1, -1], 1) for e in alle_eingaben]\nprint(vorhersagen)\nprint(anzahl_fehler(vorhersagen, xor_erwartet))',
+      helferFunktionenXor + 'alle_eingaben = [[0, 0], [0, 1], [1, 0], [1, 1]]\nxor_erwartet = [0, 1, 1, 0]\ntreffer_xor = 0\nfor w1 in range(-2, 3):\n    for w2 in range(-2, 3):\n        for schwelle in range(-2, 3):\n            vorhersagen = [neuron(e, [w1, w2], schwelle) for e in alle_eingaben]\n            if anzahl_fehler(vorhersagen, xor_erwartet) == 0:\n                treffer_xor += 1\nprint(treffer_xor)',
+      helferFunktionenXor + 'alle_eingaben = [[0, 0], [0, 1], [1, 0], [1, 1]]\nxor_erwartet = [0, 1, 1, 0]\nand_erwartet = [0, 0, 0, 1]\ntreffer_xor = 0\nfor w1 in range(-2, 3):\n    for w2 in range(-2, 3):\n        for schwelle in range(-2, 3):\n            vorhersagen = [neuron(e, [w1, w2], schwelle) for e in alle_eingaben]\n            if anzahl_fehler(vorhersagen, xor_erwartet) == 0:\n                treffer_xor += 1\ntreffer_and = 0\nfor w1 in range(-2, 3):\n    for w2 in range(-2, 3):\n        for schwelle in range(-2, 3):\n            vorhersagen = [neuron(e, [w1, w2], schwelle) for e in alle_eingaben]\n            if anzahl_fehler(vorhersagen, and_erwartet) == 0:\n                treffer_and += 1\nprint(treffer_xor)\nprint(treffer_and)',
+    ]);
+    // Letzte Lektion (boss-03) abgeschlossen, kein weiterer Boss -> "Weiter" springt direkt zum
+    // Wochen-Check (kein Mission->Boss-Uebergang mehr, also keine erneute Wahl-Seite).
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.week-check-panel')).toBeVisible({ timeout: 15000 });
+
+    await passWeekQuiz(page);
+    await passCodingChallenge(page, 0, helferFunktionen + 'daten = [[0, 0], [0, 1], [1, 0], [1, 1]]\nfor d in daten:\n    print(neuron(d, [1, 1], 1))');
+    await passCodingChallenge(
+      page,
+      1,
+      'def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\nprint(gewichtete_summe([5, 2], [1, 3]))\nprint(gewichtete_summe([0, 0], [1, 3]))'
     );
 
     await expect(page.locator('.certificate-reveal')).toBeVisible({ timeout: 10000 });

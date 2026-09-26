@@ -1,0 +1,140 @@
+{
+  "title": "Woche 6 – Neuronale Netze I",
+  "title_en": "Week 6 – Neural Networks I",
+  "questions": [
+    {
+      "id": "kil6-1",
+      "type": "multiple_choice",
+      "question": "Was ist ein Gewicht (englisch: weight) bei einem künstlichen Neuron?",
+      "options": [
+        "Eine Zahl, die festlegt, wie stark eine bestimmte Eingabe zur gewichteten Summe beiträgt",
+        "Die Anzahl der Eingaben, die ein Neuron insgesamt hat",
+        "Der Name der Eingabe, die gerade verarbeitet wird"
+      ],
+      "correctIndex": 0,
+      "explanation": "Jede Eingabe wird mit ihrem Gewicht multipliziert, bevor alle Beiträge aufsummiert werden - ein größeres Gewicht bedeutet einen größeren Einfluss auf die Entscheidung.",
+      "optionExplanations": [
+        null,
+        "Die Anzahl der Eingaben ist unabhängig davon, wie stark jede einzelne gewichtet ist.",
+        "Der Name (z.B. 'rauch') ist etwas anderes als die Zahl, mit der er multipliziert wird."
+      ]
+    },
+    {
+      "id": "kil6-2",
+      "type": "multiple_choice",
+      "question": "Was berechnet gewichtete_summe(eingaben, gewichte)?",
+      "options": [
+        "Die Summe aller Produkte aus jeweils einer Eingabe und ihrem passenden Gewicht",
+        "Die Anzahl der Eingaben, die größer als 0 sind",
+        "Den größten einzelnen Gewichtswert in der Liste"
+      ],
+      "correctIndex": 0,
+      "explanation": "gewichtete_summe() multipliziert per zip() jede Eingabe mit ihrem Gewicht und addiert alle Ergebnisse - das ist der zentrale Baustein eines Neurons.",
+      "optionExplanations": [
+        null,
+        "Das wäre eine ganz andere Berechnung - gewichtete_summe() zählt keine Eingaben, sie summiert gewichtete Produkte.",
+        "Der größte Gewichtswert allein sagt nichts über die tatsächliche Summe aus."
+      ]
+    },
+    {
+      "id": "kil6-3",
+      "type": "multiple_choice",
+      "question": "Was macht die Sprungfunktion aktivierung(summe, schwelle)?",
+      "options": [
+        "Sie gibt 1 zurück, wenn die Summe den Schwellenwert erreicht oder übertrifft, sonst 0",
+        "Sie gibt die Differenz zwischen Summe und Schwellenwert zurück",
+        "Sie rundet die Summe auf die nächste ganze Zahl"
+      ],
+      "correctIndex": 0,
+      "explanation": "Die Sprungfunktion vergleicht nur: erreicht die gewichtete Summe den Schwellenwert, feuert das Neuron (1), sonst bleibt es still (0) - nichts dazwischen.",
+      "optionExplanations": [
+        null,
+        "Eine Differenz wäre ein Zahlenwert, kein 0/1-Sprung - das ist nicht, was aktivierung() zurückgibt.",
+        "Runden hat nichts mit dem Vergleich zwischen Summe und Schwellenwert zu tun."
+      ]
+    },
+    {
+      "id": "kil6-4",
+      "type": "multiple_choice",
+      "question": "Warum vergleicht aktivierung() mit >= und nicht nur mit >?",
+      "options": [
+        "Weil eine Summe, die den Schwellenwert genau erreicht, schon als 'aktiviert' zählen soll",
+        "Weil Python den Operator > für Zahlen gar nicht unterstützt",
+        "Weil >= schneller berechnet wird als >"
+      ],
+      "correctIndex": 0,
+      "explanation": "Das ist eine bewusste Definition: erreicht die Summe die Schwelle genau, feuert das Neuron - mit > würde dieser Grenzfall fälschlich als 'nicht aktiviert' gelten.",
+      "optionExplanations": [
+        null,
+        "Python unterstützt > für Zahlen problemlos - das ist nicht der Grund.",
+        "Der Geschwindigkeitsunterschied zwischen >= und > ist hier irrelevant - es geht um die Bedeutung des Grenzfalls."
+      ]
+    },
+    {
+      "id": "kil6-5",
+      "type": "multiple_select",
+      "question": "Was gehört zu einem einzelnen künstlichen Neuron, wie du es diese Woche gebaut hast?",
+      "options": [
+        "Gewichte für jede Eingabe",
+        "Ein Schwellenwert, mit dem die Summe verglichen wird",
+        "Eine gewichtete Summe aus allen Eingaben",
+        "Ein zufälliger Münzwurf bei jeder Entscheidung"
+      ],
+      "correctIndices": [0, 1, 2]
+    },
+    {
+      "id": "kil6-6",
+      "type": "multiple_choice",
+      "question": "Ein Neuron hat die Gewichte [1, 1] für zwei Eingaben. Was unterscheidet ein UND-Gatter von einem ODER-Gatter bei gleichen Gewichten?",
+      "options": [
+        "Nur der Schwellenwert - UND braucht eine höhere Schwelle (beide Eingaben nötig) als ODER (eine reicht)",
+        "UND und ODER benötigen zwingend unterschiedliche Gewichte, der Schwellenwert spielt keine Rolle",
+        "Es gibt keinen Unterschied - beide Gatter verhalten sich bei gleichen Gewichten identisch"
+      ],
+      "correctIndex": 0,
+      "explanation": "Bei Gewichten [1, 1] reicht eine Schwelle von 1, damit schon eine einzige aktive Eingabe reicht (ODER); eine Schwelle von 2 verlangt dagegen beide Eingaben (UND) - allein der Schwellenwert entscheidet.",
+      "optionExplanations": [
+        null,
+        "Die Gewichte können gleich bleiben - der Schwellenwert allein entscheidet über UND oder ODER.",
+        "Die Gatter unterscheiden sich deutlich - ein anderer Schwellenwert führt zu einem anderen Ergebnis bei denselben Eingaben."
+      ]
+    },
+    {
+      "id": "kil6-7",
+      "type": "multiple_choice",
+      "question": "Warum kann ein einzelnes Neuron das XOR-Gatter nicht perfekt lösen?",
+      "options": [
+        "Weil die gewichtete Summe die Eingaben nur entlang einer einzigen Trennlinie aufteilen kann, XOR aber zwei bräuchte",
+        "Weil Python die Funktion aktivierung() für XOR-Eingaben nicht ausführen kann",
+        "Weil XOR mehr als zwei Eingaben benötigt, ein Neuron aber nur zwei verarbeiten kann"
+      ],
+      "correctIndex": 0,
+      "explanation": "Die beiden 'wahren' XOR-Fälle ([0,1] und [1,0]) liegen sich diagonal gegenüber - keine einzelne gerade Trennlinie (also keine einzelne Gewichte/Schwellenwert-Kombination) trennt sie sauber von [0,0] und [1,1].",
+      "optionExplanations": [
+        null,
+        "aktivierung() ist eine ganz normale Python-Funktion, die für jede Zahl funktioniert - das ist nicht das Problem.",
+        "Ein Neuron kann beliebig viele Eingaben verarbeiten - XOR selbst hat hier nur zwei, das ist nicht der Grund für das Scheitern."
+      ]
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Schreibe gewichtete_summe(eingaben, gewichte), aktivierung(summe, schwelle) und neuron(eingaben, gewichte, schwelle). Nutze daten = [[0, 0], [0, 1], [1, 0], [1, 1]]. Teste jede Kombination mit neuron(d, [1, 1], 1) (ein ODER-Gatter) in einer Schleife und gib jedes Ergebnis aus.",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "0\n1\n1\n1",
+        "codeContains": ["def"]
+      }
+    },
+    {
+      "instruction": "Schreibe eine Funktion gewichtete_summe(eingaben, gewichte). Rufe gewichtete_summe([5, 2], [1, 3]) und gewichtete_summe([0, 0], [1, 3]) auf und gib beide Ergebnisse aus.",
+      "codeTemplate": "",
+      "validation": {
+        "type": "output_contains",
+        "expected": "11\n0",
+        "codeContains": ["def"]
+      }
+    }
+  ]
+}
