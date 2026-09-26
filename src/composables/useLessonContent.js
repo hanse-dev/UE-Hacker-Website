@@ -42,17 +42,24 @@ export function useLessonContent(isMounted) {
     }
   };
 
+  // Ein Begriff wie "Wert" kann selbst wieder in der Erklärung eines anderen Begriffs
+  // (z.B. "Variable") vorkommen. Bei sequenziellem Ersetzen auf dem wachsenden Output würde
+  // ein späterer Begriff dann *innerhalb* des schon eingefügten title-Attributs erneut treffen
+  // und dort ungeschütztes HTML (<span ...>) einfügen, was das äußere title-Attribut aufbricht.
+  // Deshalb immer nur ein einziger kombinierter Regex-Durchlauf über den Originaltext.
+  const glossaryRegex = (terms) => new RegExp(
+    `(?<![<>])(${terms.map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})(?![^<]*>)`,
+    'g',
+  );
+
   const instructionWithGlossary = (text) => {
     if (!text || !glossary || Object.keys(glossary).length === 0) return escapeHtml(text || '');
     const escaped = escapeHtml(text);
     const terms = Object.keys(glossary).sort((a, b) => b.length - a.length);
-    let out = escaped;
-    for (const term of terms) {
-      const regex = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'g');
-      const explanation = glossary[term].replace(/"/g, '&quot;');
-      out = out.replace(regex, `<span class="glossary-term" title="${explanation}">$1</span>`);
-    }
-    return out;
+    return escaped.replace(glossaryRegex(terms), (match) => {
+      const explanation = glossary[match].replace(/"/g, '&quot;');
+      return `<span class="glossary-term" title="${explanation}">${match}</span>`;
+    });
   };
 
   const applyGlossaryTooltips = (html) => {
@@ -62,13 +69,10 @@ export function useLessonContent(isMounted) {
     const textParts = html.split(codeBlockRegex);
     const terms = Object.keys(glossary).sort((a, b) => b.length - a.length);
     const result = textParts.map((part, i) => {
-      let out = part;
-      for (const term of terms) {
-        const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        const regex = new RegExp(`(?<![<>])(${escaped})(?![^<]*>)`, 'g');
-        const explanation = glossary[term].replace(/"/g, '&quot;');
-        out = out.replace(regex, `<span class="glossary-term" title="${explanation}">$1</span>`);
-      }
+      const out = part.replace(glossaryRegex(terms), (match) => {
+        const explanation = glossary[match].replace(/"/g, '&quot;');
+        return `<span class="glossary-term" title="${explanation}">${match}</span>`;
+      });
       return out + (codeBlocks[i] || '');
     }).join('');
     return result;
