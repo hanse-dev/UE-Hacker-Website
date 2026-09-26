@@ -1,0 +1,332 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Wiederholung: Ein Neuron entscheidet",
+    "file": "lektion-01.md",
+    "lessonSummary": "step() und neuron() aus Woche 6: gewichtete Summe plus Bias, verglichen mit einer Schwelle - das Fundament für alles, was diese Woche kommt.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: ein einzelnes Neuron als AND-Gatter.",
+        "example": true,
+        "codeTemplate": "def step(x):\n    if x >= 0:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, bias):\n    gewichtete_summe = 0\n    for i in range(len(eingaben)):\n        gewichtete_summe += eingaben[i] * gewichte[i]\n    gewichtete_summe += bias\n    return step(gewichtete_summe)\n\nprint(neuron([0, 0], [1, 1], -1.5))\nprint(neuron([0, 1], [1, 1], -1.5))\nprint(neuron([1, 0], [1, 1], -1.5))\nprint(neuron([1, 1], [1, 1], -1.5))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0\n0\n0\n1"
+        }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: dasselbe Neuron als OR-Gatter, nur mit anderem Bias.",
+        "example": true,
+        "codeTemplate": "def step(x):\n    if x >= 0:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, bias):\n    gewichtete_summe = 0\n    for i in range(len(eingaben)):\n        gewichtete_summe += eingaben[i] * gewichte[i]\n    gewichtete_summe += bias\n    return step(gewichtete_summe)\n\nprint(neuron([0, 0], [1, 1], -0.5))\nprint(neuron([0, 1], [1, 1], -0.5))\nprint(neuron([1, 0], [1, 1], -0.5))\nprint(neuron([1, 1], [1, 1], -0.5))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0\n1\n1\n1"
+        }
+      },
+      {
+        "instruction": "Schreibe step(x) und neuron(eingaben, gewichte, bias) wie im Beispiel. Baue damit ein NAND-Gatter mit gewichte=[-1, -1] und bias=1.5. Gib neuron([0, 0], [-1, -1], 1.5), neuron([0, 1], [-1, -1], 1.5), neuron([1, 0], [-1, -1], 1.5) und neuron([1, 1], [-1, -1], 1.5) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1\n1\n1\n0",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Warum ein einzelnes Neuron nicht reicht",
+    "file": "lektion-02.md",
+    "lessonSummary": "anzahl_richtig() zählt, wie viele Beispiele ein einzelnes Neuron richtig klassifiziert - bei XOR schafft kein einziges Gewicht/Bias-Paar mehr als 3 von 4.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: dieselben Testdaten mit drei verschiedenen Gewichts-Paaren auswerten.",
+        "example": true,
+        "codeTemplate": "def step(x):\n    if x >= 0:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, bias):\n    gewichtete_summe = 0\n    for i in range(len(eingaben)):\n        gewichtete_summe += eingaben[i] * gewichte[i]\n    gewichtete_summe += bias\n    return step(gewichtete_summe)\n\ndef anzahl_richtig(gewichte, bias, tabelle):\n    richtig = 0\n    for eingaben, erwartet in tabelle:\n        if neuron(eingaben, gewichte, bias) == erwartet:\n            richtig += 1\n    return richtig\n\nxor_tabelle = [\n    ([0, 0], 0),\n    ([0, 1], 1),\n    ([1, 0], 1),\n    ([1, 1], 0),\n]\n\nprint(anzahl_richtig([1, 1], -0.5, xor_tabelle))\nprint(anzahl_richtig([1, 1], -1.5, xor_tabelle))\nprint(anzahl_richtig([-1, -1], 1.5, xor_tabelle))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "3\n1\n3"
+        }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus: alle Gewichte/Bias-Kombinationen in einem kleinen Bereich durchprobieren, um das bestmögliche Ergebnis zu finden.",
+        "example": true,
+        "codeTemplate": "def step(x):\n    if x >= 0:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, bias):\n    gewichtete_summe = 0\n    for i in range(len(eingaben)):\n        gewichtete_summe += eingaben[i] * gewichte[i]\n    gewichtete_summe += bias\n    return step(gewichtete_summe)\n\ndef anzahl_richtig(gewichte, bias, tabelle):\n    richtig = 0\n    for eingaben, erwartet in tabelle:\n        if neuron(eingaben, gewichte, bias) == erwartet:\n            richtig += 1\n    return richtig\n\nxor_tabelle = [\n    ([0, 0], 0),\n    ([0, 1], 1),\n    ([1, 0], 1),\n    ([1, 1], 0),\n]\n\nbestes_ergebnis = 0\nwerte = [-2, -1, 0, 1, 2]\nfor w1 in werte:\n    for w2 in werte:\n        for b in werte:\n            ergebnis = anzahl_richtig([w1, w2], b, xor_tabelle)\n            if ergebnis > bestes_ergebnis:\n                bestes_ergebnis = ergebnis\nprint(bestes_ergebnis)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "3"
+        }
+      },
+      {
+        "instruction": "Kopiere step(x), neuron(eingaben, gewichte, bias), anzahl_richtig(gewichte, bias, tabelle) und dieselbe xor_tabelle aus dem Beispiel. Wiederhole die Bruteforce-Suche, aber mit dem größeren Bereich werte = [-3, -2, -1, 0, 1, 2, 3] (drei verschachtelte Schleifen wie im Beispiel). Gib das beste gefundene Ergebnis aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "3",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Eine versteckte Schicht: mehrere Neuronen kombinieren",
+    "file": "lektion-03.md",
+    "lessonSummary": "vorwaerts() schickt die Eingabe durch zwei versteckte Neuronen und dann durch ein Ausgabe-Neuron - mit den richtigen Gewichten löst dieses kleine Netz XOR.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: ein Netz mit versteckter Schicht, das XOR löst.",
+        "example": true,
+        "codeTemplate": "def step(x):\n    if x >= 0:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, bias):\n    gewichtete_summe = 0\n    for i in range(len(eingaben)):\n        gewichtete_summe += eingaben[i] * gewichte[i]\n    gewichtete_summe += bias\n    return step(gewichtete_summe)\n\ndef vorwaerts(eingaben, versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias):\n    versteckte_ausgaben = []\n    for i in range(len(versteckte_gewichte)):\n        versteckte_ausgaben.append(neuron(eingaben, versteckte_gewichte[i], versteckte_bias[i]))\n    return neuron(versteckte_ausgaben, ausgabe_gewichte, ausgabe_bias)\n\nversteckte_gewichte = [[1, 1], [-1, -1]]\nversteckte_bias = [-0.5, 1.5]\nausgabe_gewichte = [1, 1]\nausgabe_bias = -1.5\n\nprint(vorwaerts([0, 0], versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias))\nprint(vorwaerts([0, 1], versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias))\nprint(vorwaerts([1, 0], versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias))\nprint(vorwaerts([1, 1], versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0\n1\n1\n0"
+        }
+      },
+      {
+        "instruction": "Kopiere step(x), neuron(eingaben, gewichte, bias) und vorwaerts(eingaben, versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias) aus dem Beispiel, mit denselben Netz-Gewichten (versteckte_gewichte = [[1, 1], [-1, -1]], versteckte_bias = [-0.5, 1.5], ausgabe_gewichte = [1, 1], ausgabe_bias = -1.5). Rufe vorwaerts() für die Eingaben [1, 1] und dann [0, 0] auf (in dieser Reihenfolge) und gib beide Ergebnisse aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0\n0",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Gewichte lernen lassen",
+    "file": "lektion-04.md",
+    "lessonSummary": "trainiere() probiert viele zufällige Gewichte aus und behält nur Änderungen, die nicht schlechter werden - nach genug Versuchen löst es XOR zu 100%.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Gewichte für das XOR-Netz automatisch trainieren.",
+        "example": true,
+        "codeTemplate": "import random\n\ndef step(x):\n    if x >= 0:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, bias):\n    gewichtete_summe = 0\n    for i in range(len(eingaben)):\n        gewichtete_summe += eingaben[i] * gewichte[i]\n    gewichtete_summe += bias\n    return step(gewichtete_summe)\n\ndef vorwaerts(eingaben, versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias):\n    versteckte_ausgaben = []\n    for i in range(len(versteckte_gewichte)):\n        versteckte_ausgaben.append(neuron(eingaben, versteckte_gewichte[i], versteckte_bias[i]))\n    return neuron(versteckte_ausgaben, ausgabe_gewichte, ausgabe_bias)\n\ndef bewertung(parameter, tabelle):\n    versteckte_gewichte = [[parameter[0], parameter[1]], [parameter[3], parameter[4]]]\n    versteckte_bias = [parameter[2], parameter[5]]\n    ausgabe_gewichte = [parameter[6], parameter[7]]\n    ausgabe_bias = parameter[8]\n    richtig = 0\n    for eingaben, erwartet in tabelle:\n        vorhersage = vorwaerts(eingaben, versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias)\n        if vorhersage == erwartet:\n            richtig += 1\n    return richtig / len(tabelle) * 100\n\ndef trainiere(tabelle, neustarts, schritte):\n    beste_parameter = None\n    beste_bewertung = -1\n    for _ in range(neustarts):\n        parameter = [random.uniform(-1, 1) for _ in range(9)]\n        aktuelle_bewertung = bewertung(parameter, tabelle)\n        for _ in range(schritte):\n            index = random.randrange(len(parameter))\n            alter_wert = parameter[index]\n            parameter[index] = alter_wert + random.uniform(-1, 1)\n            neue_bewertung = bewertung(parameter, tabelle)\n            if neue_bewertung >= aktuelle_bewertung:\n                aktuelle_bewertung = neue_bewertung\n            else:\n                parameter[index] = alter_wert\n        if aktuelle_bewertung > beste_bewertung:\n            beste_bewertung = aktuelle_bewertung\n            beste_parameter = parameter\n        if beste_bewertung == 100:\n            break\n    return beste_parameter, beste_bewertung\n\nxor_tabelle = [\n    ([0, 0], 0),\n    ([0, 1], 1),\n    ([1, 0], 1),\n    ([1, 1], 0),\n]\n\nrandom.seed(0)\nbeste_parameter, beste_bewertung = trainiere(xor_tabelle, 40, 60)\nprint(beste_bewertung)\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "100.0"
+        }
+      },
+      {
+        "instruction": "Kopiere step(x), neuron(eingaben, gewichte, bias), vorwaerts(...), bewertung(parameter, tabelle) und trainiere(tabelle, neustarts, schritte) aus dem Beispiel, mit derselben xor_tabelle. Setze random.seed(3) und rufe trainiere(xor_tabelle, 40, 60) auf. Gib die zurückgegebene Bewertung aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "100.0",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "section": "lektion",
+    "title": "Alles zusammen: Vorhersagen und Genauigkeit",
+    "file": "lektion-05.md",
+    "lessonSummary": "ist_richtig() und genauigkeit() (wie in Woche 4) zeigen: das trainierte Netz erreicht 100%, ein einzelnes Neuron dagegen nur 75%.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: die Genauigkeit des Netzes mit der Genauigkeit eines einzelnen Neurons vergleichen.",
+        "example": true,
+        "codeTemplate": "def step(x):\n    if x >= 0:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, bias):\n    gewichtete_summe = 0\n    for i in range(len(eingaben)):\n        gewichtete_summe += eingaben[i] * gewichte[i]\n    gewichtete_summe += bias\n    return step(gewichtete_summe)\n\ndef vorwaerts(eingaben, versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias):\n    versteckte_ausgaben = []\n    for i in range(len(versteckte_gewichte)):\n        versteckte_ausgaben.append(neuron(eingaben, versteckte_gewichte[i], versteckte_bias[i]))\n    return neuron(versteckte_ausgaben, ausgabe_gewichte, ausgabe_bias)\n\ndef ist_richtig(vorhersage, erwartet):\n    return vorhersage == erwartet\n\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if ist_richtig(vorhersagen[i], erwartete_werte[i]):\n            richtig += 1\n    return round(richtig / len(vorhersagen) * 100)\n\nversteckte_gewichte = [[1, 1], [-1, -1]]\nversteckte_bias = [-0.5, 1.5]\nausgabe_gewichte = [1, 1]\nausgabe_bias = -1.5\n\nxor_tabelle = [\n    ([0, 0], 0),\n    ([0, 1], 1),\n    ([1, 0], 1),\n    ([1, 1], 0),\n]\n\nvorhersagen = [vorwaerts(e, versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias) for e, _ in xor_tabelle]\nerwartete_werte = [erwartet for _, erwartet in xor_tabelle]\nprint(vorhersagen)\nprint(genauigkeit(vorhersagen, erwartete_werte))\n\nbaseline_vorhersagen = [neuron(e, [1, 1], -0.5) for e, _ in xor_tabelle]\nprint(baseline_vorhersagen)\nprint(genauigkeit(baseline_vorhersagen, erwartete_werte))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "[0, 1, 1, 0]\n100\n[0, 1, 1, 1]\n75"
+        }
+      },
+      {
+        "instruction": "Kopiere step(x), neuron(eingaben, gewichte, bias), ist_richtig(vorhersage, erwartet), genauigkeit(vorhersagen, erwartete_werte) und dieselbe xor_tabelle aus dem Beispiel. Nutze als Baseline diesmal ein einzelnes NAND-Neuron mit gewichte=[-1, -1] und bias=1.5 statt des OR-Neurons. Sammle die Vorhersagen für alle vier xor_tabelle-Eingaben in einer Liste, gib die Liste aus und dann genauigkeit() für diese Vorhersagen.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "[1, 1, 1, 0]\n75",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Debug: Das wacklige Netz",
+    "file": "debug-01.md",
+    "lessonSummary": "Alle Bugs gefunden! Ein Schwellenwert-Vergleich mit der falschen Richtung, ein fehlender Bias und ein Vorwärtslauf, der immer dieselben Gewichte benutzt.",
+    "tasks": [
+      {
+        "instruction": "🐛 Bug #1 – Ziel: step(0) soll 1 zurückgeben (die Schwelle ist >=, nicht >), step(3) soll ebenfalls 1 und step(-1) soll 0 bleiben. Was ist falsch?",
+        "codeTemplate": "def step(x):\n    if x > 0:\n        return 1\n    else:\n        return 0\n\nprint(step(0))\nprint(step(3))\nprint(step(-1))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1\n1\n0"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #2 – Ziel: neuron([0, 0], [1, 1], -1.5) soll 0 zurückgeben (kein Merkmal aktiv, der negative Bias drückt die Summe unter die Schwelle). Was ist falsch?",
+        "codeTemplate": "def step(x):\n    if x >= 0:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, bias):\n    gewichtete_summe = 0\n    for i in range(len(eingaben)):\n        gewichtete_summe += eingaben[i] * gewichte[i]\n    return step(gewichtete_summe)\n\nprint(neuron([0, 0], [1, 1], -1.5))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0"
+        }
+      },
+      {
+        "instruction": "🐛 Bug #3 – Ziel: vorwaerts([1, 1], ...) soll 0 zurückgeben (XOR von 1 und 1 ist 0). Was ist falsch?",
+        "codeTemplate": "def step(x):\n    if x >= 0:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, bias):\n    gewichtete_summe = 0\n    for i in range(len(eingaben)):\n        gewichtete_summe += eingaben[i] * gewichte[i]\n    gewichtete_summe += bias\n    return step(gewichtete_summe)\n\ndef vorwaerts(eingaben, versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias):\n    versteckte_ausgaben = []\n    for i in range(len(versteckte_gewichte)):\n        versteckte_ausgaben.append(neuron(eingaben, versteckte_gewichte[0], versteckte_bias[0]))\n    return neuron(versteckte_ausgaben, ausgabe_gewichte, ausgabe_bias)\n\nversteckte_gewichte = [[1, 1], [-1, -1]]\nversteckte_bias = [-0.5, 1.5]\nausgabe_gewichte = [1, 1]\nausgabe_bias = -1.5\n\nprint(vorwaerts([1, 1], versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias))\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission: Lichtschalter-Rätsel",
+    "file": "mission-01.md",
+    "lessonSummary": "Starke Leistung! Du hast ein eigenes kleines Netz für das Lichtschalter-Rätsel gebaut, den Vorwärtslauf durch die versteckte Schicht geschickt und seine Genauigkeit geprüft - ganz ohne Vorlage.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Ein Neuron: Schreibe step(x) und neuron(eingaben, gewichte, bias) wie in dieser Woche. Teste ein einzelnes AND-Neuron (gewichte=[1, 1], bias=-1.5) mit neuron([1, 1], [1, 1], -1.5) und neuron([0, 1], [1, 1], -1.5), und gib beide Ergebnisse aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1\n0",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Das Rätsel lösen: Schreibe zusätzlich vorwaerts(eingaben, versteckte_gewichte, versteckte_bias, ausgabe_gewichte, ausgabe_bias) wie in dieser Woche. Nutze versteckte_gewichte = [[1, 1], [-1, -1]], versteckte_bias = [-0.5, 1.5], ausgabe_gewichte = [1, 1], ausgabe_bias = -1.5 und eine Liste schalter_tabelle = [([0, 0], 0), ([0, 1], 1), ([1, 0], 1), ([1, 1], 0)] (0 = Lampe aus, 1 = Lampe an). Rufe vorwaerts() für jede der vier Eingaben in schalter_tabelle auf (in einer Schleife) und gib jedes Ergebnis aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "0\n1\n1\n0",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Genauigkeit prüfen: Nutze dieselbe schalter_tabelle und dieselben Funktionen aus Schritt 2 (erneut schreiben). Schreibe zusätzlich ist_richtig(vorhersage, erwartet) und genauigkeit(vorhersagen, erwartete_werte) wie in Lektion 5. Sammle die Vorhersagen für alle vier Schalterstellungen und gib genauigkeit() dafür aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "100",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-01",
+    "section": "boss",
+    "title": "Extra-Herausforderung 1: XNOR - das Gegenteil von XOR",
+    "file": "boss-01.md",
+    "lessonSummary": "Stark! Du hast gezeigt, dass dieselbe versteckte Schicht mit anderen Ausgabe-Gewichten auch XNOR löst - und dass ein einzelnes Neuron auch hier nie mehr als 75% schafft.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – XNOR mit versteckter Schicht: Schreibe step(x), neuron(eingaben, gewichte, bias) und vorwaerts(...) wie in dieser Woche. Nutze dieselbe versteckte_gewichte = [[1, 1], [-1, -1]] und versteckte_bias = [-0.5, 1.5], aber ausgabe_gewichte = [-1, -1] und ausgabe_bias = 1.5. Sammle die Vorhersagen für die vier Eingaben [0, 0], [0, 1], [1, 0], [1, 1] (in dieser Reihenfolge) in einer Liste und gib die Liste aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "[1, 0, 0, 1]",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Genauigkeit: Wiederhole Schritt 1 (alle Funktionen erneut schreiben, dieselben Gewichte). Schreibe zusätzlich ist_richtig(vorhersage, erwartet) und genauigkeit(vorhersagen, erwartete_werte). Nutze xnor_tabelle = [([0, 0], 1), ([0, 1], 0), ([1, 0], 0), ([1, 1], 1)], sammle die Vorhersagen für alle vier Eingaben und gib genauigkeit() dafür aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "100",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Einzelnes Neuron reicht nicht: Schreibe step(x), neuron(eingaben, gewichte, bias) und anzahl_richtig(gewichte, bias, tabelle) wie in Lektion 2. Nutze xnor_tabelle = [([0, 0], 1), ([0, 1], 0), ([1, 0], 0), ([1, 1], 1)] und probiere wie in Lektion 2 alle Gewichte/Bias-Kombinationen mit werte = [-2, -1, 0, 1, 2] durch (drei verschachtelte Schleifen). Gib das beste gefundene Ergebnis aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "3",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-02",
+    "section": "boss",
+    "title": "Extra-Herausforderung 2: Ein Netz für XNOR selbst trainieren",
+    "file": "boss-02.md",
+    "lessonSummary": "Sehr stark! Du hast ein Netz für XNOR komplett selbst trainiert (ohne die Gewichte zu kennen) und gesehen, dass zu wenig Trainingszeit bei einer schlechteren Lösung hängen bleiben kann.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – XNOR trainieren: Schreibe step(x), neuron(eingaben, gewichte, bias), vorwaerts(...), bewertung(parameter, tabelle) und trainiere(tabelle, neustarts, schritte) wie in Lektion 4. Nutze xnor_tabelle = [([0, 0], 1), ([0, 1], 0), ([1, 0], 0), ([1, 1], 1)]. Setze random.seed(0) und rufe trainiere(xnor_tabelle, 40, 60) auf. Gib die zurückgegebene Bewertung aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "100.0",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Vorhersagen des trainierten Netzes: Wiederhole Schritt 1 (alle Funktionen erneut schreiben, derselbe random.seed(0) und Aufruf trainiere(xnor_tabelle, 40, 60)). Baue aus dem zurückgegebenen beste_parameter die Gewichte (versteckte_gewichte = [[beste_parameter[0], beste_parameter[1]], [beste_parameter[3], beste_parameter[4]]], versteckte_bias = [beste_parameter[2], beste_parameter[5]], ausgabe_gewichte = [beste_parameter[6], beste_parameter[7]], ausgabe_bias = beste_parameter[8]). Schreibe zusätzlich ist_richtig(vorhersage, erwartet) und genauigkeit(vorhersagen, erwartete_werte), sage alle vier xnor_tabelle-Eingaben mit vorwaerts() vorher und gib genauigkeit() dafür aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "100",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Wenig Training reicht nicht: Schreibe dieselben Funktionen wie in Schritt 1 (step, neuron, vorwaerts, bewertung, trainiere) und dieselbe xnor_tabelle. Setze random.seed(5) und rufe trainiere(xnor_tabelle, 3, 5) auf (nur 3 Neustarts, 5 Schritte) - gib die zurückgegebene Bewertung aus. Setze danach random.seed(0) und rufe trainiere(xnor_tabelle, 40, 60) auf - gib auch diese Bewertung aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "50.0\n100.0",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  },
+  {
+    "id": "boss-03",
+    "section": "boss",
+    "title": "Extra-Herausforderung 3: 3×3-Pixel-Mustererkennung",
+    "file": "boss-03.md",
+    "lessonSummary": "Stark! Du hast gesehen, dass ein Neuron auch mit 9 statt 2 Eingaben funktioniert, ein Bild-Muster erkennen kann - und wie der Bias entscheidet, wie tolerant es gegenüber Fehlern ist.",
+    "tasks": [
+      {
+        "instruction": "Schritt 1 – Muster erkennen: Schreibe step(x) und neuron(eingaben, gewichte, bias) wie in dieser Woche. Nutze x_muster = [1, 0, 1, 0, 1, 0, 1, 0, 1] (ein X aus 3x3 Pixeln) als Gewichte für ein Neuron mit bias=-4. Nutze außerdem l_muster = [1, 0, 0, 1, 0, 0, 1, 1, 1] (ein L aus 3x3 Pixeln). Gib neuron(x_muster, x_muster, -4) und neuron(l_muster, x_muster, -4) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1\n0",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 2 – Toleranz gegenüber einem fehlenden Pixel: Kopiere step(x), neuron(eingaben, gewichte, bias) und x_muster aus Schritt 1. Nutze x_muster_luecke = [0, 0, 1, 0, 1, 0, 1, 0, 1] (dasselbe X, aber der erste Pixel fehlt) und gib neuron(x_muster_luecke, x_muster, -4) aus.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1",
+          "codeContains": ["def"]
+        }
+      },
+      {
+        "instruction": "Schritt 3 – Strengerer Schwellenwert: Kopiere step(x), neuron(eingaben, gewichte, bias), x_muster und x_muster_luecke aus Schritt 1/2. Nutze diesmal bias=-4.5 statt -4. Gib zuerst neuron(x_muster, x_muster, -4.5) aus (das vollständige Muster), dann neuron(x_muster_luecke, x_muster, -4.5) (das Muster mit der Lücke).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1\n0",
+          "codeContains": ["def"]
+        }
+      }
+    ]
+  }
+]
