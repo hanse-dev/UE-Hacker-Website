@@ -27,13 +27,17 @@ export function validateOutput(output, validation, variables, functionResults, c
   if (expected !== undefined) {
     switch (type) {
       case 'output_contains':
-        outputOk = out.includes(expected);
+        // Bewusst tolerant: Groß-/Kleinschreibung, mehrfache/rand-staendige Leerzeichen und
+        // Satzzeichen am Ende sind fuer den Lerninhalt nicht relevant und sollen eine sonst
+        // richtige Loesung nicht durchfallen lassen. `output_equals` bleibt exakt (prueft
+        // teils bewusst auch auf ungewollte Extra-Ausgabe).
+        outputOk = normalizeForComparison(out).includes(normalizeForComparison(expected));
         break;
       case 'output_equals':
         outputOk = out === expected;
         break;
       default:
-        outputOk = out.includes(expected);
+        outputOk = normalizeForComparison(out).includes(normalizeForComparison(expected));
     }
   }
   if (!outputOk) return false;
@@ -56,6 +60,19 @@ export function validateOutput(output, validation, variables, functionResults, c
   }
 
   return true;
+}
+
+/**
+ * Normalisiert einen Ausgabe-String fuer den (tolerannten) `output_contains`-Vergleich:
+ * Groß-/Kleinschreibung ignorieren, mehrfache/fuehrende/folgende Leerzeichen zusammenfassen,
+ * Satzzeichen am Ende weglassen (z.B. "Fläche 40." vs. "Fläche 40").
+ */
+function normalizeForComparison(str) {
+  return String(str || '')
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/[.,!?:;]+$/, '');
 }
 
 /**

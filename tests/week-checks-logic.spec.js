@@ -194,3 +194,24 @@ test.describe('Aufgaben-Validierung: codeContains (Struktur-Pruefung)', () => {
     expect(validateOutput('Tschuess', v, undefined, undefined, 'def f():\n    super().x()')).toBe(false);
   });
 });
+
+
+test.describe('Aufgaben-Validierung: output_contains ist tolerant, output_equals bleibt exakt', () => {
+  test('output_contains ignoriert Groß-/Kleinschreibung, mehrfache Leerzeichen und Satzzeichen am Ende', () => {
+    const v = { type: 'output_contains', expected: 'Fläche 40' };
+    expect(validateOutput('Fläche 40', v)).toBe(true);
+    expect(validateOutput('FLÄCHE 40', v)).toBe(true);
+    expect(validateOutput('  Fläche   40  ', v)).toBe(true);
+    expect(validateOutput('Fläche 40.', v)).toBe(true);
+    expect(validateOutput('Ergebnis: Fläche 40!', v)).toBe(true);
+    expect(validateOutput('Fläche 4', v)).toBe(false);
+  });
+
+  test('output_equals bleibt exakt (keine Toleranz bei Groß-/Kleinschreibung oder Extra-Ausgabe)', () => {
+    const v = { type: 'output_equals', expected: 'Fläche 40' };
+    expect(validateOutput('Fläche 40', v)).toBe(true);
+    expect(validateOutput('FLÄCHE 40', v)).toBe(false);
+    expect(validateOutput('Fläche 40.', v)).toBe(false);
+    expect(validateOutput('Fläche 40\nunerwartete Extra-Zeile', v)).toBe(false);
+  });
+});
