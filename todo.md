@@ -5,21 +5,15 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 
 ## Offen
 
-- [ ] Echte Jupyter-Notebooks (.ipynb) fürs Offline-Üben: `scripts/build_lesson_notebook.py`
-      (neu) baut aus dem Lektions-Format je Woche/Variante/Sprache ein Aufgaben- + ein
-      Lösungs-Notebook (`public/wochen-notebooks/`, gitignored wie die ZIP-Downloads). Bisher nur
-      für Woche 4 Abenteuer (DE) erzeugt und geprüft (Lösungscode komplett mit `python3`
-      durchlaufen lassen, inkl. der `input()`-Aufgabe) — noch **nicht** verkabelt in
-      `pack_notebooks.py`/`package.json` (`prebuild`) oder als Download-Link im Frontend. Vor der
-      vollen Verkabelung: alle 12 Wochen × 3 Varianten × 2 Sprachen einmal durchlaufen lassen
-      (Assertion prüft Aufgaben-/Lösungsanzahl automatisch), dann Download-UI entscheiden (eigener
-      Button neben dem bestehenden ZIP-Download? nur bestimmte Wochen?).
-      Nebenbei entdeckt: `scripts/build_lesson_bundle.py` (`load_glossary()`) liest nur
+- [ ] Kleine Nachbesserung: `scripts/build_lesson_bundle.py` (`load_glossary()`) liest nur
       `*_markdown.py`-Zellen des Glossars — die Kurzbeispiel-Code-Zelle (`*_code.py`, z.B.
       `woche4_abenteuer_0_glossar/04_code.py`) fehlt dadurch im flachen `_komplett.py`/
-      `_complete.py`-Download alle Wochen. `build_lesson_notebook.py` liest beide Zelltypen und hat
-      die Lücke daher nicht. Nicht selbst gefixt, weil das den bestehenden, produktiv genutzten
-      Bundle-Build für alle Wochen ändert — erst zusammen mit der Notebook-Verkabelung angehen.
+      `_complete.py`-Download aller Wochen (`scripts/build_lesson_notebook.py` liest beide
+      Zelltypen und hat die Lücke nicht, siehe Woche-ZIP-Download unten). Nicht selbst gefixt, weil
+      `load_glossary()` aktuell einen reinen Text zurückgibt und `comment_lines()` alles als
+      Kommentar behandelt — der Fix bräuchte eine strukturierte Rückgabe (Kommentar-/Code-Segmente
+      getrennt), das ändert den produktiv genutzten, seit Wochen fehlerfrei laufenden Bundle-Build
+      für alle 12×3×2 Kombinationen. Eigener kleiner Branch, kein Rush.
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken) —
       **zurückgestellt** (Nutzer will erst später deployen). Backup-Cron auf dem Server einrichten
       (Befehl siehe HANDOFF.md Abschnitt 4); externe Sicherung der Backups bewusst nicht mitgebaut.

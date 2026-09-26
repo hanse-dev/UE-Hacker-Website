@@ -192,10 +192,17 @@ def build_notebook_pair(week: int, variant: dict, lang: str) -> tuple[str, dict,
                 cells.append(markdown_cell(f"{label} {task['instruction']}"))
                 if is_example:
                     code = task["codeTemplate"]
+                    guaranteed_valid = True
                 elif with_solutions:
                     code = solution_by_task_id[id(task)]
+                    guaranteed_valid = True
                 else:
+                    # Echte Aufgabe im Aufgaben-Notebook: codeTemplate ist bei Debug-Quests
+                    # ABSICHTLICH kaputter Code (das ist die Aufgabe) - kein Syntax-Check moeglich.
                     code = task["codeTemplate"]
+                    guaranteed_valid = False
+                if guaranteed_valid:
+                    compile(code, f"<woche{week}-{variant_dir}-{lang}-cell>", "exec")
                 cells.append(code_cell(code))
 
         return {
@@ -239,6 +246,10 @@ def main():
     parser.add_argument("--thema", help="Nur dieses Thema (abenteuer|pferde|scifi)")
     parser.add_argument("--lang", choices=["de", "en"], help="Nur diese Sprache")
     parser.add_argument(
+        "--check", action="store_true",
+        help="Nur bauen+validieren (Aufgaben-/Loesungsanzahl, Code-Syntax), nichts auf die Platte schreiben",
+    )
+    parser.add_argument(
         "--out", default="public/wochen-notebooks", help="Ausgabeverzeichnis (Default: public/wochen-notebooks)"
     )
     args = parser.parse_args()
@@ -255,18 +266,22 @@ def main():
                 tasks_filename, tasks_nb, solutions_filename, solutions_nb = build_notebook_pair(
                     week, variant, lang
                 )
-                week_dir = out_root / f"woche-{week}"
-                week_dir.mkdir(parents=True, exist_ok=True)
-                (week_dir / tasks_filename).write_text(
-                    json.dumps(tasks_nb, indent=1, ensure_ascii=False), encoding="utf-8"
-                )
-                (week_dir / solutions_filename).write_text(
-                    json.dumps(solutions_nb, indent=1, ensure_ascii=False), encoding="utf-8"
-                )
-                print(f"✓ {week_dir / tasks_filename}")
-                print(f"✓ {week_dir / solutions_filename}")
+                if not args.check:
+                    week_dir = out_root / f"woche-{week}"
+                    week_dir.mkdir(parents=True, exist_ok=True)
+                    (week_dir / tasks_filename).write_text(
+                        json.dumps(tasks_nb, indent=1, ensure_ascii=False), encoding="utf-8"
+                    )
+                    (week_dir / solutions_filename).write_text(
+                        json.dumps(solutions_nb, indent=1, ensure_ascii=False), encoding="utf-8"
+                    )
+                    print(f"✓ {week_dir / tasks_filename}")
+                    print(f"✓ {week_dir / solutions_filename}")
                 count += 2
-    print(f"✓ {count} Notebooks erzeugt")
+    if args.check:
+        print(f"✓ {count // 2} Wochen-Pakete geprueft (Aufgaben-/Loesungsanzahl passt, Code compiliert)")
+    else:
+        print(f"✓ {count} Notebooks erzeugt")
     return 0
 
 

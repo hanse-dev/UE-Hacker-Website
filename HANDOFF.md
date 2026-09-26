@@ -4,10 +4,10 @@
 > **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.85 (Zertifikate/PDF,
 > Skip-Aufgaben, Login-Fortschritt, Pre-commit/Pre-push, Admin-Termine, Interaktiv-Kurs-Überarbeitung).
 > Branch `offline-jupyter-notebook-converter` (WIP, dieser Branch, gerade auf `main` rebast): neuer
-> Konverter Lektions-Format → echte `.ipynb` fürs Offline-Üben (3.86, bisher nur Woche 4 Abenteuer DE
-> erzeugt+geprüft, Verkabelung ins Frontend offen) + Bugfix Glossar-Tooltip bei verschachtelten
-> Begriffen (3.87). Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4) — nach
-> dem nächsten Deploy den einmaligen Termine-Import laufen lassen (Abschnitt 5).
+> Konverter Lektions-Format → echte `.ipynb` fürs Offline-Üben, jetzt für alle 12 Wochen × 3 Varianten
+> × 2 Sprachen verkabelt in den bestehenden Wochen-ZIP-Download (3.86) + Bugfix Glossar-Tooltip bei
+> verschachtelten Begriffen (3.87). Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe
+> Abschnitt 4) — nach dem nächsten Deploy den einmaligen Termine-Import laufen lassen (Abschnitt 5).
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
 > Chat-Historie. Sie wird per `@` in jede Session geladen — **klein halten** (Richtwert < 25 KB).
 > Die ausführliche Feature-Historie liegt kalt in `docs/archiv/HANDOFF-historie.md` (nicht importiert).
@@ -77,7 +77,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.83 | Pre-commit/Pre-push zweistufig statt vollem `test:checks` bei jedem Commit | `scripts/test-changed.mjs` mappt (staged) geänderte Dateien auf betroffene Specs (Pre-commit, `npm run test:precommit`); voller `test:checks` läuft jetzt im neuen Pre-push-Hook |
 | 3.84 | Termine jetzt im Admin-Panel verwaltbar statt nur per Hand in `public/termine.json` | Neue `termine`-Tabelle (SQLite) + `/api/termine` (öffentlich, GET) + `/api/admin/termine` (CRUD); `AdminView.vue` hat einen zweiten Tab „Termine“; einmaliger Umzug per `api/src/scripts/import-termine-json.js` (Seed-Datei `api/src/scripts/termine-seed.json` aus der bisherigen `public/termine.json`) |
 | 3.85 | Interaktiv-Kurs: Editor-Erklärungen, flexible Lektionen (5 Aufgaben, mind. 2 nötig) + Beispiel-Aufgabe | Nutzer-Feedback "zu viele Annahmen, was zu tun ist" (Branch `interaktiv-kurs-erklaerung`, noch nicht gemergt): `lesson.editorHint` erklärt Ausführen vs. Prüfen, neuer bedingter Hinweis für `___`-Lücken; `LessonView.vue` bekommt `lesson.minSolved` (macht eine Lektion "flexibel" - mehr Aufgaben als nötig, Rest sofort überspringbar statt erst nach 2 Fehlversuchen); Kinder/Jugendliche-Variante auf 5 Aufgaben/Lektion + vorangestellte Beispiel-Aufgabe erweitert, `sum()`-Erklärungslücke (Kinder) geschlossen |
-| 3.86 | (WIP) Konverter Lektions-Format → echte Jupyter-Notebooks fürs Offline-Üben | Branch `offline-jupyter-notebook-converter`, noch nicht gemergt: `scripts/build_lesson_notebook.py`, Ausgabe unter `public/wochen-notebooks/` (gitignored); bisher nur Woche 4 Abenteuer DE erzeugt+geprüft, Verkabelung in `pack_notebooks.py`/Frontend offen (siehe `todo.md`) |
+| 3.86 | (WIP) Konverter Lektions-Format → echte Jupyter-Notebooks fürs Offline-Üben | Branch `offline-jupyter-notebook-converter`, noch nicht gemergt: `scripts/build_lesson_notebook.py` baut je Woche/Variante/Sprache ein Aufgaben- + ein Lösungs-Notebook (leere Code-Zellen vs. Referenzlösung); `pack_notebooks.py` packt beide zusätzlich zur `.py`-Datei in den bestehenden Wochen-ZIP (Unterordner `notebooks/`), alle 12×3×2 Kombinationen; Test `tests/lesson-notebook-generator.spec.js` |
 | 3.87 | Bugfix: Glossar-Tooltip bricht bei verschachtelten Begriffen (z.B. "Wert" in "Variable") | `useLessonContent.js`: ein kombinierter Regex-Durchlauf über den Originaltext statt sequenziellem Ersetzen auf wachsendem Output; Test in `tests/site.spec.js` |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
@@ -90,6 +90,10 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   `_N_loesungen`-Notebook-Ordner ein neues Markdown+Code-Zell-Paar mit der **höchsten** Nummer ans
   Ende — nie mittendrin einfügen (sonst müssen alle folgenden Zellen umnummeriert werden).
 - Standard-PDF-Fonts (pdf-lib/Helvetica) können kein Emoji — Content-Texte vorher per `sanitizeForPdfFont` filtern (3.13).
+- Ein `codeTemplate` einer echten (nicht-Beispiel-)Aufgabe in einem Debug-Quest ist absichtlich
+  kaputter Code (das *ist* die Aufgabe) — beim generischen Verarbeiten von `lessons.json` (z.B.
+  Syntax-Validierung wie in `build_lesson_notebook.py`) nur Beispiel-Code und Referenzlösungen
+  auf Kompilierbarkeit prüfen, nie das rohe `codeTemplate` einer echten Aufgabe (3.78).
 - Punkte-/Item-System und lokales Fortschritt-Skript **nicht** wieder einführen; Zertifikat = nur Wochen-Check, ein Zertifikat pro Woche, PDF login-gated (3.12/3.13).
 - Quizfragen `multiple_choice`: `optionExplanations` mitpflegen, `explanation_en` echt übersetzen; `shuffleQuestionOptions()` muss Text+Erklärung als Paar mischen (3.17). Schwelle nie als exakten Bruch (2/3 → `0.66`, 3.6).
 - Projekt-Kurse: der Erklärtext einer Lektion darf die direkt folgende Aufgabe nicht vorwegnehmen — weder als lauffähiger Code (Pseudocode nutzen, siehe 3.61), noch als "Beispiel"-Aufgabe, die exakt dieselbe Funktion wie die nächste "Pflicht"-Aufgabe zeigt (Beispiel muss eine *andere* Instanz desselben Prinzips sein, wie `verdopple` vor `bewegeSchlaeger` in js-spielewerkstatt).
@@ -257,9 +261,10 @@ Ausführlich in `todo.md`. Kurzfassung:
 **Nächstes Kurs-Thema:** noch nicht entschieden (KI-Track weiter vs. weitere Python-Projekt-Kurse,
 siehe `VISION.md` "Offene Fragen"). Ideen-Backlog: `PROJEKTIDEEN.md`.
 
-**Laufender Branch `offline-jupyter-notebook-converter`:** Konverter-Skript fertig für Woche 4
-Abenteuer DE (3.86), Verkabelung in `pack_notebooks.py`/Frontend + restliche Wochen/Varianten/
-Sprachen offen (Details `todo.md`).
+**Laufender Branch `offline-jupyter-notebook-converter`:** Notebook-Download für alle 12 Wochen ×
+3 Varianten × 2 Sprachen verkabelt (3.86) — noch offen: kleine Nachbesserung am bestehenden
+`build_lesson_bundle.py` (Glossar-Kurzbeispiel fehlt im flachen Download, Details `todo.md`),
+danach mergen.
 
 **Bewusst nicht geplant:** öffentliches Sign-up, Mailversand/Kontaktformular, Supabase als Pflicht.
 

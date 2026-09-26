@@ -111,9 +111,14 @@ echte `.ipynb`-Dateien.
 und den Referenzlösungen (`*_6_loesungen`-Zellenordner) **eine einzige, direkt mit `python3` lauffähige
 `.py`-Datei je Woche/Variante/Sprache** (Glossar, Lektionen, Debug-Quest, Missionen und Extra-
 Herausforderungen inklusive Lösungen als Kommentare/Code) — kein Jupyter/Zellen-Format nötig für den
-Download. `scripts/pack_notebooks.py` packt das je Woche (`woche-{N}.zip`/`woche-{N}-en.zip`) und als
-Gesamtpaket (`python-12-wochen-notebooks.zip`). Nichts davon wird committed (wie `_bundle`/`_generated`,
-läuft bei jedem `npm run dev`/`npm run build` neu über `pack:notebooks`).
+Download. Zusätzlich baut `scripts/build_lesson_notebook.py` aus denselben Quellen **zwei echte
+Jupyter-Notebooks je Woche/Variante/Sprache** (`{prefix}_aufgaben.ipynb`/`{prefix}_loesungen.ipynb`,
+EN: `_tasks`/`_solutions`) — Aufgaben-Notebook mit leeren Code-Zellen, Lösungs-Notebook mit der
+Referenzlösung befüllt, für alle, die lieber in Jupyter/VS Code statt in der `.py`-Datei arbeiten.
+`scripts/pack_notebooks.py` packt beide Formate je Woche (`woche-{N}.zip`/`woche-{N}-en.zip`, die
+Notebooks im Unterordner `notebooks/`) und als Gesamtpaket (`python-12-wochen-notebooks.zip`). Nichts
+davon wird committed (wie `_bundle`/`_generated`, läuft bei jedem `npm run dev`/`npm run build` neu
+über `pack:notebooks`).
 
 ---
 

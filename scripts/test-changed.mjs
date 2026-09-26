@@ -28,6 +28,7 @@ const ALL_CHECKS = [
   'tests/python-lektionen-format.spec.js',
   'tests/woche12-abschlussprojekt.spec.js',
   'tests/lesson-bundle-generator.spec.js',
+  'tests/lesson-notebook-generator.spec.js',
 ];
 
 // Dateien/Präfixe, die zu breit wirken (viele Specs hängen daran), um sie
@@ -88,6 +89,7 @@ const RULES = [
   ['src/views/ProjekteView.vue', ['tests/projekte.spec.js']],
   ['src/views/ProfilView.vue', ['tests/zertifikate.spec.js']],
   ['scripts/build_lesson_bundle.py', ['tests/lesson-bundle-generator.spec.js']],
+  ['scripts/build_lesson_notebook.py', ['tests/lesson-notebook-generator.spec.js']],
   ['content/python-woche1-', ['tests/python-woche1-lektionen.spec.js', 'tests/python-lektionen-format.spec.js']],
   ['content/python-woche12-', ['tests/woche12-abschlussprojekt.spec.js', 'tests/python-lektionen-format.spec.js']],
   ['content/python-woche', ['tests/python-lektionen-format.spec.js']],

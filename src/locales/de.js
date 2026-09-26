@@ -144,7 +144,7 @@ export default {
   'week.download.md':      'Als Markdown herunterladen',
   'week.download.nb':      'Als Jupyter Notebook herunterladen',
   'week.download.week':    '📦 Woche {n} herunterladen',
-  'week.download.week.hint': 'Diese Woche als Python-Datei je Thema (Abenteuer, Pferde, Sci-Fi), kein Jupyter nötig',
+  'week.download.week.hint': 'Diese Woche als Python-Datei je Thema (kein Jupyter nötig) und als Jupyter-Notebook (Aufgaben + Lösungen getrennt) für Abenteuer, Pferde und Sci-Fi',
 
   // ── Week check panel ─────────────────────────────────────────────────────
   'check.loading':       'Check wird geladen…',
