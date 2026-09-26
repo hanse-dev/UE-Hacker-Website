@@ -5,8 +5,9 @@
 > offen ist nur noch ein abschließender Smoke-Test aller Wochen. Profil zeigt Wochen-Zertifikate aus allen Kursen mit
 > Wochen-Check (Python + KI-Labor) inkl. direktem PDF-Download (3.69/3.70); ein "Kurs starten"-Gate
 > blendet bei den 3 Wochen-Tour-Kursen Beschreibung/Struktur-Erklärung vor der eigentlichen
-> Kurs-Tour aus (3.69). Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4
-> "Betrieb").
+> Kurs-Tour aus (3.69). `output_contains`-Aufgabenprüfung toleriert jetzt Groß-/Kleinschreibung,
+> Leerzeichen und Satzzeichen am Ende (3.78). Server-Deploy steht weiter aus (Nutzer deployt selbst,
+> siehe Abschnitt 4 "Betrieb").
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
 > Chat-Historie. Sie wird per `@` in jede Session geladen — **klein halten** (Richtwert < 25 KB).
 > Die ausführliche Feature-Historie liegt kalt in `docs/archiv/HANDOFF-historie.md` (nicht importiert).
@@ -85,6 +86,8 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.75 | KI-Labor: Woche 6 "Neuronale Netze I" | 5 Lektionen (gewichtete Summe, Sprungfunktion, komplettes Neuron, logische Gatter UND/ODER/NAND/NOR per Gewichte/Schwellenwert, XOR-Grenze eines einzelnen Neurons) + Debug + Mission + 3 Extra-Herausforderungen (gewichtete Sensoren, Schwellenwert-Vergleich per Genauigkeit, systematischer XOR-Beweis) + eigener Wochen-Check; kein Gewichte-Lernen (Perzeptron-Lernregel folgt in Woche 7), alle Beispiele/Lösungen mit `python3` geprüft |
 | 3.76 | KI-Labor: Woche 7 "Neuronale Netze II" | 5 Lektionen (Wiederholung Einzelneuron, warum ein Neuron XOR nicht löst, versteckte Schicht + Vorwärtslauf, Gewichte per Zufalls-Suche selbst lernen lassen, trainiertes Netz vs. Einzelneuron-Baseline) + Debug + Mission (Lichtschalter-Rätsel) + 3 Extra-Herausforderungen (XNOR nachbauen, XNOR selbst trainieren, 3×3-Pixel-Mustererkennung) + eigener Wochen-Check; alle Beispiele/Lösungen mit `python3` geprüft |
 | 3.77 | KI-Labor: Woche 8 "Grenzen & Ethik" (letzte Woche des Kurses) | 5 Lektionen (schiefe Trainingsdaten, Accuracy-Paradox, Baum übernimmt den Bias, Ausgleich per Undersampling, Chatbots/Datenschutz-Analogie) + Debug + Mission (eigener Bias-Datensatz ausgleichen) + 3 Extra-Herausforderungen (3-Klassen-Bias, Oversampling, Grenzen von Anonymisierung) + eigener Wochen-Check; kein "nächste Woche"-Button mehr nach dem Zertifikat, alle Beispiele/Lösungen mit `python3` geprüft |
+| 3.78 | `output_contains` toleriert Groß-/Kleinschreibung, Leerzeichen, Satzzeichen am Ende | `output_equals` bleibt bewusst exakt (prüft teils auf ungewollte Extra-Ausgabe); Test in `week-checks-logic.spec.js` |
+| 3.79 | Interaktiv-Kurs: Lektionstexte ausführlicher (Kinder + Jugendliche, DE) | reine Textüberarbeitung, keine Logikänderung |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -302,6 +305,10 @@ Roadmap: `VISION.md`.
   ausfüllen, sonst fällt die UI automatisch auf die geteilte `explanation` zurück (kein Bug, aber
   weniger hilfreich) — und `explanation_en` muss eine echte Übersetzung sein, nicht identisch zu
   `explanation` (Test dafür in `tests/week-checks-logic.spec.js`).
+- `validation.type: "output_contains"` prüft seit 3.78 tolerant (Groß-/Kleinschreibung, mehrfache
+  Leerzeichen, Satzzeichen am Ende egal) — `output_equals` bleibt exakt. Beim Schreiben neuer
+  Aufgaben mit `output_equals` bewusst bleiben, wenn genau das der Lernpunkt ist (z.B. "keine
+  Extra-Ausgabe").
 
 ---
 
