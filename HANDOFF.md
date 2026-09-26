@@ -6,7 +6,8 @@
 > PDF, Skip-Aufgaben, Login-Fortschritt, Pre-commit/Pre-push, Admin-Termine-Verwaltung u.a.) stehen
 > in der Tabelle unten (Abschnitt 3). Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe
 > Abschnitt 4 "Betrieb") — nach dem nächsten Deploy den einmaligen Termine-Import laufen lassen
-> (Abschnitt 5).
+> (Abschnitt 5). Branch `interaktiv-kurs-erklaerung` (3.85, noch nicht gemergt) überarbeitet den
+> Interaktiv-Kurs nach Nutzer-Feedback (Editor-Erklärungen, flexible Aufgaben, Beispiel-Aufgabe).
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
 > Chat-Historie. Sie wird per `@` in jede Session geladen — **klein halten** (Richtwert < 25 KB).
 > Die ausführliche Feature-Historie liegt kalt in `docs/archiv/HANDOFF-historie.md` (nicht importiert).
@@ -92,6 +93,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.82 | Login ersetzt lokalen Fortschritt durch Account-Stand statt zu mergen | `loadAccountProgress()`/`replaceLocalProgress()` in `useProgressSync.js`, nur beim expliziten Login (`useAuth.js`) genutzt; `restoreSession()`/`syncNow()` beim Seiten-Reload bleiben beim Merge nach `updatedAt` |
 | 3.83 | Pre-commit/Pre-push zweistufig statt vollem `test:checks` bei jedem Commit | `scripts/test-changed.mjs` mappt (staged) geänderte Dateien auf betroffene Specs (Pre-commit, `npm run test:precommit`); voller `test:checks` läuft jetzt im neuen Pre-push-Hook |
 | 3.84 | Termine jetzt im Admin-Panel verwaltbar statt nur per Hand in `public/termine.json` | Neue `termine`-Tabelle (SQLite) + `/api/termine` (öffentlich, GET) + `/api/admin/termine` (CRUD); `AdminView.vue` hat einen zweiten Tab „Termine“; einmaliger Umzug per `api/src/scripts/import-termine-json.js` (Seed-Datei `api/src/scripts/termine-seed.json` aus der bisherigen `public/termine.json`) |
+| 3.85 | Interaktiv-Kurs: Editor-Erklärungen, flexible Lektionen (5 Aufgaben, mind. 2 nötig) + Beispiel-Aufgabe | Nutzer-Feedback "zu viele Annahmen, was zu tun ist" (Branch `interaktiv-kurs-erklaerung`, noch nicht gemergt): `lesson.editorHint` erklärt Ausführen vs. Prüfen, neuer bedingter Hinweis für `___`-Lücken; `LessonView.vue` bekommt `lesson.minSolved` (macht eine Lektion "flexibel" - mehr Aufgaben als nötig, Rest sofort überspringbar statt erst nach 2 Fehlversuchen); Kinder/Jugendliche-Variante auf 5 Aufgaben/Lektion + vorangestellte Beispiel-Aufgabe erweitert, `sum()`-Erklärungslücke (Kinder) geschlossen |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -170,6 +172,12 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   Composables/Content-Ordner brauchen dort eine eigene Regel (`RULES`), sonst greift beim nächsten
   Mal nur das Sicherheitsnetz (voller Lauf bei unbekannten Dateien) — kein Fehler, aber auch kein
   Geschwindigkeitsgewinn (3.83).
+- Wird eine Lektion (`LessonView.vue`) über `lesson.minSolved` "flexibel" (mehr Aufgaben als nötig,
+  Rest von Anfang an überspringbar statt erst nach 2 Fehlversuchen), dürfen ihre Aufgaben sich
+  **nicht** mehr auf Variablen aus einer vorherigen Aufgabe verlassen: der Pyodide-Kernel-Namespace
+  ist zwar über die ganze Lektion geteilt, aber eine sofort übersprungene Aufgabe hat ihren Code nie
+  ausgeführt — eine später referenzierte Variable existiert dann nicht. Jede Aufgabe muss ihre Daten
+  (Liste/Dictionary/Variable) selbst neu anlegen, statt auf eine frühere Aufgabe zu bauen (3.85).
 
 **Lokale Tools (`scripts/local-tools/`, laufen nie im Deploy)**
 - IDN-Domains (Umlaute, z.B. `übergangshacker.de`) vor jedem `urllib`-Request per `.encode('idna')`
