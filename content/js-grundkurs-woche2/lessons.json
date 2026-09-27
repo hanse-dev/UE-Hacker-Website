@@ -13,9 +13,9 @@
         "validation": { "type": "output_contains", "expected": "false" }
       },
       {
-        "instruction": "Erstelle eine Variable istVolljaehrig, die true ist, wenn alter mindestens 18 ist.",
+        "instruction": "Erstelle eine Variable istVolljaehrig, die true ist, wenn alter mindestens 18 ist. Gib sie aus.",
         "codeTemplate": "let alter = 20;\n\n// Dein Code hier\n",
-        "validation": { "variables": { "istVolljaehrig": true } }
+        "validation": { "type": "output_contains", "expected": "true", "variables": { "istVolljaehrig": true } }
       }
     ]
   },
@@ -73,9 +73,9 @@
         "validation": { "type": "output_contains", "expected": "Beides: false" }
       },
       {
-        "instruction": "Ein Achterbahn-Fahrgast braucht mindestens 12 Jahre UND mindestens 140 cm Größe. Erstelle für alter = 14 und groesse = 150 eine Variable darfFahren mit dem Ergebnis.",
+        "instruction": "Ein Achterbahn-Fahrgast braucht mindestens 12 Jahre UND mindestens 140 cm Größe. Erstelle für alter = 14 und groesse = 150 eine Variable darfFahren mit dem Ergebnis und gib es aus.",
         "codeTemplate": "let alter = 14;\nlet groesse = 150;\n\n// Dein Code hier\n",
-        "validation": { "variables": { "darfFahren": true } }
+        "validation": { "type": "output_contains", "expected": "true", "variables": { "darfFahren": true } }
       }
     ]
   },
@@ -136,14 +136,14 @@
     "lessonSummary": "Starke Leistung! Du hast Vergleiche und Bedingungen ganz selbstständig angewendet.",
     "tasks": [
       {
-        "instruction": "Ein Einkauf ab 50€ bekommt 10% Rabatt, sonst keinen. Berechne für einkaufswert = 80 den Rabatt in Euro in einer Variable rabatt.",
+        "instruction": "Ein Einkauf ab 50€ bekommt 10% Rabatt, sonst keinen. Berechne für einkaufswert = 80 den Rabatt in Euro in einer Variable rabatt und gib sie aus.",
         "codeTemplate": "let einkaufswert = 80;\n\n// Dein Code hier\n",
-        "validation": { "variables": { "rabatt": 8 } }
+        "validation": { "type": "output_contains", "expected": "8", "variables": { "rabatt": 8 } }
       },
       {
-        "instruction": "Ein Probetraining ist erlaubt ab 16 Jahren UND mindestens 150 cm Größe. Speichere für alter = 15 und groesse = 170 das Ergebnis in einer Variable darfTeilnehmen.",
+        "instruction": "Ein Probetraining ist erlaubt ab 16 Jahren UND mindestens 150 cm Größe. Speichere für alter = 15 und groesse = 170 das Ergebnis in einer Variable darfTeilnehmen und gib es aus.",
         "codeTemplate": "let alter = 15;\nlet groesse = 170;\n\n// Dein Code hier\n",
-        "validation": { "variables": { "darfTeilnehmen": false } }
+        "validation": { "type": "output_contains", "expected": "false", "variables": { "darfTeilnehmen": false } }
       },
       {
         "instruction": "Schreibe eine else-if-Kette für farbe = 'gelb': gib bei 'rot' 'Stopp!' aus, bei 'gelb' 'Achtung!', bei 'gruen' 'Los!', sonst 'Unbekanntes Signal'.",

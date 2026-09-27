@@ -42,10 +42,12 @@
         }
       },
       {
-        "instruction": "Schreibe eine Funktion bewegeSchlaeger(x, taste), die die neue x-Position zurückgibt: bei 'ArrowLeft' 20 Pixel nach links, bei 'ArrowRight' 20 Pixel nach rechts, sonst bleibt x gleich. Die Position darf nie kleiner als 0 oder größer als 320 werden.",
+        "instruction": "Schreibe eine Funktion bewegeSchlaeger(x, taste), die die neue x-Position zurückgibt: bei 'ArrowLeft' 20 Pixel nach links, bei 'ArrowRight' 20 Pixel nach rechts, sonst bleibt x gleich. Die Position darf nie kleiner als 0 oder größer als 320 werden. Rufe sie zum Test mit bewegeSchlaeger(200, 'ArrowRight') auf und gib das Ergebnis aus.",
         "codeTemplate": "function bewegeSchlaeger(x, taste) {\n  // Dein Code hier\n}\n",
         "solution": "function bewegeSchlaeger(x, taste) {\n  let neueX = x;\n  if (taste === 'ArrowLeft') neueX -= 20;\n  if (taste === 'ArrowRight') neueX += 20;\n  if (neueX < 0) neueX = 0;\n  if (neueX > 320) neueX = 320;\n  return neueX;\n}",
         "validation": {
+          "type": "output_contains",
+          "expected": "220",
           "functionCalls": [
             { "name": "bewegeSchlaeger", "args": [160, "ArrowLeft"], "expected": 140 },
             { "name": "bewegeSchlaeger", "args": [160, "ArrowRight"], "expected": 180 },
@@ -60,6 +62,8 @@
         "codeTemplate": "function bewegeSchlaeger(x, taste) {\n  // Kopiere deine Lösung von oben hierher\n}\n\nconsole.log(bewegeSchlaeger(0, 'ArrowLeft'));\n",
         "solution": "function bewegeSchlaeger(x, taste) {\n  let neueX = x;\n  if (taste === 'ArrowLeft') neueX -= 20;\n  if (taste === 'ArrowRight') neueX += 20;\n  if (neueX < 0) neueX = 0;\n  if (neueX > 320) neueX = 320;\n  return neueX;\n}\n\nconsole.log(bewegeSchlaeger(0, 'ArrowLeft'));",
         "validation": {
+          "type": "output_contains",
+          "expected": "0",
           "functionCalls": [
             { "name": "bewegeSchlaeger", "args": [160, "ArrowLeft"], "expected": 140 },
             { "name": "bewegeSchlaeger", "args": [160, "ArrowRight"], "expected": 180 },
@@ -84,10 +88,12 @@
         "validation": { "type": "canvas_changed", "ms": 400 }
       },
       {
-        "instruction": "Schreibe eine Funktion naechstePosition(y, tempo), die die neue y-Position zurückgibt (einfach y + tempo).",
+        "instruction": "Schreibe eine Funktion naechstePosition(y, tempo), die die neue y-Position zurückgibt (einfach y + tempo). Rufe sie zum Test mit naechstePosition(10, 5) auf und gib das Ergebnis aus.",
         "codeTemplate": "function naechstePosition(y, tempo) {\n  // Dein Code hier\n}\n",
         "solution": "function naechstePosition(y, tempo) {\n  return y + tempo;\n}",
         "validation": {
+          "type": "output_contains",
+          "expected": "15",
           "functionCalls": [
             { "name": "naechstePosition", "args": [0, 3], "expected": 3 },
             { "name": "naechstePosition", "args": [50, -2], "expected": 48 },
@@ -127,10 +133,12 @@
         }
       },
       {
-        "instruction": "Schreibe istTreffer(ballX, ballY, schlaegerX). Der Schläger ist 80 Pixel breit, seine linke Kante liegt bei schlaegerX. Ein Treffer ist es, wenn der Ball y >= 270 erreicht hat UND ballX zwischen schlaegerX und schlaegerX + 80 liegt.",
+        "instruction": "Schreibe istTreffer(ballX, ballY, schlaegerX). Der Schläger ist 80 Pixel breit, seine linke Kante liegt bei schlaegerX. Ein Treffer ist es, wenn der Ball y >= 270 erreicht hat UND ballX zwischen schlaegerX und schlaegerX + 80 liegt. Rufe sie zum Test mit istTreffer(100, 280, 100) auf und gib das Ergebnis aus.",
         "codeTemplate": "function istTreffer(ballX, ballY, schlaegerX) {\n  // Dein Code hier\n}\n",
         "solution": "function istTreffer(ballX, ballY, schlaegerX) {\n  return ballY >= 270 && ballX >= schlaegerX && ballX <= schlaegerX + 80;\n}",
         "validation": {
+          "type": "output_contains",
+          "expected": "true",
           "functionCalls": [
             { "name": "istTreffer", "args": [200, 280, 160], "expected": true },
             { "name": "istTreffer", "args": [50, 280, 160], "expected": false },
@@ -145,6 +153,8 @@
         "codeTemplate": "function istTreffer(ballX, ballY, schlaegerX) {\n  // Kopiere deine Lösung von oben hierher\n}\n\nconsole.log(istTreffer(200, 280, 160));\n",
         "solution": "function istTreffer(ballX, ballY, schlaegerX) {\n  return ballY >= 270 && ballX >= schlaegerX && ballX <= schlaegerX + 80;\n}\n\nconsole.log(istTreffer(200, 280, 160));",
         "validation": {
+          "type": "output_contains",
+          "expected": "true",
           "functionCalls": [
             { "name": "istTreffer", "args": [200, 280, 160], "expected": true },
             { "name": "istTreffer", "args": [50, 280, 160], "expected": false },
@@ -180,10 +190,12 @@
         "validation": { "type": "output_contains", "expected": "Leben übrig: 2" }
       },
       {
-        "instruction": "Schreibe naechsterPunktestand(punkte, treffer). Bei treffer === true gibt sie punkte + 1 zurück, sonst unverändert punkte.",
+        "instruction": "Schreibe naechsterPunktestand(punkte, treffer). Bei treffer === true gibt sie punkte + 1 zurück, sonst unverändert punkte. Rufe sie zum Test mit naechsterPunktestand(20, true) auf und gib das Ergebnis aus.",
         "codeTemplate": "function naechsterPunktestand(punkte, treffer) {\n  // Dein Code hier\n}\n",
         "solution": "function naechsterPunktestand(punkte, treffer) {\n  return treffer ? punkte + 1 : punkte;\n}",
         "validation": {
+          "type": "output_contains",
+          "expected": "21",
           "functionCalls": [
             { "name": "naechsterPunktestand", "args": [0, true], "expected": 1 },
             { "name": "naechsterPunktestand", "args": [5, false], "expected": 5 },
@@ -211,10 +223,12 @@
         "validation": { "type": "output_contains", "expected": "2" }
       },
       {
-        "instruction": "Schreibe tempoFuer(punkte). Das Grundtempo ist 3; alle 5 Punkte wird der Ball 1 schneller (nutze Math.floor).",
+        "instruction": "Schreibe tempoFuer(punkte). Das Grundtempo ist 3; alle 5 Punkte wird der Ball 1 schneller (nutze Math.floor). Rufe sie zum Test mit tempoFuer(20) auf und gib das Ergebnis aus.",
         "codeTemplate": "function tempoFuer(punkte) {\n  // Dein Code hier\n}\n",
         "solution": "function tempoFuer(punkte) {\n  return 3 + Math.floor(punkte / 5);\n}",
         "validation": {
+          "type": "output_contains",
+          "expected": "7",
           "functionCalls": [
             { "name": "tempoFuer", "args": [0], "expected": 3 },
             { "name": "tempoFuer", "args": [5], "expected": 4 },

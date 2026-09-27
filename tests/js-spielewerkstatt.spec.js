@@ -210,13 +210,21 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     // Task 0 ist wieder das lauffähige Beispiel (verdopple) - die Schreibaufgabe ist Task 1.
     const task1 = page.locator('.task-block').nth(1);
 
-    await setCodeMirrorContent(task1.locator('.cm-host'), 'function bewegeSchlaeger(x, taste) {\n  return 140;\n}');
+    // Die Aufgabe verlangt seit dem output_contains-Nachziehen ("Rufe sie zum Test mit
+    // bewegeSchlaeger(200, 'ArrowRight') auf ...") nur noch, dass genau dieser eine Aufruf 220
+    // ausgibt - eine Scheinloesung, die immer 220 zurueckgibt (statt echt zu rechnen), besteht
+    // trotzdem, weil die versteckten functionCalls-Testfaelle (140, 180, 0, 320, 160) fuer normale
+    // Lektionsaufgaben nicht mehr geprueft werden.
+    await setCodeMirrorContent(
+      task1.locator('.cm-host'),
+      "function bewegeSchlaeger(x, taste) {\n  return 220;\n}\nconsole.log(bewegeSchlaeger(200, 'ArrowRight'));"
+    );
     await task1.locator('.btn-check').click();
     await expect(task1.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
 
     await setCodeMirrorContent(
       task1.locator('.cm-host'),
-      "function bewegeSchlaeger(x, taste) {\n  let neueX = x;\n  if (taste === 'ArrowLeft') neueX -= 20;\n  if (taste === 'ArrowRight') neueX += 20;\n  if (neueX < 0) neueX = 0;\n  if (neueX > 320) neueX = 320;\n  return neueX;\n}"
+      "function bewegeSchlaeger(x, taste) {\n  let neueX = x;\n  if (taste === 'ArrowLeft') neueX -= 20;\n  if (taste === 'ArrowRight') neueX += 20;\n  if (neueX < 0) neueX = 0;\n  if (neueX > 320) neueX = 320;\n  return neueX;\n}\nconsole.log(bewegeSchlaeger(200, 'ArrowRight'));"
     );
     await task1.locator('.btn-check').click();
     await expect(task1.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
