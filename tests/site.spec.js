@@ -152,6 +152,7 @@ test.describe('Interaktiver Kurs', () => {
   test('Variantwahl Kinder → Lektion wird geladen', async ({ page }) => {
     test.setTimeout(60000);
     await page.goto(INTERACTIVE_URL);
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.variant-card').first()).toBeVisible({ timeout: 15000 });
     await page.locator('.variant-card').first().click();
     await expect(page.locator('.lessons-list .lesson-item').first()).toBeVisible({ timeout: 20000 });
@@ -167,9 +168,30 @@ test.describe('Interaktiver Kurs', () => {
     await expect(page.locator('.placement-banner-link')).toHaveAttribute('href', '/kurs/python-einstufung');
   });
 
+  test('"Kurs starten" blendet Beschreibung/Banner aus und zeigt erst dann die Varianten-Wahl; "Kursbeschreibung" führt zurück', async ({ page }) => {
+    await page.goto(INTERACTIVE_URL);
+    await expect(page.locator('.placement-banner')).toBeVisible({ timeout: 15000 });
+    await expect(page.locator('.variant-card')).toHaveCount(0);
+
+    await page.locator('.btn-start-course').click();
+    await expect(page.locator('.variant-card')).toHaveCount(2, { timeout: 15000 });
+    await expect(page.locator('.placement-banner')).toHaveCount(0);
+    await expect(page).toHaveURL(/started=1/);
+
+    // Ein Reload muss die fokussierte Kurs-Ansicht behalten (started steht in der URL).
+    await page.reload();
+    await expect(page.locator('.variant-card')).toHaveCount(2, { timeout: 15000 });
+
+    await page.locator('.btn-back-to-overview').click();
+    await expect(page.locator('.placement-banner')).toBeVisible({ timeout: 15000 });
+    await expect(page.locator('.variant-card')).toHaveCount(0);
+    await expect(page).not.toHaveURL(/started=1/);
+  });
+
   test('Gestufter Hinweis: erster Fehlversuch verrät die Lösung nicht, ab dem zweiten schon', async ({ page }) => {
     test.setTimeout(60000);
     await page.goto(INTERACTIVE_URL);
+    await page.locator('.btn-start-course').click();
     await page.locator('.variant-card').first().click();
     await page.waitForSelector('.task-block', { timeout: 20000 });
     await startKernel(page);
@@ -191,6 +213,7 @@ test.describe('Interaktiver Kurs', () => {
   test('Flexible Lektion: 5 Aufgaben + Beispiel, 2 gelöste genügen zum Weitergehen', async ({ page }) => {
     test.setTimeout(60000);
     await page.goto(INTERACTIVE_URL);
+    await page.locator('.btn-start-course').click();
     await page.locator('.variant-card').first().click();
     await page.waitForSelector('.task-block', { timeout: 20000 });
     await startKernel(page);

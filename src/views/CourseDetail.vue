@@ -33,11 +33,7 @@
         {{ t('course.start.button') }}
       </button>
 
-      <div v-if="isInteractiveCourse" class="interactive-course-wrapper">
-        <InteractiveCourse :content-path="course.contentPath" />
-      </div>
-
-      <div v-else-if="isPlacementCourse" class="placement-course-wrapper">
+      <div v-if="isPlacementCourse" class="placement-course-wrapper">
         <PlacementCourse />
       </div>
 
@@ -53,6 +49,10 @@
       </button>
 
       <WeekTour v-if="isWeeklyCourse" />
+
+      <div v-else-if="isInteractiveCourse" class="interactive-course-wrapper">
+        <InteractiveCourse :content-path="course.contentPath" />
+      </div>
 
       <div v-else-if="isJsGrundkurs" class="grundkurs-tour-wrapper">
         <JsGrundkursTour />
@@ -128,7 +128,9 @@ export default {
     // nur mit der Wochenauswahl/Tour selbst - kein Umschalten mitten in einer Lektion. Ein
     // vorhandener ?week=-Deep-Link (z.B. aus dem Profil "Zertifikat ansehen") überspringt die
     // Start-Seite direkt, sonst müsste man dort erneut auf "Kurs starten" klicken.
-    const isFocusableCourse = computed(() => isWeeklyCourse.value || isJsGrundkurs.value || isKiLabor.value);
+    const isFocusableCourse = computed(() =>
+      isWeeklyCourse.value || isJsGrundkurs.value || isKiLabor.value || isInteractiveCourse.value
+    );
     const started = ref(!!route.query.week || route.query.started === '1');
 
     const startCourse = () => {
