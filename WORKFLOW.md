@@ -21,6 +21,26 @@ explizit einen Sub-Agenten verlangt.
 - Nächste Kurs-Themen (geplant): `kurs-js-spielewerkstatt` → `kurs-python-projekte` → `kurs-ki-labor` (siehe `todo.md`, Gesamt-Roadmap in `VISION.md`)
 - Erst mergen, wenn das Thema fertig/getestet ist — danach neues Thema → neuer Branch
 
+## Git-Worktrees für parallele/ungestörte Arbeit
+
+Statt im Haupt-Checkout zwischen Branches hin- und herzuschalten (stört eine parallel im Editor
+offene Session), einen eigenen Worktree anlegen:
+
+```bash
+npm run worktree:new -- <branch-name> [-- --from <basis-branch>]   # Default-Basis: main
+```
+
+Legt `../UE-Hacker-Website-worktrees/<branch-name>/` an, symlinkt `node_modules`/`api/node_modules`
+(kein zweites `npm install`), übernimmt `.env` und vergibt **eigene** Ports (Web-Dev, API,
+Playwright-Test-Webserver, Auth-Test-API) über `worktree.ports.json` — `vite.config.js`,
+`playwright.config.js` und `playwright.auth.config.js` lesen diese Datei automatisch
+(`scripts/worktree-ports.mjs`). Im Haupt-Checkout fehlt die Datei, dort gelten unverändert die
+Standardports (5173/5174/3001/3011). `npm run start:all`/`npm run test:checks` funktionieren im
+Worktree ohne weitere Anpassung.
+
+Nach dem Merge: `npm run worktree:remove -- <branch-name>` (entfernt nur den Worktree, den Branch
+danach wie gewohnt per `git branch -d` löschen).
+
 ## Tests für jede Verhaltensänderung
 
 **Jede Änderung an Logik/Verhalten (nicht reine Text-/Content-Korrekturen) braucht einen
