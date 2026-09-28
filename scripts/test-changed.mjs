@@ -66,6 +66,7 @@ const RULES = [
   ['src/components/CodeCell.vue', ['tests/python-woche1-lektionen.spec.js', 'tests/python-lektionen-format.spec.js', 'tests/woche12-abschlussprojekt.spec.js', 'tests/site.spec.js']],
   ['src/components/JupyterNotebook.vue', ['tests/storytelling-content.spec.js', 'tests/site.spec.js']],
   ['src/components/ProjectCourse.vue', ['tests/projekte.spec.js']],
+  ['src/components/InteractiveCourse.vue', ['tests/site.spec.js']],
   ['src/assets/styles/course-layout.css', ['tests/projekte.spec.js', 'tests/site.spec.js', 'tests/js-spielewerkstatt.spec.js']],
   ['src/components/ProjectCompletionBox.vue', ['tests/projekte.spec.js']],
   ['src/composables/useCourseCertificates.js', ['tests/zertifikate.spec.js']],
