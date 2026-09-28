@@ -218,6 +218,34 @@ test.describe('Interaktiver Kurs', () => {
     await realTasks.nth(1).locator('.btn-check').click();
     await expect(page.locator('.lesson-complete-box')).toBeVisible({ timeout: 10000 });
   });
+
+  test('Klick auf "Weiter" landet oben bei der neuen Lektion, nicht an der alten Scroll-Position', async ({ page }) => {
+    test.setTimeout(60000);
+    await page.goto(INTERACTIVE_URL);
+    await page.locator('.variant-card').first().click();
+    await page.waitForSelector('.task-block', { timeout: 20000 });
+    await startKernel(page);
+    await expect(page.locator('.btn-check').first()).toBeEnabled({ timeout: 40000 });
+
+    const realTasks = page.locator('.task-block:not(.task-example)');
+    await realTasks.nth(0).locator('.code-editor').fill('print("Hallo Welt")');
+    await realTasks.nth(0).locator('.btn-check').click();
+    await expect(realTasks.nth(0).locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+
+    await realTasks.nth(1).locator('.code-editor').fill('print("Ich lerne Python!")');
+    await realTasks.nth(1).locator('.btn-check').click();
+    await expect(page.locator('.btn-next')).toBeVisible({ timeout: 10000 });
+
+    const scrollBefore = await page.evaluate(() => window.scrollY);
+    const mainTop = await page.locator('.lesson-main').evaluate((el) => el.getBoundingClientRect().top + window.scrollY);
+    expect(scrollBefore).toBeGreaterThan(mainTop + 200);
+
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.lesson-item.active')).toHaveCount(1);
+    await expect
+      .poll(() => page.evaluate(() => window.scrollY), { timeout: 3000 })
+      .toBeLessThan(scrollBefore - 200);
+  });
 });
 
 test.describe('Cäsar-Chiffre-Projekt', () => {
