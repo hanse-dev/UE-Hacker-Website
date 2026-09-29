@@ -28,6 +28,7 @@ test.describe('Projekte-Übersicht', () => {
     await expect(page.locator('a[href="/kurs/projekt-js-fang-den-ball-test"]')).toHaveCount(0);
 
     await page.goto('/kurs/projekt-js-fang-den-ball-test');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
   });
 
