@@ -20,8 +20,9 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
 
   test('Kurs laedt mit der JS-Sandbox-Engine, nicht mit Pyodide', async ({ page }) => {
     await page.goto('/kurs/projekt-js-spielewerkstatt');
-    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(6, { timeout: 15000 });
     await expect(page.locator('.course-description')).toContainText('JavaScript');
+    await page.locator('.btn-start-course').click();
+    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(6, { timeout: 15000 });
 
     // Beweis, dass JsLessonView (nicht LessonView/Pyodide) gerendert wird: kein Kernel-Init-Button.
     await expect(page.locator('.btn-kernel')).toHaveCount(0);
@@ -36,6 +37,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
   test('Canvas-Aufgabe: echtes Zeichnen wird per Pixel-Check erkannt', async ({ page }) => {
     test.setTimeout(30000);
     await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
 
     // Task 0+1 sind bereits fertige Beispiele zum Ausführen - die eigentliche Schreibaufgabe (mit
@@ -72,6 +74,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
 
   test('Falsche Loesung (leeres Canvas) besteht die Canvas-Aufgabe nicht', async ({ page }) => {
     await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
 
     const task1 = page.locator('.task-block').nth(2);
@@ -85,6 +88,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
 
   test('Kill-Switch: "Neu starten" baut das iframe wirklich neu auf', async ({ page }) => {
     await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
 
     const task1 = page.locator('.task-block').nth(2);
@@ -118,6 +122,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
   test('Beispiel- und Pflicht-Aufgaben einer Lektion sind klar unterschieden und schalten zusammen die naechste Lektion frei', async ({ page }) => {
     test.setTimeout(30000);
     await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
 
     // Lektion 1 hat 3 Aufgaben: zwei Beispiele zuerst (nur Ausfuehren, kein Pruefen-Button) - erst
@@ -172,6 +177,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
       );
     });
     await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
     await page.locator('.lesson-item', { hasText: 'Der Schläger hört auf die Tastatur' }).click();
 
@@ -204,6 +210,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
       );
     });
     await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
     await page.locator('.lesson-item', { hasText: 'Der Schläger hört auf die Tastatur' }).click();
 
@@ -226,6 +233,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
   // Der Nachbar-Test unten deckt die Autovervollständigung (ctx-Methoden) weiterhin ab.
   test.skip('CodeMirror-Editor: Autovervollständigung schlägt Browser-Globals vor', async ({ page }) => {
     await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
 
     const task1 = page.locator('.task-block').nth(1);
@@ -249,6 +257,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
 
   test('CodeMirror-Editor: Autovervollständigung kennt ctx-Canvas-Methoden (fillRect, arc, ...)', async ({ page }) => {
     await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
 
     const task1 = page.locator('.task-block').nth(1);
@@ -270,6 +279,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
 
   test('CodeMirror-Editor: Hover über ctx-Methode zeigt Signatur-Tooltip', async ({ page }) => {
     await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
 
     const task1 = page.locator('.task-block').nth(1);
@@ -284,6 +294,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
 
   test('CodeMirror-Editor: Tab rückt ein, wenn keine Vervollständigung offen ist', async ({ page }) => {
     await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
 
     const task1 = page.locator('.task-block').nth(1);
@@ -309,6 +320,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
       );
     });
     await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
     await page.locator('.lesson-item', { hasText: 'Alles bewegt sich' }).click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
 
