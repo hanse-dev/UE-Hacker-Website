@@ -48,7 +48,7 @@
               {{ t('lesson.skipTask') }}
             </button>
           </div>
-          <JsSandboxFrame v-if="taskRan[idx]" :ref="(el) => setSandboxRef(idx, el)" :show-canvas="showCanvas" :dom-mode="domMode" />
+          <JsSandboxFrame v-if="taskRan[idx]" :ref="(el) => setSandboxRef(idx, el)" :show-canvas="taskShowsCanvas(idx)" :dom-mode="domMode" />
           <details v-if="task.solution" class="solution-reveal">
             <summary>{{ t('jsLesson.showSolution') }}</summary>
             <pre class="solution-code">{{ task.solution }}</pre>
@@ -133,6 +133,12 @@ export default {
     // eigene Validierung - jede Aufgabe hat weiterhin ein `validation`-Objekt.
     const isExample = (idx) => !!tasks.value[idx]?.example;
 
+    // Eine Aufgabe, die nichts zeichnet (reine Funktionslogik, z.B. eine isolierte Hilfsfunktion
+    // vor dem Einbau ins Spiel), braucht auch keinen sichtbaren Canvas-Bereich - der wirkt dort
+    // nur als leere graue Flaeche. `task.showCanvas: false` in lessons.json blendet ihn fuer genau
+    // diese eine Aufgabe aus, ohne das kurs-/lektionsweite showCanvas-Prop anzutasten.
+    const taskShowsCanvas = (idx) => tasks.value[idx]?.showCanvas ?? props.showCanvas;
+
     // Uebersprungene Aufgaben zaehlen fuer den Lektions-Abschluss wie erledigt (damit man nicht
     // blockiert bleibt), bleiben aber optisch als "uebersprungen" erkennbar statt als geloest -
     // gilt bewusst nur fuer normale Lektionsaufgaben, nicht fuer den Wochen-Check (CodeChallenge.vue).
@@ -195,7 +201,7 @@ export default {
     // relevant, wenn diese Lektion ueberhaupt ein sichtbares Canvas hat (showCanvas).
     const withCanvasNote = async (idx, rawOutput) => {
       const trimmed = (rawOutput || '').trim();
-      if (!props.showCanvas) return trimmed || t('jsLesson.noOutput');
+      if (!taskShowsCanvas(idx)) return trimmed || t('jsLesson.noOutput');
       const drew = await sandboxEls.value[idx].checkCanvasNotBlank();
       if (drew) return trimmed ? `${trimmed}\n\n${t('jsLesson.canvasNote')}` : t('jsLesson.canvasNote');
       return trimmed || t('jsLesson.noOutput');
@@ -324,6 +330,7 @@ export default {
       checking,
       tasks,
       isExample,
+      taskShowsCanvas,
       taskCodes,
       taskOutputs,
       taskFeedback,
