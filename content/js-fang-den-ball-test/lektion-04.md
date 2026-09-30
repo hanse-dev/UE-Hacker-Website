@@ -17,5 +17,6 @@ function istTreffer(ballX, ballY, schlaegerX) {
 
 Auch diese Funktion wird im Beispiel unten sofort im Spiel verwendet: Bei jedem Frame prüft die
 Schleife `istTreffer(...)` – trifft der Schläger, gibt es einen Punkt und der Ball startet wieder
-oben, sonst fällt er weiter. Der Punktestand wird mit `ctx.fillText(text, x, y)` direkt aufs
-Spielfeld geschrieben, du siehst ihn also live oben links mitzählen.
+oben, sonst fällt er weiter. Eine weitere kleine Funktion, `zeigePunktestand(ctx, punkte)`, schreibt
+den Punktestand mit `ctx.fillText(text, x, y)` direkt aufs Spielfeld, du siehst ihn also live oben
+links mitzählen.

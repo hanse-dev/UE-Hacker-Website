@@ -17,22 +17,41 @@ const ctx = canvas.getContext('2d');
 ```
 
 `ctx` ist dein Zeichenstift. Rechtecke zeichnest du mit `fillRect(x, y, breite, hoehe)` –
-`(0, 0)` ist oben links, x wächst nach rechts, y wächst nach unten:
+`(0, 0)` ist oben links, x wächst nach rechts, y wächst nach unten. Kreise zeichnest du mit
+`arc(x, y, radius, start, ende)` – für einen ganzen Kreis nimmst du `0` bis `Math.PI * 2`.
+
+Damit du das Zeichnen des Schlägers und des Balls später wiederverwenden kannst (du brauchst es
+in jeder weiteren Lektion wieder), verpackst du es gleich in zwei **Funktionen**. Eine Funktion
+ist ein Stück Code mit einem Namen, das Werte als **Parameter** entgegennimmt:
 
 ```js
-ctx.fillStyle = 'dodgerblue';
-ctx.fillRect(160, 270, 80, 12);   // der Schläger: unten im Spielfeld
+function zeichneSchlaeger(ctx, x) {
+  ctx.fillStyle = 'dodgerblue';
+  ctx.fillRect(x, 270, 80, 12);
+}
+
+function zeichneBall(ctx, x, y) {
+  ctx.fillStyle = 'orange';
+  ctx.beginPath();
+  ctx.arc(x, y, 10, 0, Math.PI * 2);
+  ctx.fill();
+}
 ```
 
-Kreise zeichnest du mit `arc(x, y, radius, start, ende)` – für einen ganzen Kreis nimmst du
-`0` bis `Math.PI * 2`:
+Definiert ist damit noch nichts gezeichnet – erst der **Aufruf** mit konkreten Werten zeichnet
+wirklich:
 
 ```js
-ctx.fillStyle = 'orange';
-ctx.beginPath();
-ctx.arc(200, 20, 10, 0, Math.PI * 2);
-ctx.fill();   // der Ball: ein Kreis oben im Spielfeld
+zeichneSchlaeger(ctx, 160);   // Schläger bei x = 160
+zeichneBall(ctx, 200, 20);    // Ball bei x = 200, y = 20
 ```
+
+Der Vorteil: in den nächsten Lektionen rufst du `zeichneSchlaeger(...)` und `zeichneBall(...)`
+einfach mit neuen Werten auf, statt den Zeichen-Code jedes Mal neu zu schreiben.
+
+> 💡 Falls dir Funktionen/Parameter noch nicht so vertraut sind: [Woche 4 des
+> JS-Grundkurses](/kurs/js-grundkurs?week=4) erklärt sie ausführlich von Grund auf – dieser
+> Test-Kurs setzt sie als bekannt voraus und nutzt sie direkt am echten Spiel.
 
 > 💡 Jeder Klick auf „Ausführen" oder „Prüfen" startet deinen Code in einem frischen, leeren
 > Spielfeld – frühere Zeichnungen sind dann weg. Das ist Absicht: so fängt jede Aufgabe sauber

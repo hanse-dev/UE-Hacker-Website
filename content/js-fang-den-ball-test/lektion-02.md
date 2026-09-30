@@ -13,6 +13,6 @@ function frame() {
 frame();   // einmal anstoßen, danach läuft es von allein
 ```
 
-In jedem Frame zeichnest du Schläger und Ball genau wie in Lektion 1 – nur dass sich `ballY`
-zwischendrin verändert, bevor der nächste Frame gezeichnet wird. Schau dir das komplette Beispiel
-unten an: Schläger steht fest, Ball fällt.
+In jedem Frame rufst du `zeichneSchlaeger(ctx, schlaegerX)` und `zeichneBall(ctx, 200, ballY)` aus
+Lektion 1 auf – nur dass sich `ballY` zwischendrin verändert, bevor der nächste Frame gezeichnet
+wird. Schau dir das komplette Beispiel unten an: Schläger steht fest, Ball fällt.
