@@ -9,7 +9,7 @@
       <p class="editor-hint">{{ t('jsLesson.editorHint') }}</p>
       <p class="editor-hint editor-hint-ran">{{ t('jsLesson.ranExplainer') }}</p>
 
-      <template v-for="(task, idx) in tasks" :key="idx">
+      <template v-for="(task, idx) in tasks" :key="lesson.id + '-' + idx">
         <div class="task-block" :class="isExample(idx) ? 'task-example' : 'task-required'">
           <span class="task-badge" :class="isExample(idx) ? 'badge-example' : 'badge-required'">
             {{ isExample(idx) ? t('jsLesson.badgeExample') : t('jsLesson.badgeRequired') }}
