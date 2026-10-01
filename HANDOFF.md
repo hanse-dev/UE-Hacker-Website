@@ -1,11 +1,9 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-10-01
-> **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.89 (Zertifikate/PDF,
+> **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.90 (Zertifikate/PDF,
 > Skip-Aufgaben, Login-Fortschritt, Pre-commit/Pre-push, Admin-Termine, Interaktiv-Kurs-Überarbeitung,
-> Projekt-Kurs-Start-Gate, Worktree-Tooling, Dev-Skip-Flag).
-> Branch `js-spielewerkstatt-neues-konzept` (3.90, noch nicht gemergt): JS-Spielewerkstatt hat den
-> Inhalt des bisherigen Test-Kurses "Fang den Ball" übernommen.
+> Projekt-Kurs-Start-Gate, Worktree-Tooling, Dev-Skip-Flag, JS-Spielewerkstatt mit neuem Konzept).
 > Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4) — nach dem nächsten Deploy
 > den einmaligen Termine-Import laufen lassen (Abschnitt 5).
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
