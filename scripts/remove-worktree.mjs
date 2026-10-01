@@ -6,6 +6,7 @@
 // Nutzung: node scripts/remove-worktree.mjs <branch-name>
 
 import { execFileSync } from 'child_process';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -20,6 +21,14 @@ if (!branch) {
 
 const repoName = path.basename(repoRoot);
 const worktreePath = path.join(repoRoot, '..', `${repoName}-worktrees`, branch);
+
+// Die von new-worktree.mjs angelegten node_modules-Symlinks gelten fuer git als "untracked"
+// (das .gitignore-Muster `node_modules/` trifft nur Ordner, keine Symlinks) - ohne sie vorher zu
+// loesen, verweigert `git worktree remove` immer. Nur der Link wird entfernt, nie das Ziel.
+for (const rel of ['node_modules', path.join('api', 'node_modules')]) {
+  const link = path.join(worktreePath, rel);
+  if (fs.lstatSync(link, { throwIfNoEntry: false })?.isSymbolicLink()) fs.unlinkSync(link);
+}
 
 execFileSync('git', ['worktree', 'remove', worktreePath], { cwd: repoRoot, stdio: 'inherit' });
 console.log(`✅ Worktree entfernt: ${worktreePath}`);
