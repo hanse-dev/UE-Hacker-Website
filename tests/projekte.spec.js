@@ -22,16 +22,6 @@ test.describe('Projekte-Übersicht', () => {
     await expect(page.locator('a[href="/kurs/projekt-text-adventure"]')).toBeVisible();
   });
 
-  test('kurse.json-Eintraege mit hidden:true tauchen nicht in der Uebersicht auf, sind aber per Direktlink erreichbar', async ({ page }) => {
-    await page.goto('/projekte');
-    await expect(page.locator('.projekt-card')).toHaveCount(7, { timeout: 15000 });
-    await expect(page.locator('a[href="/kurs/projekt-js-fang-den-ball-test"]')).toHaveCount(0);
-
-    await page.goto('/kurs/projekt-js-fang-den-ball-test');
-    await page.locator('.btn-start-course').click();
-    await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
-  });
-
   test('Projekt-Karte ist ganzflächig klickbar, nicht nur der "Jetzt starten"-Link', async ({ page }) => {
     await page.goto('/projekte');
     await expect(page.locator('.projekt-card')).toHaveCount(7, { timeout: 15000 });

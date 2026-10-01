@@ -100,23 +100,9 @@
     "tags": ["spiele", "logikraetsel"],
     "title": "Projekt: JS-Spielewerkstatt – Fang den Ball",
     "title_en": "Project: JS Game Workshop – Catch the Ball",
-    "description": "Baue dein erstes eigenes Browserspiel: ein Spielfeld zeichnen, einen Schläger mit der Tastatur steuern, einen fallenden Ball animieren, Treffer erkennen und Punkte zählen. Läuft direkt im Browser – kein Python, sondern JavaScript, die Sprache des Webs.",
-    "description_en": "Build your first own browser game: draw a play field, steer a paddle with the keyboard, animate a falling ball, detect hits and count points. Runs right in the browser – no Python, but JavaScript, the language of the web.",
+    "description": "Baue dein erstes eigenes Browserspiel: ein Spielfeld zeichnen, einen Schläger mit der Tastatur steuern, einen fallenden Ball animieren, Treffer erkennen, Punkte und Leben zählen – und am Ende Hindernisse und Bonus-Items einbauen. Jede Aufgabe baut sichtbar am echten Spiel weiter. Läuft direkt im Browser – kein Python, sondern JavaScript, die Sprache des Webs.",
+    "description_en": "Build your first own browser game: draw a play field, steer a paddle with the keyboard, animate a falling ball, detect hits, count points and lives – and finally add obstacles and bonus items. Every task visibly builds on the real game. Runs right in the browser – no Python, but JavaScript, the language of the web.",
     "contentPath": "js-spielewerkstatt"
-  },
-  {
-    "id": "projekt-js-fang-den-ball-test",
-    "type": "projekt",
-    "hidden": true,
-    "engine": "js-sandbox",
-    "language": "javascript",
-    "level": "einsteiger",
-    "tags": ["spiele", "logikraetsel"],
-    "title": "Test: Fang den Ball (neues Konzept)",
-    "title_en": "Test: Catch the Ball (new concept)",
-    "description": "Experimenteller Vergleichs-Kurs zur JS-Spielewerkstatt: jede Aufgabe baut direkt sichtbar am echten Spiel weiter (Schläger + Ball von Anfang an, Funktionen werden sofort im laufenden Spiel benutzt), statt einzelne Funktionen isoliert zu testen. Nicht für den Live-Betrieb gedacht, nur zum Vergleich.",
-    "description_en": "Experimental comparison course to the JS game workshop: every task builds directly and visibly on the real game (paddle + ball from the start, functions are used immediately in the running game) instead of testing isolated functions. Not meant for production, comparison only.",
-    "contentPath": "js-fang-den-ball-test"
   },
   {
     "id": "projekt-js-snake",
