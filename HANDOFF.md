@@ -149,7 +149,8 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 - `test:checks` (~2 Min, 381 Tests) läuft nicht mehr bei jedem Commit, sondern nur vor dem Push;
   Pre-commit nutzt `scripts/test-changed.mjs` (mappt geänderte Dateien → Specs). Neue Komponenten/
   Composables/Content-Ordner brauchen dort eine eigene Regel in `RULES`, sonst greift nur das
-  Sicherheitsnetz (voller Lauf) statt des schnellen Pfads (3.83).
+  Sicherheitsnetz (voller Lauf) statt des schnellen Pfads (3.83). Regel mit leerer Liste = Datei
+  wird von `test:checks` gar nicht abgedeckt (API, lokales Tooling) → beim Commit kein Lauf.
 - `lesson.minSolved` (flexible Lektion, Rest von Anfang an überspringbar) heißt: Aufgaben dürfen
   sich nicht auf Variablen aus einer vorherigen Aufgabe verlassen — eine übersprungene Aufgabe hat
   ihren Code nie ausgeführt (3.85).

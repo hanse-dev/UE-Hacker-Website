@@ -105,6 +105,20 @@ const RULES = [
   ['content/text-adventure-fluchtraum', ['tests/projekte.spec.js']],
   ['public/kurse.json', ['tests/projekte.spec.js', 'tests/site.spec.js']],
   ['public/rewards-manifest', ['tests/site.spec.js']],
+  ['content/python-grundlagen-interaktiv', ['tests/site.spec.js']],
+  ['content/python-einstufung', ['tests/site.spec.js', 'tests/week-checks.spec.js']],
+  ['content/ferienkurse', ['tests/site.spec.js']],
+  ['public/teaser.html', ['tests/site.spec.js']],
+  ['src/views/Teaser.vue', ['tests/site.spec.js']],
+  // Leere Liste = bewusst kein Spec aus test:checks: diese Dateien deckt die Suite gar nicht ab
+  // (API hat eigene Tests: `npm --prefix api test` / `npm run test:auth`; der Rest ist lokales
+  // Tooling). Ohne Regel würde hier bei jedem Commit sinnlos die volle Suite laufen. Muss nach den
+  // spezifischeren api/-Regeln oben stehen (erste passende Regel gewinnt).
+  ['api/', []],
+  ['scripts/local-tools/', []],
+  ['scripts/new-worktree.mjs', []],
+  ['scripts/remove-worktree.mjs', []],
+  ['scripts/test-changed.mjs', []],
 ];
 
 function run(cmd, args) {
