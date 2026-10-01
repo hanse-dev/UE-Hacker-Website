@@ -76,8 +76,9 @@ test.describe('Projekte-Übersicht', () => {
   test('Morsecode-Projekt lädt und Lektion 1 lösen schaltet Lektion 2 frei', async ({ page }) => {
     test.setTimeout(60000);
     await page.goto('/kurs/projekt-morsecode');
-    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(5, { timeout: 15000 });
     await expect(page.locator('.course-description')).toContainText('Morsecode');
+    await page.locator('.btn-start-course').click();
+    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(5, { timeout: 15000 });
 
     await startKernel(page);
     await expect(page.locator('.btn-check').first()).toBeEnabled({ timeout: 40000 });
@@ -103,8 +104,9 @@ test.describe('Projekte-Übersicht', () => {
   test('Vigenère-Chiffre-Projekt lädt und Lektion 1 lösen schaltet Lektion 2 frei', async ({ page }) => {
     test.setTimeout(60000);
     await page.goto('/kurs/projekt-vigenere-chiffre');
-    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(5, { timeout: 15000 });
     await expect(page.locator('.course-description')).toContainText('Vigenère');
+    await page.locator('.btn-start-course').click();
+    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(5, { timeout: 15000 });
 
     await startKernel(page);
     await expect(page.locator('.btn-check').first()).toBeEnabled({ timeout: 40000 });
@@ -126,8 +128,9 @@ test.describe('Projekte-Übersicht', () => {
   test('Snake-Projekt lädt mit der JS-Sandbox-Engine und Lektion 1 lösen schaltet Lektion 2 frei', async ({ page }) => {
     test.setTimeout(30000);
     await page.goto('/kurs/projekt-js-snake');
-    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(6, { timeout: 15000 });
     await expect(page.locator('.course-description')).toContainText('Schlange');
+    await page.locator('.btn-start-course').click();
+    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(6, { timeout: 15000 });
     await expect(page.locator('.btn-kernel')).toHaveCount(0);
 
     // Lektion 1: zwei Beispiele (nur Ausführen), dann die eigene Zeichenaufgabe (Prüfen).
@@ -154,8 +157,9 @@ test.describe('Projekte-Übersicht', () => {
   test('Text-Adventure-Projekt lädt und Lektion 1 lösen schaltet Lektion 2 frei', async ({ page }) => {
     test.setTimeout(60000);
     await page.goto('/kurs/projekt-text-adventure');
-    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(6, { timeout: 15000 });
     await expect(page.locator('.course-description')).toContainText('Fluchtraum');
+    await page.locator('.btn-start-course').click();
+    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(6, { timeout: 15000 });
 
     await startKernel(page);
     await expect(page.locator('.btn-check').first()).toBeEnabled({ timeout: 40000 });

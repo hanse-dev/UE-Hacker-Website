@@ -8,8 +8,8 @@ export default {
   'footer.copyright': '© 2026 Übergangshacker. Alle Rechte vorbehalten.',
 
   // ── Admin ───────────────────────────────────────────────────────────────
-  'admin.title': 'Admin – Nutzer',
-  'admin.intro': 'Accounts anlegen und verwalten. Login nur mit dem Admin-Passwort aus der .env.',
+  'admin.title': 'Admin',
+  'admin.intro': 'Accounts und Termine verwalten. Login nur mit dem Admin-Passwort aus der .env.',
   'admin.password': 'Passwort',
   'admin.adminPassword': 'Admin-Passwort',
   'admin.passwordOptional': 'Neues Passwort (optional)',
@@ -32,6 +32,25 @@ export default {
   'admin.col.updated': 'Aktualisiert',
   'admin.age.kinder': 'Kind (8–12)',
   'admin.age.jugendliche': 'Jugendlich (13–17)',
+  'admin.tab.users': 'Nutzer',
+  'admin.tab.termine': 'Termine',
+  'admin.termine.create': 'Neuer Termin',
+  'admin.termine.createTitle': 'Termin anlegen',
+  'admin.termine.editTitle': 'Termin bearbeiten',
+  'admin.termine.loading': 'Lade Termine…',
+  'admin.termine.empty': 'Noch keine Termine angelegt.',
+  'admin.termine.confirmDelete': 'Termin „{topic}“ wirklich löschen?',
+  'admin.termine.col.date': 'Datum',
+  'admin.termine.col.topic': 'Thema',
+  'admin.termine.col.location': 'Ort',
+  'admin.termine.col.status': 'Status',
+  'admin.termine.datePlaceholder': 'z.B. Dienstag, 14.10.25 oder Jeden Mittwoch',
+  'admin.termine.time': 'Uhrzeit',
+  'admin.termine.link': 'Link (z.B. /kurs/python-12-wochen-grundkurs)',
+  'admin.termine.cancelled': 'Abgesagt',
+  'admin.termine.recurring': 'Wiederkehrend',
+  'admin.termine.validFrom': 'Gültig ab',
+  'admin.termine.validUntil': 'Gültig bis (optional)',
 
   // ── Auth (Lernende) ─────────────────────────────────────────────────────
   'auth.login': 'Anmelden',
@@ -257,7 +276,10 @@ export default {
 
   // ── Lesson view (interactive lessons / Cäsar-Chiffre) ────────────────────
   'lesson.loading':           'Lektion wird geladen...',
-  'lesson.editorHint':        'Python wird beim Öffnen automatisch geladen (~30 Sek.). Schreibe deinen Code und klicke auf „Prüfen", sobald „Python bereit" angezeigt wird.',
+  'lesson.editorHint':        'Python wird beim Öffnen automatisch geladen (~30 Sek.). Schreibe deinen Code in das Feld unten. Mit „Ausführen" siehst du nur die Ausgabe, mit „Prüfen" wird zusätzlich kontrolliert, ob die Aufgabe gelöst ist – klicke „Prüfen", sobald „Python bereit" angezeigt wird.',
+  'lesson.blankHint':         'Wo in der Vorlage ___ (drei Unterstriche) steht, fehlt noch etwas: Ersetze genau das ___ durch deinen eigenen Code (z.B. einen Text, eine Zahl oder einen Variablennamen) – den Rest der Zeile lässt du stehen.',
+  'lesson.flexibleHint':      'Diese Lektion hat {total} Aufgaben, aber du musst nur mindestens {min} davon lösen, um weiterzugehen – den Rest kannst du jederzeit mit „Überspringen" auslassen.',
+  'lesson.flexibleProgress':  'Bisher gelöst: {solved} von mindestens {min} nötigen Aufgaben.',
   'lesson.yourCode':          'Dein Code',
   'lesson.taskPrefix':        'Aufgabe ',
   'lesson.taskDone':          '(erledigt)',

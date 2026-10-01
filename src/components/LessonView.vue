@@ -7,6 +7,11 @@
 
     <div class="lesson-editor-section">
       <p class="editor-hint">{{ t('lesson.editorHint') }}</p>
+      <p v-if="hasBlankPlaceholder" class="editor-hint editor-hint-blank">{{ t('lesson.blankHint') }}</p>
+      <p v-if="flexibleLesson" class="editor-hint editor-hint-blank">
+        {{ t('lesson.flexibleHint').replace('{min}', minSolved).replace('{total}', requiredTasksCount) }}
+        {{ !allTasksComplete ? t('lesson.flexibleProgress').replace('{solved}', solvedRequiredCount).replace('{min}', minSolved) : '' }}
+      </p>
       <p class="editor-hint editor-hint-ran">{{ t('jsLesson.ranExplainer') }}</p>
       <div class="editor-header">
         <span class="editor-label">{{ t('lesson.yourCode') }}</span>
@@ -59,7 +64,7 @@
               {{ checking ? t('editor.checking') : t('editor.check') }}
             </button>
             <button
-              v-if="!task.example && !isTaskDone(idx) && (taskAttempts[idx] || 0) >= 2"
+              v-if="!task.example && !isTaskDone(idx) && (flexibleLesson || (taskAttempts[idx] || 0) >= 2)"
               @click="skipTask(idx)"
               :disabled="checking"
               class="btn-skip"
@@ -192,12 +197,34 @@ export default {
     const doneCount = computed(() => new Set([...completedTasks.value, ...skippedTasks.value]).size);
     const isTaskDone = (idx) => completedTasks.value.has(idx) || skippedTasks.value.has(idx);
 
+    // `lesson.minSolved` macht eine Lektion "flexibel": mehr Aufgaben als noetig (z.B. 5 statt 2),
+    // von denen nur ein Teil wirklich GELOEST (nicht nur uebersprungen) werden muss, um
+    // weiterzugehen - der Rest ist von Anfang an frei ueberspringbar, ohne erst 2x zu scheitern.
+    // Ohne `minSolved` bleibt das bisherige Verhalten (alle Aufgaben noetig, Skip erst nach 2
+    // Fehlversuchen) fuer 12-Wochen-Kurs/Projekt-Kurse unveraendert.
+    const flexibleLesson = computed(() => props.lesson?.minSolved != null);
+    const minSolved = computed(() => props.lesson?.minSolved ?? tasks.value.length);
+
+    // Beispiel-Aufgaben (`example: true`) gelten schon durch blosses Ausfuehren als erledigt
+    // (kein Pruefen noetig) - sie zaehlen daher nicht zu den "mindestens N geloest", sonst
+    // koennte man die Anforderung durch reines Ausfuehren des Beispiels umgehen.
+    const solvedRequiredCount = computed(() =>
+      [...completedTasks.value].filter((idx) => !tasks.value[idx]?.example).length
+    );
+    const requiredTasksCount = computed(() => tasks.value.filter((x) => !x.example).length);
+
     const allTasksComplete = computed(() => {
-      const t = tasks.value;
-      return t.length > 0 && doneCount.value === t.length;
+      const total = tasks.value.length;
+      if (total === 0) return false;
+      if (flexibleLesson.value) return solvedRequiredCount.value >= minSolved.value;
+      return doneCount.value === total;
     });
 
     const lessonSummary = computed(() => props.lesson?.lessonSummary || t('lesson.defaultSummary'));
+
+    // Nur der Interaktiv-Kurs nutzt "___"-Luecken in codeTemplate (12-Wochen-Kurs/Projekt-Kurse
+    // geben vollstaendige Vorlagen mit Kommentaren) - Hinweis daher nur zeigen, wenn er zutrifft.
+    const hasBlankPlaceholder = computed(() => tasks.value.some((x) => (x.codeTemplate || '').includes('___')));
 
     const taskCodes = ref([]);
     const taskOutputs = ref([]);
@@ -232,7 +259,7 @@ export default {
       if (isTaskDone(idx)) return;
       skippedTasks.value = new Set([...skippedTasks.value, idx]);
       taskFeedback.value[idx] = null;
-      if (doneCount.value === tasks.value.length) markCompleted(props.lesson.id);
+      if (allTasksComplete.value) markCompleted(props.lesson.id);
     };
 
     // Stellt nur den vorgegebenen codeTemplate der einen Aufgabe wieder her - Fortschritt/Status
@@ -300,7 +327,7 @@ export default {
     const markExampleDone = (idx) => {
       if (completedTasks.value.has(idx)) return;
       completedTasks.value = new Set([...completedTasks.value, idx]);
-      if (doneCount.value === tasks.value.length) markCompleted(props.lesson.id);
+      if (allTasksComplete.value) markCompleted(props.lesson.id);
     };
 
     const checkTask = async (idx) => {
@@ -342,16 +369,16 @@ export default {
           next.delete(idx);
           skippedTasks.value = next;
         }
-        const total = tasks.value.length;
-        const done = doneCount.value;
-        if (done === total) {
+        if (allTasksComplete.value) {
           markCompleted(props.lesson.id);
           taskFeedback.value[idx] = {
             success: true,
             message: t('lesson.allTasksDone'),
           };
         } else {
-          const remaining = total - done;
+          const remaining = flexibleLesson.value
+            ? Math.max(0, minSolved.value - solvedRequiredCount.value)
+            : tasks.value.length - doneCount.value;
           taskFeedback.value[idx] = {
             success: true,
             message: t('lesson.taskDoneRemaining').replace('{n}', idx + 1).replace('{r}', remaining),
@@ -403,6 +430,11 @@ export default {
       goToNext,
       allTasksComplete,
       lessonSummary,
+      hasBlankPlaceholder,
+      flexibleLesson,
+      minSolved,
+      solvedRequiredCount,
+      requiredTasksCount,
       completedTasks,
       skippedTasks,
       skipTask,
@@ -795,6 +827,11 @@ a.btn-next {
 
 .editor-hint-ran {
   margin-top: -6px;
+}
+
+.editor-hint-blank {
+  font-weight: 600;
+  color: var(--primary-purple, #4a2274);
 }
 
 .solution-box {

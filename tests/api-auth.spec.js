@@ -116,4 +116,74 @@ test.describe('API: Admin + Auth + Progress', () => {
     const progress = await request.get(`${API}/api/progress`);
     expect(progress.status()).toBe(401);
   });
+
+  test('Termine: Admin-CRUD + öffentliche Liste ohne Login', async ({ request }) => {
+    const token = await adminToken(request);
+    const topic = `Testthema ${Date.now()}`;
+
+    const noAuth = await request.get(`${API}/api/admin/termine`);
+    expect(noAuth.status()).toBe(401);
+
+    const created = await request.post(`${API}/api/admin/termine`, {
+      headers: { Authorization: `Bearer ${token}` },
+      data: {
+        date: 'Dienstag, 14.10.26',
+        time: '17:30 - 18:30 Uhr',
+        location: 'Übergangshaus, Königstraße 54, 23564 Lübeck',
+        topic,
+        link: '/kurs/python-12-wochen-grundkurs#woche-6',
+      },
+    });
+    expect(created.status()).toBe(201);
+    const { termin } = await created.json();
+    expect(termin.topic).toBe(topic);
+    expect(termin.cancelled).toBe(false);
+
+    // Ein Termin ohne Login sichtbar (öffentliche Liste, wie zuvor die statische termine.json)
+    const publicList = await request.get(`${API}/api/termine`);
+    expect(publicList.ok()).toBeTruthy();
+    const publicTermine = await publicList.json();
+    expect(publicTermine.some((t) => t.id === termin.id)).toBeTruthy();
+
+    const patched = await request.patch(`${API}/api/admin/termine/${termin.id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+      data: { cancelled: true },
+    });
+    expect(patched.ok()).toBeTruthy();
+    expect((await patched.json()).termin.cancelled).toBe(true);
+
+    const deleted = await request.delete(`${API}/api/admin/termine/${termin.id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    expect(deleted.status()).toBe(204);
+
+    const publicAfterDelete = await request.get(`${API}/api/termine`);
+    const afterDelete = await publicAfterDelete.json();
+    expect(afterDelete.some((t) => t.id === termin.id)).toBeFalsy();
+  });
+
+  test('Termine: Validierung lehnt fehlende Pflichtfelder und ungültige Links ab', async ({ request }) => {
+    const token = await adminToken(request);
+
+    const missingTopic = await request.post(`${API}/api/admin/termine`, {
+      headers: { Authorization: `Bearer ${token}` },
+      data: { date: 'Montag, 01.01.27', time: '10:00 Uhr', location: 'Online', topic: '', link: '/kurs/x' },
+    });
+    expect(missingTopic.status()).toBe(400);
+
+    const badLink = await request.post(`${API}/api/admin/termine`, {
+      headers: { Authorization: `Bearer ${token}` },
+      data: { date: 'Montag, 01.01.27', time: '10:00 Uhr', location: 'Online', topic: 'Test', link: 'kurs/x' },
+    });
+    expect(badLink.status()).toBe(400);
+
+    const recurringWithoutValidFrom = await request.post(`${API}/api/admin/termine`, {
+      headers: { Authorization: `Bearer ${token}` },
+      data: {
+        date: 'Jeden Montag', time: '10:00 Uhr', location: 'Online', topic: 'Test',
+        link: '/kurs/x', recurring: true,
+      },
+    });
+    expect(recurringWithoutValidFrom.status()).toBe(400);
+  });
 });

@@ -28,36 +28,91 @@
     </form>
 
     <template v-else>
-      <div class="admin-toolbar">
-        <button type="button" class="btn-secondary" @click="logout">{{ t('admin.logout') }}</button>
-        <button type="button" class="btn-primary" @click="openCreate">{{ t('admin.create') }}</button>
+      <div class="admin-tabs">
+        <button
+          type="button"
+          class="admin-tab"
+          :class="{ active: activeTab === 'users' }"
+          @click="activeTab = 'users'"
+        >{{ t('admin.tab.users') }}</button>
+        <button
+          type="button"
+          class="admin-tab"
+          :class="{ active: activeTab === 'termine' }"
+          @click="activeTab = 'termine'"
+        >{{ t('admin.tab.termine') }}</button>
       </div>
 
-      <p v-if="error" class="error">{{ error }}</p>
-      <p v-if="busy && !users.length" class="muted">{{ t('admin.loading') }}</p>
+      <section v-if="activeTab === 'users'">
+        <div class="admin-toolbar">
+          <button type="button" class="btn-secondary" @click="logout">{{ t('admin.logout') }}</button>
+          <button type="button" class="btn-primary" @click="openCreate">{{ t('admin.create') }}</button>
+        </div>
 
-      <table v-if="users.length" class="admin-table">
-        <thead>
-          <tr>
-            <th>{{ t('admin.col.username') }}</th>
-            <th>{{ t('admin.col.age') }}</th>
-            <th>{{ t('admin.col.updated') }}</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="u in users" :key="u.id">
-            <td>{{ u.username }}</td>
-            <td>{{ ageLabel(u.ageGroup) }}</td>
-            <td>{{ formatDate(u.updatedAt) }}</td>
-            <td class="actions">
-              <button type="button" class="btn-link" @click="openEdit(u)">{{ t('admin.edit') }}</button>
-              <button type="button" class="btn-link danger" @click="remove(u)">{{ t('admin.delete') }}</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <p v-else-if="!busy" class="muted">{{ t('admin.empty') }}</p>
+        <p v-if="error" class="error">{{ error }}</p>
+        <p v-if="busy && !users.length" class="muted">{{ t('admin.loading') }}</p>
+
+        <table v-if="users.length" class="admin-table">
+          <thead>
+            <tr>
+              <th>{{ t('admin.col.username') }}</th>
+              <th>{{ t('admin.col.age') }}</th>
+              <th>{{ t('admin.col.updated') }}</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="u in users" :key="u.id">
+              <td>{{ u.username }}</td>
+              <td>{{ ageLabel(u.ageGroup) }}</td>
+              <td>{{ formatDate(u.updatedAt) }}</td>
+              <td class="actions">
+                <button type="button" class="btn-link" @click="openEdit(u)">{{ t('admin.edit') }}</button>
+                <button type="button" class="btn-link danger" @click="remove(u)">{{ t('admin.delete') }}</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p v-else-if="!busy" class="muted">{{ t('admin.empty') }}</p>
+      </section>
+
+      <section v-else class="admin-termine">
+        <div class="admin-toolbar">
+          <button type="button" class="btn-secondary" @click="logout">{{ t('admin.logout') }}</button>
+          <button type="button" class="btn-primary" @click="openCreateTermin">{{ t('admin.termine.create') }}</button>
+        </div>
+
+        <p v-if="terminError" class="error">{{ terminError }}</p>
+        <p v-if="terminBusy && !termine.length" class="muted">{{ t('admin.termine.loading') }}</p>
+
+        <table v-if="termine.length" class="admin-table">
+          <thead>
+            <tr>
+              <th>{{ t('admin.termine.col.date') }}</th>
+              <th>{{ t('admin.termine.col.topic') }}</th>
+              <th>{{ t('admin.termine.col.location') }}</th>
+              <th>{{ t('admin.termine.col.status') }}</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="terminItem in termine" :key="terminItem.id">
+              <td>{{ terminItem.date }}<br><small>{{ terminItem.time }}</small></td>
+              <td>{{ terminItem.topic }}</td>
+              <td>{{ terminItem.location }}</td>
+              <td>
+                <span v-if="terminItem.cancelled" class="badge badge-cancelled">{{ t('admin.termine.cancelled') }}</span>
+                <span v-if="terminItem.recurring" class="badge badge-recurring">{{ t('admin.termine.recurring') }}</span>
+              </td>
+              <td class="actions">
+                <button type="button" class="btn-link" @click="openEditTermin(terminItem)">{{ t('admin.edit') }}</button>
+                <button type="button" class="btn-link danger" @click="removeTermin(terminItem)">{{ t('admin.delete') }}</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p v-else-if="!terminBusy" class="muted">{{ t('admin.termine.empty') }}</p>
+      </section>
 
       <div v-if="formOpen" class="modal-backdrop" @click.self="closeForm">
         <div class="modal-card" role="dialog" aria-modal="true">
@@ -86,6 +141,57 @@
           </div>
         </div>
       </div>
+
+      <div v-if="terminFormOpen" class="modal-backdrop" @click.self="closeTerminForm">
+        <div class="modal-card" role="dialog" aria-modal="true">
+          <h2>{{ editingTermin ? t('admin.termine.editTitle') : t('admin.termine.createTitle') }}</h2>
+          <label class="field">
+            <span>{{ t('admin.termine.col.date') }}</span>
+            <input v-model="terminForm.date" autocomplete="off" :placeholder="t('admin.termine.datePlaceholder')">
+          </label>
+          <label class="field">
+            <span>{{ t('admin.termine.time') }}</span>
+            <input v-model="terminForm.time" autocomplete="off" placeholder="17:30 - 18:30 Uhr">
+          </label>
+          <label class="field">
+            <span>{{ t('admin.termine.col.location') }}</span>
+            <input v-model="terminForm.location" autocomplete="off">
+          </label>
+          <label class="field">
+            <span>{{ t('admin.termine.col.topic') }}</span>
+            <input v-model="terminForm.topic" autocomplete="off">
+          </label>
+          <label class="field">
+            <span>{{ t('admin.termine.link') }}</span>
+            <input v-model="terminForm.link" autocomplete="off" placeholder="/kurs/python-12-wochen-grundkurs">
+          </label>
+          <label class="field field-checkbox">
+            <input v-model="terminForm.cancelled" type="checkbox">
+            <span>{{ t('admin.termine.cancelled') }}</span>
+          </label>
+          <label class="field field-checkbox">
+            <input v-model="terminForm.recurring" type="checkbox">
+            <span>{{ t('admin.termine.recurring') }}</span>
+          </label>
+          <template v-if="terminForm.recurring">
+            <label class="field">
+              <span>{{ t('admin.termine.validFrom') }}</span>
+              <input v-model="terminForm.validFrom" type="date">
+            </label>
+            <label class="field">
+              <span>{{ t('admin.termine.validUntil') }}</span>
+              <input v-model="terminForm.validUntil" type="date">
+            </label>
+          </template>
+          <p v-if="terminFormError" class="error">{{ terminFormError }}</p>
+          <div class="modal-actions">
+            <button type="button" class="btn-secondary" @click="closeTerminForm">{{ t('admin.cancel') }}</button>
+            <button type="button" class="btn-primary" :disabled="terminBusy" @click="saveTermin">
+              {{ terminBusy ? t('admin.working') : t('admin.save') }}
+            </button>
+          </div>
+        </div>
+      </div>
     </template>
   </section>
 </template>
@@ -101,6 +207,10 @@ import {
   createUser,
   updateUser,
   deleteUser,
+  listTermine,
+  createTermin,
+  updateTermin,
+  deleteTermin,
 } from '../composables/useAdminApi.js';
 
 export default {
@@ -115,6 +225,19 @@ export default {
     const formError = ref('');
     const editing = ref(null);
     const form = ref({ username: '', ageGroup: 'kinder', password: '' });
+
+    const activeTab = ref('users');
+    const termine = ref([]);
+    const terminBusy = ref(false);
+    const terminError = ref('');
+    const terminFormOpen = ref(false);
+    const terminFormError = ref('');
+    const editingTermin = ref(null);
+    const emptyTerminForm = () => ({
+      date: '', time: '', location: '', topic: '', link: '',
+      cancelled: false, recurring: false, validFrom: '', validUntil: '',
+    });
+    const terminForm = ref(emptyTerminForm());
 
     const ageLabel = (g) => (g === 'jugendliche' ? t('admin.age.jugendliche') : t('admin.age.kinder'));
 
@@ -144,6 +267,23 @@ export default {
       }
     };
 
+    const refreshTermine = async () => {
+      if (!token.value) return;
+      terminBusy.value = true;
+      terminError.value = '';
+      try {
+        const data = await listTermine();
+        termine.value = data.termine || [];
+      } catch (e) {
+        if (e.status === 401) {
+          setAdminToken('');
+        }
+        terminError.value = e.message || t('admin.error');
+      } finally {
+        terminBusy.value = false;
+      }
+    };
+
     const login = async () => {
       busy.value = true;
       error.value = '';
@@ -151,7 +291,7 @@ export default {
         const data = await adminLogin(password.value);
         setAdminToken(data.token);
         password.value = '';
-        await refresh();
+        await Promise.all([refresh(), refreshTermine()]);
       } catch (e) {
         error.value = e.message || t('admin.error');
       } finally {
@@ -162,6 +302,7 @@ export default {
     const logout = () => {
       setAdminToken('');
       users.value = [];
+      termine.value = [];
     };
 
     const openCreate = () => {
@@ -225,11 +366,88 @@ export default {
       }
     };
 
-    onMounted(refresh);
+    const openCreateTermin = () => {
+      editingTermin.value = null;
+      terminForm.value = emptyTerminForm();
+      terminFormError.value = '';
+      terminFormOpen.value = true;
+    };
+
+    const openEditTermin = (terminItem) => {
+      editingTermin.value = terminItem;
+      terminForm.value = {
+        date: terminItem.date,
+        time: terminItem.time,
+        location: terminItem.location,
+        topic: terminItem.topic,
+        link: terminItem.link,
+        cancelled: terminItem.cancelled,
+        recurring: terminItem.recurring,
+        validFrom: terminItem.validFrom || '',
+        validUntil: terminItem.validUntil || '',
+      };
+      terminFormError.value = '';
+      terminFormOpen.value = true;
+    };
+
+    const closeTerminForm = () => {
+      terminFormOpen.value = false;
+      terminFormError.value = '';
+    };
+
+    const saveTermin = async () => {
+      terminBusy.value = true;
+      terminFormError.value = '';
+      try {
+        const payload = {
+          date: terminForm.value.date,
+          time: terminForm.value.time,
+          location: terminForm.value.location,
+          topic: terminForm.value.topic,
+          link: terminForm.value.link,
+          cancelled: terminForm.value.cancelled,
+          recurring: terminForm.value.recurring,
+          validFrom: terminForm.value.recurring ? (terminForm.value.validFrom || null) : null,
+          validUntil: terminForm.value.recurring ? (terminForm.value.validUntil || null) : null,
+        };
+        if (editingTermin.value) {
+          await updateTermin(editingTermin.value.id, payload);
+        } else {
+          await createTermin(payload);
+        }
+        closeTerminForm();
+        await refreshTermine();
+      } catch (e) {
+        terminFormError.value = e.message || t('admin.error');
+      } finally {
+        terminBusy.value = false;
+      }
+    };
+
+    const removeTermin = async (terminItem) => {
+      const ok = window.confirm(t('admin.termine.confirmDelete').replace('{topic}', terminItem.topic));
+      if (!ok) return;
+      terminBusy.value = true;
+      terminError.value = '';
+      try {
+        await deleteTermin(terminItem.id);
+        await refreshTermine();
+      } catch (e) {
+        terminError.value = e.message || t('admin.error');
+      } finally {
+        terminBusy.value = false;
+      }
+    };
+
+    onMounted(async () => {
+      await Promise.all([refresh(), refreshTermine()]);
+    });
 
     return {
       t, token, password, users, busy, error, formOpen, formError, editing, form,
       ageLabel, formatDate, login, logout, openCreate, openEdit, closeForm, save, remove,
+      activeTab, termine, terminBusy, terminError, terminFormOpen, terminFormError, editingTermin, terminForm,
+      openCreateTermin, openEditTermin, closeTerminForm, saveTermin, removeTermin,
     };
   },
 };
@@ -275,6 +493,57 @@ export default {
   display: flex;
   gap: 10px;
   margin-bottom: 16px;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.admin-tab {
+  border: none;
+  background: none;
+  padding: 10px 16px;
+  font-weight: 600;
+  color: #555;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.admin-tab.active {
+  color: var(--primary-purple, #4a2274);
+  border-bottom-color: var(--primary-purple, #4a2274);
+}
+
+.field-checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.field-checkbox input {
+  width: auto;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.8em;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-right: 6px;
+}
+
+.badge-cancelled {
+  background: #fdecea;
+  color: #c0392b;
+}
+
+.badge-recurring {
+  background: #eaf3fd;
+  color: #1a5fb4;
 }
 
 .btn-primary,

@@ -6,10 +6,13 @@
     </div>
 
     <div class="lesson-editor-section">
+      <p v-if="devSkipChecks" class="dev-skip-banner">
+        🚧 Dev-Modus: „Prüfen" schaltet Aufgaben sofort frei, ohne den Code zu prüfen (VITE_DEV_SKIP_CHECKS=1)
+      </p>
       <p class="editor-hint">{{ t('jsLesson.editorHint') }}</p>
       <p class="editor-hint editor-hint-ran">{{ t('jsLesson.ranExplainer') }}</p>
 
-      <template v-for="(task, idx) in tasks" :key="idx">
+      <template v-for="(task, idx) in tasks" :key="lesson.id + '-' + idx">
         <div class="task-block" :class="isExample(idx) ? 'task-example' : 'task-required'">
           <span class="task-badge" :class="isExample(idx) ? 'badge-example' : 'badge-required'">
             {{ isExample(idx) ? t('jsLesson.badgeExample') : t('jsLesson.badgeRequired') }}
@@ -56,7 +59,7 @@
               {{ t('editor.reset') }}
             </button>
           </div>
-          <JsSandboxFrame v-if="taskRan[idx]" :ref="(el) => setSandboxRef(idx, el)" :show-canvas="showCanvas" :dom-mode="domMode" />
+          <JsSandboxFrame v-if="taskRan[idx]" :ref="(el) => setSandboxRef(idx, el)" :show-canvas="taskShowsCanvas(idx)" :dom-mode="domMode" />
           <details v-if="task.solution" class="solution-reveal">
             <summary>{{ t('jsLesson.showSolution') }}</summary>
             <pre class="solution-code">{{ task.solution }}</pre>
@@ -141,6 +144,12 @@ export default {
     // eigene Validierung - jede Aufgabe hat weiterhin ein `validation`-Objekt.
     const isExample = (idx) => !!tasks.value[idx]?.example;
 
+    // Eine Aufgabe, die nichts zeichnet (reine Funktionslogik, z.B. eine isolierte Hilfsfunktion
+    // vor dem Einbau ins Spiel), braucht auch keinen sichtbaren Canvas-Bereich - der wirkt dort
+    // nur als leere graue Flaeche. `task.showCanvas: false` in lessons.json blendet ihn fuer genau
+    // diese eine Aufgabe aus, ohne das kurs-/lektionsweite showCanvas-Prop anzutasten.
+    const taskShowsCanvas = (idx) => tasks.value[idx]?.showCanvas ?? props.showCanvas;
+
     // Uebersprungene Aufgaben zaehlen fuer den Lektions-Abschluss wie erledigt (damit man nicht
     // blockiert bleibt), bleiben aber optisch als "uebersprungen" erkennbar statt als geloest -
     // gilt bewusst nur fuer normale Lektionsaufgaben, nicht fuer den Wochen-Check (CodeChallenge.vue).
@@ -212,7 +221,7 @@ export default {
     // relevant, wenn diese Lektion ueberhaupt ein sichtbares Canvas hat (showCanvas).
     const withCanvasNote = async (idx, rawOutput) => {
       const trimmed = (rawOutput || '').trim();
-      if (!props.showCanvas) return trimmed || t('jsLesson.noOutput');
+      if (!taskShowsCanvas(idx)) return trimmed || t('jsLesson.noOutput');
       const drew = await sandboxEls.value[idx].checkCanvasNotBlank();
       if (drew) return trimmed ? `${trimmed}\n\n${t('jsLesson.canvasNote')}` : t('jsLesson.canvasNote');
       return trimmed || t('jsLesson.noOutput');
@@ -249,8 +258,20 @@ export default {
       if (doneCount.value === tasks.value.length) markCompleted(props.lesson.id);
     };
 
+    // Nur fuers lokale Durchklicken/Review eines Kurses gedacht (z.B. neue Lektionen pruefen,
+    // ohne jede Aufgabe wirklich zu loesen) - per VITE_DEV_SKIP_CHECKS=1 npm run dev aktivierbar.
+    // `import.meta.env.DEV` sorgt dafuer, dass Vite diesen Zweig im Produktions-Build komplett
+    // wegoptimiert (dead code elimination), er landet also nie im ausgelieferten Bundle.
+    const devSkipChecks = import.meta.env.DEV && import.meta.env.VITE_DEV_SKIP_CHECKS === '1';
+
     const checkTask = async (idx) => {
       if (checking.value) return;
+      if (devSkipChecks && !isExample(idx)) {
+        taskFeedback.value[idx] = null;
+        completedTasks.value = new Set([...completedTasks.value, idx]);
+        finishCheck(idx);
+        return;
+      }
       checking.value = true;
       taskFeedback.value[idx] = null;
       taskRan.value[idx] = true;
@@ -341,6 +362,8 @@ export default {
       checking,
       tasks,
       isExample,
+      taskShowsCanvas,
+      devSkipChecks,
       taskCodes,
       taskOutputs,
       taskFeedback,
@@ -427,6 +450,16 @@ export default {
   margin: 0 0 12px 0;
   font-size: 0.9em;
   color: #555;
+}
+
+.dev-skip-banner {
+  margin: 0 0 12px 0;
+  padding: 8px 12px;
+  font-size: 0.85em;
+  background: #fff3cd;
+  border: 1px solid #ffe69c;
+  border-radius: 6px;
+  color: #664d03;
 }
 
 .editor-hint-ran {

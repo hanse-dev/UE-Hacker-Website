@@ -6,7 +6,8 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 ## Offen
 
 - [ ] Seit 3.80 (HANDOFF.md) prüft `validateOutput()` in Lektionsaufgaben nur noch die Ausgabe.
-      Rund 40 JS-Aufgaben (js-grundkurs-woche1/2/3/5/6/7/8, js-spielewerkstatt, js-snake, per
+      Rund 30 JS-Aufgaben (js-grundkurs-woche1/2/3/5/6/7/8, js-snake — js-spielewerkstatt ist seit
+      3.90 nicht mehr betroffen, der neue Inhalt prüft überall Ausgabe oder Canvas —, per
       `grep`-Suche über `variables`/`functionCalls` ohne eigenes `expected` gefunden) hatten aber
       **nie** ein `output_contains`, sondern verließen sich allein auf `variables`/`functionCalls` -
       diese Aufgaben prüfen jetzt gar nichts mehr (bestehen schon, wenn der Code fehlerfrei läuft).
@@ -14,6 +15,14 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
       pro Aufgabe sinnvoll und nicht die Lösung verrät) - kein mechanischer Fix. Vorschlag: pro
       Aufgabe ein passendes `output_contains` ergänzen (z.B. den Rückgabewert der Funktion für den
       Beispiel-Fall ausgeben lassen).
+- [ ] `npm run lint:spelling` meldet 167 unbekannte Wörter in 24 Dateien (Stand 2026-10-01), fast
+      alle in Content, der nach dem Tippfehler-Pass 3.65 dazukam (`ki-labor-woche6/7`,
+      `ki-labor-checks/week-7.json`, `python-grundlagen-interaktiv-kinder`, `src/locales/en.js`
+      "termine"). Nicht behoben, weil jedes Wort einzeln geprüft werden muss (echter Tippfehler
+      vs. legitimes Wort für `cspell.json`) — eigener Tippfehler-Pass wie 3.65.
+- [ ] Dev-Flag `VITE_DEV_SKIP_CHECKS` (HANDOFF 3.89) hat in `main` noch keinen eigenen Test. Ein
+      Entwurf (`tests/dev-skip-checks.spec.js` + `playwright.devskip.config.js`) liegt staged, aber
+      uncommittet im Worktree `dev-skip-checks-flag` — dort fertigstellen und mergen.
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken) —
       **zurückgestellt** (Nutzer will erst später deployen). Backup-Cron auf dem Server einrichten
       (Befehl siehe HANDOFF.md Abschnitt 4); externe Sicherung der Backups bewusst nicht mitgebaut.

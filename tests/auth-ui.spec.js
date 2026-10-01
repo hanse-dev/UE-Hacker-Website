@@ -49,6 +49,46 @@ test.describe('UI: Admin + Header-Login', () => {
     await expect(adminNavLink).toHaveCount(0);
   });
 
+  test('Admin: Termin über die Termine-Verwaltung anlegen, bearbeiten und löschen', async ({ page, request }) => {
+    const topic = `UI-Testtermin ${Date.now()}`;
+
+    await page.goto('/admin');
+    await page.locator('.admin-login-card input[type="password"]').fill(ADMIN_PASSWORD);
+    await page.locator('.admin-login-card .btn-primary').click();
+    await expect(page.locator('.admin-tabs')).toBeVisible();
+
+    await page.locator('.admin-tab', { hasText: /Termine|Appointments/ }).click();
+    await page.locator('.admin-termine .btn-primary').click();
+
+    await expect(page.locator('.modal-card')).toBeVisible();
+    await page.locator('.modal-card input').nth(0).fill('Montag, 01.02.27');
+    await page.locator('.modal-card input').nth(1).fill('17:00 - 18:00 Uhr');
+    await page.locator('.modal-card input').nth(2).fill('Online');
+    await page.locator('.modal-card input').nth(3).fill(topic);
+    await page.locator('.modal-card input').nth(4).fill('/kurs/python-12-wochen-grundkurs');
+    await page.locator('.modal-card .btn-primary').click();
+
+    await expect(page.locator('.admin-termine .admin-table')).toContainText(topic);
+
+    // Der neue Termin ist auch öffentlich sichtbar, ganz ohne Admin-Login.
+    const publicList = await request.get(`${API}/api/termine`);
+    const publicTermine = await publicList.json();
+    expect(publicTermine.some((t) => t.topic === topic)).toBeTruthy();
+
+    // Bearbeiten: als abgesagt markieren
+    const row = page.locator('.admin-termine .admin-table tr', { hasText: topic });
+    await row.locator('.btn-link').first().click();
+    await expect(page.locator('.modal-card')).toBeVisible();
+    await page.locator('.modal-card input[type="checkbox"]').first().check();
+    await page.locator('.modal-card .btn-primary').click();
+    await expect(row.locator('.badge-cancelled')).toBeVisible();
+
+    // Löschen
+    page.once('dialog', (dialog) => dialog.accept());
+    await row.locator('.btn-link.danger').click();
+    await expect(page.locator('.admin-termine')).not.toContainText(topic);
+  });
+
   test('Optionen: Anmelden, Sync, Abmelden', async ({ page, request }) => {
     const username = `learner_${Date.now()}`;
     const adminLogin = await request.post(`${API}/api/admin/login`, {
@@ -260,13 +300,28 @@ test.describe('UI: Admin + Header-Login', () => {
       data: { username, password: 'pass1234', ageGroup: 'jugendliche' },
     });
 
-    await page.addInitScript(() => {
-      localStorage.setItem('ue-hacker-interactive-progress-caesar-chiffre', JSON.stringify({
-        version: 1,
-        courseId: 'projekt-caesar-chiffre',
-        variant: 'caesar-chiffre',
-        completedLessonIds: ['lektion-01', 'lektion-02', 'lektion-03', 'lektion-04', 'lektion-05'],
-      }));
+    // Fortschritt liegt bereits auf dem Account (Server), nicht nur lokal vor dem Login — seit
+    // dem Login-Reset (Account-Stand ersetzt lokale Vor-Login-Daten statt sie zu mergen) würde
+    // rein lokaler Vor-Login-Fortschritt beim Login sonst verworfen statt übernommen.
+    const userLogin = await request.post(`${API}/api/login`, {
+      data: { username, password: 'pass1234' },
+    });
+    const { token: userToken } = await userLogin.json();
+    await request.put(`${API}/api/progress`, {
+      headers: { Authorization: `Bearer ${userToken}` },
+      data: {
+        payload: {
+          'ue-hacker-interactive-progress-caesar-chiffre': {
+            value: {
+              version: 1,
+              courseId: 'projekt-caesar-chiffre',
+              variant: 'caesar-chiffre',
+              completedLessonIds: ['lektion-01', 'lektion-02', 'lektion-03', 'lektion-04', 'lektion-05'],
+            },
+            updatedAt: new Date().toISOString(),
+          },
+        },
+      },
     });
 
     await page.goto('/');
@@ -310,15 +365,30 @@ test.describe('UI: Admin + Header-Login', () => {
       data: { username, password: 'pass1234', ageGroup: 'jugendliche' },
     });
 
-    await page.addInitScript(() => {
-      // Python-Woche 1 bestanden, KI-Labor-Woche 1 noch nicht - jeder Kurs hat einen eigenen
-      // Storage-Key (siehe useWeekChecks.js storageKeyFor), damit sich beide "Woche 1" nicht
-      // gegenseitig überschreiben.
-      localStorage.setItem('ue-hacker-week-checks', JSON.stringify({
-        version: 1,
-        weeks: { '1': { quizPassed: true, codingPassed: { 0: true, 1: true }, at: new Date().toISOString() } },
-        placement: null,
-      }));
+    // Fortschritt liegt bereits auf dem Account (Server), nicht nur lokal vor dem Login — seit
+    // dem Login-Reset (Account-Stand ersetzt lokale Vor-Login-Daten statt sie zu mergen) würde
+    // rein lokaler Vor-Login-Fortschritt beim Login sonst verworfen statt übernommen.
+    const userLogin = await request.post(`${API}/api/login`, {
+      data: { username, password: 'pass1234' },
+    });
+    const { token: userToken } = await userLogin.json();
+    await request.put(`${API}/api/progress`, {
+      headers: { Authorization: `Bearer ${userToken}` },
+      data: {
+        payload: {
+          // Python-Woche 1 bestanden, KI-Labor-Woche 1 noch nicht - jeder Kurs hat einen eigenen
+          // Storage-Key (siehe useWeekChecks.js storageKeyFor), damit sich beide "Woche 1" nicht
+          // gegenseitig überschreiben.
+          'ue-hacker-week-checks': {
+            value: {
+              version: 1,
+              weeks: { '1': { quizPassed: true, codingPassed: { 0: true, 1: true }, at: new Date().toISOString() } },
+              placement: null,
+            },
+            updatedAt: new Date().toISOString(),
+          },
+        },
+      },
     });
 
     await page.goto('/');
@@ -343,8 +413,8 @@ test.describe('UI: Admin + Header-Login', () => {
     await expect(pythonWeek2.locator('.badge-icon')).toHaveText('🔒');
 
     const kiLaborBlock = page.locator('.cert-course-block', { hasText: 'KI-Labor' });
-    await expect(kiLaborBlock.locator('.cert-course-count')).toContainText('0/2');
-    await expect(kiLaborBlock.locator('.badge-card')).toHaveCount(2);
+    await expect(kiLaborBlock.locator('.cert-course-count')).toContainText('0/8');
+    await expect(kiLaborBlock.locator('.badge-card')).toHaveCount(8);
     await expect(kiLaborBlock.locator('.badge-card').first()).not.toHaveClass(/earned/);
 
     // Nur verliehene Zertifikate haben einen Download-Button.
@@ -411,5 +481,79 @@ test.describe('UI: Admin + Header-Login', () => {
     });
     const body = await progress.json();
     expect(body.payload['ue-hacker-interactive-progress-caesar-chiffre'].value.completedLessonIds).toContain('lektion-01');
+  });
+
+  test('Login: Account-Stand ersetzt lokale Gast-Daten statt sie zu mergen (geteilter Rechner)', async ({ page, request }) => {
+    const username = `resetlogin_${Date.now()}`;
+    const adminLogin = await request.post(`${API}/api/admin/login`, {
+      data: { password: ADMIN_PASSWORD },
+    });
+    const { token: adminToken } = await adminLogin.json();
+    await request.post(`${API}/api/admin/users`, {
+      headers: { Authorization: `Bearer ${adminToken}` },
+      data: { username, password: 'pass1234', ageGroup: 'jugendliche' },
+    });
+
+    // Der Account hat bereits eigenen, vom Server geladenen Fortschritt (z.B. von einem anderen Gerät).
+    const userLogin = await request.post(`${API}/api/login`, {
+      data: { username, password: 'pass1234' },
+    });
+    const { token: userToken } = await userLogin.json();
+    await request.put(`${API}/api/progress`, {
+      headers: { Authorization: `Bearer ${userToken}` },
+      data: {
+        payload: {
+          'ue-hacker-week-checks': {
+            value: { version: 1, weeks: { 3: { passed: true, score: 1 } }, placement: null },
+            updatedAt: new Date().toISOString(),
+          },
+        },
+      },
+    });
+
+    await page.goto('/');
+    // Lokale Gast-Daten, die vor dem Login auf diesem Rechner entstanden sind (anderes Kind, kein Account).
+    await page.evaluate(() => {
+      const key = 'ue-hacker-week-checks';
+      const value = { version: 1, weeks: { 2: { passed: true, score: 1 } }, placement: null };
+      localStorage.setItem(key, JSON.stringify(value));
+      const meta = JSON.parse(localStorage.getItem('ue-hacker-sync-meta') || '{}');
+      meta[key] = new Date().toISOString();
+      localStorage.setItem('ue-hacker-sync-meta', JSON.stringify(meta));
+
+      const projectKey = 'ue-hacker-interactive-progress-caesar-chiffre';
+      localStorage.setItem(projectKey, JSON.stringify({
+        version: 1,
+        courseId: 'projekt-caesar-chiffre',
+        variant: 'caesar-chiffre',
+        completedLessonIds: ['lektion-01'],
+      }));
+      meta[projectKey] = new Date().toISOString();
+      localStorage.setItem('ue-hacker-sync-meta', JSON.stringify(meta));
+    });
+
+    await page.locator('.options-btn').click();
+    await page.locator('.settings-modal .auth-btn.primary', { hasText: /Anmelden|Log in/ }).click();
+    await page.locator('.settings-modal input').nth(0).fill(username);
+    await page.locator('.settings-modal input[type="password"]').fill('pass1234');
+    await page.locator('.settings-modal .auth-btn.primary').click();
+    await expect(page.locator('.settings-modal')).toContainText(username);
+
+    const localState = await page.evaluate(() => ({
+      weekChecks: JSON.parse(localStorage.getItem('ue-hacker-week-checks') || 'null'),
+      projectProgress: localStorage.getItem('ue-hacker-interactive-progress-caesar-chiffre'),
+    }));
+    // Account-Stand (Woche 3) hat lokale Gast-Daten (Woche 2) ersetzt, nicht gemergt.
+    expect(localState.weekChecks.weeks['3']).toBeTruthy();
+    expect(localState.weekChecks.weeks['2']).toBeFalsy();
+    // Ein Key, den der Account nicht hat, wird beim Login komplett entfernt statt lokal stehenzubleiben.
+    expect(localState.projectProgress).toBeNull();
+
+    // Die verworfenen Gast-Daten dürfen nicht auf den Account übertragen worden sein.
+    const progress = await request.get(`${API}/api/progress`, {
+      headers: { Authorization: `Bearer ${userToken}` },
+    });
+    const body = await progress.json();
+    expect(body.payload['ue-hacker-interactive-progress-caesar-chiffre']).toBeUndefined();
   });
 });

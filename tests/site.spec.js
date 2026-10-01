@@ -175,7 +175,7 @@ test.describe('Interaktiver Kurs', () => {
     await startKernel(page);
     await expect(page.locator('.btn-check').first()).toBeEnabled({ timeout: 40000 });
 
-    const task = page.locator('.task-block').first();
+    const task = page.locator('.task-block:not(.task-example)').first();
     const editor = task.locator('.code-editor');
 
     await editor.fill('print("nope")');
@@ -186,6 +186,65 @@ test.describe('Interaktiver Kurs', () => {
     await editor.fill('print("still nope")');
     await task.locator('.btn-check').click();
     await expect(task.locator('.feedback')).toContainText('Erwartet wurde etwas mit', { timeout: 10000 });
+  });
+
+  test('Flexible Lektion: 5 Aufgaben + Beispiel, 2 gelöste genügen zum Weitergehen', async ({ page }) => {
+    test.setTimeout(60000);
+    await page.goto(INTERACTIVE_URL);
+    await page.locator('.variant-card').first().click();
+    await page.waitForSelector('.task-block', { timeout: 20000 });
+    await startKernel(page);
+
+    // Erste Aufgabe ist eine Beispiel-Aufgabe: nur "Ausführen", kein "Prüfen"-Button.
+    const example = page.locator('.task-block').nth(0);
+    await expect(example.locator('.task-badge')).toBeVisible();
+    await expect(example.locator('.btn-check')).toHaveCount(0);
+
+    // Lektion hat 5 echte Aufgaben (plus das Beispiel) - der Hinweistext nennt "mindestens 2".
+    const realTasks = page.locator('.task-block:not(.task-example)');
+    await expect(realTasks).toHaveCount(5);
+    await expect(page.locator('.editor-hint-blank').filter({ hasText: 'mindestens' })).toBeVisible();
+
+    // Aufgabe 1 (erste echte Aufgabe) ist von Anfang an überspringbar, ohne vorher zu scheitern.
+    await expect(realTasks.nth(0).locator('.btn-skip')).toBeVisible();
+
+    // Zwei Aufgaben lösen genügt zum Weitergehen, auch ohne die restlichen 3 anzurühren.
+    await expect(page.locator('.btn-check').first()).toBeEnabled({ timeout: 40000 });
+    await realTasks.nth(0).locator('.code-editor').fill('print("Hallo Welt")');
+    await realTasks.nth(0).locator('.btn-check').click();
+    await expect(realTasks.nth(0).locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+
+    await realTasks.nth(1).locator('.code-editor').fill('print("Ich lerne Python!")');
+    await realTasks.nth(1).locator('.btn-check').click();
+    await expect(page.locator('.lesson-complete-box')).toBeVisible({ timeout: 10000 });
+  });
+
+  test('Klick auf "Weiter" landet oben bei der neuen Lektion, nicht an der alten Scroll-Position', async ({ page }) => {
+    test.setTimeout(60000);
+    await page.goto(INTERACTIVE_URL);
+    await page.locator('.variant-card').first().click();
+    await page.waitForSelector('.task-block', { timeout: 20000 });
+    await startKernel(page);
+    await expect(page.locator('.btn-check').first()).toBeEnabled({ timeout: 40000 });
+
+    const realTasks = page.locator('.task-block:not(.task-example)');
+    await realTasks.nth(0).locator('.code-editor').fill('print("Hallo Welt")');
+    await realTasks.nth(0).locator('.btn-check').click();
+    await expect(realTasks.nth(0).locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+
+    await realTasks.nth(1).locator('.code-editor').fill('print("Ich lerne Python!")');
+    await realTasks.nth(1).locator('.btn-check').click();
+    await expect(page.locator('.btn-next')).toBeVisible({ timeout: 10000 });
+
+    const scrollBefore = await page.evaluate(() => window.scrollY);
+    const mainTop = await page.locator('.lesson-main').evaluate((el) => el.getBoundingClientRect().top + window.scrollY);
+    expect(scrollBefore).toBeGreaterThan(mainTop + 200);
+
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.lesson-item.active')).toHaveCount(1);
+    await expect
+      .poll(() => page.evaluate(() => window.scrollY), { timeout: 3000 })
+      .toBeLessThan(scrollBefore - 200);
   });
 });
 
@@ -200,8 +259,9 @@ test.describe('Cäsar-Chiffre-Projekt', () => {
   test('Kurs lädt, Lektion 1 lösen schaltet Lektion 2 frei', async ({ page }) => {
     test.setTimeout(60000);
     await page.goto('/kurs/projekt-caesar-chiffre');
-    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(5, { timeout: 15000 });
     await expect(page.locator('.course-description')).toContainText('Cäsar-Chiffre');
+    await page.locator('.btn-start-course').click();
+    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(5, { timeout: 15000 });
 
     await startKernel(page);
     await expect(page.locator('.btn-check').first()).toBeEnabled({ timeout: 40000 });
@@ -223,6 +283,7 @@ test.describe('Cäsar-Chiffre-Projekt', () => {
   test('Lösung wird erst nach Klick auf "Lösung anzeigen" sichtbar', async ({ page }) => {
     test.setTimeout(60000);
     await page.goto('/kurs/projekt-caesar-chiffre');
+    await page.locator('.btn-start-course').click();
     await page.waitForSelector('.task-block', { timeout: 15000 });
 
     const task = page.locator('.task-block').first();
@@ -250,6 +311,7 @@ test.describe('Cäsar-Chiffre-Projekt', () => {
       );
     });
     await page.goto('/kurs/projekt-caesar-chiffre');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(5, { timeout: 15000 });
     await page.locator('.lesson-item').nth(4).click();
     await expect(page.locator('.task-block')).toHaveCount(1, { timeout: 10000 });

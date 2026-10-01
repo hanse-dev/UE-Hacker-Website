@@ -8,8 +8,8 @@ export default {
   'footer.copyright': '© 2026 Übergangshacker. All rights reserved.',
 
   // ── Admin ───────────────────────────────────────────────────────────────
-  'admin.title': 'Admin – Users',
-  'admin.intro': 'Create and manage accounts. Login uses the admin password from .env.',
+  'admin.title': 'Admin',
+  'admin.intro': 'Manage accounts and appointments. Login uses the admin password from .env.',
   'admin.password': 'Password',
   'admin.adminPassword': 'Admin password',
   'admin.passwordOptional': 'New password (optional)',
@@ -32,6 +32,25 @@ export default {
   'admin.col.updated': 'Updated',
   'admin.age.kinder': 'Child (8–12)',
   'admin.age.jugendliche': 'Teen (13–17)',
+  'admin.tab.users': 'Users',
+  'admin.tab.termine': 'Appointments',
+  'admin.termine.create': 'New appointment',
+  'admin.termine.createTitle': 'Create appointment',
+  'admin.termine.editTitle': 'Edit appointment',
+  'admin.termine.loading': 'Loading appointments…',
+  'admin.termine.empty': 'No appointments yet.',
+  'admin.termine.confirmDelete': 'Really delete appointment “{topic}”?',
+  'admin.termine.col.date': 'Date',
+  'admin.termine.col.topic': 'Topic',
+  'admin.termine.col.location': 'Location',
+  'admin.termine.col.status': 'Status',
+  'admin.termine.datePlaceholder': 'e.g. Tuesday, 14 Oct or Every Wednesday',
+  'admin.termine.time': 'Time',
+  'admin.termine.link': 'Link (e.g. /kurs/python-12-wochen-grundkurs)',
+  'admin.termine.cancelled': 'Cancelled',
+  'admin.termine.recurring': 'Recurring',
+  'admin.termine.validFrom': 'Valid from',
+  'admin.termine.validUntil': 'Valid until (optional)',
 
   // ── Auth (learners) ─────────────────────────────────────────────────────
   'auth.login': 'Log in',
@@ -257,7 +276,10 @@ export default {
 
   // ── Lesson view (interactive lessons / Caesar cipher) ────────────────────
   'lesson.loading':           'Loading lesson...',
-  'lesson.editorHint':        'Python loads automatically when you open the page (~30 sec). Write your code and click "Check" once "Python ready" appears.',
+  'lesson.editorHint':        'Python loads automatically when you open the page (~30 sec). Write your code in the box below. "Run" only shows the output, "Check" also checks whether the task is solved – click "Check" once "Python ready" appears.',
+  'lesson.blankHint':         'Wherever the template shows ___ (three underscores), something is still missing: replace exactly the ___ with your own code (e.g. a piece of text, a number, or a variable name) – leave the rest of the line as it is.',
+  'lesson.flexibleHint':      'This lesson has {total} tasks, but you only need to solve at least {min} of them to move on – you can skip the rest at any time with "Skip".',
+  'lesson.flexibleProgress':  'Solved so far: {solved} of at least {min} required tasks.',
   'lesson.yourCode':          'Your Code',
   'lesson.taskPrefix':        'Task ',
   'lesson.taskDone':          '(done)',

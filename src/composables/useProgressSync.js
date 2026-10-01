@@ -126,6 +126,57 @@ export function applyProgressPayload(payload) {
   }
 }
 
+// Ersetzt beim Login den kompletten lokalen Fortschritt durch den Account-Stand (kein Merge) -
+// anders als syncNow()/restoreSession, wo ein Merge nach updatedAt sinnvoll ist (selber Nutzer,
+// z.B. Seiten-Reload). Beim Login kann ein Nutzerwechsel stattfinden (geteilter Rechner) - lokale,
+// dem Account nicht zugehoerige Gast-Daten sollen dann nicht in den Account einfliessen.
+export function replaceLocalProgress(remotePayload) {
+  applying = true;
+  try {
+    const remote = remotePayload || {};
+    for (const key of listLocalSyncKeys()) {
+      if (!(key in remote)) {
+        localStorage.removeItem(key);
+      }
+    }
+    const meta = {};
+    for (const [key, entry] of Object.entries(remote)) {
+      if (!isSyncableKey(key) || !entry) continue;
+      try {
+        const raw = typeof entry.value === 'string'
+          ? entry.value
+          : JSON.stringify(entry.value);
+        localStorage.setItem(key, raw);
+        meta[key] = entry.updatedAt || new Date().toISOString();
+      } catch (e) {
+        console.error('Konnte Sync-Key nicht anwenden:', key, e);
+      }
+    }
+    saveMeta(meta);
+    window.dispatchEvent(new CustomEvent(PROGRESS_APPLIED_EVENT));
+  } finally {
+    // Vue-Watcher laufen oft erst im nächsten Tick — Sync-Schleife vermeiden
+    setTimeout(() => {
+      applying = false;
+    }, 0);
+  }
+}
+
+export async function loadAccountProgress() {
+  if (!getUserToken() || syncing) return { ok: false, skipped: true };
+  syncing = true;
+  try {
+    const remote = await fetchProgress();
+    replaceLocalProgress(remote?.payload || {});
+    return { ok: true };
+  } catch (e) {
+    console.warn('Account-Fortschritt laden fehlgeschlagen:', e.message || e);
+    return { ok: false, error: e };
+  } finally {
+    syncing = false;
+  }
+}
+
 export async function syncNow() {
   if (!getUserToken() || syncing) return { ok: false, skipped: true };
   syncing = true;
