@@ -37,10 +37,12 @@
         "validation": { "type": "canvas_not_blank" }
       },
       {
-        "instruction": "Schreibe istSegmentAn(schlange, x, y): gibt true zurück, wenn irgendein Segment im Array die Position (x, y) hat, sonst false.",
+        "instruction": "Schreibe istSegmentAn(schlange, x, y): gibt true zurück, wenn irgendein Segment im Array die Position (x, y) hat, sonst false. Rufe sie zum Test mit istSegmentAn([{x:1,y:1},{x:2,y:1}], 1, 1) auf und gib das Ergebnis aus.",
         "codeTemplate": "function istSegmentAn(schlange, x, y) {\n  // Dein Code hier\n}\n",
         "solution": "function istSegmentAn(schlange, x, y) {\n  for (const segment of schlange) {\n    if (segment.x === x && segment.y === y) return true;\n  }\n  return false;\n}",
         "validation": {
+          "type": "output_contains",
+          "expected": "true",
           "functionCalls": [
             { "name": "istSegmentAn", "args": [[{ "x": 5, "y": 5 }, { "x": 4, "y": 5 }], 5, 5], "expected": true },
             { "name": "istSegmentAn", "args": [[{ "x": 5, "y": 5 }, { "x": 4, "y": 5 }], 2, 2], "expected": false },
@@ -75,10 +77,12 @@
         }
       },
       {
-        "instruction": "Schreibe richtungFuerTaste(taste) selbst (genau wie im Beispiel eine if-Kette, nur mit anderen Fällen): 'ArrowUp' → {x:0,y:-1}, 'ArrowDown' → {x:0,y:1}, 'ArrowLeft' → {x:-1,y:0}, 'ArrowRight' → {x:1,y:0}, sonst {x:0,y:0}.",
+        "instruction": "Schreibe richtungFuerTaste(taste) selbst (genau wie im Beispiel eine if-Kette, nur mit anderen Fällen): 'ArrowUp' → {x:0,y:-1}, 'ArrowDown' → {x:0,y:1}, 'ArrowLeft' → {x:-1,y:0}, 'ArrowRight' → {x:1,y:0}, sonst {x:0,y:0}. Rufe sie zum Test mit richtungFuerTaste('w') auf und gib .x und .y des Ergebnisses aus, z.B. mit console.log(ergebnis.x, ergebnis.y).",
         "codeTemplate": "function richtungFuerTaste(taste) {\n  // Dein Code hier\n}\n",
         "solution": "function richtungFuerTaste(taste) {\n  if (taste === 'ArrowUp') return { x: 0, y: -1 };\n  if (taste === 'ArrowDown') return { x: 0, y: 1 };\n  if (taste === 'ArrowLeft') return { x: -1, y: 0 };\n  if (taste === 'ArrowRight') return { x: 1, y: 0 };\n  return { x: 0, y: 0 };\n}",
         "validation": {
+          "type": "output_contains",
+          "expected": "0 0",
           "functionCalls": [
             { "name": "richtungFuerTaste", "args": ["ArrowUp"], "expected": { "x": 0, "y": -1 } },
             { "name": "richtungFuerTaste", "args": ["ArrowDown"], "expected": { "x": 0, "y": 1 } },
@@ -89,10 +93,12 @@
         }
       },
       {
-        "instruction": "Schreibe naechsterKopf(kopf, richtung): gibt ein neues Objekt mit kopf.x + richtung.x und kopf.y + richtung.y zurück.",
+        "instruction": "Schreibe naechsterKopf(kopf, richtung): gibt ein neues Objekt mit kopf.x + richtung.x und kopf.y + richtung.y zurück. Rufe sie zum Test mit naechsterKopf({x:2,y:3}, {x:0,y:1}) auf und gib .x und .y des Ergebnisses aus.",
         "codeTemplate": "function naechsterKopf(kopf, richtung) {\n  // Dein Code hier\n}\n",
         "solution": "function naechsterKopf(kopf, richtung) {\n  return { x: kopf.x + richtung.x, y: kopf.y + richtung.y };\n}",
         "validation": {
+          "type": "output_contains",
+          "expected": "2 4",
           "functionCalls": [
             { "name": "naechsterKopf", "args": [{ "x": 5, "y": 5 }, { "x": 1, "y": 0 }], "expected": { "x": 6, "y": 5 } },
             { "name": "naechsterKopf", "args": [{ "x": 5, "y": 5 }, { "x": 0, "y": -1 }], "expected": { "x": 5, "y": 4 } },
@@ -115,10 +121,12 @@
         "validation": { "type": "canvas_changed", "ms": 400 }
       },
       {
-        "instruction": "Schreibe gibNeueLaenge(laenge, gewachsen): bei gewachsen === true gibt sie laenge + 1 zurück, sonst unverändert laenge.",
+        "instruction": "Schreibe gibNeueLaenge(laenge, gewachsen): bei gewachsen === true gibt sie laenge + 1 zurück, sonst unverändert laenge. Rufe sie zum Test mit gibNeueLaenge(5, true) auf und gib das Ergebnis aus.",
         "codeTemplate": "function gibNeueLaenge(laenge, gewachsen) {\n  // Dein Code hier\n}\n",
         "solution": "function gibNeueLaenge(laenge, gewachsen) {\n  return gewachsen ? laenge + 1 : laenge;\n}",
         "validation": {
+          "type": "output_contains",
+          "expected": "6",
           "functionCalls": [
             { "name": "gibNeueLaenge", "args": [3, true], "expected": 4 },
             { "name": "gibNeueLaenge", "args": [3, false], "expected": 3 }
@@ -146,10 +154,12 @@
         "validation": { "type": "output_contains", "expected": "true" }
       },
       {
-        "instruction": "Schreibe istSelbstKollision(kopf, koerper): gibt true zurück, wenn der Kopf dieselbe Position wie irgendein Segment im koerper-Array hat.",
+        "instruction": "Schreibe istSelbstKollision(kopf, koerper): gibt true zurück, wenn der Kopf dieselbe Position wie irgendein Segment im koerper-Array hat. Rufe sie zum Test mit istSelbstKollision({x:1,y:1}, [{x:1,y:1}]) auf und gib das Ergebnis aus.",
         "codeTemplate": "function istSelbstKollision(kopf, koerper) {\n  // Dein Code hier\n}\n",
         "solution": "function istSelbstKollision(kopf, koerper) {\n  for (const segment of koerper) {\n    if (segment.x === kopf.x && segment.y === kopf.y) return true;\n  }\n  return false;\n}",
         "validation": {
+          "type": "output_contains",
+          "expected": "true",
           "functionCalls": [
             { "name": "istSelbstKollision", "args": [{ "x": 5, "y": 5 }, [{ "x": 4, "y": 5 }, { "x": 5, "y": 5 }]], "expected": true },
             { "name": "istSelbstKollision", "args": [{ "x": 5, "y": 5 }, [{ "x": 4, "y": 5 }, { "x": 3, "y": 5 }]], "expected": false },
@@ -158,10 +168,12 @@
         }
       },
       {
-        "instruction": "Schreibe istRandKollision(kopf, spaltenAnzahl, zeilenAnzahl): gibt true zurück, wenn kopf.x oder kopf.y negativ oder außerhalb des Rasters ist.",
+        "instruction": "Schreibe istRandKollision(kopf, spaltenAnzahl, zeilenAnzahl): gibt true zurück, wenn kopf.x oder kopf.y negativ oder außerhalb des Rasters ist. Rufe sie zum Test mit istRandKollision({x:-1,y:0}, 20, 15) auf und gib das Ergebnis aus.",
         "codeTemplate": "function istRandKollision(kopf, spaltenAnzahl, zeilenAnzahl) {\n  // Dein Code hier\n}\n",
         "solution": "function istRandKollision(kopf, spaltenAnzahl, zeilenAnzahl) {\n  return kopf.x < 0 || kopf.x >= spaltenAnzahl || kopf.y < 0 || kopf.y >= zeilenAnzahl;\n}",
         "validation": {
+          "type": "output_contains",
+          "expected": "true",
           "functionCalls": [
             { "name": "istRandKollision", "args": [{ "x": 5, "y": 5 }, 20, 15], "expected": false },
             { "name": "istRandKollision", "args": [{ "x": -1, "y": 5 }, 20, 15], "expected": true },
@@ -186,10 +198,12 @@
         "validation": { "type": "output_contains", "expected": "9" }
       },
       {
-        "instruction": "Schreibe punkteFuerLaenge(laenge): Die Schlange startet mit 3 Segmenten, jedes zusätzliche Segment gibt 10 Punkte (nutze Math.max, damit es nie negativ wird).",
+        "instruction": "Schreibe punkteFuerLaenge(laenge): Die Schlange startet mit 3 Segmenten, jedes zusätzliche Segment gibt 10 Punkte (nutze Math.max, damit es nie negativ wird). Rufe sie zum Test mit punkteFuerLaenge(10) auf und gib das Ergebnis aus.",
         "codeTemplate": "function punkteFuerLaenge(laenge) {\n  // Dein Code hier\n}\n",
         "solution": "function punkteFuerLaenge(laenge) {\n  return Math.max(0, (laenge - 3) * 10);\n}",
         "validation": {
+          "type": "output_contains",
+          "expected": "70",
           "functionCalls": [
             { "name": "punkteFuerLaenge", "args": [3], "expected": 0 },
             { "name": "punkteFuerLaenge", "args": [4], "expected": 10 },

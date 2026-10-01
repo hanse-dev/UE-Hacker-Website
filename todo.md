@@ -5,16 +5,6 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 
 ## Offen
 
-- [ ] Seit 3.80 (HANDOFF.md) prüft `validateOutput()` in Lektionsaufgaben nur noch die Ausgabe.
-      Rund 30 JS-Aufgaben (js-grundkurs-woche1/2/3/5/6/7/8, js-snake — js-spielewerkstatt ist seit
-      3.90 nicht mehr betroffen, der neue Inhalt prüft überall Ausgabe oder Canvas —, per
-      `grep`-Suche über `variables`/`functionCalls` ohne eigenes `expected` gefunden) hatten aber
-      **nie** ein `output_contains`, sondern verließen sich allein auf `variables`/`functionCalls` -
-      diese Aufgaben prüfen jetzt gar nichts mehr (bestehen schon, wenn der Code fehlerfrei läuft).
-      Zurückgestellt, weil es 40 einzelne Content-Entscheidungen sind (welcher `console.log`-Text
-      pro Aufgabe sinnvoll und nicht die Lösung verrät) - kein mechanischer Fix. Vorschlag: pro
-      Aufgabe ein passendes `output_contains` ergänzen (z.B. den Rückgabewert der Funktion für den
-      Beispiel-Fall ausgeben lassen).
 - [ ] `npm run lint:spelling` meldet 167 unbekannte Wörter in 24 Dateien (Stand 2026-10-01), fast
       alle in Content, der nach dem Tippfehler-Pass 3.65 dazukam (`ki-labor-woche6/7`,
       `ki-labor-checks/week-7.json`, `python-grundlagen-interaktiv-kinder`, `src/locales/en.js`

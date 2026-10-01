@@ -13,9 +13,9 @@
         "validation": { "type": "output_contains", "expected": "Alex\n12" }
       },
       {
-        "instruction": "Erstelle ein Objekt haustier mit den Properties art (Wert 'Hund') und alter (Wert 3).",
+        "instruction": "Erstelle ein Objekt haustier mit den Properties art (Wert 'Hund') und alter (Wert 3). Gib haustier.art und haustier.alter mit console.log aus.",
         "codeTemplate": "// Dein Code hier\n",
-        "validation": { "variables": { "haustier": { "art": "Hund", "alter": 3 } } }
+        "validation": { "type": "output_contains", "expected": "Hund 3", "variables": { "haustier": { "art": "Hund", "alter": 3 } } }
       }
     ]
   },
@@ -33,9 +33,9 @@
         "validation": { "type": "output_contains", "expected": "\"farbe\":\"blau\"" }
       },
       {
-        "instruction": "Gegeben ist ein Objekt konto mit stand:100. Erhöhe konto.stand um 50 (Einzahlung).",
+        "instruction": "Gegeben ist ein Objekt konto mit stand:100. Erhöhe konto.stand um 50 (Einzahlung) und gib konto.stand aus.",
         "codeTemplate": "let konto = { stand: 100 };\n\n// Dein Code hier\n",
-        "validation": { "variables": { "konto": { "stand": 150 } } }
+        "validation": { "type": "output_contains", "expected": "150", "variables": { "konto": { "stand": 150 } } }
       }
     ]
   },
@@ -93,9 +93,9 @@
         "validation": { "type": "output_contains", "expected": "Hunde: 2" }
       },
       {
-        "instruction": "Gegeben ist ein Array bestellungen mit Objekten (artikel, preis). Berechne die Summe aller Preise, bei denen artikel gleich 'Buch' ist. Speichere das Ergebnis in einer Variable summe.",
+        "instruction": "Gegeben ist ein Array bestellungen mit Objekten (artikel, preis). Berechne die Summe aller Preise, bei denen artikel gleich 'Buch' ist. Speichere das Ergebnis in einer Variable summe und gib sie aus.",
         "codeTemplate": "let bestellungen = [\n  { artikel: 'Buch', preis: 12 },\n  { artikel: 'Stift', preis: 2 },\n  { artikel: 'Buch', preis: 8 },\n  { artikel: 'Heft', preis: 3 },\n];\n\n// Dein Code hier\n",
-        "validation": { "variables": { "summe": 20 } }
+        "validation": { "type": "output_contains", "expected": "20", "variables": { "summe": 20 } }
       }
     ]
   },

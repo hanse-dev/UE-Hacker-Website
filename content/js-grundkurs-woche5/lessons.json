@@ -13,9 +13,9 @@
         "validation": { "type": "output_contains", "expected": "rot\nblau" }
       },
       {
-        "instruction": "Erstelle ein Array zahlen mit den Werten 10, 20, 30. Speichere den Wert an Index 1 in einer Variable mittlererWert.",
+        "instruction": "Erstelle ein Array zahlen mit den Werten 10, 20, 30. Speichere den Wert an Index 1 in einer Variable mittlererWert und gib sie aus.",
         "codeTemplate": "// Dein Code hier\n",
-        "validation": { "variables": { "mittlererWert": 20 } }
+        "validation": { "type": "output_contains", "expected": "20", "variables": { "mittlererWert": 20 } }
       }
     ]
   },
@@ -33,9 +33,9 @@
         "validation": { "type": "output_contains", "expected": "[\"Brot\",\"Milch\"]" }
       },
       {
-        "instruction": "Erstelle ein leeres Array warteschlange. Füge nacheinander 'Anna', 'Ben' und 'Cem' mit push hinzu. Entferne danach das letzte Element mit pop. Speichere die verbleibende Länge in einer Variable laenge.",
+        "instruction": "Erstelle ein leeres Array warteschlange. Füge nacheinander 'Anna', 'Ben' und 'Cem' mit push hinzu. Entferne danach das letzte Element mit pop. Speichere die verbleibende Länge in einer Variable laenge und gib sie aus.",
         "codeTemplate": "// Dein Code hier\n",
-        "validation": { "variables": { "laenge": 2 } }
+        "validation": { "type": "output_contains", "expected": "2", "variables": { "laenge": 2 } }
       }
     ]
   },
@@ -53,9 +53,9 @@
         "validation": { "type": "output_contains", "expected": "4\nVogel" }
       },
       {
-        "instruction": "Gegeben ist ein Array namen mit 5 Einträgen. Speichere die Anzahl der Einträge in einer Variable anzahl und den letzten Eintrag in einer Variable letzter.",
+        "instruction": "Gegeben ist ein Array namen mit 5 Einträgen. Speichere die Anzahl der Einträge in einer Variable anzahl und den letzten Eintrag in einer Variable letzter. Gib beide mit console.log(anzahl, letzter) aus.",
         "codeTemplate": "let namen = ['Lea', 'Tom', 'Mia', 'Jan', 'Zoe'];\n\n// Dein Code hier\n",
-        "validation": { "variables": { "anzahl": 5, "letzter": "Zoe" } }
+        "validation": { "type": "output_contains", "expected": "5 Zoe", "variables": { "anzahl": 5, "letzter": "Zoe" } }
       }
     ]
   },
@@ -93,9 +93,9 @@
         "validation": { "type": "output_contains", "expected": "Gerade Zahlen: 2" }
       },
       {
-        "instruction": "Gegeben ist ein Array preise. Berechne mit einer Schleife die Summe aller Preise, die mindestens 10 sind. Speichere das Ergebnis in einer Variable summe.",
+        "instruction": "Gegeben ist ein Array preise. Berechne mit einer Schleife die Summe aller Preise, die mindestens 10 sind. Speichere das Ergebnis in einer Variable summe und gib sie aus.",
         "codeTemplate": "let preise = [5, 12, 8, 20, 15, 3];\n\n// Dein Code hier\n",
-        "validation": { "variables": { "summe": 47 } }
+        "validation": { "type": "output_contains", "expected": "47", "variables": { "summe": 47 } }
       }
     ]
   },

@@ -76,6 +76,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.89 | Dev-Flag: Aufgaben-Prüfung überspringen | `npm run dev:skip-checks` (`VITE_DEV_SKIP_CHECKS=1`) lässt "Prüfen" in `JsLessonView.vue` sofort durchgehen, hinter `import.meta.env.DEV` (nicht im Prod-Build), mit Hinweis-Banner |
 | 3.90 | JS-Spielewerkstatt durch das neue Konzept ersetzt | `content/js-spielewerkstatt` = die 7 Lektionen des Test-Kurses (ID/URL unverändert), alter Inhalt, Test-Eintrag und `hidden`-Flag entfernt; Funktionen per `output_equals` statt `functionCalls` geprüft; empfohlenes Vorwissen JS-Grundkurs Woche 4; Durchlauf-Test über alle Musterlösungen |
 | 3.91 | "Zurücksetzen"-Button für vorgegebenen Code | `.btn-reset` in `LessonView.vue`/`JsLessonView.vue`/`CodeChallenge.vue`, sichtbar sobald der Code vom (nicht leeren) `codeTemplate` abweicht; setzt nur diese eine Aufgabe zurück (inkl. Ausgabe/Feedback) |
+| 3.92 | JS-Lektionsaufgaben: fehlende `output_contains`-Checks nachgezogen | `js-grundkurs-woche2/3/5/6/7/8` und `js-snake`: Aufgaben, die sich nur auf `variables`/`functionCalls` verließen (seit 3.80 ungeprüft), verlangen jetzt eine `console.log`-Ausgabe; keine JS-Pflichtaufgabe mehr ohne Ausgabe-/Canvas-/DOM-Prüfung |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
