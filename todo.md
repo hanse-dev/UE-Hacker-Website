@@ -28,8 +28,11 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 - [ ] Branch `offline-jupyter-notebook-converter` (WIP, unmerged): Konverter Lektions-Format →
       echte `.ipynb` fürs Offline-Üben (12-Wochen-Kurs komplett verkabelt in `pack_notebooks.py`;
       KI-Labor/Projekt-Kurse haben eigene Generatoren, aber noch keinen Download-Button/Verkabelung).
-      Liegt derzeit ~10 Commits hinter `main` zurück (diverse seither gemergte Branches) — vor
-      dem Weiterarbeiten erst rebasen/mergen, sonst wächst der Konflikt-Aufwand weiter.
+      Liegt deutlich hinter `main` zurück (Stand 2026-10-01; Merge-Probe: Konflikte nur in
+      `HANDOFF.md`/`todo.md`) — vor dem Weiterarbeiten im eigenen Worktree erst `main` hineinmergen.
+      Der Glossar-Tooltip-Fix daraus ist schon einzeln in `main` (3.94). Dazu gehören zwei Stashes
+      (`zahlendetektiv-solution-fix-belongs-on-offline-jupyter-branch`,
+      `wip-notebook-converter-unrelated`), noch nicht eingearbeitet.
 
 ### Offene Nachbesserungen Lektions-Format (nach Woche)
 

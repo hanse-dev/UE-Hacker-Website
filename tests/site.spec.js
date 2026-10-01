@@ -172,12 +172,14 @@ test.describe('Interaktiver Kurs', () => {
       }));
     });
     await page.goto(INTERACTIVE_URL);
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.variant-card').first()).toBeVisible({ timeout: 15000 });
     await page.locator('.variant-card').first().click();
     await expect(page.locator('.lessons-list .lesson-item').first()).toBeVisible({ timeout: 15000 });
     await page.locator('.lesson-item').nth(1).click();
 
-    const task = page.locator('.task-block').first();
+    // Die "Drache"-Aufgabe steht seit 3.85 hinter einer vorangestellten Beispiel-Aufgabe.
+    const task = page.locator('.task-block', { hasText: 'Drache' }).first();
     const term = task.locator('.glossary-term', { hasText: 'Variable' });
     await expect(term).toHaveCount(1);
     await expect(term).not.toContainText('span');

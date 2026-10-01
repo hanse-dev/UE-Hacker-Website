@@ -1,9 +1,9 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-10-01
-> **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.90 (Zertifikate/PDF,
-> Skip-Aufgaben, Login-Fortschritt, Pre-commit/Pre-push, Admin-Termine, Interaktiv-Kurs-Überarbeitung,
-> Projekt-Kurs-Start-Gate, Worktree-Tooling, Dev-Skip-Flag, JS-Spielewerkstatt mit neuem Konzept).
+> **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.94 (u.a. Zertifikate/PDF,
+> Skip-/Reset-Button, Login-Fortschritt, Pre-commit/Pre-push, Admin-Termine, "Kurs starten"-Gate für
+> alle Kurse, Worktree-Tooling, Dev-Skip-Flag, JS-Spielewerkstatt mit neuem Konzept).
 > Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4) — nach dem nächsten Deploy
 > den einmaligen Termine-Import laufen lassen (Abschnitt 5).
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
@@ -58,9 +58,8 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.66 | KI-Labor gestartet — Kursplan + Woche 1 "Was ist KI?" | `KiLaborTour.vue`, `content/ki-labor-woche1`, Check-System um `courseKey` vorbereitet |
 | 3.67 | KI-Labor: Quiz + Wochen-Zertifikat nachgezogen | `useWeekChecks.js`/`WeekCheckPanel.vue`/`CodeChallenge.vue`/`useCertificatePdf.js` um `courseKey` generalisiert |
 | 3.68 | KI-Labor: Woche 2 "Daten sind alles" | 5 Lektionen + Debug + Mission + 3 Extra-Herausforderungen + eigener Wochen-Check |
-| 3.69 | Profil zeigt Wochen-Zertifikate + "Kurs starten"-Gate | `useCourseCertificates.js` neu; `CourseDetail.vue` blendet Beschreibung/Struktur hinter einem Start-Button aus |
-| 3.70 | Profil: PDF-Download direkt am Zertifikat | `loadWeekLernziele()` (Python) + `src/data/kiLaborWeeks.js` (KI-Labor) liefern die Lernziele fürs PDF |
-| 3.71 | Woche 4 + 9: `input()`-Lücken aus `todo.md` geschlossen | Neuer `validation.stdin`-Schritt je Thema (Woche 4 Boss-3, Woche 9 Boss-1 "Eigener Eintrag"), DE+EN, ans Ende der Lektion/Notebook-Zellfolge angehängt statt eingefügt |
+| 3.69/3.70 | Profil zeigt Wochen-Zertifikate mit PDF-Download + "Kurs starten"-Gate | `useCourseCertificates.js`; `CourseDetail.vue` blendet Beschreibung/Struktur hinter einem Start-Button aus; Lernziele fürs PDF aus `loadWeekLernziele()` (Python) bzw. `src/data/kiLaborWeeks.js` |
+| 3.71 | Woche 4 + 9: `input()`-Lücken geschlossen | `validation.stdin`-Schritt je Thema (Woche 4 Boss-3, Woche 9 Boss-1), DE+EN, ans Ende der Lektion angehängt |
 | 3.72–3.77 | KI-Labor: Woche 3–8 (k-NN, Training & Test, Entscheidungsbäume, Neuronale Netze I+II, Grenzen & Ethik) | je 5 Lektionen + Debug + Mission + 3 Extra-Herausforderungen + eigener Wochen-Check; alle Beispiele/Lösungen mit `python3` geprüft; nach Woche 8 kein "nächste Woche"-Button mehr |
 | 3.78 | `output_contains` toleriert Groß-/Kleinschreibung, Leerzeichen, Satzzeichen am Ende | `output_equals` bleibt bewusst exakt (prüft teils auf ungewollte Extra-Ausgabe); Test in `week-checks-logic.spec.js` |
 | 3.79 | Interaktiv-Kurs: Lektionstexte ausführlicher (Kinder + Jugendliche, DE) | reine Textüberarbeitung, keine Logikänderung |
@@ -69,15 +68,14 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.82 | Login ersetzt lokalen Fortschritt durch Account-Stand statt zu mergen | `loadAccountProgress()`/`replaceLocalProgress()` in `useProgressSync.js`, nur beim expliziten Login; Seiten-Reload merged weiter nach `updatedAt` |
 | 3.83 | Pre-commit/Pre-push zweistufig statt vollem `test:checks` bei jedem Commit | `scripts/test-changed.mjs` mappt staged Dateien auf betroffene Specs (Pre-commit); voller `test:checks` im Pre-push-Hook |
 | 3.84 | Termine im Admin-Panel verwaltbar statt per Hand in `public/termine.json` | `termine`-Tabelle (SQLite) + `/api/termine` (GET) + `/api/admin/termine` (CRUD), Tab „Termine“ in `AdminView.vue`; einmaliger Umzug per `api/src/scripts/import-termine-json.js` |
-| 3.85 | Interaktiv-Kurs: Editor-Erklärungen, flexible Lektionen (5 Aufgaben, mind. 2 nötig) + Beispiel-Aufgabe | `lesson.editorHint` erklärt Ausführen vs. Prüfen, Hinweis für `___`-Lücken; `lesson.minSolved` in `LessonView.vue` macht eine Lektion "flexibel" (Rest sofort überspringbar) |
-| 3.86 | Projekt-Kurse: "Kurs starten"-Gate + Lektionsliste als horizontale Leiste statt Seitenspalte | `isFocusableCourse` (`CourseDetail.vue`) gilt auch für Projekt-Kurse; geteiltes `course-layout.css` einspaltig, `.lessons-list` als Chip-Reihe; `InteractiveCourse.vue` scrollt bei "Weiter" jetzt an den Lektionsanfang |
+| 3.85 | Interaktiv-Kurs: Editor-Erklärungen, flexible Lektionen + Beispiel-Aufgabe | `lesson.editorHint`, Hinweis für `___`-Lücken; `lesson.minSolved` in `LessonView.vue` macht eine Lektion "flexibel" (5 Aufgaben, mind. 2 nötig, Rest sofort überspringbar) |
+| 3.86/3.93 | "Kurs starten"-Gate für Projekt-Kurse und Interaktiv-Kurs; Lektionsliste als horizontale Leiste | `isFocusableCourse` (`CourseDetail.vue`) gilt für alle Kurse außer der Einstufung, `?started=1` hält die Ansicht beim Reload; geteiltes `course-layout.css` einspaltig, `.lessons-list` als Chip-Reihe; Interaktiv-Kurs: Varianten-Karten im Kachel-Look, "Weiter" scrollt an den Lektionsanfang |
 | 3.87 | Git-Worktree-Tooling | `npm run worktree:new`/`worktree:remove`, eigene Ports je Worktree (`worktree.ports.json`), siehe `WORKFLOW.md` |
-| 3.88 | Test-Kurs "Fang den Ball" (neues Konzept) | jede Aufgabe baut am echten laufenden Spiel weiter; `task.showCanvas: false` blendet den Canvas-Kasten pro Aufgabe aus; seit 3.90 Inhalt von `js-spielewerkstatt` |
 | 3.89 | Dev-Flag: Aufgaben-Prüfung überspringen | `npm run dev:skip-checks` (`VITE_DEV_SKIP_CHECKS=1`) lässt "Prüfen" in `JsLessonView.vue` sofort durchgehen, hinter `import.meta.env.DEV` (nicht im Prod-Build), mit Hinweis-Banner |
-| 3.90 | JS-Spielewerkstatt durch das neue Konzept ersetzt | `content/js-spielewerkstatt` = die 7 Lektionen des Test-Kurses (ID/URL unverändert), alter Inhalt, Test-Eintrag und `hidden`-Flag entfernt; Funktionen per `output_equals` statt `functionCalls` geprüft; empfohlenes Vorwissen JS-Grundkurs Woche 4; Durchlauf-Test über alle Musterlösungen |
-| 3.91 | "Zurücksetzen"-Button für vorgegebenen Code | `.btn-reset` in `LessonView.vue`/`JsLessonView.vue`/`CodeChallenge.vue`, sichtbar sobald der Code vom (nicht leeren) `codeTemplate` abweicht; setzt nur diese eine Aufgabe zurück (inkl. Ausgabe/Feedback) |
-| 3.92 | JS-Lektionsaufgaben: fehlende `output_contains`-Checks nachgezogen | `js-grundkurs-woche2/3/5/6/7/8` und `js-snake`: Aufgaben, die sich nur auf `variables`/`functionCalls` verließen (seit 3.80 ungeprüft), verlangen jetzt eine `console.log`-Ausgabe; keine JS-Pflichtaufgabe mehr ohne Ausgabe-/Canvas-/DOM-Prüfung |
-| 3.93 | Interaktiv-Kurs: "Kurs starten"-Gate + Varianten-Karten im Kachel-Look | `isFocusableCourse` (`CourseDetail.vue`) gilt jetzt für alle Kurse außer der Einstufung; Varianten-Wahl (Kinder/Jugendliche) erscheint erst nach dem Start, `?started=1` hält die Ansicht beim Reload |
+| 3.88/3.90 | JS-Spielewerkstatt mit neuem Konzept (erst Test-Kurs "Fang den Ball", dann Ersatz) | `content/js-spielewerkstatt`: 7 Lektionen, jede Aufgabe baut am echten laufenden Spiel weiter (ID/URL unverändert); Funktionen per `output_equals` statt `functionCalls` geprüft; `task.showCanvas: false` blendet den Canvas-Kasten pro Aufgabe aus; empfohlenes Vorwissen JS-Grundkurs Woche 4; Durchlauf-Test über alle Musterlösungen |
+| 3.91 | "Zurücksetzen"-Button für vorgegebenen Code | `.btn-reset` in `LessonView.vue`/`JsLessonView.vue`/`CodeChallenge.vue`, sichtbar sobald der Code vom `codeTemplate` abweicht; setzt nur diese eine Aufgabe zurück |
+| 3.92 | JS-Lektionsaufgaben: fehlende `output_contains`-Checks nachgezogen | `js-grundkurs` und `js-snake`: keine JS-Pflichtaufgabe mehr ohne Ausgabe-/Canvas-/DOM-Prüfung (vorher 31, seit 3.80 ungeprüft) |
+| 3.94 | Glossar-Tooltip bricht bei verschachtelten Begriffen nicht mehr auf | `useLessonContent.js`: ein kombinierter Regex-Durchlauf über den Originaltext statt sequenziellem Ersetzen (traf sonst in schon eingefügte `title`-Attribute) |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
