@@ -105,6 +105,20 @@
     "contentPath": "js-spielewerkstatt"
   },
   {
+    "id": "projekt-js-fang-den-ball-test",
+    "type": "projekt",
+    "hidden": true,
+    "engine": "js-sandbox",
+    "language": "javascript",
+    "level": "einsteiger",
+    "tags": ["spiele", "logikraetsel"],
+    "title": "Test: Fang den Ball (neues Konzept)",
+    "title_en": "Test: Catch the Ball (new concept)",
+    "description": "Experimenteller Vergleichs-Kurs zur JS-Spielewerkstatt: jede Aufgabe baut direkt sichtbar am echten Spiel weiter (Schläger + Ball von Anfang an, Funktionen werden sofort im laufenden Spiel benutzt), statt einzelne Funktionen isoliert zu testen. Nicht für den Live-Betrieb gedacht, nur zum Vergleich.",
+    "description_en": "Experimental comparison course to the JS game workshop: every task builds directly and visibly on the real game (paddle + ball from the start, functions are used immediately in the running game) instead of testing isolated functions. Not meant for production, comparison only.",
+    "contentPath": "js-fang-den-ball-test"
+  },
+  {
     "id": "projekt-js-snake",
     "type": "projekt",
     "engine": "js-sandbox",

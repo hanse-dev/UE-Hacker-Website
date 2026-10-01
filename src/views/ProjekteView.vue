@@ -209,7 +209,10 @@ export default {
       try {
         const response = await fetch(assetUrl('kurse.json'));
         const kurse = await response.json();
-        const projektKurse = kurse.filter((k) => k.type === 'projekt');
+        // `hidden: true` (z.B. interne Vergleichs-/Test-Kurse) taucht hier bewusst nicht auf,
+        // ist aber weiterhin per Direktlink unter /kurs/<id> erreichbar (CourseDetail.vue prueft
+        // das Flag nicht).
+        const projektKurse = kurse.filter((k) => k.type === 'projekt' && !k.hidden);
         projects.value = await Promise.all(
           projektKurse.map(async (p) => {
             const lessonCount = await loadLessonCount(p.contentPath);
