@@ -264,7 +264,7 @@ siehe `VISION.md` "Offene Fragen"). Ideen-Backlog: `PROJEKTIDEEN.md`.
 
 ## 6. Entscheidungen / Konventionen (nicht ohne Rückfrage ändern)
 
-- Ein Thema = ein Branch von `main` (`WORKFLOW.md`) — **kein** Präfix mehr (früher `cursor/…`,
+- Ein Thema = ein Branch von `main` in einem eigenen Worktree (`WORKFLOW.md`) — **kein** Präfix mehr (früher `cursor/…`,
   wurde entfernt)
 - Jede Verhaltensänderung braucht einen Playwright-Test (`WORKFLOW.md`) — reine Text-/Typo-Korrekturen sind ausgenommen
 - Accounts: Admin legt an; `ageGroup` kinder|jugendliche; ein Mensch = ein Account
@@ -301,7 +301,7 @@ siehe `VISION.md` "Offene Fragen"). Ideen-Backlog: `PROJEKTIDEEN.md`.
 
 1. `git checkout main && git pull`
 2. `HANDOFF.md` + `WORKFLOW.md` lesen (werden automatisch geladen); bei Content-Arbeit `INHALTE.md`/`todo.md`
-3. Neues Thema → **neuen** Branch (ohne Präfix)
+3. Neues Thema → **neuen** Branch (ohne Präfix), immer im eigenen Worktree: `npm run worktree:new -- <branch>`
 4. Vor Änderungen an Pyodide, JS-Sandbox, Vue-CSS, Sync oder Notebooks: Abschnitt 3 "Gelernte Regeln" lesen.
    Nicht erwarten: Compose-Service `prod` (heißt `app`), `WeekSection.vue`-Akkordeon (seit 3.36 `WeekTour.vue`),
    `.ipynb`-Quellen im 12-Wochen-Kurs (seit 3.33 Zellen-Ordner).

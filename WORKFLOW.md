@@ -10,21 +10,26 @@ Aufgaben nacheinander in der Hauptsession erledigen (Read/Grep/Bash direkt nutze
 das bedeutet, dass Recherche und Umsetzung mehr Turns brauchen. Ausnahme nur, wenn der Nutzer
 explizit einen Sub-Agenten verlangt.
 
-## Git: Ein Thema = ein Branch
+## Git: Ein Thema = ein Branch = ein Worktree
 
-**Immer einen neuen Branch anlegen, wenn ein neues Thema beginnt.**
+**Immer einen neuen Branch anlegen, wenn ein neues Thema beginnt — und zwar immer in einem eigenen
+Worktree** (`npm run worktree:new -- <branch-name>`, siehe nächster Abschnitt), nie per
+`git checkout -b`/`git switch` im Haupt-Checkout. Der Haupt-Checkout bleibt auf `main`; dort wird
+nur gemergt und es landen höchstens kleine, in sich abgeschlossene Korrekturen direkt auf `main`.
+So kann im Worktree ungestört gebaut und getestet werden, ohne eine im Editor offene Session oder
+einen laufenden Dev-Server im Haupt-Checkout zu stören.
 
 - **Ohne** Prefix (z.B. `kurs-js-spielewerkstatt`, `admin-login`) — der frühere `cursor/`-Prefix
   wurde nachträglich bei allen Branches entfernt, nicht wieder einführen
-- Branch von aktuellem `main` aus starten
+- Branch von aktuellem `main` aus starten (Default von `worktree:new`)
 - Ein Branch = ein Thema; Admin/Accounts nicht auf dem Lernpfad-Branch mischen
 - Nächste Kurs-Themen (geplant): `kurs-js-spielewerkstatt` → `kurs-python-projekte` → `kurs-ki-labor` (siehe `todo.md`, Gesamt-Roadmap in `VISION.md`)
-- Erst mergen, wenn das Thema fertig/getestet ist — danach neues Thema → neuer Branch
+- Erst mergen, wenn das Thema fertig/getestet ist — danach Worktree entfernen
+  (`npm run worktree:remove -- <branch-name>`), Branch löschen; neues Thema → neuer Branch + Worktree
 
 ## Git-Worktrees für parallele/ungestörte Arbeit
 
-Statt im Haupt-Checkout zwischen Branches hin- und herzuschalten (stört eine parallel im Editor
-offene Session), einen eigenen Worktree anlegen:
+Jeder neue Branch bekommt seinen eigenen Worktree (Pflicht, siehe oben):
 
 ```bash
 npm run worktree:new -- <branch-name> [-- --from <basis-branch>]   # Default-Basis: main
