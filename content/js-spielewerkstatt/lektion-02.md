@@ -1,26 +1,18 @@
-# Der Schläger hört auf die Tastatur
+# Der Ball fällt
 
-Jedes Fang-Spiel braucht einen Schläger, den man steuern kann. Dafür brauchst du zwei Dinge: eine **Funktion**, die aus der aktuellen Position und der gedrückten Taste die neue Position berechnet, und ein bisschen Logik, damit der Schläger nicht aus dem Spielfeld läuft.
-
-Eine Funktion mit Parametern und Rückgabewert sieht so aus:
+Ein stehendes Bild ist noch kein Spiel. Damit sich etwas bewegt, braucht dein Code eine
+**Animationsschleife**: eine Funktion, die sich mit `requestAnimationFrame` selbst immer wieder
+neu aufruft – etwa 60 Mal pro Sekunde.
 
 ```js
-function verdopple(zahl) {
-  return zahl * 2;
+function frame() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);  // altes Bild löschen
+  // ... neu zeichnen ...
+  requestAnimationFrame(frame);                       // sich selbst erneut aufrufen
 }
-
-console.log(verdopple(5)); // 10
+frame();   // einmal anstoßen, danach läuft es von allein
 ```
 
-`taste` ist bei echten Tastatur-Events der Wert `event.key` – zum Beispiel `'ArrowLeft'` oder `'ArrowRight'`, wenn eine Pfeiltaste gedrückt wird. Du bekommst diesen Wert in dieser Aufgabe direkt als Parameter, ohne selbst auf ein echtes `keydown`-Event zu hören.
-
-Damit der Schläger nicht verschwindet, muss seine Position **begrenzt** werden:
-
-```js
-if (neueX < 0) neueX = 0;
-if (neueX > 320) neueX = 320;
-```
-
-Das nennt man **Clamping** – einen Wert an einen erlaubten Bereich „festklammern".
-
-> 💡 Später, wenn du dein ganzes Spiel zusammenbaust, hörst du mit `canvas.addEventListener('keydown', e => ...)` auf echte Tastendrücke und rufst dort `bewegeSchlaeger(x, e.key)` auf.
+In jedem Frame rufst du `zeichneSchlaeger(ctx, schlaegerX)` und `zeichneBall(ctx, 200, ballY)` aus
+Lektion 1 auf – nur dass sich `ballY` zwischendrin verändert, bevor der nächste Frame gezeichnet
+wird. Schau dir das komplette Beispiel unten an: Schläger steht fest, Ball fällt.

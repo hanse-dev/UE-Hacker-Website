@@ -1,33 +1,14 @@
-# Punkte und Game Over
+# Leben und Game Over
 
-Ein Spiel ohne Punktestand fühlt sich nicht wie ein richtiges Spiel an. Dafür brauchst du eine **Zustandsvariable** – eine Variable, die sich über die Zeit verändert und den aktuellen Spielstand merkt:
+Ein echtes Spiel geht irgendwann zu Ende. Dafür bekommt dein Spiel jetzt **Leben**: Verpasst der
+Ball den Schläger (er fällt über `y = 300` hinaus, ohne dass `istTreffer` zugeschlagen hat), zieht
+das ein Leben ab und der Ball startet neu oben. Sind alle Leben aufgebraucht, zeigt das Spielfeld
+„Game Over" und die Schleife hört auf, sich selbst erneut aufzurufen.
 
-```js
-let punkte = 0;
-let leben = 3;
-```
+Das komplette Spiel steht unten schon fast fertig da – Schläger, Ball, Tastatursteuerung,
+Treffererkennung und Punktestand aus den letzten vier Lektionen sind bereits eingebaut. Nur eine
+Stelle fehlt noch: was passiert, wenn der Ball durchrutscht.
 
-Bei jedem Treffer erhöhst du `punkte`, bei jedem verpassten Ball ziehst du `leben` ab. Deine Funktion `naechsterPunktestand(punkte, treffer)` kapselt genau diese Logik – so bleibt sie testbar, unabhängig vom Rest des Spiels.
-
-Text auf dem Canvas gibt man mit `fillText` aus:
-
-```js
-ctx.font = '20px sans-serif';
-ctx.fillText('Punkte: ' + punkte, 10, 25);
-```
-
-Für diese Lektion reicht aber `console.log` – die Ausgabe siehst du direkt unter deinem Code:
-
-```js
-console.log('Punkte: ' + punkte);
-```
-
-Ist `leben` bei `0` angekommen, ist das Spiel vorbei – „Game Over". Das prüfst du ganz normal mit einem `if`:
-
-```js
-if (leben <= 0) {
-  console.log('Game Over!');
-}
-```
-
-> 💡 In deinem fertigen Spiel würdest du bei Game Over die Animationsschleife stoppen, statt weiter `requestAnimationFrame` aufzurufen.
+Damit hast du ein vollständiges kleines Spiel mit echtem Spielende. In den nächsten beiden
+Lektionen bekommt es noch mehr Tiefe: Hindernisse, die du **nicht** fangen willst, und Bonus-Items,
+die deinen Schläger schneller machen.

@@ -3,7 +3,9 @@
 > **Zuletzt aktualisiert:** 2026-10-01
 > **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.89 (Zertifikate/PDF,
 > Skip-Aufgaben, Login-Fortschritt, Pre-commit/Pre-push, Admin-Termine, Interaktiv-Kurs-Überarbeitung,
-> Projekt-Kurs-Start-Gate, Worktree-Tooling, versteckter Test-Kurs "Fang den Ball", Dev-Skip-Flag).
+> Projekt-Kurs-Start-Gate, Worktree-Tooling, Dev-Skip-Flag).
+> Branch `js-spielewerkstatt-neues-konzept` (3.90, noch nicht gemergt): JS-Spielewerkstatt hat den
+> Inhalt des bisherigen Test-Kurses "Fang den Ball" übernommen.
 > Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4) — nach dem nächsten Deploy
 > den einmaligen Termine-Import laufen lassen (Abschnitt 5).
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
@@ -72,13 +74,14 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.80 | Lektionsaufgaben prüfen nur noch die Ausgabe, nicht mehr Code-Struktur/Variablen | `useTaskValidation.js` trennt `validateOutput()` (nur Ausgabe) von `structuralChecksOk()` (nur noch `CodeChallenge.vue`/Wochen-Check) |
 | 3.81 | Lektionsaufgaben überspringbar (nach 2 Fehlversuchen) | `.btn-skip` in `LessonView.vue`/`JsLessonView.vue`, `skippedTasks` zählt für den Lektions-Abschluss mit (⏭ statt ✓); gilt nicht für `CodeChallenge.vue` |
 | 3.82 | Login ersetzt lokalen Fortschritt durch Account-Stand statt zu mergen | `loadAccountProgress()`/`replaceLocalProgress()` in `useProgressSync.js`, nur beim expliziten Login; Seiten-Reload merged weiter nach `updatedAt` |
-| 3.83 | Pre-commit/Pre-push zweistufig statt vollem `test:checks` bei jedem Commit | `scripts/test-changed.mjs` mappt (staged) geänderte Dateien auf betroffene Specs (Pre-commit, `npm run test:precommit`); voller `test:checks` läuft jetzt im neuen Pre-push-Hook |
+| 3.83 | Pre-commit/Pre-push zweistufig statt vollem `test:checks` bei jedem Commit | `scripts/test-changed.mjs` mappt staged Dateien auf betroffene Specs (Pre-commit); voller `test:checks` im Pre-push-Hook |
 | 3.84 | Termine im Admin-Panel verwaltbar statt per Hand in `public/termine.json` | `termine`-Tabelle (SQLite) + `/api/termine` (GET) + `/api/admin/termine` (CRUD), Tab „Termine“ in `AdminView.vue`; einmaliger Umzug per `api/src/scripts/import-termine-json.js` |
 | 3.85 | Interaktiv-Kurs: Editor-Erklärungen, flexible Lektionen (5 Aufgaben, mind. 2 nötig) + Beispiel-Aufgabe | `lesson.editorHint` erklärt Ausführen vs. Prüfen, Hinweis für `___`-Lücken; `lesson.minSolved` in `LessonView.vue` macht eine Lektion "flexibel" (Rest sofort überspringbar) |
 | 3.86 | Projekt-Kurse: "Kurs starten"-Gate + Lektionsliste als horizontale Leiste statt Seitenspalte | `isFocusableCourse` (`CourseDetail.vue`) gilt auch für Projekt-Kurse; geteiltes `course-layout.css` einspaltig, `.lessons-list` als Chip-Reihe; `InteractiveCourse.vue` scrollt bei "Weiter" jetzt an den Lektionsanfang |
-| 3.87 | Git-Worktree-Tooling | `npm run worktree:new`/`worktree:remove` (`scripts/new-worktree.mjs`), eigene Ports je Worktree über `worktree.ports.json` (`scripts/worktree-ports.mjs`), siehe `WORKFLOW.md` |
-| 3.88 | Test-Kurs "Fang den Ball" (neues Konzept, Vergleich zu `js-spielewerkstatt`) | `content/js-fang-den-ball-test`, 7 Lektionen, jede Aufgabe baut am echten laufenden Spiel weiter; `"hidden": true` in `kurse.json` (nicht in `/projekte`/Profil-Abzeichen, nur per Direktlink `/kurs/projekt-js-fang-den-ball-test`); `task.showCanvas: false` blendet den Canvas-Kasten pro Aufgabe aus |
+| 3.87 | Git-Worktree-Tooling | `npm run worktree:new`/`worktree:remove`, eigene Ports je Worktree (`worktree.ports.json`), siehe `WORKFLOW.md` |
+| 3.88 | Test-Kurs "Fang den Ball" (neues Konzept) | jede Aufgabe baut am echten laufenden Spiel weiter; `task.showCanvas: false` blendet den Canvas-Kasten pro Aufgabe aus; seit 3.90 Inhalt von `js-spielewerkstatt` |
 | 3.89 | Dev-Flag: Aufgaben-Prüfung überspringen | `npm run dev:skip-checks` (`VITE_DEV_SKIP_CHECKS=1`) lässt "Prüfen" in `JsLessonView.vue` sofort durchgehen, hinter `import.meta.env.DEV` (nicht im Prod-Build), mit Hinweis-Banner |
+| 3.90 | JS-Spielewerkstatt durch das neue Konzept ersetzt | `content/js-spielewerkstatt` = die 7 Lektionen des Test-Kurses (ID/URL unverändert), alter Inhalt, Test-Eintrag und `hidden`-Flag entfernt; Funktionen per `output_equals` statt `functionCalls` geprüft; empfohlenes Vorwissen JS-Grundkurs Woche 4; Durchlauf-Test über alle Musterlösungen |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -251,7 +254,6 @@ Ausführlich in `todo.md`. Kurzfassung:
 
 **Inhalte**
 - Interaktiv-Kurs: "Ausführen vs. Prüfen"/Weiter-Flow — braucht konkretes Nutzer-Feedback.
-- Test-Kurs "Fang den Ball" (3.88, versteckt): Entscheidung offen, ob das Konzept `js-spielewerkstatt` ersetzt.
 - Alle 7 Projekt-Kurse: EN-Version offen (DE-first, `kurse.json` hat schon `title_en`).
 - Zertifikat-PDF: E-Mail-Versand später (hängt an der Kontakt-Adresse, nicht selbst erfinden).
 - Überlegung (nicht entschieden): dritte Sprache; UI-Ternarys sind schon auf `t()`, offen nur Content-Suffixe.

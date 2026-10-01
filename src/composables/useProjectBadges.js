@@ -32,9 +32,7 @@ export function useProjectBadges() {
     try {
       const response = await fetch(assetUrl('kurse.json'));
       const kurse = await response.json();
-      // `hidden: true` (interne Vergleichs-/Test-Kurse) bekommt kein Profil-Abzeichen, siehe
-      // ProjekteView.vue.
-      const projekte = kurse.filter((k) => k.type === 'projekt' && !k.hidden);
+      const projekte = kurse.filter((k) => k.type === 'projekt');
       badges.value = await Promise.all(
         projekte.map(async (p) => {
           const totalLessons = await loadLessonCount(p.contentPath);

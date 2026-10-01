@@ -1,29 +1,29 @@
-# Alles bewegt sich: die Animationsschleife
+# Der Schläger hört auf die Tastatur
 
-Bisher hast du nur ein einzelnes, unbewegtes Bild gezeichnet. Ein Spiel braucht aber Bewegung – und die entsteht, indem du **immer wieder** ein neues Bild zeichnest: erst löschen, dann neu zeichnen, an leicht veränderter Position. Wiederholt man das schnell genug (60 Mal pro Sekunde), sieht es aus wie eine flüssige Bewegung.
-
-Der Browser stellt dafür `requestAnimationFrame` bereit:
+Jetzt bekommt dein Schläger ein Steuer: die Pfeiltasten. Dafür hört dein Code auf
+Tastatur-Ereignisse:
 
 ```js
-function frame() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height); // altes Bild löschen
-  // ... hier neu zeichnen ...
-  requestAnimationFrame(frame); // den nächsten Frame anfordern
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowLeft') schlaegerX -= 20;
+  if (e.key === 'ArrowRight') schlaegerX += 20;
+});
+```
+
+`e.key` verrät, welche Taste gedrückt wurde. Ohne Begrenzung könnte der Schläger aber über den
+Rand hinauslaufen – deshalb brauchst du eine kleine Funktion, die eine Position immer im
+erlaubten Bereich hält (0 bis 320, denn der Schläger ist 80 Pixel breit und das Spielfeld 400):
+
+```js
+function begrenze(x) {
+  if (x < 0) return 0;
+  if (x > 320) return 320;
+  return x;
 }
-
-frame(); // die Schleife anstoßen
 ```
 
-`clearRect(x, y, breite, hoehe)` löscht einen Bereich des Canvas – ohne das würde sich jeder neue Ball über die alten legen und eine Spur hinterlassen.
-
-Einen Kreis (unseren Ball) zeichnest du mit `arc`:
-
-```js
-ctx.beginPath();
-ctx.arc(200, ballY, 10, 0, Math.PI * 2); // Mittelpunkt x/y, Radius, Start-/Endwinkel
-ctx.fill();
-```
-
-Damit der Ball wirklich fällt, musst du seine y-Position bei jedem Frame ein Stück erhöhen – genau das rechnet deine Funktion `naechstePosition(y, tempo)` aus der ersten Aufgabe.
-
-> 💡 `requestAnimationFrame` läuft so lange weiter, bis die Seite neu geladen wird oder der Sandbox-Bereich neu gestartet wird (z.B. durch „Neu starten" oder einen neuen Lauf) – dann verschwindet die alte Schleife automatisch.
+Diese Funktion ist kein Selbstzweck – sie wird im Beispiel unten direkt beim Tastendruck benutzt
+(`schlaegerX = begrenze(schlaegerX)`), du siehst ihre Wirkung also sofort am echten Schläger, wenn
+du im Spielfeld die Pfeiltasten drückst. Bevor du sie einbaust, prüfst du sie kurz für dich mit
+`console.log` – das ist die zuverlässigste Art, dein Ergebnis zu kontrollieren, bevor es im Spiel
+steckt.
