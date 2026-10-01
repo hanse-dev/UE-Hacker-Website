@@ -45,6 +45,8 @@ const CORE_PREFIXES = [
   'src/locales/',
   'content/python-checks/',
   'playwright.config.js',
+  'playwright.auth.config.js',
+  'scripts/ensure-test-prereqs.mjs',
   'package.json',
   'scripts/build_cell_notebooks.py',
   'scripts/pack_notebooks.py',

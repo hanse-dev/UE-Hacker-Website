@@ -61,12 +61,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.69 | Profil zeigt Wochen-Zertifikate + "Kurs starten"-Gate | `useCourseCertificates.js` neu; `CourseDetail.vue` blendet Beschreibung/Struktur hinter einem Start-Button aus |
 | 3.70 | Profil: PDF-Download direkt am Zertifikat | `loadWeekLernziele()` (Python) + `src/data/kiLaborWeeks.js` (KI-Labor) liefern die Lernziele fürs PDF |
 | 3.71 | Woche 4 + 9: `input()`-Lücken aus `todo.md` geschlossen | Neuer `validation.stdin`-Schritt je Thema (Woche 4 Boss-3, Woche 9 Boss-1 "Eigener Eintrag"), DE+EN, ans Ende der Lektion/Notebook-Zellfolge angehängt statt eingefügt |
-| 3.72 | KI-Labor: Woche 3 "Nächste Nachbarn (k-NN)" | 5 Lektionen + Debug + Mission + 3 Extra-Herausforderungen + eigener Wochen-Check |
-| 3.73 | KI-Labor: Woche 4 "Training & Test" | 5 Lektionen + Debug + Mission + 3 Extra-Herausforderungen (u.a. Overfitting-Erkennung) + eigener Wochen-Check |
-| 3.74 | KI-Labor: Woche 5 "Entscheidungsbäume" | 5 Lektionen + Debug + Mission + 3 Extra-Herausforderungen + eigener Wochen-Check; alle Beispiele/Lösungen mit `python3` geprüft |
-| 3.75 | KI-Labor: Woche 6 "Neuronale Netze I" | 5 Lektionen (u.a. logische Gatter per Gewichte/Schwellenwert, XOR-Grenze eines einzelnen Neurons) + Debug + Mission + 3 Extra-Herausforderungen + eigener Wochen-Check; kein Gewichte-Lernen (folgt Woche 7) |
-| 3.76 | KI-Labor: Woche 7 "Neuronale Netze II" | 5 Lektionen (versteckte Schicht, Gewichte per Zufalls-Suche selbst lernen lassen) + Debug + Mission + 3 Extra-Herausforderungen + eigener Wochen-Check |
-| 3.77 | KI-Labor: Woche 8 "Grenzen & Ethik" (letzte Woche des Kurses) | 5 Lektionen (Bias in Trainingsdaten, Accuracy-Paradox, Ausgleich per Undersampling) + Debug + Mission + 3 Extra-Herausforderungen + eigener Wochen-Check; kein "nächste Woche"-Button mehr nach dem Zertifikat |
+| 3.72–3.77 | KI-Labor: Woche 3–8 (k-NN, Training & Test, Entscheidungsbäume, Neuronale Netze I+II, Grenzen & Ethik) | je 5 Lektionen + Debug + Mission + 3 Extra-Herausforderungen + eigener Wochen-Check; alle Beispiele/Lösungen mit `python3` geprüft; nach Woche 8 kein "nächste Woche"-Button mehr |
 | 3.78 | `output_contains` toleriert Groß-/Kleinschreibung, Leerzeichen, Satzzeichen am Ende | `output_equals` bleibt bewusst exakt (prüft teils auf ungewollte Extra-Ausgabe); Test in `week-checks-logic.spec.js` |
 | 3.79 | Interaktiv-Kurs: Lektionstexte ausführlicher (Kinder + Jugendliche, DE) | reine Textüberarbeitung, keine Logikänderung |
 | 3.80 | Lektionsaufgaben prüfen nur noch die Ausgabe, nicht mehr Code-Struktur/Variablen | `useTaskValidation.js` trennt `validateOutput()` (nur Ausgabe) von `structuralChecksOk()` (nur noch `CodeChallenge.vue`/Wochen-Check) |
@@ -151,6 +146,9 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   Composables/Content-Ordner brauchen dort eine eigene Regel in `RULES`, sonst greift nur das
   Sicherheitsnetz (voller Lauf) statt des schnellen Pfads (3.83). Regel mit leerer Liste = Datei
   wird von `test:checks` gar nicht abgedeckt (API, lokales Tooling) → beim Commit kein Lauf.
+- Generierte, gitignorte Dateien (Notebook-`_generated`/`_bundle`, ZIPs) erzeugt der Playwright-
+  Webserver nicht selbst; `scripts/ensure-test-prereqs.mjs` (`globalSetup`) stellt sie vor jedem
+  Lauf sicher. Fehlten sie (frischer Worktree), brauchte `test:checks` >15 Min statt ~2.
 - `lesson.minSolved` (flexible Lektion, Rest von Anfang an überspringbar) heißt: Aufgaben dürfen
   sich nicht auf Variablen aus einer vorherigen Aufgabe verlassen — eine übersprungene Aufgabe hat
   ihren Code nie ausgeführt (3.85).

@@ -38,6 +38,13 @@ Playwright-Test-Webserver, Auth-Test-API) über `worktree.ports.json` — `vite.
 Standardports (5173/5174/3001/3011). `npm run start:all`/`npm run test:checks` funktionieren im
 Worktree ohne weitere Anpassung.
 
+Die gitignorten generierten Dateien (Notebook-`_generated`/`_bundle`, Download-ZIPs) stellt
+`scripts/ensure-test-prereqs.mjs` vor **jedem** Playwright-Lauf sicher (`globalSetup` in beiden
+Playwright-Configs): fehlen sie oder sind sie älter als ihre Quellen, werden sie neu erzeugt. Ein
+von Hand per `git worktree add` angelegter Worktree ohne `worktree.ports.json` bricht dort mit
+Hinweis ab, statt stillschweigend den Server des Haupt-Checkouts zu testen. Kommt eine neue
+generierte/gitignorte Datei dazu, die Tests brauchen, gehört die Prüfung in dieses Skript.
+
 Nach dem Merge: `npm run worktree:remove -- <branch-name>` (entfernt nur den Worktree, den Branch
 danach wie gewohnt per `git branch -d` löschen).
 
