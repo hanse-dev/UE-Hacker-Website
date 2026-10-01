@@ -75,6 +75,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.88 | Test-Kurs "Fang den Ball" (neues Konzept) | jede Aufgabe baut am echten laufenden Spiel weiter; `task.showCanvas: false` blendet den Canvas-Kasten pro Aufgabe aus; seit 3.90 Inhalt von `js-spielewerkstatt` |
 | 3.89 | Dev-Flag: Aufgaben-Prüfung überspringen | `npm run dev:skip-checks` (`VITE_DEV_SKIP_CHECKS=1`) lässt "Prüfen" in `JsLessonView.vue` sofort durchgehen, hinter `import.meta.env.DEV` (nicht im Prod-Build), mit Hinweis-Banner |
 | 3.90 | JS-Spielewerkstatt durch das neue Konzept ersetzt | `content/js-spielewerkstatt` = die 7 Lektionen des Test-Kurses (ID/URL unverändert), alter Inhalt, Test-Eintrag und `hidden`-Flag entfernt; Funktionen per `output_equals` statt `functionCalls` geprüft; empfohlenes Vorwissen JS-Grundkurs Woche 4; Durchlauf-Test über alle Musterlösungen |
+| 3.91 | "Zurücksetzen"-Button für vorgegebenen Code | `.btn-reset` in `LessonView.vue`/`JsLessonView.vue`/`CodeChallenge.vue`, sichtbar sobald der Code vom (nicht leeren) `codeTemplate` abweicht; setzt nur diese eine Aufgabe zurück (inkl. Ausgabe/Feedback) |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 

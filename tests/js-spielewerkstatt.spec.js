@@ -122,6 +122,29 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     expect(await readNotBlank()).toBe(false);
   });
 
+  test('"Zurücksetzen" stellt den vorgegebenen Code einer Aufgabe wieder her', async ({ page }) => {
+    await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
+    await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
+
+    const task = page.locator('.task-block').nth(2);
+    // Solange der Code unveraendert ist, gibt es nichts zurueckzusetzen.
+    await expect(task.locator('.btn-reset')).toHaveCount(0);
+
+    await setCodeMirrorContent(task.locator('.cm-host'), "console.log('etwas ganz anderes');");
+    await task.locator('.btn-run').click();
+    await expect(task.locator('.output-display')).toBeVisible({ timeout: 10000 });
+    await expect(task.locator('.btn-reset')).toBeVisible();
+
+    await task.locator('.btn-reset').click();
+    await expect(task.locator('.cm-content')).toContainText('Dein Code hier');
+    await expect(task.locator('.cm-content')).not.toContainText('etwas ganz anderes');
+    // Ausgabe und "schon ausgeführt"-Markierung dieser Aufgabe sind mit zurueckgesetzt.
+    await expect(task.locator('.output-display')).toHaveCount(0);
+    await expect(task.locator('.code-editor-wrapper')).not.toHaveClass(/code-editor-ran/);
+    await expect(task.locator('.btn-reset')).toHaveCount(0);
+  });
+
   test('Beispiel- und Pflicht-Aufgaben einer Lektion sind klar unterschieden und schalten zusammen die naechste Lektion frei', async ({ page }) => {
     test.setTimeout(30000);
     await page.goto('/kurs/projekt-js-spielewerkstatt');

@@ -50,6 +50,14 @@
             >
               {{ t('lesson.skipTask') }}
             </button>
+            <button
+              v-if="task.codeTemplate && taskCodes[idx] !== task.codeTemplate"
+              @click="resetTask(idx)"
+              :disabled="checking"
+              class="btn-reset"
+            >
+              {{ t('editor.reset') }}
+            </button>
           </div>
           <JsSandboxFrame v-if="taskRan[idx]" :ref="(el) => setSandboxRef(idx, el)" :show-canvas="taskShowsCanvas(idx)" :dom-mode="domMode" />
           <details v-if="task.solution" class="solution-reveal">
@@ -180,6 +188,15 @@ export default {
       skippedTasks.value = new Set([...skippedTasks.value, idx]);
       taskFeedback.value[idx] = null;
       if (doneCount.value === tasks.value.length) markCompleted(props.lesson.id);
+    };
+
+    // Stellt nur den vorgegebenen codeTemplate der einen Aufgabe wieder her - Fortschritt/Status
+    // der anderen Aufgaben bleibt unberuehrt, ebenso ob die Aufgabe schon erledigt ist.
+    const resetTask = (idx) => {
+      taskCodes.value[idx] = tasks.value[idx]?.codeTemplate ?? '';
+      taskOutputs.value[idx] = null;
+      taskFeedback.value[idx] = null;
+      taskRan.value[idx] = false;
     };
 
     onMounted(() => {
@@ -359,6 +376,7 @@ export default {
       completedTasks,
       skippedTasks,
       skipTask,
+      resetTask,
       isTaskDone,
       taskAttempts,
       instructionWithGlossary,
@@ -669,6 +687,26 @@ a.btn-next {
 }
 
 .btn-skip:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-reset {
+  background: transparent;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.btn-reset:hover:not(:disabled) {
+  background: #f8f9fa;
+  border-color: #adb5bd;
+}
+
+.btn-reset:disabled {
   cursor: not-allowed;
   opacity: 0.6;
 }
