@@ -195,6 +195,31 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     await expect(solution.locator('.solution-code')).toContainText('bewegeSchlaeger');
   });
 
+  test('Geöffnete Lösung einer Lektion bleibt beim Wechsel in die nächste Lektion zu', async ({ page }) => {
+    // Der v-for ueber die Aufgaben war frueher nur per Index gekeyt (:key="idx") - beim
+    // Lektionswechsel hat Vue das bestehende <details>-DOM-Element an derselben Position
+    // deshalb nur gepatcht statt neu erzeugt, wodurch der native offen/zu-Zustand ueber
+    // Lektionsgrenzen hinweg erhalten blieb. Reproduziert das mit zwei Lektionen, die beide an
+    // Task-Index 2 eine Loesung haben (lektion-02 "bewegeSchlaeger", lektion-03 "frame()").
+    await page.addInitScript(() => {
+      localStorage.setItem(
+        'ue-hacker-interactive-progress-js-spielewerkstatt',
+        JSON.stringify({ version: 1, courseId: 'projekt-js-spielewerkstatt', variant: 'js-spielewerkstatt', completedLessonIds: ['lektion-01', 'lektion-02'] })
+      );
+    });
+    await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
+
+    await page.locator('.lesson-item', { hasText: 'Der Schläger hört auf die Tastatur' }).click();
+    const lektion2Solution = page.locator('.task-block').nth(2).locator('.solution-reveal');
+    await lektion2Solution.locator('summary').click();
+    await expect(lektion2Solution.locator('.solution-code')).toBeVisible();
+
+    await page.locator('.lesson-item', { hasText: 'Alles bewegt sich' }).click();
+    const lektion3Solution = page.locator('.task-block').nth(2).locator('.solution-reveal');
+    await expect(lektion3Solution.locator('.solution-code')).toBeHidden();
+  });
+
   test('Funktionsaufgabe mit versteckten Testfaellen: JsLessonView prueft nur die Ausgabe, nicht mehr die versteckten Faelle', async ({ page }) => {
     test.setTimeout(30000);
     // Bewusste Entscheidung (siehe useTaskValidation.js `structuralChecksOk`): normale
