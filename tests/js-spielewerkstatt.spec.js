@@ -208,6 +208,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
       );
     });
     await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
 
     await page.locator('.lesson-item', { hasText: 'Der Schläger hört auf die Tastatur' }).click();

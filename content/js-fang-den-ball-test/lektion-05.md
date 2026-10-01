@@ -1,4 +1,4 @@
-# Leben, Game Over und dein eigener Dreh
+# Leben und Game Over
 
 Ein echtes Spiel geht irgendwann zu Ende. Dafür bekommt dein Spiel jetzt **Leben**: Verpasst der
 Ball den Schläger (er fällt über `y = 300` hinaus, ohne dass `istTreffer` zugeschlagen hat), zieht
@@ -9,6 +9,6 @@ Das komplette Spiel steht unten schon fast fertig da – Schläger, Ball, Tastat
 Treffererkennung und Punktestand aus den letzten vier Lektionen sind bereits eingebaut. Nur eine
 Stelle fehlt noch: was passiert, wenn der Ball durchrutscht.
 
-Am Ende ist das Spiel komplett – dein eigenes Browserspiel, vom ersten Rechteck bis zum
-Game-Over-Bildschirm. Mach es zu deinem eigenen: eine zweite Farbe, ein Hindernis, ein
-Extra-Leben – was auch immer dir einfällt.
+Damit hast du ein vollständiges kleines Spiel mit echtem Spielende. In den nächsten beiden
+Lektionen bekommt es noch mehr Tiefe: Hindernisse, die du **nicht** fangen willst, und Bonus-Items,
+die deinen Schläger schneller machen.
