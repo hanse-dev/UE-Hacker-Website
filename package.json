@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "npm run build:cells && npm run pack:notebooks && vite",
+    "dev:skip-checks": "VITE_DEV_SKIP_CHECKS=1 npm run dev",
     "build": "vite build",
     "preview": "vite preview",
     "cheatsheet:notebooks": "python3 scripts/md_to_cheatsheet_notebook.py",

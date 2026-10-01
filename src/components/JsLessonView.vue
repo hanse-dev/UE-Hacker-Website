@@ -6,6 +6,9 @@
     </div>
 
     <div class="lesson-editor-section">
+      <p v-if="devSkipChecks" class="dev-skip-banner">
+        🚧 Dev-Modus: „Prüfen" schaltet Aufgaben sofort frei, ohne den Code zu prüfen (VITE_DEV_SKIP_CHECKS=1)
+      </p>
       <p class="editor-hint">{{ t('jsLesson.editorHint') }}</p>
       <p class="editor-hint editor-hint-ran">{{ t('jsLesson.ranExplainer') }}</p>
 
@@ -238,8 +241,20 @@ export default {
       if (doneCount.value === tasks.value.length) markCompleted(props.lesson.id);
     };
 
+    // Nur fuers lokale Durchklicken/Review eines Kurses gedacht (z.B. neue Lektionen pruefen,
+    // ohne jede Aufgabe wirklich zu loesen) - per VITE_DEV_SKIP_CHECKS=1 npm run dev aktivierbar.
+    // `import.meta.env.DEV` sorgt dafuer, dass Vite diesen Zweig im Produktions-Build komplett
+    // wegoptimiert (dead code elimination), er landet also nie im ausgelieferten Bundle.
+    const devSkipChecks = import.meta.env.DEV && import.meta.env.VITE_DEV_SKIP_CHECKS === '1';
+
     const checkTask = async (idx) => {
       if (checking.value) return;
+      if (devSkipChecks && !isExample(idx)) {
+        taskFeedback.value[idx] = null;
+        completedTasks.value = new Set([...completedTasks.value, idx]);
+        finishCheck(idx);
+        return;
+      }
       checking.value = true;
       taskFeedback.value[idx] = null;
       taskRan.value[idx] = true;
@@ -331,6 +346,7 @@ export default {
       tasks,
       isExample,
       taskShowsCanvas,
+      devSkipChecks,
       taskCodes,
       taskOutputs,
       taskFeedback,
@@ -416,6 +432,16 @@ export default {
   margin: 0 0 12px 0;
   font-size: 0.9em;
   color: #555;
+}
+
+.dev-skip-banner {
+  margin: 0 0 12px 0;
+  padding: 8px 12px;
+  font-size: 0.85em;
+  background: #fff3cd;
+  border: 1px solid #ffe69c;
+  border-radius: 6px;
+  color: #664d03;
 }
 
 .editor-hint-ran {
