@@ -244,6 +244,14 @@ export default {
       e.target.value = '';
     };
 
+    // Wie bei ProjectCourse: bei Lektionswechsel (Sidebar-Klick oder "Weiter") oben bei der neuen
+    // Lektion landen statt an der Scroll-Position der alten. Kein Scroll beim allerersten Laden
+    // (oldId ist dann noch null), flush: 'post' damit die neue Lektion schon gerendert ist.
+    watch(currentLessonId, (newId, oldId) => {
+      if (!oldId) return;
+      mainEl.value?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, { flush: 'post' });
+
     onMounted(loadLessons);
     watch(variant, loadLessons);
     watch(lang, () => {
@@ -316,17 +324,20 @@ export default {
   gap: 8px;
   width: 220px;
   padding: 28px 20px;
-  border: 2px solid #dee2e6;
+  border: 2px solid #e9ecef;
   border-radius: 12px;
   background: #fff;
   cursor: pointer;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: all 0.15s ease;
   text-align: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 .variant-card:hover {
-  border-color: var(--primary-purple, #4a2274);
-  box-shadow: 0 4px 16px rgba(74,34,116,0.12);
+  border-color: #d9c7ea;
+  background: #f7f1fb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(74, 34, 116, 0.12);
 }
 
 .variant-icon {

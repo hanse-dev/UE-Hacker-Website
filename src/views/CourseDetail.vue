@@ -33,11 +33,7 @@
         {{ t('course.start.button') }}
       </button>
 
-      <div v-if="isInteractiveCourse" class="interactive-course-wrapper">
-        <InteractiveCourse :content-path="course.contentPath" />
-      </div>
-
-      <div v-else-if="isPlacementCourse" class="placement-course-wrapper">
+      <div v-if="isPlacementCourse" class="placement-course-wrapper">
         <PlacementCourse />
       </div>
     </template>
@@ -49,6 +45,10 @@
       </button>
 
       <WeekTour v-if="isWeeklyCourse" />
+
+      <div v-else-if="isInteractiveCourse" class="interactive-course-wrapper">
+        <InteractiveCourse :content-path="course.contentPath" />
+      </div>
 
       <div v-else-if="isJsGrundkurs" class="grundkurs-tour-wrapper">
         <JsGrundkursTour />
@@ -124,13 +124,13 @@ export default {
     const isKiLabor = computed(() => props.id === 'ki-labor');
 
     // "Kurs starten"-Gate für die Kurse mit eigenem Lernpfad (12-Wochen-Grundkurs, JS-Grundkurs,
-    // KI-Labor, Projekt-Kurse): erst Titel/Beschreibung/Kursstruktur-Erklärung, dann ein eigener,
-    // fokussierter Bildschirm nur mit der Wochenauswahl/Tour/Lektionsliste selbst - kein
-    // Umschalten mitten in einer Lektion. Ein vorhandener ?week=-Deep-Link (z.B. aus dem Profil
-    // "Zertifikat ansehen") überspringt die Start-Seite direkt, sonst müsste man dort erneut auf
-    // "Kurs starten" klicken.
+    // KI-Labor, Projekt-Kurse, Interaktiv-Kurs): erst Titel/Beschreibung/Kursstruktur-Erklärung,
+    // dann ein eigener, fokussierter Bildschirm nur mit der Wochenauswahl/Tour/Lektionsliste bzw.
+    // Varianten-Wahl selbst - kein Umschalten mitten in einer Lektion. Ein vorhandener
+    // ?week=-Deep-Link (z.B. aus dem Profil "Zertifikat ansehen") überspringt die Start-Seite
+    // direkt, sonst müsste man dort erneut auf "Kurs starten" klicken.
     const isFocusableCourse = computed(() =>
-      isWeeklyCourse.value || isJsGrundkurs.value || isKiLabor.value || isProjectCourse.value
+      isWeeklyCourse.value || isJsGrundkurs.value || isKiLabor.value || isProjectCourse.value || isInteractiveCourse.value
     );
     const started = ref(!!route.query.week || route.query.started === '1');
 
