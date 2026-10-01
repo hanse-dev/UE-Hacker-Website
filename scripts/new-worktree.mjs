@@ -85,6 +85,14 @@ for (const rel of ['node_modules', path.join('api', 'node_modules')]) {
   }
 }
 
+// Generierte Notebook-Dateien (_generated/_bundle, ZIPs) sind gitignored und fehlen in einem
+// frischen Worktree. `npm run dev` erzeugt sie selbst, der Playwright-Webserver (`npx vite`) aber
+// nicht - ohne sie laufen alle Tests, die ein Loesungs-Notebook oeffnen, in ihren Timeout und
+// `test:checks` braucht statt ~2 Minuten ueber eine Viertelstunde.
+for (const script of ['build:cells', 'pack:notebooks']) {
+  execFileSync('npm', ['run', '-s', script], { cwd: worktreePath, stdio: 'inherit' });
+}
+
 // .env uebernehmen (falls vorhanden), API_PORT auf den Worktree-Slot umbiegen.
 const envSrc = fs.existsSync(path.join(repoRoot, '.env'))
   ? path.join(repoRoot, '.env')
