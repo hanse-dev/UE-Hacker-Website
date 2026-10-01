@@ -14,6 +14,13 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
       pro Aufgabe sinnvoll und nicht die Lösung verrät) - kein mechanischer Fix. Vorschlag: pro
       Aufgabe ein passendes `output_contains` ergänzen (z.B. den Rückgabewert der Funktion für den
       Beispiel-Fall ausgeben lassen).
+- [ ] Test-Kurs `projekt-js-fang-den-ball-test` (`content/js-fang-den-ball-test`, `"hidden": true`)
+      ist nur ein Vergleichs-Kurs zur JS-Spielewerkstatt. Offen: entscheiden, ob das neue Konzept
+      (jede Aufgabe baut am echten Spiel weiter) `js-spielewerkstatt` ersetzt — dann Test-Kurs
+      umbenennen/`hidden` entfernen und den alten Kurs ablösen, sonst Test-Kurs wieder löschen.
+- [ ] Dev-Flag `VITE_DEV_SKIP_CHECKS` (HANDOFF 3.89) hat in `main` noch keinen eigenen Test. Ein
+      Entwurf (`tests/dev-skip-checks.spec.js` + `playwright.devskip.config.js`) liegt staged, aber
+      uncommittet im Worktree `dev-skip-checks-flag` — dort fertigstellen und mergen.
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken) —
       **zurückgestellt** (Nutzer will erst später deployen). Backup-Cron auf dem Server einrichten
       (Befehl siehe HANDOFF.md Abschnitt 4); externe Sicherung der Backups bewusst nicht mitgebaut.

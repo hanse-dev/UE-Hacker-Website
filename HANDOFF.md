@@ -1,10 +1,9 @@
 # Handoff — UE Hacker Website
 
-> **Zuletzt aktualisiert:** 2026-09-28
-> **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.85 (Zertifikate/PDF,
-> Skip-Aufgaben, Login-Fortschritt, Pre-commit/Pre-push, Admin-Termine, Interaktiv-Kurs-Überarbeitung).
-> Branch `projekt-kurse-start-gate` (3.86, noch nicht gemergt): Projekt-Kurse bekommen das
-> "Kurs starten"-Gate und die Lektionsliste wandert zu einer horizontalen Leiste über dem Lektionstext.
+> **Zuletzt aktualisiert:** 2026-10-01
+> **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.89 (Zertifikate/PDF,
+> Skip-Aufgaben, Login-Fortschritt, Pre-commit/Pre-push, Admin-Termine, Interaktiv-Kurs-Überarbeitung,
+> Projekt-Kurs-Start-Gate, Worktree-Tooling, versteckter Test-Kurs "Fang den Ball", Dev-Skip-Flag).
 > Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4) — nach dem nächsten Deploy
 > den einmaligen Termine-Import laufen lassen (Abschnitt 5).
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
@@ -70,13 +69,16 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.77 | KI-Labor: Woche 8 "Grenzen & Ethik" (letzte Woche des Kurses) | 5 Lektionen (Bias in Trainingsdaten, Accuracy-Paradox, Ausgleich per Undersampling) + Debug + Mission + 3 Extra-Herausforderungen + eigener Wochen-Check; kein "nächste Woche"-Button mehr nach dem Zertifikat |
 | 3.78 | `output_contains` toleriert Groß-/Kleinschreibung, Leerzeichen, Satzzeichen am Ende | `output_equals` bleibt bewusst exakt (prüft teils auf ungewollte Extra-Ausgabe); Test in `week-checks-logic.spec.js` |
 | 3.79 | Interaktiv-Kurs: Lektionstexte ausführlicher (Kinder + Jugendliche, DE) | reine Textüberarbeitung, keine Logikänderung |
-| 3.80 | Lektionsaufgaben prüfen nur noch die Ausgabe, nicht mehr Code-Struktur/Variablen | `validation.codeContains`/`variables`/`functionCalls` sind in `LessonView.vue`/`JsLessonView.vue` nicht mehr blockierend; `useTaskValidation.js` trennt `validateOutput()` (nur Ausgabe) von `structuralChecksOk()` (nur noch für `CodeChallenge.vue`/Wochen-Check) |
-| 3.81 | Lektionsaufgaben überspringbar (nach 2 Fehlversuchen) | Neuer `.btn-skip` in `LessonView.vue`/`JsLessonView.vue`, `skippedTasks`-Set zählt für den Lektions-Abschluss mit, bleibt aber optisch "übersprungen" (⏭) statt "erledigt" (✓); löst man die Aufgabe danach doch noch, wandert sie zu "erledigt". Gilt nicht für `CodeChallenge.vue` (Wochen-Check). |
-| 3.82 | Login ersetzt lokalen Fortschritt durch Account-Stand statt zu mergen | `loadAccountProgress()`/`replaceLocalProgress()` in `useProgressSync.js`, nur beim expliziten Login (`useAuth.js`) genutzt; `restoreSession()`/`syncNow()` beim Seiten-Reload bleiben beim Merge nach `updatedAt` |
+| 3.80 | Lektionsaufgaben prüfen nur noch die Ausgabe, nicht mehr Code-Struktur/Variablen | `useTaskValidation.js` trennt `validateOutput()` (nur Ausgabe) von `structuralChecksOk()` (nur noch `CodeChallenge.vue`/Wochen-Check) |
+| 3.81 | Lektionsaufgaben überspringbar (nach 2 Fehlversuchen) | `.btn-skip` in `LessonView.vue`/`JsLessonView.vue`, `skippedTasks` zählt für den Lektions-Abschluss mit (⏭ statt ✓); gilt nicht für `CodeChallenge.vue` |
+| 3.82 | Login ersetzt lokalen Fortschritt durch Account-Stand statt zu mergen | `loadAccountProgress()`/`replaceLocalProgress()` in `useProgressSync.js`, nur beim expliziten Login; Seiten-Reload merged weiter nach `updatedAt` |
 | 3.83 | Pre-commit/Pre-push zweistufig statt vollem `test:checks` bei jedem Commit | `scripts/test-changed.mjs` mappt (staged) geänderte Dateien auf betroffene Specs (Pre-commit, `npm run test:precommit`); voller `test:checks` läuft jetzt im neuen Pre-push-Hook |
-| 3.84 | Termine jetzt im Admin-Panel verwaltbar statt nur per Hand in `public/termine.json` | Neue `termine`-Tabelle (SQLite) + `/api/termine` (öffentlich, GET) + `/api/admin/termine` (CRUD); `AdminView.vue` hat einen zweiten Tab „Termine“; einmaliger Umzug per `api/src/scripts/import-termine-json.js` (Seed-Datei `api/src/scripts/termine-seed.json` aus der bisherigen `public/termine.json`) |
-| 3.85 | Interaktiv-Kurs: Editor-Erklärungen, flexible Lektionen (5 Aufgaben, mind. 2 nötig) + Beispiel-Aufgabe | Nutzer-Feedback "zu viele Annahmen, was zu tun ist": `lesson.editorHint` erklärt Ausführen vs. Prüfen, neuer bedingter Hinweis für `___`-Lücken; `LessonView.vue` bekommt `lesson.minSolved` (macht eine Lektion "flexibel" - mehr Aufgaben als nötig, Rest sofort überspringbar statt erst nach 2 Fehlversuchen); Kinder/Jugendliche-Variante auf 5 Aufgaben/Lektion + vorangestellte Beispiel-Aufgabe erweitert, `sum()`-Erklärungslücke (Kinder) geschlossen |
-| 3.86 | Projekt-Kurse: "Kurs starten"-Gate + Lektionsliste als horizontale Leiste statt Seitenspalte; Interaktiv-Kurs bekommt fehlenden Scroll-Fix nachgezogen | `isFocusableCourse` (`CourseDetail.vue`) gilt jetzt auch für Projekt-Kurse; geteiltes `course-layout.css` (Interaktiv-Kurs + Projekt-Kurse) einspaltig statt 260px-Sidebar, `.lessons-list` als umbrechende Chip-Reihe über dem Lektionstext; `InteractiveCourse.vue` hatte (anders als `ProjectCourse.vue`) noch nie den `mainEl.scrollIntoView()`-Watcher beim Lektionswechsel — Nutzer-Feedback, dass "Weiter" an der alten Scroll-Position stehen blieb, jetzt nachgezogen |
+| 3.84 | Termine im Admin-Panel verwaltbar statt per Hand in `public/termine.json` | `termine`-Tabelle (SQLite) + `/api/termine` (GET) + `/api/admin/termine` (CRUD), Tab „Termine“ in `AdminView.vue`; einmaliger Umzug per `api/src/scripts/import-termine-json.js` |
+| 3.85 | Interaktiv-Kurs: Editor-Erklärungen, flexible Lektionen (5 Aufgaben, mind. 2 nötig) + Beispiel-Aufgabe | `lesson.editorHint` erklärt Ausführen vs. Prüfen, Hinweis für `___`-Lücken; `lesson.minSolved` in `LessonView.vue` macht eine Lektion "flexibel" (Rest sofort überspringbar) |
+| 3.86 | Projekt-Kurse: "Kurs starten"-Gate + Lektionsliste als horizontale Leiste statt Seitenspalte | `isFocusableCourse` (`CourseDetail.vue`) gilt auch für Projekt-Kurse; geteiltes `course-layout.css` einspaltig, `.lessons-list` als Chip-Reihe; `InteractiveCourse.vue` scrollt bei "Weiter" jetzt an den Lektionsanfang |
+| 3.87 | Git-Worktree-Tooling | `npm run worktree:new`/`worktree:remove` (`scripts/new-worktree.mjs`), eigene Ports je Worktree über `worktree.ports.json` (`scripts/worktree-ports.mjs`), siehe `WORKFLOW.md` |
+| 3.88 | Test-Kurs "Fang den Ball" (neues Konzept, Vergleich zu `js-spielewerkstatt`) | `content/js-fang-den-ball-test`, 7 Lektionen, jede Aufgabe baut am echten laufenden Spiel weiter; `"hidden": true` in `kurse.json` (nicht in `/projekte`/Profil-Abzeichen, nur per Direktlink `/kurs/projekt-js-fang-den-ball-test`); `task.showCanvas: false` blendet den Canvas-Kasten pro Aufgabe aus |
+| 3.89 | Dev-Flag: Aufgaben-Prüfung überspringen | `npm run dev:skip-checks` (`VITE_DEV_SKIP_CHECKS=1`) lässt "Prüfen" in `JsLessonView.vue` sofort durchgehen, hinter `import.meta.env.DEV` (nicht im Prod-Build), mit Hinweis-Banner |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -150,6 +152,8 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 - `lesson.minSolved` (flexible Lektion, Rest von Anfang an überspringbar) heißt: Aufgaben dürfen
   sich nicht auf Variablen aus einer vorherigen Aufgabe verlassen — eine übersprungene Aufgabe hat
   ihren Code nie ausgeführt (3.85).
+- Letzte Coding-Aufgabe einer Projekt-Lektion darf nicht durch reines Kopieren des vorherigen Teils
+  lösbar sein: nur der neue Teil ist blind, bereits Gebautes bleibt als Kontext stehen (3.88).
 
 **Lokale Tools (`scripts/local-tools/`, laufen nie im Deploy)**
 - IDN-Domains (Umlaute) vor jedem `urllib`-Request per `.encode('idna')` in Punycode wandeln, sonst
@@ -247,6 +251,7 @@ Ausführlich in `todo.md`. Kurzfassung:
 
 **Inhalte**
 - Interaktiv-Kurs: "Ausführen vs. Prüfen"/Weiter-Flow — braucht konkretes Nutzer-Feedback.
+- Test-Kurs "Fang den Ball" (3.88, versteckt): Entscheidung offen, ob das Konzept `js-spielewerkstatt` ersetzt.
 - Alle 7 Projekt-Kurse: EN-Version offen (DE-first, `kurse.json` hat schon `title_en`).
 - Zertifikat-PDF: E-Mail-Versand später (hängt an der Kontakt-Adresse, nicht selbst erfinden).
 - Überlegung (nicht entschieden): dritte Sprache; UI-Ternarys sind schon auf `t()`, offen nur Content-Suffixe.
