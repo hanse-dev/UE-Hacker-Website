@@ -100,8 +100,8 @@
     "tags": ["spiele", "logikraetsel"],
     "title": "Projekt: JS-Spielewerkstatt – Fang den Ball",
     "title_en": "Project: JS Game Workshop – Catch the Ball",
-    "description": "Baue dein erstes eigenes Browserspiel: ein Spielfeld zeichnen, einen Schläger mit der Tastatur steuern, einen fallenden Ball animieren, Treffer erkennen und Punkte zählen. Läuft direkt im Browser – kein Python, sondern JavaScript, die Sprache des Webs.",
-    "description_en": "Build your first own browser game: draw a play field, steer a paddle with the keyboard, animate a falling ball, detect hits and count points. Runs right in the browser – no Python, but JavaScript, the language of the web.",
+    "description": "Baue dein erstes eigenes Browserspiel: ein Spielfeld zeichnen, einen Schläger mit der Tastatur steuern, einen fallenden Ball animieren, Treffer erkennen, Punkte und Leben zählen – und am Ende Hindernisse und Bonus-Items einbauen. Jede Aufgabe baut sichtbar am echten Spiel weiter. Läuft direkt im Browser – kein Python, sondern JavaScript, die Sprache des Webs.",
+    "description_en": "Build your first own browser game: draw a play field, steer a paddle with the keyboard, animate a falling ball, detect hits, count points and lives – and finally add obstacles and bonus items. Every task visibly builds on the real game. Runs right in the browser – no Python, but JavaScript, the language of the web.",
     "contentPath": "js-spielewerkstatt"
   },
   {

@@ -39,9 +39,9 @@
         "validation": { "variables": { "punkte": 5 } }
       },
       {
-        "instruction": "Erstelle eine Variable lieblingszahl und weise ihr den Wert 7 zu.",
+        "instruction": "Erstelle eine Variable lieblingszahl und weise ihr den Wert 7 zu. Gib sie danach mit console.log aus.",
         "codeTemplate": "// Dein Code hier\n",
-        "validation": { "variables": { "lieblingszahl": 7 } }
+        "validation": { "type": "output_contains", "expected": "7", "variables": { "lieblingszahl": 7 } }
       }
     ]
   },
@@ -65,9 +65,9 @@
         "validation": { "type": "output_contains", "expected": "number" }
       },
       {
-        "instruction": "Erstelle drei Variablen: zahl mit dem Wert 42, text mit dem Wert 'Katze' und wahrheitswert mit dem Wert true.",
+        "instruction": "Erstelle drei Variablen: zahl mit dem Wert 42, text mit dem Wert 'Katze' und wahrheitswert mit dem Wert true. Gib alle drei mit console.log(zahl, text, wahrheitswert) aus.",
         "codeTemplate": "// Dein Code hier\n",
-        "validation": { "variables": { "zahl": 42, "text": "Katze", "wahrheitswert": true } }
+        "validation": { "type": "output_contains", "expected": "42 Katze true", "variables": { "zahl": 42, "text": "Katze", "wahrheitswert": true } }
       }
     ]
   },
@@ -159,14 +159,14 @@
     "lessonSummary": "Starke Leistung! Du hast alles aus dieser Woche selbstständig angewendet, ganz ohne Beispiel vorweg.",
     "tasks": [
       {
-        "instruction": "Ein Rechteck ist 12 breit und 4 hoch. Berechne den Umfang (2 × (breite + höhe)) in einer Variable umfang und die Fläche (breite × höhe) in einer Variable flaeche.",
+        "instruction": "Ein Rechteck ist 12 breit und 4 hoch. Berechne den Umfang (2 × (breite + höhe)) in einer Variable umfang und die Fläche (breite × höhe) in einer Variable flaeche. Gib beide mit console.log(umfang, flaeche) aus.",
         "codeTemplate": "let breite = 12;\nlet hoehe = 4;\n\n// Dein Code hier\n",
-        "validation": { "variables": { "umfang": 32, "flaeche": 48 } }
+        "validation": { "type": "output_contains", "expected": "32 48", "variables": { "umfang": 32, "flaeche": 48 } }
       },
       {
-        "instruction": "Wandle 50 Fahrenheit in Celsius um: celsius = (fahrenheit - 32) * 5 / 9. Speichere das Ergebnis in einer Variable celsius.",
+        "instruction": "Wandle 50 Fahrenheit in Celsius um: celsius = (fahrenheit - 32) * 5 / 9. Speichere das Ergebnis in einer Variable celsius und gib sie aus.",
         "codeTemplate": "let fahrenheit = 50;\n\n// Dein Code hier\n",
-        "validation": { "variables": { "celsius": 10 } }
+        "validation": { "type": "output_contains", "expected": "10", "variables": { "celsius": 10 } }
       },
       {
         "instruction": "Berechne 8 × 6 und gib das Ergebnis mit einer Template-Literal aus, zum Beispiel so: `Ergebnis: ${...}`",

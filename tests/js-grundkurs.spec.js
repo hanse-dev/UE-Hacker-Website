@@ -276,7 +276,7 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
 
     const task0 = page.locator('.task-block').nth(0);
-    await setCodeMirrorContent(task0.locator('.cm-host'), "console.log('umfang: 32, flaeche: 48');");
+    await setCodeMirrorContent(task0.locator('.cm-host'), "console.log('32 48');");
     await task0.locator('.btn-check').click();
     await expect(task0.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
   });
@@ -293,13 +293,13 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
     await expect(page.locator('.task-block').nth(1)).toBeVisible();
     // Lektion 2 hat nur 2 Aufgaben (Demo + Variablen-Check) - die frühere dritte Aufgabe (const-
     // Fehler-Demo) ist jetzt Teil des Lektionstexts, nicht mehr eine eigene Aufgabe.
-    await completeLesson(page, [null, 'let lieblingszahl = 7;']);
+    await completeLesson(page, [null, 'let lieblingszahl = 7;\nconsole.log(lieblingszahl);']);
     await expect(page.locator('.progress-count')).toContainText('2 abgeschlossen');
 
     await completeLesson(page, [
       null,
       null,
-      "let zahl = 42;\nlet text = 'Katze';\nlet wahrheitswert = true;",
+      "let zahl = 42;\nlet text = 'Katze';\nlet wahrheitswert = true;\nconsole.log(zahl, text, wahrheitswert);",
     ]);
     await expect(page.locator('.progress-count')).toContainText('3 abgeschlossen');
 
@@ -326,8 +326,8 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
     await expect(page.locator('.progress-count')).toContainText('6 abgeschlossen');
 
     await completeAllRequired(page, [
-      'let breite = 12;\nlet hoehe = 4;\n\nlet umfang = 2 * (breite + hoehe);\nlet flaeche = breite * hoehe;',
-      'let fahrenheit = 50;\n\nlet celsius = (fahrenheit - 32) * 5 / 9;',
+      'let breite = 12;\nlet hoehe = 4;\n\nlet umfang = 2 * (breite + hoehe);\nlet flaeche = breite * hoehe;\nconsole.log(umfang, flaeche);',
+      'let fahrenheit = 50;\n\nlet celsius = (fahrenheit - 32) * 5 / 9;\nconsole.log(celsius);',
       'let ergebnis = 8 * 6;\nconsole.log(`Ergebnis: ${ergebnis}`);',
     ]);
     await expect(page.locator('.progress-count')).toContainText('7 abgeschlossen');
@@ -339,7 +339,7 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
     await page.goto('/kurs/js-grundkurs?week=2');
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
 
-    await completeLesson(page, [null, 'let alter = 20;\nlet istVolljaehrig = alter >= 18;']);
+    await completeLesson(page, [null, 'let alter = 20;\nlet istVolljaehrig = alter >= 18;\nconsole.log(istVolljaehrig);']);
     await expect(page.locator('.progress-count')).toContainText('1 abgeschlossen');
 
     await completeLesson(page, [
@@ -356,7 +356,7 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
 
     await completeLesson(page, [
       null,
-      'let alter = 14;\nlet groesse = 150;\n\nlet darfFahren = alter >= 12 && groesse >= 140;',
+      'let alter = 14;\nlet groesse = 150;\n\nlet darfFahren = alter >= 12 && groesse >= 140;\nconsole.log(darfFahren);',
     ]);
     await expect(page.locator('.progress-count')).toContainText('4 abgeschlossen');
 
@@ -375,8 +375,8 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
     await expect(page.locator('.progress-count')).toContainText('6 abgeschlossen');
 
     await completeAllRequired(page, [
-      'let einkaufswert = 80;\n\nlet rabatt = 0;\nif (einkaufswert >= 50) {\n  rabatt = einkaufswert * 0.1;\n}',
-      'let alter = 15;\nlet groesse = 170;\n\nlet darfTeilnehmen = alter >= 16 && groesse >= 150;',
+      'let einkaufswert = 80;\n\nlet rabatt = 0;\nif (einkaufswert >= 50) {\n  rabatt = einkaufswert * 0.1;\n}\nconsole.log(rabatt);',
+      'let alter = 15;\nlet groesse = 170;\n\nlet darfTeilnehmen = alter >= 16 && groesse >= 150;\nconsole.log(darfTeilnehmen);',
       "let farbe = 'gelb';\n\nif (farbe === 'rot') {\n  console.log('Stopp!');\n} else if (farbe === 'gelb') {\n  console.log('Achtung!');\n} else if (farbe === 'gruen') {\n  console.log('Los!');\n} else {\n  console.log('Unbekanntes Signal');\n}",
     ]);
     await expect(page.locator('.progress-count')).toContainText('7 abgeschlossen');
@@ -390,13 +390,13 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
 
     await completeLesson(page, [
       null,
-      'let summe = 0;\nfor (let i = 1; i <= 10; i++) {\n  summe += i;\n}',
+      'let summe = 0;\nfor (let i = 1; i <= 10; i++) {\n  summe += i;\n}\nconsole.log(summe);',
     ]);
     await expect(page.locator('.progress-count')).toContainText('1 abgeschlossen');
 
     await completeLesson(page, [
       null,
-      'let summe = 0;\nlet schritte = 0;\nwhile (summe < 20) {\n  summe += 3;\n  schritte++;\n}',
+      'let summe = 0;\nlet schritte = 0;\nwhile (summe < 20) {\n  summe += 3;\n  schritte++;\n}\nconsole.log(summe, schritte);',
     ]);
     await expect(page.locator('.progress-count')).toContainText('2 abgeschlossen');
 
@@ -408,13 +408,13 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
 
     await completeLesson(page, [
       null,
-      "let wort = 'banane';\nlet anzahl = 0;\nfor (const zeichen of wort) {\n  if (zeichen === 'a') {\n    anzahl++;\n  }\n}",
+      "let wort = 'banane';\nlet anzahl = 0;\nfor (const zeichen of wort) {\n  if (zeichen === 'a') {\n    anzahl++;\n  }\n}\nconsole.log(anzahl);",
     ]);
     await expect(page.locator('.progress-count')).toContainText('4 abgeschlossen');
 
     await completeLesson(page, [
       null,
-      'let anzahl = 0;\nfor (let i = 1; i <= 20; i++) {\n  if (i % 3 === 0) {\n    anzahl++;\n  }\n}',
+      'let anzahl = 0;\nfor (let i = 1; i <= 20; i++) {\n  if (i % 3 === 0) {\n    anzahl++;\n  }\n}\nconsole.log(anzahl);',
     ]);
     await expect(page.locator('.progress-count')).toContainText('5 abgeschlossen');
 
@@ -427,8 +427,8 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
     await expect(page.locator('.progress-count')).toContainText('6 abgeschlossen');
 
     await completeAllRequired(page, [
-      'let summe = 0;\nfor (let i = 1; i <= 20; i++) {\n  if (i % 2 === 0) {\n    summe += i;\n  }\n}',
-      'let zahl = 100;\nlet versuche = 0;\nwhile (zahl >= 0) {\n  zahl -= 7;\n  versuche++;\n}',
+      'let summe = 0;\nfor (let i = 1; i <= 20; i++) {\n  if (i % 2 === 0) {\n    summe += i;\n  }\n}\nconsole.log(summe);',
+      'let zahl = 100;\nlet versuche = 0;\nwhile (zahl >= 0) {\n  zahl -= 7;\n  versuche++;\n}\nconsole.log(versuche);',
       "for (let i = 1; i <= 15; i++) {\n  if (i % 3 === 0) {\n    continue;\n  }\n  console.log(i);\n}",
     ]);
     await expect(page.locator('.progress-count')).toContainText('7 abgeschlossen');
@@ -494,19 +494,19 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
 
     await completeLesson(page, [
       null,
-      "let zahlen = [10, 20, 30];\nlet mittlererWert = zahlen[1];",
+      "let zahlen = [10, 20, 30];\nlet mittlererWert = zahlen[1];\nconsole.log(mittlererWert);",
     ]);
     await expect(page.locator('.progress-count')).toContainText('1 abgeschlossen');
 
     await completeLesson(page, [
       null,
-      "let warteschlange = [];\nwarteschlange.push('Anna');\nwarteschlange.push('Ben');\nwarteschlange.push('Cem');\nwarteschlange.pop();\nlet laenge = warteschlange.length;",
+      "let warteschlange = [];\nwarteschlange.push('Anna');\nwarteschlange.push('Ben');\nwarteschlange.push('Cem');\nwarteschlange.pop();\nlet laenge = warteschlange.length;\nconsole.log(laenge);",
     ]);
     await expect(page.locator('.progress-count')).toContainText('2 abgeschlossen');
 
     await completeLesson(page, [
       null,
-      "let namen = ['Lea', 'Tom', 'Mia', 'Jan', 'Zoe'];\nlet anzahl = namen.length;\nlet letzter = namen[namen.length - 1];",
+      "let namen = ['Lea', 'Tom', 'Mia', 'Jan', 'Zoe'];\nlet anzahl = namen.length;\nlet letzter = namen[namen.length - 1];\nconsole.log(anzahl, letzter);",
     ]);
     await expect(page.locator('.progress-count')).toContainText('3 abgeschlossen');
 
@@ -518,7 +518,7 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
 
     await completeLesson(page, [
       null,
-      'let preise = [5, 12, 8, 20, 15, 3];\nlet summe = 0;\nfor (const preis of preise) {\n  if (preis >= 10) {\n    summe += preis;\n  }\n}',
+      'let preise = [5, 12, 8, 20, 15, 3];\nlet summe = 0;\nfor (const preis of preise) {\n  if (preis >= 10) {\n    summe += preis;\n  }\n}\nconsole.log(summe);',
     ]);
     await expect(page.locator('.progress-count')).toContainText('5 abgeschlossen');
 
@@ -546,13 +546,13 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
 
     await completeLesson(page, [
       null,
-      "let haustier = { art: 'Hund', alter: 3 };",
+      "let haustier = { art: 'Hund', alter: 3 };\nconsole.log(haustier.art, haustier.alter);",
     ]);
     await expect(page.locator('.progress-count')).toContainText('1 abgeschlossen');
 
     await completeLesson(page, [
       null,
-      'let konto = { stand: 100 };\nkonto.stand += 50;',
+      'let konto = { stand: 100 };\nkonto.stand += 50;\nconsole.log(konto.stand);',
     ]);
     await expect(page.locator('.progress-count')).toContainText('2 abgeschlossen');
 
@@ -570,7 +570,7 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
 
     await completeLesson(page, [
       null,
-      "let bestellungen = [\n  { artikel: 'Buch', preis: 12 },\n  { artikel: 'Stift', preis: 2 },\n  { artikel: 'Buch', preis: 8 },\n  { artikel: 'Heft', preis: 3 },\n];\nlet summe = 0;\nfor (const b of bestellungen) {\n  if (b.artikel === 'Buch') {\n    summe += b.preis;\n  }\n}",
+      "let bestellungen = [\n  { artikel: 'Buch', preis: 12 },\n  { artikel: 'Stift', preis: 2 },\n  { artikel: 'Buch', preis: 8 },\n  { artikel: 'Heft', preis: 3 },\n];\nlet summe = 0;\nfor (const b of bestellungen) {\n  if (b.artikel === 'Buch') {\n    summe += b.preis;\n  }\n}\nconsole.log(summe);",
     ]);
     await expect(page.locator('.progress-count')).toContainText('5 abgeschlossen');
 
@@ -598,7 +598,7 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
 
     await completeLesson(page, [
       null,
-      "let inhalt = document.querySelector('#text').textContent;",
+      "let inhalt = document.querySelector('#text').textContent;\nconsole.log(inhalt);",
     ]);
     await expect(page.locator('.progress-count')).toContainText('1 abgeschlossen');
 
@@ -650,7 +650,7 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
 
     await completeLesson(page, [
       null,
-      "class Buch {\n  constructor(titel, seiten) {\n    this.titel = titel;\n    this.seiten = seiten;\n  }\n}\n\nlet meinBuch = new Buch('Der Hobbit', 310);",
+      "class Buch {\n  constructor(titel, seiten) {\n    this.titel = titel;\n    this.seiten = seiten;\n  }\n}\n\nlet meinBuch = new Buch('Der Hobbit', 310);\nconsole.log(meinBuch.titel, meinBuch.seiten);",
     ]);
     await expect(page.locator('.progress-count')).toContainText('1 abgeschlossen');
 
@@ -674,7 +674,7 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
 
     await completeLesson(page, [
       null,
-      "class Produkt {\n  constructor(name, preis) {\n    this.name = name;\n    this.preis = preis;\n  }\n}\n\nlet produkte = [\n  new Produkt('Apfel', 2),\n  new Produkt('Buch', 15),\n  new Produkt('Brot', 3),\n  new Produkt('Kopfhoerer', 25),\n];\n\nlet summe = 0;\nfor (const p of produkte) {\n  if (p.preis >= 10) {\n    summe += p.preis;\n  }\n}",
+      "class Produkt {\n  constructor(name, preis) {\n    this.name = name;\n    this.preis = preis;\n  }\n}\n\nlet produkte = [\n  new Produkt('Apfel', 2),\n  new Produkt('Buch', 15),\n  new Produkt('Brot', 3),\n  new Produkt('Kopfhoerer', 25),\n];\n\nlet summe = 0;\nfor (const p of produkte) {\n  if (p.preis >= 10) {\n    summe += p.preis;\n  }\n}\nconsole.log(summe);",
     ]);
     await expect(page.locator('.progress-count')).toContainText('5 abgeschlossen');
 

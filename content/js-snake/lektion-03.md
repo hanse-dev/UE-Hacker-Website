@@ -25,4 +25,4 @@ function naechsterKopf(kopf, richtung) {
 }
 ```
 
-> 💡 Das Muster "Taste → neuer Wert" kennst du schon aus [Lektion 2 der JS-Spielewerkstatt](/kurs/projekt-js-spielewerkstatt) (`bewegeSchlaeger`) – dort war das Ergebnis eine einzelne Zahl, hier ist es ein ganzes Richtungs-Objekt.
+> 💡 Das Muster "Taste → neuer Wert" kennst du schon aus [Lektion 3 der JS-Spielewerkstatt](/kurs/projekt-js-spielewerkstatt) (der Tastatur-Listener, der `schlaegerX` verändert) – dort war das Ergebnis eine einzelne Zahl, hier ist es ein ganzes Richtungs-Objekt.

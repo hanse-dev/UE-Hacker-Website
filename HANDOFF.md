@@ -1,8 +1,9 @@
 # Handoff — UE Hacker Website
 
-> **Zuletzt aktualisiert:** 2026-09-27
-> **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.85 (Zertifikate/PDF,
-> Skip-Aufgaben, Login-Fortschritt, Pre-commit/Pre-push, Admin-Termine, Interaktiv-Kurs-Überarbeitung).
+> **Zuletzt aktualisiert:** 2026-10-01
+> **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.90 (Zertifikate/PDF,
+> Skip-Aufgaben, Login-Fortschritt, Pre-commit/Pre-push, Admin-Termine, Interaktiv-Kurs-Überarbeitung,
+> Projekt-Kurs-Start-Gate, Worktree-Tooling, Dev-Skip-Flag, JS-Spielewerkstatt mit neuem Konzept).
 > Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4) — nach dem nächsten Deploy
 > den einmaligen Termine-Import laufen lassen (Abschnitt 5).
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
@@ -60,21 +61,23 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.69 | Profil zeigt Wochen-Zertifikate + "Kurs starten"-Gate | `useCourseCertificates.js` neu; `CourseDetail.vue` blendet Beschreibung/Struktur hinter einem Start-Button aus |
 | 3.70 | Profil: PDF-Download direkt am Zertifikat | `loadWeekLernziele()` (Python) + `src/data/kiLaborWeeks.js` (KI-Labor) liefern die Lernziele fürs PDF |
 | 3.71 | Woche 4 + 9: `input()`-Lücken aus `todo.md` geschlossen | Neuer `validation.stdin`-Schritt je Thema (Woche 4 Boss-3, Woche 9 Boss-1 "Eigener Eintrag"), DE+EN, ans Ende der Lektion/Notebook-Zellfolge angehängt statt eingefügt |
-| 3.72 | KI-Labor: Woche 3 "Nächste Nachbarn (k-NN)" | 5 Lektionen (Abstand, euklidische Distanz, 1-NN, Dictionary-Zählen + k nächste, kompletter k-NN-Klassifikator) + Debug + Mission + 3 Extra-Herausforderungen (gewichteter k-NN, Genauigkeit/bestes k, Unentschieden bei >2 Klassen) + eigener Wochen-Check |
-| 3.73 | KI-Labor: Woche 4 "Training & Test" | 5 Lektionen (Trainings-/Testdaten trennen, Genauigkeit, Vorhersagen sammeln, alles zusammenfügen, Overfitting an zu kleinem Datensatz) + Debug + Mission + 3 Extra-Herausforderungen (Ausreißer bei k=1 vs. k=3, Trainingsgröße, Overfitting-Erkennung) + eigener Wochen-Check |
-| 3.74 | KI-Labor: Woche 5 "Entscheidungsbäume" | 5 Lektionen (Schwellenwert-Entscheidung, Aufteilen+Reinheit messen, besten Trennwert automatisch finden, Baum bauen+klassifizieren, bestes Merkmal wählen) + Debug + Mission + 3 Extra-Herausforderungen (irrelevantes Merkmal ignorieren, Baum auf Testdaten prüfen, unvollkommener Baum vs. Baseline) + eigener Wochen-Check; alle Beispiele/Lösungen mit `python3` geprüft |
-| 3.75 | KI-Labor: Woche 6 "Neuronale Netze I" | 5 Lektionen (gewichtete Summe, Sprungfunktion, komplettes Neuron, logische Gatter UND/ODER/NAND/NOR per Gewichte/Schwellenwert, XOR-Grenze eines einzelnen Neurons) + Debug + Mission + 3 Extra-Herausforderungen (gewichtete Sensoren, Schwellenwert-Vergleich per Genauigkeit, systematischer XOR-Beweis) + eigener Wochen-Check; kein Gewichte-Lernen (Perzeptron-Lernregel folgt in Woche 7), alle Beispiele/Lösungen mit `python3` geprüft |
-| 3.76 | KI-Labor: Woche 7 "Neuronale Netze II" | 5 Lektionen (Wiederholung Einzelneuron, warum ein Neuron XOR nicht löst, versteckte Schicht + Vorwärtslauf, Gewichte per Zufalls-Suche selbst lernen lassen, trainiertes Netz vs. Einzelneuron-Baseline) + Debug + Mission (Lichtschalter-Rätsel) + 3 Extra-Herausforderungen (XNOR nachbauen, XNOR selbst trainieren, 3×3-Pixel-Mustererkennung) + eigener Wochen-Check; alle Beispiele/Lösungen mit `python3` geprüft |
-| 3.77 | KI-Labor: Woche 8 "Grenzen & Ethik" (letzte Woche des Kurses) | 5 Lektionen (schiefe Trainingsdaten, Accuracy-Paradox, Baum übernimmt den Bias, Ausgleich per Undersampling, Chatbots/Datenschutz-Analogie) + Debug + Mission (eigener Bias-Datensatz ausgleichen) + 3 Extra-Herausforderungen (3-Klassen-Bias, Oversampling, Grenzen von Anonymisierung) + eigener Wochen-Check; kein "nächste Woche"-Button mehr nach dem Zertifikat, alle Beispiele/Lösungen mit `python3` geprüft |
+| 3.72–3.77 | KI-Labor: Woche 3–8 (k-NN, Training & Test, Entscheidungsbäume, Neuronale Netze I+II, Grenzen & Ethik) | je 5 Lektionen + Debug + Mission + 3 Extra-Herausforderungen + eigener Wochen-Check; alle Beispiele/Lösungen mit `python3` geprüft; nach Woche 8 kein "nächste Woche"-Button mehr |
 | 3.78 | `output_contains` toleriert Groß-/Kleinschreibung, Leerzeichen, Satzzeichen am Ende | `output_equals` bleibt bewusst exakt (prüft teils auf ungewollte Extra-Ausgabe); Test in `week-checks-logic.spec.js` |
 | 3.79 | Interaktiv-Kurs: Lektionstexte ausführlicher (Kinder + Jugendliche, DE) | reine Textüberarbeitung, keine Logikänderung |
-| 3.80 | Lektionsaufgaben prüfen nur noch die Ausgabe, nicht mehr Code-Struktur/Variablen | `validation.codeContains`/`variables`/`functionCalls` sind in `LessonView.vue`/`JsLessonView.vue` nicht mehr blockierend; `useTaskValidation.js` trennt `validateOutput()` (nur Ausgabe) von `structuralChecksOk()` (nur noch für `CodeChallenge.vue`/Wochen-Check) |
-| 3.81 | Lektionsaufgaben überspringbar (nach 2 Fehlversuchen) | Neuer `.btn-skip` in `LessonView.vue`/`JsLessonView.vue`, `skippedTasks`-Set zählt für den Lektions-Abschluss mit, bleibt aber optisch "übersprungen" (⏭) statt "erledigt" (✓); löst man die Aufgabe danach doch noch, wandert sie zu "erledigt". Gilt nicht für `CodeChallenge.vue` (Wochen-Check). |
-| 3.82 | Login ersetzt lokalen Fortschritt durch Account-Stand statt zu mergen | `loadAccountProgress()`/`replaceLocalProgress()` in `useProgressSync.js`, nur beim expliziten Login (`useAuth.js`) genutzt; `restoreSession()`/`syncNow()` beim Seiten-Reload bleiben beim Merge nach `updatedAt` |
-| 3.83 | Pre-commit/Pre-push zweistufig statt vollem `test:checks` bei jedem Commit | `scripts/test-changed.mjs` mappt (staged) geänderte Dateien auf betroffene Specs (Pre-commit, `npm run test:precommit`); voller `test:checks` läuft jetzt im neuen Pre-push-Hook |
-| 3.84 | Termine jetzt im Admin-Panel verwaltbar statt nur per Hand in `public/termine.json` | Neue `termine`-Tabelle (SQLite) + `/api/termine` (öffentlich, GET) + `/api/admin/termine` (CRUD); `AdminView.vue` hat einen zweiten Tab „Termine“; einmaliger Umzug per `api/src/scripts/import-termine-json.js` (Seed-Datei `api/src/scripts/termine-seed.json` aus der bisherigen `public/termine.json`) |
-| 3.85 | Interaktiv-Kurs: Editor-Erklärungen, flexible Lektionen (5 Aufgaben, mind. 2 nötig) + Beispiel-Aufgabe | Nutzer-Feedback "zu viele Annahmen, was zu tun ist" (Branch `interaktiv-kurs-erklaerung`): `lesson.editorHint` erklärt Ausführen vs. Prüfen, neuer bedingter Hinweis für `___`-Lücken; `LessonView.vue` bekommt `lesson.minSolved` (macht eine Lektion "flexibel" - mehr Aufgaben als nötig, Rest sofort überspringbar statt erst nach 2 Fehlversuchen); Kinder/Jugendliche-Variante auf 5 Aufgaben/Lektion + vorangestellte Beispiel-Aufgabe erweitert, `sum()`-Erklärungslücke (Kinder) geschlossen |
-| 3.86 | Interaktiv-Kurs an Optik/Verhalten der anderen Kurse angeglichen | Nutzer-Wunsch, "ähnliche Optik und Verhalten" wie die anderen Kurse (Branch `interaktiv-kurs-optik-verhalten`): `CourseDetail.vue`: Interaktiv-Kurs jetzt `isFocusableCourse` (Titel/Beschreibung/Banner erst, dann "Kurs starten"-Gate wie 12-Wochen-Kurs/JS-Grundkurs/KI-Labor) statt Variant-Auswahl direkt unter der Beschreibung; `InteractiveCourse.vue`: Variant-Karten (Kinder/Jugendliche) auf denselben Kachel-Look wie `WeekTour.vue` (`.tile`/`.week-tile`: Farben, Hover/Border) umgestellt, plus Scroll-nach-oben bei Lektionswechsel wie `ProjectCourse.vue` |
+| 3.80 | Lektionsaufgaben prüfen nur noch die Ausgabe, nicht mehr Code-Struktur/Variablen | `useTaskValidation.js` trennt `validateOutput()` (nur Ausgabe) von `structuralChecksOk()` (nur noch `CodeChallenge.vue`/Wochen-Check) |
+| 3.81 | Lektionsaufgaben überspringbar (nach 2 Fehlversuchen) | `.btn-skip` in `LessonView.vue`/`JsLessonView.vue`, `skippedTasks` zählt für den Lektions-Abschluss mit (⏭ statt ✓); gilt nicht für `CodeChallenge.vue` |
+| 3.82 | Login ersetzt lokalen Fortschritt durch Account-Stand statt zu mergen | `loadAccountProgress()`/`replaceLocalProgress()` in `useProgressSync.js`, nur beim expliziten Login; Seiten-Reload merged weiter nach `updatedAt` |
+| 3.83 | Pre-commit/Pre-push zweistufig statt vollem `test:checks` bei jedem Commit | `scripts/test-changed.mjs` mappt staged Dateien auf betroffene Specs (Pre-commit); voller `test:checks` im Pre-push-Hook |
+| 3.84 | Termine im Admin-Panel verwaltbar statt per Hand in `public/termine.json` | `termine`-Tabelle (SQLite) + `/api/termine` (GET) + `/api/admin/termine` (CRUD), Tab „Termine“ in `AdminView.vue`; einmaliger Umzug per `api/src/scripts/import-termine-json.js` |
+| 3.85 | Interaktiv-Kurs: Editor-Erklärungen, flexible Lektionen (5 Aufgaben, mind. 2 nötig) + Beispiel-Aufgabe | `lesson.editorHint` erklärt Ausführen vs. Prüfen, Hinweis für `___`-Lücken; `lesson.minSolved` in `LessonView.vue` macht eine Lektion "flexibel" (Rest sofort überspringbar) |
+| 3.86 | Projekt-Kurse: "Kurs starten"-Gate + Lektionsliste als horizontale Leiste statt Seitenspalte | `isFocusableCourse` (`CourseDetail.vue`) gilt auch für Projekt-Kurse; geteiltes `course-layout.css` einspaltig, `.lessons-list` als Chip-Reihe; `InteractiveCourse.vue` scrollt bei "Weiter" jetzt an den Lektionsanfang |
+| 3.87 | Git-Worktree-Tooling | `npm run worktree:new`/`worktree:remove`, eigene Ports je Worktree (`worktree.ports.json`), siehe `WORKFLOW.md` |
+| 3.88 | Test-Kurs "Fang den Ball" (neues Konzept) | jede Aufgabe baut am echten laufenden Spiel weiter; `task.showCanvas: false` blendet den Canvas-Kasten pro Aufgabe aus; seit 3.90 Inhalt von `js-spielewerkstatt` |
+| 3.89 | Dev-Flag: Aufgaben-Prüfung überspringen | `npm run dev:skip-checks` (`VITE_DEV_SKIP_CHECKS=1`) lässt "Prüfen" in `JsLessonView.vue` sofort durchgehen, hinter `import.meta.env.DEV` (nicht im Prod-Build), mit Hinweis-Banner |
+| 3.90 | JS-Spielewerkstatt durch das neue Konzept ersetzt | `content/js-spielewerkstatt` = die 7 Lektionen des Test-Kurses (ID/URL unverändert), alter Inhalt, Test-Eintrag und `hidden`-Flag entfernt; Funktionen per `output_equals` statt `functionCalls` geprüft; empfohlenes Vorwissen JS-Grundkurs Woche 4; Durchlauf-Test über alle Musterlösungen |
+| 3.91 | "Zurücksetzen"-Button für vorgegebenen Code | `.btn-reset` in `LessonView.vue`/`JsLessonView.vue`/`CodeChallenge.vue`, sichtbar sobald der Code vom (nicht leeren) `codeTemplate` abweicht; setzt nur diese eine Aufgabe zurück (inkl. Ausgabe/Feedback) |
+| 3.92 | JS-Lektionsaufgaben: fehlende `output_contains`-Checks nachgezogen | `js-grundkurs-woche2/3/5/6/7/8` und `js-snake`: Aufgaben, die sich nur auf `variables`/`functionCalls` verließen (seit 3.80 ungeprüft), verlangen jetzt eine `console.log`-Ausgabe; keine JS-Pflichtaufgabe mehr ohne Ausgabe-/Canvas-/DOM-Prüfung |
+| 3.93 | Interaktiv-Kurs: "Kurs starten"-Gate + Varianten-Karten im Kachel-Look | `isFocusableCourse` (`CourseDetail.vue`) gilt jetzt für alle Kurse außer der Einstufung; Varianten-Wahl (Kinder/Jugendliche) erscheint erst nach dem Start, `?started=1` hält die Ansicht beim Reload |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -144,10 +147,16 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 - `test:checks` (~2 Min, 381 Tests) läuft nicht mehr bei jedem Commit, sondern nur vor dem Push;
   Pre-commit nutzt `scripts/test-changed.mjs` (mappt geänderte Dateien → Specs). Neue Komponenten/
   Composables/Content-Ordner brauchen dort eine eigene Regel in `RULES`, sonst greift nur das
-  Sicherheitsnetz (voller Lauf) statt des schnellen Pfads (3.83).
+  Sicherheitsnetz (voller Lauf) statt des schnellen Pfads (3.83). Regel mit leerer Liste = Datei
+  wird von `test:checks` gar nicht abgedeckt (API, lokales Tooling) → beim Commit kein Lauf.
+- Generierte, gitignorte Dateien (Notebook-`_generated`/`_bundle`, ZIPs) erzeugt der Playwright-
+  Webserver nicht selbst; `scripts/ensure-test-prereqs.mjs` (`globalSetup`) stellt sie vor jedem
+  Lauf sicher. Fehlten sie (frischer Worktree), brauchte `test:checks` >15 Min statt ~2.
 - `lesson.minSolved` (flexible Lektion, Rest von Anfang an überspringbar) heißt: Aufgaben dürfen
   sich nicht auf Variablen aus einer vorherigen Aufgabe verlassen — eine übersprungene Aufgabe hat
   ihren Code nie ausgeführt (3.85).
+- Letzte Coding-Aufgabe einer Projekt-Lektion darf nicht durch reines Kopieren des vorherigen Teils
+  lösbar sein: nur der neue Teil ist blind, bereits Gebautes bleibt als Kontext stehen (3.88).
 
 **Lokale Tools (`scripts/local-tools/`, laufen nie im Deploy)**
 - IDN-Domains (Umlaute) vor jedem `urllib`-Request per `.encode('idna')` in Punycode wandeln, sonst
@@ -258,7 +267,7 @@ siehe `VISION.md` "Offene Fragen"). Ideen-Backlog: `PROJEKTIDEEN.md`.
 
 ## 6. Entscheidungen / Konventionen (nicht ohne Rückfrage ändern)
 
-- Ein Thema = ein Branch von `main` (`WORKFLOW.md`) — **kein** Präfix mehr (früher `cursor/…`,
+- Ein Thema = ein Branch von `main` in einem eigenen Worktree (`WORKFLOW.md`) — **kein** Präfix mehr (früher `cursor/…`,
   wurde entfernt)
 - Jede Verhaltensänderung braucht einen Playwright-Test (`WORKFLOW.md`) — reine Text-/Typo-Korrekturen sind ausgenommen
 - Accounts: Admin legt an; `ageGroup` kinder|jugendliche; ein Mensch = ein Account
@@ -295,7 +304,7 @@ siehe `VISION.md` "Offene Fragen"). Ideen-Backlog: `PROJEKTIDEEN.md`.
 
 1. `git checkout main && git pull`
 2. `HANDOFF.md` + `WORKFLOW.md` lesen (werden automatisch geladen); bei Content-Arbeit `INHALTE.md`/`todo.md`
-3. Neues Thema → **neuen** Branch (ohne Präfix)
+3. Neues Thema → **neuen** Branch (ohne Präfix), immer im eigenen Worktree: `npm run worktree:new -- <branch>`
 4. Vor Änderungen an Pyodide, JS-Sandbox, Vue-CSS, Sync oder Notebooks: Abschnitt 3 "Gelernte Regeln" lesen.
    Nicht erwarten: Compose-Service `prod` (heißt `app`), `WeekSection.vue`-Akkordeon (seit 3.36 `WeekTour.vue`),
    `.ipynb`-Quellen im 12-Wochen-Kurs (seit 3.33 Zellen-Ordner).

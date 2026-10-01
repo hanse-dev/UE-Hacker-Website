@@ -13,9 +13,9 @@
         "validation": { "type": "output_contains", "expected": "Willkommen" }
       },
       {
-        "instruction": "Lies den Text des Elements mit der ID 'text' aus und speichere ihn in einer Variable inhalt.",
+        "instruction": "Lies den Text des Elements mit der ID 'text' aus und speichere ihn in einer Variable inhalt. Gib sie aus.",
         "codeTemplate": "// Dein Code hier\n",
-        "validation": { "variables": { "inhalt": "Hier steht ein Text." } }
+        "validation": { "type": "output_contains", "expected": "Hier steht ein Text.", "variables": { "inhalt": "Hier steht ein Text." } }
       }
     ]
   },

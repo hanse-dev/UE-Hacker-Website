@@ -13,9 +13,9 @@
         "validation": { "type": "output_contains", "expected": "4\n5" }
       },
       {
-        "instruction": "Nutze eine for-Schleife, um die Summe der Zahlen von 1 bis 10 zu berechnen. Speichere das Ergebnis in einer Variable summe.",
+        "instruction": "Nutze eine for-Schleife, um die Summe der Zahlen von 1 bis 10 zu berechnen. Speichere das Ergebnis in einer Variable summe und gib sie aus.",
         "codeTemplate": "let summe = 0;\n\n// Dein Code hier\n",
-        "validation": { "variables": { "summe": 55 } }
+        "validation": { "type": "output_contains", "expected": "55", "variables": { "summe": 55 } }
       }
     ]
   },
@@ -33,9 +33,9 @@
         "validation": { "type": "output_contains", "expected": "Start!" }
       },
       {
-        "instruction": "Nutze eine while-Schleife: addiere so lange 3 auf summe (Start 0), bis summe mindestens 20 beträgt. Zähle in schritte, wie oft addiert wurde.",
+        "instruction": "Nutze eine while-Schleife: addiere so lange 3 auf summe (Start 0), bis summe mindestens 20 beträgt. Zähle in schritte, wie oft addiert wurde. Gib beide mit console.log(summe, schritte) aus.",
         "codeTemplate": "let summe = 0;\nlet schritte = 0;\n\n// Dein Code hier\n",
-        "validation": { "variables": { "summe": 21, "schritte": 7 } }
+        "validation": { "type": "output_contains", "expected": "21 7", "variables": { "summe": 21, "schritte": 7 } }
       }
     ]
   },
@@ -73,9 +73,9 @@
         "validation": { "type": "output_contains", "expected": "t\nz" }
       },
       {
-        "instruction": "Zähle mit einer for...of-Schleife, wie oft der Buchstabe 'a' im Wort 'banane' vorkommt. Speichere das Ergebnis in einer Variable anzahl.",
+        "instruction": "Zähle mit einer for...of-Schleife, wie oft der Buchstabe 'a' im Wort 'banane' vorkommt. Speichere das Ergebnis in einer Variable anzahl und gib sie aus.",
         "codeTemplate": "let wort = 'banane';\nlet anzahl = 0;\n\n// Dein Code hier\n",
-        "validation": { "variables": { "anzahl": 2 } }
+        "validation": { "type": "output_contains", "expected": "2", "variables": { "anzahl": 2 } }
       }
     ]
   },
@@ -93,9 +93,9 @@
         "validation": { "type": "output_contains", "expected": "Gerade Zahlen: 5" }
       },
       {
-        "instruction": "Zähle mit einer Schleife, wie viele Zahlen von 1 bis 20 durch 3 teilbar sind. Speichere das Ergebnis in einer Variable anzahl.",
+        "instruction": "Zähle mit einer Schleife, wie viele Zahlen von 1 bis 20 durch 3 teilbar sind. Speichere das Ergebnis in einer Variable anzahl und gib sie aus.",
         "codeTemplate": "let anzahl = 0;\n\n// Dein Code hier\n",
-        "validation": { "variables": { "anzahl": 6 } }
+        "validation": { "type": "output_contains", "expected": "6", "variables": { "anzahl": 6 } }
       }
     ]
   },
@@ -136,14 +136,14 @@
     "lessonSummary": "Starke Leistung! Du hast Schleifen ganz selbstständig zum Zählen, Summieren und Filtern eingesetzt.",
     "tasks": [
       {
-        "instruction": "Berechne mit einer for-Schleife die Summe aller geraden Zahlen von 1 bis 20. Speichere das Ergebnis in einer Variable summe.",
+        "instruction": "Berechne mit einer for-Schleife die Summe aller geraden Zahlen von 1 bis 20. Speichere das Ergebnis in einer Variable summe und gib sie aus.",
         "codeTemplate": "let summe = 0;\n\n// Dein Code hier\n",
-        "validation": { "variables": { "summe": 110 } }
+        "validation": { "type": "output_contains", "expected": "110", "variables": { "summe": 110 } }
       },
       {
-        "instruction": "Nutze eine while-Schleife: ziehe von zahl = 100 so lange 7 ab, bis das Ergebnis negativ wird. Zähle in versuche, wie oft abgezogen wurde.",
+        "instruction": "Nutze eine while-Schleife: ziehe von zahl = 100 so lange 7 ab, bis das Ergebnis negativ wird. Zähle in versuche, wie oft abgezogen wurde, und gib versuche aus.",
         "codeTemplate": "let zahl = 100;\nlet versuche = 0;\n\n// Dein Code hier\n",
-        "validation": { "variables": { "versuche": 15 } }
+        "validation": { "type": "output_contains", "expected": "15", "variables": { "versuche": 15 } }
       },
       {
         "instruction": "Gib mit einer Schleife alle Zahlen von 1 bis 15 aus – überspringe dabei alle durch 3 teilbaren Zahlen mit continue.",

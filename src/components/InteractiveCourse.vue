@@ -211,6 +211,16 @@ export default {
       if (nextId) currentLessonId.value = nextId;
     };
 
+    // Wechselt man die Lektion (Sidebar-Klick oder "Weiter"-Button), soll man oben bei der neuen
+    // Lektion landen statt an der Scroll-Position der alten (meist ganz unten, am "Weiter"-Button).
+    // Kein Scroll beim allerersten Laden (oldId ist dann noch null). `flush: 'post'`, damit die neue
+    // Lektion bereits gerendert ist, bevor wir dorthin scrollen (sonst greift der Scroll noch die
+    // Position der alten Lektion ab). Siehe ProjectCourse.vue (gleiches Verhalten dort).
+    watch(currentLessonId, (newId, oldId) => {
+      if (!oldId) return;
+      mainEl.value?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, { flush: 'post' });
+
     const exportProgress = () => {
       const json = activeProgress.value.exportProgress();
       const blob = new Blob([json], { type: 'application/json' });

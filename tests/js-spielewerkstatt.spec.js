@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { setCodeMirrorContent, hoverOverCodeMirrorText } from './helpers/codemirror.js';
+import { readFileSync } from 'fs';
+
+const lessons = JSON.parse(readFileSync(new URL('../content/js-spielewerkstatt/lessons.json', import.meta.url), 'utf-8'));
 
 // Prueft die neue JS-Sandbox-Ausfuehrungsumgebung (useJsSandbox.js/JsSandboxFrame.vue) und
 // JsLessonView.vue - unabhaengig von Pyodide, daher kein Kernel-Warmup noetig, laeuft schnell.
@@ -20,8 +23,9 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
 
   test('Kurs laedt mit der JS-Sandbox-Engine, nicht mit Pyodide', async ({ page }) => {
     await page.goto('/kurs/projekt-js-spielewerkstatt');
-    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(6, { timeout: 15000 });
     await expect(page.locator('.course-description')).toContainText('JavaScript');
+    await page.locator('.btn-start-course').click();
+    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(7, { timeout: 15000 });
 
     // Beweis, dass JsLessonView (nicht LessonView/Pyodide) gerendert wird: kein Kernel-Init-Button.
     await expect(page.locator('.btn-kernel')).toHaveCount(0);
@@ -36,6 +40,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
   test('Canvas-Aufgabe: echtes Zeichnen wird per Pixel-Check erkannt', async ({ page }) => {
     test.setTimeout(30000);
     await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
 
     // Task 0+1 sind bereits fertige Beispiele zum Ausführen - die eigentliche Schreibaufgabe (mit
@@ -72,6 +77,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
 
   test('Falsche Loesung (leeres Canvas) besteht die Canvas-Aufgabe nicht', async ({ page }) => {
     await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
 
     const task1 = page.locator('.task-block').nth(2);
@@ -85,6 +91,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
 
   test('Kill-Switch: "Neu starten" baut das iframe wirklich neu auf', async ({ page }) => {
     await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
 
     const task1 = page.locator('.task-block').nth(2);
@@ -115,14 +122,38 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     expect(await readNotBlank()).toBe(false);
   });
 
+  test('"Zurücksetzen" stellt den vorgegebenen Code einer Aufgabe wieder her', async ({ page }) => {
+    await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
+    await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
+
+    const task = page.locator('.task-block').nth(2);
+    // Solange der Code unveraendert ist, gibt es nichts zurueckzusetzen.
+    await expect(task.locator('.btn-reset')).toHaveCount(0);
+
+    await setCodeMirrorContent(task.locator('.cm-host'), "console.log('etwas ganz anderes');");
+    await task.locator('.btn-run').click();
+    await expect(task.locator('.output-display')).toBeVisible({ timeout: 10000 });
+    await expect(task.locator('.btn-reset')).toBeVisible();
+
+    await task.locator('.btn-reset').click();
+    await expect(task.locator('.cm-content')).toContainText('Dein Code hier');
+    await expect(task.locator('.cm-content')).not.toContainText('etwas ganz anderes');
+    // Ausgabe und "schon ausgeführt"-Markierung dieser Aufgabe sind mit zurueckgesetzt.
+    await expect(task.locator('.output-display')).toHaveCount(0);
+    await expect(task.locator('.code-editor-wrapper')).not.toHaveClass(/code-editor-ran/);
+    await expect(task.locator('.btn-reset')).toHaveCount(0);
+  });
+
   test('Beispiel- und Pflicht-Aufgaben einer Lektion sind klar unterschieden und schalten zusammen die naechste Lektion frei', async ({ page }) => {
     test.setTimeout(30000);
     await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
 
     // Lektion 1 hat 3 Aufgaben: zwei Beispiele zuerst (nur Ausfuehren, kein Pruefen-Button) - erst
-    // Rechteck ansehen, dann andere Farbe ansehen - dann als letzte Aufgabe "Deine Aufgabe" (selbst
-    // zeichnen, Ausfuehren + Pruefen). "Pruefen" ist immer die letzte Aufgabe einer Lektion.
+    // der Schlaeger allein, dann Schlaeger + Ball als Funktionen - dann als letzte Aufgabe "Deine
+    // Aufgabe" (selbst zeichnen, Ausfuehren + Pruefen). "Pruefen" ist immer die letzte Aufgabe einer Lektion.
     const task0 = page.locator('.task-block').nth(0);
     await expect(task0.locator('.btn-selfcheck')).toHaveCount(0);
     await expect(task0).toHaveClass(/task-example/);
@@ -158,7 +189,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     expect(scrollBefore).toBeGreaterThan(mainTop + 200);
 
     await page.locator('.btn-next').click();
-    await expect(page.locator('.lesson-item.active')).toContainText('Der Schläger');
+    await expect(page.locator('.lesson-item.active')).toContainText('Der Ball fällt');
     await expect
       .poll(() => page.evaluate(() => window.scrollY), { timeout: 3000 })
       .toBeLessThan(scrollBefore - 200);
@@ -168,55 +199,88 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     await page.addInitScript(() => {
       localStorage.setItem(
         'ue-hacker-interactive-progress-js-spielewerkstatt',
-        JSON.stringify({ version: 1, courseId: 'projekt-js-spielewerkstatt', variant: 'js-spielewerkstatt', completedLessonIds: ['lektion-01'] })
+        JSON.stringify({ version: 1, courseId: 'projekt-js-spielewerkstatt', variant: 'js-spielewerkstatt', completedLessonIds: ['lektion-01', 'lektion-02'] })
       );
     });
     await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
     await page.locator('.lesson-item', { hasText: 'Der Schläger hört auf die Tastatur' }).click();
 
-    // Task 2 ("probiere deine Funktion aus") duerfte die fertige Loesung von Task 1 nicht direkt
-    // im Editor vorausfuellen - sonst kann man sie einfach zurueckkopieren, ohne selbst zu loesen.
+    // Task 2 ("baue begrenze() ins Spiel ein") duerfte weder die Funktion noch ihren Aufruf im
+    // Tastatur-Listener direkt im Editor vorausfuellen - sonst muss man nichts selbst schreiben.
     const task2 = page.locator('.task-block').nth(2);
     const editorText = await task2.locator('.cm-content').innerText();
-    expect(editorText).not.toContain("neueX -= 20");
+    expect(editorText).not.toContain('schlaegerX = begrenze(schlaegerX)');
+    expect(editorText).not.toContain('function begrenze');
 
     const solution = task2.locator('.solution-reveal');
     await expect(solution).toBeVisible();
     await expect(solution.locator('.solution-code')).toBeHidden();
 
     await solution.locator('summary').click();
-    await expect(solution.locator('.solution-code')).toContainText('bewegeSchlaeger');
+    await expect(solution.locator('.solution-code')).toContainText('schlaegerX = begrenze(schlaegerX)');
   });
 
-  test('Funktionsaufgabe mit versteckten Testfaellen: JsLessonView prueft nur die Ausgabe, nicht mehr die versteckten Faelle', async ({ page }) => {
-    test.setTimeout(30000);
-    // Bewusste Entscheidung (siehe useTaskValidation.js `structuralChecksOk`): normale
-    // Lektionsaufgaben pruefen nur noch die Ausgabe. Eine Aufgabe, die (wie diese) nur
-    // `functionCalls` ohne eigenes `expected` nutzt, hat dadurch gar keine Ausgabe-Anforderung
-    // mehr und besteht schon, sobald der Code fehlerfrei laeuft - auch mit einer Scheinloesung,
-    // die nur den einen vorgerechneten Fall trifft. Das gilt nur fuer normale Lektionsaufgaben,
-    // nicht fuer den zertifikatsrelevanten Wochen-Check (`CodeChallenge.vue`/`structuralChecksOk`).
+  test('Geöffnete Lösung einer Lektion bleibt beim Wechsel in die nächste Lektion zu', async ({ page }) => {
+    // Der v-for ueber die Aufgaben war frueher nur per Index gekeyt (:key="idx") - beim
+    // Lektionswechsel hat Vue das bestehende <details>-DOM-Element an derselben Position
+    // deshalb nur gepatcht statt neu erzeugt, wodurch der native offen/zu-Zustand ueber
+    // Lektionsgrenzen hinweg erhalten blieb. Reproduziert das mit zwei Lektionen, die beide an
+    // Task-Index 2 eine Loesung haben (lektion-02 "Ball faellt schneller", lektion-03 "begrenze()").
     await page.addInitScript(() => {
       localStorage.setItem(
         'ue-hacker-interactive-progress-js-spielewerkstatt',
-        JSON.stringify({ version: 1, courseId: 'projekt-js-spielewerkstatt', variant: 'js-spielewerkstatt', completedLessonIds: ['lektion-01'] })
+        JSON.stringify({ version: 1, courseId: 'projekt-js-spielewerkstatt', variant: 'js-spielewerkstatt', completedLessonIds: ['lektion-01', 'lektion-02'] })
       );
     });
     await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
+    await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
+
+    await page.locator('.lesson-item', { hasText: 'Der Ball fällt' }).click();
+    const lektion2Solution = page.locator('.task-block').nth(2).locator('.solution-reveal');
+    await lektion2Solution.locator('summary').click();
+    await expect(lektion2Solution.locator('.solution-code')).toBeVisible();
+
+    await page.locator('.lesson-item', { hasText: 'Der Schläger hört auf die Tastatur' }).click();
+    const lektion3Solution = page.locator('.task-block').nth(2).locator('.solution-reveal');
+    await expect(lektion3Solution.locator('.solution-code')).toBeHidden();
+  });
+
+  test('Funktionsaufgabe: output_equals prueft die console.log-Ausgabe, reine Logik-Aufgabe zeigt kein Spielfeld', async ({ page }) => {
+    test.setTimeout(30000);
+    // Funktionen werden in diesem Kurs ueber ihre console.log-Ausgabe geprueft (output_equals),
+    // nicht ueber versteckte `functionCalls` - die ignoriert JsLessonView seit der Umstellung auf
+    // reine Ausgabe-Pruefung (siehe week-checks-logic.spec.js). Eine Scheinloesung, die den Rand
+    // nicht begrenzt, faellt deshalb wirklich durch.
+    await page.addInitScript(() => {
+      localStorage.setItem(
+        'ue-hacker-interactive-progress-js-spielewerkstatt',
+        JSON.stringify({ version: 1, courseId: 'projekt-js-spielewerkstatt', variant: 'js-spielewerkstatt', completedLessonIds: ['lektion-01', 'lektion-02'] })
+      );
+    });
+    await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
     await page.locator('.lesson-item', { hasText: 'Der Schläger hört auf die Tastatur' }).click();
 
-    // Task 0 ist wieder das lauffähige Beispiel (verdopple) - die Schreibaufgabe ist Task 1.
+    // Task 0 ist das lauffähige Beispiel (ganzes Spiel) - die Schreibaufgabe begrenze() ist Task 1.
     const task1 = page.locator('.task-block').nth(1);
+    const logs = '\n\nconsole.log(begrenze(-30), begrenze(400), begrenze(150));';
 
-    await setCodeMirrorContent(task1.locator('.cm-host'), 'function bewegeSchlaeger(x, taste) {\n  return 140;\n}');
+    await setCodeMirrorContent(task1.locator('.cm-host'), 'function begrenze(x) {\n  return x;\n}' + logs);
     await task1.locator('.btn-check').click();
-    await expect(task1.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+    await expect(task1.locator('.feedback-error')).toBeVisible({ timeout: 10000 });
+
+    // `"showCanvas": false` an dieser Aufgabe: das iframe ist gemountet (der Code laeuft darin),
+    // der leere Spielfeld-Kasten bleibt aber unsichtbar, weil hier nie gezeichnet wird.
+    await expect(task1.locator('iframe.js-sandbox')).toHaveCount(1);
+    await expect(task1.locator('.js-sandbox-wrapper')).toBeHidden();
 
     await setCodeMirrorContent(
       task1.locator('.cm-host'),
-      "function bewegeSchlaeger(x, taste) {\n  let neueX = x;\n  if (taste === 'ArrowLeft') neueX -= 20;\n  if (taste === 'ArrowRight') neueX += 20;\n  if (neueX < 0) neueX = 0;\n  if (neueX > 320) neueX = 320;\n  return neueX;\n}"
+      'function begrenze(x) {\n  if (x < 0) return 0;\n  if (x > 320) return 320;\n  return x;\n}' + logs
     );
     await task1.locator('.btn-check').click();
     await expect(task1.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
@@ -226,6 +290,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
   // Der Nachbar-Test unten deckt die Autovervollständigung (ctx-Methoden) weiterhin ab.
   test.skip('CodeMirror-Editor: Autovervollständigung schlägt Browser-Globals vor', async ({ page }) => {
     await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
 
     const task1 = page.locator('.task-block').nth(1);
@@ -249,6 +314,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
 
   test('CodeMirror-Editor: Autovervollständigung kennt ctx-Canvas-Methoden (fillRect, arc, ...)', async ({ page }) => {
     await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
 
     const task1 = page.locator('.task-block').nth(1);
@@ -270,6 +336,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
 
   test('CodeMirror-Editor: Hover über ctx-Methode zeigt Signatur-Tooltip', async ({ page }) => {
     await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
 
     const task1 = page.locator('.task-block').nth(1);
@@ -284,6 +351,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
 
   test('CodeMirror-Editor: Tab rückt ein, wenn keine Vervollständigung offen ist', async ({ page }) => {
     await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
 
     const task1 = page.locator('.task-block').nth(1);
@@ -305,16 +373,17 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     await page.addInitScript(() => {
       localStorage.setItem(
         'ue-hacker-interactive-progress-js-spielewerkstatt',
-        JSON.stringify({ version: 1, courseId: 'projekt-js-spielewerkstatt', variant: 'js-spielewerkstatt', completedLessonIds: ['lektion-01', 'lektion-02'] })
+        JSON.stringify({ version: 1, courseId: 'projekt-js-spielewerkstatt', variant: 'js-spielewerkstatt', completedLessonIds: ['lektion-01'] })
       );
     });
     await page.goto('/kurs/projekt-js-spielewerkstatt');
-    await page.locator('.lesson-item', { hasText: 'Alles bewegt sich' }).click();
+    await page.locator('.btn-start-course').click();
+    await page.locator('.lesson-item', { hasText: 'Der Ball fällt' }).click();
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
 
-    // Task 0 = fertige Loesung zum Anschauen (Beispiel, nur Ausfuehren), Task 1 = naechstePosition
-    // (Pflichtaufgabe), Task 2 = die Schleife selbst nachbauen (Pflichtaufgabe, canvas_changed).
-    const task2 = page.locator('.task-block').nth(2);
+    // Task 0 = fertige Loesung zum Anschauen (Beispiel, nur Ausfuehren), Task 1 = die Schleife
+    // selbst nachbauen (Pflichtaufgabe, canvas_changed), Task 2 = dasselbe mit hoeherem Tempo.
+    const task2 = page.locator('.task-block').nth(1);
     // Ball bewegt sich nicht (ballY bleibt 0) - clearRect+identischer Neuzeichnen ergibt
     // unveraenderte Pixel, canvas_changed muss das erkennen und die Aufgabe ablehnen.
     await setCodeMirrorContent(
@@ -330,5 +399,42 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     );
     await task2.locator('.btn-check').click();
     await expect(task2.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+  });
+
+  test('Kompletter Durchlauf: jede Musterlösung aus lessons.json besteht ihre eigene Prüfung', async ({ page }) => {
+    test.setTimeout(120000);
+    await page.addInitScript((ids) => {
+      localStorage.setItem(
+        'ue-hacker-interactive-progress-js-spielewerkstatt',
+        JSON.stringify({ version: 1, courseId: 'projekt-js-spielewerkstatt', variant: 'js-spielewerkstatt', completedLessonIds: ids })
+      );
+    }, lessons.map((l) => l.id));
+    await page.goto('/kurs/projekt-js-spielewerkstatt');
+    await page.locator('.btn-start-course').click();
+    await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
+
+    for (const [lessonIdx, lesson] of lessons.entries()) {
+      await page.locator('.lesson-item').nth(lessonIdx).click();
+      await expect(page.locator('.lesson-item.active')).toContainText(lesson.title);
+      await expect(page.locator('.task-block')).toHaveCount(lesson.tasks.length);
+
+      // Freie Aufgaben ohne eigene Musterloesung ("ruf die Funktionen mit eigenen Werten auf",
+      // "mach das Spiel zu deinem eigenen") bekommen den zuletzt gesehenen vollstaendigen Code
+      // derselben Lektion - das fertige Beispiel bzw. die Loesung der Aufgabe davor.
+      let lastSolution = null;
+      for (const [taskIdx, task] of lesson.tasks.entries()) {
+        if (task.example) {
+          lastSolution = task.codeTemplate;
+          continue;
+        }
+        lastSolution = task.solution ?? lastSolution;
+        expect(lastSolution, `${lesson.id} Aufgabe ${taskIdx}: keine Musterlösung`).toBeTruthy();
+
+        const block = page.locator('.task-block').nth(taskIdx);
+        await setCodeMirrorContent(block.locator('.cm-host'), lastSolution);
+        await block.locator('.btn-check').click();
+        await expect(block.locator('.feedback-success'), `${lesson.id} Aufgabe ${taskIdx}`).toBeVisible({ timeout: 10000 });
+      }
+    }
   });
 });

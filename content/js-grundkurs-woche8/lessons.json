@@ -13,9 +13,9 @@
         "validation": { "type": "output_contains", "expected": "Bello Hund" }
       },
       {
-        "instruction": "Erstelle eine Klasse Buch mit constructor(titel, seiten). Erzeuge eine Instanz meinBuch mit dem Titel 'Der Hobbit' und 310 Seiten.",
+        "instruction": "Erstelle eine Klasse Buch mit constructor(titel, seiten). Erzeuge eine Instanz meinBuch mit dem Titel 'Der Hobbit' und 310 Seiten. Gib meinBuch.titel und meinBuch.seiten mit console.log aus.",
         "codeTemplate": "// Dein Code hier\n",
-        "validation": { "variables": { "meinBuch": { "titel": "Der Hobbit", "seiten": 310 } } }
+        "validation": { "type": "output_contains", "expected": "Der Hobbit 310", "variables": { "meinBuch": { "titel": "Der Hobbit", "seiten": 310 } } }
       }
     ]
   },
@@ -97,9 +97,9 @@
         "validation": { "type": "output_contains", "expected": "Bestanden: 1" }
       },
       {
-        "instruction": "Erstelle eine Klasse Produkt mit constructor(name, preis). Erzeuge ein Array produkte mit vier Instanzen: Apfel (2), Buch (15), Brot (3), Kopfhoerer (25). Berechne mit einer Schleife die Summe der Preise aller Produkte, die mindestens 10 kosten. Speichere das Ergebnis in einer Variable summe.",
+        "instruction": "Erstelle eine Klasse Produkt mit constructor(name, preis). Erzeuge ein Array produkte mit vier Instanzen: Apfel (2), Buch (15), Brot (3), Kopfhoerer (25). Berechne mit einer Schleife die Summe der Preise aller Produkte, die mindestens 10 kosten. Speichere das Ergebnis in einer Variable summe und gib sie aus.",
         "codeTemplate": "// Dein Code hier\n",
-        "validation": { "variables": { "summe": 40 } }
+        "validation": { "type": "output_contains", "expected": "40", "variables": { "summe": 40 } }
       }
     ]
   },
