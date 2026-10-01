@@ -69,8 +69,9 @@ Listen → Module → Dictionaries → Dateien → OOP → Vererbung → Abschlu
 **Zielgruppe:** ab 12 Jahre | **Dauer:** 9 Wochen | **Voraussetzungen:** keine
 
 Systematischer JS-Einstieg im Browser (eigene iframe-Sandbox, kein Setup nötig). **Eigenständig
-neben `projekt-js-spielewerkstatt`** — kein Voraussetzungsverhältnis in beide Richtungen, beide
-sind unabhängige Einstiegspunkte in den JS-Track (siehe `VISION.md`). Bewusst leichteres Format
+neben `projekt-js-spielewerkstatt`** — der Grundkurs setzt die Spielewerkstatt nicht voraus;
+umgekehrt empfiehlt die Spielewerkstatt Woche 4 (Funktionen) als Vorwissen, weil sie Funktionen
+ab Lektion 1 direkt am Spiel nutzt statt sie neu zu erklären (siehe `VISION.md`). Bewusst leichteres Format
 als der Python-12-Wochen-Kurs: ein Track ohne Themen-Varianten (Abenteuer/Pferde/Sci-Fi), kein
 Glossar/Boss-Quest/Lösungen/Zertifikat — pro Woche nur **Lektion → Debug → Mission**.
 
@@ -131,8 +132,8 @@ auf). Komplexes 2D-Spiel mit Klassen, Inventar und Leveln.
 **Voraussetzung:** ein JS-Projekt-Kurs (z.B. `projekt-js-spielewerkstatt`) oder gleichwertige
 JS-Grundlagen — **kein Python nötig**. Spiel läuft direkt im Browser – ideal für Schüler die
 etwas für das Web bauen wollen. Eigenständig von der kompakten `js-spielewerkstatt`
-(Projekt-Kurs, ~6 Lektionen): die Spielewerkstatt ist ein niedrigschwelliger, für sich
-abgeschlossener Einstieg; dieser Track hier ist die spätere, deutlich umfangreichere
+(Projekt-Kurs, 7 Lektionen): die Spielewerkstatt ist ein kompaktes, für sich
+abgeschlossenes Projekt; dieser Track hier ist die spätere, deutlich umfangreichere
 Vertiefung — beide ergänzen sich, keins ist Voraussetzung für das andere im strengen Sinn,
 aber wer schon die Spielewerkstatt gemacht hat, startet hier mit Vorwissen.
 
@@ -209,8 +210,8 @@ Python-Interesse, ab 12:
   → Spieleprogrammierung Advanced Track A (Python-Track) oder KI-Grundlagen (KI-Track)
 
 Web/JS-Interesse, ab 12 (kein Python nötig):
-  → js-grundkurs (JS-Track, Grundkurs) optional, für mehr Struktur
-  → js-spielewerkstatt (JS-Track, Projekt-Kurs) — unabhängig vom Grundkurs, gleichwertiger Einstieg
+  → js-grundkurs (JS-Track, Grundkurs) — empfohlener Einstieg, mindestens bis Woche 4 (Funktionen)
+  → js-spielewerkstatt (JS-Track, Projekt-Kurs) — nutzt Funktionen ab Lektion 1
   → Spieleprogrammierung Advanced, Track B: Browser-Spiel (JS-Track)
 
 KI-Interesse, ab 14:

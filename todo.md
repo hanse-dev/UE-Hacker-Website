@@ -5,6 +5,14 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 
 ## Offen
 
+- [ ] `npm run lint:spelling` meldet 167 unbekannte Wörter in 24 Dateien (Stand 2026-10-01), fast
+      alle in Content, der nach dem Tippfehler-Pass 3.65 dazukam (`ki-labor-woche6/7`,
+      `ki-labor-checks/week-7.json`, `python-grundlagen-interaktiv-kinder`, `src/locales/en.js`
+      "termine"). Nicht behoben, weil jedes Wort einzeln geprüft werden muss (echter Tippfehler
+      vs. legitimes Wort für `cspell.json`) — eigener Tippfehler-Pass wie 3.65.
+- [ ] Dev-Flag `VITE_DEV_SKIP_CHECKS` (HANDOFF 3.89) hat in `main` noch keinen eigenen Test. Ein
+      Entwurf (`tests/dev-skip-checks.spec.js` + `playwright.devskip.config.js`) liegt staged, aber
+      uncommittet im Worktree `dev-skip-checks-flag` — dort fertigstellen und mergen.
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken) —
       **zurückgestellt** (Nutzer will erst später deployen). Backup-Cron auf dem Server einrichten
       (Befehl siehe HANDOFF.md Abschnitt 4); externe Sicherung der Backups bewusst nicht mitgebaut.

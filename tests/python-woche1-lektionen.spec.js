@@ -142,6 +142,32 @@ test.describe('Python Woche 1 Abenteuer als Einzel-Lektionen', () => {
     await solve(page, ['print("Hallo Welt")', 'alter = 25\nprint("Ich bin " + str(alter) + " Jahre alt.")', 'name = "Gandalf"\nprint("Willkommen, " + name)']);
   });
 
+  test('Debug-Lektion: "Zurücksetzen" stellt den vorgegebenen (kaputten) Code der Aufgabe wieder her', async ({ page }) => {
+    await page.addInitScript((key) => {
+      sessionStorage.setItem('seeded', '1');
+      localStorage.setItem(key, JSON.stringify({
+        version: 1,
+        completedLessonIds: ['lektion-01', 'lektion-02', 'lektion-03', 'lektion-04', 'lektion-05'],
+      }));
+    }, PROGRESS_KEY);
+    await page.goto(URL_W1);
+    await page.locator('.js-course-tour .stepper-step').nth(5).click();
+    const first = page.locator('.task-block').first();
+    const editor = first.locator('.code-editor');
+    const original = await editor.inputValue();
+
+    // Solange der Text unveraendert ist, gibt es nichts zurueckzusetzen
+    await expect(first.locator('.btn-reset')).toHaveCount(0);
+
+    await editor.fill('print("etwas ganz anderes")');
+    await expect(first.locator('.btn-reset')).toBeVisible();
+    await first.locator('.btn-reset').click();
+    await expect(editor).toHaveValue(original);
+    // Reset betrifft nur diese eine Aufgabe, nicht die anderen Aufgaben der Lektion
+    await expect(page.locator('.task-block').nth(1).locator('.code-editor')).not.toHaveValue(original);
+    await expect(first.locator('.btn-reset')).toHaveCount(0);
+  });
+
   test('Check steht oben in der Leiste; nach den Missionen wählt man Extra-Herausforderung oder Check', async ({ page }) => {
     await page.addInitScript((key) => {
       sessionStorage.setItem('seeded', '1');
