@@ -50,6 +50,16 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
   Quests haben feste Vorgaben statt freier Gestaltung, Bonus-Teile sind ungeprüft — ggf. eine
   ungeprüfte "Freestyle"-Aufgabe pro Woche ergänzen. Vergleiche mit `>` (Boolean-Kapitel Woche 2)
   werden für "Sieger/über Durchschnitt" genutzt, weil `if` erst in Woche 3 kommt — bewusst so.
+- **Themen-Vergleich Woche 2–4 (Abenteuer/Pferde/Sci-Fi, DE+EN, geprüft 2026-10-04 per AST über
+  Lektionstexte + Referenzlösungen):** Woche 1 und 5–12 sind je Lektion konzeptgleich. Lücken:
+  **Woche 2 Sci-Fi** hat nur 7 statt 9 Lektionen — `input()` (mit `int()`/`float()`-Umwandlung)
+  fehlt komplett (Abenteuer/Pferde: Lektion 9, Abenteuer zusätzlich Mission 3), `bool()` steht nur
+  in der Tabelle von Lektion 7 und wird nie geübt. `len()` lernt in Woche 2 nur Abenteuer
+  (Lektion 3), Pferde/Sci-Fi erst in Woche 6. Vorschlag: Sci-Fi Woche 2 um eine `input()`-Lektion
+  + `bool()`-Aufgabe ergänzen, `len()` in Pferde/Sci-Fi in die Text-Lektion aufnehmen (je DE+EN +
+  `6_loesungen`). Kleiner: Woche 3 nur Pferde nutzt `+=` (Boss 1, per Tipp erklärt) vor der
+  Einführung in Woche 4; Woche 3/4 Abenteuer hat je eine Lektion mehr (`= oder ==`, „Muster aus
+  Sternen“) bei gleichem Stoff, aber 55 statt 47–49 Aufgaben in Woche 3.
 - **Woche 4:** Debug Bug #1 war im Original eine Endlosschleife (5s-Timeout), jetzt Off-by-one —
   bewusst so. `input()`-Aufgabe (Zugangscode/Futter-Abfrage/Docking-Code) mit `validation.stdin`
   je Thema als letzter Boss-3-Schritt nachgezogen (DE+EN, mit `python3` geprüft) — erledigt.
