@@ -83,7 +83,9 @@ werden:
   oder gehört sie zu einer als "Kern" markierten Datei (z.B. `useTaskValidation.js`,
   `locales/*.js`, `App.vue`), läuft als Sicherheitsnetz automatisch die volle Suite.
 - **Pre-push:** `npm run test:checks` (voll) läuft automatisch vor jedem `git push` — das ist das
-  eigentliche Sicherheitsnetz vor dem Merge nach `main`.
+  eigentliche Sicherheitsnetz vor dem Merge nach `main`. Danach läuft `npm run test:devskip`
+  (~10 s, eigene Config mit zwei Servern): der Dev-Modus `npm run dev:skip-checks` muss im
+  Dev-Server wirken und darf im Produktions-Build nicht wirken.
 - Mapping-Regeln liegen in `scripts/test-changed.mjs` (`RULES`/`CORE_PREFIXES`); bei neuen
   Komponenten/Composables/Content-Ordnern dort eine Regel ergänzen, sonst greift beim nächsten Mal
   nur das Sicherheitsnetz (voller Lauf).

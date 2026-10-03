@@ -1,6 +1,7 @@
 /**
  * Shared validation for code tasks and quizzes.
  */
+import { DEV_SKIP_CHECKS } from './devSkipChecks.js';
 
 /**
  * @param {string} output - stdout der ausgefuehrten Zelle
@@ -10,6 +11,7 @@
  * (`CodeChallenge.vue`, zertifikatsrelevant) gibt es dafuer zusaetzlich `structuralChecksOk()`.
  */
 export function validateOutput(output, validation) {
+  if (DEV_SKIP_CHECKS) return true;
   if (!validation) return true;
   const { type, expected } = validation;
   const out = (output || '').trim();
@@ -47,6 +49,7 @@ export function validateOutput(output, validation) {
  *   vorgerechnete Beispiel das richtige Ergebnis liefert.
  */
 export function structuralChecksOk(validation, variables, functionResults) {
+  if (DEV_SKIP_CHECKS) return true;
   if (!validation) return true;
 
   if (validation.variables) {
@@ -117,6 +120,7 @@ export function getCorrectIndices(q) {
 }
 
 export function isAnswerCorrect(q, answer) {
+  if (DEV_SKIP_CHECKS) return true;
   if (q?.type === 'true_false') {
     return answer === q.correct;
   }

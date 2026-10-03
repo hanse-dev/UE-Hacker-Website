@@ -22,7 +22,7 @@
       <button @click="runCode" :disabled="!kernelReady || checking" class="btn-run">
         {{ t('editor.run') }}
       </button>
-      <button @click="checkCode" :disabled="!kernelReady || checking" class="btn-check">
+      <button @click="checkCode" :disabled="(!kernelReady && !devSkipChecks) || checking" class="btn-check">
         {{ checking ? t('editor.checking') : t('editor.check') }}
       </button>
       <button
@@ -50,6 +50,7 @@ import { ref, computed, onMounted, watch } from 'vue';
 import { usePyodide } from '../composables/usePyodide';
 import { useWeekChecks, loadWeekChecks } from '../composables/useWeekChecks';
 import { validateOutput, structuralChecksOk } from '../composables/useTaskValidation';
+import { DEV_SKIP_CHECKS } from '../composables/devSkipChecks.js';
 import { useLanguage } from '../composables/useLanguage';
 
 // Skalare (str/int/float/bool) kommen von Pyodide schon als JS-Wert. Komplexere Werte (z.B. ein
@@ -129,7 +130,7 @@ export default {
     };
 
     const checkCode = async () => {
-      if (!kernelReady.value) return;
+      if (!kernelReady.value && !DEV_SKIP_CHECKS) return;
       checking.value = true;
       feedback.value = null;
 
@@ -145,7 +146,8 @@ export default {
         try { pyodideRef.value?.globals.delete(name); } catch { /* existierte noch nicht */ }
       });
 
-      const result = await runPython(code.value);
+      // Dev-Modus (devSkipChecks.js): Code nicht ausfuehren, die Validatoren melden "bestanden".
+      const result = DEV_SKIP_CHECKS ? { success: true, output: '' } : await runPython(code.value);
 
       if (!result.success) {
         output.value = t('editor.errorPrefix') + (result.error || '');
@@ -196,6 +198,7 @@ export default {
     };
 
     return {
+      devSkipChecks: DEV_SKIP_CHECKS,
       lang,
       t,
       kernelReady,

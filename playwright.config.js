@@ -3,7 +3,7 @@ import { ports } from './scripts/worktree-ports.mjs';
 
 export default defineConfig({
   testDir: './tests',
-  testIgnore: /(?:api-auth|auth-ui)\.spec\.js/,
+  testIgnore: /(?:api-auth|auth-ui|dev-skip-checks)\.spec\.js/,
   // Generierte Notebook-Dateien/ZIPs (gitignored) vor jedem Lauf sicherstellen.
   globalSetup: './scripts/ensure-test-prereqs.mjs',
   timeout: 30000,

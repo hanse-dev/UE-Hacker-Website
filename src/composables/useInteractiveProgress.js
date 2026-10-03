@@ -1,3 +1,4 @@
+import { DEV_SKIP_CHECKS } from './devSkipChecks.js';
 import { ref, computed, watch } from 'vue';
 import { PROGRESS_APPLIED_EVENT, touchSyncKey } from './useProgressSync.js';
 
@@ -63,7 +64,7 @@ export function useInteractiveProgress(variant = 'kinder', courseId = COURSE_ID)
     if (!lessons?.length) return false;
     const index = lessons.findIndex((l) => l.id === lessonId);
     if (index < 0) return false;
-    if (index === 0) return true;
+    if (index === 0 || DEV_SKIP_CHECKS) return true;
     return isCompleted(lessons[index - 1].id);
   };
 

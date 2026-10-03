@@ -143,6 +143,7 @@ export default {
   'week.label':       'Woche',
   'week.download.md':      'Als Markdown herunterladen',
   'week.download.nb':      'Als Jupyter Notebook herunterladen',
+  'devSkip.banner': '🚧 Dev-Modus: Prüfungen werden übersprungen – „Prüfen“ und das Quiz gelten immer als bestanden, alle Lektionen sind offen (npm run dev:skip-checks).',
   'offline.title':         'Offline üben',
   'offline.notebooks':     '📓 Jupyter-Notebooks',
   'offline.komplett':      '🐍 Eine Python-Datei',

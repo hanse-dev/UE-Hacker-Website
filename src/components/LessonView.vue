@@ -58,7 +58,7 @@
             <button
               v-if="!task.example"
               @click="checkTask(idx)"
-              :disabled="!kernelReady || checking"
+              :disabled="(!kernelReady && !devSkipChecks) || checking"
               class="btn-check"
             >
               {{ checking ? t('editor.checking') : t('editor.check') }}
@@ -131,6 +131,7 @@ import { usePyodide } from '../composables/usePyodide';
 import { useInteractiveProgress } from '../composables/useInteractiveProgress';
 import { useLanguage } from '../composables/useLanguage';
 import { validateOutput } from '../composables/useTaskValidation';
+import { DEV_SKIP_CHECKS } from '../composables/devSkipChecks.js';
 import { useLessonContent } from '../composables/useLessonContent';
 import { loadSavedCode, saveLessonCode } from '../composables/useSavedCode';
 import ProjectCompletionBox from './ProjectCompletionBox.vue';
@@ -331,7 +332,7 @@ export default {
     };
 
     const checkTask = async (idx) => {
-      if (!kernelReady.value) return;
+      if (!kernelReady.value && !DEV_SKIP_CHECKS) return;
       checking.value = true;
       taskFeedback.value[idx] = null;
       taskRan.value[idx] = true;
@@ -342,7 +343,9 @@ export default {
       window.ueStdinQueue = Array.isArray(stdin) ? stdin.map(String) : undefined;
       let result;
       try {
-        result = await runPython(taskCodes.value[idx]);
+        // Dev-Modus (devSkipChecks.js): Code gar nicht erst ausfuehren, validateOutput() meldet
+        // ohnehin "bestanden".
+        result = DEV_SKIP_CHECKS ? { success: true, output: '' } : await runPython(taskCodes.value[idx]);
       } finally {
         window.ueStdinQueue = undefined;
       }
@@ -423,6 +426,7 @@ export default {
       showSolution,
       insertIndent,
       kernelReady,
+      devSkipChecks: DEV_SKIP_CHECKS,
       kernelStatus,
       initializeKernel,
       runTask,
