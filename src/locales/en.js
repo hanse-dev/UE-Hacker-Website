@@ -178,7 +178,7 @@ export default {
   // ── Progress widget ───────────────────────────────────────────────────────
   'progress.title':  '🎓 Your certificates',
   'progress.intro1': 'Each week has a certificate. You earn it once you\'ve passed the week check: the quiz plus both coding challenges (easy + harder).',
-  'progress.intro2': 'Missions and boss quests are good practice, but don\'t count toward the certificate. Do the week\'s Check tab — the certificate unlocks automatically. 🎉',
+  'progress.intro2': 'Missions and extra challenges are good practice, but don\'t count toward the certificate. Do the week\'s Check tab — the certificate unlocks automatically. 🎉',
   'progress.intro1.label': 'What are certificates?',
   'progress.export': '📤 Export',
   'progress.import': '📥 Import',

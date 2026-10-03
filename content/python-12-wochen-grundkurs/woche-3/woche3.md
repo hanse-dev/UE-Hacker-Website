@@ -11,19 +11,19 @@ Lerne, wie dein Programm Entscheidungen treffen kann. Mit if-else bestimmst du, 
 ## Die drei Welten
 
 ### 🗡️ Abenteuer-Welt
-Meistere die Weisen des Schicksals und programmiere die Zukunft deines Helden.
+Meistere die Wege des Schicksals und bestimme die Zukunft deines Helden.
 
 ### 🐴 Pferde-Welt
-Treff kluge Entscheidungen auf dem Reithof - welches Pferd, wann trainieren.
+Triff kluge Entscheidungen auf dem Reiterhof – welches Pferd trainiert wann?
 
 ### 🚀 Sci-Fi-Welt
-Als Kommandant entscheidet jeder Befehl über Leben und Tod in gefährlichen Missionen.
+Als Kommandant:in entscheidest du mit jedem Befehl über den Erfolg deiner Mission.
 
 ## Lernziele
 
 - **if-Bedingungen** für einfache Entscheidungen
-- **if-else** für zwei Wege der Wahl  
-- **if-elif-else** für multiple Entscheidungen
+- **if-else** für zwei Wege  
+- **if-elif-else** für mehrere Möglichkeiten
 - **Vergleichsoperatoren** (`==`, `!=`, `<`, `>`, `<=`, `>=`)
 - **Logische Operatoren** (`and`, `or`, `not`)
 - **Verschachtelte Bedingungen** mit korrekter Einrückung

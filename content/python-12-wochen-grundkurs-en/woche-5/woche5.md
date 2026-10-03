@@ -23,4 +23,4 @@ All worlds teach the same Python knowledge – just with different flavour!
 - Write docstrings for documentation
 - Follow naming conventions for functions
 - Create functions with and without return values
-- Pass parameters and use default values
+- Pass parameters in the correct order

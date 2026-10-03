@@ -11,7 +11,7 @@ Mit Dictionaries und Tupeln kannst du deine Daten perfekt strukturieren!
 ## 🎮 Themenwelten zur Auswahl
 
 - **🗺️ Abenteuer-Welt:** Die Schatzkammern von Pyralia – organisiere deine Schätze (Dictionaries) und magischen Siegel (Tupel)!
-- **🐴 Pferdewirtschaft:** Ordnung auf dem Reiterhof – jedes Pferd hat seine Mappe, jede Position ist fest!
+- **🐴 Pferde-Welt:** Ordnung auf dem Reiterhof – jedes Pferd hat seine Mappe, jede Position ist fest!
 - **🚀 Sci-Fi-Welt:** Die Daten-Archive der Raumstation Nebula-7 – strukturierte Datenspeicherung!
 
 # 🎯 Lernziele

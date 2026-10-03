@@ -11,7 +11,7 @@ Dabei wendest du fast alles aus dem Kurs an – von Variablen bis zu Klassen und
 ## 🎮 Themenwelten zur Auswahl
 
 - **🗺️ Abenteuer-Welt:** Die Drachenhöhle von Pyralia – finde den Schatz und besiege den Drachen!
-- **🐴 Pferdewirtschaft:** Der Reiterhof bei Nacht – finde das verschwundene Fohlen!
+- **🐴 Pferde-Welt:** Der Reiterhof bei Nacht – finde das verschwundene Fohlen!
 - **🚀 Sci-Fi-Welt:** Notfall auf Nebula-7 – schalte den Reaktor ab, bevor es zu spät ist!
 
 # 🎯 Lernziele

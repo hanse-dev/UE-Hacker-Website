@@ -87,7 +87,8 @@ behoben, Urteilsfragen stehen je Paket in `todo.md` (dort auch Stand und Paket-R
 - Werkzeuge: `lint:spelling` (cspell, ignoriert Code-Felder, deckt jetzt allen Content ab) und
   `lint:spelling:de` (LanguageTool in Docker, lokales Tool `scripts/local-tools/rechtschreibung-de/`,
   ~6 Min, `-- --grammatik` für Grammatik-Kandidaten) — beide bei 0 Funden.
-- Erledigt: Interaktiv-Kurs, 12-Wochen-Kurs Woche 1–12. Aufgabentexte immer in `lessons.json`
+- Erledigt: alle Pakete (Interaktiv-Kurs, 12-Wochen-Kurs samt Wochen-Checks, JS-Grundkurs,
+  Projekt-Kurse, KI-Labor, UI-Texte, Kursbeschreibungen, Glossar). Aufgabentexte immer in `lessons.json`
   **und** in der Lösungs-Markdown-Zelle (`…_6_loesungen`) ändern; geänderte Ausgabetexte zusätzlich
   in `expected`, Vorlage und Lösungs-Code.
 - Pferde/Sci-Fi Woche 6–12 stammen aus dem Abenteuer-Skelett und enthalten noch Abenteuer-Bezeichner

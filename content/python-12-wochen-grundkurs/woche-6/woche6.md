@@ -11,7 +11,7 @@ Lerne, wie du mehrere Daten in einer Liste speichern und verwalten kannst. Liste
 ## Die drei Welten
 
 ### 🗡️ Abenteuer-Welt
-Im Schatzkammer des Königs lernst du, wie du unendlich viele Items sammelst und organisierst.
+In der Schatzkammer des Königs lernst du, wie du beliebig viele Schätze sammelst und ordnest.
 
 ### 🐴 Pferde-Welt
 Im Reitstall lernst du, wie du Trainingspläne und Pferdedaten perfekt organisierst.

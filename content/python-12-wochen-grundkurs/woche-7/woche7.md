@@ -11,7 +11,7 @@ Mit den richtigen Modulen kannst du auf mächtige Bibliotheken zugreifen und dei
 ## 🎮 Themenwelten zur Auswahl
 
 - **🗺️ Abenteuer-Welt:** Betrete die magische Bibliothek von Pyralia und lerne die uralten Zauberformeln (Module) kennen!
-- **🐴 Pferdewirtschaft:** Werkzeuge und Ausrüstung auf dem Reiterhof – alles hat seinen festen Platz und Zweck!
+- **🐴 Pferde-Welt:** Werkzeuge und Ausrüstung auf dem Reiterhof – alles hat seinen festen Platz und Zweck!
 - **🚀 Sci-Fi-Welt:** Die Raumstation Nebula-7 und ihre fortschrittlichen Systemprotokolle warten auf dich!
 
 # 🎯 Lernziele

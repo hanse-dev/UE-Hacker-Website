@@ -12,7 +12,7 @@ Mit den Grundlagen der Programmierung legst du das Fundament für alle kommenden
 
 Wähle deine bevorzugte Lernumgebung:
 - **🗺️ Abenteuer-Welt:** Betrete die magische Welt von Pyralia als junger Abenteurer!
-- **🐴 Pferdewirtschaft:** Begleite ein junges Fohlen auf dem Reiterhof Sonnental!
+- **🐴 Pferde-Welt:** Begleite ein junges Fohlen auf dem Reiterhof Sonnental!
 - **🚀 Sci-Fi-Welt:** Starte deine Karriere als Nachwuchspilot an Bord der Raumstation Nebula-7!
 
 Alle Welten vermitteln dieselben Python-Kenntnisse – nur mit unterschiedlichem Flair!

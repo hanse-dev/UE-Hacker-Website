@@ -108,7 +108,7 @@ export default {
   'course.structure.step.lesson.title':  'Lektion',
   'course.structure.step.lesson.desc':   'Neuer Stoff: lies und verstehe das Thema der Woche.',
   'course.structure.step.debug.title':   'Debug',
-  'course.structure.step.debug.desc':    'Finde und fixe absichtliche Bugs im Code.',
+  'course.structure.step.debug.desc':    'Finde und behebe absichtlich eingebaute Fehler im Code.',
   'course.structure.step.mission.title': 'Missionen',
   'course.structure.step.mission.desc':  'Kleine Aufgaben zum Üben des neuen Stoffs.',
   'course.structure.step.branch.title':  'Extra-Herausforderung oder Check',
@@ -154,7 +154,7 @@ export default {
   'check.loading':       'Check wird geladen…',
   'check.empty':         'Für diese Woche gibt es noch keinen Check.',
   'check.title':         'Verständnis-Check',
-  'check.intro':         'Kurzer Test zu den Themen dieser Woche. Bestehen mit 80%+.',
+  'check.intro':         'Kurzer Test zu den Themen dieser Woche. Bestanden hast du ab 80 %.',
   'check.alreadyPassed': 'Bereits bestanden',
   'check.challenge.easy':   'Leicht',
   'check.challenge.harder': 'Schwerer',
@@ -178,7 +178,7 @@ export default {
   // ── Progress widget ───────────────────────────────────────────────────────
   'progress.title':  '🎓 Deine Zertifikate',
   'progress.intro1': 'Für jede Woche gibt es ein Zertifikat. Du bekommst es, wenn du den Wochen-Check bestanden hast: das Quiz plus beide Coding-Aufgaben (leicht + schwerer).',
-  'progress.intro2': 'Missionen und Boss-Quests sind eine gute Übung, zählen aber nicht fürs Zertifikat. Mach den Check-Tab der Woche – dann schaltet sich das Zertifikat automatisch frei. 🎉',
+  'progress.intro2': 'Missionen und Extra-Herausforderungen sind eine gute Übung, zählen aber nicht fürs Zertifikat. Mach den Check-Tab der Woche – dann schaltet sich das Zertifikat automatisch frei. 🎉',
   'progress.intro1.label': 'Was sind Zertifikate?',
   'progress.export': '📤 Exportieren',
   'progress.import': '📥 Importieren',
@@ -211,7 +211,7 @@ export default {
   'placement.results.intro':  'Grün = sieht gut aus. Orange = diese Woche lohnt sich zum Wiederholen.',
   'placement.openWeek':       'Woche öffnen →',
   'placement.projects.title': 'Alles sitzt — Zeit für ein eigenes Projekt!',
-  'placement.projects.intro': 'Hier sind drei Ideen, die das aus dem 12-Wochen-Kurs nutzen:',
+  'placement.projects.intro': 'Hier sind drei Ideen, die das Wissen aus dem 12-Wochen-Kurs nutzen:',
   'placement.projects.uses':  'Nutzt:',
   'placement.recommend':      'Empfohlener Start:',
   'placement.retry':          'Einstufung wiederholen',
@@ -280,9 +280,9 @@ export default {
 
   // ── Lesson view (interactive lessons / Cäsar-Chiffre) ────────────────────
   'lesson.loading':           'Lektion wird geladen...',
-  'lesson.editorHint':        'Python wird beim Öffnen automatisch geladen (~30 Sek.). Schreibe deinen Code in das Feld unten. Mit „Ausführen" siehst du nur die Ausgabe, mit „Prüfen" wird zusätzlich kontrolliert, ob die Aufgabe gelöst ist – klicke „Prüfen", sobald „Python bereit" angezeigt wird.',
+  'lesson.editorHint':        'Python wird beim Öffnen automatisch geladen (~30 Sek.). Schreibe deinen Code in das Feld unten. Mit „Ausführen“ siehst du nur die Ausgabe, mit „Prüfen“ wird zusätzlich kontrolliert, ob die Aufgabe gelöst ist – klicke „Prüfen“, sobald „Python bereit“ angezeigt wird.',
   'lesson.blankHint':         'Wo in der Vorlage ___ (drei Unterstriche) steht, fehlt noch etwas: Ersetze genau das ___ durch deinen eigenen Code (z.B. einen Text, eine Zahl oder einen Variablennamen) – den Rest der Zeile lässt du stehen.',
-  'lesson.flexibleHint':      'Diese Lektion hat {total} Aufgaben, aber du musst nur mindestens {min} davon lösen, um weiterzugehen – den Rest kannst du jederzeit mit „Überspringen" auslassen.',
+  'lesson.flexibleHint':      'Diese Lektion hat {total} Aufgaben, aber du musst nur mindestens {min} davon lösen, um weiterzugehen – den Rest kannst du jederzeit mit „Überspringen“ auslassen.',
   'lesson.flexibleProgress':  'Bisher gelöst: {solved} von mindestens {min} nötigen Aufgaben.',
   'lesson.yourCode':          'Dein Code',
   'lesson.taskPrefix':        'Aufgabe ',
@@ -290,7 +290,7 @@ export default {
   'lesson.taskPending':       '(noch offen)',
   'lesson.taskSkipped':       '(übersprungen)',
   'lesson.skipTask':          'Überspringen',
-  'lesson.goToWeeklyCourse':  'Zum 12-Wochen Python Grundkurs',
+  'lesson.goToWeeklyCourse':  'Zum 12-Wochen-Grundkurs Python',
   'lesson.nextLesson':        'Weiter zur nächsten Lektion',
   'lesson.defaultSummary':    'Super, du hast diese Lektion abgeschlossen!',
   'lesson.allTasksDone':      'Richtig! Du hast alle Aufgaben abgeschlossen.',
@@ -304,7 +304,7 @@ export default {
   'lesson.moreProjects':      'Weitere Projekte entdecken',
 
   // ── JS-Sandbox-Lektion (JsLessonView.vue + JsSandboxFrame.vue) ───────────
-  'jsLesson.editorHint':   'Dein Code läuft in einem eigenen, abgeschotteten Bereich. Schau dir zuerst das Beispiel an und führe es aus – danach bist du an der Reihe. Jeder Klick auf „Ausführen"/„Prüfen" startet frisch neu.',
+  'jsLesson.editorHint':   'Dein Code läuft in einem eigenen, abgeschotteten Bereich. Schau dir zuerst das Beispiel an und führe es aus – danach bist du an der Reihe. Jeder Klick auf „Ausführen“/„Prüfen“ startet frisch neu.',
   'jsLesson.ranExplainer': '🟠 Ein oranger Rahmen um den Code-Bereich zeigt dir, welchen Code du schon ausgeführt hast.',
   'jsLesson.alreadyRan':   'Diesen Code hast du schon ausgeführt.',
   'jsLesson.noOutput':     '(keine Ausgabe)',
@@ -316,7 +316,7 @@ export default {
   'jsLesson.ready':        '✓ Sandbox bereit',
   'jsLesson.starting':     'Sandbox startet…',
   'jsLesson.restartFrame': 'Neu starten',
-  'jsLesson.frameStalled': 'Sieht aus, als würde dein Spiel hängen – klick auf „Neu starten".',
+  'jsLesson.frameStalled': 'Sieht aus, als würde dein Spiel hängen – klick auf „Neu starten“.',
 
   // ── Code challenge (Wochen-Check) ────────────────────────────────────────
   'challenge.passed':         'Bestanden',

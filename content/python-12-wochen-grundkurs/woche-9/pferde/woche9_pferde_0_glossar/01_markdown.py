@@ -14,4 +14,4 @@
 | `json.dump()` | Python-Dictionary als JSON speichern | `json.dump(daten, f)` |
 | `csv.reader` | CSV-Datei zeilenweise einlesen | `reader = csv.reader(f)` |
 | `csv.writer` | Daten als CSV-Datei speichern | `writer = csv.writer(f)` |
-| `FileNotFoundError` | Fehler wenn eine Datei nicht gefunden wird | `except FileNotFoundError:` |"""
+| `FileNotFoundError` | Fehler, wenn eine Datei nicht gefunden wird | `except FileNotFoundError:` |"""

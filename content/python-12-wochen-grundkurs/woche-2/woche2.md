@@ -6,7 +6,7 @@ title: '📚 Woche 2 – Datentypen und Variablen: Die vier Elemente der Daten!'
 
 ## Thema: Die vier Elemente der Daten
 
-Lerne, wie Python verschiedene Arten von Daten organisiert. Beherrsche die vier fundamentalen Datentypen für komplexe Programme.
+Lerne, wie Python verschiedene Arten von Daten organisiert. Du lernst die vier wichtigsten Datentypen kennen.
 
 ## Die drei Welten
 
@@ -14,14 +14,14 @@ Lerne, wie Python verschiedene Arten von Daten organisiert. Beherrsche die vier 
 Tauche ein in die magische Welt der Elemente! Lerne die vier magischen Elementtypen wie ein wahrer Alchimist und verwandle Blei zu Gold.
 
 ### 🐴 Pferde-Welt
-Willkommen im Reiterhof! Entdecke die vier Hufschlag-Typen der Pferdewelt. Verwalte Futterlager und plane Trainingsstunden.
+Willkommen auf dem Reiterhof! Entdecke die vier Hufschlag-Typen der Pferdewelt. Verwalte Futterlager und plane Trainingsstunden.
 
 ### 🚀 Sci-Fi-Welt
-An Bord der Raumstation lernst du die vier Quanten-Typen. Analysiere Flottenformationen und manage Energiedepots.
+An Bord der Raumstation lernst du die vier Quanten-Typen. Analysiere Flottenformationen und verwalte Energiedepots.
 
 ## Lernziele
 
 - **f-Strings meistern** für moderne Textformatierung
 - **Die vier Datentypen**: String, Integer, Float, Boolean
-- **Operationen durchführen**: Mathematik und Textmanipulation
+- **Rechnen und Texte verbinden**
 - **Typumwandlungen** für flexible Datenverarbeitung

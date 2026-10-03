@@ -11,7 +11,8 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
       Paket für Paket: ~~Interaktiv-Kurs~~, ~~Woche 1–5 (alle Themen)~~, ~~Woche 6–12~~ (erledigt:
       Abenteuer voll, Pferde/Sci-Fi Geschichten-Texte + LanguageTool), ~~Wochen-Checks~~ (erledigt;
       Fragen zu nicht gelehrtem Stoff in Check 4/5 ersetzt, DE+EN) , ~~JS-Grundkurs~~,
-      ~~Projekt-Kurse~~, ~~KI-Labor~~ (alle erledigt) → UI-Texte/`kurse.json`/Glossar. EN nur für inhaltliche Korrekturen nachziehen.
+      ~~Projekt-Kurse~~, ~~KI-Labor~~ ~~UI-Texte/`kurse.json`/Glossar~~ (alle erledigt). **Lese-Pass komplett** —
+      offen sind nur noch die Urteilsfragen unten. EN nur für inhaltliche Korrekturen nachziehen.
       Offen aus Paket 5–7 (JS-Grundkurs, Projekte, KI-Labor):
       - Sichtbare Daten-Texte ohne Umlaute, an `expected`/Tests gekoppelt: `'gruen'`, `'Koeln'`,
         `'Kopfhoerer'`, `'Naegel'` (`js-grundkurs-woche2/5/8`), Label `'Saeugetier'` (KI-Labor

@@ -6,7 +6,7 @@
 | **Dictionary** `{}` | Sammlung von Schlüssel-Wert-Paaren | `{\"name\": \"Aria\", \"level\": 5}` |
 | **Schlüssel (Key)** | Name eines Eintrags im Dictionary | `held[\"name\"]` |
 | **Wert (Value)** | Inhalt eines Eintrags | `held[\"level\"]` → `5` |
-| `.get()` | Sicherer Zugriff – kein Fehler wenn Schlüssel fehlt | `held.get(\"xp\", 0)` |
+| `.get()` | Sicherer Zugriff – kein Fehler, wenn der Schlüssel fehlt | `held.get(\"xp\", 0)` |
 | `.pop()` | Eintrag löschen und Wert zurückgeben | `held.pop(\"level\")` |
 | `.keys()` | Alle Schlüssel als Liste | `held.keys()` |
 | `.values()` | Alle Werte als Liste | `held.values()` |
