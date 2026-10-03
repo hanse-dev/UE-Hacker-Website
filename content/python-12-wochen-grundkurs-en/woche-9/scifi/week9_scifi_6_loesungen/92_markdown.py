@@ -1,3 +1,3 @@
-"""### Extra Challenge 4: The Great Data Archive – Task 5
+"""### Extra Challenge 4: The Great Data Archive – Task 4
 
-Step 5 – Count with a dictionary and save (week 8): word = \"spacestation\" is given. With counter[c] = counter.get(c, 0) + 1, count how often each letter occurs, save counter with json.dump() into counter.json, load it back and print exactly a: 2."""
+Step 4 – Randomness (week 7): Write ten random numbers from 1 to 100 (random.randint), one per line, into the file numbers.txt. Read them back line by line and convert them with int() (list numbers). Print exactly Count: 10 and on the next line All in range: True."""

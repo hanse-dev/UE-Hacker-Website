@@ -1,22 +1,13 @@
-import csv
-crew = [
-    {"name": "Nova", "rolle": "Pilotin", "rang": 4, "energie": 120},
-    {"name": "Rex", "rolle": "Ingenieur", "rang": 6, "energie": 150},
-    {"name": "Zara", "rolle": "Botanikerin", "rang": 3, "energie": 90},
-]
-with open("crew.csv", "w", newline="") as f:
-    w = csv.DictWriter(f, fieldnames=["name", "rolle", "rang", "energie"])
-    w.writeheader()
-    w.writerows(crew)
 import json
+mitglied = {"name": "Nova", "rolle": "Pilotin", "rang": 4, "energie": 120}
+def lade_sicher(name):
+    try:
+        with open(name, "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
 
-starke = []
-with open("crew.csv", "r") as f:
-    for zeile in csv.DictReader(f):
-        if int(zeile["rang"]) > 3:
-            starke.append(zeile["name"])
+print(f"Leer: {lade_sicher('gibt_es_nicht.json') == {}}")
 with open("mitglied.json", "w") as f:
-    json.dump(starke, f)
-with open("mitglied.json", "r") as f:
-    geladen = json.load(f)
-print(f"Starke: {geladen}")
+    json.dump(mitglied, f)
+print(f"Name: {lade_sicher('mitglied.json')['name']}")

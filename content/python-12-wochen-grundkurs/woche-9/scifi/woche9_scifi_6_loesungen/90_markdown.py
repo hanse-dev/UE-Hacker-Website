@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 4: Das große Datenarchiv – Aufgabe 4
+"""### Extra-Herausforderung 4: Das große Datenarchiv – Aufgabe 3
 
-Schritt 4 – Zufall (Woche 7): Schreibe zehn Zufallszahlen von 1 bis 100 (random.randint), je eine pro Zeile, in die Datei zahlen.txt. Lies sie zeilenweise zurück und wandle sie mit int() um (Liste zahlen). Gib genau Anzahl: 10 und in der nächsten Zeile Alle im Bereich: True aus."""
+Schritt 3 – Listen filtern (Woche 6): Die CSV-Datei crew.csv wird im vorgegebenen Code angelegt. Sammle die Namen aller Zeilen mit rang größer als 3 in der Liste starke, speichere starke mit json.dump() in mitglied.json, lade sie zurück und gib genau Starke: ['Nova', 'Rex'] aus."""

@@ -1,13 +1,20 @@
 import json
-pferd = {"name": "Blitz", "rasse": "Hannoveraner", "alter": 8, "punkte": 120}
-def speichere(daten, name):
-    with open(name, "w") as f:
-        json.dump(daten, f)
-
-def lade(name):
-    with open(name, "r") as f:
-        return json.load(f)
-
-speichere(pferd, "pferd.json")
-geladen = lade("pferd.json")
-print(f"Gleich: {geladen == pferd}")
+einheiten = [
+    {"name": "Springen üben", "schwierigkeit": 1, "status": "offen"},
+    {"name": "Ausritt planen", "schwierigkeit": 2, "status": "offen"},
+    {"name": "Fell pflegen", "schwierigkeit": 3, "status": "offen"},
+]
+einheiten[0]["status"] = "abgeschlossen"
+with open("trainingslog.json", "w") as f:
+    json.dump(einheiten, f)
+with open("trainingslog.json", "r") as f:
+    geladen = json.load(f)
+fertig = 0
+for quest in geladen:
+    if quest["status"] == "abgeschlossen":
+        fertig += 1
+with open("bericht.txt", "w") as f:
+    f.write(f"Abgeschlossen: {fertig}\n")
+with open("bericht.txt", "r") as f:
+    inhalt = f.read()
+print(f"Bericht: {inhalt.strip()}")

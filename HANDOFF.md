@@ -90,9 +90,10 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   greift der Dev-Modus `dev:skip-checks` automatisch auch im neuen Kurs (3.97).
 - `codeTemplate` einer echten Debug-Aufgabe ist absichtlich kaputt — Generatoren kompilieren nur
   Beispiel-Code und Lösungen, nie rohe Aufgaben-Vorlagen (3.95).
-- Neue Aufgabe im Lektions-Format: in `lessons.json` ans Ende von `tasks` anhängen und im passenden
-  `_N_loesungen`-Notebook-Ordner ein neues Markdown+Code-Zell-Paar mit der **höchsten** Nummer ans
-  Ende — nie mittendrin einfügen (sonst müssen alle folgenden Zellen umnummeriert werden).
+- Neue Aufgabe im Lektions-Format: Lösung als Markdown+Code-Zell-Paar mit der **höchsten** Nummer
+  im `_6_loesungen`-Ordner anlegen (Markdown enthält den Aufgabentext), danach
+  `python3 scripts/sync_loesungen.py` — das sortiert die Paare in Aufgaben-Reihenfolge. Nötig, weil
+  der Offline-Download Lösungen nur über die Reihenfolge zuordnet (Woche 9 war deshalb verschoben).
 - Standard-PDF-Fonts (pdf-lib/Helvetica) können kein Emoji — Content-Texte vorher per `sanitizeForPdfFont` filtern (3.13).
 - Punkte-/Item-System und lokales Fortschritt-Skript **nicht** wieder einführen; Zertifikat = nur Wochen-Check, ein Zertifikat pro Woche, PDF login-gated (3.12/3.13).
 - Quizfragen `multiple_choice`: `optionExplanations` mitpflegen, `explanation_en` echt übersetzen; `shuffleQuestionOptions()` muss Text+Erklärung als Paar mischen (3.17). Schwelle nie als exakten Bruch (2/3 → `0.66`, 3.6).

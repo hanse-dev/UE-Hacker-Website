@@ -1,6 +1,10 @@
-import os
-
-with open("aufraeumen.txt", "w") as f:
-    f.write("Test")
-os.remove("aufraeumen.txt")
-print(f"Gelöscht: {not os.path.exists('aufraeumen.txt')}")
+import json
+wort = "pferdestall"
+zaehler = {}
+for b in wort:
+    zaehler[b] = zaehler.get(b, 0) + 1
+with open("zaehler.json", "w") as f:
+    json.dump(zaehler, f)
+with open("zaehler.json", "r") as f:
+    geladen = json.load(f)
+print(f"l: {geladen['l']}")

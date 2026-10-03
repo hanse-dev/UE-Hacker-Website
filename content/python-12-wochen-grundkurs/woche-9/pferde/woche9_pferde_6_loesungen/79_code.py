@@ -1,12 +1,16 @@
 import json
-einheiten = [
-    {"name": "Springen üben", "schwierigkeit": 1, "status": "offen"},
-    {"name": "Ausritt planen", "schwierigkeit": 2, "status": "offen"},
-    {"name": "Fell pflegen", "schwierigkeit": 3, "status": "offen"},
-]
-with open("trainingslog.json", "w") as f:
-    json.dump(einheiten, f)
-with open("trainingslog.json", "r") as f:
+karte = {
+    "Goldpokal": {"koordinaten": (10, 20), "wert": 800},
+    "Silberschleife": {"koordinaten": (30, 40), "wert": 300},
+    "Ehrenpreis": {"koordinaten": (50, 60), "wert": 650},
+}
+karte["Bronzemedaille"] = {"koordinaten": [70, 80], "wert": 400}
+with open("karte.json", "w") as f:
+    json.dump(karte, f)
+with open("karte.json", "r") as f:
     geladen = json.load(f)
-print(f"Training-Anzahl: {len(geladen)}")
-print(f"Status: {geladen[0]['status']}")
+bester = None
+for ort in geladen:
+    if bester is None or geladen[ort]["wert"] > geladen[bester]["wert"]:
+        bester = ort
+print(f"Wertvollster: {bester} ({geladen[bester]['wert']})")

@@ -1,3 +1,3 @@
-"""### Extra Challenge 4: The Great Scriptorium – Task 4
+"""### Extra Challenge 4: The Great Scriptorium – Task 3
 
-Step 4 – Randomness (week 7): Write ten random numbers from 1 to 100 (random.randint), one per line, into the file numbers.txt. Read them back line by line and convert them with int() (list numbers). Print exactly Count: 10 and on the next line All in range: True."""
+Step 3 – Filter lists (week 6): The CSV file heroes.csv is created for you. Collect the names of all rows with level greater than 14 in the list strong, save strong with json.dump() into hero.json, load it back and print exactly Strong: ['Aria', 'Thorin']."""

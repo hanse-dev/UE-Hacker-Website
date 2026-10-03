@@ -1,3 +1,3 @@
-"""### Extra Challenge 4: The Great Stable Office – Task 2
+"""### Extra Challenge 4: The Great Stable Office – Task 1
 
-Step 2 – Catch errors (week 8): The dictionary horse is given. Write safe_load(name) that returns {} if the file is missing (try/except FileNotFoundError). Print exactly Empty: True for does_not_exist.json. Save horse into horse.json and then print Name: Blitz (safe_load)."""
+Step 1 – Functions (week 5): The dictionary horse is given. Write save(data, name) (json.dump into file name) and load(name) (json.load, returns the dictionary). Save horse into horse.json, load it back and print exactly Equal: True."""

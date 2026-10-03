@@ -1,13 +1,13 @@
 import json
 pferd = {"name": "Blitz", "rasse": "Hannoveraner", "alter": 8, "punkte": 120}
-def lade_sicher(name):
-    try:
-        with open(name, "r") as f:
-            return json.load(f)
-    except FileNotFoundError:
-        return {}
+def speichere(daten, name):
+    with open(name, "w") as f:
+        json.dump(daten, f)
 
-print(f"Leer: {lade_sicher('gibt_es_nicht.json') == {}}")
-with open("pferd.json", "w") as f:
-    json.dump(pferd, f)
-print(f"Name: {lade_sicher('pferd.json')['name']}")
+def lade(name):
+    with open(name, "r") as f:
+        return json.load(f)
+
+speichere(pferd, "pferd.json")
+geladen = lade("pferd.json")
+print(f"Gleich: {geladen == pferd}")

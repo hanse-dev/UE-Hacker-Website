@@ -1,15 +1,22 @@
-import random
+import csv
+horses = [
+    {"name": "Blitz", "breed": "Hanoverian", "age": 8, "points": 120},
+    {"name": "Storm", "breed": "Haflinger", "age": 12, "points": 150},
+    {"name": "Luna", "breed": "Icelandic", "age": 6, "points": 90},
+]
+with open("horses.csv", "w", newline="") as f:
+    w = csv.DictWriter(f, fieldnames=["name", "breed", "age", "points"])
+    w.writeheader()
+    w.writerows(horses)
+import json
 
-with open("numbers.txt", "w") as f:
-    for i in range(10):
-        f.write(str(random.randint(1, 100)) + "\n")
-numbers = []
-with open("numbers.txt", "r") as f:
-    for line in f:
-        numbers.append(int(line))
-all_ok = True
-for n in numbers:
-    if n < 1 or n > 100:
-        all_ok = False
-print(f"Count: {len(numbers)}")
-print(f"All in range: {all_ok}")
+strong = []
+with open("horses.csv", "r") as f:
+    for row in csv.DictReader(f):
+        if int(row["age"]) > 7:
+            strong.append(row["name"])
+with open("horse.json", "w") as f:
+    json.dump(strong, f)
+with open("horse.json", "r") as f:
+    loaded = json.load(f)
+print(f"Strong: {loaded}")

@@ -1,3 +1,3 @@
-"""### Extra Challenge 4: The Great Data Archive – Task 3
+"""### Extra Challenge 4: The Great Data Archive – Task 2
 
-Step 3 – Filter lists (week 6): The CSV file crew.csv is created for you. Collect the names of all rows with rank greater than 3 in the list strong, save strong with json.dump() into member.json, load it back and print exactly Strong: ['Nova', 'Rex']."""
+Step 2 – Catch errors (week 8): The dictionary member is given. Write safe_load(name) that returns {} if the file is missing (try/except FileNotFoundError). Print exactly Empty: True for does_not_exist.json. Save member into member.json and then print Name: Nova (safe_load)."""

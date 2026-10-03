@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Das Missionslog – Aufgabe 2
+"""### Extra-Herausforderung 3: Das Missionslog – Aufgabe 1
 
-Schritt 2 – Abschließen: Die Datei missionslog.json mit drei Einträgen wird im vorgegebenen Code angelegt. Lade sie, setze den Status des ersten Eintrags auf \"abgeschlossen\", speichere sie wieder, lade sie erneut und gib genau Erste: abgeschlossen aus."""
+Schritt 1 – Missionen speichern: Die Liste missionen mit drei Mission-Dictionaries ist vorgegeben. Speichere sie in missionslog.json, lade sie in geladen und gib genau Mission-Anzahl: 3 und in der nächsten Zeile Status: offen aus (Status der ersten)."""

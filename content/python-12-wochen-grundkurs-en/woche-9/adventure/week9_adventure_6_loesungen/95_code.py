@@ -1,6 +1,10 @@
-import os
-
-with open("cleanup.txt", "w") as f:
-    f.write("Test")
-os.remove("cleanup.txt")
-print(f"Deleted: {not os.path.exists('cleanup.txt')}")
+import json
+word = "adventure"
+counter = {}
+for c in word:
+    counter[c] = counter.get(c, 0) + 1
+with open("counter.json", "w") as f:
+    json.dump(counter, f)
+with open("counter.json", "r") as f:
+    loaded = json.load(f)
+print(f"e: {loaded['e']}")

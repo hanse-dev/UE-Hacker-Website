@@ -1,13 +1,6 @@
-date = "Mar 15"
-with open("diary.txt", "w") as f:
-    f.write(date + " Groomed Storm\n")
-    f.write(date + " Rode to the forest\n")
-    f.write(date + " Finished jump training\n")
+import os
 
-entry = input()
-with open("diary.txt", "a") as f:
-    f.write(date + " " + entry + "\n")
-
-with open("diary.txt") as f:
-    lines = f.readlines()
-print(f"Entries: {len(lines)}")
+with open("cleanup.txt", "w") as f:
+    f.write("Test")
+os.remove("cleanup.txt")
+print(f"Deleted: {not os.path.exists('cleanup.txt')}")

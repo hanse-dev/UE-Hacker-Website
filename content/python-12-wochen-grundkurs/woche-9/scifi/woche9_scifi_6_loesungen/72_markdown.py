@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 2: Die Sternkarte – Aufgabe 1
+"""### Extra-Herausforderung 1: Das Logbuch – Aufgabe 4
 
-Schritt 1 – Speichern und laden: Das Dictionary karte (Ort → Dictionary mit koordinaten als Tupel und wert) ist vorgegeben. Speichere es mit json.dump() in karte.json, lade es in geladen und gib genau Orte: 3 und in der nächsten Zeile Koordinaten: [10, 20] aus (geladen[\"Kristallkern\"][\"koordinaten\"] – das Tupel ist jetzt eine Liste)."""
+Schritt 4 – Eigener Eintrag: datum und tagebuch.txt sind wie in Schritt 2 vorgegeben (drei Zeilen). Frage mit input() nach einem neuen Eintrag, hänge ihn mit "a" als datum + " " + Eintrag an tagebuch.txt an und gib danach genau Einträge: 4 aus. (Beim Prüfen wird automatisch Kurs korrigiert eingegeben.)"""

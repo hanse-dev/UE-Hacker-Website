@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Das Questlog – Aufgabe 2
+"""### Extra-Herausforderung 3: Das Questlog – Aufgabe 1
 
-Schritt 2 – Abschließen: Die Datei questlog.json mit drei Einträgen wird im vorgegebenen Code angelegt. Lade sie, setze den Status des ersten Eintrags auf \"abgeschlossen\", speichere sie wieder, lade sie erneut und gib genau Erste: abgeschlossen aus."""
+Schritt 1 – Quests speichern: Die Liste quests mit drei Quest-Dictionaries ist vorgegeben. Speichere sie in questlog.json, lade sie in geladen und gib genau Quest-Anzahl: 3 und in der nächsten Zeile Status: offen aus (Status der ersten)."""

@@ -1,3 +1,3 @@
-"""### Extra Challenge 3: The Training Log – Task 2
+"""### Extra Challenge 3: The Training Log – Task 1
 
-Step 2 – Complete: The file questlog.json with three entries is created for you. Load it, set the status of the first entry to \"done\", save it again, load it once more and print exactly First: done."""
+Step 1 – Save quests: The list quests with three Training dictionaries is given. Save it into questlog.json, load it into loaded and print exactly Training count: 3 and on the next line Status: open (status of the first)."""

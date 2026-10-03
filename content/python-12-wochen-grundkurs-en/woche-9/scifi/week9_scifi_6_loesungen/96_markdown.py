@@ -1,3 +1,3 @@
-"""### Extra Challenge 1: The Logbook – Task 4
+"""### Extra Challenge 4: The Great Data Archive – Task 6
 
-Step 4 – Your own entry: date and diary.txt are given as in Step 2 (three lines). Use input() to ask for a new entry, append it with "a" as date + " " + entry to diary.txt, and afterwards print exactly Entries: 4. (When checking, Corrected course is entered automatically.)"""
+Step 6 – Clean up: Import os. Write the file cleanup.txt with the text Test, delete it with os.remove() and print exactly Deleted: True (os.path.exists is False)."""

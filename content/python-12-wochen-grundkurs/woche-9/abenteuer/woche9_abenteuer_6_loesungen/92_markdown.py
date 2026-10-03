@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 4: Die große Schreibstube – Aufgabe 5
+"""### Extra-Herausforderung 4: Die große Schreibstube – Aufgabe 4
 
-Schritt 5 – Dictionary zählen und speichern (Woche 8): wort = \"abenteuer\" ist vorgegeben. Zähle mit zaehler[b] = zaehler.get(b, 0) + 1, wie oft jeder Buchstabe vorkommt, speichere zaehler mit json.dump() in zaehler.json, lade ihn zurück und gib genau e: 3 aus."""
+Schritt 4 – Zufall (Woche 7): Schreibe zehn Zufallszahlen von 1 bis 100 (random.randint), je eine pro Zeile, in die Datei zahlen.txt. Lies sie zeilenweise zurück und wandle sie mit int() um (Liste zahlen). Gib genau Anzahl: 10 und in der nächsten Zeile Alle im Bereich: True aus."""
