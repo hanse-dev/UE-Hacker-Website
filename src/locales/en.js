@@ -272,6 +272,7 @@ export default {
   'editor.check':       'Check',
   'editor.output':      'Output:',
   'editor.errorPrefix': 'Error: ',
+  'editor.reset':       'Reset',
 
   // ── Lesson view (interactive lessons / Caesar cipher) ────────────────────
   'lesson.loading':           'Loading lesson...',

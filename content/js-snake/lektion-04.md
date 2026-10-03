@@ -30,4 +30,4 @@ function gibNeueLaenge(laenge, gewachsen) {
 }
 ```
 
-> 💡 `requestAnimationFrame` und `clearRect` kennst du aus [Lektion 3 der JS-Spielewerkstatt](/kurs/projekt-js-spielewerkstatt) – dort ist ein Ball gefallen, hier bewegt sich stattdessen dein Schlangenkopf über das Raster.
+> 💡 `requestAnimationFrame` und `clearRect` kennst du aus [Lektion 2 der JS-Spielewerkstatt](/kurs/projekt-js-spielewerkstatt) – dort ist ein Ball gefallen, hier bewegt sich stattdessen dein Schlangenkopf über das Raster.

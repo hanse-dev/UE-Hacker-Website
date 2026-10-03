@@ -1,24 +1,24 @@
-# Dein Spiel, dein Stil
+# Hindernisse: nicht jede Form willst du fangen
 
-Du hast jetzt alle Bausteine für „Fang den Ball" selbst gebaut: ein Spielfeld, einen steuerbaren Schläger, eine Animationsschleife, Kollisionserkennung und einen Punktestand. Zeit, das Spiel schwerer – und zu deinem eigenen zu machen.
+Nicht alles, was fällt, ist gut für dich. Jetzt kommt ein zweites fallendes Objekt dazu – ein
+**Hindernis** (ein rotes Quadrat). Fängt dein Schläger es, kostet das ein Leben statt einen Punkt
+zu geben.
 
-Ein einfacher Trick für eine Schwierigkeitskurve: das Tempo des Balls mit dem Punktestand steigen lassen. So läuft das Prinzip ab:
+Das Gute: die Kollisionserkennung hast du schon – `istTreffer(x, y, schlaegerX)` prüft nur, ob
+eine Position bei `schlaegerX` landet. Das funktioniert für jedes fallende Objekt, nicht nur für
+den Ball. Du rufst dieselbe Funktion einfach noch einmal mit der Position des Hindernisses auf:
 
-```
-function tempoFuer(punkte) {
-  gib zurück: Grundtempo + Math.floor(punkte / 5)
+```js
+if (istTreffer(hindernisX, hindernisY, schlaegerX)) {
+  leben = leben - 1;        // Autsch - ein Leben weg
+  hindernisY = 20;
+} else if (hindernisY > 300) {
+  hindernisY = 20;          // durchgerutscht, kein Problem - startet neu oben
+} else {
+  hindernisY = hindernisY + 2;
 }
 ```
 
-`Math.floor(zahl)` rundet immer nach unten ab – so bleibt das Tempo lange genug gleich, bevor es den nächsten Sprung macht (bei 5, 10, 15 Punkten, …).
-
-Ab hier bist du dran! Ein paar Ideen, falls du noch mehr willst:
-
-- eine zweite Ballfarbe, die zufällig gewählt wird (`Math.random()`)
-- ein Hindernis, das der Schläger nicht berühren darf
-- ein Extra-Leben, das gelegentlich auftaucht
-- ein Highscore, den du dir merkst
-
-Bau dein Spiel in der letzten Aufgabe komplett zusammen – aus den Teilen der letzten fünf Lektionen. Es muss nicht perfekt sein. Hauptsache, es ist **dein** Spiel.
-
-Viel Spaß beim Spielen! 🎮
+Fällt dir das Muster auf? Es ist genau dieselbe Struktur wie beim Ball – nur mit umgekehrter
+Konsequenz beim Treffer. Zuerst zeichnest du das Hindernis mit einer eigenen Funktion
+`zeichneHindernis(ctx, x, y)`, danach baust du es ins Spiel ein.

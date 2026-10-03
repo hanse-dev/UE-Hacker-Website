@@ -5,15 +5,14 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 
 ## Offen
 
-- [ ] Kleine Nachbesserung: `scripts/build_lesson_bundle.py` (`load_glossary()`) liest nur
-      `*_markdown.py`-Zellen des Glossars — die Kurzbeispiel-Code-Zelle (`*_code.py`, z.B.
-      `woche4_abenteuer_0_glossar/04_code.py`) fehlt dadurch im flachen `_komplett.py`/
-      `_complete.py`-Download aller Wochen (`scripts/build_lesson_notebook.py` liest beide
-      Zelltypen und hat die Lücke nicht, siehe Woche-ZIP-Download unten). Nicht selbst gefixt, weil
-      `load_glossary()` aktuell einen reinen Text zurückgibt und `comment_lines()` alles als
-      Kommentar behandelt — der Fix bräuchte eine strukturierte Rückgabe (Kommentar-/Code-Segmente
-      getrennt), das ändert den produktiv genutzten, seit Wochen fehlerfrei laufenden Bundle-Build
-      für alle 12×3×2 Kombinationen. Eigener kleiner Branch, kein Rush.
+- [ ] `npm run lint:spelling` meldet 167 unbekannte Wörter in 24 Dateien (Stand 2026-10-01), fast
+      alle in Content, der nach dem Tippfehler-Pass 3.65 dazukam (`ki-labor-woche6/7`,
+      `ki-labor-checks/week-7.json`, `python-grundlagen-interaktiv-kinder`, `src/locales/en.js`
+      "termine"). Nicht behoben, weil jedes Wort einzeln geprüft werden muss (echter Tippfehler
+      vs. legitimes Wort für `cspell.json`) — eigener Tippfehler-Pass wie 3.65.
+- [ ] Dev-Flag `VITE_DEV_SKIP_CHECKS` (HANDOFF 3.89) hat in `main` noch keinen eigenen Test. Ein
+      Entwurf (`tests/dev-skip-checks.spec.js` + `playwright.devskip.config.js`) liegt staged, aber
+      uncommittet im Worktree `dev-skip-checks-flag` — dort fertigstellen und mergen.
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken) —
       **zurückgestellt** (Nutzer will erst später deployen). Backup-Cron auf dem Server einrichten
       (Befehl siehe HANDOFF.md Abschnitt 4); externe Sicherung der Backups bewusst nicht mitgebaut.
@@ -29,8 +28,11 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 - [ ] Branch `offline-jupyter-notebook-converter` (WIP, unmerged): Konverter Lektions-Format →
       echte `.ipynb` fürs Offline-Üben (12-Wochen-Kurs komplett verkabelt in `pack_notebooks.py`;
       KI-Labor/Projekt-Kurse haben eigene Generatoren, aber noch keinen Download-Button/Verkabelung).
-      Liegt derzeit ~10 Commits hinter `main` zurück (diverse seither gemergte Branches) — vor
-      dem Weiterarbeiten erst rebasen/mergen, sonst wächst der Konflikt-Aufwand weiter.
+      Liegt deutlich hinter `main` zurück (Stand 2026-10-01; Merge-Probe: Konflikte nur in
+      `HANDOFF.md`/`todo.md`) — vor dem Weiterarbeiten im eigenen Worktree erst `main` hineinmergen.
+      Der Glossar-Tooltip-Fix daraus ist schon einzeln in `main` (3.94). Dazu gehören zwei Stashes
+      (`zahlendetektiv-solution-fix-belongs-on-offline-jupyter-branch`,
+      `wip-notebook-converter-unrelated`), noch nicht eingearbeitet.
 
 ### Offene Nachbesserungen Lektions-Format (nach Woche)
 

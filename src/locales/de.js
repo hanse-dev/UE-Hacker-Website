@@ -272,6 +272,7 @@ export default {
   'editor.check':       'Prüfen',
   'editor.output':      'Ausgabe:',
   'editor.errorPrefix': 'Fehler: ',
+  'editor.reset':       'Zurücksetzen',
 
   // ── Lesson view (interactive lessons / Cäsar-Chiffre) ────────────────────
   'lesson.loading':           'Lektion wird geladen...',

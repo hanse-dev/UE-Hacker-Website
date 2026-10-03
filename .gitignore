@@ -160,6 +160,11 @@ public/wochen-notebooks/
 # Lokale Backups
 _backups/
 
+# Pro-Worktree Port-Zuordnung (scripts/new-worktree.mjs) - nur lokal, jeder Worktree hat seine
+# eigene Datei
+worktree.ports.json
+.worktree-next-slot
+
 # Lokales Admin-Tool (Account anlegen + Thermodrucker-Ausdruck) — läuft nur lokal, nie deployed.
 # MXW01-Tool wird per setup-printer-tool.sh geklont, hat keine LICENSE-Datei → nicht committen.
 scripts/local-tools/vendor/

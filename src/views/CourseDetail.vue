@@ -33,16 +33,8 @@
         {{ t('course.start.button') }}
       </button>
 
-      <div v-if="isInteractiveCourse" class="interactive-course-wrapper">
-        <InteractiveCourse :content-path="course.contentPath" />
-      </div>
-
-      <div v-else-if="isPlacementCourse" class="placement-course-wrapper">
+      <div v-if="isPlacementCourse" class="placement-course-wrapper">
         <PlacementCourse />
-      </div>
-
-      <div v-else-if="isProjectCourse" class="project-course-wrapper">
-        <ProjectCourse :course-id="id" :content-path="course.contentPath" :engine="course.engine" />
       </div>
     </template>
 
@@ -54,12 +46,20 @@
 
       <WeekTour v-if="isWeeklyCourse" />
 
+      <div v-else-if="isInteractiveCourse" class="interactive-course-wrapper">
+        <InteractiveCourse :content-path="course.contentPath" />
+      </div>
+
       <div v-else-if="isJsGrundkurs" class="grundkurs-tour-wrapper">
         <JsGrundkursTour />
       </div>
 
       <div v-else-if="isKiLabor" class="grundkurs-tour-wrapper">
         <KiLaborTour />
+      </div>
+
+      <div v-else-if="isProjectCourse" class="project-course-wrapper">
+        <ProjectCourse :course-id="id" :content-path="course.contentPath" :engine="course.engine" />
       </div>
     </template>
   </section>
@@ -123,12 +123,15 @@ export default {
     const isJsGrundkurs = computed(() => props.id === 'js-grundkurs');
     const isKiLabor = computed(() => props.id === 'ki-labor');
 
-    // "Kurs starten"-Gate für die Wochen-Tour-Kurse (12-Wochen-Grundkurs, JS-Grundkurs, KI-Labor):
-    // erst Titel/Beschreibung/Kursstruktur-Erklärung, dann ein eigener, fokussierter Bildschirm
-    // nur mit der Wochenauswahl/Tour selbst - kein Umschalten mitten in einer Lektion. Ein
-    // vorhandener ?week=-Deep-Link (z.B. aus dem Profil "Zertifikat ansehen") überspringt die
-    // Start-Seite direkt, sonst müsste man dort erneut auf "Kurs starten" klicken.
-    const isFocusableCourse = computed(() => isWeeklyCourse.value || isJsGrundkurs.value || isKiLabor.value);
+    // "Kurs starten"-Gate für die Kurse mit eigenem Lernpfad (12-Wochen-Grundkurs, JS-Grundkurs,
+    // KI-Labor, Projekt-Kurse, Interaktiv-Kurs): erst Titel/Beschreibung/Kursstruktur-Erklärung,
+    // dann ein eigener, fokussierter Bildschirm nur mit der Wochenauswahl/Tour/Lektionsliste bzw.
+    // Varianten-Wahl selbst - kein Umschalten mitten in einer Lektion. Ein vorhandener
+    // ?week=-Deep-Link (z.B. aus dem Profil "Zertifikat ansehen") überspringt die Start-Seite
+    // direkt, sonst müsste man dort erneut auf "Kurs starten" klicken.
+    const isFocusableCourse = computed(() =>
+      isWeeklyCourse.value || isJsGrundkurs.value || isKiLabor.value || isProjectCourse.value || isInteractiveCourse.value
+    );
     const started = ref(!!route.query.week || route.query.started === '1');
 
     const startCourse = () => {

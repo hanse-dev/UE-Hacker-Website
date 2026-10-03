@@ -152,6 +152,7 @@ test.describe('Interaktiver Kurs', () => {
   test('Variantwahl Kinder → Lektion wird geladen', async ({ page }) => {
     test.setTimeout(60000);
     await page.goto(INTERACTIVE_URL);
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.variant-card').first()).toBeVisible({ timeout: 15000 });
     await page.locator('.variant-card').first().click();
     await expect(page.locator('.lessons-list .lesson-item').first()).toBeVisible({ timeout: 20000 });
@@ -171,12 +172,14 @@ test.describe('Interaktiver Kurs', () => {
       }));
     });
     await page.goto(INTERACTIVE_URL);
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.variant-card').first()).toBeVisible({ timeout: 15000 });
     await page.locator('.variant-card').first().click();
     await expect(page.locator('.lessons-list .lesson-item').first()).toBeVisible({ timeout: 15000 });
     await page.locator('.lesson-item').nth(1).click();
 
-    const task = page.locator('.task-block').first();
+    // Die "Drache"-Aufgabe steht seit 3.85 hinter einer vorangestellten Beispiel-Aufgabe.
+    const task = page.locator('.task-block', { hasText: 'Drache' }).first();
     const term = task.locator('.glossary-term', { hasText: 'Variable' });
     await expect(term).toHaveCount(1);
     await expect(term).not.toContainText('span');
@@ -200,9 +203,30 @@ test.describe('Interaktiver Kurs', () => {
     await expect(page.locator('.placement-banner-link')).toHaveAttribute('href', '/kurs/python-einstufung');
   });
 
+  test('"Kurs starten" blendet Beschreibung/Banner aus und zeigt erst dann die Varianten-Wahl; "Kursbeschreibung" führt zurück', async ({ page }) => {
+    await page.goto(INTERACTIVE_URL);
+    await expect(page.locator('.placement-banner')).toBeVisible({ timeout: 15000 });
+    await expect(page.locator('.variant-card')).toHaveCount(0);
+
+    await page.locator('.btn-start-course').click();
+    await expect(page.locator('.variant-card')).toHaveCount(2, { timeout: 15000 });
+    await expect(page.locator('.placement-banner')).toHaveCount(0);
+    await expect(page).toHaveURL(/started=1/);
+
+    // Ein Reload muss die fokussierte Kurs-Ansicht behalten (started steht in der URL).
+    await page.reload();
+    await expect(page.locator('.variant-card')).toHaveCount(2, { timeout: 15000 });
+
+    await page.locator('.btn-back-to-overview').click();
+    await expect(page.locator('.placement-banner')).toBeVisible({ timeout: 15000 });
+    await expect(page.locator('.variant-card')).toHaveCount(0);
+    await expect(page).not.toHaveURL(/started=1/);
+  });
+
   test('Gestufter Hinweis: erster Fehlversuch verrät die Lösung nicht, ab dem zweiten schon', async ({ page }) => {
     test.setTimeout(60000);
     await page.goto(INTERACTIVE_URL);
+    await page.locator('.btn-start-course').click();
     await page.locator('.variant-card').first().click();
     await page.waitForSelector('.task-block', { timeout: 20000 });
     await startKernel(page);
@@ -224,6 +248,7 @@ test.describe('Interaktiver Kurs', () => {
   test('Flexible Lektion: 5 Aufgaben + Beispiel, 2 gelöste genügen zum Weitergehen', async ({ page }) => {
     test.setTimeout(60000);
     await page.goto(INTERACTIVE_URL);
+    await page.locator('.btn-start-course').click();
     await page.locator('.variant-card').first().click();
     await page.waitForSelector('.task-block', { timeout: 20000 });
     await startKernel(page);
@@ -251,6 +276,35 @@ test.describe('Interaktiver Kurs', () => {
     await realTasks.nth(1).locator('.btn-check').click();
     await expect(page.locator('.lesson-complete-box')).toBeVisible({ timeout: 10000 });
   });
+
+  test('Klick auf "Weiter" landet oben bei der neuen Lektion, nicht an der alten Scroll-Position', async ({ page }) => {
+    test.setTimeout(60000);
+    await page.goto(INTERACTIVE_URL);
+    await page.locator('.btn-start-course').click();
+    await page.locator('.variant-card').first().click();
+    await page.waitForSelector('.task-block', { timeout: 20000 });
+    await startKernel(page);
+    await expect(page.locator('.btn-check').first()).toBeEnabled({ timeout: 40000 });
+
+    const realTasks = page.locator('.task-block:not(.task-example)');
+    await realTasks.nth(0).locator('.code-editor').fill('print("Hallo Welt")');
+    await realTasks.nth(0).locator('.btn-check').click();
+    await expect(realTasks.nth(0).locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+
+    await realTasks.nth(1).locator('.code-editor').fill('print("Ich lerne Python!")');
+    await realTasks.nth(1).locator('.btn-check').click();
+    await expect(page.locator('.btn-next')).toBeVisible({ timeout: 10000 });
+
+    const scrollBefore = await page.evaluate(() => window.scrollY);
+    const mainTop = await page.locator('.lesson-main').evaluate((el) => el.getBoundingClientRect().top + window.scrollY);
+    expect(scrollBefore).toBeGreaterThan(mainTop + 200);
+
+    await page.locator('.btn-next').click();
+    await expect(page.locator('.lesson-item.active')).toHaveCount(1);
+    await expect
+      .poll(() => page.evaluate(() => window.scrollY), { timeout: 3000 })
+      .toBeLessThan(scrollBefore - 200);
+  });
 });
 
 test.describe('Cäsar-Chiffre-Projekt', () => {
@@ -264,8 +318,9 @@ test.describe('Cäsar-Chiffre-Projekt', () => {
   test('Kurs lädt, Lektion 1 lösen schaltet Lektion 2 frei', async ({ page }) => {
     test.setTimeout(60000);
     await page.goto('/kurs/projekt-caesar-chiffre');
-    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(5, { timeout: 15000 });
     await expect(page.locator('.course-description')).toContainText('Cäsar-Chiffre');
+    await page.locator('.btn-start-course').click();
+    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(5, { timeout: 15000 });
 
     await startKernel(page);
     await expect(page.locator('.btn-check').first()).toBeEnabled({ timeout: 40000 });
@@ -287,6 +342,7 @@ test.describe('Cäsar-Chiffre-Projekt', () => {
   test('Lösung wird erst nach Klick auf "Lösung anzeigen" sichtbar', async ({ page }) => {
     test.setTimeout(60000);
     await page.goto('/kurs/projekt-caesar-chiffre');
+    await page.locator('.btn-start-course').click();
     await page.waitForSelector('.task-block', { timeout: 15000 });
 
     const task = page.locator('.task-block').first();
@@ -314,6 +370,7 @@ test.describe('Cäsar-Chiffre-Projekt', () => {
       );
     });
     await page.goto('/kurs/projekt-caesar-chiffre');
+    await page.locator('.btn-start-course').click();
     await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(5, { timeout: 15000 });
     await page.locator('.lesson-item').nth(4).click();
     await expect(page.locator('.task-block')).toHaveCount(1, { timeout: 10000 });

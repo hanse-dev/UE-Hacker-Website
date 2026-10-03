@@ -71,6 +71,14 @@
             >
               {{ t('lesson.skipTask') }}
             </button>
+            <button
+              v-if="task.codeTemplate && taskCodes[idx] !== task.codeTemplate"
+              @click="resetTask(idx)"
+              :disabled="checking"
+              class="btn-reset"
+            >
+              {{ t('editor.reset') }}
+            </button>
           </div>
           <div v-if="taskOutputs[idx] !== null" class="output-display">
             <strong>{{ t('editor.output') }}</strong>
@@ -254,6 +262,15 @@ export default {
       if (allTasksComplete.value) markCompleted(props.lesson.id);
     };
 
+    // Stellt nur den vorgegebenen codeTemplate der einen Aufgabe wieder her - Fortschritt/Status
+    // der anderen Aufgaben bleibt unberuehrt, ebenso ob die Aufgabe schon erledigt ist.
+    const resetTask = (idx) => {
+      taskCodes.value[idx] = tasks.value[idx]?.codeTemplate ?? '';
+      taskOutputs.value[idx] = null;
+      taskFeedback.value[idx] = null;
+      taskRan.value[idx] = false;
+    };
+
     watch(taskCodes, (codes) => {
       if (!props.lesson?.id || !codes.length) return;
       saveLessonCode(props.contentPath, props.lesson.id, codes, tasks.value.map((x) => x.codeTemplate ?? ''));
@@ -421,6 +438,7 @@ export default {
       completedTasks,
       skippedTasks,
       skipTask,
+      resetTask,
       isTaskDone,
       taskAttempts,
       instructionWithGlossary,
@@ -728,6 +746,26 @@ a.btn-next {
 }
 
 .btn-skip:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-reset {
+  background: transparent;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.btn-reset:hover:not(:disabled) {
+  background: #f8f9fa;
+  border-color: #adb5bd;
+}
+
+.btn-reset:disabled {
   cursor: not-allowed;
   opacity: 0.6;
 }
