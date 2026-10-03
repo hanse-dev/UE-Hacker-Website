@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
+import { ports } from '../scripts/worktree-ports.mjs';
 
-const API = 'http://127.0.0.1:3011';
+// Port der Auth-Test-API: im Haupt-Checkout 3011, im Worktree ein eigener (worktree.ports.json).
+const API = `http://127.0.0.1:${ports.testApi}`;
 const ADMIN_PASSWORD = 'test-admin-password';
 
 async function adminToken(request) {
