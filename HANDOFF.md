@@ -1,6 +1,6 @@
 # Handoff — UE Hacker Website
 
-> **Zuletzt aktualisiert:** 2026-10-01
+> **Zuletzt aktualisiert:** 2026-10-03
 > **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.97 (u.a. Offline-Downloads in 3 Formaten, Zertifikate/PDF,
 > Skip-/Reset-Button, Login-Fortschritt, Pre-commit/Pre-push, Admin-Termine, "Kurs starten"-Gate für
 > alle Kurse, Worktree-Tooling, Dev-Skip-Flag, JS-Spielewerkstatt mit neuem Konzept).
@@ -79,6 +79,19 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.95 | Offline-Downloads in 3 Formaten (Notebooks, eine `.py`, Einzeldateien je Lektion) | 12 Wochen, Python-Projekte, KI-Labor; `OfflineDownloads.vue`, `pack_notebooks.py`, Details `INHALTE.md` |
 | 3.96 | KI-Labor-Musterlösungen (160) | `task.referenceSolution` (nicht `solution` → kein Lösungs-Button), geprüft von `check_kilabor_solutions.py` |
 
+### 3.98 — Rechtschreib- und Verständnisprüfung (Branch `inhalts-pruefung`, in Arbeit)
+
+Nur Deutsch, Maßstab ab 10/11 Jahre (Interaktiv-Kurs Kinder ab 8). Eindeutige Fehler werden direkt
+behoben, Urteilsfragen je Paket als Liste an den Nutzer. Stand und Paket-Reihenfolge: `todo.md`.
+
+- Mechanischer Pass fertig: `lint:spelling` (cspell) ignoriert jetzt Code-Felder/Code-Blöcke und
+  deckt auch Projekt-`lessons.json`, `python-checks`, Glossar-/Lösungs-Zellen und `kurse.json` ab
+  (4761 statt 1405 Dateien, 0 Funde). Neu `npm run lint:spelling:de` (nur macOS, lokales Tool,
+  `scripts/local-tools/rechtschreibung-de/`), 0 Funde bei 248 geprüften Wörtern in `erlaubt.txt`.
+- Behoben: KI-Labor Woche 8 Lektions-Zusammenfassungen ohne Umlaute, "Stellawort-Argument"
+  (Woche 6 Pferde Lösungen), `'grosse'` statt `'groesse'` (KI-Labor Woche 2), Brute-Force/Sci-Fi
+  einheitlich geschrieben.
+
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
 **Content / Notebooks**
@@ -132,6 +145,10 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 - Deep-Links `?week=&tab=` (Einstufung, Cäsar-Chiffre) bewusst unverändert lassen, `WeekTour.vue`
   übersetzt intern.
 - cspell: Wörterbücher brauchen `"import"`, nicht nur `"dictionaries"`.
+- cspell taugt für Deutsch nur als grobes Netz (lässt beliebige Wortzusammensetzungen und
+  `strasse`/`wiederspiegeln` durch). Für deutschen Content zusätzlich `npm run lint:spelling:de`.
+  Kleingeschriebene Bezeichner gehören nicht in `cspell.json`, Code-Felder ignoriert es per
+  `ignoreRegExpList` (3.98).
 - Komponente wird beim Umschalten eines `v-if`-Zweigs neu gemountet → lokaler State geht verloren,
   wenn er nicht vom Parent gehalten wird; beim Neu-Mount auf sinnvollen Zustand zurückfallen (3.55).
 - Login-Felder für Passwort-Manager-Autofill brauchen ein echtes `<form>` + `name`-Attribute; bei

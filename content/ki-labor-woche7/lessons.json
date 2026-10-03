@@ -62,7 +62,7 @@
         }
       },
       {
-        "instruction": "Kopiere step(x), neuron(eingaben, gewichte, bias), anzahl_richtig(gewichte, bias, tabelle) und dieselbe xor_tabelle aus dem Beispiel. Wiederhole die Bruteforce-Suche, aber mit dem größeren Bereich werte = [-3, -2, -1, 0, 1, 2, 3] (drei verschachtelte Schleifen wie im Beispiel). Gib das beste gefundene Ergebnis aus.",
+        "instruction": "Kopiere step(x), neuron(eingaben, gewichte, bias), anzahl_richtig(gewichte, bias, tabelle) und dieselbe xor_tabelle aus dem Beispiel. Wiederhole die Brute-Force-Suche, aber mit dem größeren Bereich werte = [-3, -2, -1, 0, 1, 2, 3] (drei verschachtelte Schleifen wie im Beispiel). Gib das beste gefundene Ergebnis aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "referenceSolution": "def step(x):\n    if x >= 0:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, bias):\n    gewichtete_summe = 0\n    for i in range(len(eingaben)):\n        gewichtete_summe += eingaben[i] * gewichte[i]\n    gewichtete_summe += bias\n    return step(gewichtete_summe)\n\ndef anzahl_richtig(gewichte, bias, tabelle):\n    richtig = 0\n    for eingaben, erwartet in tabelle:\n        if neuron(eingaben, gewichte, bias) == erwartet:\n            richtig += 1\n    return richtig\n\nxor_tabelle = [\n    ([0, 0], 0),\n    ([0, 1], 1),\n    ([1, 0], 1),\n    ([1, 1], 0),\n]\n\nwerte = [-3, -2, -1, 0, 1, 2, 3]\nbestes_ergebnis = 0\nfor w1 in werte:\n    for w2 in werte:\n        for b in werte:\n            ergebnis = anzahl_richtig([w1, w2], b, xor_tabelle)\n            if ergebnis > bestes_ergebnis:\n                bestes_ergebnis = ergebnis\nprint(bestes_ergebnis)",
         "validation": {

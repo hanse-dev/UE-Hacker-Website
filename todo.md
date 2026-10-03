@@ -5,11 +5,12 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 
 ## Offen
 
-- [ ] `npm run lint:spelling` meldet 167 unbekannte Wörter in 24 Dateien (Stand 2026-10-01), fast
-      alle in Content, der nach dem Tippfehler-Pass 3.65 dazukam (`ki-labor-woche6/7`,
-      `ki-labor-checks/week-7.json`, `python-grundlagen-interaktiv-kinder`, `src/locales/en.js`
-      "termine"). Nicht behoben, weil jedes Wort einzeln geprüft werden muss (echter Tippfehler
-      vs. legitimes Wort für `cspell.json`) — eigener Tippfehler-Pass wie 3.65.
+- [ ] Rechtschreib- und Verständnisprüfung aller deutschen Inhalte (Branch `inhalts-pruefung`,
+      HANDOFF 3.98). Mechanischer Pass erledigt (`lint:spelling` + `lint:spelling:de` beide bei 0).
+      Offen ist der Lese-Pass (Grammatik, Kommas, Verständlichkeit ab 10/11 Jahren, Aufgabe passt
+      zum `expected`), Paket für Paket: Interaktiv-Kurs → Woche 1–5 (alle Themen) → Woche 6–12
+      (ein Thema voll, zwei als Diff) → Wochen-Checks → JS-Grundkurs → Projekt-Kurse → KI-Labor →
+      UI-Texte/`kurse.json`/Glossar. EN danach nur für inhaltliche Korrekturen nachziehen.
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken) —
       **zurückgestellt** (Nutzer will erst später deployen). Backup-Cron auf dem Server einrichten
       (Befehl siehe HANDOFF.md Abschnitt 4); externe Sicherung der Backups bewusst nicht mitgebaut.

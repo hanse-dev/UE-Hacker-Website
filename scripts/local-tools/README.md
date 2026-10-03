@@ -65,3 +65,17 @@ aber deutlich mehr Kombinationen als ein 4-stelliger PIN.
 `RECEIPT_FONT_SCALE` in `.env` (Default `1.2`, falls nicht gesetzt) skaliert den ganzen Ausdruck.
 Benutzername/Passwort werden automatisch verkleinert, falls sie sonst über den Rahmen hinausragen
 würden (z.B. bei sehr langen Benutzernamen).
+
+---
+
+# Lokales Tool: Deutsche Rechtschreibprüfung (`rechtschreibung-de/`)
+
+`npm run lint:spelling:de` — zieht den deutschen Fließtext (ohne Code) aus `content/`,
+`public/kurse.json` und `src/locales/de.js` und prüft ihn mit der macOS-eigenen Rechtschreibprüfung
+(`NSSpellChecker`, braucht `swiftc` aus den Xcode Command Line Tools). **Nur macOS, nicht Teil von
+Hooks/CI/Deploy.** Ergänzt `npm run lint:spelling` (cspell), das bei Deutsch zu viel durchlässt
+(beliebige Wortzusammensetzungen, `strasse`/`wiederspiegeln` gelten dort als richtig).
+
+Gemeldet werden nur neue unbekannte Wörter. Legitime Wörter (Fachbegriffe, Namen) kommen in
+`rechtschreibung-de/erlaubt.txt`; Code-Bezeichner aus dem Content werden automatisch ignoriert.
+Grammatik, Kommas und das/dass findet das Tool nicht — dafür bleibt nur Lesen.

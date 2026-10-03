@@ -113,7 +113,7 @@
       "optionExplanations": [
         null,
         "Bei der Genauigkeit ist ein höherer Prozentwert immer besser, nicht der geringere Rechenaufwand.",
-        "Das Ergebnis ist kein Zufall: die Bruteforce-Suche in Lektion 2 zeigt, dass wirklich kein Gewichte/Bias-Paar mehr als 3 von 4 schafft."
+        "Das Ergebnis ist kein Zufall: die Brute-Force-Suche in Lektion 2 zeigt, dass wirklich kein Gewichte/Bias-Paar mehr als 3 von 4 schafft."
       ]
     }
   ],

@@ -49,9 +49,9 @@
         "validation": { "type": "output_contains", "expected": "Hund: 4 Beine, 30kg\nSpatz: 2 Beine, 0.03kg" }
       },
       {
-        "instruction": "Erstelle eine Liste personen mit {'name': 'Anna', 'alter': 12, 'grosse': 150} und {'name': 'Ben', 'alter': 15, 'grosse': 170}. Gib für jede Person genau '<name>: <alter> Jahre, <grosse>cm' aus.",
+        "instruction": "Erstelle eine Liste personen mit {'name': 'Anna', 'alter': 12, 'groesse': 150} und {'name': 'Ben', 'alter': 15, 'groesse': 170}. Gib für jede Person genau '<name>: <alter> Jahre, <groesse>cm' aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
-        "referenceSolution": "personen = [\n    {\"name\": \"Anna\", \"alter\": 12, \"grosse\": 150},\n    {\"name\": \"Ben\", \"alter\": 15, \"grosse\": 170},\n]\n\nfor person in personen:\n    print(f\"{person['name']}: {person['alter']} Jahre, {person['grosse']}cm\")",
+        "referenceSolution": "personen = [\n    {\"name\": \"Anna\", \"alter\": 12, \"groesse\": 150},\n    {\"name\": \"Ben\", \"alter\": 15, \"groesse\": 170},\n]\n\nfor person in personen:\n    print(f\"{person['name']}: {person['alter']} Jahre, {person['groesse']}cm\")",
         "validation": {
           "type": "output_contains",
           "expected": "Anna: 12 Jahre, 150cm\nBen: 15 Jahre, 170cm"

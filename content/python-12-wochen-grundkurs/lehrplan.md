@@ -1,6 +1,6 @@
 # Lehrplan – Python 12-Wochen-Grundkurs
 
-Übersicht aller Konzepte pro Woche. Jede Woche hat drei parallele Kurse mit identischem Lerninhalt aber verschiedenen Themenrahmen (Abenteuer / Pferde / SciFi).
+Übersicht aller Konzepte pro Woche. Jede Woche hat drei parallele Kurse mit identischem Lerninhalt aber verschiedenen Themenrahmen (Abenteuer / Pferde / Sci-Fi).
 
 ---
 
