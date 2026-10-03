@@ -4,10 +4,10 @@
     "section": "lektion",
     "title": "Wiederholung: Ein Neuron entscheidet",
     "file": "lektion-01.md",
-    "lessonSummary": "step() und neuron() aus Woche 6: gewichtete Summe plus Bias, verglichen mit einer Schwelle - das Fundament für alles, was diese Woche kommt.",
+    "lessonSummary": "step() und neuron() aus Woche 6: gewichtete Summe plus Bias, verglichen mit einer Schwelle – das Fundament für alles, was diese Woche kommt.",
     "tasks": [
       {
-        "instruction": "Führe dieses Beispiel aus: ein einzelnes Neuron als AND-Gatter.",
+        "instruction": "Führe dieses Beispiel aus: ein einzelnes Neuron als UND-Gatter.",
         "example": true,
         "codeTemplate": "def step(x):\n    if x >= 0:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, bias):\n    gewichtete_summe = 0\n    for i in range(len(eingaben)):\n        gewichtete_summe += eingaben[i] * gewichte[i]\n    gewichtete_summe += bias\n    return step(gewichtete_summe)\n\nprint(neuron([0, 0], [1, 1], -1.5))\nprint(neuron([0, 1], [1, 1], -1.5))\nprint(neuron([1, 0], [1, 1], -1.5))\nprint(neuron([1, 1], [1, 1], -1.5))\n",
         "validation": {
@@ -16,7 +16,7 @@
         }
       },
       {
-        "instruction": "Führe dieses Beispiel aus: dasselbe Neuron als OR-Gatter, nur mit anderem Bias.",
+        "instruction": "Führe dieses Beispiel aus: dasselbe Neuron als ODER-Gatter, nur mit anderem Bias.",
         "example": true,
         "codeTemplate": "def step(x):\n    if x >= 0:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, bias):\n    gewichtete_summe = 0\n    for i in range(len(eingaben)):\n        gewichtete_summe += eingaben[i] * gewichte[i]\n    gewichtete_summe += bias\n    return step(gewichtete_summe)\n\nprint(neuron([0, 0], [1, 1], -0.5))\nprint(neuron([0, 1], [1, 1], -0.5))\nprint(neuron([1, 0], [1, 1], -0.5))\nprint(neuron([1, 1], [1, 1], -0.5))\n",
         "validation": {
@@ -41,7 +41,7 @@
     "section": "lektion",
     "title": "Warum ein einzelnes Neuron nicht reicht",
     "file": "lektion-02.md",
-    "lessonSummary": "anzahl_richtig() zählt, wie viele Beispiele ein einzelnes Neuron richtig klassifiziert - bei XOR schafft kein einziges Gewicht/Bias-Paar mehr als 3 von 4.",
+    "lessonSummary": "anzahl_richtig() zählt, wie viele Beispiele ein einzelnes Neuron richtig klassifiziert – bei XOR schafft kein einziges Gewicht/Bias-Paar mehr als 3 von 4.",
     "tasks": [
       {
         "instruction": "Führe dieses Beispiel aus: dieselben Testdaten mit drei verschiedenen Gewichts-Paaren auswerten.",
@@ -78,7 +78,7 @@
     "section": "lektion",
     "title": "Eine versteckte Schicht: mehrere Neuronen kombinieren",
     "file": "lektion-03.md",
-    "lessonSummary": "vorwaerts() schickt die Eingabe durch zwei versteckte Neuronen und dann durch ein Ausgabe-Neuron - mit den richtigen Gewichten löst dieses kleine Netz XOR.",
+    "lessonSummary": "vorwaerts() schickt die Eingabe durch zwei versteckte Neuronen und dann durch ein Ausgabe-Neuron – mit den richtigen Gewichten löst dieses kleine Netz XOR.",
     "tasks": [
       {
         "instruction": "Führe dieses Beispiel aus: ein Netz mit versteckter Schicht, das XOR löst.",
@@ -106,7 +106,7 @@
     "section": "lektion",
     "title": "Gewichte lernen lassen",
     "file": "lektion-04.md",
-    "lessonSummary": "trainiere() probiert viele zufällige Gewichte aus und behält nur Änderungen, die nicht schlechter werden - nach genug Versuchen löst es XOR zu 100%.",
+    "lessonSummary": "trainiere() probiert viele zufällige Gewichte aus und behält nur Änderungen, die nicht schlechter werden – nach genug Versuchen löst es XOR zu 100%.",
     "tasks": [
       {
         "instruction": "Führe dieses Beispiel aus: Gewichte für das XOR-Netz automatisch trainieren.",
@@ -146,7 +146,7 @@
         }
       },
       {
-        "instruction": "Kopiere step(x), neuron(eingaben, gewichte, bias), ist_richtig(vorhersage, erwartet), genauigkeit(vorhersagen, erwartete_werte) und dieselbe xor_tabelle aus dem Beispiel. Nutze als Baseline diesmal ein einzelnes NAND-Neuron mit gewichte=[-1, -1] und bias=1.5 statt des OR-Neurons. Sammle die Vorhersagen für alle vier xor_tabelle-Eingaben in einer Liste, gib die Liste aus und dann genauigkeit() für diese Vorhersagen.",
+        "instruction": "Kopiere step(x), neuron(eingaben, gewichte, bias), ist_richtig(vorhersage, erwartet), genauigkeit(vorhersagen, erwartete_werte) und dieselbe xor_tabelle aus dem Beispiel. Nutze als Baseline diesmal ein einzelnes NAND-Neuron mit gewichte=[-1, -1] und bias=1.5 statt des ODER-Neurons. Sammle die Vorhersagen für alle vier xor_tabelle-Eingaben in einer Liste, gib die Liste aus und dann genauigkeit() für diese Vorhersagen.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "referenceSolution": "def step(x):\n    if x >= 0:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, bias):\n    gewichtete_summe = 0\n    for i in range(len(eingaben)):\n        gewichtete_summe += eingaben[i] * gewichte[i]\n    gewichtete_summe += bias\n    return step(gewichtete_summe)\n\ndef ist_richtig(vorhersage, erwartet):\n    return vorhersage == erwartet\n\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if ist_richtig(vorhersagen[i], erwartete_werte[i]):\n            richtig += 1\n    return round(richtig / len(vorhersagen) * 100)\n\nxor_tabelle = [\n    ([0, 0], 0),\n    ([0, 1], 1),\n    ([1, 0], 1),\n    ([1, 1], 0),\n]\n\nvorhersagen = [neuron(e, [-1, -1], 1.5) for e, _ in xor_tabelle]\nerwartete_werte = [erwartet for _, erwartet in xor_tabelle]\nprint(vorhersagen)\nprint(genauigkeit(vorhersagen, erwartete_werte))",
         "validation": {
@@ -198,10 +198,10 @@
     "section": "mission",
     "title": "Mission: Lichtschalter-Rätsel",
     "file": "mission-01.md",
-    "lessonSummary": "Starke Leistung! Du hast ein eigenes kleines Netz für das Lichtschalter-Rätsel gebaut, den Vorwärtslauf durch die versteckte Schicht geschickt und seine Genauigkeit geprüft - ganz ohne Vorlage.",
+    "lessonSummary": "Starke Leistung! Du hast ein eigenes kleines Netz für das Lichtschalter-Rätsel gebaut, den Vorwärtslauf durch die versteckte Schicht geschickt und seine Genauigkeit geprüft – ganz ohne Vorlage.",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Ein Neuron: Schreibe step(x) und neuron(eingaben, gewichte, bias) wie in dieser Woche. Teste ein einzelnes AND-Neuron (gewichte=[1, 1], bias=-1.5) mit neuron([1, 1], [1, 1], -1.5) und neuron([0, 1], [1, 1], -1.5), und gib beide Ergebnisse aus.",
+        "instruction": "Schritt 1 – Ein Neuron: Schreibe step(x) und neuron(eingaben, gewichte, bias) wie in dieser Woche. Teste ein einzelnes UND-Neuron (gewichte=[1, 1], bias=-1.5) mit neuron([1, 1], [1, 1], -1.5) und neuron([0, 1], [1, 1], -1.5), und gib beide Ergebnisse aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "referenceSolution": "def step(x):\n    if x >= 0:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, bias):\n    gewichtete_summe = 0\n    for i in range(len(eingaben)):\n        gewichtete_summe += eingaben[i] * gewichte[i]\n    gewichtete_summe += bias\n    return step(gewichtete_summe)\n\nprint(neuron([1, 1], [1, 1], -1.5))\nprint(neuron([0, 1], [1, 1], -1.5))",
         "validation": {
@@ -235,9 +235,9 @@
   {
     "id": "boss-01",
     "section": "boss",
-    "title": "Extra-Herausforderung 1: XNOR - das Gegenteil von XOR",
+    "title": "Extra-Herausforderung 1: XNOR – das Gegenteil von XOR",
     "file": "boss-01.md",
-    "lessonSummary": "Stark! Du hast gezeigt, dass dieselbe versteckte Schicht mit anderen Ausgabe-Gewichten auch XNOR löst - und dass ein einzelnes Neuron auch hier nie mehr als 75% schafft.",
+    "lessonSummary": "Stark! Du hast gezeigt, dass dieselbe versteckte Schicht mit anderen Ausgabe-Gewichten auch XNOR löst – und dass ein einzelnes Neuron auch hier nie mehr als 75% schafft.",
     "tasks": [
       {
         "instruction": "Schritt 1 – XNOR mit versteckter Schicht: Schreibe step(x), neuron(eingaben, gewichte, bias) und vorwaerts(...) wie in dieser Woche. Nutze dieselbe versteckte_gewichte = [[1, 1], [-1, -1]] und versteckte_bias = [-0.5, 1.5], aber ausgabe_gewichte = [-1, -1] und ausgabe_bias = 1.5. Sammle die Vorhersagen für die vier Eingaben [0, 0], [0, 1], [1, 0], [1, 1] (in dieser Reihenfolge) in einer Liste und gib die Liste aus.",
@@ -315,7 +315,7 @@
     "section": "boss",
     "title": "Extra-Herausforderung 3: 3×3-Pixel-Mustererkennung",
     "file": "boss-03.md",
-    "lessonSummary": "Stark! Du hast gesehen, dass ein Neuron auch mit 9 statt 2 Eingaben funktioniert, ein Bild-Muster erkennen kann - und wie der Bias entscheidet, wie tolerant es gegenüber Fehlern ist.",
+    "lessonSummary": "Stark! Du hast gesehen, dass ein Neuron auch mit 9 statt 2 Eingaben funktioniert, ein Bild-Muster erkennen kann – und wie der Bias entscheidet, wie tolerant es gegenüber Fehlern ist.",
     "tasks": [
       {
         "instruction": "Schritt 1 – Muster erkennen: Schreibe step(x) und neuron(eingaben, gewichte, bias) wie in dieser Woche. Nutze x_muster = [1, 0, 1, 0, 1, 0, 1, 0, 1] (ein X aus 3x3 Pixeln) als Gewichte für ein Neuron mit bias=-4. Nutze außerdem l_muster = [1, 0, 0, 1, 0, 0, 1, 1, 1] (ein L aus 3x3 Pixeln). Gib neuron(x_muster, x_muster, -4) und neuron(l_muster, x_muster, -4) aus.",

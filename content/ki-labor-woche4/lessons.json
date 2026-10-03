@@ -4,7 +4,7 @@
     "section": "lektion",
     "title": "Trainings- und Testdaten trennen",
     "file": "lektion-01.md",
-    "lessonSummary": "Mit Slicing teilst du einen Datensatz in Trainings- und Testdaten - nur so testest du ehrlich, ob dein Klassifikator wirklich verallgemeinert.",
+    "lessonSummary": "Mit Slicing teilst du einen Datensatz in Trainings- und Testdaten – nur so testest du ehrlich, ob dein Klassifikator wirklich verallgemeinert.",
     "tasks": [
       {
         "instruction": "Führe dieses Beispiel aus: einen Datensatz mit Slicing in Trainings- und Testdaten aufteilen.",
@@ -79,7 +79,7 @@
     "section": "lektion",
     "title": "Vorhersagen für den ganzen Testdatensatz sammeln",
     "file": "lektion-03.md",
-    "lessonSummary": "Mit einer Schleife über die Testdaten und knn_klassifiziere() sammelst du eine Vorhersage je Testbeispiel - die Grundlage für die Genauigkeitsmessung.",
+    "lessonSummary": "Mit einer Schleife über die Testdaten und knn_klassifiziere() sammelst du eine Vorhersage je Testbeispiel – die Grundlage für die Genauigkeitsmessung.",
     "tasks": [
       {
         "instruction": "Führe dieses Beispiel aus: für jedes Testbeispiel eine Vorhersage sammeln.",
@@ -118,7 +118,7 @@
     "section": "lektion",
     "title": "Trainieren und testen: alles zusammenfügen",
     "file": "lektion-04.md",
-    "lessonSummary": "Aufteilen, vorhersagen und die Genauigkeit berechnen - zusammen ergibt das den kompletten Trainings-Test-Ablauf.",
+    "lessonSummary": "Aufteilen, vorhersagen und die Genauigkeit berechnen – zusammen ergibt das den kompletten Trainings-Test-Ablauf.",
     "tasks": [
       {
         "instruction": "Führe dieses Beispiel aus: den kompletten Trainings-Test-Ablauf als eine Funktion.",
@@ -146,9 +146,9 @@
   {
     "id": "lektion-05",
     "section": "lektion",
-    "title": "Overfitting: wenn zu wenig Trainingsdaten reichen",
+    "title": "Overfitting: wenn zu wenige Trainingsdaten täuschen",
     "file": "lektion-05.md",
-    "lessonSummary": "Ein winziger, unrepräsentativer Trainingsdatensatz kann 100% Genauigkeit auf sich selbst erreichen, aber bei echten Testdaten trotzdem komplett danebenliegen - das ist Overfitting.",
+    "lessonSummary": "Ein winziger, unrepräsentativer Trainingsdatensatz kann 100% Genauigkeit auf sich selbst erreichen, aber bei echten Testdaten trotzdem komplett danebenliegen – das ist Overfitting.",
     "tasks": [
       {
         "instruction": "Führe dieses Beispiel aus: die Genauigkeit auf den Trainingsdaten selbst mit der Genauigkeit auf echten Testdaten vergleichen.",
@@ -183,7 +183,7 @@
       {
         "instruction": "🐛 Bug #1 – Ziel: Bei vorhersagen = ['A', 'B', 'A'] und erwartete_werte = ['A', 'B', 'B'] soll die Genauigkeit 67 sein (2 von 3 richtig, gerundet). Was ist falsch?",
         "codeTemplate": "def ist_richtig(vorhersage, erwartet):\n    return vorhersage == erwartet\n\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if ist_richtig(vorhersagen[i], erwartete_werte[i]):\n            richtig\n    return round(richtig / len(vorhersagen) * 100)\n\nvorhersagen = [\"A\", \"B\", \"A\"]\nerwartete_werte = [\"A\", \"B\", \"B\"]\nprint(genauigkeit(vorhersagen, erwartete_werte))\n",
-        "referenceSolution": "def ist_richtig(vorhersage, erwartet):\n    return vorhersage == erwartet\n\n# Fix: \"richtig\" allein erhöht nichts - es muss \"richtig += 1\" heissen.\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if ist_richtig(vorhersagen[i], erwartete_werte[i]):\n            richtig += 1\n    return round(richtig / len(vorhersagen) * 100)\n\nvorhersagen = [\"A\", \"B\", \"A\"]\nerwartete_werte = [\"A\", \"B\", \"B\"]\nprint(genauigkeit(vorhersagen, erwartete_werte))",
+        "referenceSolution": "def ist_richtig(vorhersage, erwartet):\n    return vorhersage == erwartet\n\n# Fix: \"richtig\" allein erhöht nichts - es muss \"richtig += 1\" heißen.\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if ist_richtig(vorhersagen[i], erwartete_werte[i]):\n            richtig += 1\n    return round(richtig / len(vorhersagen) * 100)\n\nvorhersagen = [\"A\", \"B\", \"A\"]\nerwartete_werte = [\"A\", \"B\", \"B\"]\nprint(genauigkeit(vorhersagen, erwartete_werte))",
         "validation": {
           "type": "output_contains",
           "expected": "67"

@@ -152,7 +152,7 @@
     "section": "debug",
     "title": "Debug: Der kaputte Klassifikator",
     "file": "debug-01.md",
-    "lessonSummary": "Alle Bugs gefunden! Ein fehlendes return, ein falscher Vergleich (Farthest statt Nearest) und ein fehlender Standardwert bei der Zählung.",
+    "lessonSummary": "Alle Bugs gefunden! Ein fehlendes return, ein falscher Vergleich (größter statt kleinster Abstand) und ein fehlender Standardwert bei der Zählung.",
     "tasks": [
       {
         "instruction": "🐛 Bug #1 – Ziel: Der nächste Nachbar von {'x': 0, 'y': 1} soll 'A' sein (Abstand 1.0, am nächsten von allen). Was ist falsch?",

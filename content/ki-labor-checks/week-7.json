@@ -29,7 +29,7 @@
         "Sie speichert die Trainingsdaten dauerhaft ab"
       ],
       "correctIndex": 0,
-      "explanation": "Die versteckten Neuronen liegen zwischen Eingabe und Ausgabe - ihre einzelnen Ausgaben (z.B. eines OR- und eines NAND-Gatters) werden zu einer neuen Liste, die dann in das Ausgabe-Neuron geht (vorwaerts()).",
+      "explanation": "Die versteckten Neuronen liegen zwischen Eingabe und Ausgabe - ihre einzelnen Ausgaben (z.B. eines ODER- und eines NAND-Gatters) werden zu einer neuen Liste, die dann in das Ausgabe-Neuron geht (vorwaerts()).",
       "optionExplanations": [
         null,
         "'Versteckt' heißt nur, dass die Werte nicht die endgültige Ausgabe sind, nicht dass etwas absichtlich verborgen wird.",
@@ -119,7 +119,7 @@
   ],
   "codingChallenges": [
     {
-      "instruction": "Schreibe step(x) und neuron(eingaben, gewichte, bias) wie in dieser Woche. Baue ein einzelnes Neuron mit gewichte=[1, 1] und bias=-1.5 (AND-Gatter). Gib neuron([1, 1], [1, 1], -1.5) und neuron([1, 0], [1, 1], -1.5) aus.",
+      "instruction": "Schreibe step(x) und neuron(eingaben, gewichte, bias) wie in dieser Woche. Baue ein einzelnes Neuron mit gewichte=[1, 1] und bias=-1.5 (UND-Gatter). Gib neuron([1, 1], [1, 1], -1.5) und neuron([1, 0], [1, 1], -1.5) aus.",
       "codeTemplate": "",
       "validation": {
         "type": "output_contains",

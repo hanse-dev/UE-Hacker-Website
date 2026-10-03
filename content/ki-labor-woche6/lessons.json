@@ -4,7 +4,7 @@
     "section": "lektion",
     "title": "Was ist ein künstliches Neuron?",
     "file": "lektion-01.md",
-    "lessonSummary": "Ein künstliches Neuron gewichtet mehrere Eingaben, summiert sie auf und vergleicht die Summe mit einem Schwellenwert - feuert sie oder nicht.",
+    "lessonSummary": "Ein künstliches Neuron gewichtet mehrere Eingaben, summiert sie auf und vergleicht die Summe mit einem Schwellenwert – feuert sie oder nicht.",
     "tasks": [
       {
         "instruction": "Führe dieses Beispiel aus: ein Neuron mit zwei gewichteten Eingaben und einem Schwellenwert.",
@@ -40,7 +40,7 @@
     "section": "lektion",
     "title": "Die gewichtete Summe",
     "file": "lektion-02.md",
-    "lessonSummary": "gewichtete_summe() multipliziert jede Eingabe mit ihrem Gewicht (per zip()) und summiert alles auf - für beliebig viele Eingaben.",
+    "lessonSummary": "gewichtete_summe() multipliziert jede Eingabe mit ihrem Gewicht (per zip()) und summiert alles auf – für beliebig viele Eingaben.",
     "tasks": [
       {
         "instruction": "Führe dieses Beispiel aus: die gewichtete Summe zweier Werte-Listen mit zip() berechnen.",
@@ -79,7 +79,7 @@
     "section": "lektion",
     "title": "Die Sprungfunktion",
     "file": "lektion-03.md",
-    "lessonSummary": "aktivierung() vergleicht die gewichtete Summe mit dem Schwellenwert (>=) und gibt 1 oder 0 zurück - kombiniert mit gewichtete_summe() ergibt das ein komplettes Neuron.",
+    "lessonSummary": "aktivierung() vergleicht die gewichtete Summe mit dem Schwellenwert (>=) und gibt 1 oder 0 zurück – kombiniert mit gewichtete_summe() ergibt das ein komplettes Neuron.",
     "tasks": [
       {
         "instruction": "Führe dieses Beispiel aus: die Sprungfunktion an der Schwelle selbst testen.",
@@ -157,7 +157,7 @@
     "section": "lektion",
     "title": "Warum XOR nicht geht",
     "file": "lektion-05.md",
-    "lessonSummary": "Ein einzelnes Neuron kann UND/ODER/NAND nachbauen, aber niemals XOR perfekt lösen - egal welche Gewichte/Schwellenwerte man ausprobiert, bleibt mindestens ein Fehler übrig.",
+    "lessonSummary": "Ein einzelnes Neuron kann UND/ODER/NAND nachbauen, aber niemals XOR perfekt lösen – egal welche Gewichte/Schwellenwerte man ausprobiert, bleibt mindestens ein Fehler übrig.",
     "tasks": [
       {
         "instruction": "Führe dieses Beispiel aus: zwei verschiedene Gewichts-Kombinationen gegen die XOR-Wahrheitstabelle testen - beide bleiben fehlerhaft.",
@@ -223,7 +223,7 @@
     "section": "mission",
     "title": "Mission: Dein eigenes Alarmsystem",
     "file": "mission-01.md",
-    "lessonSummary": "Starke Leistung! Du hast ein eigenes 3-Sensoren-Neuron gebaut, das mit gewichteter Summe und Sprungfunktion entscheidet, ob Alarm ausgelöst wird - ganz ohne Vorlage.",
+    "lessonSummary": "Starke Leistung! Du hast ein eigenes 3-Sensoren-Neuron gebaut, das mit gewichteter Summe und Sprungfunktion entscheidet, ob Alarm ausgelöst wird – ganz ohne Vorlage.",
     "tasks": [
       {
         "instruction": "Schritt 1 – Gewichtete Summe: Schreibe gewichtete_summe(eingaben, gewichte) wie in dieser Woche (mit zip()). Rufe gewichtete_summe([2, 0, 1], [3, 4, 5]) und gewichtete_summe([1, 1, 1], [3, 4, 5]) auf und gib beide Ergebnisse aus.",
@@ -268,7 +268,7 @@
     "section": "boss",
     "title": "Extra-Herausforderung 1: Ein Sensor zählt doppelt",
     "file": "boss-01.md",
-    "lessonSummary": "Stark! Du hast gesehen, dass ein höher gewichteter Sensor allein reichen kann - aber auch mehrere niedrig gewichtete Sensoren zusammen genug Gewicht auf die Waage bringen.",
+    "lessonSummary": "Stark! Du hast gesehen, dass ein höher gewichteter Sensor allein reichen kann – aber auch mehrere niedrig gewichtete Sensoren zusammen genug Gewicht auf die Waage bringen.",
     "tasks": [
       {
         "instruction": "Schritt 1 – Gleich gewichtet: Schreibe gewichtete_summe(eingaben, gewichte), aktivierung(summe, schwelle) und neuron(eingaben, gewichte, schwelle) wie in dieser Woche. Rufe neuron([1, 1, 1, 0], [1, 1, 1, 1], 3) und neuron([1, 1, 0, 0], [1, 1, 1, 1], 3) auf (vier gleich gewichtete Sensoren, Schwelle 3) und gib beide Ergebnisse aus.",
@@ -358,7 +358,7 @@
     "section": "boss",
     "title": "Extra-Herausforderung 3: Beweis per Ausprobieren – kein Neuron löst XOR",
     "file": "boss-03.md",
-    "lessonSummary": "Beeindruckend! Du hast systematisch viele Gewichts-Kombinationen durchprobiert und gezeigt: keine einzige löst XOR perfekt - während für UND sehr wohl eine passende Kombination existiert.",
+    "lessonSummary": "Beeindruckend! Du hast systematisch viele Gewichts-Kombinationen durchprobiert und gezeigt: keine einzige löst XOR perfekt – während für UND sehr wohl eine passende Kombination existiert.",
     "tasks": [
       {
         "instruction": "Schritt 1 – Eine weitere Kombination testen: Schreibe gewichtete_summe(eingaben, gewichte), aktivierung(summe, schwelle), neuron(eingaben, gewichte, schwelle) und anzahl_fehler(vorhersagen, erwartete_werte) wie in dieser Woche. Nutze alle_eingaben = [[0, 0], [0, 1], [1, 0], [1, 1]] und xor_erwartet = [0, 1, 1, 0]. Sage alle_eingaben mit neuron(e, [1, -1], 1) vorher (Liste vorhersagen per List Comprehension) und gib zuerst vorhersagen, dann anzahl_fehler(vorhersagen, xor_erwartet) aus.",

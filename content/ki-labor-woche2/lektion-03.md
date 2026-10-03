@@ -1,4 +1,4 @@
-# 👀 Muster von Auge suchen
+# 👀 Muster mit bloßem Auge suchen
 
 Bevor ein Computer aus Daten lernt, lohnt es sich, selbst hinzuschauen: Gibt es ein Merkmal, das
 zwei Gruppen von Beispielen unterscheidet?

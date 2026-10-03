@@ -4,7 +4,7 @@
     "section": "lektion",
     "title": "Was ist ein Entscheidungsbaum?",
     "file": "lektion-01.md",
-    "lessonSummary": "Ein Entscheidungsbaum stellt Ja/Nein-Fragen zu Merkmalen - schon eine einzelne if/else-Funktion mit einem Schwellenwert ist ein winziger Baum.",
+    "lessonSummary": "Ein Entscheidungsbaum stellt Ja/Nein-Fragen zu Merkmalen – schon eine einzelne if/else-Funktion mit einem Schwellenwert ist ein winziger Baum.",
     "tasks": [
       {
         "instruction": "Führe dieses Beispiel aus: eine einfache if/else-Entscheidung anhand eines Schwellenwerts.",
@@ -205,7 +205,7 @@
     "section": "mission",
     "title": "Mission: Gießen oder nicht?",
     "file": "mission-01.md",
-    "lessonSummary": "Starke Leistung! Du hast einen eigenen Pflanzen-Datensatz aufgeteilt, den besten Trennwert gefunden und einen Baum gebaut, der für neue Werte vorhersagt - ganz ohne Vorlage.",
+    "lessonSummary": "Starke Leistung! Du hast einen eigenen Pflanzen-Datensatz aufgeteilt, den besten Trennwert gefunden und einen Baum gebaut, der für neue Werte vorhersagt – ganz ohne Vorlage.",
     "tasks": [
       {
         "instruction": "Schritt 1 – Aufteilen: Erstelle eine Liste pflanzen mit den sechs Dictionaries {'bodenfeuchtigkeit': 10, 'giessen': 'ja'}, {'bodenfeuchtigkeit': 15, 'giessen': 'ja'}, {'bodenfeuchtigkeit': 20, 'giessen': 'ja'}, {'bodenfeuchtigkeit': 70, 'giessen': 'nein'}, {'bodenfeuchtigkeit': 80, 'giessen': 'nein'} und {'bodenfeuchtigkeit': 75, 'giessen': 'nein'}. Schreibe teile_bei_schwellenwert(daten, merkmal, schwelle) wie in dieser Woche und teile pflanzen beim Merkmal 'bodenfeuchtigkeit' mit schwelle=40 auf. Gib len(links) und len(rechts) aus.",
@@ -295,7 +295,7 @@
     "section": "boss",
     "title": "Extra-Herausforderung 2: Baum trainieren, auf echten Testdaten prüfen",
     "file": "boss-02.md",
-    "lessonSummary": "Sehr stark! Du hast einen Baum auf Trainingsdaten gebaut und seine Genauigkeit ehrlich auf Testdaten gemessen - und gesehen, wie sehr die Wahl des Merkmals zählt.",
+    "lessonSummary": "Sehr stark! Du hast einen Baum auf Trainingsdaten gebaut und seine Genauigkeit ehrlich auf Testdaten gemessen – und gesehen, wie sehr die Wahl des Merkmals zählt.",
     "tasks": [
       {
         "instruction": "Schritt 1 – Baum auf Trainingsdaten: Schreibe teile_bei_schwellenwert(daten, merkmal, schwelle), mehrheitsklasse(teil), anzahl_falsch(teil), bester_schwellenwert(daten, merkmal), bestes_merkmal(daten, merkmale) und baue_baum(daten, merkmal) wie in dieser Woche. Nutze trainingsdaten = [{'regen': 80, 'temperatur': 18, 'schirm': 'ja'}, {'regen': 90, 'temperatur': 25, 'schirm': 'ja'}, {'regen': 70, 'temperatur': 10, 'schirm': 'ja'}, {'regen': 20, 'temperatur': 22, 'schirm': 'nein'}, {'regen': 10, 'temperatur': 15, 'schirm': 'nein'} und {'regen': 30, 'temperatur': 28, 'schirm': 'nein'}. Finde mit bestes_merkmal(trainingsdaten, ['regen', 'temperatur']) das beste Merkmal, baue damit einen Baum und gib ihn aus.",

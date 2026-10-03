@@ -10,8 +10,15 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
       Lese-Pass (Grammatik, Kommas, Verständlichkeit ab 10/11 Jahren, Aufgabe passt zum `expected`)
       Paket für Paket: ~~Interaktiv-Kurs~~, ~~Woche 1–5 (alle Themen)~~, ~~Woche 6–12~~ (erledigt:
       Abenteuer voll, Pferde/Sci-Fi Geschichten-Texte + LanguageTool), ~~Wochen-Checks~~ (erledigt;
-      Fragen zu nicht gelehrtem Stoff in Check 4/5 ersetzt, DE+EN) → JS-Grundkurs → Projekt-Kurse → KI-Labor →
-      UI-Texte/`kurse.json`/Glossar. EN nur für inhaltliche Korrekturen nachziehen.
+      Fragen zu nicht gelehrtem Stoff in Check 4/5 ersetzt, DE+EN) , ~~JS-Grundkurs~~,
+      ~~Projekt-Kurse~~, ~~KI-Labor~~ (alle erledigt) → UI-Texte/`kurse.json`/Glossar. EN nur für inhaltliche Korrekturen nachziehen.
+      Offen aus Paket 5–7 (JS-Grundkurs, Projekte, KI-Labor):
+      - Sichtbare Daten-Texte ohne Umlaute, an `expected`/Tests gekoppelt: `'gruen'`, `'Koeln'`,
+        `'Kopfhoerer'`, `'Naegel'` (`js-grundkurs-woche2/5/8`), Label `'Saeugetier'` (KI-Labor
+        Woche 2–4, im Fließtext steht "Säugetier"). Vorschlag: auf Umlaute umstellen, dabei
+        `expected`, Musterlösung und `tests/*.spec.js` mitziehen.
+      - `ki-labor-checks/week-2.json`: erste Coding-Aufgabe (`ist_erwachsen`) ist identisch mit
+        der aus Woche 1 und hat nichts mit dem Wochenthema (Daten) zu tun.
       Offene Urteilsfragen aus Paket 3 (Woche 6–12; berühren Code/`expected`/Lösung/EN):
       - Themen-Reste aus dem Abenteuer-Skelett in Pferde und Sci-Fi: Woche 6 Mission 3 Variable
         `gilde` (Reitgruppe/Crew); Woche 7 Boss 3 `monster`/"Dungeon"/"Held" beim

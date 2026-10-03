@@ -1,4 +1,4 @@
-# ⚠️ Overfitting: wenn zu wenig Trainingsdaten reichen
+# ⚠️ Overfitting: wenn zu wenige Trainingsdaten täuschen
 
 Wenn dein Trainingsdatensatz zu klein oder unrepräsentativ ist, kann dein Klassifikator die
 Trainingsdaten zwar perfekt "können" – bei neuen, echten Beispielen aber trotzdem oft
@@ -51,7 +51,7 @@ trainingsdaten = [
     {"beine": 2, "gewicht": 30, "art": "Vogel"},        # ungewöhnlich schwerer Vogel
 ]
 
-# "Test" mit den Trainingsdaten selbst - jedes Beispiel ist sein eigener naechster Nachbar.
+# "Test" mit den Trainingsdaten selbst - jedes Beispiel ist sein eigener nächster Nachbar.
 vorhersagen_training = [knn_klassifiziere(trainingsdaten, b, 1) for b in trainingsdaten]
 erwartete_training = [b["art"] for b in trainingsdaten]
 print(genauigkeit(vorhersagen_training, erwartete_training))
@@ -67,5 +67,5 @@ print(genauigkeit(vorhersagen_test, erwartete_test))
 ```
 
 100% auf den Trainingsdaten, aber 0% auf echten Testdaten – eine riesige Lücke. Das Modell hat
-sich zwei Ausreißer gemerkt, statt zu lernen, dass Saeugetiere meist schwerer sind als Vögel.
+sich zwei Ausreißer gemerkt, statt zu lernen, dass Säugetiere meist schwerer sind als Vögel.
 **Genug und repräsentative Trainingsdaten** helfen dagegen (siehe die Extra-Herausforderungen).

@@ -62,9 +62,9 @@
   {
     "id": "lektion-03",
     "section": "lektion",
-    "title": "Muster von Auge suchen",
+    "title": "Muster mit bloßem Auge suchen",
     "file": "lektion-03.md",
-    "lessonSummary": "Mit einer List Comprehension filterst du Beispiele heraus, die eine Bedingung erfüllen – Muster von Auge finden.",
+    "lessonSummary": "Mit einer List Comprehension filterst du Beispiele heraus, die eine Bedingung erfüllen – Muster mit bloßem Auge finden.",
     "tasks": [
       {
         "instruction": "Führe dieses Beispiel aus: alle Vierbeiner aus dem Datensatz herausfiltern.",
@@ -233,7 +233,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Minimum: Schreibe eine Funktion minimum(tiere, merkmal), analog zu maximum() aber für den kleinsten Wert (ohne die eingebaute Funktion min()). Nutze dieselbe Liste tiere (erneut erstellen). Gib damit genau 2 aus (für 'beine').",
+        "instruction": "Schritt 2 – Minimum: Schreibe eine Funktion minimum(tiere, merkmal), analog zu maximum(), aber für den kleinsten Wert (ohne die eingebaute Funktion min()). Nutze dieselbe Liste tiere (erneut erstellen). Gib damit genau 2 aus (für 'beine').",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "referenceSolution": "tiere = [\n    {\"name\": \"Hund\", \"beine\": 4},\n    {\"name\": \"Spatz\", \"beine\": 2},\n    {\"name\": \"Spinne\", \"beine\": 8},\n]\n\ndef minimum(tiere, merkmal):\n    kleinster = tiere[0][merkmal]\n    for tier in tiere:\n        if tier[merkmal] < kleinster:\n            kleinster = tier[merkmal]\n    return kleinster\n\nprint(minimum(tiere, \"beine\"))",
         "validation": {

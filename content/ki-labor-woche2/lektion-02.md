@@ -26,4 +26,4 @@ for tier in tiere:
 ```
 
 > 💡 Je mehr Merkmale ein Beispiel hat, desto genauer lässt es sich beschreiben – aber auch desto
-> schwerer wird es, von Auge Muster zu erkennen. Genau darum geht es gleich.
+> schwerer wird es, mit bloßem Auge Muster zu erkennen. Genau darum geht es gleich.
