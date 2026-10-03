@@ -4,4 +4,4 @@
 
 Die Station führt ein digitales Missionsbuch – alle Einsätze werden festgehalten!
 
-**Bonus (freiwillig, ohne Prüfung):** Ergänze für jede Quest eine Belohnung und schreibe eine Belohnungsliste in eine zweite Datei.
+**Bonus (freiwillig, ohne Prüfung):** Ergänze für jede Mission eine Belohnung und schreibe eine Belohnungsliste in eine zweite Datei.

@@ -118,7 +118,7 @@
         }
       },
       {
-        "instruction": "Die Klasse Pferd ist vorgegeben. Schreibe Springpferd(Pferd) mit `__init__(self, name, hoehe=50)` und `super()`. Erzeuge Springpferd(\"Stella\" ohne zweiten Wert) und gib genau Stella 50 aus.",
+        "instruction": "Die Klasse Pferd ist vorgegeben. Schreibe Springpferd(Pferd) mit `__init__(self, name, hoehe=50)` und `super()`. Erzeuge Springpferd(\"Stella\") ohne zweiten Wert und gib genau Stella 50 aus.",
         "codeTemplate": "class Pferd:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def laufe(self):\n        print(f\"{self.name} trabt gemütlich.\")\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -440,7 +440,7 @@
   {
     "id": "mission-03",
     "section": "mission",
-    "title": "Mission 3: Die Zauber-Methoden",
+    "title": "Mission 3: Die Magic Methods",
     "file": "mission-03.md",
     "lessonSummary": "Mission geschafft: `__str__`, `__lt__` und `__add__` gehören jetzt zu deinem Werkzeugkasten!",
     "tasks": [

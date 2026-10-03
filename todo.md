@@ -8,9 +8,19 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 - [ ] Rechtschreib- und Verständnisprüfung aller deutschen Inhalte (Branch `inhalts-pruefung`,
       HANDOFF 3.98). Mechanischer Pass erledigt (`lint:spelling` + `lint:spelling:de` beide bei 0).
       Lese-Pass (Grammatik, Kommas, Verständlichkeit ab 10/11 Jahren, Aufgabe passt zum `expected`)
-      Paket für Paket: ~~Interaktiv-Kurs~~, ~~Woche 1–5 (alle Themen)~~ (erledigt) → Woche 6–12
-      (ein Thema voll, zwei als Diff) → Wochen-Checks → JS-Grundkurs → Projekt-Kurse → KI-Labor →
+      Paket für Paket: ~~Interaktiv-Kurs~~, ~~Woche 1–5 (alle Themen)~~, ~~Woche 6–12~~ (erledigt:
+      Abenteuer voll, Pferde/Sci-Fi Geschichten-Texte + LanguageTool) → Wochen-Checks → JS-Grundkurs → Projekt-Kurse → KI-Labor →
       UI-Texte/`kurse.json`/Glossar. EN nur für inhaltliche Korrekturen nachziehen.
+      Offene Urteilsfragen aus Paket 3 (Woche 6–12; berühren Code/`expected`/Lösung/EN):
+      - Themen-Reste aus dem Abenteuer-Skelett in Pferde und Sci-Fi: Woche 6 Mission 3 Variable
+        `gilde` (Reitgruppe/Crew); Woche 7 Boss 3 `monster`/"Dungeon"/"Held" beim
+        "Zufalls-Ausritt"/"Zufalls-Sektor"; Woche 9 Boss 3 `questlog`/"Quests"; Woche 10 Boss 2
+        "Das Duell" mit `greife_an` (bei Pferden greifen sich Pferde an). Vorschlag: je Thema
+        eigene Bezeichner/Geschichte, bei den Pferden statt Duell ein Wettrennen.
+      - Woche 12 mischt deutsche und englische Bezeichner (`room_name`, `action`, `target`,
+        `foe`, `data`, `amount`, `commands`, `goal_item`, `parse`) — sonst ist der Kurs deutsch.
+      - Woche 7 Lektion 7 erwähnt Winkelfunktionen/Bogenmaß und nutzt Fakultät — für 10/11-Jährige
+        Stoff aus höheren Klassen; Vorschlag: Satz zu `sin`/`cos`/`tan` streichen.
       Offene Urteilsfragen aus Paket 2 (Nutzer entscheidet, ändern Ausgaben/`expected`/Lösung/EN):
       - Woche 2 Boss 3, alle Themen: rechnet mit "Erfolgswahrscheinlichkeit (0–1)" und
         Erwartungswert — für 10/11-Jährige schwer. Sci-Fi rechnet zudem "Kosten ×

@@ -14,4 +14,4 @@ print(os.path.exists("bordbuch.txt"))   # True oder False
 os.remove("bordbuch.txt")               # Datei löschen
 ```
 
-Mit **`os.path.exists(name)`** fragst du vorher, ob es die Datei gibt. Das Modul **`os`** kommt wie `math` und `random` aus Woche 7 fertig mit.
+Mit **`os.path.exists(name)`** fragst du vorher, ob es die Datei gibt. Das Modul **`os`** ist wie `math` und `random` aus Woche 7 schon in Python eingebaut.

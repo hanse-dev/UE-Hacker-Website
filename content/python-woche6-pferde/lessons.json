@@ -480,7 +480,7 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Den Stärksten finden: gilde (mit vier Einträgen) ist vorgegeben. Suche mit einer for-Schleife den Eintrag mit dem höchsten Level (merke ihn dir in stärkster) und gib genau Stärkster: Anna aus.",
+        "instruction": "Schritt 3 – Den Stärksten finden: gilde (mit vier Einträgen) ist vorgegeben. Suche mit einer for-Schleife den Eintrag mit dem höchsten Level (merke ihn dir in staerkster) und gib genau Stärkster: Anna aus.",
         "codeTemplate": "gilde = [[\"Anna\", \"Springen\", 15], [\"Ben\", \"Dressur\", 12], [\"Clara\", \"Voltigieren\", 8]]\ngilde.append([\"David\", \"Western\", 10])\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

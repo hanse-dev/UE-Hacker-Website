@@ -118,7 +118,7 @@
         }
       },
       {
-        "instruction": "Die Klasse Roboter ist vorgegeben. Schreibe Reparaturroboter(Roboter) mit `__init__(self, name, werkzeuge=50)` und `super()`. Erzeuge Reparaturroboter(\"Orbit\" ohne zweiten Wert) und gib genau Orbit 50 aus.",
+        "instruction": "Die Klasse Roboter ist vorgegeben. Schreibe Reparaturroboter(Roboter) mit `__init__(self, name, werkzeuge=50)` und `super()`. Erzeuge Reparaturroboter(\"Orbit\") ohne zweiten Wert und gib genau Orbit 50 aus.",
         "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -440,7 +440,7 @@
   {
     "id": "mission-03",
     "section": "mission",
-    "title": "Mission 3: Die Zauber-Methoden",
+    "title": "Mission 3: Die Magic Methods",
     "file": "mission-03.md",
     "lessonSummary": "Mission geschafft: `__str__`, `__lt__` und `__add__` gehören jetzt zu deinem Werkzeugkasten!",
     "tasks": [

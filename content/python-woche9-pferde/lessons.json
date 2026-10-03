@@ -24,7 +24,7 @@
         }
       },
       {
-        "instruction": "Die Datei stallbuch.txt mit drei Zeilen wird vorgegeben angelegt. Lies sie mit read() in inhalt und gib genau Zeilen: 3 aus (Anzahl der Zeilenumbrüche mit inhalt.count(\"\\n\")).",
+        "instruction": "Die Datei stallbuch.txt mit drei Zeilen wird im vorgegebenen Code angelegt. Lies sie mit read() in inhalt und gib genau Zeilen: 3 aus (Anzahl der Zeilenumbrüche mit inhalt.count(\"\\n\")).",
         "codeTemplate": "with open(\"stallbuch.txt\", \"w\") as f:\n    f.write(\"Stallbuch Reiterhof\\n\")\n    f.write(\"Status: Geöffnet\\n\")\n    f.write(\"Ausritt geplant\\n\")\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -50,7 +50,7 @@
         }
       },
       {
-        "instruction": "Die Datei stallbuch.txt mit zwei Zeilen wird vorgegeben angelegt. Hänge mit \"a\" die Zeile Ausritt geplant an und gib danach die Datei zeilenweise aus (for zeile in f, mit strip()), jede Zeile einzeln.",
+        "instruction": "Die Datei stallbuch.txt mit zwei Zeilen wird im vorgegebenen Code angelegt. Hänge mit \"a\" die Zeile Ausritt geplant an und gib danach die Datei zeilenweise aus (for zeile in f, mit strip()), jede Zeile einzeln.",
         "codeTemplate": "with open(\"stallbuch.txt\", \"w\") as f:\n    f.write(\"Stallbuch Reiterhof\\n\")\n    f.write(\"Status: Geöffnet\\n\")\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -58,7 +58,7 @@
         }
       },
       {
-        "instruction": "Die Datei liste.txt mit Zeilen wie Blitz,8 wird vorgegeben angelegt. Lies sie zeilenweise, zerlege jede Zeile mit split(\",\") und gib jeden Eintrag als Name: Zahl aus, z. B. Blitz: 8.",
+        "instruction": "Die Datei liste.txt mit Zeilen wie Blitz,8 wird im vorgegebenen Code angelegt. Lies sie zeilenweise, zerlege jede Zeile mit split(\",\") und gib jeden Eintrag als Name: Zahl aus, z. B. Blitz: 8.",
         "codeTemplate": "with open(\"liste.txt\", \"w\") as f:\n    f.write(\"Blitz,8\\n\")\n    f.write(\"Sturm,12\\n\")\n    f.write(\"Luna,6\\n\")\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -66,7 +66,7 @@
         }
       },
       {
-        "instruction": "Die Datei stallbuch.txt mit drei Zeilen wird vorgegeben angelegt. Lies alle Zeilen mit readlines() in zeilen und gib genau Zeilen: 3 und in der nächsten Zeile Erste: Stallbuch Reiterhof aus (mit strip()).",
+        "instruction": "Die Datei stallbuch.txt mit drei Zeilen wird im vorgegebenen Code angelegt. Lies alle Zeilen mit readlines() in zeilen und gib genau Zeilen: 3 und in der nächsten Zeile Erste: Stallbuch Reiterhof aus (mit strip()).",
         "codeTemplate": "with open(\"stallbuch.txt\", \"w\") as f:\n    f.write(\"Stallbuch Reiterhof\\n\")\n    f.write(\"Status: Geöffnet\\n\")\n    f.write(\"Ausritt geplant\\n\")\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -207,7 +207,7 @@
         }
       },
       {
-        "instruction": "Die Datei pferd.json mit dem Dictionary pferd wird vorgegeben angelegt. Lade sie, erhöhe alter um 1, speichere sie wieder in dieselbe Datei, lade sie erneut und gib genau Alter: 9 aus.",
+        "instruction": "Die Datei pferd.json mit dem Dictionary pferd wird im vorgegebenen Code angelegt. Lade sie, erhöhe alter um 1, speichere sie wieder in dieselbe Datei, lade sie erneut und gib genau Alter: 9 aus.",
         "codeTemplate": "import json\npferd = {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120}\nwith open(\"pferd.json\", \"w\") as f:\n    json.dump(pferd, f)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -253,7 +253,7 @@
         }
       },
       {
-        "instruction": "Die Datei pferde.csv wird vorgegeben angelegt (Kopfzeile + drei Zeilen). Lies sie, überspringe die Kopfzeile und addiere alle Werte der zweiten Spalte mit int(). Gib genau Summe: 26 aus.",
+        "instruction": "Die Datei pferde.csv wird im vorgegebenen Code angelegt (Kopfzeile + drei Zeilen). Lies sie, überspringe die Kopfzeile und addiere alle Werte der zweiten Spalte mit int(). Gib genau Summe: 26 aus.",
         "codeTemplate": "import csv\nwith open(\"pferde.csv\", \"w\", newline=\"\") as f:\n    w = csv.writer(f)\n    w.writerow([\"name\", \"alter\"])\n    w.writerow([\"Blitz\", 8])\n    w.writerow([\"Sturm\", 12])\n    w.writerow([\"Luna\", 6])\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -261,7 +261,7 @@
         }
       },
       {
-        "instruction": "Die Datei pferde.csv wird vorgegeben angelegt. Lies die erste Datenzeile mit next() (nach der Kopfzeile) in erste. Gib genau Text: 88 (erste[1] + erste[1] verkettet Texte) und in der nächsten Zeile Zahl: 16 (int(erste[1]) * 2) aus.",
+        "instruction": "Die Datei pferde.csv wird im vorgegebenen Code angelegt. Lies die erste Datenzeile mit next() (nach der Kopfzeile) in erste. Gib genau Text: 88 (erste[1] + erste[1] verkettet Texte) und in der nächsten Zeile Zahl: 16 (int(erste[1]) * 2) aus.",
         "codeTemplate": "import csv\nwith open(\"pferde.csv\", \"w\", newline=\"\") as f:\n    w = csv.writer(f)\n    w.writerow([\"name\", \"alter\"])\n    w.writerow([\"Blitz\", 8])\n    w.writerow([\"Sturm\", 12])\n    w.writerow([\"Luna\", 6])\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -299,7 +299,7 @@
         }
       },
       {
-        "instruction": "Die CSV-Datei pferde.csv wird vorgegeben angelegt. Lies sie mit csv.DictReader, wandle alter jeder Zeile mit int() um und sammle die Zeilen in eintraege. Speichere eintraege mit json.dump() in pferd.json, lade sie wieder und gib genau Anzahl: 3 und in der nächsten Zeile Summe: 26 aus (Summe der alter-Werte).",
+        "instruction": "Die CSV-Datei pferde.csv wird im vorgegebenen Code angelegt. Lies sie mit csv.DictReader, wandle alter jeder Zeile mit int() um und sammle die Zeilen in eintraege. Speichere eintraege mit json.dump() in pferd.json, lade sie wieder und gib genau Anzahl: 3 und in der nächsten Zeile Summe: 26 aus (Summe der alter-Werte).",
         "codeTemplate": "import csv\npferde = [\n    {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120},\n    {\"name\": \"Sturm\", \"rasse\": \"Haflinger\", \"alter\": 12, \"punkte\": 150},\n    {\"name\": \"Luna\", \"rasse\": \"Isländer\", \"alter\": 6, \"punkte\": 90},\n]\nwith open(\"pferde.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"rasse\", \"alter\", \"punkte\"])\n    w.writeheader()\n    w.writerows(pferde)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -311,7 +311,7 @@
         }
       },
       {
-        "instruction": "Die JSON-Datei pferd.json mit einer Liste von Dictionaries wird vorgegeben angelegt. Lade sie und schreibe sie mit csv.DictWriter in pferde.csv (fieldnames name, rasse, alter, punkte). Lies die CSV mit csv.DictReader zurück und gib genau Zeilen: 3 und in der nächsten Zeile Felder: ['name', 'rasse', 'alter', 'punkte'] aus (leser.fieldnames).",
+        "instruction": "Die JSON-Datei pferd.json mit einer Liste von Dictionaries wird im vorgegebenen Code angelegt. Lade sie und schreibe sie mit csv.DictWriter in pferde.csv (fieldnames name, rasse, alter, punkte). Lies die CSV mit csv.DictReader zurück und gib genau Zeilen: 3 und in der nächsten Zeile Felder: ['name', 'rasse', 'alter', 'punkte'] aus (leser.fieldnames).",
         "codeTemplate": "import json\npferde = [\n    {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120},\n    {\"name\": \"Sturm\", \"rasse\": \"Haflinger\", \"alter\": 12, \"punkte\": 150},\n    {\"name\": \"Luna\", \"rasse\": \"Isländer\", \"alter\": 6, \"punkte\": 90},\n]\nwith open(\"pferd.json\", \"w\") as f:\n    json.dump(pferde, f)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -373,7 +373,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Anhängen: Die Datei stallbuch.txt mit drei Zeilen wird vorgegeben angelegt. Hänge Update: Turnier gewonnen an, lies alle Zeilen mit readlines() und gib genau Zeilen: 4 und in der nächsten Zeile Letzte: Update: Turnier gewonnen aus (mit strip()).",
+        "instruction": "Schritt 2 – Anhängen: Die Datei stallbuch.txt mit drei Zeilen wird im vorgegebenen Code angelegt. Hänge Update: Turnier gewonnen an, lies alle Zeilen mit readlines() und gib genau Zeilen: 4 und in der nächsten Zeile Letzte: Update: Turnier gewonnen aus (mit strip()).",
         "codeTemplate": "with open(\"stallbuch.txt\", \"w\") as f:\n    f.write(\"Stallbuch Reiterhof\\n\")\n    f.write(\"Status: Geöffnet\\n\")\n    f.write(\"Ausritt geplant\\n\")\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -381,7 +381,7 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Sicher zählen: Die Datei stallbuch.txt wird vorgegeben angelegt. Schreibe eine Funktion zeilen_zaehlen(name), die die Zahl der Zeilen zurückgibt – oder 0, wenn die Datei fehlt (try/except FileNotFoundError). Gib genau stallbuch.txt: 3 und in der nächsten Zeile fehlt.txt: 0 aus.",
+        "instruction": "Schritt 3 – Sicher zählen: Die Datei stallbuch.txt wird im vorgegebenen Code angelegt. Schreibe eine Funktion zeilen_zaehlen(name), die die Zahl der Zeilen zurückgibt – oder 0, wenn die Datei fehlt (try/except FileNotFoundError). Gib genau stallbuch.txt: 3 und in der nächsten Zeile fehlt.txt: 0 aus.",
         "codeTemplate": "with open(\"stallbuch.txt\", \"w\") as f:\n    f.write(\"Stallbuch Reiterhof\\n\")\n    f.write(\"Status: Geöffnet\\n\")\n    f.write(\"Ausritt geplant\\n\")\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -414,7 +414,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Ändern und speichern: Die Datei pferd.json mit dem Dictionary pferd wird vorgegeben angelegt. Lade sie, ergänze siege mit dem Wert 3, speichere sie wieder, lade sie erneut und gib genau Siege: 3 und in der nächsten Zeile Eigenschaften: 5 aus.",
+        "instruction": "Schritt 2 – Ändern und speichern: Die Datei pferd.json mit dem Dictionary pferd wird im vorgegebenen Code angelegt. Lade sie, ergänze siege mit dem Wert 3, speichere sie wieder, lade sie erneut und gib genau Siege: 3 und in der nächsten Zeile Eigenschaften: 5 aus.",
         "codeTemplate": "import json\npferd = {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120}\nwith open(\"pferd.json\", \"w\") as f:\n    json.dump(pferd, f)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -422,7 +422,7 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Liste speichern und auswerten: Die Datei pferd.json mit drei Dictionaries wird vorgegeben angelegt. Lade die Liste und finde mit einer Schleife den Eintrag mit dem höchsten alter. Gib genau Bester: Sturm aus.",
+        "instruction": "Schritt 3 – Liste speichern und auswerten: Die Datei pferd.json mit drei Dictionaries wird im vorgegebenen Code angelegt. Lade die Liste und finde mit einer Schleife den Eintrag mit dem höchsten alter. Gib genau Bester: Sturm aus.",
         "codeTemplate": "import json\npferde = [\n    {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120},\n    {\"name\": \"Sturm\", \"rasse\": \"Haflinger\", \"alter\": 12, \"punkte\": 150},\n    {\"name\": \"Luna\", \"rasse\": \"Isländer\", \"alter\": 6, \"punkte\": 90},\n]\nwith open(\"pferd.json\", \"w\") as f:\n    json.dump(pferde, f)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -451,7 +451,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Auswerten: Die Datei pferde.csv mit vier Zeilen wird vorgegeben angelegt. Lies sie mit csv.DictReader, addiere die alter-Werte (int!) und gib genau Summe: 33 und in der nächsten Zeile Durchschnitt: 8.25 aus.",
+        "instruction": "Schritt 2 – Auswerten: Die Datei pferde.csv mit vier Zeilen wird im vorgegebenen Code angelegt. Lies sie mit csv.DictReader, addiere die alter-Werte (int!) und gib genau Summe: 33 und in der nächsten Zeile Durchschnitt: 8.25 aus.",
         "codeTemplate": "import csv\npferde = [\n    {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120},\n    {\"name\": \"Sturm\", \"rasse\": \"Haflinger\", \"alter\": 12, \"punkte\": 150},\n    {\"name\": \"Luna\", \"rasse\": \"Isländer\", \"alter\": 6, \"punkte\": 90},\n    {\"name\": \"Wind\", \"rasse\": \"Hannoveraner\", \"alter\": 7, \"punkte\": 110},\n]\nwith open(\"pferde.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"rasse\", \"alter\", \"punkte\"])\n    w.writeheader()\n    w.writerows(pferde)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -462,7 +462,7 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Filtern: Die Datei pferde.csv mit vier Zeilen wird vorgegeben angelegt. Sammle die Namen aller Zeilen, deren alter (als Zahl) größer als 7 ist, in der Liste starke und gib genau Starke: ['Blitz', 'Sturm'] aus.",
+        "instruction": "Schritt 3 – Filtern: Die Datei pferde.csv mit vier Zeilen wird im vorgegebenen Code angelegt. Sammle die Namen aller Zeilen, deren alter (als Zahl) größer als 7 ist, in der Liste starke und gib genau Starke: ['Blitz', 'Sturm'] aus.",
         "codeTemplate": "import csv\npferde = [\n    {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120},\n    {\"name\": \"Sturm\", \"rasse\": \"Haflinger\", \"alter\": 12, \"punkte\": 150},\n    {\"name\": \"Luna\", \"rasse\": \"Isländer\", \"alter\": 6, \"punkte\": 90},\n    {\"name\": \"Wind\", \"rasse\": \"Hannoveraner\", \"alter\": 7, \"punkte\": 110},\n]\nwith open(\"pferde.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"rasse\", \"alter\", \"punkte\"])\n    w.writeheader()\n    w.writerows(pferde)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -534,7 +534,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Ort hinzufügen: Die Datei karte.json mit drei Orten wird vorgegeben angelegt. Lade sie, ergänze den Ort Bronzemedaille mit koordinaten [70, 80] und wert 400, speichere sie wieder, lade sie erneut und gib genau Orte: 4 aus.",
+        "instruction": "Schritt 2 – Ort hinzufügen: Die Datei karte.json mit drei Orten wird im vorgegebenen Code angelegt. Lade sie, ergänze den Ort Bronzemedaille mit koordinaten [70, 80] und wert 400, speichere sie wieder, lade sie erneut und gib genau Orte: 4 aus.",
         "codeTemplate": "import json\nkarte = {\n    \"Goldpokal\": {\"koordinaten\": (10, 20), \"wert\": 800},\n    \"Silberschleife\": {\"koordinaten\": (30, 40), \"wert\": 300},\n    \"Ehrenpreis\": {\"koordinaten\": (50, 60), \"wert\": 650},\n}\nwith open(\"karte.json\", \"w\") as f:\n    json.dump(karte, f)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -542,7 +542,7 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Wertvollster Ort: Die Datei karte.json mit vier Orten wird vorgegeben angelegt. Lade sie und finde den Ort mit dem höchsten wert. Gib genau Wertvollster: Goldpokal (800) aus.",
+        "instruction": "Schritt 3 – Wertvollster Ort: Die Datei karte.json mit vier Orten wird im vorgegebenen Code angelegt. Lade sie und finde den Ort mit dem höchsten wert. Gib genau Wertvollster: Goldpokal (800) aus.",
         "codeTemplate": "import json\nkarte = {\n    \"Goldpokal\": {\"koordinaten\": (10, 20), \"wert\": 800},\n    \"Silberschleife\": {\"koordinaten\": (30, 40), \"wert\": 300},\n    \"Ehrenpreis\": {\"koordinaten\": (50, 60), \"wert\": 650},\n}\nkarte[\"Bronzemedaille\"] = {\"koordinaten\": [70, 80], \"wert\": 400}\nwith open(\"karte.json\", \"w\") as f:\n    json.dump(karte, f)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -567,7 +567,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Abschließen: Die Datei questlog.json mit drei Einträgen wird vorgegeben angelegt. Lade sie, setze den Status des ersten Eintrags auf \"abgeschlossen\", speichere sie wieder, lade sie erneut und gib genau Erste: abgeschlossen aus.",
+        "instruction": "Schritt 2 – Abschließen: Die Datei questlog.json mit drei Einträgen wird im vorgegebenen Code angelegt. Lade sie, setze den Status des ersten Eintrags auf \"abgeschlossen\", speichere sie wieder, lade sie erneut und gib genau Erste: abgeschlossen aus.",
         "codeTemplate": "import json\nquests = [\n    {\"name\": \"Springen üben\", \"schwierigkeit\": 1, \"status\": \"offen\"},\n    {\"name\": \"Ausritt planen\", \"schwierigkeit\": 2, \"status\": \"offen\"},\n    {\"name\": \"Fell pflegen\", \"schwierigkeit\": 3, \"status\": \"offen\"},\n]\nwith open(\"questlog.json\", \"w\") as f:\n    json.dump(quests, f)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -575,7 +575,7 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Bericht: Die Datei questlog.json wird vorgegeben angelegt (erster Eintrag \"abgeschlossen\"). Lade sie, zähle die Einträge mit Status \"abgeschlossen\" in fertig und schreibe die Zeile Abgeschlossen: 1 (mit fertig) in die Datei bericht.txt. Lies bericht.txt wieder ein und gib genau Bericht: Abgeschlossen: 1 aus (mit strip()).",
+        "instruction": "Schritt 3 – Bericht: Die Datei questlog.json wird im vorgegebenen Code angelegt (erster Eintrag \"abgeschlossen\"). Lade sie, zähle die Einträge mit Status \"abgeschlossen\" in fertig und schreibe die Zeile Abgeschlossen: 1 (mit fertig) in die Datei bericht.txt. Lies bericht.txt wieder ein und gib genau Bericht: Abgeschlossen: 1 aus (mit strip()).",
         "codeTemplate": "import json\nquests = [\n    {\"name\": \"Springen üben\", \"schwierigkeit\": 1, \"status\": \"offen\"},\n    {\"name\": \"Ausritt planen\", \"schwierigkeit\": 2, \"status\": \"offen\"},\n    {\"name\": \"Fell pflegen\", \"schwierigkeit\": 3, \"status\": \"offen\"},\n]\nquests[0][\"status\"] = \"abgeschlossen\"\nwith open(\"questlog.json\", \"w\") as f:\n    json.dump(quests, f)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -616,7 +616,7 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Listen filtern (Woche 6): Die CSV-Datei pferde.csv wird vorgegeben angelegt. Sammle die Namen aller Zeilen mit alter größer als 7 in der Liste starke, speichere starke mit json.dump() in pferd.json, lade sie zurück und gib genau Starke: ['Blitz', 'Sturm'] aus.",
+        "instruction": "Schritt 3 – Listen filtern (Woche 6): Die CSV-Datei pferde.csv wird im vorgegebenen Code angelegt. Sammle die Namen aller Zeilen mit alter größer als 7 in der Liste starke, speichere starke mit json.dump() in pferd.json, lade sie zurück und gib genau Starke: ['Blitz', 'Sturm'] aus.",
         "codeTemplate": "import csv\npferde = [\n    {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120},\n    {\"name\": \"Sturm\", \"rasse\": \"Haflinger\", \"alter\": 12, \"punkte\": 150},\n    {\"name\": \"Luna\", \"rasse\": \"Isländer\", \"alter\": 6, \"punkte\": 90},\n]\nwith open(\"pferde.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"rasse\", \"alter\", \"punkte\"])\n    w.writeheader()\n    w.writerows(pferde)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

@@ -118,7 +118,7 @@
         }
       },
       {
-        "instruction": "Die Klasse Held ist vorgegeben. Schreibe Magier(Held) mit `__init__(self, name, mana=50)` und `super()`. Erzeuge Magier(\"Thorin\" ohne zweiten Wert) und gib genau Thorin 50 aus.",
+        "instruction": "Die Klasse Held ist vorgegeben. Schreibe Magier(Held) mit `__init__(self, name, mana=50)` und `super()`. Erzeuge Magier(\"Thorin\") ohne zweiten Wert und gib genau Thorin 50 aus.",
         "codeTemplate": "class Held:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def kaempfe(self):\n        print(f\"{self.name} kämpft mit bloßen Händen.\")\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

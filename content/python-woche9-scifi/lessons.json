@@ -24,7 +24,7 @@
         }
       },
       {
-        "instruction": "Die Datei bordbuch.txt mit drei Zeilen wird vorgegeben angelegt. Lies sie mit read() in inhalt und gib genau Zeilen: 3 aus (Anzahl der Zeilenumbrüche mit inhalt.count(\"\\n\")).",
+        "instruction": "Die Datei bordbuch.txt mit drei Zeilen wird im vorgegebenen Code angelegt. Lies sie mit read() in inhalt und gib genau Zeilen: 3 aus (Anzahl der Zeilenumbrüche mit inhalt.count(\"\\n\")).",
         "codeTemplate": "with open(\"bordbuch.txt\", \"w\") as f:\n    f.write(\"Bordbuch Nebula-7\\n\")\n    f.write(\"Status: Aktiv\\n\")\n    f.write(\"Signal empfangen\\n\")\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -50,7 +50,7 @@
         }
       },
       {
-        "instruction": "Die Datei bordbuch.txt mit zwei Zeilen wird vorgegeben angelegt. Hänge mit \"a\" die Zeile Signal empfangen an und gib danach die Datei zeilenweise aus (for zeile in f, mit strip()), jede Zeile einzeln.",
+        "instruction": "Die Datei bordbuch.txt mit zwei Zeilen wird im vorgegebenen Code angelegt. Hänge mit \"a\" die Zeile Signal empfangen an und gib danach die Datei zeilenweise aus (for zeile in f, mit strip()), jede Zeile einzeln.",
         "codeTemplate": "with open(\"bordbuch.txt\", \"w\") as f:\n    f.write(\"Bordbuch Nebula-7\\n\")\n    f.write(\"Status: Aktiv\\n\")\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -58,7 +58,7 @@
         }
       },
       {
-        "instruction": "Die Datei liste.txt mit Zeilen wie Nova,4 wird vorgegeben angelegt. Lies sie zeilenweise, zerlege jede Zeile mit split(\",\") und gib jeden Eintrag als Name: Zahl aus, z. B. Nova: 4.",
+        "instruction": "Die Datei liste.txt mit Zeilen wie Nova,4 wird im vorgegebenen Code angelegt. Lies sie zeilenweise, zerlege jede Zeile mit split(\",\") und gib jeden Eintrag als Name: Zahl aus, z. B. Nova: 4.",
         "codeTemplate": "with open(\"liste.txt\", \"w\") as f:\n    f.write(\"Nova,4\\n\")\n    f.write(\"Rex,6\\n\")\n    f.write(\"Zara,3\\n\")\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -66,7 +66,7 @@
         }
       },
       {
-        "instruction": "Die Datei bordbuch.txt mit drei Zeilen wird vorgegeben angelegt. Lies alle Zeilen mit readlines() in zeilen und gib genau Zeilen: 3 und in der nächsten Zeile Erste: Bordbuch Nebula-7 aus (mit strip()).",
+        "instruction": "Die Datei bordbuch.txt mit drei Zeilen wird im vorgegebenen Code angelegt. Lies alle Zeilen mit readlines() in zeilen und gib genau Zeilen: 3 und in der nächsten Zeile Erste: Bordbuch Nebula-7 aus (mit strip()).",
         "codeTemplate": "with open(\"bordbuch.txt\", \"w\") as f:\n    f.write(\"Bordbuch Nebula-7\\n\")\n    f.write(\"Status: Aktiv\\n\")\n    f.write(\"Signal empfangen\\n\")\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -207,7 +207,7 @@
         }
       },
       {
-        "instruction": "Die Datei mitglied.json mit dem Dictionary mitglied wird vorgegeben angelegt. Lade sie, erhöhe rang um 1, speichere sie wieder in dieselbe Datei, lade sie erneut und gib genau Rang: 5 aus.",
+        "instruction": "Die Datei mitglied.json mit dem Dictionary mitglied wird im vorgegebenen Code angelegt. Lade sie, erhöhe rang um 1, speichere sie wieder in dieselbe Datei, lade sie erneut und gib genau Rang: 5 aus.",
         "codeTemplate": "import json\nmitglied = {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120}\nwith open(\"mitglied.json\", \"w\") as f:\n    json.dump(mitglied, f)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -253,7 +253,7 @@
         }
       },
       {
-        "instruction": "Die Datei crew.csv wird vorgegeben angelegt (Kopfzeile + drei Zeilen). Lies sie, überspringe die Kopfzeile und addiere alle Werte der zweiten Spalte mit int(). Gib genau Summe: 13 aus.",
+        "instruction": "Die Datei crew.csv wird im vorgegebenen Code angelegt (Kopfzeile + drei Zeilen). Lies sie, überspringe die Kopfzeile und addiere alle Werte der zweiten Spalte mit int(). Gib genau Summe: 13 aus.",
         "codeTemplate": "import csv\nwith open(\"crew.csv\", \"w\", newline=\"\") as f:\n    w = csv.writer(f)\n    w.writerow([\"name\", \"rang\"])\n    w.writerow([\"Nova\", 4])\n    w.writerow([\"Rex\", 6])\n    w.writerow([\"Zara\", 3])\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -261,7 +261,7 @@
         }
       },
       {
-        "instruction": "Die Datei crew.csv wird vorgegeben angelegt. Lies die erste Datenzeile mit next() (nach der Kopfzeile) in erste. Gib genau Text: 44 (erste[1] + erste[1] verkettet Texte) und in der nächsten Zeile Zahl: 8 (int(erste[1]) * 2) aus.",
+        "instruction": "Die Datei crew.csv wird im vorgegebenen Code angelegt. Lies die erste Datenzeile mit next() (nach der Kopfzeile) in erste. Gib genau Text: 44 (erste[1] + erste[1] verkettet Texte) und in der nächsten Zeile Zahl: 8 (int(erste[1]) * 2) aus.",
         "codeTemplate": "import csv\nwith open(\"crew.csv\", \"w\", newline=\"\") as f:\n    w = csv.writer(f)\n    w.writerow([\"name\", \"rang\"])\n    w.writerow([\"Nova\", 4])\n    w.writerow([\"Rex\", 6])\n    w.writerow([\"Zara\", 3])\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -299,7 +299,7 @@
         }
       },
       {
-        "instruction": "Die CSV-Datei crew.csv wird vorgegeben angelegt. Lies sie mit csv.DictReader, wandle rang jeder Zeile mit int() um und sammle die Zeilen in eintraege. Speichere eintraege mit json.dump() in mitglied.json, lade sie wieder und gib genau Anzahl: 3 und in der nächsten Zeile Summe: 13 aus (Summe der rang-Werte).",
+        "instruction": "Die CSV-Datei crew.csv wird im vorgegebenen Code angelegt. Lies sie mit csv.DictReader, wandle rang jeder Zeile mit int() um und sammle die Zeilen in eintraege. Speichere eintraege mit json.dump() in mitglied.json, lade sie wieder und gib genau Anzahl: 3 und in der nächsten Zeile Summe: 13 aus (Summe der rang-Werte).",
         "codeTemplate": "import csv\ncrew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n]\nwith open(\"crew.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"rolle\", \"rang\", \"energie\"])\n    w.writeheader()\n    w.writerows(crew)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -311,7 +311,7 @@
         }
       },
       {
-        "instruction": "Die JSON-Datei mitglied.json mit einer Liste von Dictionaries wird vorgegeben angelegt. Lade sie und schreibe sie mit csv.DictWriter in crew.csv (fieldnames name, rolle, rang, energie). Lies die CSV mit csv.DictReader zurück und gib genau Zeilen: 3 und in der nächsten Zeile Felder: ['name', 'rolle', 'rang', 'energie'] aus (leser.fieldnames).",
+        "instruction": "Die JSON-Datei mitglied.json mit einer Liste von Dictionaries wird im vorgegebenen Code angelegt. Lade sie und schreibe sie mit csv.DictWriter in crew.csv (fieldnames name, rolle, rang, energie). Lies die CSV mit csv.DictReader zurück und gib genau Zeilen: 3 und in der nächsten Zeile Felder: ['name', 'rolle', 'rang', 'energie'] aus (leser.fieldnames).",
         "codeTemplate": "import json\ncrew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n]\nwith open(\"mitglied.json\", \"w\") as f:\n    json.dump(crew, f)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -373,7 +373,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Anhängen: Die Datei bordbuch.txt mit drei Zeilen wird vorgegeben angelegt. Hänge Update: Sonde gestartet an, lies alle Zeilen mit readlines() und gib genau Zeilen: 4 und in der nächsten Zeile Letzte: Update: Sonde gestartet aus (mit strip()).",
+        "instruction": "Schritt 2 – Anhängen: Die Datei bordbuch.txt mit drei Zeilen wird im vorgegebenen Code angelegt. Hänge Update: Sonde gestartet an, lies alle Zeilen mit readlines() und gib genau Zeilen: 4 und in der nächsten Zeile Letzte: Update: Sonde gestartet aus (mit strip()).",
         "codeTemplate": "with open(\"bordbuch.txt\", \"w\") as f:\n    f.write(\"Bordbuch Nebula-7\\n\")\n    f.write(\"Status: Aktiv\\n\")\n    f.write(\"Signal empfangen\\n\")\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -381,7 +381,7 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Sicher zählen: Die Datei bordbuch.txt wird vorgegeben angelegt. Schreibe eine Funktion zeilen_zaehlen(name), die die Zahl der Zeilen zurückgibt – oder 0, wenn die Datei fehlt (try/except FileNotFoundError). Gib genau bordbuch.txt: 3 und in der nächsten Zeile fehlt.txt: 0 aus.",
+        "instruction": "Schritt 3 – Sicher zählen: Die Datei bordbuch.txt wird im vorgegebenen Code angelegt. Schreibe eine Funktion zeilen_zaehlen(name), die die Zahl der Zeilen zurückgibt – oder 0, wenn die Datei fehlt (try/except FileNotFoundError). Gib genau bordbuch.txt: 3 und in der nächsten Zeile fehlt.txt: 0 aus.",
         "codeTemplate": "with open(\"bordbuch.txt\", \"w\") as f:\n    f.write(\"Bordbuch Nebula-7\\n\")\n    f.write(\"Status: Aktiv\\n\")\n    f.write(\"Signal empfangen\\n\")\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -414,7 +414,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Ändern und speichern: Die Datei mitglied.json mit dem Dictionary mitglied wird vorgegeben angelegt. Lade sie, ergänze schild mit dem Wert 80, speichere sie wieder, lade sie erneut und gib genau Schild: 80 und in der nächsten Zeile Eigenschaften: 5 aus.",
+        "instruction": "Schritt 2 – Ändern und speichern: Die Datei mitglied.json mit dem Dictionary mitglied wird im vorgegebenen Code angelegt. Lade sie, ergänze schild mit dem Wert 80, speichere sie wieder, lade sie erneut und gib genau Schild: 80 und in der nächsten Zeile Eigenschaften: 5 aus.",
         "codeTemplate": "import json\nmitglied = {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120}\nwith open(\"mitglied.json\", \"w\") as f:\n    json.dump(mitglied, f)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -422,7 +422,7 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Liste speichern und auswerten: Die Datei mitglied.json mit drei Dictionaries wird vorgegeben angelegt. Lade die Liste und finde mit einer Schleife den Eintrag mit dem höchsten rang. Gib genau Bester: Rex aus.",
+        "instruction": "Schritt 3 – Liste speichern und auswerten: Die Datei mitglied.json mit drei Dictionaries wird im vorgegebenen Code angelegt. Lade die Liste und finde mit einer Schleife den Eintrag mit dem höchsten rang. Gib genau Bester: Rex aus.",
         "codeTemplate": "import json\ncrew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n]\nwith open(\"mitglied.json\", \"w\") as f:\n    json.dump(crew, f)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -451,7 +451,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Auswerten: Die Datei crew.csv mit vier Zeilen wird vorgegeben angelegt. Lies sie mit csv.DictReader, addiere die rang-Werte (int!) und gib genau Summe: 18 und in der nächsten Zeile Durchschnitt: 4.5 aus.",
+        "instruction": "Schritt 2 – Auswerten: Die Datei crew.csv mit vier Zeilen wird im vorgegebenen Code angelegt. Lies sie mit csv.DictReader, addiere die rang-Werte (int!) und gib genau Summe: 18 und in der nächsten Zeile Durchschnitt: 4.5 aus.",
         "codeTemplate": "import csv\ncrew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n    {\"name\": \"Kai\", \"rolle\": \"Pilotin\", \"rang\": 5, \"energie\": 110},\n]\nwith open(\"crew.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"rolle\", \"rang\", \"energie\"])\n    w.writeheader()\n    w.writerows(crew)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -462,7 +462,7 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Filtern: Die Datei crew.csv mit vier Zeilen wird vorgegeben angelegt. Sammle die Namen aller Zeilen, deren rang (als Zahl) größer als 3 ist, in der Liste starke und gib genau Starke: ['Nova', 'Rex', 'Kai'] aus.",
+        "instruction": "Schritt 3 – Filtern: Die Datei crew.csv mit vier Zeilen wird im vorgegebenen Code angelegt. Sammle die Namen aller Zeilen, deren rang (als Zahl) größer als 3 ist, in der Liste starke und gib genau Starke: ['Nova', 'Rex', 'Kai'] aus.",
         "codeTemplate": "import csv\ncrew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n    {\"name\": \"Kai\", \"rolle\": \"Pilotin\", \"rang\": 5, \"energie\": 110},\n]\nwith open(\"crew.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"rolle\", \"rang\", \"energie\"])\n    w.writeheader()\n    w.writerows(crew)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -534,7 +534,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Ort hinzufügen: Die Datei karte.json mit drei Orten wird vorgegeben angelegt. Lade sie, ergänze den Ort Energiezelle mit koordinaten [70, 80] und wert 400, speichere sie wieder, lade sie erneut und gib genau Orte: 4 aus.",
+        "instruction": "Schritt 2 – Ort hinzufügen: Die Datei karte.json mit drei Orten wird im vorgegebenen Code angelegt. Lade sie, ergänze den Ort Energiezelle mit koordinaten [70, 80] und wert 400, speichere sie wieder, lade sie erneut und gib genau Orte: 4 aus.",
         "codeTemplate": "import json\nkarte = {\n    \"Kristallkern\": {\"koordinaten\": (10, 20), \"wert\": 800},\n    \"Sensorchip\": {\"koordinaten\": (30, 40), \"wert\": 300},\n    \"Antimaterie\": {\"koordinaten\": (50, 60), \"wert\": 650},\n}\nwith open(\"karte.json\", \"w\") as f:\n    json.dump(karte, f)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -542,7 +542,7 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Wertvollster Ort: Die Datei karte.json mit vier Orten wird vorgegeben angelegt. Lade sie und finde den Ort mit dem höchsten wert. Gib genau Wertvollster: Kristallkern (800) aus.",
+        "instruction": "Schritt 3 – Wertvollster Ort: Die Datei karte.json mit vier Orten wird im vorgegebenen Code angelegt. Lade sie und finde den Ort mit dem höchsten wert. Gib genau Wertvollster: Kristallkern (800) aus.",
         "codeTemplate": "import json\nkarte = {\n    \"Kristallkern\": {\"koordinaten\": (10, 20), \"wert\": 800},\n    \"Sensorchip\": {\"koordinaten\": (30, 40), \"wert\": 300},\n    \"Antimaterie\": {\"koordinaten\": (50, 60), \"wert\": 650},\n}\nkarte[\"Energiezelle\"] = {\"koordinaten\": [70, 80], \"wert\": 400}\nwith open(\"karte.json\", \"w\") as f:\n    json.dump(karte, f)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -567,7 +567,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Abschließen: Die Datei questlog.json mit drei Einträgen wird vorgegeben angelegt. Lade sie, setze den Status des ersten Eintrags auf \"abgeschlossen\", speichere sie wieder, lade sie erneut und gib genau Erste: abgeschlossen aus.",
+        "instruction": "Schritt 2 – Abschließen: Die Datei questlog.json mit drei Einträgen wird im vorgegebenen Code angelegt. Lade sie, setze den Status des ersten Eintrags auf \"abgeschlossen\", speichere sie wieder, lade sie erneut und gib genau Erste: abgeschlossen aus.",
         "codeTemplate": "import json\nquests = [\n    {\"name\": \"Signal orten\", \"schwierigkeit\": 1, \"status\": \"offen\"},\n    {\"name\": \"Sonde starten\", \"schwierigkeit\": 2, \"status\": \"offen\"},\n    {\"name\": \"Hülle reparieren\", \"schwierigkeit\": 3, \"status\": \"offen\"},\n]\nwith open(\"questlog.json\", \"w\") as f:\n    json.dump(quests, f)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -575,7 +575,7 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Bericht: Die Datei questlog.json wird vorgegeben angelegt (erster Eintrag \"abgeschlossen\"). Lade sie, zähle die Einträge mit Status \"abgeschlossen\" in fertig und schreibe die Zeile Abgeschlossen: 1 (mit fertig) in die Datei bericht.txt. Lies bericht.txt wieder ein und gib genau Bericht: Abgeschlossen: 1 aus (mit strip()).",
+        "instruction": "Schritt 3 – Bericht: Die Datei questlog.json wird im vorgegebenen Code angelegt (erster Eintrag \"abgeschlossen\"). Lade sie, zähle die Einträge mit Status \"abgeschlossen\" in fertig und schreibe die Zeile Abgeschlossen: 1 (mit fertig) in die Datei bericht.txt. Lies bericht.txt wieder ein und gib genau Bericht: Abgeschlossen: 1 aus (mit strip()).",
         "codeTemplate": "import json\nquests = [\n    {\"name\": \"Signal orten\", \"schwierigkeit\": 1, \"status\": \"offen\"},\n    {\"name\": \"Sonde starten\", \"schwierigkeit\": 2, \"status\": \"offen\"},\n    {\"name\": \"Hülle reparieren\", \"schwierigkeit\": 3, \"status\": \"offen\"},\n]\nquests[0][\"status\"] = \"abgeschlossen\"\nwith open(\"questlog.json\", \"w\") as f:\n    json.dump(quests, f)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -616,7 +616,7 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Listen filtern (Woche 6): Die CSV-Datei crew.csv wird vorgegeben angelegt. Sammle die Namen aller Zeilen mit rang größer als 3 in der Liste starke, speichere starke mit json.dump() in mitglied.json, lade sie zurück und gib genau Starke: ['Nova', 'Rex'] aus.",
+        "instruction": "Schritt 3 – Listen filtern (Woche 6): Die CSV-Datei crew.csv wird im vorgegebenen Code angelegt. Sammle die Namen aller Zeilen mit rang größer als 3 in der Liste starke, speichere starke mit json.dump() in mitglied.json, lade sie zurück und gib genau Starke: ['Nova', 'Rex'] aus.",
         "codeTemplate": "import csv\ncrew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n]\nwith open(\"crew.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"rolle\", \"rang\", \"energie\"])\n    w.writeheader()\n    w.writerows(crew)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

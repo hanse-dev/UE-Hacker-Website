@@ -82,26 +82,16 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 ### 3.98 — Rechtschreib- und Verständnisprüfung (Branch `inhalts-pruefung`, in Arbeit)
 
 Nur Deutsch, Maßstab ab 10/11 Jahre (Interaktiv-Kurs Kinder ab 8). Eindeutige Fehler werden direkt
-behoben, Urteilsfragen je Paket als Liste an den Nutzer. Stand und Paket-Reihenfolge: `todo.md`.
+behoben, Urteilsfragen stehen je Paket in `todo.md` (dort auch Stand und Paket-Reihenfolge).
 
-- Mechanischer Pass fertig: `lint:spelling` (cspell) ignoriert jetzt Code-Felder/Code-Blöcke und
-  deckt auch Projekt-`lessons.json`, `python-checks`, Glossar-/Lösungs-Zellen und `kurse.json` ab
-  (4761 statt 1405 Dateien, 0 Funde). Neu `npm run lint:spelling:de` (LanguageTool in Docker,
-  systemunabhängig, lokales Tool `scripts/local-tools/rechtschreibung-de/`, ~6 Min), 0 Funde bei
-  150 geprüften Wörtern in `erlaubt.txt`; `-- --grammatik` liefert Grammatik-Kandidaten.
-- Behoben: KI-Labor Woche 8 Lektions-Zusammenfassungen ohne Umlaute, "Stellawort-Argument"
-  (Woche 6 Pferde Lösungen), `'grosse'` statt `'groesse'` (KI-Labor Woche 2), Brute-Force/Sci-Fi
-  einheitlich geschrieben.
-- Lese-Pass Paket 1 (Interaktiv-Kurs Kinder + Jugendliche) fertig: kaputte Sätze, Fachwörter ohne
-  Erklärung (iterieren, Konkatenation, kapseln), Aufgaben, deren Text nicht zum `expected` passte
-  (fehlende Startwerte, "6 Tränke + 4 dazu" als Produkt). Drei davon auch in EN nachgezogen.
-  BMI-Beispiel (Jugendliche Lektion 8, DE+EN) durch Tempo-Rechner ersetzt.
-- Lese-Pass Paket 2 (Woche 1–5, alle drei Themen) fertig: wenige, kleine Funde (verstümmelte
-  Überschriften wie "Zauberformel 1: Zauber", Fachwörter wie exklusiv/Rumpf/Boolean ohne
-  Einführung, fehlende Kommas, uneinheitliche Titel, ein grammatisch falscher Ausgabesatz samt
-  `expected`). Aufgaben-Änderungen immer auch in den Lösungs-Zellen (`…_6_loesungen`) nachgezogen.
-- Aus dem LanguageTool-Lauf vorab behoben: "Spass" (Startseite), "jede Deck", "Der
-  Asteroiden-Mining", "Gleiches Methodenname", zwei fehlende Kommas.
+- Werkzeuge: `lint:spelling` (cspell, ignoriert Code-Felder, deckt jetzt allen Content ab) und
+  `lint:spelling:de` (LanguageTool in Docker, lokales Tool `scripts/local-tools/rechtschreibung-de/`,
+  ~6 Min, `-- --grammatik` für Grammatik-Kandidaten) — beide bei 0 Funden.
+- Erledigt: Interaktiv-Kurs, 12-Wochen-Kurs Woche 1–12. Aufgabentexte immer in `lessons.json`
+  **und** in der Lösungs-Markdown-Zelle (`…_6_loesungen`) ändern; geänderte Ausgabetexte zusätzlich
+  in `expected`, Vorlage und Lösungs-Code.
+- Pferde/Sci-Fi Woche 6–12 stammen aus dem Abenteuer-Skelett und enthalten noch Abenteuer-Bezeichner
+  im Code (Urteilsfrage in `todo.md`).
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 

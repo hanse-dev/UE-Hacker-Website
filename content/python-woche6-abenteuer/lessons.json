@@ -480,7 +480,7 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Den Stärksten finden: gilde (mit vier Einträgen) ist vorgegeben. Suche mit einer for-Schleife den Eintrag mit dem höchsten Level (merke ihn dir in stärkster) und gib genau Stärkster: Aria aus.",
+        "instruction": "Schritt 3 – Den Stärksten finden: gilde (mit vier Einträgen) ist vorgegeben. Suche mit einer for-Schleife den Eintrag mit dem höchsten Level (merke ihn dir in staerkster) und gib genau Stärkster: Aria aus.",
         "codeTemplate": "gilde = [[\"Aria\", \"Magierin\", 15], [\"Thorin\", \"Krieger\", 12], [\"Luna\", \"Schurkin\", 8]]\ngilde.append([\"Finn\", \"Bogenschütze\", 10])\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
