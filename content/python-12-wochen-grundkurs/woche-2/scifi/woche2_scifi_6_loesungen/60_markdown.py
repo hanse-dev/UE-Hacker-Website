@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 1: Das Raumschiffdock – Aufgabe 2
+"""### Mission 3: Der Asteroidenabbau – Aufgabe 1
 
-Schritt 2 – Addiere alle Energiewerte, teile die Summe durch 4 und gib genau aus: Durchschnittsenergie: 77.0"""
+Schritt 1 – Lege Variablen für beide Asteroiden an und berechne beide Rohwerte (wert_a und wert_b). Gib zwei Zeilen im Format Ceres-9 Wert: 5000.0 aus – die letzte Zeile muss lauten: Vesta-3 Wert: 5400.0"""

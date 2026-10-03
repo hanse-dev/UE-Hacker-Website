@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 2: Das KI-Labor – Aufgabe 3
+"""### Extra-Herausforderung 1: Das Raumschiffdock – Aufgabe 2
 
-Schritt 3 – Addiere alle Genauigkeiten (0.92, 0.88, 0.75), teile durch 3, speichere das Ergebnis in durchschnitt_genauigkeit und gib genau aus: Durchschnittsgenauigkeit: 0.85. Gib danach das beste Modell aus: Bestes Modell: NovaNet"""
+Schritt 2 – Addiere alle Energiewerte, teile die Summe durch 4 und gib genau aus: Durchschnittsenergie: 77.0"""

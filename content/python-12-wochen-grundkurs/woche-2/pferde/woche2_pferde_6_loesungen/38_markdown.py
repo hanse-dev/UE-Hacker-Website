@@ -1,3 +1,5 @@
-"""### Debug-Quest – Aufgabe 2
+"""## 🐛 Debug-Quest
 
-🐛 Bug #2 – Ziel: Das Programm soll Gesamtfutter: 50 kg ausgeben. Was ist falsch?"""
+### Debug-Quest – Aufgabe 1
+
+🐛 Bug #1 – Ziel: Das Programm soll Hallo Comet! Du bist 6 Jahre alt. ausgeben. Was ist falsch?"""

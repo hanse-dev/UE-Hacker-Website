@@ -1,3 +1,5 @@
-"""### Extra challenge 2: The AI Laboratory – Task 2
+"""## 🔥 Extra Challenges
 
-Step 2 – Add all parameter counts, store the sum in total_params and print exactly: Total parameters: 6500000"""
+### Extra challenge 1: The Spaceship Dock – Task 1
+
+Step 1 – Store the four ships (names as text, energy as whole numbers) in variables. Print the heading === DOCK PROTOCOL === and then one f-string line per ship in the format Aurora: energy 80% (the last line must read: Lyra: energy 71%)."""

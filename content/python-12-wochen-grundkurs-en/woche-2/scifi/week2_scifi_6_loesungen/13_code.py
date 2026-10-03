@@ -1,2 +1,3 @@
+crew_count = 300
 deck_count = 12
-print(type(deck_count))
+print(f"Crew: {crew_count}, Decks: {deck_count}")

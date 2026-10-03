@@ -78,6 +78,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.94 | Glossar-Tooltip bei verschachtelten Begriffen | `useLessonContent.js`: ein kombinierter Regex-Durchlauf statt sequenziellem Ersetzen |
 | 3.95 | Offline-Downloads in 3 Formaten (Notebooks, eine `.py`, Einzeldateien je Lektion) | 12 Wochen, Python-Projekte, KI-Labor; `OfflineDownloads.vue`, `pack_notebooks.py`, Details `INHALTE.md` |
 | 3.96 | KI-Labor-Musterlösungen (160) | `task.referenceSolution` (nicht `solution` → kein Lösungs-Button), geprüft von `check_kilabor_solutions.py` |
+| 3.98 | Themen angeglichen (12-Wochen-Kurs) + Lösungs-Reihenfolge | Woche 2: Sci-Fi neue Lektion 8 `input()` + `bool()`-Aufgabe, `len()` in Pferde/Sci-Fi; Woche 3 Pferde ohne `+=`; `scripts/sync_loesungen.py` sortiert `_6_loesungen` in Aufgaben-Reihenfolge (Woche 9 war im Download verschoben); Rest siehe `todo.md` |
 | 3.98 | Rechtschreib- und Verständnisprüfung aller deutschen Inhalte | cspell deckt allen Content ab, neu `lint:spelling:de` (LanguageTool in Docker); alle Kurse gelesen und korrigiert, Themen-Reste in Pferde/Sci-Fi und englische Bezeichner in Woche 12 (DE) bereinigt, Wochen-Check-Fragen zu nicht gelehrtem Stoff ersetzt |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
@@ -86,6 +87,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 - Bulk-Edits an JSON/Notebooks nie per volle Reserialisierung, sondern gezielte Text-Ersetzung + `json.loads()` danach (3.12, 3.16). Seit 3.33 sind 12-Wochen-Notebooks Zellen-Ordner (`NN_*.py`) — keine `.ipynb` als Quelle wieder einführen.
 - Debug-Bugs müssen vom Kernel-Zustand unabhängig sein und dürfen die Lösung nicht verraten. Nach Notebook-Änderung Code-Zellen mit gemeinsamem Namespace per `python3` ausführen.
 - Ein "Fund" aus einer Variante gilt nicht automatisch für alle: vor Massenänderungen alle 3 Varianten × DE/EN grep-prüfen.
+- Lektions-IDs (`lektion-NN`) sind der Fortschritts-Schlüssel — neue Lektionen nur mit neuer ID anhängen, bestehende nie umnummerieren (3.98).
 - Neue Prüf-Logik immer über `useTaskValidation.js` (bzw. `isLessonUnlocked`) laufen lassen — nur dann
   greift der Dev-Modus `dev:skip-checks` automatisch auch im neuen Kurs (3.97).
 - `codeTemplate` einer echten Debug-Aufgabe ist absichtlich kaputt — Generatoren kompilieren nur

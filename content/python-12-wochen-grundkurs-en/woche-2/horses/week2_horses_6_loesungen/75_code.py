@@ -1,4 +1,6 @@
+i1 = 3.5
+i2 = 4.0
+i3 = 2.5
 i4 = 4.5
-average = 3.2
-demanding4 = i4 > average
-print(f"Exercise 4 demanding: {demanding4}")
+i5 = 1.5
+print(f"Average intensity: {(i1 + i2 + i3 + i4 + i5) / 5}")

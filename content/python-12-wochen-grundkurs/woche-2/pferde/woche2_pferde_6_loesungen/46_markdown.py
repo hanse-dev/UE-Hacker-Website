@@ -1,3 +1,3 @@
-"""### Mission 1: Das Futterlager – Aufgabe 3
+"""### Mission 1: Das Futterlager – Aufgabe 2
 
-Schritt 3 – Gesamtgewicht berechnen: Multipliziere Ballen und Gewicht pro Ballen, speichere es in gesamtgewicht und gib genau aus: Gesamtgewicht: 310.0 kg"""
+Schritt 2 – Heuballen erfassen: Speichere ballen = 20 (Ganzzahl) und gewicht_pro_ballen = 15.5 (Kommazahl) und gib genau aus: Ballen: 20, je 15.5 kg"""

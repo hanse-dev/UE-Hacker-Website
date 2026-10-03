@@ -1,3 +1,3 @@
-"""### Systemprotokoll 6: Rechenoperationen – Aufgabe 3
+"""### Systemprotokoll 6: Rechenoperationen – Aufgabe 2
 
-Wiederhole den Text "Ping" mit * dreimal und gib das Ergebnis aus."""
+Verbinde "Stern" und "labor" mit + zu einer Variable system_name und gib genau aus: Systemname: Sternlabor"""

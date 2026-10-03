@@ -1,3 +1,2 @@
-energie = "80"
-verbrauch = 30
-print(f"Verbleibende Energie: {int(energie) - verbrauch}")
+signal = 0
+print(f"Signal aktiv: {bool(signal)}")

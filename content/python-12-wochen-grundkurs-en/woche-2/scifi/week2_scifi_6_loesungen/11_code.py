@@ -1,3 +1,2 @@
-crew_count = 300
-deck_count = 12
-print(f"Crew: {crew_count}, Decks: {deck_count}")
+ship_name = "Starlight"
+print(f"{ship_name} has {len(ship_name)} characters.")

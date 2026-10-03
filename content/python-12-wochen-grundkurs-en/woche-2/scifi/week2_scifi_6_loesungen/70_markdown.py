@@ -1,3 +1,3 @@
-"""### Extra challenge 2: The AI Laboratory – Task 4
+"""### Extra challenge 1: The Spaceship Dock – Task 3
 
-Step 4 – Mark the high-performers with Boolean variables: compare each accuracy with average_acc = 0.85 (above_1 = acc1 > average_acc etc.) and print exactly: MiniMind above average: False"""
+Step 3 – Print the ship with the highest energy (Highest energy: Orion) and then the total energy requirement at 100 units per ship (4 ships × 100), exactly: Energy requirement: 400. Calculate the requirement, don't just type it."""

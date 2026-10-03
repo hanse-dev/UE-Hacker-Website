@@ -1,6 +1,6 @@
-novanet_genauigkeit = 0.92
-deepcore_genauigkeit = 0.88
-minimind_genauigkeit = 0.75
-durchschnitt_genauigkeit = (novanet_genauigkeit + deepcore_genauigkeit + minimind_genauigkeit) / 3
-print(f"Durchschnittsgenauigkeit: {durchschnitt_genauigkeit}")
-print("Bestes Modell: NovaNet")
+aurora_energie = 80
+orion_energie = 95
+nova_energie = 62
+lyra_energie = 71
+durchschnittsenergie = (aurora_energie + orion_energie + nova_energie + lyra_energie) / 4
+print(f"Durchschnittsenergie: {durchschnittsenergie}")

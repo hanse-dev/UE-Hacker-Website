@@ -1,4 +1,3 @@
-bloecke = 12
-energie_pro_block = 45.5
-gesamtenergie = bloecke * energie_pro_block
-print(f"Gesamtenergie: {gesamtenergie}")
+roboter = "R2D2"
+status = 3
+print(f"Hallo {roboter}! Dein Status ist {status}.")

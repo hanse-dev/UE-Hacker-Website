@@ -1,3 +1,3 @@
-"""### The Tournament Training – Task 4
+"""### The Tournament Training – Task 3
 
-Step 4 – compare: store the comparison success2 > success1 in session2_better and print exactly: Session 2 more efficient: True"""
+Step 3 – forecast success: the expected success is participants times success probability. Calculate it for both sessions and print exactly: Expected success session 1: 3.0 and Expected success session 2: 4.0"""

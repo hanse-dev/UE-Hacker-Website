@@ -1,3 +1,3 @@
-"""### Systemprotokoll 4: Kommazahlen – Aufgabe 1
+"""### Systemprotokoll 3: Ganze Zahlen – Aufgabe 2
 
-Lege geschwindigkeit = 3.7 und koordinate_x = 88.25 an und gib genau aus: Position X: 88.25"""
+Lege deck_anzahl = 12 an und gib den Quanten-Typ mit type() aus."""

@@ -1,8 +1,8 @@
-i1 = 3.5
-i2 = 4.0
-i3 = 2.5
-i4 = 4.5
-i5 = 1.5
+dauer1 = 20
+dauer2 = 30
+dauer3 = 15
+dauer4 = 45
+dauer5 = 10
 
-durchschnitt = (i1 + i2 + i3 + i4 + i5) / 5
-print(f"Durchschnittsintensität: {durchschnitt}")
+gesamtdauer = dauer1 + dauer2 + dauer3 + dauer4 + dauer5
+print(f"Gesamtdauer: {gesamtdauer} Minuten")

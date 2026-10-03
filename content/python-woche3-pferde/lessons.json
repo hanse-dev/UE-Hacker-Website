@@ -375,7 +375,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Punkte zählen: Addiere für jede richtige Antwort mit punkte += 100 und gib mit einem f-String genau aus: Punkte: 300",
+        "instruction": "Schritt 2 – Punkte zählen: Addiere für jede richtige Antwort mit punkte = punkte + 100 und gib mit einem f-String genau aus: Punkte: 300",
         "codeTemplate": "antwort1 = True\nantwort2 = False\nantwort3 = True\nantwort4 = True\nantwort5 = False\npunkte = 0\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -448,7 +448,7 @@
         }
       },
       {
-        "instruction": "Punktesystem – Zähle mit erfolge = 0 und erfolge += 1 pro bestandenem Level (die Ergebnisse stehen schon in den Variablen) und gib mit einem f-String genau aus: Erfolge: 3 von 5",
+        "instruction": "Punktesystem – Zähle mit erfolge = 0 und erfolge = erfolge + 1 pro bestandenem Level (die Ergebnisse stehen schon in den Variablen) und gib mit einem f-String genau aus: Erfolge: 3 von 5",
         "codeTemplate": "level1_ok = True\nlevel2_ok = True\nlevel3_ok = False\nlevel4_ok = False\nlevel5_ok = True\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -465,7 +465,7 @@
     "lessonSummary": "Das große Turnier ist ausgewertet – du beherrschst Entscheidungen im Code!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Phasen zählen: Zähle mit erfolgreiche_phasen = 0 und += 1 alle Phasen, die True sind, und gib mit einem f-String genau aus: Erfolgreiche Phasen: 4",
+        "instruction": "Schritt 1 – Phasen zählen: Zähle mit erfolgreiche_phasen = 0 und erfolgreiche_phasen = erfolgreiche_phasen + 1 alle Phasen, die True sind, und gib mit einem f-String genau aus: Erfolgreiche Phasen: 4",
         "codeTemplate": "phase1_ok = True\nphase2_ok = True\nphase3_ok = False\nphase4_ok = True\nphase5_ok = True\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

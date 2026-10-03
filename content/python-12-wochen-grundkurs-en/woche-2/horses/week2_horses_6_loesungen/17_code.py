@@ -1,2 +1,3 @@
-height_m = 1.68
-print(type(height_m))
+feed_amount = 4.25
+days = 2
+print(f"Feed for 2 days: {feed_amount * days} kg")

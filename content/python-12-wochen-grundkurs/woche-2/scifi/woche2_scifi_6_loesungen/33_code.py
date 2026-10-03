@@ -1,3 +1,3 @@
-sensor_wert = "12.5"
-wert_float = float(sensor_wert)
-print(f"Sensorwert verdreifacht: {wert_float * 3}")
+temperatur_str = "300"
+temperatur_int = int(temperatur_str)
+print(f"Temperatur plus 10: {temperatur_int + 10}K")

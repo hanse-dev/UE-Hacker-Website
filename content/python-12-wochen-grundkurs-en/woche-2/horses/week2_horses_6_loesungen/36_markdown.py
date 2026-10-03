@@ -1,5 +1,3 @@
-"""## 🐛 Debug Quest
+"""### Lesson 9: Processing Input – Task 1
 
-### Debug Quest – Task 1
-
-🐛 Bug #1 – Goal: The program should print Hello Comet! You are 6 years old. What is wrong?"""
+Ask with input() for your horse's age, convert the answer with int() and print: Next year: (age plus 1) (When checking, 8 is entered automatically.)"""

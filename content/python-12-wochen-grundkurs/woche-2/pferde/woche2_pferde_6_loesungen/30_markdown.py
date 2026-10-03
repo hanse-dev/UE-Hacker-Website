@@ -1,3 +1,3 @@
-"""### Übung 8: Typen umwandeln – Aufgabe 1
+"""### Übung 7: Rechnen mit Texten – Aufgabe 2
 
-Wandle den Text kg_text mit int() um und gib genau aus: 15 kg Heu reichen für 30 Tage."""
+Lass das Pferd dreimal wiehern: Gib mit * genau aus: Hü! Hü! Hü!"""

@@ -1,11 +1,10 @@
-print("=== MISSIONS-PROTOKOLL ===")
-mars_tage = 200
-mars_ertrag = 5.0
-mars_crew = 6
-mars_erfolg = 0.8
-europa_tage = 300
-europa_ertrag = 8.0
-europa_crew = 9
-europa_erfolg = 0.75
-print(f"Mars: {mars_tage} Tage, Ertrag {mars_ertrag}, Crew {mars_crew}, Erfolg {mars_erfolg}")
-print(f"Europa: {europa_tage} Tage, Ertrag {europa_ertrag}, Crew {europa_crew}, Erfolg {europa_erfolg}")
+print("=== KI-LABOR-PROTOKOLL ===")
+novanet_genauigkeit = 0.92
+novanet_parameter = 1200000
+deepcore_genauigkeit = 0.88
+deepcore_parameter = 5000000
+minimind_genauigkeit = 0.75
+minimind_parameter = 300000
+print(f"NovaNet: Genauigkeit {novanet_genauigkeit}, {novanet_parameter} Parameter")
+print(f"DeepCore: Genauigkeit {deepcore_genauigkeit}, {deepcore_parameter} Parameter")
+print(f"MiniMind: Genauigkeit {minimind_genauigkeit}, {minimind_parameter} Parameter")

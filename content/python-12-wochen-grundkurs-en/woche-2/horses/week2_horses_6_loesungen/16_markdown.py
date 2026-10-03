@@ -1,3 +1,3 @@
-"""### Lesson 4: Canter – Decimal Numbers (float) – Task 2
+"""### Lesson 4: Canter – Decimal Numbers (float) – Task 1
 
-Create the variable height_m with the value 1.68 and print its type with type()."""
+A horse eats 4.25 kg of feed per day. Print for 2 days exactly: Feed for 2 days: 8.5 kg"""

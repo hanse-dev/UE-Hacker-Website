@@ -1,3 +1,3 @@
-"""### Debug Quest – Task 3
+"""### System Protocol 8: Processing Input – Task 1
 
-🐛 Bug #3 – Goal: The program should print: Shield strength: 95 percent. What is wrong?"""
+Ask with input() for the pilot's name and print exactly: Welcome aboard, (name)! (When checking, Nova is entered automatically.)"""

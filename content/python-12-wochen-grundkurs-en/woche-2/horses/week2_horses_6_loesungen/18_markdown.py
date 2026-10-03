@@ -1,3 +1,3 @@
-"""### Lesson 5: Jump – Truth Values (bool) – Task 1
+"""### Lesson 4: Canter – Decimal Numbers (float) – Task 2
 
-Create is_healthy = True and use an f-string to print exactly: Healthy: True"""
+Create the variable height_m with the value 1.68 and print its type with type()."""

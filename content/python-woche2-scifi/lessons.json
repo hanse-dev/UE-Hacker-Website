@@ -64,6 +64,14 @@
           "type": "output_contains",
           "expected": "Klasse: Kreuzer, Typ: <class 'str'>"
         }
+      },
+      {
+        "instruction": "Lege schiff_name = \"Starlight\" an und gib mit einem f-String genau aus: Starlight hat 9 Zeichen. (Die Zahl soll len() berechnen.)",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Starlight hat 9 Zeichen."
+        }
       }
     ]
   },
@@ -257,6 +265,54 @@
         "validation": {
           "type": "output_contains",
           "expected": "Crew: 12"
+        }
+      },
+      {
+        "instruction": "Lege signal = 0 an, wandle es mit bool() um und gib genau aus: Signal aktiv: False",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Signal aktiv: False"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-08",
+    "section": "lektion",
+    "title": "Systemprotokoll 8: Eingaben verarbeiten",
+    "file": "lektion-08.md",
+    "lessonSummary": "Eingabe verarbeitet! input() liefert immer Text – mit int() machst du ihn rechenbar.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus und tippe im Eingabefenster eine ganze Zahl ein, z.B. 70.",
+        "example": true,
+        "codeTemplate": "eingabe = input(\"Energie-Level? \")\nenergie = int(eingabe)\nprint(f\"Nach dem Aufladen: {energie + 10}%\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nach dem Aufladen:"
+        }
+      },
+      {
+        "instruction": "Frage mit input() nach dem Namen des Piloten und gib genau aus: Willkommen an Bord, (Name)! (Beim Prüfen wird automatisch Nova eingegeben.)",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Willkommen an Bord, Nova!",
+          "stdin": [
+            "Nova"
+          ]
+        }
+      },
+      {
+        "instruction": "Frage mit input() nach der Anzahl der Crew-Mitglieder, wandle die Antwort mit int() um und gib aus: Mit dir an Bord: (Anzahl plus 1) (Beim Prüfen wird automatisch 12 eingegeben.)",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mit dir an Bord: 13",
+          "stdin": [
+            "12"
+          ]
         }
       }
     ]

@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Die Raummission – Aufgabe 3
+"""### Extra-Herausforderung 2: Das KI-Labor – Aufgabe 3
 
-Schritt 3 – Berechne den erwarteten Ertrag (Ertrag × Wahrscheinlichkeit) für beide Missionen und gib genau aus: Erwarteter Ertrag Mars: 4.0 und Erwarteter Ertrag Europa: 6.0"""
+Schritt 3 – Addiere alle Genauigkeiten (0.92, 0.88, 0.75), teile durch 3, speichere das Ergebnis in durchschnitt_genauigkeit und gib genau aus: Durchschnittsgenauigkeit: 0.85. Gib danach das beste Modell aus: Bestes Modell: NovaNet"""

@@ -1,3 +1,3 @@
-"""### Das Turnier-Training – Aufgabe 1
+"""### Die Trainingshalle – Aufgabe 4
 
-Schritt 1 – Protokoll: Einheit 1 hat 5 Tage, 300.0 Euro Kosten und 4 Teilnehmer, Einheit 2 hat 3 Tage, 240.0 Euro und 8 Teilnehmer. Lege passende Variablen an, gib die Überschrift === TRAININGSPROTOKOLL === aus und danach mit f-Strings genau: Einheit 1: 5 Tage, 300.0 Euro, 4 Teilnehmer und Einheit 2: 3 Tage, 240.0 Euro, 8 Teilnehmer"""
+Schritt 4 – Anspruchsvoll? Speichere in anspruchsvoll4 den Vergleich i4 > durchschnitt und gib genau aus: Übung 4 anspruchsvoll: True"""

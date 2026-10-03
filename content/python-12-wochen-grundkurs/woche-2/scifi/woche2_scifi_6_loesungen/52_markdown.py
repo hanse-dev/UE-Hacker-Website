@@ -1,3 +1,3 @@
-"""### Mission 3: Der Asteroidenabbau – Aufgabe 1
+"""### Mission 1: Das Energiedepot – Aufgabe 2
 
-Schritt 1 – Lege Variablen für beide Asteroiden an und berechne beide Rohwerte (wert_a und wert_b). Gib zwei Zeilen im Format Ceres-9 Wert: 5000.0 aus – die letzte Zeile muss lauten: Vesta-3 Wert: 5400.0"""
+Schritt 2 – Lege bloecke = 12 (ganze Zahl) und energie_pro_block = 45.5 (Kommazahl) an. Multipliziere sie, speichere das Ergebnis in gesamtenergie und gib genau aus: Gesamtenergie: 546.0"""

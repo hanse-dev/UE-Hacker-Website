@@ -1,3 +1,3 @@
-"""### Übung 7: Rechnen mit Texten – Aufgabe 1
+"""### Übung 6: Rechnen mit Zahlen – Aufgabe 2
 
-Setze die beiden Texte zu voll_name zusammen und gib genau aus: Voller Name: Morgenstern"""
+Jedes der 12 Pferde bekommt 3 kg Heu. Berechne das Gesamtgewicht und gib genau aus: Heu insgesamt: 36 kg"""

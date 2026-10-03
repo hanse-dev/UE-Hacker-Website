@@ -1,3 +1,5 @@
-"""### Mission 1: The Energy Depot – Task 2
+"""## 🐛 Debug Quest
 
-Step 2 – Create blocks = 12 (whole number) and energy_per_block = 45.5 (decimal number). Multiply them, store the result in total_energy and print exactly: Total energy: 546.0"""
+### Debug Quest – Task 1
+
+🐛 Bug #1 – Goal: The program should print: Hello R2D2! Your status is 3. What is wrong?"""

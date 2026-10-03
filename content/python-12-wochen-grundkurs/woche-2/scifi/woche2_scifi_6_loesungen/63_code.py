@@ -1,5 +1,4 @@
-anzahl_schiffe = 4
-energie_pro_schiff = 100
-energiebedarf = anzahl_schiffe * energie_pro_schiff
-print("Höchste Energie: Orion")
-print(f"Energiebedarf: {energiebedarf}")
+wert_a = 5000.0
+wert_b = 5400.0
+b_ist_besser = wert_b > wert_a
+print(f"Vesta-3 ist wertvoller: {b_ist_besser}")

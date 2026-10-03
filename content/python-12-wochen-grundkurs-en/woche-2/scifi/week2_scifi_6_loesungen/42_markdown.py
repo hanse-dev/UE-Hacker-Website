@@ -1,5 +1,3 @@
-"""## ⭐ Missions
+"""### System Protocol 8: Processing Input – Task 2
 
-### Mission 1: The Energy Depot – Task 1
-
-Step 1 – Create technician = \"Kira\" (text) and tech_id = 4021 (whole number). Print exactly: Technician Kira, ID 4021"""
+Ask with input() for the number of crew members, convert the answer with int() and print: With you aboard: (number plus 1) (When checking, 12 is entered automatically.)"""

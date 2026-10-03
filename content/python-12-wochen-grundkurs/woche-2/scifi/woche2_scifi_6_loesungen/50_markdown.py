@@ -1,3 +1,5 @@
-"""### Mission 2: Die Flottenanalyse – Aufgabe 3
+"""## ⭐ Missionen
 
-Schritt 3 – Addiere alle Geschwindigkeiten, teile durch 3, speichere das Ergebnis in durchschnitt_geschwindigkeit und gib genau aus: Durchschnittsgeschwindigkeit: 2.5"""
+### Mission 1: Das Energiedepot – Aufgabe 1
+
+Schritt 1 – Lege techniker = "Kira" (Text) und techniker_id = 4021 (ganze Zahl) an. Gib genau aus: Techniker Kira, ID 4021"""

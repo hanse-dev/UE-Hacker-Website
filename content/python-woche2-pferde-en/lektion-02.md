@@ -21,3 +21,12 @@ print(type(horse_name))   # <class 'str'>
 A **string** is text – anything in quotation marks. Walk is the gait for talking and communicating.
 
 > ⚠️ Even `"7"` is text, because it sits in quotation marks – even though it holds a digit!
+
+## 📏 `len()` – measuring the length
+
+`len()` is a function too: you give it a text, and it hands you back the **number of characters**. Spaces count too!
+
+```python
+horse_name = "Luna"
+print(len(horse_name))    # 4
+```

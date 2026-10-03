@@ -1,3 +1,5 @@
-"""### Debug Quest – Task 2
+"""## 🐛 Debug Quest
 
-🐛 Bug #2 – Goal: The program should print Total feed: 50 kg What is wrong?"""
+### Debug Quest – Task 1
+
+🐛 Bug #1 – Goal: The program should print Hello Comet! You are 6 years old. What is wrong?"""

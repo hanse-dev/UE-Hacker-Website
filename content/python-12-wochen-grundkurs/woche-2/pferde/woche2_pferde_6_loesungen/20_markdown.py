@@ -1,3 +1,3 @@
-"""### Übung 5: Sprung – Wahrheitswerte (bool) – Aufgabe 2
+"""### Übung 5: Sprung – Wahrheitswerte (bool) – Aufgabe 1
 
-Vergleiche das Alter mit 10 und gib das Ergebnis des Vergleichs `alter > 10` mit print() aus."""
+Lege ist_gesund = True an und gib mit einem f-String genau aus: Gesund: True"""

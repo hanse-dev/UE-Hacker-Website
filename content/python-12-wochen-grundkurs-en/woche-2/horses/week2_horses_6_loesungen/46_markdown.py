@@ -1,3 +1,3 @@
-"""### Mission 1: The Feed Store – Task 3
+"""### Mission 1: The Feed Store – Task 2
 
-Step 3 – calculate total weight: multiply bales and weight per bale, store it in total_weight and print exactly: Total weight: 310.0 kg"""
+Step 2 – record hay bales: Store bales = 20 (whole number) and weight_per_bale = 15.5 (decimal number) and print exactly: Bales: 20, at 15.5 kg each"""

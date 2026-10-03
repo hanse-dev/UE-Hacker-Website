@@ -1,3 +1,2 @@
-schild_aktiv = True
-reaktor_ueberhitzt = False
-print(f"Schild aktiv: {schild_aktiv}")
+geschwindigkeit = 3.7
+print(type(geschwindigkeit))

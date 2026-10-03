@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 2: Das KI-Labor – Aufgabe 4
+"""### Extra-Herausforderung 1: Das Raumschiffdock – Aufgabe 3
 
-Schritt 4 – Markiere die Spitzenmodelle mit Boolean-Variablen: vergleiche jede Genauigkeit mit durchschnitt_genauigkeit = 0.85 (ueber_1 = genauigkeit1 > durchschnitt_genauigkeit usw.) und gib genau aus: MiniMind über Durchschnitt: False"""
+Schritt 3 – Gib das Schiff mit der höchsten Energie aus (Höchste Energie: Orion) und danach den gesamten Energiebedarf bei 100 Einheiten pro Schiff (4 Schiffe × 100), genau: Energiebedarf: 400. Berechne den Bedarf, tippe ihn nicht einfach ein."""

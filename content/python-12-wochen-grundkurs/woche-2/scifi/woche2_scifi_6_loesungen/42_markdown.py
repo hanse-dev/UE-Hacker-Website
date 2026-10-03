@@ -1,5 +1,3 @@
-"""## ⭐ Missionen
+"""### Systemprotokoll 8: Eingaben verarbeiten – Aufgabe 2
 
-### Mission 1: Das Energiedepot – Aufgabe 1
-
-Schritt 1 – Lege techniker = "Kira" (Text) und techniker_id = 4021 (ganze Zahl) an. Gib genau aus: Techniker Kira, ID 4021"""
+Frage mit input() nach der Anzahl der Crew-Mitglieder, wandle die Antwort mit int() um und gib aus: Mit dir an Bord: (Anzahl plus 1) (Beim Prüfen wird automatisch 12 eingegeben.)"""

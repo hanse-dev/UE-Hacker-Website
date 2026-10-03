@@ -1,3 +1,3 @@
-"""### Extra challenge 3: The Space Mission – Task 3
+"""### Extra challenge 2: The AI Laboratory – Task 3
 
-Step 3 – Calculate the expected yield (yield × probability) for both missions and print exactly: Expected yield Mars: 4.0 and Expected yield Europa: 6.0"""
+Step 3 – Add all accuracies (0.92, 0.88, 0.75), divide by 3, store the result in average_acc and print exactly: Average accuracy: 0.85. Also print the best model: Best model: NovaNet"""

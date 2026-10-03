@@ -6,6 +6,7 @@ Willkommen, Kommandant:in! Du betrittst das **Datenlabor der Nebula-7** – ein 
 - Die vier Datentypen meistern: **String, Integer, Float, Boolean**
 - Berechnungen und Text-Operationen durchführen
 - Daten mit `int()`, `float()`, `str()` und `bool()` umwandeln
+- Eingaben mit `input()` einlesen und umwandeln
 
 ## 📟 Systemprotokoll 1: String-Befehl
 

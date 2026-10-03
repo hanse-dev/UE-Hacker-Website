@@ -1,5 +1,3 @@
-"""## 🐛 Debug-Quest
+"""### Systemprotokoll 7: Typumwandlung – Aufgabe 3
 
-### Debug-Quest – Aufgabe 1
-
-🐛 Bug #1 – Ziel: Das Programm soll ausgeben: Hallo R2D2! Dein Status ist 3. Was ist falsch?"""
+Lege crew = 12 an und verbinde sie mit + zu dieser Zeile, mit str(): Crew: 12"""

@@ -1,3 +1,3 @@
-"""### System Protocol 4: Floats – Task 1
+"""### System Protocol 3: Integers – Task 2
 
-Create speed = 3.7 and coordinate_x = 88.25 and print exactly: Position X: 88.25"""
+Create deck_count = 12 and print its quantum type with type()."""

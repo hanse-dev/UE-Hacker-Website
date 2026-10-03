@@ -1,3 +1,3 @@
-"""### Systemprotokoll 5: Wahrheitswerte – Aufgabe 1
+"""### Systemprotokoll 4: Kommazahlen – Aufgabe 2
 
-Lege schild_aktiv = True und reaktor_ueberhitzt = False an und gib genau aus: Schild aktiv: True"""
+Lege geschwindigkeit = 3.7 an und gib den Quanten-Typ mit type() aus."""

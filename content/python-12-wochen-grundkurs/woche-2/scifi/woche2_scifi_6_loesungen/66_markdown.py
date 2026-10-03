@@ -1,3 +1,5 @@
-"""### Extra-Herausforderung 2: Das KI-Labor – Aufgabe 2
+"""## 🔥 Extra-Herausforderungen
 
-Schritt 2 – Addiere alle Parameterzahlen, speichere die Summe in gesamt_parameter und gib genau aus: Gesamtparameter: 6500000"""
+### Extra-Herausforderung 1: Das Raumschiffdock – Aufgabe 1
+
+Schritt 1 – Speichere die vier Schiffe (Namen als Text, Energie als ganze Zahlen) in Variablen. Gib die Überschrift === DOCK-PROTOKOLL === aus und danach eine f-String-Zeile pro Schiff im Format Aurora: Energie 80% (die letzte Zeile muss lauten: Lyra: Energie 71%)."""

@@ -1,3 +1,3 @@
-"""### Übung 8: Typen umwandeln – Aufgabe 2
+"""### Übung 8: Typen umwandeln – Aufgabe 1
 
-Wandle den Text portion_text mit float() um, verdopple die Portion und gib genau aus: Doppelte Portion: 9.0 kg"""
+Wandle den Text kg_text mit int() um und gib genau aus: 15 kg Heu reichen für 30 Tage."""

@@ -19,3 +19,12 @@ print(type(schiff_name))   # <class 'str'>
 ## 🔤 Strings – Textdaten
 
 Ein **String** ist jeder Text in Anführungszeichen – auch wenn er wie eine Zahl aussieht: `"250"` ist Text, keine Zahl!
+
+## 📏 `len()` – die Länge messen
+
+`len()` ist ebenfalls eine Funktion: Du gibst ihr einen Text, und sie liefert dir die **Anzahl der Zeichen** zurück. Leerzeichen zählen mit!
+
+```python
+planet = "Mars"
+print(len(planet))    # 4
+```

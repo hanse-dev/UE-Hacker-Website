@@ -1,3 +1,3 @@
-"""### Lesson 8: Converting Types – Task 1
+"""### Lesson 7: Calculating with Text – Task 2
 
-Convert the text kg_text with int() and print exactly: 15 kg of hay will last 30 days."""
+Make the horse neigh three times: use * to print exactly: Neigh! Neigh! Neigh!"""

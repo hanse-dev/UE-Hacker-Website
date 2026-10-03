@@ -1,3 +1,3 @@
-"""### System Protocol 6: Operations – Task 3
+"""### System Protocol 6: Operations – Task 2
 
-Repeat the text \"Ping\" three times with * and print the result."""
+Join \"Star\" and \"lab\" with + into a variable system_name and print exactly: System name: Starlab"""

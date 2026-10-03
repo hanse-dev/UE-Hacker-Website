@@ -1,5 +1,3 @@
-"""## 🐛 Debug Quest
+"""### System Protocol 7: Type Conversion – Task 3
 
-### Debug Quest – Task 1
-
-🐛 Bug #1 – Goal: The program should print: Hello R2D2! Your status is 3. What is wrong?"""
+Create crew = 12 and join it with + into this line, using str(): Crew: 12"""

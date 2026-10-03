@@ -1,3 +1,3 @@
-pferd = "Comet"
-alter = 6
-print(f"Hallo {pferd}! Du bist {alter} Jahre alt.")
+alter_text = input("Alter deines Pferdes: ")
+alter = int(alter_text)
+print(f"Nächstes Jahr: {alter + 1} Jahre")

@@ -1,3 +1,3 @@
-techniker = "Kira"
-techniker_id = 4021
-print(f"Techniker {techniker}, ID {techniker_id}")
+eingabe = input("Wie viele Crew-Mitglieder? ")
+crew = int(eingabe)
+print(f"Mit dir an Bord: {crew + 1}")

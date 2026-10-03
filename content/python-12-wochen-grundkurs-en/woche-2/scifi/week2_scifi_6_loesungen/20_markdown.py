@@ -1,3 +1,3 @@
-"""### System Protocol 5: Booleans – Task 2
+"""### System Protocol 5: Booleans – Task 1
 
-Create alarm_active = False and print its quantum type with type()."""
+Create shield_active = True and reactor_overheated = False and print exactly: Shield active: True"""

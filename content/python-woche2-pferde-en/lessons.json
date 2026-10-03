@@ -64,6 +64,14 @@
           "type": "output_contains",
           "expected": "<class 'str'>"
         }
+      },
+      {
+        "instruction": "Use an f-string to print exactly: Hanoverian has 10 characters. (len() must compute the number.)",
+        "codeTemplate": "breed = \"Hanoverian\"\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hanoverian has 10 characters."
+        }
       }
     ]
   },

@@ -1,3 +1,3 @@
-"""### Extra challenge 3: The Space Mission – Task 2
+"""### Extra challenge 2: The AI Laboratory – Task 2
 
-Step 2 – Add the total yield of both missions and the total crew deployment. Print exactly: Total yield: 13.0 and Total crew: 15"""
+Step 2 – Add all parameter counts, store the sum in total_params and print exactly: Total parameters: 6500000"""

@@ -1,3 +1,5 @@
-wiehern = "Hü! "
+name = "Morgen"
+zusatz = "stern"
 
-print(wiehern * 3)
+voll_name = name + zusatz
+print(f"Voller Name: {voll_name}")

@@ -1,3 +1,3 @@
-"""### Debug Quest – Task 2
+"""### System Protocol 7: Type Conversion – Task 4
 
-🐛 Bug #2 – Goal: The program should calculate and print the remaining energy: Remaining energy: 50. What is wrong?"""
+Create signal = 0, convert it with bool() and print exactly: Signal active: False"""

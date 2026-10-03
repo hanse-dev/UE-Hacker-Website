@@ -1,5 +1,4 @@
-name = "Morgen"
-zusatz = "stern"
+pferde = 12
+heu_pro_pferd = 3
 
-voll_name = name + zusatz
-print(f"Voller Name: {voll_name}")
+print(f"Heu insgesamt: {pferde * heu_pro_pferd} kg")

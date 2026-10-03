@@ -1,3 +1,5 @@
-"""### Mission 1: Das Energiedepot – Aufgabe 2
+"""## 🐛 Debug-Quest
 
-Schritt 2 – Lege bloecke = 12 (ganze Zahl) und energie_pro_block = 45.5 (Kommazahl) an. Multipliziere sie, speichere das Ergebnis in gesamtenergie und gib genau aus: Gesamtenergie: 546.0"""
+### Debug-Quest – Aufgabe 1
+
+🐛 Bug #1 – Ziel: Das Programm soll ausgeben: Hallo R2D2! Dein Status ist 3. Was ist falsch?"""

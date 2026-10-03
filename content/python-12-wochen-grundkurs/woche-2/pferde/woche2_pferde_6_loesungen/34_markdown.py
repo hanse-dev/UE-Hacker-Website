@@ -1,3 +1,3 @@
-"""### Übung 9: Eingaben verarbeiten
+"""### Übung 8: Typen umwandeln – Aufgabe 2
 
-Frage mit input() nach dem Alter deines Pferdes, wandle die Antwort mit int() um und gib aus: Nächstes Jahr: (Alter plus 1) Jahre (Beim Prüfen wird automatisch 8 eingegeben.)"""
+Wandle den Text portion_text mit float() um, verdopple die Portion und gib genau aus: Doppelte Portion: 9.0 kg"""

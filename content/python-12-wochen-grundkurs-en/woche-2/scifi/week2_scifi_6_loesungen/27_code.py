@@ -1,2 +1,2 @@
-system_name = "Star" + "lab"
-print(f"System name: {system_name}")
+planets = 9
+print(f"Per sector: {planets / 3}")

@@ -1,5 +1,3 @@
-"""## 🔥 Extra-Herausforderungen
+"""### Mission 2: Die Flottenanalyse – Aufgabe 3
 
-### Extra-Herausforderung 1: Das Raumschiffdock – Aufgabe 1
-
-Schritt 1 – Speichere die vier Schiffe (Namen als Text, Energie als ganze Zahlen) in Variablen. Gib die Überschrift === DOCK-PROTOKOLL === aus und danach eine f-String-Zeile pro Schiff im Format Aurora: Energie 80% (die letzte Zeile muss lauten: Lyra: Energie 71%)."""
+Schritt 3 – Addiere alle Geschwindigkeiten, teile durch 3, speichere das Ergebnis in durchschnitt_geschwindigkeit und gib genau aus: Durchschnittsgeschwindigkeit: 2.5"""

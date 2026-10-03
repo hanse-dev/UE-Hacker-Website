@@ -1,3 +1,3 @@
-"""### Systemprotokoll 6: Rechenoperationen – Aufgabe 2
+"""### Systemprotokoll 6: Rechenoperationen – Aufgabe 1
 
-Verbinde "Stern" und "labor" mit + zu einer Variable system_name und gib genau aus: Systemname: Sternlabor"""
+Lege planeten = 9 an. Gib genau aus: Pro Sektor: 3.0 (teile die Planeten in einem f-String durch 3)."""

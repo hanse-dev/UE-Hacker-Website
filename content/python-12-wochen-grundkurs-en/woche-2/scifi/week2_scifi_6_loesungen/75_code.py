@@ -1,6 +1,5 @@
-yield1 = 5.0
-yield2 = 8.0
-crew1 = 6
-crew2 = 9
-print(f"Total yield: {yield1 + yield2}")
-print(f"Total crew: {crew1 + crew2}")
+params1 = 1200000
+params2 = 5000000
+params3 = 300000
+total_params = params1 + params2 + params3
+print(f"Total parameters: {total_params}")

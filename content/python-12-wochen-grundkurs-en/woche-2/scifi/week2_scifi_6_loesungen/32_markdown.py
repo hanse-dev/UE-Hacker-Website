@@ -1,3 +1,3 @@
-"""### System Protocol 7: Type Conversion – Task 2
+"""### System Protocol 7: Type Conversion – Task 1
 
-Create sensor_value = \"12.5\", convert it with float() and print exactly: Sensor value tripled: 37.5"""
+Create temperature_str = \"300\", convert it with int() and print exactly: Temperature plus 10: 310K"""

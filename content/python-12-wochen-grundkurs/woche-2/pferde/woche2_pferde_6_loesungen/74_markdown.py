@@ -1,3 +1,3 @@
-"""### Die Trainingshalle – Aufgabe 4
+"""### Die Trainingshalle – Aufgabe 3
 
-Schritt 4 – Anspruchsvoll? Speichere in anspruchsvoll4 den Vergleich i4 > durchschnitt und gib genau aus: Übung 4 anspruchsvoll: True"""
+Schritt 3 – Durchschnittsintensität: Addiere die fünf Intensitäten, teile durch 5 und gib genau aus: Durchschnittsintensität: 3.2"""

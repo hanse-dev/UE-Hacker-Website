@@ -1,1 +1,2 @@
-print(80 > 50)
+alarm_aktiv = False
+print(type(alarm_aktiv))

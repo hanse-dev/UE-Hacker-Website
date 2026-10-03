@@ -1,6 +1,8 @@
-aurora_energie = 80
-orion_energie = 95
-nova_energie = 62
-lyra_energie = 71
-durchschnittsenergie = (aurora_energie + orion_energie + nova_energie + lyra_energie) / 4
-print(f"Durchschnittsenergie: {durchschnittsenergie}")
+ceres_masse = 1000
+ceres_rate = 5.0
+wert_a = ceres_masse * ceres_rate
+vesta_masse = 900
+vesta_rate = 6.0
+wert_b = vesta_masse * vesta_rate
+print(f"Ceres-9 Wert: {wert_a}")
+print(f"Vesta-3 Wert: {wert_b}")

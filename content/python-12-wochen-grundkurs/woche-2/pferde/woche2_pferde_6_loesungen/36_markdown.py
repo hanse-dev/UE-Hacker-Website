@@ -1,5 +1,3 @@
-"""## 🐛 Debug-Quest
+"""### Übung 9: Eingaben verarbeiten
 
-### Debug-Quest – Aufgabe 1
-
-🐛 Bug #1 – Ziel: Das Programm soll Hallo Comet! Du bist 6 Jahre alt. ausgeben. Was ist falsch?"""
+Frage mit input() nach dem Alter deines Pferdes, wandle die Antwort mit int() um und gib aus: Nächstes Jahr: (Alter plus 1) Jahre (Beim Prüfen wird automatisch 8 eingegeben.)"""

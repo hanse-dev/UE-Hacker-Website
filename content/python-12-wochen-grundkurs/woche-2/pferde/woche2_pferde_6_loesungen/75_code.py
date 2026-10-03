@@ -1,5 +1,8 @@
+i1 = 3.5
+i2 = 4.0
+i3 = 2.5
 i4 = 4.5
-durchschnitt = 3.2
+i5 = 1.5
 
-anspruchsvoll4 = i4 > durchschnitt
-print(f"Übung 4 anspruchsvoll: {anspruchsvoll4}")
+durchschnitt = (i1 + i2 + i3 + i4 + i5) / 5
+print(f"Durchschnittsintensität: {durchschnitt}")

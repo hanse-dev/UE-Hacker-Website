@@ -1,3 +1,2 @@
-alter = 7
-
-print(alter > 10)
+ist_gesund = True
+print(f"Gesund: {ist_gesund}")

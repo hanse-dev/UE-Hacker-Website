@@ -1,4 +1,3 @@
-kg_text = "15"
+wiehern = "Hü! "
 
-zahl = int(kg_text)
-print(f"{zahl} kg Heu reichen für {zahl * 2} Tage.")
+print(wiehern * 3)

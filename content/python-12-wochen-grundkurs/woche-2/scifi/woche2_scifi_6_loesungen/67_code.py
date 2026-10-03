@@ -1,5 +1,9 @@
-novanet_parameter = 1200000
-deepcore_parameter = 5000000
-minimind_parameter = 300000
-gesamt_parameter = novanet_parameter + deepcore_parameter + minimind_parameter
-print(f"Gesamtparameter: {gesamt_parameter}")
+print("=== DOCK-PROTOKOLL ===")
+aurora_energie = 80
+orion_energie = 95
+nova_energie = 62
+lyra_energie = 71
+print(f"Aurora: Energie {aurora_energie}%")
+print(f"Orion: Energie {orion_energie}%")
+print(f"Nova: Energie {nova_energie}%")
+print(f"Lyra: Energie {lyra_energie}%")

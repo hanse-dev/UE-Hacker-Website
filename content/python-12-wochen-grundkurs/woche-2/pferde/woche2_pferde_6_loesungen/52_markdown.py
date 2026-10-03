@@ -1,3 +1,3 @@
-"""### Mission 2: Die Reitstunde – Aufgabe 3
+"""### Mission 2: Die Reitstunde – Aufgabe 2
 
-Schritt 3 – Durchschnittszeit: Teile die Gesamtzeit durch 3, speichere das Ergebnis in durchschnitt und gib genau aus: Durchschnitt: 45.0 Minuten"""
+Schritt 2 – Gesamtzeit: Addiere alle drei Reitzeiten in der Variable gesamtzeit und gib genau aus: Gesamtzeit: 135 Minuten"""

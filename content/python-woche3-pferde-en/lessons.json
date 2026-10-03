@@ -375,7 +375,7 @@
         }
       },
       {
-        "instruction": "Step 2 – Count points: For each correct answer add points += 100 and print exactly, using an f-string: Points: 300",
+        "instruction": "Step 2 – Count points: For each correct answer add points = points + 100 and print exactly, using an f-string: Points: 300",
         "codeTemplate": "answer1 = True\nanswer2 = False\nanswer3 = True\nanswer4 = True\nanswer5 = False\npoints = 0\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
@@ -448,7 +448,7 @@
         }
       },
       {
-        "instruction": "Point system – Count with successes = 0 and successes += 1 for each passed level (the results are already in the variables) and print exactly, using an f-string: Successes: 3 of 5",
+        "instruction": "Point system – Count with successes = 0 and successes = successes + 1 for each passed level (the results are already in the variables) and print exactly, using an f-string: Successes: 3 of 5",
         "codeTemplate": "level1_ok = True\nlevel2_ok = True\nlevel3_ok = False\nlevel4_ok = False\nlevel5_ok = True\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
@@ -465,7 +465,7 @@
     "lessonSummary": "The grand tournament is evaluated – you master decisions in code!",
     "tasks": [
       {
-        "instruction": "Step 1 – Count phases: Count all phases that are True with successful_phases = 0 and += 1, and print exactly, using an f-string: Successful phases: 4",
+        "instruction": "Step 1 – Count phases: Count all phases that are True with successful_phases = 0 and successful_phases = successful_phases + 1, and print exactly, using an f-string: Successful phases: 4",
         "codeTemplate": "phase1_ok = True\nphase2_ok = True\nphase3_ok = False\nphase4_ok = True\nphase5_ok = True\n\n# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",

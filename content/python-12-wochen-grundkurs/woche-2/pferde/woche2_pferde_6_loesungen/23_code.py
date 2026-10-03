@@ -1,4 +1,3 @@
-pferde = 12
-boxen = 4
+alter = 7
 
-print(f"Pferde pro Box: {pferde / boxen}")
+print(alter > 10)

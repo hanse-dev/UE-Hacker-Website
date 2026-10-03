@@ -1,3 +1,3 @@
-"""### The Training Hall – Task 2
+"""### The Training Hall – Task 1
 
-Step 2 – total duration: add up all five durations in total_duration and print exactly: Total duration: 120 minutes"""
+Step 1 – description: create exercise1 = \"Circles\" (intensity 3.5, duration 20 minutes) and exercise2 = \"Canter Intervals\" (intensity 4.0, duration 30 minutes). Print the heading === TRAINING HALL PROTOCOL === and then with f-strings exactly: Circles: intensity 3.5, 20 minutes and Canter Intervals: intensity 4.0, 30 minutes"""

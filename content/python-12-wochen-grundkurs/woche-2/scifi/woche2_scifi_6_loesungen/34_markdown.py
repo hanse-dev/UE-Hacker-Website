@@ -1,3 +1,3 @@
-"""### Systemprotokoll 7: Typumwandlung – Aufgabe 3
+"""### Systemprotokoll 7: Typumwandlung – Aufgabe 2
 
-Lege crew = 12 an und verbinde sie mit + zu dieser Zeile, mit str(): Crew: 12"""
+Lege sensor_wert = "12.5" an, wandle sie mit float() um und gib genau aus: Sensorwert verdreifacht: 37.5"""

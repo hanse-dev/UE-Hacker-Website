@@ -1,14 +1,5 @@
-ship1 = "Aurora"
-energy1 = 80
-ship2 = "Vega"
-energy2 = 65
-ship3 = "Orion"
-energy3 = 92
-ship4 = "Lyra"
-energy4 = 71
-
-print("=== DOCK PROTOCOL ===")
-print(f"{ship1}: energy {energy1}%")
-print(f"{ship2}: energy {energy2}%")
-print(f"{ship3}: energy {energy3}%")
-print(f"{ship4}: energy {energy4}%")
+speed1 = 2.5
+speed2 = 3.5
+speed3 = 1.5
+average_speed = (speed1 + speed2 + speed3) / 3
+print(f"Average speed: {average_speed}")

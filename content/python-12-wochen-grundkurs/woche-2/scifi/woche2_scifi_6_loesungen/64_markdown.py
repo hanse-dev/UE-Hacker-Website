@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 2: Das KI-Labor – Aufgabe 1
+"""### Mission 3: Der Asteroidenabbau – Aufgabe 3
 
-Schritt 1 – Lege Variablen für alle drei Modelle an. Gib die Überschrift === KI-LABOR-PROTOKOLL === aus und eine f-String-Zeile pro Modell im Format NovaNet: Genauigkeit 0.92, 1200000 Parameter (die letzte Zeile muss lauten: MiniMind: Genauigkeit 0.75, 300000 Parameter)."""
+Schritt 3 – Berechne den Durchschnittswert beider Asteroiden und gib genau aus: Durchschnittswert: 5200.0 – gib danach deine Mining-Entscheidung aus: Mining-Entscheidung: Vesta-3"""

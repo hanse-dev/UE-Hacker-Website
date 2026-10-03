@@ -6,6 +6,7 @@ Welcome, Commander! You enter the **Data Lab of Nebula-7** – a place where the
 - Master the four data types: **String, Integer, Float, Boolean**
 - Perform calculations and text operations
 - Convert data with `int()`, `float()`, `str()` and `bool()`
+- Read input with `input()` and convert it
 
 ## 📟 System Protocol 1: String Command
 

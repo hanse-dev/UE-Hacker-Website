@@ -1,2 +1,2 @@
-schildstaerke = 95
-print(f"Schildstärke: {schildstaerke} Prozent")
+name = input("Name des Piloten? ")
+print(f"Willkommen an Bord, {name}!")

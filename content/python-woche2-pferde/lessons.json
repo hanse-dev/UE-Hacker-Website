@@ -64,6 +64,14 @@
           "type": "output_contains",
           "expected": "<class 'str'>"
         }
+      },
+      {
+        "instruction": "Gib mit einem f-String genau aus: Hannoveraner hat 12 Zeichen. (Die Zahl soll len() berechnen.)",
+        "codeTemplate": "rasse = \"Hannoveraner\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hannoveraner hat 12 Zeichen."
+        }
       }
     ]
   },

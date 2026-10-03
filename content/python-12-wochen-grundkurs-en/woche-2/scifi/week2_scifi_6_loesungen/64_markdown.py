@@ -1,3 +1,3 @@
-"""### Extra challenge 2: The AI Laboratory – Task 1
+"""### Mission 3: The Asteroid Mining – Task 3
 
-Step 1 – Create variables for all three models. Print the heading === AI LAB PROTOCOL === and one f-string line per model in the format NovaNet: accuracy 0.92, 1200000 parameters (the last line must read: MiniMind: accuracy 0.75, 300000 parameters)."""
+Step 3 – Calculate the average value of both asteroids and print exactly: Average value: 5200.0 – then print your mining decision: Mining decision: Vesta-3"""

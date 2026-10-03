@@ -64,6 +64,14 @@
           "type": "output_contains",
           "expected": "Class: Cruiser, type: <class 'str'>"
         }
+      },
+      {
+        "instruction": "Create ship_name = \"Starlight\" and use an f-string to print exactly: Starlight has 9 characters. (len() must compute the number.)",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Starlight has 9 characters."
+        }
       }
     ]
   },
@@ -257,6 +265,54 @@
         "validation": {
           "type": "output_contains",
           "expected": "Crew: 12"
+        }
+      },
+      {
+        "instruction": "Create signal = 0, convert it with bool() and print exactly: Signal active: False",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Signal active: False"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-08",
+    "section": "lektion",
+    "title": "System Protocol 8: Processing Input",
+    "file": "lektion-08.md",
+    "lessonSummary": "Input processed! input() always returns text – with int() you make it usable for calculations.",
+    "tasks": [
+      {
+        "instruction": "Run this example and type a whole number into the input box, e.g. 70.",
+        "example": true,
+        "codeTemplate": "answer = input(\"Energy level? \")\nenergy = int(answer)\nprint(f\"After charging: {energy + 10}%\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "After charging:"
+        }
+      },
+      {
+        "instruction": "Ask with input() for the pilot's name and print exactly: Welcome aboard, (name)! (When checking, Nova is entered automatically.)",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Welcome aboard, Nova!",
+          "stdin": [
+            "Nova"
+          ]
+        }
+      },
+      {
+        "instruction": "Ask with input() for the number of crew members, convert the answer with int() and print: With you aboard: (number plus 1) (When checking, 12 is entered automatically.)",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "With you aboard: 13",
+          "stdin": [
+            "12"
+          ]
         }
       }
     ]

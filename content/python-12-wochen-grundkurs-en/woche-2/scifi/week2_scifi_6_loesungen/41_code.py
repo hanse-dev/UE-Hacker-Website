@@ -1,2 +1,2 @@
-shield_strength = 95
-print(f"Shield strength: {shield_strength} percent")
+name = input("Name of the pilot? ")
+print(f"Welcome aboard, {name}!")

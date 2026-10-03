@@ -1,3 +1,3 @@
-"""### Übung 7: Rechnen mit Texten – Aufgabe 2
+"""### Übung 7: Rechnen mit Texten – Aufgabe 1
 
-Lass das Pferd dreimal wiehern: Gib mit * genau aus: Hü! Hü! Hü!"""
+Setze die beiden Texte zu voll_name zusammen und gib genau aus: Voller Name: Morgenstern"""

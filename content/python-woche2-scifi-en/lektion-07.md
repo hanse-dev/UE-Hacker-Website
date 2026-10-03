@@ -22,4 +22,11 @@ crew = 12
 print("Crew: " + str(crew))
 ```
 
+`bool()` turns a value into a truth value: `0` becomes `False`, any other number becomes `True`:
+
+```python
+signal = 1
+print(bool(signal))    # True
+```
+
 > 💡 With f-strings you don't need `str()` – they convert automatically.

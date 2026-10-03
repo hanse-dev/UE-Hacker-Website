@@ -1,2 +1,3 @@
-age = 9
-print(f"Age: {age} years")
+breed = "Hanoverian"
+
+print(f"{breed} has {len(breed)} characters.")

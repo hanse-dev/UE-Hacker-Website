@@ -1,3 +1,2 @@
-robot = "R2D2"
-status = 3
-print(f"Hello {robot}! Your status is {status}.")
+crew = 12
+print("Crew: " + str(crew))

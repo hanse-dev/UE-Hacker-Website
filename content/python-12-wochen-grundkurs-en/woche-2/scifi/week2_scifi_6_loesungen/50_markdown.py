@@ -1,3 +1,5 @@
-"""### Mission 2: The Fleet Analysis – Task 3
+"""## ⭐ Missions
 
-Step 3 – Add all speeds, divide by 3, store the result in average_speed and print exactly: Average speed: 2.5"""
+### Mission 1: The Energy Depot – Task 1
+
+Step 1 – Create technician = \"Kira\" (text) and tech_id = 4021 (whole number). Print exactly: Technician Kira, ID 4021"""

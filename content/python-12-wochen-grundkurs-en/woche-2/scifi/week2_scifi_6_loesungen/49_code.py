@@ -1,5 +1,2 @@
-crew1 = 120
-crew2 = 80
-crew3 = 200
-total_crew = crew1 + crew2 + crew3
-print(f"Total crew: {total_crew}")
+shield_strength = 95
+print(f"Shield strength: {shield_strength} percent")

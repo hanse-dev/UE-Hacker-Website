@@ -1,3 +1,3 @@
-"""### The Feed Room – Task 3
+"""### The Feed Room – Task 2
 
-Step 3 – average: divide the total weight by 8 and print exactly: Average: 25.0 kg"""
+Step 2 – total weight: add up all 8 weights in total and print exactly: Total weight: 200.0 kg"""

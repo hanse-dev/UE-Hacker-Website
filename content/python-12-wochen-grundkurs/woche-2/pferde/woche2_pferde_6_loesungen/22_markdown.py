@@ -1,3 +1,3 @@
-"""### Übung 6: Rechnen mit Zahlen – Aufgabe 1
+"""### Übung 5: Sprung – Wahrheitswerte (bool) – Aufgabe 2
 
-12 Pferde stehen in 4 Boxen. Gib genau aus: Pferde pro Box: 3.0"""
+Vergleiche das Alter mit 10 und gib das Ergebnis des Vergleichs `alter > 10` mit print() aus."""

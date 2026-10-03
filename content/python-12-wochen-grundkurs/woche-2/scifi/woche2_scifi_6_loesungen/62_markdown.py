@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 1: Das Raumschiffdock – Aufgabe 3
+"""### Mission 3: Der Asteroidenabbau – Aufgabe 2
 
-Schritt 3 – Gib das Schiff mit der höchsten Energie aus (Höchste Energie: Orion) und danach den gesamten Energiebedarf bei 100 Einheiten pro Schiff (4 Schiffe × 100), genau: Energiebedarf: 400. Berechne den Bedarf, tippe ihn nicht einfach ein."""
+Schritt 2 – Vergleiche die Werte (starte mit wert_a = 5000.0 und wert_b = 5400.0): speichere wert_b > wert_a in der Boolean-Variable b_ist_besser und gib genau aus: Vesta-3 ist wertvoller: True"""

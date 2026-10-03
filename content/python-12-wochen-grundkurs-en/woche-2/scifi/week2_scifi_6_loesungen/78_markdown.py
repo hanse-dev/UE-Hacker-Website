@@ -1,3 +1,3 @@
-"""### Extra challenge 3: The Space Mission – Task 4
+"""### Extra challenge 2: The AI Laboratory – Task 4
 
-Step 4 – Store exp2 > exp1 (with exp1 = 4.0 and exp2 = 6.0) in a Boolean variable europa_better and print exactly: Europa is more worthwhile: True"""
+Step 4 – Mark the high-performers with Boolean variables: compare each accuracy with average_acc = 0.85 (above_1 = acc1 > average_acc etc.) and print exactly: MiniMind above average: False"""

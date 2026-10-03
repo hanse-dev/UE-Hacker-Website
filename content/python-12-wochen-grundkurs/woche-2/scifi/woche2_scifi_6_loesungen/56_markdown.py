@@ -1,3 +1,3 @@
-"""### Mission 3: Der Asteroidenabbau – Aufgabe 3
+"""### Mission 2: Die Flottenanalyse – Aufgabe 2
 
-Schritt 3 – Berechne den Durchschnittswert beider Asteroiden und gib genau aus: Durchschnittswert: 5200.0 – gib danach deine Mining-Entscheidung aus: Mining-Entscheidung: Vesta-3"""
+Schritt 2 – Addiere alle Crew-Größen, speichere die Summe in gesamt_crew und gib genau aus: Gesamt-Crew: 400 (lege die Schiffs-Variablen dafür erneut an)."""

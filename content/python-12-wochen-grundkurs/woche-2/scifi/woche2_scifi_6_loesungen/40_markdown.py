@@ -1,3 +1,3 @@
-"""### Debug-Quest – Aufgabe 3
+"""### Systemprotokoll 8: Eingaben verarbeiten – Aufgabe 1
 
-🐛 Bug #3 – Ziel: Das Programm soll ausgeben: Schildstärke: 95 Prozent. Was ist falsch?"""
+Frage mit input() nach dem Namen des Piloten und gib genau aus: Willkommen an Bord, (Name)! (Beim Prüfen wird automatisch Nova eingegeben.)"""

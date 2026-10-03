@@ -1,8 +1,10 @@
+uebung1 = "Volten"
+intensitaet1 = 3.5
 dauer1 = 20
+uebung2 = "Galoppintervall"
+intensitaet2 = 4.0
 dauer2 = 30
-dauer3 = 15
-dauer4 = 45
-dauer5 = 10
 
-gesamtdauer = dauer1 + dauer2 + dauer3 + dauer4 + dauer5
-print(f"Gesamtdauer: {gesamtdauer} Minuten")
+print("=== TRAININGSHALLE-PROTOKOLL ===")
+print(f"{uebung1}: Intensität {intensitaet1}, {dauer1} Minuten")
+print(f"{uebung2}: Intensität {intensitaet2}, {dauer2} Minuten")

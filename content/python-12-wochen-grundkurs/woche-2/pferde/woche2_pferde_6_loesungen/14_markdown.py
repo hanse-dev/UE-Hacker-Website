@@ -1,3 +1,3 @@
-"""### Übung 4: Galopp – Kommazahlen (float) – Aufgabe 1
+"""### Übung 3: Trab – Ganze Zahlen (int) – Aufgabe 2
 
-Ein Pferd frisst 4.25 kg Futter pro Tag. Gib für 2 Tage genau aus: Futter für 2 Tage: 8.5 kg"""
+Ein Pferd ist 168 cm hoch, ein Pony 138 cm. Speichere die Differenz in der Variable unterschied und gib genau aus: Unterschied: 30 cm"""

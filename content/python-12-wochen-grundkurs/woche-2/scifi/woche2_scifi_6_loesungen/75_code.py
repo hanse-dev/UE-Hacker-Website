@@ -1,8 +1,5 @@
-mars_ertrag = 5.0
-europa_ertrag = 8.0
-mars_crew = 6
-europa_crew = 9
-gesamtertrag = mars_ertrag + europa_ertrag
-gesamt_crew = mars_crew + europa_crew
-print(f"Gesamtertrag: {gesamtertrag}")
-print(f"Gesamt-Crew: {gesamt_crew}")
+novanet_parameter = 1200000
+deepcore_parameter = 5000000
+minimind_parameter = 300000
+gesamt_parameter = novanet_parameter + deepcore_parameter + minimind_parameter
+print(f"Gesamtparameter: {gesamt_parameter}")

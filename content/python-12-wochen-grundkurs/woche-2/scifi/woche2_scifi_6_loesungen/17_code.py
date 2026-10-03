@@ -1,2 +1,3 @@
 geschwindigkeit = 3.7
-print(type(geschwindigkeit))
+koordinate_x = 88.25
+print(f"Position X: {koordinate_x}")

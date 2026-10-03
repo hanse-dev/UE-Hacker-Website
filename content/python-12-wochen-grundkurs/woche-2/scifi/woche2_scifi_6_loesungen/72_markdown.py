@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Die Raummission – Aufgabe 1
+"""### Extra-Herausforderung 2: Das KI-Labor – Aufgabe 1
 
-Schritt 1 – Lege Variablen für beide Missionen an. Gib die Überschrift === MISSIONS-PROTOKOLL === aus und eine f-String-Zeile pro Mission im Format Mars: 200 Tage, Ertrag 5.0, Crew 6, Erfolg 0.8 (die letzte Zeile muss lauten: Europa: 300 Tage, Ertrag 8.0, Crew 9, Erfolg 0.75)."""
+Schritt 1 – Lege Variablen für alle drei Modelle an. Gib die Überschrift === KI-LABOR-PROTOKOLL === aus und eine f-String-Zeile pro Modell im Format NovaNet: Genauigkeit 0.92, 1200000 Parameter (die letzte Zeile muss lauten: MiniMind: Genauigkeit 0.75, 300000 Parameter)."""
