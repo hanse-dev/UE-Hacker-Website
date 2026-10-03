@@ -770,6 +770,9 @@
     "xnor",
     "XNOR",
     "Zeigersyntax",
-    "Sternenflotten"
+    "Sternenflotten",
+    "missionslog",
+    "stationen",
+    "trainingslog"
   ]
 }

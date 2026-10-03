@@ -231,7 +231,7 @@
     "lessonSummary": "Masterful! You combine math, functions, loops and the remainder operator.",
     "tasks": [
       {
-        "instruction": "Run this example: factorial, gcd, lcm and sin.",
+        "instruction": "Run this example: factorial, gcd and lcm.",
         "example": true,
         "codeTemplate": "import math\nprint(f\"Factorial: {math.factorial(5)}\")\nprint(f\"GGT: {math.gcd(24, 36)}\")\nprint(f\"KGV: {math.lcm(12, 15)}\")\n",
         "validation": {
