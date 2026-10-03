@@ -467,15 +467,15 @@
     "lessonSummary": "🎊 Glückwunsch! Du hast Woche 2 gemeistert – als Nächstes wartet Woche 3: Bedingungen (if-else)!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Lege Variablen für beide Missionen an. Gib die Überschrift === MISSIONS-PROTOKOLL === aus und eine f-String-Zeile pro Mission im Format Mars: 200 Tage, Kosten 5.0, Crew 6, Erfolg 0.8 (die letzte Zeile muss lauten: Europa: 300 Tage, Kosten 8.0, Crew 9, Erfolg 0.75).",
+        "instruction": "Schritt 1 – Lege Variablen für beide Missionen an. Gib die Überschrift === MISSIONS-PROTOKOLL === aus und eine f-String-Zeile pro Mission im Format Mars: 200 Tage, Ertrag 5.0, Crew 6, Erfolg 0.8 (die letzte Zeile muss lauten: Europa: 300 Tage, Ertrag 8.0, Crew 9, Erfolg 0.75).",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Europa: 300 Tage, Kosten 8.0, Crew 9, Erfolg 0.75"
+          "expected": "Europa: 300 Tage, Ertrag 8.0, Crew 9, Erfolg 0.75"
         }
       },
       {
-        "instruction": "Schritt 2 – Addiere die Gesamtkosten beider Missionen und den gesamten Crew-Einsatz. Gib genau aus: Gesamtkosten: 13.0 und Gesamt-Crew: 15",
+        "instruction": "Schritt 2 – Addiere die Erträge beider Missionen und den gesamten Crew-Einsatz. Gib genau aus: Gesamtertrag: 13.0 und Gesamt-Crew: 15",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -483,19 +483,19 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Berechne den erwarteten Erfolg (Kosten × Wahrscheinlichkeit) für beide Missionen und gib genau aus: Erwarteter Erfolg Mars: 4.0 und Erwarteter Erfolg Europa: 6.0",
+        "instruction": "Schritt 3 – Berechne den erwarteten Ertrag (Ertrag × Wahrscheinlichkeit) für beide Missionen und gib genau aus: Erwarteter Ertrag Mars: 4.0 und Erwarteter Ertrag Europa: 6.0",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Erwarteter Erfolg Europa: 6.0"
+          "expected": "Erwarteter Ertrag Europa: 6.0"
         }
       },
       {
-        "instruction": "Schritt 4 – Speichere exp2 > exp1 (mit exp1 = 4.0 und exp2 = 6.0) in einer Boolean-Variable europa_besser und gib genau aus: Europa ist rentabler: True",
+        "instruction": "Schritt 4 – Speichere exp2 > exp1 (mit exp1 = 4.0 und exp2 = 6.0) in einer Boolean-Variable europa_besser und gib genau aus: Europa lohnt sich mehr: True",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Europa ist rentabler: True"
+          "expected": "Europa lohnt sich mehr: True"
         }
       }
     ]
