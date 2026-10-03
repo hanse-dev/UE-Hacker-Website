@@ -14,9 +14,9 @@ Mit **Slicing** kannst du eine Liste einfach in zwei Teile zerlegen:
 
 ```python
 daten = [
-    {"beine": 4, "gewicht": 30, "art": "Saeugetier"},
+    {"beine": 4, "gewicht": 30, "art": "Säugetier"},
     {"beine": 2, "gewicht": 0.03, "art": "Vogel"},
-    {"beine": 4, "gewicht": 25, "art": "Saeugetier"},
+    {"beine": 4, "gewicht": 25, "art": "Säugetier"},
     {"beine": 2, "gewicht": 0.02, "art": "Vogel"},
     {"beine": 8, "gewicht": 0.0002, "art": "Spinnentier"},
     {"beine": 6, "gewicht": 0.001, "art": "Insekt"},

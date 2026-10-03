@@ -9,7 +9,7 @@
       {
         "instruction": "Führe dieses Beispiel aus. farben[0] ist das erste Element, farben[2] das dritte.",
         "example": true,
-        "codeTemplate": "let farben = ['rot', 'gruen', 'blau'];\nconsole.log(farben[0]);\nconsole.log(farben[2]);\n",
+        "codeTemplate": "let farben = ['rot', 'grün', 'blau'];\nconsole.log(farben[0]);\nconsole.log(farben[2]);\n",
         "validation": { "type": "output_contains", "expected": "rot\nblau" }
       },
       {
@@ -74,7 +74,7 @@
       },
       {
         "instruction": "Gib mit einer for...of-Schleife jeden Eintrag aus dem Array staedte aus, jeweils mit dem Zusatz ' ist dabei!' (z.B. 'Berlin ist dabei!').",
-        "codeTemplate": "let staedte = ['Berlin', 'Hamburg', 'Koeln'];\n\n// Dein Code hier\n",
+        "codeTemplate": "let staedte = ['Berlin', 'Hamburg', 'Köln'];\n\n// Dein Code hier\n",
         "validation": { "type": "output_contains", "expected": "Hamburg ist dabei!" }
       }
     ]
@@ -113,7 +113,7 @@
       },
       {
         "instruction": "Dieser Code gibt 'undefined' aus. Ziel: Er soll das letzte Element ('blau') ausgeben.",
-        "codeTemplate": "let farben = ['rot', 'gruen', 'blau'];\nconsole.log(farben[farben.length]);\n",
+        "codeTemplate": "let farben = ['rot', 'grün', 'blau'];\nconsole.log(farben[farben.length]);\n",
         "validation": { "type": "output_contains", "expected": "blau" }
       },
       {

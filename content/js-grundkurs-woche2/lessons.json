@@ -113,7 +113,7 @@
       },
       {
         "instruction": "Dieser Code wirft einen Fehler. Ziel: Er soll bei signal = 'rot' den Text 'Stopp' ausgeben.",
-        "codeTemplate": "let signal = 'rot';\n\nif (signal === 'rot') {\n  console.log('Stopp');\n} elseif (signal === 'gruen') {\n  console.log('Los');\n} else {\n  console.log('Vorsicht');\n}\n",
+        "codeTemplate": "let signal = 'rot';\n\nif (signal === 'rot') {\n  console.log('Stopp');\n} elseif (signal === 'grün') {\n  console.log('Los');\n} else {\n  console.log('Vorsicht');\n}\n",
         "validation": { "type": "output_contains", "expected": "Stopp" }
       },
       {
@@ -146,7 +146,7 @@
         "validation": { "type": "output_contains", "expected": "false", "variables": { "darfTeilnehmen": false } }
       },
       {
-        "instruction": "Schreibe eine else-if-Kette für farbe = 'gelb': gib bei 'rot' 'Stopp!' aus, bei 'gelb' 'Achtung!', bei 'gruen' 'Los!', sonst 'Unbekanntes Signal'.",
+        "instruction": "Schreibe eine else-if-Kette für farbe = 'gelb': gib bei 'rot' 'Stopp!' aus, bei 'gelb' 'Achtung!', bei 'grün' 'Los!', sonst 'Unbekanntes Signal'.",
         "codeTemplate": "let farbe = 'gelb';\n\n// Dein Code hier\n",
         "validation": { "type": "output_contains", "expected": "Achtung!" }
       }

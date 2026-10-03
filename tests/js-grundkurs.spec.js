@@ -368,7 +368,7 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
 
     await completeAllRequired(page, [
       "let zahl = 5;\nif (zahl === 10) {\n  console.log('zehn');\n} else {\n  console.log('nicht zehn');\n}",
-      "let signal = 'rot';\n\nif (signal === 'rot') {\n  console.log('Stopp');\n} else if (signal === 'gruen') {\n  console.log('Los');\n} else {\n  console.log('Vorsicht');\n}",
+      "let signal = 'rot';\n\nif (signal === 'rot') {\n  console.log('Stopp');\n} else if (signal === 'grün') {\n  console.log('Los');\n} else {\n  console.log('Vorsicht');\n}",
       "let hatTicket = true;\nlet hatAusweis = false;\n\nif (hatTicket || hatAusweis) {\n  console.log('Einlass gewährt');\n} else {\n  console.log('Einlass verweigert');\n}",
       "let antwort = 42;\n\nif (antwort === 42) {\n  console.log('Richtig!');\n} else {\n  console.log('Falsch, versuch es nochmal.');\n}",
     ]);
@@ -377,7 +377,7 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
     await completeAllRequired(page, [
       'let einkaufswert = 80;\n\nlet rabatt = 0;\nif (einkaufswert >= 50) {\n  rabatt = einkaufswert * 0.1;\n}\nconsole.log(rabatt);',
       'let alter = 15;\nlet groesse = 170;\n\nlet darfTeilnehmen = alter >= 16 && groesse >= 150;\nconsole.log(darfTeilnehmen);',
-      "let farbe = 'gelb';\n\nif (farbe === 'rot') {\n  console.log('Stopp!');\n} else if (farbe === 'gelb') {\n  console.log('Achtung!');\n} else if (farbe === 'gruen') {\n  console.log('Los!');\n} else {\n  console.log('Unbekanntes Signal');\n}",
+      "let farbe = 'gelb';\n\nif (farbe === 'rot') {\n  console.log('Stopp!');\n} else if (farbe === 'gelb') {\n  console.log('Achtung!');\n} else if (farbe === 'grün') {\n  console.log('Los!');\n} else {\n  console.log('Unbekanntes Signal');\n}",
     ]);
     await expect(page.locator('.progress-count')).toContainText('7 abgeschlossen');
     await expect(page.locator('.lesson-complete-box')).toBeVisible();
@@ -512,7 +512,7 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
 
     await completeLesson(page, [
       null,
-      "let staedte = ['Berlin', 'Hamburg', 'Koeln'];\nfor (const stadt of staedte) {\n  console.log(`${stadt} ist dabei!`);\n}",
+      "let staedte = ['Berlin', 'Hamburg', 'Köln'];\nfor (const stadt of staedte) {\n  console.log(`${stadt} ist dabei!`);\n}",
     ]);
     await expect(page.locator('.progress-count')).toContainText('4 abgeschlossen');
 
@@ -524,7 +524,7 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
 
     await completeAllRequired(page, [
       "let obst = ['Apfel', 'Birne', 'Kirsche'];\nconsole.log(obst[0]);",
-      "let farben = ['rot', 'gruen', 'blau'];\nconsole.log(farben[farben.length - 1]);",
+      "let farben = ['rot', 'grün', 'blau'];\nconsole.log(farben[farben.length - 1]);",
       "let liste = ['a', 'b'];\nlet ergebnis = liste.push('c');\nconsole.log(liste);",
       'let noten = [2, 3, 1, 4];\nfor (let i = 0; i < noten.length; i++) {\n  console.log(noten[i]);\n}',
     ]);
@@ -674,7 +674,7 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
 
     await completeLesson(page, [
       null,
-      "class Produkt {\n  constructor(name, preis) {\n    this.name = name;\n    this.preis = preis;\n  }\n}\n\nlet produkte = [\n  new Produkt('Apfel', 2),\n  new Produkt('Buch', 15),\n  new Produkt('Brot', 3),\n  new Produkt('Kopfhoerer', 25),\n];\n\nlet summe = 0;\nfor (const p of produkte) {\n  if (p.preis >= 10) {\n    summe += p.preis;\n  }\n}\nconsole.log(summe);",
+      "class Produkt {\n  constructor(name, preis) {\n    this.name = name;\n    this.preis = preis;\n  }\n}\n\nlet produkte = [\n  new Produkt('Apfel', 2),\n  new Produkt('Buch', 15),\n  new Produkt('Brot', 3),\n  new Produkt('Kopfhörer', 25),\n];\n\nlet summe = 0;\nfor (const p of produkte) {\n  if (p.preis >= 10) {\n    summe += p.preis;\n  }\n}\nconsole.log(summe);",
     ]);
     await expect(page.locator('.progress-count')).toContainText('5 abgeschlossen');
 
@@ -689,7 +689,7 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
     await completeAllRequired(page, [
       "class Auto {\n  constructor(marke, tempo) {\n    this.marke = marke;\n    this.tempo = tempo;\n  }\n  beschleunigen() {\n    this.tempo += 10;\n    return this.tempo;\n  }\n}\n\nlet a = new Auto('Tesla', 50);\na.beschleunigen();\nconsole.log(a.beschleunigen());",
       "class Vorrat {\n  constructor(name, menge) {\n    this.name = name;\n    this.menge = menge;\n  }\n  istLeer() {\n    return this.menge === 0;\n  }\n}\n\nlet v = new Vorrat('Mehl', 0);\nconsole.log(v.istLeer());",
-      "class Bestellung {\n  constructor(artikel, menge) {\n    this.artikel = artikel;\n    this.menge = menge;\n  }\n}\n\nlet bestellungen = [\n  new Bestellung('Schrauben', 12),\n  new Bestellung('Naegel', 3),\n  new Bestellung('Bretter', 6),\n];\n\nlet anzahl = 0;\nfor (const b of bestellungen) {\n  if (b.menge >= 5) {\n    anzahl++;\n  }\n}\nconsole.log(anzahl);",
+      "class Bestellung {\n  constructor(artikel, menge) {\n    this.artikel = artikel;\n    this.menge = menge;\n  }\n}\n\nlet bestellungen = [\n  new Bestellung('Schrauben', 12),\n  new Bestellung('Nägel', 3),\n  new Bestellung('Bretter', 6),\n];\n\nlet anzahl = 0;\nfor (const b of bestellungen) {\n  if (b.menge >= 5) {\n    anzahl++;\n  }\n}\nconsole.log(anzahl);",
     ]);
     await expect(page.locator('.progress-count')).toContainText('7 abgeschlossen');
     await expect(page.locator('.lesson-complete-box')).toBeVisible();

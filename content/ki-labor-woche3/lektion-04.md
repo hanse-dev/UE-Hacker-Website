@@ -6,7 +6,7 @@ Wert im Dictionary die Anzahl. `.get(schluessel, 0)` liefert 0, wenn der Schlüs
 vorkommt (siehe Woche 2).
 
 ```python
-labels = ["Saeugetier", "Vogel", "Saeugetier", "Saeugetier", "Vogel"]
+labels = ["Säugetier", "Vogel", "Säugetier", "Säugetier", "Vogel"]
 
 anzahl_je_kategorie = {}
 for label in labels:
@@ -26,9 +26,9 @@ def abstand(a, b):
     return math.sqrt((a["beine"] - b["beine"]) ** 2 + (a["gewicht"] - b["gewicht"]) ** 2)
 
 trainingsdaten = [
-    {"beine": 4, "gewicht": 30, "art": "Saeugetier"},
+    {"beine": 4, "gewicht": 30, "art": "Säugetier"},
     {"beine": 2, "gewicht": 0.03, "art": "Vogel"},
-    {"beine": 4, "gewicht": 25, "art": "Saeugetier"},
+    {"beine": 4, "gewicht": 25, "art": "Säugetier"},
 ]
 neu = {"beine": 4, "gewicht": 28}
 

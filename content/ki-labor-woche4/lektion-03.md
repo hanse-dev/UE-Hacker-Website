@@ -33,13 +33,13 @@ def knn_klassifiziere(trainingsdaten, neu, k):
     return beste_kategorie
 
 trainingsdaten = [
-    {"beine": 4, "gewicht": 30, "art": "Saeugetier"},
-    {"beine": 4, "gewicht": 25, "art": "Saeugetier"},
+    {"beine": 4, "gewicht": 30, "art": "Säugetier"},
+    {"beine": 4, "gewicht": 25, "art": "Säugetier"},
     {"beine": 2, "gewicht": 3, "art": "Vogel"},
     {"beine": 2, "gewicht": 4, "art": "Vogel"},
 ]
 testdaten = [
-    {"beine": 4, "gewicht": 28, "art": "Saeugetier"},
+    {"beine": 4, "gewicht": 28, "art": "Säugetier"},
     {"beine": 2, "gewicht": 5, "art": "Vogel"},
 ]
 

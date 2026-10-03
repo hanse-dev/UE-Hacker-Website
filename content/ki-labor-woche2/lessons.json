@@ -129,13 +129,13 @@
       {
         "instruction": "Führe dieses Beispiel aus: Merkmale und Labels in zwei getrennte Listen aufteilen.",
         "example": true,
-        "codeTemplate": "tiere = [\n    {\"beine\": 4, \"gewicht\": 30, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 0.03, \"art\": \"Vogel\"},\n]\n\nmerkmale = [{\"beine\": t[\"beine\"], \"gewicht\": t[\"gewicht\"]} for t in tiere]\nlabels = [t[\"art\"] for t in tiere]\n\nprint(merkmale)\nprint(labels)\n",
-        "validation": { "type": "output_contains", "expected": "[{'beine': 4, 'gewicht': 30}, {'beine': 2, 'gewicht': 0.03}]\n['Saeugetier', 'Vogel']" }
+        "codeTemplate": "tiere = [\n    {\"beine\": 4, \"gewicht\": 30, \"art\": \"Säugetier\"},\n    {\"beine\": 2, \"gewicht\": 0.03, \"art\": \"Vogel\"},\n]\n\nmerkmale = [{\"beine\": t[\"beine\"], \"gewicht\": t[\"gewicht\"]} for t in tiere]\nlabels = [t[\"art\"] for t in tiere]\n\nprint(merkmale)\nprint(labels)\n",
+        "validation": { "type": "output_contains", "expected": "[{'beine': 4, 'gewicht': 30}, {'beine': 2, 'gewicht': 0.03}]\n['Säugetier', 'Vogel']" }
       },
       {
         "instruction": "Führe dieses Beispiel aus: aus den getrennten Labels zählen, wie oft eine Kategorie vorkommt.",
         "example": true,
-        "codeTemplate": "tiere = [\n    {\"beine\": 4, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"art\": \"Vogel\"},\n    {\"beine\": 6, \"art\": \"Insekt\"},\n]\n\nlabels = [t[\"art\"] for t in tiere]\nanzahl_saeugetiere = labels.count(\"Saeugetier\")\nprint(anzahl_saeugetiere)\n",
+        "codeTemplate": "tiere = [\n    {\"beine\": 4, \"art\": \"Säugetier\"},\n    {\"beine\": 2, \"art\": \"Vogel\"},\n    {\"beine\": 6, \"art\": \"Insekt\"},\n]\n\nlabels = [t[\"art\"] for t in tiere]\nanzahl_saeugetiere = labels.count(\"Säugetier\")\nprint(anzahl_saeugetiere)\n",
         "validation": { "type": "output_contains", "expected": "1" }
       },
       {

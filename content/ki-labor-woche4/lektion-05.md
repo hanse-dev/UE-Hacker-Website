@@ -47,7 +47,7 @@ def genauigkeit(vorhersagen, erwartete_werte):
 
 # Absichtlich winzige, unrepräsentative Trainingsdaten: zwei Ausreißer statt typischer Beispiele.
 trainingsdaten = [
-    {"beine": 4, "gewicht": 5, "art": "Saeugetier"},   # ungewöhnlich leichtes Saeugetier
+    {"beine": 4, "gewicht": 5, "art": "Säugetier"},   # ungewöhnlich leichtes Säugetier
     {"beine": 2, "gewicht": 30, "art": "Vogel"},        # ungewöhnlich schwerer Vogel
 ]
 
@@ -58,7 +58,7 @@ print(genauigkeit(vorhersagen_training, erwartete_training))
 
 # Echte, typische Testdaten - vom Modell nie gesehen.
 testdaten = [
-    {"beine": 4, "gewicht": 30, "art": "Saeugetier"},
+    {"beine": 4, "gewicht": 30, "art": "Säugetier"},
     {"beine": 2, "gewicht": 3, "art": "Vogel"},
 ]
 vorhersagen_test = [knn_klassifiziere(trainingsdaten, b, 1) for b in testdaten]

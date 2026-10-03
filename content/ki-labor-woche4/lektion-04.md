@@ -53,11 +53,11 @@ def trainiere_und_teste(daten, split, k):
     return genauigkeit(vorhersagen, erwartete_werte)
 
 daten = [
-    {"beine": 4, "gewicht": 30, "art": "Saeugetier"},
-    {"beine": 4, "gewicht": 25, "art": "Saeugetier"},
+    {"beine": 4, "gewicht": 30, "art": "Säugetier"},
+    {"beine": 4, "gewicht": 25, "art": "Säugetier"},
     {"beine": 2, "gewicht": 3, "art": "Vogel"},
     {"beine": 2, "gewicht": 4, "art": "Vogel"},
-    {"beine": 4, "gewicht": 28, "art": "Saeugetier"},
+    {"beine": 4, "gewicht": 28, "art": "Säugetier"},
     {"beine": 2, "gewicht": 20, "art": "Vogel"},
 ]
 

@@ -4,7 +4,7 @@ Ein **Array** speichert eine ganze Liste von Werten in einer einzigen Variable, 
 Klammern `[ ]` durch Kommas getrennt:
 
 ```js
-let farben = ['rot', 'gruen', 'blau'];
+let farben = ['rot', 'grün', 'blau'];
 console.log(farben[0]);
 console.log(farben[2]);
 ```
@@ -14,7 +14,7 @@ das **erste** Element, nicht das zweite. JavaScript zählt Indizes ab **0**:
 
 | Index | 0 | 1 | 2 |
 |---|---|---|---|
-| Wert | `'rot'` | `'gruen'` | `'blau'` |
+| Wert | `'rot'` | `'grün'` | `'blau'` |
 
-> ⚠️ `farben[1]` ist deshalb `'gruen'` (das **zweite** Element), nicht `'rot'` – ein sehr
+> ⚠️ `farben[1]` ist deshalb `'grün'` (das **zweite** Element), nicht `'rot'` – ein sehr
 > häufiger Anfängerfehler.
