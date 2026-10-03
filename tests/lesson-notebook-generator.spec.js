@@ -22,6 +22,13 @@ test('build_offline_py.py baut für Projekt-Kurse und KI-Labor eine Python-Datei
   expect(output).toContain('5 Projekt-Kurse + 8 KI-Labor-Wochen geprueft');
 });
 
+// Jede der 160 echten KI-Labor-Aufgaben hat eine Musterloesung (Feld referenceSolution), die
+// laeuft und die erwartete Ausgabe liefert - sonst waeren Loesungs-Notebook und .py-Dateien falsch.
+test('KI-Labor: jede Musterlösung (referenceSolution) läuft und liefert die erwartete Ausgabe', () => {
+  const output = execFileSync('python3', ['scripts/check_kilabor_solutions.py'], { cwd: process.cwd(), encoding: 'utf8' });
+  expect(output).toContain('160 KI-Labor-Musterloesungen geprueft');
+});
+
 // Die ZIPs selbst baut der globalSetup (scripts/ensure-test-prereqs.mjs) vor jedem Lauf - hier
 // wird nur ihr Inhalt geprueft, nicht neu gepackt (paralleles Neuschreiben wuerde andere Tests
 // stoeren, die dieselben Dateien gerade ueber den Dev-Server laden).
@@ -66,7 +73,7 @@ test('Projekt-Kurse und KI-Labor: je drei ZIPs; jedes Python-Projekt aus kurse.j
   expect(listZip('projekt-zips/morsecode-komplett.zip')).toEqual(['morsecode_komplett.py']);
   expect(listZip('projekt-zips/morsecode-einzeln.zip')).toContain('01_lektion-01.py');
 
-  expect(listZip('ki-labor-zips/woche-3-notebooks.zip')).toEqual(['ki-labor-woche3_aufgaben.ipynb']);
+  expect(listZip('ki-labor-zips/woche-3-notebooks.zip')).toEqual(['ki-labor-woche3_aufgaben.ipynb', 'ki-labor-woche3_loesungen.ipynb']);
   expect(listZip('ki-labor-zips/woche-3-komplett.zip')).toEqual(['ki-labor-woche3_komplett.py']);
   expect(listZip('ki-labor-zips/woche-3-einzeln.zip')).toEqual(expect.arrayContaining(['01_lektion-01.py', '06_debug-01.py']));
 });

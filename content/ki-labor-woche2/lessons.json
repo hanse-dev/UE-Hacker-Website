@@ -21,6 +21,7 @@
       {
         "instruction": "Erstelle eine Liste fahrzeuge mit den drei Dictionaries {'name': 'Auto', 'raeder': 4}, {'name': 'Motorrad', 'raeder': 2} und {'name': 'Lkw', 'raeder': 6}. Gib mit einer Schleife für jedes Fahrzeug genau '<name> hat <raeder> Räder' aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "fahrzeuge = [\n    {\"name\": \"Auto\", \"raeder\": 4},\n    {\"name\": \"Motorrad\", \"raeder\": 2},\n    {\"name\": \"Lkw\", \"raeder\": 6},\n]\n\nfor fahrzeug in fahrzeuge:\n    print(f\"{fahrzeug['name']} hat {fahrzeug['raeder']} Räder\")",
         "validation": {
           "type": "output_contains",
           "expected": "Auto hat 4 Räder\nMotorrad hat 2 Räder\nLkw hat 6 Räder"
@@ -50,6 +51,7 @@
       {
         "instruction": "Erstelle eine Liste personen mit {'name': 'Anna', 'alter': 12, 'grosse': 150} und {'name': 'Ben', 'alter': 15, 'grosse': 170}. Gib für jede Person genau '<name>: <alter> Jahre, <grosse>cm' aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "personen = [\n    {\"name\": \"Anna\", \"alter\": 12, \"grosse\": 150},\n    {\"name\": \"Ben\", \"alter\": 15, \"grosse\": 170},\n]\n\nfor person in personen:\n    print(f\"{person['name']}: {person['alter']} Jahre, {person['grosse']}cm\")",
         "validation": {
           "type": "output_contains",
           "expected": "Anna: 12 Jahre, 150cm\nBen: 15 Jahre, 170cm"
@@ -79,6 +81,7 @@
       {
         "instruction": "Erstelle eine Liste schueler mit {'name': 'Anna', 'note': 2}, {'name': 'Ben', 'note': 4} und {'name': 'Cem', 'note': 1}. Gib mit einer List Comprehension genau eine Liste der Namen aller Schüler mit note kleiner als 3 aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "schueler = [\n    {\"name\": \"Anna\", \"note\": 2},\n    {\"name\": \"Ben\", \"note\": 4},\n    {\"name\": \"Cem\", \"note\": 1},\n]\n\ngute_noten = [s[\"name\"] for s in schueler if s[\"note\"] < 3]\nprint(gute_noten)",
         "validation": {
           "type": "output_contains",
           "expected": "['Anna', 'Cem']"
@@ -108,6 +111,7 @@
       {
         "instruction": "Erstelle eine Liste autos mit {'marke': 'VW', 'ps': 90}, {'marke': 'Audi'} und {'marke': 'BMW', 'ps': 150}. Gib für jedes Auto mit .get(...) genau '<marke>: <ps>' aus, wobei fehlende PS-Werte als 'unbekannt' ausgegeben werden.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "autos = [\n    {\"marke\": \"VW\", \"ps\": 90},\n    {\"marke\": \"Audi\"},\n    {\"marke\": \"BMW\", \"ps\": 150},\n]\n\nfor auto in autos:\n    print(f\"{auto['marke']}: {auto.get('ps', 'unbekannt')}\")",
         "validation": {
           "type": "output_contains",
           "expected": "VW: 90\nAudi: unbekannt\nBMW: 150"
@@ -137,6 +141,7 @@
       {
         "instruction": "Erstelle eine Liste pflanzen mit {'hoehe': 30, 'typ': 'Blume'}, {'hoehe': 200, 'typ': 'Baum'} und {'hoehe': 15, 'typ': 'Blume'}. Erstelle daraus zwei Listen: hoehen (nur die hoehe-Werte) und typen (nur die typ-Werte). Gib zuerst hoehen und dann typen aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "pflanzen = [\n    {\"hoehe\": 30, \"typ\": \"Blume\"},\n    {\"hoehe\": 200, \"typ\": \"Baum\"},\n    {\"hoehe\": 15, \"typ\": \"Blume\"},\n]\n\nhoehen = [p[\"hoehe\"] for p in pflanzen]\ntypen = [p[\"typ\"] for p in pflanzen]\nprint(hoehen)\nprint(typen)",
         "validation": {
           "type": "output_contains",
           "expected": "[30, 200, 15]\n['Blume', 'Baum', 'Blume']"
@@ -154,16 +159,19 @@
       {
         "instruction": "🐛 Bug #1 – Ziel: Das Programm soll 20.0 ausgeben (Durchschnitt aus 10, 20, 30). Was ist falsch?",
         "codeTemplate": "def durchschnittsgewicht(tiere):\n    summe = 0\n    for tier in tiere:\n        summe += tier[\"gewicht\"]\n    summe / len(tiere)\n\ntiere = [{\"gewicht\": 10}, {\"gewicht\": 20}, {\"gewicht\": 30}]\nprint(durchschnittsgewicht(tiere))\n",
+        "referenceSolution": "# Fix: Das Ergebnis muss mit return zurueckgegeben werden, sonst kommt None heraus.\ndef durchschnittsgewicht(tiere):\n    summe = 0\n    for tier in tiere:\n        summe += tier[\"gewicht\"]\n    return summe / len(tiere)\n\ntiere = [{\"gewicht\": 10}, {\"gewicht\": 20}, {\"gewicht\": 30}]\nprint(durchschnittsgewicht(tiere))",
         "validation": { "type": "output_contains", "expected": "20.0" }
       },
       {
         "instruction": "🐛 Bug #2 – Ziel: Tiere mit genau 4 Beinen sollen als Vierbeiner mitgezählt werden. Für die Liste sollen genau 2 gezählt werden. Was ist falsch?",
         "codeTemplate": "def zaehle_vierbeiner(tiere):\n    anzahl = 0\n    for tier in tiere:\n        if tier[\"beine\"] > 4:\n            anzahl += 1\n    return anzahl\n\ntiere = [{\"beine\": 4}, {\"beine\": 4}, {\"beine\": 2}]\nprint(zaehle_vierbeiner(tiere))\n",
+        "referenceSolution": "# Fix: == 4 statt > 4 - gezaehlt werden Tiere mit genau 4 Beinen.\ndef zaehle_vierbeiner(tiere):\n    anzahl = 0\n    for tier in tiere:\n        if tier[\"beine\"] == 4:\n            anzahl += 1\n    return anzahl\n\ntiere = [{\"beine\": 4}, {\"beine\": 4}, {\"beine\": 2}]\nprint(zaehle_vierbeiner(tiere))",
         "validation": { "type": "output_contains", "expected": "2" }
       },
       {
         "instruction": "🐛 Bug #3 – Ziel: Fehlt einem Tier das Merkmal gewicht, soll 'unbekannt' ausgegeben werden, statt das Programm abstürzen zu lassen. Was ist falsch?",
         "codeTemplate": "def gewicht_oder_unbekannt(tier):\n    return tier[\"gewicht\"]\n\nvogel = {\"name\": \"Spatz\"}\nprint(gewicht_oder_unbekannt(vogel))\n",
+        "referenceSolution": "# Fix: .get() mit Standardwert statt [] - ein fehlender Schluessel loest sonst einen KeyError aus.\ndef gewicht_oder_unbekannt(tier):\n    return tier.get(\"gewicht\", \"unbekannt\")\n\nvogel = {\"name\": \"Spatz\"}\nprint(gewicht_oder_unbekannt(vogel))",
         "validation": { "type": "output_contains", "expected": "unbekannt" }
       }
     ]
@@ -178,6 +186,7 @@
       {
         "instruction": "Schritt 1 – Datensatz: Erstelle eine Liste tiere mit den drei Dictionaries {'name': 'Hund', 'beine': 4, 'gewicht': 30}, {'name': 'Spatz', 'beine': 2, 'gewicht': 0.03} und {'name': 'Biene', 'beine': 6, 'gewicht': 0.001}. Schreibe eine Funktion namen_liste(tiere), die eine Liste aller 'name'-Werte zurückgibt, und gib sie aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "tiere = [\n    {\"name\": \"Hund\", \"beine\": 4, \"gewicht\": 30},\n    {\"name\": \"Spatz\", \"beine\": 2, \"gewicht\": 0.03},\n    {\"name\": \"Biene\", \"beine\": 6, \"gewicht\": 0.001},\n]\n\ndef namen_liste(tiere):\n    return [tier[\"name\"] for tier in tiere]\n\nprint(namen_liste(tiere))",
         "validation": {
           "type": "output_contains",
           "expected": "['Hund', 'Spatz', 'Biene']",
@@ -187,6 +196,7 @@
       {
         "instruction": "Schritt 2 – Durchschnitt: Schreibe eine Funktion durchschnitt(tiere, merkmal), die den Durchschnittswert eines Merkmals über alle Tiere berechnet und zurückgibt. Nutze deine Liste tiere aus Schritt 1 (erneut erstellen). Gib damit genau 4.0 aus (für 'beine').",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "tiere = [\n    {\"name\": \"Hund\", \"beine\": 4, \"gewicht\": 30},\n    {\"name\": \"Spatz\", \"beine\": 2, \"gewicht\": 0.03},\n    {\"name\": \"Biene\", \"beine\": 6, \"gewicht\": 0.001},\n]\n\ndef durchschnitt(tiere, merkmal):\n    summe = 0\n    for tier in tiere:\n        summe += tier[merkmal]\n    return summe / len(tiere)\n\nprint(durchschnitt(tiere, \"beine\"))",
         "validation": {
           "type": "output_contains",
           "expected": "4.0",
@@ -196,6 +206,7 @@
       {
         "instruction": "Schritt 3 – Filtern: Schreibe eine Funktion ueber_schwelle(tiere, merkmal, schwelle), die eine Liste aller 'name'-Werte der Tiere zurückgibt, deren merkmal größer als schwelle ist. Nutze deine Liste tiere (erneut erstellen) und rufe die Funktion mit merkmal='gewicht', schwelle=1 auf. Gib genau ['Hund'] aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "tiere = [\n    {\"name\": \"Hund\", \"beine\": 4, \"gewicht\": 30},\n    {\"name\": \"Spatz\", \"beine\": 2, \"gewicht\": 0.03},\n    {\"name\": \"Biene\", \"beine\": 6, \"gewicht\": 0.001},\n]\n\ndef ueber_schwelle(tiere, merkmal, schwelle):\n    return [tier[\"name\"] for tier in tiere if tier[merkmal] > schwelle]\n\nprint(ueber_schwelle(tiere, \"gewicht\", 1))",
         "validation": {
           "type": "output_contains",
           "expected": "['Hund']",
@@ -214,6 +225,7 @@
       {
         "instruction": "Schritt 1 – Maximum: Schreibe eine Funktion maximum(tiere, merkmal), die den höchsten Wert des Merkmals in der Liste tiere zurückgibt (ohne die eingebaute Funktion max()). Erstelle dazu die Liste tiere mit {'name': 'Hund', 'beine': 4}, {'name': 'Spatz', 'beine': 2} und {'name': 'Spinne', 'beine': 8}. Gib damit genau 8 aus (für 'beine').",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "tiere = [\n    {\"name\": \"Hund\", \"beine\": 4},\n    {\"name\": \"Spatz\", \"beine\": 2},\n    {\"name\": \"Spinne\", \"beine\": 8},\n]\n\ndef maximum(tiere, merkmal):\n    groesster = tiere[0][merkmal]\n    for tier in tiere:\n        if tier[merkmal] > groesster:\n            groesster = tier[merkmal]\n    return groesster\n\nprint(maximum(tiere, \"beine\"))",
         "validation": {
           "type": "output_contains",
           "expected": "8",
@@ -223,6 +235,7 @@
       {
         "instruction": "Schritt 2 – Minimum: Schreibe eine Funktion minimum(tiere, merkmal), analog zu maximum() aber für den kleinsten Wert (ohne die eingebaute Funktion min()). Nutze dieselbe Liste tiere (erneut erstellen). Gib damit genau 2 aus (für 'beine').",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "tiere = [\n    {\"name\": \"Hund\", \"beine\": 4},\n    {\"name\": \"Spatz\", \"beine\": 2},\n    {\"name\": \"Spinne\", \"beine\": 8},\n]\n\ndef minimum(tiere, merkmal):\n    kleinster = tiere[0][merkmal]\n    for tier in tiere:\n        if tier[merkmal] < kleinster:\n            kleinster = tier[merkmal]\n    return kleinster\n\nprint(minimum(tiere, \"beine\"))",
         "validation": {
           "type": "output_contains",
           "expected": "2",
@@ -232,6 +245,7 @@
       {
         "instruction": "Schritt 3 – Spannweite: Schreibe eine Funktion spannweite(tiere, merkmal), die maximum() und minimum() (beide erneut schreiben) benutzt und die Differenz zurückgibt. Gib damit genau 6 aus (für 'beine', dieselbe Liste).",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "tiere = [\n    {\"name\": \"Hund\", \"beine\": 4},\n    {\"name\": \"Spatz\", \"beine\": 2},\n    {\"name\": \"Spinne\", \"beine\": 8},\n]\n\ndef maximum(tiere, merkmal):\n    groesster = tiere[0][merkmal]\n    for tier in tiere:\n        if tier[merkmal] > groesster:\n            groesster = tier[merkmal]\n    return groesster\n\ndef minimum(tiere, merkmal):\n    kleinster = tiere[0][merkmal]\n    for tier in tiere:\n        if tier[merkmal] < kleinster:\n            kleinster = tier[merkmal]\n    return kleinster\n\ndef spannweite(tiere, merkmal):\n    return maximum(tiere, merkmal) - minimum(tiere, merkmal)\n\nprint(spannweite(tiere, \"beine\"))",
         "validation": {
           "type": "output_contains",
           "expected": "6",
@@ -250,6 +264,7 @@
       {
         "instruction": "Schritt 1 – Übereinstimmungen zählen: Schreibe eine Funktion zaehle_uebereinstimmungen(a, b), die zählt, wie viele gemeinsame Schlüssel in den Dictionaries a und b denselben Wert haben. Gib damit genau 2 aus für a={'beine': 4, 'farbe': 'braun', 'laut': 'Wuff'} und b={'beine': 4, 'farbe': 'braun', 'laut': 'Miau'}.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def zaehle_uebereinstimmungen(a, b):\n    anzahl = 0\n    for schluessel in a:\n        if schluessel in b and a[schluessel] == b[schluessel]:\n            anzahl += 1\n    return anzahl\n\na = {\"beine\": 4, \"farbe\": \"braun\", \"laut\": \"Wuff\"}\nb = {\"beine\": 4, \"farbe\": \"braun\", \"laut\": \"Miau\"}\nprint(zaehle_uebereinstimmungen(a, b))",
         "validation": {
           "type": "output_contains",
           "expected": "2",
@@ -259,6 +274,7 @@
       {
         "instruction": "Schritt 2 – Ähnlichstes Tier finden: Schreibe eine Funktion aehnlichstes_tier(ziel, tiere), die mit zaehle_uebereinstimmungen() (erneut schreiben) das Tier mit den meisten Übereinstimmungen zu ziel zurückgibt (den Namen). Nutze tiere = [{'name': 'Katze', 'beine': 4, 'farbe': 'schwarz'}, {'name': 'Hund', 'beine': 4, 'farbe': 'braun'}] und ziel = {'beine': 4, 'farbe': 'braun'}. Gib genau Hund aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def zaehle_uebereinstimmungen(a, b):\n    anzahl = 0\n    for schluessel in a:\n        if schluessel in b and a[schluessel] == b[schluessel]:\n            anzahl += 1\n    return anzahl\n\ndef aehnlichstes_tier(ziel, tiere):\n    bestes = None\n    beste_anzahl = -1\n    for tier in tiere:\n        anzahl = zaehle_uebereinstimmungen(ziel, tier)\n        if anzahl > beste_anzahl:\n            bestes = tier[\"name\"]\n            beste_anzahl = anzahl\n    return bestes\n\ntiere = [\n    {\"name\": \"Katze\", \"beine\": 4, \"farbe\": \"schwarz\"},\n    {\"name\": \"Hund\", \"beine\": 4, \"farbe\": \"braun\"},\n]\nziel = {\"beine\": 4, \"farbe\": \"braun\"}\nprint(aehnlichstes_tier(ziel, tiere))",
         "validation": {
           "type": "output_contains",
           "expected": "Hund",
@@ -268,6 +284,7 @@
       {
         "instruction": "Schritt 3 – Ähnlichkeit in Prozent: Schreibe eine Funktion aehnlichkeit_prozent(a, b), die zaehle_uebereinstimmungen() (erneut schreiben) benutzt und den Anteil übereinstimmender Schlüssel in Prozent zurückgibt (gerundet mit round()). Gib damit genau 67 aus, für dieselben a und b wie in Schritt 1.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def zaehle_uebereinstimmungen(a, b):\n    anzahl = 0\n    for schluessel in a:\n        if schluessel in b and a[schluessel] == b[schluessel]:\n            anzahl += 1\n    return anzahl\n\ndef aehnlichkeit_prozent(a, b):\n    return round(zaehle_uebereinstimmungen(a, b) / len(a) * 100)\n\na = {\"beine\": 4, \"farbe\": \"braun\", \"laut\": \"Wuff\"}\nb = {\"beine\": 4, \"farbe\": \"braun\", \"laut\": \"Miau\"}\nprint(aehnlichkeit_prozent(a, b))",
         "validation": {
           "type": "output_contains",
           "expected": "67",
@@ -286,6 +303,7 @@
       {
         "instruction": "Schritt 1 – Fehlende Werte finden: Schreibe eine Funktion fehlt_merkmal(tiere, merkmal), die eine Liste der 'name'-Werte aller Tiere zurückgibt, denen das merkmal fehlt. Nutze tiere = [{'name': 'Hund', 'beine': 4}, {'name': 'Spatz'}, {'name': 'Biene', 'beine': 6}]. Gib genau ['Spatz'] aus (für 'beine').",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "tiere = [{\"name\": \"Hund\", \"beine\": 4}, {\"name\": \"Spatz\"}, {\"name\": \"Biene\", \"beine\": 6}]\n\ndef fehlt_merkmal(tiere, merkmal):\n    return [tier[\"name\"] for tier in tiere if merkmal not in tier]\n\nprint(fehlt_merkmal(tiere, \"beine\"))",
         "validation": {
           "type": "output_contains",
           "expected": "['Spatz']",
@@ -295,6 +313,7 @@
       {
         "instruction": "Schritt 2 – Vollständigkeit: Schreibe eine Funktion vollstaendigkeit(tiere, merkmal), die mit fehlt_merkmal() (erneut schreiben) den Anteil (in Prozent, gerundet mit round()) der Tiere zurückgibt, denen das Merkmal NICHT fehlt. Nutze dieselbe Liste. Gib genau 67 aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "tiere = [{\"name\": \"Hund\", \"beine\": 4}, {\"name\": \"Spatz\"}, {\"name\": \"Biene\", \"beine\": 6}]\n\ndef fehlt_merkmal(tiere, merkmal):\n    return [tier[\"name\"] for tier in tiere if merkmal not in tier]\n\ndef vollstaendigkeit(tiere, merkmal):\n    vorhanden = len(tiere) - len(fehlt_merkmal(tiere, merkmal))\n    return round(vorhanden / len(tiere) * 100)\n\nprint(vollstaendigkeit(tiere, \"beine\"))",
         "validation": {
           "type": "output_contains",
           "expected": "67",
@@ -304,6 +323,7 @@
       {
         "instruction": "Schritt 3 – Bereinigen: Schreibe eine Funktion namen_ohne_luecke(tiere, merkmal), die mit fehlt_merkmal() (erneut schreiben) eine Liste aller Tier-Namen zurückgibt, denen das Merkmal NICHT fehlt. Nutze dieselbe Liste tiere. Gib damit genau ['Hund', 'Biene'] aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "tiere = [{\"name\": \"Hund\", \"beine\": 4}, {\"name\": \"Spatz\"}, {\"name\": \"Biene\", \"beine\": 6}]\n\ndef fehlt_merkmal(tiere, merkmal):\n    return [tier[\"name\"] for tier in tiere if merkmal not in tier]\n\ndef namen_ohne_luecke(tiere, merkmal):\n    luecken = fehlt_merkmal(tiere, merkmal)\n    return [tier[\"name\"] for tier in tiere if tier[\"name\"] not in luecken]\n\nprint(namen_ohne_luecke(tiere, \"beine\"))",
         "validation": {
           "type": "output_contains",
           "expected": "['Hund', 'Biene']",

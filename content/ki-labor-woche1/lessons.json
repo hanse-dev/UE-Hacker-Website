@@ -21,6 +21,7 @@
       {
         "instruction": "Schreibe eine Funktion ist_bestanden(punkte), die 'bestanden' zurückgibt, wenn punkte mindestens 50 sind, sonst 'nicht bestanden'. Gib damit genau bestanden (für 70 Punkte) und danach nicht bestanden (für 30 Punkte) aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def ist_bestanden(punkte):\n    if punkte >= 50:\n        return \"bestanden\"\n    else:\n        return \"nicht bestanden\"\n\nprint(ist_bestanden(70))\nprint(ist_bestanden(30))",
         "validation": {
           "type": "output_contains",
           "expected": "bestanden\nnicht bestanden",
@@ -51,6 +52,7 @@
       {
         "instruction": "Schreibe eine Funktion klassifiziere_tier(beine) mit den gleichen Regeln wie im Beispiel, aber ergänze eine neue Regel: 0 Beine soll 'Ohne Beine' ergeben (statt 'Unbekannt'). Gib damit genau Ohne Beine (für 0) und danach Unbekannt (für 100) aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def klassifiziere_tier(beine):\n    if beine == 4:\n        return \"Vierbeiner\"\n    elif beine == 2:\n        return \"Zweibeiner\"\n    elif beine == 6:\n        return \"Insekt\"\n    elif beine == 8:\n        return \"Spinnentier\"\n    elif beine == 0:\n        return \"Ohne Beine\"\n    else:\n        return \"Unbekannt\"\n\nprint(klassifiziere_tier(0))\nprint(klassifiziere_tier(100))",
         "validation": {
           "type": "output_contains",
           "expected": "Ohne Beine\nUnbekannt",
@@ -75,6 +77,7 @@
       {
         "instruction": "Erstelle eine Liste eigene_beispiele mit den drei Paaren ('apfel', 'Obst'), ('karotte', 'Gemüse') und ('banane', 'Obst'). Nutze die Funktion finde_antwort aus dem Beispiel (schreibe sie erneut), um genau Obst (für 'apfel') und danach unbekannt (für 'brot') auszugeben.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "eigene_beispiele = [\n    (\"apfel\", \"Obst\"),\n    (\"karotte\", \"Gemüse\"),\n    (\"banane\", \"Obst\"),\n]\n\ndef finde_antwort(frage, beispiele):\n    for eingabe, antwort in beispiele:\n        if eingabe == frage:\n            return antwort\n    return \"unbekannt\"\n\nprint(finde_antwort(\"apfel\", eigene_beispiele))\nprint(finde_antwort(\"brot\", eigene_beispiele))",
         "validation": {
           "type": "output_contains",
           "expected": "Obst\nunbekannt",
@@ -99,6 +102,7 @@
       {
         "instruction": "Erstelle ein Dictionary eigenes_modell mit 'hund': 'Tier', 'katze': 'Tier' und 'rose': 'Pflanze'. Gib mit .get(...) genau Tier (für 'hund') und danach unbekannt (für 'auto') aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "eigenes_modell = {\n    \"hund\": \"Tier\",\n    \"katze\": \"Tier\",\n    \"rose\": \"Pflanze\",\n}\n\nprint(eigenes_modell.get(\"hund\", \"unbekannt\"))\nprint(eigenes_modell.get(\"auto\", \"unbekannt\"))",
         "validation": {
           "type": "output_contains",
           "expected": "Tier\nunbekannt"
@@ -122,6 +126,7 @@
       {
         "instruction": "Schreibe die Funktion vorhersage_sicherheit(modell, eingabe) aus dem Beispiel erneut. Erstelle ein Dictionary mein_modell mit 'sonne': 'Stern' und rufe die Funktion einmal mit 'sonne' und einmal mit 'mond' auf. Gib damit genau Sicher: Stern und danach Unsicher: unbekannt aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def vorhersage_sicherheit(modell, eingabe):\n    if eingabe in modell:\n        return f\"Sicher: {modell[eingabe]}\"\n    else:\n        return \"Unsicher: unbekannt\"\n\nmein_modell = {\"sonne\": \"Stern\"}\nprint(vorhersage_sicherheit(mein_modell, \"sonne\"))\nprint(vorhersage_sicherheit(mein_modell, \"mond\"))",
         "validation": {
           "type": "output_contains",
           "expected": "Sicher: Stern\nUnsicher: unbekannt",
@@ -140,16 +145,19 @@
       {
         "instruction": "🐛 Bug #1 – Ziel: Das Programm soll heiß ausgeben. Was ist falsch?",
         "codeTemplate": "def einschaetzung(temperatur):\n    if temperatur > 25:\n        \"heiß\"\n    else:\n        \"nicht heiß\"\n\nprint(einschaetzung(30))\n",
+        "referenceSolution": "# Fix: Ohne return gibt die Funktion None zurueck - die Texte muessen zurueckgegeben werden.\ndef einschaetzung(temperatur):\n    if temperatur > 25:\n        return \"heiß\"\n    else:\n        return \"nicht heiß\"\n\nprint(einschaetzung(30))",
         "validation": { "type": "output_contains", "expected": "heiß" }
       },
       {
         "instruction": "🐛 Bug #2 – Ziel: Bei genau 50 Punkten soll bestanden ausgegeben werden. Was ist falsch?",
         "codeTemplate": "def ist_bestanden(punkte):\n    if punkte > 50:\n        return \"bestanden\"\n    else:\n        return \"nicht bestanden\"\n\nprint(ist_bestanden(50))\n",
+        "referenceSolution": "# Fix: >= statt >, damit genau 50 Punkte auch bestanden sind.\ndef ist_bestanden(punkte):\n    if punkte >= 50:\n        return \"bestanden\"\n    else:\n        return \"nicht bestanden\"\n\nprint(ist_bestanden(50))",
         "validation": { "type": "output_contains", "expected": "bestanden" }
       },
       {
         "instruction": "🐛 Bug #3 – Ziel: Bei 80 Punkten soll bestanden ausgegeben werden. Was ist falsch?",
         "codeTemplate": "def note_beschreibung(punkte):\n    if punkte >= 0:\n        return \"mangelhaft\"\n    elif punkte >= 50:\n        return \"bestanden\"\n    else:\n        return \"unbekannt\"\n\nprint(note_beschreibung(80))\n",
+        "referenceSolution": "# Fix: Die strengere Regel (>= 50) muss vor der allgemeinen (>= 0) stehen - sonst greift immer\n# zuerst \">= 0\".\ndef note_beschreibung(punkte):\n    if punkte >= 50:\n        return \"bestanden\"\n    elif punkte >= 0:\n        return \"mangelhaft\"\n    else:\n        return \"unbekannt\"\n\nprint(note_beschreibung(80))",
         "validation": { "type": "output_contains", "expected": "bestanden" }
       }
     ]
@@ -164,6 +172,7 @@
       {
         "instruction": "Schritt 1 – Gefühl: Schreibe eine Funktion temperatur_gefuehl(temperatur), die 'heiß' zurückgibt bei über 25 Grad, 'kalt' bei unter 5 Grad, sonst 'mild'. Gib damit genau Gefühl: heiß (für 30 Grad) und danach Gefühl: kalt (für 2 Grad) aus, im Format Gefühl: <ergebnis>.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def temperatur_gefuehl(temperatur):\n    if temperatur > 25:\n        return \"heiß\"\n    elif temperatur < 5:\n        return \"kalt\"\n    else:\n        return \"mild\"\n\nprint(f\"Gefühl: {temperatur_gefuehl(30)}\")\nprint(f\"Gefühl: {temperatur_gefuehl(2)}\")",
         "validation": {
           "type": "output_contains",
           "expected": "Gefühl: heiß\nGefühl: kalt",
@@ -173,6 +182,7 @@
       {
         "instruction": "Schritt 2 – Kleidung: Schreibe eine Funktion kleidungs_tipp(temperatur, regen), die 'Regenjacke' zurückgibt, wenn regen True ist, sonst 'T-Shirt' bei über 25 Grad, 'Winterjacke' bei unter 5 Grad und sonst 'Pullover'. Gib damit genau Tipp: T-Shirt (für 30 Grad, kein Regen) und danach Tipp: Regenjacke (für 2 Grad, Regen) aus, im Format Tipp: <ergebnis>.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def kleidungs_tipp(temperatur, regen):\n    if regen:\n        return \"Regenjacke\"\n    elif temperatur > 25:\n        return \"T-Shirt\"\n    elif temperatur < 5:\n        return \"Winterjacke\"\n    else:\n        return \"Pullover\"\n\nprint(f\"Tipp: {kleidungs_tipp(30, False)}\")\nprint(f\"Tipp: {kleidungs_tipp(2, True)}\")",
         "validation": {
           "type": "output_contains",
           "expected": "Tipp: T-Shirt\nTipp: Regenjacke",
@@ -182,6 +192,7 @@
       {
         "instruction": "Schritt 3 – Wetterbericht: Schreibe eine Funktion wetterbericht(temperatur, regen), die deine beiden Funktionen aus Schritt 1 und 2 (erneut geschrieben) benutzt und den Text 'Es ist <gefuehl>. Trage: <tipp>' zurückgibt. Gib damit genau Es ist heiß. Trage: T-Shirt (für 30 Grad, kein Regen) und danach Es ist kalt. Trage: Regenjacke (für 2 Grad, Regen) aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def temperatur_gefuehl(temperatur):\n    if temperatur > 25:\n        return \"heiß\"\n    elif temperatur < 5:\n        return \"kalt\"\n    else:\n        return \"mild\"\n\ndef kleidungs_tipp(temperatur, regen):\n    if regen:\n        return \"Regenjacke\"\n    elif temperatur > 25:\n        return \"T-Shirt\"\n    elif temperatur < 5:\n        return \"Winterjacke\"\n    else:\n        return \"Pullover\"\n\ndef wetterbericht(temperatur, regen):\n    gefuehl = temperatur_gefuehl(temperatur)\n    tipp = kleidungs_tipp(temperatur, regen)\n    return f\"Es ist {gefuehl}. Trage: {tipp}\"\n\nprint(wetterbericht(30, False))\nprint(wetterbericht(2, True))",
         "validation": {
           "type": "output_contains",
           "expected": "Es ist heiß. Trage: T-Shirt\nEs ist kalt. Trage: Regenjacke",
@@ -200,6 +211,7 @@
       {
         "instruction": "Schritt 1 – Noten: Schreibe eine Funktion note(punkte), die 'A' zurückgibt ab 90 Punkten, 'B' ab 75, 'C' ab 60, 'D' ab 40, sonst 'F'. Gib damit genau A (für 95), C (für 65) und F (für 10) aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def note(punkte):\n    if punkte >= 90:\n        return \"A\"\n    elif punkte >= 75:\n        return \"B\"\n    elif punkte >= 60:\n        return \"C\"\n    elif punkte >= 40:\n        return \"D\"\n    else:\n        return \"F\"\n\nprint(note(95))\nprint(note(65))\nprint(note(10))",
         "validation": {
           "type": "output_contains",
           "expected": "A\nC\nF",
@@ -209,6 +221,7 @@
       {
         "instruction": "Schritt 2 – Bestehensquote: Schreibe eine Funktion bestehensquote(punkte_liste), die mit note() aus Schritt 1 (erneut schreiben) zählt, wie viele Ergebnisse nicht 'F' sind, und den Anteil in Prozent (gerundet mit round()) zurückgibt. Gib damit genau 75 aus für [95, 65, 10, 80].",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def note(punkte):\n    if punkte >= 90:\n        return \"A\"\n    elif punkte >= 75:\n        return \"B\"\n    elif punkte >= 60:\n        return \"C\"\n    elif punkte >= 40:\n        return \"D\"\n    else:\n        return \"F\"\n\ndef bestehensquote(punkte_liste):\n    bestanden = 0\n    for punkte in punkte_liste:\n        if note(punkte) != \"F\":\n            bestanden += 1\n    return round(bestanden / len(punkte_liste) * 100)\n\nprint(bestehensquote([95, 65, 10, 80]))",
         "validation": {
           "type": "output_contains",
           "expected": "75",
@@ -218,6 +231,7 @@
       {
         "instruction": "Schritt 3 – Zusammenfassung: Schreibe eine Funktion zusammenfassung(punkte, punkte_liste), die note() und bestehensquote() (beide erneut schreiben) benutzt und den Text 'Note: <note>, Klasse bestanden: <quote>%' zurückgibt. Gib damit genau Note: A, Klasse bestanden: 75% aus, für punkte=95 und punkte_liste=[95, 65, 10, 80].",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def note(punkte):\n    if punkte >= 90:\n        return \"A\"\n    elif punkte >= 75:\n        return \"B\"\n    elif punkte >= 60:\n        return \"C\"\n    elif punkte >= 40:\n        return \"D\"\n    else:\n        return \"F\"\n\ndef bestehensquote(punkte_liste):\n    bestanden = 0\n    for punkte in punkte_liste:\n        if note(punkte) != \"F\":\n            bestanden += 1\n    return round(bestanden / len(punkte_liste) * 100)\n\ndef zusammenfassung(punkte, punkte_liste):\n    return f\"Note: {note(punkte)}, Klasse bestanden: {bestehensquote(punkte_liste)}%\"\n\nprint(zusammenfassung(95, [95, 65, 10, 80]))",
         "validation": {
           "type": "output_contains",
           "expected": "Note: A, Klasse bestanden: 75%",
@@ -236,6 +250,7 @@
       {
         "instruction": "Schritt 1 – Sammlung: Erstelle eine Liste beispiele mit den 5 Paaren ('hund', 'Tier'), ('katze', 'Tier'), ('spinne', 'Tier'), ('rose', 'Pflanze'), ('baum', 'Pflanze'). Schreibe die Funktion finde_antwort(frage, beispiele) aus Lektion 3 erneut. Gib damit genau Tier (für 'hund') und danach unbekannt (für 'stein') aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "beispiele = [\n    (\"hund\", \"Tier\"),\n    (\"katze\", \"Tier\"),\n    (\"spinne\", \"Tier\"),\n    (\"rose\", \"Pflanze\"),\n    (\"baum\", \"Pflanze\"),\n]\n\ndef finde_antwort(frage, beispiele):\n    for eingabe, antwort in beispiele:\n        if eingabe == frage:\n            return antwort\n    return \"unbekannt\"\n\nprint(finde_antwort(\"hund\", beispiele))\nprint(finde_antwort(\"stein\", beispiele))",
         "validation": {
           "type": "output_contains",
           "expected": "Tier\nunbekannt",
@@ -245,6 +260,7 @@
       {
         "instruction": "Schritt 2 – Zählen: Schreibe eine Funktion zaehle_kategorie(beispiele, kategorie), die zählt, wie viele Einträge in beispiele die gegebene Kategorie als zweites Element haben. Gib damit genau 3 (für 'Tier') und danach 2 (für 'Pflanze') aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "beispiele = [\n    (\"hund\", \"Tier\"),\n    (\"katze\", \"Tier\"),\n    (\"spinne\", \"Tier\"),\n    (\"rose\", \"Pflanze\"),\n    (\"baum\", \"Pflanze\"),\n]\n\ndef zaehle_kategorie(beispiele, kategorie):\n    anzahl = 0\n    for eingabe, antwort in beispiele:\n        if antwort == kategorie:\n            anzahl += 1\n    return anzahl\n\nprint(zaehle_kategorie(beispiele, \"Tier\"))\nprint(zaehle_kategorie(beispiele, \"Pflanze\"))",
         "validation": {
           "type": "output_contains",
           "expected": "3\n2",
@@ -254,6 +270,7 @@
       {
         "instruction": "Schritt 3 – Häufigste Kategorie: Schreibe eine Funktion haeufigste_kategorie(beispiele), die mit zaehle_kategorie() (erneut schreiben) herausfindet, welche Kategorie am häufigsten vorkommt, und sie zurückgibt. Gib damit genau Tier aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "beispiele = [\n    (\"hund\", \"Tier\"),\n    (\"katze\", \"Tier\"),\n    (\"spinne\", \"Tier\"),\n    (\"rose\", \"Pflanze\"),\n    (\"baum\", \"Pflanze\"),\n]\n\ndef zaehle_kategorie(beispiele, kategorie):\n    anzahl = 0\n    for eingabe, antwort in beispiele:\n        if antwort == kategorie:\n            anzahl += 1\n    return anzahl\n\ndef haeufigste_kategorie(beispiele):\n    beste = None\n    beste_anzahl = 0\n    for eingabe, kategorie in beispiele:\n        anzahl = zaehle_kategorie(beispiele, kategorie)\n        if anzahl > beste_anzahl:\n            beste = kategorie\n            beste_anzahl = anzahl\n    return beste\n\nprint(haeufigste_kategorie(beispiele))",
         "validation": {
           "type": "output_contains",
           "expected": "Tier",
@@ -272,6 +289,7 @@
       {
         "instruction": "Schritt 1 – Modell: Erstelle ein Dictionary modell mit 'hund': 'Tier', 'katze': 'Tier', 'rose': 'Pflanze', 'baum': 'Pflanze'. Schreibe die Funktion vorhersage_sicherheit(modell, eingabe) aus Lektion 5 erneut. Gib damit genau Sicher: Tier (für 'hund') und danach Unsicher: unbekannt (für 'vogel') aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "modell = {\n    \"hund\": \"Tier\",\n    \"katze\": \"Tier\",\n    \"rose\": \"Pflanze\",\n    \"baum\": \"Pflanze\",\n}\n\ndef vorhersage_sicherheit(modell, eingabe):\n    if eingabe in modell:\n        return f\"Sicher: {modell[eingabe]}\"\n    else:\n        return \"Unsicher: unbekannt\"\n\nprint(vorhersage_sicherheit(modell, \"hund\"))\nprint(vorhersage_sicherheit(modell, \"vogel\"))",
         "validation": {
           "type": "output_contains",
           "expected": "Sicher: Tier\nUnsicher: unbekannt",
@@ -281,6 +299,7 @@
       {
         "instruction": "Schritt 2 – Testen: Schreibe eine Funktion teste_modell(modell, testfaelle), wobei testfaelle eine Liste aus (eingabe, erwartete_antwort)-Paaren ist. Zähle mit modell.get(eingabe, 'unbekannt'), wie viele Vorhersagen mit der erwarteten Antwort übereinstimmen, und gib die Anzahl zurück. Gib damit genau 2 aus für testfaelle = [('hund', 'Tier'), ('rose', 'Pflanze'), ('vogel', 'Tier')].",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "modell = {\n    \"hund\": \"Tier\",\n    \"katze\": \"Tier\",\n    \"rose\": \"Pflanze\",\n    \"baum\": \"Pflanze\",\n}\n\ndef teste_modell(modell, testfaelle):\n    richtig = 0\n    for eingabe, erwartete_antwort in testfaelle:\n        if modell.get(eingabe, \"unbekannt\") == erwartete_antwort:\n            richtig += 1\n    return richtig\n\ntestfaelle = [(\"hund\", \"Tier\"), (\"rose\", \"Pflanze\"), (\"vogel\", \"Tier\")]\nprint(teste_modell(modell, testfaelle))",
         "validation": {
           "type": "output_contains",
           "expected": "2",
@@ -290,6 +309,7 @@
       {
         "instruction": "Schritt 3 – Genauigkeit: Schreibe eine Funktion genauigkeit(modell, testfaelle), die teste_modell() (erneut schreiben) benutzt und den Text 'Genauigkeit: <prozent>%' zurückgibt (Prozent gerundet mit round()). Gib damit genau Genauigkeit: 67% aus, für dasselbe modell und dieselben testfaelle wie in Schritt 2.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "modell = {\n    \"hund\": \"Tier\",\n    \"katze\": \"Tier\",\n    \"rose\": \"Pflanze\",\n    \"baum\": \"Pflanze\",\n}\n\ndef teste_modell(modell, testfaelle):\n    richtig = 0\n    for eingabe, erwartete_antwort in testfaelle:\n        if modell.get(eingabe, \"unbekannt\") == erwartete_antwort:\n            richtig += 1\n    return richtig\n\ndef genauigkeit(modell, testfaelle):\n    prozent = round(teste_modell(modell, testfaelle) / len(testfaelle) * 100)\n    return f\"Genauigkeit: {prozent}%\"\n\ntestfaelle = [(\"hund\", \"Tier\"), (\"rose\", \"Pflanze\"), (\"vogel\", \"Tier\")]\nprint(genauigkeit(modell, testfaelle))",
         "validation": {
           "type": "output_contains",
           "expected": "Genauigkeit: 67%",

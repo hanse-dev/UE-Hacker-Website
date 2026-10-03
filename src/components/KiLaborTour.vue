@@ -28,7 +28,7 @@
         @change-week="phase = 'week'"
         @open-check="phase = 'check'"
       />
-      <OfflineDownloads :base="`/ki-labor-zips/woche-${selectedWeekNumber}`" no-solutions />
+      <OfflineDownloads :base="`/ki-labor-zips/woche-${selectedWeekNumber}`" />
     </template>
 
     <div v-else class="ki-labor-check">

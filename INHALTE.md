@@ -113,14 +113,19 @@ Python-Projekt-Kurse und das KI-Labor **drei Formate, je ein eigener Button**
 
 | Format | ZIP-Endung | Inhalt | Generator |
 |---|---|---|---|
-| Jupyter-Notebooks | `-notebooks.zip` | Aufgaben- und Lösungs-Notebook getrennt (`_aufgaben`/`_loesungen`, EN `_tasks`/`_solutions`); KI-Labor nur Aufgaben | `build_lesson_notebook.py`, `build_project_notebook.py`, `build_kilabor_notebook.py` |
-| Eine Python-Datei | `-komplett.zip` | eine mit `python3` lauffähige `.py` (12 Wochen: je Thema eine), Lösungen als Code; KI-Labor mit Vorlagen statt Lösungen | `build_lesson_bundle.py` (`build_bundle`), `build_offline_py.py` |
+| Jupyter-Notebooks | `-notebooks.zip` | Aufgaben- und Lösungs-Notebook getrennt (`_aufgaben`/`_loesungen`, EN `_tasks`/`_solutions`) | `build_lesson_notebook.py`, `build_project_notebook.py`, `build_kilabor_notebook.py` |
+| Eine Python-Datei | `-komplett.zip` | eine mit `python3` lauffähige `.py` (12 Wochen: je Thema eine), Lösungen als Code | `build_lesson_bundle.py` (`build_bundle`), `build_offline_py.py` |
 | Einzeldateien | `-einzeln.zip` | eine `.py` pro Lektion/Debug/Mission/Extra-Herausforderung (12 Wochen: plus `00_glossar.py`, ein Ordner je Thema) | `build_lesson_bundle.py` (`build_lesson_files`), `build_offline_py.py` |
 
 Pfade: `wochen-zips/woche-{N}[-en]-{format}.zip` (Cheat-Sheets der Woche liegen in allen drei),
 `projekt-zips/{contentPath}-{format}.zip` (nur Python-Projekte; neue Python-Projekte in
 `PROJECT_COURSES` in `build_project_notebook.py` eintragen — ein Test prüft das gegen `kurse.json`),
 `ki-labor-zips/woche-{N}-{format}.zip`; dazu das Gesamtpaket `python-12-wochen-notebooks.zip`.
+Lösungsquellen: 12 Wochen aus den `*_6_loesungen`-Zellenordnern, Projekt-Kurse aus `task.solution`
+(zeigt in der App auch den „Lösung anzeigen“-Button), KI-Labor aus `task.referenceSolution` — bewusst
+ein anderer Feldname, damit im KI-Labor kein Lösungs-Button erscheint. Neue KI-Labor-Aufgabe ⇒
+`referenceSolution` mitpflegen; `scripts/check_kilabor_solutions.py` (Test in
+`lesson-notebook-generator.spec.js`) prüft, dass jede davon läuft und die erwartete Ausgabe liefert.
 `scripts/pack_notebooks.py` packt alles und schreibt die Liste nach `public/offline-downloads.json`.
 Nichts davon wird committed; es entsteht bei `npm run dev`/`npm run build` und vor jedem
 Playwright-Lauf (`scripts/ensure-test-prereqs.mjs`) neu, wenn Quellen neuer sind.
