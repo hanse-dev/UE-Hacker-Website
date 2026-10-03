@@ -118,6 +118,28 @@ Dateien liegt, und melden alles andere unter **"Auffälligkeiten (nicht behoben)
 Lösungsvorschlag — die aufrufende Session überträgt das in `todo.md` bzw. behebt es selbst. Sie ändern
 keine geteilten Dateien (`todo.md`, `HANDOFF.md`, `src/`, `tests/`) selbst.
 
+## Gespeicherter Fortschritt: ein Deploy darf nichts brechen
+
+Fortschritt liegt als JSON-Blob in der Account-Datenbank (`progress.payload`) und im Browser
+(localStorage). Er hängt an **Namen und Positionen**, nicht an Texten:
+
+- Content-Ordnername + Lektions-`id` (`completedLessonIds`), Kurs-`id` in `public/kurse.json`
+- Wochen-Check: Wochennummer, Fragen-`id`, **Position** der Coding-Aufgabe (`codingPassed[0]`, `[1]`)
+- Storage-Keys (`ue-hacker-…`) und `version` in den gespeicherten Daten
+- DB-Schema in `api/src/db.js` (`CREATE TABLE IF NOT EXISTS` ändert bestehende Tabellen **nicht**)
+
+Erlaubt ohne Weiteres: Texte, Aufgaben, `expected`, Vorlagen und Lösungen ändern; neue Kurse,
+Lektionen, Fragen, Tabellen ergänzen. **Nicht** ohne Migration: Ordner/IDs umbenennen oder löschen,
+Lektionen oder Coding-Aufgaben umsortieren/entfernen, Storage-Key oder `version` ändern, eine Spalte
+nur ins `CREATE TABLE` schreiben (stattdessen zusätzlich `ALTER TABLE … ADD COLUMN …` in `db.js`).
+
+`tests/progress-contract.spec.js` (Teil von `test:checks`, läuft bei jeder Content-/Storage-/DB-
+Änderung im Pre-commit) vergleicht den aktuellen Stand mit dem eingefrorenen in
+`tests/fixtures/progress-contract.json`. Schlägt er an: Änderung zurücknehmen **oder** Migration für
+bestehende Daten bauen, dann bewusst neu einfrieren mit `npm run contract:update` und die Fixture
+mitcommitten. Neue Kurse/Lektionen ebenfalls per `contract:update` aufnehmen, sonst sind sie nicht
+geschützt.
+
 ## Bei Inhaltsänderungen: Zusammenhänge prüfen
 
 Wann immer du Inhalte änderst (Notebooks, Markdown-Lektionen, JSON-Manifeste), **prüfe immer `INHALTE.md` Abschnitt 6** — dort steht, welche Dateien gleichzeitig angepasst werden müssen.
