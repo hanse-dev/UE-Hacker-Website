@@ -1,7 +1,7 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-10-01
-> **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.96 (u.a. Offline-Downloads in 3 Formaten, Zertifikate/PDF,
+> **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.97 (u.a. Offline-Downloads in 3 Formaten, Zertifikate/PDF,
 > Skip-/Reset-Button, Login-Fortschritt, Pre-commit/Pre-push, Admin-Termine, "Kurs starten"-Gate für
 > alle Kurse, Worktree-Tooling, Dev-Skip-Flag, JS-Spielewerkstatt mit neuem Konzept).
 > Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4) — nach dem nächsten Deploy
@@ -71,13 +71,13 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.85 | Interaktiv-Kurs: Editor-Erklärungen, flexible Lektionen + Beispiel-Aufgabe | `lesson.editorHint`, Hinweis für `___`-Lücken; `lesson.minSolved` in `LessonView.vue` macht eine Lektion "flexibel" (5 Aufgaben, mind. 2 nötig, Rest sofort überspringbar) |
 | 3.86/3.93 | "Kurs starten"-Gate für Projekt- und Interaktiv-Kurs; Lektionsliste als Leiste | `isFocusableCourse` gilt für alle Kurse außer der Einstufung, `?started=1` hält die Ansicht beim Reload; `course-layout.css` einspaltig; Interaktiv-Kurs: Varianten-Kacheln, "Weiter" scrollt nach oben |
 | 3.87 | Git-Worktree-Tooling | `npm run worktree:new`/`worktree:remove`, eigene Ports je Worktree (`worktree.ports.json`), siehe `WORKFLOW.md` |
-| 3.89 | Dev-Flag: Aufgaben-Prüfung überspringen | `npm run dev:skip-checks` (`VITE_DEV_SKIP_CHECKS=1`) lässt "Prüfen" in `JsLessonView.vue` sofort durchgehen, hinter `import.meta.env.DEV` (nicht im Prod-Build), mit Hinweis-Banner |
-| 3.88/3.90 | JS-Spielewerkstatt mit neuem Konzept | 7 Lektionen, jede Aufgabe baut am laufenden Spiel weiter (ID/URL unverändert); Prüfung per `output_equals` statt `functionCalls`; `task.showCanvas: false`; Vorwissen JS-Grundkurs Woche 4; Durchlauf-Test über alle Musterlösungen |
+| 3.89/3.97 | Dev-Modus "Prüfungen überspringen" (zentral, alle Kurse) | `npm run dev:skip-checks` → `devSkipChecks.js` (nur mit `import.meta.env.DEV`): Prüfungen/Quiz immer bestanden, alle Lektionen offen, Banner; Suite `test:devskip` im Pre-push |
+| 3.88/3.90 | JS-Spielewerkstatt mit neuem Konzept | 7 Lektionen am laufenden Spiel (ID/URL gleich), Prüfung per `output_equals`, `task.showCanvas: false`, Durchlauf-Test über alle Musterlösungen |
 | 3.91 | "Zurücksetzen"-Button für vorgegebenen Code | `.btn-reset` in `LessonView.vue`/`JsLessonView.vue`/`CodeChallenge.vue`, sichtbar sobald der Code vom `codeTemplate` abweicht; setzt nur diese eine Aufgabe zurück |
 | 3.92 | JS-Lektionsaufgaben: fehlende `output_contains`-Checks nachgezogen | `js-grundkurs` und `js-snake`: keine JS-Pflichtaufgabe mehr ohne Ausgabe-/Canvas-/DOM-Prüfung (vorher 31, seit 3.80 ungeprüft) |
 | 3.94 | Glossar-Tooltip bei verschachtelten Begriffen | `useLessonContent.js`: ein kombinierter Regex-Durchlauf statt sequenziellem Ersetzen |
-| 3.95 | Offline-Downloads in 3 Formaten (Notebooks, eine Python-Datei, Einzeldateien je Lektion) | 12-Wochen-Kurs, Python-Projekte, KI-Labor; ein Button je Format (`OfflineDownloads.vue`); `pack_notebooks.py` + `build_*_notebook.py`/`build_offline_py.py`, Details `INHALTE.md` |
-| 3.96 | KI-Labor-Musterlösungen für alle 160 Aufgaben | Feld `task.referenceSolution` (nicht `solution`, sonst Lösungs-Button in der App); Offline-Downloads mit Lösungs-Notebook; `check_kilabor_solutions.py` prüft jede Lösung gegen die erwartete Ausgabe |
+| 3.95 | Offline-Downloads in 3 Formaten (Notebooks, eine `.py`, Einzeldateien je Lektion) | 12 Wochen, Python-Projekte, KI-Labor; `OfflineDownloads.vue`, `pack_notebooks.py`, Details `INHALTE.md` |
+| 3.96 | KI-Labor-Musterlösungen (160) | `task.referenceSolution` (nicht `solution` → kein Lösungs-Button), geprüft von `check_kilabor_solutions.py` |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -85,6 +85,8 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 - Bulk-Edits an JSON/Notebooks nie per volle Reserialisierung, sondern gezielte Text-Ersetzung + `json.loads()` danach (3.12, 3.16). Seit 3.33 sind 12-Wochen-Notebooks Zellen-Ordner (`NN_*.py`) — keine `.ipynb` als Quelle wieder einführen.
 - Debug-Bugs müssen vom Kernel-Zustand unabhängig sein und dürfen die Lösung nicht verraten. Nach Notebook-Änderung Code-Zellen mit gemeinsamem Namespace per `python3` ausführen.
 - Ein "Fund" aus einer Variante gilt nicht automatisch für alle: vor Massenänderungen alle 3 Varianten × DE/EN grep-prüfen.
+- Neue Prüf-Logik immer über `useTaskValidation.js` (bzw. `isLessonUnlocked`) laufen lassen — nur dann
+  greift der Dev-Modus `dev:skip-checks` automatisch auch im neuen Kurs (3.97).
 - `codeTemplate` einer echten Debug-Aufgabe ist absichtlich kaputt — Generatoren kompilieren nur
   Beispiel-Code und Lösungen, nie rohe Aufgaben-Vorlagen (3.95).
 - Neue Aufgabe im Lektions-Format: in `lessons.json` ans Ende von `tasks` anhängen und im passenden

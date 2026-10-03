@@ -19,6 +19,7 @@
     "test:precommit": "node scripts/test-changed.mjs --staged",
     "test:changed": "node scripts/test-changed.mjs",
     "test:auth": "playwright test -c playwright.auth.config.js",
+    "test:devskip": "playwright test -c playwright.devskip.config.js",
     "lint:spelling": "cspell --no-progress \"src/locales/*.js\" \"content/python-woche*/**/*.md\" \"content/python-woche*/**/*.json\" \"content/js-grundkurs*/**/*.md\" \"content/js-grundkurs*/**/*.json\" \"content/ki-labor*/**/*.md\" \"content/ki-labor*/**/*.json\" \"content/python-grundlagen-interaktiv*/**/*.md\" \"content/python-grundlagen-interaktiv*/**/*.json\" \"content/caesar-chiffre/**/*.md\" \"content/vigenere-chiffre/**/*.md\" \"content/morsecode/**/*.md\" \"content/zahlendetektiv/**/*.md\" \"content/js-snake/**/*.md\" \"content/js-spielewerkstatt/**/*.md\" \"content/text-adventure-fluchtraum/**/*.md\"",
     "worktree:new": "node scripts/new-worktree.mjs",
     "worktree:remove": "node scripts/remove-worktree.mjs",

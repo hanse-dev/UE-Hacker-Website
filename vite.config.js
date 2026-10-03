@@ -24,6 +24,10 @@ export default defineConfig({
     watch: {
       usePolling: true,
       interval: 300,
+      // Build-Ausgaben und Testartefakte nie ueberwachen: beim Polling kostet jede Datei Rechenzeit,
+      // und der Produktions-Build der Dev-Modus-Suite (dist-devskip/, ~2000 Dateien) trieb die
+      // Systemlast so hoch, dass test:checks in Timeouts lief.
+      ignored: ['**/dist/**', '**/dist-devskip/**', '**/test-results/**', '**/playwright-report/**'],
     },
     proxy: {
       '/api': {

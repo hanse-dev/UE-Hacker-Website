@@ -28,6 +28,9 @@
       </nav>
     </header>
 
+    <!-- Nur mit `npm run dev:skip-checks` (siehe composables/devSkipChecks.js), nie im Live-Betrieb. -->
+    <p v-if="devSkipChecks" class="dev-skip-banner" role="status">{{ t('devSkip.banner') }}</p>
+
     <main class="app-main" v-if="!isCourseDetail">
       <router-view />
     </main>
@@ -138,6 +141,7 @@
 import { computed, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useLanguage } from './composables/useLanguage.js';
+import { DEV_SKIP_CHECKS } from './composables/devSkipChecks.js';
 import { useAuth } from './composables/useAuth.js';
 import { adminToken } from './composables/useAdminApi.js';
 
@@ -197,6 +201,7 @@ export default {
     });
 
     return {
+      devSkipChecks: DEV_SKIP_CHECKS,
       showHomeLink,
       isCourseDetail,
       isTeaser,
@@ -424,5 +429,14 @@ export default {
   justify-content: flex-end;
   gap: 8px;
   margin-top: 0.75rem;
+}
+.dev-skip-banner {
+  margin: 0;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 0.9em;
+  background: #fff3cd;
+  border-bottom: 1px solid #ffe69c;
+  color: #664d03;
 }
 </style>

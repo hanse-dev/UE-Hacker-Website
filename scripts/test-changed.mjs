@@ -35,6 +35,7 @@ const ALL_CHECKS = [
 // spezifisch zu mappen -> lösen immer den vollen Lauf aus.
 const CORE_PREFIXES = [
   'src/composables/useTaskValidation.js',
+  'src/composables/devSkipChecks.js',
   'src/composables/useWeekChecks.js',
   'src/composables/useProgressSync.js',
   'src/composables/useAuth.js',

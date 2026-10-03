@@ -173,3 +173,6 @@ scripts/local-tools/.last-account.json
 
 # Liste der erzeugten Offline-Downloads (scripts/pack_notebooks.py)
 public/offline-downloads.json
+
+# Build-Ausgabe des Dev-Modus-Tests (playwright.devskip.config.js)
+dist-devskip/

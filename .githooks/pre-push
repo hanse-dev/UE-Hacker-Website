@@ -14,6 +14,14 @@ echo "▶  Running npm run test:checks (volle Suite vor dem Push) …"
 npm run test:checks
 status=$?
 
+# Dev-Modus "Pruefungen ueberspringen": braucht eigene Server mit gesetzter Variable (Dev + Build),
+# laeuft deshalb als eigene kleine Suite hinterher (~10 s).
+if [ $status -eq 0 ]; then
+  echo "▶  Running npm run test:devskip (Dev-Modus darf nicht im Produktions-Build wirken) …"
+  npm run test:devskip
+  status=$?
+fi
+
 if [ $status -ne 0 ]; then
   echo ""
   echo "✖  Checks failed — push aborted."
