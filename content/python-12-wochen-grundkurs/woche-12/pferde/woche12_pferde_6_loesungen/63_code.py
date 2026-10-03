@@ -11,9 +11,9 @@ welt = {
     "koppel": {"beschreibung": "Die nächtliche Koppel. Im Gras steht das Fohlen – und davor ein zorniger Ziegenbock!", "ausgaenge": {"westen": "stallgasse"}},
 }
 
-def beschreibe(room_name):
-    raum = welt[room_name]
-    print(f"📍 {room_name.capitalize()}: {raum['beschreibung']}")
+def beschreibe(raumname):
+    raum = welt[raumname]
+    print(f"📍 {raumname.capitalize()}: {raum['beschreibung']}")
     print("   Ausgänge:", ", ".join(raum["ausgaenge"]))
 
 def gehe(position, richtung):
@@ -59,15 +59,15 @@ class Spieler:
         else:
             print("👀 Hier liegt nichts.")
 
-    def nimm(self, item_name):
+    def nimm(self, gegenstand_name):
         raum = welt[self.position]
         for gegenstand in raum["gegenstaende"]:
-            if gegenstand.name == item_name:
+            if gegenstand.name == gegenstand_name:
                 raum["gegenstaende"].remove(gegenstand)
                 self.inventar.append(gegenstand)
                 print(f"🎒 Du nimmst: {gegenstand.name} – {gegenstand.beschreibung}")
                 return
-        print(f"❓ Hier gibt es kein '{item_name}'.")
+        print(f"❓ Hier gibt es kein '{gegenstand_name}'.")
 
     def zeige_inventar(self):
         if self.inventar:
@@ -77,8 +77,8 @@ class Spieler:
             print("🎒 Dein Beutel ist leer.")
 
 spieler = Spieler("Mira", "hof")
-def heile(spieler, amount):
-    spieler.hp += amount
+def heile(spieler, menge):
+    spieler.hp += menge
     if spieler.hp > 20:
         spieler.hp = 20
 

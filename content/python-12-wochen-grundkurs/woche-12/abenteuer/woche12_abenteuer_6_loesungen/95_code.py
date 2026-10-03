@@ -1,8 +1,8 @@
 import json
 
-def lade_stand(filename):
+def lade_stand(dateiname):
     try:
-        with open(filename, "r") as f:
+        with open(dateiname, "r") as f:
             return json.load(f)
     except FileNotFoundError:
         return {}

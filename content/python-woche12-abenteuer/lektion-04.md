@@ -33,15 +33,15 @@ class Spieler:
         else:
             print("👀 Hier liegt nichts.")
 
-    def nimm(self, item_name):
+    def nimm(self, gegenstand_name):
         raum = welt[self.position]
         for gegenstand in raum["gegenstaende"]:
-            if gegenstand.name == item_name:
+            if gegenstand.name == gegenstand_name:
                 raum["gegenstaende"].remove(gegenstand)
                 self.inventar.append(gegenstand)
                 print(f"🎒 Du nimmst: {gegenstand.name} – {gegenstand.beschreibung}")
                 return
-        print(f"❓ Hier gibt es kein '{item_name}'.")
+        print(f"❓ Hier gibt es kein '{gegenstand_name}'.")
 
     def zeige_inventar(self):
         if self.inventar:

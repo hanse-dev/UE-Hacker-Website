@@ -7,39 +7,39 @@ Ein Objekt wie der Spieler lässt sich nicht direkt als JSON speichern. Deshalb 
 ```python
 import json
 
-def speichern(spieler, filename="stand.json"):
-    data = {
+def speichern(spieler, dateiname="stand.json"):
+    daten = {
         "name": spieler.name,
         "position": spieler.position,
         "hp": spieler.hp,
         "inventar": [{"name": g.name, "beschreibung": g.beschreibung} for g in spieler.inventar],
     }
-    with open(filename, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+    with open(dateiname, "w", encoding="utf-8") as f:
+        json.dump(daten, f, ensure_ascii=False, indent=2)
     print(f"💾 Spielstand von {spieler.name} gespeichert.")
 
-def laden(filename="stand.json"):
+def laden(dateiname="stand.json"):
     try:
-        with open(filename, "r", encoding="utf-8") as f:
-            data = json.load(f)
+        with open(dateiname, "r", encoding="utf-8") as f:
+            daten = json.load(f)
     except FileNotFoundError:
         print("📂 Es gibt noch keinen Spielstand.")
         return None
-    spieler = Spieler(data["name"], data["position"])
-    spieler.hp = data["hp"]
-    for entry in data["inventar"]:
+    spieler = Spieler(daten["name"], daten["position"])
+    spieler.hp = daten["hp"]
+    for entry in daten["inventar"]:
         spieler.inventar.append(Gegenstand(entry["name"], entry["beschreibung"]))
     print(f"📂 Spielstand von {spieler.name} geladen.")
     return spieler
 
-def spiele(spieler, commands, goal_item="Schatz"):
-    for text in commands:
+def spiele(spieler, befehle, ziel_gegenstand="Schatz"):
+    for text in befehle:
         print(f"\n> {text}")
         fuehre_aus(spieler, text)
         if spieler.hp <= 0:
             print("💀 Game Over – zu stark. Versuche es noch einmal!")
             return
-        if hat_gegenstand(spieler, goal_item):
+        if hat_gegenstand(spieler, ziel_gegenstand):
             print("🏆 Du hast den Schatz von Pyralia gefunden. Die Gilde feiert dich!")
             return
 ```

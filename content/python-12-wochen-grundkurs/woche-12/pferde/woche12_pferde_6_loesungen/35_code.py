@@ -11,9 +11,9 @@ welt = {
     "koppel": {"beschreibung": "Die nächtliche Koppel. Im Gras steht das Fohlen – und davor ein zorniger Ziegenbock!", "ausgaenge": {"westen": "stallgasse"}},
 }
 
-def beschreibe(room_name):
-    raum = welt[room_name]
-    print(f"📍 {room_name.capitalize()}: {raum['beschreibung']}")
+def beschreibe(raumname):
+    raum = welt[raumname]
+    print(f"📍 {raumname.capitalize()}: {raum['beschreibung']}")
     print("   Ausgänge:", ", ".join(raum["ausgaenge"]))
 
 def gehe(position, richtung):
@@ -59,15 +59,15 @@ class Spieler:
         else:
             print("👀 Hier liegt nichts.")
 
-    def nimm(self, item_name):
+    def nimm(self, gegenstand_name):
         raum = welt[self.position]
         for gegenstand in raum["gegenstaende"]:
-            if gegenstand.name == item_name:
+            if gegenstand.name == gegenstand_name:
                 raum["gegenstaende"].remove(gegenstand)
                 self.inventar.append(gegenstand)
                 print(f"🎒 Du nimmst: {gegenstand.name} – {gegenstand.beschreibung}")
                 return
-        print(f"❓ Hier gibt es kein '{item_name}'.")
+        print(f"❓ Hier gibt es kein '{gegenstand_name}'.")
 
     def zeige_inventar(self):
         if self.inventar:
@@ -120,17 +120,17 @@ def pruefe_gegner(spieler):
 
 def fuehre_aus(spieler, text):
     try:
-        action, target = text.split()
+        aktion, ziel = text.split()
     except ValueError:
         print("🤔 Ich verstehe nur Befehle aus zwei Wörtern, z.B. 'gehe norden' oder 'nimm Taschenlampe'.")
         return
-    if action == "gehe":
-        spieler.gehe(target)
+    if aktion == "gehe":
+        spieler.gehe(ziel)
         pruefe_gegner(spieler)
-    elif action == "nimm":
-        spieler.nimm(target)
+    elif aktion == "nimm":
+        spieler.nimm(ziel)
     else:
-        print(f"🤔 '{action}' kenne ich nicht. Versuche 'gehe' oder 'nimm'.")
+        print(f"🤔 '{aktion}' kenne ich nicht. Versuche 'gehe' oder 'nimm'.")
 
 spieler = Spieler("Mira", "hof")
 for text in ["gehe norden", "tanze wild"]:

@@ -1,9 +1,9 @@
-def parse(text):
+def zerlege(text):
     try:
-        action, target = text.split()
+        aktion, ziel = text.split()
     except ValueError:
         return None
-    return (action, target)
+    return (aktion, ziel)
 
-print(parse("gehe norden"))
-print(parse("hallo"))
+print(zerlege("gehe norden"))
+print(zerlege("hallo"))

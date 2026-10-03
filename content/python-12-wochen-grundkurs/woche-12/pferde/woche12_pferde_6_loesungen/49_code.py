@@ -4,8 +4,8 @@ class Spieler:
         self.position = position
         self.inventar = []
 
-    def nimm(self, item_name):
-        self.inventar.append(item_name)
+    def nimm(self, gegenstand_name):
+        self.inventar.append(gegenstand_name)
 
 spieler = Spieler("Mira", "hof")
 spieler.nimm("Taschenlampe")

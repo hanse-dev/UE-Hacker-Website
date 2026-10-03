@@ -11,9 +11,9 @@ welt = {
     "koppel": {"beschreibung": "Die nächtliche Koppel. Im Gras steht das Fohlen – und davor ein zorniger Ziegenbock!", "ausgaenge": {"westen": "stallgasse"}},
 }
 
-def beschreibe(room_name):
-    raum = welt[room_name]
-    print(f"📍 {room_name.capitalize()}: {raum['beschreibung']}")
+def beschreibe(raumname):
+    raum = welt[raumname]
+    print(f"📍 {raumname.capitalize()}: {raum['beschreibung']}")
     print("   Ausgänge:", ", ".join(raum["ausgaenge"]))
 
 print(sorted(welt))

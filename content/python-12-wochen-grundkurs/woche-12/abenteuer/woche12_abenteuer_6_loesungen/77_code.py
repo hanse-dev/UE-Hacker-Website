@@ -11,12 +11,12 @@ welt = {
     "schatzkammer": {"beschreibung": "Gold, so weit du blicken kannst – und mittendrin schläft der Drache!", "ausgaenge": {"westen": "halle"}},
 }
 
-def beschreibe(room_name):
-    raum = welt[room_name]
-    print(f"📍 {room_name.capitalize()}: {raum['beschreibung']}")
+def beschreibe(raumname):
+    raum = welt[raumname]
+    print(f"📍 {raumname.capitalize()}: {raum['beschreibung']}")
     print("   Ausgänge:", ", ".join(raum["ausgaenge"]))
 
 import json
 text = json.dumps(welt)
-back = json.loads(text)
-print(back == welt)
+zurueck = json.loads(text)
+print(zurueck == welt)
