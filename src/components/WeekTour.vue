@@ -57,12 +57,7 @@
           </button>
         </div>
 
-        <div class="week-zip-download">
-          <a :href="`/wochen-zips/woche-${selectedWeekIndex + 1}${lang === 'en' ? '-en' : ''}.zip`" download class="btn-week-zip">
-            {{ t('week.download.week').replace('{n}', selectedWeekIndex + 1) }}
-          </a>
-          <span class="week-zip-hint">{{ t('week.download.week.hint') }}</span>
-        </div>
+        <OfflineDownloads :base="`/wochen-zips/woche-${selectedWeekIndex + 1}${lang === 'en' ? '-en' : ''}`" />
       </div>
 
       <!-- Seite 3: Meine Zertifikate -->
@@ -97,6 +92,7 @@
 import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import WeekTourStepper from './WeekTourStepper.vue';
+import OfflineDownloads from './OfflineDownloads.vue';
 import FortschrittWidget from './FortschrittWidget.vue';
 import { loadWeeklyContent } from '../composables/useWeeklyContent.js';
 import { useLanguage } from '../composables/useLanguage.js';
@@ -157,7 +153,7 @@ function smoothPathD(points) {
 
 export default {
   name: 'WeekTourView',
-  components: { WeekTourStepper, FortschrittWidget },
+  components: { WeekTourStepper, FortschrittWidget, OfflineDownloads },
   setup() {
     const { lang, t } = useLanguage();
     const route = useRoute();
@@ -527,36 +523,4 @@ export default {
   padding: 26px 18px;
 }
 
-.week-zip-download {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 18px 0 4px;
-  flex-wrap: wrap;
-}
-
-.btn-week-zip {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
-  border-radius: 6px;
-  padding: 6px 14px;
-  font-size: 0.9em;
-  color: var(--primary-purple, #4a2274);
-  text-decoration: none;
-  white-space: nowrap;
-  transition: background 0.15s, border-color 0.15s;
-}
-
-.btn-week-zip:hover {
-  background: #e9ecef;
-  border-color: var(--primary-purple, #4a2274);
-}
-
-.week-zip-hint {
-  font-size: 0.8em;
-  color: #888;
-}
 </style>

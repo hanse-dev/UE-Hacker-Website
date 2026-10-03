@@ -48,6 +48,9 @@
             <input type="file" accept=".json" class="file-input" @change="onImportFile" />
           </label>
         </div>
+
+        <!-- Offline-Downloads gibt es nur fuer Python-Projekte (scripts/pack_notebooks.py), nicht fuer JS. -->
+        <OfflineDownloads v-if="engine === 'pyodide'" :base="`/projekt-zips/${contentPath}`" />
       </aside>
 
       <main class="lesson-main" ref="mainEl">
@@ -85,6 +88,7 @@
 import { ref, computed, onMounted, watch } from 'vue';
 import LessonView from './LessonView.vue';
 import JsLessonView from './JsLessonView.vue';
+import OfflineDownloads from './OfflineDownloads.vue';
 import { useInteractiveProgress } from '../composables/useInteractiveProgress';
 import { useLanguage } from '../composables/useLanguage';
 
@@ -92,7 +96,7 @@ const lessonJsonModules = import.meta.glob('../../content/*/lessons.json');
 
 export default {
   name: 'ProjectCourse',
-  components: { LessonView, JsLessonView },
+  components: { LessonView, JsLessonView, OfflineDownloads },
   props: {
     courseId: { type: String, required: true },
     contentPath: { type: String, required: true },

@@ -7,6 +7,20 @@ import fs from 'node:fs';
 // Wochen-Check (Zertifikat) bleibt als zweiter Schritt erhalten. Alle anderen Wochen/Varianten
 // und die EN-Ansicht nutzen weiterhin die Notebook-Schritte.
 const URL_W1 = '/kurs/python-12-wochen-grundkurs?week=1&variant=abenteuer';
+
+// Prueft die drei Offline-Download-Links (Notebooks, eine Python-Datei, Einzeldateien je Lektion):
+// richtige URL und die Datei wird wirklich als ZIP ausgeliefert (erzeugt von
+// scripts/pack_notebooks.py, vor jedem Lauf sichergestellt durch scripts/ensure-test-prereqs.mjs).
+async function expectOfflineZips(page, links, base) {
+  await expect(links).toHaveCount(3);
+  for (const [i, format] of ['notebooks', 'komplett', 'einzeln'].entries()) {
+    const href = `${base}-${format}.zip`;
+    await expect(links.nth(i)).toHaveAttribute('href', href);
+    const res = await page.request.get(href);
+    expect(res.status(), href).toBe(200);
+    expect((await res.body()).subarray(0, 2).toString(), href).toBe('PK');
+  }
+}
 const PROGRESS_KEY = 'ue-hacker-interactive-progress-python-woche1-abenteuer';
 
 test.describe('Python Woche 1 (Pferde/Sci-Fi) als Einzel-Lektionen', () => {
@@ -197,11 +211,25 @@ test.describe('Python Woche 1 Abenteuer als Einzel-Lektionen', () => {
     await expect(page.locator('.week-check-panel')).toBeVisible({ timeout: 20000 });
   });
 
-  test('Wochen-Download steht im Seitenmenü bei den Nachschlagewerken; keine Zusatzboxen unter dem Kurs', async ({ page }) => {
+  test('Offline-Downloads (3 Formate) stehen im Seitenmenü; keine Zusatzboxen unter dem Kurs', async ({ page }) => {
     await page.goto(URL_W1);
-    await expect(page.locator('[data-week-zip]')).toHaveAttribute('href', '/wochen-zips/woche-1.zip');
+    await expectOfflineZips(page, page.locator('[data-week-zip]'), '/wochen-zips/woche-1');
     await expect(page.locator('.notebook-pack-download')).toHaveCount(0);
     await expect(page.locator('.project-banner')).toHaveCount(0);
+  });
+
+  test('Themen-Seite der Woche zeigt die drei Offline-Downloads, auf Englisch die -en-Pakete', async ({ page }) => {
+    await page.goto('/kurs/python-12-wochen-grundkurs?week=4');
+    await expect(page.locator('.variant-tile')).toHaveCount(3, { timeout: 15000 });
+    await expectOfflineZips(page, page.locator('.offline-downloads a'), '/wochen-zips/woche-4');
+
+    // beforeEach leert die Sprache per Init-Script bei jedem Laden - ein spaeter registriertes
+    // Init-Script laeuft danach und setzt Englisch.
+    await page.addInitScript(() => localStorage.setItem('ue-hacker-lang', 'en'));
+    await page.reload();
+    await expect(page.locator('.variant-tile')).toHaveCount(3, { timeout: 15000 });
+    await expectOfflineZips(page, page.locator('.offline-downloads a'), '/wochen-zips/woche-4-en');
+    await expect(page.locator('.offline-downloads')).toContainText('Practice offline');
   });
 
   test('Eigener Code bleibt lokal erhalten, verfällt nach 5 Tagen und steckt im Export', async ({ page }) => {

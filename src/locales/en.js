@@ -143,8 +143,12 @@ export default {
   'week.label':       'Week',
   'week.download.md':      'Download as Markdown',
   'week.download.nb':      'Download as Jupyter Notebook',
-  'week.download.week':    '📦 Download Week {n}',
-  'week.download.week.hint': 'This week as one Python file per theme (no Jupyter needed) and as a Jupyter notebook (tasks + solutions separate) for Adventure, Horses and Sci-Fi',
+  'offline.title':         'Practice offline',
+  'offline.notebooks':     '📓 Jupyter notebooks',
+  'offline.komplett':      '🐍 One Python file',
+  'offline.einzeln':       '📁 Python files per lesson',
+  'offline.hint':          'Open the notebooks in Jupyter or VS Code (tasks and solutions separate). The Python files run with any Python 3: python3 file.py',
+  'offline.hint.noSolutions': 'Open the notebooks in Jupyter or VS Code; the Python files run with any Python 3 (python3 file.py). No model solutions – check your solution in the week check.',
 
   // ── Week check panel ─────────────────────────────────────────────────────
   'check.loading':       'Loading check…',
@@ -330,7 +334,7 @@ export default {
   'tour.backToTour':       '← Back to the tour',
   'tour.sideMenu.steps':   'This week',
   'tour.sideMenu.sections':'Sections',
-  'tour.sideMenu.downloadWeek': 'Download week',
+  'tour.sideMenu.offline': 'Practice offline',
   'tour.sideMenu.reference':'Reference',
   'tour.sideMenu.show':    'Menu',
   'tour.sideMenu.hide':    'Menu',

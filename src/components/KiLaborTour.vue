@@ -18,16 +18,18 @@
       </div>
     </template>
 
-    <JsCourseTour
-      v-else-if="phase === 'tour'"
-      engine="pyodide"
-      :course-id="`ki-labor-woche${selectedWeekNumber}`"
-      :content-path="`ki-labor-woche${selectedWeekNumber}`"
-      :week-label="`${t('week.label')} ${selectedWeekNumber}: ${selectedWeekTitle}`"
-      :has-check="selectedWeekHasCheck"
-      @change-week="phase = 'week'"
-      @open-check="phase = 'check'"
-    />
+    <template v-else-if="phase === 'tour'">
+      <JsCourseTour
+        engine="pyodide"
+        :course-id="`ki-labor-woche${selectedWeekNumber}`"
+        :content-path="`ki-labor-woche${selectedWeekNumber}`"
+        :week-label="`${t('week.label')} ${selectedWeekNumber}: ${selectedWeekTitle}`"
+        :has-check="selectedWeekHasCheck"
+        @change-week="phase = 'week'"
+        @open-check="phase = 'check'"
+      />
+      <OfflineDownloads :base="`/ki-labor-zips/woche-${selectedWeekNumber}`" no-solutions />
+    </template>
 
     <div v-else class="ki-labor-check">
       <div class="tour-breadcrumb">
@@ -73,6 +75,7 @@ import { ref, computed, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import JsCourseTour from './JsCourseTour.vue';
 import WeekCheckPanel from './WeekCheckPanel.vue';
+import OfflineDownloads from './OfflineDownloads.vue';
 import { useLanguage } from '../composables/useLanguage';
 import { useAuth } from '../composables/useAuth';
 import { useWeekChecks } from '../composables/useWeekChecks';
@@ -92,7 +95,7 @@ const weekCheckModules = import.meta.glob('../../content/ki-labor-checks/week-*.
 
 export default {
   name: 'KiLaborTour',
-  components: { JsCourseTour, WeekCheckPanel },
+  components: { JsCourseTour, WeekCheckPanel, OfflineDownloads },
   setup() {
     const { t, lang } = useLanguage();
     const { isLoggedIn, user } = useAuth();
