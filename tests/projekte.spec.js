@@ -2,6 +2,20 @@ import { test, expect } from '@playwright/test';
 import { startKernel } from './helpers/kernel.js';
 import { setCodeMirrorContent } from './helpers/codemirror.js';
 
+// Prueft die drei Offline-Download-Links (Notebooks, eine Python-Datei, Einzeldateien je Lektion):
+// richtige URL und die Datei wird wirklich als ZIP ausgeliefert (erzeugt von
+// scripts/pack_notebooks.py, vor jedem Lauf sichergestellt durch scripts/ensure-test-prereqs.mjs).
+async function expectOfflineZips(page, links, base) {
+  await expect(links).toHaveCount(3);
+  for (const [i, format] of ['notebooks', 'komplett', 'einzeln'].entries()) {
+    const href = `${base}-${format}.zip`;
+    await expect(links.nth(i)).toHaveAttribute('href', href);
+    const res = await page.request.get(href);
+    expect(res.status(), href).toBe(200);
+    expect((await res.body()).subarray(0, 2).toString(), href).toBe('PK');
+  }
+}
+
 test.describe('Projekte-Übersicht', () => {
   test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => {
@@ -123,6 +137,18 @@ test.describe('Projekte-Übersicht', () => {
 
     await expect(page.locator('.lesson-item.completed')).toHaveCount(1);
     await expect(page.locator('.lesson-item').nth(1)).not.toHaveClass(/locked/);
+  });
+
+  test('Python-Projekt zeigt die drei Offline-Downloads, JS-Projekt nicht', async ({ page }) => {
+    await page.goto('/kurs/projekt-morsecode');
+    await page.locator('.btn-start-course').click();
+    await expect(page.locator('.lessons-list .lesson-item').first()).toBeVisible({ timeout: 15000 });
+    await expectOfflineZips(page, page.locator('.offline-downloads a'), '/projekt-zips/morsecode');
+
+    await page.goto('/kurs/projekt-js-snake');
+    await page.locator('.btn-start-course').click();
+    await expect(page.locator('.lessons-list .lesson-item').first()).toBeVisible({ timeout: 15000 });
+    await expect(page.locator('.offline-downloads')).toHaveCount(0);
   });
 
   test('Snake-Projekt lädt mit der JS-Sandbox-Engine und Lektion 1 lösen schaltet Lektion 2 frei', async ({ page }) => {

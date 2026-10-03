@@ -105,15 +105,25 @@ kein Notebook-Schritt mehr (siehe Abschnitt 1) — nur diese zwei Typen bleiben 
 dieser Umstellung — eigene, unabhängige Pipeline (`scripts/md_to_cheatsheet_notebook.py`), bleiben
 echte `.ipynb`-Dateien.
 
-### Offline-ZIP-Download (`public/wochen-zips/`)
+### Offline-Downloads (`public/wochen-zips/`, `projekt-zips/`, `ki-labor-zips/`)
 
-`scripts/build_lesson_bundle.py` baut aus dem Lektions-Format (`lessons.json` + `lektion-*.md` usw.)
-und den Referenzlösungen (`*_6_loesungen`-Zellenordner) **eine einzige, direkt mit `python3` lauffähige
-`.py`-Datei je Woche/Variante/Sprache** (Glossar, Lektionen, Debug-Quest, Missionen und Extra-
-Herausforderungen inklusive Lösungen als Kommentare/Code) — kein Jupyter/Zellen-Format nötig für den
-Download. `scripts/pack_notebooks.py` packt das je Woche (`woche-{N}.zip`/`woche-{N}-en.zip`) und als
-Gesamtpaket (`python-12-wochen-notebooks.zip`). Nichts davon wird committed (wie `_bundle`/`_generated`,
-läuft bei jedem `npm run dev`/`npm run build` neu über `pack:notebooks`).
+Online läuft alles auf der Website (Pyodide). Offline gibt es für den 12-Wochen-Kurs, die
+Python-Projekt-Kurse und das KI-Labor **drei Formate, je ein eigener Button**
+(`src/components/OfflineDownloads.vue`, im 12-Wochen-Kurs zusätzlich im Seitenmenü):
+
+| Format | ZIP-Endung | Inhalt | Generator |
+|---|---|---|---|
+| Jupyter-Notebooks | `-notebooks.zip` | Aufgaben- und Lösungs-Notebook getrennt (`_aufgaben`/`_loesungen`, EN `_tasks`/`_solutions`); KI-Labor nur Aufgaben | `build_lesson_notebook.py`, `build_project_notebook.py`, `build_kilabor_notebook.py` |
+| Eine Python-Datei | `-komplett.zip` | eine mit `python3` lauffähige `.py` (12 Wochen: je Thema eine), Lösungen als Code; KI-Labor mit Vorlagen statt Lösungen | `build_lesson_bundle.py` (`build_bundle`), `build_offline_py.py` |
+| Einzeldateien | `-einzeln.zip` | eine `.py` pro Lektion/Debug/Mission/Extra-Herausforderung (12 Wochen: plus `00_glossar.py`, ein Ordner je Thema) | `build_lesson_bundle.py` (`build_lesson_files`), `build_offline_py.py` |
+
+Pfade: `wochen-zips/woche-{N}[-en]-{format}.zip` (Cheat-Sheets der Woche liegen in allen drei),
+`projekt-zips/{contentPath}-{format}.zip` (nur Python-Projekte; neue Python-Projekte in
+`PROJECT_COURSES` in `build_project_notebook.py` eintragen — ein Test prüft das gegen `kurse.json`),
+`ki-labor-zips/woche-{N}-{format}.zip`; dazu das Gesamtpaket `python-12-wochen-notebooks.zip`.
+`scripts/pack_notebooks.py` packt alles und schreibt die Liste nach `public/offline-downloads.json`.
+Nichts davon wird committed; es entsteht bei `npm run dev`/`npm run build` und vor jedem
+Playwright-Lauf (`scripts/ensure-test-prereqs.mjs`) neu, wenn Quellen neuer sind.
 
 ---
 

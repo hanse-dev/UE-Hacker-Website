@@ -66,29 +66,37 @@ export function findStaleCellDirs(root = DEFAULT_ROOT) {
   return stale;
 }
 
-// Download-ZIPs fehlen oder sind aelter als ihre Quellen (Lektions-Format, Referenzloesungen,
-// Cheat-Sheets, die Generator-Skripte selbst).
+// Offline-Download-ZIPs fehlen oder sind aelter als ihre Quellen. Welche ZIPs es gibt, steht in
+// public/offline-downloads.json (schreibt scripts/pack_notebooks.py) - fehlt die Liste, fehlt alles.
+// Quellen: Lektions-Format/Referenzloesungen/Cheat-Sheets des 12-Wochen-Kurses, KI-Labor-Wochen,
+// die Projekt-Kurs-Ordner (aus den ZIP-Namen abgeleitet) und die Generator-Skripte selbst.
 export function zipsAreStale(root = DEFAULT_ROOT) {
-  const mainZip = mtime(path.join(root, 'public', 'python-12-wochen-notebooks.zip'));
-  // Erwartet wird je Wochen-Ordner ein ZIP pro Sprache (woche-N.zip / woche-N-en.zip).
-  const weekZips = [];
-  for (const course of CELL_COURSE_DIRS) {
-    const courseDir = path.join(root, 'content', course);
-    const suffix = course.endsWith('-en') ? '-en' : '';
-    for (const entry of fs.existsSync(courseDir) ? fs.readdirSync(courseDir) : []) {
-      if (/^woche-\d+$/.test(entry)) weekZips.push(mtime(path.join(root, 'public', 'wochen-zips', `${entry}${suffix}.zip`)));
-    }
+  let files;
+  try {
+    files = JSON.parse(fs.readFileSync(path.join(root, 'public', 'offline-downloads.json'), 'utf8')).files;
+  } catch {
+    return true;
   }
-  if (mainZip === null || weekZips.includes(null)) return true;
-  const oldestZip = Math.min(mainZip, ...weekZips);
+  const zipTimes = files.map((f) => mtime(path.join(root, 'public', f)));
+  if (zipTimes.length === 0 || zipTimes.includes(null)) return true;
+  const oldestZip = Math.min(...zipTimes);
 
-  let newestSource = Math.max(
-    mtime(path.join(root, 'scripts', 'build_lesson_bundle.py')) ?? 0,
-    mtime(path.join(root, 'scripts', 'pack_notebooks.py')) ?? 0
+  const projectFolders = new Set(
+    files.filter((f) => f.startsWith('projekt-zips/')).map((f) => path.basename(f).replace(/-(notebooks|komplett|einzeln)\.zip$/, ''))
   );
+  const scriptsDir = path.join(root, 'scripts');
+  let newestSource = 0;
+  for (const f of fs.existsSync(scriptsDir) ? fs.readdirSync(scriptsDir) : []) {
+    if (/^(build_.*|pack_notebooks|notebook_utils)\.py$/.test(f)) newestSource = Math.max(newestSource, mtime(path.join(scriptsDir, f)) ?? 0);
+  }
   const contentDir = path.join(root, 'content');
   for (const entry of fs.existsSync(contentDir) ? fs.readdirSync(contentDir) : []) {
-    if (entry.startsWith('python-woche') || CELL_COURSE_DIRS.includes(entry)) {
+    if (
+      entry.startsWith('python-woche') ||
+      entry.startsWith('ki-labor-woche') ||
+      CELL_COURSE_DIRS.includes(entry) ||
+      projectFolders.has(entry)
+    ) {
       newestSource = Math.max(newestSource, newestMtime(path.join(contentDir, entry), () => true));
     }
   }

@@ -32,7 +32,7 @@
       </ul>
     </div>
 
-    <div class="side-menu-section" v-if="referenceItems.length || weekZipUrl">
+    <div class="side-menu-section" v-if="referenceItems.length || weekZipBase">
       <h4>{{ t('tour.sideMenu.reference') }}</h4>
       <ul class="side-menu-list">
         <li v-for="ref_ in referenceItems" :key="ref_.key">
@@ -46,10 +46,15 @@
             <span>{{ ref_.label }}</span>
           </button>
         </li>
-        <li v-if="weekZipUrl">
-          <a class="side-menu-step side-menu-download" :href="weekZipUrl" download data-week-zip>
-            <span class="side-menu-icon">📦</span>
-            <span>{{ t('tour.sideMenu.downloadWeek') }}</span>
+      </ul>
+    </div>
+
+    <div class="side-menu-section" v-if="weekZipBase">
+      <h4>{{ t('tour.sideMenu.offline') }}</h4>
+      <ul class="side-menu-list">
+        <li v-for="format in offlineFormats" :key="format">
+          <a class="side-menu-step side-menu-download" :href="`${weekZipBase}-${format}.zip`" download :data-week-zip="format">
+            <span>{{ t(`offline.${format}`) }}</span>
           </a>
         </li>
       </ul>
@@ -59,6 +64,7 @@
 
 <script>
 import { useLanguage } from '../composables/useLanguage.js';
+import { OFFLINE_FORMATS } from './OfflineDownloads.vue';
 
 export default {
   name: 'WeekTourSideMenu',
@@ -68,13 +74,14 @@ export default {
     visitedKeys: { type: Object, default: () => ({}) },
     headings: { type: Array, default: () => [] },
     referenceItems: { type: Array, default: () => [] },
-    weekZipUrl: { type: String, default: null },
+    // URL-Praefix der drei Offline-ZIPs (`<base>-notebooks.zip` usw., siehe OfflineDownloads.vue)
+    weekZipBase: { type: String, default: null },
     activeReference: { type: String, default: null },
   },
   emits: ['select-step', 'select-heading', 'select-reference'],
   setup() {
     const { t } = useLanguage();
-    return { t };
+    return { t, offlineFormats: OFFLINE_FORMATS };
   },
 };
 </script>

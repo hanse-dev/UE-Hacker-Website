@@ -1,7 +1,7 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-10-01
-> **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.94 (u.a. Zertifikate/PDF,
+> **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.95 (u.a. Offline-Downloads in 3 Formaten, Zertifikate/PDF,
 > Skip-/Reset-Button, Login-Fortschritt, Pre-commit/Pre-push, Admin-Termine, "Kurs starten"-Gate für
 > alle Kurse, Worktree-Tooling, Dev-Skip-Flag, JS-Spielewerkstatt mit neuem Konzept).
 > Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4) — nach dem nächsten Deploy
@@ -65,17 +65,18 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.79 | Interaktiv-Kurs: Lektionstexte ausführlicher (Kinder + Jugendliche, DE) | reine Textüberarbeitung, keine Logikänderung |
 | 3.80 | Lektionsaufgaben prüfen nur noch die Ausgabe, nicht mehr Code-Struktur/Variablen | `useTaskValidation.js` trennt `validateOutput()` (nur Ausgabe) von `structuralChecksOk()` (nur noch `CodeChallenge.vue`/Wochen-Check) |
 | 3.81 | Lektionsaufgaben überspringbar (nach 2 Fehlversuchen) | `.btn-skip` in `LessonView.vue`/`JsLessonView.vue`, `skippedTasks` zählt für den Lektions-Abschluss mit (⏭ statt ✓); gilt nicht für `CodeChallenge.vue` |
-| 3.82 | Login ersetzt lokalen Fortschritt durch Account-Stand statt zu mergen | `loadAccountProgress()`/`replaceLocalProgress()` in `useProgressSync.js`, nur beim expliziten Login; Seiten-Reload merged weiter nach `updatedAt` |
+| 3.82 | Login ersetzt lokalen Fortschritt durch Account-Stand | `loadAccountProgress()`/`replaceLocalProgress()` (`useProgressSync.js`); Seiten-Reload merged weiter nach `updatedAt` |
 | 3.83 | Pre-commit/Pre-push zweistufig statt vollem `test:checks` bei jedem Commit | `scripts/test-changed.mjs` mappt staged Dateien auf betroffene Specs (Pre-commit); voller `test:checks` im Pre-push-Hook |
-| 3.84 | Termine im Admin-Panel verwaltbar statt per Hand in `public/termine.json` | `termine`-Tabelle (SQLite) + `/api/termine` (GET) + `/api/admin/termine` (CRUD), Tab „Termine“ in `AdminView.vue`; einmaliger Umzug per `api/src/scripts/import-termine-json.js` |
+| 3.84 | Termine im Admin-Panel statt `public/termine.json` | `termine`-Tabelle + `/api/termine` + `/api/admin/termine`, Tab „Termine“ in `AdminView.vue`; einmaliger Umzug per `import-termine-json.js` |
 | 3.85 | Interaktiv-Kurs: Editor-Erklärungen, flexible Lektionen + Beispiel-Aufgabe | `lesson.editorHint`, Hinweis für `___`-Lücken; `lesson.minSolved` in `LessonView.vue` macht eine Lektion "flexibel" (5 Aufgaben, mind. 2 nötig, Rest sofort überspringbar) |
-| 3.86/3.93 | "Kurs starten"-Gate für Projekt-Kurse und Interaktiv-Kurs; Lektionsliste als horizontale Leiste | `isFocusableCourse` (`CourseDetail.vue`) gilt für alle Kurse außer der Einstufung, `?started=1` hält die Ansicht beim Reload; geteiltes `course-layout.css` einspaltig, `.lessons-list` als Chip-Reihe; Interaktiv-Kurs: Varianten-Karten im Kachel-Look, "Weiter" scrollt an den Lektionsanfang |
+| 3.86/3.93 | "Kurs starten"-Gate für Projekt- und Interaktiv-Kurs; Lektionsliste als Leiste | `isFocusableCourse` gilt für alle Kurse außer der Einstufung, `?started=1` hält die Ansicht beim Reload; `course-layout.css` einspaltig; Interaktiv-Kurs: Varianten-Kacheln, "Weiter" scrollt nach oben |
 | 3.87 | Git-Worktree-Tooling | `npm run worktree:new`/`worktree:remove`, eigene Ports je Worktree (`worktree.ports.json`), siehe `WORKFLOW.md` |
 | 3.89 | Dev-Flag: Aufgaben-Prüfung überspringen | `npm run dev:skip-checks` (`VITE_DEV_SKIP_CHECKS=1`) lässt "Prüfen" in `JsLessonView.vue` sofort durchgehen, hinter `import.meta.env.DEV` (nicht im Prod-Build), mit Hinweis-Banner |
-| 3.88/3.90 | JS-Spielewerkstatt mit neuem Konzept (erst Test-Kurs "Fang den Ball", dann Ersatz) | `content/js-spielewerkstatt`: 7 Lektionen, jede Aufgabe baut am echten laufenden Spiel weiter (ID/URL unverändert); Funktionen per `output_equals` statt `functionCalls` geprüft; `task.showCanvas: false` blendet den Canvas-Kasten pro Aufgabe aus; empfohlenes Vorwissen JS-Grundkurs Woche 4; Durchlauf-Test über alle Musterlösungen |
+| 3.88/3.90 | JS-Spielewerkstatt mit neuem Konzept | 7 Lektionen, jede Aufgabe baut am laufenden Spiel weiter (ID/URL unverändert); Prüfung per `output_equals` statt `functionCalls`; `task.showCanvas: false`; Vorwissen JS-Grundkurs Woche 4; Durchlauf-Test über alle Musterlösungen |
 | 3.91 | "Zurücksetzen"-Button für vorgegebenen Code | `.btn-reset` in `LessonView.vue`/`JsLessonView.vue`/`CodeChallenge.vue`, sichtbar sobald der Code vom `codeTemplate` abweicht; setzt nur diese eine Aufgabe zurück |
 | 3.92 | JS-Lektionsaufgaben: fehlende `output_contains`-Checks nachgezogen | `js-grundkurs` und `js-snake`: keine JS-Pflichtaufgabe mehr ohne Ausgabe-/Canvas-/DOM-Prüfung (vorher 31, seit 3.80 ungeprüft) |
 | 3.94 | Glossar-Tooltip bricht bei verschachtelten Begriffen nicht mehr auf | `useLessonContent.js`: ein kombinierter Regex-Durchlauf über den Originaltext statt sequenziellem Ersetzen (traf sonst in schon eingefügte `title`-Attribute) |
+| 3.95 | Offline-Downloads in 3 Formaten (Notebooks, eine Python-Datei, Einzeldateien je Lektion) | 12-Wochen-Kurs, Python-Projekte, KI-Labor; ein Button je Format (`OfflineDownloads.vue`); `pack_notebooks.py` + `build_*_notebook.py`/`build_offline_py.py`, Details `INHALTE.md` |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -83,6 +84,8 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 - Bulk-Edits an JSON/Notebooks nie per volle Reserialisierung, sondern gezielte Text-Ersetzung + `json.loads()` danach (3.12, 3.16). Seit 3.33 sind 12-Wochen-Notebooks Zellen-Ordner (`NN_*.py`) — keine `.ipynb` als Quelle wieder einführen.
 - Debug-Bugs müssen vom Kernel-Zustand unabhängig sein und dürfen die Lösung nicht verraten. Nach Notebook-Änderung Code-Zellen mit gemeinsamem Namespace per `python3` ausführen.
 - Ein "Fund" aus einer Variante gilt nicht automatisch für alle: vor Massenänderungen alle 3 Varianten × DE/EN grep-prüfen.
+- `codeTemplate` einer echten Debug-Aufgabe ist absichtlich kaputt — Generatoren kompilieren nur
+  Beispiel-Code und Lösungen, nie rohe Aufgaben-Vorlagen (3.95).
 - Neue Aufgabe im Lektions-Format: in `lessons.json` ans Ende von `tasks` anhängen und im passenden
   `_N_loesungen`-Notebook-Ordner ein neues Markdown+Code-Zell-Paar mit der **höchsten** Nummer ans
   Ende — nie mittendrin einfügen (sonst müssen alle folgenden Zellen umnummeriert werden).

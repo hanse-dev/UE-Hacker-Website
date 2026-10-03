@@ -143,8 +143,12 @@ export default {
   'week.label':       'Woche',
   'week.download.md':      'Als Markdown herunterladen',
   'week.download.nb':      'Als Jupyter Notebook herunterladen',
-  'week.download.week':    '📦 Woche {n} herunterladen',
-  'week.download.week.hint': 'Diese Woche als Python-Datei je Thema (Abenteuer, Pferde, Sci-Fi), kein Jupyter nötig',
+  'offline.title':         'Offline üben',
+  'offline.notebooks':     '📓 Jupyter-Notebooks',
+  'offline.komplett':      '🐍 Eine Python-Datei',
+  'offline.einzeln':       '📁 Python-Dateien je Lektion',
+  'offline.hint':          'Notebooks öffnest du in Jupyter oder VS Code (Aufgaben und Lösungen getrennt). Die Python-Dateien laufen mit jedem Python 3: python3 datei.py',
+  'offline.hint.noSolutions': 'Notebooks öffnest du in Jupyter oder VS Code, die Python-Dateien laufen mit jedem Python 3 (python3 datei.py). Ohne Musterlösungen – prüfe deine Lösung im Wochen-Check.',
 
   // ── Week check panel ─────────────────────────────────────────────────────
   'check.loading':       'Check wird geladen…',
@@ -330,7 +334,7 @@ export default {
   'tour.backToTour':       '← Zurück zur Tour',
   'tour.sideMenu.steps':   'Diese Woche',
   'tour.sideMenu.sections':'Abschnitte',
-  'tour.sideMenu.downloadWeek': 'Woche herunterladen',
+  'tour.sideMenu.offline': 'Offline üben',
   'tour.sideMenu.reference':'Nachschlagewerke',
   'tour.sideMenu.show':    'Menü',
   'tour.sideMenu.hide':    'Menü',

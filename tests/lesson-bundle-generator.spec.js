@@ -43,7 +43,12 @@ test.describe('ensure-test-prereqs.mjs erkennt fehlende/veraltete generierte Dat
     write(path.join(cellDir, '_generated', 'woche1_abenteuer_0_glossar.ipynb.json'), 50);
     write(path.join(cellDir, '_bundle', 'woche1_abenteuer_0_glossar.py'), 50);
     write(path.join(root, 'public', 'python-12-wochen-notebooks.zip'), 10);
-    write(path.join(root, 'public', 'wochen-zips', 'woche-1.zip'), 10);
+    write(path.join(root, 'public', 'wochen-zips', 'woche-1-komplett.zip'), 10);
+    write(path.join(root, 'public', 'projekt-zips', 'caesar-chiffre-einzeln.zip'), 10);
+    fs.writeFileSync(
+      path.join(root, 'public', 'offline-downloads.json'),
+      JSON.stringify({ files: ['python-12-wochen-notebooks.zip', 'wochen-zips/woche-1-komplett.zip', 'projekt-zips/caesar-chiffre-einzeln.zip'] })
+    );
   });
   test.afterEach(() => fs.rmSync(root, { recursive: true, force: true }));
 
@@ -70,7 +75,22 @@ test.describe('ensure-test-prereqs.mjs erkennt fehlende/veraltete generierte Dat
     setMtime(path.join(root, 'content', 'python-woche1-abenteuer', 'lessons.json'), 100);
     expect(zipsAreStale(root)).toBe(false);
 
-    fs.rmSync(path.join(root, 'public', 'wochen-zips', 'woche-1.zip'));
+    // Projekt-Kurs-Ordner gelten als Quelle, weil ein ZIP von ihnen in der Liste steht.
+    write(path.join(root, 'content', 'caesar-chiffre', 'lessons.json'), 5);
+    expect(zipsAreStale(root)).toBe(true);
+    setMtime(path.join(root, 'content', 'caesar-chiffre', 'lessons.json'), 100);
+
+    write(path.join(root, 'content', 'ki-labor-woche1', 'lessons.json'), 5);
+    expect(zipsAreStale(root)).toBe(true);
+    setMtime(path.join(root, 'content', 'ki-labor-woche1', 'lessons.json'), 100);
+    expect(zipsAreStale(root)).toBe(false);
+
+    fs.rmSync(path.join(root, 'public', 'wochen-zips', 'woche-1-komplett.zip'));
+    expect(zipsAreStale(root)).toBe(true);
+  });
+
+  test('fehlende ZIP-Liste (public/offline-downloads.json) gilt als veraltet', () => {
+    fs.rmSync(path.join(root, 'public', 'offline-downloads.json'));
     expect(zipsAreStale(root)).toBe(true);
   });
 

@@ -147,7 +147,7 @@
         :visited-keys="visitedKeys"
         :headings="headings"
         :reference-items="referenceItems"
-        :week-zip-url="`/wochen-zips/woche-${weekNumber}${lang === 'en' ? '-en' : ''}.zip`"
+        :week-zip-base="`/wochen-zips/woche-${weekNumber}${lang === 'en' ? '-en' : ''}`"
         :active-reference="activeReference"
         @select-step="viewStep"
         @select-heading="scrollToCell"

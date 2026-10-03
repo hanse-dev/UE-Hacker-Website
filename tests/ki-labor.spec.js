@@ -75,6 +75,20 @@ async function passCodingChallenge(page, challengeIndex, code) {
   await expect(challenge.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
 }
 
+// Prueft die drei Offline-Download-Links (Notebooks, eine Python-Datei, Einzeldateien je Lektion):
+// richtige URL und die Datei wird wirklich als ZIP ausgeliefert (erzeugt von
+// scripts/pack_notebooks.py, vor jedem Lauf sichergestellt durch scripts/ensure-test-prereqs.mjs).
+async function expectOfflineZips(page, links, base) {
+  await expect(links).toHaveCount(3);
+  for (const [i, format] of ['notebooks', 'komplett', 'einzeln'].entries()) {
+    const href = `${base}-${format}.zip`;
+    await expect(links.nth(i)).toHaveAttribute('href', href);
+    const res = await page.request.get(href);
+    expect(res.status(), href).toBe(200);
+    expect((await res.body()).subarray(0, 2).toString(), href).toBe('PK');
+  }
+}
+
 test.describe('KI-Labor (Wochenauswahl)', () => {
   test.beforeEach(async ({ page }) => {
     await page.addInitScript((key) => {
@@ -106,6 +120,13 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
     await page.locator('.breadcrumb-back').click();
     await expect(page.locator('.week-tile')).toHaveCount(8);
     await expect(page.locator('.stepper-step')).toHaveCount(0);
+  });
+
+  test('Wochen-Tour zeigt die drei Offline-Downloads der Woche mit Hinweis "ohne Musterlösungen"', async ({ page }) => {
+    await page.goto('/kurs/ki-labor?week=2');
+    await expect(page.locator('.stepper-step').first()).toBeVisible({ timeout: 15000 });
+    await expectOfflineZips(page, page.locator('.offline-downloads a'), '/ki-labor-zips/woche-2');
+    await expect(page.locator('.offline-downloads')).toContainText('Ohne Musterlösungen');
   });
 
   test('Deep-Link ?week=1 öffnet direkt die Wochen-Tour, gruppierte Kullern Lektion/Debug/Mission/Extra-Herausforderung/Check', async ({ page }) => {

@@ -25,14 +25,11 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
       Aufwand wäre der Content selbst (444 Notebooks × Sprache). Keine neue i18n-Library nötig.
 - [ ] `kurs-python-spiele` — Idee verworfen zugunsten von `kurs-js-spielewerkstatt`: Pyodides
       synchrones Ausführungsmodell ist mit einer echten Spiele-Loop unvereinbar (Archiv HANDOFF 3.32).
-- [ ] Branch `offline-jupyter-notebook-converter` (WIP, unmerged): Konverter Lektions-Format →
-      echte `.ipynb` fürs Offline-Üben (12-Wochen-Kurs komplett verkabelt in `pack_notebooks.py`;
-      KI-Labor/Projekt-Kurse haben eigene Generatoren, aber noch keinen Download-Button/Verkabelung).
-      Liegt deutlich hinter `main` zurück (Stand 2026-10-01; Merge-Probe: Konflikte nur in
-      `HANDOFF.md`/`todo.md`) — vor dem Weiterarbeiten im eigenen Worktree erst `main` hineinmergen.
-      Der Glossar-Tooltip-Fix daraus ist schon einzeln in `main` (3.94). Dazu gehören zwei Stashes
-      (`zahlendetektiv-solution-fix-belongs-on-offline-jupyter-branch`,
-      `wip-notebook-converter-unrelated`), noch nicht eingearbeitet.
+- [ ] KI-Labor hat keine gespeicherten Musterlösungen im Content (nur `codeTemplate`). Folge:
+      Offline-Downloads des KI-Labors (3.95) enthalten nur Aufgaben, kein Lösungs-Notebook. Für
+      Lösungen bräuchte jede der 160 echten Aufgaben ein `solution`-Feld (wie die Projekt-Kurse);
+      ein Teil steckt als Test-Fixture in `tests/ki-labor.spec.js`, ist als Content-Quelle aber
+      unvollständig. Dann `build_kilabor_notebook.py`/`build_offline_py.py` um Lösungen erweitern.
 
 ### Offene Nachbesserungen Lektions-Format (nach Woche)
 
