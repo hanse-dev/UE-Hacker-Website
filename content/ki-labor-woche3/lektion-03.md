@@ -11,7 +11,7 @@ def abstand(a, b):
     return math.sqrt((a["beine"] - b["beine"]) ** 2 + (a["gewicht"] - b["gewicht"]) ** 2)
 
 trainingsdaten = [
-    {"beine": 4, "gewicht": 30, "art": "Saeugetier"},
+    {"beine": 4, "gewicht": 30, "art": "Säugetier"},
     {"beine": 2, "gewicht": 0.03, "art": "Vogel"},
 ]
 neu = {"beine": 4, "gewicht": 28}
@@ -47,7 +47,7 @@ def naechster_nachbar(trainingsdaten, neu):
     return naechster["art"]
 
 trainingsdaten = [
-    {"beine": 4, "gewicht": 30, "art": "Saeugetier"},
+    {"beine": 4, "gewicht": 30, "art": "Säugetier"},
     {"beine": 2, "gewicht": 0.03, "art": "Vogel"},
     {"beine": 6, "gewicht": 0.001, "art": "Insekt"},
 ]

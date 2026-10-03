@@ -1,6 +1,6 @@
 # 🐴 Der Reitbeginn: Übung 1
 
-Willkommen, junge Pferdefreund:in! Du betrittst den idyllischen **Reiterhof Sonnental** – ein Ort voller Natur, Freundschaft und Abenteuer mit Pferden. In dieser Woche lernst du fünf **Übungen**:
+Willkommen, Pferdefreund:in! Du betrittst den idyllischen **Reiterhof Sonnental** – ein Ort voller Natur, Freundschaft und Abenteuer mit Pferden. In dieser Woche lernst du fünf **Übungen**:
 
 1. Text ausgeben mit `print()`
 2. Informationen in **Variablen** speichern
@@ -20,7 +20,7 @@ print("Hallo")   # Funktion: print – mitgegeben wird: "Hallo"
 
 > 🐴 **Merke:** Übung = Funktion. Der **Name** sagt, was passieren soll, die **Klammern `()`** rufen sie auf. Ohne Klammern passiert nichts! Später, in Woche 5, erfindest du sogar eigene Funktionen.
 
-## 📣 Übung 1: Ruf
+## 📣 Übung 1: Der erste Ruf mit `print()`
 
 `print()` ist dein erster Befehl – eine **Funktion**, die du aufrufst. Sie gibt Text auf dem Bildschirm aus.
 

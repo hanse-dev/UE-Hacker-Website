@@ -10,4 +10,4 @@
 | `self` | Verweis auf das eigene Objekt innerhalb der Klasse | `self.name = name` |
 | **Attribut** | Eigenschaft / Variable eines Objekts | `held.name` |
 | **Methode** | Funktion eines Objekts (verwendet `self`) | `held.angreifen()` |
-| **Konstruktor** | `__init__` – Methode die beim Erstellen eines Objekts automatisch startet | `def __init__(self, name):` |"""
+| **Konstruktor** | `__init__` – Methode, die beim Erstellen eines Objekts automatisch startet | `def __init__(self, name):` |"""

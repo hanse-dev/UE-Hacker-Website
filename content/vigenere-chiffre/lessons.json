@@ -28,7 +28,7 @@
     "tasks": [
       {
         "instruction": "Vervollständige die Schleife: baue durch Wiederholen von schluesselwort ('ok') einen String wiederholt, der genauso lang ist wie text ('baum'), und gib ihn aus.",
-        "codeTemplate": "text = \"baum\"\nschluesselwort = \"ok\"\nwiederholt = \"\"\nfor i in range(len(text)):\n    # dein Code hier: nimm den passenden Buchstaben aus schluesselwort (Modulo-Trick von oben) und haenge ihn an wiederholt an\n    pass\n\nprint(wiederholt)\n",
+        "codeTemplate": "text = \"baum\"\nschluesselwort = \"ok\"\nwiederholt = \"\"\nfor i in range(len(text)):\n    # dein Code hier: nimm den passenden Buchstaben aus schluesselwort (Modulo-Trick von oben) und hänge ihn an wiederholt an\n    pass\n\nprint(wiederholt)\n",
         "solution": "text = \"baum\"\nschluesselwort = \"ok\"\nwiederholt = \"\"\nfor i in range(len(text)):\n    wiederholt = wiederholt + schluesselwort[i % len(schluesselwort)]\n\nprint(wiederholt)",
         "validation": { "type": "output_contains", "expected": "okok" }
       },

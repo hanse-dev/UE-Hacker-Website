@@ -109,7 +109,7 @@
         "No difference"
       ],
       "correctIndex": 0,
-      "explanation": "Tupel sind immutable.",
+      "explanation": "Tupel sind unveränderlich.",
       "explanation_en": "Tuples are immutable.",
       "optionExplanations": [
         null,
@@ -144,7 +144,7 @@
       "optionExplanations": [
         null,
         "Kommt ein Schlüssel doppelt vor, überschreibt der letzte Wert einfach den vorherigen – es bleibt am Ende trotzdem nur ein Eintrag pro Schlüssel.",
-        "Dict-Schlüssel können auch Strings oder Tupel sein – sie müssen nicht Zahlen sein, nur unveränderlich (hashable)."
+        "Dict-Schlüssel können auch Strings oder Tupel sein – sie müssen nicht Zahlen sein, nur unveränderlich."
       ],
       "optionExplanations_en": [
         null,
@@ -199,7 +199,7 @@
         "Always 0"
       ],
       "correctIndex": 0,
-      "explanation": "get mit Default ist sicher.",
+      "explanation": "get mit Standardwert ist sicher.",
       "explanation_en": "get with a default value is safe.",
       "optionExplanations": [
         null,

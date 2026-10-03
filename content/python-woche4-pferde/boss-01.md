@@ -1,4 +1,4 @@
-# ⭐⭐⭐⭐☆ Extra-Herausforderung 1: Das Springen-Training
+# ⭐⭐⭐⭐☆ Extra-Herausforderung 1: Das Sprungtraining
 
 > ⚠️ Schwieriger! Die Extra-Herausforderungen kombinieren alles aus dieser Woche – sie sind freiwillig.
 

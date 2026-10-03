@@ -231,9 +231,9 @@
     "lessonSummary": "Meisterhaft! Du kombinierst math, Funktionen, Schleifen und den Rest-Operator.",
     "tasks": [
       {
-        "instruction": "Führe dieses Beispiel aus: factorial, gcd, lcm und sin.",
+        "instruction": "Führe dieses Beispiel aus: factorial, gcd und lcm.",
         "example": true,
-        "codeTemplate": "import math\nprint(f\"Fakultät: {math.factorial(5)}\")\nprint(f\"GGT: {math.gcd(24, 36)}\")\nprint(f\"KGV: {math.lcm(12, 15)}\")\nprint(f\"Sinus: {round(math.sin(math.radians(90)), 1)}\")\n",
+        "codeTemplate": "import math\nprint(f\"Fakultät: {math.factorial(5)}\")\nprint(f\"GGT: {math.gcd(24, 36)}\")\nprint(f\"KGV: {math.lcm(12, 15)}\")\n",
         "validation": {
           "type": "output_contains",
           "expected": "GGT: 12"

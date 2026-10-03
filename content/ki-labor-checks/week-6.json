@@ -12,7 +12,7 @@
         "Der Name der Eingabe, die gerade verarbeitet wird"
       ],
       "correctIndex": 0,
-      "explanation": "Jede Eingabe wird mit ihrem Gewicht multipliziert, bevor alle Beiträge aufsummiert werden - ein größeres Gewicht bedeutet einen größeren Einfluss auf die Entscheidung.",
+      "explanation": "Jede Eingabe wird mit ihrem Gewicht multipliziert, bevor alle Beiträge aufsummiert werden – ein größeres Gewicht bedeutet einen größeren Einfluss auf die Entscheidung.",
       "optionExplanations": [
         null,
         "Die Anzahl der Eingaben ist unabhängig davon, wie stark jede einzelne gewichtet ist.",
@@ -29,10 +29,10 @@
         "Den größten einzelnen Gewichtswert in der Liste"
       ],
       "correctIndex": 0,
-      "explanation": "gewichtete_summe() multipliziert per zip() jede Eingabe mit ihrem Gewicht und addiert alle Ergebnisse - das ist der zentrale Baustein eines Neurons.",
+      "explanation": "gewichtete_summe() multipliziert per zip() jede Eingabe mit ihrem Gewicht und addiert alle Ergebnisse – das ist der zentrale Baustein eines Neurons.",
       "optionExplanations": [
         null,
-        "Das wäre eine ganz andere Berechnung - gewichtete_summe() zählt keine Eingaben, sie summiert gewichtete Produkte.",
+        "Das wäre eine ganz andere Berechnung – gewichtete_summe() zählt keine Eingaben, sie summiert gewichtete Produkte.",
         "Der größte Gewichtswert allein sagt nichts über die tatsächliche Summe aus."
       ]
     },
@@ -46,10 +46,10 @@
         "Sie rundet die Summe auf die nächste ganze Zahl"
       ],
       "correctIndex": 0,
-      "explanation": "Die Sprungfunktion vergleicht nur: erreicht die gewichtete Summe den Schwellenwert, feuert das Neuron (1), sonst bleibt es still (0) - nichts dazwischen.",
+      "explanation": "Die Sprungfunktion vergleicht nur: erreicht die gewichtete Summe den Schwellenwert, feuert das Neuron (1), sonst bleibt es still (0) – nichts dazwischen.",
       "optionExplanations": [
         null,
-        "Eine Differenz wäre ein Zahlenwert, kein 0/1-Sprung - das ist nicht, was aktivierung() zurückgibt.",
+        "Eine Differenz wäre ein Zahlenwert, kein 0/1-Sprung – das ist nicht, was aktivierung() zurückgibt.",
         "Runden hat nichts mit dem Vergleich zwischen Summe und Schwellenwert zu tun."
       ]
     },
@@ -63,11 +63,11 @@
         "Weil >= schneller berechnet wird als >"
       ],
       "correctIndex": 0,
-      "explanation": "Das ist eine bewusste Definition: erreicht die Summe die Schwelle genau, feuert das Neuron - mit > würde dieser Grenzfall fälschlich als 'nicht aktiviert' gelten.",
+      "explanation": "Das ist eine bewusste Definition: erreicht die Summe die Schwelle genau, feuert das Neuron – mit > würde dieser Grenzfall fälschlich als 'nicht aktiviert' gelten.",
       "optionExplanations": [
         null,
-        "Python unterstützt > für Zahlen problemlos - das ist nicht der Grund.",
-        "Der Geschwindigkeitsunterschied zwischen >= und > ist hier irrelevant - es geht um die Bedeutung des Grenzfalls."
+        "Python unterstützt > für Zahlen problemlos – das ist nicht der Grund.",
+        "Der Geschwindigkeitsunterschied zwischen >= und > ist hier irrelevant – es geht um die Bedeutung des Grenzfalls."
       ]
     },
     {
@@ -87,16 +87,16 @@
       "type": "multiple_choice",
       "question": "Ein Neuron hat die Gewichte [1, 1] für zwei Eingaben. Was unterscheidet ein UND-Gatter von einem ODER-Gatter bei gleichen Gewichten?",
       "options": [
-        "Nur der Schwellenwert - UND braucht eine höhere Schwelle (beide Eingaben nötig) als ODER (eine reicht)",
+        "Nur der Schwellenwert – UND braucht eine höhere Schwelle (beide Eingaben nötig) als ODER (eine reicht)",
         "UND und ODER benötigen zwingend unterschiedliche Gewichte, der Schwellenwert spielt keine Rolle",
-        "Es gibt keinen Unterschied - beide Gatter verhalten sich bei gleichen Gewichten identisch"
+        "Es gibt keinen Unterschied – beide Gatter verhalten sich bei gleichen Gewichten identisch"
       ],
       "correctIndex": 0,
-      "explanation": "Bei Gewichten [1, 1] reicht eine Schwelle von 1, damit schon eine einzige aktive Eingabe reicht (ODER); eine Schwelle von 2 verlangt dagegen beide Eingaben (UND) - allein der Schwellenwert entscheidet.",
+      "explanation": "Bei Gewichten [1, 1] reicht eine Schwelle von 1, damit schon eine einzige aktive Eingabe reicht (ODER); eine Schwelle von 2 verlangt dagegen beide Eingaben (UND) – allein der Schwellenwert entscheidet.",
       "optionExplanations": [
         null,
-        "Die Gewichte können gleich bleiben - der Schwellenwert allein entscheidet über UND oder ODER.",
-        "Die Gatter unterscheiden sich deutlich - ein anderer Schwellenwert führt zu einem anderen Ergebnis bei denselben Eingaben."
+        "Die Gewichte können gleich bleiben – der Schwellenwert allein entscheidet über UND oder ODER.",
+        "Die Gatter unterscheiden sich deutlich – ein anderer Schwellenwert führt zu einem anderen Ergebnis bei denselben Eingaben."
       ]
     },
     {
@@ -109,11 +109,11 @@
         "Weil XOR mehr als zwei Eingaben benötigt, ein Neuron aber nur zwei verarbeiten kann"
       ],
       "correctIndex": 0,
-      "explanation": "Die beiden 'wahren' XOR-Fälle ([0,1] und [1,0]) liegen sich diagonal gegenüber - keine einzelne gerade Trennlinie (also keine einzelne Gewichte/Schwellenwert-Kombination) trennt sie sauber von [0,0] und [1,1].",
+      "explanation": "Die beiden 'wahren' XOR-Fälle ([0,1] und [1,0]) liegen sich diagonal gegenüber – keine einzelne gerade Trennlinie (also keine einzelne Gewichte/Schwellenwert-Kombination) trennt sie sauber von [0,0] und [1,1].",
       "optionExplanations": [
         null,
-        "aktivierung() ist eine ganz normale Python-Funktion, die für jede Zahl funktioniert - das ist nicht das Problem.",
-        "Ein Neuron kann beliebig viele Eingaben verarbeiten - XOR selbst hat hier nur zwei, das ist nicht der Grund für das Scheitern."
+        "aktivierung() ist eine ganz normale Python-Funktion, die für jede Zahl funktioniert – das ist nicht das Problem.",
+        "Ein Neuron kann beliebig viele Eingaben verarbeiten – XOR selbst hat hier nur zwei, das ist nicht der Grund für das Scheitern."
       ]
     }
   ],

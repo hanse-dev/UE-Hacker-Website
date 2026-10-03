@@ -17,4 +17,4 @@ print(berechne_heilung.__doc__)
 - **Ein Verb, das sagt, was passiert:** `berechne_…`, `zeige_…`, `pruefe_…`
 - **Sprechend, aber kurz:** `bs` ❌ (unklar), `berechne_das_gesamte_schadensergebnis` ❌ (zu lang)
 
-> 💡 Gleich benannte Parameter helfen genauso: `berechne_schaden(basis, multiplikator)` ist lesbarer als `bs(b, m)`.
+> 💡 Gut benannte Parameter helfen genauso: `berechne_schaden(basis, multiplikator)` ist lesbarer als `bs(b, m)`.

@@ -12,6 +12,6 @@ console.log(addiere(4, 5));
 ```
 
 `addiere(4, 5)` heißt: `a` wird `4`, `b` wird `5`. Die Reihenfolge beim Aufruf muss zur
-Reihenfolge der Parameter in der Funktions-Deklaration passen – `addiere(5, 4)` würde hier
-zufällig dasselbe Ergebnis liefern (Addition ist symmetrisch), bei Subtraktion oder Division wäre
+Reihenfolge der Parameter in der `function`-Zeile passen – `addiere(5, 4)` würde hier
+zufällig dasselbe Ergebnis liefern (bei Plus ist die Reihenfolge egal), bei Subtraktion oder Division wäre
 das Ergebnis dagegen komplett anders.

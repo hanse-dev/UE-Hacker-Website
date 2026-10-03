@@ -16,4 +16,4 @@ In diesem Beispiel steckt praktisch alles, was du bisher gelernt hast: eine List
 
 Das zeigt auch ein wichtiges Prinzip: Bevor du selbst eine Schleife schreibst, um z.B. eine Summe zu berechnen, lohnt sich ein Blick, ob Python nicht schon eine eingebaute Funktion dafür hat (`sum()`, `max()`, `min()`, `len()`, `sorted()` …) – das spart Code und ist meist auch schneller.
 
-Du bist bereit für den 12-Wochen Python Grundkurs! Dort baust du dieses Wissen zu größeren Projekten aus – inklusive eigener Klassen, Fehlerbehandlung und einem eigenen Abschlussprojekt.
+Du bist bereit für den 12-Wochen-Grundkurs! Dort baust du dieses Wissen zu größeren Projekten aus – inklusive eigener Klassen, Fehlerbehandlung und einem eigenen Abschlussprojekt.

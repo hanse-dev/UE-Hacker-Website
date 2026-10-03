@@ -10,7 +10,7 @@ level = 5
 print(f"Hallo {name}! Du bist Level {level}!")
 ```
 
-In die `{ }` darfst du sogar **rechnen**:
+In den `{ }` darfst du sogar **rechnen**:
 
 ```python
 gold = 100

@@ -22,4 +22,4 @@ gruesse_held()
 
 > ⚠️ Beim Definieren passiert noch nichts! Erst der **Aufruf mit Klammern** führt den Code aus. Ohne Klammern (`gruesse_held`) sprichst du den Zauber nicht aus.
 
-Jeder Aufruf führt den Code erneut aus – so sparst du dir Copy & Paste.
+Jeder Aufruf führt den Code erneut aus – so sparst du dir das Kopieren und Einfügen.

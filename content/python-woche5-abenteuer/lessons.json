@@ -262,7 +262,7 @@
         }
       },
       {
-        "instruction": "Die Funktion heißt bs(b, m) – ein schlechter Name. Benenne sie in berechne_schaden(basis, multiplikator) um (auch die Parameter im Rumpf), damit der Aufruf darunter funktioniert und genau Schaden: 21 ausgibt.",
+        "instruction": "Die Funktion heißt bs(b, m) – ein schlechter Name. Benenne sie in berechne_schaden(basis, multiplikator) um (auch die Parameter im eingerückten Code), damit der Aufruf darunter funktioniert und genau Schaden: 21 ausgibt.",
         "codeTemplate": "def bs(b, m):\n    return b * m\n\nprint(f\"Schaden: {berechne_schaden(7, 3)}\")\n",
         "validation": {
           "type": "output_contains",

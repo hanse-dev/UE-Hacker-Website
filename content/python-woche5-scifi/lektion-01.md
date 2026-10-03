@@ -22,4 +22,4 @@ starte_scan()
 
 > ⚠️ Beim Definieren passiert noch nichts! Erst der **Aufruf mit Klammern** führt den Code aus. Ohne Klammern (`starte_scan`) startet nichts.
 
-Jeder Aufruf führt den Code erneut aus – so sparst du dir Copy & Paste.
+Jeder Aufruf führt den Code erneut aus – so sparst du dir das Kopieren und Einfügen.

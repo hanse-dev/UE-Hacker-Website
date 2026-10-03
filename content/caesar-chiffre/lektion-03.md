@@ -1,6 +1,6 @@
 # Die Verschlüsselungsfunktion
 
-Jetzt baust du das für einen ganzen Text statt nur für einen Buchstaben. Eine Funktion, die durch jeden Buchstaben des Textes läuft (eine Schleife!) und ihn verschiebt. So läuft das Prinzip ab:
+Jetzt baust du das für einen ganzen Text statt nur für einen Buchstaben. Du schreibst eine Funktion, die durch jeden Buchstaben des Textes läuft (eine Schleife!) und ihn verschiebt. So läuft das Prinzip ab:
 
 ```
 def verschluesseln(text, verschiebung):

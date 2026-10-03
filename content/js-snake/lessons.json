@@ -135,7 +135,7 @@
       },
       {
         "instruction": "Jetzt du: baue die Animationsschleife selbst nach. Bewege kopf bei jedem Frame um ein Kästchen, bevor requestAnimationFrame den nächsten Frame anstößt.",
-        "codeTemplate": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nconst groesse = 20;\nlet kopf = { x: 0, y: 5 };\n\nfunction frame() {\n  ctx.clearRect(0, 0, canvas.width, canvas.height);\n  ctx.fillStyle = 'limegreen';\n  ctx.fillRect(kopf.x * groesse, kopf.y * groesse, groesse, groesse);\n\n  // Dein Code hier: bewege kopf um ein Kaestchen\n\n  requestAnimationFrame(frame);\n}\n\nframe();\n",
+        "codeTemplate": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nconst groesse = 20;\nlet kopf = { x: 0, y: 5 };\n\nfunction frame() {\n  ctx.clearRect(0, 0, canvas.width, canvas.height);\n  ctx.fillStyle = 'limegreen';\n  ctx.fillRect(kopf.x * groesse, kopf.y * groesse, groesse, groesse);\n\n  // Dein Code hier: bewege kopf um ein Kästchen\n\n  requestAnimationFrame(frame);\n}\n\nframe();\n",
         "solution": "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nconst groesse = 20;\nlet kopf = { x: 0, y: 5 };\n\nfunction frame() {\n  ctx.clearRect(0, 0, canvas.width, canvas.height);\n  ctx.fillStyle = 'limegreen';\n  ctx.fillRect(kopf.x * groesse, kopf.y * groesse, groesse, groesse);\n\n  kopf = { x: kopf.x + 1, y: kopf.y };\n\n  requestAnimationFrame(frame);\n}\n\nframe();",
         "validation": { "type": "canvas_changed", "ms": 400 }
       }

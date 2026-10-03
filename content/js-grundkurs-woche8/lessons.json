@@ -97,7 +97,7 @@
         "validation": { "type": "output_contains", "expected": "Bestanden: 1" }
       },
       {
-        "instruction": "Erstelle eine Klasse Produkt mit constructor(name, preis). Erzeuge ein Array produkte mit vier Instanzen: Apfel (2), Buch (15), Brot (3), Kopfhoerer (25). Berechne mit einer Schleife die Summe der Preise aller Produkte, die mindestens 10 kosten. Speichere das Ergebnis in einer Variable summe und gib sie aus.",
+        "instruction": "Erstelle eine Klasse Produkt mit constructor(name, preis). Erzeuge ein Array produkte mit vier Instanzen: Apfel (2), Buch (15), Brot (3), Kopfhörer (25). Berechne mit einer Schleife die Summe der Preise aller Produkte, die mindestens 10 kosten. Speichere das Ergebnis in einer Variable summe und gib sie aus.",
         "codeTemplate": "// Dein Code hier\n",
         "validation": { "type": "output_contains", "expected": "40", "variables": { "summe": 40 } }
       }
@@ -145,12 +145,12 @@
         "validation": { "type": "output_contains", "expected": "70" }
       },
       {
-        "instruction": "Erstelle eine Klasse Vorrat mit constructor(name, menge) und einer Methode istLeer(), die true zurückgibt wenn this.menge gleich 0 ist, sonst false. Erzeuge einen Vorrat mit name 'Mehl' und menge 0. Gib das Ergebnis von istLeer() aus.",
+        "instruction": "Erstelle eine Klasse Vorrat mit constructor(name, menge) und einer Methode istLeer(), die true zurückgibt, wenn this.menge gleich 0 ist, sonst false. Erzeuge einen Vorrat mit name 'Mehl' und menge 0. Gib das Ergebnis von istLeer() aus.",
         "codeTemplate": "// Dein Code hier\n",
         "validation": { "type": "output_contains", "expected": "true" }
       },
       {
-        "instruction": "Erstelle eine Klasse Bestellung mit constructor(artikel, menge). Erzeuge ein Array bestellungen mit drei Instanzen: Schrauben (12), Naegel (3), Bretter (6). Zähle mit einer Schleife, wie viele Bestellungen eine menge von mindestens 5 haben. Gib das Ergebnis aus.",
+        "instruction": "Erstelle eine Klasse Bestellung mit constructor(artikel, menge). Erzeuge ein Array bestellungen mit drei Instanzen: Schrauben (12), Nägel (3), Bretter (6). Zähle mit einer Schleife, wie viele Bestellungen eine menge von mindestens 5 haben. Gib das Ergebnis aus.",
         "codeTemplate": "// Dein Code hier\n",
         "validation": { "type": "output_contains", "expected": "2" }
       }

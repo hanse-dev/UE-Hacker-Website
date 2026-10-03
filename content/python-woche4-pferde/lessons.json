@@ -75,7 +75,7 @@
     "section": "lektion",
     "title": "Übung 3: Schrittweite und rückwärts",
     "file": "lektion-03.md",
-    "lessonSummary": "Springe Hürden über oder zähle rückwärts – mit dem dritten range()-Wert!",
+    "lessonSummary": "Überspringe Hürden oder zähle rückwärts – mit dem dritten range()-Wert!",
     "tasks": [
       {
         "instruction": "Führe dieses Beispiel aus: Ein Countdown zum Turnierstart.",
@@ -206,7 +206,7 @@
         }
       },
       {
-        "instruction": "Ein Pferdegewicht-Spiel: gewicht startet bei 1 und wird in der Schleife verdoppelt, solange gewicht < 100 ist. Gib danach genau aus: Ergebnis: 128",
+        "instruction": "Ein Zahlenspiel: gewicht startet bei 1 und wird in der Schleife verdoppelt, solange gewicht < 100 ist. Gib danach genau aus: Ergebnis: 128",
         "codeTemplate": "gewicht = 1\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -390,7 +390,7 @@
   {
     "id": "boss-01",
     "section": "boss",
-    "title": "Das Springen-Training",
+    "title": "Das Sprungtraining",
     "file": "boss-01.md",
     "lessonSummary": "Der Sprung-Parcours ist ausgewertet – jede Höhe stimmt!",
     "tasks": [

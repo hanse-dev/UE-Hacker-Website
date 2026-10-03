@@ -467,15 +467,15 @@
     "lessonSummary": "🎊 Congratulations! You have mastered Week 2 – next up is Week 3: Conditions (if-else)!",
     "tasks": [
       {
-        "instruction": "Step 1 – Create variables for both missions. Print the heading === MISSION PROTOCOL === and one f-string line per mission in the format Mars: 200 days, cost 5.0, crew 6, success 0.8 (the last line must read: Europa: 300 days, cost 8.0, crew 9, success 0.75).",
+        "instruction": "Step 1 – Create variables for both missions. Print the heading === MISSION PROTOCOL === and one f-string line per mission in the format Mars: 200 days, yield 5.0, crew 6, success 0.8 (the last line must read: Europa: 300 days, yield 8.0, crew 9, success 0.75).",
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Europa: 300 days, cost 8.0, crew 9, success 0.75"
+          "expected": "Europa: 300 days, yield 8.0, crew 9, success 0.75"
         }
       },
       {
-        "instruction": "Step 2 – Add the total cost of both missions and the total crew deployment. Print exactly: Total cost: 13.0 and Total crew: 15",
+        "instruction": "Step 2 – Add the total yield of both missions and the total crew deployment. Print exactly: Total yield: 13.0 and Total crew: 15",
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
@@ -483,19 +483,19 @@
         }
       },
       {
-        "instruction": "Step 3 – Calculate the expected success (cost × probability) for both missions and print exactly: Expected success Mars: 4.0 and Expected success Europa: 6.0",
+        "instruction": "Step 3 – Calculate the expected yield (yield × probability) for both missions and print exactly: Expected yield Mars: 4.0 and Expected yield Europa: 6.0",
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Expected success Europa: 6.0"
+          "expected": "Expected yield Europa: 6.0"
         }
       },
       {
-        "instruction": "Step 4 – Store exp2 > exp1 (with exp1 = 4.0 and exp2 = 6.0) in a Boolean variable europa_better and print exactly: Europa is more profitable: True",
+        "instruction": "Step 4 – Store exp2 > exp1 (with exp1 = 4.0 and exp2 = 6.0) in a Boolean variable europa_better and print exactly: Europa is more worthwhile: True",
         "codeTemplate": "# 🎯 Your solution here:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Europa is more profitable: True"
+          "expected": "Europa is more worthwhile: True"
         }
       }
     ]

@@ -154,10 +154,10 @@
       {
         "instruction": "Führe dieses Beispiel aus.",
         "example": true,
-        "codeTemplate": "zaehler = 0\nwhile zaehler <= 5:\n    print(f\"Zaehler: {zaehler}\")\n    zaehler += 1  # WICHTIG: sonst Endlosschleife!\nprint(\"Bei 6 wird die Bedingung falsch – Schluss!\")\n",
+        "codeTemplate": "zaehler = 0\nwhile zaehler <= 5:\n    print(f\"Zähler: {zaehler}\")\n    zaehler += 1  # WICHTIG: sonst Endlosschleife!\nprint(\"Bei 6 wird die Bedingung falsch – Schluss!\")\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Zaehler: 5"
+          "expected": "Zähler: 5"
         }
       },
       {
@@ -206,7 +206,7 @@
         }
       },
       {
-        "instruction": "Ein Zauberer hat 30 Mana, jeder Zauber kostet 8. Wirke Zauber, solange mana mindestens 8 ist (zaehle sie in zauber_anzahl mit). Gib danach genau aus: Zauber gewirkt: 3, Mana übrig: 6",
+        "instruction": "Ein Zauberer hat 30 Mana, jeder Zauber kostet 8. Wirke Zauber, solange mana mindestens 8 ist (zähle sie in zauber_anzahl mit). Gib danach genau aus: Zauber gewirkt: 3, Mana übrig: 6",
         "codeTemplate": "mana = 30\nzauber_anzahl = 0\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

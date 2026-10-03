@@ -15,8 +15,8 @@ def genauigkeit(vorhersagen, erwartete_werte):
             richtig += 1
     return round(richtig / len(vorhersagen) * 100)
 
-vorhersagen = ["Saeugetier", "Vogel", "Insekt", "Vogel"]
-erwartete_werte = ["Saeugetier", "Vogel", "Vogel", "Vogel"]
+vorhersagen = ["Säugetier", "Vogel", "Insekt", "Vogel"]
+erwartete_werte = ["Säugetier", "Vogel", "Vogel", "Vogel"]
 
 print(genauigkeit(vorhersagen, erwartete_werte))
 ```

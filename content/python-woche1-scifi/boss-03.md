@@ -13,6 +13,8 @@ Ein mysteriöses Wurmloch ist aufgetaucht! Erstelle ein wissenschaftliches Proto
 - ☐ Text mit `print()` ausgeben
 - ☐ Informationen in Variablen speichern
 - ☐ Texte mit `+` und `str()` kombinieren
+- ☐ Eingaben mit `input()` abfragen
+- ☐ Eingaben mit `input()` abfragen
 - ☐ Kommentare mit `#` hinzufügen
 - ☐ Einfache Fehler finden und beheben
 - ☐ Eigene kleine Programme schreiben

@@ -4,4 +4,4 @@
 
 Der Hof führt ein digitales Trainingsbuch – alle Einheiten werden festgehalten!
 
-**Bonus (freiwillig, ohne Prüfung):** Ergänze für jede Quest eine Belohnung und schreibe eine Belohnungsliste in eine zweite Datei.
+**Bonus (freiwillig, ohne Prüfung):** Ergänze für jede Trainingseinheit eine Belohnung und schreibe eine Belohnungsliste in eine zweite Datei.

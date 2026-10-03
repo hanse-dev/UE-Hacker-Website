@@ -10,7 +10,7 @@ Willkommen auf dem **Trainingsplatz der Ausdauer**! Hier wiederholen sich Bewegu
 6. 💪 while mit Bedingungen
 7. 🌀 **Verschachtelte** Schleifen
 
-## 🔁 Übung 1: Schleife – Der Dressur-Kreis
+## 🔁 Übung 1: Die for-Schleife – Der Dressur-Kreis
 
 Eine **for-Schleife** wiederholt Code für jedes Element einer Folge.
 

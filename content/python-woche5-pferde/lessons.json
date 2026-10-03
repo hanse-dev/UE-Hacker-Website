@@ -84,7 +84,7 @@
     "section": "lektion",
     "title": "Übung 3: Mehrere Parameter",
     "file": "lektion-03.md",
-    "lessonSummary": "Stark! Deine Routinen nehmen jetzt mehrere Zutaten in der richtigen Reihenfolge entgegen.",
+    "lessonSummary": "Stark! Deine Routinen nehmen jetzt mehrere Angaben in der richtigen Reihenfolge entgegen.",
     "tasks": [
       {
         "instruction": "Führe dieses Beispiel aus: Drei Argumente füllen drei Parameter – in der richtigen Reihenfolge.",
@@ -262,7 +262,7 @@
         }
       },
       {
-        "instruction": "Die Funktion heißt fl(l, b) – ein schlechter Name. Benenne sie in berechne_flaeche(laenge, breite) um (auch die Parameter im Rumpf), damit der Aufruf darunter funktioniert und genau Fläche: 21 ausgibt.",
+        "instruction": "Die Funktion heißt fl(l, b) – ein schlechter Name. Benenne sie in berechne_flaeche(laenge, breite) um (auch die Parameter im eingerückten Code), damit der Aufruf darunter funktioniert und genau Fläche: 21 ausgibt.",
         "codeTemplate": "def fl(l, b):\n    return l * b\n\nprint(f\"Fläche: {berechne_flaeche(7, 3)}\")\n",
         "validation": {
           "type": "output_contains",

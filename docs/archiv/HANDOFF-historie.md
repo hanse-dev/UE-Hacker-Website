@@ -2445,3 +2445,28 @@ Aufgaben-Instruction irgendwo im Markdown vorkommt und die Zellenzahl stimmt, ni
 | #1 | `python-lernpfad-quiz` | Einstufung + Wochen-Checks, Tests, alter Lernpfad entfernt |
 | #2 | `admin-login` | Express+SQLite API, Admin, Login, Progress/Notebook-Sync, Single-Port-Deploy |
 | #3 | `fix-notebook-sync-loop` | Hotfix: Notebook-Blink-/Reload-Schleife bei eingeloggt+Sync |
+
+### 3.98 — Rechtschreib- und Verständnisprüfung aller deutschen Inhalte (Branch `inhalts-pruefung`, gemergt)
+
+Alle deutschen Inhalte gelesen (Maßstab ab 10/11 Jahre, Interaktiv-Kurs Kinder ab 8, KI-Labor ab 14):
+Interaktiv-Kurs, 12-Wochen-Kurs Woche 1–12 samt Wochen-Checks, JS-Grundkurs, 7 Projekt-Kurse,
+KI-Labor, UI-Texte, Kursbeschreibungen, Wochenübersichten, Glossar. Pferde/Sci-Fi Woche 6–12 nur
+Geschichten-Texte + LanguageTool (gleiches Skelett wie Abenteuer).
+
+- Werkzeuge: `lint:spelling` (cspell) ignoriert Code-Felder/Code-Blöcke per `ignoreRegExpList` und deckt
+  jetzt allen Content ab (4761 statt 1405 Dateien). Neu `npm run lint:spelling:de`
+  (`scripts/local-tools/rechtschreibung-de/pruefe.py`): LanguageTool im Docker-Container
+  `ue-hacker-languagetool` (nur 127.0.0.1, ~1,2 GB Image, Volllauf ~6 Min, ein Request gleichzeitig
+  wegen 2-GB-Docker-VM), `erlaubt.txt` für legitime Wörter, `-- --grammatik` für Grammatik-Kandidaten
+  (viele Fehlalarme durch Code-Bezeichner im Fließtext), `-- --stopp` entfernt den Container.
+- Sprachlich: kaputte Sätze, Grammatik, Kommas, Fachwörter ohne Einführung, verstümmelte Überschriften,
+  Umlaute in Zusammenfassungen/Code-Kommentaren/Daten-Texten (Säugetier, grün, Köln …).
+- Inhaltlich: Wochen-Check 4/5 fragte nicht gelehrten Stoff (break/continue, Standardwerte) → Fragen
+  ersetzt (DE+EN); KI-Labor-Check 2 hatte eine doppelte Coding-Aufgabe; Woche 2 Sci-Fi Boss 3
+  rechnet mit Ertrag statt Kosten; Woche 7 ohne Winkelfunktionen; Woche 12 (DE) mit deutschen
+  Bezeichnern; Abenteuer-Reste in Pferde/Sci-Fi Woche 6–10 (DE) ersetzt (`gilde`, `monster`,
+  `questlog`, "Duell" → Wettrennen); Kursbeschreibung 12-Wochen-Kurs an den Stand angepasst;
+  Ferienkurs-Titel "Al" → "AI".
+- Tooling: `test:auth` nutzt den Worktree-Port statt fest 3011; `.gitignore` ignoriert auch
+  `node_modules`-Symlinks.
+- Offen (in `todo.md`): EN nachziehen, `input()`-Lektion Woche 2 Sci-Fi.

@@ -12,7 +12,7 @@
 | `.pop()` | Letztes (oder ein bestimmtes) Element entfernen und zurückgeben | `liste.pop()` |
 | `.index()` | Position eines Elements finden | `liste.index(\"x\")` |
 | `.count()` | Wie oft ein Element vorkommt | `liste.count(\"x\")` |
-| `in` | Prüfen ob ein Element in der Liste vorhanden ist | `\"x\" in liste` |
+| `in` | Prüfen, ob ein Element in der Liste vorhanden ist | `\"x\" in liste` |
 | `.sort()` | Liste aufsteigend sortieren (verändert die Liste) | `liste.sort()` |
 | `sorted()` | Gibt eine sortierte Kopie zurück (Original bleibt) | `sorted(liste)` |
 | `.reverse()` | Reihenfolge der Liste umkehren | `liste.reverse()` |

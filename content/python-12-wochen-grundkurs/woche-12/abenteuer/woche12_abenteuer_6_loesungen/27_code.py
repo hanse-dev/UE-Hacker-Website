@@ -7,7 +7,7 @@ class Gegner:
     def ist_besiegt(self):
         return self.hp <= 0
 
-foe = Gegner("Drache", 10, 3)
-print(foe.ist_besiegt())
-foe.hp = 0
-print(foe.ist_besiegt())
+feind = Gegner("Drache", 10, 3)
+print(feind.ist_besiegt())
+feind.hp = 0
+print(feind.ist_besiegt())

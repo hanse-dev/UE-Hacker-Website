@@ -25,7 +25,7 @@ print(len(links))
 print(len(rechts))
 ```
 
-Aber ist diese Aufteilung auch **gut**? Eine gute Aufteilung landet möglichst nur eine Klasse auf
+Aber ist diese Aufteilung auch **gut**? Bei einer guten Aufteilung landet möglichst nur eine Klasse auf
 jeder Seite (das nennt man "rein"). Dafür brauchst du zwei weitere Funktionen: welche Klasse
 kommt in einer Gruppe am häufigsten vor (`mehrheitsklasse`), und wie viele Beispiele weichen davon
 ab (`anzahl_falsch` – die "Fehler" dieser Aufteilung)?

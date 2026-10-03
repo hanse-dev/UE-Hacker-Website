@@ -5,11 +5,24 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 
 ## Offen
 
-- [ ] `npm run lint:spelling` meldet 167 unbekannte Wörter in 24 Dateien (Stand 2026-10-01), fast
-      alle in Content, der nach dem Tippfehler-Pass 3.65 dazukam (`ki-labor-woche6/7`,
-      `ki-labor-checks/week-7.json`, `python-grundlagen-interaktiv-kinder`, `src/locales/en.js`
-      "termine"). Nicht behoben, weil jedes Wort einzeln geprüft werden muss (echter Tippfehler
-      vs. legitimes Wort für `cspell.json`) — eigener Tippfehler-Pass wie 3.65.
+- [ ] Offen aus der Inhaltsprüfung (HANDOFF 3.98, Details im Archiv):
+      - **EN nachziehen:** Die englischen Themen Pferde/Sci-Fi (Woche 6–10) enthalten weiter die
+        Abenteuer-Reste, die in DE ersetzt wurden (`gilde`, `monster`, `questlog`, "Duell"); EN
+        Woche 12 und die EN-Lösungen sind unverändert; der Interaktiv-Kurs EN ist deutlich kürzer
+        als DE (3 statt 6 Aufgaben je Lektion). EN wurde sprachlich gar nicht geprüft.
+      - **Woche 2 Sci-Fi hat keine `input()`-Lektion** (Abenteuer/Pferde: Lektion 9) — eigene
+        neue Lektion nötig (Text, Aufgaben mit `validation.stdin`, Lösungen, EN).
+      - **Woche 2 Boss 3 (Abenteuer, Pferde)** rechnet mit Erfolgswahrscheinlichkeit und
+        Erwartungswert — für 10/11-Jährige schwer; nur in Sci-Fi ist das jetzt erklärt.
+      - **Woche 12 Pferde:** Das Text-Adventure hat auch im Pferde-Thema "Gegner" und "Kampf"
+        (Spielmechanik aus dem gemeinsamen Skelett) — bewusst so gelassen, ggf. umthematisieren.
+      - **Pferde/Sci-Fi Woche 6–12:** Aufgabentexte nicht Zeile für Zeile gelesen (nur
+        Geschichten-Texte + LanguageTool), Glossar nur im Abenteuer-Thema gelesen.
+      - **`lint:spelling:de -- --grammatik`** meldet ~300 Hinweise, fast alles Fehlalarme durch
+        Code-Bezeichner im Fließtext; die echten Treffer sind behoben. Wer es schärfer will: im
+        Extraktor Inline-Code durch ein Platzhalterwort ersetzen statt löschen.
+- [ ] `HANDOFF.md` liegt bei ~26 KB (Richtwert 25 KB): Abschnitt "Gelernte Regeln" straffen oder
+      ältere Regeln ins Archiv verschieben.
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken) —
       **zurückgestellt** (Nutzer will erst später deployen). Backup-Cron auf dem Server einrichten
       (Befehl siehe HANDOFF.md Abschnitt 4); externe Sicherung der Backups bewusst nicht mitgebaut.

@@ -8,7 +8,7 @@ Um das zu prüfen, probierst du der Reihe nach alle möglichen Teiler von 2 bis 
 def ist_primzahl(zahl):
     wenn zahl kleiner als 2 ist: gib False zurück
     für jeden teiler von 2 bis zahl - 1:
-        wenn zahl ohne Rest durch teiler teilbar ist (% 0):
+        wenn zahl ohne Rest durch teiler teilbar ist (Rest gleich 0):
             gib False zurück (ein Teiler gefunden, keine Primzahl)
     gib True zurück (kein Teiler gefunden)
 ```

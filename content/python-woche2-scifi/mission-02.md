@@ -8,6 +8,6 @@ Analysiere die Flottenformation und berechne die Statistiken. Nutze diese drei S
 | Vega | 80 | 3.5 |
 | Orion | 200 | 1.5 |
 
-Speichere die Namen als Text, die Besatzungsgrößen als Ganzzahlen und die Geschwindigkeiten als Dezimalzahlen in Variablen.
+Speichere die Namen als Text, die Besatzungsgrößen als Ganzzahlen und die Geschwindigkeiten als Kommazahlen in Variablen.
 
 **Bonus (freiwillig, ohne Prüfung):** Berechne die durchschnittliche Besatzungsgröße!

@@ -3,9 +3,9 @@
 
 | Begriff | Bedeutung | Beispiel |
 |---------|-----------|----------|
-| `if` | Wenn-Bedingung – Code nur ausführen wenn Bedingung wahr | `if x > 5:` |
+| `if` | Wenn-Bedingung – Code nur ausführen, wenn die Bedingung wahr ist | `if x > 5:` |
 | `elif` | Sonst-Wenn – weitere Bedingung prüfen | `elif x == 5:` |
-| `else` | Sonst – Code wenn alle Bedingungen falsch | `else:` |
+| `else` | Sonst – Code, wenn alle Bedingungen falsch sind | `else:` |
 | `==` | Ist gleich (Vergleich, nicht Zuweisung!) | `x == 5` |
 | `!=` | Ist ungleich | `x != 5` |
 | `<` / `>` | Kleiner als / Größer als | `x < 10` |

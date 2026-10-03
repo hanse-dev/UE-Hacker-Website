@@ -1,5 +1,5 @@
-# ⭐⭐⭐⭐⭐ Extra-Herausforderung 2: Das Duell
+# ⭐⭐⭐⭐⭐ Extra-Herausforderung 2: Das Wettrennen
 
-Zwei Objekte treten gegeneinander an. Der Schaden hängt von den Eigenschaften des Angreifers ab: `level * 5`.
+Zwei Pferde liefern sich ein Wettrennen. Jedes Überholmanöver kostet das andere Pferd Kraft: `level * 5` Energie.
 
 **Bonus (freiwillig, ohne Prüfung):** Füge eine Methode hinzu, die die energie wieder auffüllt.

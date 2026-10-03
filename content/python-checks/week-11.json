@@ -40,7 +40,7 @@
       "question_en": "What does overriding a method mean?",
       "options": [
         "In der Kindklasse neu definieren",
-        "Die Methode löschen für immer",
+        "Die Methode für immer löschen",
         "Ein Modul importieren"
       ],
       "options_en": [
@@ -49,7 +49,7 @@
         "Import a module"
       ],
       "correctIndex": 0,
-      "explanation": "Gleiches Methodenname, neues Verhalten.",
+      "explanation": "Gleicher Methodenname, neues Verhalten.",
       "explanation_en": "Same method name, new behavior.",
       "optionExplanations": [
         null,
@@ -126,10 +126,10 @@
       "id": "w11-5",
       "type": "multiple_choice",
       "inPlacement": false,
-      "question": "Was meint Polymorphie grob?",
+      "question": "Was bedeutet Polymorphismus?",
       "question_en": "What does polymorphism roughly mean?",
       "options": [
-        "Gleiches Interface, unterschiedliches Verhalten",
+        "Gleicher Methodenname, unterschiedliches Verhalten je Klasse",
         "Mehrere Klassen gleichzeitig erben (von mehreren Eltern)",
         "Eine Methode darf nur einmal existieren"
       ],
@@ -143,8 +143,8 @@
       "explanation_en": "For example, a sprechen() method for Hund/Katze.",
       "optionExplanations": [
         null,
-        "Das beschreibt Mehrfachvererbung, ein anderes Konzept — Polymorphie bedeutet, dass gleich benannte Methoden sich je nach Klasse unterschiedlich verhalten.",
-        "Das Gegenteil ist gemeint — bei Polymorphie darf dieselbe Methode in verschiedenen Klassen mehrfach existieren, jeweils mit eigenem Verhalten."
+        "Das beschreibt Mehrfachvererbung, ein anderes Konzept — Polymorphismus bedeutet, dass gleich benannte Methoden sich je nach Klasse unterschiedlich verhalten.",
+        "Das Gegenteil ist gemeint — bei Polymorphismus darf dieselbe Methode in verschiedenen Klassen mehrfach existieren, jeweils mit eigenem Verhalten."
       ],
       "optionExplanations_en": [
         null,
@@ -249,9 +249,9 @@
       "question": "Was prüft isinstance(obj, Klasse)?",
       "question_en": "What does isinstance(obj, Class) check?",
       "options": [
-        "ob obj zu Klasse oder Kind gehört",
-        "die Dateigröße",
-        "nur den Namen"
+        "Ob obj zur Klasse (oder einer Kindklasse) gehört",
+        "Die Dateigröße",
+        "Nur den Namen"
       ],
       "options_en": [
         "whether obj belongs to Class or a child",

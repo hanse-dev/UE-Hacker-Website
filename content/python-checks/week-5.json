@@ -246,30 +246,30 @@
       "id": "w5-9",
       "type": "multiple_choice",
       "inPlacement": false,
-      "question": "Was ist ein Default-Parameter?",
-      "question_en": "What is a default parameter?",
+      "question": "Was passiert, wenn du die Argumente beim Aufruf vertauschst?",
+      "question_en": "What happens if you swap the arguments in a call?",
       "options": [
-        "Ein vorgegebener Wert, falls nichts übergeben wird",
-        "Ein Parameter, der immer zwingend angegeben werden muss",
-        "Der erste Parameter einer Funktion"
+        "Jeder Parameter bekommt den falschen Wert",
+        "Python sortiert sie automatisch richtig",
+        "Es gibt immer eine Fehlermeldung"
       ],
       "options_en": [
-        "A preset value if nothing is passed",
-        "A parameter that must always be given",
-        "The first parameter of a function"
+        "Each parameter gets the wrong value",
+        "Python sorts them correctly on its own",
+        "There is always an error message"
       ],
       "correctIndex": 0,
-      "explanation": "z.B. def f(x=1):",
-      "explanation_en": "e.g. def f(x=1):",
+      "explanation": "Die Reihenfolge der Argumente muss zur Reihenfolge der Parameter passen.",
+      "explanation_en": "The order of the arguments must match the order of the parameters.",
       "optionExplanations": [
         null,
-        "Ein Default-Wert macht das Gegenteil: der Parameter darf beim Aufruf weggelassen werden.",
-        "Ein Default-Parameter kann an beliebiger Position stehen, nicht nur an erster Stelle."
+        "Python ordnet Argumente nur nach ihrer Position zu – es weiß nicht, was du gemeint hast.",
+        "Python meckert meist nicht – der Code läuft, liefert aber ein falsches Ergebnis."
       ],
       "optionExplanations_en": [
         null,
-        "A default value does the opposite: the parameter may be left out when calling the function.",
-        "A default parameter can be at any position, not only the first one."
+        "Python assigns arguments only by position – it doesn't know what you meant.",
+        "Python usually doesn't complain – the code runs but gives a wrong result."
       ]
     },
     {

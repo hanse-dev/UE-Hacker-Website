@@ -1,4 +1,4 @@
-# ⭐⭐⭐⭐☆ Mission 3: Die Zauber-Methoden
+# ⭐⭐⭐⭐☆ Mission 3: Die Magic Methods
 
 Mit Magic Methods verhalten sich deine Klassen wie eingebaute Typen: Sie lassen sich ausgeben, sortieren und addieren.
 

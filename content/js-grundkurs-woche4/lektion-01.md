@@ -1,7 +1,7 @@
 # Eigene Funktionen schreiben
 
 Eine **Funktion** ist ein benannter Codeblock, den du beliebig oft aufrufen kannst, ohne ihn
-erneut abzutippen. Mit `function` deklarierst du eine, mit `return` gibst du ein Ergebnis zurück:
+erneut abzutippen. Mit `function` legst du eine an, mit `return` gibst du ein Ergebnis zurück:
 
 ```js
 function verdoppleZahl(zahl) {

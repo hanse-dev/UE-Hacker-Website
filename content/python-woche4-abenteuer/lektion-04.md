@@ -10,7 +10,7 @@ for buchstabe in name:
 
 Das gibt nacheinander `A`, `r`, `i`, `a` aus. Python behandelt den Text wie eine Kette von Zeichen, und `buchstabe` ist bei jedem Durchlauf das nächste Zeichen.
 
-Damit kannst du zum Beispiel **Buchstaben zählen** – ganz ohne `len()`:
+Damit kannst du zum Beispiel **Buchstaben zählen** – ganz ohne `len()`. Dabei ist `anzahl += 1` die Kurzform von `anzahl = anzahl + 1`:
 
 ```python
 anzahl = 0

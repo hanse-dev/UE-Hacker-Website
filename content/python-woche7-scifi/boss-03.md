@@ -4,4 +4,4 @@
 
 Kein Flug gleicht dem anderen – jedes Mal ein neuer Sektor mit neuen Gefahren!
 
-**Bonus (freiwillig, ohne Prüfung):** Lass mit input() entscheiden, ob der Spieler einen gefährlichen Raum betritt.
+**Bonus (freiwillig, ohne Prüfung):** Lass mit input() entscheiden, ob die Crew einen gefährlichen Sektor ansteuert.

@@ -1,6 +1,6 @@
 # Dein erstes Programm
 
-Ein Programm ist eine Abfolge von Anweisungen, die der Computer der Reihe nach ausführt. `print()` gibt Text oder Werte auf der Konsole aus – es ist die grundlegendste Python-Funktion, du wirst sie in jedem Programm wiederfinden, ob zum Debuggen oder als echte Ausgabe.
+Ein Programm ist eine Abfolge von Anweisungen, die der Computer der Reihe nach ausführt. `print()` gibt Text oder Werte auf der Konsole aus – es ist die grundlegendste Python-Funktion, du wirst sie in jedem Programm wiederfinden, ob zur Fehlersuche oder als echte Ausgabe.
 
 ```python
 print("Hallo Welt")

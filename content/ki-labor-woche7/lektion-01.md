@@ -26,7 +26,7 @@ print(neuron([1, 0], [1, 1], -1.5))
 print(neuron([1, 1], [1, 1], -1.5))
 ```
 
-Mit `gewichte=[1, 1]` und `bias=-1.5` verhält sich dieses eine Neuron wie ein **AND-Gatter**: nur
+Mit `gewichte=[1, 1]` und `bias=-1.5` verhält sich dieses eine Neuron wie ein **UND-Gatter**: nur
 wenn *beide* Eingaben 1 sind, reicht die Summe (2 − 1.5 = 0.5), um über die Schwelle zu kommen.
 
 Diese Woche baust du darauf auf: aus einem einzelnen Neuron wird ein kleines **Netz** aus mehreren

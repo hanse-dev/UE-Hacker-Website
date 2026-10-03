@@ -11,9 +11,9 @@ welt = {
     "reaktorraum": {"beschreibung": "Der Reaktorraum! Der Reaktor summt – und davor steht ein defekter Wartungsroboter!", "ausgaenge": {"westen": "korridor"}},
 }
 
-def beschreibe(room_name):
-    raum = welt[room_name]
-    print(f"📍 {room_name.capitalize()}: {raum['beschreibung']}")
+def beschreibe(raumname):
+    raum = welt[raumname]
+    print(f"📍 {raumname.capitalize()}: {raum['beschreibung']}")
     print("   Ausgänge:", ", ".join(raum["ausgaenge"]))
 
 def gehe(position, richtung):
@@ -59,15 +59,15 @@ class Spieler:
         else:
             print("👀 Hier liegt nichts.")
 
-    def nimm(self, item_name):
+    def nimm(self, gegenstand_name):
         raum = welt[self.position]
         for gegenstand in raum["gegenstaende"]:
-            if gegenstand.name == item_name:
+            if gegenstand.name == gegenstand_name:
                 raum["gegenstaende"].remove(gegenstand)
                 self.inventar.append(gegenstand)
                 print(f"🎒 Du nimmst: {gegenstand.name} – {gegenstand.beschreibung}")
                 return
-        print(f"❓ Hier gibt es kein '{item_name}'.")
+        print(f"❓ Hier gibt es kein '{gegenstand_name}'.")
 
     def zeige_inventar(self):
         if self.inventar:
@@ -118,6 +118,6 @@ def pruefe_gegner(spieler):
         if kampf(spieler, gegner):
             print(f"🎉 {gegner.name} wurde besiegt!")
 
-foe = Gegner("Wartungsroboter", 1, 6)
-kampf(Spieler("Mira", "reaktorraum"), foe)
-print(f"Besiegt: {foe.ist_besiegt()}")
+feind = Gegner("Wartungsroboter", 1, 6)
+kampf(Spieler("Mira", "reaktorraum"), feind)
+print(f"Besiegt: {feind.ist_besiegt()}")

@@ -1,4 +1,4 @@
-## ⏳ Übung 5: Schleife – Der Ausdauer-Test
+## ⏳ Übung 5: Die while-Schleife – Der Ausdauer-Test
 
 Eine **while-Schleife** wiederholt Code, **solange** eine Bedingung wahr ist:
 

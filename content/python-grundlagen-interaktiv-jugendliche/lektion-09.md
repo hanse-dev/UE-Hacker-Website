@@ -13,7 +13,7 @@ user["punkte"] = 1500
 print(user)
 ```
 
-Anders als bei Listen spielt bei Dictionaries die Position keine Rolle – du greifst immer über den Schlüssel zu, nicht über eine Zahl. Ein Schlüssel muss dabei eindeutig sein: weist du einem bereits vorhandenen Schlüssel einen neuen Wert zu, wird der alte Wert überschrieben statt ein zweiter Eintrag angelegt.
+Anders als bei Listen spielt bei Dictionaries die Position keine Rolle – du greifst immer über den Schlüssel zu, nicht über eine Zahl. Ein Schlüssel muss dabei eindeutig sein: Weist du einem bereits vorhandenen Schlüssel einen neuen Wert zu, wird der alte Wert überschrieben, statt dass ein zweiter Eintrag angelegt wird.
 
 Fragst du nach einem Schlüssel, der nicht existiert (`user["adresse"]`), wirft Python einen `KeyError`. Willst du das vermeiden, nutzt du `.get(key, default)` – das liefert einen Standardwert zurück, statt abzustürzen:
 

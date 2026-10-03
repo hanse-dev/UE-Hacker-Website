@@ -158,7 +158,7 @@
         }
       },
       {
-        "instruction": "Lege zaehler = 3 an. Gib solange zaehler > 0 gilt Zündung in 3, Zündung in 2, Zündung in 1 aus (vergiss nicht, zaehler in der Schleife um 1 zu verringern).",
+        "instruction": "Lege zaehler = 3 an. Gib, solange zaehler > 0 gilt, Zündung in 3, Zündung in 2, Zündung in 1 aus (vergiss nicht, zaehler in der Schleife um 1 zu verringern).",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -166,7 +166,7 @@
         }
       },
       {
-        "instruction": "Lege energie = 100 an. Ziehe solange energie > 20 gilt 15 ab und gib Energie: 85%, Energie: 70% und so weiter aus. Die letzte Zeile muss lauten: Energie: 10%",
+        "instruction": "Lege energie = 100 an. Ziehe, solange energie > 20 gilt, 15 ab und gib Energie: 85%, Energie: 70% und so weiter aus. Die letzte Zeile muss lauten: Energie: 10%",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -192,7 +192,7 @@
         }
       },
       {
-        "instruction": "Lege treibstoff = 50 und minute = 1 an. Ziehe solange treibstoff >= 12 gilt 12 ab und gib Minute 1: Treibstoff 38, Minute 2: Treibstoff 26 und so weiter aus (erhöhe minute bei jedem Durchlauf). Die letzte Zeile muss lauten: Minute 4: Treibstoff 2",
+        "instruction": "Lege treibstoff = 50 und minute = 1 an. Ziehe, solange treibstoff >= 12 gilt, 12 ab und gib Minute 1: Treibstoff 38, Minute 2: Treibstoff 26 und so weiter aus (erhöhe minute bei jedem Durchlauf). Die letzte Zeile muss lauten: Minute 4: Treibstoff 2",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -200,7 +200,7 @@
         }
       },
       {
-        "instruction": "Lege signal = 1 an. Verdopple solange signal < 100 gilt den Wert (signal *= 2) und gib Signal: 2, Signal: 4 und so weiter aus. Die letzte Zeile muss lauten: Signal: 128",
+        "instruction": "Lege signal = 1 an. Verdopple, solange signal < 100 gilt, den Wert (signal *= 2) und gib Signal: 2, Signal: 4 und so weiter aus. Die letzte Zeile muss lauten: Signal: 128",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -353,7 +353,7 @@
     "lessonSummary": "Paradoxon gelöst – du hast den Weg durch die Zeit zurückgefunden!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Lege jahr = 2100 und spruenge = 0 an. Springe solange jahr != 2000 gilt 25 Jahre zurück (jahr -= 25), erhöhe spruenge um 1 und gib Sprung 1: Jahr 2075, Sprung 2: Jahr 2050 und so weiter aus. Die letzte Zeile muss lauten: Sprung 4: Jahr 2000",
+        "instruction": "Schritt 1 – Lege jahr = 2100 und spruenge = 0 an. Springe, solange jahr != 2000 gilt, 25 Jahre zurück (jahr -= 25), erhöhe spruenge um 1 und gib Sprung 1: Jahr 2075, Sprung 2: Jahr 2050 und so weiter aus. Die letzte Zeile muss lauten: Sprung 4: Jahr 2000",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -361,7 +361,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Lege jahr = 2000 und spruenge = 0 an. Springe solange spruenge < 5 gilt 30 Jahre vorwärts und zähle den Sprung. Gib nach der Schleife genau aus: Endjahr: 2150 und Gefangen im Zeit-Paradoxon",
+        "instruction": "Schritt 2 – Lege jahr = 2000 und spruenge = 0 an. Springe, solange spruenge < 5 gilt, 30 Jahre vorwärts und zähle den Sprung. Gib nach der Schleife genau aus: Endjahr: 2150 und Gefangen im Zeit-Paradoxon",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -443,7 +443,7 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Simuliere die Bewegung: Lege spieler_reihe = 1 und spieler_spalte = 1 an. Bewege die Figur solange spieler_reihe < 8 gilt diagonal (addiere zu beiden 1) und gib Spieler auf Feld 2, 2 und so weiter aus. Die letzte Zeile muss lauten: Spieler auf Feld 8, 8",
+        "instruction": "Schritt 3 – Simuliere die Bewegung: Lege spieler_reihe = 1 und spieler_spalte = 1 an. Bewege die Figur, solange spieler_reihe < 8 gilt, diagonal (addiere zu beiden 1) und gib Spieler auf Feld 2, 2 und so weiter aus. Die letzte Zeile muss lauten: Spieler auf Feld 8, 8",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -468,7 +468,7 @@
     "lessonSummary": "🎊 Glückwunsch! Du hast Woche 4 gemeistert – als Nächstes kommt Woche 5: Funktionen (def, return)!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Programmiere die Tunnel-Schleife: Lege distanz = 0 an. Erhöhe solange distanz < 10 gilt um 1 und gib Portal 1 passiert, Portal 2 passiert und so weiter aus. Die letzte Zeile muss lauten: Portal 10 passiert",
+        "instruction": "Schritt 1 – Programmiere die Tunnel-Schleife: Lege distanz = 0 an. Erhöhe, solange distanz < 10 gilt, um 1 und gib Portal 1 passiert, Portal 2 passiert und so weiter aus. Die letzte Zeile muss lauten: Portal 10 passiert",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -476,7 +476,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Füge Schiffswerte hinzu: treibstoff = 100 und schild = 60. Passiere solange treibstoff > 0 and schild > 0 gilt ein Portal (distanz += 1), ziehe 20 Treibstoff und 8 Schild ab und gib Portal 1: Treibstoff 80, Schild 52 und so weiter aus. Die letzte Zeile muss lauten: Portal 5: Treibstoff 0, Schild 20",
+        "instruction": "Schritt 2 – Füge Schiffswerte hinzu: treibstoff = 100 und schild = 60. Passiere, solange treibstoff > 0 and schild > 0 gilt, ein Portal (distanz += 1), ziehe 20 Treibstoff und 8 Schild ab und gib Portal 1: Treibstoff 80, Schild 52 und so weiter aus. Die letzte Zeile muss lauten: Portal 5: Treibstoff 0, Schild 20",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

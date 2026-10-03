@@ -1,5 +1,5 @@
 def hilfe():
-    commands = ["gehe", "nimm", "inventar", "hp"]
-    print("Befehle: " + ", ".join(commands))
+    befehle = ["gehe", "nimm", "inventar", "hp"]
+    print("Befehle: " + ", ".join(befehle))
 
 hilfe()

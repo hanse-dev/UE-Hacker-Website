@@ -1,6 +1,6 @@
 # 📟 Systemprotokoll 2: Strings und type()
 
-Jede Information auf der Nebula-7 hat einen **Quanten-Typ** – wie die vier Aggregatzustände. Python kennt vier Grundtypen:
+Jede Information auf der Nebula-7 hat einen **Quanten-Typ**. Python kennt vier Grundtypen:
 
 | Typ | Python-Name | Beispiel |
 |---|---|---|

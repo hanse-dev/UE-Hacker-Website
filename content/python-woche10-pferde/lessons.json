@@ -489,12 +489,12 @@
   {
     "id": "boss-02",
     "section": "boss",
-    "title": "Extra-Herausforderung 2: Das Duell",
+    "title": "Extra-Herausforderung 2: Das Wettrennen",
     "file": "boss-02.md",
-    "lessonSummary": "Geschafft: Deine Objekte kämpfen gegeneinander!",
+    "lessonSummary": "Geschafft: Deine Pferde liefern sich ein Wettrennen!",
     "tasks": [
       {
-        "instruction": "Schritt 1: Schreibe eine Klasse Pferd mit `__init__(self, name, level)` (energie startet bei 50) und der Methode `greife_an(self, ziel)`, die `level * 5` von der energie des Ziels abzieht. Blitz (Level 4) greift Stella (Level 2) an – gib genau Stella: 30 aus.",
+        "instruction": "Schritt 1: Schreibe eine Klasse Pferd mit `__init__(self, name, level)` (energie startet bei 50) und der Methode `ueberhole(self, ziel)`, die `level * 5` von der energie des Ziels abzieht. Blitz (Level 4) überholt Stella (Level 2) – gib genau Stella: 30 aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -506,16 +506,16 @@
         }
       },
       {
-        "instruction": "Schritt 2: Die Klasse Pferd mit `greife_an` ist vorgegeben. Blitz (Level 4) und Stella (Level 2) schlagen abwechselnd zu (zuerst Blitz), bis einer 0 oder weniger energie hat. Gib genau Sieger: Blitz aus.",
-        "codeTemplate": "class Pferd:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n        self.energie = 50\n\n    def greife_an(self, ziel):\n        ziel.energie -= self.level * 5\n\n# 🎯 Deine Lösung hier:\n",
+        "instruction": "Schritt 2: Die Klasse Pferd mit `ueberhole` ist vorgegeben. Blitz (Level 4) und Stella (Level 2) überholen sich abwechselnd (zuerst Blitz), bis ein Pferd 0 oder weniger energie hat. Gib genau Sieger: Blitz aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n        self.energie = 50\n\n    def ueberhole(self, ziel):\n        ziel.energie -= self.level * 5\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Sieger: Blitz"
         }
       },
       {
-        "instruction": "Schritt 3: Die Klasse Pferd mit `greife_an` ist vorgegeben. Zähle in dem Duell Blitz (Level 4) gegen Stella (Level 2) die Runden (eine Runde = beide schlagen zu, der Kampf endet, sobald einer besiegt ist) und gib genau Runden: 3 aus.",
-        "codeTemplate": "class Pferd:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n        self.energie = 50\n\n    def greife_an(self, ziel):\n        ziel.energie -= self.level * 5\n\n# 🎯 Deine Lösung hier:\n",
+        "instruction": "Schritt 3: Die Klasse Pferd mit `ueberhole` ist vorgegeben. Zähle in dem Wettrennen Blitz (Level 4) gegen Stella (Level 2) die Runden (eine Runde = beide überholen einmal, das Rennen endet, sobald ein Pferd keine Energie mehr hat) und gib genau Runden: 3 aus.",
+        "codeTemplate": "class Pferd:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n        self.energie = 50\n\n    def ueberhole(self, ziel):\n        ziel.energie -= self.level * 5\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Runden: 3"
@@ -559,7 +559,7 @@
   {
     "id": "boss-04",
     "section": "boss",
-    "title": "Extra-Herausforderung 4: Die große Zunft",
+    "title": "Extra-Herausforderung 4: Der große Reiterhof",
     "file": "boss-04.md",
     "lessonSummary": "Geschafft: Klassen arbeiten mit allem zusammen, was du gelernt hast!",
     "tasks": [

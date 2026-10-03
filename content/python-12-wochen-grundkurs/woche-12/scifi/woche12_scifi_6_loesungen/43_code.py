@@ -11,9 +11,9 @@ welt = {
     "reaktorraum": {"beschreibung": "Der Reaktorraum! Der Reaktor summt – und davor steht ein defekter Wartungsroboter!", "ausgaenge": {"westen": "korridor"}},
 }
 
-def beschreibe(room_name):
-    raum = welt[room_name]
-    print(f"📍 {room_name.capitalize()}: {raum['beschreibung']}")
+def beschreibe(raumname):
+    raum = welt[raumname]
+    print(f"📍 {raumname.capitalize()}: {raum['beschreibung']}")
     print("   Ausgänge:", ", ".join(raum["ausgaenge"]))
 
 def gehe(position, richtung):
@@ -59,15 +59,15 @@ class Spieler:
         else:
             print("👀 Hier liegt nichts.")
 
-    def nimm(self, item_name):
+    def nimm(self, gegenstand_name):
         raum = welt[self.position]
         for gegenstand in raum["gegenstaende"]:
-            if gegenstand.name == item_name:
+            if gegenstand.name == gegenstand_name:
                 raum["gegenstaende"].remove(gegenstand)
                 self.inventar.append(gegenstand)
                 print(f"🎒 Du nimmst: {gegenstand.name} – {gegenstand.beschreibung}")
                 return
-        print(f"❓ Hier gibt es kein '{item_name}'.")
+        print(f"❓ Hier gibt es kein '{gegenstand_name}'.")
 
     def zeige_inventar(self):
         if self.inventar:
@@ -120,58 +120,58 @@ def pruefe_gegner(spieler):
 
 def fuehre_aus(spieler, text):
     try:
-        action, target = text.split()
+        aktion, ziel = text.split()
     except ValueError:
         print("🤔 Ich verstehe nur Befehle aus zwei Wörtern, z.B. 'gehe norden' oder 'nimm Zugangskarte'.")
         return
-    if action == "gehe":
-        spieler.gehe(target)
+    if aktion == "gehe":
+        spieler.gehe(ziel)
         pruefe_gegner(spieler)
-    elif action == "nimm":
-        spieler.nimm(target)
+    elif aktion == "nimm":
+        spieler.nimm(ziel)
     else:
-        print(f"🤔 '{action}' kenne ich nicht. Versuche 'gehe' oder 'nimm'.")
+        print(f"🤔 '{aktion}' kenne ich nicht. Versuche 'gehe' oder 'nimm'.")
 
 import json
 
-def speichern(spieler, filename="stand.json"):
-    data = {
+def speichern(spieler, dateiname="stand.json"):
+    daten = {
         "name": spieler.name,
         "position": spieler.position,
         "hp": spieler.hp,
         "inventar": [{"name": g.name, "beschreibung": g.beschreibung} for g in spieler.inventar],
     }
-    with open(filename, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+    with open(dateiname, "w", encoding="utf-8") as f:
+        json.dump(daten, f, ensure_ascii=False, indent=2)
     print(f"💾 Spielstand von {spieler.name} gespeichert.")
 
-def laden(filename="stand.json"):
+def laden(dateiname="stand.json"):
     try:
-        with open(filename, "r", encoding="utf-8") as f:
-            data = json.load(f)
+        with open(dateiname, "r", encoding="utf-8") as f:
+            daten = json.load(f)
     except FileNotFoundError:
         print("📂 Es gibt noch keinen Spielstand.")
         return None
-    spieler = Spieler(data["name"], data["position"])
-    spieler.hp = data["hp"]
-    for entry in data["inventar"]:
+    spieler = Spieler(daten["name"], daten["position"])
+    spieler.hp = daten["hp"]
+    for entry in daten["inventar"]:
         spieler.inventar.append(Gegenstand(entry["name"], entry["beschreibung"]))
     print(f"📂 Spielstand von {spieler.name} geladen.")
     return spieler
 
-def spiele(spieler, commands, goal_item="Notschalter"):
-    for text in commands:
+def spiele(spieler, befehle, ziel_gegenstand="Notschalter"):
+    for text in befehle:
         print(f"\n> {text}")
         fuehre_aus(spieler, text)
         if spieler.hp <= 0:
             print("💀 Game Over – zu stark. Versuche es noch einmal!")
             return
-        if hat_gegenstand(spieler, goal_item):
+        if hat_gegenstand(spieler, ziel_gegenstand):
             print("🏆 Du hast den Reaktor abgeschaltet. Nebula-7 ist gerettet, die Crew feiert dich!")
             return
 
 spieler = Spieler("Mira", "schleuse")
 spieler.nimm("Zugangskarte")
 speichern(spieler, "test.json")
-back = laden("test.json")
-print(f"Position: {back.position}")
+zurueck = laden("test.json")
+print(f"Position: {zurueck.position}")

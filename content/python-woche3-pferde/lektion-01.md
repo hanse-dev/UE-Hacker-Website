@@ -1,6 +1,6 @@
 # 🐴 Woche 3: Die Weichen des Reitwegs
 
-Willkommen, Pferdefreund! Du erreichst den **Scheideweg der Weide** – hier entscheidet jede Wahl über den richtigen Reitweg. In dieser Woche lernst du, wie dein Programm **Entscheidungen** trifft:
+Willkommen, Pferdefreund:in! Du erreichst den **Scheideweg der Weide** – hier entscheidet jede Wahl über den richtigen Reitweg. In dieser Woche lernst du, wie dein Programm **Entscheidungen** trifft:
 
 1. **if** – Code nur ausführen, wenn etwas stimmt
 2. **Vergleichsoperatoren** – `==`, `!=`, `<`, `>`, `<=`, `>=`

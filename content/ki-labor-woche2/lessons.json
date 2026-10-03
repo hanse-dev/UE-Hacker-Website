@@ -49,9 +49,9 @@
         "validation": { "type": "output_contains", "expected": "Hund: 4 Beine, 30kg\nSpatz: 2 Beine, 0.03kg" }
       },
       {
-        "instruction": "Erstelle eine Liste personen mit {'name': 'Anna', 'alter': 12, 'grosse': 150} und {'name': 'Ben', 'alter': 15, 'grosse': 170}. Gib für jede Person genau '<name>: <alter> Jahre, <grosse>cm' aus.",
+        "instruction": "Erstelle eine Liste personen mit {'name': 'Anna', 'alter': 12, 'groesse': 150} und {'name': 'Ben', 'alter': 15, 'groesse': 170}. Gib für jede Person genau '<name>: <alter> Jahre, <groesse>cm' aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
-        "referenceSolution": "personen = [\n    {\"name\": \"Anna\", \"alter\": 12, \"grosse\": 150},\n    {\"name\": \"Ben\", \"alter\": 15, \"grosse\": 170},\n]\n\nfor person in personen:\n    print(f\"{person['name']}: {person['alter']} Jahre, {person['grosse']}cm\")",
+        "referenceSolution": "personen = [\n    {\"name\": \"Anna\", \"alter\": 12, \"groesse\": 150},\n    {\"name\": \"Ben\", \"alter\": 15, \"groesse\": 170},\n]\n\nfor person in personen:\n    print(f\"{person['name']}: {person['alter']} Jahre, {person['groesse']}cm\")",
         "validation": {
           "type": "output_contains",
           "expected": "Anna: 12 Jahre, 150cm\nBen: 15 Jahre, 170cm"
@@ -62,9 +62,9 @@
   {
     "id": "lektion-03",
     "section": "lektion",
-    "title": "Muster von Auge suchen",
+    "title": "Muster mit bloßem Auge suchen",
     "file": "lektion-03.md",
-    "lessonSummary": "Mit einer List Comprehension filterst du Beispiele heraus, die eine Bedingung erfüllen – Muster von Auge finden.",
+    "lessonSummary": "Mit einer List Comprehension filterst du Beispiele heraus, die eine Bedingung erfüllen – Muster mit bloßem Auge finden.",
     "tasks": [
       {
         "instruction": "Führe dieses Beispiel aus: alle Vierbeiner aus dem Datensatz herausfiltern.",
@@ -129,13 +129,13 @@
       {
         "instruction": "Führe dieses Beispiel aus: Merkmale und Labels in zwei getrennte Listen aufteilen.",
         "example": true,
-        "codeTemplate": "tiere = [\n    {\"beine\": 4, \"gewicht\": 30, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 0.03, \"art\": \"Vogel\"},\n]\n\nmerkmale = [{\"beine\": t[\"beine\"], \"gewicht\": t[\"gewicht\"]} for t in tiere]\nlabels = [t[\"art\"] for t in tiere]\n\nprint(merkmale)\nprint(labels)\n",
-        "validation": { "type": "output_contains", "expected": "[{'beine': 4, 'gewicht': 30}, {'beine': 2, 'gewicht': 0.03}]\n['Saeugetier', 'Vogel']" }
+        "codeTemplate": "tiere = [\n    {\"beine\": 4, \"gewicht\": 30, \"art\": \"Säugetier\"},\n    {\"beine\": 2, \"gewicht\": 0.03, \"art\": \"Vogel\"},\n]\n\nmerkmale = [{\"beine\": t[\"beine\"], \"gewicht\": t[\"gewicht\"]} for t in tiere]\nlabels = [t[\"art\"] for t in tiere]\n\nprint(merkmale)\nprint(labels)\n",
+        "validation": { "type": "output_contains", "expected": "[{'beine': 4, 'gewicht': 30}, {'beine': 2, 'gewicht': 0.03}]\n['Säugetier', 'Vogel']" }
       },
       {
         "instruction": "Führe dieses Beispiel aus: aus den getrennten Labels zählen, wie oft eine Kategorie vorkommt.",
         "example": true,
-        "codeTemplate": "tiere = [\n    {\"beine\": 4, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"art\": \"Vogel\"},\n    {\"beine\": 6, \"art\": \"Insekt\"},\n]\n\nlabels = [t[\"art\"] for t in tiere]\nanzahl_saeugetiere = labels.count(\"Saeugetier\")\nprint(anzahl_saeugetiere)\n",
+        "codeTemplate": "tiere = [\n    {\"beine\": 4, \"art\": \"Säugetier\"},\n    {\"beine\": 2, \"art\": \"Vogel\"},\n    {\"beine\": 6, \"art\": \"Insekt\"},\n]\n\nlabels = [t[\"art\"] for t in tiere]\nanzahl_saeugetiere = labels.count(\"Säugetier\")\nprint(anzahl_saeugetiere)\n",
         "validation": { "type": "output_contains", "expected": "1" }
       },
       {
@@ -159,19 +159,19 @@
       {
         "instruction": "🐛 Bug #1 – Ziel: Das Programm soll 20.0 ausgeben (Durchschnitt aus 10, 20, 30). Was ist falsch?",
         "codeTemplate": "def durchschnittsgewicht(tiere):\n    summe = 0\n    for tier in tiere:\n        summe += tier[\"gewicht\"]\n    summe / len(tiere)\n\ntiere = [{\"gewicht\": 10}, {\"gewicht\": 20}, {\"gewicht\": 30}]\nprint(durchschnittsgewicht(tiere))\n",
-        "referenceSolution": "# Fix: Das Ergebnis muss mit return zurueckgegeben werden, sonst kommt None heraus.\ndef durchschnittsgewicht(tiere):\n    summe = 0\n    for tier in tiere:\n        summe += tier[\"gewicht\"]\n    return summe / len(tiere)\n\ntiere = [{\"gewicht\": 10}, {\"gewicht\": 20}, {\"gewicht\": 30}]\nprint(durchschnittsgewicht(tiere))",
+        "referenceSolution": "# Fix: Das Ergebnis muss mit return zurückgegeben werden, sonst kommt None heraus.\ndef durchschnittsgewicht(tiere):\n    summe = 0\n    for tier in tiere:\n        summe += tier[\"gewicht\"]\n    return summe / len(tiere)\n\ntiere = [{\"gewicht\": 10}, {\"gewicht\": 20}, {\"gewicht\": 30}]\nprint(durchschnittsgewicht(tiere))",
         "validation": { "type": "output_contains", "expected": "20.0" }
       },
       {
         "instruction": "🐛 Bug #2 – Ziel: Tiere mit genau 4 Beinen sollen als Vierbeiner mitgezählt werden. Für die Liste sollen genau 2 gezählt werden. Was ist falsch?",
         "codeTemplate": "def zaehle_vierbeiner(tiere):\n    anzahl = 0\n    for tier in tiere:\n        if tier[\"beine\"] > 4:\n            anzahl += 1\n    return anzahl\n\ntiere = [{\"beine\": 4}, {\"beine\": 4}, {\"beine\": 2}]\nprint(zaehle_vierbeiner(tiere))\n",
-        "referenceSolution": "# Fix: == 4 statt > 4 - gezaehlt werden Tiere mit genau 4 Beinen.\ndef zaehle_vierbeiner(tiere):\n    anzahl = 0\n    for tier in tiere:\n        if tier[\"beine\"] == 4:\n            anzahl += 1\n    return anzahl\n\ntiere = [{\"beine\": 4}, {\"beine\": 4}, {\"beine\": 2}]\nprint(zaehle_vierbeiner(tiere))",
+        "referenceSolution": "# Fix: == 4 statt > 4 - gezählt werden Tiere mit genau 4 Beinen.\ndef zaehle_vierbeiner(tiere):\n    anzahl = 0\n    for tier in tiere:\n        if tier[\"beine\"] == 4:\n            anzahl += 1\n    return anzahl\n\ntiere = [{\"beine\": 4}, {\"beine\": 4}, {\"beine\": 2}]\nprint(zaehle_vierbeiner(tiere))",
         "validation": { "type": "output_contains", "expected": "2" }
       },
       {
         "instruction": "🐛 Bug #3 – Ziel: Fehlt einem Tier das Merkmal gewicht, soll 'unbekannt' ausgegeben werden, statt das Programm abstürzen zu lassen. Was ist falsch?",
         "codeTemplate": "def gewicht_oder_unbekannt(tier):\n    return tier[\"gewicht\"]\n\nvogel = {\"name\": \"Spatz\"}\nprint(gewicht_oder_unbekannt(vogel))\n",
-        "referenceSolution": "# Fix: .get() mit Standardwert statt [] - ein fehlender Schluessel loest sonst einen KeyError aus.\ndef gewicht_oder_unbekannt(tier):\n    return tier.get(\"gewicht\", \"unbekannt\")\n\nvogel = {\"name\": \"Spatz\"}\nprint(gewicht_oder_unbekannt(vogel))",
+        "referenceSolution": "# Fix: .get() mit Standardwert statt [] - ein fehlender Schlüssel löst sonst einen KeyError aus.\ndef gewicht_oder_unbekannt(tier):\n    return tier.get(\"gewicht\", \"unbekannt\")\n\nvogel = {\"name\": \"Spatz\"}\nprint(gewicht_oder_unbekannt(vogel))",
         "validation": { "type": "output_contains", "expected": "unbekannt" }
       }
     ]
@@ -233,7 +233,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Minimum: Schreibe eine Funktion minimum(tiere, merkmal), analog zu maximum() aber für den kleinsten Wert (ohne die eingebaute Funktion min()). Nutze dieselbe Liste tiere (erneut erstellen). Gib damit genau 2 aus (für 'beine').",
+        "instruction": "Schritt 2 – Minimum: Schreibe eine Funktion minimum(tiere, merkmal), analog zu maximum(), aber für den kleinsten Wert (ohne die eingebaute Funktion min()). Nutze dieselbe Liste tiere (erneut erstellen). Gib damit genau 2 aus (für 'beine').",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "referenceSolution": "tiere = [\n    {\"name\": \"Hund\", \"beine\": 4},\n    {\"name\": \"Spatz\", \"beine\": 2},\n    {\"name\": \"Spinne\", \"beine\": 8},\n]\n\ndef minimum(tiere, merkmal):\n    kleinster = tiere[0][merkmal]\n    for tier in tiere:\n        if tier[merkmal] < kleinster:\n            kleinster = tier[merkmal]\n    return kleinster\n\nprint(minimum(tiere, \"beine\"))",
         "validation": {

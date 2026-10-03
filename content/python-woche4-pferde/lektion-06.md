@@ -16,4 +16,4 @@ print(f"Training beendet nach {runde-1} Runden!")
 
 Bei jedem Durchlauf sinkt die Ausdauer um 15. Sobald sie **nicht mehr über 20** liegt, endet die Schleife.
 
-> 🐴 **Merke:** Die Variable in der Bedingung (`ausdauer`) muss sich **im Schleifenkörper ändern** – sonst gibt es eine Endlosschleife.
+> 🐴 **Merke:** Die Variable in der Bedingung (`ausdauer`) muss sich **in der Schleife ändern** – sonst gibt es eine Endlosschleife.

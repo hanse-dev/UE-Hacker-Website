@@ -15,4 +15,4 @@ Das gibt `3, 4, 5, 6, 7` aus.
 | `range(3, 8)` | 3, 4, 5, 6, 7 |
 | `range(1, 4)` | 1, 2, 3 |
 
-**Wichtige Regel:** Die **obere Grenze ist immer exklusiv** – sie wird nicht mehr mitgezählt. Willst du bis 10 zählen, schreibst du `range(1, 11)`.
+**Wichtige Regel:** Die **obere Grenze zählt nie mit**. Willst du bis 10 zählen, schreibst du `range(1, 11)`.

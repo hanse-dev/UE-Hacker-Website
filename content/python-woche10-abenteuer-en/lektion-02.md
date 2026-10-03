@@ -16,6 +16,6 @@ print(b.name, b.level)
 
 1. **`self`** is always the first parameter – the object that is being created
 2. **`self.name = name`** stores the value **inside the object**
-3. **`level=1`** is a **default value** (like with functions in week 5)
+3. **`level=1`** is a **default value** – it applies when you don't pass a value when creating the object
 
 > ⚠️ Two underscores before and after `init`: `__init__`.

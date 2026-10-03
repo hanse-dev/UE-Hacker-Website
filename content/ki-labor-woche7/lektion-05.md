@@ -55,7 +55,7 @@ print(baseline_vorhersagen)
 print(genauigkeit(baseline_vorhersagen, erwartete_werte))
 ```
 
-Das Netz mit versteckter Schicht erreicht **100%** – ein einzelnes Neuron (hier ein OR-Gatter als
+Das Netz mit versteckter Schicht erreicht **100%** – ein einzelnes Neuron (hier ein ODER-Gatter als
 `baseline`) schafft dagegen nur **75%**, genau wie in Lektion 2 gezeigt. Der Unterschied zwischen
 einem und mehreren verbundenen Neuronen ist also kein Detail, sondern entscheidet, ob eine Aufgabe
 überhaupt lösbar ist.

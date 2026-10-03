@@ -4,4 +4,4 @@
 
 Kein Ausritt gleicht dem anderen – jedes Mal ein neuer Weg mit neuen Hindernissen!
 
-**Bonus (freiwillig, ohne Prüfung):** Lass mit input() entscheiden, ob der Spieler einen gefährlichen Raum betritt.
+**Bonus (freiwillig, ohne Prüfung):** Lass mit input() entscheiden, ob die Reiterin einen schwierigen Weg nimmt.

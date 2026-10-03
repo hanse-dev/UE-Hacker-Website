@@ -1,6 +1,6 @@
 # f-Strings
 
-f-Strings sind die modernste Art, Variablen in Strings einzubetten (seit Python 3.6). Schneller zu lesen als Konkatenation mit `+`.
+f-Strings sind die modernste Art, Variablen in Strings einzubetten (seit Python 3.6). Das liest sich schneller als das Verketten mit `+`.
 
 ```python
 name = "Alex"

@@ -251,7 +251,7 @@
       "options": [
         "Ein Attribut am Objekt",
         "Eine lokale Variable, die nach der Funktion verschwindet",
-        "Einen Parameter-Default"
+        "Einen Standardwert für einen Parameter"
       ],
       "options_en": [
         "An attribute on the object",
@@ -264,7 +264,7 @@
       "optionExplanations": [
         null,
         "Weil die Variable mit self. gespeichert wird, bleibt sie am Objekt erhalten — sie verschwindet nicht nach dem Ende von __init__.",
-        "Ein Parameter-Default würde direkt in der Funktionssignatur stehen (z.B. name=\"Bello\") — self.name = name speichert stattdessen den übergebenen Wert am Objekt."
+        "Ein Standardwert würde direkt in der def-Zeile stehen (z.B. name=\"Bello\") — self.name = name speichert stattdessen den übergebenen Wert am Objekt."
       ],
       "optionExplanations_en": [
         null,

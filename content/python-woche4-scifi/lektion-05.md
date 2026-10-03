@@ -14,4 +14,4 @@ while scan <= 10:
 3. `scan += 1` erhöht den Wert bei jedem Durchlauf
 4. Bei `scan = 11` ist die Bedingung falsch und die Schleife endet
 
-> ⚠️ **Vorsicht – Endlosschleife!** Wird die Bedingung nie falsch (zum Beispiel weil du `scan += 1` vergessen hast), endet die Schleife nie. Achte immer darauf, dass sich in der Schleife etwas ändert, das die Bedingung beeinflusst.
+> ⚠️ **Vorsicht – Endlosschleife!** Wird die Bedingung nie falsch (zum Beispiel, weil du `scan += 1` vergessen hast), endet die Schleife nie. Achte immer darauf, dass sich in der Schleife etwas ändert, das die Bedingung beeinflusst.

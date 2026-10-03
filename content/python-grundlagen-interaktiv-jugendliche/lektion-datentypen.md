@@ -15,8 +15,8 @@ Mit `type()` kannst du den Typ jederzeit prüfen. Mit `int()`, `str()`, `float()
 
 ```python
 alter = "18"
-print(type(alter))        # str
-print(type(int(alter)))   # int
+print(type(alter))        # <class 'str'>
+print(type(int(alter)))   # <class 'int'>
 ```
 
 Diese Umwandlung ist besonders wichtig bei Nutzereingaben: `input()` liefert **immer** einen String zurück, selbst wenn jemand eine Zahl eintippt. Willst du mit der Eingabe rechnen, musst du sie also erst mit `int()` oder `float()` umwandeln – sonst führt `"18" + 1` zu einem `TypeError`, weil Python Text und Zahl nicht automatisch verrechnet.

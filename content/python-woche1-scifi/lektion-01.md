@@ -1,6 +1,6 @@
 # 🚀 Startsequenz: Systemprotokoll 1
 
-Willkommen, Kommandant:in! Du betrittst die hochmoderne **Raumstation Nebula-7** – ein Zentrum für technologische Innovationen und interstellare Abenteuer. In dieser Woche lernst du fünf **Systemprotokolle**:
+Willkommen, Kommandant:in! Du betrittst die hochmoderne **Raumstation Nebula-7** – ein Zentrum für neue Technik und Abenteuer zwischen den Sternen. In dieser Woche lernst du fünf **Systemprotokolle**:
 
 1. Text ausgeben mit `print()`
 2. Informationen in **Variablen** speichern
@@ -20,7 +20,7 @@ print("Hallo")   # Funktion: print – mitgegeben wird: "Hallo"
 
 > 📡 **Merke:** Systemprotokoll = Funktion. Der **Name** sagt, welches Protokoll, die **Klammern `()`** rufen es auf. Ohne Klammern passiert nichts! Später, in Woche 5, erfindest du sogar eigene Protokolle (Funktionen).
 
-## 📟 Systemprotokoll 1: Befehl
+## 📟 Systemprotokoll 1: Der `print()`-Befehl
 
 `print()` ist dein erster Befehl – eine **Funktion**, die du aufrufst. Sie gibt Text auf dem Bildschirm aus.
 

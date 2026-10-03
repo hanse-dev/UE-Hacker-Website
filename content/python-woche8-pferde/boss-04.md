@@ -4,4 +4,4 @@
 
 Die Stallmeisterin prüft dich noch einmal – diesmal mit Funktionen aus Woche 5, Listen aus Woche 6 und dem Zufall aus Woche 7, alles mit Stallkarten.
 
-**Bonus (freiwillig, ohne Prüfung):** Speichere alle Training-Einträge in einem Dictionary, dessen Schlüssel der Name ist.
+**Bonus (freiwillig, ohne Prüfung):** Speichere alle Trainings-Einträge in einem Dictionary, dessen Schlüssel der Name ist.

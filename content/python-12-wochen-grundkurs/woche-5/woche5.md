@@ -12,7 +12,7 @@ Funktionen sind die Bausteine professioneller Programmierung und machen deinen C
 
 Wähle deine bevorzugte Lernumgebung:
 - **🗺️ Abenteuer-Welt:** Erstelle mächtige Zauberformeln und wiederhole sie beliebig oft!
-- **🐴 Pferdewirtschaft:** Entwickle Trainingsroutinen und setze sie für alle Pferde ein!
+- **🐴 Pferde-Welt:** Entwickle Trainingsroutinen und setze sie für alle Pferde ein!
 - **🚀 Sci-Fi-Welt:** Programmiere Schiffssysteme und rufe sie bei Bedarf auf!
 
 Alle Welten vermitteln dieselben Python-Kenntnisse – nur mit unterschiedlichem Flair!
@@ -23,4 +23,4 @@ Alle Welten vermitteln dieselben Python-Kenntnisse – nur mit unterschiedlichem
 - Docstrings zur Dokumentation schreiben
 - Namenskonventionen für Funktionen beachten
 - Funktionen mit und ohne Rückgabewerte erstellen
-- Parameter übergeben und Standardwerte verwenden
+- Parameter in der richtigen Reihenfolge übergeben

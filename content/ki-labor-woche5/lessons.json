@@ -4,7 +4,7 @@
     "section": "lektion",
     "title": "Was ist ein Entscheidungsbaum?",
     "file": "lektion-01.md",
-    "lessonSummary": "Ein Entscheidungsbaum stellt Ja/Nein-Fragen zu Merkmalen - schon eine einzelne if/else-Funktion mit einem Schwellenwert ist ein winziger Baum.",
+    "lessonSummary": "Ein Entscheidungsbaum stellt Ja/Nein-Fragen zu Merkmalen – schon eine einzelne if/else-Funktion mit einem Schwellenwert ist ein winziger Baum.",
     "tasks": [
       {
         "instruction": "Führe dieses Beispiel aus: eine einfache if/else-Entscheidung anhand eines Schwellenwerts.",
@@ -174,7 +174,7 @@
       {
         "instruction": "🐛 Bug #1 – Ziel: Bei teil mit einem 'nein' und zwei 'ja' soll mehrheitsklasse() 'ja' zurückgeben (die häufigere Klasse). Was ist falsch?",
         "codeTemplate": "def mehrheitsklasse(teil):\n    anzahl_je_klasse = {}\n    for beispiel in teil:\n        anzahl_je_klasse[beispiel[\"schirm\"]] = anzahl_je_klasse.get(beispiel[\"schirm\"], 0)\n\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl_je_klasse:\n        anzahl = anzahl_je_klasse[klasse]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_klasse = klasse\n    return beste_klasse\n\nteil = [{\"schirm\": \"nein\"}, {\"schirm\": \"ja\"}, {\"schirm\": \"ja\"}]\nprint(mehrheitsklasse(teil))\n",
-        "referenceSolution": "# Fix: Beim Zaehlen fehlte \"+ 1\" - so blieb jede Anzahl bei 0.\ndef mehrheitsklasse(teil):\n    anzahl_je_klasse = {}\n    for beispiel in teil:\n        anzahl_je_klasse[beispiel[\"schirm\"]] = anzahl_je_klasse.get(beispiel[\"schirm\"], 0) + 1\n\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl_je_klasse:\n        anzahl = anzahl_je_klasse[klasse]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_klasse = klasse\n    return beste_klasse\n\nteil = [{\"schirm\": \"nein\"}, {\"schirm\": \"ja\"}, {\"schirm\": \"ja\"}]\nprint(mehrheitsklasse(teil))",
+        "referenceSolution": "# Fix: Beim Zählen fehlte \"+ 1\" - so blieb jede Anzahl bei 0.\ndef mehrheitsklasse(teil):\n    anzahl_je_klasse = {}\n    for beispiel in teil:\n        anzahl_je_klasse[beispiel[\"schirm\"]] = anzahl_je_klasse.get(beispiel[\"schirm\"], 0) + 1\n\n    beste_klasse = None\n    bester_wert = -1\n    for klasse in anzahl_je_klasse:\n        anzahl = anzahl_je_klasse[klasse]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_klasse = klasse\n    return beste_klasse\n\nteil = [{\"schirm\": \"nein\"}, {\"schirm\": \"ja\"}, {\"schirm\": \"ja\"}]\nprint(mehrheitsklasse(teil))",
         "validation": {
           "type": "output_contains",
           "expected": "ja"
@@ -183,7 +183,7 @@
       {
         "instruction": "🐛 Bug #2 – Ziel: Bei schwelle=50 sollen alle 3 Elemente aufgeteilt werden (1 links, 2 rechts) - ein Wert, der genau dem Schwellenwert entspricht, gehört zur rechten Seite. Was ist falsch?",
         "codeTemplate": "def teile_bei_schwellenwert(daten, merkmal, schwelle):\n    links = [b for b in daten if b[merkmal] < schwelle]\n    rechts = [b for b in daten if b[merkmal] > schwelle]\n    return links, rechts\n\ndaten = [{\"regen\": 10}, {\"regen\": 50}, {\"regen\": 90}]\nlinks, rechts = teile_bei_schwellenwert(daten, \"regen\", 50)\nprint(len(links))\nprint(len(rechts))\n",
-        "referenceSolution": "# Fix: >= statt > auf der rechten Seite - ein Wert genau auf der Schwelle gehoert nach rechts.\ndef teile_bei_schwellenwert(daten, merkmal, schwelle):\n    links = [b for b in daten if b[merkmal] < schwelle]\n    rechts = [b for b in daten if b[merkmal] >= schwelle]\n    return links, rechts\n\ndaten = [{\"regen\": 10}, {\"regen\": 50}, {\"regen\": 90}]\nlinks, rechts = teile_bei_schwellenwert(daten, \"regen\", 50)\nprint(len(links))\nprint(len(rechts))",
+        "referenceSolution": "# Fix: >= statt > auf der rechten Seite - ein Wert genau auf der Schwelle gehört nach rechts.\ndef teile_bei_schwellenwert(daten, merkmal, schwelle):\n    links = [b for b in daten if b[merkmal] < schwelle]\n    rechts = [b for b in daten if b[merkmal] >= schwelle]\n    return links, rechts\n\ndaten = [{\"regen\": 10}, {\"regen\": 50}, {\"regen\": 90}]\nlinks, rechts = teile_bei_schwellenwert(daten, \"regen\", 50)\nprint(len(links))\nprint(len(rechts))",
         "validation": {
           "type": "output_contains",
           "expected": "1\n2"
@@ -205,7 +205,7 @@
     "section": "mission",
     "title": "Mission: Gießen oder nicht?",
     "file": "mission-01.md",
-    "lessonSummary": "Starke Leistung! Du hast einen eigenen Pflanzen-Datensatz aufgeteilt, den besten Trennwert gefunden und einen Baum gebaut, der für neue Werte vorhersagt - ganz ohne Vorlage.",
+    "lessonSummary": "Starke Leistung! Du hast einen eigenen Pflanzen-Datensatz aufgeteilt, den besten Trennwert gefunden und einen Baum gebaut, der für neue Werte vorhersagt – ganz ohne Vorlage.",
     "tasks": [
       {
         "instruction": "Schritt 1 – Aufteilen: Erstelle eine Liste pflanzen mit den sechs Dictionaries {'bodenfeuchtigkeit': 10, 'giessen': 'ja'}, {'bodenfeuchtigkeit': 15, 'giessen': 'ja'}, {'bodenfeuchtigkeit': 20, 'giessen': 'ja'}, {'bodenfeuchtigkeit': 70, 'giessen': 'nein'}, {'bodenfeuchtigkeit': 80, 'giessen': 'nein'} und {'bodenfeuchtigkeit': 75, 'giessen': 'nein'}. Schreibe teile_bei_schwellenwert(daten, merkmal, schwelle) wie in dieser Woche und teile pflanzen beim Merkmal 'bodenfeuchtigkeit' mit schwelle=40 auf. Gib len(links) und len(rechts) aus.",
@@ -295,7 +295,7 @@
     "section": "boss",
     "title": "Extra-Herausforderung 2: Baum trainieren, auf echten Testdaten prüfen",
     "file": "boss-02.md",
-    "lessonSummary": "Sehr stark! Du hast einen Baum auf Trainingsdaten gebaut und seine Genauigkeit ehrlich auf Testdaten gemessen - und gesehen, wie sehr die Wahl des Merkmals zählt.",
+    "lessonSummary": "Sehr stark! Du hast einen Baum auf Trainingsdaten gebaut und seine Genauigkeit ehrlich auf Testdaten gemessen – und gesehen, wie sehr die Wahl des Merkmals zählt.",
     "tasks": [
       {
         "instruction": "Schritt 1 – Baum auf Trainingsdaten: Schreibe teile_bei_schwellenwert(daten, merkmal, schwelle), mehrheitsklasse(teil), anzahl_falsch(teil), bester_schwellenwert(daten, merkmal), bestes_merkmal(daten, merkmale) und baue_baum(daten, merkmal) wie in dieser Woche. Nutze trainingsdaten = [{'regen': 80, 'temperatur': 18, 'schirm': 'ja'}, {'regen': 90, 'temperatur': 25, 'schirm': 'ja'}, {'regen': 70, 'temperatur': 10, 'schirm': 'ja'}, {'regen': 20, 'temperatur': 22, 'schirm': 'nein'}, {'regen': 10, 'temperatur': 15, 'schirm': 'nein'} und {'regen': 30, 'temperatur': 28, 'schirm': 'nein'}. Finde mit bestes_merkmal(trainingsdaten, ['regen', 'temperatur']) das beste Merkmal, baue damit einen Baum und gib ihn aus.",

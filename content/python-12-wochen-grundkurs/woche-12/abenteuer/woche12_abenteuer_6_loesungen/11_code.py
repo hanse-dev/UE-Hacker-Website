@@ -11,9 +11,9 @@ welt = {
     "schatzkammer": {"beschreibung": "Gold, so weit du blicken kannst – und mittendrin schläft der Drache!", "ausgaenge": {"westen": "halle"}},
 }
 
-def beschreibe(room_name):
-    raum = welt[room_name]
-    print(f"📍 {room_name.capitalize()}: {raum['beschreibung']}")
+def beschreibe(raumname):
+    raum = welt[raumname]
+    print(f"📍 {raumname.capitalize()}: {raum['beschreibung']}")
     print("   Ausgänge:", ", ".join(raum["ausgaenge"]))
 
 def gehe(position, richtung):
@@ -26,6 +26,6 @@ def gehe(position, richtung):
     return position
 
 position = "eingang"
-for command in ["norden", "osten"]:
-    position = gehe(position, command)
+for befehl in ["norden", "osten"]:
+    position = gehe(position, befehl)
 print(f"Position: {position}")

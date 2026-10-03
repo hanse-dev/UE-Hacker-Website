@@ -17,7 +17,7 @@ export const KI_LABOR_WEEKS = [
     title: 'Daten sind alles',
     lernziele: [
       'Einen Datensatz als Liste von Beispielen mit mehreren Merkmalen aufbauen können',
-      'Muster in Daten von Auge erkennen (z.B. mit einer List Comprehension filtern)',
+      'Muster in Daten mit bloßem Auge erkennen (z.B. mit einer List Comprehension filtern)',
       'Mit fehlenden Werten (.get() mit Standardwert) sicher umgehen können',
       'Merkmale und Label eines Datensatzes trennen können',
     ],

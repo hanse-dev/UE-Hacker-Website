@@ -25,4 +25,4 @@ print(tier)
 print(farbe)
 ```
 
-**Namen für Truhen:** Variablennamen dürfen nur aus Kleinbuchstaben, Zahlen und Unterstrichen (`_`) bestehen, und dürfen nicht mit einer Zahl anfangen. Statt `mein tier` (mit Leerzeichen, geht nicht!) schreibst du `mein_tier`. Wähl am besten einen Namen, der verrät, was drinsteckt – dann verstehst du deinen eigenen Code auch noch, wenn du ihn eine Woche später wieder anschaust.
+**Namen für Truhen:** Variablennamen schreibst du am besten nur mit Kleinbuchstaben, Zahlen und Unterstrichen (`_`). Sie dürfen nicht mit einer Zahl anfangen. Statt `mein tier` (mit Leerzeichen, geht nicht!) schreibst du `mein_tier`. Wähl am besten einen Namen, der verrät, was drinsteckt – dann verstehst du deinen eigenen Code auch noch, wenn du ihn eine Woche später wieder anschaust.

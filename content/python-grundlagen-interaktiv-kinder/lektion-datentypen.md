@@ -9,7 +9,7 @@ Jeder Wert in Python hat einen Typ – also eine Art, die festlegt, was man dami
 
 Anders als in manchen anderen Programmiersprachen musst du den Typ nicht selbst festlegen – Python erkennt ihn automatisch daran, wie du den Wert aufschreibst. Zahlen ohne Anführungszeichen sind `int` oder `float`, alles in Anführungszeichen ist `str`.
 
-Mit `type()` kannst du jederzeit herausfinden, welcher Typ ein Wert hat:
+Mit `type()` kannst du jederzeit herausfinden, welchen Typ ein Wert hat:
 
 ```python
 print(type(42))       # <class 'int'>

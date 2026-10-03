@@ -36,6 +36,6 @@ print(vorwaerts([1, 1], versteckte_gewichte, versteckte_bias, ausgabe_gewichte, 
 ```
 
 `vorwaerts()` schickt die Eingabe zuerst durch **zwei versteckte Neuronen** (das erste ist ein
-OR-Gatter, das zweite ein NAND-Gatter), sammelt deren beide Ausgaben in einer Liste – und schickt
-diese Liste dann als Eingabe in ein **drittes Neuron** (ein AND-Gatter). Das Ergebnis: `0 1 1 0` –
+ODER-Gatter, das zweite ein NAND-Gatter), sammelt deren beide Ausgaben in einer Liste – und schickt
+diese Liste dann als Eingabe in ein **drittes Neuron** (ein UND-Gatter). Das Ergebnis: `0 1 1 0` –
 genau XOR! Ein einzelnes Neuron konnte das nicht, aber drei kombinierte Neuronen schon.

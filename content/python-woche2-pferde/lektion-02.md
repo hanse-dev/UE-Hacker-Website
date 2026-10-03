@@ -1,6 +1,6 @@
 # 🚶 Übung 2: Schritt – Text
 
-Jede Information im Reiterhof hat einen **Typ** – genau wie ein Pferd eine von vier Gangarten zeigt. Die vier Hufschlag-Typen:
+Jede Information auf dem Reiterhof hat einen **Typ** – genau wie ein Pferd eine von vier Gangarten zeigt. Die vier Hufschlag-Typen:
 
 | Hufschlag-Typ | Gangart | Fachbegriff | Beispiel |
 |---------------|---------|------------|---------|

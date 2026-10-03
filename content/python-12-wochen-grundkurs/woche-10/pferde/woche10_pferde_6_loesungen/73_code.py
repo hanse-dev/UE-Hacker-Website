@@ -4,18 +4,18 @@ class Pferd:
         self.level = level
         self.energie = 50
 
-    def greife_an(self, ziel):
+    def ueberhole(self, ziel):
         ziel.energie -= self.level * 5
 
 a = Pferd("Blitz", 4)
 b = Pferd("Stella", 2)
 sieger = None
 while sieger is None:
-    a.greife_an(b)
+    a.ueberhole(b)
     if b.energie <= 0:
         sieger = a
         break
-    b.greife_an(a)
+    b.ueberhole(a)
     if a.energie <= 0:
         sieger = b
 print(f"Sieger: {sieger.name}")
