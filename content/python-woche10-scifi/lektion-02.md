@@ -16,6 +16,6 @@ print(b.name, b.level)
 
 1. **`self`** ist immer der erste Parameter – es ist das Objekt, das gerade entsteht
 2. **`self.name = name`** speichert den Wert **im Objekt**
-3. **`level=1`** ist ein **Standardwert** (wie bei Funktionen in Woche 5)
+3. **`level=1`** ist ein **Standardwert** – er gilt, wenn du beim Erzeugen keinen Wert angibst
 
 > ⚠️ Zwei Unterstriche vor und nach `init`: `__init__`.
