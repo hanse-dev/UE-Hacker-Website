@@ -12,7 +12,7 @@
         "Der Datensatz hat insgesamt zu wenige Merkmale"
       ],
       "correctIndex": 0,
-      "explanation": "Ein schiefer Datensatz hat ein starkes Ungleichgewicht zwischen den Klassen - z.B. sehr viele 'nicht dringend'- und nur wenige 'dringend'-Beispiele.",
+      "explanation": "Ein schiefer Datensatz hat ein starkes Ungleichgewicht zwischen den Klassen – z.B. sehr viele 'nicht dringend'- und nur wenige 'dringend'-Beispiele.",
       "optionExplanations": [
         null,
         "Rechtschreibfehler haben nichts mit der Verteilung der Klassen zu tun.",
@@ -24,16 +24,16 @@
       "type": "multiple_choice",
       "question": "Warum kann eine Basislinie, die immer die häufigste Klasse vorhersagt, trotzdem eine hohe Gesamt-Genauigkeit haben?",
       "options": [
-        "Weil die häufige Klasse einen großen Teil der Daten ausmacht - die seltene Klasse fällt in der Gesamt-Genauigkeit kaum ins Gewicht",
+        "Weil die häufige Klasse einen großen Teil der Daten ausmacht – die seltene Klasse fällt in der Gesamt-Genauigkeit kaum ins Gewicht",
         "Weil Python die Genauigkeit bei Basislinien automatisch höher berechnet",
         "Weil eine Basislinie technisch keine Fehler machen kann"
       ],
       "correctIndex": 0,
-      "explanation": "Bei 8 von 10 Beispielen in der häufigen Klasse liegt eine Basislinie, die immer diese Klasse vorhersagt, schon bei 80% Gesamt-Genauigkeit - obwohl sie die seltene Klasse nie richtig erkennt.",
+      "explanation": "Bei 8 von 10 Beispielen in der häufigen Klasse liegt eine Basislinie, die immer diese Klasse vorhersagt, schon bei 80% Gesamt-Genauigkeit – obwohl sie die seltene Klasse nie richtig erkennt.",
       "optionExplanations": [
         null,
         "Python rechnet nicht anders, nur weil es sich um eine Basislinie handelt.",
-        "Eine Basislinie kann durchaus falsch liegen - bei jedem Beispiel der seltenen Klasse."
+        "Eine Basislinie kann durchaus falsch liegen – bei jedem Beispiel der seltenen Klasse."
       ]
     },
     {
@@ -41,16 +41,16 @@
       "type": "multiple_choice",
       "question": "Was misst genauigkeit_je_klasse(), anders als die normale Gesamt-Genauigkeit?",
       "options": [
-        "Die Genauigkeit für jede einzelne Klasse getrennt - so wird sichtbar, wenn eine Klasse komplett ignoriert wird",
+        "Die Genauigkeit für jede einzelne Klasse getrennt – so wird sichtbar, wenn eine Klasse komplett ignoriert wird",
         "Wie schnell eine Vorhersage berechnet wird",
         "Wie viele Trainingsbeispiele jede Klasse hat"
       ],
       "correctIndex": 0,
-      "explanation": "genauigkeit_je_klasse() filtert die Daten für jede Klasse einzeln heraus und berechnet die Genauigkeit nur innerhalb dieser Gruppe - damit lässt sich der Bias einer Gesamt-Genauigkeit aufdecken.",
+      "explanation": "genauigkeit_je_klasse() filtert die Daten für jede Klasse einzeln heraus und berechnet die Genauigkeit nur innerhalb dieser Gruppe – damit lässt sich der Bias einer Gesamt-Genauigkeit aufdecken.",
       "optionExplanations": [
         null,
         "Geschwindigkeit spielt hier keine Rolle.",
-        "Das wäre anzahl_je_klasse() - genauigkeit_je_klasse() misst die Trefferquote, nicht die Anzahl."
+        "Das wäre anzahl_je_klasse() – genauigkeit_je_klasse() misst die Trefferquote, nicht die Anzahl."
       ]
     },
     {
@@ -58,12 +58,12 @@
       "type": "multiple_choice",
       "question": "Warum kann selbst ein Entscheidungsbaum eine seltene Klasse komplett ignorieren, wenn er auf schiefen Daten trainiert wird?",
       "options": [
-        "Weil bester_schwellenwert() nur die Gesamt-Fehler minimiert - das Ignorieren einer kleinen Klasse kostet dabei kaum Gesamt-Fehler",
+        "Weil bester_schwellenwert() nur die Gesamt-Fehler minimiert – das Ignorieren einer kleinen Klasse kostet dabei kaum Gesamt-Fehler",
         "Weil Entscheidungsbäume grundsätzlich nur zwei Klassen unterstützen",
         "Weil der Baum-Algorithmus einen Programmierfehler hat"
       ],
       "correctIndex": 0,
-      "explanation": "bester_schwellenwert() sucht den Trennwert mit den wenigsten Gesamt-Fehlern - bei nur 2 von 10 Beispielen in der kleinen Klasse ist es oft günstiger, sie zu ignorieren, als extra einen Trennwert für sie zu finden.",
+      "explanation": "bester_schwellenwert() sucht den Trennwert mit den wenigsten Gesamt-Fehlern – bei nur 2 von 10 Beispielen in der kleinen Klasse ist es oft günstiger, sie zu ignorieren, als extra einen Trennwert für sie zu finden.",
       "optionExplanations": [
         null,
         "Entscheidungsbäume können auch mit mehr als zwei Klassen arbeiten (siehe Extra-Herausforderung 1).",
@@ -84,7 +84,7 @@
       "optionExplanations": [
         null,
         "Es sind unterschiedliche Verfahren mit unterschiedlichen Effekten (siehe Lektion 4 und Extra-Herausforderung 2).",
-        "Das ist vertauscht - Oversampling dupliziert vorhandene Beispiele, Undersampling verkleinert die große Klasse."
+        "Das ist vertauscht – Oversampling dupliziert vorhandene Beispiele, Undersampling verkleinert die große Klasse."
       ]
     },
     {
@@ -109,10 +109,10 @@
         "Anonymisierung funktioniert nur bei Zahlen, nicht bei Text"
       ],
       "correctIndex": 0,
-      "explanation": "Auch ohne Name kann eine seltene Merkmalskombination eine Person eindeutig machen - deshalb hilft zusätzlich eine Verallgemeinerung (z.B. genaues Alter zu einer Altersgruppe zusammenfassen).",
+      "explanation": "Auch ohne Name kann eine seltene Merkmalskombination eine Person eindeutig machen – deshalb hilft zusätzlich eine Verallgemeinerung (z.B. genaues Alter zu einer Altersgruppe zusammenfassen).",
       "optionExplanations": [
         null,
-        "Das hat nichts mit der Speicherbarkeit zu tun - anonymisierte Daten sind ganz normale Daten.",
+        "Das hat nichts mit der Speicherbarkeit zu tun – anonymisierte Daten sind ganz normale Daten.",
         "Anonymisierung betrifft beliebige Feldtypen, nicht nur Zahlen."
       ]
     }

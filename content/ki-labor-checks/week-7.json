@@ -12,11 +12,11 @@
         "Weil ein einzelnes Neuron höchstens eine Eingabe verarbeiten kann"
       ],
       "correctIndex": 0,
-      "explanation": "Bei XOR liegen die 'richtigen' Fälle (0,1) und (1,0) diagonal gegenüber den 'falschen' Fällen (0,0) und (1,1) - keine einzelne gerade Trennlinie schafft das, egal welche Gewichte man wählt.",
+      "explanation": "Bei XOR liegen die 'richtigen' Fälle (0,1) und (1,0) diagonal gegenüber den 'falschen' Fällen (0,0) und (1,1) – keine einzelne gerade Trennlinie schafft das, egal welche Gewichte man wählt.",
       "optionExplanations": [
         null,
-        "neuron() rechnet auch mit Kommazahlen (Gewichte, Bias) - das ist nicht der Grund.",
-        "neuron() nimmt eine ganze Liste von Eingaben entgegen, z.B. zwei Zahlen bei XOR - das ist kein Problem."
+        "neuron() rechnet auch mit Kommazahlen (Gewichte, Bias) – das ist nicht der Grund.",
+        "neuron() nimmt eine ganze Liste von Eingaben entgegen, z.B. zwei Zahlen bei XOR – das ist kein Problem."
       ]
     },
     {
@@ -29,11 +29,11 @@
         "Sie speichert die Trainingsdaten dauerhaft ab"
       ],
       "correctIndex": 0,
-      "explanation": "Die versteckten Neuronen liegen zwischen Eingabe und Ausgabe - ihre einzelnen Ausgaben (z.B. eines ODER- und eines NAND-Gatters) werden zu einer neuen Liste, die dann in das Ausgabe-Neuron geht (vorwaerts()).",
+      "explanation": "Die versteckten Neuronen liegen zwischen Eingabe und Ausgabe – ihre einzelnen Ausgaben (z.B. eines ODER- und eines NAND-Gatters) werden zu einer neuen Liste, die dann in das Ausgabe-Neuron geht (vorwaerts()).",
       "optionExplanations": [
         null,
         "'Versteckt' heißt nur, dass die Werte nicht die endgültige Ausgabe sind, nicht dass etwas absichtlich verborgen wird.",
-        "Ein neuronales Netz speichert hier keine Trainingsdaten - nur Gewichte und Bias."
+        "Ein neuronales Netz speichert hier keine Trainingsdaten – nur Gewichte und Bias."
       ]
     },
     {
@@ -46,10 +46,10 @@
         "Die Anzahl der versteckten Neuronen"
       ],
       "correctIndex": 0,
-      "explanation": "vorwaerts() berechnet zuerst die Ausgabe jedes versteckten Neurons, sammelt diese in einer Liste und gibt diese Liste dann als Eingabe in das Ausgabe-Neuron - zurückgegeben wird dessen Ergebnis.",
+      "explanation": "vorwaerts() berechnet zuerst die Ausgabe jedes versteckten Neurons, sammelt diese in einer Liste und gibt diese Liste dann als Eingabe in das Ausgabe-Neuron – zurückgegeben wird dessen Ergebnis.",
       "optionExplanations": [
         null,
-        "Die versteckten Ausgaben sind nur ein Zwischenschritt - vorwaerts() geht noch einen Schritt weiter zum Ausgabe-Neuron.",
+        "Die versteckten Ausgaben sind nur ein Zwischenschritt – vorwaerts() geht noch einen Schritt weiter zum Ausgabe-Neuron.",
         "Die Anzahl der Neuronen steckt in der Länge von versteckte_gewichte, nicht im Rückgabewert von vorwaerts()."
       ]
     },
@@ -75,11 +75,11 @@
         "Damit alle Gewichte automatisch auf 0 gesetzt werden"
       ],
       "correctIndex": 0,
-      "explanation": "Ohne random.seed() wäre random.uniform()/random.randrange() bei jedem Lauf anders - mit einem festen Seed bekommt man bei gleichem Code immer dasselbe Ergebnis, was zum Nachvollziehen und Testen wichtig ist.",
+      "explanation": "Ohne random.seed() wäre random.uniform()/random.randrange() bei jedem Lauf anders – mit einem festen Seed bekommt man bei gleichem Code immer dasselbe Ergebnis, was zum Nachvollziehen und Testen wichtig ist.",
       "optionExplanations": [
         null,
-        "Der Seed hat keinen Einfluss auf die Geschwindigkeit - nur darauf, welche 'zufälligen' Werte gezogen werden.",
-        "random.seed() setzt keine Gewichte, sondern nur den Startpunkt des Zufallsgenerators - die Gewichte selbst starten weiterhin zufällig zwischen -1 und 1."
+        "Der Seed hat keinen Einfluss auf die Geschwindigkeit – nur darauf, welche 'zufälligen' Werte gezogen werden.",
+        "random.seed() setzt keine Gewichte, sondern nur den Startpunkt des Zufallsgenerators – die Gewichte selbst starten weiterhin zufällig zwischen -1 und 1."
       ]
     },
     {
@@ -92,11 +92,11 @@
         "Die Bewertung hat nichts mit der Trainingszeit zu tun, das ist reiner Zufall"
       ],
       "correctIndex": 0,
-      "explanation": "Mit wenigen Neustarts und Schritten hat der Zufalls-Suchprozess kaum eine Chance, eine gute Lösung zu finden - mit mehr Versuchen steigen die Chancen deutlich, bei XOR/XNOR sogar bis auf 100%.",
+      "explanation": "Mit wenigen Neustarts und Schritten hat der Zufalls-Suchprozess kaum eine Chance, eine gute Lösung zu finden – mit mehr Versuchen steigen die Chancen deutlich, bei XOR/XNOR sogar bis auf 100%.",
       "optionExplanations": [
         null,
-        "Schneller heißt hier nicht besser - eine niedrigere Genauigkeit bedeutet, dass das Netz die Aufgabe schlechter löst.",
-        "Die Trainingszeit beeinflusst direkt, wie viele Möglichkeiten das Training ausprobieren kann - das ist kein reiner Zufall."
+        "Schneller heißt hier nicht besser – eine niedrigere Genauigkeit bedeutet, dass das Netz die Aufgabe schlechter löst.",
+        "Die Trainingszeit beeinflusst direkt, wie viele Möglichkeiten das Training ausprobieren kann – das ist kein reiner Zufall."
       ]
     },
     {
@@ -109,7 +109,7 @@
         "Der Unterschied ist nur Zufall und hätte auch andersherum ausfallen können"
       ],
       "correctIndex": 0,
-      "explanation": "Kein einzelnes Neuron schafft bei XOR mehr als 75% (Lektion 2) - das ist keine Frage des Trainings, sondern eine grundsätzliche Grenze eines einzelnen Neurons. Erst die versteckte Schicht macht 100% möglich.",
+      "explanation": "Kein einzelnes Neuron schafft bei XOR mehr als 75% (Lektion 2) – das ist keine Frage des Trainings, sondern eine grundsätzliche Grenze eines einzelnen Neurons. Erst die versteckte Schicht macht 100% möglich.",
       "optionExplanations": [
         null,
         "Bei der Genauigkeit ist ein höherer Prozentwert immer besser, nicht der geringere Rechenaufwand.",
