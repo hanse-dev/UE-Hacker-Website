@@ -7,7 +7,7 @@ tier_infos = {"Hund": "bellt", "Katze": "miaut"}
 print(tier_infos["Hund"])  # gibt "bellt" aus
 ```
 
-Hier ist `"Hund"` der Schlüssel und `"bellt"` der dazugehörige Wert. Du schreibst das Dictionary in geschweiften Klammern `{}`, jedes Paar getrennt durch einen Doppelpunkt, und mehrere Paare durch Kommas getrennt.
+Hier ist `"Hund"` der Schlüssel und `"bellt"` der dazugehörige Wert. Du schreibst das Dictionary in geschweiften Klammern `{}`. Zwischen Schlüssel und Wert steht ein Doppelpunkt, mehrere Paare trennst du mit Kommas.
 
 Du kannst jederzeit neue Einträge hinzufügen – einfach einen neuen Schlüssel in eckigen Klammern angeben und einen Wert zuweisen:
 

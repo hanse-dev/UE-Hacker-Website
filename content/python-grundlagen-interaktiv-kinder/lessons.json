@@ -9,7 +9,7 @@
       {
         "instruction": "Schau dir dieses Beispiel an und führe es aus.",
         "example": true,
-        "codeTemplate": "print(\"Willkommen im Zauberkurs!\")\n# Kommentare wie diese hier ignoriert Python einfach\nprint(\"Los geht's!\")",
+        "codeTemplate": "print(\"Willkommen im Zauberkurs!\")\n# Kommentare wie diesen hier ignoriert Python einfach\nprint(\"Los geht's!\")",
         "validation": {
           "type": "output_contains",
           "expected": "Willkommen im Zauberkurs"
@@ -102,7 +102,7 @@
         }
       },
       {
-        "instruction": "Überschreibe die Variable tier zuerst mit \"Hund\" (ausgeben), dann mit \"Katze\" (ausgeben).",
+        "instruction": "Speichere in tier zuerst \"Hund\" und gib die Variable aus. Überschreibe sie dann mit \"Katze\" und gib sie noch einmal aus.",
         "codeTemplate": "tier = \"___\"\nprint(tier)\ntier = \"___\"\nprint(tier)",
         "isBonus": true,
         "validation": {
@@ -111,7 +111,7 @@
         }
       },
       {
-        "instruction": "Erstelle zwei Variablen tier mit \"Papagei\" und farbe mit \"bunt\", und gib beide aus.",
+        "instruction": "Erstelle zwei Variablen: tier mit \"Papagei\" und farbe mit \"bunt\". Gib beide aus.",
         "codeTemplate": "tier = \"___\"\nfarbe = \"___\"\nprint(tier)\nprint(farbe)",
         "isBonus": true,
         "validation": {
@@ -146,7 +146,7 @@
         }
       },
       {
-        "instruction": "Du hast 6 Zaubertränke und bekommst 4 dazu. Gib das Produkt aus (6 * 4).",
+        "instruction": "Du hast 6 Kisten mit je 4 Zaubertränken. Gib aus, wie viele Zaubertränke das zusammen sind (6 * 4).",
         "codeTemplate": "print(___ * ___)",
         "validation": {
           "type": "output_contains",
@@ -163,7 +163,7 @@
         }
       },
       {
-        "instruction": "Teile 20 Kekse gerecht auf 4 Kinder auf. Gib aus, wie viele jedes Kind bekommt (Division /).",
+        "instruction": "Teile 20 Kekse gerecht auf 4 Kinder auf. Gib aus, wie viele jedes Kind bekommt (Division /). Python zeigt 5.0 an – beim Teilen mit / kommt immer eine Kommazahl heraus.",
         "codeTemplate": "kekse = 20\nkinder = 4\nprint(___ / ___)",
         "isBonus": true,
         "validation": {
@@ -643,7 +643,7 @@
         }
       },
       {
-        "instruction": "Erstelle ein Dictionary haustiere mit \"Hund\" → \"bellt\" und \"Katze\" → \"miaut\". Gib mit einer for-Schleife für jedes Tier aus, was es macht.",
+        "instruction": "Erstelle ein Dictionary haustiere mit \"Hund\" → \"bellt\" und \"Katze\" → \"miaut\". Gib mit einer for-Schleife für jedes Tier aus, was es macht. Die Schleife geht dabei alle Schlüssel durch.",
         "codeTemplate": "haustiere = {\"Hund\": \"bellt\", \"Katze\": \"miaut\"}\nfor tier in haustiere:\n    print(f\"{tier}: {haustiere[___]}\")",
         "isBonus": true,
         "validation": {

@@ -91,6 +91,9 @@ behoben, Urteilsfragen je Paket als Liste an den Nutzer. Stand und Paket-Reihenf
 - Behoben: KI-Labor Woche 8 Lektions-Zusammenfassungen ohne Umlaute, "Stellawort-Argument"
   (Woche 6 Pferde Lösungen), `'grosse'` statt `'groesse'` (KI-Labor Woche 2), Brute-Force/Sci-Fi
   einheitlich geschrieben.
+- Lese-Pass Paket 1 (Interaktiv-Kurs Kinder + Jugendliche) fertig: kaputte Sätze, Fachwörter ohne
+  Erklärung (iterieren, Konkatenation, kapseln), Aufgaben, deren Text nicht zum `expected` passte
+  (fehlende Startwerte, "6 Tränke + 4 dazu" als Produkt). Drei davon auch in EN nachgezogen.
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 

@@ -47,7 +47,7 @@
         "validation": { "type": "output_contains", "expected": "17" }
       },
       {
-        "instruction": "You have 6 magic potions and get 4 more. Print the product (6 * 4).",
+        "instruction": "You have 6 crates with 4 magic potions each. Print how many potions that is in total (6 * 4).",
         "codeTemplate": "print(___ * ___)",
         "validation": { "type": "output_contains", "expected": "24" }
       }

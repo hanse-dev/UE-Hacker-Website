@@ -1,6 +1,6 @@
 # Schleifen mit for
 
-`for` iteriert über eine Sequenz. `range(start, stop, step)` erzeugt Zahlenfolgen.
+`for` geht eine Folge von Werten Element für Element durch (das nennt man „iterieren“). `range(start, stop, step)` erzeugt Zahlenfolgen.
 
 ```python
 for i in range(0, 10, 2):
@@ -17,7 +17,7 @@ for song in playlist:
     print(f"▶ {song}")
 ```
 
-Das ist in der Praxis der häufigere Fall: statt "gib mir die Zahlen von 0 bis Listenlänge und greife jeweils auf `playlist[i]` zu" schreibst du direkt "gib mir jedes Element". Brauchst du zusätzlich den Index, gibt es `enumerate()`:
+Das ist in der Praxis der häufigere Fall: Statt "gib mir die Zahlen von 0 bis Listenlänge und greife jeweils auf `playlist[i]` zu" schreibst du direkt "gib mir jedes Element". Brauchst du zusätzlich den Index, gibt es `enumerate()`:
 
 ```python
 for index, song in enumerate(playlist):

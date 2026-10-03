@@ -1,6 +1,6 @@
 # Funktionen
 
-Funktionen kapseln wiederverwendbaren Code. `return` gibt einen Wert zurück.
+Funktionen bündeln Code, den du immer wieder verwenden kannst. `return` gibt einen Wert zurück.
 
 ```python
 def bmi(gewicht, groesse):

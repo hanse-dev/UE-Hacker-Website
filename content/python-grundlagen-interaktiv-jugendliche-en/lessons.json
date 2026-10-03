@@ -11,7 +11,7 @@
         "validation": { "type": "output_contains", "expected": "Hello World" }
       },
       {
-        "instruction": "Print your name in a greeting, e.g. \"Hi, I'm Alex!\".",
+        "instruction": "Print a greeting with your name. It should start with \"Hi\", e.g. \"Hi, I'm Alex!\".",
         "codeTemplate": "",
         "validation": { "type": "output_contains", "expected": "Hi" }
       },
@@ -40,7 +40,7 @@
         "validation": { "type": "output_contains", "expected": "2024" }
       },
       {
-        "instruction": "Create two variables first_name and last_name and print them together, e.g. \"Max Mustermann\".",
+        "instruction": "Create two variables first_name = \"Max\" and last_name = \"Mustermann\" and print both together on one line: \"Max Mustermann\" (hint: print(first_name, last_name)).",
         "codeTemplate": "",
         "isBonus": true,
         "validation": { "type": "output_contains", "expected": "Mustermann" }
@@ -131,7 +131,7 @@
         "validation": { "type": "output_contains", "expected": "Adult" }
       },
       {
-        "instruction": "Check with if/elif/else: Under 13 → \"Child\", 13-17 → \"Teenager\", 18+ → \"Adult\".",
+        "instruction": "Set age = 15 and check with if/elif/else: Under 13 → \"Child\", 13-17 → \"Teenager\", 18+ → \"Adult\".",
         "codeTemplate": "",
         "validation": { "type": "output_contains", "expected": "Teenager" }
       },

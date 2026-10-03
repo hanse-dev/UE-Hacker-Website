@@ -20,4 +20,4 @@ else:
 
 Zum Vergleichen von Werten gibt es mehrere Zeichen: `==` (ist gleich – Achtung, **zwei** Gleichheitszeichen, nicht wie beim Speichern einer Variable!), `!=` (ist ungleich), `<`, `>`, `<=`, `>=`.
 
-**Ganz wichtig:** Der Code nach `if` und `else` muss eingerückt sein (4 Leerzeichen oder Tab) – die Einrückung zeigt Python, welcher Code zum `if` gehört. Vergisst du sie, meldet Python einen Fehler. Am besten lässt du dir das dein Code-Editor automatisch machen, indem du nach dem Doppelpunkt einfach Enter drückst.
+**Ganz wichtig:** Der Code nach `if` und `else` muss eingerückt sein (4 Leerzeichen oder Tab) – die Einrückung zeigt Python, welcher Code zum `if` gehört. Vergisst du sie, meldet Python einen Fehler. Am besten lässt du das deinen Code-Editor automatisch machen: Drück nach dem Doppelpunkt einfach Enter.

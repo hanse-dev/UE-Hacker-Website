@@ -7,10 +7,19 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 
 - [ ] Rechtschreib- und Verständnisprüfung aller deutschen Inhalte (Branch `inhalts-pruefung`,
       HANDOFF 3.98). Mechanischer Pass erledigt (`lint:spelling` + `lint:spelling:de` beide bei 0).
-      Offen ist der Lese-Pass (Grammatik, Kommas, Verständlichkeit ab 10/11 Jahren, Aufgabe passt
-      zum `expected`), Paket für Paket: Interaktiv-Kurs → Woche 1–5 (alle Themen) → Woche 6–12
+      Lese-Pass (Grammatik, Kommas, Verständlichkeit ab 10/11 Jahren, Aufgabe passt zum `expected`)
+      Paket für Paket: ~~Interaktiv-Kurs~~ (erledigt) → Woche 1–5 (alle Themen) → Woche 6–12
       (ein Thema voll, zwei als Diff) → Wochen-Checks → JS-Grundkurs → Projekt-Kurse → KI-Labor →
-      UI-Texte/`kurse.json`/Glossar. EN danach nur für inhaltliche Korrekturen nachziehen.
+      UI-Texte/`kurse.json`/Glossar. EN nur für inhaltliche Korrekturen nachziehen.
+      Offene Urteilsfragen aus Paket 1 (Nutzer entscheidet):
+      - `python-grundlagen-interaktiv-jugendliche/lektion-08.md`: Beispiel-Funktion ist ein
+        BMI-Rechner (Körpergewicht als Thema für 13–17-Jährige) — Vorschlag: anderes Beispiel,
+        z.B. Durchschnittsgeschwindigkeit `strecke / zeit`.
+      - `python-grundlagen-interaktiv-kinder/lektion-06.md` + Bonus-Aufgabe 4: nutzt eine Liste,
+        bevor Lektion 7 Listen einführt — Vorschlag: so lassen (wird dort kurz erklärt) oder das
+        Listen-Beispiel nach Lektion 7 verschieben.
+      - Interaktiv-Kurs EN (`-kinder-en`/`-jugendliche-en`) ist deutlich kürzer als DE (3 statt 6
+        Aufgaben, kurze Texte, seit 3.79/3.85 nur DE erweitert) — gehört zum offenen EN-Thema.
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken) —
       **zurückgestellt** (Nutzer will erst später deployen). Backup-Cron auf dem Server einrichten
       (Befehl siehe HANDOFF.md Abschnitt 4); externe Sicherung der Backups bewusst nicht mitgebaut.

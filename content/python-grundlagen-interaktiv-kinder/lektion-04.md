@@ -25,4 +25,4 @@ print(f"Nach dem Bonus hast du {punkte * 2} Punkte!")
 # gibt aus: Nach dem Bonus hast du 30 Punkte!
 ```
 
-f-Strings sind heute die gängigste Art, Python-Programmierer:innen bauen Text und Werte zusammen – du wirst sie ab jetzt ständig benutzen.
+f-Strings sind heute die gängigste Art, wie Python-Programmierer:innen Text und Werte zusammenbauen – du wirst sie ab jetzt ständig benutzen.

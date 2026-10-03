@@ -12,7 +12,8 @@ print(obst)  # gibt 8 aus
 Und mit Variablen macht es noch mehr Spaß, weil du dieselbe Rechnung immer wieder mit anderen Zahlen benutzen kannst:
 
 ```python
-punkte = 10 * 3
+runden = 10
+punkte = runden * 3
 print(punkte)  # gibt 30 aus
 ```
 
@@ -25,7 +26,7 @@ print(17 % 5)   # 2 – der Rest, der bei 17 : 5 übrig bleibt
 
 `//` ist praktisch, wenn du z.B. wissen willst, wie viele volle Sechserpackungen Eier du aus 20 Eiern bekommst (`20 // 6` → 3 Packungen), und `%` sagt dir, wie viele dann noch übrig sind (`20 % 6` → 2 Eier).
 
-Python rechnet übrigens genau wie in der Mathematik gelernt – **Punkt vor Strich**. Bei Unsicherheit helfen Klammern:
+Python rechnet übrigens genau so, wie du es in Mathe gelernt hast – **Punkt vor Strich**. Wenn du unsicher bist, helfen Klammern:
 
 ```python
 ergebnis = (2 + 3) * 4
