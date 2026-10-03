@@ -1,3 +1,3 @@
-"""### Das große Turnier – Aufgabe 1
+"""### Der Hindernis-Simulator – Aufgabe 5
 
-Schritt 1 – Phasen zählen: Zähle mit erfolgreiche_phasen = 0 und erfolgreiche_phasen = erfolgreiche_phasen + 1 alle Phasen, die True sind, und gib mit einem f-String genau aus: Erfolgreiche Phasen: 4"""
+Level 5 – Absitzen: Bestanden, wenn zeit <= 60 ODER (fehler == 0 UND stil >= 80). Gib dann genau aus: Level 5: Absitzen bestanden"""

@@ -1,3 +1,3 @@
-"""### Übung 5: and, or, not – Aufgabe 2
+"""### Übung 4: if-elif-else – Aufgabe 2
 
-Nutze or: Ist hat_trense oder hat_halfter wahr, gib Du kannst das Pferd führen! aus, sonst Es fehlt Zubehör! Hier soll genau erscheinen: Du kannst das Pferd führen!"""
+Vergib Abzeichen nach punkte: ab 90 Gold, ab 70 Silber, ab 50 Bronze, sonst Kein Abzeichen. Gib genau den Namen aus – hier: Bronze"""

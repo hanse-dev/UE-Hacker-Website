@@ -1,5 +1,6 @@
-pferd_groesse = 1.65
-reiter_gewicht = 70
+punkte = 300
 
-if pferd_groesse >= 1.60 and reiter_gewicht <= 80:
-    print("Level 1: Aufsitzen erlaubt")
+if punkte >= 400:
+    print("Note: A")
+elif punkte >= 300:
+    print("Note: B")

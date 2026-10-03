@@ -1,3 +1,3 @@
-"""### Das Reitbrett – Aufgabe 3
+"""### Das Reitbrett – Aufgabe 1
 
-Schritt 3 – Koordinaten: Gib für die Zeilen 1 bis 2 und die Spalten 1 bis 3 (Zeile außen, Spalte innen) genau aus: Feld 1-1, Feld 1-2, Feld 1-3, Feld 2-1, Feld 2-2, Feld 2-3"""
+Schritt 1 – Brett aufbauen: Erstelle mit zwei verschachtelten Schleifen ein 4×4-Brett aus Punkten (print(\".\", end=\"\") innen, print() nach der inneren Schleife). Die Ausgabe: ....  ....  ....  ....  (jeweils in einer eigenen Zeile)."""

@@ -1,3 +1,3 @@
-"""### Mission 3: Die Missionsbewertung – Aufgabe 3
+"""### Mission 3: Die Missionsbewertung – Aufgabe 1
 
-Die Variable zeit ist schon angelegt. Prüfe separat mit einem if, ob zeit kleiner als 30 ist, und gib dann aus: +50 Bonus für Blitzmission!"""
+Die Variablen level, erfolgspunkte, verluste und zeit sind schon angelegt. Berechne note = erfolgspunkte - (verluste * 10) - (zeit / 5) und gib aus: Note: 80.0"""

@@ -1,3 +1,3 @@
-"""### Debug Quest – Task 3
+"""### Debug Quest – Task 2
 
-🐛 Bug #3 – Goal: The program should print: Shield strength: 95 percent. What is wrong?"""
+🐛 Bug #2 – Goal: The program should calculate and print the remaining energy: Remaining energy: 50. What is wrong?"""

@@ -1,7 +1,5 @@
-rang = 3
-hat_ausweis = True
-notfall = False
-if rang >= 5 or hat_ausweis or notfall:
-    print("Zugang gewährt")
+status = 25
+if status >= 18:
+    print("System aktiv")
 else:
-    print("Zugang verweigert")
+    print("System inaktiv")

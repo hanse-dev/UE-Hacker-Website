@@ -1,3 +1,3 @@
-"""### Mission 3: The Endurance Training – Task 2
+"""### Mission 2: The Stable Manager – Task 3
 
-Step 2 – Stamina down to zero: The stamina starts at 100 and drops by 20 per lap. Use while (as long as stamina > 0) to print exactly after each lap: Stamina: 80, Stamina: 60, Stamina: 40, Stamina: 20, Stamina: 0"""
+Step 3 – Renovation: Go through stalls 6 to 8. Stall 7 is being renovated and should print Stall 7: renovation, the others Stall 6: checked and Stall 8: checked."""

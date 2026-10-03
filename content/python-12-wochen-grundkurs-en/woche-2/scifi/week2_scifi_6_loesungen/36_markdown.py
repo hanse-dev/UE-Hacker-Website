@@ -1,3 +1,3 @@
-"""### System Protocol 7: Type Conversion – Task 3
+"""### System Protocol 8: Type Conversion – Task 2
 
-Create crew = 12 and join it with + into this line, using str(): Crew: 12"""
+Create sensor_value = \"12.5\", convert it with float() and print exactly: Sensor value tripled: 37.5"""

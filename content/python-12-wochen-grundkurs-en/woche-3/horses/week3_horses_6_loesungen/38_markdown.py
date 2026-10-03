@@ -1,3 +1,5 @@
-"""### Mission 1: The Stable Guard – Task 2
+"""### Debug Quest – Task 3
 
-Step 2 – Access rule: Use if and or to check whether age >= 12 OR has_helmet OR has_permission holds, then print exactly: Access granted"""
+🐛 Bug #3 – Goal: When age >= 5, the program should print Trained. What is wrong?
+
+**Explanation:** `elif` needs its own condition. For \"everything else\" you use `else:` without a condition."""

@@ -190,15 +190,15 @@
     "section": "lektion",
     "title": "System Protocol 6: Operations",
     "file": "lektion-06.md",
-    "lessonSummary": "Calculations and text fusion mastered – the data lab runs at full power!",
+    "lessonSummary": "Calculations mastered – the data lab runs at full power!",
     "tasks": [
       {
-        "instruction": "Run this example: calculations and text operations.",
+        "instruction": "Run this example: calculating with numbers.",
         "example": true,
-        "codeTemplate": "# Mathematical operations\nplanets_a = 8\nplanets_b = 4\nprint(f\"Total planets: {planets_a + planets_b}\")\nprint(f\"Difference: {planets_a - planets_b}\")\nprint(f\"Doubled: {planets_a * 2}\")\nprint(f\"Per sector: {planets_a / 2}\")\n\n# String operations\nprefix = \"Neo\"\nsuffix = \"tron\"\nsystem_name = prefix + suffix\nprint(f\"System name: {system_name}\")\nprint(f\"Signal: {prefix * 3}\")\n",
+        "codeTemplate": "# Mathematical operations\nplanets_a = 8\nplanets_b = 4\nprint(f\"Total planets: {planets_a + planets_b}\")\nprint(f\"Difference: {planets_a - planets_b}\")\nprint(f\"Doubled: {planets_a * 2}\")\nprint(f\"Per sector: {planets_a / 2}\")\n",
         "validation": {
           "type": "output_contains",
-          "expected": "System name: Neotron"
+          "expected": "Per sector: 4.0"
         }
       },
       {
@@ -207,6 +207,32 @@
         "validation": {
           "type": "output_contains",
           "expected": "Per sector: 3.0"
+        }
+      },
+      {
+        "instruction": "Create modules = 6 and energy_per_module = 7. Print exactly: Total energy: 42 (multiply both inside an f-string).",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Total energy: 42"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-08",
+    "section": "lektion",
+    "title": "System Protocol 7: Calculating with Text",
+    "file": "lektion-08.md",
+    "lessonSummary": "Text fusion mastered – you can join and repeat texts, but never mix them with numbers!",
+    "tasks": [
+      {
+        "instruction": "Run this example: joining and repeating text.",
+        "example": true,
+        "codeTemplate": "# String operations\nprefix = \"Neo\"\nsuffix = \"tron\"\nsystem_name = prefix + suffix\nprint(f\"System name: {system_name}\")\nprint(f\"Signal: {prefix * 3}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "System name: Neotron"
         }
       },
       {
@@ -230,7 +256,7 @@
   {
     "id": "lektion-07",
     "section": "lektion",
-    "title": "System Protocol 7: Type Conversion",
+    "title": "System Protocol 8: Type Conversion",
     "file": "lektion-07.md",
     "lessonSummary": "Transformation complete! int(), float(), str() and bool() convert any data.",
     "tasks": [
@@ -278,10 +304,10 @@
     ]
   },
   {
-    "id": "lektion-08",
+    "id": "lektion-09",
     "section": "lektion",
-    "title": "System Protocol 8: Processing Input",
-    "file": "lektion-08.md",
+    "title": "System Protocol 9: Processing Input",
+    "file": "lektion-09.md",
     "lessonSummary": "Input processed! input() always returns text – with int() you make it usable for calculations.",
     "tasks": [
       {

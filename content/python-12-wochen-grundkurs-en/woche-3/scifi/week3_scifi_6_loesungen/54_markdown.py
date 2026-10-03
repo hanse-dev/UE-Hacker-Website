@@ -1,5 +1,3 @@
-"""## 🔥 Extra Challenges
+"""### Mission 3: The Mission Rating – Task 2
 
-### Extra Challenge 1: The AI Quiz – Task 1
-
-The variables q1 to q5 are already created. Check each answer with if-else and print, for example, Question 1: Correct! or Question 5: Wrong!"""
+The variables level, losses and score are already created. Use if and and: level >= 10 AND score >= 85 AND losses == 0 → LEGENDARY!. Use elif: level >= 8 AND score >= 70 AND losses <= 2 → EXCELLENT!. Otherwise (else): Mission completed."""

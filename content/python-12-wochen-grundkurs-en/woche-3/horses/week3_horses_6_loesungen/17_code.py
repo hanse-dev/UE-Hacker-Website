@@ -1,9 +1,5 @@
-discipline = "Jumping"
-if discipline == "Dressage":
-    print("Elegant dressage!")
-elif discipline == "Jumping":
-    print("Show jumping course!")
-elif discipline == "Western":
-    print("Western style!")
+is_raining = True
+if is_raining:
+    print("We ride in the indoor arena.")
 else:
-    print("Unknown discipline!")
+    print("Perfect for the pasture!")

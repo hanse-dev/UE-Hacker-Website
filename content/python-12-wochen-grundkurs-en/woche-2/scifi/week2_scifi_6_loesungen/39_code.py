@@ -1,2 +1,2 @@
-signal = 0
-print(f"Signal active: {bool(signal)}")
+crew = 12
+print("Crew: " + str(crew))

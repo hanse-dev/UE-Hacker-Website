@@ -1,3 +1,2 @@
-horse = "Comet"
-age = 6
-print(f"Hello {horse}! You are {age} years old.")
+name = input("What is your horse called? ")
+print(f"Hello, {name}!")

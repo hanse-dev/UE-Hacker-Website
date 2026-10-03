@@ -1,3 +1,3 @@
-"""### Extra Challenge 3: The Galaxy Mission – Task 5
+"""### Extra Challenge 3: The Galaxy Mission – Task 3
 
-Special action: The variables successful_phases and danger_level are already created. Check in a nested way: if danger_level >= 4, check inside it whether successful_phases < 3 and then print Rescue operation required!"""
+The Booleans phase1_ok to phase5_ok and successful_phases = 0 are already created. Increase successful_phases by 1 for every successful phase and print: Successful phases: 4"""

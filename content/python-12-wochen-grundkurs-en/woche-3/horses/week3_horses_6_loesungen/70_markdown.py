@@ -1,3 +1,3 @@
-"""### The Obstacle Simulator – Task 4
+"""### The Obstacle Simulator – Task 2
 
-Level 4 – Obstacle check (nested): If height >= 70, check width >= 50 inside: yes → Level 4: Obstacle cleared, no → Level 4: Width not enough. If height is lower → Level 4: Too low. Here exactly this should appear: Level 4: Width not enough"""
+Level 2 – Choice of gait: For gait \"Walk\" print Level 2: Calm walk, otherwise Level 2: Brisk trot. Here exactly this should appear: Level 2: Brisk trot"""

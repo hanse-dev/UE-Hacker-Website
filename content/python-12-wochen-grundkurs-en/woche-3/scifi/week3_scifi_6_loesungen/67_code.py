@@ -1,13 +1,5 @@
-shields = 80
-weapons = 60
-drive = 30
-if shields >= 50:
-    if weapons >= 50:
-        if drive >= 50:
-            print("All systems ready")
-        else:
-            print("Drive too weak")
-    else:
-        print("Weapons too weak")
+course = "South"
+if course == "North":
+    print("Course North set")
 else:
-    print("Shields too weak")
+    print("Course South set")

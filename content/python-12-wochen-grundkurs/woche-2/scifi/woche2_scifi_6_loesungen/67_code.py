@@ -1,9 +1,5 @@
-print("=== DOCK-PROTOKOLL ===")
-aurora_energie = 80
-orion_energie = 95
-nova_energie = 62
-lyra_energie = 71
-print(f"Aurora: Energie {aurora_energie}%")
-print(f"Orion: Energie {orion_energie}%")
-print(f"Nova: Energie {nova_energie}%")
-print(f"Lyra: Energie {lyra_energie}%")
+wert_a = 5000.0
+wert_b = 5400.0
+durchschnittswert = (wert_a + wert_b) / 2
+print(f"Durchschnittswert: {durchschnittswert}")
+print("Mining-Entscheidung: Vesta-3")

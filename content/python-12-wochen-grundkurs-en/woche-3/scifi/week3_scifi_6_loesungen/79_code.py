@@ -1,6 +1,9 @@
-successful_phases = 4
-danger_level = 4
-if successful_phases >= 4 and danger_level <= 3:
-    print("Mission secured!")
-else:
-    print("Mission not secured.")
+meteor_hit = True
+pirate_attack = False
+system_failure = True
+if meteor_hit:
+    print("Meteor hit!")
+if pirate_attack:
+    print("Pirate attack!")
+if system_failure:
+    print("System failure!")

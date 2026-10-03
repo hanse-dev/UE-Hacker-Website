@@ -1,10 +1,6 @@
-airlock_locked = True
-right_code = False
-if airlock_locked:
-    print("The airlock is locked.")
-    if right_code:
-        print("The code is correct – the airlock opens!")
-    else:
-        print("Wrong code! Access denied.")
+has_emergency_key = False
+has_override_code = True
+if has_emergency_key or has_override_code:
+    print("Door is opening manually!")
 else:
-    print("The airlock is already open.")
+    print("Door stays locked!")

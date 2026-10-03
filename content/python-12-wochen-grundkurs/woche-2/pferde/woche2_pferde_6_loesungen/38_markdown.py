@@ -1,5 +1,3 @@
-"""## 🐛 Debug-Quest
+"""### Übung 9: Eingaben verarbeiten – Aufgabe 2
 
-### Debug-Quest – Aufgabe 1
-
-🐛 Bug #1 – Ziel: Das Programm soll Hallo Comet! Du bist 6 Jahre alt. ausgeben. Was ist falsch?"""
+Frage mit input() nach dem Namen deines Pferdes und gib genau aus: Hallo, (Name)! (Beim Prüfen wird automatisch Luna eingegeben.)"""

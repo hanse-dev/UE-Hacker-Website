@@ -1,3 +1,3 @@
-"""### Lesson 4: if-elif-else – Task 1
+"""### Lesson 3: if-else – Task 1
 
-Depending on discipline, print: Dressage → Elegant dressage!, Jumping → Show jumping course!, Western → Western style!, otherwise Unknown discipline! Here exactly this should appear: Show jumping course!"""
+If it rains, you ride in the indoor arena, otherwise on the pasture. Write an if-else and print exactly: We ride in the indoor arena.  (In sunshine the output would be: Perfect for the pasture!)"""

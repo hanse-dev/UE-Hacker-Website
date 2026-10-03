@@ -1,3 +1,3 @@
-roboter = "R2D2"
-status = 3
-print(f"Hallo {roboter}! Dein Status ist {status}.")
+eingabe = input("Wie viele Crew-Mitglieder? ")
+crew = int(eingabe)
+print(f"Mit dir an Bord: {crew + 1}")

@@ -1,3 +1,3 @@
-"""### Lesson 2: Comparison operators – Task 3
+"""### Lesson 2: Comparison operators – Task 1
 
-A horse must be at least 160 cm at the withers. Use an f-string and >= to print exactly: Tall enough: True"""
+Use an if with == to check whether horse_age equals 8, then print exactly: The horse is 8 years old!"""

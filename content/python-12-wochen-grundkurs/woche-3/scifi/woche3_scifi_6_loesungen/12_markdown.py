@@ -1,3 +1,3 @@
-"""### Systemprotokoll 3: if-else – Aufgabe 1
+"""### Systemprotokoll 2: Vergleichsoperatoren – Aufgabe 2
 
-Die Variable signale ist schon angelegt. Gib mit if-else Lebensformen entdeckt!, wenn signale mindestens 15 ist, sonst Sektor leer."""
+Die Variable befehl ist schon angelegt. Prüfe mit !=, ob befehl ungleich \"START\" ist, und gib dann aus: Kein Start-Befehl."""

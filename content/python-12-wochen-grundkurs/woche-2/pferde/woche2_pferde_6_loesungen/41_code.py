@@ -1,3 +1,3 @@
-futter_kg = int("10")   # oder direkt: futter_kg = 10
-tage = 5
-print(f"Gesamtfutter: {futter_kg * tage} kg")
+pferd = "Comet"
+alter = 6
+print(f"Hallo {pferd}! Du bist {alter} Jahre alt.")

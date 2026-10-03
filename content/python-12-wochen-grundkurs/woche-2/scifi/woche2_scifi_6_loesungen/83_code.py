@@ -1,8 +1,11 @@
+print("=== MISSIONS-PROTOKOLL ===")
+mars_tage = 200
 mars_ertrag = 5.0
-europa_ertrag = 8.0
 mars_crew = 6
+mars_erfolg = 0.8
+europa_tage = 300
+europa_ertrag = 8.0
 europa_crew = 9
-gesamtertrag = mars_ertrag + europa_ertrag
-gesamt_crew = mars_crew + europa_crew
-print(f"Gesamtertrag: {gesamtertrag}")
-print(f"Gesamt-Crew: {gesamt_crew}")
+europa_erfolg = 0.75
+print(f"Mars: {mars_tage} Tage, Ertrag {mars_ertrag}, Crew {mars_crew}, Erfolg {mars_erfolg}")
+print(f"Europa: {europa_tage} Tage, Ertrag {europa_ertrag}, Crew {europa_crew}, Erfolg {europa_erfolg}")

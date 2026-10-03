@@ -1,5 +1,2 @@
-for box in range(6, 9):
-    if box == 7:
-        print("Box 7: Renovierung")
-    else:
-        print(f"Box {box}: geprüft")
+for box in range(1, 6):
+    print(f"Box {box}: Kontrolle läuft...")

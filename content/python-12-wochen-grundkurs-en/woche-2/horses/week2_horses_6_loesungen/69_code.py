@@ -1,3 +1,3 @@
-sack_3 = 30.5
-average = 25.0
-print(f"Sack 3 above average: {sack_3 > average}")
+total = 200.0
+average = total / 8
+print(f"Average: {average} kg")

@@ -1,3 +1,3 @@
-"""### The Obstacle Simulator – Task 2
+"""### The Rider Quiz – Task 4
 
-Level 2 – Choice of gait: For gait \"Walk\" print Level 2: Calm walk, otherwise Level 2: Brisk trot. Here exactly this should appear: Level 2: Brisk trot"""
+Step 4 – Certificate: With at least 300 points, print exactly: 🎓 Rider certificate: passed!"""

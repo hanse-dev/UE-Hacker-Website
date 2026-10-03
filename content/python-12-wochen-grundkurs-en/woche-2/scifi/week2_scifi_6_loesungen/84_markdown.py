@@ -1,3 +1,3 @@
-"""### Extra challenge 3: The Space Mission – Task 3
+"""### Extra challenge 3: The Space Mission – Task 2
 
-Step 3 – Calculate the expected yield (yield × probability) for both missions and print exactly: Expected yield Mars: 4.0 and Expected yield Europa: 6.0"""
+Step 2 – Add the total yield of both missions and the total crew deployment. Print exactly: Total yield: 13.0 and Total crew: 15"""

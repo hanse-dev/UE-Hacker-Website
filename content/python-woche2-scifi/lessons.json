@@ -190,15 +190,15 @@
     "section": "lektion",
     "title": "Systemprotokoll 6: Rechenoperationen",
     "file": "lektion-06.md",
-    "lessonSummary": "Berechnungen und Text-Verschmelzung gemeistert – das Datenlabor läuft auf Hochtouren!",
+    "lessonSummary": "Berechnungen gemeistert – das Datenlabor läuft auf Hochtouren!",
     "tasks": [
       {
-        "instruction": "Führe dieses Beispiel aus: Berechnungen und Text-Operationen.",
+        "instruction": "Führe dieses Beispiel aus: Rechnen mit Zahlen.",
         "example": true,
-        "codeTemplate": "# Mathematische Operationen\nplaneten_a = 8\nplaneten_b = 4\nprint(f\"Gesamtplaneten: {planeten_a + planeten_b}\")\nprint(f\"Differenz: {planeten_a - planeten_b}\")\nprint(f\"Verdoppelt: {planeten_a * 2}\")\nprint(f\"Pro Sektor: {planeten_a / 2}\")\n\n# String-Operationen\npraefix = \"Neo\"\nsuffix = \"tron\"\nsystem_name = praefix + suffix\nprint(f\"Systemname: {system_name}\")\nprint(f\"Signal: {praefix * 3}\")\n",
+        "codeTemplate": "# Mathematische Operationen\nplaneten_a = 8\nplaneten_b = 4\nprint(f\"Gesamtplaneten: {planeten_a + planeten_b}\")\nprint(f\"Differenz: {planeten_a - planeten_b}\")\nprint(f\"Verdoppelt: {planeten_a * 2}\")\nprint(f\"Pro Sektor: {planeten_a / 2}\")\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Systemname: Neotron"
+          "expected": "Pro Sektor: 4.0"
         }
       },
       {
@@ -207,6 +207,32 @@
         "validation": {
           "type": "output_contains",
           "expected": "Pro Sektor: 3.0"
+        }
+      },
+      {
+        "instruction": "Lege module = 6 und energie_pro_modul = 7 an. Gib genau aus: Gesamtenergie: 42 (multipliziere beide in einem f-String).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gesamtenergie: 42"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-08",
+    "section": "lektion",
+    "title": "Systemprotokoll 7: Rechnen mit Texten",
+    "file": "lektion-08.md",
+    "lessonSummary": "Text-Verschmelzung gemeistert – Texte kannst du verbinden und wiederholen, aber nicht mit Zahlen mischen!",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Texte verbinden und wiederholen.",
+        "example": true,
+        "codeTemplate": "# String-Operationen\npraefix = \"Neo\"\nsuffix = \"tron\"\nsystem_name = praefix + suffix\nprint(f\"Systemname: {system_name}\")\nprint(f\"Signal: {praefix * 3}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Systemname: Neotron"
         }
       },
       {
@@ -230,7 +256,7 @@
   {
     "id": "lektion-07",
     "section": "lektion",
-    "title": "Systemprotokoll 7: Typumwandlung",
+    "title": "Systemprotokoll 8: Typumwandlung",
     "file": "lektion-07.md",
     "lessonSummary": "Transformation abgeschlossen! int(), float(), str() und bool() wandeln jede Information um.",
     "tasks": [
@@ -278,10 +304,10 @@
     ]
   },
   {
-    "id": "lektion-08",
+    "id": "lektion-09",
     "section": "lektion",
-    "title": "Systemprotokoll 8: Eingaben verarbeiten",
-    "file": "lektion-08.md",
+    "title": "Systemprotokoll 9: Eingaben verarbeiten",
+    "file": "lektion-09.md",
     "lessonSummary": "Eingabe verarbeitet! input() liefert immer Text – mit int() machst du ihn rechenbar.",
     "tasks": [
       {

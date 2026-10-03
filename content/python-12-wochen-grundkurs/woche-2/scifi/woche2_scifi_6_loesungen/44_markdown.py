@@ -1,5 +1,3 @@
-"""## 🐛 Debug-Quest
+"""### Systemprotokoll 9: Eingaben verarbeiten – Aufgabe 2
 
-### Debug-Quest – Aufgabe 1
-
-🐛 Bug #1 – Ziel: Das Programm soll ausgeben: Hallo R2D2! Dein Status ist 3. Was ist falsch?"""
+Frage mit input() nach der Anzahl der Crew-Mitglieder, wandle die Antwort mit int() um und gib aus: Mit dir an Bord: (Anzahl plus 1) (Beim Prüfen wird automatisch 12 eingegeben.)"""

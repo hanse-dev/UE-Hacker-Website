@@ -1,5 +1,7 @@
-"""### Debug-Quest – Aufgabe 3
+"""## 🐛 Debug-Quest
 
-🐛 Bug #3 – Ziel: Das Programm soll Übung 0, Übung 1 und Übung 2 ausgeben, danach Training beendet. Was ist falsch?
+### Debug-Quest – Aufgabe 1
 
-**Erklärung:** Der Schleifenkörper muss eingerückt sein. Ohne Einrückung meldet Python einen `IndentationError`."""
+🐛 Bug #1 – Ziel: Das Programm soll Runde 1 bis Runde 5 ausgeben (jede in einer eigenen Zeile). Was ist falsch?
+
+**Erklärung:** `range(5)` zählt von 0 bis 4. Für Runde 1 bis 5 gibst du `i+1` aus (oder nutzt `range(1, 6)`)."""

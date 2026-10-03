@@ -1,4 +1,6 @@
-gesamtzeit = 135
+zeit1 = 30
+zeit2 = 45
+zeit3 = 60
 
-durchschnitt = gesamtzeit / 3
-print(f"Durchschnitt: {durchschnitt} Minuten")
+gesamtzeit = zeit1 + zeit2 + zeit3
+print(f"Gesamtzeit: {gesamtzeit} Minuten")

@@ -1,7 +1,6 @@
-count = 0
-for i in range(5):
-    height = 90 + i * 10
-    
-    if height > 100:
-        count += 1
-print(f"Higher than 100 cm: {count}")
+stamina = 100
+laps = 0
+while stamina > 10:
+    stamina -= 15
+    laps += 1
+print(f"Training finished after {laps} laps")

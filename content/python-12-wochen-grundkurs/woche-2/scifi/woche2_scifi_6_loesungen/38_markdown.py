@@ -1,3 +1,3 @@
-"""### Systemprotokoll 7: Typumwandlung – Aufgabe 4
+"""### Systemprotokoll 8: Typumwandlung – Aufgabe 3
 
-Lege signal = 0 an, wandle es mit bool() um und gib genau aus: Signal aktiv: False"""
+Lege crew = 12 an und verbinde sie mit + zu dieser Zeile, mit str(): Crew: 12"""

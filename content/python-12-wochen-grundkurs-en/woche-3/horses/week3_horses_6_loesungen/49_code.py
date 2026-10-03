@@ -1,5 +1,7 @@
-points = 95
-errors = 0
-time = 55
-score = points - (errors * 5) - (time / 10)
-print(f"Score: {score}")
+stable_master_password = "Horseshoe"
+groom_password = "Carrot"
+entered = "Carrot"
+if entered == stable_master_password:
+    print("Full access granted")
+elif entered == groom_password:
+    print("Feed access granted")

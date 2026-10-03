@@ -1,3 +1,5 @@
-"""### Mission 1: Das Energiedepot – Aufgabe 2
+"""## ⭐ Missionen
 
-Schritt 2 – Lege bloecke = 12 (ganze Zahl) und energie_pro_block = 45.5 (Kommazahl) an. Multipliziere sie, speichere das Ergebnis in gesamtenergie und gib genau aus: Gesamtenergie: 546.0"""
+### Mission 1: Das Energiedepot – Aufgabe 1
+
+Schritt 1 – Lege techniker = "Kira" (Text) und techniker_id = 4021 (ganze Zahl) an. Gib genau aus: Techniker Kira, ID 4021"""

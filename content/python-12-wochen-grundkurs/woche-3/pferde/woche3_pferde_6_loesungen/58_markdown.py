@@ -1,3 +1,3 @@
-"""### Das Reiter-Quiz – Aufgabe 2
+"""### Mission 3: Das Turnier – Aufgabe 4
 
-Schritt 2 – Punkte zählen: Addiere für jede richtige Antwort mit punkte = punkte + 100 und gib mit einem f-String genau aus: Punkte: 300"""
+Schritt 4 – Zeit-Bonus: Prüfe **separat** mit einem eigenen if, ob zeit < 60, und gib dann genau aus: +10 Bonus für perfekte Zeit!"""

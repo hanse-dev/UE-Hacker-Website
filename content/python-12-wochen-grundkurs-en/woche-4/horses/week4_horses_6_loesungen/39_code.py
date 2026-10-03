@@ -1,2 +1,3 @@
-for number in range(2, 11, 2):
-    print(f"Even: {number}")
+for i in range(3):
+    print(f"Exercise {i}")
+print("Training finished")

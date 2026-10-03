@@ -1,3 +1,3 @@
-"""### Der Futterraum – Aufgabe 4
+"""### Der Futterraum – Aufgabe 3
 
-Schritt 4 – Schwerer als der Durchschnitt? Vergleiche sack_3 mit dem Durchschnitt und gib genau aus: Sack 3 über dem Durchschnitt: True"""
+Schritt 3 – Durchschnitt: Teile das Gesamtgewicht durch 8 und gib genau aus: Durchschnitt: 25.0 kg"""

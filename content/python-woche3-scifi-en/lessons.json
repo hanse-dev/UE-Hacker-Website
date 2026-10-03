@@ -34,6 +34,40 @@
     ]
   },
   {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Important Operators: = or ==?",
+    "file": "lektion-07.md",
+    "lessonSummary": "You know the difference: = assigns, == compares.",
+    "tasks": [
+      {
+        "instruction": "Run this example: `=` assigns, `==` compares.",
+        "example": true,
+        "codeTemplate": "energy = 100          # assignment with =\nprint(energy == 100)  # comparison with ==\nprint(energy == 50)\n\nif energy == 100:\n    print(\"Correct: energy is 100\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Correct: energy is 100"
+        }
+      },
+      {
+        "instruction": "The command is \"START\" (command = \"START\"). Use == to check whether command equals \"START\" and print exactly: Engines ignite!",
+        "codeTemplate": "command = \"START\"\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Engines ignite!"
+        }
+      },
+      {
+        "instruction": "Print the result of a comparison with an f-string: compare crew with 12 and print exactly: Exactly 12 aboard: True",
+        "codeTemplate": "crew = 12\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Exactly 12 aboard: True"
+        }
+      }
+    ]
+  },
+  {
     "id": "lektion-02",
     "section": "lektion",
     "title": "System Protocol 2: Comparison Operators",

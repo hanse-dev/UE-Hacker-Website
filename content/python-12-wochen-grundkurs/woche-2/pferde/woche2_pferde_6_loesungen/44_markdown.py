@@ -1,5 +1,3 @@
-"""## ⭐ Missionen
+"""### Debug-Quest – Aufgabe 3
 
-### Mission 1: Das Futterlager – Aufgabe 1
-
-Schritt 1 – Pfleger benennen: Lege pfleger = \"Mia\" (Text) und pfleger_id = 7 (Ganzzahl) an und gib mit einem f-String genau aus: Pfleger: Mia (ID 7)"""
+🐛 Bug #3 – Ziel: Das Programm soll Training dauert 3 Stunden. ausgeben. Was ist falsch?"""

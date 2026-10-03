@@ -1,3 +1,3 @@
-"""### Mission 3: Das Turnier – Aufgabe 3
+"""### Mission 3: Das Turnier – Aufgabe 2
 
-Schritt 3 – Durchschnitt: Berechne den Durchschnitt beider Gesamtpunkte (Summe geteilt durch 2) und gib genau aus: Durchschnitt: 137.5 Punkte"""
+Schritt 2 – Sieger bestimmen: Vergleiche die Gesamtpunkte mit > und gib genau aus: Luna hat mehr Punkte: True"""

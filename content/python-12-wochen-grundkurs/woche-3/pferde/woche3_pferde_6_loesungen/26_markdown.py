@@ -1,3 +1,3 @@
-"""### Übung 6: Verschachtelte Bedingungen – Aufgabe 1
+"""### Übung 5: and, or, not – Aufgabe 2
 
-Baue das Beispiel nach: Ist die Tür verschlossen, prüfe innen den Schlüssel. Passt er nicht, gib genau aus: Dieser Schlüssel passt nicht."""
+Nutze or: Ist hat_trense oder hat_halfter wahr, gib Du kannst das Pferd führen! aus, sonst Es fehlt Zubehör! Hier soll genau erscheinen: Du kannst das Pferd führen!"""

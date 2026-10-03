@@ -1,3 +1,3 @@
-"""### Extra challenge 2: The Holodeck – Task 1
+"""### Extra challenge 1: The Prime Number Decryption – Task 3
 
-Step 1 – Build the holodeck grid with two nested loops: 8 rows, 8 columns. Print a dot . for every field (print(\".\", end=\"\") and an empty print() after each row). Expected: eight dots per row on eight lines."""
+Step 3 – Test all numbers 2 to 30 the same way. Print every prime as Prime: 2, Prime: 3 … and count them in a variable found (start at 0). After the loop print exactly: Primes found: 10"""

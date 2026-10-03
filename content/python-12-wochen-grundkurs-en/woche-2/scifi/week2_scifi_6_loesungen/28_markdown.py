@@ -1,3 +1,3 @@
 """### System Protocol 6: Operations – Task 2
 
-Join \"Star\" and \"lab\" with + into a variable system_name and print exactly: System name: Starlab"""
+Create modules = 6 and energy_per_module = 7. Print exactly: Total energy: 42 (multiply both inside an f-string)."""

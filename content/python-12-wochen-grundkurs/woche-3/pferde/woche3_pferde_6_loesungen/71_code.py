@@ -1,10 +1,6 @@
-hoehe = 80
-breite = 40
+gangart = "Trab"
 
-if hoehe >= 70:
-    if breite >= 50:
-        print("Level 4: Hindernis gemeistert")
-    else:
-        print("Level 4: Breite reicht nicht")
+if gangart == "Schritt":
+    print("Level 2: Ruhiger Schritt")
 else:
-    print("Level 4: Zu niedrig")
+    print("Level 2: Zügiger Trab")

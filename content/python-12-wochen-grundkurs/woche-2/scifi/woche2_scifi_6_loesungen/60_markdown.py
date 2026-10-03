@@ -1,3 +1,3 @@
-"""### Mission 3: Der Asteroidenabbau – Aufgabe 1
+"""### Mission 2: Die Flottenanalyse – Aufgabe 3
 
-Schritt 1 – Lege Variablen für beide Asteroiden an und berechne beide Rohwerte (wert_a und wert_b). Gib zwei Zeilen im Format Ceres-9 Wert: 5000.0 aus – die letzte Zeile muss lauten: Vesta-3 Wert: 5400.0"""
+Schritt 3 – Addiere alle Geschwindigkeiten, teile durch 3, speichere das Ergebnis in durchschnitt_geschwindigkeit und gib genau aus: Durchschnittsgeschwindigkeit: 2.5"""

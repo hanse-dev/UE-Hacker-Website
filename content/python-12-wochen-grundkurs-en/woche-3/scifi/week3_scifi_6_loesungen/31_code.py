@@ -1,4 +1,10 @@
-level = 10
-if level >= 10:
-    print("Access granted!")
-    print("Welcome Commander!")
+airlock_locked = True
+right_code = False
+if airlock_locked:
+    print("The airlock is locked.")
+    if right_code:
+        print("The code is correct – the airlock opens!")
+    else:
+        print("Wrong code! Access denied.")
+else:
+    print("The airlock is already open.")

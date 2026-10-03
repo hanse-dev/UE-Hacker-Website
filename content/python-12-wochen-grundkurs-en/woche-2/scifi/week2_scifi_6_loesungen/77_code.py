@@ -1,6 +1,5 @@
-acc1 = 0.92
-acc2 = 0.88
-acc3 = 0.75
-average_acc = (acc1 + acc2 + acc3) / 3
-print(f"Average accuracy: {average_acc}")
-print("Best model: NovaNet")
+params1 = 1200000
+params2 = 5000000
+params3 = 300000
+total_params = params1 + params2 + params3
+print(f"Total parameters: {total_params}")

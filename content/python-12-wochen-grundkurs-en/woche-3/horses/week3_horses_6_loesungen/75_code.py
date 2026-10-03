@@ -1,17 +1,9 @@
-level1_ok = True
-level2_ok = True
-level3_ok = False
-level4_ok = False
-level5_ok = True
-successes = 0
-if level1_ok:
-    successes = successes + 1
-if level2_ok:
-    successes = successes + 1
-if level3_ok:
-    successes = successes + 1
-if level4_ok:
-    successes = successes + 1
-if level5_ok:
-    successes = successes + 1
-print(f"Successes: {successes} of 5")
+height = 80
+width = 40
+if height >= 70:
+    if width >= 50:
+        print("Level 4: Obstacle cleared")
+    else:
+        print("Level 4: Width not enough")
+else:
+    print("Level 4: Too low")

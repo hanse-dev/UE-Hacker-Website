@@ -1,4 +1,4 @@
-# 📟 System Protocol 7: Type Conversion
+# 📟 System Protocol 8: Type Conversion
 
 Sensor data often arrives as **text**. To calculate with it you have to convert it. Four functions do this job:
 

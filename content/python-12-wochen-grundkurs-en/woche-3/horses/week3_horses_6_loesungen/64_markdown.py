@@ -1,3 +1,3 @@
-"""### The Obstacle Simulator – Task 1
+"""### The Rider Quiz – Task 3
 
-Level 1 – Mounting: It is allowed if horse_height >= 1.60 AND rider_weight <= 80. Then print exactly: Level 1: Mounting allowed"""
+Step 3 – Grade: From 400 points grade A, from 300 grade B. Print exactly: Grade: B"""

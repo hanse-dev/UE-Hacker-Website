@@ -1,5 +1,5 @@
-aurora_geschwindigkeit = 2.5
-vega_geschwindigkeit = 3.5
-orion_geschwindigkeit = 1.5
-durchschnitt_geschwindigkeit = (aurora_geschwindigkeit + vega_geschwindigkeit + orion_geschwindigkeit) / 3
-print(f"Durchschnittsgeschwindigkeit: {durchschnitt_geschwindigkeit}")
+aurora_crew = 120
+vega_crew = 80
+orion_crew = 200
+gesamt_crew = aurora_crew + vega_crew + orion_crew
+print(f"Gesamt-Crew: {gesamt_crew}")

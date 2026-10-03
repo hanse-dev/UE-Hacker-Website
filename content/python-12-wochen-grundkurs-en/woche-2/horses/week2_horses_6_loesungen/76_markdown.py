@@ -1,3 +1,3 @@
-"""### The Training Hall – Task 4
+"""### The Training Hall – Task 3
 
-Step 4 – demanding? Store the comparison i4 > average in demanding4 and print exactly: Exercise 4 demanding: True"""
+Step 3 – average intensity: add up the five intensities, divide by 5 and print exactly: Average intensity: 3.2"""

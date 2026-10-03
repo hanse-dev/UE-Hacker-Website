@@ -1,2 +1,2 @@
-name = input("Name des Piloten? ")
-print(f"Willkommen an Bord, {name}!")
+signal = 0
+print(f"Signal aktiv: {bool(signal)}")

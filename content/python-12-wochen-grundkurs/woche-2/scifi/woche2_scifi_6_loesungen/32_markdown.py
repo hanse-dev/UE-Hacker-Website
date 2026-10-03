@@ -1,3 +1,3 @@
-"""### Systemprotokoll 7: Typumwandlung – Aufgabe 1
+"""### Systemprotokoll 7: Rechnen mit Texten – Aufgabe 2
 
-Lege temperatur_str = "300" an, wandle sie mit int() um und gib genau aus: Temperatur plus 10: 310K"""
+Wiederhole den Text "Ping" mit * dreimal und gib das Ergebnis aus."""

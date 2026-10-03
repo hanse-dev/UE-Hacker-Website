@@ -1,3 +1,3 @@
-"""### The Marathon Ride – Task 4
+"""### The Marathon Ride – Task 2
 
-Step 4 – Finishing stretch: Count the last laps down with range(3, 0, -1) and print: Laps left: 3, Laps left: 2, Laps left: 1. Afterwards exactly: Finish reached!"""
+Step 2 – Feeding break: Start with energy = 100 and lap = 0. As long as lap < 6, raise lap by 1 and subtract 15 energy. In lap 3 there is a feeding break: then 20 energy is added on top. After every lap print: Lap 1: Energy 85, Lap 2: Energy 70, Lap 3: Energy 75, Lap 4: Energy 60, Lap 5: Energy 45, Lap 6: Energy 30"""

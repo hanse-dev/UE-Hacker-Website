@@ -1,3 +1,3 @@
-"""### Systemprotokoll 8: Eingaben verarbeiten – Aufgabe 1
+"""### Systemprotokoll 8: Typumwandlung – Aufgabe 4
 
-Frage mit input() nach dem Namen des Piloten und gib genau aus: Willkommen an Bord, (Name)! (Beim Prüfen wird automatisch Nova eingegeben.)"""
+Lege signal = 0 an, wandle es mit bool() um und gib genau aus: Signal aktiv: False"""

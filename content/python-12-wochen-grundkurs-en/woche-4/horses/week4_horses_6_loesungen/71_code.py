@@ -1,6 +1,3 @@
-energy = 100
-distance = 0
-while energy > 0:
-    energy -= 25
-    distance += 1
-    print(f"Lap {distance}: Energy {energy}")
+for row in range(1, 3):
+    for column in range(1, 4):
+        print(f"Square {row}-{column}")

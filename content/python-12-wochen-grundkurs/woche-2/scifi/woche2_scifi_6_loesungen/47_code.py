@@ -1,3 +1,3 @@
-energie = "80"
-verbrauch = 30
-print(f"Verbleibende Energie: {int(energie) - verbrauch}")
+roboter = "R2D2"
+status = 3
+print(f"Hallo {roboter}! Dein Status ist {status}.")

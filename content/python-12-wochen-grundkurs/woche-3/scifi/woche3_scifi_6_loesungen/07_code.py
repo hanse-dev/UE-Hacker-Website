@@ -1,3 +1,4 @@
-geschwindigkeit = 1200
-if geschwindigkeit > 1000:
-    print("Überlichtgeschwindigkeit!")
+befehl = "START"
+
+if befehl == "START":
+    print("Triebwerke zünden!")

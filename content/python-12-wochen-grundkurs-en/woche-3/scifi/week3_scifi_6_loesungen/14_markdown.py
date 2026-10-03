@@ -1,3 +1,3 @@
-"""### System Protocol 3: if-else – Task 2
+"""### System Protocol 2: Comparison Operators – Task 3
 
-The variables energy and consumption are already created. Use if-else and an f-string to print: Jump possible! Remaining: 30% – or, if the energy is not enough, Jump impossible! Missing: ...%"""
+The variable energy is already created. Use < to check whether energy is below 20, and then print: Energy low!"""

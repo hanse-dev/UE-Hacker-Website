@@ -1,3 +1,3 @@
-"""### System Protocol 7: Type Conversion – Task 4
+"""### System Protocol 8: Type Conversion – Task 3
 
-Create signal = 0, convert it with bool() and print exactly: Signal active: False"""
+Create crew = 12 and join it with + into this line, using str(): Crew: 12"""

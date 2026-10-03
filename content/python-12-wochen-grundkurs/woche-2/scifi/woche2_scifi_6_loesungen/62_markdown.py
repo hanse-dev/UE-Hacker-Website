@@ -1,3 +1,3 @@
-"""### Mission 3: Der Asteroidenabbau – Aufgabe 2
+"""### Mission 3: Der Asteroidenabbau – Aufgabe 1
 
-Schritt 2 – Vergleiche die Werte (starte mit wert_a = 5000.0 und wert_b = 5400.0): speichere wert_b > wert_a in der Boolean-Variable b_ist_besser und gib genau aus: Vesta-3 ist wertvoller: True"""
+Schritt 1 – Lege Variablen für beide Asteroiden an und berechne beide Rohwerte (wert_a und wert_b). Gib zwei Zeilen im Format Ceres-9 Wert: 5000.0 aus – die letzte Zeile muss lauten: Vesta-3 Wert: 5400.0"""

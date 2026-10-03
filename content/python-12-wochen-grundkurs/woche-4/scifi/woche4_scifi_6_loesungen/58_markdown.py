@@ -1,3 +1,5 @@
-"""### Extra-Herausforderung 1: Die Primzahl-Entschlüsselung – Aufgabe 3
+"""## 🔥 Extra-Herausforderungen
 
-Schritt 3 – Teste alle Zahlen 2 bis 30 auf dieselbe Weise. Gib jede Primzahl als Primzahl: 2, Primzahl: 3 … aus und zähle sie in einer Variable gefunden (Start bei 0). Gib nach der Schleife genau aus: Primzahlen gefunden: 10"""
+### Extra-Herausforderung 1: Die Primzahl-Entschlüsselung – Aufgabe 1
+
+Schritt 1 – Bereite den Zahlenbereich vor: Gehe die Zahlen 2 bis 20 durch und gib Teste 2 … Teste 20 aus (die letzte Zeile muss lauten: Teste 20)."""

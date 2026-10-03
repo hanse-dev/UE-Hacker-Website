@@ -1,6 +1,9 @@
-level = 9
-erfolgspunkte = 95
-verluste = 1
-zeit = 25
-note = erfolgspunkte - (verluste * 10) - (zeit / 5)
-print(f"Note: {note}")
+admin_passwort = "Nova-7"
+gast_passwort = "Stern-3"
+eingabe = "Nova-7"
+if eingabe == admin_passwort:
+    print("Vollzugriff gewährt")
+elif eingabe == gast_passwort:
+    print("Lesezugriff gewährt")
+else:
+    print("Zugriff verweigert")

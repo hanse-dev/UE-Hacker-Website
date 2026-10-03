@@ -1,3 +1,5 @@
-"""### Debug Quest – Task 2
+"""## 🐛 Debug Quest
 
-🐛 Bug #2 – Goal: The program should calculate and print the remaining energy: Remaining energy: 50. What is wrong?"""
+### Debug Quest – Task 1
+
+🐛 Bug #1 – Goal: The program should print: Hello R2D2! Your status is 3. What is wrong?"""

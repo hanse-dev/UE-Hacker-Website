@@ -1,3 +1,6 @@
-stable_open = False
-if not stable_open:
-    print("The stable is closed – unlock it first!")
+has_saddle = True
+has_helmet = False
+if has_saddle and has_helmet:
+    print("You are ready to ride!")
+else:
+    print("Please get the helmet first!")

@@ -1,4 +1,4 @@
-ballen = 20
-gewicht_pro_ballen = 15.5
+pfleger = "Mia"
+pfleger_id = 7
 
-print(f"Ballen: {ballen}, je {gewicht_pro_ballen} kg")
+print(f"Pfleger: {pfleger} (ID {pfleger_id})")

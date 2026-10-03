@@ -1,3 +1,3 @@
-"""### Das Reitbrett – Aufgabe 4
+"""### Das Reitbrett – Aufgabe 2
 
-Schritt 4 – Dressur-Treppe: Baue eine Treppe aus Sternen: In Zeile 1 steht 1 Stern, in Zeile 2 zwei Sterne, bis Zeile 4 mit vier Sternen (äußere Schleife range(1, 5), innere range(zeile)). Ausgabe: *  **  ***  ****  (jeweils in einer eigenen Zeile)."""
+Schritt 2 – Pferd platzieren: Baue ein 3×3-Brett (Zeilen und Spalten 0 bis 2). Auf Zeile 1, Spalte 1 steht das Pferd P, sonst ein Punkt. Erwartete Ausgabe: ...  .P.  ...  (jeweils in einer eigenen Zeile)."""

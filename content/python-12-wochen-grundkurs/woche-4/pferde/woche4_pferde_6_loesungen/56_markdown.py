@@ -1,3 +1,3 @@
-"""### Das Sprungtraining – Aufgabe 2
+"""### Mission 3: Das Ausdauer-Training – Aufgabe 3
 
-Schritt 2 – Hohe Sprünge zählen: Ergänze in der Schleife ein if, das mitzählt, wie viele der 5 Sprünge höher als 100 cm sind, und gib danach genau aus: Höher als 100 cm: 3"""
+Schritt 3 – Bericht: Hier läuft die Schleife aus Schritt 1 ohne Ausgabe. Gib danach genau aus: Training beendet nach 6 Runden"""

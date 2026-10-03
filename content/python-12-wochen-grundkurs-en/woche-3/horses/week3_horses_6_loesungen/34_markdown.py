@@ -1,5 +1,7 @@
-"""### Debug Quest – Task 3
+"""## 🐛 Debug Quest
 
-🐛 Bug #3 – Goal: When age >= 5, the program should print Trained. What is wrong?
+### Debug Quest – Task 1
 
-**Explanation:** `elif` needs its own condition. For \"everything else\" you use `else:` without a condition."""
+🐛 Bug #1 – Goal: When level >= 10, the program should print both Riding skill reached! and Congratulations! What is wrong?
+
+**Explanation:** After `if ...:` the block must be indented. Without the indentation Python raises an `IndentationError`."""

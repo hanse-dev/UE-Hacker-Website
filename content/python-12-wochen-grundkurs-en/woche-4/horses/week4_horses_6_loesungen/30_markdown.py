@@ -1,7 +1,3 @@
-"""## 🐛 Debug Quest
+"""### Lesson 8: Patterns of Stars – Task 1
 
-### Debug Quest – Task 1
-
-🐛 Bug #1 – Goal: The program should print Lap 1 to Lap 5 (each on its own line). What is wrong?
-
-**Explanation:** `range(5)` counts from 0 to 4. For Lap 1 to 5 you print `i+1` (or use `range(1, 6)`)."""
+Draw a staircase of stars: row 1 has one *, row 2 has two ** and so on up to row 4 with ****. Tip: range(1, 5) for the rows and range(row) for the columns, with print(\"*\", end=\"\") and an empty print() after every row."""

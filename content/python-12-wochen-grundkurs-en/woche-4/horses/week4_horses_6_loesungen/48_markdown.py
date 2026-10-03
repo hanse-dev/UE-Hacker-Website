@@ -1,3 +1,3 @@
-"""### Mission 3: The Endurance Training – Task 1
+"""### Mission 2: The Stable Manager – Task 2
 
-Step 1 – Stamina drops: The horse starts with stamina = 100 and laps = 0. As long as stamina > 10, it drops by 15 per lap. Count the laps up and print exactly in every lap: Lap 1: Stamina 85 (then 70, 55, 40, 25, 10)."""
+Step 2 – Warnings: Go through stalls 1 to 6. For stall 3 and stall 6 (if with or) print Stall 3: warning and Stall 6: warning, for all the others Stall N: ok."""

@@ -1,13 +1,15 @@
-# 📟 System Protocol 8: Processing Input
+# 📟 System Protocol 7: Calculating with Text
 
-You know `input()` from Week 1: the **function** hands you back the crew's answer – **always as text (`str`)**, even if a number is typed! To calculate with it, you have to convert it:
+**With text** two operations work:
+
+- `+` **joins** texts: `"Neo" + "tron"` → `"Neotron"`
+- `*` **repeats** text: `"Ping" * 3` → `"PingPingPing"`
 
 ```python
-answer = input("Energy level? ")     # text, e.g. "70"
-energy = int(answer)                 # now a number: 70
-print(f"After charging: {energy + 10}%")
+prefix = "Neo"
+suffix = "tron"
+system_name = prefix + suffix
+print(system_name)      # Neotron
 ```
 
-For decimal numbers use `float()` instead of `int()`.
-
-> 💡 In the input box, type only a **whole number** – otherwise `int()` can't convert it.
+> ⚠️ Not everything can be combined: `"Crew: " + 5` causes an error – text and number don't mix. More on that in the next protocol!

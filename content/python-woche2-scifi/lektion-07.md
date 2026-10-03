@@ -1,4 +1,4 @@
-# 📟 Systemprotokoll 7: Typumwandlung
+# 📟 Systemprotokoll 8: Typumwandlung
 
 Sensordaten kommen oft als **Text** an. Um damit zu rechnen, musst du sie umwandeln. Vier Funktionen übernehmen das:
 

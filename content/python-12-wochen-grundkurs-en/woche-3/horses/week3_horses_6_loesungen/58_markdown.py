@@ -1,3 +1,3 @@
-"""### The Rider Quiz – Task 2
+"""### Mission 3: The Tournament – Task 4
 
-Step 2 – Count points: For each correct answer add points = points + 100 and print exactly, using an f-string: Points: 300"""
+Step 4 – Time bonus: In its own **separate** if, check whether time < 60, then print exactly: +10 bonus for perfect time!"""

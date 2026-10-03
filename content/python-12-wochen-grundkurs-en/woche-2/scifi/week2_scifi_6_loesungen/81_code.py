@@ -1,14 +1,10 @@
-goal1 = "Mars"
-days1 = 200
-yield1 = 5.0
-crew1 = 6
-prob1 = 0.8
-goal2 = "Europa"
-days2 = 300
-yield2 = 8.0
-crew2 = 9
-prob2 = 0.75
-
-print("=== MISSION PROTOCOL ===")
-print(f"{goal1}: {days1} days, yield {yield1}, crew {crew1}, success {prob1}")
-print(f"{goal2}: {days2} days, yield {yield2}, crew {crew2}, success {prob2}")
+acc1 = 0.92
+acc2 = 0.88
+acc3 = 0.75
+average_acc = 0.85
+above_1 = acc1 > average_acc
+above_2 = acc2 > average_acc
+above_3 = acc3 > average_acc
+print(f"NovaNet above average: {above_1}")
+print(f"DeepCore above average: {above_2}")
+print(f"MiniMind above average: {above_3}")

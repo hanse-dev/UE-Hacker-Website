@@ -1,3 +1,3 @@
-"""### Mission 3: The Tournament – Task 3
+"""### Mission 3: The Tournament – Task 2
 
-Step 3 – average: calculate the average of both totals (sum divided by 2) and print exactly: Average: 137.5 points"""
+Step 2 – determine the winner: compare the totals with > and print exactly: Luna has more points: True"""

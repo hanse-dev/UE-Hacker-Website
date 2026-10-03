@@ -1,3 +1,3 @@
-"""### Mission 3: The Tournament – Task 4
+"""### Mission 3: The Tournament – Task 2
 
-Step 4 – Time bonus: In its own **separate** if, check whether time < 60, then print exactly: +10 bonus for perfect time!"""
+Step 2 – Check for gold: Use and to check whether score >= 85 AND errors == 0, then print exactly: 🥇 GOLD!"""

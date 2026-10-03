@@ -1,3 +1,3 @@
-"""### Extra challenge 3: The Endless Tunnel – Task 4
+"""### Extra challenge 3: The Endless Tunnel – Task 2
 
-Step 4 – Find the best flight: test the fuel use per portal 10, 20 and 30 (for fuel_use in range(10, 31, 10)). For each flight start again with fuel = 100, shield = 60, distance = 0 and fly with the while loop (subtract fuel_use fuel and 8 shield per portal). Keep the largest distance in best_distance (start at 0) and print at the end exactly: Best distance: 8"""
+Step 2 – Add ship values: fuel = 100 and shield = 60. While fuel > 0 and shield > 0 pass one portal (distance += 1), subtract 20 fuel and 8 shield and print Portal 1: fuel 80, shield 52 and so on. The last line must read: Portal 5: fuel 0, shield 20"""

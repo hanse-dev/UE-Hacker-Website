@@ -1,5 +1,4 @@
-status = 25
-if status >= 18:
-    print("System aktiv")
-else:
-    print("System inaktiv")
+level = 10
+if level >= 10:
+    print("Zugriff gewährt!")
+    print("Willkommen Kommandant!")

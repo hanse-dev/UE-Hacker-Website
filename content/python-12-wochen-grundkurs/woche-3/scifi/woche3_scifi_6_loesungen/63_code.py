@@ -1,5 +1,5 @@
-kurs = "Süd"
-if kurs == "Nord":
-    print("Kurs Nord gesetzt")
+punkte = 300
+if punkte >= 300:
+    print("Zertifikat: Bestanden!")
 else:
-    print("Kurs Süd gesetzt")
+    print("Zertifikat: Nicht bestanden.")

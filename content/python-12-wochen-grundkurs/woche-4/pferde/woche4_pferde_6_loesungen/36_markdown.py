@@ -1,5 +1,5 @@
-"""## ⭐ Missionen
+"""### Debug-Quest – Aufgabe 2
 
-### Mission 1: Der Zähl-Reiter – Aufgabe 1
+🐛 Bug #2 – Ziel: Das Programm soll Pferd 1 bis Pferd 5 ausgeben. Was ist falsch?
 
-Schritt 1 – Pferde-Runden zählen: Gib mit einer for-Schleife die Pferdenummern 1 bis 10 aus, jeweils genau so: Pferd: 1 (bis Pferd: 10)"""
+**Erklärung:** Hinter der `for`-Zeile fehlt der Doppelpunkt `:` – Python meldet einen `SyntaxError`."""

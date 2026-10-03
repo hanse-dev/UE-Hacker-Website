@@ -1,3 +1,3 @@
-"""### Mission 2: Die Flottenanalyse – Aufgabe 2
+"""### Mission 2: Die Flottenanalyse – Aufgabe 1
 
-Schritt 2 – Addiere alle Crew-Größen, speichere die Summe in gesamt_crew und gib genau aus: Gesamt-Crew: 400 (lege die Schiffs-Variablen dafür erneut an)."""
+Schritt 1 – Lege die Variablen für alle drei Schiffe an. Gib die Überschrift === FLOTTENANALYSE === aus und danach eine Zeile pro Schiff im Format Aurora: Crew 120, Geschwindigkeit 2.5 (die letzte Zeile muss lauten: Orion: Crew 200, Geschwindigkeit 1.5)."""

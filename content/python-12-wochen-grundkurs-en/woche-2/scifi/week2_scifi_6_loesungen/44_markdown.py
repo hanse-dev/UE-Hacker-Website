@@ -1,5 +1,3 @@
-"""## 🐛 Debug Quest
+"""### System Protocol 9: Processing Input – Task 2
 
-### Debug Quest – Task 1
-
-🐛 Bug #1 – Goal: The program should print: Hello R2D2! Your status is 3. What is wrong?"""
+Ask with input() for the number of crew members, convert the answer with int() and print: With you aboard: (number plus 1) (When checking, 12 is entered automatically.)"""

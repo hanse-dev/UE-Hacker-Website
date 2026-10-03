@@ -1,7 +1,3 @@
-"""## 🐛 Debug Quest
+"""### System Log 8: Patterns of Stars – Task 1
 
-### Debug Quest – Task 1
-
-🐛 Bug #1 – Goal: The program should count the time from 1 to 5 and print each value (Time 1 up to Time 5). What is wrong?
-
-**Explanation:** `range(1, 5)` stops before the 5 – the upper limit is not included. For 1 to 5 you need `range(1, 6)`."""
+Draw a staircase of stars: row 1 has one *, row 2 has two ** and so on up to row 4 with ****. Tip: range(1, 5) for the rows and range(row) for the columns, with print(\"*\", end=\"\") and an empty print() after every row."""

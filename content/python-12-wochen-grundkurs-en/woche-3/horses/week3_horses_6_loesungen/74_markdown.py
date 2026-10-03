@@ -1,3 +1,3 @@
-"""### The Obstacle Simulator – Task 6
+"""### The Obstacle Simulator – Task 4
 
-Point system – Count with successes = 0 and successes = successes + 1 for each passed level (the results are already in the variables) and print exactly, using an f-string: Successes: 3 of 5"""
+Level 4 – Obstacle check (nested): If height >= 70, check width >= 50 inside: yes → Level 4: Obstacle cleared, no → Level 4: Width not enough. If height is lower → Level 4: Too low. Here exactly this should appear: Level 4: Width not enough"""

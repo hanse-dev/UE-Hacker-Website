@@ -1,6 +1,9 @@
-hat_zugangscode = True
-hat_fingerabdruck = False
-if hat_zugangscode and hat_fingerabdruck:
-    print("Zugang zum Kommandodeck gewährt!")
+punkte = 320
+if punkte >= 1000:
+    print("Rang: Fleet-Kommandant")
+elif punkte >= 500:
+    print("Rang: Kapitän")
+elif punkte >= 100:
+    print("Rang: Leutnant")
 else:
-    print("Zugang verweigert!")
+    print("Rang: Kadett")

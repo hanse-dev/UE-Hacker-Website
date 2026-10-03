@@ -1,3 +1,3 @@
-"""### Mission 3: Das Ausdauer-Training – Aufgabe 1
+"""### Mission 2: Der Stall-Manager – Aufgabe 2
 
-Schritt 1 – Ausdauer sinkt: Das Pferd startet mit ausdauer = 100 und runden = 0. Solange ausdauer > 10 ist, sinkt sie pro Runde um 15. Zähle die Runden hoch und gib in jeder Runde genau aus: Runde 1: Ausdauer 85 (dann 70, 55, 40, 25, 10)."""
+Schritt 2 – Warnungen: Gehe die Boxen 1 bis 6 durch. Bei Box 3 und Box 6 (if mit or) gib Box 3: Warnung bzw. Box 6: Warnung aus, bei allen anderen Box N: ok."""

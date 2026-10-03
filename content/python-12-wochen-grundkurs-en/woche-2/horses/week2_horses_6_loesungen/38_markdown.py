@@ -1,5 +1,3 @@
-"""## 🐛 Debug Quest
+"""### Lesson 9: Processing Input – Task 2
 
-### Debug Quest – Task 1
-
-🐛 Bug #1 – Goal: The program should print Hello Comet! You are 6 years old. What is wrong?"""
+Ask with input() for your horse's name and print exactly: Hello, (name)! (When checking, Luna is entered automatically.)"""

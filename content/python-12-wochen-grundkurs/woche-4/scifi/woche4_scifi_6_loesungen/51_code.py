@@ -1,7 +1,6 @@
-jahr = 2000
-spruenge = 0
-while spruenge < 5:
-    jahr += 30
-    spruenge += 1
-print(f"Endjahr: {jahr}")
-print("Gefangen im Zeit-Paradoxon")
+for deck in range(1, 11):
+    if deck == 7:
+        print("Deck 7 in Wartung")
+    else:
+        print(f"Deck {deck}: OK")
+print("✅ Alle wichtigen Decks geprüft!")

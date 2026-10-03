@@ -1,7 +1,5 @@
-age = 9
-has_helmet = False
+age = 10
+has_helmet = True
 has_permission = False
-if age >= 12 or has_helmet or has_permission:
-    print("Access granted")
-else:
-    print("Access denied")
+
+print(f"Age: {age}, Helmet: {has_helmet}")

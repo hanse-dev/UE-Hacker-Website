@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Der endlose Tunnel – Aufgabe 5
+"""### Extra-Herausforderung 3: Der endlose Tunnel – Aufgabe 3
 
-Schritt 5 – Docking-Code: Frage mit einer while-Schleife wiederholt nach dem Docking-Code, bis "Nova7" eingegeben wird. Gib bei falscher Eingabe Zugriff verweigert. aus, bei richtiger Eingabe Andockung erlaubt!. (Beim Prüfen werden nacheinander 'X1' und 'Nova7' eingegeben.)"""
+Schritt 3 – Gib nach der Schleife aus Schritt 2 genau aus: Tunnel endete nach 5 Portalen und mit if den Grund: Grund: Treibstoff leer (wenn treibstoff <= 0)."""

@@ -1,3 +1,2 @@
-for i in range(3):
-    print(f"Log {i}")
-print("Ende")
+for zeit in range(1, 6):
+    print(f"Zeit {zeit}")

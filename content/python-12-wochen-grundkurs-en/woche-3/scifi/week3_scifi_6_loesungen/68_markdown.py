@@ -1,3 +1,3 @@
-"""### Extra Challenge 2: The Spaceship Simulator – Task 5
+"""### Extra Challenge 2: The Spaceship Simulator – Task 3
 
-Level 5 – Emergency landing: The variables fuel, atmosphere and landing_spot (Booleans) are already created. The landing succeeds if fuel >= 20 OR (atmosphere AND landing_spot). Then print Emergency landing possible, otherwise Emergency landing impossible."""
+Level 3 – Speed: The variable speed is already created. Use if-elif-else for five stages: from 800 Hyperdrive, from 600 Fast flight, from 400 Cruise flight, from 200 Maneuvering flight, otherwise Crawl. Format: Stage: Fast flight"""

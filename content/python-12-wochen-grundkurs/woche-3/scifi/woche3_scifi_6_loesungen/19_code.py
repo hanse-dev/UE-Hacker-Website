@@ -1,9 +1,6 @@
-waffe = "Plasma"
-if waffe == "Laser":
-    print("Laser aktiviert!")
-elif waffe == "Plasma":
-    print("Plasmakanone geladen!")
-elif waffe == "Ion":
-    print("Ionengeschütz online!")
+energie = 90
+verbrauch = 60
+if energie >= verbrauch:
+    print(f"Sprung möglich! Rest: {energie - verbrauch}%")
 else:
-    print("Unbekannte Waffe!")
+    print(f"Sprung unmöglich! Fehlt: {verbrauch - energie}%")

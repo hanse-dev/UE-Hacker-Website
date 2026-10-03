@@ -1,5 +1,5 @@
-stable_master_password = "Horseshoe"
-groom_password = "Carrot"
-entered = "Carrot"
-
-print(f"Entered: {entered}")
+age = 10
+has_helmet = True
+has_permission = False
+if age >= 12 or has_helmet or has_permission:
+    print("Access granted")

@@ -1,3 +1,3 @@
-"""### Das große Turnier – Aufgabe 2
+"""### Der Hindernis-Simulator – Aufgabe 6
 
-Schritt 2 – Schwierigkeitsstufe: Fünf Stufen per if-elif-else nach schwierigkeit: 1 Anfänger, 2 Leicht, 3 Mittel, 4 Schwer, sonst Extrem. Gib mit Präfix aus: Stufe: Schwer"""
+Punktesystem – Zähle mit erfolge = 0 und erfolge = erfolge + 1 pro bestandenem Level (die Ergebnisse stehen schon in den Variablen) und gib mit einem f-String genau aus: Erfolge: 3 von 5"""

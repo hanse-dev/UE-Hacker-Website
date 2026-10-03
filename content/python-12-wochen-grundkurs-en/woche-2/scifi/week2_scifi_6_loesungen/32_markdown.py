@@ -1,3 +1,3 @@
-"""### System Protocol 7: Type Conversion – Task 1
+"""### System Protocol 7: Calculating with Text – Task 2
 
-Create temperature_str = \"300\", convert it with int() and print exactly: Temperature plus 10: 310K"""
+Repeat the text \"Ping\" three times with * and print the result."""

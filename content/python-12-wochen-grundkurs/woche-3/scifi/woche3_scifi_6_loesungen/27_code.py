@@ -1,10 +1,6 @@
-schleuse_verriegelt = True
-richtiger_code = False
-if schleuse_verriegelt:
-    print("Die Schleuse ist verriegelt.")
-    if richtiger_code:
-        print("Der Code stimmt – die Schleuse öffnet sich!")
-    else:
-        print("Falscher Code! Zugang verweigert.")
+hat_notfallschluessel = False
+hat_ueberbrueckungscode = True
+if hat_notfallschluessel or hat_ueberbrueckungscode:
+    print("Tür wird manuell geöffnet!")
 else:
-    print("Die Schleuse steht bereits offen.")
+    print("Tür bleibt verschlossen!")

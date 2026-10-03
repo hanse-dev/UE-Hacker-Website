@@ -1,5 +1,7 @@
-"""### Debug-Quest – Aufgabe 3
+"""## 🐛 Debug-Quest
 
-🐛 Bug #3 – Ziel: Das Programm soll Log 0, Log 1 und Log 2 ausgeben und danach einmal Ende. Was ist falsch?
+### Debug-Quest – Aufgabe 1
 
-**Erklärung:** Der Schleifenkörper muss eingerückt sein. Ohne Einrückung meldet Python einen `IndentationError`."""
+🐛 Bug #1 – Ziel: Das Programm soll die Zeit von 1 bis 5 zählen und jeden Wert ausgeben (Zeit 1 bis Zeit 5). Was ist falsch?
+
+**Erklärung:** `range(1, 5)` hört vor der 5 auf – die Obergrenze zählt nicht mit. Für 1 bis 5 braucht es `range(1, 6)`."""

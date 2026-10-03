@@ -1,8 +1,6 @@
 novanet_genauigkeit = 0.92
 deepcore_genauigkeit = 0.88
 minimind_genauigkeit = 0.75
-durchschnitt_genauigkeit = 0.85
-ueber_1 = novanet_genauigkeit > durchschnitt_genauigkeit
-ueber_2 = deepcore_genauigkeit > durchschnitt_genauigkeit
-ueber_3 = minimind_genauigkeit > durchschnitt_genauigkeit
-print(f"MiniMind über Durchschnitt: {ueber_3}")
+durchschnitt_genauigkeit = (novanet_genauigkeit + deepcore_genauigkeit + minimind_genauigkeit) / 3
+print(f"Durchschnittsgenauigkeit: {durchschnitt_genauigkeit}")
+print("Bestes Modell: NovaNet")

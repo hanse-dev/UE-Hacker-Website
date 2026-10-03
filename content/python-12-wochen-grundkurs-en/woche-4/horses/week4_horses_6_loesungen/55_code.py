@@ -1,3 +1,4 @@
-for i in range(5):
-    height = 90 + i * 10
-    print(f"Jump {i+1}: {height} cm")
+stamina = 100
+while stamina > 0:
+    stamina -= 20
+    print(f"Stamina: {stamina}")

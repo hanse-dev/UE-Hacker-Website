@@ -1,3 +1,3 @@
-"""### Systemprotokoll 5: and, or, not – Aufgabe 2
+"""### Systemprotokoll 4: if-elif-else – Aufgabe 2
 
-Die Variablen hat_notfallschluessel und hat_ueberbrueckungscode sind schon angelegt. Gib mit or und else aus: Tür wird manuell geöffnet! – oder, wenn beides fehlt, Tür bleibt verschlossen!"""
+Die Variable waffe ist schon angelegt. Gib bei \"Laser\": Laser aktiviert!, bei \"Plasma\": Plasmakanone geladen!, bei \"Ion\": Ionengeschütz online! und sonst: Unbekannte Waffe! aus."""

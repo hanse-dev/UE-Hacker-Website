@@ -1,2 +1,2 @@
-for stall in range(1, 6):
-    print(f"Stall {stall}: checking...")
+for number in range(2, 11, 2):
+    print(f"Even: {number}")

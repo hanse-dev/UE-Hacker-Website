@@ -1,8 +1,9 @@
-fuel = 100
-shield = 60
-distance = 0
-while fuel > 0 and shield > 0:
-    distance += 1
-    fuel -= 20
-    shield -= 8
-    print(f"Portal {distance}: fuel {fuel}, shield {shield}")
+player_row = 1
+player_col = 1
+target_row = 8
+target_col = 8
+while player_row < 8:
+    player_row += 1
+    player_col += 1
+if player_row == target_row and player_col == target_col:
+    print("🎯 Target reached!")

@@ -1,3 +1,3 @@
-gait = "Trot"
-if gait != "Gallop":
-    print("That is not a gallop!")
+stalls = 12
+
+print(f"Exactly 12 stalls: {stalls == 12}")

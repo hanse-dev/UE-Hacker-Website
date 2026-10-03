@@ -1,3 +1,3 @@
 """### Systemprotokoll 6: Rechenoperationen – Aufgabe 2
 
-Verbinde "Stern" und "labor" mit + zu einer Variable system_name und gib genau aus: Systemname: Sternlabor"""
+Lege module = 6 und energie_pro_modul = 7 an. Gib genau aus: Gesamtenergie: 42 (multipliziere beide in einem f-String)."""

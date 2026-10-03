@@ -1,3 +1,3 @@
-"""### The Grand Tournament – Task 1
+"""### The Obstacle Simulator – Task 5
 
-Step 1 – Count phases: Count all phases that are True with successful_phases = 0 and successful_phases = successful_phases + 1, and print exactly, using an f-string: Successful phases: 4"""
+Level 5 – Dismount: Passed if time <= 60 OR (errors == 0 AND style >= 80). Then print exactly: Level 5: Dismount passed"""

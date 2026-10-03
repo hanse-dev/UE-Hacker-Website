@@ -1,5 +1,5 @@
-"""## ⭐ Missions
+"""### Debug Quest – Task 2
 
-### Mission 1: The Quantum Counter – Task 1
+🐛 Bug #2 – Goal: The program should print System 1 through System 5. What is wrong?
 
-Step 1 – Print all numbers from 1 to 20 with a for loop in the format Time: 1, Time: 2 and so on (the last line must read: Time: 20)."""
+**Explanation:** The colon `:` is missing after the `for` line – Python reports a `SyntaxError`."""

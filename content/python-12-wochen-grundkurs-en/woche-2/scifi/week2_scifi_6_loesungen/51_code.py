@@ -1,3 +1,2 @@
-technician = "Kira"
-tech_id = 4021
-print(f"Technician {technician}, ID {tech_id}")
+shield_strength = 95
+print(f"Shield strength: {shield_strength} percent")

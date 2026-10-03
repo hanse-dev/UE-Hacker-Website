@@ -1,3 +1,3 @@
-"""### Mission 2: The Feed Dispenser – Task 1
+"""### Mission 1: The Stable Guard – Task 2
 
-Step 1 – Set the passwords: Create stable_master_password = \"Horseshoe\", groom_password = \"Carrot\" and entered = \"Carrot\" and print exactly, using an f-string: Entered: Carrot"""
+Step 2 – Access rule: Use if and or to check whether age >= 12 OR has_helmet OR has_permission holds, then print exactly: Access granted"""

@@ -1,3 +1,5 @@
-"""### The Rider Quiz – Task 3
+"""## 🔥 Extra Challenges
 
-Step 3 – Grade: From 400 points grade A, from 300 grade B. Print exactly: Grade: B"""
+### The Rider Quiz – Task 1
+
+Step 1 – Check the answers: Use an if-else for each of the five answers to print: Question 1: ✅ Correct! or Question 1: ❌ Wrong! (with the matching number). Here exactly this should appear: Question 2: ❌ Wrong!"""

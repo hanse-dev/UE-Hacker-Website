@@ -1,11 +1,8 @@
-print("=== MISSIONS-PROTOKOLL ===")
-mars_tage = 200
-mars_ertrag = 5.0
-mars_crew = 6
-mars_erfolg = 0.8
-europa_tage = 300
-europa_ertrag = 8.0
-europa_crew = 9
-europa_erfolg = 0.75
-print(f"Mars: {mars_tage} Tage, Ertrag {mars_ertrag}, Crew {mars_crew}, Erfolg {mars_erfolg}")
-print(f"Europa: {europa_tage} Tage, Ertrag {europa_ertrag}, Crew {europa_crew}, Erfolg {europa_erfolg}")
+novanet_genauigkeit = 0.92
+deepcore_genauigkeit = 0.88
+minimind_genauigkeit = 0.75
+durchschnitt_genauigkeit = 0.85
+ueber_1 = novanet_genauigkeit > durchschnitt_genauigkeit
+ueber_2 = deepcore_genauigkeit > durchschnitt_genauigkeit
+ueber_3 = minimind_genauigkeit > durchschnitt_genauigkeit
+print(f"MiniMind über Durchschnitt: {ueber_3}")

@@ -1,2 +1,2 @@
-for time in range(1, 21):
-    print(f"Time: {time}")
+for i in range(5):
+    print(f"System {i+1}")

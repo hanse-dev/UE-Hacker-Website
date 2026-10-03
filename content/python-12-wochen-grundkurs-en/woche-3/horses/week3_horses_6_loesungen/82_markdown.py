@@ -1,3 +1,3 @@
-"""### The Grand Tournament – Task 4
+"""### The Grand Tournament – Task 2
 
-Step 4 – Winning condition: If successful_phases >= 4 AND difficulty <= 3 print Tournament win!, otherwise No tournament win. Here exactly this should appear: No tournament win (the final period is not part of it)."""
+Step 2 – Difficulty level: Five levels with if-elif-else by difficulty: 1 Beginner, 2 Easy, 3 Medium, 4 Hard, otherwise Extreme. Print with the prefix: Difficulty: Hard"""

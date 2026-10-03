@@ -1,3 +1,3 @@
-"""### Mission 2: Der Terminal-Zugang – Aufgabe 1
+"""### Mission 1: Der Sicherheits-Scanner – Aufgabe 2
 
-Die Variablen admin_passwort, gast_passwort und eingabe (das simulierte eingegebene Passwort) sind schon angelegt. Prüfe mit if, ob eingabe gleich admin_passwort ist (Ausgabe: Vollzugriff gewährt), und mit elif, ob sie gleich gast_passwort ist (Ausgabe: Lesezugriff gewährt)."""
+Gleiche Regel, andere Besucherin: Diesmal hat sie weder einen Ausweis noch liegt ein Notfall vor. Gib Zugang gewährt oder Zugang verweigert aus."""

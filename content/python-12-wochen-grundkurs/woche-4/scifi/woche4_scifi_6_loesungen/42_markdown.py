@@ -1,3 +1,3 @@
-"""### Mission 2: Der Raumstation-Kommandant – Aufgabe 1
+"""### Mission 1: Der Quanten-Zähler – Aufgabe 2
 
-Schritt 1 – Gehe die Decks 1 bis 10 durch und gib Deck 1: OK, Deck 2: OK und so weiter aus (die letzte Zeile muss lauten: Deck 10: OK)."""
+Schritt 2 – Gib zuerst die geraden Zahlen 2 bis 20 als Gerade: 2 … Gerade: 20 aus. Gib dann die Zahlen 20 bis 1 als Countdown: 20 … Countdown: 1 aus und nach der Schleife die Zeile Start!"""

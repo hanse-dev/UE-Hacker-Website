@@ -1,3 +1,3 @@
-"""### Mission 3: The Tournament – Task 2
+"""### Mission 2: The Feed Dispenser – Task 3
 
-Step 2 – Check for gold: Use and to check whether score >= 85 AND errors == 0, then print exactly: 🥇 GOLD!"""
+Step 3 – Wrong password: Add an else that prints Wrong password. Here the input is a banana, so exactly this should appear: Wrong password"""

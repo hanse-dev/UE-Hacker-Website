@@ -1,3 +1,3 @@
-"""### Mission 2: The Fleet Analysis – Task 2
+"""### Mission 2: The Fleet Analysis – Task 1
 
-Step 2 – Add all crew sizes, store the sum in total_crew and print exactly: Total crew: 400 (create the ship variables again first)."""
+Step 1 – Create the variables for all three ships. Print the heading === FLEET ANALYSIS === and then one line per ship in the format Aurora: crew 120, speed 2.5 (the last line must read: Orion: crew 200, speed 1.5)."""

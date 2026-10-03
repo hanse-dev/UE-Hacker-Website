@@ -34,6 +34,40 @@
     ]
   },
   {
+    "id": "lektion-07",
+    "section": "lektion",
+    "title": "Wichtige Operatoren: = oder ==?",
+    "file": "lektion-07.md",
+    "lessonSummary": "Du kennst den Unterschied: = weist zu, == vergleicht.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: `=` weist zu, `==` vergleicht.",
+        "example": true,
+        "codeTemplate": "energie = 100          # Zuweisung mit =\nprint(energie == 100)  # Vergleich mit ==\nprint(energie == 50)\n\nif energie == 100:\n    print(\"Richtig: Energie ist 100\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Richtig: Energie ist 100"
+        }
+      },
+      {
+        "instruction": "Der Befehl lautet \"START\" (befehl = \"START\"). Prüfe mit ==, ob befehl gleich \"START\" ist, und gib genau aus: Triebwerke zünden!",
+        "codeTemplate": "befehl = \"START\"\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Triebwerke zünden!"
+        }
+      },
+      {
+        "instruction": "Gib das Ergebnis eines Vergleichs mit einem f-String aus: Vergleiche crew mit 12 und gib genau aus: Genau 12 an Bord: True",
+        "codeTemplate": "crew = 12\n\n# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Genau 12 an Bord: True"
+        }
+      }
+    ]
+  },
+  {
     "id": "lektion-02",
     "section": "lektion",
     "title": "Systemprotokoll 2: Vergleichsoperatoren",

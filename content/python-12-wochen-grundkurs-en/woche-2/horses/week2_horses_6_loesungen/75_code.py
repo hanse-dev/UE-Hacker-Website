@@ -1,6 +1,7 @@
-i1 = 3.5
-i2 = 4.0
-i3 = 2.5
-i4 = 4.5
-i5 = 1.5
-print(f"Average intensity: {(i1 + i2 + i3 + i4 + i5) / 5}")
+duration1 = 20
+duration2 = 30
+duration3 = 15
+duration4 = 45
+duration5 = 10
+total_duration = duration1 + duration2 + duration3 + duration4 + duration5
+print(f"Total duration: {total_duration} minutes")

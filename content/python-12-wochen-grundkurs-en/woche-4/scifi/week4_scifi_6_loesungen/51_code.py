@@ -1,7 +1,6 @@
-year = 2000
-jumps = 0
-while jumps < 5:
-    year += 30
-    jumps += 1
-print(f"Final year: {year}")
-print("Trapped in the time paradox")
+for deck in range(1, 11):
+    if deck == 7:
+        print("Deck 7 under maintenance")
+    else:
+        print(f"Deck {deck}: OK")
+print("✅ All important decks checked!")

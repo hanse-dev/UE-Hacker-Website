@@ -1,3 +1,3 @@
-"""### Mission 3: Das Ausdauer-Training – Aufgabe 2
+"""### Mission 2: Der Stall-Manager – Aufgabe 3
 
-Schritt 2 – Ausdauer bis null: Die Ausdauer startet bei 100 und sinkt pro Runde um 20. Gib mit while (solange ausdauer > 0) nach jeder Runde genau aus: Ausdauer: 80, Ausdauer: 60, Ausdauer: 40, Ausdauer: 20, Ausdauer: 0"""
+Schritt 3 – Renovierung: Gehe die Boxen 6 bis 8 durch. Box 7 ist in Renovierung und soll Box 7: Renovierung ausgeben, die anderen Box 6: geprüft und Box 8: geprüft."""

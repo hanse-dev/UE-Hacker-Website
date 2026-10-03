@@ -1,3 +1,3 @@
-"""### Extra challenge 3: The Space Mission – Task 2
+"""### Extra challenge 3: The Space Mission – Task 1
 
-Step 2 – Add the total yield of both missions and the total crew deployment. Print exactly: Total yield: 13.0 and Total crew: 15"""
+Step 1 – Create variables for both missions. Print the heading === MISSION PROTOCOL === and one f-string line per mission in the format Mars: 200 days, yield 5.0, crew 6, success 0.8 (the last line must read: Europa: 300 days, yield 8.0, crew 9, success 0.75)."""

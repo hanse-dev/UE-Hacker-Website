@@ -250,6 +250,40 @@
     ]
   },
   {
+    "id": "lektion-08",
+    "section": "lektion",
+    "title": "Übung 8: Muster aus Sternen",
+    "file": "lektion-08.md",
+    "lessonSummary": "Mit verschachtelten Schleifen zeichnest du ganze Muster – Zeile für Zeile.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Eine Treppe, die Zeile für Zeile wächst.",
+        "example": true,
+        "codeTemplate": "for zeile in range(1, 4):\n    for spalte in range(zeile):\n        print(\"🐴\", end=\" \")\n    print()\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "🐴 🐴 🐴"
+        }
+      },
+      {
+        "instruction": "Zeichne eine Treppe aus Sternen: In Zeile 1 steht ein *, in Zeile 2 zwei ** und so weiter bis Zeile 4 mit ****. Tipp: range(1, 5) für die Zeilen und range(zeile) für die Spalten, dazu print(\"*\", end=\"\") und ein leeres print() nach jeder Zeile.",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "*\n**\n***\n****"
+        }
+      },
+      {
+        "instruction": "Zeichne eine Zahlentreppe: In Zeile 1 steht 1, in Zeile 2 steht 12, in Zeile 3 steht 123. Tipp: range(1, 4) für die Zeilen, range(1, zeile + 1) für die Spalten und print(spalte, end=\"\").",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1\n12\n123"
+        }
+      }
+    ]
+  },
+  {
     "id": "debug-01",
     "section": "debug",
     "title": "Debug-Quest",

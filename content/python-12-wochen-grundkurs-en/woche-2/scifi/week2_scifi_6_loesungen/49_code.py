@@ -1,2 +1,3 @@
-shield_strength = 95
-print(f"Shield strength: {shield_strength} percent")
+energy = int("80")
+consumption = 30
+print(f"Remaining energy: {energy - consumption}")

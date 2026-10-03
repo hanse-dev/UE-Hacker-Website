@@ -1,3 +1,3 @@
-"""### Mission 3: The Time Paradox – Task 3
+"""### Mission 3: The Time Paradox – Task 1
 
-Step 3 – Print a status report only for every third jump of 1 to 9: use range(1, 10, 3) and print Status: jump 1, Status: jump 4, Status: jump 7."""
+Step 1 – Create year = 2100 and jumps = 0. While year != 2000 jump back 25 years (year -= 25), increase jumps by 1 and print Jump 1: year 2075, Jump 2: year 2050 and so on. The last line must read: Jump 4: year 2000"""

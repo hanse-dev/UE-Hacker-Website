@@ -1,2 +1,3 @@
-schildstaerke = 95
-print(f"Schildstärke: {schildstaerke} Prozent")
+energie = "80"
+verbrauch = 30
+print(f"Verbleibende Energie: {int(energie) - verbrauch}")

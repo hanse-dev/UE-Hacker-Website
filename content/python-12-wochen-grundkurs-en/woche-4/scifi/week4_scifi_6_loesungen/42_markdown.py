@@ -1,3 +1,3 @@
-"""### Mission 2: The Space Station Commander – Task 1
+"""### Mission 1: The Quantum Counter – Task 2
 
-Step 1 – Go through the decks 1 to 10 and print Deck 1: OK, Deck 2: OK and so on (the last line must read: Deck 10: OK)."""
+Step 2 – First print the even numbers 2 to 20 as Even: 2 … Even: 20. Then print the numbers 20 down to 1 as Countdown: 20 … Countdown: 1 and after the loop the line Liftoff!"""

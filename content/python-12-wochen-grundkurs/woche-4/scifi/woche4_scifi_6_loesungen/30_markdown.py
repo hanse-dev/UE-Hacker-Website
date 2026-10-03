@@ -1,7 +1,3 @@
-"""## 🐛 Debug-Quest
+"""### Systemprotokoll 8: Muster aus Sternen – Aufgabe 1
 
-### Debug-Quest – Aufgabe 1
-
-🐛 Bug #1 – Ziel: Das Programm soll die Zeit von 1 bis 5 zählen und jeden Wert ausgeben (Zeit 1 bis Zeit 5). Was ist falsch?
-
-**Erklärung:** `range(1, 5)` hört vor der 5 auf – die Obergrenze zählt nicht mit. Für 1 bis 5 braucht es `range(1, 6)`."""
+Zeichne eine Treppe aus Sternen: In Zeile 1 steht ein *, in Zeile 2 zwei ** und so weiter bis Zeile 4 mit ****. Tipp: range(1, 5) für die Zeilen und range(zeile) für die Spalten, dazu print(\"*\", end=\"\") und ein leeres print() nach jeder Zeile."""

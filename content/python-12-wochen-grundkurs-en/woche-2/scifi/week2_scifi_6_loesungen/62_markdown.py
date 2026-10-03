@@ -1,3 +1,3 @@
-"""### Mission 3: The Asteroid Mining – Task 2
+"""### Mission 3: The Asteroid Mining – Task 1
 
-Step 2 – Compare the values (start from value_a = 5000.0 and value_b = 5400.0): store value_b > value_a in a Boolean variable b_is_better and print exactly: Vesta-3 is more valuable: True"""
+Step 1 – Create variables for both asteroids and calculate both raw values (value_a and value_b). Print two lines in the format Ceres-9 value: 5000.0 – the last line must read: Vesta-3 value: 5400.0"""

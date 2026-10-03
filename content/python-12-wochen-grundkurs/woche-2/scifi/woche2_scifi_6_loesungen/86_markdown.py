@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Die Raummission – Aufgabe 4
+"""### Extra-Herausforderung 3: Die Raummission – Aufgabe 3
 
-Schritt 4 – Speichere exp2 > exp1 (mit exp1 = 4.0 und exp2 = 6.0) in einer Boolean-Variable europa_besser und gib genau aus: Europa lohnt sich mehr: True"""
+Schritt 3 – Berechne den erwarteten Ertrag (Ertrag × Wahrscheinlichkeit) für beide Missionen und gib genau aus: Erwarteter Ertrag Mars: 4.0 und Erwarteter Ertrag Europa: 6.0"""

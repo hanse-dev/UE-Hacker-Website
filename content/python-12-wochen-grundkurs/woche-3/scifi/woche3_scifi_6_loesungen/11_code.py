@@ -1,3 +1,3 @@
-energie = 15
-if energie < 20:
-    print("Energie niedrig!")
+geschwindigkeit = 1200
+if geschwindigkeit > 1000:
+    print("Überlichtgeschwindigkeit!")

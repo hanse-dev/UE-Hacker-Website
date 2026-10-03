@@ -1,6 +1,7 @@
-amount = 0
-while amount < 2:
-    amount = int(input())
-    if amount < 2:
-        print("Not enough hay!")
-print(f"Feeding: {amount} kg")
+energy = 100
+distance = 0
+while energy > 0:
+    energy -= 25
+    distance += 1
+print(f"Distance: {distance} laps")
+print(f"Final energy: {energy}")

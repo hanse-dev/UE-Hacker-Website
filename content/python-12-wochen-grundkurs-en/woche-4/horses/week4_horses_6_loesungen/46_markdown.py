@@ -1,3 +1,3 @@
-"""### Mission 2: The Stable Manager – Task 3
+"""### Mission 2: The Stable Manager – Task 1
 
-Step 3 – Renovation: Go through stalls 6 to 8. Stall 7 is being renovated and should print Stall 7: renovation, the others Stall 6: checked and Stall 8: checked."""
+Step 1 – Stable round: Go through stalls 1 to 5 and print for each exactly: Stall 1: checking... (up to Stall 5)"""

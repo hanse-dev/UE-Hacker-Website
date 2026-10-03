@@ -1,3 +1,3 @@
-"""### Lesson 2: Comparison operators – Task 2
+"""### Important Operators: = or ==? – Task 2
 
-Use an if with != to check whether gait is not \"Gallop\", then print exactly: That is not a gallop!"""
+Print the result of a comparison with an f-string: compare stalls with 12 and print exactly: Exactly 12 stalls: True"""

@@ -1,3 +1,3 @@
-"""### Extra Challenge 2: The Spaceship Simulator – Task 1
+"""### Extra Challenge 1: The AI Quiz – Task 2
 
-Level 1 – Launch sequence: The variables energy and system_ok are already created. Use and to check whether energy >= 50 AND system_ok holds. Then print Level 1 passed, otherwise Level 1 failed."""
+Create points = 0. Increase points by 100 for every correct question (for example points = points + 100). Award grade A from 400 points, B from 300, otherwise C. Print: Points: 300, Grade: B"""

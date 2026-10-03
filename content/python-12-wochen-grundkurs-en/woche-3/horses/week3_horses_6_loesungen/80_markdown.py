@@ -1,3 +1,3 @@
-"""### The Grand Tournament – Task 3
+"""### The Grand Tournament – Task 1
 
-Step 3 – Random events: Check each event with its own if. Obstacle knocked down → Event: Obstacle knocked down!, spooked → Event: The horse spooks!, slipped → Event: Saddle slipped! Here exactly this should appear: Event: The horse spooks!"""
+Step 1 – Count phases: Count all phases that are True with successful_phases = 0 and successful_phases = successful_phases + 1, and print exactly, using an f-string: Successful phases: 4"""

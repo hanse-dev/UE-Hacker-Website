@@ -1,5 +1,9 @@
-erfolg1 = 3.0
-erfolg2 = 4.0
+teilnehmer1 = 4
+wahrscheinlichkeit1 = 0.75
+teilnehmer2 = 8
+wahrscheinlichkeit2 = 0.5
 
-einheit2_besser = erfolg2 > erfolg1
-print(f"Einheit 2 effizienter: {einheit2_besser}")
+erfolg1 = teilnehmer1 * wahrscheinlichkeit1
+erfolg2 = teilnehmer2 * wahrscheinlichkeit2
+print(f"Erwarteter Erfolg Einheit 1: {erfolg1}")
+print(f"Erwarteter Erfolg Einheit 2: {erfolg2}")

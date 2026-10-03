@@ -1,6 +1,5 @@
-ausdauer = 100
-runden = 0
-while ausdauer > 10:
-    ausdauer -= 15
-    runden += 1
-    print(f"Runde {runden}: Ausdauer {ausdauer}")
+for box in range(1, 7):
+    if box == 3 or box == 6:
+        print(f"Box {box}: Warnung")
+    else:
+        print(f"Box {box}: ok")

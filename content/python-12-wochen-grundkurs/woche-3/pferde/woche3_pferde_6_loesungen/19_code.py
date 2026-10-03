@@ -1,10 +1,7 @@
-punkte = 65
+heu_vorrat = 45
+bedarf = 50
 
-if punkte >= 90:
-    print("Gold")
-elif punkte >= 70:
-    print("Silber")
-elif punkte >= 50:
-    print("Bronze")
+if heu_vorrat >= bedarf:
+    print("Genug Heu!")
 else:
-    print("Kein Abzeichen")
+    print(f"Zu wenig Heu! Fehlt: {bedarf - heu_vorrat} kg")

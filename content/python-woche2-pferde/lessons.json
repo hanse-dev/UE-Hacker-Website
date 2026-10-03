@@ -305,6 +305,17 @@
             "8"
           ]
         }
+      },
+      {
+        "instruction": "Frage mit input() nach dem Namen deines Pferdes und gib genau aus: Hallo, (Name)! (Beim Prüfen wird automatisch Luna eingegeben.)",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hallo, Luna!",
+          "stdin": [
+            "Luna"
+          ]
+        }
       }
     ]
   },

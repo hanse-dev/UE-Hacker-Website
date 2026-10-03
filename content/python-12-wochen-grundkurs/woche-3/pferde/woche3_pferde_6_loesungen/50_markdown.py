@@ -1,3 +1,3 @@
-"""### Mission 3: Das Turnier – Aufgabe 2
+"""### Mission 2: Der Futterautomat – Aufgabe 3
 
-Schritt 2 – Gold prüfen: Prüfe mit and, ob note >= 85 UND fehler == 0, und gib dann genau aus: 🥇 GOLD!"""
+Schritt 3 – Falsches Passwort: Ergänze else mit der Ausgabe Falsches Passwort. Hier ist die Eingabe eine Banane, es soll genau erscheinen: Falsches Passwort"""

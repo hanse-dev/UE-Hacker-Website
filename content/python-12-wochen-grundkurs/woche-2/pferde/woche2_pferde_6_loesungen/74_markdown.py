@@ -1,3 +1,3 @@
-"""### Die Trainingshalle – Aufgabe 3
+"""### Die Trainingshalle – Aufgabe 2
 
-Schritt 3 – Durchschnittsintensität: Addiere die fünf Intensitäten, teile durch 5 und gib genau aus: Durchschnittsintensität: 3.2"""
+Schritt 2 – Gesamtdauer: Addiere alle fünf Dauerwerte in gesamtdauer und gib genau aus: Gesamtdauer: 120 Minuten"""

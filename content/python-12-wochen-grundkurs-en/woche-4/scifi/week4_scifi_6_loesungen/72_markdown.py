@@ -1,3 +1,3 @@
-"""### Extra challenge 3: The Endless Tunnel – Task 2
+"""### Extra challenge 2: The Holodeck – Task 4
 
-Step 2 – Add ship values: fuel = 100 and shield = 60. While fuel > 0 and shield > 0 pass one portal (distance += 1), subtract 20 fuel and 8 shield and print Portal 1: fuel 80, shield 52 and so on. The last line must read: Portal 5: fuel 0, shield 20"""
+Step 4 – Check the target: extend Step 3 with target_row = 8 and target_col = 8. After the loop check with if and and whether the player is on the target and print exactly: 🎯 Target reached!"""

@@ -1,3 +1,2 @@
-eingabe = input("Wie viele Crew-Mitglieder? ")
-crew = int(eingabe)
-print(f"Mit dir an Bord: {crew + 1}")
+name = input("Name des Piloten? ")
+print(f"Willkommen an Bord, {name}!")

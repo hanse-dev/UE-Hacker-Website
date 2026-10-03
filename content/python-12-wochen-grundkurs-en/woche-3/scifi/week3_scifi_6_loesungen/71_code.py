@@ -1,17 +1,13 @@
-level1_ok = False
-level2_ok = True
-level3_ok = True
-level4_ok = False
-level5_ok = True
-successes = 0
-if level1_ok:
-    successes = successes + 1
-if level2_ok:
-    successes = successes + 1
-if level3_ok:
-    successes = successes + 1
-if level4_ok:
-    successes = successes + 1
-if level5_ok:
-    successes = successes + 1
-print(f"Successes: {successes} of 5")
+shields = 80
+weapons = 60
+drive = 30
+if shields >= 50:
+    if weapons >= 50:
+        if drive >= 50:
+            print("All systems ready")
+        else:
+            print("Drive too weak")
+    else:
+        print("Weapons too weak")
+else:
+    print("Shields too weak")

@@ -1,3 +1,5 @@
-"""### Mission 1: Der Quanten-Zähler – Aufgabe 3
+"""## ⭐ Missionen
 
-Schritt 3 – Berechne die Summe aller Zahlen von 1 bis 100 mit einer Schleife (Variable summe, Start bei 0) und gib genau aus: Summe: 5050"""
+### Mission 1: Der Quanten-Zähler – Aufgabe 1
+
+Schritt 1 – Gib mit einer for-Schleife alle Zahlen von 1 bis 20 im Format Zeit: 1, Zeit: 2 und so weiter aus (die letzte Zeile muss lauten: Zeit: 20)."""

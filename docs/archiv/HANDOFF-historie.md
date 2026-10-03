@@ -2470,3 +2470,26 @@ Geschichten-Texte + LanguageTool (gleiches Skelett wie Abenteuer).
 - Tooling: `test:auth` nutzt den Worktree-Port statt fest 3011; `.gitignore` ignoriert auch
   `node_modules`-Symlinks.
 - Offen (in `todo.md`): EN nachziehen, `input()`-Lektion Woche 2 Sci-Fi.
+
+### 3.99 — Themen angeglichen: gleiche Lektionen in Abenteuer/Pferde/Sci-Fi (Branch `themen-angleichen`)
+
+Vergleich aller Wochen × Themen × DE/EN (Struktur + Python-Konzepte per AST über Lektionstexte,
+Beispiele und Referenzlösungen): Woche 1 und 5–12 waren je Lektion konzeptgleich, Woche 2–4 nicht.
+Ursache: Woche 2–4 wurden je Thema einzeln aus den alten Notebooks umgestellt (3.47/3.48), erst ab
+Woche 6 aus einem gemeinsamen Skelett.
+
+- **Woche 2:** Sci-Fi hat jetzt 9 Lektionen wie die anderen — „Rechenoperationen“ in Zahlen
+  (`lektion-06`) und neu „Rechnen mit Texten“ (`lektion-08`, steht vor `lektion-07`) geteilt, neue
+  Lektion 9 „Eingaben verarbeiten“ (`input()` + `int()`), `bool()`-Aufgabe in der Typumwandlung,
+  `len()` in Lektion 2. Pferde: `len()` in Lektion 2, dritte `input()`-Aufgabe in Lektion 9; EN-
+  Lösungen ohne Tupel-Zuweisung.
+- **Woche 3:** Pferde/Sci-Fi haben die eigene Lektion „Wichtige Operatoren: = oder ==?“
+  (`lektion-07`, steht nach `lektion-01`); Pferde nutzt kein `+=` mehr (kommt erst in Woche 4).
+- **Woche 4:** Pferde/Sci-Fi haben Lektion 8 „Muster aus Sternen“ (Treppe, Zahlentreppe).
+- **Lösungs-Reihenfolge:** `build_lesson_bundle.py` ordnet Lösungen nur über die Reihenfolge zu; in
+  Woche 9 stand die nachgezogene `input()`-Lösung (3.71) am Ende, dadurch waren im Download 13
+  Lösungen verschoben. Neu: `scripts/sync_loesungen.py` (sortiert Zell-Paare in Aufgaben-
+  Reihenfolge, `--check`), Test in `python-lektionen-format.spec.js` prüft die Reihenfolge.
+- Alle Referenzlösungen und Beispiele der Wochen 2–4 Pferde/Sci-Fi (DE+EN) mit `python3` gegen
+  die erwartete Ausgabe geprüft.
+- Offen (in `todo.md`): Aufgabenmengen in Debug/Missionen/Extra-Herausforderungen Woche 2–4.

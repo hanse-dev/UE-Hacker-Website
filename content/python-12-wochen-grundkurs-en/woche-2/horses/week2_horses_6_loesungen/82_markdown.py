@@ -1,3 +1,3 @@
-"""### The Tournament Training – Task 3
+"""### The Tournament Training – Task 2
 
-Step 3 – forecast success: the expected success is participants times success probability. Calculate it for both sessions and print exactly: Expected success session 1: 3.0 and Expected success session 2: 4.0"""
+Step 2 – totals: add up the costs of both sessions and print exactly: Total cost: 540.0 euros"""

@@ -1,3 +1,3 @@
-"""### The Training Hall – Task 3
+"""### The Training Hall – Task 2
 
-Step 3 – average intensity: add up the five intensities, divide by 5 and print exactly: Average intensity: 3.2"""
+Step 2 – total duration: add up all five durations in total_duration and print exactly: Total duration: 120 minutes"""

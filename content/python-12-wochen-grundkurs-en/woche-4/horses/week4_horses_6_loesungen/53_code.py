@@ -3,4 +3,4 @@ laps = 0
 while stamina > 10:
     stamina -= 15
     laps += 1
-print(f"Training finished after {laps} laps")
+    print(f"Lap {laps}: Stamina {stamina}")

@@ -1,3 +1,2 @@
-techniker = "Kira"
-techniker_id = 4021
-print(f"Techniker {techniker}, ID {techniker_id}")
+schildstaerke = 95
+print(f"Schildstärke: {schildstaerke} Prozent")

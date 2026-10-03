@@ -1,3 +1,3 @@
-"""### Mission 3: Der Asteroidenabbau – Aufgabe 3
+"""### Mission 3: Der Asteroidenabbau – Aufgabe 2
 
-Schritt 3 – Berechne den Durchschnittswert beider Asteroiden und gib genau aus: Durchschnittswert: 5200.0 – gib danach deine Mining-Entscheidung aus: Mining-Entscheidung: Vesta-3"""
+Schritt 2 – Vergleiche die Werte (starte mit wert_a = 5000.0 und wert_b = 5400.0): speichere wert_b > wert_a in der Boolean-Variable b_ist_besser und gib genau aus: Vesta-3 ist wertvoller: True"""

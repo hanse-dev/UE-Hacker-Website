@@ -1,3 +1,3 @@
-"""### System Protocol 6: Nested Conditions – Task 1
+"""### System Protocol 5: and, or, not – Task 2
 
-The variables are already created. Rebuild the nested airlock check: if the airlock is locked, print The airlock is locked. and then check the code inside (correct: The code is correct – the airlock opens!, wrong: Wrong code! Access denied.). If it is not locked, print The airlock is already open."""
+The variables has_emergency_key and has_override_code are already created. Use or and else to print: Door is opening manually! – or, if both are missing, Door stays locked!"""

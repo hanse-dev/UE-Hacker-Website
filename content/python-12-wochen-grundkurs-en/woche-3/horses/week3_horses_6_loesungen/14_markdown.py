@@ -1,3 +1,3 @@
-"""### Lesson 3: if-else – Task 2
+"""### Lesson 2: Comparison operators – Task 3
 
-If the hay stock is at least as large as the need, print Enough hay! – otherwise print, using an f-string, Not enough hay! Missing: followed by the missing amount in kg. Here exactly this should appear: Not enough hay! Missing: 5 kg"""
+A horse must be at least 160 cm at the withers. Use an f-string and >= to print exactly: Tall enough: True"""

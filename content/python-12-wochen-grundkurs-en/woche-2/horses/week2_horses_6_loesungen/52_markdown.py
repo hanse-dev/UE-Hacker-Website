@@ -1,3 +1,3 @@
-"""### Mission 2: The Riding Lesson – Task 2
+"""### Mission 2: The Riding Lesson – Task 1
 
-Step 2 – total time: add up all three riding times in the variable total_time and print exactly: Total time: 135 minutes"""
+Step 1 – schedule: create three horses: Luna (30 minutes), Thunder (45 minutes) and Comet (60 minutes), each with a name (text) and time (whole number). Print the heading === RIDING SCHEDULE === and then one line per horse in the format: Comet: 60 minutes"""

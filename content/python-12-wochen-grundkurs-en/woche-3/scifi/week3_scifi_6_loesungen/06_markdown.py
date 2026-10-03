@@ -1,3 +1,3 @@
-"""### System Protocol 2: Comparison Operators – Task 1
+"""### Important Operators: = or ==? – Task 1
 
-The variable speed is already created. Use a comparison to check whether it is greater than 1000, and then print: Faster than light!"""
+The command is \"START\" (command = \"START\"). Use == to check whether command equals \"START\" and print exactly: Engines ignite!"""

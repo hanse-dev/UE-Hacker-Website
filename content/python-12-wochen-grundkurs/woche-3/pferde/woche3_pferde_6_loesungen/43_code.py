@@ -1,5 +1,6 @@
-stallmeister_passwort = "Hufeisen"
-pfleger_passwort = "Karotte"
-eingabe = "Karotte"
+alter = 10
+hat_helm = True
+hat_erlaubnis = False
 
-print(f"Eingabe: {eingabe}")
+if alter >= 12 or hat_helm or hat_erlaubnis:
+    print("Zugang erlaubt")

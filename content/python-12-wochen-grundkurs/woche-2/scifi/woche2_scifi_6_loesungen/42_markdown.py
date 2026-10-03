@@ -1,3 +1,3 @@
-"""### Systemprotokoll 8: Eingaben verarbeiten – Aufgabe 2
+"""### Systemprotokoll 9: Eingaben verarbeiten – Aufgabe 1
 
-Frage mit input() nach der Anzahl der Crew-Mitglieder, wandle die Antwort mit int() um und gib aus: Mit dir an Bord: (Anzahl plus 1) (Beim Prüfen wird automatisch 12 eingegeben.)"""
+Frage mit input() nach dem Namen des Piloten und gib genau aus: Willkommen an Bord, (Name)! (Beim Prüfen wird automatisch Nova eingegeben.)"""

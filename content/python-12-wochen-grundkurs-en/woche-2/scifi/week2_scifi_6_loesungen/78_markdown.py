@@ -1,3 +1,3 @@
-"""### Extra challenge 2: The AI Laboratory – Task 4
+"""### Extra challenge 2: The AI Laboratory – Task 3
 
-Step 4 – Mark the high-performers with Boolean variables: compare each accuracy with average_acc = 0.85 (above_1 = acc1 > average_acc etc.) and print exactly: MiniMind above average: False"""
+Step 3 – Add all accuracies (0.92, 0.88, 0.75), divide by 3, store the result in average_acc and print exactly: Average accuracy: 0.85. Also print the best model: Best model: NovaNet"""

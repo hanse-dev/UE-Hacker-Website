@@ -1,4 +1,4 @@
-pferd_alter = 8
+gangart = "Trab"
 
-if pferd_alter == 8:
-    print("Das Pferd ist 8 Jahre alt!")
+if gangart == "Trab":
+    print("Schön gleichmäßig im Trab!")

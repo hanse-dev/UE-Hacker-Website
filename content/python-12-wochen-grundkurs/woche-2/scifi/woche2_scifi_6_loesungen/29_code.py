@@ -1,2 +1,3 @@
-system_name = "Stern" + "labor"
-print(f"Systemname: {system_name}")
+module = 6
+energie_pro_modul = 7
+print(f"Gesamtenergie: {module * energie_pro_modul}")

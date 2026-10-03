@@ -1,5 +1,3 @@
-"""## 🔥 Extra Challenges
+"""### Mission 3: The Asteroid Mining – Task 3
 
-### Extra challenge 1: The Spaceship Dock – Task 1
-
-Step 1 – Store the four ships (names as text, energy as whole numbers) in variables. Print the heading === DOCK PROTOCOL === and then one f-string line per ship in the format Aurora: energy 80% (the last line must read: Lyra: energy 71%)."""
+Step 3 – Calculate the average value of both asteroids and print exactly: Average value: 5200.0 – then print your mining decision: Mining decision: Vesta-3"""

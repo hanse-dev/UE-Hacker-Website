@@ -1,3 +1,3 @@
-"""### System Protocol 5: and, or, not – Task 1
+"""### System Protocol 4: if-elif-else – Task 1
 
-The variables has_access_code and has_fingerprint are already created. Use and and else to print: Access to the command deck granted! – or, if not both are true, Access denied!"""
+The variable points is already created. Use if-elif-else to print the rank: from 1000 Fleet Commander, from 500 Captain, from 100 Lieutenant, otherwise Cadet. Format: Rank: Lieutenant"""

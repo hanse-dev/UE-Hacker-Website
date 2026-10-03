@@ -1,3 +1,3 @@
-"""### Mission 3: Das Turnier – Aufgabe 4
+"""### Mission 3: Das Turnier – Aufgabe 2
 
-Schritt 4 – Zeit-Bonus: Prüfe **separat** mit einem eigenen if, ob zeit < 60, und gib dann genau aus: +10 Bonus für perfekte Zeit!"""
+Schritt 2 – Gold prüfen: Prüfe mit and, ob note >= 85 UND fehler == 0, und gib dann genau aus: 🥇 GOLD!"""

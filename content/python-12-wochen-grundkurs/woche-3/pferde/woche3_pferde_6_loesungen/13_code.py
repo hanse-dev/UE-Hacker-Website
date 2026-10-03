@@ -1,6 +1,4 @@
-regnet = True
+gangart = "Trab"
 
-if regnet:
-    print("Wir reiten in der Halle.")
-else:
-    print("Perfekt für die Weide!")
+if gangart != "Galopp":
+    print("Das ist kein Galopp!")

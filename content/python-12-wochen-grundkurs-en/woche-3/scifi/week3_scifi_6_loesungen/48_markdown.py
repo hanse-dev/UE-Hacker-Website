@@ -1,3 +1,3 @@
-"""### Mission 3: The Mission Rating – Task 1
+"""### Mission 2: The Terminal Access – Task 1
 
-The variables level, success_points, losses and time are already created. Calculate score = success_points - (losses * 10) - (time / 5) and print: Score: 80.0"""
+The variables admin_password, guest_password and entered (the simulated password that was typed in) are already created. Use if to check whether entered equals admin_password (output: Full access granted), and elif to check whether it equals guest_password (output: Read access granted)."""

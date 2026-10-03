@@ -1,6 +1,9 @@
-has_bridle = False
-has_halter = True
-if has_bridle or has_halter:
-    print("You can lead the horse!")
+points = 65
+if points >= 90:
+    print("Gold")
+elif points >= 70:
+    print("Silver")
+elif points >= 50:
+    print("Bronze")
 else:
-    print("Equipment is missing!")
+    print("No badge")

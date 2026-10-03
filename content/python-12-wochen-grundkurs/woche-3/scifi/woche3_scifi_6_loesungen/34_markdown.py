@@ -1,3 +1,5 @@
-"""### Debug-Quest – Aufgabe 3
+"""## 🐛 Debug-Quest
 
-🐛 Bug #3 – Ziel: Das Programm soll System aktiv ausgeben, wenn der Status hoch genug ist, sonst System inaktiv. Was ist falsch?"""
+### Debug-Quest – Aufgabe 1
+
+🐛 Bug #1 – Ziel: Das Programm soll bei ausreichendem Level Zugriff gewährt! und Willkommen Kommandant! ausgeben. Was ist falsch?"""

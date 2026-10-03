@@ -1,10 +1,7 @@
-stalltuer_verschlossen = True
-richtiger_schluessel = False
+hat_trense = False
+hat_halfter = True
 
-if stalltuer_verschlossen:
-    if richtiger_schluessel:
-        print("Der Schlüssel passt – die Stalltür öffnet sich!")
-    else:
-        print("Dieser Schlüssel passt nicht.")
+if hat_trense or hat_halfter:
+    print("Du kannst das Pferd führen!")
 else:
-    print("Die Stalltür steht bereits offen.")
+    print("Es fehlt Zubehör!")

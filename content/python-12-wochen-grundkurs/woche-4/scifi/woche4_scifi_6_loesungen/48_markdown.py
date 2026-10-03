@@ -1,3 +1,3 @@
-"""### Mission 3: Das Zeit-Paradoxon – Aufgabe 1
+"""### Mission 2: Der Raumstation-Kommandant – Aufgabe 2
 
-Schritt 1 – Lege jahr = 2100 und spruenge = 0 an. Springe, solange jahr != 2000 gilt, 25 Jahre zurück (jahr -= 25), erhöhe spruenge um 1 und gib Sprung 1: Jahr 2075, Sprung 2: Jahr 2050 und so weiter aus. Die letzte Zeile muss lauten: Sprung 4: Jahr 2000"""
+Schritt 2 – Erweitere die Schleife: Gib für jedes Deck Deck N: OK aus. Gib zusätzlich ⚠️ Warnung auf Deck N für die Decks 3, 6 und 9 aus (nutze if mit or) und Bonus auf Deck N für die Decks 5 und 10. Kontrolle: Die letzte Zeile der gesamten Ausgabe muss lauten: Bonus auf Deck 10"""

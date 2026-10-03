@@ -1,3 +1,3 @@
-"""### Mission 2: The Fleet Analysis – Task 1
+"""### Mission 1: The Energy Depot – Task 2
 
-Step 1 – Create the variables for all three ships. Print the heading === FLEET ANALYSIS === and then one line per ship in the format Aurora: crew 120, speed 2.5 (the last line must read: Orion: crew 200, speed 1.5)."""
+Step 2 – Create blocks = 12 (whole number) and energy_per_block = 45.5 (decimal number). Multiply them, store the result in total_energy and print exactly: Total energy: 546.0"""

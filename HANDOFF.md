@@ -1,9 +1,7 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-10-04
-> **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.98 (u.a. Offline-Downloads in 3 Formaten, Zertifikate/PDF,
-> Skip-/Reset-Button, Login-Fortschritt, Pre-commit/Pre-push, Admin-Termine, "Kurs starten"-Gate für
-> alle Kurse, Worktree-Tooling, Dev-Skip-Flag, JS-Spielewerkstatt mit neuem Konzept).
+> **Aktueller Stand:** `main` enthält alles bis 3.98 (siehe Tabelle in Abschnitt 3); Branch `themen-angleichen` (3.99) wartet auf den Merge.
 > Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4) — nach dem nächsten Deploy
 > den einmaligen Termine-Import laufen lassen (Abschnitt 5).
 > **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
@@ -26,8 +24,7 @@ Lernplattform für Kinder/Jugendliche (Python) — Vue 3 + Vite, Notebooks unter
 ## 2. Git
 
 `main` ist der Integrationsstand, neue Arbeit immer **neu von `main`** in einem eigenen Branch
-(siehe `WORKFLOW.md`). Die frühen PRs #1–#3 (vor der Abschnitts-Nummerierung 3.NN unten) stehen im
-Archiv (`docs/archiv/HANDOFF-historie.md`).
+(siehe `WORKFLOW.md`).
 
 ---
 
@@ -43,28 +40,14 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.37–3.44 | `VISION.md`/`PROJEKTIDEEN.md`, Projekte-Übersicht `/projekte`, JS-Spielewerkstatt (iframe-Sandbox), `/profil` mit Abzeichen, JS-Grundkurs (9 Wochen) | |
 | 3.46 | Woche 12: Text-Adventure-Abschlussprojekt statt Turtle | Komposition einziger neuer Begriff; List Comprehension neu in Woche 6 |
 | 3.47/3.48 | Python Woche 1–4 als Einzel-Lektionen (Woche 3 nachträglich DE/EN angeglichen) (Lektions-Format) | `content/python-woche{N}-*`, Engine `pyodide` in `JsCourseTour`; Woche 3 DE/EN angeglichen; Woche 5–12 fertig; Lösungen aller Wochen aus Referenzlösungen (Glossar noch im alten Stil) |
-| 3.49–3.53 | Python Woche 5–9 (Funktionen, Listen, Module, Dictionaries/Tupel, JSON/Dateien) als Einzel-Lektionen | je Thema 7–9 Lektionen + Debug + 3 Missionen + 3–4 Extra-Herausforderungen, DE = EN, jede Referenzlösung mit `python3` geprüft |
-| 3.54 | Python Woche 10–12 (OOP Grundlagen, OOP Fortgeschritten, Text-Adventure) als Einzel-Lektionen | keine Notebook-Woche mehr in der Tour; `validation.codeContains`/`validation.stdin` eingeführt; alle 2.972 Aufgaben-Lösungen Woche 1–12 neu erzeugt |
-| 3.55 | Alte Notebooks entfernt, ZIP-Download neu aus dem Lektions-Format | `scripts/build_lesson_bundle.py` baut Download direkt aus dem Lektions-Format, DE+EN |
-| 3.56/3.57 | Woche 2 DE/EN angeglichen (Abenteuer/Pferde, dann Sci-Fi) | Sci-Fi ausnahmsweise umgekehrt: EN war größer, DE wurde angeglichen |
-| 3.58 | Projekt-Kurs Vigenère-Chiffre (Nachfolger Cäsar-Chiffre) | `content/vigenere-chiffre`, 5 Lektionen, DE-first |
-| 3.59 | Projekt-Kurs Snake (Nachfolger JS-Spielewerkstatt) | `content/js-snake`, JS-Sandbox/Canvas, 6 Lektionen |
-| 3.60 | Projekt-Kurs Text-Adventure/Fluchtraum | `content/text-adventure-fluchtraum`, 6 Lektionen, Pyodide |
-| 3.61 | Alle 7 Projekt-Kurse auf "selbst schreiben + Lösung auf Wunsch" umgestellt | `codeTemplate` blankt nur neu eingeführte Funktionskörper, neuer "Lösung anzeigen"-Button |
-| 3.62 | Projekt-Abschluss zeigt Abzeichen-Hinweis + Link zu /projekte | Neue Komponente `ProjectCompletionBox.vue` |
-| 3.63 | Lokales Tool: Account anlegen + Thermodrucker-Ausdruck | `scripts/local-tools/create-account-printout.py`, nicht deployed |
-| 3.64 | Login-Formulare für Passwort-Manager + Admin-Nav-Link nur bei Login | Admin-/Account-Login jetzt echte `<form>`s mit `name`-Attributen (1Password-Autofill) |
-| 3.65 | Tippfehler-Pass (cspell) auf Lektions-Format/JS-Grundkurs/Interaktiv-/Projekt-Kurse | 0 echte Tippfehler in 1306 Dateien, 280 legitime Wörter in `cspell.json` ergänzt |
-| 3.66 | KI-Labor gestartet — Kursplan + Woche 1 "Was ist KI?" | `KiLaborTour.vue`, `content/ki-labor-woche1`, Check-System um `courseKey` vorbereitet |
-| 3.67 | KI-Labor: Quiz + Wochen-Zertifikat nachgezogen | `useWeekChecks.js`/`WeekCheckPanel.vue`/`CodeChallenge.vue`/`useCertificatePdf.js` um `courseKey` generalisiert |
-| 3.68 | KI-Labor: Woche 2 "Daten sind alles" | 5 Lektionen + Debug + Mission + 3 Extra-Herausforderungen + eigener Wochen-Check |
+| 3.49–3.54 | Python Woche 5–12 als Einzel-Lektionen | je Thema 7–9 Lektionen + Debug + 3 Missionen + 3–4 Extra-Herausforderungen; keine Notebook-Woche mehr; `validation.codeContains`/`validation.stdin` eingeführt |
+| 3.55–3.57 | Alte Notebooks entfernt, ZIP-Download aus dem Lektions-Format; Woche 2 DE/EN angeglichen | `scripts/build_lesson_bundle.py` |
+| 3.58–3.62 | Projekt-Kurse Vigenère, Snake, Text-Adventure/Fluchtraum; alle 7 Projekt-Kurse auf "selbst schreiben + Lösung auf Wunsch" | `codeTemplate` blankt nur neu eingeführte Funktionskörper; `ProjectCompletionBox.vue` |
+| 3.63–3.65 | Lokales Tool Account + Thermodrucker; Login-Formulare für Passwort-Manager; Tippfehler-Pass (cspell) | `scripts/local-tools/`, nicht deployed |
+| 3.66–3.68, 3.72–3.77, 3.96 | KI-Labor Woche 1–8 mit Quiz, Wochen-Zertifikat und 160 Musterlösungen | `KiLaborTour.vue`; Check-System per `courseKey` generalisiert; `task.referenceSolution` (kein Lösungs-Button), geprüft von `check_kilabor_solutions.py` |
 | 3.69/3.70 | Profil zeigt Wochen-Zertifikate mit PDF-Download + "Kurs starten"-Gate | `useCourseCertificates.js`; `CourseDetail.vue` blendet Beschreibung/Struktur hinter einem Start-Button aus; Lernziele fürs PDF aus `loadWeekLernziele()` (Python) bzw. `src/data/kiLaborWeeks.js` |
 | 3.71 | Woche 4 + 9: `input()`-Lücken geschlossen | `validation.stdin`-Schritt je Thema (Woche 4 Boss-3, Woche 9 Boss-1), DE+EN, ans Ende der Lektion angehängt |
-| 3.72–3.77 | KI-Labor: Woche 3–8 (k-NN, Training & Test, Entscheidungsbäume, Neuronale Netze I+II, Grenzen & Ethik) | je 5 Lektionen + Debug + Mission + 3 Extra-Herausforderungen + eigener Wochen-Check; alle Beispiele/Lösungen mit `python3` geprüft; nach Woche 8 kein "nächste Woche"-Button mehr |
-| 3.78 | `output_contains` toleriert Groß-/Kleinschreibung, Leerzeichen, Satzzeichen am Ende | `output_equals` bleibt bewusst exakt (prüft teils auf ungewollte Extra-Ausgabe); Test in `week-checks-logic.spec.js` |
-| 3.79 | Interaktiv-Kurs: Lektionstexte ausführlicher (Kinder + Jugendliche, DE) | reine Textüberarbeitung, keine Logikänderung |
-| 3.80 | Lektionsaufgaben prüfen nur noch die Ausgabe | `validateOutput()` vs. `structuralChecksOk()` (nur Wochen-Check) in `useTaskValidation.js` |
-| 3.81 | Lektionsaufgaben überspringbar (nach 2 Fehlversuchen) | `.btn-skip` in `LessonView.vue`/`JsLessonView.vue`, zählt für den Abschluss (⏭ statt ✓); nicht im Wochen-Check |
+| 3.78–3.81 | Prüf-Logik der Lektionen | `output_contains` tolerant, `output_equals` exakt; Lektionen prüfen nur die Ausgabe (`validateOutput()`), Struktur-Checks nur im Wochen-Check; Aufgaben nach 2 Fehlversuchen überspringbar (`.btn-skip`); 3.79 Interaktiv-Texte ausführlicher |
 | 3.82 | Login ersetzt lokalen Fortschritt durch Account-Stand | `loadAccountProgress()`/`replaceLocalProgress()` (`useProgressSync.js`); Seiten-Reload merged weiter nach `updatedAt` |
 | 3.83 | Pre-commit/Pre-push zweistufig statt vollem `test:checks` bei jedem Commit | `scripts/test-changed.mjs` mappt staged Dateien auf betroffene Specs (Pre-commit); voller `test:checks` im Pre-push-Hook |
 | 3.84 | Termine im Admin-Panel statt `public/termine.json` | `termine`-Tabelle + `/api/termine` + `/api/admin/termine`, Tab „Termine“ in `AdminView.vue`; einmaliger Umzug per `import-termine-json.js` |
@@ -77,9 +60,8 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.92 | JS-Lektionsaufgaben: fehlende `output_contains`-Checks nachgezogen | `js-grundkurs` und `js-snake`: keine JS-Pflichtaufgabe mehr ohne Ausgabe-/Canvas-/DOM-Prüfung (vorher 31, seit 3.80 ungeprüft) |
 | 3.94 | Glossar-Tooltip bei verschachtelten Begriffen | `useLessonContent.js`: ein kombinierter Regex-Durchlauf statt sequenziellem Ersetzen |
 | 3.95 | Offline-Downloads in 3 Formaten (Notebooks, eine `.py`, Einzeldateien je Lektion) | 12 Wochen, Python-Projekte, KI-Labor; `OfflineDownloads.vue`, `pack_notebooks.py`, Details `INHALTE.md` |
-| 3.96 | KI-Labor-Musterlösungen (160) | `task.referenceSolution` (nicht `solution` → kein Lösungs-Button), geprüft von `check_kilabor_solutions.py` |
-| 3.98 | Themen angeglichen (12-Wochen-Kurs) + Lösungs-Reihenfolge | Woche 2: Sci-Fi neue Lektion 8 `input()` + `bool()`-Aufgabe, `len()` in Pferde/Sci-Fi; Woche 3 Pferde ohne `+=`; `scripts/sync_loesungen.py` sortiert `_6_loesungen` in Aufgaben-Reihenfolge (Woche 9 war im Download verschoben); Rest siehe `todo.md` |
 | 3.98 | Rechtschreib- und Verständnisprüfung aller deutschen Inhalte | cspell deckt allen Content ab, neu `lint:spelling:de` (LanguageTool in Docker); alle Kurse gelesen und korrigiert, Themen-Reste in Pferde/Sci-Fi und englische Bezeichner in Woche 12 (DE) bereinigt, Wochen-Check-Fragen zu nicht gelehrtem Stoff ersetzt |
+| 3.99 | Themen angeglichen (12-Wochen-Kurs Woche 2–4) + Lösungs-Reihenfolge | gleiche Lektionen/Konzepte in Abenteuer/Pferde/Sci-Fi; neue Lektionen mit neuer ID an passender Stelle; `scripts/sync_loesungen.py` (Woche 9 war im Download verschoben) |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -87,7 +69,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 - Bulk-Edits an JSON/Notebooks nie per volle Reserialisierung, sondern gezielte Text-Ersetzung + `json.loads()` danach (3.12, 3.16). Seit 3.33 sind 12-Wochen-Notebooks Zellen-Ordner (`NN_*.py`) — keine `.ipynb` als Quelle wieder einführen.
 - Debug-Bugs müssen vom Kernel-Zustand unabhängig sein und dürfen die Lösung nicht verraten. Nach Notebook-Änderung Code-Zellen mit gemeinsamem Namespace per `python3` ausführen.
 - Ein "Fund" aus einer Variante gilt nicht automatisch für alle: vor Massenänderungen alle 3 Varianten × DE/EN grep-prüfen.
-- Lektions-IDs (`lektion-NN`) sind der Fortschritts-Schlüssel — neue Lektionen nur mit neuer ID anhängen, bestehende nie umnummerieren (3.98).
+- Lektions-IDs (`lektion-NN`) sind der Fortschritts-Schlüssel — neue Lektionen nur mit neuer ID anhängen, bestehende nie umnummerieren; Reihenfolge = Position in `lessons.json`, nicht die ID (3.99).
 - Neue Prüf-Logik immer über `useTaskValidation.js` (bzw. `isLessonUnlocked`) laufen lassen — nur dann
   greift der Dev-Modus `dev:skip-checks` automatisch auch im neuen Kurs (3.97).
 - `codeTemplate` einer echten Debug-Aufgabe ist absichtlich kaputt — Generatoren kompilieren nur

@@ -1,3 +1,5 @@
-"""### Mission 1: Der Stallwart – Aufgabe 2
+"""### Debug-Quest – Aufgabe 3
 
-Schritt 2 – Zugangsregel: Prüfe mit if und or, ob alter >= 12 ODER hat_helm ODER hat_erlaubnis gilt, und gib dann genau aus: Zugang erlaubt"""
+🐛 Bug #3 – Ziel: Das Programm soll bei alter >= 5 den Text Ausgebildet ausgeben. Was ist falsch?
+
+**Erklärung:** `elif` braucht immer eine eigene Bedingung. Für den Restfall ohne Bedingung nimmst du `else`."""

@@ -1,3 +1,3 @@
-"""### The Rider Quiz – Task 4
+"""### The Rider Quiz – Task 2
 
-Step 4 – Certificate: With at least 300 points, print exactly: 🎓 Rider certificate: passed!"""
+Step 2 – Count points: For each correct answer add points = points + 100 and print exactly, using an f-string: Points: 300"""

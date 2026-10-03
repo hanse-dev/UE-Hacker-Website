@@ -1,3 +1,3 @@
-"""### Debug-Quest – Aufgabe 3
+"""### Debug-Quest – Aufgabe 2
 
-🐛 Bug #3 – Ziel: Das Programm soll ausgeben: Schildstärke: 95 Prozent. Was ist falsch?"""
+🐛 Bug #2 – Ziel: Das Programm soll die verbleibende Energie berechnen und ausgeben: Verbleibende Energie: 50. Was ist falsch?"""

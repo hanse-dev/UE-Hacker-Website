@@ -1,3 +1,3 @@
-"""### System Protocol 2: Comparison Operators – Task 3
+"""### System Protocol 2: Comparison Operators – Task 1
 
-The variable energy is already created. Use < to check whether energy is below 20, and then print: Energy low!"""
+The variable speed is already created. Use a comparison to check whether it is greater than 1000, and then print: Faster than light!"""

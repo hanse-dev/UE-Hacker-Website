@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 2: Das KI-Labor – Aufgabe 4
+"""### Extra-Herausforderung 2: Das KI-Labor – Aufgabe 3
 
-Schritt 4 – Markiere die Spitzenmodelle mit Boolean-Variablen: vergleiche jede Genauigkeit mit durchschnitt_genauigkeit = 0.85 (ueber_1 = genauigkeit1 > durchschnitt_genauigkeit usw.) und gib genau aus: MiniMind über Durchschnitt: False"""
+Schritt 3 – Addiere alle Genauigkeiten (0.92, 0.88, 0.75), teile durch 3, speichere das Ergebnis in durchschnitt_genauigkeit und gib genau aus: Durchschnittsgenauigkeit: 0.85. Gib danach das beste Modell aus: Bestes Modell: NovaNet"""

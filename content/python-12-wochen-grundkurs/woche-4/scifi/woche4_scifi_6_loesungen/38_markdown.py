@@ -1,3 +1,5 @@
-"""### Mission 1: Der Quanten-Zähler – Aufgabe 2
+"""### Debug-Quest – Aufgabe 3
 
-Schritt 2 – Gib zuerst die geraden Zahlen 2 bis 20 als Gerade: 2 … Gerade: 20 aus. Gib dann die Zahlen 20 bis 1 als Countdown: 20 … Countdown: 1 aus und nach der Schleife die Zeile Start!"""
+🐛 Bug #3 – Ziel: Das Programm soll Log 0, Log 1 und Log 2 ausgeben und danach einmal Ende. Was ist falsch?
+
+**Erklärung:** Der Schleifenkörper muss eingerückt sein. Ohne Einrückung meldet Python einen `IndentationError`."""

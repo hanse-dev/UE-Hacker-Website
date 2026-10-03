@@ -1,3 +1,3 @@
-"""### Extra challenge 2: The AI Laboratory – Task 1
+"""### Extra challenge 1: The Spaceship Dock – Task 3
 
-Step 1 – Create variables for all three models. Print the heading === AI LAB PROTOCOL === and one f-string line per model in the format NovaNet: accuracy 0.92, 1200000 parameters (the last line must read: MiniMind: accuracy 0.75, 300000 parameters)."""
+Step 3 – Print the ship with the highest energy (Highest energy: Orion) and then the total energy requirement at 100 units per ship (4 ships × 100), exactly: Energy requirement: 400. Calculate the requirement, don't just type it."""

@@ -1,9 +1,5 @@
-points = 320
-if points >= 1000:
-    print("Rank: Fleet Commander")
-elif points >= 500:
-    print("Rank: Captain")
-elif points >= 100:
-    print("Rank: Lieutenant")
+signals = 12
+if signals >= 15:
+    print("Life forms detected!")
 else:
-    print("Rank: Cadet")
+    print("Sector empty.")

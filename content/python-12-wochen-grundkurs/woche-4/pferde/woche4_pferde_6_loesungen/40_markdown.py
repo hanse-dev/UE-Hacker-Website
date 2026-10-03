@@ -1,3 +1,5 @@
-"""### Mission 1: Der Zähl-Reiter – Aufgabe 3
+"""## ⭐ Missionen
 
-Schritt 3 – Trainingsstunden: Addiere in einer Schleife die Zahlen 1 bis 10 in der Variable summe und gib genau aus: Summe: 55"""
+### Mission 1: Der Zähl-Reiter – Aufgabe 1
+
+Schritt 1 – Pferde-Runden zählen: Gib mit einer for-Schleife die Pferdenummern 1 bis 10 aus, jeweils genau so: Pferd: 1 (bis Pferd: 10)"""

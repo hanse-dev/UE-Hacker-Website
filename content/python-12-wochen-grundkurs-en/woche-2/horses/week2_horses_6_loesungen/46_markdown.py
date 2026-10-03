@@ -1,3 +1,5 @@
-"""### Mission 1: The Feed Store – Task 2
+"""## ⭐ Missions
 
-Step 2 – record hay bales: Store bales = 20 (whole number) and weight_per_bale = 15.5 (decimal number) and print exactly: Bales: 20, at 15.5 kg each"""
+### Mission 1: The Feed Store – Task 1
+
+Step 1 – name the caretaker: Create caretaker = \"Mia\" (text) and caretaker_id = 7 (whole number) and use an f-string to print exactly: Caretaker: Mia (ID 7)"""

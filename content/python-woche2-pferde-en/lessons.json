@@ -305,6 +305,17 @@
             "8"
           ]
         }
+      },
+      {
+        "instruction": "Ask with input() for your horse's name and print exactly: Hello, (name)! (When checking, Luna is entered automatically.)",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hello, Luna!",
+          "stdin": [
+            "Luna"
+          ]
+        }
       }
     ]
   },

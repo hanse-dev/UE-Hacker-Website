@@ -1,3 +1,3 @@
-"""### The Marathon Ride – Task 5
+"""### The Marathon Ride – Task 3
 
-Step 5 – Feeding check: Use a while loop to repeatedly ask for the amount of hay in kg (input(), convert with int()) until an amount of at least 2 kg is entered. On too little hay print Not enough hay!, afterwards print exactly Feeding: 3 kg. (When checking, 1 and then 3 are entered automatically.)"""
+Step 3 – Statistics: Here the marathon loop from step 1 runs without any output. Afterwards print exactly: Distance: 4 laps and on the next line Final energy: 0"""

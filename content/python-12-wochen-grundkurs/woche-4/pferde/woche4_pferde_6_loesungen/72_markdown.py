@@ -1,3 +1,3 @@
-"""### Das Marathon-Reiten – Aufgabe 2
+"""### Das Reitbrett – Aufgabe 4
 
-Schritt 2 – Futter-Pause: Start mit energie = 100 und runde = 0. Solange runde < 6 ist, erhöhe runde um 1 und ziehe 15 Energie ab. In Runde 3 gibt es eine Futter-Pause: dann kommen zusätzlich 20 Energie dazu. Gib nach jeder Runde aus: Runde 1: Energie 85, Runde 2: Energie 70, Runde 3: Energie 75, Runde 4: Energie 60, Runde 5: Energie 45, Runde 6: Energie 30"""
+Schritt 4 – Dressur-Treppe: Baue eine Treppe aus Sternen: In Zeile 1 steht 1 Stern, in Zeile 2 zwei Sterne, bis Zeile 4 mit vier Sternen (äußere Schleife range(1, 5), innere range(zeile)). Ausgabe: *  **  ***  ****  (jeweils in einer eigenen Zeile)."""

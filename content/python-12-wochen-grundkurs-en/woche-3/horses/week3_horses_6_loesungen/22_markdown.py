@@ -1,3 +1,3 @@
-"""### Lesson 5: and, or, not – Task 2
+"""### Lesson 4: if-elif-else – Task 2
 
-Use or: if has_bridle or has_halter is true, print You can lead the horse! – otherwise Equipment is missing! Here exactly this should appear: You can lead the horse!"""
+Award badges by points: from 90 Gold, from 70 Silver, from 50 Bronze, otherwise No badge. Print exactly the name – here: Bronze"""

@@ -244,6 +244,40 @@
     ]
   },
   {
+    "id": "lektion-08",
+    "section": "lektion",
+    "title": "System Log 8: Patterns of Stars",
+    "file": "lektion-08.md",
+    "lessonSummary": "With nested loops you draw whole patterns – row by row.",
+    "tasks": [
+      {
+        "instruction": "Run this example: a staircase that grows row by row.",
+        "example": true,
+        "codeTemplate": "for row in range(1, 4):\n    for column in range(row):\n        print(\"✨\", end=\" \")\n    print()\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "✨ ✨ ✨"
+        }
+      },
+      {
+        "instruction": "Draw a staircase of stars: row 1 has one *, row 2 has two ** and so on up to row 4 with ****. Tip: range(1, 5) for the rows and range(row) for the columns, with print(\"*\", end=\"\") and an empty print() after every row.",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "*\n**\n***\n****"
+        }
+      },
+      {
+        "instruction": "Draw a staircase of numbers: row 1 shows 1, row 2 shows 12, row 3 shows 123. Tip: range(1, 4) for the rows, range(1, row + 1) for the columns and print(column, end=\"\").",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "1\n12\n123"
+        }
+      }
+    ]
+  },
+  {
     "id": "debug-01",
     "section": "debug",
     "title": "Debug Quest",

@@ -1,6 +1,10 @@
-erfolgreiche_phasen = 2
-schwierigkeit = 4
+hindernis_umgeworfen = False
+pferd_scheut = True
+sattel_verrutscht = False
 
-if schwierigkeit >= 4:
-    if erfolgreiche_phasen < 3:
-        print("Zusatztraining erforderlich!")
+if hindernis_umgeworfen:
+    print("Ereignis: Hindernis umgeworfen!")
+if pferd_scheut:
+    print("Ereignis: Das Pferd scheut!")
+if sattel_verrutscht:
+    print("Ereignis: Sattel verrutscht!")

@@ -1,5 +1,7 @@
-"""### Debug-Quest – Aufgabe 3
+"""## 🐛 Debug-Quest
 
-🐛 Bug #3 – Ziel: Das Programm soll bei alter >= 5 den Text Ausgebildet ausgeben. Was ist falsch?
+### Debug-Quest – Aufgabe 1
 
-**Erklärung:** `elif` braucht immer eine eigene Bedingung. Für den Restfall ohne Bedingung nimmst du `else`."""
+🐛 Bug #1 – Ziel: Das Programm soll bei level >= 10 sowohl Reitfertigkeit erreicht! als auch Glückwunsch! ausgeben. Was ist falsch?
+
+**Erklärung:** Der Code nach dem `if` muss eingerückt sein – sonst weiß Python nicht, was zur Bedingung gehört (IndentationError)."""

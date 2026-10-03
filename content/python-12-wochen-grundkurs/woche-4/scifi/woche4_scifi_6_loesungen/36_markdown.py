@@ -1,5 +1,5 @@
-"""## ⭐ Missionen
+"""### Debug-Quest – Aufgabe 2
 
-### Mission 1: Der Quanten-Zähler – Aufgabe 1
+🐛 Bug #2 – Ziel: Das Programm soll System 1 bis System 5 ausgeben. Was ist falsch?
 
-Schritt 1 – Gib mit einer for-Schleife alle Zahlen von 1 bis 20 im Format Zeit: 1, Zeit: 2 und so weiter aus (die letzte Zeile muss lauten: Zeit: 20)."""
+**Erklärung:** Hinter der `for`-Zeile fehlt der Doppelpunkt `:` – Python meldet einen `SyntaxError`."""

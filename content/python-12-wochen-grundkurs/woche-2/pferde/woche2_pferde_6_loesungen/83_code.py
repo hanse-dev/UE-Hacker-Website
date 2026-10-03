@@ -1,9 +1,5 @@
-teilnehmer1 = 4
-wahrscheinlichkeit1 = 0.75
-teilnehmer2 = 8
-wahrscheinlichkeit2 = 0.5
+kosten1 = 300.0
+kosten2 = 240.0
 
-erfolg1 = teilnehmer1 * wahrscheinlichkeit1
-erfolg2 = teilnehmer2 * wahrscheinlichkeit2
-print(f"Erwarteter Erfolg Einheit 1: {erfolg1}")
-print(f"Erwarteter Erfolg Einheit 2: {erfolg2}")
+gesamtkosten = kosten1 + kosten2
+print(f"Gesamtkosten: {gesamtkosten} Euro")
