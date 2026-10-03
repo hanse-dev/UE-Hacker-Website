@@ -1,7 +1,7 @@
 # Handoff — UE Hacker Website
 
-> **Zuletzt aktualisiert:** 2026-10-03
-> **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.97 (u.a. Offline-Downloads in 3 Formaten, Zertifikate/PDF,
+> **Zuletzt aktualisiert:** 2026-10-04
+> **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.98 (u.a. Offline-Downloads in 3 Formaten, Zertifikate/PDF,
 > Skip-/Reset-Button, Login-Fortschritt, Pre-commit/Pre-push, Admin-Termine, "Kurs starten"-Gate für
 > alle Kurse, Worktree-Tooling, Dev-Skip-Flag, JS-Spielewerkstatt mit neuem Konzept).
 > Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4) — nach dem nächsten Deploy
@@ -78,22 +78,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.94 | Glossar-Tooltip bei verschachtelten Begriffen | `useLessonContent.js`: ein kombinierter Regex-Durchlauf statt sequenziellem Ersetzen |
 | 3.95 | Offline-Downloads in 3 Formaten (Notebooks, eine `.py`, Einzeldateien je Lektion) | 12 Wochen, Python-Projekte, KI-Labor; `OfflineDownloads.vue`, `pack_notebooks.py`, Details `INHALTE.md` |
 | 3.96 | KI-Labor-Musterlösungen (160) | `task.referenceSolution` (nicht `solution` → kein Lösungs-Button), geprüft von `check_kilabor_solutions.py` |
-
-### 3.98 — Rechtschreib- und Verständnisprüfung (Branch `inhalts-pruefung`, in Arbeit)
-
-Nur Deutsch, Maßstab ab 10/11 Jahre (Interaktiv-Kurs Kinder ab 8). Eindeutige Fehler werden direkt
-behoben, Urteilsfragen stehen je Paket in `todo.md` (dort auch Stand und Paket-Reihenfolge).
-
-- Werkzeuge: `lint:spelling` (cspell, ignoriert Code-Felder, deckt jetzt allen Content ab) und
-  `lint:spelling:de` (LanguageTool in Docker, lokales Tool `scripts/local-tools/rechtschreibung-de/`,
-  ~6 Min, `-- --grammatik` für Grammatik-Kandidaten) — beide bei 0 Funden.
-- Erledigt: alle Pakete (Interaktiv-Kurs, 12-Wochen-Kurs samt Wochen-Checks, JS-Grundkurs,
-  Projekt-Kurse, KI-Labor, UI-Texte, Kursbeschreibungen, Glossar). Aufgabentexte immer in `lessons.json`
-  **und** in der Lösungs-Markdown-Zelle (`…_6_loesungen`) ändern; geänderte Ausgabetexte zusätzlich
-  in `expected`, Vorlage und Lösungs-Code.
-- Nachbesserungen umgesetzt (DE): Abenteuer-Reste in Pferde/Sci-Fi Woche 6–10 ersetzt, Woche 12 mit
-  deutschen Bezeichnern, Daten-Texte mit Umlauten, Wochen-Check-Fragen zu nicht gelehrtem Stoff
-  ersetzt. Rest (v. a. EN nachziehen) in `todo.md`.
+| 3.98 | Rechtschreib- und Verständnisprüfung aller deutschen Inhalte | cspell deckt allen Content ab, neu `lint:spelling:de` (LanguageTool in Docker); alle Kurse gelesen und korrigiert, Themen-Reste in Pferde/Sci-Fi und englische Bezeichner in Woche 12 (DE) bereinigt, Wochen-Check-Fragen zu nicht gelehrtem Stoff ersetzt |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -153,6 +138,13 @@ behoben, Urteilsfragen stehen je Paket in `todo.md` (dort auch Stand und Paket-R
   (LanguageTool; Docker-VM mit 2 GB verträgt nur einen Request gleichzeitig und max. ~1,1 GB Heap).
   Kleingeschriebene Bezeichner gehören nicht in `cspell.json`, Code-Felder ignoriert es per
   `ignoreRegExpList` (3.98).
+- Aufgabentext im Lektions-Format ändern heißt: `lessons.json` **und** die Lösungs-Markdown-Zelle
+  (`…_6_loesungen`, Test vergleicht den Text exakt); geänderter Ausgabetext zusätzlich in `expected`,
+  Vorlage und Lösungs-Code. Danach jede Lösung per `python3` gegen `expected` laufen lassen (3.98).
+- Wochen-Check-Fragen und Lernziele (`woche{N}.md`, gehen aufs Zertifikat-PDF) nur zu Stoff, der in
+  genau dieser Woche gelehrt wird — beim Verschieben von Stoff zwischen Wochen mitprüfen (3.98).
+- Dateien in Skripten nie als `open(f, 'w').write(...open(f).read()...)` umschreiben — das `'w'`
+  leert die Datei, bevor gelesen wird. Erst lesen, dann schreiben (3.98).
 - Komponente wird beim Umschalten eines `v-if`-Zweigs neu gemountet → lokaler State geht verloren,
   wenn er nicht vom Parent gehalten wird; beim Neu-Mount auf sinnvollen Zustand zurückfallen (3.55).
 - Login-Felder für Passwort-Manager-Autofill brauchen ein echtes `<form>` + `name`-Attribute; bei

@@ -5,19 +5,24 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 
 ## Offen
 
-- [ ] Rechtschreib- und Verständnisprüfung aller deutschen Inhalte (Branch `inhalts-pruefung`,
-      HANDOFF 3.98): Lese-Pass und Nachbesserungen sind fertig, `lint:spelling` und
-      `lint:spelling:de` stehen bei 0. Offen bleibt nur:
+- [ ] Offen aus der Inhaltsprüfung (HANDOFF 3.98, Details im Archiv):
       - **EN nachziehen:** Die englischen Themen Pferde/Sci-Fi (Woche 6–10) enthalten weiter die
-        Abenteuer-Reste, die in DE ersetzt wurden (`gilde`, `monster`, `questlog`, "Duell"), und
-        der Interaktiv-Kurs EN ist deutlich kürzer als DE (3 statt 6 Aufgaben). Gehört zum
-        offenen EN-Thema unten.
+        Abenteuer-Reste, die in DE ersetzt wurden (`gilde`, `monster`, `questlog`, "Duell"); EN
+        Woche 12 und die EN-Lösungen sind unverändert; der Interaktiv-Kurs EN ist deutlich kürzer
+        als DE (3 statt 6 Aufgaben je Lektion). EN wurde sprachlich gar nicht geprüft.
       - **Woche 2 Sci-Fi hat keine `input()`-Lektion** (Abenteuer/Pferde: Lektion 9) — eigene
         neue Lektion nötig (Text, Aufgaben mit `validation.stdin`, Lösungen, EN).
-      - **Woche 2 Boss 3 (alle Themen)** rechnet mit Erfolgswahrscheinlichkeit/Erwartungswert —
-        für 10/11-Jährige schwer; in Sci-Fi jetzt erklärt, Abenteuer/Pferde unverändert.
+      - **Woche 2 Boss 3 (Abenteuer, Pferde)** rechnet mit Erfolgswahrscheinlichkeit und
+        Erwartungswert — für 10/11-Jährige schwer; nur in Sci-Fi ist das jetzt erklärt.
       - **Woche 12 Pferde:** Das Text-Adventure hat auch im Pferde-Thema "Gegner" und "Kampf"
-        (Spielmechanik aus dem gemeinsamen Skelett) — bewusst so gelassen.
+        (Spielmechanik aus dem gemeinsamen Skelett) — bewusst so gelassen, ggf. umthematisieren.
+      - **Pferde/Sci-Fi Woche 6–12:** Aufgabentexte nicht Zeile für Zeile gelesen (nur
+        Geschichten-Texte + LanguageTool), Glossar nur im Abenteuer-Thema gelesen.
+      - **`lint:spelling:de -- --grammatik`** meldet ~300 Hinweise, fast alles Fehlalarme durch
+        Code-Bezeichner im Fließtext; die echten Treffer sind behoben. Wer es schärfer will: im
+        Extraktor Inline-Code durch ein Platzhalterwort ersetzen statt löschen.
+- [ ] `HANDOFF.md` liegt bei ~26 KB (Richtwert 25 KB): Abschnitt "Gelernte Regeln" straffen oder
+      ältere Regeln ins Archiv verschieben.
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken) —
       **zurückgestellt** (Nutzer will erst später deployen). Backup-Cron auf dem Server einrichten
       (Befehl siehe HANDOFF.md Abschnitt 4); externe Sicherung der Backups bewusst nicht mitgebaut.
