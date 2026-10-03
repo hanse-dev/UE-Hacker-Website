@@ -49,7 +49,7 @@
         "Import a module"
       ],
       "correctIndex": 0,
-      "explanation": "Gleiches Methodenname, neues Verhalten.",
+      "explanation": "Gleicher Methodenname, neues Verhalten.",
       "explanation_en": "Same method name, new behavior.",
       "optionExplanations": [
         null,

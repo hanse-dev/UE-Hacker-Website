@@ -79,7 +79,7 @@ export default {
 
   // ── Home ────────────────────────────────────────────────────────────────
   'home.hero.title':    'Willkommen bei den Übergangshackern!',
-  'home.hero.subtitle': 'Deine Reise in die Welt des Programmierens beginnt hier. Lerne Python oder JavaScript auf eine Weise, die Spass macht.',
+  'home.hero.subtitle': 'Deine Reise in die Welt des Programmierens beginnt hier. Lerne Python oder JavaScript auf eine Weise, die Spaß macht.',
   'home.cta.courses':      'Zu den Kursen',
   'home.cta.projects':     'Zu den Projekten',
   'home.cta.placement':   'Einstufungstest',

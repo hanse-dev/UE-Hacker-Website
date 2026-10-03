@@ -452,7 +452,7 @@
     "lessonSummary": "Der Manager läuft: Verschachtelte Dictionaries durchsucht, verglichen und ausgewertet!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Aufbau: Das verschachtelte Dictionary zonen ist vorgegeben (Deck → Dictionary mit gefahr, fund, schwierigkeit). Gib jede Deck als Name: gefahr / fund aus, z. B. Hangar: Meteorit / Kristall.",
+        "instruction": "Schritt 1 – Aufbau: Das verschachtelte Dictionary zonen ist vorgegeben (Deck → Dictionary mit gefahr, fund, schwierigkeit). Gib jedes Deck als Name: gefahr / fund aus, z. B. Hangar: Meteorit / Kristall.",
         "codeTemplate": "zonen = {\n    \"Hangar\": {\"gefahr\": \"Meteorit\", \"fund\": \"Kristall\", \"schwierigkeit\": 3},\n    \"Labor\": {\"gefahr\": \"Strahlung\", \"fund\": \"Sensor\", \"schwierigkeit\": 5},\n    \"Brücke\": {\"gefahr\": \"Sturm\", \"fund\": \"Sternkarte\", \"schwierigkeit\": 8},\n}\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -460,7 +460,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Gefährlichste: Das Dictionary zonen ist vorgegeben. Finde die Deck mit der höchsten schwierigkeit und gib genau Gefährlichste: Brücke (8) aus.",
+        "instruction": "Schritt 2 – Gefährlichste: Das Dictionary zonen ist vorgegeben. Finde das Deck mit der höchsten schwierigkeit und gib genau Gefährlichste: Brücke (8) aus.",
         "codeTemplate": "zonen = {\n    \"Hangar\": {\"gefahr\": \"Meteorit\", \"fund\": \"Kristall\", \"schwierigkeit\": 3},\n    \"Labor\": {\"gefahr\": \"Strahlung\", \"fund\": \"Sensor\", \"schwierigkeit\": 5},\n    \"Brücke\": {\"gefahr\": \"Sturm\", \"fund\": \"Sternkarte\", \"schwierigkeit\": 8},\n}\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

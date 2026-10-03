@@ -86,14 +86,18 @@ behoben, Urteilsfragen je Paket als Liste an den Nutzer. Stand und Paket-Reihenf
 
 - Mechanischer Pass fertig: `lint:spelling` (cspell) ignoriert jetzt Code-Felder/Code-Blöcke und
   deckt auch Projekt-`lessons.json`, `python-checks`, Glossar-/Lösungs-Zellen und `kurse.json` ab
-  (4761 statt 1405 Dateien, 0 Funde). Neu `npm run lint:spelling:de` (nur macOS, lokales Tool,
-  `scripts/local-tools/rechtschreibung-de/`), 0 Funde bei 248 geprüften Wörtern in `erlaubt.txt`.
+  (4761 statt 1405 Dateien, 0 Funde). Neu `npm run lint:spelling:de` (LanguageTool in Docker,
+  systemunabhängig, lokales Tool `scripts/local-tools/rechtschreibung-de/`, ~6 Min), 0 Funde bei
+  150 geprüften Wörtern in `erlaubt.txt`; `-- --grammatik` liefert Grammatik-Kandidaten.
 - Behoben: KI-Labor Woche 8 Lektions-Zusammenfassungen ohne Umlaute, "Stellawort-Argument"
   (Woche 6 Pferde Lösungen), `'grosse'` statt `'groesse'` (KI-Labor Woche 2), Brute-Force/Sci-Fi
   einheitlich geschrieben.
 - Lese-Pass Paket 1 (Interaktiv-Kurs Kinder + Jugendliche) fertig: kaputte Sätze, Fachwörter ohne
   Erklärung (iterieren, Konkatenation, kapseln), Aufgaben, deren Text nicht zum `expected` passte
   (fehlende Startwerte, "6 Tränke + 4 dazu" als Produkt). Drei davon auch in EN nachgezogen.
+  BMI-Beispiel (Jugendliche Lektion 8, DE+EN) durch Tempo-Rechner ersetzt.
+- Aus dem LanguageTool-Lauf vorab behoben: "Spass" (Startseite), "jede Deck", "Der
+  Asteroiden-Mining", "Gleiches Methodenname", zwei fehlende Kommas.
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -149,7 +153,8 @@ behoben, Urteilsfragen je Paket als Liste an den Nutzer. Stand und Paket-Reihenf
   übersetzt intern.
 - cspell: Wörterbücher brauchen `"import"`, nicht nur `"dictionaries"`.
 - cspell taugt für Deutsch nur als grobes Netz (lässt beliebige Wortzusammensetzungen und
-  `strasse`/`wiederspiegeln` durch). Für deutschen Content zusätzlich `npm run lint:spelling:de`.
+  `strasse`/`wiederspiegeln` durch). Für deutschen Content zusätzlich `npm run lint:spelling:de`
+  (LanguageTool; Docker-VM mit 2 GB verträgt nur einen Request gleichzeitig und max. ~1,1 GB Heap).
   Kleingeschriebene Bezeichner gehören nicht in `cspell.json`, Code-Felder ignoriert es per
   `ignoreRegExpList` (3.98).
 - Komponente wird beim Umschalten eines `v-if`-Zweigs neu gemountet → lokaler State geht verloren,

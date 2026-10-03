@@ -68,14 +68,23 @@ würden (z.B. bei sehr langen Benutzernamen).
 
 ---
 
-# Lokales Tool: Deutsche Rechtschreibprüfung (`rechtschreibung-de/`)
+# Lokales Tool: Deutsche Rechtschreib- und Grammatikprüfung (`rechtschreibung-de/`)
 
 `npm run lint:spelling:de` — zieht den deutschen Fließtext (ohne Code) aus `content/`,
-`public/kurse.json` und `src/locales/de.js` und prüft ihn mit der macOS-eigenen Rechtschreibprüfung
-(`NSSpellChecker`, braucht `swiftc` aus den Xcode Command Line Tools). **Nur macOS, nicht Teil von
-Hooks/CI/Deploy.** Ergänzt `npm run lint:spelling` (cspell), das bei Deutsch zu viel durchlässt
-(beliebige Wortzusammensetzungen, `strasse`/`wiederspiegeln` gelten dort als richtig).
+`public/kurse.json` und `src/locales/de.js` und prüft ihn mit [LanguageTool](https://languagetool.org)
+(Open Source). Läuft auf jedem System mit Docker und Python 3: beim ersten Lauf wird der Container
+`ue-hacker-languagetool` gestartet (Image `erikvl87/languagetool`, ~1,2 GB, nur an `127.0.0.1`
+gebunden — kein Text verlässt den Rechner). Ein Volllauf dauert etwa 6 Minuten. **Nicht Teil von
+Hooks/CI/Deploy.** Ergänzt `npm run lint:spelling` (cspell), das bei Deutsch zu viel durchlässt.
 
-Gemeldet werden nur neue unbekannte Wörter. Legitime Wörter (Fachbegriffe, Namen) kommen in
-`rechtschreibung-de/erlaubt.txt`; Code-Bezeichner aus dem Content werden automatisch ignoriert.
-Grammatik, Kommas und das/dass findet das Tool nicht — dafür bleibt nur Lesen.
+- `npm run lint:spelling:de` — nur Rechtschreibung, Exit-Code 1 bei Funden. Legitime Wörter
+  (Fachbegriffe, Namen) kommen in `rechtschreibung-de/erlaubt.txt`; Code-Bezeichner aus dem
+  Content werden automatisch ignoriert.
+- `npm run lint:spelling:de -- --grammatik` — zusätzlich Grammatik-Hinweise (Kongruenz, Kommas).
+  Das sind Kandidaten zum Nachlesen, kein Gate: Wegen der Code-Bezeichner im Fließtext sind viele
+  Treffer Fehlalarme; laute Regeln stehen in `STILLE_REGELN` in `pruefe.py`.
+- `npm run lint:spelling:de -- --stopp` — Container wieder entfernen.
+- Ohne Docker: LanguageTool anders starten (z.B. per Java) und `LANGUAGETOOL_URL` setzen.
+
+Verständlichkeit, kaputte Sätze und Aufgaben, die nicht zur Prüfung passen, findet kein Tool
+zuverlässig — dafür bleibt nur Lesen.

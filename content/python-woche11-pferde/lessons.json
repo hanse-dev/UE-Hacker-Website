@@ -299,7 +299,7 @@
         }
       },
       {
-        "instruction": "Schreibe die Klasse Vorrat mit `__init__(self, menge)`, `__add__` (gibt ein neues Vorrat mit der Summe zurück) und `__str__` (gibt Vorrat: Zahl zurück). Gib Vorrat(10) + Vorrat(20) aus (genau Vorrat: 30).",
+        "instruction": "Schreibe die Klasse Vorrat mit `__init__(self, menge)`, `__add__` (gibt ein neues Vorrat-Objekt mit der Summe zurück) und `__str__` (gibt Vorrat: Zahl zurück). Gib Vorrat(10) + Vorrat(20) aus (genau Vorrat: 30).",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
