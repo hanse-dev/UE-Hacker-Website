@@ -1,7 +1,7 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-10-04
-> **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.98 (u.a. Offline-Downloads in 3 Formaten, Zertifikate/PDF,
+> **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.99 (u.a. Offline-Downloads in 3 Formaten, Zertifikate/PDF,
 > Skip-/Reset-Button, Login-Fortschritt, Pre-commit/Pre-push, Admin-Termine, "Kurs starten"-Gate für
 > alle Kurse, Worktree-Tooling, Dev-Skip-Flag, JS-Spielewerkstatt mit neuem Konzept).
 > Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4) — nach dem nächsten Deploy
@@ -79,6 +79,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.95 | Offline-Downloads in 3 Formaten (Notebooks, eine `.py`, Einzeldateien je Lektion) | 12 Wochen, Python-Projekte, KI-Labor; `OfflineDownloads.vue`, `pack_notebooks.py`, Details `INHALTE.md` |
 | 3.96 | KI-Labor-Musterlösungen (160) | `task.referenceSolution` (nicht `solution` → kein Lösungs-Button), geprüft von `check_kilabor_solutions.py` |
 | 3.98 | Rechtschreib- und Verständnisprüfung aller deutschen Inhalte | cspell deckt allen Content ab, neu `lint:spelling:de` (LanguageTool in Docker); alle Kurse gelesen und korrigiert, Themen-Reste in Pferde/Sci-Fi und englische Bezeichner in Woche 12 (DE) bereinigt, Wochen-Check-Fragen zu nicht gelehrtem Stoff ersetzt |
+| 3.99 | Fortschritts-Vertrag: Deploy darf gespeicherten Fortschritt nicht brechen | `tests/progress-contract.spec.js` + `tests/fixtures/progress-contract.json` (IDs, Check-Positionen, Storage-Keys/-Versionen, DB-Spalten), `npm run contract:update`, Regeln in `WORKFLOW.md` |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -143,6 +144,9 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   Vorlage und Lösungs-Code. Danach jede Lösung per `python3` gegen `expected` laufen lassen (3.98).
 - Wochen-Check-Fragen und Lernziele (`woche{N}.md`, gehen aufs Zertifikat-PDF) nur zu Stoff, der in
   genau dieser Woche gelehrt wird — beim Verschieben von Stoff zwischen Wochen mitprüfen (3.98).
+- Fortschritt hängt an Ordnernamen, Lektions-/Fragen-IDs und der Position der Coding-Aufgaben, nicht an
+  Texten: Aufgaben inhaltlich ersetzen ist ok, umbenennen/umsortieren/löschen nicht (`WORKFLOW.md`,
+  Test `progress-contract.spec.js`, 3.99). Neue DB-Spalten brauchen `ALTER TABLE` in `db.js`.
 - Dateien in Skripten nie als `open(f, 'w').write(...open(f).read()...)` umschreiben — das `'w'`
   leert die Datei, bevor gelesen wird. Erst lesen, dann schreiben (3.98).
 - Komponente wird beim Umschalten eines `v-if`-Zweigs neu gemountet → lokaler State geht verloren,

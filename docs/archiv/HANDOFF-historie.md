@@ -2470,3 +2470,22 @@ Geschichten-Texte + LanguageTool (gleiches Skelett wie Abenteuer).
 - Tooling: `test:auth` nutzt den Worktree-Port statt fest 3011; `.gitignore` ignoriert auch
   `node_modules`-Symlinks.
 - Offen (in `todo.md`): EN nachziehen, `input()`-Lektion Woche 2 Sci-Fi.
+
+### 3.99 — Fortschritts-Vertrag: Deploy darf gespeicherten Fortschritt nicht brechen (Branch `fortschritt-kontrakt`, gemergt)
+
+Anlass: Frage vor dem Server-Deploy, ob Daten in der Datenbank nach den Inhaltsänderungen (3.98) noch
+passen. Ergebnis der Prüfung: ja — gespeichert werden nur `completedLessonIds` je Content-Ordner,
+`quizPassed`/`codingPassed[index]` je Woche, Missions-IDs und Notebook-Zustände (letztere werden nur
+auf unveränderte Zellen angewendet); 3.98 hat keine IDs, Ordner, Positionen, Keys oder Tabellen
+geändert. Vergleich alter `main`-Stände gegen heute: ab 2026-09-04 keine Brüche, davor nur der
+bewusste Versionssprung 2→3 in `useFortschritt.js` (Punktesystem → Zertifikate, 3.12).
+
+Neu: `scripts/progress-contract.mjs` (`collect()`, `diffContract()`, `--write`) erfasst Lektions-IDs
+aller `content/*/lessons.json`, Fragen-IDs und Anzahl der Coding-Aufgaben aller `*-checks`, Kurs-IDs,
+Storage-Keys/-Versionen und die Spalten aus `api/src/db.js`. `tests/progress-contract.spec.js`
+vergleicht mit `tests/fixtures/progress-contract.json`: Dazukommen erlaubt, Wegfallen/Umbenennen
+nicht; neue DB-Spalten nur mit `ALTER TABLE … ADD COLUMN`. In `test:checks` und über
+`CONTRACT_PREFIXES` in `scripts/test-changed.mjs` im Pre-commit. `npm run contract:update` friert
+bewusst neu ein. Nicht abgedeckt: lokal zwischengespeicherter Code (`ue-hacker-lesson-code-*`,
+verfällt nach 5 Tagen, nicht synchronisiert) passt nach geänderten Vorlagen ggf. nicht mehr zur
+Aufgabe — "Zurücksetzen" holt die neue Vorlage.

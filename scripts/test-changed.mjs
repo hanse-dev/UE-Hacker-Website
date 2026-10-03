@@ -29,10 +29,13 @@ const ALL_CHECKS = [
   'tests/woche12-abschlussprojekt.spec.js',
   'tests/lesson-bundle-generator.spec.js',
   'tests/lesson-notebook-generator.spec.js',
+  'tests/progress-contract.spec.js',
 ];
 
 // Dateien/Präfixe, die zu breit wirken (viele Specs hängen daran), um sie
 // spezifisch zu mappen -> lösen immer den vollen Lauf aus.
+const CONTRACT_PREFIXES = ['content/', 'public/kurse.json', 'api/src/db.js', 'src/composables/', 'src/components/JupyterNotebook.vue', 'scripts/progress-contract.mjs'];
+
 const CORE_PREFIXES = [
   'src/composables/useTaskValidation.js',
   'src/composables/devSkipChecks.js',
@@ -181,6 +184,9 @@ function matchSpecs(changedFiles) {
       coreHit = file;
       continue;
     }
+    // Alles, woran gespeicherter Fortschritt haengt (IDs im Content, Kursliste, Storage, DB-Schema),
+    // loest zusaetzlich den schnellen Vertrags-Test aus (kein Browser noetig).
+    if (CONTRACT_PREFIXES.some((p) => file.startsWith(p))) specs.add('tests/progress-contract.spec.js');
     const rule = RULES.find(([prefix]) => file.startsWith(prefix));
     if (rule) {
       rule[1].forEach((s) => specs.add(s));
