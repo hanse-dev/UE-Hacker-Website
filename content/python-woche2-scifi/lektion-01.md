@@ -1,6 +1,6 @@
 # 🚀 Woche 2 – Datentypen und Variablen: Die vier Quanten-Typen
 
-Willkommen, Kommandant:in! Du betrittst das **Datenlabor der Nebula-7** – ein Ort, an dem die vier fundamentalen Quanten-Typen beherrscht werden. Diese Woche lernst du:
+Willkommen, Kommandant:in! Du betrittst das **Datenlabor der Nebula-7** – ein Ort, an dem du die vier grundlegenden Quanten-Typen kennenlernst. Diese Woche lernst du:
 
 - Moderne Protokoll-Nachrichten mit **f-Strings** bauen
 - Die vier Datentypen meistern: **String, Integer, Float, Boolean**

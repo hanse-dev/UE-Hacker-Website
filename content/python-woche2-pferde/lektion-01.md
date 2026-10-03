@@ -1,6 +1,6 @@
 # 🐴 Woche 2: Die vier Hufschlag-Typen
 
-Willkommen zurück auf dem **Reiterhof Sonnental**! Hier beherrscht man die vier fundamentalen Reittechniken. In dieser Woche lernst du die vier **Hufschlag-Typen** – die vier Datentypen von Python:
+Willkommen zurück auf dem **Reiterhof Sonnental**! Hier lernst du die vier wichtigsten Reittechniken. In dieser Woche lernst du die vier **Hufschlag-Typen** – die vier Datentypen von Python:
 
 1. Moderne Nachrichten mit **f-Strings**
 2. 🚶 **Schritt** – Text (`str`)

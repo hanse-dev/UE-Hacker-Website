@@ -253,7 +253,7 @@
     "section": "boss",
     "title": "Das Schiffslogbuch",
     "file": "boss-01.md",
-    "lessonSummary": "Das Logbuch ist vollständig – die Sternenflotte-Archive sind stolz auf dich!",
+    "lessonSummary": "Das Logbuch ist vollständig – die Sternenflotten-Archive sind stolz auf dich!",
     "tasks": [
       {
         "instruction": "Schritt 1 – Lege vier Variablen zeile1 bis zeile4 mit je einem Satz über die Raumfahrt an. Gib dann die Überschrift === SCHIFFSLOGBUCH === aus und danach alle vier Zeilen.",

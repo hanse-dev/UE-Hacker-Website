@@ -23,4 +23,4 @@ print("🚀 Start!")
 | `range(start, ende)` | start bis ende-1 |
 | `range(start, ende, schritt)` | mit Abstand `schritt` |
 
-Auch hier gilt: Das **Ende ist exklusiv**. Beim Rückwärtszählen hört `range(5, 0, -1)` bei 1 auf.
+Auch hier gilt: Das **Ende zählt nicht mit**. Beim Rückwärtszählen hört `range(5, 0, -1)` bei 1 auf.

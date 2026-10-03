@@ -1,6 +1,6 @@
 # 🚀 Woche 3 – Die Pfade der Entscheidung
 
-Willkommen zurück, Kommandant:in! Du erreichst den **Knotenpunkt des Universums** – ein Ort, an dem jede Entscheidung über die Zukunft der Galaxie entscheidet. In dieser Woche lernst du:
+Willkommen zurück, Kommandant:in! Du erreichst den **Knotenpunkt des Universums** – ein Ort, an dem jede Wahl über die Zukunft der Galaxie entscheidet. In dieser Woche lernst du:
 
 1. **if** – Code nur ausführen, wenn etwas stimmt
 2. **Vergleichsoperatoren** wie `==`, `!=`, `<`, `>`, `<=`, `>=`

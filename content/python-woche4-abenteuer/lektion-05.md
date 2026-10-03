@@ -5,7 +5,7 @@ Am zweiten Tor steht der **Wächter der Bedingung**. Er lässt dich so lange im 
 ```python
 zaehler = 0
 while zaehler <= 5:
-    print(f"Zaehler: {zaehler}")
+    print(f"Zähler: {zaehler}")
     zaehler += 1
 ```
 

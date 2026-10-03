@@ -13,6 +13,8 @@ Das große Springturnier beginnt! Erstelle einen kompletten Bericht über den Pa
 - ☐ Text mit `print()` ausgeben
 - ☐ Informationen in Variablen speichern
 - ☐ Texte mit `+` und `str()` kombinieren
+- ☐ Eingaben mit `input()` abfragen
+- ☐ Eingaben mit `input()` abfragen
 - ☐ Kommentare mit `#` hinzufügen
 - ☐ Einfache Fehler finden und beheben
 - ☐ Eigene kleine Programme schreiben

@@ -8,9 +8,21 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 - [ ] Rechtschreib- und Verständnisprüfung aller deutschen Inhalte (Branch `inhalts-pruefung`,
       HANDOFF 3.98). Mechanischer Pass erledigt (`lint:spelling` + `lint:spelling:de` beide bei 0).
       Lese-Pass (Grammatik, Kommas, Verständlichkeit ab 10/11 Jahren, Aufgabe passt zum `expected`)
-      Paket für Paket: ~~Interaktiv-Kurs~~ (erledigt) → Woche 1–5 (alle Themen) → Woche 6–12
+      Paket für Paket: ~~Interaktiv-Kurs~~, ~~Woche 1–5 (alle Themen)~~ (erledigt) → Woche 6–12
       (ein Thema voll, zwei als Diff) → Wochen-Checks → JS-Grundkurs → Projekt-Kurse → KI-Labor →
       UI-Texte/`kurse.json`/Glossar. EN nur für inhaltliche Korrekturen nachziehen.
+      Offene Urteilsfragen aus Paket 2 (Nutzer entscheidet, ändern Ausgaben/`expected`/Lösung/EN):
+      - Woche 2 Boss 3, alle Themen: rechnet mit "Erfolgswahrscheinlichkeit (0–1)" und
+        Erwartungswert — für 10/11-Jährige schwer. Sci-Fi rechnet zudem "Kosten ×
+        Wahrscheinlichkeit = erwarteter Erfolg" und nennt die teurere Mission "rentabler"
+        (inhaltlich falsch). Vorschlag: Sci-Fi auf "Forschungsertrag" statt "Kosten" umstellen.
+      - Woche 2 Sci-Fi hat keine `input()`-Lektion (Abenteuer/Pferde: Lektion 9) und Boss 2 nutzt
+        neuronale Netze/Parameter/Genauigkeit als Thema.
+      - Woche 3 Pferde Boss 2 "Level 5 – Abmeldung": unklarer Begriff, steckt im `expected`.
+      - Woche 1 Abenteuer Boss 1: Geschichte ("Gedicht entschlüsseln") passt nicht zur Aufgabe
+        (eigene Sätze schreiben).
+      - Für spätere Pakete vorgemerkt: Ausgabetexte ohne Umlaute `Koeln` (`js-grundkurs-woche5`)
+        und `Saeugetier` (KI-Labor Woche 2–4, Label in den Daten).
       Offen aus Paket 1:
       - Interaktiv-Kurs EN (`-kinder-en`/`-jugendliche-en`) ist deutlich kürzer als DE (3 statt 6
         Aufgaben, kurze Texte, seit 3.79/3.85 nur DE erweitert) — gehört zum offenen EN-Thema.

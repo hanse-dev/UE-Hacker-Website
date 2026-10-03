@@ -8,6 +8,6 @@
 | DeepCore | 0.88 | 5000000 | 12.0 |
 | MiniMind | 0.75 | 300000 | 1.5 |
 
-Wähle für jede Eigenschaft den passenden Datentyp: Text, Ganzzahl oder Dezimalzahl.
+Wähle für jede Eigenschaft den passenden Datentyp: Text, Ganzzahl oder Kommazahl.
 
 **Bonus (freiwillig, ohne Prüfung):** Berechne die Effizienz (Genauigkeit / Parameter × 1.000.000) für jedes Modell!

@@ -1,8 +1,8 @@
 # ⚖️ Zauberformel 1: if
 
-Willkommen, weiser Abenteurer! Du erreichst den **Kreuzweg des Schicksals** – ein magischer Ort, an dem jede Entscheidung über Sieg oder Niederlage entscheidet. Hier lernst du, wie dein Programm **Entscheidungen** trifft.
+Willkommen, weiser Abenteurer! Du erreichst den **Kreuzweg des Schicksals** – ein magischer Ort, an dem jede Wahl über Sieg oder Niederlage entscheidet. Hier lernst du, wie dein Programm **Entscheidungen** trifft.
 
-Mit `if` prüft Python eine **Bedingung** und führt den Code darunter **nur aus, wenn sie wahr ist** (`True`). Das Ergebnis einer Bedingung ist ein Boolean – genau wie in Woche 2!
+Mit `if` prüft Python eine **Bedingung** und führt den Code darunter **nur aus, wenn sie wahr ist** (`True`). Das Ergebnis einer Bedingung ist ein Wahrheitswert (`bool`) – genau wie in Woche 2!
 
 ```python
 level = 5

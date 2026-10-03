@@ -22,7 +22,7 @@ print("Hallo")   # Zauber: print – Zutat: "Hallo"
 
 Jede Formel, die du meisterst, macht dich zu einem mächtigeren Magier! Später, in Woche 5, lernst du sogar, **eigene** Zauberformeln (Funktionen) zu erfinden.
 
-## ✨ Zauberformel 1: Zauber
+## ✨ Zauberformel 1: Der `print()`-Zauber
 
 `print()` ist dein erster magischer Befehl – eine **Funktion**, die du aufrufst. Er gibt Text auf dem Bildschirm aus.
 

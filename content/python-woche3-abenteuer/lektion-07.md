@@ -16,6 +16,6 @@ else:
     print("Die Tür steht bereits offen.")
 ```
 
-**Die Macht der Einrückung:** Jede zusätzliche Ebene braucht **4 weitere Leerzeichen**. Am Einrücken erkennt Python (und du), welcher `else` zu welchem `if` gehört.
+**Die Macht der Einrückung:** Jede zusätzliche Ebene braucht **4 weitere Leerzeichen**. Am Einrücken erkennt Python (und du), welches `else` zu welchem `if` gehört.
 
 > Tipp: Oft kannst du verschachtelte Bedingungen auch mit `and` schreiben. Verschachteln lohnt sich, wenn du zwischen den Prüfungen noch etwas ausgeben willst.

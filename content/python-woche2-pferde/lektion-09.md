@@ -5,7 +5,7 @@ Du kennst `input()` aus Woche 1: Die **Funktion** gibt dir die Antwort des Benut
 ```python
 eingabe = input("Wie viele kg Heu? ")   # Text, z.B. "15"
 zahl = int(eingabe)                     # jetzt eine Zahl: 15
-print(f"{zahl} kg Heu für {zahl * 2} Tage reichen.")
+print(f"{zahl} kg Heu reichen für {zahl * 2} Tage.")
 ```
 
 > 💡 Tippe im Eingabefenster nur eine **ganze Zahl** ein – sonst kann `int()` sie nicht umwandeln.

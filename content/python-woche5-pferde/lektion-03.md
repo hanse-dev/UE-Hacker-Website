@@ -1,6 +1,6 @@
 # 🏇 Übung 3: Mehrere Parameter
 
-Manche Übungen brauchen mehr als eine Zutat. Du trennst Parameter einfach mit **Kommas**:
+Manche Übungen brauchen mehr als eine Angabe. Du trennst Parameter einfach mit **Kommas**:
 
 ```python
 def stelle_pferd_vor(name, rasse, alter):

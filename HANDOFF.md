@@ -96,6 +96,10 @@ behoben, Urteilsfragen je Paket als Liste an den Nutzer. Stand und Paket-Reihenf
   Erklärung (iterieren, Konkatenation, kapseln), Aufgaben, deren Text nicht zum `expected` passte
   (fehlende Startwerte, "6 Tränke + 4 dazu" als Produkt). Drei davon auch in EN nachgezogen.
   BMI-Beispiel (Jugendliche Lektion 8, DE+EN) durch Tempo-Rechner ersetzt.
+- Lese-Pass Paket 2 (Woche 1–5, alle drei Themen) fertig: wenige, kleine Funde (verstümmelte
+  Überschriften wie "Zauberformel 1: Zauber", Fachwörter wie exklusiv/Rumpf/Boolean ohne
+  Einführung, fehlende Kommas, uneinheitliche Titel, ein grammatisch falscher Ausgabesatz samt
+  `expected`). Aufgaben-Änderungen immer auch in den Lösungs-Zellen (`…_6_loesungen`) nachgezogen.
 - Aus dem LanguageTool-Lauf vorab behoben: "Spass" (Startseite), "jede Deck", "Der
   Asteroiden-Mining", "Gleiches Methodenname", zwei fehlende Kommas.
 
