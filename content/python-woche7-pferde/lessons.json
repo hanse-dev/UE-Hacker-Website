@@ -466,30 +466,30 @@
     "section": "boss",
     "title": "Extra-Herausforderung 3: Der Zufalls-Ausritt",
     "file": "boss-03.md",
-    "lessonSummary": "Der Zufalls-Dungeon steht: Räume, Monster und Leben – jedes Mal neu!",
+    "lessonSummary": "Der Zufalls-Ausritt steht: Stationen, Hindernisse und Pausen – jedes Mal neu!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Räume: Die Liste typen = [\"Halle\", \"Weide\", \"Stall\"] ist vorgegeben. Wähle mit einer List Comprehension und random.choice() fünf zufällige Räume in raeume und gib genau Räume: 5 und in der nächsten Zeile Alle gültig: True aus.",
+        "instruction": "Schritt 1 – Stationen: Die Liste typen = [\"Halle\", \"Weide\", \"Stall\"] ist vorgegeben. Wähle mit einer List Comprehension und random.choice() fünf zufällige Stationen in stationen und gib genau Stationen: 5 und in der nächsten Zeile Alle gültig: True aus.",
         "codeTemplate": "typen = [\"Halle\", \"Weide\", \"Stall\"]\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Räume: 5\nAlle gültig: True"
+          "expected": "Stationen: 5\nAlle gültig: True"
         }
       },
       {
-        "instruction": "Schritt 2 – Monster: Die Liste monster = [\"Oxer\", \"Graben\", \"Mauer\"] ist vorgegeben. Gehe fünf Räume durch: Ist random.randint(0, 1) gleich 1, steht im Raum ein zufälliges Monster (random.choice), sonst der Text \"leer\". Sammle die Inhalte mit append() in inhalte und zähle die Monster (Inhalte ungleich \"leer\") in monster_anzahl. Gib genau Räume: 5 und in der nächsten Zeile Anzahl passt: True aus (monster_anzahl liegt zwischen 0 und 5).",
-        "codeTemplate": "monster = [\"Oxer\", \"Graben\", \"Mauer\"]\n\n# 🎯 Deine Lösung hier:\n",
+        "instruction": "Schritt 2 – Hindernisse: Die Liste hindernisse = [\"Oxer\", \"Graben\", \"Mauer\"] ist vorgegeben. Gehe fünf Stationen durch: Ist random.randint(0, 1) gleich 1, steht an der Station ein zufälliges Hindernis (random.choice), sonst der Text \"leer\". Sammle die Inhalte mit append() in inhalte und zähle die Hindernisse (Inhalte ungleich \"leer\") in hindernis_anzahl. Gib genau Stationen: 5 und in der nächsten Zeile Anzahl passt: True aus (hindernis_anzahl liegt zwischen 0 und 5).",
+        "codeTemplate": "hindernisse = [\"Oxer\", \"Graben\", \"Mauer\"]\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Räume: 5\nAnzahl passt: True"
+          "expected": "Stationen: 5\nAnzahl passt: True"
         }
       },
       {
-        "instruction": "Schritt 3 – Leben: Schreibe eine Funktion berechne_leben(monster_anzahl): Der Held braucht 1 Leben pro 2 Monster, aufgerundet – rechne (monster_anzahl + 1) // 2. Gib genau Leben: 3 (für 5 Monster), in der nächsten Zeile Leben: 2 (für 4) und dann Leben: 0 (für 0) aus.",
+        "instruction": "Schritt 3 – Pausen: Schreibe eine Funktion berechne_pausen(hindernis_anzahl): Das Pferd braucht 1 Pause pro 2 Hindernisse, aufgerundet – rechne (hindernis_anzahl + 1) // 2. Gib genau Pausen: 3 (für 5 Hindernisse), in der nächsten Zeile Pausen: 2 (für 4) und dann Pausen: 0 (für 0) aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Leben: 3\nLeben: 2\nLeben: 0",
+          "expected": "Pausen: 3\nPausen: 2\nPausen: 0",
           "codeContains": [
             "def"
           ]

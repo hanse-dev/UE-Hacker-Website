@@ -6,45 +6,18 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
 ## Offen
 
 - [ ] Rechtschreib- und Verständnisprüfung aller deutschen Inhalte (Branch `inhalts-pruefung`,
-      HANDOFF 3.98). Mechanischer Pass erledigt (`lint:spelling` + `lint:spelling:de` beide bei 0).
-      Lese-Pass (Grammatik, Kommas, Verständlichkeit ab 10/11 Jahren, Aufgabe passt zum `expected`)
-      Paket für Paket: ~~Interaktiv-Kurs~~, ~~Woche 1–5 (alle Themen)~~, ~~Woche 6–12~~ (erledigt:
-      Abenteuer voll, Pferde/Sci-Fi Geschichten-Texte + LanguageTool), ~~Wochen-Checks~~ (erledigt;
-      Fragen zu nicht gelehrtem Stoff in Check 4/5 ersetzt, DE+EN) , ~~JS-Grundkurs~~,
-      ~~Projekt-Kurse~~, ~~KI-Labor~~ ~~UI-Texte/`kurse.json`/Glossar~~ (alle erledigt). **Lese-Pass komplett** —
-      offen sind nur noch die Urteilsfragen unten. EN nur für inhaltliche Korrekturen nachziehen.
-      Offen aus Paket 5–7 (JS-Grundkurs, Projekte, KI-Labor):
-      - Sichtbare Daten-Texte ohne Umlaute, an `expected`/Tests gekoppelt: `'gruen'`, `'Koeln'`,
-        `'Kopfhoerer'`, `'Naegel'` (`js-grundkurs-woche2/5/8`), Label `'Saeugetier'` (KI-Labor
-        Woche 2–4, im Fließtext steht "Säugetier"). Vorschlag: auf Umlaute umstellen, dabei
-        `expected`, Musterlösung und `tests/*.spec.js` mitziehen.
-      - `ki-labor-checks/week-2.json`: erste Coding-Aufgabe (`ist_erwachsen`) ist identisch mit
-        der aus Woche 1 und hat nichts mit dem Wochenthema (Daten) zu tun.
-      Offene Urteilsfragen aus Paket 3 (Woche 6–12; berühren Code/`expected`/Lösung/EN):
-      - Themen-Reste aus dem Abenteuer-Skelett in Pferde und Sci-Fi: Woche 6 Mission 3 Variable
-        `gilde` (Reitgruppe/Crew); Woche 7 Boss 3 `monster`/"Dungeon"/"Held" beim
-        "Zufalls-Ausritt"/"Zufalls-Sektor"; Woche 9 Boss 3 `questlog`/"Quests"; Woche 10 Boss 2
-        "Das Duell" mit `greife_an` (bei Pferden greifen sich Pferde an). Vorschlag: je Thema
-        eigene Bezeichner/Geschichte, bei den Pferden statt Duell ein Wettrennen.
-      - Woche 12 mischt deutsche und englische Bezeichner (`room_name`, `action`, `target`,
-        `foe`, `data`, `amount`, `commands`, `goal_item`, `parse`) — sonst ist der Kurs deutsch.
-      - Woche 7 Lektion 7 erwähnt Winkelfunktionen/Bogenmaß und nutzt Fakultät — für 10/11-Jährige
-        Stoff aus höheren Klassen; Vorschlag: Satz zu `sin`/`cos`/`tan` streichen.
-      Offene Urteilsfragen aus Paket 2 (Nutzer entscheidet, ändern Ausgaben/`expected`/Lösung/EN):
-      - Woche 2 Boss 3, alle Themen: rechnet mit "Erfolgswahrscheinlichkeit (0–1)" und
-        Erwartungswert — für 10/11-Jährige schwer. Sci-Fi rechnet zudem "Kosten ×
-        Wahrscheinlichkeit = erwarteter Erfolg" und nennt die teurere Mission "rentabler"
-        (inhaltlich falsch). Vorschlag: Sci-Fi auf "Forschungsertrag" statt "Kosten" umstellen.
-      - Woche 2 Sci-Fi hat keine `input()`-Lektion (Abenteuer/Pferde: Lektion 9) und Boss 2 nutzt
-        neuronale Netze/Parameter/Genauigkeit als Thema.
-      - Woche 3 Pferde Boss 2 "Level 5 – Abmeldung": unklarer Begriff, steckt im `expected`.
-      - Woche 1 Abenteuer Boss 1: Geschichte ("Gedicht entschlüsseln") passt nicht zur Aufgabe
-        (eigene Sätze schreiben).
-      - Für spätere Pakete vorgemerkt: Ausgabetexte ohne Umlaute `Koeln` (`js-grundkurs-woche5`)
-        und `Saeugetier` (KI-Labor Woche 2–4, Label in den Daten).
-      Offen aus Paket 1:
-      - Interaktiv-Kurs EN (`-kinder-en`/`-jugendliche-en`) ist deutlich kürzer als DE (3 statt 6
-        Aufgaben, kurze Texte, seit 3.79/3.85 nur DE erweitert) — gehört zum offenen EN-Thema.
+      HANDOFF 3.98): Lese-Pass und Nachbesserungen sind fertig, `lint:spelling` und
+      `lint:spelling:de` stehen bei 0. Offen bleibt nur:
+      - **EN nachziehen:** Die englischen Themen Pferde/Sci-Fi (Woche 6–10) enthalten weiter die
+        Abenteuer-Reste, die in DE ersetzt wurden (`gilde`, `monster`, `questlog`, "Duell"), und
+        der Interaktiv-Kurs EN ist deutlich kürzer als DE (3 statt 6 Aufgaben). Gehört zum
+        offenen EN-Thema unten.
+      - **Woche 2 Sci-Fi hat keine `input()`-Lektion** (Abenteuer/Pferde: Lektion 9) — eigene
+        neue Lektion nötig (Text, Aufgaben mit `validation.stdin`, Lösungen, EN).
+      - **Woche 2 Boss 3 (alle Themen)** rechnet mit Erfolgswahrscheinlichkeit/Erwartungswert —
+        für 10/11-Jährige schwer; in Sci-Fi jetzt erklärt, Abenteuer/Pferde unverändert.
+      - **Woche 12 Pferde:** Das Text-Adventure hat auch im Pferde-Thema "Gegner" und "Kampf"
+        (Spielmechanik aus dem gemeinsamen Skelett) — bewusst so gelassen.
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken) —
       **zurückgestellt** (Nutzer will erst später deployen). Backup-Cron auf dem Server einrichten
       (Befehl siehe HANDOFF.md Abschnitt 4); externe Sicherung der Backups bewusst nicht mitgebaut.

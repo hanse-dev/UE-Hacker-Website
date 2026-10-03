@@ -91,8 +91,9 @@ behoben, Urteilsfragen stehen je Paket in `todo.md` (dort auch Stand und Paket-R
   Projekt-Kurse, KI-Labor, UI-Texte, Kursbeschreibungen, Glossar). Aufgabentexte immer in `lessons.json`
   **und** in der Lösungs-Markdown-Zelle (`…_6_loesungen`) ändern; geänderte Ausgabetexte zusätzlich
   in `expected`, Vorlage und Lösungs-Code.
-- Pferde/Sci-Fi Woche 6–12 stammen aus dem Abenteuer-Skelett und enthalten noch Abenteuer-Bezeichner
-  im Code (Urteilsfrage in `todo.md`).
+- Nachbesserungen umgesetzt (DE): Abenteuer-Reste in Pferde/Sci-Fi Woche 6–10 ersetzt, Woche 12 mit
+  deutschen Bezeichnern, Daten-Texte mit Umlauten, Wochen-Check-Fragen zu nicht gelehrtem Stoff
+  ersetzt. Rest (v. a. EN nachziehen) in `todo.md`.
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 

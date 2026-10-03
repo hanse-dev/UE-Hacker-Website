@@ -1,6 +1,6 @@
-def berechne_leben(monster_anzahl):
-    return (monster_anzahl + 1) // 2
+def berechne_schilde(gefahren_anzahl):
+    return (gefahren_anzahl + 1) // 2
 
-print(f"Leben: {berechne_leben(5)}")
-print(f"Leben: {berechne_leben(4)}")
-print(f"Leben: {berechne_leben(0)}")
+print(f"Schilde: {berechne_schilde(5)}")
+print(f"Schilde: {berechne_schilde(4)}")
+print(f"Schilde: {berechne_schilde(0)}")

@@ -461,7 +461,7 @@
     "lessonSummary": "Mission geschafft: Du verwaltest Listen in Listen und wertest sie mit Schleifen aus!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Anlegen: Lege gilde = [[\"Anna\", \"Springen\", 15], [\"Ben\", \"Dressur\", 12], [\"Clara\", \"Voltigieren\", 8]] an (jeder Eintrag ist [Name, Klasse, Level]). Gib genau Ben: Dressur aus – Name und Klasse des zweiten Eintrags per gilde[1][0] und gilde[1][1].",
+        "instruction": "Schritt 1 – Anlegen: Lege reitgruppe = [[\"Anna\", \"Springen\", 15], [\"Ben\", \"Dressur\", 12], [\"Clara\", \"Voltigieren\", 8]] an (jeder Eintrag ist [Name, Disziplin, Level]). Gib genau Ben: Dressur aus – Name und Disziplin des zweiten Eintrags per reitgruppe[1][0] und reitgruppe[1][1].",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -469,8 +469,8 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Erweitern: gilde (mit drei Einträgen) ist vorgegeben. Füge mit append() den Eintrag [\"David\", \"Western\", 10] hinzu. Gib danach Mitglieder: 4 (len) und in der nächsten Zeile Gesamtlevel: 45 aus – berechnet mit einer for-Schleife über die Level (Index 2).",
-        "codeTemplate": "gilde = [[\"Anna\", \"Springen\", 15], [\"Ben\", \"Dressur\", 12], [\"Clara\", \"Voltigieren\", 8]]\n# 🎯 Deine Lösung hier:\n",
+        "instruction": "Schritt 2 – Erweitern: reitgruppe (mit drei Einträgen) ist vorgegeben. Füge mit append() den Eintrag [\"David\", \"Western\", 10] hinzu. Gib danach Mitglieder: 4 (len) und in der nächsten Zeile Gesamtlevel: 45 aus – berechnet mit einer for-Schleife über die Level (Index 2).",
+        "codeTemplate": "reitgruppe = [[\"Anna\", \"Springen\", 15], [\"Ben\", \"Dressur\", 12], [\"Clara\", \"Voltigieren\", 8]]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Mitglieder: 4\nGesamtlevel: 45",
@@ -480,8 +480,8 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Den Stärksten finden: gilde (mit vier Einträgen) ist vorgegeben. Suche mit einer for-Schleife den Eintrag mit dem höchsten Level (merke ihn dir in staerkster) und gib genau Stärkster: Anna aus.",
-        "codeTemplate": "gilde = [[\"Anna\", \"Springen\", 15], [\"Ben\", \"Dressur\", 12], [\"Clara\", \"Voltigieren\", 8]]\ngilde.append([\"David\", \"Western\", 10])\n# 🎯 Deine Lösung hier:\n",
+        "instruction": "Schritt 3 – Den Stärksten finden: reitgruppe (mit vier Einträgen) ist vorgegeben. Suche mit einer for-Schleife den Eintrag mit dem höchsten Level (merke ihn dir in staerkster) und gib genau Stärkster: Anna aus.",
+        "codeTemplate": "reitgruppe = [[\"Anna\", \"Springen\", 15], [\"Ben\", \"Dressur\", 12], [\"Clara\", \"Voltigieren\", 8]]\nreitgruppe.append([\"David\", \"Western\", 10])\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Stärkster: Anna",

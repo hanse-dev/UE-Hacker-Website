@@ -466,7 +466,7 @@
     "section": "boss",
     "title": "Extra-Herausforderung 3: Der Zufalls-Sektor",
     "file": "boss-03.md",
-    "lessonSummary": "Der Zufalls-Dungeon steht: Räume, Monster und Leben – jedes Mal neu!",
+    "lessonSummary": "Der Zufalls-Sektor steht: Räume, Gefahren und Schilde – jedes Mal neu!",
     "tasks": [
       {
         "instruction": "Schritt 1 – Räume: Die Liste typen = [\"Frachtraum\", \"Reaktor\", \"Leerer Raum\"] ist vorgegeben. Wähle mit einer List Comprehension und random.choice() fünf zufällige Räume in raeume und gib genau Räume: 5 und in der nächsten Zeile Alle gültig: True aus.",
@@ -477,19 +477,19 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Monster: Die Liste monster = [\"Drohne\", \"Alien\", \"Roboter\"] ist vorgegeben. Gehe fünf Räume durch: Ist random.randint(0, 1) gleich 1, steht im Raum ein zufälliges Monster (random.choice), sonst der Text \"leer\". Sammle die Inhalte mit append() in inhalte und zähle die Monster (Inhalte ungleich \"leer\") in monster_anzahl. Gib genau Räume: 5 und in der nächsten Zeile Anzahl passt: True aus (monster_anzahl liegt zwischen 0 und 5).",
-        "codeTemplate": "monster = [\"Drohne\", \"Alien\", \"Roboter\"]\n\n# 🎯 Deine Lösung hier:\n",
+        "instruction": "Schritt 2 – Gefahren: Die Liste gefahren = [\"Drohne\", \"Alien\", \"Roboter\"] ist vorgegeben. Gehe fünf Räume durch: Ist random.randint(0, 1) gleich 1, steht im Raum eine zufällige Gefahr (random.choice), sonst der Text \"leer\". Sammle die Inhalte mit append() in inhalte und zähle die Gefahren (Inhalte ungleich \"leer\") in gefahren_anzahl. Gib genau Räume: 5 und in der nächsten Zeile Anzahl passt: True aus (gefahren_anzahl liegt zwischen 0 und 5).",
+        "codeTemplate": "gefahren = [\"Drohne\", \"Alien\", \"Roboter\"]\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Räume: 5\nAnzahl passt: True"
         }
       },
       {
-        "instruction": "Schritt 3 – Leben: Schreibe eine Funktion berechne_leben(monster_anzahl): Der Held braucht 1 Leben pro 2 Monster, aufgerundet – rechne (monster_anzahl + 1) // 2. Gib genau Leben: 3 (für 5 Monster), in der nächsten Zeile Leben: 2 (für 4) und dann Leben: 0 (für 0) aus.",
+        "instruction": "Schritt 3 – Schilde: Schreibe eine Funktion berechne_schilde(gefahren_anzahl): Die Crew braucht 1 Schildladung pro 2 Gefahren, aufgerundet – rechne (gefahren_anzahl + 1) // 2. Gib genau Schilde: 3 (für 5 Gefahren), in der nächsten Zeile Schilde: 2 (für 4) und dann Schilde: 0 (für 0) aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Leben: 3\nLeben: 2\nLeben: 0",
+          "expected": "Schilde: 3\nSchilde: 2\nSchilde: 0",
           "codeContains": [
             "def"
           ]

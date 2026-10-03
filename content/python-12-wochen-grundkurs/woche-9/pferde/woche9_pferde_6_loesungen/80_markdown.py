@@ -1,3 +1,3 @@
 """### Extra-Herausforderung 3: Das Trainingslog – Aufgabe 2
 
-Schritt 2 – Abschließen: Die Datei questlog.json mit drei Einträgen wird im vorgegebenen Code angelegt. Lade sie, setze den Status des ersten Eintrags auf \"abgeschlossen\", speichere sie wieder, lade sie erneut und gib genau Erste: abgeschlossen aus."""
+Schritt 2 – Abschließen: Die Datei trainingslog.json mit drei Einträgen wird im vorgegebenen Code angelegt. Lade sie, setze den Status des ersten Eintrags auf \"abgeschlossen\", speichere sie wieder, lade sie erneut und gib genau Erste: abgeschlossen aus."""

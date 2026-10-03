@@ -461,7 +461,7 @@
     "lessonSummary": "Mission geschafft: Du verwaltest Listen in Listen und wertest sie mit Schleifen aus!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Anlegen: Lege gilde = [[\"Nova\", \"Pilotin\", 15], [\"Kira\", \"Technikerin\", 12], [\"Juno\", \"Ärztin\", 8]] an (jeder Eintrag ist [Name, Klasse, Level]). Gib genau Kira: Technikerin aus – Name und Klasse des zweiten Eintrags per gilde[1][0] und gilde[1][1].",
+        "instruction": "Schritt 1 – Anlegen: Lege crew = [[\"Nova\", \"Pilotin\", 15], [\"Kira\", \"Technikerin\", 12], [\"Juno\", \"Ärztin\", 8]] an (jeder Eintrag ist [Name, Rolle, Level]). Gib genau Kira: Technikerin aus – Name und Rolle des zweiten Eintrags per crew[1][0] und crew[1][1].",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -469,8 +469,8 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Erweitern: gilde (mit drei Einträgen) ist vorgegeben. Füge mit append() den Eintrag [\"Rex\", \"Ingenieur\", 10] hinzu. Gib danach Mitglieder: 4 (len) und in der nächsten Zeile Gesamtlevel: 45 aus – berechnet mit einer for-Schleife über die Level (Index 2).",
-        "codeTemplate": "gilde = [[\"Nova\", \"Pilotin\", 15], [\"Kira\", \"Technikerin\", 12], [\"Juno\", \"Ärztin\", 8]]\n# 🎯 Deine Lösung hier:\n",
+        "instruction": "Schritt 2 – Erweitern: crew (mit drei Einträgen) ist vorgegeben. Füge mit append() den Eintrag [\"Rex\", \"Ingenieur\", 10] hinzu. Gib danach Mitglieder: 4 (len) und in der nächsten Zeile Gesamtlevel: 45 aus – berechnet mit einer for-Schleife über die Level (Index 2).",
+        "codeTemplate": "crew = [[\"Nova\", \"Pilotin\", 15], [\"Kira\", \"Technikerin\", 12], [\"Juno\", \"Ärztin\", 8]]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Mitglieder: 4\nGesamtlevel: 45",
@@ -480,8 +480,8 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Den Stärksten finden: gilde (mit vier Einträgen) ist vorgegeben. Suche mit einer for-Schleife den Eintrag mit dem höchsten Level (merke ihn dir in staerkster) und gib genau Stärkster: Nova aus.",
-        "codeTemplate": "gilde = [[\"Nova\", \"Pilotin\", 15], [\"Kira\", \"Technikerin\", 12], [\"Juno\", \"Ärztin\", 8]]\ngilde.append([\"Rex\", \"Ingenieur\", 10])\n# 🎯 Deine Lösung hier:\n",
+        "instruction": "Schritt 3 – Den Stärksten finden: crew (mit vier Einträgen) ist vorgegeben. Suche mit einer for-Schleife den Eintrag mit dem höchsten Level (merke ihn dir in staerkster) und gib genau Stärkster: Nova aus.",
+        "codeTemplate": "crew = [[\"Nova\", \"Pilotin\", 15], [\"Kira\", \"Technikerin\", 12], [\"Juno\", \"Ärztin\", 8]]\ncrew.append([\"Rex\", \"Ingenieur\", 10])\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Stärkster: Nova",

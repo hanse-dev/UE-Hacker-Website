@@ -556,27 +556,27 @@
     "section": "boss",
     "title": "Extra-Herausforderung 3: Das Missionslog",
     "file": "boss-03.md",
-    "lessonSummary": "Das Questlog steht: speichern, abschließen, zählen und einen Bericht schreiben!",
+    "lessonSummary": "Das Missionslog steht: speichern, abschließen, zählen und einen Bericht schreiben!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Quests speichern: Die Liste quests mit drei Mission-Dictionaries ist vorgegeben. Speichere sie in questlog.json, lade sie in geladen und gib genau Mission-Anzahl: 3 und in der nächsten Zeile Status: offen aus (Status der ersten).",
-        "codeTemplate": "import json\nquests = [\n    {\"name\": \"Signal orten\", \"schwierigkeit\": 1, \"status\": \"offen\"},\n    {\"name\": \"Sonde starten\", \"schwierigkeit\": 2, \"status\": \"offen\"},\n    {\"name\": \"Hülle reparieren\", \"schwierigkeit\": 3, \"status\": \"offen\"},\n]\n# 🎯 Deine Lösung hier:\n",
+        "instruction": "Schritt 1 – Missionen speichern: Die Liste missionen mit drei Mission-Dictionaries ist vorgegeben. Speichere sie in missionslog.json, lade sie in geladen und gib genau Mission-Anzahl: 3 und in der nächsten Zeile Status: offen aus (Status der ersten).",
+        "codeTemplate": "import json\nmissionen = [\n    {\"name\": \"Signal orten\", \"schwierigkeit\": 1, \"status\": \"offen\"},\n    {\"name\": \"Sonde starten\", \"schwierigkeit\": 2, \"status\": \"offen\"},\n    {\"name\": \"Hülle reparieren\", \"schwierigkeit\": 3, \"status\": \"offen\"},\n]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Mission-Anzahl: 3\nStatus: offen"
         }
       },
       {
-        "instruction": "Schritt 2 – Abschließen: Die Datei questlog.json mit drei Einträgen wird im vorgegebenen Code angelegt. Lade sie, setze den Status des ersten Eintrags auf \"abgeschlossen\", speichere sie wieder, lade sie erneut und gib genau Erste: abgeschlossen aus.",
-        "codeTemplate": "import json\nquests = [\n    {\"name\": \"Signal orten\", \"schwierigkeit\": 1, \"status\": \"offen\"},\n    {\"name\": \"Sonde starten\", \"schwierigkeit\": 2, \"status\": \"offen\"},\n    {\"name\": \"Hülle reparieren\", \"schwierigkeit\": 3, \"status\": \"offen\"},\n]\nwith open(\"questlog.json\", \"w\") as f:\n    json.dump(quests, f)\n# 🎯 Deine Lösung hier:\n",
+        "instruction": "Schritt 2 – Abschließen: Die Datei missionslog.json mit drei Einträgen wird im vorgegebenen Code angelegt. Lade sie, setze den Status des ersten Eintrags auf \"abgeschlossen\", speichere sie wieder, lade sie erneut und gib genau Erste: abgeschlossen aus.",
+        "codeTemplate": "import json\nmissionen = [\n    {\"name\": \"Signal orten\", \"schwierigkeit\": 1, \"status\": \"offen\"},\n    {\"name\": \"Sonde starten\", \"schwierigkeit\": 2, \"status\": \"offen\"},\n    {\"name\": \"Hülle reparieren\", \"schwierigkeit\": 3, \"status\": \"offen\"},\n]\nwith open(\"missionslog.json\", \"w\") as f:\n    json.dump(missionen, f)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Erste: abgeschlossen"
         }
       },
       {
-        "instruction": "Schritt 3 – Bericht: Die Datei questlog.json wird im vorgegebenen Code angelegt (erster Eintrag \"abgeschlossen\"). Lade sie, zähle die Einträge mit Status \"abgeschlossen\" in fertig und schreibe die Zeile Abgeschlossen: 1 (mit fertig) in die Datei bericht.txt. Lies bericht.txt wieder ein und gib genau Bericht: Abgeschlossen: 1 aus (mit strip()).",
-        "codeTemplate": "import json\nquests = [\n    {\"name\": \"Signal orten\", \"schwierigkeit\": 1, \"status\": \"offen\"},\n    {\"name\": \"Sonde starten\", \"schwierigkeit\": 2, \"status\": \"offen\"},\n    {\"name\": \"Hülle reparieren\", \"schwierigkeit\": 3, \"status\": \"offen\"},\n]\nquests[0][\"status\"] = \"abgeschlossen\"\nwith open(\"questlog.json\", \"w\") as f:\n    json.dump(quests, f)\n# 🎯 Deine Lösung hier:\n",
+        "instruction": "Schritt 3 – Bericht: Die Datei missionslog.json wird im vorgegebenen Code angelegt (erster Eintrag \"abgeschlossen\"). Lade sie, zähle die Einträge mit Status \"abgeschlossen\" in fertig und schreibe die Zeile Abgeschlossen: 1 (mit fertig) in die Datei bericht.txt. Lies bericht.txt wieder ein und gib genau Bericht: Abgeschlossen: 1 aus (mit strip()).",
+        "codeTemplate": "import json\nmissionen = [\n    {\"name\": \"Signal orten\", \"schwierigkeit\": 1, \"status\": \"offen\"},\n    {\"name\": \"Sonde starten\", \"schwierigkeit\": 2, \"status\": \"offen\"},\n    {\"name\": \"Hülle reparieren\", \"schwierigkeit\": 3, \"status\": \"offen\"},\n]\nmissionen[0][\"status\"] = \"abgeschlossen\"\nwith open(\"missionslog.json\", \"w\") as f:\n    json.dump(missionen, f)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Bericht: Abgeschlossen: 1"
