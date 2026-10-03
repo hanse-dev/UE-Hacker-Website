@@ -440,11 +440,11 @@
         }
       },
       {
-        "instruction": "Level 5 – Abmeldung: Bestanden, wenn zeit <= 60 ODER (fehler == 0 UND stil >= 80). Gib dann genau aus: Level 5: Abmeldung bestanden",
+        "instruction": "Level 5 – Absitzen: Bestanden, wenn zeit <= 60 ODER (fehler == 0 UND stil >= 80). Gib dann genau aus: Level 5: Absitzen bestanden",
         "codeTemplate": "zeit = 75\nfehler = 0\nstil = 85\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Level 5: Abmeldung bestanden"
+          "expected": "Level 5: Absitzen bestanden"
         }
       },
       {
