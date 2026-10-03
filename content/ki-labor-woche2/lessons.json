@@ -159,19 +159,19 @@
       {
         "instruction": "🐛 Bug #1 – Ziel: Das Programm soll 20.0 ausgeben (Durchschnitt aus 10, 20, 30). Was ist falsch?",
         "codeTemplate": "def durchschnittsgewicht(tiere):\n    summe = 0\n    for tier in tiere:\n        summe += tier[\"gewicht\"]\n    summe / len(tiere)\n\ntiere = [{\"gewicht\": 10}, {\"gewicht\": 20}, {\"gewicht\": 30}]\nprint(durchschnittsgewicht(tiere))\n",
-        "referenceSolution": "# Fix: Das Ergebnis muss mit return zurueckgegeben werden, sonst kommt None heraus.\ndef durchschnittsgewicht(tiere):\n    summe = 0\n    for tier in tiere:\n        summe += tier[\"gewicht\"]\n    return summe / len(tiere)\n\ntiere = [{\"gewicht\": 10}, {\"gewicht\": 20}, {\"gewicht\": 30}]\nprint(durchschnittsgewicht(tiere))",
+        "referenceSolution": "# Fix: Das Ergebnis muss mit return zurückgegeben werden, sonst kommt None heraus.\ndef durchschnittsgewicht(tiere):\n    summe = 0\n    for tier in tiere:\n        summe += tier[\"gewicht\"]\n    return summe / len(tiere)\n\ntiere = [{\"gewicht\": 10}, {\"gewicht\": 20}, {\"gewicht\": 30}]\nprint(durchschnittsgewicht(tiere))",
         "validation": { "type": "output_contains", "expected": "20.0" }
       },
       {
         "instruction": "🐛 Bug #2 – Ziel: Tiere mit genau 4 Beinen sollen als Vierbeiner mitgezählt werden. Für die Liste sollen genau 2 gezählt werden. Was ist falsch?",
         "codeTemplate": "def zaehle_vierbeiner(tiere):\n    anzahl = 0\n    for tier in tiere:\n        if tier[\"beine\"] > 4:\n            anzahl += 1\n    return anzahl\n\ntiere = [{\"beine\": 4}, {\"beine\": 4}, {\"beine\": 2}]\nprint(zaehle_vierbeiner(tiere))\n",
-        "referenceSolution": "# Fix: == 4 statt > 4 - gezaehlt werden Tiere mit genau 4 Beinen.\ndef zaehle_vierbeiner(tiere):\n    anzahl = 0\n    for tier in tiere:\n        if tier[\"beine\"] == 4:\n            anzahl += 1\n    return anzahl\n\ntiere = [{\"beine\": 4}, {\"beine\": 4}, {\"beine\": 2}]\nprint(zaehle_vierbeiner(tiere))",
+        "referenceSolution": "# Fix: == 4 statt > 4 - gezählt werden Tiere mit genau 4 Beinen.\ndef zaehle_vierbeiner(tiere):\n    anzahl = 0\n    for tier in tiere:\n        if tier[\"beine\"] == 4:\n            anzahl += 1\n    return anzahl\n\ntiere = [{\"beine\": 4}, {\"beine\": 4}, {\"beine\": 2}]\nprint(zaehle_vierbeiner(tiere))",
         "validation": { "type": "output_contains", "expected": "2" }
       },
       {
         "instruction": "🐛 Bug #3 – Ziel: Fehlt einem Tier das Merkmal gewicht, soll 'unbekannt' ausgegeben werden, statt das Programm abstürzen zu lassen. Was ist falsch?",
         "codeTemplate": "def gewicht_oder_unbekannt(tier):\n    return tier[\"gewicht\"]\n\nvogel = {\"name\": \"Spatz\"}\nprint(gewicht_oder_unbekannt(vogel))\n",
-        "referenceSolution": "# Fix: .get() mit Standardwert statt [] - ein fehlender Schluessel loest sonst einen KeyError aus.\ndef gewicht_oder_unbekannt(tier):\n    return tier.get(\"gewicht\", \"unbekannt\")\n\nvogel = {\"name\": \"Spatz\"}\nprint(gewicht_oder_unbekannt(vogel))",
+        "referenceSolution": "# Fix: .get() mit Standardwert statt [] - ein fehlender Schlüssel löst sonst einen KeyError aus.\ndef gewicht_oder_unbekannt(tier):\n    return tier.get(\"gewicht\", \"unbekannt\")\n\nvogel = {\"name\": \"Spatz\"}\nprint(gewicht_oder_unbekannt(vogel))",
         "validation": { "type": "output_contains", "expected": "unbekannt" }
       }
     ]

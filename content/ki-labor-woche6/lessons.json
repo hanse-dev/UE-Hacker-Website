@@ -192,7 +192,7 @@
       {
         "instruction": "🐛 Bug #1 – Ziel: gewichtete_summe([1, 2, 3], [1, 1, 1]) soll 6 ergeben (die Summe aller Produkte). Was ist falsch?",
         "codeTemplate": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe = e * g\n    return summe\n\nprint(gewichtete_summe([1, 2, 3], [1, 1, 1]))\n",
-        "referenceSolution": "# Fix: += statt = - sonst bleibt nur das letzte Produkt uebrig statt der Summe.\ndef gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\nprint(gewichtete_summe([1, 2, 3], [1, 1, 1]))",
+        "referenceSolution": "# Fix: += statt = - sonst bleibt nur das letzte Produkt übrig statt der Summe.\ndef gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\nprint(gewichtete_summe([1, 2, 3], [1, 1, 1]))",
         "validation": {
           "type": "output_contains",
           "expected": "6"

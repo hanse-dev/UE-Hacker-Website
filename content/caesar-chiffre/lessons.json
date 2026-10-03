@@ -12,7 +12,7 @@
         "validation": { "type": "output_contains", "expected": "97" }
       },
       {
-        "instruction": "Gib mit chr() heraus, welcher Buchstabe zum Zeichencode 100 gehört.",
+        "instruction": "Gib mit chr() aus, welcher Buchstabe zum Zeichencode 100 gehört.",
         "codeTemplate": "",
         "solution": "print(chr(100))",
         "isBonus": true,

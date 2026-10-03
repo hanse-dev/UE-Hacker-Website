@@ -15,6 +15,6 @@ function punkteFuerLaenge(laenge) {
 }
 ```
 
-Jetzt ist dein Snake-Projekt komplett: Raster (Lektion 1), Segmente als Array (Lektion 2), Steuerung (Lektion 3), Bewegungsloop (Lektion 4) und Kollisionserkennung (Lektion 5) – bau daraus dein eigenes, vollständiges Spiel!
+Jetzt ist dein Snake-Projekt komplett: Raster (Lektion 1), Segmente als Array (Lektion 2), Steuerung (Lektion 3), Animationsschleife (Lektion 4) und Kollisionserkennung (Lektion 5) – bau daraus dein eigenes, vollständiges Spiel!
 
 > 💡 Bau ruhig eigene Ideen ein: eine zweite Farbe für den Kopf, ein Hindernis, das die Schlange nicht berühren darf, oder ein Extra-Leben. Wichtig ist nur, dass sich am Ende wirklich etwas auf dem Spielfeld bewegt.

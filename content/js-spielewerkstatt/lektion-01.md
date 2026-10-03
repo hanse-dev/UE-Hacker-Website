@@ -38,7 +38,7 @@ function zeichneBall(ctx, x, y) {
 }
 ```
 
-Definiert ist damit noch nichts gezeichnet – erst der **Aufruf** mit konkreten Werten zeichnet
+Mit der Definition ist noch nichts gezeichnet – erst der **Aufruf** mit konkreten Werten zeichnet
 wirklich:
 
 ```js

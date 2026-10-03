@@ -145,7 +145,7 @@
       {
         "instruction": "🐛 Bug #1 – Ziel: Das Programm soll heiß ausgeben. Was ist falsch?",
         "codeTemplate": "def einschaetzung(temperatur):\n    if temperatur > 25:\n        \"heiß\"\n    else:\n        \"nicht heiß\"\n\nprint(einschaetzung(30))\n",
-        "referenceSolution": "# Fix: Ohne return gibt die Funktion None zurueck - die Texte muessen zurueckgegeben werden.\ndef einschaetzung(temperatur):\n    if temperatur > 25:\n        return \"heiß\"\n    else:\n        return \"nicht heiß\"\n\nprint(einschaetzung(30))",
+        "referenceSolution": "# Fix: Ohne return gibt die Funktion None zurück - die Texte müssen zurückgegeben werden.\ndef einschaetzung(temperatur):\n    if temperatur > 25:\n        return \"heiß\"\n    else:\n        return \"nicht heiß\"\n\nprint(einschaetzung(30))",
         "validation": { "type": "output_contains", "expected": "heiß" }
       },
       {
