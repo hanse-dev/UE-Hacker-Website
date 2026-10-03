@@ -6,10 +6,8 @@ scripts/build_lesson_bundle.py (12-Wochen-Kurs), dessen Bausteine hier wiederver
 - "komplett": EINE .py-Datei pro Projekt-Kurs bzw. KI-Labor-Woche
 - "einzeln":  eine .py-Datei pro Lektion
 
-Projekt-Kurse: echte Aufgaben enthalten die Loesung (inline task["solution"]), wie der
-12-Wochen-Download. KI-Labor: hat (noch) keine gespeicherten Referenzloesungen im Content (siehe
-scripts/build_kilabor_notebook.py) - echte Aufgaben enthalten deshalb die Vorlage (codeTemplate)
-zum Selberloesen, Beispiele den fertigen Code.
+Echte Aufgaben enthalten die Musterloesung, wie der 12-Wochen-Download: Projekt-Kurse aus
+task["solution"], KI-Labor aus task["referenceSolution"] (siehe scripts/check_kilabor_solutions.py).
 
 Die Notebooks dazu bauen scripts/build_project_notebook.py / scripts/build_kilabor_notebook.py.
 Wird von scripts/pack_notebooks.py aufgerufen (nur im Speicher). `--check` baut alles und
@@ -86,21 +84,28 @@ def build_project_files(course: dict):
 
 
 def build_kilabor_files(week: int):
-    """KI-Labor-Woche -> (komplett, [einzeln...]); echte Aufgaben mit Vorlage, ohne Loesung."""
+    """KI-Labor-Woche -> (komplett, [einzeln...]); echte Aufgaben mit Musterloesung."""
     folder = f"ki-labor-woche{week}"
+    lessons = _lessons(folder)
+    missing = [
+        (lesson["id"], task["instruction"][:40])
+        for lesson in lessons for task in lesson["tasks"]
+        if not task.get("example") and not task.get("referenceSolution")
+    ]
+    if missing:
+        raise AssertionError(f"{folder}: Aufgaben ohne 'referenceSolution': {missing}")
     intro = [
         "Lektionen, Debug-Quest, Missionen und Extra-Herausforderungen dieser Woche in",
-        "Python-Code. OHNE Musterloesungen: echte Aufgaben enthalten die Vorlage zum",
-        "Selberloesen, Beispiele den fertigen Code. Pruefe deine Loesung ueber den",
-        "Wochen-Check auf der Kursseite.",
+        "Python-Code, inklusive Musterloesungen. Versuch es zuerst selbst auf der Kursseite",
+        "oder im Aufgaben-Notebook und vergleiche dann hier.",
         "",
         "Automatisch erzeugt aus der Wochen-Tour (scripts/build_offline_py.py) - nicht von Hand",
         "bearbeiten.",
-        RUN_HINT + " Ohne Musterloesungen.",
+        RUN_HINT + " Inklusive Loesungen.",
     ]
     return _build(
-        f"UE Hacker – KI-Labor / Woche {week}: {WEEK_TITLES[week]}", folder, _lessons(folder),
-        lambda task: task["codeTemplate"], intro,
+        f"UE Hacker – KI-Labor / Woche {week}: {WEEK_TITLES[week]}", folder, lessons,
+        lambda task: task["codeTemplate"] if task.get("example") else task["referenceSolution"], intro,
         section_header=KI_SECTION_HEADER, number_bonus=True, file_prefix=folder,
     )
 

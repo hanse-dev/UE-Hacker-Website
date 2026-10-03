@@ -13,7 +13,7 @@
         {{ t(`offline.${format}`) }}
       </a>
     </div>
-    <span class="offline-downloads-hint">{{ t(noSolutions ? 'offline.hint.noSolutions' : 'offline.hint') }}</span>
+    <span class="offline-downloads-hint">{{ t('offline.hint') }}</span>
   </div>
 </template>
 
@@ -29,8 +29,6 @@ export default {
   props: {
     // URL-Praefix ohne Format-Endung, z.B. "/wochen-zips/woche-4-en" oder "/projekt-zips/morsecode"
     base: { type: String, required: true },
-    // KI-Labor hat (noch) keine Musterloesungen - der Hinweis sagt das dazu.
-    noSolutions: { type: Boolean, default: false },
   },
   setup() {
     const { t } = useLanguage();

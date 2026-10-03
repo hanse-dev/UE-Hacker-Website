@@ -1,7 +1,7 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-10-01
-> **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.95 (u.a. Offline-Downloads in 3 Formaten, Zertifikate/PDF,
+> **Aktueller Stand:** `main` enthält KI-Labor komplett (Woche 1–8) sowie 3.69–3.96 (u.a. Offline-Downloads in 3 Formaten, Zertifikate/PDF,
 > Skip-/Reset-Button, Login-Fortschritt, Pre-commit/Pre-push, Admin-Termine, "Kurs starten"-Gate für
 > alle Kurse, Worktree-Tooling, Dev-Skip-Flag, JS-Spielewerkstatt mit neuem Konzept).
 > Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4) — nach dem nächsten Deploy
@@ -63,8 +63,8 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.72–3.77 | KI-Labor: Woche 3–8 (k-NN, Training & Test, Entscheidungsbäume, Neuronale Netze I+II, Grenzen & Ethik) | je 5 Lektionen + Debug + Mission + 3 Extra-Herausforderungen + eigener Wochen-Check; alle Beispiele/Lösungen mit `python3` geprüft; nach Woche 8 kein "nächste Woche"-Button mehr |
 | 3.78 | `output_contains` toleriert Groß-/Kleinschreibung, Leerzeichen, Satzzeichen am Ende | `output_equals` bleibt bewusst exakt (prüft teils auf ungewollte Extra-Ausgabe); Test in `week-checks-logic.spec.js` |
 | 3.79 | Interaktiv-Kurs: Lektionstexte ausführlicher (Kinder + Jugendliche, DE) | reine Textüberarbeitung, keine Logikänderung |
-| 3.80 | Lektionsaufgaben prüfen nur noch die Ausgabe, nicht mehr Code-Struktur/Variablen | `useTaskValidation.js` trennt `validateOutput()` (nur Ausgabe) von `structuralChecksOk()` (nur noch `CodeChallenge.vue`/Wochen-Check) |
-| 3.81 | Lektionsaufgaben überspringbar (nach 2 Fehlversuchen) | `.btn-skip` in `LessonView.vue`/`JsLessonView.vue`, `skippedTasks` zählt für den Lektions-Abschluss mit (⏭ statt ✓); gilt nicht für `CodeChallenge.vue` |
+| 3.80 | Lektionsaufgaben prüfen nur noch die Ausgabe | `validateOutput()` vs. `structuralChecksOk()` (nur Wochen-Check) in `useTaskValidation.js` |
+| 3.81 | Lektionsaufgaben überspringbar (nach 2 Fehlversuchen) | `.btn-skip` in `LessonView.vue`/`JsLessonView.vue`, zählt für den Abschluss (⏭ statt ✓); nicht im Wochen-Check |
 | 3.82 | Login ersetzt lokalen Fortschritt durch Account-Stand | `loadAccountProgress()`/`replaceLocalProgress()` (`useProgressSync.js`); Seiten-Reload merged weiter nach `updatedAt` |
 | 3.83 | Pre-commit/Pre-push zweistufig statt vollem `test:checks` bei jedem Commit | `scripts/test-changed.mjs` mappt staged Dateien auf betroffene Specs (Pre-commit); voller `test:checks` im Pre-push-Hook |
 | 3.84 | Termine im Admin-Panel statt `public/termine.json` | `termine`-Tabelle + `/api/termine` + `/api/admin/termine`, Tab „Termine“ in `AdminView.vue`; einmaliger Umzug per `import-termine-json.js` |
@@ -75,8 +75,9 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.88/3.90 | JS-Spielewerkstatt mit neuem Konzept | 7 Lektionen, jede Aufgabe baut am laufenden Spiel weiter (ID/URL unverändert); Prüfung per `output_equals` statt `functionCalls`; `task.showCanvas: false`; Vorwissen JS-Grundkurs Woche 4; Durchlauf-Test über alle Musterlösungen |
 | 3.91 | "Zurücksetzen"-Button für vorgegebenen Code | `.btn-reset` in `LessonView.vue`/`JsLessonView.vue`/`CodeChallenge.vue`, sichtbar sobald der Code vom `codeTemplate` abweicht; setzt nur diese eine Aufgabe zurück |
 | 3.92 | JS-Lektionsaufgaben: fehlende `output_contains`-Checks nachgezogen | `js-grundkurs` und `js-snake`: keine JS-Pflichtaufgabe mehr ohne Ausgabe-/Canvas-/DOM-Prüfung (vorher 31, seit 3.80 ungeprüft) |
-| 3.94 | Glossar-Tooltip bricht bei verschachtelten Begriffen nicht mehr auf | `useLessonContent.js`: ein kombinierter Regex-Durchlauf über den Originaltext statt sequenziellem Ersetzen (traf sonst in schon eingefügte `title`-Attribute) |
+| 3.94 | Glossar-Tooltip bei verschachtelten Begriffen | `useLessonContent.js`: ein kombinierter Regex-Durchlauf statt sequenziellem Ersetzen |
 | 3.95 | Offline-Downloads in 3 Formaten (Notebooks, eine Python-Datei, Einzeldateien je Lektion) | 12-Wochen-Kurs, Python-Projekte, KI-Labor; ein Button je Format (`OfflineDownloads.vue`); `pack_notebooks.py` + `build_*_notebook.py`/`build_offline_py.py`, Details `INHALTE.md` |
+| 3.96 | KI-Labor-Musterlösungen für alle 160 Aufgaben | Feld `task.referenceSolution` (nicht `solution`, sonst Lösungs-Button in der App); Offline-Downloads mit Lösungs-Notebook; `check_kilabor_solutions.py` prüft jede Lösung gegen die erwartete Ausgabe |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 

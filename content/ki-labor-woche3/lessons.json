@@ -21,6 +21,7 @@
       {
         "instruction": "Berechne mit abs() den Abstand zwischen den Körpergrößen 160 und 145 und gib ihn aus. Berechne danach den Abstand zwischen 160 und 200 und gib auch diesen aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "print(abs(160 - 145))\nprint(abs(160 - 200))",
         "validation": {
           "type": "output_contains",
           "expected": "15\n40"
@@ -50,6 +51,7 @@
       {
         "instruction": "Schreibe eine Funktion abstand(a, b), die die euklidische Distanz zwischen zwei Dictionaries mit den Merkmalen 'x' und 'y' berechnet (math.sqrt und **2). Berechne mit ihr den Abstand zwischen {'x': 0, 'y': 0} und {'x': 3, 'y': 4} und gib ihn aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "import math\n\ndef abstand(a, b):\n    return math.sqrt((a[\"x\"] - b[\"x\"]) ** 2 + (a[\"y\"] - b[\"y\"]) ** 2)\n\nprint(abstand({\"x\": 0, \"y\": 0}, {\"x\": 3, \"y\": 4}))",
         "validation": {
           "type": "output_contains",
           "expected": "5.0",
@@ -80,6 +82,7 @@
       {
         "instruction": "Erstelle eine Liste trainingsdaten mit den drei Dictionaries {'beine': 4, 'gewicht': 30, 'art': 'Saeugetier'}, {'beine': 2, 'gewicht': 0.03, 'art': 'Vogel'} und {'beine': 8, 'gewicht': 0.0002, 'art': 'Spinnentier'}. Schreibe eine Funktion abstand(a, b) und eine Funktion naechster_nachbar(trainingsdaten, neu) wie im Beispiel. Finde den nächsten Nachbarn für neu = {'beine': 8, 'gewicht': 0.0001} und gib dessen 'art' aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "import math\n\ndef abstand(a, b):\n    return math.sqrt((a[\"beine\"] - b[\"beine\"]) ** 2 + (a[\"gewicht\"] - b[\"gewicht\"]) ** 2)\n\ndef naechster_nachbar(trainingsdaten, neu):\n    bester_abstand = None\n    naechster = None\n    for beispiel in trainingsdaten:\n        d = abstand(neu, beispiel)\n        if bester_abstand is None or d < bester_abstand:\n            bester_abstand = d\n            naechster = beispiel\n    return naechster[\"art\"]\n\ntrainingsdaten = [\n    {\"beine\": 4, \"gewicht\": 30, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 0.03, \"art\": \"Vogel\"},\n    {\"beine\": 8, \"gewicht\": 0.0002, \"art\": \"Spinnentier\"},\n]\n\nprint(naechster_nachbar(trainingsdaten, {\"beine\": 8, \"gewicht\": 0.0001}))",
         "validation": {
           "type": "output_contains",
           "expected": "Spinnentier",
@@ -110,6 +113,7 @@
       {
         "instruction": "Erstelle eine Liste trainingsdaten mit den vier Dictionaries {'beine': 4, 'gewicht': 30, 'art': 'Saeugetier'}, {'beine': 2, 'gewicht': 0.03, 'art': 'Vogel'}, {'beine': 4, 'gewicht': 25, 'art': 'Saeugetier'} und {'beine': 2, 'gewicht': 0.02, 'art': 'Vogel'}. Schreibe eine Funktion abstand(a, b), sortiere trainingsdaten mit sorted() nach dem Abstand zu neu = {'beine': 3, 'gewicht': 20}, nimm mit Slicing die k=3 nächsten, und zähle mit einem Dictionary, wie oft jedes 'art'-Label unter ihnen vorkommt. Gib das Zähl-Dictionary aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "import math\n\ndef abstand(a, b):\n    return math.sqrt((a[\"beine\"] - b[\"beine\"]) ** 2 + (a[\"gewicht\"] - b[\"gewicht\"]) ** 2)\n\ntrainingsdaten = [\n    {\"beine\": 4, \"gewicht\": 30, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 0.03, \"art\": \"Vogel\"},\n    {\"beine\": 4, \"gewicht\": 25, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 0.02, \"art\": \"Vogel\"},\n]\nneu = {\"beine\": 3, \"gewicht\": 20}\n\ndef abstand_zu_neu(beispiel):\n    return abstand(neu, beispiel)\n\nsortiert = sorted(trainingsdaten, key=abstand_zu_neu)\nnaechste = sortiert[:3]\n\nanzahl_je_kategorie = {}\nfor beispiel in naechste:\n    label = beispiel[\"art\"]\n    anzahl_je_kategorie[label] = anzahl_je_kategorie.get(label, 0) + 1\n\nprint(anzahl_je_kategorie)",
         "validation": {
           "type": "output_contains",
           "expected": "{'Saeugetier': 2, 'Vogel': 1}",
@@ -134,6 +138,7 @@
       {
         "instruction": "Kopiere abstand(a, b) und knn_klassifiziere(trainingsdaten, neu, k) sowie die Liste trainingsdaten aus dem Beispiel oben. Rufe knn_klassifiziere() mit neu = {'beine': 4, 'gewicht': 27} und k=3 auf und gib das Ergebnis aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "import math\n\ndef abstand(a, b):\n    return math.sqrt((a[\"beine\"] - b[\"beine\"]) ** 2 + (a[\"gewicht\"] - b[\"gewicht\"]) ** 2)\n\ndef knn_klassifiziere(trainingsdaten, neu, k):\n    def abstand_zu_neu(beispiel):\n        return abstand(neu, beispiel)\n\n    sortiert = sorted(trainingsdaten, key=abstand_zu_neu)\n    naechste = sortiert[:k]\n    labels = [beispiel[\"art\"] for beispiel in naechste]\n\n    anzahl_je_kategorie = {}\n    for label in labels:\n        anzahl_je_kategorie[label] = anzahl_je_kategorie.get(label, 0) + 1\n\n    beste_kategorie = None\n    bester_wert = -1\n    for kategorie in anzahl_je_kategorie:\n        anzahl = anzahl_je_kategorie[kategorie]\n        if anzahl > bester_wert:\n            bester_wert = anzahl\n            beste_kategorie = kategorie\n    return beste_kategorie\n\ntrainingsdaten = [\n    {\"beine\": 4, \"gewicht\": 30, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 0.03, \"art\": \"Vogel\"},\n    {\"beine\": 4, \"gewicht\": 25, \"art\": \"Saeugetier\"},\n    {\"beine\": 2, \"gewicht\": 0.02, \"art\": \"Vogel\"},\n]\n\nprint(knn_klassifiziere(trainingsdaten, {\"beine\": 4, \"gewicht\": 27}, 3))",
         "validation": {
           "type": "output_contains",
           "expected": "Saeugetier",
@@ -152,16 +157,19 @@
       {
         "instruction": "🐛 Bug #1 – Ziel: Der nächste Nachbar von {'x': 0, 'y': 1} soll 'A' sein (Abstand 1.0, am nächsten von allen). Was ist falsch?",
         "codeTemplate": "import math\n\ndef abstand(a, b):\n    math.sqrt((a[\"x\"] - b[\"x\"]) ** 2 + (a[\"y\"] - b[\"y\"]) ** 2)\n\ndef naechster_nachbar(trainingsdaten, neu):\n    bester_abstand = None\n    naechster = None\n    for beispiel in trainingsdaten:\n        d = abstand(neu, beispiel)\n        if bester_abstand is None or d < bester_abstand:\n            bester_abstand = d\n            naechster = beispiel\n    return naechster[\"art\"]\n\ntrainingsdaten = [\n    {\"x\": 0, \"y\": 0, \"art\": \"A\"},\n    {\"x\": 10, \"y\": 10, \"art\": \"B\"},\n    {\"x\": 1, \"y\": 1, \"art\": \"C\"},\n]\n\nprint(naechster_nachbar(trainingsdaten, {\"x\": 0, \"y\": 1}))\n",
+        "referenceSolution": "import math\n\n# Fix: abstand() muss das Ergebnis mit return zurueckgeben, sonst ist jeder Abstand None.\ndef abstand(a, b):\n    return math.sqrt((a[\"x\"] - b[\"x\"]) ** 2 + (a[\"y\"] - b[\"y\"]) ** 2)\n\ndef naechster_nachbar(trainingsdaten, neu):\n    bester_abstand = None\n    naechster = None\n    for beispiel in trainingsdaten:\n        d = abstand(neu, beispiel)\n        if bester_abstand is None or d < bester_abstand:\n            bester_abstand = d\n            naechster = beispiel\n    return naechster[\"art\"]\n\ntrainingsdaten = [\n    {\"x\": 0, \"y\": 0, \"art\": \"A\"},\n    {\"x\": 10, \"y\": 10, \"art\": \"B\"},\n    {\"x\": 1, \"y\": 1, \"art\": \"C\"},\n]\n\nprint(naechster_nachbar(trainingsdaten, {\"x\": 0, \"y\": 1}))",
         "validation": { "type": "output_contains", "expected": "A" }
       },
       {
         "instruction": "🐛 Bug #2 – Ziel: Der nächste Nachbar von {'x': 0, 'y': 1} soll 'A' sein (Abstand 1.0, am nächsten von allen). Was ist falsch?",
         "codeTemplate": "import math\n\ndef abstand(a, b):\n    return math.sqrt((a[\"x\"] - b[\"x\"]) ** 2 + (a[\"y\"] - b[\"y\"]) ** 2)\n\ndef naechster_nachbar(trainingsdaten, neu):\n    bester_abstand = None\n    naechster = None\n    for beispiel in trainingsdaten:\n        d = abstand(neu, beispiel)\n        if bester_abstand is None or d > bester_abstand:\n            bester_abstand = d\n            naechster = beispiel\n    return naechster[\"art\"]\n\ntrainingsdaten = [\n    {\"x\": 0, \"y\": 0, \"art\": \"A\"},\n    {\"x\": 10, \"y\": 10, \"art\": \"B\"},\n    {\"x\": 1, \"y\": 1, \"art\": \"C\"},\n]\n\nprint(naechster_nachbar(trainingsdaten, {\"x\": 0, \"y\": 1}))\n",
+        "referenceSolution": "import math\n\ndef abstand(a, b):\n    return math.sqrt((a[\"x\"] - b[\"x\"]) ** 2 + (a[\"y\"] - b[\"y\"]) ** 2)\n\n# Fix: < statt > - gesucht ist der kleinste Abstand, nicht der groesste.\ndef naechster_nachbar(trainingsdaten, neu):\n    bester_abstand = None\n    naechster = None\n    for beispiel in trainingsdaten:\n        d = abstand(neu, beispiel)\n        if bester_abstand is None or d < bester_abstand:\n            bester_abstand = d\n            naechster = beispiel\n    return naechster[\"art\"]\n\ntrainingsdaten = [\n    {\"x\": 0, \"y\": 0, \"art\": \"A\"},\n    {\"x\": 10, \"y\": 10, \"art\": \"B\"},\n    {\"x\": 1, \"y\": 1, \"art\": \"C\"},\n]\n\nprint(naechster_nachbar(trainingsdaten, {\"x\": 0, \"y\": 1}))",
         "validation": { "type": "output_contains", "expected": "A" }
       },
       {
         "instruction": "🐛 Bug #3 – Ziel: Das Zähl-Dictionary soll {'Saeugetier': 2, 'Vogel': 1} ausgeben. Was ist falsch?",
         "codeTemplate": "def zaehle_labels(labels):\n    anzahl_je_kategorie = {}\n    for label in labels:\n        anzahl_je_kategorie[label] = anzahl_je_kategorie[label] + 1\n    return anzahl_je_kategorie\n\nlabels = [\"Saeugetier\", \"Vogel\", \"Saeugetier\"]\nprint(zaehle_labels(labels))\n",
+        "referenceSolution": "# Fix: .get(label, 0) statt [label] - beim ersten Auftreten gibt es den Schluessel noch nicht.\ndef zaehle_labels(labels):\n    anzahl_je_kategorie = {}\n    for label in labels:\n        anzahl_je_kategorie[label] = anzahl_je_kategorie.get(label, 0) + 1\n    return anzahl_je_kategorie\n\nlabels = [\"Saeugetier\", \"Vogel\", \"Saeugetier\"]\nprint(zaehle_labels(labels))",
         "validation": { "type": "output_contains", "expected": "{'Saeugetier': 2, 'Vogel': 1}" }
       }
     ]
@@ -176,6 +184,7 @@
       {
         "instruction": "Schritt 1 – Datensatz: Erstelle eine Liste trainingsdaten mit den drei Dictionaries {'suesse': 8, 'groesse': 3, 'frucht': 'Kirsche'}, {'suesse': 3, 'groesse': 15, 'frucht': 'Zitrone'} und {'suesse': 9, 'groesse': 4, 'frucht': 'Kirsche'}. Schreibe eine Funktion namen_liste(trainingsdaten), die eine Liste aller 'frucht'-Werte zurückgibt, und gib sie aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "trainingsdaten = [\n    {\"suesse\": 8, \"groesse\": 3, \"frucht\": \"Kirsche\"},\n    {\"suesse\": 3, \"groesse\": 15, \"frucht\": \"Zitrone\"},\n    {\"suesse\": 9, \"groesse\": 4, \"frucht\": \"Kirsche\"},\n]\n\ndef namen_liste(trainingsdaten):\n    return [beispiel[\"frucht\"] for beispiel in trainingsdaten]\n\nprint(namen_liste(trainingsdaten))",
         "validation": {
           "type": "output_contains",
           "expected": "['Kirsche', 'Zitrone', 'Kirsche']",
@@ -185,6 +194,7 @@
       {
         "instruction": "Schritt 2 – Abstand: Schreibe eine Funktion abstand(a, b), die die euklidische Distanz zwischen den Merkmalen 'suesse' und 'groesse' zweier Dictionaries berechnet (math.sqrt, **2). Nutze deine Liste trainingsdaten aus Schritt 1 (erneut erstellen) und berechne den Abstand zwischen ihrem ersten und zweiten Eintrag. Gib ihn aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "import math\n\ntrainingsdaten = [\n    {\"suesse\": 8, \"groesse\": 3, \"frucht\": \"Kirsche\"},\n    {\"suesse\": 3, \"groesse\": 15, \"frucht\": \"Zitrone\"},\n    {\"suesse\": 9, \"groesse\": 4, \"frucht\": \"Kirsche\"},\n]\n\ndef abstand(a, b):\n    return math.sqrt((a[\"suesse\"] - b[\"suesse\"]) ** 2 + (a[\"groesse\"] - b[\"groesse\"]) ** 2)\n\nprint(abstand(trainingsdaten[0], trainingsdaten[1]))",
         "validation": {
           "type": "output_contains",
           "expected": "13.0",
@@ -194,6 +204,7 @@
       {
         "instruction": "Schritt 3 – Nächster Nachbar: Schreibe eine Funktion naechster_nachbar(trainingsdaten, neu), die mit abstand() (erneut schreiben) den nächsten Nachbarn findet und dessen 'frucht' zurückgibt. Nutze deine Liste trainingsdaten (erneut erstellen) und finde den nächsten Nachbarn für neu = {'suesse': 9, 'groesse': 5}. Gib genau Kirsche aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "import math\n\ntrainingsdaten = [\n    {\"suesse\": 8, \"groesse\": 3, \"frucht\": \"Kirsche\"},\n    {\"suesse\": 3, \"groesse\": 15, \"frucht\": \"Zitrone\"},\n    {\"suesse\": 9, \"groesse\": 4, \"frucht\": \"Kirsche\"},\n]\n\ndef abstand(a, b):\n    return math.sqrt((a[\"suesse\"] - b[\"suesse\"]) ** 2 + (a[\"groesse\"] - b[\"groesse\"]) ** 2)\n\ndef naechster_nachbar(trainingsdaten, neu):\n    bester_abstand = None\n    naechster = None\n    for beispiel in trainingsdaten:\n        d = abstand(neu, beispiel)\n        if bester_abstand is None or d < bester_abstand:\n            bester_abstand = d\n            naechster = beispiel\n    return naechster[\"frucht\"]\n\nprint(naechster_nachbar(trainingsdaten, {\"suesse\": 9, \"groesse\": 5}))",
         "validation": {
           "type": "output_contains",
           "expected": "Kirsche",
@@ -212,6 +223,7 @@
       {
         "instruction": "Schritt 1 – Gewicht: Schreibe eine Funktion gewicht(abstand), die 1 / abstand zurückgibt (je kleiner der Abstand, desto größer das Gewicht). Ist abstand genau 0, soll die Funktion 1000000 zurückgeben (Division durch 0 vermeiden). Gib gewicht(2) und danach gewicht(0) aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def gewicht(abstand):\n    if abstand == 0:\n        return 1000000\n    return 1 / abstand\n\nprint(gewicht(2))\nprint(gewicht(0))",
         "validation": {
           "type": "output_contains",
           "expected": "0.5\n1000000",
@@ -221,6 +233,7 @@
       {
         "instruction": "Schritt 2 – Gewichtete Stimmen: Schreibe eine Funktion gewichtete_stimmen(nachbarn_mit_abstand), die eine Liste von Tupeln (label, abstand) durchgeht und mit gewicht() (erneut schreiben) ein Dictionary label -> summiertes Gewicht aufbaut. Nutze [('A', 1), ('B', 2), ('A', 4)] und gib das Dictionary aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def gewicht(abstand):\n    if abstand == 0:\n        return 1000000\n    return 1 / abstand\n\ndef gewichtete_stimmen(nachbarn_mit_abstand):\n    stimmen = {}\n    for label, abstand in nachbarn_mit_abstand:\n        stimmen[label] = stimmen.get(label, 0) + gewicht(abstand)\n    return stimmen\n\nprint(gewichtete_stimmen([(\"A\", 1), (\"B\", 2), (\"A\", 4)]))",
         "validation": {
           "type": "output_contains",
           "expected": "{'A': 1.25, 'B': 0.5}",
@@ -230,6 +243,7 @@
       {
         "instruction": "Schritt 3 – Gewichteter Sieger: Schreibe eine Funktion gewichteter_sieger(nachbarn_mit_abstand), die gewichtete_stimmen() (erneut schreiben) benutzt und das Label mit dem höchsten summierten Gewicht zurückgibt (ohne max(), Schleife). Nutze dieselbe Liste [('A', 1), ('B', 2), ('A', 4)] wie in Schritt 2. Gib genau A aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def gewicht(abstand):\n    if abstand == 0:\n        return 1000000\n    return 1 / abstand\n\ndef gewichtete_stimmen(nachbarn_mit_abstand):\n    stimmen = {}\n    for label, abstand in nachbarn_mit_abstand:\n        stimmen[label] = stimmen.get(label, 0) + gewicht(abstand)\n    return stimmen\n\ndef gewichteter_sieger(nachbarn_mit_abstand):\n    stimmen = gewichtete_stimmen(nachbarn_mit_abstand)\n    sieger = None\n    bestes_gewicht = -1\n    for label in stimmen:\n        if stimmen[label] > bestes_gewicht:\n            bestes_gewicht = stimmen[label]\n            sieger = label\n    return sieger\n\nprint(gewichteter_sieger([(\"A\", 1), (\"B\", 2), (\"A\", 4)]))",
         "validation": {
           "type": "output_contains",
           "expected": "A",
@@ -248,6 +262,7 @@
       {
         "instruction": "Schritt 1 – Eine Vorhersage prüfen: Schreibe eine Funktion ist_richtig(vorhersage, erwartet), die True zurückgibt, wenn vorhersage == erwartet, sonst False. Gib ist_richtig('Katze', 'Katze') und danach ist_richtig('Katze', 'Hund') aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def ist_richtig(vorhersage, erwartet):\n    return vorhersage == erwartet\n\nprint(ist_richtig(\"Katze\", \"Katze\"))\nprint(ist_richtig(\"Katze\", \"Hund\"))",
         "validation": {
           "type": "output_contains",
           "expected": "True\nFalse",
@@ -257,6 +272,7 @@
       {
         "instruction": "Schritt 2 – Genauigkeit berechnen: Schreibe eine Funktion genauigkeit(vorhersagen, erwartete_werte), die mit ist_richtig() (erneut schreiben) zählt, wie viele Vorhersagen richtig waren, und den Anteil in Prozent zurückgibt (gerundet mit round()). Nutze vorhersagen = ['Katze', 'Hund', 'Katze', 'Vogel'] und erwartete_werte = ['Katze', 'Katze', 'Katze', 'Vogel']. Gib genau 75 aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def ist_richtig(vorhersage, erwartet):\n    return vorhersage == erwartet\n\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if ist_richtig(vorhersagen[i], erwartete_werte[i]):\n            richtig += 1\n    return round(richtig / len(vorhersagen) * 100)\n\nvorhersagen = [\"Katze\", \"Hund\", \"Katze\", \"Vogel\"]\nerwartete_werte = [\"Katze\", \"Katze\", \"Katze\", \"Vogel\"]\nprint(genauigkeit(vorhersagen, erwartete_werte))",
         "validation": {
           "type": "output_contains",
           "expected": "75",
@@ -266,6 +282,7 @@
       {
         "instruction": "Schritt 3 – Mehrere k vergleichen: Schreibe eine Funktion beste_genauigkeit(ergebnisse_je_k), die ein Dictionary k -> genauigkeit durchgeht und das k mit der höchsten Genauigkeit zurückgibt (ohne max(), Schleife). Nutze {1: 60, 3: 80, 5: 75} und gib genau 3 aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def beste_genauigkeit(ergebnisse_je_k):\n    bestes_k = None\n    beste = -1\n    for k in ergebnisse_je_k:\n        if ergebnisse_je_k[k] > beste:\n            beste = ergebnisse_je_k[k]\n            bestes_k = k\n    return bestes_k\n\nprint(beste_genauigkeit({1: 60, 3: 80, 5: 75}))",
         "validation": {
           "type": "output_contains",
           "expected": "3",
@@ -284,6 +301,7 @@
       {
         "instruction": "Schritt 1 – Kategorien sammeln: Schreibe eine Funktion sammle_kategorien(trainingsdaten), die eine Liste aller einzigartigen 'art'-Werte zurückgibt (jede Kategorie nur einmal, mit einer Schleife und einer if-Prüfung 'not in', ohne set()). Nutze trainingsdaten = [{'art': 'Hund'}, {'art': 'Katze'}, {'art': 'Hund'}, {'art': 'Vogel'}]. Gib genau ['Hund', 'Katze', 'Vogel'] aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def sammle_kategorien(trainingsdaten):\n    kategorien = []\n    for beispiel in trainingsdaten:\n        if beispiel[\"art\"] not in kategorien:\n            kategorien.append(beispiel[\"art\"])\n    return kategorien\n\ntrainingsdaten = [{\"art\": \"Hund\"}, {\"art\": \"Katze\"}, {\"art\": \"Hund\"}, {\"art\": \"Vogel\"}]\nprint(sammle_kategorien(trainingsdaten))",
         "validation": {
           "type": "output_contains",
           "expected": "['Hund', 'Katze', 'Vogel']",
@@ -293,6 +311,7 @@
       {
         "instruction": "Schritt 2 – Unentschieden erkennen: Schreibe eine Funktion ist_unentschieden(anzahl_je_kategorie), die True zurückgibt, wenn mindestens zwei Kategorien denselben (höchsten) Zählwert haben, sonst False. Gib das Ergebnis für {'Hund': 2, 'Katze': 2, 'Vogel': 1} und danach für {'Hund': 3, 'Katze': 1} aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def ist_unentschieden(anzahl_je_kategorie):\n    hoechster = -1\n    for kategorie in anzahl_je_kategorie:\n        if anzahl_je_kategorie[kategorie] > hoechster:\n            hoechster = anzahl_je_kategorie[kategorie]\n    mit_hoechstem = 0\n    for kategorie in anzahl_je_kategorie:\n        if anzahl_je_kategorie[kategorie] == hoechster:\n            mit_hoechstem += 1\n    return mit_hoechstem >= 2\n\nprint(ist_unentschieden({\"Hund\": 2, \"Katze\": 2, \"Vogel\": 1}))\nprint(ist_unentschieden({\"Hund\": 3, \"Katze\": 1}))",
         "validation": {
           "type": "output_contains",
           "expected": "True\nFalse",
@@ -302,6 +321,7 @@
       {
         "instruction": "Schritt 3 – Bei Unentschieden den nächsten nehmen: Schreibe eine Funktion entscheide(anzahl_je_kategorie, sortierte_nachbarn), die bei einem Unentschieden (mit ist_unentschieden(), erneut schreiben) das 'art'-Label des allerersten (nächsten) Nachbarn aus sortierte_nachbarn zurückgibt, sonst das Label mit dem höchsten Zählwert (ohne max(), Schleife). Nutze anzahl_je_kategorie = {'Hund': 2, 'Katze': 2} und sortierte_nachbarn = [{'art': 'Katze'}, {'art': 'Hund'}, {'art': 'Hund'}, {'art': 'Katze'}]. Gib genau Katze aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def ist_unentschieden(anzahl_je_kategorie):\n    hoechster = -1\n    for kategorie in anzahl_je_kategorie:\n        if anzahl_je_kategorie[kategorie] > hoechster:\n            hoechster = anzahl_je_kategorie[kategorie]\n    mit_hoechstem = 0\n    for kategorie in anzahl_je_kategorie:\n        if anzahl_je_kategorie[kategorie] == hoechster:\n            mit_hoechstem += 1\n    return mit_hoechstem >= 2\n\ndef entscheide(anzahl_je_kategorie, sortierte_nachbarn):\n    if ist_unentschieden(anzahl_je_kategorie):\n        return sortierte_nachbarn[0][\"art\"]\n    beste = None\n    bester_wert = -1\n    for kategorie in anzahl_je_kategorie:\n        if anzahl_je_kategorie[kategorie] > bester_wert:\n            bester_wert = anzahl_je_kategorie[kategorie]\n            beste = kategorie\n    return beste\n\nanzahl_je_kategorie = {\"Hund\": 2, \"Katze\": 2}\nsortierte_nachbarn = [{\"art\": \"Katze\"}, {\"art\": \"Hund\"}, {\"art\": \"Hund\"}, {\"art\": \"Katze\"}]\nprint(entscheide(anzahl_je_kategorie, sortierte_nachbarn))",
         "validation": {
           "type": "output_contains",
           "expected": "Katze",

@@ -148,7 +148,6 @@ export default {
   'offline.komplett':      '🐍 One Python file',
   'offline.einzeln':       '📁 Python files per lesson',
   'offline.hint':          'Open the notebooks in Jupyter or VS Code (tasks and solutions separate). The Python files run with any Python 3: python3 file.py',
-  'offline.hint.noSolutions': 'Open the notebooks in Jupyter or VS Code; the Python files run with any Python 3 (python3 file.py). No model solutions – check your solution in the week check.',
 
   // ── Week check panel ─────────────────────────────────────────────────────
   'check.loading':       'Loading check…',

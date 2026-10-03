@@ -25,11 +25,6 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
       Aufwand wäre der Content selbst (444 Notebooks × Sprache). Keine neue i18n-Library nötig.
 - [ ] `kurs-python-spiele` — Idee verworfen zugunsten von `kurs-js-spielewerkstatt`: Pyodides
       synchrones Ausführungsmodell ist mit einer echten Spiele-Loop unvereinbar (Archiv HANDOFF 3.32).
-- [ ] KI-Labor hat keine gespeicherten Musterlösungen im Content (nur `codeTemplate`). Folge:
-      Offline-Downloads des KI-Labors (3.95) enthalten nur Aufgaben, kein Lösungs-Notebook. Für
-      Lösungen bräuchte jede der 160 echten Aufgaben ein `solution`-Feld (wie die Projekt-Kurse);
-      ein Teil steckt als Test-Fixture in `tests/ki-labor.spec.js`, ist als Content-Quelle aber
-      unvollständig. Dann `build_kilabor_notebook.py`/`build_offline_py.py` um Lösungen erweitern.
 
 ### Offene Nachbesserungen Lektions-Format (nach Woche)
 

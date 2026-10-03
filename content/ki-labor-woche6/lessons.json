@@ -27,6 +27,7 @@
       {
         "instruction": "Schreibe eine Funktion feueralarm(rauch, hitze), die 1 zurückgibt, wenn rauch * 2 + hitze * 3 >= 5 ist, sonst 0. Gib feueralarm(1, 1) und feueralarm(0, 1) aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def feueralarm(rauch, hitze):\n    if rauch * 2 + hitze * 3 >= 5:\n        return 1\n    else:\n        return 0\n\nprint(feueralarm(1, 1))\nprint(feueralarm(0, 1))",
         "validation": {
           "type": "output_contains",
           "expected": "1\n0"
@@ -62,6 +63,7 @@
       {
         "instruction": "Schreibe gewichtete_summe(eingaben, gewichte) wie im Beispiel (mit zip()). Berechne gewichtete_summe([3, 4], [2, 1]) und gewichtete_summe([1, 1], [2, 1]) und gib beide aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\nprint(gewichtete_summe([3, 4], [2, 1]))\nprint(gewichtete_summe([1, 1], [2, 1]))",
         "validation": {
           "type": "output_contains",
           "expected": "10\n3",
@@ -100,6 +102,7 @@
       {
         "instruction": "Schreibe gewichtete_summe(eingaben, gewichte), aktivierung(summe, schwelle) und neuron(eingaben, gewichte, schwelle) wie im Beispiel. Rufe neuron([0, 0], [1, 1], 1) und neuron([1, 0], [1, 1], 1) auf und gib beide Ergebnisse aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, schwelle):\n    summe = gewichtete_summe(eingaben, gewichte)\n    return aktivierung(summe, schwelle)\n\nprint(neuron([0, 0], [1, 1], 1))\nprint(neuron([1, 0], [1, 1], 1))",
         "validation": {
           "type": "output_contains",
           "expected": "0\n1",
@@ -138,6 +141,7 @@
       {
         "instruction": "Kopiere gewichtete_summe(eingaben, gewichte), aktivierung(summe, schwelle) und neuron(eingaben, gewichte, schwelle) aus dem Beispiel. Baue ein NOR-Gatter (umgekehrtes ODER) mit gewichte=[-1, -1] und schwelle=0. Teste es mit alle_eingaben = [[0, 0], [0, 1], [1, 0], [1, 1]] in einer Schleife und gib jedes Ergebnis aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, schwelle):\n    summe = gewichtete_summe(eingaben, gewichte)\n    return aktivierung(summe, schwelle)\n\nalle_eingaben = [[0, 0], [0, 1], [1, 0], [1, 1]]\nfor e in alle_eingaben:\n    print(neuron(e, [-1, -1], 0))",
         "validation": {
           "type": "output_contains",
           "expected": "1\n0\n0\n0",
@@ -167,6 +171,7 @@
       {
         "instruction": "Schreibe eine Funktion anzahl_fehler(vorhersagen, erwartete_werte), die zählt, wie oft sich vorhersagen und erwartete_werte an derselben Stelle unterscheiden. Nutze vorhersagen = [0, 1, 1, 1] und erwartete_werte = [0, 1, 1, 0] (die XOR-Wahrheitstabelle). Gib anzahl_fehler(vorhersagen, erwartete_werte) aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def anzahl_fehler(vorhersagen, erwartete_werte):\n    fehler = 0\n    for i in range(len(vorhersagen)):\n        if vorhersagen[i] != erwartete_werte[i]:\n            fehler += 1\n    return fehler\n\nvorhersagen = [0, 1, 1, 1]\nerwartete_werte = [0, 1, 1, 0]\nprint(anzahl_fehler(vorhersagen, erwartete_werte))",
         "validation": {
           "type": "output_contains",
           "expected": "1",
@@ -187,6 +192,7 @@
       {
         "instruction": "🐛 Bug #1 – Ziel: gewichtete_summe([1, 2, 3], [1, 1, 1]) soll 6 ergeben (die Summe aller Produkte). Was ist falsch?",
         "codeTemplate": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe = e * g\n    return summe\n\nprint(gewichtete_summe([1, 2, 3], [1, 1, 1]))\n",
+        "referenceSolution": "# Fix: += statt = - sonst bleibt nur das letzte Produkt uebrig statt der Summe.\ndef gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\nprint(gewichtete_summe([1, 2, 3], [1, 1, 1]))",
         "validation": {
           "type": "output_contains",
           "expected": "6"
@@ -195,6 +201,7 @@
       {
         "instruction": "🐛 Bug #2 – Ziel: aktivierung(5, 5) soll 1 zurückgeben (erreicht die Summe genau den Schwellenwert, zählt das schon als aktiviert). Was ist falsch?",
         "codeTemplate": "def aktivierung(summe, schwelle):\n    if summe > schwelle:\n        return 1\n    else:\n        return 0\n\nprint(aktivierung(5, 5))\n",
+        "referenceSolution": "# Fix: >= statt > - genau auf dem Schwellenwert gilt das Neuron schon als aktiviert.\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\nprint(aktivierung(5, 5))",
         "validation": {
           "type": "output_contains",
           "expected": "1"
@@ -203,6 +210,7 @@
       {
         "instruction": "🐛 Bug #3 – Ziel: neuron([1, 1], [1, 1], 5) soll 0 zurückgeben (die gewichtete Summe ist 2, deutlich unter dem Schwellenwert 5). Was ist falsch?",
         "codeTemplate": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, schwelle):\n    summe = gewichtete_summe(eingaben, gewichte)\n    return aktivierung(schwelle, schwelle)\n\nprint(neuron([1, 1], [1, 1], 5))\n",
+        "referenceSolution": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\n# Fix: aktivierung() bekommt die berechnete Summe, nicht zweimal den Schwellenwert.\ndef neuron(eingaben, gewichte, schwelle):\n    summe = gewichtete_summe(eingaben, gewichte)\n    return aktivierung(summe, schwelle)\n\nprint(neuron([1, 1], [1, 1], 5))",
         "validation": {
           "type": "output_contains",
           "expected": "0"
@@ -220,6 +228,7 @@
       {
         "instruction": "Schritt 1 – Gewichtete Summe: Schreibe gewichtete_summe(eingaben, gewichte) wie in dieser Woche (mit zip()). Rufe gewichtete_summe([2, 0, 1], [3, 4, 5]) und gewichtete_summe([1, 1, 1], [3, 4, 5]) auf und gib beide Ergebnisse aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\nprint(gewichtete_summe([2, 0, 1], [3, 4, 5]))\nprint(gewichtete_summe([1, 1, 1], [3, 4, 5]))",
         "validation": {
           "type": "output_contains",
           "expected": "11\n12",
@@ -231,6 +240,7 @@
       {
         "instruction": "Schritt 2 – Neuron bauen: Schreibe zusätzlich aktivierung(summe, schwelle) und neuron(eingaben, gewichte, schwelle) wie in dieser Woche. Dein Alarmsystem hat drei Sensoren (rauch, hitze, gas) mit gewichte=[1, 1, 1] und schwelle=2 (mindestens zwei von drei müssen auslösen). Rufe neuron([1, 1, 0], [1, 1, 1], 2) und neuron([1, 0, 0], [1, 1, 1], 2) auf und gib beide Ergebnisse aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, schwelle):\n    summe = gewichtete_summe(eingaben, gewichte)\n    return aktivierung(summe, schwelle)\n\nprint(neuron([1, 1, 0], [1, 1, 1], 2))\nprint(neuron([1, 0, 0], [1, 1, 1], 2))",
         "validation": {
           "type": "output_contains",
           "expected": "1\n0",
@@ -242,6 +252,7 @@
       {
         "instruction": "Schritt 3 – Alarmsystem testen: Nutze alle Funktionen aus den Schritten davor (erneut schreiben) mit denselben Gewichten [1, 1, 1] und Schwelle 2. Erstelle messungen = [[0, 0, 0], [1, 0, 0], [1, 1, 0], [1, 1, 1]], rufe für jede Messung neuron() in einer Schleife auf und gib jedes Ergebnis aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, schwelle):\n    summe = gewichtete_summe(eingaben, gewichte)\n    return aktivierung(summe, schwelle)\n\nmessungen = [[0, 0, 0], [1, 0, 0], [1, 1, 0], [1, 1, 1]]\nfor m in messungen:\n    print(neuron(m, [1, 1, 1], 2))",
         "validation": {
           "type": "output_contains",
           "expected": "0\n0\n1\n1",
@@ -262,6 +273,7 @@
       {
         "instruction": "Schritt 1 – Gleich gewichtet: Schreibe gewichtete_summe(eingaben, gewichte), aktivierung(summe, schwelle) und neuron(eingaben, gewichte, schwelle) wie in dieser Woche. Rufe neuron([1, 1, 1, 0], [1, 1, 1, 1], 3) und neuron([1, 1, 0, 0], [1, 1, 1, 1], 3) auf (vier gleich gewichtete Sensoren, Schwelle 3) und gib beide Ergebnisse aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, schwelle):\n    summe = gewichtete_summe(eingaben, gewichte)\n    return aktivierung(summe, schwelle)\n\nprint(neuron([1, 1, 1, 0], [1, 1, 1, 1], 3))\nprint(neuron([1, 1, 0, 0], [1, 1, 1, 1], 3))",
         "validation": {
           "type": "output_contains",
           "expected": "1\n0",
@@ -273,6 +285,7 @@
       {
         "instruction": "Schritt 2 – Ein Sensor zählt doppelt: Wiederhole Schritt 1 (alle Funktionen erneut schreiben), aber nutze jetzt gewichte=[2, 1, 1, 1] statt gleicher Gewichte (Schwelle bleibt 3). Rufe neuron() erneut mit denselben zwei Eingaben [1, 1, 1, 0] und [1, 1, 0, 0] auf und gib beide Ergebnisse aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, schwelle):\n    summe = gewichtete_summe(eingaben, gewichte)\n    return aktivierung(summe, schwelle)\n\ngewichte = [2, 1, 1, 1]\nprint(neuron([1, 1, 1, 0], gewichte, 3))\nprint(neuron([1, 1, 0, 0], gewichte, 3))",
         "validation": {
           "type": "output_contains",
           "expected": "1\n1",
@@ -284,6 +297,7 @@
       {
         "instruction": "Schritt 3 – Nur der wichtige Sensor vs. alle unwichtigen: Wiederhole Schritt 2 (alle Funktionen erneut schreiben, gewichte=[2, 1, 1, 1], schwelle=3). Rufe neuron([1, 0, 0, 0], gewichte, 3) auf (nur der wichtige Sensor aktiv) und neuron([0, 1, 1, 1], gewichte, 3) (nur die drei unwichtigen aktiv) und gib beide Ergebnisse aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, schwelle):\n    summe = gewichtete_summe(eingaben, gewichte)\n    return aktivierung(summe, schwelle)\n\ngewichte = [2, 1, 1, 1]\nprint(neuron([1, 0, 0, 0], gewichte, 3))\nprint(neuron([0, 1, 1, 1], gewichte, 3))",
         "validation": {
           "type": "output_contains",
           "expected": "0\n1",
@@ -304,6 +318,7 @@
       {
         "instruction": "Schritt 1 – Schwelle 1 (mindestens ein Sensor): Schreibe gewichtete_summe(eingaben, gewichte), aktivierung(summe, schwelle) und neuron(eingaben, gewichte, schwelle) wie in dieser Woche. Erstelle kombinationen = [[0,0,0], [0,0,1], [0,1,0], [0,1,1], [1,0,0], [1,0,1], [1,1,0], [1,1,1]] (alle 8 Kombinationen aus drei 0/1-Sensoren). Rufe für jede Kombination neuron(k, [1, 1, 1], 1) in einer Schleife auf und gib jedes Ergebnis aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, schwelle):\n    summe = gewichtete_summe(eingaben, gewichte)\n    return aktivierung(summe, schwelle)\n\nkombinationen = [[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 1, 1], [1, 0, 0], [1, 0, 1], [1, 1, 0], [1, 1, 1]]\n\nfor k in kombinationen:\n    print(neuron(k, [1, 1, 1], 1))",
         "validation": {
           "type": "output_contains",
           "expected": "0\n1\n1\n1\n1\n1\n1\n1",
@@ -315,6 +330,7 @@
       {
         "instruction": "Schritt 2 – Schwelle 3 (alle drei Sensoren nötig): Wiederhole Schritt 1 (alle Funktionen und dieselbe kombinationen-Liste erneut schreiben), aber rufe neuron(k, [1, 1, 1], 3) auf statt Schwelle 1. Gib jedes Ergebnis aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, schwelle):\n    summe = gewichtete_summe(eingaben, gewichte)\n    return aktivierung(summe, schwelle)\n\nkombinationen = [[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 1, 1], [1, 0, 0], [1, 0, 1], [1, 1, 0], [1, 1, 1]]\n\nfor k in kombinationen:\n    print(neuron(k, [1, 1, 1], 3))",
         "validation": {
           "type": "output_contains",
           "expected": "0\n0\n0\n0\n0\n0\n0\n1",
@@ -326,6 +342,7 @@
       {
         "instruction": "Schritt 3 – Genauigkeit gegen den Mehrheitsentscheid: Wiederhole Schritt 1 (alle Funktionen und dieselbe kombinationen-Liste erneut schreiben). Schreibe zusätzlich ist_richtig(vorhersage, erwartet) und genauigkeit(vorhersagen, erwartete_werte) (wie in Woche 4). Berechne erwartete_werte = [1 if sum(k) >= 2 else 0 for k in kombinationen] (der Mehrheitsentscheid 'mindestens 2 von 3'). Sage kombinationen zuerst mit neuron(k, [1, 1, 1], 2) vorher und gib die Genauigkeit gegen erwartete_werte aus, dann dasselbe mit neuron(k, [1, 1, 1], 1) und gib auch diese Genauigkeit aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, schwelle):\n    summe = gewichtete_summe(eingaben, gewichte)\n    return aktivierung(summe, schwelle)\n\ndef ist_richtig(vorhersage, erwartet):\n    return vorhersage == erwartet\n\ndef genauigkeit(vorhersagen, erwartete_werte):\n    richtig = 0\n    for i in range(len(vorhersagen)):\n        if ist_richtig(vorhersagen[i], erwartete_werte[i]):\n            richtig += 1\n    return round(richtig / len(vorhersagen) * 100)\n\nkombinationen = [[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 1, 1], [1, 0, 0], [1, 0, 1], [1, 1, 0], [1, 1, 1]]\n\nerwartete_werte = [1 if sum(k) >= 2 else 0 for k in kombinationen]\n\nvorhersagen_2 = [neuron(k, [1, 1, 1], 2) for k in kombinationen]\nprint(genauigkeit(vorhersagen_2, erwartete_werte))\n\nvorhersagen_1 = [neuron(k, [1, 1, 1], 1) for k in kombinationen]\nprint(genauigkeit(vorhersagen_1, erwartete_werte))",
         "validation": {
           "type": "output_contains",
           "expected": "100\n62",
@@ -346,6 +363,7 @@
       {
         "instruction": "Schritt 1 – Eine weitere Kombination testen: Schreibe gewichtete_summe(eingaben, gewichte), aktivierung(summe, schwelle), neuron(eingaben, gewichte, schwelle) und anzahl_fehler(vorhersagen, erwartete_werte) wie in dieser Woche. Nutze alle_eingaben = [[0, 0], [0, 1], [1, 0], [1, 1]] und xor_erwartet = [0, 1, 1, 0]. Sage alle_eingaben mit neuron(e, [1, -1], 1) vorher (Liste vorhersagen per List Comprehension) und gib zuerst vorhersagen, dann anzahl_fehler(vorhersagen, xor_erwartet) aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, schwelle):\n    summe = gewichtete_summe(eingaben, gewichte)\n    return aktivierung(summe, schwelle)\n\ndef anzahl_fehler(vorhersagen, erwartete_werte):\n    fehler = 0\n    for i in range(len(vorhersagen)):\n        if vorhersagen[i] != erwartete_werte[i]:\n            fehler += 1\n    return fehler\n\nalle_eingaben = [[0, 0], [0, 1], [1, 0], [1, 1]]\nxor_erwartet = [0, 1, 1, 0]\n\nvorhersagen = [neuron(e, [1, -1], 1) for e in alle_eingaben]\nprint(vorhersagen)\nprint(anzahl_fehler(vorhersagen, xor_erwartet))",
         "validation": {
           "type": "output_contains",
           "expected": "[0, 0, 1, 0]\n1",
@@ -357,6 +375,7 @@
       {
         "instruction": "Schritt 2 – Systematisch durchprobieren: Wiederhole Schritt 1 (alle Funktionen und dieselben Listen erneut schreiben). Zähle in treffer_xor, wie viele Kombinationen aus w1 in range(-2, 3), w2 in range(-2, 3) und schwelle in range(-2, 3) mit neuron(e, [w1, w2], schwelle) eine Vorhersage mit anzahl_fehler(vorhersagen, xor_erwartet) == 0 ergeben (drei verschachtelte Schleifen). Gib treffer_xor aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, schwelle):\n    summe = gewichtete_summe(eingaben, gewichte)\n    return aktivierung(summe, schwelle)\n\ndef anzahl_fehler(vorhersagen, erwartete_werte):\n    fehler = 0\n    for i in range(len(vorhersagen)):\n        if vorhersagen[i] != erwartete_werte[i]:\n            fehler += 1\n    return fehler\n\nalle_eingaben = [[0, 0], [0, 1], [1, 0], [1, 1]]\nxor_erwartet = [0, 1, 1, 0]\n\ntreffer_xor = 0\nfor w1 in range(-2, 3):\n    for w2 in range(-2, 3):\n        for schwelle in range(-2, 3):\n            vorhersagen = [neuron(e, [w1, w2], schwelle) for e in alle_eingaben]\n            if anzahl_fehler(vorhersagen, xor_erwartet) == 0:\n                treffer_xor += 1\n\nprint(treffer_xor)",
         "validation": {
           "type": "output_contains",
           "expected": "0",
@@ -368,6 +387,7 @@
       {
         "instruction": "Schritt 3 – Vergleich mit UND: Wiederhole Schritt 2 (alle Funktionen, alle_eingaben und die Suche für treffer_xor erneut). Führe dieselbe Suche zusätzlich für and_erwartet = [0, 0, 0, 1] durch (Ergebnis in treffer_and) - für UND sollte mindestens eine Kombination 0 Fehler erreichen. Gib zuerst treffer_xor, dann treffer_and aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "referenceSolution": "def gewichtete_summe(eingaben, gewichte):\n    summe = 0\n    for e, g in zip(eingaben, gewichte):\n        summe += e * g\n    return summe\n\ndef aktivierung(summe, schwelle):\n    if summe >= schwelle:\n        return 1\n    else:\n        return 0\n\ndef neuron(eingaben, gewichte, schwelle):\n    summe = gewichtete_summe(eingaben, gewichte)\n    return aktivierung(summe, schwelle)\n\ndef anzahl_fehler(vorhersagen, erwartete_werte):\n    fehler = 0\n    for i in range(len(vorhersagen)):\n        if vorhersagen[i] != erwartete_werte[i]:\n            fehler += 1\n    return fehler\n\nalle_eingaben = [[0, 0], [0, 1], [1, 0], [1, 1]]\nxor_erwartet = [0, 1, 1, 0]\nand_erwartet = [0, 0, 0, 1]\n\ndef zaehle_perfekte(erwartet):\n    treffer = 0\n    for w1 in range(-2, 3):\n        for w2 in range(-2, 3):\n            for schwelle in range(-2, 3):\n                vorhersagen = [neuron(e, [w1, w2], schwelle) for e in alle_eingaben]\n                if anzahl_fehler(vorhersagen, erwartet) == 0:\n                    treffer += 1\n    return treffer\n\ntreffer_xor = zaehle_perfekte(xor_erwartet)\ntreffer_and = zaehle_perfekte(and_erwartet)\nprint(treffer_xor)\nprint(treffer_and)",
         "validation": {
           "type": "output_contains",
           "expected": "0\n1",

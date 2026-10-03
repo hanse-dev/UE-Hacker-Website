@@ -148,7 +148,6 @@ export default {
   'offline.komplett':      '🐍 Eine Python-Datei',
   'offline.einzeln':       '📁 Python-Dateien je Lektion',
   'offline.hint':          'Notebooks öffnest du in Jupyter oder VS Code (Aufgaben und Lösungen getrennt). Die Python-Dateien laufen mit jedem Python 3: python3 datei.py',
-  'offline.hint.noSolutions': 'Notebooks öffnest du in Jupyter oder VS Code, die Python-Dateien laufen mit jedem Python 3 (python3 datei.py). Ohne Musterlösungen – prüfe deine Lösung im Wochen-Check.',
 
   // ── Week check panel ─────────────────────────────────────────────────────
   'check.loading':       'Check wird geladen…',

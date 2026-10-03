@@ -122,11 +122,11 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
     await expect(page.locator('.stepper-step')).toHaveCount(0);
   });
 
-  test('Wochen-Tour zeigt die drei Offline-Downloads der Woche mit Hinweis "ohne Musterlösungen"', async ({ page }) => {
+  test('Wochen-Tour zeigt die drei Offline-Downloads der Woche', async ({ page }) => {
     await page.goto('/kurs/ki-labor?week=2');
     await expect(page.locator('.stepper-step').first()).toBeVisible({ timeout: 15000 });
     await expectOfflineZips(page, page.locator('.offline-downloads a'), '/ki-labor-zips/woche-2');
-    await expect(page.locator('.offline-downloads')).toContainText('Ohne Musterlösungen');
+    await expect(page.locator('.offline-downloads')).toContainText('Aufgaben und Lösungen getrennt');
   });
 
   test('Deep-Link ?week=1 öffnet direkt die Wochen-Tour, gruppierte Kullern Lektion/Debug/Mission/Extra-Herausforderung/Check', async ({ page }) => {

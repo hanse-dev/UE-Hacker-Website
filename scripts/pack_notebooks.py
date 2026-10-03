@@ -4,7 +4,7 @@ Erstellt die Offline-Downloads (ZIPs unter public/, gitignored) fuer alle Python
 eigenem Lernpfad - je Woche bzw. Projekt-Kurs DREI Formate, jedes als eigenes ZIP (ein Button pro
 Format, siehe src/components/OfflineDownloads.vue):
 
-- "-notebooks.zip": echte Jupyter-Notebooks (Aufgaben + Loesungen getrennt; KI-Labor nur Aufgaben)
+- "-notebooks.zip": echte Jupyter-Notebooks (Aufgaben + Loesungen getrennt)
 - "-komplett.zip":  EINE zusammengesetzte .py-Datei (12-Wochen-Kurs: eine je Thema)
 - "-einzeln.zip":   eine .py-Datei pro Lektion (12-Wochen-Kurs: ein Ordner je Thema)
 
@@ -31,7 +31,7 @@ from pathlib import Path
 SCRIPT_DIR = Path(__file__).resolve().parent
 ROOT = SCRIPT_DIR.parent
 sys.path.insert(0, str(SCRIPT_DIR))
-from build_kilabor_notebook import build_all_notebooks as build_all_kilabor_notebooks  # noqa: E402
+from build_kilabor_notebook import build_all_notebook_pairs as build_all_kilabor_notebook_pairs  # noqa: E402
 from build_lesson_bundle import build_all_bundles, build_all_lesson_files  # noqa: E402
 from build_lesson_notebook import build_all_notebook_pairs  # noqa: E402
 from build_offline_py import build_all_kilabor_files, build_all_project_files  # noqa: E402
@@ -129,11 +129,13 @@ def pack_project_courses(written):
 
 def pack_kilabor(written):
     fresh_dir(KILABOR_ZIPS_DIR)
-    notebooks = {week: (name, nb) for week, name, nb in build_all_kilabor_notebooks()}
+    notebooks = {
+        week: [(tasks_name, nb_json(tasks_nb)), (solutions_name, nb_json(solutions_nb))]
+        for week, tasks_name, tasks_nb, solutions_name, solutions_nb in build_all_kilabor_notebook_pairs()
+    }
     count = 0
     for week, complete, single in build_all_kilabor_files():
-        name, nb = notebooks[week]
-        write_zip(KILABOR_ZIPS_DIR / f"woche-{week}-notebooks.zip", [(name, nb_json(nb))], written=written)
+        write_zip(KILABOR_ZIPS_DIR / f"woche-{week}-notebooks.zip", notebooks[week], written=written)
         write_zip(KILABOR_ZIPS_DIR / f"woche-{week}-komplett.zip", [complete], written=written)
         write_zip(KILABOR_ZIPS_DIR / f"woche-{week}-einzeln.zip", single, written=written)
         count += 1
