@@ -79,7 +79,7 @@
     "lessonSummary": "Template-Literals mit Backticks und ${...} machen Ausgaben mit eingebauten Werten viel übersichtlicher.",
     "tasks": [
       {
-        "instruction": "Führe dieses Beispiel aus. Es zeigt Rechnen mit Zahlen und eine Template-Literal.",
+        "instruction": "Führe dieses Beispiel aus. Es zeigt Rechnen mit Zahlen und ein Template-Literal.",
         "example": true,
         "codeTemplate": "let a = 4;\nlet b = 3;\nconsole.log(a + b);\nconsole.log(`Die Summe von ${a} und ${b} ist ${a + b}`);\n",
         "validation": { "type": "output_contains", "expected": "Die Summe von 4 und 3 ist 7" }
@@ -91,7 +91,7 @@
         "validation": { "type": "output_contains", "expected": "2.5" }
       },
       {
-        "instruction": "Berechne die Summe der Zahlen 15 und 27 und gib sie mit einer Template-Literal aus, zum Beispiel so: `Summe: ${...}`",
+        "instruction": "Berechne die Summe der Zahlen 15 und 27 und gib sie mit einem Template-Literal aus, zum Beispiel so: `Summe: ${...}`",
         "codeTemplate": "// Dein Code hier\n",
         "validation": { "type": "output_contains", "expected": "42" }
       }
@@ -116,7 +116,7 @@
         "validation": { "type": "output_contains", "expected": "54", "variables": { "flaeche": 54 } }
       },
       {
-        "instruction": "Berechne, wie viele Minuten ein Tag hat (24 Stunden × 60 Minuten). Speichere das Ergebnis in einer Variable minuten und gib es mit einer Template-Literal aus, zum Beispiel: `Ein Tag hat ${...} Minuten`",
+        "instruction": "Berechne, wie viele Minuten ein Tag hat (24 Stunden × 60 Minuten). Speichere das Ergebnis in einer Variable minuten und gib es mit einem Template-Literal aus, zum Beispiel: `Ein Tag hat ${...} Minuten`",
         "codeTemplate": "// Dein Code hier\n",
         "validation": { "type": "output_contains", "expected": "1440", "variables": { "minuten": 1440 } }
       }
@@ -169,7 +169,7 @@
         "validation": { "type": "output_contains", "expected": "10", "variables": { "celsius": 10 } }
       },
       {
-        "instruction": "Berechne 8 × 6 und gib das Ergebnis mit einer Template-Literal aus, zum Beispiel so: `Ergebnis: ${...}`",
+        "instruction": "Berechne 8 × 6 und gib das Ergebnis mit einem Template-Literal aus, zum Beispiel so: `Ergebnis: ${...}`",
         "codeTemplate": "// Dein Code hier\n",
         "validation": { "type": "output_contains", "expected": "48" }
       }

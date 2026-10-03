@@ -20,4 +20,4 @@ if (punkte >= 90) {
 Bei `punkte = 82` schlägt die erste Bedingung (`>= 90`) fehl, die zweite (`>= 75`) passt – ab da
 wird der Rest der Kette gar nicht mehr geprüft, selbst wenn `>= 50` auch zutreffen würde.
 
-Die **Reihenfolge** ist deshalb wichtig: die spezifischste Bedingung sollte zuerst kommen.
+Die **Reihenfolge** ist deshalb wichtig: die strengste Bedingung sollte zuerst kommen.

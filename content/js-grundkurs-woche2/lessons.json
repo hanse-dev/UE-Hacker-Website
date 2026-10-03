@@ -33,7 +33,7 @@
         "validation": { "type": "output_contains", "expected": "8 ist gerade" }
       },
       {
-        "instruction": "Schreibe if/else, das für zahl = 7 ausgibt, ob sie gerade oder ungerade ist – im Format `<Zahl> ist gerade` bzw. `<Zahl> ist ungerade` (nutze eine Template-Literal wie im Beispiel).",
+        "instruction": "Schreibe if/else, das für zahl = 7 ausgibt, ob sie gerade oder ungerade ist – im Format `<Zahl> ist gerade` bzw. `<Zahl> ist ungerade` (nutze ein Template-Literal wie im Beispiel).",
         "codeTemplate": "let zahl = 7;\n\n// Dein Code hier\n",
         "validation": { "type": "output_contains", "expected": "7 ist ungerade" }
       }

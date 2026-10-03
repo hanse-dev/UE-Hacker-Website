@@ -9,7 +9,7 @@ console.log(a + b);
 console.log(a * b);
 ```
 
-Willst du eine Zahl mitten in einem Text ausgeben, gibt es einen praktischen Trick: eine
+Willst du eine Zahl mitten in einem Text ausgeben, gibt es einen praktischen Trick: ein
 **Template-Literal** – ein Text in **Backticks** (`` ` ``, nicht die normalen Anführungszeichen)
 mit `${...}` für eingebaute Werte:
 

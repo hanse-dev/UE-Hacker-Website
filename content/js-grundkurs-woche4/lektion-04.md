@@ -18,7 +18,7 @@ Beide Funktionen tun exakt dasselbe. Bei einer Arrow-Function mit nur **einer** 
 geschweifte Klammern `{ }` wird das Ergebnis automatisch zurückgegeben – ein `return` ist dort gar
 nicht nötig (und würde sogar einen Fehler verursachen).
 
-> ⚠️ Nutzt du dagegen geschweifte Klammern (`{ }`), brauchst du wieder ein explizites `return` –
+> ⚠️ Nutzt du dagegen geschweifte Klammern (`{ }`), brauchst du wieder ein eigenes `return` –
 > genau wie bei einer normalen Funktion:
 > ```js
 > const verdoppleMitKlammern = (x) => {

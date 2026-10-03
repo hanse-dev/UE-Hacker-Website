@@ -28,4 +28,4 @@ knopf.addEventListener('click', () => {
 
 `zaehleRichtige` zählt mit einer Schleife (Woche 3) und einer Bedingung (Woche 2), wie viele
 Objekte im Array eine `richtig`-Property mit dem Wert `true` haben – der Klick-Listener ruft die
-Funktion auf und zeigt das Ergebnis an. Sieben Wochen JavaScript in sieben Zeilen Code.
+Funktion auf und zeigt das Ergebnis an. Acht Wochen JavaScript in einem kleinen Programm.
