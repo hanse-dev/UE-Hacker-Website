@@ -496,7 +496,7 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
     await expect(page.locator('.week-check-panel')).toBeVisible({ timeout: 15000 });
 
     await passWeekQuiz(page);
-    await passCodingChallenge(page, 0, 'def ist_erwachsen(alter):\n    return alter >= 18\n\nprint(ist_erwachsen(20))\nprint(ist_erwachsen(15))');
+    await passCodingChallenge(page, 0, 'tiere = [{"name": "Hund", "beine": 4}, {"name": "Spatz", "beine": 2}]\nfor t in tiere:\n    print(f"{t[\'name\']}: {t[\'beine\']} Beine")');
     await passCodingChallenge(
       page,
       1,

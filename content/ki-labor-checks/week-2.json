@@ -119,12 +119,12 @@
   ],
   "codingChallenges": [
     {
-      "instruction": "Schreibe eine Funktion ist_erwachsen(alter), die True zurückgibt, wenn alter mindestens 18 ist, sonst False. Gib damit genau True (für 20) und danach False (für 15) aus.",
+      "instruction": "Erstelle eine Liste tiere mit {'name': 'Hund', 'beine': 4} und {'name': 'Spatz', 'beine': 2}. Gib mit einer Schleife für jedes Tier genau '<name>: <beine> Beine' aus.",
       "codeTemplate": "",
       "validation": {
         "type": "output_contains",
-        "expected": "True\nFalse",
-        "codeContains": ["def"]
+        "expected": "Hund: 4 Beine\nSpatz: 2 Beine",
+        "codeContains": ["for"]
       }
     },
     {
