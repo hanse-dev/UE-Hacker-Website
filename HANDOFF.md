@@ -4,12 +4,9 @@
 > **Aktueller Stand:** `main` enthält alles bis 3.100 (siehe Tabelle in Abschnitt 3).
 > Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4) — nach dem nächsten Deploy
 > den einmaligen Termine-Import laufen lassen (Abschnitt 5).
-> **Ziel dieser Datei:** schneller Einstieg für die nächste Session (Mensch oder Claude), ohne
-> Chat-Historie. Sie wird per `@` in jede Session geladen — **klein halten** (Richtwert < 25 KB).
-> Die ausführliche Feature-Historie liegt kalt in `docs/archiv/HANDOFF-historie.md` (nicht importiert).
-
-Projekt-Regeln immer mitlesen: `CLAUDE.md`, `WORKFLOW.md`. Bei Content-Arbeit zusätzlich `INHALTE.md`,
-`KURSPLAN.md`, `todo.md` (werden nicht automatisch geladen).
+> **Ziel dieser Datei:** Nachschlagewerk für Stand, Feature-Übersicht und gelernte Fallstricke.
+> Sie wird **nicht** automatisch geladen (nur `CLAUDE.md` ist das) — gezielt den passenden Abschnitt
+> lesen. Die ausführliche Feature-Historie liegt in `docs/archiv/HANDOFF-historie.md`.
 
 ---
 
@@ -309,7 +306,7 @@ siehe `VISION.md` "Offene Fragen"). Ideen-Backlog: `PROJEKTIDEEN.md`.
 ## 7. Schnellstart für Claude in der nächsten Session
 
 1. `git checkout main && git pull`
-2. `HANDOFF.md` + `WORKFLOW.md` lesen (werden automatisch geladen); bei Content-Arbeit `INHALTE.md`/`todo.md`
+2. `CLAUDE.md` ist automatisch geladen; bei Content-Arbeit `INHALTE.md`/`todo.md`, sonst nur den passenden Abschnitt hier
 3. Neues Thema → **neuen** Branch (ohne Präfix), immer im eigenen Worktree: `npm run worktree:new -- <branch>`
 4. Vor Änderungen an Pyodide, JS-Sandbox, Vue-CSS, Sync oder Notebooks: Abschnitt 3 "Gelernte Regeln" lesen.
    Nicht erwarten: Compose-Service `prod` (heißt `app`), `WeekSection.vue`-Akkordeon (seit 3.36 `WeekTour.vue`),

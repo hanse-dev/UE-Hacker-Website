@@ -1,7 +1,7 @@
 # Todo
 
-Erledigtes (frühere Abschnitte "Now" + "Fertige Branches") steht kalt in `docs/archiv/todo-erledigt.md` —
-nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte und die nächsten Themen.
+Erledigtes steht in `docs/archiv/todo-erledigt.md`. Hier stehen nur **offene** Punkte und die
+nächsten Themen. Diese Datei wird nicht automatisch geladen.
 
 ## Offen
 
@@ -19,8 +19,6 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
       - **`lint:spelling:de -- --grammatik`** meldet ~300 Hinweise, fast alles Fehlalarme durch
         Code-Bezeichner im Fließtext; die echten Treffer sind behoben. Wer es schärfer will: im
         Extraktor Inline-Code durch ein Platzhalterwort ersetzen statt löschen.
-- [ ] `HANDOFF.md` liegt bei ~26 KB (Richtwert 25 KB): Abschnitt "Gelernte Regeln" straffen oder
-      ältere Regeln ins Archiv verschieben.
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken) —
       **zurückgestellt** (Nutzer will erst später deployen). Backup-Cron auf dem Server einrichten
       (Befehl siehe HANDOFF.md Abschnitt 4); externe Sicherung der Backups bewusst nicht mitgebaut.
