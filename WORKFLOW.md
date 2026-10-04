@@ -164,7 +164,7 @@ Einheit (ein Bugfix, ein Feature-Schritt, eine Content-Korrektur, eine Doku-Umst
 
 **Pflicht bei jedem einzelnen Commit, ohne explizite Aufforderung.** Automatisch in jede Session
 geladen wird nur `CLAUDE.md` (ohne `@`-Imports) — dort steht ausschließlich, was in **jeder**
-Session gebraucht wird (Richtwert < 6 KB). Alles andere (`HANDOFF.md`, `todo.md`, `WORKFLOW.md`,
+Session gebraucht wird (Richtwert < 8 KB; Test-/Sicherungsregeln bleiben dort bewusst vollständig). Alles andere (`HANDOFF.md`, `todo.md`, `WORKFLOW.md`,
 `VISION.md`, `INHALTE.md`, `KURSPLAN.md`, `PROJEKTIDEEN.md`, `docs/archiv/`) wird nur bei Bedarf
 gelesen. Die Commit-Historie (`git log`/`git show`) ist die verlässliche Quelle für Details.
 

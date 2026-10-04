@@ -1,6 +1,6 @@
 # CLAUDE.md — UE Hacker Website
 
-**Einzige Datei, die automatisch in jede Session geladen wird — klein halten (Richtwert < 6 KB),
+**Einzige Datei, die automatisch in jede Session geladen wird — klein halten (Richtwert < 8 KB),
 keine `@`-Imports.** Alles Weitere liegt "kalt" und wird nur bei Bedarf gelesen (Tabelle unten).
 
 ## Projekt
@@ -20,8 +20,39 @@ public/kurse.json                           Kursmetadaten (inkl. title_en/descri
 tests/*.spec.js                             Playwright
 ```
 
-Befehle: `npm run start:all` (Vite :5173 + API :3001) · `npm run test:checks` (voll, ~2 Min) ·
-`npm run test:changed` · `npm run test:auth` (Auth/Admin) · `npm --prefix api test`.
+Start lokal: `npm run start:all` (Vite :5173 + API :3001) · `npm run start:prod` (Build, alles :8080).
+
+## Tests & Sicherung (immer einhalten)
+
+| Befehl | Wann / was |
+|---|---|
+| `npm run test:precommit` | läuft automatisch im Pre-commit-Hook: nur die Specs zu den staged Dateien; Kern-Dateien oder unbekannte Dateien → volle Suite |
+| `npm run test:checks` | volle Suite (~2 Min); läuft automatisch im Pre-push-Hook, danach `test:devskip` |
+| `npm run test:changed [-- --dry-run]` | manuell: Arbeitsverzeichnis + Branch-Diff zu `main` |
+| `npm run test:auth` | zusätzlich bei Änderungen an Auth/Admin/Sync (Port 5174, Test-API :3011) |
+| `npm --prefix api test` | bei Änderungen an `api/src/scripts/` (Backup) |
+| `npm run contract:update` | nach neuen Kursen/Lektionen/Fragen: Fortschritts-Vertrag neu einfrieren, Fixture mitcommitten |
+| `npm run lint:spelling:de` | deutscher Content (LanguageTool in Docker), zusätzlich zu cspell |
+
+- **Hooks nie umgehen** (`SKIP_CHECKS=1`, `--no-verify`), außer der Nutzer verlangt es ausdrücklich.
+  Hooks liegen in `.githooks/` (`core.hooksPath`, wird von `npm install` gesetzt).
+- **Roter Test = nicht committen/pushen.** Ursache beheben; Test nie abschwächen, damit er grün wird.
+  Schlägt `progress-contract.spec.js` an: Änderung zurücknehmen oder Migration bauen — nicht einfach
+  neu einfrieren.
+- Neuer Test muss fehlschlagen, wenn man die Änderung zurücknimmt (einmal gegenprüfen).
+- Neue Komponente/Composable/Content-Ordner → Regel in `scripts/test-changed.mjs` (`RULES`) ergänzen.
+- Neue Prüf-Logik nur über `useTaskValidation.js` — der Dev-Modus `npm run dev:skip-checks` darf nur
+  mit `import.meta.env.DEV` wirken, nie im Produktions-Build.
+- Tests schreiben: Kernel über `startKernel()`, Editor über `tests/helpers/codemirror.js`, Lösungen
+  über `openSolutionsNotebook()`. Testdatei umbenannt → `package.json`-Skripte prüfen (Playwright
+  ignoriert fehlende Dateien stillschweigend).
+- Worktrees haben eigene Ports (`worktree.ports.json`); Standard im Haupt-Checkout: 5173/5174 (Web),
+  3001/3011 (API). Generierte Dateien stellt `scripts/ensure-test-prereqs.mjs` vor jedem Lauf sicher.
+- **Daten:** `.env` (`ADMIN_PASSWORD`) nie committen. SQLite liegt in `api/data/` (gitignored,
+  Bind-Mount) — sichern nur per `npm run backup:db` (`VACUUM INTO`), nie `cp`; nie `git clean -fdx`
+  ohne Ausschluss von `api/data/`. Env-Änderung → Container neu erstellen, nicht nur rebuilden.
+- Nichts Destruktives ohne Rückfrage: kein Force-Push, kein `git reset --hard` auf `main`, kein
+  Löschen ungemergter Branches (`git branch -d`, nie `-D`).
 
 ## Regeln (Details: `WORKFLOW.md`)
 
@@ -57,8 +88,6 @@ Befehle: `npm run start:all` (Vite :5173 + API :3001) · `npm run test:checks` (
   lokalen Fortschritt durch den Account-Stand, Seiten-Reload merged nach `updatedAt`.
 - `output_contains` prüft tolerant, `output_equals` exakt. Lektionen prüfen nur die Ausgabe,
   Struktur-Checks gibt es nur im Wochen-Check.
-- SQLite nur per `npm run backup:db` sichern, nie `cp`; nie `git clean -fdx` ohne Ausschluss von
-  `api/data/`.
 
 ## Bei Bedarf lesen (gezielt per `grep`/Abschnitt, nicht ganze Dateien)
 
