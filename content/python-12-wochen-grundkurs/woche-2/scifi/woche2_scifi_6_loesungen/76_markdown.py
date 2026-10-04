@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Die Raummission – Aufgabe 3
+"""### Extra-Herausforderung 2: Das KI-Labor – Aufgabe 2
 
-Schritt 3 – Berechne den erwarteten Ertrag (Ertrag × Wahrscheinlichkeit) für beide Missionen und gib genau aus: Erwarteter Ertrag Mars: 4.0 und Erwarteter Ertrag Europa: 6.0"""
+Schritt 2 – Addiere alle Parameterzahlen, speichere die Summe in gesamt_parameter und gib genau aus: Gesamtparameter: 6500000"""

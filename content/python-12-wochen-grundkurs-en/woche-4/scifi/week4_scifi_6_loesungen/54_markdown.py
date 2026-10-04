@@ -1,5 +1,3 @@
-"""## 🔥 Extra Challenges
+"""### Mission 3: The Time Paradox – Task 2
 
-### Extra challenge 1: The Prime Number Decryption – Task 1
-
-Step 1 – Prepare the number range: go through the numbers 2 to 20 and print Testing 2 … Testing 20 (the last line must read: Testing 20)."""
+Step 2 – Create year = 2000 and jumps = 0. While jumps < 5 jump forward 30 years and count the jump. After the loop print exactly: Final year: 2150 and Trapped in the time paradox"""

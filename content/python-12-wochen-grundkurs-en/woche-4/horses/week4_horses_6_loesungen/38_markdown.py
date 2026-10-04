@@ -1,3 +1,5 @@
-"""### Mission 1: The Counting Rider – Task 2
+"""### Debug Quest – Task 3
 
-Step 2 – Even numbers: Print the even horse numbers from 2 to 10, each exactly like this: Even: 2, Even: 4, Even: 6, Even: 8, Even: 10"""
+🐛 Bug #3 – Goal: The program should print Exercise 0, Exercise 1 and Exercise 2, then Training finished. What is wrong?
+
+**Explanation:** The loop body must be indented. Without indentation Python reports an `IndentationError`."""

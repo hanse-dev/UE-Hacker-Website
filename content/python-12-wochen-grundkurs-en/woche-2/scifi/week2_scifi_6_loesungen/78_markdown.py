@@ -1,3 +1,3 @@
-"""### Extra challenge 3: The Space Mission – Task 4
+"""### Extra challenge 2: The AI Laboratory – Task 3
 
-Step 4 – Store exp2 > exp1 (with exp1 = 4.0 and exp2 = 6.0) in a Boolean variable europa_better and print exactly: Europa is more worthwhile: True"""
+Step 3 – Add all accuracies (0.92, 0.88, 0.75), divide by 3, store the result in average_acc and print exactly: Average accuracy: 0.85. Also print the best model: Best model: NovaNet"""

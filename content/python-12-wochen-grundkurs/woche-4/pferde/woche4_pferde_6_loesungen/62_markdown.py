@@ -1,3 +1,3 @@
-"""### Das Reitbrett – Aufgabe 1
+"""### Das Sprungtraining – Aufgabe 3
 
-Schritt 1 – Brett aufbauen: Erstelle mit zwei verschachtelten Schleifen ein 4×4-Brett aus Punkten (print(\".\", end=\"\") innen, print() nach der inneren Schleife). Die Ausgabe: ....  ....  ....  ....  (jeweils in einer eigenen Zeile)."""
+Schritt 3 – Gesamthöhe: Addiere alle 5 Höhen in gesamt und gib genau aus: Gesamthöhe: 550 cm"""

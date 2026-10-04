@@ -1,2 +1,3 @@
-age = int(input("Horse age? "))
-print(f"Next year: {age + 1}")
+portion_text = "4.5"
+portion = float(portion_text)
+print(f"Double portion: {portion * 2} kg")

@@ -64,6 +64,14 @@
           "type": "output_contains",
           "expected": "Klasse: Kreuzer, Typ: <class 'str'>"
         }
+      },
+      {
+        "instruction": "Lege schiff_name = \"Starlight\" an und gib mit einem f-String genau aus: Starlight hat 9 Zeichen. (Die Zahl soll len() berechnen.)",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Starlight hat 9 Zeichen."
+        }
       }
     ]
   },
@@ -182,15 +190,15 @@
     "section": "lektion",
     "title": "Systemprotokoll 6: Rechenoperationen",
     "file": "lektion-06.md",
-    "lessonSummary": "Berechnungen und Text-Verschmelzung gemeistert – das Datenlabor läuft auf Hochtouren!",
+    "lessonSummary": "Berechnungen gemeistert – das Datenlabor läuft auf Hochtouren!",
     "tasks": [
       {
-        "instruction": "Führe dieses Beispiel aus: Berechnungen und Text-Operationen.",
+        "instruction": "Führe dieses Beispiel aus: Rechnen mit Zahlen.",
         "example": true,
-        "codeTemplate": "# Mathematische Operationen\nplaneten_a = 8\nplaneten_b = 4\nprint(f\"Gesamtplaneten: {planeten_a + planeten_b}\")\nprint(f\"Differenz: {planeten_a - planeten_b}\")\nprint(f\"Verdoppelt: {planeten_a * 2}\")\nprint(f\"Pro Sektor: {planeten_a / 2}\")\n\n# String-Operationen\npraefix = \"Neo\"\nsuffix = \"tron\"\nsystem_name = praefix + suffix\nprint(f\"Systemname: {system_name}\")\nprint(f\"Signal: {praefix * 3}\")\n",
+        "codeTemplate": "# Mathematische Operationen\nplaneten_a = 8\nplaneten_b = 4\nprint(f\"Gesamtplaneten: {planeten_a + planeten_b}\")\nprint(f\"Differenz: {planeten_a - planeten_b}\")\nprint(f\"Verdoppelt: {planeten_a * 2}\")\nprint(f\"Pro Sektor: {planeten_a / 2}\")\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Systemname: Neotron"
+          "expected": "Pro Sektor: 4.0"
         }
       },
       {
@@ -199,6 +207,32 @@
         "validation": {
           "type": "output_contains",
           "expected": "Pro Sektor: 3.0"
+        }
+      },
+      {
+        "instruction": "Lege module = 6 und energie_pro_modul = 7 an. Gib genau aus: Gesamtenergie: 42 (multipliziere beide in einem f-String).",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gesamtenergie: 42"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-08",
+    "section": "lektion",
+    "title": "Systemprotokoll 7: Rechnen mit Texten",
+    "file": "lektion-08.md",
+    "lessonSummary": "Text-Verschmelzung gemeistert – Texte kannst du verbinden und wiederholen, aber nicht mit Zahlen mischen!",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus: Texte verbinden und wiederholen.",
+        "example": true,
+        "codeTemplate": "# String-Operationen\npraefix = \"Neo\"\nsuffix = \"tron\"\nsystem_name = praefix + suffix\nprint(f\"Systemname: {system_name}\")\nprint(f\"Signal: {praefix * 3}\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Systemname: Neotron"
         }
       },
       {
@@ -222,7 +256,7 @@
   {
     "id": "lektion-07",
     "section": "lektion",
-    "title": "Systemprotokoll 7: Typumwandlung",
+    "title": "Systemprotokoll 8: Typumwandlung",
     "file": "lektion-07.md",
     "lessonSummary": "Transformation abgeschlossen! int(), float(), str() und bool() wandeln jede Information um.",
     "tasks": [
@@ -257,6 +291,54 @@
         "validation": {
           "type": "output_contains",
           "expected": "Crew: 12"
+        }
+      },
+      {
+        "instruction": "Lege signal = 0 an, wandle es mit bool() um und gib genau aus: Signal aktiv: False",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Signal aktiv: False"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-09",
+    "section": "lektion",
+    "title": "Systemprotokoll 9: Eingaben verarbeiten",
+    "file": "lektion-09.md",
+    "lessonSummary": "Eingabe verarbeitet! input() liefert immer Text – mit int() machst du ihn rechenbar.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus und tippe im Eingabefenster eine ganze Zahl ein, z.B. 70.",
+        "example": true,
+        "codeTemplate": "eingabe = input(\"Energie-Level? \")\nenergie = int(eingabe)\nprint(f\"Nach dem Aufladen: {energie + 10}%\")\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Nach dem Aufladen:"
+        }
+      },
+      {
+        "instruction": "Frage mit input() nach dem Namen des Piloten und gib genau aus: Willkommen an Bord, (Name)! (Beim Prüfen wird automatisch Nova eingegeben.)",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Willkommen an Bord, Nova!",
+          "stdin": [
+            "Nova"
+          ]
+        }
+      },
+      {
+        "instruction": "Frage mit input() nach der Anzahl der Crew-Mitglieder, wandle die Antwort mit int() um und gib aus: Mit dir an Bord: (Anzahl plus 1) (Beim Prüfen wird automatisch 12 eingegeben.)",
+        "codeTemplate": "# 🎯 Deine Lösung hier:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mit dir an Bord: 13",
+          "stdin": [
+            "12"
+          ]
         }
       }
     ]

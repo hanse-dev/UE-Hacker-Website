@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Der endlose Tunnel – Aufgabe 1
+"""### Extra-Herausforderung 2: Das Holodeck – Aufgabe 3
 
-Schritt 1 – Programmiere die Tunnel-Schleife: Lege distanz = 0 an. Erhöhe, solange distanz < 10 gilt, um 1 und gib Portal 1 passiert, Portal 2 passiert und so weiter aus. Die letzte Zeile muss lauten: Portal 10 passiert"""
+Schritt 3 – Simuliere die Bewegung: Lege spieler_reihe = 1 und spieler_spalte = 1 an. Bewege die Figur, solange spieler_reihe < 8 gilt, diagonal (addiere zu beiden 1) und gib Spieler auf Feld 2, 2 und so weiter aus. Die letzte Zeile muss lauten: Spieler auf Feld 8, 8"""

@@ -1,3 +1,3 @@
-"""### Systemprotokoll 5: and, or, not – Aufgabe 3
+"""### Systemprotokoll 5: and, or, not – Aufgabe 1
 
-Die Variable schild ist schon angelegt. Nutze not und gib aus: Schilde müssen repariert werden!, wenn schild NICHT größer als 50 ist."""
+Die Variablen hat_zugangscode und hat_fingerabdruck sind schon angelegt. Gib mit and und else aus: Zugang zum Kommandodeck gewährt! – oder, wenn nicht beides stimmt, Zugang verweigert!"""

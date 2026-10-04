@@ -1,2 +1,3 @@
-stunden = 3
-print(f"Training dauert {stunden} Stunden.")
+pferd = "Comet"
+alter = 6
+print(f"Hallo {pferd}! Du bist {alter} Jahre alt.")

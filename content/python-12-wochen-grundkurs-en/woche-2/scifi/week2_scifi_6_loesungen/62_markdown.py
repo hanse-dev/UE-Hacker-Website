@@ -1,3 +1,3 @@
-"""### Extra challenge 1: The Spaceship Dock – Task 3
+"""### Mission 3: The Asteroid Mining – Task 1
 
-Step 3 – Print the ship with the highest energy (Highest energy: Orion) and then the total energy requirement at 100 units per ship (4 ships × 100), exactly: Energy requirement: 400. Calculate the requirement, don't just type it."""
+Step 1 – Create variables for both asteroids and calculate both raw values (value_a and value_b). Print two lines in the format Ceres-9 value: 5000.0 – the last line must read: Vesta-3 value: 5400.0"""

@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 4: Das große Datenarchiv – Aufgabe 1
+"""### Extra-Herausforderung 3: Das Missionslog – Aufgabe 3
 
-Schritt 1 – Funktionen (Woche 5): Das Dictionary mitglied ist vorgegeben. Schreibe speichere(daten, name) (json.dump in Datei name) und lade(name) (json.load, gibt das Dictionary zurück). Speichere mitglied in mitglied.json, lade es zurück und gib genau Gleich: True aus."""
+Schritt 3 – Bericht: Die Datei missionslog.json wird im vorgegebenen Code angelegt (erster Eintrag \"abgeschlossen\"). Lade sie, zähle die Einträge mit Status \"abgeschlossen\" in fertig und schreibe die Zeile Abgeschlossen: 1 (mit fertig) in die Datei bericht.txt. Lies bericht.txt wieder ein und gib genau Bericht: Abgeschlossen: 1 aus (mit strip())."""

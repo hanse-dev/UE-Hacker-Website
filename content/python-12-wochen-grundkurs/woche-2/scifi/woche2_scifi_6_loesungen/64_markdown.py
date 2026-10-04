@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 2: Das KI-Labor – Aufgabe 1
+"""### Mission 3: Der Asteroidenabbau – Aufgabe 2
 
-Schritt 1 – Lege Variablen für alle drei Modelle an. Gib die Überschrift === KI-LABOR-PROTOKOLL === aus und eine f-String-Zeile pro Modell im Format NovaNet: Genauigkeit 0.92, 1200000 Parameter (die letzte Zeile muss lauten: MiniMind: Genauigkeit 0.75, 300000 Parameter)."""
+Schritt 2 – Vergleiche die Werte (starte mit wert_a = 5000.0 und wert_b = 5400.0): speichere wert_b > wert_a in der Boolean-Variable b_ist_besser und gib genau aus: Vesta-3 ist wertvoller: True"""

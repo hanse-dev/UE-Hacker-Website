@@ -1,3 +1,5 @@
-"""### Mission 1: The Quantum Counter – Task 2
+"""### Debug Quest – Task 3
 
-Step 2 – First print the even numbers 2 to 20 as Even: 2 … Even: 20. Then print the numbers 20 down to 1 as Countdown: 20 … Countdown: 1 and after the loop the line Liftoff!"""
+🐛 Bug #3 – Goal: The program should print Log 0, Log 1 and Log 2 and then print End once. What is wrong?
+
+**Explanation:** The loop body must be indented. Without indentation Python reports an `IndentationError`."""

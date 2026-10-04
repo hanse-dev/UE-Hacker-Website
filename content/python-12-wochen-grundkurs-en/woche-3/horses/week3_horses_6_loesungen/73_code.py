@@ -1,5 +1,11 @@
-time = 75
-errors = 0
-style = 85
-if time <= 60 or (errors == 0 and style >= 80):
-    print("Level 5: Dismount passed")
+speed = 72
+if speed < 20:
+    print("Level 3: Very slow")
+elif speed < 40:
+    print("Level 3: Slow")
+elif speed < 60:
+    print("Level 3: Medium")
+elif speed < 80:
+    print("Level 3: Fast")
+else:
+    print("Level 3: Racing")

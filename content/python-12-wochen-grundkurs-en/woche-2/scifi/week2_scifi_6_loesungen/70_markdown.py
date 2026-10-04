@@ -1,3 +1,3 @@
-"""### Extra challenge 2: The AI Laboratory – Task 4
+"""### Extra challenge 1: The Spaceship Dock – Task 2
 
-Step 4 – Mark the high-performers with Boolean variables: compare each accuracy with average_acc = 0.85 (above_1 = acc1 > average_acc etc.) and print exactly: MiniMind above average: False"""
+Step 2 – Add all energy values, divide the sum by 4 and print exactly: Average energy: 77.0"""

@@ -1,2 +1,2 @@
-ist_gesund = True
-print(f"Gesund: {ist_gesund}")
+stockmass_m = 1.68
+print(type(stockmass_m))

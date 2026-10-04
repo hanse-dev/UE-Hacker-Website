@@ -1,3 +1,3 @@
-"""### Lesson 7: Calculating with Text – Task 2
+"""### Lesson 7: Calculating with Text – Task 1
 
-Make the horse neigh three times: use * to print exactly: Neigh! Neigh! Neigh!"""
+Join the two texts into full_name and print exactly: Full name: Morningstar"""

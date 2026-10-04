@@ -1,8 +1,10 @@
+days1 = 5
+cost1 = 300.0
 participants1 = 4
-probability1 = 0.75
+days2 = 3
+cost2 = 240.0
 participants2 = 8
-probability2 = 0.5
-success1 = participants1 * probability1
-success2 = participants2 * probability2
-print(f"Expected success session 1: {success1}")
-print(f"Expected success session 2: {success2}")
+
+print("=== TRAINING PROTOCOL ===")
+print(f"Session 1: {days1} days, {cost1} euros, {participants1} participants")
+print(f"Session 2: {days2} days, {cost2} euros, {participants2} participants")

@@ -1,3 +1,3 @@
-"""### Systemprotokoll 3: if-else – Aufgabe 2
+"""### Systemprotokoll 2: Vergleichsoperatoren – Aufgabe 3
 
-Die Variablen energie und verbrauch sind schon angelegt. Gib mit if-else und einem f-String aus: Sprung möglich! Rest: 30% – oder, falls die Energie nicht reicht, Sprung unmöglich! Fehlt: ...%"""
+Die Variable energie ist schon angelegt. Prüfe mit <, ob energie kleiner als 20 ist, und gib dann aus: Energie niedrig!"""

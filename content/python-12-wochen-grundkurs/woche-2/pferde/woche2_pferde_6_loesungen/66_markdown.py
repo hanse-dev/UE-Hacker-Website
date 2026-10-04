@@ -1,3 +1,3 @@
-"""### Der Futterraum – Aufgabe 4
+"""### Der Futterraum – Aufgabe 2
 
-Schritt 4 – Schwerer als der Durchschnitt? Vergleiche sack_3 mit dem Durchschnitt und gib genau aus: Sack 3 über dem Durchschnitt: True"""
+Schritt 2 – Gesamtgewicht: Addiere alle 8 Gewichte in gesamt und gib genau aus: Gesamtgewicht: 200.0 kg"""

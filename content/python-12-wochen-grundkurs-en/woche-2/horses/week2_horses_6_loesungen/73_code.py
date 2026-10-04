@@ -1,6 +1,9 @@
-i1 = 3.5
-i2 = 4.0
-i3 = 2.5
-i4 = 4.5
-i5 = 1.5
-print(f"Average intensity: {(i1 + i2 + i3 + i4 + i5) / 5}")
+exercise1 = "Circles"
+intensity1 = 3.5
+duration1 = 20
+exercise2 = "Canter Intervals"
+intensity2 = 4.0
+duration2 = 30
+print("=== TRAINING HALL PROTOCOL ===")
+print(f"{exercise1}: intensity {intensity1}, {duration1} minutes")
+print(f"{exercise2}: intensity {intensity2}, {duration2} minutes")

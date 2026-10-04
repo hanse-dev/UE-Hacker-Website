@@ -1,22 +1,13 @@
-import csv
-heroes = [
-    {"name": "Aria", "class": "Mage", "level": 15, "hp": 120},
-    {"name": "Thorin", "class": "Warrior", "level": 18, "hp": 150},
-    {"name": "Luna", "class": "Rogue", "level": 12, "hp": 90},
-]
-with open("heroes.csv", "w", newline="") as f:
-    w = csv.DictWriter(f, fieldnames=["name", "class", "level", "hp"])
-    w.writeheader()
-    w.writerows(heroes)
 import json
+hero = {"name": "Aria", "class": "Mage", "level": 15, "hp": 120}
+def safe_load(name):
+    try:
+        with open(name, "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
 
-strong = []
-with open("heroes.csv", "r") as f:
-    for row in csv.DictReader(f):
-        if int(row["level"]) > 14:
-            strong.append(row["name"])
+print(f"Empty: {safe_load('does_not_exist.json') == {}}")
 with open("hero.json", "w") as f:
-    json.dump(strong, f)
-with open("hero.json", "r") as f:
-    loaded = json.load(f)
-print(f"Strong: {loaded}")
+    json.dump(hero, f)
+print(f"Name: {safe_load('hero.json')['name']}")

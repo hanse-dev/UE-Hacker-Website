@@ -1,2 +1,2 @@
-schildstaerke = 95
-print(f"Schildstärke: {schildstaerke} Prozent")
+signal = 0
+print(f"Signal aktiv: {bool(signal)}")

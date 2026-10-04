@@ -1,7 +1,3 @@
-"""## 🐛 Debug-Quest
+"""### Übung 8: Muster aus Sternen – Aufgabe 1
 
-### Debug-Quest – Aufgabe 1
-
-🐛 Bug #1 – Ziel: Das Programm soll Runde 1 bis Runde 5 ausgeben (jede in einer eigenen Zeile). Was ist falsch?
-
-**Erklärung:** `range(5)` zählt von 0 bis 4. Für Runde 1 bis 5 gibst du `i+1` aus (oder nutzt `range(1, 6)`)."""
+Zeichne eine Treppe aus Sternen: In Zeile 1 steht ein *, in Zeile 2 zwei ** und so weiter bis Zeile 4 mit ****. Tipp: range(1, 5) für die Zeilen und range(zeile) für die Spalten, dazu print(\"*\", end=\"\") und ein leeres print() nach jeder Zeile."""

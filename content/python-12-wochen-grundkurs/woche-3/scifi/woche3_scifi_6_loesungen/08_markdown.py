@@ -1,3 +1,3 @@
-"""### Systemprotokoll 2: Vergleichsoperatoren – Aufgabe 2
+"""### Wichtige Operatoren: = oder ==? – Aufgabe 2
 
-Die Variable befehl ist schon angelegt. Prüfe mit !=, ob befehl ungleich \"START\" ist, und gib dann aus: Kein Start-Befehl."""
+Gib das Ergebnis eines Vergleichs mit einem f-String aus: Vergleiche crew mit 12 und gib genau aus: Genau 12 an Bord: True"""

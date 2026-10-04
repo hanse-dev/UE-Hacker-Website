@@ -1,3 +1,3 @@
-"""### Extra Challenge 3: The Training Log – Task 1
+"""### Extra Challenge 2: The Tournament Map – Task 3
 
-Step 1 – Save quests: The list quests with three Training dictionaries is given. Save it into questlog.json, load it into loaded and print exactly Training count: 3 and on the next line Status: open (status of the first)."""
+Step 3 – Most valuable place: The file map.json with four places is created for you. Load it and find the place with the highest value. Print exactly Most valuable: Gold cup (800)."""

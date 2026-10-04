@@ -1,3 +1,3 @@
-"""### Das Turnier-Training – Aufgabe 4
+"""### Das Turnier-Training – Aufgabe 2
 
-Schritt 4 – Vergleichen: Speichere in einheit2_besser den Vergleich erfolg2 > erfolg1 und gib genau aus: Einheit 2 effizienter: True"""
+Schritt 2 – Gesamtwerte: Addiere die Kosten beider Einheiten und gib genau aus: Gesamtkosten: 540.0 Euro"""

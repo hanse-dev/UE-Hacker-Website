@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 2: Das Holodeck – Aufgabe 4
+"""### Extra-Herausforderung 2: Das Holodeck – Aufgabe 2
 
-Schritt 4 – Prüfe das Ziel: Erweitere Schritt 3 um ziel_reihe = 8 und ziel_spalte = 8. Prüfe nach der Schleife mit if und and, ob die Figur auf dem Ziel steht, und gib genau aus: 🎯 Ziel erreicht!"""
+Schritt 2 – Zeichne das Schachbrett-Muster: Lege dunkel = True an. Gib für jedes Feld # aus, wenn dunkel True ist, sonst einen Punkt; kippe danach dunkel (dunkel = not dunkel). Gib nach jeder Reihe einen Zeilenumbruch aus und kippe dunkel noch einmal. Die ersten zwei Reihen müssen #.#.#.#. und .#.#.#.# lauten."""

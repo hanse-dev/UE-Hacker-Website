@@ -1,2 +1,3 @@
-hours = 3
-print(f"Training lasts {hours} hours.")
+horse = "Comet"
+age = 6
+print(f"Hello {horse}! You are {age} years old.")

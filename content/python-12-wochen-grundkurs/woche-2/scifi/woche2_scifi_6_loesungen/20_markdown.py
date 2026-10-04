@@ -1,3 +1,3 @@
-"""### Systemprotokoll 5: Wahrheitswerte – Aufgabe 2
+"""### Systemprotokoll 5: Wahrheitswerte – Aufgabe 1
 
-Lege alarm_aktiv = False an und gib den Quanten-Typ mit type() aus."""
+Lege schild_aktiv = True und reaktor_ueberhitzt = False an und gib genau aus: Schild aktiv: True"""

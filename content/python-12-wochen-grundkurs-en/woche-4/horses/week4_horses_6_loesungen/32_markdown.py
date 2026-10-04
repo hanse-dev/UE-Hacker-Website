@@ -1,5 +1,3 @@
-"""### Debug Quest – Task 2
+"""### Lesson 8: Patterns of Stars – Task 2
 
-🐛 Bug #2 – Goal: The program should print Horse 1 to Horse 5. What is wrong?
-
-**Explanation:** The colon `:` is missing after the `for` line – Python reports a `SyntaxError`."""
+Draw a staircase of numbers: row 1 shows 1, row 2 shows 12, row 3 shows 123. Tip: range(1, 4) for the rows, range(1, row + 1) for the columns and print(column, end=\"\")."""

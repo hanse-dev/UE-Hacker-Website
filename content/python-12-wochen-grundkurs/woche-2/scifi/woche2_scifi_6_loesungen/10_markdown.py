@@ -1,3 +1,3 @@
-"""### Systemprotokoll 3: Ganze Zahlen – Aufgabe 1
+"""### Systemprotokoll 2: Strings und type() – Aufgabe 3
 
-Lege crew_anzahl = 300 und deck_anzahl = 12 an und gib genau aus: Crew: 300, Decks: 12"""
+Lege schiff_name = \"Starlight\" an und gib mit einem f-String genau aus: Starlight hat 9 Zeichen. (Die Zahl soll len() berechnen.)"""

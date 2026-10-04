@@ -1,3 +1,3 @@
-"""### Mission 1: Der Sicherheits-Scanner – Aufgabe 2
+"""### Debug-Quest – Aufgabe 4
 
-Gleiche Regel, andere Besucherin: Diesmal hat sie weder einen Ausweis noch liegt ein Notfall vor. Gib Zugang gewährt oder Zugang verweigert aus."""
+🐛 Bug #4 – Ziel: Zugang soll nur gewährt werden, wenn die Sicherheitsstufe mindestens 5 ist UND ein Ausweis vorhanden ist. Bei Stufe 3 mit Ausweis soll deshalb Zugang verweigert! erscheinen. Was ist falsch?"""

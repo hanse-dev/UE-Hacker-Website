@@ -1,3 +1,3 @@
-"""### Debug-Quest – Aufgabe 2
+"""### Systemprotokoll 8: Typumwandlung – Aufgabe 3
 
-🐛 Bug #2 – Ziel: Das Programm soll die verbleibende Energie berechnen und ausgeben: Verbleibende Energie: 50. Was ist falsch?"""
+Lege crew = 12 an und verbinde sie mit + zu dieser Zeile, mit str(): Crew: 12"""

@@ -1,15 +1,22 @@
-import random
+import csv
+crew = [
+    {"name": "Nova", "rolle": "Pilotin", "rang": 4, "energie": 120},
+    {"name": "Rex", "rolle": "Ingenieur", "rang": 6, "energie": 150},
+    {"name": "Zara", "rolle": "Botanikerin", "rang": 3, "energie": 90},
+]
+with open("crew.csv", "w", newline="") as f:
+    w = csv.DictWriter(f, fieldnames=["name", "rolle", "rang", "energie"])
+    w.writeheader()
+    w.writerows(crew)
+import json
 
-with open("zahlen.txt", "w") as f:
-    for i in range(10):
-        f.write(str(random.randint(1, 100)) + "\n")
-zahlen = []
-with open("zahlen.txt", "r") as f:
-    for zeile in f:
-        zahlen.append(int(zeile))
-alle_ok = True
-for z in zahlen:
-    if z < 1 or z > 100:
-        alle_ok = False
-print(f"Anzahl: {len(zahlen)}")
-print(f"Alle im Bereich: {alle_ok}")
+starke = []
+with open("crew.csv", "r") as f:
+    for zeile in csv.DictReader(f):
+        if int(zeile["rang"]) > 3:
+            starke.append(zeile["name"])
+with open("mitglied.json", "w") as f:
+    json.dump(starke, f)
+with open("mitglied.json", "r") as f:
+    geladen = json.load(f)
+print(f"Starke: {geladen}")

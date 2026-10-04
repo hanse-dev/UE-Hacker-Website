@@ -1,4 +1,3 @@
-pfleger = "Mia"
-pfleger_id = 7
-
-print(f"Pfleger: {pfleger} (ID {pfleger_id})")
+futter_kg = int("10")   # oder direkt: futter_kg = 10
+tage = 5
+print(f"Gesamtfutter: {futter_kg * tage} kg")

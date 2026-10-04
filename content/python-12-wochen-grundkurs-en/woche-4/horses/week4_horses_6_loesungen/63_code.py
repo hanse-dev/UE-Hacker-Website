@@ -1,4 +1,4 @@
-for row in range(4):
-    for column in range(4):
-        print(".", end="")
-    print()
+total = 0
+for i in range(5):
+    total += 90 + i * 10
+print(f"Total height: {total} cm")

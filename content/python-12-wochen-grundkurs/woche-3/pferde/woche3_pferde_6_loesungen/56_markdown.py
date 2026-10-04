@@ -1,5 +1,3 @@
-"""## 🔥 Extra-Herausforderungen
+"""### Mission 3: Das Turnier – Aufgabe 3
 
-### Das Reiter-Quiz – Aufgabe 1
-
-Schritt 1 – Antworten prüfen: Gib mit if-else für jede der fünf Antworten aus: Frage 1: ✅ Richtig! bzw. Frage 1: ❌ Falsch! (mit der passenden Nummer). Hier soll genau erscheinen: Frage 2: ❌ Falsch!"""
+Schritt 3 – Weitere Medaillen: Schreibe if-elif: Gold wie eben (🥇 GOLD!), sonst mit elif note >= 70 UND fehler <= 2 → 🥈 SILBER!. Hier ist es Silber (ein Fehler, langsamer)."""

@@ -1,3 +1,3 @@
-"""### Übung 3: if-else – Aufgabe 1
+"""### Übung 2: Vergleichsoperatoren – Aufgabe 2
 
-Regnet es, reitet ihr in der Halle, sonst auf der Weide. Schreibe ein if-else und gib mit den Vorgaben genau aus: Wir reiten in der Halle. (Bei Sonne wäre die Ausgabe: Perfekt für die Weide!)"""
+Prüfe mit if und !=, ob gangart ungleich \"Galopp\" ist, und gib dann genau aus: Das ist kein Galopp!"""

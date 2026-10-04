@@ -1,6 +1,9 @@
-has_access_code = True
-has_fingerprint = False
-if has_access_code and has_fingerprint:
-    print("Access to the command deck granted!")
+points = 320
+if points >= 1000:
+    print("Rank: Fleet Commander")
+elif points >= 500:
+    print("Rank: Captain")
+elif points >= 100:
+    print("Rank: Lieutenant")
 else:
-    print("Access denied!")
+    print("Rank: Cadet")

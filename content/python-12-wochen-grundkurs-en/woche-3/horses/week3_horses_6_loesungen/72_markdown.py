@@ -1,3 +1,3 @@
-"""### The Obstacle Simulator – Task 5
+"""### The Obstacle Simulator – Task 3
 
-Level 5 – Dismount: Passed if time <= 60 OR (errors == 0 AND style >= 80). Then print exactly: Level 5: Dismount passed"""
+Level 3 – Speed: Five levels with if-elif-else by speed: under 20 Very slow, under 40 Slow, under 60 Medium, under 80 Fast, otherwise Racing. Print with the prefix: Level 3: Fast"""

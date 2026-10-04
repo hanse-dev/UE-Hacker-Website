@@ -1,5 +1,3 @@
-"""## 🐛 Debug Quest
+"""### System Protocol 8: Type Conversion – Task 2
 
-### Debug Quest – Task 1
-
-🐛 Bug #1 – Goal: The program should print: Hello R2D2! Your status is 3. What is wrong?"""
+Create sensor_value = \"12.5\", convert it with float() and print exactly: Sensor value tripled: 37.5"""

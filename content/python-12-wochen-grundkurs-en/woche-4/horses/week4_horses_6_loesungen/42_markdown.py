@@ -1,3 +1,3 @@
-"""### Mission 2: The Stable Manager – Task 1
+"""### Mission 1: The Counting Rider – Task 2
 
-Step 1 – Stable round: Go through stalls 1 to 5 and print for each exactly: Stall 1: checking... (up to Stall 5)"""
+Step 2 – Even numbers: Print the even horse numbers from 2 to 10, each exactly like this: Even: 2, Even: 4, Even: 6, Even: 8, Even: 10"""

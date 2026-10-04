@@ -1,3 +1,3 @@
-"""### Extra Challenge 2: The Spaceship Simulator – Task 3
+"""### Extra Challenge 2: The Spaceship Simulator – Task 1
 
-Level 3 – Speed: The variable speed is already created. Use if-elif-else for five stages: from 800 Hyperdrive, from 600 Fast flight, from 400 Cruise flight, from 200 Maneuvering flight, otherwise Crawl. Format: Stage: Fast flight"""
+Level 1 – Launch sequence: The variables energy and system_ok are already created. Use and to check whether energy >= 50 AND system_ok holds. Then print Level 1 passed, otherwise Level 1 failed."""

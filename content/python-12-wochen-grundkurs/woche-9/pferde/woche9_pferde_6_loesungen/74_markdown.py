@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 2: Die Turnierkarte – Aufgabe 2
+"""### Extra-Herausforderung 2: Die Turnierkarte – Aufgabe 1
 
-Schritt 2 – Ort hinzufügen: Die Datei karte.json mit drei Orten wird im vorgegebenen Code angelegt. Lade sie, ergänze den Ort Bronzemedaille mit koordinaten [70, 80] und wert 400, speichere sie wieder, lade sie erneut und gib genau Orte: 4 aus."""
+Schritt 1 – Speichern und laden: Das Dictionary karte (Ort → Dictionary mit koordinaten als Tupel und wert) ist vorgegeben. Speichere es mit json.dump() in karte.json, lade es in geladen und gib genau Orte: 3 und in der nächsten Zeile Koordinaten: [10, 20] aus (geladen[\"Goldpokal\"][\"koordinaten\"] – das Tupel ist jetzt eine Liste)."""

@@ -1,5 +1,3 @@
-"""### Debug-Quest – Aufgabe 2
+"""### Systemprotokoll 8: Muster aus Sternen – Aufgabe 2
 
-🐛 Bug #2 – Ziel: Das Programm soll System 1 bis System 5 ausgeben. Was ist falsch?
-
-**Erklärung:** Hinter der `for`-Zeile fehlt der Doppelpunkt `:` – Python meldet einen `SyntaxError`."""
+Zeichne eine Zahlentreppe: In Zeile 1 steht 1, in Zeile 2 steht 12, in Zeile 3 steht 123. Tipp: range(1, 4) für die Zeilen, range(1, zeile + 1) für die Spalten und print(spalte, end=\"\")."""

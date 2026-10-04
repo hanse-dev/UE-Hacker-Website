@@ -1,3 +1,3 @@
-"""### The Training Hall – Task 2
+"""### The Feed Room – Task 4
 
-Step 2 – total duration: add up all five durations in total_duration and print exactly: Total duration: 120 minutes"""
+Step 4 – heavier than average? Compare sack_3 with the average and print exactly: Sack 3 above average: True"""

@@ -1,9 +1,17 @@
-meteor_hit = True
-pirate_attack = False
-system_failure = True
-if meteor_hit:
-    print("Meteor hit!")
-if pirate_attack:
-    print("Pirate attack!")
-if system_failure:
-    print("System failure!")
+level1_ok = False
+level2_ok = True
+level3_ok = True
+level4_ok = False
+level5_ok = True
+successes = 0
+if level1_ok:
+    successes = successes + 1
+if level2_ok:
+    successes = successes + 1
+if level3_ok:
+    successes = successes + 1
+if level4_ok:
+    successes = successes + 1
+if level5_ok:
+    successes = successes + 1
+print(f"Successes: {successes} of 5")

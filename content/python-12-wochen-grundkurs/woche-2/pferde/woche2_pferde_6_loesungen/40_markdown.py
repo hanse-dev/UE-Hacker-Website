@@ -1,3 +1,5 @@
-"""### Debug-Quest – Aufgabe 3
+"""## 🐛 Debug-Quest
 
-🐛 Bug #3 – Ziel: Das Programm soll Training dauert 3 Stunden. ausgeben. Was ist falsch?"""
+### Debug-Quest – Aufgabe 1
+
+🐛 Bug #1 – Ziel: Das Programm soll Hallo Comet! Du bist 6 Jahre alt. ausgeben. Was ist falsch?"""

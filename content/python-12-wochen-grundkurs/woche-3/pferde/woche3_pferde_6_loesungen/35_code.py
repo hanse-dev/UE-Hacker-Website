@@ -1,5 +1,4 @@
-alter = 8
-if alter >= 5:
-    print("Ausgebildet")
-else:
-    print("In Ausbildung")
+level = 10
+if level >= 10:
+    print("Reitfertigkeit erreicht!")
+    print("Glückwunsch!")

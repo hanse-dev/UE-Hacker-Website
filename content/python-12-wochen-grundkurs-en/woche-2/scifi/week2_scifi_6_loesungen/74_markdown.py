@@ -1,3 +1,3 @@
-"""### Extra challenge 3: The Space Mission – Task 2
+"""### Extra challenge 2: The AI Laboratory – Task 1
 
-Step 2 – Add the total yield of both missions and the total crew deployment. Print exactly: Total yield: 13.0 and Total crew: 15"""
+Step 1 – Create variables for all three models. Print the heading === AI LAB PROTOCOL === and one f-string line per model in the format NovaNet: accuracy 0.92, 1200000 parameters (the last line must read: MiniMind: accuracy 0.75, 300000 parameters)."""

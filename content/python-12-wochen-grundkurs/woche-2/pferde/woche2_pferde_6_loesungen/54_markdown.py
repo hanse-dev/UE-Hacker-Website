@@ -1,3 +1,3 @@
-"""### Mission 3: Das Turnier – Aufgabe 1
+"""### Mission 2: Die Reitstunde – Aufgabe 2
 
-Schritt 1 – Pferde erfassen: Lege für Luna (Alter 8, Dressur 72, Springen 68) und Thunder (Alter 9, Dressur 65, Springen 70) je Name, Alter, Dressurpunkte und Springpunkte an. Berechne die Gesamtpunkte und gib genau aus: Luna: 140 Punkte und Thunder: 135 Punkte"""
+Schritt 2 – Gesamtzeit: Addiere alle drei Reitzeiten in der Variable gesamtzeit und gib genau aus: Gesamtzeit: 135 Minuten"""

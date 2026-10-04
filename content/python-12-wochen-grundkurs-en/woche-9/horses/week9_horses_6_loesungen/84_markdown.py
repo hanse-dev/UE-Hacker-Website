@@ -1,3 +1,3 @@
-"""### Extra Challenge 4: The Great Stable Office – Task 1
+"""### Extra Challenge 3: The Training Log – Task 3
 
-Step 1 – Functions (week 5): The dictionary horse is given. Write save(data, name) (json.dump into file name) and load(name) (json.load, returns the dictionary). Save horse into horse.json, load it back and print exactly Equal: True."""
+Step 3 – Report: The file questlog.json is created for you (first entry \"done\"). Load it, count the entries with status \"done\" into finished and write the line Completed: 1 (using finished) into the file report.txt. Read report.txt again and print exactly Report: Completed: 1 (with strip())."""

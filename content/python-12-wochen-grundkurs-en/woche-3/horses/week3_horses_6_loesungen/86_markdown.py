@@ -1,3 +1,3 @@
-"""### The Grand Tournament – Task 6
+"""### The Grand Tournament – Task 4
 
-Step 6 – Evaluation: total_points = successful_phases * 100 - difficulty * 20, success_rate = (successful_phases / 5) * 100. Print exactly, using an f-string: Total points: 320, Success rate: 80.0%"""
+Step 4 – Winning condition: If successful_phases >= 4 AND difficulty <= 3 print Tournament win!, otherwise No tournament win. Here exactly this should appear: No tournament win (the final period is not part of it)."""

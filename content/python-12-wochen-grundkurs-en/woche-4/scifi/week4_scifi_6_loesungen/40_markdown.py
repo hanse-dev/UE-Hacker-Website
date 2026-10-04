@@ -1,3 +1,5 @@
-"""### Mission 1: The Quantum Counter – Task 3
+"""## ⭐ Missions
 
-Step 3 – Calculate the sum of all numbers from 1 to 100 with a loop (variable total, start at 0) and print exactly: Sum: 5050"""
+### Mission 1: The Quantum Counter – Task 1
+
+Step 1 – Print all numbers from 1 to 20 with a for loop in the format Time: 1, Time: 2 and so on (the last line must read: Time: 20)."""

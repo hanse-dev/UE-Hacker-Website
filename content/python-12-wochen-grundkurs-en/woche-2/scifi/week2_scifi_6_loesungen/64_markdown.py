@@ -1,3 +1,3 @@
-"""### Extra challenge 2: The AI Laboratory – Task 1
+"""### Mission 3: The Asteroid Mining – Task 2
 
-Step 1 – Create variables for all three models. Print the heading === AI LAB PROTOCOL === and one f-string line per model in the format NovaNet: accuracy 0.92, 1200000 parameters (the last line must read: MiniMind: accuracy 0.75, 300000 parameters)."""
+Step 2 – Compare the values (start from value_a = 5000.0 and value_b = 5400.0): store value_b > value_a in a Boolean variable b_is_better and print exactly: Vesta-3 is more valuable: True"""

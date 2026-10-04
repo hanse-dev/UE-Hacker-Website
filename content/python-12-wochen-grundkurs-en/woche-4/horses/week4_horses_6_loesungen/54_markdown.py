@@ -1,5 +1,3 @@
-"""## 🔥 Extra Challenges
+"""### Mission 3: The Endurance Training – Task 2
 
-### The Jumping Training – Task 1
-
-Step 1 – Course: The first jump is 90 cm high, each further one 10 cm higher. In a for loop (range(5)) calculate the height as 90 + i*10 and print: Jump 1: 90 cm (up to Jump 5: 130 cm)"""
+Step 2 – Stamina down to zero: The stamina starts at 100 and drops by 20 per lap. Use while (as long as stamina > 0) to print exactly after each lap: Stamina: 80, Stamina: 60, Stamina: 40, Stamina: 20, Stamina: 0"""

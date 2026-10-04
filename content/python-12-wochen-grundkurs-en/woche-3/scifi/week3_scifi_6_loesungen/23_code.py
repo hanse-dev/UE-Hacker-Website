@@ -1,6 +1,9 @@
-has_emergency_key = False
-has_override_code = True
-if has_emergency_key or has_override_code:
-    print("Door is opening manually!")
+weapon = "Plasma"
+if weapon == "Laser":
+    print("Laser activated!")
+elif weapon == "Plasma":
+    print("Plasma cannon loaded!")
+elif weapon == "Ion":
+    print("Ion cannon online!")
 else:
-    print("Door stays locked!")
+    print("Unknown weapon!")

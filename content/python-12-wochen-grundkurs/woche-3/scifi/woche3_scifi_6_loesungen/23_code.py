@@ -1,6 +1,9 @@
-hat_notfallschluessel = False
-hat_ueberbrueckungscode = True
-if hat_notfallschluessel or hat_ueberbrueckungscode:
-    print("Tür wird manuell geöffnet!")
+waffe = "Plasma"
+if waffe == "Laser":
+    print("Laser aktiviert!")
+elif waffe == "Plasma":
+    print("Plasmakanone geladen!")
+elif waffe == "Ion":
+    print("Ionengeschütz online!")
 else:
-    print("Tür bleibt verschlossen!")
+    print("Unbekannte Waffe!")

@@ -1,10 +1,3 @@
-sack_1 = 25.5
-sack_2 = 20.0
-sack_3 = 30.5
-sack_4 = 25.0
-sack_5 = 22.5
-sack_6 = 28.0
-sack_7 = 24.0
-sack_8 = 24.5
-total = sack_1 + sack_2 + sack_3 + sack_4 + sack_5 + sack_6 + sack_7 + sack_8
-print(f"Total weight: {total} kg")
+luna_total = 140
+thunder_total = 135
+print(f"Average: {(luna_total + thunder_total) / 2} points")

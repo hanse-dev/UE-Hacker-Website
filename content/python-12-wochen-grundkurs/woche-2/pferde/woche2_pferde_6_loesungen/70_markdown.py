@@ -1,3 +1,3 @@
-"""### Die Trainingshalle – Aufgabe 2
+"""### Der Futterraum – Aufgabe 4
 
-Schritt 2 – Gesamtdauer: Addiere alle fünf Dauerwerte in gesamtdauer und gib genau aus: Gesamtdauer: 120 Minuten"""
+Schritt 4 – Schwerer als der Durchschnitt? Vergleiche sack_3 mit dem Durchschnitt und gib genau aus: Sack 3 über dem Durchschnitt: True"""

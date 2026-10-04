@@ -1,3 +1,3 @@
-"""### Debug Quest – Task 3
+"""### System Protocol 8: Type Conversion – Task 4
 
-🐛 Bug #3 – Goal: The program should print: Shield strength: 95 percent. What is wrong?"""
+Create signal = 0, convert it with bool() and print exactly: Signal active: False"""

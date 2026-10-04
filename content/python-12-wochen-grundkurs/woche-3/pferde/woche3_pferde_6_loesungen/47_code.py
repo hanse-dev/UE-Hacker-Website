@@ -1,10 +1,5 @@
 stallmeister_passwort = "Hufeisen"
 pfleger_passwort = "Karotte"
-eingabe = "Banane"
+eingabe = "Karotte"
 
-if eingabe == stallmeister_passwort:
-    print("Vollzugriff gewährt")
-elif eingabe == pfleger_passwort:
-    print("Futterzugriff gewährt")
-else:
-    print("Falsches Passwort")
+print(f"Eingabe: {eingabe}")

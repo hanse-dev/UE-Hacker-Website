@@ -1,5 +1,6 @@
 successful_phases = 4
 difficulty = 4
-total_points = successful_phases * 100 - difficulty * 20
-success_rate = (successful_phases / 5) * 100
-print(f"Total points: {total_points}, Success rate: {success_rate}%")
+if successful_phases >= 4 and difficulty <= 3:
+    print("Tournament win!")
+else:
+    print("No tournament win.")

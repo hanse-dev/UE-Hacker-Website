@@ -1,3 +1,3 @@
-"""### Debug Quest – Task 2
+"""### System Protocol 8: Type Conversion – Task 3
 
-🐛 Bug #2 – Goal: The program should calculate and print the remaining energy: Remaining energy: 50. What is wrong?"""
+Create crew = 12 and join it with + into this line, using str(): Crew: 12"""

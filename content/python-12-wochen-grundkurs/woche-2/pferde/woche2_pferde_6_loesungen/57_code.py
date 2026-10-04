@@ -1,4 +1,4 @@
-luna_gesamt = 140
-thunder_gesamt = 135
+gesamtzeit = 135
 
-print(f"Luna hat mehr Punkte: {luna_gesamt > thunder_gesamt}")
+durchschnitt = gesamtzeit / 3
+print(f"Durchschnitt: {durchschnitt} Minuten")

@@ -1,5 +1,7 @@
-"""### Debug Quest – Task 3
+"""## 🐛 Debug Quest
 
-🐛 Bug #3 – Goal: The program should print Exercise 0, Exercise 1 and Exercise 2, then Training finished. What is wrong?
+### Debug Quest – Task 1
 
-**Explanation:** The loop body must be indented. Without indentation Python reports an `IndentationError`."""
+🐛 Bug #1 – Goal: The program should print Lap 1 to Lap 5 (each on its own line). What is wrong?
+
+**Explanation:** `range(5)` counts from 0 to 4. For Lap 1 to 5 you print `i+1` (or use `range(1, 6)`)."""

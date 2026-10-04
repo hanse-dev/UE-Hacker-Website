@@ -1,4 +1,4 @@
-wert_a = 5000.0
-wert_b = 5400.0
-b_ist_besser = wert_b > wert_a
-print(f"Vesta-3 ist wertvoller: {b_ist_besser}")
+bloecke = 12
+energie_pro_block = 45.5
+gesamtenergie = bloecke * energie_pro_block
+print(f"Gesamtenergie: {gesamtenergie}")

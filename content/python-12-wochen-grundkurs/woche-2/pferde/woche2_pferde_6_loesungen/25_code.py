@@ -1,4 +1,4 @@
 pferde = 12
-heu_pro_pferd = 3
+boxen = 4
 
-print(f"Heu insgesamt: {pferde * heu_pro_pferd} kg")
+print(f"Pferde pro Box: {pferde / boxen}")

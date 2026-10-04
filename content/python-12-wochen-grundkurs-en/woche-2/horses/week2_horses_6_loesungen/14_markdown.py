@@ -1,3 +1,3 @@
-"""### Lesson 4: Canter – Decimal Numbers (float) – Task 1
+"""### Lesson 3: Trot – Whole Numbers (int) – Task 2
 
-A horse eats 4.25 kg of feed per day. Print for 2 days exactly: Feed for 2 days: 8.5 kg"""
+A horse is 168 cm tall, a pony 138 cm. Store the difference in the variable difference and print exactly: Difference: 30 cm"""

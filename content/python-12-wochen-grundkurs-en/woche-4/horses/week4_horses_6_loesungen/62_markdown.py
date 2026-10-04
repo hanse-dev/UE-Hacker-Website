@@ -1,3 +1,3 @@
-"""### The Riding Board – Task 1
+"""### The Jumping Training – Task 3
 
-Step 1 – Build the board: Use two nested loops to create a 4×4 board of dots (print(\".\", end=\"\") inside, print() after the inner loop). The output: ....  ....  ....  ....  (each on its own line)."""
+Step 3 – Total height: Add up all 5 heights in total and print exactly: Total height: 550 cm"""

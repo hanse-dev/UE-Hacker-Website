@@ -1,6 +1,23 @@
-energy = 65
-system_ok = False
-if energy >= 50 and system_ok:
-    print("Level 1 passed")
+q1 = True
+q2 = True
+q3 = False
+q4 = True
+q5 = False
+points = 0
+if q1:
+    points = points + 100
+if q2:
+    points = points + 100
+if q3:
+    points = points + 100
+if q4:
+    points = points + 100
+if q5:
+    points = points + 100
+if points >= 400:
+    grade = "A"
+elif points >= 300:
+    grade = "B"
 else:
-    print("Level 1 failed")
+    grade = "C"
+print(f"Points: {points}, Grade: {grade}")

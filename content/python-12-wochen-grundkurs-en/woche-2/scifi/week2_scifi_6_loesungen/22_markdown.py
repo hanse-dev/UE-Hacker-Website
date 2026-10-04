@@ -1,3 +1,3 @@
-"""### System Protocol 5: Booleans – Task 3
+"""### System Protocol 5: Booleans – Task 2
 
-Print the result of the comparison 80 > 50 directly with print()."""
+Create alarm_active = False and print its quantum type with type()."""

@@ -19,3 +19,12 @@ print(type(ship_name))   # <class 'str'>
 ## 🔤 Strings – text data
 
 A **String** is any text in quotation marks – even if it looks like a number: `"250"` is text, not a number!
+
+## 📏 `len()` – measuring the length
+
+`len()` is a function too: you give it a text, and it hands you back the **number of characters**. Spaces count too!
+
+```python
+planet = "Mars"
+print(len(planet))    # 4
+```

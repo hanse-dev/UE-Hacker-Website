@@ -1,3 +1,3 @@
-"""### Extra Challenge 3: The Galaxy Mission – Task 1
+"""### Extra Challenge 2: The Spaceship Simulator – Task 5
 
-The variable danger_level (1-5) is already created. Use if-elif-else: 1 = calm, 2 = low, 3 = elevated, 4 = high, 5 = extreme. Format: Danger level 4: high"""
+Level 5 – Emergency landing: The variables fuel, atmosphere and landing_spot (Booleans) are already created. The landing succeeds if fuel >= 20 OR (atmosphere AND landing_spot). Then print Emergency landing possible, otherwise Emergency landing impossible."""

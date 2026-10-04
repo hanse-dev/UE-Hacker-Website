@@ -1,5 +1,5 @@
-params1 = 1200000
-params2 = 5000000
-params3 = 300000
-total_params = params1 + params2 + params3
-print(f"Total parameters: {total_params}")
+value_a = 5000.0
+value_b = 5400.0
+average = (value_a + value_b) / 2
+print(f"Average value: {average}")
+print("Mining decision: Vesta-3")

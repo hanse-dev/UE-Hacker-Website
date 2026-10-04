@@ -1,3 +1,3 @@
-"""### The Feed Room – Task 4
+"""### The Feed Room – Task 2
 
-Step 4 – heavier than average? Compare sack_3 with the average and print exactly: Sack 3 above average: True"""
+Step 2 – total weight: add up all 8 weights in total and print exactly: Total weight: 200.0 kg"""

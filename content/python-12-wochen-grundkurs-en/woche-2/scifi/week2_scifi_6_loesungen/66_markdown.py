@@ -1,3 +1,3 @@
-"""### Extra challenge 2: The AI Laboratory – Task 2
+"""### Mission 3: The Asteroid Mining – Task 3
 
-Step 2 – Add all parameter counts, store the sum in total_params and print exactly: Total parameters: 6500000"""
+Step 3 – Calculate the average value of both asteroids and print exactly: Average value: 5200.0 – then print your mining decision: Mining decision: Vesta-3"""

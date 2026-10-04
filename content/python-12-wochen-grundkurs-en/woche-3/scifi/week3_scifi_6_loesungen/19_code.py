@@ -1,9 +1,6 @@
-weapon = "Plasma"
-if weapon == "Laser":
-    print("Laser activated!")
-elif weapon == "Plasma":
-    print("Plasma cannon loaded!")
-elif weapon == "Ion":
-    print("Ion cannon online!")
+energy = 90
+consumption = 60
+if energy >= consumption:
+    print(f"Jump possible! Remaining: {energy - consumption}%")
 else:
-    print("Unknown weapon!")
+    print(f"Jump impossible! Missing: {consumption - energy}%")

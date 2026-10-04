@@ -1,3 +1,3 @@
-"""### Mission 3: Die Missionsbewertung – Aufgabe 1
+"""### Mission 2: Der Terminal-Zugang – Aufgabe 1
 
-Die Variablen level, erfolgspunkte, verluste und zeit sind schon angelegt. Berechne note = erfolgspunkte - (verluste * 10) - (zeit / 5) und gib aus: Note: 80.0"""
+Die Variablen admin_passwort, gast_passwort und eingabe (das simulierte eingegebene Passwort) sind schon angelegt. Prüfe mit if, ob eingabe gleich admin_passwort ist (Ausgabe: Vollzugriff gewährt), und mit elif, ob sie gleich gast_passwort ist (Ausgabe: Lesezugriff gewährt)."""

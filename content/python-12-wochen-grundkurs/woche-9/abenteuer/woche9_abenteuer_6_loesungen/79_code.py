@@ -1,12 +1,16 @@
 import json
-quests = [
-    {"name": "Drache besiegen", "schwierigkeit": 1, "status": "offen"},
-    {"name": "Schatz finden", "schwierigkeit": 2, "status": "offen"},
-    {"name": "Dorf retten", "schwierigkeit": 3, "status": "offen"},
-]
-with open("questlog.json", "w") as f:
-    json.dump(quests, f)
-with open("questlog.json", "r") as f:
+karte = {
+    "Goldkrone": {"koordinaten": (10, 20), "wert": 800},
+    "Silberkelch": {"koordinaten": (30, 40), "wert": 300},
+    "Rubin": {"koordinaten": (50, 60), "wert": 650},
+}
+karte["Smaragd"] = {"koordinaten": [70, 80], "wert": 400}
+with open("karte.json", "w") as f:
+    json.dump(karte, f)
+with open("karte.json", "r") as f:
     geladen = json.load(f)
-print(f"Quest-Anzahl: {len(geladen)}")
-print(f"Status: {geladen[0]['status']}")
+bester = None
+for ort in geladen:
+    if bester is None or geladen[ort]["wert"] > geladen[bester]["wert"]:
+        bester = ort
+print(f"Wertvollster: {bester} ({geladen[bester]['wert']})")

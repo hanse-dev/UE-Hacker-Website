@@ -1,3 +1,4 @@
-luna_total = 140
-thunder_total = 135
-print(f"Average: {(luna_total + thunder_total) / 2} points")
+luna_total = 72 + 68
+thunder_total = 65 + 70
+print(f"Luna: {luna_total} points")
+print(f"Thunder: {thunder_total} points")

@@ -1,10 +1,8 @@
-dauer1 = 5
-kosten1 = 300.0
-teilnehmer1 = 4
-dauer2 = 3
-kosten2 = 240.0
-teilnehmer2 = 8
+i1 = 3.5
+i2 = 4.0
+i3 = 2.5
+i4 = 4.5
+i5 = 1.5
 
-print("=== TRAININGSPROTOKOLL ===")
-print(f"Einheit 1: {dauer1} Tage, {kosten1} Euro, {teilnehmer1} Teilnehmer")
-print(f"Einheit 2: {dauer2} Tage, {kosten2} Euro, {teilnehmer2} Teilnehmer")
+durchschnitt = (i1 + i2 + i3 + i4 + i5) / 5
+print(f"Durchschnittsintensität: {durchschnitt}")

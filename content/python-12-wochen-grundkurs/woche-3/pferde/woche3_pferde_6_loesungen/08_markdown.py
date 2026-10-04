@@ -1,3 +1,3 @@
-"""### Übung 2: Vergleichsoperatoren – Aufgabe 2
+"""### Wichtige Operatoren: = oder ==? – Aufgabe 2
 
-Prüfe mit if und !=, ob gangart ungleich \"Galopp\" ist, und gib dann genau aus: Das ist kein Galopp!"""
+Gib das Ergebnis eines Vergleichs mit einem f-String aus: Vergleiche boxen mit 12 und gib genau aus: Genau 12 Boxen: True"""

@@ -8,9 +8,5 @@ with open("questlog.json", "w") as f:
     json.dump(quests, f)
 with open("questlog.json", "r") as f:
     loaded = json.load(f)
-loaded[0]["status"] = "done"
-with open("questlog.json", "w") as f:
-    json.dump(loaded, f)
-with open("questlog.json", "r") as f:
-    fresh = json.load(f)
-print(f"First: {fresh[0]['status']}")
+print(f"Quest count: {len(loaded)}")
+print(f"Status: {loaded[0]['status']}")

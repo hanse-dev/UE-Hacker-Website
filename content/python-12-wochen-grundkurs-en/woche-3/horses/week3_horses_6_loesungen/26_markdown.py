@@ -1,3 +1,3 @@
-"""### Lesson 6: Nested conditions – Task 1
+"""### Lesson 5: and, or, not – Task 2
 
-Rebuild the example: if the door is locked, check the key inside. If it does not fit, print exactly: This key does not fit."""
+Use or: if has_bridle or has_halter is true, print You can lead the horse! – otherwise Equipment is missing! Here exactly this should appear: You can lead the horse!"""

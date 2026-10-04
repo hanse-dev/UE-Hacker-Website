@@ -1,4 +1,4 @@
-# 📟 System Protocol 7: Type Conversion
+# 📟 System Protocol 8: Type Conversion
 
 Sensor data often arrives as **text**. To calculate with it you have to convert it. Four functions do this job:
 
@@ -20,6 +20,13 @@ And the other way round: to put a number into a text with `+` you need `str()`:
 ```python
 crew = 12
 print("Crew: " + str(crew))
+```
+
+`bool()` turns a value into a truth value: `0` becomes `False`, any other number becomes `True`:
+
+```python
+signal = 1
+print(bool(signal))    # True
 ```
 
 > 💡 With f-strings you don't need `str()` – they convert automatically.

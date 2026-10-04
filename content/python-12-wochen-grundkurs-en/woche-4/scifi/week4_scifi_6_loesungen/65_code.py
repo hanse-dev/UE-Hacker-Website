@@ -1,10 +1,11 @@
-dark = True
-for row in range(8):
-    for column in range(8):
-        if dark:
-            print("#", end="")
-        else:
-            print(".", end="")
-        dark = not dark
-    print()
-    dark = not dark
+for number in range(2, 31):
+    is_prime = True
+    for a in range(2, number):
+        for b in range(2, number):
+            if a * b == number:
+                is_prime = False
+    if is_prime:
+        print("P", end="")
+    else:
+        print(".", end="")
+print()

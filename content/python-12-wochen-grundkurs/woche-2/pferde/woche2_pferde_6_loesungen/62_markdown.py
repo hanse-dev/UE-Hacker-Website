@@ -1,3 +1,3 @@
-"""### Der Futterraum – Aufgabe 2
+"""### Mission 3: Das Turnier – Aufgabe 3
 
-Schritt 2 – Gesamtgewicht: Addiere alle 8 Gewichte in gesamt und gib genau aus: Gesamtgewicht: 200.0 kg"""
+Schritt 3 – Durchschnitt: Berechne den Durchschnitt beider Gesamtpunkte (Summe geteilt durch 2) und gib genau aus: Durchschnitt: 137.5 Punkte"""

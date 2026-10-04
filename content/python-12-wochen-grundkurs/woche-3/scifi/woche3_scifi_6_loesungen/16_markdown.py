@@ -1,3 +1,3 @@
-"""### Systemprotokoll 4: if-elif-else – Aufgabe 1
+"""### Systemprotokoll 3: if-else – Aufgabe 1
 
-Die Variable punkte ist schon angelegt. Gib mit if-elif-else den Rang aus: ab 1000 Fleet-Kommandant, ab 500 Kapitän, ab 100 Leutnant, sonst Kadett. Format: Rang: Leutnant"""
+Die Variable signale ist schon angelegt. Gib mit if-else Lebensformen entdeckt!, wenn signale mindestens 15 ist, sonst Sektor leer."""

@@ -1,5 +1,4 @@
-age = 8
-if age >= 5:
-    print("Trained")
-else:
-    print("In training")
+level = 10
+if level >= 10:
+    print("Riding skill reached!")
+    print("Congratulations!")

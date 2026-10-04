@@ -1,4 +1,4 @@
-# 📟 Systemprotokoll 7: Typumwandlung
+# 📟 Systemprotokoll 8: Typumwandlung
 
 Sensordaten kommen oft als **Text** an. Um damit zu rechnen, musst du sie umwandeln. Vier Funktionen übernehmen das:
 
@@ -20,6 +20,13 @@ Und umgekehrt: Um eine Zahl mit `+` in einen Text einzufügen, brauchst du `str(
 ```python
 crew = 12
 print("Crew: " + str(crew))
+```
+
+`bool()` macht aus einem Wert einen Wahrheitswert: `0` wird zu `False`, jede andere Zahl zu `True`:
+
+```python
+signal = 1
+print(bool(signal))    # True
 ```
 
 > 💡 Bei f-Strings brauchst du kein `str()` – sie wandeln automatisch um.

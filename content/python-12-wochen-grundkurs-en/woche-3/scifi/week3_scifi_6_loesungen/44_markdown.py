@@ -1,3 +1,3 @@
-"""### Mission 2: The Terminal Access – Task 1
+"""### Mission 1: The Security Scanner – Task 2
 
-The variables admin_password, guest_password and entered (the simulated password that was typed in) are already created. Use if to check whether entered equals admin_password (output: Full access granted), and elif to check whether it equals guest_password (output: Read access granted)."""
+Same rule, different visitor: this time she has neither an ID card nor is there an emergency. Print Access granted or Access denied."""

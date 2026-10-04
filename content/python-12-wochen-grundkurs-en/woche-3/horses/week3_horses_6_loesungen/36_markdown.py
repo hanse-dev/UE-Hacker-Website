@@ -1,5 +1,3 @@
-"""## ⭐ Missions
+"""### Debug Quest – Task 2
 
-### Mission 1: The Stable Guard – Task 1
-
-Step 1 – Record the access data: Create age = 10 (integer), has_helmet = True and has_permission = False and print exactly, using an f-string: Age: 10, Helmet: True"""
+🐛 Bug #2 – Goal: The program should print Hello Thunder!, because name has the value Thunder. What is wrong?"""

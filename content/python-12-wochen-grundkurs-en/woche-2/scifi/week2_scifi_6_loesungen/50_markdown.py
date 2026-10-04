@@ -1,3 +1,3 @@
-"""### Mission 2: The Fleet Analysis – Task 3
+"""### Debug Quest – Task 3
 
-Step 3 – Add all speeds, divide by 3, store the result in average_speed and print exactly: Average speed: 2.5"""
+🐛 Bug #3 – Goal: The program should print: Shield strength: 95 percent. What is wrong?"""

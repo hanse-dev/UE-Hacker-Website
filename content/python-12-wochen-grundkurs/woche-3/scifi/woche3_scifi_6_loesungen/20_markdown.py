@@ -1,3 +1,3 @@
-"""### Systemprotokoll 5: and, or, not – Aufgabe 1
+"""### Systemprotokoll 4: if-elif-else – Aufgabe 1
 
-Die Variablen hat_zugangscode und hat_fingerabdruck sind schon angelegt. Gib mit and und else aus: Zugang zum Kommandodeck gewährt! – oder, wenn nicht beides stimmt, Zugang verweigert!"""
+Die Variable punkte ist schon angelegt. Gib mit if-elif-else den Rang aus: ab 1000 Fleet-Kommandant, ab 500 Kapitän, ab 100 Leutnant, sonst Kadett. Format: Rang: Leutnant"""

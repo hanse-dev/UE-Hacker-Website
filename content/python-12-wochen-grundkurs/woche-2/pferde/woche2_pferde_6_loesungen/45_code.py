@@ -1,4 +1,2 @@
-ballen = 20
-gewicht_pro_ballen = 15.5
-
-print(f"Ballen: {ballen}, je {gewicht_pro_ballen} kg")
+stunden = 3
+print(f"Training dauert {stunden} Stunden.")

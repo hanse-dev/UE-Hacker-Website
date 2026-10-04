@@ -1,3 +1,5 @@
-"""### Mission 1: Der Zähl-Reiter – Aufgabe 2
+"""### Debug-Quest – Aufgabe 3
 
-Schritt 2 – Gerade Nummern: Gib die geraden Pferdenummern von 2 bis 10 aus, jeweils genau so: Gerade: 2, Gerade: 4, Gerade: 6, Gerade: 8, Gerade: 10"""
+🐛 Bug #3 – Ziel: Das Programm soll Übung 0, Übung 1 und Übung 2 ausgeben, danach Training beendet. Was ist falsch?
+
+**Erklärung:** Der Schleifenkörper muss eingerückt sein. Ohne Einrückung meldet Python einen `IndentationError`."""

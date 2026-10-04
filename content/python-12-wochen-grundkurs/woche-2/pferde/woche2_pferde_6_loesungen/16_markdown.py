@@ -1,3 +1,3 @@
-"""### Übung 4: Galopp – Kommazahlen (float) – Aufgabe 2
+"""### Übung 4: Galopp – Kommazahlen (float) – Aufgabe 1
 
-Lege die Variable stockmass_m mit dem Wert 1.68 an und gib ihren Typ mit type() aus."""
+Ein Pferd frisst 4.25 kg Futter pro Tag. Gib für 2 Tage genau aus: Futter für 2 Tage: 8.5 kg"""

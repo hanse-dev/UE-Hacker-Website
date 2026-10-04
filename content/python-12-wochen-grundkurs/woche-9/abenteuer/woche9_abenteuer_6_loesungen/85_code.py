@@ -1,13 +1,20 @@
 import json
-held = {"name": "Aria", "klasse": "Magierin", "level": 15, "leben": 120}
-def speichere(daten, name):
-    with open(name, "w") as f:
-        json.dump(daten, f)
-
-def lade(name):
-    with open(name, "r") as f:
-        return json.load(f)
-
-speichere(held, "held.json")
-geladen = lade("held.json")
-print(f"Gleich: {geladen == held}")
+quests = [
+    {"name": "Drache besiegen", "schwierigkeit": 1, "status": "offen"},
+    {"name": "Schatz finden", "schwierigkeit": 2, "status": "offen"},
+    {"name": "Dorf retten", "schwierigkeit": 3, "status": "offen"},
+]
+quests[0]["status"] = "abgeschlossen"
+with open("questlog.json", "w") as f:
+    json.dump(quests, f)
+with open("questlog.json", "r") as f:
+    geladen = json.load(f)
+fertig = 0
+for quest in geladen:
+    if quest["status"] == "abgeschlossen":
+        fertig += 1
+with open("bericht.txt", "w") as f:
+    f.write(f"Abgeschlossen: {fertig}\n")
+with open("bericht.txt", "r") as f:
+    inhalt = f.read()
+print(f"Bericht: {inhalt.strip()}")

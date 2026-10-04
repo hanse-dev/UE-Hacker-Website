@@ -1,13 +1,6 @@
-datum = "15.03."
-with open("tagebuch.txt", "w") as f:
-    f.write(datum + " Drachenhöhle betreten\n")
-    f.write(datum + " Goldkrone gefunden\n")
-    f.write(datum + " Troll besiegt\n")
+import os
 
-eintrag = input()
-with open("tagebuch.txt", "a") as f:
-    f.write(datum + " " + eintrag + "\n")
-
-with open("tagebuch.txt") as f:
-    zeilen = f.readlines()
-print(f"Einträge: {len(zeilen)}")
+with open("aufraeumen.txt", "w") as f:
+    f.write("Test")
+os.remove("aufraeumen.txt")
+print(f"Gelöscht: {not os.path.exists('aufraeumen.txt')}")

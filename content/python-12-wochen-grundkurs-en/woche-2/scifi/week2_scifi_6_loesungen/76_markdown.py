@@ -1,3 +1,3 @@
-"""### Extra challenge 3: The Space Mission – Task 3
+"""### Extra challenge 2: The AI Laboratory – Task 2
 
-Step 3 – Calculate the expected yield (yield × probability) for both missions and print exactly: Expected yield Mars: 4.0 and Expected yield Europa: 6.0"""
+Step 2 – Add all parameter counts, store the sum in total_params and print exactly: Total parameters: 6500000"""

@@ -1,3 +1,3 @@
-"""### Extra Challenge 2: The Treasure Map – Task 1
+"""### Extra Challenge 1: The Hero Diary – Task 4
 
-Step 1 – Save and load: The dictionary map_data (place → dictionary with coordinates as a tuple and value) is given. Save it with json.dump() into map.json, load it into loaded and print exactly Places: 3 and on the next line Coordinates: [10, 20] (loaded[\"Gold crown\"][\"coordinates\"] – the tuple is now a list)."""
+Step 4 – Your own entry: date and diary.txt are given as in Step 2 (three lines). Use input() to ask for a new entry, append it with "a" as date + " " + entry to diary.txt, and afterwards print exactly Entries: 4. (When checking, Found a treasure is entered automatically.)"""

@@ -1,3 +1,3 @@
-"""### Systemprotokoll 4: if-elif-else – Aufgabe 2
+"""### Systemprotokoll 3: if-else – Aufgabe 2
 
-Die Variable waffe ist schon angelegt. Gib bei \"Laser\": Laser aktiviert!, bei \"Plasma\": Plasmakanone geladen!, bei \"Ion\": Ionengeschütz online! und sonst: Unbekannte Waffe! aus."""
+Die Variablen energie und verbrauch sind schon angelegt. Gib mit if-else und einem f-String aus: Sprung möglich! Rest: 30% – oder, falls die Energie nicht reicht, Sprung unmöglich! Fehlt: ...%"""

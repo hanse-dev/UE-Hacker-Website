@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 1: Das Raumschiffdock – Aufgabe 2
+"""### Mission 2: Die Flottenanalyse – Aufgabe 3
 
-Schritt 2 – Addiere alle Energiewerte, teile die Summe durch 4 und gib genau aus: Durchschnittsenergie: 77.0"""
+Schritt 3 – Addiere alle Geschwindigkeiten, teile durch 3, speichere das Ergebnis in durchschnitt_geschwindigkeit und gib genau aus: Durchschnittsgeschwindigkeit: 2.5"""

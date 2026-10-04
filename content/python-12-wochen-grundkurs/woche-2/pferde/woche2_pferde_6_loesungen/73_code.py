@@ -1,8 +1,10 @@
-i1 = 3.5
-i2 = 4.0
-i3 = 2.5
-i4 = 4.5
-i5 = 1.5
+uebung1 = "Volten"
+intensitaet1 = 3.5
+dauer1 = 20
+uebung2 = "Galoppintervall"
+intensitaet2 = 4.0
+dauer2 = 30
 
-durchschnitt = (i1 + i2 + i3 + i4 + i5) / 5
-print(f"Durchschnittsintensität: {durchschnitt}")
+print("=== TRAININGSHALLE-PROTOKOLL ===")
+print(f"{uebung1}: Intensität {intensitaet1}, {dauer1} Minuten")
+print(f"{uebung2}: Intensität {intensitaet2}, {dauer2} Minuten")

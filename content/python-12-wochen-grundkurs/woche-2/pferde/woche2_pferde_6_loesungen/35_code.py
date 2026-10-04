@@ -1,3 +1,4 @@
-alter_text = input("Alter deines Pferdes: ")
-alter = int(alter_text)
-print(f"Nächstes Jahr: {alter + 1} Jahre")
+portion_text = "4.5"
+
+portion = float(portion_text)
+print(f"Doppelte Portion: {portion * 2} kg")

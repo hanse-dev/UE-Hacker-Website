@@ -1,4 +1,5 @@
-exp1 = 5.0 * 0.8
-exp2 = 8.0 * 0.75
-print(f"Expected yield Mars: {exp1}")
-print(f"Expected yield Europa: {exp2}")
+params1 = 1200000
+params2 = 5000000
+params3 = 300000
+total_params = params1 + params2 + params3
+print(f"Total parameters: {total_params}")

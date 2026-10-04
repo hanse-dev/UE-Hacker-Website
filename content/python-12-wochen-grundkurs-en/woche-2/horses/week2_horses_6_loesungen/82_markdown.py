@@ -1,3 +1,3 @@
-"""### The Tournament Training – Task 4
+"""### The Tournament Training – Task 2
 
-Step 4 – compare: store the comparison success2 > success1 in session2_better and print exactly: Session 2 more efficient: True"""
+Step 2 – totals: add up the costs of both sessions and print exactly: Total cost: 540.0 euros"""

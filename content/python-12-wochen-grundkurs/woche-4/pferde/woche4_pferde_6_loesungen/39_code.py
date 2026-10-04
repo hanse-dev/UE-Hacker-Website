@@ -1,2 +1,3 @@
-for nummer in range(2, 11, 2):
-    print(f"Gerade: {nummer}")
+for i in range(3):
+    print(f"Übung {i}")
+print("Training beendet")

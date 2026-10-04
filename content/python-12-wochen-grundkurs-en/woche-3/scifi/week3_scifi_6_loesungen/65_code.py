@@ -1,11 +1,6 @@
-speed = 640
-if speed >= 800:
-    print("Stage: Hyperdrive")
-elif speed >= 600:
-    print("Stage: Fast flight")
-elif speed >= 400:
-    print("Stage: Cruise flight")
-elif speed >= 200:
-    print("Stage: Maneuvering flight")
+energy = 65
+system_ok = False
+if energy >= 50 and system_ok:
+    print("Level 1 passed")
 else:
-    print("Stage: Crawl")
+    print("Level 1 failed")

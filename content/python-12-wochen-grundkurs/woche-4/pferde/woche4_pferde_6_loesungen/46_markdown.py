@@ -1,3 +1,3 @@
-"""### Mission 2: Der Stall-Manager – Aufgabe 3
+"""### Mission 2: Der Stall-Manager – Aufgabe 1
 
-Schritt 3 – Renovierung: Gehe die Boxen 6 bis 8 durch. Box 7 ist in Renovierung und soll Box 7: Renovierung ausgeben, die anderen Box 6: geprüft und Box 8: geprüft."""
+Schritt 1 – Stall-Rundgang: Gehe die Boxen 1 bis 5 durch und gib für jede genau aus: Box 1: Kontrolle läuft... (bis Box 5)"""

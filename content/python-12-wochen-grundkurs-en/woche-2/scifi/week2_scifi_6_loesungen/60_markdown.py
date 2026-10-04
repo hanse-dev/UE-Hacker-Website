@@ -1,3 +1,3 @@
-"""### Extra challenge 1: The Spaceship Dock – Task 2
+"""### Mission 2: The Fleet Analysis – Task 3
 
-Step 2 – Add all energy values, divide the sum by 4 and print exactly: Average energy: 77.0"""
+Step 3 – Add all speeds, divide by 3, store the result in average_speed and print exactly: Average speed: 2.5"""

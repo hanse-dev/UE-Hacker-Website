@@ -1,0 +1,3 @@
+"""### Extra-Herausforderung 3: Der endlose Tunnel – Aufgabe 4
+
+Schritt 4 – Finde den besten Flug: Teste den Treibstoffverbrauch pro Portal 10, 20 und 30 (for verbrauch in range(10, 31, 10)). Starte für jeden Flug wieder mit treibstoff = 100, schild = 60, distanz = 0 und fliege mit der while-Schleife (ziehe pro Portal verbrauch Treibstoff und 8 Schild ab). Merke die größte Distanz in beste_distanz (Start bei 0) und gib am Ende genau aus: Beste Distanz: 8"""

@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 2: Die Sternkarte – Aufgabe 3
+"""### Extra-Herausforderung 2: Die Sternkarte – Aufgabe 2
 
-Schritt 3 – Wertvollster Ort: Die Datei karte.json mit vier Orten wird im vorgegebenen Code angelegt. Lade sie und finde den Ort mit dem höchsten wert. Gib genau Wertvollster: Kristallkern (800) aus."""
+Schritt 2 – Ort hinzufügen: Die Datei karte.json mit drei Orten wird im vorgegebenen Code angelegt. Lade sie, ergänze den Ort Energiezelle mit koordinaten [70, 80] und wert 400, speichere sie wieder, lade sie erneut und gib genau Orte: 4 aus."""

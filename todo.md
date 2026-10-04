@@ -10,8 +10,6 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
         Abenteuer-Reste, die in DE ersetzt wurden (`gilde`, `monster`, `questlog`, "Duell"); EN
         Woche 12 und die EN-Lösungen sind unverändert; der Interaktiv-Kurs EN ist deutlich kürzer
         als DE (3 statt 6 Aufgaben je Lektion). EN wurde sprachlich gar nicht geprüft.
-      - **Woche 2 Sci-Fi hat keine `input()`-Lektion** (Abenteuer/Pferde: Lektion 9) — eigene
-        neue Lektion nötig (Text, Aufgaben mit `validation.stdin`, Lösungen, EN).
       - **Woche 2 Boss 3 (Abenteuer, Pferde)** rechnet mit Erfolgswahrscheinlichkeit und
         Erwartungswert — für 10/11-Jährige schwer; nur in Sci-Fi ist das jetzt erklärt.
       - **Woche 12 Pferde:** Das Text-Adventure hat auch im Pferde-Thema "Gegner" und "Kampf"
@@ -50,16 +48,14 @@ nicht per `@` geladen, nur bei Bedarf lesen. Hier stehen nur **offene** Punkte u
   Quests haben feste Vorgaben statt freier Gestaltung, Bonus-Teile sind ungeprüft — ggf. eine
   ungeprüfte "Freestyle"-Aufgabe pro Woche ergänzen. Vergleiche mit `>` (Boolean-Kapitel Woche 2)
   werden für "Sieger/über Durchschnitt" genutzt, weil `if` erst in Woche 3 kommt — bewusst so.
-- **Themen-Vergleich Woche 2–4 (Abenteuer/Pferde/Sci-Fi, DE+EN, geprüft 2026-10-04 per AST über
-  Lektionstexte + Referenzlösungen):** Woche 1 und 5–12 sind je Lektion konzeptgleich. Lücken:
-  **Woche 2 Sci-Fi** hat nur 7 statt 9 Lektionen — `input()` (mit `int()`/`float()`-Umwandlung)
-  fehlt komplett (Abenteuer/Pferde: Lektion 9, Abenteuer zusätzlich Mission 3), `bool()` steht nur
-  in der Tabelle von Lektion 7 und wird nie geübt. `len()` lernt in Woche 2 nur Abenteuer
-  (Lektion 3), Pferde/Sci-Fi erst in Woche 6. Vorschlag: Sci-Fi Woche 2 um eine `input()`-Lektion
-  + `bool()`-Aufgabe ergänzen, `len()` in Pferde/Sci-Fi in die Text-Lektion aufnehmen (je DE+EN +
-  `6_loesungen`). Kleiner: Woche 3 nur Pferde nutzt `+=` (Boss 1, per Tipp erklärt) vor der
-  Einführung in Woche 4; Woche 3/4 Abenteuer hat je eine Lektion mehr (`= oder ==`, „Muster aus
-  Sternen“) bei gleichem Stoff, aber 55 statt 47–49 Aufgaben in Woche 3.
+- **Themen-Vergleich (Abenteuer/Pferde/Sci-Fi, DE+EN):** Lektionen und Konzepte sind seit 3.100 in
+  allen Wochen gleich. Geblieben sind nur unterschiedliche Aufgabenmengen in Debug/Missionen/
+  Extra-Herausforderungen der Wochen 2–4 (Woche 3: 55/52/50 Aufgaben, Geschichten sind je Thema
+  eigene) und Kleinigkeiten: `>=` in Woche 2 nur Abenteuer (Bool-Lektion), `int(input())` in
+  Woche 4 Boss 3 nur Pferde, einzelne Vergleichsoperatoren in Woche 5 Mission 2/Boss 1. In Pferde/
+  Sci-Fi stehen neue Lektionen mit neuer ID nicht in ID-Reihenfolge (Woche 3 `lektion-07` nach
+  `lektion-01`, Woche 2 Sci-Fi `lektion-08` vor `lektion-07`) — bewusst, IDs sind der
+  Fortschritts-Schlüssel.
 - **Woche 4:** Debug Bug #1 war im Original eine Endlosschleife (5s-Timeout), jetzt Off-by-one —
   bewusst so. `input()`-Aufgabe (Zugangscode/Futter-Abfrage/Docking-Code) mit `validation.stdin`
   je Thema als letzter Boss-3-Schritt nachgezogen (DE+EN, mit `python3` geprüft) — erledigt.

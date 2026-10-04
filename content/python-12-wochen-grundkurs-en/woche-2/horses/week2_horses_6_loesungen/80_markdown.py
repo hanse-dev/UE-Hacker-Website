@@ -1,3 +1,3 @@
-"""### The Tournament Training – Task 3
+"""### The Tournament Training – Task 1
 
-Step 3 – forecast success: the expected success is participants times success probability. Calculate it for both sessions and print exactly: Expected success session 1: 3.0 and Expected success session 2: 4.0"""
+Step 1 – protocol: session 1 has 5 days, 300.0 euros cost and 4 participants, session 2 has 3 days, 240.0 euros and 8 participants. Create matching variables, print the heading === TRAINING PROTOCOL === and then with f-strings exactly: Session 1: 5 days, 300.0 euros, 4 participants and Session 2: 3 days, 240.0 euros, 8 participants"""

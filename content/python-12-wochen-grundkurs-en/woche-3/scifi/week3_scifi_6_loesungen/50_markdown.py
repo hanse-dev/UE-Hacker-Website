@@ -1,3 +1,3 @@
-"""### Mission 3: The Mission Rating – Task 2
+"""### Mission 2: The Terminal Access – Task 2
 
-The variables level, losses and score are already created. Use if and and: level >= 10 AND score >= 85 AND losses == 0 → LEGENDARY!. Use elif: level >= 8 AND score >= 70 AND losses <= 2 → EXCELLENT!. Otherwise (else): Mission completed."""
+Same terminal, different input: now the guest password is entered. Print the matching access (Full access granted or Read access granted)."""

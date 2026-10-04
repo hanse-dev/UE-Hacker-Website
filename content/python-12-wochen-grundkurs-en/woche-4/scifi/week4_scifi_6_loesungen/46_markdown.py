@@ -1,3 +1,3 @@
-"""### Mission 2: The Space Station Commander – Task 3
+"""### Mission 2: The Space Station Commander – Task 1
 
-Step 3 – Deck 7 is under maintenance: for Deck 7 print only Deck 7 under maintenance (instead of Deck 7: OK), all other decks 1 to 10 print Deck N: OK. After the loop print ✅ All important decks checked!"""
+Step 1 – Go through the decks 1 to 10 and print Deck 1: OK, Deck 2: OK and so on (the last line must read: Deck 10: OK)."""

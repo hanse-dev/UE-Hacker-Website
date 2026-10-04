@@ -1,6 +1,5 @@
-stamina = 100
-laps = 0
-while stamina > 10:
-    stamina -= 15
-    laps += 1
-    print(f"Lap {laps}: Stamina {stamina}")
+for stall in range(1, 7):
+    if stall == 3 or stall == 6:
+        print(f"Stall {stall}: warning")
+    else:
+        print(f"Stall {stall}: ok")

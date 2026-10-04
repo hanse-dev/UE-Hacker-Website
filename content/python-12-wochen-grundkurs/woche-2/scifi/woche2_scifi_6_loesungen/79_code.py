@@ -1,4 +1,6 @@
-exp1 = 4.0
-exp2 = 6.0
-europa_besser = exp2 > exp1
-print(f"Europa lohnt sich mehr: {europa_besser}")
+novanet_genauigkeit = 0.92
+deepcore_genauigkeit = 0.88
+minimind_genauigkeit = 0.75
+durchschnitt_genauigkeit = (novanet_genauigkeit + deepcore_genauigkeit + minimind_genauigkeit) / 3
+print(f"Durchschnittsgenauigkeit: {durchschnitt_genauigkeit}")
+print("Bestes Modell: NovaNet")

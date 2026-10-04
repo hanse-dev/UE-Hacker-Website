@@ -1,3 +1,5 @@
-"""### Mission 1: The Stable Guard – Task 3
+"""## ⭐ Missions
 
-Step 3 – Rejection: Add an else and in that case print exactly: Access denied. Here the rider has neither the age nor a helmet nor permission."""
+### Mission 1: The Stable Guard – Task 1
+
+Step 1 – Record the access data: Create age = 10 (integer), has_helmet = True and has_permission = False and print exactly, using an f-string: Age: 10, Helmet: True"""

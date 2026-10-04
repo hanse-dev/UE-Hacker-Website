@@ -1,9 +1,7 @@
-admin_passwort = "Nova-7"
-gast_passwort = "Stern-3"
-eingabe = "Stern-3"
-if eingabe == admin_passwort:
-    print("Vollzugriff gewährt")
-elif eingabe == gast_passwort:
-    print("Lesezugriff gewährt")
+rang = 6
+hat_ausweis = False
+notfall = False
+if rang >= 5 or hat_ausweis or notfall:
+    print("Zugang gewährt")
 else:
-    print("Zugriff verweigert")
+    print("Zugang verweigert")

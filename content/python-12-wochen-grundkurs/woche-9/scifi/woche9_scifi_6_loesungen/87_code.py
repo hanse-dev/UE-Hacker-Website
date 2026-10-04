@@ -1,13 +1,13 @@
 import json
 mitglied = {"name": "Nova", "rolle": "Pilotin", "rang": 4, "energie": 120}
-def lade_sicher(name):
-    try:
-        with open(name, "r") as f:
-            return json.load(f)
-    except FileNotFoundError:
-        return {}
+def speichere(daten, name):
+    with open(name, "w") as f:
+        json.dump(daten, f)
 
-print(f"Leer: {lade_sicher('gibt_es_nicht.json') == {}}")
-with open("mitglied.json", "w") as f:
-    json.dump(mitglied, f)
-print(f"Name: {lade_sicher('mitglied.json')['name']}")
+def lade(name):
+    with open(name, "r") as f:
+        return json.load(f)
+
+speichere(mitglied, "mitglied.json")
+geladen = lade("mitglied.json")
+print(f"Gleich: {geladen == mitglied}")

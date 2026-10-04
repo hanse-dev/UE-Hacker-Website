@@ -1,3 +1,17 @@
-points = 300
-if points >= 300:
-    print("🎓 Rider certificate: passed!")
+answer1 = True
+answer2 = False
+answer3 = True
+answer4 = True
+answer5 = False
+points = 0
+if answer1:
+    points = points + 100
+if answer2:
+    points = points + 100
+if answer3:
+    points = points + 100
+if answer4:
+    points = points + 100
+if answer5:
+    points = points + 100
+print(f"Points: {points}")

@@ -1,4 +1,3 @@
-bloecke = 12
-energie_pro_block = 45.5
-gesamtenergie = bloecke * energie_pro_block
-print(f"Gesamtenergie: {gesamtenergie}")
+eingabe = input("Wie viele Crew-Mitglieder? ")
+crew = int(eingabe)
+print(f"Mit dir an Bord: {crew + 1}")

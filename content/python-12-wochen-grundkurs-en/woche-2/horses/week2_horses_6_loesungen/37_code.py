@@ -1,3 +1,2 @@
-horse = "Comet"
-age = 6
-print(f"Hello {horse}! You are {age} years old.")
+age = int(input("Horse age? "))
+print(f"Next year: {age + 1}")

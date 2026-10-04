@@ -1,5 +1,3 @@
-"""## 🐛 Debug-Quest
+"""### Systemprotokoll 6: Verschachtelte Bedingungen – Aufgabe 1
 
-### Debug-Quest – Aufgabe 1
-
-🐛 Bug #1 – Ziel: Das Programm soll bei ausreichendem Level Zugriff gewährt! und Willkommen Kommandant! ausgeben. Was ist falsch?"""
+Die Variablen sind schon angelegt. Baue die verschachtelte Schleusen-Prüfung nach: Ist die Schleuse verriegelt, gib Die Schleuse ist verriegelt. aus und prüfe dann innen den Code (richtig: Der Code stimmt – die Schleuse öffnet sich!, falsch: Falscher Code! Zugang verweigert.). Ist sie nicht verriegelt, gib Die Schleuse steht bereits offen. aus."""

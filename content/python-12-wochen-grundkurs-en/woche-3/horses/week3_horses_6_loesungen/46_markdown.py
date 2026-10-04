@@ -1,3 +1,3 @@
-"""### Mission 2: The Feed Dispenser – Task 3
+"""### Mission 2: The Feed Dispenser – Task 1
 
-Step 3 – Wrong password: Add an else that prints Wrong password. Here the input is a banana, so exactly this should appear: Wrong password"""
+Step 1 – Set the passwords: Create stable_master_password = \"Horseshoe\", groom_password = \"Carrot\" and entered = \"Carrot\" and print exactly, using an f-string: Entered: Carrot"""

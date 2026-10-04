@@ -1,15 +1,22 @@
-import random
+import csv
+heroes = [
+    {"name": "Aria", "class": "Mage", "level": 15, "hp": 120},
+    {"name": "Thorin", "class": "Warrior", "level": 18, "hp": 150},
+    {"name": "Luna", "class": "Rogue", "level": 12, "hp": 90},
+]
+with open("heroes.csv", "w", newline="") as f:
+    w = csv.DictWriter(f, fieldnames=["name", "class", "level", "hp"])
+    w.writeheader()
+    w.writerows(heroes)
+import json
 
-with open("numbers.txt", "w") as f:
-    for i in range(10):
-        f.write(str(random.randint(1, 100)) + "\n")
-numbers = []
-with open("numbers.txt", "r") as f:
-    for line in f:
-        numbers.append(int(line))
-all_ok = True
-for n in numbers:
-    if n < 1 or n > 100:
-        all_ok = False
-print(f"Count: {len(numbers)}")
-print(f"All in range: {all_ok}")
+strong = []
+with open("heroes.csv", "r") as f:
+    for row in csv.DictReader(f):
+        if int(row["level"]) > 14:
+            strong.append(row["name"])
+with open("hero.json", "w") as f:
+    json.dump(strong, f)
+with open("hero.json", "r") as f:
+    loaded = json.load(f)
+print(f"Strong: {loaded}")

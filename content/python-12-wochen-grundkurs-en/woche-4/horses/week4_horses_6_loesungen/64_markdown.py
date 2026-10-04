@@ -1,3 +1,3 @@
-"""### The Riding Board – Task 2
+"""### The Jumping Training – Task 4
 
-Step 2 – Place the horse: Build a 3×3 board (rows and columns 0 to 2). The horse P stands at row 1, column 1, everywhere else a dot. Expected output: ...  .P.  ...  (each on its own line)."""
+Step 4 – Average: Divide the total height by 5 and print exactly: Average: 110.0 cm"""

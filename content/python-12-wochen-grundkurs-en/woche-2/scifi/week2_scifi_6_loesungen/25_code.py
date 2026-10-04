@@ -1,2 +1,1 @@
-planets = 9
-print(f"Per sector: {planets / 3}")
+print(80 > 50)

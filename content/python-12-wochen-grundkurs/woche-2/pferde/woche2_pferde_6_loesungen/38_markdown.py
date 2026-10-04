@@ -1,3 +1,3 @@
-"""### Debug-Quest – Aufgabe 2
+"""### Übung 9: Eingaben verarbeiten – Aufgabe 2
 
-🐛 Bug #2 – Ziel: Das Programm soll Gesamtfutter: 50 kg ausgeben. Was ist falsch?"""
+Frage mit input() nach dem Namen deines Pferdes und gib genau aus: Hallo, (Name)! (Beim Prüfen wird automatisch Luna eingegeben.)"""

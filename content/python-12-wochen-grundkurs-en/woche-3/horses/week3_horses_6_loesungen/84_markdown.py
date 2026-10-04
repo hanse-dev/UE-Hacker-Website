@@ -1,3 +1,3 @@
-"""### The Grand Tournament – Task 5
+"""### The Grand Tournament – Task 3
 
-Step 5 – Special action (nested): If difficulty >= 4, check successful_phases < 3 inside and then print exactly: Extra training required!"""
+Step 3 – Random events: Check each event with its own if. Obstacle knocked down → Event: Obstacle knocked down!, spooked → Event: The horse spooks!, slipped → Event: Saddle slipped! Here exactly this should appear: Event: The horse spooks!"""

@@ -1,3 +1,3 @@
-"""### Mission 2: The Riding Lesson – Task 1
+"""### Mission 1: The Feed Store – Task 2
 
-Step 1 – schedule: create three horses: Luna (30 minutes), Thunder (45 minutes) and Comet (60 minutes), each with a name (text) and time (whole number). Print the heading === RIDING SCHEDULE === and then one line per horse in the format: Comet: 60 minutes"""
+Step 2 – record hay bales: Store bales = 20 (whole number) and weight_per_bale = 15.5 (decimal number) and print exactly: Bales: 20, at 15.5 kg each"""

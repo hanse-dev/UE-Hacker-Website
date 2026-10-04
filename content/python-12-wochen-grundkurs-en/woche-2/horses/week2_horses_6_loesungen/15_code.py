@@ -1,3 +1,4 @@
-feed_amount = 4.25
-days = 2
-print(f"Feed for 2 days: {feed_amount * days} kg")
+horse_height = 168
+pony_height = 138
+difference = horse_height - pony_height
+print(f"Difference: {difference} cm")

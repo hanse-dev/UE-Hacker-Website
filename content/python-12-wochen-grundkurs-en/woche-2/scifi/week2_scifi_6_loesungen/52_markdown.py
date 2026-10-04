@@ -1,3 +1,5 @@
-"""### Mission 3: The Asteroid Mining – Task 1
+"""## ⭐ Missions
 
-Step 1 – Create variables for both asteroids and calculate both raw values (value_a and value_b). Print two lines in the format Ceres-9 value: 5000.0 – the last line must read: Vesta-3 value: 5400.0"""
+### Mission 1: The Energy Depot – Task 1
+
+Step 1 – Create technician = \"Kira\" (text) and tech_id = 4021 (whole number). Print exactly: Technician Kira, ID 4021"""

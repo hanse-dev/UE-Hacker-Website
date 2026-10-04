@@ -98,6 +98,11 @@ test.describe('Lektions-Format: Lösungen passen zu den Aufgaben', () => {
       const own = readLessons(folder(week, theme, lang)).flatMap((l) => l.tasks.filter((t) => !t.example));
       for (const t of own) expect(md, t.instruction.slice(0, 60)).toContain(t.instruction);
       expect(files.filter((f) => f.endsWith('_code.py')).length).toBe(own.length);
+      // Der Offline-Download ordnet Lösungen rein über die Reihenfolge zu: die Markdown-Zelle direkt vor der
+      // i-ten Code-Zelle muss die i-te Aufgabe beschreiben (bei Bedarf: python3 scripts/sync_loesungen.py).
+      const unescape = (text) => text.replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+      const before = files.map((f, i) => (f.endsWith('_code.py') ? unescape(fs.readFileSync(path.join(dir, files[i - 1]), 'utf8')) : null)).filter((x) => x !== null);
+      own.forEach((t, i) => expect(before[i], `Lösung ${i + 1}: ${t.instruction.slice(0, 60)}`).toContain(t.instruction));
     });
   }
 });

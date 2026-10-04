@@ -1,3 +1,3 @@
-"""### Extra challenge 3: The Endless Tunnel – Task 3
+"""### Extra challenge 3: The Endless Tunnel – Task 1
 
-Step 3 – After the loop of Step 2 print exactly: Tunnel ended after 5 portals and, with if, the reason: Reason: out of fuel (if fuel <= 0)."""
+Step 1 – Program the tunnel loop: create distance = 0. While distance < 10 add 1 and print Portal 1 passed, Portal 2 passed and so on. The last line must read: Portal 10 passed"""

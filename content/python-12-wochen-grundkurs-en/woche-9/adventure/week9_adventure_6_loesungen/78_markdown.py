@@ -1,3 +1,3 @@
-"""### Extra Challenge 3: The Quest Log – Task 1
+"""### Extra Challenge 2: The Treasure Map – Task 3
 
-Step 1 – Save quests: The list quests with three Quest dictionaries is given. Save it into questlog.json, load it into loaded and print exactly Quest count: 3 and on the next line Status: open (status of the first)."""
+Step 3 – Most valuable place: The file map.json with four places is created for you. Load it and find the place with the highest value. Print exactly Most valuable: Gold crown (800)."""

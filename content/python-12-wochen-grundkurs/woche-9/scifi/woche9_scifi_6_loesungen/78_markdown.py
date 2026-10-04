@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Das Missionslog – Aufgabe 1
+"""### Extra-Herausforderung 2: Die Sternkarte – Aufgabe 3
 
-Schritt 1 – Missionen speichern: Die Liste missionen mit drei Mission-Dictionaries ist vorgegeben. Speichere sie in missionslog.json, lade sie in geladen und gib genau Mission-Anzahl: 3 und in der nächsten Zeile Status: offen aus (Status der ersten)."""
+Schritt 3 – Wertvollster Ort: Die Datei karte.json mit vier Orten wird im vorgegebenen Code angelegt. Lade sie und finde den Ort mit dem höchsten wert. Gib genau Wertvollster: Kristallkern (800) aus."""

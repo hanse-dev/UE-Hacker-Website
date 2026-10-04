@@ -1,3 +1,3 @@
-"""### Lesson 5: and, or, not – Task 3
+"""### Lesson 5: and, or, not – Task 1
 
-Use not: if the stable is not open, print exactly: The stable is closed – unlock it first!"""
+Use and: only if has_saddle and has_helmet are true, print You are ready to ride! – otherwise Please get the helmet first! Here exactly this should appear: Please get the helmet first!"""

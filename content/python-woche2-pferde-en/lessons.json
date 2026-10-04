@@ -64,6 +64,14 @@
           "type": "output_contains",
           "expected": "<class 'str'>"
         }
+      },
+      {
+        "instruction": "Use an f-string to print exactly: Hanoverian has 10 characters. (len() must compute the number.)",
+        "codeTemplate": "breed = \"Hanoverian\"\n\n# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hanoverian has 10 characters."
+        }
       }
     ]
   },
@@ -295,6 +303,17 @@
           "expected": "Next year: 9",
           "stdin": [
             "8"
+          ]
+        }
+      },
+      {
+        "instruction": "Ask with input() for your horse's name and print exactly: Hello, (name)! (When checking, Luna is entered automatically.)",
+        "codeTemplate": "# 🎯 Your solution here:\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Hello, Luna!",
+          "stdin": [
+            "Luna"
           ]
         }
       }

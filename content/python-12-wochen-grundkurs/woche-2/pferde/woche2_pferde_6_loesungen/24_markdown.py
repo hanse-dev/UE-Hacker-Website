@@ -1,3 +1,3 @@
-"""### Übung 6: Rechnen mit Zahlen – Aufgabe 2
+"""### Übung 6: Rechnen mit Zahlen – Aufgabe 1
 
-Jedes der 12 Pferde bekommt 3 kg Heu. Berechne das Gesamtgewicht und gib genau aus: Heu insgesamt: 36 kg"""
+12 Pferde stehen in 4 Boxen. Gib genau aus: Pferde pro Box: 3.0"""

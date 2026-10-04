@@ -1,5 +1,3 @@
-"""## 🐛 Debug-Quest
+"""### Systemprotokoll 8: Typumwandlung – Aufgabe 2
 
-### Debug-Quest – Aufgabe 1
-
-🐛 Bug #1 – Ziel: Das Programm soll ausgeben: Hallo R2D2! Dein Status ist 3. Was ist falsch?"""
+Lege sensor_wert = "12.5" an, wandle sie mit float() um und gib genau aus: Sensorwert verdreifacht: 37.5"""

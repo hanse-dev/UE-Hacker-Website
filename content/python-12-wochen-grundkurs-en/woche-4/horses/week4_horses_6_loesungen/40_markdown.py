@@ -1,3 +1,5 @@
-"""### Mission 1: The Counting Rider – Task 3
+"""## ⭐ Missions
 
-Step 3 – Training hours: In a loop, add up the numbers 1 to 10 in the variable total and print exactly: Total: 55"""
+### Mission 1: The Counting Rider – Task 1
+
+Step 1 – Counting laps: Use a for loop to print the horse numbers 1 to 10, each exactly like this: Horse: 1 (up to Horse: 10)"""

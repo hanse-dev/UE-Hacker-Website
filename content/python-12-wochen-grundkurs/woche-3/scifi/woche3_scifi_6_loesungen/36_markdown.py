@@ -1,3 +1,3 @@
-"""### Debug-Quest – Aufgabe 4
+"""### Debug-Quest – Aufgabe 2
 
-🐛 Bug #4 – Ziel: Zugang soll nur gewährt werden, wenn die Sicherheitsstufe mindestens 5 ist UND ein Ausweis vorhanden ist. Bei Stufe 3 mit Ausweis soll deshalb Zugang verweigert! erscheinen. Was ist falsch?"""
+🐛 Bug #2 – Ziel: Das Programm soll prüfen, ob user gleich \"Admin\" ist, und in diesem Fall Hallo Admin! ausgeben. Was ist falsch?"""

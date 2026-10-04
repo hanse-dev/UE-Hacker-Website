@@ -1,2 +1,2 @@
-for horse in range(1, 11):
-    print(f"Horse: {horse}")
+for i in range(5):
+    print(f"Horse {i+1}")

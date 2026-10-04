@@ -1,3 +1,3 @@
-"""### Mission 2: Der Terminal-Zugang – Aufgabe 2
+"""### Mission 1: Der Sicherheits-Scanner – Aufgabe 3
 
-Gleiches Terminal, andere Eingabe: Jetzt wird das Gast-Passwort eingegeben. Gib den passenden Zugriff aus (Vollzugriff gewährt oder Lesezugriff gewährt)."""
+Noch ein Besucher: Rang 6, kein Ausweis, kein Notfall. Gleiche Regel. Gib Zugang gewährt oder Zugang verweigert aus."""

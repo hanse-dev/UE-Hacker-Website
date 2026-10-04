@@ -1,3 +1,3 @@
-"""### System Protocol 5: and, or, not – Task 3
+"""### System Protocol 5: and, or, not – Task 1
 
-The variable shield is already created. Use not and print: Shields must be repaired! if shield is NOT greater than 50."""
+The variables has_access_code and has_fingerprint are already created. Use and and else to print: Access to the command deck granted! – or, if not both are true, Access denied!"""

@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Das Trainingslog – Aufgabe 2
+"""### Extra-Herausforderung 3: Das Trainingslog – Aufgabe 1
 
-Schritt 2 – Abschließen: Die Datei trainingslog.json mit drei Einträgen wird im vorgegebenen Code angelegt. Lade sie, setze den Status des ersten Eintrags auf \"abgeschlossen\", speichere sie wieder, lade sie erneut und gib genau Erste: abgeschlossen aus."""
+Schritt 1 – Einheiten speichern: Die Liste einheiten mit drei Training-Dictionaries ist vorgegeben. Speichere sie in trainingslog.json, lade sie in geladen und gib genau Training-Anzahl: 3 und in der nächsten Zeile Status: offen aus (Status der ersten)."""

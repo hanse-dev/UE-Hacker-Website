@@ -1,5 +1,4 @@
-ballen = 20
-gewicht_pro_ballen = 15.5
+pfleger = "Mia"
+pfleger_id = 7
 
-gesamtgewicht = ballen * gewicht_pro_ballen
-print(f"Gesamtgewicht: {gesamtgewicht} kg")
+print(f"Pfleger: {pfleger} (ID {pfleger_id})")

@@ -1,2 +1,6 @@
-for jump in range(1, 10, 3):
-    print(f"Status: jump {jump}")
+year = 2100
+jumps = 0
+while year != 2000:
+    year -= 25
+    jumps += 1
+    print(f"Jump {jumps}: year {year}")

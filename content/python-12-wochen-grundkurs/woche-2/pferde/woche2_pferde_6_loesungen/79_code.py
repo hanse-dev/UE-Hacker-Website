@@ -1,5 +1,5 @@
-kosten1 = 300.0
-kosten2 = 240.0
+i4 = 4.5
+durchschnitt = 3.2
 
-gesamtkosten = kosten1 + kosten2
-print(f"Gesamtkosten: {gesamtkosten} Euro")
+anspruchsvoll4 = i4 > durchschnitt
+print(f"Übung 4 anspruchsvoll: {anspruchsvoll4}")

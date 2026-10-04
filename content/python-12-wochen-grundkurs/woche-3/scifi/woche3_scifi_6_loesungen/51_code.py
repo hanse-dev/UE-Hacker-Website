@@ -1,9 +1,9 @@
-level = 9
-verluste = 1
-note = 80.0
-if level >= 10 and note >= 85 and verluste == 0:
-    print("LEGENDÄR!")
-elif level >= 8 and note >= 70 and verluste <= 2:
-    print("EXZELLENT!")
+admin_passwort = "Nova-7"
+gast_passwort = "Stern-3"
+eingabe = "Stern-3"
+if eingabe == admin_passwort:
+    print("Vollzugriff gewährt")
+elif eingabe == gast_passwort:
+    print("Lesezugriff gewährt")
 else:
-    print("Mission bestanden.")
+    print("Zugriff verweigert")

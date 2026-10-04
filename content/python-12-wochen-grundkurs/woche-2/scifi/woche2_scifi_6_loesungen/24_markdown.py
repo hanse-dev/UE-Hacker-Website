@@ -1,3 +1,3 @@
-"""### Systemprotokoll 6: Rechenoperationen – Aufgabe 1
+"""### Systemprotokoll 5: Wahrheitswerte – Aufgabe 3
 
-Lege planeten = 9 an. Gib genau aus: Pro Sektor: 3.0 (teile die Planeten in einem f-String durch 3)."""
+Gib das Ergebnis des Vergleichs 80 > 50 direkt mit print() aus."""

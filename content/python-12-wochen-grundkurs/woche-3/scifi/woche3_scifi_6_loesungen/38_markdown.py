@@ -1,5 +1,3 @@
-"""## ⭐ Missionen
+"""### Debug-Quest – Aufgabe 3
 
-### Mission 1: Der Sicherheits-Scanner – Aufgabe 1
-
-Die Variablen rang (1-10), hat_ausweis und notfall sind schon angelegt. Prüfe mit if und or, ob rang >= 5, hat_ausweis oder notfall gilt. Gib dann Zugang gewährt aus, sonst mit else Zugang verweigert."""
+🐛 Bug #3 – Ziel: Das Programm soll System aktiv ausgeben, wenn der Status hoch genug ist, sonst System inaktiv. Was ist falsch?"""

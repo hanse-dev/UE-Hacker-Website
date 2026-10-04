@@ -1,3 +1,3 @@
-"""### Extra challenge 2: The Holodeck – Task 2
+"""### Extra challenge 1: The Prime Number Decryption – Task 4
 
-Step 2 – Draw the chessboard pattern: create dark = True. For every field print # if dark is True, otherwise a dot; then flip dark (dark = not dark). After each row print a line break and flip dark once more. The first two rows must read #.#.#.#. and .#.#.#.#"""
+Step 4 – Visualise the numbers 2 to 30 in one line: for a prime print P, otherwise a dot . (use print(..., end=\"\") and an empty print() at the end). Expected line: PP.P.P...P.P...P.P...P.....P."""

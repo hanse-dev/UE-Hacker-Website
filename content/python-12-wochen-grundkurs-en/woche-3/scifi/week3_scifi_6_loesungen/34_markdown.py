@@ -1,3 +1,5 @@
-"""### Debug Quest – Task 3
+"""## 🐛 Debug Quest
 
-🐛 Bug #3 – Goal: The program should print System active if the status is high enough, otherwise System inactive. What is wrong?"""
+### Debug Quest – Task 1
+
+🐛 Bug #1 – Goal: The program should print Access granted! and Welcome Commander! when the level is high enough. What is wrong?"""

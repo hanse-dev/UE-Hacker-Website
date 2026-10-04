@@ -97,6 +97,7 @@ const RULES = [
   ['src/views/ProjekteView.vue', ['tests/projekte.spec.js']],
   ['src/views/ProfilView.vue', ['tests/zertifikate.spec.js']],
   ['scripts/build_lesson_bundle.py', ['tests/lesson-bundle-generator.spec.js']],
+  ['scripts/sync_loesungen.py', ['tests/python-lektionen-format.spec.js', 'tests/lesson-bundle-generator.spec.js']],
   ['scripts/build_lesson_notebook.py', ['tests/lesson-notebook-generator.spec.js']],
   ['scripts/build_project_notebook.py', ['tests/lesson-notebook-generator.spec.js', 'tests/projekte.spec.js']],
   ['scripts/build_kilabor_notebook.py', ['tests/lesson-notebook-generator.spec.js', 'tests/ki-labor.spec.js']],

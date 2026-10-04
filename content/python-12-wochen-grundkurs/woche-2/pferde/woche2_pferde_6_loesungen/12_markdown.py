@@ -1,3 +1,3 @@
-"""### Übung 3: Trab – Ganze Zahlen (int) – Aufgabe 2
+"""### Übung 3: Trab – Ganze Zahlen (int) – Aufgabe 1
 
-Ein Pferd ist 168 cm hoch, ein Pony 138 cm. Speichere die Differenz in der Variable unterschied und gib genau aus: Unterschied: 30 cm"""
+Lege alter = 9 an und gib mit einem f-String genau aus: Alter: 9 Jahre"""

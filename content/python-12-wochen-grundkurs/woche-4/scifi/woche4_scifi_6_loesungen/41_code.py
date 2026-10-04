@@ -1,4 +1,2 @@
-summe = 0
-for zahl in range(1, 101):
-    summe += zahl
-print(f"Summe: {summe}")
+for zeit in range(1, 21):
+    print(f"Zeit: {zeit}")

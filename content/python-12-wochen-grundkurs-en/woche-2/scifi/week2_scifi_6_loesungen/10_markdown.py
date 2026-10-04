@@ -1,3 +1,3 @@
-"""### System Protocol 3: Integers – Task 1
+"""### System Protocol 2: Strings and type() – Task 3
 
-Create crew_count = 300 and deck_count = 12 and print exactly: Crew: 300, Decks: 12"""
+Create ship_name = \"Starlight\" and use an f-string to print exactly: Starlight has 9 characters. (len() must compute the number.)"""

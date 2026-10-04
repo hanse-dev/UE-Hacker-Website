@@ -1,3 +1,3 @@
-"""### Das Sprungtraining – Aufgabe 4
+"""### Das Sprungtraining – Aufgabe 2
 
-Schritt 4 – Durchschnitt: Teile die Gesamthöhe durch 5 und gib genau aus: Durchschnitt: 110.0 cm"""
+Schritt 2 – Hohe Sprünge zählen: Ergänze in der Schleife ein if, das mitzählt, wie viele der 5 Sprünge höher als 100 cm sind, und gib danach genau aus: Höher als 100 cm: 3"""

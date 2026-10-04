@@ -1,3 +1,3 @@
-"""### Extra challenge 1: The Prime Number Decryption – Task 4
+"""### Extra challenge 1: The Prime Number Decryption – Task 2
 
-Step 4 – Visualise the numbers 2 to 30 in one line: for a prime print P, otherwise a dot . (use print(..., end=\"\") and an empty print() at the end). Expected line: PP.P.P...P.P...P.P...P.....P."""
+Step 2 – Test the single number 15: create number = 15 and is_prime = True. Use two nested loops over a and b (both range(2, number)); if a * b == number set is_prime = False. Print exactly: 15 is prime: False"""

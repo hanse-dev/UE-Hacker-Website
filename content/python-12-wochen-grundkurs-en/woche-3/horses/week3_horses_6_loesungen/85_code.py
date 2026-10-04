@@ -1,5 +1,9 @@
-successful_phases = 2
-difficulty = 4
-if difficulty >= 4:
-    if successful_phases < 3:
-        print("Extra training required!")
+obstacle_knocked = False
+horse_spooked = True
+saddle_slipped = False
+if obstacle_knocked:
+    print("Event: Obstacle knocked down!")
+if horse_spooked:
+    print("Event: The horse spooks!")
+if saddle_slipped:
+    print("Event: Saddle slipped!")

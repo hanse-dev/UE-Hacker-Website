@@ -1,3 +1,3 @@
-"""### Mission 2: Die Reitstunde – Aufgabe 2
+"""### Mission 1: Das Futterlager – Aufgabe 3
 
-Schritt 2 – Gesamtzeit: Addiere alle drei Reitzeiten in der Variable gesamtzeit und gib genau aus: Gesamtzeit: 135 Minuten"""
+Schritt 3 – Gesamtgewicht berechnen: Multipliziere Ballen und Gewicht pro Ballen, speichere es in gesamtgewicht und gib genau aus: Gesamtgewicht: 310.0 kg"""

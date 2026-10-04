@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Die Galaxie-Mission – Aufgabe 4
+"""### Extra-Herausforderung 3: Die Galaxie-Mission – Aufgabe 2
 
-Die Variablen erfolgreiche_phasen und gefahrenstufe sind schon angelegt. Die Mission ist gesichert, wenn erfolgreiche_phasen >= 4 UND gefahrenstufe <= 3. Gib dann Mission gesichert! aus, sonst Mission nicht gesichert."""
+Die Booleans meteor_treffer, piraten_angriff und system_ausfall sind schon angelegt. Prüfe jedes Ereignis mit einem eigenen if und gib bei True aus: Meteoritentreffer!, Piratenangriff! bzw. Systemausfall!"""

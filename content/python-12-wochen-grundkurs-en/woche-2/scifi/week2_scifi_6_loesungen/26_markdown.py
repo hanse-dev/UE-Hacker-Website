@@ -1,3 +1,3 @@
-"""### System Protocol 6: Operations – Task 2
+"""### System Protocol 6: Operations – Task 1
 
-Join \"Star\" and \"lab\" with + into a variable system_name and print exactly: System name: Starlab"""
+Create planets = 9. Print exactly: Per sector: 3.0 (divide the planets by 3 inside an f-string)."""

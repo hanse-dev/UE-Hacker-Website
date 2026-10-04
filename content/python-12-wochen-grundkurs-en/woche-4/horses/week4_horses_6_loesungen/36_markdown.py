@@ -1,5 +1,5 @@
-"""## ⭐ Missions
+"""### Debug Quest – Task 2
 
-### Mission 1: The Counting Rider – Task 1
+🐛 Bug #2 – Goal: The program should print Horse 1 to Horse 5. What is wrong?
 
-Step 1 – Counting laps: Use a for loop to print the horse numbers 1 to 10, each exactly like this: Horse: 1 (up to Horse: 10)"""
+**Explanation:** The colon `:` is missing after the `for` line – Python reports a `SyntaxError`."""

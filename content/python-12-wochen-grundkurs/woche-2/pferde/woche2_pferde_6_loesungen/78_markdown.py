@@ -1,3 +1,3 @@
-"""### Das Turnier-Training – Aufgabe 2
+"""### Die Trainingshalle – Aufgabe 4
 
-Schritt 2 – Gesamtwerte: Addiere die Kosten beider Einheiten und gib genau aus: Gesamtkosten: 540.0 Euro"""
+Schritt 4 – Anspruchsvoll? Speichere in anspruchsvoll4 den Vergleich i4 > durchschnitt und gib genau aus: Übung 4 anspruchsvoll: True"""

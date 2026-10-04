@@ -1,7 +1,10 @@
-punkte = 95
-fehler = 0
-zeit = 55
-note = punkte - (fehler * 5) - (zeit / 10)
+stallmeister_passwort = "Hufeisen"
+pfleger_passwort = "Karotte"
+eingabe = "Banane"
 
-if note >= 85 and fehler == 0:
-    print("🥇 GOLD!")
+if eingabe == stallmeister_passwort:
+    print("Vollzugriff gewährt")
+elif eingabe == pfleger_passwort:
+    print("Futterzugriff gewährt")
+else:
+    print("Falsches Passwort")

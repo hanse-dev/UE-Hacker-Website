@@ -1,7 +1,10 @@
-hat_sattel = True
-hat_helm = False
+disziplin = "Springen"
 
-if hat_sattel and hat_helm:
-    print("Du bist bereit zum Reiten!")
+if disziplin == "Dressur":
+    print("Elegante Dressur!")
+elif disziplin == "Springen":
+    print("Sprungkurs!")
+elif disziplin == "Western":
+    print("Western-Style!")
 else:
-    print("Bitte erst den Helm holen!")
+    print("Unbekannte Disziplin!")

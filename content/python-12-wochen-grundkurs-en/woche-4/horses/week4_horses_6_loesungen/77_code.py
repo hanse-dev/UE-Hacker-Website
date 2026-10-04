@@ -1,3 +1,8 @@
-for lap in range(3, 0, -1):
-    print(f"Laps left: {lap}")
-print("Finish reached!")
+energy = 100
+lap = 0
+while lap < 6:
+    lap += 1
+    energy -= 15
+    if lap == 3:
+        energy += 20
+    print(f"Lap {lap}: Energy {energy}")

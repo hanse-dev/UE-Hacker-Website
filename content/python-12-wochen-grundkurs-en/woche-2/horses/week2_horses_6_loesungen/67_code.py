@@ -1,3 +1,10 @@
+sack_1 = 25.5
+sack_2 = 20.0
 sack_3 = 30.5
-average = 25.0
-print(f"Sack 3 above average: {sack_3 > average}")
+sack_4 = 25.0
+sack_5 = 22.5
+sack_6 = 28.0
+sack_7 = 24.0
+sack_8 = 24.5
+total = sack_1 + sack_2 + sack_3 + sack_4 + sack_5 + sack_6 + sack_7 + sack_8
+print(f"Total weight: {total} kg")

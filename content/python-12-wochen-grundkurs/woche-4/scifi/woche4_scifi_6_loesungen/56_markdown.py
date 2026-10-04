@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 1: Die Primzahl-Entschlüsselung – Aufgabe 2
+"""### Mission 3: Das Zeit-Paradoxon – Aufgabe 3
 
-Schritt 2 – Teste die einzelne Zahl 15: Lege zahl = 15 und ist_primzahl = True an. Nutze zwei verschachtelte Schleifen über a und b (beide range(2, zahl)); wenn a * b == zahl, setze ist_primzahl = False. Gib genau aus: 15 ist Primzahl: False"""
+Schritt 3 – Gib einen Statusbericht nur für jeden dritten Sprung von 1 bis 9 aus: Nutze range(1, 10, 3) und gib Status: Sprung 1, Status: Sprung 4, Status: Sprung 7 aus."""

@@ -1,17 +1,11 @@
-phase1_ok = True
-phase2_ok = True
-phase3_ok = False
-phase4_ok = True
-phase5_ok = True
-successful_phases = 0
-if phase1_ok:
-    successful_phases = successful_phases + 1
-if phase2_ok:
-    successful_phases = successful_phases + 1
-if phase3_ok:
-    successful_phases = successful_phases + 1
-if phase4_ok:
-    successful_phases = successful_phases + 1
-if phase5_ok:
-    successful_phases = successful_phases + 1
-print(f"Successful phases: {successful_phases}")
+danger_level = 4
+if danger_level == 1:
+    print("Danger level 1: calm")
+elif danger_level == 2:
+    print("Danger level 2: low")
+elif danger_level == 3:
+    print("Danger level 3: elevated")
+elif danger_level == 4:
+    print("Danger level 4: high")
+else:
+    print("Danger level 5: extreme")

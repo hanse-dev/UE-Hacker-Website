@@ -1,10 +1,18 @@
-hindernis_umgeworfen = False
-pferd_scheut = True
-sattel_verrutscht = False
+phase1_ok = True
+phase2_ok = True
+phase3_ok = False
+phase4_ok = True
+phase5_ok = True
 
-if hindernis_umgeworfen:
-    print("Ereignis: Hindernis umgeworfen!")
-if pferd_scheut:
-    print("Ereignis: Das Pferd scheut!")
-if sattel_verrutscht:
-    print("Ereignis: Sattel verrutscht!")
+erfolgreiche_phasen = 0
+if phase1_ok:
+    erfolgreiche_phasen = erfolgreiche_phasen + 1
+if phase2_ok:
+    erfolgreiche_phasen = erfolgreiche_phasen + 1
+if phase3_ok:
+    erfolgreiche_phasen = erfolgreiche_phasen + 1
+if phase4_ok:
+    erfolgreiche_phasen = erfolgreiche_phasen + 1
+if phase5_ok:
+    erfolgreiche_phasen = erfolgreiche_phasen + 1
+print(f"Erfolgreiche Phasen: {erfolgreiche_phasen}")

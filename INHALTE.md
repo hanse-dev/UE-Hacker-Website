@@ -284,7 +284,9 @@ Jeder Ordner enthält dieselben Dateien:
 ### Wenn du eine Lektion/Mission/Boss-Etappe im Lektions-Format änderst (12-Wochen-Kurs, Woche 1–12):
 - [ ] `content/python-woche{N}-{thema}[-en]/lessons.json` (Aufgaben/`codeTemplate`/`validation`) und
       die zugehörige `lektion-XX.md`/`debug-XX.md`/`mission-XX.md`/`boss-XX.md` (Erzähltext)
-- [ ] Passende Referenzlösung in `..._6_loesungen` (siehe oben) nachziehen
+- [ ] Passende Referenzlösung in `..._6_loesungen` (siehe oben) nachziehen; neue Lösung als Zell-Paar mit
+      der höchsten Nummer anlegen und `python3 scripts/sync_loesungen.py` laufen lassen (sortiert in
+      Aufgaben-Reihenfolge, `--check` prüft nur)
 - [ ] DE **und** EN (eigener `-en`-Ordner, kein gemeinsamer Content wie beim interaktiven Kurs)
 - [ ] Kein Build-Schritt nötig — der ZIP-Download liest `lessons.json` und die Markdown-Dateien
       direkt (`scripts/build_lesson_bundle.py`, läuft bei `npm run dev`/`npm run build`)

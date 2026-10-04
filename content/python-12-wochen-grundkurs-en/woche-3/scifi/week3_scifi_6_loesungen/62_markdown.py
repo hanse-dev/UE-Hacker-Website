@@ -1,3 +1,3 @@
-"""### Extra Challenge 2: The Spaceship Simulator – Task 2
+"""### Extra Challenge 1: The AI Quiz – Task 3
 
-Level 2 – Course selection: The variable course is already created. Use if-else to print Course North set for \"North\", otherwise Course South set."""
+The variable points is already created. From 300 points the quiz is passed: then print Certificate: Passed!, otherwise Certificate: Not passed."""

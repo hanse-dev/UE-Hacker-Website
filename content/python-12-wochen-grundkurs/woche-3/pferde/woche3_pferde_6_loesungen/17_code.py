@@ -1,10 +1,6 @@
-disziplin = "Springen"
+regnet = True
 
-if disziplin == "Dressur":
-    print("Elegante Dressur!")
-elif disziplin == "Springen":
-    print("Sprungkurs!")
-elif disziplin == "Western":
-    print("Western-Style!")
+if regnet:
+    print("Wir reiten in der Halle.")
 else:
-    print("Unbekannte Disziplin!")
+    print("Perfekt für die Weide!")

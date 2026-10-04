@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 1: Das Raumschiffdock – Aufgabe 3
+"""### Mission 3: Der Asteroidenabbau – Aufgabe 1
 
-Schritt 3 – Gib das Schiff mit der höchsten Energie aus (Höchste Energie: Orion) und danach den gesamten Energiebedarf bei 100 Einheiten pro Schiff (4 Schiffe × 100), genau: Energiebedarf: 400. Berechne den Bedarf, tippe ihn nicht einfach ein."""
+Schritt 1 – Lege Variablen für beide Asteroiden an und berechne beide Rohwerte (wert_a und wert_b). Gib zwei Zeilen im Format Ceres-9 Wert: 5000.0 aus – die letzte Zeile muss lauten: Vesta-3 Wert: 5400.0"""

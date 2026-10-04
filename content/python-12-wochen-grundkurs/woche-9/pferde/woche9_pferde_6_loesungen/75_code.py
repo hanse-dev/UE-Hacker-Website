@@ -8,9 +8,5 @@ with open("karte.json", "w") as f:
     json.dump(karte, f)
 with open("karte.json", "r") as f:
     geladen = json.load(f)
-geladen["Bronzemedaille"] = {"koordinaten": [70, 80], "wert": 400}
-with open("karte.json", "w") as f:
-    json.dump(geladen, f)
-with open("karte.json", "r") as f:
-    neu = json.load(f)
-print(f"Orte: {len(neu)}")
+print(f"Orte: {len(geladen)}")
+print(f"Koordinaten: {geladen['Goldpokal']['koordinaten']}")

@@ -1,3 +1,3 @@
-"""### Das Marathon-Reiten – Aufgabe 1
+"""### Das Reitbrett – Aufgabe 3
 
-Schritt 1 – Marathon-Schleife: Start mit energie = 100 und distanz = 0. Solange energie > 0 ist, sinkt sie pro Runde um 25 und distanz steigt um 1. Gib in jeder Runde genau aus: Runde 1: Energie 75 (dann 50, 25, 0)."""
+Schritt 3 – Koordinaten: Gib für die Zeilen 1 bis 2 und die Spalten 1 bis 3 (Zeile außen, Spalte innen) genau aus: Feld 1-1, Feld 1-2, Feld 1-3, Feld 2-1, Feld 2-2, Feld 2-3"""

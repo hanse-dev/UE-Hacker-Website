@@ -1,4 +1,5 @@
-futter_menge = 4.25
-tage = 2
+pferd_hoehe = 168
+pony_hoehe = 138
 
-print(f"Futter für {tage} Tage: {futter_menge * tage} kg")
+unterschied = pferd_hoehe - pony_hoehe
+print(f"Unterschied: {unterschied} cm")

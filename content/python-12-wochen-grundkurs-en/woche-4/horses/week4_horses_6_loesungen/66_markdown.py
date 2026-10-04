@@ -1,3 +1,3 @@
-"""### The Riding Board – Task 3
+"""### The Riding Board – Task 1
 
-Step 3 – Coordinates: For rows 1 to 2 and columns 1 to 3 (row outside, column inside) print exactly: Square 1-1, Square 1-2, Square 1-3, Square 2-1, Square 2-2, Square 2-3"""
+Step 1 – Build the board: Use two nested loops to create a 4×4 board of dots (print(\".\", end=\"\") inside, print() after the inner loop). The output: ....  ....  ....  ....  (each on its own line)."""

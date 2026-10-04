@@ -1,4 +1,7 @@
+punkte = 95
+fehler = 0
 zeit = 55
+note = punkte - (fehler * 5) - (zeit / 10)
 
-if zeit < 60:
-    print("+10 Bonus für perfekte Zeit!")
+if note >= 85 and fehler == 0:
+    print("🥇 GOLD!")

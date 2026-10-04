@@ -1,3 +1,3 @@
-"""### Mission 2: Die Reitstunde – Aufgabe 1
+"""### Mission 1: Das Futterlager – Aufgabe 2
 
-Schritt 1 – Stundenplan: Lege drei Pferde an: Luna (30 Minuten), Thunder (45 Minuten) und Comet (60 Minuten), jeweils mit Namen (Text) und Zeit (Ganzzahl). Gib die Überschrift === REITSTUNDEN-PLAN === aus und danach für jedes Pferd eine Zeile im Format: Comet: 60 Minuten"""
+Schritt 2 – Heuballen erfassen: Speichere ballen = 20 (Ganzzahl) und gewicht_pro_ballen = 15.5 (Kommazahl) und gib genau aus: Ballen: 20, je 15.5 kg"""

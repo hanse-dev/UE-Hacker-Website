@@ -1,7 +1,10 @@
-hat_trense = False
-hat_halfter = True
+punkte = 65
 
-if hat_trense or hat_halfter:
-    print("Du kannst das Pferd führen!")
+if punkte >= 90:
+    print("Gold")
+elif punkte >= 70:
+    print("Silber")
+elif punkte >= 50:
+    print("Bronze")
 else:
-    print("Es fehlt Zubehör!")
+    print("Kein Abzeichen")

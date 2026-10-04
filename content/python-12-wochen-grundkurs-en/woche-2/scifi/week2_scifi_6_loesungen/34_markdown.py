@@ -1,3 +1,3 @@
-"""### System Protocol 7: Type Conversion – Task 3
+"""### System Protocol 8: Type Conversion – Task 1
 
-Create crew = 12 and join it with + into this line, using str(): Crew: 12"""
+Create temperature_str = \"300\", convert it with int() and print exactly: Temperature plus 10: 310K"""

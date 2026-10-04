@@ -1,3 +1,3 @@
-"""### System Protocol 6: Nested Conditions – Task 2
+"""### System Protocol 5: and, or, not – Task 3
 
-The variables sector_safe and fuel are already created. If the sector is safe, check the fuel inside: from 20 print Jump initiated!, otherwise Refuel!. If the sector is not safe, print Avoid sector!"""
+The variable shield is already created. Use not and print: Shields must be repaired! if shield is NOT greater than 50."""

@@ -1,5 +1,3 @@
-"""## 🔥 Extra-Herausforderungen
+"""### Mission 3: Das Ausdauer-Training – Aufgabe 2
 
-### Das Sprungtraining – Aufgabe 1
-
-Schritt 1 – Parcours: Der erste Sprung ist 90 cm hoch, jeder weitere 10 cm höher. Berechne in einer for-Schleife (range(5)) die Höhe als 90 + i*10 und gib aus: Sprung 1: 90 cm (bis Sprung 5: 130 cm)"""
+Schritt 2 – Ausdauer bis null: Die Ausdauer startet bei 100 und sinkt pro Runde um 20. Gib mit while (solange ausdauer > 0) nach jeder Runde genau aus: Ausdauer: 80, Ausdauer: 60, Ausdauer: 40, Ausdauer: 20, Ausdauer: 0"""

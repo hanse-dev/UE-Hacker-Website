@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Der endlose Tunnel – Aufgabe 2
+"""### Extra-Herausforderung 2: Das Holodeck – Aufgabe 4
 
-Schritt 2 – Füge Schiffswerte hinzu: treibstoff = 100 und schild = 60. Passiere, solange treibstoff > 0 and schild > 0 gilt, ein Portal (distanz += 1), ziehe 20 Treibstoff und 8 Schild ab und gib Portal 1: Treibstoff 80, Schild 52 und so weiter aus. Die letzte Zeile muss lauten: Portal 5: Treibstoff 0, Schild 20"""
+Schritt 4 – Prüfe das Ziel: Erweitere Schritt 3 um ziel_reihe = 8 und ziel_spalte = 8. Prüfe nach der Schleife mit if und and, ob die Figur auf dem Ziel steht, und gib genau aus: 🎯 Ziel erreicht!"""

@@ -1,12 +1,13 @@
-import json
-karte = {
-    "Goldpokal": {"koordinaten": (10, 20), "wert": 800},
-    "Silberschleife": {"koordinaten": (30, 40), "wert": 300},
-    "Ehrenpreis": {"koordinaten": (50, 60), "wert": 650},
-}
-with open("karte.json", "w") as f:
-    json.dump(karte, f)
-with open("karte.json", "r") as f:
-    geladen = json.load(f)
-print(f"Orte: {len(geladen)}")
-print(f"Koordinaten: {geladen['Goldpokal']['koordinaten']}")
+datum = "15.03."
+with open("tagebuch.txt", "w") as f:
+    f.write(datum + " Sturm gestriegelt\n")
+    f.write(datum + " Ausritt zum Wald\n")
+    f.write(datum + " Sprungtraining geschafft\n")
+
+eintrag = input()
+with open("tagebuch.txt", "a") as f:
+    f.write(datum + " " + eintrag + "\n")
+
+with open("tagebuch.txt") as f:
+    zeilen = f.readlines()
+print(f"Einträge: {len(zeilen)}")

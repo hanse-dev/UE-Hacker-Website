@@ -1,2 +1,2 @@
-is_healthy = True
-print(f"Healthy: {is_healthy}")
+height_m = 1.68
+print(type(height_m))

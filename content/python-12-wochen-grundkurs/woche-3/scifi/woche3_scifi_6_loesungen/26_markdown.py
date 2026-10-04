@@ -1,3 +1,3 @@
-"""### Systemprotokoll 6: Verschachtelte Bedingungen – Aufgabe 1
+"""### Systemprotokoll 5: and, or, not – Aufgabe 2
 
-Die Variablen sind schon angelegt. Baue die verschachtelte Schleusen-Prüfung nach: Ist die Schleuse verriegelt, gib Die Schleuse ist verriegelt. aus und prüfe dann innen den Code (richtig: Der Code stimmt – die Schleuse öffnet sich!, falsch: Falscher Code! Zugang verweigert.). Ist sie nicht verriegelt, gib Die Schleuse steht bereits offen. aus."""
+Die Variablen hat_notfallschluessel und hat_ueberbrueckungscode sind schon angelegt. Gib mit or und else aus: Tür wird manuell geöffnet! – oder, wenn beides fehlt, Tür bleibt verschlossen!"""

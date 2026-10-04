@@ -1,3 +1,3 @@
-"""### Debug-Quest – Aufgabe 3
+"""### Systemprotokoll 8: Typumwandlung – Aufgabe 4
 
-🐛 Bug #3 – Ziel: Das Programm soll ausgeben: Schildstärke: 95 Prozent. Was ist falsch?"""
+Lege signal = 0 an, wandle es mit bool() um und gib genau aus: Signal aktiv: False"""

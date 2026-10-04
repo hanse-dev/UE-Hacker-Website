@@ -1,5 +1,3 @@
-"""## 🔥 Extra Challenges
+"""### Mission 2: The Fleet Analysis – Task 2
 
-### Extra challenge 1: The Spaceship Dock – Task 1
-
-Step 1 – Store the four ships (names as text, energy as whole numbers) in variables. Print the heading === DOCK PROTOCOL === and then one f-string line per ship in the format Aurora: energy 80% (the last line must read: Lyra: energy 71%)."""
+Step 2 – Add all crew sizes, store the sum in total_crew and print exactly: Total crew: 400 (create the ship variables again first)."""

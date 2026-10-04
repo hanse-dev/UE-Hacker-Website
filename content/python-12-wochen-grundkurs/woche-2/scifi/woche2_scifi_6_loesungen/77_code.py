@@ -1,8 +1,5 @@
-mars_ertrag = 5.0
-mars_erfolg = 0.8
-europa_ertrag = 8.0
-europa_erfolg = 0.75
-exp1 = mars_ertrag * mars_erfolg
-exp2 = europa_ertrag * europa_erfolg
-print(f"Erwarteter Ertrag Mars: {exp1}")
-print(f"Erwarteter Ertrag Europa: {exp2}")
+novanet_parameter = 1200000
+deepcore_parameter = 5000000
+minimind_parameter = 300000
+gesamt_parameter = novanet_parameter + deepcore_parameter + minimind_parameter
+print(f"Gesamtparameter: {gesamt_parameter}")

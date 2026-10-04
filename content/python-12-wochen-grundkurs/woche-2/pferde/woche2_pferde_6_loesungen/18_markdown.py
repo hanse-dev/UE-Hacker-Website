@@ -1,3 +1,3 @@
-"""### Übung 5: Sprung – Wahrheitswerte (bool) – Aufgabe 1
+"""### Übung 4: Galopp – Kommazahlen (float) – Aufgabe 2
 
-Lege ist_gesund = True an und gib mit einem f-String genau aus: Gesund: True"""
+Lege die Variable stockmass_m mit dem Wert 1.68 an und gib ihren Typ mit type() aus."""

@@ -1,9 +1,5 @@
-print("=== DOCK-PROTOKOLL ===")
-aurora_energie = 80
-orion_energie = 95
-nova_energie = 62
-lyra_energie = 71
-print(f"Aurora: Energie {aurora_energie}%")
-print(f"Orion: Energie {orion_energie}%")
-print(f"Nova: Energie {nova_energie}%")
-print(f"Lyra: Energie {lyra_energie}%")
+aurora_crew = 120
+vega_crew = 80
+orion_crew = 200
+gesamt_crew = aurora_crew + vega_crew + orion_crew
+print(f"Gesamt-Crew: {gesamt_crew}")

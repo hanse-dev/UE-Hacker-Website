@@ -1,3 +1,3 @@
-"""### Mission 2: The Fleet Analysis – Task 2
+"""### Debug Quest – Task 2
 
-Step 2 – Add all crew sizes, store the sum in total_crew and print exactly: Total crew: 400 (create the ship variables again first)."""
+🐛 Bug #2 – Goal: The program should calculate and print the remaining energy: Remaining energy: 50. What is wrong?"""

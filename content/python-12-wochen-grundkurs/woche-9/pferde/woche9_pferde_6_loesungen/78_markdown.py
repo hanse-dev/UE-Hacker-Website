@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Das Trainingslog – Aufgabe 1
+"""### Extra-Herausforderung 2: Die Turnierkarte – Aufgabe 3
 
-Schritt 1 – Einheiten speichern: Die Liste einheiten mit drei Training-Dictionaries ist vorgegeben. Speichere sie in trainingslog.json, lade sie in geladen und gib genau Training-Anzahl: 3 und in der nächsten Zeile Status: offen aus (Status der ersten)."""
+Schritt 3 – Wertvollster Ort: Die Datei karte.json mit vier Orten wird im vorgegebenen Code angelegt. Lade sie und finde den Ort mit dem höchsten wert. Gib genau Wertvollster: Goldpokal (800) aus."""

@@ -1,3 +1,3 @@
-"""### The Feed Room – Task 2
+"""### Mission 3: The Tournament – Task 3
 
-Step 2 – total weight: add up all 8 weights in total and print exactly: Total weight: 200.0 kg"""
+Step 3 – average: calculate the average of both totals (sum divided by 2) and print exactly: Average: 137.5 points"""

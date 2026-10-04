@@ -1,3 +1,3 @@
-"""### Mission 1: Das Energiedepot – Aufgabe 2
+"""### Systemprotokoll 9: Eingaben verarbeiten – Aufgabe 2
 
-Schritt 2 – Lege bloecke = 12 (ganze Zahl) und energie_pro_block = 45.5 (Kommazahl) an. Multipliziere sie, speichere das Ergebnis in gesamtenergie und gib genau aus: Gesamtenergie: 546.0"""
+Frage mit input() nach der Anzahl der Crew-Mitglieder, wandle die Antwort mit int() um und gib aus: Mit dir an Bord: (Anzahl plus 1) (Beim Prüfen wird automatisch 12 eingegeben.)"""

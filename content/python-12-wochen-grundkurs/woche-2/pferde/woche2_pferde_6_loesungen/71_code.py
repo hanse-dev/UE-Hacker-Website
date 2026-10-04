@@ -1,8 +1,4 @@
-dauer1 = 20
-dauer2 = 30
-dauer3 = 15
-dauer4 = 45
-dauer5 = 10
+sack_3 = 30.5
+durchschnitt = 25.0
 
-gesamtdauer = dauer1 + dauer2 + dauer3 + dauer4 + dauer5
-print(f"Gesamtdauer: {gesamtdauer} Minuten")
+print(f"Sack 3 über dem Durchschnitt: {sack_3 > durchschnitt}")

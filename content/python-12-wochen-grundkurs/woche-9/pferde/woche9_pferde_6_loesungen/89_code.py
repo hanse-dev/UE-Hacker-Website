@@ -1,22 +1,13 @@
-import csv
-pferde = [
-    {"name": "Blitz", "rasse": "Hannoveraner", "alter": 8, "punkte": 120},
-    {"name": "Sturm", "rasse": "Haflinger", "alter": 12, "punkte": 150},
-    {"name": "Luna", "rasse": "Isländer", "alter": 6, "punkte": 90},
-]
-with open("pferde.csv", "w", newline="") as f:
-    w = csv.DictWriter(f, fieldnames=["name", "rasse", "alter", "punkte"])
-    w.writeheader()
-    w.writerows(pferde)
 import json
+pferd = {"name": "Blitz", "rasse": "Hannoveraner", "alter": 8, "punkte": 120}
+def lade_sicher(name):
+    try:
+        with open(name, "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
 
-starke = []
-with open("pferde.csv", "r") as f:
-    for zeile in csv.DictReader(f):
-        if int(zeile["alter"]) > 7:
-            starke.append(zeile["name"])
+print(f"Leer: {lade_sicher('gibt_es_nicht.json') == {}}")
 with open("pferd.json", "w") as f:
-    json.dump(starke, f)
-with open("pferd.json", "r") as f:
-    geladen = json.load(f)
-print(f"Starke: {geladen}")
+    json.dump(pferd, f)
+print(f"Name: {lade_sicher('pferd.json')['name']}")

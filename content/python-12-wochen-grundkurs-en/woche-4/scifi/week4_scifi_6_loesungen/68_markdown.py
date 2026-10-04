@@ -1,3 +1,3 @@
-"""### Extra challenge 2: The Holodeck – Task 4
+"""### Extra challenge 2: The Holodeck – Task 2
 
-Step 4 – Check the target: extend Step 3 with target_row = 8 and target_col = 8. After the loop check with if and and whether the player is on the target and print exactly: 🎯 Target reached!"""
+Step 2 – Draw the chessboard pattern: create dark = True. For every field print # if dark is True, otherwise a dot; then flip dark (dark = not dark). After each row print a line break and flip dark once more. The first two rows must read #.#.#.#. and .#.#.#.#"""

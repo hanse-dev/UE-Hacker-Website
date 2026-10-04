@@ -1,2 +1,3 @@
-alter = 9
-print(f"Alter: {alter} Jahre")
+rasse = "Hannoveraner"
+
+print(f"{rasse} hat {len(rasse)} Zeichen.")

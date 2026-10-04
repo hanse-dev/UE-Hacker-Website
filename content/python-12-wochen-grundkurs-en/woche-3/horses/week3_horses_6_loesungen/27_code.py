@@ -1,9 +1,6 @@
-stable_door_locked = True
-right_key = False
-if stable_door_locked:
-    if right_key:
-        print("The key fits – the stable door opens!")
-    else:
-        print("This key does not fit.")
+has_bridle = False
+has_halter = True
+if has_bridle or has_halter:
+    print("You can lead the horse!")
 else:
-    print("The stable door is already open.")
+    print("Equipment is missing!")

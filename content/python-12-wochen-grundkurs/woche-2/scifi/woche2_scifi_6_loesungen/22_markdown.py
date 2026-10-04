@@ -1,3 +1,3 @@
-"""### Systemprotokoll 5: Wahrheitswerte – Aufgabe 3
+"""### Systemprotokoll 5: Wahrheitswerte – Aufgabe 2
 
-Gib das Ergebnis des Vergleichs 80 > 50 direkt mit print() aus."""
+Lege alarm_aktiv = False an und gib den Quanten-Typ mit type() aus."""

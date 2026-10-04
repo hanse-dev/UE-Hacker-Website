@@ -1,9 +1,5 @@
-punkte = 320
-if punkte >= 1000:
-    print("Rang: Fleet-Kommandant")
-elif punkte >= 500:
-    print("Rang: Kapitän")
-elif punkte >= 100:
-    print("Rang: Leutnant")
+signale = 12
+if signale >= 15:
+    print("Lebensformen entdeckt!")
 else:
-    print("Rang: Kadett")
+    print("Sektor leer.")

@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Das Questlog – Aufgabe 1
+"""### Extra-Herausforderung 2: Die Schatzkarte – Aufgabe 3
 
-Schritt 1 – Quests speichern: Die Liste quests mit drei Quest-Dictionaries ist vorgegeben. Speichere sie in questlog.json, lade sie in geladen und gib genau Quest-Anzahl: 3 und in der nächsten Zeile Status: offen aus (Status der ersten)."""
+Schritt 3 – Wertvollster Ort: Die Datei karte.json mit vier Orten wird im vorgegebenen Code angelegt. Lade sie und finde den Ort mit dem höchsten wert. Gib genau Wertvollster: Goldkrone (800) aus."""

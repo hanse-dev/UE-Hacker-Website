@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Das Missionslog – Aufgabe 3
+"""### Extra-Herausforderung 3: Das Missionslog – Aufgabe 2
 
-Schritt 3 – Bericht: Die Datei missionslog.json wird im vorgegebenen Code angelegt (erster Eintrag \"abgeschlossen\"). Lade sie, zähle die Einträge mit Status \"abgeschlossen\" in fertig und schreibe die Zeile Abgeschlossen: 1 (mit fertig) in die Datei bericht.txt. Lies bericht.txt wieder ein und gib genau Bericht: Abgeschlossen: 1 aus (mit strip())."""
+Schritt 2 – Abschließen: Die Datei missionslog.json mit drei Einträgen wird im vorgegebenen Code angelegt. Lade sie, setze den Status des ersten Eintrags auf \"abgeschlossen\", speichere sie wieder, lade sie erneut und gib genau Erste: abgeschlossen aus."""

@@ -1,3 +1,3 @@
-"""### Extra challenge 3: The Space Mission – Task 1
+"""### Extra challenge 1: The Spaceship Dock – Task 3
 
-Step 1 – Create variables for both missions. Print the heading === MISSION PROTOCOL === and one f-string line per mission in the format Mars: 200 days, yield 5.0, crew 6, success 0.8 (the last line must read: Europa: 300 days, yield 8.0, crew 9, success 0.75)."""
+Step 3 – Print the ship with the highest energy (Highest energy: Orion) and then the total energy requirement at 100 units per ship (4 ships × 100), exactly: Energy requirement: 400. Calculate the requirement, don't just type it."""

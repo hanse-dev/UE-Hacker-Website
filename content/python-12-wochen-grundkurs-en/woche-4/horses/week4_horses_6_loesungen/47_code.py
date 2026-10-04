@@ -1,5 +1,2 @@
-for stall in range(6, 9):
-    if stall == 7:
-        print("Stall 7: renovation")
-    else:
-        print(f"Stall {stall}: checked")
+for stall in range(1, 6):
+    print(f"Stall {stall}: checking...")

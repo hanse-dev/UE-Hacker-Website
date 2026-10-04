@@ -1,2 +1,3 @@
-alarm_aktiv = False
-print(type(alarm_aktiv))
+schild_aktiv = True
+reaktor_ueberhitzt = False
+print(f"Schild aktiv: {schild_aktiv}")

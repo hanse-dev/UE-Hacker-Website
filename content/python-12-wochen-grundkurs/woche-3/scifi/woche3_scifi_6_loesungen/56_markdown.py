@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 1: Das KI-Quiz – Aufgabe 2
+"""### Mission 3: Die Missionsbewertung – Aufgabe 3
 
-Lege punkte = 0 an. Erhöhe punkte für jede richtige Frage um 100 (zum Beispiel punkte = punkte + 100). Vergib die Note A ab 400 Punkten, B ab 300, sonst C. Gib aus: Punkte: 300, Note: B"""
+Die Variable zeit ist schon angelegt. Prüfe separat mit einem if, ob zeit kleiner als 30 ist, und gib dann aus: +50 Bonus für Blitzmission!"""

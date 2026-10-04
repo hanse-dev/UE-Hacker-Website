@@ -1,4 +1,7 @@
-stall_offen = False
+hat_sattel = True
+hat_helm = False
 
-if not stall_offen:
-    print("Der Stall ist zu – erst aufschließen!")
+if hat_sattel and hat_helm:
+    print("Du bist bereit zum Reiten!")
+else:
+    print("Bitte erst den Helm holen!")

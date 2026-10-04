@@ -1,6 +1,6 @@
-year = 2100
-jumps = 0
-while year != 2000:
-    year -= 25
-    jumps += 1
-    print(f"Jump {jumps}: year {year}")
+for deck in range(1, 11):
+    print(f"Deck {deck}: OK")
+    if deck == 3 or deck == 6 or deck == 9:
+        print(f"⚠️ Warning on Deck {deck}")
+    if deck == 5 or deck == 10:
+        print(f"Bonus on Deck {deck}")

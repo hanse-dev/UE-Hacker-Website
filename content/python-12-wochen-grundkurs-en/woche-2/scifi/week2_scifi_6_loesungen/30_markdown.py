@@ -1,3 +1,3 @@
-"""### System Protocol 7: Type Conversion – Task 1
+"""### System Protocol 7: Calculating with Text – Task 1
 
-Create temperature_str = \"300\", convert it with int() and print exactly: Temperature plus 10: 310K"""
+Join \"Star\" and \"lab\" with + into a variable system_name and print exactly: System name: Starlab"""

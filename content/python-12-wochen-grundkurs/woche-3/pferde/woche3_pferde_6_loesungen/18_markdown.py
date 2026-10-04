@@ -1,3 +1,3 @@
-"""### Übung 4: if-elif-else – Aufgabe 2
+"""### Übung 3: if-else – Aufgabe 2
 
-Vergib Abzeichen nach punkte: ab 90 Gold, ab 70 Silber, ab 50 Bronze, sonst Kein Abzeichen. Gib genau den Namen aus – hier: Bronze"""
+Ist der Heuvorrat mindestens so groß wie der Bedarf, gib Genug Heu! aus, sonst mit einem f-String Zu wenig Heu! Fehlt: und die fehlende Menge in kg. Hier soll genau erscheinen: Zu wenig Heu! Fehlt: 5 kg"""

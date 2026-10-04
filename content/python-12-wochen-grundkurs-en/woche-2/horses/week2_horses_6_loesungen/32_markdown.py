@@ -1,3 +1,3 @@
-"""### Lesson 8: Converting Types – Task 2
+"""### Lesson 8: Converting Types – Task 1
 
-Convert the text portion_text with float(), double the portion and print exactly: Double portion: 9.0 kg"""
+Convert the text kg_text with int() and print exactly: 15 kg of hay will last 30 days."""

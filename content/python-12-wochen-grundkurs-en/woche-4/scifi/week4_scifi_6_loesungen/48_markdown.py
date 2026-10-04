@@ -1,3 +1,3 @@
-"""### Mission 3: The Time Paradox – Task 1
+"""### Mission 2: The Space Station Commander – Task 2
 
-Step 1 – Create year = 2100 and jumps = 0. While year != 2000 jump back 25 years (year -= 25), increase jumps by 1 and print Jump 1: year 2075, Jump 2: year 2050 and so on. The last line must read: Jump 4: year 2000"""
+Step 2 – Extend the loop: for each deck print Deck N: OK. Additionally print ⚠️ Warning on Deck N for the decks 3, 6 and 9 (use if with or) and Bonus on Deck N for the decks 5 and 10. Check: the last line of the whole output must read: Bonus on Deck 10"""

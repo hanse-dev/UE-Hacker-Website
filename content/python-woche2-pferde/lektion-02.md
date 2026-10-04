@@ -21,3 +21,12 @@ print(type(pferd_name))   # <class 'str'>
 Ein **String** ist Text – alles in Anführungszeichen. Schritt ist die Gangart zum Reden und Kommunizieren.
 
 > ⚠️ Auch `"7"` ist ein Text, weil es in Anführungszeichen steht – obwohl darin eine Ziffer liegt!
+
+## 📏 `len()` – die Länge messen
+
+`len()` ist ebenfalls eine Funktion: Du gibst ihr einen Text, und sie liefert dir die **Anzahl der Zeichen** zurück. Leerzeichen zählen mit!
+
+```python
+pferd_name = "Luna"
+print(len(pferd_name))    # 4
+```

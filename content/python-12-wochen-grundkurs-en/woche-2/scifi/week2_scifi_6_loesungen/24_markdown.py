@@ -1,3 +1,3 @@
-"""### System Protocol 6: Operations – Task 1
+"""### System Protocol 5: Booleans – Task 3
 
-Create planets = 9. Print exactly: Per sector: 3.0 (divide the planets by 3 inside an f-string)."""
+Print the result of the comparison 80 > 50 directly with print()."""

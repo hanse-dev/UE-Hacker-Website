@@ -1,3 +1,3 @@
-"""### Debug-Quest – Aufgabe 2
+"""### Systemprotokoll 6: Verschachtelte Bedingungen – Aufgabe 2
 
-🐛 Bug #2 – Ziel: Das Programm soll prüfen, ob user gleich \"Admin\" ist, und in diesem Fall Hallo Admin! ausgeben. Was ist falsch?"""
+Die Variablen sektor_sicher und treibstoff sind schon angelegt. Ist der Sektor sicher, prüfe innen den Treibstoff: ab 20 gib Sprung wird gestartet! aus, sonst Treibstoff nachfüllen!. Ist der Sektor nicht sicher, gib Sektor meiden! aus."""

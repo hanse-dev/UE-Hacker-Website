@@ -1,3 +1,3 @@
-"""### Systemprotokoll 6: Verschachtelte Bedingungen – Aufgabe 2
+"""### Systemprotokoll 5: and, or, not – Aufgabe 3
 
-Die Variablen sektor_sicher und treibstoff sind schon angelegt. Ist der Sektor sicher, prüfe innen den Treibstoff: ab 20 gib Sprung wird gestartet! aus, sonst Treibstoff nachfüllen!. Ist der Sektor nicht sicher, gib Sektor meiden! aus."""
+Die Variable schild ist schon angelegt. Nutze not und gib aus: Schilde müssen repariert werden!, wenn schild NICHT größer als 50 ist."""

@@ -1,3 +1,3 @@
-"""### Mission 2: Der Futterautomat – Aufgabe 1
+"""### Mission 1: Der Stallwart – Aufgabe 2
 
-Schritt 1 – Passwörter festlegen: Lege stallmeister_passwort = \"Hufeisen\", pfleger_passwort = \"Karotte\" und eingabe = \"Karotte\" an und gib mit einem f-String genau aus: Eingabe: Karotte"""
+Schritt 2 – Zugangsregel: Prüfe mit if und or, ob alter >= 12 ODER hat_helm ODER hat_erlaubnis gilt, und gib dann genau aus: Zugang erlaubt"""

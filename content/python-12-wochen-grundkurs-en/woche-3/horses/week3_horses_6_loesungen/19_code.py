@@ -1,9 +1,6 @@
-points = 65
-if points >= 90:
-    print("Gold")
-elif points >= 70:
-    print("Silver")
-elif points >= 50:
-    print("Bronze")
+hay_stock = 45
+need = 50
+if hay_stock >= need:
+    print("Enough hay!")
 else:
-    print("No badge")
+    print(f"Not enough hay! Missing: {need - hay_stock} kg")

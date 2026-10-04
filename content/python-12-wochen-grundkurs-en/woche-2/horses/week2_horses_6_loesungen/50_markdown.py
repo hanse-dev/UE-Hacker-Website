@@ -1,3 +1,3 @@
-"""### Mission 2: The Riding Lesson – Task 2
+"""### Mission 1: The Feed Store – Task 3
 
-Step 2 – total time: add up all three riding times in the variable total_time and print exactly: Total time: 135 minutes"""
+Step 3 – calculate total weight: multiply bales and weight per bale, store it in total_weight and print exactly: Total weight: 310.0 kg"""

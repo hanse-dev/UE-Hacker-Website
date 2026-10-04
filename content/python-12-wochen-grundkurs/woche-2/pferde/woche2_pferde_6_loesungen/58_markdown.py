@@ -1,3 +1,3 @@
-"""### Mission 3: Das Turnier – Aufgabe 3
+"""### Mission 3: Das Turnier – Aufgabe 1
 
-Schritt 3 – Durchschnitt: Berechne den Durchschnitt beider Gesamtpunkte (Summe geteilt durch 2) und gib genau aus: Durchschnitt: 137.5 Punkte"""
+Schritt 1 – Pferde erfassen: Lege für Luna (Alter 8, Dressur 72, Springen 68) und Thunder (Alter 9, Dressur 65, Springen 70) je Name, Alter, Dressurpunkte und Springpunkte an. Berechne die Gesamtpunkte und gib genau aus: Luna: 140 Punkte und Thunder: 135 Punkte"""

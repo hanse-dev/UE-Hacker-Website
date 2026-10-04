@@ -1,8 +1,8 @@
-stallmeister_passwort = "Hufeisen"
-pfleger_passwort = "Karotte"
-eingabe = "Karotte"
+alter = 9
+hat_helm = False
+hat_erlaubnis = False
 
-if eingabe == stallmeister_passwort:
-    print("Vollzugriff gewährt")
-elif eingabe == pfleger_passwort:
-    print("Futterzugriff gewährt")
+if alter >= 12 or hat_helm or hat_erlaubnis:
+    print("Zugang erlaubt")
+else:
+    print("Zugang verweigert")

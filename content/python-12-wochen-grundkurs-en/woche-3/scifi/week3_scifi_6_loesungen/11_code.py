@@ -1,3 +1,3 @@
-energy = 15
-if energy < 20:
-    print("Energy low!")
+speed = 1200
+if speed > 1000:
+    print("Faster than light!")

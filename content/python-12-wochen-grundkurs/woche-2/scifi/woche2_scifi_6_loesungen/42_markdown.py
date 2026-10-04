@@ -1,5 +1,3 @@
-"""## ⭐ Missionen
+"""### Systemprotokoll 9: Eingaben verarbeiten – Aufgabe 1
 
-### Mission 1: Das Energiedepot – Aufgabe 1
-
-Schritt 1 – Lege techniker = "Kira" (Text) und techniker_id = 4021 (ganze Zahl) an. Gib genau aus: Techniker Kira, ID 4021"""
+Frage mit input() nach dem Namen des Piloten und gib genau aus: Willkommen an Bord, (Name)! (Beim Prüfen wird automatisch Nova eingegeben.)"""

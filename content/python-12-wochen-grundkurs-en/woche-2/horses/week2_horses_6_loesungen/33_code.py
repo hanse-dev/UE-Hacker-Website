@@ -1,3 +1,3 @@
-portion_text = "4.5"
-portion = float(portion_text)
-print(f"Double portion: {portion * 2} kg")
+kg_text = "15"
+kg = int(kg_text)
+print(f"{kg} kg of hay will last {kg * 2} days.")

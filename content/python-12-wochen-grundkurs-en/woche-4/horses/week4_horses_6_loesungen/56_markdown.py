@@ -1,3 +1,3 @@
-"""### The Jumping Training – Task 2
+"""### Mission 3: The Endurance Training – Task 3
 
-Step 2 – Counting high jumps: Add an if in the loop that counts how many of the 5 jumps are higher than 100 cm, then print exactly: Higher than 100 cm: 3"""
+Step 3 – Report: Here the loop from step 1 runs without any output. Afterwards print exactly: Training finished after 6 laps"""

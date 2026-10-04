@@ -1,3 +1,6 @@
+points = 95
+errors = 0
 time = 55
-if time < 60:
-    print("+10 bonus for perfect time!")
+score = points - (errors * 5) - (time / 10)
+if score >= 85 and errors == 0:
+    print("🥇 GOLD!")

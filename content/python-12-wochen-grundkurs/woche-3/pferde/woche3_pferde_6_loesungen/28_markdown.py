@@ -1,3 +1,3 @@
-"""### Übung 6: Verschachtelte Bedingungen – Aufgabe 2
+"""### Übung 5: and, or, not – Aufgabe 3
 
-Ist das Pferd gesund, prüfe innen das Wetter: gutes Wetter → Ihr reitet aus!, sonst Ihr bleibt in der Halle. Ist das Pferd nicht gesund → Das Pferd muss zum Tierarzt. Hier soll genau erscheinen: Ihr bleibt in der Halle."""
+Nutze not: Ist der Stall nicht offen, gib genau aus: Der Stall ist zu – erst aufschließen!"""

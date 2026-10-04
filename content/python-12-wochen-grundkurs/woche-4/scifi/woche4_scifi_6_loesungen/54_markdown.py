@@ -1,5 +1,3 @@
-"""## 🔥 Extra-Herausforderungen
+"""### Mission 3: Das Zeit-Paradoxon – Aufgabe 2
 
-### Extra-Herausforderung 1: Die Primzahl-Entschlüsselung – Aufgabe 1
-
-Schritt 1 – Bereite den Zahlenbereich vor: Gehe die Zahlen 2 bis 20 durch und gib Teste 2 … Teste 20 aus (die letzte Zeile muss lauten: Teste 20)."""
+Schritt 2 – Lege jahr = 2000 und spruenge = 0 an. Springe, solange spruenge < 5 gilt, 30 Jahre vorwärts und zähle den Sprung. Gib nach der Schleife genau aus: Endjahr: 2150 und Gefangen im Zeit-Paradoxon"""

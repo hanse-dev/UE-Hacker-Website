@@ -1,3 +1,3 @@
-"""### Extra Challenge 3: The Galaxy Mission – Task 3
+"""### Extra Challenge 3: The Galaxy Mission – Task 1
 
-The Booleans phase1_ok to phase5_ok and successful_phases = 0 are already created. Increase successful_phases by 1 for every successful phase and print: Successful phases: 4"""
+The variable danger_level (1-5) is already created. Use if-elif-else: 1 = calm, 2 = low, 3 = elevated, 4 = high, 5 = extreme. Format: Danger level 4: high"""

@@ -1,3 +1,3 @@
-"""### Lesson 6: Calculating with Numbers – Task 1
+"""### Lesson 5: Jump – Truth Values (bool) – Task 2
 
-12 horses stand in 4 boxes. Print exactly: Horses per box: 3.0"""
+Compare the age with 10 and print the result of the comparison `age > 10` with print()."""

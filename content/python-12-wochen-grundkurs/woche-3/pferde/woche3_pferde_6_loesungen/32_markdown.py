@@ -1,5 +1,3 @@
-"""### Debug-Quest – Aufgabe 2
+"""### Übung 6: Verschachtelte Bedingungen – Aufgabe 2
 
-🐛 Bug #2 – Ziel: Das Programm soll Hallo Thunder! ausgeben, weil name den Wert Thunder hat. Was ist falsch?
-
-**Erklärung:** In einer Bedingung wird mit `==` verglichen. Ein einzelnes `=` ist die Zuweisung und hier nicht erlaubt."""
+Ist das Pferd gesund, prüfe innen das Wetter: gutes Wetter → Ihr reitet aus!, sonst Ihr bleibt in der Halle. Ist das Pferd nicht gesund → Das Pferd muss zum Tierarzt. Hier soll genau erscheinen: Ihr bleibt in der Halle."""

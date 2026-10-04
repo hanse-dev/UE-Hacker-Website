@@ -1,3 +1,3 @@
-"""### Mission 3: Das Turnier – Aufgabe 1
+"""### Mission 2: Der Futterautomat – Aufgabe 2
 
-Schritt 1 – Gesamtnote berechnen: Berechne note nach der Formel und gib mit einem f-String genau aus: Note: 89.5"""
+Schritt 2 – Zugriffsprüfung: Prüfe mit if, ob eingabe == stallmeister_passwort, und mit elif, ob eingabe == pfleger_passwort. Stallmeister → Vollzugriff gewährt, Pfleger → Futterzugriff gewährt. Hier soll genau erscheinen: Futterzugriff gewährt"""

@@ -1,3 +1,3 @@
-"""### Debug Quest – Task 2
+"""### Lesson 9: Processing Input – Task 2
 
-🐛 Bug #2 – Goal: The program should print Total feed: 50 kg What is wrong?"""
+Ask with input() for your horse's name and print exactly: Hello, (name)! (When checking, Luna is entered automatically.)"""

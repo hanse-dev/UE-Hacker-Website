@@ -1,5 +1,5 @@
-course = "South"
-if course == "North":
-    print("Course North set")
+points = 300
+if points >= 300:
+    print("Certificate: Passed!")
 else:
-    print("Course South set")
+    print("Certificate: Not passed.")

@@ -1,8 +1,6 @@
-novanet_genauigkeit = 0.92
-deepcore_genauigkeit = 0.88
-minimind_genauigkeit = 0.75
-durchschnitt_genauigkeit = 0.85
-ueber_1 = novanet_genauigkeit > durchschnitt_genauigkeit
-ueber_2 = deepcore_genauigkeit > durchschnitt_genauigkeit
-ueber_3 = minimind_genauigkeit > durchschnitt_genauigkeit
-print(f"MiniMind über Durchschnitt: {ueber_3}")
+aurora_energie = 80
+orion_energie = 95
+nova_energie = 62
+lyra_energie = 71
+durchschnittsenergie = (aurora_energie + orion_energie + nova_energie + lyra_energie) / 4
+print(f"Durchschnittsenergie: {durchschnittsenergie}")

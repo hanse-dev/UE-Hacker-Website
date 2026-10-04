@@ -1,5 +1,3 @@
-crew1 = 120
-crew2 = 80
-crew3 = 200
-total_crew = crew1 + crew2 + crew3
-print(f"Total crew: {total_crew}")
+energy = int("80")
+consumption = 30
+print(f"Remaining energy: {energy - consumption}")

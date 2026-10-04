@@ -1,3 +1,3 @@
-"""### Übung 4: if-elif-else – Aufgabe 1
+"""### Übung 3: if-else – Aufgabe 1
 
-Gib je nach disziplin aus: Dressur → Elegante Dressur!, Springen → Sprungkurs!, Western → Western-Style!, sonst Unbekannte Disziplin! Hier soll genau erscheinen: Sprungkurs!"""
+Regnet es, reitet ihr in der Halle, sonst auf der Weide. Schreibe ein if-else und gib mit den Vorgaben genau aus: Wir reiten in der Halle. (Bei Sonne wäre die Ausgabe: Perfekt für die Weide!)"""

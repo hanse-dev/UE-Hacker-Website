@@ -1,25 +1,9 @@
-frage1 = True
-frage2 = True
-frage3 = False
-frage4 = True
-frage5 = False
-if frage1:
-    print("Frage 1: Richtig!")
+level = 9
+verluste = 1
+note = 80.0
+if level >= 10 and note >= 85 and verluste == 0:
+    print("LEGENDÄR!")
+elif level >= 8 and note >= 70 and verluste <= 2:
+    print("EXZELLENT!")
 else:
-    print("Frage 1: Falsch!")
-if frage2:
-    print("Frage 2: Richtig!")
-else:
-    print("Frage 2: Falsch!")
-if frage3:
-    print("Frage 3: Richtig!")
-else:
-    print("Frage 3: Falsch!")
-if frage4:
-    print("Frage 4: Richtig!")
-else:
-    print("Frage 4: Falsch!")
-if frage5:
-    print("Frage 5: Richtig!")
-else:
-    print("Frage 5: Falsch!")
+    print("Mission bestanden.")

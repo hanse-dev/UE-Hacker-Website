@@ -1,3 +1,3 @@
-"""### Mission 3: Das Zeit-Paradoxon – Aufgabe 2
+"""### Mission 2: Der Raumstation-Kommandant – Aufgabe 3
 
-Schritt 2 – Lege jahr = 2000 und spruenge = 0 an. Springe, solange spruenge < 5 gilt, 30 Jahre vorwärts und zähle den Sprung. Gib nach der Schleife genau aus: Endjahr: 2150 und Gefangen im Zeit-Paradoxon"""
+Schritt 3 – Deck 7 ist in Wartung: Gib für Deck 7 nur Deck 7 in Wartung aus (statt Deck 7: OK), alle anderen Decks 1 bis 10 geben Deck N: OK aus. Gib nach der Schleife ✅ Alle wichtigen Decks geprüft! aus."""

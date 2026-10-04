@@ -1,3 +1,2 @@
-techniker = "Kira"
-techniker_id = 4021
-print(f"Techniker {techniker}, ID {techniker_id}")
+name = input("Name des Piloten? ")
+print(f"Willkommen an Bord, {name}!")

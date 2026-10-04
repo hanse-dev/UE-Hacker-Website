@@ -1,3 +1,3 @@
-"""### Debug Quest – Task 2
+"""### Lesson 6: Nested conditions – Task 2
 
-🐛 Bug #2 – Goal: The program should print Hello Thunder!, because name has the value Thunder. What is wrong?"""
+If the horse is healthy, check the weather inside: good weather → You ride out!, otherwise You stay in the arena. If the horse is not healthy → The horse needs to see the vet. Here exactly this should appear: You stay in the arena."""

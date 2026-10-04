@@ -1,3 +1,3 @@
-"""### The Tournament Training – Task 2
+"""### The Training Hall – Task 4
 
-Step 2 – totals: add up the costs of both sessions and print exactly: Total cost: 540.0 euros"""
+Step 4 – demanding? Store the comparison i4 > average in demanding4 and print exactly: Exercise 4 demanding: True"""

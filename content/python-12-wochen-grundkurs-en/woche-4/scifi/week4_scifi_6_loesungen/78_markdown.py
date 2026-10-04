@@ -1,3 +1,3 @@
-"""### Extra challenge 3: The Endless Tunnel – Task 5
+"""### Extra challenge 3: The Endless Tunnel – Task 3
 
-Step 5 – Docking code: Use a while loop to repeatedly ask for the docking code until "Nova7" is entered. On a wrong entry print Access denied., on the correct entry print Docking approved!. (When checking, 'X1' and then 'Nova7' are entered automatically.)"""
+Step 3 – After the loop of Step 2 print exactly: Tunnel ended after 5 portals and, with if, the reason: Reason: out of fuel (if fuel <= 0)."""

@@ -8,9 +8,10 @@
 | `*` | multiply | `8 * 2` → `16` |
 | `/` | divide (result is a Float!) | `8 / 2` → `4.0` |
 
-**With text** two operations work:
+```python
+planets = 8
+print(planets * 2)    # 16
+print(planets / 2)    # 4.0
+```
 
-- `+` **joins** texts: `"Neo" + "tron"` → `"Neotron"`
-- `*` **repeats** text: `"Ping" * 3` → `"PingPingPing"`
-
-> ⚠️ Not everything can be combined: `"Crew: " + 5` causes an error – text and number don't mix. More on that in the next protocol!
+> 💡 Dividing with `/` always gives a decimal number – even when the result comes out even.

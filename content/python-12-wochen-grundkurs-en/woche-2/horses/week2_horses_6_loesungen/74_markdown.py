@@ -1,3 +1,3 @@
-"""### The Training Hall – Task 4
+"""### The Training Hall – Task 2
 
-Step 4 – demanding? Store the comparison i4 > average in demanding4 and print exactly: Exercise 4 demanding: True"""
+Step 2 – total duration: add up all five durations in total_duration and print exactly: Total duration: 120 minutes"""

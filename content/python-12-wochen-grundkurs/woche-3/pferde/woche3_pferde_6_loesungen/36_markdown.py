@@ -1,5 +1,5 @@
-"""## ⭐ Missionen
+"""### Debug-Quest – Aufgabe 2
 
-### Mission 1: Der Stallwart – Aufgabe 1
+🐛 Bug #2 – Ziel: Das Programm soll Hallo Thunder! ausgeben, weil name den Wert Thunder hat. Was ist falsch?
 
-Schritt 1 – Zugangsdaten erfassen: Lege alter = 10 (Ganzzahl), hat_helm = True und hat_erlaubnis = False an und gib mit einem f-String genau aus: Alter: 10, Helm: True"""
+**Erklärung:** In einer Bedingung wird mit `==` verglichen. Ein einzelnes `=` ist die Zuweisung und hier nicht erlaubt."""

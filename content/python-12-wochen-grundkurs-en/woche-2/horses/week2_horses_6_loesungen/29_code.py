@@ -1,2 +1,4 @@
-neigh = "Neigh! "
-print(neigh * 3)
+name = "Morning"
+suffix = "star"
+full_name = name + suffix
+print(f"Full name: {full_name}")

@@ -1,3 +1,3 @@
-"""### Übung 3: Trab – Ganze Zahlen (int) – Aufgabe 1
+"""### Übung 2: Schritt – Text (str) – Aufgabe 3
 
-Lege alter = 9 an und gib mit einem f-String genau aus: Alter: 9 Jahre"""
+Gib mit einem f-String genau aus: Hannoveraner hat 12 Zeichen. (Die Zahl soll len() berechnen.)"""

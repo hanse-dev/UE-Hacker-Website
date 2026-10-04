@@ -1,3 +1,3 @@
-"""### Mission 2: Die Flottenanalyse – Aufgabe 3
+"""### Debug-Quest – Aufgabe 3
 
-Schritt 3 – Addiere alle Geschwindigkeiten, teile durch 3, speichere das Ergebnis in durchschnitt_geschwindigkeit und gib genau aus: Durchschnittsgeschwindigkeit: 2.5"""
+🐛 Bug #3 – Ziel: Das Programm soll ausgeben: Schildstärke: 95 Prozent. Was ist falsch?"""

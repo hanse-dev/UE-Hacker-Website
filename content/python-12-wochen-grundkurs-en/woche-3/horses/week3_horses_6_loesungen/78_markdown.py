@@ -1,3 +1,3 @@
-"""### The Grand Tournament – Task 2
+"""### The Obstacle Simulator – Task 6
 
-Step 2 – Difficulty level: Five levels with if-elif-else by difficulty: 1 Beginner, 2 Easy, 3 Medium, 4 Hard, otherwise Extreme. Print with the prefix: Difficulty: Hard"""
+Point system – Count with successes = 0 and successes = successes + 1 for each passed level (the results are already in the variables) and print exactly, using an f-string: Successes: 3 of 5"""

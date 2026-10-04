@@ -1,3 +1,3 @@
-"""### Übung 3: if-else – Aufgabe 2
+"""### Übung 2: Vergleichsoperatoren – Aufgabe 3
 
-Ist der Heuvorrat mindestens so groß wie der Bedarf, gib Genug Heu! aus, sonst mit einem f-String Zu wenig Heu! Fehlt: und die fehlende Menge in kg. Hier soll genau erscheinen: Zu wenig Heu! Fehlt: 5 kg"""
+Ein Pferd muss mindestens 160 cm Stockmaß haben. Gib mit einem f-String und >= genau aus: Groß genug: True"""

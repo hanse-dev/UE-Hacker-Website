@@ -1,3 +1,3 @@
-"""### Extra challenge 1: The Prime Number Decryption – Task 2
+"""### Mission 3: The Time Paradox – Task 3
 
-Step 2 – Test the single number 15: create number = 15 and is_prime = True. Use two nested loops over a and b (both range(2, number)); if a * b == number set is_prime = False. Print exactly: 15 is prime: False"""
+Step 3 – Print a status report only for every third jump of 1 to 9: use range(1, 10, 3) and print Status: jump 1, Status: jump 4, Status: jump 7."""

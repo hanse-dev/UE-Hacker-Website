@@ -1,3 +1,5 @@
-"""### Extra challenge 2: The AI Laboratory – Task 3
+"""## 🔥 Extra Challenges
 
-Step 3 – Add all accuracies (0.92, 0.88, 0.75), divide by 3, store the result in average_acc and print exactly: Average accuracy: 0.85. Also print the best model: Best model: NovaNet"""
+### Extra challenge 1: The Spaceship Dock – Task 1
+
+Step 1 – Store the four ships (names as text, energy as whole numbers) in variables. Print the heading === DOCK PROTOCOL === and then one f-string line per ship in the format Aurora: energy 80% (the last line must read: Lyra: energy 71%)."""

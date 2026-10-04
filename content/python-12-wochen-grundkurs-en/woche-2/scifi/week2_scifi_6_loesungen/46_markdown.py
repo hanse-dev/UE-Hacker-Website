@@ -1,3 +1,5 @@
-"""### Mission 2: The Fleet Analysis – Task 1
+"""## 🐛 Debug Quest
 
-Step 1 – Create the variables for all three ships. Print the heading === FLEET ANALYSIS === and then one line per ship in the format Aurora: crew 120, speed 2.5 (the last line must read: Orion: crew 200, speed 1.5)."""
+### Debug Quest – Task 1
+
+🐛 Bug #1 – Goal: The program should print: Hello R2D2! Your status is 3. What is wrong?"""

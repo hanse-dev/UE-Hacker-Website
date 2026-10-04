@@ -1,4 +1,3 @@
-gangart = "Trab"
+boxen = 12
 
-if gangart != "Galopp":
-    print("Das ist kein Galopp!")
+print(f"Genau 12 Boxen: {boxen == 12}")

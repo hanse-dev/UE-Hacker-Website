@@ -1,5 +1,8 @@
-i4 = 4.5
-durchschnitt = 3.2
+dauer1 = 20
+dauer2 = 30
+dauer3 = 15
+dauer4 = 45
+dauer5 = 10
 
-anspruchsvoll4 = i4 > durchschnitt
-print(f"Übung 4 anspruchsvoll: {anspruchsvoll4}")
+gesamtdauer = dauer1 + dauer2 + dauer3 + dauer4 + dauer5
+print(f"Gesamtdauer: {gesamtdauer} Minuten")
