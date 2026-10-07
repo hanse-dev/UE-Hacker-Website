@@ -38,17 +38,17 @@ test.describe('Home & Navigation', () => {
     await expect(page.locator('.course-format-badge')).toHaveCount(4);
   });
 
-  test('Home zeigt als Unterstützer All We Shape und DLC, keine ITScouts mehr', async ({ page }) => {
+  test('Home zeigt als Unterstützer nur noch das DLC', async ({ page }) => {
     await page.goto('/');
     const supporters = page.locator('#unterstuetzer');
-    await expect(supporters.locator('.unterstuetzer-card')).toHaveCount(2);
-    await expect(supporters.locator('h3')).toHaveText(['All We Shape', 'DLC - Digital Learning Center']);
-    await expect(supporters).not.toContainText(/IT-?\s?Scout/i);
+    await expect(supporters.locator('.unterstuetzer-card')).toHaveCount(1);
+    await expect(supporters.locator('h3')).toHaveText(['DLC - Digital Learning Center']);
+    await expect(supporters).not.toContainText(/IT-?\s?Scout|All We Shape/i);
     await expect(supporters.locator('a[href*="it-scout"]')).toHaveCount(0);
 
-    // Beide Logos müssen wirklich geladen sein (kaputter Asset-Pfad → naturalWidth 0)
+    // Das Logo muss wirklich geladen sein (kaputter Asset-Pfad → naturalWidth 0)
     const logos = supporters.locator('img.unterstuetzer-logo');
-    await expect(logos).toHaveCount(2);
+    await expect(logos).toHaveCount(1);
     for (const logo of await logos.all()) {
       await expect.poll(() => logo.evaluate((img) => img.naturalWidth)).toBeGreaterThan(0);
     }
