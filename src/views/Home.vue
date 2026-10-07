@@ -55,7 +55,7 @@
       <div class="unterstuetzer-list">
         <div class="unterstuetzer-card">
           <div class="unterstuetzer-content">
-            <img src="@/assets/itscouts-logo.jpeg" alt="ITScouts Logo" class="unterstuetzer-logo">
+            <img src="@/assets/all-we-shape-logo.jpg" alt="All We Shape Logo" class="unterstuetzer-logo">
             <div class="unterstuetzer-text">
               <h3>ITScouts</h3>
               <p>{{ t('home.itscouts.desc') }}</p>
@@ -66,7 +66,7 @@
 
         <div class="unterstuetzer-card">
           <div class="unterstuetzer-content">
-            <img src="@/assets/logo_dlc_beta.svg" alt="DLC Logo" class="unterstuetzer-logo">
+            <img src="@/assets/logo_dlc.svg" alt="DLC Logo" class="unterstuetzer-logo">
             <div class="unterstuetzer-text">
               <h3>DLC - Digital Learning Center</h3>
               <p>{{ t('home.dlc.desc') }}</p>
