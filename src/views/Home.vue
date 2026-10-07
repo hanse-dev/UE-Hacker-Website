@@ -57,9 +57,7 @@
           <div class="unterstuetzer-content">
             <img src="@/assets/all-we-shape-logo.jpg" alt="All We Shape Logo" class="unterstuetzer-logo">
             <div class="unterstuetzer-text">
-              <h3>ITScouts</h3>
-              <p>{{ t('home.itscouts.desc') }}</p>
-              <a href="https://www.faw.de/luebeck/projekte/it-scout" target="_blank" rel="noopener noreferrer" class="mehr-infos-link">{{ t('home.moreInfo') }}</a>
+              <h3>All We Shape</h3>
             </div>
           </div>
         </div>

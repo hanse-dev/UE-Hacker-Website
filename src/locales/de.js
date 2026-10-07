@@ -94,7 +94,6 @@ export default {
   'courseFormat.grundkurs': 'Grundkurs',
   'home.supporters.title': 'Unterstützt von',
   'home.moreInfo': 'mehr Infos hier',
-  'home.itscouts.desc': 'Die ITScouts fördern junge Talente im Bereich IT und Programmierung. Gemeinsam bringen wir Kindern und Jugendlichen die Welt des Codes näher.',
   'home.dlc.desc': 'Das DLC ist ein innovatives Zentrum für digitale Bildung und Technologietransfer. Wir unterstützen moderne Bildungsprojekte und schaffen Raum für zukunftsweisendes Lernen.',
 
   // ── Course detail ────────────────────────────────────────────────────────

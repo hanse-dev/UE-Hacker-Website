@@ -94,7 +94,6 @@ export default {
   'courseFormat.grundkurs': 'Full course',
   'home.supporters.title': 'Supported by',
   'home.moreInfo': 'more info here',
-  'home.itscouts.desc': 'ITScouts support young talent in IT and programming. Together we bring the world of code closer to children and young people.',
   'home.dlc.desc': 'The DLC is an innovative centre for digital education and technology transfer. We support modern educational projects and create space for forward-thinking learning.',
 
   // ── Course detail ────────────────────────────────────────────────────────
