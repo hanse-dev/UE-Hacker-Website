@@ -60,6 +60,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.98 | Rechtschreib- und Verständnisprüfung aller deutschen Inhalte | cspell deckt allen Content ab, neu `lint:spelling:de` (LanguageTool in Docker); alle Kurse gelesen und korrigiert, Themen-Reste in Pferde/Sci-Fi und englische Bezeichner in Woche 12 (DE) bereinigt, Wochen-Check-Fragen zu nicht gelehrtem Stoff ersetzt |
 | 3.99 | Fortschritts-Vertrag: Deploy darf gespeicherten Fortschritt nicht brechen | `tests/progress-contract.spec.js` + `tests/fixtures/progress-contract.json` (IDs, Check-Positionen, Storage-Keys/-Versionen, DB-Spalten), `npm run contract:update`, Regeln in `WORKFLOW.md` |
 | 3.100 | Themen angeglichen (12-Wochen-Kurs Woche 2–4) + Lösungs-Reihenfolge | gleiche Lektionen/Konzepte in Abenteuer/Pferde/Sci-Fi; neue Lektionen mit neuer ID an passender Stelle; `scripts/sync_loesungen.py` (Woche 9 war im Download verschoben) |
+| 3.101 | micro:bit-Kurs „Das Roboterauto“ (`projekt-microbit-auto`) | erster Hardware-Kurs: `engine: "anleitung"` → `GuideLessonView.vue` (Aufgaben zum Abhaken statt Prüfung, Umschalter Blöcke/Python über `:::bloecke`/`:::python`, MakeCode-Blöcke als ```` ```bloecke ````-Text); 11 Stufen in `content/microbit-auto/`; Details in `INHALTE.md` Abschnitt 6 |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 

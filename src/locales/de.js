@@ -386,6 +386,12 @@ export default {
   'projectTag.logikraetsel': 'Logikrätsel',
   'projectTag.mathematik': 'Mathematik',
   'projectTag.spiele': 'Spiele',
+  'projectTag.robotik': 'Robotik',
+
+  'guide.modeLabel': 'Anleitung zeigen als:',
+  'guide.mode.bloecke': 'Blöcke',
+  'guide.mode.python': 'Python',
+  'guide.checkHint': 'Probiert jede Aufgabe mit eurem Auto aus. Hakt sie ab, wenn sie klappt.',
 
   'profil.title': 'Mein Profil',
   'profil.loginRequired': 'Melde dich an, um dein Profil und deine Abschluss-Abzeichen zu sehen.',

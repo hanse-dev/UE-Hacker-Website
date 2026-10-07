@@ -16,6 +16,7 @@ Dieses Dokument beschreibt, welche Dateien zusammengehören und was bei Änderun
 | `projekt-morsecode` | `content/morsecode/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON) |
 | `projekt-zahlendetektiv` | `content/zahlendetektiv/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON) |
 | `projekt-js-spielewerkstatt` | `content/js-spielewerkstatt/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON, `engine: "js-sandbox"`) |
+| `projekt-microbit-auto` | `content/microbit-auto/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON, `engine: "anleitung"`, Hardware-Kurs zum Abhaken) |
 | *(Lektions-Format)* Woche 1–12 (alle) | `content/python-woche{N}-{abenteuer\|pferde\|scifi}/` | `content/python-woche{N}-{thema}-en/` | Markdown + JSON, Pyodide; ersetzt die Notebook-Schritte Lektion/Debug/Missionen/Boss jeder Woche/Variante/Sprache (siehe HANDOFF.md 3.47–3.54). Die alten `1_lektion`/`2_debug`/`3_missionen`/`5_boss`-Zellenordner gibt es nicht mehr — nur `0_glossar` und `6_loesungen` bleiben als Notebooks (Nachschlagewerke, siehe unten). |
 | `js-grundkurs` | `content/js-grundkurs/` (Beschreibung) + `content/js-grundkurs-woche{1-9}/` (Wochen) | *(keine EN-Version)* | Grundkurs (Markdown + JSON, `engine: "js-sandbox"`, eigene Mehrwochen-Struktur) |
 
@@ -394,6 +395,29 @@ Ordner-Mapping (immer paarweise anpassen):
 - [ ] Jede Aufgabe muss eigenständig lauffähig sein — jeder Lauf (Ausführen/Prüfen) baut das
       iframe komplett neu auf, es gibt **keinen** geteilten Namespace zwischen Aufgaben (anders
       als beim Pyodide-Kernel, der über eine ganze Lektion hinweg erhalten bleibt).
+
+**Für einen Hardware-Kurs zum Abhaken (wie `microbit-auto`, micro:bit + Roboterauto):**
+- [ ] `kurse.json`-Eintrag bekommt `"engine": "anleitung"`. `ProjectCourse.vue` rendert dann
+      `GuideLessonView.vue`: kein Kernel, kein Editor. Der Code läuft auf dem echten Gerät, die
+      Plattform kann ihn nicht prüfen.
+- [ ] `lessons.json`-Aufgaben haben nur `instruction` (und optional `isBonus`) — **bewusste Ausnahme**
+      von „jede Aufgabe braucht ein `expected`“: Das Team hakt selbst ab. Sind alle Pflichtaufgaben
+      abgehakt, gilt die Lektion als abgeschlossen (`useInteractiveProgress`, wie bei allen
+      Projekt-Kursen). Einzelne Haken werden nicht gespeichert. Jede Lektion braucht mindestens eine
+      Pflichtaufgabe.
+- [ ] Markdown: Abschnitte, die nur für einen Weg gelten, stehen zwischen `:::bloecke` bzw.
+      `:::python` und `:::` (jede Markierung als eigener Absatz mit Leerzeile davor und danach).
+      Jeder Code steht in so einem Abschnitt, und jede Lektion hat gleich viele Blöcke- wie
+      Python-Abschnitte (`tests/microbit-auto.spec.js` prüft das).
+- [ ] MakeCode-Blöcke als Text: Codeblock mit Sprache `bloecke`, pro Zeile `[kategorie] Beschriftung`,
+      zwei Leerzeichen Einrückung je Ebene. Kategorien (= Farben, siehe `GuideLessonView.vue`):
+      `grundlagen`, `eingabe`, `schleifen`, `logik`, `variablen`, `mathematik`, `funktionen`, `musik`,
+      `minicar`. Neue Kategorie → dort eine `.mc-<name>`-Farbe ergänzen.
+- [ ] Python-Beispiele einmal mit `python3` auf Syntax prüfen (`compile()`); ausführen lassen sie
+      sich nur auf dem micro:bit. Die Bibliothek für das Auto liegt unter
+      `public/microbit/keyes_MiniCar.py` (Keyestudio-Original mit einer Zeile Korrektur, siehe Dateikopf).
+- [ ] Neuer Ordner → Rechtschreib-Globs in `package.json` (`lint:spelling`) und Regel in
+      `scripts/test-changed.mjs` ergänzen.
 
 ---
 
