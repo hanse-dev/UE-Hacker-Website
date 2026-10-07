@@ -52,6 +52,15 @@
         <p v-if="error" class="error">{{ error }}</p>
         <p v-if="busy && !users.length" class="muted">{{ t('admin.loading') }}</p>
 
+        <div v-if="resetResult" class="reset-result" role="status">
+          <p>
+            {{ t('admin.resetResult').replace('{name}', resetResult.username) }}
+            <strong class="temp-password">{{ resetResult.password }}</strong>
+          </p>
+          <p class="muted">{{ t('admin.resetResultHint') }}</p>
+          <button type="button" class="btn-link" @click="resetResult = null">{{ t('admin.resetResultClose') }}</button>
+        </div>
+
         <table v-if="users.length" class="admin-table">
           <thead>
             <tr>
@@ -63,11 +72,15 @@
           </thead>
           <tbody>
             <tr v-for="u in users" :key="u.id">
-              <td>{{ u.username }}</td>
+              <td>
+                {{ u.username }}
+                <span v-if="u.mustChangePassword" class="must-change-badge">{{ t('admin.mustChange') }}</span>
+              </td>
               <td>{{ ageLabel(u.ageGroup) }}</td>
               <td>{{ formatDate(u.updatedAt) }}</td>
               <td class="actions">
                 <button type="button" class="btn-link" @click="openEdit(u)">{{ t('admin.edit') }}</button>
+                <button type="button" class="btn-link reset-password-btn" @click="resetPassword(u)">{{ t('admin.resetPassword') }}</button>
                 <button type="button" class="btn-link danger" @click="remove(u)">{{ t('admin.delete') }}</button>
               </td>
             </tr>
@@ -206,6 +219,7 @@ import {
   listUsers,
   createUser,
   updateUser,
+  resetUserPassword,
   deleteUser,
   listTermine,
   createTermin,
@@ -219,6 +233,8 @@ export default {
     const { t, lang } = useLanguage();
     const password = ref('');
     const users = ref([]);
+    // Einmal-Passwort nach einem Reset — nur im Speicher, verschwindet beim Ausblenden/Neuladen.
+    const resetResult = ref(null);
     const busy = ref(false);
     const error = ref('');
     const formOpen = ref(false);
@@ -302,6 +318,7 @@ export default {
     const logout = () => {
       setAdminToken('');
       users.value = [];
+      resetResult.value = null;
       termine.value = [];
     };
 
@@ -358,6 +375,23 @@ export default {
       error.value = '';
       try {
         await deleteUser(u.id);
+        await refresh();
+      } catch (e) {
+        error.value = e.message || t('admin.error');
+      } finally {
+        busy.value = false;
+      }
+    };
+
+    const resetPassword = async (u) => {
+      const ok = window.confirm(t('admin.confirmReset').replace('{name}', u.username));
+      if (!ok) return;
+      busy.value = true;
+      error.value = '';
+      resetResult.value = null;
+      try {
+        const data = await resetUserPassword(u.id);
+        resetResult.value = { username: u.username, password: data.temporaryPassword };
         await refresh();
       } catch (e) {
         error.value = e.message || t('admin.error');
@@ -446,6 +480,7 @@ export default {
     return {
       t, token, password, users, busy, error, formOpen, formError, editing, form,
       ageLabel, formatDate, login, logout, openCreate, openEdit, closeForm, save, remove,
+      resetPassword, resetResult,
       activeTab, termine, terminBusy, terminError, terminFormOpen, terminFormError, editingTermin, terminForm,
       openCreateTermin, openEditTermin, closeTerminForm, saveTermin, removeTermin,
     };
@@ -610,6 +645,36 @@ export default {
 
 .muted {
   color: #6c757d;
+}
+
+.reset-result {
+  background: #eef7ee;
+  border: 1px solid #b7dfb9;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+}
+
+.reset-result p {
+  margin: 0 0 6px;
+}
+
+.temp-password {
+  font-family: monospace;
+  font-size: 1.25em;
+  margin-left: 6px;
+  user-select: all;
+}
+
+.must-change-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  border-radius: 10px;
+  background: #fff3cd;
+  color: #664d03;
+  font-size: 0.78em;
+  font-weight: 600;
 }
 
 .modal-backdrop {

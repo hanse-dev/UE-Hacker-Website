@@ -213,6 +213,81 @@ test.describe('UI: Admin + Header-Login', () => {
     expect(newLogin.ok()).toBeTruthy();
   });
 
+  test('Admin setzt Passwort zurück → Login mit Einmal-Passwort erzwingt ein neues Passwort', async ({ page, request }) => {
+    const username = `resetui_${Date.now()}`;
+    const adminLogin = await request.post(`${API}/api/admin/login`, {
+      data: { password: ADMIN_PASSWORD },
+    });
+    const { token: adminToken } = await adminLogin.json();
+    await request.post(`${API}/api/admin/users`, {
+      headers: { Authorization: `Bearer ${adminToken}` },
+      data: { username, password: 'pass1234', ageGroup: 'kinder' },
+    });
+
+    // Admin-Panel: zurücksetzen, Einmal-Passwort wird angezeigt.
+    await page.goto('/admin');
+    await page.locator('.admin-login-card input[type="password"]').fill(ADMIN_PASSWORD);
+    await page.locator('.admin-login-card .btn-primary').click();
+    const row = page.locator('.admin-table tr', { hasText: username });
+    await expect(row).toBeVisible();
+    page.once('dialog', (dialog) => dialog.accept());
+    await row.locator('.reset-password-btn').click();
+    const tempLocator = page.locator('.reset-result .temp-password');
+    await expect(tempLocator).toHaveText(/^[A-Z][a-z]+-[A-Z][a-z]+-\d{2}$/);
+    const temp = (await tempLocator.textContent()).trim();
+    await expect(row.locator('.must-change-badge')).toBeVisible();
+    await page.locator('.admin-toolbar .btn-secondary').click();
+
+    // Login mit dem Einmal-Passwort: das Formular erscheint von selbst und lässt sich nicht schließen.
+    await page.goto('/');
+    await page.locator('.options-btn').click();
+    const modal = page.locator('.settings-modal');
+    await modal.locator('.auth-btn.primary', { hasText: /Anmelden|Log in/ }).click();
+    await modal.locator('input').nth(0).fill(username);
+    await modal.locator('input[type="password"]').fill(temp);
+    await modal.locator('.auth-btn.primary').click();
+
+    const form = modal.locator('.password-form');
+    await expect(form).toBeVisible();
+    await expect(form).toContainText(/Einmal-Passwort|one-time password/);
+    // Gerade eben eingegeben → wird nicht nochmal abgefragt.
+    await expect(form.locator('input[name="current-password"]')).toHaveCount(0);
+    await expect(modal.locator('.settings-close')).toHaveCount(0);
+    await page.locator('.login-backdrop').click({ position: { x: 5, y: 5 } });
+    await expect(form).toBeVisible();
+
+    // Auch ein Seiten-Reload führt nicht daran vorbei; dann wird das aktuelle Passwort abgefragt.
+    await page.reload();
+    await expect(form).toBeVisible();
+    await expect(modal.locator('.settings-close')).toHaveCount(0);
+    await form.locator('input[name="current-password"]').fill(temp);
+    await form.locator('input[name="new-password"]').fill('meins1234');
+    await form.locator('input[name="new-password-repeat"]').fill('meins1234');
+    await form.locator('.auth-btn.primary').click();
+
+    await expect(form).toHaveCount(0);
+    await expect(modal.locator('.login-success')).toBeVisible();
+    await modal.locator('.settings-close').click();
+    await expect(modal).toHaveCount(0);
+
+    // Sitzung läuft mit dem neuen Token weiter, Reload erzwingt nichts mehr.
+    await page.reload();
+    await expect(page.locator('.options-btn')).toBeVisible();
+    await expect(modal).toHaveCount(0);
+    await page.locator('.options-btn').click();
+    await expect(modal).toContainText(username);
+
+    const tempLogin = await request.post(`${API}/api/login`, {
+      data: { username, password: temp },
+    });
+    expect(tempLogin.status()).toBe(401);
+    const newLogin = await request.post(`${API}/api/login`, {
+      data: { username, password: 'meins1234' },
+    });
+    expect(newLogin.ok()).toBeTruthy();
+    expect((await newLogin.json()).user.mustChangePassword).toBe(false);
+  });
+
   test('Zertifikat-PDF: Download-Button erscheint erst nach Login und liefert eine PDF-Datei', async ({ page, request }) => {
     test.setTimeout(60000);
     const username = `certpdf_${Date.now()}`;

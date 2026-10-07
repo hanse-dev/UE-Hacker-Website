@@ -27,6 +27,12 @@ export default {
   'admin.empty': 'Noch keine Nutzer angelegt.',
   'admin.error': 'Etwas ist schiefgelaufen.',
   'admin.confirmDelete': 'Nutzer „{name}“ wirklich löschen?',
+  'admin.resetPassword': 'Passwort zurücksetzen',
+  'admin.confirmReset': 'Passwort von „{name}“ zurücksetzen? Das bisherige Passwort gilt dann nicht mehr, und der Account wird auf allen Geräten abgemeldet.',
+  'admin.resetResult': 'Einmal-Passwort für „{name}“:',
+  'admin.resetResultHint': 'Wird nur jetzt angezeigt. Beim nächsten Login muss ein eigenes Passwort gewählt werden.',
+  'admin.resetResultClose': 'Ausblenden',
+  'admin.mustChange': 'Einmal-Passwort aktiv',
   'admin.col.username': 'Username',
   'admin.col.age': 'Gruppe',
   'admin.col.updated': 'Aktualisiert',
@@ -70,6 +76,8 @@ export default {
   'auth.passwordTooShort': 'Das neue Passwort braucht mindestens 4 Zeichen.',
   'auth.passwordChanged': 'Passwort geändert.',
   'auth.save': 'Speichern',
+  'auth.passwordSame': 'Das neue Passwort muss sich vom aktuellen unterscheiden.',
+  'auth.mustChangeHint': 'Du hast dich mit einem Einmal-Passwort angemeldet. Such dir jetzt ein eigenes Passwort aus (mindestens 4 Zeichen) und merk es dir gut.',
 
   // ── Einstellungen ───────────────────────────────────────────────────────
   'settings.open': 'Optionen',

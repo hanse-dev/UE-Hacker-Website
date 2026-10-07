@@ -1,4 +1,5 @@
 import crypto from 'crypto';
+import db from './db.js';
 
 const TOKEN_TTL_MS = 8 * 60 * 60 * 1000; // 8h
 const USER_TOKEN_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30d
@@ -12,7 +13,8 @@ function sign(payloadB64) {
 }
 
 function createToken(payload, ttlMs) {
-  const full = { ...payload, exp: Date.now() + ttlMs };
+  const now = Date.now();
+  const full = { ...payload, iat: now, exp: now + ttlMs };
   const payloadB64 = Buffer.from(JSON.stringify(full)).toString('base64url');
   return `${payloadB64}.${sign(payloadB64)}`;
 }
@@ -73,6 +75,15 @@ export function requireUser(req, res, next) {
   const payload = verifyUserToken(bearer(req));
   if (!payload) {
     return res.status(401).json({ error: 'Login erforderlich.' });
+  }
+  // Tokens sind zustandslos — nach einer Passwort-Änderung/-Zurücksetzung gelten ältere Tokens
+  // nicht mehr (andere Geräte werden abgemeldet). Tokens ohne `iat` stammen aus der Zeit davor.
+  const row = db.prepare('SELECT password_changed_at FROM users WHERE id = ?').get(payload.userId);
+  if (!row) {
+    return res.status(401).json({ error: 'Nutzer nicht gefunden.' });
+  }
+  if (row.password_changed_at && (payload.iat || 0) < Date.parse(row.password_changed_at)) {
+    return res.status(401).json({ error: 'Sitzung abgelaufen. Bitte neu anmelden.' });
   }
   req.user = payload;
   return next();

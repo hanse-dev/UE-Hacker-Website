@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
 import db from '../db.js';
 import { requireAdmin } from '../auth.js';
+import { generateTempPassword } from '../tempPassword.js';
 
 const router = Router();
 const AGE_GROUPS = new Set(['kinder', 'jugendliche']);
@@ -12,6 +13,7 @@ function publicUser(row) {
     id: row.id,
     username: row.username,
     ageGroup: row.age_group,
+    mustChangePassword: Boolean(row.must_change_password),
     createdAt: row.created_at,
     updatedAt: row.updated_at,
   };
@@ -34,7 +36,7 @@ router.use(requireAdmin);
 
 router.get('/users', (_req, res) => {
   const rows = db.prepare(`
-    SELECT id, username, age_group, created_at, updated_at
+    SELECT id, username, age_group, must_change_password, created_at, updated_at
     FROM users
     ORDER BY username COLLATE NOCASE
   `).all();
@@ -75,7 +77,7 @@ router.post('/users', (req, res) => {
   `).run(id, now);
 
   const row = db.prepare(`
-    SELECT id, username, age_group, created_at, updated_at FROM users WHERE id = ?
+    SELECT id, username, age_group, must_change_password, created_at, updated_at FROM users WHERE id = ?
   `).get(id);
 
   return res.status(201).json({ user: publicUser(row) });
@@ -88,6 +90,8 @@ router.patch('/users/:id', (req, res) => {
   let username = row.username;
   let ageGroup = row.age_group;
   let passwordHash = row.password_hash;
+  let mustChangePassword = row.must_change_password;
+  let passwordChangedAt = row.password_changed_at;
 
   if (req.body?.username != null) {
     const next = validateUsername(req.body.username);
@@ -118,17 +122,44 @@ router.patch('/users/:id', (req, res) => {
   }
 
   const now = new Date().toISOString();
+  if (passwordHash !== row.password_hash) {
+    // Vom Admin fest gesetztes Passwort: kein Zwangswechsel, aber alte Sitzungen enden.
+    mustChangePassword = 0;
+    passwordChangedAt = now;
+  }
   db.prepare(`
     UPDATE users
-    SET username = ?, password_hash = ?, age_group = ?, updated_at = ?
+    SET username = ?, password_hash = ?, age_group = ?, must_change_password = ?,
+        password_changed_at = ?, updated_at = ?
     WHERE id = ?
-  `).run(username, passwordHash, ageGroup, now, row.id);
+  `).run(username, passwordHash, ageGroup, mustChangePassword, passwordChangedAt, now, row.id);
 
   const updated = db.prepare(`
-    SELECT id, username, age_group, created_at, updated_at FROM users WHERE id = ?
+    SELECT id, username, age_group, must_change_password, created_at, updated_at FROM users WHERE id = ?
   `).get(row.id);
 
   return res.json({ user: publicUser(updated) });
+});
+
+// Passwort zurücksetzen: erzeugt ein Einmal-Passwort (nur in dieser Antwort im Klartext), das der
+// Nutzer beim nächsten Login durch ein eigenes ersetzen muss. Bestehende Sitzungen enden.
+router.post('/users/:id/reset-password', (req, res) => {
+  const row = db.prepare('SELECT id FROM users WHERE id = ?').get(req.params.id);
+  if (!row) return res.status(404).json({ error: 'Nutzer nicht gefunden.' });
+
+  const temporaryPassword = generateTempPassword();
+  const now = new Date().toISOString();
+  db.prepare(`
+    UPDATE users
+    SET password_hash = ?, must_change_password = 1, password_changed_at = ?, updated_at = ?
+    WHERE id = ?
+  `).run(bcrypt.hashSync(temporaryPassword, 10), now, now, row.id);
+
+  const updated = db.prepare(`
+    SELECT id, username, age_group, must_change_password, created_at, updated_at FROM users WHERE id = ?
+  `).get(row.id);
+
+  return res.json({ user: publicUser(updated), temporaryPassword });
 });
 
 router.delete('/users/:id', (req, res) => {

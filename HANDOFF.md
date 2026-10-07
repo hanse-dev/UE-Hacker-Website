@@ -60,7 +60,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.98 | Rechtschreib- und Verständnisprüfung aller deutschen Inhalte | cspell deckt allen Content ab, neu `lint:spelling:de` (LanguageTool in Docker); alle Kurse gelesen und korrigiert, Themen-Reste in Pferde/Sci-Fi und englische Bezeichner in Woche 12 (DE) bereinigt, Wochen-Check-Fragen zu nicht gelehrtem Stoff ersetzt |
 | 3.99 | Fortschritts-Vertrag: Deploy darf gespeicherten Fortschritt nicht brechen | `tests/progress-contract.spec.js` + `tests/fixtures/progress-contract.json` (IDs, Check-Positionen, Storage-Keys/-Versionen, DB-Spalten), `npm run contract:update`, Regeln in `WORKFLOW.md` |
 | 3.100 | Themen angeglichen (12-Wochen-Kurs Woche 2–4) + Lösungs-Reihenfolge | gleiche Lektionen/Konzepte in Abenteuer/Pferde/Sci-Fi; neue Lektionen mit neuer ID an passender Stelle; `scripts/sync_loesungen.py` (Woche 9 war im Download verschoben) |
-| 3.101 | Eigenes Passwort ändern (eingeloggt) | `POST /api/password` (`requireUser`, aktuelles + neues Passwort, falsches aktuelles → 403), Formular im Einstellungs-Modal (`App.vue`), `changePassword()` in `useAuth.js`; bestehende Tokens bleiben gültig (siehe `todo.md`) |
+| 3.101 | Eigenes Passwort ändern + Reset per Einmal-Passwort | `POST /api/password` (liefert frisches Token), `POST /api/admin/users/:id/reset-password` (Einmal-Passwort, `must_change_password`), Zwangswechsel im Einstellungs-Modal (`App.vue`), `requireUser` lehnt Tokens mit `iat` vor `password_changed_at` ab; Druck: `create-account-printout.py --reset-password <name>` |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -137,6 +137,9 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 - Login-Felder für Passwort-Manager-Autofill brauchen ein echtes `<form>` + `name`-Attribute; bei
   reinem Passwort-Login (kein Benutzername im Modell, z.B. Admin) ein verstecktes `username`-Feld
   mit festem Wert ergänzen (3.64).
+- Passwörter liegen nur als Hash vor — „nochmal anzeigen/drucken“ heißt immer: neues Einmal-Passwort
+  über `reset-password` erzeugen. Jede Stelle, die `password_hash` schreibt, muss auch
+  `password_changed_at` setzen, sonst bleiben alte Sitzungen gültig (3.101).
 - Reaktiver Zustand über mehrere Komponenten (z.B. Admin-Token) gehört als geteilter `ref` in die
   Composable, nicht als lokaler Ref pro Komponente (3.64).
 - Ein Composable, das nur für **einen** Kurs gebaut wurde (Storage-Key/Content-Pfad fest verdrahtet),

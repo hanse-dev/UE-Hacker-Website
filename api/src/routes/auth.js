@@ -5,6 +5,15 @@ import { createUserToken, requireUser } from '../auth.js';
 
 const router = Router();
 
+function publicUser(row) {
+  return {
+    id: row.id,
+    username: row.username,
+    ageGroup: row.age_group,
+    mustChangePassword: Boolean(row.must_change_password),
+  };
+}
+
 router.post('/login', (req, res) => {
   const username = String(req.body?.username || '').trim();
   const password = String(req.body?.password || '');
@@ -14,7 +23,7 @@ router.post('/login', (req, res) => {
   }
 
   const row = db.prepare(`
-    SELECT id, username, password_hash, age_group, created_at, updated_at
+    SELECT id, username, password_hash, age_group, must_change_password
     FROM users WHERE username = ? COLLATE NOCASE
   `).get(username);
 
@@ -22,31 +31,19 @@ router.post('/login', (req, res) => {
     return res.status(401).json({ error: 'Username oder Passwort falsch.' });
   }
 
-  return res.json({
-    token: createUserToken(row),
-    user: {
-      id: row.id,
-      username: row.username,
-      ageGroup: row.age_group,
-    },
-  });
+  return res.json({ token: createUserToken(row), user: publicUser(row) });
 });
 
 router.get('/me', requireUser, (req, res) => {
   const row = db.prepare(`
-    SELECT id, username, age_group FROM users WHERE id = ?
+    SELECT id, username, age_group, must_change_password FROM users WHERE id = ?
   `).get(req.user.userId);
   if (!row) return res.status(401).json({ error: 'Nutzer nicht gefunden.' });
-  return res.json({
-    user: {
-      id: row.id,
-      username: row.username,
-      ageGroup: row.age_group,
-    },
-  });
+  return res.json({ user: publicUser(row) });
 });
 
 // Eigenes Passwort ändern: nur mit Login und nur, wenn das aktuelle Passwort stimmt.
+// Antwortet mit einem frischen Token — alle älteren Tokens werden ungültig (requireUser).
 router.post('/password', requireUser, (req, res) => {
   const currentPassword = String(req.body?.currentPassword || '');
   const newPassword = String(req.body?.newPassword || '');
@@ -58,19 +55,31 @@ router.post('/password', requireUser, (req, res) => {
     return res.status(400).json({ error: 'Passwort: mindestens 4 Zeichen.' });
   }
 
-  const row = db.prepare('SELECT id, password_hash FROM users WHERE id = ?').get(req.user.userId);
+  const row = db.prepare(`
+    SELECT id, username, password_hash, age_group FROM users WHERE id = ?
+  `).get(req.user.userId);
   if (!row) return res.status(401).json({ error: 'Nutzer nicht gefunden.' });
 
   // 403 statt 401: das Token ist gültig, die Sitzung soll im Frontend bestehen bleiben.
   if (!bcrypt.compareSync(currentPassword, row.password_hash)) {
     return res.status(403).json({ error: 'Aktuelles Passwort ist falsch.' });
   }
+  // Sonst ließe sich ein Einmal-Passwort einfach behalten.
+  if (newPassword === currentPassword) {
+    return res.status(400).json({ error: 'Das neue Passwort muss sich vom aktuellen unterscheiden.' });
+  }
 
+  const now = new Date().toISOString();
   db.prepare(`
-    UPDATE users SET password_hash = ?, updated_at = ? WHERE id = ?
-  `).run(bcrypt.hashSync(newPassword, 10), new Date().toISOString(), row.id);
+    UPDATE users
+    SET password_hash = ?, must_change_password = 0, password_changed_at = ?, updated_at = ?
+    WHERE id = ?
+  `).run(bcrypt.hashSync(newPassword, 10), now, now, row.id);
 
-  return res.status(204).send();
+  return res.json({
+    token: createUserToken(row),
+    user: publicUser({ ...row, must_change_password: 0 }),
+  });
 });
 
 router.get('/progress', requireUser, (req, res) => {

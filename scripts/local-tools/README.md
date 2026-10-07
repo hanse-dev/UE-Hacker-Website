@@ -55,6 +55,19 @@ neuer Account angelegt werden — der zuletzt angelegte Account wird lokal gemer
 python3 create-account-printout.py --reprint
 ```
 
+## Passwort vergessen: zurücksetzen und neu drucken
+
+```bash
+python3 create-account-printout.py --reset-password <benutzername>
+```
+
+Das alte Passwort lässt sich nicht nochmal drucken — auf dem Server liegt nur ein Hash. Das Skript
+lässt den Server deshalb ein neues **Einmal-Passwort** erzeugen (`POST
+/api/admin/users/:id/reset-password`) und druckt einen Beleg damit. Das bisherige Passwort gilt
+danach nicht mehr, der Account wird auf allen Geräten abgemeldet, und beim nächsten Login muss ein
+eigenes Passwort gewählt werden. `--no-print` und `--reprint` funktionieren hier genauso. Dasselbe
+geht ohne Drucker im Admin-Panel (Button „Passwort zurücksetzen“).
+
 ## Passwort-Format
 
 Zwei zufällige deutsche Wörter + zwei Ziffern, z.B. `Igel-Zug-79` — kurz genug zum Abschreiben,

@@ -1813,7 +1813,9 @@
       "password_hash",
       "age_group",
       "created_at",
-      "updated_at"
+      "updated_at",
+      "must_change_password",
+      "password_changed_at"
     ],
     "progress": [
       "user_id",

@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Legt einen Account auf der UE Hacker Website an und druckt die Zugangsdaten
-auf einem MXW01-Thermodrucker aus. Läuft nur lokal, nie auf dem Server.
+auf einem MXW01-Thermodrucker aus. Mit --reset-password bekommt ein bestehender
+Account ein neues Einmal-Passwort, das ebenfalls gedruckt wird.
+Läuft nur lokal, nie auf dem Server.
 
 Setup: siehe scripts/local-tools/README.md
 """
@@ -81,12 +83,14 @@ def normalize_server_url(url: str) -> str:
     return urllib.parse.urlunsplit((parts.scheme, ascii_netloc, parts.path, parts.query, parts.fragment))
 
 
-def save_last_account(username: str, password: str, age_group: str, server_url_raw: str) -> None:
+def save_last_account(username: str, password: str, age_group: str, server_url_raw: str,
+                      one_time: bool = False) -> None:
     LAST_ACCOUNT_FILE.write_text(json.dumps({
         "username": username,
         "password": password,
         "ageGroup": age_group,
         "serverUrlRaw": server_url_raw,
+        "oneTime": one_time,
     }))
 
 
@@ -102,13 +106,13 @@ def generate_password() -> str:
     return f"{word1}-{word2}-{digits}"
 
 
-def api_request(url: str, payload: dict, token: str | None = None) -> dict:
+def api_request(url: str, payload: dict | None = None, token: str | None = None,
+                method: str = "POST") -> dict:
     headers = {"Content-Type": "application/json"}
     if token:
         headers["Authorization"] = f"Bearer {token}"
-    req = urllib.request.Request(
-        url, data=json.dumps(payload).encode(), headers=headers, method="POST"
-    )
+    data = json.dumps(payload).encode() if payload is not None else None
+    req = urllib.request.Request(url, data=data, headers=headers, method=method)
     try:
         with urllib.request.urlopen(req) as resp:
             return json.load(resp)
@@ -120,7 +124,8 @@ def api_request(url: str, payload: dict, token: str | None = None) -> dict:
 DEFAULT_RECEIPT_FONT_SCALE = 1.2
 
 
-def build_receipt_image(username: str, password: str, server_url: str, font_scale: float) -> Path:
+def build_receipt_image(username: str, password: str, server_url: str, font_scale: float,
+                        one_time: bool = False) -> Path:
     from PIL import Image, ImageDraw, ImageFont
 
     width = 384
@@ -173,8 +178,12 @@ def build_receipt_image(username: str, password: str, server_url: str, font_scal
         ("Name", scaled(14), False, False),
         (username, scaled(24), False, False),
         ("", scaled(6), False, False),
-        ("Passwort", scaled(14), False, False),
+        ("Einmal-Passwort" if one_time else "Passwort", scaled(14), False, False),
         (password, scaled(24), False, False),
+        # Nach einem Reset muss beim ersten Login ein eigenes Passwort gewählt werden.
+        *([("", scaled(6), False, False),
+           ("Beim Login wählst du", scaled(13), False, False),
+           ("ein neues Passwort.", scaled(13), False, False)] if one_time else []),
         ("RULE", 0, False, False),
         (domain, scaled(14), False, True),
         (date.today().isoformat(), scaled(12), False, True),
@@ -262,6 +271,10 @@ def main() -> None:
         "--reprint", action="store_true",
         help="Zuletzt angelegten Account erneut drucken (kein neuer Account, keine username/age_group nötig) — z.B. wenn der Druck vorher fehlgeschlagen ist",
     )
+    parser.add_argument(
+        "--reset-password", action="store_true",
+        help="Bestehenden Account zurücksetzen: neues Einmal-Passwort erzeugen und drucken (nur username nötig) — z.B. wenn jemand Passwort und Zettel verloren hat",
+    )
     args = parser.parse_args()
 
     env = load_env_file(SCRIPT_DIR / ".env")
@@ -272,11 +285,38 @@ def main() -> None:
     except ValueError:
         sys.exit(f"RECEIPT_FONT_SCALE in .env ist keine Zahl: {env.get('RECEIPT_FONT_SCALE')!r}")
 
+    one_time = False
     if args.reprint:
         account = load_last_account()
         username = account["username"]
         password = account["password"]
+        one_time = bool(account.get("oneTime"))
         print(f"Drucke zuletzt angelegten Account erneut: '{username}'")
+    elif args.reset_password:
+        if not args.username:
+            parser.error("username ist nötig für --reset-password")
+
+        server_url = normalize_server_url(server_url_raw) if server_url_raw else ""
+        if not server_url:
+            sys.exit("ACCOUNT_SERVER_URL fehlt (in scripts/local-tools/.env setzen oder --server-url übergeben).")
+
+        admin_password = env.get("ADMIN_PASSWORD") or getpass.getpass("Admin-Passwort der Website: ")
+        token = api_request(f"{server_url}/api/admin/login", {"password": admin_password})["token"]
+
+        users = api_request(f"{server_url}/api/admin/users", token=token, method="GET")["users"]
+        match = [u for u in users if u["username"].lower() == args.username.lower()]
+        if not match:
+            sys.exit(f"Kein Account mit dem Benutzernamen '{args.username}' gefunden.")
+        user = match[0]
+
+        # Das Passwort lässt sich nicht auslesen (auf dem Server liegt nur ein Hash) — der Server
+        # erzeugt deshalb ein neues Einmal-Passwort; das alte gilt ab jetzt nicht mehr.
+        reset = api_request(f"{server_url}/api/admin/users/{user['id']}/reset-password", {}, token=token)
+        username = user["username"]
+        password = reset["temporaryPassword"]
+        one_time = True
+        print(f"Passwort von '{username}' zurückgesetzt. Einmal-Passwort: {password}")
+        save_last_account(username, password, user["ageGroup"], server_url_raw, one_time=True)
     else:
         if not args.username or not args.age_group:
             parser.error("username und age_group sind nötig (außer bei --reprint)")
@@ -308,7 +348,7 @@ def main() -> None:
     if not printer_address:
         sys.exit("MXW01_PRINTER_ADDRESS fehlt (in scripts/local-tools/.env setzen oder --printer-address übergeben).")
 
-    image_path = build_receipt_image(username, password, server_url_raw, font_scale)
+    image_path = build_receipt_image(username, password, server_url_raw, font_scale, one_time)
     try:
         print_receipt(image_path, printer_address)
     finally:

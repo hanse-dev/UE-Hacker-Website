@@ -5,13 +5,6 @@ nächsten Themen. Diese Datei wird nicht automatisch geladen.
 
 ## Offen
 
-- [ ] Passwort-Änderung meldet andere Geräte nicht ab (HANDOFF 3.101): User-Tokens sind zustandslos
-      (`api/src/auth.js`, 30 Tage gültig), eine bestehende Sitzung bleibt also auch nach einem
-      neuen Passwort gültig — egal ob der Nutzer selbst oder der Admin es setzt. Nicht gleich
-      mitgebaut, weil es eine neue DB-Spalte und eine DB-Abfrage in `requireUser` braucht.
-      Vorschlag: Spalte `password_changed_at` (`ALTER TABLE` in `db.js`), `iat` ins Token, in
-      `requireUser` Tokens mit `iat < password_changed_at` ablehnen; beim eigenen Ändern ein
-      frisches Token zurückgeben.
 - [ ] Offen aus der Inhaltsprüfung (HANDOFF 3.98, Details im Archiv):
       - **EN nachziehen:** Die englischen Themen Pferde/Sci-Fi (Woche 6–10) enthalten weiter die
         Abenteuer-Reste, die in DE ersetzt wurden (`gilde`, `monster`, `questlog`, "Duell"); EN

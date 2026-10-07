@@ -2513,21 +2513,38 @@ Woche 6 aus einem gemeinsamen Skelett.
   die erwartete Ausgabe geprüft.
 - Offen (in `todo.md`): Aufgabenmengen in Debug/Missionen/Extra-Herausforderungen Woche 2–4.
 
-### 3.101 — Eigenes Passwort ändern (Branch `kennwort-aendern`)
+### 3.101 — Eigenes Passwort ändern + Reset per Einmal-Passwort (Branch `kennwort-aendern`)
 
-Eingeloggte Nutzer können ihr Passwort selbst ändern; vorher ging das nur über den Admin
-(`PATCH /api/admin/users/:id`).
+Eingeloggte Nutzer können ihr Passwort selbst ändern; der Admin kann es mit einem Klick (oder per
+Druck-Skript) zurücksetzen. Vorgabe des Nutzers: keine Personendaten in der App — also kein
+Mail-Reset, keine Sicherheitsfragen.
 
-- **API:** `POST /api/password` in `api/src/routes/auth.js`, hinter `requireUser`. Body
-  `{ currentPassword, newPassword }`, Antwort `204`. Gleiche Längenregel wie beim Admin (4–200
-  Zeichen). Falsches aktuelles Passwort → `403` (nicht `401`: das Token ist gültig, das Frontend
-  soll die Sitzung nicht verwerfen).
-- **Frontend:** Button „Passwort ändern“ im Konto-Abschnitt des Einstellungs-Modals (`App.vue`),
-  nur bei Login sichtbar. Formular mit aktuellem Passwort, neuem Passwort und Wiederholung;
-  Wiederholung und Mindestlänge werden schon im Browser geprüft. Verstecktes `username`-Feld für
-  Passwort-Manager (Regel aus 3.64). `changePassword()` in `useAuth.js`, `changeUserPassword()`
-  in `useAuthApi.js`.
-- **Bewusst nicht gebaut:** Tokens sind zustandslos (HMAC, 30 Tage) — nach einer Passwort-Änderung
-  bleiben Sitzungen auf anderen Geräten gültig. Steht in `todo.md`.
-- **Tests:** `tests/api-auth.spec.js` („Passwort ändern …“), `tests/auth-ui.spec.js` („Optionen:
-  eingeloggt das eigene Passwort ändern“) — beide in `npm run test:auth`.
+- **Selbst ändern:** `POST /api/password` (`requireUser`), Body `{ currentPassword, newPassword }`,
+  Antwort `{ token, user }`. Längenregel wie beim Admin (4–200). Falsches aktuelles Passwort →
+  `403` (nicht `401`: das Token ist gültig, das Frontend soll die Sitzung nicht verwerfen). Neues =
+  aktuelles Passwort → `400` (sonst ließe sich ein Einmal-Passwort behalten). Button „Passwort
+  ändern“ im Konto-Abschnitt des Einstellungs-Modals (`App.vue`), verstecktes `username`-Feld für
+  Passwort-Manager (Regel aus 3.64).
+- **Reset durch den Admin:** `POST /api/admin/users/:id/reset-password` erzeugt serverseitig ein
+  Einmal-Passwort (`api/src/tempPassword.js`, Format `Igel-Zug-79` wie im Druck-Skript), setzt
+  `must_change_password = 1` und gibt es genau einmal im Klartext zurück. Admin-Panel: Button
+  „Passwort zurücksetzen“ je Nutzer, Anzeige des Einmal-Passworts, Badge „Einmal-Passwort aktiv“.
+- **Zwangswechsel:** Login/`/api/me` liefern `user.mustChangePassword`. Solange es gesetzt ist,
+  öffnet `App.vue` das Passwort-Formular von selbst (auch nach Reload) und lässt es nicht schließen
+  — einziger Ausweg ist Abmelden. Direkt nach dem Login wird das aktuelle Passwort nicht nochmal
+  abgefragt. Die Sperre ist bewusst nur im Frontend: es geht um den eigenen Account, die
+  API-Endpunkte bleiben mit dem Einmal-Passwort-Token nutzbar.
+- **Alte Sitzungen enden:** Tokens tragen jetzt `iat`; `requireUser` liest `password_changed_at`
+  und lehnt ältere Tokens ab (eine DB-Abfrage pro Request). Gesetzt wird die Spalte beim eigenen
+  Ändern, beim Reset und beim Admin-`PATCH` mit Passwort. Tokens ohne `iat` (vor diesem Stand
+  ausgestellt) bleiben gültig, bis das Passwort das erste Mal geändert wird — ein Deploy meldet
+  also niemanden ab.
+- **DB:** neue Spalten `users.must_change_password`, `users.password_changed_at` mit `ALTER TABLE`
+  in `db.js`; Fortschritts-Vertrag neu eingefroren.
+- **Druck-Skript:** `create-account-printout.py --reset-password <benutzername>` sucht den Account,
+  ruft den Reset-Endpunkt auf und druckt einen Beleg „Einmal-Passwort“. `--no-print`/`--reprint`
+  funktionieren auch hier.
+- **Tests:** `tests/api-auth.spec.js` (Ändern, Reset, Migration einer alten `users`-Tabelle),
+  `tests/auth-ui.spec.js` (Ändern in den Optionen, Reset im Admin-Panel → Zwangswechsel) — alle in
+  `npm run test:auth`. Das Druck-Skript hat keinen automatischen Test (lokales Tool); von Hand mit
+  `--no-print` gegen die Test-API geprüft.

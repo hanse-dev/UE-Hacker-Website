@@ -47,6 +47,8 @@
       class="login-backdrop"
       @click.self="closeSettings"
     >
+      <!-- Mit Einmal-Passwort angemeldet (mustChangePassword): Dialog lässt sich erst nach dem
+           Passwortwechsel schließen, einziger Ausweg ist Abmelden. -->
       <div
         class="login-modal settings-modal"
         role="dialog"
@@ -55,7 +57,7 @@
       >
         <div class="settings-header">
           <h2>{{ showLoginForm ? t('auth.loginTitle') : showPasswordForm ? t('auth.changePassword') : t('settings.title') }}</h2>
-          <button type="button" class="settings-close" :aria-label="t('settings.close')" @click="closeSettings">
+          <button v-if="!mustChangePassword" type="button" class="settings-close" :aria-label="t('settings.close')" @click="closeSettings">
             ×
           </button>
         </div>
@@ -107,7 +109,7 @@
 
         <template v-else-if="showPasswordForm">
           <form class="password-form" @submit.prevent="submitPassword">
-            <p class="login-hint">{{ t('auth.changePasswordHint') }}</p>
+            <p class="login-hint">{{ mustChangePassword ? t('auth.mustChangeHint') : t('auth.changePasswordHint') }}</p>
             <!-- Verstecktes Username-Feld, damit Passwort-Manager den Eintrag zuordnen (HANDOFF 3.64). -->
             <input
               type="text"
@@ -117,7 +119,8 @@
               readonly
               hidden
             >
-            <label class="login-field">
+            <!-- Direkt nach dem Login mit Einmal-Passwort ist es schon bekannt — nicht nochmal abfragen. -->
+            <label v-if="!currentFromLogin" class="login-field">
               <span>{{ t('auth.currentPassword') }}</span>
               <input
                 v-model="currentPassword"
@@ -146,7 +149,10 @@
             </label>
             <p v-if="passwordFormError || authError" class="login-error">{{ passwordFormError || authError }}</p>
             <div class="login-actions">
-              <button type="button" class="auth-btn ghost" @click="closePasswordForm">
+              <button v-if="mustChangePassword" type="button" class="auth-btn ghost" @click="doLogout">
+                {{ t('auth.logout') }}
+              </button>
+              <button v-else type="button" class="auth-btn ghost" @click="closePasswordForm">
                 {{ t('auth.cancel') }}
               </button>
               <button type="submit" class="auth-btn primary" :disabled="authBusy">
@@ -193,7 +199,7 @@
 </template>
 
 <script>
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useLanguage } from './composables/useLanguage.js';
 import { DEV_SKIP_CHECKS } from './composables/devSkipChecks.js';
@@ -230,9 +236,12 @@ export default {
     const newPasswordRepeat = ref('');
     const passwordFormError = ref('');
     const passwordChanged = ref(false);
+    const currentFromLogin = ref(false);
+    const mustChangePassword = computed(() => isLoggedIn.value && Boolean(user.value?.mustChangePassword));
 
     const closePasswordForm = () => {
       showPasswordForm.value = false;
+      currentFromLogin.value = false;
       currentPassword.value = '';
       newPassword.value = '';
       newPasswordRepeat.value = '';
@@ -257,6 +266,10 @@ export default {
         passwordFormError.value = t('auth.passwordMismatch');
         return;
       }
+      if (newPassword.value === currentPassword.value) {
+        passwordFormError.value = t('auth.passwordSame');
+        return;
+      }
       const ok = await changePassword(currentPassword.value, newPassword.value);
       if (ok) {
         closePasswordForm();
@@ -264,7 +277,16 @@ export default {
       }
     };
 
+    // Einmal-Passwort aktiv (nach Login oder Seiten-Reload): Formular erzwingen.
+    watch(mustChangePassword, (must) => {
+      if (!must) return;
+      settingsOpen.value = true;
+      showPasswordForm.value = true;
+      passwordChanged.value = false;
+    }, { immediate: true });
+
     const openSettings = () => {
+      if (mustChangePassword.value) return;
       showLoginForm.value = false;
       closePasswordForm();
       passwordChanged.value = false;
@@ -273,6 +295,7 @@ export default {
     };
 
     const closeSettings = () => {
+      if (mustChangePassword.value) return;
       settingsOpen.value = false;
       showLoginForm.value = false;
       closePasswordForm();
@@ -285,6 +308,10 @@ export default {
     const submitLogin = async () => {
       const ok = await login(loginUsername.value.trim(), loginPassword.value);
       if (ok) {
+        if (mustChangePassword.value) {
+          currentPassword.value = loginPassword.value;
+          currentFromLogin.value = true;
+        }
         loginUsername.value = '';
         loginPassword.value = '';
         showLoginForm.value = false;
@@ -292,6 +319,7 @@ export default {
     };
 
     const doLogout = () => {
+      closePasswordForm();
       passwordChanged.value = false;
       logout();
     };
@@ -327,6 +355,8 @@ export default {
       newPasswordRepeat,
       passwordFormError,
       passwordChanged,
+      currentFromLogin,
+      mustChangePassword,
       openPasswordForm,
       closePasswordForm,
       submitPassword,

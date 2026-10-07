@@ -20,7 +20,9 @@ db.exec(`
     password_hash TEXT NOT NULL,
     age_group TEXT NOT NULL CHECK (age_group IN ('kinder', 'jugendliche')),
     created_at TEXT NOT NULL,
-    updated_at TEXT NOT NULL
+    updated_at TEXT NOT NULL,
+    must_change_password INTEGER NOT NULL DEFAULT 0,
+    password_changed_at TEXT
   );
 
   CREATE TABLE IF NOT EXISTS progress (
@@ -44,5 +46,15 @@ db.exec(`
     updated_at TEXT NOT NULL
   );
 `);
+
+// Migrationen für Datenbanken, die vor der jeweiligen Spalte angelegt wurden
+// (CREATE TABLE IF NOT EXISTS ergänzt bestehende Tabellen nicht).
+const userColumns = new Set(db.prepare('PRAGMA table_info(users)').all().map((c) => c.name));
+if (!userColumns.has('must_change_password')) {
+  db.exec('ALTER TABLE users ADD COLUMN must_change_password INTEGER NOT NULL DEFAULT 0');
+}
+if (!userColumns.has('password_changed_at')) {
+  db.exec('ALTER TABLE users ADD COLUMN password_changed_at TEXT');
+}
 
 export default db;

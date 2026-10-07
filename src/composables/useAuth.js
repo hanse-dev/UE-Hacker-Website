@@ -52,7 +52,11 @@ export function useAuth() {
     busy.value = true;
     error.value = '';
     try {
-      await changeUserPassword(currentPassword, newPassword);
+      // Der Server stellt ein frisches Token aus; alle älteren (auch auf anderen Geräten) verfallen.
+      const data = await changeUserPassword(currentPassword, newPassword);
+      setUserSession(data.token, data.user);
+      token.value = data.token;
+      user.value = data.user;
       return true;
     } catch (e) {
       error.value = e.message || 'Passwort konnte nicht geändert werden.';

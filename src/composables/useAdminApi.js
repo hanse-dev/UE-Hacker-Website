@@ -62,6 +62,10 @@ export function updateUser(id, payload) {
   return request(`/api/admin/users/${id}`, { method: 'PATCH', body: payload });
 }
 
+export function resetUserPassword(id) {
+  return request(`/api/admin/users/${id}/reset-password`, { method: 'POST' });
+}
+
 export function deleteUser(id) {
   return request(`/api/admin/users/${id}`, { method: 'DELETE' });
 }

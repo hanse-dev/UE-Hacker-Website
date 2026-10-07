@@ -27,6 +27,12 @@ export default {
   'admin.empty': 'No users yet.',
   'admin.error': 'Something went wrong.',
   'admin.confirmDelete': 'Really delete user “{name}”?',
+  'admin.resetPassword': 'Reset password',
+  'admin.confirmReset': 'Reset the password of “{name}”? The old password stops working and the account is logged out on all devices.',
+  'admin.resetResult': 'One-time password for “{name}”:',
+  'admin.resetResultHint': 'Shown only now. A new password must be chosen at the next login.',
+  'admin.resetResultClose': 'Hide',
+  'admin.mustChange': 'One-time password active',
   'admin.col.username': 'Username',
   'admin.col.age': 'Group',
   'admin.col.updated': 'Updated',
@@ -70,6 +76,8 @@ export default {
   'auth.passwordTooShort': 'The new password needs at least 4 characters.',
   'auth.passwordChanged': 'Password changed.',
   'auth.save': 'Save',
+  'auth.passwordSame': 'The new password must be different from the current one.',
+  'auth.mustChangeHint': 'You logged in with a one-time password. Now choose your own password (at least 4 characters) and remember it well.',
 
   // ── Settings ────────────────────────────────────────────────────────────
   'settings.open': 'Options',
