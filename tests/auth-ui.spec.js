@@ -156,6 +156,63 @@ test.describe('UI: Admin + Header-Login', () => {
     await expect(page.locator('.settings-modal .auth-btn.primary', { hasText: /Anmelden|Log in/ })).toBeVisible();
   });
 
+  test('Optionen: eingeloggt das eigene Passwort ändern', async ({ page, request }) => {
+    const username = `pwui_${Date.now()}`;
+    const adminLogin = await request.post(`${API}/api/admin/login`, {
+      data: { password: ADMIN_PASSWORD },
+    });
+    const { token: adminToken } = await adminLogin.json();
+    await request.post(`${API}/api/admin/users`, {
+      headers: { Authorization: `Bearer ${adminToken}` },
+      data: { username, password: 'pass1234', ageGroup: 'jugendliche' },
+    });
+
+    await page.goto('/');
+    await page.locator('.options-btn').click();
+    const modal = page.locator('.settings-modal');
+
+    // Ohne Login gibt es die Funktion nicht.
+    await expect(modal.locator('.change-password-btn')).toHaveCount(0);
+
+    await modal.locator('.auth-btn.primary', { hasText: /Anmelden|Log in/ }).click();
+    await modal.locator('input').nth(0).fill(username);
+    await modal.locator('input[type="password"]').fill('pass1234');
+    await modal.locator('.auth-btn.primary').click();
+    await expect(modal).toContainText(username);
+
+    await modal.locator('.change-password-btn').click();
+    const form = modal.locator('.password-form');
+    await expect(form).toBeVisible();
+
+    // Wiederholung stimmt nicht → Hinweis, nichts wird geändert.
+    await form.locator('input[name="current-password"]').fill('pass1234');
+    await form.locator('input[name="new-password"]').fill('neu12345');
+    await form.locator('input[name="new-password-repeat"]').fill('neu99999');
+    await form.locator('.auth-btn.primary').click();
+    await expect(form.locator('.login-error')).toContainText(/stimmen nicht überein|do not match/);
+
+    // Falsches aktuelles Passwort → Fehler vom Server, Sitzung bleibt bestehen.
+    await form.locator('input[name="current-password"]').fill('falsch');
+    await form.locator('input[name="new-password-repeat"]').fill('neu12345');
+    await form.locator('.auth-btn.primary').click();
+    await expect(form.locator('.login-error')).toContainText('Aktuelles Passwort ist falsch');
+
+    await form.locator('input[name="current-password"]').fill('pass1234');
+    await form.locator('.auth-btn.primary').click();
+    await expect(form).toHaveCount(0);
+    await expect(modal.locator('.login-success')).toContainText(/Passwort geändert|Password changed/);
+    await expect(modal).toContainText(username);
+
+    const oldLogin = await request.post(`${API}/api/login`, {
+      data: { username, password: 'pass1234' },
+    });
+    expect(oldLogin.status()).toBe(401);
+    const newLogin = await request.post(`${API}/api/login`, {
+      data: { username, password: 'neu12345' },
+    });
+    expect(newLogin.ok()).toBeTruthy();
+  });
+
   test('Zertifikat-PDF: Download-Button erscheint erst nach Login und liefert eine PDF-Datei', async ({ page, request }) => {
     test.setTimeout(60000);
     const username = `certpdf_${Date.now()}`;

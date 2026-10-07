@@ -62,6 +62,13 @@ export function loginUser(username, password) {
   });
 }
 
+export function changeUserPassword(currentPassword, newPassword) {
+  return request('/api/password', {
+    method: 'POST',
+    body: { currentPassword, newPassword },
+  });
+}
+
 export function fetchMe() {
   return request('/api/me');
 }

@@ -61,6 +61,15 @@ export default {
   'auth.password': 'Passwort',
   'auth.cancel': 'Abbrechen',
   'auth.working': 'Bitte warten…',
+  'auth.changePassword': 'Passwort ändern',
+  'auth.changePasswordHint': 'Mindestens 4 Zeichen. Merk dir das neue Passwort gut — sonst kann nur dein Kursleiter ein neues setzen.',
+  'auth.currentPassword': 'Aktuelles Passwort',
+  'auth.newPassword': 'Neues Passwort',
+  'auth.newPasswordRepeat': 'Neues Passwort wiederholen',
+  'auth.passwordMismatch': 'Die beiden neuen Passwörter stimmen nicht überein.',
+  'auth.passwordTooShort': 'Das neue Passwort braucht mindestens 4 Zeichen.',
+  'auth.passwordChanged': 'Passwort geändert.',
+  'auth.save': 'Speichern',
 
   // ── Einstellungen ───────────────────────────────────────────────────────
   'settings.open': 'Optionen',

@@ -111,6 +111,61 @@ test.describe('API: Admin + Auth + Progress', () => {
     expect(loginGone.status()).toBe(401);
   });
 
+  test('Passwort ändern: nur mit Login und richtigem aktuellen Passwort', async ({ request }) => {
+    const token = await adminToken(request);
+    const username = `pw_${Date.now()}`;
+    const created = await request.post(`${API}/api/admin/users`, {
+      headers: { Authorization: `Bearer ${token}` },
+      data: { username, password: 'pass1234', ageGroup: 'kinder' },
+    });
+    expect(created.status()).toBe(201);
+
+    const login = await request.post(`${API}/api/login`, {
+      data: { username, password: 'pass1234' },
+    });
+    const session = await login.json();
+    const auth = { Authorization: `Bearer ${session.token}` };
+
+    const noToken = await request.post(`${API}/api/password`, {
+      data: { currentPassword: 'pass1234', newPassword: 'neu12345' },
+    });
+    expect(noToken.status()).toBe(401);
+
+    const wrongCurrent = await request.post(`${API}/api/password`, {
+      headers: auth,
+      data: { currentPassword: 'falsch', newPassword: 'neu12345' },
+    });
+    expect(wrongCurrent.status()).toBe(403);
+
+    const tooShort = await request.post(`${API}/api/password`, {
+      headers: auth,
+      data: { currentPassword: 'pass1234', newPassword: 'abc' },
+    });
+    expect(tooShort.status()).toBe(400);
+
+    // Nach den abgelehnten Versuchen gilt weiter das alte Passwort.
+    const stillOld = await request.post(`${API}/api/login`, {
+      data: { username, password: 'pass1234' },
+    });
+    expect(stillOld.ok()).toBeTruthy();
+
+    const changed = await request.post(`${API}/api/password`, {
+      headers: auth,
+      data: { currentPassword: 'pass1234', newPassword: 'neu12345' },
+    });
+    expect(changed.status()).toBe(204);
+
+    const oldLogin = await request.post(`${API}/api/login`, {
+      data: { username, password: 'pass1234' },
+    });
+    expect(oldLogin.status()).toBe(401);
+
+    const newLogin = await request.post(`${API}/api/login`, {
+      data: { username, password: 'neu12345' },
+    });
+    expect(newLogin.ok()).toBeTruthy();
+  });
+
   test('ohne Token kein Admin/Progress', async ({ request }) => {
     const users = await request.get(`${API}/api/admin/users`);
     expect(users.status()).toBe(401);

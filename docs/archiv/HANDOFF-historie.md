@@ -2512,3 +2512,22 @@ Woche 6 aus einem gemeinsamen Skelett.
 - Alle Referenzlösungen und Beispiele der Wochen 2–4 Pferde/Sci-Fi (DE+EN) mit `python3` gegen
   die erwartete Ausgabe geprüft.
 - Offen (in `todo.md`): Aufgabenmengen in Debug/Missionen/Extra-Herausforderungen Woche 2–4.
+
+### 3.101 — Eigenes Passwort ändern (Branch `kennwort-aendern`)
+
+Eingeloggte Nutzer können ihr Passwort selbst ändern; vorher ging das nur über den Admin
+(`PATCH /api/admin/users/:id`).
+
+- **API:** `POST /api/password` in `api/src/routes/auth.js`, hinter `requireUser`. Body
+  `{ currentPassword, newPassword }`, Antwort `204`. Gleiche Längenregel wie beim Admin (4–200
+  Zeichen). Falsches aktuelles Passwort → `403` (nicht `401`: das Token ist gültig, das Frontend
+  soll die Sitzung nicht verwerfen).
+- **Frontend:** Button „Passwort ändern“ im Konto-Abschnitt des Einstellungs-Modals (`App.vue`),
+  nur bei Login sichtbar. Formular mit aktuellem Passwort, neuem Passwort und Wiederholung;
+  Wiederholung und Mindestlänge werden schon im Browser geprüft. Verstecktes `username`-Feld für
+  Passwort-Manager (Regel aus 3.64). `changePassword()` in `useAuth.js`, `changeUserPassword()`
+  in `useAuthApi.js`.
+- **Bewusst nicht gebaut:** Tokens sind zustandslos (HMAC, 30 Tage) — nach einer Passwort-Änderung
+  bleiben Sitzungen auf anderen Geräten gültig. Steht in `todo.md`.
+- **Tests:** `tests/api-auth.spec.js` („Passwort ändern …“), `tests/auth-ui.spec.js` („Optionen:
+  eingeloggt das eigene Passwort ändern“) — beide in `npm run test:auth`.

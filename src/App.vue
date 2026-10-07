@@ -54,13 +54,13 @@
         :aria-label="t('settings.title')"
       >
         <div class="settings-header">
-          <h2>{{ showLoginForm ? t('auth.loginTitle') : t('settings.title') }}</h2>
+          <h2>{{ showLoginForm ? t('auth.loginTitle') : showPasswordForm ? t('auth.changePassword') : t('settings.title') }}</h2>
           <button type="button" class="settings-close" :aria-label="t('settings.close')" @click="closeSettings">
             ×
           </button>
         </div>
 
-        <template v-if="!showLoginForm">
+        <template v-if="!showLoginForm && !showPasswordForm">
           <section class="settings-section">
             <h3>{{ t('settings.language') }}</h3>
             <p class="settings-hint">{{ t('settings.languageHint') }}</p>
@@ -86,7 +86,11 @@
                 {{ user.ageGroup === 'kinder' ? t('admin.age.kinder') : t('admin.age.jugendliche') }}
               </p>
               <p class="settings-hint">{{ t('settings.syncOn') }}</p>
+              <p v-if="passwordChanged" class="login-success" role="status">{{ t('auth.passwordChanged') }}</p>
               <div class="login-actions">
+                <button type="button" class="auth-btn ghost change-password-btn" @click="openPasswordForm">
+                  {{ t('auth.changePassword') }}
+                </button>
                 <button type="button" class="auth-btn ghost" @click="doLogout">{{ t('auth.logout') }}</button>
               </div>
             </template>
@@ -99,6 +103,57 @@
               </div>
             </template>
           </section>
+        </template>
+
+        <template v-else-if="showPasswordForm">
+          <form class="password-form" @submit.prevent="submitPassword">
+            <p class="login-hint">{{ t('auth.changePasswordHint') }}</p>
+            <!-- Verstecktes Username-Feld, damit Passwort-Manager den Eintrag zuordnen (HANDOFF 3.64). -->
+            <input
+              type="text"
+              name="username"
+              autocomplete="username"
+              :value="user?.username"
+              readonly
+              hidden
+            >
+            <label class="login-field">
+              <span>{{ t('auth.currentPassword') }}</span>
+              <input
+                v-model="currentPassword"
+                type="password"
+                name="current-password"
+                autocomplete="current-password"
+              >
+            </label>
+            <label class="login-field">
+              <span>{{ t('auth.newPassword') }}</span>
+              <input
+                v-model="newPassword"
+                type="password"
+                name="new-password"
+                autocomplete="new-password"
+              >
+            </label>
+            <label class="login-field">
+              <span>{{ t('auth.newPasswordRepeat') }}</span>
+              <input
+                v-model="newPasswordRepeat"
+                type="password"
+                name="new-password-repeat"
+                autocomplete="new-password"
+              >
+            </label>
+            <p v-if="passwordFormError || authError" class="login-error">{{ passwordFormError || authError }}</p>
+            <div class="login-actions">
+              <button type="button" class="auth-btn ghost" @click="closePasswordForm">
+                {{ t('auth.cancel') }}
+              </button>
+              <button type="submit" class="auth-btn primary" :disabled="authBusy">
+                {{ authBusy ? t('auth.working') : t('auth.save') }}
+              </button>
+            </div>
+          </form>
         </template>
 
         <template v-else>
@@ -160,6 +215,7 @@ export default {
       busy: authBusy,
       error: authError,
       login,
+      changePassword,
       logout,
       restoreSession,
     } = useAuth();
@@ -168,9 +224,50 @@ export default {
     const showLoginForm = ref(false);
     const loginUsername = ref('');
     const loginPassword = ref('');
+    const showPasswordForm = ref(false);
+    const currentPassword = ref('');
+    const newPassword = ref('');
+    const newPasswordRepeat = ref('');
+    const passwordFormError = ref('');
+    const passwordChanged = ref(false);
+
+    const closePasswordForm = () => {
+      showPasswordForm.value = false;
+      currentPassword.value = '';
+      newPassword.value = '';
+      newPasswordRepeat.value = '';
+      passwordFormError.value = '';
+      authError.value = '';
+    };
+
+    const openPasswordForm = () => {
+      closePasswordForm();
+      passwordChanged.value = false;
+      showPasswordForm.value = true;
+    };
+
+    const submitPassword = async () => {
+      authError.value = '';
+      passwordFormError.value = '';
+      if (newPassword.value.length < 4) {
+        passwordFormError.value = t('auth.passwordTooShort');
+        return;
+      }
+      if (newPassword.value !== newPasswordRepeat.value) {
+        passwordFormError.value = t('auth.passwordMismatch');
+        return;
+      }
+      const ok = await changePassword(currentPassword.value, newPassword.value);
+      if (ok) {
+        closePasswordForm();
+        passwordChanged.value = true;
+      }
+    };
 
     const openSettings = () => {
       showLoginForm.value = false;
+      closePasswordForm();
+      passwordChanged.value = false;
       authError.value = '';
       settingsOpen.value = true;
     };
@@ -178,6 +275,8 @@ export default {
     const closeSettings = () => {
       settingsOpen.value = false;
       showLoginForm.value = false;
+      closePasswordForm();
+      passwordChanged.value = false;
       loginUsername.value = '';
       loginPassword.value = '';
       authError.value = '';
@@ -193,6 +292,7 @@ export default {
     };
 
     const doLogout = () => {
+      passwordChanged.value = false;
       logout();
     };
 
@@ -221,6 +321,15 @@ export default {
       loginUsername,
       loginPassword,
       submitLogin,
+      showPasswordForm,
+      currentPassword,
+      newPassword,
+      newPasswordRepeat,
+      passwordFormError,
+      passwordChanged,
+      openPasswordForm,
+      closePasswordForm,
+      submitPassword,
     };
   },
 };
@@ -420,6 +529,12 @@ export default {
 
 .login-error {
   color: #c0392b;
+  font-size: 0.88em;
+  margin: 0 0 0.75rem;
+}
+
+.login-success {
+  color: #1e7e34;
   font-size: 0.88em;
   margin: 0 0 0.75rem;
 }

@@ -61,6 +61,15 @@ export default {
   'auth.password': 'Password',
   'auth.cancel': 'Cancel',
   'auth.working': 'Please wait…',
+  'auth.changePassword': 'Change password',
+  'auth.changePasswordHint': 'At least 4 characters. Remember your new password — otherwise only your course leader can set a new one.',
+  'auth.currentPassword': 'Current password',
+  'auth.newPassword': 'New password',
+  'auth.newPasswordRepeat': 'Repeat new password',
+  'auth.passwordMismatch': 'The two new passwords do not match.',
+  'auth.passwordTooShort': 'The new password needs at least 4 characters.',
+  'auth.passwordChanged': 'Password changed.',
+  'auth.save': 'Save',
 
   // ── Settings ────────────────────────────────────────────────────────────
   'settings.open': 'Options',

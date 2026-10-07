@@ -46,6 +46,33 @@ router.get('/me', requireUser, (req, res) => {
   });
 });
 
+// Eigenes Passwort ändern: nur mit Login und nur, wenn das aktuelle Passwort stimmt.
+router.post('/password', requireUser, (req, res) => {
+  const currentPassword = String(req.body?.currentPassword || '');
+  const newPassword = String(req.body?.newPassword || '');
+
+  if (!currentPassword || !newPassword) {
+    return res.status(400).json({ error: 'Aktuelles und neues Passwort nötig.' });
+  }
+  if (newPassword.length < 4 || newPassword.length > 200) {
+    return res.status(400).json({ error: 'Passwort: mindestens 4 Zeichen.' });
+  }
+
+  const row = db.prepare('SELECT id, password_hash FROM users WHERE id = ?').get(req.user.userId);
+  if (!row) return res.status(401).json({ error: 'Nutzer nicht gefunden.' });
+
+  // 403 statt 401: das Token ist gültig, die Sitzung soll im Frontend bestehen bleiben.
+  if (!bcrypt.compareSync(currentPassword, row.password_hash)) {
+    return res.status(403).json({ error: 'Aktuelles Passwort ist falsch.' });
+  }
+
+  db.prepare(`
+    UPDATE users SET password_hash = ?, updated_at = ? WHERE id = ?
+  `).run(bcrypt.hashSync(newPassword, 10), new Date().toISOString(), row.id);
+
+  return res.status(204).send();
+});
+
 router.get('/progress', requireUser, (req, res) => {
   const row = db.prepare(`
     SELECT payload, updated_at FROM progress WHERE user_id = ?

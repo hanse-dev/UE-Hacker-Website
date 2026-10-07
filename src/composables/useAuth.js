@@ -1,5 +1,6 @@
 import { ref, computed, readonly } from 'vue';
 import {
+  changeUserPassword,
   clearUserSession,
   fetchMe,
   getUserInfo,
@@ -47,6 +48,20 @@ export function useAuth() {
     }
   };
 
+  const changePassword = async (currentPassword, newPassword) => {
+    busy.value = true;
+    error.value = '';
+    try {
+      await changeUserPassword(currentPassword, newPassword);
+      return true;
+    } catch (e) {
+      error.value = e.message || 'Passwort konnte nicht geändert werden.';
+      return false;
+    } finally {
+      busy.value = false;
+    }
+  };
+
   const logout = () => {
     clearUserSession();
     token.value = '';
@@ -76,6 +91,7 @@ export function useAuth() {
     openLogin,
     closeLogin,
     login,
+    changePassword,
     logout,
     restoreSession,
   };
