@@ -49,3 +49,17 @@ Wie lange muss das Auto drehen, damit es genau nach links schaut? Das ist bei je
 ## Zwei Knöpfe, zwei Richtungen
 
 Knopf **B** ist noch frei. Baut für ihn dasselbe wie für Knopf A, nur mit vertauschten Richtungen. Dann dreht A nach links und B nach rechts.
+
+## Bonus: Der weite Bogen
+
+Bisher dreht euer Auto auf der Stelle. Jetzt soll es wie auf einer Rennstrecke eine weite Kurve fahren. Wer schafft einen ganzen Kreis, der am Startpunkt endet?
+
+<details>
+<summary>Tipps anzeigen</summary>
+
+- Schaut in die Tabelle oben, letzte Zeile: Bei einem Bogen drehen **beide** Räder vorwärts, nur unterschiedlich schnell.
+- Das Auto biegt immer zu der Seite ab, auf der das langsamere Rad sitzt.
+- Je größer der Unterschied zwischen den beiden Tempos, desto enger wird der Bogen. Probiert verschiedene Paare aus.
+- Für den ganzen Kreis sucht ihr die passende Wartezeit, genau wie bei der Vierteldrehung. Markiert den Startpunkt mit einem Stück Klebeband.
+
+</details>

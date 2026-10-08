@@ -61,3 +61,7 @@ Baut mit einem anderen Team eine Strecke mit Start, Ziel und mindestens zwei Kur
 ## Auftrag 5: Eure eigene Idee
 
 Ein Auto, das tanzt? Das einparkt? Das bei Dunkelheit das Licht einschaltet? Schreibt eure Idee zuerst als Plan in Worten auf und zeigt sie eurer Kursleitung.
+
+## Bonus: Noch ein Auftrag
+
+Zwei Aufträge sind geschafft und es ist noch Zeit? Dann löst einen dritten. Oder verbindet zwei Aufträge zu einem Programm.

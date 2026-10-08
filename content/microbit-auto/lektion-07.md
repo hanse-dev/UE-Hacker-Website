@@ -80,3 +80,29 @@ while True:
 :::
 
 > Dieses Programm fährt ohne Startknopf los, sobald der Schalter auf ON steht. Haltet das Auto fest oder stellt es erst danach auf den Boden.
+
+## Bonus: Die Ampel
+
+Das Auto zeigt mit den Scheinwerfern, was es gerade sieht: **Grün** bei freier Fahrt, **Rot**, sobald etwas im Weg ist.
+
+<details>
+<summary>Tipps anzeigen</summary>
+
+- Euer Programm unterscheidet schon zwei Fälle: Hindernis oder freie Fahrt. In jeden der beiden Fälle kommt zusätzlich ein Befehl für die Scheinwerfer.
+- Die Befehle für die Scheinwerfer kennt ihr aus Stufe 2.
+
+:::bloecke
+
+Im Block **RGB** gibt es die Farbe `green`. Ihr braucht den Block für beide Scheinwerfer, `LED_L` und `LED_R`.
+
+:::
+
+:::python
+
+Denkt an das Mischen der Farben: Leuchtet Grün noch, wenn Rot dazukommt, wird es gelb. Und nicht vergessen: 0 ist hell, 255 ist aus.
+
+:::
+
+- Für Profis: Baut eine dritte Stufe ein. Zwischen 15 und 30 cm leuchtet die Ampel gelb, und das Auto fährt langsamer.
+
+</details>

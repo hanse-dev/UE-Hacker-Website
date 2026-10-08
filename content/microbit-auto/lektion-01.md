@@ -87,3 +87,26 @@ display.show(Image.HEART)
 :::
 
 Klappt das Verbinden nicht? Dann speichert das Programm als Datei und zieht sie auf das Laufwerk **MICROBIT**.
+
+## Bonus: Ein anderes Bild
+
+Das Herz kennt ihr jetzt. Lasst den micro:bit ein anderes Bild zeigen, das zu eurem Team passt.
+
+<details>
+<summary>Tipps anzeigen</summary>
+
+:::bloecke
+
+Klickt im Block **zeige Symbol** auf das kleine Bild. Es klappt eine Auswahl mit vielen Symbolen auf.
+
+:::
+
+:::python
+
+Löscht `HEART` und tippt hinter `Image.` einen Punkt neu. Der Editor schlägt euch dann alle Bilder vor, zum Beispiel `DUCK`, `GHOST` oder `ROLLERSKATE`.
+
+:::
+
+Ein neues Bild erscheint erst, wenn ihr das Programm noch einmal übertragt.
+
+</details>

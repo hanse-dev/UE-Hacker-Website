@@ -58,3 +58,17 @@ Das Auto misst keine Strecke. Es schaltet die Motoren ein, wartet und schaltet s
 - **Nichts bewegt sich:** Steht der Schalter auf ON? Sind die Batterien voll?
 - **Das Auto fährt eine Kurve statt geradeaus:** Die Motoren sind nie ganz gleich stark. Gebt dem schwächeren Rad ein paar Punkte mehr Tempo.
 - **Es brummt nur:** Das Tempo ist zu klein. Unter etwa 40 kommt das Auto kaum los.
+
+## Bonus: Sanft anfahren
+
+Echte Autos geben nicht sofort Vollgas. Euer Auto soll langsam losfahren und in drei Schritten schneller werden, ohne zwischendurch anzuhalten. Am Ende bleibt es stehen.
+
+<details>
+<summary>Tipps anzeigen</summary>
+
+- Ein Motor behält sein Tempo, bis er ein neues bekommt. Ihr müsst zwischen den Schritten nicht stoppen: Gebt beiden Motoren einfach ein höheres Tempo.
+- Legt drei Tempos fest, zum Beispiel ein langsames, ein mittleres und ein schnelles. Zwischen den Schritten wartet das Auto kurz, damit man den Unterschied sieht.
+- Hört genau hin: Das Motorgeräusch wird mit jedem Schritt höher.
+- Für Profis: Geht das auch rückwärts, also sanft abbremsen statt hart stoppen?
+
+</details>

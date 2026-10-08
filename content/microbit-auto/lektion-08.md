@@ -60,3 +60,40 @@ while True:
 Baut aus Büchern oder Kartons eine kleine Arena. Beobachtet das Auto eine Minute lang und notiert, wo es hängen bleibt. Ändert danach immer nur **eine** Zahl und testet neu. So merkt ihr, was die Änderung bewirkt hat.
 
 Der Sensor sieht nur, was direkt vor ihm liegt. Schräge Wände, Stuhlbeine und weiche Stoffe erkennt er schlecht.
+
+## Bonus: Mal links, mal rechts
+
+Im Moment weicht euer Auto immer zur selben Seite aus. In einer Ecke kann es sich so festfahren. Lasst den Zufall entscheiden, ob es nach links oder nach rechts dreht.
+
+<details>
+<summary>Tipps anzeigen</summary>
+
+Ihr braucht einen Würfel mit zwei Seiten:
+
+:::bloecke
+
+```bloecke
+[mathematik] wähle eine zufällige Zahl von 0 bis 1
+```
+
+Den Block findet ihr unter **Mathematik**.
+
+:::
+
+:::python
+
+```python
+import random
+
+zahl = random.randint(0, 1)
+```
+
+Die Zeile `import random` gehört ganz nach oben zu den anderen `import`-Zeilen.
+
+:::
+
+- Merkt euch die gewürfelte Zahl in einer Variable.
+- Dann entscheidet eine Bedingung: Bei 0 dreht das Auto nach links, sonst nach rechts.
+- Gewürfelt wird jedes Mal neu, wenn ein Hindernis auftaucht, nicht nur einmal am Anfang.
+
+</details>

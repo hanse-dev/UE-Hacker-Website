@@ -52,3 +52,28 @@ Hebt die Tabelle gut auf. In der nächsten Stufe baut ihr damit den Linienfolger
 ## Wenn die Zahl sich nicht ändert
 
 Neben jedem Sensor sitzt eine kleine Stellschraube. Dreht sie vorsichtig mit dem Schraubendreher, bis die kleine Lampe daneben über Weiß leuchtet und über Schwarz ausgeht. Helles Sonnenlicht stört die Sensoren.
+
+## Bonus: Der Pfeil zur Linie
+
+Eine Zahl muss man erst übersetzen. Ein Pfeil ist sofort klar: Der micro:bit soll einen Pfeil zu der Seite zeigen, auf der die Linie liegt. Sehen beide Sensoren die Linie, zeigt er ein Häkchen oder ein Herz.
+
+<details>
+<summary>Tipps anzeigen</summary>
+
+- Eure Tabelle sagt euch, welche Zahl zu welcher Seite gehört. Für jede Zeile der Tabelle braucht ihr eine Bedingung.
+
+:::bloecke
+
+Unter **Grundlagen** gibt es den Block **zeige Pfeil**. Die Richtungen heißen dort wie auf einer Landkarte: Westen ist links, Osten ist rechts.
+
+:::
+
+:::python
+
+Pfeile gibt es als Bilder: `Image.ARROW_W` zeigt nach links (Westen), `Image.ARROW_E` nach rechts (Osten).
+
+:::
+
+- Achtung, Denkfalle: Der micro:bit schaut im Auto nach vorn. Was für euch links aussieht, ist für das Auto rechts. Prüft, ob der Pfeil aus Sicht des Autos stimmt.
+
+</details>

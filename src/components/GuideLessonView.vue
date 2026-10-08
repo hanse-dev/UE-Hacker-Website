@@ -285,6 +285,20 @@ export default {
   text-align: left;
 }
 
+.lesson-content :deep(details) {
+  margin: 12px 0;
+  padding: 10px 14px;
+  border: 1px dashed var(--primary-purple, #4a2274);
+  border-radius: 6px;
+  background: #faf7fd;
+}
+
+.lesson-content :deep(summary) {
+  font-weight: 600;
+  color: var(--primary-purple, #4a2274);
+  cursor: pointer;
+}
+
 .modus-bloecke .lesson-content :deep(.variante-python),
 .modus-python .lesson-content :deep(.variante-bloecke) {
   display: none;

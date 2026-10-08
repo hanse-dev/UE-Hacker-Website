@@ -409,6 +409,11 @@ Ordner-Mapping (immer paarweise anpassen):
       `:::python` und `:::` (jede Markierung als eigener Absatz mit Leerzeile davor und danach).
       Jeder Code steht in so einem Abschnitt, und jede Lektion hat gleich viele Blöcke- wie
       Python-Abschnitte (`tests/microbit-auto.spec.js` prüft das).
+- [ ] Jede Bonusaufgabe (`isBonus`) hat am Ende der Lektion einen Abschnitt `## Bonus: <Titel>` mit
+      klarer Aufgabenstellung. Tipps stehen darunter eingeklappt in `<details><summary>Tipps
+      anzeigen</summary>` … `</details>` (Leerzeile nach `<summary>`-Zeile und vor `</details>`,
+      sonst wird das Markdown darin nicht gerendert). Tipps nennen neue Bausteine und Denkschritte,
+      zeigen aber nie die fertige Lösung.
 - [ ] MakeCode-Blöcke als Text: Codeblock mit Sprache `bloecke`, pro Zeile `[kategorie] Beschriftung`,
       zwei Leerzeichen Einrückung je Ebene. Kategorien (= Farben, siehe `GuideLessonView.vue`):
       `grundlagen`, `eingabe`, `schleifen`, `logik`, `variablen`, `mathematik`, `funktionen`, `musik`,

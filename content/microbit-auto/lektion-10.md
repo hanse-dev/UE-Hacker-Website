@@ -77,3 +77,17 @@ Fangt mit einer geraden Linie an, dann eine weite Kurve, dann ein geschlossenes 
 - **Es schießt in der Kurve hinaus:** Tempo senken.
 - **Es dreht in die falsche Richtung:** Links und rechts sind vertauscht. Seht in eurer Tabelle aus Stufe 8 nach.
 - **Es bleibt sofort stehen:** Stellt es so auf, dass beide Sensoren über der Linie liegen. Ist die Linie breit genug?
+
+## Bonus: Das Tempolimit
+
+Wie schnell kann euer Auto fahren, ohne aus der Kurve zu fliegen? Findet das höchste Tempo, bei dem es drei Runden hintereinander auf der Linie bleibt.
+
+<details>
+<summary>Tipps anzeigen</summary>
+
+- Im Moment steht das Tempo an vielen Stellen im Programm. Legt ganz oben eine Variable `tempo` an und benutzt sie überall. Dann ändert ihr für jeden Versuch nur noch eine einzige Zahl.
+- Erhöht das Tempo in kleinen Schritten, zum Beispiel immer um 10, und führt eine Liste: Tempo, geschafft oder nicht.
+- Eine Runde reicht nicht als Beweis. Erst drei Runden ohne Fehler zählen.
+- Für Profis: Muss das Auto beim Drehen genauso schnell sein wie auf gerader Strecke? Probiert zwei verschiedene Tempos.
+
+</details>

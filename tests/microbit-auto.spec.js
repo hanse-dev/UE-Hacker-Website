@@ -28,6 +28,10 @@ test.describe('micro:bit-Kurs: Roboterauto (Anleitung zum Abhaken)', () => {
     for (const lesson of lessons) {
       expect(lesson.tasks.some((task) => !task.isBonus), lesson.id).toBe(true);
       const md = fs.readFileSync(path.join(CONTENT_DIR, lesson.file), 'utf8');
+      // Jede Bonusaufgabe braucht im Text eine eigene Aufgabenstellung.
+      if (lesson.tasks.some((task) => task.isBonus)) {
+        expect(md, `${lesson.file}: Bonus-Abschnitt`).toMatch(/^## Bonus: /m);
+      }
       const opened = md.match(/^:::(bloecke|python)$/gm) || [];
       const closed = md.match(/^:::$/gm) || [];
       expect(closed.length, `${lesson.file}: Abschnitte geschlossen`).toBe(opened.length);
@@ -90,6 +94,25 @@ test.describe('micro:bit-Kurs: Roboterauto (Anleitung zum Abhaken)', () => {
     await expect(page.locator('.lesson-item.completed')).toHaveCount(1, { timeout: 15000 });
     await page.locator('.lesson-item').first().click();
     await expect(page.locator('.guide-task-check:checked')).toHaveCount(required);
+  });
+
+  test('Bonus: Aufgabenstellung ist sichtbar, die Tipps sind eingeklappt und zeigen nur die gewählte Ansicht', async ({ page }) => {
+    await page.addInitScript(() => localStorage.setItem(
+      'ue-hacker-interactive-progress-microbit-auto',
+      JSON.stringify({ variant: 'microbit-auto', completedLessonIds: ['lektion-01'] }),
+    ));
+    await openCourse(page);
+    await page.locator('.lesson-item').nth(1).click();
+    const content = page.locator('.guide-lesson .lesson-content');
+    await expect(content.locator('h2', { hasText: 'Bonus: Der Countdown' })).toBeVisible();
+
+    const tips = content.locator('details');
+    await expect(tips).toHaveCount(1);
+    await expect(tips.locator('.mc-block', { hasText: 'zeige Zahl 3' })).toBeHidden();
+    await tips.locator('summary').click();
+    await expect(tips.locator('.mc-block', { hasText: 'zeige Zahl 3' })).toBeVisible();
+    await expect(tips.locator('pre code.language-python')).toBeHidden();
+    await expect(tips).not.toContainText(':::');
   });
 
   test('Projekte-Übersicht zeigt den Kurs mit micro:bit-Label und Robotik-Tag', async ({ page }) => {

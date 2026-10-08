@@ -75,3 +75,30 @@ while True:
 Rot und Grün zusammen ergeben Gelb.
 
 :::
+
+## Bonus: Das Polizeilicht
+
+Die Scheinwerfer sollen wie bei einem Einsatzfahrzeug flackern: erst links blau und rechts rot, dann sofort umgekehrt, und das schnell und ohne Ende.
+
+<details>
+<summary>Tipps anzeigen</summary>
+
+- Das Polizeilicht hat genau zwei Zustände, die sich abwechseln. Schreibt beide in Worten auf, bevor ihr baut.
+- Zwischen den Zuständen steht eine kurze Pause. Probiert Werte zwischen 100 und 300 Millisekunden und sucht, was am echtesten aussieht.
+- Alles zusammen gehört in die Endlosschleife, wie beim Blinken.
+
+:::bloecke
+
+Im Block **RGB** wählt ihr die Farbe `blue` genauso aus wie vorher `red`.
+
+:::
+
+:::python
+
+Für Blau gibt es `auto.left_blue(0)` und `auto.right_blue(0)`.
+
+Achtung, Farben mischen sich: Leuchtet ein Scheinwerfer rot und ihr schaltet Blau dazu, wird er lila. Schaltet vor jedem Wechsel alles aus.
+
+:::
+
+</details>

@@ -84,3 +84,26 @@ while True:
 :::
 
 Setzt für die Drehung eure Zahl aus Stufe 4 ein. Das Quadrat ist gelungen, wenn das Auto ungefähr dort anhält, wo es gestartet ist.
+
+## Bonus: Dreieck oder Acht
+
+Sucht euch eine Figur aus:
+
+- **Dreieck:** drei gleich lange Seiten, am Ende steht das Auto wieder am Start.
+- **Acht:** zwei Kreise nebeneinander, einer links herum und einer rechts herum.
+
+<details>
+<summary>Tipps anzeigen</summary>
+
+**Dreieck**
+
+- Wie oft muss die Wiederholung laufen?
+- An jeder Ecke dreht das Auto weiter als beim Quadrat. Nach drei Ecken hat es sich genau einmal ganz herumgedreht, beim Quadrat erst nach vier. Die Wartezeit für die Drehung muss also länger sein als eure Zahl aus Stufe 4. Fangt mit etwa einem Drittel mehr an.
+
+**Acht**
+
+- Eine Acht besteht aus zwei Bögen wie im Bonus von Stufe 4.
+- Baut euch dafür zwei eigene Befehle, einen für den Bogen nach links und einen für den Bogen nach rechts.
+- Findet zuerst die Wartezeit für einen ganzen Kreis. Dieselbe Zeit braucht ihr dann für den zweiten Kreis.
+
+</details>
