@@ -400,6 +400,10 @@ Ordner-Mapping (immer paarweise anpassen):
 - [ ] `kurse.json`-Eintrag bekommt `"engine": "anleitung"`. `ProjectCourse.vue` rendert dann
       `GuideLessonView.vue`: kein Kernel, kein Editor. Der Code läuft auf dem echten Gerät, die
       Plattform kann ihn nicht prüfen.
+- [ ] Optional `"unlisted": true` in `kurse.json` (geht bei jedem Projekt-Kurs): Der Kurs ist live und
+      über `/kurs/<id>` erreichbar, fehlt aber in `/projekte` und bei den Profil-Abzeichen (dort erst
+      sichtbar, sobald man ihn begonnen hat). Zum Veröffentlichen das Feld entfernen und die
+      Karten-Anzahl in `tests/projekte.spec.js` sowie den Test in `tests/microbit-auto.spec.js` anpassen.
 - [ ] `lessons.json`-Aufgaben haben nur `instruction` (und optional `isBonus`) — **bewusste Ausnahme**
       von „jede Aufgabe braucht ein `expected`“: Das Team hakt selbst ab. Sind alle Pflichtaufgaben
       abgehakt, gilt die Lektion als abgeschlossen (`useInteractiveProgress`, wie bei allen

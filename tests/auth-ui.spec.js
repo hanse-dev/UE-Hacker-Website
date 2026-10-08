@@ -354,6 +354,9 @@ test.describe('UI: Admin + Header-Login', () => {
     await expect(morseBadge).not.toHaveClass(/earned/);
     await expect(morseBadge.locator('.badge-icon')).toHaveText('🔒');
     await expect(morseBadge.locator('.badge-status')).toContainText('0/5');
+
+    // Ein nicht verlinkter Kurs (`unlisted` in kurse.json) zeigt kein Abzeichen, solange er nicht begonnen wurde.
+    await expect(page.locator('.badge-card', { hasText: 'Roboterauto' })).toHaveCount(0);
   });
 
   test('Mein Profil: Zertifikate aus mehreren Kursen (Python + KI-Labor) erscheinen im eigenen Abschnitt', async ({ page, request }) => {

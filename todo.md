@@ -19,7 +19,10 @@ nächsten Themen. Diese Datei wird nicht automatisch geladen.
 - [ ] micro:bit-Kurs: `public/microbit/keyes_MiniCar.py` stammt aus dem Keyestudio-Download, eine
       Lizenz ist dort nicht angegeben. Vorschlag: bei Keyestudio nachfragen oder die Datei durch
       einen Link auf deren Download ersetzen (dann fehlt die Korrektur für `get_distance()`).
-- [ ] micro:bit-Kurs: nur DE, EN fehlt. Der Kurs steht als Projekt-Kurs unter `/projekte`; sobald
+- [ ] micro:bit-Kurs ist live, aber bewusst nicht verlinkt (`"unlisted": true` in `public/kurse.json`,
+      erreichbar nur über `/kurs/projekt-microbit-auto`). Zum Veröffentlichen: Feld entfernen, Tests
+      anpassen (siehe `INHALTE.md` Abschnitt 6).
+- [ ] micro:bit-Kurs: nur DE, EN fehlt. Der Kurs ist ein Projekt-Kurs (`/projekte`); sobald
       weitere micro:bit-Module dazukommen, eigenen Kurs-Typ/Übersicht erwägen (`VISION.md`).
 - [ ] micro:bit-Kurs: einzelne Haken gehen beim Neuladen verloren, solange die Stufe nicht
       abgeschlossen ist (bewusst, kein neuer Storage-Key). Bei Bedarf nachrüsten, dann mit

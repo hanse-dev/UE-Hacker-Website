@@ -209,7 +209,8 @@ export default {
       try {
         const response = await fetch(assetUrl('kurse.json'));
         const kurse = await response.json();
-        const projektKurse = kurse.filter((k) => k.type === 'projekt');
+        // `unlisted`: Kurs ist nur ueber den direkten Link /kurs/<id> erreichbar.
+        const projektKurse = kurse.filter((k) => k.type === 'projekt' && !k.unlisted);
         projects.value = await Promise.all(
           projektKurse.map(async (p) => {
             const lessonCount = await loadLessonCount(p.contentPath);

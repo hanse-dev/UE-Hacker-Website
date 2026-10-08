@@ -45,9 +45,11 @@ export function useProjectBadges() {
             totalLessons,
             completedCount: completedCount.value,
             earned: totalLessons > 0 && completedCount.value >= totalLessons,
+            unlisted: !!p.unlisted,
           };
         })
-      );
+      // Ein nicht verlinkter Kurs (`unlisted`) taucht erst auf, wenn man ihn selbst begonnen hat.
+      ).then((all) => all.filter((b) => !b.unlisted || b.completedCount > 0));
     } catch (e) {
       console.error('Could not load project badges:', e);
       badges.value = [];

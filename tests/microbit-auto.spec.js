@@ -115,12 +115,19 @@ test.describe('micro:bit-Kurs: Roboterauto (Anleitung zum Abhaken)', () => {
     await expect(tips).not.toContainText(':::');
   });
 
-  test('Projekte-Übersicht zeigt den Kurs mit micro:bit-Label und Robotik-Tag', async ({ page }) => {
+  test('Kurs ist nicht verlinkt: fehlt in der Projekte-Übersicht, ist per direktem Link aber erreichbar', async ({ page }) => {
     await page.goto('/projekte');
-    const card = page.locator('a.projekt-card[href="/kurs/projekt-microbit-auto"]');
-    await expect(card).toBeVisible({ timeout: 15000 });
-    await expect(card.locator('.badge-language')).toHaveText('micro:bit');
-    await expect(card.locator('.tag-chip')).toHaveText('Robotik');
+    await expect(page.locator('.projekt-card').first()).toBeVisible({ timeout: 15000 });
+    await expect(page.locator('a[href="/kurs/projekt-microbit-auto"]')).toHaveCount(0);
+    await expect(page.locator('.filter-chip', { hasText: 'micro:bit' })).toHaveCount(0);
+    await expect(page.locator('.filter-chip', { hasText: 'Robotik' })).toHaveCount(0);
+
+    await page.goto('/');
+    await expect(page.locator('a[href="/kurs/projekt-microbit-auto"]')).toHaveCount(0);
+
+    await page.goto('/kurs/projekt-microbit-auto');
+    await expect(page.locator('.course-description')).toContainText('Roboterauto');
+    await expect(page.locator('.btn-start-course')).toBeVisible();
   });
 
   test('Bibliothek für Python wird zum Download ausgeliefert', async ({ page }) => {

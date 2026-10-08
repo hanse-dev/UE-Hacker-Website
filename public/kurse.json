@@ -133,6 +133,7 @@
     "id": "projekt-microbit-auto",
     "type": "projekt",
     "engine": "anleitung",
+    "unlisted": true,
     "language": "microbit",
     "level": "einsteiger",
     "tags": ["robotik"],
