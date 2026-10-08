@@ -87,6 +87,9 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 - `turtle` gibt es in Pyodide nicht — eigener Canvas-Shim in `usePyodide.js` (3.32).
 - Kernel in Tests immer über `startKernel()` starten, nie `if (await btn.isEnabled()) click()` — der
   Button kann dazwischen deaktiviert werden, `click()` hängt dann bis zum Timeout (flaky Tests).
+- **Kernel-Button nach Lektionswechsel:** `click({ force: true })` scheitert sporadisch mit „Element is
+  outside of the viewport“, weil die Scroll-Animation den Button verschiebt → `dispatchEvent('click')`
+  nehmen (`tests/python-woche1-lektionen.spec.js`, `initKernel`).
 - `CodeChallenge` startet den Kernel nicht selbst; Tests klicken `.btn-kernel` explizit.
 - Namespace-Variablen vor jedem Check-Lauf löschen; `pyodide.globals.delete()` wirft bei unbekanntem
   Namen → try/catch. Vor `functionCalls`-Re-Aufruf `__cell_deadline__` neu setzen.
