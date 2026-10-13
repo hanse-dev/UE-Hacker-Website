@@ -272,8 +272,8 @@ src/views/AdminView.vue
 src/App.vue       Optionen-Modal
 src/composables/useAuth*.js, useProgressSync.js, useWeekChecks.js
 src/components/JupyterNotebook.vue, CodeCell.vue, PlacementCourse.vue, QuizStep.vue
-scripts/migrate_notebooks_to_cells.py (einmalig gelaufen), build_cell_notebooks.py (bei jedem
-  dev/build), pack_notebooks.py (zippt jetzt _bundle/*.py statt *.ipynb)
+scripts/build_cell_notebooks.py (bei jedem dev/build), pack_notebooks.py (zippt jetzt
+  _bundle/*.py statt *.ipynb)
 public/kurse.json
 content/python-checks/config.json, week-{N}.json, index.mjs (Node-Loader für Tests)
 .env.example / .env (nie committen)
