@@ -3,10 +3,12 @@
 
 Ohne Argumente startet ein Menü. Mit Unterbefehl läuft genau eine Aktion:
 
-  drucker.py account <benutzername> kinder|jugendliche   Account anlegen und Zugangsdaten drucken
-  drucker.py nochmal                                     zuletzt angelegten Account erneut drucken
-  drucker.py tabelle [-n ANZAHL]                         Forscher-Tabelle aus micro:bit-Stufe 8 drucken
-  drucker.py scan [SEKUNDEN]                             Drucker-Adresse per Bluetooth suchen
+  drucker.py account <benutzername>   Account anlegen oder, falls es ihn schon gibt, Passwort neu setzen
+  drucker.py ausdrucke [DATEI]        gespeicherten Ausdruck auswählen und erneut drucken
+  drucker.py tabelle [-n ANZAHL]      Forscher-Tabelle aus micro:bit-Stufe 8 drucken
+  drucker.py scan [SEKUNDEN]          Drucker-Adresse per Bluetooth suchen
+
+Jeder Ausdruck wird als Bild unter ausdrucke/ gespeichert.
 
 Setup: siehe scripts/local-tools/README.md
 """
@@ -15,26 +17,28 @@ import asyncio
 import getpass
 import json
 import os
+import re
 import secrets
 import subprocess
 import sys
-import tempfile
 import urllib.error
 import urllib.parse
 import urllib.request
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 VENDOR_MXW01 = SCRIPT_DIR / "vendor" / "mxw01" / "MXW01print.py"
 VENV_PYTHON = SCRIPT_DIR / "venv" / "bin" / "python3"
-LAST_ACCOUNT_FILE = SCRIPT_DIR / ".last-account.json"
+# Enthält Zugangsausweise mit Klartext-Passwort — gitignored, nie committen.
+AUSDRUCKE_DIR = SCRIPT_DIR / "ausdrucke"
 LESSON_FILE = SCRIPT_DIR.parent.parent / "content" / "microbit-auto" / "lektion-09.md"
 
 PAPER_WIDTH = 384
 DEFAULT_RECEIPT_FONT_SCALE = 1.2
 DEFAULT_TABLE_FONT_SCALE = 1.0
 DEFAULT_SCAN_SECONDS = 8.0
+MAX_LISTED_PRINTOUTS = 20
 
 
 def reexec_in_venv() -> None:
@@ -53,7 +57,7 @@ def reexec_in_venv() -> None:
 
 
 # ---------------------------------------------------------------------------
-# Gemeinsames: .env, Schriften, Druckaufruf
+# Gemeinsames: .env, Schriften, Ausdrucke speichern und drucken
 # ---------------------------------------------------------------------------
 
 def load_env_file(path: Path) -> dict:
@@ -90,12 +94,6 @@ def load_font(size: int, bold: bool = False):
     return ImageFont.load_default()
 
 
-def save_temp_image(img) -> Path:
-    out_path = Path(tempfile.mkstemp(suffix=".png")[1])
-    img.save(out_path)
-    return out_path
-
-
 def require_printer(printer_address: str | None) -> str:
     """Bricht ab, bevor etwas angelegt oder gerendert wird, wenn der Druck ohnehin scheitern würde."""
     if not printer_address:
@@ -108,26 +106,73 @@ def require_printer(printer_address: str | None) -> str:
     return printer_address
 
 
-def output_image(image_path: Path, printer_address: str | None, preview: str | None) -> None:
-    """Druckt das Bild oder speichert es bei --preview nur als Datei. Räumt die Temp-Datei weg."""
+def save_printout(img, name: str) -> Path:
+    """Speichert jeden Ausdruck als Bild, damit er sich später auswählen und erneut drucken lässt.
+    Der Zeitstempel vorn sorgt dafür, dass die Dateinamen nach Alter sortieren."""
+    AUSDRUCKE_DIR.mkdir(exist_ok=True)
+    stamp = datetime.now().strftime("%Y-%m-%d_%H%M%S")
+    base = f"{stamp}_{re.sub(r'[^A-Za-z0-9._-]', '_', name)}"
+    path = AUSDRUCKE_DIR / f"{base}.png"
+    counter = 2
+    while path.exists():  # zwei Ausdrucke in derselben Sekunde dürfen sich nicht überschreiben
+        path = AUSDRUCKE_DIR / f"{base}-{counter}.png"
+        counter += 1
+    img.save(path)
+    print(f"Ausdruck gespeichert: {path.relative_to(SCRIPT_DIR)}")
+    return path
+
+
+def send_to_printer(image_path: Path, printer_address: str | None) -> None:
     try:
-        if preview:
-            Path(preview).write_bytes(image_path.read_bytes())
-            print(f"Vorschau gespeichert: {preview}")
+        subprocess.run(
+            [sys.executable, str(VENDOR_MXW01), "-i", str(image_path), "-d", require_printer(printer_address)],
+            check=True,
+        )
+    except subprocess.CalledProcessError as e:
+        sys.exit(
+            f"Druck fehlgeschlagen (Exit-Code {e.returncode}). Drucker an und in Reichweite? Papier eingelegt?\n"
+            f"Das Bild ist gespeichert ({image_path.name}) und lässt sich über \"ausdrucke\" erneut drucken."
+        )
+
+
+def list_printouts() -> list[Path]:
+    return sorted(AUSDRUCKE_DIR.glob("*.png"), reverse=True)
+
+
+def describe_printout(path: Path) -> str:
+    parts = path.stem.split("_", 2)
+    if len(parts) == 3 and len(parts[1]) == 6 and parts[1].isdigit():
+        return f"{parts[0]} {parts[1][:2]}:{parts[1][2:4]}  {parts[2].replace('_', ' ', 1)}"
+    return path.stem
+
+
+def print_saved(printer_address: str | None, name: str | None = None) -> None:
+    """Druckt einen gespeicherten Ausdruck: per Dateiname oder per Auswahl aus der Liste (neueste zuerst)."""
+    files = list_printouts()
+    if not files:
+        sys.exit(f"Noch keine gespeicherten Ausdrucke in {AUSDRUCKE_DIR}.")
+    if name:
+        chosen = next((f for f in files if f.name == Path(name).name), None)
+        if not chosen:
+            sys.exit(f"Kein gespeicherter Ausdruck mit dem Namen '{Path(name).name}'.")
+    else:
+        shown = files[:MAX_LISTED_PRINTOUTS]
+        print("Gespeicherte Ausdrucke (neueste zuerst):")
+        for number, path in enumerate(shown, 1):
+            print(f"  {number:>2}  {describe_printout(path)}")
+        if len(files) > len(shown):
+            print(f"      … und {len(files) - len(shown)} ältere in {AUSDRUCKE_DIR}")
+        answer = ask("Welchen drucken? (Nummer, leer = abbrechen)")
+        if not answer:
             return
-        try:
-            subprocess.run(
-                [sys.executable, str(VENDOR_MXW01), "-i", str(image_path), "-d", require_printer(printer_address)],
-                check=True,
-            )
-        except subprocess.CalledProcessError as e:
-            sys.exit(f"Druck fehlgeschlagen (Exit-Code {e.returncode}). Drucker an und in Reichweite? Papier eingelegt?")
-    finally:
-        image_path.unlink(missing_ok=True)
+        if not answer.isdigit() or not 1 <= int(answer) <= len(shown):
+            sys.exit(f"Abgebrochen: '{answer}' steht nicht in der Liste.")
+        chosen = shown[int(answer) - 1]
+    send_to_printer(chosen, printer_address)
 
 
 # ---------------------------------------------------------------------------
-# Account anlegen + Zugangsausweis
+# Account anlegen oder Passwort neu setzen + Zugangsausweis
 # ---------------------------------------------------------------------------
 
 # Kurze, eindeutige deutsche Wörter für Passwörter (keine Umlaute/ß, damit sie sich leicht
@@ -160,34 +205,19 @@ def normalize_server_url(url: str) -> str:
     return urllib.parse.urlunsplit((parts.scheme, ascii_netloc, parts.path, parts.query, parts.fragment))
 
 
-def save_last_account(username: str, password: str, age_group: str, server_url_raw: str) -> None:
-    LAST_ACCOUNT_FILE.write_text(json.dumps({
-        "username": username,
-        "password": password,
-        "ageGroup": age_group,
-        "serverUrlRaw": server_url_raw,
-    }))
-
-
-def load_last_account() -> dict:
-    if not LAST_ACCOUNT_FILE.exists():
-        sys.exit(f"Kein zuvor angelegter Account gefunden ({LAST_ACCOUNT_FILE} existiert nicht).")
-    return json.loads(LAST_ACCOUNT_FILE.read_text())
-
-
 def generate_password() -> str:
     word1, word2 = secrets.SystemRandom().sample(PASSWORD_WORDS, 2)
     digits = f"{secrets.randbelow(100):02d}"
     return f"{word1}-{word2}-{digits}"
 
 
-def api_request(url: str, payload: dict, token: str | None = None) -> dict:
+def api_request(url: str, payload: dict | None = None, token: str | None = None,
+                method: str = "POST") -> dict:
     headers = {"Content-Type": "application/json"}
     if token:
         headers["Authorization"] = f"Bearer {token}"
-    req = urllib.request.Request(
-        url, data=json.dumps(payload).encode(), headers=headers, method="POST"
-    )
+    data = json.dumps(payload).encode() if payload is not None else None
+    req = urllib.request.Request(url, data=data, headers=headers, method=method)
     try:
         with urllib.request.urlopen(req) as resp:
             return json.load(resp)
@@ -198,7 +228,7 @@ def api_request(url: str, payload: dict, token: str | None = None) -> dict:
         sys.exit(f"Server nicht erreichbar ({url}): {e.reason}")
 
 
-def build_receipt_image(username: str, password: str, server_url: str, font_scale: float) -> Path:
+def build_receipt_image(username: str, password: str, server_url: str, font_scale: float):
     from PIL import Image, ImageDraw
 
     width = PAPER_WIDTH
@@ -290,7 +320,7 @@ def build_receipt_image(username: str, password: str, server_url: str, font_scal
             draw.text((x, y), text, font=f, fill=0, stroke_width=1, stroke_fill=0)
         y += h
 
-    return save_temp_image(img)
+    return img
 
 
 def receipt_font_scale(env: dict) -> float:
@@ -300,48 +330,69 @@ def receipt_font_scale(env: dict) -> float:
         sys.exit(f"RECEIPT_FONT_SCALE in .env ist keine Zahl: {env.get('RECEIPT_FONT_SCALE')!r}")
 
 
-def print_account(account: dict, env: dict, printer_address: str | None, preview: str | None) -> None:
-    image_path = build_receipt_image(
-        account["username"], account["password"], account["serverUrlRaw"], receipt_font_scale(env)
-    )
-    output_image(image_path, printer_address, preview)
+def admin_session(env: dict, server_url_override: str | None, session: dict) -> dict:
+    """Meldet sich als Admin an. `session` merkt sich das Token, damit das Menü nur einmal
+    nach dem Admin-Passwort fragt."""
+    if "token" not in session:
+        server_url_raw = (server_url_override or env.get("ACCOUNT_SERVER_URL") or "").rstrip("/")
+        server_url = normalize_server_url(server_url_raw) if server_url_raw else ""
+        if not server_url:
+            sys.exit("ACCOUNT_SERVER_URL fehlt (in scripts/local-tools/.env setzen oder --server-url übergeben).")
+        admin_password = env.get("ADMIN_PASSWORD") or getpass.getpass("Admin-Passwort der Website: ")
+        login = api_request(f"{server_url}/api/admin/login", {"password": admin_password})
+        session.update(url=server_url, url_raw=server_url_raw, token=login["token"])
+    return session
 
 
-def create_account(
-    username: str, age_group: str, env: dict, printer_address: str | None,
-    server_url_override: str | None = None, no_print: bool = False, preview: str | None = None,
+def set_account(
+    username: str, env: dict, printer_address: str | None,
+    age_group: str | None = None, reset: bool | None = None,
+    server_url_override: str | None = None, no_print: bool = False, session: dict | None = None,
 ) -> None:
-    server_url_raw = (server_url_override or env.get("ACCOUNT_SERVER_URL") or "").rstrip("/")
-    server_url = normalize_server_url(server_url_raw) if server_url_raw else ""
-    if not server_url:
-        sys.exit("ACCOUNT_SERVER_URL fehlt (in scripts/local-tools/.env setzen oder --server-url übergeben).")
-    will_print = not no_print and not preview
-    if will_print:
+    """Legt den Account an oder setzt, falls es ihn schon gibt, auf Wunsch das Passwort neu.
+    In beiden Fällen entsteht ein Zugangsausweis, der gespeichert und gedruckt wird.
+
+    reset=None fragt nach, reset=True setzt ohne Rückfrage neu. Fehlt age_group bei einem
+    neuen Account, wird danach gefragt."""
+    font_scale = receipt_font_scale(env)
+    if not no_print:
         require_printer(printer_address)
+    api = admin_session(env, server_url_override, {} if session is None else session)
+    token = api["token"]
 
-    admin_password = env.get("ADMIN_PASSWORD") or getpass.getpass("Admin-Passwort der Website: ")
+    users = api_request(f"{api['url']}/api/admin/users", token=token, method="GET")["users"]
+    user = next((u for u in users if u["username"].lower() == username.lower()), None)
     password = generate_password()
+    kind = "account"
 
-    login = api_request(f"{server_url}/api/admin/login", {"password": admin_password})
-    api_request(
-        f"{server_url}/api/admin/users",
-        {"username": username, "password": password, "ageGroup": age_group},
-        token=login["token"],
-    )
-    print(f"Account '{username}' angelegt. Passwort: {password}")
-    # Vor dem Druckversuch speichern — falls der Druck fehlschlägt, kann man mit
-    # "nochmal" denselben Account (ohne neue Account-Anlage) erneut drucken.
-    save_last_account(username, password, age_group, server_url_raw)
+    if user:
+        username = user["username"]
+        if reset is None:
+            reset = ask(f"Account '{username}' gibt es schon. Passwort neu setzen? (j/n)", "n").lower().startswith("j")
+        if not reset:
+            # Das alte Passwort lässt sich nicht auslesen — auf dem Server liegt nur ein Hash.
+            print("Nichts geändert. Den früheren Zugangsausweis gibt es höchstens noch unter den gespeicherten Ausdrucken.")
+            return
+        api_request(f"{api['url']}/api/admin/users/{user['id']}", {"password": password}, token=token, method="PATCH")
+        print(f"Passwort von '{username}' neu gesetzt: {password}")
+        kind = "passwort-neu"
+    else:
+        if not age_group:
+            choice = ask(f"Account '{username}' gibt es noch nicht. Altersgruppe: (k)inder oder (j)ugendliche", "k").lower()
+            if choice not in ("k", "kinder", "j", "jugendliche"):
+                sys.exit(f"Abgebrochen: unbekannte Altersgruppe '{choice}'.")
+            age_group = "kinder" if choice.startswith("k") else "jugendliche"
+        api_request(
+            f"{api['url']}/api/admin/users",
+            {"username": username, "password": password, "ageGroup": age_group},
+            token=token,
+        )
+        print(f"Account '{username}' angelegt. Passwort: {password}")
 
-    if no_print:
-        return
-    print_account(load_last_account(), env, printer_address, preview)
-
-
-def reprint_account(env: dict, printer_address: str | None, preview: str | None = None) -> None:
-    account = load_last_account()
-    print(f"Drucke zuletzt angelegten Account erneut: '{account['username']}'")
-    print_account(account, env, printer_address, preview)
+    # Erst speichern, dann drucken — schlägt der Druck fehl, bleibt der Ausweis erhalten.
+    image_path = save_printout(build_receipt_image(username, password, api["url_raw"], font_scale), f"{kind}_{username}")
+    if not no_print:
+        send_to_printer(image_path, printer_address)
 
 
 # ---------------------------------------------------------------------------
@@ -365,7 +416,7 @@ def read_lesson_table(path: Path) -> tuple[str, list[str], list[list[str]]]:
     return title, table[0], table[2:]
 
 
-def build_table_image(title: str, header: list[str], rows: list[list[str]], font_scale: float, copies: int) -> Path:
+def build_table_image(title: str, header: list[str], rows: list[list[str]], font_scale: float, copies: int):
     from PIL import Image, ImageDraw
 
     margin = 10
@@ -466,19 +517,21 @@ def build_table_image(title: str, header: list[str], rows: list[list[str]], font
                 draw.line([x, y + cut_gap // 2, x + 6, y + cut_gap // 2], fill=0, width=1)
             y += cut_gap
 
-    return save_temp_image(img)
+    return img
 
 
 def print_table(
     copies: int, printer_address: str | None,
-    font_scale: float = DEFAULT_TABLE_FONT_SCALE, preview: str | None = None,
+    font_scale: float = DEFAULT_TABLE_FONT_SCALE, no_print: bool = False,
 ) -> None:
     if copies < 1:
         sys.exit("Die Anzahl muss mindestens 1 sein.")
-    if not preview:
+    if not no_print:
         require_printer(printer_address)
     title, header, rows = read_lesson_table(LESSON_FILE)
-    output_image(build_table_image(title, header, rows, font_scale, copies), printer_address, preview)
+    image_path = save_printout(build_table_image(title, header, rows, font_scale, copies), f"tabelle_{copies}x")
+    if not no_print:
+        send_to_printer(image_path, printer_address)
 
 
 # ---------------------------------------------------------------------------
@@ -513,8 +566,8 @@ def scan_bluetooth(timeout: float = DEFAULT_SCAN_SECONDS) -> None:
 
 MENU = """
 UE Hacker – Thermodrucker
-  1  Account anlegen und Zugangsdaten drucken
-  2  Zuletzt angelegten Account erneut drucken
+  1  Account: anlegen oder Passwort neu setzen
+  2  Gespeicherten Ausdruck drucken
   3  Forscher-Tabelle drucken (micro:bit, Stufe 8)
   4  Drucker suchen (Bluetooth-Scan)
   0  Beenden"""
@@ -525,16 +578,11 @@ def ask(prompt: str, default: str = "") -> str:
     return input(f"{prompt}{suffix}: ").strip() or default
 
 
-def menu_create_account(env: dict, printer_address: str | None) -> None:
+def menu_set_account(env: dict, printer_address: str | None, session: dict) -> None:
     username = ask("Benutzername")
     if not username:
         sys.exit("Abgebrochen: kein Benutzername.")
-    choice = ask("Altersgruppe: (k)inder oder (j)ugendliche", "k").lower()
-    if choice not in ("k", "kinder", "j", "jugendliche"):
-        sys.exit(f"Abgebrochen: unbekannte Altersgruppe '{choice}'.")
-    age_group = "kinder" if choice.startswith("k") else "jugendliche"
-    no_print = ask("Zugangsdaten drucken? (j/n)", "j").lower().startswith("n")
-    create_account(username, age_group, env, printer_address, no_print=no_print)
+    set_account(username, env, printer_address, session=session)
 
 
 def menu_print_table(printer_address: str | None) -> None:
@@ -545,9 +593,10 @@ def menu_print_table(printer_address: str | None) -> None:
 
 
 def run_menu(env: dict, printer_address: str | None) -> None:
+    session: dict = {}
     actions = {
-        "1": lambda: menu_create_account(env, printer_address),
-        "2": lambda: reprint_account(env, printer_address),
+        "1": lambda: menu_set_account(env, printer_address, session),
+        "2": lambda: print_saved(printer_address),
         "3": lambda: menu_print_table(printer_address),
         "4": scan_bluetooth,
     }
@@ -575,22 +624,22 @@ def main() -> None:
 
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--printer-address", help="Überschreibt MXW01_PRINTER_ADDRESS aus .env")
-    sub = parser.add_subparsers(dest="command", metavar="{account,nochmal,tabelle,scan}")
+    sub = parser.add_subparsers(dest="command", metavar="{account,ausdrucke,tabelle,scan}")
 
-    p_account = sub.add_parser("account", help="Account anlegen und Zugangsdaten drucken")
-    p_account.add_argument("username", help="Gewünschter Benutzername (2-40 Zeichen, a-z/A-Z/0-9/._-)")
-    p_account.add_argument("age_group", choices=["kinder", "jugendliche"], help="Altersgruppe")
+    p_account = sub.add_parser("account", help="Account anlegen oder, falls es ihn schon gibt, Passwort neu setzen")
+    p_account.add_argument("username", help="Benutzername (2-40 Zeichen, a-z/A-Z/0-9/._-)")
+    p_account.add_argument("age_group", nargs="?", choices=["kinder", "jugendliche"], help="Altersgruppe für einen neuen Account (sonst wird gefragt)")
+    p_account.add_argument("--reset", action="store_true", help="Passwort eines bestehenden Accounts ohne Rückfrage neu setzen")
     p_account.add_argument("--server-url", help="Überschreibt ACCOUNT_SERVER_URL aus .env")
-    p_account.add_argument("--no-print", action="store_true", help="Nur Account anlegen, nicht drucken")
-    p_account.add_argument("--preview", metavar="DATEI.png", help="Ausweis nur als Bild speichern, nicht drucken")
+    p_account.add_argument("--no-print", action="store_true", help="Ausweis nur speichern, nicht drucken")
 
-    p_reprint = sub.add_parser("nochmal", help="Zuletzt angelegten Account erneut drucken (kein neuer Account)")
-    p_reprint.add_argument("--preview", metavar="DATEI.png", help="Ausweis nur als Bild speichern, nicht drucken")
+    p_saved = sub.add_parser("ausdrucke", help="Gespeicherten Ausdruck auswählen und erneut drucken")
+    p_saved.add_argument("datei", nargs="?", help="Dateiname aus ausdrucke/ (ohne Angabe: Liste zur Auswahl)")
 
     p_table = sub.add_parser("tabelle", help="Forscher-Tabelle aus micro:bit-Stufe 8 drucken")
     p_table.add_argument("-n", "--copies", type=int, default=1, help="Anzahl Tabellen, eine pro Team (Default 1)")
     p_table.add_argument("--font-scale", type=float, default=DEFAULT_TABLE_FONT_SCALE, help="Skaliert Schrift und Zeilenhöhe (Default 1.0)")
-    p_table.add_argument("--preview", metavar="DATEI.png", help="Tabelle nur als Bild speichern, nicht drucken")
+    p_table.add_argument("--no-print", action="store_true", help="Tabelle nur speichern, nicht drucken")
 
     p_scan = sub.add_parser("scan", help="Drucker-Adresse per Bluetooth suchen")
     p_scan.add_argument("seconds", nargs="?", type=float, default=DEFAULT_SCAN_SECONDS, help="Dauer des Scans (Default 8)")
@@ -600,14 +649,15 @@ def main() -> None:
     printer_address = args.printer_address or env.get("MXW01_PRINTER_ADDRESS")
 
     if args.command == "account":
-        create_account(
-            args.username, args.age_group, env, printer_address,
-            server_url_override=args.server_url, no_print=args.no_print, preview=args.preview,
+        set_account(
+            args.username, env, printer_address,
+            age_group=args.age_group, reset=True if args.reset else None,
+            server_url_override=args.server_url, no_print=args.no_print,
         )
-    elif args.command == "nochmal":
-        reprint_account(env, printer_address, args.preview)
+    elif args.command == "ausdrucke":
+        print_saved(printer_address, args.datei)
     elif args.command == "tabelle":
-        print_table(args.copies, printer_address, args.font_scale, args.preview)
+        print_table(args.copies, printer_address, args.font_scale, args.no_print)
     elif args.command == "scan":
         scan_bluetooth(args.seconds)
     else:

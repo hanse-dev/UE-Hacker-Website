@@ -174,10 +174,13 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 - `bleak`/BLE auf macOS: CoreBluetooth liefert eine app-spezifische UUID statt der echten MAC (per
   Scan ermitteln); Writes ohne kleine Pause (~10ms) zwischen den Häppchen verwirft macOS still (3.63).
 - Alles für den Thermodrucker steckt in `drucker.py` (Menü ohne Argumente, sonst Unterbefehle
-  `account`/`nochmal`/`tabelle`/`scan`). Kein GUI: dem Homebrew-Python fehlt `tkinter`.
+  `account`/`ausdrucke`/`tabelle`/`scan`). Kein GUI: dem Homebrew-Python fehlt `tkinter`.
+- `drucker.py account <name>` legt an oder setzt bei vorhandenem Account auf Rückfrage das Passwort
+  neu (`PATCH /api/admin/users/:id`). Jeder Ausdruck landet als PNG in `ausdrucke/` (gitignored,
+  Klartext-Passwörter) und lässt sich daraus erneut drucken.
 - `drucker.py tabelle` liest die Forscher-Tabelle aus micro:bit-Stufe 8 aus `lektion-09.md`: Wer
-  die Tabelle dort ändert, prüft den Ausdruck mit `--preview`.
-- Ohne Drucker testen: `--preview` statt Druck; Account-Anlage gegen `node scripts/run-test-api.js`
+  die Tabelle dort ändert, prüft den Ausdruck mit `--no-print` (Bild in `ausdrucke/`).
+- Ohne Drucker testen: `--no-print` statt Druck; Account-Anlage gegen `node scripts/run-test-api.js`
   mit `--server-url http://localhost:<port>` (Admin-Passwort `test-admin-password`), nie gegen Produktion.
 
 **Betrieb**

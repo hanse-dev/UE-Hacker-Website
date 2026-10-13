@@ -2,9 +2,12 @@
 
 Ein Skript für alles, was auf dem MXW01-Thermodrucker landet:
 
-- **Account anlegen:** legt über die Admin-API einen Account auf der UE Hacker Website
-  (Produktion) an — Benutzername frei wählbar, Passwort wird zufällig generiert — und druckt
-  Benutzername + Passwort als Zugangsausweis.
+- **Account:** legt über die Admin-API einen Account auf der UE Hacker Website (Produktion) an —
+  Benutzername frei wählbar, Passwort wird zufällig generiert. Gibt es den Account schon, fragt
+  das Skript, ob das Passwort neu gesetzt werden soll (Passwort vergessen). In beiden Fällen
+  entsteht ein Zugangsausweis mit Benutzername + Passwort.
+- **Gespeicherte Ausdrucke:** Jeder Ausdruck liegt als Bild unter `ausdrucke/` und lässt sich
+  aus einer Liste auswählen und erneut drucken.
 - **Forscher-Tabelle:** druckt die Tabelle aus Stufe 8 des micro:bit-Kurses („Die Linie sehen“)
   zum Ausfüllen.
 - **Bluetooth-Scan:** findet die Adresse des Druckers.
@@ -51,38 +54,45 @@ python3 drucker.py
 
 ```
 UE Hacker – Thermodrucker
-  1  Account anlegen und Zugangsdaten drucken
-  2  Zuletzt angelegten Account erneut drucken
+  1  Account: anlegen oder Passwort neu setzen
+  2  Gespeicherten Ausdruck drucken
   3  Forscher-Tabelle drucken (micro:bit, Stufe 8)
   4  Drucker suchen (Bluetooth-Scan)
   0  Beenden
 ```
 
-Ein Fehler (Drucker aus, Name schon vergeben) beendet nur die Aktion, das Menü bleibt offen.
+Ein Fehler (Drucker aus, falsches Admin-Passwort) beendet nur die Aktion, das Menü bleibt offen.
+Nach dem Admin-Passwort fragt das Menü nur einmal.
 
 Jede Aktion gibt es auch direkt als Unterbefehl (`python3 drucker.py <befehl> --help` zeigt alle
 Optionen):
 
 ```bash
-python3 drucker.py account <benutzername> kinder   # oder: jugendliche
-python3 drucker.py nochmal                         # letzten Account erneut drucken
+python3 drucker.py account <benutzername>          # anlegen oder Passwort neu setzen (fragt nach)
+python3 drucker.py account <benutzername> kinder   # Altersgruppe für einen neuen Account gleich mitgeben
+python3 drucker.py account <benutzername> --reset  # Passwort ohne Rückfrage neu setzen
+python3 drucker.py ausdrucke                       # gespeicherten Ausdruck auswählen und drucken
 python3 drucker.py tabelle -n 6                    # sechs Tabellen am Stück, mit Schnittlinien
 python3 drucker.py scan                            # Drucker-Adresse suchen
 ```
 
-`account`, `nochmal` und `tabelle` kennen `--preview DATEI.png`: Das Bild wird nur gespeichert,
+`account` und `tabelle` kennen `--no-print`: Das Bild wird nur unter `ausdrucke/` gespeichert,
 nicht gedruckt — praktisch zum Prüfen ohne Drucker in Reichweite.
 
-### Account anlegen
+### Account anlegen oder Passwort neu setzen
 
-Fragt nach dem Admin-Passwort (falls nicht in `.env` gesetzt), legt den Account über
-`POST /api/admin/users` an und druckt danach einen Beleg mit Benutzername, Passwort, Domain
-und Datum. Mit `--no-print` nur anlegen, ohne zu drucken. Fehlt die Drucker-Adresse oder das
-MXW01-Tool, bricht das Skript ab, **bevor** der Account angelegt wird.
+Fragt nach dem Admin-Passwort (falls nicht in `.env` gesetzt) und schaut in der Nutzerliste nach,
+ob es den Benutzernamen schon gibt (Groß-/Kleinschreibung egal):
 
-Schlägt der Druck fehl (Drucker außer Reichweite, Bluetooth-Fehler, Papier leer), muss **kein**
-neuer Account angelegt werden — der zuletzt angelegte Account wird lokal gemerkt
-(`.last-account.json`, gitignored, Klartext-Passwort) und lässt sich mit `nochmal` erneut drucken.
+- **Neu:** fragt nach der Altersgruppe, legt den Account über `POST /api/admin/users` an und
+  druckt den Zugangsausweis mit Benutzername, Passwort, Domain und Datum.
+- **Schon vorhanden:** fragt, ob das Passwort neu gesetzt werden soll (Default: nein). Bei „ja“
+  setzt das Skript über `PATCH /api/admin/users/:id` ein neues Zufallspasswort und druckt einen
+  neuen Ausweis; das alte Passwort gilt danach nicht mehr. Bei „nein“ passiert nichts — das alte
+  Passwort lässt sich nicht auslesen, auf dem Server liegt nur ein Hash.
+
+Fehlt die Drucker-Adresse oder das MXW01-Tool, bricht das Skript ab, **bevor** etwas angelegt oder
+geändert wird.
 
 Passwort-Format: zwei zufällige deutsche Wörter + zwei Ziffern, z.B. `Igel-Zug-79` — kurz genug
 zum Abschreiben, aber deutlich mehr Kombinationen als ein 4-stelliger PIN.
@@ -90,6 +100,16 @@ zum Abschreiben, aber deutlich mehr Kombinationen als ein 4-stelliger PIN.
 `RECEIPT_FONT_SCALE` in `.env` (Default `1.2`, falls nicht gesetzt) skaliert den ganzen Ausweis.
 Benutzername/Passwort werden automatisch verkleinert, falls sie sonst über den Rahmen hinausragen
 würden (z.B. bei sehr langen Benutzernamen).
+
+### Gespeicherte Ausdrucke
+
+Jeder Ausweis und jede Tabelle wird vor dem Drucken als PNG unter `ausdrucke/` gespeichert, z.B.
+`2026-10-13_195940_account_lina.png` oder `…_passwort-neu_lina.png`. Schlägt der Druck fehl
+(Drucker außer Reichweite, Papier leer), ist also nichts verloren: `python3 drucker.py ausdrucke`
+zeigt die 20 neuesten Bilder zur Auswahl, `python3 drucker.py ausdrucke <datei>` druckt eines direkt.
+
+**Die Ausweise enthalten Passwörter im Klartext.** `ausdrucke/` ist gitignored; alte Bilder
+einfach im Finder löschen. Nach einem Passwort-Reset gilt nur noch der neueste Ausweis des Accounts.
 
 ### Forscher-Tabelle
 

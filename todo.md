@@ -16,6 +16,13 @@ nächsten Themen. Diese Datei wird nicht automatisch geladen.
       - Lektion 1: Menünamen in MakeCode und im Python-Editor (deutsche Oberfläche) stimmen mit dem
         Text überein; `keyes_MiniCar.py` lässt sich über „Projekt → Öffnen“ hinzufügen.
       - Deutsche Namen der MakeCode-Blöcke in den ```` ```bloecke ````-Listings mit dem Editor abgleichen.
+- [ ] **Branch `kennwort-aendern` (ungemergt, Stand 07.10.) kollidiert mit `scripts/local-tools/drucker.py`:**
+      Der Branch erweitert das inzwischen gelöschte `create-account-printout.py` um
+      `--reset-password` (Einmal-Passwort über `POST /api/admin/users/:id/reset-password`,
+      Zwangswechsel beim Login). `drucker.py account` setzt das Passwort bisher über
+      `PATCH /api/admin/users/:id` auf ein festes Zufallspasswort. Vorschlag beim Merge: die
+      Skript-Änderung des Branches verwerfen und in `set_account()` den Reset auf den neuen Endpunkt
+      umstellen (Ausweis dann mit „Einmal-Passwort“ und Hinweis auf den Zwangswechsel).
 - [ ] micro:bit-Kurs: `public/microbit/keyes_MiniCar.py` stammt aus dem Keyestudio-Download, eine
       Lizenz ist dort nicht angegeben. Vorschlag: bei Keyestudio nachfragen oder die Datei durch
       einen Link auf deren Download ersetzen (dann fehlt die Korrektur für `get_distance()`).
