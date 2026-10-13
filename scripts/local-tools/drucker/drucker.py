@@ -15,7 +15,6 @@ druck.py, ausweis.py, tabelle.py und bluetooth.py. Setup: siehe README.md
 """
 import argparse
 import getpass
-import os
 import sys
 from pathlib import Path
 
@@ -23,26 +22,11 @@ import ausweis
 import bluetooth
 import tabelle
 from druck import (
-    AUSDRUCKE_DIR, SCRIPT_DIR, VENV_PYTHON, DruckerError,
-    describe_printout, list_printouts, load_env_file, require_printer, send_to_printer,
+    AUSDRUCKE_DIR, SCRIPT_DIR, DruckerError,
+    describe_printout, list_printouts, load_env_file, reexec_in_venv, require_printer, send_to_printer,
 )
 
 MAX_LISTED_PRINTOUTS = 20
-
-
-def reexec_in_venv() -> None:
-    """Startet das Skript im venv (Pillow/bleak/matplotlib) neu, falls es gerade unter
-    einem anderen Interpreter läuft — verhindert 'ModuleNotFoundError: PIL', egal ob
-    mit python3 oder venv/bin/python3 aufgerufen.
-
-    venv/bin/python3 ist meist nur ein Symlink auf den System-Interpreter — .resolve()
-    würde also beide als identisch behandeln. sys.prefix zeigt dagegen zuverlässig auf
-    den venv-Ordner, sobald man tatsächlich über venv/bin/python3 gestartet wurde."""
-    if not VENV_PYTHON.exists():
-        return
-    if sys.prefix == str(VENV_PYTHON.parent.parent):
-        return
-    os.execv(str(VENV_PYTHON), [str(VENV_PYTHON), str(Path(__file__).resolve()), *sys.argv[1:]])
 
 
 def ask(prompt: str, default: str = "") -> str:
@@ -189,7 +173,7 @@ def run_menu(env: dict, printer_address: str | None) -> None:
 
 
 def main() -> None:
-    reexec_in_venv()
+    reexec_in_venv(__file__)
 
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--printer-address", help="Überschreibt MXW01_PRINTER_ADDRESS aus .env")

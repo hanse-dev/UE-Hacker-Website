@@ -196,7 +196,9 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   gibt aus; `druck.py`/`ausweis.py`/`tabelle.py`/`bluetooth.py` liefern Werte und werfen
   `DruckerError`. Neue Aktion = Funktion im passenden Modul + Menüpunkt/Unterbefehl in `drucker.py`.
 - `drucker.py` kennt ein Menü (ohne Argumente) und Unterbefehle
-  `account`/`ausdrucke`/`tabelle`/`scan`). Kein GUI: dem Homebrew-Python fehlt `tkinter`.
+  `account`/`ausdrucke`/`tabelle`/`scan`); `drucker_gui.py` ist dasselbe als Fenster (tkinter, auf
+  macOS `brew install python-tk@<version>`). Im Fenster läuft alles Langsame über `run_async()` in
+  einem Thread — nie Tk-Widgets aus dem Thread anfassen, Ergebnisse kommen über die Queue zurück.
 - `drucker.py account <name>` legt an oder setzt bei vorhandenem Account auf Rückfrage das Passwort
   zurück (`POST /api/admin/users/:id/reset-password`, Einmal-Passwort mit Zwangswechsel). Jeder Ausdruck landet als PNG in `ausdrucke/` (gitignored,
   Klartext-Passwörter) und lässt sich daraus erneut drucken.
