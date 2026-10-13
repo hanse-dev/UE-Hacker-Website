@@ -68,6 +68,22 @@ würden (z.B. bei sehr langen Benutzernamen).
 
 ---
 
+# Lokales Tool: Forscher-Tabelle für den micro:bit-Kurs drucken
+
+`print-microbit-tabelle.py` druckt die Tabelle aus Stufe 8 („Die Linie sehen“) zum Ausfüllen auf
+dem MXW01-Thermodrucker: Titel, Zeile für den Teamnamen, die vier Fälle und ein leeres Feld für
+die angezeigte Zahl. Die Zeilen liest das Skript aus `content/microbit-auto/lektion-09.md`.
+Setup und `.env` (`MXW01_PRINTER_ADDRESS`) sind dieselben wie oben.
+
+```bash
+python3 print-microbit-tabelle.py                 # eine Tabelle
+python3 print-microbit-tabelle.py -n 6            # sechs Tabellen am Stück, mit Schnittlinien
+python3 print-microbit-tabelle.py --preview t.png # nur als Bild speichern, nicht drucken
+python3 print-microbit-tabelle.py --font-scale 1.2
+```
+
+---
+
 # Lokales Tool: Deutsche Rechtschreib- und Grammatikprüfung (`rechtschreibung-de/`)
 
 `npm run lint:spelling:de` — zieht den deutschen Fließtext (ohne Code) aus `content/`,
