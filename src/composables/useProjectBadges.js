@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue';
+import { ref, shallowRef, computed } from 'vue';
 import { assetUrl } from '../utils/assetUrl';
 import { useInteractiveProgress } from './useInteractiveProgress';
 
@@ -24,7 +24,10 @@ async function loadLessonCount(contentPath) {
  * Projekt-Kurse sind laut VISION.md niedrigschwellig, ein leichtes Abzeichen reicht.
  */
 export function useProjectBadges() {
-  const badges = ref([]);
+  // Stammdaten je Projekt plus der *lebende* Fortschritt (computed). Die Abzeichen werden daraus
+  // berechnet, nicht beim Laden eingefroren: Kommt der Account-Fortschritt erst nach dem Öffnen
+  // des Profils vom Server (Login, Neuladen), ziehen sie von selbst nach.
+  const projects = shallowRef([]);
   const loading = ref(true);
 
   const load = async () => {
@@ -33,30 +36,35 @@ export function useProjectBadges() {
       const response = await fetch(assetUrl('kurse.json'));
       const kurse = await response.json();
       const projekte = kurse.filter((k) => k.type === 'projekt');
-      badges.value = await Promise.all(
-        projekte.map(async (p) => {
-          const totalLessons = await loadLessonCount(p.contentPath);
-          const { completedCount } = useInteractiveProgress(p.contentPath, p.id);
-          return {
-            id: p.id,
-            title: p.title,
-            title_en: p.title_en,
-            contentPath: p.contentPath,
-            totalLessons,
-            completedCount: completedCount.value,
-            earned: totalLessons > 0 && completedCount.value >= totalLessons,
-            unlisted: !!p.unlisted,
-          };
-        })
-      // Ein nicht verlinkter Kurs (`unlisted`) taucht erst auf, wenn man ihn selbst begonnen hat.
-      ).then((all) => all.filter((b) => !b.unlisted || b.completedCount > 0));
+      projects.value = await Promise.all(
+        projekte.map(async (p) => ({
+          id: p.id,
+          title: p.title,
+          title_en: p.title_en,
+          contentPath: p.contentPath,
+          totalLessons: await loadLessonCount(p.contentPath),
+          unlisted: !!p.unlisted,
+          progress: useInteractiveProgress(p.contentPath, p.id).completedCount,
+        }))
+      );
     } catch (e) {
       console.error('Could not load project badges:', e);
-      badges.value = [];
+      projects.value = [];
     } finally {
       loading.value = false;
     }
   };
+
+  const badges = computed(() =>
+    projects.value
+      .map(({ progress, ...p }) => ({
+        ...p,
+        completedCount: progress.value,
+        earned: p.totalLessons > 0 && progress.value >= p.totalLessons,
+      }))
+      // Ein nicht verlinkter Kurs (`unlisted`) taucht erst auf, wenn man ihn selbst begonnen hat.
+      .filter((b) => !b.unlisted || b.completedCount > 0)
+  );
 
   const earnedCount = computed(() => badges.value.filter((b) => b.earned).length);
 

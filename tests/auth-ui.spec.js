@@ -424,6 +424,19 @@ test.describe('UI: Admin + Header-Login', () => {
   });
 
   test('Mein Profil: Abschluss-Abzeichen erscheint nach vollständigem Projekt-Kurs', async ({ page, request }) => {
+    // Kein Kurs ist derzeit `unlisted` - fuer die Pruefung am Ende einen so markieren.
+    await page.route('**/kurse.json', async (route) => {
+      const response = await route.fetch();
+      const kurse = await response.json();
+      kurse.find((k) => k.id === 'projekt-microbit-auto').unlisted = true;
+      await route.fulfill({ response, json: kurse });
+    });
+    // Der Account-Fortschritt kommt erst an, wenn das Profil schon offen ist - die Abzeichen
+    // muessen dann nachziehen statt auf dem Stand vom Laden der Seite zu bleiben.
+    await page.route('**/api/progress', async (route) => {
+      if (route.request().method() === 'GET') await new Promise((resolve) => setTimeout(resolve, 1500));
+      await route.continue();
+    });
     const username = `profil_${Date.now()}`;
     const adminLogin = await request.post(`${API}/api/admin/login`, {
       data: { password: ADMIN_PASSWORD },
@@ -492,6 +505,11 @@ test.describe('UI: Admin + Header-Login', () => {
   });
 
   test('Mein Profil: Zertifikate aus mehreren Kursen (Python + KI-Labor) erscheinen im eigenen Abschnitt', async ({ page, request }) => {
+    // Wie beim Abzeichen-Test: Der Account-Fortschritt kommt erst an, wenn das Profil schon offen ist.
+    await page.route('**/api/progress', async (route) => {
+      if (route.request().method() === 'GET') await new Promise((resolve) => setTimeout(resolve, 1500));
+      await route.continue();
+    });
     const username = `profilcert_${Date.now()}`;
     const adminLogin = await request.post(`${API}/api/admin/login`, {
       data: { password: ADMIN_PASSWORD },

@@ -403,7 +403,8 @@ Ordner-Mapping (immer paarweise anpassen):
 - [ ] Optional `"unlisted": true` in `kurse.json` (geht bei jedem Projekt-Kurs): Der Kurs ist live und
       über `/kurs/<id>` erreichbar, fehlt aber in `/projekte` und bei den Profil-Abzeichen (dort erst
       sichtbar, sobald man ihn begonnen hat). Zum Veröffentlichen das Feld entfernen und die
-      Karten-Anzahl in `tests/projekte.spec.js` sowie den Test in `tests/microbit-auto.spec.js` anpassen.
+      Karten-Anzahl in `tests/projekte.spec.js` sowie die Tests in `tests/microbit-auto.spec.js` und
+      `tests/auth-ui.spec.js` (Profil-Abzeichen, läuft nur mit `npm run test:auth`) anpassen.
 - [ ] `lessons.json`-Aufgaben haben nur `instruction` (und optional `isBonus`) — **bewusste Ausnahme**
       von „jede Aufgabe braucht ein `expected`“: Das Team hakt selbst ab. Sind alle Pflichtaufgaben
       abgehakt, gilt die Lektion als abgeschlossen (`useInteractiveProgress`, wie bei allen

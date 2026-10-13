@@ -19,11 +19,6 @@ nächsten Themen. Diese Datei wird nicht automatisch geladen.
 - [ ] micro:bit-Kurs: `public/microbit/keyes_MiniCar.py` stammt aus dem Keyestudio-Download, eine
       Lizenz ist dort nicht angegeben. Vorschlag: bei Keyestudio nachfragen oder die Datei durch
       einen Link auf deren Download ersetzen (dann fehlt die Korrektur für `get_distance()`).
-- [ ] `tests/python-woche1-lektionen.spec.js:326` („input()-Aufgabe: Prüfen nutzt die vorgegebene
-      Eingabe“) ist am 14.10. einmal im vollen Lauf nach 0,6 s fehlgeschlagen, danach in 10 Läufen
-      (einzeln, 4× ganze Datei, voller Lauf) nicht mehr. Fehlermeldung nicht gesichert. Vorschlag:
-      Beim nächsten Auftreten den Fehler festhalten; Verdacht ist `startKernel()`, das einen
-      fehlgeschlagenen Klick still schluckt, sodass `fill()` vor dem Kernel-Start läuft.
 - [ ] micro:bit-Kurs: nur DE, EN fehlt. Der Kurs ist ein Projekt-Kurs (`/projekte`); sobald
       weitere micro:bit-Module dazukommen, eigenen Kurs-Typ/Übersicht erwägen (`VISION.md`).
 - [ ] micro:bit-Kurs: einzelne Haken gehen beim Neuladen verloren, solange die Stufe nicht

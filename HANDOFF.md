@@ -90,7 +90,22 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   Button kann dazwischen deaktiviert werden, `click()` hängt dann bis zum Timeout (flaky Tests).
 - **Kernel-Button nach Lektionswechsel:** `click({ force: true })` scheitert sporadisch mit „Element is
   outside of the viewport“, weil die Scroll-Animation den Button verschiebt → `dispatchEvent('click')`
-  nehmen (`tests/python-woche1-lektionen.spec.js`, `initKernel`).
+  nehmen (so in `tests/helpers/kernel.js` und allen lokalen `initKernel`/`startKernel`).
+- **Nach „Weiter“ erst auf die neue Lektion warten** (`waitForFreshLesson()` aus
+  `tests/helpers/kernel.js`): Die Seite zeigt kurz noch die alte Lektion, sofortiges Tippen landet in
+  deren Editor und ist nach dem Wechsel weg.
+- **Zwei Playwright-Läufe im selben Checkout vertragen sich nicht** (z.B. Pre-push-Hook parallel zu
+  einem manuellen Lauf): beide wollen Vite auf dem Test-Port. Seit `reuseExistingServer: false` bricht
+  der zweite sofort mit „already used“ ab; vorher lieh er sich den Server und lief in
+  `ERR_CONNECTION_REFUSED`, sobald der erste fertig war. Parallel testen nur in einem Worktree.
+- **Flaky-Suche:** `npm run test:checks -- --repeat-each=3` (bzw. `test:auth`), mit `caffeinate -i`
+  davor, damit der Mac nicht einschläft. Schläft er mitten im Lauf, fallen Tests mit Laufzeiten von
+  mehreren Minuten aus.
+- **Änderungen an `public/kurse.json` auch mit `npm run test:auth` prüfen:** Die Profil-Tests
+  (`tests/auth-ui.spec.js`) hängen an der Kursliste, laufen aber weder im Pre-commit- noch im
+  Pre-push-Hook.
+- Profil-Abzeichen (`useProjectBadges`) rechnen live aus dem Fortschritt. Nichts beim Laden einfrieren,
+  was der Sync später ändert: Der Account-Stand kommt nach Login/Neuladen erst nach dem ersten Rendern.
 - `CodeChallenge` startet den Kernel nicht selbst; Tests klicken `.btn-kernel` explizit.
 - Namespace-Variablen vor jedem Check-Lauf löschen; `pyodide.globals.delete()` wirft bei unbekanntem
   Namen → try/catch. Vor `functionCalls`-Re-Aufruf `__cell_deadline__` neu setzen.
