@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { waitForFreshLesson } from './helpers/kernel.js';
 import fs from 'node:fs';
 
 // Woche 1 Abenteuer (DE) im Lektions-Format des JS-Grundkurses: jede Zauberformel/Debug/Mission/
@@ -101,6 +102,7 @@ test.describe('Python Woche 1 Abenteuer als Einzel-Lektionen', () => {
 
   // codes[i] === null: Beispiel-Aufgabe (nur "Ausfuehren", kein "Pruefen"), sonst Loesung + Pruefen.
   async function solve(page, codes) {
+    await waitForFreshLesson(page);
     for (let i = 0; i < codes.length; i++) {
       const task = page.locator('.task-block').nth(i);
       if (codes[i] === null) {
@@ -284,7 +286,8 @@ test.describe('Aufgaben-Pruefung: Struktur und vorgegebene Eingaben', () => {
   });
 
   async function startKernel(page) {
-    await page.locator('.btn-kernel').click({ force: true });
+    // dispatchEvent statt click, siehe initKernel oben
+    await page.locator('.btn-kernel').dispatchEvent('click');
     await expect(page.locator('.btn-kernel')).toBeDisabled({ timeout: 60000 });
   }
 

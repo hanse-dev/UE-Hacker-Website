@@ -29,7 +29,9 @@ export default defineConfig({
     {
       command: `npx vite --port ${ports.test}`,
       url: `http://localhost:${ports.test}`,
-      reuseExistingServer: true,
+      // false: nie einen fremden Vite übernehmen - dem fehlt der Proxy auf die Test-API (502er),
+      // und er verschwindet, sobald der andere Lauf fertig ist (siehe playwright.config.js).
+      reuseExistingServer: false,
       timeout: 60000,
       env: { VITE_API_PROXY: `http://127.0.0.1:${ports.testApi}` },
     },

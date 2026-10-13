@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { waitForFreshLesson } from './helpers/kernel.js';
 import checks from '../content/ki-labor-checks/index.mjs';
 
 // KI-Labor (Route /kurs/ki-labor, echter Kurs mit kurse.json-Eintrag, ueber CourseDetail.vue
@@ -68,7 +69,8 @@ async function passWeekQuiz(page) {
 
 async function passCodingChallenge(page, challengeIndex, code) {
   const challenge = page.locator(`.code-challenge[data-challenge-index="${challengeIndex}"]`);
-  await challenge.locator('.btn-kernel').click({ force: true });
+  // dispatchEvent statt click, siehe tests/helpers/kernel.js
+  await challenge.locator('.btn-kernel').dispatchEvent('click');
   await expect(challenge.locator('.btn-check')).toBeEnabled({ timeout: 40000 });
   await challenge.locator('.code-editor').fill(code);
   await challenge.locator('.btn-check').click();
@@ -208,12 +210,14 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
   });
 
   async function initKernel(page) {
-    await page.locator('.btn-kernel').click({ force: true });
+    // dispatchEvent statt click, siehe tests/helpers/kernel.js
+    await page.locator('.btn-kernel').dispatchEvent('click');
     await expect(page.locator('.btn-kernel')).toBeDisabled({ timeout: 60000 });
   }
 
   // codes[i] === null: Beispiel-Aufgabe (nur "Ausfuehren", kein "Pruefen"), sonst Loesung + Pruefen.
   async function solve(page, codes) {
+    await waitForFreshLesson(page);
     for (let i = 0; i < codes.length; i++) {
       const task = page.locator('.task-block').nth(i);
       if (codes[i] === null) {

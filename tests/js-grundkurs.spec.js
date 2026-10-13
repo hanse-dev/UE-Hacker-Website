@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { setCodeMirrorContent } from './helpers/codemirror.js';
+import { waitForFreshLesson } from './helpers/kernel.js';
 
 // JavaScript-Grundkurs (Route /kurs/js-grundkurs, echter Kurs mit kurse.json-Eintrag, ueber
 // CourseDetail.vue eingebunden wie jeder andere Kurs). 9 Wochen, siehe KURSPLAN.md
@@ -17,6 +18,7 @@ import { setCodeMirrorContent } from './helpers/codemirror.js';
 // einem Eintrag pro Aufgabe der Lektion: `null` heisst "Beispiel, unveraendert ausfuehren", ein
 // String ersetzt den Editor-Inhalt vor dem Pruefen der echten Aufgabe.
 async function completeLesson(page, taskCodes) {
+  await waitForFreshLesson(page);
   for (let i = 0; i < taskCodes.length; i++) {
     const task = page.locator('.task-block').nth(i);
     if (taskCodes[i] === null) {
@@ -37,6 +39,7 @@ async function completeLesson(page, taskCodes) {
 // Loest alle Aufgaben einer reinen Pflichtaufgaben-Lektion (kein Beispiel dabei) nacheinander per
 // Code + "Pruefen" - fuer Debug- und Missions-Lektionen, deren Aufgaben alle ohne `example` sind.
 async function completeAllRequired(page, fixes) {
+  await waitForFreshLesson(page);
   for (let i = 0; i < fixes.length; i++) {
     const task = page.locator('.task-block').nth(i);
     await setCodeMirrorContent(task.locator('.cm-host'), fixes[i]);

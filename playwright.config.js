@@ -15,7 +15,11 @@ export default defineConfig({
   webServer: {
     command: `npx vite --port ${ports.test}`,
     port: ports.test,
-    reuseExistingServer: true,
+    // false: Ein zweiter Lauf im selben Checkout (z.B. Pre-push-Hook parallel zu einem manuellen
+    // Lauf) bricht sofort mit "Port belegt" ab, statt sich den Server des ersten zu leihen - der
+    // verschwindet, sobald der erste Lauf fertig ist, und alle weiteren Tests scheitern mit
+    // ERR_CONNECTION_REFUSED.
+    reuseExistingServer: false,
     timeout: 60000,
   },
   projects: [
