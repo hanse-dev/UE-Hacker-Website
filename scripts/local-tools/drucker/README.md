@@ -55,6 +55,10 @@ CoreBluetooth-UUID (z.B. `A652E1F0-...`) — CoreBluetooth gibt aus Datenschutzg
 MAC-Adressen heraus. Die "echte" MAC (z.B. von der Verpackung oder einer Handy-App) funktioniert
 auf macOS nicht mit `bleak`. Details siehe `vendor/mxw01/README.md` nach dem Setup.
 
+**Lokale Dateien in diesem Ordner bleiben liegen:** `.env`, `.last-account.json`, `ausdrucke/`,
+`vendor/` und `venv/` gehören hierher und sind in Ordnung so, auch wenn das Tool einzelne davon
+nicht mehr liest. Nichts davon löschen, verschieben oder „aufräumen“, außer Eike sagt es ausdrücklich.
+
 `vendor/` und `venv/` werden von `.gitignore` ausgeschlossen (das MXW01-Tool hat keine
 LICENSE-Datei im Original-Repo, daher nicht mit committen; `venv/` ist wie üblich lokal).
 `.env` ist ebenfalls gitignored.
