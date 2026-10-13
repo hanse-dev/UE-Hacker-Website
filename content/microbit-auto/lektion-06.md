@@ -62,6 +62,8 @@ Mit `def` baut ihr einen eigenen Befehl. Aufgerufen wird er mit seinem Namen und
   [funktionen] Aufruf stopp
 ```
 
+Der grüne Block **4-mal wiederholen** liegt unter **Schleifen**. Alles, was in ihm steckt, läuft so oft hintereinander, wie die Zahl vorn sagt. Die Zahl könnt ihr anklicken und ändern. Der Aufruf von `stopp` hängt unter der Schleife, nicht in ihr: Das Auto hält erst an, wenn alle vier Runden fertig sind.
+
 :::
 
 :::python

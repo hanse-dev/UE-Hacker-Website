@@ -53,7 +53,13 @@ Jetzt trifft das Auto zum ersten Mal selbst eine Entscheidung: Ist der Weg frei,
     [minicar] motor = B Direction = Forward speed = 70
 ```
 
-Die Variable `abstand` legt ihr unter **Variablen** an. Die Vergleiche und das **und** liegen unter **Logik**.
+Der rote Block gehört zu einer **Variable**. Eine Variable ist wie eine beschriftete Schachtel, in der sich das Programm eine Zahl merkt. So baut ihr sie:
+
+1. Klickt in der Blockliste auf **Variablen** und dann auf **Erstelle eine Variable**. Nennt sie `abstand`.
+2. Jetzt gibt es dort neue rote Blöcke. Zieht **setze abstand auf 0** in den Block **dauerhaft**.
+3. Zieht den Block **Ultrasonic** aus **MiniCar** auf die `0`. Damit legt das Programm in jeder Runde den frisch gemessenen Abstand in die Schachtel.
+
+Der Block **wenn … dann … ansonsten** liegt unter **Logik**, genauso wie die Vergleiche `<` und `>` und das **und**. Steckt zuerst das **und** in das Feld hinter **wenn** und dann in jede Seite einen Vergleich. Den kleinen runden Block `abstand` holt ihr aus **Variablen** und zieht ihn in beide Vergleiche.
 
 :::
 
