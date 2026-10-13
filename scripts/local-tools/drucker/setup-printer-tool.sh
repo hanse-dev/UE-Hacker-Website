@@ -24,8 +24,9 @@ else
   echo "venv liegt schon unter $VENV_DIR — überspringe Erstellen."
 fi
 
-"$VENV_DIR/bin/pip" install --quiet --upgrade pip
-"$VENV_DIR/bin/pip" install --quiet -r "$VENDOR_DIR/requirements.txt"
+# "python3 -m pip" statt bin/pip: dessen Shebang zeigt auf den alten Pfad, wenn venv/ verschoben wurde.
+"$VENV_DIR/bin/python3" -m pip install --quiet --upgrade pip
+"$VENV_DIR/bin/python3" -m pip install --quiet -r "$VENDOR_DIR/requirements.txt"
 
 echo ""
 echo "Fertig. Als nächstes:"
