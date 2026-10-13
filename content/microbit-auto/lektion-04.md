@@ -49,9 +49,37 @@ while True:
 
 :::
 
+## Hin und zurück
+
+Jetzt soll das Auto vorwärts fahren, kurz anhalten und rückwärts wieder zum Start zurückfahren. Markiert den Startpunkt mit einem Stück Klebeband, dann seht ihr, ob es wirklich dort ankommt.
+
+:::bloecke
+
+Für die Rückfahrt stellt ihr bei beiden Motoren `Direction` von `Forward` auf `Backward`. Tempo und Pause bleiben gleich.
+
+:::
+
+:::python
+
+Für die Rückfahrt bekommt die erste Zahl bei beiden Motoren eine `0` statt einer `1`. Tempo und Wartezeit bleiben gleich.
+
+:::
+
 ## So denkt das Auto
 
 Das Auto misst keine Strecke. Es schaltet die Motoren ein, wartet und schaltet sie wieder aus. Wie weit es kommt, hängt von Tempo und Wartezeit ab. Die passenden Zahlen findet ihr nur durch Ausprobieren.
+
+## Die Herausforderung: genau 50 cm
+
+Euer Auto soll nach genau 50 cm anhalten. So geht ihr vor:
+
+1. Klebt ein Stück Klebeband als Startlinie auf den Boden und legt ein Lineal oder Maßband daneben.
+2. Stellt das Auto immer gleich hin, zum Beispiel mit den Vorderrädern an die Startlinie.
+3. Lasst das Auto fahren und messt, wie weit es gekommen ist.
+4. Zu kurz? Dann macht die Wartezeit größer. Zu weit? Dann macht sie kleiner.
+5. Wiederholt das, bis das Auto bei ziemlich genau 50 cm stehen bleibt.
+
+Ändert immer nur die Wartezeit und lasst das Tempo gleich. Sonst wisst ihr nicht, welche der beiden Zahlen etwas bewirkt hat. Schreibt euch Tempo und Wartezeit auf, wenn es passt.
 
 ## Wenn etwas nicht klappt
 
