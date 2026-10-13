@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 
-// Gleiches Format wie scripts/local-tools/create-account-printout.py: zwei kurze deutsche Wörter
+// Gleiches Format wie scripts/local-tools/drucker.py: zwei kurze deutsche Wörter
 // (ohne Umlaute/ß, leicht abzutippen) + zwei Ziffern, z.B. "Igel-Zug-79".
 const WORDS = [
   'Apfel', 'Baum', 'Berg', 'Blume', 'Boot', 'Brot', 'Delfin', 'Drache', 'Ecke', 'Elefant',

@@ -61,7 +61,7 @@ test('12-Wochen-Kurs: je Woche und Sprache drei ZIPs (Notebooks, eine Python-Dat
 
 test('Projekt-Kurse und KI-Labor: je drei ZIPs; jedes Python-Projekt aus kurse.json ist dabei', () => {
   const kurse = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'public', 'kurse.json'), 'utf8'));
-  const pythonProjects = kurse.filter((k) => k.type === 'projekt' && k.engine !== 'js-sandbox');
+  const pythonProjects = kurse.filter((k) => k.type === 'projekt' && (k.engine || 'pyodide') === 'pyodide');
   expect(pythonProjects.length).toBeGreaterThan(0);
   // ProjectCourse.vue zeigt die Buttons fuer jedes Python-Projekt - ohne ZIP waeren das tote Links.
   for (const p of pythonProjects) {

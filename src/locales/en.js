@@ -403,6 +403,12 @@ export default {
   'projectTag.logikraetsel': 'Logic puzzle',
   'projectTag.mathematik': 'Mathematics',
   'projectTag.spiele': 'Games',
+  'projectTag.robotik': 'Robotics',
+
+  'guide.modeLabel': 'Show guide as:',
+  'guide.mode.bloecke': 'Blocks',
+  'guide.mode.python': 'Python',
+  'guide.checkHint': 'Try each task with your car. Tick it off once it works.',
 
   'profil.title': 'My Profile',
   'profil.loginRequired': 'Log in to see your profile and completion badges.',

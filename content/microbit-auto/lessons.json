@@ -1,0 +1,227 @@
+[
+  {
+    "id": "lektion-01",
+    "title": "Startklar: Team, Auto und Editor",
+    "file": "lektion-01.md",
+    "lessonSummary": "Startklar! Editor und Auto sind bereit. Tauscht jetzt die Rollen.",
+    "tasks": [
+      {
+        "instruction": "Wir haben ausgemacht, wer zuerst Pilot und wer Navigator ist."
+      },
+      {
+        "instruction": "Der Editor ist offen und die Erweiterung (Blöcke) oder die Datei keyes_MiniCar.py (Python) ist geladen."
+      },
+      {
+        "instruction": "Auf unserem micro:bit leuchtet ein Herz."
+      },
+      {
+        "instruction": "Ändert das Programm so, dass ein anderes Bild erscheint.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "title": "Stufe 1: Display und Knöpfe",
+    "file": "lektion-02.md",
+    "lessonSummary": "Stark! Euer micro:bit zeigt Bilder und reagiert auf Knöpfe.",
+    "tasks": [
+      {
+        "instruction": "Unser micro:bit zeigt zuerst einen Text und dann ein Bild."
+      },
+      {
+        "instruction": "Knopf A und Knopf B zeigen zwei verschiedene Bilder."
+      },
+      {
+        "instruction": "Der micro:bit zeigt die Namen von uns beiden: Knopf A den einen, Knopf B den anderen."
+      },
+      {
+        "instruction": "Baut einen Countdown: Der micro:bit zählt 3, 2, 1 und zeigt dann ein Bild.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "title": "Stufe 2: Scheinwerfer",
+    "file": "lektion-03.md",
+    "lessonSummary": "Licht an! Ihr steuert beide Scheinwerfer und kennt die Endlosschleife.",
+    "tasks": [
+      {
+        "instruction": "Beide Scheinwerfer leuchten 2 Sekunden rot und gehen dann aus."
+      },
+      {
+        "instruction": "Ein Scheinwerfer blinkt ohne Ende."
+      },
+      {
+        "instruction": "Blinker: Erst blinkt nur der linke Scheinwerfer dreimal, dann nur der rechte dreimal."
+      },
+      {
+        "instruction": "Polizeilicht: Die Scheinwerfer wechseln schnell zwischen Blau und Rot.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "title": "Stufe 3: Losfahren und stoppen",
+    "file": "lektion-04.md",
+    "lessonSummary": "Es fährt! Ihr könnt das Auto starten, anhalten und sein Tempo bestimmen.",
+    "tasks": [
+      {
+        "instruction": "Nach Knopf A fährt unser Auto eine Sekunde geradeaus und bleibt stehen."
+      },
+      {
+        "instruction": "Unser Auto fährt vorwärts, hält an und fährt rückwärts zum Start zurück."
+      },
+      {
+        "instruction": "Unser Auto hält nach ziemlich genau 50 cm an. Wir haben mit einem Lineal nachgemessen."
+      },
+      {
+        "instruction": "Unser Auto fährt langsam los und wird in drei Schritten schneller.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "title": "Stufe 4: Kurven",
+    "file": "lektion-05.md",
+    "lessonSummary": "Sauber gelenkt! Ihr wisst, wie das Auto mit zwei Rädern dreht.",
+    "tasks": [
+      {
+        "instruction": "Nach Knopf A dreht unser Auto auf der Stelle nach links."
+      },
+      {
+        "instruction": "Wir haben die Wartezeit für eine Vierteldrehung gefunden und aufgeschrieben."
+      },
+      {
+        "instruction": "Knopf A dreht nach links, Knopf B dreht nach rechts."
+      },
+      {
+        "instruction": "Unser Auto fährt einen weiten Bogen, weil ein Rad langsamer dreht als das andere.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "title": "Stufe 5: Figuren fahren",
+    "file": "lektion-06.md",
+    "lessonSummary": "Klasse! Ihr nutzt eigene Befehle und Wiederholungen wie echte Programmierer.",
+    "tasks": [
+      {
+        "instruction": "Wir haben eigene Befehle für vor, links und stopp gebaut."
+      },
+      {
+        "instruction": "Unser Auto fährt ein Quadrat und hält ungefähr am Startpunkt an."
+      },
+      {
+        "instruction": "Wir haben einen vierten Befehl gebaut (zum Beispiel rechts oder zurück) und in einer eigenen Figur benutzt."
+      },
+      {
+        "instruction": "Unser Auto fährt ein Dreieck oder eine Acht.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "title": "Stufe 6: Abstand messen",
+    "file": "lektion-07.md",
+    "lessonSummary": "Euer Auto kann jetzt sehen und selbst entscheiden.",
+    "tasks": [
+      {
+        "instruction": "Der micro:bit zeigt den Abstand zu unserer Hand in Zentimetern."
+      },
+      {
+        "instruction": "Unser Auto fährt auf eine Wand zu und bleibt davor stehen, ohne sie zu berühren."
+      },
+      {
+        "instruction": "Wir haben die Grenze von 15 cm geändert und ausprobiert, wie nah das Auto noch sicher anhält."
+      },
+      {
+        "instruction": "Ampel: Die Scheinwerfer leuchten grün bei freier Fahrt und rot, wenn etwas im Weg ist.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-08",
+    "title": "Stufe 7: Hindernissen ausweichen",
+    "file": "lektion-08.md",
+    "lessonSummary": "Euer Auto findet seinen Weg jetzt allein.",
+    "tasks": [
+      {
+        "instruction": "Unser Auto weicht einem Hindernis aus und fährt danach weiter."
+      },
+      {
+        "instruction": "Unser Auto war eine Minute in der Arena unterwegs, ohne hängen zu bleiben."
+      },
+      {
+        "instruction": "Wir haben eine Zahl geändert und können erklären, was sich dadurch am Verhalten geändert hat."
+      },
+      {
+        "instruction": "Unser Auto dreht mal nach links und mal nach rechts. Tipp: Zufallszahlen.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-09",
+    "title": "Stufe 8: Die Linie sehen",
+    "file": "lektion-09.md",
+    "lessonSummary": "Gut geforscht! Ihr wisst, was die Liniensensoren melden.",
+    "tasks": [
+      {
+        "instruction": "Der micro:bit zeigt eine Zahl, die sich ändert, wenn wir das Auto über die Linie schieben."
+      },
+      {
+        "instruction": "Unsere Tabelle mit allen vier Fällen ist ausgefüllt."
+      },
+      {
+        "instruction": "Statt der Zahl zeigt der micro:bit einen Pfeil zu der Seite, auf der die Linie liegt.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-10",
+    "title": "Stufe 9: Der Linie folgen",
+    "file": "lektion-10.md",
+    "lessonSummary": "Geschafft! Euer Auto fährt ganz allein eine Strecke ab.",
+    "tasks": [
+      {
+        "instruction": "Unser Auto folgt einer geraden Linie."
+      },
+      {
+        "instruction": "Unser Auto schafft eine Kurve, ohne die Linie zu verlieren."
+      },
+      {
+        "instruction": "Unser Auto fährt eine ganze Runde auf einem Oval."
+      },
+      {
+        "instruction": "Wir haben das höchste Tempo gefunden, bei dem unser Auto noch auf der Linie bleibt.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-11",
+    "title": "Stufe 10: Meisterstufe",
+    "file": "lektion-11.md",
+    "lessonSummary": "Meisterstufe bestanden! Ihr habt ein Roboterauto von Grund auf programmiert.",
+    "tasks": [
+      {
+        "instruction": "Wir haben einen ersten Auftrag gelöst und einem anderen Team gezeigt."
+      },
+      {
+        "instruction": "Wir haben einen zweiten Auftrag gelöst und einem anderen Team gezeigt."
+      },
+      {
+        "instruction": "Wir haben einen dritten Auftrag gelöst.",
+        "isBonus": true
+      }
+    ]
+  }
+]

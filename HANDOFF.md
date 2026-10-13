@@ -60,7 +60,8 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.98 | Rechtschreib- und Verständnisprüfung aller deutschen Inhalte | cspell deckt allen Content ab, neu `lint:spelling:de` (LanguageTool in Docker); alle Kurse gelesen und korrigiert, Themen-Reste in Pferde/Sci-Fi und englische Bezeichner in Woche 12 (DE) bereinigt, Wochen-Check-Fragen zu nicht gelehrtem Stoff ersetzt |
 | 3.99 | Fortschritts-Vertrag: Deploy darf gespeicherten Fortschritt nicht brechen | `tests/progress-contract.spec.js` + `tests/fixtures/progress-contract.json` (IDs, Check-Positionen, Storage-Keys/-Versionen, DB-Spalten), `npm run contract:update`, Regeln in `WORKFLOW.md` |
 | 3.100 | Themen angeglichen (12-Wochen-Kurs Woche 2–4) + Lösungs-Reihenfolge | gleiche Lektionen/Konzepte in Abenteuer/Pferde/Sci-Fi; neue Lektionen mit neuer ID an passender Stelle; `scripts/sync_loesungen.py` (Woche 9 war im Download verschoben) |
-| 3.101 | Eigenes Passwort ändern + Reset per Einmal-Passwort | `POST /api/password` (liefert frisches Token), `POST /api/admin/users/:id/reset-password` (Einmal-Passwort, `must_change_password`), Zwangswechsel im Einstellungs-Modal (`App.vue`), `requireUser` lehnt Tokens mit `iat` vor `password_changed_at` ab; Druck: `create-account-printout.py --reset-password <name>` |
+| 3.101 | micro:bit-Kurs „Das Roboterauto“ (`projekt-microbit-auto`) | erster Hardware-Kurs: `engine: "anleitung"` → `GuideLessonView.vue` (Aufgaben zum Abhaken statt Prüfung, Umschalter Blöcke/Python über `:::bloecke`/`:::python`, MakeCode-Blöcke als ```` ```bloecke ````-Text); 11 Stufen in `content/microbit-auto/`; live, aber per `"unlisted": true` nirgends verlinkt (nur `/kurs/projekt-microbit-auto`); Details in `INHALTE.md` Abschnitt 6 |
+| 3.102 | Eigenes Passwort ändern + Reset per Einmal-Passwort | `POST /api/password` (liefert frisches Token), `POST /api/admin/users/:id/reset-password` (Einmal-Passwort, `must_change_password`), Zwangswechsel im Einstellungs-Modal (`App.vue`), `requireUser` lehnt Tokens mit `iat` vor `password_changed_at` ab; Druck: `drucker.py account <name>` |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -87,6 +88,9 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 - `turtle` gibt es in Pyodide nicht — eigener Canvas-Shim in `usePyodide.js` (3.32).
 - Kernel in Tests immer über `startKernel()` starten, nie `if (await btn.isEnabled()) click()` — der
   Button kann dazwischen deaktiviert werden, `click()` hängt dann bis zum Timeout (flaky Tests).
+- **Kernel-Button nach Lektionswechsel:** `click({ force: true })` scheitert sporadisch mit „Element is
+  outside of the viewport“, weil die Scroll-Animation den Button verschiebt → `dispatchEvent('click')`
+  nehmen (`tests/python-woche1-lektionen.spec.js`, `initKernel`).
 - `CodeChallenge` startet den Kernel nicht selbst; Tests klicken `.btn-kernel` explizit.
 - Namespace-Variablen vor jedem Check-Lauf löschen; `pyodide.globals.delete()` wirft bei unbekanntem
   Namen → try/catch. Vor `functionCalls`-Re-Aufruf `__cell_deadline__` neu setzen.
@@ -139,7 +143,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   mit festem Wert ergänzen (3.64).
 - Passwörter liegen nur als Hash vor — „nochmal anzeigen/drucken“ heißt immer: neues Einmal-Passwort
   über `reset-password` erzeugen. Jede Stelle, die `password_hash` schreibt, muss auch
-  `password_changed_at` setzen, sonst bleiben alte Sitzungen gültig (3.101).
+  `password_changed_at` setzen, sonst bleiben alte Sitzungen gültig (3.102).
 - Reaktiver Zustand über mehrere Komponenten (z.B. Admin-Token) gehört als geteilter `ref` in die
   Composable, nicht als lokaler Ref pro Komponente (3.64).
 - Ein Composable, das nur für **einen** Kurs gebaut wurde (Storage-Key/Content-Pfad fest verdrahtet),
@@ -173,6 +177,15 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   Identität mit System-Interpreter vor) (3.63).
 - `bleak`/BLE auf macOS: CoreBluetooth liefert eine app-spezifische UUID statt der echten MAC (per
   Scan ermitteln); Writes ohne kleine Pause (~10ms) zwischen den Häppchen verwirft macOS still (3.63).
+- Alles für den Thermodrucker steckt in `drucker.py` (Menü ohne Argumente, sonst Unterbefehle
+  `account`/`ausdrucke`/`tabelle`/`scan`). Kein GUI: dem Homebrew-Python fehlt `tkinter`.
+- `drucker.py account <name>` legt an oder setzt bei vorhandenem Account auf Rückfrage das Passwort
+  zurück (`POST /api/admin/users/:id/reset-password`, Einmal-Passwort mit Zwangswechsel). Jeder Ausdruck landet als PNG in `ausdrucke/` (gitignored,
+  Klartext-Passwörter) und lässt sich daraus erneut drucken.
+- `drucker.py tabelle` liest die Forscher-Tabelle aus micro:bit-Stufe 8 aus `lektion-09.md`: Wer
+  die Tabelle dort ändert, prüft den Ausdruck mit `--no-print` (Bild in `ausdrucke/`).
+- Ohne Drucker testen: `--no-print` statt Druck; Account-Anlage gegen `node scripts/run-test-api.js`
+  mit `--server-url http://localhost:<port>` (Admin-Passwort `test-admin-password`), nie gegen Produktion.
 
 **Betrieb**
 - SQLite nur per `VACUUM INTO` sichern (WAL), nie `cp`; nie `git clean -fdx` ohne `api/data/` auszuschließen (Abschnitt 4).

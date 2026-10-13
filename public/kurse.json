@@ -130,6 +130,20 @@
     "contentPath": "text-adventure-fluchtraum"
   },
   {
+    "id": "projekt-microbit-auto",
+    "type": "projekt",
+    "engine": "anleitung",
+    "unlisted": true,
+    "language": "microbit",
+    "level": "einsteiger",
+    "tags": ["robotik"],
+    "title": "micro:bit: Das Roboterauto",
+    "title_en": "micro:bit: The Robot Car",
+    "description": "Programmiert im Zweierteam ein kleines Roboterauto mit dem micro:bit: Scheinwerfer schalten, fahren, lenken, Hindernissen ausweichen und einer Linie folgen. Jede Stufe gibt es mit Blöcken und mit Python.",
+    "description_en": "Work in pairs and program a small robot car with the micro:bit: switch the headlights, drive, steer, avoid obstacles and follow a line. Every level comes with blocks and with Python. The guide is currently available in German.",
+    "contentPath": "microbit-auto"
+  },
+  {
     "id": "ferienkurse",
     "title": "Meet & Code – Herbstferienprogramm AI für Teenager",
     "title_en": "Meet & Code - Autumn Holiday Programme AI for Teenagers",

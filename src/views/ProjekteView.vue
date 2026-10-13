@@ -126,7 +126,7 @@ const lessonJsonModules = import.meta.glob('../../content/*/lessons.json');
 
 const LEVEL_ORDER = ['einsteiger', 'fortgeschritten'];
 const DURATION_ORDER = ['kurz', 'mittel', 'laenger'];
-const LANGUAGE_LABELS = { python: 'Python', javascript: 'JavaScript' };
+const LANGUAGE_LABELS = { python: 'Python', javascript: 'JavaScript', microbit: 'micro:bit' };
 
 function durationBucket(lessonCount) {
   if (lessonCount <= 5) return 'kurz';
@@ -209,7 +209,8 @@ export default {
       try {
         const response = await fetch(assetUrl('kurse.json'));
         const kurse = await response.json();
-        const projektKurse = kurse.filter((k) => k.type === 'projekt');
+        // `unlisted`: Kurs ist nur ueber den direkten Link /kurs/<id> erreichbar.
+        const projektKurse = kurse.filter((k) => k.type === 'projekt' && !k.unlisted);
         projects.value = await Promise.all(
           projektKurse.map(async (p) => {
             const lessonCount = await loadLessonCount(p.contentPath);

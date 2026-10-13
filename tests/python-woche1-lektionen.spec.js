@@ -93,8 +93,9 @@ test.describe('Python Woche 1 Abenteuer als Einzel-Lektionen', () => {
   });
 
   async function initKernel(page) {
-    // force: die smooth-scroll-Animation beim Lektionswechsel laesst den Button kurz "instabil" wirken
-    await page.locator('.btn-kernel').click({ force: true });
+    // dispatchEvent statt click: die smooth-scroll-Animation beim Lektionswechsel verschiebt den Button,
+    // ein Maus-Klick (auch mit force) scheitert dann mit "Element is outside of the viewport".
+    await page.locator('.btn-kernel').dispatchEvent('click');
     await expect(page.locator('.btn-kernel')).toBeDisabled({ timeout: 60000 });
   }
 

@@ -68,6 +68,16 @@
           :is-last-lesson="isLastLesson"
           @completed="onLessonCompleted"
         />
+        <GuideLessonView
+          v-else-if="engine === 'anleitung'"
+          :lesson="currentLesson"
+          :content-path="contentPath"
+          :variant="contentPath"
+          :course-id="courseId"
+          :is-project-course="true"
+          :is-last-lesson="isLastLesson"
+          @completed="onLessonCompleted"
+        />
         <JsLessonView
           v-else
           :lesson="currentLesson"
@@ -88,6 +98,7 @@
 import { ref, computed, onMounted, watch } from 'vue';
 import LessonView from './LessonView.vue';
 import JsLessonView from './JsLessonView.vue';
+import GuideLessonView from './GuideLessonView.vue';
 import OfflineDownloads from './OfflineDownloads.vue';
 import { useInteractiveProgress } from '../composables/useInteractiveProgress';
 import { useLanguage } from '../composables/useLanguage';
@@ -96,7 +107,7 @@ const lessonJsonModules = import.meta.glob('../../content/*/lessons.json');
 
 export default {
   name: 'ProjectCourse',
-  components: { LessonView, JsLessonView, OfflineDownloads },
+  components: { LessonView, JsLessonView, GuideLessonView, OfflineDownloads },
   props: {
     courseId: { type: String, required: true },
     contentPath: { type: String, required: true },

@@ -5,6 +5,28 @@ nächsten Themen. Diese Datei wird nicht automatisch geladen.
 
 ## Offen
 
+- [ ] **micro:bit-Kurs „Das Roboterauto“ (`content/microbit-auto/`, HANDOFF 3.101) — vor dem ersten
+      Termin am echten Auto durchspielen.** Der Kurs ist ohne Hardware entstanden (nur aus der
+      Keyestudio-Doku, der MakeCode-Erweiterung und der Bibliothek abgeleitet). Zu prüfen:
+      - Stufe 3/4: Ist Motor A wirklich links und `Forward` vorwärts? Passen Tempo 70 und die
+        Wartezeiten (1000 ms geradeaus, 400 ms Vierteldrehung) als Startwerte?
+      - Stufe 8/9: Welche Zahl meldet `Line Tracking` (angenommen: 2 = nur links Schwarz, 1 = nur
+        rechts Schwarz, 3 = beide)? Reicht eine 2 cm breite Linie für beide Sensoren?
+      - Stufe 6/7: Liefert `get_distance()` plausible Zentimeter, und passt die Grenze 15 cm?
+      - Lektion 1: Menünamen in MakeCode und im Python-Editor (deutsche Oberfläche) stimmen mit dem
+        Text überein; `keyes_MiniCar.py` lässt sich über „Projekt → Öffnen“ hinzufügen.
+      - Deutsche Namen der MakeCode-Blöcke in den ```` ```bloecke ````-Listings mit dem Editor abgleichen.
+- [ ] micro:bit-Kurs: `public/microbit/keyes_MiniCar.py` stammt aus dem Keyestudio-Download, eine
+      Lizenz ist dort nicht angegeben. Vorschlag: bei Keyestudio nachfragen oder die Datei durch
+      einen Link auf deren Download ersetzen (dann fehlt die Korrektur für `get_distance()`).
+- [ ] micro:bit-Kurs ist live, aber bewusst nicht verlinkt (`"unlisted": true` in `public/kurse.json`,
+      erreichbar nur über `/kurs/projekt-microbit-auto`). Zum Veröffentlichen: Feld entfernen, Tests
+      anpassen (siehe `INHALTE.md` Abschnitt 6).
+- [ ] micro:bit-Kurs: nur DE, EN fehlt. Der Kurs ist ein Projekt-Kurs (`/projekte`); sobald
+      weitere micro:bit-Module dazukommen, eigenen Kurs-Typ/Übersicht erwägen (`VISION.md`).
+- [ ] micro:bit-Kurs: einzelne Haken gehen beim Neuladen verloren, solange die Stufe nicht
+      abgeschlossen ist (bewusst, kein neuer Storage-Key). Bei Bedarf nachrüsten, dann mit
+      `contract:update`.
 - [ ] Offen aus der Inhaltsprüfung (HANDOFF 3.98, Details im Archiv):
       - **EN nachziehen:** Die englischen Themen Pferde/Sci-Fi (Woche 6–10) enthalten weiter die
         Abenteuer-Reste, die in DE ersetzt wurden (`gilde`, `monster`, `questlog`, "Duell"); EN

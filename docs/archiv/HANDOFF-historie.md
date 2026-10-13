@@ -2513,7 +2513,23 @@ Woche 6 aus einem gemeinsamen Skelett.
   die erwartete Ausgabe geprüft.
 - Offen (in `todo.md`): Aufgabenmengen in Debug/Missionen/Extra-Herausforderungen Woche 2–4.
 
-### 3.101 — Eigenes Passwort ändern + Reset per Einmal-Passwort (Branch `kennwort-aendern`)
+### 3.101 — micro:bit-Kurs „Das Roboterauto“ (Branch `microbit-auto`)
+
+- Erster Hardware-Kurs: micro:bit V2 + Keyestudio Mini Robot Car (KS4036), Zweierteams, 11 Stufen
+  von „Herz anzeigen“ bis Linienfolger und freie Aufträge. Jede Stufe mit MakeCode-Blöcken und
+  MicroPython, weil das Publikum von Anfängern bis zu erweiterten Grundlagen reicht.
+- Die Plattform kann Code auf dem Gerät nicht prüfen. Deshalb neue `engine: "anleitung"`:
+  `GuideLessonView.vue` zeigt die Anleitung und Aufgaben zum Abhaken (Entscheidung des Nutzers,
+  bewusste Ausnahme von „jede Aufgabe braucht ein `expected`“).
+- Blöcke werden nicht als Bilder gepflegt, sondern als Text (```` ```bloecke ````) und farbig
+  gerendert — änderbar ohne Screenshots, kein Abruf bei MakeCode nötig.
+- Technik des Autos (aus `keyestudio2019/MiniCar` und `keyes_MiniCar.py`): Motoren und Scheinwerfer
+  über I2C-Adresse 0x30; Motor A/`Motor_L` = links, B/`Motor_R` = rechts; Ultraschall P14/P15;
+  Liniensensoren P13 (links) und P12 (rechts), 1 = Schwarz; Lichtsensoren P1 (links), P0 (rechts);
+  Scheinwerfer in Python invertiert (0 = hell, 255 = aus).
+- Ohne Hardware entstanden — Prüfliste in `todo.md`.
+
+### 3.102 — Eigenes Passwort ändern + Reset per Einmal-Passwort (Branch `kennwort-aendern`)
 
 Eingeloggte Nutzer können ihr Passwort selbst ändern; der Admin kann es mit einem Klick (oder per
 Druck-Skript) zurücksetzen. Vorgabe des Nutzers: keine Personendaten in der App — also kein
@@ -2548,3 +2564,6 @@ Mail-Reset, keine Sicherheitsfragen.
   `tests/auth-ui.spec.js` (Ändern in den Optionen, Reset im Admin-Panel → Zwangswechsel) — alle in
   `npm run test:auth`. Das Druck-Skript hat keinen automatischen Test (lokales Tool); von Hand mit
   `--no-print` gegen die Test-API geprüft.
+
+Nachtrag beim Merge: `create-account-printout.py` ist inzwischen in `scripts/local-tools/drucker.py`
+aufgegangen; der Reset läuft dort über `drucker.py account <name>` (fragt bei vorhandenem Account nach).
