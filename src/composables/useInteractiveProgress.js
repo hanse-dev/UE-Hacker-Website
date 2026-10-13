@@ -60,6 +60,14 @@ export function useInteractiveProgress(variant = 'kinder', courseId = COURSE_ID)
     return true;
   };
 
+  // Nur für Lektionen zum Abhaken (GuideLessonView): ein zurückgenommener Haken nimmt auch den
+  // Abschluss zurück.
+  const unmarkCompleted = (lessonId) => {
+    const ids = state.value.completedLessonIds || [];
+    if (!ids.includes(lessonId)) return;
+    state.value = { ...state.value, completedLessonIds: ids.filter((id) => id !== lessonId) };
+  };
+
   const isLessonUnlocked = (lessonId, lessons) => {
     if (!lessons?.length) return false;
     const index = lessons.findIndex((l) => l.id === lessonId);
@@ -102,6 +110,7 @@ export function useInteractiveProgress(variant = 'kinder', courseId = COURSE_ID)
     completedCount,
     isCompleted,
     markCompleted,
+    unmarkCompleted,
     isLessonUnlocked,
     getNextLessonId,
     resetProgress,

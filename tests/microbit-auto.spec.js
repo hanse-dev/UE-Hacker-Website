@@ -115,15 +115,92 @@ test.describe('micro:bit-Kurs: Roboterauto (Anleitung zum Abhaken)', () => {
     await expect(tips).not.toContainText(':::');
   });
 
-  test('Kurs ist nicht verlinkt: fehlt in der Projekte-Übersicht, ist per direktem Link aber erreichbar', async ({ page }) => {
+  test('Haken zurücknehmen nimmt den Abschluss der Stufe zurück und sperrt die nächste wieder', async ({ page }) => {
+    await openCourse(page);
+    const tasks = page.locator('.guide-task');
+    const required = lessons[0].tasks.filter((task) => !task.isBonus).length;
+    for (let i = 0; i < required; i++) await tasks.nth(i).locator('.guide-task-check').check();
+    await expect(page.locator('.lesson-complete-box')).toBeVisible();
+    await expect(page.locator('.lesson-item.completed')).toHaveCount(1);
+
+    // Ein Bonus-Haken ändert nichts am Abschluss.
+    await tasks.nth(required).locator('.guide-task-check').check();
+    await tasks.nth(required).locator('.guide-task-check').uncheck();
+    await expect(page.locator('.lesson-complete-box')).toBeVisible();
+
+    await tasks.nth(0).locator('.guide-task-check').uncheck();
+    await expect(tasks.nth(0).locator('.guide-task-check')).not.toBeChecked();
+    await expect(page.locator('.lesson-complete-box')).toHaveCount(0);
+    await expect(page.locator('.lesson-item.completed')).toHaveCount(0);
+    await expect(page.locator('.lesson-item').nth(1)).toHaveClass(/locked/);
+
+    // Auch nach dem Neuladen gilt die Stufe nicht mehr als abgeschlossen.
+    await page.reload();
+    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(lessons.length, { timeout: 15000 });
+    await expect(page.locator('.lesson-item.completed')).toHaveCount(0);
+    await expect(page.locator('.guide-task-check:checked')).toHaveCount(0);
+
+    // Wieder abhaken schließt die Stufe erneut ab.
+    for (let i = 0; i < required; i++) await tasks.nth(i).locator('.guide-task-check').check();
+    await expect(page.locator('.lesson-item.completed')).toHaveCount(1);
+  });
+
+  test('Stufe 9: Plan und Programm sind zum Selbermachen, fertiger Plan und Lösung sind eingeklappt', async ({ page }) => {
+    await page.addInitScript(() => localStorage.setItem(
+      'ue-hacker-interactive-progress-microbit-auto',
+      JSON.stringify({
+        variant: 'microbit-auto',
+        completedLessonIds: Array.from({ length: 9 }, (_, i) => `lektion-${String(i + 1).padStart(2, '0')}`),
+      }),
+    ));
+    await openCourse(page);
+    await page.locator('.lesson-item').nth(9).click();
+    const content = page.locator('.guide-lesson .lesson-content');
+    await expect(content.locator('h1')).toContainText('Stufe 9');
+
+    // Sichtbar ist nur der erste Fall, die drei anderen bauen die Teams selbst.
+    await expect(content.locator('.mc-block:visible', { hasText: 'wenn linie = 3 dann' })).toHaveCount(1);
+    await expect(content.locator('.mc-block:visible', { hasText: 'Backward' })).toHaveCount(0);
+    await expect(content.getByText('nach links drehen, die Linie wandert nach links weg')).toBeHidden();
+
+    const plan = content.locator('details', { has: page.locator('summary', { hasText: 'Plan anzeigen' }) });
+    await plan.locator('summary').click();
+    await expect(plan.getByText('nach links drehen, die Linie wandert nach links weg')).toBeVisible();
+
+    const solution = content.locator('details', { has: page.locator('summary', { hasText: 'Lösung anzeigen' }) });
+    await expect(solution.locator('.mc-block', { hasText: 'sonst wenn linie = 2 dann' })).toBeHidden();
+    await solution.locator('summary').click();
+    await expect(solution.locator('.mc-block', { hasText: 'sonst wenn linie = 2 dann' })).toBeVisible();
+    await expect(solution.locator('pre code.language-python')).toBeHidden();
+  });
+
+  test('Kurs ist in der Projekte-Übersicht verlinkt, mit eigenen Filtern für micro:bit und Robotik', async ({ page }) => {
+    await page.goto('/projekte');
+    await expect(page.locator('a.projekt-card[href="/kurs/projekt-microbit-auto"]')).toBeVisible({ timeout: 15000 });
+
+    await page.locator('.filter-chip', { hasText: 'Robotik' }).click();
+    await expect(page.locator('.projekt-card')).toHaveCount(1);
+    await page.locator('.filter-reset').click();
+    await page.locator('.filter-chip', { hasText: 'micro:bit' }).click();
+    await expect(page.locator('.projekt-card')).toHaveCount(1);
+
+    await page.locator('a.projekt-card[href="/kurs/projekt-microbit-auto"]').click();
+    await expect(page.locator('.course-description')).toContainText('Roboterauto');
+    await expect(page.locator('.btn-start-course')).toBeVisible();
+  });
+
+  test('Ein Kurs mit "unlisted" fehlt in der Projekte-Übersicht, ist per direktem Link aber erreichbar', async ({ page }) => {
+    await page.route('**/kurse.json', async (route) => {
+      const response = await route.fetch();
+      const kurse = await response.json();
+      kurse.find((k) => k.id === 'projekt-microbit-auto').unlisted = true;
+      await route.fulfill({ response, json: kurse });
+    });
     await page.goto('/projekte');
     await expect(page.locator('.projekt-card').first()).toBeVisible({ timeout: 15000 });
     await expect(page.locator('a[href="/kurs/projekt-microbit-auto"]')).toHaveCount(0);
     await expect(page.locator('.filter-chip', { hasText: 'micro:bit' })).toHaveCount(0);
     await expect(page.locator('.filter-chip', { hasText: 'Robotik' })).toHaveCount(0);
-
-    await page.goto('/');
-    await expect(page.locator('a[href="/kurs/projekt-microbit-auto"]')).toHaveCount(0);
 
     await page.goto('/kurs/projekt-microbit-auto');
     await expect(page.locator('.course-description')).toContainText('Roboterauto');

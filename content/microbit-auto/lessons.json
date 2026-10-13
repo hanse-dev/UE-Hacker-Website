@@ -217,10 +217,6 @@
       },
       {
         "instruction": "Wir haben einen zweiten Auftrag gelöst und einem anderen Team gezeigt."
-      },
-      {
-        "instruction": "Wir haben einen dritten Auftrag gelöst.",
-        "isBonus": true
       }
     ]
   }

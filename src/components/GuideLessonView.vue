@@ -106,7 +106,7 @@ export default {
   emits: ['completed'],
   setup(props, { emit }) {
     const { lang, t } = useLanguage();
-    const { markCompleted, isCompleted } = useInteractiveProgress(props.variant, props.courseId);
+    const { markCompleted, unmarkCompleted, isCompleted } = useInteractiveProgress(props.variant, props.courseId);
     const isMounted = ref(true);
     const { lessonContent, loadContent } = useLessonContent(isMounted);
 
@@ -124,23 +124,34 @@ export default {
     const hasVariants = computed(() => guideHtml.value.includes('class="variante '));
 
     const tasks = computed(() => (Array.isArray(props.lesson?.tasks) ? props.lesson.tasks : []));
+    const requiredIdx = computed(() =>
+      tasks.value.map((task, idx) => (task.isBonus ? -1 : idx)).filter((idx) => idx >= 0));
     const checked = ref(new Set());
-    // Eine schon abgeschlossene Stufe zeigt alle Pflicht-Haken wieder an, einzelne Haken werden
-    // nicht gespeichert.
-    const isChecked = (idx) =>
-      checked.value.has(idx) || (isCompleted(props.lesson.id) && !tasks.value[idx]?.isBonus);
+    const isChecked = (idx) => checked.value.has(idx);
 
-    const allTasksComplete = computed(() => {
-      const required = tasks.value.map((task, idx) => (task.isBonus ? -1 : idx)).filter((idx) => idx >= 0);
-      return required.length > 0 && required.every((idx) => isChecked(idx));
-    });
+    const allTasksComplete = computed(() =>
+      requiredIdx.value.length > 0 && requiredIdx.value.every((idx) => isChecked(idx)));
+
+    // Einzelne Haken werden nicht gespeichert: Eine schon abgeschlossene Stufe zeigt alle
+    // Pflicht-Haken wieder an (auch wenn der Abschluss erst per Sync nachkommt).
+    watch(
+      [() => props.lesson?.id, () => isCompleted(props.lesson.id)],
+      ([id, done], [oldId]) => {
+        const next = oldId === id ? new Set(checked.value) : new Set();
+        if (done) requiredIdx.value.forEach((idx) => next.add(idx));
+        checked.value = next;
+      },
+      { immediate: true }
+    );
 
     const toggleTask = (idx, value) => {
       const next = new Set(checked.value);
       if (value) next.add(idx);
       else next.delete(idx);
       checked.value = next;
+      // Ein zurückgenommener Pflicht-Haken nimmt auch den Abschluss der Stufe zurück.
       if (allTasksComplete.value) markCompleted(props.lesson.id);
+      else unmarkCompleted(props.lesson.id);
     };
 
     const lessonSummary = computed(() => props.lesson?.lessonSummary || t('lesson.defaultSummary'));
@@ -148,10 +159,7 @@ export default {
 
     watch(
       () => props.lesson?.id,
-      () => {
-        checked.value = new Set();
-        loadContent(props.lesson, props.contentPath);
-      }
+      () => loadContent(props.lesson, props.contentPath)
     );
 
     onMounted(() => loadContent(props.lesson, props.contentPath));

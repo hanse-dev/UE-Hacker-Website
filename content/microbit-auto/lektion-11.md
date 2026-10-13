@@ -1,6 +1,6 @@
 # Stufe 10: Meisterstufe
 
-Ihr kennt jetzt alle Teile des Autos. Hier gibt es keine fertigen Programme mehr, nur Aufträge und Hinweise. Sucht euch aus, was euch reizt. Zwei gelöste Aufträge reichen für den Abschluss.
+Ihr kennt jetzt alle Teile des Autos. Hier gibt es keine fertigen Programme mehr, nur Aufträge und Hinweise. Sucht euch aus, was euch reizt. Zwei gelöste Aufträge reichen für den Abschluss. Ist danach noch Zeit, löst ihr einen weiteren oder verbindet zwei Aufträge zu einem Programm.
 
 ## Auftrag 1: Sicher auf der Linie
 
@@ -61,7 +61,3 @@ Baut mit einem anderen Team eine Strecke mit Start, Ziel und mindestens zwei Kur
 ## Auftrag 5: Eure eigene Idee
 
 Ein Auto, das tanzt? Das einparkt? Das bei Dunkelheit das Licht einschaltet? Schreibt eure Idee zuerst als Plan in Worten auf und zeigt sie eurer Kursleitung.
-
-## Bonus: Noch ein Auftrag
-
-Zwei Aufträge sind geschafft und es ist noch Zeit? Dann löst einen dritten. Oder verbindet zwei Aufträge zu einem Programm.

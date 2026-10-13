@@ -418,6 +418,12 @@ Ordner-Mapping (immer paarweise anpassen):
       anzeigen</summary>` … `</details>` (Leerzeile nach `<summary>`-Zeile und vor `</details>`,
       sonst wird das Markdown darin nicht gerendert). Tipps nennen neue Bausteine und Denkschritte,
       zeigen aber nie die fertige Lösung.
+- [ ] Vorgegebener Code darf die Aufgabe nicht komplett lösen, wenn das Team selbst etwas
+      herausfinden soll: nur das Gerüst zeigen (z.B. den ersten Fall), das fertige Programm
+      eingeklappt in `<details><summary>Lösung anzeigen</summary>` darunter (Beispiel: Stufe 9,
+      `lektion-10.md`). Eine letzte Stufe mit frei wählbaren Aufträgen braucht keine Bonusaufgabe.
+- [ ] Haken sind umkehrbar: Wird in einer abgeschlossenen Stufe ein Pflicht-Haken entfernt, gilt
+      sie nicht mehr als abgeschlossen und die nächste ist wieder gesperrt.
 - [ ] MakeCode-Blöcke als Text: Codeblock mit Sprache `bloecke`, pro Zeile `[kategorie] Beschriftung`,
       zwei Leerzeichen Einrückung je Ebene. Kategorien (= Farben, siehe `GuideLessonView.vue`):
       `grundlagen`, `eingabe`, `schleifen`, `logik`, `variablen`, `mathematik`, `funktionen`, `musik`,

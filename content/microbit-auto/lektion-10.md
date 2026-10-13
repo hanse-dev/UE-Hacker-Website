@@ -4,6 +4,25 @@ Jetzt fährt das Auto allein eine Strecke ab. Der Trick: Es schaut ständig nach
 
 ## Der Plan
 
+Bevor ihr programmiert, macht ihr einen Plan in Worten. Die Sensoren können vier verschiedene Dinge sehen. Was soll das Auto jeweils tun? Zeichnet die Tabelle ab und füllt die rechte Spalte aus.
+
+| Was sehen die Sensoren? | Was tut das Auto? |
+|---|---|
+| beide Schwarz | ? |
+| nur links Schwarz | ? |
+| nur rechts Schwarz | ? |
+| beide Weiß | ? |
+
+Zwei Fragen helfen euch:
+
+- Sieht nur der linke Sensor Schwarz: Auf welcher Seite des Autos liegt die Linie dann? Wohin muss das Auto drehen, damit sie wieder genau unter ihm liegt?
+- Was ist am sichersten, wenn das Auto gar keine Linie mehr sieht?
+
+Kommt ihr nicht weiter, hilft der fertige Plan. Versucht es aber zuerst allein.
+
+<details>
+<summary>Plan anzeigen</summary>
+
 | Was sehen die Sensoren? | Was tut das Auto? |
 |---|---|
 | beide Schwarz | geradeaus, die Linie liegt genau darunter |
@@ -11,7 +30,59 @@ Jetzt fährt das Auto allein eine Strecke ab. Der Trick: Es schaut ständig nach
 | nur rechts Schwarz | nach rechts drehen |
 | beide Weiß | anhalten, die Linie ist verloren |
 
-Vergleicht den Plan mit eurer Tabelle aus Stufe 8. Dort steht, welche Zahl zu welcher Zeile gehört.
+</details>
+
+## Vom Plan zum Programm
+
+Jede Zeile eures Plans wird im Programm zu einem Fall. An welcher Zahl ihr einen Fall erkennt, steht in eurer Tabelle aus Stufe 8. Wie das Auto fährt, dreht und anhält, wisst ihr aus Stufe 3 und 4.
+
+Der erste Fall ist schon fertig. Die anderen drei baut ihr selbst.
+
+:::bloecke
+
+```bloecke
+[grundlagen] dauerhaft
+  [variablen] setze linie auf (Line Tracking)
+  [logik] wenn linie = 3 dann
+    [minicar] motor = A Direction = Forward speed = 60
+    [minicar] motor = B Direction = Forward speed = 60
+  [logik] sonst wenn … dann
+  [logik] ansonsten
+```
+
+Mit dem kleinen **+** unten am **wenn**-Block fügt ihr weitere Fälle hinzu. Den Vergleich mit **=** findet ihr unter **Logik**.
+
+Die 3 steht hier für „beide Schwarz“. Zeigt eure Tabelle dafür eine andere Zahl, nehmt ihr eure.
+
+:::
+
+:::python
+
+```python
+from microbit import *
+from keyes_MiniCar import *
+
+auto = MiniCar()
+pin12.set_pull(pin12.PULL_UP)
+pin13.set_pull(pin13.PULL_UP)
+
+while True:
+    links = pin13.read_digital()
+    rechts = pin12.read_digital()
+    if links == 1 and rechts == 1:
+        auto.Motor_L(1, 60)
+        auto.Motor_R(1, 60)
+    # Hier kommen eure drei weiteren Fälle hin.
+```
+
+Weitere Fälle hängt ihr mit `elif` an, das heißt „sonst, wenn“. Der letzte Fall bekommt ein `else`. Python prüft die Fälle von oben nach unten und nimmt den ersten, der stimmt. Ein `==` vergleicht zwei Werte.
+
+:::
+
+Das Auto fährt nicht so, wie ihr wollt? Lest zuerst weiter unten bei „Wenn das Auto die Linie verliert“ nach. Erst wenn gar nichts mehr hilft, schaut ihr in die Lösung.
+
+<details>
+<summary>Lösung anzeigen</summary>
 
 :::bloecke
 
@@ -31,8 +102,6 @@ Vergleicht den Plan mit eurer Tabelle aus Stufe 8. Dort steht, welche Zahl zu we
     [minicar] motor = A Direction = Forward speed = 0
     [minicar] motor = B Direction = Forward speed = 0
 ```
-
-Mit dem kleinen **+** unten am **wenn**-Block fügt ihr weitere Fälle hinzu.
 
 Hier steht 2 für „nur links Schwarz“ und 1 für „nur rechts Schwarz“. Zeigt eure Tabelle es andersherum, tauscht ihr die beiden Zahlen.
 
@@ -64,9 +133,9 @@ while True:
         auto.Motor_stop()
 ```
 
-`elif` heißt „sonst, wenn“. Python prüft die Fälle von oben nach unten und nimmt den ersten, der stimmt. Ein `==` vergleicht zwei Werte.
-
 :::
+
+</details>
 
 ## Die Strecke
 
