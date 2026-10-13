@@ -192,7 +192,10 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   Identität mit System-Interpreter vor) (3.63).
 - `bleak`/BLE auf macOS: CoreBluetooth liefert eine app-spezifische UUID statt der echten MAC (per
   Scan ermitteln); Writes ohne kleine Pause (~10ms) zwischen den Häppchen verwirft macOS still (3.63).
-- Alles für den Thermodrucker steckt in `drucker.py` (Menü ohne Argumente, sonst Unterbefehle
+- Thermodrucker-Tool liegt in `scripts/local-tools/drucker/`: Nur `drucker.py` (Einstieg) fragt und
+  gibt aus; `druck.py`/`ausweis.py`/`tabelle.py`/`bluetooth.py` liefern Werte und werfen
+  `DruckerError`. Neue Aktion = Funktion im passenden Modul + Menüpunkt/Unterbefehl in `drucker.py`.
+- `drucker.py` kennt ein Menü (ohne Argumente) und Unterbefehle
   `account`/`ausdrucke`/`tabelle`/`scan`). Kein GUI: dem Homebrew-Python fehlt `tkinter`.
 - `drucker.py account <name>` legt an oder setzt bei vorhandenem Account auf Rückfrage das Passwort
   zurück (`POST /api/admin/users/:id/reset-password`, Einmal-Passwort mit Zwangswechsel). Jeder Ausdruck landet als PNG in `ausdrucke/` (gitignored,
