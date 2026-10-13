@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Klont das MXW01-Thermodrucker-Tool lokal als Abhängigkeit für create-account-printout.py.
+# Klont das MXW01-Thermodrucker-Tool lokal als Abhängigkeit für drucker.py.
 # Wird nicht committed (siehe .gitignore) — das Tool hat keine LICENSE-Datei im Repo.
 set -euo pipefail
 
@@ -30,4 +30,4 @@ fi
 echo ""
 echo "Fertig. Als nächstes:"
 echo "  cp $DIR/.env.example $DIR/.env   # und ausfüllen"
-echo "  python3 $DIR/create-account-printout.py <benutzername> kinder   # startet sich selbst im venv neu"
+echo "  python3 $DIR/drucker.py   # Menü; startet sich selbst im venv neu"

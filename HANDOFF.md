@@ -173,8 +173,12 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   Identität mit System-Interpreter vor) (3.63).
 - `bleak`/BLE auf macOS: CoreBluetooth liefert eine app-spezifische UUID statt der echten MAC (per
   Scan ermitteln); Writes ohne kleine Pause (~10ms) zwischen den Häppchen verwirft macOS still (3.63).
-- `print-microbit-tabelle.py` druckt die Forscher-Tabelle aus micro:bit-Stufe 8 und liest sie aus
-  `lektion-09.md`: Wer die Tabelle dort ändert, prüft den Ausdruck mit `--preview`.
+- Alles für den Thermodrucker steckt in `drucker.py` (Menü ohne Argumente, sonst Unterbefehle
+  `account`/`nochmal`/`tabelle`/`scan`). Kein GUI: dem Homebrew-Python fehlt `tkinter`.
+- `drucker.py tabelle` liest die Forscher-Tabelle aus micro:bit-Stufe 8 aus `lektion-09.md`: Wer
+  die Tabelle dort ändert, prüft den Ausdruck mit `--preview`.
+- Ohne Drucker testen: `--preview` statt Druck; Account-Anlage gegen `node scripts/run-test-api.js`
+  mit `--server-url http://localhost:<port>` (Admin-Passwort `test-admin-password`), nie gegen Produktion.
 
 **Betrieb**
 - SQLite nur per `VACUUM INTO` sichern (WAL), nie `cp`; nie `git clean -fdx` ohne `api/data/` auszuschließen (Abschnitt 4).
