@@ -156,7 +156,7 @@ test.describe('Projekt: Quiz-Generator (JS, DOM-Sandbox)', () => {
             }
             await expect(frame.locator(`#${v.target}`), where).toHaveText(v.text);
           } else {
-            await expect(block.locator('.output-content'), where).toContainText(v.expected);
+            await expect(page.locator('.js-workspace .output-content'), where).toContainText(v.expected);
           }
           continue;
         }

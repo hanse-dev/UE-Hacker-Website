@@ -81,7 +81,7 @@
            neu laden). -->
       <div
         class="js-workspace"
-        :class="{ 'is-empty': activeIdx === null }"
+        :class="{ 'is-empty': activeIdx === null, 'no-canvas': activeIdx !== null && !activeShowsCanvas }"
         :style="{ order: activeIdx === null ? 9998 : 11 + activeIdx * 2 }"
       >
         <div class="js-workspace-inner">
@@ -89,8 +89,13 @@
             {{ t('jsLesson.workspaceTitle') }}<span v-if="activeIdx !== null" class="js-workspace-task"> · {{ t('jsLesson.workspaceTask').replace('{n}', activeIdx + 1) }}</span>
           </p>
           <p v-if="activeIdx === null" class="js-workspace-hint">{{ t('jsLesson.workspaceEmpty') }}</p>
-          <p v-else-if="!activeShowsCanvas" class="js-workspace-hint">{{ t('jsLesson.workspaceNoCanvas') }}</p>
           <JsSandboxFrame v-if="activeIdx !== null" ref="sandboxEl" :show-canvas="activeShowsCanvas" :dom-mode="domMode" />
+          <!-- Breit zeigt die Arbeitsflaeche auch die Ausgabe (dann ohne Kopie unter dem Code), damit
+               rechts immer das ganze Ergebnis steht - auch bei Aufgaben, die nichts zeichnen. -->
+          <div v-if="activeIdx !== null && taskOutputs[activeIdx] !== null" class="output-display js-workspace-output">
+            <strong>{{ t('editor.output') }}</strong>
+            <pre class="output-content">{{ taskOutputs[activeIdx] }}</pre>
+          </div>
         </div>
       </div>
 
@@ -439,7 +444,9 @@ export default {
 }
 
 .js-workspace.is-empty,
-.lesson-view:not(.with-workspace) .js-workspace {
+.js-workspace.no-canvas,
+.lesson-view:not(.with-workspace) .js-workspace,
+.js-workspace-output {
   display: none;
 }
 
@@ -475,7 +482,8 @@ export default {
   }
 
   .with-workspace .js-workspace,
-  .with-workspace .js-workspace.is-empty {
+  .with-workspace .js-workspace.is-empty,
+  .with-workspace .js-workspace.no-canvas {
     display: block;
     position: absolute;
     top: 0;
@@ -488,6 +496,23 @@ export default {
   .with-workspace .js-workspace-inner {
     position: sticky;
     top: 16px;
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+  }
+
+  .with-workspace .js-workspace-output {
+    display: block;
+    margin-bottom: 0;
+  }
+
+  .with-workspace .task-block .output-display {
+    display: none;
+  }
+
+  /* Neben der Arbeitsflaeche darf der Editor die ganze linke Spalte nutzen (sonst 500px). */
+  .with-workspace .code-editor-wrapper,
+  .with-workspace .solution-reveal {
+    max-width: none;
   }
 }
 

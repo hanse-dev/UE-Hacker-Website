@@ -328,7 +328,6 @@ export default {
   'jsLesson.workspaceTitle':    'Workspace',
   'jsLesson.workspaceTask':     'Task {n}',
   'jsLesson.workspaceEmpty':    'Click “Run” on a task – whatever your code draws or builds shows up here.',
-  'jsLesson.workspaceNoCanvas': 'This task doesn’t draw anything – its output is right below the code.',
   'jsLesson.showSolution': '🔒 Show solution',
   'jsLesson.unknownError': 'Unknown error',
   'jsLesson.badgeExample': '🔍 Example – just run it',

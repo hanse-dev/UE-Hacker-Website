@@ -38,7 +38,7 @@ test.describe('JS-Lektionen: geteilte Ansicht mit Arbeitsfläche', () => {
     const task2 = page.locator('.task-block').nth(2);
     await setCodeMirrorContent(task2.locator('.cm-host'), DRAW);
     await task2.locator('.btn-run').click();
-    await expect(task2.locator('.output-display')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('.js-workspace .output-display')).toBeVisible({ timeout: 10000 });
     await expect(page.locator('iframe.js-sandbox')).toHaveCount(1);
     await expect(workspace.locator('.js-workspace-title')).toContainText('Aufgabe 3');
 
@@ -70,5 +70,39 @@ test.describe('JS-Lektionen: geteilte Ansicht mit Arbeitsfläche', () => {
     const t2 = await task2.boundingBox();
     expect(ws.y).toBeGreaterThanOrEqual(t1.y + t1.height - 1);
     expect(t2.y).toBeGreaterThanOrEqual(ws.y + ws.height - 1);
+  });
+
+  // Aufgaben ohne Zeichenflaeche (nur console.log, `"showCanvas": false`) - Quiz Lektion 1, Aufgabe 1.
+  const openQuiz = async (page) => {
+    await page.addInitScript(() => localStorage.removeItem('ue-hacker-lang'));
+    await page.goto('/kurs/projekt-js-quiz');
+    await page.locator('.btn-start-course').click();
+    await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
+  };
+
+  test('breit: auch eine Aufgabe ohne Zeichenfläche zeigt ihr Ergebnis rechts auf der Arbeitsfläche', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await openQuiz(page);
+
+    const task0 = page.locator('.task-block').nth(0);
+    const workspace = page.locator('.js-workspace');
+    await task0.locator('.btn-run').click();
+    await expect(workspace.locator('.output-content')).toContainText('Wie viele Beine hat eine Spinne?', { timeout: 10000 });
+    await expect(workspace.locator('.js-workspace-title')).toContainText('Aufgabe 1');
+    // Keine zweite Kopie der Ausgabe unter dem Code.
+    await expect(task0.locator('.output-display')).toBeHidden();
+    // Der Editor nutzt die linke Spalte aus, statt bei 500px abzuschneiden.
+    const editor = await task0.locator('.code-editor-wrapper').boundingBox();
+    expect(editor.width).toBeGreaterThan(600);
+  });
+
+  test('schmal: Aufgabe ohne Zeichenfläche zeigt die Ausgabe unter dem Code, keine leere Arbeitsfläche', async ({ page }) => {
+    await page.setViewportSize({ width: 800, height: 1000 });
+    await openQuiz(page);
+
+    const task0 = page.locator('.task-block').nth(0);
+    await task0.locator('.btn-run').click();
+    await expect(task0.locator('.output-content')).toContainText('Wie viele Beine hat eine Spinne?', { timeout: 10000 });
+    await expect(page.locator('.js-workspace')).toBeHidden();
   });
 });
