@@ -13,6 +13,7 @@ Dieses Dokument beschreibt, welche Dateien zusammengehören und was bei Änderun
 | *(Variante)* | `content/python-grundlagen-interaktiv-kinder/` | *(keine EN-Version)* | Markdown + JSON |
 | *(Variante)* | `content/python-grundlagen-interaktiv-jugendliche/` | *(keine EN-Version)* | Markdown + JSON |
 | `projekt-caesar-chiffre` | `content/caesar-chiffre/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON) |
+| `projekt-haeufigkeitsanalyse` | `content/haeufigkeitsanalyse/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON) |
 | `projekt-morsecode` | `content/morsecode/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON) |
 | `projekt-zahlendetektiv` | `content/zahlendetektiv/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON) |
 | `projekt-js-spielewerkstatt` | `content/js-spielewerkstatt/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON, `engine: "js-sandbox"`) |
@@ -348,7 +349,7 @@ Ordner-Mapping (immer paarweise anpassen):
       Eingabefenster, Ausgabe deterministisch); **Ausführen** öffnet weiter das Eingabefenster. In der
       Aufgabe nennen, was automatisch eingegeben wird, und `expected` darauf stützen.
 
-### Wenn du einen Projekt-Kurs hinzufügst (wie Cäsar-Chiffre, Morsecode, Zahlen-Detektiv):
+### Wenn du einen Projekt-Kurs hinzufügst (wie Cäsar-Chiffre, Morsecode, Zahlen-Detektiv, Häufigkeitsanalyse):
 - [ ] Neuer Ordner `content/{contentPath}/`: `beschreibung.md`, `lektion-01.md`…`lektion-NN.md`,
       `lessons.json` (Schema wie beim interaktiven Kurs: `id`/`title`/`file`/`lessonSummary`/
       `tasks[{instruction, codeTemplate, isBonus?, validation}]`) — kein `glossary.json` nötig,
@@ -362,6 +363,12 @@ Ordner-Mapping (immer paarweise anpassen):
       **beiden** `src/locales/de.js`/`en.js` — sonst zeigt die Filter-Chip/Karte nur den rohen Slug.
       Kein manuelles Dauer-/Lektionsanzahl-Feld nötig, `ProjekteView.vue` berechnet das live aus der
       Länge von `lessons.json`.
+- [ ] **Python-Projekt:** Ordner in `PROJECT_COURSES` (`scripts/build_project_notebook.py`) eintragen
+      (Offline-Downloads) und den Zähler „N Projekt-Kurse“ in `tests/lesson-notebook-generator.spec.js`
+      erhöhen. Jede Aufgabe braucht ein `solution`-Feld (Lösungs-Button + Offline-Lösungen).
+- [ ] Tests/Tooling: Kartenzahlen und Filter-Erwartungen in `tests/projekte.spec.js`, Regel in
+      `scripts/test-changed.mjs`, Ordner in den `lint:spelling`-Globs (`package.json`),
+      `npm run contract:update`.
 - [ ] **Kein** Eintrag in `rewards-manifest*.json` nötig — Projekt-Kurse sind vom Zertifikats-/
       Punktesystem ausgenommen (wie der 12-Wochen-Kurs es hat, siehe Abschnitt 4).
 - [ ] **Kein** manueller Eintrag für das Abschluss-Abzeichen im Profil (`/profil`) nötig —

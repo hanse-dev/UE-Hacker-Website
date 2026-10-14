@@ -28,6 +28,7 @@ CONTENT = ROOT / "content"
 PROJECT_COURSES = [
     {"folder": "caesar-chiffre", "title": "Projekt: Cäsar-Chiffre"},
     {"folder": "vigenere-chiffre", "title": "Projekt: Vigenère-Chiffre"},
+    {"folder": "haeufigkeitsanalyse", "title": "Projekt: Häufigkeitsanalyse"},
     {"folder": "morsecode", "title": "Projekt: Morsecode-Übersetzer"},
     {"folder": "zahlendetektiv", "title": "Projekt: Zahlen-Detektiv"},
     {"folder": "text-adventure-fluchtraum", "title": "Projekt: Text-Adventure – Der Fluchtraum"},

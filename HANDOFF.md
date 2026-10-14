@@ -1,7 +1,7 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-10-14
-> **Aktueller Stand:** `main` enthält alles bis 3.104 (siehe Tabelle in Abschnitt 3).
+> **Aktueller Stand:** `main` enthält alles bis 3.105 (siehe Tabelle in Abschnitt 3).
 > Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4) — nach dem nächsten Deploy
 > den einmaligen Termine-Import laufen lassen (Abschnitt 5).
 > **Ziel dieser Datei:** Nachschlagewerk für Stand, Feature-Übersicht und gelernte Fallstricke.
@@ -64,6 +64,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.102 | Eigenes Passwort ändern + Reset per Einmal-Passwort | `POST /api/password` (liefert frisches Token), `POST /api/admin/users/:id/reset-password` (Einmal-Passwort, `must_change_password`), Zwangswechsel im Einstellungs-Modal (`App.vue`), `requireUser` lehnt Tokens mit `iat` vor `password_changed_at` ab; Druck: `drucker.py account <name>` |
 | 3.103 | Projekt „Memory“ (`projekt-js-memory`), erstes DOM-Projekt | 7 Lektionen in `content/js-memory/`; `"sandboxMode": "dom"` in `kurse.json` → `ProjectCourse.vue` zeigt die DOM-Übungsfläche statt des Canvas; `dom_click_text` nimmt bei `click` auch eine Liste von IDs; `tests/js-memory.spec.js` |
 | 3.104 | Projekt-Kurs „Quiz-Generator“ (`projekt-js-quiz`) | zweites DOM-Projekt: 7 Lektionen in `content/js-quiz/`, `"sandboxMode": "dom"` in `kurse.json` → `ProjectCourse.vue` reicht `domMode` an `JsLessonView.vue` durch (Übungsfläche aus Woche 7 statt Canvas); Antwort-Knöpfe per `createElement` mit IDs `antwort-0..2`, Prüfung nur über `dom_text`/`dom_click_text`; `tests/js-quiz.spec.js` spielt alle Musterlösungen und das fertige Quiz durch |
+| 3.105 | Projekt-Kurs „Häufigkeitsanalyse“ (`projekt-haeufigkeitsanalyse`) | 8 Lektionen in `content/haeufigkeitsanalyse/`, schließt die Reihe Cäsar → Vigenère ab: Buchstaben per Dictionary zählen, `#`-Balkendiagramm, häufigsten Buchstaben = `e` → Verschiebung, automatischer Knacker, Bewertung aller 26 Verschiebungen (`PUNKTE`-Tabelle), Ausblick Vigenère; reiner Content, kein Frontend-Code; Durchlauf-Test aller Musterlösungen in `tests/projekte.spec.js` |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -80,6 +81,15 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   im `_6_loesungen`-Ordner anlegen (Markdown enthält den Aufgabentext), danach
   `python3 scripts/sync_loesungen.py` — das sortiert die Paare in Aufgaben-Reihenfolge. Nötig, weil
   der Offline-Download Lösungen nur über die Reihenfolge zuordnet (Woche 9 war deshalb verschoben).
+- Neuer **Python**-Projekt-Kurs braucht außer Content + `kurse.json` noch vier Stellen: `PROJECT_COURSES`
+  in `scripts/build_project_notebook.py` (Offline-Downloads), den Zähler „N Projekt-Kurse“ in
+  `tests/lesson-notebook-generator.spec.js`, die Globs in `lint:spelling` (`package.json`) und die
+  Kartenzahlen/Filter-Erwartungen in `tests/projekte.spec.js` (Checkliste in `INHALTE.md` §6, 3.105).
+- Statistik-Aufgaben (Häufigkeitsanalyse): Beispieltexte nie „nach Gefühl“ wählen. „Häufigster
+  Buchstabe = `e`“ stimmt erst ab längeren Texten, und auch die Punkte-Bewertung aller 26
+  Verschiebungen liegt bei kurzen Sätzen öfter daneben (3 von 10 getesteten Kurztexten falsch). Jeden
+  neuen Text per Skript prüfen: eindeutiger Spitzenreiter (kein Gleichstand — sonst hängt das
+  Ergebnis von der Schleifen-Reihenfolge der Lösung ab) und klarer Punkte-Abstand zum Zweitbesten (3.105).
 - Standard-PDF-Fonts (pdf-lib/Helvetica) können kein Emoji — Content-Texte vorher per `sanitizeForPdfFont` filtern (3.13).
 - Punkte-/Item-System und lokales Fortschritt-Skript **nicht** wieder einführen; Zertifikat = nur Wochen-Check, ein Zertifikat pro Woche, PDF login-gated (3.12/3.13).
 - Quizfragen `multiple_choice`: `optionExplanations` mitpflegen, `explanation_en` echt übersetzen; `shuffleQuestionOptions()` muss Text+Erklärung als Paar mischen (3.17). Schwelle nie als exakten Bruch (2/3 → `0.66`, 3.6).
@@ -316,7 +326,7 @@ Ausführlich in `todo.md`. Kurzfassung:
 
 **Inhalte**
 - Interaktiv-Kurs: "Ausführen vs. Prüfen"/Weiter-Flow — braucht konkretes Nutzer-Feedback.
-- Alle 8 Projekt-Kurse (ohne micro:bit, siehe `todo.md`): EN-Version offen (DE-first, `kurse.json` hat schon `title_en`).
+- Alle 10 Projekt-Kurse (ohne micro:bit, siehe `todo.md`): EN-Version offen (DE-first, `kurse.json` hat schon `title_en`).
 - Zertifikat-PDF: E-Mail-Versand später (hängt an der Kontakt-Adresse, nicht selbst erfinden).
 - Überlegung (nicht entschieden): dritte Sprache; UI-Ternarys sind schon auf `t()`, offen nur Content-Suffixe.
 

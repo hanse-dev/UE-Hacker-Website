@@ -19,7 +19,7 @@ test('build_lesson_notebook.py erzeugt für alle 12 Wochen × 3 Varianten × 2 S
 
 test('build_offline_py.py baut für Projekt-Kurse und KI-Labor eine Python-Datei + Einzeldateien je Lektion, alles kompiliert', () => {
   const output = execFileSync('python3', ['scripts/build_offline_py.py', '--check'], { cwd: process.cwd(), encoding: 'utf8' });
-  expect(output).toContain('5 Projekt-Kurse + 8 KI-Labor-Wochen geprueft');
+  expect(output).toContain('6 Projekt-Kurse + 8 KI-Labor-Wochen geprueft');
 });
 
 // Jede der 160 echten KI-Labor-Aufgaben hat eine Musterloesung (Feld referenceSolution), die

@@ -122,6 +122,7 @@ const RULES = [
   ['content/ki-labor', ['tests/ki-labor.spec.js', 'tests/lesson-notebook-generator.spec.js']],
   ['content/caesar-chiffre', ['tests/projekte.spec.js']],
   ['content/vigenere-chiffre', ['tests/projekte.spec.js']],
+  ['content/haeufigkeitsanalyse', ['tests/projekte.spec.js']],
   ['content/morsecode', ['tests/projekte.spec.js']],
   ['content/microbit-auto', ['tests/microbit-auto.spec.js', 'tests/projekte.spec.js']],
   ['public/microbit/', ['tests/microbit-auto.spec.js']],

@@ -517,6 +517,13 @@ k-NN, Entscheidungsbaum und ein kleines neuronales Netz komplett selbst in reine
       Level `einsteiger`) — erstes DOM-Projekt, schließt an Woche 7 des JS-Grundkurses an.
       Details: HANDOFF 3.103.
 
+### Projekt-Kurs Häufigkeitsanalyse — Branch `projekt-haeufigkeitsanalyse`
+- [x] `projekt-haeufigkeitsanalyse` (`content/haeufigkeitsanalyse`, 8 Lektionen, DE, Level
+      `fortgeschritten`) — Cäsar-Nachricht ohne Schlüssel knacken, Abschluss der Reihe Cäsar →
+      Vigenère. Details siehe HANDOFF-Historie 3.105.
+- [x] Alle 16 Musterlösungen per `python3` gegen `expected` geprüft, Durchlauf-Test in Pyodide
+      (`tests/projekte.spec.js`), Fortschritts-Vertrag neu eingefroren.
+
 ---
 
 ## Aus `todo.md` aufgeräumt am 14.10.2026
@@ -534,9 +541,9 @@ erledigt — bei einer neuen Entscheidung zurück nach `todo.md`.
 
 - [ ] micro:bit-Kurs: nur DE, EN fehlt. Der Kurs ist ein Projekt-Kurs (`/projekte`); sobald
       weitere micro:bit-Module dazukommen, eigenen Kurs-Typ/Übersicht erwägen (`VISION.md`).
-- [ ] Projekt-Kurse (Cäsar, Vigenère, Morsecode, Zahlen-Detektiv, JS-Spielewerkstatt, Snake,
+- [ ] Projekt-Kurse (Cäsar, Vigenère, Häufigkeitsanalyse, Morsecode, Zahlen-Detektiv, JS-Spielewerkstatt, Snake,
       Text-Adventure, Memory, Quiz-Generator): nur DE-Content, EN fehlt noch (`kurse.json` hat bereits
-      `title_en` für alle 9, `lessons.json`/`lektion-*.md` sind nur deutsch).
+      `title_en` für alle 10, `lessons.json`/`lektion-*.md` sind nur deutsch).
 - [ ] Weitere Sprache neben DE/EN? Noch keine Entscheidung, kein Ziel. UI-Texte laufen bereits über
       `t()` (`locales/de.js`/`en.js`); offen bliebe nur der Content: `_en`-Feld-Suffix in
       `content/python-checks/week-{N}.json`, `-en`-Ordner-Suffix in `useCourseData.js`. Größter

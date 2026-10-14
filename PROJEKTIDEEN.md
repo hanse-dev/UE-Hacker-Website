@@ -9,7 +9,7 @@ in `todo.md`, das Format-/Track-Modell in `VISION.md`.
 **Alter:** Richtwert für die Zielgruppe.
 
 Schon umgesetzt (nicht mehr hier): Cäsar-Chiffre, Morsecode, Zahlen-Detektiv, JS-Spielewerkstatt,
-Vigenère-Chiffre, Snake, Text-Adventure, Memory, Quiz-Generator.
+Vigenère-Chiffre, Snake, Text-Adventure, Memory, Quiz-Generator, Häufigkeitsanalyse.
 
 ## Empfohlene Reihenfolge (Vorschlag)
 1. ~~Vigenère-Chiffre~~ ✅ umgesetzt
@@ -56,7 +56,7 @@ dem Grundkurs.
 - [x] **Vigenère-Chiffre** 🐍 — Schlüsselwort, logischer Nachfolger von Cäsar. Ab 13.
 - [ ] **Passwort-Stärke-Checker** 🐍 — Brute-Force-Dauer, Rechnen mit Möglichkeiten. Ab 12.
 - [ ] **XOR-Geheimschrift** 🐍 — Bits verstehen, Ver-/Entschlüsseln mit derselben Funktion. Ab 15.
-- [ ] **Häufigkeitsanalyse** 🐍 — Cäsar-Nachricht ohne Schlüssel knacken. Ab 14.
+- [x] **Häufigkeitsanalyse** 🐍 — Cäsar-Nachricht ohne Schlüssel knacken. Ab 14. (`projekt-haeufigkeitsanalyse`, 8 Lektionen)
 - [ ] **Prüfziffern (ISBN/IBAN)** 🐍 — wie Barcodes Fehler erkennen. Ab 13.
 
 ## 🎨 Kreativ & Generativ
