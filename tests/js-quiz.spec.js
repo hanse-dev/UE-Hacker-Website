@@ -75,7 +75,7 @@ test.describe('Projekt: Quiz-Generator (JS, DOM-Sandbox)', () => {
     const task = page.locator('.task-block').nth(2);
     await setCodeMirrorContent(task.locator('.cm-host'), lessons[0].tasks[2].solution);
     await task.locator('.btn-run').click();
-    const frame = task.frameLocator('iframe.js-sandbox');
+    const frame = page.frameLocator('.js-workspace iframe.js-sandbox');
     await expect(frame.locator('#ueberschrift')).toHaveText('Mein Quiz');
     await expect(frame.locator('#text')).toHaveText('Wie viele Beine hat eine Spinne?');
     await expect(frame.locator('canvas')).toBeHidden();
@@ -124,7 +124,7 @@ test.describe('Projekt: Quiz-Generator (JS, DOM-Sandbox)', () => {
     await setCodeMirrorContent(task.locator('.cm-host'), cheat);
     await task.locator('.btn-check').click();
     await expect(task.locator('.feedback-error')).toBeVisible({ timeout: 10000 });
-    await expect(task.frameLocator('iframe.js-sandbox').locator('#punkte')).toHaveText('Punkte: 3');
+    await expect(page.frameLocator('.js-workspace iframe.js-sandbox').locator('#punkte')).toHaveText('Punkte: 3');
   });
 
   test('Kompletter Durchlauf: keine Vorlage besteht unverändert, jede Musterlösung besteht ihre Prüfung', async ({ page }) => {
@@ -147,7 +147,7 @@ test.describe('Projekt: Quiz-Generator (JS, DOM-Sandbox)', () => {
           await block.locator('.btn-run').click();
           await expect(block.locator('.task-done'), where).toBeVisible({ timeout: 10000 });
           const v = task.validation;
-          const frame = block.frameLocator('iframe.js-sandbox');
+          const frame = page.frameLocator('.js-workspace iframe.js-sandbox');
           if (v.type === 'dom_text') {
             await expect(frame.locator(`#${v.target}`), where).toHaveText(v.text);
           } else if (v.type === 'dom_click_text') {
@@ -187,7 +187,7 @@ test.describe('Projekt: Quiz-Generator (JS, DOM-Sandbox)', () => {
     await setCodeMirrorContent(task.locator('.cm-host'), solution.slice(0, autoplay));
     await task.locator('.btn-run').click();
 
-    const frame = task.frameLocator('iframe.js-sandbox');
+    const frame = page.frameLocator('.js-workspace iframe.js-sandbox');
     const answer = (i) => frame.locator(`#antwort-${i}`);
     await expect(frame.locator('#ueberschrift')).toHaveText('Mein Quiz');
     await expect(frame.locator('#text')).toHaveText('Wie viele Beine hat eine Spinne?');
@@ -248,6 +248,6 @@ test.describe('Projekt: Quiz-Generator (JS, DOM-Sandbox)', () => {
     await setCodeMirrorContent(task.locator('.cm-host'), own);
     await task.locator('.btn-check').click();
     await expect(task.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
-    await expect(task.frameLocator('iframe.js-sandbox').locator('#text')).toHaveText('Du hast 1 von 3 Punkten. Übe noch ein bisschen!');
+    await expect(page.frameLocator('.js-workspace iframe.js-sandbox').locator('#text')).toHaveText('Du hast 1 von 3 Punkten. Übe noch ein bisschen!');
   });
 });

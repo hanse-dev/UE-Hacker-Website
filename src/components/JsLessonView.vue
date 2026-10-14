@@ -1,5 +1,6 @@
 <template>
-  <div class="lesson-view js-lesson-view">
+  <div class="lesson-view js-lesson-view" :class="{ 'with-workspace': workspaceEnabled }">
+   <div class="js-lesson-grid">
     <div class="lesson-content">
       <p v-if="!lessonContent" class="lesson-loading">{{ t('lesson.loading') }}</p>
       <div v-else v-html="lessonContent"></div>
@@ -10,7 +11,11 @@
       <p class="editor-hint editor-hint-ran">{{ t('jsLesson.ranExplainer') }}</p>
 
       <template v-for="(task, idx) in tasks" :key="lesson.id + '-' + idx">
-        <div class="task-block" :class="isExample(idx) ? 'task-example' : 'task-required'">
+        <div
+          class="task-block"
+          :class="isExample(idx) ? 'task-example' : 'task-required'"
+          :style="{ order: 10 + idx * 2 }"
+        >
           <span class="task-badge" :class="isExample(idx) ? 'badge-example' : 'badge-required'">
             {{ isExample(idx) ? t('jsLesson.badgeExample') : t('jsLesson.badgeRequired') }}
           </span>
@@ -56,7 +61,6 @@
               {{ t('editor.reset') }}
             </button>
           </div>
-          <JsSandboxFrame v-if="taskRan[idx]" :ref="(el) => setSandboxRef(idx, el)" :show-canvas="taskShowsCanvas(idx)" :dom-mode="domMode" />
           <details v-if="task.solution" class="solution-reveal">
             <summary>{{ t('jsLesson.showSolution') }}</summary>
             <pre class="solution-code">{{ task.solution }}</pre>
@@ -71,7 +75,26 @@
         </div>
       </template>
 
-      <div v-if="allTasksComplete" class="lesson-complete-box">
+      <!-- Arbeitsflaeche: EINE Sandbox fuer die ganze Lektion. Breit (Container >= 920px) steht sie
+           als mitlaufende Spalte rechts neben Text und Aufgaben, schmal per CSS-`order` direkt unter
+           der zuletzt ausgefuehrten Aufgabe - ohne das iframe im DOM zu verschieben (das wuerde es
+           neu laden). -->
+      <div
+        class="js-workspace"
+        :class="{ 'is-empty': activeIdx === null }"
+        :style="{ order: activeIdx === null ? 9998 : 11 + activeIdx * 2 }"
+      >
+        <div class="js-workspace-inner">
+          <p class="js-workspace-title">
+            {{ t('jsLesson.workspaceTitle') }}<span v-if="activeIdx !== null" class="js-workspace-task"> · {{ t('jsLesson.workspaceTask').replace('{n}', activeIdx + 1) }}</span>
+          </p>
+          <p v-if="activeIdx === null" class="js-workspace-hint">{{ t('jsLesson.workspaceEmpty') }}</p>
+          <p v-else-if="!activeShowsCanvas" class="js-workspace-hint">{{ t('jsLesson.workspaceNoCanvas') }}</p>
+          <JsSandboxFrame v-if="activeIdx !== null" ref="sandboxEl" :show-canvas="activeShowsCanvas" :dom-mode="domMode" />
+        </div>
+      </div>
+
+      <div v-if="allTasksComplete" class="lesson-complete-box" :style="{ order: 99999 }">
         <p class="lesson-summary">{{ lessonSummary }}</p>
         <ProjectCompletionBox v-if="isProjectCourse && isLastLesson" :next-course-id="lesson.nextCourseId" />
         <template v-else>
@@ -86,6 +109,7 @@
         </template>
       </div>
     </div>
+   </div>
   </div>
 </template>
 
@@ -121,12 +145,12 @@ export default {
     const { lang, t } = useLanguage();
     const { markCompleted } = useInteractiveProgress(props.variant, props.courseId);
 
-    // Eine eigene Sandbox-Instanz pro Aufgabe statt einer geteilten am Lektionsanfang - jeder Lauf
-    // baut das iframe ohnehin komplett neu auf (kein geteilter Zustand zwischen Laeufen, siehe
-    // useJsSandbox.js), es gibt also nichts zu teilen. Dadurch entfaellt das Hin-und-Herspringen
-    // zwischen einer Canvas oben und der gerade bearbeiteten Aufgabe weiter unten.
-    const sandboxEls = ref([]);
-    const setSandboxRef = (idx, el) => { sandboxEls.value[idx] = el; };
+    // Eine gemeinsame Sandbox (Arbeitsflaeche) fuer alle Aufgaben der Lektion - jeder Lauf baut das
+    // iframe ohnehin komplett neu auf (kein geteilter Zustand zwischen Laeufen, siehe
+    // useJsSandbox.js). activeIdx = Aufgabe, deren Ergebnis die Arbeitsflaeche gerade zeigt; erst
+    // beim ersten Ausfuehren wird das Frame gemountet (Heartbeat-Schleife, siehe runTask).
+    const sandboxEl = ref(null);
+    const activeIdx = ref(null);
     const checking = ref(false);
     const isMounted = ref(true);
     const { lessonContent, loadGlossary, loadContent, instructionWithGlossary } = useLessonContent(isMounted);
@@ -147,6 +171,12 @@ export default {
     // nur als leere graue Flaeche. `task.showCanvas: false` in lessons.json blendet ihn fuer genau
     // diese eine Aufgabe aus, ohne das kurs-/lektionsweite showCanvas-Prop anzutasten.
     const taskShowsCanvas = (idx) => tasks.value[idx]?.showCanvas ?? props.showCanvas;
+
+    // Geteilte Ansicht nur, wenn in der Lektion ueberhaupt etwas zu sehen ist - reine
+    // Konsolen-Lektionen (z.B. js-grundkurs Woche 1-6) bleiben einspaltig, das Frame laeuft dort
+    // unsichtbar weiter.
+    const workspaceEnabled = computed(() => tasks.value.some((_, idx) => taskShowsCanvas(idx)));
+    const activeShowsCanvas = computed(() => activeIdx.value !== null && taskShowsCanvas(activeIdx.value));
 
     // Uebersprungene Aufgaben zaehlen fuer den Lektions-Abschluss wie erledigt (damit man nicht
     // blockiert bleibt), bleiben aber optisch als "uebersprungen" erkennbar statt als geloest -
@@ -178,7 +208,7 @@ export default {
       taskRan.value = list.map(() => false);
       completedTasks.value = new Set();
       skippedTasks.value = new Set();
-      sandboxEls.value = [];
+      activeIdx.value = null;
     };
 
     const skipTask = (idx) => {
@@ -195,6 +225,14 @@ export default {
       taskOutputs.value[idx] = null;
       taskFeedback.value[idx] = null;
       taskRan.value[idx] = false;
+      if (activeIdx.value === idx) activeIdx.value = null;
+    };
+
+    const activate = async (idx) => {
+      taskRan.value[idx] = true;
+      activeIdx.value = idx;
+      await nextTick();
+      sandboxEl.value.scrollIntoView();
     };
 
     onMounted(() => {
@@ -220,7 +258,7 @@ export default {
     const withCanvasNote = async (idx, rawOutput) => {
       const trimmed = (rawOutput || '').trim();
       if (!taskShowsCanvas(idx)) return trimmed || t('jsLesson.noOutput');
-      const drew = await sandboxEls.value[idx].checkCanvasNotBlank();
+      const drew = await sandboxEl.value.checkCanvasNotBlank();
       if (drew) return trimmed ? `${trimmed}\n\n${t('jsLesson.canvasNote')}` : t('jsLesson.canvasNote');
       return trimmed || t('jsLesson.noOutput');
     };
@@ -230,15 +268,12 @@ export default {
       checking.value = true;
       taskOutputs.value[idx] = null;
       taskFeedback.value[idx] = null;
-      // Sandbox-Frame wird erst bei der ersten Ausfuehrung ueberhaupt gemountet (v-if="taskRan[idx]")
-      // - vorher gibt es nichts zu sehen, und jedes gemountete Frame startet eine dauerhaft
-      // laufende requestAnimationFrame-Heartbeat-Schleife (useJsSandbox.js), die sonst fuer jede
-      // Aufgabe einer Lektion gleichzeitig liefe, auch fuer noch nie angeklickte.
-      taskRan.value[idx] = true;
-      await nextTick();
-      sandboxEls.value[idx].scrollIntoView();
+      // Sandbox-Frame wird erst bei der ersten Ausfuehrung ueberhaupt gemountet (v-if auf activeIdx)
+      // - vorher gibt es nichts zu sehen, und ein gemountetes Frame startet eine dauerhaft
+      // laufende requestAnimationFrame-Heartbeat-Schleife (useJsSandbox.js).
+      await activate(idx);
 
-      const result = await sandboxEls.value[idx].run(taskCodes.value[idx]);
+      const result = await sandboxEl.value.run(taskCodes.value[idx]);
       if (!isMounted.value) return;
 
       taskOutputs.value[idx] = result.success
@@ -270,12 +305,10 @@ export default {
       }
       checking.value = true;
       taskFeedback.value[idx] = null;
-      taskRan.value[idx] = true;
-      await nextTick();
-      sandboxEls.value[idx].scrollIntoView();
+      await activate(idx);
 
       const validation = tasks.value[idx]?.validation || {};
-      const result = await sandboxEls.value[idx].run(taskCodes.value[idx]);
+      const result = await sandboxEl.value.run(taskCodes.value[idx]);
       if (!isMounted.value) return;
 
       if (!result.success) {
@@ -295,14 +328,14 @@ export default {
       // Ausgabe-Fallback-Check faelschlich gegen die (meist leere) Konsolen-Ausgabe pruefen.
       let extraChecksOk = true;
       if (validation.type === 'canvas_not_blank') {
-        extraChecksOk = await sandboxEls.value[idx].checkCanvasNotBlank();
+        extraChecksOk = await sandboxEl.value.checkCanvasNotBlank();
       } else if (validation.type === 'canvas_changed') {
-        extraChecksOk = await sandboxEls.value[idx].checkCanvasChanged(validation.ms || 400);
+        extraChecksOk = await sandboxEl.value.checkCanvasChanged(validation.ms || 400);
       } else if (validation.type === 'dom_text') {
-        const text = await sandboxEls.value[idx].checkDomText(validation.target);
+        const text = await sandboxEl.value.checkDomText(validation.target);
         extraChecksOk = typeof text === 'string' && text.trim() === validation.text;
       } else if (validation.type === 'dom_click_text') {
-        const text = await sandboxEls.value[idx].checkDomClickText(validation.click, validation.target, validation.clicks);
+        const text = await sandboxEl.value.checkDomClickText(validation.click, validation.target, validation.clicks);
         extraChecksOk = typeof text === 'string' && text.trim() === validation.text;
       }
       if (!isMounted.value) return;
@@ -354,7 +387,10 @@ export default {
       lang,
       t,
       lessonContent,
-      setSandboxRef,
+      sandboxEl,
+      activeIdx,
+      workspaceEnabled,
+      activeShowsCanvas,
       checking,
       tasks,
       isExample,
@@ -384,6 +420,75 @@ export default {
 .lesson-view {
   max-width: 800px;
   margin: 0 auto;
+  container-type: inline-size;
+}
+
+.lesson-view.with-workspace {
+  max-width: 1320px;
+}
+
+.js-lesson-grid {
+  position: relative;
+}
+
+/* Arbeitsflaeche, schmale Ansicht: Flex-Kind der Aufgabenliste, per `order` (im Template) direkt
+   unter der zuletzt ausgefuehrten Aufgabe. Vor dem ersten Lauf und in reinen Konsolen-Lektionen
+   unsichtbar (das Frame laeuft dort trotzdem). */
+.js-workspace {
+  margin: -8px 0 24px 0;
+}
+
+.js-workspace.is-empty,
+.lesson-view:not(.with-workspace) .js-workspace {
+  display: none;
+}
+
+.js-workspace-inner {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.js-workspace-title {
+  margin: 0 0 8px 0;
+  font-weight: 600;
+  color: var(--primary-purple, #4a2274);
+}
+
+.js-workspace-task {
+  font-weight: 400;
+  color: #555;
+}
+
+.js-workspace-hint {
+  margin: 0 0 8px 0;
+  font-size: 0.9em;
+  color: #6c757d;
+}
+
+/* Breite Ansicht: rechts eine eigene Spalte ueber die ganze Lektion, die Karte darin bleibt beim
+   Scrollen stehen (sticky in einem absolut positionierten, vollhohen Container). */
+@container (min-width: 920px) {
+  .with-workspace .js-lesson-grid {
+    padding-right: 446px;
+  }
+
+  .with-workspace .js-workspace,
+  .with-workspace .js-workspace.is-empty {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 426px;
+    margin: 0;
+  }
+
+  .with-workspace .js-workspace-inner {
+    position: sticky;
+    top: 16px;
+  }
 }
 
 .lesson-content {
@@ -435,6 +540,8 @@ export default {
 }
 
 .lesson-editor-section {
+  display: flex;
+  flex-direction: column;
   background: #f8f9fa;
   border: 2px solid var(--primary-purple, #4a2274);
   border-radius: 8px;

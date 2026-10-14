@@ -52,8 +52,10 @@ export default {
     const scrollIntoView = () => {
       // 'auto' statt 'smooth': das Canvas muss VOR dem naechsten rAF-Frame schon im Viewport
       // liegen, sonst faengt eine canvas_changed-Pruefung (siehe useTaskValidation.js) noch die
-      // gedrosselte Off-Screen-Phase ein.
-      iframeEl.value?.scrollIntoView({ behavior: 'auto', block: 'center' });
+      // gedrosselte Off-Screen-Phase ein. 'nearest' statt 'center': in der geteilten Ansicht steht das
+      // Frame in einer mitlaufenden Spalte (JsLessonView.vue) schon im Bild - 'center' liesse die
+      // Seite bei jedem Lauf springen.
+      iframeEl.value?.scrollIntoView({ behavior: 'auto', block: 'nearest' });
     };
 
     expose({

@@ -90,6 +90,12 @@ body {
   box-sizing: border-box;
 }
 
+/* JS-Lektionen mit Arbeitsfläche rechts (geteilte Ansicht, JsLessonView.vue) brauchen mehr Breite
+   als die übrigen Seiten; gilt nur, solange so eine Lektion auf der Seite ist. */
+.app-main:has(.with-workspace) {
+  max-width: 1500px;
+}
+
 .app-main section {
   margin-bottom: 40px;
   background-color: var(--white);

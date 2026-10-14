@@ -133,8 +133,8 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
     // Woche 7 ist die erste Woche, die das Sandbox-iframe sichtbar zeigt (DOM-Übungsfläche).
     const task0 = page.locator('.task-block').first();
     await task0.locator('.btn-run').click();
-    await expect(task0.locator('iframe.js-sandbox')).toBeVisible();
-    await expect(task0.locator('.sandbox-toolbar')).toBeVisible();
+    await expect(page.locator('.js-workspace iframe.js-sandbox')).toBeVisible();
+    await expect(page.locator('.js-workspace .sandbox-toolbar')).toBeVisible();
   });
 
   test('Deep-Link ?week=8 öffnet direkt die Wochen-Tour für Woche 8', async ({ page }) => {
@@ -190,9 +190,9 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
     // show-canvas="false": das iframe existiert (ist die Ausfuehrungsumgebung), bleibt aber
     // unsichtbar - dieser Kurs zeichnet nie etwas, die Ausgabe-Box unter dem Editor reicht.
     await task0.locator('.btn-run').click();
-    await expect(task0.locator('iframe.js-sandbox')).toBeAttached();
-    await expect(task0.locator('iframe.js-sandbox')).toBeHidden();
-    await expect(task0.locator('.sandbox-toolbar')).toBeHidden();
+    await expect(page.locator('.js-workspace iframe.js-sandbox')).toBeAttached();
+    await expect(page.locator('.js-workspace iframe.js-sandbox')).toBeHidden();
+    await expect(page.locator('.js-workspace .sandbox-toolbar')).toBeHidden();
     // Ein erfolgreicher Lauf einer Beispiel-Aufgabe zaehlt automatisch als erledigt.
     await expect(task0.locator('.task-done')).toBeVisible({ timeout: 10000 });
   });

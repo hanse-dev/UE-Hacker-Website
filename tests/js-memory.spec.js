@@ -9,8 +9,8 @@ const COURSE_URL = '/kurs/projekt-js-memory';
 
 // Projekt "Memory": erstes DOM-Projekt (kein Canvas). Der Kurs laeuft in der JS-Sandbox im
 // DOM-Modus (`"sandboxMode": "dom"` in kurse.json) - die Uebungsflaeche aus js-grundkurs Woche 7
-// ist sichtbar, das Canvas nicht. Jede Aufgabe hat ihr eigenes iframe, deshalb immer innerhalb
-// der jeweiligen `.task-block` scopen (siehe tests/js-spielewerkstatt.spec.js).
+// ist sichtbar, das Canvas nicht. Die Sandbox ist eine gemeinsame Arbeitsflaeche pro Lektion
+// (`.js-workspace`, siehe tests/js-spielewerkstatt.spec.js).
 test.describe('Projekt Memory (JS-Sandbox im DOM-Modus)', () => {
   test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => {
@@ -55,7 +55,7 @@ test.describe('Projekt Memory (JS-Sandbox im DOM-Modus)', () => {
     const task0 = page.locator('.task-block').nth(0);
     await task0.locator('.btn-run').click();
     await expect(task0.locator('.task-done')).toBeVisible({ timeout: 10000 });
-    const frame0 = task0.frameLocator('iframe.js-sandbox');
+    const frame0 = page.frameLocator('.js-workspace iframe.js-sandbox');
     await expect(frame0.locator('#dom-uebung')).toBeVisible();
     await expect(frame0.locator('canvas')).toBeHidden();
     await expect(frame0.locator('#ueberschrift')).toHaveText('Memory');
@@ -81,7 +81,7 @@ test.describe('Projekt Memory (JS-Sandbox im DOM-Modus)', () => {
     await expect(task0).toBeVisible({ timeout: 15000 });
     await task0.locator('.btn-run').click();
     await expect(task0.locator('.task-done')).toBeVisible({ timeout: 10000 });
-    const frame0 = task0.frameLocator('iframe.js-sandbox');
+    const frame0 = page.frameLocator('.js-workspace iframe.js-sandbox');
     await expect(frame0.locator('canvas')).toBeVisible();
     await expect(frame0.locator('#dom-uebung')).toBeHidden();
   });
@@ -118,7 +118,7 @@ test.describe('Projekt Memory (JS-Sandbox im DOM-Modus)', () => {
     await task.locator('.btn-run').click();
     await expect(task.locator('.output-display')).toBeVisible({ timeout: 10000 });
 
-    const frame = task.frameLocator('iframe.js-sandbox');
+    const frame = page.frameLocator('.js-workspace iframe.js-sandbox');
     const karte = (i) => frame.locator(`#karte${i}`);
     await expect(frame.locator('#dom-uebung button')).toHaveCount(8);
     await expect(karte(0)).toHaveText('❓');
