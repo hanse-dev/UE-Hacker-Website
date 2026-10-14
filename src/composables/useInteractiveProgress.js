@@ -1,8 +1,12 @@
 import { DEV_SKIP_CHECKS } from './devSkipChecks.js';
 import { ref, computed, watch } from 'vue';
 import { PROGRESS_APPLIED_EVENT, touchSyncKey } from './useProgressSync.js';
+import { getUserToken } from './useAuthApi.js';
 
 const COURSE_ID = 'python-grundlagen-interaktiv';
+// Einzelne Haken einer noch offenen Lektion (Anleitungen zum Abhaken) gelten ohne Account nur einen
+// Tag: An geteilten Rechnern soll die nächste Gruppe nicht die Haken der vorigen vorfinden.
+const PARTIAL_CHECKS_MAX_AGE_MS = 24 * 60 * 60 * 1000;
 
 function storageKey(variant) {
   return `ue-hacker-interactive-progress-${variant}`;
@@ -68,6 +72,27 @@ export function useInteractiveProgress(variant = 'kinder', courseId = COURSE_ID)
     state.value = { ...state.value, completedLessonIds: ids.filter((id) => id !== lessonId) };
   };
 
+  // Optionale Felder im selben Storage-Eintrag (kein neuer Key, `version` bleibt): `partialChecks`
+  // = { lessonId: [Aufgaben-Index, ...] }, `partialChecksAt` = Zeitpunkt der letzten Änderung.
+  // Mit Account wandern sie mit dem Fortschritt mit und verfallen nicht.
+  const partialChecksExpired = () => {
+    if (getUserToken()) return false;
+    const at = Date.parse(state.value.partialChecksAt || '');
+    return !Number.isFinite(at) || Date.now() - at > PARTIAL_CHECKS_MAX_AGE_MS;
+  };
+
+  const getPartialChecks = (lessonId) => {
+    const stored = state.value.partialChecks?.[lessonId];
+    return Array.isArray(stored) && !partialChecksExpired() ? stored : [];
+  };
+
+  const setPartialChecks = (lessonId, indexes) => {
+    const all = partialChecksExpired() ? {} : { ...(state.value.partialChecks || {}) };
+    if (indexes.length) all[lessonId] = [...indexes].sort((a, b) => a - b);
+    else delete all[lessonId];
+    state.value = { ...state.value, partialChecks: all, partialChecksAt: new Date().toISOString() };
+  };
+
   const isLessonUnlocked = (lessonId, lessons) => {
     if (!lessons?.length) return false;
     const index = lessons.findIndex((l) => l.id === lessonId);
@@ -111,6 +136,8 @@ export function useInteractiveProgress(variant = 'kinder', courseId = COURSE_ID)
     isCompleted,
     markCompleted,
     unmarkCompleted,
+    getPartialChecks,
+    setPartialChecks,
     isLessonUnlocked,
     getNextLessonId,
     resetProgress,

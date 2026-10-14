@@ -106,7 +106,7 @@ export default {
   emits: ['completed'],
   setup(props, { emit }) {
     const { lang, t } = useLanguage();
-    const { markCompleted, unmarkCompleted, isCompleted } = useInteractiveProgress(props.variant, props.courseId);
+    const { markCompleted, unmarkCompleted, isCompleted, getPartialChecks, setPartialChecks } = useInteractiveProgress(props.variant, props.courseId);
     const isMounted = ref(true);
     const { lessonContent, loadContent } = useLessonContent(isMounted);
 
@@ -132,12 +132,14 @@ export default {
     const allTasksComplete = computed(() =>
       requiredIdx.value.length > 0 && requiredIdx.value.every((idx) => isChecked(idx)));
 
-    // Einzelne Haken werden nicht gespeichert: Eine schon abgeschlossene Stufe zeigt alle
-    // Pflicht-Haken wieder an (auch wenn der Abschluss erst per Sync nachkommt).
+    // Haken kommen aus dem gespeicherten Stand (ohne Account nur einen Tag lang, siehe
+    // useInteractiveProgress). Eine schon abgeschlossene Stufe zeigt in jedem Fall alle
+    // Pflicht-Haken an - auch wenn Abschluss oder Haken erst per Sync nachkommen.
     watch(
-      [() => props.lesson?.id, () => isCompleted(props.lesson.id)],
+      [() => props.lesson?.id, () => isCompleted(props.lesson.id), () => getPartialChecks(props.lesson.id).join(',')],
       ([id, done], [oldId]) => {
         const next = oldId === id ? new Set(checked.value) : new Set();
+        getPartialChecks(id).forEach((idx) => next.add(idx));
         if (done) requiredIdx.value.forEach((idx) => next.add(idx));
         checked.value = next;
       },
@@ -149,6 +151,7 @@ export default {
       if (value) next.add(idx);
       else next.delete(idx);
       checked.value = next;
+      setPartialChecks(props.lesson.id, [...next]);
       // Ein zurückgenommener Pflicht-Haken nimmt auch den Abschluss der Stufe zurück.
       if (allTasksComplete.value) markCompleted(props.lesson.id);
       else unmarkCompleted(props.lesson.id);

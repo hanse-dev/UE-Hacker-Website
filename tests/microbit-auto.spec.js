@@ -138,11 +138,54 @@ test.describe('micro:bit-Kurs: Roboterauto (Anleitung zum Abhaken)', () => {
     await page.reload();
     await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(lessons.length, { timeout: 15000 });
     await expect(page.locator('.lesson-item.completed')).toHaveCount(0);
-    await expect(page.locator('.guide-task-check:checked')).toHaveCount(0);
+    // Die übrigen Haken sind gespeichert, nur der zurückgenommene fehlt.
+    await expect(page.locator('.guide-task-check:checked')).toHaveCount(required - 1);
+    await expect(tasks.nth(0).locator('.guide-task-check')).not.toBeChecked();
 
     // Wieder abhaken schließt die Stufe erneut ab.
     for (let i = 0; i < required; i++) await tasks.nth(i).locator('.guide-task-check').check();
     await expect(page.locator('.lesson-item.completed')).toHaveCount(1);
+  });
+
+  test('Einzelne Haken bleiben nach dem Neuladen erhalten, ohne Account aber nur einen Tag', async ({ page }) => {
+    const KEY = 'ue-hacker-interactive-progress-microbit-auto';
+    await openCourse(page);
+    const tasks = page.locator('.guide-task');
+    await tasks.nth(1).locator('.guide-task-check').check();
+    await tasks.nth(lessons[0].tasks.length - 1).locator('.guide-task-check').check(); // Bonus
+
+    await page.reload();
+    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(lessons.length, { timeout: 15000 });
+    await expect(page.locator('.guide-task-check:checked')).toHaveCount(2);
+    await expect(tasks.nth(1).locator('.guide-task-check')).toBeChecked();
+    await expect(tasks.nth(0).locator('.guide-task-check')).not.toBeChecked();
+    // Die Stufe ist damit nicht abgeschlossen.
+    await expect(page.locator('.lesson-item.completed')).toHaveCount(0);
+    await expect(page.locator('.lesson-complete-box')).toHaveCount(0);
+
+    // 23 Stunden alt: noch da. 25 Stunden alt: zurückgesetzt.
+    const age = (hours) => page.evaluate(([key, h]) => {
+      const state = JSON.parse(localStorage.getItem(key));
+      state.partialChecksAt = new Date(Date.now() - h * 3600 * 1000).toISOString();
+      localStorage.setItem(key, JSON.stringify(state));
+    }, [KEY, hours]);
+    await age(23);
+    await page.reload();
+    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(lessons.length, { timeout: 15000 });
+    await expect(page.locator('.guide-task-check:checked')).toHaveCount(2);
+
+    await age(25);
+    await page.reload();
+    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(lessons.length, { timeout: 15000 });
+    await expect(page.locator('.guide-task')).toHaveCount(lessons[0].tasks.length);
+    await expect(page.locator('.guide-task-check:checked')).toHaveCount(0);
+
+    // Ein neuer Haken nach dem Verfall bringt die alten nicht zurück.
+    await tasks.nth(0).locator('.guide-task-check').check();
+    await page.reload();
+    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(lessons.length, { timeout: 15000 });
+    await expect(page.locator('.guide-task-check:checked')).toHaveCount(1);
+    await expect(tasks.nth(0).locator('.guide-task-check')).toBeChecked();
   });
 
   test('Stufe 9: Plan und Programm sind zum Selbermachen, fertiger Plan und Lösung sind eingeklappt', async ({ page }) => {

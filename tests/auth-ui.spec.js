@@ -504,6 +504,55 @@ test.describe('UI: Admin + Header-Login', () => {
     await expect(page.locator('.badge-card', { hasText: 'Roboterauto' })).toHaveCount(0);
   });
 
+  test('Anleitung zum Abhaken: mit Account bleiben einzelne Haken auch nach mehr als einem Tag erhalten', async ({ page, request }) => {
+    const username = `haken_${Date.now()}`;
+    const adminLogin = await request.post(`${API}/api/admin/login`, { data: { password: ADMIN_PASSWORD } });
+    const { token: adminToken } = await adminLogin.json();
+    await request.post(`${API}/api/admin/users`, {
+      headers: { Authorization: `Bearer ${adminToken}` },
+      data: { username, password: 'pass1234', ageGroup: 'kinder' },
+    });
+    const userLogin = await request.post(`${API}/api/login`, { data: { username, password: 'pass1234' } });
+    const { token: userToken } = await userLogin.json();
+    // Drei Tage alte Haken auf dem Account - ohne Account wären sie nach einem Tag verfallen
+    // (tests/microbit-auto.spec.js prüft das).
+    await request.put(`${API}/api/progress`, {
+      headers: { Authorization: `Bearer ${userToken}` },
+      data: {
+        payload: {
+          'ue-hacker-interactive-progress-microbit-auto': {
+            value: {
+              version: 1,
+              courseId: 'projekt-microbit-auto',
+              variant: 'microbit-auto',
+              completedLessonIds: [],
+              partialChecks: { 'lektion-01': [0, 2] },
+              partialChecksAt: new Date(Date.now() - 3 * 24 * 3600 * 1000).toISOString(),
+            },
+            updatedAt: new Date().toISOString(),
+          },
+        },
+      },
+    });
+
+    await page.goto('/');
+    await page.locator('.options-btn').click();
+    await page.locator('.settings-modal .auth-btn.primary', { hasText: /Anmelden|Log in/ }).click();
+    await page.locator('.settings-modal input').nth(0).fill(username);
+    await page.locator('.settings-modal input[type="password"]').fill('pass1234');
+    await page.locator('.settings-modal .auth-btn.primary').click();
+    await expect(page.locator('.settings-modal')).toContainText(username);
+    await page.locator('.settings-close').click();
+
+    await page.goto('/kurs/projekt-microbit-auto');
+    await page.locator('.btn-start-course').click();
+    const tasks = page.locator('.guide-task');
+    await expect(tasks.nth(0).locator('.guide-task-check')).toBeChecked({ timeout: 15000 });
+    await expect(tasks.nth(2).locator('.guide-task-check')).toBeChecked();
+    await expect(page.locator('.guide-task-check:checked')).toHaveCount(2);
+    await expect(page.locator('.lesson-item.completed')).toHaveCount(0);
+  });
+
   test('Mein Profil: Zertifikate aus mehreren Kursen (Python + KI-Labor) erscheinen im eigenen Abschnitt', async ({ page, request }) => {
     // Wie beim Abzeichen-Test: Der Account-Fortschritt kommt erst an, wenn das Profil schon offen ist.
     await page.route('**/api/progress', async (route) => {

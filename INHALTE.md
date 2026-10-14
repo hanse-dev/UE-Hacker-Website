@@ -425,7 +425,7 @@ Ordner-Mapping (immer paarweise anpassen):
 - [ ] `lessons.json`-Aufgaben haben nur `instruction` (und optional `isBonus`) — **bewusste Ausnahme**
       von „jede Aufgabe braucht ein `expected`“: Das Team hakt selbst ab. Sind alle Pflichtaufgaben
       abgehakt, gilt die Lektion als abgeschlossen (`useInteractiveProgress`, wie bei allen
-      Projekt-Kursen). Einzelne Haken werden nicht gespeichert. Jede Lektion braucht mindestens eine
+      Projekt-Kursen). Einzelne Haken werden im selben Fortschritts-Eintrag gespeichert (`partialChecks`); ohne Account verfallen sie nach einem Tag. Jede Lektion braucht mindestens eine
       Pflichtaufgabe.
 - [ ] Markdown: Abschnitte, die nur für einen Weg gelten, stehen zwischen `:::bloecke` bzw.
       `:::python` und `:::` (jede Markierung als eigener Absatz mit Leerzeile davor und danach).
