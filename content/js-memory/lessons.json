@@ -1,0 +1,328 @@
+[
+  {
+    "id": "lektion-01",
+    "title": "Eine Karte entsteht",
+    "file": "lektion-01.md",
+    "lessonSummary": "Stark! Du kannst jetzt neue Elemente erzeugen, beschriften und auf die Seite setzen – genau so entstehen gleich alle Memory-Karten.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus und schau auf die Übungsfläche: Die Überschrift heißt jetzt „Memory“ und ganz unten liegt eine neue Karte.",
+        "example": true,
+        "codeTemplate": "document.querySelector('#ueberschrift').textContent = 'Memory';\n\nconst karte = document.createElement('button');\nkarte.textContent = '🐶';\ndocument.querySelector('#dom-uebung').appendChild(karte);\n",
+        "validation": {
+          "type": "dom_text",
+          "target": "ueberschrift",
+          "text": "Memory"
+        }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus. Die Karte bekommt eine id und wird größer – über die id findet das Programm sie später wieder.",
+        "example": true,
+        "codeTemplate": "const flaeche = document.querySelector('#dom-uebung');\n\nconst karte = document.createElement('button');\nkarte.id = 'hund';\nkarte.textContent = '🐶';\nkarte.style.fontSize = '28px';\nflaeche.appendChild(karte);\n\n// Über die id findest du die neue Karte wieder:\nconsole.log(document.querySelector('#hund').textContent);\n",
+        "validation": {
+          "type": "dom_text",
+          "target": "hund",
+          "text": "🐶"
+        }
+      },
+      {
+        "instruction": "Jetzt du: Erzeuge eine Karte (button) mit dem Symbol 🐱 und der id 'karte0'. Mach sie mit style.fontSize schön groß und hänge sie an die Übungsfläche.",
+        "codeTemplate": "const flaeche = document.querySelector('#dom-uebung');\n\n// Symbol zum Kopieren: 🐱\n// Dein Code hier\n",
+        "solution": "const flaeche = document.querySelector('#dom-uebung');\n\nconst karte = document.createElement('button');\nkarte.id = 'karte0';\nkarte.textContent = '🐱';\nkarte.style.fontSize = '28px';\nflaeche.appendChild(karte);",
+        "validation": {
+          "type": "dom_text",
+          "target": "karte0",
+          "text": "🐱"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "title": "Verdeckt und aufgedeckt",
+    "file": "lektion-02.md",
+    "lessonSummary": "Super! Deine Karte merkt sich, ob sie offen oder verdeckt ist – so einen gemerkten Zustand brauchst du im ganzen Spiel.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus und klicke dann auf die Karte mit dem Fragezeichen.",
+        "example": true,
+        "codeTemplate": "const flaeche = document.querySelector('#dom-uebung');\nconst rueckseite = '❓';\n\nconst karte = document.createElement('button');\nkarte.id = 'karte0';\nkarte.textContent = rueckseite;\nkarte.style.fontSize = '28px';\nflaeche.appendChild(karte);\n\nkarte.addEventListener('click', () => {\n  karte.textContent = '🐶';\n});\n",
+        "validation": {
+          "type": "dom_click_text",
+          "click": "karte0",
+          "target": "karte0",
+          "text": "🐶"
+        }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus und klicke mehrmals auf den Lichtschalter. Die Variable an merkt sich, ob das Licht gerade brennt.",
+        "example": true,
+        "codeTemplate": "const knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\nknopf.textContent = 'Lichtschalter';\n\nlet an = false;   // das merkt sich das Programm: Ist das Licht gerade an?\n\nknopf.addEventListener('click', () => {\n  if (an) {\n    anzeige.textContent = 'Licht aus 🌙';\n    an = false;\n  } else {\n    anzeige.textContent = 'Licht an 💡';\n    an = true;\n  }\n});\n",
+        "validation": {
+          "type": "dom_click_text",
+          "click": "knopf",
+          "target": "anzeige",
+          "text": "Licht aus 🌙",
+          "clicks": 2
+        }
+      },
+      {
+        "instruction": "Jetzt du: Die Karte soll sich bei jedem Klick umdrehen. Ist sie verdeckt, zeigt sie 🐱 und in anzeige steht 'offen'. Ist sie offen, zeigt sie wieder die rueckseite und in anzeige steht 'verdeckt'. Die Variable offen merkt sich den Zustand.",
+        "codeTemplate": "const flaeche = document.querySelector('#dom-uebung');\nconst anzeige = document.querySelector('#anzeige');\nconst rueckseite = '❓';\n\nconst karte = document.createElement('button');\nkarte.id = 'karte0';\nkarte.textContent = rueckseite;\nkarte.style.fontSize = '28px';\nflaeche.appendChild(karte);\n\nlet offen = false;   // Liegt die Karte gerade offen?\n\nkarte.addEventListener('click', () => {\n  // Dein Code hier:\n  // Ist die Karte offen? Dann zeige wieder die rueckseite, schreibe 'verdeckt' in anzeige\n  // und merke dir offen = false.\n  // Sonst: zeige '🐱', schreibe 'offen' in anzeige und merke dir offen = true.\n});\n",
+        "solution": "const flaeche = document.querySelector('#dom-uebung');\nconst anzeige = document.querySelector('#anzeige');\nconst rueckseite = '❓';\n\nconst karte = document.createElement('button');\nkarte.id = 'karte0';\nkarte.textContent = rueckseite;\nkarte.style.fontSize = '28px';\nflaeche.appendChild(karte);\n\nlet offen = false;   // Liegt die Karte gerade offen?\n\nkarte.addEventListener('click', () => {\n  if (offen) {\n    karte.textContent = rueckseite;\n    anzeige.textContent = 'verdeckt';\n    offen = false;\n  } else {\n    karte.textContent = '🐱';\n    anzeige.textContent = 'offen';\n    offen = true;\n  }\n});",
+        "validation": {
+          "type": "dom_click_text",
+          "click": "karte0",
+          "target": "anzeige",
+          "text": "verdeckt",
+          "clicks": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "title": "Ein ganzes Brett mit einer Schleife",
+    "file": "lektion-03.md",
+    "lessonSummary": "Klasse! Acht Karten mit nur einer Schleife – und jede weiß, welches Symbol zu ihr gehört.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Eine Schleife läuft durch die Liste und baut für jedes Obst einen eigenen Knopf.",
+        "example": true,
+        "codeTemplate": "const flaeche = document.querySelector('#dom-uebung');\nconst obst = ['🍎', '🍌', '🍇'];\n\nfor (let i = 0; i < obst.length; i++) {\n  const knopf = document.createElement('button');\n  knopf.id = 'obst' + i;\n  knopf.textContent = obst[i];\n  knopf.style.fontSize = '28px';\n  flaeche.appendChild(knopf);\n}\n",
+        "validation": {
+          "type": "dom_text",
+          "target": "obst2",
+          "text": "🍇"
+        }
+      },
+      {
+        "instruction": "Baue das Brett: Laufe mit einer for-Schleife durch die Liste karten und erzeuge für jede Karte einen button mit der id 'karte' + i. Alle Karten liegen verdeckt (sie zeigen die rueckseite).",
+        "codeTemplate": "// Vorbereitung: die Übungsfläche wird zum Spieltisch\ndocument.querySelector('#ueberschrift').textContent = 'Memory';\ndocument.querySelector('#text').textContent = 'Finde alle Paare!';\ndocument.querySelector('#knopf').remove();\ndocument.querySelector('#anzeige').remove();\nconst flaeche = document.querySelector('#dom-uebung');\nconst rueckseite = '❓';\n\nconst karten = ['🐶', '🐱', '🦊', '🐸', '🐶', '🐱', '🦊', '🐸'];\n\n// Dein Code hier: eine for-Schleife über alle karten.\n// Jede Karte ist ein button mit der id 'karte' + i und zeigt die rueckseite.\n// Mach sie mit karte.style.fontSize = '28px' und karte.style.width = '80px' schön groß.\n",
+        "solution": "// Vorbereitung: die Übungsfläche wird zum Spieltisch\ndocument.querySelector('#ueberschrift').textContent = 'Memory';\ndocument.querySelector('#text').textContent = 'Finde alle Paare!';\ndocument.querySelector('#knopf').remove();\ndocument.querySelector('#anzeige').remove();\nconst flaeche = document.querySelector('#dom-uebung');\nconst rueckseite = '❓';\n\nconst karten = ['🐶', '🐱', '🦊', '🐸', '🐶', '🐱', '🦊', '🐸'];\n\nfor (let i = 0; i < karten.length; i++) {\n  const karte = document.createElement('button');\n  karte.id = 'karte' + i;\n  karte.textContent = rueckseite;\n  karte.style.fontSize = '28px';\n  karte.style.width = '80px';\n  karte.style.margin = '3px';\n  flaeche.appendChild(karte);\n}",
+        "validation": {
+          "type": "dom_text",
+          "target": "karte7",
+          "text": "❓"
+        }
+      },
+      {
+        "instruction": "Jetzt kann man die Karten anklicken: Ergänze die Klick-Funktion so, dass die angeklickte Karte ihr Symbol aus der Liste karten zeigt. Probier danach alle Karten aus!",
+        "codeTemplate": "// Vorbereitung: die Übungsfläche wird zum Spieltisch\ndocument.querySelector('#ueberschrift').textContent = 'Memory';\ndocument.querySelector('#text').textContent = 'Finde alle Paare!';\ndocument.querySelector('#knopf').remove();\ndocument.querySelector('#anzeige').remove();\nconst flaeche = document.querySelector('#dom-uebung');\nconst rueckseite = '❓';\n\nconst karten = ['🐶', '🐱', '🦊', '🐸', '🐶', '🐱', '🦊', '🐸'];\n\nfor (let i = 0; i < karten.length; i++) {\n  const karte = document.createElement('button');\n  karte.id = 'karte' + i;\n  karte.textContent = rueckseite;\n  karte.style.fontSize = '28px';\n  karte.style.width = '80px';\n  karte.style.margin = '3px';\n\n  karte.addEventListener('click', () => {\n    // Dein Code hier: zeige das Symbol dieser Karte (es steht in karten an der Stelle i)\n  });\n  flaeche.appendChild(karte);\n}\n",
+        "solution": "// Vorbereitung: die Übungsfläche wird zum Spieltisch\ndocument.querySelector('#ueberschrift').textContent = 'Memory';\ndocument.querySelector('#text').textContent = 'Finde alle Paare!';\ndocument.querySelector('#knopf').remove();\ndocument.querySelector('#anzeige').remove();\nconst flaeche = document.querySelector('#dom-uebung');\nconst rueckseite = '❓';\n\nconst karten = ['🐶', '🐱', '🦊', '🐸', '🐶', '🐱', '🦊', '🐸'];\n\nfor (let i = 0; i < karten.length; i++) {\n  const karte = document.createElement('button');\n  karte.id = 'karte' + i;\n  karte.textContent = rueckseite;\n  karte.style.fontSize = '28px';\n  karte.style.width = '80px';\n  karte.style.margin = '3px';\n\n  karte.addEventListener('click', () => {\n    karte.textContent = karten[i];\n  });\n  flaeche.appendChild(karte);\n}",
+        "validation": {
+          "type": "dom_click_text",
+          "click": "karte6",
+          "target": "karte6",
+          "text": "🦊"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "title": "Karten mischen",
+    "file": "lektion-04.md",
+    "lessonSummary": "Gut gemischt! Mit Zufallszahl und Tauschen liegt dein Brett bei jedem Start anders.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Es vertauscht zwei Einträge einer Liste – mit einer Merk-Variable, damit nichts verloren geht.",
+        "example": true,
+        "codeTemplate": "const liste = ['🐶', '🐱'];\n\nconst merke = liste[0];   // den Hund kurz zur Seite legen\nliste[0] = liste[1];      // die Katze rutscht nach vorn\nliste[1] = merke;         // der Hund kommt nach hinten\n\nconsole.log(liste[0], liste[1]);\n",
+        "validation": {
+          "type": "output_equals",
+          "expected": "🐱 🐶"
+        },
+        "showCanvas": false
+      },
+      {
+        "instruction": "Führe dieses Beispiel mehrmals aus. Es wählt jedes Mal eine zufällige Stelle der Liste.",
+        "example": true,
+        "codeTemplate": "const karten = ['🐶', '🐱', '🦊', '🐸'];\n\nconst zufall = Math.floor(Math.random() * karten.length);\nconsole.log('Zufällige Stelle: ' + zufall);\nconsole.log('Zufällige Karte: ' + karten[zufall]);\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Zufällige Karte:"
+        },
+        "showCanvas": false
+      },
+      {
+        "instruction": "Schreibe die Funktion mische(liste) fertig: Für jede Stelle i wählst du eine zufällige Stelle j und tauschst die beiden Einträge. Der Test darunter zeigt dir, ob gemischt wurde und ob noch alle Zahlen da sind.",
+        "codeTemplate": "function mische(liste) {\n  for (let i = 0; i < liste.length; i++) {\n    // Dein Code hier:\n    // 1. Bestimme eine zufällige Stelle j (wie im Beispiel oben, mit liste.length).\n    // 2. Tausche liste[i] und liste[j] – vergiss die Merk-Variable nicht!\n  }\n}\n\n// Test (nicht ändern): Wurde gemischt? Und sind noch alle Zahlen da?\nconst zahlen = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];\nmische(zahlen);\nconsole.log(zahlen.join(' '));\nconsole.log('Gemischt?', zahlen.join(' ') !== '1 2 3 4 5 6 7 8 9 10');\nconsole.log('Sortiert:', zahlen.slice().sort((a, b) => a - b).join(' '));\n",
+        "solution": "function mische(liste) {\n  for (let i = 0; i < liste.length; i++) {\n    const j = Math.floor(Math.random() * liste.length);\n    const merke = liste[i];\n    liste[i] = liste[j];\n    liste[j] = merke;\n  }\n}\n\n// Test (nicht ändern): Wurde gemischt? Und sind noch alle Zahlen da?\nconst zahlen = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];\nmische(zahlen);\nconsole.log(zahlen.join(' '));\nconsole.log('Gemischt?', zahlen.join(' ') !== '1 2 3 4 5 6 7 8 9 10');\nconsole.log('Sortiert:', zahlen.slice().sort((a, b) => a - b).join(' '));",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Gemischt? true Sortiert: 1 2 3 4 5 6 7 8 9 10"
+        },
+        "showCanvas": false
+      },
+      {
+        "instruction": "Jetzt wird das Brett gemischt: Kopiere deine mische()-Funktion an die markierte Stelle, mische die karten und schreibe danach 'Gut gemischt!' in das Element #text. Führe den Code mehrmals aus und decke die Karten auf – sie liegen jedes Mal anders.",
+        "codeTemplate": "// Vorbereitung: die Übungsfläche wird zum Spieltisch\ndocument.querySelector('#ueberschrift').textContent = 'Memory';\ndocument.querySelector('#text').textContent = 'Finde alle Paare!';\ndocument.querySelector('#knopf').remove();\ndocument.querySelector('#anzeige').remove();\nconst flaeche = document.querySelector('#dom-uebung');\nconst rueckseite = '❓';\n\nconst karten = ['🐶', '🐱', '🦊', '🐸', '🐶', '🐱', '🦊', '🐸'];\n\n// Dein Code hier (1): kopiere deine mische()-Funktion von oben hierher\n\n// Dein Code hier (2): mische die karten und schreibe danach 'Gut gemischt!'\n// in das Element #text\n\nfor (let i = 0; i < karten.length; i++) {\n  const karte = document.createElement('button');\n  karte.id = 'karte' + i;\n  karte.textContent = rueckseite;\n  karte.style.fontSize = '28px';\n  karte.style.width = '80px';\n  karte.style.margin = '3px';\n\n  karte.addEventListener('click', () => {\n    karte.textContent = karten[i];\n  });\n  flaeche.appendChild(karte);\n}\n",
+        "solution": "// Vorbereitung: die Übungsfläche wird zum Spieltisch\ndocument.querySelector('#ueberschrift').textContent = 'Memory';\ndocument.querySelector('#text').textContent = 'Finde alle Paare!';\ndocument.querySelector('#knopf').remove();\ndocument.querySelector('#anzeige').remove();\nconst flaeche = document.querySelector('#dom-uebung');\nconst rueckseite = '❓';\n\nconst karten = ['🐶', '🐱', '🦊', '🐸', '🐶', '🐱', '🦊', '🐸'];\n\nfunction mische(liste) {\n  for (let i = 0; i < liste.length; i++) {\n    const j = Math.floor(Math.random() * liste.length);\n    const merke = liste[i];\n    liste[i] = liste[j];\n    liste[j] = merke;\n  }\n}\n\nmische(karten);\ndocument.querySelector('#text').textContent = 'Gut gemischt!';\n\nfor (let i = 0; i < karten.length; i++) {\n  const karte = document.createElement('button');\n  karte.id = 'karte' + i;\n  karte.textContent = rueckseite;\n  karte.style.fontSize = '28px';\n  karte.style.width = '80px';\n  karte.style.margin = '3px';\n\n  karte.addEventListener('click', () => {\n    karte.textContent = karten[i];\n  });\n  flaeche.appendChild(karte);\n}",
+        "validation": {
+          "type": "dom_text",
+          "target": "text",
+          "text": "Gut gemischt!"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "title": "Zwei Karten vergleichen",
+    "file": "lektion-05.md",
+    "lessonSummary": "Das ist das Herz deines Spiels: Es merkt sich die erste Karte und vergleicht sie mit der zweiten.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus und klicke mehrmals auf den Knopf. Das Programm unterscheidet den ersten vom zweiten Klick.",
+        "example": true,
+        "codeTemplate": "const knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\n\nlet ersterKlick = null;   // null bedeutet: noch nichts gemerkt\n\nknopf.addEventListener('click', () => {\n  if (ersterKlick === null) {\n    ersterKlick = 'gemerkt';\n    anzeige.textContent = 'Erster Klick – den merke ich mir.';\n  } else {\n    anzeige.textContent = 'Zweiter Klick – jetzt wird verglichen!';\n    ersterKlick = null;   // alles vergessen, die nächste Runde beginnt\n  }\n});\n",
+        "validation": {
+          "type": "dom_click_text",
+          "click": "knopf",
+          "target": "anzeige",
+          "text": "Zweiter Klick – jetzt wird verglichen!",
+          "clicks": 2
+        }
+      },
+      {
+        "instruction": "Schreibe die Funktion decke(symbol) fertig. Beim ersten Aufruf merkt sie sich das Symbol und gibt 'gemerkt' zurück. Beim zweiten Aufruf vergleicht sie: 'Paar' oder 'kein Paar' – und vergisst danach die erste Karte wieder.",
+        "codeTemplate": "let erste = null;   // das Symbol der ersten Karte (null = noch keine aufgedeckt)\n\nfunction decke(symbol) {\n  // Dein Code hier:\n  // Ist erste noch null? Dann merke dir das symbol in erste und gib 'gemerkt' zurück.\n  // Sonst: Vergleiche erste mit symbol. Merke dir das Ergebnis ('Paar' oder 'kein Paar'),\n  // setze erste wieder auf null und gib das Ergebnis zurück.\n}\n\n// Test (nicht ändern)\nconsole.log(decke('🐶'));\nconsole.log(decke('🐶'));\nconsole.log(decke('🐱'));\nconsole.log(decke('🦊'));\n",
+        "solution": "let erste = null;   // das Symbol der ersten Karte (null = noch keine aufgedeckt)\n\nfunction decke(symbol) {\n  if (erste === null) {\n    erste = symbol;\n    return 'gemerkt';\n  }\n  let ergebnis = 'kein Paar';\n  if (erste === symbol) {\n    ergebnis = 'Paar';\n  }\n  erste = null;\n  return ergebnis;\n}\n\n// Test (nicht ändern)\nconsole.log(decke('🐶'));\nconsole.log(decke('🐶'));\nconsole.log(decke('🐱'));\nconsole.log(decke('🦊'));",
+        "validation": {
+          "type": "output_equals",
+          "expected": "gemerkt\nPaar\ngemerkt\nkein Paar"
+        },
+        "showCanvas": false
+      },
+      {
+        "instruction": "Jetzt auf dem echten Brett: Ergänze die Klick-Funktion. Die erste aufgedeckte Karte merkst du dir in erste. Bei der zweiten vergleichst du die Symbole und zeigst als Meldung 'Paar gefunden!' oder 'Leider kein Paar.'. Die Karten sind noch nicht gemischt – so kannst du leichter testen.",
+        "codeTemplate": "// Vorbereitung: die Übungsfläche wird zum Spieltisch\ndocument.querySelector('#ueberschrift').textContent = 'Memory';\ndocument.querySelector('#knopf').remove();\ndocument.querySelector('#anzeige').remove();\nconst flaeche = document.querySelector('#dom-uebung');\nconst meldung = document.querySelector('#text');\nmeldung.textContent = 'Finde ein Paar!';\nconst rueckseite = '❓';\n\nconst karten = ['🐶', '🐱', '🦊', '🐸', '🐶', '🐱', '🦊', '🐸'];\n\nlet erste = null;   // die erste aufgedeckte Karte (null = noch keine)\n\nfor (let i = 0; i < karten.length; i++) {\n  const karte = document.createElement('button');\n  karte.id = 'karte' + i;\n  karte.textContent = rueckseite;\n  karte.style.fontSize = '28px';\n  karte.style.width = '80px';\n  karte.style.margin = '3px';\n\n  karte.addEventListener('click', () => {\n    if (karte.textContent !== rueckseite) return;   // schon aufgedeckt? Dann passiert nichts.\n    karte.textContent = karten[i];\n\n    // Dein Code hier:\n    // Ist erste noch null? Dann merke dir diese karte in erste.\n    // Sonst: Vergleiche erste.textContent mit karte.textContent. Schreibe\n    // 'Paar gefunden!' oder 'Leider kein Paar.' in meldung und setze erste wieder auf null.\n  });\n  flaeche.appendChild(karte);\n}\n",
+        "solution": "// Vorbereitung: die Übungsfläche wird zum Spieltisch\ndocument.querySelector('#ueberschrift').textContent = 'Memory';\ndocument.querySelector('#knopf').remove();\ndocument.querySelector('#anzeige').remove();\nconst flaeche = document.querySelector('#dom-uebung');\nconst meldung = document.querySelector('#text');\nmeldung.textContent = 'Finde ein Paar!';\nconst rueckseite = '❓';\n\nconst karten = ['🐶', '🐱', '🦊', '🐸', '🐶', '🐱', '🦊', '🐸'];\n\nlet erste = null;   // die erste aufgedeckte Karte (null = noch keine)\n\nfor (let i = 0; i < karten.length; i++) {\n  const karte = document.createElement('button');\n  karte.id = 'karte' + i;\n  karte.textContent = rueckseite;\n  karte.style.fontSize = '28px';\n  karte.style.width = '80px';\n  karte.style.margin = '3px';\n\n  karte.addEventListener('click', () => {\n    if (karte.textContent !== rueckseite) return;   // schon aufgedeckt? Dann passiert nichts.\n    karte.textContent = karten[i];\n\n    if (erste === null) {\n      erste = karte;\n    } else {\n      if (erste.textContent === karte.textContent) {\n        meldung.textContent = 'Paar gefunden!';\n      } else {\n        meldung.textContent = 'Leider kein Paar.';\n      }\n      erste = null;\n    }\n  });\n  flaeche.appendChild(karte);\n}",
+        "validation": {
+          "type": "dom_click_text",
+          "click": [
+            "karte2",
+            "karte6",
+            "karte0",
+            "karte1"
+          ],
+          "target": "text",
+          "text": "Leider kein Paar."
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "title": "Kein Paar? Zurückdrehen!",
+    "file": "lektion-06.md",
+    "lessonSummary": "Jetzt fühlt es sich wie echtes Memory an: Falsche Karten drehen sich von allein zurück, und Schummeln geht nicht mehr.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus und beobachte den Text auf der Übungsfläche: Nach einer Sekunde ändert er sich von allein.",
+        "example": true,
+        "codeTemplate": "const meldung = document.querySelector('#text');\nmeldung.textContent = 'Achtung, gleich passiert etwas!';\n\nsetTimeout(() => {\n  meldung.textContent = 'Überraschung! 🎉';\n}, 1000);\n\nconsole.log('Der Timer läuft.');\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Der Timer läuft"
+        }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus und klicke ganz schnell hintereinander auf den Knopf. Nach jedem Punkt ist der Knopf eine Sekunde lang gesperrt.",
+        "example": true,
+        "codeTemplate": "const knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\nknopf.textContent = 'Punkt holen';\n\nlet punkte = 0;\nlet gesperrt = false;\n\nknopf.addEventListener('click', () => {\n  if (gesperrt) return;   // gesperrt? Dann zählt der Klick nicht.\n\n  punkte++;\n  anzeige.textContent = punkte;\n\n  gesperrt = true;        // erst mal Pause ...\n  setTimeout(() => {\n    gesperrt = false;     // ... nach einer Sekunde geht es weiter\n  }, 1000);\n});\n",
+        "validation": {
+          "type": "dom_click_text",
+          "click": "knopf",
+          "target": "anzeige",
+          "text": "1",
+          "clicks": 3
+        }
+      },
+      {
+        "instruction": "Baue beides ins Brett ein. (1) Solange gesperrt true ist, passiert bei einem Klick nichts. (2) Bei „kein Paar“ sperrst du das Brett und drehst nach 800 Millisekunden beide Karten wieder um – danach ist das Brett wieder frei.",
+        "codeTemplate": "// Vorbereitung: die Übungsfläche wird zum Spieltisch\ndocument.querySelector('#ueberschrift').textContent = 'Memory';\ndocument.querySelector('#knopf').remove();\ndocument.querySelector('#anzeige').remove();\nconst flaeche = document.querySelector('#dom-uebung');\nconst meldung = document.querySelector('#text');\nmeldung.textContent = 'Finde ein Paar!';\nconst rueckseite = '❓';\n\nconst karten = ['🐶', '🐱', '🦊', '🐸', '🐶', '🐱', '🦊', '🐸'];\n\nlet erste = null;       // die erste aufgedeckte Karte (null = noch keine)\nlet gesperrt = false;   // true, solange zwei falsche Karten offen liegen\n\nfor (let i = 0; i < karten.length; i++) {\n  const karte = document.createElement('button');\n  karte.id = 'karte' + i;\n  karte.textContent = rueckseite;\n  karte.style.fontSize = '28px';\n  karte.style.width = '80px';\n  karte.style.margin = '3px';\n\n  karte.addEventListener('click', () => {\n    // Dein Code hier (1): Ist das Brett gesperrt? Dann sofort raus mit return.\n\n    if (karte.textContent !== rueckseite) return;   // schon aufgedeckt? Dann passiert nichts.\n    karte.textContent = karten[i];\n\n    if (erste === null) {\n      erste = karte;\n    } else if (erste.textContent === karte.textContent) {\n      meldung.textContent = 'Paar gefunden!';\n      erste = null;\n    } else {\n      meldung.textContent = 'Leider kein Paar.';\n      // Dein Code hier (2): Sperre das Brett. Starte dann einen Timer mit 800 Millisekunden,\n      // der beide Karten (erste und karte) wieder auf die rueckseite dreht,\n      // erste auf null setzt und das Brett wieder entsperrt.\n    }\n  });\n  flaeche.appendChild(karte);\n}\n",
+        "solution": "// Vorbereitung: die Übungsfläche wird zum Spieltisch\ndocument.querySelector('#ueberschrift').textContent = 'Memory';\ndocument.querySelector('#knopf').remove();\ndocument.querySelector('#anzeige').remove();\nconst flaeche = document.querySelector('#dom-uebung');\nconst meldung = document.querySelector('#text');\nmeldung.textContent = 'Finde ein Paar!';\nconst rueckseite = '❓';\n\nconst karten = ['🐶', '🐱', '🦊', '🐸', '🐶', '🐱', '🦊', '🐸'];\n\nlet erste = null;       // die erste aufgedeckte Karte (null = noch keine)\nlet gesperrt = false;   // true, solange zwei falsche Karten offen liegen\n\nfor (let i = 0; i < karten.length; i++) {\n  const karte = document.createElement('button');\n  karte.id = 'karte' + i;\n  karte.textContent = rueckseite;\n  karte.style.fontSize = '28px';\n  karte.style.width = '80px';\n  karte.style.margin = '3px';\n\n  karte.addEventListener('click', () => {\n    if (gesperrt) return;\n    if (karte.textContent !== rueckseite) return;   // schon aufgedeckt? Dann passiert nichts.\n    karte.textContent = karten[i];\n\n    if (erste === null) {\n      erste = karte;\n    } else if (erste.textContent === karte.textContent) {\n      meldung.textContent = 'Paar gefunden!';\n      erste = null;\n    } else {\n      meldung.textContent = 'Leider kein Paar.';\n      gesperrt = true;\n      setTimeout(() => {\n        erste.textContent = rueckseite;\n        karte.textContent = rueckseite;\n        erste = null;\n        gesperrt = false;\n      }, 800);\n    }\n  });\n  flaeche.appendChild(karte);\n}",
+        "validation": {
+          "type": "dom_click_text",
+          "click": [
+            "karte0",
+            "karte1",
+            "karte2"
+          ],
+          "target": "karte2",
+          "text": "❓"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "title": "Züge zählen und gewinnen",
+    "file": "lektion-07.md",
+    "lessonSummary": "Geschafft! Du hast dein eigenes Memory gebaut – mit gemischten Karten, Paar-Vergleich, Zurückdrehen, Zügen und Gewinn-Meldung.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Mit concat wird aus drei Symbolen ein Kartenstapel mit drei Paaren.",
+        "example": true,
+        "codeTemplate": "const symbole = ['🐶', '🐱', '🦊'];\n\n// concat hängt zwei Listen aneinander – so entsteht aus jedem Symbol ein Paar\nconst karten = symbole.concat(symbole);\n\nconsole.log(karten.length);\nconsole.log(karten.join(' '));\n",
+        "validation": {
+          "type": "output_contains",
+          "expected": "6"
+        },
+        "showCanvas": false
+      },
+      {
+        "instruction": "Zähle die Züge: Immer wenn die zweite Karte aufgedeckt wird, wächst zuege um 1 und in anzeige steht zum Beispiel 'Züge: 3'.",
+        "codeTemplate": "// Vorbereitung: die Übungsfläche wird zum Spieltisch\ndocument.querySelector('#ueberschrift').textContent = 'Memory';\ndocument.querySelector('#knopf').remove();\nconst flaeche = document.querySelector('#dom-uebung');\nconst meldung = document.querySelector('#text');\nconst anzeige = document.querySelector('#anzeige');\nmeldung.textContent = 'Finde alle Paare!';\nanzeige.textContent = 'Züge: 0';\nconst rueckseite = '❓';\n\nconst karten = ['🐶', '🐱', '🦊', '🐸', '🐶', '🐱', '🦊', '🐸'];\n\nlet erste = null;       // die erste aufgedeckte Karte (null = noch keine)\nlet gesperrt = false;   // true, solange zwei falsche Karten offen liegen\nlet zuege = 0;          // so oft wurden schon zwei Karten verglichen\n\nfor (let i = 0; i < karten.length; i++) {\n  const karte = document.createElement('button');\n  karte.id = 'karte' + i;\n  karte.textContent = rueckseite;\n  karte.style.fontSize = '28px';\n  karte.style.width = '80px';\n  karte.style.margin = '3px';\n\n  karte.addEventListener('click', () => {\n    if (gesperrt) return;\n    if (karte.textContent !== rueckseite) return;   // schon aufgedeckt? Dann passiert nichts.\n    karte.textContent = karten[i];\n\n    if (erste === null) {\n      erste = karte;\n      return;   // erste Karte: mehr passiert noch nicht\n    }\n\n    // Ab hier ist es immer die zweite Karte – also ein ganzer Zug.\n    // Dein Code hier: zähle zuege um 1 hoch und zeige 'Züge: ' + zuege in anzeige\n\n    if (erste.textContent === karte.textContent) {\n      meldung.textContent = 'Paar gefunden!';\n      erste = null;\n    } else {\n      meldung.textContent = 'Leider kein Paar.';\n      gesperrt = true;\n      setTimeout(() => {\n        erste.textContent = rueckseite;\n        karte.textContent = rueckseite;\n        erste = null;\n        gesperrt = false;\n      }, 800);\n    }\n  });\n  flaeche.appendChild(karte);\n}\n",
+        "solution": "// Vorbereitung: die Übungsfläche wird zum Spieltisch\ndocument.querySelector('#ueberschrift').textContent = 'Memory';\ndocument.querySelector('#knopf').remove();\nconst flaeche = document.querySelector('#dom-uebung');\nconst meldung = document.querySelector('#text');\nconst anzeige = document.querySelector('#anzeige');\nmeldung.textContent = 'Finde alle Paare!';\nanzeige.textContent = 'Züge: 0';\nconst rueckseite = '❓';\n\nconst karten = ['🐶', '🐱', '🦊', '🐸', '🐶', '🐱', '🦊', '🐸'];\n\nlet erste = null;       // die erste aufgedeckte Karte (null = noch keine)\nlet gesperrt = false;   // true, solange zwei falsche Karten offen liegen\nlet zuege = 0;          // so oft wurden schon zwei Karten verglichen\n\nfor (let i = 0; i < karten.length; i++) {\n  const karte = document.createElement('button');\n  karte.id = 'karte' + i;\n  karte.textContent = rueckseite;\n  karte.style.fontSize = '28px';\n  karte.style.width = '80px';\n  karte.style.margin = '3px';\n\n  karte.addEventListener('click', () => {\n    if (gesperrt) return;\n    if (karte.textContent !== rueckseite) return;   // schon aufgedeckt? Dann passiert nichts.\n    karte.textContent = karten[i];\n\n    if (erste === null) {\n      erste = karte;\n      return;   // erste Karte: mehr passiert noch nicht\n    }\n\n    // Ab hier ist es immer die zweite Karte – also ein ganzer Zug.\n    zuege++;\n    anzeige.textContent = 'Züge: ' + zuege;\n\n    if (erste.textContent === karte.textContent) {\n      meldung.textContent = 'Paar gefunden!';\n      erste = null;\n    } else {\n      meldung.textContent = 'Leider kein Paar.';\n      gesperrt = true;\n      setTimeout(() => {\n        erste.textContent = rueckseite;\n        karte.textContent = rueckseite;\n        erste = null;\n        gesperrt = false;\n      }, 800);\n    }\n  });\n  flaeche.appendChild(karte);\n}",
+        "validation": {
+          "type": "dom_click_text",
+          "click": [
+            "karte0",
+            "karte4",
+            "karte1",
+            "karte5"
+          ],
+          "target": "anzeige",
+          "text": "Züge: 2"
+        }
+      },
+      {
+        "instruction": "Erkenne den Sieg: Zähle bei jedem Paar gefunden um 1 hoch. Sind alle Paare gefunden, erscheint als Meldung zum Beispiel 'Gewonnen in 6 Zügen!'.",
+        "codeTemplate": "// Vorbereitung: die Übungsfläche wird zum Spieltisch\ndocument.querySelector('#ueberschrift').textContent = 'Memory';\ndocument.querySelector('#knopf').remove();\nconst flaeche = document.querySelector('#dom-uebung');\nconst meldung = document.querySelector('#text');\nconst anzeige = document.querySelector('#anzeige');\nmeldung.textContent = 'Finde alle Paare!';\nanzeige.textContent = 'Züge: 0';\nconst rueckseite = '❓';\n\nconst karten = ['🐶', '🐱', '🦊', '🐸', '🐶', '🐱', '🦊', '🐸'];\n\nlet erste = null;       // die erste aufgedeckte Karte (null = noch keine)\nlet gesperrt = false;   // true, solange zwei falsche Karten offen liegen\nlet zuege = 0;          // so oft wurden schon zwei Karten verglichen\nlet gefunden = 0;       // so viele Paare sind schon gefunden\n\nfor (let i = 0; i < karten.length; i++) {\n  const karte = document.createElement('button');\n  karte.id = 'karte' + i;\n  karte.textContent = rueckseite;\n  karte.style.fontSize = '28px';\n  karte.style.width = '80px';\n  karte.style.margin = '3px';\n\n  karte.addEventListener('click', () => {\n    if (gesperrt) return;\n    if (karte.textContent !== rueckseite) return;   // schon aufgedeckt? Dann passiert nichts.\n    karte.textContent = karten[i];\n\n    if (erste === null) {\n      erste = karte;\n      return;   // erste Karte: mehr passiert noch nicht\n    }\n\n    zuege++;\n    anzeige.textContent = 'Züge: ' + zuege;\n\n    if (erste.textContent === karte.textContent) {\n      meldung.textContent = 'Paar gefunden!';\n      erste = null;\n      // Dein Code hier: zähle gefunden um 1 hoch. Sind alle Paare gefunden\n      // (das sind karten.length / 2 Stück)? Dann schreibe in meldung:\n      // 'Gewonnen in ' + zuege + ' Zügen!'\n    } else {\n      meldung.textContent = 'Leider kein Paar.';\n      gesperrt = true;\n      setTimeout(() => {\n        erste.textContent = rueckseite;\n        karte.textContent = rueckseite;\n        erste = null;\n        gesperrt = false;\n      }, 800);\n    }\n  });\n  flaeche.appendChild(karte);\n}\n",
+        "solution": "// Vorbereitung: die Übungsfläche wird zum Spieltisch\ndocument.querySelector('#ueberschrift').textContent = 'Memory';\ndocument.querySelector('#knopf').remove();\nconst flaeche = document.querySelector('#dom-uebung');\nconst meldung = document.querySelector('#text');\nconst anzeige = document.querySelector('#anzeige');\nmeldung.textContent = 'Finde alle Paare!';\nanzeige.textContent = 'Züge: 0';\nconst rueckseite = '❓';\n\nconst karten = ['🐶', '🐱', '🦊', '🐸', '🐶', '🐱', '🦊', '🐸'];\n\nlet erste = null;       // die erste aufgedeckte Karte (null = noch keine)\nlet gesperrt = false;   // true, solange zwei falsche Karten offen liegen\nlet zuege = 0;          // so oft wurden schon zwei Karten verglichen\nlet gefunden = 0;       // so viele Paare sind schon gefunden\n\nfor (let i = 0; i < karten.length; i++) {\n  const karte = document.createElement('button');\n  karte.id = 'karte' + i;\n  karte.textContent = rueckseite;\n  karte.style.fontSize = '28px';\n  karte.style.width = '80px';\n  karte.style.margin = '3px';\n\n  karte.addEventListener('click', () => {\n    if (gesperrt) return;\n    if (karte.textContent !== rueckseite) return;   // schon aufgedeckt? Dann passiert nichts.\n    karte.textContent = karten[i];\n\n    if (erste === null) {\n      erste = karte;\n      return;   // erste Karte: mehr passiert noch nicht\n    }\n\n    zuege++;\n    anzeige.textContent = 'Züge: ' + zuege;\n\n    if (erste.textContent === karte.textContent) {\n      meldung.textContent = 'Paar gefunden!';\n      erste = null;\n      gefunden++;\n      if (gefunden === karten.length / 2) {\n        meldung.textContent = 'Gewonnen in ' + zuege + ' Zügen!';\n      }\n    } else {\n      meldung.textContent = 'Leider kein Paar.';\n      gesperrt = true;\n      setTimeout(() => {\n        erste.textContent = rueckseite;\n        karte.textContent = rueckseite;\n        erste = null;\n        gesperrt = false;\n      }, 800);\n    }\n  });\n  flaeche.appendChild(karte);\n}",
+        "validation": {
+          "type": "dom_click_text",
+          "click": [
+            "karte0",
+            "karte4",
+            "karte1",
+            "karte5",
+            "karte2",
+            "karte6",
+            "karte3",
+            "karte7"
+          ],
+          "target": "text",
+          "text": "Gewonnen in 4 Zügen!"
+        }
+      },
+      {
+        "instruction": "Dein fertiges Memory! Trage mindestens 4 eigene Symbole ein und mische die Karten mit deiner mische()-Funktion aus Lektion 4. Dann spiel eine ganze Runde – schaffst du es in weniger als 10 Zügen?",
+        "codeTemplate": "// Vorbereitung: die Übungsfläche wird zum Spieltisch\ndocument.querySelector('#ueberschrift').textContent = 'Memory';\ndocument.querySelector('#knopf').remove();\nconst flaeche = document.querySelector('#dom-uebung');\nconst meldung = document.querySelector('#text');\nconst anzeige = document.querySelector('#anzeige');\nmeldung.textContent = 'Finde alle Paare!';\nanzeige.textContent = 'Züge: 0';\nconst rueckseite = '❓';\n\n// Dein Code hier (1): trage mindestens 4 eigene Symbole ein, z.B. 🚀 🌈 🍕 ⚽ 🦄 🎸\nconst symbole = [];\nconst karten = symbole.concat(symbole);   // jedes Symbol gibt es zweimal\n\n// Dein Code hier (2): kopiere deine mische()-Funktion aus Lektion 4 hierher\n// und mische damit die karten\n\n\nlet erste = null;       // die erste aufgedeckte Karte (null = noch keine)\nlet gesperrt = false;   // true, solange zwei falsche Karten offen liegen\nlet zuege = 0;          // so oft wurden schon zwei Karten verglichen\nlet gefunden = 0;       // so viele Paare sind schon gefunden\n\nfor (let i = 0; i < karten.length; i++) {\n  const karte = document.createElement('button');\n  karte.id = 'karte' + i;\n  karte.textContent = rueckseite;\n  karte.style.fontSize = '28px';\n  karte.style.width = '80px';\n  karte.style.margin = '3px';\n\n  karte.addEventListener('click', () => {\n    if (gesperrt) return;\n    if (karte.textContent !== rueckseite) return;   // schon aufgedeckt? Dann passiert nichts.\n    karte.textContent = karten[i];\n\n    if (erste === null) {\n      erste = karte;\n      return;   // erste Karte: mehr passiert noch nicht\n    }\n\n    zuege++;\n    anzeige.textContent = 'Züge: ' + zuege;\n\n    if (erste.textContent === karte.textContent) {\n      meldung.textContent = 'Paar gefunden!';\n      erste = null;\n      gefunden++;\n      if (gefunden === karten.length / 2) {\n        meldung.textContent = 'Gewonnen in ' + zuege + ' Zügen!';\n      }\n    } else {\n      meldung.textContent = 'Leider kein Paar.';\n      gesperrt = true;\n      setTimeout(() => {\n        erste.textContent = rueckseite;\n        karte.textContent = rueckseite;\n        erste = null;\n        gesperrt = false;\n      }, 800);\n    }\n  });\n  flaeche.appendChild(karte);\n}\n",
+        "solution": "// Vorbereitung: die Übungsfläche wird zum Spieltisch\ndocument.querySelector('#ueberschrift').textContent = 'Memory';\ndocument.querySelector('#knopf').remove();\nconst flaeche = document.querySelector('#dom-uebung');\nconst meldung = document.querySelector('#text');\nconst anzeige = document.querySelector('#anzeige');\nmeldung.textContent = 'Finde alle Paare!';\nanzeige.textContent = 'Züge: 0';\nconst rueckseite = '❓';\n\nconst symbole = ['🚀', '🌈', '🍕', '⚽'];\nconst karten = symbole.concat(symbole);   // jedes Symbol gibt es zweimal\n\nfunction mische(liste) {\n  for (let i = 0; i < liste.length; i++) {\n    const j = Math.floor(Math.random() * liste.length);\n    const merke = liste[i];\n    liste[i] = liste[j];\n    liste[j] = merke;\n  }\n}\n\nmische(karten);\n\n\nlet erste = null;       // die erste aufgedeckte Karte (null = noch keine)\nlet gesperrt = false;   // true, solange zwei falsche Karten offen liegen\nlet zuege = 0;          // so oft wurden schon zwei Karten verglichen\nlet gefunden = 0;       // so viele Paare sind schon gefunden\n\nfor (let i = 0; i < karten.length; i++) {\n  const karte = document.createElement('button');\n  karte.id = 'karte' + i;\n  karte.textContent = rueckseite;\n  karte.style.fontSize = '28px';\n  karte.style.width = '80px';\n  karte.style.margin = '3px';\n\n  karte.addEventListener('click', () => {\n    if (gesperrt) return;\n    if (karte.textContent !== rueckseite) return;   // schon aufgedeckt? Dann passiert nichts.\n    karte.textContent = karten[i];\n\n    if (erste === null) {\n      erste = karte;\n      return;   // erste Karte: mehr passiert noch nicht\n    }\n\n    zuege++;\n    anzeige.textContent = 'Züge: ' + zuege;\n\n    if (erste.textContent === karte.textContent) {\n      meldung.textContent = 'Paar gefunden!';\n      erste = null;\n      gefunden++;\n      if (gefunden === karten.length / 2) {\n        meldung.textContent = 'Gewonnen in ' + zuege + ' Zügen!';\n      }\n    } else {\n      meldung.textContent = 'Leider kein Paar.';\n      gesperrt = true;\n      setTimeout(() => {\n        erste.textContent = rueckseite;\n        karte.textContent = rueckseite;\n        erste = null;\n        gesperrt = false;\n      }, 800);\n    }\n  });\n  flaeche.appendChild(karte);\n}",
+        "validation": {
+          "type": "dom_click_text",
+          "click": [
+            "karte0",
+            "karte1"
+          ],
+          "target": "anzeige",
+          "text": "Züge: 1"
+        }
+      }
+    ]
+  }
+]

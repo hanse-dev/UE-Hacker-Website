@@ -2567,3 +2567,28 @@ Mail-Reset, keine Sicherheitsfragen.
 
 Nachtrag beim Merge: `create-account-printout.py` ist inzwischen in `scripts/local-tools/drucker.py`
 aufgegangen; der Reset läuft dort über `drucker.py account <name>` (fragt bei vorhandenem Account nach).
+
+### 3.103 — Projekt „Memory“ (Branch `projekt-js-memory`)
+
+- Erstes DOM-Projekt (bisherige JS-Projekte sind Canvas-Spiele), Idee aus `PROJEKTIDEEN.md`, ab
+  etwa 9–11 Jahren, Level `einsteiger`, schließt an Woche 7 des JS-Grundkurses an. 7 Lektionen in
+  `content/js-memory/`: Karte per `createElement` → verdeckt/aufgedeckt (Zustand in einer
+  Variable) → Brett per Schleife → Mischen → zwei Karten vergleichen (`erste = null` als
+  Zustandsmaschine) → Zurückdrehen mit `setTimeout` und Sperre → Züge, Gewinn, eigenes Memory.
+- Zwei kleine Code-Änderungen waren nötig. (1) `ProjectCourse.vue` gab `domMode` nicht an
+  `JsLessonView.vue` weiter, Projekt-Kurse sahen also immer das Canvas. Neu: `"sandboxMode": "dom"`
+  in `kurse.json` → `CourseDetail.vue` → `ProjectCourse.vue`. (2) `dom_click_text` konnte nur ein
+  Element anklicken; ein Paar-Vergleich braucht zwei verschiedene Karten. Der Harness in
+  `useJsSandbox.js` nimmt bei `click` jetzt auch eine Liste von IDs. Beides ist abwärtskompatibel.
+- Die Übungsfläche der Sandbox wird wiederverwendet statt eine dritte Variante zu bauen:
+  `#ueberschrift` = Titel, `#text` = Meldung, `#anzeige` = Züge, `#knopf` wird entfernt. Karten sind
+  `button`-Elemente mit den IDs `karte0`…, die der Code an `#dom-uebung` hängt; zwölf Karten passen
+  in das 300 px hohe iframe.
+- Prüfungen: Aufgaben mit festem Klick-Ergebnis nutzen ungemischte Karten. Das Mischen selbst prüft
+  ein Test in der Vorlage (liegt anders, nichts verloren). Die letzte Aufgabe (gemischt, eigene
+  Symbole) prüft nur, was bei jeder Reihenfolge gilt: zwei Karten = „Züge: 1“. Das Zurückdrehen
+  läuft über einen Timer und ist nicht prüfbar; geprüft wird dort die Sperre (dritter Klick bleibt
+  wirkungslos).
+- Tests: `tests/js-memory.spec.js` — DOM-Modus sichtbar (und Snake weiter im Canvas-Modus),
+  Klick-Liste, ein echtes Spiel bis zur Gewinn-Meldung, Durchlauf aller Musterlösungen; zusätzlich
+  darf keine unveränderte Vorlage ihre Prüfung bestehen.
