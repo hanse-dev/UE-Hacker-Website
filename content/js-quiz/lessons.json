@@ -1,0 +1,274 @@
+[
+  {
+    "id": "lektion-01",
+    "title": "Fragen als Array von Objekten",
+    "file": "lektion-01.md",
+    "lessonSummary": "Deine Fragen stecken jetzt sauber in einem Array – und die erste steht schon auf der Übungsfläche. Als Nächstes kommen die Antwort-Knöpfe.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Jede Frage ist ein Objekt mit drei Properties: dem Fragetext, einem Array mit den Antworten und der Nummer der richtigen Antwort.",
+        "example": true,
+        "codeTemplate": "const frage1 = {\n  frage: 'Wie viele Beine hat eine Spinne?',\n  antworten: ['6', '8', '10'],\n  richtig: 1,\n};\n\nconsole.log(frage1.frage);\nconsole.log('Erste Antwort:', frage1.antworten[0]);\nconsole.log('Richtig ist:', frage1.antworten[frage1.richtig]);\n",
+        "showCanvas": false,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Richtig ist: 8"
+        }
+      },
+      {
+        "instruction": "Im Array fragen steht bisher nur eine Frage. Trage zwei weitere ein: 'Welcher Planet ist der Sonne am nächsten?' mit den Antworten Merkur, Venus und Mars (richtig ist Merkur) und 'Wie viele Minuten hat eine Stunde?' mit den Antworten 60, 100 und 30 (richtig ist 60). Die beiden console.log-Zeilen prüfen dein Array – sie sollen 3 und 60 ausgeben.",
+        "codeTemplate": "const fragen = [\n  { frage: 'Wie viele Beine hat eine Spinne?', antworten: ['6', '8', '10'], richtig: 1 },\n  // Dein Code hier: zwei weitere Fragen\n];\n\nconsole.log(fragen.length);\nconsole.log(fragen[2].antworten[fragen[2].richtig]);\n",
+        "solution": "const fragen = [\n  { frage: 'Wie viele Beine hat eine Spinne?', antworten: ['6', '8', '10'], richtig: 1 },\n  { frage: 'Welcher Planet ist der Sonne am nächsten?', antworten: ['Merkur', 'Venus', 'Mars'], richtig: 0 },\n  { frage: 'Wie viele Minuten hat eine Stunde?', antworten: ['60', '100', '30'], richtig: 0 },\n];\n\nconsole.log(fragen.length);\nconsole.log(fragen[2].antworten[fragen[2].richtig]);",
+        "showCanvas": false,
+        "validation": {
+          "type": "output_equals",
+          "expected": "3\n60"
+        }
+      },
+      {
+        "instruction": "Bring dein Quiz auf die Übungsfläche: Setze die Überschrift (#ueberschrift) auf 'Mein Quiz' und zeige den Text der ersten Frage aus dem Array in #text an.",
+        "codeTemplate": "const fragen = [\n  { frage: 'Wie viele Beine hat eine Spinne?', antworten: ['6', '8', '10'], richtig: 1 },\n  { frage: 'Welcher Planet ist der Sonne am nächsten?', antworten: ['Merkur', 'Venus', 'Mars'], richtig: 0 },\n  { frage: 'Wie viele Minuten hat eine Stunde?', antworten: ['60', '100', '30'], richtig: 0 },\n];\n\n// Dein Code hier\n",
+        "solution": "const fragen = [\n  { frage: 'Wie viele Beine hat eine Spinne?', antworten: ['6', '8', '10'], richtig: 1 },\n  { frage: 'Welcher Planet ist der Sonne am nächsten?', antworten: ['Merkur', 'Venus', 'Mars'], richtig: 0 },\n  { frage: 'Wie viele Minuten hat eine Stunde?', antworten: ['60', '100', '30'], richtig: 0 },\n];\n\ndocument.querySelector('#ueberschrift').textContent = 'Mein Quiz';\ndocument.querySelector('#text').textContent = fragen[0].frage;",
+        "validation": {
+          "type": "dom_text",
+          "target": "text",
+          "text": "Wie viele Beine hat eine Spinne?"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "title": "Antwort-Knöpfe erzeugen",
+    "file": "lektion-02.md",
+    "lessonSummary": "Dein Code baut sich seine Knöpfe jetzt selbst. Noch passiert beim Klicken nichts – das änderst du in der nächsten Lektion.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Auf der Übungsfläche erscheint ein Knopf, den es vorher gar nicht gab – dein Code hat ihn erzeugt.",
+        "example": true,
+        "codeTemplate": "const knopf = document.querySelector('#knopf');\n\nconst neuerKnopf = document.createElement('button');\nneuerKnopf.textContent = 'Ich bin neu!';\nneuerKnopf.id = 'neu';\nknopf.before(neuerKnopf);\n",
+        "validation": {
+          "type": "dom_text",
+          "target": "neu",
+          "text": "Ich bin neu!"
+        }
+      },
+      {
+        "instruction": "Führe dieses Beispiel aus. Eine Schleife erzeugt für jedes Wort im Array einen eigenen Knopf – mit den IDs wahl-0, wahl-1 und wahl-2.",
+        "example": true,
+        "codeTemplate": "const woerter = ['Ja', 'Nein', 'Vielleicht'];\nconst knopf = document.querySelector('#knopf');\n\nfor (let i = 0; i < woerter.length; i++) {\n  const k = document.createElement('button');\n  k.textContent = woerter[i];\n  k.id = 'wahl-' + i;\n  knopf.before(k);\n}\n",
+        "validation": {
+          "type": "dom_text",
+          "target": "wahl-2",
+          "text": "Vielleicht"
+        }
+      },
+      {
+        "instruction": "Jetzt du: Erzeuge mit einer for-Schleife drei Antwort-Knöpfe für die erste Frage. Der Text jedes Knopfs kommt aus fragen[0].antworten[i], die ID ist 'antwort-' + i (also antwort-0, antwort-1 und antwort-2). Setze jeden Knopf mit knopf.before(...) auf die Übungsfläche.",
+        "codeTemplate": "const fragen = [\n  { frage: 'Wie viele Beine hat eine Spinne?', antworten: ['6', '8', '10'], richtig: 1 },\n  { frage: 'Welcher Planet ist der Sonne am nächsten?', antworten: ['Merkur', 'Venus', 'Mars'], richtig: 0 },\n  { frage: 'Wie viele Minuten hat eine Stunde?', antworten: ['60', '100', '30'], richtig: 0 },\n];\n\nconst ueberschrift = document.querySelector('#ueberschrift');\nconst text = document.querySelector('#text');\nconst knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\n\nueberschrift.textContent = 'Mein Quiz';\ntext.textContent = fragen[0].frage;\nknopf.hidden = true; // den alten Knopf brauchst du erst am Ende des Projekts wieder\nanzeige.textContent = ''; // hier steht später die Rückmeldung\n\n// Dein Code hier: drei Antwort-Knöpfe für die erste Frage\n",
+        "solution": "const fragen = [\n  { frage: 'Wie viele Beine hat eine Spinne?', antworten: ['6', '8', '10'], richtig: 1 },\n  { frage: 'Welcher Planet ist der Sonne am nächsten?', antworten: ['Merkur', 'Venus', 'Mars'], richtig: 0 },\n  { frage: 'Wie viele Minuten hat eine Stunde?', antworten: ['60', '100', '30'], richtig: 0 },\n];\n\nconst ueberschrift = document.querySelector('#ueberschrift');\nconst text = document.querySelector('#text');\nconst knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\n\nueberschrift.textContent = 'Mein Quiz';\ntext.textContent = fragen[0].frage;\nknopf.hidden = true; // den alten Knopf brauchst du erst am Ende des Projekts wieder\nanzeige.textContent = ''; // hier steht später die Rückmeldung\n\nfor (let i = 0; i < 3; i++) {\n  const k = document.createElement('button');\n  k.textContent = fragen[0].antworten[i];\n  k.id = 'antwort-' + i;\n  knopf.before(k);\n}",
+        "validation": {
+          "type": "dom_text",
+          "target": "antwort-2",
+          "text": "10"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "title": "Richtig oder falsch?",
+    "file": "lektion-03.md",
+    "lessonSummary": "Dein Quiz gibt jetzt eine echte Rückmeldung – und verrät bei einem Fehler sogar die Lösung. Fehlt nur noch, dass es nach einer Frage weitergeht.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus und klicke danach alle drei Knöpfe an. Jeder Knopf weiß, welche Nummer er hat.",
+        "example": true,
+        "codeTemplate": "const woerter = ['Ja', 'Nein', 'Vielleicht'];\nconst knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\n\nfor (let i = 0; i < woerter.length; i++) {\n  const k = document.createElement('button');\n  k.textContent = woerter[i];\n  k.id = 'wahl-' + i;\n  k.addEventListener('click', () => {\n    anzeige.textContent = 'Knopf ' + i + ': ' + woerter[i];\n  });\n  knopf.before(k);\n}\n",
+        "validation": {
+          "type": "dom_click_text",
+          "click": "wahl-1",
+          "target": "anzeige",
+          "text": "Knopf 1: Nein"
+        }
+      },
+      {
+        "instruction": "Die Knöpfe rufen beim Klick schon antworte(i) auf – die Funktion ist aber noch leer. Schreibe sie: Ist i die richtige Antwort der ersten Frage (fragen[0].richtig), soll in #anzeige 'Richtig!' stehen, sonst 'Falsch!'. Probier danach alle drei Knöpfe aus.",
+        "codeTemplate": "const fragen = [\n  { frage: 'Wie viele Beine hat eine Spinne?', antworten: ['6', '8', '10'], richtig: 1 },\n  { frage: 'Welcher Planet ist der Sonne am nächsten?', antworten: ['Merkur', 'Venus', 'Mars'], richtig: 0 },\n  { frage: 'Wie viele Minuten hat eine Stunde?', antworten: ['60', '100', '30'], richtig: 0 },\n];\n\nconst ueberschrift = document.querySelector('#ueberschrift');\nconst text = document.querySelector('#text');\nconst knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\n\nueberschrift.textContent = 'Mein Quiz';\ntext.textContent = fragen[0].frage;\nknopf.hidden = true;\nanzeige.textContent = ''; // hier steht später die Rückmeldung\n\nfor (let i = 0; i < 3; i++) {\n  const k = document.createElement('button');\n  k.textContent = fragen[0].antworten[i];\n  k.id = 'antwort-' + i;\n  k.style.marginRight = '8px'; // etwas Abstand zwischen den Knöpfen\n  k.addEventListener('click', () => {\n    antworte(i);\n  });\n  knopf.before(k);\n}\n\n// i ist die Nummer des angeklickten Knopfs (0, 1 oder 2)\nfunction antworte(i) {\n  // Dein Code hier\n}\n",
+        "solution": "const fragen = [\n  { frage: 'Wie viele Beine hat eine Spinne?', antworten: ['6', '8', '10'], richtig: 1 },\n  { frage: 'Welcher Planet ist der Sonne am nächsten?', antworten: ['Merkur', 'Venus', 'Mars'], richtig: 0 },\n  { frage: 'Wie viele Minuten hat eine Stunde?', antworten: ['60', '100', '30'], richtig: 0 },\n];\n\nconst ueberschrift = document.querySelector('#ueberschrift');\nconst text = document.querySelector('#text');\nconst knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\n\nueberschrift.textContent = 'Mein Quiz';\ntext.textContent = fragen[0].frage;\nknopf.hidden = true;\nanzeige.textContent = ''; // hier steht später die Rückmeldung\n\nfor (let i = 0; i < 3; i++) {\n  const k = document.createElement('button');\n  k.textContent = fragen[0].antworten[i];\n  k.id = 'antwort-' + i;\n  k.style.marginRight = '8px'; // etwas Abstand zwischen den Knöpfen\n  k.addEventListener('click', () => {\n    antworte(i);\n  });\n  knopf.before(k);\n}\n\n// i ist die Nummer des angeklickten Knopfs (0, 1 oder 2)\nfunction antworte(i) {\n  if (i === fragen[0].richtig) {\n    anzeige.textContent = 'Richtig!';\n  } else {\n    anzeige.textContent = 'Falsch!';\n  }\n}",
+        "validation": {
+          "type": "dom_click_text",
+          "click": "antwort-1",
+          "target": "anzeige",
+          "text": "Richtig!"
+        }
+      },
+      {
+        "instruction": "Ein gutes Quiz verrät nach einem Fehler die Lösung. Ergänze den Teil hinter else: In #anzeige soll 'Falsch! Richtig wäre: ' und direkt dahinter der Text der richtigen Antwort stehen – bei der Spinnen-Frage also 'Falsch! Richtig wäre: 8'.",
+        "codeTemplate": "const fragen = [\n  { frage: 'Wie viele Beine hat eine Spinne?', antworten: ['6', '8', '10'], richtig: 1 },\n  { frage: 'Welcher Planet ist der Sonne am nächsten?', antworten: ['Merkur', 'Venus', 'Mars'], richtig: 0 },\n  { frage: 'Wie viele Minuten hat eine Stunde?', antworten: ['60', '100', '30'], richtig: 0 },\n];\n\nconst ueberschrift = document.querySelector('#ueberschrift');\nconst text = document.querySelector('#text');\nconst knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\n\nueberschrift.textContent = 'Mein Quiz';\ntext.textContent = fragen[0].frage;\nknopf.hidden = true;\nanzeige.textContent = ''; // hier steht später die Rückmeldung\n\nfor (let i = 0; i < 3; i++) {\n  const k = document.createElement('button');\n  k.textContent = fragen[0].antworten[i];\n  k.id = 'antwort-' + i;\n  k.style.marginRight = '8px'; // etwas Abstand zwischen den Knöpfen\n  k.addEventListener('click', () => {\n    antworte(i);\n  });\n  knopf.before(k);\n}\n\n// i ist die Nummer des angeklickten Knopfs (0, 1 oder 2)\nfunction antworte(i) {\n  const f = fragen[0];\n  if (i === f.richtig) {\n    anzeige.textContent = 'Richtig!';\n  } else {\n    // Dein Code hier\n  }\n}\n",
+        "solution": "const fragen = [\n  { frage: 'Wie viele Beine hat eine Spinne?', antworten: ['6', '8', '10'], richtig: 1 },\n  { frage: 'Welcher Planet ist der Sonne am nächsten?', antworten: ['Merkur', 'Venus', 'Mars'], richtig: 0 },\n  { frage: 'Wie viele Minuten hat eine Stunde?', antworten: ['60', '100', '30'], richtig: 0 },\n];\n\nconst ueberschrift = document.querySelector('#ueberschrift');\nconst text = document.querySelector('#text');\nconst knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\n\nueberschrift.textContent = 'Mein Quiz';\ntext.textContent = fragen[0].frage;\nknopf.hidden = true;\nanzeige.textContent = ''; // hier steht später die Rückmeldung\n\nfor (let i = 0; i < 3; i++) {\n  const k = document.createElement('button');\n  k.textContent = fragen[0].antworten[i];\n  k.id = 'antwort-' + i;\n  k.style.marginRight = '8px'; // etwas Abstand zwischen den Knöpfen\n  k.addEventListener('click', () => {\n    antworte(i);\n  });\n  knopf.before(k);\n}\n\n// i ist die Nummer des angeklickten Knopfs (0, 1 oder 2)\nfunction antworte(i) {\n  const f = fragen[0];\n  if (i === f.richtig) {\n    anzeige.textContent = 'Richtig!';\n  } else {\n    anzeige.textContent = 'Falsch! Richtig wäre: ' + f.antworten[f.richtig];\n  }\n}",
+        "validation": {
+          "type": "dom_click_text",
+          "click": "antwort-0",
+          "target": "anzeige",
+          "text": "Falsch! Richtig wäre: 8"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "title": "Weiter zur nächsten Frage",
+    "file": "lektion-04.md",
+    "lessonSummary": "Jetzt läuft dein Quiz von der ersten bis zur letzten Frage durch. Was noch fehlt: Punkte!",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus und klicke dich mit 'Weiter' durch alle Farben. Die Variable nummer merkt sich, welcher Eintrag gerade dran ist.",
+        "example": true,
+        "codeTemplate": "const farben = ['Rot', 'Grün', 'Blau'];\nlet nummer = 0;\n\nconst text = document.querySelector('#text');\nconst knopf = document.querySelector('#knopf');\n\nfunction zeigeFarbe() {\n  text.textContent = 'Farbe ' + (nummer + 1) + ': ' + farben[nummer];\n}\n\nknopf.textContent = 'Weiter';\nknopf.addEventListener('click', () => {\n  nummer++;\n  if (nummer < farben.length) {\n    zeigeFarbe();\n  } else {\n    text.textContent = 'Keine Farben mehr!';\n  }\n});\n\nzeigeFarbe();\n",
+        "validation": {
+          "type": "dom_click_text",
+          "click": "knopf",
+          "target": "text",
+          "text": "Keine Farben mehr!",
+          "clicks": 3
+        }
+      },
+      {
+        "instruction": "Schreibe zeigeFrage(): Sie holt die Frage, die gerade dran ist (fragen[nummer]), schreibt ihren Text in #text und beschriftet die drei Knöpfe aus dem Array knoepfe mit den drei Antworten. Zum Testen startet nummer hier ausnahmsweise bei 1 – es muss also die Planeten-Frage mit Merkur, Venus und Mars erscheinen.",
+        "codeTemplate": "const fragen = [\n  { frage: 'Wie viele Beine hat eine Spinne?', antworten: ['6', '8', '10'], richtig: 1 },\n  { frage: 'Welcher Planet ist der Sonne am nächsten?', antworten: ['Merkur', 'Venus', 'Mars'], richtig: 0 },\n  { frage: 'Wie viele Minuten hat eine Stunde?', antworten: ['60', '100', '30'], richtig: 0 },\n];\n\nlet nummer = 1; // Test: ausnahmsweise mit der zweiten Frage starten\n\nconst ueberschrift = document.querySelector('#ueberschrift');\nconst text = document.querySelector('#text');\nconst knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\n\nueberschrift.textContent = 'Mein Quiz';\nknopf.hidden = true;\nanzeige.textContent = ''; // hier steht später die Rückmeldung\n\n// Drei Antwort-Knöpfe erzeugen und im Array knoepfe merken\nconst knoepfe = [];\nfor (let i = 0; i < 3; i++) {\n  const k = document.createElement('button');\n  k.id = 'antwort-' + i;\n  k.style.marginRight = '8px';\n  k.addEventListener('click', () => {\n    antworte(i);\n  });\n  knopf.before(k);\n  knoepfe.push(k);\n}\n\n// Zeigt die Frage, die gerade dran ist, und beschriftet die drei Knöpfe\nfunction zeigeFrage() {\n  // Dein Code hier\n}\n\n// i ist die Nummer des angeklickten Knopfs (0, 1 oder 2)\nfunction antworte(i) {\n  const f = fragen[nummer];\n  if (i === f.richtig) {\n    anzeige.textContent = 'Richtig!';\n  } else {\n    anzeige.textContent = 'Falsch! Richtig wäre: ' + f.antworten[f.richtig];\n  }\n}\n\nzeigeFrage();\n",
+        "solution": "const fragen = [\n  { frage: 'Wie viele Beine hat eine Spinne?', antworten: ['6', '8', '10'], richtig: 1 },\n  { frage: 'Welcher Planet ist der Sonne am nächsten?', antworten: ['Merkur', 'Venus', 'Mars'], richtig: 0 },\n  { frage: 'Wie viele Minuten hat eine Stunde?', antworten: ['60', '100', '30'], richtig: 0 },\n];\n\nlet nummer = 1; // Test: ausnahmsweise mit der zweiten Frage starten\n\nconst ueberschrift = document.querySelector('#ueberschrift');\nconst text = document.querySelector('#text');\nconst knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\n\nueberschrift.textContent = 'Mein Quiz';\nknopf.hidden = true;\nanzeige.textContent = ''; // hier steht später die Rückmeldung\n\n// Drei Antwort-Knöpfe erzeugen und im Array knoepfe merken\nconst knoepfe = [];\nfor (let i = 0; i < 3; i++) {\n  const k = document.createElement('button');\n  k.id = 'antwort-' + i;\n  k.style.marginRight = '8px';\n  k.addEventListener('click', () => {\n    antworte(i);\n  });\n  knopf.before(k);\n  knoepfe.push(k);\n}\n\n// Zeigt die Frage, die gerade dran ist, und beschriftet die drei Knöpfe\nfunction zeigeFrage() {\n  const f = fragen[nummer];\n  text.textContent = f.frage;\n  for (let i = 0; i < 3; i++) {\n    knoepfe[i].textContent = f.antworten[i];\n  }\n}\n\n// i ist die Nummer des angeklickten Knopfs (0, 1 oder 2)\nfunction antworte(i) {\n  const f = fragen[nummer];\n  if (i === f.richtig) {\n    anzeige.textContent = 'Richtig!';\n  } else {\n    anzeige.textContent = 'Falsch! Richtig wäre: ' + f.antworten[f.richtig];\n  }\n}\n\nzeigeFrage();",
+        "validation": {
+          "type": "dom_text",
+          "target": "antwort-2",
+          "text": "Mars"
+        }
+      },
+      {
+        "instruction": "Ergänze antworte(i) am Ende: Erhöhe nummer um 1. Gibt es dann noch eine Frage (nummer < fragen.length), zeige sie mit zeigeFrage() an – sonst schreibe 'Quiz beendet!' in #text. Klick dich danach einmal durch dein ganzes Quiz.",
+        "codeTemplate": "const fragen = [\n  { frage: 'Wie viele Beine hat eine Spinne?', antworten: ['6', '8', '10'], richtig: 1 },\n  { frage: 'Welcher Planet ist der Sonne am nächsten?', antworten: ['Merkur', 'Venus', 'Mars'], richtig: 0 },\n  { frage: 'Wie viele Minuten hat eine Stunde?', antworten: ['60', '100', '30'], richtig: 0 },\n];\n\nlet nummer = 0; // welche Frage ist gerade dran?\n\nconst ueberschrift = document.querySelector('#ueberschrift');\nconst text = document.querySelector('#text');\nconst knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\n\nueberschrift.textContent = 'Mein Quiz';\nknopf.hidden = true;\nanzeige.textContent = ''; // hier steht später die Rückmeldung\n\n// Drei Antwort-Knöpfe erzeugen und im Array knoepfe merken\nconst knoepfe = [];\nfor (let i = 0; i < 3; i++) {\n  const k = document.createElement('button');\n  k.id = 'antwort-' + i;\n  k.style.marginRight = '8px';\n  k.addEventListener('click', () => {\n    antworte(i);\n  });\n  knopf.before(k);\n  knoepfe.push(k);\n}\n\n// Zeigt die Frage, die gerade dran ist, und beschriftet die drei Knöpfe\nfunction zeigeFrage() {\n  const f = fragen[nummer];\n  text.textContent = f.frage;\n  for (let i = 0; i < 3; i++) {\n    knoepfe[i].textContent = f.antworten[i];\n  }\n}\n\n// i ist die Nummer des angeklickten Knopfs (0, 1 oder 2)\nfunction antworte(i) {\n  const f = fragen[nummer];\n  if (i === f.richtig) {\n    anzeige.textContent = 'Richtig!';\n  } else {\n    anzeige.textContent = 'Falsch! Richtig wäre: ' + f.antworten[f.richtig];\n  }\n  // Dein Code hier: weiter zur nächsten Frage – oder 'Quiz beendet!'\n}\n\nzeigeFrage();\n",
+        "solution": "const fragen = [\n  { frage: 'Wie viele Beine hat eine Spinne?', antworten: ['6', '8', '10'], richtig: 1 },\n  { frage: 'Welcher Planet ist der Sonne am nächsten?', antworten: ['Merkur', 'Venus', 'Mars'], richtig: 0 },\n  { frage: 'Wie viele Minuten hat eine Stunde?', antworten: ['60', '100', '30'], richtig: 0 },\n];\n\nlet nummer = 0; // welche Frage ist gerade dran?\n\nconst ueberschrift = document.querySelector('#ueberschrift');\nconst text = document.querySelector('#text');\nconst knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\n\nueberschrift.textContent = 'Mein Quiz';\nknopf.hidden = true;\nanzeige.textContent = ''; // hier steht später die Rückmeldung\n\n// Drei Antwort-Knöpfe erzeugen und im Array knoepfe merken\nconst knoepfe = [];\nfor (let i = 0; i < 3; i++) {\n  const k = document.createElement('button');\n  k.id = 'antwort-' + i;\n  k.style.marginRight = '8px';\n  k.addEventListener('click', () => {\n    antworte(i);\n  });\n  knopf.before(k);\n  knoepfe.push(k);\n}\n\n// Zeigt die Frage, die gerade dran ist, und beschriftet die drei Knöpfe\nfunction zeigeFrage() {\n  const f = fragen[nummer];\n  text.textContent = f.frage;\n  for (let i = 0; i < 3; i++) {\n    knoepfe[i].textContent = f.antworten[i];\n  }\n}\n\n// i ist die Nummer des angeklickten Knopfs (0, 1 oder 2)\nfunction antworte(i) {\n  const f = fragen[nummer];\n  if (i === f.richtig) {\n    anzeige.textContent = 'Richtig!';\n  } else {\n    anzeige.textContent = 'Falsch! Richtig wäre: ' + f.antworten[f.richtig];\n  }\n  nummer++;\n  if (nummer < fragen.length) {\n    zeigeFrage();\n  } else {\n    text.textContent = 'Quiz beendet!';\n  }\n}\n\nzeigeFrage();",
+        "validation": {
+          "type": "dom_click_text",
+          "click": "antwort-0",
+          "target": "text",
+          "text": "Quiz beendet!",
+          "clicks": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "title": "Punkte zählen",
+    "file": "lektion-05.md",
+    "lessonSummary": "Dein Quiz zählt mit! Am Ende fehlt jetzt nur noch eine richtige Auswertung.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus und sammle ein paar Sterne. Die Anzeige 'Sterne: …' gab es vorher nicht – der Code hängt sie als neues Element unten an die Übungsfläche.",
+        "example": true,
+        "codeTemplate": "let sterne = 0;\n\nconst knopf = document.querySelector('#knopf');\nconst flaeche = document.querySelector('#dom-uebung');\n\nconst stand = document.createElement('p');\nstand.id = 'sterne';\nstand.textContent = 'Sterne: 0';\nflaeche.appendChild(stand);\n\nknopf.textContent = 'Stern sammeln';\nknopf.addEventListener('click', () => {\n  sterne++;\n  stand.textContent = 'Sterne: ' + sterne;\n});\n",
+        "validation": {
+          "type": "dom_click_text",
+          "click": "knopf",
+          "target": "sterne",
+          "text": "Sterne: 3",
+          "clicks": 3
+        }
+      },
+      {
+        "instruction": "Dein Quiz bekommt eine Punkte-Anzeige: Erzeuge ein p-Element, speichere es in einer Variable stand, gib ihm die ID 'punkte' und den Text 'Punkte: 0' und hänge es mit flaeche.appendChild(stand) unten an die Übungsfläche.",
+        "codeTemplate": "const fragen = [\n  { frage: 'Wie viele Beine hat eine Spinne?', antworten: ['6', '8', '10'], richtig: 1 },\n  { frage: 'Welcher Planet ist der Sonne am nächsten?', antworten: ['Merkur', 'Venus', 'Mars'], richtig: 0 },\n  { frage: 'Wie viele Minuten hat eine Stunde?', antworten: ['60', '100', '30'], richtig: 0 },\n];\n\nlet nummer = 0; // welche Frage ist gerade dran?\nlet punkte = 0; // wie viele Antworten waren richtig?\n\nconst ueberschrift = document.querySelector('#ueberschrift');\nconst text = document.querySelector('#text');\nconst knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\nconst flaeche = document.querySelector('#dom-uebung');\n\nueberschrift.textContent = 'Mein Quiz';\nknopf.hidden = true;\nanzeige.textContent = ''; // hier steht später die Rückmeldung\n\n// Dein Code hier: die Punkte-Anzeige erzeugen\n\n// Drei Antwort-Knöpfe erzeugen und im Array knoepfe merken\nconst knoepfe = [];\nfor (let i = 0; i < 3; i++) {\n  const k = document.createElement('button');\n  k.id = 'antwort-' + i;\n  k.style.marginRight = '8px';\n  k.addEventListener('click', () => {\n    antworte(i);\n  });\n  knopf.before(k);\n  knoepfe.push(k);\n}\n\n// Zeigt die Frage, die gerade dran ist, und beschriftet die drei Knöpfe\nfunction zeigeFrage() {\n  const f = fragen[nummer];\n  text.textContent = f.frage;\n  for (let i = 0; i < 3; i++) {\n    knoepfe[i].textContent = f.antworten[i];\n  }\n}\n\n// i ist die Nummer des angeklickten Knopfs (0, 1 oder 2)\nfunction antworte(i) {\n  const f = fragen[nummer];\n  if (i === f.richtig) {\n    anzeige.textContent = 'Richtig!';\n  } else {\n    anzeige.textContent = 'Falsch! Richtig wäre: ' + f.antworten[f.richtig];\n  }\n  nummer++;\n  if (nummer < fragen.length) {\n    zeigeFrage();\n  } else {\n    text.textContent = 'Quiz beendet!';\n  }\n}\n\nzeigeFrage();\n",
+        "solution": "const fragen = [\n  { frage: 'Wie viele Beine hat eine Spinne?', antworten: ['6', '8', '10'], richtig: 1 },\n  { frage: 'Welcher Planet ist der Sonne am nächsten?', antworten: ['Merkur', 'Venus', 'Mars'], richtig: 0 },\n  { frage: 'Wie viele Minuten hat eine Stunde?', antworten: ['60', '100', '30'], richtig: 0 },\n];\n\nlet nummer = 0; // welche Frage ist gerade dran?\nlet punkte = 0; // wie viele Antworten waren richtig?\n\nconst ueberschrift = document.querySelector('#ueberschrift');\nconst text = document.querySelector('#text');\nconst knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\nconst flaeche = document.querySelector('#dom-uebung');\n\nueberschrift.textContent = 'Mein Quiz';\nknopf.hidden = true;\nanzeige.textContent = ''; // hier steht später die Rückmeldung\n\n// Die Punkte-Anzeige: ein neues p-Element ganz unten auf der Übungsfläche\nconst stand = document.createElement('p');\nstand.id = 'punkte';\nstand.textContent = 'Punkte: 0';\nflaeche.appendChild(stand);\n\n// Drei Antwort-Knöpfe erzeugen und im Array knoepfe merken\nconst knoepfe = [];\nfor (let i = 0; i < 3; i++) {\n  const k = document.createElement('button');\n  k.id = 'antwort-' + i;\n  k.style.marginRight = '8px';\n  k.addEventListener('click', () => {\n    antworte(i);\n  });\n  knopf.before(k);\n  knoepfe.push(k);\n}\n\n// Zeigt die Frage, die gerade dran ist, und beschriftet die drei Knöpfe\nfunction zeigeFrage() {\n  const f = fragen[nummer];\n  text.textContent = f.frage;\n  for (let i = 0; i < 3; i++) {\n    knoepfe[i].textContent = f.antworten[i];\n  }\n}\n\n// i ist die Nummer des angeklickten Knopfs (0, 1 oder 2)\nfunction antworte(i) {\n  const f = fragen[nummer];\n  if (i === f.richtig) {\n    anzeige.textContent = 'Richtig!';\n  } else {\n    anzeige.textContent = 'Falsch! Richtig wäre: ' + f.antworten[f.richtig];\n  }\n  nummer++;\n  if (nummer < fragen.length) {\n    zeigeFrage();\n  } else {\n    text.textContent = 'Quiz beendet!';\n  }\n}\n\nzeigeFrage();",
+        "validation": {
+          "type": "dom_text",
+          "target": "punkte",
+          "text": "Punkte: 0"
+        }
+      },
+      {
+        "instruction": "Jetzt wird gezählt: Erhöhe bei einer richtigen Antwort die Variable punkte um 1 und schreibe den neuen Stand in die Punkte-Anzeige, zum Beispiel 'Punkte: 1'. Bei einer falschen Antwort bleibt der Punktestand, wie er ist.",
+        "codeTemplate": "const fragen = [\n  { frage: 'Wie viele Beine hat eine Spinne?', antworten: ['6', '8', '10'], richtig: 1 },\n  { frage: 'Welcher Planet ist der Sonne am nächsten?', antworten: ['Merkur', 'Venus', 'Mars'], richtig: 0 },\n  { frage: 'Wie viele Minuten hat eine Stunde?', antworten: ['60', '100', '30'], richtig: 0 },\n];\n\nlet nummer = 0; // welche Frage ist gerade dran?\nlet punkte = 0; // wie viele Antworten waren richtig?\n\nconst ueberschrift = document.querySelector('#ueberschrift');\nconst text = document.querySelector('#text');\nconst knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\nconst flaeche = document.querySelector('#dom-uebung');\n\nueberschrift.textContent = 'Mein Quiz';\nknopf.hidden = true;\nanzeige.textContent = ''; // hier steht später die Rückmeldung\n\n// Die Punkte-Anzeige: ein neues p-Element ganz unten auf der Übungsfläche\nconst stand = document.createElement('p');\nstand.id = 'punkte';\nstand.textContent = 'Punkte: 0';\nflaeche.appendChild(stand);\n\n// Drei Antwort-Knöpfe erzeugen und im Array knoepfe merken\nconst knoepfe = [];\nfor (let i = 0; i < 3; i++) {\n  const k = document.createElement('button');\n  k.id = 'antwort-' + i;\n  k.style.marginRight = '8px';\n  k.addEventListener('click', () => {\n    antworte(i);\n  });\n  knopf.before(k);\n  knoepfe.push(k);\n}\n\n// Zeigt die Frage, die gerade dran ist, und beschriftet die drei Knöpfe\nfunction zeigeFrage() {\n  const f = fragen[nummer];\n  text.textContent = f.frage;\n  for (let i = 0; i < 3; i++) {\n    knoepfe[i].textContent = f.antworten[i];\n  }\n}\n\n// i ist die Nummer des angeklickten Knopfs (0, 1 oder 2)\nfunction antworte(i) {\n  const f = fragen[nummer];\n  if (i === f.richtig) {\n    anzeige.textContent = 'Richtig!';\n    // Dein Code hier: einen Punkt dazuzählen und die Punkte-Anzeige aktualisieren\n  } else {\n    anzeige.textContent = 'Falsch! Richtig wäre: ' + f.antworten[f.richtig];\n  }\n  nummer++;\n  if (nummer < fragen.length) {\n    zeigeFrage();\n  } else {\n    text.textContent = 'Quiz beendet!';\n  }\n}\n\nzeigeFrage();\n",
+        "solution": "const fragen = [\n  { frage: 'Wie viele Beine hat eine Spinne?', antworten: ['6', '8', '10'], richtig: 1 },\n  { frage: 'Welcher Planet ist der Sonne am nächsten?', antworten: ['Merkur', 'Venus', 'Mars'], richtig: 0 },\n  { frage: 'Wie viele Minuten hat eine Stunde?', antworten: ['60', '100', '30'], richtig: 0 },\n];\n\nlet nummer = 0; // welche Frage ist gerade dran?\nlet punkte = 0; // wie viele Antworten waren richtig?\n\nconst ueberschrift = document.querySelector('#ueberschrift');\nconst text = document.querySelector('#text');\nconst knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\nconst flaeche = document.querySelector('#dom-uebung');\n\nueberschrift.textContent = 'Mein Quiz';\nknopf.hidden = true;\nanzeige.textContent = ''; // hier steht später die Rückmeldung\n\n// Die Punkte-Anzeige: ein neues p-Element ganz unten auf der Übungsfläche\nconst stand = document.createElement('p');\nstand.id = 'punkte';\nstand.textContent = 'Punkte: 0';\nflaeche.appendChild(stand);\n\n// Drei Antwort-Knöpfe erzeugen und im Array knoepfe merken\nconst knoepfe = [];\nfor (let i = 0; i < 3; i++) {\n  const k = document.createElement('button');\n  k.id = 'antwort-' + i;\n  k.style.marginRight = '8px';\n  k.addEventListener('click', () => {\n    antworte(i);\n  });\n  knopf.before(k);\n  knoepfe.push(k);\n}\n\n// Zeigt die Frage, die gerade dran ist, und beschriftet die drei Knöpfe\nfunction zeigeFrage() {\n  const f = fragen[nummer];\n  text.textContent = f.frage;\n  for (let i = 0; i < 3; i++) {\n    knoepfe[i].textContent = f.antworten[i];\n  }\n}\n\n// i ist die Nummer des angeklickten Knopfs (0, 1 oder 2)\nfunction antworte(i) {\n  const f = fragen[nummer];\n  if (i === f.richtig) {\n    anzeige.textContent = 'Richtig!';\n    punkte++;\n    stand.textContent = 'Punkte: ' + punkte;\n  } else {\n    anzeige.textContent = 'Falsch! Richtig wäre: ' + f.antworten[f.richtig];\n  }\n  nummer++;\n  if (nummer < fragen.length) {\n    zeigeFrage();\n  } else {\n    text.textContent = 'Quiz beendet!';\n  }\n}\n\nzeigeFrage();",
+        "validation": {
+          "type": "dom_click_text",
+          "click": "antwort-0",
+          "target": "punkte",
+          "text": "Punkte: 2",
+          "clicks": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "title": "Die Auswertung",
+    "file": "lektion-06.md",
+    "lessonSummary": "Dein Quiz hat jetzt ein richtiges Ende mit Ergebnis und Kommentar. In der letzten Lektion machst du es zu deinem eigenen.",
+    "tasks": [
+      {
+        "instruction": "Führe dieses Beispiel aus. Die Funktion prüft mehrere Grenzen nacheinander und gibt beim ersten Treffer sofort mit return einen Text zurück.",
+        "example": true,
+        "codeTemplate": "function wetterTipp(grad) {\n  if (grad >= 25) return 'Ab ins Freibad!';\n  if (grad >= 10) return 'Eine Jacke reicht.';\n  return 'Mütze auf!';\n}\n\nconsole.log(wetterTipp(30));\nconsole.log(wetterTipp(15));\nconsole.log(wetterTipp(-2));\n",
+        "showCanvas": false,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Mütze auf!"
+        }
+      },
+      {
+        "instruction": "Schreibe bewertung(richtige, anzahl): Sind alle Antworten richtig (richtige === anzahl), gib 'Perfekt!' zurück. Ist mindestens die Hälfte richtig (richtige >= anzahl / 2), gib 'Gut gemacht!' zurück. Sonst gib 'Übe noch ein bisschen!' zurück. Die drei console.log-Zeilen prüfen alle drei Fälle.",
+        "codeTemplate": "// Macht aus dem Punktestand einen Kommentar\nfunction bewertung(richtige, anzahl) {\n  // Dein Code hier\n}\n\nconsole.log(bewertung(3, 3));\nconsole.log(bewertung(2, 3));\nconsole.log(bewertung(1, 3));\n",
+        "solution": "// Macht aus dem Punktestand einen Kommentar\nfunction bewertung(richtige, anzahl) {\n  if (richtige === anzahl) return 'Perfekt!';\n  if (richtige >= anzahl / 2) return 'Gut gemacht!';\n  return 'Übe noch ein bisschen!';\n}\n\nconsole.log(bewertung(3, 3));\nconsole.log(bewertung(2, 3));\nconsole.log(bewertung(1, 3));",
+        "showCanvas": false,
+        "validation": {
+          "type": "output_equals",
+          "expected": "Perfekt!\nGut gemacht!\nÜbe noch ein bisschen!"
+        }
+      },
+      {
+        "instruction": "Nach der letzten Frage ruft antworte(i) jetzt zeigeAuswertung() auf. Schreibe diese Funktion: Setze die Überschrift auf 'Auswertung', schreibe in #text den Satz 'Du hast X von Y Punkten. ' und dahinter den Kommentar aus bewertung(punkte, fragen.length) – und verstecke alle drei Antwort-Knöpfe mit einer Schleife über knoepfe (k.hidden = true). Statt X und Y stehen natürlich deine Punkte und die Anzahl der Fragen.",
+        "codeTemplate": "const fragen = [\n  { frage: 'Wie viele Beine hat eine Spinne?', antworten: ['6', '8', '10'], richtig: 1 },\n  { frage: 'Welcher Planet ist der Sonne am nächsten?', antworten: ['Merkur', 'Venus', 'Mars'], richtig: 0 },\n  { frage: 'Wie viele Minuten hat eine Stunde?', antworten: ['60', '100', '30'], richtig: 0 },\n];\n\nlet nummer = 0; // welche Frage ist gerade dran?\nlet punkte = 0; // wie viele Antworten waren richtig?\n\nconst ueberschrift = document.querySelector('#ueberschrift');\nconst text = document.querySelector('#text');\nconst knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\nconst flaeche = document.querySelector('#dom-uebung');\n\nueberschrift.textContent = 'Mein Quiz';\nknopf.hidden = true;\nanzeige.textContent = ''; // hier steht später die Rückmeldung\n\n// Die Punkte-Anzeige: ein neues p-Element ganz unten auf der Übungsfläche\nconst stand = document.createElement('p');\nstand.id = 'punkte';\nstand.textContent = 'Punkte: 0';\nflaeche.appendChild(stand);\n\n// Drei Antwort-Knöpfe erzeugen und im Array knoepfe merken\nconst knoepfe = [];\nfor (let i = 0; i < 3; i++) {\n  const k = document.createElement('button');\n  k.id = 'antwort-' + i;\n  k.style.marginRight = '8px';\n  k.addEventListener('click', () => {\n    antworte(i);\n  });\n  knopf.before(k);\n  knoepfe.push(k);\n}\n\n// Zeigt die Frage, die gerade dran ist, und beschriftet die drei Knöpfe\nfunction zeigeFrage() {\n  const f = fragen[nummer];\n  text.textContent = f.frage;\n  for (let i = 0; i < 3; i++) {\n    knoepfe[i].textContent = f.antworten[i];\n  }\n}\n\n// i ist die Nummer des angeklickten Knopfs (0, 1 oder 2)\nfunction antworte(i) {\n  const f = fragen[nummer];\n  if (i === f.richtig) {\n    anzeige.textContent = 'Richtig!';\n    punkte++;\n    stand.textContent = 'Punkte: ' + punkte;\n  } else {\n    anzeige.textContent = 'Falsch! Richtig wäre: ' + f.antworten[f.richtig];\n  }\n  nummer++;\n  if (nummer < fragen.length) {\n    zeigeFrage();\n  } else {\n    zeigeAuswertung();\n  }\n}\n\n// Macht aus dem Punktestand einen Kommentar\nfunction bewertung(richtige, anzahl) {\n  if (richtige === anzahl) return 'Perfekt!';\n  if (richtige >= anzahl / 2) return 'Gut gemacht!';\n  return 'Übe noch ein bisschen!';\n}\n\n// Wird nach der letzten Frage aufgerufen\nfunction zeigeAuswertung() {\n  // Dein Code hier\n}\n\nzeigeFrage();\n",
+        "solution": "const fragen = [\n  { frage: 'Wie viele Beine hat eine Spinne?', antworten: ['6', '8', '10'], richtig: 1 },\n  { frage: 'Welcher Planet ist der Sonne am nächsten?', antworten: ['Merkur', 'Venus', 'Mars'], richtig: 0 },\n  { frage: 'Wie viele Minuten hat eine Stunde?', antworten: ['60', '100', '30'], richtig: 0 },\n];\n\nlet nummer = 0; // welche Frage ist gerade dran?\nlet punkte = 0; // wie viele Antworten waren richtig?\n\nconst ueberschrift = document.querySelector('#ueberschrift');\nconst text = document.querySelector('#text');\nconst knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\nconst flaeche = document.querySelector('#dom-uebung');\n\nueberschrift.textContent = 'Mein Quiz';\nknopf.hidden = true;\nanzeige.textContent = ''; // hier steht später die Rückmeldung\n\n// Die Punkte-Anzeige: ein neues p-Element ganz unten auf der Übungsfläche\nconst stand = document.createElement('p');\nstand.id = 'punkte';\nstand.textContent = 'Punkte: 0';\nflaeche.appendChild(stand);\n\n// Drei Antwort-Knöpfe erzeugen und im Array knoepfe merken\nconst knoepfe = [];\nfor (let i = 0; i < 3; i++) {\n  const k = document.createElement('button');\n  k.id = 'antwort-' + i;\n  k.style.marginRight = '8px';\n  k.addEventListener('click', () => {\n    antworte(i);\n  });\n  knopf.before(k);\n  knoepfe.push(k);\n}\n\n// Zeigt die Frage, die gerade dran ist, und beschriftet die drei Knöpfe\nfunction zeigeFrage() {\n  const f = fragen[nummer];\n  text.textContent = f.frage;\n  for (let i = 0; i < 3; i++) {\n    knoepfe[i].textContent = f.antworten[i];\n  }\n}\n\n// i ist die Nummer des angeklickten Knopfs (0, 1 oder 2)\nfunction antworte(i) {\n  const f = fragen[nummer];\n  if (i === f.richtig) {\n    anzeige.textContent = 'Richtig!';\n    punkte++;\n    stand.textContent = 'Punkte: ' + punkte;\n  } else {\n    anzeige.textContent = 'Falsch! Richtig wäre: ' + f.antworten[f.richtig];\n  }\n  nummer++;\n  if (nummer < fragen.length) {\n    zeigeFrage();\n  } else {\n    zeigeAuswertung();\n  }\n}\n\n// Macht aus dem Punktestand einen Kommentar\nfunction bewertung(richtige, anzahl) {\n  if (richtige === anzahl) return 'Perfekt!';\n  if (richtige >= anzahl / 2) return 'Gut gemacht!';\n  return 'Übe noch ein bisschen!';\n}\n\n// Wird nach der letzten Frage aufgerufen\nfunction zeigeAuswertung() {\n  ueberschrift.textContent = 'Auswertung';\n  text.textContent = 'Du hast ' + punkte + ' von ' + fragen.length + ' Punkten. ' + bewertung(punkte, fragen.length);\n  for (const k of knoepfe) {\n    k.hidden = true;\n  }\n}\n\nzeigeFrage();",
+        "validation": {
+          "type": "dom_click_text",
+          "click": "antwort-0",
+          "target": "text",
+          "text": "Du hast 2 von 3 Punkten. Gut gemacht!",
+          "clicks": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "title": "Nochmal spielen – und dein eigenes Quiz",
+    "file": "lektion-07.md",
+    "lessonSummary": "Geschafft – du hast einen kompletten Quiz-Generator gebaut! Neue Fragen ins Array, und schon entsteht ein neues Quiz. Lass Familie und Freunde gegen deine Fragen antreten.",
+    "tasks": [
+      {
+        "instruction": "Der alte Knopf kommt zurück – als 'Nochmal spielen'. Schreibe neuStart(): Setze nummer und punkte auf 0, die Überschrift auf 'Mein Quiz', leere #anzeige (Text ''), schreibe 'Punkte: 0' in die Punkte-Anzeige, mache alle Antwort-Knöpfe wieder sichtbar (k.hidden = false), verstecke den Knopf 'Nochmal spielen' und zeige mit zeigeFrage() die erste Frage. Die drei Zeilen ganz unten spielen das Quiz zum Testen einmal automatisch durch – klicke danach auf 'Nochmal spielen'.",
+        "codeTemplate": "const fragen = [\n  { frage: 'Wie viele Beine hat eine Spinne?', antworten: ['6', '8', '10'], richtig: 1 },\n  { frage: 'Welcher Planet ist der Sonne am nächsten?', antworten: ['Merkur', 'Venus', 'Mars'], richtig: 0 },\n  { frage: 'Wie viele Minuten hat eine Stunde?', antworten: ['60', '100', '30'], richtig: 0 },\n];\n\nlet nummer = 0; // welche Frage ist gerade dran?\nlet punkte = 0; // wie viele Antworten waren richtig?\n\nconst ueberschrift = document.querySelector('#ueberschrift');\nconst text = document.querySelector('#text');\nconst knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\nconst flaeche = document.querySelector('#dom-uebung');\n\n// Die Punkte-Anzeige: ein neues p-Element ganz unten auf der Übungsfläche\nconst stand = document.createElement('p');\nstand.id = 'punkte';\nflaeche.appendChild(stand);\n\n// Drei Antwort-Knöpfe erzeugen und im Array knoepfe merken\nconst knoepfe = [];\nfor (let i = 0; i < 3; i++) {\n  const k = document.createElement('button');\n  k.id = 'antwort-' + i;\n  k.style.marginRight = '8px';\n  k.addEventListener('click', () => {\n    antworte(i);\n  });\n  knopf.before(k);\n  knoepfe.push(k);\n}\n\n// Zeigt die Frage, die gerade dran ist, und beschriftet die drei Knöpfe\nfunction zeigeFrage() {\n  const f = fragen[nummer];\n  text.textContent = f.frage;\n  for (let i = 0; i < 3; i++) {\n    knoepfe[i].textContent = f.antworten[i];\n  }\n}\n\n// i ist die Nummer des angeklickten Knopfs (0, 1 oder 2)\nfunction antworte(i) {\n  const f = fragen[nummer];\n  if (i === f.richtig) {\n    anzeige.textContent = 'Richtig!';\n    punkte++;\n    stand.textContent = 'Punkte: ' + punkte;\n  } else {\n    anzeige.textContent = 'Falsch! Richtig wäre: ' + f.antworten[f.richtig];\n  }\n  nummer++;\n  if (nummer < fragen.length) {\n    zeigeFrage();\n  } else {\n    zeigeAuswertung();\n  }\n}\n\n// Macht aus dem Punktestand einen Kommentar\nfunction bewertung(richtige, anzahl) {\n  if (richtige === anzahl) return 'Perfekt!';\n  if (richtige >= anzahl / 2) return 'Gut gemacht!';\n  return 'Übe noch ein bisschen!';\n}\n\n// Wird nach der letzten Frage aufgerufen\nfunction zeigeAuswertung() {\n  ueberschrift.textContent = 'Auswertung';\n  text.textContent = 'Du hast ' + punkte + ' von ' + fragen.length + ' Punkten. ' + bewertung(punkte, fragen.length);\n  for (const k of knoepfe) {\n    k.hidden = true;\n  }\n  knopf.hidden = false; // jetzt darf man nochmal spielen\n}\n\n// Setzt alles auf Anfang – beim ersten Start und bei jedem Klick auf 'Nochmal spielen'\nfunction neuStart() {\n  // Dein Code hier\n}\n\nknopf.textContent = 'Nochmal spielen';\nknopf.addEventListener('click', neuStart);\nneuStart();\n\n// Test: Diese drei Zeilen spielen das Quiz einmal automatisch durch, damit du sofort bei der\n// Auswertung landest und 'Nochmal spielen' ausprobieren kannst.\nantworte(0);\nantworte(0);\nantworte(0);\n",
+        "solution": "const fragen = [\n  { frage: 'Wie viele Beine hat eine Spinne?', antworten: ['6', '8', '10'], richtig: 1 },\n  { frage: 'Welcher Planet ist der Sonne am nächsten?', antworten: ['Merkur', 'Venus', 'Mars'], richtig: 0 },\n  { frage: 'Wie viele Minuten hat eine Stunde?', antworten: ['60', '100', '30'], richtig: 0 },\n];\n\nlet nummer = 0; // welche Frage ist gerade dran?\nlet punkte = 0; // wie viele Antworten waren richtig?\n\nconst ueberschrift = document.querySelector('#ueberschrift');\nconst text = document.querySelector('#text');\nconst knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\nconst flaeche = document.querySelector('#dom-uebung');\n\n// Die Punkte-Anzeige: ein neues p-Element ganz unten auf der Übungsfläche\nconst stand = document.createElement('p');\nstand.id = 'punkte';\nflaeche.appendChild(stand);\n\n// Drei Antwort-Knöpfe erzeugen und im Array knoepfe merken\nconst knoepfe = [];\nfor (let i = 0; i < 3; i++) {\n  const k = document.createElement('button');\n  k.id = 'antwort-' + i;\n  k.style.marginRight = '8px';\n  k.addEventListener('click', () => {\n    antworte(i);\n  });\n  knopf.before(k);\n  knoepfe.push(k);\n}\n\n// Zeigt die Frage, die gerade dran ist, und beschriftet die drei Knöpfe\nfunction zeigeFrage() {\n  const f = fragen[nummer];\n  text.textContent = f.frage;\n  for (let i = 0; i < 3; i++) {\n    knoepfe[i].textContent = f.antworten[i];\n  }\n}\n\n// i ist die Nummer des angeklickten Knopfs (0, 1 oder 2)\nfunction antworte(i) {\n  const f = fragen[nummer];\n  if (i === f.richtig) {\n    anzeige.textContent = 'Richtig!';\n    punkte++;\n    stand.textContent = 'Punkte: ' + punkte;\n  } else {\n    anzeige.textContent = 'Falsch! Richtig wäre: ' + f.antworten[f.richtig];\n  }\n  nummer++;\n  if (nummer < fragen.length) {\n    zeigeFrage();\n  } else {\n    zeigeAuswertung();\n  }\n}\n\n// Macht aus dem Punktestand einen Kommentar\nfunction bewertung(richtige, anzahl) {\n  if (richtige === anzahl) return 'Perfekt!';\n  if (richtige >= anzahl / 2) return 'Gut gemacht!';\n  return 'Übe noch ein bisschen!';\n}\n\n// Wird nach der letzten Frage aufgerufen\nfunction zeigeAuswertung() {\n  ueberschrift.textContent = 'Auswertung';\n  text.textContent = 'Du hast ' + punkte + ' von ' + fragen.length + ' Punkten. ' + bewertung(punkte, fragen.length);\n  for (const k of knoepfe) {\n    k.hidden = true;\n  }\n  knopf.hidden = false; // jetzt darf man nochmal spielen\n}\n\n// Setzt alles auf Anfang – beim ersten Start und bei jedem Klick auf 'Nochmal spielen'\nfunction neuStart() {\n  nummer = 0;\n  punkte = 0;\n  ueberschrift.textContent = 'Mein Quiz';\n  anzeige.textContent = '';\n  stand.textContent = 'Punkte: ' + punkte;\n  for (const k of knoepfe) {\n    k.hidden = false;\n  }\n  knopf.hidden = true;\n  zeigeFrage();\n}\n\nknopf.textContent = 'Nochmal spielen';\nknopf.addEventListener('click', neuStart);\nneuStart();\n\n// Test: Diese drei Zeilen spielen das Quiz einmal automatisch durch, damit du sofort bei der\n// Auswertung landest und 'Nochmal spielen' ausprobieren kannst.\nantworte(0);\nantworte(0);\nantworte(0);",
+        "validation": {
+          "type": "dom_click_text",
+          "click": "knopf",
+          "target": "punkte",
+          "text": "Punkte: 0"
+        }
+      },
+      {
+        "instruction": "Dein eigenes Quiz! Das Array fragen ist leer – trage mindestens 3 und höchstens 10 eigene Fragen ein, jede mit genau drei Antworten und der Nummer der richtigen Antwort (0, 1 oder 2). Gib deinem Quiz in neuStart() auch einen eigenen Titel. Die Überschrift 'Auswertung' am Ende muss so bleiben, daran erkennt die Prüfung, dass dein Quiz bis zum Schluss durchläuft.",
+        "codeTemplate": "const fragen = [\n  // Dein Code hier: deine eigenen Fragen\n];\n\nlet nummer = 0; // welche Frage ist gerade dran?\nlet punkte = 0; // wie viele Antworten waren richtig?\n\nconst ueberschrift = document.querySelector('#ueberschrift');\nconst text = document.querySelector('#text');\nconst knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\nconst flaeche = document.querySelector('#dom-uebung');\n\n// Die Punkte-Anzeige: ein neues p-Element ganz unten auf der Übungsfläche\nconst stand = document.createElement('p');\nstand.id = 'punkte';\nflaeche.appendChild(stand);\n\n// Drei Antwort-Knöpfe erzeugen und im Array knoepfe merken\nconst knoepfe = [];\nfor (let i = 0; i < 3; i++) {\n  const k = document.createElement('button');\n  k.id = 'antwort-' + i;\n  k.style.marginRight = '8px';\n  k.addEventListener('click', () => {\n    antworte(i);\n  });\n  knopf.before(k);\n  knoepfe.push(k);\n}\n\n// Zeigt die Frage, die gerade dran ist, und beschriftet die drei Knöpfe\nfunction zeigeFrage() {\n  const f = fragen[nummer];\n  text.textContent = f.frage;\n  for (let i = 0; i < 3; i++) {\n    knoepfe[i].textContent = f.antworten[i];\n  }\n}\n\n// i ist die Nummer des angeklickten Knopfs (0, 1 oder 2)\nfunction antworte(i) {\n  const f = fragen[nummer];\n  if (i === f.richtig) {\n    anzeige.textContent = 'Richtig!';\n    punkte++;\n    stand.textContent = 'Punkte: ' + punkte;\n  } else {\n    anzeige.textContent = 'Falsch! Richtig wäre: ' + f.antworten[f.richtig];\n  }\n  nummer++;\n  if (nummer < fragen.length) {\n    zeigeFrage();\n  } else {\n    zeigeAuswertung();\n  }\n}\n\n// Macht aus dem Punktestand einen Kommentar\nfunction bewertung(richtige, anzahl) {\n  if (richtige === anzahl) return 'Perfekt!';\n  if (richtige >= anzahl / 2) return 'Gut gemacht!';\n  return 'Übe noch ein bisschen!';\n}\n\n// Wird nach der letzten Frage aufgerufen\nfunction zeigeAuswertung() {\n  ueberschrift.textContent = 'Auswertung';\n  text.textContent = 'Du hast ' + punkte + ' von ' + fragen.length + ' Punkten. ' + bewertung(punkte, fragen.length);\n  for (const k of knoepfe) {\n    k.hidden = true;\n  }\n  knopf.hidden = false; // jetzt darf man nochmal spielen\n}\n\n// Setzt alles auf Anfang – beim ersten Start und bei jedem Klick auf 'Nochmal spielen'\nfunction neuStart() {\n  nummer = 0;\n  punkte = 0;\n  ueberschrift.textContent = 'Mein Quiz';\n  anzeige.textContent = '';\n  stand.textContent = 'Punkte: ' + punkte;\n  for (const k of knoepfe) {\n    k.hidden = false;\n  }\n  knopf.hidden = true;\n  zeigeFrage();\n}\n\nknopf.textContent = 'Nochmal spielen';\nknopf.addEventListener('click', neuStart);\nneuStart();\n",
+        "solution": "const fragen = [\n  { frage: 'Welches ist das größte Tier der Erde?', antworten: ['Elefant', 'Blauwal', 'Giraffe'], richtig: 1 },\n  { frage: 'Wie heißt die Hauptstadt von Italien?', antworten: ['Rom', 'Mailand', 'Venedig'], richtig: 0 },\n  { frage: 'Was entsteht, wenn Wasser gefriert?', antworten: ['Dampf', 'Nebel', 'Eis'], richtig: 2 },\n  { frage: 'Welches dieser Tiere kann fliegen?', antworten: ['Pinguin', 'Fledermaus', 'Strauß'], richtig: 1 },\n  { frage: 'Wie viele Saiten hat eine normale Gitarre?', antworten: ['4', '6', '8'], richtig: 1 },\n];\n\nlet nummer = 0; // welche Frage ist gerade dran?\nlet punkte = 0; // wie viele Antworten waren richtig?\n\nconst ueberschrift = document.querySelector('#ueberschrift');\nconst text = document.querySelector('#text');\nconst knopf = document.querySelector('#knopf');\nconst anzeige = document.querySelector('#anzeige');\nconst flaeche = document.querySelector('#dom-uebung');\n\n// Die Punkte-Anzeige: ein neues p-Element ganz unten auf der Übungsfläche\nconst stand = document.createElement('p');\nstand.id = 'punkte';\nflaeche.appendChild(stand);\n\n// Drei Antwort-Knöpfe erzeugen und im Array knoepfe merken\nconst knoepfe = [];\nfor (let i = 0; i < 3; i++) {\n  const k = document.createElement('button');\n  k.id = 'antwort-' + i;\n  k.style.marginRight = '8px';\n  k.addEventListener('click', () => {\n    antworte(i);\n  });\n  knopf.before(k);\n  knoepfe.push(k);\n}\n\n// Zeigt die Frage, die gerade dran ist, und beschriftet die drei Knöpfe\nfunction zeigeFrage() {\n  const f = fragen[nummer];\n  text.textContent = f.frage;\n  for (let i = 0; i < 3; i++) {\n    knoepfe[i].textContent = f.antworten[i];\n  }\n}\n\n// i ist die Nummer des angeklickten Knopfs (0, 1 oder 2)\nfunction antworte(i) {\n  const f = fragen[nummer];\n  if (i === f.richtig) {\n    anzeige.textContent = 'Richtig!';\n    punkte++;\n    stand.textContent = 'Punkte: ' + punkte;\n  } else {\n    anzeige.textContent = 'Falsch! Richtig wäre: ' + f.antworten[f.richtig];\n  }\n  nummer++;\n  if (nummer < fragen.length) {\n    zeigeFrage();\n  } else {\n    zeigeAuswertung();\n  }\n}\n\n// Macht aus dem Punktestand einen Kommentar\nfunction bewertung(richtige, anzahl) {\n  if (richtige === anzahl) return 'Perfekt!';\n  if (richtige >= anzahl / 2) return 'Gut gemacht!';\n  return 'Übe noch ein bisschen!';\n}\n\n// Wird nach der letzten Frage aufgerufen\nfunction zeigeAuswertung() {\n  ueberschrift.textContent = 'Auswertung';\n  text.textContent = 'Du hast ' + punkte + ' von ' + fragen.length + ' Punkten. ' + bewertung(punkte, fragen.length);\n  for (const k of knoepfe) {\n    k.hidden = true;\n  }\n  knopf.hidden = false; // jetzt darf man nochmal spielen\n}\n\n// Setzt alles auf Anfang – beim ersten Start und bei jedem Klick auf 'Nochmal spielen'\nfunction neuStart() {\n  nummer = 0;\n  punkte = 0;\n  ueberschrift.textContent = 'Bunt gemischt';\n  anzeige.textContent = '';\n  stand.textContent = 'Punkte: ' + punkte;\n  for (const k of knoepfe) {\n    k.hidden = false;\n  }\n  knopf.hidden = true;\n  zeigeFrage();\n}\n\nknopf.textContent = 'Nochmal spielen';\nknopf.addEventListener('click', neuStart);\nneuStart();",
+        "validation": {
+          "type": "dom_click_text",
+          "click": "antwort-0",
+          "target": "ueberschrift",
+          "text": "Auswertung",
+          "clicks": 10
+        }
+      }
+    ]
+  }
+]

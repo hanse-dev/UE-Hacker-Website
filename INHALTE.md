@@ -17,6 +17,7 @@ Dieses Dokument beschreibt, welche Dateien zusammengehören und was bei Änderun
 | `projekt-zahlendetektiv` | `content/zahlendetektiv/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON) |
 | `projekt-js-spielewerkstatt` | `content/js-spielewerkstatt/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON, `engine: "js-sandbox"`) |
 | `projekt-js-memory` | `content/js-memory/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON, `engine: "js-sandbox"`, `sandboxMode: "dom"` — DOM statt Canvas) |
+| `projekt-js-quiz` | `content/js-quiz/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON, `engine: "js-sandbox"`, `sandboxMode: "dom"` – DOM-Übungsfläche statt Canvas) |
 | `projekt-microbit-auto` | `content/microbit-auto/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON, `engine: "anleitung"`, Hardware-Kurs zum Abhaken) |
 | *(Lektions-Format)* Woche 1–12 (alle) | `content/python-woche{N}-{abenteuer\|pferde\|scifi}/` | `content/python-woche{N}-{thema}-en/` | Markdown + JSON, Pyodide; ersetzt die Notebook-Schritte Lektion/Debug/Missionen/Boss jeder Woche/Variante/Sprache (siehe HANDOFF.md 3.47–3.54). Die alten `1_lektion`/`2_debug`/`3_missionen`/`5_boss`-Zellenordner gibt es nicht mehr — nur `0_glossar` und `6_loesungen` bleiben als Notebooks (Nachschlagewerke, siehe unten). |
 | `js-grundkurs` | `content/js-grundkurs/` (Beschreibung) + `content/js-grundkurs-woche{1-9}/` (Wochen) | *(keine EN-Version)* | Grundkurs (Markdown + JSON, `engine: "js-sandbox"`, eigene Mehrwochen-Struktur) |
@@ -357,7 +358,7 @@ Ordner-Mapping (immer paarweise anpassen):
       den Filter-Metadaten `language` (`"python"`/`"javascript"`, Slug — steuert nur die Anzeige,
       keine Übersetzung nötig), `level` (`"einsteiger"`/`"fortgeschritten"`) und `tags` (Array aus
       einem festen Vokabular, aktuell: `kryptografie`, `knobelaufgabe`, `kommunikation`,
-      `logikraetsel`, `mathematik`). Ein neuer Tag braucht neue `projectTag.<slug>`-Keys in
+      `logikraetsel`, `mathematik`, `spiele`, `robotik`). Ein neuer Tag braucht neue `projectTag.<slug>`-Keys in
       **beiden** `src/locales/de.js`/`en.js` — sonst zeigt die Filter-Chip/Karte nur den rohen Slug.
       Kein manuelles Dauer-/Lektionsanzahl-Feld nötig, `ProjekteView.vue` berechnet das live aus der
       Länge von `lessons.json`.
@@ -403,6 +404,14 @@ Ordner-Mapping (immer paarweise anpassen):
 - [ ] Jede Aufgabe muss eigenständig lauffähig sein — jeder Lauf (Ausführen/Prüfen) baut das
       iframe komplett neu auf, es gibt **keinen** geteilten Namespace zwischen Aufgaben (anders
       als beim Pyodide-Kernel, der über eine ganze Lektion hinweg erhalten bleibt).
+- [ ] **DOM- statt Canvas-Projekt (wie `js-quiz`):** `kurse.json`-Eintrag bekommt zusätzlich
+      `"sandboxMode": "dom"`. `CourseDetail.vue` → `ProjectCourse.vue` (`domMode`) → `JsLessonView.vue`
+      zeigen dann die feste Übungsfläche aus dem JS-Grundkurs Woche 7 (`#dom-uebung` mit
+      `#ueberschrift`, `#text`, `#knopf`, `#anzeige`) statt des Canvas. Geprüft wird mit `dom_text`
+      (`target`, `text`) und `dom_click_text` (`click`, `target`, `text`, optional `clicks`).
+      Weitere Elemente erzeugt der Code der Lernenden selbst (`createElement`) — sie brauchen eine
+      feste ID aus der Aufgabenstellung, sonst kann die Prüfung sie nicht finden. Reine
+      `console.log`-Aufgaben bekommen `"showCanvas": false`. Test: `tests/js-quiz.spec.js`.
 
 **Für einen Hardware-Kurs zum Abhaken (wie `microbit-auto`, micro:bit + Roboterauto):**
 - [ ] `kurse.json`-Eintrag bekommt `"engine": "anleitung"`. `ProjectCourse.vue` rendert dann
