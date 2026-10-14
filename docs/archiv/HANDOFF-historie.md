@@ -2567,3 +2567,33 @@ Mail-Reset, keine Sicherheitsfragen.
 
 Nachtrag beim Merge: `create-account-printout.py` ist inzwischen in `scripts/local-tools/drucker.py`
 aufgegangen; der Reset läuft dort über `drucker.py account <name>` (fragt bei vorhandenem Account nach).
+
+### 3.103 — Projekt-Kurs „Häufigkeitsanalyse“ (Branch `projekt-haeufigkeitsanalyse`)
+
+Dritter Krypto-Projekt-Kurs (`projekt-haeufigkeitsanalyse`, `content/haeufigkeitsanalyse/`, Python,
+fortgeschritten, ab ca. 14), Idee aus `PROJEKTIDEEN.md`: eine Cäsar-Nachricht ohne Schlüssel knacken.
+
+- **8 Lektionen:** einen Buchstaben zählen → alle zählen (`zaehle_buchstaben`, Dictionary) →
+  Balkendiagramm mit `#` → `haeufigster_buchstabe` → `errate_verschiebung` (Abstand zum `e`, `% 26`)
+  → `knacke` (automatischer Knacker) → `bewerte`/`knacke_besser` (alle 26 Verschiebungen mit einer
+  Punkte-Tabelle der deutschen Buchstabenhäufigkeit bewerten) → Ausblick, warum Vigenère den E-Berg
+  einebnet (35 → 21 beim selben Text) und wie man es über die Schlüssellänge trotzdem knackt.
+- **Konvention wie im Cäsar-Kurs:** nur Kleinbuchstaben `a`–`z`, keine Umlaute (`ae`, `ue`, `ss`),
+  `isalpha()` lässt Leer- und Satzzeichen stehen; `verschluesseln`/`entschluesseln` sind wortgleich
+  aus `caesar-chiffre` übernommen, in Lektion 8 die Vigenère-Funktion aus `vigenere-chiffre`.
+- **Texte nachgerechnet:** Hauptnachricht 186 Buchstaben, Verschiebung 10, `e` 35× vor `n` 22×;
+  zweite Nachricht (Bonus Lektion 6) Verschiebung 19, `e` 24× vor `n` 8×. Kurze Nachricht für
+  Lektion 7 („unser passwort lautet drachenblut“, Verschiebung 6): häufigster Buchstabe ist `t`, die
+  E-Methode liefert Buchstabensalat, die Punkte-Bewertung gewinnt mit 197 vor 162 Punkten.
+- **Langer Geheimtext** steht in den Vorlagen als geklammertes, mehrzeiliges String-Literal
+  (Lektion 1 erklärt das in einem Satz). Der Geheimtext steht in Markdown nur in Code-Blöcken,
+  damit cspell/LanguageTool ihn ignorieren.
+- **Prüfung:** alle 16 Aufgaben `output_contains` mit `expected`; geprüft wird ein eindeutiger
+  Ausschnitt (`'n': 3`, `Verschiebung: 10`, ein Stück Klartext), damit auch Lösungen mit `max()`
+  oder `Counter` bestehen. Jede Vorlage läuft fehlerfrei und besteht nicht von selbst.
+- **Kein Frontend-Code.** Außer Content/`kurse.json`: `PROJECT_COURSES`, Zähler im
+  Notebook-Generator-Test, `lint:spelling`-Globs, Regel in `test-changed.mjs`, Vertrag neu eingefroren.
+  Vigenère-Lektion 5 verweist jetzt auf den neuen Kurs.
+- **Tests:** `tests/projekte.spec.js` — Karten-/Filter-Zahlen, „Lektion 1 lösen schaltet Lektion 2
+  frei“ (inkl. unveränderte Vorlage fällt durch) und ein Durchlauf, der jede Musterlösung aus
+  `lessons.json` in Pyodide gegen ihre eigene Prüfung laufen lässt.

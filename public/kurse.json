@@ -68,6 +68,18 @@
     "contentPath": "vigenere-chiffre"
   },
   {
+    "id": "projekt-haeufigkeitsanalyse",
+    "type": "projekt",
+    "language": "python",
+    "level": "fortgeschritten",
+    "tags": ["kryptografie", "knobelaufgabe"],
+    "title": "Projekt: Häufigkeitsanalyse",
+    "title_en": "Project: Frequency Analysis",
+    "description": "Geheimnachricht abgefangen, Schlüssel unbekannt: Baue einen Code-Knacker, der die Buchstaben zählt, den häufigsten findet und eine Cäsar-Nachricht ganz von allein entziffert. Der Abschluss der Geheimschrift-Reihe nach Cäsar- und Vigenère-Chiffre.",
+    "description_en": "Secret message intercepted, key unknown: build a code breaker that counts the letters, finds the most frequent one and deciphers a Caesar message all by itself. The finale of the crypto series after the Caesar and Vigenère ciphers. The lessons are currently available in German.",
+    "contentPath": "haeufigkeitsanalyse"
+  },
+  {
     "id": "projekt-morsecode",
     "type": "projekt",
     "language": "python",

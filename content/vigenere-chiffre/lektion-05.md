@@ -18,4 +18,4 @@ für versuch von 0 bis 25:
 
 Deine `entschluesseln`-Funktion aus der letzten Lektion brauchst du dafür unverändert wieder. Eine der 26 Zeilen ergibt ein lesbares Wort. Schon bei einem 3-Buchstaben-Schlüsselwort müsstest du 17.576 statt 26 Möglichkeiten durchprobieren – und ohne zu wissen, *wie lang* das Schlüsselwort überhaupt ist, wird das schnell aussichtslos. Genau deshalb galt die Vigenère-Chiffre jahrhundertelang als unknackbar.
 
-> 💡 Damit hast du dein zweites eigenes Verschlüsselungsprojekt gebaut – und verstanden, warum ein längeres Schlüsselwort echten Schutz bietet.
+> 💡 Damit hast du dein zweites eigenes Verschlüsselungsprojekt gebaut – und verstanden, warum ein längeres Schlüsselwort echten Schutz bietet. Wie Code-Knacker trotzdem vorgehen, lernst du im [Projekt Häufigkeitsanalyse](/kurs/projekt-haeufigkeitsanalyse).

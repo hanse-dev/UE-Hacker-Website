@@ -49,7 +49,7 @@ Variante braucht nur ihre eigene Sprache als Vorwissen.
 
 | Track | Einstieg | Grundkurs | Projekt-Kurse | Vertiefung |
 |---|---|---|---|---|
-| **Python** | `python-grundlagen-interaktiv` ✅ | `python-12-wochen-grundkurs` ✅ | Cäsar, Vigenère, Morsecode, Zahlen-Detektiv, Text-Adventure ✅ · weitere Ideen in `PROJEKTIDEEN.md` | 💡 noch keine — Pygame-Ideen aus `KURSPLAN.md` laufen nicht in Pyodide (siehe `todo.md`, `kurs-python-spiele` verworfen) |
+| **Python** | `python-grundlagen-interaktiv` ✅ | `python-12-wochen-grundkurs` ✅ | Cäsar, Vigenère, Häufigkeitsanalyse, Morsecode, Zahlen-Detektiv, Text-Adventure ✅ · weitere Ideen in `PROJEKTIDEEN.md` | 💡 noch keine — Pygame-Ideen aus `KURSPLAN.md` laufen nicht in Pyodide (siehe `todo.md`, `kurs-python-spiele` verworfen) |
 | **JavaScript** | 💡 noch keiner (Idee: leichter interaktiver Einstieg analog Python) | `js-grundkurs` ✅ — 9 Wochen, leichtes Format ohne Themen-Varianten (siehe `KURSPLAN.md`), Woche 4 (Funktionen) ist empfohlenes Vorwissen für `projekt-js-spielewerkstatt` | `projekt-js-spielewerkstatt` ✅ · `projekt-js-snake` ✅ — beides Canvas-Spiele, noch kein DOM-/Web-Projekt | 💡 Browser-Spiel Advanced (`KURSPLAN.md` Kurs 3 Track B) — Voraussetzung ist der JS-Projekt-Kurs, **nicht** der Python-Grundkurs |
 | **KI/ML** | – | `ki-labor` ✅ — 8 Wochen, ohne Themen-Varianten (siehe `KURSPLAN.md`), Algorithmen (k-NN, Entscheidungsbaum, kleines neuronales Netz) komplett in reinem Python selbst gebaut statt mit scikit-learn — **einzige legitime Cross-Track-Voraussetzung: Python-Grundkurs** | 💡 noch keine (Ideen in `PROJEKTIDEEN.md`) | – |
 | **Hardware** (micro:bit) | – | – | `projekt-microbit-auto` ✅ (nur DE, am echten Auto noch nicht erprobt, siehe `todo.md`) | – |

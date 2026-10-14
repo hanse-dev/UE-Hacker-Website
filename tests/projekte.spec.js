@@ -1,4 +1,6 @@
 import { test, expect } from '@playwright/test';
+import fs from 'fs';
+import path from 'path';
 import { startKernel } from './helpers/kernel.js';
 import { setCodeMirrorContent } from './helpers/codemirror.js';
 
@@ -26,9 +28,10 @@ test.describe('Projekte-Übersicht', () => {
 
   test('zeigt alle Projekt-Karten', async ({ page }) => {
     await page.goto('/projekte');
-    await expect(page.locator('.projekt-card')).toHaveCount(8, { timeout: 15000 });
+    await expect(page.locator('.projekt-card')).toHaveCount(9, { timeout: 15000 });
     await expect(page.locator('a[href="/kurs/projekt-caesar-chiffre"]')).toBeVisible();
     await expect(page.locator('a[href="/kurs/projekt-vigenere-chiffre"]')).toBeVisible();
+    await expect(page.locator('a[href="/kurs/projekt-haeufigkeitsanalyse"]')).toBeVisible();
     await expect(page.locator('a[href="/kurs/projekt-morsecode"]')).toBeVisible();
     await expect(page.locator('a[href="/kurs/projekt-zahlendetektiv"]')).toBeVisible();
     await expect(page.locator('a[href="/kurs/projekt-js-spielewerkstatt"]')).toBeVisible();
@@ -39,37 +42,39 @@ test.describe('Projekte-Übersicht', () => {
 
   test('Projekt-Karte ist ganzflächig klickbar, nicht nur der "Jetzt starten"-Link', async ({ page }) => {
     await page.goto('/projekte');
-    await expect(page.locator('.projekt-card')).toHaveCount(8, { timeout: 15000 });
+    await expect(page.locator('.projekt-card')).toHaveCount(9, { timeout: 15000 });
 
     await page.locator('a.projekt-card[href="/kurs/projekt-caesar-chiffre"] h3').click();
     await expect(page).toHaveURL(/projekt-caesar-chiffre/);
   });
 
-  test('Level-Filter "Fortgeschritten" reduziert auf Zahlen-Detektiv, Vigenère-Chiffre, Snake und Text-Adventure', async ({ page }) => {
+  test('Level-Filter "Fortgeschritten" reduziert auf Zahlen-Detektiv, Vigenère-Chiffre, Häufigkeitsanalyse, Snake und Text-Adventure', async ({ page }) => {
     await page.goto('/projekte');
-    await expect(page.locator('.projekt-card')).toHaveCount(8, { timeout: 15000 });
+    await expect(page.locator('.projekt-card')).toHaveCount(9, { timeout: 15000 });
 
     await page.locator('.filter-chip', { hasText: 'Fortgeschritten' }).click();
-    await expect(page.locator('.projekt-card')).toHaveCount(4);
+    await expect(page.locator('.projekt-card')).toHaveCount(5);
     await expect(page.locator('a[href="/kurs/projekt-zahlendetektiv"]')).toBeVisible();
     await expect(page.locator('a[href="/kurs/projekt-vigenere-chiffre"]')).toBeVisible();
+    await expect(page.locator('a[href="/kurs/projekt-haeufigkeitsanalyse"]')).toBeVisible();
     await expect(page.locator('a[href="/kurs/projekt-js-snake"]')).toBeVisible();
     await expect(page.locator('a[href="/kurs/projekt-text-adventure"]')).toBeVisible();
   });
 
-  test('Tag-Filter "Kryptografie" zeigt Cäsar- und Vigenère-Chiffre', async ({ page }) => {
+  test('Tag-Filter "Kryptografie" zeigt Cäsar-, Vigenère-Chiffre und Häufigkeitsanalyse', async ({ page }) => {
     await page.goto('/projekte');
-    await expect(page.locator('.projekt-card')).toHaveCount(8, { timeout: 15000 });
+    await expect(page.locator('.projekt-card')).toHaveCount(9, { timeout: 15000 });
 
     await page.locator('.filter-chip', { hasText: 'Kryptografie' }).click();
-    await expect(page.locator('.projekt-card')).toHaveCount(2);
+    await expect(page.locator('.projekt-card')).toHaveCount(3);
     await expect(page.locator('a[href="/kurs/projekt-caesar-chiffre"]')).toBeVisible();
     await expect(page.locator('a[href="/kurs/projekt-vigenere-chiffre"]')).toBeVisible();
+    await expect(page.locator('a[href="/kurs/projekt-haeufigkeitsanalyse"]')).toBeVisible();
   });
 
   test('Sprach-Filter "JavaScript" zeigt Spielewerkstatt und Snake', async ({ page }) => {
     await page.goto('/projekte');
-    await expect(page.locator('.projekt-card')).toHaveCount(8, { timeout: 15000 });
+    await expect(page.locator('.projekt-card')).toHaveCount(9, { timeout: 15000 });
 
     await page.locator('.filter-chip', { hasText: 'JavaScript' }).click();
     await expect(page.locator('.projekt-card')).toHaveCount(2);
@@ -79,13 +84,13 @@ test.describe('Projekte-Übersicht', () => {
 
   test('Zurücksetzen-Button stellt alle Projekte wieder her', async ({ page }) => {
     await page.goto('/projekte');
-    await expect(page.locator('.projekt-card')).toHaveCount(8, { timeout: 15000 });
+    await expect(page.locator('.projekt-card')).toHaveCount(9, { timeout: 15000 });
 
     await page.locator('.filter-chip', { hasText: 'Fortgeschritten' }).click();
-    await expect(page.locator('.projekt-card')).toHaveCount(4);
+    await expect(page.locator('.projekt-card')).toHaveCount(5);
 
     await page.locator('.filter-reset').click();
-    await expect(page.locator('.projekt-card')).toHaveCount(8);
+    await expect(page.locator('.projekt-card')).toHaveCount(9);
   });
 
   test('Morsecode-Projekt lädt und Lektion 1 lösen schaltet Lektion 2 frei', async ({ page }) => {
@@ -138,6 +143,82 @@ test.describe('Projekte-Übersicht', () => {
 
     await expect(page.locator('.lesson-item.completed')).toHaveCount(1);
     await expect(page.locator('.lesson-item').nth(1)).not.toHaveClass(/locked/);
+  });
+
+  test('Häufigkeitsanalyse-Projekt lädt und Lektion 1 lösen schaltet Lektion 2 frei', async ({ page }) => {
+    test.setTimeout(60000);
+    await page.addInitScript(() => {
+      localStorage.removeItem('ue-hacker-interactive-progress-haeufigkeitsanalyse');
+    });
+    await page.goto('/kurs/projekt-haeufigkeitsanalyse');
+    await expect(page.locator('.course-description')).toContainText('Geheimnachricht');
+    await page.locator('.btn-start-course').click();
+    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(8, { timeout: 15000 });
+    await expect(page.locator('.lesson-item').nth(1)).toHaveClass(/locked/);
+
+    await startKernel(page);
+    await expect(page.locator('.btn-check').first()).toBeEnabled({ timeout: 40000 });
+
+    // Die unveränderte Vorlage (zählt nichts, gibt 0 aus) darf die Prüfung nicht bestehen.
+    const task1 = page.locator('.task-block').nth(0);
+    await task1.locator('.btn-check').click();
+    await expect(task1.locator('.feedback-error')).toBeVisible({ timeout: 10000 });
+
+    await task1.locator('.code-editor').fill(
+      'satz = "jeder mensch lebt gerne in frieden"\nanzahl = 0\nfor zeichen in satz:\n    if zeichen == "e":\n        anzahl = anzahl + 1\n\nprint(anzahl)'
+    );
+    await task1.locator('.btn-check').click();
+    await expect(task1.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+
+    // Bonus: der abgefangene Geheimtext steht in der Vorlage, nur die Schleife fehlt.
+    const task2 = page.locator('.task-block').nth(1);
+    const vorlage = await task2.locator('.code-editor').inputValue();
+    expect(vorlage).toContain('dboppox gsb exc roedo');
+    await task2.locator('.code-editor').fill(
+      vorlage.replace('# deine Schleife hier', "for zeichen in geheimtext:\n    if zeichen == 'o':\n        anzahl = anzahl + 1")
+    );
+    await task2.locator('.btn-check').click();
+    await expect(task2.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+
+    await expect(page.locator('.lesson-item.completed')).toHaveCount(1);
+    await expect(page.locator('.lesson-item').nth(1)).not.toHaveClass(/locked/);
+  });
+
+  test('Häufigkeitsanalyse: jede Musterlösung aus lessons.json besteht in Pyodide ihre eigene Prüfung', async ({ page }) => {
+    test.setTimeout(180000);
+    const lessons = JSON.parse(
+      fs.readFileSync(path.join(process.cwd(), 'content', 'haeufigkeitsanalyse', 'lessons.json'), 'utf-8')
+    );
+    expect(lessons).toHaveLength(8);
+    // Alle Lektionen als abgeschlossen vormerken, damit jede direkt anklickbar ist.
+    await page.addInitScript((ids) => {
+      localStorage.setItem(
+        'ue-hacker-interactive-progress-haeufigkeitsanalyse',
+        JSON.stringify({ version: 1, courseId: 'projekt-haeufigkeitsanalyse', variant: 'haeufigkeitsanalyse', completedLessonIds: ids })
+      );
+    }, lessons.map((l) => l.id));
+    await page.goto('/kurs/projekt-haeufigkeitsanalyse');
+    await page.locator('.btn-start-course').click();
+    await expect(page.locator('.lessons-list .lesson-item')).toHaveCount(8, { timeout: 15000 });
+
+    for (const [lessonIdx, lesson] of lessons.entries()) {
+      await page.locator('.lesson-item').nth(lessonIdx).click();
+      await expect(page.locator('.lesson-item.active')).toContainText(lesson.title);
+      await expect(page.locator('.task-block')).toHaveCount(lesson.tasks.length);
+      // Erst wenn die Vorlage der neuen Lektion im Editor steht, ist der Wechsel wirklich durch.
+      await expect(page.locator('.task-block').nth(0).locator('.code-editor')).toHaveValue(lesson.tasks[0].codeTemplate);
+      await startKernel(page);
+      await expect(page.locator('.btn-check').first()).toBeEnabled({ timeout: 40000 });
+
+      for (const [taskIdx, task] of lesson.tasks.entries()) {
+        expect(task.solution, `${lesson.id} Aufgabe ${taskIdx + 1}: keine Musterlösung`).toBeTruthy();
+        expect(task.validation.expected, `${lesson.id} Aufgabe ${taskIdx + 1}: kein expected`).toBeTruthy();
+        const block = page.locator('.task-block').nth(taskIdx);
+        await block.locator('.code-editor').fill(task.solution);
+        await block.locator('.btn-check').click();
+        await expect(block.locator('.feedback-success'), `${lesson.id} Aufgabe ${taskIdx + 1}`).toBeVisible({ timeout: 15000 });
+      }
+    }
   });
 
   test('Python-Projekt zeigt die drei Offline-Downloads, JS-Projekt nicht', async ({ page }) => {

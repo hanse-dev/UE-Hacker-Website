@@ -511,3 +511,10 @@ k-NN, Entscheidungsbaum und ein kleines neuronales Netz komplett selbst in reine
 - [x] Woche 7 "Neuronale Netze II" (+ Extra-Herausforderungen + eigener Wochen-Check)
 - [x] Woche 8 "Grenzen & Ethik" (+ Extra-Herausforderungen + eigener Wochen-Check)
 - [x] Smoke-Test aller Wochen → PR nach `main` (`npm run test:checks`: 377 passed, 7 skipped)
+
+### Projekt-Kurs Häufigkeitsanalyse — Branch `projekt-haeufigkeitsanalyse`
+- [x] `projekt-haeufigkeitsanalyse` (`content/haeufigkeitsanalyse`, 8 Lektionen, DE, Level
+      `fortgeschritten`) — Cäsar-Nachricht ohne Schlüssel knacken, Abschluss der Reihe Cäsar →
+      Vigenère. Details siehe HANDOFF-Historie 3.103.
+- [x] Alle 16 Musterlösungen per `python3` gegen `expected` geprüft, Durchlauf-Test in Pyodide
+      (`tests/projekte.spec.js`), Fortschritts-Vertrag neu eingefroren.

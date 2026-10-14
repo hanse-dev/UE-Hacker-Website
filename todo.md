@@ -41,9 +41,9 @@ nächsten Themen. Diese Datei wird nicht automatisch geladen.
 - [ ] Docker-Deployment auf Server final verifizieren (`app`, Orphans, `.env`, kein Notebook-Blinken) —
       **zurückgestellt** (Nutzer will erst später deployen). Backup-Cron auf dem Server einrichten
       (Befehl siehe HANDOFF.md Abschnitt 4); externe Sicherung der Backups bewusst nicht mitgebaut.
-- [ ] Projekt-Kurse (Cäsar, Vigenère, Morsecode, Zahlen-Detektiv, JS-Spielewerkstatt, Snake,
-      Text-Adventure): nur DE-Content, EN fehlt noch (`kurse.json` hat bereits `title_en` für alle 7,
-      `lessons.json`/`lektion-*.md` sind nur deutsch).
+- [ ] Projekt-Kurse (Cäsar, Vigenère, Häufigkeitsanalyse, Morsecode, Zahlen-Detektiv,
+      JS-Spielewerkstatt, Snake, Text-Adventure): nur DE-Content, EN fehlt noch (`kurse.json` hat
+      bereits `title_en` für alle 8, `lessons.json`/`lektion-*.md` sind nur deutsch).
 - [ ] Weitere Sprache neben DE/EN? Noch keine Entscheidung, kein Ziel. UI-Texte laufen bereits über
       `t()` (`locales/de.js`/`en.js`); offen bliebe nur der Content: `_en`-Feld-Suffix in
       `content/python-checks/week-{N}.json`, `-en`-Ordner-Suffix in `useCourseData.js`. Größter

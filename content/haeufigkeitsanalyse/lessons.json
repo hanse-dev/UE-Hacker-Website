@@ -1,0 +1,215 @@
+[
+  {
+    "id": "lektion-01",
+    "title": "Eine Nachricht ohne Schlüssel",
+    "file": "lektion-01.md",
+    "lessonSummary": "Der erste Schritt ist gemacht: Du kannst zählen, wie oft ein Buchstabe in einem Text steckt.",
+    "tasks": [
+      {
+        "instruction": "Zähle mit einer for-Schleife, wie oft der Buchstabe 'e' in satz vorkommt, und gib die Anzahl aus.",
+        "codeTemplate": "satz = \"jeder mensch lebt gerne in frieden\"\nanzahl = 0\n# deine Schleife hier\n\nprint(anzahl)\n",
+        "solution": "satz = \"jeder mensch lebt gerne in frieden\"\nanzahl = 0\nfor zeichen in satz:\n    if zeichen == 'e':\n        anzahl = anzahl + 1\n\nprint(anzahl)",
+        "validation": {
+          "type": "output_contains",
+          "expected": "8"
+        }
+      },
+      {
+        "instruction": "Bonus: Jetzt die abgefangene Nachricht. Zähle, wie oft der Buchstabe 'o' im geheimtext vorkommt, und gib die Anzahl aus.",
+        "codeTemplate": "geheimtext = (\n    \"dboppox gsb exc roedo kloxn ew csolox erb rsxdob nob kvdox \"\n    \"lslvsydrou. lbsxqo nso ukbdo exn nox cmrveoccov wsd. xsowkxn nkbp \"\n    \"exc corox, noxx nob posxn vsocd tono xkmrbsmrd. goxx nob wyxn \"\n    \"kepqord, qorox gsb qowosxckw jew fobcdomu.\"\n)\nanzahl = 0\n# deine Schleife hier\n\nprint(anzahl)\n",
+        "solution": "geheimtext = (\n    \"dboppox gsb exc roedo kloxn ew csolox erb rsxdob nob kvdox \"\n    \"lslvsydrou. lbsxqo nso ukbdo exn nox cmrveoccov wsd. xsowkxn nkbp \"\n    \"exc corox, noxx nob posxn vsocd tono xkmrbsmrd. goxx nob wyxn \"\n    \"kepqord, qorox gsb qowosxckw jew fobcdomu.\"\n)\nanzahl = 0\nfor zeichen in geheimtext:\n    if zeichen == 'o':\n        anzahl = anzahl + 1\n\nprint(anzahl)",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "35"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "title": "Alle Buchstaben auf einmal zählen",
+    "file": "lektion-02.md",
+    "lessonSummary": "Dein Dictionary zählt jetzt jeden Buchstaben in einem einzigen Durchlauf – das ist das Herzstück der Häufigkeitsanalyse.",
+    "tasks": [
+      {
+        "instruction": "Schreibe die Funktion zaehle_buchstaben(text) (wie in der Lektion erklärt) und gib zaehle_buchstaben('anna und otto') aus.",
+        "codeTemplate": "def zaehle_buchstaben(text):\n    zaehlung = {}\n    # dein Code hier\n    return zaehlung\n\n# dein Aufruf hier\n",
+        "solution": "def zaehle_buchstaben(text):\n    zaehlung = {}\n    for zeichen in text:\n        if zeichen.isalpha():\n            if zeichen in zaehlung:\n                zaehlung[zeichen] = zaehlung[zeichen] + 1\n            else:\n                zaehlung[zeichen] = 1\n    return zaehlung\n\nprint(zaehle_buchstaben(\"anna und otto\"))",
+        "validation": {
+          "type": "output_contains",
+          "expected": "'n': 3"
+        }
+      },
+      {
+        "instruction": "Bonus: Wie viele verschiedene Buchstaben kommen im geheimtext vor? Kopiere deine Funktion zaehle_buchstaben aus Aufgabe 1 hierher und gib mit len() aus, wie viele Einträge das Dictionary für den geheimtext hat.",
+        "codeTemplate": "geheimtext = (\n    \"dboppox gsb exc roedo kloxn ew csolox erb rsxdob nob kvdox \"\n    \"lslvsydrou. lbsxqo nso ukbdo exn nox cmrveoccov wsd. xsowkxn nkbp \"\n    \"exc corox, noxx nob posxn vsocd tono xkmrbsmrd. goxx nob wyxn \"\n    \"kepqord, qorox gsb qowosxckw jew fobcdomu.\"\n)\n\n# deine Funktion zaehle_buchstaben und dein Aufruf hier\n",
+        "solution": "geheimtext = (\n    \"dboppox gsb exc roedo kloxn ew csolox erb rsxdob nob kvdox \"\n    \"lslvsydrou. lbsxqo nso ukbdo exn nox cmrveoccov wsd. xsowkxn nkbp \"\n    \"exc corox, noxx nob posxn vsocd tono xkmrbsmrd. goxx nob wyxn \"\n    \"kepqord, qorox gsb qowosxckw jew fobcdomu.\"\n)\n\ndef zaehle_buchstaben(text):\n    zaehlung = {}\n    for zeichen in text:\n        if zeichen.isalpha():\n            if zeichen in zaehlung:\n                zaehlung[zeichen] = zaehlung[zeichen] + 1\n            else:\n                zaehlung[zeichen] = 1\n    return zaehlung\n\nprint(len(zaehle_buchstaben(geheimtext)))",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "22"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "title": "Das Balkendiagramm",
+    "file": "lektion-03.md",
+    "lessonSummary": "Jetzt siehst du es mit eigenen Augen: Ein Buchstabe ragt weit über alle anderen hinaus.",
+    "tasks": [
+      {
+        "instruction": "Gib für den Text 'anna und otto' ein Balkendiagramm aus: für jeden Buchstaben (alphabetisch sortiert) eine Zeile mit dem Buchstaben, so vielen '#' wie er vorkommt, und der Anzahl – zum Beispiel 'a ## 2'.",
+        "codeTemplate": "def zaehle_buchstaben(text):\n    zaehlung = {}\n    for zeichen in text:\n        if zeichen.isalpha():\n            if zeichen in zaehlung:\n                zaehlung[zeichen] = zaehlung[zeichen] + 1\n            else:\n                zaehlung[zeichen] = 1\n    return zaehlung\n\nzaehlung = zaehle_buchstaben(\"anna und otto\")\n# deine Schleife hier\n",
+        "solution": "def zaehle_buchstaben(text):\n    zaehlung = {}\n    for zeichen in text:\n        if zeichen.isalpha():\n            if zeichen in zaehlung:\n                zaehlung[zeichen] = zaehlung[zeichen] + 1\n            else:\n                zaehlung[zeichen] = 1\n    return zaehlung\n\nzaehlung = zaehle_buchstaben(\"anna und otto\")\nfor buchstabe in sorted(zaehlung):\n    print(buchstabe, \"#\" * zaehlung[buchstabe], zaehlung[buchstabe])",
+        "validation": {
+          "type": "output_contains",
+          "expected": "n ### 3"
+        }
+      },
+      {
+        "instruction": "Zeichne jetzt dasselbe Balkendiagramm für den geheimtext. Welcher Balken ist mit Abstand der längste?",
+        "codeTemplate": "geheimtext = (\n    \"dboppox gsb exc roedo kloxn ew csolox erb rsxdob nob kvdox \"\n    \"lslvsydrou. lbsxqo nso ukbdo exn nox cmrveoccov wsd. xsowkxn nkbp \"\n    \"exc corox, noxx nob posxn vsocd tono xkmrbsmrd. goxx nob wyxn \"\n    \"kepqord, qorox gsb qowosxckw jew fobcdomu.\"\n)\n\ndef zaehle_buchstaben(text):\n    zaehlung = {}\n    for zeichen in text:\n        if zeichen.isalpha():\n            if zeichen in zaehlung:\n                zaehlung[zeichen] = zaehlung[zeichen] + 1\n            else:\n                zaehlung[zeichen] = 1\n    return zaehlung\n\nzaehlung = zaehle_buchstaben(geheimtext)\n# deine Schleife hier\n",
+        "solution": "geheimtext = (\n    \"dboppox gsb exc roedo kloxn ew csolox erb rsxdob nob kvdox \"\n    \"lslvsydrou. lbsxqo nso ukbdo exn nox cmrveoccov wsd. xsowkxn nkbp \"\n    \"exc corox, noxx nob posxn vsocd tono xkmrbsmrd. goxx nob wyxn \"\n    \"kepqord, qorox gsb qowosxckw jew fobcdomu.\"\n)\n\ndef zaehle_buchstaben(text):\n    zaehlung = {}\n    for zeichen in text:\n        if zeichen.isalpha():\n            if zeichen in zaehlung:\n                zaehlung[zeichen] = zaehlung[zeichen] + 1\n            else:\n                zaehlung[zeichen] = 1\n    return zaehlung\n\nzaehlung = zaehle_buchstaben(geheimtext)\nfor buchstabe in sorted(zaehlung):\n    print(buchstabe, \"#\" * zaehlung[buchstabe], zaehlung[buchstabe])",
+        "validation": {
+          "type": "output_contains",
+          "expected": "o ################################### 35"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "title": "Der häufigste Buchstabe",
+    "file": "lektion-04.md",
+    "lessonSummary": "Dein Programm findet den längsten Balken jetzt ganz allein – ohne dass du das Diagramm ansehen musst.",
+    "tasks": [
+      {
+        "instruction": "Schreibe die Funktion haeufigster_buchstabe(text) (wie in der Lektion erklärt) und gib mit print('Am häufigsten:', haeufigster_buchstabe(geheimtext)) aus, welcher Buchstabe im geheimtext am häufigsten ist.",
+        "codeTemplate": "geheimtext = (\n    \"dboppox gsb exc roedo kloxn ew csolox erb rsxdob nob kvdox \"\n    \"lslvsydrou. lbsxqo nso ukbdo exn nox cmrveoccov wsd. xsowkxn nkbp \"\n    \"exc corox, noxx nob posxn vsocd tono xkmrbsmrd. goxx nob wyxn \"\n    \"kepqord, qorox gsb qowosxckw jew fobcdomu.\"\n)\n\ndef zaehle_buchstaben(text):\n    zaehlung = {}\n    for zeichen in text:\n        if zeichen.isalpha():\n            if zeichen in zaehlung:\n                zaehlung[zeichen] = zaehlung[zeichen] + 1\n            else:\n                zaehlung[zeichen] = 1\n    return zaehlung\n\ndef haeufigster_buchstabe(text):\n    zaehlung = zaehle_buchstaben(text)\n    # dein Code hier\n    pass\n\n# dein Aufruf hier\n",
+        "solution": "geheimtext = (\n    \"dboppox gsb exc roedo kloxn ew csolox erb rsxdob nob kvdox \"\n    \"lslvsydrou. lbsxqo nso ukbdo exn nox cmrveoccov wsd. xsowkxn nkbp \"\n    \"exc corox, noxx nob posxn vsocd tono xkmrbsmrd. goxx nob wyxn \"\n    \"kepqord, qorox gsb qowosxckw jew fobcdomu.\"\n)\n\ndef zaehle_buchstaben(text):\n    zaehlung = {}\n    for zeichen in text:\n        if zeichen.isalpha():\n            if zeichen in zaehlung:\n                zaehlung[zeichen] = zaehlung[zeichen] + 1\n            else:\n                zaehlung[zeichen] = 1\n    return zaehlung\n\ndef haeufigster_buchstabe(text):\n    zaehlung = zaehle_buchstaben(text)\n    bester = \"\"\n    hoechste_anzahl = 0\n    for buchstabe in zaehlung:\n        if zaehlung[buchstabe] > hoechste_anzahl:\n            bester = buchstabe\n            hoechste_anzahl = zaehlung[buchstabe]\n    return bester\n\nprint(\"Am häufigsten:\", haeufigster_buchstabe(geheimtext))",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Am häufigsten: o"
+        }
+      },
+      {
+        "instruction": "Bonus: Die Gegenprobe mit ganz normalem Deutsch. Kopiere deine Funktion haeufigster_buchstabe aus Aufgabe 1 hierher und gib genauso aus, welcher Buchstabe in satz am häufigsten ist.",
+        "codeTemplate": "satz = \"jeder mensch lebt gerne in frieden\"\n\ndef zaehle_buchstaben(text):\n    zaehlung = {}\n    for zeichen in text:\n        if zeichen.isalpha():\n            if zeichen in zaehlung:\n                zaehlung[zeichen] = zaehlung[zeichen] + 1\n            else:\n                zaehlung[zeichen] = 1\n    return zaehlung\n\n# deine Funktion haeufigster_buchstabe und dein Aufruf hier\n",
+        "solution": "satz = \"jeder mensch lebt gerne in frieden\"\n\ndef zaehle_buchstaben(text):\n    zaehlung = {}\n    for zeichen in text:\n        if zeichen.isalpha():\n            if zeichen in zaehlung:\n                zaehlung[zeichen] = zaehlung[zeichen] + 1\n            else:\n                zaehlung[zeichen] = 1\n    return zaehlung\n\ndef haeufigster_buchstabe(text):\n    zaehlung = zaehle_buchstaben(text)\n    bester = \"\"\n    hoechste_anzahl = 0\n    for buchstabe in zaehlung:\n        if zaehlung[buchstabe] > hoechste_anzahl:\n            bester = buchstabe\n            hoechste_anzahl = zaehlung[buchstabe]\n    return bester\n\nprint(\"Am häufigsten:\", haeufigster_buchstabe(satz))",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "Am häufigsten: e"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "title": "Die Verschiebung erraten",
+    "file": "lektion-05.md",
+    "lessonSummary": "Aus einem einzigen Buchstaben hast du den geheimen Schlüssel berechnet – ganz ohne Durchprobieren.",
+    "tasks": [
+      {
+        "instruction": "Schreibe die Funktion errate_verschiebung(text) (wie in der Lektion erklärt) und gib mit print('Verschiebung:', errate_verschiebung(geheimtext)) aus, mit welcher Verschiebung der geheimtext verschlüsselt wurde.",
+        "codeTemplate": "geheimtext = (\n    \"dboppox gsb exc roedo kloxn ew csolox erb rsxdob nob kvdox \"\n    \"lslvsydrou. lbsxqo nso ukbdo exn nox cmrveoccov wsd. xsowkxn nkbp \"\n    \"exc corox, noxx nob posxn vsocd tono xkmrbsmrd. goxx nob wyxn \"\n    \"kepqord, qorox gsb qowosxckw jew fobcdomu.\"\n)\n\ndef zaehle_buchstaben(text):\n    zaehlung = {}\n    for zeichen in text:\n        if zeichen.isalpha():\n            if zeichen in zaehlung:\n                zaehlung[zeichen] = zaehlung[zeichen] + 1\n            else:\n                zaehlung[zeichen] = 1\n    return zaehlung\n\ndef haeufigster_buchstabe(text):\n    zaehlung = zaehle_buchstaben(text)\n    bester = \"\"\n    hoechste_anzahl = 0\n    for buchstabe in zaehlung:\n        if zaehlung[buchstabe] > hoechste_anzahl:\n            bester = buchstabe\n            hoechste_anzahl = zaehlung[buchstabe]\n    return bester\n\ndef errate_verschiebung(text):\n    # dein Code hier\n    pass\n\n# dein Aufruf hier\n",
+        "solution": "geheimtext = (\n    \"dboppox gsb exc roedo kloxn ew csolox erb rsxdob nob kvdox \"\n    \"lslvsydrou. lbsxqo nso ukbdo exn nox cmrveoccov wsd. xsowkxn nkbp \"\n    \"exc corox, noxx nob posxn vsocd tono xkmrbsmrd. goxx nob wyxn \"\n    \"kepqord, qorox gsb qowosxckw jew fobcdomu.\"\n)\n\ndef zaehle_buchstaben(text):\n    zaehlung = {}\n    for zeichen in text:\n        if zeichen.isalpha():\n            if zeichen in zaehlung:\n                zaehlung[zeichen] = zaehlung[zeichen] + 1\n            else:\n                zaehlung[zeichen] = 1\n    return zaehlung\n\ndef haeufigster_buchstabe(text):\n    zaehlung = zaehle_buchstaben(text)\n    bester = \"\"\n    hoechste_anzahl = 0\n    for buchstabe in zaehlung:\n        if zaehlung[buchstabe] > hoechste_anzahl:\n            bester = buchstabe\n            hoechste_anzahl = zaehlung[buchstabe]\n    return bester\n\ndef errate_verschiebung(text):\n    haeufigster = haeufigster_buchstabe(text)\n    return (ord(haeufigster) - ord('e')) % 26\n\nprint(\"Verschiebung:\", errate_verschiebung(geheimtext))",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Verschiebung: 10"
+        }
+      },
+      {
+        "instruction": "Bonus: In einer anderen Geheimnachricht ist 'b' der häufigste Buchstabe – er steht im Alphabet vor dem 'e'. Berechne mit ord() und % 26 die Verschiebung und gib sie aus.",
+        "codeTemplate": "",
+        "solution": "print((ord('b') - ord('e')) % 26)",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "23"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "title": "Der automatische Knacker",
+    "file": "lektion-06.md",
+    "lessonSummary": "Geknackt! Dein Programm hat die Nachricht ohne Schlüssel gelesen – und zwar ganz von allein.",
+    "tasks": [
+      {
+        "instruction": "Schreibe die Funktion knacke(text): Sie errät die Verschiebung und gibt den entschlüsselten Text zurück. Gib knacke(geheimtext) aus und lies endlich die abgefangene Nachricht!",
+        "codeTemplate": "geheimtext = (\n    \"dboppox gsb exc roedo kloxn ew csolox erb rsxdob nob kvdox \"\n    \"lslvsydrou. lbsxqo nso ukbdo exn nox cmrveoccov wsd. xsowkxn nkbp \"\n    \"exc corox, noxx nob posxn vsocd tono xkmrbsmrd. goxx nob wyxn \"\n    \"kepqord, qorox gsb qowosxckw jew fobcdomu.\"\n)\n\ndef verschluesseln(text, verschiebung):\n    ergebnis = \"\"\n    for zeichen in text:\n        if zeichen.isalpha():\n            start = ord('a')\n            position = ord(zeichen) - start\n            neue_position = (position + verschiebung) % 26\n            ergebnis = ergebnis + chr(start + neue_position)\n        else:\n            ergebnis = ergebnis + zeichen\n    return ergebnis\n\ndef entschluesseln(text, verschiebung):\n    return verschluesseln(text, -verschiebung)\n\ndef zaehle_buchstaben(text):\n    zaehlung = {}\n    for zeichen in text:\n        if zeichen.isalpha():\n            if zeichen in zaehlung:\n                zaehlung[zeichen] = zaehlung[zeichen] + 1\n            else:\n                zaehlung[zeichen] = 1\n    return zaehlung\n\ndef haeufigster_buchstabe(text):\n    zaehlung = zaehle_buchstaben(text)\n    bester = \"\"\n    hoechste_anzahl = 0\n    for buchstabe in zaehlung:\n        if zaehlung[buchstabe] > hoechste_anzahl:\n            bester = buchstabe\n            hoechste_anzahl = zaehlung[buchstabe]\n    return bester\n\ndef errate_verschiebung(text):\n    haeufigster = haeufigster_buchstabe(text)\n    return (ord(haeufigster) - ord('e')) % 26\n\ndef knacke(text):\n    # dein Code hier\n    pass\n\n# dein Aufruf hier\n",
+        "solution": "geheimtext = (\n    \"dboppox gsb exc roedo kloxn ew csolox erb rsxdob nob kvdox \"\n    \"lslvsydrou. lbsxqo nso ukbdo exn nox cmrveoccov wsd. xsowkxn nkbp \"\n    \"exc corox, noxx nob posxn vsocd tono xkmrbsmrd. goxx nob wyxn \"\n    \"kepqord, qorox gsb qowosxckw jew fobcdomu.\"\n)\n\ndef verschluesseln(text, verschiebung):\n    ergebnis = \"\"\n    for zeichen in text:\n        if zeichen.isalpha():\n            start = ord('a')\n            position = ord(zeichen) - start\n            neue_position = (position + verschiebung) % 26\n            ergebnis = ergebnis + chr(start + neue_position)\n        else:\n            ergebnis = ergebnis + zeichen\n    return ergebnis\n\ndef entschluesseln(text, verschiebung):\n    return verschluesseln(text, -verschiebung)\n\ndef zaehle_buchstaben(text):\n    zaehlung = {}\n    for zeichen in text:\n        if zeichen.isalpha():\n            if zeichen in zaehlung:\n                zaehlung[zeichen] = zaehlung[zeichen] + 1\n            else:\n                zaehlung[zeichen] = 1\n    return zaehlung\n\ndef haeufigster_buchstabe(text):\n    zaehlung = zaehle_buchstaben(text)\n    bester = \"\"\n    hoechste_anzahl = 0\n    for buchstabe in zaehlung:\n        if zaehlung[buchstabe] > hoechste_anzahl:\n            bester = buchstabe\n            hoechste_anzahl = zaehlung[buchstabe]\n    return bester\n\ndef errate_verschiebung(text):\n    haeufigster = haeufigster_buchstabe(text)\n    return (ord(haeufigster) - ord('e')) % 26\n\ndef knacke(text):\n    verschiebung = errate_verschiebung(text)\n    return entschluesseln(text, verschiebung)\n\nprint(knacke(geheimtext))",
+        "validation": {
+          "type": "output_contains",
+          "expected": "hinter der alten bibliothek"
+        }
+      },
+      {
+        "instruction": "Bonus: Eine zweite Nachricht wurde abgefangen – mit einer anderen Verschiebung. Kopiere deine Funktion knacke aus Aufgabe 1 hierher und gib knacke(geheimtext) aus.",
+        "codeTemplate": "geheimtext = (\n    \"zxaxbfx fxewngz: wxk lvatms ebxzm ngmxk wxk wkbmmxg xbvax gxuxg wxf \"\n    \"lxx. xkstxaex xl dxbgxf fxglvaxg.\"\n)\n\ndef verschluesseln(text, verschiebung):\n    ergebnis = \"\"\n    for zeichen in text:\n        if zeichen.isalpha():\n            start = ord('a')\n            position = ord(zeichen) - start\n            neue_position = (position + verschiebung) % 26\n            ergebnis = ergebnis + chr(start + neue_position)\n        else:\n            ergebnis = ergebnis + zeichen\n    return ergebnis\n\ndef entschluesseln(text, verschiebung):\n    return verschluesseln(text, -verschiebung)\n\ndef zaehle_buchstaben(text):\n    zaehlung = {}\n    for zeichen in text:\n        if zeichen.isalpha():\n            if zeichen in zaehlung:\n                zaehlung[zeichen] = zaehlung[zeichen] + 1\n            else:\n                zaehlung[zeichen] = 1\n    return zaehlung\n\ndef haeufigster_buchstabe(text):\n    zaehlung = zaehle_buchstaben(text)\n    bester = \"\"\n    hoechste_anzahl = 0\n    for buchstabe in zaehlung:\n        if zaehlung[buchstabe] > hoechste_anzahl:\n            bester = buchstabe\n            hoechste_anzahl = zaehlung[buchstabe]\n    return bester\n\ndef errate_verschiebung(text):\n    haeufigster = haeufigster_buchstabe(text)\n    return (ord(haeufigster) - ord('e')) % 26\n\n# deine Funktion knacke und dein Aufruf hier\n",
+        "solution": "geheimtext = (\n    \"zxaxbfx fxewngz: wxk lvatms ebxzm ngmxk wxk wkbmmxg xbvax gxuxg wxf \"\n    \"lxx. xkstxaex xl dxbgxf fxglvaxg.\"\n)\n\ndef verschluesseln(text, verschiebung):\n    ergebnis = \"\"\n    for zeichen in text:\n        if zeichen.isalpha():\n            start = ord('a')\n            position = ord(zeichen) - start\n            neue_position = (position + verschiebung) % 26\n            ergebnis = ergebnis + chr(start + neue_position)\n        else:\n            ergebnis = ergebnis + zeichen\n    return ergebnis\n\ndef entschluesseln(text, verschiebung):\n    return verschluesseln(text, -verschiebung)\n\ndef zaehle_buchstaben(text):\n    zaehlung = {}\n    for zeichen in text:\n        if zeichen.isalpha():\n            if zeichen in zaehlung:\n                zaehlung[zeichen] = zaehlung[zeichen] + 1\n            else:\n                zaehlung[zeichen] = 1\n    return zaehlung\n\ndef haeufigster_buchstabe(text):\n    zaehlung = zaehle_buchstaben(text)\n    bester = \"\"\n    hoechste_anzahl = 0\n    for buchstabe in zaehlung:\n        if zaehlung[buchstabe] > hoechste_anzahl:\n            bester = buchstabe\n            hoechste_anzahl = zaehlung[buchstabe]\n    return bester\n\ndef errate_verschiebung(text):\n    haeufigster = haeufigster_buchstabe(text)\n    return (ord(haeufigster) - ord('e')) % 26\n\ndef knacke(text):\n    verschiebung = errate_verschiebung(text)\n    return entschluesseln(text, verschiebung)\n\nprint(knacke(geheimtext))",
+        "isBonus": true,
+        "validation": {
+          "type": "output_contains",
+          "expected": "unter der dritten eiche"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "title": "Wenn das E nicht gewinnt",
+    "file": "lektion-07.md",
+    "lessonSummary": "Dein Knacker bewertet jetzt alle 26 Möglichkeiten und lässt sich auch von kurzen Nachrichten nicht mehr so leicht austricksen.",
+    "tasks": [
+      {
+        "instruction": "Schreibe die Funktion bewerte(text): Sie zählt für jeden Buchstaben des Textes die Punkte aus dem Dictionary PUNKTE zusammen. Gib bewerte('drachenblut') aus.",
+        "codeTemplate": "PUNKTE = {\n    'e': 17, 'n': 10, 'i': 8, 's': 7, 'r': 7, 'a': 7, 't': 6, 'd': 5, 'h': 5,\n    'u': 4, 'l': 3, 'c': 3, 'g': 3, 'm': 3, 'o': 3, 'b': 2, 'w': 2, 'f': 2,\n    'k': 1, 'z': 1, 'p': 1, 'v': 1, 'j': 0, 'y': 0, 'x': 0, 'q': 0\n}\n\ndef bewerte(text):\n    punkte = 0\n    # dein Code hier\n    return punkte\n\n# dein Aufruf hier\n",
+        "solution": "PUNKTE = {\n    'e': 17, 'n': 10, 'i': 8, 's': 7, 'r': 7, 'a': 7, 't': 6, 'd': 5, 'h': 5,\n    'u': 4, 'l': 3, 'c': 3, 'g': 3, 'm': 3, 'o': 3, 'b': 2, 'w': 2, 'f': 2,\n    'k': 1, 'z': 1, 'p': 1, 'v': 1, 'j': 0, 'y': 0, 'x': 0, 'q': 0\n}\n\ndef bewerte(text):\n    punkte = 0\n    for zeichen in text:\n        if zeichen in PUNKTE:\n            punkte = punkte + PUNKTE[zeichen]\n    return punkte\n\nprint(bewerte(\"drachenblut\"))",
+        "validation": {
+          "type": "output_contains",
+          "expected": "69"
+        }
+      },
+      {
+        "instruction": "Schreibe die Funktion knacke_besser(text): Sie probiert alle 26 Verschiebungen aus, bewertet jeden Versuch mit bewerte() und merkt sich den Text mit den meisten Punkten. Gib knacke_besser(geheimtext) aus.",
+        "codeTemplate": "geheimtext = \"atykx vgyycuxz rgazkz jxginkthraz\"\n\nPUNKTE = {\n    'e': 17, 'n': 10, 'i': 8, 's': 7, 'r': 7, 'a': 7, 't': 6, 'd': 5, 'h': 5,\n    'u': 4, 'l': 3, 'c': 3, 'g': 3, 'm': 3, 'o': 3, 'b': 2, 'w': 2, 'f': 2,\n    'k': 1, 'z': 1, 'p': 1, 'v': 1, 'j': 0, 'y': 0, 'x': 0, 'q': 0\n}\n\ndef verschluesseln(text, verschiebung):\n    ergebnis = \"\"\n    for zeichen in text:\n        if zeichen.isalpha():\n            start = ord('a')\n            position = ord(zeichen) - start\n            neue_position = (position + verschiebung) % 26\n            ergebnis = ergebnis + chr(start + neue_position)\n        else:\n            ergebnis = ergebnis + zeichen\n    return ergebnis\n\ndef entschluesseln(text, verschiebung):\n    return verschluesseln(text, -verschiebung)\n\ndef bewerte(text):\n    punkte = 0\n    for zeichen in text:\n        if zeichen in PUNKTE:\n            punkte = punkte + PUNKTE[zeichen]\n    return punkte\n\ndef knacke_besser(text):\n    bester_text = \"\"\n    beste_punkte = -1\n    # dein Code hier\n    return bester_text\n\n# dein Aufruf hier\n",
+        "solution": "geheimtext = \"atykx vgyycuxz rgazkz jxginkthraz\"\n\nPUNKTE = {\n    'e': 17, 'n': 10, 'i': 8, 's': 7, 'r': 7, 'a': 7, 't': 6, 'd': 5, 'h': 5,\n    'u': 4, 'l': 3, 'c': 3, 'g': 3, 'm': 3, 'o': 3, 'b': 2, 'w': 2, 'f': 2,\n    'k': 1, 'z': 1, 'p': 1, 'v': 1, 'j': 0, 'y': 0, 'x': 0, 'q': 0\n}\n\ndef verschluesseln(text, verschiebung):\n    ergebnis = \"\"\n    for zeichen in text:\n        if zeichen.isalpha():\n            start = ord('a')\n            position = ord(zeichen) - start\n            neue_position = (position + verschiebung) % 26\n            ergebnis = ergebnis + chr(start + neue_position)\n        else:\n            ergebnis = ergebnis + zeichen\n    return ergebnis\n\ndef entschluesseln(text, verschiebung):\n    return verschluesseln(text, -verschiebung)\n\ndef bewerte(text):\n    punkte = 0\n    for zeichen in text:\n        if zeichen in PUNKTE:\n            punkte = punkte + PUNKTE[zeichen]\n    return punkte\n\ndef knacke_besser(text):\n    bester_text = \"\"\n    beste_punkte = -1\n    for verschiebung in range(26):\n        versuch = entschluesseln(text, verschiebung)\n        punkte = bewerte(versuch)\n        if punkte > beste_punkte:\n            beste_punkte = punkte\n            bester_text = versuch\n    return bester_text\n\nprint(knacke_besser(geheimtext))",
+        "validation": {
+          "type": "output_contains",
+          "expected": "unser passwort lautet drachenblut"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-08",
+    "title": "Warum Vigenère standhält",
+    "file": "lektion-08.md",
+    "lessonSummary": "Geschafft! Du hast einen echten Code-Knacker gebaut – und verstanden, warum er an der Vigenère-Chiffre scheitert.",
+    "tasks": [
+      {
+        "instruction": "Die Funktion verschluesseln ist diesmal die aus dem Vigenère-Projekt. Verschlüssle damit den Text 'eeeeee' mit dem Schlüsselwort 'key' und gib das Ergebnis aus. Was wird aus den sechs gleichen Buchstaben?",
+        "codeTemplate": "def verschluesseln(text, schluesselwort):\n    ergebnis = \"\"\n    schluessel_index = 0\n    for zeichen in text:\n        if zeichen.isalpha():\n            start = ord('a')\n            position = ord(zeichen) - start\n            schluessel_buchstabe = schluesselwort[schluessel_index % len(schluesselwort)]\n            verschiebung = ord(schluessel_buchstabe) - start\n            neue_position = (position + verschiebung) % 26\n            ergebnis = ergebnis + chr(start + neue_position)\n            schluessel_index = schluessel_index + 1\n        else:\n            ergebnis = ergebnis + zeichen\n    return ergebnis\n\n# dein Aufruf hier\n",
+        "solution": "def verschluesseln(text, schluesselwort):\n    ergebnis = \"\"\n    schluessel_index = 0\n    for zeichen in text:\n        if zeichen.isalpha():\n            start = ord('a')\n            position = ord(zeichen) - start\n            schluessel_buchstabe = schluesselwort[schluessel_index % len(schluesselwort)]\n            verschiebung = ord(schluessel_buchstabe) - start\n            neue_position = (position + verschiebung) % 26\n            ergebnis = ergebnis + chr(start + neue_position)\n            schluessel_index = schluessel_index + 1\n        else:\n            ergebnis = ergebnis + zeichen\n    return ergebnis\n\nprint(verschluesseln(\"eeeeee\", \"key\"))",
+        "validation": {
+          "type": "output_contains",
+          "expected": "oicoic"
+        }
+      },
+      {
+        "instruction": "Dieselbe Nachricht wurde einmal mit Cäsar (caesar_text) und einmal mit Vigenère (vigenere_text) verschlüsselt. Gib für beide den häufigsten Buchstaben und seine Anzahl aus – in der Form 'Caesar: o 35' und 'Vigenere: ...' (ohne Akzent, das tippt sich leichter). Wie hoch ist der höchste Balken jetzt noch?",
+        "codeTemplate": "caesar_text = (\n    \"dboppox gsb exc roedo kloxn ew csolox erb rsxdob nob kvdox \"\n    \"lslvsydrou. lbsxqo nso ukbdo exn nox cmrveoccov wsd. xsowkxn nkbp \"\n    \"exc corox, noxx nob posxn vsocd tono xkmrbsmrd. goxx nob wyxn \"\n    \"kepqord, qorox gsb qowosxckw jew fobcdomu.\"\n)\nvigenere_text = (\n    \"dvcpjcx agb ylc lcexc kfcxh sw wgofcx yfb lgxxcb hcb ejdil \"\n    \"lmzvmmdlcu. fpsreo hgo oybxc erb nil cgfvyccwcv qgd. rgoqyxh bkvd \"\n    \"erq cifor, borl nip pigxh jsiqd ncni lkgfbmarx. uorl nip wsln \"\n    \"espkcrx, eolcx agb kcwigxwyw dsw zcbwrogi.\"\n)\n\ndef zaehle_buchstaben(text):\n    zaehlung = {}\n    for zeichen in text:\n        if zeichen.isalpha():\n            if zeichen in zaehlung:\n                zaehlung[zeichen] = zaehlung[zeichen] + 1\n            else:\n                zaehlung[zeichen] = 1\n    return zaehlung\n\ndef haeufigster_buchstabe(text):\n    zaehlung = zaehle_buchstaben(text)\n    bester = \"\"\n    hoechste_anzahl = 0\n    for buchstabe in zaehlung:\n        if zaehlung[buchstabe] > hoechste_anzahl:\n            bester = buchstabe\n            hoechste_anzahl = zaehlung[buchstabe]\n    return bester\n\n# dein Code hier\n",
+        "solution": "caesar_text = (\n    \"dboppox gsb exc roedo kloxn ew csolox erb rsxdob nob kvdox \"\n    \"lslvsydrou. lbsxqo nso ukbdo exn nox cmrveoccov wsd. xsowkxn nkbp \"\n    \"exc corox, noxx nob posxn vsocd tono xkmrbsmrd. goxx nob wyxn \"\n    \"kepqord, qorox gsb qowosxckw jew fobcdomu.\"\n)\nvigenere_text = (\n    \"dvcpjcx agb ylc lcexc kfcxh sw wgofcx yfb lgxxcb hcb ejdil \"\n    \"lmzvmmdlcu. fpsreo hgo oybxc erb nil cgfvyccwcv qgd. rgoqyxh bkvd \"\n    \"erq cifor, borl nip pigxh jsiqd ncni lkgfbmarx. uorl nip wsln \"\n    \"espkcrx, eolcx agb kcwigxwyw dsw zcbwrogi.\"\n)\n\ndef zaehle_buchstaben(text):\n    zaehlung = {}\n    for zeichen in text:\n        if zeichen.isalpha():\n            if zeichen in zaehlung:\n                zaehlung[zeichen] = zaehlung[zeichen] + 1\n            else:\n                zaehlung[zeichen] = 1\n    return zaehlung\n\ndef haeufigster_buchstabe(text):\n    zaehlung = zaehle_buchstaben(text)\n    bester = \"\"\n    hoechste_anzahl = 0\n    for buchstabe in zaehlung:\n        if zaehlung[buchstabe] > hoechste_anzahl:\n            bester = buchstabe\n            hoechste_anzahl = zaehlung[buchstabe]\n    return bester\n\nbuchstabe = haeufigster_buchstabe(caesar_text)\nprint(\"Caesar:\", buchstabe, zaehle_buchstaben(caesar_text)[buchstabe])\nbuchstabe = haeufigster_buchstabe(vigenere_text)\nprint(\"Vigenere:\", buchstabe, zaehle_buchstaben(vigenere_text)[buchstabe])",
+        "validation": {
+          "type": "output_contains",
+          "expected": "Vigenere: c 21"
+        }
+      }
+    ]
+  }
+]
