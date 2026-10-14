@@ -183,10 +183,15 @@ function buildSandboxHtml(mode) {
         return;
       }
       if (msg.mode === 'clickText') {
-        var btn = document.getElementById(msg.click);
+        // click ist eine ID oder (Projekt "Memory") eine Liste von IDs, die der Reihe nach
+        // angeklickt werden - noetig, wenn erst zwei verschiedene Elemente zusammen etwas ausloesen.
+        var clickIds = Array.isArray(msg.click) ? msg.click : [msg.click];
         var n = msg.clicks || 1;
         for (var k = 0; k < n; k++) {
-          if (btn) btn.click();
+          for (var c = 0; c < clickIds.length; c++) {
+            var btn = document.getElementById(clickIds[c]);
+            if (btn) btn.click();
+          }
         }
         var targetEl = document.getElementById(msg.target);
         send({ type: 'result', reqId: msg.reqId, ok: true, value: targetEl ? targetEl.textContent : null });
@@ -223,7 +228,8 @@ const SANDBOX_SRCDOC_DOM = buildSandboxHtml('dom');
  * (anders als beim geteilten Pyodide-Kernel in usePyodide.js).
  *
  * @param {'canvas'|'dom'} mode - 'canvas' (Default) zeigt das Zeichen-Canvas (js-spielewerkstatt),
- *   'dom' zeigt stattdessen die feste DOM-Uebungsflaeche (js-grundkurs Woche 7/8).
+ *   'dom' zeigt stattdessen die feste DOM-Uebungsflaeche (js-grundkurs Woche 7/8 und Projekt-Kurse
+ *   mit `"sandboxMode": "dom"` in kurse.json, z.B. js-memory).
  */
 export function useJsSandbox(mode = 'canvas') {
   const srcdoc = mode === 'dom' ? SANDBOX_SRCDOC_DOM : SANDBOX_SRCDOC_CANVAS;

@@ -62,6 +62,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.100 | Themen angeglichen (12-Wochen-Kurs Woche 2–4) + Lösungs-Reihenfolge | gleiche Lektionen/Konzepte in Abenteuer/Pferde/Sci-Fi; neue Lektionen mit neuer ID an passender Stelle; `scripts/sync_loesungen.py` (Woche 9 war im Download verschoben) |
 | 3.101 | micro:bit-Kurs „Das Roboterauto“ (`projekt-microbit-auto`) | erster Hardware-Kurs: `engine: "anleitung"` → `GuideLessonView.vue` (Aufgaben zum Abhaken statt Prüfung, Umschalter Blöcke/Python über `:::bloecke`/`:::python`, MakeCode-Blöcke als ```` ```bloecke ````-Text); 11 Stufen in `content/microbit-auto/`; seit 14.10. in `/projekte` verlinkt (das Feld `"unlisted": true` gibt es weiter für künftige Kurse); ein zurückgenommener Pflicht-Haken nimmt den Abschluss der Stufe zurück (`unmarkCompleted`); Details in `INHALTE.md` Abschnitt 6 |
 | 3.102 | Eigenes Passwort ändern + Reset per Einmal-Passwort | `POST /api/password` (liefert frisches Token), `POST /api/admin/users/:id/reset-password` (Einmal-Passwort, `must_change_password`), Zwangswechsel im Einstellungs-Modal (`App.vue`), `requireUser` lehnt Tokens mit `iat` vor `password_changed_at` ab; Druck: `drucker.py account <name>` |
+| 3.103 | Projekt „Memory“ (`projekt-js-memory`), erstes DOM-Projekt | 7 Lektionen in `content/js-memory/`; `"sandboxMode": "dom"` in `kurse.json` → `ProjectCourse.vue` zeigt die DOM-Übungsfläche statt des Canvas; `dom_click_text` nimmt bei `click` auch eine Liste von IDs; `tests/js-memory.spec.js` |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -121,6 +122,14 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 - Chromium drosselt `requestAnimationFrame` in Off-screen-iframes → `scrollIntoView()` vor dem Lauf.
   `postMessage` nur mit reinen Werten (Vue-Proxies lassen sich nicht klonen).
 - Keine echte Endlosschleife als Debug-Bug (kein Loop-Guard, nur 5s-Timeout).
+- DOM-Projekte (`"sandboxMode": "dom"`, 3.103): `dom_click_text` klickt und liest im selben Tick —
+  was erst ein `setTimeout` erledigt (Karten zurückdrehen), lässt sich nicht prüfen; stattdessen den
+  sofort sichtbaren Zustand prüfen (Sperre, Zähler). Zufall (gemischte Karten) nur über Eigenschaften
+  prüfen, die bei jeder Reihenfolge gelten; Aufgaben mit festem Klick-Ergebnis bleiben ungemischt.
+- Sandbox-Elemente mit `id` sind auch globale Namen, und `status`/`name`/`top` gehören dem Fenster —
+  solche Variablennamen in Vorlagen meiden (`meldung` statt `status`).
+- Jede Pflichtaufgabe gegenprüfen: Die unveränderte Vorlage darf die Prüfung nicht bestehen
+  (`tests/js-memory.spec.js` macht das für jede Aufgabe).
 
 **Vue / CSS / Tests**
 - `@import` in `<style scoped>` bekommt einen anderen Scope-Hash → in separaten **unscoped** `<style>`-Block. Vor CSS-Extraktion Klassennamen repo-weit grep-prüfen (3.19, 3.20).
@@ -294,7 +303,7 @@ Ausführlich in `todo.md`. Kurzfassung:
 
 **Inhalte**
 - Interaktiv-Kurs: "Ausführen vs. Prüfen"/Weiter-Flow — braucht konkretes Nutzer-Feedback.
-- Alle 7 Projekt-Kurse: EN-Version offen (DE-first, `kurse.json` hat schon `title_en`).
+- Alle 8 Projekt-Kurse (ohne micro:bit, siehe `todo.md`): EN-Version offen (DE-first, `kurse.json` hat schon `title_en`).
 - Zertifikat-PDF: E-Mail-Versand später (hängt an der Kontakt-Adresse, nicht selbst erfinden).
 - Überlegung (nicht entschieden): dritte Sprache; UI-Ternarys sind schon auf `t()`, offen nur Content-Suffixe.
 

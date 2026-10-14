@@ -42,7 +42,7 @@ nächsten Themen. Diese Datei wird nicht automatisch geladen.
       **zurückgestellt** (Nutzer will erst später deployen). Backup-Cron auf dem Server einrichten
       (Befehl siehe HANDOFF.md Abschnitt 4); externe Sicherung der Backups bewusst nicht mitgebaut.
 - [ ] Projekt-Kurse (Cäsar, Vigenère, Morsecode, Zahlen-Detektiv, JS-Spielewerkstatt, Snake,
-      Text-Adventure): nur DE-Content, EN fehlt noch (`kurse.json` hat bereits `title_en` für alle 7,
+      Text-Adventure, Memory): nur DE-Content, EN fehlt noch (`kurse.json` hat bereits `title_en` für alle 8,
       `lessons.json`/`lektion-*.md` sind nur deutsch).
 - [ ] Weitere Sprache neben DE/EN? Noch keine Entscheidung, kein Ziel. UI-Texte laufen bereits über
       `t()` (`locales/de.js`/`en.js`); offen bliebe nur der Content: `_en`-Feld-Suffix in

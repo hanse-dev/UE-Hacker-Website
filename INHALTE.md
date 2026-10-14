@@ -16,6 +16,7 @@ Dieses Dokument beschreibt, welche Dateien zusammengehören und was bei Änderun
 | `projekt-morsecode` | `content/morsecode/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON) |
 | `projekt-zahlendetektiv` | `content/zahlendetektiv/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON) |
 | `projekt-js-spielewerkstatt` | `content/js-spielewerkstatt/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON, `engine: "js-sandbox"`) |
+| `projekt-js-memory` | `content/js-memory/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON, `engine: "js-sandbox"`, `sandboxMode: "dom"` — DOM statt Canvas) |
 | `projekt-microbit-auto` | `content/microbit-auto/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON, `engine: "anleitung"`, Hardware-Kurs zum Abhaken) |
 | *(Lektions-Format)* Woche 1–12 (alle) | `content/python-woche{N}-{abenteuer\|pferde\|scifi}/` | `content/python-woche{N}-{thema}-en/` | Markdown + JSON, Pyodide; ersetzt die Notebook-Schritte Lektion/Debug/Missionen/Boss jeder Woche/Variante/Sprache (siehe HANDOFF.md 3.47–3.54). Die alten `1_lektion`/`2_debug`/`3_missionen`/`5_boss`-Zellenordner gibt es nicht mehr — nur `0_glossar` und `6_loesungen` bleiben als Notebooks (Nachschlagewerke, siehe unten). |
 | `js-grundkurs` | `content/js-grundkurs/` (Beschreibung) + `content/js-grundkurs-woche{1-9}/` (Wochen) | *(keine EN-Version)* | Grundkurs (Markdown + JSON, `engine: "js-sandbox"`, eigene Mehrwochen-Struktur) |
@@ -387,6 +388,13 @@ Ordner-Mapping (immer paarweise anpassen):
       wirklich laufende `requestAnimationFrame`-Schleife, nicht nur ein einzelnes Standbild).
       Fehlt `validation.expected`, wird die Ausgabe-Prüfung übersprungen (für reine Canvas-/
       Funktions-Aufgaben ohne geforderte `console.log`-Ausgabe).
+- [ ] Projekt ohne Canvas (wie `js-memory`): zusätzlich `"sandboxMode": "dom"` in `kurse.json`.
+      Die Sandbox zeigt dann die DOM-Übungsfläche aus `js-grundkurs` Woche 7 (`#dom-uebung` mit
+      `#ueberschrift`, `#text`, `#knopf`, `#anzeige`); eigene Elemente hängt der Code per
+      `createElement`/`appendChild` an. Prüfung über `dom_text` (`target`, `text`) und
+      `dom_click_text` (`click`, `target`, `text`, optional `clicks`). `click` ist eine ID oder
+      eine Liste von IDs, die der Reihe nach angeklickt werden. Gelesen wird sofort nach dem
+      letzten Klick — ein `setTimeout` im Aufgaben-Code ist dann noch nicht gelaufen.
 - [ ] Jede Aufgabe braucht eine echte `validation` — es gibt bewusst **keinen** Selbsteinschätzungs-
       Button ("Ich hab's ausprobiert") mehr, jede Aufgabe (auch Demo-Beispiele mit bereits fertigem
       `codeTemplate`) wird über Ausführen + Prüfen automatisch geprüft. Ein Demo-Beispiel bekommt

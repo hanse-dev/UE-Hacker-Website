@@ -85,6 +85,7 @@
           :variant="contentPath"
           :course-id="courseId"
           :show-canvas="showCanvas"
+          :dom-mode="domMode"
           :is-project-course="true"
           :is-last-lesson="isLastLesson"
           @completed="onLessonCompleted"
@@ -115,6 +116,9 @@ export default {
     // Nur fuer engine: 'js-sandbox' relevant - ob das Canvas/iframe sichtbar sein soll (z.B. fuer
     // einen Spiele-Kurs) oder ausgeblendet bleibt, weil der Kurs nie zeichnet.
     showCanvas: { type: Boolean, default: true },
+    // Nur fuer engine: 'js-sandbox': zeigt statt des Canvas die DOM-Uebungsflaeche der Sandbox
+    // (`"sandboxMode": "dom"` in kurse.json, z.B. das Memory-Projekt).
+    domMode: { type: Boolean, default: false },
   },
   setup(props) {
     const { lang, t } = useLanguage();
