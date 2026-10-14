@@ -1,5 +1,5 @@
 <template>
-  <div class="project-course">
+  <div class="project-course" :class="{ 'project-course-wide': engine === 'js-sandbox' && showCanvas }">
     <div v-if="loading" class="loading">{{ t('lessons.loading') }}</div>
     <div v-else-if="error" class="error">{{ error }}</div>
 
@@ -264,6 +264,11 @@ export default {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px 0;
+}
+
+/* JS-Projekte: Platz fuer die Arbeitsflaeche rechts neben der Lektion (JsLessonView.vue). */
+.project-course.project-course-wide {
+  max-width: 1600px;
 }
 
 .loading,

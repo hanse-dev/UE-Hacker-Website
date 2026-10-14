@@ -2648,3 +2648,25 @@ fortgeschritten, ab ca. 14), Idee aus `PROJEKTIDEEN.md`: eine Cäsar-Nachricht o
 - **Tests:** `tests/projekte.spec.js` — Karten-/Filter-Zahlen, „Lektion 1 lösen schaltet Lektion 2
   frei“ (inkl. unveränderte Vorlage fällt durch) und ein Durchlauf, der jede Musterlösung aus
   `lessons.json` in Pyodide gegen ihre eigene Prüfung laufen lässt.
+
+### 3.106 — Geteilte Ansicht in JS-Lektionen (Branch `js-geteilte-ansicht`)
+
+Wunsch des Nutzers: links der Kurs, rechts eine Arbeitsfläche, in der gerendert wird.
+
+- **Eine Sandbox pro Lektion** statt einer pro Aufgabe (`JsLessonView.vue`). Jeder Lauf baut das
+  iframe ohnehin neu auf, es gab also nichts zu verlieren. `activeIdx` merkt sich, welche Aufgabe
+  die Arbeitsfläche gerade zeigt („Arbeitsfläche · Aufgabe 3“); gemountet wird erst beim ersten Lauf.
+  Zurücksetzen der gezeigten Aufgabe leert die Fläche wieder.
+- **Breit** (`.lesson-view` ≥ 920 px, Container-Query): Die Fläche ist ein absolut positionierter,
+  vollhoher Container rechts, die Karte darin `position: sticky`. Sie steht schon vor dem ersten Lauf
+  da, mit Hinweis. `.app-main:has(.with-workspace)` hebt die Seitenbreite von 1100 auf 1500 px, die
+  Tour/Projektseite werden für JS-Lektionen mit Fläche ebenfalls breiter.
+- **Schmal:** Die Aufgabenliste ist eine Flex-Spalte; die Fläche bekommt per `order` den Platz direkt
+  unter der zuletzt ausgeführten Aufgabe. Das iframe wird dabei nie im DOM verschoben (würde neu laden).
+- **Nur wo es etwas zu sehen gibt:** Hat keine Aufgabe der Lektion eine sichtbare Fläche
+  (Konsolen-Wochen des JS-Grundkurses), bleibt alles einspaltig und das Frame unsichtbar wie bisher.
+- `scrollIntoView` im Frame jetzt mit `block: 'nearest'` statt `'center'`, sonst springt die Seite
+  bei jedem Lauf, obwohl die Fläche schon im Bild steht.
+- Tests: Die JS-Specs suchen das iframe jetzt in `.js-workspace` statt im `.task-block`;
+  `tests/js-geteilte-ansicht.spec.js` prüft breit (rechts daneben, bleibt beim Scrollen im Bild,
+  nur ein iframe) und schmal (erst nach dem Lauf, direkt unter der Aufgabe).

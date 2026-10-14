@@ -1,5 +1,5 @@
 <template>
-  <div class="js-course-tour">
+  <div class="js-course-tour" :class="{ 'tour-wide': engine === 'js-sandbox' && showCanvas }">
     <div v-if="loading" class="loading">{{ t('lessons.loading') }}</div>
     <div v-else-if="error" class="error">{{ error }}</div>
 
@@ -299,6 +299,11 @@ export default {
 .js-course-tour {
   max-width: 900px;
   margin: 0 auto;
+}
+
+/* Platz fuer die Arbeitsflaeche rechts neben der Lektion (geteilte Ansicht, JsLessonView.vue). */
+.js-course-tour.tour-wide {
+  max-width: 1320px;
 }
 
 .loading,

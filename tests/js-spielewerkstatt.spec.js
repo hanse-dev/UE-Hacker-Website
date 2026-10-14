@@ -9,10 +9,9 @@ const lessons = JSON.parse(readFileSync(new URL('../content/js-spielewerkstatt/l
 // Der Code-Editor ist CodeMirror (JsCodeCell.vue), keine <textarea> - .fill() funktioniert nicht,
 // siehe tests/helpers/codemirror.js.
 //
-// Jede Aufgabe hat ihre eigene Sandbox-Instanz (eigenes iframe.js-sandbox) statt einer geteilten
-// pro Lektion - `page.locator('iframe.js-sandbox')` matcht deshalb i.d.R. mehrere Elemente.
-// `.first()` fuer reine "ist der Kurs ueberhaupt geladen"-Checks, sonst innerhalb der jeweiligen
-// `.task-block`-Locator (`taskN.frameLocator(...)`) scopen.
+// Eine gemeinsame Sandbox pro Lektion (Arbeitsflaeche `.js-workspace`, JsLessonView.vue): sie zeigt
+// das Ergebnis der zuletzt ausgefuehrten Aufgabe - nach dem Klick auf "Ausfuehren" einer Aufgabe
+// also `page.frameLocator('.js-workspace iframe.js-sandbox')` statt eines Locators im `.task-block`.
 test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
   test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => {
@@ -34,7 +33,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     // JsLessonView.vue) - vorher gibt es keines zu sehen, erst ein Klick auf "Ausführen".
     const task0 = page.locator('.task-block').nth(0);
     await task0.locator('.btn-run').click();
-    await expect(task0.locator('iframe.js-sandbox')).toBeVisible();
+    await expect(page.locator('.js-workspace iframe.js-sandbox')).toBeVisible();
   });
 
   test('Canvas-Aufgabe: echtes Zeichnen wird per Pixel-Check erkannt', async ({ page }) => {
@@ -61,8 +60,8 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     await expect(task1.locator('.code-editor-wrapper')).toHaveClass(/code-editor-ran/);
     await expect(task1.locator('.code-ran-note')).toBeVisible();
 
-    const hasDrawing = await task1
-      .frameLocator('iframe.js-sandbox')
+    const hasDrawing = await page
+      .frameLocator('.js-workspace iframe.js-sandbox')
       .locator('canvas')
       .evaluate((el) => {
         const ctx = el.getContext('2d');
@@ -103,8 +102,8 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     await expect(task1.locator('.output-display')).toBeVisible({ timeout: 10000 });
 
     const readNotBlank = () =>
-      task1
-        .frameLocator('iframe.js-sandbox')
+      page
+        .frameLocator('.js-workspace iframe.js-sandbox')
         .locator('canvas')
         .evaluate((el) => {
           const ctx = el.getContext('2d');
@@ -117,8 +116,8 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
 
     expect(await readNotBlank()).toBe(true);
 
-    await task1.locator('.btn-restart-sandbox').click();
-    await expect(task1.locator('.sandbox-status')).toHaveText(/bereit/i, { timeout: 10000 });
+    await page.locator('.js-workspace .btn-restart-sandbox').click();
+    await expect(page.locator('.js-workspace .sandbox-status')).toHaveText(/bereit/i, { timeout: 10000 });
     expect(await readNotBlank()).toBe(false);
   });
 
@@ -275,8 +274,8 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
 
     // `"showCanvas": false` an dieser Aufgabe: das iframe ist gemountet (der Code laeuft darin),
     // der leere Spielfeld-Kasten bleibt aber unsichtbar, weil hier nie gezeichnet wird.
-    await expect(task1.locator('iframe.js-sandbox')).toHaveCount(1);
-    await expect(task1.locator('.js-sandbox-wrapper')).toBeHidden();
+    await expect(page.locator('.js-workspace iframe.js-sandbox')).toHaveCount(1);
+    await expect(page.locator('.js-workspace .js-sandbox-wrapper')).toBeHidden();
 
     await setCodeMirrorContent(
       task1.locator('.cm-host'),
