@@ -1,7 +1,7 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-10-14
-> **Aktueller Stand:** `main` enthält alles bis 3.106 (siehe Tabelle in Abschnitt 3).
+> **Aktueller Stand:** `main` enthält alles bis 3.107 (siehe Tabelle in Abschnitt 3).
 > Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4) — nach dem nächsten Deploy
 > den einmaligen Termine-Import laufen lassen (Abschnitt 5).
 > **Ziel dieser Datei:** Nachschlagewerk für Stand, Feature-Übersicht und gelernte Fallstricke.
@@ -66,6 +66,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.104 | Projekt-Kurs „Quiz-Generator“ (`projekt-js-quiz`) | zweites DOM-Projekt: 7 Lektionen in `content/js-quiz/`, `"sandboxMode": "dom"` in `kurse.json` → `ProjectCourse.vue` reicht `domMode` an `JsLessonView.vue` durch (Übungsfläche aus Woche 7 statt Canvas); Antwort-Knöpfe per `createElement` mit IDs `antwort-0..2`, Prüfung nur über `dom_text`/`dom_click_text`; `tests/js-quiz.spec.js` spielt alle Musterlösungen und das fertige Quiz durch |
 | 3.105 | Projekt-Kurs „Häufigkeitsanalyse“ (`projekt-haeufigkeitsanalyse`) | 8 Lektionen in `content/haeufigkeitsanalyse/`, schließt die Reihe Cäsar → Vigenère ab: Buchstaben per Dictionary zählen, `#`-Balkendiagramm, häufigsten Buchstaben = `e` → Verschiebung, automatischer Knacker, Bewertung aller 26 Verschiebungen (`PUNKTE`-Tabelle), Ausblick Vigenère; reiner Content, kein Frontend-Code; Durchlauf-Test aller Musterlösungen in `tests/projekte.spec.js` |
 | 3.106 | Geteilte Ansicht in JS-Lektionen | eine gemeinsame Arbeitsfläche (`.js-workspace`) statt einer Sandbox pro Aufgabe: breit (Lektion ≥ 920 px, Container-Query) mitlaufende Spalte rechts, schmal per CSS-`order` unter der zuletzt ausgeführten Aufgabe; nur in Lektionen mit sichtbarer Fläche, Konsolen-Lektionen bleiben einspaltig; `tests/js-geteilte-ansicht.spec.js` |
+| 3.107 | Arbeitsfläche zeigt auch die Ausgabe | breit steht die Konsolen-Ausgabe der gezeigten Aufgabe in der Arbeitsfläche (unter dem Code ausgeblendet), auch bei Aufgaben ohne Zeichenfläche; schmal bleibt sie unter dem Code und eine Arbeitsfläche ohne Zeichenfläche wird nicht gezeigt; Editor neben der Arbeitsfläche ohne 500-px-Grenze |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -135,6 +136,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 - JS-Lektionen haben **eine** Sandbox pro Lektion (Arbeitsfläche, 3.106): Tests nach „Ausführen“
   über `page.frameLocator('.js-workspace iframe.js-sandbox')`, nicht im `.task-block`. Das iframe
   nie im DOM umhängen (lädt neu) — die Position wechselt nur per CSS (`order`, Container-Query).
+  Ausgabe breit ebenfalls dort (`.js-workspace .output-content`), unter dem Code ausgeblendet (3.107).
   `postMessage` nur mit reinen Werten (Vue-Proxies lassen sich nicht klonen).
 - Keine echte Endlosschleife als Debug-Bug (kein Loop-Guard, nur 5s-Timeout).
 - DOM-Projekte (`"sandboxMode": "dom"`, 3.103): `dom_click_text` klickt und liest im selben Tick —

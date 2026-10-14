@@ -328,7 +328,6 @@ export default {
   'jsLesson.workspaceTitle':    'Arbeitsfläche',
   'jsLesson.workspaceTask':     'Aufgabe {n}',
   'jsLesson.workspaceEmpty':    'Klick bei einer Aufgabe auf „Ausführen“ – hier erscheint dann, was dein Code zeichnet oder baut.',
-  'jsLesson.workspaceNoCanvas': 'Diese Aufgabe zeichnet nichts – ihre Ausgabe steht direkt unter dem Code.',
   'jsLesson.showSolution': '🔒 Lösung anzeigen',
   'jsLesson.unknownError': 'Unbekannter Fehler',
   'jsLesson.badgeExample': '🔍 Beispiel – nur ausführen',

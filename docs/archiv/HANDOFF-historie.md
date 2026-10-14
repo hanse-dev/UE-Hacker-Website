@@ -2670,3 +2670,19 @@ Wunsch des Nutzers: links der Kurs, rechts eine Arbeitsfläche, in der gerendert
 - Tests: Die JS-Specs suchen das iframe jetzt in `.js-workspace` statt im `.task-block`;
   `tests/js-geteilte-ansicht.spec.js` prüft breit (rechts daneben, bleibt beim Scrollen im Bild,
   nur ein iframe) und schmal (erst nach dem Lauf, direkt unter der Aufgabe).
+
+### 3.107 — Arbeitsfläche zeigt auch die Ausgabe (Branch `arbeitsflaeche-ausgabe`)
+
+Rückmeldung des Nutzers zu 3.106: Bei Aufgaben ohne Zeichenfläche (z.B. Quiz Lektion 1, nur
+`console.log`) stand rechts nur der Hinweis „zeichnet nichts“, das Ergebnis links unter dem Code —
+die Arbeitsfläche wirkte kaputt.
+
+- Breit zeigt die Arbeitsfläche jetzt immer das ganze Ergebnis: Fläche (falls die Aufgabe eine hat)
+  und darunter die Ausgabe. Die Ausgabe unter dem Code ist dann per CSS ausgeblendet, damit sie nicht
+  doppelt steht. Der Hinweis-Text `jsLesson.workspaceNoCanvas` ist entfallen.
+- Schmal bleibt die Ausgabe unter dem Code; eine Arbeitsfläche ohne Zeichenfläche wird gar nicht
+  gezeigt (sie stünde nur leer unter der Aufgabe).
+- Neben der Arbeitsfläche ist der Editor nicht mehr auf 500 px begrenzt (lange Zeilen wurden
+  abgeschnitten, obwohl Platz war).
+- Tests lesen die Ausgabe in JS-Lektionen mit Arbeitsfläche jetzt aus `.js-workspace`;
+  `tests/js-geteilte-ansicht.spec.js` prüft den Quiz-Fall breit und schmal.

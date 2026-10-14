@@ -54,7 +54,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
 
     // Die Ausgabe soll auch ohne console.log einen Hinweis zeigen, dass das Spielfeld verändert
     // wurde - sonst wirkt "keine Ausgabe" faelschlich wie "nichts ist passiert".
-    await expect(task1.locator('.output-content')).toContainText('Spielfeld');
+    await expect(page.locator('.js-workspace .output-content')).toContainText('Spielfeld');
 
     // Ein oranger Rahmen um den Editor zeigt, dass dieser Code schon ausgeführt wurde.
     await expect(task1.locator('.code-editor-wrapper')).toHaveClass(/code-editor-ran/);
@@ -99,7 +99,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
       "const canvas = document.getElementById('spielfeld');\nconst ctx = canvas.getContext('2d');\nctx.fillStyle = 'red';\nctx.fillRect(0, 0, 50, 50);"
     );
     await task1.locator('.btn-run').click();
-    await expect(task1.locator('.output-display')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('.js-workspace .output-display')).toBeVisible({ timeout: 10000 });
 
     const readNotBlank = () =>
       page
@@ -132,7 +132,7 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
 
     await setCodeMirrorContent(task.locator('.cm-host'), "console.log('etwas ganz anderes');");
     await task.locator('.btn-run').click();
-    await expect(task.locator('.output-display')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('.js-workspace .output-display')).toBeVisible({ timeout: 10000 });
     await expect(task.locator('.btn-reset')).toBeVisible();
 
     await task.locator('.btn-reset').click();

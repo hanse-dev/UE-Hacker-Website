@@ -116,7 +116,7 @@ test.describe('Projekt Memory (JS-Sandbox im DOM-Modus)', () => {
     const task = page.locator('.task-block').nth(2);
     await setCodeMirrorContent(task.locator('.cm-host'), lessons[6].tasks[2].solution);
     await task.locator('.btn-run').click();
-    await expect(task.locator('.output-display')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('.js-workspace .output-display')).toBeVisible({ timeout: 10000 });
 
     const frame = page.frameLocator('.js-workspace iframe.js-sandbox');
     const karte = (i) => frame.locator(`#karte${i}`);
@@ -161,7 +161,7 @@ test.describe('Projekt Memory (JS-Sandbox im DOM-Modus)', () => {
           await expect(block.locator('.btn-check'), label).toHaveCount(0);
           await block.locator('.btn-run').click();
           await expect(block.locator('.task-done'), label).toBeVisible({ timeout: 10000 });
-          await expect(block.locator('.output-content'), label).not.toContainText('Fehler');
+          await expect(page.locator('.js-workspace .output-content'), label).not.toContainText('Fehler');
           continue;
         }
 
