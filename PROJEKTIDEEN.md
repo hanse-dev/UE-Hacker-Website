@@ -9,7 +9,7 @@ in `todo.md`, das Format-/Track-Modell in `VISION.md`.
 **Alter:** Richtwert für die Zielgruppe.
 
 Schon umgesetzt (nicht mehr hier): Cäsar-Chiffre, Morsecode, Zahlen-Detektiv, JS-Spielewerkstatt,
-Vigenère-Chiffre, Snake, Text-Adventure, Quiz-Generator.
+Vigenère-Chiffre, Snake, Text-Adventure, Memory, Quiz-Generator.
 
 ## Empfohlene Reihenfolge (Vorschlag)
 1. ~~Vigenère-Chiffre~~ ✅ umgesetzt
@@ -22,13 +22,14 @@ Vigenère-Chiffre, Snake, Text-Adventure, Quiz-Generator.
 - [x] **Snake** 🟨 — Segmente als Liste, Wachsen beim Fressen, Game-Over bei Selbstkollision. Ab 12.
 - [ ] **Flappy-Klon** 🟨 — Schwerkraft + Sprung per Taste, Röhren als Array aus Objekten. Ab 12.
 - [ ] **Space Invaders light** 🟨 — Gegner-Raster, Schüsse, Kollision; gut als Klassen-Übung. Ab 13.
-- [ ] **Memory** 🟨 — Karten aufdecken/vergleichen, Zustandsmaschine, auch per DOM ohne Canvas. Ab 9.
+- [x] **Memory** 🟨 — Karten aufdecken/vergleichen, Zustandsmaschine, per DOM ohne Canvas
+      (`projekt-js-memory`, erstes DOM-Projekt). Ab 9.
 - [x] **Text-Adventure** 🐍 — Räume als Dictionary, Inventar als Liste, mehrere Enden; Themen-Varianten möglich. Ab 10.
 
 ## 🌐 Web (DOM)
 - [ ] **To-do-Liste** 🟨 — hinzufügen, abhaken, löschen; klassischer Anschluss an Woche 7. Ab 12.
 - [x] **Quiz-Generator** 🟨 — Fragen als Array von Objekten, Punktestand, Auswertung. Ab 11.
-      (`projekt-js-quiz`, erstes DOM-Projekt, `"sandbox": "dom"`)
+      (`projekt-js-quiz`, DOM-Projekt, `"sandboxMode": "dom"`)
 - [ ] **Farbmischer** 🟨 — R/G/B-Regler ändern live Hintergrund + Hex-Code. Ab 10.
 - [ ] **Countdown & Stoppuhr** 🟨 — `setInterval`, Rundenzeiten als Liste. Ab 12.
 - [ ] **Wetter/Zufalls-Zitat per API** 🟨 — `fetch`; **Achtung:** Sandbox hat opake Origin, braucht
@@ -81,8 +82,12 @@ dem Grundkurs.
 - JS-Projekte: keine geteilten Namespaces zwischen Aufgaben; `functionCalls` nur auf
   `function`-Deklarationen/`var` möglich, nicht auf `const`/`let`/`class` (siehe HANDOFF 3.43);
   Arrays lassen sich nicht als erwarteter Wert validieren.
-- DOM-Projekte (`"sandbox": "dom"` in `kurse.json`, Vorlage `content/js-quiz/`): `dom_click_text`
-  klickt nur **eine** ID (n-mal, ohne Pause) — Ablauf so bauen, dass ein Knopf allein bis zum Ende
-  durchklicken kann; selbst erzeugte Elemente brauchen feste IDs (siehe HANDOFF "JS-Sandbox").
+- JS-Projekte ohne Canvas (To-do-Liste, Quiz, Farbmischer …): `"sandboxMode": "dom"` in
+  `kurse.json` zeigt die DOM-Übungsfläche statt des Canvas; Vorlage ist `content/js-memory/`
+  (eigene Elemente per `createElement`, Prüfung per `dom_text`/`dom_click_text`, auch mit
+  mehreren IDs nacheinander). Geprüft wird sofort nach dem Klick — nichts, was erst ein Timer
+  erledigt.
+  Zweite Vorlage: `content/js-quiz/` (ein Knopf klickt den ganzen Ablauf durch, selbst erzeugte
+  Elemente mit festen IDs, siehe HANDOFF "JS-Sandbox").
 - Python-Projekte: keine Spiele-Loops (Pyodide synchron, 5s-Loop-Guard).
 - Nach dem Umsetzen hier `[x]` setzen.

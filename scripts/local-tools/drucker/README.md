@@ -18,16 +18,16 @@ Ein Skript für alles, was auf dem MXW01-Thermodrucker landet:
 
 | Datei | Aufgabe |
 |---|---|
-| `drucker.py` | Einstieg: Menü und Kommandozeile — alles, was fragt und ausgibt |
+| `drucker_gui.py` | Einstieg mit Fenster (tkinter): dieselben Aktionen zum Anklicken, mit Vorschau der Ausdrucke |
+| `drucker.py` | Einstieg im Terminal: Menü und Kommandozeile |
 | `druck.py` | Pfade, `.env`, Schriften, Ausdrucke speichern/auflisten, Bild an den Drucker schicken |
 | `ausweis.py` | Admin-API (anmelden, Account suchen/anlegen/zurücksetzen) und das Ausweis-Bild |
 | `tabelle.py` | Tabelle aus dem Lektionstext lesen und als Bild bauen |
 | `bluetooth.py` | Bluetooth-Scan nach dem Drucker |
 | `setup-printer-tool.sh`, `patch-mxw01.py` | einmaliges Setup (MXW01-Tool klonen und patchen, `venv/` anlegen) |
 
-Nur `drucker.py` fragt per `input()` und gibt mit `print()` aus. Die anderen Module liefern Werte
-zurück und melden Fehler als `DruckerError` — eine andere Oberfläche (z.B. ein Fenster) kann sie
-direkt verwenden.
+Nur die beiden Einstiege fragen etwas ab und zeigen etwas an. Die anderen Module liefern Werte
+zurück und melden Fehler als `DruckerError`, deshalb teilen sich Fenster und Terminal dieselbe Logik.
 
 ## Setup (einmalig)
 
@@ -55,11 +55,33 @@ CoreBluetooth-UUID (z.B. `A652E1F0-...`) — CoreBluetooth gibt aus Datenschutzg
 MAC-Adressen heraus. Die "echte" MAC (z.B. von der Verpackung oder einer Handy-App) funktioniert
 auf macOS nicht mit `bleak`. Details siehe `vendor/mxw01/README.md` nach dem Setup.
 
+**Lokale Dateien in diesem Ordner bleiben liegen:** `.env`, `.last-account.json`, `ausdrucke/`,
+`vendor/` und `venv/` gehören hierher und sind in Ordnung so, auch wenn das Tool einzelne davon
+nicht mehr liest. Nichts davon löschen, verschieben oder „aufräumen“, außer Eike sagt es ausdrücklich.
+
 `vendor/` und `venv/` werden von `.gitignore` ausgeschlossen (das MXW01-Tool hat keine
 LICENSE-Datei im Original-Repo, daher nicht mit committen; `venv/` ist wie üblich lokal).
 `.env` ist ebenfalls gitignored.
 
-## Benutzung
+## Benutzung: Fenster
+
+```bash
+python3 drucker_gui.py
+```
+
+Braucht `tkinter`; auf macOS mit Homebrew-Python einmalig `brew install python-tk@3.14` (Version
+passend zum Python). Vier Reiter:
+
+- **Account:** Benutzernamen eingeben und „Prüfen“. Gibt es ihn nicht, Altersgruppe wählen und
+  anlegen; gibt es ihn schon, lässt sich das Passwort zurücksetzen (mit Rückfrage).
+- **Gespeicherte Ausdrucke:** Liste (neueste zuerst) mit Vorschau; Doppelklick oder Button druckt.
+- **Forscher-Tabelle:** Anzahl wählen und drucken.
+- **Drucker:** eingestellte Adresse und Bluetooth-Suche.
+
+„Nur speichern, nicht drucken“ unten links gilt für Account und Tabelle. Das Fenster bleibt während
+Netz-, Bluetooth- und Druckvorgängen bedienbar; Fehler erscheinen als Meldung.
+
+## Benutzung: Terminal
 
 Ohne Argumente startet ein Menü, das nach allem Nötigen fragt:
 

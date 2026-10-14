@@ -42,13 +42,13 @@ nächsten Themen. Diese Datei wird nicht automatisch geladen.
       **zurückgestellt** (Nutzer will erst später deployen). Backup-Cron auf dem Server einrichten
       (Befehl siehe HANDOFF.md Abschnitt 4); externe Sicherung der Backups bewusst nicht mitgebaut.
 - [ ] Projekt-Kurse (Cäsar, Vigenère, Morsecode, Zahlen-Detektiv, JS-Spielewerkstatt, Snake,
-      Text-Adventure, Quiz-Generator): nur DE-Content, EN fehlt noch (`kurse.json` hat bereits
-      `title_en` für alle 8, `lessons.json`/`lektion-*.md` sind nur deutsch).
-- [ ] Quiz-Generator (`content/js-quiz/`): Die Prüfung kann nur **einen** Knopf mehrfach klicken
-      (`dom_click_text`). Deshalb prüft Lektion 7 „Nochmal spielen“ nur den Punktestand nach dem
+      Text-Adventure, Memory, Quiz-Generator): nur DE-Content, EN fehlt noch (`kurse.json` hat bereits
+      `title_en` für alle 9, `lessons.json`/`lektion-*.md` sind nur deutsch).
+- [ ] Quiz-Generator (`content/js-quiz/`): Der Kurs entstand, als `dom_click_text` nur **einen** Knopf
+      mehrfach klicken konnte. Deshalb prüft Lektion 7 „Nochmal spielen“ nur den Punktestand nach dem
       Neustart, und das eigene Quiz nur, dass es mit 3–10 Fragen bis zur Auswertung durchläuft (nicht,
-      ob die Fragen wirklich eigene sind). Vorschlag, falls das stört: Prüf-Typ mit Klick-Folge über
-      mehrere IDs in `useJsSandbox.js` + `JsLessonView.vue` ergänzen.
+      ob die Fragen wirklich eigene sind). Vorschlag, falls das stört: Die Klick-Liste
+      aus dem Memory-Projekt (HANDOFF 3.103, `click` als Liste von IDs) nutzen und die Aufgaben schärfen.
 - [ ] Weitere Sprache neben DE/EN? Noch keine Entscheidung, kein Ziel. UI-Texte laufen bereits über
       `t()` (`locales/de.js`/`en.js`); offen bliebe nur der Content: `_en`-Feld-Suffix in
       `content/python-checks/week-{N}.json`, `-en`-Ordner-Suffix in `useCourseData.js`. Größter

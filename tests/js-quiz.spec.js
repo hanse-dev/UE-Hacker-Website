@@ -7,7 +7,7 @@ const lessons = JSON.parse(readFileSync(new URL('lessons.json', CONTENT), 'utf-8
 const STORAGE_KEY = 'ue-hacker-interactive-progress-js-quiz';
 
 // Projekt-Kurs "Quiz-Generator" (projekt-js-quiz): erstes JS-Projekt auf der DOM-Uebungsflaeche
-// statt auf dem Canvas (`"sandbox": "dom"` in kurse.json -> ProjectCourse.vue reicht `domMode` an
+// statt auf dem Canvas (`"sandboxMode": "dom"` in kurse.json -> ProjectCourse.vue reicht `domMode` an
 // JsLessonView.vue durch). Die Antwort-Knoepfe erzeugt der Code der Lernenden selbst
 // (createElement, IDs antwort-0..2) - geprueft wird ueber `dom_text`/`dom_click_text`.
 async function openCourse(page, completedLessonIds = []) {

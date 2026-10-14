@@ -1,7 +1,7 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-10-14
-> **Aktueller Stand:** `main` enthält alles bis 3.103 (siehe Tabelle in Abschnitt 3).
+> **Aktueller Stand:** `main` enthält alles bis 3.104 (siehe Tabelle in Abschnitt 3).
 > Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4) — nach dem nächsten Deploy
 > den einmaligen Termine-Import laufen lassen (Abschnitt 5).
 > **Ziel dieser Datei:** Nachschlagewerk für Stand, Feature-Übersicht und gelernte Fallstricke.
@@ -62,7 +62,8 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.100 | Themen angeglichen (12-Wochen-Kurs Woche 2–4) + Lösungs-Reihenfolge | gleiche Lektionen/Konzepte in Abenteuer/Pferde/Sci-Fi; neue Lektionen mit neuer ID an passender Stelle; `scripts/sync_loesungen.py` (Woche 9 war im Download verschoben) |
 | 3.101 | micro:bit-Kurs „Das Roboterauto“ (`projekt-microbit-auto`) | erster Hardware-Kurs: `engine: "anleitung"` → `GuideLessonView.vue` (Aufgaben zum Abhaken statt Prüfung, Umschalter Blöcke/Python über `:::bloecke`/`:::python`, MakeCode-Blöcke als ```` ```bloecke ````-Text); 11 Stufen in `content/microbit-auto/`; seit 14.10. in `/projekte` verlinkt (das Feld `"unlisted": true` gibt es weiter für künftige Kurse); ein zurückgenommener Pflicht-Haken nimmt den Abschluss der Stufe zurück (`unmarkCompleted`); Details in `INHALTE.md` Abschnitt 6 |
 | 3.102 | Eigenes Passwort ändern + Reset per Einmal-Passwort | `POST /api/password` (liefert frisches Token), `POST /api/admin/users/:id/reset-password` (Einmal-Passwort, `must_change_password`), Zwangswechsel im Einstellungs-Modal (`App.vue`), `requireUser` lehnt Tokens mit `iat` vor `password_changed_at` ab; Druck: `drucker.py account <name>` |
-| 3.103 | Projekt-Kurs „Quiz-Generator“ (`projekt-js-quiz`) | erstes DOM-Projekt: 7 Lektionen in `content/js-quiz/`, `"sandbox": "dom"` in `kurse.json` → `ProjectCourse.vue` reicht `domMode` an `JsLessonView.vue` durch (Übungsfläche aus Woche 7 statt Canvas); Antwort-Knöpfe per `createElement` mit IDs `antwort-0..2`, Prüfung nur über `dom_text`/`dom_click_text`; `tests/js-quiz.spec.js` spielt alle Musterlösungen und das fertige Quiz durch |
+| 3.103 | Projekt „Memory“ (`projekt-js-memory`), erstes DOM-Projekt | 7 Lektionen in `content/js-memory/`; `"sandboxMode": "dom"` in `kurse.json` → `ProjectCourse.vue` zeigt die DOM-Übungsfläche statt des Canvas; `dom_click_text` nimmt bei `click` auch eine Liste von IDs; `tests/js-memory.spec.js` |
+| 3.104 | Projekt-Kurs „Quiz-Generator“ (`projekt-js-quiz`) | zweites DOM-Projekt: 7 Lektionen in `content/js-quiz/`, `"sandboxMode": "dom"` in `kurse.json` → `ProjectCourse.vue` reicht `domMode` an `JsLessonView.vue` durch (Übungsfläche aus Woche 7 statt Canvas); Antwort-Knöpfe per `createElement` mit IDs `antwort-0..2`, Prüfung nur über `dom_text`/`dom_click_text`; `tests/js-quiz.spec.js` spielt alle Musterlösungen und das fertige Quiz durch |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -122,10 +123,18 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 - Chromium drosselt `requestAnimationFrame` in Off-screen-iframes → `scrollIntoView()` vor dem Lauf.
   `postMessage` nur mit reinen Werten (Vue-Proxies lassen sich nicht klonen).
 - Keine echte Endlosschleife als Debug-Bug (kein Loop-Guard, nur 5s-Timeout).
-- DOM-Projekt-Kurs: `"sandbox": "dom"` in `kurse.json` (3.103). Ohne das Feld laufen `dom_*`-Checks
+- DOM-Projekte (`"sandboxMode": "dom"`, 3.103): `dom_click_text` klickt und liest im selben Tick —
+  was erst ein `setTimeout` erledigt (Karten zurückdrehen), lässt sich nicht prüfen; stattdessen den
+  sofort sichtbaren Zustand prüfen (Sperre, Zähler). Zufall (gemischte Karten) nur über Eigenschaften
+  prüfen, die bei jeder Reihenfolge gelten; Aufgaben mit festem Klick-Ergebnis bleiben ungemischt.
+- Sandbox-Elemente mit `id` sind auch globale Namen, und `status`/`name`/`top` gehören dem Fenster —
+  solche Variablennamen in Vorlagen meiden (`meldung` statt `status`).
+- Jede Pflichtaufgabe gegenprüfen: Die unveränderte Vorlage darf die Prüfung nicht bestehen
+  (`tests/js-memory.spec.js` macht das für jede Aufgabe).
+- DOM-Projekt-Kurs: `"sandboxMode": "dom"` in `kurse.json` (3.104). Ohne das Feld laufen `dom_*`-Checks
   trotzdem durch (die Elemente existieren unsichtbar im Canvas-Modus) — nur ein Test auf
   Sichtbarkeit im iframe merkt den Unterschied.
-- `dom_click_text` klickt **eine** ID `clicks`-mal direkt hintereinander und liest danach ein Ziel.
+- `dom_click_text` klickt eine ID (oder seit 3.103 eine Liste von IDs) `clicks`-mal direkt hintereinander und liest danach ein Ziel.
   Mehrstufige Abläufe deshalb so bauen, dass derselbe Knopf bis zum Ende durchklicken kann: Knöpfe
   wiederverwenden statt neu erzeugen, kein `setTimeout` zwischen den Schritten, und die richtigen
   Antworten so verteilen, dass das Ergebnis nicht 0 oder alles ist (js-quiz: 3× `antwort-0` → 2 von 3).
@@ -209,7 +218,9 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   gibt aus; `druck.py`/`ausweis.py`/`tabelle.py`/`bluetooth.py` liefern Werte und werfen
   `DruckerError`. Neue Aktion = Funktion im passenden Modul + Menüpunkt/Unterbefehl in `drucker.py`.
 - `drucker.py` kennt ein Menü (ohne Argumente) und Unterbefehle
-  `account`/`ausdrucke`/`tabelle`/`scan`). Kein GUI: dem Homebrew-Python fehlt `tkinter`.
+  `account`/`ausdrucke`/`tabelle`/`scan`); `drucker_gui.py` ist dasselbe als Fenster (tkinter, auf
+  macOS `brew install python-tk@<version>`). Im Fenster läuft alles Langsame über `run_async()` in
+  einem Thread — nie Tk-Widgets aus dem Thread anfassen, Ergebnisse kommen über die Queue zurück.
 - `drucker.py account <name>` legt an oder setzt bei vorhandenem Account auf Rückfrage das Passwort
   zurück (`POST /api/admin/users/:id/reset-password`, Einmal-Passwort mit Zwangswechsel). Jeder Ausdruck landet als PNG in `ausdrucke/` (gitignored,
   Klartext-Passwörter) und lässt sich daraus erneut drucken.
@@ -283,8 +294,8 @@ src/views/AdminView.vue
 src/App.vue       Optionen-Modal
 src/composables/useAuth*.js, useProgressSync.js, useWeekChecks.js
 src/components/JupyterNotebook.vue, CodeCell.vue, PlacementCourse.vue, QuizStep.vue
-scripts/migrate_notebooks_to_cells.py (einmalig gelaufen), build_cell_notebooks.py (bei jedem
-  dev/build), pack_notebooks.py (zippt jetzt _bundle/*.py statt *.ipynb)
+scripts/build_cell_notebooks.py (bei jedem dev/build), pack_notebooks.py (zippt jetzt
+  _bundle/*.py statt *.ipynb)
 public/kurse.json
 content/python-checks/config.json, week-{N}.json, index.mjs (Node-Loader für Tests)
 .env.example / .env (nie committen)
@@ -305,7 +316,7 @@ Ausführlich in `todo.md`. Kurzfassung:
 
 **Inhalte**
 - Interaktiv-Kurs: "Ausführen vs. Prüfen"/Weiter-Flow — braucht konkretes Nutzer-Feedback.
-- Alle 7 Projekt-Kurse: EN-Version offen (DE-first, `kurse.json` hat schon `title_en`).
+- Alle 8 Projekt-Kurse (ohne micro:bit, siehe `todo.md`): EN-Version offen (DE-first, `kurse.json` hat schon `title_en`).
 - Zertifikat-PDF: E-Mail-Versand später (hängt an der Kontakt-Adresse, nicht selbst erfinden).
 - Überlegung (nicht entschieden): dritte Sprache; UI-Ternarys sind schon auf `t()`, offen nur Content-Suffixe.
 

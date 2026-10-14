@@ -2,6 +2,7 @@
 auflisten und an den MXW01 schicken. Fragt nie selbst etwas ab und beendet nie das Programm —
 Fehler kommen als DruckerError, damit Menü, Kommandozeile oder eine GUI sie selbst anzeigen können.
 """
+import os
 import re
 import subprocess
 import sys
@@ -20,6 +21,21 @@ PAPER_WIDTH = 384
 
 class DruckerError(Exception):
     """Ein Fehler, den die Person am Rechner beheben kann (Drucker aus, Einstellung fehlt, …)."""
+
+
+def reexec_in_venv(script: str) -> None:
+    """Startet das Skript im venv (Pillow/bleak/matplotlib) neu, falls es gerade unter
+    einem anderen Interpreter läuft — verhindert 'ModuleNotFoundError: PIL', egal ob
+    mit python3 oder venv/bin/python3 aufgerufen.
+
+    venv/bin/python3 ist meist nur ein Symlink auf den System-Interpreter — .resolve()
+    würde also beide als identisch behandeln. sys.prefix zeigt dagegen zuverlässig auf
+    den venv-Ordner, sobald man tatsächlich über venv/bin/python3 gestartet wurde."""
+    if not VENV_PYTHON.exists():
+        return
+    if sys.prefix == str(VENV_PYTHON.parent.parent):
+        return
+    os.execv(str(VENV_PYTHON), [str(VENV_PYTHON), str(Path(script).resolve()), *sys.argv[1:]])
 
 
 def load_env_file(path: Path) -> dict:
