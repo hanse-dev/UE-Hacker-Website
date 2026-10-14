@@ -9,7 +9,7 @@ in `todo.md`, das Format-/Track-Modell in `VISION.md`.
 **Alter:** Richtwert für die Zielgruppe.
 
 Schon umgesetzt (nicht mehr hier): Cäsar-Chiffre, Morsecode, Zahlen-Detektiv, JS-Spielewerkstatt,
-Vigenère-Chiffre, Snake, Text-Adventure.
+Vigenère-Chiffre, Snake, Text-Adventure, Quiz-Generator.
 
 ## Empfohlene Reihenfolge (Vorschlag)
 1. ~~Vigenère-Chiffre~~ ✅ umgesetzt
@@ -27,7 +27,8 @@ Vigenère-Chiffre, Snake, Text-Adventure.
 
 ## 🌐 Web (DOM)
 - [ ] **To-do-Liste** 🟨 — hinzufügen, abhaken, löschen; klassischer Anschluss an Woche 7. Ab 12.
-- [ ] **Quiz-Generator** 🟨 — Fragen als Array von Objekten, Punktestand, Auswertung. Ab 11.
+- [x] **Quiz-Generator** 🟨 — Fragen als Array von Objekten, Punktestand, Auswertung. Ab 11.
+      (`projekt-js-quiz`, erstes DOM-Projekt, `"sandbox": "dom"`)
 - [ ] **Farbmischer** 🟨 — R/G/B-Regler ändern live Hintergrund + Hex-Code. Ab 10.
 - [ ] **Countdown & Stoppuhr** 🟨 — `setInterval`, Rundenzeiten als Liste. Ab 12.
 - [ ] **Wetter/Zufalls-Zitat per API** 🟨 — `fetch`; **Achtung:** Sandbox hat opake Origin, braucht
@@ -80,5 +81,8 @@ dem Grundkurs.
 - JS-Projekte: keine geteilten Namespaces zwischen Aufgaben; `functionCalls` nur auf
   `function`-Deklarationen/`var` möglich, nicht auf `const`/`let`/`class` (siehe HANDOFF 3.43);
   Arrays lassen sich nicht als erwarteter Wert validieren.
+- DOM-Projekte (`"sandbox": "dom"` in `kurse.json`, Vorlage `content/js-quiz/`): `dom_click_text`
+  klickt nur **eine** ID (n-mal, ohne Pause) — Ablauf so bauen, dass ein Knopf allein bis zum Ende
+  durchklicken kann; selbst erzeugte Elemente brauchen feste IDs (siehe HANDOFF "JS-Sandbox").
 - Python-Projekte: keine Spiele-Loops (Pyodide synchron, 5s-Loop-Guard).
 - Nach dem Umsetzen hier `[x]` setzen.

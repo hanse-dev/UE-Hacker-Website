@@ -118,6 +118,20 @@
     "contentPath": "js-snake"
   },
   {
+    "id": "projekt-js-quiz",
+    "type": "projekt",
+    "engine": "js-sandbox",
+    "sandbox": "dom",
+    "language": "javascript",
+    "level": "fortgeschritten",
+    "tags": ["spiele"],
+    "title": "Projekt: Quiz-Generator",
+    "title_en": "Project: Quiz Generator",
+    "description": "Baue dein eigenes Quiz zum Anklicken: Die Fragen stehen als Array von Objekten im Code, dein Programm erzeugt daraus Antwort-Knöpfe, meldet richtig oder falsch, zählt Punkte und zeigt am Ende eine Auswertung. Zum Schluss trägst du deine eigenen Fragen ein. Baut auf Woche 7 (DOM) des JS-Grundkurses auf.",
+    "description_en": "Build your own clickable quiz: the questions live in your code as an array of objects, and your program turns them into answer buttons, tells you right from wrong, keeps score and shows a result at the end. Finally you add your own questions. Builds on week 7 (DOM) of the JS basics course.",
+    "contentPath": "js-quiz"
+  },
+  {
     "id": "projekt-text-adventure",
     "type": "projekt",
     "language": "python",

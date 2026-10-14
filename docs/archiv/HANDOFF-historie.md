@@ -2567,3 +2567,29 @@ Mail-Reset, keine Sicherheitsfragen.
 
 Nachtrag beim Merge: `create-account-printout.py` ist inzwischen in `scripts/local-tools/drucker.py`
 aufgegangen; der Reset läuft dort über `drucker.py account <name>` (fragt bei vorhandenem Account nach).
+
+### 3.103 — Projekt-Kurs „Quiz-Generator“ (Branch `projekt-js-quiz`)
+
+Erster Projekt-Kurs auf der DOM-Übungsfläche statt auf dem Canvas; schließt an Woche 7 (DOM) des
+JS-Grundkurses an und geht über das Mini-Quiz aus Woche 9 hinaus (dort ein Knopf, der Antworten
+aufdeckt; hier Multiple Choice mit selbst erzeugten Antwort-Knöpfen).
+
+- **Kurs:** `projekt-js-quiz`, `content/js-quiz/`, 7 Lektionen, 20 Aufgaben (7 Beispiele, 13
+  Pflichtaufgaben mit `solution`), Level `fortgeschritten`, Tag `spiele`, nur DE.
+  1 Fragen als Array von Objekten · 2 Antwort-Knöpfe erzeugen (`createElement`, `before`, `hidden`)
+  · 3 Richtig oder falsch? (`antworte(i)`) · 4 Weiter zur nächsten Frage (`nummer`, `zeigeFrage()`)
+  · 5 Punkte zählen (`appendChild`) · 6 Die Auswertung (`bewertung()`, `zeigeAuswertung()`) ·
+  7 Nochmal spielen (`neuStart()`) und eigenes Quiz.
+- **Einzige Code-Änderung:** `"sandbox": "dom"` in `kurse.json` → `CourseDetail.vue` gibt
+  `dom-mode` an `ProjectCourse.vue`, das es an `JsLessonView.vue` weiterreicht. Der DOM-Modus der
+  Sandbox selbst existierte schon (JS-Grundkurs Woche 7/8), Projekt-Kurse konnten ihn nur nicht
+  einschalten. Keine neue Prüf-Logik.
+- **Prüfung:** nur `dom_text`/`dom_click_text` und `output_*`. Weil `dom_click_text` nur eine ID
+  mehrfach klicken kann, zeigt das Quiz die nächste Frage sofort nach dem Klick (Rückmeldung bleibt
+  in `#anzeige` stehen) und verwendet die drei Knöpfe wieder. Mit den Kursfragen ergibt 3×
+  `antwort-0` genau 2 von 3 Punkten — das unterscheidet „zählt nur Richtige“ von „zählt jeden Klick“.
+- **Eigenes Quiz (letzte Aufgabe):** Vorlage mit leerem `fragen`-Array (fällt unverändert durch),
+  Prüfung: 10 Klicks auf `antwort-0` → Überschrift `Auswertung`. Passt für 3–10 Fragen.
+- **Test:** `tests/js-quiz.spec.js` (7 Tests): Inhalt, DOM-Fläche sichtbar/Canvas versteckt, falsche
+  Lösungen fallen durch, keine Vorlage besteht unverändert, jede Musterlösung besteht, das fertige
+  Quiz wird wie von einem Kind durchgeklickt.

@@ -1,7 +1,7 @@
 # Handoff — UE Hacker Website
 
-> **Zuletzt aktualisiert:** 2026-10-04
-> **Aktueller Stand:** `main` enthält alles bis 3.100 (siehe Tabelle in Abschnitt 3).
+> **Zuletzt aktualisiert:** 2026-10-14
+> **Aktueller Stand:** `main` enthält alles bis 3.103 (siehe Tabelle in Abschnitt 3).
 > Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4) — nach dem nächsten Deploy
 > den einmaligen Termine-Import laufen lassen (Abschnitt 5).
 > **Ziel dieser Datei:** Nachschlagewerk für Stand, Feature-Übersicht und gelernte Fallstricke.
@@ -62,6 +62,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.100 | Themen angeglichen (12-Wochen-Kurs Woche 2–4) + Lösungs-Reihenfolge | gleiche Lektionen/Konzepte in Abenteuer/Pferde/Sci-Fi; neue Lektionen mit neuer ID an passender Stelle; `scripts/sync_loesungen.py` (Woche 9 war im Download verschoben) |
 | 3.101 | micro:bit-Kurs „Das Roboterauto“ (`projekt-microbit-auto`) | erster Hardware-Kurs: `engine: "anleitung"` → `GuideLessonView.vue` (Aufgaben zum Abhaken statt Prüfung, Umschalter Blöcke/Python über `:::bloecke`/`:::python`, MakeCode-Blöcke als ```` ```bloecke ````-Text); 11 Stufen in `content/microbit-auto/`; seit 14.10. in `/projekte` verlinkt (das Feld `"unlisted": true` gibt es weiter für künftige Kurse); ein zurückgenommener Pflicht-Haken nimmt den Abschluss der Stufe zurück (`unmarkCompleted`); Details in `INHALTE.md` Abschnitt 6 |
 | 3.102 | Eigenes Passwort ändern + Reset per Einmal-Passwort | `POST /api/password` (liefert frisches Token), `POST /api/admin/users/:id/reset-password` (Einmal-Passwort, `must_change_password`), Zwangswechsel im Einstellungs-Modal (`App.vue`), `requireUser` lehnt Tokens mit `iat` vor `password_changed_at` ab; Druck: `drucker.py account <name>` |
+| 3.103 | Projekt-Kurs „Quiz-Generator“ (`projekt-js-quiz`) | erstes DOM-Projekt: 7 Lektionen in `content/js-quiz/`, `"sandbox": "dom"` in `kurse.json` → `ProjectCourse.vue` reicht `domMode` an `JsLessonView.vue` durch (Übungsfläche aus Woche 7 statt Canvas); Antwort-Knöpfe per `createElement` mit IDs `antwort-0..2`, Prüfung nur über `dom_text`/`dom_click_text`; `tests/js-quiz.spec.js` spielt alle Musterlösungen und das fertige Quiz durch |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -121,6 +122,18 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 - Chromium drosselt `requestAnimationFrame` in Off-screen-iframes → `scrollIntoView()` vor dem Lauf.
   `postMessage` nur mit reinen Werten (Vue-Proxies lassen sich nicht klonen).
 - Keine echte Endlosschleife als Debug-Bug (kein Loop-Guard, nur 5s-Timeout).
+- DOM-Projekt-Kurs: `"sandbox": "dom"` in `kurse.json` (3.103). Ohne das Feld laufen `dom_*`-Checks
+  trotzdem durch (die Elemente existieren unsichtbar im Canvas-Modus) — nur ein Test auf
+  Sichtbarkeit im iframe merkt den Unterschied.
+- `dom_click_text` klickt **eine** ID `clicks`-mal direkt hintereinander und liest danach ein Ziel.
+  Mehrstufige Abläufe deshalb so bauen, dass derselbe Knopf bis zum Ende durchklicken kann: Knöpfe
+  wiederverwenden statt neu erzeugen, kein `setTimeout` zwischen den Schritten, und die richtigen
+  Antworten so verteilen, dass das Ergebnis nicht 0 oder alles ist (js-quiz: 3× `antwort-0` → 2 von 3).
+- `element.click()` der Prüfung löst auch auf versteckten Knöpfen (`hidden`) aus, nur nicht auf
+  `disabled`. Ein Fehler im Listener bricht die Klick-Folge nicht ab.
+- Zustand, den ein Klick erst herstellen soll, lässt sich ohne Klick-Folge nur prüfen, wenn die
+  Vorlage ihn vorher selbst herbeiführt (js-quiz Lektion 7: drei `antworte(0)`-Zeilen am Ende
+  spielen das Quiz durch, dann prüft ein Klick auf „Nochmal spielen“ den Punktestand).
 
 **Vue / CSS / Tests**
 - `@import` in `<style scoped>` bekommt einen anderen Scope-Hash → in separaten **unscoped** `<style>`-Block. Vor CSS-Extraktion Klassennamen repo-weit grep-prüfen (3.19, 3.20).
