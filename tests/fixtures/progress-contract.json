@@ -98,6 +98,24 @@
       "debug-01",
       "mission-01"
     ],
+    "js-memory": [
+      "lektion-01",
+      "lektion-02",
+      "lektion-03",
+      "lektion-04",
+      "lektion-05",
+      "lektion-06",
+      "lektion-07"
+    ],
+    "js-quiz": [
+      "lektion-01",
+      "lektion-02",
+      "lektion-03",
+      "lektion-04",
+      "lektion-05",
+      "lektion-06",
+      "lektion-07"
+    ],
     "js-snake": [
       "lektion-01",
       "lektion-02",
@@ -1807,6 +1825,8 @@
     "ki-labor",
     "projekt-caesar-chiffre",
     "projekt-haeufigkeitsanalyse",
+    "projekt-js-memory",
+    "projekt-js-quiz",
     "projekt-js-snake",
     "projekt-js-spielewerkstatt",
     "projekt-microbit-auto",

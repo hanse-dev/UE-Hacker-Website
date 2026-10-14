@@ -130,6 +130,34 @@
     "contentPath": "js-snake"
   },
   {
+    "id": "projekt-js-memory",
+    "type": "projekt",
+    "engine": "js-sandbox",
+    "sandboxMode": "dom",
+    "language": "javascript",
+    "level": "einsteiger",
+    "tags": ["spiele"],
+    "title": "Projekt: Memory",
+    "title_en": "Project: Memory",
+    "description": "Baue dein eigenes Memory: Karten erzeugen, mischen, aufdecken und vergleichen. Dein Spiel merkt sich die erste Karte, dreht falsche Paare von allein zurück, zählt deine Züge und erkennt, wann du gewonnen hast. Das erste Projekt ganz ohne Zeichenfläche – du baust eine echte kleine Webseite, die auf Klicks reagiert. Schließt an Woche 7 des JS-Grundkurses an.",
+    "description_en": "Build your own memory game: create cards, shuffle them, flip them over and compare them. Your game remembers the first card, turns wrong pairs back by itself, counts your moves and notices when you have won. The first project without a canvas – you build a real little web page that reacts to clicks. Follows on from week 7 of the JS basics course.",
+    "contentPath": "js-memory"
+  },
+  {
+    "id": "projekt-js-quiz",
+    "type": "projekt",
+    "engine": "js-sandbox",
+    "sandboxMode": "dom",
+    "language": "javascript",
+    "level": "fortgeschritten",
+    "tags": ["spiele"],
+    "title": "Projekt: Quiz-Generator",
+    "title_en": "Project: Quiz Generator",
+    "description": "Baue dein eigenes Quiz zum Anklicken: Die Fragen stehen als Array von Objekten im Code, dein Programm erzeugt daraus Antwort-Knöpfe, meldet richtig oder falsch, zählt Punkte und zeigt am Ende eine Auswertung. Zum Schluss trägst du deine eigenen Fragen ein. Baut auf Woche 7 (DOM) des JS-Grundkurses auf.",
+    "description_en": "Build your own clickable quiz: the questions live in your code as an array of objects, and your program turns them into answer buttons, tells you right from wrong, keeps score and shows a result at the end. Finally you add your own questions. Builds on week 7 (DOM) of the JS basics course.",
+    "contentPath": "js-quiz"
+  },
+  {
     "id": "projekt-text-adventure",
     "type": "projekt",
     "language": "python",
