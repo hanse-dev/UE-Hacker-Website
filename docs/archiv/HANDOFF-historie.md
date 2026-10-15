@@ -2686,3 +2686,22 @@ die Arbeitsfläche wirkte kaputt.
   abgeschnitten, obwohl Platz war).
 - Tests lesen die Ausgabe in JS-Lektionen mit Arbeitsfläche jetzt aus `.js-workspace`;
   `tests/js-geteilte-ansicht.spec.js` prüft den Quiz-Fall breit und schmal.
+
+### 3.108 — micro:bit-Kurs „Die Ampelanlage“ (Branch `microbit-ampel`)
+
+- Zweiter Hardware-Kurs für eine 60-Minuten-Stunde plus freie Weiterarbeit: Startklar (Breadboard,
+  Stromkreis, erste LED), Stufe 1 Fußgängerampel, Stufe 2 Autoampel, Stufe 3 Ampelanlage (Räumzeit,
+  nie beide Grün), danach Werkstatt 1 „Licht und Anzeige“ (Countdown, Ampelmännchen, Bahnübergang,
+  Nachtmodus, Glühlampen-Ampel per `analog write`, echter Taster mit Pull-down) und Werkstatt 2
+  „Funk“ (Feuerwehr-Vorrang, Kreuzung, Ampel fürs Roboterauto, eigene Idee).
+- Vorgaben des Nutzers: keine Töne (stören die anderen Teams), Widerstand über die Lücke, jede LED
+  mit eigenem GND-Kabel (Platine hat genau 5 GND-Stifte), Blöcke und Python.
+- Hardware laut Foto: T-förmige „micro:bit GPIO Board“-Platine mit Stiftleisten (Kabel Buchse auf
+  Stecker), daneben ein Mini-Breadboard mit 17 Reihen, links nur 2 Löcher pro Reihe frei. Widerstände
+  laut Farbringen 150 Ω. Pins so gewählt, dass LED-Anzeige (P3/4/6/7/10), Knöpfe (P5/P11) und I2C
+  frei bleiben.
+- Werkstatt bewusst als zwei Seiten statt einer Lektion je Auftrag: Lektionen werden nacheinander
+  freigeschaltet und das Abzeichen braucht alle Lektionen (`useProjectBadges.js`). Einzelne
+  Wahl-Lektionen hätten Änderungen an Freischaltung und Abzeichen gebraucht.
+- Ohne Hardware entstanden; Lösungen von Stufe 2 und 3 gegen einen nachgebauten micro:bit simuliert
+  (Phasenfolge, nie beide Grün). Prüfliste in `todo.md`.

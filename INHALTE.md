@@ -20,6 +20,7 @@ Dieses Dokument beschreibt, welche Dateien zusammengehören und was bei Änderun
 | `projekt-js-memory` | `content/js-memory/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON, `engine: "js-sandbox"`, `sandboxMode: "dom"` — DOM statt Canvas) |
 | `projekt-js-quiz` | `content/js-quiz/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON, `engine: "js-sandbox"`, `sandboxMode: "dom"` – DOM-Übungsfläche statt Canvas) |
 | `projekt-microbit-auto` | `content/microbit-auto/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON, `engine: "anleitung"`, Hardware-Kurs zum Abhaken) |
+| `projekt-microbit-ampel` | `content/microbit-ampel/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON, `engine: "anleitung"`, LEDs auf dem Breadboard, Steckpläne als SVG) |
 | *(Lektions-Format)* Woche 1–12 (alle) | `content/python-woche{N}-{abenteuer\|pferde\|scifi}/` | `content/python-woche{N}-{thema}-en/` | Markdown + JSON, Pyodide; ersetzt die Notebook-Schritte Lektion/Debug/Missionen/Boss jeder Woche/Variante/Sprache (siehe HANDOFF.md 3.47–3.54). Die alten `1_lektion`/`2_debug`/`3_missionen`/`5_boss`-Zellenordner gibt es nicht mehr — nur `0_glossar` und `6_loesungen` bleiben als Notebooks (Nachschlagewerke, siehe unten). |
 | `js-grundkurs` | `content/js-grundkurs/` (Beschreibung) + `content/js-grundkurs-woche{1-9}/` (Wochen) | *(keine EN-Version)* | Grundkurs (Markdown + JSON, `engine: "js-sandbox"`, eigene Mehrwochen-Struktur) |
 
@@ -420,7 +421,7 @@ Ordner-Mapping (immer paarweise anpassen):
       feste ID aus der Aufgabenstellung, sonst kann die Prüfung sie nicht finden. Reine
       `console.log`-Aufgaben bekommen `"showCanvas": false`. Test: `tests/js-quiz.spec.js`.
 
-**Für einen Hardware-Kurs zum Abhaken (wie `microbit-auto`, micro:bit + Roboterauto):**
+**Für einen Hardware-Kurs zum Abhaken (wie `microbit-auto` und `microbit-ampel`):**
 - [ ] `kurse.json`-Eintrag bekommt `"engine": "anleitung"`. `ProjectCourse.vue` rendert dann
       `GuideLessonView.vue`: kein Kernel, kein Editor. Der Code läuft auf dem echten Gerät, die
       Plattform kann ihn nicht prüfen.
@@ -437,7 +438,8 @@ Ordner-Mapping (immer paarweise anpassen):
 - [ ] Markdown: Abschnitte, die nur für einen Weg gelten, stehen zwischen `:::bloecke` bzw.
       `:::python` und `:::` (jede Markierung als eigener Absatz mit Leerzeile davor und danach).
       Jeder Code steht in so einem Abschnitt, und jede Lektion hat gleich viele Blöcke- wie
-      Python-Abschnitte (`tests/microbit-auto.spec.js` prüft das).
+      Python-Abschnitte. Diese und die folgenden Regeln prüft `expectGuideContent()` aus
+      `tests/helpers/guide-content.js`; jeder neue Anleitungs-Kurs ruft sie in seinem Spec auf.
 - [ ] Jede Bonusaufgabe (`isBonus`) hat am Ende der Lektion einen Abschnitt `## Bonus: <Titel>` mit
       klarer Aufgabenstellung. Tipps stehen darunter eingeklappt in `<details><summary>Tipps
       anzeigen</summary>` … `</details>` (Leerzeile nach `<summary>`-Zeile und vor `</details>`,
@@ -452,7 +454,14 @@ Ordner-Mapping (immer paarweise anpassen):
 - [ ] MakeCode-Blöcke als Text: Codeblock mit Sprache `bloecke`, pro Zeile `[kategorie] Beschriftung`,
       zwei Leerzeichen Einrückung je Ebene. Kategorien (= Farben, siehe `GuideLessonView.vue`):
       `grundlagen`, `eingabe`, `schleifen`, `logik`, `variablen`, `mathematik`, `funktionen`, `musik`,
-      `minicar`. Neue Kategorie → dort eine `.mc-<name>`-Farbe ergänzen.
+      `minicar`, `pins`, `funk`. Neue Kategorie → dort eine `.mc-<name>`-Farbe ergänzen. Deutsche
+      Block-Beschriftungen stehen in den offiziellen Übersetzungen:
+      `https://makecode.microbit.org/api/translations?lang=de&filename=microbit%2Fcore-strings.json&approved=true`
+      (für Funk `radio-strings.json`), Schlüssel mit `|block`.
+- [ ] Bilder als `<img src="/microbit/..." alt="...">` aus `public/microbit/` (passen sich der Spaltenbreite
+      an). Die Steckpläne der Ampel erzeugt `python3 scripts/build_ampel_steckplaene.py` nach
+      `public/microbit/ampel/`; Aufbau dort ändern und neu erzeugen, nie die SVGs von Hand bearbeiten.
+      Pinbelegung der Ampel: Auto Rot/Gelb/Grün = P0/P1/P2, Fußgänger Rot/Grün = P13/P14, Taster P15.
 - [ ] Python-Beispiele einmal mit `python3` auf Syntax prüfen (`compile()`); ausführen lassen sie
       sich nur auf dem micro:bit. Die Bibliothek für das Auto liegt unter
       `public/microbit/keyes_MiniCar.py` (Keyestudio-Original mit einer Zeile Korrektur, siehe Dateikopf).

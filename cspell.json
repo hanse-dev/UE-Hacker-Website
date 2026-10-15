@@ -24,7 +24,8 @@
     "/^```[\\s\\S]*?^```/gm",
     "/`[^`\\n]+`/g",
     "/\"(codeTemplate|solution|referenceSolution|expected|id|file|section|type|target|click|name|nextCourseId|stdin)\"\\s*:\\s*\"(?:[^\"\\\\]|\\\\.)*\"/g",
-    "/\\\\[nt]/g"
+    "/\\\\[nt]/g",
+    "/<img src=\"[^\"]*\"/g"
   ],
   "words": [
     "abend",
@@ -780,6 +781,8 @@
     "keyes",
     "Linienfolger",
     "anleitung",
-    "robotik"
+    "robotik",
+    "elektronik",
+    "Räumzeit"
   ]
 }

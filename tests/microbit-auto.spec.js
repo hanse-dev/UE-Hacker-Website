@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
 import path from 'node:path';
+import { expectGuideContent } from './helpers/guide-content.js';
 
 const CONTENT_DIR = path.join('content', 'microbit-auto');
 const lessons = JSON.parse(fs.readFileSync(path.join(CONTENT_DIR, 'lessons.json'), 'utf8'));
@@ -25,22 +26,7 @@ test.describe('micro:bit-Kurs: Roboterauto (Anleitung zum Abhaken)', () => {
   }
 
   test('Inhalt: jede Stufe hat Pflichtaufgaben, und jeder Abschnitt gibt es für Blöcke und Python', () => {
-    for (const lesson of lessons) {
-      expect(lesson.tasks.some((task) => !task.isBonus), lesson.id).toBe(true);
-      const md = fs.readFileSync(path.join(CONTENT_DIR, lesson.file), 'utf8');
-      // Jede Bonusaufgabe braucht im Text eine eigene Aufgabenstellung.
-      if (lesson.tasks.some((task) => task.isBonus)) {
-        expect(md, `${lesson.file}: Bonus-Abschnitt`).toMatch(/^## Bonus: /m);
-      }
-      const opened = md.match(/^:::(bloecke|python)$/gm) || [];
-      const closed = md.match(/^:::$/gm) || [];
-      expect(closed.length, `${lesson.file}: Abschnitte geschlossen`).toBe(opened.length);
-      expect(opened.filter((m) => m === ':::bloecke').length, `${lesson.file}: Blöcke und Python gleich oft`)
-        .toBe(opened.filter((m) => m === ':::python').length);
-      // Ein Block-Listing ausserhalb eines :::bloecke-Abschnitts waere auch in der Python-Ansicht sichtbar.
-      const outside = md.replace(/^:::(bloecke|python)$[\s\S]*?^:::$/gm, '');
-      expect(outside, `${lesson.file}: Code nur innerhalb der Abschnitte`).not.toMatch(/```(bloecke|python)/);
-    }
+    expectGuideContent(CONTENT_DIR);
   });
 
   test('Umschalter zeigt Blöcke oder Python und merkt sich die Wahl', async ({ page }) => {
@@ -225,7 +211,8 @@ test.describe('micro:bit-Kurs: Roboterauto (Anleitung zum Abhaken)', () => {
     await expect(page.locator('.projekt-card')).toHaveCount(1);
     await page.locator('.filter-reset').click();
     await page.locator('.filter-chip', { hasText: 'micro:bit' }).click();
-    await expect(page.locator('.projekt-card')).toHaveCount(1);
+    await expect(page.locator('.projekt-card')).toHaveCount(2);
+    await expect(page.locator('a.projekt-card[href="/kurs/projekt-microbit-ampel"]')).toBeVisible();
 
     await page.locator('a.projekt-card[href="/kurs/projekt-microbit-auto"]').click();
     await expect(page.locator('.course-description')).toContainText('Roboterauto');
@@ -236,12 +223,14 @@ test.describe('micro:bit-Kurs: Roboterauto (Anleitung zum Abhaken)', () => {
     await page.route('**/kurse.json', async (route) => {
       const response = await route.fetch();
       const kurse = await response.json();
-      kurse.find((k) => k.id === 'projekt-microbit-auto').unlisted = true;
+      // Beide micro:bit-Kurse verstecken, sonst bliebe der micro:bit-Filter wegen des anderen stehen.
+      kurse.filter((k) => k.language === 'microbit').forEach((k) => { k.unlisted = true; });
       await route.fulfill({ response, json: kurse });
     });
     await page.goto('/projekte');
     await expect(page.locator('.projekt-card').first()).toBeVisible({ timeout: 15000 });
     await expect(page.locator('a[href="/kurs/projekt-microbit-auto"]')).toHaveCount(0);
+    await expect(page.locator('a[href="/kurs/projekt-microbit-ampel"]')).toHaveCount(0);
     await expect(page.locator('.filter-chip', { hasText: 'micro:bit' })).toHaveCount(0);
     await expect(page.locator('.filter-chip', { hasText: 'Robotik' })).toHaveCount(0);
 

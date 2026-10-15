@@ -1,0 +1,120 @@
+[
+  {
+    "id": "lektion-01",
+    "title": "Startklar: Breadboard und erste LED",
+    "file": "lektion-01.md",
+    "lessonSummary": "Es leuchtet! Ihr kennt das Breadboard und habt euren ersten Stromkreis gebaut. Tauscht jetzt die Rollen.",
+    "tasks": [
+      {
+        "instruction": "Wir haben ausgemacht, wer zuerst baut und wer programmiert."
+      },
+      {
+        "instruction": "Die rote LED steckt wie im Steckplan: Kabel von P13, Widerstand über der Lücke, Kabel zu GND."
+      },
+      {
+        "instruction": "Die LED blinkt."
+      },
+      {
+        "instruction": "Die LED blinkt wie ein Herzschlag: zweimal kurz, dann eine Pause.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "title": "Stufe 1: Die Fußgängerampel",
+    "file": "lektion-02.md",
+    "lessonSummary": "Eure Fußgängerampel funktioniert. Tauscht die Rollen, gleich kommen die Autos.",
+    "tasks": [
+      {
+        "instruction": "Nach dem Start leuchtet nur Rot."
+      },
+      {
+        "instruction": "Nach Knopf A leuchtet 5 Sekunden lang nur Grün, danach wieder nur Rot."
+      },
+      {
+        "instruction": "Bevor Grün ausgeht, blinkt es dreimal.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "title": "Stufe 2: Die Autoampel",
+    "file": "lektion-03.md",
+    "lessonSummary": "Eure Autoampel schaltet wie eine echte. Tauscht die Rollen.",
+    "tasks": [
+      {
+        "instruction": "Die drei LEDs der Autoampel stecken wie im Steckplan, die Fußgängerampel steckt weiter."
+      },
+      {
+        "instruction": "Die Autoampel zeigt Rot, Rot-Gelb, Grün und Gelb in dieser Reihenfolge."
+      },
+      {
+        "instruction": "Die Autoampel schaltet ohne Ende weiter."
+      },
+      {
+        "instruction": "Eine eigene Funktion schaltet alle drei LEDs auf einmal.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "title": "Stufe 3: Die Ampelanlage",
+    "file": "lektion-04.md",
+    "lessonSummary": "Geschafft! Eure Ampelanlage lässt Autos und Fußgänger sicher abwechselnd fahren und gehen.",
+    "tasks": [
+      {
+        "instruction": "Wir haben den Ablauf zuerst in Worten aufgeschrieben."
+      },
+      {
+        "instruction": "Nach Knopf A schaltet die Autoampel über Gelb auf Rot, dann bekommen die Fußgänger Grün."
+      },
+      {
+        "instruction": "Danach haben wieder die Autos Grün, und die Fußgänger stehen bei Rot."
+      },
+      {
+        "instruction": "Wir haben geprüft: Autos und Fußgänger haben nie gleichzeitig Grün."
+      },
+      {
+        "instruction": "Nach Knopf A zeigt die LED-Anzeige, dass das Signal kommt.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "title": "Werkstatt 1: Licht und Anzeige",
+    "file": "lektion-05.md",
+    "lessonSummary": "Stark! Eure Ampelanlage kann mehr als jede Ampel an der Straße.",
+    "tasks": [
+      {
+        "instruction": "Wir haben einen Auftrag gelöst und einem anderen Team gezeigt."
+      },
+      {
+        "instruction": "Wir haben einen zweiten Auftrag gelöst.",
+        "isBonus": true
+      },
+      {
+        "instruction": "Wir haben zwei Aufträge zu einem Programm verbunden.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "title": "Werkstatt 2: Ampeln mit Funk",
+    "file": "lektion-06.md",
+    "lessonSummary": "Funkspruch angekommen! Eure Ampeln sprechen sich ab wie eine echte Verkehrszentrale.",
+    "tasks": [
+      {
+        "instruction": "Wir haben einen Funk-Auftrag gelöst und vorgeführt."
+      },
+      {
+        "instruction": "Wir haben einen zweiten Funk-Auftrag gelöst.",
+        "isBonus": true
+      }
+    ]
+  }
+]

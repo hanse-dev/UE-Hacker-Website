@@ -20,6 +20,15 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
       - Lektion 1: Menünamen in MakeCode und im Python-Editor (deutsche Oberfläche) stimmen mit dem
         Text überein; `keyes_MiniCar.py` lässt sich über „Projekt → Öffnen“ hinzufügen.
       - Deutsche Namen der MakeCode-Blöcke in den ```` ```bloecke ````-Listings mit dem Editor abgleichen.
+- [ ] **micro:bit-Kurs „Die Ampelanlage“ (`content/microbit-ampel/`, HANDOFF 3.108) — vor dem ersten
+      Termin einmal mit echten Teilen durchstecken.** Ohne Hardware entstanden. Zu prüfen:
+      - Startklar: Steckt der micro:bit mit den Lampen nach oben in der Platine? Sind links wirklich
+        nur die 2 Löcher an der Lücke frei, und reichen Widerstandsbeine über die Lücke?
+      - Leuchten alle 5 LEDs mit 150 Ω hell genug, und stimmen die Farbringe (braun-grün-schwarz-schwarz-braun)?
+      - Werkstatt 1: Passt der Taster mit Beinchen in Reihe 15 und 17? Funktioniert `ziehe den Pin P15
+        auf nach unten` mit 3.3V wie beschrieben? Welche Lichtstärke-Grenze passt im Raum?
+      - Deutsche Namen der MakeCode-Blöcke im Editor abgleichen (aus den offiziellen Übersetzungen
+        übernommen, `ändere zeit um -1` und `Erstelle eine Funktion` nicht dort nachgeschlagen).
 - [ ] micro:bit-Kurs: `public/microbit/keyes_MiniCar.py` stammt aus dem Keyestudio-Download, eine
       Lizenz ist dort nicht angegeben. Vorschlag: bei Keyestudio nachfragen oder die Datei durch
       einen Link auf deren Download ersetzen (dann fehlt die Korrektur für `get_distance()`).
