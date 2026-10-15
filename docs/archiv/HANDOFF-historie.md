@@ -2743,3 +2743,13 @@ Wunsch des Nutzers nach 3.108: dieselben Verweise auch in den anderen Kursen.
   nur deutsche Erklärungen (EN ist geparkt, siehe todo.md).
 - Nicht eingeschaltet: Python-Einstieg (`InteractiveCourse.vue` hat eigene Glossar-Tooltips; beides
   zusammen würde doppelt markieren), Einstufung, Ferienkurse, micro:bit.
+
+### 3.111 — Beta-Kennzeichnung + Admin-Reiter „Kurse“ (Branch `kurse-beta-admin`)
+
+- Wunsch des Nutzers: Kurse, die er noch nicht selbst durchgegangen ist, als Beta markieren. Das sind
+  alle Projekt-Kurse außer dem Roboterauto, dazu JS-Grundkurs, KI-Labor und Ferienkurse; nicht Beta
+  sind 12-Wochen-Kurs, Interaktiv-Kurs, Einstufung und Roboterauto.
+- `BetaBadge.vue` (Tooltip mit Erklärung) an den Karten in `Home.vue` und `ProjekteView.vue` und im
+  Titel von `CourseDetail.vue`; vor dem Kursstart zusätzlich ein Satz `.beta-hint`.
+- Admin-Reiter „Kurse“ ohne API: liest `kurse.json`, nicht verlinkte Kurse zuerst, Badges für
+  „nicht verlinkt“ und Beta, Link öffnet im neuen Tab.
