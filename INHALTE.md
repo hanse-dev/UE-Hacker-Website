@@ -296,12 +296,19 @@ Jeder Ordner enthält dieselben Dateien:
 - [ ] Kein Build-Schritt nötig — der ZIP-Download liest `lessons.json` und die Markdown-Dateien
       direkt (`scripts/build_lesson_bundle.py`, läuft bei `npm run dev`/`npm run build`)
 
-### Wenn du in einem Grundkurs Wochen umbaust oder in Projekten neue Begriffe einführst:
+### Wenn du einen neuen Kurs anlegst, in einem Grundkurs Wochen umbaust oder neue Begriffe einführst:
 - [ ] `content/begriffe.json`: Projekt-Kurse, JS-Grundkurs, Python-12-Wochen-Kurs und KI-Labor
       verlinken Begriffe wie „Array“ oder „Schleife“ auf die Grundkurs-Woche, die sie erklärt
       (`useConcepts.js`, HANDOFF 3.108/3.110; in den Grundkursen selbst nur frühere Wochen). Verschiebt sich ein Thema in
       eine andere Woche (JS-Grundkurs, Python 12 Wochen), dort `woche`/`lektion` nachziehen. Neuer
       Begriff = neuer Eintrag mit allen Schreibweisen unter `formen` (Groß-/Kleinschreibung zählt).
+- [ ] **Jeder neue Kurs bekommt Begriffs-Links oder eine bewusste Ausnahme** —
+      `tests/begriffe.spec.js` schlägt sonst fehl. Projekt-Kurse: automatisch über `language`
+      (`javascript`/`python`) in `kurse.json`. Kurs mit eigener Wochen-Tour: `concept-language`,
+      `concept-course`, `concept-week` an `JsCourseTour.vue` geben (Vorlage `JsGrundkursTour.vue`)
+      und die ID in `LINKED_COURSES` des Tests eintragen. Sonst die ID mit Grund in `WITHOUT_LINKS`.
+- [ ] Neuer Grundkurs als Link-Ziel: Begriffe mit `kurs`/`woche` in `begriffe.json`, Kursname unter
+      `kurse`, Wochen-Ordner in `WEEK_FOLDER` des Tests (prüft, dass `lektion` dort wirklich vorkommt).
 
 ### Wenn du Missionen änderst:
 - [ ] `public/rewards-manifest.json`
@@ -364,8 +371,8 @@ Ordner-Mapping (immer paarweise anpassen):
       ist optional.
 - [ ] Neuer Eintrag in `public/kurse.json` mit **Pflichtfeldern**: `id` (Präfix `projekt-`),
       `type: "projekt"`, `contentPath`, `title`/`title_en`, `description`/`description_en`, sowie
-      den Filter-Metadaten `language` (`"python"`/`"javascript"`, Slug — steuert nur die Anzeige,
-      keine Übersetzung nötig), `level` (`"einsteiger"`/`"fortgeschritten"`) und `tags` (Array aus
+      den Filter-Metadaten `language` (`"python"`/`"javascript"`, Slug — steuert den Sprach-Filter
+      und schaltet die Begriffs-Links auf den passenden Grundkurs ein, keine Übersetzung nötig), `level` (`"einsteiger"`/`"fortgeschritten"`) und `tags` (Array aus
       einem festen Vokabular, aktuell: `kryptografie`, `knobelaufgabe`, `kommunikation`,
       `logikraetsel`, `mathematik`, `spiele`, `robotik`). Ein neuer Tag braucht neue `projectTag.<slug>`-Keys in
       **beiden** `src/locales/de.js`/`en.js` — sonst zeigt die Filter-Chip/Karte nur den rohen Slug.
@@ -374,6 +381,9 @@ Ordner-Mapping (immer paarweise anpassen):
 - [ ] **Python-Projekt:** Ordner in `PROJECT_COURSES` (`scripts/build_project_notebook.py`) eintragen
       (Offline-Downloads) und den Zähler „N Projekt-Kurse“ in `tests/lesson-notebook-generator.spec.js`
       erhöhen. Jede Aufgabe braucht ein `solution`-Feld (Lösungs-Button + Offline-Lösungen).
+- [ ] Begriffs-Links prüfen: Erscheinen im Lektionstext Links und am Ende der Kasten „Neu oder
+      unklar?“? Fehlt ein Begriff, der im Projekt wichtig ist und in einem Grundkurs erklärt wird,
+      in `content/begriffe.json` ergänzen (siehe oben).
 - [ ] Tests/Tooling: Kartenzahlen und Filter-Erwartungen in `tests/projekte.spec.js`, Regel in
       `scripts/test-changed.mjs`, Ordner in den `lint:spelling`-Globs (`package.json`),
       `npm run contract:update`.
