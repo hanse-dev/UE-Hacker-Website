@@ -1,0 +1,44 @@
+[
+  {
+    "id": "lektion-01",
+    "title": "Hallo Website",
+    "file": "lektion-01.md",
+    "lessonSummary": "Super! Deine erste Website steht – mit Überschrift, Text und sogar Farbe. In der nächsten Lektion bringst du Ordnung hinein.",
+    "tasks": [
+      {
+        "instruction": "Klick auf „Ausführen“ und schau in die Vorschau: Aus dem Bauplan wird eine echte Seite mit Überschrift und Absatz.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine erste Website</title>\n</head>\n<body>\n  <h1>Hallo Welt!</h1>\n  <p>Das ist meine allererste Website.</p>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            { "selector": "h1", "text": "Hallo Welt" }
+          ]
+        }
+      },
+      {
+        "instruction": "Jetzt du: Worum soll deine Website gehen? Schreib dein Thema in die Überschrift und erzähl in zwei Absätzen etwas darüber.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine erste Website</title>\n</head>\n<body>\n  <!-- Schreib dein Thema zwischen die beiden h1-Tags -->\n  <h1></h1>\n\n  <!-- Und hier zwei Absätze: <p>...</p> -->\n\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine erste Website</title>\n</head>\n<body>\n  <h1>Meine Katze Mia</h1>\n  <p>Mia ist drei Jahre alt und schläft am liebsten in der Sonne.</p>\n  <p>Ihr Lieblingsspielzeug ist eine kleine rote Maus.</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            { "selector": "h1", "notEmpty": true, "hint": "Schreib dein Thema zwischen <h1> und </h1>." },
+            { "selector": "p", "notEmpty": true, "min": 2, "hint": "Du brauchst zwei Absätze mit Text – zweimal <p>…</p>." }
+          ]
+        }
+      },
+      {
+        "instruction": "Ein kleiner Ausblick auf später: Mit style=\"color: …\" bekommt die Überschrift eine Farbe. Ersetze black durch eine Farbe, die dir gefällt – zum Beispiel red, blue, green, orange oder purple.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine erste Website</title>\n</head>\n<body>\n  <h1 style=\"color: black\">Meine erste Website</h1>\n  <p>Hier steht bald mehr.</p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine erste Website</title>\n</head>\n<body>\n  <h1 style=\"color: purple\">Meine erste Website</h1>\n  <p>Hier steht bald mehr.</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            { "selector": "h1", "property": "color", "notValue": "black", "hint": "Ersetze black durch eine andere Farbe auf Englisch, zum Beispiel red." }
+          ]
+        }
+      }
+    ]
+  }
+]

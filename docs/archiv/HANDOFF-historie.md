@@ -2726,3 +2726,24 @@ denen man mehr darüber lernt oder nachschlagen kann, was das ist.
   Wahl-Lektionen hätten Änderungen an Freischaltung und Abzeichen gebraucht.
 - Ohne Hardware entstanden; Lösungen von Stufe 2 und 3 gegen einen nachgebauten micro:bit simuliert
   (Phasenfolge, nie beide Grün). Prüfliste in `todo.md`.
+
+### 3.110 — Web-Sandbox für HTML/CSS (Branch `web-sandbox`)
+
+- Grundlage für den Web-Track (Plan in `KURSPLAN.md`): Kurs A „Meine erste Website“ und
+  Web-Grundkurs HTML & CSS. Dritter Modus der JS-Sandbox, `"sandboxMode": "web"` in `kurse.json`.
+- Das HTML des Kindes ist selbst das iframe-Dokument (`buildWebDocument()` in `useJsSandbox.js`):
+  vorne CSP-Meta + Harness-Script, srcdoc pro Lauf neu. Ein Dokument, CSS im `<style>`-Block —
+  bewusst keine getrennten HTML/CSS-Tabs, damit die heruntergeladene Datei genau das ist, was das
+  Kind sieht. Editor: `JsCodeCell.vue` mit `language="html"` (`@codemirror/lang-html`).
+- Prüfung `validation.type: 'web'` mit `checks`-Liste (`selector`, `min`/`max`, `text`, `notEmpty`,
+  `property` + `value`/`notValue`, `hint`). Das iframe liefert nur Fakten, entschieden wird in
+  `validateWebChecks()` (`useTaskValidation.js`, Dev-Skip greift). CSS-Werte normalisiert der Browser
+  über ein unsichtbares Probe-Element: `red` = `#ff0000` = `rgb(255, 0, 0)`. Attribute über den
+  Selektor (`img[alt]:not([alt=""])`). Bei HTML ist die gerenderte Seite die „Ausgabe“, deshalb
+  in Lektionen erlaubt (wie `dom_text`).
+- Vorschau bleibt stehen: Sprungmarken scrollen von Hand, echte Links öffnen einen neuen Tab
+  (`allow-popups` nur im Web-Modus), Formulare werden nie abgeschickt. Bilder nur aus
+  `/web-bilder/` oder als `data:`; der Download (`meine-website.html`) schreibt diese Pfade auf die
+  volle Adresse um.
+- Erste echte Lektion „Hallo Website“ in `content/web-erste-website/` (Kurs vorerst `unlisted`,
+  Kurs-ID endgültig). `tests/web-sandbox.spec.js`.

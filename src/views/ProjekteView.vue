@@ -126,7 +126,7 @@ const lessonJsonModules = import.meta.glob('../../content/*/lessons.json');
 
 const LEVEL_ORDER = ['einsteiger', 'fortgeschritten'];
 const DURATION_ORDER = ['kurz', 'mittel', 'laenger'];
-const LANGUAGE_LABELS = { python: 'Python', javascript: 'JavaScript', microbit: 'micro:bit' };
+const LANGUAGE_LABELS = { python: 'Python', javascript: 'JavaScript', microbit: 'micro:bit', html: 'HTML & CSS' };
 
 function durationBucket(lessonCount) {
   if (lessonCount <= 5) return 'kurz';

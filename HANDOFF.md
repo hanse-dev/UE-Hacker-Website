@@ -69,6 +69,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.107 | Arbeitsfläche zeigt auch die Ausgabe | breit steht die Konsolen-Ausgabe der gezeigten Aufgabe in der Arbeitsfläche (unter dem Code ausgeblendet), auch bei Aufgaben ohne Zeichenfläche; schmal bleibt sie unter dem Code und eine Arbeitsfläche ohne Zeichenfläche wird nicht gezeigt; Editor neben der Arbeitsfläche ohne 500-px-Grenze |
 | 3.108 | Begriffe in Projekten verlinken auf die Grundkurse | `content/begriffe.json` (je Sprache: Schreibweisen, Erklärung, Kurs + Woche) → `useConcepts.js`; in Projekt-Lektionen (nur `ProjectCourse.vue`, `language` aus kurse.json) wird jeder Begriff beim ersten Vorkommen im Fließtext ein Link (neuer Tab, Tooltip), am Ende steht `ConceptBox.vue` „Neu oder unklar?“; `tests/begriffe.spec.js` |
 | 3.109 | micro:bit-Kurs „Die Ampelanlage“ (`projekt-microbit-ampel`) | zweiter Hardware-Kurs, gleiche Anleitungs-Engine, vorerst `"unlisted": true` (nur per `/kurs/projekt-microbit-ampel`): LEDs mit 150 Ω auf dem Mini-Breadboard der T-Platine, Startklar + 3 Stufen (Fußgänger-, Autoampel, Ampelanlage) + 2 Werkstatt-Seiten mit frei wählbaren Aufträgen (Licht/Anzeige, Funk); Steckpläne als SVG aus `scripts/build_ampel_steckplaene.py`; Block-Kategorien `pins`/`funk`, Bilder skalieren mit; Inhaltsregeln in `tests/helpers/guide-content.js` für beide micro:bit-Kurse |
+| 3.110 | Web-Sandbox für HTML/CSS (Grundlage Web-Track) | `"sandboxMode": "web"`: HTML des Kindes ist selbst das iframe-Dokument (`buildWebDocument()`), Editor mit `lang-html`, Prüfung `validation.type: 'web'` mit `checks` (Selektor/Anzahl/Text/berechnetes CSS, vom Browser normalisiert) über `validateWebChecks()`, Download-Knopf; Kurs `web-erste-website` (unlisted, Lektion 1); `tests/web-sandbox.spec.js` |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -158,6 +159,13 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   Antworten so verteilen, dass das Ergebnis nicht 0 oder alles ist (js-quiz: 3× `antwort-0` → 2 von 3).
 - `element.click()` der Prüfung löst auch auf versteckten Knöpfen (`hidden`) aus, nur nicht auf
   `disabled`. Ein Fehler im Listener bricht die Klick-Folge nicht ab.
+- Web-Modus (`"sandboxMode": "web"`, 3.110): `srcdoc`-Dokumente laufen immer im Standard-Modus —
+  DOCTYPE-Position ist egal, Harness steht einfach vorne. Basis-URL ist die Kursseite: ohne das
+  Abfangen im Harness würde `href="#x"` das iframe auf die Kursseite navigieren. CSS-Prüfungen nur
+  über `property` + `value`/`notValue` (Probe-Element normalisiert); eine Farbe, die frei wählbar
+  sein soll, prüft man mit `notValue` gegen die Vorlage.
+- Neue npm-Abhängigkeit im Worktree: `npm install` ersetzt den `node_modules`-Symlink durch einen
+  eigenen Ordner (Haupt-Checkout bleibt unberührt) — nach dem Merge im Haupt-Checkout `npm install`.
 - Zustand, den ein Klick erst herstellen soll, lässt sich ohne Klick-Folge nur prüfen, wenn die
   Vorlage ihn vorher selbst herbeiführt (js-quiz Lektion 7: drei `antworte(0)`-Zeilen am Ende
   spielen das Quiz durch, dann prüft ein Klick auf „Nochmal spielen“ den Punktestand).

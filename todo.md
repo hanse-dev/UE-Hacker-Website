@@ -68,6 +68,7 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
 Gesamt-Roadmap/Track-Modell siehe `VISION.md`, Ideen-Backlog in `PROJEKTIDEEN.md`. In Arbeit:
 `projekt-haeufigkeitsanalyse` (eigener Worktree). Alles Gemergte steht im Archiv.
 
-**Web-Track** (Plan in `KURSPLAN.md`): `web-sandbox` (in Arbeit: HTML-Editor, Live-Vorschau,
-Download, Prüfungen `html_element`/`html_attribute`/`css_property`) → `kurs-erste-website` (Kurs A
-inkl. Abschluss-Check) → `web-grundkurs` (Kurs B, 9 Wochen) → `web-checks` (Wochen-Checks/Zertifikate).
+**Web-Track** (Plan in `KURSPLAN.md`): `web-sandbox` (fertig, wartet auf Merge: Web-Modus der Sandbox,
+Prüfung `validation.type: 'web'`, Lektion 1 von Kurs A; nach dem Merge im Haupt-Checkout `npm install`
+für `@codemirror/lang-html`) → `kurs-erste-website` (Kurs A
+Lektion 2–8 + Abschluss-Check/Zertifikat, Bilder unter `public/web-bilder/`, Kurs aus `unlisted` holen) → `web-grundkurs` (Kurs B, 9 Wochen) → `web-checks` (Wochen-Checks/Zertifikate).

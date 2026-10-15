@@ -155,10 +155,10 @@ Seite, die über die Wochen wächst; keine Themen-Varianten, nur DE.
 - **Neuer Sandbox-Modus „web“:** CodeMirror mit `@codemirror/lang-html` (CSS/JS eingebettet), Live-
   Vorschau im iframe, Download-Knopf für die fertige `.html`. Eine einzige Datei, CSS im
   `<style>`-Block — keine getrennten HTML/CSS-Tabs.
-- **Neue Prüfungen** (über `useTaskValidation.js`): `html_element` (Selektor vorhanden, Anzahl,
-  Text), `html_attribute` (z.B. `img[alt]`), `css_property` (über `getComputedStyle`, Farben
-  normalisiert — egal wie das Kind den Stil schreibt). Bei HTML ist die gerenderte Seite die
-  „Ausgabe“, analog zu `dom_text` in `js-memory`.
+- **Prüfung `validation.type: 'web'`** (umgesetzt in `web-sandbox`, Details `HANDOFF.md` 3.110):
+  Liste von `checks` — Selektor vorhanden/Anzahl/Text, Attribute über den Selektor
+  (`img[alt]`), CSS über `getComputedStyle` vom Browser normalisiert (`property` + `value`/`notValue`).
+  Bei HTML ist die gerenderte Seite die „Ausgabe“, analog zu `dom_text` in `js-memory`.
 - **Umsetzung in Branches:** `web-sandbox` (Technik + Demo-Lektion) → `kurs-erste-website` (Kurs A
   inkl. Abschluss-Check) → `web-grundkurs` (Kurs B, Wochen-Navigation) → `web-checks`
   (Wochen-Checks/Zertifikate für Kurs B; Check-Logik ist bisher Pyodide-zentriert).

@@ -1536,6 +1536,9 @@
       "lektion-04",
       "lektion-05"
     ],
+    "web-erste-website": [
+      "lektion-01"
+    ],
     "zahlendetektiv": [
       "lektion-01",
       "lektion-02",
@@ -1845,7 +1848,8 @@
     "projekt-zahlendetektiv",
     "python-12-wochen-grundkurs",
     "python-einstufung",
-    "python-grundlagen-interaktiv"
+    "python-grundlagen-interaktiv",
+    "web-erste-website"
   ],
   "storage": {
     "keys": [

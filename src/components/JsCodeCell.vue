@@ -10,6 +10,7 @@ import { keymap, hoverTooltip } from '@codemirror/view';
 import { indentUnit } from '@codemirror/language';
 import { indentWithTab } from '@codemirror/commands';
 import { javascript, localCompletionSource, scopeCompletionSource } from '@codemirror/lang-javascript';
+import { html } from '@codemirror/lang-html';
 import { autocompletion, acceptCompletion } from '@codemirror/autocomplete';
 
 // Kurzsignaturen fuer genau die Canvas-/Browser-API, die in den Lektionen dieses Kurses vorkommt
@@ -80,6 +81,9 @@ export default {
   name: 'JsCodeCell',
   props: {
     modelValue: { type: String, default: '' },
+    // 'html' fuer die Web-Kurse: HTML mit eingebettetem CSS/JS, Tags schliessen sich selbst und
+    // werden vorgeschlagen (lang-html bringt das mit) - die JS-Hilfen unten gelten dort nicht.
+    language: { type: String, default: 'javascript' },
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
@@ -99,9 +103,13 @@ export default {
             indentWithTab,
           ])),
           indentUnit.of('  '),
-          javascript(),
-          autocompletion({ override: [localCompletionSource, scopeCompletionSource(buildCompletionScope())] }),
-          jsApiHoverTooltip(),
+          ...(props.language === 'html'
+            ? [html()]
+            : [
+              javascript(),
+              autocompletion({ override: [localCompletionSource, scopeCompletionSource(buildCompletionScope())] }),
+              jsApiHoverTooltip(),
+            ]),
           EditorView.updateListener.of((update) => {
             if (update.docChanged && !applyingExternal) {
               emit('update:modelValue', update.state.doc.toString());

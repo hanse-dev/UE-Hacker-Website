@@ -87,6 +87,7 @@
           :course-id="courseId"
           :show-canvas="showCanvas"
           :dom-mode="domMode"
+          :web-mode="webMode"
           :is-project-course="true"
           :concept-language="language"
           :is-last-lesson="isLastLesson"
@@ -121,6 +122,8 @@ export default {
     // Nur fuer engine: 'js-sandbox': zeigt statt des Canvas die DOM-Uebungsflaeche der Sandbox
     // (`"sandboxMode": "dom"` in kurse.json, z.B. das Memory-Projekt).
     domMode: { type: Boolean, default: false },
+    // Nur fuer engine: 'js-sandbox': Web-Kurse (`"sandboxMode": "web"`), HTML statt JS.
+    webMode: { type: Boolean, default: false },
     // `language` aus kurse.json - schaltet die Begriffs-Links auf den Grundkurs ein (useConcepts.js).
     language: { type: String, default: '' },
   },

@@ -30,7 +30,7 @@
             <span v-else-if="completedTasks.size > 0" class="task-status-label">{{ t('lesson.taskPending') }}</span>
           </p>
           <div class="code-editor-wrapper" :class="{ 'code-editor-ran': taskRan[idx] }">
-            <JsCodeCell v-model="taskCodes[idx]" />
+            <JsCodeCell v-model="taskCodes[idx]" :language="webMode ? 'html' : 'javascript'" />
           </div>
           <p v-if="taskRan[idx]" class="code-ran-note">▶ {{ t('jsLesson.alreadyRan') }}</p>
           <div class="editor-actions">
@@ -61,6 +61,9 @@
             >
               {{ t('editor.reset') }}
             </button>
+            <button v-if="webMode" type="button" @click="downloadTask(idx)" class="btn-reset btn-download">
+              {{ t('webLesson.download') }}
+            </button>
           </div>
           <details v-if="task.solution" class="solution-reveal">
             <summary>{{ t('jsLesson.showSolution') }}</summary>
@@ -90,7 +93,7 @@
             {{ t('jsLesson.workspaceTitle') }}<span v-if="activeIdx !== null" class="js-workspace-task"> · {{ t('jsLesson.workspaceTask').replace('{n}', activeIdx + 1) }}</span>
           </p>
           <p v-if="activeIdx === null" class="js-workspace-hint">{{ t('jsLesson.workspaceEmpty') }}</p>
-          <JsSandboxFrame v-if="activeIdx !== null" ref="sandboxEl" :show-canvas="activeShowsCanvas" :dom-mode="domMode" />
+          <JsSandboxFrame v-if="activeIdx !== null" ref="sandboxEl" :show-canvas="activeShowsCanvas" :dom-mode="domMode" :web-mode="webMode" />
           <!-- Breit zeigt die Arbeitsflaeche auch die Ausgabe (dann ohne Kopie unter dem Code), damit
                rechts immer das ganze Ergebnis steht - auch bei Aufgaben, die nichts zeichnen. -->
           <div v-if="activeIdx !== null && taskOutputs[activeIdx] !== null" class="output-display js-workspace-output">
@@ -125,7 +128,8 @@ import JsSandboxFrame from './JsSandboxFrame.vue';
 import JsCodeCell from './JsCodeCell.vue';
 import { useInteractiveProgress } from '../composables/useInteractiveProgress';
 import { useLanguage } from '../composables/useLanguage';
-import { validateOutput } from '../composables/useTaskValidation';
+import { validateOutput, validateWebChecks } from '../composables/useTaskValidation';
+import { webDocumentForDownload } from '../composables/useJsSandbox';
 import { DEV_SKIP_CHECKS } from '../composables/devSkipChecks.js';
 import { useLessonContent } from '../composables/useLessonContent';
 import ProjectCompletionBox from './ProjectCompletionBox.vue';
@@ -142,6 +146,9 @@ export default {
     courseId: { type: String, default: 'python-grundlagen-interaktiv' },
     showCanvas: { type: Boolean, default: true },
     domMode: { type: Boolean, default: false },
+    // Web-Kurse (`"sandboxMode": "web"` in kurse.json): Aufgaben sind HTML-Seiten statt JS, die
+    // Arbeitsflaeche zeigt die Seite selbst, Pruefungen laufen ueber `validation.type: 'web'`.
+    webMode: { type: Boolean, default: false },
     // true nur bei ProjectCourse.vue (Projekt-Kurse) - steuert, ob am Ende der letzten Lektion
     // ProjectCompletionBox (Abzeichen-Hinweis + zurueck zu /projekte) statt des generischen
     // "Weiter"-Buttons erscheint.
@@ -279,6 +286,9 @@ export default {
     // relevant, wenn diese Lektion ueberhaupt ein sichtbares Canvas hat (showCanvas).
     const withCanvasNote = async (idx, rawOutput) => {
       const trimmed = (rawOutput || '').trim();
+      // Web-Modus: das Ergebnis ist die Seite in der Arbeitsflaeche - eine Ausgabe-Box gibt es nur,
+      // wenn ein <script> wirklich etwas mit console.log geschrieben hat.
+      if (props.webMode) return trimmed || null;
       if (!taskShowsCanvas(idx)) return trimmed || t('jsLesson.noOutput');
       const drew = await sandboxEl.value.checkCanvasNotBlank();
       if (drew) return trimmed ? `${trimmed}\n\n${t('jsLesson.canvasNote')}` : t('jsLesson.canvasNote');
@@ -349,6 +359,7 @@ export default {
       // dom_*-Typen nutzen stattdessen `validation.text`), sonst wuerde validateOutput()s
       // Ausgabe-Fallback-Check faelschlich gegen die (meist leere) Konsolen-Ausgabe pruefen.
       let extraChecksOk = true;
+      let failedHint = '';
       if (validation.type === 'canvas_not_blank') {
         extraChecksOk = await sandboxEl.value.checkCanvasNotBlank();
       } else if (validation.type === 'canvas_changed') {
@@ -359,6 +370,11 @@ export default {
       } else if (validation.type === 'dom_click_text') {
         const text = await sandboxEl.value.checkDomClickText(validation.click, validation.target, validation.clicks);
         extraChecksOk = typeof text === 'string' && text.trim() === validation.text;
+      } else if (validation.type === 'web') {
+        const facts = await sandboxEl.value.checkWeb(validation.checks || []);
+        const webResult = validateWebChecks(validation, facts);
+        extraChecksOk = webResult.ok;
+        failedHint = webResult.ok ? '' : validation.checks?.[webResult.failedIndex]?.hint || '';
       }
       if (!isMounted.value) return;
 
@@ -376,6 +392,10 @@ export default {
         taskAttempts.value[idx] = (taskAttempts.value[idx] || 0) + 1;
         if (taskAttempts.value[idx] < 2) {
           taskFeedback.value[idx] = { success: false, message: t('lesson.hintSoft') };
+        } else if (validation.type === 'web') {
+          // Web-Pruefungen haben kein `expected` - stattdessen der Hinweis der ersten Pruefung,
+          // die noch nicht passt (`hint` in lessons.json).
+          taskFeedback.value[idx] = { success: false, message: failedHint || t('lesson.hintSoft') };
         } else {
           taskFeedback.value[idx] = {
             success: false,
@@ -399,6 +419,18 @@ export default {
           message: t('lesson.taskDoneRemaining').replace('{n}', idx + 1).replace('{r}', remaining),
         };
       }
+    };
+
+    // Die eigene Seite als echte .html-Datei mitnehmen - laesst sich danach per Doppelklick im
+    // Browser oeffnen (Bilder aus /web-bilder/ zeigen dann auf die volle Adresse).
+    const downloadTask = (idx) => {
+      const blob = new Blob([webDocumentForDownload(taskCodes.value[idx])], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'meine-website.html';
+      a.click();
+      URL.revokeObjectURL(url);
     };
 
     const goToNext = () => {
@@ -431,6 +463,7 @@ export default {
       skippedTasks,
       skipTask,
       resetTask,
+      downloadTask,
       isTaskDone,
       taskAttempts,
       instructionWithGlossary,
@@ -776,6 +809,7 @@ a.btn-next {
 
 .editor-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   align-items: center;
   margin-bottom: 12px;

@@ -337,6 +337,7 @@ export default {
   'jsLesson.ready':        '✓ Sandbox bereit',
   'jsLesson.starting':     'Sandbox startet…',
   'jsLesson.restartFrame': 'Neu starten',
+  'webLesson.download': '⬇ Seite herunterladen',
   'jsLesson.frameStalled': 'Sieht aus, als würde dein Spiel hängen – klick auf „Neu starten“.',
 
   // ── Code challenge (Wochen-Check) ────────────────────────────────────────
