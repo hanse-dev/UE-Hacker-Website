@@ -1,8 +1,13 @@
 import data from '../../content/begriffe.json';
 
-// Begriffe in Projekt-Kursen (z.B. "Array", "Schleife") auf die Woche des Grundkurses verlinken,
-// in der sie erklärt werden. Daten: content/begriffe.json, Sprache = `language` aus kurse.json.
-// Die Links öffnen in einem neuen Tab, damit das Projekt (Code im Editor) offen bleibt.
+// Begriffe (z.B. "Array", "Schleife") auf die Woche des Grundkurses verlinken, in der sie erklärt
+// werden. Daten: content/begriffe.json. Die Links öffnen in einem neuen Tab, damit die Lektion (Code
+// im Editor) offen bleibt.
+//
+// `opts` = { language, course, week }: `language` wählt die Liste (`javascript`/`python`). In einem
+// Grundkurs selbst (`course` = js-grundkurs / python-12-wochen-grundkurs) zählen nur Begriffe aus
+// FRÜHEREN Wochen - was die aktuelle Woche gerade erklärt, braucht keinen Verweis, und nach vorne
+// verlinken wäre verwirrend. Ein String statt Objekt gilt als { language }.
 
 function escapeRegex(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -12,9 +17,16 @@ function escapeAttr(s) {
   return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 }
 
-export function conceptsFor(language) {
+function normalize(opts) {
+  if (typeof opts === 'string') return { language: opts, course: '', week: 0 };
+  return { language: opts?.language || '', course: opts?.course || '', week: opts?.week || 0 };
+}
+
+export function conceptsFor(opts) {
+  const { language, course, week } = normalize(opts);
   const list = data[language];
-  return Array.isArray(list) ? list : [];
+  if (!Array.isArray(list)) return [];
+  return course ? list.filter((c) => !(c.kurs === course && c.woche >= week)) : list;
 }
 
 export function conceptHref(concept) {
@@ -42,8 +54,8 @@ function sortByWeek(concepts) {
 }
 
 /** Begriffe, die in einem Klartext (z.B. Aufgabenstellung) vorkommen. */
-export function conceptsInText(text, language) {
-  const m = buildMatcher(conceptsFor(language));
+export function conceptsInText(text, opts) {
+  const m = buildMatcher(conceptsFor(opts));
   if (!m || !text) return [];
   const found = new Set();
   for (const hit of String(text).matchAll(m.regex)) found.add(m.byForm.get(hit[1]));
@@ -59,8 +71,8 @@ const SKIP = /(<pre[\s\S]*?<\/pre>|<code[\s\S]*?<\/code>|<a\b[\s\S]*?<\/a>|<h[1-
  * liefert alle in der Lektion vorkommenden Begriffe (auch aus Inline-Code wie `push`, nicht aus
  * Code-Blöcken) für den "Hier lernst du mehr"-Kasten.
  */
-export function linkConcepts(html, language) {
-  const m = buildMatcher(conceptsFor(language));
+export function linkConcepts(html, opts) {
+  const m = buildMatcher(conceptsFor(opts));
   if (!m || !html) return { html: html || '', found: [] };
   const linked = new Set();
   const parts = html.split(SKIP);
@@ -76,7 +88,7 @@ export function linkConcepts(html, language) {
   }).join('');
 
   const prose = html.replace(/<pre[\s\S]*?<\/pre>/gi, ' ').replace(/<[^>]+>/g, ' ');
-  return { html: out, found: conceptsInText(prose, language) };
+  return { html: out, found: conceptsInText(prose, opts) };
 }
 
 /**

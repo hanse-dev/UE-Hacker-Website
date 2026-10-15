@@ -73,6 +73,9 @@
           embedded
           free-navigation
           :has-check="hasCheck"
+          concept-language="python"
+          concept-course="python-12-wochen-grundkurs"
+          :concept-week="weekNumber"
           @open-check="viewStep('4_check')"
           :key="`lessons-${lessonContentPath}`"
         />

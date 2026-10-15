@@ -297,8 +297,9 @@ Jeder Ordner enthält dieselben Dateien:
       direkt (`scripts/build_lesson_bundle.py`, läuft bei `npm run dev`/`npm run build`)
 
 ### Wenn du in einem Grundkurs Wochen umbaust oder in Projekten neue Begriffe einführst:
-- [ ] `content/begriffe.json`: Projekt-Kurse verlinken Begriffe wie „Array“ oder „Schleife“ auf die
-      Grundkurs-Woche, die sie erklärt (`useConcepts.js`, HANDOFF 3.108). Verschiebt sich ein Thema in
+- [ ] `content/begriffe.json`: Projekt-Kurse, JS-Grundkurs, Python-12-Wochen-Kurs und KI-Labor
+      verlinken Begriffe wie „Array“ oder „Schleife“ auf die Grundkurs-Woche, die sie erklärt
+      (`useConcepts.js`, HANDOFF 3.108/3.110; in den Grundkursen selbst nur frühere Wochen). Verschiebt sich ein Thema in
       eine andere Woche (JS-Grundkurs, Python 12 Wochen), dort `woche`/`lektion` nachziehen. Neuer
       Begriff = neuer Eintrag mit allen Schreibweisen unter `formen` (Groß-/Kleinschreibung zählt).
 
