@@ -2686,3 +2686,25 @@ die Arbeitsfläche wirkte kaputt.
   abgeschnitten, obwohl Platz war).
 - Tests lesen die Ausgabe in JS-Lektionen mit Arbeitsfläche jetzt aus `.js-workspace`;
   `tests/js-geteilte-ansicht.spec.js` prüft den Quiz-Fall breit und schmal.
+
+### 3.108 — Begriffe in Projekten verlinken auf die Grundkurse (Branch `begriffe-verlinken`)
+
+Wunsch des Nutzers: Aus den Projekten heraus bei Begriffen wie „Array“ auf die Kurse verweisen, in
+denen man mehr darüber lernt oder nachschlagen kann, was das ist.
+
+- **Daten:** `content/begriffe.json`, je Sprache (`javascript`/`python`, wie `language` in
+  kurse.json) eine Liste: `begriff`, `formen` (Schreibweisen im Text, längste gewinnt),
+  `erklaerung` (ein Satz), `kurs` + `woche` (Link `/kurs/<kurs>?week=<woche>`), `lektion` (nur
+  Anzeige). JS zeigt auf den JS-Grundkurs, Python auf den 12-Wochen-Kurs (dort landet der Link auf
+  der Themenwahl der Woche). Lektions-genaue Links gibt es nicht, der JS-Grundkurs kennt nur `?week`.
+- **Im Lektionstext** (`useLessonContent.js` → `linkConcepts`): jeder Begriff beim ersten Vorkommen
+  im Fließtext als Link mit Tooltip, neuer Tab (das Projekt mit dem Code im Editor bleibt offen).
+  Nie in Code-Blöcken, Inline-Code, Überschriften oder vorhandenen Links; nur ganze Wörter
+  („funktioniert“, „Klassen-Umfrage“ zählen nicht).
+- **Kasten am Lektionsende** (`ConceptBox.vue`): alle Begriffe aus Lektionstext (inkl. Inline-Code
+  wie `push`) und Aufgabentexten, nach Kurswoche sortiert. Doppelte über Kurs + Begriff entfernen,
+  nicht über Objekt-Identität — aus einem Vue-`ref` kommen Proxys zurück.
+- Nur Projekt-Kurse (`ProjectCourse.vue` reicht `language` durch), nicht der micro:bit-Kurs
+  (`GuideLessonView`) und nicht die Grundkurse selbst.
+- Bewusste Lücke: Was die Grundkurse nicht behandeln (`createElement`, `setTimeout`,
+  `Math.random`, Python-Stringmethoden wie `ord`/`chr`), bekommt keinen Link.

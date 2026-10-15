@@ -295,6 +295,12 @@ Jeder Ordner enthält dieselben Dateien:
 - [ ] Kein Build-Schritt nötig — der ZIP-Download liest `lessons.json` und die Markdown-Dateien
       direkt (`scripts/build_lesson_bundle.py`, läuft bei `npm run dev`/`npm run build`)
 
+### Wenn du in einem Grundkurs Wochen umbaust oder in Projekten neue Begriffe einführst:
+- [ ] `content/begriffe.json`: Projekt-Kurse verlinken Begriffe wie „Array“ oder „Schleife“ auf die
+      Grundkurs-Woche, die sie erklärt (`useConcepts.js`, HANDOFF 3.108). Verschiebt sich ein Thema in
+      eine andere Woche (JS-Grundkurs, Python 12 Wochen), dort `woche`/`lektion` nachziehen. Neuer
+      Begriff = neuer Eintrag mit allen Schreibweisen unter `formen` (Groß-/Kleinschreibung zählt).
+
 ### Wenn du Missionen änderst:
 - [ ] `public/rewards-manifest.json`
 - [ ] `public/rewards-manifest-en.json`

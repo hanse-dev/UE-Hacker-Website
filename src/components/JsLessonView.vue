@@ -4,6 +4,7 @@
     <div class="lesson-content">
       <p v-if="!lessonContent" class="lesson-loading">{{ t('lesson.loading') }}</p>
       <div v-else v-html="lessonContent"></div>
+      <ConceptBox v-if="lessonContent && conceptList.length" :concepts="conceptList" />
     </div>
 
     <div class="lesson-editor-section">
@@ -128,10 +129,12 @@ import { validateOutput } from '../composables/useTaskValidation';
 import { DEV_SKIP_CHECKS } from '../composables/devSkipChecks.js';
 import { useLessonContent } from '../composables/useLessonContent';
 import ProjectCompletionBox from './ProjectCompletionBox.vue';
+import ConceptBox from './ConceptBox.vue';
+import { conceptsInText, mergeConcepts } from '../composables/useConcepts';
 
 export default {
   name: 'JsLessonView',
-  components: { JsSandboxFrame, JsCodeCell, ProjectCompletionBox },
+  components: { JsSandboxFrame, JsCodeCell, ProjectCompletionBox, ConceptBox },
   props: {
     lesson: { type: Object, required: true },
     contentPath: { type: String, required: true },
@@ -144,6 +147,10 @@ export default {
     // "Weiter"-Buttons erscheint.
     isProjectCourse: { type: Boolean, default: false },
     isLastLesson: { type: Boolean, default: false },
+    // Nur Projekt-Kurse (ProjectCourse.vue): Sprache aus kurse.json (`javascript`/`python`) -
+    // Begriffe im Lektionstext verlinken auf den Grundkurs, am Ende steht der "Hier lernst du
+    // mehr"-Kasten (useConcepts.js, content/begriffe.json). Leer = aus.
+    conceptLanguage: { type: String, default: '' },
   },
   emits: ['completed', 'next'],
   setup(props, { emit }) {
@@ -158,12 +165,22 @@ export default {
     const activeIdx = ref(null);
     const checking = ref(false);
     const isMounted = ref(true);
-    const { lessonContent, loadGlossary, loadContent, instructionWithGlossary } = useLessonContent(isMounted);
+    const { lessonContent, lessonConcepts, loadGlossary, loadContent, instructionWithGlossary } = useLessonContent(
+      isMounted,
+      { conceptLanguage: () => props.conceptLanguage },
+    );
 
     const tasks = computed(() => {
       const list = props.lesson?.tasks;
       return Array.isArray(list) ? list : [];
     });
+
+    const conceptList = computed(() => (props.conceptLanguage
+      ? mergeConcepts(
+        lessonConcepts.value,
+        ...tasks.value.map((task) => conceptsInText(task.instruction, props.conceptLanguage)),
+      )
+      : []));
 
     // Beispiel-Aufgaben (bereits fertiger, unveraenderter codeTemplate zum Anschauen) brauchen
     // keinen "Pruefen"-Button - nur "Ausfuehren". Deine-Aufgabe-Aufgaben (leerer/unfertiger
@@ -392,6 +409,7 @@ export default {
       lang,
       t,
       lessonContent,
+      conceptList,
       sandboxEl,
       activeIdx,
       workspaceEnabled,
@@ -555,6 +573,23 @@ export default {
 .lesson-content :deep(.glossary-term) {
   border-bottom: 1px dotted var(--primary-purple, #4a2274);
   cursor: help;
+}
+
+.lesson-content :deep(.concept-link) {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted var(--primary-purple, #4a2274);
+}
+
+.lesson-content :deep(.concept-link)::after {
+  content: '↗';
+  font-size: 0.75em;
+  margin-left: 1px;
+  color: var(--primary-purple, #4a2274);
+}
+
+.lesson-content :deep(.concept-link:hover) {
+  color: var(--primary-purple, #4a2274);
 }
 
 .lesson-content :deep(pre) {

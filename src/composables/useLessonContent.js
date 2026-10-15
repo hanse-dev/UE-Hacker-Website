@@ -1,5 +1,6 @@
 import { ref } from 'vue';
 import { marked } from 'marked';
+import { linkConcepts } from './useConcepts';
 
 // Wildcard-Glob statt fester Pro-Kurs-Liste — ein neuer LessonView.vue-Kurs (z.B. ein Projekt-Kurs)
 // braucht dadurch keine Änderung hier mehr, nur einen neuen Content-Ordner unter `content/`.
@@ -25,8 +26,11 @@ function escapeHtml(s) {
  * `isMounted` wird vom aufrufenden Component verwaltet (auch von dessen Task-Run/Check-Logik
  * genutzt) und hier nur gelesen, um State-Updates nach dem Unmount zu vermeiden.
  */
-export function useLessonContent(isMounted) {
+export function useLessonContent(isMounted, { conceptLanguage = () => '' } = {}) {
   const lessonContent = ref('');
+  // Begriffe der Lektion fuer den "Hier lernst du mehr"-Kasten (nur Projekt-Kurse, siehe
+  // useConcepts.js); leer, solange conceptLanguage() nichts liefert.
+  const lessonConcepts = ref([]);
   let glossary = {};
 
   const loadGlossary = async (contentPath) => {
@@ -92,6 +96,14 @@ export function useLessonContent(isMounted) {
       if (!isMounted.value) return;
       let html = marked(text ?? '');
       html = applyGlossaryTooltips(html);
+      const language = conceptLanguage();
+      if (language) {
+        const linked = linkConcepts(html, language);
+        html = linked.html;
+        lessonConcepts.value = linked.found;
+      } else {
+        lessonConcepts.value = [];
+      }
       lessonContent.value = html;
     } catch (e) {
       if (!isMounted.value) return;
@@ -100,5 +112,5 @@ export function useLessonContent(isMounted) {
     }
   };
 
-  return { lessonContent, loadGlossary, loadContent, instructionWithGlossary };
+  return { lessonContent, lessonConcepts, loadGlossary, loadContent, instructionWithGlossary };
 }

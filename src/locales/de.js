@@ -302,6 +302,8 @@ export default {
   'lesson.flexibleProgress':  'Bisher gelöst: {solved} von mindestens {min} nötigen Aufgaben.',
   'lesson.yourCode':          'Dein Code',
   'lesson.taskPrefix':        'Aufgabe ',
+  'concepts.title':           '📚 Neu oder unklar? Hier lernst du mehr darüber',
+  'concepts.week':            'Woche {n}',
   'lesson.taskDone':          '(erledigt)',
   'lesson.taskPending':       '(noch offen)',
   'lesson.taskSkipped':       '(übersprungen)',
