@@ -2743,3 +2743,18 @@ Wunsch des Nutzers nach 3.108: dieselben Verweise auch in den anderen Kursen.
   nur deutsche Erklärungen (EN ist geparkt, siehe todo.md).
 - Nicht eingeschaltet: Python-Einstieg (`InteractiveCourse.vue` hat eigene Glossar-Tooltips; beides
   zusammen würde doppelt markieren), Einstufung, Ferienkurse, micro:bit.
+
+### 3.111 — Begriffs-Links für neue Kurse abgesichert (Branch `begriffe-absichern`)
+
+Wunsch des Nutzers: Neue Projekte und Kurse sollen die Begriffs-Links automatisch mitbekommen.
+
+- Projekte bekommen sie ohnehin automatisch über `language` in kurse.json. Damit auch neue Kurse
+  mit eigener Tour nicht durchrutschen, prüft `tests/begriffe.spec.js` jeden Eintrag in kurse.json:
+  Projekt mit `language` aus `begriffe.json`, oder in `LINKED_COURSES` (Grundkurse/KI-Labor), oder
+  mit Grund in `WITHOUT_LINKS` (Einstufung, Python-Einstieg, Ferienkurse, micro:bit). Ein neuer
+  Kurs ohne Entscheidung lässt den Test mit einer Anleitung fehlschlagen.
+- Zweiter Test: jeder Begriff zeigt auf einen Kurs aus kurse.json und eine Woche, die existiert und
+  deren Lektionstitel den `lektion`-Text enthalten. Fand sofort einen Fehler (Python-Bedingungen:
+  „if, if-else und if-elif-else“ gibt es als Titel nicht, jetzt „if-else“).
+- Checklisten in INHALTE.md §6 (neuer Kurs, neues Projekt) ergänzt; `language` steuert dort jetzt
+  ausdrücklich auch die Begriffs-Links.

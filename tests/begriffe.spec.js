@@ -1,4 +1,29 @@
 import { test, expect } from '@playwright/test';
+import { readFileSync, existsSync } from 'fs';
+
+const readJson = (rel) => JSON.parse(readFileSync(new URL(`../${rel}`, import.meta.url), 'utf-8'));
+const KURSE = readJson('public/kurse.json');
+const BEGRIFFE = readJson('content/begriffe.json');
+
+// Kurse mit Begriffs-Links, die nicht automatisch über `type: "projekt"` + `language` laufen:
+// Die Tour reicht conceptLanguage/conceptCourse/conceptWeek selbst durch (HANDOFF 3.110).
+const LINKED_COURSES = ['js-grundkurs', 'python-12-wochen-grundkurs', 'ki-labor'];
+
+// Bewusst ohne Begriffs-Links - jeder Eintrag mit Grund. Ein neuer Kurs muss entweder Links
+// bekommen oder hier mit Begründung stehen (siehe INHALTE.md §6).
+const WITHOUT_LINKS = {
+  'python-einstufung': 'Einstufungstest, kein Lernstoff zum Nachschlagen',
+  'python-grundlagen-interaktiv': 'hat eigene Glossar-Tooltips (glossary.json), beides würde doppelt markieren',
+  ferienkurse: 'Info- und Terminseite, keine Lektionen',
+  'projekt-microbit-auto': 'micro:bit (MakeCode/MicroPython, eigene Anleitungs-Ansicht), keine Begriffsliste',
+  'projekt-microbit-ampel': 'micro:bit (MakeCode/MicroPython, eigene Anleitungs-Ansicht), keine Begriffsliste',
+};
+
+// Zielordner einer Grundkurs-Woche (für die Prüfung, dass `lektion` dort wirklich vorkommt).
+const WEEK_FOLDER = {
+  'js-grundkurs': (w) => `content/js-grundkurs-woche${w}`,
+  'python-12-wochen-grundkurs': (w) => `content/python-woche${w}-abenteuer`,
+};
 
 // Begriffe verlinken auf die Grundkurs-Woche, in der sie erklärt werden (useConcepts.js,
 // content/begriffe.json): im Lektionstext beim ersten Vorkommen als Link, am Ende der Lektion als
@@ -48,6 +73,43 @@ test.describe('Begriffe verlinken auf die Grundkurse (Projekte und Kurse)', () =
     await page.addInitScript(() => localStorage.removeItem('ue-hacker-lang'));
     await page.goto('/kurs/js-grundkurs?week=5');
     await expect(page.getByText('Arrays: mehrere Werte in einer Variable').first()).toBeVisible({ timeout: 15000 });
+  });
+
+  test('jeder Kurs hat Begriffs-Links oder steht mit Grund auf der Ausnahmeliste', () => {
+    const missing = [];
+    for (const kurs of KURSE) {
+      const automatic = kurs.type === 'projekt' && Array.isArray(BEGRIFFE[kurs.language]);
+      if (automatic || LINKED_COURSES.includes(kurs.id) || WITHOUT_LINKS[kurs.id]) continue;
+      missing.push(kurs.id);
+    }
+    expect(
+      missing,
+      'Neue Kurse ohne Entscheidung zu Begriffs-Links. Projekt: `language` (javascript/python) in '
+        + 'kurse.json setzen; Kurs mit eigener Tour: conceptLanguage/conceptCourse/conceptWeek '
+        + 'durchreichen und in LINKED_COURSES eintragen; sonst mit Grund in WITHOUT_LINKS.',
+    ).toEqual([]);
+    // Ausnahmeliste und Link-Liste nur mit Kursen, die es wirklich gibt.
+    const ids = KURSE.map((k) => k.id);
+    for (const id of [...LINKED_COURSES, ...Object.keys(WITHOUT_LINKS)]) expect(ids, id).toContain(id);
+  });
+
+  test('jeder Begriff zeigt auf eine existierende Woche mit passender Lektion', () => {
+    const ids = KURSE.map((k) => k.id);
+    for (const [lang, list] of Object.entries(BEGRIFFE)) {
+      if (!Array.isArray(list)) continue;
+      for (const c of list) {
+        const where = `${lang}: ${c.begriff}`;
+        expect(ids, where).toContain(c.kurs);
+        expect(Object.keys(BEGRIFFE.kurse), where).toContain(c.kurs);
+        expect(c.formen.length, where).toBeGreaterThan(0);
+        const folder = WEEK_FOLDER[c.kurs]?.(c.woche);
+        expect(folder, `${where}: unbekannter Zielkurs`).toBeTruthy();
+        expect(existsSync(new URL(`../${folder}/lessons.json`, import.meta.url)), `${where}: Woche ${c.woche} fehlt`).toBe(true);
+        const raw = readJson(`${folder}/lessons.json`);
+        const titles = (Array.isArray(raw) ? raw : raw.lessons).map((l) => l.title);
+        expect(titles.some((t) => t.includes(c.lektion)), `${where}: Lektion „${c.lektion}“ nicht in Woche ${c.woche}`).toBe(true);
+      }
+    }
   });
 
   const openWeek = async (page, url, lang = 'de') => {
