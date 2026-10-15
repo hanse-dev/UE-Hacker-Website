@@ -27,6 +27,7 @@
   },
   {
     "id": "js-grundkurs",
+    "beta": true,
     "format": "grundkurs",
     "title": "JavaScript-Grundkurs",
     "title_en": "JavaScript Beginner Course",
@@ -36,6 +37,7 @@
   },
   {
     "id": "ki-labor",
+    "beta": true,
     "format": "grundkurs",
     "title": "KI-Labor",
     "title_en": "AI Lab",
@@ -45,6 +47,7 @@
   },
   {
     "id": "projekt-caesar-chiffre",
+    "beta": true,
     "type": "projekt",
     "language": "python",
     "level": "einsteiger",
@@ -57,6 +60,7 @@
   },
   {
     "id": "projekt-vigenere-chiffre",
+    "beta": true,
     "type": "projekt",
     "language": "python",
     "level": "fortgeschritten",
@@ -69,6 +73,7 @@
   },
   {
     "id": "projekt-haeufigkeitsanalyse",
+    "beta": true,
     "type": "projekt",
     "language": "python",
     "level": "fortgeschritten",
@@ -81,6 +86,7 @@
   },
   {
     "id": "projekt-morsecode",
+    "beta": true,
     "type": "projekt",
     "language": "python",
     "level": "einsteiger",
@@ -93,6 +99,7 @@
   },
   {
     "id": "projekt-zahlendetektiv",
+    "beta": true,
     "type": "projekt",
     "language": "python",
     "level": "fortgeschritten",
@@ -105,6 +112,7 @@
   },
   {
     "id": "projekt-js-spielewerkstatt",
+    "beta": true,
     "type": "projekt",
     "engine": "js-sandbox",
     "language": "javascript",
@@ -118,6 +126,7 @@
   },
   {
     "id": "projekt-js-snake",
+    "beta": true,
     "type": "projekt",
     "engine": "js-sandbox",
     "language": "javascript",
@@ -131,6 +140,7 @@
   },
   {
     "id": "projekt-js-memory",
+    "beta": true,
     "type": "projekt",
     "engine": "js-sandbox",
     "sandboxMode": "dom",
@@ -145,6 +155,7 @@
   },
   {
     "id": "projekt-js-quiz",
+    "beta": true,
     "type": "projekt",
     "engine": "js-sandbox",
     "sandboxMode": "dom",
@@ -159,6 +170,7 @@
   },
   {
     "id": "projekt-text-adventure",
+    "beta": true,
     "type": "projekt",
     "language": "python",
     "level": "fortgeschritten",
@@ -184,6 +196,7 @@
   },
   {
     "id": "projekt-microbit-ampel",
+    "beta": true,
     "type": "projekt",
     "engine": "anleitung",
     "language": "microbit",
@@ -198,6 +211,7 @@
   },
   {
     "id": "ferienkurse",
+    "beta": true,
     "title": "Meet & Code – Herbstferienprogramm AI für Teenager",
     "title_en": "Meet & Code - Autumn Holiday Programme AI for Teenagers",
     "description": "Wir lernen in verschiedenen Sessions gemeinsam, was alles mit AI-Tools möglich ist, wie man sie nutzt und wie sie im neuen Schuljahr helfen können.",

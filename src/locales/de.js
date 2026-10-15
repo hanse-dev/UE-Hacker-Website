@@ -40,6 +40,12 @@ export default {
   'admin.age.jugendliche': 'Jugendlich (13–17)',
   'admin.tab.users': 'Nutzer',
   'admin.tab.termine': 'Termine',
+  'admin.tab.kurse': 'Kurse',
+  'admin.kurse.hint': 'Nicht verlinkte Kurse ("unlisted" in kurse.json) fehlen in der Projekte-Übersicht und sind nur über den Link erreichbar. Beta-Kurse sind noch nicht im Unterricht erprobt.',
+  'admin.kurse.col.title': 'Kurs',
+  'admin.kurse.col.status': 'Status',
+  'admin.kurse.col.link': 'Link',
+  'admin.kurse.unlisted': 'nicht verlinkt',
   'admin.termine.create': 'Neuer Termin',
   'admin.termine.createTitle': 'Termin anlegen',
   'admin.termine.editTitle': 'Termin bearbeiten',
@@ -410,6 +416,9 @@ export default {
   'projectTag.spiele': 'Spiele',
   'projectTag.robotik': 'Robotik',
   'projectTag.elektronik': 'Elektronik',
+
+  'course.beta': 'Beta',
+  'course.betaHint': 'Dieser Kurs ist neu und noch nicht im Unterricht erprobt. Es kann noch kleine Fehler geben.',
 
   'guide.modeLabel': 'Anleitung zeigen als:',
   'guide.mode.bloecke': 'Blöcke',

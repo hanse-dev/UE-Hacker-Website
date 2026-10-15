@@ -336,6 +336,12 @@ Jeder Ordner enthält dieselben Dateien:
 - [ ] `content/{kurs-id}/beschreibung.md`
 - [ ] `content/{kurs-id}-en/beschreibung.md` (falls EN-Version existiert)
 
+### Wenn ein Kurs im Unterricht erprobt ist (Beta entfernen) oder neu dazukommt:
+- [ ] `"beta": true` in `public/kurse.json` entfernen bzw. bei neuen Kursen setzen; die Liste
+      `NICHT_BETA` in `tests/kurse-beta.spec.js` mitziehen. Beta zeigt `BetaBadge.vue` auf Startseite,
+      Projekte-Karte und Kursseite (dort mit Erklärung). Welche Kurse unverlinkt oder Beta sind,
+      zeigt das Admin-Menü im Reiter „Kurse“.
+
 ### Wenn du eine Lektion im interaktiven Kurs änderst:
 - [ ] `lektion-XX.md` in **allen fünf** Ordnern anpassen (oder bewusst nur bestimmte Varianten)
 - [ ] `lessons.json` im jeweiligen Ordner (Aufgaben, Validierung, Templates)

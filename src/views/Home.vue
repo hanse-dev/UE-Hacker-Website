@@ -33,6 +33,7 @@
       <div class="course-list">
         <router-link v-for="kurs in kurse" :key="kurs.id" :to="`/kurs/${kurs.id}`" class="course-card">
           <span v-if="kurs.format" class="course-format-badge">{{ t(`courseFormat.${kurs.format}`) }}</span>
+          <BetaBadge v-if="kurs.beta" class="course-beta" />
           <h3>{{ lang === 'en' && kurs.title_en ? kurs.title_en : kurs.title }}</h3>
           <p>{{ lang === 'en' && kurs.description_en ? kurs.description_en : kurs.description }}</p>
           <span class="course-link">{{ t('home.course.moreInfo') }}</span>
@@ -72,9 +73,11 @@
 import { ref, onMounted } from 'vue';
 import { assetUrl } from '../utils/assetUrl';
 import { useLanguage } from '../composables/useLanguage.js';
+import BetaBadge from '../components/BetaBadge.vue';
 
 export default {
   name: 'Home',
+  components: { BetaBadge },
   setup() {
     const termine = ref([]);
     const kurse = ref([]);
@@ -224,6 +227,10 @@ export default {
 
 .placement-hint-link:hover {
   color: #3d1b5c;
+}
+
+.course-beta {
+  margin-bottom: 10px;
 }
 
 .course-format-badge {

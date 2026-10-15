@@ -51,6 +51,24 @@ test.describe('UI: Admin + Header-Login', () => {
     await expect(adminNavLink).toHaveCount(0);
   });
 
+  test('Admin: Reiter Kurse listet nicht verlinkte Kurse zuerst, mit Beta-Kennzeichnung und Link', async ({ page }) => {
+    await page.goto('/admin');
+    await page.locator('.admin-login-card input[type="password"]').fill(ADMIN_PASSWORD);
+    await page.locator('.admin-login-card .btn-primary').click();
+    await page.locator('.admin-tab', { hasText: /Kurse|Courses/ }).click();
+
+    const rows = page.locator('.admin-kurse tbody tr');
+    await expect(rows.first()).toHaveAttribute('data-kurs', 'projekt-microbit-ampel');
+    await expect(rows.first().locator('.badge-unlisted')).toBeVisible();
+    await expect(rows.first().locator('.beta-badge')).toBeVisible();
+    await expect(rows.first().locator('a')).toHaveAttribute('href', '/kurs/projekt-microbit-ampel');
+
+    const auto = page.locator('.admin-kurse tr[data-kurs="projekt-microbit-auto"]');
+    await expect(auto.locator('.badge-unlisted')).toHaveCount(0);
+    await expect(auto.locator('.beta-badge')).toHaveCount(0);
+    await expect(page.locator('.admin-kurse tr[data-kurs="ki-labor"] .beta-badge')).toBeVisible();
+  });
+
   test('Admin: Termin über die Termine-Verwaltung anlegen, bearbeiten und löschen', async ({ page, request }) => {
     const topic = `UI-Testtermin ${Date.now()}`;
 

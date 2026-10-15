@@ -41,6 +41,12 @@
           :class="{ active: activeTab === 'termine' }"
           @click="activeTab = 'termine'"
         >{{ t('admin.tab.termine') }}</button>
+        <button
+          type="button"
+          class="admin-tab"
+          :class="{ active: activeTab === 'kurse' }"
+          @click="activeTab = 'kurse'"
+        >{{ t('admin.tab.kurse') }}</button>
       </div>
 
       <section v-if="activeTab === 'users'">
@@ -89,7 +95,7 @@
         <p v-else-if="!busy" class="muted">{{ t('admin.empty') }}</p>
       </section>
 
-      <section v-else class="admin-termine">
+      <section v-else-if="activeTab === 'termine'" class="admin-termine">
         <div class="admin-toolbar">
           <button type="button" class="btn-secondary" @click="logout">{{ t('admin.logout') }}</button>
           <button type="button" class="btn-primary" @click="openCreateTermin">{{ t('admin.termine.create') }}</button>
@@ -125,6 +131,33 @@
           </tbody>
         </table>
         <p v-else-if="!terminBusy" class="muted">{{ t('admin.termine.empty') }}</p>
+      </section>
+
+      <!-- Nur Anzeige aus kurse.json, keine API: welche Kurse noch nicht verlinkt oder Beta sind. -->
+      <section v-else class="admin-kurse">
+        <div class="admin-toolbar">
+          <button type="button" class="btn-secondary" @click="logout">{{ t('admin.logout') }}</button>
+        </div>
+        <p class="muted">{{ t('admin.kurse.hint') }}</p>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>{{ t('admin.kurse.col.title') }}</th>
+              <th>{{ t('admin.kurse.col.status') }}</th>
+              <th>{{ t('admin.kurse.col.link') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="kurs in adminKurse" :key="kurs.id" :data-kurs="kurs.id">
+              <td>{{ kurs.title }}</td>
+              <td>
+                <span v-if="kurs.unlisted" class="badge badge-unlisted">{{ t('admin.kurse.unlisted') }}</span>
+                <BetaBadge v-if="kurs.beta" />
+              </td>
+              <td><router-link :to="`/kurs/${kurs.id}`" target="_blank">/kurs/{{ kurs.id }}</router-link></td>
+            </tr>
+          </tbody>
+        </table>
       </section>
 
       <div v-if="formOpen" class="modal-backdrop" @click.self="closeForm">
@@ -212,6 +245,8 @@
 <script>
 import { ref, onMounted } from 'vue';
 import { useLanguage } from '../composables/useLanguage.js';
+import { assetUrl } from '../utils/assetUrl';
+import BetaBadge from '../components/BetaBadge.vue';
 import {
   adminToken as token,
   setAdminToken,
@@ -229,6 +264,7 @@ import {
 
 export default {
   name: 'AdminView',
+  components: { BetaBadge },
   setup() {
     const { t, lang } = useLanguage();
     const password = ref('');
@@ -473,8 +509,20 @@ export default {
       }
     };
 
+    // Alle Kurse, die nicht verlinkten zuerst (sonst Reihenfolge wie in kurse.json).
+    const adminKurse = ref([]);
+    const loadKurse = async () => {
+      try {
+        const response = await fetch(assetUrl('kurse.json'));
+        const kurse = await response.json();
+        adminKurse.value = [...kurse.filter((k) => k.unlisted), ...kurse.filter((k) => !k.unlisted)];
+      } catch (e) {
+        console.error('Could not load kurse:', e);
+      }
+    };
+
     onMounted(async () => {
-      await Promise.all([refresh(), refreshTermine()]);
+      await Promise.all([refresh(), refreshTermine(), loadKurse()]);
     });
 
     return {
@@ -483,6 +531,7 @@ export default {
       resetPassword, resetResult,
       activeTab, termine, terminBusy, terminError, terminFormOpen, terminFormError, editingTermin, terminForm,
       openCreateTermin, openEditTermin, closeTerminForm, saveTermin, removeTermin,
+      adminKurse,
     };
   },
 };
@@ -574,6 +623,12 @@ export default {
 .badge-cancelled {
   background: #fdecea;
   color: #c0392b;
+}
+
+.badge-unlisted {
+  background: #eee;
+  color: #444;
+  margin-right: 6px;
 }
 
 .badge-recurring {
