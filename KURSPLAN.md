@@ -109,6 +109,62 @@ Glossar/Boss-Quest/Lösungen/Zertifikat — pro Woche nur **Lektion → Debug �
 
 ---
 
+## Web-Track: „Meine erste Website“ (Kurs A, Einstieg)
+**Zielgruppe:** ca. 10–12 Jahre | **Dauer:** 8 Lektionen + Abschluss-Check | **Voraussetzungen:** keine
+
+Niedrigschwelliger HTML/CSS-Einstieg im Format von `python-grundlagen-interaktiv`: eine Lektion nach
+der anderen, Vorlagen fast fertig, die Kinder ändern und ergänzen. Jedes Kind wählt in Lektion 1 ein
+eigenes Thema (Hobby, Haustier, Lieblingsspiel …) und baut daran über alle Lektionen **eine** Seite
+aus, die es am Ende als `.html` herunterladen kann. Nur DE, keine Themen-Varianten.
+**Mit Zertifikat:** ein Abschluss-Check (Quiz + 2 Coding-Aufgaben) nach Lektion 8, ein Zertifikat
+für den ganzen Kurs (PDF nur mit Login, wie bei den Wochen-Checks).
+
+| Lektion | Thema |
+|---|---|
+| 1 | Hallo Website: Tags, `h1`, `p`, Live-Vorschau |
+| 2 | Listen (`ul`/`ol`), `strong`/`em` |
+| 3 | Bilder (`img` + `alt`) und Links |
+| 4 | Farben mit CSS: `<style>`, Selektor, `color`, `background-color`, Schrift |
+| 5 | Kisten: `padding`, `margin`, `border`, `border-radius` |
+| 6 | Klassen: gleiche „Karten“ mehrfach gestalten |
+| 7 | Nebeneinander: Flexbox (Galerie, Navigationsleiste) |
+| 8 | Fertig machen + herunterladen; Bonus: ein Knopf mit einer Zeile JS (Brücke zum JS-Grundkurs) |
+
+---
+
+## Web-Track: Web-Grundkurs HTML & CSS (Kurs B)
+**Zielgruppe:** ab 13 Jahre | **Dauer:** 9 Wochen | **Voraussetzungen:** keine (Kurs A empfohlen)
+
+Intensiverer, systematischer Kurs. Pro Woche ca. 5 Lektionen, **Wochen-Check** (Quiz + 2
+Coding-Aufgaben) und **Wochen-Zertifikat** wie im Python-Grundkurs. Freie Themenwahl für die eigene
+Seite, die über die Wochen wächst; keine Themen-Varianten, nur DE.
+
+| Woche | Thema |
+|---|---|
+| 1 | Grundgerüst, Tags und Attribute, was der Browser daraus macht |
+| 2 | Semantik: `header`/`nav`/`main`/`section`/`footer`, Listen |
+| 3 | Bilder, Links, Anker, Tabellen |
+| 4 | Formulare: `input`, `label`, `button`, `select` |
+| 5 | CSS-Grundlagen: Selektoren, Kaskade/Spezifität, Farben, Schriften, Variablen |
+| 6 | Box-Modell, `box-sizing`, Positionierung |
+| 7 | Flexbox |
+| 8 | Grid und Handy-Ansicht (Media Queries) |
+| 9 | Abschlussprojekt: eigene Website, Bonus mit JS-Interaktion |
+
+### Technisch (beide Kurse)
+- **Neuer Sandbox-Modus „web“:** CodeMirror mit `@codemirror/lang-html` (CSS/JS eingebettet), Live-
+  Vorschau im iframe, Download-Knopf für die fertige `.html`. Eine einzige Datei, CSS im
+  `<style>`-Block — keine getrennten HTML/CSS-Tabs.
+- **Neue Prüfungen** (über `useTaskValidation.js`): `html_element` (Selektor vorhanden, Anzahl,
+  Text), `html_attribute` (z.B. `img[alt]`), `css_property` (über `getComputedStyle`, Farben
+  normalisiert — egal wie das Kind den Stil schreibt). Bei HTML ist die gerenderte Seite die
+  „Ausgabe“, analog zu `dom_text` in `js-memory`.
+- **Umsetzung in Branches:** `web-sandbox` (Technik + Demo-Lektion) → `kurs-erste-website` (Kurs A
+  inkl. Abschluss-Check) → `web-grundkurs` (Kurs B, Wochen-Navigation) → `web-checks`
+  (Wochen-Checks/Zertifikate für Kurs B; Check-Logik ist bisher Pyodide-zentriert).
+
+---
+
 ## Vertiefungen: Spieleprogrammierung Advanced
 **Zielgruppe:** ab 14 Jahre | **Dauer:** 10 Wochen
 
