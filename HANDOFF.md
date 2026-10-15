@@ -1,7 +1,7 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-10-14
-> **Aktueller Stand:** `main` enthält alles bis 3.107 (siehe Tabelle in Abschnitt 3).
+> **Aktueller Stand:** `main` enthält alles bis 3.108 (siehe Tabelle in Abschnitt 3).
 > Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4) — nach dem nächsten Deploy
 > den einmaligen Termine-Import laufen lassen (Abschnitt 5).
 > **Ziel dieser Datei:** Nachschlagewerk für Stand, Feature-Übersicht und gelernte Fallstricke.
@@ -67,6 +67,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.105 | Projekt-Kurs „Häufigkeitsanalyse“ (`projekt-haeufigkeitsanalyse`) | 8 Lektionen in `content/haeufigkeitsanalyse/`, schließt die Reihe Cäsar → Vigenère ab: Buchstaben per Dictionary zählen, `#`-Balkendiagramm, häufigsten Buchstaben = `e` → Verschiebung, automatischer Knacker, Bewertung aller 26 Verschiebungen (`PUNKTE`-Tabelle), Ausblick Vigenère; reiner Content, kein Frontend-Code; Durchlauf-Test aller Musterlösungen in `tests/projekte.spec.js` |
 | 3.106 | Geteilte Ansicht in JS-Lektionen | eine gemeinsame Arbeitsfläche (`.js-workspace`) statt einer Sandbox pro Aufgabe: breit (Lektion ≥ 920 px, Container-Query) mitlaufende Spalte rechts, schmal per CSS-`order` unter der zuletzt ausgeführten Aufgabe; nur in Lektionen mit sichtbarer Fläche, Konsolen-Lektionen bleiben einspaltig; `tests/js-geteilte-ansicht.spec.js` |
 | 3.107 | Arbeitsfläche zeigt auch die Ausgabe | breit steht die Konsolen-Ausgabe der gezeigten Aufgabe in der Arbeitsfläche (unter dem Code ausgeblendet), auch bei Aufgaben ohne Zeichenfläche; schmal bleibt sie unter dem Code und eine Arbeitsfläche ohne Zeichenfläche wird nicht gezeigt; Editor neben der Arbeitsfläche ohne 500-px-Grenze |
+| 3.108 | Begriffe in Projekten verlinken auf die Grundkurse | `content/begriffe.json` (je Sprache: Schreibweisen, Erklärung, Kurs + Woche) → `useConcepts.js`; in Projekt-Lektionen (nur `ProjectCourse.vue`, `language` aus kurse.json) wird jeder Begriff beim ersten Vorkommen im Fließtext ein Link (neuer Tab, Tooltip), am Ende steht `ConceptBox.vue` „Neu oder unklar?“; `tests/begriffe.spec.js` |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 

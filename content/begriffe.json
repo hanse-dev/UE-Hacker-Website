@@ -1,0 +1,354 @@
+{
+  "_info": "Begriffe, die in Projekt-Kursen auf den passenden Grundkurs verlinkt werden (useConcepts.js). Pro Sprache (kurse.json `language`): `formen` = Schreibweisen, die im Lektionstext gefunden werden (Groß-/Kleinschreibung zählt); `kurs`/`woche` = Ziel des Links (/kurs/<kurs>?week=<woche>); `lektion` = Titel der Lektion dort, nur zur Anzeige.",
+  "kurse": {
+    "js-grundkurs": "JavaScript-Grundkurs",
+    "python-12-wochen-grundkurs": "Python-Grundkurs (12 Wochen)"
+  },
+  "javascript": [
+    {
+      "begriff": "Variable",
+      "formen": [
+        "Variablen",
+        "Variable"
+      ],
+      "erklaerung": "Ein Name, unter dem sich dein Programm einen Wert merkt.",
+      "kurs": "js-grundkurs",
+      "woche": 1,
+      "lektion": "Werte merken mit Variablen"
+    },
+    {
+      "begriff": "Bedingung (if/else)",
+      "formen": [
+        "Bedingungen",
+        "Bedingung"
+      ],
+      "erklaerung": "Mit if und else entscheidet dein Programm, welcher Code laufen soll.",
+      "kurs": "js-grundkurs",
+      "woche": 2,
+      "lektion": "Entscheidungen mit if und else"
+    },
+    {
+      "begriff": "Schleife",
+      "formen": [
+        "for-Schleife",
+        "while-Schleife",
+        "Schleifen",
+        "Schleife"
+      ],
+      "erklaerung": "Wiederholt Code, ohne dass du ihn mehrmals hinschreiben musst.",
+      "kurs": "js-grundkurs",
+      "woche": 3,
+      "lektion": "Wiederholen mit der for-Schleife"
+    },
+    {
+      "begriff": "Funktion",
+      "formen": [
+        "Funktionen",
+        "Funktion"
+      ],
+      "erklaerung": "Ein Stück Code mit Namen, das du immer wieder aufrufen kannst.",
+      "kurs": "js-grundkurs",
+      "woche": 4,
+      "lektion": "Eigene Funktionen schreiben"
+    },
+    {
+      "begriff": "Parameter",
+      "formen": [
+        "Parametern",
+        "Parameter"
+      ],
+      "erklaerung": "Ein Wert, den du einer Funktion beim Aufruf mitgibst.",
+      "kurs": "js-grundkurs",
+      "woche": 4,
+      "lektion": "Mehrere Parameter"
+    },
+    {
+      "begriff": "Array",
+      "formen": [
+        "Arrays",
+        "Array"
+      ],
+      "erklaerung": "Eine Liste, die mehrere Werte in einer einzigen Variable speichert.",
+      "kurs": "js-grundkurs",
+      "woche": 5,
+      "lektion": "Arrays: mehrere Werte in einer Variable"
+    },
+    {
+      "begriff": "push und pop",
+      "formen": [
+        "push",
+        "pop"
+      ],
+      "erklaerung": "push hängt ein Element hinten an ein Array an, pop nimmt das letzte weg.",
+      "kurs": "js-grundkurs",
+      "woche": 5,
+      "lektion": "Elemente hinzufügen und entfernen: push und pop"
+    },
+    {
+      "begriff": "length",
+      "formen": [
+        "length"
+      ],
+      "erklaerung": "Sagt dir, wie viele Elemente ein Array (oder Zeichen ein Text) hat.",
+      "kurs": "js-grundkurs",
+      "woche": 5,
+      "lektion": "Die Länge eines Arrays: length"
+    },
+    {
+      "begriff": "Objekt",
+      "formen": [
+        "Objekten",
+        "Objekte",
+        "Objekt"
+      ],
+      "erklaerung": "Bündelt zusammengehörige Werte unter Namen, z. B. Name und Alter einer Figur.",
+      "kurs": "js-grundkurs",
+      "woche": 6,
+      "lektion": "Objekte: zusammengehörige Werte bündeln"
+    },
+    {
+      "begriff": "Property",
+      "formen": [
+        "Properties",
+        "Property"
+      ],
+      "erklaerung": "Ein einzelner Wert in einem Objekt, z. B. figur.name.",
+      "kurs": "js-grundkurs",
+      "woche": 6,
+      "lektion": "Properties ändern und hinzufügen"
+    },
+    {
+      "begriff": "Methode",
+      "formen": [
+        "Methoden",
+        "Methode"
+      ],
+      "erklaerung": "Eine Funktion, die zu einem Objekt gehört, z. B. liste.push().",
+      "kurs": "js-grundkurs",
+      "woche": 6,
+      "lektion": "Methoden: Funktionen in Objekten"
+    },
+    {
+      "begriff": "querySelector",
+      "formen": [
+        "querySelector"
+      ],
+      "erklaerung": "Findet ein Element der Webseite, damit dein Code es verändern kann.",
+      "kurs": "js-grundkurs",
+      "woche": 7,
+      "lektion": "Elemente finden: document.querySelector"
+    },
+    {
+      "begriff": "addEventListener",
+      "formen": [
+        "addEventListener",
+        "Event-Listener"
+      ],
+      "erklaerung": "Lässt dein Programm auf Klicks oder Tasten reagieren.",
+      "kurs": "js-grundkurs",
+      "woche": 7,
+      "lektion": "Auf Klicks reagieren: addEventListener"
+    },
+    {
+      "begriff": "Klasse",
+      "formen": [
+        "Klassen",
+        "Klasse"
+      ],
+      "erklaerung": "Eine Blaupause, nach der du viele gleichartige Objekte bauen kannst.",
+      "kurs": "js-grundkurs",
+      "woche": 8,
+      "lektion": "Klassen: Blaupausen für Objekte"
+    },
+    {
+      "begriff": "Instanz",
+      "formen": [
+        "Instanzen",
+        "Instanz"
+      ],
+      "erklaerung": "Ein einzelnes Objekt, das nach einer Klasse gebaut wurde.",
+      "kurs": "js-grundkurs",
+      "woche": 8,
+      "lektion": "Mehrere Instanzen derselben Klasse"
+    }
+  ],
+  "python": [
+    {
+      "begriff": "Variable",
+      "formen": [
+        "Variablen",
+        "Variable"
+      ],
+      "erklaerung": "Ein Name, unter dem sich dein Programm einen Wert merkt.",
+      "kurs": "python-12-wochen-grundkurs",
+      "woche": 1,
+      "lektion": "Variablen"
+    },
+    {
+      "begriff": "f-String",
+      "formen": [
+        "f-Strings",
+        "f-String"
+      ],
+      "erklaerung": "Ein Text mit f davor, in den du Variablen in {} einsetzen kannst.",
+      "kurs": "python-12-wochen-grundkurs",
+      "woche": 2,
+      "lektion": "f-Strings"
+    },
+    {
+      "begriff": "Bedingung (if/else)",
+      "formen": [
+        "Bedingungen",
+        "Bedingung"
+      ],
+      "erklaerung": "Mit if, elif und else entscheidet dein Programm, welcher Code laufen soll.",
+      "kurs": "python-12-wochen-grundkurs",
+      "woche": 3,
+      "lektion": "if, if-else und if-elif-else"
+    },
+    {
+      "begriff": "Schleife",
+      "formen": [
+        "for-Schleife",
+        "while-Schleife",
+        "Schleifen",
+        "Schleife"
+      ],
+      "erklaerung": "Wiederholt Code, ohne dass du ihn mehrmals hinschreiben musst.",
+      "kurs": "python-12-wochen-grundkurs",
+      "woche": 4,
+      "lektion": "Die for-Schleife"
+    },
+    {
+      "begriff": "Funktion",
+      "formen": [
+        "Funktionen",
+        "Funktion"
+      ],
+      "erklaerung": "Ein Stück Code mit Namen (def), das du immer wieder aufrufen kannst.",
+      "kurs": "python-12-wochen-grundkurs",
+      "woche": 5,
+      "lektion": "Eine Funktion definieren"
+    },
+    {
+      "begriff": "Parameter",
+      "formen": [
+        "Parametern",
+        "Parameter"
+      ],
+      "erklaerung": "Ein Wert, den du einer Funktion beim Aufruf mitgibst.",
+      "kurs": "python-12-wochen-grundkurs",
+      "woche": 5,
+      "lektion": "Ein Parameter"
+    },
+    {
+      "begriff": "return",
+      "formen": [
+        "return"
+      ],
+      "erklaerung": "Gibt ein Ergebnis aus einer Funktion zurück, statt es nur auszugeben.",
+      "kurs": "python-12-wochen-grundkurs",
+      "woche": 5,
+      "lektion": "Werte zurückgeben mit return"
+    },
+    {
+      "begriff": "Liste",
+      "formen": [
+        "Listen",
+        "Liste"
+      ],
+      "erklaerung": "Speichert mehrere Werte der Reihe nach in einer Variable.",
+      "kurs": "python-12-wochen-grundkurs",
+      "woche": 6,
+      "lektion": "Listen erstellen"
+    },
+    {
+      "begriff": "Modul (import)",
+      "formen": [
+        "Modulen",
+        "Module",
+        "Modul"
+      ],
+      "erklaerung": "Fertiger Code, den du mit import in dein Programm holst, z. B. random.",
+      "kurs": "python-12-wochen-grundkurs",
+      "woche": 7,
+      "lektion": "Module importieren"
+    },
+    {
+      "begriff": "Zufall (random)",
+      "formen": [
+        "Zufallszahlen",
+        "Zufallszahl"
+      ],
+      "erklaerung": "Mit dem Modul random erzeugst du zufällige Zahlen oder wählst zufällig aus.",
+      "kurs": "python-12-wochen-grundkurs",
+      "woche": 7,
+      "lektion": "Zufallszahlen"
+    },
+    {
+      "begriff": "Dictionary",
+      "formen": [
+        "Dictionaries",
+        "Dictionary"
+      ],
+      "erklaerung": "Speichert Werte unter Schlüsseln, wie ein Wörterbuch: Schlüssel → Wert.",
+      "kurs": "python-12-wochen-grundkurs",
+      "woche": 8,
+      "lektion": "Steckbriefe erstellen und lesen"
+    },
+    {
+      "begriff": "Tupel",
+      "formen": [
+        "Tupeln",
+        "Tupel"
+      ],
+      "erklaerung": "Wie eine Liste, die sich nach dem Anlegen nicht mehr ändern lässt.",
+      "kurs": "python-12-wochen-grundkurs",
+      "woche": 8,
+      "lektion": "Tupel"
+    },
+    {
+      "begriff": "Datei",
+      "formen": [
+        "Dateien",
+        "Datei"
+      ],
+      "erklaerung": "Mit open() schreibt und liest dein Programm Text auf der Festplatte.",
+      "kurs": "python-12-wochen-grundkurs",
+      "woche": 9,
+      "lektion": "Dateien schreiben und lesen"
+    },
+    {
+      "begriff": "Klasse",
+      "formen": [
+        "Klassen",
+        "Klasse"
+      ],
+      "erklaerung": "Eine Blaupause, nach der du viele gleichartige Objekte bauen kannst.",
+      "kurs": "python-12-wochen-grundkurs",
+      "woche": 10,
+      "lektion": "Klassen und Objekte"
+    },
+    {
+      "begriff": "Methode",
+      "formen": [
+        "Methoden",
+        "Methode"
+      ],
+      "erklaerung": "Eine Funktion, die zu einem Objekt gehört, z. B. text.upper().",
+      "kurs": "python-12-wochen-grundkurs",
+      "woche": 10,
+      "lektion": "Methoden und self"
+    },
+    {
+      "begriff": "Vererbung",
+      "formen": [
+        "Vererbung"
+      ],
+      "erklaerung": "Eine Klasse übernimmt alles von einer anderen und kann Neues ergänzen.",
+      "kurs": "python-12-wochen-grundkurs",
+      "woche": 11,
+      "lektion": "Vererbung"
+    }
+  ]
+}

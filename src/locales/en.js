@@ -302,6 +302,8 @@ export default {
   'lesson.flexibleProgress':  'Solved so far: {solved} of at least {min} required tasks.',
   'lesson.yourCode':          'Your Code',
   'lesson.taskPrefix':        'Task ',
+  'concepts.title':           '📚 New or unclear? Learn more here',
+  'concepts.week':            'Week {n}',
   'lesson.taskDone':          '(done)',
   'lesson.taskPending':       '(pending)',
   'lesson.taskSkipped':       '(skipped)',
