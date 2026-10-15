@@ -296,6 +296,14 @@ export default {
   text-align: left;
 }
 
+/* Steckpläne (SVG) passen sich der Spaltenbreite an, auch auf dem Handy. */
+.lesson-content :deep(img) {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 12px auto;
+}
+
 .lesson-content :deep(details) {
   margin: 12px 0;
   padding: 10px 14px;
@@ -345,6 +353,8 @@ export default {
 .lesson-content :deep(.mc-minicar) { background: #aa278d; }
 .lesson-content :deep(.mc-funktionen) { background: #3455db; }
 .lesson-content :deep(.mc-musik) { background: #e63022; }
+.lesson-content :deep(.mc-pins) { background: #b22222; }
+.lesson-content :deep(.mc-funk) { background: #e3008c; }
 
 .lesson-editor-section {
   background: #f8f9fa;

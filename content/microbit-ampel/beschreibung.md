@@ -1,0 +1,5 @@
+Baut eure eigene Ampelanlage: Der micro:bit schaltet LEDs auf einem Breadboard, ihr schreibt das Programm. Ihr arbeitet im Zweierteam und geht Stufe für Stufe vor, von der ersten LED über die Fußgängerampel und die Autoampel bis zur Ampelanlage, die beide sicher steuert. Danach sucht ihr euch in der Werkstatt Aufträge aus, zum Beispiel einen Countdown, einen Nachtmodus oder Ampeln, die sich per Funk absprechen.
+
+**Ziel:** Stromkreise mit LEDs selbst stecken und mit Blöcken oder mit Python steuern.
+
+**Ihr braucht:** einen micro:bit V2 mit USB-Kabel, die micro:bit-Platine mit Breadboard, 5 LEDs (2× rot, 1× gelb, 2× grün), 5 Widerstände mit 150 Ω, 10 Steckkabel (Buchse auf Stecker) und einen Computer mit Chrome oder Edge.

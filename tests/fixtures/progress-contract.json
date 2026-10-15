@@ -229,6 +229,14 @@
       "boss-02",
       "boss-03"
     ],
+    "microbit-ampel": [
+      "lektion-01",
+      "lektion-02",
+      "lektion-03",
+      "lektion-04",
+      "lektion-05",
+      "lektion-06"
+    ],
     "microbit-auto": [
       "lektion-01",
       "lektion-02",
@@ -1829,6 +1837,7 @@
     "projekt-js-quiz",
     "projekt-js-snake",
     "projekt-js-spielewerkstatt",
+    "projekt-microbit-ampel",
     "projekt-microbit-auto",
     "projekt-morsecode",
     "projekt-text-adventure",

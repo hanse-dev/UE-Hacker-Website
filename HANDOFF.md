@@ -1,7 +1,7 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-10-14
-> **Aktueller Stand:** `main` enthält alles bis 3.108 (siehe Tabelle in Abschnitt 3).
+> **Aktueller Stand:** `main` enthält alles bis 3.109 (siehe Tabelle in Abschnitt 3).
 > Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4) — nach dem nächsten Deploy
 > den einmaligen Termine-Import laufen lassen (Abschnitt 5).
 > **Ziel dieser Datei:** Nachschlagewerk für Stand, Feature-Übersicht und gelernte Fallstricke.
@@ -68,6 +68,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.106 | Geteilte Ansicht in JS-Lektionen | eine gemeinsame Arbeitsfläche (`.js-workspace`) statt einer Sandbox pro Aufgabe: breit (Lektion ≥ 920 px, Container-Query) mitlaufende Spalte rechts, schmal per CSS-`order` unter der zuletzt ausgeführten Aufgabe; nur in Lektionen mit sichtbarer Fläche, Konsolen-Lektionen bleiben einspaltig; `tests/js-geteilte-ansicht.spec.js` |
 | 3.107 | Arbeitsfläche zeigt auch die Ausgabe | breit steht die Konsolen-Ausgabe der gezeigten Aufgabe in der Arbeitsfläche (unter dem Code ausgeblendet), auch bei Aufgaben ohne Zeichenfläche; schmal bleibt sie unter dem Code und eine Arbeitsfläche ohne Zeichenfläche wird nicht gezeigt; Editor neben der Arbeitsfläche ohne 500-px-Grenze |
 | 3.108 | Begriffe in Projekten verlinken auf die Grundkurse | `content/begriffe.json` (je Sprache: Schreibweisen, Erklärung, Kurs + Woche) → `useConcepts.js`; in Projekt-Lektionen (nur `ProjectCourse.vue`, `language` aus kurse.json) wird jeder Begriff beim ersten Vorkommen im Fließtext ein Link (neuer Tab, Tooltip), am Ende steht `ConceptBox.vue` „Neu oder unklar?“; `tests/begriffe.spec.js` |
+| 3.109 | micro:bit-Kurs „Die Ampelanlage“ (`projekt-microbit-ampel`) | zweiter Hardware-Kurs, gleiche Anleitungs-Engine, vorerst `"unlisted": true` (nur per `/kurs/projekt-microbit-ampel`): LEDs mit 150 Ω auf dem Mini-Breadboard der T-Platine, Startklar + 3 Stufen (Fußgänger-, Autoampel, Ampelanlage) + 2 Werkstatt-Seiten mit frei wählbaren Aufträgen (Licht/Anzeige, Funk); Steckpläne als SVG aus `scripts/build_ampel_steckplaene.py`; Block-Kategorien `pins`/`funk`, Bilder skalieren mit; Inhaltsregeln in `tests/helpers/guide-content.js` für beide micro:bit-Kurse |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
