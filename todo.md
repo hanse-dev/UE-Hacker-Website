@@ -21,7 +21,9 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
         Text überein; `keyes_MiniCar.py` lässt sich über „Projekt → Öffnen“ hinzufügen.
       - Deutsche Namen der MakeCode-Blöcke in den ```` ```bloecke ````-Listings mit dem Editor abgleichen.
 - [ ] **micro:bit-Kurs „Die Ampelanlage“ (`content/microbit-ampel/`, HANDOFF 3.108) — vor dem ersten
-      Termin einmal mit echten Teilen durchstecken.** Ohne Hardware entstanden. Zu prüfen:
+      Termin einmal mit echten Teilen durchstecken.** Ohne Hardware entstanden und deshalb noch
+      `"unlisted": true` in `kurse.json`; nach dem Test das Feld entfernen und die Kartenzahlen in
+      `tests/projekte.spec.js` und `tests/microbit-*.spec.js` anpassen. Zu prüfen:
       - Startklar: Steckt der micro:bit mit den Lampen nach oben in der Platine? Sind links wirklich
         nur die 2 Löcher an der Lücke frei, und reichen Widerstandsbeine über die Lücke?
       - Leuchten alle 5 LEDs mit 150 Ω hell genug, und stimmen die Farbringe (braun-grün-schwarz-schwarz-braun)?

@@ -189,6 +189,7 @@
     "language": "microbit",
     "level": "einsteiger",
     "tags": ["elektronik"],
+    "unlisted": true,
     "title": "micro:bit: Die Ampelanlage",
     "title_en": "micro:bit: The Traffic Lights",
     "description": "Steckt im Zweierteam LEDs auf ein Breadboard und baut eine Fußgängerampel, eine Autoampel und daraus eine sichere Ampelanlage. In der Werkstatt wählt ihr dann Aufträge wie Countdown, Nachtmodus oder Ampeln, die sich per Funk absprechen. Jede Stufe gibt es mit Blöcken und mit Python.",
