@@ -2708,3 +2708,20 @@ denen man mehr darüber lernt oder nachschlagen kann, was das ist.
   (`GuideLessonView`) und nicht die Grundkurse selbst.
 - Bewusste Lücke: Was die Grundkurse nicht behandeln (`createElement`, `setTimeout`,
   `Math.random`, Python-Stringmethoden wie `ord`/`chr`), bekommt keinen Link.
+
+### 3.109 — Begriffs-Links auch in den Grundkursen (Branch `begriffe-grundkurse`)
+
+Wunsch des Nutzers nach 3.108: dieselben Verweise auch in den anderen Kursen.
+
+- Alle drei Grundkurse zeigen Lektionen über `JsCourseTour.vue`; die Tour reicht
+  `conceptLanguage`/`conceptCourse`/`conceptWeek` an `LessonView`/`JsLessonView` durch. Gesetzt in
+  `JsGrundkursTour.vue` (javascript, js-grundkurs, Woche), `WeekTourStepper.vue` (python,
+  python-12-wochen-grundkurs, Woche) und `KiLaborTour.vue` (python, ohne eigenen Kurs).
+- **Im eigenen Grundkurs nur zurück:** `conceptsFor({ language, course, week })` lässt Begriffe des
+  eigenen Kurses ab der aktuellen Woche weg. Was die Woche gerade erklärt, braucht keinen Verweis,
+  und Vorgriffe auf spätere Wochen würden verwirren (Woche 6: „Array“ → Woche 5, „Objekt“ nicht).
+- **KI-Labor** setzt den Python-Grundkurs voraus, verlinkt also auf alle seine Wochen.
+- **Nur auf Deutsch:** bei englischer Oberfläche keine Links und kein Kasten — `begriffe.json` hat
+  nur deutsche Erklärungen (EN ist geparkt, siehe todo.md).
+- Nicht eingeschaltet: Python-Einstieg (`InteractiveCourse.vue` hat eigene Glossar-Tooltips; beides
+  zusammen würde doppelt markieren), Einstufung, Ferienkurse, micro:bit.
