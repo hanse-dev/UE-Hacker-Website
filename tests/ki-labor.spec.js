@@ -216,6 +216,9 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
   }
 
   // codes[i] === null: Beispiel-Aufgabe (nur "Ausfuehren", kein "Pruefen"), sonst Loesung + Pruefen.
+  // 30 s statt 10 s pro Lauf: In der vollen Suite rechnen mehrere Pyodide-Kernel parallel, ein
+  // einzelner Lauf brauchte dort einmal ueber 10 s (Woche 3, Beispiel-Aufgabe), allein nie.
+  const RUN_TIMEOUT = 30000;
   async function solve(page, codes) {
     await waitForFreshLesson(page);
     for (let i = 0; i < codes.length; i++) {
@@ -223,12 +226,12 @@ test.describe('KI-Labor (Wochenauswahl)', () => {
       if (codes[i] === null) {
         await expect(task.locator('.btn-check')).toHaveCount(0);
         await task.locator('.btn-run').click();
-        await expect(task.locator('.task-done')).toBeVisible({ timeout: 10000 });
+        await expect(task.locator('.task-done')).toBeVisible({ timeout: RUN_TIMEOUT });
         continue;
       }
       await task.locator('.code-editor').fill(codes[i]);
       await task.locator('.btn-check').click();
-      await expect(task.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+      await expect(task.locator('.feedback-success')).toBeVisible({ timeout: RUN_TIMEOUT });
     }
     await expect(page.locator('.lesson-complete-box')).toBeVisible();
   }
