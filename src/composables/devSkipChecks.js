@@ -12,6 +12,9 @@
  * - useInteractiveProgress.js: alle Lektionen sind freigeschaltet
  * - LessonView/JsLessonView/CodeChallenge: "Prüfen" führt keinen Code aus (kein Warten auf den
  *   Python-Kernel), App.vue zeigt ein Hinweis-Banner.
+ * - ProjectCourse.vue: der Abschluss-Check ist sofort offen
+ * - AdminView.vue: meldet ohne Passwort an, wenn die API mit DEV_SKIP_ADMIN_LOGIN=1 läuft
+ *   (`npm run start:all:skip-checks`, api/src/devAdminLogin.js)
  * Neue Prüf-Logik deshalb immer über useTaskValidation.js laufen lassen, nicht lokal nachbauen.
  */
 // In Node (Tests, die useTaskValidation.js direkt importieren) gibt es kein import.meta.env.

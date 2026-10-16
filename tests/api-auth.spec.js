@@ -40,6 +40,13 @@ test.describe('API: Admin + Auth + Progress', () => {
     expect(body.token).toMatch(/\./);
   });
 
+  test('Dev-Login gibt es ohne DEV_SKIP_ADMIN_LOGIN=1 nicht', async ({ request }) => {
+    const res = await request.post(`${API}/api/admin/dev-login`);
+    // Ohne Route greift requireAdmin der Admin-Router (401) - entscheidend: kein Token.
+    expect(res.ok()).toBe(false);
+    expect((await res.json().catch(() => ({}))).token).toBeUndefined();
+  });
+
   test('User CRUD + Learner-Login + Progress Sync', async ({ request }) => {
     const token = await adminToken(request);
     const username = `kid_${Date.now()}`;

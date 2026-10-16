@@ -2853,6 +2853,21 @@ Frage des Nutzers: Warum gibt es noch Turtle-Tests, obwohl Turtle nirgends behan
 - Lektion 8 verlangt zusätzlich einen `:hover`-Effekt – sonst hätte die Ersatzvorlage (Stand Lektion 7)
   die Prüfung schon bestanden.
 
+### 3.118 — Dev-Modus: Admin-Login ohne Passwort (Branch `dev-admin-login`)
+
+- `npm run start:all:skip-checks` startet API (`DEV_SKIP_ADMIN_LOGIN=1`) und Vite (`dev:skip-checks`);
+  `AdminView.vue` holt sich dann über `POST /api/admin/dev-login` einen normalen Admin-Token.
+- Sicherungen (`api/src/devAdminLogin.js`): Schalter nur im Skript, nie in `.env`; mit
+  `NODE_ENV=production` (Docker-Image) bricht der Server-Start ab, statt den Schalter still zu
+  ignorieren – so fällt ein Fehler beim Deploy auf. Route nur bei aktivem Schalter und nur für
+  localhost (hinter einem Proxy auf demselben Rechner wirkungslos, daher nur Zusatz). Frontend
+  versucht den Dev-Login nur mit `DEV_SKIP_CHECKS`, also nie im Produktions-Build.
+- Fallstrick: Unbekannte `/api/admin/*`-Pfade beantwortet `requireAdmin` der Admin-Router mit 401,
+  nicht 404 – Tests prüfen deshalb „kein Token“ statt eines Statuscodes.
+- Mitgezogen: Im Dev-Modus ist auch der Abschluss-Check der Einstiegskurse (`ProjectCourse.vue`)
+  sofort offen. `scripts/run-test-api.js` nimmt `TEST_DB_NAME`, damit `test:auth` und `test:devskip`
+  getrennte Wegwerf-DBs nutzen.
+
 ---
 
 ## Frühere Feature-Tabelle aus HANDOFF.md (Stand 16.10.2026, wortgleich)

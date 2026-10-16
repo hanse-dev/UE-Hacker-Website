@@ -166,6 +166,8 @@ const RULES = [
   ['scripts/new-worktree.mjs', []],
   ['scripts/remove-worktree.mjs', []],
   ['scripts/test-changed.mjs', []],
+  // Wegwerf-API fuer test:auth/test:devskip (laufen im Pre-push-Hook), nicht Teil von test:checks.
+  ['scripts/run-test-api.js', []],
 ];
 
 function run(cmd, args) {
