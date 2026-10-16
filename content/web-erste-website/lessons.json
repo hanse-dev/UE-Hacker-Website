@@ -21,6 +21,7 @@
       },
       {
         "instruction": "Jetzt du: Worum soll deine Website gehen? Schreib dein Thema in die Überschrift und erzähl in zwei Absätzen etwas darüber.",
+        "meineSeite": true,
         "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine erste Website</title>\n</head>\n<body>\n  <!-- Schreib dein Thema zwischen die beiden h1-Tags -->\n  <h1></h1>\n\n  <!-- Und hier zwei Absätze: <p>...</p> -->\n\n</body>\n</html>\n",
         "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine erste Website</title>\n</head>\n<body>\n  <h1>Meine Katze Mia</h1>\n  <p>Mia ist drei Jahre alt und schläft am liebsten in der Sonne.</p>\n  <p>Ihr Lieblingsspielzeug ist eine kleine rote Maus.</p>\n</body>\n</html>",
         "validation": {
@@ -118,6 +119,28 @@
             }
           ]
         }
+      },
+      {
+        "instruction": "Deine Seite: Öffne deine eigene Seite aus Lektion 1 und ergänze eine Zwischenüberschrift h2 und darunter eine Liste mit mindestens drei Punkten zu deinem Thema.",
+        "meineSeite": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Darum geht es auf meiner Seite.</p>\n  <p>Das finde ich daran besonders spannend.</p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Hund Bello</h1>\n  <p>Bello ist fünf Jahre alt und der beste Hund der Welt.</p>\n  <p>Er wohnt mit uns in Bremen.</p>\n\n  <h2>Was Bello mag</h2>\n  <ul>\n    <li>Bälle</li>\n    <li>Spaziergänge</li>\n    <li>Würstchen</li>\n  </ul>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "h2",
+              "notEmpty": true,
+              "hint": "Ergänze auf deiner Seite eine Zwischenüberschrift <h2>…</h2>."
+            },
+            {
+              "selector": "ul li, ol li",
+              "notEmpty": true,
+              "min": 3,
+              "hint": "Ergänze eine Liste mit mindestens drei Punkten: <ul><li>…</li>…</ul>."
+            }
+          ]
+        }
       }
     ]
   },
@@ -169,6 +192,26 @@
               "selector": "a[href^=\"http\"]",
               "notEmpty": true,
               "hint": "Schreib einen Link wie <a href=\"https://de.wikipedia.org\">Wikipedia</a> – mit Adresse und Text."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Deine Seite: Bau in deine eigene Seite ein passendes Bild aus /web-bilder/ (mit alt-Beschreibung) und einen Link ein, der mit https:// beginnt.",
+        "meineSeite": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Darum geht es auf meiner Seite.</p>\n  <p>Das finde ich daran besonders spannend.</p>\n\n  <h2>Meine Lieblingsdinge</h2>\n  <ul>\n    <li>Erstes</li>\n    <li>Zweites</li>\n    <li>Drittes</li>\n  </ul>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Hund Bello</h1>\n  <p>Bello ist fünf Jahre alt und der beste Hund der Welt.</p>\n  <p>Er wohnt mit uns in Bremen.</p>\n  <img src=\"/web-bilder/hund.svg\" alt=\"Bello beim Spielen\" width=\"140\">\n\n  <h2>Was Bello mag</h2>\n  <ul>\n    <li>Bälle</li>\n    <li>Spaziergänge</li>\n    <li>Würstchen</li>\n  </ul>\n\n  <p><a href=\"https://de.wikipedia.org/wiki/Haushund\">Hunde auf Wikipedia</a></p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "img[src*=\"/web-bilder/\"][alt]:not([alt=\"\"])",
+              "hint": "Ergänze ein Bild wie <img src=\"/web-bilder/hund.svg\" alt=\"…\"> – mit Beschreibung in alt."
+            },
+            {
+              "selector": "a[href^=\"http\"]",
+              "notEmpty": true,
+              "hint": "Ergänze einen Link: <a href=\"https://…\">Text</a>."
             }
           ]
         }
@@ -232,6 +275,29 @@
               "notValue": "initial",
               "min": 2,
               "hint": "Ergänze in der Regel für p eine Schrift, zum Beispiel font-family: Verdana, sans-serif;"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Deine Seite: Gib deiner eigenen Seite Farbe. Schreib im head einen style-Block mit einer Hintergrundfarbe für body und einer Farbe (nicht Schwarz) für h1.",
+        "meineSeite": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Darum geht es auf meiner Seite.</p>\n  <p>Das finde ich daran besonders spannend.</p>\n  <img src=\"/web-bilder/stern.svg\" alt=\"Ein Stern\" width=\"140\">\n\n  <h2>Meine Lieblingsdinge</h2>\n  <ul>\n    <li>Erstes</li>\n    <li>Zweites</li>\n    <li>Drittes</li>\n  </ul>\n\n  <p><a href=\"https://de.wikipedia.org\">Mehr dazu auf Wikipedia</a></p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    body {\n      background-color: lightyellow;\n    }\n    h1 {\n      color: darkorange;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Hund Bello</h1>\n  <p>Bello ist fünf Jahre alt und der beste Hund der Welt.</p>\n  <p>Er wohnt mit uns in Bremen.</p>\n  <img src=\"/web-bilder/hund.svg\" alt=\"Bello beim Spielen\" width=\"140\">\n\n  <h2>Was Bello mag</h2>\n  <ul>\n    <li>Bälle</li>\n    <li>Spaziergänge</li>\n    <li>Würstchen</li>\n  </ul>\n\n  <p><a href=\"https://de.wikipedia.org/wiki/Haushund\">Hunde auf Wikipedia</a></p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "body",
+              "property": "background-color",
+              "notValue": "transparent",
+              "hint": "Schreib zwischen <head> und </head> einen <style>-Block mit body { background-color: …; }."
+            },
+            {
+              "selector": "h1",
+              "property": "color",
+              "notValue": "black",
+              "hint": "Ergänze im style-Block h1 { color: …; } mit einer anderen Farbe als Schwarz."
             }
           ]
         }
@@ -304,6 +370,35 @@
             }
           ]
         }
+      },
+      {
+        "instruction": "Deine Seite: Mach auf deiner eigenen Seite aus einer Überschrift oder deinen Absätzen ein Schild – mit Rahmen (border), Innenabstand (padding) und runden Ecken (border-radius).",
+        "meineSeite": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    body {\n      background-color: white;\n    }\n    h1 {\n      color: black;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Darum geht es auf meiner Seite.</p>\n  <p>Das finde ich daran besonders spannend.</p>\n  <img src=\"/web-bilder/stern.svg\" alt=\"Ein Stern\" width=\"140\">\n\n  <h2>Meine Lieblingsdinge</h2>\n  <ul>\n    <li>Erstes</li>\n    <li>Zweites</li>\n    <li>Drittes</li>\n  </ul>\n\n  <p><a href=\"https://de.wikipedia.org\">Mehr dazu auf Wikipedia</a></p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    body {\n      background-color: lightyellow;\n    }\n    h1 {\n      color: darkorange;\n    }\n    h2 {\n      border: 3px solid orange;\n      padding: 8px;\n      border-radius: 10px;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Hund Bello</h1>\n  <p>Bello ist fünf Jahre alt und der beste Hund der Welt.</p>\n  <p>Er wohnt mit uns in Bremen.</p>\n  <img src=\"/web-bilder/hund.svg\" alt=\"Bello beim Spielen\" width=\"140\">\n\n  <h2>Was Bello mag</h2>\n  <ul>\n    <li>Bälle</li>\n    <li>Spaziergänge</li>\n    <li>Würstchen</li>\n  </ul>\n\n  <p><a href=\"https://de.wikipedia.org/wiki/Haushund\">Hunde auf Wikipedia</a></p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "h1, h2, p",
+              "property": "border-top-style",
+              "notValue": "none",
+              "hint": "Gib einer Überschrift oder deinen Absätzen einen Rahmen, z. B. h2 { border: 3px solid orange; }."
+            },
+            {
+              "selector": "h1, h2, p",
+              "property": "padding-top",
+              "notValue": "0px",
+              "hint": "Ergänze Innenabstand, z. B. padding: 8px;"
+            },
+            {
+              "selector": "h1, h2, p",
+              "property": "border-top-left-radius",
+              "notValue": "0px",
+              "hint": "Ergänze runde Ecken, z. B. border-radius: 10px;"
+            }
+          ]
+        }
       }
     ]
   },
@@ -366,6 +461,30 @@
               "property": "border-top-color",
               "notValue": "gray",
               "hint": "Schreib eine Regel .besonders { border-color: gold; } – mit einer anderen Farbe als Grau."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Deine Seite: Bau auf deiner eigenen Seite mindestens zwei Karten mit class=\"karte\" (jede mit etwas Text) und gestalte sie mit einer Regel .karte, die eine Hintergrundfarbe hat.",
+        "meineSeite": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    body {\n      background-color: white;\n    }\n    h1 {\n      color: black;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Darum geht es auf meiner Seite.</p>\n  <p>Das finde ich daran besonders spannend.</p>\n  <img src=\"/web-bilder/stern.svg\" alt=\"Ein Stern\" width=\"140\">\n\n  <h2>Meine Lieblingsdinge</h2>\n  <ul>\n    <li>Erstes</li>\n    <li>Zweites</li>\n    <li>Drittes</li>\n  </ul>\n\n  <p><a href=\"https://de.wikipedia.org\">Mehr dazu auf Wikipedia</a></p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    body {\n      background-color: lightyellow;\n    }\n    h1 {\n      color: darkorange;\n    }\n    h2 {\n      border: 3px solid orange;\n      padding: 8px;\n      border-radius: 10px;\n    }\n    .karte {\n      background-color: white;\n      border: 2px solid orange;\n      padding: 10px;\n      margin: 10px 0;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Hund Bello</h1>\n  <p>Bello ist fünf Jahre alt und der beste Hund der Welt.</p>\n  <p>Er wohnt mit uns in Bremen.</p>\n  <img src=\"/web-bilder/hund.svg\" alt=\"Bello beim Spielen\" width=\"140\">\n\n  <h2>Was Bello mag</h2>\n  <ul>\n    <li>Bälle</li>\n    <li>Spaziergänge</li>\n    <li>Würstchen</li>\n  </ul>\n\n  <div class=\"karte\">\n    <h2>Im Garten</h2>\n    <p>Dort buddelt er Löcher.</p>\n  </div>\n  <div class=\"karte\">\n    <h2>Auf dem Sofa</h2>\n    <p>Dort schläft er am liebsten.</p>\n  </div>\n\n  <p><a href=\"https://de.wikipedia.org/wiki/Haushund\">Hunde auf Wikipedia</a></p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".karte",
+              "notEmpty": true,
+              "min": 2,
+              "hint": "Ergänze zwei Elemente wie <div class=\"karte\"><h2>…</h2><p>…</p></div>."
+            },
+            {
+              "selector": ".karte",
+              "property": "background-color",
+              "notValue": "transparent",
+              "min": 2,
+              "hint": "Schreib im style-Block .karte { background-color: …; }."
             }
           ]
         }
@@ -435,6 +554,28 @@
             }
           ]
         }
+      },
+      {
+        "instruction": "Deine Seite: Pack auf deiner eigenen Seite mindestens zwei Bilder in eine Kiste <div class=\"galerie\"> und stell sie mit display: flex nebeneinander.",
+        "meineSeite": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    body {\n      background-color: white;\n    }\n    h1 {\n      color: black;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Darum geht es auf meiner Seite.</p>\n  <p>Das finde ich daran besonders spannend.</p>\n  <img src=\"/web-bilder/stern.svg\" alt=\"Ein Stern\" width=\"140\">\n\n  <h2>Meine Lieblingsdinge</h2>\n  <ul>\n    <li>Erstes</li>\n    <li>Zweites</li>\n    <li>Drittes</li>\n  </ul>\n\n  <div class=\"karte\">\n    <h2>Karte 1</h2>\n    <p>Text der ersten Karte.</p>\n  </div>\n  <div class=\"karte\">\n    <h2>Karte 2</h2>\n    <p>Text der zweiten Karte.</p>\n  </div>\n\n  <p><a href=\"https://de.wikipedia.org\">Mehr dazu auf Wikipedia</a></p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    body {\n      background-color: lightyellow;\n    }\n    h1 {\n      color: darkorange;\n    }\n    h2 {\n      border: 3px solid orange;\n      padding: 8px;\n      border-radius: 10px;\n    }\n    .karte {\n      background-color: white;\n      border: 2px solid orange;\n      padding: 10px;\n      margin: 10px 0;\n    }\n    .galerie {\n      display: flex;\n      gap: 12px;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Hund Bello</h1>\n  <p>Bello ist fünf Jahre alt und der beste Hund der Welt.</p>\n  <p>Er wohnt mit uns in Bremen.</p>\n  <img src=\"/web-bilder/hund.svg\" alt=\"Bello beim Spielen\" width=\"140\">\n\n  <h2>Was Bello mag</h2>\n  <ul>\n    <li>Bälle</li>\n    <li>Spaziergänge</li>\n    <li>Würstchen</li>\n  </ul>\n\n  <div class=\"karte\">\n    <h2>Im Garten</h2>\n    <p>Dort buddelt er Löcher.</p>\n  </div>\n  <div class=\"karte\">\n    <h2>Auf dem Sofa</h2>\n    <p>Dort schläft er am liebsten.</p>\n  </div>\n\n  <div class=\"galerie\">\n    <img src=\"/web-bilder/hund.svg\" alt=\"Bello\" width=\"100\">\n    <img src=\"/web-bilder/fussball.svg\" alt=\"Bellos Ball\" width=\"100\">\n    <img src=\"/web-bilder/baum.svg\" alt=\"Bellos Lieblingsbaum\" width=\"100\">\n  </div>\n\n  <p><a href=\"https://de.wikipedia.org/wiki/Haushund\">Hunde auf Wikipedia</a></p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".galerie img",
+              "min": 2,
+              "hint": "Ergänze <div class=\"galerie\"> mit mindestens zwei Bildern darin."
+            },
+            {
+              "selector": ".galerie",
+              "property": "display",
+              "value": "flex",
+              "hint": "Schreib im style-Block .galerie { display: flex; }."
+            }
+          ]
+        }
       }
     ]
   },
@@ -459,9 +600,10 @@
         }
       },
       {
-        "instruction": "Jetzt kommt alles zusammen: Bau deine eigene Website zu deinem Thema. Sie braucht eine Überschrift h1, mindestens zwei Abschnitte mit h2, mindestens zwei Absätze, eine Liste mit mindestens drei Punkten, ein Bild mit Beschreibung und einen Link. Gestalte sie im style-Block, wie es dir gefällt – und lade sie danach herunter!",
-        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    body {\n      font-family: Verdana, sans-serif;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Darum geht es auf meiner Seite.</p>\n\n  <!-- Ab hier gehört die Seite dir! -->\n</body>\n</html>\n",
-        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    body {\n      font-family: Verdana, sans-serif;\n      background-color: lightyellow;\n    }\n    h1 {\n      color: darkorange;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Hund Bello</h1>\n  <p>Bello ist fünf Jahre alt und der beste Hund der Welt.</p>\n  <img src=\"/web-bilder/hund.svg\" alt=\"Bello beim Spielen\" width=\"140\">\n\n  <h2>Was Bello mag</h2>\n  <ul>\n    <li>Bälle</li>\n    <li>Spaziergänge</li>\n    <li>Würstchen</li>\n  </ul>\n\n  <h2>Mehr über Hunde</h2>\n  <p>Hunde leben schon seit Tausenden von Jahren mit Menschen zusammen.</p>\n  <a href=\"https://de.wikipedia.org/wiki/Haushund\">Hunde auf Wikipedia</a>\n</body>\n</html>",
+        "instruction": "Jetzt kommt alles zusammen: Mach deine eigene Seite fertig. Sie braucht eine Überschrift h1, mindestens zwei Abschnitte mit h2, mindestens zwei Absätze, eine Liste mit mindestens drei Punkten, ein Bild mit Beschreibung und einen Link. Gestalte sie im style-Block, wie es dir gefällt, mit mindestens einem :hover-Effekt – und lade sie danach herunter!",
+        "meineSeite": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    body {\n      background-color: white;\n    }\n    h1 {\n      color: black;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Darum geht es auf meiner Seite.</p>\n  <p>Das finde ich daran besonders spannend.</p>\n  <img src=\"/web-bilder/stern.svg\" alt=\"Ein Stern\" width=\"140\">\n\n  <h2>Meine Lieblingsdinge</h2>\n  <ul>\n    <li>Erstes</li>\n    <li>Zweites</li>\n    <li>Drittes</li>\n  </ul>\n\n  <div class=\"karte\">\n    <h2>Karte 1</h2>\n    <p>Text der ersten Karte.</p>\n  </div>\n  <div class=\"karte\">\n    <h2>Karte 2</h2>\n    <p>Text der zweiten Karte.</p>\n  </div>\n\n  <div class=\"galerie\">\n    <img src=\"/web-bilder/stern.svg\" alt=\"Ein Stern\" width=\"100\">\n    <img src=\"/web-bilder/blume.svg\" alt=\"Eine Blume\" width=\"100\">\n  </div>\n\n  <p><a href=\"https://de.wikipedia.org\">Mehr dazu auf Wikipedia</a></p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    body {\n      background-color: lightyellow;\n    }\n    h1 {\n      color: darkorange;\n    }\n    h2 {\n      border: 3px solid orange;\n      padding: 8px;\n      border-radius: 10px;\n    }\n    .karte {\n      background-color: white;\n      border: 2px solid orange;\n      padding: 10px;\n      margin: 10px 0;\n    }\n    .karte:hover {\n      background-color: lightblue;\n    }\n    .galerie {\n      display: flex;\n      gap: 12px;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Hund Bello</h1>\n  <p>Bello ist fünf Jahre alt und der beste Hund der Welt.</p>\n  <p>Er wohnt mit uns in Bremen.</p>\n  <img src=\"/web-bilder/hund.svg\" alt=\"Bello beim Spielen\" width=\"140\">\n\n  <h2>Was Bello mag</h2>\n  <ul>\n    <li>Bälle</li>\n    <li>Spaziergänge</li>\n    <li>Würstchen</li>\n  </ul>\n\n  <div class=\"karte\">\n    <h2>Im Garten</h2>\n    <p>Dort buddelt er Löcher.</p>\n  </div>\n  <div class=\"karte\">\n    <h2>Auf dem Sofa</h2>\n    <p>Dort schläft er am liebsten.</p>\n  </div>\n\n  <div class=\"galerie\">\n    <img src=\"/web-bilder/hund.svg\" alt=\"Bello\" width=\"100\">\n    <img src=\"/web-bilder/fussball.svg\" alt=\"Bellos Ball\" width=\"100\">\n    <img src=\"/web-bilder/baum.svg\" alt=\"Bellos Lieblingsbaum\" width=\"100\">\n  </div>\n\n  <p><a href=\"https://de.wikipedia.org/wiki/Haushund\">Hunde auf Wikipedia</a></p>\n</body>\n</html>",
         "validation": {
           "type": "web",
           "checks": [
@@ -496,6 +638,11 @@
               "selector": "a[href]",
               "notEmpty": true,
               "hint": "Setz noch einen Link: <a href=\"https://...\">Text</a>."
+            },
+            {
+              "selector": "style",
+              "text": ":hover",
+              "hint": "Ergänze im style-Block einen Effekt für die Maus, z. B. .karte:hover { background-color: lightblue; }"
             }
           ]
         }

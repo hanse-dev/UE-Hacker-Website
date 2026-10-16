@@ -59,3 +59,31 @@ export function importSavedCode(contentPath, incoming, now = Date.now()) {
   }
   writeAll(contentPath, all);
 }
+
+/**
+ * „Meine Seite“ (Web-Kurse): die eigene Website, die über alle Lektionen eines Kurses mitwächst.
+ * Aufgaben mit `"meineSeite": true` in lessons.json starten mit diesem Stand statt mit ihrer
+ * Vorlage und speichern jede Änderung zurück. Anders als der Lektions-Zwischenspeicher oben verfällt
+ * sie NICHT - es ist ein Projekt über Wochen. Ebenfalls nur lokal (kein Sync-Präfix); mitnehmen
+ * lässt sie sich über „Seite herunterladen“.
+ */
+const meineSeiteKey = (contentPath) => `ue-hacker-meine-seite-${contentPath}`;
+
+export function loadMeineSeite(contentPath) {
+  try {
+    const raw = localStorage.getItem(meineSeiteKey(contentPath));
+    if (!raw) return null;
+    const entry = JSON.parse(raw);
+    return typeof entry?.code === 'string' && entry.code.trim() ? entry.code : null;
+  } catch {
+    return null;
+  }
+}
+
+export function saveMeineSeite(contentPath, code, now = Date.now()) {
+  try {
+    localStorage.setItem(meineSeiteKey(contentPath), JSON.stringify({ savedAt: now, code }));
+  } catch (e) {
+    console.error('Meine Seite konnte nicht gespeichert werden:', e);
+  }
+}

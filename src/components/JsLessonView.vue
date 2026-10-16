@@ -29,6 +29,7 @@
             <span v-else-if="skippedTasks.has(idx)" class="task-status-label">{{ t('lesson.taskSkipped') }}</span>
             <span v-else-if="completedTasks.size > 0" class="task-status-label">{{ t('lesson.taskPending') }}</span>
           </p>
+          <p v-if="task.meineSeite" class="meine-seite-note">🏠 {{ t('webLesson.meineSeite') }}</p>
           <div class="code-editor-wrapper" :class="{ 'code-editor-ran': taskRan[idx] }">
             <JsCodeCell v-model="taskCodes[idx]" :language="webMode ? 'html' : 'javascript'" />
           </div>
@@ -54,7 +55,7 @@
               {{ t('lesson.skipTask') }}
             </button>
             <button
-              v-if="task.codeTemplate && taskCodes[idx] !== task.codeTemplate"
+              v-if="task.codeTemplate && !task.meineSeite && taskCodes[idx] !== task.codeTemplate"
               @click="resetTask(idx)"
               :disabled="checking"
               class="btn-reset"
@@ -130,6 +131,7 @@ import { useInteractiveProgress } from '../composables/useInteractiveProgress';
 import { useLanguage } from '../composables/useLanguage';
 import { validateOutput, validateWebChecks } from '../composables/useTaskValidation';
 import { webDocumentForDownload } from '../composables/useJsSandbox';
+import { loadSavedCode, saveLessonCode, loadMeineSeite, saveMeineSeite } from '../composables/useSavedCode';
 import { DEV_SKIP_CHECKS } from '../composables/devSkipChecks.js';
 import { useLessonContent } from '../composables/useLessonContent';
 import ProjectCompletionBox from './ProjectCompletionBox.vue';
@@ -239,7 +241,14 @@ export default {
 
     const initTaskState = () => {
       const list = tasks.value;
-      taskCodes.value = list.map((x) => x.codeTemplate ?? '');
+      const templates = list.map((x) => x.codeTemplate ?? '');
+      // Zwischengespeicherten Code (max. 5 Tage alt, nur lokal) wiederherstellen - wie LessonView.vue.
+      // „Meine Seite“-Aufgaben (Web-Kurse) starten mit der eigenen, über alle Lektionen
+      // mitwachsenden Seite; erst wenn es die noch nicht gibt, mit der Vorlage.
+      const saved = loadSavedCode(props.contentPath)[props.lesson?.id];
+      const codes = saved && saved.codes.length === templates.length ? [...saved.codes] : templates;
+      const meineSeite = list.some((x) => x.meineSeite) ? loadMeineSeite(props.contentPath) : null;
+      taskCodes.value = codes.map((code, i) => (list[i].meineSeite && meineSeite ? meineSeite : code));
       taskOutputs.value = list.map(() => null);
       taskFeedback.value = list.map(() => null);
       taskAttempts.value = list.map(() => 0);
@@ -265,6 +274,15 @@ export default {
       taskRan.value[idx] = false;
       if (activeIdx.value === idx) activeIdx.value = null;
     };
+
+    watch(taskCodes, (codes) => {
+      if (!props.lesson?.id || !codes.length) return;
+      const templates = tasks.value.map((x) => x.codeTemplate ?? '');
+      saveLessonCode(props.contentPath, props.lesson.id, codes, templates);
+      tasks.value.forEach((task, i) => {
+        if (task.meineSeite && codes[i] !== templates[i]) saveMeineSeite(props.contentPath, codes[i]);
+      });
+    }, { deep: true });
 
     const activate = async (idx) => {
       taskRan.value[idx] = true;
@@ -780,6 +798,16 @@ a.btn-next {
 .code-editor-wrapper.code-editor-ran :deep(.cm-host) {
   border-color: var(--accent-orange, #ff9800);
   box-shadow: 0 0 0 2px rgba(255, 152, 0, 0.2);
+}
+
+.meine-seite-note {
+  margin: 0 0 8px 0;
+  padding: 6px 10px;
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  border-radius: 6px;
+  font-size: 0.85em;
+  color: #6d4c00;
 }
 
 .code-ran-note {

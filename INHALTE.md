@@ -319,6 +319,11 @@ Jeder Ordner enthält dieselben Dateien:
 - [ ] `tests/web-erste-website.spec.js` spielt jede Aufgabe durch: Vorlage muss durchfallen,
       Musterlösung bestehen. Bilder nur aus `public/web-bilder/` (Liste in `lektion-03.md` muss zu
       den Dateien passen, prüft derselbe Test).
+- [ ] „Meine Seite“ (Stufe Einfach): Aufgaben mit `"meineSeite": true` starten mit der eigenen,
+      gespeicherten Seite (`ue-hacker-meine-seite-<contentPath>`, nur lokal, verfällt nicht) statt mit
+      `codeTemplate`. Lektion 1 legt sie an, Lektion 2–7 haben je eine letzte Aufgabe „Deine Seite“,
+      Lektion 8 macht sie fertig. `codeTemplate` ist dann nur der Ersatz für Kinder ohne gespeicherte
+      Seite (allgemeine Seite auf dem Stand der Vorlektion) und muss trotzdem durchfallen.
 - [ ] Stufe Intensiv: je Woche `content/web-grundkurs-woche{N}/` (Abschnitte `lektion`/`debug`/`mission`) und
       `content/web-grundkurs-checks/week-N.json`; Lernziele fürs PDF stehen in `src/data/webGrundkursWeeks.js`
       (nur Stoff dieser Woche). `tests/web-grundkurs.spec.js` prüft jede vorhandene Woche automatisch.

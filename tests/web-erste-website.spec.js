@@ -87,6 +87,73 @@ test.describe('Meine erste Website: Lektionen', () => {
   });
 });
 
+test.describe('Meine erste Website: Meine Seite und gespeicherter Code', () => {
+  const openLesson = async (page, idx) => {
+    await page.locator('.lesson-item').nth(idx).click();
+    await expect(page.locator('.lesson-item.active')).toContainText(lessons[idx].title);
+  };
+  const editorText = (block) => block.locator('.cm-content').innerText();
+
+  test('Die eigene Seite aus Lektion 1 wandert in die nächsten Lektionen mit und übersteht Neuladen', async ({ page }) => {
+    test.setTimeout(60000);
+    await page.addInitScript((key) => {
+      if (!sessionStorage.getItem('reset')) {
+        localStorage.clear();
+        sessionStorage.setItem('reset', '1');
+      }
+      localStorage.setItem(key, JSON.stringify({
+        version: 1, courseId: 'web-erste-website', variant: 'web-erste-website',
+        completedLessonIds: ['lektion-01', 'lektion-02', 'lektion-03'],
+      }));
+    }, PROGRESS_KEY);
+    await openCourse(page);
+
+    // Lektion 1, Aufgabe 2: eigene Seite anlegen.
+    const start = page.locator('.task-block').nth(1);
+    await expect(start.locator('.meine-seite-note')).toBeVisible();
+    await setCodeMirrorContent(start.locator('.cm-host'), '<h1>Meine Katze Mia</h1>\n<p>Mia ist drei.</p>\n<p>Sie schläft gern.</p>');
+    await start.locator('.btn-check').click();
+    await expect(start.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+
+    // Lektion 2: Die letzte Aufgabe startet mit genau dieser Seite, ohne Zurücksetzen-Knopf.
+    await openLesson(page, 1);
+    const l2 = page.locator('.task-block').last();
+    await expect(l2.locator('.meine-seite-note')).toBeVisible();
+    expect(await editorText(l2)).toContain('Meine Katze Mia');
+    await expect(l2.locator('.btn-reset:not(.btn-download)')).toHaveCount(0);
+    await setCodeMirrorContent(l2.locator('.cm-host'), '<h1>Meine Katze Mia</h1>\n<p>Mia ist drei.</p>\n<p>Sie schläft gern.</p>\n<h2>Was Mia mag</h2>\n<ul><li>Fisch</li><li>Wolle</li><li>Sonne</li></ul>');
+    await l2.locator('.btn-check').click();
+    await expect(l2.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+
+    // Neu laden: Die Seite ist noch da – in Lektion 2 und in Lektion 3.
+    await page.reload();
+    await expect(page.locator('.lesson-item').first()).toBeVisible({ timeout: 15000 });
+    await openLesson(page, 1);
+    expect(await editorText(page.locator('.task-block').last())).toContain('Was Mia mag');
+    await openLesson(page, 2);
+    const l3 = page.locator('.task-block').last();
+    expect(await editorText(l3)).toContain('Was Mia mag');
+    expect(await editorText(l3)).toContain('Meine Katze Mia');
+  });
+
+  test('Code in normalen Aufgaben bleibt nach dem Neuladen stehen, Zurücksetzen holt die Vorlage', async ({ page }) => {
+    await page.addInitScript(() => {
+      if (!sessionStorage.getItem('reset')) {
+        localStorage.clear();
+        sessionStorage.setItem('reset', '1');
+      }
+    });
+    await openCourse(page);
+    const task = page.locator('.task-block').nth(2);
+    await setCodeMirrorContent(task.locator('.cm-host'), '<h1 style="color: teal">Gespeichert!</h1>');
+    await page.reload();
+    await expect(page.locator('.task-block').nth(2)).toBeVisible({ timeout: 15000 });
+    expect(await editorText(page.locator('.task-block').nth(2))).toContain('Gespeichert!');
+    await page.locator('.task-block').nth(2).locator('.btn-reset:not(.btn-download)').click();
+    expect(await editorText(page.locator('.task-block').nth(2))).toContain('color: black');
+  });
+});
+
 test.describe('Meine erste Website: Kurs und Abschluss-Check', () => {
   test('Startseite zeigt den Kurs als Einstieg, die Projekte-Uebersicht nicht', async ({ page }) => {
     await page.goto('/');

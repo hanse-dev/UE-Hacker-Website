@@ -2838,3 +2838,17 @@ Frage des Nutzers: Warum gibt es noch Turtle-Tests, obwohl Turtle nirgends behan
 - Profil: `COURSE_INFO` hat `query` (Link mit `?stufe=`), zwei Blöcke „Meine erste Website“ und
   „… – Intensiv“. Begriffe: Liste `html` in `begriffe.json`, `pfade` gibt das Link-Ziel für Kurse ohne
   eigene Seite; Einfach verlinkt auf Intensiv-Wochen, Intensiv nur auf frühere Wochen.
+
+### 3.117 — „Meine Seite“ wächst mit (Branch `meine-seite`)
+
+- Wunsch aus dem Web-Track-Plan: Die eigene Seite soll über die Lektionen mitwachsen. Umgesetzt für die
+  Stufe Einfach; Intensiv behält bewusst eigenständige Wochen-Missionen (teils mit vorgegebenen Seiten,
+  z. B. Design-Makeover) und baut die ganze Seite im Abschlussprojekt von Woche 9.
+- `JsLessonView.vue` speichert jetzt allen Aufgaben-Code lokal wie die Python-Lektionen
+  (`useSavedCode.js`, 5 Tage) – betrifft alle JS- und Web-Kurse.
+- Aufgaben mit `"meineSeite": true` laden und speichern die Seite unter `ue-hacker-meine-seite-<contentPath>`
+  (verfällt nicht, nicht mit dem Account synchronisiert – mitnehmen über „Seite herunterladen“). Kein
+  Zurücksetzen-Knopf, damit das Projekt nicht aus Versehen verloren geht. Neue Aufgaben stehen am Ende
+  der Lektionen, damit Fortschritt und Aufgabenpositionen gleich bleiben.
+- Lektion 8 verlangt zusätzlich einen `:hover`-Effekt – sonst hätte die Ersatzvorlage (Stand Lektion 7)
+  die Prüfung schon bestanden.

@@ -75,10 +75,6 @@ Gesamt-Roadmap/Track-Modell siehe `VISION.md`, Ideen-Backlog in `PROJEKTIDEEN.md
 
 **Web-Track** (Plan in `KURSPLAN.md`): `web-sandbox` ✅ (3.114) → `kurs-erste-website` ✅ (3.115) → `web-grundkurs` ✅ (3.116, Kurs B als Stufe „Intensiv“ in `web-erste-website`).
 
-Offen bei „Meine erste Website“ (bewusst nicht in 3.115):
-- **Eigene Seite wandert nicht mit:** Jede Aufgabe startet mit ihrer eigenen Vorlage, und Code in
-  JS-/Web-Lektionen wird nicht gespeichert (Neuladen = Vorlage). Erst Lektion 8 baut die ganze Seite.
-  Vorschlag: pro Web-Kurs eine gespeicherte „Meine Seite“ (`useSavedCode.js`), die Aufgaben mit
-  `"startFrom": "meineSeite"` als Vorlage übernehmen — braucht Konzept, wie neue Bausteine dazukommen.
+Offen bei „Meine erste Website“:
 - **Sticker-Bilder** (`public/web-bilder/*.svg`) zeigen System-Emojis; auf Geräten ohne Farb-Emoji-Schrift
   (manche Linux-Rechner) erscheinen leere Kästchen. Im Unterricht prüfen; sonst gezeichnete SVGs.
