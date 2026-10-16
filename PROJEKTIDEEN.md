@@ -60,7 +60,8 @@ dem Grundkurs.
 - [ ] **Prüfziffern (ISBN/IBAN)** 🐍 — wie Barcodes Fehler erkennen. Ab 13.
 
 ## 🎨 Kreativ & Generativ
-- [ ] **Turtle-Mandala** 🐍 — Schleifen + Winkel (nutzt den Turtle-Shim aus `usePyodide.js`). Ab 10.
+- [ ] **Turtle-Mandala** 🐍 — Schleifen + Winkel. Ab 10. *Braucht den Turtle-Shim, der in HANDOFF 3.113
+      entfernt wurde (aus der Git-Historie zurückholen, `git log -S _install_turtle_shim`).*
 - [ ] **Pixel-Art-Editor** 🟨 — Raster anklicken, Farbe wählen, als Array speichern. Ab 11.
 - [ ] **Fantasie-Namensgenerator** 🐍 — Drachen-/Pferdenamen aus Silben. Ab 8.
 - [ ] **Musik-Loop / Beat-Sequencer** 🟨 — Web Audio, Töne per Klick. Ab 13.

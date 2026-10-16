@@ -103,6 +103,7 @@
             <span class="badge badge-language">{{ languageLabel(projekt.language) }}</span>
             <span class="badge badge-level">{{ t(`projectLevel.${projekt.level}`) }}</span>
             <span class="badge badge-duration">{{ t(`projectDuration.${projekt.duration}`) }}</span>
+            <BetaBadge v-if="projekt.beta" />
           </div>
           <h3>{{ lang === 'en' && projekt.title_en ? projekt.title_en : projekt.title }}</h3>
           <p>{{ lang === 'en' && projekt.description_en ? projekt.description_en : projekt.description }}</p>
@@ -121,6 +122,7 @@
 import { ref, computed, onMounted } from 'vue';
 import { assetUrl } from '../utils/assetUrl';
 import { useLanguage } from '../composables/useLanguage.js';
+import BetaBadge from '../components/BetaBadge.vue';
 
 const lessonJsonModules = import.meta.glob('../../content/*/lessons.json');
 
@@ -148,6 +150,7 @@ async function loadLessonCount(contentPath) {
 
 export default {
   name: 'ProjekteView',
+  components: { BetaBadge },
   setup() {
     const { lang, t } = useLanguage();
     const projects = ref([]);

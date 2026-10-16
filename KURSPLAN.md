@@ -155,7 +155,7 @@ Seite, die über die Wochen wächst; keine Themen-Varianten, nur DE.
 - **Neuer Sandbox-Modus „web“:** CodeMirror mit `@codemirror/lang-html` (CSS/JS eingebettet), Live-
   Vorschau im iframe, Download-Knopf für die fertige `.html`. Eine einzige Datei, CSS im
   `<style>`-Block — keine getrennten HTML/CSS-Tabs.
-- **Prüfung `validation.type: 'web'`** (umgesetzt in `web-sandbox`, Details `HANDOFF.md` 3.110):
+- **Prüfung `validation.type: 'web'`** (umgesetzt in `web-sandbox`, Details `HANDOFF.md` 3.114):
   Liste von `checks` — Selektor vorhanden/Anzahl/Text, Attribute über den Selektor
   (`img[alt]`), CSS über `getComputedStyle` vom Browser normalisiert (`property` + `value`/`notValue`).
   Bei HTML ist die gerenderte Seite die „Ausgabe“, analog zu `dom_text` in `js-memory`.

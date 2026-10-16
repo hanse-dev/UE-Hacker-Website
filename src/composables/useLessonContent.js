@@ -26,10 +26,10 @@ function escapeHtml(s) {
  * `isMounted` wird vom aufrufenden Component verwaltet (auch von dessen Task-Run/Check-Logik
  * genutzt) und hier nur gelesen, um State-Updates nach dem Unmount zu vermeiden.
  */
-export function useLessonContent(isMounted, { conceptLanguage = () => '' } = {}) {
+export function useLessonContent(isMounted, { conceptOptions = () => null } = {}) {
   const lessonContent = ref('');
   // Begriffe der Lektion fuer den "Hier lernst du mehr"-Kasten (nur Projekt-Kurse, siehe
-  // useConcepts.js); leer, solange conceptLanguage() nichts liefert.
+  // useConcepts.js); leer, solange conceptOptions() nichts liefert.
   const lessonConcepts = ref([]);
   let glossary = {};
 
@@ -96,9 +96,9 @@ export function useLessonContent(isMounted, { conceptLanguage = () => '' } = {})
       if (!isMounted.value) return;
       let html = marked(text ?? '');
       html = applyGlossaryTooltips(html);
-      const language = conceptLanguage();
-      if (language) {
-        const linked = linkConcepts(html, language);
+      const opts = conceptOptions();
+      if (opts?.language) {
+        const linked = linkConcepts(html, opts);
         html = linked.html;
         lessonConcepts.value = linked.found;
       } else {

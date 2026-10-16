@@ -9,6 +9,18 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
 
 ## Offen
 
+- [ ] Einmaliger Ausfall im vollen Lauf unter Last (15.10., parallel liefen Tests anderer Sessions,
+      Suite 4,5 statt ~2,3 Min.): `tests/ki-labor.spec.js` Woche 3 (Python-Lauf > 10 s, Timeout pro
+      Lauf seitdem 30 s), allein 3× grün. Der zweite Ausfall (Turtle-Test) ist mit 3.113 weggefallen.
+      Vorschlag: Beim nächsten Auftreten prüfen, ob gleichzeitig andere Playwright-Läufe aktiv waren
+      (`ps aux | grep "playwright test"`); wenn ja, Pre-push-Läufe mehrerer Sessions nicht parallel
+      starten statt die Tests zu ändern.
+- [ ] **Einstiegskurs „Meine erste Website“ (HTML/CSS) — erst in einer eigenen Session mit Eike
+      besprechen, dann bauen** (Wunsch Eike, 15.10.2026). Vorschlag aus der Planung: Einstieg mit
+      6–8 Lektionen ohne Zertifikat (Überschrift/Text → Bilder/Links → Listen → Farben/Schriften →
+      Layout → eigene Steckbrief-Seite). Braucht Frontend-Arbeit: HTML/CSS-Editor mit Live-Vorschau
+      und neue Prüfarten (Element existiert, Text, gesetzte Farbe/Schriftgröße); die DOM-Sandbox
+      (`useJsSandbox.js`, `sandboxMode: "dom"`) ist eine mögliche Basis.
 - [ ] **micro:bit-Kurs „Das Roboterauto“ (`content/microbit-auto/`, HANDOFF 3.101) — vor dem ersten
       Termin am echten Auto durchspielen.** Der Kurs ist ohne Hardware entstanden (nur aus der
       Keyestudio-Doku, der MakeCode-Erweiterung und der Bibliothek abgeleitet). Zu prüfen:
@@ -71,4 +83,4 @@ Gesamt-Roadmap/Track-Modell siehe `VISION.md`, Ideen-Backlog in `PROJEKTIDEEN.md
 **Web-Track** (Plan in `KURSPLAN.md`): `web-sandbox` (fertig, wartet auf Merge: Web-Modus der Sandbox,
 Prüfung `validation.type: 'web'`, Lektion 1 von Kurs A; nach dem Merge im Haupt-Checkout `npm install`
 für `@codemirror/lang-html`) → `kurs-erste-website` (Kurs A
-Lektion 2–8 + Abschluss-Check/Zertifikat, Bilder unter `public/web-bilder/`, Kurs aus `unlisted` holen) → `web-grundkurs` (Kurs B, 9 Wochen) → `web-checks` (Wochen-Checks/Zertifikate).
+Lektion 2–8 + Abschluss-Check/Zertifikat, Bilder unter `public/web-bilder/`, Kurs aus `unlisted` holen) → `web-grundkurs` (Kurs B, 9 Wochen; dann `html`-Begriffe in `content/begriffe.json` und `web-erste-website` aus `WITHOUT_LINKS` in `tests/begriffe.spec.js` nehmen) → `web-checks` (Wochen-Checks/Zertifikate).

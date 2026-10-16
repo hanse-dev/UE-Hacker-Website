@@ -25,6 +25,9 @@
       :week-label="`${t('week.label')} ${selectedWeekNumber}: ${selectedWeekTitle}`"
       :show-canvas="selectedWeekSandboxVisible"
       :dom-mode="selectedWeekSandboxVisible"
+      concept-language="javascript"
+      concept-course="js-grundkurs"
+      :concept-week="selectedWeekNumber"
       @change-week="phase = 'week'"
     />
   </div>

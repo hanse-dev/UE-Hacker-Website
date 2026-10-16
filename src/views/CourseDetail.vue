@@ -2,6 +2,7 @@
   <section class="course-detail" v-if="course">
     <template v-if="!isFocusableCourse || !started">
       <h1>{{ courseTitle }}</h1>
+      <p v-if="course.beta" class="beta-hint"><BetaBadge /> {{ t('course.betaHint') }}</p>
       <div v-if="description || isWeeklyCourse" class="course-description">
         <div v-if="description" v-html="description"></div>
 
@@ -40,6 +41,7 @@
 
     <template v-else>
       <h1>{{ courseTitle }}</h1>
+      <p v-if="course.beta" class="beta-hint"><BetaBadge /> {{ t('course.betaHint') }}</p>
       <button class="btn-back-to-overview" @click="backToOverview">
         {{ t('course.backToOverview') }}
       </button>
@@ -79,6 +81,7 @@ import PlacementCourse from '../components/PlacementCourse.vue';
 import ProjectCourse from '../components/ProjectCourse.vue';
 import JsGrundkursTour from '../components/JsGrundkursTour.vue';
 import KiLaborTour from '../components/KiLaborTour.vue';
+import BetaBadge from '../components/BetaBadge.vue';
 import { loadCourseData } from '../composables/useCourseData';
 import { useLanguage } from '../composables/useLanguage.js';
 
@@ -95,6 +98,7 @@ const STRUCTURE_STEPS_CONFIG = [
 export default {
   name: 'CourseDetail',
   components: {
+    BetaBadge,
     CourseAppointments,
     WeekTour,
     InteractiveCourse,
@@ -219,6 +223,12 @@ export default {
 </script>
 
 <style scoped>
+.beta-hint {
+  margin: -0.4em 0 1em;
+  color: #9a3412;
+  font-size: 0.95em;
+}
+
 .course-detail {
   padding: 20px;
 }

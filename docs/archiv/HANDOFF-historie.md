@@ -2727,7 +2727,62 @@ denen man mehr darüber lernt oder nachschlagen kann, was das ist.
 - Ohne Hardware entstanden; Lösungen von Stufe 2 und 3 gegen einen nachgebauten micro:bit simuliert
   (Phasenfolge, nie beide Grün). Prüfliste in `todo.md`.
 
-### 3.110 — Web-Sandbox für HTML/CSS (Branch `web-sandbox`)
+### 3.110 — Begriffs-Links auch in den Grundkursen (Branch `begriffe-grundkurse`)
+
+Wunsch des Nutzers nach 3.108: dieselben Verweise auch in den anderen Kursen.
+
+- Alle drei Grundkurse zeigen Lektionen über `JsCourseTour.vue`; die Tour reicht
+  `conceptLanguage`/`conceptCourse`/`conceptWeek` an `LessonView`/`JsLessonView` durch. Gesetzt in
+  `JsGrundkursTour.vue` (javascript, js-grundkurs, Woche), `WeekTourStepper.vue` (python,
+  python-12-wochen-grundkurs, Woche) und `KiLaborTour.vue` (python, ohne eigenen Kurs).
+- **Im eigenen Grundkurs nur zurück:** `conceptsFor({ language, course, week })` lässt Begriffe des
+  eigenen Kurses ab der aktuellen Woche weg. Was die Woche gerade erklärt, braucht keinen Verweis,
+  und Vorgriffe auf spätere Wochen würden verwirren (Woche 6: „Array“ → Woche 5, „Objekt“ nicht).
+- **KI-Labor** setzt den Python-Grundkurs voraus, verlinkt also auf alle seine Wochen.
+- **Nur auf Deutsch:** bei englischer Oberfläche keine Links und kein Kasten — `begriffe.json` hat
+  nur deutsche Erklärungen (EN ist geparkt, siehe todo.md).
+- Nicht eingeschaltet: Python-Einstieg (`InteractiveCourse.vue` hat eigene Glossar-Tooltips; beides
+  zusammen würde doppelt markieren), Einstufung, Ferienkurse, micro:bit.
+
+### 3.111 — Begriffs-Links für neue Kurse abgesichert (Branch `begriffe-absichern`)
+
+Wunsch des Nutzers: Neue Projekte und Kurse sollen die Begriffs-Links automatisch mitbekommen.
+
+- Projekte bekommen sie ohnehin automatisch über `language` in kurse.json. Damit auch neue Kurse
+  mit eigener Tour nicht durchrutschen, prüft `tests/begriffe.spec.js` jeden Eintrag in kurse.json:
+  Projekt mit `language` aus `begriffe.json`, oder in `LINKED_COURSES` (Grundkurse/KI-Labor), oder
+  mit Grund in `WITHOUT_LINKS` (Einstufung, Python-Einstieg, Ferienkurse, micro:bit). Ein neuer
+  Kurs ohne Entscheidung lässt den Test mit einer Anleitung fehlschlagen.
+- Zweiter Test: jeder Begriff zeigt auf einen Kurs aus kurse.json und eine Woche, die existiert und
+  deren Lektionstitel den `lektion`-Text enthalten. Fand sofort einen Fehler (Python-Bedingungen:
+  „if, if-else und if-elif-else“ gibt es als Titel nicht, jetzt „if-else“).
+- Checklisten in INHALTE.md §6 (neuer Kurs, neues Projekt) ergänzt; `language` steuert dort jetzt
+  ausdrücklich auch die Begriffs-Links.
+
+### 3.112 — Beta-Kennzeichnung + Admin-Reiter „Kurse“ (Branch `kurse-beta-admin`)
+
+- Wunsch des Nutzers: Kurse, die er noch nicht selbst durchgegangen ist, als Beta markieren. Das sind
+  alle Projekt-Kurse außer dem Roboterauto, dazu JS-Grundkurs, KI-Labor und Ferienkurse; nicht Beta
+  sind 12-Wochen-Kurs, Interaktiv-Kurs, Einstufung und Roboterauto.
+- `BetaBadge.vue` (Tooltip mit Erklärung) an den Karten in `Home.vue` und `ProjekteView.vue` und im
+  Titel von `CourseDetail.vue`; vor dem Kursstart zusätzlich ein Satz `.beta-hint`.
+- Admin-Reiter „Kurse“ ohne API: liest `kurse.json`, nicht verlinkte Kurse zuerst, Badges für
+  „nicht verlinkt“ und Beta, Link öffnet im neuen Tab.
+
+### 3.113 — Turtle-Shim entfernt (Branch `turtle-entfernen`)
+
+Frage des Nutzers: Warum gibt es noch Turtle-Tests, obwohl Turtle nirgends behandelt wird?
+
+- Der Shim (3.32) entstand für das frühere Turtle-Abschlussprojekt in Woche 12. Seit 3.46 ist
+  Woche 12 ein Text-Adventure; kein Content nutzt `turtle` mehr (`woche12-abschlussprojekt.spec.js`
+  prüft das weiterhin). Liegen geblieben waren ~370 Zeilen Python in `usePyodide.js`, die bei jedem
+  Kernel-Start ausgeführt wurden, der Zeichenbereich `.turtle-canvas-container` unter jeder
+  Notebook-Zelle (`JupyterNotebook.vue`) mit dem Parameter `turtleContainerId` von `runPython`, und
+  zwei Tests in `site.spec.js`, von denen einer am 15.10. unter Last ausgefallen war.
+- Alles entfernt, dazu die nur dafür nötigen cspell-Wörter. Die Backlog-Idee „Turtle-Mandala“ in
+  `PROJEKTIDEEN.md` verweist auf die Git-Historie (`git log -S _install_turtle_shim`).
+
+### 3.114 — Web-Sandbox für HTML/CSS (Branch `web-sandbox`)
 
 - Grundlage für den Web-Track (Plan in `KURSPLAN.md`): Kurs A „Meine erste Website“ und
   Web-Grundkurs HTML & CSS. Dritter Modus der JS-Sandbox, `"sandboxMode": "web"` in `kurse.json`.

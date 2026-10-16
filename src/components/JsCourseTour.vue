@@ -84,6 +84,9 @@
           :variant="contentPath"
           :course-id="courseId"
           :key="currentLesson.id"
+          :concept-language="conceptLanguage"
+          :concept-course="conceptCourse"
+          :concept-week="conceptWeek"
           @completed="onLessonCompleted"
         />
         <JsLessonView
@@ -94,6 +97,9 @@
           :course-id="courseId"
           :show-canvas="showCanvas"
           :dom-mode="domMode"
+          :concept-language="conceptLanguage"
+          :concept-course="conceptCourse"
+          :concept-week="conceptWeek"
           @completed="onLessonCompleted"
         />
       </main>
@@ -128,6 +134,11 @@ export default {
     weekLabel: { type: String, default: '' },
     // 'js-sandbox' (JsLessonView) oder 'pyodide' (LessonView) - gleiche Tour, andere Ausfuehrung.
     engine: { type: String, default: 'js-sandbox' },
+    // Begriffs-Links auf fruehere Grundkurs-Wochen (useConcepts.js): Sprache, eigener Kurs und
+    // aktuelle Woche. Leer = aus.
+    conceptLanguage: { type: String, default: '' },
+    conceptCourse: { type: String, default: '' },
+    conceptWeek: { type: Number, default: 0 },
     // Eingebettet in eine andere Tour (z.B. WeekTourStepper): kein eigener Breadcrumb/Zurueck-Link.
     embedded: { type: Boolean, default: false },
     // true: keine sequenzielle Sperre, alle Lektionen sind frei anklickbar.

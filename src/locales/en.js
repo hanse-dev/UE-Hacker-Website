@@ -40,6 +40,12 @@ export default {
   'admin.age.jugendliche': 'Teen (13–17)',
   'admin.tab.users': 'Users',
   'admin.tab.termine': 'Appointments',
+  'admin.tab.kurse': 'Courses',
+  'admin.kurse.hint': 'Unlisted courses ("unlisted" in kurse.json) are missing from the projects overview and can only be reached via their link. Beta courses have not been tried out in class yet.',
+  'admin.kurse.col.title': 'Course',
+  'admin.kurse.col.status': 'Status',
+  'admin.kurse.col.link': 'Link',
+  'admin.kurse.unlisted': 'unlisted',
   'admin.termine.create': 'New appointment',
   'admin.termine.createTitle': 'Create appointment',
   'admin.termine.editTitle': 'Edit appointment',
@@ -411,6 +417,9 @@ export default {
   'projectTag.spiele': 'Games',
   'projectTag.robotik': 'Robotics',
   'projectTag.elektronik': 'Electronics',
+
+  'course.beta': 'Beta: new, not fully tested yet',
+  'course.betaHint': 'Beta means: this course is ready to use, but it is still new and not fully tested. There may still be small mistakes or unclear parts. If you notice something, tell your course leader.',
 
   'guide.modeLabel': 'Show guide as:',
   'guide.mode.bloecke': 'Blocks',

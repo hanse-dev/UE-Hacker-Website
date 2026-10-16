@@ -1,7 +1,7 @@
 # Handoff — UE Hacker Website
 
 > **Zuletzt aktualisiert:** 2026-10-14
-> **Aktueller Stand:** `main` enthält alles bis 3.109 (siehe Tabelle in Abschnitt 3).
+> **Aktueller Stand:** `main` enthält alles bis 3.113 (siehe Tabelle in Abschnitt 3).
 > Server-Deploy steht weiter aus (Nutzer deployt selbst, siehe Abschnitt 4) — nach dem nächsten Deploy
 > den einmaligen Termine-Import laufen lassen (Abschnitt 5).
 > **Ziel dieser Datei:** Nachschlagewerk für Stand, Feature-Übersicht und gelernte Fallstricke.
@@ -69,7 +69,11 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.107 | Arbeitsfläche zeigt auch die Ausgabe | breit steht die Konsolen-Ausgabe der gezeigten Aufgabe in der Arbeitsfläche (unter dem Code ausgeblendet), auch bei Aufgaben ohne Zeichenfläche; schmal bleibt sie unter dem Code und eine Arbeitsfläche ohne Zeichenfläche wird nicht gezeigt; Editor neben der Arbeitsfläche ohne 500-px-Grenze |
 | 3.108 | Begriffe in Projekten verlinken auf die Grundkurse | `content/begriffe.json` (je Sprache: Schreibweisen, Erklärung, Kurs + Woche) → `useConcepts.js`; in Projekt-Lektionen (nur `ProjectCourse.vue`, `language` aus kurse.json) wird jeder Begriff beim ersten Vorkommen im Fließtext ein Link (neuer Tab, Tooltip), am Ende steht `ConceptBox.vue` „Neu oder unklar?“; `tests/begriffe.spec.js` |
 | 3.109 | micro:bit-Kurs „Die Ampelanlage“ (`projekt-microbit-ampel`) | zweiter Hardware-Kurs, gleiche Anleitungs-Engine, vorerst `"unlisted": true` (nur per `/kurs/projekt-microbit-ampel`): LEDs mit 150 Ω auf dem Mini-Breadboard der T-Platine, Startklar + 3 Stufen (Fußgänger-, Autoampel, Ampelanlage) + 2 Werkstatt-Seiten mit frei wählbaren Aufträgen (Licht/Anzeige, Funk); Steckpläne als SVG aus `scripts/build_ampel_steckplaene.py`; Block-Kategorien `pins`/`funk`, Bilder skalieren mit; Inhaltsregeln in `tests/helpers/guide-content.js` für beide micro:bit-Kurse |
-| 3.110 | Web-Sandbox für HTML/CSS (Grundlage Web-Track) | `"sandboxMode": "web"`: HTML des Kindes ist selbst das iframe-Dokument (`buildWebDocument()`), Editor mit `lang-html`, Prüfung `validation.type: 'web'` mit `checks` (Selektor/Anzahl/Text/berechnetes CSS, vom Browser normalisiert) über `validateWebChecks()`, Download-Knopf; Kurs `web-erste-website` (unlisted, Lektion 1); `tests/web-sandbox.spec.js` |
+| 3.110 | Begriffs-Links auch in JS-Grundkurs, Python-12-Wochen-Kurs und KI-Labor | `JsCourseTour.vue` reicht `conceptLanguage`/`conceptCourse`/`conceptWeek` durch; im eigenen Grundkurs nur Verweise auf frühere Wochen (`conceptsFor` filtert `woche >= aktuelle`), KI-Labor → Python-Grundkurs; auf Englisch aus (Erklärungen deutsch) |
+| 3.111 | Begriffs-Links für neue Kurse abgesichert | `tests/begriffe.spec.js`: jeder Kurs in kurse.json hat Links (Projekt mit `language`, oder `LINKED_COURSES`) oder steht mit Grund in `WITHOUT_LINKS`; jeder Begriff zeigt auf eine existierende Woche, deren Lektionen den `lektion`-Titel enthalten; Checklisten in INHALTE.md §6 |
+| 3.112 | Beta-Kennzeichnung + Admin-Reiter „Kurse“ | `"beta": true` in `kurse.json` → `BetaBadge.vue` an Startseiten- und Projekt-Karten und auf der Kursseite (mit Erklärung); Beta sind alle Projekte außer dem Roboterauto sowie JS-Grundkurs, KI-Labor und Ferienkurse (`tests/kurse-beta.spec.js`); `AdminView.vue` listet alle Kurse aus `kurse.json`, nicht verlinkte zuerst, mit Status und Link (Test in `auth-ui.spec.js`) |
+| 3.113 | Turtle-Shim entfernt | kein Kurs nutzt Turtle mehr (Woche 12 seit 3.46 Text-Adventure): ~370 Zeilen Python-Shim aus `usePyodide.js` (lief bei jedem Kernel-Start), Zeichenbereich unter Notebook-Zellen und die zwei Turtle-Tests in `site.spec.js` weg |
+| 3.114 | Web-Sandbox für HTML/CSS (Grundlage Web-Track) | `"sandboxMode": "web"`: HTML des Kindes ist selbst das iframe-Dokument (`buildWebDocument()`), Editor mit `lang-html`, Prüfung `validation.type: 'web'` mit `checks` (Selektor/Anzahl/Text/berechnetes CSS, vom Browser normalisiert) über `validateWebChecks()`, Download-Knopf; Kurs `web-erste-website` (unlisted, Lektion 1); `tests/web-sandbox.spec.js` |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -102,7 +106,8 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 
 **Pyodide / Ausführung**
 - Kein Web Worker: `input()` läuft synchron über `window.prompt()` (65 Notebooks, 3.5). Loop-Guard ist AST-basiert.
-- `turtle` gibt es in Pyodide nicht — eigener Canvas-Shim in `usePyodide.js` (3.32).
+- `turtle` gibt es in Pyodide nicht. Der frühere Canvas-Shim (3.32) ist seit 3.113 entfernt, weil kein
+  Kurs mehr Turtle nutzt; bei Bedarf aus der Git-Historie zurückholen (`git log -S _install_turtle_shim`).
 - Kernel in Tests immer über `startKernel()` starten, nie `if (await btn.isEnabled()) click()` — der
   Button kann dazwischen deaktiviert werden, `click()` hängt dann bis zum Timeout (flaky Tests).
 - **Kernel-Button nach Lektionswechsel:** `click({ force: true })` scheitert sporadisch mit „Element is
@@ -159,7 +164,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   Antworten so verteilen, dass das Ergebnis nicht 0 oder alles ist (js-quiz: 3× `antwort-0` → 2 von 3).
 - `element.click()` der Prüfung löst auch auf versteckten Knöpfen (`hidden`) aus, nur nicht auf
   `disabled`. Ein Fehler im Listener bricht die Klick-Folge nicht ab.
-- Web-Modus (`"sandboxMode": "web"`, 3.110): `srcdoc`-Dokumente laufen immer im Standard-Modus —
+- Web-Modus (`"sandboxMode": "web"`, 3.114): `srcdoc`-Dokumente laufen immer im Standard-Modus —
   DOCTYPE-Position ist egal, Harness steht einfach vorne. Basis-URL ist die Kursseite: ohne das
   Abfangen im Harness würde `href="#x"` das iframe auf die Kursseite navigieren. CSS-Prüfungen nur
   über `property` + `value`/`notValue` (Probe-Element normalisiert); eine Farbe, die frei wählbar

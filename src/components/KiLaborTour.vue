@@ -25,6 +25,7 @@
         :content-path="`ki-labor-woche${selectedWeekNumber}`"
         :week-label="`${t('week.label')} ${selectedWeekNumber}: ${selectedWeekTitle}`"
         :has-check="selectedWeekHasCheck"
+        concept-language="python"
         @change-week="phase = 'week'"
         @open-check="phase = 'check'"
       />

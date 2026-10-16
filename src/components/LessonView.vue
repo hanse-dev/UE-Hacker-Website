@@ -170,17 +170,29 @@ export default {
       type: Boolean,
       default: false,
     },
-    // Nur Projekt-Kurse (ProjectCourse.vue): Sprache aus kurse.json (`javascript`/`python`) -
-    // Begriffe im Lektionstext verlinken auf den Grundkurs, am Ende steht der "Hier lernst du
-    // mehr"-Kasten (useConcepts.js, content/begriffe.json). Leer = aus.
+    // Begriffs-Links (useConcepts.js, content/begriffe.json): Sprache (`javascript`/`python`) -
+    // Begriffe im Lektionstext verlinken auf die Grundkurs-Woche, am Ende steht der "Hier lernst du
+    // mehr"-Kasten. Leer = aus. In einem Grundkurs selbst zusaetzlich conceptCourse/conceptWeek,
+    // dann nur Verweise auf fruehere Wochen. Nur auf Deutsch (die Erklaerungen sind deutsch).
     conceptLanguage: {
       type: String,
       default: '',
+    },
+    conceptCourse: {
+      type: String,
+      default: '',
+    },
+    conceptWeek: {
+      type: Number,
+      default: 0,
     },
   },
   emits: ['completed', 'next'],
   setup(props, { emit }) {
     const { lang, t } = useLanguage();
+    const conceptOptions = computed(() => (props.conceptLanguage && lang.value !== 'en'
+      ? { language: props.conceptLanguage, course: props.conceptCourse, week: props.conceptWeek }
+      : null));
     const { kernelReady, kernelStatus, initializeKernel, runPython } = usePyodide();
     const { markCompleted, isLessonUnlocked } = useInteractiveProgress(props.variant, props.courseId);
 
@@ -188,7 +200,7 @@ export default {
     const isMounted = ref(true);
     const { lessonContent, lessonConcepts, loadGlossary, loadContent, instructionWithGlossary } = useLessonContent(
       isMounted,
-      { conceptLanguage: () => props.conceptLanguage },
+      { conceptOptions: () => conceptOptions.value },
     );
 
     const tasks = computed(() => {
@@ -205,10 +217,10 @@ export default {
       return [];
     });
 
-    const conceptList = computed(() => (props.conceptLanguage
+    const conceptList = computed(() => (conceptOptions.value
       ? mergeConcepts(
         lessonConcepts.value,
-        ...tasks.value.map((task) => conceptsInText(task.instruction, props.conceptLanguage)),
+        ...tasks.value.map((task) => conceptsInText(task.instruction, conceptOptions.value)),
       )
       : []));
 
