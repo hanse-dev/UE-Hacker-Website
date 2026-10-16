@@ -1,6 +1,6 @@
 # Planen und Grundgerüst
 
-Die letzte Woche gehört deiner **eigenen Website**. Profis fangen dabei nicht mit Farben an, sondern mit einem **Plan**:
+Die letzte Kurswoche gehört deiner **eigenen Website**. Profis fangen dabei nicht mit Farben an, sondern mit einem **Plan**:
 
 1. **Thema und Ziel:** Worum geht es? Wer soll die Seite besuchen?
 2. **Inhalte sammeln:** Texte, Bilder, eine Tabelle oder ein Formular?

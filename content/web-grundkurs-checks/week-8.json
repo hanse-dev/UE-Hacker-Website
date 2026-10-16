@@ -91,7 +91,7 @@
       "type": "multiple_choice",
       "question": "Wofür ist <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> da?",
       "options": [
-        "Damit das Handy die Seite in echter Breite anzeigt statt alles zu verkleinern",
+        "Damit das Handy die Seite in echter Breite anzeigt, statt alles zu verkleinern",
         "Damit die Seite schneller lädt",
         "Damit Bilder größer werden"
       ],

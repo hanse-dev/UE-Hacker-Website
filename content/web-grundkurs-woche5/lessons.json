@@ -309,7 +309,7 @@
               "property": "background-color",
               "value": "lightblue",
               "min": 2,
-              "hint": "Im HTML heißt die Klasse karte – klein geschrieben. Groß-/Kleinschreibung zählt."
+              "hint": "Im HTML heißt die Klasse karte – kleingeschrieben. Groß-/Kleinschreibung zählt."
             }
           ]
         }
