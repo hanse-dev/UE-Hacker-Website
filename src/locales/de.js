@@ -365,6 +365,7 @@ export default {
   'jsLesson.ready':        '✓ Sandbox bereit',
   'jsLesson.starting':     'Sandbox startet…',
   'jsLesson.restartFrame': 'Neu starten',
+  'webLesson.meineSeite': 'Das ist deine eigene Seite: Sie wird automatisch gespeichert und wächst mit jeder Lektion weiter.',
   'webLesson.download': '⬇ Seite herunterladen',
   'jsLesson.frameStalled': 'Sieht aus, als würde dein Spiel hängen – klick auf „Neu starten“.',
 

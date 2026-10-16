@@ -69,16 +69,19 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
         Code-Bezeichner im Fließtext. Wer es schärfer will: im Extraktor Inline-Code durch ein
         Platzhalterwort ersetzen statt löschen.
 
+- [ ] Aus dem früheren HANDOFF-Abschnitt 5 übernommen (16.10.2026), Stand unklar – beim nächsten Deploy prüfen:
+      einmalig `docker compose exec app node api/src/scripts/import-termine-json.js`, falls die
+      `termine`-Tabelle auf dem Server noch leer ist.
+- [ ] Ohne Termin, braucht Entscheidung oder Rückmeldung: Interaktiv-Kurs „Ausführen vs. Prüfen“/Weiter-Flow
+      (Nutzer-Feedback abwarten); EN-Versionen der Projekt-Kurse (DE-first, siehe Memory „vorerst nur
+      Deutsch“); Zertifikat per E-Mail (hängt an einer Kontakt-Adresse); dritte Sprache (UI ist schon auf `t()`).
+
 ## Nächste Themen (je eigener Branch von `main`)
 
 Gesamt-Roadmap/Track-Modell siehe `VISION.md`, Ideen-Backlog in `PROJEKTIDEEN.md`. Alles Gemergte steht im Archiv.
 
 **Web-Track** (Plan in `KURSPLAN.md`): `web-sandbox` ✅ (3.114) → `kurs-erste-website` ✅ (3.115) → `web-grundkurs` ✅ (3.116, Kurs B als Stufe „Intensiv“ in `web-erste-website`).
 
-Offen bei „Meine erste Website“ (bewusst nicht in 3.115):
-- **Eigene Seite wandert nicht mit:** Jede Aufgabe startet mit ihrer eigenen Vorlage, und Code in
-  JS-/Web-Lektionen wird nicht gespeichert (Neuladen = Vorlage). Erst Lektion 8 baut die ganze Seite.
-  Vorschlag: pro Web-Kurs eine gespeicherte „Meine Seite“ (`useSavedCode.js`), die Aufgaben mit
-  `"startFrom": "meineSeite"` als Vorlage übernehmen — braucht Konzept, wie neue Bausteine dazukommen.
+Offen bei „Meine erste Website“:
 - **Sticker-Bilder** (`public/web-bilder/*.svg`) zeigen System-Emojis; auf Geräten ohne Farb-Emoji-Schrift
   (manche Linux-Rechner) erscheinen leere Kästchen. Im Unterricht prüfen; sonst gezeichnete SVGs.

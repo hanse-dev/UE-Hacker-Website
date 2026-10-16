@@ -18,3 +18,9 @@ Hooks/CI/Deploy.** Ergänzt `npm run lint:spelling` (cspell), das bei Deutsch zu
 
 Verständlichkeit, kaputte Sätze und Aufgaben, die nicht zur Prüfung passen, findet kein Tool
 zuverlässig — dafür bleibt nur Lesen.
+
+## Fallstricke
+
+- Die Docker-VM mit 2 GB verträgt nur einen Request gleichzeitig und höchstens ~1,1 GB Heap.
+- Nicht parallel zu Playwright-Läufen starten: Die Last lässt Tests mit Timeouts scheitern.
+- Der Extraktor löscht Inline-Code; dadurch entstehen Fehlalarme wie „Mit teilst du“ (aus „Mit `<h2>` teilst du“).

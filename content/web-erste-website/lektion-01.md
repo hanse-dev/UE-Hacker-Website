@@ -42,3 +42,7 @@ Jede Seite hat ein festes Gerüst. Das ist in den Aufgaben schon fertig – du s
 > 💡 Alles zwischen `<!--` und `-->` ist ein **Kommentar**: eine Notiz für dich, die der Browser nicht anzeigt.
 
 Wenn du auf **Ausführen** klickst, erscheint deine Seite in der **Vorschau**. Probier es gleich aus!
+
+## Deine eigene Seite
+
+In der zweiten Aufgabe legst du **deine eigene Seite** an – über ein Thema, das du dir aussuchst. Sie wird automatisch gespeichert, und in jeder Lektion baust du in der letzten Aufgabe etwas Neues dazu. Am Ende hast du eine fertige Website, die du herunterladen kannst.
