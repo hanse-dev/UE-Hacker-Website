@@ -181,6 +181,13 @@ export default {
   'check.challenge.easy':   'Easy',
   'check.challenge.harder': 'Harder',
   'check.fullyDone': '🎉 All parts done — you\'ve earned this week\'s certificate!',
+  'check.finalTitle':    'Final check',
+  'check.finalIntro':    'Show what you learned in the whole course: a short quiz and two tasks. You pass from 80%.',
+  'check.finalDone':     '🎉 All done — you have earned your certificate for this course!',
+  'check.toFinal':       'Go to the final check 🎓',
+  'check.finalPending':  'Finish the quiz and both tasks to earn your certificate.',
+  'check.finalLabel':    'Final check',
+  'webChallenge.notYet': 'Not quite yet – look at your page in the preview and compare it with the task.',
 
   // ── Quiz step ─────────────────────────────────────────────────────────────
   'quiz.multiHint':      'Select all that apply.',

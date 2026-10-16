@@ -1,0 +1,217 @@
+{
+  "title": "Meine erste Website",
+  "title_en": "My First Website",
+  "lernziele": [
+    "Eine Website mit HTML aufbauen: Überschriften, Absätze, Listen, Bilder und Links",
+    "Mit CSS Farben, Schriften, Rahmen, Abstände und runde Ecken gestalten",
+    "Viele Elemente gleichzeitig über Klassen gestalten",
+    "Elemente mit Flexbox nebeneinander anordnen"
+  ],
+  "questions": [
+    {
+      "id": "web1-1",
+      "type": "multiple_choice",
+      "question": "Welches Tag macht die große Hauptüberschrift einer Seite?",
+      "options": [
+        "<h1>",
+        "<p>",
+        "<li>"
+      ],
+      "correctIndex": 0,
+      "explanation": "<h1> ist die wichtigste Überschrift – der Titel der Seite.",
+      "optionExplanations": [
+        null,
+        "<p> ist ein Absatz für normalen Text.",
+        "<li> ist ein Punkt in einer Liste."
+      ]
+    },
+    {
+      "id": "web1-2",
+      "type": "multiple_choice",
+      "question": "Woran erkennst du ein End-Tag?",
+      "options": [
+        "Am Schrägstrich, zum Beispiel </p>",
+        "An den geschweiften Klammern { }",
+        "Am Doppelpunkt, zum Beispiel p:"
+      ],
+      "correctIndex": 0,
+      "explanation": "Das End-Tag sieht aus wie das Anfangs-Tag, nur mit / davor: </p>.",
+      "optionExplanations": [
+        null,
+        "Geschweifte Klammern gehören zu CSS-Regeln, nicht zu HTML-Tags.",
+        "Doppelpunkte stehen in CSS zwischen Eigenschaft und Wert."
+      ]
+    },
+    {
+      "id": "web1-3",
+      "type": "multiple_choice",
+      "question": "Wofür ist das alt-Attribut bei einem Bild da?",
+      "options": [
+        "Es beschreibt das Bild in Worten",
+        "Es macht das Bild größer",
+        "Es gibt die Adresse des Bildes an"
+      ],
+      "correctIndex": 0,
+      "explanation": "alt beschreibt das Bild – zum Beispiel für Vorleseprogramme oder wenn das Bild nicht lädt.",
+      "optionExplanations": [
+        null,
+        "Die Größe stellst du mit width ein.",
+        "Die Adresse steht in src."
+      ]
+    },
+    {
+      "id": "web1-4",
+      "type": "multiple_choice",
+      "question": "Welche Zeile macht einen Link zu Wikipedia?",
+      "options": [
+        "<a href=\"https://de.wikipedia.org\">Wikipedia</a>",
+        "<link>https://de.wikipedia.org</link>",
+        "<img src=\"https://de.wikipedia.org\">"
+      ],
+      "correctIndex": 0,
+      "explanation": "Links baust du mit <a>, die Adresse steht in href.",
+      "optionExplanations": [
+        null,
+        "Ein Tag <link> mit Text dazwischen macht keinen anklickbaren Link.",
+        "<img> zeigt ein Bild an, es ist kein Link."
+      ]
+    },
+    {
+      "id": "web1-5",
+      "type": "multiple_choice",
+      "question": "Was macht diese CSS-Regel?  h2 { color: green; }",
+      "options": [
+        "Alle h2-Überschriften bekommen grüne Schrift",
+        "Nur die erste h2-Überschrift wird grün",
+        "Der Hintergrund der Seite wird grün"
+      ],
+      "correctIndex": 0,
+      "explanation": "Der Selektor h2 trifft alle h2-Überschriften, color ändert die Textfarbe.",
+      "optionExplanations": [
+        null,
+        "Ein Selektor wie h2 gilt für alle passenden Elemente, nicht nur das erste.",
+        "Für den Hintergrund bräuchte es background-color, und zwar für body."
+      ]
+    },
+    {
+      "id": "web1-6",
+      "type": "multiple_choice",
+      "question": "Welche Eigenschaft sorgt für Abstand zwischen Text und Rahmen – also innen in der Kiste?",
+      "options": [
+        "padding",
+        "margin",
+        "border-radius"
+      ],
+      "correctIndex": 0,
+      "explanation": "padding ist der Innenabstand zwischen Inhalt und Rahmen.",
+      "optionExplanations": [
+        null,
+        "margin ist der Abstand nach außen, zu den Nachbarn.",
+        "border-radius macht runde Ecken."
+      ]
+    },
+    {
+      "id": "web1-7",
+      "type": "multiple_choice",
+      "question": "Im HTML steht <div class=\"karte\">. Wie heißt der passende Selektor im CSS?",
+      "options": [
+        ".karte",
+        "#karte",
+        "karte"
+      ],
+      "correctIndex": 0,
+      "explanation": "Klassen sprichst du im CSS mit einem Punkt davor an: .karte.",
+      "optionExplanations": [
+        null,
+        "Das # gehört zu einer id, nicht zu einer Klasse.",
+        "Ohne Punkt würde der Browser nach einem Tag <karte> suchen."
+      ]
+    },
+    {
+      "id": "web1-8",
+      "type": "multiple_choice",
+      "question": "Wie stellst du die Bilder in <div class=\"reihe\"> nebeneinander?",
+      "options": [
+        ".reihe { display: flex; }",
+        ".reihe { color: flex; }",
+        "img { display: none; }"
+      ],
+      "correctIndex": 0,
+      "explanation": "display: flex stellt alle Kinder der Kiste in eine Reihe.",
+      "optionExplanations": [
+        null,
+        "color ändert nur die Textfarbe.",
+        "display: none versteckt die Bilder ganz."
+      ]
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Bau eine Seite über ein Thema deiner Wahl: eine Überschrift h1, einen Absatz mit Text, eine Liste mit mindestens drei Punkten und ein Bild aus /web-bilder/ mit Beschreibung in alt.",
+      "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Check</title>\n</head>\n<body>\n  <!-- Deine Seite -->\n\n</body>\n</html>\n",
+      "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Check</title>\n</head>\n<body>\n  <h1>Weltraum</h1>\n  <p>Im Weltraum gibt es unendlich viel zu entdecken.</p>\n  <ul>\n    <li>Planeten</li>\n    <li>Sterne</li>\n    <li>Raketen</li>\n  </ul>\n  <img src=\"/web-bilder/rakete.svg\" alt=\"Eine Rakete\" width=\"120\">\n</body>\n</html>\n",
+      "validation": {
+        "type": "web",
+        "checks": [
+          {
+            "selector": "h1",
+            "notEmpty": true,
+            "hint": "Es fehlt eine Überschrift <h1> mit Text."
+          },
+          {
+            "selector": "p",
+            "notEmpty": true,
+            "hint": "Es fehlt ein Absatz <p> mit Text."
+          },
+          {
+            "selector": "ul li, ol li",
+            "notEmpty": true,
+            "min": 3,
+            "hint": "Deine Liste braucht mindestens drei Punkte mit <li>."
+          },
+          {
+            "selector": "img[src*=\"/web-bilder/\"][alt]:not([alt=\"\"])",
+            "hint": "Es fehlt ein Bild aus /web-bilder/ mit alt-Beschreibung."
+          }
+        ]
+      }
+    },
+    {
+      "instruction": "Gestalte die drei Karten mit CSS: Jedes Element mit der Klasse karte bekommt eine Hintergrundfarbe, einen Rahmen und runde Ecken. Die Kiste mit der Klasse reihe soll die Karten nebeneinanderstellen.",
+      "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Check</title>\n  <style>\n    /* Deine Regeln für .karte und .reihe */\n  </style>\n</head>\n<body>\n  <h1>Meine Lieblingsdinge</h1>\n  <div class=\"reihe\">\n    <div class=\"karte\">Pizza</div>\n    <div class=\"karte\">Fußball</div>\n    <div class=\"karte\">Gitarre</div>\n  </div>\n</body>\n</html>\n",
+      "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Check</title>\n  <style>\n    .karte {\n      background-color: lightyellow;\n      border: 2px solid orange;\n      border-radius: 10px;\n      padding: 10px;\n    }\n    .reihe {\n      display: flex;\n      gap: 10px;\n    }\n  </style>\n</head>\n<body>\n  <h1>Meine Lieblingsdinge</h1>\n  <div class=\"reihe\">\n    <div class=\"karte\">Pizza</div>\n    <div class=\"karte\">Fußball</div>\n    <div class=\"karte\">Gitarre</div>\n  </div>\n</body>\n</html>\n",
+      "validation": {
+        "type": "web",
+        "checks": [
+          {
+            "selector": ".karte",
+            "property": "background-color",
+            "notValue": "transparent",
+            "min": 3,
+            "hint": "Gib .karte eine Hintergrundfarbe."
+          },
+          {
+            "selector": ".karte",
+            "property": "border-top-style",
+            "notValue": "none",
+            "min": 3,
+            "hint": "Gib .karte einen Rahmen mit border."
+          },
+          {
+            "selector": ".karte",
+            "property": "border-top-left-radius",
+            "notValue": "0px",
+            "min": 3,
+            "hint": "Gib .karte runde Ecken mit border-radius."
+          },
+          {
+            "selector": ".reihe",
+            "property": "display",
+            "value": "flex",
+            "hint": "Mach .reihe mit display: flex zur Flexbox."
+          }
+        ]
+      }
+    }
+  ]
+}

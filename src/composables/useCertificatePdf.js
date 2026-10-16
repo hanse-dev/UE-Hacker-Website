@@ -10,6 +10,7 @@ const TEXT = {
     certificate: 'Zertifikat',
     awardedTo: 'verliehen an',
     weekLabel: (n) => `Woche ${n}`,
+    finalHeading: 'Abschluss-Check bestanden',
     learnedHeading: 'Was du gelernt hast',
     dateLabel: (d) => `Ausgestellt am ${d}`,
     footer: 'Übergangshacker - Dein Einstieg ins Coding: Loslegen. Ausprobieren. Verstehen.',
@@ -18,6 +19,7 @@ const TEXT = {
     certificate: 'Certificate',
     awardedTo: 'awarded to',
     weekLabel: (n) => `Week ${n}`,
+    finalHeading: 'Final check passed',
     learnedHeading: 'What you learned',
     dateLabel: (d) => `Issued on ${d}`,
     footer: 'Übergangshacker - Your start into coding: Get started. Experiment. Understand.',
@@ -76,7 +78,9 @@ function sanitizeForFilename(text) {
     .replace(/^_+|_+$/g, '');
 }
 
-export async function generateCertificatePdfBytes({ weekNumber, weekTitle, lernziele, learnerName, lang = 'de', courseTitle }) {
+// singleCheck: Kurs mit nur einem Abschluss-Check (z.B. „Meine erste Website“) - statt "Woche 1: …"
+// steht "Abschluss-Check bestanden" auf dem Zertifikat, der Kursname steht ohnehin darueber.
+export async function generateCertificatePdfBytes({ weekNumber, weekTitle, lernziele, learnerName, lang = 'de', courseTitle, singleCheck = false }) {
   const { PDFDocument, StandardFonts, rgb } = await import('pdf-lib');
   const t = TEXT[lang] || TEXT.de;
 
@@ -154,7 +158,9 @@ export async function generateCertificatePdfBytes({ weekNumber, weekTitle, lernz
   // The week title from the notebook front-matter already starts with "Woche N – …" /
   // "Week N – …" — strip that so it isn't duplicated after our own "Woche N:" prefix.
   const cleanTitle = sanitizeForPdfFont(weekTitle, fontBold).replace(/^(Woche|Week)\s*\d+\s*[-–:]*\s*/i, '');
-  const weekHeading = cleanTitle ? `${t.weekLabel(weekNumber)}: ${cleanTitle}` : t.weekLabel(weekNumber);
+  const weekHeading = singleCheck
+    ? t.finalHeading
+    : cleanTitle ? `${t.weekLabel(weekNumber)}: ${cleanTitle}` : t.weekLabel(weekNumber);
   drawCentered(weekHeading, cursorY, { size: 15, useFont: fontBold, color: dark });
 
   cursorY -= 34;
@@ -187,10 +193,12 @@ export async function generateCertificatePdfBytes({ weekNumber, weekTitle, lernz
 
 export async function downloadCertificatePdf(options) {
   const bytes = await generateCertificatePdfBytes(options);
-  const { weekNumber, learnerName, lang = 'de' } = options;
+  const { weekNumber, learnerName, lang = 'de', singleCheck = false, courseTitle } = options;
   const namePart = sanitizeForFilename(learnerName || 'Zertifikat');
-  const prefix = lang === 'en' ? 'Certificate_Week' : 'Zertifikat_Woche';
-  const filename = `${prefix}_${weekNumber}_${namePart}.pdf`;
+  const prefix = lang === 'en' ? 'Certificate' : 'Zertifikat';
+  const filename = singleCheck
+    ? `${prefix}_${sanitizeForFilename(courseTitle?.[lang] || courseTitle?.de || '')}_${namePart}.pdf`
+    : `${prefix}_${lang === 'en' ? 'Week' : 'Woche'}_${weekNumber}_${namePart}.pdf`;
 
   const blob = new Blob([bytes], { type: 'application/pdf' });
   const a = document.createElement('a');

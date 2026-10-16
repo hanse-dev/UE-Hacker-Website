@@ -74,6 +74,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.112 | Beta-Kennzeichnung + Admin-Reiter „Kurse“ | `"beta": true` in `kurse.json` → `BetaBadge.vue` an Startseiten- und Projekt-Karten und auf der Kursseite (mit Erklärung); Beta sind alle Projekte außer dem Roboterauto sowie JS-Grundkurs, KI-Labor und Ferienkurse (`tests/kurse-beta.spec.js`); `AdminView.vue` listet alle Kurse aus `kurse.json`, nicht verlinkte zuerst, mit Status und Link (Test in `auth-ui.spec.js`) |
 | 3.113 | Turtle-Shim entfernt | kein Kurs nutzt Turtle mehr (Woche 12 seit 3.46 Text-Adventure): ~370 Zeilen Python-Shim aus `usePyodide.js` (lief bei jedem Kernel-Start), Zeichenbereich unter Notebook-Zellen und die zwei Turtle-Tests in `site.spec.js` weg |
 | 3.114 | Web-Sandbox für HTML/CSS (Grundlage Web-Track) | `"sandboxMode": "web"`: HTML des Kindes ist selbst das iframe-Dokument (`buildWebDocument()`), Editor mit `lang-html`, Prüfung `validation.type: 'web'` mit `checks` (Selektor/Anzahl/Text/berechnetes CSS, vom Browser normalisiert) über `validateWebChecks()`, Download-Knopf; Kurs `web-erste-website` (unlisted, Lektion 1); `tests/web-sandbox.spec.js` |
+| 3.115 | Kurs „Meine erste Website“ (`web-erste-website`) mit Abschluss-Check | Einstiegskurs `"type": "lektionen"` (Lektionsliste aus `ProjectCourse.vue`, Startseite statt `/projekte`), 8 Lektionen HTML/CSS + Sticker-Bilder `public/web-bilder/`; `"finalCheck": true` → Abschluss-Check als letzter Listeneintrag (`WeekCheckPanel` `engine="web"`/`final`, `WebCodeChallenge.vue`), Zertifikat `FinalCertificate.vue`, Profil/PDF „Abschluss“ (`singleCheck`); `tests/web-erste-website.spec.js` |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -169,6 +170,9 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   Abfangen im Harness würde `href="#x"` das iframe auf die Kursseite navigieren. CSS-Prüfungen nur
   über `property` + `value`/`notValue` (Probe-Element normalisiert); eine Farbe, die frei wählbar
   sein soll, prüft man mit `notValue` gegen die Vorlage.
+- Web-Inhalte und cspell (3.115): Code-Felder (`selector`, `value`, `notValue` …) und `.klasse`
+  ignoriert `cspell.json` per Regex — Klassennamen nicht ins Wörterbuch. Quiz-Fragen ohne doppelte
+  Leerzeichen schreiben (die Anzeige fasst sie zusammen, Tests suchen den Text).
 - Neue npm-Abhängigkeit im Worktree: `npm install` ersetzt den `node_modules`-Symlink durch einen
   eigenen Ordner (Haupt-Checkout bleibt unberührt) — nach dem Merge im Haupt-Checkout `npm install`.
 - Zustand, den ein Klick erst herstellen soll, lässt sich ohne Klick-Folge nur prüfen, wenn die

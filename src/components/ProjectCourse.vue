@@ -39,6 +39,21 @@
               <span v-if="isCompleted(lesson.id)" class="lesson-check">✓</span>
             </li>
           </template>
+          <!-- Einstiegskurse mit Zertifikat (`"finalCheck": true` in kurse.json): Abschluss-Check als
+               letzter Schritt, frei erst nach allen Lektionen. -->
+          <li
+            v-if="finalCheck"
+            :class="['lesson-item', 'final-check-item', {
+              active: showingCheck,
+              completed: finalCheckPassed,
+              locked: !finalCheckUnlocked,
+            }]"
+            @click="selectCheck"
+          >
+            <span class="lesson-number">🎓</span>
+            <span class="lesson-title">{{ t('check.finalTitle') }}</span>
+            <span v-if="finalCheckPassed" class="lesson-check">✓</span>
+          </li>
         </ul>
 
         <div class="sidebar-actions">
@@ -54,7 +69,15 @@
       </aside>
 
       <main class="lesson-main" ref="mainEl">
-        <div v-if="!currentLesson" class="no-lesson">
+        <WeekCheckPanel
+          v-if="showingCheck"
+          :week-number="1"
+          :course-key="finalCheck"
+          :engine="webMode ? 'web' : engine"
+          :final="true"
+        />
+        <FinalCertificate v-if="showingCheck" :course-key="finalCheck" :course-title="finalCheckTitle" />
+        <div v-else-if="!currentLesson" class="no-lesson">
           <p>{{ t('lessons.selectFromList') }}</p>
           <p v-if="lessons.length">{{ t('lessons.startWithOne') }}</p>
         </div>
@@ -64,7 +87,7 @@
           :content-path="contentPath"
           :variant="contentPath"
           :course-id="courseId"
-          :is-project-course="true"
+          :is-project-course="isProject"
           :concept-language="language"
           :is-last-lesson="isLastLesson"
           @completed="onLessonCompleted"
@@ -75,7 +98,7 @@
           :content-path="contentPath"
           :variant="contentPath"
           :course-id="courseId"
-          :is-project-course="true"
+          :is-project-course="isProject"
           :is-last-lesson="isLastLesson"
           @completed="onLessonCompleted"
         />
@@ -88,9 +111,10 @@
           :show-canvas="showCanvas"
           :dom-mode="domMode"
           :web-mode="webMode"
-          :is-project-course="true"
+          :is-project-course="isProject"
           :concept-language="language"
           :is-last-lesson="isLastLesson"
+          :leads-to-final-check="!!finalCheck && isLastLesson"
           @completed="onLessonCompleted"
         />
       </main>
@@ -104,6 +128,10 @@ import LessonView from './LessonView.vue';
 import JsLessonView from './JsLessonView.vue';
 import GuideLessonView from './GuideLessonView.vue';
 import OfflineDownloads from './OfflineDownloads.vue';
+import WeekCheckPanel from './WeekCheckPanel.vue';
+import FinalCertificate from './FinalCertificate.vue';
+import { useRoute } from 'vue-router';
+import { useWeekChecks } from '../composables/useWeekChecks';
 import { useInteractiveProgress } from '../composables/useInteractiveProgress';
 import { useLanguage } from '../composables/useLanguage';
 
@@ -111,7 +139,7 @@ const lessonJsonModules = import.meta.glob('../../content/*/lessons.json');
 
 export default {
   name: 'ProjectCourse',
-  components: { LessonView, JsLessonView, GuideLessonView, OfflineDownloads },
+  components: { LessonView, JsLessonView, GuideLessonView, OfflineDownloads, WeekCheckPanel, FinalCertificate },
   props: {
     courseId: { type: String, required: true },
     contentPath: { type: String, required: true },
@@ -126,8 +154,20 @@ export default {
     webMode: { type: Boolean, default: false },
     // `language` aus kurse.json - schaltet die Begriffs-Links auf den Grundkurs ein (useConcepts.js).
     language: { type: String, default: '' },
+    // false bei Einstiegskursen, die nur die Lektionsliste nutzen (`"type": "lektionen"`) - dann
+    // kein Projekt-Abzeichen am Ende der letzten Lektion.
+    isProject: { type: Boolean, default: true },
+    // courseKey des Abschluss-Checks (Ordner `content/<courseKey>-checks/`, nur "Woche" 1) oder leer.
+    finalCheck: { type: String, default: '' },
+    // { de, en } - Kursname fuers Zertifikat (FinalCertificate.vue).
+    finalCheckTitle: { type: Object, default: () => ({}) },
   },
   setup(props) {
+    const route = useRoute();
+    // Ein Check-Speicher je Kurs - bei Kursen ohne Abschluss-Check nie angelegt.
+    const checkState = props.finalCheck ? useWeekChecks(props.finalCheck) : null;
+    // Profil-Link "Zertifikat ansehen" fuehrt per ?week=1 direkt zum Check.
+    const showingCheck = ref(!!props.finalCheck && route.query.week === '1');
     const { lang, t } = useLanguage();
     const lessons = ref([]);
     const loading = ref(true);
@@ -190,13 +230,29 @@ export default {
     const selectLesson = (lesson) => {
       if (!isLessonUnlocked(lesson.id, lessons.value)) return;
       currentLessonId.value = lesson.id;
+      showingCheck.value = false;
       sidebarOpen.value = false;
+    };
+
+    const finalCheckUnlocked = computed(() =>
+      lessons.value.length > 0 && lessons.value.every((l) => isCompleted(l.id))
+    );
+    const finalCheckPassed = computed(() =>
+      !!checkState && checkState.isWeekCheckPassed(1)
+    );
+
+    const selectCheck = () => {
+      if (!finalCheckUnlocked.value) return;
+      showingCheck.value = true;
+      sidebarOpen.value = false;
+      mainEl.value?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
 
     const onLessonCompleted = (lessonId) => {
       const idx = lessons.value.findIndex((l) => l.id === lessonId);
       const nextId = lessons.value[idx + 1]?.id;
       if (nextId) currentLessonId.value = nextId;
+      else if (props.finalCheck) selectCheck();
     };
 
     // Wechselt man die Lektion (Sidebar-Klick oder "Weiter"-Button), soll man oben bei der neuen
@@ -251,6 +307,10 @@ export default {
       isLessonUnlocked,
       isNewSection,
       selectLesson,
+      selectCheck,
+      showingCheck,
+      finalCheckUnlocked,
+      finalCheckPassed,
       onLessonCompleted,
       onImportFile,
       exportProgress: exportProgressFile,

@@ -2802,3 +2802,20 @@ Frage des Nutzers: Warum gibt es noch Turtle-Tests, obwohl Turtle nirgends behan
   volle Adresse um.
 - Erste echte Lektion „Hallo Website“ in `content/web-erste-website/` (Kurs vorerst `unlisted`,
   Kurs-ID endgültig). `tests/web-sandbox.spec.js`.
+
+### 3.115 — Kurs „Meine erste Website“ mit Abschluss-Check (Branch `kurs-erste-website`)
+
+- Kurs A des Web-Tracks (Plan in `KURSPLAN.md`): 8 Lektionen (Hallo Website, Ordnung, Bilder/Links,
+  Farbe, Kisten, Klassen, Flexbox, fertige Seite + JS-Bonus), je ein Beispiel und 1–2 Pflichtaufgaben
+  mit `validation.type: 'web'`. Freie Themenwahl; frei wählbare Werte prüft `notValue` gegen die
+  Vorlage, Schriftart gegen `initial` (Chromes Standard ist nicht `serif`).
+- Neuer Kurstyp `"type": "lektionen"`: nutzt die Lektionsliste von `ProjectCourse.vue`, ist aber kein
+  Projekt (kein Abzeichen, nicht in `/projekte`, steht auf der Startseite mit Format-Badge „Einstieg“).
+- `"finalCheck": true`: Check-Content unter `content/<contentPath>-checks/` (nur `week-1.json`),
+  Eintrag „Abschluss-Check“ unter den Lektionen, frei erst nach allen Lektionen, `?week=1` öffnet ihn
+  direkt (Profil-Link). `WeekCheckPanel.vue` hat dafür `engine="web"` (→ `WebCodeChallenge.vue`) und
+  `final` (andere Texte). Gespeichert wird wie ein Wochen-Check (`ue-hacker-week-checks-<kurs>`), damit
+  Sync, Profil und PDF ohne Sonderweg funktionieren; nur die Beschriftung kennt `singleCheck`.
+- Entscheidung Nutzer: Kurs A mit Zertifikat (ursprünglich war Einstieg ohne Zertifikat geplant).
+- Bewusst offen (todo.md): eigene Seite wandert nicht von Lektion zu Lektion; Sticker-SVGs hängen an
+  der Emoji-Schrift des Geräts.
