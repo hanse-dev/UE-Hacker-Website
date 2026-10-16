@@ -27,10 +27,12 @@
     "/\\\\[nt]/g",
     "/<img src=\"[^\"]*\"/g",
     "/(?<![\\w])\\.[a-z][\\w-]*/g",
+    "/(?<![\\w])(#|--)[a-z][\\w-]*/g",
     "/(id|class|lang|for|name|type|alt|href|src)=\\\\\"[^\"\\\\]*\\\\\"/g",
     "/\\b(figcaption|thead|tbody|tfoot|textarea|fieldset|legend|optgroup|blockquote)\\b/g"
   ],
   "words": [
+    "Spezifität",
     "Aufklappmenü",
     "hilfreichsten",
     "Linktext",

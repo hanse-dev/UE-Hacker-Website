@@ -1,0 +1,207 @@
+{
+  "title": "CSS-Grundlagen",
+  "questions": [
+    {
+      "id": "webg5-1",
+      "type": "multiple_choice",
+      "question": "Was trifft der Selektor .neu?",
+      "options": [
+        "Alle Elemente mit class=\"neu\"",
+        "Das Element mit id=\"neu\"",
+        "Alle Elemente vom Typ neu"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ein Punkt steht für eine Klasse.",
+      "optionExplanations": [
+        null,
+        "Für eine id steht eine Raute: #neu.",
+        "Ohne Punkt würde der Browser ein Tag <neu> suchen."
+      ]
+    },
+    {
+      "id": "webg5-2",
+      "type": "multiple_choice",
+      "question": "Was trifft der Selektor footer p?",
+      "options": [
+        "Alle Absätze, die in einem footer stecken",
+        "Alle footer und alle Absätze",
+        "Nur den ersten Absatz nach dem footer"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ein Leerzeichen bedeutet: steckt darin.",
+      "optionExplanations": [
+        null,
+        "Dafür bräuchte es ein Komma: footer, p.",
+        "Der Nachfahren-Selektor trifft alle Absätze darin, egal wie viele."
+      ]
+    },
+    {
+      "id": "webg5-3",
+      "type": "multiple_choice",
+      "question": "Ein Absatz hat id=\"info\" und class=\"rot\". Es gelten #info { color: blue; } und .rot { color: red; }. Welche Farbe hat er?",
+      "options": [
+        "Blau, weil die id-Regel genauer ist",
+        "Rot, weil die Klassen-Regel später steht",
+        "Lila, weil sich beide Farben mischen"
+      ],
+      "correctIndex": 0,
+      "explanation": "id-Selektoren sind genauer als Klassen – die Reihenfolge spielt erst bei Gleichstand eine Rolle.",
+      "optionExplanations": [
+        null,
+        "Die Reihenfolge entscheidet nur bei gleich genauen Regeln.",
+        "Farben mischen sich nicht – eine Regel gewinnt."
+      ]
+    },
+    {
+      "id": "webg5-4",
+      "type": "multiple_choice",
+      "question": "Zwei gleich genaue Regeln widersprechen sich. Welche gilt?",
+      "options": [
+        "Die, die weiter unten steht",
+        "Die, die weiter oben steht",
+        "Keine von beiden"
+      ],
+      "correctIndex": 0,
+      "explanation": "Bei Gleichstand gewinnt die spätere Regel.",
+      "optionExplanations": [
+        null,
+        "Die obere wird von der späteren überschrieben.",
+        "Eine von beiden gilt immer."
+      ]
+    },
+    {
+      "id": "webg5-5",
+      "type": "multiple_choice",
+      "question": "Was passiert bei color: red background-color: yellow; (ohne Semikolon nach red)?",
+      "options": [
+        "Beide Angaben wirken nicht",
+        "Nur die Hintergrundfarbe wirkt",
+        "Der Browser ergänzt das Semikolon automatisch"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ohne Semikolon ist die Zeile ungültig und wird verworfen.",
+      "optionExplanations": [
+        null,
+        "Auch die Hintergrundfarbe gehört zur kaputten Deklaration.",
+        "CSS ergänzt nichts – ungültige Angaben werden ignoriert."
+      ]
+    },
+    {
+      "id": "webg5-6",
+      "type": "multiple_choice",
+      "question": "Welche Angabe ist dieselbe Farbe wie #ff0000?",
+      "options": [
+        "rgb(255, 0, 0)",
+        "rgb(0, 0, 255)",
+        "rgb(0, 255, 0)"
+      ],
+      "correctIndex": 0,
+      "explanation": "ff ist 255 – voller Rotanteil, kein Grün, kein Blau.",
+      "optionExplanations": [
+        null,
+        "Das ist reines Blau.",
+        "Das ist reines Grün."
+      ]
+    },
+    {
+      "id": "webg5-7",
+      "type": "multiple_choice",
+      "question": "Wie liest du eine CSS-Variable namens --hell aus?",
+      "options": [
+        "var(--hell)",
+        "$hell",
+        "--hell()"
+      ],
+      "correctIndex": 0,
+      "explanation": "Variablen liest man mit var(…).",
+      "optionExplanations": [
+        null,
+        "Das $ gehört zu anderen Sprachen, nicht zu CSS.",
+        "So eine Schreibweise gibt es nicht."
+      ]
+    },
+    {
+      "id": "webg5-8",
+      "type": "multiple_choice",
+      "question": "Welche Eigenschaft wird von Eltern an Kinder vererbt?",
+      "options": [
+        "color",
+        "border",
+        "padding"
+      ],
+      "correctIndex": 0,
+      "explanation": "Text-Eigenschaften wie Farbe und Schrift werden vererbt.",
+      "optionExplanations": [
+        null,
+        "Rahmen werden nicht vererbt.",
+        "Abstände werden nicht vererbt."
+      ]
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Schreib das CSS: alle Elemente mit class=\"tag\" bekommen eine Hintergrundfarbe, das Element mit id=\"titel\" eine Textfarbe (nicht Schwarz), und nur die Absätze im footer werden kleiner als 16px.",
+      "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    /* Dein CSS */\n  </style>\n</head>\n<body>\n  <h1 id=\"titel\">Wochenmarkt</h1>\n  <p><span class=\"tag\">Obst</span> <span class=\"tag\">Gemüse</span></p>\n  <p>Jeden Samstag auf dem Marktplatz.</p>\n  <footer><p>Stadt Musterhausen</p></footer>\n</body>\n</html>\n",
+      "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .tag { background-color: lightgreen; }\n    #titel { color: darkgreen; }\n    footer p { font-size: 12px; }\n  </style>\n</head>\n<body>\n  <h1 id=\"titel\">Wochenmarkt</h1>\n  <p><span class=\"tag\">Obst</span> <span class=\"tag\">Gemüse</span></p>\n  <p>Jeden Samstag auf dem Marktplatz.</p>\n  <footer><p>Stadt Musterhausen</p></footer>\n</body>\n</html>",
+      "validation": {
+        "type": "web",
+        "checks": [
+          {
+            "selector": ".tag",
+            "property": "background-color",
+            "notValue": "transparent",
+            "min": 2,
+            "hint": "Schreib eine Regel .tag mit background-color."
+          },
+          {
+            "selector": "#titel",
+            "property": "color",
+            "notValue": "black",
+            "hint": "Schreib eine Regel #titel mit color."
+          },
+          {
+            "selector": "footer p",
+            "property": "font-size",
+            "notValue": "16px",
+            "hint": "Schreib eine Regel footer p mit kleinerer font-size."
+          },
+          {
+            "selector": "body > p",
+            "property": "font-size",
+            "value": "16px",
+            "min": 2,
+            "hint": "Nur die Absätze im footer sollen kleiner werden."
+          }
+        ]
+      }
+    },
+    {
+      "instruction": "Repariere das CSS: Die Überschrift soll weiß auf blauem Grund sein, und der Absatz mit id=\"info\" soll grün statt grau sein – ohne die Regel für .grau zu löschen.",
+      "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    h1 {\n      color: white\n      background-color: blue;\n    }\n    #info.grau { color: gray; }\n    #info { color: green; }\n  </style>\n</head>\n<body>\n  <h1>Schwimmbad</h1>\n  <p id=\"info\" class=\"grau\">Heute bis 20 Uhr geöffnet.</p>\n</body>\n</html>\n",
+      "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    h1 {\n      color: white;\n      background-color: blue;\n    }\n    #info.grau { color: gray; }\n    #info.grau { color: green; }\n  </style>\n</head>\n<body>\n  <h1>Schwimmbad</h1>\n  <p id=\"info\" class=\"grau\">Heute bis 20 Uhr geöffnet.</p>\n</body>\n</html>",
+      "validation": {
+        "type": "web",
+        "checks": [
+          {
+            "selector": "h1",
+            "property": "color",
+            "value": "white",
+            "hint": "In der h1-Regel fehlt ein Semikolon."
+          },
+          {
+            "selector": "h1",
+            "property": "background-color",
+            "value": "blue",
+            "hint": "In der h1-Regel fehlt ein Semikolon."
+          },
+          {
+            "selector": "#info",
+            "property": "color",
+            "value": "green",
+            "hint": "#info.grau ist genauer als #info – die grüne Regel braucht einen mindestens so genauen Selektor und muss danach stehen."
+          }
+        ]
+      }
+    }
+  ]
+}
