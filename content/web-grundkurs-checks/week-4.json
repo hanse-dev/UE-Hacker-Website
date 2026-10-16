@@ -1,0 +1,205 @@
+{
+  "title": "Formulare",
+  "questions": [
+    {
+      "id": "webg4-1",
+      "type": "multiple_choice",
+      "question": "Wie verknüpfst du eine Beschriftung mit einem Eingabefeld?",
+      "options": [
+        "label mit for, das auf die id des Feldes zeigt",
+        "label mit name, das auf den name des Feldes zeigt",
+        "Die Beschriftung einfach direkt vor das Feld schreiben"
+      ],
+      "correctIndex": 0,
+      "explanation": "for im label und id im Feld müssen übereinstimmen.",
+      "optionExplanations": [
+        null,
+        "name ist der Name für das Verschicken – für die Verknüpfung zählt die id.",
+        "Ohne label weiß der Browser nicht, dass Text und Feld zusammengehören."
+      ]
+    },
+    {
+      "id": "webg4-2",
+      "type": "multiple_choice",
+      "question": "Welcher Eingabetyp passt für eine E-Mail-Adresse?",
+      "options": [
+        "email",
+        "text",
+        "mail"
+      ],
+      "correctIndex": 0,
+      "explanation": "type=\"email\" prüft auf ein @ und zeigt auf dem Handy eine passende Tastatur.",
+      "optionExplanations": [
+        null,
+        "Mit text geht es auch, aber ohne Prüfung und ohne passende Tastatur.",
+        "Einen Typ mail gibt es nicht."
+      ]
+    },
+    {
+      "id": "webg4-3",
+      "type": "multiple_choice",
+      "question": "Woran erkennt der Browser, dass Radio-Buttons zusammengehören?",
+      "options": [
+        "Sie haben denselben name",
+        "Sie stehen direkt nebeneinander",
+        "Sie haben dieselbe id"
+      ],
+      "correctIndex": 0,
+      "explanation": "Gleicher name = eine gemeinsame Gruppe, nur eine Wahl.",
+      "optionExplanations": [
+        null,
+        "Die Position im Code spielt keine Rolle.",
+        "Eine id darf es nur einmal geben."
+      ]
+    },
+    {
+      "id": "webg4-4",
+      "type": "multiple_choice",
+      "question": "Was bewirkt required?",
+      "options": [
+        "Das Feld muss ausgefüllt sein, bevor man abschicken kann",
+        "Das Feld wird rot",
+        "Das Feld kann nicht mehr bearbeitet werden"
+      ],
+      "correctIndex": 0,
+      "explanation": "required macht ein Feld zum Pflichtfeld.",
+      "optionExplanations": [
+        null,
+        "Wie ein Feld aussieht, regelt CSS.",
+        "Das wäre readonly oder disabled."
+      ]
+    },
+    {
+      "id": "webg4-5",
+      "type": "multiple_choice",
+      "question": "Warum reicht ein placeholder nicht als Beschriftung?",
+      "options": [
+        "Er verschwindet, sobald man tippt",
+        "Er wird nicht angezeigt",
+        "Er ist nur auf dem Handy sichtbar"
+      ],
+      "correctIndex": 0,
+      "explanation": "Nach dem Tippen weiß man nicht mehr, wofür das Feld war – das label bleibt.",
+      "optionExplanations": [
+        null,
+        "Er wird angezeigt – aber nur, solange das Feld leer ist.",
+        "Er erscheint auf allen Geräten."
+      ]
+    },
+    {
+      "id": "webg4-6",
+      "type": "multiple_choice",
+      "question": "Welches Element hat im Gegensatz zu input ein End-Tag?",
+      "options": [
+        "textarea",
+        "br",
+        "img"
+      ],
+      "correctIndex": 0,
+      "explanation": "textarea umschließt seinen Inhalt: <textarea></textarea>.",
+      "optionExplanations": [
+        null,
+        "br ist ein leeres Element.",
+        "img ist ebenfalls ein leeres Element."
+      ]
+    },
+    {
+      "id": "webg4-7",
+      "type": "multiple_choice",
+      "question": "Wofür sind fieldset und legend da?",
+      "options": [
+        "Um Felder zu Gruppen mit Überschrift zusammenzufassen",
+        "Um Felder zu verstecken",
+        "Um ein Formular abzuschicken"
+      ],
+      "correctIndex": 0,
+      "explanation": "fieldset gruppiert, legend ist die Überschrift der Gruppe.",
+      "optionExplanations": [
+        null,
+        "Versteckt wird damit nichts.",
+        "Zum Abschicken gibt es button type=\"submit\"."
+      ]
+    },
+    {
+      "id": "webg4-8",
+      "type": "multiple_choice",
+      "question": "Was wird bei einer option verschickt?",
+      "options": [
+        "Der Wert aus value",
+        "Der sichtbare Text, egal was in value steht",
+        "Die id des select"
+      ],
+      "correctIndex": 0,
+      "explanation": "value ist der verschickte Wert, der Text ist für Menschen.",
+      "optionExplanations": [
+        null,
+        "Der Text wird nur verschickt, wenn kein value angegeben ist.",
+        "Verschickt wird der name des select zusammen mit dem gewählten value."
+      ]
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Baue ein Formular mit einem Pflichtfeld für den Namen (id=\"name\"), einem E-Mail-Feld (id=\"email\"), einer Auswahlliste mit mindestens drei Optionen (id=\"farbe\") – alle mit verknüpftem label – und einem Knopf zum Abschicken.",
+      "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <!-- Dein Formular -->\n</body>\n</html>\n",
+      "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <form>\n    <label for=\"name\">Name</label>\n    <input type=\"text\" id=\"name\" name=\"name\" required>\n    <label for=\"email\">E-Mail</label>\n    <input type=\"email\" id=\"email\" name=\"email\">\n    <label for=\"farbe\">Lieblingsfarbe</label>\n    <select id=\"farbe\" name=\"farbe\">\n      <option value=\"rot\">Rot</option>\n      <option value=\"blau\">Blau</option>\n      <option value=\"gruen\">Grün</option>\n    </select>\n    <button type=\"submit\">Senden</button>\n  </form>\n</body>\n</html>",
+      "validation": {
+        "type": "web",
+        "checks": [
+          {
+            "selector": "form input#name[required]",
+            "hint": "Es fehlt ein Pflichtfeld mit id=\"name\" und required."
+          },
+          {
+            "selector": "label[for=\"name\"]",
+            "hint": "Das Namensfeld braucht ein label mit for=\"name\"."
+          },
+          {
+            "selector": "input[type=\"email\"]#email",
+            "hint": "Es fehlt ein E-Mail-Feld mit id=\"email\"."
+          },
+          {
+            "selector": "label[for=\"email\"]",
+            "hint": "Das E-Mail-Feld braucht ein label mit for=\"email\"."
+          },
+          {
+            "selector": "select#farbe option",
+            "min": 3,
+            "hint": "Es fehlt eine Auswahlliste mit id=\"farbe\" und drei Optionen."
+          },
+          {
+            "selector": "label[for=\"farbe\"]",
+            "hint": "Die Auswahlliste braucht ein label mit for=\"farbe\"."
+          },
+          {
+            "selector": "form button[type=\"submit\"]",
+            "hint": "Es fehlt ein Knopf zum Abschicken."
+          }
+        ]
+      }
+    },
+    {
+      "instruction": "Repariere das Formular: Die Beschriftung „Alter“ soll das Feld aktivieren, bei der Frage „Haustier?“ soll nur eine Antwort möglich sein (name=\"haustier\"), und das Feld „Alter“ ist Pflicht.",
+      "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <form>\n    <label for=\"age\">Alter</label>\n    <input type=\"number\" id=\"alter\" name=\"alter\">\n    <p>Haustier?</p>\n    <input type=\"radio\" id=\"ja\" name=\"ja\" value=\"ja\"> <label for=\"ja\">Ja</label>\n    <input type=\"radio\" id=\"nein\" name=\"nein\" value=\"nein\"> <label for=\"nein\">Nein</label>\n  </form>\n</body>\n</html>\n",
+      "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <form>\n    <label for=\"alter\">Alter</label>\n    <input type=\"number\" id=\"alter\" name=\"alter\" required>\n    <p>Haustier?</p>\n    <input type=\"radio\" id=\"ja\" name=\"haustier\" value=\"ja\"> <label for=\"ja\">Ja</label>\n    <input type=\"radio\" id=\"nein\" name=\"haustier\" value=\"nein\"> <label for=\"nein\">Nein</label>\n  </form>\n</body>\n</html>",
+      "validation": {
+        "type": "web",
+        "checks": [
+          {
+            "selector": "label[for=\"alter\"]",
+            "hint": "for im label muss zur id des Feldes passen."
+          },
+          {
+            "selector": "input#alter[required]",
+            "hint": "Das Alter-Feld braucht required."
+          },
+          {
+            "selector": "input[type=\"radio\"][name=\"haustier\"]",
+            "min": 2,
+            "hint": "Beide Radio-Buttons brauchen name=\"haustier\"."
+          }
+        ]
+      }
+    }
+  ]
+}

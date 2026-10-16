@@ -1,0 +1,372 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Formular und Textfeld",
+    "file": "lektion-01.md",
+    "lessonSummary": "Gut gemacht! Dein erstes Formularfeld ist beschriftet und richtig verknüpft.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus und klick in der Vorschau auf das Wort „Vorname“: Das Feld daneben wird aktiv, weil label und input verknüpft sind.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <form>\n    <label for=\"vorname\">Vorname</label>\n    <input type=\"text\" id=\"vorname\" name=\"vorname\">\n    <button type=\"submit\">Anmelden</button>\n  </form>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "label[for=\"vorname\"]"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Baue ein Formular mit einem Textfeld für den Spitznamen: input mit type=\"text\" und id=\"spitzname\", davor ein label, das mit for darauf zeigt, und einem Knopf zum Abschicken.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h2>Clan beitreten</h2>\n  <!-- Dein Formular -->\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h2>Clan beitreten</h2>\n  <form>\n    <label for=\"spitzname\">Spitzname</label>\n    <input type=\"text\" id=\"spitzname\" name=\"spitzname\">\n    <button type=\"submit\">Beitreten</button>\n  </form>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "form input[type=\"text\"]#spitzname",
+              "hint": "Im form fehlt <input type=\"text\" id=\"spitzname\">."
+            },
+            {
+              "selector": "form label[for=\"spitzname\"]",
+              "notEmpty": true,
+              "hint": "Es fehlt ein <label for=\"spitzname\"> mit Text."
+            },
+            {
+              "selector": "form button",
+              "notEmpty": true,
+              "hint": "Es fehlt ein Knopf <button type=\"submit\">…</button>."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Eingabetypen",
+    "file": "lektion-02.md",
+    "lessonSummary": "Super! Für jede Art von Angabe kennst du jetzt den passenden Eingabetyp.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus und probiere alle Felder in der Vorschau aus – das Datumsfeld öffnet einen Kalender, bei den Radio-Buttons geht immer nur einer.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <form>\n    <label for=\"mail\">E-Mail</label>\n    <input type=\"email\" id=\"mail\" name=\"mail\"><br>\n    <label for=\"alter\">Alter</label>\n    <input type=\"number\" id=\"alter\" name=\"alter\" min=\"8\" max=\"18\"><br>\n    <label for=\"tag\">Wunschtermin</label>\n    <input type=\"date\" id=\"tag\" name=\"tag\"><br>\n    <input type=\"checkbox\" id=\"news\" name=\"news\"> <label for=\"news\">Newsletter</label><br>\n    <input type=\"radio\" id=\"s\" name=\"groesse\" value=\"S\"> <label for=\"s\">S</label>\n    <input type=\"radio\" id=\"m\" name=\"groesse\" value=\"M\"> <label for=\"m\">M</label>\n    <input type=\"radio\" id=\"l\" name=\"groesse\" value=\"L\"> <label for=\"l\">L</label>\n  </form>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "input[type=\"radio\"][name=\"groesse\"]",
+              "min": 3
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Ergänze im Formular ein Feld für die E-Mail-Adresse (type=\"email\") und ein Feld für das Alter (type=\"number\") mit min=\"10\" und max=\"99\". Beide bekommen ein verknüpftes label.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <form>\n    <label for=\"name\">Name</label>\n    <input type=\"text\" id=\"name\" name=\"name\"><br>\n    <!-- E-Mail und Alter -->\n  </form>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <form>\n    <label for=\"name\">Name</label>\n    <input type=\"text\" id=\"name\" name=\"name\"><br>\n    <label for=\"email\">E-Mail</label>\n    <input type=\"email\" id=\"email\" name=\"email\"><br>\n    <label for=\"alter\">Alter</label>\n    <input type=\"number\" id=\"alter\" name=\"alter\" min=\"10\" max=\"99\">\n  </form>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "input[type=\"email\"][id]",
+              "hint": "Es fehlt ein Feld <input type=\"email\" id=\"…\">."
+            },
+            {
+              "selector": "input[type=\"number\"][min=\"10\"][max=\"99\"]",
+              "hint": "Es fehlt ein Feld <input type=\"number\" min=\"10\" max=\"99\">."
+            },
+            {
+              "selector": "label[for]",
+              "min": 3,
+              "hint": "Jedes Feld braucht ein eigenes label mit for."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Baue eine Umfrage „Lieblingsjahreszeit“ mit vier Radio-Buttons (Frühling, Sommer, Herbst, Winter). Alle haben name=\"jahreszeit\", jeder hat ein eigenes label.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h2>Lieblingsjahreszeit</h2>\n  <form>\n    <!-- Vier Radio-Buttons -->\n  </form>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h2>Lieblingsjahreszeit</h2>\n  <form>\n    <input type=\"radio\" id=\"fruehling\" name=\"jahreszeit\" value=\"Frühling\"> <label for=\"fruehling\">Frühling</label>\n    <input type=\"radio\" id=\"sommer\" name=\"jahreszeit\" value=\"Sommer\"> <label for=\"sommer\">Sommer</label>\n    <input type=\"radio\" id=\"herbst\" name=\"jahreszeit\" value=\"Herbst\"> <label for=\"herbst\">Herbst</label>\n    <input type=\"radio\" id=\"winter\" name=\"jahreszeit\" value=\"Winter\"> <label for=\"winter\">Winter</label>\n  </form>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "input[type=\"radio\"][name=\"jahreszeit\"]",
+              "min": 4,
+              "hint": "Du brauchst vier <input type=\"radio\" name=\"jahreszeit\">."
+            },
+            {
+              "selector": "label[for]",
+              "notEmpty": true,
+              "min": 4,
+              "hint": "Jeder Radio-Button braucht ein label mit for, das auf seine id zeigt."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Auswahllisten und Textbereiche",
+    "file": "lektion-03.md",
+    "lessonSummary": "Prima! Auswahllisten und längere Texte sind jetzt kein Problem mehr.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus: ein Aufklappmenü, ein Textbereich und zwei Knöpfe.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <form>\n    <label for=\"kurs\">Kurs</label>\n    <select id=\"kurs\" name=\"kurs\">\n      <option value=\"\">Bitte wählen</option>\n      <option value=\"bouldern\">Bouldern</option>\n      <option value=\"seil\">Seilklettern</option>\n    </select><br>\n    <label for=\"nachricht\">Nachricht</label><br>\n    <textarea id=\"nachricht\" name=\"nachricht\" rows=\"4\"></textarea><br>\n    <button type=\"submit\">Absenden</button>\n    <button type=\"reset\">Leeren</button>\n  </form>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "select option",
+              "min": 3
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Baue eine Auswahlliste für eine Pizza-Bestellung: select mit id=\"pizza\" und mindestens drei Sorten als option, davor ein verknüpftes label.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h2>Pizza bestellen</h2>\n  <form>\n    <!-- Auswahlliste -->\n  </form>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h2>Pizza bestellen</h2>\n  <form>\n    <label for=\"pizza\">Sorte</label>\n    <select id=\"pizza\" name=\"pizza\">\n      <option value=\"margherita\">Margherita</option>\n      <option value=\"salami\">Salami</option>\n      <option value=\"funghi\">Funghi</option>\n    </select>\n  </form>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "select#pizza option",
+              "notEmpty": true,
+              "min": 3,
+              "hint": "Es fehlt ein <select id=\"pizza\"> mit mindestens drei <option>."
+            },
+            {
+              "selector": "label[for=\"pizza\"]",
+              "notEmpty": true,
+              "hint": "Es fehlt ein <label for=\"pizza\">."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Ergänze ein Feld für Sonderwünsche als textarea mit drei sichtbaren Zeilen (rows=\"3\") und verknüpftem label, außerdem einen Knopf, der das Formular abschickt.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <form>\n    <label for=\"pizza\">Sorte</label>\n    <select id=\"pizza\" name=\"pizza\">\n      <option value=\"margherita\">Margherita</option>\n      <option value=\"salami\">Salami</option>\n    </select><br>\n    <!-- Sonderwünsche und Knopf -->\n  </form>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <form>\n    <label for=\"pizza\">Sorte</label>\n    <select id=\"pizza\" name=\"pizza\">\n      <option value=\"margherita\">Margherita</option>\n      <option value=\"salami\">Salami</option>\n    </select><br>\n    <label for=\"wuensche\">Sonderwünsche</label><br>\n    <textarea id=\"wuensche\" name=\"wuensche\" rows=\"3\"></textarea><br>\n    <button type=\"submit\">Bestellen</button>\n  </form>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "textarea[rows=\"3\"][id]",
+              "hint": "Es fehlt ein <textarea rows=\"3\" id=\"…\"></textarea>."
+            },
+            {
+              "selector": "label[for]",
+              "min": 2,
+              "hint": "Auch der Textbereich braucht ein label mit for."
+            },
+            {
+              "selector": "form button[type=\"submit\"]",
+              "notEmpty": true,
+              "hint": "Es fehlt ein <button type=\"submit\">…</button>."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Pflichtfelder und Gruppen",
+    "file": "lektion-04.md",
+    "lessonSummary": "Sehr ordentlich! Dein Formular hilft beim Ausfüllen und lässt nichts Wichtiges weg.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus und klick in der Vorschau auf „Anmelden“, ohne etwas einzutragen: Der Browser meldet das leere Pflichtfeld.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <form>\n    <fieldset>\n      <legend>Über dich</legend>\n      <label for=\"vorname\">Vorname</label>\n      <input type=\"text\" id=\"vorname\" name=\"vorname\" placeholder=\"z. B. Max\" required>\n    </fieldset>\n    <button type=\"submit\">Anmelden</button>\n  </form>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "input[required]"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Mach Name und E-Mail zu Pflichtfeldern und gib dem Namensfeld einen placeholder mit einem Beispiel.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <form>\n    <label for=\"name\">Name</label>\n    <input type=\"text\" id=\"name\" name=\"name\"><br>\n    <label for=\"email\">E-Mail</label>\n    <input type=\"email\" id=\"email\" name=\"email\"><br>\n    <button type=\"submit\">Senden</button>\n  </form>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <form>\n    <label for=\"name\">Name</label>\n    <input type=\"text\" id=\"name\" name=\"name\" placeholder=\"z. B. Lea\" required><br>\n    <label for=\"email\">E-Mail</label>\n    <input type=\"email\" id=\"email\" name=\"email\" required><br>\n    <button type=\"submit\">Senden</button>\n  </form>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "#name[required]",
+              "hint": "Das Namensfeld braucht das Attribut required."
+            },
+            {
+              "selector": "#email[required]",
+              "hint": "Das E-Mail-Feld braucht das Attribut required."
+            },
+            {
+              "selector": "#name[placeholder]:not([placeholder=\"\"])",
+              "hint": "Gib dem Namensfeld einen placeholder, z. B. placeholder=\"z. B. Lea\"."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Teile das Formular in zwei Gruppen mit fieldset und legend: „Kontakt“ (Name, E-Mail) und „Teilnahme“ (Checkbox für die Teilnahmebedingungen).",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <form>\n    <label for=\"name\">Name</label>\n    <input type=\"text\" id=\"name\" name=\"name\"><br>\n    <label for=\"email\">E-Mail</label>\n    <input type=\"email\" id=\"email\" name=\"email\"><br>\n    <input type=\"checkbox\" id=\"regeln\" name=\"regeln\"> <label for=\"regeln\">Ich kenne die Regeln</label><br>\n    <button type=\"submit\">Senden</button>\n  </form>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <form>\n    <fieldset>\n      <legend>Kontakt</legend>\n      <label for=\"name\">Name</label>\n      <input type=\"text\" id=\"name\" name=\"name\"><br>\n      <label for=\"email\">E-Mail</label>\n      <input type=\"email\" id=\"email\" name=\"email\">\n    </fieldset>\n    <fieldset>\n      <legend>Teilnahme</legend>\n      <input type=\"checkbox\" id=\"regeln\" name=\"regeln\"> <label for=\"regeln\">Ich kenne die Regeln</label>\n    </fieldset>\n    <button type=\"submit\">Senden</button>\n  </form>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "fieldset > legend",
+              "notEmpty": true,
+              "min": 2,
+              "hint": "Du brauchst zwei <fieldset>, jedes mit einer <legend> als erstem Element."
+            },
+            {
+              "selector": "fieldset #email",
+              "hint": "Das E-Mail-Feld gehört in die Gruppe „Kontakt“."
+            },
+            {
+              "selector": "fieldset #regeln",
+              "hint": "Die Checkbox gehört in die Gruppe „Teilnahme“."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Fehlersuche: Formulare",
+    "file": "debug-01.md",
+    "lessonSummary": "Gefunden! Die drei häufigsten Formularfehler hast du jetzt im Blick.",
+    "tasks": [
+      {
+        "instruction": "Klick auf „E-Mail“ aktiviert das Feld nicht. Bring label und Feld zusammen.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <form>\n    <label for=\"mail\">E-Mail</label>\n    <input type=\"email\" id=\"email\" name=\"email\">\n  </form>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <form>\n    <label for=\"email\">E-Mail</label>\n    <input type=\"email\" id=\"email\" name=\"email\">\n  </form>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "label[for=\"email\"]",
+              "hint": "Das label zeigt mit for=\"mail\" auf eine id, die es nicht gibt – das Feld hat id=\"email\"."
+            },
+            {
+              "selector": "#email",
+              "hint": "Das Feld soll id=\"email\" behalten."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Bei der T-Shirt-Größe kann man alle drei Größen gleichzeitig wählen. Repariere die Radio-Buttons so, dass nur eine Wahl möglich ist (alle mit name=\"groesse\").",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <form>\n    <input type=\"radio\" id=\"s\" name=\"s\" value=\"S\"> <label for=\"s\">S</label>\n    <input type=\"radio\" id=\"m\" name=\"m\" value=\"M\"> <label for=\"m\">M</label>\n    <input type=\"radio\" id=\"l\" name=\"l\" value=\"L\"> <label for=\"l\">L</label>\n  </form>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <form>\n    <input type=\"radio\" id=\"s\" name=\"groesse\" value=\"S\"> <label for=\"s\">S</label>\n    <input type=\"radio\" id=\"m\" name=\"groesse\" value=\"M\"> <label for=\"m\">M</label>\n    <input type=\"radio\" id=\"l\" name=\"groesse\" value=\"L\"> <label for=\"l\">L</label>\n  </form>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "input[type=\"radio\"][name=\"groesse\"]",
+              "min": 3,
+              "hint": "Alle drei Radio-Buttons brauchen denselben name: name=\"groesse\"."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Das Feld „Spielername“ soll Pflicht sein, aber das required steht im label. Setz es an die richtige Stelle.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <form>\n    <label for=\"spieler\" required>Spielername</label>\n    <input type=\"text\" id=\"spieler\" name=\"spieler\">\n    <button type=\"submit\">Los</button>\n  </form>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <form>\n    <label for=\"spieler\">Spielername</label>\n    <input type=\"text\" id=\"spieler\" name=\"spieler\" required>\n    <button type=\"submit\">Los</button>\n  </form>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "input#spieler[required]",
+              "hint": "required gehört in das input-Feld, nicht ins label."
+            },
+            {
+              "selector": "label[required]",
+              "min": 0,
+              "max": 0,
+              "hint": "Im label hat required keine Wirkung – nimm es dort heraus."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission: Anmeldeformular",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission erfüllt! Dein Anmeldeformular sieht aus wie bei einer echten Veranstaltung.",
+    "tasks": [
+      {
+        "instruction": "Baue dein Anmeldeformular mit allem aus der Liste oben.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Anmeldung</h1>\n  <!-- Dein Formular -->\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Anmeldung Sommercamp</h1>\n  <form>\n    <fieldset>\n      <legend>Über dich</legend>\n      <label for=\"name\">Name</label>\n      <input type=\"text\" id=\"name\" name=\"name\" required><br>\n      <label for=\"email\">E-Mail</label>\n      <input type=\"email\" id=\"email\" name=\"email\" required><br>\n      <label for=\"alter\">Alter</label>\n      <input type=\"number\" id=\"alter\" name=\"alter\" min=\"10\" max=\"16\">\n    </fieldset>\n    <fieldset>\n      <legend>Dein Camp</legend>\n      <label for=\"woche\">Woche</label>\n      <select id=\"woche\" name=\"woche\">\n        <option value=\"1\">Woche 1</option>\n        <option value=\"2\">Woche 2</option>\n        <option value=\"3\">Woche 3</option>\n      </select><br>\n      <input type=\"radio\" id=\"zelt\" name=\"schlafen\" value=\"zelt\"> <label for=\"zelt\">Zelt</label>\n      <input type=\"radio\" id=\"haus\" name=\"schlafen\" value=\"haus\"> <label for=\"haus\">Haus</label>\n      <input type=\"radio\" id=\"egal\" name=\"schlafen\" value=\"egal\"> <label for=\"egal\">Egal</label><br>\n      <label for=\"notiz\">Anmerkungen</label><br>\n      <textarea id=\"notiz\" name=\"notiz\" rows=\"3\"></textarea>\n    </fieldset>\n    <button type=\"submit\">Anmelden</button>\n  </form>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "form fieldset > legend",
+              "notEmpty": true,
+              "min": 2,
+              "hint": "Du brauchst zwei fieldset mit legend."
+            },
+            {
+              "selector": "input[type=\"text\"][required]",
+              "hint": "Es fehlt ein Pflicht-Textfeld für den Namen (required)."
+            },
+            {
+              "selector": "input[type=\"email\"][required]",
+              "hint": "Es fehlt ein Pflichtfeld für die E-Mail (type=\"email\" required)."
+            },
+            {
+              "selector": "input[type=\"number\"][min][max], input[type=\"date\"]",
+              "hint": "Es fehlt ein Feld für Alter (number mit min und max) oder Datum (date)."
+            },
+            {
+              "selector": "select option",
+              "min": 3,
+              "hint": "Es fehlt eine Auswahlliste mit mindestens drei Optionen."
+            },
+            {
+              "selector": "input[type=\"radio\"], input[type=\"checkbox\"]",
+              "hint": "Es fehlen Radio-Buttons oder eine Checkbox."
+            },
+            {
+              "selector": "textarea",
+              "hint": "Es fehlt ein Textbereich für Anmerkungen."
+            },
+            {
+              "selector": "label[for]",
+              "min": 5,
+              "hint": "Beschrifte jedes Feld mit einem label, das mit for auf seine id zeigt."
+            },
+            {
+              "selector": "form button[type=\"submit\"]",
+              "hint": "Am Ende fehlt ein Knopf zum Abschicken."
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
