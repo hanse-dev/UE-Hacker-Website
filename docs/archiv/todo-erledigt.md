@@ -607,3 +607,6 @@ Unverändert aus `todo.md` übernommen. Die wirklich offenen Prüf-Lücken darau
   Kampf-Aufgaben nutzen 1-HP-Gegner für deterministische Prüfung. Aus den Originalen weggelassen:
   Operator-Polymorphismus mit `__add__`, `__getitem__`, `input()`-Befehlsschleife in Woche 12
   (Befehle stehen als Liste, bräuchte `stdin`-Validierung), Bonus-Teile ungeprüft.
+
+- [x] Einstiegskurs „Meine erste Website“ (HTML/CSS) besprochen und gebaut (16.10.2026): Web-Sandbox (3.114),
+      Stufe Einfach mit Abschluss-Check (3.115), Stufe Intensiv mit 9 Wochen und Wochen-Checks (3.116).

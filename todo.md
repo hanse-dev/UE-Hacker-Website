@@ -15,12 +15,6 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
       Vorschlag: Beim nächsten Auftreten prüfen, ob gleichzeitig andere Playwright-Läufe aktiv waren
       (`ps aux | grep "playwright test"`); wenn ja, Pre-push-Läufe mehrerer Sessions nicht parallel
       starten statt die Tests zu ändern.
-- [ ] **Einstiegskurs „Meine erste Website“ (HTML/CSS) — erst in einer eigenen Session mit Eike
-      besprechen, dann bauen** (Wunsch Eike, 15.10.2026). Vorschlag aus der Planung: Einstieg mit
-      6–8 Lektionen ohne Zertifikat (Überschrift/Text → Bilder/Links → Listen → Farben/Schriften →
-      Layout → eigene Steckbrief-Seite). Braucht Frontend-Arbeit: HTML/CSS-Editor mit Live-Vorschau
-      und neue Prüfarten (Element existiert, Text, gesetzte Farbe/Schriftgröße); die DOM-Sandbox
-      (`useJsSandbox.js`, `sandboxMode: "dom"`) ist eine mögliche Basis.
 - [ ] **micro:bit-Kurs „Das Roboterauto“ (`content/microbit-auto/`, HANDOFF 3.101) — vor dem ersten
       Termin am echten Auto durchspielen.** Der Kurs ist ohne Hardware entstanden (nur aus der
       Keyestudio-Doku, der MakeCode-Erweiterung und der Bibliothek abgeleitet). Zu prüfen:
@@ -77,8 +71,7 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
 
 ## Nächste Themen (je eigener Branch von `main`)
 
-Gesamt-Roadmap/Track-Modell siehe `VISION.md`, Ideen-Backlog in `PROJEKTIDEEN.md`. In Arbeit:
-`projekt-haeufigkeitsanalyse` (eigener Worktree). Alles Gemergte steht im Archiv.
+Gesamt-Roadmap/Track-Modell siehe `VISION.md`, Ideen-Backlog in `PROJEKTIDEEN.md`. Alles Gemergte steht im Archiv.
 
 **Web-Track** (Plan in `KURSPLAN.md`): `web-sandbox` ✅ (3.114) → `kurs-erste-website` ✅ (3.115) → `web-grundkurs` ✅ (3.116, Kurs B als Stufe „Intensiv“ in `web-erste-website`).
 
