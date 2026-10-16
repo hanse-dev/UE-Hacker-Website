@@ -157,3 +157,26 @@ ersten Login.
 Auf dem Ausdruck stehen der Stufentitel, eine Zeile für den Teamnamen, die vier Fälle und je ein
 leeres Feld für die angezeigte Zahl. Die Zeilen liest das Skript aus
 `content/microbit-auto/lektion-09.md`. `--font-scale 1.2` vergrößert Schrift und Zeilenhöhe.
+
+## Fallstricke für Änderungen (aus HANDOFF.md übernommen)
+- IDN-Domains (Umlaute) vor jedem `urllib`-Request per `.encode('idna')` in Punycode wandeln, sonst
+  kappt der Server die Verbindung ohne Fehlermeldung (3.63).
+- macOS/Homebrew-Python verweigert systemweite `pip install`s (PEP 668) → eigenes `venv/`; zum
+  Erkennen `sys.prefix` prüfen, nicht `Path(sys.executable).resolve()` (venv-Symlink täuscht sonst
+  Identität mit System-Interpreter vor) (3.63).
+- `bleak`/BLE auf macOS: CoreBluetooth liefert eine app-spezifische UUID statt der echten MAC (per
+  Scan ermitteln); Writes ohne kleine Pause (~10ms) zwischen den Häppchen verwirft macOS still (3.63).
+- Thermodrucker-Tool liegt in `scripts/local-tools/drucker/`: Nur `drucker.py` (Einstieg) fragt und
+  gibt aus; `druck.py`/`ausweis.py`/`tabelle.py`/`bluetooth.py` liefern Werte und werfen
+  `DruckerError`. Neue Aktion = Funktion im passenden Modul + Menüpunkt/Unterbefehl in `drucker.py`.
+- `drucker.py` kennt ein Menü (ohne Argumente) und Unterbefehle
+  `account`/`ausdrucke`/`tabelle`/`scan`); `drucker_gui.py` ist dasselbe als Fenster (tkinter, auf
+  macOS `brew install python-tk@<version>`). Im Fenster läuft alles Langsame über `run_async()` in
+  einem Thread — nie Tk-Widgets aus dem Thread anfassen, Ergebnisse kommen über die Queue zurück.
+- `drucker.py account <name>` legt an oder setzt bei vorhandenem Account auf Rückfrage das Passwort
+  zurück (`POST /api/admin/users/:id/reset-password`, Einmal-Passwort mit Zwangswechsel). Jeder Ausdruck landet als PNG in `ausdrucke/` (gitignored,
+  Klartext-Passwörter) und lässt sich daraus erneut drucken.
+- `drucker.py tabelle` liest die Forscher-Tabelle aus micro:bit-Stufe 8 aus `lektion-09.md`: Wer
+  die Tabelle dort ändert, prüft den Ausdruck mit `--no-print` (Bild in `ausdrucke/`).
+- Ohne Drucker testen: `--no-print` statt Druck; Account-Anlage gegen `node scripts/run-test-api.js`
+  mit `--server-url http://localhost:<port>` (Admin-Passwort `test-admin-password`), nie gegen Produktion.
