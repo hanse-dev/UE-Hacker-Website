@@ -158,6 +158,11 @@ test.describe('Meine erste Website, Intensiv: Wochen', () => {
           for (const c of task.validation.checks) expect(c.hint, `Woche ${n} ${lesson.id}`).toBeTruthy();
         }
       }
+      // Jedes verwendete Bild gibt es wirklich unter public/web-bilder/.
+      const used = JSON.stringify([lessons, checks.weeks[String(n)]]).match(/\/web-bilder\/[a-z]+\.svg/g) || [];
+      for (const src of new Set(used)) {
+        expect(existsSync(new URL(`../public${src}`, import.meta.url)), `Woche ${n}: ${src}`).toBe(true);
+      }
       const week = checks.weeks[String(n)];
       expect(week, `Check für Woche ${n}`).toBeTruthy();
       expect(week.questions.length).toBeGreaterThanOrEqual(checks.weekCheckCount);

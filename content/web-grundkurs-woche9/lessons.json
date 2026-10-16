@@ -1,0 +1,342 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Planen und Grundgerüst",
+    "file": "lektion-01.md",
+    "lessonSummary": "Guter Plan! Das Gerüst deiner Abschluss-Website steht.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus: ein vollständiges Gerüst mit Menü, drei Abschnitten und Fußzeile – noch ganz ohne Design.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <header>\n    <h1>Mein Thema</h1>\n    <nav>\n      <a href=\"#ueber\">Über</a>\n      <a href=\"#galerie\">Galerie</a>\n      <a href=\"#kontakt\">Kontakt</a>\n    </nav>\n  </header>\n  <main>\n    <section id=\"ueber\"><h2>Über</h2><p>Worum es geht.</p></section>\n    <section id=\"galerie\"><h2>Galerie</h2><p>Hier kommen Bilder hin.</p></section>\n    <section id=\"kontakt\"><h2>Kontakt</h2><p>So erreichst du mich.</p></section>\n  </main>\n  <footer><p>© 2026</p></footer>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "main section[id]",
+              "min": 3
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Bau das Gerüst deiner Abschluss-Website: header mit h1 und nav, darin mindestens drei Sprung-Links; main mit mindestens drei section-Abschnitten (jeder mit id und h2); ein footer.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <!-- Das Gerüst deiner Website -->\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <header>\n    <h1>Skateboarden</h1>\n    <nav>\n      <a href=\"#start\">Start</a>\n      <a href=\"#tricks\">Tricks</a>\n      <a href=\"#parks\">Parks</a>\n    </nav>\n  </header>\n  <main>\n    <section id=\"start\"><h2>Start</h2><p>Alles übers Skaten.</p></section>\n    <section id=\"tricks\"><h2>Tricks</h2><p>Ollie und Kickflip.</p></section>\n    <section id=\"parks\"><h2>Parks</h2><p>Die besten Skateparks.</p></section>\n  </main>\n  <footer><p>© 2026 Jonas</p></footer>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "header h1",
+              "notEmpty": true,
+              "hint": "Im header fehlt die Überschrift h1."
+            },
+            {
+              "selector": "header nav a[href^=\"#\"]",
+              "min": 3,
+              "hint": "Im nav brauchst du drei Sprung-Links mit href=\"#…\"."
+            },
+            {
+              "selector": "main section[id]:not([id=\"\"]) > h2",
+              "notEmpty": true,
+              "min": 3,
+              "hint": "Im main brauchst du drei section-Abschnitte, jeder mit id und h2."
+            },
+            {
+              "selector": "body > footer",
+              "notEmpty": true,
+              "hint": "Es fehlt ein footer mit Text."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Hover und Übergänge",
+    "file": "lektion-02.md",
+    "lessonSummary": "Lebendig! Deine Seite reagiert jetzt sanft, wenn man mit der Maus darüberfährt.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus und fahr in der Vorschau mit der Maus über den Knopf und die Karte.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .knopf {\n      background-color: steelblue;\n      color: white;\n      border: none;\n      padding: 10px 20px;\n      transition: background-color 0.3s;\n    }\n    .knopf:hover {\n      background-color: navy;\n    }\n    .karte {\n      margin-top: 16px;\n      padding: 16px;\n      border: 2px solid orange;\n      transition: transform 0.3s;\n    }\n    .karte:hover {\n      transform: scale(1.05);\n    }\n  </style>\n</head>\n<body>\n  <button class=\"knopf\">Mitmachen</button>\n  <div class=\"karte\">Fahr über mich!</div>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".knopf",
+              "property": "transition-duration",
+              "value": "0.3s"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Die Links im Menü sollen beim Darüberfahren ihre Farbe ändern (:hover) – und zwar sanft innerhalb von 0.2 Sekunden (transition).",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .menue a {\n      color: darkslateblue;\n    }\n  </style>\n</head>\n<body>\n  <nav class=\"menue\"><a href=\"#\">Start</a> <a href=\"#\">Galerie</a> <a href=\"#\">Kontakt</a></nav>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .menue a {\n      color: darkslateblue;\n      transition: color 0.2s;\n    }\n    .menue a:hover {\n      color: orangered;\n    }\n  </style>\n</head>\n<body>\n  <nav class=\"menue\"><a href=\"#\">Start</a> <a href=\"#\">Galerie</a> <a href=\"#\">Kontakt</a></nav>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "style",
+              "text": ":hover",
+              "hint": "Schreib eine Regel .menue a:hover { color: …; }"
+            },
+            {
+              "selector": ".menue a",
+              "property": "transition-duration",
+              "value": "0.2s",
+              "min": 3,
+              "hint": "Ergänze in .menue a: transition: color 0.2s;"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Ein Knopf mit JavaScript",
+    "file": "lektion-03.md",
+    "lessonSummary": "Interaktiv! Deine Seite reagiert auf Klicks – ein erster Schritt in JavaScript.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus und klick in der Vorschau auf den Knopf: Die Überschrift ändert ihren Text.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1 id=\"gruss\">Hallo!</h1>\n  <button id=\"knopf\">Klick mich</button>\n\n  <script>\n    document.querySelector('#knopf').addEventListener('click', () => {\n      document.querySelector('#gruss').textContent = 'Schön, dass du da bist!';\n    });\n  </script>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "button#knopf"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Bau einen Dunkelmodus: Ein Klick auf den Knopf mit id=\"modus\" schaltet am body die Klasse dunkel an und aus (classList.toggle). Das CSS für body.dunkel ist schon da.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    body.dunkel {\n      background-color: #222;\n      color: white;\n    }\n  </style>\n</head>\n<body>\n  <h1>Meine Seite</h1>\n  <p>Probier den Dunkelmodus aus!</p>\n  <button id=\"modus\">🌙 Dunkelmodus</button>\n\n  <script>\n    // Dein JavaScript\n  </script>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    body.dunkel {\n      background-color: #222;\n      color: white;\n    }\n  </style>\n</head>\n<body>\n  <h1>Meine Seite</h1>\n  <p>Probier den Dunkelmodus aus!</p>\n  <button id=\"modus\">🌙 Dunkelmodus</button>\n\n  <script>\n    document.querySelector('#modus').addEventListener('click', () => {\n      document.body.classList.toggle('dunkel');\n    });\n  </script>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "body script",
+              "text": "addEventListener('click'",
+              "hint": "Reagiere auf den Klick: document.querySelector('#modus').addEventListener('click', () => { … });"
+            },
+            {
+              "selector": "body script",
+              "text": "classList.toggle('dunkel')",
+              "hint": "Schalte im Klick die Klasse um: document.body.classList.toggle('dunkel');"
+            },
+            {
+              "selector": "button#modus",
+              "hint": "Der Knopf braucht weiter id=\"modus\"."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Feinschliff",
+    "file": "lektion-04.md",
+    "lessonSummary": "Professionell! Deine Seite ist jetzt bereit für Suchmaschinen, Handys und alle Besucher.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus. Sichtbar ändert sich nichts – Titel, Beschreibung und viewport stehen im head für Browser und Suchmaschinen.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"description\" content=\"Alles übers Skaten: Tricks, Parks und Ausrüstung.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Skateboarden – Tricks und Parks</title>\n</head>\n<body>\n  <h1>Skateboarden</h1>\n  <p>Tricks, Parks und Ausrüstung.</p>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "meta[name=\"description\"]"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Ergänze im head eine Beschreibung für Suchmaschinen (meta name=\"description\" mit content) und das viewport-meta-Tag. Gib der Seite außerdem einen aussagekräftigen title.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title></title>\n</head>\n<body>\n  <h1>Fahrrad-Werkstatt</h1>\n  <p>Jeden Freitag reparieren wir Fahrräder.</p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"description\" content=\"Jeden Freitag reparieren wir gemeinsam Fahrräder.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Fahrrad-Werkstatt im Jugendzentrum</title>\n</head>\n<body>\n  <h1>Fahrrad-Werkstatt</h1>\n  <p>Jeden Freitag reparieren wir Fahrräder.</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "head meta[name=\"description\"][content]:not([content=\"\"])",
+              "hint": "Ergänze im head <meta name=\"description\" content=\"…\">."
+            },
+            {
+              "selector": "head meta[name=\"viewport\"]",
+              "hint": "Ergänze im head das viewport-meta-Tag."
+            },
+            {
+              "selector": "head title",
+              "notEmpty": true,
+              "hint": "Schreib einen Text in den title."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Fehlersuche: Feinschliff",
+    "file": "debug-01.md",
+    "lessonSummary": "Alles rund! Auch die letzten Kleinigkeiten hast du gefunden.",
+    "tasks": [
+      {
+        "instruction": "Beim Darüberfahren wird die Karte sanft größer, beim Wegfahren springt sie aber zurück. Setz die transition an die richtige Stelle.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .karte {\n      padding: 16px;\n      border: 2px solid teal;\n    }\n    .karte:hover {\n      transform: scale(1.05);\n      transition: transform 0.3s;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"karte\">Fahr über mich!</div>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .karte {\n      padding: 16px;\n      border: 2px solid teal;\n      transition: transform 0.3s;\n    }\n    .karte:hover {\n      transform: scale(1.05);\n    }\n  </style>\n</head>\n<body>\n  <div class=\"karte\">Fahr über mich!</div>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".karte",
+              "property": "transition-duration",
+              "value": "0.3s",
+              "hint": "Die transition gehört in die Regel für .karte selbst, nicht in .karte:hover."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Der Link „Galerie“ springt nicht. Bring Link und Ziel zusammen, ohne den Link zu ändern.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <nav><a href=\"#galerie\">Galerie</a></nav>\n  <p style=\"height: 500px\">Ganz viel Text …</p>\n  <section id=\"Galerie\"><h2>Galerie</h2></section>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <nav><a href=\"#galerie\">Galerie</a></nav>\n  <p style=\"height: 500px\">Ganz viel Text …</p>\n  <section id=\"galerie\"><h2>Galerie</h2></section>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "section[id=\"galerie\"]",
+              "hint": "Die id beginnt mit großem G, der Link mit kleinem – schreib die id klein: id=\"galerie\"."
+            },
+            {
+              "selector": "nav a[href=\"#galerie\"]",
+              "hint": "Der Link soll href=\"#galerie\" behalten."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Der Dunkelmodus-Knopf schaltet eine Klasse um, aber nichts wird dunkel. Bring CSS und JavaScript zusammen: Die Klasse soll dunkel heißen.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    body.dark {\n      background-color: black;\n      color: white;\n    }\n  </style>\n</head>\n<body>\n  <h1>Nachtmodus</h1>\n  <button id=\"modus\">🌙</button>\n  <script>\n    document.querySelector('#modus').addEventListener('click', () => {\n      document.body.classList.toggle('dunkel');\n    });\n  </script>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    body.dunkel {\n      background-color: black;\n      color: white;\n    }\n  </style>\n</head>\n<body>\n  <h1>Nachtmodus</h1>\n  <button id=\"modus\">🌙</button>\n  <script>\n    document.querySelector('#modus').addEventListener('click', () => {\n      document.body.classList.toggle('dunkel');\n    });\n  </script>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "style",
+              "text": "body.dunkel",
+              "hint": "Im CSS heißt die Klasse dark, das JavaScript schaltet dunkel um – benenne die CSS-Regel in body.dunkel um."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission: Deine Website",
+    "file": "mission-01.md",
+    "lessonSummary": "Geschafft! Du hast eine vollständige Website gebaut – von der ersten Zeile bis zum Feinschliff. Herzlichen Glückwunsch!",
+    "tasks": [
+      {
+        "instruction": "Baue deine vollständige Website mit allem aus der Liste oben.",
+        "codeTemplate": "<!-- Deine Website, ab <!DOCTYPE html> -->\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"description\" content=\"Alles übers Skaten.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Skateboarden – Tricks und Parks</title>\n  <style>\n    nav {\n      display: flex;\n      gap: 12px;\n    }\n    nav a:hover {\n      color: orangered;\n    }\n    .galerie {\n      display: grid;\n      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));\n      gap: 8px;\n    }\n    .galerie img {\n      max-width: 100%;\n    }\n    body.dunkel {\n      background-color: #222;\n      color: white;\n    }\n    @media (max-width: 600px) {\n      nav {\n        flex-direction: column;\n      }\n    }\n  </style>\n</head>\n<body>\n  <header>\n    <h1>Skateboarden</h1>\n    <nav>\n      <a href=\"#start\">Start</a>\n      <a href=\"#galerie\">Galerie</a>\n      <a href=\"#kontakt\">Kontakt</a>\n    </nav>\n    <button id=\"modus\">🌙</button>\n  </header>\n  <main>\n    <section id=\"start\">\n      <h2>Start</h2>\n      <p>Alles übers Skaten.</p>\n    </section>\n    <section id=\"galerie\">\n      <h2>Galerie</h2>\n      <div class=\"galerie\">\n        <img src=\"/web-bilder/stern.svg\" alt=\"Ein Stern für den besten Trick\">\n        <img src=\"/web-bilder/baum.svg\" alt=\"Der Skatepark im Grünen\">\n        <img src=\"/web-bilder/rakete.svg\" alt=\"Ein Sprung wie eine Rakete\">\n      </div>\n    </section>\n    <section id=\"kontakt\">\n      <h2>Kontakt</h2>\n      <form>\n        <label for=\"mail\">E-Mail</label>\n        <input type=\"email\" id=\"mail\" name=\"mail\">\n        <button type=\"submit\">Senden</button>\n      </form>\n    </section>\n  </main>\n  <footer><p>© 2026 Jonas</p></footer>\n  <script>\n    document.querySelector('#modus').addEventListener('click', () => {\n      document.body.classList.toggle('dunkel');\n    });\n  </script>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "html[lang=\"de\"]",
+              "hint": "Das html-Element braucht lang=\"de\"."
+            },
+            {
+              "selector": "head title",
+              "notEmpty": true,
+              "hint": "Im head fehlt ein title."
+            },
+            {
+              "selector": "head meta[name=\"description\"][content]:not([content=\"\"])",
+              "hint": "Im head fehlt <meta name=\"description\" content=\"…\">."
+            },
+            {
+              "selector": "head meta[name=\"viewport\"]",
+              "hint": "Im head fehlt das viewport-meta-Tag."
+            },
+            {
+              "selector": "header h1",
+              "notEmpty": true,
+              "hint": "Im header fehlt die h1."
+            },
+            {
+              "selector": "header nav a[href^=\"#\"]",
+              "min": 3,
+              "hint": "Im nav brauchst du drei Sprung-Links."
+            },
+            {
+              "selector": "main section[id]:not([id=\"\"])",
+              "min": 3,
+              "hint": "Im main brauchst du drei section-Abschnitte mit id."
+            },
+            {
+              "selector": ".galerie img[alt]:not([alt=\"\"])",
+              "min": 3,
+              "hint": "Die Galerie (class=\"galerie\") braucht drei Bilder mit alt-Text."
+            },
+            {
+              "selector": "table, form",
+              "hint": "Es fehlt eine Tabelle oder ein Formular."
+            },
+            {
+              "selector": "body > footer",
+              "hint": "Es fehlt ein footer."
+            },
+            {
+              "selector": "nav",
+              "property": "display",
+              "value": "flex",
+              "hint": "Das Menü braucht display: flex;"
+            },
+            {
+              "selector": ".galerie",
+              "property": "display",
+              "value": "grid",
+              "hint": "Die Galerie braucht display: grid;"
+            },
+            {
+              "selector": "style",
+              "text": ":hover",
+              "hint": "Es fehlt ein :hover-Effekt."
+            },
+            {
+              "selector": "style",
+              "text": "@media (",
+              "hint": "Es fehlt eine Media Query, z. B. @media (max-width: 600px) { … }."
+            },
+            {
+              "selector": "body script",
+              "text": "addEventListener",
+              "hint": "Es fehlt ein Knopf, der per JavaScript (addEventListener) etwas tut."
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
