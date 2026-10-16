@@ -50,6 +50,12 @@ export function adminLogin(password) {
   return request('/api/admin/login', { method: 'POST', body: { password }, token: '' });
 }
 
+// Nur im Dev-Modus (AdminView.vue, DEV_SKIP_CHECKS); die Route gibt es nur mit
+// DEV_SKIP_ADMIN_LOGIN=1 auf dem Server (api/src/devAdminLogin.js).
+export function adminDevLogin() {
+  return request('/api/admin/dev-login', { method: 'POST', token: '' });
+}
+
 export function listUsers() {
   return request('/api/admin/users');
 }

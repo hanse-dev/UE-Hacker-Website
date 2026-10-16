@@ -247,10 +247,12 @@ import { ref, onMounted } from 'vue';
 import { useLanguage } from '../composables/useLanguage.js';
 import { assetUrl } from '../utils/assetUrl';
 import BetaBadge from '../components/BetaBadge.vue';
+import { DEV_SKIP_CHECKS } from '../composables/devSkipChecks.js';
 import {
   adminToken as token,
   setAdminToken,
   adminLogin,
+  adminDevLogin,
   listUsers,
   createUser,
   updateUser,
@@ -521,7 +523,20 @@ export default {
       }
     };
 
+    // Dev-Modus (npm run start:all:skip-checks): ohne Passwort anmelden. Laeuft die API ohne
+    // DEV_SKIP_ADMIN_LOGIN=1, schlaegt das fehl und es bleibt beim normalen Login-Formular.
+    const devLogin = async () => {
+      if (!DEV_SKIP_CHECKS || token.value) return;
+      try {
+        const data = await adminDevLogin();
+        setAdminToken(data.token);
+      } catch {
+        /* normales Login-Formular */
+      }
+    };
+
     onMounted(async () => {
+      await devLogin();
       await Promise.all([refresh(), refreshTermine(), loadKurse()]);
     });
 

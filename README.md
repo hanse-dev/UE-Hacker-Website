@@ -78,6 +78,7 @@ docker compose up --build dev
 | `npm run start:prod` | Build + ein Server (:8080) |
 | `npm run api` / `api:dev` | nur API |
 | `npm run dev:skip-checks` | Dev-Server im Modus „Prüfungen überspringen“ (siehe unten) |
+| `npm run start:all:skip-checks` | wie `start:all`, dazu „Prüfungen überspringen“ und Admin-Login ohne Passwort |
 | `npm run test:checks` | volle Playwright-Suite (läuft automatisch vor jedem `git push`) |
 | `npm run test:changed` | nur die Tests zu geänderten Dateien (läuft automatisch vor jedem Commit) |
 | `npm run test:devskip` | prüft den Modus „Prüfungen überspringen“ (läuft vor jedem `git push`) |
@@ -87,6 +88,7 @@ docker compose up --build dev
 
 ```bash
 npm run dev:skip-checks       # wie `npm run dev`, Vite auf :5173
+npm run start:all:skip-checks # zusätzlich API mit Admin-Login ohne Passwort
 ```
 
 Zum Durchgehen eines Kurses beim Entwickeln oder Review, ohne jede Aufgabe lösen zu müssen. In
@@ -96,11 +98,16 @@ Kurse):
 - **„Prüfen“** besteht sofort – der Code wird gar nicht erst ausgeführt, kein Warten auf den
   Python-Kernel.
 - **Wochen-Check:** jede Quiz-Antwort zählt als richtig, die Coding-Aufgaben bestehen ebenfalls.
-- **Alle Lektionen** sind von Anfang an freigeschaltet.
+- **Alle Lektionen** und der **Abschluss-Check** sind von Anfang an freigeschaltet.
+- Nur mit `start:all:skip-checks`: **`/admin`** meldet ohne Passwort an.
 - Ein gelbes **Banner** oben auf jeder Seite zeigt, dass der Modus aktiv ist.
 
 Der Modus wirkt nur im Vite-Dev-Server. Im Produktions-Build (`npm run build`, Docker) ist er
 abgeschaltet, auch wenn `VITE_DEV_SKIP_CHECKS=1` gesetzt ist – das prüft `npm run test:devskip`.
+Der Admin-Login ohne Passwort hängt an `DEV_SKIP_ADMIN_LOGIN=1`, das nur dieses Skript setzt – nie
+in `.env` eintragen. Steht der Schalter zusammen mit `NODE_ENV=production` an (setzt das
+Docker-Image), startet der Server gar nicht; die Route antwortet außerdem nur auf localhost.
+Technik: `api/src/devAdminLogin.js`.
 Fortschritt, der in diesem Modus entsteht, landet wie sonst im Browser-Speicher; zum normalen
 Testen danach den Fortschritt im Kurs zurücksetzen oder ein privates Fenster nutzen.
 

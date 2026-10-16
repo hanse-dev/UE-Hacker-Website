@@ -5,6 +5,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { checkAdminPassword, createAdminToken } from './auth.js';
+import { assertDevSkipAdminLoginAllowed, registerDevAdminLogin } from './devAdminLogin.js';
 import adminUsersRouter from './routes/adminUsers.js';
 import adminTermineRouter from './routes/adminTermine.js';
 import authRouter from './routes/auth.js';
@@ -14,6 +15,13 @@ import './db.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: path.join(__dirname, '..', '..', '.env') });
 dotenv.config({ path: path.join(__dirname, '..', '.env') });
+
+try {
+  assertDevSkipAdminLoginAllowed();
+} catch (e) {
+  console.error(`✖  ${e.message}`);
+  process.exit(1);
+}
 
 const app = express();
 const PORT = Number(process.env.API_PORT || process.env.PORT || 3001);
@@ -43,6 +51,8 @@ app.post('/api/admin/login', (req, res) => {
   }
 });
 
+const devAdminLogin = registerDevAdminLogin(app);
+
 app.use('/api/admin', adminUsersRouter);
 app.use('/api/admin', adminTermineRouter);
 app.use('/api', authRouter);
@@ -67,6 +77,9 @@ app.listen(PORT, () => {
     console.log(`  static: ${staticDir}`);
   } else {
     console.log(`  static: (none — set STATIC_DIR or run npm run build)`);
+  }
+  if (devAdminLogin) {
+    console.warn('⚠  DEV_SKIP_ADMIN_LOGIN=1 — Admin-Login ohne Passwort über /api/admin/dev-login (nur Entwicklung!).');
   }
   if (!process.env.ADMIN_PASSWORD) {
     console.warn('⚠  ADMIN_PASSWORD is not set — admin login will fail until configured.');

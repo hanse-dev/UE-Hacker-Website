@@ -38,7 +38,7 @@ Alles unten ist nach `main` gemergt. Details: `grep -n "^### 3.NN" docs/archiv/H
 | 3.66–3.70, 3.72–3.77, 3.96 | KI-Labor + Zertifikate im Profil | Checks per `courseKey`, `useCourseCertificates.js`, `referenceSolution` (geprüft von `check_kilabor_solutions.py`), Start-Gate auf der Kursseite |
 | 3.78–3.81, 3.85, 3.91, 3.94 | Prüf-Logik und Lektions-UI | `validateOutput()` (tolerant/exakt), Struktur-Checks nur im Wochen-Check, Überspringen nach 2 Fehlversuchen, Zurücksetzen, `minSolved`, Glossar-Regex |
 | 3.82, 3.99, 3.102 | Accounts und Fortschritt | Login ersetzt lokalen Stand, Fortschritts-Vertrag (`contract:update`), Passwort ändern/Einmal-Passwort |
-| 3.83, 3.87, 3.89/3.97, 3.98 | Tooling | `test-changed.mjs`, Worktrees, Dev-Modus `dev:skip-checks`, cspell + `lint:spelling:de` |
+| 3.83, 3.87, 3.89/3.97, 3.98, 3.118 | Tooling | `test-changed.mjs`, Worktrees, Dev-Modus `dev:skip-checks` (+ Admin ohne Passwort: `start:all:skip-checks`), cspell + `lint:spelling:de` |
 | 3.63–3.65, 3.84, 3.112 | Admin und Betrieb | Thermodrucker (`scripts/local-tools/`), Termine im Admin, Beta-Kennzeichen + Admin-Reiter „Kurse“ |
 | 3.86/3.93, 3.95 | Kursseite und Downloads | Start-Gate `?started=1`, Offline-Downloads in 3 Formaten |
 | 3.88/3.90, 3.92, 3.103/3.104, 3.106/3.107 | JS-Kurse und Sandbox | DOM-Projekte Memory/Quiz (`sandboxMode: "dom"`), eine Arbeitsfläche pro Lektion |

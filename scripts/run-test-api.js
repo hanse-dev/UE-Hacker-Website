@@ -4,7 +4,8 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataDir = path.join(__dirname, '..', 'api', 'data');
-const dbPath = path.join(dataDir, 'test-e2e.sqlite');
+// TEST_DB_NAME: eigene Datei je Suite, damit test:auth und test:devskip parallel laufen koennen.
+const dbPath = path.join(dataDir, process.env.TEST_DB_NAME || 'test-e2e.sqlite');
 
 fs.mkdirSync(dataDir, { recursive: true });
 for (const suffix of ['', '-shm', '-wal']) {
