@@ -154,6 +154,22 @@ test.describe('Meine erste Website: Meine Seite und gespeicherter Code', () => {
   });
 });
 
+test.describe('Meine erste Website: Lektionswechsel', () => {
+  test('Schneller Lektionswechsel: eine spät ankommende alte Lektion überschreibt die neue nicht', async ({ page }) => {
+    // Der Text von Lektion 1 kommt absichtlich verzögert - inzwischen ist Lektion 3 gewählt.
+    await page.route(/web-erste-website\/lektion-01\.md/, async (route) => {
+      await new Promise((r) => setTimeout(r, 1500));
+      await route.continue();
+    });
+    await completeLessons(page, lessons.map((l) => l.id));
+    await page.goto(`${COURSE_URL}?stufe=einfach&started=1`);
+    await page.locator('.lesson-item').nth(2).click();
+    await expect(page.locator('.lesson-content h1')).toHaveText(lessons[2].title, { timeout: 10000 });
+    await page.waitForTimeout(2500);
+    await expect(page.locator('.lesson-content h1')).toHaveText(lessons[2].title);
+  });
+});
+
 test.describe('Meine erste Website: Kurs und Abschluss-Check', () => {
   test('Startseite zeigt den Kurs als Einstieg, die Projekte-Uebersicht nicht', async ({ page }) => {
     await page.goto('/');

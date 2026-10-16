@@ -100,7 +100,7 @@ const RULES = [
   ['src/composables/useCertificatePdf.js', ['tests/web-erste-website.spec.js', 'tests/zertifikate.spec.js']],
   ['src/composables/useZertifikate.js', ['tests/zertifikate.spec.js', 'tests/week-checks.spec.js']],
   ['src/composables/useCourseData.js', ['tests/site.spec.js', 'tests/projekte.spec.js']],
-  ['src/composables/useLessonContent.js', ['tests/python-woche1-lektionen.spec.js', 'tests/python-lektionen-format.spec.js', 'tests/js-grundkurs.spec.js', 'tests/js-spielewerkstatt.spec.js', 'tests/projekte.spec.js', 'tests/begriffe.spec.js']],
+  ['src/composables/useLessonContent.js', ['tests/web-erste-website.spec.js', 'tests/python-woche1-lektionen.spec.js', 'tests/python-lektionen-format.spec.js', 'tests/js-grundkurs.spec.js', 'tests/js-spielewerkstatt.spec.js', 'tests/projekte.spec.js', 'tests/begriffe.spec.js']],
   ['src/composables/useProjectBadges.js', ['tests/projekte.spec.js']],
   ['src/composables/useFortschritt.js', ['tests/zertifikate.spec.js']],
   ['src/composables/useInteractiveProgress.js', ['tests/site.spec.js']],

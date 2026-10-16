@@ -83,6 +83,7 @@ Punkte-System, Zertifikate), wird hier nicht wiederholt.
 
 **Vue / CSS / Tests**
 - `@import` in `<style scoped>` → eigener unscoped Block; Watcher, die nach dem Rendern scrollen: `flush: 'post'`.
+- Asynchrones Nachladen je Auswahl (Lektionstext) braucht einen Anfrage-Zähler: Eine spät ankommende alte Antwort darf die neue nicht überschreiben (`useLessonContent.js`, unter Last im vollen Lauf aufgefallen).
 - `v-if`-Zweigwechsel mountet neu → State im Parent halten; geteilter Zustand (Admin-Token) als geteilter `ref` im Composable.
 - Composable für einen Kurs verallgemeinern: Parameter mit Default = altes Verhalten, und die komplette Suite des Erstnutzers laufen lassen (3.67, so auch `WeeklyCourseTour.vue` aus der KI-Labor-Tour).
 - Bildschirm hinter einen Klick legen (Start-Gate, Stufenwahl): repo-weit nach `page.goto(...)` suchen, die jetzt den Klick brauchen; Kind-Selektoren wie `.course-detail > h1` brechen bei neuen Wrappern (3.69).

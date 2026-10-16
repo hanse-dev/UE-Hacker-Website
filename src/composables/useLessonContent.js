@@ -82,8 +82,13 @@ export function useLessonContent(isMounted, { conceptOptions = () => null } = {}
     return result;
   };
 
+  // Wechselt man schnell die Lektion, kann die Antwort der vorherigen Lektion spaeter ankommen als
+  // die der neuen - nur die zuletzt angeforderte darf den Text setzen.
+  let latestRequest = 0;
+
   const loadContent = async (lesson, contentPath) => {
     if (!lesson?.file || !contentPath) return;
+    const request = ++latestRequest;
     const key = `../../content/${contentPath}/${lesson.file}`;
     const loader = allLessonModules[key];
     if (!loader) {
@@ -93,7 +98,7 @@ export function useLessonContent(isMounted, { conceptOptions = () => null } = {}
     try {
       if (Object.keys(glossary).length === 0) await loadGlossary(contentPath);
       const text = await loader();
-      if (!isMounted.value) return;
+      if (!isMounted.value || request !== latestRequest) return;
       let html = marked(text ?? '');
       html = applyGlossaryTooltips(html);
       const opts = conceptOptions();
@@ -106,7 +111,7 @@ export function useLessonContent(isMounted, { conceptOptions = () => null } = {}
       }
       lessonContent.value = html;
     } catch (e) {
-      if (!isMounted.value) return;
+      if (!isMounted.value || request !== latestRequest) return;
       console.error('Could not load lesson content:', e);
       lessonContent.value = '<p>Lektion konnte nicht geladen werden.</p>';
     }
