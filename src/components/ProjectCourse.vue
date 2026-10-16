@@ -133,6 +133,7 @@ import FinalCertificate from './FinalCertificate.vue';
 import { useRoute } from 'vue-router';
 import { useWeekChecks } from '../composables/useWeekChecks';
 import { useInteractiveProgress } from '../composables/useInteractiveProgress';
+import { DEV_SKIP_CHECKS } from '../composables/devSkipChecks.js';
 import { useLanguage } from '../composables/useLanguage';
 
 const lessonJsonModules = import.meta.glob('../../content/*/lessons.json');
@@ -234,8 +235,9 @@ export default {
       sidebarOpen.value = false;
     };
 
+    // Dev-Modus (devSkipChecks.js): wie die Lektionen ist auch der Abschluss-Check sofort offen.
     const finalCheckUnlocked = computed(() =>
-      lessons.value.length > 0 && lessons.value.every((l) => isCompleted(l.id))
+      lessons.value.length > 0 && (DEV_SKIP_CHECKS || lessons.value.every((l) => isCompleted(l.id)))
     );
     const finalCheckPassed = computed(() =>
       !!checkState && checkState.isWeekCheckPassed(1)

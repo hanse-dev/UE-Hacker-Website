@@ -39,6 +39,16 @@ test.describe('Dev-Modus "Prüfungen überspringen" (npm run dev:skip-checks)', 
     await expect(page.locator('.lesson-item.active')).toContainText('Der komplette Übersetzer');
   });
 
+  test('Abschluss-Check eines Einstiegskurses ist ohne Vorarbeit offen', async ({ page }) => {
+    await page.goto('/kurs/web-erste-website?stufe=einfach');
+    await page.locator('.btn-start-course').click();
+    const finalCheck = page.locator('.lessons-list .final-check-item');
+    await expect(finalCheck).toBeVisible({ timeout: 15000 });
+    await expect(finalCheck).not.toHaveClass(/locked/);
+    await finalCheck.click();
+    await expect(page.locator('.week-check-panel')).toBeVisible({ timeout: 15000 });
+  });
+
   test('Wochen-Check: beliebige Quiz-Antworten und unveränderter Coding-Code bestehen', async ({ page }) => {
     test.setTimeout(60000);
     await page.goto('/kurs/ki-labor?week=1');
