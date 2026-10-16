@@ -4,7 +4,7 @@ import { createAdminToken } from './auth.js';
  * Dev-Modus "Admin-Login überspringen" - Gegenstück zu src/composables/devSkipChecks.js.
  *
  * Aktiv nur mit DEV_SKIP_ADMIN_LOGIN=1, gesetzt ausschließlich vom Skript
- * `npm run start:all:skip-checks` (nie in .env eintragen). Sicherungen:
+ * `npm run dev:skip-checks` (nie in .env eintragen). Sicherungen:
  * - Zusammen mit NODE_ENV=production (setzt das Docker-Image) startet der Server gar nicht -
  *   ein versehentlich gesetzter Schalter fällt so beim Deploy auf, statt den Admin-Bereich zu öffnen.
  * - Die Route /api/admin/dev-login gibt es nur, wenn der Schalter aktiv ist, und sie antwortet nur

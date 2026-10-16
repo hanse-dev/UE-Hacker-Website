@@ -5,7 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { devSkipPorts } from '../playwright.devskip.config.js';
 
-// Dev-Modus "Admin-Login überspringen" (api/src/devAdminLogin.js, npm run start:all:skip-checks).
+// Dev-Modus "Admin-Login überspringen" (api/src/devAdminLogin.js, npm run dev:skip-checks).
 // Laeuft in der Dev-Modus-Suite (playwright.devskip.config.js): der Dev-Server zeigt dort auf eine
 // Wegwerf-API mit DEV_SKIP_ADMIN_LOGIN=1. Dass die Route ohne Schalter fehlt, prueft
 // tests/api-auth.spec.js (dortige API laeuft ohne Schalter).

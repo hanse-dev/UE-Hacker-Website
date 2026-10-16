@@ -2855,7 +2855,9 @@ Frage des Nutzers: Warum gibt es noch Turtle-Tests, obwohl Turtle nirgends behan
 
 ### 3.118 — Dev-Modus: Admin-Login ohne Passwort (Branch `dev-admin-login`)
 
-- `npm run start:all:skip-checks` startet API (`DEV_SKIP_ADMIN_LOGIN=1`) und Vite (`dev:skip-checks`);
+- `npm run dev:skip-checks` startet jetzt wie `start:all` API (`DEV_SKIP_ADMIN_LOGIN=1`) und Vite (erst
+  gab es dafür ein eigenes `start:all:skip-checks` – wer gewohnt `dev:skip-checks` startete, hatte
+  keine API, `/admin` lief auf ECONNREFUSED);
   `AdminView.vue` holt sich dann über `POST /api/admin/dev-login` einen normalen Admin-Token.
 - Sicherungen (`api/src/devAdminLogin.js`): Schalter nur im Skript, nie in `.env`; mit
   `NODE_ENV=production` (Docker-Image) bricht der Server-Start ab, statt den Schalter still zu

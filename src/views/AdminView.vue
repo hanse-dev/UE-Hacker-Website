@@ -523,7 +523,7 @@ export default {
       }
     };
 
-    // Dev-Modus (npm run start:all:skip-checks): ohne Passwort anmelden. Laeuft die API ohne
+    // Dev-Modus (npm run dev:skip-checks): ohne Passwort anmelden. Laeuft die API ohne
     // DEV_SKIP_ADMIN_LOGIN=1, schlaegt das fehl und es bleibt beim normalen Login-Formular.
     const devLogin = async () => {
       if (!DEV_SKIP_CHECKS || token.value) return;
