@@ -1,0 +1,204 @@
+{
+  "title": "Bilder, Links und Tabellen",
+  "questions": [
+    {
+      "id": "webg3-1",
+      "type": "multiple_choice",
+      "question": "Welcher Alternativtext ist am hilfreichsten?",
+      "options": [
+        "alt=\"Unsere Band auf der Bühne beim Stadtfest\"",
+        "alt=\"Bild\"",
+        "alt=\"foto1.jpg\""
+      ],
+      "correctIndex": 0,
+      "explanation": "Ein guter alt-Text beschreibt, was auf dem Bild wichtig ist.",
+      "optionExplanations": [
+        null,
+        "„Bild“ sagt nichts über den Inhalt.",
+        "Ein Dateiname hilft niemandem, der das Bild nicht sieht."
+      ]
+    },
+    {
+      "id": "webg3-2",
+      "type": "multiple_choice",
+      "question": "Wann setzt du alt=\"\" (leer)?",
+      "options": [
+        "Wenn das Bild reine Dekoration ist",
+        "Wenn dir kein Text einfällt",
+        "Nie, alt muss immer Text enthalten"
+      ],
+      "correctIndex": 0,
+      "explanation": "Leeres alt sagt Vorleseprogrammen: überspringen.",
+      "optionExplanations": [
+        null,
+        "Dann lieber kurz beschreiben, was zu sehen ist.",
+        "Bei reiner Dekoration ist ein leeres alt genau richtig."
+      ]
+    },
+    {
+      "id": "webg3-3",
+      "type": "multiple_choice",
+      "question": "Welches Element hält ein Bild und seine Bildunterschrift zusammen?",
+      "options": [
+        "figure",
+        "caption",
+        "section"
+      ],
+      "correctIndex": 0,
+      "explanation": "figure mit figcaption.",
+      "optionExplanations": [
+        null,
+        "caption ist die Überschrift einer Tabelle.",
+        "section ist ein Abschnitt zu einem Thema."
+      ]
+    },
+    {
+      "id": "webg3-4",
+      "type": "multiple_choice",
+      "question": "Welcher Link springt zum Element mit id=\"kontakt\"?",
+      "options": [
+        "<a href=\"#kontakt\">",
+        "<a href=\"kontakt\">",
+        "<a id=\"kontakt\">"
+      ],
+      "correctIndex": 0,
+      "explanation": "Sprung-Links zeigen mit einer Raute auf die id.",
+      "optionExplanations": [
+        null,
+        "Ohne Raute sucht der Browser eine andere Datei statt einer Stelle auf der Seite.",
+        "Damit bekommt der Link selbst die id, er springt aber nirgendwohin."
+      ]
+    },
+    {
+      "id": "webg3-5",
+      "type": "multiple_choice",
+      "question": "Was macht ein Link mit href=\"mailto:info@example.org\"?",
+      "options": [
+        "Er öffnet eine neue E-Mail an diese Adresse",
+        "Er schickt sofort eine E-Mail ab",
+        "Er lädt eine Seite namens info"
+      ],
+      "correctIndex": 0,
+      "explanation": "mailto öffnet das E-Mail-Programm mit der Adresse.",
+      "optionExplanations": [
+        null,
+        "Abgeschickt wird nichts – man schreibt die E-Mail selbst.",
+        "mailto ist keine Webseiten-Adresse."
+      ]
+    },
+    {
+      "id": "webg3-6",
+      "type": "multiple_choice",
+      "question": "Welches Element ist eine Zeile in einer Tabelle?",
+      "options": [
+        "tr",
+        "td",
+        "th"
+      ],
+      "correctIndex": 0,
+      "explanation": "tr steht für table row.",
+      "optionExplanations": [
+        null,
+        "td ist eine einzelne Datenzelle.",
+        "th ist eine Kopfzelle."
+      ]
+    },
+    {
+      "id": "webg3-7",
+      "type": "multiple_choice",
+      "question": "Wofür nimmst du th statt td?",
+      "options": [
+        "Für Kopfzellen, die eine Spalte oder Zeile beschriften",
+        "Für besonders große Zahlen",
+        "Für die letzte Zeile einer Tabelle"
+      ],
+      "correctIndex": 0,
+      "explanation": "th beschriftet, td enthält Daten.",
+      "optionExplanations": [
+        null,
+        "Die Größe des Inhalts spielt keine Rolle.",
+        "Die letzte Zeile enthält normalerweise auch Daten, also td."
+      ]
+    },
+    {
+      "id": "webg3-8",
+      "type": "multiple_choice",
+      "question": "Wofür sind Tabellen in HTML gedacht?",
+      "options": [
+        "Für Daten in Zeilen und Spalten",
+        "Um eine Seite in Spalten zu gestalten",
+        "Um Bilder zu vergrößern"
+      ],
+      "correctIndex": 0,
+      "explanation": "Für Layouts gibt es Flexbox und Grid.",
+      "optionExplanations": [
+        null,
+        "Layout mit Tabellen war früher üblich – heute nimmt man dafür CSS.",
+        "Mit Bildgrößen haben Tabellen nichts zu tun."
+      ]
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Baue eine Seite mit einem Menü aus zwei Sprung-Links zu den Abschnitten mit id=\"bilder\" und id=\"tabelle\". Im ersten Abschnitt steht ein Bild in figure mit figcaption und alt-Text, im zweiten eine Tabelle mit Kopfzeile und zwei Datenzeilen.",
+      "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <nav>\n    <!-- Sprung-Links -->\n  </nav>\n  <section id=\"bilder\">\n    <h2>Bilder</h2>\n  </section>\n  <section id=\"tabelle\">\n    <h2>Tabelle</h2>\n  </section>\n</body>\n</html>\n",
+      "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <nav>\n    <a href=\"#bilder\">Bilder</a>\n    <a href=\"#tabelle\">Tabelle</a>\n  </nav>\n  <section id=\"bilder\">\n    <h2>Bilder</h2>\n    <figure>\n      <img src=\"/web-bilder/fisch.svg\" alt=\"Ein bunter Fisch\" width=\"100\">\n      <figcaption>Unser Aquarium</figcaption>\n    </figure>\n  </section>\n  <section id=\"tabelle\">\n    <h2>Tabelle</h2>\n    <table>\n      <thead><tr><th>Fisch</th><th>Anzahl</th></tr></thead>\n      <tbody>\n        <tr><td>Guppy</td><td>5</td></tr>\n        <tr><td>Neon</td><td>8</td></tr>\n      </tbody>\n    </table>\n  </section>\n</body>\n</html>",
+      "validation": {
+        "type": "web",
+        "checks": [
+          {
+            "selector": "nav a[href=\"#bilder\"]",
+            "hint": "Es fehlt ein Link <a href=\"#bilder\">."
+          },
+          {
+            "selector": "nav a[href=\"#tabelle\"]",
+            "hint": "Es fehlt ein Link <a href=\"#tabelle\">."
+          },
+          {
+            "selector": "#bilder figure img[alt]:not([alt=\"\"])",
+            "hint": "Im Abschnitt mit den Bildern fehlt ein Bild mit alt-Text in einem figure."
+          },
+          {
+            "selector": "#bilder figcaption",
+            "notEmpty": true,
+            "hint": "Das figure braucht eine figcaption."
+          },
+          {
+            "selector": "#tabelle table th",
+            "min": 2,
+            "hint": "Die Tabelle braucht eine Kopfzeile mit th."
+          },
+          {
+            "selector": "#tabelle table tbody tr",
+            "min": 2,
+            "hint": "Die Tabelle braucht zwei Datenzeilen."
+          }
+        ]
+      }
+    },
+    {
+      "instruction": "Repariere die Seite: Der Link soll zum Absatz mit id=\"ende\" springen, das Bild braucht einen Alternativtext, und im tbody dürfen keine Kopfzellen stehen.",
+      "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <a href=\"ende\">Zum Ende</a>\n  <img src=\"/web-bilder/blume.svg\" width=\"100\">\n  <table>\n    <thead><tr><th>Blume</th><th>Farbe</th></tr></thead>\n    <tbody><tr><th>Rose</th><th>rot</th></tr></tbody>\n  </table>\n  <p id=\"ende\">Ende</p>\n</body>\n</html>\n",
+      "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <a href=\"#ende\">Zum Ende</a>\n  <img src=\"/web-bilder/blume.svg\" alt=\"Eine Sonnenblume\" width=\"100\">\n  <table>\n    <thead><tr><th>Blume</th><th>Farbe</th></tr></thead>\n    <tbody><tr><td>Rose</td><td>rot</td></tr></tbody>\n  </table>\n  <p id=\"ende\">Ende</p>\n</body>\n</html>",
+      "validation": {
+        "type": "web",
+        "checks": [
+          {
+            "selector": "a[href=\"#ende\"]",
+            "hint": "Vor dem Sprungziel fehlt die Raute: href=\"#ende\"."
+          },
+          {
+            "selector": "img[alt]:not([alt=\"\"])",
+            "hint": "Das Bild braucht einen alt-Text."
+          },
+          {
+            "selector": "tbody th",
+            "min": 0,
+            "max": 0,
+            "hint": "Im tbody gehören td statt th."
+          }
+        ]
+      }
+    }
+  ]
+}

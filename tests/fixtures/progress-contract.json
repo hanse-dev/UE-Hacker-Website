@@ -1546,6 +1546,78 @@
       "lektion-07",
       "lektion-08"
     ],
+    "web-grundkurs-woche1": [
+      "lektion-01",
+      "lektion-02",
+      "lektion-03",
+      "lektion-04",
+      "debug-01",
+      "mission-01"
+    ],
+    "web-grundkurs-woche2": [
+      "lektion-01",
+      "lektion-02",
+      "lektion-03",
+      "lektion-04",
+      "debug-01",
+      "mission-01"
+    ],
+    "web-grundkurs-woche3": [
+      "lektion-01",
+      "lektion-02",
+      "lektion-03",
+      "lektion-04",
+      "debug-01",
+      "mission-01"
+    ],
+    "web-grundkurs-woche4": [
+      "lektion-01",
+      "lektion-02",
+      "lektion-03",
+      "lektion-04",
+      "debug-01",
+      "mission-01"
+    ],
+    "web-grundkurs-woche5": [
+      "lektion-01",
+      "lektion-02",
+      "lektion-03",
+      "lektion-04",
+      "debug-01",
+      "mission-01"
+    ],
+    "web-grundkurs-woche6": [
+      "lektion-01",
+      "lektion-02",
+      "lektion-03",
+      "lektion-04",
+      "debug-01",
+      "mission-01"
+    ],
+    "web-grundkurs-woche7": [
+      "lektion-01",
+      "lektion-02",
+      "lektion-03",
+      "lektion-04",
+      "debug-01",
+      "mission-01"
+    ],
+    "web-grundkurs-woche8": [
+      "lektion-01",
+      "lektion-02",
+      "lektion-03",
+      "lektion-04",
+      "debug-01",
+      "mission-01"
+    ],
+    "web-grundkurs-woche9": [
+      "lektion-01",
+      "lektion-02",
+      "lektion-03",
+      "lektion-04",
+      "debug-01",
+      "mission-01"
+    ],
     "zahlendetektiv": [
       "lektion-01",
       "lektion-02",
@@ -1847,6 +1919,125 @@
           "web1-6",
           "web1-7",
           "web1-8"
+        ],
+        "coding": 2
+      }
+    },
+    "web-grundkurs-checks": {
+      "week-1": {
+        "questions": [
+          "webg1-1",
+          "webg1-2",
+          "webg1-3",
+          "webg1-4",
+          "webg1-5",
+          "webg1-6",
+          "webg1-7",
+          "webg1-8"
+        ],
+        "coding": 2
+      },
+      "week-2": {
+        "questions": [
+          "webg2-1",
+          "webg2-2",
+          "webg2-3",
+          "webg2-4",
+          "webg2-5",
+          "webg2-6",
+          "webg2-7",
+          "webg2-8"
+        ],
+        "coding": 2
+      },
+      "week-3": {
+        "questions": [
+          "webg3-1",
+          "webg3-2",
+          "webg3-3",
+          "webg3-4",
+          "webg3-5",
+          "webg3-6",
+          "webg3-7",
+          "webg3-8"
+        ],
+        "coding": 2
+      },
+      "week-4": {
+        "questions": [
+          "webg4-1",
+          "webg4-2",
+          "webg4-3",
+          "webg4-4",
+          "webg4-5",
+          "webg4-6",
+          "webg4-7",
+          "webg4-8"
+        ],
+        "coding": 2
+      },
+      "week-5": {
+        "questions": [
+          "webg5-1",
+          "webg5-2",
+          "webg5-3",
+          "webg5-4",
+          "webg5-5",
+          "webg5-6",
+          "webg5-7",
+          "webg5-8"
+        ],
+        "coding": 2
+      },
+      "week-6": {
+        "questions": [
+          "webg6-1",
+          "webg6-2",
+          "webg6-3",
+          "webg6-4",
+          "webg6-5",
+          "webg6-6",
+          "webg6-7",
+          "webg6-8"
+        ],
+        "coding": 2
+      },
+      "week-7": {
+        "questions": [
+          "webg7-1",
+          "webg7-2",
+          "webg7-3",
+          "webg7-4",
+          "webg7-5",
+          "webg7-6",
+          "webg7-7",
+          "webg7-8"
+        ],
+        "coding": 2
+      },
+      "week-8": {
+        "questions": [
+          "webg8-1",
+          "webg8-2",
+          "webg8-3",
+          "webg8-4",
+          "webg8-5",
+          "webg8-6",
+          "webg8-7",
+          "webg8-8"
+        ],
+        "coding": 2
+      },
+      "week-9": {
+        "questions": [
+          "webg9-1",
+          "webg9-2",
+          "webg9-3",
+          "webg9-4",
+          "webg9-5",
+          "webg9-6",
+          "webg9-7",
+          "webg9-8"
         ],
         "coding": 2
       }

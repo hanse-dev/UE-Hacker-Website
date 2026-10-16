@@ -1,0 +1,398 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Flex-Container",
+    "file": "lektion-01.md",
+    "lessonSummary": "Läuft! Mit display: flex stellst du Elemente in Reihen und Spalten.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus. Ändere danach flex-direction auf column und sieh, wie aus der Reihe eine Spalte wird.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .menue {\n      display: flex;\n      flex-direction: row;\n      gap: 12px;\n      background-color: aliceblue;\n      padding: 8px;\n    }\n  </style>\n</head>\n<body>\n  <nav class=\"menue\"><a href=\"#\">Start</a><a href=\"#\">Team</a><a href=\"#\">Termine</a><a href=\"#\">Kontakt</a></nav>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".menue",
+              "property": "display",
+              "value": "flex"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Stell die drei Karten in der Box mit class=\"reihe\" nebeneinander und gib ihnen 16px Abstand zueinander.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .karte {\n      border: 2px solid goldenrod;\n      padding: 12px;\n    }\n    /* Regel für .reihe */\n  </style>\n</head>\n<body>\n  <div class=\"reihe\"><div class=\"karte\">Gold</div><div class=\"karte\">Silber</div><div class=\"karte\">Bronze</div></div>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .karte {\n      border: 2px solid goldenrod;\n      padding: 12px;\n    }\n    .reihe {\n      display: flex;\n      gap: 16px;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"reihe\"><div class=\"karte\">Gold</div><div class=\"karte\">Silber</div><div class=\"karte\">Bronze</div></div>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".reihe",
+              "property": "display",
+              "value": "flex",
+              "hint": "Schalte Flexbox am Container ein: .reihe { display: flex; }"
+            },
+            {
+              "selector": ".reihe",
+              "property": "column-gap",
+              "value": "16px",
+              "hint": "Setz den Abstand mit gap: 16px;"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Das Menü mit class=\"seitenmenue\" soll eine Spalte sein: Flexbox mit flex-direction: column und 8px Abstand.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    /* Regel für .seitenmenue */\n  </style>\n</head>\n<body>\n  <nav class=\"seitenmenue\"><a href=\"#\">Profil</a><a href=\"#\">Nachrichten</a><a href=\"#\">Einstellungen</a></nav>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .seitenmenue {\n      display: flex;\n      flex-direction: column;\n      gap: 8px;\n    }\n  </style>\n</head>\n<body>\n  <nav class=\"seitenmenue\"><a href=\"#\">Profil</a><a href=\"#\">Nachrichten</a><a href=\"#\">Einstellungen</a></nav>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".seitenmenue",
+              "property": "display",
+              "value": "flex",
+              "hint": "Schalte Flexbox ein: display: flex;"
+            },
+            {
+              "selector": ".seitenmenue",
+              "property": "flex-direction",
+              "value": "column",
+              "hint": "Mach eine Spalte daraus: flex-direction: column;"
+            },
+            {
+              "selector": ".seitenmenue",
+              "property": "row-gap",
+              "value": "8px",
+              "hint": "Setz den Abstand mit gap: 8px;"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Ausrichten",
+    "file": "lektion-02.md",
+    "lessonSummary": "Sitzt! Mit justify-content und align-items richtest du alles genau aus.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus: Das Logo steht links, das Menü rechts, beides auf einer Höhe.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    header {\n      display: flex;\n      justify-content: space-between;\n      align-items: center;\n      height: 70px;\n      padding: 0 12px;\n      background-color: black;\n      color: white;\n    }\n    .logo { font-size: 24px; }\n    header a { color: white; }\n  </style>\n</head>\n<body>\n  <header><span class=\"logo\">🎸 Bandname</span><nav><a href=\"#\">Songs</a> <a href=\"#\">Konzerte</a></nav></header>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "header",
+              "property": "justify-content",
+              "value": "space-between"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Baue die Kopfzeile: Titel links, Menü rechts (space-between) und beides senkrecht mittig (align-items).",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .kopf {\n      display: flex;\n      height: 80px;\n      background-color: wheat;\n    }\n  </style>\n</head>\n<body>\n  <header class=\"kopf\"><h1>Kochclub</h1><nav><a href=\"#\">Rezepte</a> <a href=\"#\">Termine</a></nav></header>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .kopf {\n      display: flex;\n      justify-content: space-between;\n      align-items: center;\n      height: 80px;\n      background-color: wheat;\n    }\n  </style>\n</head>\n<body>\n  <header class=\"kopf\"><h1>Kochclub</h1><nav><a href=\"#\">Rezepte</a> <a href=\"#\">Termine</a></nav></header>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".kopf",
+              "property": "justify-content",
+              "value": "space-between",
+              "hint": "Verteile Titel und Menü: justify-content: space-between;"
+            },
+            {
+              "selector": ".kopf",
+              "property": "align-items",
+              "value": "center",
+              "hint": "Richte beides senkrecht mittig aus: align-items: center;"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Die drei Knöpfe sollen gemeinsam in der Mitte der Leiste stehen.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .leiste {\n      display: flex;\n      gap: 8px;\n      padding: 10px;\n      background-color: gainsboro;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"leiste\"><button>Zurück</button><button>Pause</button><button>Weiter</button></div>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .leiste {\n      display: flex;\n      justify-content: center;\n      gap: 8px;\n      padding: 10px;\n      background-color: gainsboro;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"leiste\"><button>Zurück</button><button>Pause</button><button>Weiter</button></div>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".leiste",
+              "property": "justify-content",
+              "value": "center",
+              "hint": "Schiebe die Knöpfe in die Mitte: justify-content: center;"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Umbrechen",
+    "file": "lektion-03.md",
+    "lessonSummary": "Flexibel! Deine Galerie bricht jetzt um, wenn der Platz knapp wird.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus: Sechs Bilder, die sich auf mehrere Zeilen verteilen.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .galerie {\n      display: flex;\n      flex-wrap: wrap;\n      gap: 12px;\n    }\n    .galerie img {\n      width: 100px;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"galerie\">\n    <img src=\"/web-bilder/katze.svg\" alt=\"Katze\">\n    <img src=\"/web-bilder/hund.svg\" alt=\"Hund\">\n    <img src=\"/web-bilder/pferd.svg\" alt=\"Pferd\">\n    <img src=\"/web-bilder/fisch.svg\" alt=\"Fisch\">\n    <img src=\"/web-bilder/vogel.svg\" alt=\"Vogel\">\n    <img src=\"/web-bilder/dino.svg\" alt=\"Dino\">\n  </div>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".galerie",
+              "property": "flex-wrap",
+              "value": "wrap"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Die Galerie quetscht alle Bilder in eine Zeile. Erlaube Umbrüche, gib 10px Abstand und mach jedes Bild 110px breit.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .galerie {\n      display: flex;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"galerie\">\n    <img src=\"/web-bilder/rakete.svg\" alt=\"Rakete\">\n    <img src=\"/web-bilder/planet.svg\" alt=\"Planet\">\n    <img src=\"/web-bilder/stern.svg\" alt=\"Stern\">\n    <img src=\"/web-bilder/einhorn.svg\" alt=\"Einhorn\">\n    <img src=\"/web-bilder/dino.svg\" alt=\"Dino\">\n  </div>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .galerie {\n      display: flex;\n      flex-wrap: wrap;\n      gap: 10px;\n    }\n    .galerie img {\n      width: 110px;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"galerie\">\n    <img src=\"/web-bilder/rakete.svg\" alt=\"Rakete\">\n    <img src=\"/web-bilder/planet.svg\" alt=\"Planet\">\n    <img src=\"/web-bilder/stern.svg\" alt=\"Stern\">\n    <img src=\"/web-bilder/einhorn.svg\" alt=\"Einhorn\">\n    <img src=\"/web-bilder/dino.svg\" alt=\"Dino\">\n  </div>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".galerie",
+              "property": "flex-wrap",
+              "value": "wrap",
+              "hint": "Erlaube Umbrüche: flex-wrap: wrap;"
+            },
+            {
+              "selector": ".galerie",
+              "property": "column-gap",
+              "value": "10px",
+              "hint": "Setz den Abstand: gap: 10px;"
+            },
+            {
+              "selector": ".galerie img",
+              "property": "width",
+              "value": "110px",
+              "min": 5,
+              "hint": "Mach jedes Bild 110px breit: .galerie img { width: 110px; }"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Platz verteilen",
+    "file": "lektion-04.md",
+    "lessonSummary": "Gerecht verteilt! Mit flex teilst du den freien Platz auf, wie du willst.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus: Drei Spalten teilen sich die Breite, die mittlere ist doppelt so breit.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .zeile { display: flex; gap: 8px; }\n    .spalte { flex: 1; background-color: lightcyan; padding: 10px; }\n    .mitte { flex: 2; background-color: paleturquoise; }\n  </style>\n</head>\n<body>\n  <div class=\"zeile\"><div class=\"spalte\">Links</div><div class=\"spalte mitte\">Mitte</div><div class=\"spalte\">Rechts</div></div>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".mitte",
+              "property": "flex-grow",
+              "value": "2"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Das Suchfeld soll den ganzen freien Platz neben dem Knopf einnehmen.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .suche {\n      display: flex;\n      gap: 8px;\n    }\n  </style>\n</head>\n<body>\n  <form class=\"suche\"><input type=\"text\" placeholder=\"Suchen …\"><button type=\"submit\">Los</button></form>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .suche {\n      display: flex;\n      gap: 8px;\n    }\n    .suche input {\n      flex: 1;\n    }\n  </style>\n</head>\n<body>\n  <form class=\"suche\"><input type=\"text\" placeholder=\"Suchen …\"><button type=\"submit\">Los</button></form>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".suche input",
+              "property": "flex-grow",
+              "value": "1",
+              "hint": "Gib dem Eingabefeld flex: 1; – dann füllt es den freien Platz."
+            },
+            {
+              "selector": ".suche button",
+              "property": "flex-grow",
+              "value": "0",
+              "hint": "Nur das Eingabefeld soll wachsen, der Knopf bleibt so breit wie sein Text."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Bau aus den drei Boxen ein Layout: Seitenleiste (class=\"seite\") und Infobox (class=\"info\") gleich breit, der Hauptteil (class=\"haupt\") dreimal so breit.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .layout { display: flex; gap: 10px; }\n    .layout > * { background-color: lavender; padding: 10px; }\n  </style>\n</head>\n<body>\n  <div class=\"layout\"><aside class=\"seite\">Menü</aside><main class=\"haupt\">Inhalt</main><aside class=\"info\">Infos</aside></div>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .layout { display: flex; gap: 10px; }\n    .layout > * { background-color: lavender; padding: 10px; }\n    .seite, .info { flex: 1; }\n    .haupt { flex: 3; }\n  </style>\n</head>\n<body>\n  <div class=\"layout\"><aside class=\"seite\">Menü</aside><main class=\"haupt\">Inhalt</main><aside class=\"info\">Infos</aside></div>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".seite, .info",
+              "property": "flex-grow",
+              "value": "1",
+              "min": 2,
+              "hint": "Seitenleiste und Infobox bekommen flex: 1;"
+            },
+            {
+              "selector": ".haupt",
+              "property": "flex-grow",
+              "value": "3",
+              "hint": "Der Hauptteil bekommt flex: 3;"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Fehlersuche: Flexbox",
+    "file": "debug-01.md",
+    "lessonSummary": "Läuft wieder! Die typischen Flexbox-Stolpersteine kennst du jetzt.",
+    "tasks": [
+      {
+        "instruction": "Die Links sollen nebeneinander stehen, tun es aber nicht. Setz display: flex an das richtige Element.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .punkt {\n      display: flex;\n      padding: 6px;\n    }\n  </style>\n</head>\n<body>\n  <nav class=\"leiste\"><a class=\"punkt\" href=\"#\">Start</a><a class=\"punkt\" href=\"#\">Blog</a><a class=\"punkt\" href=\"#\">Über mich</a></nav>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .leiste {\n      display: flex;\n    }\n    .punkt {\n      padding: 6px;\n    }\n  </style>\n</head>\n<body>\n  <nav class=\"leiste\"><a class=\"punkt\" href=\"#\">Start</a><a class=\"punkt\" href=\"#\">Blog</a><a class=\"punkt\" href=\"#\">Über mich</a></nav>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".leiste",
+              "property": "display",
+              "value": "flex",
+              "hint": "display: flex gehört an den Container .leiste, nicht an die Links."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Die Box soll ihren Inhalt in die Mitte schieben, aber nichts passiert. Finde den falschen Wert.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .buehne {\n      display: flex;\n      justify-content: centre;\n      background-color: mistyrose;\n      padding: 20px;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"buehne\"><span>🎤 Auftritt!</span></div>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .buehne {\n      display: flex;\n      justify-content: center;\n      background-color: mistyrose;\n      padding: 20px;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"buehne\"><span>🎤 Auftritt!</span></div>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".buehne",
+              "property": "justify-content",
+              "value": "center",
+              "hint": "Der Wert heißt center – amerikanisch geschrieben."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Die Spalte soll die Items waagerecht in die Mitte schieben. Bei flex-direction: column ist dafür die andere Eigenschaft zuständig – tausche sie.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .spalte {\n      display: flex;\n      flex-direction: column;\n      justify-content: center;\n      gap: 8px;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"spalte\"><button>Spielen</button><button>Optionen</button><button>Beenden</button></div>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .spalte {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n      gap: 8px;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"spalte\"><button>Spielen</button><button>Optionen</button><button>Beenden</button></div>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".spalte",
+              "property": "align-items",
+              "value": "center",
+              "hint": "Bei einer Spalte ist waagerecht die Querachse – dafür ist align-items zuständig."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission: Startseite mit Flexbox",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission erfüllt! Kopfzeile, Kartenreihe und Fußzeile – alles mit Flexbox.",
+    "tasks": [
+      {
+        "instruction": "Gestalte die Startseite mit allem aus der Liste oben.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    /* Dein CSS */\n  </style>\n</head>\n<body>\n  <header>\n    <h1>Spieleabend</h1>\n    <nav><a href=\"#\">Spiele</a><a href=\"#\">Termine</a><a href=\"#\">Anmeldung</a></nav>\n  </header>\n  <main class=\"karten\">\n    <div class=\"karte\"><h2>Brettspiele</h2><p>Siedler, Carcassonne, Azul</p></div>\n    <div class=\"karte\"><h2>Kartenspiele</h2><p>Uno, Wizard, Skyjo</p></div>\n    <div class=\"karte\"><h2>Konsole</h2><p>Mario Kart und Smash</p></div>\n  </main>\n  <footer><p>Jeden ersten Freitag im Monat</p></footer>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    header {\n      display: flex;\n      justify-content: space-between;\n      align-items: center;\n    }\n    nav {\n      display: flex;\n      gap: 12px;\n    }\n    .karten {\n      display: flex;\n      flex-wrap: wrap;\n      gap: 12px;\n    }\n    .karte {\n      flex: 1;\n      min-width: 140px;\n      background-color: lightyellow;\n      padding: 10px;\n    }\n    footer {\n      display: flex;\n      justify-content: center;\n    }\n  </style>\n</head>\n<body>\n  <header>\n    <h1>Spieleabend</h1>\n    <nav><a href=\"#\">Spiele</a><a href=\"#\">Termine</a><a href=\"#\">Anmeldung</a></nav>\n  </header>\n  <main class=\"karten\">\n    <div class=\"karte\"><h2>Brettspiele</h2><p>Siedler, Carcassonne, Azul</p></div>\n    <div class=\"karte\"><h2>Kartenspiele</h2><p>Uno, Wizard, Skyjo</p></div>\n    <div class=\"karte\"><h2>Konsole</h2><p>Mario Kart und Smash</p></div>\n  </main>\n  <footer><p>Jeden ersten Freitag im Monat</p></footer>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "header",
+              "property": "display",
+              "value": "flex",
+              "hint": "Die Kopfzeile braucht display: flex;"
+            },
+            {
+              "selector": "header",
+              "property": "justify-content",
+              "value": "space-between",
+              "hint": "Titel links, Menü rechts: justify-content: space-between;"
+            },
+            {
+              "selector": "header",
+              "property": "align-items",
+              "value": "center",
+              "hint": "Titel und Menü senkrecht mittig: align-items: center;"
+            },
+            {
+              "selector": "nav",
+              "property": "display",
+              "value": "flex",
+              "hint": "Das Menü braucht display: flex;"
+            },
+            {
+              "selector": "nav",
+              "property": "column-gap",
+              "notValue": "normal",
+              "hint": "Gib dem Menü Abstand mit gap."
+            },
+            {
+              "selector": ".karten",
+              "property": "display",
+              "value": "flex",
+              "hint": "Die Karten brauchen einen Flex-Container: .karten { display: flex; }"
+            },
+            {
+              "selector": ".karten",
+              "property": "flex-wrap",
+              "value": "wrap",
+              "hint": "Erlaube Umbrüche: flex-wrap: wrap;"
+            },
+            {
+              "selector": ".karte",
+              "property": "flex-grow",
+              "value": "1",
+              "min": 3,
+              "hint": "Jede Karte bekommt flex: 1;"
+            },
+            {
+              "selector": ".karte",
+              "property": "min-width",
+              "value": "140px",
+              "min": 3,
+              "hint": "Jede Karte bekommt min-width: 140px;"
+            },
+            {
+              "selector": "footer",
+              "property": "justify-content",
+              "value": "center",
+              "hint": "Die Fußzeile braucht display: flex; und justify-content: center;"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

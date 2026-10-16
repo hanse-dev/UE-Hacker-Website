@@ -1,0 +1,375 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Header, Main und Footer",
+    "file": "lektion-01.md",
+    "lessonSummary": "Gut gegliedert! Deine Seite hat jetzt einen Kopf, einen Hauptteil und einen Fuß.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus. Die Seite sieht aus wie immer – aber jeder Bereich hat jetzt eine Bedeutung.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <header>\n    <h1>FC Hafenkante</h1>\n    <nav>Start · Mannschaften · Termine</nav>\n  </header>\n  <main>\n    <h2>Willkommen</h2>\n    <p>Wir sind ein Fußballverein für alle ab 8 Jahren.</p>\n  </main>\n  <footer>\n    <p>© 2026 FC Hafenkante</p>\n  </footer>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "body > main"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Gliedere die Seite: Die Überschrift kommt in einen header, die Absätze in main, die Zeile mit dem Copyright in einen footer.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Schach-AG</h1>\n  <p>Wir treffen uns jeden Mittwoch im Raum 104.</p>\n  <p>Anfänger sind herzlich willkommen.</p>\n  <p>© 2026 Schach-AG</p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <header>\n    <h1>Schach-AG</h1>\n  </header>\n  <main>\n    <p>Wir treffen uns jeden Mittwoch im Raum 104.</p>\n    <p>Anfänger sind herzlich willkommen.</p>\n  </main>\n  <footer>\n    <p>© 2026 Schach-AG</p>\n  </footer>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "header h1",
+              "hint": "Die Überschrift gehört in <header>…</header>."
+            },
+            {
+              "selector": "main p",
+              "min": 2,
+              "hint": "Die beiden Absätze über die AG gehören in <main>…</main>."
+            },
+            {
+              "selector": "footer",
+              "text": "©",
+              "hint": "Die Copyright-Zeile gehört in <footer>…</footer>."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Ergänze im header eine Navigation nav mit drei Links zu Start, Termine und Kontakt (die Adresse ist erst einmal einfach href=\"#\").",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <header>\n    <h1>Schach-AG</h1>\n    <!-- Hier die Navigation -->\n  </header>\n  <main>\n    <p>Wir treffen uns jeden Mittwoch.</p>\n  </main>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <header>\n    <h1>Schach-AG</h1>\n    <nav>\n      <a href=\"#\">Start</a>\n      <a href=\"#\">Termine</a>\n      <a href=\"#\">Kontakt</a>\n    </nav>\n  </header>\n  <main>\n    <p>Wir treffen uns jeden Mittwoch.</p>\n  </main>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "header nav a[href]",
+              "notEmpty": true,
+              "min": 3,
+              "hint": "In <header> gehört ein <nav> mit drei Links <a href=\"#\">…</a>."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Section und Article",
+    "file": "lektion-02.md",
+    "lessonSummary": "Stark! Mit section und article ist dein Hauptteil sauber in Themen geteilt.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus: zwei Abschnitte, im zweiten ein Artikel mit eigener h3-Überschrift.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <main>\n    <section>\n      <h2>Mannschaften</h2>\n      <p>Wir haben drei Teams.</p>\n    </section>\n    <section>\n      <h2>Neuigkeiten</h2>\n      <article>\n        <h3>3:1-Sieg am Samstag</h3>\n        <p>Unsere U14 hat das Derby gewonnen.</p>\n      </article>\n    </section>\n  </main>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "section article h3"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Teile den Hauptteil in zwei section-Abschnitte. Jeder beginnt mit einer h2-Überschrift.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <main>\n    <!-- Abschnitt 1: Über uns -->\n    <!-- Abschnitt 2: Training -->\n  </main>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <main>\n    <section>\n      <h2>Über uns</h2>\n      <p>Wir sind eine Tanzgruppe aus Kiel.</p>\n    </section>\n    <section>\n      <h2>Training</h2>\n      <p>Dienstags und donnerstags um 17 Uhr.</p>\n    </section>\n  </main>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "main section",
+              "min": 2,
+              "hint": "Im main brauchst du zwei <section>…</section>."
+            },
+            {
+              "selector": "main section > h2",
+              "notEmpty": true,
+              "min": 2,
+              "hint": "Jede section beginnt mit einer <h2>-Überschrift."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Schreib im Abschnitt „Neuigkeiten“ einen article mit einer h3-Überschrift und einem Absatz – zum Beispiel einen kurzen Bericht über ein Spiel, ein Konzert oder einen Ausflug.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <main>\n    <section>\n      <h2>Neuigkeiten</h2>\n      <!-- Dein Artikel -->\n    </section>\n  </main>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <main>\n    <section>\n      <h2>Neuigkeiten</h2>\n      <article>\n        <h3>Auftritt beim Stadtfest</h3>\n        <p>Am Samstag haben wir vor 200 Leuten getanzt.</p>\n      </article>\n    </section>\n  </main>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "section article",
+              "hint": "Im Abschnitt fehlt ein <article>…</article>."
+            },
+            {
+              "selector": "article h3",
+              "notEmpty": true,
+              "hint": "Der Artikel braucht eine Überschrift <h3>."
+            },
+            {
+              "selector": "article p",
+              "notEmpty": true,
+              "hint": "Der Artikel braucht einen Absatz <p> mit Text."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Listen",
+    "file": "lektion-03.md",
+    "lessonSummary": "Super sortiert! Listen in allen Varianten hast du jetzt drauf.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus: eine rückwärts gezählte Top 3 und eine verschachtelte Einkaufsliste.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h2>Meine Top 3 Filme</h2>\n  <ol reversed>\n    <li>Ratatouille</li>\n    <li>Spider-Man: A New Universe</li>\n    <li>Die Unglaublichen</li>\n  </ol>\n  <h2>Einkaufsliste</h2>\n  <ul>\n    <li>Obst\n      <ul>\n        <li>Äpfel</li>\n        <li>Bananen</li>\n      </ul>\n    </li>\n    <li>Brot</li>\n  </ul>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "ol[reversed] li",
+              "min": 3
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Schreib deine persönliche Top 3 (Spiele, Songs, Bücher …) als nummerierte Liste, die rückwärts zählt: 3, 2, 1.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h2>Meine Top 3</h2>\n  <!-- Deine Liste -->\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h2>Meine Top 3 Spiele</h2>\n  <ol reversed>\n    <li>Minecraft</li>\n    <li>Mario Kart</li>\n    <li>Zelda</li>\n  </ol>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "ol li",
+              "notEmpty": true,
+              "min": 3,
+              "hint": "Schreib eine nummerierte Liste <ol> mit drei <li>."
+            },
+            {
+              "selector": "ol[reversed]",
+              "hint": "Gib der Liste das Attribut reversed: <ol reversed>."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Ergänze die Packliste: Unter „Kleidung“ soll eine eigene Liste mit mindestens zwei Punkten stehen.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h2>Packliste Zeltlager</h2>\n  <ul>\n    <li>Schlafsack</li>\n    <li>Kleidung</li>\n    <li>Taschenlampe</li>\n  </ul>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h2>Packliste Zeltlager</h2>\n  <ul>\n    <li>Schlafsack</li>\n    <li>Kleidung\n      <ul>\n        <li>Regenjacke</li>\n        <li>Pullover</li>\n      </ul>\n    </li>\n    <li>Taschenlampe</li>\n  </ul>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "ul li ul li",
+              "notEmpty": true,
+              "min": 2,
+              "hint": "Die innere Liste <ul> mit zwei <li> gehört in das li von „Kleidung“, vor dessen </li>."
+            },
+            {
+              "selector": "body > ul > li",
+              "min": 3,
+              "max": 3,
+              "hint": "Die äußere Liste behält ihre drei Punkte – die neue Liste steckt im Punkt „Kleidung“."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Text auszeichnen",
+    "file": "lektion-04.md",
+    "lessonSummary": "Prima! Du weißt jetzt, welches Element für welche Art Hervorhebung gedacht ist.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus und vergleiche, wie die Elemente aussehen.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <p>Das Training fällt <strong>heute aus</strong>.</p>\n  <p>Ich habe <em>wirklich</em> alles versucht.</p>\n  <p>Bring bitte <mark>Hallenschuhe</mark> mit.</p>\n  <p><small>Angaben ohne Gewähr.</small></p>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "mark"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Markiere in der Ankündigung den Treffpunkt mit mark und setze den Satz „Eintritt frei“ als wichtigen Hinweis mit strong.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h2>Flohmarkt</h2>\n  <p>Wir treffen uns am Samstag auf dem Schulhof.</p>\n  <p>Eintritt frei!</p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h2>Flohmarkt</h2>\n  <p>Wir treffen uns am Samstag <mark>auf dem Schulhof</mark>.</p>\n  <p><strong>Eintritt frei!</strong></p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "mark",
+              "notEmpty": true,
+              "hint": "Setz den Treffpunkt zwischen <mark> und </mark>."
+            },
+            {
+              "selector": "strong",
+              "text": "Eintritt frei",
+              "hint": "Setz „Eintritt frei“ zwischen <strong> und </strong>."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Füge ein Zitat ein, das dir gefällt: als blockquote mit einem Absatz darin und darunter die Quelle mit cite.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h2>Mein Lieblingszitat</h2>\n  <!-- Zitat und Quelle -->\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h2>Mein Lieblingszitat</h2>\n  <blockquote>\n    <p>Fantasie ist wichtiger als Wissen.</p>\n  </blockquote>\n  <p><cite>Albert Einstein</cite></p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "blockquote p",
+              "notEmpty": true,
+              "hint": "Schreib das Zitat als <blockquote><p>…</p></blockquote>."
+            },
+            {
+              "selector": "cite",
+              "notEmpty": true,
+              "hint": "Nenne die Quelle mit <cite>…</cite>."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Fehlersuche: Struktur",
+    "file": "debug-01.md",
+    "lessonSummary": "Repariert! Falsch verschachtelte Listen und Bereiche erkennst du jetzt sofort.",
+    "tasks": [
+      {
+        "instruction": "Im Menü fehlen die Listenpunkte: Die Links stehen direkt im ul. Pack jeden Link in ein eigenes li.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <nav>\n    <ul>\n      <a href=\"#\">Start</a>\n      <a href=\"#\">Galerie</a>\n      <a href=\"#\">Kontakt</a>\n    </ul>\n  </nav>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <nav>\n    <ul>\n      <li><a href=\"#\">Start</a></li>\n      <li><a href=\"#\">Galerie</a></li>\n      <li><a href=\"#\">Kontakt</a></li>\n    </ul>\n  </nav>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "nav ul > li > a",
+              "min": 3,
+              "hint": "Jeder Link braucht ein eigenes <li>: <li><a href=\"#\">…</a></li>."
+            },
+            {
+              "selector": "nav ul > a",
+              "min": 0,
+              "max": 0,
+              "hint": "Im ul dürfen keine Links mehr direkt stehen – nur li-Elemente."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Die Rangliste mit der id „rangliste“ ist als Punkteliste gebaut. Mach eine nummerierte Liste daraus.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h2>Tabelle nach dem 5. Spieltag</h2>\n  <ul id=\"rangliste\">\n    <li>Werder Bremen</li>\n    <li>Hamburger SV</li>\n    <li>FC St. Pauli</li>\n  </ul>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h2>Tabelle nach dem 5. Spieltag</h2>\n  <ol id=\"rangliste\">\n    <li>Werder Bremen</li>\n    <li>Hamburger SV</li>\n    <li>FC St. Pauli</li>\n  </ol>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "ol#rangliste li",
+              "min": 3,
+              "hint": "Ersetze <ul id=\"rangliste\"> durch <ol id=\"rangliste\"> – und das </ul> durch </ol>."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Der footer steckt aus Versehen im main. Verschiebe ihn hinter das schließende main-Tag.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <main>\n    <h1>Fahrrad-Werkstatt</h1>\n    <p>Wir reparieren jeden Freitag Fahrräder.</p>\n    <footer>\n      <p>Kontakt: werkstatt@example.org</p>\n    </footer>\n  </main>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <main>\n    <h1>Fahrrad-Werkstatt</h1>\n    <p>Wir reparieren jeden Freitag Fahrräder.</p>\n  </main>\n  <footer>\n    <p>Kontakt: werkstatt@example.org</p>\n  </footer>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "main footer",
+              "min": 0,
+              "max": 0,
+              "hint": "Der footer darf nicht mehr im main stehen."
+            },
+            {
+              "selector": "body > footer",
+              "text": "Kontakt",
+              "hint": "Der footer gehört direkt in den body, hinter </main>."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission: Fanseite",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission erfüllt! Deine Fanseite ist sauber gegliedert – bereit für Bilder und Design.",
+    "tasks": [
+      {
+        "instruction": "Baue deine Fanseite mit allem aus der Liste oben.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <!-- Deine Fanseite -->\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <header>\n    <h1>Fanseite: Die Ärzte</h1>\n    <nav>\n      <ul>\n        <li><a href=\"#\">Band</a></li>\n        <li><a href=\"#\">Songs</a></li>\n        <li><a href=\"#\">News</a></li>\n      </ul>\n    </nav>\n  </header>\n  <main>\n    <section>\n      <h2>Die Band</h2>\n      <p>Drei Musiker aus Berlin.</p>\n    </section>\n    <section>\n      <h2>Meine Lieblingssongs</h2>\n      <ol>\n        <li>Junge</li>\n        <li>Schrei nach Liebe</li>\n        <li>Westerland</li>\n      </ol>\n      <article>\n        <h3>Konzert in Hamburg</h3>\n        <p>Das Konzert war ausverkauft.</p>\n      </article>\n    </section>\n  </main>\n  <footer>\n    <p>Eine Fanseite von Mia</p>\n  </footer>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "header h1",
+              "notEmpty": true,
+              "hint": "Im header fehlt die Überschrift <h1>."
+            },
+            {
+              "selector": "header nav ul > li > a",
+              "min": 3,
+              "hint": "Im header braucht es ein <nav> mit einer Liste aus drei Links (ul → li → a)."
+            },
+            {
+              "selector": "main section > h2",
+              "notEmpty": true,
+              "min": 2,
+              "hint": "Im main brauchst du zwei section-Abschnitte mit je einer <h2>."
+            },
+            {
+              "selector": "main ol li",
+              "notEmpty": true,
+              "min": 3,
+              "hint": "Es fehlt eine nummerierte Liste <ol> mit mindestens drei Punkten."
+            },
+            {
+              "selector": "article h3",
+              "notEmpty": true,
+              "hint": "Es fehlt ein <article> mit einer <h3>-Überschrift."
+            },
+            {
+              "selector": "body > footer",
+              "notEmpty": true,
+              "hint": "Es fehlt ein <footer> mit Text am Ende des body."
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

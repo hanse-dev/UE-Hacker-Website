@@ -59,7 +59,7 @@
                 class="badge-card"
                 :class="{ earned: week.earned }"
               >
-                <router-link :to="`/kurs/${course.courseId}?week=${week.weekNumber}`" class="badge-card-link">
+                <router-link :to="{ path: `/kurs/${course.courseId}`, query: { ...course.query, week: week.weekNumber } }" class="badge-card-link">
                   <span class="badge-icon">{{ week.earned ? '🎓' : '🔒' }}</span>
                   <span class="badge-title">{{ course.singleCheck ? t('check.finalLabel') : `${t('week.label')} ${week.weekNumber}` }}</span>
                   <span class="badge-status">

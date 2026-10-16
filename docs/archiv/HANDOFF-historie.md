@@ -2819,3 +2819,22 @@ Frage des Nutzers: Warum gibt es noch Turtle-Tests, obwohl Turtle nirgends behan
 - Entscheidung Nutzer: Kurs A mit Zertifikat (ursprünglich war Einstieg ohne Zertifikat geplant).
 - Bewusst offen (todo.md): eigene Seite wandert nicht von Lektion zu Lektion; Sticker-SVGs hängen an
   der Emoji-Schrift des Geräts.
+
+### 3.116 — „Meine erste Website“: Stufenwahl Einfach/Intensiv (Branch `web-grundkurs`)
+
+- Entscheidung Nutzer (16.10.2026): Kurs B (Web-Grundkurs) kein eigener Kurs, sondern Stufe „Intensiv“
+  in `web-erste-website`. Nach „Kurs starten“ Stufenwahl (`WebsiteCourse.vue`), gemerkt in
+  `ue-hacker-website-stufe` und `?stufe=`. Alte Profil-Links `?week=1` ohne Stufe gehören zu Einfach.
+- `WeeklyCourseTour.vue`: die KI-Labor-Tour (Wochenwahl → Tour → Check → Zertifikat) mit Props für
+  Wochen, Ordner-Präfix, courseKey, Engine/Web-Modus, Begriffe und Downloads; `KiLaborTour.vue` ist nur
+  noch ein Wrapper. Wochen-Checks nutzen `WeekCheckPanel engine="web"` → `WebCodeChallenge.vue`.
+- Inhalt: 9 Wochen à 4 Lektionen + Debug + Mission (sachlicher Ton, leerere Vorlagen als Einfach),
+  Woche 9 mit erstem JavaScript (Dunkelmodus per `classList.toggle`). Generiert per Skript aus dem
+  Scratchpad – Quelle sind jetzt `lessons.json`/`*.md`.
+- Gefundene Fallstricke: Browser legt bei vergessenem `</strong>` den Folgeabsatz **in** das strong
+  (Prüfung über `font-weight`), `grid-column: span 2` setzt `grid-column-start` (nicht -end),
+  `probeStyle()` brauchte für `border-*-width` einen Rahmenstil. Media Queries werden über den
+  CSS-Text geprüft, weil die Vorschau-Breite schwankt.
+- Profil: `COURSE_INFO` hat `query` (Link mit `?stufe=`), zwei Blöcke „Meine erste Website“ und
+  „… – Intensiv“. Begriffe: Liste `html` in `begriffe.json`, `pfade` gibt das Link-Ziel für Kurse ohne
+  eigene Seite; Einfach verlinkt auf Intensiv-Wochen, Intensiv nur auf frühere Wochen.

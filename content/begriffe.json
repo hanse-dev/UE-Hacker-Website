@@ -1,8 +1,9 @@
 {
-  "_info": "Begriffe, die in Projekt-Kursen auf den passenden Grundkurs verlinkt werden (useConcepts.js). Pro Sprache (kurse.json `language`): `formen` = Schreibweisen, die im Lektionstext gefunden werden (Groß-/Kleinschreibung zählt); `kurs`/`woche` = Ziel des Links (/kurs/<kurs>?week=<woche>); `lektion` = Titel der Lektion dort, nur zur Anzeige.",
+  "_info": "Begriffe, die in Projekt-Kursen auf den passenden Grundkurs verlinkt werden (useConcepts.js). Pro Sprache (kurse.json `language`): `formen` = Schreibweisen, die im Lektionstext gefunden werden (Groß-/Kleinschreibung zählt); `kurs`/`woche` = Ziel des Links (/kurs/<kurs>?week=<woche>); `lektion` = Titel der Lektion dort, nur zur Anzeige. `pfade` = Link-Ziel für Kurse, die keine eigene Seite haben (z. B. die Stufe Intensiv von „Meine erste Website“); `week` wird angehängt.",
   "kurse": {
     "js-grundkurs": "JavaScript-Grundkurs",
-    "python-12-wochen-grundkurs": "Python-Grundkurs (12 Wochen)"
+    "python-12-wochen-grundkurs": "Python-Grundkurs (12 Wochen)",
+    "web-grundkurs": "Meine erste Website (Intensiv)"
   },
   "javascript": [
     {
@@ -349,6 +350,225 @@
       "kurs": "python-12-wochen-grundkurs",
       "woche": 11,
       "lektion": "Vererbung"
+    }
+  ],
+  "pfade": {
+    "web-grundkurs": "/kurs/web-erste-website?stufe=intensiv"
+  },
+  "html": [
+    {
+      "begriff": "HTML",
+      "formen": [
+        "HTML"
+      ],
+      "erklaerung": "Die Sprache, in der Webseiten aufgebaut werden: Tags markieren, was Überschrift, Absatz oder Bild ist.",
+      "kurs": "web-grundkurs",
+      "woche": 1,
+      "lektion": "Was ist HTML?"
+    },
+    {
+      "begriff": "Grundgerüst",
+      "formen": [
+        "Grundgerüst"
+      ],
+      "erklaerung": "DOCTYPE, html, head und body – das feste Gerüst jeder Seite.",
+      "kurs": "web-grundkurs",
+      "woche": 1,
+      "lektion": "Das Grundgerüst"
+    },
+    {
+      "begriff": "Kommentar",
+      "formen": [
+        "Kommentare",
+        "Kommentar"
+      ],
+      "erklaerung": "Eine Notiz im Code zwischen <!-- und -->, die der Browser nicht anzeigt.",
+      "kurs": "web-grundkurs",
+      "woche": 1,
+      "lektion": "Verschachteln und Leerräume"
+    },
+    {
+      "begriff": "Attribut",
+      "formen": [
+        "Attributen",
+        "Attribute",
+        "Attribut"
+      ],
+      "erklaerung": "Eine Zusatzangabe im Anfangs-Tag, z. B. id=\"start\" oder alt=\"…\".",
+      "kurs": "web-grundkurs",
+      "woche": 1,
+      "lektion": "Attribute"
+    },
+    {
+      "begriff": "Navigation",
+      "formen": [
+        "Navigationsleiste",
+        "Navigation"
+      ],
+      "erklaerung": "Das Menü mit den wichtigsten Links, in HTML das Element nav.",
+      "kurs": "web-grundkurs",
+      "woche": 2,
+      "lektion": "Header, Main und Footer"
+    },
+    {
+      "begriff": "Liste",
+      "formen": [
+        "Listen",
+        "Liste"
+      ],
+      "erklaerung": "Aufzählung mit ul (Punkte) oder ol (Nummern), jeder Punkt ein li.",
+      "kurs": "web-grundkurs",
+      "woche": 2,
+      "lektion": "Listen"
+    },
+    {
+      "begriff": "Alternativtext",
+      "formen": [
+        "Alternativtext"
+      ],
+      "erklaerung": "Der alt-Text beschreibt ein Bild für alle, die es nicht sehen können.",
+      "kurs": "web-grundkurs",
+      "woche": 3,
+      "lektion": "Bilder"
+    },
+    {
+      "begriff": "Link",
+      "formen": [
+        "Links",
+        "Link"
+      ],
+      "erklaerung": "Ein Verweis mit a und href – auf eine andere Seite, eine E-Mail-Adresse oder eine Stelle der Seite.",
+      "kurs": "web-grundkurs",
+      "woche": 3,
+      "lektion": "Links"
+    },
+    {
+      "begriff": "Sprungmarke",
+      "formen": [
+        "Sprungmarken",
+        "Sprungmarke"
+      ],
+      "erklaerung": "Ein Link mit href=\"#id\", der zu einer Stelle derselben Seite springt.",
+      "kurs": "web-grundkurs",
+      "woche": 3,
+      "lektion": "Sprungmarken"
+    },
+    {
+      "begriff": "Tabelle",
+      "formen": [
+        "Tabellen",
+        "Tabelle"
+      ],
+      "erklaerung": "Daten in Zeilen und Spalten: table, tr, th und td.",
+      "kurs": "web-grundkurs",
+      "woche": 3,
+      "lektion": "Tabellen"
+    },
+    {
+      "begriff": "Formular",
+      "formen": [
+        "Formulare",
+        "Formular",
+        "Formularfeld"
+      ],
+      "erklaerung": "Eingabefelder, Auswahllisten und Knöpfe in einem form-Element.",
+      "kurs": "web-grundkurs",
+      "woche": 4,
+      "lektion": "Formular und Textfeld"
+    },
+    {
+      "begriff": "CSS",
+      "formen": [
+        "CSS"
+      ],
+      "erklaerung": "Die Sprache für das Aussehen einer Seite: Farben, Schriften, Abstände, Layout.",
+      "kurs": "web-grundkurs",
+      "woche": 5,
+      "lektion": "CSS einbinden"
+    },
+    {
+      "begriff": "Selektor",
+      "formen": [
+        "Selektoren",
+        "Selektor"
+      ],
+      "erklaerung": "Der Teil einer CSS-Regel, der bestimmt, welche Elemente sie trifft.",
+      "kurs": "web-grundkurs",
+      "woche": 5,
+      "lektion": "Selektoren"
+    },
+    {
+      "begriff": "Klasse",
+      "formen": [
+        "Klassen",
+        "Klasse"
+      ],
+      "erklaerung": "Ein Name im class-Attribut, mit dem CSS viele Elemente auf einmal gestaltet (Selektor mit Punkt).",
+      "kurs": "web-grundkurs",
+      "woche": 5,
+      "lektion": "Selektoren"
+    },
+    {
+      "begriff": "Box-Modell",
+      "formen": [
+        "Box-Modell"
+      ],
+      "erklaerung": "Inhalt, padding, border und margin – die vier Schichten jeder Box.",
+      "kurs": "web-grundkurs",
+      "woche": 6,
+      "lektion": "Jedes Element ist eine Box"
+    },
+    {
+      "begriff": "Innenabstand",
+      "formen": [
+        "Innenabstand"
+      ],
+      "erklaerung": "padding: Luft zwischen Inhalt und Rahmen.",
+      "kurs": "web-grundkurs",
+      "woche": 6,
+      "lektion": "Jedes Element ist eine Box"
+    },
+    {
+      "begriff": "Außenabstand",
+      "formen": [
+        "Außenabstand"
+      ],
+      "erklaerung": "margin: Luft zwischen einer Box und ihren Nachbarn.",
+      "kurs": "web-grundkurs",
+      "woche": 6,
+      "lektion": "Jedes Element ist eine Box"
+    },
+    {
+      "begriff": "Flexbox",
+      "formen": [
+        "Flexboxen",
+        "Flexbox"
+      ],
+      "erklaerung": "Ordnet Elemente in einer Reihe oder Spalte an: display: flex.",
+      "kurs": "web-grundkurs",
+      "woche": 7,
+      "lektion": "Flex-Container"
+    },
+    {
+      "begriff": "Grid",
+      "formen": [
+        "Grid"
+      ],
+      "erklaerung": "Ordnet Elemente in Zeilen und Spalten an: display: grid.",
+      "kurs": "web-grundkurs",
+      "woche": 8,
+      "lektion": "Grid-Raster"
+    },
+    {
+      "begriff": "Media Query",
+      "formen": [
+        "Media Queries",
+        "Media Query"
+      ],
+      "erklaerung": "Regeln, die nur bei bestimmten Bildschirmbreiten gelten: @media (max-width: …).",
+      "kurs": "web-grundkurs",
+      "woche": 8,
+      "lektion": "Handy-Ansicht"
     }
   ]
 }

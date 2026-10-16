@@ -1,0 +1,388 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Grid-Raster",
+    "file": "lektion-01.md",
+    "lessonSummary": "Im Raster! Mit Grid ordnest du Elemente in Zeilen und Spalten gleichzeitig.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus: Sechs Kästen verteilen sich auf ein Raster mit drei Spalten und zwei Zeilen.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .raster {\n      display: grid;\n      grid-template-columns: 1fr 1fr 1fr;\n      gap: 12px;\n    }\n    .raster div {\n      background-color: lightsteelblue;\n      padding: 16px;\n      text-align: center;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"raster\"><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div></div>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".raster",
+              "property": "display",
+              "value": "grid"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Ordne die vier Karten in einem Raster mit zwei gleich breiten Spalten an (1fr 1fr) und 10px Abstand.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .karten div {\n      background-color: palegreen;\n      padding: 12px;\n    }\n    /* Regel für .karten */\n  </style>\n</head>\n<body>\n  <div class=\"karten\"><div>Fußball</div><div>Handball</div><div>Tennis</div><div>Volleyball</div></div>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .karten div {\n      background-color: palegreen;\n      padding: 12px;\n    }\n    .karten {\n      display: grid;\n      grid-template-columns: 1fr 1fr;\n      gap: 10px;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"karten\"><div>Fußball</div><div>Handball</div><div>Tennis</div><div>Volleyball</div></div>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".karten",
+              "property": "display",
+              "value": "grid",
+              "hint": "Mach .karten zum Grid-Container: display: grid;"
+            },
+            {
+              "selector": "style",
+              "text": "grid-template-columns: 1fr 1fr;",
+              "hint": "Leg zwei gleich breite Spalten an: grid-template-columns: 1fr 1fr;"
+            },
+            {
+              "selector": ".karten",
+              "property": "row-gap",
+              "value": "10px",
+              "hint": "Setz den Abstand: gap: 10px;"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Bau ein Layout mit zwei Spalten: links eine Seitenleiste mit fester Breite von 120px, rechts der Rest für den Inhalt.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .layout > * {\n      background-color: lavender;\n      padding: 10px;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"layout\"><aside>Menü</aside><main>Hier steht der Inhalt der Seite.</main></div>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .layout > * {\n      background-color: lavender;\n      padding: 10px;\n    }\n    .layout {\n      display: grid;\n      grid-template-columns: 120px 1fr;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"layout\"><aside>Menü</aside><main>Hier steht der Inhalt der Seite.</main></div>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".layout",
+              "property": "display",
+              "value": "grid",
+              "hint": "Mach .layout zum Grid-Container: display: grid;"
+            },
+            {
+              "selector": "aside",
+              "property": "width",
+              "value": "100px",
+              "hint": "Die linke Spalte soll 120px breit sein: grid-template-columns: 120px 1fr; (100px Inhalt + 2 × 10px padding)."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "repeat und minmax",
+    "file": "lektion-02.md",
+    "lessonSummary": "Schlau! Mit repeat und minmax passt sich dein Raster von selbst an die Breite an.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus. Ändere danach 120px auf 80px oder 200px und sieh, wie sich die Zahl der Spalten ändert.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .galerie {\n      display: grid;\n      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));\n      gap: 10px;\n    }\n    .galerie img {\n      width: 100%;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"galerie\"><img src=\"/web-bilder/katze.svg\" alt=\"Katze\"><img src=\"/web-bilder/hund.svg\" alt=\"Hund\"><img src=\"/web-bilder/pferd.svg\" alt=\"Pferd\"><img src=\"/web-bilder/fisch.svg\" alt=\"Fisch\"><img src=\"/web-bilder/vogel.svg\" alt=\"Vogel\"><img src=\"/web-bilder/dino.svg\" alt=\"Dino\"></div>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".galerie",
+              "property": "display",
+              "value": "grid"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Schreib die Spalten mit repeat: ein Raster mit vier gleich breiten Spalten.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .kalender {\n      display: grid;\n      gap: 4px;\n    }\n    .kalender div { background-color: wheat; padding: 8px; }\n  </style>\n</head>\n<body>\n  <div class=\"kalender\"><div>Mo</div><div>Di</div><div>Mi</div><div>Do</div><div>Fr</div><div>Sa</div><div>So</div></div>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .kalender {\n      display: grid;\n      grid-template-columns: repeat(4, 1fr);\n      gap: 4px;\n    }\n    .kalender div { background-color: wheat; padding: 8px; }\n  </style>\n</head>\n<body>\n  <div class=\"kalender\"><div>Mo</div><div>Di</div><div>Mi</div><div>Do</div><div>Fr</div><div>Sa</div><div>So</div></div>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "style",
+              "text": "repeat(4, 1fr)",
+              "hint": "Schreib grid-template-columns: repeat(4, 1fr);"
+            },
+            {
+              "selector": ".kalender",
+              "property": "grid-template-columns",
+              "notValue": "none",
+              "hint": "Die Regel steht in .kalender: grid-template-columns: repeat(4, 1fr);"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Mach die Galerie anpassungsfähig: so viele Spalten, wie hineinpassen, jede mindestens 100px breit (repeat mit auto-fill und minmax).",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .galerie {\n      display: grid;\n      gap: 8px;\n    }\n    .galerie img { width: 100%; }\n  </style>\n</head>\n<body>\n  <div class=\"galerie\"><img src=\"/web-bilder/rakete.svg\" alt=\"Rakete\"><img src=\"/web-bilder/planet.svg\" alt=\"Planet\"><img src=\"/web-bilder/stern.svg\" alt=\"Stern\"><img src=\"/web-bilder/einhorn.svg\" alt=\"Einhorn\"><img src=\"/web-bilder/baum.svg\" alt=\"Baum\"></div>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .galerie {\n      display: grid;\n      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));\n      gap: 8px;\n    }\n    .galerie img { width: 100%; }\n  </style>\n</head>\n<body>\n  <div class=\"galerie\"><img src=\"/web-bilder/rakete.svg\" alt=\"Rakete\"><img src=\"/web-bilder/planet.svg\" alt=\"Planet\"><img src=\"/web-bilder/stern.svg\" alt=\"Stern\"><img src=\"/web-bilder/einhorn.svg\" alt=\"Einhorn\"><img src=\"/web-bilder/baum.svg\" alt=\"Baum\"></div>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "style",
+              "text": "auto-fill",
+              "hint": "Nutze repeat(auto-fill, …)."
+            },
+            {
+              "selector": "style",
+              "text": "minmax(100px",
+              "hint": "Jede Spalte ist mindestens 100px breit: minmax(100px, 1fr)."
+            },
+            {
+              "selector": ".galerie",
+              "property": "grid-template-columns",
+              "notValue": "none",
+              "hint": "Die Regel gehört in .galerie: grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Über mehrere Spalten",
+    "file": "lektion-03.md",
+    "lessonSummary": "Stark! Einzelne Elemente dürfen jetzt über mehrere Spalten reichen.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus: Der Aufmacher ist zwei Spalten breit, das Banner unten geht über die ganze Breite.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .news {\n      display: grid;\n      grid-template-columns: repeat(3, 1fr);\n      gap: 8px;\n    }\n    .news div { background-color: lightpink; padding: 12px; }\n    .gross { grid-column: span 2; }\n    .banner { grid-column: 1 / -1; }\n  </style>\n</head>\n<body>\n  <div class=\"news\"><div class=\"gross\">Großer Aufmacher</div><div>Meldung</div><div>Meldung</div><div>Meldung</div><div>Meldung</div><div class=\"banner\">Banner über die ganze Breite</div></div>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".banner",
+              "property": "grid-column-end",
+              "notValue": "auto"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Das erste Bild (class=\"titelbild\") soll zwei Spalten breit sein.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .raster {\n      display: grid;\n      grid-template-columns: repeat(3, 1fr);\n      gap: 8px;\n    }\n    .raster div { background-color: khaki; padding: 12px; }\n  </style>\n</head>\n<body>\n  <div class=\"raster\"><div class=\"titelbild\">Titelbild</div><div>A</div><div>B</div><div>C</div></div>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .raster {\n      display: grid;\n      grid-template-columns: repeat(3, 1fr);\n      gap: 8px;\n    }\n    .raster div { background-color: khaki; padding: 12px; }\n    .titelbild { grid-column: span 2; }\n  </style>\n</head>\n<body>\n  <div class=\"raster\"><div class=\"titelbild\">Titelbild</div><div>A</div><div>B</div><div>C</div></div>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".titelbild",
+              "property": "grid-column-start",
+              "value": "span 2",
+              "hint": "Gib dem Titelbild grid-column: span 2;"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Die Fußzeile (class=\"fuss\") soll im Raster über die ganze Breite gehen – egal, wie viele Spalten es gibt.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .seite {\n      display: grid;\n      grid-template-columns: repeat(3, 1fr);\n      gap: 8px;\n    }\n    .seite div { background-color: lightblue; padding: 12px; }\n  </style>\n</head>\n<body>\n  <div class=\"seite\"><div>Spalte 1</div><div>Spalte 2</div><div>Spalte 3</div><div class=\"fuss\">Impressum · Kontakt</div></div>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .seite {\n      display: grid;\n      grid-template-columns: repeat(3, 1fr);\n      gap: 8px;\n    }\n    .seite div { background-color: lightblue; padding: 12px; }\n    .fuss { grid-column: 1 / -1; }\n  </style>\n</head>\n<body>\n  <div class=\"seite\"><div>Spalte 1</div><div>Spalte 2</div><div>Spalte 3</div><div class=\"fuss\">Impressum · Kontakt</div></div>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".fuss",
+              "property": "grid-column-start",
+              "value": "1",
+              "hint": "Die Fußzeile beginnt an Linie 1: grid-column: 1 / -1;"
+            },
+            {
+              "selector": ".fuss",
+              "property": "grid-column-end",
+              "value": "-1",
+              "hint": "Die Fußzeile endet an der letzten Linie: grid-column: 1 / -1;"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Handy-Ansicht",
+    "file": "lektion-04.md",
+    "lessonSummary": "Mobil bereit! Deine Seite sieht jetzt auch auf dem Handy gut aus.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus. In der schmalen Vorschau gilt die Media Query: Die Kästen stehen untereinander. Ändere 600px auf 300px – dann stehen sie nebeneinander.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Meine Website</title>\n  <style>\n    .raster {\n      display: grid;\n      grid-template-columns: repeat(3, 1fr);\n      gap: 8px;\n    }\n    .raster div { background-color: plum; padding: 16px; }\n    @media (max-width: 600px) {\n      .raster {\n        grid-template-columns: 1fr;\n      }\n    }\n  </style>\n</head>\n<body>\n  <div class=\"raster\"><div>A</div><div>B</div><div>C</div></div>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "meta[name=\"viewport\"]"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Mach die Seite handytauglich: Ergänze das viewport-meta-Tag im head und sorge dafür, dass kein Bild breiter als sein Platz wird (max-width: 100%).",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    /* Bilder sollen nicht überstehen */\n  </style>\n</head>\n<body>\n  <h1>Urlaubsfotos</h1>\n  <img src=\"/web-bilder/baum.svg\" alt=\"Ein Baum am Strand\" width=\"900\">\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Meine Website</title>\n  <style>\n    img {\n      max-width: 100%;\n      height: auto;\n    }\n  </style>\n</head>\n<body>\n  <h1>Urlaubsfotos</h1>\n  <img src=\"/web-bilder/baum.svg\" alt=\"Ein Baum am Strand\" width=\"900\">\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "head meta[name=\"viewport\"][content*=\"width=device-width\"]",
+              "hint": "Im head fehlt <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">."
+            },
+            {
+              "selector": "img",
+              "property": "max-width",
+              "value": "100%",
+              "hint": "Schreib eine Regel img { max-width: 100%; }"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Ergänze eine Media Query: Bei Bildschirmen bis 600px Breite soll das Menü (class=\"menue\") seine Links untereinander statt nebeneinander zeigen (flex-direction: column).",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Meine Website</title>\n  <style>\n    .menue {\n      display: flex;\n      gap: 12px;\n    }\n    /* Deine Media Query */\n  </style>\n</head>\n<body>\n  <nav class=\"menue\"><a href=\"#\">Start</a><a href=\"#\">Galerie</a><a href=\"#\">Kontakt</a></nav>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Meine Website</title>\n  <style>\n    .menue {\n      display: flex;\n      gap: 12px;\n    }\n    @media (max-width: 600px) {\n      .menue {\n        flex-direction: column;\n      }\n    }\n  </style>\n</head>\n<body>\n  <nav class=\"menue\"><a href=\"#\">Start</a><a href=\"#\">Galerie</a><a href=\"#\">Kontakt</a></nav>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "style",
+              "text": "@media (max-width: 600px)",
+              "hint": "Schreib eine Media Query: @media (max-width: 600px) { … }"
+            },
+            {
+              "selector": "style",
+              "text": "flex-direction: column",
+              "hint": "In der Media Query bekommt .menue flex-direction: column;"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Fehlersuche: Grid und Handy",
+    "file": "debug-01.md",
+    "lessonSummary": "Repariert! Raster und Handy-Ansicht funktionieren wieder.",
+    "tasks": [
+      {
+        "instruction": "Das Raster soll drei Spalten haben, bleibt aber eine einzige Spalte. Finde, was fehlt.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .raster {\n      grid-template-columns: repeat(3, 1fr);\n      gap: 8px;\n    }\n    .raster div { background-color: lightgreen; padding: 10px; }\n  </style>\n</head>\n<body>\n  <div class=\"raster\"><div>1</div><div>2</div><div>3</div></div>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .raster {\n      display: grid;\n      grid-template-columns: repeat(3, 1fr);\n      gap: 8px;\n    }\n    .raster div { background-color: lightgreen; padding: 10px; }\n  </style>\n</head>\n<body>\n  <div class=\"raster\"><div>1</div><div>2</div><div>3</div></div>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".raster",
+              "property": "display",
+              "value": "grid",
+              "hint": "Am Container fehlt display: grid;"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Die Media Query für kleine Bildschirme wirkt nie. Repariere die Bedingung.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Meine Website</title>\n  <style>\n    @media max-width: 600px {\n      .hinweis {\n        color: red;\n      }\n    }\n  </style>\n</head>\n<body>\n  <p class=\"hinweis\">Auf dem Handy bin ich rot.</p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Meine Website</title>\n  <style>\n    @media (max-width: 600px) {\n      .hinweis {\n        color: red;\n      }\n    }\n  </style>\n</head>\n<body>\n  <p class=\"hinweis\">Auf dem Handy bin ich rot.</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "style",
+              "text": "@media (max-width: 600px)",
+              "hint": "Die Bedingung braucht runde Klammern: @media (max-width: 600px)."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Auf dem Handy steht das Bild über den Rand hinaus. Sorge dafür, dass es nie breiter als sein Platz wird, ohne die width-Angabe zu löschen.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .titel {\n      width: 800px;\n    }\n  </style>\n</head>\n<body>\n  <img class=\"titel\" src=\"/web-bilder/rakete.svg\" alt=\"Eine Rakete\">\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .titel {\n      width: 800px;\n      max-width: 100%;\n      height: auto;\n    }\n  </style>\n</head>\n<body>\n  <img class=\"titel\" src=\"/web-bilder/rakete.svg\" alt=\"Eine Rakete\">\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".titel",
+              "property": "max-width",
+              "value": "100%",
+              "hint": "Ergänze max-width: 100%; – dann ist das Bild höchstens so breit wie sein Platz."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission: Responsive Galerie",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission erfüllt! Deine Galerie sieht auf jedem Bildschirm gut aus.",
+    "tasks": [
+      {
+        "instruction": "Baue deine Galerie-Seite mit allem aus der Liste oben.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <!-- Deine Galerie-Seite -->\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Meine Website</title>\n  <style>\n    .galerie {\n      display: grid;\n      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));\n      gap: 8px;\n    }\n    .galerie img {\n      max-width: 100%;\n    }\n    .highlight {\n      grid-column: span 2;\n    }\n    @media (max-width: 600px) {\n      h1 {\n        font-size: 24px;\n      }\n    }\n  </style>\n</head>\n<body>\n  <h1>Tierwelt</h1>\n  <div class=\"galerie\">\n    <img class=\"highlight\" src=\"/web-bilder/pferd.svg\" alt=\"Ein Pferd\">\n    <img src=\"/web-bilder/katze.svg\" alt=\"Eine Katze\">\n    <img src=\"/web-bilder/hund.svg\" alt=\"Ein Hund\">\n    <img src=\"/web-bilder/fisch.svg\" alt=\"Ein Fisch\">\n    <img src=\"/web-bilder/vogel.svg\" alt=\"Ein Vogel\">\n    <img src=\"/web-bilder/dino.svg\" alt=\"Ein Dino\">\n  </div>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "head meta[name=\"viewport\"]",
+              "hint": "Im head fehlt das viewport-meta-Tag."
+            },
+            {
+              "selector": ".galerie img[src*=\"/web-bilder/\"][alt]:not([alt=\"\"])",
+              "min": 6,
+              "hint": "In die Galerie gehören mindestens sechs Bilder mit alt-Text."
+            },
+            {
+              "selector": ".galerie",
+              "property": "display",
+              "value": "grid",
+              "hint": "Die Galerie braucht display: grid;"
+            },
+            {
+              "selector": "style",
+              "text": "auto-fill",
+              "hint": "Nutze repeat(auto-fill, minmax(…, 1fr))."
+            },
+            {
+              "selector": "style",
+              "text": "minmax(",
+              "hint": "Nutze minmax(…, 1fr) für die Spaltenbreite."
+            },
+            {
+              "selector": ".highlight",
+              "property": "grid-column-start",
+              "value": "span 2",
+              "hint": "Das erste Bild bekommt grid-column: span 2;"
+            },
+            {
+              "selector": ".galerie img",
+              "property": "max-width",
+              "value": "100%",
+              "min": 6,
+              "hint": "Die Bilder brauchen max-width: 100%;"
+            },
+            {
+              "selector": "style",
+              "text": "@media (max-width: 600px)",
+              "hint": "Es fehlt eine Media Query @media (max-width: 600px) { … }."
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,206 @@
+{
+  "title": "Struktur mit Bedeutung",
+  "questions": [
+    {
+      "id": "webg2-1",
+      "type": "multiple_choice",
+      "question": "Wofür ist das Element main gedacht?",
+      "options": [
+        "Für den Hauptinhalt der Seite",
+        "Für das Menü",
+        "Für das Impressum ganz unten"
+      ],
+      "correctIndex": 0,
+      "explanation": "main umschließt den eigentlichen Inhalt und kommt nur einmal pro Seite vor.",
+      "optionExplanations": [
+        null,
+        "Das Menü gehört in nav.",
+        "Impressum und Kontakt stehen typischerweise im footer."
+      ]
+    },
+    {
+      "id": "webg2-2",
+      "type": "multiple_choice",
+      "question": "Wo gehören die wichtigsten Links einer Seite hin?",
+      "options": [
+        "In ein nav-Element",
+        "In ein footer-Element",
+        "In ein mark-Element"
+      ],
+      "correctIndex": 0,
+      "explanation": "nav steht für Navigation.",
+      "optionExplanations": [
+        null,
+        "Im footer stehen eher Kontakt und Impressum.",
+        "mark markiert Text wie ein Textmarker."
+      ]
+    },
+    {
+      "id": "webg2-3",
+      "type": "multiple_choice",
+      "question": "Ein Spielbericht, der auch allein auf einer anderen Seite stehen könnte, ist am besten ein …",
+      "options": [
+        "article",
+        "section",
+        "header"
+      ],
+      "correctIndex": 0,
+      "explanation": "article ist ein in sich geschlossener Beitrag.",
+      "optionExplanations": [
+        null,
+        "section ist ein Abschnitt zu einem Thema – er muss nicht allein verständlich sein.",
+        "header ist der Kopf einer Seite oder eines Bereichs."
+      ]
+    },
+    {
+      "id": "webg2-4",
+      "type": "multiple_choice",
+      "question": "Welche Liste nimmst du für eine Rangliste, bei der die Reihenfolge zählt?",
+      "options": [
+        "ol",
+        "ul",
+        "li"
+      ],
+      "correctIndex": 0,
+      "explanation": "ol nummeriert die Punkte.",
+      "optionExplanations": [
+        null,
+        "ul ist für Listen, bei denen die Reihenfolge egal ist.",
+        "li ist nur ein einzelner Punkt, keine ganze Liste."
+      ]
+    },
+    {
+      "id": "webg2-5",
+      "type": "multiple_choice",
+      "question": "Was bewirkt <ol reversed>?",
+      "options": [
+        "Die Liste zählt rückwärts",
+        "Die Punkte stehen in umgekehrter Reihenfolge im Code",
+        "Die Liste wird von rechts nach links geschrieben"
+      ],
+      "correctIndex": 0,
+      "explanation": "reversed dreht nur die Nummerierung um, z. B. 3, 2, 1.",
+      "optionExplanations": [
+        null,
+        "Die Reihenfolge der Punkte bleibt so, wie sie im Code steht – nur die Zahlen zählen rückwärts.",
+        "Die Schreibrichtung ändert sich nicht."
+      ]
+    },
+    {
+      "id": "webg2-6",
+      "type": "multiple_choice",
+      "question": "Wo steht eine verschachtelte Liste richtig?",
+      "options": [
+        "Im li, vor dessen </li>",
+        "Zwischen zwei li, direkt im ul",
+        "Hinter dem </ul> der äußeren Liste"
+      ],
+      "correctIndex": 0,
+      "explanation": "Die innere Liste gehört zu einem Listenpunkt, also in dessen li.",
+      "optionExplanations": [
+        null,
+        "Direkt im ul dürfen nur li stehen.",
+        "Dann wäre es keine verschachtelte, sondern eine zweite Liste."
+      ]
+    },
+    {
+      "id": "webg2-7",
+      "type": "multiple_choice",
+      "question": "Welches Element passt für einen Hinweis, der besonders wichtig ist?",
+      "options": [
+        "strong",
+        "em",
+        "small"
+      ],
+      "correctIndex": 0,
+      "explanation": "strong steht für Wichtigkeit.",
+      "optionExplanations": [
+        null,
+        "em betont ein Wort, sagt aber nichts über Wichtigkeit.",
+        "small ist für Kleingedrucktes."
+      ]
+    },
+    {
+      "id": "webg2-8",
+      "type": "multiple_choice",
+      "question": "Warum lohnt es sich, header, main und footer statt einfacher div zu nehmen?",
+      "options": [
+        "Vorleseprogramme und Suchmaschinen verstehen die Seite besser",
+        "Die Seite lädt dadurch schneller",
+        "Die Bereiche werden automatisch farbig"
+      ],
+      "correctIndex": 0,
+      "explanation": "Semantische Elemente beschreiben die Rolle eines Bereichs.",
+      "optionExplanations": [
+        null,
+        "Auf die Ladezeit hat das keinen spürbaren Einfluss.",
+        "Aussehen bestimmst du mit CSS – die Elemente selbst sind unauffällig."
+      ]
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Baue eine Seite mit header (darin h1 und nav mit drei Links in einer Liste), main mit zwei section-Abschnitten mit je einer h2 und einem footer.",
+      "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <!-- Deine Seite -->\n</body>\n</html>\n",
+      "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <header>\n    <h1>Kletterhalle</h1>\n    <nav>\n      <ul>\n        <li><a href=\"#\">Start</a></li>\n        <li><a href=\"#\">Kurse</a></li>\n        <li><a href=\"#\">Preise</a></li>\n      </ul>\n    </nav>\n  </header>\n  <main>\n    <section><h2>Kurse</h2><p>Für Anfänger und Profis.</p></section>\n    <section><h2>Preise</h2><p>Ab 8 Euro.</p></section>\n  </main>\n  <footer><p>Kletterhalle Nord</p></footer>\n</body>\n</html>",
+      "validation": {
+        "type": "web",
+        "checks": [
+          {
+            "selector": "header h1",
+            "notEmpty": true,
+            "hint": "Im header fehlt die <h1>."
+          },
+          {
+            "selector": "header nav ul > li > a",
+            "min": 3,
+            "hint": "Im header braucht es ein nav mit einer Liste aus drei Links."
+          },
+          {
+            "selector": "main section > h2",
+            "notEmpty": true,
+            "min": 2,
+            "hint": "Im main fehlen zwei section-Abschnitte mit je einer h2."
+          },
+          {
+            "selector": "body > footer",
+            "notEmpty": true,
+            "hint": "Es fehlt ein footer mit Text."
+          }
+        ]
+      }
+    },
+    {
+      "instruction": "Repariere die Seite: Die Rangliste mit der id „top“ soll nummeriert sein, im Menü braucht jeder Link ein eigenes li, und der footer gehört hinter das main.",
+      "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <nav>\n    <ul>\n      <a href=\"#\">Start</a>\n      <a href=\"#\">Liste</a>\n    </ul>\n  </nav>\n  <main>\n    <ul id=\"top\">\n      <li>Pizza</li>\n      <li>Sushi</li>\n      <li>Burger</li>\n    </ul>\n    <footer><p>Meine Lieblingsessen</p></footer>\n  </main>\n</body>\n</html>\n",
+      "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <nav>\n    <ul>\n      <li><a href=\"#\">Start</a></li>\n      <li><a href=\"#\">Liste</a></li>\n    </ul>\n  </nav>\n  <main>\n    <ol id=\"top\">\n      <li>Pizza</li>\n      <li>Sushi</li>\n      <li>Burger</li>\n    </ol>\n  </main>\n  <footer><p>Meine Lieblingsessen</p></footer>\n</body>\n</html>",
+      "validation": {
+        "type": "web",
+        "checks": [
+          {
+            "selector": "ol#top li",
+            "min": 3,
+            "hint": "Die Liste mit id=\"top\" muss ein <ol> sein."
+          },
+          {
+            "selector": "nav ul > li > a",
+            "min": 2,
+            "hint": "Jeder Menü-Link braucht ein eigenes li."
+          },
+          {
+            "selector": "nav ul > a",
+            "min": 0,
+            "max": 0,
+            "hint": "Im ul dürfen keine Links direkt stehen."
+          },
+          {
+            "selector": "main footer",
+            "min": 0,
+            "max": 0,
+            "hint": "Der footer gehört hinter </main>."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,408 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "CSS einbinden",
+    "file": "lektion-01.md",
+    "lessonSummary": "Los geht’s mit Design! Deine erste CSS-Regel wirkt.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus. Ändere danach die Farben und führe es erneut aus.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    h1 {\n      color: darkblue;\n      background-color: lightyellow;\n    }\n  </style>\n</head>\n<body>\n  <h1>Willkommen</h1>\n  <p>Hier entsteht meine Seite.</p>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "h1",
+              "property": "color",
+              "value": "darkblue"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Schreib zwei Regeln: Die ganze Seite (body) bekommt eine Hintergrundfarbe, die Überschrift h1 eine andere Textfarbe als Schwarz.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    /* Deine Regeln */\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Ein Absatz über mein Thema.</p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    body {\n      background-color: whitesmoke;\n    }\n    h1 {\n      color: teal;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Ein Absatz über mein Thema.</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "body",
+              "property": "background-color",
+              "notValue": "transparent",
+              "hint": "Schreib eine Regel body { background-color: …; }."
+            },
+            {
+              "selector": "h1",
+              "property": "color",
+              "notValue": "black",
+              "hint": "Schreib eine Regel h1 { color: …; } mit einer anderen Farbe als Schwarz."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Selektoren",
+    "file": "lektion-02.md",
+    "lessonSummary": "Treffsicher! Mit Klassen, ids und Nachfahren-Selektoren erreichst du genau die Elemente, die du willst.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus: Nur der Hinweis ist gelb, nur der Absatz im footer ist klein, und beide Überschriften haben dieselbe Schrift.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .hinweis {\n      background-color: lightyellow;\n    }\n    footer p {\n      font-size: 12px;\n    }\n    h1, h2 {\n      font-family: Georgia, serif;\n    }\n  </style>\n</head>\n<body>\n  <h1>Kochclub</h1>\n  <p class=\"hinweis\">Nächstes Treffen: Freitag!</p>\n  <h2>Rezepte</h2>\n  <p>Diese Woche: Pfannkuchen.</p>\n  <footer><p>© 2026 Kochclub</p></footer>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".hinweis",
+              "property": "background-color",
+              "value": "lightyellow"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Gestalte mit einem Klassen-Selektor alle Elemente mit class=\"tipp\" (Hintergrundfarbe) und mit einem id-Selektor das Element mit id=\"start\" (Textfarbe, nicht Schwarz).",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    /* .tipp und #start */\n  </style>\n</head>\n<body>\n  <h1 id=\"start\">Gaming-Tipps</h1>\n  <p class=\"tipp\">Speichere oft!</p>\n  <p>Ein ganz normaler Absatz.</p>\n  <p class=\"tipp\">Lies die Hinweise der Figuren.</p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .tipp {\n      background-color: lavender;\n    }\n    #start {\n      color: purple;\n    }\n  </style>\n</head>\n<body>\n  <h1 id=\"start\">Gaming-Tipps</h1>\n  <p class=\"tipp\">Speichere oft!</p>\n  <p>Ein ganz normaler Absatz.</p>\n  <p class=\"tipp\">Lies die Hinweise der Figuren.</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".tipp",
+              "property": "background-color",
+              "notValue": "transparent",
+              "min": 2,
+              "hint": "Schreib eine Regel .tipp { background-color: …; } – mit Punkt vor dem Klassennamen."
+            },
+            {
+              "selector": "p:not(.tipp)",
+              "property": "background-color",
+              "value": "transparent",
+              "hint": "Der normale Absatz soll keinen Hintergrund bekommen – gestalte nur die Klasse tipp."
+            },
+            {
+              "selector": "#start",
+              "property": "color",
+              "notValue": "black",
+              "hint": "Schreib eine Regel #start { color: …; } – mit Raute vor der id."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Nur die Absätze im footer sollen kleiner sein (font-size kleiner als 16px). Die Absätze im main bleiben normal groß – nutze einen Nachfahren-Selektor.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    /* Nur die Absätze im footer */\n  </style>\n</head>\n<body>\n  <main>\n    <p>Willkommen auf meiner Seite.</p>\n    <p>Hier geht es um Fahrräder.</p>\n  </main>\n  <footer>\n    <p>Impressum</p>\n    <p>Kontakt: rad@example.org</p>\n  </footer>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    footer p {\n      font-size: 12px;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <p>Willkommen auf meiner Seite.</p>\n    <p>Hier geht es um Fahrräder.</p>\n  </main>\n  <footer>\n    <p>Impressum</p>\n    <p>Kontakt: rad@example.org</p>\n  </footer>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "footer p",
+              "property": "font-size",
+              "notValue": "16px",
+              "min": 2,
+              "hint": "Schreib eine Regel footer p { font-size: 12px; } – mit Leerzeichen zwischen footer und p."
+            },
+            {
+              "selector": "main p",
+              "property": "font-size",
+              "value": "16px",
+              "min": 2,
+              "hint": "Die Absätze im main sollen normal groß bleiben – die Regel darf nur für footer p gelten."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Wer gewinnt?",
+    "file": "lektion-03.md",
+    "lessonSummary": "Durchblick! Du weißt jetzt, warum eine Regel gewinnt – und wie du sie gewinnen lässt.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus: Der Absatz hat id und Klasse – die id-Regel ist genauer, deshalb ist er blau statt rot.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    p { color: black; }\n    .rot { color: red; }\n    #hinweis { color: blue; }\n  </style>\n</head>\n<body>\n  <p id=\"hinweis\" class=\"rot\">Welche Farbe habe ich?</p>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "#hinweis",
+              "property": "color",
+              "value": "blue"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Der Absatz soll rot werden – ohne das HTML zu ändern und ohne die blaue Regel zu löschen. Schreib eine Regel, die genauer ist als #hinweis.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    p { color: black; }\n    #hinweis { color: blue; }\n    .rot { color: red; }\n    /* Deine genauere Regel */\n  </style>\n</head>\n<body>\n  <p id=\"hinweis\" class=\"rot\">Achtung, frisch gestrichen!</p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    p { color: black; }\n    #hinweis { color: blue; }\n    .rot { color: red; }\n    #hinweis.rot { color: red; }\n  </style>\n</head>\n<body>\n  <p id=\"hinweis\" class=\"rot\">Achtung, frisch gestrichen!</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "#hinweis",
+              "property": "color",
+              "value": "red",
+              "hint": "Kombiniere id und Klasse zu einem genaueren Selektor: #hinweis.rot { color: red; }."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Die Überschrift ist orange, soll aber grün sein. Beide Regeln sind gleich genau – bring sie in die richtige Reihenfolge.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    h2 { color: green; }\n    h2 { color: orange; }\n  </style>\n</head>\n<body>\n  <h2>Garten-AG</h2>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    h2 { color: orange; }\n    h2 { color: green; }\n  </style>\n</head>\n<body>\n  <h2>Garten-AG</h2>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "h2",
+              "property": "color",
+              "value": "green",
+              "hint": "Bei gleich genauen Regeln gewinnt die spätere – die grüne Regel muss nach unten."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Farben, Schrift und Variablen",
+    "file": "lektion-04.md",
+    "lessonSummary": "Schick! Farben, Schrift und Variablen machen dein Design einheitlich.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus. Ändere danach nur den Wert von --hauptfarbe und sieh, wie sich Überschrift und Knopf gleichzeitig ändern.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    :root {\n      --hauptfarbe: #2a9d8f;\n    }\n    body {\n      font-family: Verdana, sans-serif;\n      line-height: 1.5;\n    }\n    h1 {\n      color: var(--hauptfarbe);\n      text-align: center;\n    }\n    .knopf {\n      background-color: var(--hauptfarbe);\n      color: white;\n    }\n  </style>\n</head>\n<body>\n  <h1>Musikschule</h1>\n  <p>Gitarre, Klavier und Schlagzeug.</p>\n  <button class=\"knopf\">Anmelden</button>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "h1",
+              "property": "text-align",
+              "value": "center"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Gestalte die Überschrift: Farbe als Hex-Wert (zum Beispiel #e76f51), zentriert (text-align) und größer als normal (font-size über 32px). Gib dem body außerdem eine eigene Schrift (font-family).",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    /* Deine Regeln */\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Ein Absatz.</p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    body {\n      font-family: Verdana, sans-serif;\n    }\n    h1 {\n      color: #e76f51;\n      text-align: center;\n      font-size: 40px;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Ein Absatz.</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "h1",
+              "property": "color",
+              "notValue": "black",
+              "hint": "Gib h1 eine Farbe, zum Beispiel color: #e76f51;"
+            },
+            {
+              "selector": "h1",
+              "property": "text-align",
+              "value": "center",
+              "hint": "Zentriere die Überschrift mit text-align: center;"
+            },
+            {
+              "selector": "h1",
+              "property": "font-size",
+              "notValue": "32px",
+              "hint": "Gib h1 eine eigene Größe, zum Beispiel font-size: 40px;"
+            },
+            {
+              "selector": "body",
+              "property": "font-family",
+              "notValue": "initial",
+              "hint": "Gib dem body eine Schrift, zum Beispiel font-family: Verdana, sans-serif;"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Hier steht dieselbe Farbe an zwei Stellen. Leg in :root eine Variable --hauptfarbe an und nutze sie mit var(--hauptfarbe) für die Überschrift und den Knopf.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    h1 {\n      color: crimson;\n    }\n    .knopf {\n      background-color: crimson;\n      color: white;\n    }\n  </style>\n</head>\n<body>\n  <h1>Fotografie-AG</h1>\n  <button class=\"knopf\">Mitmachen</button>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    :root {\n      --hauptfarbe: crimson;\n    }\n    h1 {\n      color: var(--hauptfarbe);\n    }\n    .knopf {\n      background-color: var(--hauptfarbe);\n      color: white;\n    }\n  </style>\n</head>\n<body>\n  <h1>Fotografie-AG</h1>\n  <button class=\"knopf\">Mitmachen</button>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "style",
+              "text": "--hauptfarbe:",
+              "hint": "Leg die Variable an: :root { --hauptfarbe: crimson; }"
+            },
+            {
+              "selector": "style",
+              "text": "color: var(--hauptfarbe)",
+              "hint": "Nutze die Variable mit var(--hauptfarbe) statt der festen Farbe."
+            },
+            {
+              "selector": ".knopf",
+              "property": "background-color",
+              "notValue": "buttonface",
+              "hint": "Der Knopf soll weiter die Hauptfarbe als Hintergrund haben."
+            },
+            {
+              "selector": "h1",
+              "property": "color",
+              "notValue": "black",
+              "hint": "Die Überschrift soll weiter die Hauptfarbe haben."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Fehlersuche: CSS",
+    "file": "debug-01.md",
+    "lessonSummary": "Gefunden! CSS-Fehler versteckst du jetzt nicht mehr vor dir.",
+    "tasks": [
+      {
+        "instruction": "Die Überschrift soll rot auf gelbem Grund sein, ist aber weder das eine noch das andere. Repariere die Regel.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    h1 {\n      color: red\n      background-color: yellow;\n    }\n  </style>\n</head>\n<body>\n  <h1>Feuerwehr</h1>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    h1 {\n      color: red;\n      background-color: yellow;\n    }\n  </style>\n</head>\n<body>\n  <h1>Feuerwehr</h1>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "h1",
+              "property": "color",
+              "value": "red",
+              "hint": "Hinter color: red fehlt das Semikolon."
+            },
+            {
+              "selector": "h1",
+              "property": "background-color",
+              "value": "yellow",
+              "hint": "Hinter color: red fehlt das Semikolon – deshalb wirkt auch die Hintergrundfarbe nicht."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Die Karten sollen einen hellblauen Hintergrund haben, aber die Regel trifft sie nicht. Finde den Fehler im Selektor.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .Karte {\n      background-color: lightblue;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"karte\">Erste Karte</div>\n  <div class=\"karte\">Zweite Karte</div>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .karte {\n      background-color: lightblue;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"karte\">Erste Karte</div>\n  <div class=\"karte\">Zweite Karte</div>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".karte",
+              "property": "background-color",
+              "value": "lightblue",
+              "min": 2,
+              "hint": "Im HTML heißt die Klasse karte – kleingeschrieben. Groß-/Kleinschreibung zählt."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Der Absatz soll blau und 20px groß sein. In der Regel stecken zwei Tippfehler.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    p {\n      colour: blue;\n      font-size: 20 px;\n    }\n  </style>\n</head>\n<body>\n  <p>Hallo!</p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    p {\n      color: blue;\n      font-size: 20px;\n    }\n  </style>\n</head>\n<body>\n  <p>Hallo!</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "p",
+              "property": "color",
+              "value": "blue",
+              "hint": "Die Eigenschaft heißt color – amerikanisch, ohne u."
+            },
+            {
+              "selector": "p",
+              "property": "font-size",
+              "value": "20px",
+              "hint": "Zwischen Zahl und Einheit darf kein Leerzeichen stehen: 20px."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission: Design-Makeover",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission erfüllt! Aus einer grauen Seite ist ein eigenes Design geworden.",
+    "tasks": [
+      {
+        "instruction": "Gestalte die Seite mit allem aus der Liste oben.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    /* Dein Design */\n  </style>\n</head>\n<body>\n  <header><h1>Tierheim Pfötchen</h1></header>\n  <main>\n    <div class=\"karte\"><h2>Bella</h2><p>Hündin, 4 Jahre, verspielt</p></div>\n    <div class=\"karte\"><h2>Tiger</h2><p>Kater, 2 Jahre, verschmust</p></div>\n  </main>\n  <footer><p>Tierheim Pfötchen · Waldweg 7</p></footer>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    :root {\n      --hauptfarbe: darkorange;\n    }\n    body {\n      font-family: Verdana, sans-serif;\n      background-color: oldlace;\n    }\n    h1 {\n      color: var(--hauptfarbe);\n    }\n    .karte {\n      background-color: white;\n      border-left: 6px solid var(--hauptfarbe);\n    }\n    footer p {\n      font-size: 12px;\n    }\n  </style>\n</head>\n<body>\n  <header><h1>Tierheim Pfötchen</h1></header>\n  <main>\n    <div class=\"karte\"><h2>Bella</h2><p>Hündin, 4 Jahre, verspielt</p></div>\n    <div class=\"karte\"><h2>Tiger</h2><p>Kater, 2 Jahre, verschmust</p></div>\n  </main>\n  <footer><p>Tierheim Pfötchen · Waldweg 7</p></footer>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "style",
+              "text": "--hauptfarbe:",
+              "hint": "Leg in :root eine Variable --hauptfarbe an."
+            },
+            {
+              "selector": "style",
+              "text": "var(--hauptfarbe)",
+              "hint": "Benutze die Variable mit var(--hauptfarbe)."
+            },
+            {
+              "selector": "body",
+              "property": "font-family",
+              "notValue": "initial",
+              "hint": "Gib dem body eine eigene Schrift (font-family)."
+            },
+            {
+              "selector": "body",
+              "property": "background-color",
+              "notValue": "transparent",
+              "hint": "Gib dem body eine Hintergrundfarbe."
+            },
+            {
+              "selector": "h1",
+              "property": "color",
+              "notValue": "black",
+              "hint": "Gib der Überschrift h1 eine eigene Farbe."
+            },
+            {
+              "selector": ".karte",
+              "property": "background-color",
+              "notValue": "transparent",
+              "min": 2,
+              "hint": "Gib allen Elementen mit class=\"karte\" einen Hintergrund."
+            },
+            {
+              "selector": "footer p",
+              "property": "font-size",
+              "notValue": "16px",
+              "hint": "Mach die Schrift im footer kleiner (footer p)."
+            },
+            {
+              "selector": "main p",
+              "property": "font-size",
+              "value": "16px",
+              "min": 2,
+              "hint": "Nur der Absatz im footer soll kleiner werden, nicht die Absätze in den Karten."
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

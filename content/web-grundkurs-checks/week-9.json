@@ -1,0 +1,189 @@
+{
+  "title": "Abschlussprojekt",
+  "questions": [
+    {
+      "id": "webg9-1",
+      "type": "multiple_choice",
+      "question": "Was solltest du vor dem ersten CSS für eine neue Website tun?",
+      "options": [
+        "Inhalte sammeln und die Gliederung planen",
+        "Die Lieblingsfarbe festlegen",
+        "Ein Formular bauen"
+      ],
+      "correctIndex": 0,
+      "explanation": "Erst Struktur, dann Design.",
+      "optionExplanations": [
+        null,
+        "Farben kommen später – zuerst muss klar sein, was auf die Seite kommt.",
+        "Ein Formular braucht nicht jede Seite."
+      ]
+    },
+    {
+      "id": "webg9-2",
+      "type": "multiple_choice",
+      "question": "Wann gilt eine Regel mit :hover?",
+      "options": [
+        "Solange die Maus über dem Element ist",
+        "Nach einem Doppelklick",
+        "Immer auf dem Handy"
+      ],
+      "correctIndex": 0,
+      "explanation": ":hover beschreibt den Zustand „Maus darüber“.",
+      "optionExplanations": [
+        null,
+        "Klicks beschreibt :active – und nur, solange gedrückt wird.",
+        "Auf Touchscreens gibt es keine echte Maus – :hover ist dort unzuverlässig."
+      ]
+    },
+    {
+      "id": "webg9-3",
+      "type": "multiple_choice",
+      "question": "Wo gehört transition hin, damit ein Hover-Effekt in beide Richtungen sanft ist?",
+      "options": [
+        "An das Element selbst",
+        "In die :hover-Regel",
+        "In den head"
+      ],
+      "correctIndex": 0,
+      "explanation": "Am Element gilt die transition für Hin- und Rückweg.",
+      "optionExplanations": [
+        null,
+        "Dort wirkt sie nur auf dem Hinweg.",
+        "Im head steht kein CSS außerhalb des style-Blocks."
+      ]
+    },
+    {
+      "id": "webg9-4",
+      "type": "multiple_choice",
+      "question": "Was macht document.querySelector('#modus')?",
+      "options": [
+        "Es sucht das Element mit id=\"modus\"",
+        "Es erstellt ein neues Element",
+        "Es ändert die Farbe der Seite"
+      ],
+      "correctIndex": 0,
+      "explanation": "querySelector sucht mit einem CSS-Selektor.",
+      "optionExplanations": [
+        null,
+        "Neue Elemente erstellt createElement.",
+        "Es sucht nur – geändert wird danach."
+      ]
+    },
+    {
+      "id": "webg9-5",
+      "type": "multiple_choice",
+      "question": "Was bewirkt document.body.classList.toggle('dunkel')?",
+      "options": [
+        "Es schaltet die Klasse dunkel am body an oder aus",
+        "Es macht die Seite sofort schwarz",
+        "Es löscht alle Klassen"
+      ],
+      "correctIndex": 0,
+      "explanation": "toggle schaltet um: an, wenn sie fehlt – aus, wenn sie da ist.",
+      "optionExplanations": [
+        null,
+        "Schwarz wird es nur, wenn das CSS für die Klasse das vorsieht.",
+        "Nur diese eine Klasse wird umgeschaltet."
+      ]
+    },
+    {
+      "id": "webg9-6",
+      "type": "multiple_choice",
+      "question": "Wofür ist <meta name=\"description\" content=\"…\">?",
+      "options": [
+        "Für die Beschreibung in Suchergebnissen",
+        "Für einen sichtbaren Untertitel",
+        "Für den Text im Browser-Tab"
+      ],
+      "correctIndex": 0,
+      "explanation": "Suchmaschinen zeigen die Beschreibung unter dem Titel an.",
+      "optionExplanations": [
+        null,
+        "Im head ist nichts im Fenster sichtbar.",
+        "Der Tab zeigt den title."
+      ]
+    },
+    {
+      "id": "webg9-7",
+      "type": "multiple_choice",
+      "question": "Welche Kombination ist schwer lesbar?",
+      "options": [
+        "Hellgrauer Text auf weißem Hintergrund",
+        "Schwarzer Text auf weißem Hintergrund",
+        "Weißer Text auf dunkelblauem Hintergrund"
+      ],
+      "correctIndex": 0,
+      "explanation": "Zu wenig Kontrast macht Text schwer lesbar.",
+      "optionExplanations": [
+        null,
+        "Schwarz auf Weiß hat sehr hohen Kontrast.",
+        "Weiß auf Dunkelblau hat ebenfalls hohen Kontrast."
+      ]
+    },
+    {
+      "id": "webg9-8",
+      "type": "multiple_choice",
+      "question": "Ein Menü-Link mit href=\"#Kontakt\" springt nicht zum Abschnitt mit id=\"kontakt\". Warum?",
+      "options": [
+        "Groß- und Kleinschreibung zählt bei ids",
+        "Sprung-Links funktionieren nur nach unten",
+        "Abschnitte dürfen keine id haben"
+      ],
+      "correctIndex": 0,
+      "explanation": "Die beiden Namen unterscheiden sich im ersten Buchstaben – für den Browser sind das zwei verschiedene ids.",
+      "optionExplanations": [
+        null,
+        "Sprung-Links funktionieren in beide Richtungen.",
+        "Gerade für Sprungziele braucht ein Abschnitt eine id."
+      ]
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Gestalte den Knopf mit class=\"los\": Beim Darüberfahren (:hover) ändert er seine Hintergrundfarbe, und zwar sanft in 0.4 Sekunden (transition am Knopf selbst).",
+      "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .los {\n      background-color: seagreen;\n      color: white;\n      padding: 10px 20px;\n    }\n  </style>\n</head>\n<body>\n  <button class=\"los\">Los geht’s</button>\n</body>\n</html>\n",
+      "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .los {\n      background-color: seagreen;\n      color: white;\n      padding: 10px 20px;\n      transition: background-color 0.4s;\n    }\n    .los:hover {\n      background-color: darkgreen;\n    }\n  </style>\n</head>\n<body>\n  <button class=\"los\">Los geht’s</button>\n</body>\n</html>",
+      "validation": {
+        "type": "web",
+        "checks": [
+          {
+            "selector": "style",
+            "text": ".los:hover",
+            "hint": "Schreib eine Regel .los:hover mit einer anderen Hintergrundfarbe."
+          },
+          {
+            "selector": ".los",
+            "property": "transition-duration",
+            "value": "0.4s",
+            "hint": "Ergänze in .los: transition: background-color 0.4s;"
+          }
+        ]
+      }
+    },
+    {
+      "instruction": "Bau einen Dunkelmodus: Der Knopf mit id=\"nacht\" schaltet per JavaScript am body die Klasse dunkel an und aus. Schreib auch das CSS für body.dunkel (dunkler Hintergrund, helle Schrift).",
+      "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    /* CSS für body.dunkel */\n  </style>\n</head>\n<body>\n  <h1>Sternwarte</h1>\n  <button id=\"nacht\">🌙</button>\n  <script>\n    // Dein JavaScript\n  </script>\n</body>\n</html>\n",
+      "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    body.dunkel {\n      background-color: midnightblue;\n      color: white;\n    }\n  </style>\n</head>\n<body>\n  <h1>Sternwarte</h1>\n  <button id=\"nacht\">🌙</button>\n  <script>\n    document.querySelector('#nacht').addEventListener('click', () => {\n      document.body.classList.toggle('dunkel');\n    });\n  </script>\n</body>\n</html>",
+      "validation": {
+        "type": "web",
+        "checks": [
+          {
+            "selector": "body script",
+            "text": "addEventListener('click'",
+            "hint": "Reagiere auf den Klick: document.querySelector('#nacht').addEventListener('click', () => { … });"
+          },
+          {
+            "selector": "body script",
+            "text": "classList.toggle('dunkel')",
+            "hint": "Schalte die Klasse um: document.body.classList.toggle('dunkel');"
+          },
+          {
+            "selector": "style",
+            "text": "body.dunkel",
+            "hint": "Schreib eine CSS-Regel body.dunkel { … }."
+          }
+        ]
+      }
+    }
+  ]
+}

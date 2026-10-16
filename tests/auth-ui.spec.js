@@ -383,7 +383,7 @@ test.describe('UI: Admin + Header-Login', () => {
 
     // Profil: eigener Block für den Kurs, Kachel heißt „Abschluss“.
     await page.goto('/profil');
-    const block = page.locator('.cert-course-block', { hasText: 'Meine erste Website' });
+    const block = page.locator('.cert-course-block').filter({ has: page.locator('.cert-course-title', { hasText: /^Meine erste Website \d/ }) });
     await expect(block).toBeVisible({ timeout: 20000 });
     const card = block.locator('.badge-card');
     await expect(card).toHaveClass(/earned/);
@@ -670,9 +670,13 @@ test.describe('UI: Admin + Header-Login', () => {
     await page.locator('.settings-close').click();
 
     await page.goto('/profil');
-    // Python, KI-Labor und „Meine erste Website“ (Abschluss-Check) - letzterer hier noch nicht bestanden.
-    await expect(page.locator('.cert-course-block')).toHaveCount(3, { timeout: 10000 });
-    await expect(page.locator('.cert-course-block', { hasText: 'Meine erste Website' }).locator('.cert-course-count')).toContainText('0/1');
+    // Python, KI-Labor und „Meine erste Website“ in beiden Stufen (Einfach: Abschluss-Check,
+    // Intensiv: Wochen-Checks) - die beiden letzten hier noch nicht bestanden.
+    await expect(page.locator('.cert-course-block')).toHaveCount(4, { timeout: 10000 });
+    const einfachBlock = page.locator('.cert-course-block').filter({ has: page.locator('.cert-course-title', { hasText: /^Meine erste Website \d/ }) });
+    await expect(einfachBlock.locator('.cert-course-count')).toContainText('0/1');
+    const intensivBlock = page.locator('.cert-course-block', { hasText: 'Meine erste Website – Intensiv' });
+    await expect(intensivBlock.locator('.badge-card-link').first()).toHaveAttribute('href', '/kurs/web-erste-website?stufe=intensiv&week=1');
 
     const pythonBlock = page.locator('.cert-course-block', { hasText: 'Python 12-Wochen-Grundkurs' });
     await expect(pythonBlock.locator('.cert-course-count')).toContainText('1/12');

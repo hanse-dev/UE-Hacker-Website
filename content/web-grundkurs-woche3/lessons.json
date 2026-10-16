@@ -1,0 +1,373 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Bilder",
+    "file": "lektion-01.md",
+    "lessonSummary": "Sehr gut! Deine Bilder haben eine Beschreibung, eine passende Größe und eine Bildunterschrift.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus: ein Bild mit Größe und Alternativtext, darunter ein Bild mit Bildunterschrift.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Musik</h1>\n  <img src=\"/web-bilder/gitarre.svg\" alt=\"Eine E-Gitarre\" width=\"120\">\n  <figure>\n    <img src=\"/web-bilder/stern.svg\" alt=\"Ein goldener Stern\" width=\"120\">\n    <figcaption>Fünf Sterne für dieses Album!</figcaption>\n  </figure>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "figure figcaption"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Bau zwei Bilder aus /web-bilder/ ein, die zu deinem Thema passen. Jedes bekommt einen aussagekräftigen Alternativtext und eine Breite mit width.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <!-- Zwei Bilder -->\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Weltraum</h1>\n  <img src=\"/web-bilder/rakete.svg\" alt=\"Eine startende Rakete\" width=\"120\">\n  <img src=\"/web-bilder/planet.svg\" alt=\"Ein Planet mit Ringen\" width=\"120\">\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "img[src*=\"/web-bilder/\"][width]",
+              "min": 2,
+              "hint": "Du brauchst zwei Bilder aus /web-bilder/, jedes mit width."
+            },
+            {
+              "selector": "img[alt]:not([alt=\"\"])",
+              "min": 2,
+              "hint": "Beide Bilder brauchen einen alt-Text, der beschreibt, was zu sehen ist."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Pack eines deiner Bilder in ein figure und gib ihm eine Bildunterschrift mit figcaption.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <img src=\"/web-bilder/baum.svg\" alt=\"Ein großer Baum\" width=\"140\">\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <figure>\n    <img src=\"/web-bilder/baum.svg\" alt=\"Ein großer Baum\" width=\"140\">\n    <figcaption>Die Eiche im Stadtpark ist 300 Jahre alt.</figcaption>\n  </figure>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "figure img",
+              "hint": "Das Bild gehört in <figure>…</figure>."
+            },
+            {
+              "selector": "figure figcaption",
+              "notEmpty": true,
+              "hint": "Im figure fehlt eine Bildunterschrift <figcaption>…</figcaption>."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Links",
+    "file": "lektion-02.md",
+    "lessonSummary": "Gut verlinkt! Du kannst jetzt auf andere Seiten und sogar auf E-Mail-Adressen verlinken.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus: ein Link zu Wikipedia, ein E-Mail-Link und ein Bild als Link.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Schach-AG</h1>\n  <p><a href=\"https://de.wikipedia.org/wiki/Schach\">Die Schachregeln auf Wikipedia</a></p>\n  <p><a href=\"mailto:schach@example.org\">Schreib uns eine E-Mail</a></p>\n  <a href=\"https://de.wikipedia.org/wiki/Schach\"><img src=\"/web-bilder/stern.svg\" alt=\"Zu den Schachregeln\" width=\"80\"></a>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "a[href^=\"mailto:\"]"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Setz einen Link zu einer Seite, die zu deinem Thema passt. Der Linktext soll sagen, wohin der Link führt – also nicht „hier“.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Mehr Infos:</p>\n  <!-- Dein Link -->\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Basketball</h1>\n  <p>Mehr Infos:</p>\n  <a href=\"https://de.wikipedia.org/wiki/Basketball\">Basketball auf Wikipedia</a>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "a[href^=\"http\"]",
+              "notEmpty": true,
+              "hint": "Schreib einen Link mit einer Adresse, die mit https:// beginnt, und einem Linktext."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Ergänze einen E-Mail-Link an kontakt@example.org mit dem Text „Schreib uns“ und mach das Bild zu einem Link auf dieselbe Seite wie den ersten Link.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Kletterhalle</h1>\n  <p><a href=\"https://de.wikipedia.org/wiki/Klettern\">Alles übers Klettern</a></p>\n  <img src=\"/web-bilder/baum.svg\" alt=\"Zum Wikipedia-Artikel übers Klettern\" width=\"80\">\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Kletterhalle</h1>\n  <p><a href=\"https://de.wikipedia.org/wiki/Klettern\">Alles übers Klettern</a></p>\n  <a href=\"https://de.wikipedia.org/wiki/Klettern\"><img src=\"/web-bilder/baum.svg\" alt=\"Zum Wikipedia-Artikel übers Klettern\" width=\"80\"></a>\n  <p><a href=\"mailto:kontakt@example.org\">Schreib uns</a></p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "a[href=\"mailto:kontakt@example.org\"]",
+              "text": "Schreib uns",
+              "hint": "Schreib einen Link <a href=\"mailto:kontakt@example.org\">Schreib uns</a>."
+            },
+            {
+              "selector": "a[href] > img",
+              "hint": "Steck das Bild in einen Link: <a href=\"…\"><img …></a>."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Sprungmarken",
+    "file": "lektion-03.md",
+    "lessonSummary": "Klasse! Mit Sprungmarken findet man sich auch auf langen Seiten schnell zurecht.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus und klick in der Vorschau auf die Links im Menü – die Seite springt zum Abschnitt.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <header id=\"top\">\n    <h1>Sommerfest</h1>\n    <nav>\n      <a href=\"#programm\">Programm</a>\n      <a href=\"#anfahrt\">Anfahrt</a>\n    </nav>\n  </header>\n  <section id=\"programm\">\n    <h2>Programm</h2>\n    <p style=\"height: 600px\">Musik, Spiele und Essen.</p>\n  </section>\n  <section id=\"anfahrt\">\n    <h2>Anfahrt</h2>\n    <p>Bus 22 bis Haltestelle Park.</p>\n    <a href=\"#top\">Nach oben</a>\n  </section>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "a[href=\"#programm\"]"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Das Menü ist noch leer. Schreib drei Links, die zu den Abschnitten mit id=\"kurse\", id=\"preise\" und id=\"kontakt\" springen.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <nav>\n    <!-- Drei Sprung-Links -->\n  </nav>\n  <section id=\"kurse\"><h2>Kurse</h2><p>Bouldern und Seilklettern.</p></section>\n  <section id=\"preise\"><h2>Preise</h2><p>Ab 8 Euro.</p></section>\n  <section id=\"kontakt\"><h2>Kontakt</h2><p>Hafenstraße 3</p></section>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <nav>\n    <a href=\"#kurse\">Kurse</a>\n    <a href=\"#preise\">Preise</a>\n    <a href=\"#kontakt\">Kontakt</a>\n  </nav>\n  <section id=\"kurse\"><h2>Kurse</h2><p>Bouldern und Seilklettern.</p></section>\n  <section id=\"preise\"><h2>Preise</h2><p>Ab 8 Euro.</p></section>\n  <section id=\"kontakt\"><h2>Kontakt</h2><p>Hafenstraße 3</p></section>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "nav a[href=\"#kurse\"]",
+              "notEmpty": true,
+              "hint": "Es fehlt ein Link <a href=\"#kurse\">…</a> im nav."
+            },
+            {
+              "selector": "nav a[href=\"#preise\"]",
+              "notEmpty": true,
+              "hint": "Es fehlt ein Link <a href=\"#preise\">…</a> im nav."
+            },
+            {
+              "selector": "nav a[href=\"#kontakt\"]",
+              "notEmpty": true,
+              "hint": "Es fehlt ein Link <a href=\"#kontakt\">…</a> im nav."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Ergänze einen „Nach oben“-Link: Gib dem header das Attribut id=\"top\" und setz am Ende der Seite einen Link, der dorthin springt.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <header>\n    <h1>Unsere Klassenfahrt</h1>\n  </header>\n  <p style=\"height: 600px\">Ein langer Bericht …</p>\n  <!-- Link nach oben -->\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <header id=\"top\">\n    <h1>Unsere Klassenfahrt</h1>\n  </header>\n  <p style=\"height: 600px\">Ein langer Bericht …</p>\n  <a href=\"#top\">Nach oben</a>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "header#top",
+              "hint": "Der header braucht id=\"top\"."
+            },
+            {
+              "selector": "a[href=\"#top\"]",
+              "notEmpty": true,
+              "hint": "Es fehlt ein Link <a href=\"#top\">Nach oben</a>."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Tabellen",
+    "file": "lektion-04.md",
+    "lessonSummary": "Tabellarisch top! Ergebnisse, Stundenpläne und Preislisten kannst du jetzt sauber darstellen.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus: eine Tabelle mit Überschrift, Kopfzeile und zwei Datenzeilen.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <table>\n    <caption>Ergebnisse Hallenturnier</caption>\n    <thead>\n      <tr><th>Team</th><th>Punkte</th></tr>\n    </thead>\n    <tbody>\n      <tr><td>Blau</td><td>9</td></tr>\n      <tr><td>Rot</td><td>6</td></tr>\n    </tbody>\n  </table>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "thead th",
+              "min": 2
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Baue eine Tabelle zu deinem Thema mit einer Kopfzeile aus mindestens zwei Spalten (thead mit th) und mindestens drei Datenzeilen (tbody mit tr und td).",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <!-- Deine Tabelle -->\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Stundenplan</h1>\n  <table>\n    <thead>\n      <tr><th>Tag</th><th>1. Stunde</th></tr>\n    </thead>\n    <tbody>\n      <tr><td>Montag</td><td>Mathe</td></tr>\n      <tr><td>Dienstag</td><td>Englisch</td></tr>\n      <tr><td>Mittwoch</td><td>Sport</td></tr>\n    </tbody>\n  </table>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "table thead th",
+              "notEmpty": true,
+              "min": 2,
+              "hint": "Die Kopfzeile braucht mindestens zwei <th> in <thead><tr>…</tr></thead>."
+            },
+            {
+              "selector": "table tbody tr",
+              "min": 3,
+              "hint": "Im <tbody> brauchst du mindestens drei Zeilen <tr>."
+            },
+            {
+              "selector": "table tbody td",
+              "notEmpty": true,
+              "min": 6,
+              "hint": "Jede Datenzeile braucht Zellen <td> mit Inhalt."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Gib der Tabelle eine Überschrift mit caption.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <table>\n    <thead><tr><th>Snack</th><th>Preis</th></tr></thead>\n    <tbody>\n      <tr><td>Brezel</td><td>1,20 €</td></tr>\n      <tr><td>Apfel</td><td>0,50 €</td></tr>\n    </tbody>\n  </table>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <table>\n    <caption>Preise am Kiosk</caption>\n    <thead><tr><th>Snack</th><th>Preis</th></tr></thead>\n    <tbody>\n      <tr><td>Brezel</td><td>1,20 €</td></tr>\n      <tr><td>Apfel</td><td>0,50 €</td></tr>\n    </tbody>\n  </table>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "table > caption",
+              "notEmpty": true,
+              "hint": "Schreib direkt nach <table> eine Überschrift <caption>…</caption>."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Fehlersuche: Bilder, Links, Tabellen",
+    "file": "debug-01.md",
+    "lessonSummary": "Alles repariert! Fehlende Rauten, Alternativtexte und falsche Zellen fallen dir jetzt auf.",
+    "tasks": [
+      {
+        "instruction": "Der Link „Zur Galerie“ springt nicht. Repariere ihn.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <nav><a href=\"galerie\">Zur Galerie</a></nav>\n  <p style=\"height: 500px\">Text …</p>\n  <section id=\"galerie\"><h2>Galerie</h2></section>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <nav><a href=\"#galerie\">Zur Galerie</a></nav>\n  <p style=\"height: 500px\">Text …</p>\n  <section id=\"galerie\"><h2>Galerie</h2></section>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "nav a[href=\"#galerie\"]",
+              "hint": "Vor dem Ziel fehlt die Raute: href=\"#galerie\"."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Zwei der drei Bilder haben keinen brauchbaren Alternativtext. Ergänze für jedes Bild eine Beschreibung.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Unsere Tiere</h1>\n  <img src=\"/web-bilder/pferd.svg\" alt=\"Ein braunes Pferd\" width=\"100\">\n  <img src=\"/web-bilder/hund.svg\" width=\"100\">\n  <img src=\"/web-bilder/katze.svg\" alt=\"\" width=\"100\">\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Unsere Tiere</h1>\n  <img src=\"/web-bilder/pferd.svg\" alt=\"Ein braunes Pferd\" width=\"100\">\n  <img src=\"/web-bilder/hund.svg\" alt=\"Ein Hund mit Schlappohren\" width=\"100\">\n  <img src=\"/web-bilder/katze.svg\" alt=\"Eine Katze\" width=\"100\">\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "img[alt]:not([alt=\"\"])",
+              "min": 3,
+              "hint": "Jedes der drei Bilder braucht ein alt mit einer Beschreibung."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "In der Tabelle sieht die letzte Datenzeile aus wie eine Kopfzeile. Mach daraus normale Datenzellen.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <table>\n    <thead><tr><th>Name</th><th>Tore</th></tr></thead>\n    <tbody>\n      <tr><td>Lena</td><td>7</td></tr>\n      <tr><th>Jonas</th><th>5</th></tr>\n    </tbody>\n  </table>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <table>\n    <thead><tr><th>Name</th><th>Tore</th></tr></thead>\n    <tbody>\n      <tr><td>Lena</td><td>7</td></tr>\n      <tr><td>Jonas</td><td>5</td></tr>\n    </tbody>\n  </table>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "tbody th",
+              "min": 0,
+              "max": 0,
+              "hint": "Im tbody stehen Datenzellen <td>, keine Kopfzellen <th>."
+            },
+            {
+              "selector": "tbody td",
+              "min": 4,
+              "hint": "Beide Datenzeilen brauchen zwei <td>."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission: Turnierseite",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission erfüllt! Deine Turnierseite hat Menü, Bilder und Ergebnistabelle.",
+    "tasks": [
+      {
+        "instruction": "Baue deine Turnierseite mit allem aus der Liste oben.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <!-- Deine Turnierseite -->\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <header>\n    <h1>Mario-Kart-Turnier</h1>\n    <nav>\n      <a href=\"#info\">Infos</a>\n      <a href=\"#ergebnisse\">Ergebnisse</a>\n      <a href=\"#kontakt\">Kontakt</a>\n    </nav>\n  </header>\n  <section id=\"info\">\n    <h2>Infos</h2>\n    <figure>\n      <img src=\"/web-bilder/controller.svg\" alt=\"Ein Gamecontroller\" width=\"120\">\n      <figcaption>Gespielt wird zu viert.</figcaption>\n    </figure>\n  </section>\n  <section id=\"ergebnisse\">\n    <h2>Ergebnisse</h2>\n    <table>\n      <caption>Endstand</caption>\n      <thead><tr><th>Name</th><th>Punkte</th></tr></thead>\n      <tbody>\n        <tr><td>Ali</td><td>60</td></tr>\n        <tr><td>Ben</td><td>48</td></tr>\n        <tr><td>Clara</td><td>45</td></tr>\n      </tbody>\n    </table>\n  </section>\n  <section id=\"kontakt\">\n    <h2>Kontakt</h2>\n    <p><a href=\"mailto:turnier@example.org\">Schreib uns</a></p>\n    <p><a href=\"https://de.wikipedia.org/wiki/Mario_Kart\">Mario Kart auf Wikipedia</a></p>\n  </section>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "nav a[href^=\"#\"]",
+              "notEmpty": true,
+              "min": 3,
+              "hint": "Im nav fehlen drei Sprung-Links mit href=\"#…\"."
+            },
+            {
+              "selector": "section[id]:not([id=\"\"])",
+              "min": 3,
+              "hint": "Du brauchst drei section-Abschnitte mit einer id."
+            },
+            {
+              "selector": "figure img[alt]:not([alt=\"\"])",
+              "hint": "Es fehlt ein Bild mit alt-Text in einem figure."
+            },
+            {
+              "selector": "figure figcaption",
+              "notEmpty": true,
+              "hint": "Das figure braucht eine figcaption."
+            },
+            {
+              "selector": "table > caption",
+              "notEmpty": true,
+              "hint": "Die Tabelle braucht eine caption."
+            },
+            {
+              "selector": "table th",
+              "min": 2,
+              "hint": "Die Tabelle braucht eine Kopfzeile mit <th>."
+            },
+            {
+              "selector": "table tbody tr",
+              "min": 3,
+              "hint": "Die Tabelle braucht mindestens drei Datenzeilen."
+            },
+            {
+              "selector": "a[href^=\"http\"]",
+              "notEmpty": true,
+              "hint": "Es fehlt ein Link zu einer anderen Website (https://…)."
+            },
+            {
+              "selector": "a[href^=\"mailto:\"]",
+              "notEmpty": true,
+              "hint": "Es fehlt ein E-Mail-Link (mailto:…)."
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

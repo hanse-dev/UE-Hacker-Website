@@ -132,7 +132,11 @@ für den ganzen Kurs (PDF nur mit Login, wie bei den Wochen-Checks).
 
 ---
 
-## Web-Track: Web-Grundkurs HTML & CSS (Kurs B)
+## Web-Track: Web-Grundkurs HTML & CSS (Kurs B) — umgesetzt als Stufe „Intensiv“ in `web-erste-website`
+
+Entscheidung 16.10.2026: kein eigener Kurs, sondern Stufenwahl nach „Kurs starten“ (Einfach = Kurs A,
+Intensiv = Kurs B). Inhalte in `content/web-grundkurs-woche{N}/`, Checks in `content/web-grundkurs-checks/`.
+Pro Woche 4 Lektionen, 1 Debug, 1 Mission.
 **Zielgruppe:** ab 13 Jahre | **Dauer:** 9 Wochen | **Voraussetzungen:** keine (Kurs A empfohlen)
 
 Intensiverer, systematischer Kurs. Pro Woche ca. 5 Lektionen, **Wochen-Check** (Quiz + 2

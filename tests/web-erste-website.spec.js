@@ -24,7 +24,8 @@ const completeLessons = (page, ids) =>
   );
 
 const openCourse = async (page) => {
-  await page.goto(COURSE_URL);
+  // Stufe Einfach direkt waehlen (WebsiteCourse.vue), sonst kommt nach „Kurs starten“ die Stufenwahl.
+  await page.goto(`${COURSE_URL}?stufe=einfach`);
   await page.locator('.btn-start-course').click();
   await expect(page.locator('.lessons-list .lesson-item').first()).toBeVisible({ timeout: 15000 });
 };

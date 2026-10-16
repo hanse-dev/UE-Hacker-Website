@@ -80,9 +80,7 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
 Gesamt-Roadmap/Track-Modell siehe `VISION.md`, Ideen-Backlog in `PROJEKTIDEEN.md`. In Arbeit:
 `projekt-haeufigkeitsanalyse` (eigener Worktree). Alles Gemergte steht im Archiv.
 
-**Web-Track** (Plan in `KURSPLAN.md`): `web-sandbox` ✅ (3.114) → `kurs-erste-website` ✅ (3.115) → `web-grundkurs` (Kurs B, 9 Wochen, mit Wochen-Checks: `WebCodeChallenge.vue`/`WeekCheckPanel engine="web"`
-gibt es schon, braucht pro Woche nur `content/<kurs>-checks/week-N.json` + Wochen-Tour; dann `html`-Begriffe in
-`content/begriffe.json` und `web-erste-website` aus `WITHOUT_LINKS` in `tests/begriffe.spec.js` nehmen).
+**Web-Track** (Plan in `KURSPLAN.md`): `web-sandbox` ✅ (3.114) → `kurs-erste-website` ✅ (3.115) → `web-grundkurs` ✅ (3.116, Kurs B als Stufe „Intensiv“ in `web-erste-website`).
 
 Offen bei „Meine erste Website“ (bewusst nicht in 3.115):
 - **Eigene Seite wandert nicht mit:** Jede Aufgabe startet mit ihrer eigenen Vorlage, und Code in

@@ -1,0 +1,207 @@
+{
+  "title": "Grid und Handy-Ansicht",
+  "questions": [
+    {
+      "id": "webg8-1",
+      "type": "multiple_choice",
+      "question": "Was ist der Hauptunterschied zwischen Flexbox und Grid?",
+      "options": [
+        "Grid ordnet in Zeilen und Spalten gleichzeitig an, Flexbox in einer Richtung",
+        "Grid funktioniert nur mit Bildern",
+        "Flexbox ist neuer als Grid"
+      ],
+      "correctIndex": 0,
+      "explanation": "Grid ist zweidimensional, Flexbox eindimensional.",
+      "optionExplanations": [
+        null,
+        "Grid funktioniert mit allen Elementen.",
+        "Beide gibt es schon lange – die Reihenfolge spielt keine Rolle."
+      ]
+    },
+    {
+      "id": "webg8-2",
+      "type": "multiple_choice",
+      "question": "Was bedeutet grid-template-columns: 2fr 1fr;?",
+      "options": [
+        "Zwei Spalten, die erste doppelt so breit wie die zweite",
+        "Zwei Zeilen untereinander",
+        "Drei gleich breite Spalten"
+      ],
+      "correctIndex": 0,
+      "explanation": "fr verteilt den Platz im Verhältnis.",
+      "optionExplanations": [
+        null,
+        "grid-template-columns legt Spalten fest, keine Zeilen.",
+        "Es sind zwei Spalten mit dem Verhältnis 2 : 1."
+      ]
+    },
+    {
+      "id": "webg8-3",
+      "type": "multiple_choice",
+      "question": "Was ist repeat(4, 1fr)?",
+      "options": [
+        "Kurzform für 1fr 1fr 1fr 1fr",
+        "Vier Zeilen",
+        "Eine Spalte, die viermal so breit ist"
+      ],
+      "correctIndex": 0,
+      "explanation": "repeat wiederholt die Angabe.",
+      "optionExplanations": [
+        null,
+        "Es geht um Spalten, wenn es in grid-template-columns steht.",
+        "Es sind vier gleich breite Spalten."
+      ]
+    },
+    {
+      "id": "webg8-4",
+      "type": "multiple_choice",
+      "question": "Was bewirkt grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));?",
+      "options": [
+        "So viele Spalten, wie hineinpassen – jede mindestens 120px breit",
+        "Immer genau 120 Spalten",
+        "Eine einzige Spalte von 120px"
+      ],
+      "correctIndex": 0,
+      "explanation": "Der Browser rechnet aus, wie viele Spalten passen.",
+      "optionExplanations": [
+        null,
+        "auto-fill bestimmt die Zahl abhängig von der Breite.",
+        "minmax setzt nur die Mindestbreite jeder Spalte."
+      ]
+    },
+    {
+      "id": "webg8-5",
+      "type": "multiple_choice",
+      "question": "Wie lässt du ein Grid-Item über zwei Spalten reichen?",
+      "options": [
+        "grid-column: span 2;",
+        "width: 2fr;",
+        "columns: 2;"
+      ],
+      "correctIndex": 0,
+      "explanation": "span 2 überspannt zwei Spalten.",
+      "optionExplanations": [
+        null,
+        "fr gilt nur in grid-template-columns.",
+        "columns teilt Text in Zeitungsspalten auf, nicht das Grid."
+      ]
+    },
+    {
+      "id": "webg8-6",
+      "type": "multiple_choice",
+      "question": "Wofür ist <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> da?",
+      "options": [
+        "Damit das Handy die Seite in echter Breite anzeigt, statt alles zu verkleinern",
+        "Damit die Seite schneller lädt",
+        "Damit Bilder größer werden"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ohne viewport tut das Handy so, als wäre es ein breiter Bildschirm.",
+      "optionExplanations": [
+        null,
+        "Auf die Ladezeit hat es keinen Einfluss.",
+        "Bildgrößen regelst du mit CSS."
+      ]
+    },
+    {
+      "id": "webg8-7",
+      "type": "multiple_choice",
+      "question": "Welche Media Query gilt nur für Bildschirme bis 600px Breite?",
+      "options": [
+        "@media (max-width: 600px)",
+        "@media (min-width: 600px)",
+        "@media max-width: 600px"
+      ],
+      "correctIndex": 0,
+      "explanation": "max-width heißt: höchstens so breit.",
+      "optionExplanations": [
+        null,
+        "min-width gilt ab 600px Breite aufwärts.",
+        "Ohne runde Klammern ist die Bedingung ungültig."
+      ]
+    },
+    {
+      "id": "webg8-8",
+      "type": "multiple_choice",
+      "question": "Was bewirkt img { max-width: 100%; }?",
+      "options": [
+        "Bilder werden nie breiter als ihr Platz",
+        "Alle Bilder werden genau so breit wie die Seite",
+        "Bilder werden doppelt so groß"
+      ],
+      "correctIndex": 0,
+      "explanation": "max-width ist eine Obergrenze, kleine Bilder bleiben klein.",
+      "optionExplanations": [
+        null,
+        "Das würde width: 100% machen.",
+        "Vergrößert wird nichts."
+      ]
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Bau ein Raster mit class=\"raster\": display: grid, drei gleich breite Spalten mit repeat und 12px Abstand. Das Element mit class=\"breit\" geht über die ganze Breite (grid-column: 1 / -1).",
+      "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .raster div { background-color: wheat; padding: 10px; }\n  </style>\n</head>\n<body>\n  <div class=\"raster\"><div class=\"breit\">Überschrift</div><div>A</div><div>B</div><div>C</div></div>\n</body>\n</html>\n",
+      "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .raster div { background-color: wheat; padding: 10px; }\n    .raster {\n      display: grid;\n      grid-template-columns: repeat(3, 1fr);\n      gap: 12px;\n    }\n    .breit { grid-column: 1 / -1; }\n  </style>\n</head>\n<body>\n  <div class=\"raster\"><div class=\"breit\">Überschrift</div><div>A</div><div>B</div><div>C</div></div>\n</body>\n</html>",
+      "validation": {
+        "type": "web",
+        "checks": [
+          {
+            "selector": ".raster",
+            "property": "display",
+            "value": "grid",
+            "hint": "Das Raster braucht display: grid;"
+          },
+          {
+            "selector": "style",
+            "text": "repeat(3, 1fr)",
+            "hint": "Drei gleich breite Spalten: grid-template-columns: repeat(3, 1fr);"
+          },
+          {
+            "selector": ".raster",
+            "property": "column-gap",
+            "value": "12px",
+            "hint": "Setz gap: 12px;"
+          },
+          {
+            "selector": ".breit",
+            "property": "grid-column-end",
+            "value": "-1",
+            "hint": "Das breite Element bekommt grid-column: 1 / -1;"
+          }
+        ]
+      }
+    },
+    {
+      "instruction": "Mach die Seite handytauglich: viewport-meta-Tag im head, Bilder mit max-width: 100%, und eine Media Query bis 600px, in der .spalten nur noch eine Spalte hat (grid-template-columns: 1fr).",
+      "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .spalten {\n      display: grid;\n      grid-template-columns: 1fr 1fr;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"spalten\"><img src=\"/web-bilder/blume.svg\" alt=\"Blume\" width=\"500\"><img src=\"/web-bilder/baum.svg\" alt=\"Baum\" width=\"500\"></div>\n</body>\n</html>\n",
+      "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Meine Website</title>\n  <style>\n    .spalten {\n      display: grid;\n      grid-template-columns: 1fr 1fr;\n    }\n    img {\n      max-width: 100%;\n    }\n    @media (max-width: 600px) {\n      .spalten {\n        grid-template-columns: 1fr;\n      }\n    }\n  </style>\n</head>\n<body>\n  <div class=\"spalten\"><img src=\"/web-bilder/blume.svg\" alt=\"Blume\" width=\"500\"><img src=\"/web-bilder/baum.svg\" alt=\"Baum\" width=\"500\"></div>\n</body>\n</html>",
+      "validation": {
+        "type": "web",
+        "checks": [
+          {
+            "selector": "head meta[name=\"viewport\"]",
+            "hint": "Im head fehlt das viewport-meta-Tag."
+          },
+          {
+            "selector": "img",
+            "property": "max-width",
+            "value": "100%",
+            "min": 2,
+            "hint": "Bilder brauchen max-width: 100%;"
+          },
+          {
+            "selector": "style",
+            "text": "@media (max-width: 600px)",
+            "hint": "Es fehlt die Media Query @media (max-width: 600px)."
+          },
+          {
+            "selector": "style",
+            "text": "grid-template-columns: 1fr;",
+            "hint": "In der Media Query bekommt .spalten grid-template-columns: 1fr;"
+          }
+        ]
+      }
+    }
+  ]
+}

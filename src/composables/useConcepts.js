@@ -29,8 +29,11 @@ export function conceptsFor(opts) {
   return course ? list.filter((c) => !(c.kurs === course && c.woche >= week)) : list;
 }
 
+// `pfade` in begriffe.json: Link-Ziel fuer Kurse ohne eigene Seite (Stufe Intensiv von „Meine erste
+// Website“ liegt unter /kurs/web-erste-website?stufe=intensiv).
 export function conceptHref(concept) {
-  return `/kurs/${concept.kurs}?week=${concept.woche}`;
+  const base = data.pfade?.[concept.kurs] || `/kurs/${concept.kurs}`;
+  return `${base}${base.includes('?') ? '&' : '?'}week=${concept.woche}`;
 }
 
 export function courseName(concept) {

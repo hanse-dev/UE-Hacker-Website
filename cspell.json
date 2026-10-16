@@ -26,9 +26,20 @@
     "/\"(codeTemplate|solution|referenceSolution|expected|id|file|section|type|target|click|name|nextCourseId|stdin|selector|property|value|notValue)\"\\s*:\\s*\"(?:[^\"\\\\]|\\\\.)*\"/g",
     "/\\\\[nt]/g",
     "/<img src=\"[^\"]*\"/g",
-    "/(?<![\\w])\\.[a-z][\\w-]*/g"
+    "/(?<![\\w])\\.[a-z][\\w-]*/g",
+    "/(?<![\\w])(#|--)[a-z][\\w-]*/g",
+    "/(id|class|lang|for|name|type|alt|href|src)=\\\\\"[^\"\\\\]*\\\\\"/g",
+    "/\\b(figcaption|thead|tbody|tfoot|textarea|fieldset|legend|optgroup|blockquote|minmax)\\b/g"
   ],
   "words": [
+    "handytauglich",
+    "responsiv",
+    "hineinzählen",
+    "Spezifität",
+    "Aufklappmenü",
+    "hilfreichsten",
+    "Linktext",
+    "Skateboarden",
     "Flexbox",
     "Flexboxen",
     "Verdana",

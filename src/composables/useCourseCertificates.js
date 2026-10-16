@@ -2,6 +2,7 @@ import { ref } from 'vue';
 import { loadWeekChecks, listCertificateCourseKeys, useWeekChecks } from './useWeekChecks';
 import { loadWeekLernziele } from './useWeeklyContent';
 import { KI_LABOR_WEEKS } from '../data/kiLaborWeeks.js';
+import { WEB_GRUNDKURS_WEEKS, WEB_GRUNDKURS_COURSE_TITLE } from '../data/webGrundkursWeeks.js';
 
 // Kleines, statisches Mapping courseKey -> Kurs-Route/Titel, analog zu den COURSE_TITLE-
 // Konstanten in useCertificatePdf.js/KiLaborTour.vue. Bewusst kein generischer Registry-Mechanismus
@@ -22,9 +23,17 @@ const COURSE_INFO = {
   // zeigen "Abschluss" statt "Woche 1".
   'web-erste-website': {
     courseId: 'web-erste-website',
+    query: { stufe: 'einfach' },
     title: 'Meine erste Website',
     title_en: 'My First Website',
     singleCheck: true,
+  },
+  // Stufe „Intensiv“ desselben Kurses (WebsiteCourse.vue) - eigener Check-Ordner, Link mit ?stufe=.
+  'web-grundkurs': {
+    courseId: 'web-erste-website',
+    query: { stufe: 'intensiv' },
+    title: WEB_GRUNDKURS_COURSE_TITLE.de,
+    title_en: WEB_GRUNDKURS_COURSE_TITLE.en,
   },
 };
 
@@ -40,9 +49,9 @@ async function loadLernzieleByWeek(courseKey, lang) {
     }
     return result;
   }
-  if (courseKey === 'ki-labor') {
+  if (courseKey === 'ki-labor' || courseKey === 'web-grundkurs') {
     const result = {};
-    for (const week of KI_LABOR_WEEKS) {
+    for (const week of courseKey === 'ki-labor' ? KI_LABOR_WEEKS : WEB_GRUNDKURS_WEEKS) {
       result[week.number] = week.lernziele || [];
     }
     return result;
