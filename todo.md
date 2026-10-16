@@ -9,11 +9,10 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
 
 ## Offen
 
-- [ ] Einmalige Ausfälle im vollen Lauf unter Last (15.10., parallel liefen Tests anderer
-      Sessions, Suite 4,5 statt ~2,3 Min.): `tests/site.spec.js:467` (Turtle: `.btn-run-cell` erschien
-      90 s nicht, Lösungs-Notebook nicht geladen) und vorher `tests/ki-labor.spec.js` Woche 3
-      (Python-Lauf > 10 s, Timeout pro Lauf seitdem 30 s). Beide allein je 3× grün. Vorschlag: Beim
-      nächsten Auftreten prüfen, ob gleichzeitig andere Playwright-Läufe aktiv waren
+- [ ] Einmaliger Ausfall im vollen Lauf unter Last (15.10., parallel liefen Tests anderer Sessions,
+      Suite 4,5 statt ~2,3 Min.): `tests/ki-labor.spec.js` Woche 3 (Python-Lauf > 10 s, Timeout pro
+      Lauf seitdem 30 s), allein 3× grün. Der zweite Ausfall (Turtle-Test) ist mit 3.113 weggefallen.
+      Vorschlag: Beim nächsten Auftreten prüfen, ob gleichzeitig andere Playwright-Läufe aktiv waren
       (`ps aux | grep "playwright test"`); wenn ja, Pre-push-Läufe mehrerer Sessions nicht parallel
       starten statt die Tests zu ändern.
 - [ ] **Einstiegskurs „Meine erste Website“ (HTML/CSS) — erst in einer eigenen Session mit Eike

@@ -2768,3 +2768,16 @@ Wunsch des Nutzers: Neue Projekte und Kurse sollen die Begriffs-Links automatisc
   Titel von `CourseDetail.vue`; vor dem Kursstart zusätzlich ein Satz `.beta-hint`.
 - Admin-Reiter „Kurse“ ohne API: liest `kurse.json`, nicht verlinkte Kurse zuerst, Badges für
   „nicht verlinkt“ und Beta, Link öffnet im neuen Tab.
+
+### 3.113 — Turtle-Shim entfernt (Branch `turtle-entfernen`)
+
+Frage des Nutzers: Warum gibt es noch Turtle-Tests, obwohl Turtle nirgends behandelt wird?
+
+- Der Shim (3.32) entstand für das frühere Turtle-Abschlussprojekt in Woche 12. Seit 3.46 ist
+  Woche 12 ein Text-Adventure; kein Content nutzt `turtle` mehr (`woche12-abschlussprojekt.spec.js`
+  prüft das weiterhin). Liegen geblieben waren ~370 Zeilen Python in `usePyodide.js`, die bei jedem
+  Kernel-Start ausgeführt wurden, der Zeichenbereich `.turtle-canvas-container` unter jeder
+  Notebook-Zelle (`JupyterNotebook.vue`) mit dem Parameter `turtleContainerId` von `runPython`, und
+  zwei Tests in `site.spec.js`, von denen einer am 15.10. unter Last ausgefallen war.
+- Alles entfernt, dazu die nur dafür nötigen cspell-Wörter. Die Backlog-Idee „Turtle-Mandala“ in
+  `PROJEKTIDEEN.md` verweist auf die Git-Historie (`git log -S _install_turtle_shim`).
