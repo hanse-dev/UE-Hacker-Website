@@ -80,9 +80,7 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
 Gesamt-Roadmap/Track-Modell siehe `VISION.md`, Ideen-Backlog in `PROJEKTIDEEN.md`. In Arbeit:
 `projekt-haeufigkeitsanalyse` (eigener Worktree). Alles Gemergte steht im Archiv.
 
-**Web-Track** (Plan in `KURSPLAN.md`): `web-sandbox` ✅ (3.114) → `kurs-erste-website` ✅ (3.115) → `web-grundkurs` (in Arbeit: Kurs B als Stufe „Intensiv“ in `web-erste-website`, Entscheidung
-Nutzer 16.10.2026 – ein Kurs, Stufenwahl Einfach/Intensiv. Woche 1–9 fertig, weitere folgen; danach
-`html`-Begriffe in `content/begriffe.json` und `web-erste-website` aus `WITHOUT_LINKS` nehmen).
+**Web-Track** (Plan in `KURSPLAN.md`): `web-sandbox` ✅ (3.114) → `kurs-erste-website` ✅ (3.115) → `web-grundkurs` ✅ (3.116, Kurs B als Stufe „Intensiv“ in `web-erste-website`).
 
 Offen bei „Meine erste Website“ (bewusst nicht in 3.115):
 - **Eigene Seite wandert nicht mit:** Jede Aufgabe startet mit ihrer eigenen Vorlage, und Code in

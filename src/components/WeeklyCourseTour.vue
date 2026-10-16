@@ -28,6 +28,8 @@
         :week-label="`${t('week.label')} ${selectedWeekNumber}: ${selectedWeekTitle}`"
         :has-check="selectedWeekHasCheck"
         :concept-language="conceptLanguage"
+        :concept-course="conceptCourse"
+        :concept-week="conceptCourse ? selectedWeekNumber : 0"
         @change-week="phase = 'week'"
         @open-check="phase = 'check'"
       />
@@ -113,6 +115,9 @@ export default {
     // Web-Kurse: HTML/CSS-Sandbox in den Lektionen und Web-Aufgaben im Check.
     webMode: { type: Boolean, default: false },
     conceptLanguage: { type: String, default: '' },
+    // Kurs-Schluessel in begriffe.json, wenn der Kurs selbst Link-Ziel ist - dann verlinken
+    // Begriffe nur auf fruehere Wochen (useConcepts.js).
+    conceptCourse: { type: String, default: '' },
     // Offline-Downloads je Woche (Pfad-Praefix + Nummer); leer = keine.
     downloadsBase: { type: String, default: '' },
   },

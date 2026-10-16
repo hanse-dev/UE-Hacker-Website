@@ -7,7 +7,7 @@ const BEGRIFFE = readJson('content/begriffe.json');
 
 // Kurse mit Begriffs-Links, die nicht automatisch über `type: "projekt"` + `language` laufen:
 // Die Tour reicht conceptLanguage/conceptCourse/conceptWeek selbst durch (HANDOFF 3.110).
-const LINKED_COURSES = ['js-grundkurs', 'python-12-wochen-grundkurs', 'ki-labor'];
+const LINKED_COURSES = ['js-grundkurs', 'python-12-wochen-grundkurs', 'ki-labor', 'web-erste-website'];
 
 // Bewusst ohne Begriffs-Links - jeder Eintrag mit Grund. Ein neuer Kurs muss entweder Links
 // bekommen oder hier mit Begründung stehen (siehe INHALTE.md §6).
@@ -17,13 +17,13 @@ const WITHOUT_LINKS = {
   ferienkurse: 'Info- und Terminseite, keine Lektionen',
   'projekt-microbit-auto': 'micro:bit (MakeCode/MicroPython, eigene Anleitungs-Ansicht), keine Begriffsliste',
   'projekt-microbit-ampel': 'micro:bit (MakeCode/MicroPython, eigene Anleitungs-Ansicht), keine Begriffsliste',
-  'web-erste-website': 'Einstieg in den Web-Track - es gibt noch keinen HTML/CSS-Grundkurs, auf den Begriffe zeigen könnten (kommt mit dem Web-Grundkurs)',
 };
 
 // Zielordner einer Grundkurs-Woche (für die Prüfung, dass `lektion` dort wirklich vorkommt).
 const WEEK_FOLDER = {
   'js-grundkurs': (w) => `content/js-grundkurs-woche${w}`,
   'python-12-wochen-grundkurs': (w) => `content/python-woche${w}-abenteuer`,
+  'web-grundkurs': (w) => `content/web-grundkurs-woche${w}`,
 };
 
 // Begriffe verlinken auf die Grundkurs-Woche, in der sie erklärt werden (useConcepts.js,
@@ -100,7 +100,8 @@ test.describe('Begriffe verlinken auf die Grundkurse (Projekte und Kurse)', () =
       if (!Array.isArray(list)) continue;
       for (const c of list) {
         const where = `${lang}: ${c.begriff}`;
-        expect(ids, where).toContain(c.kurs);
+        // Ziel ist ein Kurs aus kurse.json oder hat einen eigenen Pfad (Stufe Intensiv).
+        expect([...ids, ...Object.keys(BEGRIFFE.pfade || {})], where).toContain(c.kurs);
         expect(Object.keys(BEGRIFFE.kurse), where).toContain(c.kurs);
         expect(c.formen.length, where).toBeGreaterThan(0);
         const folder = WEEK_FOLDER[c.kurs]?.(c.woche);
@@ -130,6 +131,33 @@ test.describe('Begriffe verlinken auf die Grundkurse (Projekte und Kurse)', () =
     await expect(content).toContainText('Objekt');
     expect((await linkedWeeks(page, 'js-grundkurs')).every((w) => w < 6)).toBe(true);
     await expect(content.locator('.concept-box')).toContainText('Array');
+  });
+
+  test('Meine erste Website: Einfach verlinkt auf die passende Woche von Intensiv', async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.removeItem('ue-hacker-lang');
+      localStorage.setItem('ue-hacker-interactive-progress-web-erste-website', JSON.stringify({
+        version: 1, courseId: 'web-erste-website', variant: 'web-erste-website',
+        completedLessonIds: ['lektion-01', 'lektion-02', 'lektion-03', 'lektion-04', 'lektion-05', 'lektion-06'],
+      }));
+    });
+    await page.goto('/kurs/web-erste-website?stufe=einfach&started=1');
+    await page.locator('.lesson-item').nth(6).click();
+    const link = page.locator('.lesson-content a.concept-link[href="/kurs/web-erste-website?stufe=intensiv&week=7"]');
+    await expect(link).toHaveCount(1, { timeout: 15000 });
+    await expect(link).toHaveText(/^Flexbox$/);
+    await expect(page.locator('.concept-box')).toContainText('Meine erste Website (Intensiv)');
+  });
+
+  test('Meine erste Website, Intensiv: verlinkt nur auf frühere Wochen (Woche 8: Flexbox → Woche 7, Grid nicht)', async ({ page }) => {
+    await openWeek(page, '/kurs/web-erste-website?stufe=intensiv&week=8');
+    const content = page.locator('.lesson-content');
+    await expect(content.locator('a.concept-link[href="/kurs/web-erste-website?stufe=intensiv&week=7"]')).toHaveCount(1);
+    await expect(content).toContainText('Grid');
+    const weeks = await page.locator('a.concept-link[href^="/kurs/web-erste-website?"]')
+      .evaluateAll((as) => as.map((a) => Number(new URL(a.href).searchParams.get('week'))));
+    expect(weeks.length).toBeGreaterThan(0);
+    expect(weeks.every((w) => w < 8)).toBe(true);
   });
 
   test('JS-Grundkurs Woche 3: "Schleife" verweist nicht auf die eigene Woche', async ({ page }) => {

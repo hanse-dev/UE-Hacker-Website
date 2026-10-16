@@ -51,6 +51,8 @@
         :course-title="WEB_GRUNDKURS_COURSE_TITLE"
         engine="js-sandbox"
         :web-mode="true"
+        concept-language="html"
+        concept-course="web-grundkurs"
       />
     </template>
   </div>

@@ -54,7 +54,7 @@ Variante braucht nur ihre eigene Sprache als Vorwissen.
 | **KI/ML** | – | `ki-labor` ✅ — 8 Wochen, ohne Themen-Varianten (siehe `KURSPLAN.md`), Algorithmen (k-NN, Entscheidungsbaum, kleines neuronales Netz) komplett in reinem Python selbst gebaut statt mit scikit-learn — **einzige legitime Cross-Track-Voraussetzung: Python-Grundkurs** | 💡 noch keine (Ideen in `PROJEKTIDEEN.md`) | – |
 | **Hardware** (micro:bit) | – | – | `projekt-microbit-auto` ✅ · `projekt-microbit-ampel` ✅ (noch unverlinkt; beide nur DE, an echter Hardware noch nicht erprobt, siehe `todo.md`) | – |
 | **Datenbanken** | – | 💡 noch nicht ausgearbeitet — andockbar an Python- oder JS-Backend-Inhalte, da SQL sprachneutral ist | – | – |
-| **Web** (HTML/CSS + JS) | `web-erste-website` ✅ „Meine erste Website“ mit Stufenwahl: Einfach (ca. 10–12, 8 Lektionen + Abschluss-Check) | 🚧 Stufe Intensiv desselben Kurses (ab 13, 9 Wochen, Wochen-Checks + Zertifikate, `content/web-grundkurs-*`) | – | – |
+| **Web** (HTML/CSS + JS) | `web-erste-website` ✅ „Meine erste Website“ mit Stufenwahl: Einfach (ca. 10–12, 8 Lektionen + Abschluss-Check) | ✅ Stufe Intensiv desselben Kurses (ab 13, 9 Wochen, Wochen-Checks + Zertifikate, `content/web-grundkurs-*`) | – | – |
 
 Status-Legende: ✅ vorhanden · 🚧 nächstes konkretes Thema (Branch/Plan existiert) · 📋 geplant
 (in `todo.md` benannt, noch kein Plan) · 💡 Idee/Backlog, nicht committed.
