@@ -1,0 +1,362 @@
+[
+  {
+    "id": "lektion-01",
+    "section": "lektion",
+    "title": "Was ist HTML?",
+    "file": "lektion-01.md",
+    "lessonSummary": "Gut gemacht! Du weißt jetzt, wie aus Text mit Tags eine Webseite wird.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus. Achte darauf: Die vielen Leerzeichen und Zeilenumbrüche im zweiten Absatz erscheinen in der Vorschau als ganz normaler Satz.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Lieblingsspiel</h1>\n  <p>Minecraft spiele ich am liebsten mit Freunden.</p>\n  <p>Dieser     Satz    hat\n     viele      Leerzeichen.</p>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "h1",
+              "text": "Lieblingsspiel"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Schreib eine Überschrift h1 mit einem Thema, das dich interessiert, und darunter zwei Absätze dazu.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <!-- Dein Code -->\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Skateboarden</h1>\n  <p>Ich fahre seit zwei Jahren Skateboard.</p>\n  <p>Mein Lieblingstrick ist der Ollie.</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "h1",
+              "notEmpty": true,
+              "hint": "Es fehlt eine Überschrift <h1> mit Text."
+            },
+            {
+              "selector": "p",
+              "notEmpty": true,
+              "min": 2,
+              "hint": "Schreib zwei Absätze mit Text: <p>…</p><p>…</p>."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Ergänze unter der Hauptüberschrift zwei Zwischenüberschriften der Ebene h2, unter jeder steht ein Absatz.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Skateboarden</h1>\n  <!-- Zwei Abschnitte: jeweils <h2> und <p> -->\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Skateboarden</h1>\n  <h2>Ausrüstung</h2>\n  <p>Brett, Helm und Schoner.</p>\n  <h2>Tricks</h2>\n  <p>Ollie, Kickflip und Shove-it.</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "h2",
+              "notEmpty": true,
+              "min": 2,
+              "hint": "Du brauchst zwei Überschriften <h2> mit Text."
+            },
+            {
+              "selector": "h2 + p",
+              "notEmpty": true,
+              "min": 2,
+              "hint": "Direkt unter jeder <h2> soll ein Absatz <p> stehen."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "section": "lektion",
+    "title": "Das Grundgerüst",
+    "file": "lektion-02.md",
+    "lessonSummary": "Sauber! Mit DOCTYPE, head und body hat deine Seite jetzt ein vollständiges Gerüst.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus. Der Titel „Skateboarden“ steht im Kopf der Seite – in der Vorschau siehst du ihn nicht, im echten Browser stünde er im Tab.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Skateboarden</title>\n</head>\n<body>\n  <h1>Skateboarden</h1>\n  <p>Alles über Bretter mit Rollen.</p>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "title",
+              "text": "Skateboarden"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Hier fehlt fast das ganze Gerüst. Ergänze DOCTYPE, html mit lang=\"de\", einen head mit meta charset und einem passenden title und packe den Inhalt in body.",
+        "codeTemplate": "<h1>Mein Lieblingsessen</h1>\n<p>Am liebsten esse ich Lasagne.</p>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Mein Lieblingsessen</title>\n</head>\n<body>\n  <h1>Mein Lieblingsessen</h1>\n  <p>Am liebsten esse ich Lasagne.</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "html[lang=\"de\"]",
+              "hint": "Das html-Element braucht das Attribut lang=\"de\"."
+            },
+            {
+              "selector": "meta[charset]",
+              "hint": "Im head fehlt <meta charset=\"utf-8\">."
+            },
+            {
+              "selector": "head title",
+              "notEmpty": true,
+              "hint": "Im head fehlt ein <title> mit Text."
+            },
+            {
+              "selector": "body h1",
+              "hint": "Die Überschrift gehört in den body."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "section": "lektion",
+    "title": "Verschachteln und Leerräume",
+    "file": "lektion-03.md",
+    "lessonSummary": "Stark! Du kannst Elemente ineinander verschachteln und Text gezielt umbrechen.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus: Die Adresse wird mit br umgebrochen, die Linie hr trennt zwei Themen, und der Kommentar bleibt unsichtbar.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Kontakt</h1>\n  <p>\n    Jugendzentrum Nord<br>\n    Hafenstraße 12<br>\n    28195 Bremen\n  </p>\n  <hr>\n  <!-- Hier kommen später die Öffnungszeiten hin -->\n  <p>Geöffnet: Montag bis Freitag</p>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "br",
+              "min": 2
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Schreib ein kurzes Gedicht oder einen Liedtext mit vier Zeilen in einen einzigen Absatz. Die Zeilen brichst du mit br um.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Gedicht</h1>\n  <!-- Ein Absatz, vier Zeilen -->\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Gedicht</h1>\n  <p>\n    Der Herbst ist da,<br>\n    der Wind ist kalt,<br>\n    die Blätter fallen<br>\n    im bunten Wald.\n  </p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "p br",
+              "min": 3,
+              "hint": "Vier Zeilen in einem Absatz brauchen drei <br> dazwischen."
+            },
+            {
+              "selector": "p",
+              "max": 1,
+              "hint": "Alles soll in einem einzigen Absatz <p> stehen – die Zeilen trennst du nur mit <br>."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Hebe im Absatz das wichtigste Wort mit strong hervor, trenne die zwei Themen mit einer Linie hr und schreib zwischen die Themen einen Kommentar.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Verein</h1>\n  <p>Wir trainieren jeden Dienstag in der Halle.</p>\n  <h2>Turniere</h2>\n  <p>Im Sommer fahren wir zu einem großen Turnier.</p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Verein</h1>\n  <p>Wir trainieren <strong>jeden Dienstag</strong> in der Halle.</p>\n  <hr>\n  <!-- Ab hier: Turniere -->\n  <h2>Turniere</h2>\n  <p>Im Sommer fahren wir zu einem großen Turnier.</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "p strong",
+              "notEmpty": true,
+              "hint": "Setz ein Wort im Absatz zwischen <strong> und </strong>."
+            },
+            {
+              "selector": "hr",
+              "hint": "Es fehlt die Trennlinie <hr>."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "section": "lektion",
+    "title": "Attribute",
+    "file": "lektion-04.md",
+    "lessonSummary": "Klasse! Mit Attributen gibst du Elementen Namen und Zusatzangaben.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus und fahr in der Vorschau mit der Maus über „FIFA“ – der title erscheint als kleiner Hinweis.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Fußball</h1>\n  <p>Die <abbr title=\"Fédération Internationale de Football Association\">FIFA</abbr> organisiert die Weltmeisterschaft.</p>\n  <p lang=\"en\">Football is the most popular sport in the world.</p>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "abbr[title]"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Schreib einen Satz mit einer Abkürzung (zum Beispiel HTML, WLAN oder USB) und erkläre sie mit abbr und title.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Technik</h1>\n  <p>Zu Hause haben wir schnelles WLAN.</p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Technik</h1>\n  <p>Zu Hause haben wir schnelles <abbr title=\"Wireless Local Area Network\">WLAN</abbr>.</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "abbr[title]:not([title=\"\"])",
+              "notEmpty": true,
+              "hint": "Pack die Abkürzung in <abbr title=\"ausgeschriebene Bedeutung\">…</abbr>."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Gib den beiden Zwischenüberschriften die Attribute id=\"regeln\" und id=\"geschichte\" und markiere den englischen Satz mit lang=\"en\".",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Basketball</h1>\n  <h2>Regeln</h2>\n  <p>Ein Team hat fünf Spieler auf dem Feld.</p>\n  <h2>Geschichte</h2>\n  <p>Basketball wurde 1891 in den USA erfunden.</p>\n  <p>Basketball is fun!</p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Basketball</h1>\n  <h2 id=\"regeln\">Regeln</h2>\n  <p>Ein Team hat fünf Spieler auf dem Feld.</p>\n  <h2 id=\"geschichte\">Geschichte</h2>\n  <p>Basketball wurde 1891 in den USA erfunden.</p>\n  <p lang=\"en\">Basketball is fun!</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "h2#regeln",
+              "hint": "Die erste <h2> braucht id=\"regeln\"."
+            },
+            {
+              "selector": "h2#geschichte",
+              "hint": "Die zweite <h2> braucht id=\"geschichte\"."
+            },
+            {
+              "selector": "p[lang=\"en\"]",
+              "text": "fun",
+              "hint": "Der englische Absatz braucht lang=\"en\"."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "debug-01",
+    "section": "debug",
+    "title": "Fehlersuche",
+    "file": "debug-01.md",
+    "lessonSummary": "Gefunden und repariert! Kaputtes HTML erkennst du jetzt an seinen typischen Spuren.",
+    "tasks": [
+      {
+        "instruction": "Auf dieser Seite ist ab der Überschrift alles riesig. Finde den Fehler: Es soll genau eine Überschrift h1 geben, der Absatz darunter ist normaler Text.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Meine Band<h1>\n  <p>Wir proben jeden Freitag im Keller.</p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Meine Band</h1>\n  <p>Wir proben jeden Freitag im Keller.</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "h1",
+              "max": 1,
+              "hint": "Am Ende der Überschrift steht <h1> statt </h1> – so öffnest du eine zweite Überschrift."
+            },
+            {
+              "selector": "body > p",
+              "text": "Freitag",
+              "hint": "Der Absatz soll direkt im body stehen, nicht in einer Überschrift."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Von dieser Seite fehlt der ganze untere Teil – der Absatz mit der id „termine“ ist verschwunden. Repariere den Kommentar.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Unsere Band</h1>\n  <p>Wir spielen Rock und ein bisschen Pop.</p>\n  <!-- Termine stehen hier drunter ->\n  <h2>Termine</h2>\n  <p id=\"termine\">Nächster Auftritt: 12. Juni im Jugendzentrum.</p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Unsere Band</h1>\n  <p>Wir spielen Rock und ein bisschen Pop.</p>\n  <!-- Termine stehen hier drunter -->\n  <h2>Termine</h2>\n  <p id=\"termine\">Nächster Auftritt: 12. Juni im Jugendzentrum.</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "#termine",
+              "text": "Auftritt",
+              "hint": "Der Kommentar endet mit -> statt mit -->. Alles danach gilt als Kommentar."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Hier ist nach dem ersten Absatz auch der zweite fett. Schließe das strong-Element an der richtigen Stelle.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Instrument</h1>\n  <p class=\"eins\">Ich spiele <strong>Schlagzeug.</p>\n  <p class=\"zwei\">Mein Lehrer heißt Herr Klein.</p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Instrument</h1>\n  <p class=\"eins\">Ich spiele <strong>Schlagzeug</strong>.</p>\n  <p class=\"zwei\">Mein Lehrer heißt Herr Klein.</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "p.zwei",
+              "property": "font-weight",
+              "value": "normal",
+              "hint": "Das </strong> fehlt im ersten Absatz – der Browser zieht das fett deshalb in den zweiten Absatz weiter."
+            },
+            {
+              "selector": "p.eins strong",
+              "notEmpty": true,
+              "hint": "Im ersten Absatz soll „Schlagzeug“ fett bleiben."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "mission-01",
+    "section": "mission",
+    "title": "Mission: Steckbrief",
+    "file": "mission-01.md",
+    "lessonSummary": "Mission erfüllt! Dein Steckbrief steht auf einem sauberen Grundgerüst.",
+    "tasks": [
+      {
+        "instruction": "Baue deinen Steckbrief mit allem, was in der Liste oben steht.",
+        "codeTemplate": "<!-- Deine ganze Seite, ab <!DOCTYPE html> -->\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Steckbrief: Luna</title>\n</head>\n<body>\n  <h1>Steckbrief: Luna</h1>\n  <p>Luna ist eine Katze aus meinem Lieblingsbuch.</p>\n  <hr>\n  <h2 id=\"aussehen\">Aussehen</h2>\n  <p>Sie ist schwarz und hat ein weißes Ohr.</p>\n  <h2 id=\"hobbys\">Hobbys</h2>\n  <p>Sie klettert gern und schaut <abbr title=\"Television\">TV</abbr>.</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "html[lang=\"de\"]",
+              "hint": "Das html-Element braucht lang=\"de\"."
+            },
+            {
+              "selector": "meta[charset]",
+              "hint": "Im head fehlt <meta charset=\"utf-8\">."
+            },
+            {
+              "selector": "head title",
+              "notEmpty": true,
+              "hint": "Im head fehlt ein <title> mit Text."
+            },
+            {
+              "selector": "h1",
+              "notEmpty": true,
+              "hint": "Es fehlt die Überschrift <h1>."
+            },
+            {
+              "selector": "h2[id]:not([id=\"\"])",
+              "notEmpty": true,
+              "min": 2,
+              "hint": "Du brauchst zwei <h2>-Überschriften, jede mit einer id."
+            },
+            {
+              "selector": "p",
+              "notEmpty": true,
+              "min": 3,
+              "hint": "Schreib mindestens drei Absätze <p>."
+            },
+            {
+              "selector": "abbr[title]:not([title=\"\"])",
+              "hint": "Erkläre eine Abkürzung mit <abbr title=\"…\">."
+            },
+            {
+              "selector": "hr",
+              "hint": "Es fehlt eine Trennlinie <hr>."
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

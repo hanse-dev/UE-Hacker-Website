@@ -60,6 +60,10 @@
         <KiLaborTour />
       </div>
 
+      <div v-else-if="isWebsiteCourse" class="project-course-wrapper">
+        <WebsiteCourse :course="course" />
+      </div>
+
       <div v-else-if="isProjectCourse" class="project-course-wrapper">
         <ProjectCourse :course-id="id" :content-path="course.contentPath" :engine="course.engine" :dom-mode="course.sandboxMode === 'dom'" :web-mode="course.sandboxMode === 'web'" :language="course.language" :is-project="course.type === 'projekt'" :final-check="course.finalCheck ? course.contentPath : ''" :final-check-title="{ de: course.title, en: course.title_en }" />
       </div>
@@ -81,6 +85,7 @@ import PlacementCourse from '../components/PlacementCourse.vue';
 import ProjectCourse from '../components/ProjectCourse.vue';
 import JsGrundkursTour from '../components/JsGrundkursTour.vue';
 import KiLaborTour from '../components/KiLaborTour.vue';
+import WebsiteCourse from '../components/WebsiteCourse.vue';
 import BetaBadge from '../components/BetaBadge.vue';
 import { loadCourseData } from '../composables/useCourseData';
 import { useLanguage } from '../composables/useLanguage.js';
@@ -106,6 +111,7 @@ export default {
     ProjectCourse,
     JsGrundkursTour,
     KiLaborTour,
+    WebsiteCourse,
   },
   props: {
     id: { type: String, required: true },
@@ -128,6 +134,8 @@ export default {
     const isProjectCourse = computed(() => ['projekt', 'lektionen'].includes(course.value?.type));
     const isJsGrundkurs = computed(() => props.id === 'js-grundkurs');
     const isKiLabor = computed(() => props.id === 'ki-labor');
+    // „Meine erste Website“: Stufenwahl Einfach (Lektionsliste) / Intensiv (9 Wochen), WebsiteCourse.vue.
+    const isWebsiteCourse = computed(() => props.id === 'web-erste-website');
 
     // "Kurs starten"-Gate für die Kurse mit eigenem Lernpfad (12-Wochen-Grundkurs, JS-Grundkurs,
     // KI-Labor, Projekt-Kurse, Interaktiv-Kurs): erst Titel/Beschreibung/Kursstruktur-Erklärung,
@@ -210,6 +218,7 @@ export default {
       isInteractiveCourse,
       isPlacementCourse,
       isProjectCourse,
+      isWebsiteCourse,
       isJsGrundkurs,
       isKiLabor,
       isFocusableCourse,

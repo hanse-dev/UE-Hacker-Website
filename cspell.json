@@ -26,9 +26,11 @@
     "/\"(codeTemplate|solution|referenceSolution|expected|id|file|section|type|target|click|name|nextCourseId|stdin|selector|property|value|notValue)\"\\s*:\\s*\"(?:[^\"\\\\]|\\\\.)*\"/g",
     "/\\\\[nt]/g",
     "/<img src=\"[^\"]*\"/g",
-    "/(?<![\\w])\\.[a-z][\\w-]*/g"
+    "/(?<![\\w])\\.[a-z][\\w-]*/g",
+    "/(id|class|lang|for|name|type)=\\\\\"[^\"\\\\]*\\\\\"/g"
   ],
   "words": [
+    "Skateboarden",
     "Flexbox",
     "Flexboxen",
     "Verdana",

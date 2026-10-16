@@ -97,6 +97,7 @@
           :course-id="courseId"
           :show-canvas="showCanvas"
           :dom-mode="domMode"
+          :web-mode="webMode"
           :concept-language="conceptLanguage"
           :concept-course="conceptCourse"
           :concept-week="conceptWeek"
@@ -148,6 +149,8 @@ export default {
     hasCheck: { type: Boolean, default: false },
     showCanvas: { type: Boolean, default: true },
     domMode: { type: Boolean, default: false },
+    // Web-Kurse: HTML/CSS-Aufgaben mit Live-Vorschau (JsLessonView.vue webMode).
+    webMode: { type: Boolean, default: false },
   },
   emits: ['change-week', 'open-check'],
   setup(props, { emit }) {

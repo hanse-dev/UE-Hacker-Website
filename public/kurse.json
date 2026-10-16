@@ -220,8 +220,8 @@
     "beta": true,
     "title": "Meine erste Website",
     "title_en": "My First Website",
-    "description": "Bau deine eigene Website über das, was dich begeistert – mit Überschriften, Listen, Bildern, Farben und Kästen. Ganz ohne Vorwissen, direkt im Browser. Am Ende lädst du deine Seite herunter und holst dir im Abschluss-Check dein Zertifikat.",
-    "description_en": "Build your own website about something you love – with headings, lists, pictures, colours and boxes. No experience needed, right in your browser. At the end you download your page and earn your certificate in the final check. The course is currently available in German.",
+    "description": "Bau deine eigene Website über das, was dich begeistert – direkt im Browser, ganz ohne Vorwissen. Du wählst deine Stufe: Einfach mit 8 kurzen Lektionen und Abschluss-Zertifikat, oder Intensiv mit 9 Wochen inklusive Formularen, Grid und Handy-Ansicht und einem Zertifikat für jede Woche.",
+    "description_en": "Build your own website about something you love – right in your browser, no experience needed. Choose your level: Easy with 8 short lessons and a final certificate, or Intensive with 9 weeks including forms, grid and mobile view and a certificate for every week. The course is currently available in German.",
     "contentPath": "web-erste-website"
   },
   {

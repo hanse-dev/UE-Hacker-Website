@@ -5,7 +5,8 @@ import { readFileSync } from 'fs';
 const lessons = JSON.parse(readFileSync(new URL('../content/web-erste-website/lessons.json', import.meta.url), 'utf-8'));
 
 const STORAGE_KEY = 'ue-hacker-interactive-progress-web-erste-website';
-const COURSE_URL = '/kurs/web-erste-website';
+// Stufe Einfach direkt waehlen (WebsiteCourse.vue), sonst kommt nach „Kurs starten“ die Stufenwahl.
+const COURSE_URL = '/kurs/web-erste-website?stufe=einfach';
 
 // Web-Modus der JS-Sandbox (`"sandboxMode": "web"` in kurse.json): Das HTML des Kindes ist selbst
 // die Seite im iframe der Arbeitsflaeche, Pruefungen laufen ueber `validation.type: 'web'`

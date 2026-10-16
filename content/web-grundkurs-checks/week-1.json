@@ -1,0 +1,202 @@
+{
+  "title": "Das Grundgerüst",
+  "questions": [
+    {
+      "id": "webg1-1",
+      "type": "multiple_choice",
+      "question": "Welcher Teil einer HTML-Seite enthält alles, was im Browserfenster sichtbar ist?",
+      "options": [
+        "body",
+        "head",
+        "title"
+      ],
+      "correctIndex": 0,
+      "explanation": "Im body steht der sichtbare Inhalt, im head stehen Infos über die Seite.",
+      "optionExplanations": [
+        null,
+        "Der head enthält Infos über die Seite, z. B. Zeichensatz und Titel – sichtbar ist davon nichts im Fenster.",
+        "Der title erscheint nur im Browser-Tab."
+      ]
+    },
+    {
+      "id": "webg1-2",
+      "type": "multiple_choice",
+      "question": "Wo erscheint der Text aus dem title-Element?",
+      "options": [
+        "Im Browser-Tab und in Suchergebnissen",
+        "Als große Überschrift oben auf der Seite",
+        "Gar nicht, er ist nur ein Kommentar"
+      ],
+      "correctIndex": 0,
+      "explanation": "title steht im head und beschriftet den Tab.",
+      "optionExplanations": [
+        null,
+        "Eine sichtbare Überschrift baust du mit h1.",
+        "Kommentare schreibst du mit <!-- -->; title wird durchaus angezeigt – im Tab."
+      ]
+    },
+    {
+      "id": "webg1-3",
+      "type": "multiple_choice",
+      "question": "Welche Zeile ist richtig verschachtelt?",
+      "options": [
+        "<p>Ich mag <em>Pizza</em>.</p>",
+        "<p>Ich mag <em>Pizza</p></em>.",
+        "<em><p>Ich mag Pizza</em></p>"
+      ],
+      "correctIndex": 0,
+      "explanation": "Was zuletzt geöffnet wurde, wird zuerst geschlossen.",
+      "optionExplanations": [
+        null,
+        "Hier wird p geschlossen, bevor das innere em zu ist – die Tags überkreuzen sich.",
+        "Auch hier überkreuzen sich die Tags: em wird vor p geschlossen, obwohl p später geöffnet wurde."
+      ]
+    },
+    {
+      "id": "webg1-4",
+      "type": "multiple_choice",
+      "question": "Welches Element hat kein End-Tag?",
+      "options": [
+        "<br>",
+        "<p>",
+        "<h2>"
+      ],
+      "correctIndex": 0,
+      "explanation": "br ist ein leeres Element – es umschließt keinen Inhalt.",
+      "optionExplanations": [
+        null,
+        "Ein Absatz umschließt Text und braucht </p>.",
+        "Überschriften umschließen Text und brauchen ein End-Tag."
+      ]
+    },
+    {
+      "id": "webg1-5",
+      "type": "multiple_choice",
+      "question": "In einem Absatz stehen im Code zwischen „Hallo“ und „Welt“ sechs Leerzeichen. Was zeigt der Browser an?",
+      "options": [
+        "Hallo Welt – mit einem einzigen Leerzeichen",
+        "Hallo und Welt mit allen sechs Leerzeichen",
+        "Hallo und Welt in zwei Zeilen"
+      ],
+      "correctIndex": 0,
+      "explanation": "Der Browser fasst mehrere Leerzeichen zu einem zusammen.",
+      "optionExplanations": [
+        null,
+        "Mehrere Leerzeichen hintereinander fasst der Browser zu einem zusammen.",
+        "Für eine neue Zeile bräuchte es ein <br>."
+      ]
+    },
+    {
+      "id": "webg1-6",
+      "type": "multiple_choice",
+      "question": "Was gilt für das Attribut id?",
+      "options": [
+        "Jede id darf auf einer Seite nur einmal vorkommen",
+        "Jedes Element muss eine id haben",
+        "Eine id macht Text fett"
+      ],
+      "correctIndex": 0,
+      "explanation": "Eine id ist ein eindeutiger Name für genau ein Element.",
+      "optionExplanations": [
+        null,
+        "Eine id ist freiwillig – du vergibst sie nur dort, wo du ein Element wiederfinden willst.",
+        "Fett machst du Text mit strong."
+      ]
+    },
+    {
+      "id": "webg1-7",
+      "type": "multiple_choice",
+      "question": "Wofür steht lang=\"de\" im html-Element?",
+      "options": [
+        "Es nennt die Sprache der Seite",
+        "Es macht die Seite länger",
+        "Es übersetzt die Seite automatisch"
+      ],
+      "correctIndex": 0,
+      "explanation": "lang sagt zum Beispiel Vorleseprogrammen, welche Aussprache sie nehmen sollen.",
+      "optionExplanations": [
+        null,
+        "lang hat nichts mit Länge zu tun – es steht für language, Sprache.",
+        "lang übersetzt nichts, es beschreibt nur, in welcher Sprache der Text geschrieben ist."
+      ]
+    },
+    {
+      "id": "webg1-8",
+      "type": "multiple_choice",
+      "question": "Ab einer Stelle ist auf deiner Seite plötzlich alles verschwunden. Was ist eine typische Ursache?",
+      "options": [
+        "Ein Kommentar wurde nicht richtig mit --> geschlossen",
+        "Ein Absatz hat zu viel Text",
+        "Die Seite hat zwei h2-Überschriften"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ohne --> gilt alles danach als Kommentar.",
+      "optionExplanations": [
+        null,
+        "Viel Text ist kein Problem, er wird einfach umgebrochen.",
+        "Mehrere h2 sind völlig in Ordnung."
+      ]
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Schreib eine vollständige Seite mit Grundgerüst: lang=\"de\", Zeichensatz, ein title mit Text und im body eine Überschrift h1 und einen Absatz.",
+      "codeTemplate": "<!-- Deine Seite -->\n",
+      "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Klettern</title>\n</head>\n<body>\n  <h1>Klettern</h1>\n  <p>Klettern trainiert Kraft und Mut.</p>\n</body>\n</html>",
+      "validation": {
+        "type": "web",
+        "checks": [
+          {
+            "selector": "html[lang=\"de\"]",
+            "hint": "Das html-Element braucht lang=\"de\"."
+          },
+          {
+            "selector": "meta[charset]",
+            "hint": "Es fehlt <meta charset=\"utf-8\">."
+          },
+          {
+            "selector": "head title",
+            "notEmpty": true,
+            "hint": "Es fehlt ein <title> im head."
+          },
+          {
+            "selector": "body h1",
+            "notEmpty": true,
+            "hint": "Im body fehlt die Überschrift <h1>."
+          },
+          {
+            "selector": "body p",
+            "notEmpty": true,
+            "hint": "Im body fehlt ein Absatz <p>."
+          }
+        ]
+      }
+    },
+    {
+      "instruction": "Repariere die Seite: Es soll genau eine Überschrift h1 geben, der Absatz mit der id „ende“ muss wieder erscheinen, und im zweiten Absatz darf nichts fett sein.",
+      "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Hobby<h1>\n  <p class=\"eins\">Ich <strong>zeichne gern.</p>\n  <p class=\"zwei\">Am liebsten Comics.</p>\n  <!-- Schluss ->\n  <p id=\"ende\">Danke fürs Lesen!</p>\n</body>\n</html>\n",
+      "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Hobby</h1>\n  <p class=\"eins\">Ich <strong>zeichne</strong> gern.</p>\n  <p class=\"zwei\">Am liebsten Comics.</p>\n  <!-- Schluss -->\n  <p id=\"ende\">Danke fürs Lesen!</p>\n</body>\n</html>",
+      "validation": {
+        "type": "web",
+        "checks": [
+          {
+            "selector": "h1",
+            "max": 1,
+            "hint": "Die Überschrift wird mit <h1> statt </h1> beendet."
+          },
+          {
+            "selector": "p.zwei",
+            "property": "font-weight",
+            "value": "normal",
+            "hint": "Im ersten Absatz fehlt das </strong>."
+          },
+          {
+            "selector": "#ende",
+            "notEmpty": true,
+            "hint": "Der Kommentar ist nicht richtig mit --> geschlossen."
+          }
+        ]
+      }
+    }
+  ]
+}
