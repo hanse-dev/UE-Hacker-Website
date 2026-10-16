@@ -1,0 +1,224 @@
+{
+  "title": "Flexbox",
+  "questions": [
+    {
+      "id": "webg7-1",
+      "type": "multiple_choice",
+      "question": "An welches Element gehört display: flex?",
+      "options": [
+        "An den Container, der die Items umschließt",
+        "An jedes einzelne Item",
+        "Immer an den body"
+      ],
+      "correctIndex": 0,
+      "explanation": "Flexbox schaltest du am Elternelement ein.",
+      "optionExplanations": [
+        null,
+        "An den Items bewirkt es nur, dass deren eigene Kinder flexibel werden.",
+        "Nur wenn du die direkten Kinder des body anordnen willst."
+      ]
+    },
+    {
+      "id": "webg7-2",
+      "type": "multiple_choice",
+      "question": "Was macht flex-direction: column?",
+      "options": [
+        "Die Items stehen untereinander",
+        "Die Items stehen nebeneinander",
+        "Die Items werden versteckt"
+      ],
+      "correctIndex": 0,
+      "explanation": "column macht aus der Reihe eine Spalte.",
+      "optionExplanations": [
+        null,
+        "Das ist row, der Standard.",
+        "Versteckt wird nichts."
+      ]
+    },
+    {
+      "id": "webg7-3",
+      "type": "multiple_choice",
+      "question": "Logo ganz links, Menü ganz rechts – welcher Wert für justify-content?",
+      "options": [
+        "space-between",
+        "center",
+        "flex-start"
+      ],
+      "correctIndex": 0,
+      "explanation": "space-between schiebt das erste Item an den Anfang und das letzte ans Ende.",
+      "optionExplanations": [
+        null,
+        "center schiebt beides in die Mitte.",
+        "flex-start schiebt beides an den Anfang."
+      ]
+    },
+    {
+      "id": "webg7-4",
+      "type": "multiple_choice",
+      "question": "Wofür ist align-items bei flex-direction: row zuständig?",
+      "options": [
+        "Für die senkrechte Ausrichtung",
+        "Für die waagerechte Ausrichtung",
+        "Für den Abstand zwischen den Items"
+      ],
+      "correctIndex": 0,
+      "explanation": "align-items wirkt entlang der Querachse – bei row ist das senkrecht.",
+      "optionExplanations": [
+        null,
+        "Waagerecht ist bei row die Hauptachse – dafür ist justify-content da.",
+        "Den Abstand setzt du mit gap."
+      ]
+    },
+    {
+      "id": "webg7-5",
+      "type": "multiple_choice",
+      "question": "Was bewirkt flex-wrap: wrap?",
+      "options": [
+        "Items dürfen in die nächste Zeile umbrechen",
+        "Items werden eingerahmt",
+        "Items werden in umgekehrter Reihenfolge gezeigt"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ohne wrap quetscht Flexbox alles in eine Zeile.",
+      "optionExplanations": [
+        null,
+        "Rahmen setzt du mit border.",
+        "Das macht row-reverse."
+      ]
+    },
+    {
+      "id": "webg7-6",
+      "type": "multiple_choice",
+      "question": "Drei Items haben flex: 1, flex: 1 und flex: 2. Wie wird der freie Platz verteilt?",
+      "options": [
+        "Das dritte bekommt doppelt so viel wie jedes andere",
+        "Alle bekommen gleich viel",
+        "Das dritte bekommt den ganzen Platz"
+      ],
+      "correctIndex": 0,
+      "explanation": "Der Platz wird im Verhältnis 1 : 1 : 2 verteilt.",
+      "optionExplanations": [
+        null,
+        "Gleich viel bekämen sie nur bei gleichen Werten.",
+        "Es bekommt nur einen größeren Anteil, nicht alles."
+      ]
+    },
+    {
+      "id": "webg7-7",
+      "type": "multiple_choice",
+      "question": "Was setzt gap in einem Flex-Container?",
+      "options": [
+        "Den Abstand zwischen den Items",
+        "Den Abstand zum Rand des Containers",
+        "Die Breite der Items"
+      ],
+      "correctIndex": 0,
+      "explanation": "gap ist der Abstand zwischen den Items.",
+      "optionExplanations": [
+        null,
+        "Den Abstand zum Rand setzt du mit padding am Container.",
+        "Die Breite setzt du mit width oder flex."
+      ]
+    },
+    {
+      "id": "webg7-8",
+      "type": "multiple_choice",
+      "question": "justify-content: centre; – was passiert?",
+      "options": [
+        "Nichts, der Wert ist ungültig und wird ignoriert",
+        "Die Items werden zentriert",
+        "Der Browser zeigt eine Fehlermeldung"
+      ],
+      "correctIndex": 0,
+      "explanation": "CSS kennt nur center, ungültige Werte werden stillschweigend verworfen.",
+      "optionExplanations": [
+        null,
+        "Zentriert wird nur mit dem richtigen Wert center.",
+        "CSS zeigt keine Fehlermeldungen an."
+      ]
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Gestalte die Kopfzeile mit class=\"kopf\": Flexbox, Titel links und Menü rechts, beides senkrecht mittig. Die Links im nav stehen nebeneinander mit 10px Abstand.",
+      "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    /* Dein CSS */\n  </style>\n</head>\n<body>\n  <header class=\"kopf\"><h1>Fahrradclub</h1><nav><a href=\"#\">Touren</a><a href=\"#\">Werkstatt</a></nav></header>\n</body>\n</html>\n",
+      "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .kopf {\n      display: flex;\n      justify-content: space-between;\n      align-items: center;\n    }\n    nav {\n      display: flex;\n      gap: 10px;\n    }\n  </style>\n</head>\n<body>\n  <header class=\"kopf\"><h1>Fahrradclub</h1><nav><a href=\"#\">Touren</a><a href=\"#\">Werkstatt</a></nav></header>\n</body>\n</html>",
+      "validation": {
+        "type": "web",
+        "checks": [
+          {
+            "selector": ".kopf",
+            "property": "display",
+            "value": "flex",
+            "hint": "Die Kopfzeile braucht display: flex;"
+          },
+          {
+            "selector": ".kopf",
+            "property": "justify-content",
+            "value": "space-between",
+            "hint": "Titel links, Menü rechts: justify-content: space-between;"
+          },
+          {
+            "selector": ".kopf",
+            "property": "align-items",
+            "value": "center",
+            "hint": "Senkrecht mittig: align-items: center;"
+          },
+          {
+            "selector": "nav",
+            "property": "display",
+            "value": "flex",
+            "hint": "Das Menü braucht display: flex;"
+          },
+          {
+            "selector": "nav",
+            "property": "column-gap",
+            "value": "10px",
+            "hint": "Das Menü braucht gap: 10px;"
+          }
+        ]
+      }
+    },
+    {
+      "instruction": "Bau die Galerie mit class=\"bilder\": Flexbox mit Umbruch und 8px Abstand. Das erste Bild (class=\"gross\") soll doppelt so viel Platz bekommen wie die anderen (flex: 2), die anderen flex: 1.",
+      "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .bilder img { min-width: 80px; }\n  </style>\n</head>\n<body>\n  <div class=\"bilder\">\n    <img class=\"gross\" src=\"/web-bilder/pferd.svg\" alt=\"Pferd\">\n    <img src=\"/web-bilder/hund.svg\" alt=\"Hund\">\n    <img src=\"/web-bilder/katze.svg\" alt=\"Katze\">\n  </div>\n</body>\n</html>\n",
+      "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .bilder { display: flex; flex-wrap: wrap; gap: 8px; }\n    .bilder img { min-width: 80px; flex: 1; }\n    .bilder .gross { flex: 2; }\n  </style>\n</head>\n<body>\n  <div class=\"bilder\">\n    <img class=\"gross\" src=\"/web-bilder/pferd.svg\" alt=\"Pferd\">\n    <img src=\"/web-bilder/hund.svg\" alt=\"Hund\">\n    <img src=\"/web-bilder/katze.svg\" alt=\"Katze\">\n  </div>\n</body>\n</html>",
+      "validation": {
+        "type": "web",
+        "checks": [
+          {
+            "selector": ".bilder",
+            "property": "display",
+            "value": "flex",
+            "hint": "Die Galerie braucht display: flex;"
+          },
+          {
+            "selector": ".bilder",
+            "property": "flex-wrap",
+            "value": "wrap",
+            "hint": "Erlaube Umbrüche mit flex-wrap: wrap;"
+          },
+          {
+            "selector": ".bilder",
+            "property": "column-gap",
+            "value": "8px",
+            "hint": "Setz gap: 8px;"
+          },
+          {
+            "selector": ".bilder .gross",
+            "property": "flex-grow",
+            "value": "2",
+            "hint": "Das große Bild bekommt flex: 2;"
+          },
+          {
+            "selector": ".bilder img:not(.gross)",
+            "property": "flex-grow",
+            "value": "1",
+            "min": 2,
+            "hint": "Die anderen Bilder bekommen flex: 1;"
+          }
+        ]
+      }
+    }
+  ]
+}
