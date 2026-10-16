@@ -1,0 +1,223 @@
+{
+  "title": "Das Box-Modell",
+  "questions": [
+    {
+      "id": "webg6-1",
+      "type": "multiple_choice",
+      "question": "Welche Schicht liegt zwischen Inhalt und Rahmen?",
+      "options": [
+        "padding",
+        "margin",
+        "outline"
+      ],
+      "correctIndex": 0,
+      "explanation": "padding ist der Innenabstand.",
+      "optionExplanations": [
+        null,
+        "margin liegt außerhalb des Rahmens.",
+        "outline ist eine Linie außerhalb des Rahmens, keine Schicht des Box-Modells."
+      ]
+    },
+    {
+      "id": "webg6-2",
+      "type": "multiple_choice",
+      "question": "Was bedeutet padding: 10px 20px;?",
+      "options": [
+        "Oben und unten 10px, links und rechts 20px",
+        "Links 10px, rechts 20px",
+        "Oben 10px, unten 20px"
+      ],
+      "correctIndex": 0,
+      "explanation": "Zwei Werte: erst oben/unten, dann links/rechts.",
+      "optionExplanations": [
+        null,
+        "Bei zwei Werten gilt der erste für oben und unten.",
+        "Bei zwei Werten gilt der zweite für links und rechts."
+      ]
+    },
+    {
+      "id": "webg6-3",
+      "type": "multiple_choice",
+      "question": "Eine Box hat width: 200px, padding: 20px und border: 5px – ohne box-sizing. Wie breit ist sie?",
+      "options": [
+        "250px",
+        "200px",
+        "225px"
+      ],
+      "correctIndex": 0,
+      "explanation": "200 + 2 × 20 + 2 × 5 = 250.",
+      "optionExplanations": [
+        null,
+        "200px wäre sie nur mit box-sizing: border-box.",
+        "Padding und Rahmen zählen auf beiden Seiten."
+      ]
+    },
+    {
+      "id": "webg6-4",
+      "type": "multiple_choice",
+      "question": "Was bewirkt box-sizing: border-box?",
+      "options": [
+        "Padding und Rahmen zählen in die angegebene Breite hinein",
+        "Die Box bekommt automatisch einen Rahmen",
+        "Die Box wird so breit wie die Seite"
+      ],
+      "correctIndex": 0,
+      "explanation": "Mit border-box ist die Box genau so breit wie width.",
+      "optionExplanations": [
+        null,
+        "Einen Rahmen setzt du mit border.",
+        "Die Breite bestimmst du weiter selbst."
+      ]
+    },
+    {
+      "id": "webg6-5",
+      "type": "multiple_choice",
+      "question": "Was trifft der Selektor *?",
+      "options": [
+        "Jedes Element",
+        "Nur das erste Element",
+        "Nur Elemente ohne Klasse"
+      ],
+      "correctIndex": 0,
+      "explanation": "Der Stern ist der Universal-Selektor.",
+      "optionExplanations": [
+        null,
+        "Er trifft alle Elemente, nicht nur das erste.",
+        "Klassen spielen für * keine Rolle."
+      ]
+    },
+    {
+      "id": "webg6-6",
+      "type": "multiple_choice",
+      "question": "Warum zentriert margin: 0 auto eine Box manchmal nicht?",
+      "options": [
+        "Die Box hat keine width oder max-width und ist so breit wie ihr Platz",
+        "auto funktioniert nur bei Bildern",
+        "Es fehlt text-align: center"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ohne schmalere Breite gibt es keinen freien Platz zu verteilen.",
+      "optionExplanations": [
+        null,
+        "margin auto funktioniert für alle Block-Boxen.",
+        "text-align zentriert nur Text innerhalb der Box."
+      ]
+    },
+    {
+      "id": "webg6-7",
+      "type": "multiple_choice",
+      "question": "Woran richtet sich ein Element mit position: absolute aus?",
+      "options": [
+        "Am nächsten Vorfahren mit position (z. B. relative)",
+        "Immer am direkten Elternelement",
+        "Immer an der Mitte der Seite"
+      ],
+      "correctIndex": 0,
+      "explanation": "Hat kein Vorfahre eine position, richtet es sich an der Seite aus.",
+      "optionExplanations": [
+        null,
+        "Nur wenn das Elternelement selbst positioniert ist.",
+        "Ohne Angaben bleibt es da, wo es im Fluss gestanden hätte."
+      ]
+    },
+    {
+      "id": "webg6-8",
+      "type": "multiple_choice",
+      "question": "Wie zentrierst du den Text in einer Box?",
+      "options": [
+        "text-align: center;",
+        "margin: 0 auto;",
+        "position: center;"
+      ],
+      "correctIndex": 0,
+      "explanation": "text-align richtet Text aus.",
+      "optionExplanations": [
+        null,
+        "margin auto zentriert die Box selbst, nicht den Text darin.",
+        "Den Wert center gibt es bei position nicht."
+      ]
+    }
+  ],
+  "codingChallenges": [
+    {
+      "instruction": "Gestalte die Box mit class=\"karte\": genau 240px breit inklusive 20px Innenabstand und 4px Rahmen (box-sizing!), zentriert mit margin: 0 auto und mit 12px Außenabstand unten.",
+      "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    /* Dein CSS */\n  </style>\n</head>\n<body>\n  <div class=\"karte\">Konzert am Freitag</div>\n</body>\n</html>\n",
+      "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .karte {\n      box-sizing: border-box;\n      width: 240px;\n      padding: 20px;\n      border: 4px solid teal;\n      margin: 0 auto 12px;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"karte\">Konzert am Freitag</div>\n</body>\n</html>",
+      "validation": {
+        "type": "web",
+        "checks": [
+          {
+            "selector": ".karte",
+            "property": "box-sizing",
+            "value": "border-box",
+            "hint": "Es fehlt box-sizing: border-box;"
+          },
+          {
+            "selector": ".karte",
+            "property": "width",
+            "value": "240px",
+            "hint": "Die Karte soll width: 240px; haben."
+          },
+          {
+            "selector": ".karte",
+            "property": "padding-top",
+            "value": "20px",
+            "hint": "Die Karte braucht padding: 20px;"
+          },
+          {
+            "selector": ".karte",
+            "property": "border-top-width",
+            "value": "4px",
+            "hint": "Die Karte braucht einen 4px breiten Rahmen."
+          },
+          {
+            "selector": ".karte",
+            "property": "margin-left",
+            "notValue": "0px",
+            "hint": "Zentriere die Karte mit margin-left und margin-right auf auto."
+          },
+          {
+            "selector": ".karte",
+            "property": "margin-bottom",
+            "value": "12px",
+            "hint": "Unten soll der Außenabstand 12px sein."
+          }
+        ]
+      }
+    },
+    {
+      "instruction": "Setz das Abzeichen mit class=\"neu\" in die Ecke unten rechts der Karte – nicht der Seite.",
+      "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .karte {\n      max-width: 260px;\n      padding: 16px 16px 32px;\n      border: 2px solid gray;\n    }\n    .neu {\n      background-color: lime;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"karte\"><span class=\"neu\">Neu</span><h3>Kletterkurs</h3><p>Jeden Samstag.</p></div>\n</body>\n</html>\n",
+      "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .karte {\n      position: relative;\n      max-width: 260px;\n      padding: 16px 16px 32px;\n      border: 2px solid gray;\n    }\n    .neu {\n      position: absolute;\n      bottom: 0;\n      right: 0;\n      background-color: lime;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"karte\"><span class=\"neu\">Neu</span><h3>Kletterkurs</h3><p>Jeden Samstag.</p></div>\n</body>\n</html>",
+      "validation": {
+        "type": "web",
+        "checks": [
+          {
+            "selector": ".karte",
+            "property": "position",
+            "value": "relative",
+            "hint": "Die Karte braucht position: relative;"
+          },
+          {
+            "selector": ".neu",
+            "property": "position",
+            "value": "absolute",
+            "hint": "Das Abzeichen braucht position: absolute;"
+          },
+          {
+            "selector": ".neu",
+            "property": "bottom",
+            "value": "0px",
+            "hint": "Setz das Abzeichen nach unten: bottom: 0;"
+          },
+          {
+            "selector": ".neu",
+            "property": "right",
+            "value": "0px",
+            "hint": "Setz das Abzeichen nach rechts: right: 0;"
+          }
+        ]
+      }
+    }
+  ]
+}

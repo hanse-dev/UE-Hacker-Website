@@ -1586,6 +1586,14 @@
       "debug-01",
       "mission-01"
     ],
+    "web-grundkurs-woche6": [
+      "lektion-01",
+      "lektion-02",
+      "lektion-03",
+      "lektion-04",
+      "debug-01",
+      "mission-01"
+    ],
     "zahlendetektiv": [
       "lektion-01",
       "lektion-02",
@@ -1954,6 +1962,19 @@
           "webg5-6",
           "webg5-7",
           "webg5-8"
+        ],
+        "coding": 2
+      },
+      "week-6": {
+        "questions": [
+          "webg6-1",
+          "webg6-2",
+          "webg6-3",
+          "webg6-4",
+          "webg6-5",
+          "webg6-6",
+          "webg6-7",
+          "webg6-8"
         ],
         "coding": 2
       }

@@ -177,6 +177,9 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 - Browser reparieren vergessene End-Tags nicht wie erwartet (3.116): `<p><strong>…</p><p>` legt den
   zweiten Absatz **in** ein `strong`, nicht `strong` in den Absatz. Debug-Aufgaben deshalb über den
   sichtbaren Effekt prüfen (`property: font-weight`), nicht über die Baumstruktur.
+- Web-Prüfungen mit `value`: Das Probe-Element zur Normalisierung hat keinen Rahmenstil – für
+  `border-*-width` setzt `probeStyle()` deshalb selbst `border-*-style: solid` (sonst immer `0px`).
+  Neue Eigenschaften, die von einer anderen abhängen, genauso behandeln und per Inhaltstest prüfen.
 - Neue npm-Abhängigkeit im Worktree: `npm install` ersetzt den `node_modules`-Symlink durch einen
   eigenen Ordner (Haupt-Checkout bleibt unberührt) — nach dem Merge im Haupt-Checkout `npm install`.
 - Zustand, den ein Klick erst herstellen soll, lässt sich ohne Klick-Folge nur prüfen, wenn die

@@ -81,6 +81,10 @@ function buildHarnessScript(mode) {
     var probe = document.createElement(tag);
     probe.style.setProperty('position', 'absolute');
     probe.style.setProperty('visibility', 'hidden');
+    // Eine Rahmenbreite gilt nur bei sichtbarem Rahmen - ohne border-style rechnet der Browser
+    // jede border-*-width als 0px, und ein Sollwert wie '4px' waere nie erreichbar.
+    var side = /^border-(top|right|bottom|left)-width$/.exec(property);
+    if (side) probe.style.setProperty('border-' + side[1] + '-style', 'solid');
     probe.style.setProperty(property, value);
     document.body.appendChild(probe);
     var computed = getComputedStyle(probe).getPropertyValue(property).trim();
