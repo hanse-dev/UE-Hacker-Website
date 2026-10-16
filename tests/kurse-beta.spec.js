@@ -19,7 +19,7 @@ test.describe('Beta-Kennzeichnung', () => {
 
   test('Projekte-Übersicht zeigt Beta an der Karte', async ({ page }) => {
     await page.goto('/projekte');
-    await expect(page.locator('a.projekt-card[href="/kurs/projekt-caesar-chiffre"] .beta-badge')).toHaveText('Beta', { timeout: 15000 });
+    await expect(page.locator('a.projekt-card[href="/kurs/projekt-caesar-chiffre"] .beta-badge')).toHaveText('Beta: neu, noch nicht vollständig getestet', { timeout: 15000 });
     await expect(page.locator('a.projekt-card[href="/kurs/projekt-microbit-auto"]')).toBeVisible();
     await expect(page.locator('a.projekt-card[href="/kurs/projekt-microbit-auto"] .beta-badge')).toHaveCount(0);
   });
@@ -34,7 +34,7 @@ test.describe('Beta-Kennzeichnung', () => {
   test('Kursseite zeigt Beta mit Erklärung, auch nach dem Start', async ({ page }) => {
     await page.goto('/kurs/projekt-caesar-chiffre');
     await expect(page.locator('.beta-hint .beta-badge')).toBeVisible({ timeout: 15000 });
-    await expect(page.locator('.beta-hint')).toContainText('noch nicht im Unterricht erprobt');
+    await expect(page.locator('.beta-hint')).toContainText('Beta heißt: Dieser Kurs ist schon fertig, aber noch neu und noch nicht vollständig getestet.');
     // Der Titel selbst bleibt unverändert.
     await expect(page.locator('.course-detail > h1')).toHaveText('Projekt: Cäsar-Chiffre');
     await page.locator('.btn-start-course').click();

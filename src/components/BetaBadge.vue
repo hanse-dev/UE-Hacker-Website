@@ -24,8 +24,6 @@ export default {
   color: #9a3412;
   font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
   vertical-align: middle;
 }
 </style>

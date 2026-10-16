@@ -417,8 +417,8 @@ export default {
   'projectTag.robotik': 'Robotics',
   'projectTag.elektronik': 'Electronics',
 
-  'course.beta': 'Beta',
-  'course.betaHint': 'This course is new and has not been tried out in class yet. There may still be small mistakes.',
+  'course.beta': 'Beta: new, not fully tested yet',
+  'course.betaHint': 'Beta means: this course is ready to use, but it is still new and not fully tested. There may still be small mistakes or unclear parts. If you notice something, tell your course leader.',
 
   'guide.modeLabel': 'Show guide as:',
   'guide.mode.bloecke': 'Blocks',
