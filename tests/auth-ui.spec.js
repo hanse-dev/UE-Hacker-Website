@@ -670,7 +670,9 @@ test.describe('UI: Admin + Header-Login', () => {
     await page.locator('.settings-close').click();
 
     await page.goto('/profil');
-    await expect(page.locator('.cert-course-block')).toHaveCount(2, { timeout: 10000 });
+    // Python, KI-Labor und „Meine erste Website“ (Abschluss-Check) - letzterer hier noch nicht bestanden.
+    await expect(page.locator('.cert-course-block')).toHaveCount(3, { timeout: 10000 });
+    await expect(page.locator('.cert-course-block', { hasText: 'Meine erste Website' }).locator('.cert-course-count')).toContainText('0/1');
 
     const pythonBlock = page.locator('.cert-course-block', { hasText: 'Python 12-Wochen-Grundkurs' });
     await expect(pythonBlock.locator('.cert-course-count')).toContainText('1/12');
