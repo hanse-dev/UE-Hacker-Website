@@ -79,3 +79,6 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
 
 Gesamt-Roadmap/Track-Modell siehe `VISION.md`, Ideen-Backlog in `PROJEKTIDEEN.md`. In Arbeit:
 `projekt-haeufigkeitsanalyse` (eigener Worktree). Alles Gemergte steht im Archiv.
+
+**Web-Track** (Plan in `KURSPLAN.md`): `web-sandbox` ✅ (3.114) → `kurs-erste-website` (in Arbeit: Kurs A
+Lektion 2–8 + Abschluss-Check/Zertifikat, Bilder unter `public/web-bilder/`, Kurs aus `unlisted` holen) → `web-grundkurs` (Kurs B, 9 Wochen; dann `html`-Begriffe in `content/begriffe.json` und `web-erste-website` aus `WITHOUT_LINKS` in `tests/begriffe.spec.js` nehmen) → `web-checks` (Wochen-Checks/Zertifikate).

@@ -37,6 +37,46 @@ export function validateOutput(output, validation) {
 }
 
 /**
+ * Web-Kurse (`validation.type: 'web'`): Bei HTML/CSS ist die gerenderte Seite die "Ausgabe".
+ * `validation.checks` ist eine Liste, jede Pruefung muss passen:
+ *   { selector, min = 1, max?, text?, notEmpty?, property?, value?, notValue?, hint? }
+ * Ein Element zaehlt nur, wenn es alle eigenen Bedingungen erfuellt (Text enthaelt `text`, ist
+ * nicht leer, berechneter CSS-Wert von `property` gleich `value` bzw. ungleich `notValue`); davon
+ * muss es mindestens `min` geben. `max` begrenzt die Gesamtzahl der Treffer des Selektors.
+ * Attribute prueft der Selektor selbst, z.B. `img[alt]:not([alt=""])`.
+ *
+ * @param {object} validation
+ * @param {Array|null} facts - je Pruefung { count, elements: [{ text, actual }], expected?,
+ *   notExpected? } aus der Sandbox (useJsSandbox.js, checkWeb) - CSS-Werte schon vom Browser
+ *   normalisiert, hier wird nur verglichen.
+ * @returns {{ ok: boolean, failedIndex: number }} failedIndex = erste nicht erfuellte Pruefung
+ *   (fuer ihren `hint`), sonst -1.
+ */
+export function validateWebChecks(validation, facts) {
+  if (DEV_SKIP_CHECKS) return { ok: true, failedIndex: -1 };
+  const checks = validation?.checks || [];
+  for (let i = 0; i < checks.length; i++) {
+    if (!webCheckOk(checks[i], facts?.[i])) return { ok: false, failedIndex: i };
+  }
+  return { ok: true, failedIndex: -1 };
+}
+
+function webCheckOk(check, fact) {
+  if (!fact || fact.error) return false;
+  if (check.max !== undefined && fact.count > check.max) return false;
+  const matching = (fact.elements || []).filter((el) => {
+    if (check.text !== undefined && !normalizeForComparison(el.text).includes(normalizeForComparison(check.text))) return false;
+    if (check.notEmpty && !el.text) return false;
+    if (check.property) {
+      if (check.value !== undefined && el.actual !== fact.expected) return false;
+      if (check.notValue !== undefined && el.actual === fact.notExpected) return false;
+    }
+    return true;
+  });
+  return matching.length >= (check.min ?? 1);
+}
+
+/**
  * Zusaetzlich zu `validateOutput()`: prueft, ob die geforderten Variablen/Funktionsergebnisse
  * wirklich vorliegen - verhindert, dass der Wochen-Check (Zertifikat) durch bloßes Ausgeben des
  * erwarteten Texts umgangen wird, ohne die Variablen/Funktionen tatsaechlich anzulegen. Bewusst

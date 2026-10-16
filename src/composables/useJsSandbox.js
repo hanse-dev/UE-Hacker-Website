@@ -28,31 +28,12 @@ export const SANDBOX_CANVAS_ID = 'spielfeld';
 // unsichtbar bleiben (per Screenshot gefunden). Das Canvas-Element existiert im DOM-Modus trotzdem
 // weiter (nur unsichtbar) - die Canvas-RPC-Handler (readCanvasData etc.) brauchen kein Sonderfall,
 // `getElementById` funktioniert unabhaengig von `display: none`.
-function buildSandboxHtml(mode) {
-  const isDom = mode === 'dom';
-  return `<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'">
-<style>
-  html, body { margin: 0; padding: 0; background: #eef2f7; font-family: sans-serif; }
-  canvas { display: ${isDom ? 'none' : 'block'}; background: #eef2f7; }
-  #dom-uebung { display: ${isDom ? 'block' : 'none'}; padding: 14px; }
-  #dom-uebung h2 { margin: 0 0 8px 0; font-size: 1.1em; }
-  #dom-uebung p { margin: 0 0 10px 0; }
-  #dom-uebung button { font: inherit; padding: 6px 16px; cursor: pointer; }
-</style>
-</head>
-<body>
-<canvas id="${SANDBOX_CANVAS_ID}" width="400" height="300"></canvas>
-<div id="dom-uebung">
-  <h2 id="ueberschrift">Willkommen</h2>
-  <p id="text">Hier steht ein Text.</p>
-  <button id="knopf" type="button">Klick mich</button>
-  <p id="anzeige">0</p>
-</div>
-<script>
+// Harness-Script fuer alle drei Modi. Im Web-Modus (`mode: 'web'`) steckt es VOR dem HTML des
+// Schuelers (siehe buildWebDocument) - so faengt es auch console.log aus dessen <script>-Bloecken
+// ab und meldet `ready` erst, wenn dessen Seite fertig geparst ist.
+function buildHarnessScript(mode) {
+  const isWeb = mode === 'web';
+  return `<script>
 (function () {
   var CH = '${CHANNEL}';
   var consoleBuffer = [];
@@ -93,6 +74,20 @@ function buildSandboxHtml(mode) {
     try { return JSON.parse(JSON.stringify(value)); } catch (e) { return null; }
   }
 
+  // Normalisiert einen erwarteten CSS-Wert ueber den Browser selbst: ein unsichtbares Element
+  // derselben Art bekommt den Wert gesetzt, zurueck kommt der berechnete Wert. So gilt 'red' wie
+  // '#ff0000' wie 'rgb(255, 0, 0)', '1em' wie '16px' usw. - egal, wie das Kind es schreibt.
+  function probeStyle(tag, property, value) {
+    var probe = document.createElement(tag);
+    probe.style.setProperty('position', 'absolute');
+    probe.style.setProperty('visibility', 'hidden');
+    probe.style.setProperty(property, value);
+    document.body.appendChild(probe);
+    var computed = getComputedStyle(probe).getPropertyValue(property).trim();
+    probe.remove();
+    return computed;
+  }
+
   function readCanvasData() {
     var canvas = document.getElementById('${SANDBOX_CANVAS_ID}');
     if (!canvas) return null;
@@ -105,7 +100,8 @@ function buildSandboxHtml(mode) {
     if (!msg || msg.ch !== CH) return;
 
     if (msg.type === 'run') {
-      consoleBuffer = [];
+      // Web-Modus: die Ausgabe der <script>-Bloecke im HTML ist schon vor diesem 'run' entstanden.
+      ${isWeb ? '' : 'consoleBuffer = [];'}
       var ok = true, error = null, capturedVars = null;
       try {
         var runCode = msg.code;
@@ -176,6 +172,33 @@ function buildSandboxHtml(mode) {
       }
     }
 
+    // Web-Modus: liefert zu jeder Pruefung nur Fakten (Anzahl, Texte, berechnete CSS-Werte) - ob
+    // das reicht, entscheidet validateWebChecks() in useTaskValidation.js.
+    if (msg.type === 'web') {
+      var facts = (msg.checks || []).map(function (check) {
+        var els;
+        try { els = document.querySelectorAll(check.selector); } catch (err) { return { error: 'selector' }; }
+        var list = Array.prototype.slice.call(els, 0, 50);
+        var fact = {
+          count: els.length,
+          elements: list.map(function (el) {
+            return {
+              text: (el.textContent || '').trim(),
+              actual: check.property ? getComputedStyle(el).getPropertyValue(check.property).trim() : null,
+            };
+          }),
+        };
+        if (check.property) {
+          var tag = list.length ? list[0].tagName : 'div';
+          if (check.value !== undefined) fact.expected = probeStyle(tag, check.property, check.value);
+          if (check.notValue !== undefined) fact.notExpected = probeStyle(tag, check.property, check.notValue);
+        }
+        return fact;
+      });
+      send({ type: 'result', reqId: msg.reqId, ok: true, value: facts });
+      return;
+    }
+
     if (msg.type === 'dom') {
       if (msg.mode === 'text') {
         var el = document.getElementById(msg.target);
@@ -209,11 +232,88 @@ function buildSandboxHtml(mode) {
     send({ type: 'beat', frames: frames });
   }, 500);
 
-  send({ type: 'ready' });
+  if (${isWeb}) {
+    // Die Seite des Kindes liegt im iframe; ein Klick auf einen Link wuerde das iframe selbst
+    // wegnavigieren (bei srcdoc sogar auf die Kursseite, deren Adresse die Basis-URL ist).
+    // Sprungmarken scrollen deshalb von Hand, echte Links oeffnen einen neuen Tab, Formulare
+    // werden nie abgeschickt.
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest ? e.target.closest('a[href]') : null;
+      if (!link) return;
+      e.preventDefault();
+      var href = link.getAttribute('href') || '';
+      if (href.charAt(0) === '#') {
+        var target = href.length > 1 ? document.getElementById(decodeURIComponent(href.slice(1))) : document.body;
+        if (target) target.scrollIntoView();
+      } else if (/^https?:/i.test(link.href)) {
+        window.open(link.href, '_blank', 'noopener');
+      }
+    }, true);
+    document.addEventListener('submit', function (e) { e.preventDefault(); }, true);
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () { send({ type: 'ready' }); });
+    } else {
+      send({ type: 'ready' });
+    }
+  } else {
+    send({ type: 'ready' });
+  }
 })();
-</script>
+</script>`;
+}
+
+function buildSandboxHtml(mode) {
+  const isDom = mode === 'dom';
+  return `<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'">
+<style>
+  html, body { margin: 0; padding: 0; background: #eef2f7; font-family: sans-serif; }
+  canvas { display: ${isDom ? 'none' : 'block'}; background: #eef2f7; }
+  #dom-uebung { display: ${isDom ? 'block' : 'none'}; padding: 14px; }
+  #dom-uebung h2 { margin: 0 0 8px 0; font-size: 1.1em; }
+  #dom-uebung p { margin: 0 0 10px 0; }
+  #dom-uebung button { font: inherit; padding: 6px 16px; cursor: pointer; }
+</style>
+</head>
+<body>
+<canvas id="${SANDBOX_CANVAS_ID}" width="400" height="300"></canvas>
+<div id="dom-uebung">
+  <h2 id="ueberschrift">Willkommen</h2>
+  <p id="text">Hier steht ein Text.</p>
+  <button id="knopf" type="button">Klick mich</button>
+  <p id="anzeige">0</p>
+</div>
+${buildHarnessScript(mode)}
 </body>
 </html>`;
+}
+
+// Bilder fuer die Web-Kurse liegen unter public/web-bilder/ - nur von dort (und als data:-URL)
+// darf die Vorschau Bilder laden, fremde Server bleiben gesperrt.
+export const WEB_IMAGE_PATH = '/web-bilder/';
+
+/**
+ * Web-Modus: Das HTML des Kindes IST das Dokument im iframe, ganz vorne stecken die
+ * Sicherheitsregeln und das Harness-Script. Ein <script> vor <!DOCTYPE>/<html>/<head> ist
+ * unschaedlich: der Parser legt <head> selbst an und haengt die spaeteren <meta>/<style>-Tags des
+ * Kindes trotzdem dort ein, und srcdoc-Dokumente laufen laut HTML-Spec nie im Quirks-Modus.
+ */
+export function buildWebDocument(code, origin = window.location.origin) {
+  const head = `<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval'; style-src 'unsafe-inline'; img-src data: ${origin}${WEB_IMAGE_PATH}; connect-src 'none'">`
+    + buildHarnessScript('web');
+  return head + (code || '');
+}
+
+/**
+ * Fuer den Download: die Seite genau so, wie das Kind sie geschrieben hat - nur Bildpfade aus
+ * /web-bilder/ zeigen auf die volle Adresse, damit die Bilder auch in der lokal geoeffneten
+ * Datei erscheinen.
+ */
+export function webDocumentForDownload(code, origin = window.location.origin) {
+  return (code || '').replace(/(["'(])\/web-bilder\//g, `$1${origin}${WEB_IMAGE_PATH}`);
 }
 
 // Zwei fertige srcdoc-Varianten statt bei jedem Komponenten-Mount neu zu bauen (bleibt fuer alle
@@ -227,12 +327,16 @@ const SANDBOX_SRCDOC_DOM = buildSandboxHtml('dom');
  * ist der Normalfall, kein Sonderfall, dadurch entfaellt jede Namespace-Hygiene zwischen Laeufen
  * (anders als beim geteilten Pyodide-Kernel in usePyodide.js).
  *
- * @param {'canvas'|'dom'} mode - 'canvas' (Default) zeigt das Zeichen-Canvas (js-spielewerkstatt),
+ * @param {'canvas'|'dom'|'web'} mode - 'canvas' (Default) zeigt das Zeichen-Canvas (js-spielewerkstatt),
  *   'dom' zeigt stattdessen die feste DOM-Uebungsflaeche (js-grundkurs Woche 7/8 und Projekt-Kurse
- *   mit `"sandboxMode": "dom"` in kurse.json, z.B. js-memory).
+ *   mit `"sandboxMode": "dom"` in kurse.json, z.B. js-memory), 'web' zeigt das HTML des Kindes
+ *   selbst als Seite (`"sandboxMode": "web"`, Web-Kurse) - dort ist srcdoc pro Lauf neu.
  */
 export function useJsSandbox(mode = 'canvas') {
-  const srcdoc = mode === 'dom' ? SANDBOX_SRCDOC_DOM : SANDBOX_SRCDOC_CANVAS;
+  const isWeb = mode === 'web';
+  const srcdoc = ref(
+    isWeb ? buildWebDocument('') : mode === 'dom' ? SANDBOX_SRCDOC_DOM : SANDBOX_SRCDOC_CANVAS
+  );
   const iframeEl = ref(null);
   const frameKey = ref(0);
   const ready = ref(false);
@@ -321,6 +425,12 @@ export function useJsSandbox(mode = 'canvas') {
   };
 
   const run = async (code, varNames) => {
+    // Web-Modus: der Code ist die Seite selbst - laeuft schon beim Laden des iframes, das 'run'
+    // danach holt nur noch die Konsolen-Ausgabe seiner <script>-Bloecke ab.
+    if (isWeb) {
+      srcdoc.value = buildWebDocument(code);
+      code = '';
+    }
     await rebuildFrame();
     return new Promise((resolve) => {
       const timer = setTimeout(() => {
@@ -354,6 +464,11 @@ export function useJsSandbox(mode = 'canvas') {
     return r.value;
   };
 
+  const checkWeb = async (checks) => {
+    const r = await rpc('web', { checks });
+    return Array.isArray(r.value) ? r.value : null;
+  };
+
   const restart = async () => rebuildFrame();
 
   onMounted(() => {
@@ -384,6 +499,7 @@ export function useJsSandbox(mode = 'canvas') {
     checkCanvasChanged,
     checkDomText,
     checkDomClickText,
+    checkWeb,
     restart,
   };
 }

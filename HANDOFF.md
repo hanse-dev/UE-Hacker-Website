@@ -73,6 +73,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.111 | Begriffs-Links für neue Kurse abgesichert | `tests/begriffe.spec.js`: jeder Kurs in kurse.json hat Links (Projekt mit `language`, oder `LINKED_COURSES`) oder steht mit Grund in `WITHOUT_LINKS`; jeder Begriff zeigt auf eine existierende Woche, deren Lektionen den `lektion`-Titel enthalten; Checklisten in INHALTE.md §6 |
 | 3.112 | Beta-Kennzeichnung + Admin-Reiter „Kurse“ | `"beta": true` in `kurse.json` → `BetaBadge.vue` an Startseiten- und Projekt-Karten und auf der Kursseite (mit Erklärung); Beta sind alle Projekte außer dem Roboterauto sowie JS-Grundkurs, KI-Labor und Ferienkurse (`tests/kurse-beta.spec.js`); `AdminView.vue` listet alle Kurse aus `kurse.json`, nicht verlinkte zuerst, mit Status und Link (Test in `auth-ui.spec.js`) |
 | 3.113 | Turtle-Shim entfernt | kein Kurs nutzt Turtle mehr (Woche 12 seit 3.46 Text-Adventure): ~370 Zeilen Python-Shim aus `usePyodide.js` (lief bei jedem Kernel-Start), Zeichenbereich unter Notebook-Zellen und die zwei Turtle-Tests in `site.spec.js` weg |
+| 3.114 | Web-Sandbox für HTML/CSS (Grundlage Web-Track) | `"sandboxMode": "web"`: HTML des Kindes ist selbst das iframe-Dokument (`buildWebDocument()`), Editor mit `lang-html`, Prüfung `validation.type: 'web'` mit `checks` (Selektor/Anzahl/Text/berechnetes CSS, vom Browser normalisiert) über `validateWebChecks()`, Download-Knopf; Kurs `web-erste-website` (unlisted, Lektion 1); `tests/web-sandbox.spec.js` |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -163,6 +164,13 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   Antworten so verteilen, dass das Ergebnis nicht 0 oder alles ist (js-quiz: 3× `antwort-0` → 2 von 3).
 - `element.click()` der Prüfung löst auch auf versteckten Knöpfen (`hidden`) aus, nur nicht auf
   `disabled`. Ein Fehler im Listener bricht die Klick-Folge nicht ab.
+- Web-Modus (`"sandboxMode": "web"`, 3.114): `srcdoc`-Dokumente laufen immer im Standard-Modus —
+  DOCTYPE-Position ist egal, Harness steht einfach vorne. Basis-URL ist die Kursseite: ohne das
+  Abfangen im Harness würde `href="#x"` das iframe auf die Kursseite navigieren. CSS-Prüfungen nur
+  über `property` + `value`/`notValue` (Probe-Element normalisiert); eine Farbe, die frei wählbar
+  sein soll, prüft man mit `notValue` gegen die Vorlage.
+- Neue npm-Abhängigkeit im Worktree: `npm install` ersetzt den `node_modules`-Symlink durch einen
+  eigenen Ordner (Haupt-Checkout bleibt unberührt) — nach dem Merge im Haupt-Checkout `npm install`.
 - Zustand, den ein Klick erst herstellen soll, lässt sich ohne Klick-Folge nur prüfen, wenn die
   Vorlage ihn vorher selbst herbeiführt (js-quiz Lektion 7: drei `antworte(0)`-Zeilen am Ende
   spielen das Quiz durch, dann prüft ein Klick auf „Nochmal spielen“ den Punktestand).

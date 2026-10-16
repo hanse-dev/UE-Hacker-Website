@@ -61,7 +61,7 @@
       </div>
 
       <div v-else-if="isProjectCourse" class="project-course-wrapper">
-        <ProjectCourse :course-id="id" :content-path="course.contentPath" :engine="course.engine" :dom-mode="course.sandboxMode === 'dom'" :language="course.language" />
+        <ProjectCourse :course-id="id" :content-path="course.contentPath" :engine="course.engine" :dom-mode="course.sandboxMode === 'dom'" :web-mode="course.sandboxMode === 'web'" :language="course.language" />
       </div>
     </template>
   </section>

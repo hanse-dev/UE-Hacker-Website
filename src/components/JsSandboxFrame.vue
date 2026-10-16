@@ -1,10 +1,12 @@
 <template>
-  <div class="js-sandbox-wrapper" v-show="showCanvas">
+  <div class="js-sandbox-wrapper" :class="{ 'is-web': webMode }" v-show="showCanvas">
+    <!-- Web-Modus: Links auf echte Seiten oeffnen einen neuen Tab (allow-popups), der dann ohne
+         Sandbox-Einschraenkungen laeuft - die Vorschau selbst bleibt ohne allow-same-origin. -->
     <iframe
       ref="iframeEl"
       :key="frameKey"
       class="js-sandbox"
-      sandbox="allow-scripts"
+      :sandbox="webMode ? 'allow-scripts allow-popups allow-popups-to-escape-sandbox' : 'allow-scripts'"
       :srcdoc="srcdoc"
     ></iframe>
     <div class="sandbox-toolbar">
@@ -36,14 +38,16 @@ export default {
     // unabhaengig von showCanvas, das nur die Sichtbarkeit des ganzen Sandbox-Bereichs regelt.
     // Siehe useJsSandbox.js fuer die beiden srcdoc-Varianten.
     domMode: { type: Boolean, default: false },
+    // Web-Kurse (`"sandboxMode": "web"`): das HTML des Kindes ist selbst die Seite im iframe.
+    webMode: { type: Boolean, default: false },
   },
   setup(props, { expose }) {
     const { t } = useLanguage();
     const {
       iframeEl, frameKey, srcdoc, ready, alive,
       run, callFunction, checkCanvasNotBlank, checkCanvasChanged,
-      checkDomText, checkDomClickText, restart,
-    } = useJsSandbox(props.domMode ? 'dom' : 'canvas');
+      checkDomText, checkDomClickText, checkWeb, restart,
+    } = useJsSandbox(props.webMode ? 'web' : props.domMode ? 'dom' : 'canvas');
 
     // Chromium drosselt requestAnimationFrame in einem (cross-origin/opaken) iframe, das gerade
     // ausserhalb des sichtbaren Viewports liegt (bestaetigt: praktisch 0 Frames off-screen vs.
@@ -60,7 +64,7 @@ export default {
 
     expose({
       run, callFunction, checkCanvasNotBlank, checkCanvasChanged,
-      checkDomText, checkDomClickText, restart, scrollIntoView,
+      checkDomText, checkDomClickText, checkWeb, restart, scrollIntoView,
     });
 
     return { iframeEl, frameKey, srcdoc, ready, alive, restart, t };
@@ -81,6 +85,19 @@ export default {
   border-radius: 6px;
   display: block;
   background: #eef2f7;
+}
+
+/* Web-Modus: eine ganze Seite statt eines 400x300-Spielfelds - so breit wie die Arbeitsflaeche,
+   weiss wie eine echte leere Seite. */
+.is-web .js-sandbox {
+  max-width: none;
+  height: 420px;
+  background: #fff;
+}
+
+.is-web .sandbox-toolbar,
+.is-web .sandbox-stalled-hint {
+  max-width: none;
 }
 
 .sandbox-toolbar {

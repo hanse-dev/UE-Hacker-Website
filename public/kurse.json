@@ -210,6 +210,22 @@
     "contentPath": "microbit-ampel"
   },
   {
+    "id": "web-erste-website",
+    "type": "projekt",
+    "engine": "js-sandbox",
+    "sandboxMode": "web",
+    "language": "html",
+    "level": "einsteiger",
+    "tags": ["web"],
+    "unlisted": true,
+    "beta": true,
+    "title": "Meine erste Website",
+    "title_en": "My First Website",
+    "description": "Bau deine eigene Website über das, was dich begeistert – mit Überschriften, Listen, Bildern, Farben und Kästen. Am Ende lädst du sie herunter und kannst sie jedem zeigen.",
+    "description_en": "Build your own website about something you love – with headings, lists, pictures, colours and boxes. At the end you download it and can show it to anyone. The course is currently available in German.",
+    "contentPath": "web-erste-website"
+  },
+  {
     "id": "ferienkurse",
     "beta": true,
     "title": "Meet & Code – Herbstferienprogramm AI für Teenager",

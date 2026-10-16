@@ -17,6 +17,7 @@ const WITHOUT_LINKS = {
   ferienkurse: 'Info- und Terminseite, keine Lektionen',
   'projekt-microbit-auto': 'micro:bit (MakeCode/MicroPython, eigene Anleitungs-Ansicht), keine Begriffsliste',
   'projekt-microbit-ampel': 'micro:bit (MakeCode/MicroPython, eigene Anleitungs-Ansicht), keine Begriffsliste',
+  'web-erste-website': 'Einstieg in den Web-Track - es gibt noch keinen HTML/CSS-Grundkurs, auf den Begriffe zeigen könnten (kommt mit dem Web-Grundkurs)',
 };
 
 // Zielordner einer Grundkurs-Woche (für die Prüfung, dass `lektion` dort wirklich vorkommt).
