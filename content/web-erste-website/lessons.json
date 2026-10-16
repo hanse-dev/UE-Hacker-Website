@@ -12,7 +12,10 @@
         "validation": {
           "type": "web",
           "checks": [
-            { "selector": "h1", "text": "Hallo Welt" }
+            {
+              "selector": "h1",
+              "text": "Hallo Welt"
+            }
           ]
         }
       },
@@ -23,8 +26,17 @@
         "validation": {
           "type": "web",
           "checks": [
-            { "selector": "h1", "notEmpty": true, "hint": "Schreib dein Thema zwischen <h1> und </h1>." },
-            { "selector": "p", "notEmpty": true, "min": 2, "hint": "Du brauchst zwei Absätze mit Text – zweimal <p>…</p>." }
+            {
+              "selector": "h1",
+              "notEmpty": true,
+              "hint": "Schreib dein Thema zwischen <h1> und </h1>."
+            },
+            {
+              "selector": "p",
+              "notEmpty": true,
+              "min": 2,
+              "hint": "Du brauchst zwei Absätze mit Text – zweimal <p>…</p>."
+            }
           ]
         }
       },
@@ -35,7 +47,469 @@
         "validation": {
           "type": "web",
           "checks": [
-            { "selector": "h1", "property": "color", "notValue": "black", "hint": "Ersetze black durch eine andere Farbe auf Englisch, zum Beispiel red." }
+            {
+              "selector": "h1",
+              "property": "color",
+              "notValue": "black",
+              "hint": "Ersetze black durch eine andere Farbe auf Englisch, zum Beispiel red."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "title": "Ordnung auf der Seite",
+    "file": "lektion-02.md",
+    "lessonSummary": "Klasse! Mit Zwischenüberschriften und Listen ist deine Seite schön übersichtlich.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus: Unter dem Titel stehen zwei Abschnitte mit h2, darunter eine Liste mit Punkten und eine nummerierte Liste.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Meine Katze Mia</h1>\n\n  <h2>Was Mia gerne frisst</h2>\n  <ul>\n    <li>Thunfisch</li>\n    <li>Hühnchen</li>\n    <li>Katzenmilch</li>\n  </ul>\n\n  <h2>Mias Lieblingsplätze</h2>\n  <ol>\n    <li>Auf der Fensterbank</li>\n    <li>Im Wäschekorb</li>\n    <li>Auf meinem Bett</li>\n  </ol>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "ul li",
+              "min": 3
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Jetzt du: Schreib unter die Überschrift einen Abschnitt mit h2 und eine Liste (ul) mit mindestens drei Punkten zu deinem Thema – zum Beispiel deine Lieblingsdinge.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n\n  <!-- Hier eine Zwischenüberschrift mit <h2> -->\n\n  <!-- Und hier eine Liste: <ul> mit mindestens drei <li> -->\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Fußball</h1>\n\n  <h2>Meine Lieblingsvereine</h2>\n  <ul>\n    <li>Werder Bremen</li>\n    <li>FC St. Pauli</li>\n    <li>VfL Wolfsburg</li>\n  </ul>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "h2",
+              "notEmpty": true,
+              "hint": "Es fehlt noch eine Zwischenüberschrift mit Text: <h2>…</h2>."
+            },
+            {
+              "selector": "ul li",
+              "notEmpty": true,
+              "min": 3,
+              "hint": "Deine Liste braucht mindestens drei Punkte mit Text – jeder in <li>…</li>, alle zusammen in <ul>…</ul>."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Hebe in deinem Absatz ein Wort mit strong fett hervor und betone ein anderes mit em.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Das ist das beste Hobby der Welt, weil es Spaß macht.</p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Das ist das <strong>beste</strong> Hobby der Welt, weil es <em>Spaß</em> macht.</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "p strong",
+              "notEmpty": true,
+              "hint": "Setz ein Wort im Absatz zwischen <strong> und </strong>."
+            },
+            {
+              "selector": "p em",
+              "notEmpty": true,
+              "hint": "Setz ein anderes Wort zwischen <em> und </em>."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "title": "Bilder und Links",
+    "file": "lektion-03.md",
+    "lessonSummary": "Toll! Deine Seite hat jetzt Bilder und Links – sie sieht schon richtig nach Website aus.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus: ein Bild mit Beschreibung und ein Link zu Wikipedia. Klick in der Vorschau ruhig auf den Link!",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Meine Katze Mia</h1>\n  <img src=\"/web-bilder/katze.svg\" alt=\"Eine schlafende Katze\" width=\"160\">\n  <p>\n    <a href=\"https://de.wikipedia.org/wiki/Hauskatze\">Mehr über Katzen auf Wikipedia</a>\n  </p>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "img[alt]"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Jetzt du: Such dir aus der Liste im Text ein passendes Bild für dein Thema aus und bau es ein – mit src und einer Beschreibung in alt.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n\n  <!-- Hier kommt dein Bild hin: <img src=\"/web-bilder/....svg\" alt=\"...\"> -->\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Hund</h1>\n  <img src=\"/web-bilder/hund.svg\" alt=\"Ein fröhlicher Hund\" width=\"160\">\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "img[src*=\"/web-bilder/\"]",
+              "hint": "Dein Bild braucht ein src mit einem Bild aus /web-bilder/, zum Beispiel src=\"/web-bilder/hund.svg\"."
+            },
+            {
+              "selector": "img[alt]:not([alt=\"\"])",
+              "hint": "Beschreibe dein Bild mit alt=\"…\" in Worten."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Setz einen Link auf eine Seite, die zu deinem Thema passt. Der Link braucht eine Adresse in href, die mit https:// beginnt, und einen Text zum Anklicken.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Hier erfährst du mehr:</p>\n  <!-- Dein Link: <a href=\"https://...\">Text zum Anklicken</a> -->\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1>Mein Hund</h1>\n  <p>Hier erfährst du mehr:</p>\n  <a href=\"https://de.wikipedia.org/wiki/Haushund\">Hunde auf Wikipedia</a>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "a[href^=\"http\"]",
+              "notEmpty": true,
+              "hint": "Schreib einen Link wie <a href=\"https://de.wikipedia.org\">Wikipedia</a> – mit Adresse und Text."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "title": "Farbe ins Spiel",
+    "file": "lektion-04.md",
+    "lessonSummary": "Wunderbar bunt! Mit CSS bestimmst du jetzt selbst, wie deine Seite aussieht.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus und ändere danach ein paar Farben: Wie sieht die Seite mit background-color: lightblue aus?",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    body {\n      background-color: lightyellow;\n    }\n    h1 {\n      color: darkorange;\n      font-family: Arial, sans-serif;\n    }\n  </style>\n</head>\n<body>\n  <h1>Meine Katze Mia</h1>\n  <p>Mia ist drei Jahre alt und schläft am liebsten in der Sonne.</p>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "h1",
+              "property": "color",
+              "value": "darkorange"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Jetzt du: Gib deiner ganzen Seite eine Hintergrundfarbe. Schreib dafür eine Regel für body in den style-Block.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    /* Deine Regel für body: */\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Hier steht etwas über mein Thema.</p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    body {\n      background-color: lightgreen;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Hier steht etwas über mein Thema.</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "body",
+              "property": "background-color",
+              "notValue": "transparent",
+              "hint": "Schreib in den style-Block: body { background-color: lightblue; } – mit einer Farbe deiner Wahl."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Färbe alle Absätze ein und gib ihnen eine andere Schrift – mit einer Regel für p, die color und font-family enthält.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    h1 {\n      color: purple;\n    }\n    /* Deine Regel für p: */\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Erster Absatz über mein Thema.</p>\n  <p>Zweiter Absatz über mein Thema.</p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    h1 {\n      color: purple;\n    }\n    p {\n      color: darkblue;\n      font-family: Verdana, sans-serif;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Erster Absatz über mein Thema.</p>\n  <p>Zweiter Absatz über mein Thema.</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "p",
+              "property": "color",
+              "notValue": "black",
+              "min": 2,
+              "hint": "Schreib eine Regel p { color: …; } – mit einer anderen Farbe als Schwarz."
+            },
+            {
+              "selector": "p",
+              "property": "font-family",
+              "notValue": "initial",
+              "min": 2,
+              "hint": "Ergänze in der Regel für p eine Schrift, zum Beispiel font-family: Verdana, sans-serif;"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "title": "Kisten überall",
+    "file": "lektion-05.md",
+    "lessonSummary": "Super gestaltet! Rahmen, Abstände und runde Ecken machen aus Text echte Schilder.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus: Die Überschrift wird zum Schild mit Rahmen, Innenabstand und runden Ecken. Ändere danach die Zahlen und schau, was passiert.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    h1 {\n      background-color: gold;\n      border: 4px solid darkorange;\n      padding: 16px;\n      border-radius: 12px;\n    }\n  </style>\n</head>\n<body>\n  <h1>Meine Katze Mia</h1>\n  <p>Mia ist drei Jahre alt.</p>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "h1",
+              "property": "border-top-style",
+              "value": "solid"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Jetzt du: Gib allen Absätzen einen Rahmen (border) und etwas Innenabstand (padding).",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    /* Deine Regel für p: */\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Erster Absatz über mein Thema.</p>\n  <p>Zweiter Absatz über mein Thema.</p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    p {\n      border: 2px dashed teal;\n      padding: 12px;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Erster Absatz über mein Thema.</p>\n  <p>Zweiter Absatz über mein Thema.</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "p",
+              "property": "border-top-style",
+              "notValue": "none",
+              "min": 2,
+              "hint": "Schreib eine Regel für p mit einem Rahmen, zum Beispiel border: 2px solid teal;"
+            },
+            {
+              "selector": "p",
+              "property": "padding-top",
+              "notValue": "0px",
+              "min": 2,
+              "hint": "Ergänze in der Regel für p einen Innenabstand, zum Beispiel padding: 12px;"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Mach aus deiner Überschrift ein Schild: mit Hintergrundfarbe und runden Ecken (border-radius).",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    h1 {\n      padding: 10px;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Hier steht etwas über mein Thema.</p>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    h1 {\n      padding: 10px;\n      background-color: lightpink;\n      border-radius: 12px;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Hier steht etwas über mein Thema.</p>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "h1",
+              "property": "background-color",
+              "notValue": "transparent",
+              "hint": "Gib h1 eine Hintergrundfarbe mit background-color."
+            },
+            {
+              "selector": "h1",
+              "property": "border-top-left-radius",
+              "notValue": "0px",
+              "hint": "Ergänze in der Regel für h1 runde Ecken, zum Beispiel border-radius: 12px;"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-06",
+    "title": "Klassen",
+    "file": "lektion-06.md",
+    "lessonSummary": "Stark! Mit Klassen gestaltest du viele Elemente auf einmal – genau so arbeiten echte Webentwickler.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus: Zwei Karten mit derselben Klasse sehen gleich aus. Ändere die Farbe in .karte – beide Karten ändern sich mit.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .karte {\n      background-color: white;\n      border: 2px solid orange;\n      border-radius: 10px;\n      padding: 10px;\n      margin: 10px 0;\n    }\n  </style>\n</head>\n<body>\n  <h1>Meine Haustiere</h1>\n  <div class=\"karte\">\n    <h2>Mia</h2>\n    <p>Katze, 3 Jahre</p>\n  </div>\n  <div class=\"karte\">\n    <h2>Bello</h2>\n    <p>Hund, 5 Jahre</p>\n  </div>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".karte",
+              "min": 2
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Jetzt du: Bau drei Karten mit der Klasse karte – zum Beispiel drei Lieblingsdinge zu deinem Thema. Die Regel für .karte ist schon da, gib ihr noch eine Hintergrundfarbe.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .karte {\n      border: 2px solid orange;\n      border-radius: 10px;\n      padding: 10px;\n      margin: 10px 0;\n      /* Hier fehlt noch eine Hintergrundfarbe */\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n\n  <!-- Deine drei Karten: <div class=\"karte\">...</div> -->\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .karte {\n      border: 2px solid orange;\n      border-radius: 10px;\n      padding: 10px;\n      margin: 10px 0;\n      background-color: lightyellow;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <div class=\"karte\"><h2>Pizza</h2><p>Mit viel Käse</p></div>\n  <div class=\"karte\"><h2>Pommes</h2><p>Mit Ketchup</p></div>\n  <div class=\"karte\"><h2>Eis</h2><p>Am liebsten Schoko</p></div>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".karte",
+              "notEmpty": true,
+              "min": 3,
+              "hint": "Du brauchst drei Elemente mit class=\"karte\", in denen Text steht."
+            },
+            {
+              "selector": ".karte",
+              "property": "background-color",
+              "notValue": "transparent",
+              "min": 3,
+              "hint": "Ergänze in .karte eine Hintergrundfarbe, zum Beispiel background-color: gold;"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Mach eine Karte zu deinem Liebling: Gib ihr zusätzlich die Klasse besonders und schreib eine Regel .besonders mit einer anderen Rahmenfarbe (border-color).",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .karte {\n      border: 3px solid gray;\n      border-radius: 10px;\n      padding: 10px;\n      margin: 10px 0;\n    }\n    /* Deine Regel für .besonders: */\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <div class=\"karte\"><h2>Erstes</h2></div>\n  <div class=\"karte\"><h2>Zweites</h2></div>\n  <div class=\"karte\"><h2>Drittes</h2></div>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .karte {\n      border: 3px solid gray;\n      border-radius: 10px;\n      padding: 10px;\n      margin: 10px 0;\n    }\n    .besonders {\n      border-color: gold;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <div class=\"karte\"><h2>Erstes</h2></div>\n  <div class=\"karte besonders\"><h2>Zweites</h2></div>\n  <div class=\"karte\"><h2>Drittes</h2></div>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".karte.besonders",
+              "hint": "Gib einer Karte zwei Klassen: class=\"karte besonders\"."
+            },
+            {
+              "selector": ".karte.besonders",
+              "property": "border-top-color",
+              "notValue": "gray",
+              "hint": "Schreib eine Regel .besonders { border-color: gold; } – mit einer anderen Farbe als Grau."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-07",
+    "title": "Nebeneinander",
+    "file": "lektion-07.md",
+    "lessonSummary": "Perfekt! Mit Flexbox stellst du Bilder und Links nebeneinander – wie auf echten Websites.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus: Die Navigationsleiste oben und die Galerie darunter sind beide Flexboxen. Klick in der Vorschau auf „Galerie“ – der Link springt nach unten.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .navigation {\n      display: flex;\n      gap: 20px;\n      background-color: navy;\n      padding: 10px;\n    }\n    .navigation a {\n      color: white;\n    }\n    .galerie {\n      display: flex;\n      gap: 16px;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"navigation\">\n    <a href=\"#start\">Start</a>\n    <a href=\"#galerie\">Galerie</a>\n  </div>\n  <h1 id=\"start\">Meine Tiere</h1>\n  <p>Hier wohnen meine Lieblingstiere.</p>\n  <h2 id=\"galerie\">Galerie</h2>\n  <div class=\"galerie\">\n    <img src=\"/web-bilder/katze.svg\" alt=\"Katze\" width=\"100\">\n    <img src=\"/web-bilder/hund.svg\" alt=\"Hund\" width=\"100\">\n    <img src=\"/web-bilder/fisch.svg\" alt=\"Fisch\" width=\"100\">\n  </div>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".galerie",
+              "property": "display",
+              "value": "flex"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Jetzt du: Bau eine Galerie mit mindestens drei Bildern zu deinem Thema. Die Bilder stehen schon untereinander – mach die Kiste .galerie zur Flexbox, damit sie nebeneinander stehen.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .galerie {\n      /* Mach mich zur Flexbox */\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <div class=\"galerie\">\n    <img src=\"/web-bilder/stern.svg\" alt=\"Ein Stern\" width=\"100\">\n    <!-- Noch mindestens zwei Bilder dazu -->\n  </div>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .galerie {\n      display: flex;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <div class=\"galerie\">\n    <img src=\"/web-bilder/stern.svg\" alt=\"Ein Stern\" width=\"100\">\n    <img src=\"/web-bilder/planet.svg\" alt=\"Ein Planet\" width=\"100\">\n    <img src=\"/web-bilder/rakete.svg\" alt=\"Eine Rakete\" width=\"100\">\n  </div>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".galerie img",
+              "min": 3,
+              "hint": "In die Galerie gehören mindestens drei Bilder (<img>)."
+            },
+            {
+              "selector": ".galerie",
+              "property": "display",
+              "value": "flex",
+              "hint": "Schreib in die Regel für .galerie: display: flex;"
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Die Bilder kleben noch aneinander. Gib der Galerie mit gap etwas Abstand zwischen den Bildern und schiebe sie mit justify-content: center in die Mitte.",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .galerie {\n      display: flex;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <div class=\"galerie\">\n    <img src=\"/web-bilder/blume.svg\" alt=\"Eine Blume\" width=\"90\">\n    <img src=\"/web-bilder/baum.svg\" alt=\"Ein Baum\" width=\"90\">\n    <img src=\"/web-bilder/vogel.svg\" alt=\"Ein Vogel\" width=\"90\">\n  </div>\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    .galerie {\n      display: flex;\n      gap: 16px;\n      justify-content: center;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <div class=\"galerie\">\n    <img src=\"/web-bilder/blume.svg\" alt=\"Eine Blume\" width=\"90\">\n    <img src=\"/web-bilder/baum.svg\" alt=\"Ein Baum\" width=\"90\">\n    <img src=\"/web-bilder/vogel.svg\" alt=\"Ein Vogel\" width=\"90\">\n  </div>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".galerie",
+              "property": "column-gap",
+              "notValue": "normal",
+              "hint": "Ergänze in .galerie einen Abstand, zum Beispiel gap: 16px;"
+            },
+            {
+              "selector": ".galerie",
+              "property": "justify-content",
+              "value": "center",
+              "hint": "Ergänze in .galerie: justify-content: center;"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lektion-08",
+    "title": "Deine fertige Website",
+    "file": "lektion-08.md",
+    "lessonSummary": "Geschafft – deine eigene Website ist fertig! Lade sie herunter und zeig sie allen. Jetzt wartet nur noch der Abschluss-Check auf dich.",
+    "tasks": [
+      {
+        "instruction": "Führe das Beispiel aus und fahr in der Vorschau mit der Maus über die Karten: Mit :hover ändern sie ihre Farbe.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    body {\n      background-color: lightyellow;\n      font-family: Verdana, sans-serif;\n    }\n    .karte {\n      background-color: white;\n      border: 2px solid orange;\n      border-radius: 10px;\n      padding: 10px;\n    }\n    .karte:hover {\n      background-color: lightblue;\n    }\n    .karte {\n      margin: 10px 0;\n    }\n  </style>\n</head>\n<body>\n  <h1>Meine Tiere</h1>\n  <div class=\"karte\">Mia, die Katze</div>\n  <div class=\"karte\">Bello, der Hund</div>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": ".karte",
+              "min": 2
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Jetzt kommt alles zusammen: Bau deine eigene Website zu deinem Thema. Sie braucht eine Überschrift h1, mindestens zwei Abschnitte mit h2, mindestens zwei Absätze, eine Liste mit mindestens drei Punkten, ein Bild mit Beschreibung und einen Link. Gestalte sie im style-Block, wie es dir gefällt – und lade sie danach herunter!",
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    body {\n      font-family: Verdana, sans-serif;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Thema</h1>\n  <p>Darum geht es auf meiner Seite.</p>\n\n  <!-- Ab hier gehört die Seite dir! -->\n</body>\n</html>\n",
+        "solution": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n  <style>\n    body {\n      font-family: Verdana, sans-serif;\n      background-color: lightyellow;\n    }\n    h1 {\n      color: darkorange;\n    }\n  </style>\n</head>\n<body>\n  <h1>Mein Hund Bello</h1>\n  <p>Bello ist fünf Jahre alt und der beste Hund der Welt.</p>\n  <img src=\"/web-bilder/hund.svg\" alt=\"Bello beim Spielen\" width=\"140\">\n\n  <h2>Was Bello mag</h2>\n  <ul>\n    <li>Bälle</li>\n    <li>Spaziergänge</li>\n    <li>Würstchen</li>\n  </ul>\n\n  <h2>Mehr über Hunde</h2>\n  <p>Hunde leben schon seit Tausenden von Jahren mit Menschen zusammen.</p>\n  <a href=\"https://de.wikipedia.org/wiki/Haushund\">Hunde auf Wikipedia</a>\n</body>\n</html>",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "h1",
+              "notEmpty": true,
+              "hint": "Deine Seite braucht eine Überschrift <h1> mit Text."
+            },
+            {
+              "selector": "h2",
+              "notEmpty": true,
+              "min": 2,
+              "hint": "Teil deine Seite mit mindestens zwei Zwischenüberschriften <h2> in Abschnitte."
+            },
+            {
+              "selector": "p",
+              "notEmpty": true,
+              "min": 2,
+              "hint": "Schreib mindestens zwei Absätze <p> mit Text."
+            },
+            {
+              "selector": "ul li, ol li",
+              "notEmpty": true,
+              "min": 3,
+              "hint": "Es fehlt noch eine Liste mit mindestens drei Punkten (<ul> oder <ol> mit <li>)."
+            },
+            {
+              "selector": "img[alt]:not([alt=\"\"])",
+              "hint": "Bau ein Bild mit Beschreibung ein: <img src=\"/web-bilder/....svg\" alt=\"...\">."
+            },
+            {
+              "selector": "a[href]",
+              "notEmpty": true,
+              "hint": "Setz noch einen Link: <a href=\"https://...\">Text</a>."
+            }
+          ]
+        }
+      },
+      {
+        "instruction": "Bonus zum Ausprobieren: Ein Knopf, der etwas tut! Das kleine Stück JavaScript im script-Block ändert die Überschrift, sobald du in der Vorschau auf den Knopf klickst. Ändere ruhig den Text zwischen den Anführungszeichen.",
+        "example": true,
+        "codeTemplate": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Meine Website</title>\n</head>\n<body>\n  <h1 id=\"titel\">Hallo!</h1>\n  <button id=\"knopf\">Klick mich</button>\n\n  <script>\n    document.querySelector('#knopf').addEventListener('click', () => {\n      document.querySelector('#titel').textContent = 'Du hast geklickt! 🎉';\n    });\n  </script>\n</body>\n</html>\n",
+        "validation": {
+          "type": "web",
+          "checks": [
+            {
+              "selector": "button"
+            }
           ]
         }
       }

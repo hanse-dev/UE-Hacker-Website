@@ -61,7 +61,7 @@
               >
                 <router-link :to="`/kurs/${course.courseId}?week=${week.weekNumber}`" class="badge-card-link">
                   <span class="badge-icon">{{ week.earned ? '🎓' : '🔒' }}</span>
-                  <span class="badge-title">{{ t('week.label') }} {{ week.weekNumber }}</span>
+                  <span class="badge-title">{{ course.singleCheck ? t('check.finalLabel') : `${t('week.label')} ${week.weekNumber}` }}</span>
                   <span class="badge-status">
                     {{ lang === 'en' && week.title_en ? week.title_en : week.title }}
                   </span>
@@ -142,6 +142,7 @@ export default {
           learnerName: certificateName.value || user.value?.username || '',
           lang: lang.value,
           courseTitle: { de: course.title, en: course.title_en },
+          singleCheck: !!course.singleCheck,
         });
       } finally {
         pdfBusyKey.value = null;

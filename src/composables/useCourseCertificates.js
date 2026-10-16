@@ -18,6 +18,14 @@ const COURSE_INFO = {
     title: 'KI-Labor',
     title_en: 'AI Lab',
   },
+  // Einstiegskurs mit nur einem Abschluss-Check (ProjectCourse.vue `finalCheck`) - Profil und PDF
+  // zeigen "Abschluss" statt "Woche 1".
+  'web-erste-website': {
+    courseId: 'web-erste-website',
+    title: 'Meine erste Website',
+    title_en: 'My First Website',
+    singleCheck: true,
+  },
 };
 
 // Lernziele je Kurs für die Zertifikat-PDF (siehe useCertificatePdf.js) - pro courseKey anders
@@ -39,7 +47,13 @@ async function loadLernzieleByWeek(courseKey, lang) {
     }
     return result;
   }
-  return {};
+  // Sonst: Lernziele direkt im Check-Content (`lernziele` in week-N.json).
+  const data = await loadWeekChecks(courseKey);
+  const result = {};
+  for (const [weekNumber, week] of Object.entries(data.weeks || {})) {
+    result[weekNumber] = week.lernziele || [];
+  }
+  return result;
 }
 
 /**

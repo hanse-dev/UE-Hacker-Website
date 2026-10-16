@@ -114,7 +114,7 @@
           >
             {{ t('lesson.goToWeeklyCourse') }}
           </router-link>
-          <button v-else @click="goToNext" class="btn-next">{{ t('lesson.nextLesson') }}</button>
+          <button v-else @click="goToNext" class="btn-next">{{ t(leadsToFinalCheck ? 'check.toFinal' : 'lesson.nextLesson') }}</button>
         </template>
       </div>
     </div>
@@ -154,6 +154,9 @@ export default {
     // "Weiter"-Buttons erscheint.
     isProjectCourse: { type: Boolean, default: false },
     isLastLesson: { type: Boolean, default: false },
+    // Letzte Lektion eines Kurses mit Abschluss-Check (ProjectCourse.vue `finalCheck`): der
+    // Weiter-Knopf fuehrt zum Check statt zur naechsten Lektion.
+    leadsToFinalCheck: { type: Boolean, default: false },
     // Begriffs-Links (useConcepts.js, content/begriffe.json): Sprache (`javascript`/`python`) -
     // Begriffe im Lektionstext verlinken auf die Grundkurs-Woche, am Ende steht der "Hier lernst du
     // mehr"-Kasten. Leer = aus. In einem Grundkurs selbst zusaetzlich conceptCourse/conceptWeek,

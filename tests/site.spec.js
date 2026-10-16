@@ -23,19 +23,20 @@ test.describe('Home & Navigation', () => {
     await expect(page.locator('a.cta-button[href="#kurse-uebersicht"]')).toBeVisible();
     await expect(page.locator('a.cta-button[href="/projekte"]')).toBeVisible();
 
-    // Home filtert Kurse: 12-Wochen + Interaktiv + JS-Grundkurs + KI-Labor immer sichtbar, andere
+    // Home filtert Kurse: 12-Wochen + Interaktiv + JS-Grundkurs + KI-Labor + Meine erste Website immer sichtbar, andere
     // nur mit Termin. Projekt-Kurse (type: 'projekt') erscheinen hier nicht mehr — die haben eine
     // eigene Übersicht unter /projekte, verlinkt über den Projekte-Teaser.
-    await expect(page.locator('#kurse-uebersicht .course-card')).toHaveCount(4);
+    await expect(page.locator('#kurse-uebersicht .course-card')).toHaveCount(5);
     await expect(page.locator('a.course-card[href="/kurs/python-12-wochen-grundkurs"]')).toBeVisible();
     await expect(page.locator('a.course-card[href="/kurs/python-grundlagen-interaktiv"]')).toBeVisible();
     await expect(page.locator(`a.course-card[href="${JS_GRUNDKURS_URL}"]`)).toBeVisible();
     await expect(page.locator(`a.course-card[href="${KI_LABOR_URL}"]`)).toBeVisible();
+    await expect(page.locator('a.course-card[href="/kurs/web-erste-website"]')).toBeVisible();
     await expect(page.locator('.projekte-teaser-link')).toBeVisible();
     await expect(page.locator('a.placement-hint-link[href="/kurs/python-einstufung"]')).toBeVisible();
 
     // Kurskarten zeigen ein Format-Badge (Einstieg/Grundkurs, siehe VISION.md-Format-Modell)
-    await expect(page.locator('.course-format-badge')).toHaveCount(4);
+    await expect(page.locator('.course-format-badge')).toHaveCount(5);
   });
 
   test('Home zeigt als Unterstützer nur noch das DLC', async ({ page }) => {

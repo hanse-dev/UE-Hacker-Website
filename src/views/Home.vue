@@ -158,7 +158,7 @@ export default {
       await fetchKurse();
 
       // Filter courses — Projekt-Kurse haben eine eigene Übersicht unter /projekte
-      const ALWAYS_VISIBLE_KURSE = ['python-12-wochen-grundkurs', 'python-grundlagen-interaktiv', 'js-grundkurs', 'ki-labor'];
+      const ALWAYS_VISIBLE_KURSE = ['python-12-wochen-grundkurs', 'python-grundlagen-interaktiv', 'js-grundkurs', 'ki-labor', 'web-erste-website'];
       kurse.value = kurse.value.filter(kurs => {
         if (kurs.type === 'projekt') {
           return false;

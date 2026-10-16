@@ -181,6 +181,13 @@ export default {
   'check.challenge.easy':   'Leicht',
   'check.challenge.harder': 'Schwerer',
   'check.fullyDone': '🎉 Alles geschafft — du hast das Zertifikat dieser Woche verdient!',
+  'check.finalTitle':    'Abschluss-Check',
+  'check.finalIntro':    'Zeig, was du im ganzen Kurs gelernt hast: ein kurzes Quiz und zwei Aufgaben. Bestanden hast du ab 80 %.',
+  'check.finalDone':     '🎉 Alles geschafft — du hast dein Zertifikat für diesen Kurs verdient!',
+  'check.toFinal':       'Zum Abschluss-Check 🎓',
+  'check.finalPending':  'Schließe das Quiz und beide Aufgaben ab, um dein Zertifikat zu erhalten.',
+  'check.finalLabel':    'Abschluss',
+  'webChallenge.notYet': 'Noch nicht ganz – schau dir deine Seite in der Vorschau an und vergleiche sie mit der Aufgabe.',
 
   // ── Quiz step ─────────────────────────────────────────────────────────────
   'quiz.multiHint':      'Mehrere Antworten möglich.',

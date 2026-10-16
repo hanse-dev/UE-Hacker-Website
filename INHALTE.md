@@ -20,6 +20,7 @@ Dieses Dokument beschreibt, welche Dateien zusammengehören und was bei Änderun
 | `projekt-js-memory` | `content/js-memory/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON, `engine: "js-sandbox"`, `sandboxMode: "dom"` — DOM statt Canvas) |
 | `projekt-js-quiz` | `content/js-quiz/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON, `engine: "js-sandbox"`, `sandboxMode: "dom"` – DOM-Übungsfläche statt Canvas) |
 | `projekt-microbit-auto` | `content/microbit-auto/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON, `engine: "anleitung"`, Hardware-Kurs zum Abhaken) |
+| `web-erste-website` | `content/web-erste-website/` + `content/web-erste-website-checks/` | *(keine EN-Version)* | Einstiegskurs (`type: "lektionen"`, `format: "einstieg"`, `engine: "js-sandbox"`, `sandboxMode: "web"`, `finalCheck: true` — Abschluss-Check + Zertifikat) |
 | `projekt-microbit-ampel` | `content/microbit-ampel/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON, `engine: "anleitung"`, LEDs auf dem Breadboard, Steckpläne als SVG) |
 | *(Lektions-Format)* Woche 1–12 (alle) | `content/python-woche{N}-{abenteuer\|pferde\|scifi}/` | `content/python-woche{N}-{thema}-en/` | Markdown + JSON, Pyodide; ersetzt die Notebook-Schritte Lektion/Debug/Missionen/Boss jeder Woche/Variante/Sprache (siehe HANDOFF.md 3.47–3.54). Die alten `1_lektion`/`2_debug`/`3_missionen`/`5_boss`-Zellenordner gibt es nicht mehr — nur `0_glossar` und `6_loesungen` bleiben als Notebooks (Nachschlagewerke, siehe unten). |
 | `js-grundkurs` | `content/js-grundkurs/` (Beschreibung) + `content/js-grundkurs-woche{1-9}/` (Wochen) | *(keine EN-Version)* | Grundkurs (Markdown + JSON, `engine: "js-sandbox"`, eigene Mehrwochen-Struktur) |
@@ -309,6 +310,19 @@ Jeder Ordner enthält dieselben Dateien:
       und die ID in `LINKED_COURSES` des Tests eintragen. Sonst die ID mit Grund in `WITHOUT_LINKS`.
 - [ ] Neuer Grundkurs als Link-Ziel: Begriffe mit `kurs`/`woche` in `begriffe.json`, Kursname unter
       `kurse`, Wochen-Ordner in `WEEK_FOLDER` des Tests (prüft, dass `lektion` dort wirklich vorkommt).
+
+### Wenn du einen Web-Kurs (HTML/CSS, `sandboxMode: "web"`) änderst oder anlegst:
+- [ ] Aufgaben prüfen nur über `validation: { "type": "web", "checks": [...] }` (Felder siehe
+      `validateWebChecks()` in `useTaskValidation.js`); jede Pflichtaufgabe braucht `solution` und
+      jede Prüfung einen `hint` (Kinder sehen ihn ab dem zweiten Fehlversuch). Frei wählbare Werte
+      (Farbe, Schrift) mit `notValue` gegen die Vorlage prüfen; Browser-Standard = `"initial"`.
+- [ ] `tests/web-erste-website.spec.js` spielt jede Aufgabe durch: Vorlage muss durchfallen,
+      Musterlösung bestehen. Bilder nur aus `public/web-bilder/` (Liste in `lektion-03.md` muss zu
+      den Dateien passen, prüft derselbe Test).
+- [ ] Abschluss-Check: `content/<contentPath>-checks/` (`config.json`, `week-1.json` mit
+      `questions`, 2 `codingChallenges` mit `solution`, `lernziele` fürs Zertifikat-PDF). Kurs in
+      `COURSE_INFO` (`useCourseCertificates.js`, `singleCheck: true`), `"finalCheck": true` in
+      `kurse.json`. Neue Frage = neue `id` (Fortschritts-Vertrag).
 
 ### Wenn du Missionen änderst:
 - [ ] `public/rewards-manifest.json`

@@ -6,9 +6,9 @@
     </p>
     <template v-else>
       <div class="check-intro">
-        <h3>{{ t('check.title') }}</h3>
+        <h3>{{ t(final ? 'check.finalTitle' : 'check.title') }}</h3>
         <p>
-          {{ t('check.intro') }}
+          {{ t(final ? 'check.finalIntro' : 'check.intro') }}
         </p>
         <span v-if="alreadyPassed" class="check-badge">{{ t('check.alreadyPassed') }}</span>
       </div>
@@ -19,10 +19,17 @@
         @completed="onPassed"
         @failed="onFailed"
       />
-      <CodeChallenge :week-number="weekNumber" :challenge-index="0" :label="t('check.challenge.easy')" :course-key="courseKey" />
-      <CodeChallenge :week-number="weekNumber" :challenge-index="1" :label="t('check.challenge.harder')" :course-key="courseKey" />
+      <component
+        :is="engine === 'web' ? 'WebCodeChallenge' : 'CodeChallenge'"
+        v-for="(labelKey, idx) in ['check.challenge.easy', 'check.challenge.harder']"
+        :key="idx"
+        :week-number="weekNumber"
+        :challenge-index="idx"
+        :label="t(labelKey)"
+        :course-key="courseKey"
+      />
       <p v-if="quizPassed && codingPassed" class="check-fully-done">
-        {{ t('check.fullyDone') }}
+        {{ t(final ? 'check.finalDone' : 'check.fullyDone') }}
       </p>
     </template>
   </div>
@@ -32,15 +39,21 @@
 import { ref, computed, onMounted, watch } from 'vue';
 import QuizStep from './QuizStep.vue';
 import CodeChallenge from './CodeChallenge.vue';
+import WebCodeChallenge from './WebCodeChallenge.vue';
 import { loadWeekChecks, getWeekQuestions, useWeekChecks } from '../composables/useWeekChecks';
 import { useLanguage } from '../composables/useLanguage';
 
 export default {
   name: 'WeekCheckPanel',
-  components: { QuizStep, CodeChallenge },
+  components: { QuizStep, CodeChallenge, WebCodeChallenge },
   props: {
     weekNumber: { type: Number, required: true },
     courseKey: { type: String, default: 'python' },
+    // 'web': Coding-Aufgaben als HTML/CSS (WebCodeChallenge.vue) statt Python.
+    engine: { type: String, default: 'pyodide' },
+    // Abschluss-Check eines ganzen Kurses (Einstiegskurs mit nur einem Check) statt Wochen-Check -
+    // nur andere Texte, gespeichert wird wie bei Woche 1.
+    final: { type: Boolean, default: false },
   },
   setup(props) {
     const { lang, t } = useLanguage();

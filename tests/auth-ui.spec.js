@@ -353,6 +353,53 @@ test.describe('UI: Admin + Header-Login', () => {
     expect(download.suggestedFilename()).toMatch(/^Zertifikat_Woche_1_Max_Mustermann\.pdf$/);
   });
 
+  test('Zertifikat-PDF für einen Kurs mit Abschluss-Check: „Abschluss“ statt „Woche 1“, Dateiname mit Kursname', async ({ page, request }) => {
+    test.setTimeout(60000);
+    const username = `certweb_${Date.now()}`;
+    const adminLogin = await request.post(`${API}/api/admin/login`, {
+      data: { password: ADMIN_PASSWORD },
+    });
+    const { token: adminToken } = await adminLogin.json();
+    await request.post(`${API}/api/admin/users`, {
+      headers: { Authorization: `Bearer ${adminToken}` },
+      data: { username, password: 'pass1234', ageGroup: 'kinder' },
+    });
+
+    await page.addInitScript(() => {
+      localStorage.setItem('ue-hacker-week-checks-web-erste-website', JSON.stringify({
+        version: 1,
+        weeks: { '1': { quizPassed: true, codingPassed: { 0: true, 1: true }, at: new Date().toISOString() } },
+        placement: null,
+      }));
+    });
+
+    await page.goto('/');
+    await page.locator('.options-btn').click();
+    await page.locator('.settings-modal .auth-btn.primary', { hasText: /Anmelden|Log in/ }).click();
+    await page.locator('.settings-modal input').nth(0).fill(username);
+    await page.locator('.settings-modal input[type="password"]').fill('pass1234');
+    await page.locator('.settings-modal .auth-btn.primary').click();
+    await expect(page.locator('.settings-modal')).toContainText(username);
+
+    // Profil: eigener Block für den Kurs, Kachel heißt „Abschluss“.
+    await page.goto('/profil');
+    const block = page.locator('.cert-course-block', { hasText: 'Meine erste Website' });
+    await expect(block).toBeVisible({ timeout: 20000 });
+    const card = block.locator('.badge-card');
+    await expect(card).toHaveClass(/earned/);
+    await expect(card.locator('.badge-title')).toHaveText('Abschluss');
+
+    // Kursseite: Zertifikat-Box nach dem Check mit Download.
+    await page.goto('/kurs/web-erste-website?week=1');
+    const reveal = page.locator('.certificate-reveal');
+    await expect(reveal).toBeVisible({ timeout: 20000 });
+    await reveal.locator('input').fill('Max Mustermann');
+    const downloadPromise = page.waitForEvent('download');
+    await reveal.locator('.btn-certificate-pdf').click();
+    const download = await downloadPromise;
+    expect(download.suggestedFilename()).toBe('Zertifikat_Meine_erste_Website_Max_Mustermann.pdf');
+  });
+
   test('Zertifikat-PDF: eine andere Woche als Woche 1 lädt auch ihre eigenen Daten', async ({ page, request }) => {
     test.setTimeout(60000);
     const username = `certpdf5_${Date.now()}`;

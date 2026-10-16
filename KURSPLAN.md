@@ -109,7 +109,7 @@ Glossar/Boss-Quest/Lösungen/Zertifikat — pro Woche nur **Lektion → Debug �
 
 ---
 
-## Web-Track: „Meine erste Website“ (Kurs A, Einstieg)
+## Web-Track: „Meine erste Website“ (Kurs A, Einstieg) — umgesetzt als `web-erste-website`
 **Zielgruppe:** ca. 10–12 Jahre | **Dauer:** 8 Lektionen + Abschluss-Check | **Voraussetzungen:** keine
 
 Niedrigschwelliger HTML/CSS-Einstieg im Format von `python-grundlagen-interaktiv`: eine Lektion nach

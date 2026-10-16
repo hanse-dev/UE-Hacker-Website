@@ -61,7 +61,7 @@
       </div>
 
       <div v-else-if="isProjectCourse" class="project-course-wrapper">
-        <ProjectCourse :course-id="id" :content-path="course.contentPath" :engine="course.engine" :dom-mode="course.sandboxMode === 'dom'" :web-mode="course.sandboxMode === 'web'" :language="course.language" />
+        <ProjectCourse :course-id="id" :content-path="course.contentPath" :engine="course.engine" :dom-mode="course.sandboxMode === 'dom'" :web-mode="course.sandboxMode === 'web'" :language="course.language" :is-project="course.type === 'projekt'" :final-check="course.finalCheck ? course.contentPath : ''" :final-check-title="{ de: course.title, en: course.title_en }" />
       </div>
     </template>
   </section>
@@ -123,7 +123,9 @@ export default {
     const isWeeklyCourse = computed(() => props.id === 'python-12-wochen-grundkurs');
     const isInteractiveCourse = computed(() => props.id === 'python-grundlagen-interaktiv');
     const isPlacementCourse = computed(() => props.id === 'python-einstufung');
-    const isProjectCourse = computed(() => course.value?.type === 'projekt');
+    // Projekt-Kurse und Einstiegskurse im Lektionslisten-Format (`"type": "lektionen"`, z.B.
+    // „Meine erste Website“) laufen beide ueber ProjectCourse.vue.
+    const isProjectCourse = computed(() => ['projekt', 'lektionen'].includes(course.value?.type));
     const isJsGrundkurs = computed(() => props.id === 'js-grundkurs');
     const isKiLabor = computed(() => props.id === 'ki-labor');
 
