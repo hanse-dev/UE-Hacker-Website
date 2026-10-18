@@ -125,6 +125,13 @@ docker compose up -d --build app
 curl -s http://127.0.0.1:8080/api/health
 ```
 
+`app` hat `restart: unless-stopped`, `init: true` (tini, schneller Stop) und einen Healthcheck auf
+`/api/health` (`docker compose ps` zeigt `healthy`). Startet nach Reboot nur, wenn der Docker-Daemon
+selbst beim Booten startet (Linux: `systemctl enable docker`, Mac: Docker Desktop „Start at login“)
+und der Container vorher nicht per `docker compose stop/down` beendet wurde. Docker startet
+`unhealthy`-Container nicht selbst neu — der Healthcheck dient der Sichtbarkeit; Neustart erfolgt
+nur, wenn der Node-Prozess sich beendet.
+
 SQLite bleibt in `./api/data/` (Bind-Mount, gitignored). Env-Änderung → Container **recreate**, nicht
 nur rebuild. `git pull` + Rebuild lässt Nutzerdaten unangetastet. **Einzige echte Gefahr:**
 `git clean -fdx` würde die ungetrackte `.sqlite`-Datei löschen — nie ohne Ausschluss von `api/data/`.
