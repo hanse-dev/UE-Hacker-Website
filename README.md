@@ -121,9 +121,35 @@ seine Prüfungen über `src/composables/useTaskValidation.js` laufen lassen (und
 
 Details: [`ACCOUNT-SYNC-PLAN.md`](ACCOUNT-SYNC-PLAN.md)
 
+## Thermodrucker (lokal)
+
+Ein Werkzeug für den Bluetooth-Thermodrucker MXW01. Es läuft nur auf deinem Rechner und ist nicht
+Teil von Docker, Build oder Deploy. Es kann:
+
+- **Accounts anlegen** über die Admin-API der Live-Seite und einen Zugangsausweis mit Benutzername
+  und Passwort drucken. Gibt es den Account schon, setzt es auf Rückfrage das Passwort zurück
+  (Einmal-Passwort).
+- **Gespeicherte Ausdrucke** erneut drucken. Jeder Ausdruck liegt als Bild in `ausdrucke/`.
+- die **Forscher-Tabelle** aus dem micro:bit-Kurs „Das Roboterauto“ (Stufe 8) zum Ausfüllen drucken.
+- den Drucker per **Bluetooth-Scan** finden.
+
+```bash
+cd scripts/local-tools/drucker
+./setup-printer-tool.sh   # einmalig: MXW01-Tool holen, venv/ anlegen
+cp .env.example .env      # einmalig: ACCOUNT_SERVER_URL und MXW01_PRINTER_ADDRESS eintragen
+python3 drucker_gui.py    # mit Fenster
+python3 drucker.py        # oder im Terminal (Menü)
+```
+
+Die Drucker-Adresse findet `python3 drucker.py scan`. Mit `--no-print` wird nur das Bild
+gespeichert, nicht gedruckt. Die Ausweise in `ausdrucke/` enthalten Passwörter im Klartext; der
+Ordner ist gitignored.
+
+Alles Weitere: [`scripts/local-tools/drucker/README.md`](scripts/local-tools/drucker/README.md)
+
 ## Stack
 
 - Frontend: Vue 3, Vue Router, Vite  
-- Inhalte: Jupyter-Notebooks unter `content/`  
+- Inhalte: `lessons.json` + Markdown unter `content/`, Python läuft per Pyodide im Browser  
 - API: Express + SQLite (`node:sqlite`, Node ≥ 22)  
 - Prod: API liefert auch `dist/` (kein separates Nginx nötig)
