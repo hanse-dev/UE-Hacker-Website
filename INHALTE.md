@@ -484,7 +484,9 @@ Ordner-Mapping (immer paarweise anpassen):
 - [ ] Markdown: Abschnitte, die nur für einen Weg gelten, stehen zwischen `:::bloecke` bzw.
       `:::python` und `:::` (jede Markierung als eigener Absatz mit Leerzeile davor und danach).
       Jeder Code steht in so einem Abschnitt, und jede Lektion hat gleich viele Blöcke- wie
-      Python-Abschnitte. Diese und die folgenden Regeln prüft `expectGuideContent()` aus
+      Python-Abschnitte. Optional `:::javascript` (MakeCode-JavaScript, bisher nur die Ampelanlage):
+      Hat ein Kurs das, braucht jede Lektion ebenso viele JavaScript-Abschnitte; der Umschalter zeigt
+      nur die Ansichten, die eine Lektion hat. Diese und die folgenden Regeln prüft `expectGuideContent()` aus
       `tests/helpers/guide-content.js`; jeder neue Anleitungs-Kurs ruft sie in seinem Spec auf.
 - [ ] Jede Bonusaufgabe (`isBonus`) hat am Ende der Lektion einen Abschnitt `## Bonus: <Titel>` mit
       klarer Aufgabenstellung. Tipps stehen darunter eingeklappt in `<details><summary>Tipps

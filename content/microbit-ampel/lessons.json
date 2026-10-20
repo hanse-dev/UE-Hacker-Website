@@ -9,7 +9,7 @@
         "instruction": "Wir haben ausgemacht, wer zuerst baut und wer programmiert."
       },
       {
-        "instruction": "Die rote LED steckt wie im Steckplan: Kabel von P13, Widerstand über der Lücke, Kabel zu GND."
+        "instruction": "Die rote LED steckt wie im Steckplan: Kabel von P13, Widerstand über der Lücke, Brücke in die GND-Reihe, Kabel zu GND."
       },
       {
         "instruction": "Die LED blinkt."

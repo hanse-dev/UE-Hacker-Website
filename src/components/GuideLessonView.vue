@@ -3,7 +3,7 @@
     <div v-if="hasVariants" class="guide-mode-switch" role="group" :aria-label="t('guide.modeLabel')">
       <span class="guide-mode-label">{{ t('guide.modeLabel') }}</span>
       <button
-        v-for="m in MODES"
+        v-for="m in availableModes"
         :key="m"
         type="button"
         class="guide-mode-btn"
@@ -57,9 +57,11 @@ import { useLanguage } from '../composables/useLanguage';
 import { useLessonContent } from '../composables/useLessonContent';
 import ProjectCompletionBox from './ProjectCompletionBox.vue';
 
-// Anzeige-Vorliebe (Bloecke oder Python), kein Fortschritt - bewusst nicht Teil des Syncs.
+// Anzeige-Vorliebe (Bloecke, Python oder JavaScript), kein Fortschritt - bewusst nicht Teil des Syncs.
+// Nicht jeder Kurs hat jede Ansicht (JavaScript bisher nur in der Ampelanlage): Angezeigt werden nur
+// die Ansichten, die die Lektion enthaelt; die gemerkte Wahl bleibt fuer den naechsten Kurs erhalten.
 const MODE_KEY = 'ue-hacker-guide-mode';
-const MODES = ['bloecke', 'python'];
+const MODES = ['bloecke', 'python', 'javascript'];
 
 function loadMode() {
   try {
@@ -83,12 +85,12 @@ function renderBlocks(code) {
   return `<div class="mc-blocks">${rows.join('')}</div>`;
 }
 
-// `:::bloecke` / `:::python` ... `:::` im Markdown (jeweils als eigener Absatz) grenzen Abschnitte ab,
+// `:::bloecke` / `:::python` / `:::javascript` ... `:::` im Markdown (jeweils als eigener Absatz) grenzen Abschnitte ab,
 // die nur in der gewaehlten Ansicht sichtbar sind.
 function toGuideHtml(html) {
   return html
     .replace(/<pre><code class="language-bloecke">([\s\S]*?)<\/code><\/pre>/g, (_, code) => renderBlocks(code))
-    .replace(/<p>:::(bloecke|python)<\/p>/g, '<div class="variante variante-$1">')
+    .replace(/<p>:::(bloecke|python|javascript)<\/p>/g, '<div class="variante variante-$1">')
     .replace(/<p>:::<\/p>/g, '</div>');
 }
 
@@ -110,9 +112,9 @@ export default {
     const isMounted = ref(true);
     const { lessonContent, loadContent } = useLessonContent(isMounted);
 
-    const mode = ref(loadMode());
+    const savedMode = ref(loadMode());
     const setMode = (m) => {
-      mode.value = m;
+      savedMode.value = m;
       try {
         localStorage.setItem(MODE_KEY, m);
       } catch {
@@ -121,7 +123,10 @@ export default {
     };
 
     const guideHtml = computed(() => toGuideHtml(lessonContent.value));
-    const hasVariants = computed(() => guideHtml.value.includes('class="variante '));
+    const availableModes = computed(() => MODES.filter((m) => guideHtml.value.includes(`class="variante variante-${m}"`)));
+    const hasVariants = computed(() => availableModes.value.length > 0);
+    const mode = computed(() =>
+      (availableModes.value.includes(savedMode.value) ? savedMode.value : availableModes.value[0] || MODES[0]));
 
     const tasks = computed(() => (Array.isArray(props.lesson?.tasks) ? props.lesson.tasks : []));
     const requiredIdx = computed(() =>
@@ -173,7 +178,7 @@ export default {
     return {
       lang,
       t,
-      MODES,
+      availableModes,
       mode,
       setMode,
       lessonContent,
@@ -318,9 +323,14 @@ export default {
   cursor: pointer;
 }
 
-.modus-bloecke .lesson-content :deep(.variante-python),
-.modus-python .lesson-content :deep(.variante-bloecke) {
+.lesson-content :deep(.variante) {
   display: none;
+}
+
+.modus-bloecke .lesson-content :deep(.variante-bloecke),
+.modus-python .lesson-content :deep(.variante-python),
+.modus-javascript .lesson-content :deep(.variante-javascript) {
+  display: block;
 }
 
 .lesson-content :deep(.mc-blocks) {

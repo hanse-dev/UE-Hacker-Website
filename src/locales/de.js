@@ -447,6 +447,7 @@ export default {
   'guide.modeLabel': 'Anleitung zeigen als:',
   'guide.mode.bloecke': 'Blöcke',
   'guide.mode.python': 'Python',
+  'guide.mode.javascript': 'JavaScript',
   'guide.checkHint': 'Probiert jede Aufgabe am echten micro:bit aus. Hakt sie ab, wenn sie klappt.',
 
   'profil.title': 'Mein Profil',

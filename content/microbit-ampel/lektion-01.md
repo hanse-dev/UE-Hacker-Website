@@ -11,13 +11,18 @@ Nach jeder Stufe tauscht ihr die Rollen.
 
 > 1. Gesteckt und umgesteckt wird nur, wenn das USB-Kabel **nicht** eingesteckt ist.
 > 2. Jede LED bekommt ihren eigenen Widerstand. Ohne Widerstand kann die LED oder der micro:bit kaputtgehen.
-> 3. Steckt nie ein Kabel direkt von einem Pin oder von **3V** zu **GND**. Das ist ein Kurzschluss.
+> 3. Steckt nie ein Kabel von einem Pin oder von **3.3V** direkt zu **GND** oder in eine GND-Reihe. Das ist ein Kurzschluss.
 
 ## Euer Material
 
 - **micro:bit:** Er steckt oben im schwarzen Schlitz der Platine, die Seite mit den 25 Lampen zeigt nach oben. Er bleibt die ganze Zeit dort.
-- **Platine:** Die Stifte neben dem Breadboard führen zu den Pins des micro:bit. Neben jedem Stift steht sein Name: **P0**, **P1** und so weiter. Die Stifte mit **GND** sind der Minuspol, es gibt fünf davon.
+- **Platine (Extension Board):** Die Stiftleiste neben dem Breadboard führt zu den Pins des micro:bit. Neben jedem Stift steht seine Nummer, zum Beispiel **P13**. Genau diese Nummer schreibt ihr später ins Programm. Die Leiste sieht so aus:
+
+  **3.3V · GND · GND · P20 · P19 · P16 · P15 · P14 · P13 · P12 · P11 · P10 · 3.3V**
+
+  Die beiden Stifte mit **GND** sind der Minuspol. **3.3V** ist der Pluspol.
 - **Steckkabel:** Die Buchse kommt auf einen Stift der Platine, der Stecker ins Breadboard.
+- **Brücke:** ein kurzes Kabel mit Steckern an beiden Enden. Es verbindet zwei Reihen auf dem Breadboard.
 - **LED:** eine kleine Lampe. Sie hat ein langes Bein (Plus) und ein kurzes Bein (Minus). Strom fließt nur vom langen zum kurzen Bein. Steckt sie falsch herum, bleibt sie dunkel. Davon geht sie aber nicht kaputt.
 - **Widerstand:** bremst den Strom, damit die LED nicht zu viel davon bekommt. Wie herum er steckt, ist egal. Eure Widerstände haben 150 Ω (Ohm) und die Farbringe braun, grün, schwarz, schwarz, braun.
 
@@ -38,23 +43,28 @@ Darum legt ihr jeden Widerstand **über die Lücke**: Er verbindet den linken St
 
 Eine LED leuchtet nur, wenn der Strom einen geschlossenen Kreis hat:
 
-**Pin** → Kabel → **Widerstand** → langes Bein der **LED** → kurzes Bein → Kabel → **GND**
+**Pin** → Kabel → **Widerstand** → langes Bein der **LED** → kurzes Bein → Brücke → **GND-Reihe** → Kabel → **GND**
+
+Die Platine hat nur zwei GND-Stifte, ihr baut aber fünf LEDs. Darum bekommt jede Ampel eine **GND-Reihe**: eine Reihe, in die ein einziges Kabel von GND kommt. Alle LEDs dieser Ampel sind mit einer Brücke dorthin verbunden und teilen sich so das eine GND-Kabel.
 
 Jede LED in diesem Kurs ist genau so angeschlossen. Wenn ihr den Kreis einmal verstanden habt, könnt ihr jede weitere LED allein stecken.
+
+Übrigens: In der Technik zeichnet man den Strom von Plus nach Minus, so wie oben. Die Elektronen im Draht wandern in Wirklichkeit andersherum. Für das Stecken ändert das nichts: Das lange Bein gehört auf die Seite des Pins, das kurze auf die Seite von GND.
 
 ## Die erste LED stecken
 
 Die erste LED ist die rote Lampe der Fußgängerampel. Sie bleibt bis zum Schluss stecken.
 
-<img src="/microbit/ampel/stufe-0.svg" alt="Steckplan: Kabel von P13 in Reihe 10 links, Widerstand über die Lücke, rote LED mit langem Bein in Reihe 10 rechts und kurzem Bein in Reihe 11, Kabel von Reihe 11 zu GND">
+<img src="/microbit/ampel/stufe-0.svg" alt="Steckplan: Kabel von P13 in Reihe 10 links, Widerstand über die Lücke, rote LED mit langem Bein in Reihe 10 rechts und kurzem Bein in Reihe 11, Brücke von Reihe 11 in die GND-Reihe 14, Kabel von GND in Reihe 14">
 
 1. Zieht das USB-Kabel ab.
 2. **Widerstand:** ein Bein in Reihe 10 links, direkt an der Lücke. Das andere Bein in Reihe 10 rechts, direkt an der Lücke.
 3. **Rote LED:** langes Bein in Reihe 10 rechts, kurzes Bein in Reihe 11 rechts.
 4. **Kabel von P13:** Buchse auf den Stift **P13**, Stecker in Reihe 10 links ins freie Loch.
-5. **Kabel zu GND:** Buchse auf einen Stift **GND**, Stecker in Reihe 11 rechts ins äußerste Loch.
+5. **GND-Reihe:** Buchse auf einen Stift **GND**, Stecker in Reihe 14 rechts ins innerste Loch, direkt an der Lücke. Reihe 14 ist ab jetzt die GND-Reihe der Fußgängerampel.
+6. **Brücke:** ein Ende in Reihe 11 rechts ins äußerste Loch, das andere Ende in Reihe 14 rechts.
 
-Fahrt den Weg des Stroms mit dem Finger nach: P13, Reihe 10 links, Widerstand, Reihe 10 rechts, langes Bein, kurzes Bein, Reihe 11 rechts, GND. Ist der Kreis geschlossen?
+Fahrt den Weg des Stroms mit dem Finger nach: P13, Reihe 10 links, Widerstand, Reihe 10 rechts, langes Bein, kurzes Bein, Reihe 11, Brücke, Reihe 14, GND. Ist der Kreis geschlossen?
 
 ## Editor einrichten
 
@@ -62,6 +72,7 @@ Oben auf dieser Seite wählt ihr, wie die Anleitung den Code zeigt.
 
 - **Blöcke:** Ihr steckt farbige Bausteine zusammen. Gut, wenn ihr noch nie programmiert habt.
 - **Python:** Ihr schreibt Text. Gut, wenn ihr Python schon ein wenig kennt.
+- **JavaScript:** Ihr schreibt Text im selben Editor wie bei den Blöcken. Gut, wenn ihr JavaScript schon ein wenig kennt.
 
 :::bloecke
 
@@ -72,6 +83,12 @@ Oben auf dieser Seite wählt ihr, wie die Anleitung den Code zeigt.
 :::python
 
 Öffnet [python.microbit.org](https://python.microbit.org). Der Editor zeigt schon ein kleines Programm an. Löscht es, bevor ihr eures schreibt.
+
+:::
+
+:::javascript
+
+Öffnet [makecode.microbit.org](https://makecode.microbit.org), klickt auf **Neues Projekt** und oben in der Mitte auf **JavaScript**. Der Editor zeigt schon zwei leere Teile an. Löscht sie, bevor ihr euer Programm schreibt.
 
 :::
 
@@ -109,6 +126,21 @@ Alles, was unter `while True:` eingerückt ist, wiederholt sich immer wieder. `s
 
 :::
 
+:::javascript
+
+```javascript
+basic.forever(function () {
+    pins.digitalWritePin(DigitalPin.P13, 1)
+    basic.pause(500)
+    pins.digitalWritePin(DigitalPin.P13, 0)
+    basic.pause(500)
+})
+```
+
+Alles in den geschweiften Klammern von `basic.forever` wiederholt sich immer wieder. `basic.pause(500)` wartet 500 Millisekunden, also eine halbe Sekunde.
+
+:::
+
 ## Auf den micro:bit übertragen
 
 1. Steckt das USB-Kabel in den micro:bit, nicht in die Platine.
@@ -125,6 +157,12 @@ Alles, was unter `while True:` eingerückt ist, wiederholt sich immer wieder. `s
 
 :::
 
+:::javascript
+
+2. Klickt auf die drei Punkte neben **Herunterladen** und wählt **Gerät verbinden**. Danach reicht ein Klick auf **Herunterladen**.
+
+:::
+
 Klappt das Verbinden nicht? Dann speichert das Programm als Datei und zieht sie auf das Laufwerk **MICROBIT**.
 
 ## Die LED bleibt dunkel?
@@ -135,7 +173,7 @@ Geht diese Liste der Reihe nach durch. Zieht vorher das USB-Kabel ab.
 2. **Reihen zählen.** Stecken alle Beine und Kabel in den Reihen aus dem Steckplan?
 3. **Lücke prüfen.** Liegt der Widerstand wirklich über der Lücke und nicht daneben?
 4. **Pin prüfen.** Steckt das Kabel auf **P13** und nicht auf dem Stift daneben?
-5. **GND prüfen.** Steckt das zweite Kabel auf einem Stift mit **GND**?
+5. **GND prüfen.** Steckt das Kabel der GND-Reihe auf einem Stift mit **GND**? Führt die Brücke von Reihe 11 in Reihe 14?
 6. **Programm prüfen.** Steht im Programm P13? Habt ihr es übertragen?
 
 ## Bonus: Der Herzschlag

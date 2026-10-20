@@ -33,42 +33,15 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
       - Startklar: Steckt der micro:bit mit den Lampen nach oben in der Platine? Sind links wirklich
         nur die 2 Löcher an der Lücke frei, und reichen Widerstandsbeine über die Lücke?
       - Leuchten alle 5 LEDs mit 150 Ω hell genug, und stimmen die Farbringe (braun-grün-schwarz-schwarz-braun)?
-      - Werkstatt 1: Passt der Taster mit Beinchen in Reihe 15 und 17? Funktioniert `ziehe den Pin P15
-        auf nach unten` mit 3.3V wie beschrieben? Welche Lichtstärke-Grenze passt im Raum?
+      - GND-Reihen (HANDOFF 3.119): Reichen die Brückenkabel (Stecker auf Stecker) von Reihe 3 bis
+        Reihe 8? Passen GND-Kabel und drei Brücken in eine Reihe mit fünf Löchern?
+      - Werkstatt 1: Passt der Taster mit Beinchen in Reihe 15 und 17? Liest P20 mit `ziehe den Pin
+        P20 auf nach oben` ohne Druck sicher 1 und mit Druck 0 (P19/P20 sind die I²C-Pins)? Welche
+        Lichtstärke-Grenze passt im Raum?
       - Deutsche Namen der MakeCode-Blöcke im Editor abgleichen (aus den offiziellen Übersetzungen
         übernommen, `ändere zeit um -1` und `Erstelle eine Funktion` nicht dort nachgeschlagen).
-- [ ] **micro:bit „Die Ampelanlage“ — Wünsche von Eike (20.10.2026).** Echte Pinleiste am
-      Extension Board (von einem Ende zum anderen): **3.3V, GND, GND, P20, P19, P16, P15, P14, P13,
-      P12, P11, P10, 3.3V**.
-      - **Funkgruppe als „x“:** In `lektion-06.md` steht in Blöcken und Python die 7
-        (`setze Funkgruppe auf 7`, `radio.config(group=7)`). Durch ein `x` ersetzen; direkt darunter
-        sagen, dass für `x` die Nummer von der Kursleitung eingestellt wird (`group=x` selbst läuft
-        nicht, die Kinder tragen ihre Zahl ein).
-      - **JavaScript als dritte Ansicht:** möglich, MakeCode hat einen JavaScript-Editor.
-        `GuideLessonView.vue` kennt bisher nur `:::bloecke`/`:::python` (`MODES`, CSS
-        `.modus-*`). Vorschlag: `:::javascript` als dritten Modus ergänzen und alle Lektionen
-        nachziehen (auch „Das Roboterauto“, falls gewünscht).
-      - **Pins:** Entschieden (Eike, 20.10.): keine „Pin A/B“-Platzhalter, sondern echte Pins aus
-        der Pinleiste oben. Das Board steckt nur auf einer Seite, **nur diese Pins sind erreichbar**.
-        Im Text sagen, dass die Nummer am Stift des Extension Boards steht.
-      - **Variablen für die Pins (`gruen`, `gelb`, `rot`):** Eike: In MakeCode-Blöcken lassen sich
-        Variablen anlegen, die die Pins abbilden. Python `gruen = pin13`, JavaScript
-        `let gruen = DigitalPin.P13`. In der Lektion, in der der zweite/dritte Pin dazukommt,
-        einführen; deutsche Blocknamen im Editor abgleichen.
-      - **GND gesammelt führen:** Das Board hat nur **2 GND-Stifte**. Die Steckpläne
-        (`scripts/build_ampel_steckplaene.py`, `gnd_wire()`) ziehen jede LED einzeln zu GND.
-        Vorschlag: ein Kabel von GND auf die Minus-Schiene des Breadboards, alle kurzen
-        LED-Beine dorthin; Steckpläne neu erzeugen, Text in `lektion-01.md` ff. anpassen.
-      - **Gefunden beim Aufschreiben:** `lektion-01.md` sagt „es gibt fünf“ GND-Stifte – laut
-        Pinleiste sind es zwei. Die Autoampel nutzt **P0, P1, P2** (`AUTO` in
-        `build_ampel_steckplaene.py`), die in der Pinleiste nicht vorkommen. Prüfen, ob P0–P2 auf
-        dem Board woanders herausgeführt sind – laut Eike nicht: **auf Pins aus der Leiste umstellen**
-        (alle Lektionen, Steckpläne, Tests prüfen). P19/P20 meiden (beim micro:bit I²C), P10 ist
-        zugleich eine Spalte der LED-Anzeige (nur nutzen, wenn die Anzeige dabei aus ist).
-      - **Stromrichtung im Steckplan geprüft (20.10.):** richtig. Pin → Widerstand → langes Bein (+)
-        → kurzes Bein (−) → GND folgt der technischen Stromrichtung (von + nach −); die Elektronen
-        fließen andersherum, die LED steckt trotzdem richtig. Optional ein Satz dazu im Kasten
-        „So funktioniert das Breadboard“ für neugierige Kinder.
+        Neu: Wie heißt der Block, der einer Variable einen Pin zuweist (im Kurs `setze fuss_rot auf
+        P13`), und wo findet man den Pin-Wert? Heißt der Umschalter oben im Editor „JavaScript“?
 - [ ] micro:bit-Kurs: `public/microbit/keyes_MiniCar.py` stammt aus dem Keyestudio-Download, eine
       Lizenz ist dort nicht angegeben. Vorschlag: bei Keyestudio nachfragen oder die Datei durch
       einen Link auf deren Download ersetzen (dann fehlt die Korrektur für `get_distance()`).

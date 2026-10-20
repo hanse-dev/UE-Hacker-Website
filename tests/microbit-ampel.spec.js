@@ -6,10 +6,19 @@ import { expectGuideContent } from './helpers/guide-content.js';
 const CONTENT_DIR = path.join('content', 'microbit-ampel');
 const lessons = JSON.parse(fs.readFileSync(path.join(CONTENT_DIR, 'lessons.json'), 'utf8'));
 const STORAGE_KEY = 'ue-hacker-interactive-progress-microbit-ampel';
+const PLAN_DIR = path.join('public', 'microbit', 'ampel');
+const PLANS = ['breadboard', 'stufe-0', 'stufe-1', 'stufe-2', 'taster'];
+
+// Am Extension Board ist nur eine Stiftleiste erreichbar: 3.3V, GND, GND, P20, P19, P16 … P10, 3.3V.
+// P10 hängt an der LED-Anzeige, P11 an Knopf B, P19 bleibt frei - genutzt werden nur diese Pins.
+const PINS_IM_KURS = ['P12', 'P13', 'P14', 'P15', 'P16', 'P20'];
 
 test.describe('micro:bit-Kurs: Ampelanlage (Anleitung zum Abhaken)', () => {
   test.beforeEach(async ({ page }) => {
     await page.addInitScript((key) => {
+      // Nur beim ersten Laden leeren, damit der Reload-Test den gespeicherten Stand sieht.
+      if (sessionStorage.getItem('microbit-test-init')) return;
+      sessionStorage.setItem('microbit-test-init', '1');
       localStorage.removeItem('ue-hacker-lang');
       localStorage.removeItem('ue-hacker-guide-mode');
       localStorage.removeItem(key);
@@ -45,7 +54,7 @@ test.describe('micro:bit-Kurs: Ampelanlage (Anleitung zum Abhaken)', () => {
       const [imgBox, contentBox] = [await img.boundingBox(), await content.boundingBox()];
       expect(imgBox.x + imgBox.width).toBeLessThanOrEqual(contentBox.x + contentBox.width);
     }
-    for (const name of ['breadboard', 'stufe-0', 'stufe-1', 'stufe-2', 'taster']) {
+    for (const name of PLANS) {
       const res = await page.request.get(`/microbit/ampel/${name}.svg`);
       expect(res.status(), name).toBe(200);
       expect(await res.text(), name).toContain('<svg');
@@ -64,8 +73,56 @@ test.describe('micro:bit-Kurs: Ampelanlage (Anleitung zum Abhaken)', () => {
 
     await page.locator('.lesson-item').nth(5).click();
     const funk = page.locator('.mc-block.mc-funk').first();
-    await expect(funk).toHaveText('setze Funkgruppe auf 7');
+    await expect(funk).toHaveText('setze Funkgruppe auf x');
     await expect(funk).toHaveCSS('background-color', 'rgb(227, 0, 140)');
+  });
+
+  test('Nur Pins aus der erreichbaren Stiftleiste, in Text, Code und Steckplänen', () => {
+    const pinsIn = (text) => [...text.matchAll(/\b(?:P|pin|DigitalPin\.P|AnalogPin\.P)(\d+)\b/g)].map((m) => `P${m[1]}`);
+    for (const lesson of lessons) {
+      // Die Abbildung der ganzen Stiftleiste (Startklar) nennt bewusst alle Pins.
+      const md = fs.readFileSync(path.join(CONTENT_DIR, lesson.file), 'utf8').replace(/^.*3\.3V · GND · GND.*$/m, '');
+      for (const pin of pinsIn(md)) expect(PINS_IM_KURS, `${lesson.file}: ${pin}`).toContain(pin);
+    }
+    for (const name of PLANS) {
+      const svg = fs.readFileSync(path.join(PLAN_DIR, `${name}.svg`), 'utf8');
+      for (const pin of pinsIn(svg)) expect(PINS_IM_KURS, `${name}.svg: ${pin}`).toContain(pin);
+    }
+  });
+
+  test('Steckpläne: höchstens zwei Kabel zu GND, jede LED mit Brücke in eine GND-Reihe', () => {
+    for (const name of PLANS.filter((n) => n !== 'breadboard')) {
+      const svg = fs.readFileSync(path.join(PLAN_DIR, `${name}.svg`), 'utf8');
+      const leds = (svg.match(/<circle [^>]*r="15"/g) || []).length;
+      const bridges = (svg.match(/stroke="#1e88e5"/g) || []).length;
+      expect((svg.match(/>GND<\/text>/g) || []).length, `${name}: GND-Kabel`).toBeLessThanOrEqual(2);
+      expect(bridges, `${name}: Brücken`).toBeGreaterThanOrEqual(leds);
+    }
+  });
+
+  test('JavaScript-Ansicht zeigt MakeCode-JavaScript und merkt sich die Wahl', async ({ page }) => {
+    await openCourse(page);
+    const content = page.locator('.guide-lesson .lesson-content');
+    await expect(page.locator('.guide-mode-btn')).toHaveCount(3);
+    await page.locator('.guide-mode-btn[data-mode="javascript"]').click();
+    const js = content.locator('pre code.language-javascript').first();
+    await expect(js).toBeVisible();
+    await expect(js).toContainText('pins.digitalWritePin(DigitalPin.P13, 1)');
+    await expect(content.locator('.mc-blocks').first()).toBeHidden();
+    await expect(content.locator('pre code.language-python').first()).toBeHidden();
+
+    await page.reload();
+    await expect(page.locator('.guide-mode-btn[data-mode="javascript"]')).toHaveClass(/active/);
+    await expect(page.locator('.guide-lesson .lesson-content pre code.language-javascript').first()).toBeVisible();
+  });
+
+  test('Gemerkte JavaScript-Wahl: ein Kurs ohne JavaScript zeigt Blöcke statt einer leeren Seite', async ({ page }) => {
+    await page.addInitScript(() => localStorage.setItem('ue-hacker-guide-mode', 'javascript'));
+    await page.goto('/kurs/projekt-microbit-auto');
+    await page.locator('.btn-start-course').click();
+    await expect(page.locator('.guide-mode-btn')).toHaveCount(2);
+    await expect(page.locator('.guide-mode-btn[data-mode="bloecke"]')).toHaveClass(/active/);
+    await expect(page.locator('.guide-lesson .lesson-content .mc-blocks').first()).toBeVisible();
   });
 
   test('Stufe 1: Das Gerüst ist sichtbar, die fertige Lösung ist eingeklappt', async ({ page }) => {
