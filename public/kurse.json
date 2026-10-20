@@ -196,7 +196,6 @@
   },
   {
     "id": "projekt-microbit-ampel",
-    "beta": true,
     "type": "projekt",
     "engine": "anleitung",
     "language": "microbit",

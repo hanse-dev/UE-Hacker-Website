@@ -611,7 +611,7 @@ Unverändert aus `todo.md` übernommen. Die wirklich offenen Prüf-Lücken darau
 - [x] Einstiegskurs „Meine erste Website“ (HTML/CSS) besprochen und gebaut (16.10.2026): Web-Sandbox (3.114),
       Stufe Einfach mit Abschluss-Check (3.115), Stufe Intensiv mit 9 Wochen und Wochen-Checks (3.116).
 
-- [x] Ampelkurs nach Eikes Wünschen umgebaut (21.10.2026, HANDOFF 3.119): nur Pins aus der
+- [x] Ampelkurs nach Eikes Wünschen umgebaut (20.10.2026, HANDOFF 3.119); danach von Eike gelesen, Beta-Kennzeichen entfernt: nur Pins aus der
       erreichbaren Leiste (P16/P15/P14 Auto, P13/P12 Fußgänger, Taster P20 mit Pull-up nach GND),
       GND-Reihen mit Brückenkabeln statt fünf GND-Stiften, Pin-Variablen ab Stufe 1, Funkgruppe als
       `x`, JavaScript als dritte Ansicht. Stromrichtung im Steckplan geprüft: richtig (Satz dazu in
