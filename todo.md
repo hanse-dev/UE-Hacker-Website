@@ -37,6 +37,34 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
         auf nach unten` mit 3.3V wie beschrieben? Welche Lichtstärke-Grenze passt im Raum?
       - Deutsche Namen der MakeCode-Blöcke im Editor abgleichen (aus den offiziellen Übersetzungen
         übernommen, `ändere zeit um -1` und `Erstelle eine Funktion` nicht dort nachgeschlagen).
+- [ ] **micro:bit „Die Ampelanlage“ — Wünsche von Eike (20.10.2026).** Echte Pinleiste am
+      Extension Board (von einem Ende zum anderen): **3.3V, GND, GND, P20, P19, P16, P15, P14, P13,
+      P12, P11, P10, 3.3V**.
+      - **Funkgruppe als „x“:** In `lektion-06.md` steht in Blöcken und Python die 7
+        (`setze Funkgruppe auf 7`, `radio.config(group=7)`). Durch ein `x` ersetzen und im Text
+        sagen, dass dort die Nummer von der Kursleitung hinkommt. Achtung: `group=x` läuft so nicht.
+        Vorschlag: im Code ein deutlich erkennbarer Platzhalter, und der Hinweis direkt darunter.
+      - **JavaScript als dritte Ansicht:** möglich, MakeCode hat einen JavaScript-Editor.
+        `GuideLessonView.vue` kennt bisher nur `:::bloecke`/`:::python` (`MODES`, CSS
+        `.modus-*`). Vorschlag: `:::javascript` als dritten Modus ergänzen und alle Lektionen
+        nachziehen (auch „Das Roboterauto“, falls gewünscht).
+      - **Pins als „Pin A, Pin B …“ statt fester Nummern:** Im Text gehen Platzhalter. Die Blöcke
+        und der Code brauchen aber eine echte Pinnummer (`P13`, `pin13`). Vorschlag: Steckplan und
+        Text nennen „euren Pin“ und verweisen auf die Nummer am Stift des Extension Boards; die
+        Beispiele behalten eine echte Nummer. Mit Eike klären, wie das gemeint ist.
+      - **Variablen für die Pins (`gruen`, `gelb`, `rot`):** In Python geht `gruen = pin13`, in
+        JavaScript `let gruen = DigitalPin.P13`. In MakeCode-Blöcken lässt sich ein Pin nicht in
+        einer Variable speichern. Vorschlag: In Blöcken eine Funktion pro Farbe (`gruen an`) oder
+        die Variable nur für den Wert 0/1 nutzen; vorher im Editor ausprobieren.
+      - **GND gesammelt führen:** Das Board hat nur **2 GND-Stifte**. Die Steckpläne
+        (`scripts/build_ampel_steckplaene.py`, `gnd_wire()`) ziehen jede LED einzeln zu GND.
+        Vorschlag: ein Kabel von GND auf die Minus-Schiene des Breadboards, alle kurzen
+        LED-Beine dorthin; Steckpläne neu erzeugen, Text in `lektion-01.md` ff. anpassen.
+      - **Gefunden beim Aufschreiben:** `lektion-01.md` sagt „es gibt fünf“ GND-Stifte – laut
+        Pinleiste sind es zwei. Die Autoampel nutzt **P0, P1, P2** (`AUTO` in
+        `build_ampel_steckplaene.py`), die in der Pinleiste nicht vorkommen. Prüfen, ob P0–P2 auf
+        dem Board woanders herausgeführt sind; sonst auf freie Pins umstellen (z. B. P14–P16),
+        Achtung: P19/P20 sind beim micro:bit I²C.
 - [ ] micro:bit-Kurs: `public/microbit/keyes_MiniCar.py` stammt aus dem Keyestudio-Download, eine
       Lizenz ist dort nicht angegeben. Vorschlag: bei Keyestudio nachfragen oder die Datei durch
       einen Link auf deren Download ersetzen (dann fehlt die Korrektur für `get_distance()`).
