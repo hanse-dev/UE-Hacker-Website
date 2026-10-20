@@ -34,6 +34,18 @@ for zahl in range(5, 0, -1):
 
 :::
 
+:::javascript
+
+Eine Zählschleife kann auch rückwärts zählen. Diese zählt 5, 4, 3, 2, 1:
+
+```javascript
+for (let zahl = 5; zahl > 0; zahl--) {
+    basic.showNumber(zahl)
+}
+```
+
+:::
+
 ## Auftrag 2: Das Ampelmännchen ⭐
 
 Die LED-Anzeige wird zur zweiten Fußgängerampel: Bei Rot zeigt sie ein stehendes Männchen, bei Grün ein gehendes. Die Männchen malt ihr selbst.
@@ -63,6 +75,24 @@ Das ist erst der Kopf mit den Schultern. Den Rest malt ihr.
 
 :::
 
+:::javascript
+
+Ein eigenes Bild malt ihr mit `basic.showLeds`. `#` ist an, `.` ist aus:
+
+```javascript
+basic.showLeds(`
+    . . # . .
+    . # # # .
+    . . # . .
+    . . . . .
+    . . . . .
+    `)
+```
+
+Das ist erst der Kopf mit den Schultern. Den Rest malt ihr.
+
+:::
+
 ## Auftrag 3: Der Bahnübergang ⭐
 
 Mit Knopf B meldet ihr: Ein Zug kommt! Die Autoampel schaltet über Gelb auf Rot. Dann blinken die beiden roten LEDs (Auto und Fußgänger) abwechselnd, zehnmal hin und her, wie das Warnlicht an einem Bahnübergang. Danach haben die Autos wieder Grün.
@@ -78,6 +108,12 @@ Den Block **wenn Knopf A geklickt** könnt ihr ein zweites Mal hinlegen und dort
 :::python
 
 Knopf B fragt ihr genauso ab wie Knopf A: `button_b.was_pressed()`. Zum Wiederholen gibt es `for i in range(10):`.
+
+:::
+
+:::javascript
+
+Knopf B fragt ihr genauso ab wie Knopf A: `input.onButtonPressed(Button.B, function () { ... })`. Zum Wiederholen gibt es `for (let i = 0; i < 10; i++) { ... }`.
 
 :::
 
@@ -111,6 +147,18 @@ Für die Entscheidung braucht ihr `if`, `else` und den Vergleich `<`.
 
 :::
 
+:::javascript
+
+```javascript
+basic.forever(function () {
+    basic.showNumber(input.lightLevel())
+})
+```
+
+Für die Entscheidung braucht ihr `if`, `else` und den Vergleich `<`.
+
+:::
+
 Fangt mit einem neuen, kleinen Programm an, das nur Tag und Nacht kennt: Am Tag haben die Autos Grün, nachts blinkt Gelb. Wer mag, baut den Nachtmodus danach in die Ampelanlage ein.
 
 ## Auftrag 5: Die Glühlampen-Ampel ⭐⭐
@@ -124,20 +172,30 @@ Hinweis: Ein sanftes Aufblenden sind viele kleine Schritte: etwas heller, kurz w
 :::bloecke
 
 ```bloecke
-[pins] schreibe analogen Wert von Pin P2 auf 500
+[pins] schreibe analogen Wert von Pin P14 auf 500
 ```
 
-Statt 500 könnt ihr eine Variable einsetzen, zum Beispiel `hell`. Mit **ändere hell um 50** aus **Variablen** wird sie Schritt für Schritt größer.
+P14 ist die grüne LED der Autoampel. Für analoge Werte wählt ihr den Pin direkt aus, die Variable `auto_gruen` passt in diesen Block nicht. Statt 500 könnt ihr eine Variable einsetzen, zum Beispiel `hell`. Mit **ändere hell um 50** aus **Variablen** wird sie Schritt für Schritt größer.
 
 :::
 
 :::python
 
 ```python
-pin2.write_analog(500)
+auto_gruen.write_analog(500)
 ```
 
 Mit `range` könnt ihr in Schritten zählen: `range(0, 1024, 50)` zählt 0, 50, 100 und so weiter bis 1000.
+
+:::
+
+:::javascript
+
+```javascript
+pins.analogWritePin(AnalogPin.P14, 500)
+```
+
+P14 ist die grüne LED der Autoampel. Für analoge Werte schreibt ihr den Pin direkt hin, die Variable `auto_gruen` passt hier nicht. In Schritten zählt ihr so: `for (let hell = 0; hell <= 1000; hell += 50)`.
 
 :::
 
@@ -145,24 +203,24 @@ Mit `range` könnt ihr in Schritten zählen: `range(0, 1024, 50)` zählt 0, 50, 
 
 An einer echten Ampel drückt man einen dicken Knopf, nicht einen winzigen am micro:bit. Baut einen Taster auf das Breadboard, der die Ampelanlage startet. Fragt eure Kursleitung nach einem Taster.
 
-<img src="/microbit/ampel/taster.svg" alt="Steckplan Taster: Taster mit Beinchen in Reihe 15 und 17 rechts, Kabel von P15 in Reihe 15, Kabel von 3.3V in Reihe 17">
+<img src="/microbit/ampel/taster.svg" alt="Steckplan Taster: Taster mit Beinchen in Reihe 15 und 17 rechts, Kabel von P20 in Reihe 15, Brücke von Reihe 17 in die GND-Reihe 14">
 
 1. Zieht das USB-Kabel ab.
 2. Steckt den Taster rechts von der Lücke ein: zwei Beinchen in Reihe 15, zwei in Reihe 17.
-3. **Kabel von P15** in Reihe 15 rechts.
-4. **Kabel von 3.3V** in Reihe 17 rechts.
+3. **Kabel von P20** in Reihe 15 rechts. P20 ist der Stift direkt neben den beiden GND-Stiften.
+4. **Brücke** von Reihe 17 rechts in die GND-Reihe 14.
 
-Drückt ihr den Taster, verbindet er die beiden Reihen, und am Pin kommen 3,3 Volt an. Das liest der micro:bit als 1. Lasst ihr los, hängt der Pin in der Luft und könnte zufällige Werte lesen. Darum stellt ihr den Pin so ein, dass er ohne Druck sicher 0 liest. Das nennt man **Pull-down**.
+Drückt ihr den Taster, verbindet er den Pin mit GND. Das liest der micro:bit als 0. Lasst ihr los, hängt der Pin in der Luft und könnte zufällige Werte lesen. Darum stellt ihr den Pin so ein, dass er ohne Druck sicher 1 liest. Das nennt man **Pull-up**. Bei diesem Taster heißt also: **0 = gedrückt, 1 = nicht gedrückt.**
 
-Testet den Taster zuerst mit diesem Programm. Ohne Druck muss die Anzeige 0 zeigen, mit Druck 1.
+Testet den Taster zuerst mit diesem Programm. Ohne Druck muss die Anzeige 1 zeigen, mit Druck 0.
 
 :::bloecke
 
 ```bloecke
 [grundlagen] beim Start
-  [pins] ziehe den Pin P15 auf nach unten
+  [pins] ziehe den Pin P20 auf nach oben
 [grundlagen] dauerhaft
-  [grundlagen] zeige Zahl digitale Werte von Pin P15
+  [grundlagen] zeige Zahl digitale Werte von Pin P20
 ```
 
 :::
@@ -172,27 +230,45 @@ Testet den Taster zuerst mit diesem Programm. Ohne Druck muss die Anzeige 0 zeig
 ```python
 from microbit import *
 
-pin15.set_pull(pin15.PULL_DOWN)
+pin20.set_pull(pin20.PULL_UP)
 
 while True:
-    display.show(pin15.read_digital())
+    display.show(pin20.read_digital())
 ```
 
 :::
 
-Zeigt die Anzeige immer 1, auch ohne Druck? Dann sind die Beinchen innen schon verbunden. Zieht das USB-Kabel ab und dreht den Taster um eine Vierteldrehung. Die Kabel kommen dann in die neuen Reihen der Beinchen, eines oben, eines unten.
+:::javascript
+
+```javascript
+pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
+
+basic.forever(function () {
+    basic.showNumber(pins.digitalReadPin(DigitalPin.P20))
+})
+```
+
+:::
+
+Zeigt die Anzeige immer 0, auch ohne Druck? Dann sind die Beinchen innen schon verbunden. Zieht das USB-Kabel ab und dreht den Taster um eine Vierteldrehung. Die Kabel kommen dann in die neuen Reihen der Beinchen, eines oben, eines unten.
 
 Hinweis: In der Ampelanlage prüft ihr den Taster immer wieder. Ist er gedrückt, läuft derselbe Ablauf wie bei Knopf A.
 
 :::bloecke
 
-Ihr braucht **dauerhaft**, **wenn … dann** aus **Logik** und den Vergleich **=**.
+Ihr braucht **dauerhaft**, **wenn … dann** aus **Logik** und den Vergleich **=**. Denkt daran: gedrückt ist **0**.
 
 :::
 
 :::python
 
-Ihr fragt in der Schleife zusätzlich `pin15.read_digital() == 1` ab. Mit `or` klappen Knopf A und Taster gleichzeitig.
+Ihr fragt in der Schleife zusätzlich `pin20.read_digital() == 0` ab. Mit `or` klappen Knopf A und Taster gleichzeitig.
+
+:::
+
+:::javascript
+
+Steckt den Ablauf in `basic.forever` und fragt dort `input.buttonIsPressed(Button.A) || pins.digitalReadPin(DigitalPin.P20) == 0` ab. `||` heißt oder, damit klappen Knopf A und Taster gleichzeitig.
 
 :::
 
@@ -215,6 +291,12 @@ Laufen zwei Blöcke gleichzeitig, zum Beispiel **dauerhaft** und **wenn Knopf A 
 :::python
 
 In Python läuft alles in einer Schleife nacheinander. Achtet darauf, dass jeder Teil eurer Anlage in dieser einen Schleife drankommt.
+
+:::
+
+:::javascript
+
+Laufen `basic.forever` und `input.onButtonPressed` gleichzeitig, können sie sich die LEDs gegenseitig umschalten. Steckt dann alles in ein einziges `basic.forever` und fragt den Knopf mit `input.buttonIsPressed(Button.A)` ab.
 
 :::
 

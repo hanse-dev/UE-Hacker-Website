@@ -8,6 +8,11 @@ Schreibt nach public/microbit/ampel/. Die SVGs werden mit eingecheckt; wer den A
 Vorbild ist das Mini-Breadboard (17 Reihen) an der T-förmigen "micro:bit GPIO Board"-Platine:
 Die Lücke läuft senkrecht, links sind nur die zwei Löcher direkt an der Lücke frei (der Rest liegt
 unter der Platine), rechts sind es fünf. Reihen werden von oben (an der Platine) gezählt.
+
+Erreichbar ist nur eine Stiftleiste: 3.3V, GND, GND, P20, P19, P16, P15, P14, P13, P12, P11, P10, 3.3V.
+Pins: Autoampel P16/P15/P14, Fußgänger P13/P12 (in Leisten-Reihenfolge), Taster P20. P10 (LED-Anzeige),
+P11 (Knopf B) und P19 bleiben frei. Nur zwei GND-Stifte: Jede Ampel hat eine GND-Reihe mit einem Kabel
+zu GND, das kurze Bein jeder LED ist mit einer Brücke (Kabel Stecker auf Stecker) dorthin verbunden.
 """
 from pathlib import Path
 
@@ -25,6 +30,7 @@ HEIGHT = TOP + (ROWS - 1) * PITCH + 46
 LED_COLORS = {'rot': '#e53935', 'gelb': '#fdd835', 'gruen': '#43a047'}
 WIRE = '#f28c28'
 GND_WIRE = '#222'
+BRIDGE = '#1e88e5'
 FONT = 'font-family="Arial, Helvetica, sans-serif"'
 
 
@@ -64,18 +70,33 @@ def signal_wire(row, label, target_x=FREE_LEFT[0]):
     yy = y(row)
     return [
         f'<text x="104" y="{yy + 5}" text-anchor="end" font-size="14" font-weight="bold" {FONT}>{label}</text>',
-        f'<line x1="108" y1="{yy}" x2="{target_x}" y2="{yy}" stroke="{WIRE}" stroke-width="5" stroke-linecap="round"/>',
+        # Endet das Kabel rechts der Lücke, springt es im Bogen über die linken Löcher (nicht eingesteckt).
+        (f'<line x1="108" y1="{yy}" x2="{target_x}" y2="{yy}" stroke="{WIRE}" stroke-width="5" stroke-linecap="round"/>'
+         if target_x in FREE_LEFT else
+         f'<path d="M 108 {yy} L 214 {yy} Q 300 {yy - 26} {target_x} {yy}" fill="none" stroke="{WIRE}" '
+         f'stroke-width="5" stroke-linecap="round"/>'),
         dot(target_x, yy, WIRE),
     ]
 
 
-def gnd_wire(row, label='GND'):
-    yy = y(row)
-    x = RIGHT_HOLES[-1]
+def bridge(from_row, to_row, end_hole, lane):
+    """Brücke (Kabel Stecker auf Stecker) vom äußersten Loch der Reihe `from_row` in Loch
+    `end_hole` (Index rechts) der GND-Reihe. `lane` = 0: kurzer, direkter Weg; sonst läuft die
+    Brücke auf einer eigenen Spur rechts neben dem Breadboard (weiter außen je höher `lane`)."""
+    x1, y1 = RIGHT_HOLES[-1], y(from_row)
+    x2, y2 = RIGHT_HOLES[end_hole], y(to_row)
+    if lane == 0:
+        d = f'M {x1} {y1} L {x2} {y2}'
+    else:
+        side = -1 if to_row > from_row else 1   # kommt von oben bzw. von unten in die GND-Reihe
+        lx = x1 + 15 + lane * 15
+        if end_hole == len(RIGHT_HOLES) - 1:
+            d = f'M {x1} {y1} L {lx} {y1} L {lx} {y2} L {x2} {y2}'
+        else:
+            d = f'M {x1} {y1} L {lx} {y1} L {lx} {y2 + side * 14} L {x2} {y2}'
     return [
-        f'<line x1="{x}" y1="{yy}" x2="{WIDTH - 72}" y2="{yy}" stroke="{GND_WIRE}" stroke-width="5" stroke-linecap="round"/>',
-        dot(x, yy, GND_WIRE),
-        f'<text x="{WIDTH - 66}" y="{yy + 5}" font-size="14" font-weight="bold" {FONT}>{label}</text>',
+        f'<path d="{d}" fill="none" stroke="{BRIDGE}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>',
+        dot(x1, y1, BRIDGE), dot(x2, y2, BRIDGE),
     ]
 
 
@@ -110,7 +131,31 @@ def led(row, color):
 
 
 def ampel_led(row, color, pin):
-    return signal_wire(row, pin) + resistor(row) + led(row, color) + gnd_wire(row + 1)
+    return signal_wire(row, pin) + resistor(row) + led(row, color)
+
+
+def gnd_row(row, cathode_rows):
+    """GND-Reihe: ein Kabel von einem GND-Stift der Platine ins innerste Loch, dazu eine Brücke
+    von jeder Reihe in `cathode_rows`. Nähere Reihen enden weiter außen, so kreuzt sich nichts."""
+    yy = y(row)
+    parts = [f'<rect x="{RIGHT_HOLES[0] - 12}" y="{yy - 10}" width="{RIGHT_HOLES[-1] - RIGHT_HOLES[0] + 24}" '
+             f'height="20" rx="10" fill="#ececec" stroke="{GND_WIRE}" stroke-width="1.5" stroke-dasharray="4 3"/>']
+    for x in RIGHT_HOLES:
+        parts.append(f'<rect x="{x - 4}" y="{yy - 4}" width="8" height="8" fill="#555"/>')
+    parts += [
+        f'<text x="104" y="{yy + 5}" text-anchor="end" font-size="14" font-weight="bold" {FONT}>GND</text>',
+        # Kabel von der Platine: läuft über die linken Löcher hinweg (nicht eingesteckt) bis rechts in Loch 1.
+        f'<path d="M 108 {yy} L 214 {yy} Q 300 {yy - 26} {RIGHT_HOLES[0]} {yy}" fill="none" stroke="{GND_WIRE}" '
+        f'stroke-width="5" stroke-linecap="round"/>',
+        dot(RIGHT_HOLES[0], yy, GND_WIRE),
+    ]
+    # Von oben: die nächste Reihe direkt ins Loch 2, weiter entfernte über Spuren in Loch 3, 4.
+    # Von unten (Taster): danach, ebenfalls über eine Spur.
+    above = sorted((c for c in cathode_rows if c < row), key=lambda c: row - c)
+    below = sorted((c for c in cathode_rows if c > row), key=lambda c: c - row)
+    for i, cathode in enumerate(above + below):
+        parts += bridge(cathode, row, 2 + i, i)
+    return parts
 
 
 def taster(row_top, row_bottom):
@@ -121,8 +166,7 @@ def taster(row_top, row_bottom):
         f'<circle cx="{(x1 + x2) / 2}" cy="{(y1 + y2) / 2}" r="15" fill="#222" stroke="#888"/>',
     ]
     parts += [dot(x, yy, '#bbb') for x in (x1, x2) for yy in (y1, y2)]
-    parts += signal_wire(row_top, 'P15', RIGHT_HOLES[0])
-    parts += signal_wire(row_bottom, '3.3V', RIGHT_HOLES[0])
+    parts += signal_wire(row_top, 'P20', RIGHT_HOLES[0])
     return parts
 
 
@@ -132,14 +176,23 @@ def save(name, parts):
 
 
 FUSS_ROT = (10, 'rot', 'P13')
-FUSS_GRUEN = (12, 'gruen', 'P14')
-AUTO = [(2, 'rot', 'P0'), (4, 'gelb', 'P1'), (6, 'gruen', 'P2')]
+FUSS_GRUEN = (12, 'gruen', 'P12')
+AUTO = [(2, 'rot', 'P16'), (4, 'gelb', 'P15'), (6, 'gruen', 'P14')]
+AUTO_GND = 8
+FUSS_GND = 14
+TASTER = (15, 17)
 
 
-def plan(title, leds, extra=()):
+def plan(title, leds, extra=(), extra_gnd=()):
+    """`extra_gnd`: weitere Reihen, die mit der GND-Reihe der Fußgänger verbunden werden (Taster)."""
     parts = board(title)
     for row, color, pin in leds:
         parts += ampel_led(row, color, pin)
+    auto = [row + 1 for row, _, _ in leds if row < AUTO_GND]
+    fuss = [row + 1 for row, _, _ in leds if AUTO_GND < row < FUSS_GND]
+    if auto:
+        parts += gnd_row(AUTO_GND, auto)
+    parts += gnd_row(FUSS_GND, fuss + list(extra_gnd))
     parts += list(extra)
     return parts
 
@@ -168,5 +221,5 @@ if __name__ == '__main__':
     save('stufe-0.svg', plan('Startklar: die erste LED', [FUSS_ROT]))
     save('stufe-1.svg', plan('Stufe 1: Fußgängerampel', [FUSS_ROT, FUSS_GRUEN]))
     save('stufe-2.svg', plan('Stufe 2 und 3: Fußgänger- und Autoampel', AUTO + [FUSS_ROT, FUSS_GRUEN]))
-    save('taster.svg', plan('Werkstatt: echter Ampeldrücker', AUTO + [FUSS_ROT, FUSS_GRUEN], taster(15, 17)))
+    save('taster.svg', plan('Werkstatt: echter Ampeldrücker', AUTO + [FUSS_ROT, FUSS_GRUEN], taster(*TASTER), [TASTER[1]]))
     print(f'Steckpläne geschrieben nach {OUT}')

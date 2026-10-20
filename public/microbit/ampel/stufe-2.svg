@@ -194,7 +194,7 @@
 <text x="22" y="54" text-anchor="middle" font-size="11" fill="#777" font-family="Arial, Helvetica, sans-serif">Reihe</text>
 <rect x="124" y="62" width="96" height="492" fill="#1d4e89" opacity="0.92"/>
 <text x="172" y="284" text-anchor="middle" font-size="11" fill="#fff" font-family="Arial, Helvetica, sans-serif" transform="rotate(-90 172 280)">micro:bit-Platine</text>
-<text x="104" y="117" text-anchor="end" font-size="14" font-weight="bold" font-family="Arial, Helvetica, sans-serif">P0</text>
+<text x="104" y="117" text-anchor="end" font-size="14" font-weight="bold" font-family="Arial, Helvetica, sans-serif">P16</text>
 <line x1="108" y1="112" x2="234" y2="112" stroke="#f28c28" stroke-width="5" stroke-linecap="round"/>
 <circle cx="234" cy="112" r="5" fill="#f28c28" stroke="#fff" stroke-width="1.5"/>
 <line x1="262" y1="112" x2="338" y2="112" stroke="#999" stroke-width="3"/>
@@ -213,10 +213,7 @@
 <circle cx="366" cy="112" r="5" fill="#999" stroke="#fff" stroke-width="1.5"/>
 <circle cx="366" cy="140" r="5" fill="#999" stroke="#fff" stroke-width="1.5"/>
 <text x="364" y="104" text-anchor="middle" font-size="13" font-weight="bold" fill="#c62828" font-family="Arial, Helvetica, sans-serif">+</text>
-<line x1="450" y1="140" x2="548" y2="140" stroke="#222" stroke-width="5" stroke-linecap="round"/>
-<circle cx="450" cy="140" r="5" fill="#222" stroke="#fff" stroke-width="1.5"/>
-<text x="554" y="145" font-size="14" font-weight="bold" font-family="Arial, Helvetica, sans-serif">GND</text>
-<text x="104" y="173" text-anchor="end" font-size="14" font-weight="bold" font-family="Arial, Helvetica, sans-serif">P1</text>
+<text x="104" y="173" text-anchor="end" font-size="14" font-weight="bold" font-family="Arial, Helvetica, sans-serif">P15</text>
 <line x1="108" y1="168" x2="234" y2="168" stroke="#f28c28" stroke-width="5" stroke-linecap="round"/>
 <circle cx="234" cy="168" r="5" fill="#f28c28" stroke="#fff" stroke-width="1.5"/>
 <line x1="262" y1="168" x2="338" y2="168" stroke="#999" stroke-width="3"/>
@@ -235,10 +232,7 @@
 <circle cx="366" cy="168" r="5" fill="#999" stroke="#fff" stroke-width="1.5"/>
 <circle cx="366" cy="196" r="5" fill="#999" stroke="#fff" stroke-width="1.5"/>
 <text x="364" y="160" text-anchor="middle" font-size="13" font-weight="bold" fill="#c62828" font-family="Arial, Helvetica, sans-serif">+</text>
-<line x1="450" y1="196" x2="548" y2="196" stroke="#222" stroke-width="5" stroke-linecap="round"/>
-<circle cx="450" cy="196" r="5" fill="#222" stroke="#fff" stroke-width="1.5"/>
-<text x="554" y="201" font-size="14" font-weight="bold" font-family="Arial, Helvetica, sans-serif">GND</text>
-<text x="104" y="229" text-anchor="end" font-size="14" font-weight="bold" font-family="Arial, Helvetica, sans-serif">P2</text>
+<text x="104" y="229" text-anchor="end" font-size="14" font-weight="bold" font-family="Arial, Helvetica, sans-serif">P14</text>
 <line x1="108" y1="224" x2="234" y2="224" stroke="#f28c28" stroke-width="5" stroke-linecap="round"/>
 <circle cx="234" cy="224" r="5" fill="#f28c28" stroke="#fff" stroke-width="1.5"/>
 <line x1="262" y1="224" x2="338" y2="224" stroke="#999" stroke-width="3"/>
@@ -257,9 +251,6 @@
 <circle cx="366" cy="224" r="5" fill="#999" stroke="#fff" stroke-width="1.5"/>
 <circle cx="366" cy="252" r="5" fill="#999" stroke="#fff" stroke-width="1.5"/>
 <text x="364" y="216" text-anchor="middle" font-size="13" font-weight="bold" fill="#c62828" font-family="Arial, Helvetica, sans-serif">+</text>
-<line x1="450" y1="252" x2="548" y2="252" stroke="#222" stroke-width="5" stroke-linecap="round"/>
-<circle cx="450" cy="252" r="5" fill="#222" stroke="#fff" stroke-width="1.5"/>
-<text x="554" y="257" font-size="14" font-weight="bold" font-family="Arial, Helvetica, sans-serif">GND</text>
 <text x="104" y="341" text-anchor="end" font-size="14" font-weight="bold" font-family="Arial, Helvetica, sans-serif">P13</text>
 <line x1="108" y1="336" x2="234" y2="336" stroke="#f28c28" stroke-width="5" stroke-linecap="round"/>
 <circle cx="234" cy="336" r="5" fill="#f28c28" stroke="#fff" stroke-width="1.5"/>
@@ -279,10 +270,7 @@
 <circle cx="366" cy="336" r="5" fill="#999" stroke="#fff" stroke-width="1.5"/>
 <circle cx="366" cy="364" r="5" fill="#999" stroke="#fff" stroke-width="1.5"/>
 <text x="364" y="328" text-anchor="middle" font-size="13" font-weight="bold" fill="#c62828" font-family="Arial, Helvetica, sans-serif">+</text>
-<line x1="450" y1="364" x2="548" y2="364" stroke="#222" stroke-width="5" stroke-linecap="round"/>
-<circle cx="450" cy="364" r="5" fill="#222" stroke="#fff" stroke-width="1.5"/>
-<text x="554" y="369" font-size="14" font-weight="bold" font-family="Arial, Helvetica, sans-serif">GND</text>
-<text x="104" y="397" text-anchor="end" font-size="14" font-weight="bold" font-family="Arial, Helvetica, sans-serif">P14</text>
+<text x="104" y="397" text-anchor="end" font-size="14" font-weight="bold" font-family="Arial, Helvetica, sans-serif">P12</text>
 <line x1="108" y1="392" x2="234" y2="392" stroke="#f28c28" stroke-width="5" stroke-linecap="round"/>
 <circle cx="234" cy="392" r="5" fill="#f28c28" stroke="#fff" stroke-width="1.5"/>
 <line x1="262" y1="392" x2="338" y2="392" stroke="#999" stroke-width="3"/>
@@ -301,7 +289,37 @@
 <circle cx="366" cy="392" r="5" fill="#999" stroke="#fff" stroke-width="1.5"/>
 <circle cx="366" cy="420" r="5" fill="#999" stroke="#fff" stroke-width="1.5"/>
 <text x="364" y="384" text-anchor="middle" font-size="13" font-weight="bold" fill="#c62828" font-family="Arial, Helvetica, sans-serif">+</text>
-<line x1="450" y1="420" x2="548" y2="420" stroke="#222" stroke-width="5" stroke-linecap="round"/>
-<circle cx="450" cy="420" r="5" fill="#222" stroke="#fff" stroke-width="1.5"/>
-<text x="554" y="425" font-size="14" font-weight="bold" font-family="Arial, Helvetica, sans-serif">GND</text>
+<rect x="326" y="270" width="136" height="20" rx="10" fill="#ececec" stroke="#222" stroke-width="1.5" stroke-dasharray="4 3"/>
+<rect x="334" y="276" width="8" height="8" fill="#555"/>
+<rect x="362" y="276" width="8" height="8" fill="#555"/>
+<rect x="390" y="276" width="8" height="8" fill="#555"/>
+<rect x="418" y="276" width="8" height="8" fill="#555"/>
+<rect x="446" y="276" width="8" height="8" fill="#555"/>
+<text x="104" y="285" text-anchor="end" font-size="14" font-weight="bold" font-family="Arial, Helvetica, sans-serif">GND</text>
+<path d="M 108 280 L 214 280 Q 300 254 338 280" fill="none" stroke="#222" stroke-width="5" stroke-linecap="round"/>
+<circle cx="338" cy="280" r="5" fill="#222" stroke="#fff" stroke-width="1.5"/>
+<path d="M 450 252 L 394 280" fill="none" stroke="#1e88e5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="450" cy="252" r="5" fill="#1e88e5" stroke="#fff" stroke-width="1.5"/>
+<circle cx="394" cy="280" r="5" fill="#1e88e5" stroke="#fff" stroke-width="1.5"/>
+<path d="M 450 196 L 480 196 L 480 266 L 422 280" fill="none" stroke="#1e88e5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="450" cy="196" r="5" fill="#1e88e5" stroke="#fff" stroke-width="1.5"/>
+<circle cx="422" cy="280" r="5" fill="#1e88e5" stroke="#fff" stroke-width="1.5"/>
+<path d="M 450 140 L 495 140 L 495 280 L 450 280" fill="none" stroke="#1e88e5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="450" cy="140" r="5" fill="#1e88e5" stroke="#fff" stroke-width="1.5"/>
+<circle cx="450" cy="280" r="5" fill="#1e88e5" stroke="#fff" stroke-width="1.5"/>
+<rect x="326" y="438" width="136" height="20" rx="10" fill="#ececec" stroke="#222" stroke-width="1.5" stroke-dasharray="4 3"/>
+<rect x="334" y="444" width="8" height="8" fill="#555"/>
+<rect x="362" y="444" width="8" height="8" fill="#555"/>
+<rect x="390" y="444" width="8" height="8" fill="#555"/>
+<rect x="418" y="444" width="8" height="8" fill="#555"/>
+<rect x="446" y="444" width="8" height="8" fill="#555"/>
+<text x="104" y="453" text-anchor="end" font-size="14" font-weight="bold" font-family="Arial, Helvetica, sans-serif">GND</text>
+<path d="M 108 448 L 214 448 Q 300 422 338 448" fill="none" stroke="#222" stroke-width="5" stroke-linecap="round"/>
+<circle cx="338" cy="448" r="5" fill="#222" stroke="#fff" stroke-width="1.5"/>
+<path d="M 450 420 L 394 448" fill="none" stroke="#1e88e5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="450" cy="420" r="5" fill="#1e88e5" stroke="#fff" stroke-width="1.5"/>
+<circle cx="394" cy="448" r="5" fill="#1e88e5" stroke="#fff" stroke-width="1.5"/>
+<path d="M 450 364 L 480 364 L 480 434 L 422 448" fill="none" stroke="#1e88e5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="450" cy="364" r="5" fill="#1e88e5" stroke="#fff" stroke-width="1.5"/>
+<circle cx="422" cy="448" r="5" fill="#1e88e5" stroke="#fff" stroke-width="1.5"/>
 </svg>

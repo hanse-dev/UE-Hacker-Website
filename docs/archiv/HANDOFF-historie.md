@@ -2870,6 +2870,27 @@ Frage des Nutzers: Warum gibt es noch Turtle-Tests, obwohl Turtle nirgends behan
   sofort offen. `scripts/run-test-api.js` nimmt `TEST_DB_NAME`, damit `test:auth` und `test:devskip`
   getrennte Wegwerf-DBs nutzen.
 
+### 3.119 — Ampelanlage an das echte Extension Board angepasst (Branch `ampel-umbau`)
+
+- Erreichbar ist nur eine Stiftleiste: 3.3V, GND, GND, P20, P19, P16 … P10, 3.3V (P0–P2 gibt es
+  dort nicht, nur **2** GND-Stifte statt der in 3.109 angenommenen 5). Pins jetzt in
+  Leisten-Reihenfolge: Autoampel P16/P15/P14, Fußgänger P13/P12. P10 (LED-Anzeige), P11 (Knopf B)
+  und P19 bleiben frei.
+- **GND-Reihen:** Reihe 8 (Autoampel) und Reihe 14 (Fußgänger + Taster) bekommen je ein Kabel von
+  einem GND-Stift; jedes kurze LED-Bein ist mit einer Brücke (Stecker auf Stecker, Wahl von Eike)
+  dorthin verbunden. Ohne Zusatzteile hätten sich höchstens zwei LEDs eine Reihe teilen können.
+  Brücken laufen im Steckplan auf eigenen Spuren rechts, damit sich nichts kreuzt.
+- **Taster an P20 mit Pull-up nach GND** statt Pull-down nach 3.3V: funktioniert auch, falls das
+  Board an den I²C-Pins eigene Pull-ups hat; gedrückt = 0.
+- **Pin-Variablen** ab Stufe 1 (`fuss_rot`, `fuss_gruen`, `auto_rot` …, in allen drei Sprachen
+  gleich benannt). Analog-Schreiben (Glühlampen-Ampel) nimmt den Pin direkt: In MakeCode ist
+  `AnalogPin` ein anderer Typ als `DigitalPin`.
+- **JavaScript** als dritte Ansicht in `GuideLessonView.vue`: Umschalter zeigt nur Ansichten, die
+  die Lektion hat; eine gemerkte JavaScript-Wahl fällt im Roboterauto auf Blöcke zurück und bleibt
+  für die Ampel erhalten. JavaScript-Ausschnitte mit `tsc` gegen eine nachgebaute MakeCode-API
+  geprüft (Scratchpad), Python-Lösungen von Stufe 2/3 erneut simuliert.
+- Funkgruppe im Code als `x`, Text sagt, dass dort die Nummer der Kursleitung hinkommt.
+
 ---
 
 ## Frühere Feature-Tabelle aus HANDOFF.md (Stand 16.10.2026, wortgleich)

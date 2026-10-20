@@ -447,6 +447,7 @@ export default {
   'guide.modeLabel': 'Show guide as:',
   'guide.mode.bloecke': 'Blocks',
   'guide.mode.python': 'Python',
+  'guide.mode.javascript': 'JavaScript',
   'guide.checkHint': 'Try each task on the real micro:bit. Tick it off once it works.',
 
   'profil.title': 'My Profile',

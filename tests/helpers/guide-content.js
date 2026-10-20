@@ -7,7 +7,7 @@ const GUIDE_VIEW = fs.readFileSync(path.join('src', 'components', 'GuideLessonVi
 /**
  * Prüft die Regeln für Anleitungs-Kurse (`engine: "anleitung"`, INHALTE.md §6) für alle Lektionen
  * eines Content-Ordners: Pflichtaufgaben, Bonus-Abschnitte, Blöcke/Python paarweise, Code nur in
- * den Abschnitten, jede Block-Kategorie hat eine Farbe und jedes Bild unter /microbit/ existiert.
+ * den Abschnitten (JavaScript, wenn der Kurs es hat, ebenso oft), jede Block-Kategorie hat eine Farbe und jedes Bild unter /microbit/ existiert.
  */
 export function expectGuideContent(contentDir) {
   const lessons = JSON.parse(fs.readFileSync(path.join(contentDir, 'lessons.json'), 'utf8'));
@@ -18,14 +18,16 @@ export function expectGuideContent(contentDir) {
     if (lesson.tasks.some((task) => task.isBonus)) {
       expect(md, `${lesson.file}: Bonus-Abschnitt`).toMatch(/^## Bonus: /m);
     }
-    const opened = md.match(/^:::(bloecke|python)$/gm) || [];
+    const opened = md.match(/^:::(bloecke|python|javascript)$/gm) || [];
     const closed = md.match(/^:::$/gm) || [];
     expect(closed.length, `${lesson.file}: Abschnitte geschlossen`).toBe(opened.length);
     expect(opened.filter((m) => m === ':::bloecke').length, `${lesson.file}: Blöcke und Python gleich oft`)
       .toBe(opened.filter((m) => m === ':::python').length);
+    const jsCount = opened.filter((m) => m === ':::javascript').length;
+    if (jsCount) expect(jsCount, `${lesson.file}: JavaScript so oft wie Blöcke`).toBe(opened.filter((m) => m === ':::bloecke').length);
     // Ein Block-Listing ausserhalb eines :::bloecke-Abschnitts waere auch in der Python-Ansicht sichtbar.
-    const outside = md.replace(/^:::(bloecke|python)$[\s\S]*?^:::$/gm, '');
-    expect(outside, `${lesson.file}: Code nur innerhalb der Abschnitte`).not.toMatch(/```(bloecke|python)/);
+    const outside = md.replace(/^:::(bloecke|python|javascript)$[\s\S]*?^:::$/gm, '');
+    expect(outside, `${lesson.file}: Code nur innerhalb der Abschnitte`).not.toMatch(/```(bloecke|python|javascript)/);
 
     // Eine Kategorie ohne .mc-<name>-Farbe wäre ein farbloser Block.
     for (const [, category] of md.matchAll(/^\s*\[([a-z]+)\] /gm)) {

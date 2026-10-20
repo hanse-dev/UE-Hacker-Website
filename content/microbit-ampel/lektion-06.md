@@ -8,7 +8,7 @@ Für jeden Auftrag hier braucht ihr ein zweites Team, mit dem ihr zusammenarbeit
 
 Alle micro:bits im Raum funken auf denselben Wellen. Damit sich die Teams nicht gegenseitig stören, gibt es **Funkgruppen**: Ein micro:bit hört nur Nachrichten aus seiner eigenen Gruppe.
 
-> Holt euch bei eurer Kursleitung eine Gruppennummer. Ihr und euer Partnerteam nehmt **dieselbe** Nummer, alle anderen eine andere. In den Beispielen steht die 7, setzt dort eure Nummer ein.
+> Holt euch bei eurer Kursleitung eine Gruppennummer. Ihr und euer Partnerteam nehmt **dieselbe** Nummer, alle anderen eine andere. In den Beispielen steht dafür ein **x**. Statt x stellt ihr eure Nummer ein, sonst läuft das Programm nicht.
 
 ## Der erste Funkspruch
 
@@ -18,7 +18,7 @@ Beide Teams übertragen dasselbe Programm. Drückt ein Team Knopf B, zeigt der m
 
 ```bloecke
 [grundlagen] beim Start
-  [funk] setze Funkgruppe auf 7
+  [funk] setze Funkgruppe auf x
 [eingabe] wenn Knopf B geklickt
   [funk] sende Zeichenkette "hallo" über Funk
 [funk] wenn Text empfangen receivedString
@@ -37,7 +37,7 @@ from microbit import *
 import radio
 
 radio.on()
-radio.config(group=7)
+radio.config(group=x)
 
 while True:
     if button_b.was_pressed():
@@ -48,6 +48,26 @@ while True:
 ```
 
 `radio.receive()` holt die nächste Nachricht ab. Ist keine da, bekommt ihr `None`.
+
+:::
+
+:::javascript
+
+```javascript
+radio.setGroup(x)
+
+input.onButtonPressed(Button.B, function () {
+    radio.sendString("hallo")
+})
+
+radio.onReceivedString(function (receivedString) {
+    if (receivedString == "hallo") {
+        basic.showIcon(IconNames.Heart)
+    }
+})
+```
+
+Alles in den geschweiften Klammern von `radio.onReceivedString` passiert, sobald eine Nachricht ankommt. In `receivedString` steht, was angekommen ist.
 
 :::
 
@@ -70,6 +90,12 @@ Euer Programm hat jetzt zwei Teile, die gleichzeitig laufen können: **wenn Knop
 :::python
 
 Euer Programm fragt in der Schleife nacheinander Knopf A und den Funk ab. Kommt der Notruf, während der Ablauf für die Fußgänger läuft, wartet er, bis der Ablauf fertig ist. Fürs Erste reicht das.
+
+:::
+
+:::javascript
+
+Euer Programm hat jetzt zwei Teile, die gleichzeitig laufen können: `input.onButtonPressed` und `radio.onReceivedString`. Kommt der Notruf, während die Fußgänger gerade Grün haben, schaltet der Knopf-Ablauf danach weiter. Fürs Erste reicht es, wenn der Notruf im Grundzustand klappt.
 
 :::
 
@@ -116,6 +142,12 @@ Die Funkgruppe muss bei jedem micro:bit gleich sein, auch beim Auto.
 :::python
 
 Die Funkgruppe muss bei jedem micro:bit gleich sein, auch beim Auto. Vergesst `radio.on()` nicht.
+
+:::
+
+:::javascript
+
+Die Funkgruppe muss bei jedem micro:bit gleich sein, auch beim Auto.
 
 :::
 

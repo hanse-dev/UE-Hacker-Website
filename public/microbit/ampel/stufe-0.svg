@@ -213,7 +213,16 @@
 <circle cx="366" cy="336" r="5" fill="#999" stroke="#fff" stroke-width="1.5"/>
 <circle cx="366" cy="364" r="5" fill="#999" stroke="#fff" stroke-width="1.5"/>
 <text x="364" y="328" text-anchor="middle" font-size="13" font-weight="bold" fill="#c62828" font-family="Arial, Helvetica, sans-serif">+</text>
-<line x1="450" y1="364" x2="548" y2="364" stroke="#222" stroke-width="5" stroke-linecap="round"/>
-<circle cx="450" cy="364" r="5" fill="#222" stroke="#fff" stroke-width="1.5"/>
-<text x="554" y="369" font-size="14" font-weight="bold" font-family="Arial, Helvetica, sans-serif">GND</text>
+<rect x="326" y="438" width="136" height="20" rx="10" fill="#ececec" stroke="#222" stroke-width="1.5" stroke-dasharray="4 3"/>
+<rect x="334" y="444" width="8" height="8" fill="#555"/>
+<rect x="362" y="444" width="8" height="8" fill="#555"/>
+<rect x="390" y="444" width="8" height="8" fill="#555"/>
+<rect x="418" y="444" width="8" height="8" fill="#555"/>
+<rect x="446" y="444" width="8" height="8" fill="#555"/>
+<text x="104" y="453" text-anchor="end" font-size="14" font-weight="bold" font-family="Arial, Helvetica, sans-serif">GND</text>
+<path d="M 108 448 L 214 448 Q 300 422 338 448" fill="none" stroke="#222" stroke-width="5" stroke-linecap="round"/>
+<circle cx="338" cy="448" r="5" fill="#222" stroke="#fff" stroke-width="1.5"/>
+<path d="M 450 364 L 394 448" fill="none" stroke="#1e88e5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="450" cy="364" r="5" fill="#1e88e5" stroke="#fff" stroke-width="1.5"/>
+<circle cx="394" cy="448" r="5" fill="#1e88e5" stroke="#fff" stroke-width="1.5"/>
 </svg>
