@@ -15,6 +15,11 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
       Vorschlag: Beim nächsten Auftreten prüfen, ob gleichzeitig andere Playwright-Läufe aktiv waren
       (`ps aux | grep "playwright test"`); wenn ja, Pre-push-Läufe mehrerer Sessions nicht parallel
       starten statt die Tests zu ändern.
+      **21.10.:** wieder aufgetreten, diesmal ohne parallele Playwright-Läufe: Pre-push 21 statt 3 Min.,
+      9 Ausfälle (u. a. `web-grundkurs.spec.js`, einzeln grün). Ursache war allgemeine Last auf dem
+      Rechner (Load 20–33 bei 8 Kernen, ~10 GB Swap); der LanguageTool-Container belegte 1,4 GB.
+      Nach `npm run lint:spelling:de -- --stopp` lief der Push sofort grün durch. Vorschlag: den
+      Container nach jeder Rechtschreibprüfung stoppen; bei hoher Last (`uptime`) erst danach pushen.
 - [ ] **micro:bit-Kurs „Das Roboterauto“ (`content/microbit-auto/`, HANDOFF 3.101) — vor dem ersten
       Termin am echten Auto durchspielen.** Der Kurs ist ohne Hardware entstanden (nur aus der
       Keyestudio-Doku, der MakeCode-Erweiterung und der Bibliothek abgeleitet). Zu prüfen:
