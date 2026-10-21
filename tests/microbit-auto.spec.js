@@ -211,7 +211,7 @@ test.describe('micro:bit-Kurs: Roboterauto (Anleitung zum Abhaken)', () => {
     await expect(page.locator('.projekt-card')).toHaveCount(1);
     await page.locator('.filter-reset').click();
     await page.locator('.filter-chip', { hasText: 'micro:bit' }).click();
-    await expect(page.locator('.projekt-card')).toHaveCount(1);
+    await expect(page.locator('.projekt-card')).toHaveCount(2);
 
     await page.locator('a.projekt-card[href="/kurs/projekt-microbit-auto"]').click();
     await expect(page.locator('.course-description')).toContainText('Roboterauto');

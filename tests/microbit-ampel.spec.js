@@ -149,13 +149,12 @@ test.describe('micro:bit-Kurs: Ampelanlage (Anleitung zum Abhaken)', () => {
     await expect(page.locator('.lesson-item').nth(1)).not.toHaveClass(/locked/);
   });
 
-  test('Kurs ist noch nicht verlinkt, aber per direktem Link erreichbar', async ({ page }) => {
+  test('Kurs ist in der Projekte-Übersicht verlinkt, der Filter Elektronik zeigt ihn', async ({ page }) => {
     await page.goto('/projekte');
-    await expect(page.locator('.projekt-card').first()).toBeVisible({ timeout: 15000 });
-    await expect(page.locator('a[href="/kurs/projekt-microbit-ampel"]')).toHaveCount(0);
-    await expect(page.locator('.filter-chip', { hasText: 'Elektronik' })).toHaveCount(0);
-
-    await page.goto('/kurs/projekt-microbit-ampel');
+    await expect(page.locator('a.projekt-card[href="/kurs/projekt-microbit-ampel"]')).toBeVisible({ timeout: 15000 });
+    await page.locator('.filter-chip', { hasText: 'Elektronik' }).click();
+    await expect(page.locator('.projekt-card')).toHaveCount(1);
+    await page.locator('a.projekt-card[href="/kurs/projekt-microbit-ampel"]').click();
     await expect(page.locator('.course-description')).toContainText('Breadboard');
     await expect(page.locator('.btn-start-course')).toBeVisible();
   });
