@@ -52,16 +52,23 @@ test.describe('UI: Admin + Header-Login', () => {
   });
 
   test('Admin: Reiter Kurse listet nicht verlinkte Kurse zuerst, mit Beta-Kennzeichnung und Link', async ({ page }) => {
+    // Seit alle micro:bit-Kurse verlinkt sind, ist kein Kurs mehr "unlisted" - der Test stellt einen her.
+    await page.route('**/kurse.json', async (route) => {
+      const kurse = await (await route.fetch()).json();
+      kurse.find((k) => k.id === 'projekt-microbit-sterne').unlisted = true;
+      await route.fulfill({ json: kurse });
+    });
     await page.goto('/admin');
     await page.locator('.admin-login-card input[type="password"]').fill(ADMIN_PASSWORD);
     await page.locator('.admin-login-card .btn-primary').click();
     await page.locator('.admin-tab', { hasText: /Kurse|Courses/ }).click();
 
     const rows = page.locator('.admin-kurse tbody tr');
-    await expect(rows.first()).toHaveAttribute('data-kurs', 'projekt-microbit-ampel');
+    await expect(rows.first()).toHaveAttribute('data-kurs', 'projekt-microbit-sterne');
     await expect(rows.first().locator('.badge-unlisted')).toBeVisible();
     await expect(rows.first().locator('.beta-badge')).toBeVisible();
-    await expect(rows.first().locator('a')).toHaveAttribute('href', '/kurs/projekt-microbit-ampel');
+    await expect(rows.first().locator('a')).toHaveAttribute('href', '/kurs/projekt-microbit-sterne');
+    await expect(page.locator('.admin-kurse .badge-unlisted')).toHaveCount(1);
 
     const auto = page.locator('.admin-kurse tr[data-kurs="projekt-microbit-auto"]');
     await expect(auto.locator('.badge-unlisted')).toHaveCount(0);

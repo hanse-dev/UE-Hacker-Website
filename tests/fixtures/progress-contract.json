@@ -250,6 +250,13 @@
       "lektion-10",
       "lektion-11"
     ],
+    "microbit-sterne": [
+      "lektion-01",
+      "lektion-02",
+      "lektion-03",
+      "lektion-04",
+      "lektion-05"
+    ],
     "morsecode": [
       "lektion-01",
       "lektion-02",
@@ -2055,6 +2062,7 @@
     "projekt-js-spielewerkstatt",
     "projekt-microbit-ampel",
     "projekt-microbit-auto",
+    "projekt-microbit-sterne",
     "projekt-morsecode",
     "projekt-text-adventure",
     "projekt-vigenere-chiffre",

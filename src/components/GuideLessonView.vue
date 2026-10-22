@@ -365,6 +365,7 @@ export default {
 .lesson-content :deep(.mc-musik) { background: #e63022; }
 .lesson-content :deep(.mc-pins) { background: #b22222; }
 .lesson-content :deep(.mc-funk) { background: #e3008c; }
+.lesson-content :deep(.mc-led) { background: #5c2d91; }
 
 .lesson-editor-section {
   background: #f8f9fa;

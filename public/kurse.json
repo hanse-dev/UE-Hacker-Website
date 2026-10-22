@@ -208,6 +208,20 @@
     "contentPath": "microbit-ampel"
   },
   {
+    "id": "projekt-microbit-sterne",
+    "type": "projekt",
+    "engine": "anleitung",
+    "language": "microbit",
+    "level": "einsteiger",
+    "tags": ["spiele"],
+    "beta": true,
+    "title": "micro:bit: Fang den Stern",
+    "title_en": "micro:bit: Catch the Star",
+    "description": "Programmiert euer erstes Spiel auf der LED-Anzeige des micro:bit: Mit den Knöpfen A und B steuert ihr einen Korb und fangt fallende Sterne. Nach jeder Stufe ist das Spiel schon spielbar, in der Werkstatt wird es schneller, lauter oder gefährlicher. Ohne Kabel und Breadboard, jede Stufe mit Blöcken, Python und JavaScript.",
+    "description_en": "Program your first game on the micro:bit's LED display: steer a basket with buttons A and B and catch falling stars. The game is playable after every level, and in the workshop you make it faster, louder or more dangerous. No wires or breadboard needed, every level comes with blocks, Python and JavaScript. The guide is currently available in German.",
+    "contentPath": "microbit-sterne"
+  },
+  {
     "id": "web-erste-website",
     "type": "lektionen",
     "format": "einstieg",
