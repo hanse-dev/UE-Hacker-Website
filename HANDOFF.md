@@ -42,7 +42,7 @@ Alles unten ist nach `main` gemergt. Details: `grep -n "^### 3.NN" docs/archiv/H
 | 3.63–3.65, 3.84, 3.112 | Admin und Betrieb | Thermodrucker (`scripts/local-tools/`), Termine im Admin, Beta-Kennzeichen + Admin-Reiter „Kurse“ |
 | 3.86/3.93, 3.95 | Kursseite und Downloads | Start-Gate `?started=1`, Offline-Downloads in 3 Formaten |
 | 3.88/3.90, 3.92, 3.103/3.104, 3.106/3.107 | JS-Kurse und Sandbox | DOM-Projekte Memory/Quiz (`sandboxMode: "dom"`), eine Arbeitsfläche pro Lektion |
-| 3.101, 3.109, 3.119 | micro:bit | `engine: "anleitung"` → `GuideLessonView.vue` (Blöcke/Python, Ampel auch JavaScript); beide verlinkt, `"unlisted": true` versteckt künftige Kurse |
+| 3.101, 3.109, 3.119, 3.120 | micro:bit | `engine: "anleitung"` → `GuideLessonView.vue` (Blöcke/Python, Ampel, „Fang den Stern“ und Einführung auch JavaScript); Einführung `unlisted`, jede micro:bit-Kursseite verweist per Kasten darauf |
 | 3.108, 3.110, 3.111 | Begriffs-Links | `content/begriffe.json` + `useConcepts.js`; jeder neue Kurs braucht Links oder eine begründete Ausnahme |
 | 3.113 | Turtle-Shim entfernt | kein Kurs nutzt Turtle mehr |
 | 3.114–3.117 | Web-Track „Meine erste Website“ | `sandboxMode: "web"`, `validation.type: 'web'`; Stufenwahl `WebsiteCourse.vue`: Einfach (Lektionsliste, `finalCheck`, „Meine Seite“ wächst mit) und Intensiv (`WeeklyCourseTour.vue`, `content/web-grundkurs-*`) |

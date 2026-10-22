@@ -1,0 +1,105 @@
+[
+  {
+    "id": "lektion-01",
+    "title": "Startklar: Spielfeld und erstes Bild",
+    "file": "lektion-01.md",
+    "lessonSummary": "Euer micro:bit ist verbunden und zeigt Stern und Korb. Tauscht die Rollen, jetzt kommt Bewegung ins Spiel.",
+    "tasks": [
+      {
+        "instruction": "Der Editor ist in Chrome oder Edge offen."
+      },
+      {
+        "instruction": "Der micro:bit ist verbunden, und unser Programm ist übertragen."
+      },
+      {
+        "instruction": "Oben in der Mitte leuchtet der Stern, unten in der Mitte der Korb."
+      },
+      {
+        "instruction": "Wir haben ein eigenes Bild aus einzelnen Punkten gezeichnet.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "title": "Stufe 1: Der Korb",
+    "file": "lektion-02.md",
+    "lessonSummary": "Euer Korb fährt hin und her und bleibt am Rand stehen. Tauscht die Rollen, gleich fallen Sterne.",
+    "tasks": [
+      {
+        "instruction": "Knopf A schiebt den Korb nach links."
+      },
+      {
+        "instruction": "Knopf B schiebt den Korb nach rechts."
+      },
+      {
+        "instruction": "Am Rand bleibt der Korb stehen und verschwindet nicht."
+      },
+      {
+        "instruction": "Der Korb fährt durch die Wand: Links hinaus, rechts wieder herein.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "title": "Stufe 2: Der Stern fällt",
+    "file": "lektion-03.md",
+    "lessonSummary": "Es regnet Sterne! Tauscht die Rollen, jetzt wird gefangen.",
+    "tasks": [
+      {
+        "instruction": "Ein Stern fällt von oben nach unten."
+      },
+      {
+        "instruction": "Unten angekommen, fällt oben ein neuer Stern los."
+      },
+      {
+        "instruction": "Jeder neue Stern startet in einer zufälligen Spalte."
+      },
+      {
+        "instruction": "Der Stern zieht einen schwachen Schweif hinter sich her.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-04",
+    "title": "Stufe 3: Fangen und Punkte",
+    "file": "lektion-04.md",
+    "lessonSummary": "Euer Spiel ist fertig! Fordert ein anderes Team heraus: Wer fängt mehr Sterne?",
+    "tasks": [
+      {
+        "instruction": "Fängt der Korb den Stern, bekommen wir einen Punkt."
+      },
+      {
+        "instruction": "Fällt ein Stern daneben, zeigt der micro:bit unsere Punkte."
+      },
+      {
+        "instruction": "Danach geht es mit 0 Punkten weiter."
+      },
+      {
+        "instruction": "Wir haben drei Leben. Erst wenn alle weg sind, ist das Spiel vorbei.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-05",
+    "title": "Werkstatt: Euer Spiel, eure Regeln",
+    "file": "lektion-05.md",
+    "lessonSummary": "Stark! Euer Spiel kann mehr als am Anfang gedacht. Lasst andere Teams eure Version spielen.",
+    "tasks": [
+      {
+        "instruction": "Wir haben einen Auftrag gelöst und einem anderen Team gezeigt."
+      },
+      {
+        "instruction": "Wir haben einen zweiten Auftrag gelöst.",
+        "isBonus": true
+      },
+      {
+        "instruction": "Wir haben zwei Aufträge in einem Programm verbunden.",
+        "isBonus": true
+      }
+    ]
+  }
+]

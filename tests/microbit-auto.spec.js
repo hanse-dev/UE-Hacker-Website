@@ -211,7 +211,7 @@ test.describe('micro:bit-Kurs: Roboterauto (Anleitung zum Abhaken)', () => {
     await expect(page.locator('.projekt-card')).toHaveCount(1);
     await page.locator('.filter-reset').click();
     await page.locator('.filter-chip', { hasText: 'micro:bit' }).click();
-    await expect(page.locator('.projekt-card')).toHaveCount(2);
+    await expect(page.locator('.projekt-card')).toHaveCount(3);
 
     await page.locator('a.projekt-card[href="/kurs/projekt-microbit-auto"]').click();
     await expect(page.locator('.course-description')).toContainText('Roboterauto');
@@ -230,6 +230,7 @@ test.describe('micro:bit-Kurs: Roboterauto (Anleitung zum Abhaken)', () => {
     await expect(page.locator('.projekt-card').first()).toBeVisible({ timeout: 15000 });
     await expect(page.locator('a[href="/kurs/projekt-microbit-auto"]')).toHaveCount(0);
     await expect(page.locator('a[href="/kurs/projekt-microbit-ampel"]')).toHaveCount(0);
+    await expect(page.locator('a[href="/kurs/projekt-microbit-sterne"]')).toHaveCount(0);
     await expect(page.locator('.filter-chip', { hasText: 'micro:bit' })).toHaveCount(0);
     await expect(page.locator('.filter-chip', { hasText: 'Robotik' })).toHaveCount(0);
 

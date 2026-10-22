@@ -1,0 +1,56 @@
+[
+  {
+    "id": "lektion-01",
+    "title": "Das ist der micro:bit",
+    "file": "lektion-01.md",
+    "lessonSummary": "Ihr kennt euren micro:bit. Jetzt bekommt er sein erstes Programm.",
+    "tasks": [
+      {
+        "instruction": "Wir haben Knopf A, Knopf B und die LED-Anzeige gefunden."
+      },
+      {
+        "instruction": "Wir haben auf der Rückseite die USB-Buchse gefunden."
+      },
+      {
+        "instruction": "Wir haben die Anschlüsse 0, 1, 2, 3V und GND gefunden.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-02",
+    "title": "Das erste Programm",
+    "file": "lektion-02.md",
+    "lessonSummary": "Euer micro:bit zeigt ein Herz, und ihr wisst, was bei Problemen mit dem Verbinden hilft.",
+    "tasks": [
+      {
+        "instruction": "Der Editor ist in Chrome oder Edge offen."
+      },
+      {
+        "instruction": "Der micro:bit zeigt ein Herz."
+      },
+      {
+        "instruction": "Der micro:bit zeigt unsere Namen als Laufschrift.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-03",
+    "title": "Die Knöpfe",
+    "file": "lektion-03.md",
+    "lessonSummary": "Geschafft! Euer micro:bit hört auf seine Knöpfe. Ihr seid bereit für die micro:bit-Kurse.",
+    "tasks": [
+      {
+        "instruction": "Knopf A zeigt ein fröhliches Gesicht."
+      },
+      {
+        "instruction": "Knopf B zeigt ein trauriges Gesicht."
+      },
+      {
+        "instruction": "Schütteln würfelt eine Zahl von 1 bis 6.",
+        "isBonus": true
+      }
+    ]
+  }
+]

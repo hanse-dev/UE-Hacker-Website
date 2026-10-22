@@ -46,6 +46,22 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
         übernommen, `ändere zeit um -1` und `Erstelle eine Funktion` nicht dort nachgeschlagen).
         Neu: Wie heißt der Block, der einer Variable einen Pin zuweist (im Kurs `setze fuss_rot auf
         P13`), und wo findet man den Pin-Wert? Heißt der Umschalter oben im Editor „JavaScript“?
+- [ ] **micro:bit-Kurs „Fang den Stern“ (`content/microbit-sterne/`, HANDOFF 3.120, Beta) — vor dem
+      ersten Termin einmal am echten micro:bit durchspielen.** Python-Lösungen gegen ein nachgebautes
+      `microbit`-Modul simuliert, JavaScript mit `tsc` gegen eine nachgebaute MakeCode-API geprüft,
+      aber nichts lief auf dem Gerät. Zu prüfen:
+      - Fühlt sich das Tempo an (Blöcke/JS 400 ms je Schritt, Python 8 × 50 ms)? Ist Fangen machbar?
+      - Python: Laufen die Gerüste von Stufe 1/2 wirklich mit `index out of bounds` ab, wie im Text
+        angekündigt (MicroPython `display.set_pixel` außerhalb 0–4)?
+      - Startklar: Heißen Fenster und Knöpfe beim Verbinden so wie im Text („Gerät verbinden“,
+        „BBC micro:bit“, „An micro:bit senden“, „Speichern“)? Block-Namen `Zeichne x … y …`/`lösche x … y …`
+        (aus den offiziellen Übersetzungen) und die Kategorie „LED“ im Editor abgleichen.
+      - Werkstatt: Heißt die Gesten-Auswahl im Block wirklich „nach links neigen“?
+      - Einführung (`content/microbit-einfuehrung/`, gleicher Stand): Stimmt die Beschreibung der
+        Rückseite (Lampe neben der USB-Buchse)? Zeigt der Simulator rechts im Editor das Programm wie
+        beschrieben (Python: „Ausführen“)?
+      - Nach dem Durchspielen: `beta` in `kurse.json` entfernen und die ID in `tests/kurse-beta.spec.js`
+        (`NICHT_BETA`) eintragen.
 - [ ] micro:bit-Kurs: `public/microbit/keyes_MiniCar.py` stammt aus dem Keyestudio-Download, eine
       Lizenz ist dort nicht angegeben. Vorschlag: bei Keyestudio nachfragen oder die Datei durch
       einen Link auf deren Download ersetzen (dann fehlt die Korrektur für `get_distance()`).

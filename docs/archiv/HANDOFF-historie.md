@@ -2891,6 +2891,33 @@ Frage des Nutzers: Warum gibt es noch Turtle-Tests, obwohl Turtle nirgends behan
   geprüft (Scratchpad), Python-Lösungen von Stufe 2/3 erneut simuliert.
 - Funkgruppe im Code als `x`, Text sagt, dass dort die Nummer der Kursleitung hinkommt.
 
+### 3.120 — micro:bit-Kurs „Fang den Stern“ (Branch `microbit-sterne`)
+
+- Gewünscht als leichtere Alternative zu Snake für eine gemischte Gruppe (Neue und Erfahrene):
+  Korb unten, fallende Sterne, nur die 5×5-Anzeige und die Knöpfe A/B, keine Zusatzteile. Snake
+  bewusst nicht als Meisterstufe (Eike: zu viel).
+- 5 Lektionen: Startklar (Spielfeld, erstes Bild, Verbinden mit Prüfliste und Plan B per
+  `.hex`-Datei), Stufe 1 Korb, Stufe 2 Stern, Stufe 3 Fangen und Punkte, Werkstatt mit 6 Aufträgen.
+  Nach jeder Stufe ist etwas spielbar (schnelle MVPs), viele Bilder, wenig Text.
+- Bilder erzeugt `scripts/build_sterne_bilder.py` (später umbenannt, siehe unten) (micro:bit-Anzeige als SVG, Bildfolgen mit
+  höchstens 2–3 Bildern je Zeile, damit sie auf dem Handy lesbar bleiben).
+- Blöcke/JavaScript arbeiten mit Ereignissen (`wenn Knopf A geklickt`) und `led.plot/unplot`; Python
+  mit einer Schleife alle 50 ms und einem `takt`-Zähler, damit der Korb schnell reagiert, obwohl der
+  Stern langsam fällt. Neue Block-Kategorie `led` (MakeCode-Farbe `#5c2d91`).
+- Rand-Problem als Lernmoment: Das Gerüst lässt den Korb über den Rand fahren (Blöcke: Punkt
+  verschwindet, Python: Fehlermeldung), die Lösung prüft `korb > 0`/`korb < 4`.
+- Verlinkt mit Beta-Kennzeichen; `tests/microbit-sterne.spec.js`.
+- **Einführung „micro:bit: Erste Schritte“** (`projekt-microbit-einfuehrung`, Wunsch von Eike:
+  Neue bekommen die Erklärung, wer schon da war, überspringt sie). Eigener Kurs statt einer
+  vorgeschalteten Lektion, damit Lektions-IDs und Freischalt-Reihenfolge der bestehenden Kurse
+  unverändert bleiben. 3 Lektionen (Vorderseite, erstes Programm mit Verbindungs-Hilfe und Plan B,
+  Knöpfe), `unlisted`. `CourseDetail.vue` zeigt auf jeder Startseite mit `language: "microbit"`
+  einen Kasten „Neu beim micro:bit?“ mit Link; ist `lektion-03` der Einführung abgeschlossen
+  (localStorage), steht dort nur ein Haken. „Kurs starten“ = überspringen.
+- Bild-Skript heißt jetzt `scripts/build_microbit_bilder.py` und schreibt beide Ordner; die
+  Verbindungs-Hilfe liegt in `public/microbit/einfuehrung/` und wird auch von „Fang den Stern“ gezeigt.
+- Admin-Test (`auth-ui.spec.js`) erwartet jetzt die Einführung als einzigen nicht verlinkten Kurs.
+
 ---
 
 ## Frühere Feature-Tabelle aus HANDOFF.md (Stand 16.10.2026, wortgleich)
