@@ -23,6 +23,7 @@ Dieses Dokument beschreibt, welche Dateien zusammengehören und was bei Änderun
 | `web-erste-website` | Einfach: `content/web-erste-website/` + `content/web-erste-website-checks/`; Intensiv: `content/web-grundkurs-woche{1-9}/` + `content/web-grundkurs-checks/` | *(keine EN-Version)* | Stufenwahl (`WebsiteCourse.vue`): Einfach = Lektionsliste mit Abschluss-Check (`type: "lektionen"`, `finalCheck: true`), Intensiv = 9 Wochen mit Wochen-Checks (`WeeklyCourseTour.vue`, Titel/Lernziele in `src/data/webGrundkursWeeks.js`) |
 | `projekt-microbit-ampel` | `content/microbit-ampel/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON, `engine: "anleitung"`, LEDs auf dem Breadboard, Steckpläne als SVG) |
 | `projekt-microbit-sterne` | `content/microbit-sterne/` | *(keine EN-Version)* | Projekt-Kurs „Fang den Stern“ (Markdown + JSON, `engine: "anleitung"`, Spiel auf der 5×5-Anzeige, ohne Zusatzteile, Bilder als SVG) |
+| `projekt-microbit-einfuehrung` | `content/microbit-einfuehrung/` | *(keine EN-Version)* | Einführung „Erste Schritte“ (`engine: "anleitung"`, `unlisted`): jede Startseite eines micro:bit-Kurses (`language: "microbit"`) verweist Neue per Kasten hierher (`CourseDetail.vue`), die letzte Lektion verlinkt alle micro:bit-Kurse zurück |
 | *(Lektions-Format)* Woche 1–12 (alle) | `content/python-woche{N}-{abenteuer\|pferde\|scifi}/` | `content/python-woche{N}-{thema}-en/` | Markdown + JSON, Pyodide; ersetzt die Notebook-Schritte Lektion/Debug/Missionen/Boss jeder Woche/Variante/Sprache (siehe HANDOFF.md 3.47–3.54). Die alten `1_lektion`/`2_debug`/`3_missionen`/`5_boss`-Zellenordner gibt es nicht mehr — nur `0_glossar` und `6_loesungen` bleiben als Notebooks (Nachschlagewerke, siehe unten). |
 | `js-grundkurs` | `content/js-grundkurs/` (Beschreibung) + `content/js-grundkurs-woche{1-9}/` (Wochen) | *(keine EN-Version)* | Grundkurs (Markdown + JSON, `engine: "js-sandbox"`, eigene Mehrwochen-Struktur) |
 
@@ -509,13 +510,17 @@ Ordner-Mapping (immer paarweise anpassen):
       (für Funk `radio-strings.json`), Schlüssel mit `|block`.
 - [ ] Bilder als `<img src="/microbit/..." alt="...">` aus `public/microbit/` (passen sich der Spaltenbreite
       an). Die Steckpläne der Ampel erzeugt `python3 scripts/build_ampel_steckplaene.py` nach
-      `public/microbit/ampel/`, die Bilder von „Fang den Stern“ `python3 scripts/build_sterne_bilder.py`
-      nach `public/microbit/sterne/`; dort ändern und neu erzeugen, nie die SVGs von Hand bearbeiten.
+      `public/microbit/ampel/`, die Bilder von Einführung und „Fang den Stern“
+      `python3 scripts/build_microbit_bilder.py` nach `public/microbit/einfuehrung/` (auch die Hilfe
+      beim Verbinden, die jeder Kurs zeigen darf) und `public/microbit/sterne/`; dort ändern und neu
+      erzeugen, nie die SVGs von Hand bearbeiten.
       Pinbelegung der Ampel (HANDOFF 3.119): Auto Rot/Gelb/Grün = P16/P15/P14, Fußgänger Rot/Grün =
       P13/P12, Taster P20.
 - [ ] Python-Beispiele einmal mit `python3` auf Syntax prüfen (`compile()`); ausführen lassen sie
       sich nur auf dem micro:bit. Die Bibliothek für das Auto liegt unter
       `public/microbit/keyes_MiniCar.py` (Keyestudio-Original mit einer Zeile Korrektur, siehe Dateikopf).
+- [ ] Neuer micro:bit-Kurs: in die Link-Liste am Ende von `content/microbit-einfuehrung/lektion-03.md`
+      aufnehmen (`tests/microbit-einfuehrung.spec.js` prüft das); der Einführungs-Kasten erscheint von selbst.
 - [ ] Neuer Ordner → Rechtschreib-Globs in `package.json` (`lint:spelling`) und Regel in
       `scripts/test-changed.mjs` ergänzen.
 

@@ -18,6 +18,7 @@ const WITHOUT_LINKS = {
   'projekt-microbit-auto': 'micro:bit (MakeCode/MicroPython, eigene Anleitungs-Ansicht), keine Begriffsliste',
   'projekt-microbit-ampel': 'micro:bit (MakeCode/MicroPython, eigene Anleitungs-Ansicht), keine Begriffsliste',
   'projekt-microbit-sterne': 'micro:bit (MakeCode/MicroPython, eigene Anleitungs-Ansicht), keine Begriffsliste',
+  'projekt-microbit-einfuehrung': 'micro:bit (MakeCode/MicroPython, eigene Anleitungs-Ansicht), keine Begriffsliste',
 };
 
 // Zielordner einer Grundkurs-Woche (für die Prüfung, dass `lektion` dort wirklich vorkommt).

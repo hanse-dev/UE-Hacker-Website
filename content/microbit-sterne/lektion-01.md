@@ -104,7 +104,7 @@ led.plot(2, 4)
 
 ## Verbindet sich nicht?
 
-<img src="/microbit/sterne/hilfe.svg" alt="Prüfliste: 1. Chrome oder Edge? Sonst die Seite dort öffnen. 2. Leuchtet hinten die gelbe Lampe? Sonst Kabel fester stecken oder anderen USB-Anschluss nehmen. 3. Zeigt der Computer ein Laufwerk MICROBIT? Sonst ein anderes Kabel nehmen, manche Kabel laden nur. 4. Nur ein Tab mit dem Editor offen? Sonst andere Tabs schließen und das Kabel ab- und anstecken. 5. Im Fenster den micro:bit ausgewählt? Sonst noch einmal verbinden und BBC micro:bit anklicken. Klappt es immer noch nicht: Plan B">
+<img src="/microbit/einfuehrung/hilfe.svg" alt="Prüfliste: 1. Chrome oder Edge? Sonst die Seite dort öffnen. 2. Leuchtet hinten die gelbe Lampe? Sonst Kabel fester stecken oder anderen USB-Anschluss nehmen. 3. Zeigt der Computer ein Laufwerk MICROBIT? Sonst ein anderes Kabel nehmen, manche Kabel laden nur. 4. Nur ein Tab mit dem Editor offen? Sonst andere Tabs schließen und das Kabel ab- und anstecken. 5. Im Fenster den micro:bit ausgewählt? Sonst noch einmal verbinden und BBC micro:bit anklicken. Klappt es immer noch nicht: Plan B">
 
 Noch drei Fälle:
 
@@ -114,7 +114,7 @@ Noch drei Fälle:
 
 ## Plan B: Datei aufs Laufwerk ziehen
 
-<img src="/microbit/sterne/plan-b.svg" alt="Plan B in drei Schritten: Programm als .hex-Datei herunterladen oder speichern, die Datei auf das Laufwerk MICROBIT ziehen, warten, bis die gelbe Lampe auf der Rückseite nicht mehr blinkt">
+<img src="/microbit/einfuehrung/plan-b.svg" alt="Plan B in drei Schritten: Programm als .hex-Datei herunterladen oder speichern, die Datei auf das Laufwerk MICROBIT ziehen, warten, bis die gelbe Lampe auf der Rückseite nicht mehr blinkt">
 
 :::bloecke
 

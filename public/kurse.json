@@ -182,6 +182,21 @@
     "contentPath": "text-adventure-fluchtraum"
   },
   {
+    "id": "projekt-microbit-einfuehrung",
+    "type": "projekt",
+    "engine": "anleitung",
+    "language": "microbit",
+    "level": "einsteiger",
+    "tags": [],
+    "beta": true,
+    "unlisted": true,
+    "title": "micro:bit: Erste Schritte",
+    "title_en": "micro:bit: First Steps",
+    "description": "Die Einführung für alle, die neu beim micro:bit sind: Knöpfe und LED-Anzeige kennenlernen, das erste Programm schreiben und übertragen, und was hilft, wenn sich der micro:bit nicht verbindet. Jeder micro:bit-Kurs verweist hierher.",
+    "description_en": "The introduction for everyone new to the micro:bit: get to know the buttons and the LED display, write and transfer your first program, and learn what helps if the micro:bit won't connect. Every micro:bit course links here. The guide is currently available in German.",
+    "contentPath": "microbit-einfuehrung"
+  },
+  {
     "id": "projekt-microbit-auto",
     "type": "projekt",
     "engine": "anleitung",

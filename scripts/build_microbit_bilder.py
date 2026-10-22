@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
-"""Zeichnet die Bilder für den micro:bit-Kurs "Fang den Stern" als SVG.
+"""Zeichnet die Bilder für die micro:bit-Kurse "Erste Schritte" und "Fang den Stern" als SVG.
 
-Aufruf: python3 scripts/build_sterne_bilder.py
-Schreibt nach public/microbit/sterne/. Die SVGs werden mit eingecheckt; wer ein Bild ändert,
-ändert es hier und lässt das Skript neu laufen (nie die SVGs von Hand bearbeiten).
+Aufruf: python3 scripts/build_microbit_bilder.py
+Schreibt nach public/microbit/einfuehrung/ (auch die Hilfe beim Verbinden, die alle Kurse zeigen
+dürfen) und public/microbit/sterne/. Die SVGs werden mit eingecheckt; wer ein Bild ändert, ändert
+es hier und lässt das Skript neu laufen (nie die SVGs von Hand bearbeiten).
 
 Das Spielfeld ist die 5×5-LED-Anzeige: x zählt von links (0) nach rechts (4), y von oben (0) nach
 unten (4). Der Korb steht immer in Reihe y = 4, der Stern fällt von y = 0 nach unten.
 """
 from pathlib import Path
 
-OUT = Path(__file__).resolve().parent.parent / 'public' / 'microbit' / 'sterne'
+OUT = Path(__file__).resolve().parent.parent / 'public' / 'microbit'
 FONT = 'font-family="Arial, Helvetica, sans-serif"'
 
 BOARD = '#23262b'
@@ -29,6 +30,17 @@ ACCENT = '#4a2274'
 DIGITS = {
     '3': ['.###.', '....#', '..##.', '....#', '.###.'],
 }
+
+# Eingebaute Bilder des micro:bit (Herz, Fröhlich, Traurig)
+ICONS = {
+    'herz': ['.#.#.', '#####', '#####', '.###.', '..#..'],
+    'froehlich': ['.....', '.#.#.', '.....', '#...#', '.###.'],
+    'traurig': ['.....', '.#.#.', '.....', '.###.', '#...#'],
+}
+
+
+def pattern(rows):
+    return {(x, y): 'on' for y, row in enumerate(rows) for x, c in enumerate(row) if c == '#'}
 
 
 def svg(width, height, title, body):
@@ -297,26 +309,85 @@ def neigen():
     return svg(400, 60 + h + 56, title, body)
 
 
+def vorderseite():
+    """Vorderseite mit Beschriftungen links und rechts."""
+    title = 'Die Vorderseite des micro:bit'
+    cell = 30
+    x0, y0 = 170, 70
+    parts, w, h = display(x0, y0 + 40, pattern(ICONS['herz']), cell=cell)
+    body = [text(340, 30, title, size=18, weight='bold')]
+    # Platine nach oben (Logo) und unten (Anschlüsse) verlängern
+    body.append(f'<rect x="{x0}" y="{y0}" width="{w}" height="{h + 110}" rx="18" fill="{BOARD}"/>')
+    body += parts
+    # Logo: zwei Kreise in einem Oval, wie auf dem micro:bit V2
+    lx, ly = x0 + w / 2, y0 + 22
+    body.append(f'<rect x="{lx - 26}" y="{ly - 12}" width="52" height="24" rx="12" fill="none" stroke="#d4a017" stroke-width="3"/>')
+    body.append(f'<circle cx="{lx - 12}" cy="{ly}" r="5" fill="#d4a017"/><circle cx="{lx + 12}" cy="{ly}" r="5" fill="#d4a017"/>')
+    # Anschlüsse unten
+    pins_y = y0 + 40 + h + 14
+    labels = ['0', '1', '2', '3V', 'GND']
+    for i, label in enumerate(labels):
+        px = x0 + 22 + i * (w - 44) / 4
+        body.append(f'<rect x="{px - 16}" y="{pins_y}" width="32" height="44" rx="4" fill="#d4a017"/>')
+        body.append(f'<circle cx="{px}" cy="{pins_y + 16}" r="7" fill="{BOARD}"/>')
+        body.append(text(px, pins_y + 40, label, size=11, color=BOARD, weight='bold'))
+
+    def callout(tx, ty, ax, ay, lines, anchor):
+        out = [f'<line x1="{tx}" y1="{ty}" x2="{ax}" y2="{ay}" stroke="{ACCENT}" stroke-width="2"/>',
+               f'<circle cx="{ax}" cy="{ay}" r="4" fill="{ACCENT}"/>']
+        lx2 = tx - 6 if anchor == 'end' else tx + 6
+        for i, line in enumerate(lines):
+            out.append(text(lx2, ty + 5 + i * 17, line, size=14 if i == 0 else 12,
+                            color=TEXT if i == 0 else MUTED, weight='bold' if i == 0 else 'normal', anchor=anchor))
+        return out
+
+    knopf = cell * 1.4
+    side_y = y0 + 40 + h / 2
+    body += callout(150, side_y, x0 + knopf / 2, side_y, ['Knopf A', 'links'], 'end')
+    body += callout(x0 + w + 20, side_y, x0 + w - knopf / 2, side_y, ['Knopf B', 'rechts'], 'start')
+    body += callout(x0 + w + 20, y0 + 22, lx + 28, ly, ['Logo', 'reagiert auf Berühren'], 'start')
+    body += callout(150, y0 + 40 + 40, x0 + knopf + cell, y0 + 40 + cell * 1.5, ['LED-Anzeige', '5 × 5 Lampen'], 'end')
+    body += callout(150, pins_y + 22, x0 + 6, pins_y + 22, ['Anschlüsse', 'für Kabel'], 'end')
+    return svg(680, pins_y + 70, title, body)
+
+
+def herz():
+    title = 'Das soll euer micro:bit zeigen'
+    parts, w, h = display(20, 44, pattern(ICONS['herz']), cell=26)
+    return svg(w + 40, h + 64, title, [text((w + 40) / 2, 26, title, size=16, weight='bold')] + parts)
+
+
+def knoepfe():
+    return frames('Knopf A: fröhlich, Knopf B: traurig', [
+        (pattern(ICONS['froehlich']), 'A', 'Knopf A', None),
+        (pattern(ICONS['traurig']), 'B', 'Knopf B', None),
+    ], cell=18)
+
+
 IMAGES = {
-    'spielfeld': spielfeld,
-    'ziel': ziel,
-    'start': start,
-    'stufe-1': stufe1,
-    'rand': rand,
-    'stufe-2': stufe2,
-    'stufe-3': stufe3,
-    'hilfe': hilfe,
-    'plan-b': plan_b,
-    'schneller': schneller,
-    'bombe': bombe,
-    'neigen': neigen,
+    'einfuehrung/vorderseite': vorderseite,
+    'einfuehrung/herz': herz,
+    'einfuehrung/knoepfe': knoepfe,
+    'einfuehrung/hilfe': hilfe,
+    'einfuehrung/plan-b': plan_b,
+    'sterne/spielfeld': spielfeld,
+    'sterne/ziel': ziel,
+    'sterne/start': start,
+    'sterne/stufe-1': stufe1,
+    'sterne/rand': rand,
+    'sterne/stufe-2': stufe2,
+    'sterne/stufe-3': stufe3,
+    'sterne/schneller': schneller,
+    'sterne/bombe': bombe,
+    'sterne/neigen': neigen,
 }
 
 
 def main():
-    OUT.mkdir(parents=True, exist_ok=True)
     for name, build in IMAGES.items():
-        (OUT / f'{name}.svg').write_text(build(), encoding='utf-8')
+        target = OUT / f'{name}.svg'
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(build(), encoding='utf-8')
         print(f'✓ {name}.svg')
 
 

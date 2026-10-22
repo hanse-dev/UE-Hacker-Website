@@ -57,6 +57,9 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
         „BBC micro:bit“, „An micro:bit senden“, „Speichern“)? Block-Namen `Zeichne x … y …`/`lösche x … y …`
         (aus den offiziellen Übersetzungen) und die Kategorie „LED“ im Editor abgleichen.
       - Werkstatt: Heißt die Gesten-Auswahl im Block wirklich „nach links neigen“?
+      - Einführung (`content/microbit-einfuehrung/`, gleicher Stand): Stimmt die Beschreibung der
+        Rückseite (Lampe neben der USB-Buchse)? Zeigt der Simulator rechts im Editor das Programm wie
+        beschrieben (Python: „Ausführen“)?
       - Nach dem Durchspielen: `beta` in `kurse.json` entfernen und die ID in `tests/kurse-beta.spec.js`
         (`NICHT_BETA`) eintragen.
 - [ ] micro:bit-Kurs: `public/microbit/keyes_MiniCar.py` stammt aus dem Keyestudio-Download, eine

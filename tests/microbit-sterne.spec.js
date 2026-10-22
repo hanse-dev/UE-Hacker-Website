@@ -68,7 +68,7 @@ test.describe('micro:bit-Kurs: Fang den Stern (Anleitung zum Abhaken)', () => {
       const [imgBox, contentBox] = [await img.boundingBox(), await content.boundingBox()];
       expect(imgBox.x + imgBox.width).toBeLessThanOrEqual(contentBox.x + contentBox.width);
     }
-    await expect(content.locator('img[src="/microbit/sterne/hilfe.svg"]')).toBeVisible();
+    await expect(content.locator('img[src="/microbit/einfuehrung/hilfe.svg"]')).toBeVisible();
   });
 
   test('LED-Blöcke haben die MakeCode-Farbe, alle drei Ansichten stehen zur Wahl', async ({ page }) => {

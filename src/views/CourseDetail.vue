@@ -13,6 +13,16 @@
           </router-link>
         </div>
 
+        <div v-if="showMicrobitIntro" class="placement-banner microbit-intro-banner">
+          <p v-if="microbitIntroDone">✓ {{ t('course.microbitIntro.done') }}</p>
+          <template v-else>
+            <p>{{ t('course.microbitIntro.banner') }}</p>
+            <router-link :to="`/kurs/${MICROBIT_INTRO_ID}`" class="placement-banner-link">
+              {{ t('course.microbitIntro.link') }}
+            </router-link>
+          </template>
+        </div>
+
         <div v-if="isWeeklyCourse" class="course-structure">
           <p class="course-structure-intro">{{ t('course.structure.intro') }}</p>
           <div class="course-structure-tabs">
@@ -100,6 +110,10 @@ const STRUCTURE_STEPS_CONFIG = [
   { key: 'cert',    icon: '🎓', titleKey: 'course.structure.step.cert.title',    descKey: 'course.structure.step.cert.desc' },
 ];
 
+const MICROBIT_INTRO_ID = 'projekt-microbit-einfuehrung';
+const MICROBIT_INTRO_KEY = 'ue-hacker-interactive-progress-microbit-einfuehrung';
+const MICROBIT_INTRO_LAST_LESSON = 'lektion-03';
+
 export default {
   name: 'CourseDetail',
   components: {
@@ -148,6 +162,21 @@ export default {
     );
     const started = ref(!!route.query.week || route.query.started === '1');
 
+    // micro:bit-Kurse: Neue gehen zuerst durch die Einführung (eigener Kurs), wer schon dabei war,
+    // überspringt sie mit "Kurs starten". Ist die Einführung abgeschlossen, steht dort nur ein Haken.
+    const showMicrobitIntro = computed(() =>
+      course.value?.language === 'microbit' && props.id !== MICROBIT_INTRO_ID
+    );
+    const microbitIntroDone = ref(false);
+    const checkMicrobitIntro = () => {
+      try {
+        const saved = JSON.parse(localStorage.getItem(MICROBIT_INTRO_KEY) || '{}');
+        microbitIntroDone.value = (saved.completedLessonIds || []).includes(MICROBIT_INTRO_LAST_LESSON);
+      } catch {
+        microbitIntroDone.value = false;
+      }
+    };
+
     const startCourse = () => {
       started.value = true;
       router.replace({ query: { ...route.query, started: '1' } });
@@ -191,13 +220,17 @@ export default {
       }
     };
 
-    onMounted(loadCourse);
+    onMounted(() => {
+      checkMicrobitIntro();
+      loadCourse();
+    });
 
     // Same component instance is reused when switching /kurs/:id → must reload, and the
     // "Kurs starten"-Gate must re-evaluate for the new course's query params instead of keeping
     // the previous course's started-state.
     watch(() => props.id, () => {
       started.value = !!route.query.week || route.query.started === '1';
+      checkMicrobitIntro();
       loadCourse();
     });
 
@@ -222,6 +255,9 @@ export default {
       isJsGrundkurs,
       isKiLabor,
       isFocusableCourse,
+      showMicrobitIntro,
+      microbitIntroDone,
+      MICROBIT_INTRO_ID,
       started,
       startCourse,
       backToOverview,
