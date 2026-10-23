@@ -135,6 +135,7 @@ const RULES = [
   ['scripts/build_kilabor_notebook.py', ['tests/lesson-notebook-generator.spec.js', 'tests/ki-labor.spec.js']],
   ['scripts/build_offline_py.py', ['tests/lesson-notebook-generator.spec.js']],
   ['scripts/check_kilabor_solutions.py', ['tests/lesson-notebook-generator.spec.js']],
+  ['scripts/check_verstaendlichkeit.py', ['tests/verstaendlichkeit.spec.js']],
   ['scripts/notebook_utils.py', ['tests/lesson-notebook-generator.spec.js']],
   ['src/components/OfflineDownloads.vue', ['tests/python-woche1-lektionen.spec.js', 'tests/ki-labor.spec.js', 'tests/projekte.spec.js']],
   ['src/components/WeekTourSideMenu.vue', ['tests/python-woche1-lektionen.spec.js']],

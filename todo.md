@@ -9,6 +9,11 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
 
 ## Offen
 
+- [ ] **Verständlichkeit (Branch `verstaendlichkeit`, HANDOFF 3.123).** Bericht per
+      `npm run check:verstaendlichkeit`. Offen: (a) die Funde „nie gezeigt“ im Content beheben,
+      (b) anonymer Stolperstellen-Zähler je Aufgabe (Fehlversuche, Überspringen, Lösung angesehen),
+      (c) KI als Test-Kind (Modell kennt nur die bisherigen Lektionen und meldet Unklares).
+
 - [ ] Einmaliger Ausfall im vollen Lauf unter Last (15.10., parallel liefen Tests anderer Sessions,
       Suite 4,5 statt ~2,3 Min.): `tests/ki-labor.spec.js` Woche 3 (Python-Lauf > 10 s, Timeout pro
       Lauf seitdem 30 s), allein 3× grün. Der zweite Ausfall (Turtle-Test) ist mit 3.113 weggefallen.

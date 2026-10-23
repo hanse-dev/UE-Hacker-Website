@@ -48,6 +48,7 @@ Alles unten ist nach `main` gemergt. Details: `grep -n "^### 3.NN" docs/archiv/H
 | 3.113 | Turtle-Shim entfernt | kein Kurs nutzt Turtle mehr |
 | 3.114–3.117 | Web-Track „Meine erste Website“ | `sandboxMode: "web"`, `validation.type: 'web'`; Stufenwahl `WebsiteCourse.vue`: Einfach (Lektionsliste, `finalCheck`, „Meine Seite“ wächst mit) und Intensiv (`WeeklyCourseTour.vue`, `content/web-grundkurs-*`) |
 | 3.122 | Dark Mode | `useTheme.js` (System/Hell/Dunkel in „Optionen“, nur `localStorage` `ue-hacker-theme`), Inline-Skript in `index.html`, Farb-Tokens in `src/style.css`, Editor-Farben `src/utils/editorTheme.js` |
+| 3.123 | Verständlichkeit prüfen | `npm run check:verstaendlichkeit [-- --wochen 1-3 --out bericht.md]` (`scripts/check_verstaendlichkeit.py`): Lösung braucht nie Gezeigtes, zu viel Neues, Begriff zu früh, Fachwörter, lange Sätze/LIX; nur Bericht, kein Test-Gate |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 

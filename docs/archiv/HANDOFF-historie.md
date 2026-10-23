@@ -3021,3 +3021,20 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   hell), erst der Produktions-Build (`test:devskip` im Pre-push) bricht ab. Behoben + Test
   „Inhaltsbereiche haben in beiden Modi ihre Fläche“. Lehre: Farb-Regex nie auf Variablennamen
   loslassen, nach Massen-Ersetzungen `npx vite build` laufen lassen.
+
+### 3.123 — Verständlichkeit prüfen (Branch `verstaendlichkeit`)
+
+- Anlass (23.10.2026): Kurse sind für Eike verständlich, für Teilnehmende oft nicht („Fluch des
+  Wissens“). Drei Bausteine: (1) statischer Bericht, (2) anonymer Stolperstellen-Zähler,
+  (3) KI als Test-Kind. Beobachten im Unterricht macht Eike bereits.
+- (1) `scripts/check_verstaendlichkeit.py` (`npm run check:verstaendlichkeit`), nur Python-12-Wochen,
+  nur DE. Liest Bausteine per `ast` aus Lektionstext (Code-Blöcke, Inline-Code, Erwähnungen wie
+  „mit strip()“), Beispielen und Code-Gerüsten und vergleicht sie mit den Musterlösungen aus
+  `*_6_loesungen` (Zuordnung über die Reihenfolge der Nicht-Beispiel-Aufgaben, wie
+  `build_lesson_bundle.py`). Was eine Lösung braucht, gilt danach als bekannt (sonst meldet jede
+  spätere Aufgabe es erneut). Weitere Kategorien: mehr als 4 neue Bausteine je Lektion (alle
+  Vergleiche zählen als einer), Begriff aus `begriffe.json` vor seiner Woche (je Begriff nur die erste
+  Stelle; „Funktion“ ist ab Woche 1 erlaubt, `BEGRIFF_AB_WOCHE`), erstes Auftreten von Fachwörtern
+  (Groß/klein zählt, damit `klasse = …` nicht zählt), Sätze > 20 Wörter, LIX > 45.
+- Bewusst nur ein Bericht, kein Test-Gate: Lange Sätze und Fachwörter brauchen ein menschliches
+  Urteil. `tests/verstaendlichkeit.spec.js` prüft die Logik an einem Mini-Kurs (`--content`).
