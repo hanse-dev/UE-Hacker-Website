@@ -1,5 +1,5 @@
 <template>
-  <div class="project-course" :class="{ 'project-course-wide': engine === 'js-sandbox' && showCanvas }">
+  <div class="project-course" :class="{ 'project-course-wide': engine === 'js-sandbox' }">
     <div v-if="loading" class="loading">{{ t('lessons.loading') }}</div>
     <div v-else-if="error" class="error">{{ error }}</div>
 

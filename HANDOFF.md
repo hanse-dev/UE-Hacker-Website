@@ -41,7 +41,7 @@ Alles unten ist nach `main` gemergt. Details: `grep -n "^### 3.NN" docs/archiv/H
 | 3.83, 3.87, 3.89/3.97, 3.98, 3.118 | Tooling | `test-changed.mjs`, Worktrees, Dev-Modus `dev:skip-checks` (API + Vite, auch Admin ohne Passwort), cspell + `lint:spelling:de` |
 | 3.63–3.65, 3.84, 3.112 | Admin und Betrieb | Thermodrucker (`scripts/local-tools/`), Termine im Admin, Beta-Kennzeichen + Admin-Reiter „Kurse“ |
 | 3.86/3.93, 3.95 | Kursseite und Downloads | Start-Gate `?started=1`, Offline-Downloads in 3 Formaten |
-| 3.88/3.90, 3.92, 3.103/3.104, 3.106/3.107 | JS-Kurse und Sandbox | DOM-Projekte Memory/Quiz (`sandboxMode: "dom"`), eine Arbeitsfläche pro Lektion |
+| 3.88/3.90, 3.92, 3.103/3.104, 3.106/3.107 | JS-Kurse und Sandbox | DOM-Projekte Memory/Quiz (`sandboxMode: "dom"`), eine Arbeitsfläche pro Lektion (breit rechts, auch in reinen Konsolen-Lektionen mit der Ausgabe) |
 | 3.101, 3.109, 3.119, 3.120 | micro:bit | `engine: "anleitung"` → `GuideLessonView.vue` (Blöcke/Python, Ampel, „Fang den Stern“ und Einführung auch JavaScript); Einführung `unlisted`, jede micro:bit-Kursseite verweist per Kasten darauf; keine Paar-Rollen (Kurse funktionieren auch allein) |
 | 3.121 | Partnerarbeit + Gutschrift | `PartnerBox.vue`/`usePartner.js` (zweiter Account schreibt per `PATCH /api/progress` mit, nur `anleitung`-Kurse), Admin „Projekt gutschreiben“; Tests nur in `test:auth` |
 | 3.108, 3.110, 3.111 | Begriffs-Links | `content/begriffe.json` + `useConcepts.js`; jeder neue Kurs braucht Links oder eine begründete Ausnahme |

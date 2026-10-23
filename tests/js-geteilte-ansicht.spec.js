@@ -105,4 +105,39 @@ test.describe('JS-Lektionen: geteilte Ansicht mit Arbeitsfläche', () => {
     await expect(task0.locator('.output-content')).toContainText('Wie viele Beine hat eine Spinne?', { timeout: 10000 });
     await expect(page.locator('.js-workspace')).toBeHidden();
   });
+
+  // Reine Konsolen-Lektionen (JS-Grundkurs Woche 1: nichts wird gezeichnet) haben trotzdem die
+  // Arbeitsflaeche rechts - wie "Meine erste Website" - und zeigen dort die Ausgabe.
+  test('breit: JS-Grundkurs ohne Zeichenfläche hat die Arbeitsfläche rechts mit der Ausgabe', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.addInitScript(() => localStorage.removeItem('ue-hacker-lang'));
+    await page.goto('/kurs/js-grundkurs?week=1');
+    await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
+
+    const workspace = page.locator('.js-workspace');
+    const task0 = page.locator('.task-block').nth(0);
+    await expect(workspace).toBeVisible();
+    await expect(workspace.locator('.js-workspace-hint')).toContainText('Ausführen');
+    const taskBox = await task0.boundingBox();
+    const wsBox = await workspace.locator('.js-workspace-inner').boundingBox();
+    expect(wsBox.x).toBeGreaterThanOrEqual(taskBox.x + taskBox.width);
+
+    await task0.locator('.btn-run').click();
+    await expect(workspace.locator('.js-workspace-title')).toContainText('Aufgabe 1');
+    await expect(workspace.locator('.output-content')).not.toBeEmpty({ timeout: 10000 });
+    await expect(task0.locator('.output-display')).toBeHidden();
+    // Die Konsolen-Woche zeichnet nichts: das Frame bleibt unsichtbar, nur die Ausgabe steht rechts.
+    await expect(workspace.locator('iframe.js-sandbox')).toBeHidden();
+  });
+
+  test('schmal: JS-Grundkurs ohne Zeichenfläche zeigt die Ausgabe weiter unter dem Code', async ({ page }) => {
+    await page.setViewportSize({ width: 800, height: 1000 });
+    await page.goto('/kurs/js-grundkurs?week=1');
+    await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
+
+    const task0 = page.locator('.task-block').nth(0);
+    await task0.locator('.btn-run').click();
+    await expect(task0.locator('.output-content')).not.toBeEmpty({ timeout: 10000 });
+    await expect(page.locator('.js-workspace')).toBeHidden();
+  });
 });

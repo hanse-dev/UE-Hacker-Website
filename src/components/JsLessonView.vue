@@ -212,10 +212,10 @@ export default {
     // diese eine Aufgabe aus, ohne das kurs-/lektionsweite showCanvas-Prop anzutasten.
     const taskShowsCanvas = (idx) => tasks.value[idx]?.showCanvas ?? props.showCanvas;
 
-    // Geteilte Ansicht nur, wenn in der Lektion ueberhaupt etwas zu sehen ist - reine
-    // Konsolen-Lektionen (z.B. js-grundkurs Woche 1-6) bleiben einspaltig, das Frame laeuft dort
-    // unsichtbar weiter.
-    const workspaceEnabled = computed(() => tasks.value.some((_, idx) => taskShowsCanvas(idx)));
+    // Geteilte Ansicht in jeder Lektion mit Aufgaben - auch reine Konsolen-Lektionen (z.B.
+    // js-grundkurs Woche 1-6) zeigen die Ausgabe breit rechts auf der Arbeitsflaeche; das Frame
+    // selbst bleibt dort unsichtbar (`no-canvas`), schmal steht die Ausgabe unter dem Code.
+    const workspaceEnabled = computed(() => tasks.value.length > 0);
     const activeShowsCanvas = computed(() => activeIdx.value !== null && taskShowsCanvas(activeIdx.value));
 
     // Uebersprungene Aufgaben zaehlen fuer den Lektions-Abschluss wie erledigt (damit man nicht
