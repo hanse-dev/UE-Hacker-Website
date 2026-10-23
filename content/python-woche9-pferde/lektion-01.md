@@ -17,5 +17,6 @@ print(inhalt)
 1. **`with open(name, modus) as f:`** öffnet die Datei und schließt sie am Ende des Blocks **automatisch**
 2. **`f.write(text)`** schreibt Text – einen Zeilenumbruch musst du selbst mit `\n` anhängen
 3. **`f.read()`** liefert den ganzen Inhalt als einen Text
+4. **`inhalt.strip()`** entfernt Leerzeichen und Zeilenumbrüche (`\n`) am Anfang und Ende eines Texts
 
 > ⚠️ Im Modus `"w"` kannst du nur schreiben, im Modus `"r"` nur lesen – und `"w"` **löscht** den alten Inhalt.

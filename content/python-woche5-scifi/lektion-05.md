@@ -20,4 +20,6 @@ print(f"Rückgabewert: {ergebnis}")
 
 Der Status wird angezeigt, aber `ergebnis` ist `None`. Wenn du mit dem Ergebnis rechnen willst, brauchst du `return`!
 
+Ob etwas `None` ist, prüfst du mit **`is None`**, zum Beispiel `if ergebnis is None:` – das Gegenteil ist `is not None`.
+
 > ⚠️ Der häufigste Anfängerfehler: Man berechnet etwas in der Funktion, vergisst aber `return` – und bekommt `None` zurück.

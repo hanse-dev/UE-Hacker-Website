@@ -3,9 +3,9 @@ import string
 
 alphabet = string.ascii_letters + string.digits
 schluessel = "".join([random.choice(alphabet) for i in range(8)])
-nur_erlaubt = True
+erlaubt = 0
 for z in schluessel:
-    if z not in alphabet:
-        nur_erlaubt = False
+    if z in alphabet:
+        erlaubt = erlaubt + 1
 print(f"Länge: {len(schluessel)}")
-print(f"Nur erlaubte Zeichen: {nur_erlaubt}")
+print(f"Nur erlaubte Zeichen: {erlaubt == len(schluessel)}")

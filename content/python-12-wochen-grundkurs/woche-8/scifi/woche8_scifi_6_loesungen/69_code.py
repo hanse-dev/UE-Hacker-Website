@@ -3,8 +3,10 @@ zonen = {
     "Labor": {"gefahr": "Strahlung", "fund": "Sensor", "schwierigkeit": 5},
     "Brücke": {"gefahr": "Sturm", "fund": "Sternkarte", "schwierigkeit": 8},
 }
-gefaehrlichste = None
+gefaehrlichste = ""
+hoechste = 0
 for name, zone in zonen.items():
-    if gefaehrlichste is None or zone["schwierigkeit"] > zonen[gefaehrlichste]["schwierigkeit"]:
+    if zone["schwierigkeit"] > hoechste:
+        hoechste = zone["schwierigkeit"]
         gefaehrlichste = name
-print(f"Gefährlichste: {gefaehrlichste} ({zonen[gefaehrlichste]['schwierigkeit']})")
+print(f"Gefährlichste: {gefaehrlichste} ({hoechste})")

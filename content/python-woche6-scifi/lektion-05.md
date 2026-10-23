@@ -9,6 +9,7 @@ print(module.count("Antrieb"))      # wie oft kommt er vor?
 ```
 
 - **`x in liste`** ergibt `True` oder `False` – ideal für `if`
+- **`x not in liste`** ist das Gegenteil: `True`, wenn `x` **nicht** in der Liste steht
 - **`liste.index(x)`** liefert die **Position** des ersten Treffers (gibt es `x` nicht, kommt ein Fehler – prüfe vorher mit `in`)
 - **`liste.count(x)`** zählt, **wie oft** `x` vorkommt
 - Das Wort **`in`** funktioniert auch bei Text: `"Gold" in "Goldmünze"` ist `True`

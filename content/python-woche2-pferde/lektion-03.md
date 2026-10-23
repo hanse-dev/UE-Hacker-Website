@@ -9,4 +9,11 @@ print(f"Alter: {alter} Jahre, Stockmaß: {stockmass} cm")
 print(type(alter))   # <class 'int'>
 ```
 
-Mit ganzen Zahlen kannst du rechnen – das kommt gleich in Übung 6.
+Mit ganzen Zahlen kannst du rechnen: `+` (plus), `-` (minus), `*` (mal) und `/` (geteilt).
+
+```python
+print(168 - 138)   # 30
+print(4 * 2)       # 8
+```
+
+Mehr zum Rechnen kommt in Übung 6.

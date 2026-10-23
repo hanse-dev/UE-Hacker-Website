@@ -3036,5 +3036,12 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   Vergleiche zählen als einer), Begriff aus `begriffe.json` vor seiner Woche (je Begriff nur die erste
   Stelle; „Funktion“ ist ab Woche 1 erlaubt, `BEGRIFF_AB_WOCHE`), erstes Auftreten von Fachwörtern
   (Groß/klein zählt, damit `klasse = …` nicht zählt), Sätze > 20 Wörter, LIX > 45.
+- Erkennung im Lektionstext ist bewusst großzügig (`loose`): `sort(reverse=True)` ohne Punkt zählt
+  als Methode samt Schlüsselwort, Inline-Schnipsel wie `{name}` zählen nicht als Menge/Dictionary.
+- Erste Runde Funde behoben: Musterlösungen ohne `+=`/`-=` (Woche 4, erst ab Lektion 4/5 erklärt),
+  ohne `is None` und `not in` (Woche 7/8); `is None` jetzt in Woche 5 Lektion 5, `not in` in
+  Woche 6 Lektion 5, `strip()` in Woche 9 Lektion 1, `list()` als Tipp in Woche 8 Boss 4,
+  Rechenzeichen in Woche 2 Pferde Lektion 3 erklärt. Achtung: Wer eine Lösung vereinfacht, deckt
+  oft eine spätere Stelle auf, die denselben Baustein nutzt – Bericht danach erneut laufen lassen.
 - Bewusst nur ein Bericht, kein Test-Gate: Lange Sätze und Fachwörter brauchen ein menschliches
   Urteil. `tests/verstaendlichkeit.spec.js` prüft die Logik an einem Mini-Kurs (`--content`).

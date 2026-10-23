@@ -1,6 +1,8 @@
 preise = {"Heiltrank": 30, "Fackel": 5, "Seil": 10}
-teuerster = None
+teuerster = ""
+hoechster = 0
 for name, preis in preise.items():
-    if teuerster is None or preis > preise[teuerster]:
+    if preis > hoechster:
+        hoechster = preis
         teuerster = name
-print(f"Teuerster Posten: {teuerster} ({preise[teuerster]})")
+print(f"Teuerster Posten: {teuerster} ({hoechster})")

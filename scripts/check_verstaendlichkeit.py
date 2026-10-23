@@ -81,7 +81,8 @@ def _parse(code: str):
         return trees
 
 
-def concepts(code: str) -> set[str]:
+def concepts(code: str, loose: bool = False) -> set[str]:
+    """loose=True fuer Erklaertexte: `sort(reverse=True)` ohne Punkt zaehlt auch als Methode."""
     found: set[str] = set()
     for tree in _parse(code):
         defined = {n.name for n in ast.walk(tree) if isinstance(n, (ast.FunctionDef, ast.ClassDef))}
@@ -90,17 +91,19 @@ def concepts(code: str) -> set[str]:
             if isinstance(n, ast.Import):
                 imported |= {a.asname or a.name: a.name for a in n.names}
         for n in ast.walk(tree):
-            found |= _node_concepts(n, defined, imported)
+            found |= _node_concepts(n, defined, imported, loose)
     return found
 
 
-def _node_concepts(n, defined, imported) -> set[str]:
+def _node_concepts(n, defined, imported, loose=False) -> set[str]:
     c: set[str] = set()
     if isinstance(n, ast.Call):
         f = n.func
         name = None
         if isinstance(f, ast.Name) and f.id in BUILTIN_NAMES and f.id not in defined:
             name = f"{f.id}()"
+        elif isinstance(f, ast.Name) and loose and f.id not in defined:
+            name = f".{f.id}()"
         elif isinstance(f, ast.Attribute):
             if isinstance(f.value, ast.Name) and f.value.id in imported:
                 name = f"{imported[f.value.id]}.{f.attr}()"
@@ -249,10 +252,10 @@ def shown_in_markdown(md: str) -> set[str]:
     meist Teil einer Erklaerung, keine Mengen/Tupel - Literal-Bausteine zaehlen dort nicht."""
     found: set[str] = set()
     for block in CODE_BLOCK_RE.findall(md):
-        found |= concepts(block)
+        found |= concepts(block, loose=True)
     rest = CODE_BLOCK_RE.sub("", md)
     for snippet in INLINE_CODE_RE.findall(rest):
-        found |= concepts(snippet) - LITERAL_CONCEPTS
+        found |= concepts(snippet, loose=True) - LITERAL_CONCEPTS
     return found | mentioned(rest)
 
 
@@ -362,7 +365,7 @@ def analyse(content: Path, weeks: list[int], themes: list[str]):
                     missing = concepts(t["_solution"]) - seen
                     in_instruction = mentioned(t["instruction"])
                     for code in INLINE_CODE_RE.findall(t["instruction"]):
-                        in_instruction |= concepts(code)
+                        in_instruction |= concepts(code, loose=True)
                     if report:
                         for m in sorted(missing):
                             where = "nur im Aufgabentext" if m in in_instruction else "nirgends"
