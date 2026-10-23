@@ -47,6 +47,7 @@ Alles unten ist nach `main` gemergt. Details: `grep -n "^### 3.NN" docs/archiv/H
 | 3.108, 3.110, 3.111 | Begriffs-Links | `content/begriffe.json` + `useConcepts.js`; jeder neue Kurs braucht Links oder eine begründete Ausnahme |
 | 3.113 | Turtle-Shim entfernt | kein Kurs nutzt Turtle mehr |
 | 3.114–3.117 | Web-Track „Meine erste Website“ | `sandboxMode: "web"`, `validation.type: 'web'`; Stufenwahl `WebsiteCourse.vue`: Einfach (Lektionsliste, `finalCheck`, „Meine Seite“ wächst mit) und Intensiv (`WeeklyCourseTour.vue`, `content/web-grundkurs-*`) |
+| 3.122 | Dark Mode | `useTheme.js` (System/Hell/Dunkel in „Optionen“, nur `localStorage` `ue-hacker-theme`), Inline-Skript in `index.html`, Farb-Tokens in `src/style.css`, Editor-Farben `src/utils/editorTheme.js` |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -83,6 +84,7 @@ Punkte-System, Zertifikate), wird hier nicht wiederholt.
 - Jede Pflichtaufgabe gegenprüfen: unveränderte Vorlage fällt durch, Musterlösung besteht (Web-Kurse: automatisch in `web-*.spec.js`).
 
 **Vue / CSS / Tests**
+- Farben nur über die Tokens in `src/style.css` (`--surface`, `--text-muted`, `--brand-text` …), nie fest eintragen; neue Farbe = Token mit Wert für hell **und** `[data-theme="dark"]`. Lila als Schrift/Rand = `--brand-text` (`--primary-purple` nur als Hintergrund). Bewusst fest: `Teaser.vue`, `FinalCertificate.vue` (Papier-Look), Sandbox-Inhalte (3.122).
 - `@import` in `<style scoped>` → eigener unscoped Block; Watcher, die nach dem Rendern scrollen: `flush: 'post'`.
 - Asynchrones Nachladen je Auswahl (Lektionstext) braucht einen Anfrage-Zähler: Eine spät ankommende alte Antwort darf die neue nicht überschreiben (`useLessonContent.js`, unter Last im vollen Lauf aufgefallen).
 - `v-if`-Zweigwechsel mountet neu → State im Parent halten; geteilter Zustand (Admin-Token) als geteilter `ref` im Composable.

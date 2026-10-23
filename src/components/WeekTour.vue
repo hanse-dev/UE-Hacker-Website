@@ -376,18 +376,18 @@ export default {
 }
 
 .tour-intro {
-  color: #555;
+  color: var(--text-muted);
   margin-bottom: 24px;
 }
 
 .tour-loading {
-  color: #9ca3af;
+  color: var(--text-faint);
   font-style: italic;
 }
 
 .section-label {
   font-size: 1.3em;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
   margin: 0 0 10px;
   border-bottom: none;
 }
@@ -404,13 +404,13 @@ export default {
 .week-picker-header .section-label { margin: 0; }
 
 .certificates-link {
-  background: #fef9e7;
+  background: var(--warning-bg);
   border: 1px solid #ffd700;
   border-radius: 8px;
   padding: 7px 14px;
   font-size: 0.85em;
   font-weight: 600;
-  color: #7c3aed;
+  color: var(--brand-text);
   cursor: pointer;
 }
 .certificates-link:hover { background: #fdebd0; }
@@ -418,12 +418,12 @@ export default {
 .breadcrumb-back {
   background: transparent;
   border: none;
-  color: #7c5a94;
+  color: var(--brand-text-soft);
   font-size: 0.9em;
   cursor: pointer;
   padding: 0 0 14px;
 }
-.breadcrumb-back:hover { color: var(--primary-purple, #4a2274); text-decoration: underline; }
+.breadcrumb-back:hover { color: var(--brand-text); text-decoration: underline; }
 
 /* ── Wochen-Karte: Kacheln + verbindender Pfad ("Inseln") ───────────────── */
 .week-map {
@@ -469,8 +469,8 @@ export default {
   flex-direction: column;
   gap: 4px;
   text-align: left;
-  background: white;
-  border: 2px solid #e9ecef;
+  background: var(--surface);
+  border: 2px solid var(--border);
   border-radius: 12px;
   padding: 20px 18px;
   cursor: pointer;
@@ -479,15 +479,15 @@ export default {
 }
 
 .tile:hover {
-  border-color: #d9c7ea;
-  background: #f7f1fb;
+  border-color: var(--border-tint);
+  background: var(--surface-tint);
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(74, 34, 116, 0.12);
 }
 
 .tile.active {
-  border-color: var(--primary-purple, #4a2274);
-  background: #efe3f6;
+  border-color: var(--brand-text);
+  background: var(--surface-tint);
 }
 
 .week-tile-icon {
@@ -506,12 +506,12 @@ export default {
 
 .week-tile strong {
   font-size: 1.05em;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .week-tile span:not(.week-tile-badge) {
   font-size: 0.85em;
-  color: #6b7280;
+  color: var(--text-muted);
 }
 
 .variant-tile {
@@ -519,7 +519,7 @@ export default {
   text-align: center;
   font-size: 1.15em;
   font-weight: 600;
-  color: #374151;
+  color: var(--text);
   padding: 26px 18px;
 }
 

@@ -165,7 +165,7 @@ export default {
 .code-challenge {
   margin-top: 16px;
   padding-top: 16px;
-  border-top: 1px dashed #dee2e6;
+  border-top: 1px dashed var(--border);
 }
 
 .challenge-header {
@@ -177,12 +177,12 @@ export default {
 
 .challenge-header h4 {
   margin: 0;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .challenge-badge {
-  background: #d4edda;
-  color: #155724;
+  background: var(--success-bg);
+  color: var(--success-text);
   font-size: 0.75em;
   font-weight: 700;
   padding: 2px 10px;
@@ -191,7 +191,7 @@ export default {
 
 .challenge-instruction {
   margin: 0 0 12px 0;
-  color: #444;
+  color: var(--text-muted);
   line-height: 1.5;
 }
 
@@ -225,8 +225,8 @@ export default {
 
 .btn-reset {
   background: transparent;
-  color: #6c757d;
-  border: 1px solid #dee2e6;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
 }
 
 .btn-run:disabled,
@@ -238,8 +238,8 @@ export default {
 .challenge-output {
   margin-bottom: 10px;
   padding: 10px;
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
   border-radius: 6px;
 }
 
@@ -255,14 +255,14 @@ export default {
 }
 
 .feedback-success {
-  background: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
+  background: var(--success-bg);
+  color: var(--success-text);
+  border: 1px solid var(--success-border);
 }
 
 .feedback-error {
-  background: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
+  background: var(--danger-bg);
+  color: var(--danger-text);
+  border: 1px solid var(--danger-border);
 }
 </style>

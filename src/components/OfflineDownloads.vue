@@ -47,7 +47,7 @@ export default {
 
 .offline-downloads-title {
   font-weight: 600;
-  color: #374151;
+  color: var(--text);
 }
 
 .offline-downloads-buttons {
@@ -60,24 +60,24 @@ export default {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
   border-radius: 6px;
   padding: 6px 14px;
   font-size: 0.9em;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
   text-decoration: none;
   white-space: nowrap;
   transition: background 0.15s, border-color 0.15s;
 }
 
 .btn-offline-download:hover {
-  background: #e9ecef;
-  border-color: var(--primary-purple, #4a2274);
+  background: var(--surface-muted);
+  border-color: var(--brand-text);
 }
 
 .offline-downloads-hint {
   font-size: 0.8em;
-  color: #888;
+  color: var(--text-faint);
 }
 </style>

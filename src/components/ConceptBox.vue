@@ -34,15 +34,15 @@ export default {
 .concept-box {
   margin-top: 24px;
   padding: 14px 18px;
-  background: #f3eefa;
-  border: 1px solid #d9cbee;
+  background: var(--surface-tint);
+  border: 1px solid var(--border-tint);
   border-radius: 8px;
 }
 
 .concept-box-title {
   margin: 0 0 8px 0;
   font-size: 1em;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .concept-box-list {
@@ -59,6 +59,6 @@ export default {
   display: inline-block;
   margin-left: 4px;
   font-size: 0.9em;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 </style>

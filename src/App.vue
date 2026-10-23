@@ -77,6 +77,24 @@
           </section>
 
           <section class="settings-section">
+            <h3>{{ t('settings.theme') }}</h3>
+            <p class="settings-hint">{{ t('settings.themeHint') }}</p>
+            <div class="lang-switcher modal-lang theme-switcher">
+              <button
+                v-for="option in themePreferences"
+                :key="option"
+                type="button"
+                :class="{ active: themePreference === option }"
+                :aria-pressed="themePreference === option"
+                :data-theme-option="option"
+                @click="setThemePreference(option)"
+              >
+                {{ t(`settings.theme.${option}`) }}
+              </button>
+            </div>
+          </section>
+
+          <section class="settings-section">
             <h3>{{ t('settings.account') }}</h3>
             <template v-if="isLoggedIn">
               <p class="settings-current">
@@ -202,6 +220,7 @@
 import { computed, onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useLanguage } from './composables/useLanguage.js';
+import { useTheme } from './composables/useTheme.js';
 import { DEV_SKIP_CHECKS } from './composables/devSkipChecks.js';
 import { useAuth } from './composables/useAuth.js';
 import { adminToken } from './composables/useAdminApi.js';
@@ -215,6 +234,7 @@ export default {
     const isTeaser       = computed(() => route.path === '/teaser');
     const isAdminLoggedIn = computed(() => !!adminToken.value);
     const { lang, t, setLang } = useLanguage();
+    const { preference: themePreference, setPreference: setThemePreference, preferences: themePreferences } = useTheme();
     const {
       user,
       isLoggedIn,
@@ -337,6 +357,9 @@ export default {
       lang,
       t,
       setLang,
+      themePreference,
+      setThemePreference,
+      themePreferences,
       user,
       isLoggedIn,
       settingsOpen,
@@ -402,18 +425,18 @@ export default {
   font-size: 1.6rem;
   line-height: 1;
   cursor: pointer;
-  color: #888;
+  color: var(--text-faint);
   padding: 0 4px;
 }
 
 .settings-close:hover {
-  color: #333;
+  color: var(--text);
 }
 
 .settings-section {
   margin-top: 1.1rem;
   padding-top: 1rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--border);
 }
 
 .settings-section:first-of-type {
@@ -425,20 +448,20 @@ export default {
 .settings-section h3 {
   margin: 0 0 0.35rem;
   font-size: 1rem;
-  color: #222;
+  color: var(--text-strong);
 }
 
 .settings-hint {
   margin: 0 0 0.75rem;
   font-size: 0.88em;
-  color: #666;
+  color: var(--text-muted);
   line-height: 1.4;
 }
 
 .settings-current {
   margin: 0.6rem 0 0;
   font-size: 0.92em;
-  color: #333;
+  color: var(--text);
 }
 
 .modal-lang {
@@ -452,19 +475,19 @@ export default {
 
 .lang-switcher button {
   background: transparent;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-strong);
   padding: 5px 12px;
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.85em;
   font-weight: 700;
-  color: #555;
+  color: var(--text-muted);
   transition: all 0.15s;
 }
 
 .lang-switcher button:hover {
-  border-color: var(--primary-purple);
-  color: var(--primary-purple);
+  border-color: var(--brand-text);
+  color: var(--brand-text);
 }
 
 .lang-switcher button.active {
@@ -475,13 +498,13 @@ export default {
 
 .login-actions .auth-btn {
   background: transparent;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-strong);
   padding: 4px 10px;
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.82em;
   font-weight: 600;
-  color: #444;
+  color: var(--text-muted);
 }
 
 .login-actions .auth-btn:hover {
@@ -501,7 +524,7 @@ export default {
 }
 
 .login-actions .auth-btn.ghost {
-  border-color: #ddd;
+  border-color: var(--border);
 }
 
 .login-actions .auth-btn:disabled {
@@ -512,7 +535,7 @@ export default {
 .login-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(20, 20, 20, 0.45);
+  background: var(--backdrop);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -521,7 +544,7 @@ export default {
 }
 
 .login-modal {
-  background: #fff;
+  background: var(--surface);
   border-radius: 10px;
   padding: 1.4rem 1.5rem;
   width: min(400px, 100%);
@@ -531,13 +554,13 @@ export default {
 .login-modal h2 {
   margin: 0 0 0.4rem;
   font-size: 1.25rem;
-  color: #222;
+  color: var(--text-strong);
 }
 
 .login-hint {
   margin: 0 0 1rem;
   font-size: 0.9em;
-  color: #666;
+  color: var(--text-muted);
   line-height: 1.4;
 }
 
@@ -547,24 +570,24 @@ export default {
   gap: 4px;
   margin-bottom: 0.75rem;
   font-size: 0.9em;
-  color: #333;
+  color: var(--text);
 }
 
 .login-field input {
   padding: 8px 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-strong);
   border-radius: 6px;
   font-size: 1em;
 }
 
 .login-error {
-  color: #c0392b;
+  color: var(--danger-text);
   font-size: 0.88em;
   margin: 0 0 0.75rem;
 }
 
 .login-success {
-  color: #1e7e34;
+  color: var(--success-text);
   font-size: 0.88em;
   margin: 0 0 0.75rem;
 }
@@ -580,8 +603,8 @@ export default {
   padding: 8px 16px;
   text-align: center;
   font-size: 0.9em;
-  background: #fff3cd;
-  border-bottom: 1px solid #ffe69c;
-  color: #664d03;
+  background: var(--warning-bg);
+  border-bottom: 1px solid var(--warning-border);
+  color: var(--warning-text);
 }
 </style>

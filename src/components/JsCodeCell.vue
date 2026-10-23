@@ -5,6 +5,7 @@
 <script>
 import { onMounted, onBeforeUnmount, ref, watch } from 'vue';
 import { EditorView, basicSetup } from 'codemirror';
+import { editorColors } from '../utils/editorTheme.js';
 import { EditorState, Prec } from '@codemirror/state';
 import { keymap, hoverTooltip } from '@codemirror/view';
 import { indentUnit } from '@codemirror/language';
@@ -96,6 +97,7 @@ export default {
         doc: props.modelValue,
         extensions: [
           basicSetup,
+          editorColors,
           // Tab: erst versuchen, einen offenen Autocomplete-Vorschlag zu uebernehmen
           // (wie in VS Code) - nur wenn kein Popup offen ist, faellt es auf Einruecken zurueck.
           Prec.highest(keymap.of([
@@ -150,22 +152,22 @@ export default {
 
 <style scoped>
 .cm-host {
-  border: 1px solid #d9c7ea;
+  border: 1px solid var(--border-tint);
   border-radius: 6px;
   margin-bottom: 12px;
-  background: #f7f1fb;
+  background: var(--surface-tint);
   overflow: hidden;
 }
 .cm-host:focus-within {
-  border-color: var(--primary-purple, #4a2274);
-  box-shadow: 0 0 0 1px var(--primary-purple, #4a2274);
+  border-color: var(--brand-text);
+  box-shadow: 0 0 0 1px var(--brand-text);
 }
 .cm-host :deep(.cm-editor) { outline: none; background: transparent; }
 .cm-host :deep(.cm-scroller) { overflow: auto; }
 .cm-host :deep(.cm-gutters) {
-  background: #efe3f6;
-  border-right: 1px solid #d9c7ea;
-  color: #7c5a94;
+  background: var(--surface-tint);
+  border-right: 1px solid var(--border-tint);
+  color: var(--brand-text-soft);
 }
 </style>
 

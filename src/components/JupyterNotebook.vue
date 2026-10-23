@@ -242,10 +242,10 @@ export default {
 
 <style scoped>
 .jupyter-notebook {
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border);
   border-top: none;
   border-radius: 0 0 8px 8px;
-  background: white;
+  background: var(--surface);
   overflow: hidden;
 }
 
@@ -255,8 +255,8 @@ export default {
   align-items: center;
   gap: 8px;
   padding: 10px 14px;
-  background: #f9fafb;
-  border-bottom: 1px solid #e5e7eb;
+  background: var(--surface-muted);
+  border-bottom: 1px solid var(--border);
 }
 
 .btn-kernel {
@@ -276,38 +276,38 @@ export default {
 .btn-run-all:disabled { opacity: 0.4; cursor: not-allowed; }
 
 .btn-download {
-  margin-left: auto; background: transparent; color: #6b7280;
-  border: 1px solid #d1d5db; padding: 5px 12px; border-radius: 6px;
+  margin-left: auto; background: transparent; color: var(--text-muted);
+  border: 1px solid var(--border-strong); padding: 5px 12px; border-radius: 6px;
   text-decoration: none; font-size: 0.8em; transition: all 0.15s;
 }
-.btn-download:hover { background: #f3f4f6; color: #374151; }
+.btn-download:hover { background: var(--surface-muted); color: var(--text); }
 
 /* Status / loading */
-.loading { padding: 30px; text-align: center; color: #9ca3af; font-size: 0.9em; }
+.loading { padding: 30px; text-align: center; color: var(--text-faint); font-size: 0.9em; }
 .error {
-  padding: 16px; color: #dc2626; background: #fef2f2;
-  border: 1px solid #fecaca; margin: 12px; border-radius: 6px; font-size: 0.9em;
+  padding: 16px; color: var(--danger-text); background: var(--danger-bg);
+  border: 1px solid var(--danger-border); margin: 12px; border-radius: 6px; font-size: 0.9em;
 }
 
 /* Cells */
 .notebook-cells { display: flex; flex-direction: column; }
 
-.cell { border-bottom: 1px solid #f3f4f6; }
+.cell { border-bottom: 1px solid var(--border); }
 .cell:last-child { border-bottom: none; }
 
 .cell-markdown { padding: 18px 22px; }
 
 .cell-markdown :deep(h1) {
-  font-size: 1.6em; margin: 0.3em 0 0.5em; color: var(--primary-purple, #4a2274);
+  font-size: 1.6em; margin: 0.3em 0 0.5em; color: var(--brand-text);
   border-bottom: 3px solid var(--accent-yellow, #fdd835); padding-bottom: 0.25em;
 }
-.cell-markdown :deep(h2) { font-size: 1.25em; margin: 1em 0 0.4em; color: #1f2937; }
-.cell-markdown :deep(h3) { font-size: 1.05em; margin: 0.8em 0 0.3em; color: #374151; }
+.cell-markdown :deep(h2) { font-size: 1.25em; margin: 1em 0 0.4em; color: var(--text); }
+.cell-markdown :deep(h3) { font-size: 1.05em; margin: 0.8em 0 0.3em; color: var(--text); }
 .cell-markdown :deep(p) { line-height: 1.65; margin: 0 0 0.75em; }
 .cell-markdown :deep(ul), .cell-markdown :deep(ol) { padding-left: 1.5em; margin: 0.5em 0; }
 .cell-markdown :deep(li) { margin-bottom: 0.25em; line-height: 1.6; }
 .cell-markdown :deep(code) {
-  background: #f3f4f6; padding: 1px 5px; border-radius: 3px;
+  background: var(--surface-muted); padding: 1px 5px; border-radius: 3px;
   font-family: 'Courier New', monospace; font-size: 0.88em;
 }
 .cell-markdown :deep(pre) {
@@ -316,22 +316,22 @@ export default {
 }
 .cell-markdown :deep(pre code) { background: none; padding: 0; color: inherit; font-size: 0.9em; }
 .cell-markdown :deep(table) { width: 100%; border-collapse: collapse; margin: 0.75em 0; font-size: 0.9em; }
-.cell-markdown :deep(th) { background: #f9fafb; font-weight: 600; }
+.cell-markdown :deep(th) { background: var(--surface-muted); font-weight: 600; }
 .cell-markdown :deep(th), .cell-markdown :deep(td) {
-  border: 1px solid #e5e7eb; padding: 7px 12px; text-align: left;
+  border: 1px solid var(--border); padding: 7px 12px; text-align: left;
 }
 .cell-markdown :deep(blockquote) {
-  border-left: 3px solid #d1d5db; padding-left: 14px;
-  margin: 0.75em 0; color: #6b7280; font-style: italic;
+  border-left: 3px solid var(--border-strong); padding-left: 14px;
+  margin: 0.75em 0; color: var(--text-muted); font-style: italic;
 }
 
-.cell-code { background: #faf7fc; }
+.cell-code { background: var(--surface-tint); }
 
 .code-header {
   display: flex; justify-content: space-between; align-items: center;
-  padding: 5px 10px 5px 14px; background: #efe3f6; border-bottom: 1px solid #d9c7ea;
+  padding: 5px 10px 5px 14px; background: var(--surface-tint); border-bottom: 1px solid var(--border-tint);
 }
-.cell-label { font-family: monospace; font-size: 0.75em; color: #7c5a94; }
+.cell-label { font-family: monospace; font-size: 0.75em; color: var(--brand-text-soft); }
 
 .btn-run-cell {
   background: var(--accent-orange, #ff9800); color: white; border: none;
@@ -342,20 +342,20 @@ export default {
 .btn-run-cell:disabled { opacity: 0.4; cursor: not-allowed; }
 
 .cell-output {
-  padding: 8px 14px; background: #fff;
-  border-top: 1px solid #f3f4f6; min-height: 0;
+  padding: 8px 14px; background: var(--surface);
+  border-top: 1px solid var(--border); min-height: 0;
 }
 
-.output-running { color: #9ca3af; font-style: italic; font-size: 0.85em; }
-.output-empty { margin: 0; font-family: monospace; font-size: 13px; color: #9ca3af; font-style: italic; }
+.output-running { color: var(--text-faint); font-style: italic; font-size: 0.85em; }
+.output-empty { margin: 0; font-family: monospace; font-size: 13px; color: var(--text-faint); font-style: italic; }
 .output-stream {
   margin: 0; font-family: monospace; font-size: 13px;
-  white-space: pre-wrap; color: #111827;
+  white-space: pre-wrap; color: var(--text);
 }
 .output-error {
   margin: 0; font-family: monospace; font-size: 13px;
-  white-space: pre-wrap; color: #dc2626;
-  background: #fef2f2; padding: 8px; border-radius: 4px;
+  white-space: pre-wrap; color: var(--danger-text);
+  background: var(--danger-bg); padding: 8px; border-radius: 4px;
 }
 
 

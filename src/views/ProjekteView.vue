@@ -265,8 +265,8 @@ export default {
 }
 
 .projekte-filters {
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 18px 20px;
   margin-bottom: 16px;
@@ -279,13 +279,13 @@ export default {
   gap: 12px;
   margin-bottom: 14px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--border);
 }
 
 .filters-title {
   margin: 0;
   font-size: 1em;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .filter-grid {
@@ -307,7 +307,7 @@ export default {
 .filter-label {
   font-size: 0.85em;
   font-weight: 600;
-  color: #555;
+  color: var(--text-muted);
 }
 
 .filter-chips {
@@ -317,8 +317,8 @@ export default {
 }
 
 .filter-chip {
-  border: 1px solid var(--border-color, #ccc);
-  background: white;
+  border: 1px solid var(--border-color, var(--border-strong));
+  background: var(--surface);
   border-radius: 999px;
   padding: 5px 12px;
   font-size: 0.85em;
@@ -327,12 +327,12 @@ export default {
 }
 
 .filter-chip:hover {
-  border-color: var(--primary-purple, #4a2274);
+  border-color: var(--brand-text);
 }
 
 .filter-chip.active {
   background: var(--primary-purple, #4a2274);
-  border-color: var(--primary-purple, #4a2274);
+  border-color: var(--brand-text);
   color: white;
 }
 
@@ -351,13 +351,13 @@ export default {
 }
 
 .projekte-count {
-  color: #666;
+  color: var(--text-muted);
   font-size: 0.9em;
   margin: 0 0 16px;
 }
 
 .projekte-empty {
-  color: #666;
+  color: var(--text-muted);
   padding: 20px 0;
 }
 
@@ -388,13 +388,13 @@ export default {
 }
 
 .badge-level {
-  background: #fef3c7;
-  color: #92400e;
+  background: var(--warning-bg);
+  color: var(--warning-text);
 }
 
 .badge-duration {
-  background: #ede9fe;
-  color: #5b21b6;
+  background: var(--surface-tint);
+  color: var(--brand-text);
 }
 
 .projekt-tags {
@@ -405,15 +405,15 @@ export default {
 }
 
 .tag-chip {
-  background: #f1f3f5;
-  color: #495057;
+  background: var(--surface-muted);
+  color: var(--text-muted);
   border-radius: 6px;
   padding: 2px 8px;
   font-size: 0.78em;
 }
 
 .projekt-lessons {
-  color: #666;
+  color: var(--text-muted);
   font-size: 0.85em;
   margin: 8px 0 12px;
 }

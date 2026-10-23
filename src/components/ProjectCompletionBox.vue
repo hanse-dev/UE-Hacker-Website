@@ -40,7 +40,7 @@ export default {
 }
 
 .completion-badge-hint a {
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
   font-weight: 600;
 }
 
@@ -70,11 +70,11 @@ export default {
 
 .btn-next-secondary {
   background: transparent;
-  color: var(--primary-purple, #4a2274);
-  border: 2px solid var(--primary-purple, #4a2274);
+  color: var(--brand-text);
+  border: 2px solid var(--brand-text);
 }
 
 .btn-next-secondary:hover {
-  background: #f1eef7;
+  background: var(--surface-tint);
 }
 </style>

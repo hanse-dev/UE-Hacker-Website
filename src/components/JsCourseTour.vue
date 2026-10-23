@@ -328,16 +328,16 @@ export default {
 }
 
 .error {
-  color: #dc3545;
-  background: #f8d7da;
-  border: 1px solid #f5c6cb;
+  color: var(--danger);
+  background: var(--danger-bg);
+  border: 1px solid var(--danger-border);
   border-radius: 8px;
 }
 
 .tour-header-embedded {
   margin-bottom: 4px;
   font-size: 0.92em;
-  color: #7c5a94;
+  color: var(--brand-text-soft);
   font-weight: 600;
 }
 
@@ -354,7 +354,7 @@ export default {
   align-items: center;
   gap: 8px;
   font-size: 0.92em;
-  color: #7c5a94;
+  color: var(--brand-text-soft);
   font-weight: 600;
 }
 
@@ -364,26 +364,26 @@ export default {
   padding: 0;
   font: inherit;
   font-weight: 600;
-  color: #7c5a94;
+  color: var(--brand-text-soft);
   cursor: pointer;
   text-decoration: underline;
 }
 
 .breadcrumb-back:hover {
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .breadcrumb-sep {
-  color: #c4b5d0;
+  color: var(--text-faint);
 }
 
 .breadcrumb-lesson {
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .progress-count {
   font-weight: 600;
-  color: #28a745;
+  color: var(--success);
 }
 
 /* ── Fortschritts-Leiste (Kullern + Linien), gruppiert nach Abschnitt ──────── */
@@ -410,7 +410,7 @@ export default {
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #9ca3af;
+  color: var(--text-faint);
 }
 
 .stepper-group-dots {
@@ -422,7 +422,7 @@ export default {
   width: 1px;
   align-self: center;
   height: 20px;
-  background: #e5e7eb;
+  background: var(--surface-muted);
   margin-top: 14px;
 }
 
@@ -445,9 +445,9 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #d1d5db;
-  background: white;
-  color: #9ca3af;
+  border: 2px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text-faint);
   font-weight: 700;
   font-size: 0.85em;
   transition: all 0.15s ease;
@@ -455,7 +455,7 @@ export default {
 
 .stepper-step.done .stepper-dot {
   background: var(--primary-purple, #4a2274);
-  border-color: var(--primary-purple, #4a2274);
+  border-color: var(--brand-text);
   color: white;
 }
 
@@ -463,7 +463,7 @@ export default {
   background: var(--accent-orange, #ff9800);
   border-color: var(--accent-orange, #ff9800);
   color: white;
-  box-shadow: 0 0 0 4px #fff3e0;
+  box-shadow: 0 0 0 4px var(--warning-bg);
 }
 
 .stepper-step.locked .stepper-dot {
@@ -473,7 +473,7 @@ export default {
 .stepper-line {
   width: 20px;
   height: 3px;
-  background: #e5e7eb;
+  background: var(--surface-muted);
 }
 .stepper-line.done { background: var(--primary-purple, #4a2274); }
 
@@ -484,7 +484,7 @@ export default {
 .tour-actions {
   margin-top: 20px;
   padding-top: 16px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--border);
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
@@ -492,8 +492,8 @@ export default {
 
 .btn-export,
 .btn-import {
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 0.9em;
@@ -502,7 +502,7 @@ export default {
 }
 
 .btn-export:hover,
-.btn-import:hover { background: #e9ecef; }
+.btn-import:hover { background: var(--surface-muted); }
 
 .file-input { display: none; }
 
@@ -524,14 +524,14 @@ export default {
   gap: 6px;
   width: 240px;
   padding: 20px 16px;
-  background: #fff;
-  border: 2px solid #e6dcef;
+  background: var(--surface);
+  border: 2px solid var(--border-tint);
   border-radius: 12px;
   cursor: pointer;
   font: inherit;
   color: inherit;
 }
-.branch-tile:hover { border-color: var(--primary-purple, #4a2274); background: #f7f1fb; }
+.branch-tile:hover { border-color: var(--brand-text); background: var(--surface-tint); }
 .branch-tile-icon { font-size: 2em; }
-.branch-tile-desc { font-size: 0.85em; color: #666; }
+.branch-tile-desc { font-size: 0.85em; color: var(--text-muted); }
 </style>

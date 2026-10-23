@@ -26,6 +26,7 @@ const ALL_CHECKS = [
   'tests/microbit-sterne.spec.js',
   'tests/microbit-einfuehrung.spec.js',
   'tests/kurse-beta.spec.js',
+  'tests/dark-mode.spec.js',
   'tests/js-spielewerkstatt.spec.js',
   'tests/js-memory.spec.js',
   'tests/web-sandbox.spec.js',
@@ -58,6 +59,8 @@ const CORE_PREFIXES = [
   'src/composables/usePyodide.js',
   'src/composables/useLanguage.js',
   'src/App.vue',
+  'src/style.css',
+  'index.html',
   'src/router/',
   'src/locales/',
   'content/python-checks/',
@@ -71,6 +74,8 @@ const CORE_PREFIXES = [
 
 // Präfix -> Liste betroffener Specs (aus ALL_CHECKS)
 const RULES = [
+  ['src/composables/useTheme.js', ['tests/dark-mode.spec.js']],
+  ['src/utils/editorTheme.js', ['tests/dark-mode.spec.js', 'tests/js-grundkurs.spec.js', 'tests/python-woche1-lektionen.spec.js', 'tests/site.spec.js']],
   ['src/components/CodeChallenge.vue', ['tests/week-checks.spec.js', 'tests/week-checks-logic.spec.js', 'tests/zertifikate.spec.js', 'tests/ki-labor.spec.js']],
   ['src/components/WeeklyCourseTour.vue', ['tests/ki-labor.spec.js', 'tests/web-grundkurs.spec.js']],
   ['src/components/WebsiteCourse.vue', ['tests/web-grundkurs.spec.js', 'tests/web-erste-website.spec.js']],

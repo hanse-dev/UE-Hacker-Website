@@ -33,8 +33,8 @@ export default {
 
 <style scoped>
 .appointments-section {
-  background-color: #f9f9f9;
-  border: 1px solid #eee;
+  background-color: var(--surface-muted);
+  border: 1px solid var(--border);
   padding: 20px;
   margin-bottom: 40px;
   border-radius: 8px;
@@ -47,8 +47,8 @@ export default {
 }
 
 .termin-card-local {
-  background: #fff;
-  border: 1px solid #ddd;
+  background: var(--surface);
+  border: 1px solid var(--border);
   padding: 15px;
   margin-bottom: 15px;
   border-radius: 8px;
@@ -59,7 +59,7 @@ export default {
 }
 
 .termine-empty {
-  color: #666;
+  color: var(--text-muted);
   font-style: italic;
   margin: 0;
 }

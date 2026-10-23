@@ -401,25 +401,25 @@ export default {
 .breadcrumb-link {
   background: transparent;
   border: none;
-  color: #7c5a94;
+  color: var(--brand-text-soft);
   font-weight: 600;
   cursor: pointer;
   padding: 2px 4px;
 }
-.breadcrumb-link:hover { color: var(--primary-purple, #4a2274); text-decoration: underline; }
-.breadcrumb-sep { color: #c4b5d0; }
+.breadcrumb-link:hover { color: var(--brand-text); text-decoration: underline; }
+.breadcrumb-sep { color: var(--text-faint); }
 
 .side-menu-toggle {
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
   border-radius: 6px;
   padding: 6px 12px;
   font-size: 0.82em;
   cursor: pointer;
-  color: #555;
+  color: var(--text-muted);
   white-space: nowrap;
 }
-.side-menu-toggle:hover { background: #efe3f6; border-color: #d9c7ea; }
+.side-menu-toggle:hover { background: var(--surface-tint); border-color: var(--border-tint); }
 
 /* ── Fortschritts-Leiste (Kullern + Linien) ─────────────────────────────── */
 .progress-stepper {
@@ -451,9 +451,9 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #d1d5db;
-  background: white;
-  color: #9ca3af;
+  border: 2px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text-faint);
   font-weight: 700;
   font-size: 0.9em;
   transition: all 0.15s ease;
@@ -461,7 +461,7 @@ export default {
 
 .stepper-step.done .stepper-dot {
   background: var(--primary-purple, #4a2274);
-  border-color: var(--primary-purple, #4a2274);
+  border-color: var(--brand-text);
   color: white;
 }
 
@@ -469,23 +469,23 @@ export default {
   background: var(--accent-orange, #ff9800);
   border-color: var(--accent-orange, #ff9800);
   color: white;
-  box-shadow: 0 0 0 4px #fff3e0;
+  box-shadow: 0 0 0 4px var(--warning-bg);
 }
 
 .stepper-label {
   font-size: 0.78em;
-  color: #6b7280;
+  color: var(--text-muted);
   text-align: center;
   white-space: nowrap;
 }
 
-.stepper-step.done .stepper-label { color: var(--primary-purple, #4a2274); }
+.stepper-step.done .stepper-label { color: var(--brand-text); }
 .stepper-step.current .stepper-label { color: var(--accent-orange, #ff9800); font-weight: 700; }
 
 .stepper-line {
   flex: 1;
   height: 3px;
-  background: #e5e7eb;
+  background: var(--surface-muted);
   margin-top: 17px;
   min-width: 20px;
 }
@@ -509,12 +509,12 @@ export default {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  background: #f3eef8;
-  border: 1px solid #c4a8e0;
+  background: var(--surface-tint);
+  border: 1px solid var(--border-tint);
   border-radius: 8px 8px 0 0;
   padding: 10px 16px;
   font-weight: 600;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .tour-back-btn {
@@ -531,8 +531,8 @@ export default {
 
 /* ── Cheat-Sheet-Referenz ────────────────────────────────────────────────── */
 .cheat-sheet-reference {
-  background: white;
-  border: 1px solid #e5e7eb;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 20px;
 }
@@ -558,45 +558,45 @@ export default {
 .cheat-sheet-markdown { font-size: 0.95em; line-height: 1.6; }
 
 .cheat-sheet-markdown :deep(h1) {
-  color: #28a745; border-bottom: 2px solid #28a745; padding-bottom: 10px; margin-top: 0;
+  color: var(--success); border-bottom: 2px solid var(--success); padding-bottom: 10px; margin-top: 0;
 }
-.cheat-sheet-markdown :deep(h2) { color: #333; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 2em; }
-.cheat-sheet-markdown :deep(h3) { color: #555; margin-top: 1.5em; }
+.cheat-sheet-markdown :deep(h2) { color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 5px; margin-top: 2em; }
+.cheat-sheet-markdown :deep(h3) { color: var(--text-muted); margin-top: 1.5em; }
 .cheat-sheet-markdown :deep(code) {
-  background: #f8f9fa; padding: 2px 6px; border-radius: 3px;
-  font-family: 'Courier New', monospace; font-size: 0.9em; border: 1px solid #e9ecef;
+  background: var(--surface-muted); padding: 2px 6px; border-radius: 3px;
+  font-family: 'Courier New', monospace; font-size: 0.9em; border: 1px solid var(--border);
 }
 .cheat-sheet-markdown :deep(pre) {
-  background: #f8f9fa; padding: 15px; border-radius: 6px; overflow-x: auto; border: 1px solid #e9ecef;
+  background: var(--surface-muted); padding: 15px; border-radius: 6px; overflow-x: auto; border: 1px solid var(--border);
 }
 .cheat-sheet-markdown :deep(pre code) { background: none; padding: 0; border: none; }
 .cheat-sheet-markdown :deep(ul), .cheat-sheet-markdown :deep(ol) { padding-left: 25px; }
 .cheat-sheet-markdown :deep(li) { margin-bottom: 5px; }
 .cheat-sheet-markdown :deep(table) { width: 100%; border-collapse: collapse; margin: 20px 0; }
 .cheat-sheet-markdown :deep(th), .cheat-sheet-markdown :deep(td) {
-  border: 1px solid #ddd; padding: 8px 12px; text-align: left;
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left;
 }
-.cheat-sheet-markdown :deep(th) { background: #f8f9fa; font-weight: bold; }
+.cheat-sheet-markdown :deep(th) { background: var(--surface-muted); font-weight: bold; }
 .cheat-sheet-markdown :deep(blockquote) {
-  border-left: 4px solid #28a745; padding-left: 20px; margin-left: 0; color: #666; font-style: italic;
+  border-left: 4px solid var(--success); padding-left: 20px; margin-left: 0; color: var(--text-muted); font-style: italic;
 }
 
 /* ── Verzweigung: Extra-Herausforderung oder Check ──────────────────────── */
 .branch-choice-page {
-  background: white;
-  border: 1px solid #e5e7eb;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 24px 20px;
 }
 
 .branch-choice-page h3 {
   margin: 0 0 6px;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .branch-choice-page > p {
   margin: 0 0 18px;
-  color: #555;
+  color: var(--text-muted);
 }
 
 .branch-tile-grid {
@@ -611,18 +611,18 @@ export default {
   flex-direction: column;
   gap: 4px;
   text-align: left;
-  background: white;
-  border: 2px solid #e9ecef;
+  background: var(--surface);
+  border: 2px solid var(--border);
   border-radius: 12px;
   padding: 18px 16px;
   cursor: pointer;
   transition: all 0.15s ease;
 }
-.tile:hover { border-color: #d9c7ea; background: #f7f1fb; transform: translateY(-2px); }
+.tile:hover { border-color: var(--border-tint); background: var(--surface-tint); transform: translateY(-2px); }
 
 .branch-tile-icon { font-size: 1.6em; }
-.branch-tile strong { color: var(--primary-purple, #4a2274); font-size: 1.05em; }
-.branch-tile-desc { font-size: 0.82em; color: #6b7280; }
+.branch-tile strong { color: var(--brand-text); font-size: 1.05em; }
+.branch-tile-desc { font-size: 0.82em; color: var(--text-muted); }
 
 /* ── Ergebnis-Bereich (Weiter / Zertifikat) ─────────────────────────────── */
 .tour-tail {
@@ -643,17 +643,17 @@ export default {
 
 .tour-done-msg,
 .tour-check-pending {
-  background: #fff3cd;
-  border: 1px solid #ffe69c;
+  background: var(--warning-bg);
+  border: 1px solid var(--warning-border);
   border-radius: 8px;
   padding: 14px 18px;
   font-weight: 600;
-  color: #664d03;
+  color: var(--warning-text);
 }
 
 /* ── Zertifikat-Reveal ───────────────────────────────────────────────────── */
 .certificate-reveal {
-  background: linear-gradient(135deg, #fef9e7 0%, #fdebd0 100%);
+  background: var(--celebrate-bg);
   border: 2px solid #ffd700;
   border-radius: 12px;
   padding: 28px 24px;
@@ -674,12 +674,12 @@ export default {
 
 .certificate-reveal h3 {
   margin: 0 0 6px;
-  color: #7c3aed;
+  color: var(--brand-text);
 }
 
 .certificate-reveal > p {
   margin: 0 0 16px;
-  color: #444;
+  color: var(--text-muted);
 }
 
 .certificate-name-row {
@@ -693,13 +693,13 @@ export default {
 
 .certificate-name-row label {
   font-size: 0.85em;
-  color: #555;
+  color: var(--text-muted);
   font-weight: 600;
 }
 
 .certificate-name-row input {
   padding: 7px 10px;
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--border);
   border-radius: 6px;
   font-size: 0.9em;
   min-width: 200px;
@@ -720,7 +720,7 @@ export default {
 
 .certificate-login-hint {
   font-size: 0.82em;
-  color: #888;
+  color: var(--text-faint);
   font-style: italic;
   margin: 0;
 }
@@ -737,9 +737,9 @@ export default {
   align-items: center;
   text-align: center;
   font-weight: 700;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
   min-width: 180px;
-  background: white;
+  background: var(--surface);
 }
 
 @media (max-width: 900px) {

@@ -491,8 +491,8 @@ export default {
 }
 
 .lesson-content {
-  background: #fff;
-  border: 1px solid #dee2e6;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 24px;
   margin-bottom: 20px;
@@ -500,7 +500,7 @@ export default {
 }
 
 .lesson-loading {
-  color: #6c757d;
+  color: var(--text-muted);
   font-style: italic;
 }
 
@@ -519,7 +519,7 @@ export default {
 }
 
 .lesson-content :deep(code) {
-  background: #f4f4f4;
+  background: var(--surface-muted);
   padding: 2px 6px;
   border-radius: 3px;
   font-family: 'Courier New', monospace;
@@ -527,37 +527,37 @@ export default {
 }
 
 .lesson-content :deep(.glossary-term) {
-  border-bottom: 1px dotted var(--primary-purple, #4a2274);
+  border-bottom: 1px dotted var(--brand-text);
   cursor: help;
 }
 
 .lesson-content :deep(.concept-link) {
   color: inherit;
   text-decoration: none;
-  border-bottom: 1px dotted var(--primary-purple, #4a2274);
+  border-bottom: 1px dotted var(--brand-text);
 }
 
 .lesson-content :deep(.concept-link)::after {
   content: '↗';
   font-size: 0.75em;
   margin-left: 1px;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .lesson-content :deep(.concept-link:hover) {
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .lesson-content :deep(pre) {
-  background: #f8f9fa;
+  background: var(--surface-muted);
   padding: 12px;
   border-radius: 6px;
   overflow-x: auto;
 }
 
 .lesson-editor-section {
-  background: #f8f9fa;
-  border: 2px solid var(--primary-purple, #4a2274);
+  background: var(--surface-muted);
+  border: 2px solid var(--brand-text);
   border-radius: 8px;
   padding: 20px;
 }
@@ -565,7 +565,7 @@ export default {
 .editor-hint {
   margin: 0 0 12px 0;
   font-size: 0.9em;
-  color: #555;
+  color: var(--text-muted);
 }
 
 .editor-header {
@@ -577,7 +577,7 @@ export default {
 
 .editor-label {
   font-weight: 600;
-  color: #333;
+  color: var(--text);
 }
 
 .btn-kernel {
@@ -603,7 +603,7 @@ export default {
 .task-block {
   margin-bottom: 24px;
   padding-bottom: 24px;
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid var(--border);
 }
 
 .task-block:last-child {
@@ -615,19 +615,19 @@ export default {
 .task-instruction {
   display: block;
   font-weight: 600;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
   margin: 0 0 8px 0;
   font-size: 0.95em;
   line-height: 1.4;
 }
 
 .task-done {
-  color: #28a745;
+  color: var(--success);
   margin-right: 6px;
 }
 
 .task-pending {
-  color: #adb5bd;
+  color: var(--text-faint);
   margin-right: 6px;
 }
 
@@ -638,7 +638,7 @@ export default {
 
 .task-status-label {
   font-weight: 400;
-  color: #6c757d;
+  color: var(--text-muted);
   font-size: 0.9em;
 }
 
@@ -658,15 +658,15 @@ export default {
 .lesson-complete-box {
   margin-top: 24px;
   padding: 20px;
-  background: #d4edda;
-  border: 1px solid #c3e6cb;
+  background: var(--success-bg);
+  border: 1px solid var(--success-border);
   border-radius: 8px;
 }
 
 .lesson-summary {
   margin: 0 0 16px 0;
   font-size: 1.05em;
-  color: #155724;
+  color: var(--success-text);
   font-weight: 500;
 }
 
@@ -697,8 +697,8 @@ a.btn-next {
   min-height: 80px;
   padding: 15px;
   box-sizing: border-box;
-  background: #fff;
-  border: 1px solid #dee2e6;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 6px;
   font-family: 'Courier New', Consolas, Monaco, monospace;
   font-size: 14px;
@@ -708,7 +708,7 @@ a.btn-next {
 }
 
 .code-editor:focus {
-  outline: 2px solid var(--primary-purple, #4a2274);
+  outline: 2px solid var(--brand-text);
   outline-offset: -2px;
 }
 
@@ -742,8 +742,8 @@ a.btn-next {
 .output-display {
   margin-top: 12px;
   padding: 12px;
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
   border-radius: 6px;
   margin-bottom: 12px;
 }
@@ -752,7 +752,7 @@ a.btn-next {
   display: block;
   margin-bottom: 8px;
   font-size: 0.9em;
-  color: #555;
+  color: var(--text-muted);
 }
 
 .output-content {
@@ -786,8 +786,8 @@ a.btn-next {
 
 .btn-skip {
   background: transparent;
-  color: #6c757d;
-  border: 1px solid #dee2e6;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
   padding: 10px 20px;
   border-radius: 6px;
   cursor: pointer;
@@ -795,8 +795,8 @@ a.btn-next {
 }
 
 .btn-skip:hover:not(:disabled) {
-  background: #f8f9fa;
-  border-color: #adb5bd;
+  background: var(--surface-muted);
+  border-color: var(--border-strong);
 }
 
 .btn-skip:disabled {
@@ -806,8 +806,8 @@ a.btn-next {
 
 .btn-reset {
   background: transparent;
-  color: #6c757d;
-  border: 1px solid #dee2e6;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
   padding: 10px 20px;
   border-radius: 6px;
   cursor: pointer;
@@ -815,8 +815,8 @@ a.btn-next {
 }
 
 .btn-reset:hover:not(:disabled) {
-  background: #f8f9fa;
-  border-color: #adb5bd;
+  background: var(--surface-muted);
+  border-color: var(--border-strong);
 }
 
 .btn-reset:disabled {
@@ -831,25 +831,25 @@ a.btn-next {
 }
 
 .feedback-success {
-  background: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
+  background: var(--success-bg);
+  color: var(--success-text);
+  border: 1px solid var(--success-border);
 }
 
 .feedback-error {
-  background: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
+  background: var(--danger-bg);
+  color: var(--danger-text);
+  border: 1px solid var(--danger-border);
 }
 
 .kernel-status {
   margin-top: 12px;
   font-size: 0.9em;
-  color: #6c757d;
+  color: var(--text-muted);
 }
 
 .task-block.task-example {
-  border-left: 4px solid #ced4da;
+  border-left: 4px solid var(--border-strong);
   padding-left: 12px;
 }
 
@@ -862,8 +862,8 @@ a.btn-next {
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  background: #f1f3f5;
-  color: #868e96;
+  background: var(--surface-muted);
+  color: var(--text-faint);
 }
 
 /* Rahmen zeigt: dieser Code wurde schon mindestens einmal ausgefuehrt. */
@@ -885,7 +885,7 @@ a.btn-next {
 
 .editor-hint-blank {
   font-weight: 600;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .solution-box {
@@ -894,8 +894,8 @@ a.btn-next {
 
 .btn-solution {
   background: transparent;
-  color: #6c757d;
-  border: 1px dashed #adb5bd;
+  color: var(--text-muted);
+  border: 1px dashed var(--border-strong);
   padding: 6px 14px;
   border-radius: 6px;
   cursor: pointer;
@@ -903,22 +903,22 @@ a.btn-next {
 }
 
 .btn-solution:hover {
-  background: #f1f3f5;
-  color: #333;
+  background: var(--surface-muted);
+  color: var(--text);
 }
 
 .solution-label {
   margin: 0 0 6px 0;
   font-size: 0.82em;
   font-weight: 600;
-  color: #6c757d;
+  color: var(--text-muted);
 }
 
 .solution-code {
   margin: 0;
   padding: 12px;
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
   border-radius: 6px;
   font-family: 'Courier New', Consolas, Monaco, monospace;
   font-size: 13px;

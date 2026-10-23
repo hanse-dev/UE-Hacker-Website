@@ -639,14 +639,14 @@ export default {
 }
 
 .admin-intro {
-  color: #555;
+  color: var(--text-muted);
   margin: 0 0 20px;
 }
 
 .admin-login-card,
 .modal-card {
-  background: #fff;
-  border: 1px solid #dee2e6;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 20px;
   max-width: 420px;
@@ -662,7 +662,7 @@ export default {
 .field input,
 .field select {
   padding: 10px 12px;
-  border: 1px solid #ced4da;
+  border: 1px solid var(--border-strong);
   border-radius: 6px;
   font-size: 1em;
 }
@@ -677,7 +677,7 @@ export default {
   display: flex;
   gap: 4px;
   margin-bottom: 16px;
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid var(--border);
 }
 
 .admin-tab {
@@ -685,14 +685,14 @@ export default {
   background: none;
   padding: 10px 16px;
   font-weight: 600;
-  color: #555;
+  color: var(--text-muted);
   cursor: pointer;
   border-bottom: 2px solid transparent;
 }
 
 .admin-tab.active {
-  color: var(--primary-purple, #4a2274);
-  border-bottom-color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
+  border-bottom-color: var(--brand-text);
 }
 
 .field-checkbox {
@@ -715,13 +715,13 @@ export default {
 }
 
 .badge-cancelled {
-  background: #fdecea;
-  color: #c0392b;
+  background: var(--danger-bg);
+  color: var(--danger-text);
 }
 
 .badge-unlisted {
-  background: #eee;
-  color: #444;
+  background: var(--surface-muted);
+  color: var(--text-muted);
   margin-right: 6px;
 }
 
@@ -745,8 +745,8 @@ export default {
 }
 
 .btn-secondary {
-  background: #f1f3f5;
-  color: #333;
+  background: var(--surface-muted);
+  color: var(--text);
 }
 
 .btn-primary:disabled {
@@ -757,14 +757,14 @@ export default {
 .admin-table {
   width: 100%;
   border-collapse: collapse;
-  background: #fff;
+  background: var(--surface);
 }
 
 .admin-table th,
 .admin-table td {
   text-align: left;
   padding: 10px 12px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border);
 }
 
 .actions {
@@ -774,7 +774,7 @@ export default {
 .btn-link {
   background: none;
   border: none;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
   cursor: pointer;
   font-weight: 600;
   margin-right: 10px;
@@ -782,18 +782,18 @@ export default {
 }
 
 .btn-link.danger {
-  color: #c0392b;
+  color: var(--danger-text);
 }
 
 .error {
-  color: #c0392b;
-  background: #fdecea;
+  color: var(--danger-text);
+  background: var(--danger-bg);
   padding: 8px 10px;
   border-radius: 6px;
 }
 
 .muted {
-  color: #6c757d;
+  color: var(--text-muted);
 }
 
 .reset-result {
@@ -820,8 +820,8 @@ export default {
   margin-left: 6px;
   padding: 1px 6px;
   border-radius: 10px;
-  background: #fff3cd;
-  color: #664d03;
+  background: var(--warning-bg);
+  color: var(--warning-text);
   font-size: 0.78em;
   font-weight: 600;
 }

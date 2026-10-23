@@ -1,13 +1,101 @@
+/* Farb-Tokens: Komponenten nutzen nur diese Variablen statt fester Farben, damit der Dark Mode
+   (html[data-theme="dark"], gesetzt von useTheme.js bzw. dem Inline-Skript in index.html) greift.
+   Marken-/Akzentfarben als Hintergrund (Lila-Header, orange Buttons) bleiben in beiden Modi gleich. */
 :root {
+  color-scheme: light;
+
   --primary-purple: #4a2274; /* Dark purple from logo */
   --accent-yellow: #fdd835;   /* Vibrant yellow from logo */
   --accent-orange: #ff9800;  /* Bright orange from logo */
   --accent-blue: #03a9f4;     /* Sky blue from logo */
   --text-light: #fdf8e1;      /* Creamy off-white for text on dark bg */
-  --text-dark: #333;
-  --background-light: #f4f6f8;
-  --white: #ffffff;
-  --border-color: #e0e0e0;
+
+  --bg-page: #f4f6f8;
+  --surface: #ffffff;
+  --surface-muted: #f8f9fa;
+  --surface-tint: #f7f1fb;    /* zartes Lila für Hinweis-/Lernziel-Kästen */
+  --text: #333;
+  --text-strong: #222;
+  --text-muted: #666;
+  --text-faint: #888;
+  --border: #dee2e6;
+  --border-strong: #ccc;
+  --border-tint: #d9c7ea;
+  --brand-text: #4a2274;      /* Lila als Schrift-/Randfarbe auf hellem Grund */
+  --brand-text-soft: #7c5a94;
+  --success-bg: #d4edda;
+  --success-text: #155724;
+  --success-border: #c3e6cb;
+  --success: #28a745;
+  --danger-bg: #f8d7da;
+  --danger-text: #721c24;
+  --danger-border: #f5c6cb;
+  --danger: #dc3545;
+  --warning-bg: #fff3cd;
+  --warning-text: #664d03;
+  --warning-border: #ffe69c;
+  --code-bg: #f4f4f4;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --backdrop: rgba(20, 20, 20, 0.45);
+  --celebrate-bg: linear-gradient(135deg, #fef9e7 0%, #fdebd0 100%);
+
+  /* Syntax-Farben für CodeMirror (src/utils/editorTheme.js) */
+  --cm-keyword: #708;
+  --cm-string: #a11;
+  --cm-number: #164;
+  --cm-comment: #940;
+  --cm-def: #00f;
+  --cm-builtin: #219;
+  --cm-active-line: #cceeff44;
+  --cm-selection: #d9d9d9;
+
+  /* Alte Namen, weiter genutzt */
+  --text-dark: var(--text);
+  --background-light: var(--bg-page);
+  --white: var(--surface);
+  --border-color: var(--border);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg-page: #15121b;
+  --surface: #1f1a27;
+  --surface-muted: #262030;
+  --surface-tint: #2c2238;
+  --text: #e6e1ec;
+  --text-strong: #f3eff7;
+  --text-muted: #b5adc0;
+  --text-faint: #8f879b;
+  --border: #3a3346;
+  --border-strong: #514860;
+  --border-tint: #4e3a66;
+  --brand-text: #cdaef0;
+  --brand-text-soft: #b49ad0;
+  --success-bg: #173a24;
+  --success-text: #9be0b2;
+  --success-border: #2c5c3c;
+  --success: #3ec466;
+  --danger-bg: #3e1d22;
+  --danger-text: #f4a9b0;
+  --danger-border: #6e2f38;
+  --danger: #f06272;
+  --warning-bg: #3a3014;
+  --warning-text: #f0d27a;
+  --warning-border: #6a5520;
+  --code-bg: #2a2433;
+  --shadow: rgba(0, 0, 0, 0.45);
+  --backdrop: rgba(0, 0, 0, 0.65);
+  --celebrate-bg: linear-gradient(135deg, #3a3014 0%, #3d2a17 100%);
+
+  --cm-keyword: #d19bf7;
+  --cm-string: #f3a37c;
+  --cm-number: #8fd6a0;
+  --cm-comment: #a89a7c;
+  --cm-def: #82b8ff;
+  --cm-builtin: #79d4e8;
+  --cm-active-line: #ffffff0d;
+  --cm-selection: #4a3d63;
 }
 
 /* General Body Styles */
@@ -98,7 +186,7 @@ body {
 
 .app-main section {
   margin-bottom: 40px;
-  background-color: var(--white);
+  background-color: var(--var(--surface));
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.07);
@@ -112,7 +200,7 @@ body {
 }
 
 .app-main h2 {
-  color: var(--primary-purple);
+  color: var(--brand-text);
   border-bottom: 3px solid var(--accent-yellow);
   padding-bottom: 10px;
   margin-bottom: 25px;
@@ -143,7 +231,7 @@ body {
 .cta-button {
   display: inline-block;
   background-color: var(--accent-orange);
-  color: var(--white);
+  color: #fff;
   padding: 15px 30px;
   border-radius: 25px;
   text-decoration: none;
@@ -177,7 +265,7 @@ body {
   border: 1px solid var(--border-color);
   padding: 25px;
   border-radius: 12px;
-  background-color: #fafafa;
+  background-color: var(--surface-muted);
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -188,7 +276,7 @@ body {
 
 .course-card h3 {
   margin-top: 0;
-  color: var(--primary-purple);
+  color: var(--brand-text);
 }
 
 .course-link {
@@ -217,7 +305,7 @@ body {
 }
 
 .termin-card {
-  background-color: #fafafa;
+  background-color: var(--surface-muted);
   border: 1px solid var(--border-color);
   padding: 25px;
   border-radius: 12px;
@@ -233,7 +321,7 @@ body {
 .termin-card h3 {
   margin-top: 0;
   font-size: 1.2em;
-  color: var(--primary-purple);
+  color: var(--brand-text);
 }
 
 .termin-card p {
@@ -242,11 +330,11 @@ body {
 
 .termin-card.cancelled {
   text-decoration: line-through;
-  color: #c62828;
+  color: var(--danger-text);
 }
 
 .cancelled-text {
-  color: #c62828;
+  color: var(--danger-text);
   font-weight: bold;
 }
 

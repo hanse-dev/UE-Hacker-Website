@@ -116,7 +116,7 @@ export default {
 .choose-week-title {
   text-align: center;
   margin-bottom: 24px;
-  color: #555;
+  color: var(--text-muted);
 }
 
 .week-grid {
@@ -133,19 +133,19 @@ export default {
   align-items: center;
   gap: 4px;
   padding: 16px 10px;
-  background: white;
-  border: 2px solid var(--primary-purple, #4a2274);
+  background: var(--surface);
+  border: 2px solid var(--brand-text);
   border-radius: 10px;
   cursor: pointer;
   text-align: center;
 }
 
 .week-tile:hover:not(:disabled) {
-  background: #f7f1fb;
+  background: var(--surface-tint);
 }
 
 .week-tile.locked {
-  border-color: #dee2e6;
+  border-color: var(--border);
   cursor: not-allowed;
   opacity: 0.7;
 }
@@ -159,20 +159,20 @@ export default {
 }
 
 .week-tile.locked .week-tile-number {
-  color: #adb5bd;
+  color: var(--text-faint);
 }
 
 .week-tile-title {
   font-weight: 600;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .week-tile.locked .week-tile-title {
-  color: #868e96;
+  color: var(--text-faint);
 }
 
 .week-tile-badge {
   font-size: 0.75em;
-  color: #868e96;
+  color: var(--text-faint);
 }
 </style>

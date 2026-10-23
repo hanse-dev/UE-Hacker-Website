@@ -188,7 +188,7 @@ export default {
 
 <style scoped>
 .fortschritt-widget {
-  background: linear-gradient(135deg, #fef9e7 0%, #fdebd0 100%);
+  background: var(--celebrate-bg);
   border: 2px solid #ffd700;
   border-radius: 8px;
   margin-bottom: 40px;
@@ -205,12 +205,12 @@ export default {
 }
 
 .fortschritt-widget-header:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: color-mix(in srgb, var(--surface) 30%, transparent);
 }
 
 .fortschritt-widget-header h3 {
   margin: 0;
-  color: #333;
+  color: var(--text);
   border: none;
   padding: 0;
 }
@@ -218,7 +218,7 @@ export default {
 .fortschritt-toggle {
   font-size: 1.5em;
   font-weight: bold;
-  color: #666;
+  color: var(--text-muted);
 }
 
 .fortschritt-widget-content {
@@ -227,7 +227,7 @@ export default {
 }
 
 .fortschritt-einleitung {
-  background: rgba(255, 255, 255, 0.6);
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
   padding: 14px 16px;
   border-radius: 8px;
   margin-bottom: 16px;
@@ -255,8 +255,8 @@ export default {
 }
 
 .fortschritt-io-btn {
-  background: rgba(255, 255, 255, 0.9);
-  border: 2px solid #dee2e6;
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  border: 2px solid var(--border);
   padding: 8px 14px;
   border-radius: 8px;
   font-size: 0.9em;
@@ -267,7 +267,7 @@ export default {
 
 .fortschritt-io-btn:hover {
   border-color: #ffd700;
-  background: white;
+  background: var(--surface);
 }
 
 .fortschritt-file-input {
@@ -276,7 +276,7 @@ export default {
 
 .fortschritt-skript-details {
   font-size: 0.85em;
-  color: #666;
+  color: var(--text-muted);
   margin-top: 12px;
 }
 
@@ -285,12 +285,12 @@ export default {
 }
 
 .certificate-count {
-  background: rgba(255, 255, 255, 0.8);
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
   padding: 10px 16px;
   border-radius: 8px;
-  border: 1px solid #eee;
+  border: 1px solid var(--border);
   font-weight: 600;
-  color: #7c3aed;
+  color: var(--brand-text);
 }
 
 .fortschritt-weekly-section {
@@ -309,19 +309,19 @@ export default {
 }
 
 .fortschritt-weekly-header:hover h4 {
-  color: #555;
+  color: var(--text-muted);
 }
 
 .fortschritt-weekly-section h4 {
   margin: 0;
   font-size: 1em;
-  color: #333;
+  color: var(--text);
 }
 
 .fortschritt-weekly-hint {
   margin: 0 0 16px 0;
   font-size: 0.85em;
-  color: #666;
+  color: var(--text-muted);
 }
 
 .certificate-name-field {
@@ -334,7 +334,7 @@ export default {
 
 .certificate-name-field label {
   font-size: 0.85em;
-  color: #555;
+  color: var(--text-muted);
   font-weight: 600;
 }
 
@@ -342,7 +342,7 @@ export default {
   flex: 1;
   min-width: 180px;
   padding: 8px 10px;
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--border);
   border-radius: 6px;
   font-size: 0.9em;
 }
@@ -370,7 +370,7 @@ export default {
 .certificate-login-hint {
   margin-top: 4px;
   font-size: 0.7em;
-  color: #888;
+  color: var(--text-faint);
   font-style: italic;
 }
 
@@ -386,16 +386,16 @@ export default {
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid #eee;
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 14px 10px;
   text-align: center;
 }
 
 .certificate-card.earned {
-  border-color: #c4b5fd;
-  background: rgba(237, 233, 254, 0.8);
+  border-color: var(--border-tint);
+  background: var(--surface-tint);
 }
 
 .certificate-icon {
@@ -404,23 +404,23 @@ export default {
 
 .certificate-week {
   font-weight: 600;
-  color: #333;
+  color: var(--text);
   font-size: 0.9em;
 }
 
 .certificate-status {
   font-size: 0.78em;
-  color: #666;
+  color: var(--text-muted);
 }
 
 .certificate-card.earned .certificate-status {
-  color: #5b21b6;
+  color: var(--brand-text);
   font-weight: 600;
 }
 
 .fortschritt-hint {
   margin: 15px 0 0 0;
   font-size: 0.9em;
-  color: #666;
+  color: var(--text-muted);
 }
 </style>

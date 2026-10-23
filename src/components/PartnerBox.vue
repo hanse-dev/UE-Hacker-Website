@@ -99,14 +99,14 @@ export default {
 .partner-box {
   margin-top: 16px;
   padding: 12px;
-  border: 1px solid var(--border-color, #d9d2e3);
+  border: 1px solid var(--border);
   border-radius: 8px;
   font-size: 0.9em;
 }
 
 .partner-hint {
   margin: 0 0 8px 0;
-  color: var(--text-muted, #666);
+  color: var(--text-muted);
 }
 
 .partner-linked {
@@ -131,14 +131,14 @@ export default {
   width: 100%;
   box-sizing: border-box;
   padding: 6px 8px;
-  border: 1px solid var(--border-color, #c9c0d6);
+  border: 1px solid var(--border-strong);
   border-radius: 6px;
   font: inherit;
 }
 
 .partner-error {
   margin: 0 0 8px 0;
-  color: #b00020;
+  color: var(--danger-text);
 }
 
 .partner-actions {
@@ -152,10 +152,10 @@ export default {
 .partner-cancel,
 .partner-unlink {
   padding: 6px 12px;
-  border: 1px solid var(--primary-purple, #4a2274);
+  border: 1px solid var(--brand-text);
   border-radius: 6px;
   background: transparent;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
   font: inherit;
   cursor: pointer;
 }
@@ -165,7 +165,7 @@ export default {
 }
 
 .partner-submit {
-  background: var(--primary-purple, #4a2274);
+  background: var(--primary-purple);
   color: #fff;
 }
 
