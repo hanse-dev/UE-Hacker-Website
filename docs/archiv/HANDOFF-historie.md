@@ -3103,3 +3103,10 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   `<img alt>` wird zu `[Bild: …]` (das Modell sieht die SVG-Steckpläne nicht – Hinweise zu Bildern
   daher mit Vorsicht lesen). Antwort je Abhakpunkt `schaffe_ich` ja/unsicher/nein; „nein“ = Zeile „hoch“.
   Erster Lauf (Blöcke, 11 Jahre): Einführung 2, Ampel 18 (3 hoch), Sterne 20 (6 hoch), Auto 33 (4 hoch).
+- `--geaendert [BASIS]` (Wunsch Eike: „bei jedem neuen Kurs laufen lassen“): `git merge-base BASIS HEAD`,
+  dann `git diff --name-only` + nicht versionierte Dateien unter `content/`. Python-Wochen (nur DE) und
+  `microbit-*`: geänderte `.md` → die Lektion mit diesem `file`, geänderte `lessons.json` → jede Lektion,
+  deren JSON sich gegenüber der Abzweigung unterscheidet, `beschreibung.md` → alle Stufen. Lösungszellen
+  zählen nicht (das Test-Kind sieht sie nie), andere Kursarten werden als „nicht geprüft“ gemeldet.
+  Bewusst kein Hook (Minuten Laufzeit, braucht die claude-CLI, Ergebnis schwankt), sondern eine Regel in
+  `CLAUDE.md` und `INHALTE.md` §6.

@@ -290,6 +290,7 @@ Jeder Ordner enthält dieselben Dateien:
       prüft das) — sonst weicht auch der ZIP-Download (`scripts/build_lesson_bundle.py`) ab.
 
 ### Wenn du eine Lektion/Mission/Boss-Etappe im Lektions-Format änderst (12-Wochen-Kurs, Woche 1–12):
+- [ ] Vor dem Merge: `npm run testkind -- --geaendert` (KI-Test-Kind, nur die geänderten Lektionen; Stellen „hoch“ beheben, „mittel“ ansehen, danach erneut laufen lassen). Dazu `npm run check:verstaendlichkeit -- --wochen N --nur nie-gezeigt`.
 - [ ] `content/python-woche{N}-{thema}[-en]/lessons.json` (Aufgaben/`codeTemplate`/`validation`) und
       die zugehörige `lektion-XX.md`/`debug-XX.md`/`mission-XX.md`/`boss-XX.md` (Erzähltext)
 - [ ] Passende Referenzlösung in `..._6_loesungen` (siehe oben) nachziehen; neue Lösung als Zell-Paar mit
@@ -470,6 +471,7 @@ Ordner-Mapping (immer paarweise anpassen):
       `console.log`-Aufgaben bekommen `"showCanvas": false`. Test: `tests/js-quiz.spec.js`.
 
 **Für einen Hardware-Kurs zum Abhaken (wie `microbit-auto` und `microbit-ampel`):**
+- [ ] Vor dem Merge: `npm run testkind -- --geaendert` (prüft geänderte Stufen mit Blöcken; einmal auch `--kurs <ordner> --variante python`). Neue MakeCode-Bedienhinweise im echten Editor nachklicken.
 - [ ] `kurse.json`-Eintrag bekommt `"engine": "anleitung"`. `ProjectCourse.vue` rendert dann
       `GuideLessonView.vue`: kein Kernel, kein Editor. Der Code läuft auf dem echten Gerät, die
       Plattform kann ihn nicht prüfen.

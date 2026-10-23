@@ -23,6 +23,8 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
       Einsatzfahrzeug im Auto); `--variante python` und `javascript` laufen lassen. Neu eingefügte
       MakeCode-Angaben (Fortgeschritten → Erweiterungen, Pins → … mehr → Digital-Pin, Plus am wenn-Block,
       Speichern-Symbol neben dem Projektnamen) beim nächsten Termin einmal im echten Editor nachklicken.
+      Test-Kind für weitere Kursarten (Projekt-Kurse Python, JS-Grundkurs, Web, KI-Labor) erweitern;
+      bis dahin meldet `--geaendert` sie als „nicht geprüft“.
 
 - [ ] Einmaliger Ausfall im vollen Lauf unter Last (15.10., parallel liefen Tests anderer Sessions,
       Suite 4,5 statt ~2,3 Min.): `tests/ki-labor.spec.js` Woche 3 (Python-Lauf > 10 s, Timeout pro

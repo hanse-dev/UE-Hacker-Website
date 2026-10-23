@@ -130,3 +130,40 @@ test('Anleitungs-Kurs: "ohne Hilfe nicht geschafft" landet als wichtige Zeile im
   expect(out).toContain('| microbit-test (bloecke) | lektion-01 – Erste LED | Abhaken 2 | ohne Hilfe nicht geschafft – Wie blinkt man? |  | **hoch** |');
   expect(out).not.toContain('Abhaken 1');
 });
+
+// --geaendert: nur Lektionen, die seit der Abzweigung neu sind oder sich geändert haben – auch
+// noch nicht committete. Geprüft an einem kleinen Git-Repo mit Python- und micro:bit-Lektionen.
+test('--geaendert findet geänderte Lektionen (Text und lessons.json), unveränderte nicht', () => {
+  const repo = fs.mkdtempSync(path.join(os.tmpdir(), 'ki-geaendert-'));
+  const py = path.join(repo, 'content', 'python-woche1-abenteuer');
+  const mb = path.join(repo, 'content', 'microbit-test');
+  fs.mkdirSync(py, { recursive: true });
+  fs.mkdirSync(mb, { recursive: true });
+  const pyTask = { instruction: 'Gib Hallo aus.', codeTemplate: '', validation: { type: 'output_contains', expected: 'Hallo' } };
+  fs.writeFileSync(path.join(py, 'lessons.json'), JSON.stringify([
+    { id: 'lektion-01', section: 'lektion', title: 'Eins', file: 'lektion-01.md', lessonSummary: '', tasks: [pyTask] },
+    { id: 'lektion-02', section: 'lektion', title: 'Zwei', file: 'lektion-02.md', lessonSummary: '', tasks: [pyTask] },
+  ]));
+  fs.writeFileSync(path.join(py, 'lektion-01.md'), '# Eins\n');
+  fs.writeFileSync(path.join(py, 'lektion-02.md'), '# Zwei\n');
+  const mbLessons = [{ id: 'lektion-01', title: 'LED', file: 'lektion-01.md', lessonSummary: '', tasks: [{ instruction: 'Die LED leuchtet.' }] }];
+  fs.writeFileSync(path.join(mb, 'lessons.json'), JSON.stringify(mbLessons));
+  fs.writeFileSync(path.join(mb, 'lektion-01.md'), '# LED\n');
+  // Ohne GIT_DIR & Co.: Im Pre-commit-Hook zeigen sie auf das echte Repo. Ein `git init`/`commit`
+  // im Mini-Repo landete sonst im Branch des Hooks (und setzte core.bare im Haupt-Repo).
+  const env = Object.fromEntries(Object.entries(process.env).filter(([k]) => !k.startsWith('GIT_')));
+  const git = (...a) => execFileSync('git', ['-C', repo, ...a], { encoding: 'utf8', env });
+  git('init', '-q');
+  git('add', '.');
+  git('-c', 'user.name=t', '-c', 'user.email=t@t', 'commit', '-qm', 'basis');
+
+  fs.writeFileSync(path.join(py, 'lektion-02.md'), '# Zwei\n\nNeuer Text.\n');
+  mbLessons[0].tasks[0].instruction = 'Die rote LED leuchtet.';
+  fs.writeFileSync(path.join(mb, 'lessons.json'), JSON.stringify(mbLessons));
+
+  const out = execFileSync('python3', ['scripts/ki_testkind.py', '--content', path.join(repo, 'content'), '--geaendert', 'HEAD', '--trocken'],
+    { cwd: process.cwd(), encoding: 'utf8', env });
+  expect(out).toContain('Würde prüfen: 1 abenteuer lektion-02');
+  expect(out).toContain('Würde prüfen: microbit-test lektion-01');
+  expect(out).not.toContain('abenteuer lektion-01');
+});

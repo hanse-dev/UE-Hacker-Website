@@ -50,7 +50,7 @@ Alles unten ist nach `main` gemergt. Details: `grep -n "^### 3.NN" docs/archiv/H
 | 3.122 | Dark Mode | `useTheme.js` (System/Hell/Dunkel in „Optionen“, nur `localStorage` `ue-hacker-theme`), Inline-Skript in `index.html`, Farb-Tokens in `src/style.css`, Editor-Farben `src/utils/editorTheme.js` |
 | 3.123 | Verständlichkeit prüfen | `npm run check:verstaendlichkeit [-- --wochen 1-3 --out bericht.md]` (`scripts/check_verstaendlichkeit.py`): Lösung braucht nie Gezeigtes, zu viel Neues, Begriff zu früh, Fachwörter, lange Sätze/LIX; nur Bericht, kein Test-Gate |
 | 3.124 | Stolperstellen-Zähler | anonyme Summen je Aufgabe (`task_stats`, `routes/taskStats.js`), gemeldet von `LessonView`/`JsLessonView` über `useTaskStats.js`, Admin-Reiter „Stolperstellen“ (`AdminStolperstellen.vue`); Tests nur in `test:auth` |
-| 3.125 | KI als Test-Kind | `npm run testkind -- --wochen 3 [--lektion lektion-02] [--alter 10] --out bericht.md` (`scripts/ki_testkind.py`): Claude spielt über die `claude`-CLI ein Kind, das nur das bisherige Material kennt; Code wird gegen `expected` geprüft. Auch Anleitungs-Kurse: `--kurs microbit-ampel [--variante bloecke|python|javascript]` (nichts wird ausgeführt, je Abhakpunkt „ohne Hilfe geschafft?“). Nur lokal, Vorfilter fürs Beobachten |
+| 3.125 | KI als Test-Kind | `npm run testkind -- --wochen 3 [--lektion lektion-02] [--alter 10] --out bericht.md` (`scripts/ki_testkind.py`): Claude spielt über die `claude`-CLI ein Kind, das nur das bisherige Material kennt; Code wird gegen `expected` geprüft. `--geaendert [BASIS]` prüft nur Neues/Geändertes seit `main` (Pflicht vor dem Merge, `CLAUDE.md`). Auch Anleitungs-Kurse: `--kurs microbit-ampel [--variante bloecke|python|javascript]` (nichts wird ausgeführt, je Abhakpunkt „ohne Hilfe geschafft?“). Nur lokal, Vorfilter fürs Beobachten |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -100,6 +100,7 @@ Punkte-System, Zertifikate), wird hier nicht wiederholt.
 - Änderungen an `kurse.json`, Profil oder Zertifikaten auch mit `npm run test:auth` prüfen (Profil-Tests laufen in keinem Hook). `test:auth` braucht Port 5174 mit Proxy (nackter Vite → 502).
 - Deep-Links `?week=&tab=` bleiben stabil (`WeekTour.vue` übersetzt intern); `?week=` ohne `?stufe=` gehört bei „Meine erste Website“ zu Einfach.
 - Generierte Dateien stellt `scripts/ensure-test-prereqs.mjs` vor jedem Lauf sicher.
+- Tests, die selbst `git` aufrufen (z. B. ein Mini-Repo anlegen), laufen auch im Pre-commit-Hook: dort zeigen `GIT_DIR`/`GIT_INDEX_FILE` auf das echte Repo. Immer mit `env` ohne `GIT_*` aufrufen – sonst landet der Test-Commit im Branch und `git init` setzt `core.bare = true` im Haupt-Repo (passiert am 23.10., siehe `tests/ki-testkind.spec.js`).
 - `test:checks` leitet `/api` an die laufende Dev-API weiter: Was im Browser etwas an die API meldet (Stolperstellen), muss bei `navigator.webdriver` schweigen und im Test gezielt eingeschaltet werden (`window.__ueTaskStatsInTests`).
 - Neue npm-Abhängigkeit im Worktree: `npm install` ersetzt den `node_modules`-Symlink; nach dem Merge im Haupt-Checkout `npm install`.
 - Profil-Abzeichen rechnen live; nichts beim Laden einfrieren, was der Sync später ändert. Sync darf nach Server-Apply keinen vollen Notebook-Re-Fetch auslösen (3.3).

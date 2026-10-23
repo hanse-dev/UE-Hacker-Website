@@ -75,6 +75,8 @@ Start lokal: `npm run start:all` (Vite :5173 + API :3001) · `npm run start:prod
 - **Inhalte:** vor jeder Änderung `INHALTE.md` Abschnitt 6 lesen. DE und EN synchron halten, alle
   drei Themen prüfen. Aufgabentext ändern = `lessons.json` **und** Lösungs-Markdown-Zelle; jede
   Lösung per `python3` gegen `expected` laufen lassen. Jede Aufgabe braucht ein `expected`.
+- **Verständlichkeit:** neue/geänderte Lektionen (Python 12 Wochen, micro:bit) vor dem Merge mit
+  `npm run testkind -- --geaendert --out <scratchpad>/bericht.md` prüfen: „hoch“ beheben, „mittel“ ansehen.
 - **Doku nach jedem Commit:** `todo.md` (offene Punkte) und `HANDOFF.md` (Tabelle in Abschnitt 3,
   neue Fallstricke) im selben Commit nachziehen und dabei Erledigtes nach `docs/archiv/` verschieben.
   In diese Datei kommt nur, was in **jeder** Session gebraucht wird.

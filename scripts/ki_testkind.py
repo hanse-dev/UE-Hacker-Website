@@ -14,6 +14,7 @@ einem leeren Ordner, damit keine CLAUDE.md mitgelesen wird.
     python3 scripts/ki_testkind.py --wochen 3 --lektion lektion-02 --alter 10
     python3 scripts/ki_testkind.py --wochen 2 --trocken            # nur den Prompt zeigen
     python3 scripts/ki_testkind.py --kurs microbit-ampel --variante python --alter 10
+    python3 scripts/ki_testkind.py --geaendert                     # alles Neue/Geänderte seit main
 
 Mit --kurs prüft es einen Anleitungs-Kurs (engine "anleitung", micro:bit): Das Test-Kind arbeitet zu
 zweit an der Hardware, kennt die Materialliste aus beschreibung.md, die Einführung "Erste Schritte"
@@ -379,7 +380,9 @@ def render_report(entries: list[dict], alter: int) -> str:
            f"Rechnerische Kosten (Listenpreis, im Abo enthalten): {cost:.2f} $. Einzelheiten je Aufgabe stehen in der .json-Datei daneben.", ""]
     if not rows:
         return "\n".join(out + ["Alles klar – nichts zu ändern."]) + "\n"
-    out += [f"| {'Kurs' if entries and entries[0].get('kurs') else 'Woche'} | Lektion | Stelle | Problem | Hätte geholfen | Gewicht |",
+    kinds = {bool(e.get("kurs")) for e in entries}
+    first = "Woche/Kurs" if len(kinds) > 1 else ("Kurs" if True in kinds else "Woche")
+    out += [f"| {first} | Lektion | Stelle | Problem | Hätte geholfen | Gewicht |",
             "|---|---|---|---|---|---|"]
     for r in rows:
         weight = "**hoch**" if r["gewicht"] == "hoch" else "mittel"
@@ -396,82 +399,137 @@ def parse_weeks(spec: str) -> list[int]:
     return sorted(weeks)
 
 
+def _git(repo: Path, *cmd) -> str:
+    # Ohne GIT_DIR & Co.: In einem Git-Hook zeigen sie auf das Repo des Hooks, nicht auf `repo`.
+    env = {k: v for k, v in os.environ.items() if not k.startswith("GIT_")}
+    return subprocess.run(["git", "-C", str(repo), *cmd], capture_output=True, text=True, env=env).stdout
+
+
+def changed_lessons(content: Path, base: str) -> tuple[list[tuple], list[str]]:
+    """Lektionen, die seit der Abzweigung von `base` neu sind oder sich geändert haben (auch noch
+    nicht committet). Liefert ("py", woche, thema, id) bzw. ("guide", kurs, id) und die übrigen
+    Content-Dateien, die das Test-Kind (noch) nicht prüfen kann."""
+    repo = content.parent
+    fork = _git(repo, "merge-base", base, "HEAD").strip() or base
+    files = set(_git(repo, "diff", "--name-only", fork, "--", content.name).split())
+    files |= set(_git(repo, "ls-files", "--others", "--exclude-standard", "--", content.name).split())
+    found, skipped = [], []
+    py_re = re.compile(r"^python-woche(\d+)-(abenteuer|pferde|scifi)$")
+    for f in sorted(files):
+        parts = Path(f).parts
+        if len(parts) < 3 or parts[0] != content.name:
+            continue
+        folder, name = parts[1], parts[-1]
+        m = py_re.match(folder)
+        if not m and not folder.startswith("microbit-"):
+            if not folder.startswith("python-12-wochen-grundkurs"):  # Lösungen sieht das Test-Kind nie
+                skipped.append(f)
+            continue
+        lj = content / folder / "lessons.json"
+        if not lj.is_file():
+            continue
+        lessons = json.loads(lj.read_text(encoding="utf-8"))
+        if name == "lessons.json":
+            old_raw = _git(repo, "show", f"{fork}:{f}")
+            old = {l["id"]: l for l in json.loads(old_raw)} if old_raw.strip() else {}
+            ids = [l["id"] for l in lessons if old.get(l["id"]) != l]
+        else:
+            ids = [l["id"] for l in lessons if l.get("file") == name]
+            if not ids and name == "beschreibung.md":
+                ids = [l["id"] for l in lessons]
+        for lid in ids:
+            key = ("py", int(m.group(1)), m.group(2), lid) if m else ("guide", folder, lid)
+            if key not in found:
+                found.append(key)
+    return found, skipped
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--wochen", help="Python-12-Wochen-Kurs: z. B. 1, 1-3 oder 2,5")
     ap.add_argument("--kurs", help="Anleitungs-Kurs (Content-Ordner), z. B. microbit-ampel")
-    ap.add_argument("--variante", default="bloecke", choices=VARIANTEN, help="bei --kurs: Blöcke (Standard), Python oder JavaScript")
+    ap.add_argument("--geaendert", nargs="?", const="main", metavar="BASIS",
+                    help="alle Lektionen prüfen, die seit der Abzweigung von BASIS (Standard: main) neu sind oder sich geändert haben")
+    ap.add_argument("--variante", default="bloecke", choices=VARIANTEN, help="bei Anleitungs-Kursen: Blöcke (Standard), Python oder JavaScript")
     ap.add_argument("--thema", default="abenteuer", choices=["abenteuer", "pferde", "scifi"])
     ap.add_argument("--lektion", help="nur diese Lektions-ID (z. B. lektion-03)")
     ap.add_argument("--alter", type=int, default=11, help="Alter des Test-Kinds (Standard 11)")
     ap.add_argument("--modell", help="an claude --model weitergeben (Standard: wie in Claude Code)")
     ap.add_argument("--parallel", type=int, default=3, help="gleichzeitige Anfragen (Standard 3)")
     ap.add_argument("--out", help="Bericht in diese Datei (sonst stdout); Rohdaten daneben als .json")
-    ap.add_argument("--trocken", action="store_true", help="nur den Prompt der ersten Lektion zeigen, nichts senden")
-    ap.add_argument("--antworten", help=argparse.SUPPRESS)  # Tests: Ordner mit <woche>-<id>.json statt claude
+    ap.add_argument("--trocken", action="store_true", help="nur den Prompt der ersten Lektion zeigen (mit --geaendert: die Liste), nichts senden")
+    ap.add_argument("--antworten", help=argparse.SUPPRESS)  # Tests: Ordner mit <woche>-<id>.json bzw. <kurs>-<id>.json statt claude
     ap.add_argument("--content", default=str(ROOT / "content"), help=argparse.SUPPRESS)
     args = ap.parse_args(argv)
     content = Path(args.content)
-    if bool(args.wochen) == bool(args.kurs):
-        ap.error("genau eins von --wochen oder --kurs angeben")
-    if args.kurs:
-        return main_guide(args, content)
+    if sum(map(bool, (args.wochen, args.kurs, args.geaendert))) != 1:
+        ap.error("genau eins von --wochen, --kurs oder --geaendert angeben")
 
+    # Ein Auftrag: ("py", woche, thema, lessons, idx) oder ("guide", kurs, lessons, idx)
     jobs = []
-    for week in parse_weeks(args.wochen):
-        lessons = load_lessons(content, week, args.thema)
-        for idx, les in enumerate(lessons):
-            if args.lektion and les["id"] != args.lektion:
-                continue
-            if not any(not t.get("example") for t in les["tasks"]):
-                continue
-            jobs.append((week, lessons, idx))
+    if args.geaendert:
+        found, skipped = changed_lessons(content, args.geaendert)
+        cache = {}
+        for key in found:
+            src = key[1:3] if key[0] == "py" else key[1]
+            if src not in cache:
+                cache[src] = load_lessons(content, *src) if key[0] == "py" else load_guide(content, src)[1]
+            lessons = cache[src]
+            idx = next(i for i, l in enumerate(lessons) if l["id"] == key[-1])
+            if key[0] == "guide" or any(not t.get("example") for t in lessons[idx]["tasks"]):
+                jobs.append((*key[:-1], lessons, idx))
+        for f in skipped:
+            print(f"  nicht geprüft (Kursart kann das Test-Kind noch nicht): {f}", file=sys.stderr)
+        if args.trocken:
+            for job in jobs:
+                print("Würde prüfen:", *job[1:-2], job[-2][job[-1]]["id"])
+            return
+        if not jobs:
+            print("Keine neuen oder geänderten Lektionen, die das Test-Kind prüfen kann.")
+            return
+    elif args.kurs:
+        _, lessons = load_guide(content, args.kurs)
+        jobs = [("guide", args.kurs, lessons, i) for i, l in enumerate(lessons) if not args.lektion or l["id"] == args.lektion]
+    else:
+        for week in parse_weeks(args.wochen):
+            lessons = load_lessons(content, week, args.thema)
+            for idx, les in enumerate(lessons):
+                if args.lektion and les["id"] != args.lektion:
+                    continue
+                if any(not t.get("example") for t in les["tasks"]):
+                    jobs.append(("py", week, args.thema, lessons, idx))
     if not jobs:
         raise SystemExit("Keine passende Lektion gefunden.")
 
+    def prompt_for(job):
+        if job[0] == "py":
+            _, week, theme, lessons, idx = job
+            return system_prompt(args.alter), SCHEMA, build_prompt(content, week, theme, lessons, idx)
+        _, kurs, lessons, idx = job
+        return guide_system_prompt(args.alter, args.variante), GUIDE_SCHEMA, build_guide_prompt(content, kurs, args.variante, lessons, idx)
+
     if args.trocken:
-        week, lessons, idx = jobs[0]
-        print("=== System ===\n" + system_prompt(args.alter) + "\n\n=== Prompt ===\n" + build_prompt(content, week, args.thema, lessons, idx))
+        system, _, prompt = prompt_for(jobs[0])
+        print("=== System ===\n" + system + "\n\n=== Prompt ===\n" + prompt)
         return
 
     def work(job):
-        week, lessons, idx = job
+        lessons, idx = job[-2], job[-1]
         les = lessons[idx]
+        name = f"{job[1]}-{les['id']}"
         if args.antworten:
-            answer = json.loads((Path(args.antworten) / f"{week}-{les['id']}.json").read_text(encoding="utf-8"))
+            answer = json.loads((Path(args.antworten) / f"{name}.json").read_text(encoding="utf-8"))
         else:
-            answer = ask_claude(build_prompt(content, week, args.thema, lessons, idx), system_prompt(args.alter), SCHEMA, args.modell)
-        print(f"  Woche {week} {les['id']} fertig", file=sys.stderr)
-        return {"woche": week, "thema": args.thema, "id": les["id"], "titel": les["title"],
-                "antwort": answer, "ergebnisse": evaluate(les, answer)}
-
-    print(f"{len(jobs)} Lektionen …", file=sys.stderr)
-    with ThreadPoolExecutor(max_workers=max(1, args.parallel)) as pool:
-        entries = list(pool.map(work, jobs))
-    write_report(args, entries)
-
-
-def main_guide(args, content: Path):
-    _, lessons = load_guide(content, args.kurs)
-    jobs = [i for i, l in enumerate(lessons) if not args.lektion or l["id"] == args.lektion]
-    if not jobs:
-        raise SystemExit("Keine passende Lektion gefunden.")
-    system = guide_system_prompt(args.alter, args.variante)
-    if args.trocken:
-        print("=== System ===\n" + system + "\n\n=== Prompt ===\n" + build_guide_prompt(content, args.kurs, args.variante, lessons, jobs[0]))
-        return
-
-    def work(idx):
-        les = lessons[idx]
-        if args.antworten:
-            answer = json.loads((Path(args.antworten) / f"{args.kurs}-{les['id']}.json").read_text(encoding="utf-8"))
-        else:
-            answer = ask_claude(build_guide_prompt(content, args.kurs, args.variante, lessons, idx), system, GUIDE_SCHEMA, args.modell)
-        print(f"  {args.kurs} {les['id']} fertig", file=sys.stderr)
-        return {"woche": f"{args.kurs} ({args.variante})", "kurs": args.kurs, "id": les["id"], "titel": les["title"],
+            system, schema, prompt = prompt_for(job)
+            answer = ask_claude(prompt, system, schema, args.modell)
+        print(f"  {name} fertig", file=sys.stderr)
+        if job[0] == "py":
+            return {"woche": job[1], "thema": job[2], "id": les["id"], "titel": les["title"],
+                    "antwort": answer, "ergebnisse": evaluate(les, answer)}
+        return {"woche": f"{job[1]} ({args.variante})", "kurs": job[1], "id": les["id"], "titel": les["title"],
                 "antwort": answer, "ergebnisse": evaluate_guide(les, answer)}
 
-    print(f"{len(jobs)} Stufen …", file=sys.stderr)
+    print(f"{len(jobs)} Lektionen …", file=sys.stderr)
     with ThreadPoolExecutor(max_workers=max(1, args.parallel)) as pool:
         entries = list(pool.map(work, jobs))
     write_report(args, entries)
