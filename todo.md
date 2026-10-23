@@ -18,9 +18,11 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
       W1 Mission 2 / W3 Lektion 7 als Liste schreiben; Bonus-Texte mit unklarem Auftrag wie W3 Mission 2/3,
       Boss 3 „Score“; W3 Boss 1: antwort_2 fehlt; Tippen von { } und ⭐), dann Woche 4–12 und die
       Themen Pferde/Sci-Fi mit `npm run testkind` prüfen.
-      micro:bit: Berichte für alle vier Kurse liegen vor (Blöcke): Funde abarbeiten, v. a. die „hoch“-
-      Stellen (Variable in ein Block-Feld ziehen, „ansonsten“ über das Plus, Minus mit Blöcken,
-      Erweiterungen finden, beim Start vs. POWER-Schalter), danach auch `--variante python`.
+      micro:bit (Blöcke) überarbeitet: 73 → 57 Stellen, 13 → 4 wichtige (danach noch Kreuzung und Taster
+      verbessert). Offen: Rest-Stellen v. a. in den Werkstätten (Funktion mit Parametern in Ampel Stufe 2,
+      Einsatzfahrzeug im Auto); `--variante python` und `javascript` laufen lassen. Neu eingefügte
+      MakeCode-Angaben (Fortgeschritten → Erweiterungen, Pins → … mehr → Digital-Pin, Plus am wenn-Block,
+      Speichern-Symbol neben dem Projektnamen) beim nächsten Termin einmal im echten Editor nachklicken.
 
 - [ ] Einmaliger Ausfall im vollen Lauf unter Last (15.10., parallel liefen Tests anderer Sessions,
       Suite 4,5 statt ~2,3 Min.): `tests/ki-labor.spec.js` Woche 3 (Python-Lauf > 10 s, Timeout pro
