@@ -11,6 +11,8 @@ Mit `int` und `float` rechnet Python wie ein Taschenrechner:
 
 > 🐴 **Merke:** Eine Division mit `/` ergibt **immer** einen `float` – auch wenn das Ergebnis glatt aufgeht (`12 / 4` ist `3.0`).
 
+> 🧮 Python rechnet wie in Mathe **Punkt vor Strich**: erst `*` und `/`, dann `+` und `-`. Soll etwas zuerst gerechnet werden, setz Klammern: `(2 + 3) * 4` ergibt `20`, aber `2 + 3 * 4` ergibt `14`.
+
 ```python
 pferde_a = 12
 pferde_b = 8

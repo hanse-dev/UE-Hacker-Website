@@ -1,3 +1,3 @@
 """### Systemprotokoll 9: Eingaben verarbeiten – Aufgabe 2
 
-Frage mit input() nach der Anzahl der Crew-Mitglieder, wandle die Antwort mit int() um und gib aus: Mit dir an Bord: (Anzahl plus 1) (Beim Prüfen wird automatisch 12 eingegeben.)"""
+Frage mit input() nach der Anzahl der Crew-Mitglieder, wandle die Antwort mit int() um und gib aus: Mit dir an Bord: (Anzahl plus 1) – bei 12 also genau Mit dir an Bord: 13. Die Frage in input() darfst du dir selbst ausdenken. Beim Ausführen tippst du 12 ins Fenster, beim Prüfen gibt der Computer 12 selbst ein – 12 gehört also nicht in deinen Code."""

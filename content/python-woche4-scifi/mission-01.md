@@ -7,3 +7,5 @@ Meistere die Quanten-Zeit im Chronos-Turm und trainiere verschiedene Zählmuster
 **Schritt 3** – Führe eine Zeitanalyse durch: die Summe aller Zahlen.
 
 **Bonus (freiwillig, ohne Prüfung):** Erstelle eine Quadrat-Tabelle: Gib für jede Zahl von 1 bis 10 die Zahl und ihr Quadrat (`n * n`) aus.
+
+> 💡 Für den Bonus gibt es kein eigenes Feld und keine Prüfung: Probier ihn im Editor der letzten Aufgabe aus, **nachdem** du sie geprüft hast.

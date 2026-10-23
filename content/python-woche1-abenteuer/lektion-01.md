@@ -32,3 +32,5 @@ print("Willkommen in Pyralia!")
 ```
 
 **Wichtig:** Text muss immer in Anführungszeichen `"` oder `'` stehen! Ein leeres `print()` gibt eine leere Zeile aus – praktisch für mehr Übersicht.
+
+> ✏️ Alles hinter einem `#` ist nur eine Notiz für Menschen – Python überspringt es (mehr dazu in Zauberformel 5). Schreib deinen Code deshalb in eine **neue Zeile** unter `# 🎯 Deine Lösung hier:`.

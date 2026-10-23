@@ -291,7 +291,7 @@
     "lessonSummary": "Alle Bugs gefunden! Bei Schleifen zählen Doppelpunkt, Einrückung und die richtigen Grenzen.",
     "tasks": [
       {
-        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Zahl 1 bis Zahl 5 ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Zahl 1 bis Zahl 5 ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "for i in range(1, 5):\n    print(f\"Zahl {i}\")\n",
         "validation": {
           "type": "output_contains",
@@ -299,7 +299,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Zahl 1 bis Zahl 5 ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Zahl 1 bis Zahl 5 ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "for i in range(5)\n    print(f\"Zahl {i+1}\")\n",
         "validation": {
           "type": "output_contains",
@@ -307,7 +307,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Durchlauf 0, Durchlauf 1 und Durchlauf 2 ausgeben, danach Ende. Was ist falsch?",
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Durchlauf 0, Durchlauf 1 und Durchlauf 2 ausgeben, danach Ende. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "for i in range(3):\nprint(f\"Durchlauf {i}\")\nprint(\"Ende\")\n",
         "validation": {
           "type": "output_contains",
@@ -541,7 +541,7 @@
         }
       },
       {
-        "instruction": "Schritt 4 – Geheime Tür: Vor einer geheimen Tür wacht eine while-Schleife. Frage mit input() wiederholt nach dem Losungswort, bis \"Drachenzahn\" eingegeben wird. Gib bei jeder falschen Eingabe Die Tür bleibt verschlossen. aus, bei der richtigen Eingabe Die Tür öffnet sich!. (Beim Prüfen werden nacheinander 'Schwert' und 'Drachenzahn' eingegeben.)",
+        "instruction": "Schritt 4 – Geheime Tür: Vor einer geheimen Tür wacht eine while-Schleife. Frage mit input() wiederholt nach dem Losungswort, bis \"Drachenzahn\" eingegeben wird. Gib bei jeder falschen Eingabe Die Tür bleibt verschlossen. aus, bei der richtigen Eingabe Die Tür öffnet sich!. Die Frage in input() darfst du dir selbst ausdenken. Beim Prüfen gibt der Computer nacheinander erst Schwert und dann Drachenzahn ein – das gehört nicht in deinen Code.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

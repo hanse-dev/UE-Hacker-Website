@@ -331,7 +331,7 @@
     "lessonSummary": "Alle Bugs gefunden! Dictionary-Zugriff (Woche 8), `self.` bei Attributen (Woche 10) und der Datei-Modus (Woche 9) sind typische Fehlerquellen.",
     "tasks": [
       {
-        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Position: stallgasse ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Position: stallgasse ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "welt = {\n    \"hof\": {\n        \"beschreibung\": \"Du stehst auf dem Hof. Der Mond scheint, und aus dem Stall hörst du ein leises Wiehern.\",\n        \"ausgaenge\": {\"norden\": \"stallgasse\"},\n    },\n    \"stallgasse\": {\n        \"beschreibung\": \"Eine lange Stallgasse. Rechts und links stehen die Boxen der Pferde.\",\n        \"ausgaenge\": {\"sueden\": \"hof\", \"osten\": \"koppel\", \"westen\": \"sattelkammer\"},\n    },\n    \"sattelkammer\": {\"beschreibung\": \"Die Sattelkammer riecht nach Leder. An der Wand hängen Sättel und Zaumzeug.\", \"ausgaenge\": {\"osten\": \"stallgasse\"}},\n    \"koppel\": {\"beschreibung\": \"Die nächtliche Koppel. Im Gras steht das Fohlen – und davor ein zorniger Ziegenbock!\", \"ausgaenge\": {\"westen\": \"stallgasse\"}},\n}\n\ndef beschreibe(raumname):\n    raum = welt[raumname]\n    print(f\"📍 {raumname.capitalize()}: {raum['beschreibung']}\")\n    print(\"   Ausgänge:\", \", \".join(raum[\"ausgaenge\"]))\n\ndef gehe(position, richtung):\n    raum = welt[position]\n    if richtung in raum:\n        return raum[\"ausgaenge\"][richtung]\n    return position\n\nposition = gehe(\"hof\", \"norden\")\nprint(f\"Position: {position}\")\n",
         "validation": {
           "type": "output_contains",
@@ -339,7 +339,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Anzahl: 1 ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Anzahl: 1 ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "class Spieler:\n    def __init__(self, name, position):\n        self.name = name\n        self.position = position\n        inventar = []\n\n    def nimm(self, gegenstand_name):\n        self.inventar.append(gegenstand_name)\n\nspieler = Spieler(\"Mira\", \"hof\")\nspieler.nimm(\"Taschenlampe\")\nprint(f\"Anzahl: {len(spieler.inventar)}\")\n",
         "validation": {
           "type": "output_contains",
@@ -347,7 +347,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll 💾 Spielstand von Mira gespeichert. ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll 💾 Spielstand von Mira gespeichert. ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "import json\ndaten = {\"name\": \"Mira\", \"hp\": 20}\nwith open(\"stand.json\", \"r\") as f:\n    json.dump(daten, f)\nprint(\"💾 Spielstand von Mira gespeichert.\")\n",
         "validation": {
           "type": "output_contains",

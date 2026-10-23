@@ -1,5 +1,5 @@
 """### Debug-Quest – Aufgabe 2
 
-🐛 Bug #2 – Ziel: Das Programm soll Nova ausgeben. Was ist falsch?
+🐛 Bug #2 – Ziel: Das Programm soll Nova ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.
 
 **Erklärung:** Ohne `self.` sind `name` und `level` nur lokale Variablen und verschwinden nach `__init__`. Mit `self.name = name` gehören sie zum Objekt."""

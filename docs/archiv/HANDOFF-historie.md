@@ -3088,3 +3088,12 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   Kind hängen bliebe – nicht für Stellen, die der Absatz oder das Beispiel klärt; klare Lektionen
   erscheinen nicht. Nicht geschaffte Aufgaben kommen immer als „hoch“ hinein. Einzelheiten je
   Aufgabe (eigene Worte, Code, schwere Wörter) nur noch in der `.json` neben dem Bericht.
+
+- Erste Überarbeitung nach dem Test-Kind (23.10.2026, Woche 1–3 Abenteuer, alle „mittel“-Stellen):
+  kursweit „Was ist falsch?“ + „Repariere den Code im Editor, bis das Ziel erreicht ist.“ (110
+  Debug-Aufgaben), alle 17 `stdin`-Aufgaben mit demselben Hinweis (Frage frei wählbar, beim Prüfen
+  tippt der Computer, gehört nicht in den Code – vor die Aufgabe, wenn die Ausgabe am Satzende
+  steht), Bonus-Hinweis beim ersten Bonus jeder Woche, Punkt vor Strich, `#`, `+` ohne Lücke,
+  `<class '…'>`, `TypeError`/`NameError`/`SyntaxError`, Vergleich im f-String. Gleiche Lektionstexte
+  in Pferde/Sci-Fi mitgezogen; Einzelaufgaben nur im Abenteuer-Thema. Zweiter Lauf: 54 → 24 Stellen,
+  8 → 25 Lektionen ohne Änderungsbedarf.

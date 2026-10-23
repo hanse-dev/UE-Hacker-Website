@@ -1,5 +1,5 @@
 """### Debug-Quest – Aufgabe 2
 
-🐛 Bug #2 – Ziel: Das Programm soll Energie: 10 ausgeben (bei 5 Modulen). Was ist falsch?
+🐛 Bug #2 – Ziel: Das Programm soll Energie: 10 ausgeben (bei 5 Modulen). Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.
 
 **Erklärung:** Ohne Klammern und Argument wird die Funktion nicht aufgerufen, sondern nur das Funktionsobjekt zugewiesen. Aufruf: `berechne_energie(5)`."""

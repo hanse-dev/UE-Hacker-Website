@@ -285,7 +285,7 @@
     "lessonSummary": "Alle Fehler gefunden! Schleifen brauchen den richtigen Bereich, einen Doppelpunkt und die richtige Einrückung.",
     "tasks": [
       {
-        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll die Zeit von 1 bis 5 zählen und jeden Wert ausgeben (Zeit 1 bis Zeit 5). Was ist falsch?",
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll die Zeit von 1 bis 5 zählen und jeden Wert ausgeben (Zeit 1 bis Zeit 5). Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "for zeit in range(1, 5):\n    print(f\"Zeit {zeit}\")\n",
         "validation": {
           "type": "output_contains",
@@ -293,7 +293,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll System 1 bis System 5 ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll System 1 bis System 5 ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "for i in range(5)\n    print(f\"System {i+1}\")\n",
         "validation": {
           "type": "output_contains",
@@ -301,7 +301,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Log 0, Log 1 und Log 2 ausgeben und danach einmal Ende. Was ist falsch?",
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Log 0, Log 1 und Log 2 ausgeben und danach einmal Ende. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "for i in range(3):\nprint(f\"Log {i}\")\nprint(\"Ende\")\n",
         "validation": {
           "type": "output_contains",
@@ -537,7 +537,7 @@
         }
       },
       {
-        "instruction": "Schritt 5 – Docking-Code: Frage mit einer while-Schleife wiederholt nach dem Docking-Code, bis \"Nova7\" eingegeben wird. Gib bei falscher Eingabe Zugriff verweigert. aus, bei richtiger Eingabe Andockung erlaubt!. (Beim Prüfen werden nacheinander 'X1' und 'Nova7' eingegeben.)",
+        "instruction": "Schritt 5 – Docking-Code: Frage mit einer while-Schleife wiederholt nach dem Docking-Code, bis \"Nova7\" eingegeben wird. Gib bei falscher Eingabe Zugriff verweigert. aus, bei richtiger Eingabe Andockung erlaubt!. Die Frage in input() darfst du dir selbst ausdenken. Beim Prüfen gibt der Computer nacheinander erst X1 und dann Nova7 ein – das gehört nicht in deinen Code.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

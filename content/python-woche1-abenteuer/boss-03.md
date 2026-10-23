@@ -2,7 +2,7 @@
 
 Ein magisches Portal erscheint! Erstelle ein Portalprotokoll für die Abenteurer-Gilde: Koordinaten als Zahlen anlegen, ausgeben und eine Reisewarnung dazu.
 
-**Bonus:** Formuliere ein Rätsel über das Portal.
+**Bonus (freiwillig, ohne Prüfung):** Formuliere ein Rätsel über das Portal.
 
 ---
 
@@ -13,7 +13,6 @@ Ein magisches Portal erscheint! Erstelle ein Portalprotokoll für die Abenteurer
 - ☐ Text mit `print()` ausgeben
 - ☐ Informationen in Variablen speichern
 - ☐ Texte mit `+` und `str()` kombinieren
-- ☐ Eingaben mit `input()` abfragen
 - ☐ Eingaben mit `input()` abfragen
 - ☐ Kommentare mit `#` hinzufügen
 - ☐ Einfache Fehler finden und beheben

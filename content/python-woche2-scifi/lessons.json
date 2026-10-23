@@ -320,7 +320,7 @@
         }
       },
       {
-        "instruction": "Frage mit input() nach dem Namen des Piloten und gib genau aus: Willkommen an Bord, (Name)! (Beim Prüfen wird automatisch Nova eingegeben.)",
+        "instruction": "Frage mit input() nach dem Namen des Piloten und gib aus: Willkommen an Bord, (Name)! – bei Nova also genau Willkommen an Bord, Nova! Die Frage in input() darfst du dir selbst ausdenken. Beim Ausführen tippst du Nova ins Fenster, beim Prüfen gibt der Computer Nova selbst ein – Nova gehört also nicht in deinen Code.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -331,7 +331,7 @@
         }
       },
       {
-        "instruction": "Frage mit input() nach der Anzahl der Crew-Mitglieder, wandle die Antwort mit int() um und gib aus: Mit dir an Bord: (Anzahl plus 1) (Beim Prüfen wird automatisch 12 eingegeben.)",
+        "instruction": "Frage mit input() nach der Anzahl der Crew-Mitglieder, wandle die Antwort mit int() um und gib aus: Mit dir an Bord: (Anzahl plus 1) – bei 12 also genau Mit dir an Bord: 13. Die Frage in input() darfst du dir selbst ausdenken. Beim Ausführen tippst du 12 ins Fenster, beim Prüfen gibt der Computer 12 selbst ein – 12 gehört also nicht in deinen Code.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -351,7 +351,7 @@
     "lessonSummary": "Alle Bugs gefunden! Ziel und Fehlermeldung genau zu lesen ist die halbe Miete.",
     "tasks": [
       {
-        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll ausgeben: Hallo R2D2! Dein Status ist 3. Was ist falsch?",
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll ausgeben: Hallo R2D2! Dein Status ist 3. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "roboter = \"R2D2\"\nstatus = 3\nprint(\"Hallo roboter! Dein Status ist status.\")\n",
         "validation": {
           "type": "output_contains",
@@ -359,7 +359,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll die verbleibende Energie berechnen und ausgeben: Verbleibende Energie: 50. Was ist falsch?",
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll die verbleibende Energie berechnen und ausgeben: Verbleibende Energie: 50. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "energie = \"80\"\nverbrauch = 30\nprint(f\"Verbleibende Energie: {energie - verbrauch}\")\n",
         "validation": {
           "type": "output_contains",
@@ -367,7 +367,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll ausgeben: Schildstärke: 95 Prozent. Was ist falsch?",
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll ausgeben: Schildstärke: 95 Prozent. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "schildstaerke = 95\nprint(f\"Schildstärke: schildstaerke Prozent\")\n",
         "validation": {
           "type": "output_contains",

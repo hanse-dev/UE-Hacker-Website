@@ -311,7 +311,7 @@
     "lessonSummary": "Alle Bugs gefunden! Bei Klassen zählen die Argumente von `__init__`, `self.` vor jedem Attribut und `self` in jeder Methode.",
     "tasks": [
       {
-        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Aria ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Aria ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "class Held:\n    def __init__(self, name):\n        self.name = name\n\nheld = Held()\nprint(held.name)\n",
         "validation": {
           "type": "output_contains",
@@ -319,7 +319,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Aria ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Aria ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "class Held:\n    def __init__(self, name, level):\n        name = name\n        level = level\n\nheld = Held(\"Aria\", 3)\nprint(held.name)\n",
         "validation": {
           "type": "output_contains",
@@ -327,7 +327,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Ich bin Aria ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Ich bin Aria ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "class Held:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor():\n        print(f\"Ich bin {self.name}\")\n\nheld = Held(\"Aria\")\nheld.stelle_vor()\n",
         "validation": {
           "type": "output_contains",

@@ -4,4 +4,4 @@
 
 Erstelle ein offizielles Schiffslogbuch für die Sternenflotten-Archive! Schreibe ein Gedicht über die Raumfahrt aus vier Variablen `zeile1` bis `zeile4`, gib es formatiert aus und trage dich als Autor ein.
 
-**Bonus:** Füge eine geheime Botschaft als Kommentar hinzu!
+**Bonus (freiwillig, ohne Prüfung):** Füge eine geheime Botschaft als Kommentar hinzu!

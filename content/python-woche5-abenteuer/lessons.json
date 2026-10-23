@@ -279,7 +279,7 @@
     "lessonSummary": "Alle Bugs gefunden! Bei Funktionen zählen Einrückung, die Klammern beim Aufruf und return.",
     "tasks": [
       {
-        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Willkommen, Held! ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Willkommen, Held! ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "def gruesse_held():\nprint(\"Willkommen, Held!\")\n\ngruesse_held()\n",
         "validation": {
           "type": "output_contains",
@@ -287,7 +287,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Schaden: 10 ausgeben (bei Stärke 5). Was ist falsch?",
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Schaden: 10 ausgeben (bei Stärke 5). Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "def berechne_schaden(staerke):\n    return staerke * 2\n\nergebnis = berechne_schaden\nprint(f\"Schaden: {ergebnis}\")\n",
         "validation": {
           "type": "output_contains",
@@ -295,7 +295,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Summe: 8 ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Summe: 8 ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "def addiere(a, b):\n    ergebnis = a + b\n\nsumme = addiere(5, 3)\nprint(f\"Summe: {summe}\")\n",
         "validation": {
           "type": "output_contains",

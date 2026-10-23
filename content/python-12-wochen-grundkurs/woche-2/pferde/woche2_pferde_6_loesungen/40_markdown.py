@@ -2,4 +2,4 @@
 
 ### Debug-Quest – Aufgabe 1
 
-🐛 Bug #1 – Ziel: Das Programm soll Hallo Comet! Du bist 6 Jahre alt. ausgeben. Was ist falsch?"""
+🐛 Bug #1 – Ziel: Das Programm soll Hallo Comet! Du bist 6 Jahre alt. ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist."""

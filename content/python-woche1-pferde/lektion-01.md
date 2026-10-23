@@ -25,3 +25,5 @@ print("Hallo")   # Funktion: print – mitgegeben wird: "Hallo"
 `print()` ist dein erster Befehl – eine **Funktion**, die du aufrufst. Sie gibt Text auf dem Bildschirm aus.
 
 **Wichtig:** Text muss immer in Anführungszeichen `"` oder `'` stehen! Ein leeres `print()` gibt eine leere Zeile aus – praktisch für mehr Übersicht.
+
+> ✏️ Alles hinter einem `#` ist nur eine Notiz für Menschen – Python überspringt es (mehr dazu in Übung 5). Schreib deinen Code deshalb in eine **neue Zeile** unter `# 🎯 Deine Lösung hier:`.

@@ -291,7 +291,7 @@
     "lessonSummary": "Alle Bugs gefunden! Wer Schleifen und Einrückung versteht, findet solche Fehler schnell.",
     "tasks": [
       {
-        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Runde 1 bis Runde 5 ausgeben (jede in einer eigenen Zeile). Was ist falsch?",
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Runde 1 bis Runde 5 ausgeben (jede in einer eigenen Zeile). Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "for i in range(5):\n    print(f\"Runde {i}\")\n",
         "validation": {
           "type": "output_contains",
@@ -299,7 +299,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Pferd 1 bis Pferd 5 ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Pferd 1 bis Pferd 5 ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "for i in range(5)\n    print(f\"Pferd {i+1}\")\n",
         "validation": {
           "type": "output_contains",
@@ -307,7 +307,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Übung 0, Übung 1 und Übung 2 ausgeben, danach Training beendet. Was ist falsch?",
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Übung 0, Übung 1 und Übung 2 ausgeben, danach Training beendet. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "for i in range(3):\nprint(f\"Übung {i}\")\nprint(\"Training beendet\")\n",
         "validation": {
           "type": "output_contains",
@@ -546,7 +546,7 @@
         }
       },
       {
-        "instruction": "Schritt 5 – Futter-Abfrage: Frage mit einer while-Schleife wiederholt nach der Heu-Menge in kg (input(), mit int() umwandeln), bis eine Menge von mindestens 2 kg eingegeben wird. Gib bei zu wenig Heu Zu wenig Heu! aus, danach genau Fütterung: 3 kg. (Beim Prüfen werden nacheinander 1 und 3 eingegeben.)",
+        "instruction": "Schritt 5 – Futter-Abfrage: Frage mit einer while-Schleife wiederholt nach der Heu-Menge in kg (input(), mit int() umwandeln), bis eine Menge von mindestens 2 kg eingegeben wird. Gib bei zu wenig Heu Zu wenig Heu! aus, danach genau Fütterung: 3 kg. Die Frage in input() darfst du dir selbst ausdenken. Beim Prüfen gibt der Computer nacheinander erst 1 und dann 3 ein – das gehört nicht in deinen Code.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

@@ -1,3 +1,3 @@
 """### Extra-Herausforderung 3: Der unendliche Dungeon – Aufgabe 4
 
-Schritt 4 – Geheime Tür: Vor einer geheimen Tür wacht eine while-Schleife. Frage mit input() wiederholt nach dem Losungswort, bis "Drachenzahn" eingegeben wird. Gib bei jeder falschen Eingabe Die Tür bleibt verschlossen. aus, bei der richtigen Eingabe Die Tür öffnet sich!. (Beim Prüfen werden nacheinander 'Schwert' und 'Drachenzahn' eingegeben.)"""
+Schritt 4 – Geheime Tür: Vor einer geheimen Tür wacht eine while-Schleife. Frage mit input() wiederholt nach dem Losungswort, bis "Drachenzahn" eingegeben wird. Gib bei jeder falschen Eingabe Die Tür bleibt verschlossen. aus, bei der richtigen Eingabe Die Tür öffnet sich!. Die Frage in input() darfst du dir selbst ausdenken. Beim Prüfen gibt der Computer nacheinander erst Schwert und dann Drachenzahn ein – das gehört nicht in deinen Code."""

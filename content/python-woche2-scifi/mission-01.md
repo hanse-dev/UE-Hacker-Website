@@ -6,3 +6,5 @@ Das Energiedepot muss geprüft werden! Melde dich als Techniker an und berechne 
 **Schritt 2** – Erfasse die Energieblöcke und die Energie pro Block und berechne die Gesamtenergie.
 
 **Bonus (freiwillig, ohne Prüfung):** Füge eine Variable für die Kühlleistung pro Block hinzu und berechne die Gesamtkühlleistung!
+
+> 💡 Für den Bonus gibt es kein eigenes Feld und keine Prüfung: Probier ihn im Editor der letzten Aufgabe aus, **nachdem** du sie geprüft hast.

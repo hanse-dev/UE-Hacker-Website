@@ -21,3 +21,5 @@ gold = 50
 gold = 150      # jetzt liegen 150 Gold in der Truhe
 print(gold)
 ```
+
+Willst du sehen, was in der Truhe liegt, schreibst du den Namen **ohne** Anführungszeichen: `print(gold)` zeigt `150`. Mit Anführungszeichen, also `print("gold")`, zeigt Python nur das Wort gold.

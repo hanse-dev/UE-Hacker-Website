@@ -6,7 +6,7 @@ Bedingungen entstehen meist durch **Vergleiche**. Ein Vergleich ergibt immer `Tr
 
 Das ist ein entscheidender Unterschied:
 
-- **`=` (ein Gleichheitszeichen)** weist einer Variable einen Wert zu: `level = 10`
+- **`=` (ein Gleichheitszeichen)** speichert einen Wert in einer Variable: `level = 10`
 - **`==` (zwei Gleichheitszeichen)** vergleicht zwei Werte: `if level == 10:`
 
 > 📡 **Merke:** In Bedingungen immer `==` zum Vergleichen – nie `=`!
@@ -33,3 +33,5 @@ Du kannst einen Vergleich auch einfach ausgeben und siehst dann `True` oder `Fal
 ```python
 print(42 <= 42)   # True
 ```
+
+Das klappt auch in den `{}` eines f-Strings: `print(f"Genug Energie: {energie >= 10}")` zeigt `Genug Energie: True`.

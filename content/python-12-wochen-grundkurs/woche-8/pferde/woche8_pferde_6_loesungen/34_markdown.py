@@ -2,6 +2,6 @@
 
 ### Debug-Quest – Aufgabe 1
 
-🐛 Bug #1 – Ziel: Das Programm soll Name: Blitz ausgeben. Was ist falsch?
+🐛 Bug #1 – Ziel: Das Programm soll Name: Blitz ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.
 
 **Erklärung:** Zwischen den Einträgen eines Dictionaries fehlt ein Komma (nach `\"Blitz\"`). Ohne Komma meldet Python einen `SyntaxError`."""

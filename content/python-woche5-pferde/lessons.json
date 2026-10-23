@@ -279,7 +279,7 @@
     "lessonSummary": "Alle Bugs gefunden! Bei Funktionen zählen Einrückung, die Klammern beim Aufruf und return.",
     "tasks": [
       {
-        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Das Fell glänzt! ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Das Fell glänzt! ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "def putze_pferd():\nprint(\"Das Fell glänzt!\")\n\nputze_pferd()\n",
         "validation": {
           "type": "output_contains",
@@ -287,7 +287,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Punkte: 30 ausgeben (bei 3 Runden). Was ist falsch?",
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Punkte: 30 ausgeben (bei 3 Runden). Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "def berechne_punkte(runden):\n    return runden * 10\n\nergebnis = berechne_punkte\nprint(f\"Punkte: {ergebnis}\")\n",
         "validation": {
           "type": "output_contains",
@@ -295,7 +295,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Hafer: 8 ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Hafer: 8 ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "def addiere_hafer(a, b):\n    ergebnis = a + b\n\nhafer = addiere_hafer(5, 3)\nprint(f\"Hafer: {hafer}\")\n",
         "validation": {
           "type": "output_contains",

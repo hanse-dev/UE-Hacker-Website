@@ -9,12 +9,16 @@ Jede Information auf dem Reiterhof hat einen **Typ** – genau wie ein Pferd ein
 | 🏇 Galopp | fließend, nie exakt gleich | `float` (Kommazahl) | `4.25` |
 | 🦘 Sprung | geschafft oder nicht | `bool` (Wahrheitswert) | `True` / `False` |
 
+> ⚠️ Kommazahlen schreibt Python mit **Punkt**: `3.14`, nicht `3,14`.
+
 Den Typ erkennst du mit der **Funktion `type()`**. Du gibst ihr einen Wert in die Klammern, sie sagt dir den Typ:
 
 ```python
 pferd_name = "Windsturm"
 print(type(pferd_name))   # <class 'str'>
 ```
+
+Python schreibt `<class '…'>` drumherum – wichtig ist nur das Wort in den Anführungszeichen, z. B. `str`.
 
 ## 🚶 Schritt: `str`
 

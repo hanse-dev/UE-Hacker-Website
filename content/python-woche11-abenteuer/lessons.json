@@ -343,7 +343,7 @@
     "lessonSummary": "Alle Bugs gefunden! Bei Vererbung zählen `super().__init__`, die Eltern-Klasse in Klammern und `return` in `__str__`.",
     "tasks": [
       {
-        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Aria ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Aria ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "class Held:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def kaempfe(self):\n        print(f\"{self.name} kämpft mit bloßen Händen.\")\n\nclass Krieger(Held):\n    def __init__(self, name, staerke):\n        self.staerke = staerke\n\nk = Krieger(\"Aria\", 30)\nprint(k.name)\n",
         "validation": {
           "type": "output_contains",
@@ -351,7 +351,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Ich bin Aria. ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Ich bin Aria. ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "class Held:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def kaempfe(self):\n        print(f\"{self.name} kämpft mit bloßen Händen.\")\n\nclass Krieger:\n    def ziehe_waffe(self):\n        print(\"zieht das Schwert.\")\n\nk = Krieger(\"Aria\")\nk.stelle_vor()\n",
         "validation": {
           "type": "output_contains",
@@ -359,7 +359,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Aria (5) ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Aria (5) ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "class Held:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def __str__(self):\n        print(f\"{self.name} ({self.level})\")\n\nprint(Held(\"Aria\", 5))\n",
         "validation": {
           "type": "output_contains",

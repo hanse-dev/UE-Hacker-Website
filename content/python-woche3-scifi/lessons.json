@@ -261,7 +261,7 @@
     "lessonSummary": "Vier Entscheidungs-Bugs gefunden und behoben – du liest Fehlermeldungen jetzt wie ein Profi!",
     "tasks": [
       {
-        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll bei ausreichendem Level Zugriff gewährt! und Willkommen Kommandant! ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll bei ausreichendem Level Zugriff gewährt! und Willkommen Kommandant! ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "level = 10\nif level >= 10:\nprint(\"Zugriff gewährt!\")\nprint(\"Willkommen Kommandant!\")\n",
         "validation": {
           "type": "output_contains",
@@ -269,7 +269,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll prüfen, ob user gleich \"Admin\" ist, und in diesem Fall Hallo Admin! ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll prüfen, ob user gleich \"Admin\" ist, und in diesem Fall Hallo Admin! ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "user = \"Admin\"\nif user = \"Admin\":\n    print(\"Hallo Admin!\")\n",
         "validation": {
           "type": "output_contains",
@@ -277,7 +277,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll System aktiv ausgeben, wenn der Status hoch genug ist, sonst System inaktiv. Was ist falsch?",
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll System aktiv ausgeben, wenn der Status hoch genug ist, sonst System inaktiv. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "status = 25\nif status >= 18:\n    print(\"System aktiv\")\nelif:\n    print(\"System inaktiv\")\n",
         "validation": {
           "type": "output_contains",
@@ -285,7 +285,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #4 – Ziel: Zugang soll nur gewährt werden, wenn die Sicherheitsstufe mindestens 5 ist UND ein Ausweis vorhanden ist. Bei Stufe 3 mit Ausweis soll deshalb Zugang verweigert! erscheinen. Was ist falsch?",
+        "instruction": "🐛 Bug #4 – Ziel: Zugang soll nur gewährt werden, wenn die Sicherheitsstufe mindestens 5 ist UND ein Ausweis vorhanden ist. Bei Stufe 3 mit Ausweis soll deshalb Zugang verweigert! erscheinen. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "sicherheitsstufe = 3\nhat_ausweis = True\nif sicherheitsstufe >= 5 or hat_ausweis:\n    print(\"Zugang gewährt!\")\nelse:\n    print(\"Zugang verweigert!\")\n",
         "validation": {
           "type": "output_contains",

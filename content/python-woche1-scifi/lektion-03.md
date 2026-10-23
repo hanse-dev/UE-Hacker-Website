@@ -6,6 +6,8 @@ Mit `+` kannst du Texte zusammenkleben – wie Bausteine aneinanderlegen.
 print("Schiff: " + schiff_name)
 ```
 
+> ⚠️ `+` klebt **ohne Lücke** zusammen. Das Leerzeichen schreibst du selbst mit in die Anführungszeichen: `"Schiff: "` statt `"Schiff:"`.
+
 ## Warum brauche ich `str()`?
 
 Python behandelt Text und Zahlen als verschiedene *Typen*. Das ist wie Äpfel und Orangen – man kann sie nicht einfach zusammenzählen. `str()` ist ebenfalls eine Funktion: Du gibst ihr eine Zahl in die Klammern, und sie liefert dir den passenden Text zurück:

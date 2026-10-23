@@ -21,3 +21,5 @@ futter = 2
 futter = 3      # jetzt liegen 3 kg im Trog
 print(futter)
 ```
+
+Willst du sehen, was im Trog liegt, schreibst du den Namen **ohne** Anführungszeichen: `print(futter)` zeigt `3`. Mit Anführungszeichen, also `print("futter")`, zeigt Python nur das Wort futter.

@@ -102,7 +102,7 @@
         }
       },
       {
-        "instruction": "Frage mit input() nach der Waffe deines Helden, speichere die Antwort in waffe und gib aus: Kampfbereit mit: (und dann die Waffe) (Beim Prüfen wird automatisch Kriegshammer eingegeben.)",
+        "instruction": "Frage mit input() nach der Waffe deines Helden, speichere die Antwort in waffe und gib aus: Kampfbereit mit: und dahinter die Waffe – bei Kriegshammer also genau Kampfbereit mit: Kriegshammer. Die Frage in input() darfst du dir selbst ausdenken. Beim Ausführen tippst du Kriegshammer ins Fenster, beim Prüfen gibt der Computer Kriegshammer selbst ein – Kriegshammer gehört also nicht in deinen Code.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -131,7 +131,7 @@
         }
       },
       {
-        "instruction": "Schreibe einen eigenen Kommentar und danach ein print(), das genau Kommentar gelesen ausgibt.",
+        "instruction": "Schreibe einen eigenen Kommentar und darunter ein print(), das genau diesen Text ausgibt: Kommentar gelesen",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -148,7 +148,7 @@
     "lessonSummary": "Alle Bugs gefunden! Fehlermeldungen genau zu lesen ist die halbe Miete beim Debuggen.",
     "tasks": [
       {
-        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll den Text Hallo Welt ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll den Text Hallo Welt ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "print(Hallo Welt)",
         "validation": {
           "type": "output_contains",
@@ -156,7 +156,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Ich bin 25 Jahre alt. ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Ich bin 25 Jahre alt. ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "alter = 25\nprint(\"Ich bin \" + alter + \" Jahre alt.\")",
         "validation": {
           "type": "output_contains",
@@ -164,7 +164,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Willkommen, Gandalf ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Willkommen, Gandalf ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "name = \"Gandalf\"\nprint(\"Willkommen, \" + nam)",
         "validation": {
           "type": "output_contains",
@@ -206,7 +206,7 @@
     "lessonSummary": "Schatzbericht abgegeben – die Gilde ist stolz auf dich!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Lege schatzname = \"Goldene Krone\", goldwert = 500 und fundort = \"Drachenhöhle\" an. Gib die Überschrift === SCHATZBERICHT === aus und darunter drei Zeilen: Schatz: ..., Wert: 500 Gold und Fundort: ... (Zahl mit str()!).",
+        "instruction": "Schritt 1 – Lege schatzname = \"Goldene Krone\", goldwert = 500 und fundort = \"Drachenhöhle\" an. Gib die Überschrift === SCHATZBERICHT === aus und darunter drei Zeilen aus den Variablen: Schatz: Goldene Krone, Wert: 500 Gold und Fundort: Drachenhöhle (die Zahl mit str() in Text verwandeln!).",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -231,7 +231,7 @@
     "lessonSummary": "Das Dorf ist gerettet – dank deines Heldenprofils!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Gib die Überschrift === HELDENPROFIL === aus, danach die Zeilen Name: ..., Waffe: ..., Level: ... aus den Variablen (Level mit str()!).",
+        "instruction": "Schritt 1 – Gib die Überschrift === HELDENPROFIL === aus, danach aus den Variablen die Zeilen Name: Thorin, Waffe: Kriegshammer und Level: 10 (Level mit str()!). staerke und klasse brauchst du dafür nicht.",
         "codeTemplate": "heldenname = \"Thorin\"\nwaffe = \"Kriegshammer\"\nlevel = 10\nstaerke = 85\nklasse = \"Krieger\"\n\n# Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -264,7 +264,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Unterschreibe: Gib Autor: (dein Name) und Bewertung: 5 Sterne aus. Nutze dafür eine Variable und str() für die Sterne.",
+        "instruction": "Schritt 2 – Unterschreibe: Lege eine Variable name mit deinem Namen an und gib Autor: (dein Name) aus. Lege anzahl = 5 an und gib mit str() Bewertung: 5 Sterne aus. Das Gedicht aus Schritt 1 brauchst du hier nicht noch einmal.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -281,7 +281,7 @@
     "lessonSummary": "Der Fluch ist gebrochen – der Dorfälteste kann wieder sprechen!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Lege drei Variablen zutat1 bis zutat3 an und gib jede mit einer kurzen Wirkung aus, jeweils in der Form Zutat 1: ... (Wirkung).",
+        "instruction": "Schritt 1 – Lege drei Variablen zutat1 bis zutat3 an und gib jede in einer eigenen Zeile mit einer kurzen Wirkung aus, z. B. Zutat 1: Honig (gibt die Stimme zurück). Die Wirkung darfst du direkt in den Text schreiben.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -306,7 +306,7 @@
     "lessonSummary": "🎊 Glückwunsch! Du hast Woche 1 gemeistert – als Nächstes wartet Woche 2: Datentypen und Variablen!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Lege x = 10, y = 20 und z = 30 an und gib genau diese Zeile aus: Position: 10, 20, 30 (mit str() und +).",
+        "instruction": "Schritt 1 – Lege x = 10, y = 20 und z = 30 an und gib genau diese Zeile aus: Position: 10, 20, 30 (mit str() und +). Tipp: Auch Komma und Leerzeichen sind Text – schreib sie in Anführungszeichen: \", \".",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -314,7 +314,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Schreibe eine Reisewarnung für Portalreisende und beginne sie mit Warnung: ",
+        "instruction": "Schritt 2 – Schreibe mit einem print() eine eigene Reisewarnung für Portalreisende. Sie muss mit Warnung: beginnen, z. B. Warnung: Halte dich gut fest!",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

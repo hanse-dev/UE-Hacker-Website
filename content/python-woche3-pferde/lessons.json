@@ -261,7 +261,7 @@
     "lessonSummary": "Alle Bugs gefunden! Einrückung, == und elif-Bedingungen kennst du jetzt genau.",
     "tasks": [
       {
-        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll bei level >= 10 sowohl Reitfertigkeit erreicht! als auch Glückwunsch! ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll bei level >= 10 sowohl Reitfertigkeit erreicht! als auch Glückwunsch! ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "level = 10\nif level >= 10:\nprint(\"Reitfertigkeit erreicht!\")\nprint(\"Glückwunsch!\")\n",
         "validation": {
           "type": "output_contains",
@@ -269,7 +269,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Hallo Thunder! ausgeben, weil name den Wert Thunder hat. Was ist falsch?",
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Hallo Thunder! ausgeben, weil name den Wert Thunder hat. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "name = \"Thunder\"\nif name = \"Thunder\":\n    print(\"Hallo Thunder!\")\n",
         "validation": {
           "type": "output_contains",
@@ -277,7 +277,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll bei alter >= 5 den Text Ausgebildet ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll bei alter >= 5 den Text Ausgebildet ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "alter = 8\nif alter >= 5:\n    print(\"Ausgebildet\")\nelif:\n    print(\"In Ausbildung\")\n",
         "validation": {
           "type": "output_contains",
@@ -531,7 +531,7 @@
         }
       },
       {
-        "instruction": "Schritt 5 – Sonderaktion (verschachtelt): Ist schwierigkeit >= 4, prüfe innen erfolgreiche_phasen < 3 und gib dann genau aus: Zusatztraining erforderlich!",
+        "instruction": "Schritt 5 – Sonderaktion (verschachtelt): Ist schwierigkeit >= 4, prüfe innen, ob erfolgreiche_phasen < 3 ist. Wenn ja, gib genau aus: Zusatztraining erforderlich!",
         "codeTemplate": "erfolgreiche_phasen = 2\nschwierigkeit = 4\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

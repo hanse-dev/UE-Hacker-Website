@@ -1,3 +1,3 @@
 """### Extra-Herausforderung 3: Die Dungeon-Quest – Aufgabe 3
 
-Schritt 3 – Erfolgsbedingung: phase1_ok = True, phase2_ok = True, phase3_ok = False, phase4_ok = True, phase5_ok = True und gefahrenstufe = 4. Zähle die gelungenen Phasen in erfolgreiche_phasen (mit einem if pro Phase). Die Quest gelingt bei erfolgreiche_phasen >= 4 und gefahrenstufe <= 3. Gib aus: Quest bestanden! – sonst: Quest gescheitert!"""
+Schritt 3 – Erfolgsbedingung: phase1_ok = True, phase2_ok = True, phase3_ok = False, phase4_ok = True, phase5_ok = True und gefahrenstufe = 4. Zähle die gelungenen Phasen in erfolgreiche_phasen: Starte mit erfolgreiche_phasen = 0 und rechne bei jeder gelungenen Phase (ein if pro Phase) erfolgreiche_phasen = erfolgreiche_phasen + 1. Die Quest gelingt bei erfolgreiche_phasen >= 4 und gefahrenstufe <= 3. Gib aus: Quest bestanden! – sonst: Quest gescheitert!"""

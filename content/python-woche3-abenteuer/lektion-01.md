@@ -10,6 +10,8 @@ if level >= 5:
     print("Du bist bereit für die Quest!")
 ```
 
+`>=` heißt **größer oder gleich**, `==` heißt **ist gleich**. Alle Vergleichszeichen (`==`, `!=`, `<`, `>`, `<=`, `>=`) lernst du gleich in der nächsten Zauberformel.
+
 Zwei Dinge sind wichtig:
 
 - Hinter der Bedingung steht ein **Doppelpunkt** `:`

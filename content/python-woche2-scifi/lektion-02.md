@@ -9,12 +9,16 @@ Jede Information auf der Nebula-7 hat einen **Quanten-Typ**. Python kennt vier G
 | Kommazahl | `float` (Float) | `2.5` |
 | Wahrheitswert | `bool` (Boolean) | `True` |
 
+> ⚠️ Kommazahlen schreibt Python mit **Punkt**: `3.14`, nicht `3,14`.
+
 Die Funktion `type()` zeigt dir den Quanten-Typ jeder Information:
 
 ```python
 schiff_name = "Starlight"
 print(type(schiff_name))   # <class 'str'>
 ```
+
+Python schreibt `<class '…'>` drumherum – wichtig ist nur das Wort in den Anführungszeichen, z. B. `str`.
 
 ## 🔤 Strings – Textdaten
 

@@ -1,3 +1,3 @@
 """### Extra-Herausforderung 2: Der Dungeon-Simulator – Aufgabe 4
 
-Level 4 – Magieprüfung (verschachtelt): schutz = 80, angriff = 60, heilung = 20. Prüfe verschachtelt: Ist schutz >= 50, prüfe innen angriff >= 50, und darin heilung >= 50. Alles erfüllt: Magieprüfung bestanden. Heilung zu niedrig: Heilung zu schwach. Angriff zu niedrig: Angriff zu schwach. Schutz zu niedrig: Schutz zu schwach."""
+Level 4 – Magieprüfung (verschachtelt): schutz = 80, angriff = 60, heilung = 20. Prüfe verschachtelt von außen nach innen: außen schutz >= 50, darin angriff >= 50, darin heilung >= 50. Ist alles erfüllt: Magieprüfung bestanden. Ist heilung zu niedrig: Heilung zu schwach. Ist angriff zu niedrig: Angriff zu schwach. Ist schutz zu niedrig: Schutz zu schwach. Jedes else gehört zu dem if auf derselben Einrückung."""

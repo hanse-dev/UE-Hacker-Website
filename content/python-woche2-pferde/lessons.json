@@ -296,7 +296,7 @@
         }
       },
       {
-        "instruction": "Frage mit input() nach dem Alter deines Pferdes, wandle die Antwort mit int() um und gib aus: Nächstes Jahr: (Alter plus 1) Jahre (Beim Prüfen wird automatisch 8 eingegeben.)",
+        "instruction": "Frage mit input() nach dem Alter deines Pferdes, wandle die Antwort mit int() um und gib aus: Nächstes Jahr: (Alter plus 1) Jahre – bei 8 also genau Nächstes Jahr: 9 Jahre. Die Frage in input() darfst du dir selbst ausdenken. Beim Ausführen tippst du 8 ins Fenster, beim Prüfen gibt der Computer 8 selbst ein – 8 gehört also nicht in deinen Code.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -307,7 +307,7 @@
         }
       },
       {
-        "instruction": "Frage mit input() nach dem Namen deines Pferdes und gib genau aus: Hallo, (Name)! (Beim Prüfen wird automatisch Luna eingegeben.)",
+        "instruction": "Frage mit input() nach dem Namen deines Pferdes und gib aus: Hallo, (Name)! – bei Luna also genau Hallo, Luna! Die Frage in input() darfst du dir selbst ausdenken. Beim Ausführen tippst du Luna ins Fenster, beim Prüfen gibt der Computer Luna selbst ein – Luna gehört also nicht in deinen Code.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -327,7 +327,7 @@
     "lessonSummary": "Alle Bugs gefunden! Wer Typen und f-Strings versteht, findet solche Fehler schnell.",
     "tasks": [
       {
-        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Hallo Comet! Du bist 6 Jahre alt. ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Hallo Comet! Du bist 6 Jahre alt. ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "pferd = \"Comet\"\nalter = 6\nprint(\"Hallo pferd! Du bist alter Jahre alt.\")\n",
         "validation": {
           "type": "output_contains",
@@ -335,7 +335,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Gesamtfutter: 50 kg ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Gesamtfutter: 50 kg ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "futter_kg = \"10\"\ntage = 5\nprint(f\"Gesamtfutter: {futter_kg * tage} kg\")\n",
         "validation": {
           "type": "output_contains",
@@ -343,7 +343,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Training dauert 3 Stunden. ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Training dauert 3 Stunden. ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "stunden = 3\nprint(f\"Training dauert stunden Stunden.\")\n",
         "validation": {
           "type": "output_contains",

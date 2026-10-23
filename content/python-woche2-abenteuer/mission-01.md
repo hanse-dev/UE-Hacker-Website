@@ -3,3 +3,5 @@
 Am Eingang des Turms liegen vier Sockel – für jedes Element einer. Fülle sie mit deinen Elementsteinen: 🔥 Feuer (Text), 🪨 Erde (Ganzzahl), 💧 Wasser (Kommazahl) und 💨 Luft (Wahrheitswert).
 
 **Bonus (freiwillig, ohne Prüfung):** Nutze `type()`, um bei allen vier Steinen das jeweilige Element zu bestätigen.
+
+> 💡 Für den Bonus gibt es kein eigenes Feld und keine Prüfung: Probier ihn im Editor der letzten Aufgabe aus, **nachdem** du sie geprüft hast.

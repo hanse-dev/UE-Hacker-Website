@@ -279,7 +279,7 @@
     "lessonSummary": "Alle Bugs gefunden! Bei Funktionen zählen Einrückung, die Klammern beim Aufruf und return.",
     "tasks": [
       {
-        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Scan läuft! ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Scan läuft! ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "def starte_scan():\nprint(\"Scan läuft!\")\n\nstarte_scan()\n",
         "validation": {
           "type": "output_contains",
@@ -287,7 +287,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Energie: 10 ausgeben (bei 5 Modulen). Was ist falsch?",
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Energie: 10 ausgeben (bei 5 Modulen). Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "def berechne_energie(module):\n    return module * 2\n\nergebnis = berechne_energie\nprint(f\"Energie: {ergebnis}\")\n",
         "validation": {
           "type": "output_contains",
@@ -295,7 +295,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Credits: 8 ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Credits: 8 ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "def addiere_credits(a, b):\n    ergebnis = a + b\n\ncredits = addiere_credits(5, 3)\nprint(f\"Credits: {credits}\")\n",
         "validation": {
           "type": "output_contains",

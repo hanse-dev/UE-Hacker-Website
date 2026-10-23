@@ -102,7 +102,7 @@
         }
       },
       {
-        "instruction": "Frage mit input() nach dem Namen des Schiffs, speichere die Antwort in schiff und gib aus: Wir fliegen mit der (und dann der Schiffsname) (Beim Prüfen wird automatisch Nebula eingegeben.)",
+        "instruction": "Frage mit input() nach dem Namen des Schiffs, speichere die Antwort in schiff und gib aus: Wir fliegen mit der und dahinter den Schiffsnamen – bei Nebula also genau Wir fliegen mit der Nebula. Die Frage in input() darfst du dir selbst ausdenken. Beim Ausführen tippst du Nebula ins Fenster, beim Prüfen gibt der Computer Nebula selbst ein – Nebula gehört also nicht in deinen Code.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -131,7 +131,7 @@
         }
       },
       {
-        "instruction": "Schreibe einen eigenen Kommentar und danach ein print(), das genau Kommentar gelesen ausgibt.",
+        "instruction": "Schreibe einen eigenen Kommentar und darunter ein print(), das genau diesen Text ausgibt: Kommentar gelesen",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -148,7 +148,7 @@
     "lessonSummary": "Alle Bugs gefunden! Fehlermeldungen genau zu lesen ist die halbe Miete beim Debuggen.",
     "tasks": [
       {
-        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll den Text System online ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll den Text System online ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "print(System online)",
         "validation": {
           "type": "output_contains",
@@ -156,7 +156,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Sicherheitsstufe: 3 ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Sicherheitsstufe: 3 ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "level = 3\nprint(\"Sicherheitsstufe: \" + level)",
         "validation": {
           "type": "output_contains",
@@ -164,7 +164,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Systemstatus: Aktiv ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Systemstatus: Aktiv ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "status = \"Aktiv\"\nprint(\"Systemstatus: \" + statu)",
         "validation": {
           "type": "output_contains",
@@ -206,7 +206,7 @@
     "lessonSummary": "Protokoll abgegeben – die Schiffsdaten sind vollständig!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Lege schiffstyp = \"Shuttle\", registrierung = \"NX-42\" und besatzung = 6 an. Gib die Überschrift === SCHIFFSPROTOKOLL === aus und darunter drei Zeilen: Typ: ..., Registrierung: ... und Besatzung: 6 (Zahl mit str()!).",
+        "instruction": "Schritt 1 – Lege schiffstyp = \"Shuttle\", registrierung = \"NX-42\" und besatzung = 6 an. Gib die Überschrift === SCHIFFSPROTOKOLL === aus und darunter drei Zeilen aus den Variablen: Typ: Shuttle, Registrierung: NX-42 und Besatzung: 6 (die Zahl mit str() in Text verwandeln!).",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -264,7 +264,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Trage dich ein: Gib Autor: (dein Name) und Bewertung: 5 Sterne aus. Nutze dafür eine Variable und str() für die Zahl.",
+        "instruction": "Schritt 2 – Trage dich ein: Lege eine Variable name mit deinem Namen an und gib Autor: (dein Name) aus. Lege anzahl = 5 an und gib mit str() Bewertung: 5 Sterne aus. Den Text aus Schritt 1 brauchst du hier nicht noch einmal.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -281,7 +281,7 @@
     "lessonSummary": "Das System ist gerettet – der KI-Virus ist besiegt!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Lege drei Variablen schritt1 bis schritt3 mit je einem Bereinigungsschritt an. Gib die Überschrift === ANTIVIRUS-PROTOKOLL === aus und danach jeden Schritt mit seiner Nummer.",
+        "instruction": "Schritt 1 – Lege drei Variablen schritt1 bis schritt3 mit je einem Bereinigungsschritt an. Gib die Überschrift === ANTIVIRUS-PROTOKOLL === aus und danach jeden Schritt mit seiner Nummer in einer eigenen Zeile, z. B. Schritt 1: Netzwerk trennen.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -306,7 +306,7 @@
     "lessonSummary": "🎊 Glückwunsch! Du hast Woche 1 gemeistert – als Nächstes wartet Woche 2: Datentypen und Variablen!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Lege farbe = \"blau\", form = \"spiralförmig\" und stabilitaet = 85 an und gib genau diese Zeile aus: Wurmloch: blau, spiralförmig, Stabilität 85%",
+        "instruction": "Schritt 1 – Lege farbe = \"blau\", form = \"spiralförmig\" und stabilitaet = 85 an und gib genau diese Zeile aus: Wurmloch: blau, spiralförmig, Stabilität 85% – Tipp: Kommas, Leerzeichen und % sind auch Text in Anführungszeichen, die Zahl verwandelst du mit str().",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

@@ -2,4 +2,4 @@
 
 ### Debug-Quest – Aufgabe 1
 
-🐛 Bug #1 – Ziel: Das Programm soll ausgeben: Hallo R2D2! Dein Status ist 3. Was ist falsch?"""
+🐛 Bug #1 – Ziel: Das Programm soll ausgeben: Hallo R2D2! Dein Status ist 3. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist."""

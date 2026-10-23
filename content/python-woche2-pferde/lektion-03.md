@@ -16,4 +16,4 @@ print(168 - 138)   # 30
 print(4 * 2)       # 8
 ```
 
-Mehr zum Rechnen kommt in Übung 6.
+Python rechnet wie in Mathe Punkt vor Strich – mehr zum Rechnen kommt in Übung 6.

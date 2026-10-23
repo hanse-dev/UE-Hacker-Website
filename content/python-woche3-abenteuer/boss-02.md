@@ -4,6 +4,6 @@
 
 Der Simulator hat 5 Level mit steigenden Anforderungen – dazu kommt eine Abschluss-Wertung! In jedem Level brauchst du eine andere Art von Bedingung – von einfachem `if` bis zu `and`/`or` und verschachtelten Prüfungen.
 
-Tipp zu Level 5: `and` bindet stärker als `or`. Mit **Klammern** `( )` legst du selbst fest, was zuerst ausgewertet wird.
+Tipp zu Level 5: Python prüft `and` vor `or` – so wie Mal vor Plus in Mathe. Mit **Klammern** `( )` legst du selbst fest, was zuerst geprüft wird.
 
 **Bonus (freiwillig, ohne Prüfung):** Füge Zeitlimits für jedes Level hinzu!

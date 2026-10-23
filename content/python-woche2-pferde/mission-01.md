@@ -3,3 +3,5 @@
 Das Futterlager muss organisiert werden! Hilf mit, alles zu berechnen: Pfleger erfassen, Heuballen zählen und das Gesamtgewicht ausrechnen.
 
 **Bonus (freiwillig, ohne Prüfung):** Füge eine Variable für Karotten pro Woche hinzu und berechne die Gesamtmenge!
+
+> 💡 Für den Bonus gibt es kein eigenes Feld und keine Prüfung: Probier ihn im Editor der letzten Aufgabe aus, **nachdem** du sie geprüft hast.

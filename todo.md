@@ -13,8 +13,11 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
       `npm run check:verstaendlichkeit`. Die Funde „nie gezeigt“ sind behoben (0). Offen:
       lange Sätze/LIX/Fachwörter aus dem Bericht durchgehen (braucht Urteil). Stolperstellen-Zähler
       ist gebaut (HANDOFF 3.124): nach dem Deploy und ein paar Kurstagen den Admin-Reiter ansehen und
-      die obersten Aufgaben überarbeiten, danach dort „Zurücksetzen“. KI-Test-Kind ist gebaut (HANDOFF 3.125): Bericht für Woche 1–12 erzeugen und die Funde
-      (nicht geschafft, unklar, schwere Wörter) Woche für Woche abarbeiten, danach erneut laufen lassen.
+      die obersten Aufgaben überarbeiten, danach dort „Zurücksetzen“. KI-Test-Kind ist gebaut (HANDOFF 3.125). Woche 1–3 (Abenteuer) überarbeitet: 54 → 24
+      lohnende Stellen, 0 wichtige. Offen: die 24 Rest-Stellen (v. a. sehr lange Aufgabensätze, z. B.
+      W1 Mission 2 / W3 Lektion 7 als Liste schreiben; Bonus-Texte mit unklarem Auftrag wie W3 Mission 2/3,
+      Boss 3 „Score“; W3 Boss 1: antwort_2 fehlt; Tippen von { } und ⭐), dann Woche 4–12 und die
+      Themen Pferde/Sci-Fi mit `npm run testkind` prüfen.
 
 - [ ] Einmaliger Ausfall im vollen Lauf unter Last (15.10., parallel liefen Tests anderer Sessions,
       Suite 4,5 statt ~2,3 Min.): `tests/ki-labor.spec.js` Woche 3 (Python-Lauf > 10 s, Timeout pro

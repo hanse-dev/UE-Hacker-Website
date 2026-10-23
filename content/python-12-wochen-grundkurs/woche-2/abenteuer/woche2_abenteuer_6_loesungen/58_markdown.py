@@ -1,3 +1,3 @@
 """### Mission 3: Das Orakel der vier Elemente – Aufgabe 2
 
-Schritt 2 – 💧 und 💨: Frage mit input() nach der Zauberkraft (tippe 7.5 ein, wandle mit float() um). Vergleiche, ob sie über 5.0 liegt, und gib genau aus: Zauberkraft 7.5, stark: True"""
+Schritt 2 – 💧 und 💨: Die Frage in input() darfst du dir selbst ausdenken. Beim Ausführen tippst du 7.5 ins Fenster, beim Prüfen gibt der Computer 7.5 selbst ein – 7.5 gehört also nicht in deinen Code. Frage mit input() nach der Zauberkraft (wandle mit float() um). Vergleiche, ob sie größer als 5.0 ist, und gib genau aus: Zauberkraft 7.5, stark: True"""

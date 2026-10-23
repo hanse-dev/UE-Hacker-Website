@@ -332,7 +332,7 @@
     "lessonSummary": "Alle Bugs gefunden! Bei Dateien zählen der richtige Modus, dumps/loads und der Unterschied zwischen Text und Zahl.",
     "tasks": [
       {
-        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Hallo aus der Datei lesen und ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Hallo aus der Datei lesen und ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "with open(\"test.txt\", \"w\") as f:\n    f.write(\"Hallo\")\n    inhalt = f.read()\nprint(inhalt)\n",
         "validation": {
           "type": "output_contains",
@@ -340,7 +340,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Name: Test ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Name: Test ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "import json\ndaten = {\"name\": \"Test\"}\ntext = json.dumps(daten)\nergebnis = json.load(text)\nprint(\"Name:\", ergebnis[\"name\"])\n",
         "validation": {
           "type": "output_contains",
@@ -348,7 +348,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Alter plus 1: 9 ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Alter plus 1: 9 ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "import csv\nwith open(\"test.csv\", \"w\", newline=\"\") as f:\n    csv.writer(f).writerows([[\"name\", \"alter\"], [\"Blitz\", 8]])\nwith open(\"test.csv\", \"r\") as f:\n    zeilen = list(csv.reader(f))\nprint(\"Alter plus 1:\", zeilen[1][1] + 1)\n",
         "validation": {
           "type": "output_contains",
@@ -503,7 +503,7 @@
         }
       },
       {
-        "instruction": "Schritt 4 – Eigener Eintrag: datum und tagebuch.txt sind wie in Schritt 2 vorgegeben (drei Zeilen). Frage mit input() nach einem neuen Eintrag, hänge ihn mit \"a\" als datum + \" \" + Eintrag an tagebuch.txt an und gib danach genau Einträge: 4 aus. (Beim Prüfen wird automatisch Fell gebürstet eingegeben.)",
+        "instruction": "Schritt 4 – Eigener Eintrag: datum und tagebuch.txt sind wie in Schritt 2 vorgegeben (drei Zeilen). Frage mit input() nach einem neuen Eintrag, hänge ihn mit \"a\" als datum + \" \" + Eintrag an tagebuch.txt an und gib danach genau Einträge: 4 aus. Die Frage in input() darfst du dir selbst ausdenken. Beim Ausführen tippst du Fell gebürstet ins Fenster, beim Prüfen gibt der Computer Fell gebürstet selbst ein – Fell gebürstet gehört also nicht in deinen Code.",
         "codeTemplate": "datum = \"15.03.\"\nwith open(\"tagebuch.txt\", \"w\") as f:\n    f.write(datum + \" Sturm gestriegelt\\n\")\n    f.write(datum + \" Ausritt zum Wald\\n\")\n    f.write(datum + \" Sprungtraining geschafft\\n\")\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

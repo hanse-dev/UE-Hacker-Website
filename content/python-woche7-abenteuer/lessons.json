@@ -268,7 +268,7 @@
     "lessonSummary": "Alle Bugs gefunden! Bei Modulen zählen import, der richtige Funktionsname und der richtige Modul-Bestandteil.",
     "tasks": [
       {
-        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Wurzel: 4.0 ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Wurzel: 4.0 ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "print(f\"Wurzel: {math.sqrt(16)}\")\n",
         "validation": {
           "type": "output_contains",
@@ -276,7 +276,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Wurzel: 5.0 ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Wurzel: 5.0 ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "import math\nprint(f\"Wurzel: {math.wurzel(25)}\")\n",
         "validation": {
           "type": "output_contains",
@@ -284,7 +284,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Buchstaben: 52 ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Buchstaben: 52 ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "import string\nprint(f\"Buchstaben: {len(string.ascii_letter)}\")\n",
         "validation": {
           "type": "output_contains",

@@ -273,7 +273,7 @@
     "lessonSummary": "Alle Bugs gefunden! Bei Dictionaries und Tupeln zählen Kommas, Schlüssel und Unveränderlichkeit.",
     "tasks": [
       {
-        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Name: Nova ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Name: Nova ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "mitglied = {\n    \"name\": \"Nova\"\n    \"rolle\": \"Pilotin\"\n}\nprint(\"Name:\", mitglied[\"name\"])\n",
         "validation": {
           "type": "output_contains",
@@ -281,7 +281,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Position: (150, 200) ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Position: (150, 200) ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "position = (100, 200)\nposition[0] = 150\nprint(\"Position:\", position)\n",
         "validation": {
           "type": "output_contains",
@@ -289,7 +289,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Rang: 4 ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Rang: 4 ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "mitglied = {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120}\nprint(\"Rang:\", mitglied[\"Rang\"])\n",
         "validation": {
           "type": "output_contains",

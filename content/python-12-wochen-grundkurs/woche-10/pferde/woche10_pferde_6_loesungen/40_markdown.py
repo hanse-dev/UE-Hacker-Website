@@ -2,6 +2,6 @@
 
 ### Debug-Quest – Aufgabe 1
 
-🐛 Bug #1 – Ziel: Das Programm soll Blitz ausgeben. Was ist falsch?
+🐛 Bug #1 – Ziel: Das Programm soll Blitz ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.
 
 **Erklärung:** Beim Erzeugen des Objekts fehlt das Argument für `name` – `__init__(self, name)` verlangt einen Namen."""

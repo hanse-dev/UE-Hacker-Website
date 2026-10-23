@@ -1,3 +1,3 @@
 """### Systemprotokoll 4: input()
 
-Frage mit input() nach dem Namen des Schiffs, speichere die Antwort in schiff und gib aus: Wir fliegen mit der (und dann der Schiffsname) (Beim Prüfen wird automatisch Nebula eingegeben.)"""
+Frage mit input() nach dem Namen des Schiffs, speichere die Antwort in schiff und gib aus: Wir fliegen mit der und dahinter den Schiffsnamen – bei Nebula also genau Wir fliegen mit der Nebula. Die Frage in input() darfst du dir selbst ausdenken. Beim Ausführen tippst du Nebula ins Fenster, beim Prüfen gibt der Computer Nebula selbst ein – Nebula gehört also nicht in deinen Code."""

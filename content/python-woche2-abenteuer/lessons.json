@@ -16,7 +16,7 @@
         }
       },
       {
-        "instruction": "Baue mit einem f-String genau diesen Satz aus den Variablen: Mira reist nach Elfenwald mit 40 Gold.",
+        "instruction": "Baue mit einem f-String genau diesen Satz (mit Punkt am Ende) aus den Variablen: Mira reist nach Elfenwald mit 40 Gold.",
         "codeTemplate": "held = \"Mira\"\nort = \"Elfenwald\"\ngold = 40\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -50,7 +50,7 @@
         }
       },
       {
-        "instruction": "Bestimme das Element der Variable level und gib ihren Typ mit print() und type() aus.",
+        "instruction": "Gib den Typ der Variable level mit print() und type() aus. Welches Element ist das? Schreib es als Kommentar mit # dazu.",
         "codeTemplate": "level = 12\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -58,7 +58,7 @@
         }
       },
       {
-        "instruction": "Bestimme das Element der Variable schaden und gib ihren Typ aus.",
+        "instruction": "Gib den Typ der Variable schaden mit print() und type() aus. Welches Element ist das? Schreib es als Kommentar mit # dazu.",
         "codeTemplate": "schaden = 23.5\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -270,7 +270,7 @@
         }
       },
       {
-        "instruction": "Verbinde den Text mit dem Level mithilfe von str() und gib genau aus: Level: 9",
+        "instruction": "Schreibe selbst den Text \"Level: \" und hänge das Level mit + und str() an. Gib genau aus: Level: 9",
         "codeTemplate": "level = 9\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -296,7 +296,7 @@
         }
       },
       {
-        "instruction": "Frage mit input() nach dem Namen und gib genau aus: Willkommen, Blitz! – Tippe dazu Blitz ein.",
+        "instruction": "Die Frage in input() darfst du dir selbst ausdenken. Beim Ausführen tippst du Blitz ins Fenster, beim Prüfen gibt der Computer Blitz selbst ein – Blitz gehört also nicht in deinen Code. Frage mit input() nach dem Namen und gib genau aus: Willkommen, Blitz!",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -307,7 +307,7 @@
         }
       },
       {
-        "instruction": "Frage mit input() nach dem Level, wandle es mit int() um und gib aus, welches Level der Held in 5 Levels hat. Tippe 7 ein, dann muss dort stehen: In 5 Levels: Level 12",
+        "instruction": "Die Frage in input() darfst du dir selbst ausdenken. Beim Ausführen tippst du 7 ins Fenster, beim Prüfen gibt der Computer 7 selbst ein – 7 gehört also nicht in deinen Code. Frage mit input() nach dem Level, wandle es mit int() um und rechne 5 Level dazu. Bei 7 muss genau dort stehen: In 5 Levels: Level 12",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -327,7 +327,7 @@
     "lessonSummary": "Alle Bugs gefunden! Beim Debuggen hilft es, jeden Typ genau anzuschauen.",
     "tasks": [
       {
-        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Hallo Gandalf! Du bist Level 99! ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll Hallo Gandalf! Du bist Level 99! ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "name = \"Gandalf\"\nlevel = 99\nprint(\"Hallo name! Du bist Level level!\")\n",
         "validation": {
           "type": "output_contains",
@@ -335,7 +335,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Gesamtkraft: 150 ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Gesamtkraft: 150 ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "zauberkraft = \"100\"\nbonus = 50\nprint(f\"Gesamtkraft: {zauberkraft + bonus}\")\n",
         "validation": {
           "type": "output_contains",
@@ -343,7 +343,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Dein Gold: 300 ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Dein Gold: 300 ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "gold = 250\nprint(f\"Dein Gold: gold + 50\")\n",
         "validation": {
           "type": "output_contains",
@@ -368,7 +368,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – 💧 Wasser und 💨 Luft: Lege zauberkraft = 12.5 und kann_fliegen = True an und gib mit einem f-String genau aus: Zauberkraft 12.5, Fliegen: True",
+        "instruction": "Schritt 2 – 💧 Wasser und 💨 Luft: Lege zauberkraft = 12.5 und kann_fliegen = True an und gib mit einem f-String genau aus: Zauberkraft 12.5, Fliegen: True (nach Zauberkraft steht wirklich kein Doppelpunkt)",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -393,7 +393,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – 💧 verschmelzen: Berechne den Durchschnitt der beiden Schadenswerte (Summe geteilt durch 2) und gib genau aus: Durchschnitt: 10.0",
+        "instruction": "Schritt 2 – 💧 verschmelzen: Berechne den Durchschnitt der beiden Schadenswerte (Summe geteilt durch 2 – die Summe kommt in Klammern: (schaden_a + schaden_b) / 2) und gib genau aus: Durchschnitt: 10.0",
         "codeTemplate": "schaden_a = 12.5\nschaden_b = 7.5\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -418,7 +418,7 @@
     "lessonSummary": "Das Orakel hat gesprochen: Du hast Eingaben in alle vier Elemente verwandelt!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – 🔥 und 🪨 befragen: Frage mit input() nach dem Namen (tippe Blitz ein) und nach dem Alter (tippe 12 ein, wandle mit int() um). Gib genau aus: Blitz ist in 5 Jahren 17",
+        "instruction": "Schritt 1 – 🔥 und 🪨 befragen: Die Frage in input() darfst du dir selbst ausdenken. Beim Prüfen gibt der Computer nacheinander erst Blitz und dann 12 ein – das gehört nicht in deinen Code. Frage mit input() nach dem Namen und danach nach dem Alter (wandle das Alter mit int() um). Gib genau aus: Blitz ist in 5 Jahren 17",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -430,7 +430,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – 💧 und 💨: Frage mit input() nach der Zauberkraft (tippe 7.5 ein, wandle mit float() um). Vergleiche, ob sie über 5.0 liegt, und gib genau aus: Zauberkraft 7.5, stark: True",
+        "instruction": "Schritt 2 – 💧 und 💨: Die Frage in input() darfst du dir selbst ausdenken. Beim Ausführen tippst du 7.5 ins Fenster, beim Prüfen gibt der Computer 7.5 selbst ein – 7.5 gehört also nicht in deinen Code. Frage mit input() nach der Zauberkraft (wandle mit float() um). Vergleiche, ob sie größer als 5.0 ist, und gib genau aus: Zauberkraft 7.5, stark: True",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -458,7 +458,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Berechne den Durchschnitt (Gesamtwert geteilt durch 8) und gib genau aus: Durchschnitt: 125.0",
+        "instruction": "Schritt 2 – Berechne den Durchschnitt (Gesamtwert geteilt durch 8) und gib genau aus: Durchschnitt: 125.0. Jede Aufgabe startet mit der Vorlage neu: Rechne den Gesamtwert hier noch einmal aus. Die Überschrift brauchst du nur in Schritt 1.",
         "codeTemplate": "truhe1 = 120\ntruhe2 = 80\ntruhe3 = 200\ntruhe4 = 150\ntruhe5 = 50\ntruhe6 = 90\ntruhe7 = 60\ntruhe8 = 250\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -466,7 +466,7 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Ist die Truhe 8 mehr wert als der Durchschnitt (Gesamtwert geteilt durch 8)? Vergleiche mit > und gib genau aus: Truhe 8 über Durchschnitt: True",
+        "instruction": "Schritt 3 – Ist die Truhe 8 mehr wert als der Durchschnitt (Gesamtwert geteilt durch 8)? Vergleiche mit > und gib genau aus: Truhe 8 über Durchschnitt: True. Jede Aufgabe startet mit der Vorlage neu: Rechne den Gesamtwert hier noch einmal aus. Die Überschrift brauchst du nur in Schritt 1.",
         "codeTemplate": "truhe1 = 120\ntruhe2 = 80\ntruhe3 = 200\ntruhe4 = 150\ntruhe5 = 50\ntruhe6 = 90\ntruhe7 = 60\ntruhe8 = 250\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -499,7 +499,7 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Berechne die Durchschnittsstärke der drei Zauber und gib genau aus: Durchschnittsstärke: 80.0",
+        "instruction": "Schritt 3 – Berechne die Durchschnittsstärke der drei Zauber (Summe der drei Stärken geteilt durch 3 – die Summe kommt in Klammern) und gib genau aus: Durchschnittsstärke: 80.0",
         "codeTemplate": "zauber1 = \"Feuerball\"\nstaerke1 = 80.0\nkomplex1 = 3\nzauber2 = \"Frostblitz\"\nstaerke2 = 65.0\nkomplex2 = 2\nzauber3 = \"Sturmruf\"\nstaerke3 = 95.0\nkomplex3 = 5\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -507,7 +507,7 @@
         }
       },
       {
-        "instruction": "Schritt 4 – Nutze einen 💨 Luft-Wert: Ist die Stärke von Sturmruf über dem Durchschnitt? Gib genau aus: Sturmruf mächtig: True",
+        "instruction": "Schritt 4 – Nutze einen 💨 Luft-Wert: Ist die Stärke von Sturmruf größer als die Durchschnittsstärke aus Schritt 3? Rechne die Durchschnittsstärke hier noch einmal aus. Gib genau aus: Sturmruf mächtig: True",
         "codeTemplate": "zauber1 = \"Feuerball\"\nstaerke1 = 80.0\nkomplex1 = 3\nzauber2 = \"Frostblitz\"\nstaerke2 = 65.0\nkomplex2 = 2\nzauber3 = \"Sturmruf\"\nstaerke3 = 95.0\nkomplex3 = 5\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -532,7 +532,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Berechne die erwartete Belohnung (Belohnung mal Wahrscheinlichkeit) für beide Quests. Gib zwei Zeilen aus, die zweite muss genau lauten: Quest 2 erwartet: 600.0",
+        "instruction": "Schritt 2 – Berechne die erwartete Belohnung (Belohnung mal Wahrscheinlichkeit) für beide Quests. Gib zwei Zeilen aus – in der ersten genau Quest 1 erwartet: 400.0, darunter genau Quest 2 erwartet: 600.0",
         "codeTemplate": "belohnung1 = 500\ndauer1 = 4\ngruppe1 = 5\nchance1 = 0.8\nbelohnung2 = 800\ndauer2 = 7\ngruppe2 = 4\nchance2 = 0.75\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -540,7 +540,7 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Nutze einen 💨 Luft-Wert: Ist die erwartete Belohnung von Quest 2 höher als die von Quest 1? Gib genau aus: Quest 2 rentabler: True",
+        "instruction": "Schritt 3 – Nutze einen 💨 Luft-Wert: Ist die erwartete Belohnung von Quest 2 höher als die von Quest 1? Rechne beide erwarteten Belohnungen hier noch einmal aus. Gib genau aus: Quest 2 rentabler: True",
         "codeTemplate": "belohnung1 = 500\ndauer1 = 4\ngruppe1 = 5\nchance1 = 0.8\nbelohnung2 = 800\ndauer2 = 7\ngruppe2 = 4\nchance2 = 0.75\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

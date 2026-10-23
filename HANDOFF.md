@@ -59,6 +59,7 @@ Punkte-System, Zertifikate), wird hier nicht wiederholt.
 
 **Content**
 - JSON gezielt ersetzen + danach `json.loads()` prüfen; in Skripten erst lesen, dann schreiben (`open(f, 'w')` leert die Datei sofort).
+- Lösungs-Markdown-Zellen (`*_6_loesungen/NN_markdown.py`) speichern `"` mal roh, mal als `\"`: beim Ersetzen beide Formen suchen, neue Anführungszeichen immer als `\"` schreiben (ein `"` direkt vor dem schließenden `"""` bricht die Zelle); danach `sync_loesungen.py --check`.
 - Ein Fund in einer Variante gilt nicht automatisch für alle: vor Massenänderungen alle 3 Themen × DE/EN per grep prüfen.
 - Reihenfolge = Position in `lessons.json`, nicht die ID (3.100). Neue Aufgaben ans Ende einer Lektion hängen.
 - Debug-Aufgaben: vom Kernel-Zustand unabhängig, verraten die Lösung nicht, keine echte Endlosschleife (JS hat nur 5 s Timeout). Ihr `codeTemplate` ist absichtlich kaputt – Generatoren kompilieren nur Beispiele und Lösungen (3.95).

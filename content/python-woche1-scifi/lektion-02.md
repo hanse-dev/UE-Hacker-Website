@@ -21,3 +21,5 @@ energie = 80
 energie = 45    # nach dem Sprung
 print(energie)
 ```
+
+Willst du sehen, was im Speicher steht, schreibst du den Namen **ohne** Anführungszeichen: `print(energie)` zeigt `45`. Mit Anführungszeichen, also `print("energie")`, zeigt Python nur das Wort energie.

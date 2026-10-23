@@ -359,7 +359,7 @@
     "lessonSummary": "Alle Bugs gefunden! Bei Listen zählen die Klammer, der Index und reverse=True.",
     "tasks": [
       {
-        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll die Liste ausgeben: Liste: ['Antrieb', 'Sensor', 'Schild']. Was ist falsch?",
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll die Liste ausgeben: Liste: ['Antrieb', 'Sensor', 'Schild']. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "module = [\"Antrieb\", \"Sensor\", \"Schild\"\nprint(f\"Liste: {module}\")\n",
         "validation": {
           "type": "output_contains",
@@ -367,7 +367,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll den letzten Eintrag der Liste ausgeben: Schild. Was ist falsch?",
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll den letzten Eintrag der Liste ausgeben: Schild. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "module = [\"Antrieb\", \"Sensor\", \"Schild\"]\nprint(module[3])\n",
         "validation": {
           "type": "output_contains",
@@ -375,7 +375,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll die Liste absteigend sortiert ausgeben: [15, 10, 5, 1]. Was ist falsch?",
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll die Liste absteigend sortiert ausgeben: [15, 10, 5, 1]. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "level = [1, 5, 10, 15]\nlevel.sort(reverse)\nprint(level)\n",
         "validation": {
           "type": "output_contains",

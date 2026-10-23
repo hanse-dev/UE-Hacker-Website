@@ -102,7 +102,7 @@
         }
       },
       {
-        "instruction": "Frage mit input() nach dem Namen deines Reiters, speichere die Antwort in reiter und gib aus: Ich reite mit: (und dann der Name) (Beim Prüfen wird automatisch Mira eingegeben.)",
+        "instruction": "Frage mit input() nach dem Namen deines Reiters, speichere die Antwort in reiter und gib aus: Ich reite mit: und dahinter den Namen – bei Mira also genau Ich reite mit: Mira. Die Frage in input() darfst du dir selbst ausdenken. Beim Ausführen tippst du Mira ins Fenster, beim Prüfen gibt der Computer Mira selbst ein – Mira gehört also nicht in deinen Code.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -131,7 +131,7 @@
         }
       },
       {
-        "instruction": "Schreibe einen eigenen Kommentar und danach ein print(), das genau Kommentar gelesen ausgibt.",
+        "instruction": "Schreibe einen eigenen Kommentar und darunter ein print(), das genau diesen Text ausgibt: Kommentar gelesen",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -148,7 +148,7 @@
     "lessonSummary": "Alle Bugs gefunden! Fehlermeldungen genau zu lesen ist die halbe Miete beim Debuggen.",
     "tasks": [
       {
-        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll den Text Hallo Pferd ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll den Text Hallo Pferd ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "print(Hallo Pferd)",
         "validation": {
           "type": "output_contains",
@@ -156,7 +156,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Mein Stall ist Nummer 12 ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Mein Stall ist Nummer 12 ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "stallnummer = 12\nprint(\"Mein Stall ist Nummer \" + stallnummer)",
         "validation": {
           "type": "output_contains",
@@ -164,7 +164,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Willkommen, Lucky ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll Willkommen, Lucky ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "pferd = \"Lucky\"\nprint(\"Willkommen, \" + pferde)",
         "validation": {
           "type": "output_contains",
@@ -206,7 +206,7 @@
     "lessonSummary": "Fütterplan abgegeben – alle Pferde sind versorgt!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Lege pferdename = \"Bobby\", futterart = \"Hafer\" und menge = 3 an. Gib die Überschrift === FÜTTERPLAN === aus und darunter drei Zeilen: Pferd: ..., Futter: ... und Menge: 3 kg (Zahl mit str()!).",
+        "instruction": "Schritt 1 – Lege pferdename = \"Bobby\", futterart = \"Hafer\" und menge = 3 an. Gib die Überschrift === FÜTTERPLAN === aus und darunter drei Zeilen aus den Variablen: Pferd: Bobby, Futter: Hafer und Menge: 3 kg (die Zahl mit str() in Text verwandeln!).",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -231,7 +231,7 @@
     "lessonSummary": "Das Turnier kann beginnen – dein Teilnehmerprofil steht!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Gib die Überschrift === TURNIERPROFIL === aus, danach die Zeilen Reiter: ..., Pferd: ... und Hindernisse: 8 (Zahl mit str()!) aus diesen Variablen.",
+        "instruction": "Schritt 1 – Gib die Überschrift === TURNIERPROFIL === aus, danach die Zeilen Reiter: Mia, Pferd: Bobby und Hindernisse: 8 (Zahl mit str()!) aus diesen Variablen.",
         "codeTemplate": "reiter = \"Mia\"\npferd = \"Bobby\"\nhindernisse = 8\n\n# Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -264,7 +264,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Trage dich ein: Gib Verfasser: (dein Name) und Bewertung: 5 Karotten aus. Nutze dafür eine Variable und str() für die Zahl.",
+        "instruction": "Schritt 2 – Trage dich ein: Lege eine Variable name mit deinem Namen an und gib Verfasser: (dein Name) aus. Lege anzahl = 5 an und gib mit str() Bewertung: 5 Karotten aus. Den Text aus Schritt 1 brauchst du hier nicht noch einmal.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -281,7 +281,7 @@
     "lessonSummary": "Das scheue Pferd vertraut dir – das war Feingefühl!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Lege drei Variablen schritt1 bis schritt3 mit je einem Annäherungsschritt an. Gib die Überschrift === TRAININGSPLAN === aus und danach jeden Schritt mit seiner Nummer.",
+        "instruction": "Schritt 1 – Lege drei Variablen schritt1 bis schritt3 mit je einem Annäherungsschritt an. Gib die Überschrift === TRAININGSPLAN === aus und danach jeden Schritt mit seiner Nummer in einer eigenen Zeile, z. B. Schritt 1: Ruhig ansprechen.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -306,7 +306,7 @@
     "lessonSummary": "🎊 Glückwunsch! Du hast Woche 1 gemeistert – als Nächstes wartet Woche 2: Datentypen und Variablen!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Lege hindernisse = 8 und hoehe = 110 an und gib mit str() und + genau diese Zeile aus: Parcours: 8 Hindernisse bis 110 cm",
+        "instruction": "Schritt 1 – Lege hindernisse = 8 und hoehe = 110 an und gib mit str() und + genau diese Zeile aus: Parcours: 8 Hindernisse bis 110 cm – Tipp: Die Leerzeichen um die Zahlen gehören mit in die Anführungszeichen, z. B. \" Hindernisse bis \".",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

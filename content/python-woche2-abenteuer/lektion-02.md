@@ -9,6 +9,8 @@ Die Turmwächterin zeigt dir die vier Elementsteine. Jeder hat eine eigene **Nat
 | 💧 Wasser | Kommazahl | `float` | `3.14` | fließend, nie ganz genau – Prozente, Schaden |
 | 💨 Luft | Wahrheitswert | `bool` | `True` / `False` | unsichtbar, nur da oder nicht da – Schalter |
 
+> ⚠️ Kommazahlen schreibt Python mit **Punkt**: `3.14`, nicht `3,14`.
+
 ## `type()` – der Elementsucher
 
 Auch `type()` ist eine **Zauberformel (Funktion)**, genau wie `print()` aus Woche 1: Du rufst sie mit Klammern auf und gibst ihr in die Klammern einen Wert. Sie liefert dir den Typ zurück:
@@ -18,5 +20,7 @@ name = "Aria"
 print(type(name))    # <class 'str'>  -> Feuer-Element
 print(type(42))      # <class 'int'>  -> Erd-Element
 ```
+
+Python schreibt `<class '…'>` drumherum – wichtig ist nur das Wort in den Anführungszeichen, z. B. `str`.
 
 Beachte: `type()` **liefert** den Typ nur zurück – sichtbar wird er erst, wenn du ihn mit `print()` ausgibst.

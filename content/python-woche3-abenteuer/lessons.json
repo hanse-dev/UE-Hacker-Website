@@ -24,7 +24,7 @@
         }
       },
       {
-        "instruction": "Der Held besitzt die Karte (hat_karte = True). Prüfe mit if die Variable hat_karte selbst (ohne Vergleichszeichen) und gib genau aus: Karte gefunden, der Weg ist frei!",
+        "instruction": "Der Held besitzt die Karte (hat_karte = True). Prüfe mit if die Variable hat_karte selbst (ohne Vergleichszeichen wie == oder >=) und gib genau aus: Karte gefunden, der Weg ist frei!",
         "codeTemplate": "hat_karte = True\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -134,7 +134,7 @@
         }
       },
       {
-        "instruction": "Ein Inventar-Check: Der Held hat gold = 45, der Trank kostet kosten = 50. Reicht das Gold (>=), gib aus: Kauf erfolgreich! – sonst: Nicht genug Gold! Fehlt: 5 (die Differenz rechnest du mit einem f-String aus).",
+        "instruction": "Ein Inventar-Check: Der Held hat gold = 45, der Trank kostet kosten = 50. Reicht das Gold (>=), gib aus: Kauf erfolgreich! – sonst: Nicht genug Gold! Fehlt: 5 (wie viel fehlt, rechnest du im f-String aus: kosten minus gold).",
         "codeTemplate": "gold = 45\nkosten = 50\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -236,7 +236,7 @@
         }
       },
       {
-        "instruction": "Der Held hat diesmal den falschen Schlüssel (richtiger_schluessel = False). Baue dieselbe verschachtelte Prüfung: Ist die Tür verschlossen, gib Die Tür ist verschlossen. aus und prüfe dann innen den Schlüssel: passt er, gib Die Tür öffnet sich! aus, sonst: Dieser Schlüssel passt nicht. – ist die Tür nicht verschlossen, gib Die Tür steht bereits offen. aus.",
+        "instruction": "Der Held hat diesmal den falschen Schlüssel (richtiger_schluessel = False). Baue dieselbe verschachtelte Prüfung: Ist die Tür verschlossen, gib Die Tür ist verschlossen. aus und prüfe dann innen den Schlüssel: passt er, gib Die Tür öffnet sich! aus (kürzer als im Beispiel), sonst: Dieser Schlüssel passt nicht. – ist die Tür nicht verschlossen, gib Die Tür steht bereits offen. aus.",
         "codeTemplate": "tuer_verschlossen = True\nrichtiger_schluessel = False\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -261,7 +261,7 @@
     "lessonSummary": "Alle Bugs gefunden! Beim Debuggen hilft es, Einrückung, = und == genau anzuschauen.",
     "tasks": [
       {
-        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll bei level >= 10 sowohl Level erreicht! als auch Glückwunsch! ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #1 – Ziel: Das Programm soll bei level >= 10 sowohl Level erreicht! als auch Glückwunsch! ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "level = 10\nif level >= 10:\nprint(\"Level erreicht!\")\nprint(\"Glückwunsch!\")\n",
         "validation": {
           "type": "output_contains",
@@ -269,7 +269,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Hallo Aria! ausgeben, weil name den Wert Aria hat. Was ist falsch?",
+        "instruction": "🐛 Bug #2 – Ziel: Das Programm soll Hallo Aria! ausgeben, weil name den Wert Aria hat. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "name = \"Aria\"\nif name = \"Aria\":\n    print(\"Hallo Aria!\")\n",
         "validation": {
           "type": "output_contains",
@@ -277,7 +277,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll bei alter >= 18 den Text Erwachsen ausgeben, sonst Kind. Was ist falsch?",
+        "instruction": "🐛 Bug #3 – Ziel: Das Programm soll bei alter >= 18 den Text Erwachsen ausgeben, sonst Kind. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "alter = 25\nif alter >= 18:\n    print(\"Erwachsen\")\nelif:\n    print(\"Kind\")\n",
         "validation": {
           "type": "output_contains",
@@ -285,7 +285,7 @@
         }
       },
       {
-        "instruction": "🐛 Bug #4 – Ziel: Der Held hat genau so viel Gold, wie der Trank kostet, und soll Kauf erfolgreich! ausgeben. Was ist falsch?",
+        "instruction": "🐛 Bug #4 – Ziel: Der Held hat genau so viel Gold, wie der Trank kostet, und soll Kauf erfolgreich! ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.",
         "codeTemplate": "gold = 50\nkosten = 50\nif gold > kosten:\n    print(\"Kauf erfolgreich!\")\nelse:\n    print(\"Nicht genug Gold!\")\n",
         "validation": {
           "type": "output_contains",
@@ -343,7 +343,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Meister: Dieselben Passwörter, aber jetzt ist eingabe = \"Drachenfeuer\". Gib genau aus: Voller Schatz gewährt",
+        "instruction": "Schritt 2 – Meister: Dieselben Passwörter, aber jetzt ist eingabe = \"Drachenfeuer\". Schreib dieselbe if-elif-else-Prüfung wie in Schritt 1. Diesmal muss genau erscheinen: Voller Schatz gewährt",
         "codeTemplate": "meister_passwort = \"Drachenfeuer\"\ngast_passwort = \"Sternenstaub\"\neingabe = \"Drachenfeuer\"\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -351,7 +351,7 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Falsches Passwort: Jetzt ist eingabe = \"Zaubertrank\". Gib genau aus: Falsches Passwort",
+        "instruction": "Schritt 3 – Falsches Passwort: Jetzt ist eingabe = \"Zaubertrank\". Schreib dieselbe if-elif-else-Prüfung wie in Schritt 1. Diesmal muss genau erscheinen: Falsches Passwort",
         "codeTemplate": "meister_passwort = \"Drachenfeuer\"\ngast_passwort = \"Sternenstaub\"\neingabe = \"Zaubertrank\"\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -490,7 +490,7 @@
         }
       },
       {
-        "instruction": "Level 4 – Magieprüfung (verschachtelt): schutz = 80, angriff = 60, heilung = 20. Prüfe verschachtelt: Ist schutz >= 50, prüfe innen angriff >= 50, und darin heilung >= 50. Alles erfüllt: Magieprüfung bestanden. Heilung zu niedrig: Heilung zu schwach. Angriff zu niedrig: Angriff zu schwach. Schutz zu niedrig: Schutz zu schwach.",
+        "instruction": "Level 4 – Magieprüfung (verschachtelt): schutz = 80, angriff = 60, heilung = 20. Prüfe verschachtelt von außen nach innen: außen schutz >= 50, darin angriff >= 50, darin heilung >= 50. Ist alles erfüllt: Magieprüfung bestanden. Ist heilung zu niedrig: Heilung zu schwach. Ist angriff zu niedrig: Angriff zu schwach. Ist schutz zu niedrig: Schutz zu schwach. Jedes else gehört zu dem if auf derselben Einrückung.",
         "codeTemplate": "schutz = 80\nangriff = 60\nheilung = 20\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -539,7 +539,7 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Erfolgsbedingung: phase1_ok = True, phase2_ok = True, phase3_ok = False, phase4_ok = True, phase5_ok = True und gefahrenstufe = 4. Zähle die gelungenen Phasen in erfolgreiche_phasen (mit einem if pro Phase). Die Quest gelingt bei erfolgreiche_phasen >= 4 und gefahrenstufe <= 3. Gib aus: Quest bestanden! – sonst: Quest gescheitert!",
+        "instruction": "Schritt 3 – Erfolgsbedingung: phase1_ok = True, phase2_ok = True, phase3_ok = False, phase4_ok = True, phase5_ok = True und gefahrenstufe = 4. Zähle die gelungenen Phasen in erfolgreiche_phasen: Starte mit erfolgreiche_phasen = 0 und rechne bei jeder gelungenen Phase (ein if pro Phase) erfolgreiche_phasen = erfolgreiche_phasen + 1. Die Quest gelingt bei erfolgreiche_phasen >= 4 und gefahrenstufe <= 3. Gib aus: Quest bestanden! – sonst: Quest gescheitert!",
         "codeTemplate": "phase1_ok = True\nphase2_ok = True\nphase3_ok = False\nphase4_ok = True\nphase5_ok = True\ngefahrenstufe = 4\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -547,7 +547,7 @@
         }
       },
       {
-        "instruction": "Schritt 4 – Sonderaktion (verschachtelt): gefahrenstufe = 5, erfolgreiche_phasen = 2. Prüfe verschachtelt: Ist gefahrenstufe >= 4, prüfe innen erfolgreiche_phasen < 3 und gib aus: Rettung erforderlich! – sonst innen: Der Trupp hält durch. Ist die Gefahr niedriger, gib aus: Keine Gefahr für den Trupp.",
+        "instruction": "Schritt 4 – Sonderaktion (verschachtelt): gefahrenstufe = 5, erfolgreiche_phasen = 2. Prüfe verschachtelt: Ist gefahrenstufe >= 4, prüfe innen, ob erfolgreiche_phasen < 3 ist. Wenn ja, gib aus: Rettung erforderlich! – sonst innen: Der Trupp hält durch. Ist die Gefahr niedriger, gib aus: Keine Gefahr für den Trupp.",
         "codeTemplate": "gefahrenstufe = 5\nerfolgreiche_phasen = 2\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -555,7 +555,7 @@
         }
       },
       {
-        "instruction": "Schritt 5 – Gesamtpunkte: erfolgreiche_phasen = 4, gefahrenstufe = 4. Berechne gesamtpunkte = erfolgreiche_phasen * 100 - gefahrenstufe * 20 und gib genau aus: Gesamtpunkte: 320",
+        "instruction": "Schritt 5 – Gesamtpunkte: erfolgreiche_phasen = 4, gefahrenstufe = 4. Berechne (* heißt mal, Python rechnet Punkt vor Strich) gesamtpunkte = erfolgreiche_phasen * 100 - gefahrenstufe * 20 und gib genau aus: Gesamtpunkte: 320",
         "codeTemplate": "erfolgreiche_phasen = 4\ngefahrenstufe = 4\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

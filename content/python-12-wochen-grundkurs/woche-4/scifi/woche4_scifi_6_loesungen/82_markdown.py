@@ -1,3 +1,3 @@
 """### Extra-Herausforderung 3: Der endlose Tunnel – Aufgabe 5
 
-Schritt 5 – Docking-Code: Frage mit einer while-Schleife wiederholt nach dem Docking-Code, bis "Nova7" eingegeben wird. Gib bei falscher Eingabe Zugriff verweigert. aus, bei richtiger Eingabe Andockung erlaubt!. (Beim Prüfen werden nacheinander 'X1' und 'Nova7' eingegeben.)"""
+Schritt 5 – Docking-Code: Frage mit einer while-Schleife wiederholt nach dem Docking-Code, bis "Nova7" eingegeben wird. Gib bei falscher Eingabe Zugriff verweigert. aus, bei richtiger Eingabe Andockung erlaubt!. Die Frage in input() darfst du dir selbst ausdenken. Beim Prüfen gibt der Computer nacheinander erst X1 und dann Nova7 ein – das gehört nicht in deinen Code."""
