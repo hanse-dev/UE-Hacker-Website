@@ -26,7 +26,7 @@ Oben auf dieser Seite wählt ihr, wie die Anleitung den Code zeigt: **Blöcke**,
 
 :::python
 
-Öffnet [python.microbit.org](https://python.microbit.org). Löscht das kleine Programm, das schon im Editor steht.
+Öffnet [python.microbit.org](https://python.microbit.org). Löscht alles, was schon im Editor steht.
 
 :::
 
@@ -61,7 +61,7 @@ display.set_pixel(2, 0, 9)
 display.set_pixel(2, 4, 9)
 ```
 
-Die letzte Zahl ist die Helligkeit: 0 ist aus, 9 ist ganz hell.
+Die erste Zahl ist x, die zweite y. Die letzte Zahl ist die Helligkeit: 0 ist aus, 9 ist ganz hell.
 
 :::
 
@@ -71,6 +71,8 @@ Die letzte Zahl ist die Helligkeit: 0 ist aus, 9 ist ganz hell.
 led.plot(2, 0)
 led.plot(2, 4)
 ```
+
+`led.plot` macht eine Lampe an. Die erste Zahl ist x, die zweite y.
 
 :::
 
@@ -82,7 +84,7 @@ led.plot(2, 4)
 
 2. Klickt auf die drei Punkte neben **Herunterladen** und wählt **Gerät verbinden**.
 3. Im kleinen Fenster klickt ihr auf **BBC micro:bit** und dann auf **Verbinden**.
-4. Ab jetzt reicht ein Klick auf **Herunterladen**.
+4. Klickt jetzt auf **Herunterladen**. Das macht ihr ab jetzt nach jeder Änderung.
 
 :::
 
@@ -90,7 +92,7 @@ led.plot(2, 4)
 
 2. Klickt auf **An micro:bit senden**.
 3. Im kleinen Fenster klickt ihr auf **BBC micro:bit** und dann auf **Verbinden**.
-4. Ab jetzt reicht ein Klick auf **An micro:bit senden**.
+4. Ab jetzt reicht nach jeder Änderung ein Klick auf **An micro:bit senden**.
 
 :::
 
@@ -98,7 +100,7 @@ led.plot(2, 4)
 
 2. Klickt auf die drei Punkte neben **Herunterladen** und wählt **Gerät verbinden**.
 3. Im kleinen Fenster klickt ihr auf **BBC micro:bit** und dann auf **Verbinden**.
-4. Ab jetzt reicht ein Klick auf **Herunterladen**.
+4. Klickt jetzt auf **Herunterladen**. Das macht ihr ab jetzt nach jeder Änderung.
 
 :::
 
@@ -106,9 +108,11 @@ led.plot(2, 4)
 
 <img src="/microbit/einfuehrung/hilfe.svg" alt="Prüfliste: 1. Chrome oder Edge? Sonst die Seite dort öffnen. 2. Leuchtet hinten die gelbe Lampe? Sonst Kabel fester stecken oder anderen USB-Anschluss nehmen. 3. Zeigt der Computer ein Laufwerk MICROBIT? Sonst ein anderes Kabel nehmen, manche Kabel laden nur. 4. Nur ein Tab mit dem Editor offen? Sonst andere Tabs schließen und das Kabel ab- und anstecken. 5. Im Fenster den micro:bit ausgewählt? Sonst noch einmal verbinden und BBC micro:bit anklicken. Klappt es immer noch nicht: Plan B">
 
+Das Laufwerk **MICROBIT** findet ihr im Explorer (Windows) oder Finder (Mac) links in der Liste. Ein Tab ist ein Reiter oben im Browser.
+
 Noch drei Fälle:
 
-- **Das Laufwerk heißt MAINTENANCE statt MICROBIT:** Kabel ab- und wieder anstecken, ohne dabei den Knopf auf der Rückseite zu drücken.
+- **Das Laufwerk heißt MAINTENANCE statt MICROBIT:** Kabel ab- und wieder anstecken, ohne dabei den kleinen Knopf neben der USB-Buchse auf der Rückseite zu drücken.
 - **Das Fenster bleibt leer oder kommt gar nicht:** Manche Schul-Computer erlauben das nicht. Nehmt Plan B.
 - **Der micro:bit zeigt ein trauriges Gesicht, eine Zahl oder Laufschrift:** Die Verbindung klappt, aber im Programm steckt ein Fehler. Vergleicht es mit der Anleitung.
 
@@ -144,6 +148,23 @@ Zeichnet aus einzelnen Punkten ein eigenes Bild, zum Beispiel ein Gesicht, einen
 <summary>Tipps anzeigen</summary>
 
 - Malt das Bild zuerst auf kariertes Papier, 5 mal 5 Kästchen groß. Schreibt über die Spalten 0 bis 4 (das ist x) und links neben die Reihen 0 bis 4 (das ist y).
-- Jeder leuchtende Punkt braucht einen eigenen Zeichne-Befehl.
+
+:::bloecke
+
+- Jeder leuchtende Punkt braucht einen eigenen Block **Zeichne**.
+
+:::
+
+:::python
+
+- Jeder leuchtende Punkt braucht eine eigene Zeile `display.set_pixel(x, y, 9)`.
+
+:::
+
+:::javascript
+
+- Jeder leuchtende Punkt braucht eine eigene Zeile `led.plot(x, y)`.
+
+:::
 
 </details>

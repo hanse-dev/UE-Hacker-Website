@@ -82,7 +82,7 @@ Der Korb darf nur fahren, **wenn** noch Platz ist. Den Block **wenn … dann** f
 
 :::python
 
-In Python läuft sogar eine Fehlermeldung über die Anzeige. Der Korb darf nur fahren, wenn noch Platz ist:
+In Python läuft sogar eine Fehlermeldung über die Anzeige. Der Korb darf nur fahren, wenn noch Platz ist. Ersetzt die zwei Zeilen von Knopf A durch diese:
 
 ```python
     if button_a.was_pressed() and korb > 0:
@@ -93,7 +93,7 @@ In Python läuft sogar eine Fehlermeldung über die Anzeige. Der Korb darf nur f
 
 :::javascript
 
-Der Korb darf nur fahren, wenn noch Platz ist:
+Der Korb darf nur fahren, wenn noch Platz ist. Ändert euren Teil für Knopf A so, dass `if` um die drei Zeilen herum steht:
 
 ```javascript
 input.onButtonPressed(Button.A, function () {
@@ -185,8 +185,47 @@ Fährt der Korb links hinaus, kommt er rechts wieder herein. Und umgekehrt.
 <details>
 <summary>Tipps anzeigen</summary>
 
-- Statt stehen zu bleiben, springt der Korb: Bei x = 0 und Knopf A wird `korb` zu 4.
-- Ihr braucht dafür ein **ansonsten**: Wenn noch Platz ist, fährt der Korb, ansonsten springt er. Unter **Logik** gibt es den Block **wenn … dann … ansonsten**.
+- Statt stehen zu bleiben, springt der Korb: Bei x = 0 und Knopf A wird `korb` zu 4. Bei x = 4 und Knopf B wird `korb` zu 0.
+- Ihr braucht dafür ein **ansonsten**: Wenn noch Platz ist, fährt der Korb, ansonsten springt er.
+
+:::bloecke
+
+- Unter **Logik** gibt es den Block **wenn … dann … ansonsten**.
 - In den ansonsten-Teil kommen drei Blöcke: den Korb löschen, `korb` auf 4 setzen, den Korb neu zeichnen.
+
+:::
+
+:::python
+
+- „Ansonsten“ heißt in Python `else:`. Es steht genauso weit eingerückt wie sein `if`.
+- Fragt zuerst, ob A gedrückt wurde, und erst darin, ob noch Platz ist. Sonst springt der Korb auch, wenn niemand drückt:
+
+```python
+    if button_a.was_pressed():
+        if korb > 0:
+            korb = korb - 1
+        else:
+            korb = 4
+```
+
+- Löschen müsst ihr nichts, das macht `display.clear()` schon.
+
+:::
+
+:::javascript
+
+- „Ansonsten“ heißt in JavaScript `else`. Es kommt direkt hinter die Klammer `}` vom `if`:
+
+```javascript
+    if (korb > 0) {
+        // fahren wie bisher
+    } else {
+        // springen
+    }
+```
+
+- In den else-Teil kommen drei Zeilen: `led.unplot(korb, 4)`, `korb = 4` und `led.plot(korb, 4)`.
+
+:::
 
 </details>

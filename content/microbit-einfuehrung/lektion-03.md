@@ -27,7 +27,7 @@ while True:
         display.show(Image.HAPPY)
 ```
 
-`while True:` wiederholt alles darunter ohne Ende. `button_a.was_pressed()` fragt jedes Mal: Wurde Knopf A gedrückt? Achtet auf die Einrückung: Sie zeigt, was wozu gehört.
+`while True:` wiederholt alles darunter ohne Ende. `button_a.was_pressed()` fragt jedes Mal: Wurde Knopf A gedrückt? Achtet auf die Einrückung: Sie zeigt, was wozu gehört. Eingerückt heißt, die Zeile fängt weiter rechts an. Nach einem Doppelpunkt macht der Editor das meist von selbst, sonst drückt ihr die Tab-Taste.
 
 :::
 
@@ -44,6 +44,24 @@ Alles in den geschweiften Klammern passiert jedes Mal, wenn jemand Knopf A drüc
 :::
 
 Probiert es aus. Dann baut ihr Knopf B selbst: Er zeigt ein trauriges Gesicht.
+
+:::bloecke
+
+Holt einen zweiten Block **wenn Knopf A geklickt** und stellt darin A auf B um. Das traurige Gesicht heißt in **zeige Symbol** „Traurig“.
+
+:::
+
+:::python
+
+Das traurige Gesicht heißt `Image.SAD`. Die neuen zwei Zeilen stehen genauso weit eingerückt wie das erste `if`.
+
+:::
+
+:::javascript
+
+Kopiert den Teil mit Knopf A und schreibt ihn unter die letzte Klammer `})`. Ändert dann `A` in `B` und `Happy` in `Sad` (traurig).
+
+:::
 
 <details>
 <summary>Lösung anzeigen</summary>
@@ -114,13 +132,56 @@ Unter **Eingabe** gibt es **wenn geschüttelt**. Eine zufällige Zahl findet ihr
 
 :::python
 
-`accelerometer.was_gesture('shake')` fragt: Wurde der micro:bit geschüttelt? Für den Zufall schreibt ihr oben `import random`. Dann gibt `random.randint(1, 6)` eine Zahl von 1 bis 6.
+`accelerometer.was_gesture('shake')` fragt: Wurde der micro:bit geschüttelt? Für den Zufall schreibt ihr unter die erste Zeile `import random`. Dann gibt `random.randint(1, 6)` eine Zahl von 1 bis 6, und `display.show()` zeigt sie, so wie das Gesicht bei Knopf A. Die Frage nach dem Schütteln kommt wie die Knöpfe in die Schleife `while True:`.
 
 :::
 
 :::javascript
 
-`input.onGesture(Gesture.Shake, function () { ... })` reagiert auf Schütteln. `randint(1, 6)` gibt eine Zahl von 1 bis 6, `basic.showNumber()` zeigt sie.
+`input.onGesture(Gesture.Shake, function () { ... })` reagiert auf Schütteln. Statt `...` kommt hinein, was dann passieren soll. `randint(1, 6)` gibt eine Zahl von 1 bis 6. `basic.showNumber()` zeigt eine Zahl: Steckt `randint(1, 6)` in die Klammern.
+
+:::
+
+Im Simulator rechts könnt ihr auch ohne echten micro:bit schütteln. Wo der Knopf dafür ist, zeigt euch eure Kursleitung.
+
+</details>
+
+<details>
+<summary>Lösung anzeigen</summary>
+
+:::bloecke
+
+```bloecke
+[eingabe] wenn geschüttelt
+  [grundlagen] zeige Zahl wähle eine zufällige Zahl von 1 bis 6
+```
+
+:::
+
+:::python
+
+```python
+from microbit import *
+import random
+
+while True:
+    if button_a.was_pressed():
+        display.show(Image.HAPPY)
+    if button_b.was_pressed():
+        display.show(Image.SAD)
+    if accelerometer.was_gesture('shake'):
+        display.show(random.randint(1, 6))
+```
+
+:::
+
+:::javascript
+
+```javascript
+input.onGesture(Gesture.Shake, function () {
+    basic.showNumber(randint(1, 6))
+})
+```
 
 :::
 

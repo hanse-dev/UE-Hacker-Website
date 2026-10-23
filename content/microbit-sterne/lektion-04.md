@@ -9,9 +9,9 @@ Jetzt wird es ein Spiel. Kommt der Stern unten an (`stern_y` ist 4), gibt es zwe
 
 ## Gefangen?
 
-Legt eine neue Variable `punkte` an und setzt sie in **beim Start** auf 0. Dann kommt diese Prüfung in die Schleife (bei Blöcken: in **dauerhaft**), direkt unter **Zeichne x `korb` y 4** und über **pausiere**:
-
 :::bloecke
+
+Legt eine neue Variable `punkte` an und setzt sie in **beim Start** auf 0. Dann kommt diese Prüfung in **dauerhaft**, direkt unter **Zeichne x `korb` y 4** und über **pausiere**:
 
 ```bloecke
 [logik] wenn stern_y = 4 dann
@@ -25,17 +25,27 @@ Den Vergleich mit **=** findet ihr unter **Logik**.
 
 :::python
 
+Schreibt `punkte = 0` oben zu den anderen Variablen. Die Prüfung gehört in den Teil, in dem der Stern fällt. Neu sind die letzten drei Zeilen:
+
 ```python
+    if takt == 8:
+        takt = 0
+        stern_y = stern_y + 1
+        if stern_y > 4:
+            stern_y = 0
+            stern_x = random.randint(0, 4)
         if stern_y == 4:
             if stern_x == korb:
                 punkte = punkte + 1
 ```
 
-In Python gehört die Prüfung in den Teil, in dem der Stern fällt: direkt nach dem Block `if stern_y > 4:` und genauso weit eingerückt wie dieses `if`. Achtung: Vergleichen heißt `==`, ein einzelnes `=` setzt eine Variable.
+`if stern_y == 4:` steht genauso weit eingerückt wie `if stern_y > 4:`. Achtung: Vergleichen heißt `==`, ein einzelnes `=` setzt eine Variable.
 
 :::
 
 :::javascript
+
+Schreibt oben zu den anderen Variablen `let punkte = 0`. Die Prüfung kommt in `basic.forever`, zwischen `led.plot(korb, 4)` und `basic.pause(400)`:
 
 ```javascript
     if (stern_y == 4) {
@@ -53,9 +63,46 @@ Probiert es aus. Ihr seht die Punkte noch nicht. Das kommt jetzt.
 
 ## Daneben!
 
-Fällt der Stern daneben, zeigt der micro:bit die Punkte. Danach fängt `punkte` wieder bei 0 an, und die Zahl verschwindet wieder von der Anzeige. Baut das selbst ein: Es ist das **ansonsten** zu „gefangen“. Bei Blöcken klickt ihr unten am inneren wenn-Block auf das **Plus**, dann kommt ein **ansonsten** dazu. Die Anzeige leert **Bildschirminhalt löschen** unter **Grundlagen** (unter **… mehr**).
+Fällt der Stern daneben, zeigt der micro:bit die Punkte. Danach fängt `punkte` wieder bei 0 an, und die Zahl verschwindet wieder von der Anzeige. Baut das selbst ein: Es ist das **ansonsten** zu „gefangen“.
 
-In der Lösung startet `stern_x` schon in **beim Start** zufällig. So fällt auch der erste Stern nicht immer in die Mitte.
+:::bloecke
+
+Klickt unten am inneren wenn-Block auf das **Plus**, dann kommt ein **ansonsten** dazu. Die Punkte zeigt **zeige Zahl** unter **Grundlagen**. Die Anzeige leert **Bildschirminhalt löschen** unter **Grundlagen** (unter **… mehr**).
+
+:::
+
+:::python
+
+„Ansonsten“ heißt in Python `else:`. Es steht genauso weit eingerückt wie `if stern_x == korb:`:
+
+```python
+            if stern_x == korb:
+                punkte = punkte + 1
+            else:
+                # hier kommt „daneben“ hin
+```
+
+`display.scroll(punkte)` zeigt die Zahl, ohne Anführungszeichen. Die Anzeige löschen müsst ihr nicht extra, das macht `display.clear()` schon.
+
+:::
+
+:::javascript
+
+„Ansonsten“ heißt in JavaScript `else`. Es kommt direkt hinter die Klammer `}` vom inneren `if`:
+
+```javascript
+        if (stern_x == korb) {
+            punkte = punkte + 1
+        } else {
+            // hier kommt „daneben“ hin
+        }
+```
+
+`basic.showNumber(punkte)` zeigt die Zahl, `basic.clearScreen()` leert danach die Anzeige.
+
+:::
+
+In der Lösung startet `stern_x` schon am Anfang zufällig. So fällt auch der erste Stern nicht immer in die Mitte.
 
 <details>
 <summary>Lösung anzeigen</summary>
@@ -193,7 +240,25 @@ Ein Stern daneben ist noch nicht das Ende. Ihr habt drei Leben. Erst wenn alle d
 
 - Ihr braucht eine neue Variable `leben`, die am Anfang 3 ist.
 - Daneben heißt jetzt: `leben` wird um 1 kleiner. Erst wenn `leben` 0 ist, kommen die Punkte.
+
+:::bloecke
+
 - Der Block **wenn leben = 0** kommt in den ansonsten-Teil, direkt unter **ändere leben um -1**. Erst darin zeigt der micro:bit die Punkte.
+
+:::
+
+:::python
+
+- In den else-Teil kommt zuerst `leben = leben - 1`, darunter `if leben == 0:`. Erst darin zeigt der micro:bit die Punkte.
+
+:::
+
+:::javascript
+
+- In den else-Teil kommt zuerst `leben = leben - 1`, darunter `if (leben == 0) { … }`. Erst darin zeigt der micro:bit die Punkte.
+
+:::
+
 - Danach geht das Spiel von selbst von vorn weiter: `punkte` und `leben` bekommen wieder ihre Anfangswerte, ihr müsst nichts drücken.
 
 </details>
@@ -201,9 +266,9 @@ Ein Stern daneben ist noch nicht das Ende. Ihr habt drei Leben. Erst wenn alle d
 <details>
 <summary>Lösung anzeigen</summary>
 
-In **beim Start** kommt **setze leben auf 3** dazu. Das ansonsten sieht dann so aus:
-
 :::bloecke
+
+In **beim Start** kommt **setze leben auf 3** dazu. Das ansonsten sieht dann so aus:
 
 ```bloecke
 [logik] ansonsten
@@ -219,6 +284,8 @@ In **beim Start** kommt **setze leben auf 3** dazu. Das ansonsten sieht dann so 
 
 :::python
 
+Ersetzt euer ganzes `else` durch dieses:
+
 ```python
             else:
                 leben = leben - 1
@@ -233,6 +300,8 @@ Oben bei den anderen Variablen kommt `leben = 3` dazu.
 :::
 
 :::javascript
+
+Ersetzt euer ganzes `else` durch dieses:
 
 ```javascript
         } else {

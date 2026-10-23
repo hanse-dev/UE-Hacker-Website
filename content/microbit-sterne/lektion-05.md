@@ -22,7 +22,7 @@ import music
 music.pitch(880, 100)
 ```
 
-`music.pitch(880, 100)` spielt einen hohen Ton für 100 Millisekunden.
+`music.pitch(880, 100)` spielt einen hohen Ton für 100 Millisekunden. `import music` kommt oben zu den anderen `import`-Zeilen, der Ton direkt unter `punkte = punkte + 1`.
 
 :::
 
@@ -32,7 +32,7 @@ music.pitch(880, 100)
 music.playTone(880, music.beat(BeatFraction.Eighth))
 ```
 
-Das spielt einen hohen, kurzen Ton.
+Das spielt einen hohen, kurzen Ton. Schreibt die Zeile direkt unter `punkte = punkte + 1`.
 
 :::
 
@@ -42,11 +42,11 @@ Das spielt einen hohen, kurzen Ton.
 
 Mit jedem Punkt fällt der Stern ein bisschen schneller. Wie viele Sterne schafft ihr dann noch?
 
+:::bloecke
+
 - Die Wartezeit wird eine Variable, zum Beispiel `tempo`. Setzt sie in **beim Start** auf 400.
 - Bei jedem Punkt wird `tempo` um 50 kleiner, aber nur, **wenn** `tempo` noch größer als 100 ist. So wird es nie zu schnell.
 - Nach „daneben“ setzt ihr `tempo` wieder auf 400.
-
-:::bloecke
 
 Statt **pausiere (ms) 400** steht dann **pausiere (ms) tempo**.
 
@@ -54,13 +54,21 @@ Statt **pausiere (ms) 400** steht dann **pausiere (ms) tempo**.
 
 :::python
 
-In Python ist das Tempo die 8 in `if takt == 8:`. Mit `if takt >= tempo:` und einer Variable `tempo` wird der Stern schneller, wenn `tempo` kleiner wird.
+In Python ist das Tempo die 8 in `if takt == 8:`. Der Stern fällt nach 8 Runden der Schleife. Mit weniger Runden fällt er schneller.
+
+- Schreibt oben zu den anderen Variablen `tempo = 8`.
+- Statt `if takt == 8:` steht dann `if takt >= tempo:`.
+- Bei jedem Punkt wird `tempo` um 1 kleiner, aber nur, **wenn** `tempo` noch größer als 2 ist. So wird es nie zu schnell.
+- Nach „daneben“ setzt ihr `tempo` wieder auf 8.
 
 :::
 
 :::javascript
 
-Statt `basic.pause(400)` steht dann `basic.pause(tempo)`.
+- Schreibt oben zu den anderen Variablen `let tempo = 400`.
+- Statt `basic.pause(400)` steht dann `basic.pause(tempo)`.
+- Bei jedem Punkt wird `tempo` um 50 kleiner, aber nur, **wenn** `tempo` noch größer als 100 ist. So wird es nie zu schnell.
+- Nach „daneben“ setzt ihr `tempo` wieder auf 400.
 
 :::
 
@@ -69,8 +77,11 @@ Statt `basic.pause(400)` steht dann `basic.pause(tempo)`.
 Der micro:bit merkt sich die meisten Punkte, die jemand geschafft hat. Ist eine Runde besser, zeigt er zuerst ein Symbol und dann den neuen Rekord.
 
 - Ihr braucht eine Variable `rekord`, die am Anfang 0 ist.
-- Bei „daneben“ vergleicht ihr: Ist `punkte` größer als `rekord`? Dann zeigt ihr das Symbol und setzt `rekord` auf `punkte`.
-- Vergleicht, **bevor** `punkte` wieder auf 0 gesetzt wird. Sonst ist `punkte` schon 0, und es gibt nie einen Rekord.
+- Bei „daneben“ passiert dann der Reihe nach:
+  1. Ist `punkte` größer als `rekord`? Dann zeigt ihr das Symbol und setzt `rekord` auf `punkte`.
+  2. Der micro:bit zeigt die Punkte, wie bisher.
+  3. `punkte` wird wieder 0.
+- Vergleicht also, **bevor** `punkte` wieder auf 0 gesetzt wird. Sonst ist `punkte` schon 0, und es gibt nie einen Rekord.
 
 :::bloecke
 
@@ -106,7 +117,7 @@ Unter **Eingabe** gibt es **wenn geschüttelt**. Im Feld könnt ihr statt „ges
 
 :::python
 
-`accelerometer.was_gesture('left')` fragt: Wurde der micro:bit seit dem letzten Fragen nach links geneigt? Für rechts heißt es `'right'`.
+`accelerometer.was_gesture('left')` fragt: Wurde der micro:bit seit dem letzten Fragen nach links geneigt? Für rechts heißt es `'right'`. Nehmt es statt `button_a.was_pressed()` und `button_b.was_pressed()`.
 
 :::
 
@@ -118,7 +129,7 @@ input.onGesture(Gesture.TiltLeft, function () {
 })
 ```
 
-Für rechts heißt es `Gesture.TiltRight`.
+Für rechts heißt es `Gesture.TiltRight`. Kopiert den Inhalt von Knopf A an die Stelle von `// ...`, für rechts den von Knopf B. Die Knopf-Teile dürfen bleiben, dann geht beides.
 
 :::
 
@@ -129,25 +140,39 @@ Für rechts heißt es `Gesture.TiltRight`.
 Neben dem Stern fällt eine Bombe. Sie leuchtet nur schwach. Fängt der Korb die Bombe, ist das Spiel vorbei.
 
 - Die Bombe braucht eigene Variablen: `bombe_x` und `bombe_y`.
-- Sie fällt genauso wie der Stern. Kopiert vom Stern: das Setzen am Anfang, das Löschen der alten Bombe, das Fallen (`bombe_y` um 1 größer, über 4 wieder oben mit zufälligem `bombe_x`) und das Zeichnen. Ändert dabei die Namen. Bei Blöcken kopiert ihr mit einem Rechtsklick auf einen Block und **Duplizieren**.
 - Gefangen ist die Bombe, wenn `bombe_y` 4 ist und `bombe_x` gleich `korb`. „Spiel vorbei“ heißt: Der micro:bit zeigt die Punkte, und alles fängt von vorn an – wie bei „daneben“.
-- Startet die Bombe ein paar Reihen über dem Spielfeld (zum Beispiel bei y = -3), fallen Stern und Bombe nicht im Gleichschritt. Mit Blöcken und JavaScript zeigt der micro:bit oberhalb des Spielfelds einfach nichts an, in Python zeichnet ihr nur, wenn y von 0 bis 4 geht (siehe unten).
+- Startet die Bombe ein paar Reihen über dem Spielfeld, zum Beispiel bei y = -3. Dann fallen Stern und Bombe nicht im Gleichschritt. Unten angekommen, fängt sie wie der Stern wieder bei y = 0 an.
 
 :::bloecke
 
-Schwach zeichnet ihr mit **Zeichne x y Helligkeit** unter **LED**, zum Beispiel mit Helligkeit 30.
+- Die Bombe fällt genauso wie der Stern. Kopiert vom Stern: das Setzen in **beim Start**, das Löschen der alten Bombe, das Fallen (`bombe_y` um 1 größer, über 4 wieder oben mit zufälligem `bombe_x`) und das Zeichnen. Ändert dabei die Namen. Ihr kopiert mit einem Rechtsklick auf einen Block und **Duplizieren**.
+- Oberhalb des Spielfelds (y kleiner als 0) zeigt der micro:bit einfach nichts an. Das ist in Ordnung.
+- Schwach zeichnet ihr mit **Zeichne x y Helligkeit** unter **LED**, zum Beispiel mit Helligkeit 30.
 
 :::
 
 :::python
 
-Schwach zeichnet ihr mit einer kleinen Helligkeit: `display.set_pixel(bombe_x, bombe_y, 2)`. Aber Achtung: Python zeichnet nur, wenn y von 0 bis 4 geht.
+Die Bombe fällt genauso wie der Stern. Kopiert die Zeilen vom Stern und ändert die Namen:
+
+- Oben bei den Variablen: `bombe_x = random.randint(0, 4)` und `bombe_y = -3`.
+- Im Teil, in dem der Stern fällt: `bombe_y` wird um 1 größer, und über 4 fängt sie mit zufälligem `bombe_x` wieder oben an.
+- Beim Zeichnen, unter `display.clear()`: Python zeichnet nur, wenn y von 0 bis 4 geht. Darum fragt ihr vorher:
+
+```python
+    if bombe_y >= 0:
+        display.set_pixel(bombe_x, bombe_y, 2)
+```
+
+Die 2 ist eine kleine Helligkeit, so leuchtet die Bombe nur schwach.
 
 :::
 
 :::javascript
 
-Schwach zeichnet ihr mit `led.plotBrightness(bombe_x, bombe_y, 30)`.
+- Die Bombe fällt genauso wie der Stern. Kopiert vom Stern: `let bombe_x` und `let bombe_y` oben, `led.unplot` für die alte Bombe, das Fallen (`bombe_y` um 1 größer, über 4 wieder oben mit zufälligem `bombe_x`) und das Zeichnen. Ändert dabei die Namen.
+- Oberhalb des Spielfelds (y kleiner als 0) zeigt der micro:bit einfach nichts an. Das ist in Ordnung.
+- Schwach zeichnet ihr mit `led.plotBrightness(bombe_x, bombe_y, 30)`.
 
 :::
 
@@ -162,7 +187,26 @@ Verbindet zwei Aufträge zu einem Spiel, zum Beispiel „Immer schneller“ mit 
 <details>
 <summary>Tipps anzeigen</summary>
 
-- Speichert zuerst das Programm mit dem ersten Auftrag, damit ihr zu ihm zurückkehren könnt. In MakeCode klickt ihr unten neben dem Projektnamen auf das Speichern-Symbol, dann liegt eine .hex-Datei in **Downloads**. In Python klickt ihr auf **Speichern**.
+- Speichert zuerst das Programm mit dem ersten Auftrag, damit ihr zu ihm zurückkehren könnt.
+
+:::bloecke
+
+- Klickt unten neben dem Projektnamen auf das Speichern-Symbol, dann liegt eine .hex-Datei in **Downloads**. Wieder öffnen könnt ihr sie, indem ihr sie auf den Editor zieht.
+
+:::
+
+:::python
+
+- Klickt auf **Speichern**, dann liegt eine .hex-Datei in **Downloads**. Wieder öffnen könnt ihr sie mit **Öffnen** neben **Speichern**.
+
+:::
+
+:::javascript
+
+- Klickt unten neben dem Projektnamen auf das Speichern-Symbol, dann liegt eine .hex-Datei in **Downloads**. Wieder öffnen könnt ihr sie, indem ihr sie auf den Editor zieht.
+
+:::
+
 - Baut den zweiten Auftrag dann Schritt für Schritt dazu und probiert nach jedem Schritt aus.
 
 </details>

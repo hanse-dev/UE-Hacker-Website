@@ -6,9 +6,9 @@ Der Stern braucht zwei Variablen: `stern_x` für die Spalte und `stern_y` für d
 
 ## Der Stern fällt
 
-Euer Programm aus Stufe 1 bleibt. Neu dazu kommt:
-
 :::bloecke
+
+Euer Programm aus Stufe 1 bleibt. Neu dazu kommt:
 
 ```bloecke
 [grundlagen] beim Start
@@ -31,6 +31,8 @@ Fällt der Stern in den Korb, löscht **lösche** auch den Korb. Darum wird der 
 :::
 
 :::python
+
+So sieht euer ganzes Programm jetzt aus. Neu sind `stern_x`, `stern_y`, `takt` und der Teil mit `takt` in der Schleife:
 
 ```python
 from microbit import *
@@ -63,6 +65,8 @@ Die Schleife läuft alle 50 Millisekunden, damit der Korb schnell reagiert. Der 
 
 :::javascript
 
+Euer Programm aus Stufe 1 bleibt. Schreibt den neuen Code unten darunter:
+
 ```javascript
 let stern_x = 2
 let stern_y = 0
@@ -82,11 +86,45 @@ Fällt der Stern in den Korb, löscht `led.unplot` auch den Korb. Darum wird der
 
 Probiert es aus. Der Stern fällt, aber nur einmal. Unten bei y = 5 gibt es keine Lampe mehr.
 
+:::bloecke
+
+Der Stern verschwindet unten einfach. Das repariert ihr gleich.
+
+:::
+
+:::python
+
+In Python läuft dann eine Fehlermeldung über die Anzeige. Ihr habt nichts falsch abgeschrieben, das repariert ihr gleich.
+
+:::
+
+:::javascript
+
+Der Stern verschwindet unten einfach. Das repariert ihr gleich.
+
+:::
+
 ## Der nächste Stern
 
 Ist `stern_y` größer als 4, fängt der Stern wieder oben an: `stern_y` wird 0. Baut das selbst ein. Wo im Programm muss es stehen: vor oder nach dem Zeichnen?
 
+:::bloecke
+
 Tipp: Nehmt **wenn … dann** wie in Stufe 1. Es muss vor dem Zeichnen stehen, sonst versucht der micro:bit, bei y = 5 zu zeichnen.
+
+:::
+
+:::python
+
+Tipp: Schreibt `if stern_y > 4:` direkt unter `stern_y = stern_y + 1`, genauso weit eingerückt. Es muss vor dem Zeichnen stehen, sonst versucht der micro:bit, bei y = 5 zu zeichnen.
+
+:::
+
+:::javascript
+
+Tipp: Nehmt `if` wie in Stufe 1, direkt unter `stern_y = stern_y + 1`. Es muss vor dem Zeichnen stehen, sonst versucht der micro:bit, bei y = 5 zu zeichnen.
+
+:::
 
 Danach soll jeder neue Stern in einer **zufälligen** Spalte starten.
 
@@ -104,13 +142,13 @@ Holt noch einen Block **setze stern_x auf** und steckt ihn in den wenn-Block, di
 
 :::python
 
-Für den Zufall schreibt ihr oben `import random`. Dann gibt `random.randint(0, 4)` eine zufällige Zahl von 0 bis 4.
+Für den Zufall schreibt ihr oben `import random`. Dann gibt `random.randint(0, 4)` eine zufällige Zahl von 0 bis 4. Schreibt `stern_x = random.randint(0, 4)` in dasselbe `if`, in dem `stern_y` wieder 0 wird.
 
 :::
 
 :::javascript
 
-`randint(0, 4)` gibt eine zufällige Zahl von 0 bis 4.
+`randint(0, 4)` gibt eine zufällige Zahl von 0 bis 4. Schreibt `stern_x = randint(0, 4)` in dasselbe `if`, in dem `stern_y` wieder 0 wird.
 
 :::
 
@@ -206,13 +244,13 @@ Minus rechnet ihr mit dem Block **0 + 0** unter **Mathematik**: Klickt auf **+**
 
 :::python
 
-Die letzte Zahl von `display.set_pixel` ist die Helligkeit: 9 ist ganz hell, 2 nur ein Glimmen.
+Die letzte Zahl von `display.set_pixel` ist die Helligkeit: 9 ist ganz hell, 2 nur ein Glimmen. Den Schweif zeichnet ihr nur, wenn `stern_y` größer als 0 ist.
 
 :::
 
 :::javascript
 
-`led.plotBrightness(x, y, 30)` zeichnet einen Punkt mit wenig Helligkeit. 255 ist ganz hell. `basic.clearScreen()` löscht die ganze Anzeige.
+`led.plotBrightness(x, y, 30)` zeichnet einen Punkt mit wenig Helligkeit. 255 ist ganz hell. `basic.clearScreen()` löscht die ganze Anzeige. Damit braucht ihr die Zeile mit `led.unplot` nicht mehr. Den Schweif zeichnet ihr nur, wenn `stern_y` größer als 0 ist.
 
 :::
 
