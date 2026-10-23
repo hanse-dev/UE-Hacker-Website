@@ -6,10 +6,10 @@
     "lessonSummary": "Es leuchtet! Ihr kennt das Breadboard und habt euren ersten Stromkreis gebaut.",
     "tasks": [
       {
-        "instruction": "Wir haben ausgemacht, wer zuerst baut und wer programmiert."
+        "instruction": "Die LED leuchtet am Stift 3.3V, ganz ohne Programm."
       },
       {
-        "instruction": "Die rote LED steckt wie im Steckplan: Kabel von P13, Widerstand über der Lücke, Brücke in die GND-Reihe, Kabel zu GND."
+        "instruction": "Die rote LED steckt wie im Steckplan: Kabel von P13 (umgesteckt von 3.3V), Widerstand über der Lücke, Brücke in die GND-Reihe, Kabel zu GND."
       },
       {
         "instruction": "Die LED blinkt."
