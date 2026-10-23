@@ -833,4 +833,133 @@ test.describe('UI: Admin + Header-Login', () => {
     const body = await progress.json();
     expect(body.payload['ue-hacker-interactive-progress-caesar-chiffre']).toBeUndefined();
   });
+
+  test('Partnerarbeit: zweite Person eintragen, der Stand des Kurses landet in beiden Accounts', async ({ page, request }) => {
+    const KEY = 'ue-hacker-interactive-progress-microbit-auto';
+    const stamp = Date.now();
+    const nameA = `pilot_${stamp}`;
+    const nameB = `navi_${stamp}`;
+    const { token: adminToken } = await (await request.post(`${API}/api/admin/login`, { data: { password: ADMIN_PASSWORD } })).json();
+    const tokens = {};
+    for (const username of [nameA, nameB]) {
+      await request.post(`${API}/api/admin/users`, {
+        headers: { Authorization: `Bearer ${adminToken}` },
+        data: { username, password: 'pass1234', ageGroup: 'kinder' },
+      });
+      tokens[username] = (await (await request.post(`${API}/api/login`, { data: { username, password: 'pass1234' } })).json()).token;
+    }
+    const courseState = async (username) => {
+      const res = await request.get(`${API}/api/progress`, { headers: { Authorization: `Bearer ${tokens[username]}` } });
+      return (await res.json()).payload;
+    };
+    // Die zweite Person hat schon etwas: einen Haken in Stufe 1 (lektion-02) und ein anderes Projekt.
+    await request.put(`${API}/api/progress`, {
+      headers: { Authorization: `Bearer ${tokens[nameB]}` },
+      data: {
+        payload: {
+          [KEY]: {
+            value: { version: 1, courseId: 'projekt-microbit-auto', variant: 'microbit-auto', completedLessonIds: [], partialChecks: { 'lektion-02': [0] }, partialChecksAt: new Date().toISOString() },
+            updatedAt: new Date().toISOString(),
+          },
+          'ue-hacker-interactive-progress-morsecode': { value: { completedLessonIds: ['lektion-01'] }, updatedAt: new Date().toISOString() },
+        },
+      },
+    });
+
+    await page.goto('/');
+    await page.locator('.options-btn').click();
+    await page.locator('.settings-modal .auth-btn.primary', { hasText: /Anmelden|Log in/ }).click();
+    await page.locator('.settings-modal input').nth(0).fill(nameA);
+    await page.locator('.settings-modal input[type="password"]').fill('pass1234');
+    await page.locator('.settings-modal .auth-btn.primary').click();
+    await expect(page.locator('.settings-modal')).toContainText(nameA);
+    await page.locator('.settings-close').click();
+
+    await page.goto('/kurs/projekt-microbit-auto');
+    await page.locator('.btn-start-course').click();
+    const box = page.locator('.partner-box');
+    await box.locator('.partner-open').click();
+
+    // Sich selbst oder ein falsches Passwort eintragen geht nicht.
+    await box.locator('.partner-username').fill(nameA);
+    await box.locator('.partner-password').fill('pass1234');
+    await box.locator('.partner-submit').click();
+    await expect(box.locator('.partner-error')).toContainText('Das bist du selbst');
+    await box.locator('.partner-username').fill(nameB);
+    await box.locator('.partner-password').fill('falsch');
+    await box.locator('.partner-submit').click();
+    await expect(box.locator('.partner-error')).toContainText('stimmt nicht');
+
+    await box.locator('.partner-password').fill('pass1234');
+    await box.locator('.partner-submit').click();
+    await expect(box.locator('.partner-names')).toHaveText(`${nameA} + ${nameB}`);
+
+    // Zusammengeführt: Der Haken der zweiten Person ist jetzt auch im Account der ersten.
+    await expect.poll(async () => (await courseState(nameA))[KEY]?.value.partialChecks?.['lektion-02']).toEqual([0]);
+
+    // Stufe abschließen und in der nächsten einen Haken setzen: beide Accounts haben denselben Stand.
+    const tasks = page.locator('.guide-task');
+    const required = 3;
+    for (let i = 0; i < required; i++) await tasks.nth(i).locator('.guide-task-check').check();
+    await expect(page.locator('.lesson-complete-box')).toBeVisible();
+    for (const username of [nameA, nameB]) {
+      await expect.poll(async () => (await courseState(username))[KEY]?.value.completedLessonIds, { message: username }).toEqual(['lektion-01']);
+    }
+    const stateB = await courseState(nameB);
+    expect(stateB[KEY].value.partialChecks['lektion-02']).toEqual([0]);
+    expect(stateB[KEY].value.partialChecks['lektion-01']).toEqual([0, 1, 2]);
+    // Andere Kurse der zweiten Person bleiben unberührt.
+    expect(stateB['ue-hacker-interactive-progress-morsecode'].value.completedLessonIds).toEqual(['lektion-01']);
+
+    // Ein zurückgenommener Haken nimmt den Abschluss bei beiden zurück.
+    await tasks.nth(0).locator('.guide-task-check').uncheck();
+    for (const username of [nameA, nameB]) {
+      await expect.poll(async () => (await courseState(username))[KEY]?.value.completedLessonIds, { message: username }).toEqual([]);
+    }
+
+    // Die Verbindung übersteht ein Neuladen und endet beim Trennen.
+    await page.reload();
+    await expect(page.locator('.partner-names')).toHaveText(`${nameA} + ${nameB}`, { timeout: 15000 });
+    await page.locator('.partner-unlink').click();
+    await expect(page.locator('.partner-open')).toBeVisible();
+    await tasks.nth(0).locator('.guide-task-check').check();
+    await expect.poll(async () => (await courseState(nameA))[KEY]?.value.completedLessonIds).toEqual(['lektion-01']);
+    expect((await courseState(nameB))[KEY].value.completedLessonIds).toEqual([]);
+  });
+
+  test('Admin schreibt ein Projekt gut: Abzeichen erscheint im Profil des Accounts', async ({ page, request }) => {
+    const username = `gutschrift_${Date.now()}`;
+    const { token: adminToken } = await (await request.post(`${API}/api/admin/login`, { data: { password: ADMIN_PASSWORD } })).json();
+    await request.post(`${API}/api/admin/users`, {
+      headers: { Authorization: `Bearer ${adminToken}` },
+      data: { username, password: 'pass1234', ageGroup: 'kinder' },
+    });
+
+    await page.goto('/admin');
+    await page.locator('.admin-login-card input[type="password"]').fill(ADMIN_PASSWORD);
+    await page.locator('.admin-login-card .btn-primary').click();
+    const row = page.locator('.admin-table tr', { hasText: username });
+    await row.locator('.grant-project-btn').click();
+    await expect(page.locator('.grant-modal h2')).toContainText(username);
+    await page.locator('.grant-course').selectOption({ label: 'micro:bit: Das Roboterauto' });
+    await page.locator('.grant-submit').click();
+    await expect(page.locator('.grant-result')).toContainText('micro:bit: Das Roboterauto');
+    await expect(page.locator('.grant-result')).toContainText(username);
+    await page.locator('.admin-toolbar .btn-secondary').click();
+
+    await page.goto('/');
+    await page.locator('.options-btn').click();
+    await page.locator('.settings-modal .auth-btn.primary', { hasText: /Anmelden|Log in/ }).click();
+    await page.locator('.settings-modal input').nth(0).fill(username);
+    await page.locator('.settings-modal input[type="password"]').fill('pass1234');
+    await page.locator('.settings-modal .auth-btn.primary').click();
+    await expect(page.locator('.settings-modal')).toContainText(username);
+    await page.locator('.settings-close').click();
+
+    await page.locator('nav a', { hasText: 'Mein Profil' }).click();
+    const badge = page.locator('.badge-card', { hasText: 'Roboterauto' });
+    await expect(badge).toHaveClass(/earned/, { timeout: 10000 });
+    // Ein nicht gutgeschriebenes Projekt bleibt gesperrt.
+    await expect(page.locator('.badge-card', { hasText: 'Morsecode' })).not.toHaveClass(/earned/);
+  });
 });

@@ -80,3 +80,13 @@ export function fetchProgress() {
 export function putProgress(payload) {
   return request('/api/progress', { method: 'PUT', body: { payload } });
 }
+
+// Fortschritt eines zweiten Accounts lesen/ergänzen (Partnerarbeit, siehe usePartner.js) - mit
+// dessen Token, nicht mit dem der angemeldeten Person.
+export function fetchProgressAs(token) {
+  return request('/api/progress', { token });
+}
+
+export function patchProgressAs(token, entries) {
+  return request('/api/progress', { method: 'PATCH', body: { entries }, token });
+}

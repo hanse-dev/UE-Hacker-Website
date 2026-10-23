@@ -499,6 +499,10 @@ Ordner-Mapping (immer paarweise anpassen):
       herausfinden soll: nur das Gerüst zeigen (z.B. den ersten Fall), das fertige Programm
       eingeklappt in `<details><summary>Lösung anzeigen</summary>` darunter (Beispiel: Stufe 9,
       `lektion-10.md`). Eine letzte Stufe mit frei wählbaren Aufträgen braucht keine Bonusaufgabe.
+- [ ] Kurse mit `engine: "anleitung"` zeigen in der Seitenleiste die `PartnerBox`: Eine zweite Person
+      kann sich mit ihrem Account eintragen, dann landet der Stand des Kurses (abgeschlossene
+      Stufen und einzelne Haken) in beiden Accounts und beide bekommen das Abzeichen. Tests dazu
+      laufen nur mit `npm run test:auth`.
 - [ ] Haken sind umkehrbar: Wird in einer abgeschlossenen Stufe ein Pflicht-Haken entfernt, gilt
       sie nicht mehr als abgeschlossen und die nächste ist wieder gesperrt.
 - [ ] MakeCode-Blöcke als Text: Codeblock mit Sprache `bloecke`, pro Zeile `[kategorie] Beschriftung`,

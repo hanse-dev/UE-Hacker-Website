@@ -4,6 +4,7 @@ import crypto from 'crypto';
 import db from '../db.js';
 import { requireAdmin } from '../auth.js';
 import { generateTempPassword } from '../tempPassword.js';
+import { mergeProgressEntries, readProgressPayload } from '../progress.js';
 
 const router = Router();
 const AGE_GROUPS = new Set(['kinder', 'jugendliche']);
@@ -160,6 +161,33 @@ router.post('/users/:id/reset-password', (req, res) => {
   `).get(row.id);
 
   return res.json({ user: publicUser(updated), temporaryPassword });
+});
+
+// Projekt-Kurs gutschreiben: setzt für einen Account die abgeschlossenen Lektionen eines Kurses
+// (z.B. wenn zwei zusammen an einem Rechner gearbeitet haben und nur einer angemeldet war). Welche
+// Lektionen der Kurs hat, weiß nur das Frontend (content/*/lessons.json) - es schickt Key und Liste.
+const PROJECT_PROGRESS_KEY = /^ue-hacker-interactive-progress-[a-z0-9-]+$/;
+
+router.post('/users/:id/progress', (req, res) => {
+  const row = db.prepare('SELECT id FROM users WHERE id = ?').get(req.params.id);
+  if (!row) return res.status(404).json({ error: 'Nutzer nicht gefunden.' });
+
+  const key = String(req.body?.key || '');
+  const value = req.body?.value;
+  const ids = value?.completedLessonIds;
+  if (!PROJECT_PROGRESS_KEY.test(key)) {
+    return res.status(400).json({ error: 'key muss der Fortschritts-Key eines Projekt-Kurses sein.' });
+  }
+  if (!value || typeof value !== 'object' || !Array.isArray(ids) || !ids.length || ids.length > 200
+    || ids.some((id) => typeof id !== 'string')) {
+    return res.status(400).json({ error: 'value.completedLessonIds muss eine Liste von Lektions-IDs sein.' });
+  }
+
+  // Bereits Vorhandenes (z.B. einzelne Haken) bleibt stehen, nur die übergebenen Felder gewinnen.
+  const existing = readProgressPayload(row.id)[key]?.value;
+  const merged = { ...(existing && typeof existing === 'object' ? existing : {}), ...value };
+  mergeProgressEntries(row.id, { [key]: { value: merged } });
+  return res.json({ key, value: merged });
 });
 
 router.delete('/users/:id', (req, res) => {

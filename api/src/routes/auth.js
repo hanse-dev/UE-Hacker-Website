@@ -2,6 +2,7 @@ import { Router } from 'express';
 import bcrypt from 'bcryptjs';
 import db from '../db.js';
 import { createUserToken, requireUser } from '../auth.js';
+import { mergeProgressEntries } from '../progress.js';
 
 const router = Router();
 
@@ -123,6 +124,28 @@ router.put('/progress', requireUser, (req, res) => {
   }
 
   return res.json({ payload, updatedAt: now });
+});
+
+// Einzelne Einträge schreiben, der Rest des Fortschritts bleibt unberührt. Genutzt, wenn zwei
+// Accounts an einem Rechner zusammenarbeiten: Der Browser schreibt den Stand des Kurses mit dem
+// Token der zweiten Person auch in deren Account.
+router.patch('/progress', requireUser, (req, res) => {
+  const entries = req.body?.entries;
+  if (!entries || typeof entries !== 'object' || Array.isArray(entries)) {
+    return res.status(400).json({ error: 'entries muss ein Objekt sein.' });
+  }
+  const keys = Object.keys(entries);
+  if (!keys.length || keys.length > 20) {
+    return res.status(400).json({ error: 'entries braucht 1 bis 20 Einträge.' });
+  }
+  for (const key of keys) {
+    const entry = entries[key];
+    if (!key.startsWith('ue-hacker-') || !entry || typeof entry !== 'object' || entry.value === undefined) {
+      return res.status(400).json({ error: `Ungültiger Eintrag: ${key}` });
+    }
+  }
+  const { updatedAt } = mergeProgressEntries(req.user.userId, entries);
+  return res.json({ updatedAt });
 });
 
 export default router;

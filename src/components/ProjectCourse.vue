@@ -64,6 +64,9 @@
           </label>
         </div>
 
+        <!-- Anleitungen zum Abhaken sind Teamarbeit: die zweite Person kann sich hier eintragen. -->
+        <PartnerBox v-if="engine === 'anleitung'" :variant="contentPath" :course-id="courseId" />
+
         <!-- Offline-Downloads gibt es nur fuer Python-Projekte (scripts/pack_notebooks.py), nicht fuer JS. -->
         <OfflineDownloads v-if="engine === 'pyodide'" :base="`/projekt-zips/${contentPath}`" />
       </aside>
@@ -127,6 +130,7 @@ import { ref, computed, onMounted, watch } from 'vue';
 import LessonView from './LessonView.vue';
 import JsLessonView from './JsLessonView.vue';
 import GuideLessonView from './GuideLessonView.vue';
+import PartnerBox from './PartnerBox.vue';
 import OfflineDownloads from './OfflineDownloads.vue';
 import WeekCheckPanel from './WeekCheckPanel.vue';
 import FinalCertificate from './FinalCertificate.vue';
@@ -140,7 +144,7 @@ const lessonJsonModules = import.meta.glob('../../content/*/lessons.json');
 
 export default {
   name: 'ProjectCourse',
-  components: { LessonView, JsLessonView, GuideLessonView, OfflineDownloads, WeekCheckPanel, FinalCertificate },
+  components: { LessonView, JsLessonView, GuideLessonView, PartnerBox, OfflineDownloads, WeekCheckPanel, FinalCertificate },
   props: {
     courseId: { type: String, required: true },
     contentPath: { type: String, required: true },

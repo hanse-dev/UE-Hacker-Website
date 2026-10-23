@@ -95,6 +95,10 @@ const RULES = [
   ['src/components/ProjectCourse.vue', ['tests/web-grundkurs.spec.js', 'tests/web-erste-website.spec.js', 'tests/web-sandbox.spec.js', 'tests/projekte.spec.js', 'tests/microbit-auto.spec.js', 'tests/microbit-ampel.spec.js', 'tests/microbit-sterne.spec.js', 'tests/js-memory.spec.js', 'tests/js-quiz.spec.js', 'tests/js-geteilte-ansicht.spec.js', 'tests/begriffe.spec.js']],
   ['src/components/GuideLessonView.vue', ['tests/microbit-auto.spec.js', 'tests/microbit-ampel.spec.js', 'tests/microbit-sterne.spec.js', 'tests/microbit-einfuehrung.spec.js']],
   ['tests/helpers/guide-content.js', ['tests/microbit-auto.spec.js', 'tests/microbit-ampel.spec.js', 'tests/microbit-sterne.spec.js', 'tests/microbit-einfuehrung.spec.js']],
+  // Partnerarbeit/Gutschrift: die eigentlichen Tests laufen nur in `npm run test:auth` (auth-ui, api-auth).
+  ['src/components/PartnerBox.vue', ['tests/microbit-auto.spec.js']],
+  ['src/composables/usePartner.js', ['tests/microbit-auto.spec.js']],
+  ['api/src/progress.js', ['tests/site.spec.js']],
   ['src/components/InteractiveCourse.vue', ['tests/site.spec.js']],
   ['src/assets/styles/course-layout.css', ['tests/projekte.spec.js', 'tests/site.spec.js', 'tests/js-spielewerkstatt.spec.js']],
   ['src/components/ProjectCompletionBox.vue', ['tests/projekte.spec.js']],

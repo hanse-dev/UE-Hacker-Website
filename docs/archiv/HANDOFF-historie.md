@@ -2974,3 +2974,23 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.115 | Kurs „Meine erste Website“ (`web-erste-website`) mit Abschluss-Check | Einstiegskurs `"type": "lektionen"` (Lektionsliste aus `ProjectCourse.vue`, Startseite statt `/projekte`), 8 Lektionen HTML/CSS + Sticker-Bilder `public/web-bilder/`; `"finalCheck": true` → Abschluss-Check als letzter Listeneintrag (`WeekCheckPanel` `engine="web"`/`final`, `WebCodeChallenge.vue`), Zertifikat `FinalCertificate.vue`, Profil/PDF „Abschluss“ (`singleCheck`); `tests/web-erste-website.spec.js` |
 | 3.116 | „Meine erste Website“: Stufenwahl Einfach/Intensiv, Intensiv = 9-Wochen-Kurs | `WebsiteCourse.vue` (Stufe in `?stufe=` + localStorage, `?week=` ohne Stufe = Einfach), `WeeklyCourseTour.vue` = verallgemeinerte KI-Labor-Tour (`KiLaborTour.vue` nur Wrapper), Wochen in `src/data/webGrundkursWeeks.js`, Inhalt `content/web-grundkurs-woche{1-9}/` (4 Lektionen + Debug + Mission) + `content/web-grundkurs-checks/`, Profil-Links mit `query` aus `COURSE_INFO`, HTML-Begriffe mit `pfade` in `begriffe.json`; `tests/web-grundkurs.spec.js` prüft jede Woche automatisch |
 | 3.117 | „Meine Seite“ wächst mit, Code in JS/Web-Lektionen bleibt erhalten | `JsLessonView.vue` speichert Aufgaben-Code wie `LessonView.vue` (lokal, 5 Tage); Aufgaben mit `"meineSeite": true` starten mit der eigenen Seite (`loadMeineSeite`/`saveMeineSeite` in `useSavedCode.js`, verfällt nicht, ohne Zurücksetzen-Knopf); Einfach: Lektion 1 legt sie an, 2–7 je eine Aufgabe „Deine Seite“, 8 macht sie fertig (mit `:hover`); Tests in `tests/web-erste-website.spec.js` |
+
+### 3.121 — Partnerarbeit und Admin-Gutschrift (Branch `partner-und-gutschrift`)
+
+- Anlass: Bei micro:bit-Terminen arbeiten oft zwei Kinder an einem Rechner, angemeldet ist nur eins.
+- **Partnerarbeit** (`PartnerBox.vue`, `usePartner.js`): In Kursen mit `engine: "anleitung"` kann
+  sich in der Seitenleiste eine zweite Person mit ihrem Account eintragen. Beide Stände des Kurses
+  werden zusammengeführt (`mergeState`), danach schreibt jedes Speichern den Kurs-Stand per
+  `PATCH /api/progress` mit dem Token der zweiten Person auch in deren Account (400 ms gebündelt).
+  Die Verbindung gilt pro Kurs und nur im Tab (`sessionStorage`, Key `ue-hacker-partner-<variant>`);
+  Login/Logout löscht sie. Einmal-Passwörter muss die zweite Person erst selbst ersetzen.
+- `PATCH /api/progress` schreibt nur die übergebenen Keys (`api/src/progress.js`,
+  `mergeProgressEntries`), damit es kein Rennen gegen die Geräte der zweiten Person gibt (PUT
+  ersetzt den ganzen Stand).
+- **Gutschrift** (Admin → Nutzer → „Projekt gutschreiben“): setzt alle Lektionen eines
+  Projekt-Kurses als abgeschlossen (`POST /api/admin/users/:id/progress`). Die Lektions-IDs liefert
+  das Frontend aus `lessons.json`; vorhandene Felder (z. B. einzelne Haken) bleiben erhalten.
+- Tests: `auth-ui.spec.js`, `api-auth.spec.js` (nur in `npm run test:auth`), Hinweis ohne Login in
+  `microbit-auto.spec.js`.
+- Entstanden am 14.10., blieb uncommittet im Worktree liegen und wurde am 23.10. auf den aktuellen
+  `main` gesetzt.

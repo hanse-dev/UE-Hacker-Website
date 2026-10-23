@@ -67,6 +67,11 @@
           <button type="button" class="btn-link" @click="resetResult = null">{{ t('admin.resetResultClose') }}</button>
         </div>
 
+        <div v-if="grantResult" class="reset-result grant-result" role="status">
+          <p>{{ t('admin.grantResult').replace('{course}', grantResult.course).replace('{name}', grantResult.username) }}</p>
+          <button type="button" class="btn-link" @click="grantResult = null">{{ t('admin.resetResultClose') }}</button>
+        </div>
+
         <table v-if="users.length" class="admin-table">
           <thead>
             <tr>
@@ -87,6 +92,7 @@
               <td class="actions">
                 <button type="button" class="btn-link" @click="openEdit(u)">{{ t('admin.edit') }}</button>
                 <button type="button" class="btn-link reset-password-btn" @click="resetPassword(u)">{{ t('admin.resetPassword') }}</button>
+                <button type="button" class="btn-link grant-project-btn" @click="openGrant(u)">{{ t('admin.grant') }}</button>
                 <button type="button" class="btn-link danger" @click="remove(u)">{{ t('admin.delete') }}</button>
               </td>
             </tr>
@@ -188,6 +194,26 @@
         </div>
       </div>
 
+      <div v-if="grantUser" class="modal-backdrop" @click.self="closeGrant">
+        <div class="modal-card grant-modal" role="dialog" aria-modal="true">
+          <h2>{{ t('admin.grantTitle').replace('{name}', grantUser.username) }}</h2>
+          <p class="muted">{{ t('admin.grantHint') }}</p>
+          <label class="field">
+            <span>{{ t('admin.grantCourse') }}</span>
+            <select v-model="grantCourseId" class="grant-course">
+              <option v-for="p in projects" :key="p.id" :value="p.id">{{ p.title }}</option>
+            </select>
+          </label>
+          <p v-if="grantError" class="error">{{ grantError }}</p>
+          <div class="modal-actions">
+            <button type="button" class="btn-secondary" @click="closeGrant">{{ t('admin.cancel') }}</button>
+            <button type="button" class="btn-primary grant-submit" :disabled="busy || !grantCourseId" @click="grant">
+              {{ busy ? t('admin.working') : t('admin.grantSubmit') }}
+            </button>
+          </div>
+        </div>
+      </div>
+
       <div v-if="terminFormOpen" class="modal-backdrop" @click.self="closeTerminForm">
         <div class="modal-card" role="dialog" aria-modal="true">
           <h2>{{ editingTermin ? t('admin.termine.editTitle') : t('admin.termine.createTitle') }}</h2>
@@ -257,12 +283,18 @@ import {
   createUser,
   updateUser,
   resetUserPassword,
+  grantProject,
   deleteUser,
   listTermine,
   createTermin,
   updateTermin,
   deleteTermin,
 } from '../composables/useAdminApi.js';
+import { completedCourseEntry } from '../composables/useInteractiveProgress.js';
+
+// Gleiches Wildcard-Glob wie useProjectBadges.js: Die Lektions-IDs eines Projekt-Kurses kennt nur
+// das Frontend, der Server bekommt sie für die Gutschrift geschickt.
+const lessonJsonModules = import.meta.glob('../../content/*/lessons.json');
 
 export default {
   name: 'AdminView',
@@ -279,6 +311,13 @@ export default {
     const formError = ref('');
     const editing = ref(null);
     const form = ref({ username: '', ageGroup: 'kinder', password: '' });
+
+    // Projekt gutschreiben: Liste der Projekt-Kurse wird beim ersten Öffnen geladen.
+    const projects = ref([]);
+    const grantUser = ref(null);
+    const grantCourseId = ref('');
+    const grantError = ref('');
+    const grantResult = ref(null);
 
     const activeTab = ref('users');
     const termine = ref([]);
@@ -421,6 +460,45 @@ export default {
       }
     };
 
+    const openGrant = async (u) => {
+      grantError.value = '';
+      grantResult.value = null;
+      grantUser.value = u;
+      if (projects.value.length) return;
+      try {
+        const kurse = await (await fetch(assetUrl('kurse.json'))).json();
+        projects.value = kurse.filter((k) => k.type === 'projekt');
+        grantCourseId.value = projects.value[0]?.id || '';
+      } catch (e) {
+        grantError.value = e.message || t('admin.error');
+      }
+    };
+
+    const closeGrant = () => {
+      grantUser.value = null;
+      grantError.value = '';
+    };
+
+    const grant = async () => {
+      const course = projects.value.find((p) => p.id === grantCourseId.value);
+      if (!course || !grantUser.value) return;
+      busy.value = true;
+      grantError.value = '';
+      try {
+        const loader = lessonJsonModules[`../../content/${course.contentPath}/lessons.json`];
+        const lessons = loader ? (await loader()).default || [] : [];
+        if (!lessons.length) throw new Error(t('admin.error'));
+        const { key, value } = completedCourseEntry(course.contentPath, course.id, lessons.map((l) => l.id));
+        await grantProject(grantUser.value.id, key, value);
+        grantResult.value = { username: grantUser.value.username, course: course.title };
+        closeGrant();
+      } catch (e) {
+        grantError.value = e.message || t('admin.error');
+      } finally {
+        busy.value = false;
+      }
+    };
+
     const resetPassword = async (u) => {
       const ok = window.confirm(t('admin.confirmReset').replace('{name}', u.username));
       if (!ok) return;
@@ -544,6 +622,7 @@ export default {
       t, token, password, users, busy, error, formOpen, formError, editing, form,
       ageLabel, formatDate, login, logout, openCreate, openEdit, closeForm, save, remove,
       resetPassword, resetResult,
+      projects, grantUser, grantCourseId, grantError, grantResult, openGrant, closeGrant, grant,
       activeTab, termine, terminBusy, terminError, terminFormOpen, terminFormError, editingTermin, terminForm,
       openCreateTermin, openEditTermin, closeTerminForm, saveTermin, removeTermin,
       adminKurse,

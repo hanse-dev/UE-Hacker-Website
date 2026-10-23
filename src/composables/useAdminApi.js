@@ -72,6 +72,10 @@ export function resetUserPassword(id) {
   return request(`/api/admin/users/${id}/reset-password`, { method: 'POST' });
 }
 
+export function grantProject(id, key, value) {
+  return request(`/api/admin/users/${id}/progress`, { method: 'POST', body: { key, value } });
+}
+
 export function deleteUser(id) {
   return request(`/api/admin/users/${id}`, { method: 'DELETE' });
 }
