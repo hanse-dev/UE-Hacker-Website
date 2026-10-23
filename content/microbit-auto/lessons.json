@@ -1,12 +1,12 @@
 [
   {
     "id": "lektion-01",
-    "title": "Startklar: Team, Auto und Editor",
+    "title": "Startklar: Auto und Editor",
     "file": "lektion-01.md",
-    "lessonSummary": "Startklar! Editor und Auto sind bereit. Tauscht jetzt die Rollen.",
+    "lessonSummary": "Startklar! Editor und Auto sind bereit. Gleich geht es los.",
     "tasks": [
       {
-        "instruction": "Wir haben ausgemacht, wer zuerst Pilot und wer Navigator ist."
+        "instruction": "Wir kennen die drei Regeln für das Auto."
       },
       {
         "instruction": "Der Editor ist offen und die Erweiterung (Blöcke) oder die Datei keyes_MiniCar.py (Python) ist geladen."

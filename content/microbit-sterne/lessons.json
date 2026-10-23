@@ -3,7 +3,7 @@
     "id": "lektion-01",
     "title": "Startklar: Spielfeld und erstes Bild",
     "file": "lektion-01.md",
-    "lessonSummary": "Euer micro:bit ist verbunden und zeigt Stern und Korb. Tauscht die Rollen, jetzt kommt Bewegung ins Spiel.",
+    "lessonSummary": "Euer micro:bit ist verbunden und zeigt Stern und Korb. Jetzt kommt Bewegung ins Spiel.",
     "tasks": [
       {
         "instruction": "Der Editor ist in Chrome oder Edge offen."
@@ -24,7 +24,7 @@
     "id": "lektion-02",
     "title": "Stufe 1: Der Korb",
     "file": "lektion-02.md",
-    "lessonSummary": "Euer Korb fährt hin und her und bleibt am Rand stehen. Tauscht die Rollen, gleich fallen Sterne.",
+    "lessonSummary": "Euer Korb fährt hin und her und bleibt am Rand stehen. Gleich fallen Sterne.",
     "tasks": [
       {
         "instruction": "Knopf A schiebt den Korb nach links."
@@ -45,7 +45,7 @@
     "id": "lektion-03",
     "title": "Stufe 2: Der Stern fällt",
     "file": "lektion-03.md",
-    "lessonSummary": "Es regnet Sterne! Tauscht die Rollen, jetzt wird gefangen.",
+    "lessonSummary": "Es regnet Sterne! Jetzt wird gefangen.",
     "tasks": [
       {
         "instruction": "Ein Stern fällt von oben nach unten."

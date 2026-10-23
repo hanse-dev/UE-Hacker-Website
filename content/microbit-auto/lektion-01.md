@@ -1,11 +1,4 @@
-# Startklar: Team, Auto und Editor
-
-Ihr arbeitet zu zweit an einem Auto. Damit beide etwas davon haben, gibt es zwei Rollen:
-
-- **Pilot:** sitzt an der Tastatur und baut das Programm.
-- **Navigator:** liest die Anleitung, denkt mit und testet das Auto.
-
-Nach jeder Stufe tauscht ihr die Rollen.
+# Startklar: Auto und Editor
 
 ## Drei Regeln für das Auto
 
@@ -90,7 +83,7 @@ Klappt das Verbinden nicht? Dann speichert das Programm als Datei und zieht sie 
 
 ## Bonus: Ein anderes Bild
 
-Das Herz kennt ihr jetzt. Lasst den micro:bit ein anderes Bild zeigen, das zu eurem Team passt.
+Das Herz kennt ihr jetzt. Lasst den micro:bit ein anderes Bild zeigen, das zu euch passt.
 
 <details>
 <summary>Tipps anzeigen</summary>

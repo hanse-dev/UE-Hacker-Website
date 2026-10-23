@@ -4,8 +4,6 @@
 
 Das baut ihr: Von oben fallen Sterne, unten fangt ihr sie mit dem Korb.
 
-Ihr arbeitet zu zweit. Eine Person programmiert, die andere testet am micro:bit. Nach jeder Stufe tauscht ihr.
-
 ## Das Spielfeld
 
 <img src="/microbit/sterne/spielfeld.svg" alt="Die LED-Anzeige des micro:bit mit 5 mal 5 Lampen. Die Spalten heißen x 0 bis 4 von links nach rechts, die Reihen y 0 bis 4 von oben nach unten. Der Stern leuchtet bei x 2, y 0, der Korb bei x 2, y 4">

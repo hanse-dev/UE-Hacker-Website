@@ -3,7 +3,7 @@
     "id": "lektion-01",
     "title": "Startklar: Breadboard und erste LED",
     "file": "lektion-01.md",
-    "lessonSummary": "Es leuchtet! Ihr kennt das Breadboard und habt euren ersten Stromkreis gebaut. Tauscht jetzt die Rollen.",
+    "lessonSummary": "Es leuchtet! Ihr kennt das Breadboard und habt euren ersten Stromkreis gebaut.",
     "tasks": [
       {
         "instruction": "Wir haben ausgemacht, wer zuerst baut und wer programmiert."
@@ -24,7 +24,7 @@
     "id": "lektion-02",
     "title": "Stufe 1: Die Fußgängerampel",
     "file": "lektion-02.md",
-    "lessonSummary": "Eure Fußgängerampel funktioniert. Tauscht die Rollen, gleich kommen die Autos.",
+    "lessonSummary": "Eure Fußgängerampel funktioniert. Gleich kommen die Autos.",
     "tasks": [
       {
         "instruction": "Nach dem Start leuchtet nur Rot."
@@ -42,7 +42,7 @@
     "id": "lektion-03",
     "title": "Stufe 2: Die Autoampel",
     "file": "lektion-03.md",
-    "lessonSummary": "Eure Autoampel schaltet wie eine echte. Tauscht die Rollen.",
+    "lessonSummary": "Eure Autoampel schaltet wie eine echte.",
     "tasks": [
       {
         "instruction": "Die drei LEDs der Autoampel stecken wie im Steckplan, die Fußgängerampel steckt weiter."

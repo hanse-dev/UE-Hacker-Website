@@ -2,8 +2,6 @@
 
 Der micro:bit ist ein kleiner Computer, kaum größer als eine Spielkarte. Ihr schreibt am Computer ein Programm und schickt es über das USB-Kabel auf den micro:bit. Danach läuft es auf dem micro:bit, auch ohne Computer.
 
-Ihr arbeitet zu zweit. Eine Person programmiert, die andere testet am micro:bit. Nach jeder Lektion tauscht ihr.
-
 ## Die Vorderseite
 
 <img src="/microbit/einfuehrung/vorderseite.svg" alt="Vorderseite des micro:bit: oben das Logo, das auf Berühren reagiert, in der Mitte die LED-Anzeige mit 5 mal 5 Lampen, links Knopf A, rechts Knopf B, unten die Anschlüsse 0, 1, 2, 3V und GND für Kabel">
