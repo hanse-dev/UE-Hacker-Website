@@ -205,8 +205,8 @@
     "tags": ["robotik"],
     "title": "micro:bit: Das Roboterauto",
     "title_en": "micro:bit: The Robot Car",
-    "description": "Programmiert im Zweierteam ein kleines Roboterauto mit dem micro:bit: Scheinwerfer schalten, fahren, lenken, Hindernissen ausweichen und einer Linie folgen. Jede Stufe gibt es mit Blöcken und mit Python.",
-    "description_en": "Work in pairs and program a small robot car with the micro:bit: switch the headlights, drive, steer, avoid obstacles and follow a line. Every level comes with blocks and with Python. The guide is currently available in German.",
+    "description": "Programmiert ein kleines Roboterauto mit dem micro:bit: Scheinwerfer schalten, fahren, lenken, Hindernissen ausweichen und einer Linie folgen. Jede Stufe gibt es mit Blöcken und mit Python.",
+    "description_en": "Program a small robot car with the micro:bit: switch the headlights, drive, steer, avoid obstacles and follow a line. Every level comes with blocks and with Python. The guide is currently available in German.",
     "contentPath": "microbit-auto"
   },
   {
@@ -218,8 +218,8 @@
     "tags": ["elektronik"],
     "title": "micro:bit: Die Ampelanlage",
     "title_en": "micro:bit: The Traffic Lights",
-    "description": "Steckt im Zweierteam LEDs auf ein Breadboard und baut eine Fußgängerampel, eine Autoampel und daraus eine sichere Ampelanlage. In der Werkstatt wählt ihr dann Aufträge wie Countdown, Nachtmodus oder Ampeln, die sich per Funk absprechen. Jede Stufe gibt es mit Blöcken, Python und JavaScript.",
-    "description_en": "Work in pairs: plug LEDs into a breadboard and build a pedestrian light, a traffic light and then a safe crossing that controls both. In the workshop you pick tasks such as a countdown, a night mode or traffic lights that talk to each other by radio. Every level comes with blocks, Python and JavaScript. The guide is currently available in German.",
+    "description": "Steckt LEDs auf ein Breadboard und baut eine Fußgängerampel, eine Autoampel und daraus eine sichere Ampelanlage. In der Werkstatt wählt ihr dann Aufträge wie Countdown, Nachtmodus oder Ampeln, die sich per Funk absprechen. Jede Stufe gibt es mit Blöcken, Python und JavaScript.",
+    "description_en": "Plug LEDs into a breadboard and build a pedestrian light, a traffic light and then a safe crossing that controls both. In the workshop you pick tasks such as a countdown, a night mode or traffic lights that talk to each other by radio. Every level comes with blocks, Python and JavaScript. The guide is currently available in German.",
     "contentPath": "microbit-ampel"
   },
   {

@@ -1,12 +1,5 @@
 # Startklar: Breadboard und erste LED
 
-Ihr arbeitet zu zweit. Damit beide etwas davon haben, gibt es zwei Rollen:
-
-- **Bauprofi:** steckt die Schaltung auf dem Breadboard und prüft sie.
-- **Programmierprofi:** sitzt an der Tastatur und baut das Programm.
-
-Nach jeder Stufe tauscht ihr die Rollen.
-
 ## Drei Regeln für die Schaltung
 
 > 1. Gesteckt und umgesteckt wird nur, wenn das USB-Kabel **nicht** eingesteckt ist.
