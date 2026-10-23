@@ -13,6 +13,13 @@ einem leeren Ordner, damit keine CLAUDE.md mitgelesen wird.
     python3 scripts/ki_testkind.py --wochen 1 --thema abenteuer --out bericht.md
     python3 scripts/ki_testkind.py --wochen 3 --lektion lektion-02 --alter 10
     python3 scripts/ki_testkind.py --wochen 2 --trocken            # nur den Prompt zeigen
+    python3 scripts/ki_testkind.py --kurs microbit-ampel --variante python --alter 10
+
+Mit --kurs prüft es einen Anleitungs-Kurs (engine "anleitung", micro:bit): Das Test-Kind arbeitet zu
+zweit an der Hardware, kennt die Materialliste aus beschreibung.md, die Einführung "Erste Schritte"
+und die bisherigen Stufen, sieht von Blöcken/Python/JavaScript nur die gewählte Variante und statt
+der Steckplan-Bilder deren Beschreibung (alt). Ausgeführt wird nichts - für jeden Abhakpunkt sagt
+es, ob es dort ohne Hilfe ankäme.
 
 Ein Sprachmodell unterschätzt, wie schwer etwas für echte Kinder ist: Der Bericht ist ein
 Vorfilter, kein Ersatz für Beobachten. Was das Test-Kind nicht schafft oder nicht versteht, ist
@@ -150,10 +157,10 @@ def build_prompt(content: Path, week: int, theme: str, lessons: list[dict], inde
     ])
 
 
-def ask_claude(prompt: str, alter: int, model: str | None) -> dict:
+def ask_claude(prompt: str, system: str, schema: dict, model: str | None) -> dict:
     cmd = ["claude", "-p", "--tools", "", "--no-session-persistence", "--disable-slash-commands",
-           "--system-prompt", system_prompt(alter), "--output-format", "json",
-           "--json-schema", json.dumps(SCHEMA)]
+           "--system-prompt", system, "--output-format", "json",
+           "--json-schema", json.dumps(schema)]
     if model:
         cmd += ["--model", model]
     with tempfile.TemporaryDirectory() as empty:
@@ -221,6 +228,122 @@ def evaluate(les: dict, answer: dict) -> list[dict]:
     return results
 
 
+# ---------------------------------------------------------------- Anleitungs-Kurse (micro:bit)
+
+VARIANTEN = ("bloecke", "python", "javascript")
+_AENDERN = SCHEMA["properties"]["aendern"]
+GUIDE_SCHEMA = {
+    "type": "object",
+    "additionalProperties": False,
+    "required": ["aufgaben", "schwere_woerter", "verwirrende_saetze", "gesamteindruck", "aendern"],
+    "properties": {
+        "aufgaben": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": False,
+                "required": ["nr", "schaffe_ich", "was_ich_tue", "unklar"],
+                "properties": {
+                    "nr": {"type": "integer"},
+                    "schaffe_ich": {"type": "string", "enum": ["ja", "unsicher", "nein"]},
+                    "was_ich_tue": {"type": "string"},
+                    "unklar": {"type": "string"},
+                },
+            },
+        },
+        "schwere_woerter": {"type": "array", "items": {"type": "string"}},
+        "verwirrende_saetze": {"type": "array", "items": {"type": "string"}},
+        "gesamteindruck": {"type": "string"},
+        "aendern": _AENDERN,
+    },
+}
+VARIANT_NAMES = {"bloecke": "Blöcken in MakeCode", "python": "Python", "javascript": "JavaScript in MakeCode"}
+
+
+def guide_system_prompt(alter: int, variante: str) -> str:
+    return f"""Du spielst ein {alter}-jähriges Kind in einem micro:bit-Kurs. Du arbeitest zu zweit mit
+einem anderen Kind an einem echten micro:bit; die Teile aus der Materialliste liegen vor euch, ein
+Computer ist da. Ihr programmiert mit {VARIANT_NAMES[variante]}. Ein Kursleiter will herausfinden, wo
+seine Anleitung für Kinder zu schwer ist. Hilf ihm, indem du ehrlich so liest, wie ein
+{alter}-jähriges Kind es täte.
+
+- Du kennst NUR das, was im mitgelieferten Material steht. Alles andere über micro:bit, Elektronik
+  und Programmieren weißt du nicht - auch wenn du es eigentlich weißt.
+- Bilder (Steckpläne, Fotos) siehst du hier als [Bild: Beschreibung]. Stell dir vor, du siehst das
+  Bild. Bemängle nicht, dass ein Bild fehlt.
+- Du kannst nichts ausprobieren. Geh jeden Schritt in Gedanken durch: Was steckst du, wohin
+  klickst du, welchen Block oder welche Zeile nimmst du? Wo müsstest du raten oder einen
+  Erwachsenen fragen?
+- Fachwörter, lange Sätze und Englisch verwirren dich. Nenne solche Wörter und Sätze wörtlich.
+- "aufgaben" sind die Abhakpunkte am Ende der Stufe (Nummern wie angegeben). "schaffe_ich": "ja",
+  wenn ihr dort ohne Hilfe ankommt; "unsicher", wenn ihr raten müsst; "nein", wenn ihr ohne einen
+  Erwachsenen nicht weiterkommt. "was_ich_tue": in eigenen, kindlichen Worten, wie ihr dorthin kommt.
+  "unklar": was ihr nicht verstanden habt (leer, wenn alles klar war).
+- "gesamteindruck": Ein bis zwei Sätze: Wie ging es euch mit dieser Stufe?
+- "aendern": Nur die Stellen, an denen echte Kinder in deinem Alter wahrscheinlich hängen bleiben,
+  etwas falsch stecken oder programmieren oder raten müssen - also wo sich eine Änderung wirklich
+  lohnt. Lass Stellen weg, die nach dem ganzen Absatz, dem Bild oder dem Code doch klar werden, und
+  einzelne schwere Wörter, die der Zusammenhang erklärt. Ist die Stufe insgesamt klar, bleibt die
+  Liste leer. Je Eintrag: "stelle", "problem", "haette_geholfen" (je kurz) und "gewicht" ("hoch" =
+  ohne Hilfe nicht weitergekommen, sonst "mittel")."""
+
+
+_SECTION_RE = re.compile(r"^:::(bloecke|python|javascript)\s*\n(.*?)^:::\s*$", re.S | re.M)
+_IMG_RE = re.compile(r'<img [^>]*alt="([^"]*)"[^>]*>')
+
+
+def render_guide_text(md: str, variante: str) -> str:
+    """Nur die gewählte Variante behalten (gibt es sie in der Stufe nicht: Blöcke), Bilder als Beschreibung."""
+    present = {m[0] for m in _SECTION_RE.findall(md)}
+    keep = variante if variante in present or not present else "bloecke"
+    text = _SECTION_RE.sub(lambda m: m.group(2).strip() + "\n" if m.group(1) == keep else "", md)
+    return _IMG_RE.sub(lambda m: f"[Bild: {m.group(1)}]", text).strip()
+
+
+def load_guide(content: Path, kurs: str) -> tuple[str, list[dict]]:
+    d = content / kurs
+    lessons = json.loads((d / "lessons.json").read_text(encoding="utf-8"))
+    for les in lessons:
+        md = d / les["file"]
+        les["_md"] = md.read_text(encoding="utf-8") if md.is_file() else ""
+    desc = d / "beschreibung.md"
+    return (desc.read_text(encoding="utf-8") if desc.is_file() else ""), lessons
+
+
+def render_guide_lesson(les: dict, variante: str, with_tasks: bool = True) -> str:
+    parts = [render_guide_text(les["_md"], variante)]
+    if with_tasks:
+        parts.append("Am Ende der Stufe hakt ihr ab:")
+        for i, task in enumerate(les["tasks"], 1):
+            parts.append(f"{i}. {task['instruction']}" + (" (Bonus, freiwillig)" if task.get("isBonus") else ""))
+    return "\n\n".join(parts)
+
+
+def build_guide_prompt(content: Path, kurs: str, variante: str, lessons: list[dict], index: int) -> str:
+    desc, _ = load_guide(content, kurs)
+    intro = []
+    if kurs != "microbit-einfuehrung" and (content / "microbit-einfuehrung").is_dir():
+        _, einf = load_guide(content, "microbit-einfuehrung")
+        intro = ["## Schon gemacht: die Einführung „Erste Schritte“", *[f"### {l['title']}\n{render_guide_lesson(l, variante, False)}" for l in einf]]
+    earlier = [f"### {l['title']}\n{render_guide_lesson(l, variante, False)}" for l in lessons[:index]]
+    les = lessons[index]
+    return "\n\n".join([
+        "# Der Kurs", desc.strip(), *intro,
+        "## Bisherige Stufen dieses Kurses" if earlier else "", *earlier,
+        "# Die Stufe, die ihr jetzt macht", f"## {les['title']}", render_guide_lesson(les, variante),
+        f"Geh die Abhakpunkte 1 bis {len(les['tasks'])} durch. Antworte nur im verlangten JSON-Format.",
+    ])
+
+
+def evaluate_guide(les: dict, answer: dict) -> list[dict]:
+    by_nr = {a["nr"]: a for a in answer.get("aufgaben", [])}
+    results = []
+    for i, _task in enumerate(les["tasks"], 1):
+        a = by_nr.get(i)
+        results.append({"nr": i, "fehlt": True} if not a else {**a, "anleitung": True, "geschafft": a["schaffe_ich"] != "nein"})
+    return results
+
+
 def _cell(text) -> str:
     return " ".join(str(text or "").split()).replace("|", "\\|")
 
@@ -233,6 +356,8 @@ def change_rows(entries: list[dict]) -> list[dict]:
         for r in e["ergebnisse"]:
             if r.get("fehlt"):
                 rows.append((*where, f"Aufgabe {r['nr']}", "Test-Kind hat keine Lösung abgegeben", "", "hoch"))
+            elif not r["geschafft"] and r.get("anleitung"):
+                rows.append((*where, f"Abhaken {r['nr']}", f"ohne Hilfe nicht geschafft – {r.get('unklar') or r.get('was_ich_tue')}", "", "hoch"))
             elif not r["geschafft"]:
                 problem = f"nicht geschafft: Ausgabe `{r['ausgabe']}` statt `{r['erwartet']}`"
                 if r.get("unklar"):
@@ -254,7 +379,7 @@ def render_report(entries: list[dict], alter: int) -> str:
            f"Rechnerische Kosten (Listenpreis, im Abo enthalten): {cost:.2f} $. Einzelheiten je Aufgabe stehen in der .json-Datei daneben.", ""]
     if not rows:
         return "\n".join(out + ["Alles klar – nichts zu ändern."]) + "\n"
-    out += ["| Woche | Lektion | Stelle | Problem | Hätte geholfen | Gewicht |",
+    out += [f"| {'Kurs' if entries and entries[0].get('kurs') else 'Woche'} | Lektion | Stelle | Problem | Hätte geholfen | Gewicht |",
             "|---|---|---|---|---|---|"]
     for r in rows:
         weight = "**hoch**" if r["gewicht"] == "hoch" else "mittel"
@@ -273,7 +398,9 @@ def parse_weeks(spec: str) -> list[int]:
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--wochen", required=True, help="z. B. 1, 1-3 oder 2,5")
+    ap.add_argument("--wochen", help="Python-12-Wochen-Kurs: z. B. 1, 1-3 oder 2,5")
+    ap.add_argument("--kurs", help="Anleitungs-Kurs (Content-Ordner), z. B. microbit-ampel")
+    ap.add_argument("--variante", default="bloecke", choices=VARIANTEN, help="bei --kurs: Blöcke (Standard), Python oder JavaScript")
     ap.add_argument("--thema", default="abenteuer", choices=["abenteuer", "pferde", "scifi"])
     ap.add_argument("--lektion", help="nur diese Lektions-ID (z. B. lektion-03)")
     ap.add_argument("--alter", type=int, default=11, help="Alter des Test-Kinds (Standard 11)")
@@ -285,6 +412,10 @@ def main(argv=None):
     ap.add_argument("--content", default=str(ROOT / "content"), help=argparse.SUPPRESS)
     args = ap.parse_args(argv)
     content = Path(args.content)
+    if bool(args.wochen) == bool(args.kurs):
+        ap.error("genau eins von --wochen oder --kurs angeben")
+    if args.kurs:
+        return main_guide(args, content)
 
     jobs = []
     for week in parse_weeks(args.wochen):
@@ -309,7 +440,7 @@ def main(argv=None):
         if args.antworten:
             answer = json.loads((Path(args.antworten) / f"{week}-{les['id']}.json").read_text(encoding="utf-8"))
         else:
-            answer = ask_claude(build_prompt(content, week, args.thema, lessons, idx), args.alter, args.modell)
+            answer = ask_claude(build_prompt(content, week, args.thema, lessons, idx), system_prompt(args.alter), SCHEMA, args.modell)
         print(f"  Woche {week} {les['id']} fertig", file=sys.stderr)
         return {"woche": week, "thema": args.thema, "id": les["id"], "titel": les["title"],
                 "antwort": answer, "ergebnisse": evaluate(les, answer)}
@@ -317,6 +448,36 @@ def main(argv=None):
     print(f"{len(jobs)} Lektionen …", file=sys.stderr)
     with ThreadPoolExecutor(max_workers=max(1, args.parallel)) as pool:
         entries = list(pool.map(work, jobs))
+    write_report(args, entries)
+
+
+def main_guide(args, content: Path):
+    _, lessons = load_guide(content, args.kurs)
+    jobs = [i for i, l in enumerate(lessons) if not args.lektion or l["id"] == args.lektion]
+    if not jobs:
+        raise SystemExit("Keine passende Lektion gefunden.")
+    system = guide_system_prompt(args.alter, args.variante)
+    if args.trocken:
+        print("=== System ===\n" + system + "\n\n=== Prompt ===\n" + build_guide_prompt(content, args.kurs, args.variante, lessons, jobs[0]))
+        return
+
+    def work(idx):
+        les = lessons[idx]
+        if args.antworten:
+            answer = json.loads((Path(args.antworten) / f"{args.kurs}-{les['id']}.json").read_text(encoding="utf-8"))
+        else:
+            answer = ask_claude(build_guide_prompt(content, args.kurs, args.variante, lessons, idx), system, GUIDE_SCHEMA, args.modell)
+        print(f"  {args.kurs} {les['id']} fertig", file=sys.stderr)
+        return {"woche": f"{args.kurs} ({args.variante})", "kurs": args.kurs, "id": les["id"], "titel": les["title"],
+                "antwort": answer, "ergebnisse": evaluate_guide(les, answer)}
+
+    print(f"{len(jobs)} Stufen …", file=sys.stderr)
+    with ThreadPoolExecutor(max_workers=max(1, args.parallel)) as pool:
+        entries = list(pool.map(work, jobs))
+    write_report(args, entries)
+
+
+def write_report(args, entries):
     report = render_report(entries, args.alter)
     if args.out:
         Path(args.out).write_text(report, encoding="utf-8")

@@ -3097,3 +3097,9 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   `<class '…'>`, `TypeError`/`NameError`/`SyntaxError`, Vergleich im f-String. Gleiche Lektionstexte
   in Pferde/Sci-Fi mitgezogen; Einzelaufgaben nur im Abenteuer-Thema. Zweiter Lauf: 54 → 24 Stellen,
   8 → 25 Lektionen ohne Änderungsbedarf.
+- micro:bit (Wunsch Eike, 23.10.2026): `--kurs <Content-Ordner>` für `engine: "anleitung"`. Kontext:
+  `beschreibung.md` (Materialliste), die Einführung `microbit-einfuehrung`, bisherige Stufen; aus
+  `:::bloecke/:::python/:::javascript` bleibt nur `--variante` (fehlt sie in einer Stufe: Blöcke),
+  `<img alt>` wird zu `[Bild: …]` (das Modell sieht die SVG-Steckpläne nicht – Hinweise zu Bildern
+  daher mit Vorsicht lesen). Antwort je Abhakpunkt `schaffe_ich` ja/unsicher/nein; „nein“ = Zeile „hoch“.
+  Erster Lauf (Blöcke, 11 Jahre): Einführung 2, Ampel 18 (3 hoch), Sterne 20 (6 hoch), Auto 33 (4 hoch).

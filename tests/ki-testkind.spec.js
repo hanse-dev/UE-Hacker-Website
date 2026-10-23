@@ -86,3 +86,47 @@ test('Prompt enthält Glossar früherer Wochen und die Lektion, aber nie eine Mu
   expect(out).toContain('Bearbeite die Aufgaben 2, 3');
   expect(out).not.toContain('GEHEIME_MUSTERLOESUNG');
 });
+
+// Anleitungs-Kurse (micro:bit, --kurs): nichts wird ausgeführt, das Test-Kind sagt je Abhakpunkt,
+// ob es ohne Hilfe ankäme. Es sieht nur die gewählte Variante und Bilder als Beschreibung.
+function miniGuide() {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'ki-guide-'));
+  const kurs = path.join(root, 'microbit-test');
+  fs.mkdirSync(kurs, { recursive: true });
+  fs.writeFileSync(path.join(kurs, 'beschreibung.md'), '**Ihr braucht:** einen micro:bit und eine LED.\n');
+  fs.writeFileSync(path.join(kurs, 'lessons.json'), JSON.stringify([{
+    id: 'lektion-01', title: 'Erste LED', file: 'lektion-01.md', lessonSummary: '',
+    tasks: [{ instruction: 'Die LED leuchtet.' }, { instruction: 'Die LED blinkt.', isBonus: true }],
+  }]));
+  fs.writeFileSync(path.join(kurs, 'lektion-01.md'), [
+    '# Erste LED', '', '<img src="/x.svg" alt="Steckplan: LED an P13">', '',
+    ':::bloecke', '', 'BLOCK-TEXT', '', ':::', '', ':::python', '', 'PYTHON-TEXT', '', ':::', '',
+  ].join('\n'));
+  const antworten = fs.mkdtempSync(path.join(os.tmpdir(), 'ki-guide-antw-'));
+  fs.writeFileSync(path.join(antworten, 'microbit-test-lektion-01.json'), JSON.stringify({
+    aufgaben: [
+      { nr: 1, schaffe_ich: 'ja', was_ich_tue: 'stecken', unklar: '' },
+      { nr: 2, schaffe_ich: 'nein', was_ich_tue: '', unklar: 'Wie blinkt man?' },
+    ],
+    schwere_woerter: [], verwirrende_saetze: [], gesamteindruck: 'Ok.', aendern: [],
+  }));
+  return { root, antworten };
+}
+
+test('Anleitungs-Kurs: Prompt nur mit der gewählten Variante, Bilder als Beschreibung', () => {
+  const { root } = miniGuide();
+  const out = run(['--content', root, '--kurs', 'microbit-test', '--variante', 'python', '--trocken']);
+  expect(out).toContain('Ihr programmiert mit Python');
+  expect(out).toContain('PYTHON-TEXT');
+  expect(out).not.toContain('BLOCK-TEXT');
+  expect(out).toContain('[Bild: Steckplan: LED an P13]');
+  expect(out).toContain('2. Die LED blinkt. (Bonus, freiwillig)');
+});
+
+test('Anleitungs-Kurs: "ohne Hilfe nicht geschafft" landet als wichtige Zeile im Bericht', () => {
+  const { root, antworten } = miniGuide();
+  const out = run(['--content', root, '--kurs', 'microbit-test', '--antworten', antworten]);
+  expect(out).toContain('| Kurs | Lektion | Stelle |');
+  expect(out).toContain('| microbit-test (bloecke) | lektion-01 – Erste LED | Abhaken 2 | ohne Hilfe nicht geschafft – Wie blinkt man? |  | **hoch** |');
+  expect(out).not.toContain('Abhaken 1');
+});

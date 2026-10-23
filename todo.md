@@ -18,6 +18,9 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
       W1 Mission 2 / W3 Lektion 7 als Liste schreiben; Bonus-Texte mit unklarem Auftrag wie W3 Mission 2/3,
       Boss 3 „Score“; W3 Boss 1: antwort_2 fehlt; Tippen von { } und ⭐), dann Woche 4–12 und die
       Themen Pferde/Sci-Fi mit `npm run testkind` prüfen.
+      micro:bit: Berichte für alle vier Kurse liegen vor (Blöcke): Funde abarbeiten, v. a. die „hoch“-
+      Stellen (Variable in ein Block-Feld ziehen, „ansonsten“ über das Plus, Minus mit Blöcken,
+      Erweiterungen finden, beim Start vs. POWER-Schalter), danach auch `--variante python`.
 
 - [ ] Einmaliger Ausfall im vollen Lauf unter Last (15.10., parallel liefen Tests anderer Sessions,
       Suite 4,5 statt ~2,3 Min.): `tests/ki-labor.spec.js` Woche 3 (Python-Lauf > 10 s, Timeout pro
