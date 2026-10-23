@@ -66,7 +66,7 @@
               {{ t('webLesson.download') }}
             </button>
           </div>
-          <details v-if="task.solution" class="solution-reveal">
+          <details v-if="task.solution" class="solution-reveal" @toggle="onSolutionToggle($event, idx)">
             <summary>{{ t('jsLesson.showSolution') }}</summary>
             <pre class="solution-code">{{ task.solution }}</pre>
           </details>
@@ -137,6 +137,7 @@ import { useLessonContent } from '../composables/useLessonContent';
 import ProjectCompletionBox from './ProjectCompletionBox.vue';
 import ConceptBox from './ConceptBox.vue';
 import { conceptsInText, mergeConcepts } from '../composables/useConcepts';
+import { reportLessonOpen, reportTaskEvent } from '../composables/useTaskStats';
 
 export default {
   name: 'JsLessonView',
@@ -258,10 +259,16 @@ export default {
       activeIdx.value = null;
     };
 
+    // Musterlösung aufgeklappt (nur das Öffnen zählt, nicht das Zuklappen)
+    const onSolutionToggle = (event, idx) => {
+      if (event.target.open) reportTaskEvent(props.contentPath, props.lesson?.id, idx, 'solution');
+    };
+
     const skipTask = (idx) => {
       if (isTaskDone(idx)) return;
       skippedTasks.value = new Set([...skippedTasks.value, idx]);
       taskFeedback.value[idx] = null;
+      reportTaskEvent(props.contentPath, props.lesson?.id, idx, 'skip');
       if (doneCount.value === tasks.value.length) markCompleted(props.lesson.id);
     };
 
@@ -304,6 +311,7 @@ export default {
       (newLesson) => {
         initTaskState();
         loadContent(newLesson, props.contentPath);
+        reportLessonOpen(props.contentPath, newLesson);
       },
       { immediate: true }
     );
@@ -372,6 +380,7 @@ export default {
 
       if (!result.success) {
         taskAttempts.value[idx] = (taskAttempts.value[idx] || 0) + 1;
+        reportTaskEvent(props.contentPath, props.lesson?.id, idx, 'fail');
         const errMsg = t('editor.errorPrefix') + (result.error || t('jsLesson.unknownError'));
         taskOutputs.value[idx] = errMsg;
         taskFeedback.value[idx] = { success: false, message: errMsg };
@@ -409,6 +418,7 @@ export default {
 
       if (valid) {
         completedTasks.value = new Set([...completedTasks.value, idx]);
+        reportTaskEvent(props.contentPath, props.lesson?.id, idx, 'solved');
         if (skippedTasks.value.has(idx)) {
           const next = new Set(skippedTasks.value);
           next.delete(idx);
@@ -417,6 +427,7 @@ export default {
         finishCheck(idx);
       } else {
         taskAttempts.value[idx] = (taskAttempts.value[idx] || 0) + 1;
+        reportTaskEvent(props.contentPath, props.lesson?.id, idx, 'fail');
         if (taskAttempts.value[idx] < 2) {
           taskFeedback.value[idx] = { success: false, message: t('lesson.hintSoft') };
         } else if (validation.type === 'web') {
@@ -489,6 +500,7 @@ export default {
       completedTasks,
       skippedTasks,
       skipTask,
+      onSolutionToggle,
       resetTask,
       downloadTask,
       isTaskDone,

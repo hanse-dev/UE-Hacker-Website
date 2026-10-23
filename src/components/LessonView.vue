@@ -138,6 +138,7 @@ import { loadSavedCode, saveLessonCode } from '../composables/useSavedCode';
 import ProjectCompletionBox from './ProjectCompletionBox.vue';
 import ConceptBox from './ConceptBox.vue';
 import { conceptsInText, mergeConcepts } from '../composables/useConcepts';
+import { reportLessonOpen, reportTaskEvent } from '../composables/useTaskStats';
 
 export default {
   name: 'LessonView',
@@ -286,12 +287,14 @@ export default {
     // Loesung wird nur auf Klick sichtbar - kein automatisches Verraten, siehe hintSoft/hintExpected.
     const showSolution = (idx) => {
       solutionShown.value = new Set([...solutionShown.value, idx]);
+      reportTaskEvent(props.contentPath, props.lesson?.id, idx, 'solution');
     };
 
     const skipTask = (idx) => {
       if (isTaskDone(idx)) return;
       skippedTasks.value = new Set([...skippedTasks.value, idx]);
       taskFeedback.value[idx] = null;
+      reportTaskEvent(props.contentPath, props.lesson?.id, idx, 'skip');
       if (allTasksComplete.value) markCompleted(props.lesson.id);
     };
 
@@ -323,6 +326,7 @@ export default {
       (newLesson) => {
         initTaskState();
         loadContent(newLesson, props.contentPath);
+        reportLessonOpen(props.contentPath, newLesson);
       },
       { immediate: true }
     );
@@ -387,6 +391,7 @@ export default {
         taskOutputs.value[idx] = result.output || t('jupyter.noOutput');
       } else {
         taskAttempts.value[idx] = (taskAttempts.value[idx] || 0) + 1;
+        reportTaskEvent(props.contentPath, props.lesson?.id, idx, 'fail');
         const errMsg = t('editor.errorPrefix') + (result.error || t('jupyter.unknownError'));
         taskOutputs.value[idx] = errMsg;
         taskFeedback.value[idx] = { success: false, message: errMsg };
@@ -399,6 +404,7 @@ export default {
 
       if (valid) {
         completedTasks.value = new Set([...completedTasks.value, idx]);
+        reportTaskEvent(props.contentPath, props.lesson?.id, idx, 'solved');
         if (skippedTasks.value.has(idx)) {
           const next = new Set(skippedTasks.value);
           next.delete(idx);
@@ -421,6 +427,7 @@ export default {
         }
       } else {
         taskAttempts.value[idx] = (taskAttempts.value[idx] || 0) + 1;
+        reportTaskEvent(props.contentPath, props.lesson?.id, idx, 'fail');
         // Erster Fehlversuch: nur ein sanfter Hinweis, kein Lösungsverrat.
         // Ab dem zweiten Fehlversuch: die erwartete Teilzeichenkette zeigen, damit niemand
         // dauerhaft feststeckt.

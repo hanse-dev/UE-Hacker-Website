@@ -3045,3 +3045,24 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   oft eine spätere Stelle auf, die denselben Baustein nutzt – Bericht danach erneut laufen lassen.
 - Bewusst nur ein Bericht, kein Test-Gate: Lange Sätze und Fachwörter brauchen ein menschliches
   Urteil. `tests/verstaendlichkeit.spec.js` prüft die Logik an einem Mini-Kurs (`--content`).
+
+### 3.124 — Stolperstellen-Zähler (Branch `verstaendlichkeit`)
+
+- Teil (2) aus 3.123: Wo bleiben Teilnehmende wirklich hängen? Tabelle `task_stats` (nur Zähler:
+  `opens`, `fails`, `solved`, `skipped`, `solutions`; Zeile mit `task = -1` = Lektion geöffnet).
+  Kein Account, keine IP, kein Zeitstempel je Ereignis. `POST /api/stats/task` ist öffentlich,
+  prüft Format (IDs, Ereignis, `open` nur mit `task -1`), bremst je IP im Speicher (3000/10 Min.,
+  großzügig wegen geteilter Schul-IP) und nimmt höchstens 20 000 Zeilen an.
+- `useTaskStats.js`: jedes Ereignis einmal pro Browser (`localStorage` `ue-hacker-task-stats-sent`,
+  kein Fortschritt, nicht im Sync), Fehlversuche höchstens 10-mal. Schweigt im Dev-Modus
+  `dev:skip-checks` und bei `navigator.webdriver` (Playwright), weil `test:checks` `/api` an die
+  laufende Dev-API weiterleitet. Gemeldet aus `LessonView.vue` (Python) und `JsLessonView.vue`
+  (JS/Web): Lektion geöffnet, Prüfen ohne Erfolg (auch Laufzeitfehler), gelöst, übersprungen,
+  Musterlösung aufgeklappt. Wochen-Checks (`CodeChallenge.vue`) bewusst nicht – das ist eine
+  Prüfung, keine Übung.
+- Admin-Reiter „Stolperstellen“ (`AdminStolperstellen.vue`): sortiert nach
+  (Fehlversuche + 2 × Lösung angesehen + 3 × übersprungen) / Kinder, „Kinder“ = gelöst + übersprungen.
+  Unter 3 Kindern blass, Filter nach Kurs/Lektion, „Zurücksetzen“ je Aufgabe nach einer Überarbeitung.
+  Aufgabentext kommt per `import.meta.glob` aus `lessons.json` (der Server kennt keinen Content).
+- Tests: `tests/stolperstellen.spec.js` in `test:auth` (API, JS- und Python-Lektion, Testbrowser
+  ohne Freischaltung sendet nichts, Admin-Reiter).

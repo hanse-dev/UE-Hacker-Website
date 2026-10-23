@@ -49,6 +49,7 @@ Alles unten ist nach `main` gemergt. Details: `grep -n "^### 3.NN" docs/archiv/H
 | 3.114–3.117 | Web-Track „Meine erste Website“ | `sandboxMode: "web"`, `validation.type: 'web'`; Stufenwahl `WebsiteCourse.vue`: Einfach (Lektionsliste, `finalCheck`, „Meine Seite“ wächst mit) und Intensiv (`WeeklyCourseTour.vue`, `content/web-grundkurs-*`) |
 | 3.122 | Dark Mode | `useTheme.js` (System/Hell/Dunkel in „Optionen“, nur `localStorage` `ue-hacker-theme`), Inline-Skript in `index.html`, Farb-Tokens in `src/style.css`, Editor-Farben `src/utils/editorTheme.js` |
 | 3.123 | Verständlichkeit prüfen | `npm run check:verstaendlichkeit [-- --wochen 1-3 --out bericht.md]` (`scripts/check_verstaendlichkeit.py`): Lösung braucht nie Gezeigtes, zu viel Neues, Begriff zu früh, Fachwörter, lange Sätze/LIX; nur Bericht, kein Test-Gate |
+| 3.124 | Stolperstellen-Zähler | anonyme Summen je Aufgabe (`task_stats`, `routes/taskStats.js`), gemeldet von `LessonView`/`JsLessonView` über `useTaskStats.js`, Admin-Reiter „Stolperstellen“ (`AdminStolperstellen.vue`); Tests nur in `test:auth` |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -97,6 +98,7 @@ Punkte-System, Zertifikate), wird hier nicht wiederholt.
 - Änderungen an `kurse.json`, Profil oder Zertifikaten auch mit `npm run test:auth` prüfen (Profil-Tests laufen in keinem Hook). `test:auth` braucht Port 5174 mit Proxy (nackter Vite → 502).
 - Deep-Links `?week=&tab=` bleiben stabil (`WeekTour.vue` übersetzt intern); `?week=` ohne `?stufe=` gehört bei „Meine erste Website“ zu Einfach.
 - Generierte Dateien stellt `scripts/ensure-test-prereqs.mjs` vor jedem Lauf sicher.
+- `test:checks` leitet `/api` an die laufende Dev-API weiter: Was im Browser etwas an die API meldet (Stolperstellen), muss bei `navigator.webdriver` schweigen und im Test gezielt eingeschaltet werden (`window.__ueTaskStatsInTests`).
 - Neue npm-Abhängigkeit im Worktree: `npm install` ersetzt den `node_modules`-Symlink; nach dem Merge im Haupt-Checkout `npm install`.
 - Profil-Abzeichen rechnen live; nichts beim Laden einfrieren, was der Sync später ändert. Sync darf nach Server-Apply keinen vollen Notebook-Re-Fetch auslösen (3.3).
 

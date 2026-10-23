@@ -10,6 +10,7 @@ import adminUsersRouter from './routes/adminUsers.js';
 import adminTermineRouter from './routes/adminTermine.js';
 import authRouter from './routes/auth.js';
 import termineRouter from './routes/termine.js';
+import { taskStatsAdminRouter, taskStatsPublicRouter } from './routes/taskStats.js';
 import './db.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -55,8 +56,10 @@ const devAdminLogin = registerDevAdminLogin(app);
 
 app.use('/api/admin', adminUsersRouter);
 app.use('/api/admin', adminTermineRouter);
+app.use('/api/admin', taskStatsAdminRouter);
 app.use('/api', authRouter);
 app.use('/api', termineRouter);
+app.use('/api', taskStatsPublicRouter);
 
 const serveStatic = fs.existsSync(staticDir);
 if (serveStatic) {

@@ -11,8 +11,9 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
 
 - [ ] **Verständlichkeit (Branch `verstaendlichkeit`, HANDOFF 3.123).** Bericht per
       `npm run check:verstaendlichkeit`. Die Funde „nie gezeigt“ sind behoben (0). Offen:
-      lange Sätze/LIX/Fachwörter aus dem Bericht durchgehen (braucht Urteil), (b) anonymer Stolperstellen-Zähler je Aufgabe (Fehlversuche, Überspringen, Lösung angesehen),
-      (c) KI als Test-Kind (Modell kennt nur die bisherigen Lektionen und meldet Unklares).
+      lange Sätze/LIX/Fachwörter aus dem Bericht durchgehen (braucht Urteil). Stolperstellen-Zähler
+      ist gebaut (HANDOFF 3.124): nach dem Deploy und ein paar Kurstagen den Admin-Reiter ansehen und
+      die obersten Aufgaben überarbeiten, danach dort „Zurücksetzen“. Offen: (c) KI als Test-Kind (Modell kennt nur die bisherigen Lektionen und meldet Unklares).
 
 - [ ] Einmaliger Ausfall im vollen Lauf unter Last (15.10., parallel liefen Tests anderer Sessions,
       Suite 4,5 statt ~2,3 Min.): `tests/ki-labor.spec.js` Woche 3 (Python-Lauf > 10 s, Timeout pro

@@ -47,6 +47,12 @@
           :class="{ active: activeTab === 'kurse' }"
           @click="activeTab = 'kurse'"
         >{{ t('admin.tab.kurse') }}</button>
+        <button
+          type="button"
+          class="admin-tab"
+          :class="{ active: activeTab === 'stats' }"
+          @click="activeTab = 'stats'"
+        >{{ t('admin.tab.stats') }}</button>
       </div>
 
       <section v-if="activeTab === 'users'">
@@ -138,6 +144,8 @@
         </table>
         <p v-else-if="!terminBusy" class="muted">{{ t('admin.termine.empty') }}</p>
       </section>
+
+      <AdminStolperstellen v-else-if="activeTab === 'stats'" />
 
       <!-- Nur Anzeige aus kurse.json, keine API: welche Kurse noch nicht verlinkt oder Beta sind. -->
       <section v-else class="admin-kurse">
@@ -273,6 +281,7 @@ import { ref, onMounted } from 'vue';
 import { useLanguage } from '../composables/useLanguage.js';
 import { assetUrl } from '../utils/assetUrl';
 import BetaBadge from '../components/BetaBadge.vue';
+import AdminStolperstellen from '../components/AdminStolperstellen.vue';
 import { DEV_SKIP_CHECKS } from '../composables/devSkipChecks.js';
 import {
   adminToken as token,
@@ -298,7 +307,7 @@ const lessonJsonModules = import.meta.glob('../../content/*/lessons.json');
 
 export default {
   name: 'AdminView',
-  components: { BetaBadge },
+  components: { BetaBadge, AdminStolperstellen },
   setup() {
     const { t, lang } = useLanguage();
     const password = ref('');

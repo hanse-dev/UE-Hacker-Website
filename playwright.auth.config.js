@@ -9,7 +9,7 @@ import { ports } from './scripts/worktree-ports.mjs';
  */
 export default defineConfig({
   testDir: './tests',
-  testMatch: /(?:progress-merge|api-auth|auth-ui)\.spec\.js/,
+  testMatch: /(?:progress-merge|api-auth|auth-ui|stolperstellen)\.spec\.js/,
   // Generierte Notebook-Dateien/ZIPs (gitignored) vor jedem Lauf sicherstellen.
   globalSetup: './scripts/ensure-test-prereqs.mjs',
   timeout: 30000,

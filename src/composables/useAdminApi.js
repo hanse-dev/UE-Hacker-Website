@@ -56,6 +56,16 @@ export function adminDevLogin() {
   return request('/api/admin/dev-login', { method: 'POST', token: '' });
 }
 
+// Stolperstellen (api/src/routes/taskStats.js)
+export function listTaskStats() {
+  return request('/api/admin/stats/tasks');
+}
+
+export function resetTaskStats(course, lesson, task) {
+  const query = new URLSearchParams({ course, lesson, task: String(task) });
+  return request(`/api/admin/stats/tasks?${query}`, { method: 'DELETE' });
+}
+
 export function listUsers() {
   return request('/api/admin/users');
 }

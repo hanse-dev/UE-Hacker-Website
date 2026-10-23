@@ -104,6 +104,11 @@ const RULES = [
   ['src/components/PartnerBox.vue', ['tests/microbit-auto.spec.js']],
   ['src/composables/usePartner.js', ['tests/microbit-auto.spec.js']],
   ['api/src/progress.js', ['tests/site.spec.js']],
+  // Stolperstellen-Zähler: die eigentlichen Tests laufen nur in `npm run test:auth` (stolperstellen.spec.js).
+  ['src/composables/useTaskStats.js', ['tests/js-grundkurs.spec.js', 'tests/python-woche1-lektionen.spec.js']],
+  ['src/components/AdminStolperstellen.vue', ['tests/site.spec.js']],
+  ['api/src/routes/taskStats.js', ['tests/site.spec.js']],
+  ['tests/stolperstellen.spec.js', ['tests/site.spec.js']],
   ['src/components/InteractiveCourse.vue', ['tests/site.spec.js']],
   ['src/assets/styles/course-layout.css', ['tests/projekte.spec.js', 'tests/site.spec.js', 'tests/js-spielewerkstatt.spec.js']],
   ['src/components/ProjectCompletionBox.vue', ['tests/projekte.spec.js']],

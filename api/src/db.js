@@ -45,6 +45,20 @@ db.exec(`
     created_at TEXT NOT NULL,
     updated_at TEXT NOT NULL
   );
+
+  -- Stolperstellen: anonyme Zähler je Aufgabe (routes/taskStats.js); task -1 = Lektion geöffnet
+  CREATE TABLE IF NOT EXISTS task_stats (
+    course TEXT NOT NULL,
+    lesson TEXT NOT NULL,
+    task INTEGER NOT NULL,
+    opens INTEGER NOT NULL DEFAULT 0,
+    fails INTEGER NOT NULL DEFAULT 0,
+    solved INTEGER NOT NULL DEFAULT 0,
+    skipped INTEGER NOT NULL DEFAULT 0,
+    solutions INTEGER NOT NULL DEFAULT 0,
+    updated_at TEXT NOT NULL,
+    PRIMARY KEY (course, lesson, task)
+  );
 `);
 
 // Migrationen für Datenbanken, die vor der jeweiligen Spalte angelegt wurden
