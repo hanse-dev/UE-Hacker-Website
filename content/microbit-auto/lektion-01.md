@@ -20,9 +20,9 @@ Ihr könnt jederzeit umschalten und euch den anderen Weg ansehen.
 :::bloecke
 
 1. Öffnet [makecode.microbit.org](https://makecode.microbit.org) und klickt auf **Neues Projekt**.
-2. Klickt in der Blockliste auf **Erweiterungen**.
-3. Tragt diese Adresse in das Suchfeld ein und drückt Enter: `https://github.com/keyestudio2019/MiniCar`
-4. Klickt die Erweiterung an. In der Blockliste gibt es jetzt den Eintrag **MiniCar**.
+2. Klickt in der Blockliste ganz unten auf **Fortgeschritten**. Darunter erscheint ganz unten **Erweiterungen**: Klickt darauf.
+3. Markiert diese Adresse hier auf der Seite, kopiert sie (`Strg` + `C`, am Mac `⌘` + `C`) und fügt sie in das Suchfeld ein (`Strg` + `V`, am Mac `⌘` + `V`). Drückt dann Enter: `https://github.com/keyestudio2019/MiniCar`
+4. Es erscheint eine Karte mit dem Namen der Erweiterung. Klickt die Karte an. In der Blockliste gibt es jetzt den Eintrag **MiniCar**.
 
 Die Blöcke von MiniCar sind englisch beschriftet. Die Anleitung zeigt sie genau so, wie sie im Editor heißen.
 
@@ -64,18 +64,19 @@ display.show(Image.HEART)
 
 ## Auf den micro:bit übertragen
 
-1. Steckt den micro:bit in das Auto. Die Seite mit den Lampen zeigt nach vorn.
-2. Verbindet den micro:bit per USB-Kabel mit dem Computer.
+1. Stellt den Schalter **POWER** am Auto auf **OFF**.
+2. Steckt den micro:bit in das Auto. Die Seite mit den Lampen zeigt nach vorn. Vorn ist die Seite mit den beiden „Augen“ und den Scheinwerfern.
+3. Verbindet den micro:bit per USB-Kabel mit dem Computer.
 
 :::bloecke
 
-3. Klickt auf die drei Punkte neben **Herunterladen** und wählt **Gerät verbinden**. Danach reicht ein Klick auf **Herunterladen**.
+4. Klickt auf die drei Punkte neben **Herunterladen** und wählt **Gerät verbinden**. Danach reicht ein Klick auf **Herunterladen**.
 
 :::
 
 :::python
 
-3. Klickt auf **An micro:bit senden** und folgt den Schritten zum Verbinden.
+4. Klickt auf **An micro:bit senden** und folgt den Schritten zum Verbinden.
 
 :::
 

@@ -37,6 +37,8 @@ Zum Schluss das Kabel vom zweiten **GND**-Stift in Reihe 8 rechts, direkt an der
 
 Jede Phase hat dieselbe Form: Alle drei LEDs bekommen ihren Wert, dann wartet der micro:bit. Schreibt in jeder Phase **alle drei** LEDs, auch die, die aus sein sollen. Dann kann keine LED aus der vorigen Phase hängen bleiben.
 
+Fangt dafür ein **neues Projekt** an. Die Fußgängerampel bleibt gesteckt, bleibt in dieser Stufe aber dunkel – das ist richtig so.
+
 Die ersten beiden Phasen sind fertig. Ergänzt Phase 3 und 4.
 
 :::bloecke
@@ -57,7 +59,7 @@ Die ersten beiden Phasen sind fertig. Ergänzt Phase 3 und 4.
   [grundlagen] pausiere (ms) 1000
 ```
 
-Mit einem Rechtsklick auf einen Block und **Duplizieren** spart ihr euch viel Arbeit.
+Mit einem Rechtsklick auf den obersten Block einer Phase und **Duplizieren** spart ihr euch viel Arbeit: Alle Blöcke darunter kommen mit. Hängt die Kopie unten an und ändert die Zahlen.
 
 :::
 
@@ -222,7 +224,7 @@ Euer Programm wiederholt sich ständig: drei Pins schreiben, warten. Baut eine e
 :::bloecke
 
 - Unter **Fortgeschritten** und dann **Funktionen** klickt ihr auf **Erstelle eine Funktion**.
-- Gebt ihr den Namen `autoampel` und fügt drei Parameter vom Typ **Zahl** hinzu: `rot`, `gelb` und `gruen`.
+- Gebt ihr den Namen `autoampel` und fügt drei Parameter vom Typ **Zahl** hinzu: `rot`, `gelb` und `gruen`. Ein **Parameter** ist ein Platzhalter: Beim Benutzen der Funktion (dem **Aufruf**) gebt ihr für jeden eine Zahl mit, 1 für an oder 0 für aus.
 - In der Funktion schreibt ihr jeden Pin auf seinen Parameter, zum Beispiel **schreibe digitalen Wert von Pin auto_rot auf rot**. Die Parameter zieht ihr aus dem Funktionsblock heraus in das Zahlenfeld.
 - Aufrufen könnt ihr sie dann so: **Aufruf autoampel 1 1 0** für Rot und Gelb.
 

@@ -81,21 +81,23 @@ Danach tauscht ihr: Das andere Team baut seine Anlage um, und ihr seid die Feuer
 
 Hinweis: Bei einem Notruf ist keine Zeit für Gelb. Alle grünen LEDs gehen sofort aus, alle roten an.
 
+Beide micro:bits brauchen in **beim Start** dieselbe Funkgruppe, auch die Ampelanlage. Das Feuerwehrauto bekommt ein kleines eigenes Programm: Funkgruppe setzen und bei Knopf B ein Wort schicken, zum Beispiel `notruf`. Auf genau dieses Wort wartet die Ampelanlage.
+
 :::bloecke
 
-Euer Programm hat jetzt zwei Teile, die gleichzeitig laufen können: **wenn Knopf A geklickt** und **wenn Text empfangen**. Kommt der Notruf, während die Fußgänger gerade Grün haben, schaltet der Knopf-Ablauf danach weiter. Fürs Erste reicht es, wenn der Notruf im Grundzustand klappt.
+Euer Programm hat jetzt zwei Teile, die gleichzeitig laufen können: **wenn Knopf A geklickt** und **wenn Text empfangen**. Testet den Notruf, wenn die Ampel im Grundzustand ist (die Autos haben Grün). Kommt er mitten im Knopf-Ablauf, läuft der Ablauf danach einfach weiter. Das ist für diesen Auftrag in Ordnung.
 
 :::
 
 :::python
 
-Euer Programm fragt in der Schleife nacheinander Knopf A und den Funk ab. Kommt der Notruf, während der Ablauf für die Fußgänger läuft, wartet er, bis der Ablauf fertig ist. Fürs Erste reicht das.
+Euer Programm fragt in der Schleife nacheinander Knopf A und den Funk ab. Testet den Notruf, wenn die Ampel im Grundzustand ist (die Autos haben Grün). Kommt er mitten im Ablauf für die Fußgänger, wird er erst danach bearbeitet. Das ist für diesen Auftrag in Ordnung.
 
 :::
 
 :::javascript
 
-Euer Programm hat jetzt zwei Teile, die gleichzeitig laufen können: `input.onButtonPressed` und `radio.onReceivedString`. Kommt der Notruf, während die Fußgänger gerade Grün haben, schaltet der Knopf-Ablauf danach weiter. Fürs Erste reicht es, wenn der Notruf im Grundzustand klappt.
+Euer Programm hat jetzt zwei Teile, die gleichzeitig laufen können: `input.onButtonPressed` und `radio.onReceivedString`. Testet den Notruf, wenn die Ampel im Grundzustand ist (die Autos haben Grün). Kommt er mitten im Knopf-Ablauf, läuft der Ablauf danach einfach weiter. Das ist für diesen Auftrag in Ordnung.
 
 :::
 
@@ -111,7 +113,9 @@ Die Ampeln reichen sich ein Zeichen weiter, wie beim Staffellauf:
 4. Nach 5 Sekunden schaltet Ampel 2 über Gelb auf Rot, wartet die Räumzeit und funkt `du` zurück.
 5. Und so weiter, ohne Ende.
 
-Hinweis: Beide Teams brauchen fast dasselbe Programm. Der einzige Unterschied ist der Anfang: Eine Ampel beginnt mit Grün und fängt an, die andere beginnt mit Rot und wartet. Startet die erste Ampel mit Knopf A, wenn beide bereit sind.
+Hinweis: Beide Teams brauchen fast dasselbe Programm. Beim Start zeigen beide Ampeln Rot. Seid ihr beide bereit, drückt Ampel 1 Knopf A: Sie schaltet über Rot-Gelb auf Grün und fängt mit Schritt 1 an. Ampel 2 wartet auf `du`. Die Fußgänger-LEDs bleiben bei diesem Auftrag aus.
+
+Eine **dauerhaft**-Schleife braucht ihr nicht. Baut den Ablauf einmal als eigene Funktion, zum Beispiel `gruenphase` (wie im Bonus von Stufe 2): Rot-Gelb, Grün, 5 Sekunden warten, Gelb, Rot, Räumzeit, `du` senden. Beide Teams rufen sie in **wenn Text empfangen** auf, wenn `du` ankommt. Weil jede Ampel am Ende `du` sendet, geht es von selbst ohne Ende weiter. Der einzige Unterschied: Ampel 1 ruft die Funktion zusätzlich in **wenn Knopf A geklickt** auf und startet so die erste Runde.
 
 ## Auftrag 3: Die Ampel für das Roboterauto
 

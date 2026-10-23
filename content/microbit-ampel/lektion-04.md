@@ -36,7 +36,7 @@ Bevor ihr programmiert, schreibt ihr den Ablauf in Worten auf, auf Papier oder a
 
 ## Der Grundzustand
 
-Der Grundzustand wird beim Start hergestellt. Jetzt braucht ihr alle fünf Namen aus Stufe 1 und 2:
+Fangt wieder ein **neues Projekt** an und legt alle fünf Variablen neu an. Der Grundzustand wird beim Start hergestellt. Jetzt braucht ihr alle fünf Namen aus Stufe 1 und 2:
 
 | Variable | Pin | LED |
 |---|---|---|

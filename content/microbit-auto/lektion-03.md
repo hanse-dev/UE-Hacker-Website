@@ -1,6 +1,6 @@
 # Stufe 2: Scheinwerfer
 
-Vorn am Auto sitzen zwei Scheinwerfer, die jede Farbe können. Ab jetzt braucht das Auto Strom aus den Batterien: Nach dem Übertragen stellt ihr den Schalter **POWER** auf **ON**.
+Vorn am Auto sitzen zwei Scheinwerfer, die jede Farbe können. Ab jetzt braucht das Auto Strom aus den Batterien: Nach dem Übertragen stellt ihr den Schalter **POWER** auf **ON**. Was in **beim Start** steht, ist dann aber schon vorbei. Drückt deshalb nach dem Einschalten den kleinen Knopf auf der Rückseite des micro:bit: Das Programm startet neu, und jetzt leuchten die Scheinwerfer.
 
 ## Scheinwerfer einschalten
 
@@ -42,7 +42,7 @@ Die Zahl bestimmt die Helligkeit, und zwar andersherum als erwartet: **0 ist gan
 
 ## Blinken
 
-Soll etwas immer wieder passieren, kommt es in eine Endlosschleife.
+Soll etwas immer wieder passieren, kommt es in eine Endlosschleife. Nehmt die Blöcke aus „Scheinwerfer einschalten“ vorher weg, sonst laufen beide Programme durcheinander. Bei Blöcken zieht ihr **beim Start** dafür zurück in die Blockliste.
 
 :::bloecke
 
@@ -75,6 +75,10 @@ while True:
 Rot und Grün zusammen ergeben Gelb.
 
 :::
+
+## Der Blinker
+
+Beim Abbiegen blinkt erst nur der linke Scheinwerfer dreimal, dann nur der rechte dreimal. Baut das wie das Blinken oben, nur ohne Endlosschleife: Schreibt das An-Pause-Aus-Pause für den linken Scheinwerfer dreimal untereinander, dann dreimal für den rechten.
 
 ## Bonus: Das Polizeilicht
 

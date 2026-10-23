@@ -24,6 +24,8 @@ Euer Programm aus Stufe 1 bleibt. Neu dazu kommt:
   [grundlagen] pausiere (ms) 400
 ```
 
+Legt die Variablen `stern_x` und `stern_y` unter **Variablen** an und steckt die zwei neuen **setze**-Blöcke in euren alten **beim Start**-Block. Es gibt nur einen beim-Start-Block. **dauerhaft** kommt neu dazu.
+
 Fällt der Stern in den Korb, löscht **lösche** auch den Korb. Darum wird der Korb danach neu gezeichnet.
 
 :::
@@ -84,6 +86,8 @@ Probiert es aus. Der Stern fällt, aber nur einmal. Unten bei y = 5 gibt es kein
 
 Ist `stern_y` größer als 4, fängt der Stern wieder oben an: `stern_y` wird 0. Baut das selbst ein. Wo im Programm muss es stehen: vor oder nach dem Zeichnen?
 
+Tipp: Nehmt **wenn … dann** wie in Stufe 1. Es muss vor dem Zeichnen stehen, sonst versucht der micro:bit, bei y = 5 zu zeichnen.
+
 Danach soll jeder neue Stern in einer **zufälligen** Spalte starten.
 
 :::bloecke
@@ -93,6 +97,8 @@ Den Zufall findet ihr unter **Mathematik**:
 ```bloecke
 [mathematik] wähle eine zufällige Zahl von 0 bis 4
 ```
+
+Holt noch einen Block **setze stern_x auf** und steckt ihn in den wenn-Block, direkt unter **setze stern_y auf 0**. Den Zufallsblock zieht ihr dorthin, wo die Zahl steht.
 
 :::
 
@@ -192,7 +198,9 @@ Der Stern zieht einen schwachen Schweif hinter sich her: Über dem Stern leuchte
 
 :::bloecke
 
-Unter **LED** gibt es **Zeichne x y Helligkeit**. 255 ist ganz hell, 30 nur ein Glimmen. Die ganze Anzeige löscht **Bildschirminhalt löschen** unter **Grundlagen** (unter **… mehr**).
+Unter **LED** gibt es **Zeichne x y Helligkeit**. 255 ist ganz hell, 30 nur ein Glimmen. Die ganze Anzeige löscht **Bildschirminhalt löschen** unter **Grundlagen** (unter **… mehr**). Damit braucht ihr den Block **lösche** im dauerhaft-Block nicht mehr.
+
+Minus rechnet ihr mit dem Block **0 + 0** unter **Mathematik**: Klickt auf **+** und wählt **-**, zieht `stern_y` nach links und tippt rechts 1.
 
 :::
 
@@ -209,3 +217,61 @@ Die letzte Zahl von `display.set_pixel` ist die Helligkeit: 9 ist ganz hell, 2 n
 :::
 
 </details>
+
+<details>
+<summary>Lösung anzeigen</summary>
+
+:::bloecke
+
+```bloecke
+[grundlagen] dauerhaft
+  [variablen] ändere stern_y um 1
+  [logik] wenn stern_y > 4 dann
+    [variablen] setze stern_y auf 0
+    [variablen] setze stern_x auf wähle eine zufällige Zahl von 0 bis 4
+  [grundlagen] Bildschirminhalt löschen
+  [logik] wenn stern_y > 0 dann
+    [led] Zeichne x stern_x y stern_y - 1 Helligkeit 30
+  [led] Zeichne x stern_x y stern_y
+  [led] Zeichne x korb y 4
+  [grundlagen] pausiere (ms) 400
+```
+
+:::
+
+:::python
+
+```python
+    display.clear()
+    if stern_y > 0:
+        display.set_pixel(stern_x, stern_y - 1, 2)
+    display.set_pixel(stern_x, stern_y, 9)
+    display.set_pixel(korb, 4, 9)
+    sleep(50)
+```
+
+Das ist das Ende eurer Schleife: Der Schweif kommt zwischen `display.clear()` und den Stern.
+
+:::
+
+:::javascript
+
+```javascript
+basic.forever(function () {
+    stern_y = stern_y + 1
+    if (stern_y > 4) {
+        stern_y = 0
+        stern_x = randint(0, 4)
+    }
+    basic.clearScreen()
+    if (stern_y > 0) {
+        led.plotBrightness(stern_x, stern_y - 1, 30)
+    }
+    led.plot(stern_x, stern_y)
+    led.plot(korb, 4)
+    basic.pause(400)
+})
+```
+
+:::
+

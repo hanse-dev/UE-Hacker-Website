@@ -34,11 +34,11 @@ while True:
 
 :::
 
-Die Zahl ist der Abstand in Zentimetern. Haltet die Hand vor das Auto und bewegt sie. Eine **0** bedeutet: Es kam kein Echo zurück.
+Die Zahl ist der Abstand in Zentimetern. Haltet die Hand vor das Auto und bewegt sie. Eine **0** bedeutet: Es kam kein Echo zurück. Zeigt der micro:bit immer nur 0, stellt den Schalter auf **ON** und probiert es noch einmal.
 
 ## Vor der Wand stoppen
 
-Jetzt trifft das Auto zum ersten Mal selbst eine Entscheidung: Ist der Weg frei, fährt es. Ist etwas im Weg, bleibt es stehen.
+Jetzt trifft das Auto zum ersten Mal selbst eine Entscheidung: Ist der Weg frei, fährt es. Ist etwas im Weg, bleibt es stehen. Das neue Programm ersetzt das Anzeigen: Nehmt den ersten **dauerhaft**-Block vorher weg.
 
 :::bloecke
 
@@ -59,7 +59,7 @@ Der rote Block gehört zu einer **Variable**. Eine Variable ist wie eine beschri
 2. Jetzt gibt es dort neue rote Blöcke. Zieht **setze abstand auf 0** in den Block **dauerhaft**.
 3. Zieht den Block **Ultrasonic** aus **MiniCar** auf die `0`. Damit legt das Programm in jeder Runde den frisch gemessenen Abstand in die Schachtel.
 
-Der Block **wenn … dann … ansonsten** liegt unter **Logik**, genauso wie die Vergleiche `<` und `>` und das **und**. Steckt zuerst das **und** in das Feld hinter **wenn** und dann in jede Seite einen Vergleich. Den kleinen runden Block `abstand` holt ihr aus **Variablen** und zieht ihn in beide Vergleiche.
+Der Block **wenn … dann … ansonsten** liegt unter **Logik**, genauso wie die Vergleiche `<` und `>` und das **und**. Steckt zuerst das **und** in das Feld hinter **wenn** und dann in jede Seite einen Vergleich. Auf dem Vergleich-Block steht zuerst ein **=**: Klickt auf das Zeichen und wählt **>** bzw. **<**. Den kleinen runden Block `abstand` holt ihr aus **Variablen** und zieht ihn in beide Vergleiche.
 
 :::
 

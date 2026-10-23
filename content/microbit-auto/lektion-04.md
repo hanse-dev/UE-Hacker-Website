@@ -55,7 +55,7 @@ Jetzt soll das Auto vorwärts fahren, kurz anhalten und rückwärts wieder zum S
 
 :::bloecke
 
-Für die Rückfahrt stellt ihr bei beiden Motoren `Direction` von `Forward` auf `Backward`. Tempo und Pause bleiben gleich.
+Die Reihenfolge: vorwärts fahren, warten, beide Motoren auf `speed = 0`, kurz warten (zum Beispiel 500 ms), rückwärts fahren, warten, wieder beide auf `speed = 0`. Für die Rückfahrt stellt ihr bei beiden Motoren `Direction` von `Forward` auf `Backward`. Tempo und Wartezeit der Rückfahrt sind dieselben wie bei der Hinfahrt.
 
 :::
 
@@ -84,7 +84,7 @@ Euer Auto soll nach genau 50 cm anhalten. So geht ihr vor:
 ## Wenn etwas nicht klappt
 
 - **Nichts bewegt sich:** Steht der Schalter auf ON? Sind die Batterien voll?
-- **Das Auto fährt eine Kurve statt geradeaus:** Die Motoren sind nie ganz gleich stark. Gebt dem schwächeren Rad ein paar Punkte mehr Tempo.
+- **Das Auto fährt eine Kurve statt geradeaus:** Die Motoren sind nie ganz gleich stark. Gebt dem schwächeren Rad ein paar Punkte mehr Tempo. Das schwächere ist das Rad auf der Seite, zu der das Auto abbiegt.
 - **Es brummt nur:** Das Tempo ist zu klein. Unter etwa 40 kommt das Auto kaum los.
 
 ## Bonus: Sanft anfahren

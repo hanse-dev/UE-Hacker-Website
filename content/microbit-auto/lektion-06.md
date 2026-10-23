@@ -8,7 +8,7 @@ Für „geradeaus“ braucht ihr jedes Mal mehrere Zeilen. Packt sie in einen ei
 
 :::bloecke
 
-Öffnet in der Blockliste **Fortgeschritten** und dann **Funktionen**. Klickt auf **Erstelle eine Funktion** und nennt sie `vor`. Baut genauso `links` und `stopp`.
+Öffnet in der Blockliste **Fortgeschritten** und dann **Funktionen**. Klickt auf **Erstelle eine Funktion** und nennt sie `vor`. Auf der Fläche erscheint der Block **Funktion vor**: Da hinein kommen die Motor-Blöcke. Baut genauso `links` und `stopp`. Unter **Funktionen** liegen jetzt Blöcke wie **Aufruf vor**. Die zieht ihr in euer Programm, nicht den Funktionsblock selbst.
 
 ```bloecke
 [funktionen] Funktion vor
@@ -87,6 +87,10 @@ while True:
 
 Setzt für die Drehung eure Zahl aus Stufe 4 ein. Das Quadrat ist gelungen, wenn das Auto ungefähr dort anhält, wo es gestartet ist.
 
+## Ein vierter Befehl
+
+Baut selbst einen vierten Befehl, zum Beispiel `rechts` (wie `links`, nur A vorwärts und B rückwärts) oder `zurueck` (beide Motoren `Backward`). Denkt euch damit eine eigene Figur aus, zum Beispiel einen Zickzack oder ein Rechteck mit Rückwärtsfahrt.
+
 ## Bonus: Dreieck oder Acht
 
 Sucht euch eine Figur aus:
@@ -100,7 +104,7 @@ Sucht euch eine Figur aus:
 **Dreieck**
 
 - Wie oft muss die Wiederholung laufen?
-- An jeder Ecke dreht das Auto weiter als beim Quadrat. Nach drei Ecken hat es sich genau einmal ganz herumgedreht, beim Quadrat erst nach vier. Die Wartezeit für die Drehung muss also länger sein als eure Zahl aus Stufe 4. Fangt mit etwa einem Drittel mehr an.
+- An jeder Ecke dreht das Auto weiter als beim Quadrat. Nach drei Ecken hat es sich genau einmal ganz herumgedreht, beim Quadrat erst nach vier. Die Wartezeit für die Drehung muss also länger sein als eure Zahl aus Stufe 4. Rechnet so: Teilt eure Zahl durch 3 und zählt das Ergebnis dazu. Aus 400 wird so etwa 530.
 
 **Acht**
 

@@ -9,7 +9,7 @@ Jetzt wird es ein Spiel. Kommt der Stern unten an (`stern_y` ist 4), gibt es zwe
 
 ## Gefangen?
 
-Legt eine neue Variable `punkte` an, die am Anfang 0 ist. Dann kommt diese Prüfung in die Schleife, direkt nach dem Zeichnen:
+Legt eine neue Variable `punkte` an und setzt sie in **beim Start** auf 0. Dann kommt diese Prüfung in die Schleife (bei Blöcken: in **dauerhaft**), direkt unter **Zeichne x `korb` y 4** und über **pausiere**:
 
 :::bloecke
 
@@ -53,7 +53,9 @@ Probiert es aus. Ihr seht die Punkte noch nicht. Das kommt jetzt.
 
 ## Daneben!
 
-Fällt der Stern daneben, zeigt der micro:bit die Punkte. Danach fängt `punkte` wieder bei 0 an. Baut das selbst ein: Es ist das **sonst** zu „gefangen“.
+Fällt der Stern daneben, zeigt der micro:bit die Punkte. Danach fängt `punkte` wieder bei 0 an, und die Zahl verschwindet wieder von der Anzeige. Baut das selbst ein: Es ist das **ansonsten** zu „gefangen“. Bei Blöcken klickt ihr unten am inneren wenn-Block auf das **Plus**, dann kommt ein **ansonsten** dazu. Die Anzeige leert **Bildschirminhalt löschen** unter **Grundlagen** (unter **… mehr**).
+
+In der Lösung startet `stern_x` schon in **beim Start** zufällig. So fällt auch der erste Stern nicht immer in die Mitte.
 
 <details>
 <summary>Lösung anzeigen</summary>
@@ -191,6 +193,60 @@ Ein Stern daneben ist noch nicht das Ende. Ihr habt drei Leben. Erst wenn alle d
 
 - Ihr braucht eine neue Variable `leben`, die am Anfang 3 ist.
 - Daneben heißt jetzt: `leben` wird um 1 kleiner. Erst wenn `leben` 0 ist, kommen die Punkte.
-- Beim Neustart bekommen `punkte` und `leben` wieder ihre Anfangswerte.
+- Der Block **wenn leben = 0** kommt in den ansonsten-Teil, direkt unter **ändere leben um -1**. Erst darin zeigt der micro:bit die Punkte.
+- Danach geht das Spiel von selbst von vorn weiter: `punkte` und `leben` bekommen wieder ihre Anfangswerte, ihr müsst nichts drücken.
 
 </details>
+
+<details>
+<summary>Lösung anzeigen</summary>
+
+In **beim Start** kommt **setze leben auf 3** dazu. Das ansonsten sieht dann so aus:
+
+:::bloecke
+
+```bloecke
+[logik] ansonsten
+  [variablen] ändere leben um -1
+  [logik] wenn leben = 0 dann
+    [grundlagen] zeige Zahl punkte
+    [variablen] setze punkte auf 0
+    [variablen] setze leben auf 3
+    [grundlagen] Bildschirminhalt löschen
+```
+
+:::
+
+:::python
+
+```python
+            else:
+                leben = leben - 1
+                if leben == 0:
+                    display.scroll(punkte)
+                    punkte = 0
+                    leben = 3
+```
+
+Oben bei den anderen Variablen kommt `leben = 3` dazu.
+
+:::
+
+:::javascript
+
+```javascript
+        } else {
+            leben = leben - 1
+            if (leben == 0) {
+                basic.showNumber(punkte)
+                punkte = 0
+                leben = 3
+                basic.clearScreen()
+            }
+        }
+```
+
+Oben bei den anderen Variablen kommt `let leben = 3` dazu.
+
+:::
+

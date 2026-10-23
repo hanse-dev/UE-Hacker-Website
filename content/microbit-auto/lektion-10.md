@@ -34,6 +34,8 @@ Kommt ihr nicht weiter, hilft der fertige Plan. Versucht es aber zuerst allein.
 
 ## Vom Plan zum Programm
 
+> Auch dieses Programm fährt ohne Startknopf los, sobald der Schalter auf ON steht. Stellt das Auto zuerst auf die Linie, dann den Schalter auf ON.
+
 Jede Zeile eures Plans wird im Programm zu einem Fall. An welcher Zahl ihr einen Fall erkennt, steht in eurer Tabelle aus Stufe 8. Wie das Auto fährt, dreht und anhält, wisst ihr aus Stufe 3 und 4.
 
 Der erste Fall ist schon fertig. Die anderen drei baut ihr selbst.
@@ -50,7 +52,7 @@ Der erste Fall ist schon fertig. Die anderen drei baut ihr selbst.
   [logik] ansonsten
 ```
 
-Mit dem kleinen **+** unten am **wenn**-Block fügt ihr weitere Fälle hinzu. Den Vergleich mit **=** findet ihr unter **Logik**.
+Ihr braucht noch drei Fälle: zwei **sonst wenn** und das **ansonsten**. Ins **ansonsten** kommt der Fall, der übrig bleibt: beide Weiß. Mit dem kleinen **+** unten am **wenn**-Block fügt ihr weitere Fälle hinzu, klickt so oft, bis ihr zwei **sonst wenn** habt. Den Vergleich mit **=** findet ihr unter **Logik**. Die Variable `linie` legt ihr wie `abstand` in Stufe 6 unter **Variablen** an und zieht den runden Block `linie` in jeden Vergleich.
 
 Die 3 steht hier für „beide Schwarz“. Zeigt eure Tabelle dafür eine andere Zahl, nehmt ihr eure.
 
@@ -139,12 +141,12 @@ while True:
 
 ## Die Strecke
 
-Fangt mit einer geraden Linie an, dann eine weite Kurve, dann ein geschlossenes Oval. Enge Ecken sind schwer.
+Fangt mit einer geraden Linie an, dann eine weite Kurve, dann ein geschlossenes Oval. Enge Ecken sind schwer. Für Kurve und Oval reicht ein Blatt nicht: Klebt mehrere weiße Blätter zusammen oder klebt die Linie direkt auf einen hellen Boden.
 
 ## Wenn das Auto die Linie verliert
 
 - **Es schießt in der Kurve hinaus:** Tempo senken.
-- **Es dreht in die falsche Richtung:** Links und rechts sind vertauscht. Seht in eurer Tabelle aus Stufe 8 nach.
+- **Es dreht in die falsche Richtung:** Links und rechts sind vertauscht. Tauscht in den beiden **sonst wenn** die Zahlen, zum Beispiel 1 und 2. Links und rechts meinen immer die Seiten des Autos, so wie in eurer Tabelle aus Stufe 8.
 - **Es bleibt sofort stehen:** Stellt es so auf, dass beide Sensoren über der Linie liegen. Ist die Linie breit genug?
 
 ## Bonus: Das Tempolimit

@@ -48,6 +48,8 @@ Oben auf dieser Seite wählt ihr, wie die Anleitung den Code zeigt: **Blöcke**,
   [led] Zeichne x 2 y 4
 ```
 
+Zieht den Block **Zeichne** zweimal in **beim Start**. Klickt auf die Zahlen und tippt sie ein: beim ersten x 2 und y 0, beim zweiten x 2 und y 4.
+
 :::
 
 :::python
@@ -141,7 +143,7 @@ Zeichnet aus einzelnen Punkten ein eigenes Bild, zum Beispiel ein Gesicht, einen
 <details>
 <summary>Tipps anzeigen</summary>
 
-- Malt das Bild zuerst auf kariertes Papier, 5 mal 5 Kästchen groß. Schreibt an jedes Kästchen x und y.
+- Malt das Bild zuerst auf kariertes Papier, 5 mal 5 Kästchen groß. Schreibt über die Spalten 0 bis 4 (das ist x) und links neben die Reihen 0 bis 4 (das ist y).
 - Jeder leuchtende Punkt braucht einen eigenen Zeichne-Befehl.
 
 </details>

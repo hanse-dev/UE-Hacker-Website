@@ -127,7 +127,7 @@ Ohne verbundenes Gerät speichert **Herunterladen** eine Datei, die auf **.hex**
 
 :::
 
-Zieht die Datei auf das Laufwerk **MICROBIT**. Blinkt die gelbe Lampe nicht mehr, läuft euer Programm. Das Laufwerk verschwindet dabei kurz, das ist normal.
+Öffnet den Ordner **Downloads** (Windows: Explorer, Mac: Finder). Das Laufwerk **MICROBIT** steht links in der Liste. Zieht die Datei mit gedrückter Maustaste aus **Downloads** auf **MICROBIT** und lasst dort los. Blinkt die gelbe Lampe nicht mehr, läuft euer Programm. Das Laufwerk verschwindet dabei kurz, das ist normal.
 
 ## Bonus: Eure Namen als Laufschrift
 

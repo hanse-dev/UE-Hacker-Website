@@ -4,7 +4,7 @@
 
 > 1. Gesteckt und umgesteckt wird nur, wenn das USB-Kabel **nicht** eingesteckt ist.
 > 2. Jede LED bekommt ihren eigenen Widerstand. Ohne Widerstand kann die LED oder der micro:bit kaputtgehen.
-> 3. Steckt nie ein Kabel von einem Pin oder von **3.3V** direkt zu **GND** oder in eine GND-Reihe. Das ist ein Kurzschluss.
+> 3. Steckt nie ein Kabel von einem Pin oder von **3.3V** direkt zu **GND** oder in eine GND-Reihe. Das ist ein Kurzschluss. (Ein Kabel von einem **GND**-Stift in die GND-Reihe ist dagegen richtig, das macht ihr gleich.)
 
 ## Euer Material
 
@@ -21,7 +21,7 @@
 
 ## So funktioniert das Breadboard
 
-Mit einem Breadboard verbindet ihr Bauteile, ohne zu löten. Haltet die Platine so, dass der micro:bit oben ist. Dann zählt ihr die Reihen von oben nach unten: Reihe 1 bis Reihe 17.
+Mit einem Breadboard verbindet ihr Bauteile, ohne zu löten. Haltet die Platine so, dass der micro:bit oben ist. Dann zählt ihr die Reihen von oben nach unten: Reihe 1 bis Reihe 17. Zählt mit dem Finger nach, bevor ihr steckt. Steht keine Zahl daneben, klebt euch an Reihe 10 und Reihe 14 ein kleines Stück Klebeband.
 
 <img src="/microbit/ampel/breadboard.svg" alt="Breadboard mit 17 Reihen: Die Löcher einer Reihe sind links und rechts der Lücke jeweils verbunden">
 
@@ -99,7 +99,7 @@ Ein Pin kann zwei Zustände haben: **1** heißt Strom an, **0** heißt Strom aus
   [grundlagen] pausiere (ms) 500
 ```
 
-Alles im Block **dauerhaft** wiederholt sich immer wieder. **pausiere (ms) 500** wartet 500 Millisekunden, also eine halbe Sekunde.
+Im Pin-Block steht zuerst ein anderer Pin: Klickt darauf und wählt **P13**. Alles im Block **dauerhaft** wiederholt sich immer wieder. **pausiere (ms) 500** wartet 500 Millisekunden, also eine halbe Sekunde.
 
 :::
 

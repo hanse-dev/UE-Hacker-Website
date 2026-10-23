@@ -38,7 +38,7 @@ Der linke Sensor hängt an `pin13`, der rechte an `pin12`. Jeder meldet `1` für
 
 ## Forschen
 
-Das Auto bleibt in der Hand, der Schalter steht auf ON. Schiebt es langsam quer über die Linie und füllt die Tabelle aus. Zeichnet sie auf ein Blatt.
+Das Auto bleibt in der Hand, der Schalter steht auf ON. Schiebt es langsam quer über die Linie und füllt die Tabelle aus. **Links und rechts** meinen in diesem Kurs immer die Seiten des Autos: Stellt euch hinter das Auto und schaut in seine Fahrtrichtung. Zeichnet sie auf ein Blatt.
 
 | Wo steht das Auto? | Angezeigte Zahl |
 |---|---|
@@ -51,7 +51,7 @@ Hebt die Tabelle gut auf. In der nächsten Stufe baut ihr damit den Linienfolger
 
 ## Wenn die Zahl sich nicht ändert
 
-Neben jedem Sensor sitzt eine kleine Stellschraube. Dreht sie vorsichtig mit dem Schraubendreher, bis die kleine Lampe daneben über Weiß leuchtet und über Schwarz ausgeht. Helles Sonnenlicht stört die Sensoren.
+Neben jedem Sensor sitzt eine kleine Stellschraube. Dreht sie vorsichtig mit einem kleinen Schraubendreher, bis die kleine Lampe daneben über Weiß leuchtet und über Schwarz ausgeht. Fragt dafür eure Kursleitung nach dem Schraubendreher. Helles Sonnenlicht stört die Sensoren.
 
 ## Bonus: Der Pfeil zur Linie
 
@@ -60,7 +60,7 @@ Eine Zahl muss man erst übersetzen. Ein Pfeil ist sofort klar: Der micro:bit so
 <details>
 <summary>Tipps anzeigen</summary>
 
-- Eure Tabelle sagt euch, welche Zahl zu welcher Seite gehört. Für jede Zeile der Tabelle braucht ihr eine Bedingung.
+- Eure Tabelle sagt euch, welche Zahl zu welcher Seite gehört. Für jede Zeile der Tabelle braucht ihr eine Bedingung. Wie man mehrere Fälle baut (**sonst wenn**) und auf gleich prüft (**=**), steht in der nächsten Stufe. Ihr könnt den Bonus auch danach machen.
 
 :::bloecke
 
@@ -74,6 +74,6 @@ Pfeile gibt es als Bilder: `Image.ARROW_W` zeigt nach links (Westen), `Image.ARR
 
 :::
 
-- Achtung, Denkfalle: Der micro:bit schaut im Auto nach vorn. Was für euch links aussieht, ist für das Auto rechts. Prüft, ob der Pfeil aus Sicht des Autos stimmt.
+- Achtung, Denkfalle: Die Anzeige schaut im Auto nach vorn, ihr seht sie also von vorn, und dabei sind links und rechts vertauscht. Darum: Liegt die Linie links vom Auto, nehmt den Pfeil **Osten**. Liegt sie rechts vom Auto, nehmt **Westen**.
 
 </details>

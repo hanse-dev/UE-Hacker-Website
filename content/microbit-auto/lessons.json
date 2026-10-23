@@ -9,7 +9,7 @@
         "instruction": "Wir kennen die drei Regeln für das Auto."
       },
       {
-        "instruction": "Der Editor ist offen und die Erweiterung (Blöcke) oder die Datei keyes_MiniCar.py (Python) ist geladen."
+        "instruction": "Der Editor ist eingerichtet wie unter „Editor einrichten“ beschrieben (Blöcke: Erweiterung MiniCar, Python: Datei keyes_MiniCar.py)."
       },
       {
         "instruction": "Auf unserem micro:bit leuchtet ein Herz."

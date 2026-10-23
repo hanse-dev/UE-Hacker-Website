@@ -21,6 +21,8 @@ Legt unter **Variablen** eine Variable `zeit` an. Diese Blöcke braucht ihr:
 [variablen] ändere zeit um -1
 ```
 
+Dazu kommen **pausiere (ms) 1000** und am Ende **Bildschirminhalt löschen**. Alles gehört in **wenn Knopf A geklickt**, an die Stelle der 5 Sekunden Pause, auch **setze zeit auf 5**. So startet der Countdown bei jedem Drücken wieder bei 5.
+
 :::
 
 :::python
@@ -95,7 +97,7 @@ Das ist erst der Kopf mit den Schultern. Den Rest malt ihr.
 
 ## Auftrag 3: Der Bahnübergang ⭐
 
-Mit Knopf B meldet ihr: Ein Zug kommt! Die Autoampel schaltet über Gelb auf Rot. Dann blinken die beiden roten LEDs (Auto und Fußgänger) abwechselnd, zehnmal hin und her, wie das Warnlicht an einem Bahnübergang. Danach haben die Autos wieder Grün.
+Mit Knopf B meldet ihr: Ein Zug kommt! Die Autoampel schaltet über Gelb auf Rot. Dann blinken die beiden roten LEDs (Auto und Fußgänger) abwechselnd, wie das Warnlicht an einem Bahnübergang. Schaltet dafür zuerst Fußgänger-Rot aus, sodass nur Auto-Rot leuchtet. Dann **5-mal wiederholen**: Auto-Rot aus und Fußgänger-Rot an, 500 Millisekunden warten, Auto-Rot an und Fußgänger-Rot aus, 500 Millisekunden warten. Das sind 10 Wechsel. Danach ist die Fußgängerampel wieder Rot, und die Autoampel schaltet über Rot-Gelb auf Grün.
 
 Hinweis: Abwechselnd heißt: Die eine geht an, wenn die andere ausgeht. Das passiert in einem einzigen Schritt, dann wird gewartet.
 
@@ -132,7 +134,7 @@ Hinweis: Lasst euch die Helligkeit zuerst ein paar Sekunden lang anzeigen. Halte
   [grundlagen] zeige Zahl Lichtstärke
 ```
 
-**Lichtstärke** findet ihr unter **Eingabe**. Für die Entscheidung braucht ihr **wenn … dann … ansonsten** aus **Logik** und den Vergleich **<**.
+**Lichtstärke** findet ihr unter **Eingabe**. Für die Entscheidung braucht ihr **wenn … dann … ansonsten** aus **Logik** und den Vergleich **<**, ebenfalls aus **Logik**. Links kommt **Lichtstärke** hinein, rechts eure Grenze. Im ansonsten-Teil (Tag) schaltet ihr Gelb aus und Grün an, sonst bleibt Gelb am Tag an.
 
 :::
 
@@ -167,7 +169,13 @@ Alte Ampeln hatten Glühlampen. Die gingen nicht schlagartig an, sondern wurden 
 
 Bisher konnte ein Pin nur 0 oder 1. Mit einem **analogen Wert** von 0 bis 1023 bestimmt ihr die Helligkeit. Dabei schaltet der micro:bit die LED in Wirklichkeit tausende Male pro Sekunde an und aus. Ist sie länger an als aus, sieht sie für euer Auge heller aus.
 
-Hinweis: Ein sanftes Aufblenden sind viele kleine Schritte: etwas heller, kurz warten, etwas heller, kurz warten. Probiert 20 Schritte mit je 50 mehr und 20 Millisekunden Pause.
+Hinweis: Ein sanftes Aufblenden sind viele kleine Schritte: etwas heller, kurz warten, etwas heller, kurz warten. Probiert 20 Schritte mit je 50 mehr und 20 Millisekunden Pause. So geht es für eine Lampe:
+
+1. Die Helligkeit `hell` auf 0 setzen.
+2. **20-mal wiederholen:** `hell` um 50 größer machen, den analogen Wert auf `hell` schreiben, 20 Millisekunden warten.
+3. Abblenden genauso, nur `hell` um -50 ändern.
+
+Fangt mit einer einzigen Lampe an, zum Beispiel Grün an und wieder aus. Klappt das, kopiert ihr die beiden Schleifen für die anderen Lampen und Phasen.
 
 :::bloecke
 
@@ -210,7 +218,7 @@ An einer echten Ampel drückt man einen dicken Knopf, nicht einen winzigen am mi
 3. **Kabel von P20** in Reihe 15 rechts. P20 ist der Stift direkt neben den beiden GND-Stiften.
 4. **Brücke** von Reihe 17 rechts in die GND-Reihe 14.
 
-Drückt ihr den Taster, verbindet er den Pin mit GND. Das liest der micro:bit als 0. Lasst ihr los, hängt der Pin in der Luft und könnte zufällige Werte lesen. Darum stellt ihr den Pin so ein, dass er ohne Druck sicher 1 liest. Das nennt man **Pull-up**. Bei diesem Taster heißt also: **0 = gedrückt, 1 = nicht gedrückt.**
+Drückt ihr den Taster, verbindet er den Pin mit GND. Das liest der micro:bit als 0. Lasst ihr los, ist der Pin mit gar nichts verbunden, und der micro:bit liest mal 0, mal 1. Darum stellt ihr den Pin so ein, dass er ohne Druck sicher 1 liest. Das nennt man **Pull-up** (nach oben ziehen). Bei diesem Taster heißt also: **0 = gedrückt, 1 = nicht gedrückt.**
 
 Testet den Taster zuerst mit diesem Programm. Ohne Druck muss die Anzeige 1 zeigen, mit Druck 0.
 
@@ -250,13 +258,13 @@ basic.forever(function () {
 
 :::
 
-Zeigt die Anzeige immer 0, auch ohne Druck? Dann sind die Beinchen innen schon verbunden. Zieht das USB-Kabel ab und dreht den Taster um eine Vierteldrehung. Die Kabel kommen dann in die neuen Reihen der Beinchen, eines oben, eines unten.
+Zeigt die Anzeige immer 0, auch ohne Druck? Dann sind die Beinchen innen schon verbunden. Zieht das USB-Kabel ab und dreht den Taster um eine Vierteldrehung. Schaut dann, in welchen Reihen seine Beinchen jetzt stecken. Das Kabel von P20 kommt in die **oberste** dieser Reihen, die Brücke zur GND-Reihe in die **unterste**.
 
 Hinweis: In der Ampelanlage prüft ihr den Taster immer wieder. Ist er gedrückt, läuft derselbe Ablauf wie bei Knopf A.
 
 :::bloecke
 
-Ihr braucht **dauerhaft**, **wenn … dann** aus **Logik** und den Vergleich **=**. Denkt daran: gedrückt ist **0**.
+Ihr braucht **dauerhaft**, **wenn … dann** aus **Logik** und den Vergleich **=**. Denkt daran: gedrückt ist **0**. Das Gerüst: In **dauerhaft** steckt **wenn digitale Werte von Pin P20 = 0 dann**. Darin kommt eine Kopie der Blöcke aus **wenn Knopf A geklickt**: Rechtsklick auf den obersten Block darin, **Duplizieren**, und die Kopie in den wenn-Block ziehen.
 
 :::
 

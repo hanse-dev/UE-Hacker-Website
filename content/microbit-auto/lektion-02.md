@@ -60,6 +60,10 @@ while True:
 
 :::
 
+## Eure Namen
+
+Statt Bildern können die Knöpfe auch Text zeigen. Ändert das Programm so, dass Knopf A den Namen des einen von euch zeigt und Knopf B den des anderen. Den Text-Befehl kennt ihr von oben. Die Bilder dürfen dafür weg.
+
 ## Tipp
 
 Ein Programm startet neu, wenn ihr den kleinen Knopf auf der Rückseite des micro:bit drückt.

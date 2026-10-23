@@ -42,9 +42,9 @@ Das spielt einen hohen, kurzen Ton.
 
 Mit jedem Punkt fällt der Stern ein bisschen schneller. Wie viele Sterne schafft ihr dann noch?
 
-- Die Wartezeit wird eine Variable, zum Beispiel `tempo`.
-- Bei jedem Punkt wird `tempo` kleiner. Aber nicht zu klein: Unter einer Grenze bleibt es stehen.
-- Nach „daneben“ fängt `tempo` wieder langsam an.
+- Die Wartezeit wird eine Variable, zum Beispiel `tempo`. Setzt sie in **beim Start** auf 400.
+- Bei jedem Punkt wird `tempo` um 50 kleiner, aber nur, **wenn** `tempo` noch größer als 100 ist. So wird es nie zu schnell.
+- Nach „daneben“ setzt ihr `tempo` wieder auf 400.
 
 :::bloecke
 
@@ -69,7 +69,8 @@ Statt `basic.pause(400)` steht dann `basic.pause(tempo)`.
 Der micro:bit merkt sich die meisten Punkte, die jemand geschafft hat. Ist eine Runde besser, zeigt er zuerst ein Symbol und dann den neuen Rekord.
 
 - Ihr braucht eine Variable `rekord`, die am Anfang 0 ist.
-- Bei „daneben“ vergleicht ihr: Ist `punkte` größer als `rekord`?
+- Bei „daneben“ vergleicht ihr: Ist `punkte` größer als `rekord`? Dann zeigt ihr das Symbol und setzt `rekord` auf `punkte`.
+- Vergleicht, **bevor** `punkte` wieder auf 0 gesetzt wird. Sonst ist `punkte` schon 0, und es gibt nie einen Rekord.
 
 :::bloecke
 
@@ -128,8 +129,9 @@ Für rechts heißt es `Gesture.TiltRight`.
 Neben dem Stern fällt eine Bombe. Sie leuchtet nur schwach. Fängt der Korb die Bombe, ist das Spiel vorbei.
 
 - Die Bombe braucht eigene Variablen: `bombe_x` und `bombe_y`.
-- Sie fällt genauso wie der Stern. Kopiert die Teile vom Stern und ändert die Namen.
-- Startet die Bombe ein paar Reihen über dem Spielfeld (zum Beispiel bei y = -3), fallen Stern und Bombe nicht im Gleichschritt.
+- Sie fällt genauso wie der Stern. Kopiert vom Stern: das Setzen am Anfang, das Löschen der alten Bombe, das Fallen (`bombe_y` um 1 größer, über 4 wieder oben mit zufälligem `bombe_x`) und das Zeichnen. Ändert dabei die Namen. Bei Blöcken kopiert ihr mit einem Rechtsklick auf einen Block und **Duplizieren**.
+- Gefangen ist die Bombe, wenn `bombe_y` 4 ist und `bombe_x` gleich `korb`. „Spiel vorbei“ heißt: Der micro:bit zeigt die Punkte, und alles fängt von vorn an – wie bei „daneben“.
+- Startet die Bombe ein paar Reihen über dem Spielfeld (zum Beispiel bei y = -3), fallen Stern und Bombe nicht im Gleichschritt. Mit Blöcken und JavaScript zeigt der micro:bit oberhalb des Spielfelds einfach nichts an, in Python zeichnet ihr nur, wenn y von 0 bis 4 geht (siehe unten).
 
 :::bloecke
 
@@ -160,7 +162,7 @@ Verbindet zwei Aufträge zu einem Spiel, zum Beispiel „Immer schneller“ mit 
 <details>
 <summary>Tipps anzeigen</summary>
 
-- Speichert zuerst das Programm mit dem ersten Auftrag, damit ihr zu ihm zurückkehren könnt.
+- Speichert zuerst das Programm mit dem ersten Auftrag, damit ihr zu ihm zurückkehren könnt. In MakeCode klickt ihr unten neben dem Projektnamen auf das Speichern-Symbol, dann liegt eine .hex-Datei in **Downloads**. In Python klickt ihr auf **Speichern**.
 - Baut den zweiten Auftrag dann Schritt für Schritt dazu und probiert nach jedem Schritt aus.
 
 </details>

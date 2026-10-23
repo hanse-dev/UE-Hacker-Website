@@ -18,7 +18,7 @@ Der Korb merkt sich seine Spalte in einer **Variable** namens `korb`. Am Anfang 
   [led] Zeichne x korb y 4
 ```
 
-Die Variable legt ihr unter **Variablen** mit **Erstelle eine Variable** an. **lösche** macht den alten Punkt aus, bevor der Korb weiterfährt.
+Die Variable legt ihr unter **Variablen** mit **Erstelle eine Variable** an. Danach liegt dort ein runder Block `korb`: Zieht ihn in das Feld hinter **x**, statt eine Zahl zu tippen. **ändere `korb` um** findet ihr auch unter **Variablen**, für -1 tippt ihr ins Zahlenfeld -1. **lösche** macht den alten Punkt aus, bevor der Korb weiterfährt.
 
 :::
 
@@ -68,7 +68,7 @@ Drückt ein paar Mal A. Der Korb verschwindet, denn x = -1 gibt es nicht.
 
 :::bloecke
 
-Der Korb darf nur fahren, **wenn** noch Platz ist. Den Block **wenn … dann** findet ihr unter **Logik**, den Vergleich **0 < 0** auch.
+Der Korb darf nur fahren, **wenn** noch Platz ist. Den Block **wenn … dann** findet ihr unter **Logik**, den Vergleich **0 < 0** auch. Steckt den Vergleich in das Feld hinter **wenn**, zieht `korb` in das linke Feld, klickt auf **<** und wählt **>**. Ins rechte Feld kommt 0.
 
 ```bloecke
 [eingabe] wenn Knopf A geklickt
@@ -186,6 +186,7 @@ Fährt der Korb links hinaus, kommt er rechts wieder herein. Und umgekehrt.
 <summary>Tipps anzeigen</summary>
 
 - Statt stehen zu bleiben, springt der Korb: Bei x = 0 und Knopf A wird `korb` zu 4.
-- Ihr braucht dafür ein **sonst**: Wenn noch Platz ist, fährt der Korb, sonst springt er.
+- Ihr braucht dafür ein **ansonsten**: Wenn noch Platz ist, fährt der Korb, ansonsten springt er. Unter **Logik** gibt es den Block **wenn … dann … ansonsten**.
+- In den ansonsten-Teil kommen drei Blöcke: den Korb löschen, `korb` auf 4 setzen, den Korb neu zeichnen.
 
 </details>

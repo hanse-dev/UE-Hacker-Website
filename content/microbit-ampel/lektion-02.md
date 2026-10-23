@@ -39,7 +39,7 @@ Nach dem Start soll nur Rot leuchten. Alles, was nur einmal am Anfang passieren 
   [pins] schreibe digitalen Wert von Pin fuss_gruen auf 0
 ```
 
-Die Variablen legt ihr unter **Variablen** mit **Erstelle eine Variable** an. In den Pin-Block zieht ihr statt der Nummer die Variable.
+Die Variablen legt ihr unter **Variablen** mit **Erstelle eine Variable** an. Im Block **setze … auf** klickt ihr auf den Namen und wählt die richtige Variable aus. Den Pin bekommt sie mit dem Block **Digital-Pin**: Klickt in der Blockliste auf **Fortgeschritten**, dann auf **Pins** und darunter auf **… mehr**. Zieht den Block in das Feld hinter **auf** und wählt darin **P13** bzw. **P12**. In den Pin-Block zieht ihr statt der Nummer die Variable.
 
 :::
 
@@ -123,7 +123,7 @@ Alles in den geschweiften Klammern von `input.onButtonPressed` passiert, sobald 
 
 :::
 
-Probiert es aus. Grün geht an, aber nie wieder aus. Ergänzt das Programm so, dass die Ampel nach 5 Sekunden wieder auf Rot schaltet.
+Probiert es aus. Grün geht an, aber nie wieder aus. Ergänzt das Programm so, dass die Ampel nach 5 Sekunden wieder auf Rot schaltet. 5 Sekunden sind 5000 Millisekunden.
 
 <details>
 <summary>Lösung anzeigen</summary>

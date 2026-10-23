@@ -108,7 +108,7 @@ Schüttelt den micro:bit, und er zeigt eine zufällige Zahl von 1 bis 6.
 
 :::bloecke
 
-Unter **Eingabe** gibt es **wenn geschüttelt**. Eine zufällige Zahl findet ihr unter **Mathematik**, zeigen könnt ihr sie mit **zeige Zahl**.
+Unter **Eingabe** gibt es **wenn geschüttelt**. Eine zufällige Zahl findet ihr unter **Mathematik**: **wähle eine zufällige Zahl von 0 bis 10**. Steckt sie in **zeige Zahl** und stellt sie auf 1 bis 6 um.
 
 :::
 
