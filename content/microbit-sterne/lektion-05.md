@@ -91,7 +91,7 @@ Ein Symbol zeigt **zeige Symbol** unter **Grundlagen**.
 
 :::python
 
-Ein Symbol zeigt zum Beispiel `display.show(Image.HAPPY)`.
+Ein Symbol zeigt zum Beispiel `display.show(Image.HAPPY)`. Schreibt danach `sleep(1000)`, sonst läuft sofort die Zahl durch, und ihr seht das Symbol kaum.
 
 :::
 

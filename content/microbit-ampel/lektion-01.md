@@ -4,7 +4,7 @@
 
 > 1. Gesteckt und umgesteckt wird nur, wenn das USB-Kabel **nicht** eingesteckt ist.
 > 2. Jede LED bekommt ihren eigenen Widerstand. Ohne Widerstand kann die LED oder der micro:bit kaputtgehen.
-> 3. Steckt nie ein Kabel von einem Pin oder von **3.3V** direkt zu **GND** oder in eine GND-Reihe. Das ist ein Kurzschluss. (Ein Kabel von einem **GND**-Stift in die GND-Reihe ist dagegen richtig, das macht ihr gleich.)
+> 3. Steckt nie ein Kabel von einem Pin oder von **3.3V** direkt zu **GND** oder in eine GND-Reihe. Das ist ein Kurzschluss. (Ein Kabel von einem **GND**-Stift in die GND-Reihe ist dagegen richtig, genauso eine Brücke vom kurzen Bein einer LED in die GND-Reihe. Das macht ihr gleich.)
 
 ## Euer Material
 
@@ -104,7 +104,7 @@ Oben auf dieser Seite wählt ihr, wie die Anleitung den Code zeigt.
 
 :::javascript
 
-Öffnet [makecode.microbit.org](https://makecode.microbit.org), klickt auf **Neues Projekt** und oben in der Mitte auf **JavaScript**. Der Editor zeigt schon zwei leere Teile an. Löscht sie, bevor ihr euer Programm schreibt.
+Öffnet [makecode.microbit.org](https://makecode.microbit.org), klickt auf **Neues Projekt** und oben in der Mitte auf **JavaScript**. Im Textfeld steht schon etwas. Löscht alles, bevor ihr euer Programm schreibt.
 
 :::
 

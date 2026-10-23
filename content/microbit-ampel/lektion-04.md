@@ -26,17 +26,17 @@ Bevor ihr programmiert, schreibt ihr den Ablauf in Worten auf, auf Papier oder a
 1. Grundzustand: Autos Grün, Fußgänger Rot.
 2. Jemand drückt Knopf A.
 3. Autoampel Gelb, 2 Sekunden.
-4. Autoampel Rot. Räumzeit: 1 Sekunde warten.
-5. Fußgänger Grün, 5 Sekunden.
-6. Fußgänger Rot. Räumzeit: 1 Sekunde warten.
-7. Autoampel Rot und Gelb, 1 Sekunde.
-8. Autoampel Grün. Jetzt ist wieder der Grundzustand erreicht.
+4. Autoampel Gelb aus, Rot an. Räumzeit: 1 Sekunde warten.
+5. Fußgänger Rot aus, Grün an, 5 Sekunden.
+6. Fußgänger Grün aus, Rot an. Räumzeit: 1 Sekunde warten.
+7. Autoampel Gelb dazu an: Rot und Gelb, 1 Sekunde.
+8. Autoampel Rot und Gelb aus, Grün an. Jetzt ist wieder der Grundzustand erreicht.
 
 </details>
 
 ## Der Grundzustand
 
-Fangt wieder ein **neues Projekt** an und legt alle fünf Variablen neu an. Der Grundzustand wird beim Start hergestellt. Jetzt braucht ihr alle fünf Namen aus Stufe 1 und 2:
+Fangt wieder ein **neues Projekt** an (im Python-Editor: Speichern, dann alles löschen) und legt alle fünf Variablen neu an. Der Grundzustand wird beim Start hergestellt. Jetzt braucht ihr alle fünf Namen aus Stufe 1 und 2:
 
 | Variable | Pin | LED |
 |---|---|---|
@@ -106,7 +106,7 @@ input.onButtonPressed(Button.A, function () {
 
 :::
 
-Der Anfang von Schritt 3 steht schon da: Grün aus, Gelb an, 2 Sekunden warten. Baut die übrigen Schritte eures Plans dazu. Achtet bei jedem Schritt darauf, welche LED aus- und welche angeht.
+Der Anfang von Schritt 3 steht schon da: Grün aus, Gelb an, 2 Sekunden warten. Baut die übrigen Schritte eures Plans dazu. Anders als in Stufe 2 schaltet ihr hier nur die LEDs, die sich ändern. Achtet bei jedem Schritt darauf, welche LED aus- und welche angeht. Beim letzten Schritt müssen Rot **und** Gelb aus.
 
 Testet zum Schluss genau: Drückt Knopf A und schaut auf beide Ampeln gleichzeitig. Leuchten irgendwann beide Grün? Dann stimmt etwas nicht.
 

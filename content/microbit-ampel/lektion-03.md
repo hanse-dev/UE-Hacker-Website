@@ -37,9 +37,9 @@ Zum Schluss das Kabel vom zweiten **GND**-Stift in Reihe 8 rechts, direkt an der
 
 Jede Phase hat dieselbe Form: Alle drei LEDs bekommen ihren Wert, dann wartet der micro:bit. Schreibt in jeder Phase **alle drei** LEDs, auch die, die aus sein sollen. Dann kann keine LED aus der vorigen Phase hängen bleiben.
 
-Fangt dafür ein **neues Projekt** an. Die Fußgängerampel bleibt gesteckt, bleibt in dieser Stufe aber dunkel – das ist richtig so.
+Fangt dafür ein **neues Projekt** an. Im Python-Editor speichert ihr das alte Programm mit **Speichern** und löscht dann alles im Editor. Die Fußgängerampel bleibt gesteckt, bleibt in dieser Stufe aber dunkel – das ist richtig so.
 
-Die ersten beiden Phasen sind fertig. Ergänzt Phase 3 und 4.
+Die ersten beiden Phasen sind fertig. Ergänzt Phase 3 und 4 darunter, noch in derselben Schleife.
 
 :::bloecke
 
@@ -240,13 +240,14 @@ def autoampel(rot, gelb, gruen):
 ```
 
 - In der Funktion schreibt ihr jeden Pin auf seinen Wert, zum Beispiel `auto_rot.write_digital(rot)`.
-- Aufrufen könnt ihr sie dann so: `autoampel(1, 1, 0)` für Rot und Gelb.
+- Aufrufen könnt ihr sie dann so: `autoampel(1, 1, 0)` für Rot und Gelb. Dann ist in der Funktion `rot` 1, `gelb` 1 und `gruen` 0. `rot` ist also nur eine Zahl, `auto_rot` ist der Pin.
+- Die Funktion kommt unter die Pin-Namen und über `while True:`, ohne Einrückung.
 
 :::
 
 :::javascript
 
-- Eine Funktion beginnt mit `function`, dann der Name und in Klammern die Werte, die sie bekommt. Hinter jedem Wert steht, dass er eine Zahl ist:
+- Eine Funktion beginnt mit `function`, dann der Name und in Klammern die Werte, die sie bekommt. Hinter jedem Wert steht `: number`, das heißt: Er ist eine Zahl.
 
 ```javascript
 function autoampel(rot: number, gelb: number, gruen: number) {
@@ -255,7 +256,8 @@ function autoampel(rot: number, gelb: number, gruen: number) {
 ```
 
 - In der Funktion schreibt ihr jeden Pin auf seinen Wert, zum Beispiel `pins.digitalWritePin(auto_rot, rot)`.
-- Aufrufen könnt ihr sie dann so: `autoampel(1, 1, 0)` für Rot und Gelb.
+- Aufrufen könnt ihr sie dann so: `autoampel(1, 1, 0)` für Rot und Gelb. Dann ist in der Funktion `rot` 1, `gelb` 1 und `gruen` 0. `rot` ist also nur eine Zahl, `auto_rot` ist der Pin.
+- Die Funktion kommt unter die `let`-Zeilen und über `basic.forever`. Den Aufruf schreibt ihr in `basic.forever`.
 
 :::
 

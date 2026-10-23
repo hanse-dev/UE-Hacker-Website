@@ -22,7 +22,7 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
       verbessert). Offen: Rest-Stellen v. a. in den Werkstätten (Funktion mit Parametern in Ampel Stufe 2,
       Einsatzfahrzeug im Auto). `--variante python`/`javascript` (Branch `microbit-varianten`):
       Einführung und Stern überarbeitet (Tipps/Ortsangaben je Variante statt Blöcke-Sprache,
-      Würfel-Lösung); Ampel und Auto folgen. Neu im Editor nachklicken: Python-Editor **Öffnen** neben
+      Würfel-Lösung, Gerüste für Funk/Nachtmodus/Taster in der Ampel); Auto folgt. Neu im Editor nachklicken: Python-Editor **Öffnen** neben
       **Speichern**, .hex-Datei auf MakeCode ziehen öffnet sie, Schütteln-Knopf im Simulator. Neu eingefügte
       MakeCode-Angaben (Fortgeschritten → Erweiterungen, Pins → … mehr → Digital-Pin, Plus am wenn-Block,
       Speichern-Symbol neben dem Projektnamen) beim nächsten Termin einmal im echten Editor nachklicken.

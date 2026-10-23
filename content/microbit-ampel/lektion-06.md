@@ -75,29 +75,48 @@ Klappt es in beide Richtungen? Dann seid ihr bereit für die Aufträge. Nachrich
 
 ## Auftrag 1: Die Feuerwehr hat Vorfahrt
 
-Ein Team hat seine Ampelanlage aus Stufe 3. Der micro:bit des anderen Teams ist das Feuerwehrauto: Drückt es Knopf B, schickt es einen Notruf. Die Ampelanlage schaltet dann sofort alles auf Rot, Autos und Fußgänger. Nach 10 Sekunden haben die Autos wieder Grün.
+Ein Team hat seine Ampelanlage aus Stufe 3. Der micro:bit des anderen Teams ist das Feuerwehrauto: Drückt es Knopf B, schickt es einen Notruf. Die Ampelanlage schaltet dann sofort alles auf Rot, Autos und Fußgänger. Nach 10 Sekunden schaltet die Autoampel wie immer über Rot-Gelb auf Grün. Die Fußgänger behalten Rot.
 
 Danach tauscht ihr: Das andere Team baut seine Anlage um, und ihr seid die Feuerwehr.
 
-Hinweis: Bei einem Notruf ist keine Zeit für Gelb. Alle grünen LEDs gehen sofort aus, alle roten an.
+Hinweis: Bei einem Notruf ist keine Zeit für Gelb. Alle grünen und gelben LEDs gehen sofort aus, alle roten an.
 
-Beide micro:bits brauchen in **beim Start** dieselbe Funkgruppe, auch die Ampelanlage. Das Feuerwehrauto bekommt ein kleines eigenes Programm: Funkgruppe setzen und bei Knopf B ein Wort schicken, zum Beispiel `notruf`. Auf genau dieses Wort wartet die Ampelanlage.
+Beide micro:bits brauchen dieselbe Funkgruppe, auch die Ampelanlage. Das Feuerwehrauto bekommt ein kleines eigenes Programm: Funkgruppe setzen und bei Knopf B ein Wort schicken, zum Beispiel `notruf`. Auf genau dieses Wort wartet die Ampelanlage.
 
 :::bloecke
 
-Euer Programm hat jetzt zwei Teile, die gleichzeitig laufen können: **wenn Knopf A geklickt** und **wenn Text empfangen**. Testet den Notruf, wenn die Ampel im Grundzustand ist (die Autos haben Grün). Kommt er mitten im Knopf-Ablauf, läuft der Ablauf danach einfach weiter. Das ist für diesen Auftrag in Ordnung.
+Die Funkgruppe setzt ihr bei beiden in **beim Start**. Die Ampelanlage bekommt einen Block **wenn Text empfangen** und darin **wenn receivedString = "notruf" dann**, wie beim ersten Funkspruch.
+
+Schickt den Notruf beim Testen nur, wenn die Autos Grün haben, und drückt dabei nicht Knopf A.
 
 :::
 
 :::python
 
-Euer Programm fragt in der Schleife nacheinander Knopf A und den Funk ab. Testet den Notruf, wenn die Ampel im Grundzustand ist (die Autos haben Grün). Kommt er mitten im Ablauf für die Fußgänger, wird er erst danach bearbeitet. Das ist für diesen Auftrag in Ordnung.
+Bei beiden micro:bits kommt oben `import radio` dazu und vor die Schleife `radio.on()` und `radio.config(group=x)`. In der Schleife der Ampelanlage fragt ihr nach Knopf A auch den Funk ab:
+
+```python
+    if radio.receive() == "notruf":
+        # alles auf Rot, 10 Sekunden warten, dann über Rot-Gelb auf Grün
+```
+
+Schickt den Notruf beim Testen nur, wenn die Autos Grün haben, und drückt dabei nicht Knopf A.
 
 :::
 
 :::javascript
 
-Euer Programm hat jetzt zwei Teile, die gleichzeitig laufen können: `input.onButtonPressed` und `radio.onReceivedString`. Testet den Notruf, wenn die Ampel im Grundzustand ist (die Autos haben Grün). Kommt er mitten im Knopf-Ablauf, läuft der Ablauf danach einfach weiter. Das ist für diesen Auftrag in Ordnung.
+Bei beiden micro:bits steht `radio.setGroup(x)` ganz oben. Die Ampelanlage bekommt unten dazu:
+
+```javascript
+radio.onReceivedString(function (receivedString) {
+    if (receivedString == "notruf") {
+        // alles auf Rot, 10 Sekunden warten, dann über Rot-Gelb auf Grün
+    }
+})
+```
+
+Schickt den Notruf beim Testen nur, wenn die Autos Grün haben, und drückt dabei nicht Knopf A.
 
 :::
 
@@ -108,14 +127,63 @@ Zwei Straßen kreuzen sich. Jedes Team ist eine Autoampel, eine für jede Straß
 Die Ampeln reichen sich ein Zeichen weiter, wie beim Staffellauf:
 
 1. Ampel 1 hat Grün, Ampel 2 hat Rot.
-2. Nach 5 Sekunden schaltet Ampel 1 über Gelb auf Rot, wartet die Räumzeit und funkt dann `du`.
+2. Nach 5 Sekunden schaltet Ampel 1 über Gelb auf Rot, wartet die Räumzeit (1 Sekunde) und funkt dann `du`.
 3. Ampel 2 bekommt `du`, schaltet über Rot-Gelb auf Grün.
-4. Nach 5 Sekunden schaltet Ampel 2 über Gelb auf Rot, wartet die Räumzeit und funkt `du` zurück.
+4. Nach 5 Sekunden schaltet Ampel 2 über Gelb auf Rot, wartet die Räumzeit (1 Sekunde) und funkt `du` zurück.
 5. Und so weiter, ohne Ende.
 
-Hinweis: Beide Teams brauchen fast dasselbe Programm. Beim Start zeigen beide Ampeln Rot. Seid ihr beide bereit, drückt Ampel 1 Knopf A: Sie schaltet über Rot-Gelb auf Grün und fängt mit Schritt 1 an. Ampel 2 wartet auf `du`. Die Fußgänger-LEDs bleiben bei diesem Auftrag aus.
+Hinweis: Lost aus, welches Team Ampel 1 ist. Beide Teams brauchen fast dasselbe Programm. Beim Start zeigen beide Ampeln Rot. Seid ihr beide bereit, drückt Ampel 1 Knopf A: Sie schaltet über Rot-Gelb auf Grün und fängt mit Schritt 1 an. Ampel 2 wartet auf `du`. Die Fußgänger-LEDs bleiben bei diesem Auftrag aus.
 
-Eine **dauerhaft**-Schleife braucht ihr nicht. Baut den Ablauf einmal als eigene Funktion, zum Beispiel `gruenphase` (wie im Bonus von Stufe 2): Rot-Gelb, Grün, 5 Sekunden warten, Gelb, Rot, Räumzeit, `du` senden. Beide Teams rufen sie in **wenn Text empfangen** auf, wenn `du` ankommt. Weil jede Ampel am Ende `du` sendet, geht es von selbst ohne Ende weiter. Der einzige Unterschied: Ampel 1 ruft die Funktion zusätzlich in **wenn Knopf A geklickt** auf und startet so die erste Runde.
+Baut den Ablauf einmal als eigene **Funktion**, zum Beispiel `gruenphase`: Rot-Gelb, Grün, 5 Sekunden warten, Gelb, Rot, Räumzeit, `du` senden. Eine Funktion ist ein Ablauf mit Namen. Ihr baut ihn einmal und startet ihn dann mit seinem Namen, so oft ihr wollt. Weil jede Ampel am Ende `du` sendet, geht es von selbst ohne Ende weiter.
+
+:::bloecke
+
+Eine **dauerhaft**-Schleife braucht ihr nicht. Die Funktion legt ihr an wie im Bonus von Stufe 2, nur ohne Parameter. Beide Teams rufen sie in **wenn Text empfangen** auf, wenn `du` ankommt. Der einzige Unterschied: Ampel 1 ruft die Funktion zusätzlich in **wenn Knopf A geklickt** auf und startet so die erste Runde.
+
+:::
+
+:::python
+
+Ihr braucht die Schleife `while True:`, die immer wieder nach Knopf A und dem Funk fragt. Das Gerüst:
+
+```python
+def gruenphase():
+    # Rot-Gelb, Grün, 5 Sekunden warten, Gelb, Rot, Räumzeit, "du" senden
+
+while True:
+    if button_a.was_pressed():
+        gruenphase()
+    if radio.receive() == "du":
+        gruenphase()
+```
+
+Die leeren Klammern hinter `gruenphase` heißen: Die Funktion bekommt keine Werte. `gruenphase()` startet sie. Die Frage nach Knopf A braucht nur Ampel 1, sie startet so die erste Runde.
+
+:::
+
+:::javascript
+
+Ein `basic.forever` braucht ihr nicht. Das Gerüst:
+
+```javascript
+function gruenphase() {
+    // Rot-Gelb, Grün, 5 Sekunden warten, Gelb, Rot, Räumzeit, "du" senden
+}
+
+radio.onReceivedString(function (receivedString) {
+    if (receivedString == "du") {
+        gruenphase()
+    }
+})
+
+input.onButtonPressed(Button.A, function () {
+    gruenphase()
+})
+```
+
+Die leeren Klammern hinter `gruenphase` heißen: Die Funktion bekommt keine Werte. `gruenphase()` startet sie. Den Teil mit Knopf A braucht nur Ampel 1, sie startet so die erste Runde.
+
+:::
 
 ## Auftrag 3: Die Ampel für das Roboterauto
 

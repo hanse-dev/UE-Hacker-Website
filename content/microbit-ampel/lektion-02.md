@@ -27,7 +27,7 @@ Ab jetzt gibt es zwei LEDs, bald fünf. Damit ihr nicht nachschlagen müsst, wel
 
 ## Rot nach dem Start
 
-Nach dem Start soll nur Rot leuchten. Alles, was nur einmal am Anfang passieren soll, kommt in den Start-Block. Zuerst bekommen die Pins ihre Namen, dann werden die LEDs geschaltet.
+Nach dem Start soll nur Rot leuchten. Alles, was nur einmal am Anfang passieren soll, kommt an den Anfang des Programms (bei Blöcken in **beim Start**). Zuerst bekommen die Pins ihre Namen, dann werden die LEDs geschaltet.
 
 :::bloecke
 
@@ -208,23 +208,29 @@ Damit ihr das Blinken nicht dreimal bauen müsst, gibt es unter **Schleifen** de
 
 :::python
 
-Damit ihr das Blinken nicht dreimal schreiben müsst, gibt es die Zählschleife. Alles, was darunter eingerückt ist, passiert dreimal:
+Damit ihr das Blinken nicht dreimal schreiben müsst, gibt es die Zählschleife. Alles, was darunter eingerückt ist, passiert dreimal. Die 3 sagt, wie oft. `i` und `range` müsst ihr nicht verstehen.
+
+Die Schleife kommt direkt unter `sleep(5000)` und ist genauso weit eingerückt. Ihr Inhalt ist noch weiter eingerückt. Statt `...` schreibt ihr das Blinken hinein:
 
 ```python
-for i in range(3):
-    ...
+        sleep(5000)
+        for i in range(3):
+            ...
 ```
 
 :::
 
 :::javascript
 
-Damit ihr das Blinken nicht dreimal schreiben müsst, gibt es die Zählschleife. Alles in den geschweiften Klammern passiert dreimal:
+Damit ihr das Blinken nicht dreimal schreiben müsst, gibt es die Zählschleife. Alles in den geschweiften Klammern passiert dreimal. Die 3 sagt, wie oft.
+
+Die Schleife kommt direkt unter `basic.pause(5000)`. `// ...` ist nur ein Platzhalter: Löscht die Zeile und schreibt dort das Blinken hin.
 
 ```javascript
-for (let i = 0; i < 3; i++) {
-    // ...
-}
+    basic.pause(5000)
+    for (let i = 0; i < 3; i++) {
+        // ...
+    }
 ```
 
 :::

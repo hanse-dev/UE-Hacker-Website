@@ -32,7 +32,11 @@ Eine Zählschleife kann auch rückwärts zählen. `range(5, 0, -1)` zählt 5, 4,
 ```python
 for zahl in range(5, 0, -1):
     display.show(zahl)
+    sleep(1000)
+display.clear()
 ```
+
+Das kommt an die Stelle von `sleep(5000)`, genauso weit eingerückt. `display.clear()` macht die Anzeige danach dunkel.
 
 :::
 
@@ -43,8 +47,12 @@ Eine Zählschleife kann auch rückwärts zählen. Diese zählt 5, 4, 3, 2, 1:
 ```javascript
 for (let zahl = 5; zahl > 0; zahl--) {
     basic.showNumber(zahl)
+    basic.pause(1000)
 }
+basic.clearScreen()
 ```
+
+Das kommt an die Stelle von `basic.pause(5000)`. `basic.clearScreen()` macht die Anzeige danach dunkel.
 
 :::
 
@@ -97,7 +105,7 @@ Das ist erst der Kopf mit den Schultern. Den Rest malt ihr.
 
 ## Auftrag 3: Der Bahnübergang ⭐
 
-Mit Knopf B meldet ihr: Ein Zug kommt! Die Autoampel schaltet über Gelb auf Rot. Dann blinken die beiden roten LEDs (Auto und Fußgänger) abwechselnd, wie das Warnlicht an einem Bahnübergang. Schaltet dafür zuerst Fußgänger-Rot aus, sodass nur Auto-Rot leuchtet. Dann **5-mal wiederholen**: Auto-Rot aus und Fußgänger-Rot an, 500 Millisekunden warten, Auto-Rot an und Fußgänger-Rot aus, 500 Millisekunden warten. Das sind 10 Wechsel. Danach ist die Fußgängerampel wieder Rot, und die Autoampel schaltet über Rot-Gelb auf Grün.
+Mit Knopf B meldet ihr: Ein Zug kommt! Die Autoampel schaltet über Gelb auf Rot. Dann blinken die beiden roten LEDs (Auto und Fußgänger) abwechselnd, wie das Warnlicht an einem Bahnübergang. Schaltet dafür zuerst Fußgänger-Rot aus, sodass nur Auto-Rot leuchtet. Dann **5-mal wiederholen**: Auto-Rot aus und Fußgänger-Rot an, 500 Millisekunden warten, Auto-Rot an und Fußgänger-Rot aus, 500 Millisekunden warten. Das sind 10 Wechsel. Nach der Schleife schaltet ihr Fußgänger-Rot wieder an, und die Autoampel schaltet über Rot-Gelb auf Grün.
 
 Hinweis: Abwechselnd heißt: Die eine geht an, wenn die andere ausgeht. Das passiert in einem einzigen Schritt, dann wird gewartet.
 
@@ -109,13 +117,13 @@ Den Block **wenn Knopf A geklickt** könnt ihr ein zweites Mal hinlegen und dort
 
 :::python
 
-Knopf B fragt ihr genauso ab wie Knopf A: `button_b.was_pressed()`. Zum Wiederholen gibt es `for i in range(10):`.
+Knopf B fragt ihr genauso ab wie Knopf A: `button_b.was_pressed()`. Zum Wiederholen gibt es `for i in range(5):`. Beide Wechsel kommen in die Schleife.
 
 :::
 
 :::javascript
 
-Knopf B fragt ihr genauso ab wie Knopf A: `input.onButtonPressed(Button.B, function () { ... })`. Zum Wiederholen gibt es `for (let i = 0; i < 10; i++) { ... }`.
+Knopf B fragt ihr genauso ab wie Knopf A: `input.onButtonPressed(Button.B, function () { ... })`. Zum Wiederholen gibt es `for (let i = 0; i < 5; i++) { ... }`. Beide Wechsel kommen in die Schleife.
 
 :::
 
@@ -145,7 +153,15 @@ while True:
     display.scroll(display.read_light_level())
 ```
 
-Für die Entscheidung braucht ihr `if`, `else` und den Vergleich `<`.
+Für die Entscheidung braucht ihr `if`, `else` und den Vergleich `<`. Statt `50` setzt ihr eure Grenze ein, statt der Zeilen mit `#` eure Befehle:
+
+```python
+while True:
+    if display.read_light_level() < 50:
+        # Nacht: Grün aus, Gelb blinkt
+    else:
+        # Tag: Gelb aus, Grün an
+```
 
 :::
 
@@ -157,7 +173,17 @@ basic.forever(function () {
 })
 ```
 
-Für die Entscheidung braucht ihr `if`, `else` und den Vergleich `<`.
+Für die Entscheidung braucht ihr `if`, `else` und den Vergleich `<`. Statt `50` setzt ihr eure Grenze ein, statt der Zeilen mit `//` eure Befehle:
+
+```javascript
+basic.forever(function () {
+    if (input.lightLevel() < 50) {
+        // Nacht: Grün aus, Gelb blinkt
+    } else {
+        // Tag: Gelb aus, Grün an
+    }
+})
+```
 
 :::
 
@@ -169,15 +195,17 @@ Alte Ampeln hatten Glühlampen. Die gingen nicht schlagartig an, sondern wurden 
 
 Bisher konnte ein Pin nur 0 oder 1. Mit einem **analogen Wert** von 0 bis 1023 bestimmt ihr die Helligkeit. Dabei schaltet der micro:bit die LED in Wirklichkeit tausende Male pro Sekunde an und aus. Ist sie länger an als aus, sieht sie für euer Auge heller aus.
 
-Hinweis: Ein sanftes Aufblenden sind viele kleine Schritte: etwas heller, kurz warten, etwas heller, kurz warten. Probiert 20 Schritte mit je 50 mehr und 20 Millisekunden Pause. So geht es für eine Lampe:
-
-1. Die Helligkeit `hell` auf 0 setzen.
-2. **20-mal wiederholen:** `hell` um 50 größer machen, den analogen Wert auf `hell` schreiben, 20 Millisekunden warten.
-3. Abblenden genauso, nur `hell` um -50 ändern.
+Hinweis: Ein sanftes Aufblenden sind viele kleine Schritte: etwas heller, kurz warten, etwas heller, kurz warten. Probiert 20 Schritte mit je 50 mehr und 20 Millisekunden Pause.
 
 Fangt mit einer einzigen Lampe an, zum Beispiel Grün an und wieder aus. Klappt das, kopiert ihr die beiden Schleifen für die anderen Lampen und Phasen.
 
 :::bloecke
+
+So geht es für eine Lampe:
+
+1. Die Helligkeit `hell` auf 0 setzen.
+2. **20-mal wiederholen:** `hell` um 50 größer machen, den analogen Wert auf `hell` schreiben, 20 Millisekunden warten.
+3. Abblenden genauso, nur `hell` um -50 ändern.
 
 ```bloecke
 [pins] schreibe analogen Wert von Pin P14 auf 500
@@ -193,7 +221,18 @@ P14 ist die grüne LED der Autoampel. Für analoge Werte wählt ihr den Pin dire
 auto_gruen.write_analog(500)
 ```
 
-Mit `range` könnt ihr in Schritten zählen: `range(0, 1024, 50)` zählt 0, 50, 100 und so weiter bis 1000.
+Statt 500 setzt ihr eine Variable ein, die in Schritten zählt. So blendet Grün auf und wieder ab:
+
+```python
+for hell in range(0, 1024, 50):
+    auto_gruen.write_analog(hell)
+    sleep(20)
+for hell in range(1000, -1, -50):
+    auto_gruen.write_analog(hell)
+    sleep(20)
+```
+
+`range(0, 1024, 50)` zählt 0, 50, 100 und so weiter bis 1000. `range(1000, -1, -50)` zählt rückwärts: 1000, 950 und so weiter bis 0.
 
 :::
 
@@ -203,7 +242,20 @@ Mit `range` könnt ihr in Schritten zählen: `range(0, 1024, 50)` zählt 0, 50, 
 pins.analogWritePin(AnalogPin.P14, 500)
 ```
 
-P14 ist die grüne LED der Autoampel. Für analoge Werte schreibt ihr den Pin direkt hin, die Variable `auto_gruen` passt hier nicht. In Schritten zählt ihr so: `for (let hell = 0; hell <= 1000; hell += 50)`.
+P14 ist die grüne LED der Autoampel. Für analoge Werte schreibt ihr den Pin direkt hin, die Variable `auto_gruen` passt hier nicht. Statt 500 setzt ihr eine Variable ein, die in Schritten zählt. So blendet Grün auf und wieder ab:
+
+```javascript
+for (let hell = 0; hell <= 1000; hell += 50) {
+    pins.analogWritePin(AnalogPin.P14, hell)
+    basic.pause(20)
+}
+for (let hell = 1000; hell >= 0; hell -= 50) {
+    pins.analogWritePin(AnalogPin.P14, hell)
+    basic.pause(20)
+}
+```
+
+`hell += 50` macht `hell` um 50 größer, `hell -= 50` um 50 kleiner.
 
 :::
 
@@ -270,13 +322,31 @@ Ihr braucht **dauerhaft**, **wenn … dann** aus **Logik** und den Vergleich **=
 
 :::python
 
-Ihr fragt in der Schleife zusätzlich `pin20.read_digital() == 0` ab. Mit `or` klappen Knopf A und Taster gleichzeitig.
+Ihr fragt in der Schleife zusätzlich `pin20.read_digital() == 0` ab. `==` heißt „ist gleich“, `or` heißt „oder“. So klappen Knopf A und Taster beide. Eure Zeile mit Knopf A wird zu:
+
+```python
+    if button_a.was_pressed() or pin20.read_digital() == 0:
+```
+
+`pin20.set_pull(pin20.PULL_UP)` kommt oben vor die Schleife.
 
 :::
 
 :::javascript
 
-Steckt den Ablauf in `basic.forever` und fragt dort `input.buttonIsPressed(Button.A) || pins.digitalReadPin(DigitalPin.P20) == 0` ab. `||` heißt oder, damit klappen Knopf A und Taster gleichzeitig.
+Steckt den Ablauf in `basic.forever` und fragt dort Knopf A oder den Taster ab. `||` heißt „oder“, `==` heißt „ist gleich“:
+
+```javascript
+pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
+
+basic.forever(function () {
+    if (input.buttonIsPressed(Button.A) || pins.digitalReadPin(DigitalPin.P20) == 0) {
+        // hier der Ablauf aus Knopf A
+    }
+})
+```
+
+`pins.setPull` steht oben bei den `let`-Zeilen. Den alten Teil `input.onButtonPressed(Button.A, …)` löscht ihr, sonst läuft der Ablauf doppelt.
 
 :::
 
