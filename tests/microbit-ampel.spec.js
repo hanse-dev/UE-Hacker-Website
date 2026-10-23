@@ -7,7 +7,7 @@ const CONTENT_DIR = path.join('content', 'microbit-ampel');
 const lessons = JSON.parse(fs.readFileSync(path.join(CONTENT_DIR, 'lessons.json'), 'utf8'));
 const STORAGE_KEY = 'ue-hacker-interactive-progress-microbit-ampel';
 const PLAN_DIR = path.join('public', 'microbit', 'ampel');
-const PLANS = ['breadboard', 'stufe-0', 'stufe-1', 'stufe-2', 'taster'];
+const PLANS = ['breadboard', 'erste-led-3v3', 'stufe-0', 'stufe-1', 'stufe-2', 'taster'];
 
 // Am Extension Board ist nur eine Stiftleiste erreichbar: 3.3V, GND, GND, P20, P19, P16 … P10, 3.3V.
 // P10 hängt an der LED-Anzeige, P11 an Knopf B, P19 bleibt frei - genutzt werden nur diese Pins.
@@ -46,8 +46,8 @@ test.describe('micro:bit-Kurs: Ampelanlage (Anleitung zum Abhaken)', () => {
     await openCourse(page);
     const content = page.locator('.guide-lesson .lesson-content');
     const images = content.locator('img');
-    await expect(images).toHaveCount(2);
-    for (let i = 0; i < 2; i++) {
+    await expect(images).toHaveCount(3);
+    for (let i = 0; i < 3; i++) {
       const img = images.nth(i);
       await img.scrollIntoViewIfNeeded();
       await expect.poll(() => img.evaluate((el) => el.complete && el.naturalWidth)).toBeGreaterThan(0);
@@ -59,6 +59,23 @@ test.describe('micro:bit-Kurs: Ampelanlage (Anleitung zum Abhaken)', () => {
       expect(res.status(), name).toBe(200);
       expect(await res.text(), name).toContain('<svg');
     }
+  });
+
+  test('Startklar: Die erste LED leuchtet zuerst an 3.3V, erst danach kommen P13 und das Programm', async ({ page }) => {
+    await openCourse(page);
+    const content = page.locator('.guide-lesson .lesson-content');
+    const srcs = await content.locator('img').evaluateAll((imgs) => imgs.map((img) => img.getAttribute('src')));
+    expect(srcs.indexOf('/microbit/ampel/erste-led-3v3.svg')).toBeGreaterThan(-1);
+    expect(srcs.indexOf('/microbit/ampel/erste-led-3v3.svg')).toBeLessThan(srcs.indexOf('/microbit/ampel/stufe-0.svg'));
+
+    // Der 3.3V-Steckplan steht vor dem ersten Programm, und beide Fälle nach dem Umstecken sind erklärt.
+    const headings = await content.locator('h2').allTextContents();
+    const umstecken = headings.findIndex((h) => h.includes('P13'));
+    expect(umstecken, headings.join(' | ')).toBeGreaterThan(-1);
+    expect(umstecken).toBeLessThan(headings.indexOf('Das erste Programm'));
+    await expect(content).toContainText('altes Programm');
+    await expect(content).toContainText('noch kein Programm');
+    await expect(page.locator('.guide-task').first()).toContainText('3.3V');
   });
 
   test('Pin- und Funk-Blöcke haben die MakeCode-Farben, der Hinweis passt zu jedem micro:bit-Kurs', async ({ page }) => {

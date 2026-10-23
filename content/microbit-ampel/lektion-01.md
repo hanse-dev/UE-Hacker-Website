@@ -40,6 +40,8 @@ Eine LED leuchtet nur, wenn der Strom einen geschlossenen Kreis hat:
 
 Die Platine hat nur zwei GND-Stifte, ihr baut aber fünf LEDs. Darum bekommt jede Ampel eine **GND-Reihe**: eine Reihe, in die ein einziges Kabel von GND kommt. Alle LEDs dieser Ampel sind mit einer Brücke dorthin verbunden und teilen sich so das eine GND-Kabel.
 
+Ganz am Anfang nehmt ihr statt eines Pins den Stift **3.3V**. Er gibt immer Strom, sobald der micro:bit über USB Strom bekommt.
+
 Jede LED in diesem Kurs ist genau so angeschlossen. Wenn ihr den Kreis einmal verstanden habt, könnt ihr jede weitere LED allein stecken.
 
 Übrigens: In der Technik zeichnet man den Strom von Plus nach Minus, so wie oben. Die Elektronen im Draht wandern in Wirklichkeit andersherum. Für das Stecken ändert das nichts: Das lange Bein gehört auf die Seite des Pins, das kurze auf die Seite von GND.
@@ -48,16 +50,37 @@ Jede LED in diesem Kurs ist genau so angeschlossen. Wenn ihr den Kreis einmal ve
 
 Die erste LED ist die rote Lampe der Fußgängerampel. Sie bleibt bis zum Schluss stecken.
 
-<img src="/microbit/ampel/stufe-0.svg" alt="Steckplan: Kabel von P13 in Reihe 10 links, Widerstand über die Lücke, rote LED mit langem Bein in Reihe 10 rechts und kurzem Bein in Reihe 11, Brücke von Reihe 11 in die GND-Reihe 14, Kabel von GND in Reihe 14">
+Zuerst schließt ihr sie an **3.3V** an. Dieser Stift gibt immer Strom, ganz ohne Programm. So seht ihr sofort, ob eure Schaltung stimmt.
+
+<img src="/microbit/ampel/erste-led-3v3.svg" alt="Steckplan: Kabel von 3.3V in Reihe 10 links, Widerstand über die Lücke, rote LED mit langem Bein in Reihe 10 rechts und kurzem Bein in Reihe 11, Brücke von Reihe 11 in die GND-Reihe 14, Kabel von GND in Reihe 14">
 
 1. Zieht das USB-Kabel ab.
 2. **Widerstand:** ein Bein in Reihe 10 links, direkt an der Lücke. Das andere Bein in Reihe 10 rechts, direkt an der Lücke.
 3. **Rote LED:** langes Bein in Reihe 10 rechts, kurzes Bein in Reihe 11 rechts.
-4. **Kabel von P13:** Buchse auf den Stift **P13**, Stecker in Reihe 10 links ins freie Loch.
+4. **Kabel von 3.3V:** Buchse auf einen Stift **3.3V**, Stecker in Reihe 10 links ins freie Loch.
 5. **GND-Reihe:** Buchse auf einen Stift **GND**, Stecker in Reihe 14 rechts ins innerste Loch, direkt an der Lücke. Reihe 14 ist ab jetzt die GND-Reihe der Fußgängerampel.
 6. **Brücke:** ein Ende in Reihe 11 rechts ins äußerste Loch, das andere Ende in Reihe 14 rechts.
 
-Fahrt den Weg des Stroms mit dem Finger nach: P13, Reihe 10 links, Widerstand, Reihe 10 rechts, langes Bein, kurzes Bein, Reihe 11, Brücke, Reihe 14, GND. Ist der Kreis geschlossen?
+Fahrt den Weg des Stroms mit dem Finger nach: 3.3V, Reihe 10 links, Widerstand, Reihe 10 rechts, langes Bein, kurzes Bein, Reihe 11, Brücke, Reihe 14, GND. Ist der Kreis geschlossen?
+
+Steckt jetzt das USB-Kabel in den micro:bit, nicht in die Platine. Die LED leuchtet sofort. Bleibt sie dunkel, geht die Liste unter **Die LED bleibt dunkel?** durch.
+
+Der Widerstand ist auch hier wichtig: Ohne ihn bekommt die LED zu viel Strom.
+
+## Umstecken auf P13
+
+Mit 3.3V leuchtet die LED immer. Damit euer Programm sie ein- und ausschalten kann, kommt das Kabel auf einen Pin.
+
+<img src="/microbit/ampel/stufe-0.svg" alt="Steckplan: Kabel von P13 in Reihe 10 links, Widerstand über die Lücke, rote LED mit langem Bein in Reihe 10 rechts und kurzem Bein in Reihe 11, Brücke von Reihe 11 in die GND-Reihe 14, Kabel von GND in Reihe 14">
+
+1. Zieht das USB-Kabel ab.
+2. Steckt nur die Buchse vom Stift **3.3V** auf den Stift **P13**. Der Stecker bleibt in Reihe 10, alles andere bleibt, wie es ist.
+3. Steckt das USB-Kabel wieder in den micro:bit.
+
+Jetzt kann zweierlei passieren. Beides ist in Ordnung:
+
+- **Die LED bleibt dunkel.** P13 gibt nur Strom, wenn ein Programm es sagt. Auf eurem micro:bit ist noch kein Programm, das P13 einschaltet.
+- **Die LED leuchtet oder blinkt schon.** Der micro:bit behält sein letztes Programm, auch ohne Strom. Vielleicht hat ihn vorher jemand in einem anderen Kurs benutzt, und sein altes Programm schaltet P13 noch ein. Sobald ihr euer eigenes Programm überträgt, ist das alte weg.
 
 ## Editor einrichten
 
@@ -167,7 +190,8 @@ Geht diese Liste der Reihe nach durch. Zieht vorher das USB-Kabel ab.
 3. **Lücke prüfen.** Liegt der Widerstand wirklich über der Lücke und nicht daneben?
 4. **Pin prüfen.** Steckt das Kabel auf **P13** und nicht auf dem Stift daneben?
 5. **GND prüfen.** Steckt das Kabel der GND-Reihe auf einem Stift mit **GND**? Führt die Brücke von Reihe 11 in Reihe 14?
-6. **Programm prüfen.** Steht im Programm P13? Habt ihr es übertragen?
+6. **Mit 3.3V testen.** Steckt die Buchse von P13 kurz auf **3.3V** und dann das USB-Kabel ein. Leuchtet die LED jetzt, ist die Schaltung richtig. Dann liegt es am Pin oder am Programm. Danach wieder zurück auf P13.
+7. **Programm prüfen.** Steht im Programm P13? Habt ihr es übertragen?
 
 ## Bonus: Der Herzschlag
 

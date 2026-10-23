@@ -53,6 +53,8 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
       und seit 21.10. in `/projekte` verlinkt, aber ohne Hardware entstanden. Zu prüfen:
       - Startklar: Steckt der micro:bit mit den Lampen nach oben in der Platine? Sind links wirklich
         nur die 2 Löcher an der Lücke frei, und reichen Widerstandsbeine über die Lücke?
+      - Startklar mit 3.3V: Leuchtet die LED am 3.3V-Stift der Platine, sobald der micro:bit am USB
+        hängt? Bleibt sie an P13 bei einem frisch ausgepackten micro:bit (Demo-Programm) wirklich dunkel?
       - Leuchten alle 5 LEDs mit 150 Ω hell genug, und stimmen die Farbringe (braun-grün-schwarz-schwarz-braun)?
       - GND-Reihen (HANDOFF 3.119): Reichen die Brückenkabel (Stecker auf Stecker) von Reihe 3 bis
         Reihe 8? Passen GND-Kabel und drei Brücken in eine Reihe mit fünf Löchern?

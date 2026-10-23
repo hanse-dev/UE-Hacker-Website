@@ -29,6 +29,7 @@ HEIGHT = TOP + (ROWS - 1) * PITCH + 46
 
 LED_COLORS = {'rot': '#e53935', 'gelb': '#fdd835', 'gruen': '#43a047'}
 WIRE = '#f28c28'
+POWER_WIRE = '#d32f2f'   # Kabel vom Stift 3.3V (Startklar, LED leuchtet ohne Programm)
 GND_WIRE = '#222'
 BRIDGE = '#1e88e5'
 FONT = 'font-family="Arial, Helvetica, sans-serif"'
@@ -68,14 +69,15 @@ def dot(x, yy, color='#000'):
 
 def signal_wire(row, label, target_x=FREE_LEFT[0]):
     yy = y(row)
+    color = POWER_WIRE if label == '3.3V' else WIRE
     return [
         f'<text x="104" y="{yy + 5}" text-anchor="end" font-size="14" font-weight="bold" {FONT}>{label}</text>',
         # Endet das Kabel rechts der Lücke, springt es im Bogen über die linken Löcher (nicht eingesteckt).
-        (f'<line x1="108" y1="{yy}" x2="{target_x}" y2="{yy}" stroke="{WIRE}" stroke-width="5" stroke-linecap="round"/>'
+        (f'<line x1="108" y1="{yy}" x2="{target_x}" y2="{yy}" stroke="{color}" stroke-width="5" stroke-linecap="round"/>'
          if target_x in FREE_LEFT else
-         f'<path d="M 108 {yy} L 214 {yy} Q 300 {yy - 26} {target_x} {yy}" fill="none" stroke="{WIRE}" '
+         f'<path d="M 108 {yy} L 214 {yy} Q 300 {yy - 26} {target_x} {yy}" fill="none" stroke="{color}" '
          f'stroke-width="5" stroke-linecap="round"/>'),
-        dot(target_x, yy, WIRE),
+        dot(target_x, yy, color),
     ]
 
 
@@ -176,6 +178,7 @@ def save(name, parts):
 
 
 FUSS_ROT = (10, 'rot', 'P13')
+FUSS_ROT_3V3 = (10, 'rot', '3.3V')   # Startklar: erst an 3.3V, dann wird nur das Kabel auf P13 umgesteckt
 FUSS_GRUEN = (12, 'gruen', 'P12')
 AUTO = [(2, 'rot', 'P16'), (4, 'gelb', 'P15'), (6, 'gruen', 'P14')]
 AUTO_GND = 8
@@ -218,7 +221,8 @@ def breadboard_explained():
 
 if __name__ == '__main__':
     save('breadboard.svg', breadboard_explained())
-    save('stufe-0.svg', plan('Startklar: die erste LED', [FUSS_ROT]))
+    save('erste-led-3v3.svg', plan('Startklar: die erste LED an 3.3V', [FUSS_ROT_3V3]))
+    save('stufe-0.svg', plan('Startklar: die LED an P13', [FUSS_ROT]))
     save('stufe-1.svg', plan('Stufe 1: Fußgängerampel', [FUSS_ROT, FUSS_GRUEN]))
     save('stufe-2.svg', plan('Stufe 2 und 3: Fußgänger- und Autoampel', AUTO + [FUSS_ROT, FUSS_GRUEN]))
     save('taster.svg', plan('Werkstatt: echter Ampeldrücker', AUTO + [FUSS_ROT, FUSS_GRUEN], taster(*TASTER), [TASTER[1]]))
