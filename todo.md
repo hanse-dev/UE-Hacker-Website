@@ -18,14 +18,13 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
       W1 Mission 2 / W3 Lektion 7 als Liste schreiben; Bonus-Texte mit unklarem Auftrag wie W3 Mission 2/3,
       Boss 3 „Score“; W3 Boss 1: antwort_2 fehlt; Tippen von { } und ⭐), dann Woche 4–12 und die
       Themen Pferde/Sci-Fi mit `npm run testkind` prüfen.
-      micro:bit (Blöcke) überarbeitet: 73 → 57 Stellen, 13 → 4 wichtige (danach noch Kreuzung und Taster
-      verbessert). Offen: Rest-Stellen v. a. in den Werkstätten (Funktion mit Parametern in Ampel Stufe 2,
-      Einsatzfahrzeug im Auto). `--variante python`/`javascript` (Branch `microbit-varianten`):
-      Einführung und Stern überarbeitet (Tipps/Ortsangaben je Variante statt Blöcke-Sprache,
-      Würfel-Lösung, Gerüste für Funk/Nachtmodus/Taster in der Ampel); Auto folgt. Neu im Editor nachklicken: Python-Editor **Öffnen** neben
-      **Speichern**, .hex-Datei auf MakeCode ziehen öffnet sie, Schütteln-Knopf im Simulator. Neu eingefügte
-      MakeCode-Angaben (Fortgeschritten → Erweiterungen, Pins → … mehr → Digital-Pin, Plus am wenn-Block,
-      Speichern-Symbol neben dem Projektnamen) beim nächsten Termin einmal im echten Editor nachklicken.
+      micro:bit überarbeitet, alle drei Ansichten (Blöcke: 73 → 57 Stellen, 13 → 4 wichtige; Python/JS
+      nach `--variante`: 148 Stellen, 33 → 0 wichtige, nur Auto-JS nicht, siehe nächster Punkt).
+      Offen: Rest-Stellen (je Kurs 3–26, v. a. Werkstätten). Neu eingefügte Editor-Angaben beim
+      nächsten Termin einmal im echten Editor nachklicken: MakeCode (Fortgeschritten → Erweiterungen,
+      Pins → … mehr → Digital-Pin, Plus am wenn-Block, Speichern-Symbol neben dem Projektnamen,
+      .hex-Datei auf den Editor ziehen öffnet sie) und Python-Editor (**Öffnen** neben **Speichern**,
+      beim Hinzufügen von `keyes_MiniCar.py` heißt die Wahl „hinzufügen“, Schütteln im Simulator).
       Test-Kind für weitere Kursarten (Projekt-Kurse Python, JS-Grundkurs, Web, KI-Labor) erweitern;
       bis dahin meldet `--geaendert` sie als „nicht geprüft“.
 
@@ -84,6 +83,11 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
         beschrieben (Python: „Ausführen“)?
       - Nach dem Durchspielen: `beta` in `kurse.json` entfernen und die ID in `tests/kurse-beta.spec.js`
         (`NICHT_BETA`) eintragen.
+- [ ] micro:bit „Das Roboterauto“ hat keine JavaScript-Ansicht (nur Blöcke/Python); Kinder, die in der
+      Einführung JavaScript gewählt haben, landen bei Blöcken (Hinweis in Startklar steht da). Das
+      Test-Kind meldete dafür 11 „wichtige“ Stellen. Vorschlag, falls gewünscht: JS-Variante aus den
+      MakeCode-Namen der MiniCar-Erweiterung bauen (in MakeCode Blöcke → JavaScript umschalten zeigt
+      sie) – braucht einmal den echten Editor mit der Erweiterung, Entscheidung Eike.
 - [ ] micro:bit-Kurs: `public/microbit/keyes_MiniCar.py` stammt aus dem Keyestudio-Download, eine
       Lizenz ist dort nicht angegeben. Vorschlag: bei Keyestudio nachfragen oder die Datei durch
       einen Link auf deren Download ersetzen (dann fehlt die Korrektur für `get_distance()`).
