@@ -239,6 +239,14 @@ test.describe('micro:bit-Kurs: Roboterauto (Anleitung zum Abhaken)', () => {
     await expect(page.locator('.btn-start-course')).toBeVisible();
   });
 
+  test('Partnerarbeit: ohne Login zeigt der Kurs nur den Hinweis, sich erst anzumelden', async ({ page }) => {
+    await openCourse(page);
+    const box = page.locator('.partner-box');
+    await expect(box.locator('.partner-hint')).toContainText('zu zweit');
+    await expect(box.locator('.partner-open')).toHaveCount(0);
+    await expect(box.locator('.partner-form')).toHaveCount(0);
+  });
+
   test('Bibliothek für Python wird zum Download ausgeliefert', async ({ page }) => {
     const res = await page.request.get('/microbit/keyes_MiniCar.py');
     expect(res.status()).toBe(200);

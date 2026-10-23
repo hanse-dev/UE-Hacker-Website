@@ -9,6 +9,7 @@ import {
   setUserSession,
 } from './useAuthApi.js';
 import { loadAccountProgress, syncNow } from './useProgressSync.js';
+import { clearPartners } from './usePartner.js';
 
 const user = ref(getUserInfo());
 const token = ref(getUserToken());
@@ -34,6 +35,7 @@ export function useAuth() {
     error.value = '';
     try {
       const data = await loginUser(username, password);
+      clearPartners();
       setUserSession(data.token, data.user);
       token.value = data.token;
       user.value = data.user;
@@ -67,6 +69,7 @@ export function useAuth() {
   };
 
   const logout = () => {
+    clearPartners();
     clearUserSession();
     token.value = '';
     user.value = null;

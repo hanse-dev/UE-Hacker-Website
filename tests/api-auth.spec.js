@@ -369,4 +369,77 @@ test.describe('API: Admin + Auth + Progress', () => {
     });
     expect(recurringWithoutValidFrom.status()).toBe(400);
   });
+
+  async function createUserWithToken(request, token, username) {
+    const created = await request.post(`${API}/api/admin/users`, {
+      headers: { Authorization: `Bearer ${token}` },
+      data: { username, password: 'pass1234', ageGroup: 'kinder' },
+    });
+    expect(created.ok()).toBeTruthy();
+    const login = await request.post(`${API}/api/login`, { data: { username, password: 'pass1234' } });
+    return { id: (await created.json()).user.id, token: (await login.json()).token };
+  }
+
+  test('PATCH /api/progress schreibt einzelne Einträge, der Rest des Fortschritts bleibt', async ({ request }) => {
+    const token = await adminToken(request);
+    const user = await createUserWithToken(request, token, `patch_${Date.now()}`);
+    const auth = { Authorization: `Bearer ${user.token}` };
+    await request.put(`${API}/api/progress`, {
+      headers: auth,
+      data: { payload: { 'ue-hacker-fortschritt': { value: { a: 1 }, updatedAt: '2026-01-01T00:00:00.000Z' } } },
+    });
+
+    const patched = await request.patch(`${API}/api/progress`, {
+      headers: auth,
+      data: { entries: { 'ue-hacker-interactive-progress-microbit-auto': { value: { completedLessonIds: ['lektion-01'] } } } },
+    });
+    expect(patched.ok()).toBeTruthy();
+
+    const { payload } = await (await request.get(`${API}/api/progress`, { headers: auth })).json();
+    expect(payload['ue-hacker-fortschritt'].value).toEqual({ a: 1 });
+    expect(payload['ue-hacker-interactive-progress-microbit-auto'].value.completedLessonIds).toEqual(['lektion-01']);
+    expect(payload['ue-hacker-interactive-progress-microbit-auto'].updatedAt).toBeTruthy();
+
+    // Ohne Login, ohne Einträge und mit fremden Keys geht nichts.
+    expect((await request.patch(`${API}/api/progress`, { data: { entries: { 'ue-hacker-x': { value: 1 } } } })).status()).toBe(401);
+    expect((await request.patch(`${API}/api/progress`, { headers: auth, data: { entries: {} } })).status()).toBe(400);
+    expect((await request.patch(`${API}/api/progress`, { headers: auth, data: { entries: { fremd: { value: 1 } } } })).status()).toBe(400);
+    expect((await request.patch(`${API}/api/progress`, { headers: auth, data: { entries: { 'ue-hacker-x': {} } } })).status()).toBe(400);
+  });
+
+  test('Admin schreibt ein Projekt gut: Kurs gilt als abgeschlossen, vorhandene Haken und andere Kurse bleiben', async ({ request }) => {
+    const token = await adminToken(request);
+    const admin = { Authorization: `Bearer ${token}` };
+    const user = await createUserWithToken(request, token, `grant_${Date.now()}`);
+    const auth = { Authorization: `Bearer ${user.token}` };
+    const KEY = 'ue-hacker-interactive-progress-microbit-auto';
+    await request.put(`${API}/api/progress`, {
+      headers: auth,
+      data: {
+        payload: {
+          [KEY]: { value: { version: 1, completedLessonIds: ['lektion-01'], partialChecks: { 'lektion-02': [3] } }, updatedAt: '2026-01-01T00:00:00.000Z' },
+          'ue-hacker-interactive-progress-morsecode': { value: { completedLessonIds: ['lektion-01'] }, updatedAt: '2026-01-01T00:00:00.000Z' },
+        },
+      },
+    });
+
+    const value = { version: 1, courseId: 'projekt-microbit-auto', variant: 'microbit-auto', completedLessonIds: ['lektion-01', 'lektion-02'] };
+    const granted = await request.post(`${API}/api/admin/users/${user.id}/progress`, { headers: admin, data: { key: KEY, value } });
+    expect(granted.ok()).toBeTruthy();
+
+    const { payload } = await (await request.get(`${API}/api/progress`, { headers: auth })).json();
+    expect(payload[KEY].value.completedLessonIds).toEqual(['lektion-01', 'lektion-02']);
+    expect(payload[KEY].value.partialChecks).toEqual({ 'lektion-02': [3] });
+    // Neuer als der alte Stand, damit der Sync im Browser die Gutschrift übernimmt.
+    expect(Date.parse(payload[KEY].updatedAt)).toBeGreaterThan(Date.parse('2026-01-01T00:00:00.000Z'));
+    expect(payload['ue-hacker-interactive-progress-morsecode'].value.completedLessonIds).toEqual(['lektion-01']);
+
+    const post = (headers, data, id = user.id) => request.post(`${API}/api/admin/users/${id}/progress`, { headers, data });
+    expect((await post({}, { key: KEY, value })).status()).toBe(401);
+    expect((await post(auth, { key: KEY, value })).status()).toBe(401); // Nutzer-Token ist kein Admin-Token
+    expect((await post(admin, { key: KEY, value }, 'gibt-es-nicht')).status()).toBe(404);
+    expect((await post(admin, { key: 'ue-hacker-week-checks', value })).status()).toBe(400);
+    expect((await post(admin, { key: KEY, value: { completedLessonIds: [] } })).status()).toBe(400);
+    expect((await post(admin, { key: KEY, value: { completedLessonIds: [1, 2] } })).status()).toBe(400);
+  });
 });

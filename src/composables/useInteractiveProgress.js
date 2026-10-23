@@ -2,6 +2,7 @@ import { DEV_SKIP_CHECKS } from './devSkipChecks.js';
 import { ref, computed, watch } from 'vue';
 import { PROGRESS_APPLIED_EVENT, touchSyncKey } from './useProgressSync.js';
 import { getUserToken } from './useAuthApi.js';
+import { notifyPartner } from './usePartner.js';
 
 const COURSE_ID = 'python-grundlagen-interaktiv';
 // Einzelne Haken einer noch offenen Lektion (Anleitungen zum Abhaken) gelten ohne Account nur einen
@@ -14,6 +15,14 @@ function storageKey(variant) {
 
 function defaultState(variant, courseId = COURSE_ID) {
   return { version: 1, courseId, variant, completedLessonIds: [] };
+}
+
+// Für die Admin-Gutschrift: Storage-Key und Stand eines komplett abgeschlossenen Kurses.
+export function completedCourseEntry(variant, courseId, lessonIds) {
+  return {
+    key: storageKey(variant),
+    value: { ...defaultState(variant, courseId), completedLessonIds: [...lessonIds] },
+  };
 }
 
 function loadFromStorage(variant, courseId) {
@@ -31,6 +40,7 @@ function saveToStorage(variant, state) {
   try {
     localStorage.setItem(storageKey(variant), JSON.stringify(state));
     touchSyncKey(storageKey(variant));
+    notifyPartner(variant, storageKey(variant), state);
   } catch (e) {
     console.error('Fortschritt konnte nicht gespeichert werden:', e);
   }
@@ -93,6 +103,23 @@ export function useInteractiveProgress(variant = 'kinder', courseId = COURSE_ID)
     state.value = { ...state.value, partialChecks: all, partialChecksAt: new Date().toISOString() };
   };
 
+  // Führt einen zweiten Stand desselben Kurses ein (Partnerarbeit): abgeschlossene Lektionen und
+  // einzelne Haken beider Seiten bleiben erhalten.
+  const mergeState = (incoming) => {
+    const ids = new Set([...(state.value.completedLessonIds || []), ...(incoming?.completedLessonIds || [])]);
+    const partial = partialChecksExpired() ? {} : { ...(state.value.partialChecks || {}) };
+    for (const [lessonId, indexes] of Object.entries(incoming?.partialChecks || {})) {
+      if (!Array.isArray(indexes)) continue;
+      partial[lessonId] = [...new Set([...(partial[lessonId] || []), ...indexes])].sort((a, b) => a - b);
+    }
+    state.value = {
+      ...state.value,
+      completedLessonIds: [...ids],
+      partialChecks: partial,
+      partialChecksAt: new Date().toISOString(),
+    };
+  };
+
   const isLessonUnlocked = (lessonId, lessons) => {
     if (!lessons?.length) return false;
     const index = lessons.findIndex((l) => l.id === lessonId);
@@ -138,6 +165,8 @@ export function useInteractiveProgress(variant = 'kinder', courseId = COURSE_ID)
     unmarkCompleted,
     getPartialChecks,
     setPartialChecks,
+    mergeState,
+    storageKey: storageKey(variant),
     isLessonUnlocked,
     getNextLessonId,
     resetProgress,
