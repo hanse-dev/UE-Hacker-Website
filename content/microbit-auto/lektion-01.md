@@ -80,7 +80,25 @@ display.show(Image.HEART)
 
 :::
 
-Klappt das Verbinden nicht? Dann speichert das Programm als Datei und zieht sie auf das Laufwerk **MICROBIT**.
+Klappt das Verbinden nicht, zum Beispiel weil der Schul-Computer es nicht erlaubt? Dann nehmt Plan B.
+
+## Plan B: Datei aufs Laufwerk ziehen
+
+<img src="/microbit/einfuehrung/plan-b.svg" alt="Plan B in drei Schritten: Programm als .hex-Datei herunterladen oder speichern, die Datei auf das Laufwerk MICROBIT ziehen, warten, bis die gelbe Lampe auf der Rückseite nicht mehr blinkt">
+
+:::bloecke
+
+Ohne verbundenes Gerät speichert **Herunterladen** eine Datei, die auf **.hex** endet. Ihr findet sie im Ordner **Downloads**.
+
+:::
+
+:::python
+
+Klickt auf **Speichern**. Die Datei endet auf **.hex** und liegt im Ordner **Downloads**.
+
+:::
+
+Öffnet den Ordner **Downloads** (Windows: Explorer, Mac: Finder). Das Laufwerk **MICROBIT** steht links in der Liste. Zieht die Datei mit gedrückter Maustaste aus **Downloads** auf **MICROBIT** und lasst dort los. Blinkt die gelbe Lampe nicht mehr, läuft euer Programm. Das Laufwerk verschwindet dabei kurz, das ist normal.
 
 ## Bonus: Ein anderes Bild
 

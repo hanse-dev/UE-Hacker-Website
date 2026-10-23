@@ -32,6 +32,20 @@ test.describe('micro:bit: Einführung vor jedem micro:bit-Kurs', () => {
     for (const id of MICROBIT_KURSE) expect(last, id).toContain(`(/kurs/${id})`);
   });
 
+  test('Jeder micro:bit-Kurs erklärt beim ersten Übertragen Plan B: Datei aus Downloads auf das Laufwerk ziehen', () => {
+    for (const id of [INTRO_ID, ...MICROBIT_KURSE]) {
+      const dir = path.join('content', id.replace(/^projekt-/, ''));
+      const files = JSON.parse(fs.readFileSync(path.join(dir, 'lessons.json'), 'utf8')).map((l) => l.file);
+      const md = files.map((f) => fs.readFileSync(path.join(dir, f), 'utf8'))
+        .find((text) => text.includes('## Auf den micro:bit übertragen'));
+      expect(md, `${id}: Abschnitt zum Übertragen`).toBeTruthy();
+      expect(md, id).toMatch(/^## Plan B: Datei aufs Laufwerk ziehen$/m);
+      for (const text of ['/microbit/einfuehrung/plan-b.svg', 'Downloads', 'Explorer', 'Finder', '**MICROBIT**', 'gedrückter Maustaste']) {
+        expect(md, `${id}: ${text}`).toContain(text);
+      }
+    }
+  });
+
   for (const id of ['projekt-microbit-sterne', 'projekt-microbit-ampel', 'projekt-microbit-auto']) {
     test(`${id}: Startseite verweist Neue auf die Einführung, „Kurs starten“ überspringt sie`, async ({ page }) => {
       await page.goto(`/kurs/${id}`);

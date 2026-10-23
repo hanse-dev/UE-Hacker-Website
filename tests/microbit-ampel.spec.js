@@ -46,8 +46,8 @@ test.describe('micro:bit-Kurs: Ampelanlage (Anleitung zum Abhaken)', () => {
     await openCourse(page);
     const content = page.locator('.guide-lesson .lesson-content');
     const images = content.locator('img');
-    await expect(images).toHaveCount(3);
-    for (let i = 0; i < 3; i++) {
+    await expect(images).toHaveCount(4);
+    for (let i = 0; i < 4; i++) {
       const img = images.nth(i);
       await img.scrollIntoViewIfNeeded();
       await expect.poll(() => img.evaluate((el) => el.complete && el.naturalWidth)).toBeGreaterThan(0);
