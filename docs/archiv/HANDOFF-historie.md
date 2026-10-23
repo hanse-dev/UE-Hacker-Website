@@ -3066,3 +3066,20 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   Aufgabentext kommt per `import.meta.glob` aus `lessons.json` (der Server kennt keinen Content).
 - Tests: `tests/stolperstellen.spec.js` in `test:auth` (API, JS- und Python-Lektion, Testbrowser
   ohne Freischaltung sendet nichts, Admin-Reiter).
+
+### 3.125 — KI als Test-Kind (Branch `verstaendlichkeit`)
+
+- Teil (3) aus 3.123. `scripts/ki_testkind.py` (`npm run testkind -- --wochen N …`), nur Python-12-Wochen,
+  nur DE. Entscheidung Eike (23.10.2026): über die `claude`-CLI (Abo, kein API-Schlüssel), Alter per
+  `--alter` (Standard 11).
+- Pro Lektion ein Aufruf `claude -p --tools "" --json-schema …` in einem leeren temporären Ordner
+  (sonst liest Claude Code die `CLAUDE.md` des Repos mit). Kontext: Glossare der früheren Wochen
+  (`*_0_glossar`) + die bisherigen Lektionen dieser Woche (Text, Aufgaben, Vorlagen, Beispiele) –
+  **nie** die Musterlösungen. Antwort je Aufgabe: verstanden ja/teilweise/nein, eigene Worte, Code,
+  Unklares; dazu schwere Wörter und verwirrende Sätze.
+- Der Code des Test-Kinds läuft mit `python3 -I` in einem leeren Ordner (10 s Timeout); Beispiele und
+  frühere Aufgaben der Lektion laufen vorher mit (wie im gemeinsamen Kernel), gezählt wird die
+  Ausgabe nach einer Markierung. Vergleich wie `normalizeForComparison()` in `useTaskValidation.js`.
+- Erster Probelauf Woche 3 Lektion 2: ~12 s, rechnerisch 0,07 $; fand u. a., dass „Vergleich direkt
+  in `{}` eines f-Strings“ nie gezeigt wurde – das sieht der statische Bericht (3.123) nicht.
+- `tests/ki-testkind.spec.js` prüft ohne KI (`--antworten` mit vorbereiteten Antworten, `--trocken`).
