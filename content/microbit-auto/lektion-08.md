@@ -55,9 +55,11 @@ while True:
 
 :::
 
+> Auch dieses Programm fährt ohne Startknopf los, sobald der Schalter auf ON steht. Haltet das Auto fest oder stellt es erst danach auf den Boden.
+
 ## Testen wie die Profis
 
-Baut aus Büchern oder Kartons eine kleine Arena. Beobachtet das Auto eine Minute lang und notiert, wo es hängen bleibt. Ändert danach immer nur **eine** Zahl und testet neu. So merkt ihr, was die Änderung bewirkt hat. Die 15 bestimmt, wie früh das Auto ausweicht, die 300, wie weit es zurücksetzt, und die 400, wie weit es sich dreht. Bleibt es in Ecken hängen, probiert zum Beispiel eine längere Drehung.
+Baut aus Büchern oder Kartons eine kleine Arena. Beobachtet das Auto eine Minute lang und notiert, wo es hängen bleibt. Hängen bleiben heißt: Es steckt fest oder dreht sich lange an derselben Stelle. Ändert danach immer nur **eine** Zahl und testet neu. So merkt ihr, was die Änderung bewirkt hat. Die 15 bestimmt, wie früh das Auto ausweicht, die 300, wie weit es zurücksetzt, und die 400, wie weit es sich dreht. Bleibt es in Ecken hängen, probiert zum Beispiel eine längere Drehung.
 
 Der Sensor sieht nur, was direkt vor ihm liegt. Schräge Wände, Stuhlbeine und weiche Stoffe erkennt er schlecht.
 
@@ -93,7 +95,34 @@ Die Zeile `import random` gehört ganz nach oben zu den anderen `import`-Zeilen.
 :::
 
 - Merkt euch die gewürfelte Zahl in einer Variable.
-- Dann entscheidet eine Bedingung: Bei 0 dreht das Auto nach links, sonst nach rechts. Diese Bedingung (**wenn … dann … ansonsten** mit dem **=** aus **Logik**) steckt im oberen Teil eures wenn-Blocks, an der Stelle der Drehung. Ein wenn-Block darf in einem anderen stecken.
+- Dann entscheidet eine Bedingung: Bei 0 dreht das Auto nach links, sonst nach rechts.
+
+:::bloecke
+
+- Die Bedingung (**wenn … dann … ansonsten** mit dem **=** aus **Logik**) steckt im oberen Teil eures wenn-Blocks, an der Stelle der Drehung. Ein wenn-Block darf in einem anderen stecken.
+- Die Reihenfolge im oberen Teil: zurücksetzen und 300 ms warten wie bisher, dann würfeln, dann **wenn zahl = 0 dann** links drehen, **ansonsten** rechts drehen. Danach kommt das Warten für die Drehung (400 ms).
+
+:::
+
+:::python
+
+- Die Bedingung kommt in den `if`-Teil, an die Stelle der Drehung. Zum Vergleichen schreibt ihr zwei Gleichheitszeichen `==`. Das innere `if` ist noch einmal vier Leerzeichen weiter eingerückt:
+
+```python
+    if 0 < abstand < 15:
+        auto.Motor_L(0, 70)
+        auto.Motor_R(0, 70)
+        sleep(300)
+        zahl = random.randint(0, 1)
+        if zahl == 0:
+            # nach links drehen
+        else:
+            # nach rechts drehen
+        sleep(400)
+```
+
+:::
+
 - Gewürfelt wird jedes Mal neu, wenn ein Hindernis auftaucht, nicht nur einmal am Anfang.
 
 </details>

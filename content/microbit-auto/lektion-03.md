@@ -1,6 +1,6 @@
 # Stufe 2: Scheinwerfer
 
-Vorn am Auto sitzen zwei Scheinwerfer, die jede Farbe können. Ab jetzt braucht das Auto Strom aus den Batterien: Nach dem Übertragen stellt ihr den Schalter **POWER** auf **ON**. Was in **beim Start** steht, ist dann aber schon vorbei. Drückt deshalb nach dem Einschalten den kleinen Knopf auf der Rückseite des micro:bit: Das Programm startet neu, und jetzt leuchten die Scheinwerfer.
+Vorn am Auto sitzen zwei Scheinwerfer, die jede Farbe können. Ab jetzt braucht das Auto Strom aus den Batterien: Nach dem Übertragen stellt ihr den Schalter **POWER** auf **ON**. Euer Programm ist dann aber schon gelaufen, als das Auto noch aus war. Drückt deshalb nach dem Einschalten den kleinen Knopf auf der Rückseite des micro:bit, neben der USB-Buchse: Das Programm startet neu, und jetzt leuchten die Scheinwerfer. Bei einer Endlosschleife wie beim Blinken weiter unten müsst ihr nicht drücken, sie läuft ja immer weiter.
 
 ## Scheinwerfer einschalten
 
@@ -42,7 +42,7 @@ Die Zahl bestimmt die Helligkeit, und zwar andersherum als erwartet: **0 ist gan
 
 ## Blinken
 
-Soll etwas immer wieder passieren, kommt es in eine Endlosschleife. Nehmt die Blöcke aus „Scheinwerfer einschalten“ vorher weg, sonst laufen beide Programme durcheinander. Bei Blöcken zieht ihr **beim Start** dafür zurück in die Blockliste.
+Soll etwas immer wieder passieren, kommt es in eine Endlosschleife. Löscht vorher das Programm aus „Scheinwerfer einschalten“, sonst laufen beide durcheinander. Bei Blöcken zieht ihr **beim Start** dafür zurück in die Blockliste. In Python bleiben nur die drei Zeilen oben stehen.
 
 :::bloecke
 
@@ -78,7 +78,19 @@ Rot und Grün zusammen ergeben Gelb.
 
 ## Der Blinker
 
-Beim Abbiegen blinkt erst nur der linke Scheinwerfer dreimal, dann nur der rechte dreimal. Baut das wie das Blinken oben, nur ohne Endlosschleife: Schreibt das An-Pause-Aus-Pause für den linken Scheinwerfer dreimal untereinander, dann dreimal für den rechten.
+Beim Abbiegen blinkt erst nur der linke Scheinwerfer dreimal, dann nur der rechte dreimal. Baut das wie das Blinken oben, nur ohne Endlosschleife: Schreibt das An-Pause-Aus-Pause für den linken Scheinwerfer dreimal untereinander, dann dreimal für den rechten. Nehmt Gelb wie oben. Zum Wiederholen drückt ihr hinten den Knopf.
+
+:::bloecke
+
+Die Blöcke kommen in **beim Start**, **dauerhaft** nehmt ihr weg. **LED OFF** macht beide Scheinwerfer aus, das ist hier richtig.
+
+:::
+
+:::python
+
+Ohne `while True:` stehen alle Zeilen ganz links, ohne Leerzeichen davor. `auto.led_off()` macht beide Scheinwerfer aus, das ist hier richtig.
+
+:::
 
 ## Bonus: Das Polizeilicht
 

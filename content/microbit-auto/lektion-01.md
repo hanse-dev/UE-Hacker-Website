@@ -13,7 +13,7 @@ Oben auf dieser Seite wählt ihr, wie die Anleitung den Code zeigt. Beide Wege s
 - **Blöcke:** Ihr steckt farbige Bausteine zusammen. Gut, wenn ihr noch nie programmiert habt.
 - **Python:** Ihr schreibt Text. Gut, wenn ihr Python schon ein wenig kennt.
 
-Ihr könnt jederzeit umschalten und euch den anderen Weg ansehen.
+Ihr könnt jederzeit umschalten und euch den anderen Weg ansehen. JavaScript gibt es in diesem Kurs nicht. Habt ihr in der Einführung JavaScript genommen, nehmt hier die Blöcke: Sie sind im selben Editor.
 
 ## Editor einrichten
 
@@ -32,7 +32,7 @@ Die Blöcke von MiniCar sind englisch beschriftet. Die Anleitung zeigt sie genau
 
 1. Ladet die Datei <a href="/microbit/keyes_MiniCar.py" download>keyes_MiniCar.py</a> herunter. Sie bringt dem micro:bit bei, wie er mit dem Auto spricht.
 2. Öffnet [python.microbit.org](https://python.microbit.org).
-3. Klickt links auf **Projekt** und dann auf **Öffnen**. Wählt die heruntergeladene Datei aus und bestätigt, dass sie zum Projekt hinzugefügt wird.
+3. Klickt links auf **Projekt** und dann auf **Öffnen**. Wählt die heruntergeladene Datei aus. Der Editor fragt, ob die Datei euer Programm ersetzen oder dazukommen soll: Wählt **hinzufügen**. Euer Programm `main.py` bleibt.
 4. Unter **Projekt** stehen jetzt zwei Dateien: `main.py` (euer Programm) und `keyes_MiniCar.py`.
 
 Der Simulator rechts im Editor kennt das Auto nicht. Ob etwas klappt, seht ihr nur am echten Auto.
@@ -65,7 +65,7 @@ display.show(Image.HEART)
 ## Auf den micro:bit übertragen
 
 1. Stellt den Schalter **POWER** am Auto auf **OFF**.
-2. Steckt den micro:bit in das Auto. Die Seite mit den Lampen zeigt nach vorn. Vorn ist die Seite mit den beiden „Augen“ und den Scheinwerfern.
+2. Steckt den micro:bit in das Auto. Die Seite mit den 25 Lampen des micro:bit zeigt nach vorn. Vorn ist die Seite mit den beiden „Augen“ und den Scheinwerfern.
 3. Verbindet den micro:bit per USB-Kabel mit dem Computer.
 
 :::bloecke
@@ -97,7 +97,7 @@ Klickt im Block **zeige Symbol** auf das kleine Bild. Es klappt eine Auswahl mit
 
 :::python
 
-Löscht `HEART` und tippt hinter `Image.` einen Punkt neu. Der Editor schlägt euch dann alle Bilder vor, zum Beispiel `DUCK`, `GHOST` oder `ROLLERSKATE`.
+Löscht `HEART` und den Punkt davor. Tippt den Punkt dann noch einmal: Jetzt schlägt der Editor euch alle Bilder vor, zum Beispiel `DUCK`, `GHOST` oder `ROLLERSKATE`.
 
 :::
 

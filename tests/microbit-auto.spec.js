@@ -190,11 +190,11 @@ test.describe('micro:bit-Kurs: Roboterauto (Anleitung zum Abhaken)', () => {
     // Sichtbar ist nur der erste Fall, die drei anderen bauen die Teams selbst.
     await expect(content.locator('.mc-block:visible', { hasText: 'wenn linie = 3 dann' })).toHaveCount(1);
     await expect(content.locator('.mc-block:visible', { hasText: 'Backward' })).toHaveCount(0);
-    await expect(content.getByText('nach links drehen, die Linie wandert nach links weg')).toBeHidden();
+    await expect(content.getByText('nach links drehen, denn die Linie liegt links vom Auto')).toBeHidden();
 
     const plan = content.locator('details', { has: page.locator('summary', { hasText: 'Plan anzeigen' }) });
     await plan.locator('summary').click();
-    await expect(plan.getByText('nach links drehen, die Linie wandert nach links weg')).toBeVisible();
+    await expect(plan.getByText('nach links drehen, denn die Linie liegt links vom Auto')).toBeVisible();
 
     const solution = content.locator('details', { has: page.locator('summary', { hasText: 'Lösung anzeigen' }) });
     await expect(solution.locator('.mc-block', { hasText: 'sonst wenn linie = 2 dann' })).toBeHidden();

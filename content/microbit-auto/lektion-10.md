@@ -26,7 +26,7 @@ Kommt ihr nicht weiter, hilft der fertige Plan. Versucht es aber zuerst allein.
 | Was sehen die Sensoren? | Was tut das Auto? |
 |---|---|
 | beide Schwarz | geradeaus, die Linie liegt genau darunter |
-| nur links Schwarz | nach links drehen, die Linie wandert nach links weg |
+| nur links Schwarz | nach links drehen, denn die Linie liegt links vom Auto |
 | nur rechts Schwarz | nach rechts drehen |
 | beide Weiß | anhalten, die Linie ist verloren |
 
@@ -36,7 +36,7 @@ Kommt ihr nicht weiter, hilft der fertige Plan. Versucht es aber zuerst allein.
 
 > Auch dieses Programm fährt ohne Startknopf los, sobald der Schalter auf ON steht. Stellt das Auto zuerst auf die Linie, dann den Schalter auf ON.
 
-Jede Zeile eures Plans wird im Programm zu einem Fall. An welcher Zahl ihr einen Fall erkennt, steht in eurer Tabelle aus Stufe 8. Wie das Auto fährt, dreht und anhält, wisst ihr aus Stufe 3 und 4.
+Jede Zeile eures Plans wird im Programm zu einem Fall. Woran ihr einen Fall erkennt, steht in eurer Tabelle aus Stufe 8. Wie das Auto fährt, dreht und anhält, wisst ihr aus Stufe 3 und 4.
 
 Der erste Fall ist schon fertig. Die anderen drei baut ihr selbst.
 
@@ -77,7 +77,18 @@ while True:
     # Hier kommen eure drei weiteren Fälle hin.
 ```
 
-Weitere Fälle hängt ihr mit `elif` an, das heißt „sonst, wenn“. Der letzte Fall bekommt ein `else`. Python prüft die Fälle von oben nach unten und nimmt den ersten, der stimmt. Ein `==` vergleicht zwei Werte.
+In Python prüft ihr links und rechts einzeln: `1` heißt Schwarz, `0` heißt Weiß. Die Zahl 2 aus eurer Tabelle ist also `links == 1 and rechts == 0`.
+
+Weitere Fälle hängt ihr mit `elif` an, das heißt „sonst, wenn“. Der letzte Fall bekommt ein `else`. `elif` und `else` stehen genau unter dem `if`, genauso weit eingerückt, und enden mit einem Doppelpunkt:
+
+```python
+    elif links == … and rechts == …:
+        # was das Auto dann tut
+    else:
+        # der Fall, der übrig bleibt
+```
+
+Python prüft die Fälle von oben nach unten und nimmt den ersten, der stimmt. Ein `==` vergleicht zwei Werte.
 
 :::
 
@@ -146,7 +157,7 @@ Fangt mit einer geraden Linie an, dann eine weite Kurve, dann ein geschlossenes 
 ## Wenn das Auto die Linie verliert
 
 - **Es schießt in der Kurve hinaus:** Tempo senken.
-- **Es dreht in die falsche Richtung:** Links und rechts sind vertauscht. Tauscht in den beiden **sonst wenn** die Zahlen, zum Beispiel 1 und 2. Links und rechts meinen immer die Seiten des Autos, so wie in eurer Tabelle aus Stufe 8.
+- **Es dreht in die falsche Richtung:** Links und rechts sind vertauscht. Bei Blöcken tauscht ihr in den beiden **sonst wenn** die Zahlen, zum Beispiel 1 und 2. In Python tauscht ihr in den beiden `elif`-Fällen die Motor-Zeilen. Links und rechts meinen immer die Seiten des Autos, so wie in eurer Tabelle aus Stufe 8.
 - **Es bleibt sofort stehen:** Stellt es so auf, dass beide Sensoren über der Linie liegen. Ist die Linie breit genug?
 
 ## Bonus: Das Tempolimit
@@ -156,7 +167,20 @@ Wie schnell kann euer Auto fahren, ohne aus der Kurve zu fliegen? Findet das hö
 <details>
 <summary>Tipps anzeigen</summary>
 
-- Im Moment steht das Tempo an vielen Stellen im Programm. Legt ganz oben eine Variable `tempo` an und benutzt sie überall. Dann ändert ihr für jeden Versuch nur noch eine einzige Zahl.
+- Im Moment steht das Tempo an vielen Stellen im Programm. Legt eine Variable `tempo` an und benutzt sie überall. Dann ändert ihr für jeden Versuch nur noch eine einzige Zahl.
+
+:::bloecke
+
+- Steckt **setze tempo auf 60** in **beim Start**. Dann zieht ihr den runden Block `tempo` aus **Variablen** überall auf die 60 bei `speed`.
+
+:::
+
+:::python
+
+- Schreibt `tempo = 60` unter `auto = MiniCar()`. Dann schreibt ihr überall `tempo` statt `60`, zum Beispiel `auto.Motor_L(1, tempo)`.
+
+:::
+
 - Erhöht das Tempo in kleinen Schritten, zum Beispiel immer um 10, und führt eine Liste: Tempo, geschafft oder nicht.
 - Eine Runde reicht nicht als Beweis. Erst drei Runden ohne Fehler zählen.
 - Für Profis: Muss das Auto beim Drehen genauso schnell sein wie auf gerader Strecke? Probiert zwei verschiedene Tempos.

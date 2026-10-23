@@ -89,7 +89,20 @@ Setzt für die Drehung eure Zahl aus Stufe 4 ein. Das Quadrat ist gelungen, wenn
 
 ## Ein vierter Befehl
 
-Baut selbst einen vierten Befehl, zum Beispiel `rechts` (wie `links`, nur A vorwärts und B rückwärts) oder `zurueck` (beide Motoren `Backward`). Denkt euch damit eine eigene Figur aus, zum Beispiel einen Zickzack oder ein Rechteck mit Rückwärtsfahrt.
+Baut selbst einen vierten Befehl, zum Beispiel `rechts` oder `zurueck`.
+
+:::bloecke
+
+`rechts` ist wie `links`, nur fährt Motor A `Forward` und Motor B `Backward`. Bei `zurueck` fahren beide Motoren `Backward`.
+
+:::
+
+:::python
+
+`rechts` ist wie `links`, nur bekommt `Motor_L` eine `1` und `Motor_R` eine `0`. Bei `zurueck` bekommen beide Motoren eine `0`.
+
+:::
+ Denkt euch damit eine eigene Figur aus, zum Beispiel einen Zickzack oder ein Rechteck mit Rückwärtsfahrt.
 
 ## Bonus: Dreieck oder Acht
 
@@ -104,12 +117,32 @@ Sucht euch eine Figur aus:
 **Dreieck**
 
 - Wie oft muss die Wiederholung laufen?
-- An jeder Ecke dreht das Auto weiter als beim Quadrat. Nach drei Ecken hat es sich genau einmal ganz herumgedreht, beim Quadrat erst nach vier. Die Wartezeit für die Drehung muss also länger sein als eure Zahl aus Stufe 4. Rechnet so: Teilt eure Zahl durch 3 und zählt das Ergebnis dazu. Aus 400 wird so etwa 530.
+- An jeder Ecke dreht das Auto weiter als beim Quadrat. Nach drei Ecken hat es sich genau einmal ganz herumgedreht, beim Quadrat erst nach vier. Die Wartezeit für die Drehung muss also länger sein als eure Zahl aus Stufe 4. Rechnet so: Teilt eure Zahl durch 3 und zählt das Ergebnis zu eurer Zahl dazu. Ein Beispiel: 400 geteilt durch 3 sind etwa 130. 400 plus 130 sind 530.
 
 **Acht**
 
 - Eine Acht besteht aus zwei Bögen wie im Bonus von Stufe 4.
 - Baut euch dafür zwei eigene Befehle, einen für den Bogen nach links und einen für den Bogen nach rechts.
+
+:::bloecke
+
+- Im Bogen nach links fährt Motor A langsamer als Motor B, zum Beispiel mit `speed = 35` statt 70. Beide fahren `Forward`.
+
+:::
+
+:::python
+
+- Ein Bogen-Befehl sieht so aus wie `vor()`, nur mit zwei verschiedenen Tempos:
+
+```python
+def bogen_links():
+    auto.Motor_L(1, 35)
+    auto.Motor_R(1, 70)
+```
+
+- Die Wartezeit steht nicht im Befehl, sondern dort, wo ihr ihn aufruft: `bogen_links()` und darunter `sleep(…)`.
+
+:::
 - Findet zuerst die Wartezeit für einen ganzen Kreis. Dieselbe Zeit braucht ihr dann für den zweiten Kreis.
 
 </details>

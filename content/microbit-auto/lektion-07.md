@@ -38,7 +38,7 @@ Die Zahl ist der Abstand in Zentimetern. Haltet die Hand vor das Auto und bewegt
 
 ## Vor der Wand stoppen
 
-Jetzt trifft das Auto zum ersten Mal selbst eine Entscheidung: Ist der Weg frei, fährt es. Ist etwas im Weg, bleibt es stehen. Das neue Programm ersetzt das Anzeigen: Nehmt den ersten **dauerhaft**-Block vorher weg.
+Jetzt trifft das Auto zum ersten Mal selbst eine Entscheidung: Ist der Weg frei, fährt es. Ist etwas im Weg, bleibt es stehen. Das neue Programm ersetzt das Anzeigen: Löscht das alte Programm vorher (bei Blöcken den ersten **dauerhaft**-Block, in Python die Schleife `while True:` mit allem darunter).
 
 :::bloecke
 
@@ -81,9 +81,11 @@ while True:
     sleep(50)
 ```
 
-`if` prüft eine Bedingung. Stimmt sie, laufen die Zeilen darunter. Sonst laufen die Zeilen unter `else`.
+`if` prüft eine Bedingung. Stimmt sie, laufen die Zeilen darunter. Sonst laufen die Zeilen unter `else`. `0 < abstand < 15` heißt: `abstand` ist größer als 0 und kleiner als 15.
 
 :::
+
+Warum „größer als 0“? Eine 0 heißt: Es kam kein Echo zurück. Ohne diese Bedingung würde das Auto dann grundlos anhalten.
 
 > Dieses Programm fährt ohne Startknopf los, sobald der Schalter auf ON steht. Haltet das Auto fest oder stellt es erst danach auf den Boden.
 
@@ -105,7 +107,17 @@ Im Block **RGB** gibt es die Farbe `green`. Ihr braucht den Block für beide Sch
 
 :::python
 
-Denkt an das Mischen der Farben: Leuchtet Grün noch, wenn Rot dazukommt, wird es gelb. Und nicht vergessen: 0 ist hell, 255 ist aus.
+Denkt an das Mischen der Farben: Leuchtet Grün noch, wenn Rot dazukommt, wird es gelb. Schaltet deshalb vor der neuen Farbe alles aus. Und nicht vergessen: 0 ist hell, 255 ist aus.
+
+```python
+    if 0 < abstand < 15:
+        auto.Motor_stop()
+        auto.led_off()
+        auto.left_red(0)
+        auto.right_red(0)
+    else:
+        # wie bisher fahren, dazu: alles aus, dann Grün an
+```
 
 :::
 

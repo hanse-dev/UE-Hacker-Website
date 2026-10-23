@@ -10,7 +10,7 @@ So läuft jeder Test ab:
 
 1. Schalter auf **OFF**, Programm übertragen.
 2. Kabel abziehen, Auto auf den Boden stellen.
-3. Schalter auf **ON**, dann Knopf **A** drücken.
+3. Schalter auf **ON**, dann Knopf **A** drücken. Den Knopf auf der Rückseite braucht ihr hier nicht: Das Programm wartet ja auf Knopf A.
 
 ## Eine Sekunde geradeaus
 
@@ -61,7 +61,7 @@ Die Reihenfolge: vorwärts fahren, warten, beide Motoren auf `speed = 0`, kurz w
 
 :::python
 
-Für die Rückfahrt bekommt die erste Zahl bei beiden Motoren eine `0` statt einer `1`. Tempo und Wartezeit bleiben gleich.
+Die Reihenfolge: vorwärts fahren, warten, `auto.Motor_stop()`, kurz warten (zum Beispiel `sleep(500)`), rückwärts fahren, warten, wieder `auto.Motor_stop()`. Für die Rückfahrt bekommt die erste Zahl bei beiden Motoren eine `0` statt einer `1`. Tempo und Wartezeit bleiben gleich.
 
 :::
 
@@ -97,6 +97,6 @@ Echte Autos geben nicht sofort Vollgas. Euer Auto soll langsam losfahren und in 
 - Ein Motor behält sein Tempo, bis er ein neues bekommt. Ihr müsst zwischen den Schritten nicht stoppen: Gebt beiden Motoren einfach ein höheres Tempo.
 - Legt drei Tempos fest, zum Beispiel ein langsames, ein mittleres und ein schnelles. Zwischen den Schritten wartet das Auto kurz, damit man den Unterschied sieht.
 - Hört genau hin: Das Motorgeräusch wird mit jedem Schritt höher.
-- Für Profis: Geht das auch rückwärts, also sanft abbremsen statt hart stoppen?
+- Für Profis: Könnt ihr das Auto auch in Schritten langsamer werden lassen, bis es steht? Das ist sanftes Abbremsen statt hartem Stoppen.
 
 </details>

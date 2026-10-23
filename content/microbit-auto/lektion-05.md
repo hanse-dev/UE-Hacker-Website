@@ -44,11 +44,23 @@ while True:
 
 ## Die Vierteldrehung finden
 
-Wie lange muss das Auto drehen, damit es genau nach links schaut? Das ist bei jedem Auto und jedem Boden anders. Ändert die Wartezeit in kleinen Schritten, bis es passt, und schreibt euch die Zahl auf. Ihr braucht sie in der nächsten Stufe.
+Wie lange muss das Auto drehen, damit es genau nach links schaut? Das ist bei jedem Auto und jedem Boden anders. Ändert die Wartezeit in kleinen Schritten, zum Beispiel immer um 50, bis es passt, und schreibt euch die Zahl auf. Ihr braucht sie in der nächsten Stufe.
 
 ## Zwei Knöpfe, zwei Richtungen
 
-Knopf **B** ist noch frei. Baut für ihn dasselbe wie für Knopf A, nur mit vertauschten Richtungen: Motor A (linkes Rad) fährt `Forward`, Motor B (rechtes Rad) `Backward`. Die beiden Blöcke zum Anhalten bleiben gleich. Dann dreht A nach links und B nach rechts.
+Knopf **B** ist noch frei. Baut für ihn dasselbe wie für Knopf A, nur mit vertauschten Richtungen. Dann dreht A nach links und B nach rechts.
+
+:::bloecke
+
+Motor A (linkes Rad) fährt `Forward`, Motor B (rechtes Rad) `Backward`. Die beiden Blöcke zum Anhalten bleiben gleich.
+
+:::
+
+:::python
+
+`Motor_L` bekommt als erste Zahl `1` (vorwärts), `Motor_R` eine `0` (rückwärts). `auto.Motor_stop()` bleibt gleich. Der Teil für Knopf B kommt in dieselbe Schleife `while True:` unter den Teil für Knopf A, genauso weit eingerückt.
+
+:::
 
 ## Bonus: Der weite Bogen
 

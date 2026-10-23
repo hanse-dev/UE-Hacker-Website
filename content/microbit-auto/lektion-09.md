@@ -38,7 +38,7 @@ Der linke Sensor hängt an `pin13`, der rechte an `pin12`. Jeder meldet `1` für
 
 ## Forschen
 
-Das Auto bleibt in der Hand, der Schalter steht auf ON. Schiebt es langsam quer über die Linie und füllt die Tabelle aus. **Links und rechts** meinen in diesem Kurs immer die Seiten des Autos: Stellt euch hinter das Auto und schaut in seine Fahrtrichtung. Zeichnet sie auf ein Blatt.
+Das Auto bleibt in der Hand, der Schalter steht auf ON. Schiebt es langsam quer über die Linie und füllt die Tabelle aus. **Links und rechts** meinen in diesem Kurs immer die Seiten des Autos: Stellt euch hinter das Auto und schaut in seine Fahrtrichtung. Zeichnet die Tabelle unten auf ein Blatt.
 
 | Wo steht das Auto? | Angezeigte Zahl |
 |---|---|
@@ -60,17 +60,27 @@ Eine Zahl muss man erst übersetzen. Ein Pfeil ist sofort klar: Der micro:bit so
 <details>
 <summary>Tipps anzeigen</summary>
 
-- Eure Tabelle sagt euch, welche Zahl zu welcher Seite gehört. Für jede Zeile der Tabelle braucht ihr eine Bedingung. Wie man mehrere Fälle baut (**sonst wenn**) und auf gleich prüft (**=**), steht in der nächsten Stufe. Ihr könnt den Bonus auch danach machen.
+- Eure Tabelle sagt euch, welche Zahl zu welcher Seite gehört. Für jede Zeile der Tabelle braucht ihr eine Bedingung. Wie man mehrere Fälle baut, steht genauer in der nächsten Stufe. Ihr könnt den Bonus auch danach machen.
 
 :::bloecke
 
-Unter **Grundlagen** gibt es den Block **zeige Pfeil**. Die Richtungen heißen dort wie auf einer Landkarte: Westen ist links, Osten ist rechts.
+Unter **Grundlagen** gibt es den Block **zeige Pfeil**. Die Richtungen heißen dort wie auf einer Landkarte: Westen ist links, Osten ist rechts. Mehrere Fälle baut ihr mit **sonst wenn**: Klickt unten am **wenn**-Block auf das **+**. Auf gleich prüft der Vergleich **=** aus **Logik**.
 
 :::
 
 :::python
 
-Pfeile gibt es als Bilder: `Image.ARROW_W` zeigt nach links (Westen), `Image.ARROW_E` nach rechts (Osten).
+Pfeile gibt es als Bilder: `Image.ARROW_W` zeigt nach links (Westen), `Image.ARROW_E` nach rechts (Osten). Mehrere Fälle baut ihr mit `if` und `elif` („sonst, wenn“). Zum Vergleichen schreibt ihr zwei Gleichheitszeichen `==`:
+
+```python
+    zahl = links * 2 + rechts
+    if zahl == 2:
+        display.show(Image.ARROW_E)
+    elif zahl == 1:
+        # ...
+```
+
+Welche Zahl welche Seite ist, steht in eurer Tabelle.
 
 :::
 

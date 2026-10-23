@@ -56,7 +56,7 @@ while True:
         display.show(Image.SAD)
 ```
 
-`while True:` wiederholt die eingerückten Zeilen ohne Ende. So prüft der micro:bit immer wieder, ob ein Knopf gedrückt wurde. Achtet auf die Einrückung: vier Leerzeichen pro Stufe.
+`while True:` wiederholt die eingerückten Zeilen ohne Ende. So prüft der micro:bit immer wieder, ob ein Knopf gedrückt wurde. Achtet auf die Einrückung: Zeilen unter `while True:` beginnen vier Leerzeichen weiter rechts, Zeilen unter einem `if` noch einmal vier weiter.
 
 :::
 
@@ -95,7 +95,7 @@ display.show(3)
 sleep(1000)
 ```
 
-`sleep(1000)` wartet 1000 Millisekunden, also eine Sekunde.
+`sleep(1000)` wartet 1000 Millisekunden, also eine Sekunde. Die Zeilen kommen unter `if button_a.was_pressed():`, genauso weit eingerückt wie die Zeile darunter, die schon da steht.
 
 :::
 
