@@ -3016,3 +3016,8 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   die Vorschau in der JS-/Web-Sandbox (zeigt, was die Kinder selbst gestalten), Zertifikat-PDF.
 - Test: `tests/dark-mode.spec.js` (System, Auswahl + Reload, Inline-Skript bei blockiertem
   `main.js`, Lektion mit Editor).
+- Nachtrag beim Merge: Das Umstellungs-Skript hatte `white` auch im Namen `var(--white, #fff)`
+  ersetzt (`var(--var(--surface))`). Vite-Dev ignoriert das still (Fläche wird durchsichtig, auch
+  hell), erst der Produktions-Build (`test:devskip` im Pre-push) bricht ab. Behoben + Test
+  „Inhaltsbereiche haben in beiden Modi ihre Fläche“. Lehre: Farb-Regex nie auf Variablennamen
+  loslassen, nach Massen-Ersetzungen `npx vite build` laufen lassen.

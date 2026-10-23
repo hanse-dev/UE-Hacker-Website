@@ -4,6 +4,7 @@ import { test, expect } from '@playwright/test';
 // CSS-Tokens in src/style.css. Werte hier = --bg-page / --surface aus style.css.
 const LIGHT_BG = 'rgb(244, 246, 248)';
 const DARK_BG = 'rgb(21, 18, 27)';
+const DARK_SURFACE = 'rgb(31, 26, 39)';
 const DARK_TINT = 'rgb(44, 34, 56)'; // --surface-tint, Hintergrund der Code-Bereiche
 
 const bodyBg = (page) => page.evaluate(() => getComputedStyle(document.body).backgroundColor);
@@ -28,6 +29,20 @@ test.describe('Dark Mode', () => {
     await page.emulateMedia({ colorScheme: 'light' });
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
     expect(await bodyBg(page)).toBe(LIGHT_BG);
+  });
+
+  test('Inhaltsbereiche haben in beiden Modi ihre Fläche (--surface)', async ({ page }) => {
+    // Regression: Ein kaputter Variablenname (var(--var(--surface))) ließ .app-main section
+    // durchsichtig werden - auch im hellen Modus.
+    const section = page.locator('.app-main section:not(#hero)').first();
+    await page.emulateMedia({ colorScheme: 'light' });
+    await page.goto('/');
+    await expect(section).toHaveCSS('background-color', 'rgb(255, 255, 255)');
+    await page.emulateMedia({ colorScheme: 'dark' });
+    await expect(section).toHaveCSS('background-color', DARK_SURFACE);
+
+    await page.goto('/kurs/projekt-caesar-chiffre?started=1');
+    await expect(page.locator('.course-layout').first()).toHaveCSS('background-color', DARK_SURFACE, { timeout: 15000 });
   });
 
   test('Auswahl in den Optionen gilt sofort und bleibt nach dem Neuladen', async ({ page }) => {

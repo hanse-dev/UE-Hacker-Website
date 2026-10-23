@@ -15,7 +15,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
-  background: var(--var(--surface), var(--surface));
+  background: var(--surface);
   border: 1px solid var(--border-color, var(--border));
   border-radius: 12px;
   padding: 24px;
