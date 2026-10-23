@@ -212,21 +212,21 @@ export default {
 
 .placement-hint {
   margin: -14px 0 24px;
-  color: #666;
+  color: var(--text-muted);
   font-size: 0.95em;
 }
 
 .placement-hint-link {
   display: inline-block;
   margin-left: 6px;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
   font-weight: 700;
   text-decoration: underline;
   transition: color 0.2s;
 }
 
 .placement-hint-link:hover {
-  color: #3d1b5c;
+  color: var(--brand-text);
 }
 
 .course-beta {
@@ -238,8 +238,8 @@ export default {
   margin-bottom: 10px;
   padding: 3px 10px;
   border-radius: 20px;
-  background: #f3eef8;
-  color: var(--primary-purple, #4a2274);
+  background: var(--surface-tint);
+  color: var(--brand-text);
   font-size: 0.75em;
   font-weight: 700;
   text-transform: uppercase;
@@ -253,20 +253,20 @@ export default {
   justify-content: space-between;
   gap: 16px;
   padding: 20px 24px;
-  background: #fafafa;
-  border: 1px solid var(--border-color, #e0e0e0);
+  background: var(--surface-muted);
+  border: 1px solid var(--border-color, var(--border));
   border-left: 6px solid var(--accent-orange, #ff9800);
   border-radius: 12px;
 }
 
 .projekte-teaser-text h3 {
   margin: 0 0 4px;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .projekte-teaser-text p {
   margin: 0;
-  color: #444;
+  color: var(--text-muted);
 }
 
 .projekte-teaser-link {
@@ -286,7 +286,7 @@ export default {
 
 .termin-topic {
   font-weight: bold;
-  color: #333;
+  color: var(--text);
   margin-top: -10px;
   margin-bottom: 15px;
 }
@@ -298,10 +298,10 @@ export default {
 }
 
 .unterstuetzer-card {
-  background: #fafafa;
+  background: var(--surface-muted);
   border-radius: 12px;
   padding: 25px;
-  border: 1px solid var(--border-color, #e0e0e0);
+  border: 1px solid var(--border-color, var(--border));
 }
 
 .unterstuetzer-content {
@@ -344,12 +344,12 @@ export default {
 
 .unterstuetzer-text h3 {
   margin: 0 0 0.5rem 0;
-  color: #2c3e50;
+  color: var(--text);
 }
 
 .unterstuetzer-text p {
   margin: 0;
-  color: #666;
+  color: var(--text-muted);
   line-height: 1.6;
 }
 

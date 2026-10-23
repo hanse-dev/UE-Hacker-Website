@@ -100,7 +100,7 @@ export default {
   font-size: 0.78em;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: #8a7a99;
+  color: var(--text-faint);
 }
 
 .side-menu-list {
@@ -124,16 +124,16 @@ export default {
   text-align: left;
   cursor: pointer;
   font-size: 0.88em;
-  color: #4b5563;
+  color: var(--text-muted);
   transition: background 0.15s, color 0.15s;
 }
 
 .side-menu-step:hover {
-  background: #f3f0f7;
+  background: var(--surface-tint);
 }
 
 .side-menu-step.reached {
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .side-menu-step.active {
@@ -150,7 +150,7 @@ export default {
 
 .side-menu-sub {
   padding-left: 6px;
-  border-left: 2px solid #efe3f6;
+  border-left: 2px solid var(--border-tint);
 }
 
 .side-menu-heading {
@@ -161,13 +161,13 @@ export default {
   text-align: left;
   cursor: pointer;
   font-size: 0.82em;
-  color: #6b7280;
+  color: var(--text-muted);
   border-radius: 4px;
 }
 
 .side-menu-heading:hover {
-  background: #f3f0f7;
-  color: #374151;
+  background: var(--surface-tint);
+  color: var(--text);
 }
 
 .side-menu-heading.level-2 {
@@ -175,11 +175,11 @@ export default {
 }
 
 .side-menu-reference {
-  color: #7c5a94;
+  color: var(--brand-text-soft);
 }
 
 .side-menu-download {
-  color: #7c5a94;
+  color: var(--brand-text-soft);
   text-decoration: none;
 }
 </style>

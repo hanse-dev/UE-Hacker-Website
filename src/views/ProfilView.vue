@@ -165,16 +165,16 @@ export default {
 }
 
 .profil-login-required {
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 20px;
-  color: #555;
+  color: var(--text-muted);
 }
 
 .profil-greeting {
   font-size: 1.1em;
-  color: #333;
+  color: var(--text);
   margin-bottom: 32px;
 }
 
@@ -183,13 +183,13 @@ export default {
 }
 
 .profil-badges-hint {
-  color: #666;
+  color: var(--text-muted);
   font-size: 0.9em;
   margin: 0 0 20px 0;
 }
 
 .profil-loading {
-  color: #666;
+  color: var(--text-muted);
 }
 
 .badge-grid {
@@ -203,8 +203,8 @@ export default {
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 18px 12px;
   text-align: center;
@@ -221,13 +221,13 @@ export default {
 }
 
 .badge-card:hover {
-  border-color: var(--primary-purple, #4a2274);
+  border-color: var(--brand-text);
   transform: translateY(-2px);
 }
 
 .badge-card.earned {
   border-color: #ffd700;
-  background: linear-gradient(135deg, #fef9e7 0%, #fdebd0 100%);
+  background: var(--celebrate-bg);
 }
 
 .badge-icon {
@@ -236,13 +236,13 @@ export default {
 
 .badge-title {
   font-weight: 600;
-  color: #333;
+  color: var(--text);
   font-size: 0.95em;
 }
 
 .badge-status {
   font-size: 0.8em;
-  color: #666;
+  color: var(--text-muted);
 }
 
 .badge-card.earned .badge-status {
@@ -259,7 +259,7 @@ export default {
 }
 
 .profil-certificates-hint {
-  color: #666;
+  color: var(--text-muted);
   font-size: 0.9em;
   margin: 0 0 20px 0;
 }
@@ -273,14 +273,14 @@ export default {
   align-items: center;
   gap: 10px;
   font-size: 1em;
-  color: #333;
+  color: var(--text);
   margin: 0 0 12px 0;
 }
 
 .cert-course-count {
   font-size: 0.8em;
   font-weight: 600;
-  color: #7c3aed;
+  color: var(--brand-text);
   background: #f3ecfe;
   border-radius: 999px;
   padding: 2px 10px;
@@ -296,7 +296,7 @@ export default {
 
 .certificate-name-field label {
   font-size: 0.9em;
-  color: #555;
+  color: var(--text-muted);
   font-weight: 600;
 }
 
@@ -305,7 +305,7 @@ export default {
   min-width: 180px;
   max-width: 320px;
   padding: 8px 10px;
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--border);
   border-radius: 6px;
   font-size: 0.9em;
 }

@@ -81,10 +81,10 @@ export default {
   width: 100%;
   max-width: 400px;
   height: 300px;
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--border);
   border-radius: 6px;
   display: block;
-  background: #eef2f7;
+  background: var(--surface-muted);
 }
 
 /* Web-Modus: eine ganze Seite statt eines 400x300-Spielfelds - so breit wie die Arbeitsflaeche,
@@ -92,7 +92,7 @@ export default {
 .is-web .js-sandbox {
   max-width: none;
   height: 420px;
-  background: #fff;
+  background: var(--surface);
 }
 
 .is-web .sandbox-toolbar,
@@ -111,7 +111,7 @@ export default {
 
 .sandbox-status {
   font-size: 0.85em;
-  color: #6c757d;
+  color: var(--text-muted);
 }
 
 .btn-restart-sandbox {
@@ -133,10 +133,10 @@ export default {
   max-width: 400px;
   margin: 8px 0 0 0;
   padding: 8px 12px;
-  background: #fff3cd;
-  border: 1px solid #ffe69c;
+  background: var(--warning-bg);
+  border: 1px solid var(--warning-border);
   border-radius: 6px;
   font-size: 0.85em;
-  color: #664d03;
+  color: var(--warning-text);
 }
 </style>

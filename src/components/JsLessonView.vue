@@ -529,8 +529,8 @@ export default {
 }
 
 .js-workspace-inner {
-  background: #fff;
-  border: 1px solid #dee2e6;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 12px;
 }
@@ -538,18 +538,18 @@ export default {
 .js-workspace-title {
   margin: 0 0 8px 0;
   font-weight: 600;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .js-workspace-task {
   font-weight: 400;
-  color: #555;
+  color: var(--text-muted);
 }
 
 .js-workspace-hint {
   margin: 0 0 8px 0;
   font-size: 0.9em;
-  color: #6c757d;
+  color: var(--text-muted);
 }
 
 /* Breite Ansicht: rechts eine eigene Spalte ueber die ganze Lektion, die Karte darin bleibt beim
@@ -595,8 +595,8 @@ export default {
 }
 
 .lesson-content {
-  background: #fff;
-  border: 1px solid #dee2e6;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 24px;
   margin-bottom: 20px;
@@ -604,7 +604,7 @@ export default {
 }
 
 .lesson-loading {
-  color: #6c757d;
+  color: var(--text-muted);
   font-style: italic;
 }
 
@@ -623,7 +623,7 @@ export default {
 }
 
 .lesson-content :deep(code) {
-  background: #f4f4f4;
+  background: var(--surface-muted);
   padding: 2px 6px;
   border-radius: 3px;
   font-family: 'Courier New', monospace;
@@ -631,29 +631,29 @@ export default {
 }
 
 .lesson-content :deep(.glossary-term) {
-  border-bottom: 1px dotted var(--primary-purple, #4a2274);
+  border-bottom: 1px dotted var(--brand-text);
   cursor: help;
 }
 
 .lesson-content :deep(.concept-link) {
   color: inherit;
   text-decoration: none;
-  border-bottom: 1px dotted var(--primary-purple, #4a2274);
+  border-bottom: 1px dotted var(--brand-text);
 }
 
 .lesson-content :deep(.concept-link)::after {
   content: '↗';
   font-size: 0.75em;
   margin-left: 1px;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .lesson-content :deep(.concept-link:hover) {
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .lesson-content :deep(pre) {
-  background: #f8f9fa;
+  background: var(--surface-muted);
   padding: 12px;
   border-radius: 6px;
   overflow-x: auto;
@@ -662,8 +662,8 @@ export default {
 .lesson-editor-section {
   display: flex;
   flex-direction: column;
-  background: #f8f9fa;
-  border: 2px solid var(--primary-purple, #4a2274);
+  background: var(--surface-muted);
+  border: 2px solid var(--brand-text);
   border-radius: 8px;
   padding: 20px;
 }
@@ -671,18 +671,18 @@ export default {
 .editor-hint {
   margin: 0 0 12px 0;
   font-size: 0.9em;
-  color: #555;
+  color: var(--text-muted);
 }
 
 .editor-hint-ran {
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .task-block {
   margin-bottom: 24px;
   padding-bottom: 24px;
   padding-left: 14px;
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid var(--border);
   border-left: 4px solid transparent;
 }
 
@@ -691,7 +691,7 @@ export default {
 }
 
 .task-block.task-example {
-  border-left-color: #ced4da;
+  border-left-color: var(--border-strong);
 }
 
 .task-block:last-child {
@@ -712,31 +712,31 @@ export default {
 }
 
 .badge-example {
-  background: #f1f3f5;
-  color: #868e96;
+  background: var(--surface-muted);
+  color: var(--text-faint);
 }
 
 .badge-required {
-  background: #fff3e0;
+  background: var(--warning-bg);
   color: var(--accent-orange, #fb8c00);
 }
 
 .task-instruction {
   display: block;
   font-weight: 600;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
   margin: 0 0 8px 0;
   font-size: 0.95em;
   line-height: 1.4;
 }
 
 .task-done {
-  color: #28a745;
+  color: var(--success);
   margin-right: 6px;
 }
 
 .task-pending {
-  color: #adb5bd;
+  color: var(--text-faint);
   margin-right: 6px;
 }
 
@@ -747,22 +747,22 @@ export default {
 
 .task-status-label {
   font-weight: 400;
-  color: #6c757d;
+  color: var(--text-muted);
   font-size: 0.9em;
 }
 
 .lesson-complete-box {
   margin-top: 24px;
   padding: 20px;
-  background: #d4edda;
-  border: 1px solid #c3e6cb;
+  background: var(--success-bg);
+  border: 1px solid var(--success-border);
   border-radius: 8px;
 }
 
 .lesson-summary {
   margin: 0 0 16px 0;
   font-size: 1.05em;
-  color: #155724;
+  color: var(--success-text);
   font-weight: 500;
 }
 
@@ -803,7 +803,7 @@ a.btn-next {
 .meine-seite-note {
   margin: 0 0 8px 0;
   padding: 6px 10px;
-  background: #fff8e1;
+  background: var(--warning-bg);
   border: 1px solid #ffe082;
   border-radius: 6px;
   font-size: 0.85em;
@@ -820,9 +820,9 @@ a.btn-next {
 .solution-reveal {
   max-width: 500px;
   margin: 0 0 12px 0;
-  border: 1px dashed #d9c7ea;
+  border: 1px dashed var(--border-tint);
   border-radius: 6px;
-  background: #f7f1fb;
+  background: var(--surface-tint);
 }
 
 .solution-reveal summary {
@@ -830,7 +830,7 @@ a.btn-next {
   padding: 8px 12px;
   font-weight: 600;
   font-size: 0.85em;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
   user-select: none;
 }
 
@@ -841,7 +841,7 @@ a.btn-next {
   font-size: 0.85em;
   white-space: pre-wrap;
   word-break: break-word;
-  color: #333;
+  color: var(--text);
 }
 
 .editor-actions {
@@ -896,8 +896,8 @@ a.btn-next {
 
 .btn-skip {
   background: transparent;
-  color: #6c757d;
-  border: 1px solid #dee2e6;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
   padding: 10px 20px;
   border-radius: 6px;
   cursor: pointer;
@@ -905,8 +905,8 @@ a.btn-next {
 }
 
 .btn-skip:hover:not(:disabled) {
-  background: #f8f9fa;
-  border-color: #adb5bd;
+  background: var(--surface-muted);
+  border-color: var(--border-strong);
 }
 
 .btn-skip:disabled {
@@ -916,8 +916,8 @@ a.btn-next {
 
 .btn-reset {
   background: transparent;
-  color: #6c757d;
-  border: 1px solid #dee2e6;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
   padding: 10px 20px;
   border-radius: 6px;
   cursor: pointer;
@@ -925,8 +925,8 @@ a.btn-next {
 }
 
 .btn-reset:hover:not(:disabled) {
-  background: #f8f9fa;
-  border-color: #adb5bd;
+  background: var(--surface-muted);
+  border-color: var(--border-strong);
 }
 
 .btn-reset:disabled {
@@ -937,8 +937,8 @@ a.btn-next {
 .output-display {
   margin-top: 12px;
   padding: 12px;
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
   border-radius: 6px;
   margin-bottom: 12px;
 }
@@ -947,7 +947,7 @@ a.btn-next {
   display: block;
   margin-bottom: 8px;
   font-size: 0.9em;
-  color: #555;
+  color: var(--text-muted);
 }
 
 .output-content {
@@ -965,14 +965,14 @@ a.btn-next {
 }
 
 .feedback-success {
-  background: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
+  background: var(--success-bg);
+  color: var(--success-text);
+  border: 1px solid var(--success-border);
 }
 
 .feedback-error {
-  background: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
+  background: var(--danger-bg);
+  color: var(--danger-text);
+  border: 1px solid var(--danger-border);
 }
 </style>

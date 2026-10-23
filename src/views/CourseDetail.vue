@@ -272,7 +272,7 @@ export default {
 <style scoped>
 .beta-hint {
   margin: -0.4em 0 1em;
-  color: #9a3412;
+  color: var(--warning-text);
   font-size: 0.95em;
 }
 
@@ -302,7 +302,7 @@ export default {
 .btn-back-to-overview {
   background: none;
   border: none;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
   font-size: 0.9em;
   font-weight: 600;
   cursor: pointer;
@@ -381,7 +381,7 @@ export default {
 }
 
 .course-structure-intro {
-  color: #555;
+  color: var(--text-muted);
   margin-bottom: 16px;
   font-size: 0.95em;
 }
@@ -396,8 +396,8 @@ export default {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 12px 14px;
 }
@@ -416,18 +416,18 @@ export default {
 
 .course-structure-text strong {
   font-size: 0.95em;
-  color: #222;
+  color: var(--text-strong);
 }
 
 .course-structure-text span {
   font-size: 0.82em;
-  color: #666;
+  color: var(--text-muted);
   line-height: 1.4;
 }
 
 .course-structure-reference {
   margin: 14px 0 0;
-  color: #6b7280;
+  color: var(--text-muted);
   font-size: 0.85em;
   font-style: italic;
 }

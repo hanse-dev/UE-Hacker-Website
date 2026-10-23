@@ -224,7 +224,7 @@ export default {
 .code-challenge {
   margin-top: 16px;
   padding-top: 16px;
-  border-top: 1px dashed #dee2e6;
+  border-top: 1px dashed var(--border);
 }
 
 .challenge-header {
@@ -236,12 +236,12 @@ export default {
 
 .challenge-header h4 {
   margin: 0;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .challenge-badge {
-  background: #d4edda;
-  color: #155724;
+  background: var(--success-bg);
+  color: var(--success-text);
   font-size: 0.75em;
   font-weight: 700;
   padding: 2px 10px;
@@ -250,7 +250,7 @@ export default {
 
 .challenge-instruction {
   margin: 0 0 12px 0;
-  color: #444;
+  color: var(--text-muted);
   line-height: 1.5;
 }
 
@@ -280,8 +280,8 @@ export default {
   min-height: 70px;
   padding: 12px;
   box-sizing: border-box;
-  background: #fff;
-  border: 1px solid #dee2e6;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 6px;
   font-family: 'Courier New', Consolas, Monaco, monospace;
   font-size: 14px;
@@ -326,13 +326,13 @@ export default {
 
 .btn-reset {
   background: transparent;
-  color: #6c757d;
-  border: 1px solid #dee2e6;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
 }
 
 .btn-reset:hover:not(:disabled) {
-  background: #f8f9fa;
-  border-color: #adb5bd;
+  background: var(--surface-muted);
+  border-color: var(--border-strong);
 }
 
 .btn-reset:disabled {
@@ -343,8 +343,8 @@ export default {
 .challenge-output {
   margin-bottom: 10px;
   padding: 10px 12px;
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
   border-radius: 6px;
 }
 
@@ -352,7 +352,7 @@ export default {
   display: block;
   margin-bottom: 6px;
   font-size: 0.85em;
-  color: #555;
+  color: var(--text-muted);
 }
 
 .challenge-output pre {
@@ -371,18 +371,18 @@ export default {
 }
 
 .feedback-success {
-  background: #d4edda;
-  color: #155724;
+  background: var(--success-bg);
+  color: var(--success-text);
 }
 
 .feedback-error {
-  background: #f8d7da;
-  color: #721c24;
+  background: var(--danger-bg);
+  color: var(--danger-text);
 }
 
 .kernel-status {
   margin-top: 8px;
   font-size: 0.85em;
-  color: #6c757d;
+  color: var(--text-muted);
 }
 </style>

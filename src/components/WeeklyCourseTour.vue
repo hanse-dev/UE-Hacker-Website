@@ -217,7 +217,7 @@ export default {
 .choose-week-title {
   text-align: center;
   margin-bottom: 24px;
-  color: #555;
+  color: var(--text-muted);
 }
 
 .week-grid {
@@ -234,19 +234,19 @@ export default {
   align-items: center;
   gap: 4px;
   padding: 16px 10px;
-  background: white;
-  border: 2px solid var(--primary-purple, #4a2274);
+  background: var(--surface);
+  border: 2px solid var(--brand-text);
   border-radius: 10px;
   cursor: pointer;
   text-align: center;
 }
 
 .week-tile:hover:not(:disabled) {
-  background: #f7f1fb;
+  background: var(--surface-tint);
 }
 
 .week-tile.locked {
-  border-color: #dee2e6;
+  border-color: var(--border);
   cursor: not-allowed;
   opacity: 0.7;
 }
@@ -260,21 +260,21 @@ export default {
 }
 
 .week-tile.locked .week-tile-number {
-  color: #adb5bd;
+  color: var(--text-faint);
 }
 
 .week-tile-title {
   font-weight: 600;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .week-tile.locked .week-tile-title {
-  color: #868e96;
+  color: var(--text-faint);
 }
 
 .week-tile-badge {
   font-size: 0.75em;
-  color: #868e96;
+  color: var(--text-faint);
 }
 
 .weekly-course-check {
@@ -287,7 +287,7 @@ export default {
   align-items: center;
   gap: 8px;
   font-size: 0.92em;
-  color: #7c5a94;
+  color: var(--brand-text-soft);
   font-weight: 600;
   margin-bottom: 12px;
 }
@@ -298,24 +298,24 @@ export default {
   padding: 0;
   font: inherit;
   font-weight: 600;
-  color: #7c5a94;
+  color: var(--brand-text-soft);
   cursor: pointer;
   text-decoration: underline;
 }
 
 .breadcrumb-back:hover {
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .breadcrumb-week {
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .certificate-reveal {
   margin-top: 20px;
   padding: 24px;
-  background: #fff9e6;
-  border: 2px solid #ffe69c;
+  background: var(--warning-bg);
+  border: 2px solid var(--warning-border);
   border-radius: 12px;
   text-align: center;
 }
@@ -326,7 +326,7 @@ export default {
 
 .certificate-reveal h3 {
   margin: 8px 0 4px;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .certificate-name-row {
@@ -339,7 +339,7 @@ export default {
 
 .certificate-name-row input {
   padding: 8px 12px;
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--border);
   border-radius: 6px;
   font-size: 1em;
   text-align: center;
@@ -361,13 +361,13 @@ export default {
 }
 
 .certificate-login-hint {
-  color: #6c757d;
+  color: var(--text-muted);
   font-size: 0.9em;
 }
 
 .tour-check-pending {
   margin-top: 16px;
-  color: #6c757d;
+  color: var(--text-muted);
   font-style: italic;
 }
 
@@ -380,18 +380,18 @@ export default {
 }
 
 .after-check-tile {
-  background: #fff;
-  border: 2px solid #e6dcef;
+  background: var(--surface);
+  border: 2px solid var(--border-tint);
   border-radius: 10px;
   padding: 10px 18px;
   cursor: pointer;
   font: inherit;
   font-weight: 600;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .after-check-tile:hover {
-  border-color: var(--primary-purple, #4a2274);
-  background: #f7f1fb;
+  border-color: var(--brand-text);
+  background: var(--surface-tint);
 }
 </style>

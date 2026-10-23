@@ -365,26 +365,26 @@ export default {
 
 .quiz-step-title {
   margin: 0 0 16px 0;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
   font-size: 1.05em;
 }
 
 .quiz-question {
-  background: #fff;
-  border: 1px solid #dee2e6;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 12px;
 }
 
 .quiz-question.correct {
-  border-color: #28a745;
-  background: #f8fff9;
+  border-color: var(--success);
+  background: var(--success-bg);
 }
 
 .quiz-question.incorrect {
-  border-color: #dc3545;
-  background: #fff8f8;
+  border-color: var(--danger);
+  background: var(--danger-bg);
 }
 
 .question-text {
@@ -396,12 +396,12 @@ export default {
 .multi-hint {
   margin: -6px 0 10px 0;
   font-size: 0.85em;
-  color: #6c757d;
+  color: var(--text-muted);
   font-weight: 500;
 }
 
 .question-num {
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
   margin-right: 4px;
 }
 
@@ -416,8 +416,8 @@ export default {
 }
 
 .option-btn {
-  background: #f8f9fa;
-  border: 2px solid #dee2e6;
+  background: var(--surface-muted);
+  border: 2px solid var(--border);
   border-radius: 6px;
   padding: 10px 16px;
   cursor: pointer;
@@ -427,34 +427,34 @@ export default {
 }
 
 .option-btn:hover:not(:disabled) {
-  border-color: var(--primary-purple, #4a2274);
+  border-color: var(--brand-text);
 }
 
 .option-btn.selected {
-  border-color: var(--primary-purple, #4a2274);
+  border-color: var(--brand-text);
   background: rgba(74, 34, 116, 0.08);
 }
 
 .option-btn.correct {
-  border-color: #28a745;
-  background: #d4edda;
+  border-color: var(--success);
+  background: var(--success-bg);
 }
 
 .option-btn.wrong {
-  border-color: #dc3545;
-  background: #f8d7da;
+  border-color: var(--danger);
+  background: var(--danger-bg);
 }
 
 .option-dontknow {
   border-style: dashed;
-  color: #6c757d;
+  color: var(--text-muted);
   font-style: italic;
 }
 
 .option-dontknow.selected {
   border-color: #6c757d;
-  background: #f1f1f1;
-  color: #495057;
+  background: var(--surface-muted);
+  color: var(--text-muted);
 }
 
 .option-btn:disabled {
@@ -501,13 +501,13 @@ export default {
 }
 
 .feedback-ok {
-  background: #d4edda;
-  color: #155724;
+  background: var(--success-bg);
+  color: var(--success-text);
 }
 
 .feedback-no {
-  background: #fff3cd;
-  color: #856404;
+  background: var(--warning-bg);
+  color: var(--warning-text);
 }
 
 .quiz-actions {
@@ -536,20 +536,20 @@ export default {
 }
 
 .quiz-pass {
-  background: #d4edda;
-  color: #155724;
+  background: var(--success-bg);
+  color: var(--success-text);
 }
 
 .quiz-fail {
-  background: #fff3cd;
-  color: #856404;
+  background: var(--warning-bg);
+  color: var(--warning-text);
 }
 
 .btn-retry {
   margin-left: 12px;
   background: transparent;
-  border: 1px solid #856404;
-  color: #856404;
+  border: 1px solid var(--warning-text);
+  color: var(--warning-text);
   padding: 4px 12px;
   border-radius: 4px;
   cursor: pointer;

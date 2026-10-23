@@ -117,8 +117,8 @@ export default {
 
 <style scoped>
 .week-check-panel {
-  background: #fff;
-  border: 1px solid #dee2e6;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 20px;
   margin-top: 8px;
@@ -130,20 +130,20 @@ export default {
 
 .check-intro h3 {
   margin: 0 0 6px 0;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .check-intro p {
   margin: 0;
-  color: #555;
+  color: var(--text-muted);
   font-size: 0.95em;
 }
 
 .check-badge {
   display: inline-block;
   margin-top: 10px;
-  background: #d4edda;
-  color: #155724;
+  background: var(--success-bg);
+  color: var(--success-text);
   font-size: 0.8em;
   font-weight: 700;
   padding: 2px 10px;
@@ -153,16 +153,16 @@ export default {
 .check-fully-done {
   margin: 16px 0 0 0;
   padding: 12px 16px;
-  background: #fff3cd;
-  border: 1px solid #ffe69c;
+  background: var(--warning-bg);
+  border: 1px solid var(--warning-border);
   border-radius: 8px;
   font-weight: 600;
-  color: #664d03;
+  color: var(--warning-text);
 }
 
 .check-loading,
 .check-empty {
-  color: #6c757d;
+  color: var(--text-muted);
   font-style: italic;
 }
 </style>

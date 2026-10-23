@@ -2974,3 +2974,25 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 | 3.115 | Kurs „Meine erste Website“ (`web-erste-website`) mit Abschluss-Check | Einstiegskurs `"type": "lektionen"` (Lektionsliste aus `ProjectCourse.vue`, Startseite statt `/projekte`), 8 Lektionen HTML/CSS + Sticker-Bilder `public/web-bilder/`; `"finalCheck": true` → Abschluss-Check als letzter Listeneintrag (`WeekCheckPanel` `engine="web"`/`final`, `WebCodeChallenge.vue`), Zertifikat `FinalCertificate.vue`, Profil/PDF „Abschluss“ (`singleCheck`); `tests/web-erste-website.spec.js` |
 | 3.116 | „Meine erste Website“: Stufenwahl Einfach/Intensiv, Intensiv = 9-Wochen-Kurs | `WebsiteCourse.vue` (Stufe in `?stufe=` + localStorage, `?week=` ohne Stufe = Einfach), `WeeklyCourseTour.vue` = verallgemeinerte KI-Labor-Tour (`KiLaborTour.vue` nur Wrapper), Wochen in `src/data/webGrundkursWeeks.js`, Inhalt `content/web-grundkurs-woche{1-9}/` (4 Lektionen + Debug + Mission) + `content/web-grundkurs-checks/`, Profil-Links mit `query` aus `COURSE_INFO`, HTML-Begriffe mit `pfade` in `begriffe.json`; `tests/web-grundkurs.spec.js` prüft jede Woche automatisch |
 | 3.117 | „Meine Seite“ wächst mit, Code in JS/Web-Lektionen bleibt erhalten | `JsLessonView.vue` speichert Aufgaben-Code wie `LessonView.vue` (lokal, 5 Tage); Aufgaben mit `"meineSeite": true` starten mit der eigenen Seite (`loadMeineSeite`/`saveMeineSeite` in `useSavedCode.js`, verfällt nicht, ohne Zurücksetzen-Knopf); Einfach: Lektion 1 legt sie an, 2–7 je eine Aufgabe „Deine Seite“, 8 macht sie fertig (mit `:hover`); Tests in `tests/web-erste-website.spec.js` |
+
+### 3.121 — Dark Mode (Branch `dark-mode`)
+
+- Wunsch von Eike (23.10.2026). Standard folgt `prefers-color-scheme`; in „Optionen“ wählbar:
+  System / Hell / Dunkel. Gespeichert nur im Browser (`localStorage` `ue-hacker-theme`), bewusst
+  nicht im Account-Sync, damit der Fortschritts-Vertrag unberührt bleibt.
+- `src/composables/useTheme.js` setzt `data-theme` auf `<html>` und hört auf System-Wechsel; ein
+  Inline-Skript in `index.html` macht dasselbe vor dem ersten Rendern (kein helles Aufblitzen). Beide
+  Stellen gleich halten.
+- Farben: semantische Tokens in `src/style.css` (`:root` hell, `:root[data-theme="dark"]` dunkel);
+  alte Namen (`--white`, `--text-dark`, `--background-light`, `--border-color`) sind Aliase. Rund
+  650 feste Farben in ~40 Komponenten per Skript nach Eigenschaft (Hintergrund/Schrift/Rand) auf
+  Tokens umgestellt; kräftige Farben (Buttons, Badges, micro:bit-Blockfarben) blieben fest. Im
+  hellen Modus wurden dabei ähnliche Grautöne zusammengefasst (z. B. `#555`/`#6c757d` → `#666`).
+- `color: var(--primary-purple)` wäre im Dunkeln unlesbar → Schrift und Ränder nutzen
+  `--brand-text` (hell identisch, dunkel helles Lila). Ausnahme: aktiver Sprachknopf auf Gelb.
+- CodeMirror: `src/utils/editorTheme.js` (eigener `HighlightStyle` mit `--cm-*`-Variablen, ersetzt
+  den hellen Standard aus `basicSetup`; kein neues Paket). Hintergrund kommt weiter von `.cm-host`.
+- Bewusst nicht umgestellt: `Teaser.vue` (ist schon dunkel), `FinalCertificate.vue` (Papier-Look),
+  die Vorschau in der JS-/Web-Sandbox (zeigt, was die Kinder selbst gestalten), Zertifikat-PDF.
+- Test: `tests/dark-mode.spec.js` (System, Auswahl + Reload, Inline-Skript bei blockiertem
+  `main.js`, Lektion mit Editor).

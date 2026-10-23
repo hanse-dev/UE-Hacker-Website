@@ -306,7 +306,7 @@ export default {
 }
 
 .variant-intro {
-  color: #666;
+  color: var(--text-muted);
   margin-bottom: 32px;
 }
 
@@ -324,9 +324,9 @@ export default {
   gap: 8px;
   width: 220px;
   padding: 28px 20px;
-  border: 2px solid #e9ecef;
+  border: 2px solid var(--border);
   border-radius: 12px;
-  background: #fff;
+  background: var(--surface);
   cursor: pointer;
   transition: all 0.15s ease;
   text-align: center;
@@ -334,8 +334,8 @@ export default {
 }
 
 .variant-card:hover {
-  border-color: #d9c7ea;
-  background: #f7f1fb;
+  border-color: var(--border-tint);
+  background: var(--surface-tint);
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(74, 34, 116, 0.12);
 }
@@ -346,12 +346,12 @@ export default {
 
 .variant-card strong {
   font-size: 1.1em;
-  color: #222;
+  color: var(--text-strong);
 }
 
 .variant-age {
   font-size: 0.85em;
-  color: #888;
+  color: var(--text-faint);
 }
 
 .variant-features {
@@ -360,12 +360,12 @@ export default {
   margin: 8px 0 0;
   text-align: left;
   font-size: 0.88em;
-  color: #555;
+  color: var(--text-muted);
 }
 
 .variant-features li::before {
   content: '✓ ';
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
   font-weight: bold;
 }
 
@@ -377,22 +377,22 @@ export default {
 }
 
 .error {
-  color: #dc3545;
-  background: #f8d7da;
-  border: 1px solid #f5c6cb;
+  color: var(--danger);
+  background: var(--danger-bg);
+  border: 1px solid var(--danger-border);
   border-radius: 8px;
 }
 
 .btn-switch {
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 0.9em;
   cursor: pointer;
   text-align: center;
-  border-color: var(--primary-purple, #4a2274);
-  color: var(--primary-purple, #4a2274);
+  border-color: var(--brand-text);
+  color: var(--brand-text);
 }
 
 .btn-switch:hover { background: rgba(74,34,116,0.06); }

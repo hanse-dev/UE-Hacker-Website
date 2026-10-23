@@ -211,15 +211,15 @@ export default {
 
 .guide-mode-label {
   font-weight: 600;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .guide-mode-btn {
   padding: 6px 16px;
-  border: 2px solid var(--primary-purple, #4a2274);
+  border: 2px solid var(--brand-text);
   border-radius: 20px;
-  background: #fff;
-  color: var(--primary-purple, #4a2274);
+  background: var(--surface);
+  color: var(--brand-text);
   font-weight: 600;
   cursor: pointer;
 }
@@ -230,8 +230,8 @@ export default {
 }
 
 .lesson-content {
-  background: #fff;
-  border: 1px solid #dee2e6;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 24px;
   margin-bottom: 20px;
@@ -239,7 +239,7 @@ export default {
 }
 
 .lesson-loading {
-  color: #6c757d;
+  color: var(--text-muted);
   font-style: italic;
 }
 
@@ -258,7 +258,7 @@ export default {
 }
 
 .lesson-content :deep(code) {
-  background: #f4f4f4;
+  background: var(--surface-muted);
   padding: 2px 6px;
   border-radius: 3px;
   font-family: 'Courier New', monospace;
@@ -266,7 +266,7 @@ export default {
 }
 
 .lesson-content :deep(pre) {
-  background: #f8f9fa;
+  background: var(--surface-muted);
   padding: 12px;
   border-radius: 6px;
   overflow-x: auto;
@@ -281,7 +281,7 @@ export default {
   margin: 12px 0;
   padding: 8px 14px;
   border-left: 4px solid var(--accent-orange, #ff9800);
-  background: #fff8e1;
+  background: var(--warning-bg);
   border-radius: 0 6px 6px 0;
 }
 
@@ -296,7 +296,7 @@ export default {
 
 .lesson-content :deep(th),
 .lesson-content :deep(td) {
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--border);
   padding: 6px 10px;
   text-align: left;
 }
@@ -312,14 +312,14 @@ export default {
 .lesson-content :deep(details) {
   margin: 12px 0;
   padding: 10px 14px;
-  border: 1px dashed var(--primary-purple, #4a2274);
+  border: 1px dashed var(--brand-text);
   border-radius: 6px;
-  background: #faf7fd;
+  background: var(--surface-tint);
 }
 
 .lesson-content :deep(summary) {
   font-weight: 600;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
   cursor: pointer;
 }
 
@@ -336,7 +336,7 @@ export default {
 .lesson-content :deep(.mc-blocks) {
   margin: 12px 0;
   padding: 12px;
-  background: #f8f9fa;
+  background: var(--surface-muted);
   border-radius: 6px;
   overflow-x: auto;
 }
@@ -368,8 +368,8 @@ export default {
 .lesson-content :deep(.mc-led) { background: #5c2d91; }
 
 .lesson-editor-section {
-  background: #f8f9fa;
-  border: 2px solid var(--primary-purple, #4a2274);
+  background: var(--surface-muted);
+  border: 2px solid var(--brand-text);
   border-radius: 8px;
   padding: 20px;
 }
@@ -377,7 +377,7 @@ export default {
 .editor-hint {
   margin: 0 0 12px 0;
   font-size: 0.9em;
-  color: #555;
+  color: var(--text-muted);
 }
 
 .guide-task {
@@ -386,8 +386,8 @@ export default {
   gap: 12px;
   padding: 12px;
   margin-bottom: 8px;
-  background: #fff;
-  border: 1px solid #dee2e6;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 6px;
   cursor: pointer;
   line-height: 1.4;
@@ -395,7 +395,7 @@ export default {
 
 .guide-task-done {
   background: #eaf7ed;
-  border-color: #c3e6cb;
+  border-color: var(--success-border);
 }
 
 .guide-task-check {
@@ -422,15 +422,15 @@ export default {
 .lesson-complete-box {
   margin-top: 24px;
   padding: 20px;
-  background: #d4edda;
-  border: 1px solid #c3e6cb;
+  background: var(--success-bg);
+  border: 1px solid var(--success-border);
   border-radius: 8px;
 }
 
 .lesson-summary {
   margin: 0 0 16px 0;
   font-size: 1.05em;
-  color: #155724;
+  color: var(--success-text);
   font-weight: 500;
 }
 

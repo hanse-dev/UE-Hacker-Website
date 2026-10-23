@@ -20,8 +20,8 @@ export default {
   display: inline-block;
   padding: 3px 10px;
   border-radius: 999px;
-  background: #ffedd5;
-  color: #9a3412;
+  background: var(--warning-bg);
+  color: var(--warning-text);
   font-size: 0.78rem;
   font-weight: 700;
   vertical-align: middle;

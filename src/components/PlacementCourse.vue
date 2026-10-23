@@ -298,8 +298,8 @@ export default {
 }
 
 .error {
-  color: #dc3545;
-  background: #f8d7da;
+  color: var(--danger);
+  background: var(--danger-bg);
   border-radius: 8px;
 }
 
@@ -308,14 +308,14 @@ export default {
 }
 
 .placement-intro p {
-  color: #555;
+  color: var(--text-muted);
   margin: 0 0 12px 0;
   line-height: 1.5;
 }
 
 .session-progress {
   font-weight: 600;
-  color: var(--primary-purple, #4a2274) !important;
+  color: var(--brand-text) !important;
 }
 
 .placement-results h2 {
@@ -323,7 +323,7 @@ export default {
 }
 
 .results-intro {
-  color: #555;
+  color: var(--text-muted);
   margin: 0 0 20px 0;
 }
 
@@ -344,18 +344,18 @@ export default {
   gap: 12px;
   padding: 14px 16px;
   border-radius: 10px;
-  border: 2px solid #dee2e6;
-  background: #fff;
+  border: 2px solid var(--border);
+  background: var(--surface);
 }
 
 .week-result.ok {
-  border-color: #28a745;
-  background: #f8fff9;
+  border-color: var(--success);
+  background: var(--success-bg);
 }
 
 .week-result.review {
   border-color: #ff9800;
-  background: #fff8f0;
+  background: var(--warning-bg);
 }
 
 .week-result-text {
@@ -366,7 +366,7 @@ export default {
 
 .week-result-text span {
   font-size: 0.9em;
-  color: #555;
+  color: var(--text-muted);
 }
 
 .week-jump {
@@ -385,25 +385,25 @@ export default {
 }
 
 .recommend a {
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .projects-block {
   margin: 0 0 24px 0;
   padding: 18px;
   border-radius: 12px;
-  background: #f3eef8;
-  border: 2px solid #c4a8e0;
+  background: var(--surface-tint);
+  border: 2px solid var(--border-tint);
 }
 
 .projects-block h3 {
   margin: 0 0 8px 0;
-  color: var(--primary-purple, #4a2274);
+  color: var(--brand-text);
 }
 
 .projects-intro {
   margin: 0 0 14px 0;
-  color: #555;
+  color: var(--text-muted);
   line-height: 1.45;
 }
 
@@ -417,21 +417,21 @@ export default {
 }
 
 .project-card {
-  background: #fff;
+  background: var(--surface);
   border-radius: 10px;
   padding: 14px 16px;
-  border: 1px solid #e0d4ef;
+  border: 1px solid var(--border-tint);
 }
 
 .project-card strong {
   display: block;
   margin-bottom: 6px;
-  color: #2d1b4e;
+  color: var(--text-strong);
 }
 
 .project-card p {
   margin: 0;
-  color: #444;
+  color: var(--text-muted);
   line-height: 1.45;
   font-size: 0.95em;
 }
@@ -439,12 +439,12 @@ export default {
 .project-skills {
   margin-top: 8px !important;
   font-size: 0.85em !important;
-  color: #6c5a7a !important;
+  color: var(--text-muted) !important;
 }
 
 .btn-retry {
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
   padding: 8px 16px;
   border-radius: 6px;
   cursor: pointer;
