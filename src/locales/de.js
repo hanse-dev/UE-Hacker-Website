@@ -365,7 +365,7 @@ export default {
   'jsLesson.canvasNote':   '🎨 Dein Spielfeld wurde gezeichnet – schau es dir auf der Arbeitsfläche an!',
   'jsLesson.workspaceTitle':    'Arbeitsfläche',
   'jsLesson.workspaceTask':     'Aufgabe {n}',
-  'jsLesson.workspaceEmpty':    'Klick bei einer Aufgabe auf „Ausführen“ – hier erscheint dann, was dein Code zeichnet oder baut.',
+  'jsLesson.workspaceEmpty':    'Klick bei einer Aufgabe auf „Ausführen“ – hier erscheint dann, was dein Code ausgibt, zeichnet oder baut.',
   'jsLesson.showSolution': '🔒 Lösung anzeigen',
   'jsLesson.unknownError': 'Unbekannter Fehler',
   'jsLesson.badgeExample': '🔍 Beispiel – nur ausführen',

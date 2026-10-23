@@ -365,7 +365,7 @@ export default {
   'jsLesson.canvasNote':   '🎨 Your play field was drawn – check it out on the workspace!',
   'jsLesson.workspaceTitle':    'Workspace',
   'jsLesson.workspaceTask':     'Task {n}',
-  'jsLesson.workspaceEmpty':    'Click “Run” on a task – whatever your code draws or builds shows up here.',
+  'jsLesson.workspaceEmpty':    'Click “Run” on a task – whatever your code prints, draws or builds shows up here.',
   'jsLesson.showSolution': '🔒 Show solution',
   'jsLesson.unknownError': 'Unknown error',
   'jsLesson.badgeExample': '🔍 Example – just run it',
