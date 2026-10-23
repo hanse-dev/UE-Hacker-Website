@@ -35,7 +35,7 @@ MARKER = "@@UE-TESTKIND-AUFGABE@@"
 SCHEMA = {
     "type": "object",
     "additionalProperties": False,
-    "required": ["aufgaben", "schwere_woerter", "verwirrende_saetze", "gesamteindruck"],
+    "required": ["aufgaben", "schwere_woerter", "verwirrende_saetze", "gesamteindruck", "aendern"],
     "properties": {
         "aufgaben": {
             "type": "array",
@@ -55,6 +55,20 @@ SCHEMA = {
         "schwere_woerter": {"type": "array", "items": {"type": "string"}},
         "verwirrende_saetze": {"type": "array", "items": {"type": "string"}},
         "gesamteindruck": {"type": "string"},
+        "aendern": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": False,
+                "required": ["stelle", "problem", "haette_geholfen", "gewicht"],
+                "properties": {
+                    "stelle": {"type": "string"},
+                    "problem": {"type": "string"},
+                    "haette_geholfen": {"type": "string"},
+                    "gewicht": {"type": "string", "enum": ["hoch", "mittel"]},
+                },
+            },
+        },
     },
 }
 
@@ -75,7 +89,14 @@ arbeitest, wie ein {alter}-jähriges Kind es täte.
 - "code": Dein vollständiger Code für diese Aufgabe, so wie du ihn in den Editor tippen würdest
   (die Vorlage mit deinen Ergänzungen).
 - "unklar": Was du nicht verstanden hast oder raten musstest. Leer lassen, wenn alles klar war.
-- "gesamteindruck": Ein bis zwei Sätze: Wie ging es dir mit dieser Lektion?"""
+- "gesamteindruck": Ein bis zwei Sätze: Wie ging es dir mit dieser Lektion?
+- "aendern": Nur die Stellen, an denen ein echtes Kind in deinem Alter wahrscheinlich hängen
+  bleibt, etwas falsch versteht oder raten muss - also wo sich eine Änderung wirklich lohnt.
+  Lass Stellen weg, die nach dem ganzen Absatz, dem Beispiel oder der Vorlage doch klar werden,
+  und einzelne schwere Wörter, die der Zusammenhang erklärt. Ist die Lektion insgesamt klar,
+  bleibt die Liste leer. Je Eintrag: "stelle" (z. B. "Aufgabe 3" oder "Text, 2. Absatz"),
+  "problem" (kurz, was du nicht verstanden hast), "haette_geholfen" (kurz, was dir geholfen
+  hätte), "gewicht" ("hoch" = du wärst ohne Hilfe nicht weitergekommen, sonst "mittel")."""
 
 
 def parse_markdown_cell(path: Path) -> str:
@@ -200,32 +221,45 @@ def evaluate(les: dict, answer: dict) -> list[dict]:
     return results
 
 
-def render_report(entries: list[dict], alter: int) -> str:
-    failed = sum(1 for e in entries for r in e["ergebnisse"] if r.get("fehlt") or not r.get("geschafft"))
-    unclear = sum(1 for e in entries for r in e["ergebnisse"] if r.get("unklar") or r.get("verstanden") not in (None, "ja"))
-    cost = sum(e["antwort"].get("_kosten_usd", 0) for e in entries)
-    out = [f"# KI-Test-Kind ({alter} Jahre)", "",
-           f"- **Aufgaben nicht geschafft:** {failed}",
-           f"- **Aufgaben mit Unklarheiten:** {unclear}",
-           f"- Rechnerische Kosten (Listenpreis, im Abo enthalten): {cost:.2f} $", ""]
+def _cell(text) -> str:
+    return " ".join(str(text or "").split()).replace("|", "\\|")
+
+
+def change_rows(entries: list[dict]) -> list[dict]:
+    """Was sich zu ändern lohnt: nicht geschaffte Aufgaben immer, dazu die Einträge aus `aendern`."""
+    rows = []
     for e in entries:
-        a = e["antwort"]
-        out += ["", f"## Woche {e['woche']} · {e['thema']} · {e['id']} – {e['titel']}", "", f"> {a.get('gesamteindruck', '')}"]
+        where = (e["woche"], e["id"], e["titel"])
         for r in e["ergebnisse"]:
             if r.get("fehlt"):
-                out.append(f"- ❌ **Aufgabe {r['nr']}:** keine Antwort vom Test-Kind")
-                continue
-            mark = "✅" if r["geschafft"] else "❌"
-            line = f"- {mark} **Aufgabe {r['nr']}** ({r['verstanden']} verstanden): {r['was_ich_tun_soll']}"
-            if r.get("unklar"):
-                line += f"\n  - Unklar: {r['unklar']}"
-            if not r["geschafft"]:
-                line += f"\n  - Ausgabe: `{r['ausgabe']}` – erwartet: `{r['erwartet']}`"
-            out.append(line)
-        if a.get("schwere_woerter"):
-            out.append("- Schwere Wörter: " + ", ".join(f"„{w}“" for w in a["schwere_woerter"]))
-        for s in a.get("verwirrende_saetze", []):
-            out.append(f"- Verwirrender Satz: „{s}“")
+                rows.append((*where, f"Aufgabe {r['nr']}", "Test-Kind hat keine Lösung abgegeben", "", "hoch"))
+            elif not r["geschafft"]:
+                problem = f"nicht geschafft: Ausgabe `{r['ausgabe']}` statt `{r['erwartet']}`"
+                if r.get("unklar"):
+                    problem += f" – {r['unklar']}"
+                rows.append((*where, f"Aufgabe {r['nr']}", problem, "", "hoch"))
+        for c in e["antwort"].get("aendern", []):
+            rows.append((*where, c["stelle"], c["problem"], c["haette_geholfen"], c["gewicht"]))
+    return [dict(zip(("woche", "id", "titel", "stelle", "problem", "hilfe", "gewicht"), r)) for r in rows]
+
+
+def render_report(entries: list[dict], alter: int) -> str:
+    rows = change_rows(entries)
+    high = sum(1 for r in rows if r["gewicht"] == "hoch")
+    clear = sum(1 for e in entries if not any(r["id"] == e["id"] and r["woche"] == e["woche"] for r in rows))
+    cost = sum(e["antwort"].get("_kosten_usd", 0) for e in entries)
+    out = [f"# KI-Test-Kind ({alter} Jahre)", "",
+           f"{len(entries)} Lektionen geprüft, {clear} davon ohne Änderungsbedarf. "
+           f"{len(rows)} Stellen lohnen eine Änderung, {high} davon wichtig (das Test-Kind wäre ohne Hilfe nicht weitergekommen).",
+           f"Rechnerische Kosten (Listenpreis, im Abo enthalten): {cost:.2f} $. Einzelheiten je Aufgabe stehen in der .json-Datei daneben.", ""]
+    if not rows:
+        return "\n".join(out + ["Alles klar – nichts zu ändern."]) + "\n"
+    out += ["| Woche | Lektion | Stelle | Problem | Hätte geholfen | Gewicht |",
+            "|---|---|---|---|---|---|"]
+    for r in rows:
+        weight = "**hoch**" if r["gewicht"] == "hoch" else "mittel"
+        out.append(f"| {r['woche']} | {_cell(r['id'])} – {_cell(r['titel'])} | {_cell(r['stelle'])} | "
+                   f"{_cell(r['problem'])} | {_cell(r['hilfe'])} | {weight} |")
     return "\n".join(out) + "\n"
 
 

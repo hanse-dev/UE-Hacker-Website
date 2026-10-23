@@ -3083,3 +3083,8 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
 - Erster Probelauf Woche 3 Lektion 2: ~12 s, rechnerisch 0,07 $; fand u. a., dass „Vergleich direkt
   in `{}` eines f-Strings“ nie gezeigt wurde – das sieht der statische Bericht (3.123) nicht.
 - `tests/ki-testkind.spec.js` prüft ohne KI (`--antworten` mit vorbereiteten Antworten, `--trocken`).
+- Bericht = eine Tabelle nur mit lohnenden Änderungen (Wunsch Eike, 23.10.2026): Das Test-Kind
+  füllt `aendern` (Stelle, Problem, was geholfen hätte, Gewicht hoch/mittel) nur dort, wo ein echtes
+  Kind hängen bliebe – nicht für Stellen, die der Absatz oder das Beispiel klärt; klare Lektionen
+  erscheinen nicht. Nicht geschaffte Aufgaben kommen immer als „hoch“ hinein. Einzelheiten je
+  Aufgabe (eigene Worte, Code, schwere Wörter) nur noch in der `.json` neben dem Bericht.

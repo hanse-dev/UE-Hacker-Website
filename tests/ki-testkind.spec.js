@@ -50,33 +50,37 @@ function miniKurs() {
     schwere_woerter: ['f-String'],
     verwirrende_saetze: [],
     gesamteindruck: 'Ging so.',
+    aendern: [{ stelle: 'Aufgabe 3', problem: 'Woher die 15 kommt, steht nirgends', haette_geholfen: 'Rechenweg nennen', gewicht: 'mittel' }],
   }));
   fs.writeFileSync(path.join(antworten, '2-lektion-02.json'), JSON.stringify({
     aufgaben: [{ nr: 2, verstanden: 'ja', was_ich_tun_soll: 'fragen', code: 'n = input("Name? ")\nprint(f"Hallo {n}")', unklar: '' }],
-    schwere_woerter: [], verwirrende_saetze: [], gesamteindruck: 'Leicht.',
+    schwere_woerter: ['Eingabe'], verwirrende_saetze: [], gesamteindruck: 'Leicht.', aendern: [],
   }));
   return { root, antworten };
 }
 
 const run = (args) => execFileSync('python3', ['scripts/ki_testkind.py', ...args], { cwd: process.cwd(), encoding: 'utf8' });
 
-test('prüft den Code des Test-Kinds wie die Website (inkl. Variablen aus dem Beispiel)', () => {
+test('Bericht: nur lohnende Änderungen als Tabelle, Code geprüft wie auf der Website', () => {
   const { root, antworten } = miniKurs();
   const out = run(['--content', root, '--wochen', '2', '--antworten', antworten]);
-  expect(out).toContain('- **Aufgaben nicht geschafft:** 1');
-  expect(out).toContain('✅ **Aufgabe 2** (ja verstanden)');
-  expect(out).toContain('❌ **Aufgabe 3** (nein verstanden)');
-  expect(out).toContain('Unklar: Woher kommt 15?');
-  expect(out).toContain('Ausgabe: `Gold: 5` – erwartet: `Gold: 15`');
-  expect(out).toContain('Schwere Wörter: „f-String“');
-  // input(): die automatische Eingabe kommt bei der geprüften Aufgabe an, nicht beim Beispiel davor
-  expect(out).toMatch(/lektion-02 – Fragen[\s\S]*✅ \*\*Aufgabe 2\*\*/);
+  expect(out).toContain('2 Lektionen geprüft, 1 davon ohne Änderungsbedarf. 2 Stellen lohnen eine Änderung, 1 davon wichtig');
+  expect(out).toContain('| Woche | Lektion | Stelle | Problem | Hätte geholfen | Gewicht |');
+  // Aufgabe 2 nutzt gold aus dem Beispiel (gleicher Kernel) und ist geschafft - keine Zeile.
+  // Aufgabe 3 ist nicht geschafft: immer eine wichtige Zeile, mit dem, was unklar war
+  expect(out).toContain('| 2 | lektion-01 – Rechnen | Aufgabe 3 | nicht geschafft: Ausgabe `Gold: 5` statt `Gold: 15` – Woher kommt 15? |  | **hoch** |');
+  expect(out).toContain('| Aufgabe 3 | Woher die 15 kommt, steht nirgends | Rechenweg nennen | mittel |');
+  expect(out).not.toContain('Aufgabe 2 |');
+  // Lektion 2 ist insgesamt klar (aendern leer, Aufgabe mit input() geschafft): taucht nicht auf,
+  // auch nicht wegen eines einzelnen schweren Worts
+  expect(out).not.toContain('lektion-02');
 });
 
 test('Prompt enthält Glossar früherer Wochen und die Lektion, aber nie eine Musterlösung', () => {
   const { root } = miniKurs();
   const out = run(['--content', root, '--wochen', '2', '--trocken', '--alter', '10']);
   expect(out).toContain('Du spielst ein 10-jähriges Kind');
+  expect(out).toContain('"aendern": Nur die Stellen, an denen ein echtes Kind');
   expect(out).toContain('| `print()` | Gibt Text aus |');
   expect(out).toContain('Mit `*` rechnest du mal.');
   expect(out).toContain('Bearbeite die Aufgaben 2, 3');
