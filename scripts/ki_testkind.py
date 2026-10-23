@@ -163,13 +163,17 @@ def output_ok(output: str, validation: dict) -> bool:
 
 def run_attempt(earlier_codes: list[str], code: str, validation: dict) -> tuple[bool, str]:
     """Führt den Code des Test-Kinds aus; frühere Aufgaben der Lektion laufen vorher mit (wie im
-    selben Python-Kernel der Website), gezählt wird nur die Ausgabe nach der Markierung."""
-    program = "\n".join(earlier_codes + [f"print({MARKER!r})", code])
-    stdin = "\n".join(map(str, validation.get("stdin") or [])) + "\n" + "1\n" * 20
+    selben Python-Kernel der Website), gezählt wird nur die Ausgabe nach der Markierung. Wie auf der
+    Website bekommt nur die geprüfte Aufgabe `validation.stdin` - frühere input()-Aufrufe dürfen es
+    nicht wegessen, sie bekommen Füll-Eingaben."""
+    filler = "1\n" * 20
+    own = "\n".join(map(str, validation.get("stdin") or [])) + "\n" + filler
+    program = "\n".join(["import io as __io, sys as __sys", f"__sys.stdin = __io.StringIO({filler!r})", *earlier_codes,
+                         f"__sys.stdin = __io.StringIO({own!r})", f"print({MARKER!r})", code])
     with tempfile.TemporaryDirectory() as work:
         try:
-            proc = subprocess.run([sys.executable, "-I", "-c", program], input=stdin, capture_output=True,
-                                  text=True, cwd=work, timeout=10)
+            proc = subprocess.run([sys.executable, "-I", "-c", program], capture_output=True,
+                                  text=True, cwd=work, timeout=10, stdin=subprocess.DEVNULL)
         except subprocess.TimeoutExpired:
             return False, "Zeitüberschreitung (Endlosschleife?)"
     out = proc.stdout.split(MARKER, 1)[-1].lstrip("\n")

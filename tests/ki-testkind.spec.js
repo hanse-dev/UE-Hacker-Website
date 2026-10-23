@@ -24,6 +24,17 @@ function miniKurs() {
     ],
   }]));
   fs.writeFileSync(path.join(w2, 'lektion-01.md'), '# Rechnen\n\nMit `*` rechnest du mal.\n');
+  // Lektion 2: Das Beispiel ruft selbst input() auf - es darf die Prüf-Eingabe der Aufgabe nicht wegessen
+  const lessons = JSON.parse(fs.readFileSync(path.join(w2, 'lessons.json'), 'utf8'));
+  lessons.push({
+    id: 'lektion-02', section: 'lektion', title: 'Fragen', file: 'lektion-02.md', lessonSummary: '',
+    tasks: [
+      { instruction: 'Beispiel', example: true, codeTemplate: 'x = input("Wie geht es? ")\n', validation: { type: 'output_contains', expected: '' } },
+      { instruction: 'Frage nach dem Namen.', codeTemplate: '', validation: { type: 'output_contains', expected: 'Hallo Blitz', stdin: ['Blitz'] } },
+    ],
+  });
+  fs.writeFileSync(path.join(w2, 'lessons.json'), JSON.stringify(lessons));
+  fs.writeFileSync(path.join(w2, 'lektion-02.md'), '# Fragen\n');
   // Musterlösung liegt im Lösungsordner - die darf das Test-Kind nie sehen
   const sol = path.join(root, 'python-12-wochen-grundkurs', 'woche-2', 'abenteuer', 'woche2_abenteuer_6_loesungen');
   fs.mkdirSync(sol, { recursive: true });
@@ -40,6 +51,10 @@ function miniKurs() {
     verwirrende_saetze: [],
     gesamteindruck: 'Ging so.',
   }));
+  fs.writeFileSync(path.join(antworten, '2-lektion-02.json'), JSON.stringify({
+    aufgaben: [{ nr: 2, verstanden: 'ja', was_ich_tun_soll: 'fragen', code: 'n = input("Name? ")\nprint(f"Hallo {n}")', unklar: '' }],
+    schwere_woerter: [], verwirrende_saetze: [], gesamteindruck: 'Leicht.',
+  }));
   return { root, antworten };
 }
 
@@ -54,6 +69,8 @@ test('prüft den Code des Test-Kinds wie die Website (inkl. Variablen aus dem Be
   expect(out).toContain('Unklar: Woher kommt 15?');
   expect(out).toContain('Ausgabe: `Gold: 5` – erwartet: `Gold: 15`');
   expect(out).toContain('Schwere Wörter: „f-String“');
+  // input(): die automatische Eingabe kommt bei der geprüften Aufgabe an, nicht beim Beispiel davor
+  expect(out).toMatch(/lektion-02 – Fragen[\s\S]*✅ \*\*Aufgabe 2\*\*/);
 });
 
 test('Prompt enthält Glossar früherer Wochen und die Lektion, aber nie eine Musterlösung', () => {
