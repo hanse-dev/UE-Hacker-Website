@@ -11,3 +11,4 @@ while schritte < 100:
         break
 print(f"Höchstens 100 Schritte: {schritte <= 100}")
 print(f"Karte passt: {len(karte) == schritte + 1}")
+print(karte)

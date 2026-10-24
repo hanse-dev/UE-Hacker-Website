@@ -118,6 +118,7 @@ def pruefe_gegner(spieler):
         if kampf(spieler, gegner):
             print(f"🎉 {gegner.name} wurde besiegt!")
 
-spieler = Spieler("Mira", "eingang")
-ergebnis = kampf(spieler, Gegner("Drache", 1000, 30))
-print(f"Sieg: {ergebnis}")
+welt["halle"]["gegner"] = Gegner("Wache", 1, 1)
+spieler = Spieler("Mira", "halle")
+pruefe_gegner(spieler)
+print(f"Besiegt: {welt['halle']['gegner'].ist_besiegt()}")

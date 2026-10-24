@@ -629,3 +629,16 @@ Unverändert aus `todo.md` übernommen. Die wirklich offenen Prüf-Lücken darau
       Container nach jeder Rechtschreibprüfung stoppen; bei hoher Last (`uptime`) erst danach pushen.
       **24.10.:** erledigt — `lint:spelling:de` stoppt den Container nach dem Lauf selbst, wenn es ihn
       gestartet hat (`--behalten` lässt ihn an).
+- [x] Prüf-Lücken im 12-Wochen-Kurs (Lektionen prüfen nur die Ausgabe):
+      - **Woche 1–2:** `output_contains` prüft pro Aufgabe nur einen String — bei mehreren
+        geforderten Ausgaben (z.B. Boss 1 Schritt 1, Boss 3 Schritt 2/4 Abenteuer) und hart
+        codierten `print`s bleibt eine Lücke. Vorschlag: `expectedAll` oder `variables`-Check in
+        `JsLessonView`/`LessonView`.
+      - **Woche 7:** Ob `random` wirklich benutzt wird, bleibt ungeprüft (geprüft werden nur
+        Bereich und Anzahl).
+      - **Woche 8, 10–12:** Bonus-Teile sind ungeprüft. Woche 12: Die `input()`-Befehlsschleife
+        fehlt (Befehle stehen als Liste), sie bräuchte `stdin`-Validierung.
+      - Missionen/Boss-Quests haben feste Vorgaben; ggf. eine ungeprüfte „Freestyle“-Aufgabe pro
+        Woche ergänzen.
+      **24.10.:** erledigt (HANDOFF 3.126): Listen in `expected` (W1–2), `varies` (W7), `input()`-Schleife
+      (W12). Entscheidung Eike: Bonus bleibt ungeprüft, keine Freestyle-Aufgabe, keine Code-Prüfung.

@@ -8,3 +8,4 @@ spruch = random.choice(prophezeiungen)
 horoskop = f"{name} – {rune}: {spruch}"
 print(f"Name enthalten: {name in horoskop}")
 print(f"Spruch enthalten: {spruch in horoskop}")
+print(horoskop)

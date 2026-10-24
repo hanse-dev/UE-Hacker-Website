@@ -210,7 +210,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Besatzung: 6"
+          "expected": [
+            "=== SCHIFFSPROTOKOLL ===",
+            "Typ: Shuttle",
+            "Registrierung: NX-42",
+            "Besatzung: 6"
+          ]
         }
       },
       {
@@ -235,7 +240,10 @@
         "codeTemplate": "shuttle = 7\nziel = \"Mars\"\n\n# Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Shuttle 7 fliegt zum Ziel Mars."
+          "expected": [
+            "=== FLUGPROTOKOLL ===",
+            "Shuttle 7 fliegt zum Ziel Mars."
+          ]
         }
       },
       {
@@ -243,7 +251,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "3... 2... 1... Start!"
+          "expected": [
+            "Start in:",
+            "3... 2... 1... Start!"
+          ]
         }
       }
     ]
@@ -268,7 +279,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Bewertung: 5 Sterne"
+          "expected": [
+            "Autor: ",
+            "Bewertung: 5 Sterne"
+          ]
         }
       }
     ]
@@ -285,7 +299,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "=== ANTIVIRUS-PROTOKOLL ==="
+          "expected": [
+            "=== ANTIVIRUS-PROTOKOLL ===",
+            "1:",
+            "2:",
+            "3:"
+          ]
         }
       },
       {
@@ -293,7 +312,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "System wird bereinigt..."
+          "expected": [
+            "Bereinigungscode: ",
+            "System wird bereinigt..."
+          ]
         }
       }
     ]

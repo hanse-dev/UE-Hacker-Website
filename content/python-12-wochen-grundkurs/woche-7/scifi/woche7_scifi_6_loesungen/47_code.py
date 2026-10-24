@@ -3,3 +3,4 @@ import random
 
 gewaehlt = random.choice(module)
 print(f"Gewählt gültig: {gewaehlt in module}")
+print(gewaehlt)

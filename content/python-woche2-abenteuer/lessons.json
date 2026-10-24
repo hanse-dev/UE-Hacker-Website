@@ -454,7 +454,10 @@
         "codeTemplate": "truhe1 = 120\ntruhe2 = 80\ntruhe3 = 200\ntruhe4 = 150\ntruhe5 = 50\ntruhe6 = 90\ntruhe7 = 60\ntruhe8 = 250\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Gesamtwert: 1000"
+          "expected": [
+            "=== SCHATZRAUM-PROTOKOLL ===",
+            "Gesamtwert: 1000"
+          ]
         }
       },
       {
@@ -487,7 +490,10 @@
         "codeTemplate": "zauber1 = \"Feuerball\"\nstaerke1 = 80.0\nkomplex1 = 3\nzauber2 = \"Frostblitz\"\nstaerke2 = 65.0\nkomplex2 = 2\nzauber3 = \"Sturmruf\"\nstaerke3 = 95.0\nkomplex3 = 5\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Feuerball: Stärke 80.0, Komplexität 3"
+          "expected": [
+            "=== ZAUBERWERKSTATT-PROTOKOLL ===",
+            "Feuerball: Stärke 80.0, Komplexität 3"
+          ]
         }
       },
       {
@@ -528,7 +534,10 @@
         "codeTemplate": "belohnung1 = 500\ndauer1 = 4\ngruppe1 = 5\nchance1 = 0.8\nbelohnung2 = 800\ndauer2 = 7\ngruppe2 = 4\nchance2 = 0.75\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Gesamtbelohnung: 1300"
+          "expected": [
+            "=== QUEST-PROTOKOLL ===",
+            "Gesamtbelohnung: 1300"
+          ]
         }
       },
       {
@@ -536,7 +545,10 @@
         "codeTemplate": "belohnung1 = 500\ndauer1 = 4\ngruppe1 = 5\nchance1 = 0.8\nbelohnung2 = 800\ndauer2 = 7\ngruppe2 = 4\nchance2 = 0.75\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Quest 2 erwartet: 600.0"
+          "expected": [
+            "Quest 1 erwartet: 400.0",
+            "Quest 2 erwartet: 600.0"
+          ]
         }
       },
       {

@@ -1,3 +1,3 @@
-"""### Mission 2: Heilung – Aufgabe 3
+"""### Mission 2: Heilung – Aufgabe 2
 
-Schritt 3 – Gegenstand benutzen: `heile()` ist vorgegeben, der Spieler hat 5 HP und Apfel im Inventar. Schreibe `benutze(spieler)`: Sie sucht Apfel im Inventar, entfernt ihn und heilt um 10 – sonst gibt sie Du hast nichts zum Heilen. aus. Rufe sie zweimal auf und gib dazwischen genau HP: 15 aus."""
+Schritt 2 – Obergrenze: `heile()` ist vorgegeben, der Spieler hat 18 HP. Heile um 5 und gib genau HP: 20 aus."""

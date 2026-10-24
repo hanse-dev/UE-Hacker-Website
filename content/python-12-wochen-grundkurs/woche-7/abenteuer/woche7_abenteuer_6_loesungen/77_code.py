@@ -10,3 +10,4 @@ for e in verlauf:
         alle_gueltig = False
 print(f"Ereignisse: {len(verlauf)}")
 print(f"Alle gültig: {alle_gueltig}")
+print(verlauf)

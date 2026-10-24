@@ -9,3 +9,4 @@ for wurf in wuerfe:
         alle_ok = False
 print(f"Spieler: {len(wuerfe)}")
 print(f"Alle im Bereich: {alle_ok}")
+print(wuerfe)

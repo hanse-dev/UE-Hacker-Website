@@ -1,7 +1,3 @@
-"""## 🐛 Debug-Quest
+"""### Etappe 7: Speichern und das Finale – Aufgabe 5
 
-### Debug-Quest – Aufgabe 1
-
-🐛 Bug #1 – Ziel: Das Programm soll Position: stallgasse ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.
-
-**Erklärung:** Die Ausgänge stehen im Schlüssel der Ausgänge, nicht direkt im Raum-Dictionary. Die Prüfung `richtung in raum` findet deshalb nie etwas."""
+Jetzt tippst du die Befehle selbst: Schreibe eine `while`-Schleife, die mit `input(\"> \")` einen Befehl nach dem anderen liest und mit `fuehre_aus(spieler, befehl)` ausführt. Ist der Befehl `ende`, gibt sie genau Spiel beendet. aus und hört mit `break` auf. Beim Ausführen tippst du die Befehle ins Fenster, beim Prüfen gibt der Computer `gehe norden`, `gehe westen`, `nimm Stallbesen` und `ende` selbst ein – die Befehle gehören also nicht in deinen Code."""

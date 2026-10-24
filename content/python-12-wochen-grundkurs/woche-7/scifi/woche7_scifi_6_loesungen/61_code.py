@@ -16,3 +16,4 @@ gesamt = 0
 for s in siege:
     gesamt += s
 print(f"Siege insgesamt: {gesamt}")
+print(siege)

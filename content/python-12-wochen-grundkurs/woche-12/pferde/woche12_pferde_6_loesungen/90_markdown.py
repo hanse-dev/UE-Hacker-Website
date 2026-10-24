@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 4: Das ganze Spiel – Aufgabe 2
+"""### Extra-Herausforderung 4: Das ganze Spiel – Aufgabe 1
 
-Schritt 2 – Vererbung (Woche 11): Der Gegner `Gegner` ist vorgegeben. Schreibe `Boss(Gegner)`, die mit `super().__init__(...)` **doppelt so viele** HP bekommt. Erzeuge `Boss(\"Ziegenbock\", 10, 3)` und gib genau HP: 20 aus."""
+Schritt 1 – Zufall (Woche 7): Schreibe `wuerfle()`, die mit `random.randint(1, 6)` würfelt und die Zahl zurückgibt. Würfle 20-mal und gib True aus, wenn **alle** Würfe zwischen 1 und 6 liegen. Gib zum Schluss einen Wurf aus: `print(wuerfle())`."""

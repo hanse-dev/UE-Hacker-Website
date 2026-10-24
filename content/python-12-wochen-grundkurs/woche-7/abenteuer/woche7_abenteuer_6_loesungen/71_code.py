@@ -13,3 +13,4 @@ for inhalt in inhalte:
         monster_anzahl += 1
 print(f"Räume: {len(inhalte)}")
 print(f"Anzahl passt: {0 <= monster_anzahl <= 5}")
+print(inhalte)

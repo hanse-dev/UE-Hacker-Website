@@ -187,7 +187,8 @@ def output_ok(output: str, validation: dict) -> bool:
         return True
     if validation.get("type") == "output_equals":
         return output.strip() == expected
-    return normalize(expected) in normalize(output.strip())
+    # Eine Liste heißt: jeder Eintrag muss vorkommen. `varies` (mehrere Läufe) prüft das Test-Kind nicht.
+    return all(normalize(e) in normalize(output.strip()) for e in (expected if isinstance(expected, list) else [expected]))
 
 
 def run_attempt(earlier_codes: list[str], code: str, validation: dict) -> tuple[bool, str]:

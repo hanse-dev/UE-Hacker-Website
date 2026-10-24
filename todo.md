@@ -87,17 +87,6 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
       aus dem Memory-Projekt (HANDOFF 3.103, `click` als Liste von IDs) nutzen und die Aufgaben schärfen.
 - [ ] Backup-Cron auf dem Server einrichten bzw. prüfen, ob er läuft (Befehl siehe HANDOFF.md
       Abschnitt 4). Die Seite ist live; externe Sicherung der Backups ist bewusst nicht mitgebaut.
-- [ ] Prüf-Lücken im 12-Wochen-Kurs (Lektionen prüfen nur die Ausgabe):
-      - **Woche 1–2:** `output_contains` prüft pro Aufgabe nur einen String — bei mehreren
-        geforderten Ausgaben (z.B. Boss 1 Schritt 1, Boss 3 Schritt 2/4 Abenteuer) und hart
-        codierten `print`s bleibt eine Lücke. Vorschlag: `expectedAll` oder `variables`-Check in
-        `JsLessonView`/`LessonView`.
-      - **Woche 7:** Ob `random` wirklich benutzt wird, bleibt ungeprüft (geprüft werden nur
-        Bereich und Anzahl).
-      - **Woche 8, 10–12:** Bonus-Teile sind ungeprüft. Woche 12: Die `input()`-Befehlsschleife
-        fehlt (Befehle stehen als Liste), sie bräuchte `stdin`-Validierung.
-      - Missionen/Boss-Quests haben feste Vorgaben; ggf. eine ungeprüfte „Freestyle“-Aufgabe pro
-        Woche ergänzen.
 - [ ] Offen aus der Inhaltsprüfung der deutschen Texte (HANDOFF 3.98, Details im Archiv):
       - **Woche 2 Boss 3 (Abenteuer, Pferde)** rechnet mit Erfolgswahrscheinlichkeit und
         Erwartungswert — für 10/11-Jährige schwer; nur in Sci-Fi ist das jetzt erklärt.

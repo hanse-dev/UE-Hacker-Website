@@ -35,6 +35,9 @@ welt["halle"]["gegenstaende"] = []
 welt["quelle"]["gegenstaende"] = [Gegenstand("Schwert", "Ein scharfes Schwert, das neben der Quelle im Stein steckt.")]
 welt["schatzkammer"]["gegenstaende"] = [Gegenstand("Schatz", "Der legendäre Schatz von Pyralia!")]
 
+welt["keller"] = {"beschreibung": "Ein kühler Keller voller alter Fässer.", "ausgaenge": {"oben": "halle"}, "gegenstaende": [], "gegner": None}
+welt["halle"]["ausgaenge"]["unten"] = "keller"
+welt["keller"]["gegenstaende"].append(Gegenstand("Heiltrank", "Ein roter Trank, der Wunden heilt."))
 class Spieler:
     def __init__(self, name, position):
         self.name = name
@@ -76,12 +79,6 @@ class Spieler:
         else:
             print("🎒 Dein Beutel ist leer.")
 
-spieler = Spieler("Mira", "eingang")
-spieler.hp = 8
-def heile(spieler, menge):
-    spieler.hp += menge
-    if spieler.hp > 20:
-        spieler.hp = 20
-
-heile(spieler, 5)
-print(f"HP: {spieler.hp}")
+spieler = Spieler("Mira", "halle")
+spieler.gehe("unten")
+spieler.nimm("Heiltrank")

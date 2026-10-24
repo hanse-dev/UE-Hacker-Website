@@ -13,3 +13,4 @@ for inhalt in inhalte:
         gefahren_anzahl += 1
 print(f"Räume: {len(inhalte)}")
 print(f"Anzahl passt: {0 <= gefahren_anzahl <= 5}")
+print(inhalte)

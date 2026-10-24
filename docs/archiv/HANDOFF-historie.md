@@ -3110,3 +3110,31 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   zählen nicht (das Test-Kind sieht sie nie), andere Kursarten werden als „nicht geprüft“ gemeldet.
   Bewusst kein Hook (Minuten Laufzeit, braucht die claude-CLI, Ergebnis schwankt), sondern eine Regel in
   `CLAUDE.md` und `INHALTE.md` §6.
+
+### 3.126 — Schärfere Ausgabe-Prüfung im 12-Wochen-Kurs (Branch `pruef-luecken`)
+
+Offener Punkt „Prüf-Lücken“ aus `todo.md`. Entscheidung Eike (24.10.2026): Lektionen prüfen weiter
+nur die Ausgabe, aber schärfer; Bonus-Teile bleiben bewusst ungeprüft, keine Freestyle-Aufgabe.
+
+- `validateOutput()` (`useTaskValidation.js`): `expected` darf bei `output_contains` eine Liste sein,
+  jeder Eintrag muss vorkommen. `missingExpected()` liefert die fehlenden; `LessonView` zeigt ab dem
+  zweiten Fehlversuch nur den ersten fehlenden statt der ganzen Liste. `ki_testkind.py` prüft Listen
+  genauso. Eingesetzt in Woche 1–2 (alle drei Themen, DE) überall, wo die Aufgabe mehrere Zeilen
+  fordert (Überschrift + Zeilen, zwei Ergebnisse); vorher genügte die letzte Zeile.
+- `validation.varies` (`LessonView.checkTask`): Prüfen läuft bis zu 6-mal (`VARIES_MAX_RUNS`), bis
+  sich eine Ausgabe unterscheidet; jeder Lauf muss `expected` erfüllen, sonst normaler Hinweis. Immer
+  gleiche Ausgabe → `lesson.hintVaries`. Damit das greift, geben die 22 Zufalls-Aufgaben je Thema in
+  Woche 7 (alle außer der `seed`-Aufgabe) und W12 Boss 4 Schritt 1 jetzt zusätzlich den gezogenen
+  Wert aus (ein Satz „Gib zum Schluss … aus.“ am Ende der Aufgabe, Lösungszelle eine Zeile länger).
+  Wahrscheinlichkeit für einen Fehlalarm bei richtiger Lösung höchstens ~0,4 ‰ (Münzwurf-Aufgabe
+  daher als drei Aufrufe von `wuerfle_faehigkeit()`).
+- Woche 12, Etappe 7: neue Aufgabe 6 (am Ende, bestehende Positionen unverändert) – `while True` mit
+  `input("> ")`, `ende` beendet mit `break`; `stdin` gibt `gehe norden`, `gehe westen`, `nimm <Ziel>`,
+  `ende` ein, `expected` = Einsammel-Meldung + „Spiel beendet.“. Ein Absatz dazu im Lektionstext.
+- Bewusst offen: fest eingetippte `print`-Ausgaben bestehen weiter (keine Code-Prüfung in Lektionen);
+  Bonus-Teile Woche 8/10–12 bleiben „freiwillig, ohne Prüfung“. `INHALTE.md` §6 nebenbei korrigiert:
+  `codeContains` wird in Lektionen nicht ausgewertet.
+- Tests: `python-woche1-lektionen.spec.js` (Liste + Hinweis, `varies`, Spielschleife mit `stdin`),
+  `ki-testkind.spec.js` (Liste). Musterlösungen aller 36 Woche-Themen-Kombinationen mit `python3`
+  gegen `expected` (und `varies`: 6 Läufe) geprüft.
+

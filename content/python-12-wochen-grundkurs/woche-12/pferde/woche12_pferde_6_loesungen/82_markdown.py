@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Die Bestenliste – Aufgabe 1
+"""### Extra-Herausforderung 2: Die Weltkarte speichern – Aufgabe 3
 
-Schritt 1: Das Dictionary `bestenliste = {\"Mira\": 120, \"Tom\": 90, \"Lena\": 150}` ist vorgegeben. Finde mit einer Schleife den Namen mit den meisten Punkten und gib genau Bester: Lena aus."""
+Schritt 3: Die Welt ist vorgegeben. Gib die Raumnamen alphabetisch sortiert als Liste aus: `print(sorted(welt))`."""

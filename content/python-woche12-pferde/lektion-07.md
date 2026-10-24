@@ -46,4 +46,6 @@ def spiele(spieler, befehle, ziel_gegenstand="Fohlen"):
 
 Die Funktion `spiele()` ist die **Spielschleife**: Sie führt Befehle aus und prüft nach jedem Schritt, ob du gewonnen (Ziel-Gegenstand im Beutel) oder verloren hast (HP 0).
 
+Bisher stehen die Befehle in einer Liste. In einem echten Spiel tippst du sie selbst: Eine `while True`-Schleife (Woche 4) fragt mit `input()` (Woche 1) immer wieder nach dem nächsten Befehl. Tippst du `ende`, beendet `break` (Woche 6) die Schleife.
+
 > 🎓 Geschafft! Du hast fast alles aus dem Kurs in einem Projekt benutzt – jetzt kannst du dein Spiel beliebig erweitern.

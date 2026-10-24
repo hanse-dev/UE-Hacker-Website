@@ -134,9 +134,10 @@ def fuehre_aus(spieler, text):
 
 spieler = Spieler("Mira", "schleuse")
 def fuehre_aus2(spieler, text):
-    if text == "hp":
-        print(f"❤️ HP: {spieler.hp}")
+    if text == "inventar":
+        spieler.zeige_inventar()
     else:
         fuehre_aus(spieler, text)
 
-fuehre_aus2(spieler, "hp")
+fuehre_aus2(spieler, "nimm Zugangskarte")
+fuehre_aus2(spieler, "inventar")

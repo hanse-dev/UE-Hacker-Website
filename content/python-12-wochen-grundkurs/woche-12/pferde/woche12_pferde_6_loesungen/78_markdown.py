@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 2: Die Weltkarte speichern – Aufgabe 2
+"""### Extra-Herausforderung 2: Die Weltkarte speichern – Aufgabe 1
 
-Schritt 2: Die Welt ist vorgegeben. Schreibe sie mit `json.dump` in die Datei welt.json, lies sie mit `json.load` wieder ein und gib genau Räume: 4 aus."""
+Schritt 1: Die Welt `welt` (Räume mit Beschreibung und Ausgängen) ist vorgegeben. Wandle sie mit `json.dumps` in Text und mit `json.loads` zurück und gib `zurueck == welt` aus (True)."""

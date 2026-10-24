@@ -1,5 +1,5 @@
-"""## ⭐ Missionen
+"""### Debug-Quest – Aufgabe 3
 
-### Mission 1: Ein neuer Raum – Aufgabe 1
+🐛 Bug #3 – Ziel: Das Programm soll 💾 Spielstand von Mira gespeichert. ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.
 
-Schritt 1 – Raum anlegen: Welt und `beschreibe()` sind vorgegeben. Lege `welt[\"keller\"]` mit der Beschreibung Ein kühler Keller voller alter Fässer. und dem Ausgang oben nach halle an und füge in halle den Ausgang unten nach keller hinzu. Rufe `beschreibe(\"halle\")` auf."""
+**Erklärung:** `\"r\"` öffnet nur zum Lesen (und die Datei gibt es noch nicht). Zum Schreiben braucht `open` den Modus `\"w\"`."""

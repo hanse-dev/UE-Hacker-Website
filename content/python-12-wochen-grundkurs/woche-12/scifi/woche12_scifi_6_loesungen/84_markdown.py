@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 3: Die Bestenliste – Aufgabe 2
+"""### Extra-Herausforderung 3: Die Bestenliste – Aufgabe 1
 
-Schritt 2: Das Dictionary ist vorgegeben. Sortiere die Namen mit `sorted(bestenliste, key=bestenliste.get, reverse=True)` und gib pro Name eine Zeile wie Lena: 150 aus."""
+Schritt 1: Das Dictionary `bestenliste = {\"Mira\": 120, \"Tom\": 90, \"Lena\": 150}` ist vorgegeben. Finde mit einer Schleife den Namen mit den meisten Punkten und gib genau Bester: Lena aus."""

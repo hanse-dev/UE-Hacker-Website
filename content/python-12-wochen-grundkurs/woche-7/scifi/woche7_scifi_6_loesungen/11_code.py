@@ -3,3 +3,4 @@ import random
 
 gewaehlt = random.choice(module)
 print(f"Enthalten: {gewaehlt in module}")
+print(gewaehlt)

@@ -1,12 +1,26 @@
-class Spieler:
-    def __init__(self, name, position):
-        self.name = name
-        self.position = position
-        self.inventar = []
+welt = {
+    "schleuse": {
+        "beschreibung": "Du stehst in der Schleuse. Rote Warnlichter blinken, und die Station brummt bedrohlich.",
+        "ausgaenge": {"norden": "korridor"},
+    },
+    "korridor": {
+        "beschreibung": "Ein langer Korridor mit vielen Türen. Notbeleuchtung taucht alles in rotes Licht.",
+        "ausgaenge": {"sueden": "schleuse", "osten": "reaktorraum", "westen": "labor"},
+    },
+    "labor": {"beschreibung": "Ein Labor voller Geräte. Auf einem Tisch liegt Werkzeug bereit.", "ausgaenge": {"osten": "korridor"}},
+    "reaktorraum": {"beschreibung": "Der Reaktorraum! Der Reaktor summt – und davor steht ein defekter Wartungsroboter!", "ausgaenge": {"westen": "korridor"}},
+}
 
-    def nimm(self, gegenstand_name):
-        self.inventar.append(gegenstand_name)
+def beschreibe(raumname):
+    raum = welt[raumname]
+    print(f"📍 {raumname.capitalize()}: {raum['beschreibung']}")
+    print("   Ausgänge:", ", ".join(raum["ausgaenge"]))
 
-spieler = Spieler("Mira", "schleuse")
-spieler.nimm("Zugangskarte")
-print(f"Anzahl: {len(spieler.inventar)}")
+def gehe(position, richtung):
+    raum = welt[position]
+    if richtung in raum["ausgaenge"]:
+        return raum["ausgaenge"][richtung]
+    return position
+
+position = gehe("schleuse", "norden")
+print(f"Position: {position}")

@@ -76,6 +76,17 @@ test('Bericht: nur lohnende Änderungen als Tabelle, Code geprüft wie auf der W
   expect(out).not.toContain('lektion-02');
 });
 
+test('Liste in expected: geschafft, wenn jeder Eintrag in der Ausgabe vorkommt (wie auf der Website)', () => {
+  const { root, antworten } = miniKurs();
+  const datei = path.join(root, 'python-woche2-abenteuer', 'lessons.json');
+  const lessons = JSON.parse(fs.readFileSync(datei, 'utf8'));
+  lessons[0].tasks[1].validation.expected = ['Gold:', '10'];
+  fs.writeFileSync(datei, JSON.stringify(lessons));
+  const out = run(['--content', root, '--wochen', '2', '--antworten', antworten]);
+  expect(out).toContain('Aufgabe 3 | nicht geschafft');
+  expect(out).not.toContain('Aufgabe 2 |');
+});
+
 test('Prompt enthält Glossar früherer Wochen und die Lektion, aber nie eine Musterlösung', () => {
   const { root } = miniKurs();
   const out = run(['--content', root, '--wochen', '2', '--trocken', '--alter', '10']);

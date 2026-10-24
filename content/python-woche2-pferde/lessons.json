@@ -397,7 +397,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Comet: 60 Minuten"
+          "expected": [
+            "=== REITSTUNDEN-PLAN ===",
+            "Luna: 30 Minuten",
+            "Thunder: 45 Minuten",
+            "Comet: 60 Minuten"
+          ]
         }
       },
       {
@@ -430,7 +435,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Thunder: 135 Punkte"
+          "expected": [
+            "Luna: 140 Punkte",
+            "Thunder: 135 Punkte"
+          ]
         }
       },
       {
@@ -463,7 +471,11 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Sack 2: Heu, 20.0 kg"
+          "expected": [
+            "=== FUTTERRAUM-PROTOKOLL ===",
+            "Sack 1: Hafer, 25.5 kg",
+            "Sack 2: Heu, 20.0 kg"
+          ]
         }
       },
       {
@@ -504,7 +516,11 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Galoppintervall: Intensität 4.0, 30 Minuten"
+          "expected": [
+            "=== TRAININGSHALLE-PROTOKOLL ===",
+            "Volten: Intensität 3.5, 20 Minuten",
+            "Galoppintervall: Intensität 4.0, 30 Minuten"
+          ]
         }
       },
       {
@@ -545,7 +561,11 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Einheit 2: 3 Tage, 240.0 Euro, 8 Teilnehmer"
+          "expected": [
+            "=== TRAININGSPROTOKOLL ===",
+            "Einheit 1: 5 Tage, 300.0 Euro, 4 Teilnehmer",
+            "Einheit 2: 3 Tage, 240.0 Euro, 8 Teilnehmer"
+          ]
         }
       },
       {
@@ -561,7 +581,10 @@
         "codeTemplate": "teilnehmer1 = 4\nwahrscheinlichkeit1 = 0.75\nteilnehmer2 = 8\nwahrscheinlichkeit2 = 0.5\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Erwarteter Erfolg Einheit 2: 4.0"
+          "expected": [
+            "Erwarteter Erfolg Einheit 1: 3.0",
+            "Erwarteter Erfolg Einheit 2: 4.0"
+          ]
         }
       },
       {

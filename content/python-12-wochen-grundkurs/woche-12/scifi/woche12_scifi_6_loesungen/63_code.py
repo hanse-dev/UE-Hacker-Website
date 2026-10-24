@@ -82,17 +82,6 @@ def heile(spieler, menge):
     if spieler.hp > 20:
         spieler.hp = 20
 
-spieler.hp = 5
-spieler.inventar.append(Gegenstand("Energiezelle", "Eine Zelle, die Energie zurückgibt."))
-def benutze(spieler):
-    for gegenstand in spieler.inventar:
-        if gegenstand.name == "Energiezelle":
-            spieler.inventar.remove(gegenstand)
-            heile(spieler, 10)
-            return True
-    print("Du hast nichts zum Heilen.")
-    return False
-
-benutze(spieler)
+spieler.hp = 18
+heile(spieler, 5)
 print(f"HP: {spieler.hp}")
-benutze(spieler)

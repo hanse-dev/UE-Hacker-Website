@@ -17,8 +17,6 @@ def beschreibe(raumname):
     print("   Ausgänge:", ", ".join(raum["ausgaenge"]))
 
 import json
-with open("welt.json", "w", encoding="utf-8") as f:
-    json.dump(welt, f, ensure_ascii=False)
-with open("welt.json", "r", encoding="utf-8") as f:
-    daten = json.load(f)
-print(f"Räume: {len(daten)}")
+text = json.dumps(welt)
+zurueck = json.loads(text)
+print(zurueck == welt)

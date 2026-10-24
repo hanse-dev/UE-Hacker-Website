@@ -1,5 +1,7 @@
-"""### Debug-Quest – Aufgabe 2
+"""## 🐛 Debug-Quest
 
-🐛 Bug #2 – Ziel: Das Programm soll Anzahl: 1 ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.
+### Debug-Quest – Aufgabe 1
 
-**Erklärung:** Ohne `self.` ist `inventar` nur eine lokale Variable in `__init__` – später fehlt das Attribut."""
+🐛 Bug #1 – Ziel: Das Programm soll Position: stallgasse ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.
+
+**Erklärung:** Die Ausgänge stehen im Schlüssel der Ausgänge, nicht direkt im Raum-Dictionary. Die Prüfung `richtung in raum` findet deshalb nie etwas."""

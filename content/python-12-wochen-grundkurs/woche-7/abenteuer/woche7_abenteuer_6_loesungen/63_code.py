@@ -9,3 +9,4 @@ for z in rune:
         nur_gross = False
 print(f"Länge stimmt: {len(rune) == len(name)}")
 print(f"Nur Großbuchstaben: {nur_gross}")
+print(rune)

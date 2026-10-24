@@ -210,7 +210,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Menge: 3 kg"
+          "expected": [
+            "=== FÜTTERPLAN ===",
+            "Pferd: Bobby",
+            "Futter: Hafer",
+            "Menge: 3 kg"
+          ]
         }
       },
       {
@@ -235,7 +240,12 @@
         "codeTemplate": "reiter = \"Mia\"\npferd = \"Bobby\"\nhindernisse = 8\n\n# Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Hindernisse: 8"
+          "expected": [
+            "=== TURNIERPROFIL ===",
+            "Reiter: Mia",
+            "Pferd: Bobby",
+            "Hindernisse: 8"
+          ]
         }
       },
       {
@@ -268,7 +278,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Bewertung: 5 Karotten"
+          "expected": [
+            "Verfasser: ",
+            "Bewertung: 5 Karotten"
+          ]
         }
       }
     ]
@@ -285,7 +298,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "=== TRAININGSPLAN ==="
+          "expected": [
+            "=== TRAININGSPLAN ===",
+            "1:",
+            "2:",
+            "3:"
+          ]
         }
       },
       {
@@ -293,7 +311,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Training wird durchgeführt..."
+          "expected": [
+            "Erwartete Wirkung: ",
+            "Training wird durchgeführt..."
+          ]
         }
       }
     ]

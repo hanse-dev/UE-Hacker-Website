@@ -210,7 +210,12 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Wert: 500 Gold"
+          "expected": [
+            "=== SCHATZBERICHT ===",
+            "Schatz: Goldene Krone",
+            "Wert: 500 Gold",
+            "Fundort: Drachenhöhle"
+          ]
         }
       },
       {
@@ -235,7 +240,12 @@
         "codeTemplate": "heldenname = \"Thorin\"\nwaffe = \"Kriegshammer\"\nlevel = 10\nstaerke = 85\nklasse = \"Krieger\"\n\n# Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Level: 10"
+          "expected": [
+            "=== HELDENPROFIL ===",
+            "Name: Thorin",
+            "Waffe: Kriegshammer",
+            "Level: 10"
+          ]
         }
       },
       {
@@ -268,7 +278,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Bewertung: 5 Sterne"
+          "expected": [
+            "Autor: ",
+            "Bewertung: 5 Sterne"
+          ]
         }
       }
     ]
@@ -285,7 +298,11 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Zutat 1:"
+          "expected": [
+            "Zutat 1:",
+            "Zutat 2:",
+            "Zutat 3:"
+          ]
         }
       },
       {
@@ -293,7 +310,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Erfolg! Der Fluch ist gebrochen!"
+          "expected": [
+            "Zauber wird gewirkt...",
+            "Erfolg! Der Fluch ist gebrochen!"
+          ]
         }
       }
     ]

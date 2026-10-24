@@ -413,7 +413,11 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Orion: Crew 200, Geschwindigkeit 1.5"
+          "expected": [
+            "=== FLOTTENANALYSE ===",
+            "Aurora: Crew 120, Geschwindigkeit 2.5",
+            "Orion: Crew 200, Geschwindigkeit 1.5"
+          ]
         }
       },
       {
@@ -446,7 +450,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Vesta-3 Wert: 5400.0"
+          "expected": [
+            "Ceres-9 Wert: 5000.0",
+            "Vesta-3 Wert: 5400.0"
+          ]
         }
       },
       {
@@ -462,7 +469,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Durchschnittswert: 5200.0"
+          "expected": [
+            "Durchschnittswert: 5200.0",
+            "Mining-Entscheidung: Vesta-3"
+          ]
         }
       }
     ]
@@ -479,7 +489,11 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Lyra: Energie 71%"
+          "expected": [
+            "=== DOCK-PROTOKOLL ===",
+            "Aurora: Energie 80%",
+            "Lyra: Energie 71%"
+          ]
         }
       },
       {
@@ -495,7 +509,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Energiebedarf: 400"
+          "expected": [
+            "Höchste Energie: Orion",
+            "Energiebedarf: 400"
+          ]
         }
       }
     ]
@@ -512,7 +529,11 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "MiniMind: Genauigkeit 0.75, 300000 Parameter"
+          "expected": [
+            "=== KI-LABOR-PROTOKOLL ===",
+            "NovaNet: Genauigkeit 0.92, 1200000 Parameter",
+            "MiniMind: Genauigkeit 0.75, 300000 Parameter"
+          ]
         }
       },
       {
@@ -528,7 +549,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Durchschnittsgenauigkeit: 0.85"
+          "expected": [
+            "Durchschnittsgenauigkeit: 0.85",
+            "Bestes Modell: NovaNet"
+          ]
         }
       },
       {
@@ -553,7 +577,11 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Europa: 300 Tage, Ertrag 8.0, Crew 9, Erfolg 0.75"
+          "expected": [
+            "=== MISSIONS-PROTOKOLL ===",
+            "Mars: 200 Tage, Ertrag 5.0, Crew 6, Erfolg 0.8",
+            "Europa: 300 Tage, Ertrag 8.0, Crew 9, Erfolg 0.75"
+          ]
         }
       },
       {
@@ -561,7 +589,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Gesamt-Crew: 15"
+          "expected": [
+            "Gesamtertrag: 13.0",
+            "Gesamt-Crew: 15"
+          ]
         }
       },
       {
@@ -569,7 +600,10 @@
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Erwarteter Ertrag Europa: 6.0"
+          "expected": [
+            "Erwarteter Ertrag Mars: 4.0",
+            "Erwarteter Ertrag Europa: 6.0"
+          ]
         }
       },
       {

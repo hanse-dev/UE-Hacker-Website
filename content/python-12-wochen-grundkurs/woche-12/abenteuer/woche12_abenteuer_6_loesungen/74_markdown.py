@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 1: Ein zweiter Gegner – Aufgabe 3
+"""### Extra-Herausforderung 1: Ein zweiter Gegner – Aufgabe 2
 
-Schritt 3 – Übermächtiger Gegner: Alles ist vorgegeben. Lasse den Spieler gegen `Gegner(\"Drache\", 1000, 30)` kämpfen (er kann nicht gewinnen) und gib genau Sieg: False aus."""
+Schritt 2: Alles ist vorgegeben. Wie Schritt 1, aber gib danach genau Besiegt: True aus (`welt[\"halle\"][\"gegner\"].ist_besiegt()`)."""

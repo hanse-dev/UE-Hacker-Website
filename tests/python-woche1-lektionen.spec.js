@@ -200,7 +200,8 @@ test.describe('Python Woche 1 Abenteuer als Einzel-Lektionen', () => {
     await page.locator('.js-course-tour .stepper-step').nth(8).click();
     await initKernel(page);
     await solve(page, [
-      'heldenname = "Thorin"\nwaffe = "Kriegshammer"\nlevel = 10\nprint("=== HELDENPROFIL ===")\nprint("Level: " + str(level))',
+      'heldenname = "Thorin"\nwaffe = "Kriegshammer"\nlevel = 10\nprint("=== HELDENPROFIL ===")\nprint("Name: " + heldenname)\n'
+        + 'print("Waffe: " + waffe)\nprint("Level: " + str(level))',
       'heldenname = "Thorin"\nwaffe = "Kriegshammer"\nprint(heldenname + " schwingt seinen " + waffe + "!")',
     ]);
     await page.locator('.btn-next').click();
@@ -341,5 +342,56 @@ test.describe('Aufgaben-Pruefung: Struktur und vorgegebene Eingaben', () => {
     await task.locator('.code-editor').fill('waffe = input("Waffe? ")\nprint("Kampfbereit mit: Schwert")');
     await task.locator('.btn-check').click();
     await expect(task.locator('.feedback-error')).toBeVisible({ timeout: 10000 });
+  });
+
+  test('Liste in expected: jede geforderte Zeile muss vorkommen, der Hinweis nennt die erste fehlende', async ({ page }) => {
+    await page.goto('/kurs/python-12-wochen-grundkurs?week=1&variant=abenteuer');
+    await page.locator('.js-course-tour .stepper-step').nth(8).click(); // Mission 3: Heldenprofil
+    await startKernel(page);
+    const task = page.locator('.task-block').nth(0);
+    // nur die letzte Zeile - früher reichte das
+    await task.locator('.code-editor').fill('print("Level: 10")');
+    await task.locator('.btn-check').click();
+    await expect(task.locator('.feedback-error')).toBeVisible({ timeout: 10000 });
+    await task.locator('.btn-check').click();
+    await expect(task.locator('.feedback-error')).toContainText('=== HELDENPROFIL ===', { timeout: 10000 });
+    await task.locator('.code-editor').fill(
+      'print("=== HELDENPROFIL ===")\nprint("Name: Thorin")\nprint("Waffe: Kriegshammer")\nprint("Level: " + str(10))');
+    await task.locator('.btn-check').click();
+    await expect(task.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+  });
+
+  test('Zufalls-Aufgabe (varies): fest eingetippte Ausgabe fällt durch, echtes random besteht', async ({ page }) => {
+    await page.goto('/kurs/python-12-wochen-grundkurs?week=7&variant=abenteuer');
+    await page.locator('.js-course-tour .stepper-step').nth(2).click(); // Lektion 3: random.choice
+    await startKernel(page);
+    const task = page.locator('.task-block').nth(1);
+    await task.locator('.code-editor').fill('print("Enthalten: True")\nprint("Regal der Tiere")');
+    await task.locator('.btn-check').click();
+    await expect(task.locator('.feedback-error')).toContainText('bei jedem Lauf gleich', { timeout: 20000 });
+    await task.locator('.code-editor').fill(
+      'import random\nregale = ["A", "B", "C", "D", "E"]\ngewaehlt = random.choice(regale)\n'
+      + 'print(f"Enthalten: {gewaehlt in regale}")\nprint(gewaehlt)');
+    await task.locator('.btn-check').click();
+    await expect(task.locator('.feedback-success')).toBeVisible({ timeout: 20000 });
+  });
+
+  test('Woche 12: Spielschleife mit input() wird mit vorgegebenen Befehlen geprüft', async ({ page }) => {
+    let dialogs = 0;
+    page.on('dialog', (d) => { dialogs += 1; d.dismiss(); });
+    await page.goto('/kurs/python-12-wochen-grundkurs?week=12&variant=abenteuer');
+    await page.locator('.js-course-tour .stepper-step').nth(6).click(); // Etappe 7
+    await startKernel(page);
+    const task = page.locator('.task-block').nth(5);
+    const vorlage = await task.locator('.code-editor').inputValue();
+    // feste Liste statt input(): Die Befehle laufen, aber "ende" kommt nie
+    await task.locator('.code-editor').fill(`${vorlage}\nfor befehl in ["gehe norden", "gehe westen", "nimm Schwert"]:\n    fuehre_aus(spieler, befehl)\n`);
+    await task.locator('.btn-check').click();
+    await expect(task.locator('.feedback-error')).toBeVisible({ timeout: 20000 });
+    await task.locator('.code-editor').fill(`${vorlage}\nwhile True:\n    befehl = input("> ")\n    if befehl == "ende":\n`
+      + '        print("Spiel beendet.")\n        break\n    fuehre_aus(spieler, befehl)\n');
+    await task.locator('.btn-check').click();
+    await expect(task.locator('.feedback-success')).toBeVisible({ timeout: 20000 });
+    expect(dialogs).toBe(0);
   });
 });

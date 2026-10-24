@@ -8,3 +8,4 @@ for station in stationen:
         alle_gueltig = False
 print(f"Stationen: {len(stationen)}")
 print(f"Alle gültig: {alle_gueltig}")
+print(stationen)

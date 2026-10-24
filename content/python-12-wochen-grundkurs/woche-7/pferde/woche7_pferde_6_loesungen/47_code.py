@@ -3,3 +3,4 @@ import random
 
 gewaehlt = random.choice(werkzeuge)
 print(f"Gewählt gültig: {gewaehlt in werkzeuge}")
+print(gewaehlt)
