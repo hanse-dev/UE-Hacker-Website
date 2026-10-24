@@ -70,7 +70,7 @@ Punkte-System, Zertifikate), wird hier nicht wiederholt.
 - Statistik-Beispieltexte (Häufigkeitsanalyse) per Skript prüfen: eindeutiger Spitzenreiter, klarer Abstand (3.105).
 - Quiz: `optionExplanations` mitpflegen, `explanation_en` echt übersetzen, Schwelle nie als exakter Bruch (2/3 → `0.66`); keine doppelten Leerzeichen in Fragen (Anzeige fasst sie zusammen). Fragen und Lernziele nur zu Stoff genau dieser Woche.
 - PDF-Standardfonts können kein Emoji → `sanitizeForPdfFont` (3.13).
-- cspell ist für Deutsch nur ein grobes Netz → zusätzlich `lint:spelling:de` (LanguageTool, nie parallel zu Testläufen – die Last lässt Tests scheitern). Bezeichner nicht ins Wörterbuch, sondern per `ignoreRegExpList` (Code-Felder, `.klasse`, `#id`, `--var`, `id="…"`). Wörterbücher brauchen `"import"`, nicht nur `"dictionaries"`.
+- cspell ist für Deutsch nur ein grobes Netz → zusätzlich `lint:spelling:de` (LanguageTool, nie parallel zu Testläufen – die Last lässt Tests scheitern; das Skript stoppt den Container danach selbst). Bezeichner nicht ins Wörterbuch, sondern per `ignoreRegExpList` (Code-Felder, `.klasse`, `#id`, `--var`, `id="…"`). Wörterbücher brauchen `"import"`, nicht nur `"dictionaries"`.
 
 **Pyodide / Python-Tests**
 - Kein Web Worker: `input()` über `window.prompt()`, Loop-Guard AST-basiert. `turtle` gibt es nicht (Shim seit 3.113 weg, `git log -S _install_turtle_shim`).

@@ -9,11 +9,13 @@ zieht den deutschen Fließtext ohne Code aus dem Content und prüft ihn mit Lang
     npm run lint:spelling:de                # Rechtschreibung (Exit-Code 1 bei Funden)
     npm run lint:spelling:de -- --grammatik # zusätzlich Grammatik-Hinweise (Kandidaten zum Lesen)
     npm run lint:spelling:de -- --alle      # auch Wörter aus erlaubt.txt / stille Regeln zeigen
-    npm run lint:spelling:de -- --stopp     # den LanguageTool-Container wieder beenden
+    npm run lint:spelling:de -- --behalten  # Container danach nicht stoppen (mehrere Läufe hintereinander)
+    npm run lint:spelling:de -- --stopp     # den LanguageTool-Container entfernen
 
-Der Container `ue-hacker-languagetool` wird beim ersten Lauf gestartet (Image
-`erikvl87/languagetool`, ~1,2 GB) und bleibt für weitere Läufe an. Wer LanguageTool anders
-betreibt (z.B. per Java), setzt `LANGUAGETOOL_URL=http://host:port`.
+Der Container `ue-hacker-languagetool` wird bei Bedarf gestartet (Image `erikvl87/languagetool`,
+~1,2 GB) und nach dem Lauf wieder gestoppt, weil er sonst ~1,4 GB Speicher belegt und parallele
+Testläufe ausbremst. War er schon vorher an, bleibt er an. Wer LanguageTool anders betreibt
+(z.B. per Java), setzt `LANGUAGETOOL_URL=http://host:port`.
 
 Nicht gemeldet werden: Wörter, die im selben Content als Code-Bezeichner vorkommen, Tokens mit
 `_`/`.`/Ziffern, alles aus `erlaubt.txt` (ein Wort pro Zeile) und die Regeln in `STILLE_REGELN`.
@@ -28,6 +30,7 @@ CODE_KEYS = {"codeTemplate", "solution", "referenceSolution", "expected", "id", 
              "functionCalls", "variables"}
 WORT = re.compile(r"[A-Za-zÄÖÜäöüß]+")
 bezeichner = set()
+selbst_gestartet = False
 zeilen = []
 
 
@@ -105,11 +108,13 @@ def u16(text_, start, laenge):
 
 
 def server():
+    global selbst_gestartet
     url = os.environ.get("LANGUAGETOOL_URL")
     if url:
         return url.rstrip("/")
     url = f"http://127.0.0.1:{PORT}"
     if not erreichbar(url):
+        selbst_gestartet = True
         lauf = subprocess.run(["docker", "start", CONTAINER], capture_output=True)
         if lauf.returncode != 0:
             subprocess.run(["docker", "run", "-d", "--name", CONTAINER, "-p", f"127.0.0.1:{PORT}:8010",
@@ -148,6 +153,15 @@ def main():
     if "--stopp" in sys.argv:
         subprocess.run(["docker", "rm", "-f", CONTAINER])
         return
+    try:
+        pruefe_alles()
+    finally:
+        if selbst_gestartet and "--behalten" not in sys.argv:
+            subprocess.run(["docker", "stop", CONTAINER], capture_output=True)
+            print("LanguageTool-Container gestoppt (--behalten lässt ihn an).", file=sys.stderr)
+
+
+def pruefe_alles():
     sammle()
     url = server()
     alle = "--alle" in sys.argv

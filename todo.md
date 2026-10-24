@@ -28,17 +28,6 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
       Test-Kind für weitere Kursarten (Projekt-Kurse Python, JS-Grundkurs, Web, KI-Labor) erweitern;
       bis dahin meldet `--geaendert` sie als „nicht geprüft“.
 
-- [ ] Einmaliger Ausfall im vollen Lauf unter Last (15.10., parallel liefen Tests anderer Sessions,
-      Suite 4,5 statt ~2,3 Min.): `tests/ki-labor.spec.js` Woche 3 (Python-Lauf > 10 s, Timeout pro
-      Lauf seitdem 30 s), allein 3× grün. Der zweite Ausfall (Turtle-Test) ist mit 3.113 weggefallen.
-      Vorschlag: Beim nächsten Auftreten prüfen, ob gleichzeitig andere Playwright-Läufe aktiv waren
-      (`ps aux | grep "playwright test"`); wenn ja, Pre-push-Läufe mehrerer Sessions nicht parallel
-      starten statt die Tests zu ändern.
-      **21.10.:** wieder aufgetreten, diesmal ohne parallele Playwright-Läufe: Pre-push 21 statt 3 Min.,
-      9 Ausfälle (u. a. `web-grundkurs.spec.js`, einzeln grün). Ursache war allgemeine Last auf dem
-      Rechner (Load 20–33 bei 8 Kernen, ~10 GB Swap); der LanguageTool-Container belegte 1,4 GB.
-      Nach `npm run lint:spelling:de -- --stopp` lief der Push sofort grün durch. Vorschlag: den
-      Container nach jeder Rechtschreibprüfung stoppen; bei hoher Last (`uptime`) erst danach pushen.
 - [ ] **micro:bit-Kurs „Das Roboterauto“ (`content/microbit-auto/`, HANDOFF 3.101) — vor dem ersten
       Termin am echten Auto durchspielen.** Der Kurs ist ohne Hardware entstanden (nur aus der
       Keyestudio-Doku, der MakeCode-Erweiterung und der Bibliothek abgeleitet). Zu prüfen:
