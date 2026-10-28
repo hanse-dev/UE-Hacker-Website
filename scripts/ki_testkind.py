@@ -191,19 +191,27 @@ def output_ok(output: str, validation: dict) -> bool:
     return all(normalize(e) in normalize(output.strip()) for e in (expected if isinstance(expected, list) else [expected]))
 
 
+# Ohne Farben: Unter FORCE_COLOR (z.B. Playwright) färbt Python Tracebacks mit ANSI-Codes, die dann
+# im Bericht landen. PYTHON_COLORS wirkt wegen -I nicht.
+PLAIN_ENV = {**{k: v for k, v in os.environ.items() if k != "FORCE_COLOR"}, "NO_COLOR": "1"}
+
+
 def run_attempt(earlier_codes: list[str], code: str, validation: dict) -> tuple[bool, str]:
     """Führt den Code des Test-Kinds aus; frühere Aufgaben der Lektion laufen vorher mit (wie im
     selben Python-Kernel der Website), gezählt wird nur die Ausgabe nach der Markierung. Wie auf der
     Website bekommt nur die geprüfte Aufgabe `validation.stdin` - frühere input()-Aufrufe dürfen es
-    nicht wegessen, sie bekommen Füll-Eingaben."""
+    nicht wegessen, sie bekommen Füll-Eingaben. Jede frühere Aufgabe läuft für sich wie eine eigene
+    Zelle: Ein Fehler darin (auch ein SyntaxError) bricht die späteren Aufgaben nicht ab."""
     filler = "1\n" * 20
     own = "\n".join(map(str, validation.get("stdin") or [])) + "\n" + filler
-    program = "\n".join(["import io as __io, sys as __sys", f"__sys.stdin = __io.StringIO({filler!r})", *earlier_codes,
+    cells = [f"try:\n    exec(compile({c!r}, '<zelle>', 'exec'), globals())\nexcept BaseException:\n    pass" for c in earlier_codes]
+    program = "\n".join(["import io as __io, sys as __sys", f"__sys.stdin = __io.StringIO({filler!r})", *cells,
                          f"__sys.stdin = __io.StringIO({own!r})", f"print({MARKER!r})", code])
     with tempfile.TemporaryDirectory() as work:
         try:
             proc = subprocess.run([sys.executable, "-I", "-c", program], capture_output=True,
-                                  text=True, cwd=work, timeout=10, stdin=subprocess.DEVNULL)
+                                  text=True, cwd=work, timeout=10, stdin=subprocess.DEVNULL,
+                                  env=PLAIN_ENV)
         except subprocess.TimeoutExpired:
             return False, "Zeitüberschreitung (Endlosschleife?)"
     out = proc.stdout.split(MARKER, 1)[-1].lstrip("\n")

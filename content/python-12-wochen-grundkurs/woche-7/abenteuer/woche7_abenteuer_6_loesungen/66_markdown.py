@@ -1,3 +1,3 @@
 """### Extra-Herausforderung 2: Das Namens-Orakel – Aufgabe 3
 
-Schritt 3 – Horoskop: Setze name = \"Aria\", ziehe eine Rune (ein zufälliger Großbuchstabe) und einen Spruch aus prophezeiungen und baue mit einem f-String horoskop = <name> – <Rune>: <Spruch>. Gib genau Name enthalten: True (name in horoskop) und in der nächsten Zeile Spruch enthalten: True aus. Gib zum Schluss das Horoskop aus."""
+Schritt 3 – Horoskop: Setze name = \"Aria\", ziehe eine Rune (ein zufälliger Großbuchstabe) und einen Spruch aus prophezeiungen und baue daraus mit einem f-String horoskop, z. B. Aria - K: Ein Schatz wartet im Norden (im f-String stehen {name}, {rune} und {spruch}). Gib genau Name enthalten: True (name in horoskop) und in der nächsten Zeile Spruch enthalten: True aus. Gib zum Schluss das Horoskop aus."""

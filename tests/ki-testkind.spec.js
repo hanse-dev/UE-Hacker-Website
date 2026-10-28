@@ -87,6 +87,18 @@ test('Liste in expected: geschafft, wenn jeder Eintrag in der Ausgabe vorkommt (
   expect(out).not.toContain('Aufgabe 2 |');
 });
 
+test('Fehler in einer früheren Aufgabe (SyntaxError) bricht spätere nicht ab – wie getrennte Zellen auf der Website', () => {
+  const { root, antworten } = miniKurs();
+  const datei = path.join(antworten, '2-lektion-01.json');
+  const a = JSON.parse(fs.readFileSync(datei, 'utf8'));
+  a.aufgaben[0].code = 'print("Gold: " gold)'; // SyntaxError
+  a.aufgaben[1].code = 'print("Gold: 15")';
+  fs.writeFileSync(datei, JSON.stringify(a));
+  const out = run(['--content', root, '--wochen', '2', '--antworten', antworten]);
+  expect(out).toContain('| Aufgabe 2 | nicht geschafft: Ausgabe `Fehler: SyntaxError: invalid syntax');
+  expect(out).not.toContain('Aufgabe 3 | nicht geschafft');
+});
+
 test('Prompt enthält Glossar früherer Wochen und die Lektion, aber nie eine Musterlösung', () => {
   const { root } = miniKurs();
   const out = run(['--content', root, '--wochen', '2', '--trocken', '--alter', '10']);

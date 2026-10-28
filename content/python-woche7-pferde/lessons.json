@@ -420,7 +420,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Gewinner: Schreibe eine Funktion finde_gewinner(wuerfe), die den Index des höchsten Wurfs zurückgibt (bei Gleichstand der erste). Gib für [4, 6, 2] genau Gewinner: Spieler 2 aus (Index + 1).",
+        "instruction": "Schritt 2 – Gewinner: Schreibe eine Funktion finde_gewinner(wuerfe), die den Index des höchsten Wurfs zurückgibt (bei Gleichstand der erste). Gib für [4, 6, 2] genau Gewinner: Spieler 2 aus (Index + 1). Tipp: Merke dir in beste die Stelle des bisher höchsten Wurfs (Start 0) und vergleiche mit for i in range(len(wuerfe)) jeden wuerfe[i] mit wuerfe[beste].",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -431,7 +431,7 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Turnier: finde_gewinner ist vorgegeben. Spiele 5 Runden: In jeder Runde würfeln 3 Spieler (random.randint(1, 6)), der Gewinner bekommt einen Sieg in der Liste siege = [0, 0, 0]. Zähle danach die Siege zusammen und gib genau Siege insgesamt: 5 aus. Gib zum Schluss die Liste siege aus.",
+        "instruction": "Schritt 3 – Turnier: finde_gewinner ist vorgegeben. Spiele 5 Runden: In jeder Runde würfeln 3 Spieler (random.randint(1, 6)), der Gewinner bekommt einen Sieg in der Liste siege = [0, 0, 0]. Mit siege[gewinner] = siege[gewinner] + 1 bekommt der Gewinner einen Sieg. Zähle danach die Siege zusammen und gib genau Siege insgesamt: 5 aus. Gib zum Schluss die Liste siege aus.",
         "codeTemplate": "import random\n\ndef finde_gewinner(wuerfe):\n    beste = 0\n    for i in range(len(wuerfe)):\n        if wuerfe[i] > wuerfe[beste]:\n            beste = i\n    return beste\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -467,7 +467,7 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Horoskop: Setze name = \"Anna\", ziehe eine Rune (ein zufälliger Großbuchstabe) und einen Spruch aus prophezeiungen und baue mit einem f-String horoskop = <name> – <Rune>: <Spruch>. Gib genau Name enthalten: True (name in horoskop) und in der nächsten Zeile Spruch enthalten: True aus. Gib zum Schluss das Horoskop aus.",
+        "instruction": "Schritt 3 – Horoskop: Setze name = \"Anna\", ziehe eine Rune (ein zufälliger Großbuchstabe) und einen Spruch aus prophezeiungen und baue daraus mit einem f-String horoskop, z. B. Anna - K: Ein Turniersieg liegt vor dir (im f-String stehen {name}, {rune} und {spruch}). Gib genau Name enthalten: True (name in horoskop) und in der nächsten Zeile Spruch enthalten: True aus. Gib zum Schluss das Horoskop aus.",
         "codeTemplate": "prophezeiungen = [\"Heute wird dein Tag\", \"Ein Turniersieg liegt vor dir\", \"Halte die Zügel locker\", \"Der Wind trägt dich\", \"Belohne dein Pferd mit einer Möhre\", \"Ein neuer Freund wartet im Stall\"]\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -568,7 +568,7 @@
         }
       },
       {
-        "instruction": "Schritt 5 – Primzahlen bis 100: Sammle mit einer for-Schleife (2 bis 100) und einer inneren Schleife mit % alle Primzahlen in der Liste primzahlen. Gib genau Anzahl: 25 und in der nächsten Zeile Größte: 97 aus (letzter Eintrag).",
+        "instruction": "Schritt 5 – Primzahlen bis 100: Sammle mit einer for-Schleife (2 bis 100) und einer inneren Schleife mit % alle Primzahlen in der Liste primzahlen. Gib genau Anzahl: 25 und in der nächsten Zeile Größte: 97 aus (letzter Eintrag). Merke dir für jede Zahl in ist_prim = True, ob sie eine Primzahl ist, und setze es auf False, sobald die innere Schleife einen Teiler findet (% ergibt 0). Den letzten Eintrag holst du mit primzahlen[-1].",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -579,7 +579,7 @@
         }
       },
       {
-        "instruction": "Schritt 6 – Schachbrett: Baue ein 8×8-Brett aus zwei verschachtelten Schleifen. Auf Feld (zeile, spalte) steht \"#\", wenn (zeile + spalte) % 2 == 0 ist, sonst \".\". Gib die ersten zwei Zeilen aus (jede Zeile: die Zeichen mit \" \".join zusammengefügt): # . # . # . # . und darunter . # . # . # . #",
+        "instruction": "Schritt 6 – Schachbrett: Baue ein 8×8-Brett aus zwei verschachtelten Schleifen. Auf Feld (zeile, spalte) steht \"#\", wenn (zeile + spalte) % 2 == 0 ist, sonst \".\". Die innere Schleife baut jede Zeile als eigene Liste mit 8 Zeichen. Gib die ersten zwei Zeilen aus (jede Zeile: die Zeichen mit \" \".join zusammengefügt): # . # . # . # . und darunter . # . # . # . #",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -587,7 +587,7 @@
         }
       },
       {
-        "instruction": "Schritt 7 – Figur über das Feld: Baue ein 8×8-Feld als Liste von Listen (zwei verschachtelte Schleifen mit append(), jedes Feld 0). Die Figur startet bei figur = [0, 0], das Ziel ist ziel = [7, 7]. Wiederhole mit while True: Ist figur gleich ziel, beende mit break. Sonst geht die Figur nach rechts (figur[1] += 1), solange figur[1] kleiner als 7 ist, und danach nach unten (figur[0] += 1). Zähle die Züge. Gib genau Züge: 14 und in der nächsten Zeile Ziel erreicht: True aus.",
+        "instruction": "Schritt 7 – Figur über das Feld: Die Figur startet auf einem 8×8-Feld bei figur = [0, 0], das Ziel ist ziel = [7, 7]. Wiederhole mit while True: Ist figur gleich ziel, beende mit break. Sonst geht die Figur einen Schritt: nach rechts (figur[1] += 1), solange figur[1] kleiner als 7 ist, sonst nach unten (figur[0] += 1). figur[0] ist die Zeile, figur[1] die Spalte. Zähle die Züge. Gib genau Züge: 14 und in der nächsten Zeile Ziel erreicht: True aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

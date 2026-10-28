@@ -5,7 +5,7 @@ import string
 name = "Aria"
 rune = random.choice(string.ascii_uppercase)
 spruch = random.choice(prophezeiungen)
-horoskop = f"{name} – {rune}: {spruch}"
+horoskop = f"{name} - {rune}: {spruch}"
 print(f"Name enthalten: {name in horoskop}")
 print(f"Spruch enthalten: {spruch in horoskop}")
 print(horoskop)

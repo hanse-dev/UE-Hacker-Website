@@ -3137,4 +3137,14 @@ nur die Ausgabe, aber schärfer; Bonus-Teile bleiben bewusst ungeprüft, keine F
 - Tests: `python-woche1-lektionen.spec.js` (Liste + Hinweis, `varies`, Spielschleife mit `stdin`),
   `ki-testkind.spec.js` (Liste). Musterlösungen aller 36 Woche-Themen-Kombinationen mit `python3`
   gegen `expected` (und `varies`: 6 Läufe) geprüft.
+- Nach dem Test-Kind (`--geaendert`, 61 Lektionen, 34 „hoch“): Die meisten „hoch“ in W12 Etappe 7
+  waren Folgefehler im Test-Kind selbst – es hängte frühere Antworten als ein Programm vor; ein
+  SyntaxError in Aufgabe 2 ließ alle späteren scheitern. Jetzt läuft jede frühere Aufgabe wie eine
+  eigene Zelle (`exec` mit `try`). Außerdem färbte Python unter `FORCE_COLOR` (Playwright) die
+  Fehlermeldung mit ANSI-Codes; `PYTHON_COLORS` wirkt wegen `-I` nicht, daher `FORCE_COLOR` raus und
+  `NO_COLOR=1` (`PLAIN_ENV`). Inhaltlich behoben: „A und B“ bei zwei geforderten Zeilen heißt jetzt
+  „zwei Zeilen: A und darunter B“ (W2 Pferde/Sci-Fi); W7 Boss 1 Tipps zu Index des Maximums und
+  `siege[gewinner] = siege[gewinner] + 1`, Boss 2 Horoskop als Beispiel statt `<name> – <Rune>`,
+  Boss 4 erklärt innere Schleife und `while True` im Text (beides wurde nie gezeigt), Schritt 7 ohne
+  das ungenutzte Feld, „Zufall aus Woche 4“ → „aus dieser Woche“; W12 Boss 4 Schritt 1 Tipp `alle_ok`.
 
