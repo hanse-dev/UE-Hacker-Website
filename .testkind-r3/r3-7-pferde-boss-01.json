@@ -1,0 +1,111 @@
+[
+ {
+  "woche": 7,
+  "thema": "pferde",
+  "id": "boss-01",
+  "titel": "Extra-Herausforderung 1: Der Würfelparcours",
+  "antwort": {
+   "aufgaben": [
+    {
+     "nr": 1,
+     "verstanden": "ja",
+     "was_ich_tun_soll": "Drei Spieler würfeln je einmal. Ich tu die Würfe mit append in eine Liste wuerfe. Dann schreibe ich, dass es 3 Spieler sind und dass alle Würfe zwischen 1 und 6 liegen. Am Ende zeige ich die Liste.",
+     "code": "import random\n\nwuerfe = []\nfor spieler in range(3):\n    wuerfe.append(random.randint(1, 6))\n\nalle_ok = True\nfor wurf in wuerfe:\n    if wurf < 1 or wurf > 6:\n        alle_ok = False\n\nprint(f\"Spieler: {len(wuerfe)}\")\nprint(f\"Alle im Bereich: {alle_ok}\")\nprint(wuerfe)",
+     "unklar": "Hier steht nicht, wie ich prüfen soll, ob alle im Bereich sind. Ich hab das mit alle_ok gemacht, so wie in Übung 2."
+    },
+    {
+     "nr": 2,
+     "verstanden": "teilweise",
+     "was_ich_tun_soll": "Ich schreibe eine Funktion, die rausfindet, an welcher Stelle in der Liste der höchste Wurf steht. Für [4, 6, 2] ist das Stelle 1, und weil man bei 0 anfängt zu zählen, mache ich +1, dann steht da Spieler 2.",
+     "code": "def finde_gewinner(wuerfe):\n    beste = 0\n    for i in range(len(wuerfe)):\n        if wuerfe[i] > wuerfe[beste]:\n            beste = i\n    return beste\n\ngewinner = finde_gewinner([4, 6, 2])\nprint(f\"Gewinner: Spieler {gewinner + 1}\")",
+     "unklar": "Der Tipp ist ein sehr langer Satz, den musste ich dreimal lesen. Was \"bei Gleichstand der erste\" heißt und wie ich das hinkriege, wusste ich erst nicht. Ich hab > genommen, dann bleibt ja der erste stehen, glaube ich. Und ob ich +1 in der Funktion machen soll oder erst beim print, hab ich geraten (ich hab's beim print gemacht)."
+    },
+    {
+     "nr": 3,
+     "verstanden": "teilweise",
+     "was_ich_tun_soll": "5 Runden spielen. In jeder Runde würfeln 3 Spieler, dann finde ich den Gewinner, und der kriegt in der Liste siege einen Punkt dazu. Am Ende zähle ich alle Siege zusammen (das müssen 5 sein) und zeige die Liste siege.",
+     "code": "siege = [0, 0, 0]\nfor runde in range(5):\n    wuerfe = []\n    for spieler in range(3):\n        wuerfe.append(random.randint(1, 6))\n    gewinner = finde_gewinner(wuerfe)\n    siege[gewinner] = siege[gewinner] + 1\n\ngesamt = 0\nfor sieg in siege:\n    gesamt = gesamt + sieg\n\nprint(f\"Siege insgesamt: {gesamt}\")\nprint(siege)",
+     "unklar": "Wo kommt siege = [0, 0, 0] hin, vor die Schleife oder rein? Im Text steht es mitten im Satz über die Runde. Zuerst wollte ich es in die Schleife schreiben, aber dann wäre es ja jede Runde wieder 0. Dass ich eine Variable gewinner machen muss, steht nirgends, das hab ich mir selbst gedacht. Wie ich die Siege \"zusammenzähle\", steht auch nicht da. Ich hab eine for-Schleife mit gesamt gemacht."
+    }
+   ],
+   "schwere_woerter": [
+    "Index",
+    "Gleichstand",
+    "Parcours",
+    "Joker-Wurf",
+    "Turnier"
+   ],
+   "verwirrende_saetze": [
+    "Tipp: Merke dir in beste die Stelle des bisher höchsten Wurfs (Start 0) und vergleiche mit for i in range(len(wuerfe)) jeden wuerfe[i] mit wuerfe[beste].",
+    "Fang in jeder Runde mit wuerfe = [] neu an und lass darin mit einer zweiten for-Schleife 3 Spieler würfeln (random.randint(1, 6)); der Gewinner bekommt einen Sieg in der Liste siege = [0, 0, 0].",
+    "Zähle danach die Siege zusammen und gib genau Siege insgesamt: 5 aus."
+   ],
+   "gesamteindruck": "Aufgabe 1 war leicht, weil wir das schon in Mission 2 gemacht haben. Aufgabe 2 und 3 waren schwer, weil die Sätze so lang sind und ich bei Aufgabe 3 raten musste, wo die Liste siege hinkommt und wie man zusammenzählt.",
+   "aendern": [
+    {
+     "stelle": "Aufgabe 3",
+     "problem": "siege = [0, 0, 0] steht mitten im Satz über die Runde. Man weiß nicht, ob es vor die Schleife oder in die Schleife gehört. Wenn es drin steht, wird es jede Runde wieder 0.",
+     "haette_geholfen": "Ein eigener Satz wie: \"Schreib siege = [0, 0, 0] VOR die Runden-Schleife.\"",
+     "gewicht": "hoch"
+    },
+    {
+     "stelle": "Aufgabe 3",
+     "problem": "Dass man gewinner = finde_gewinner(wuerfe) schreiben muss, steht nicht da. Die Zeile siege[gewinner] benutzt gewinner einfach so.",
+     "haette_geholfen": "Ein Schritt: \"Speichere finde_gewinner(wuerfe) in gewinner.\"",
+     "gewicht": "mittel"
+    },
+    {
+     "stelle": "Aufgabe 3",
+     "problem": "\"Zähle die Siege zusammen\": Es wird nicht gesagt, wie man die Zahlen in einer Liste zusammenzählt.",
+     "haette_geholfen": "Ein Tipp: \"Geh mit for durch siege und zähle alles in gesamt zusammen (Start 0).\"",
+     "gewicht": "mittel"
+    },
+    {
+     "stelle": "Aufgabe 3",
+     "problem": "Die ganze Aufgabe ist ein langer Textblock mit vielen Schritten auf einmal. Ich hab den Überblick verloren.",
+     "haette_geholfen": "Die Schritte als nummerierte Liste (1., 2., 3. ...).",
+     "gewicht": "mittel"
+    },
+    {
+     "stelle": "Aufgabe 2",
+     "problem": "Der Tipp ist ein langer Satz voller Code. Man weiß nicht, ob man +1 in der Funktion oder beim print rechnet.",
+     "haette_geholfen": "Den Tipp in kurze Schritte aufteilen und dazuschreiben: \"Die Funktion gibt den Index zurück, das +1 machst du erst beim print.\"",
+     "gewicht": "mittel"
+    }
+   ],
+   "_kosten_usd": 0.1971912
+  },
+  "ergebnisse": [
+   {
+    "nr": 1,
+    "verstanden": "ja",
+    "was_ich_tun_soll": "Drei Spieler würfeln je einmal. Ich tu die Würfe mit append in eine Liste wuerfe. Dann schreibe ich, dass es 3 Spieler sind und dass alle Würfe zwischen 1 und 6 liegen. Am Ende zeige ich die Liste.",
+    "code": "import random\n\nwuerfe = []\nfor spieler in range(3):\n    wuerfe.append(random.randint(1, 6))\n\nalle_ok = True\nfor wurf in wuerfe:\n    if wurf < 1 or wurf > 6:\n        alle_ok = False\n\nprint(f\"Spieler: {len(wuerfe)}\")\nprint(f\"Alle im Bereich: {alle_ok}\")\nprint(wuerfe)",
+    "unklar": "Hier steht nicht, wie ich prüfen soll, ob alle im Bereich sind. Ich hab das mit alle_ok gemacht, so wie in Übung 2.",
+    "geschafft": true,
+    "ausgabe": "Spieler: 3\nAlle im Bereich: True\n[1, 3, 5]",
+    "erwartet": "Spieler: 3\nAlle im Bereich: True"
+   },
+   {
+    "nr": 2,
+    "verstanden": "teilweise",
+    "was_ich_tun_soll": "Ich schreibe eine Funktion, die rausfindet, an welcher Stelle in der Liste der höchste Wurf steht. Für [4, 6, 2] ist das Stelle 1, und weil man bei 0 anfängt zu zählen, mache ich +1, dann steht da Spieler 2.",
+    "code": "def finde_gewinner(wuerfe):\n    beste = 0\n    for i in range(len(wuerfe)):\n        if wuerfe[i] > wuerfe[beste]:\n            beste = i\n    return beste\n\ngewinner = finde_gewinner([4, 6, 2])\nprint(f\"Gewinner: Spieler {gewinner + 1}\")",
+    "unklar": "Der Tipp ist ein sehr langer Satz, den musste ich dreimal lesen. Was \"bei Gleichstand der erste\" heißt und wie ich das hinkriege, wusste ich erst nicht. Ich hab > genommen, dann bleibt ja der erste stehen, glaube ich. Und ob ich +1 in der Funktion machen soll oder erst beim print, hab ich geraten (ich hab's beim print gemacht).",
+    "geschafft": true,
+    "ausgabe": "Gewinner: Spieler 2",
+    "erwartet": "Gewinner: Spieler 2"
+   },
+   {
+    "nr": 3,
+    "verstanden": "teilweise",
+    "was_ich_tun_soll": "5 Runden spielen. In jeder Runde würfeln 3 Spieler, dann finde ich den Gewinner, und der kriegt in der Liste siege einen Punkt dazu. Am Ende zähle ich alle Siege zusammen (das müssen 5 sein) und zeige die Liste siege.",
+    "code": "siege = [0, 0, 0]\nfor runde in range(5):\n    wuerfe = []\n    for spieler in range(3):\n        wuerfe.append(random.randint(1, 6))\n    gewinner = finde_gewinner(wuerfe)\n    siege[gewinner] = siege[gewinner] + 1\n\ngesamt = 0\nfor sieg in siege:\n    gesamt = gesamt + sieg\n\nprint(f\"Siege insgesamt: {gesamt}\")\nprint(siege)",
+    "unklar": "Wo kommt siege = [0, 0, 0] hin, vor die Schleife oder rein? Im Text steht es mitten im Satz über die Runde. Zuerst wollte ich es in die Schleife schreiben, aber dann wäre es ja jede Runde wieder 0. Dass ich eine Variable gewinner machen muss, steht nirgends, das hab ich mir selbst gedacht. Wie ich die Siege \"zusammenzähle\", steht auch nicht da. Ich hab eine for-Schleife mit gesamt gemacht.",
+    "geschafft": true,
+    "ausgabe": "Siege insgesamt: 5\n[3, 1, 1]",
+    "erwartet": "Siege insgesamt: 5"
+   }
+  ]
+ }
+]

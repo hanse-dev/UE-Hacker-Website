@@ -1,0 +1,164 @@
+[
+ {
+  "woche": 12,
+  "thema": "scifi",
+  "id": "lektion-07",
+  "titel": "Etappe 7: Speichern und das Finale",
+  "antwort": {
+   "aufgaben": [
+    {
+     "nr": 2,
+     "verstanden": "teilweise",
+     "was_ich_tun_soll": "Ich soll aus dem Spieler ein Dictionary machen, mit Name, Position, HP und den Namen der Sachen im Beutel. Das soll ich dann mit json.dumps ausgeben.",
+     "code": "import json\ndaten = {\n    \"name\": spieler.name,\n    \"position\": spieler.position,\n    \"hp\": spieler.hp,\n    \"inventar\": [g.name for g in spieler.inventar],\n}\nprint(json.dumps(daten))",
+     "unklar": "json.dumps hatten wir noch nie. Wir hatten nur json.dump und json.load. Was heißt das s am Ende, und warum steht da keine Datei f drin? Ich hab einfach geraten, dass man nur daten reinschreibt. Außerdem ist im Text das Inventar eine Liste von Dictionaries (mit name und beschreibung), aber hier steht 'Liste der Namen'. Ich hab nur die Namen genommen, weil es in der Aufgabe so steht."
+    },
+    {
+     "nr": 3,
+     "verstanden": "teilweise",
+     "was_ich_tun_soll": "Ich soll eine Funktion laden schreiben, die eine Datei aufmacht und mit json.load liest. Wenn es die Datei nicht gibt, soll sie eine Meldung zeigen und None zurückgeben. Dann soll ich sie mit einer Datei aufrufen, die es nicht gibt.",
+     "code": "import json\n\ndef laden(dateiname):\n    try:\n        with open(dateiname, \"r\", encoding=\"utf-8\") as f:\n            daten = json.load(f)\n    except FileNotFoundError:\n        print(\"📂 Es gibt noch keinen Spielstand.\")\n        return None\n    return daten\n\nladen(\"gibtsnicht.json\")",
+     "unklar": "Es steht nicht da, was die Funktion zurückgeben soll, wenn es die Datei doch gibt. Einen Spieler wie im Text? Oder nur die Daten? Ich hab daten zurückgegeben. encoding=\"utf-8\" hab ich aus dem Text abgeschrieben, ich weiß aber nicht, was das ist. Ich hab fast vergessen, dass ich import json selbst hinschreiben muss, weil der Editor leer ist."
+    },
+    {
+     "nr": 4,
+     "verstanden": "ja",
+     "was_ich_tun_soll": "Ich soll einen Spieler machen, die Zugangskarte nehmen, ihn in test.json speichern, wieder laden und dann ausgeben, wo der geladene Spieler steht.",
+     "code": "spieler = Spieler(\"Mira\", \"schleuse\")\nspieler.nimm(\"Zugangskarte\")\nspeichern(spieler, \"test.json\")\ngeladen = laden(\"test.json\")\nprint(f\"Position: {geladen.position}\")",
+     "unklar": "In der Funktion steht dateiname=\"stand.json\". Ich verstehe nicht, warum da ein = mit einem Namen steht. Ich glaube, ich darf trotzdem einen anderen Namen reinschreiben."
+    },
+    {
+     "nr": 5,
+     "verstanden": "ja",
+     "was_ich_tun_soll": "Ich soll die Funktion spiele selbst schreiben. Sie macht einen Befehl nach dem anderen. Sobald der Spieler den Ziel-Gegenstand im Beutel hat, sagt sie 🏆 Ziel erreicht! und hört auf.",
+     "code": "def spiele(spieler, befehle, ziel_gegenstand):\n    for text in befehle:\n        fuehre_aus(spieler, text)\n        if hat_gegenstand(spieler, ziel_gegenstand):\n            print(\"🏆 Ziel erreicht!\")\n            return\n\nspiele(spieler, [\"gehe norden\", \"gehe westen\", \"nimm Schweißbrenner\"], \"Schweißbrenner\")",
+     "unklar": "Soll ich auch die HP prüfen und '> befehl' ausgeben wie im Text? In der Aufgabe steht das nicht, deshalb hab ich es weggelassen. hat_gegenstand steht in der Vorlage, das ist gut."
+    },
+    {
+     "nr": 6,
+     "verstanden": "teilweise",
+     "was_ich_tun_soll": "Ich soll eine Schleife machen, die immer wieder nach einem Befehl fragt und ihn ausführt. Wenn man ende tippt, soll 'Spiel beendet.' kommen und die Schleife aufhören.",
+     "code": "while True:\n    befehl = input(\"> \")\n    if befehl == \"ende\":\n        print(\"Spiel beendet.\")\n        break\n    fuehre_aus(spieler, befehl)",
+     "unklar": "Zuerst wollte ich fuehre_aus ganz nach oben schreiben, weil es in der Aufgabe zuerst kommt. Dann hätte das Spiel aber bei 'ende' gesagt, dass es den Befehl nicht kennt. Ich hab mich an das Beispiel mit 'Weiter?' gehalten und prüfe ende zuerst. Bei 'Woche 7, Extra-Herausforderung 4' weiß ich nicht mehr, was das war."
+    }
+   ],
+   "schwere_woerter": [
+    "JSON",
+    "json.dumps",
+    "ensure_ascii=False",
+    "indent=2",
+    "encoding=\"utf-8\"",
+    "FileNotFoundError",
+    "Spielschleife",
+    "Spielstand",
+    "Ziel-Gegenstand",
+    "entry",
+    "Game Over",
+    "dateiname=\"stand.json\"",
+    "Extra-Herausforderung"
+   ],
+   "verwirrende_saetze": [
+    "Ein Objekt wie der Spieler lässt sich nicht direkt als JSON speichern.",
+    "Beim Laden geht es rückwärts.",
+    "Eine `while True`-Schleife läuft immer weiter (Woche 7, Extra-Herausforderung 4), bis `break` (Woche 6) sie beendet.",
+    "Beim Ausführen tippst du die Befehle ins Fenster, beim Prüfen gibt der Computer `gehe norden`, `gehe westen`, `nimm Schweißbrenner` und `ende` selbst ein – die Befehle gehören also nicht in deinen Code.",
+    "Baue das Dictionary `daten` mit `name`, `position`, `hp` und `inventar` (Liste der Namen)"
+   ],
+   "gesamteindruck": "Das Finale war cool, weil jetzt alles zusammenpasst und ich das Spiel selbst spielen kann. Aber im Speicher-Code stehen viele komische Sachen wie ensure_ascii, indent und encoding, die keiner erklärt, und json.dumps kannte ich gar nicht.",
+   "aendern": [
+    {
+     "stelle": "Aufgabe 2",
+     "problem": "json.dumps wurde nie gezeigt, wir kennen nur json.dump mit einer Datei. Den Unterschied (das s, keine Datei) muss ich raten.",
+     "haette_geholfen": "Ein kurzer Satz im Text: json.dumps(daten) macht aus dem Dictionary einen Text, ohne Datei. Dazu ein kleines Beispiel.",
+     "gewicht": "hoch"
+    },
+    {
+     "stelle": "Text, Code von speichern()/laden()",
+     "problem": "encoding=\"utf-8\", ensure_ascii=False und indent=2 stehen im Code, werden aber nicht erklärt. Ich weiß nicht, ob ich die abschreiben muss.",
+     "haette_geholfen": "Kleine Kommentare im Code, z. B. '# damit Umlaute wie ä richtig gespeichert werden' und '# schön eingerückt'.",
+     "gewicht": "mittel"
+    },
+    {
+     "stelle": "Text, Funktionen mit dateiname=\"stand.json\"",
+     "problem": "Ein Parameter mit = und einem Wert wurde nie erklärt. Ich weiß nicht, ob ich trotzdem einen anderen Dateinamen übergeben darf.",
+     "haette_geholfen": "Ein Satz: Wenn du keinen Dateinamen angibst, wird automatisch stand.json benutzt.",
+     "gewicht": "mittel"
+    },
+    {
+     "stelle": "Aufgabe 3",
+     "problem": "Es steht nicht da, was laden zurückgeben soll, wenn die Datei da ist. Dass ich import json selbst schreiben muss, steht auch nicht da.",
+     "haette_geholfen": "'Gib sonst die gelesenen Daten zurück' und 'Denk an import json' dazuschreiben.",
+     "gewicht": "mittel"
+    },
+    {
+     "stelle": "Aufgabe 2 vs. Text",
+     "problem": "Im Text ist das Inventar eine Liste von Dictionaries, in der Aufgabe eine 'Liste der Namen'. Das verwirrt mich.",
+     "haette_geholfen": "Klar sagen: Hier reicht eine Liste nur mit den Namen, z. B. ['Zugangskarte'].",
+     "gewicht": "mittel"
+    },
+    {
+     "stelle": "Aufgabe 6",
+     "problem": "Es steht nicht da, ob ich zuerst auf 'ende' prüfen oder zuerst fuehre_aus aufrufen soll. Falsch herum kommt bei 'ende' eine 🤔-Meldung.",
+     "haette_geholfen": "Ein Hinweis: Prüfe zuerst, ob der Befehl 'ende' ist, und führe ihn erst danach aus.",
+     "gewicht": "mittel"
+    }
+   ],
+   "_kosten_usd": 0.5525822
+  },
+  "ergebnisse": [
+   {
+    "nr": 2,
+    "verstanden": "teilweise",
+    "was_ich_tun_soll": "Ich soll aus dem Spieler ein Dictionary machen, mit Name, Position, HP und den Namen der Sachen im Beutel. Das soll ich dann mit json.dumps ausgeben.",
+    "code": "import json\ndaten = {\n    \"name\": spieler.name,\n    \"position\": spieler.position,\n    \"hp\": spieler.hp,\n    \"inventar\": [g.name for g in spieler.inventar],\n}\nprint(json.dumps(daten))",
+    "unklar": "json.dumps hatten wir noch nie. Wir hatten nur json.dump und json.load. Was heißt das s am Ende, und warum steht da keine Datei f drin? Ich hab einfach geraten, dass man nur daten reinschreibt. Außerdem ist im Text das Inventar eine Liste von Dictionaries (mit name und beschreibung), aber hier steht 'Liste der Namen'. Ich hab nur die Namen genommen, weil es in der Aufgabe so steht.",
+    "geschafft": true,
+    "ausgabe": "🎒 Du nimmst: Zugangskarte – Sie öffnet gesicherte Türen.\n{\"name\": \"Mira\", \"position\": \"schleuse\", \"hp\": 20, \"inventar\": [\"Zugangskarte\"]}",
+    "erwartet": "{\"name\": \"Mira\", \"position\": \"schleuse\", \"hp\": 20, \"inventar\": [\"Zugangskarte\"]}"
+   },
+   {
+    "nr": 3,
+    "verstanden": "teilweise",
+    "was_ich_tun_soll": "Ich soll eine Funktion laden schreiben, die eine Datei aufmacht und mit json.load liest. Wenn es die Datei nicht gibt, soll sie eine Meldung zeigen und None zurückgeben. Dann soll ich sie mit einer Datei aufrufen, die es nicht gibt.",
+    "code": "import json\n\ndef laden(dateiname):\n    try:\n        with open(dateiname, \"r\", encoding=\"utf-8\") as f:\n            daten = json.load(f)\n    except FileNotFoundError:\n        print(\"📂 Es gibt noch keinen Spielstand.\")\n        return None\n    return daten\n\nladen(\"gibtsnicht.json\")",
+    "unklar": "Es steht nicht da, was die Funktion zurückgeben soll, wenn es die Datei doch gibt. Einen Spieler wie im Text? Oder nur die Daten? Ich hab daten zurückgegeben. encoding=\"utf-8\" hab ich aus dem Text abgeschrieben, ich weiß aber nicht, was das ist. Ich hab fast vergessen, dass ich import json selbst hinschreiben muss, weil der Editor leer ist.",
+    "geschafft": true,
+    "ausgabe": "📂 Es gibt noch keinen Spielstand.",
+    "erwartet": "📂 Es gibt noch keinen Spielstand."
+   },
+   {
+    "nr": 4,
+    "verstanden": "ja",
+    "was_ich_tun_soll": "Ich soll einen Spieler machen, die Zugangskarte nehmen, ihn in test.json speichern, wieder laden und dann ausgeben, wo der geladene Spieler steht.",
+    "code": "spieler = Spieler(\"Mira\", \"schleuse\")\nspieler.nimm(\"Zugangskarte\")\nspeichern(spieler, \"test.json\")\ngeladen = laden(\"test.json\")\nprint(f\"Position: {geladen.position}\")",
+    "unklar": "In der Funktion steht dateiname=\"stand.json\". Ich verstehe nicht, warum da ein = mit einem Namen steht. Ich glaube, ich darf trotzdem einen anderen Namen reinschreiben.",
+    "geschafft": true,
+    "ausgabe": "🎒 Du nimmst: Zugangskarte – Sie öffnet gesicherte Türen.\n💾 Spielstand von Mira gespeichert.\n📂 Spielstand von Mira geladen.\nPosition: schleuse",
+    "erwartet": "Position: schleuse"
+   },
+   {
+    "nr": 5,
+    "verstanden": "ja",
+    "was_ich_tun_soll": "Ich soll die Funktion spiele selbst schreiben. Sie macht einen Befehl nach dem anderen. Sobald der Spieler den Ziel-Gegenstand im Beutel hat, sagt sie 🏆 Ziel erreicht! und hört auf.",
+    "code": "def spiele(spieler, befehle, ziel_gegenstand):\n    for text in befehle:\n        fuehre_aus(spieler, text)\n        if hat_gegenstand(spieler, ziel_gegenstand):\n            print(\"🏆 Ziel erreicht!\")\n            return\n\nspiele(spieler, [\"gehe norden\", \"gehe westen\", \"nimm Schweißbrenner\"], \"Schweißbrenner\")",
+    "unklar": "Soll ich auch die HP prüfen und '> befehl' ausgeben wie im Text? In der Aufgabe steht das nicht, deshalb hab ich es weggelassen. hat_gegenstand steht in der Vorlage, das ist gut.",
+    "geschafft": true,
+    "ausgabe": "📍 Korridor: Ein langer Korridor mit vielen Türen. Notbeleuchtung taucht alles in rotes Licht.\n   Ausgänge: sueden, osten, westen\n👀 Hier liegt nichts.\n📍 Labor: Ein Labor voller Geräte. Auf einem Tisch ",
+    "erwartet": "🏆 Ziel erreicht!"
+   },
+   {
+    "nr": 6,
+    "verstanden": "teilweise",
+    "was_ich_tun_soll": "Ich soll eine Schleife machen, die immer wieder nach einem Befehl fragt und ihn ausführt. Wenn man ende tippt, soll 'Spiel beendet.' kommen und die Schleife aufhören.",
+    "code": "while True:\n    befehl = input(\"> \")\n    if befehl == \"ende\":\n        print(\"Spiel beendet.\")\n        break\n    fuehre_aus(spieler, befehl)",
+    "unklar": "Zuerst wollte ich fuehre_aus ganz nach oben schreiben, weil es in der Aufgabe zuerst kommt. Dann hätte das Spiel aber bei 'ende' gesagt, dass es den Befehl nicht kennt. Ich hab mich an das Beispiel mit 'Weiter?' gehalten und prüfe ende zuerst. Bei 'Woche 7, Extra-Herausforderung 4' weiß ich nicht mehr, was das war.",
+    "geschafft": true,
+    "ausgabe": "> 📍 Korridor: Ein langer Korridor mit vielen Türen. Notbeleuchtung taucht alles in rotes Licht.\n   Ausgänge: sueden, osten, westen\n👀 Hier liegt nichts.\n> 📍 Labor: Ein Labor voller Geräte. Auf einem Ti",
+    "erwartet": [
+     "🎒 Du nimmst: Schweißbrenner",
+     "Spiel beendet."
+    ]
+   }
+  ]
+ }
+]

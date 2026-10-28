@@ -1,0 +1,110 @@
+[
+ {
+  "woche": 12,
+  "thema": "abenteuer",
+  "id": "boss-04",
+  "titel": "Extra-Herausforderung 4: Das ganze Spiel",
+  "antwort": {
+   "aufgaben": [
+    {
+     "nr": 1,
+     "verstanden": "teilweise",
+     "was_ich_tun_soll": "Ich soll eine Funktion wuerfle() bauen, die eine Würfelzahl von 1 bis 6 macht. Dann soll ich 20-mal würfeln und schauen, ob alle Zahlen zwischen 1 und 6 sind. Wenn ja, kommt True raus. Am Ende soll ich noch einmal würfeln und die Zahl ausgeben.",
+     "code": "import random\n\ndef wuerfle():\n    return random.randint(1, 6)\n\nalle_ok = True\nfor i in range(20):\n    wurf = wuerfle()\n    if wurf < 1 or wurf > 6:\n        alle_ok = False\nprint(alle_ok)\nprint(wuerfle())",
+     "unklar": "Mit „wie in Woche 7“ ist ein Beispiel gemeint, das ich nicht mehr vor mir habe. Im Glossar steht es nicht. Ich wusste auch nicht genau, ob „zwischen 1 und 6“ die 1 und die 6 mitzählt. Ich habe gedacht: ja, weil ein Würfel ja 1 und 6 hat. Komisch fand ich, dass randint(1, 6) doch sowieso immer 1 bis 6 gibt. Warum soll ich das dann noch prüfen? Ich dachte erst, ich hab was falsch verstanden. Ich wusste auch nicht genau, ob ich alle_ok ausgeben soll oder einfach das Wort True. Ich habe alle_ok genommen."
+    },
+    {
+     "nr": 2,
+     "verstanden": "ja",
+     "was_ich_tun_soll": "Ich soll eine Klasse Boss bauen, die von Gegner erbt. Ein Boss hat doppelt so viele Lebenspunkte. Dafür gebe ich in super().__init__ die HP mal 2 weiter. Dann mache ich einen Boss mit 10 HP und es soll HP: 20 rauskommen.",
+     "code": "class Boss(Gegner):\n    def __init__(self, name, hp, staerke):\n        super().__init__(name, hp * 2, staerke)\n\nboss = Boss(\"Drache\", 10, 3)\nprint(f\"HP: {boss.hp}\")",
+     "unklar": ""
+    },
+    {
+     "nr": 3,
+     "verstanden": "teilweise",
+     "was_ich_tun_soll": "Ich soll die Klasse Gegenstand schreiben, mit __str__ dazu. Dann zeigt print den Namen, einen Strich und die Beschreibung an. Danach gebe ich die Fackel mit print aus.",
+     "code": "class Gegenstand:\n    def __init__(self, name, beschreibung):\n        self.name = name\n        self.beschreibung = beschreibung\n\n    def __str__(self):\n        return f\"{self.name} – {self.beschreibung}\"\n\nprint(Gegenstand(\"Fackel\", \"Sie leuchtet in dunklen Ecken.\"))",
+     "unklar": "Was heißt „Magic Method“? Das ist Englisch und wird nirgends erklärt. In Woche 11 hieß __str__ nur „Textdarstellung“. Den langen Strich – finde ich auf meiner Tastatur nicht. Ich habe ihn aus der Aufgabe kopiert. Ich weiß nicht, ob ein normaler Minus-Strich - auch richtig wäre."
+    },
+    {
+     "nr": 4,
+     "verstanden": "ja",
+     "was_ich_tun_soll": "Ich soll eine Funktion lade_stand bauen, die eine JSON-Datei liest und den Inhalt zurückgibt. Wenn die Datei fehlt, gibt sie ein leeres Dictionary {} zurück. Dann probiere ich das mit einer Datei, die es nicht gibt, und gebe Anzahl: 0 aus.",
+     "code": "import json\n\ndef lade_stand(dateiname):\n    try:\n        with open(dateiname, \"r\") as f:\n            daten = json.load(f)\n    except FileNotFoundError:\n        return {}\n    return daten\n\nergebnis = lade_stand(\"gibtsnicht.json\")\nprint(f\"Anzahl: {len(ergebnis)}\")",
+     "unklar": "Ich war mir nicht sicher, ob len() auch bei einem Dictionary geht. Im Glossar steht len nur für Text und Listen. Ich habe es einfach probiert. Die Funktion habe ich wie laden() aus Etappe 7 gebaut."
+    }
+   ],
+   "schwere_woerter": [
+    "Magic Methods",
+    "Magic Method",
+    "Fehlerbehandlung",
+    "Vererbung",
+    "alle_ok"
+   ],
+   "verwirrende_saetze": [
+    "Würfle 20-mal und gib True aus, wenn **alle** Würfe zwischen 1 und 6 liegen (wie in Woche 7: alle_ok = True und auf False setzen, sobald ein Wurf nicht passt).",
+    "Diese Extra-Herausforderung verbindet Zufall, Vererbung, Magic Methods und Dateien – sie ist freiwillig.",
+    "Gib in `super().__init__(...)` alle drei Werte weiter, die HP dabei mal 2."
+   ],
+   "gesamteindruck": "Eigentlich ging es ganz gut, weil ich vieles schon aus den Etappen kannte, vor allem den Boss und das Laden. Bei Aufgabe 1 habe ich nicht verstanden, warum ich etwas prüfen soll, das sowieso immer stimmt. Und „Magic Method“ kannte ich nicht.",
+   "aendern": [
+    {
+     "stelle": "Aufgabe 1",
+     "problem": "„wie in Woche 7“ zeigt auf ein Beispiel, das ich nicht vor mir habe. Außerdem ist unklar, warum ich prüfen soll, ob randint(1, 6) zwischen 1 und 6 liegt. Das stimmt doch immer. Ich wusste auch nicht, ob 1 und 6 mitzählen.",
+     "haette_geholfen": "Ein kurzes Beispiel mit alle_ok direkt in der Aufgabe. Ein Satz wie „Wir testen, ob unsere Funktion richtig würfelt, 1 und 6 zählen mit.“ Und dazu: „Gib alle_ok aus.“",
+     "gewicht": "mittel"
+    },
+    {
+     "stelle": "Aufgabe 3 und Einleitung",
+     "problem": "„Magic Method“ ist Englisch und wird nicht erklärt. Den langen Strich – kann ich nicht tippen und weiß nicht, ob ein normaler - auch zählt.",
+     "haette_geholfen": "Eine Erklärung wie „Magic Methods = besondere Methoden mit __ vorne und hinten, z. B. __str__“. Und ein Hinweis, dass man den Strich kopieren soll, oder das fertige Ergebnis als Beispiel.",
+     "gewicht": "mittel"
+    }
+   ],
+   "_kosten_usd": 0.7456832
+  },
+  "ergebnisse": [
+   {
+    "nr": 1,
+    "verstanden": "teilweise",
+    "was_ich_tun_soll": "Ich soll eine Funktion wuerfle() bauen, die eine Würfelzahl von 1 bis 6 macht. Dann soll ich 20-mal würfeln und schauen, ob alle Zahlen zwischen 1 und 6 sind. Wenn ja, kommt True raus. Am Ende soll ich noch einmal würfeln und die Zahl ausgeben.",
+    "code": "import random\n\ndef wuerfle():\n    return random.randint(1, 6)\n\nalle_ok = True\nfor i in range(20):\n    wurf = wuerfle()\n    if wurf < 1 or wurf > 6:\n        alle_ok = False\nprint(alle_ok)\nprint(wuerfle())",
+    "unklar": "Mit „wie in Woche 7“ ist ein Beispiel gemeint, das ich nicht mehr vor mir habe. Im Glossar steht es nicht. Ich wusste auch nicht genau, ob „zwischen 1 und 6“ die 1 und die 6 mitzählt. Ich habe gedacht: ja, weil ein Würfel ja 1 und 6 hat. Komisch fand ich, dass randint(1, 6) doch sowieso immer 1 bis 6 gibt. Warum soll ich das dann noch prüfen? Ich dachte erst, ich hab was falsch verstanden. Ich wusste auch nicht genau, ob ich alle_ok ausgeben soll oder einfach das Wort True. Ich habe alle_ok genommen.",
+    "geschafft": true,
+    "ausgabe": "True\n4",
+    "erwartet": "True"
+   },
+   {
+    "nr": 2,
+    "verstanden": "ja",
+    "was_ich_tun_soll": "Ich soll eine Klasse Boss bauen, die von Gegner erbt. Ein Boss hat doppelt so viele Lebenspunkte. Dafür gebe ich in super().__init__ die HP mal 2 weiter. Dann mache ich einen Boss mit 10 HP und es soll HP: 20 rauskommen.",
+    "code": "class Boss(Gegner):\n    def __init__(self, name, hp, staerke):\n        super().__init__(name, hp * 2, staerke)\n\nboss = Boss(\"Drache\", 10, 3)\nprint(f\"HP: {boss.hp}\")",
+    "unklar": "",
+    "geschafft": true,
+    "ausgabe": "HP: 20",
+    "erwartet": "HP: 20"
+   },
+   {
+    "nr": 3,
+    "verstanden": "teilweise",
+    "was_ich_tun_soll": "Ich soll die Klasse Gegenstand schreiben, mit __str__ dazu. Dann zeigt print den Namen, einen Strich und die Beschreibung an. Danach gebe ich die Fackel mit print aus.",
+    "code": "class Gegenstand:\n    def __init__(self, name, beschreibung):\n        self.name = name\n        self.beschreibung = beschreibung\n\n    def __str__(self):\n        return f\"{self.name} – {self.beschreibung}\"\n\nprint(Gegenstand(\"Fackel\", \"Sie leuchtet in dunklen Ecken.\"))",
+    "unklar": "Was heißt „Magic Method“? Das ist Englisch und wird nirgends erklärt. In Woche 11 hieß __str__ nur „Textdarstellung“. Den langen Strich – finde ich auf meiner Tastatur nicht. Ich habe ihn aus der Aufgabe kopiert. Ich weiß nicht, ob ein normaler Minus-Strich - auch richtig wäre.",
+    "geschafft": true,
+    "ausgabe": "Fackel – Sie leuchtet in dunklen Ecken.",
+    "erwartet": "Fackel – Sie leuchtet in dunklen Ecken."
+   },
+   {
+    "nr": 4,
+    "verstanden": "ja",
+    "was_ich_tun_soll": "Ich soll eine Funktion lade_stand bauen, die eine JSON-Datei liest und den Inhalt zurückgibt. Wenn die Datei fehlt, gibt sie ein leeres Dictionary {} zurück. Dann probiere ich das mit einer Datei, die es nicht gibt, und gebe Anzahl: 0 aus.",
+    "code": "import json\n\ndef lade_stand(dateiname):\n    try:\n        with open(dateiname, \"r\") as f:\n            daten = json.load(f)\n    except FileNotFoundError:\n        return {}\n    return daten\n\nergebnis = lade_stand(\"gibtsnicht.json\")\nprint(f\"Anzahl: {len(ergebnis)}\")",
+    "unklar": "Ich war mir nicht sicher, ob len() auch bei einem Dictionary geht. Im Glossar steht len nur für Text und Listen. Ich habe es einfach probiert. Die Funktion habe ich wie laden() aus Etappe 7 gebaut.",
+    "geschafft": true,
+    "ausgabe": "Anzahl: 0",
+    "erwartet": "Anzahl: 0"
+   }
+  ]
+ }
+]
