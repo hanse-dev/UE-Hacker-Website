@@ -577,22 +577,22 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Erfolg abschätzen: Der erwartete Erfolg ist Teilnehmerzahl mal Erfolgswahrscheinlichkeit. Berechne ihn für beide Einheiten und gib genau zwei Zeilen aus: Erwarteter Erfolg Einheit 1: 3.0 und darunter Erwarteter Erfolg Einheit 2: 4.0",
+        "instruction": "Schritt 3 – Erfolg abschätzen: Eine Erfolgswahrscheinlichkeit von 0.75 heißt: Von 4 Teilnehmern schaffen es etwa 3 (4 * 0.75 = 3.0). Rechne für beide Einheiten Teilnehmerzahl mal Erfolgswahrscheinlichkeit und gib genau zwei Zeilen aus: Einheit 1: etwa 3.0 schaffen es und darunter Einheit 2: etwa 4.0 schaffen es",
         "codeTemplate": "teilnehmer1 = 4\nwahrscheinlichkeit1 = 0.75\nteilnehmer2 = 8\nwahrscheinlichkeit2 = 0.5\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": [
-            "Erwarteter Erfolg Einheit 1: 3.0",
-            "Erwarteter Erfolg Einheit 2: 4.0"
+            "Einheit 1: etwa 3.0 schaffen es",
+            "Einheit 2: etwa 4.0 schaffen es"
           ]
         }
       },
       {
-        "instruction": "Schritt 4 – Vergleichen: Speichere in einheit2_besser den Vergleich erfolg2 > erfolg1 und gib genau aus: Einheit 2 effizienter: True",
+        "instruction": "Schritt 4 – Vergleichen: Speichere in einheit2_besser den Vergleich erfolg2 > erfolg1 und gib genau aus: Bei Einheit 2 schaffen es mehr: True",
         "codeTemplate": "erfolg1 = 3.0\nerfolg2 = 4.0\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Einheit 2 effizienter: True"
+          "expected": "Bei Einheit 2 schaffen es mehr: True"
         }
       }
     ]

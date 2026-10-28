@@ -21,7 +21,7 @@ class Gegenstand:
         self.name = name
         self.beschreibung = beschreibung
 
-welt["scheune"] = {"beschreibung": "Eine warme Scheune voller Heu.", "ausgaenge": {"oben": "stallgasse"}, "gegenstaende": [], "gegner": None}
+welt["scheune"] = {"beschreibung": "Eine warme Scheune voller Heu.", "ausgaenge": {"oben": "stallgasse"}, "gegenstaende": [], "ausreisser": None}
 welt["stallgasse"]["ausgaenge"]["unten"] = "scheune"
 welt["scheune"]["gegenstaende"].append(Gegenstand("Apfel", "Ein saftiger Apfel für neue Kraft."))
 print([g.name for g in welt["scheune"]["gegenstaende"]])

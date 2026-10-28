@@ -383,7 +383,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Suchen: Die Liste crew ist vorgegeben. Schreibe eine Funktion finde_crew(liste, art), die die Namen aller Einträge mit dieser rolle als Liste zurückgibt. Gib für \"Pilotin\" genau Gefunden: ['Nova', 'Kai'] aus.",
+        "instruction": "Schritt 2 – Suchen: Die Liste crew ist vorgegeben. Schreibe eine Funktion finde_crew(liste, rolle), die die Namen aller Einträge mit dieser rolle als Liste zurückgibt. Gib für \"Pilotin\" genau Gefunden: ['Nova', 'Kai'] aus.",
         "codeTemplate": "crew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n    {\"name\": \"Kai\", \"rolle\": \"Pilotin\", \"rang\": 5, \"energie\": 110},\n]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -493,7 +493,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Suche: Die Liste crew ist vorgegeben. Schreibe eine Funktion finde_crew(liste, art), die die Namen mit dieser rolle zurückgibt. Gib genau Pilotin: 2 und in der nächsten Zeile Ingenieur: 1 aus (Anzahl der Treffer).",
+        "instruction": "Schritt 2 – Suche: Die Liste crew ist vorgegeben. Schreibe eine Funktion finde_crew(liste, rolle), die die Namen mit dieser rolle zurückgibt. Gib genau Pilotin: 2 und in der nächsten Zeile Ingenieur: 1 aus (Anzahl der Treffer).",
         "codeTemplate": "crew = [\n    {\"name\": \"Nova\", \"rolle\": \"Pilotin\", \"rang\": 4, \"energie\": 120},\n    {\"name\": \"Rex\", \"rolle\": \"Ingenieur\", \"rang\": 6, \"energie\": 150},\n    {\"name\": \"Zara\", \"rolle\": \"Botanikerin\", \"rang\": 3, \"energie\": 90},\n    {\"name\": \"Kai\", \"rolle\": \"Pilotin\", \"rang\": 5, \"energie\": 110},\n]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -521,7 +521,7 @@
     "lessonSummary": "Die große Wiederholung ist geschafft: Funktionen, Listen und Zufall aus Woche 5 bis 7 – jetzt mit Dictionaries!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Funktion mit Rückgabe (Woche 5): Schreibe erstelle_mitglied(name, art, stufe), die ein Dictionary mit den Schlüsseln name, rolle, rang zurückgibt. Rufe sie mit (\"Nova\", \"Pilotin\", 4) auf und gib genau Erstellt: Nova und in der nächsten Zeile Rang: 4 aus.",
+        "instruction": "Schritt 1 – Funktion mit Rückgabe (Woche 5): Schreibe erstelle_mitglied(name, rolle, rang), die ein Dictionary mit den Schlüsseln name, rolle, rang zurückgibt. Rufe sie mit (\"Nova\", \"Pilotin\", 4) auf und gib genau Erstellt: Nova und in der nächsten Zeile Rang: 4 aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

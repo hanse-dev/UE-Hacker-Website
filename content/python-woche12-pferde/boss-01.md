@@ -1,7 +1,7 @@
-# ⭐⭐⭐⭐☆ Extra-Herausforderung 1: Ein zweiter Gegner
+# ⭐⭐⭐⭐☆ Extra-Herausforderung 1: Ein zweiter Ausreißer
 
 > ⚠️ Schwieriger! Die Extra-Herausforderungen erweitern dein Spiel – sie sind freiwillig.
 
-Nicht nur am Ende wartet ein Gegner: Auch stallgasse bekommt einen Wächter. Zusammen mit dem Kampf-System aus Etappe 5 prüfst du, wie ein Kampf ausgeht.
+Nicht nur auf der Koppel ist jemand ausgebüxt: Auch in der stallgasse läuft ein Ausreißer herum. Mit dem Einfangen aus Etappe 5 prüfst du, wie die Jagd ausgeht.
 
-**Bonus (freiwillig, ohne Prüfung):** Lass den Wächter zuerst warnen, bevor er kämpft.
+**Bonus (freiwillig, ohne Prüfung):** Lass den Ausreißer zuerst bellen oder meckern, bevor er wegläuft.

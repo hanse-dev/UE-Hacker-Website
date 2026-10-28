@@ -4,4 +4,4 @@
 
 Der Turnierparcours lebt – jede Strecke hat eigene Hindernisse und Preise!
 
-**Bonus (freiwillig, ohne Prüfung):** Lass die Figur nach jedem bestandenen Abschnitt um eine Stufe aufsteigen.
+**Bonus (freiwillig, ohne Prüfung):** Lass dein Pferd nach jeder geschafften Strecke ein Können-Level aufsteigen.

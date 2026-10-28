@@ -1,3 +1,3 @@
 """### Extra-Herausforderung 3: Die Quest-Planung – Aufgabe 2
 
-Schritt 2 – Berechne die erwartete Belohnung (Belohnung mal Wahrscheinlichkeit) für beide Quests. Gib zwei Zeilen aus – in der ersten genau Quest 1 erwartet: 400.0, darunter genau Quest 2 erwartet: 600.0"""
+Schritt 2 – Stell dir vor, du machst jede Quest 10-mal. Bei chance1 = 0.8 klappt Quest 1 dann etwa 8-mal (10 * chance1), und jedes Mal gibt es die Belohnung. Berechne für beide Quests, wie viel Gold du bei 10 Versuchen ungefähr bekommst (10 * chance * belohnung), und gib genau zwei Zeilen aus: Quest 1 bei 10 Versuchen: 4000.0 Gold und darunter Quest 2 bei 10 Versuchen: 6000.0 Gold"""

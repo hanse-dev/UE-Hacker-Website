@@ -256,11 +256,11 @@
         }
       },
       {
-        "instruction": "Die Liste pferde ist vorgegeben. Sammle mit einer List Comprehension die Namen aller Einträge, deren alter größer als 7 ist, in starke und gib genau Starke: ['Blitz', 'Sturm'] aus.",
+        "instruction": "Die Liste pferde ist vorgegeben. Sammle mit einer List Comprehension die Namen aller Einträge, deren alter größer als 7 ist, in aeltere und gib genau Ältere: ['Blitz', 'Sturm'] aus.",
         "codeTemplate": "pferde = [\n    {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120},\n    {\"name\": \"Sturm\", \"rasse\": \"Haflinger\", \"alter\": 12, \"punkte\": 150},\n    {\"name\": \"Luna\", \"rasse\": \"Isländer\", \"alter\": 6, \"punkte\": 90},\n]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Starke: ['Blitz', 'Sturm']"
+          "expected": "Ältere: ['Blitz', 'Sturm']"
         }
       }
     ]
@@ -383,7 +383,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Suchen: Die Liste pferde ist vorgegeben. Schreibe eine Funktion finde_pferde(liste, art), die die Namen aller Einträge mit dieser rasse als Liste zurückgibt. Gib für \"Hannoveraner\" genau Gefunden: ['Blitz', 'Wind'] aus.",
+        "instruction": "Schritt 2 – Suchen: Die Liste pferde ist vorgegeben. Schreibe eine Funktion finde_pferde(liste, rasse), die die Namen aller Einträge mit dieser rasse als Liste zurückgibt. Gib für \"Hannoveraner\" genau Gefunden: ['Blitz', 'Wind'] aus.",
         "codeTemplate": "pferde = [\n    {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120},\n    {\"name\": \"Sturm\", \"rasse\": \"Haflinger\", \"alter\": 12, \"punkte\": 150},\n    {\"name\": \"Luna\", \"rasse\": \"Isländer\", \"alter\": 6, \"punkte\": 90},\n    {\"name\": \"Wind\", \"rasse\": \"Hannoveraner\", \"alter\": 7, \"punkte\": 110},\n]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -460,19 +460,19 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Gefährlichste: Das Dictionary zonen ist vorgegeben. Finde die Strecke mit der höchsten schwierigkeit und gib genau Gefährlichste: Moor (8) aus.",
+        "instruction": "Schritt 2 – Schwerste: Das Dictionary zonen ist vorgegeben. Finde die Strecke mit der höchsten schwierigkeit und gib genau Schwerste: Moor (8) aus.",
         "codeTemplate": "zonen = {\n    \"Wiese\": {\"hindernis\": \"Graben\", \"preis\": \"Schleife\", \"schwierigkeit\": 3},\n    \"Wald\": {\"hindernis\": \"Wassergraben\", \"preis\": \"Pokal\", \"schwierigkeit\": 5},\n    \"Moor\": {\"hindernis\": \"Mauer\", \"preis\": \"Medaille\", \"schwierigkeit\": 8},\n}\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Gefährlichste: Moor (8)"
+          "expected": "Schwerste: Moor (8)"
         }
       },
       {
-        "instruction": "Schritt 3 – Wer darf hinein? Die Figur hat stark = 5. Sammle in der Liste betretbar die Namen aller Zonen, deren schwierigkeit höchstens stark ist, und gib genau Betretbar: ['Wiese', 'Wald'] aus.",
-        "codeTemplate": "zonen = {\n    \"Wiese\": {\"hindernis\": \"Graben\", \"preis\": \"Schleife\", \"schwierigkeit\": 3},\n    \"Wald\": {\"hindernis\": \"Wassergraben\", \"preis\": \"Pokal\", \"schwierigkeit\": 5},\n    \"Moor\": {\"hindernis\": \"Mauer\", \"preis\": \"Medaille\", \"schwierigkeit\": 8},\n}\nstark = 5\n# 🎯 Deine Lösung hier:\n",
+        "instruction": "Schritt 3 – Was schafft dein Pferd? Es hat koennen = 5. Sammle in der Liste machbar die Namen aller Strecken, deren schwierigkeit höchstens koennen ist, und gib genau Machbar: ['Wiese', 'Wald'] aus.",
+        "codeTemplate": "zonen = {\n    \"Wiese\": {\"hindernis\": \"Graben\", \"preis\": \"Schleife\", \"schwierigkeit\": 3},\n    \"Wald\": {\"hindernis\": \"Wassergraben\", \"preis\": \"Pokal\", \"schwierigkeit\": 5},\n    \"Moor\": {\"hindernis\": \"Mauer\", \"preis\": \"Medaille\", \"schwierigkeit\": 8},\n}\nkoennen = 5\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Betretbar: ['Wiese', 'Wald']"
+          "expected": "Machbar: ['Wiese', 'Wald']"
         }
       }
     ]
@@ -493,7 +493,7 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Suche: Die Liste pferde ist vorgegeben. Schreibe eine Funktion finde_pferde(liste, art), die die Namen mit dieser rasse zurückgibt. Gib genau Hannoveraner: 2 und in der nächsten Zeile Haflinger: 1 aus (Anzahl der Treffer).",
+        "instruction": "Schritt 2 – Suche: Die Liste pferde ist vorgegeben. Schreibe eine Funktion finde_pferde(liste, rasse), die die Namen mit dieser rasse zurückgibt. Gib genau Hannoveraner: 2 und in der nächsten Zeile Haflinger: 1 aus (Anzahl der Treffer).",
         "codeTemplate": "pferde = [\n    {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120},\n    {\"name\": \"Sturm\", \"rasse\": \"Haflinger\", \"alter\": 12, \"punkte\": 150},\n    {\"name\": \"Luna\", \"rasse\": \"Isländer\", \"alter\": 6, \"punkte\": 90},\n    {\"name\": \"Wind\", \"rasse\": \"Hannoveraner\", \"alter\": 7, \"punkte\": 110},\n]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -521,7 +521,7 @@
     "lessonSummary": "Die große Wiederholung ist geschafft: Funktionen, Listen und Zufall aus Woche 5 bis 7 – jetzt mit Dictionaries!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Funktion mit Rückgabe (Woche 5): Schreibe erstelle_pferd(name, art, stufe), die ein Dictionary mit den Schlüsseln name, rasse, alter zurückgibt. Rufe sie mit (\"Blitz\", \"Hannoveraner\", 8) auf und gib genau Erstellt: Blitz und in der nächsten Zeile Alter: 8 aus.",
+        "instruction": "Schritt 1 – Funktion mit Rückgabe (Woche 5): Schreibe erstelle_pferd(name, rasse, alter), die ein Dictionary mit den Schlüsseln name, rasse, alter zurückgibt. Rufe sie mit (\"Blitz\", \"Hannoveraner\", 8) auf und gib genau Erstellt: Blitz und in der nächsten Zeile Alter: 8 aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

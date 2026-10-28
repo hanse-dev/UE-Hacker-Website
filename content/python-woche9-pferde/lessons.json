@@ -462,11 +462,11 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Filtern: Die Datei pferde.csv mit vier Zeilen wird im vorgegebenen Code angelegt. Sammle die Namen aller Zeilen, deren alter (als Zahl) größer als 7 ist, in der Liste starke und gib genau Starke: ['Blitz', 'Sturm'] aus.",
+        "instruction": "Schritt 3 – Filtern: Die Datei pferde.csv mit vier Zeilen wird im vorgegebenen Code angelegt. Sammle die Namen aller Zeilen, deren alter (als Zahl) größer als 7 ist, in der Liste aeltere und gib genau Ältere: ['Blitz', 'Sturm'] aus.",
         "codeTemplate": "import csv\npferde = [\n    {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120},\n    {\"name\": \"Sturm\", \"rasse\": \"Haflinger\", \"alter\": 12, \"punkte\": 150},\n    {\"name\": \"Luna\", \"rasse\": \"Isländer\", \"alter\": 6, \"punkte\": 90},\n    {\"name\": \"Wind\", \"rasse\": \"Hannoveraner\", \"alter\": 7, \"punkte\": 110},\n]\nwith open(\"pferde.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"rasse\", \"alter\", \"punkte\"])\n    w.writeheader()\n    w.writerows(pferde)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Starke: ['Blitz', 'Sturm']"
+          "expected": "Ältere: ['Blitz', 'Sturm']"
         }
       }
     ]
@@ -616,11 +616,11 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Listen filtern (Woche 6): Die CSV-Datei pferde.csv wird im vorgegebenen Code angelegt. Sammle die Namen aller Zeilen mit alter größer als 7 in der Liste starke, speichere starke mit json.dump() in pferd.json, lade sie zurück und gib genau Starke: ['Blitz', 'Sturm'] aus.",
+        "instruction": "Schritt 3 – Listen filtern (Woche 6): Die CSV-Datei pferde.csv wird im vorgegebenen Code angelegt. Sammle die Namen aller Zeilen mit alter größer als 7 in der Liste aeltere, speichere aeltere mit json.dump() in pferd.json, lade sie zurück und gib genau Ältere: ['Blitz', 'Sturm'] aus.",
         "codeTemplate": "import csv\npferde = [\n    {\"name\": \"Blitz\", \"rasse\": \"Hannoveraner\", \"alter\": 8, \"punkte\": 120},\n    {\"name\": \"Sturm\", \"rasse\": \"Haflinger\", \"alter\": 12, \"punkte\": 150},\n    {\"name\": \"Luna\", \"rasse\": \"Isländer\", \"alter\": 6, \"punkte\": 90},\n]\nwith open(\"pferde.csv\", \"w\", newline=\"\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"name\", \"rasse\", \"alter\", \"punkte\"])\n    w.writeheader()\n    w.writerows(pferde)\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Starke: ['Blitz', 'Sturm']",
+          "expected": "Ältere: ['Blitz', 'Sturm']",
           "codeContains": [
             "json.dump"
           ]

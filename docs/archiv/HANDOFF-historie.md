@@ -3200,3 +3200,31 @@ Kind durchspielen und Vorschläge machen (24.10.2026), alle vier wurden gewählt
   lief: `beta` aus `kurse.json`, ID in `NICHT_BETA` (`tests/kurse-beta.spec.js`). Die Prüfpunkte am
   Gerät bleiben in `todo.md`.
 - Nummer 3.128 statt 3.126: 3.126 und 3.127 waren beim Merge schon auf `main` vergeben.
+
+### 3.129 — Inhalte Woche 2 und 6–12 (Branch `inhalt-w2-w12-themen`)
+
+Offene Punkte aus der Inhaltsprüfung (3.98), Entscheidung Eike 24.10.2026: W12 Pferde als „Ausreißer
+einfangen“ umbauen, Pferde/Sci-Fi W6–12 Zeile für Zeile lesen.
+
+- **W2 Boss 3 (alle Themen):** kein Erwartungswert mehr. Abenteuer/Sci-Fi: „Stell dir vor, du machst
+  jede Quest/Mission 10-mal“ – `10 * chance * belohnung` (4000.0/6000.0 Gold, 40.0/60.0 Punkte),
+  Vergleich „Quest 2 bringt mehr“. Pferde: „Von 4 Teilnehmern schaffen es etwa 3“, Ausgabe
+  „Einheit 1: etwa 3.0 schaffen es“. Alle Werte als Kommazahl exakt geprüft.
+- **W12 Pferde:** `Gegner` → `Ausreisser`, `kampf()` → `einfangen()`, `hp` → `puste`, `schaden` →
+  `naeher` („Du kommst 4 Schritte näher.“), `gegenschlag` → `wegsprung` („springt weg – du verlierst 3
+  Puste“), `ist_besiegt()` → `ist_eingefangen()`, „Sieg/Besiegt“ → „Gefangen/Eingefangen“, `heile()` →
+  `verschnaufe()` (Mission „Verschnaufpause“, der Apfel gibt Puste), Befehl `hp` → `puste`,
+  `Boss(Gegner)` → `Leitbock(Ausreisser)`. Mechanik, Lektions-IDs, Aufgabenpositionen unverändert;
+  Glossar-Beispiel „Held hat Waffe“ → „Reiter hat Sattel“. Der Wochen-Check (themenübergreifend)
+  behält „Gegner“. Umgebaut per Skript: Sätze zuerst, dann Bezeichner; `lessons.json` als JSON.
+- **Pferde/Sci-Fi W6–12 gelesen** – Reste aus dem Abenteuer-Skelett behoben: W6 Pferde „Benutzt:
+  Balu“ → „Ausgeritten“, W8 `erstelle_pferd(name, art, stufe)`/`finde_pferde(liste, art)` →
+  Parameter wie die Schlüssel, W8 Pferde Parcours ohne „Figur/betretbar/Gefährlichste“, „starke“ für
+  ältere Pferde → `aeltere` (W8, W9), W9 Sci-Fi Logbuch in `logbuch.txt`, W10 „Wertvollster“ statt
+  „Stärkster“ bei Gegenständen, `erstelle_figur` → `erstelle_pferd`/`erstelle_roboter`, W11
+  Reparaturroboter `hole_werkzeug` statt `lade_waffe`, keine doppelten Namen in einer Liste, W12
+  Sci-Fi „Energiezelle … entfernt sie“, W12 Boss 4 (alle Themen) `Name - Beschreibung` mit
+  tippbarem Bindestrich, zwei Ausgabezeilen eindeutig („und darunter“).
+- Nummer 3.129 statt 3.128: 3.128 war beim Merge schon auf `main` vergeben. KI-Test-Kind
+  (`--geaendert`) brach nach 4 von 38 Lektionen am Claude-Sitzungslimit ab; auf Wunsch Eike ohne
+  vollständigen Lauf gemergt.

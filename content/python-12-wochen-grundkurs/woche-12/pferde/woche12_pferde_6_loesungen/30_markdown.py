@@ -1,3 +1,3 @@
-"""### Etappe 5: Gegner und Kampf – Aufgabe 3
+"""### Etappe 5: Ausreißer einfangen – Aufgabe 3
 
-Alles ist vorgegeben. Kämpfe wie eben, merke dir den Gegner in `feind` und gib danach genau Besiegt: True aus (`feind.ist_besiegt()`)."""
+Alles ist vorgegeben. Fang ihn wie eben ein, merke dir den Ausreißer in `bock` und gib danach genau Eingefangen: True aus (`bock.ist_eingefangen()`)."""

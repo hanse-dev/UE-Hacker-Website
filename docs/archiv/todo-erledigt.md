@@ -642,3 +642,10 @@ Unverändert aus `todo.md` übernommen. Die wirklich offenen Prüf-Lücken darau
         Woche ergänzen.
       **24.10.:** erledigt (HANDOFF 3.126): Listen in `expected` (W1–2), `varies` (W7), `input()`-Schleife
       (W12). Entscheidung Eike: Bonus bleibt ungeprüft, keine Freestyle-Aufgabe, keine Code-Prüfung.
+- [x] Aus der Inhaltsprüfung (HANDOFF 3.98), erledigt 28.10.2026 (HANDOFF 3.129):
+      - **Woche 2 Boss 3 (Abenteuer, Pferde)** rechnet mit Erfolgswahrscheinlichkeit und
+        Erwartungswert — für 10/11-Jährige schwer; nur in Sci-Fi ist das jetzt erklärt.
+      - **Woche 12 Pferde:** Das Text-Adventure hat auch im Pferde-Thema „Gegner“ und „Kampf“
+        (Spielmechanik aus dem gemeinsamen Skelett) — ggf. umthematisieren.
+      - **Pferde/Sci-Fi Woche 6–12:** Aufgabentexte nicht Zeile für Zeile gelesen (nur
+        Geschichten-Texte + LanguageTool), Glossar nur im Abenteuer-Thema gelesen.

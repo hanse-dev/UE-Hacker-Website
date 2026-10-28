@@ -39,7 +39,7 @@ class Spieler:
     def __init__(self, name, position):
         self.name = name
         self.position = position
-        self.hp = 20
+        self.puste = 20
         self.inventar = []
 
     def gehe(self, richtung):

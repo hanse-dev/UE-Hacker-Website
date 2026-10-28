@@ -35,14 +35,14 @@ welt["stallgasse"]["gegenstaende"] = []
 welt["sattelkammer"]["gegenstaende"] = [Gegenstand("Stallbesen", "Ein kräftiger Besen. Er hilft, den Ziegenbock zu vertreiben.")]
 welt["koppel"]["gegenstaende"] = [Gegenstand("Fohlen", "Das kleine Fohlen folgt dir vertrauensvoll.")]
 
-welt["scheune"] = {"beschreibung": "Eine warme Scheune voller Heu.", "ausgaenge": {"oben": "stallgasse"}, "gegenstaende": [], "gegner": None}
+welt["scheune"] = {"beschreibung": "Eine warme Scheune voller Heu.", "ausgaenge": {"oben": "stallgasse"}, "gegenstaende": [], "ausreisser": None}
 welt["stallgasse"]["ausgaenge"]["unten"] = "scheune"
 welt["scheune"]["gegenstaende"].append(Gegenstand("Apfel", "Ein saftiger Apfel für neue Kraft."))
 class Spieler:
     def __init__(self, name, position):
         self.name = name
         self.position = position
-        self.hp = 20
+        self.puste = 20
         self.inventar = []
 
     def gehe(self, richtung):

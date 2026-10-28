@@ -9,9 +9,9 @@ with open("pferde.csv", "w", newline="") as f:
     w = csv.DictWriter(f, fieldnames=["name", "rasse", "alter", "punkte"])
     w.writeheader()
     w.writerows(pferde)
-starke = []
+aeltere = []
 with open("pferde.csv", "r") as f:
     for zeile in csv.DictReader(f):
         if int(zeile["alter"]) > 7:
-            starke.append(zeile["name"])
-print(f"Starke: {starke}")
+            aeltere.append(zeile["name"])
+print(f"Ältere: {aeltere}")

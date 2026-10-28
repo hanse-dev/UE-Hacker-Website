@@ -479,7 +479,7 @@
     "lessonSummary": "Das Tagebuch steht: schreiben, anhängen und nummeriert vorlesen!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Einträge schreiben: Die Liste eintraege (Signal empfangen, Sonde gestartet, Hülle repariert) und datum sind vorgegeben. Schreibe jeden Eintrag als Zeile datum + \" \" + Eintrag in die Datei tagebuch.txt und lies sie mit readlines() zurück. Gib genau Einträge: 3 und in der nächsten Zeile Erste Zeile: Tag 42 Signal empfangen aus.",
+        "instruction": "Schritt 1 – Einträge schreiben: Die Liste eintraege (Signal empfangen, Sonde gestartet, Hülle repariert) und datum sind vorgegeben. Schreibe jeden Eintrag als Zeile datum + \" \" + Eintrag in die Datei logbuch.txt und lies sie mit readlines() zurück. Gib genau Einträge: 3 und in der nächsten Zeile Erste Zeile: Tag 42 Signal empfangen aus.",
         "codeTemplate": "datum = \"Tag 42\"\neintraege = [\"Signal empfangen\", \"Sonde gestartet\", \"Hülle repariert\"]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -487,24 +487,24 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Anhängen: datum ist vorgegeben, tagebuch.txt wird mit drei Zeilen angelegt. Hänge mit \"a\" den Eintrag Tag 42 Energiezelle geladen an und gib genau Einträge: 4 und in der nächsten Zeile Letzter: Tag 42 Energiezelle geladen aus.",
-        "codeTemplate": "datum = \"Tag 42\"\nwith open(\"tagebuch.txt\", \"w\") as f:\n    f.write(datum + \" Signal empfangen\\n\")\n    f.write(datum + \" Sonde gestartet\\n\")\n    f.write(datum + \" Hülle repariert\\n\")\n# 🎯 Deine Lösung hier:\n",
+        "instruction": "Schritt 2 – Anhängen: datum ist vorgegeben, logbuch.txt wird mit drei Zeilen angelegt. Hänge mit \"a\" den Eintrag Tag 42 Energiezelle geladen an und gib genau Einträge: 4 und in der nächsten Zeile Letzter: Tag 42 Energiezelle geladen aus.",
+        "codeTemplate": "datum = \"Tag 42\"\nwith open(\"logbuch.txt\", \"w\") as f:\n    f.write(datum + \" Signal empfangen\\n\")\n    f.write(datum + \" Sonde gestartet\\n\")\n    f.write(datum + \" Hülle repariert\\n\")\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Einträge: 4\nLetzter: Tag 42 Energiezelle geladen"
         }
       },
       {
-        "instruction": "Schritt 3 – Nummeriert ausgeben: datum ist vorgegeben, tagebuch.txt wird mit drei Zeilen angelegt. Lies die Datei zeilenweise und gib jede Zeile mit Nummer aus, z. B. 1: Tag 42 Signal empfangen (zähle mit einer Variable nummer).",
-        "codeTemplate": "datum = \"Tag 42\"\nwith open(\"tagebuch.txt\", \"w\") as f:\n    f.write(datum + \" Signal empfangen\\n\")\n    f.write(datum + \" Sonde gestartet\\n\")\n    f.write(datum + \" Hülle repariert\\n\")\n# 🎯 Deine Lösung hier:\n",
+        "instruction": "Schritt 3 – Nummeriert ausgeben: datum ist vorgegeben, logbuch.txt wird mit drei Zeilen angelegt. Lies die Datei zeilenweise und gib jede Zeile mit Nummer aus, z. B. 1: Tag 42 Signal empfangen (zähle mit einer Variable nummer).",
+        "codeTemplate": "datum = \"Tag 42\"\nwith open(\"logbuch.txt\", \"w\") as f:\n    f.write(datum + \" Signal empfangen\\n\")\n    f.write(datum + \" Sonde gestartet\\n\")\n    f.write(datum + \" Hülle repariert\\n\")\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": "1: Tag 42 Signal empfangen\n2: Tag 42 Sonde gestartet\n3: Tag 42 Hülle repariert"
         }
       },
       {
-        "instruction": "Schritt 4 – Eigener Eintrag: datum und tagebuch.txt sind wie in Schritt 2 vorgegeben (drei Zeilen). Frage mit input() nach einem neuen Eintrag, hänge ihn mit \"a\" als datum + \" \" + Eintrag an tagebuch.txt an und gib danach genau Einträge: 4 aus. Die Frage in input() darfst du dir selbst ausdenken. Beim Ausführen tippst du Kurs korrigiert ins Fenster, beim Prüfen gibt der Computer Kurs korrigiert selbst ein – Kurs korrigiert gehört also nicht in deinen Code.",
-        "codeTemplate": "datum = \"Tag 42\"\nwith open(\"tagebuch.txt\", \"w\") as f:\n    f.write(datum + \" Signal empfangen\\n\")\n    f.write(datum + \" Sonde gestartet\\n\")\n    f.write(datum + \" Hülle repariert\\n\")\n# 🎯 Deine Lösung hier:\n",
+        "instruction": "Schritt 4 – Eigener Eintrag: datum und logbuch.txt sind wie in Schritt 2 vorgegeben (drei Zeilen). Frage mit input() nach einem neuen Eintrag, hänge ihn mit \"a\" als datum + \" \" + Eintrag an logbuch.txt an und gib danach genau Einträge: 4 aus. Die Frage in input() darfst du dir selbst ausdenken. Beim Ausführen tippst du Kurs korrigiert ins Fenster, beim Prüfen gibt der Computer Kurs korrigiert selbst ein – Kurs korrigiert gehört also nicht in deinen Code.",
+        "codeTemplate": "datum = \"Tag 42\"\nwith open(\"logbuch.txt\", \"w\") as f:\n    f.write(datum + \" Signal empfangen\\n\")\n    f.write(datum + \" Sonde gestartet\\n\")\n    f.write(datum + \" Hülle repariert\\n\")\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Einträge: 4",

@@ -1,3 +1,3 @@
 """### Extra-Herausforderung 3: Die Raummission – Aufgabe 3
 
-Schritt 3 – Berechne den erwarteten Ertrag (Ertrag × Wahrscheinlichkeit) für beide Missionen und gib genau zwei Zeilen aus: Erwarteter Ertrag Mars: 4.0 und darunter Erwarteter Ertrag Europa: 6.0"""
+Schritt 3 – Stell dir vor, jede Mission fliegt 10-mal. Bei einer Erfolgswahrscheinlichkeit von 0.8 gelingen davon etwa 8 (10 * 0.8), und jedes Mal gibt es den Ertrag. Berechne für beide Missionen die Forschungspunkte bei 10 Flügen (10 * Erfolgswahrscheinlichkeit * Ertrag) und gib genau zwei Zeilen aus: Mars bei 10 Flügen: 40.0 Punkte und darunter Europa bei 10 Flügen: 60.0 Punkte"""

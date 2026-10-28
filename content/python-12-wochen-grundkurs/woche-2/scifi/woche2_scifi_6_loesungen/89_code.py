@@ -1,4 +1,5 @@
-exp1 = 4.0
-exp2 = 6.0
-europa_besser = exp2 > exp1
+punkte1 = 40.0
+punkte2 = 60.0
+
+europa_besser = punkte2 > punkte1
 print(f"Europa lohnt sich mehr: {europa_besser}")

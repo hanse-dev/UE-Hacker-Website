@@ -2,7 +2,7 @@
 
 *Wissen aus Woche 10: Klassen*
 
-Der **Spieler** merkt sich, wo er ist, wie viele Lebenspunkte er hat und was im Beutel steckt. `gehe()` aus Etappe 2 wird zur **Methode**.
+Der **Spieler** merkt sich, wo er ist, wie viel Puste er noch hat und was im Beutel steckt. `gehe()` aus Etappe 2 wird zur **Methode**.
 
 ### 💡 Neu: Objekte in Objekten (Komposition)
 
@@ -13,7 +13,7 @@ class Spieler:
     def __init__(self, name, position):
         self.name = name
         self.position = position
-        self.hp = 20
+        self.puste = 20
         self.inventar = []
 
     def gehe(self, richtung):

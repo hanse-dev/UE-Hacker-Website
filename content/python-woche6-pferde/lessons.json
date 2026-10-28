@@ -218,7 +218,7 @@
         }
       },
       {
-        "instruction": "Die Liste pferde ist vorgegeben. Erzeuge mit sorted(..., reverse=True) eine absteigende Kopie kopie. Gib zuerst kopie und danach pferde aus – das Original bleibt unverändert: ['Sturmwind', 'Luna', 'Fuchs', 'Blitz', 'Balu'] und ['Sturmwind', 'Blitz', 'Luna', 'Fuchs', 'Balu']",
+        "instruction": "Die Liste pferde ist vorgegeben. Erzeuge mit sorted(..., reverse=True) eine absteigende Kopie kopie. Gib zuerst kopie und danach pferde aus – das Original bleibt unverändert – genau zwei Zeilen: ['Sturmwind', 'Luna', 'Fuchs', 'Blitz', 'Balu'] und darunter ['Sturmwind', 'Blitz', 'Luna', 'Fuchs', 'Balu']",
         "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\", \"Fuchs\", \"Balu\"]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -433,11 +433,11 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Entnehmen: Die Liste pferde ist vorgegeben. Nimm mit pop() den letzten Eintrag heraus und gib genau Benutzt: Balu aus. Nimm danach mit pop(0) den ersten heraus und gib in der nächsten Zeile Weg: Sturmwind aus.",
+        "instruction": "Schritt 2 – Ausreiten: Die Liste pferde ist vorgegeben. Nimm mit pop() den letzten Eintrag heraus und gib genau Ausgeritten: Balu aus. Nimm danach mit pop(0) den ersten heraus und gib in der nächsten Zeile Auf der Weide: Sturmwind aus.",
         "codeTemplate": "pferde = [\"Sturmwind\", \"Blitz\", \"Luna\", \"Fuchs\", \"Balu\"]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Benutzt: Balu\nWeg: Sturmwind"
+          "expected": "Ausgeritten: Balu\nAuf der Weide: Sturmwind"
         }
       },
       {

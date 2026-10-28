@@ -541,22 +541,22 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Berechne die erwartete Belohnung (Belohnung mal Wahrscheinlichkeit) für beide Quests. Gib zwei Zeilen aus – in der ersten genau Quest 1 erwartet: 400.0, darunter genau Quest 2 erwartet: 600.0",
+        "instruction": "Schritt 2 – Stell dir vor, du machst jede Quest 10-mal. Bei chance1 = 0.8 klappt Quest 1 dann etwa 8-mal (10 * chance1), und jedes Mal gibt es die Belohnung. Berechne für beide Quests, wie viel Gold du bei 10 Versuchen ungefähr bekommst (10 * chance * belohnung), und gib genau zwei Zeilen aus: Quest 1 bei 10 Versuchen: 4000.0 Gold und darunter Quest 2 bei 10 Versuchen: 6000.0 Gold",
         "codeTemplate": "belohnung1 = 500\ndauer1 = 4\ngruppe1 = 5\nchance1 = 0.8\nbelohnung2 = 800\ndauer2 = 7\ngruppe2 = 4\nchance2 = 0.75\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": [
-            "Quest 1 erwartet: 400.0",
-            "Quest 2 erwartet: 600.0"
+            "Quest 1 bei 10 Versuchen: 4000.0 Gold",
+            "Quest 2 bei 10 Versuchen: 6000.0 Gold"
           ]
         }
       },
       {
-        "instruction": "Schritt 3 – Nutze einen 💨 Luft-Wert: Ist die erwartete Belohnung von Quest 2 höher als die von Quest 1? Rechne beide erwarteten Belohnungen hier noch einmal aus. Gib genau aus: Quest 2 rentabler: True",
+        "instruction": "Schritt 3 – Nutze einen 💨 Luft-Wert: Bringt Quest 2 bei 10 Versuchen mehr Gold als Quest 1? Rechne beide Werte aus Schritt 2 hier noch einmal aus und vergleiche sie mit >. Gib genau aus: Quest 2 bringt mehr: True",
         "codeTemplate": "belohnung1 = 500\ndauer1 = 4\ngruppe1 = 5\nchance1 = 0.8\nbelohnung2 = 800\ndauer2 = 7\ngruppe2 = 4\nchance2 = 0.75\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Quest 2 rentabler: True"
+          "expected": "Quest 2 bringt mehr: True"
         }
       }
     ]

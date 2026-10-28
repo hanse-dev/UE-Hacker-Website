@@ -4,10 +4,10 @@ pferde = [
     {"name": "Luna", "rasse": "Isländer", "alter": 6, "punkte": 90},
     {"name": "Wind", "rasse": "Hannoveraner", "alter": 7, "punkte": 110},
 ]
-def finde_pferde(liste, art):
+def finde_pferde(liste, rasse):
     namen = []
     for h in liste:
-        if h["rasse"] == art:
+        if h["rasse"] == rasse:
             namen.append(h["name"])
     return namen
 

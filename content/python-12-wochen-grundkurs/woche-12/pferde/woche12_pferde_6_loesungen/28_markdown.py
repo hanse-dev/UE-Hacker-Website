@@ -1,3 +1,3 @@
-"""### Etappe 5: Gegner und Kampf – Aufgabe 2
+"""### Etappe 5: Ausreißer einfangen – Aufgabe 2
 
-Alles inklusive `kampf()` ist vorgegeben. Lasse `Spieler(\"Mira\", \"koppel\")` gegen `Gegner(\"Ziegenbock\", 1, 6)` kämpfen (1 Lebenspunkt – der erste Treffer gewinnt) und gib genau Sieg: True aus (Rückgabewert von `kampf`)."""
+Alles inklusive `einfangen()` ist vorgegeben. Lasse `Spieler(\"Mira\", \"koppel\")` `Ausreisser(\"Ziegenbock\", 1, 6)` einfangen (1 Puste – der erste Schritt reicht) und gib genau Gefangen: True aus (Rückgabewert von `einfangen`)."""

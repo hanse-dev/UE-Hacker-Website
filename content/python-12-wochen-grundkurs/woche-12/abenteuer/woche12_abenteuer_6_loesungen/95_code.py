@@ -4,6 +4,6 @@ class Gegenstand:
         self.beschreibung = beschreibung
 
     def __str__(self):
-        return f"{self.name} – {self.beschreibung}"
+        return f"{self.name} - {self.beschreibung}"
 
 print(Gegenstand("Fackel", "Sie leuchtet in dunklen Ecken."))

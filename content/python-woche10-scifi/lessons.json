@@ -469,11 +469,11 @@
         }
       },
       {
-        "instruction": "Schritt 2: Die Klasse Werkzeug und die Liste `lager` (50, 35, 20) sind vorgegeben. Finde den Gegenstand mit dem höchsten wert und gib genau Stärkster: Plasmalaser aus.",
+        "instruction": "Schritt 2: Die Klasse Werkzeug und die Liste `lager` (50, 35, 20) sind vorgegeben. Finde den Gegenstand mit dem höchsten wert und gib genau Wertvollster: Plasmalaser aus.",
         "codeTemplate": "class Werkzeug:\n    def __init__(self, name, wert):\n        self.name = name\n        self.wert = wert\n\nlager = [Werkzeug(\"Plasmalaser\", 50), Werkzeug(\"Ionenblaster\", 35), Werkzeug(\"Schweißbrenner\", 20)]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Stärkster: Plasmalaser"
+          "expected": "Wertvollster: Plasmalaser"
         }
       },
       {
@@ -564,7 +564,7 @@
     "lessonSummary": "Geschafft: Klassen arbeiten mit allem zusammen, was du gelernt hast!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Funktionen und Listen: Die Klasse Roboter ist vorgegeben. Schreibe `erstelle_figur(name, level)`, die ein Objekt zurückgibt. Lege `gruppe` mit erstelle_figur(\"Nova\", 2) und erstelle_figur(\"Orbit\", 5) an und gib genau Gruppe: 2 aus (Länge der Liste).",
+        "instruction": "Schritt 1 – Funktionen und Listen: Die Klasse Roboter ist vorgegeben. Schreibe `erstelle_roboter(name, level)`, die ein Objekt zurückgibt. Lege `gruppe` mit erstelle_roboter(\"Nova\", 2) und erstelle_roboter(\"Orbit\", 5) an und gib genau Gruppe: 2 aus (Länge der Liste).",
         "codeTemplate": "class Roboter:\n    def __init__(self, name, level=1, energie=100):\n        self.name = name\n        self.level = level\n        self.energie = energie\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}, Level {self.level}.\")\n\n    def aktualisiere(self):\n        self.level += 1\n        print(f\"{self.name} bekommt ein Update: Level {self.level}\")\n\n    def arbeite(self, kosten):\n        self.energie -= kosten\n        if self.energie < 0:\n            self.energie = 0\n\n    def lade_auf(self, menge):\n        self.energie += menge\n        if self.energie > 100:\n            self.energie = 100\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

@@ -1,5 +1,5 @@
 pferde = ["Sturmwind", "Blitz", "Luna", "Fuchs", "Balu"]
-benutzt = pferde.pop()
-print(f"Benutzt: {benutzt}")
-weg = pferde.pop(0)
-print(f"Weg: {weg}")
+ausgeritten = pferde.pop()
+print(f"Ausgeritten: {ausgeritten}")
+weide = pferde.pop(0)
+print(f"Auf der Weide: {weide}")

@@ -33,7 +33,7 @@ class Reparaturroboter(Roboter):
     def kraft(self):
         return self.werkzeuge
 
-team = [Kampfroboter("Nova"), Reparaturroboter("Orbit"), Kampfroboter("Zeta"), Roboter("Orbit")]
+team = [Kampfroboter("Nova"), Reparaturroboter("Orbit"), Kampfroboter("Zeta"), Roboter("Kai")]
 anzahl = 0
 for f in team:
     if isinstance(f, Kampfroboter):

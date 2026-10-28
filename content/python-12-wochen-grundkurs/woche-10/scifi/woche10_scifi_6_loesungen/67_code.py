@@ -8,4 +8,4 @@ beste = lager[0]
 for g in lager:
     if g.wert > beste.wert:
         beste = g
-print(f"Stärkster: {beste.name}")
+print(f"Wertvollster: {beste.name}")

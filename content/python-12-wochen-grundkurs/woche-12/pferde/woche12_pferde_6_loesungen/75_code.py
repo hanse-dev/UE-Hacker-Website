@@ -39,7 +39,7 @@ class Spieler:
     def __init__(self, name, position):
         self.name = name
         self.position = position
-        self.hp = 20
+        self.puste = 20
         self.inventar = []
 
     def gehe(self, richtung):
@@ -78,19 +78,19 @@ class Spieler:
 
 import random
 
-class Gegner:
-    def __init__(self, name, hp, staerke):
+class Ausreisser:
+    def __init__(self, name, puste, tempo):
         self.name = name
-        self.hp = hp
-        self.staerke = staerke
+        self.puste = puste
+        self.tempo = tempo
 
-    def ist_besiegt(self):
-        return self.hp <= 0
+    def ist_eingefangen(self):
+        return self.puste <= 0
 
-welt["hof"]["gegner"] = None
-welt["stallgasse"]["gegner"] = None
-welt["sattelkammer"]["gegner"] = None
-welt["koppel"]["gegner"] = Gegner("Ziegenbock", 15, 6)
+welt["hof"]["ausreisser"] = None
+welt["stallgasse"]["ausreisser"] = None
+welt["sattelkammer"]["ausreisser"] = None
+welt["koppel"]["ausreisser"] = Ausreisser("Ziegenbock", 15, 6)
 
 def hat_gegenstand(spieler, name):
     for gegenstand in spieler.inventar:
@@ -98,27 +98,27 @@ def hat_gegenstand(spieler, name):
             return True
     return False
 
-def kampf(spieler, gegner):
-    print(f"⚔️ Kampf: {spieler.name} gegen {gegner.name}!")
+def einfangen(spieler, ausreisser):
+    print(f"🪢 Einfangen: {spieler.name} will {ausreisser.name} einfangen!")
     bonus = 3 if hat_gegenstand(spieler, "Stallbesen") else 0
-    while spieler.hp > 0 and not gegner.ist_besiegt():
-        schaden = random.randint(1, 6) + bonus
-        gegner.hp -= schaden
-        print(f"   Du triffst für {schaden} Schaden. ({gegner.name}: {max(gegner.hp, 0)} HP)")
-        if gegner.ist_besiegt():
+    while spieler.puste > 0 and not ausreisser.ist_eingefangen():
+        naeher = random.randint(1, 6) + bonus
+        ausreisser.puste -= naeher
+        print(f"   Du kommst {naeher} Schritte näher. ({ausreisser.name}: {max(ausreisser.puste, 0)} Puste)")
+        if ausreisser.ist_eingefangen():
             break
-        gegenschlag = random.randint(1, gegner.staerke)
-        spieler.hp -= gegenschlag
-        print(f"   {gegner.name} trifft dich für {gegenschlag}. ({spieler.name}: {max(spieler.hp, 0)} HP)")
-    return spieler.hp > 0
+        wegsprung = random.randint(1, ausreisser.tempo)
+        spieler.puste -= wegsprung
+        print(f"   {ausreisser.name} springt weg – du verlierst {wegsprung} Puste. ({spieler.name}: {max(spieler.puste, 0)} Puste)")
+    return spieler.puste > 0
 
-def pruefe_gegner(spieler):
-    gegner = welt[spieler.position]["gegner"]
-    if gegner is not None and not gegner.ist_besiegt():
-        if kampf(spieler, gegner):
-            print(f"🎉 {gegner.name} wurde besiegt!")
+def pruefe_ausreisser(spieler):
+    ausreisser = welt[spieler.position]["ausreisser"]
+    if ausreisser is not None and not ausreisser.ist_eingefangen():
+        if einfangen(spieler, ausreisser):
+            print(f"🎉 {ausreisser.name} ist eingefangen!")
 
-welt["stallgasse"]["gegner"] = Gegner("Hofhund", 1, 1)
+welt["stallgasse"]["ausreisser"] = Ausreisser("Hofhund", 1, 1)
 spieler = Spieler("Mira", "stallgasse")
-pruefe_gegner(spieler)
-print(f"Besiegt: {welt['stallgasse']['gegner'].ist_besiegt()}")
+pruefe_ausreisser(spieler)
+print(f"Eingefangen: {welt['stallgasse']['ausreisser'].ist_eingefangen()}")

@@ -2,7 +2,7 @@
 
 *Wissen aus Woche 9: JSON und Dateien*
 
-Ein Objekt wie der Spieler lässt sich nicht direkt als JSON speichern. Deshalb baust du zuerst ein **Dictionary** (Name, Position, HP, Inventar als Liste von Dictionaries). Beim Laden geht es rückwärts. Fehlt die Datei, fängt `try/except` den `FileNotFoundError` ab.
+Ein Objekt wie der Spieler lässt sich nicht direkt als JSON speichern. Deshalb baust du zuerst ein **Dictionary** (Name, Position, Puste, Inventar als Liste von Dictionaries). Beim Laden geht es rückwärts. Fehlt die Datei, fängt `try/except` den `FileNotFoundError` ab.
 
 ```python
 import json
@@ -11,7 +11,7 @@ def speichern(spieler, dateiname="stand.json"):
     daten = {
         "name": spieler.name,
         "position": spieler.position,
-        "hp": spieler.hp,
+        "puste": spieler.puste,
         "inventar": [{"name": g.name, "beschreibung": g.beschreibung} for g in spieler.inventar],
     }
     with open(dateiname, "w", encoding="utf-8") as f:
@@ -26,7 +26,7 @@ def laden(dateiname="stand.json"):
         print("📂 Es gibt noch keinen Spielstand.")
         return None
     spieler = Spieler(daten["name"], daten["position"])
-    spieler.hp = daten["hp"]
+    spieler.puste = daten["puste"]
     for entry in daten["inventar"]:
         spieler.inventar.append(Gegenstand(entry["name"], entry["beschreibung"]))
     print(f"📂 Spielstand von {spieler.name} geladen.")
@@ -36,15 +36,15 @@ def spiele(spieler, befehle, ziel_gegenstand="Fohlen"):
     for text in befehle:
         print(f"\n> {text}")
         fuehre_aus(spieler, text)
-        if spieler.hp <= 0:
-            print("💀 Game Over – zu stark. Versuche es noch einmal!")
+        if spieler.puste <= 0:
+            print("💤 Keine Puste mehr – versuche es noch einmal!")
             return
         if hat_gegenstand(spieler, ziel_gegenstand):
             print("🏆 Du hast das Fohlen gefunden und in den Stall zurückgebracht. Der Reiterhof feiert dich!")
             return
 ```
 
-Die Funktion `spiele()` ist die **Spielschleife**: Sie führt Befehle aus und prüft nach jedem Schritt, ob du gewonnen (Ziel-Gegenstand im Beutel) oder verloren hast (HP 0).
+Die Funktion `spiele()` ist die **Spielschleife**: Sie führt Befehle aus und prüft nach jedem Schritt, ob du gewonnen (Ziel-Gegenstand im Beutel) oder verloren hast (Puste 0).
 
 Bisher stehen die Befehle in einer Liste. In einem echten Spiel tippst du sie selbst: Eine `while True`-Schleife läuft immer weiter (Woche 7, Extra-Herausforderung 4), bis `break` (Woche 6) sie beendet. So fragt sie mit `input()` (Woche 1) immer wieder:
 

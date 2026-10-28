@@ -1,12 +1,12 @@
-class Waffe:
-    def __init__(self, name, schaden):
+class Sattel:
+    def __init__(self, name, polster):
         self.name = name
-        self.schaden = schaden
+        self.polster = polster
 
-class Held:
+class Reiter:
     def __init__(self, name):
         self.name = name
-        self.waffe = Waffe("Holzschwert", 2)  # Der Held HAT eine Waffe
+        self.sattel = Sattel("Übungssattel", 2)  # Der Reiter HAT einen Sattel
 
-held = Held("Mira")
-print(f"{held.name} kämpft mit dem {held.waffe.name} (Schaden: {held.waffe.schaden})")
+reiter = Reiter("Mira")
+print(f"{reiter.name} reitet mit dem {reiter.sattel.name} (Polster: {reiter.sattel.polster})")
