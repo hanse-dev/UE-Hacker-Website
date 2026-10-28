@@ -5,7 +5,7 @@ const kurse = JSON.parse(fs.readFileSync('public/kurse.json', 'utf8'));
 // Noch nicht im Unterricht durchgegangen (Entscheidung Eike, 15.10.2026): alle Projekte außer dem
 // Roboterauto, dazu JS-Grundkurs, KI-Labor und Ferienkurse. Die Ampelanlage hat Eike am 20.10.2026
 // gelesen und als geprüft markiert (bleibt aber bis zum Test mit echten Teilen nicht verlinkt).
-const NICHT_BETA = ['python-einstufung', 'python-grundlagen-interaktiv', 'python-12-wochen-grundkurs', 'projekt-microbit-auto', 'projekt-microbit-ampel'];
+const NICHT_BETA = ['python-einstufung', 'python-grundlagen-interaktiv', 'python-12-wochen-grundkurs', 'projekt-microbit-auto', 'projekt-microbit-ampel', 'projekt-microbit-sterne'];
 
 test.describe('Beta-Kennzeichnung', () => {
   test.beforeEach(async ({ page }) => {

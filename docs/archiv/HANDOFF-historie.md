@@ -3173,3 +3173,30 @@ Kind durchspielen und Vorschläge machen (24.10.2026), alle vier wurden gewählt
   Aufgaben (der orange Rahmen bleibt).
 - Tests: `python-woche1-lektionen.spec.js` und `js-grundkurs.spec.js` („Weiter-Flow: …“).
 
+### 3.128 — „Fang den Stern“: breiter Korb und Pläne für die Werkstatt (Branch `microbit-sterne-breiter-korb`)
+
+- Wunsch Eike (28.10.2026): eine Lektion, in der der Korb zwei Lampen breit wird, und zu jedem
+  Werkstatt-Auftrag ein Algorithmus als Lösung; ins Programm übersetzen sollen die Kinder selbst.
+- Neue Lektion `lektion-breiter-korb` („Stufe 4: Der breite Korb“) steht in `lessons.json` zwischen
+  `lektion-04` und `lektion-05` (Werkstatt). Eigene, sprechende ID statt `lektion-06`, damit Datei-
+  und Anzeige-Reihenfolge nicht auseinanderlaufen. `korb` bleibt die linke Lampe, die rechte ist
+  `korb + 1`; drei Stellen ändern sich: Zeichnen, rechter Rand (`korb < 3`), Fangen mit „oder“
+  (Block **oder**, Python `or`, JS `||`). Bonus: Riesenkorb (drei Lampen).
+- Folge für alte Stände: Wer die Werkstatt schon abgeschlossen hatte, sieht sie wieder gesperrt,
+  bis Stufe 4 abgehakt ist (`isLessonUnlocked` schaut nur auf die Vorgänger-Lektion). Kurs ist Beta
+  und noch nie im Unterricht gelaufen, darum bewusst in Kauf genommen.
+- Werkstatt: unter Auftrag 1–5 eingeklappt `<details><summary>Plan anzeigen</summary>` mit
+  nummerierten Schritten in Worten, ohne Code und ohne Block-Namen (der Text steht außerhalb der
+  Varianten-Abschnitte). Die Werkstatt baut auf dem breiten Korb auf (Bombe: `korb` oder
+  `korb + 1`, Neigen: Grenze 3). Bilder `schneller`/`bombe`/`neigen` zeigen den breiten Korb
+  (`korb(..., breit=2)` in `scripts/build_microbit_bilder.py`), neues Bild `breiter-korb.svg`.
+- Python-Lösung gegen ein nachgebautes `microbit`-Modul simuliert (Korb stoppt bei 3, beide Lampen
+  fangen).
+- KI-Test-Kind in allen drei Varianten: erst 3 × „hoch“ (`|` tippen, `>=` in JS nie gezeigt,
+  Python-Bonus „Durch die Wand“ in Stufe 1 ließ die alten Zeilen stehen), nach der Überarbeitung
+  keine „hoch“ mehr. Offen gelassen (mittel, alt): Ort zum Hineinziehen der `.hex`-Datei, Reihenfolge
+  im „daneben“-Teil beim Bonus „Zwei Aufträge verbinden“.
+- Kein Beta mehr (Entscheidung Eike, 28.10.2026), obwohl der Kurs noch nicht am echten micro:bit
+  lief: `beta` aus `kurse.json`, ID in `NICHT_BETA` (`tests/kurse-beta.spec.js`). Die Prüfpunkte am
+  Gerät bleiben in `todo.md`.
+- Nummer 3.128 statt 3.126: 3.126 und 3.127 waren beim Merge schon auf `main` vergeben.

@@ -7,7 +7,8 @@ dürfen) und public/microbit/sterne/. Die SVGs werden mit eingecheckt; wer ein B
 es hier und lässt das Skript neu laufen (nie die SVGs von Hand bearbeiten).
 
 Das Spielfeld ist die 5×5-LED-Anzeige: x zählt von links (0) nach rechts (4), y von oben (0) nach
-unten (4). Der Korb steht immer in Reihe y = 4, der Stern fällt von y = 0 nach unten.
+unten (4). Der Korb steht immer in Reihe y = 4, der Stern fällt von y = 0 nach unten. Ab Stufe 4
+(und in der Werkstatt) ist der Korb zwei Lampen breit: korb und korb + 1.
 """
 from pathlib import Path
 
@@ -119,8 +120,9 @@ def frames(title, steps, cell=16, gap=56, per_row=2):
     return svg(width, 44 + rows * row_h, title, body)
 
 
-def korb(x, extra=None):
-    pixels = {(x, 4): 'on'}
+def korb(x, extra=None, breit=1):
+    """Korb ab Spalte x, breit Lampen nach rechts (ab Stufe 4 zwei)."""
+    pixels = {(x + i, 4): 'on' for i in range(breit)}
     pixels.update(extra or {})
     return pixels
 
@@ -223,6 +225,26 @@ def stufe3():
     return svg(width, 44 + 2 * (h + 56), title, body)
 
 
+def breiter_korb():
+    title = 'Der Korb ist zwei Lampen breit'
+    _, w, h = display(0, 0, cell=16)
+    gap = 40
+    width = 20 + 3 * w + 2 * gap + 20
+    body = [text(width / 2, 26, title, size=17, weight='bold')]
+    for i, (stern, caption, detail) in enumerate([
+        (2, '+1 Punkt', 'Stern bei x = korb'),
+        (3, '+1 Punkt', 'Stern bei x = korb + 1'),
+        (4, '✗ daneben', 'Stern bei x = 4'),
+    ]):
+        x = 20 + i * (w + gap)
+        parts, _, _ = display(x, 44, korb(2, {(stern, 3): 'on'}, breit=2), cell=16)
+        body += parts
+        color = GOOD if caption.startswith('+') else BAD
+        body.append(text(x + w / 2, 44 + h + 22, caption, size=13, color=color, weight='bold'))
+        body.append(text(x + w / 2, 44 + h + 40, detail, size=12, color=MUTED))
+    return svg(width, 44 + h + 56, title, body)
+
+
 def box(x, y, w, h, lines, fill, stroke, size=14, bold_first=True):
     parts = [f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="10" fill="{fill}" stroke="{stroke}" stroke-width="2"/>']
     total = len(lines) * (size + 6)
@@ -286,23 +308,23 @@ def plan_b():
 
 def schneller():
     return frames('Immer schneller', per_row=3, steps=[
-        (korb(2, {(2, 1): 'on'}), None, '400 ms', None),
-        (korb(2, {(2, 1): 'on'}), None, '300 ms', None),
-        (korb(2, {(2, 1): 'on'}), None, '200 ms', None),
+        (korb(2, {(2, 1): 'on'}, breit=2), None, '400 ms', None),
+        (korb(2, {(2, 1): 'on'}, breit=2), None, '350 ms', None),
+        (korb(2, {(2, 1): 'on'}, breit=2), None, '300 ms', None),
     ])
 
 
 def bombe():
     return frames('Achtung, Bombe! Sie leuchtet schwach.', per_row=3, steps=[
-        (korb(2, {(0, 1): 'on', (3, 0): 'dim'}), None, 'Stern und Bombe', None),
-        (korb(3, {(0, 3): 'on', (3, 2): 'dim'}), 'B', 'falsch gelenkt …', None),
-        (korb(3, {(3, 4): 'dim'}), None, '✗ Bombe gefangen', None),
+        (korb(1, {(0, 1): 'on', (3, 0): 'dim'}, breit=2), None, 'Stern und Bombe', None),
+        (korb(2, {(0, 3): 'on', (3, 2): 'dim'}, breit=2), 'B', 'falsch gelenkt …', None),
+        (korb(2, {(3, 4): 'dim'}, breit=2), None, '✗ Bombe gefangen', None),
     ])
 
 
 def neigen():
     title = 'Steuern durch Neigen'
-    parts, w, h = display(0, 0, korb(1, {(3, 1): 'on'}), cell=18)
+    parts, w, h = display(0, 0, korb(1, {(3, 1): 'on'}, breit=2), cell=18)
     body = [text(200, 26, title, size=17, weight='bold')]
     body.append(f'<g transform="translate({200 - w / 2} 60) rotate(-12 {w / 2} {h / 2})">' + ''.join(parts) + '</g>')
     body.append(text(200, 60 + h + 40, 'nach links neigen: Korb nach links', size=13, color=ACCENT, weight='bold'))
@@ -377,6 +399,7 @@ IMAGES = {
     'sterne/rand': rand,
     'sterne/stufe-2': stufe2,
     'sterne/stufe-3': stufe3,
+    'sterne/breiter-korb': breiter_korb,
     'sterne/schneller': schneller,
     'sterne/bombe': bombe,
     'sterne/neigen': neigen,

@@ -229,7 +229,6 @@
     "language": "microbit",
     "level": "einsteiger",
     "tags": ["spiele"],
-    "beta": true,
     "title": "micro:bit: Fang den Stern",
     "title_en": "micro:bit: Catch the Star",
     "description": "Programmiert euer erstes Spiel auf der LED-Anzeige des micro:bit: Mit den Knöpfen A und B steuert ihr einen Korb und fangt fallende Sterne. Nach jeder Stufe ist das Spiel schon spielbar, in der Werkstatt wird es schneller, lauter oder gefährlicher. Ohne Kabel und Breadboard, jede Stufe mit Blöcken, Python und JavaScript.",

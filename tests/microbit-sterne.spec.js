@@ -96,6 +96,38 @@ test.describe('micro:bit-Kurs: Fang den Stern (Anleitung zum Abhaken)', () => {
     await expect(solution.locator('.mc-block', { hasText: 'wenn korb < 4 dann' })).toBeVisible();
   });
 
+  test('Stufe 4 kommt vor der Werkstatt: Der Korb wird zwei Lampen breit, die Lösung fängt mit „oder“', async ({ page }) => {
+    const index = lessons.findIndex((lesson) => lesson.id === 'lektion-breiter-korb');
+    expect(lessons[index + 1].id).toBe('lektion-05');
+    await openCourse(page, lessons.slice(0, index).map((lesson) => lesson.id));
+    await page.locator('.lesson-item').nth(index).click();
+    const content = page.locator('.guide-lesson .lesson-content');
+    await expect(content.locator('h1')).toContainText('Stufe 4: Der breite Korb');
+
+    const solution = content.locator('details', { has: page.locator('summary', { hasText: 'Lösung anzeigen' }) });
+    await solution.locator('summary').click();
+    await expect(solution.locator('.mc-block', { hasText: 'wenn stern_x = korb oder stern_x = korb + 1 dann' })).toBeVisible();
+    await expect(solution.locator('.mc-block', { hasText: 'wenn korb < 3 dann' })).toBeVisible();
+
+    await page.locator('.guide-mode-btn[data-mode="python"]').click();
+    await expect(solution.locator('pre code.language-python')).toContainText('display.set_pixel(korb + 1, 4, 9)');
+  });
+
+  test('Werkstatt: Aufträge 1 bis 5 haben eingeklappt einen Plan in Worten, aber keinen Code', async ({ page }) => {
+    const index = lessons.findIndex((lesson) => lesson.id === 'lektion-05');
+    await openCourse(page, lessons.slice(0, index).map((lesson) => lesson.id));
+    await page.locator('.lesson-item').nth(index).click();
+    const plans = page.locator('.guide-lesson .lesson-content details', { has: page.locator('summary', { hasText: 'Plan anzeigen' }) });
+    await expect(plans).toHaveCount(5);
+    for (let i = 0; i < 5; i++) {
+      const plan = plans.nth(i);
+      await plan.locator('summary').click();
+      await expect(plan.locator('ol').first()).toBeVisible();
+      await expect(plan.locator('pre, .mc-block')).toHaveCount(0);
+    }
+    await expect(plans.nth(4)).toContainText('korb + 1');
+  });
+
   test('Pflichtaufgaben abhaken schließt die Stufe ab und schaltet die nächste frei', async ({ page }) => {
     await openCourse(page);
     await expect(page.locator('.lesson-item').nth(1)).toHaveClass(/locked/);
@@ -107,11 +139,11 @@ test.describe('micro:bit-Kurs: Fang den Stern (Anleitung zum Abhaken)', () => {
     await expect(page.locator('.lesson-item').nth(1)).not.toHaveClass(/locked/);
   });
 
-  test('Kurs ist in der Projekte-Übersicht verlinkt, der Filter Spiele zeigt ihn mit Beta-Kennzeichen', async ({ page }) => {
+  test('Kurs ist in der Projekte-Übersicht verlinkt, der Filter Spiele zeigt ihn ohne Beta-Kennzeichen', async ({ page }) => {
     await page.goto('/projekte');
     const card = page.locator('a.projekt-card[href="/kurs/projekt-microbit-sterne"]');
     await expect(card).toBeVisible({ timeout: 15000 });
-    await expect(card.locator('.beta-badge')).toBeVisible();
+    await expect(card.locator('.beta-badge')).toHaveCount(0);
     await page.locator('.filter-chip', { hasText: 'Spiele' }).click();
     await expect(card).toBeVisible();
     await card.click();

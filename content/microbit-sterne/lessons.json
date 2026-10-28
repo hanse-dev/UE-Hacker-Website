@@ -84,6 +84,27 @@
     ]
   },
   {
+    "id": "lektion-breiter-korb",
+    "title": "Stufe 4: Der breite Korb",
+    "file": "lektion-breiter-korb.md",
+    "lessonSummary": "Euer Korb ist doppelt so breit, und ihr kennt jetzt „oder“. Ab in die Werkstatt!",
+    "tasks": [
+      {
+        "instruction": "Der Korb ist zwei Lampen breit und fährt mit A und B."
+      },
+      {
+        "instruction": "Am rechten Rand bleibt der ganze Korb zu sehen."
+      },
+      {
+        "instruction": "Ein Stern auf der linken oder der rechten Lampe gibt einen Punkt."
+      },
+      {
+        "instruction": "Der Korb ist drei Lampen breit, und alles funktioniert weiter.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
     "id": "lektion-05",
     "title": "Werkstatt: Euer Spiel, eure Regeln",
     "file": "lektion-05.md",

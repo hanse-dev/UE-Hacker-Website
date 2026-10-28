@@ -208,7 +208,8 @@ Fährt der Korb links hinaus, kommt er rechts wieder herein. Und umgekehrt.
             korb = 4
 ```
 
-- Löschen müsst ihr nichts, das macht `display.clear()` schon.
+- Ersetzt damit die alten zwei Zeilen von Knopf A, sonst bleibt `and korb > 0` stehen und der Korb springt nie. Knopf B baut ihr genauso um.
+- Den alten Punkt müsst ihr nicht ausmachen, das macht `display.clear()` schon.
 
 :::
 

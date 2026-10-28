@@ -56,7 +56,7 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
         übernommen, `ändere zeit um -1` und `Erstelle eine Funktion` nicht dort nachgeschlagen).
         Neu: Wie heißt der Block, der einer Variable einen Pin zuweist (im Kurs `setze fuss_rot auf
         P13`), und wo findet man den Pin-Wert? Heißt der Umschalter oben im Editor „JavaScript“?
-- [ ] **micro:bit-Kurs „Fang den Stern“ (`content/microbit-sterne/`, HANDOFF 3.120, Beta) — vor dem
+- [ ] **micro:bit-Kurs „Fang den Stern“ (`content/microbit-sterne/`, HANDOFF 3.120/3.128, seit 28.10.2026 kein Beta mehr) — vor dem
       ersten Termin einmal am echten micro:bit durchspielen.** Python-Lösungen gegen ein nachgebautes
       `microbit`-Modul simuliert, JavaScript mit `tsc` gegen eine nachgebaute MakeCode-API geprüft,
       aber nichts lief auf dem Gerät. Zu prüfen:
@@ -67,11 +67,12 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
         „BBC micro:bit“, „An micro:bit senden“, „Speichern“)? Block-Namen `Zeichne x … y …`/`lösche x … y …`
         (aus den offiziellen Übersetzungen) und die Kategorie „LED“ im Editor abgleichen.
       - Werkstatt: Heißt die Gesten-Auswahl im Block wirklich „nach links neigen“?
+      - Stufe 4 (breiter Korb, HANDOFF 3.128): Heißt der Block unter **Logik** „oder“? Läuft der
+        Python-Korb bei `korb < 4` am rechten Rand wirklich mit Fehlermeldung ab, wie angekündigt?
+        Ist das Spiel mit zwei Lampen zu leicht, und reichen die Werkstatt-Pläne ohne weitere Hilfe?
       - Einführung (`content/microbit-einfuehrung/`, gleicher Stand): Stimmt die Beschreibung der
         Rückseite (Lampe neben der USB-Buchse)? Zeigt der Simulator rechts im Editor das Programm wie
         beschrieben (Python: „Ausführen“)?
-      - Nach dem Durchspielen: `beta` in `kurse.json` entfernen und die ID in `tests/kurse-beta.spec.js`
-        (`NICHT_BETA`) eintragen.
 - [ ] micro:bit „Das Roboterauto“ hat keine JavaScript-Ansicht (nur Blöcke/Python); Kinder, die in der
       Einführung JavaScript gewählt haben, landen bei Blöcken (Hinweis in Startklar steht da). Das
       Test-Kind meldete dafür 11 „wichtige“ Stellen. Vorschlag, falls gewünscht: JS-Variante aus den
