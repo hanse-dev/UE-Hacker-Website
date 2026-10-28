@@ -139,11 +139,11 @@ test.describe('micro:bit-Kurs: Fang den Stern (Anleitung zum Abhaken)', () => {
     await expect(page.locator('.lesson-item').nth(1)).not.toHaveClass(/locked/);
   });
 
-  test('Kurs ist in der Projekte-Übersicht verlinkt, der Filter Spiele zeigt ihn mit Beta-Kennzeichen', async ({ page }) => {
+  test('Kurs ist in der Projekte-Übersicht verlinkt, der Filter Spiele zeigt ihn ohne Beta-Kennzeichen', async ({ page }) => {
     await page.goto('/projekte');
     const card = page.locator('a.projekt-card[href="/kurs/projekt-microbit-sterne"]');
     await expect(card).toBeVisible({ timeout: 15000 });
-    await expect(card.locator('.beta-badge')).toBeVisible();
+    await expect(card.locator('.beta-badge')).toHaveCount(0);
     await page.locator('.filter-chip', { hasText: 'Spiele' }).click();
     await expect(card).toBeVisible();
     await card.click();

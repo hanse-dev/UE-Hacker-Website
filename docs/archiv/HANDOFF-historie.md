@@ -3134,3 +3134,6 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   Python-Bonus „Durch die Wand“ in Stufe 1 ließ die alten Zeilen stehen), nach der Überarbeitung
   keine „hoch“ mehr. Offen gelassen (mittel, alt): Ort zum Hineinziehen der `.hex`-Datei, Reihenfolge
   im „daneben“-Teil beim Bonus „Zwei Aufträge verbinden“.
+- Kein Beta mehr (Entscheidung Eike, 28.10.2026), obwohl der Kurs noch nicht am echten micro:bit
+  lief: `beta` aus `kurse.json`, ID in `NICHT_BETA` (`tests/kurse-beta.spec.js`). Die Prüfpunkte am
+  Gerät bleiben in `todo.md`.
