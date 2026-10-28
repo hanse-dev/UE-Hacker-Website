@@ -131,7 +131,7 @@ import { ref, watch, onMounted, onBeforeUnmount, computed, nextTick } from 'vue'
 import { usePyodide } from '../composables/usePyodide';
 import { useInteractiveProgress } from '../composables/useInteractiveProgress';
 import { useLanguage } from '../composables/useLanguage';
-import { validateOutput } from '../composables/useTaskValidation';
+import { validateOutput, missingExpected, outputsVary, VARIES_MAX_RUNS } from '../composables/useTaskValidation';
 import { DEV_SKIP_CHECKS } from '../composables/devSkipChecks.js';
 import { useLessonContent } from '../composables/useLessonContent';
 import { loadSavedCode, saveLessonCode } from '../composables/useSavedCode';
@@ -373,19 +373,37 @@ export default {
       taskFeedback.value[idx] = null;
       taskRan.value[idx] = true;
 
+      const validation = tasks.value[idx]?.validation;
       // `validation.stdin`: vorgegebene Eingaben fuer input() - das Pruefen oeffnet dann kein Eingabefenster
       // und die Ausgabe ist deterministisch pruefbar (usePyodide.js: browser_input).
-      const stdin = tasks.value[idx]?.validation?.stdin;
-      window.ueStdinQueue = Array.isArray(stdin) ? stdin.map(String) : undefined;
-      let result;
-      try {
-        // Dev-Modus (devSkipChecks.js): Code gar nicht erst ausfuehren, validateOutput() meldet
-        // ohnehin "bestanden".
-        result = DEV_SKIP_CHECKS ? { success: true, output: '' } : await runPython(taskCodes.value[idx]);
-      } finally {
-        window.ueStdinQueue = undefined;
-      }
+      const runOnce = async () => {
+        const stdin = validation?.stdin;
+        window.ueStdinQueue = Array.isArray(stdin) ? stdin.map(String) : undefined;
+        try {
+          // Dev-Modus (devSkipChecks.js): Code gar nicht erst ausfuehren, validateOutput() meldet
+          // ohnehin "bestanden".
+          return DEV_SKIP_CHECKS ? { success: true, output: '' } : await runPython(taskCodes.value[idx]);
+        } finally {
+          window.ueStdinQueue = undefined;
+        }
+      };
+      let result = await runOnce();
       if (!isMounted.value) return;
+
+      // `validation.varies` (Zufalls-Aufgaben): weitere Laeufe, bis sich die Ausgabe einmal
+      // unterscheidet. Jeder Lauf muss fuer sich bestehen; gezeigt wird der zuletzt gepruefte.
+      let sameEveryRun = false;
+      if (validation?.varies && result.success && validateOutput(result.output, validation)) {
+        const outputs = [result.output];
+        while (outputs.length < VARIES_MAX_RUNS && !outputsVary(outputs)) {
+          const next = await runOnce();
+          if (!isMounted.value) return;
+          result = next;
+          if (!next.success || !validateOutput(next.output, validation)) break;
+          outputs.push(next.output);
+        }
+        sameEveryRun = result.success && !outputsVary(outputs) && validateOutput(result.output, validation);
+      }
 
       if (result.success) {
         taskOutputs.value[idx] = result.output || t('jupyter.noOutput');
@@ -399,8 +417,7 @@ export default {
         return;
       }
 
-      const validation = tasks.value[idx]?.validation;
-      const valid = validateOutput(result.output, validation);
+      const valid = !sameEveryRun && validateOutput(result.output, validation);
 
       if (valid) {
         completedTasks.value = new Set([...completedTasks.value, idx]);
@@ -431,7 +448,9 @@ export default {
         // Erster Fehlversuch: nur ein sanfter Hinweis, kein Lösungsverrat.
         // Ab dem zweiten Fehlversuch: die erwartete Teilzeichenkette zeigen, damit niemand
         // dauerhaft feststeckt.
-        if (taskAttempts.value[idx] < 2) {
+        if (sameEveryRun) {
+          taskFeedback.value[idx] = { success: false, message: t('lesson.hintVaries') };
+        } else if (taskAttempts.value[idx] < 2) {
           taskFeedback.value[idx] = {
             success: false,
             message: t('lesson.hintSoft'),
@@ -439,7 +458,7 @@ export default {
         } else {
           taskFeedback.value[idx] = {
             success: false,
-            message: t('lesson.hintExpected').replace('{expected}', validation?.expected || ''),
+            message: t('lesson.hintExpected').replace('{expected}', missingExpected(result.output, validation)[0] || ''),
           };
         }
       }

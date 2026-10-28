@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 4: Das ganze Spiel – Aufgabe 4
+"""### Extra-Herausforderung 4: Das ganze Spiel – Aufgabe 3
 
-Schritt 4 – Dateien (Woche 8/9): Schreibe `lade_stand(dateiname)`, die den JSON-Inhalt einer Datei zurückgibt – fehlt sie, gibt sie ein leeres Dictionary `{}` zurück (`try/except FileNotFoundError`). Gib genau Anzahl: 0 für `lade_stand(\"gibtsnicht.json\")` aus (Länge des Ergebnisses)."""
+Schritt 3 – Magic Method (Woche 11): Schreibe die Klasse `Gegenstand` mit `__init__(self, name, beschreibung)` und `__str__`, das `Name – Beschreibung` zurückgibt. Gib `Gegenstand(\"Fackel\", \"Sie leuchtet in dunklen Ecken.\")` direkt mit `print` aus."""

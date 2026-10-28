@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 4: Das ganze Spiel – Aufgabe 3
+"""### Extra-Herausforderung 4: Das ganze Spiel – Aufgabe 2
 
-Schritt 3 – Magic Method (Woche 11): Schreibe die Klasse `Gegenstand` mit `__init__(self, name, beschreibung)` und `__str__`, das `Name – Beschreibung` zurückgibt. Gib `Gegenstand(\"Fackel\", \"Sie leuchtet in dunklen Ecken.\")` direkt mit `print` aus."""
+Schritt 2 – Vererbung (Woche 11): Der Gegner `Gegner` ist vorgegeben. Schreibe `Boss(Gegner)`, die mit `super().__init__(...)` **doppelt so viele** HP bekommt: Gib in `super().__init__(...)` alle drei Werte weiter, die HP dabei mal 2. Erzeuge `Boss(\"Drache\", 10, 3)` und gib genau HP: 20 aus."""

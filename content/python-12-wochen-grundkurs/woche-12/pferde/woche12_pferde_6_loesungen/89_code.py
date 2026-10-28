@@ -1,10 +1,7 @@
-import random
-
-def wuerfle():
-    return random.randint(1, 6)
-
-ok = True
-for i in range(20):
-    if not 1 <= wuerfle() <= 6:
-        ok = False
-print(ok)
+bestenliste = {"Mira": 120, "Tom": 90, "Lena": 150}
+import json
+with open("punkte.json", "w") as f:
+    json.dump(bestenliste, f)
+with open("punkte.json", "r") as f:
+    zurueck = json.load(f)
+print(f"Anzahl: {len(zurueck)}")

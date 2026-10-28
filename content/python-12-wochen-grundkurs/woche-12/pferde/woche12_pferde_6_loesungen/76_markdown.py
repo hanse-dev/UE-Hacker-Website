@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 2: Die Weltkarte speichern – Aufgabe 1
+"""### Extra-Herausforderung 1: Ein zweiter Gegner – Aufgabe 3
 
-Schritt 1: Die Welt `welt` (Räume mit Beschreibung und Ausgängen) ist vorgegeben. Wandle sie mit `json.dumps` in Text und mit `json.loads` zurück und gib `zurueck == welt` aus (True)."""
+Schritt 3 – Übermächtiger Gegner: Alles ist vorgegeben. Lasse den Spieler gegen `Gegner(\"Ziegenbock\", 1000, 30)` kämpfen (er kann nicht gewinnen) und gib genau Sieg: False aus."""

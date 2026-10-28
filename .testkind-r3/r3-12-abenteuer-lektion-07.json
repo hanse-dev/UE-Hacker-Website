@@ -1,0 +1,150 @@
+[
+ {
+  "woche": 12,
+  "thema": "abenteuer",
+  "id": "lektion-07",
+  "titel": "Etappe 7: Speichern und das Finale",
+  "antwort": {
+   "aufgaben": [
+    {
+     "nr": 2,
+     "verstanden": "teilweise",
+     "was_ich_tun_soll": "Ich soll ein Dictionary für Mira bauen, mit Name, Ort, Lebenspunkten und einer Liste mit den Namen der Sachen im Beutel. Dann soll ich das mit json.dumps ausgeben.",
+     "code": "import json\n\ndaten = {\n    \"name\": spieler.name,\n    \"position\": spieler.position,\n    \"hp\": spieler.hp,\n    \"inventar\": [g.name for g in spieler.inventar],\n}\nprint(json.dumps(daten))",
+     "unklar": "`json.dumps` mit \"s\" am Ende kenne ich nicht. Ich kenne nur `json.dump(daten, f)`, und das schreibt in eine Datei. Ich habe geraten, dass `dumps` keine Datei braucht und den Text einfach zurückgibt, damit ich ihn mit print ausgeben kann. Im Beispiel ist das Inventar eine Liste von Dictionaries, hier soll es nur eine Liste von Namen sein. Das habe ich so gemacht, wie es in der Aufgabe steht."
+    },
+    {
+     "nr": 3,
+     "verstanden": "teilweise",
+     "was_ich_tun_soll": "Ich soll eine Funktion laden schreiben, die eine JSON-Datei liest. Wenn es die Datei nicht gibt, soll sie die Meldung mit dem 📂 zeigen und None zurückgeben. Dann soll ich sie mit einem Dateinamen aufrufen, den es nicht gibt.",
+     "code": "import json\n\ndef laden(dateiname):\n    try:\n        with open(dateiname, \"r\", encoding=\"utf-8\") as f:\n            daten = json.load(f)\n    except FileNotFoundError:\n        print(\"📂 Es gibt noch keinen Spielstand.\")\n        return None\n    return daten\n\nladen(\"gibtsnicht.json\")",
+     "unklar": "Der Editor ist leer, es gibt keine Klasse Spieler. Deshalb weiß ich nicht, ob ich wie im Beispiel einen Spieler bauen soll, wenn die Datei da ist. Ich gebe einfach die Daten zurück. `encoding=\"utf-8\"` habe ich vom Beispiel abgeschrieben, ohne zu wissen, wofür das ist."
+    },
+    {
+     "nr": 4,
+     "verstanden": "ja",
+     "was_ich_tun_soll": "Ich soll Mira erzeugen, die Fackel nehmen, sie in test.json speichern, sie wieder laden und dann zeigen, wo die geladene Mira steht.",
+     "code": "spieler = Spieler(\"Mira\", \"eingang\")\nspieler.nimm(\"Fackel\")\nspeichern(spieler, \"test.json\")\ngeladen = laden(\"test.json\")\nprint(f\"Position: {geladen.position}\")",
+     "unklar": ""
+    },
+    {
+     "nr": 5,
+     "verstanden": "ja",
+     "was_ich_tun_soll": "Ich soll selbst eine Funktion spiele schreiben, die alle Befehle nacheinander ausführt. Sobald Mira den Ziel-Gegenstand hat, soll sie '🏆 Ziel erreicht!' ausgeben und aufhören. Danach rufe ich sie mit drei Befehlen auf, Ziel ist das Schwert.",
+     "code": "def spiele(spieler, befehle, ziel_gegenstand):\n    for text in befehle:\n        fuehre_aus(spieler, text)\n        if hat_gegenstand(spieler, ziel_gegenstand):\n            print(\"🏆 Ziel erreicht!\")\n            return\n\nspiele(spieler, [\"gehe norden\", \"gehe westen\", \"nimm Schwert\"], \"Schwert\")",
+     "unklar": "Ich wusste nicht, ob ich auch die Game-Over-Prüfung mit hp wie im Beispiel einbauen soll. In der Aufgabe stand das nicht, deshalb habe ich sie weggelassen."
+    },
+    {
+     "nr": 6,
+     "verstanden": "ja",
+     "was_ich_tun_soll": "Ich soll eine Schleife bauen, die immer wieder nach einem Befehl fragt und ihn ausführt. Wenn man 'ende' tippt, soll sie 'Spiel beendet.' schreiben und aufhören.",
+     "code": "while True:\n    befehl = input(\"> \")\n    if befehl == \"ende\":\n        print(\"Spiel beendet.\")\n        break\n    fuehre_aus(spieler, befehl)",
+     "unklar": "Im Text steht, dass `while True` aus Woche 7, Extra-Herausforderung 4 kommt. Daran erinnere ich mich nicht, im Glossar steht es auch nicht. Durch das kleine Beispiel im Text habe ich es aber verstanden."
+    }
+   ],
+   "schwere_woerter": [
+    "json.dumps",
+    "ensure_ascii=False",
+    "indent=2",
+    "encoding=\"utf-8\"",
+    "FileNotFoundError",
+    "Spielschleife",
+    "entry",
+    "loaded",
+    "ziel_gegenstand=\"Schatz\"",
+    "dateiname=\"stand.json\"",
+    "Game Over",
+    "Extra-Herausforderung"
+   ],
+   "verwirrende_saetze": [
+    "Ein Objekt wie der Spieler lässt sich nicht direkt als JSON speichern.",
+    "Deshalb baust du zuerst ein **Dictionary** (Name, Position, HP, Inventar als Liste von Dictionaries). Beim Laden geht es rückwärts.",
+    "Eine `while True`-Schleife läuft immer weiter (Woche 7, Extra-Herausforderung 4), bis `break` (Woche 6) sie beendet.",
+    "Beim Ausführen tippst du die Befehle ins Fenster, beim Prüfen gibt der Computer `gehe norden`, `gehe westen`, `nimm Schwert` und `ende` selbst ein – die Befehle gehören also nicht in deinen Code."
+   ],
+   "gesamteindruck": "Das Finale war cool, und am Ende konnte ich das Spiel selbst spielen. Aber im Speicher-Code stehen viele Sachen, die nie erklärt wurden (dumps, ensure_ascii, indent, encoding), und die habe ich nur abgeschrieben.",
+   "aendern": [
+    {
+     "stelle": "Aufgabe 2",
+     "problem": "`json.dumps` kommt vorher nirgends vor. Ich kenne nur `json.dump` mit Datei und weiß nicht, was das \"s\" anders macht.",
+     "haette_geholfen": "Ein Satz wie: `json.dumps(daten)` macht aus dem Dictionary einen JSON-Text, ohne Datei. Dazu ein kurzes Beispiel mit der Ausgabe.",
+     "gewicht": "mittel"
+    },
+    {
+     "stelle": "Text, Code von speichern() und laden()",
+     "problem": "`encoding=\"utf-8\"`, `ensure_ascii=False` und `indent=2` werden nicht erklärt. Ich weiß nicht, ob ich die brauche oder weglassen darf.",
+     "haette_geholfen": "Kurze Kommentare im Code, z. B. # damit Umlaute und Emojis richtig gespeichert werden, # schön eingerückt, damit man es lesen kann.",
+     "gewicht": "mittel"
+    },
+    {
+     "stelle": "Text, Code von speichern(), laden() und spiele()",
+     "problem": "`dateiname=\"stand.json\"` in der Klammer bei def kenne ich nicht. Ich verstehe nicht, warum man dann später `laden()` ohne Namen aufrufen kann.",
+     "haette_geholfen": "Ein Hinweis: Wenn man beim Aufruf nichts angibt, wird automatisch \"stand.json\" benutzt (Standardwert).",
+     "gewicht": "mittel"
+    },
+    {
+     "stelle": "Aufgabe 3",
+     "problem": "Der Editor ist leer und es gibt keine Klasse Spieler. Ich wusste nicht, was laden zurückgeben soll, wenn die Datei doch da ist.",
+     "haette_geholfen": "Dazuschreiben: Wenn die Datei da ist, gib einfach `daten` zurück.",
+     "gewicht": "mittel"
+    }
+   ],
+   "_kosten_usd": 0.5341212000000001
+  },
+  "ergebnisse": [
+   {
+    "nr": 2,
+    "verstanden": "teilweise",
+    "was_ich_tun_soll": "Ich soll ein Dictionary für Mira bauen, mit Name, Ort, Lebenspunkten und einer Liste mit den Namen der Sachen im Beutel. Dann soll ich das mit json.dumps ausgeben.",
+    "code": "import json\n\ndaten = {\n    \"name\": spieler.name,\n    \"position\": spieler.position,\n    \"hp\": spieler.hp,\n    \"inventar\": [g.name for g in spieler.inventar],\n}\nprint(json.dumps(daten))",
+    "unklar": "`json.dumps` mit \"s\" am Ende kenne ich nicht. Ich kenne nur `json.dump(daten, f)`, und das schreibt in eine Datei. Ich habe geraten, dass `dumps` keine Datei braucht und den Text einfach zurückgibt, damit ich ihn mit print ausgeben kann. Im Beispiel ist das Inventar eine Liste von Dictionaries, hier soll es nur eine Liste von Namen sein. Das habe ich so gemacht, wie es in der Aufgabe steht.",
+    "geschafft": true,
+    "ausgabe": "🎒 Du nimmst: Fackel – Sie leuchtet in dunklen Ecken.\n{\"name\": \"Mira\", \"position\": \"eingang\", \"hp\": 20, \"inventar\": [\"Fackel\"]}",
+    "erwartet": "{\"name\": \"Mira\", \"position\": \"eingang\", \"hp\": 20, \"inventar\": [\"Fackel\"]}"
+   },
+   {
+    "nr": 3,
+    "verstanden": "teilweise",
+    "was_ich_tun_soll": "Ich soll eine Funktion laden schreiben, die eine JSON-Datei liest. Wenn es die Datei nicht gibt, soll sie die Meldung mit dem 📂 zeigen und None zurückgeben. Dann soll ich sie mit einem Dateinamen aufrufen, den es nicht gibt.",
+    "code": "import json\n\ndef laden(dateiname):\n    try:\n        with open(dateiname, \"r\", encoding=\"utf-8\") as f:\n            daten = json.load(f)\n    except FileNotFoundError:\n        print(\"📂 Es gibt noch keinen Spielstand.\")\n        return None\n    return daten\n\nladen(\"gibtsnicht.json\")",
+    "unklar": "Der Editor ist leer, es gibt keine Klasse Spieler. Deshalb weiß ich nicht, ob ich wie im Beispiel einen Spieler bauen soll, wenn die Datei da ist. Ich gebe einfach die Daten zurück. `encoding=\"utf-8\"` habe ich vom Beispiel abgeschrieben, ohne zu wissen, wofür das ist.",
+    "geschafft": true,
+    "ausgabe": "📂 Es gibt noch keinen Spielstand.",
+    "erwartet": "📂 Es gibt noch keinen Spielstand."
+   },
+   {
+    "nr": 4,
+    "verstanden": "ja",
+    "was_ich_tun_soll": "Ich soll Mira erzeugen, die Fackel nehmen, sie in test.json speichern, sie wieder laden und dann zeigen, wo die geladene Mira steht.",
+    "code": "spieler = Spieler(\"Mira\", \"eingang\")\nspieler.nimm(\"Fackel\")\nspeichern(spieler, \"test.json\")\ngeladen = laden(\"test.json\")\nprint(f\"Position: {geladen.position}\")",
+    "unklar": "",
+    "geschafft": true,
+    "ausgabe": "🎒 Du nimmst: Fackel – Sie leuchtet in dunklen Ecken.\n💾 Spielstand von Mira gespeichert.\n📂 Spielstand von Mira geladen.\nPosition: eingang",
+    "erwartet": "Position: eingang"
+   },
+   {
+    "nr": 5,
+    "verstanden": "ja",
+    "was_ich_tun_soll": "Ich soll selbst eine Funktion spiele schreiben, die alle Befehle nacheinander ausführt. Sobald Mira den Ziel-Gegenstand hat, soll sie '🏆 Ziel erreicht!' ausgeben und aufhören. Danach rufe ich sie mit drei Befehlen auf, Ziel ist das Schwert.",
+    "code": "def spiele(spieler, befehle, ziel_gegenstand):\n    for text in befehle:\n        fuehre_aus(spieler, text)\n        if hat_gegenstand(spieler, ziel_gegenstand):\n            print(\"🏆 Ziel erreicht!\")\n            return\n\nspiele(spieler, [\"gehe norden\", \"gehe westen\", \"nimm Schwert\"], \"Schwert\")",
+    "unklar": "Ich wusste nicht, ob ich auch die Game-Over-Prüfung mit hp wie im Beispiel einbauen soll. In der Aufgabe stand das nicht, deshalb habe ich sie weggelassen.",
+    "geschafft": true,
+    "ausgabe": "📍 Halle: Eine riesige Halle. Fackeln flackern an den Wänden.\n   Ausgänge: sueden, osten, westen\n👀 Hier liegt nichts.\n📍 Quelle: Eine stille Quelle. Das Wasser funkelt magisch.\n   Ausgänge: osten\n👀 Du s",
+    "erwartet": "🏆 Ziel erreicht!"
+   },
+   {
+    "nr": 6,
+    "verstanden": "ja",
+    "was_ich_tun_soll": "Ich soll eine Schleife bauen, die immer wieder nach einem Befehl fragt und ihn ausführt. Wenn man 'ende' tippt, soll sie 'Spiel beendet.' schreiben und aufhören.",
+    "code": "while True:\n    befehl = input(\"> \")\n    if befehl == \"ende\":\n        print(\"Spiel beendet.\")\n        break\n    fuehre_aus(spieler, befehl)",
+    "unklar": "Im Text steht, dass `while True` aus Woche 7, Extra-Herausforderung 4 kommt. Daran erinnere ich mich nicht, im Glossar steht es auch nicht. Durch das kleine Beispiel im Text habe ich es aber verstanden.",
+    "geschafft": true,
+    "ausgabe": "> 📍 Halle: Eine riesige Halle. Fackeln flackern an den Wänden.\n   Ausgänge: sueden, osten, westen\n👀 Hier liegt nichts.\n> 📍 Quelle: Eine stille Quelle. Das Wasser funkelt magisch.\n   Ausgänge: osten\n👀 ",
+    "erwartet": [
+     "🎒 Du nimmst: Schwert",
+     "Spiel beendet."
+    ]
+   }
+  ]
+ }
+]

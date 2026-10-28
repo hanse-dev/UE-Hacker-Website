@@ -1,3 +1,3 @@
-"""### Extra-Herausforderung 2: Die Weltkarte speichern – Aufgabe 3
+"""### Extra-Herausforderung 2: Die Weltkarte speichern – Aufgabe 2
 
-Schritt 3: Die Welt ist vorgegeben. Gib die Raumnamen alphabetisch sortiert als Liste aus: `print(sorted(welt))`."""
+Schritt 2: Die Welt ist vorgegeben. Schreibe sie mit `json.dump` in die Datei welt.json, lies sie mit `json.load` wieder ein und gib genau Räume: 4 aus."""

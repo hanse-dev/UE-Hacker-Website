@@ -1,3 +1,3 @@
-"""### Mission 1: Ein neuer Raum – Aufgabe 3
+"""### Mission 1: Ein neuer Raum – Aufgabe 2
 
-Schritt 3 – Einsammeln: Alles ist vorgegeben, der Gegenstand Apfel liegt in scheune. Erzeuge den Spieler in stallgasse, gehe unten und nimm Apfel."""
+Schritt 2 – Gegenstand: Welt (mit Raum scheune) und `Gegenstand` sind vorgegeben. Lege in scheune den Gegenstand `Gegenstand(\"Apfel\", \"Ein saftiger Apfel für neue Kraft.\")` in die Liste `\"gegenstaende\"` und gib die Namen als Liste aus (genau ['Apfel'])."""

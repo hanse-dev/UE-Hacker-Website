@@ -1,3 +1,3 @@
 """### Etappe 7: Speichern und das Finale – Aufgabe 1
 
-Welt, Spieler-Klasse und der Spieler `spieler` (mit Zugangskarte im Inventar) sind vorgegeben. Baue das Dictionary `daten` mit `name`, `position`, `hp` und `inventar` (Liste der Namen) und gib `json.dumps(daten)` aus (`import json`)."""
+Welt, Spieler-Klasse und der Spieler `spieler` (mit Zugangskarte im Inventar) sind vorgegeben. Baue das Dictionary `daten` mit `name`, `position`, `hp` und `inventar` (Liste der Namen) und gib `json.dumps(daten)` aus (`import json`; `json.dumps` macht aus dem Dictionary einen Text, ohne Datei – Woche 9, Lektion 4)."""

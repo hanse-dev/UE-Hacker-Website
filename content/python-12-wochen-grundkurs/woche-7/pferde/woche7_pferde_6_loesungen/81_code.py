@@ -8,3 +8,4 @@ for i in range(20):
     if wuerfle_faehigkeit() not in ["Trab", "Galopp", "Sprung"]:
         alle_gueltig = False
 print(f"Alle gültig: {alle_gueltig}")
+print(wuerfle_faehigkeit(), wuerfle_faehigkeit(), wuerfle_faehigkeit())

@@ -1,0 +1,110 @@
+[
+ {
+  "woche": 12,
+  "thema": "scifi",
+  "id": "boss-04",
+  "titel": "Extra-Herausforderung 4: Das ganze Spiel",
+  "antwort": {
+   "aufgaben": [
+    {
+     "nr": 1,
+     "verstanden": "teilweise",
+     "was_ich_tun_soll": "Ich soll eine Würfel-Funktion bauen, die eine Zahl von 1 bis 6 zurückgibt. Dann 20-mal würfeln und gucken, ob alle Zahlen zwischen 1 und 6 sind. Wenn ja, kommt True raus. Am Ende noch einmal würfeln und die Zahl ausgeben.",
+     "code": "import random\n\ndef wuerfle():\n    zahl = random.randint(1, 6)\n    return zahl\n\nalle_ok = True\nfor i in range(20):\n    wurf = wuerfle()\n    if wurf < 1 or wurf > 6:\n        alle_ok = False\n\nprint(alle_ok)\nprint(wuerfle())",
+     "unklar": "Da steht „wie in Woche 7: alle_ok = True und auf False setzen“. Ich weiß nicht mehr, wie das in Woche 7 war, im Glossar steht nichts davon. Ich hab es so gemacht, wie ich es verstanden habe. Ich war mir auch nicht sicher, ob „zwischen 1 und 6“ heißt, dass 1 und 6 mitzählen. Ich hab gedacht ja, weil ein Würfel ja auch 1 und 6 hat. Und eigentlich kommt bei randint(1, 6) doch immer was Richtiges raus, oder? Warum muss ich das dann prüfen?"
+    },
+    {
+     "nr": 2,
+     "verstanden": "ja",
+     "was_ich_tun_soll": "Ich soll eine Klasse Boss bauen, die vom Gegner erbt. Der Boss hat doppelt so viele Lebenspunkte. Dann mache ich einen Boss mit 10 HP, und es soll HP: 20 rauskommen.",
+     "code": "class Boss(Gegner):\n    def __init__(self, name, hp, staerke):\n        super().__init__(name, hp * 2, staerke)\n\nboss = Boss(\"Wartungsroboter\", 10, 3)\nprint(f\"HP: {boss.hp}\")",
+     "unklar": ""
+    },
+    {
+     "nr": 3,
+     "verstanden": "teilweise",
+     "was_ich_tun_soll": "Ich soll die Klasse Gegenstand nochmal schreiben, aber mit __str__ dazu. Dann zeigt print den Namen und die Beschreibung mit einem Strich dazwischen.",
+     "code": "class Gegenstand:\n    def __init__(self, name, beschreibung):\n        self.name = name\n        self.beschreibung = beschreibung\n\n    def __str__(self):\n        return f\"{self.name} – {self.beschreibung}\"\n\nprint(Gegenstand(\"Zugangskarte\", \"Sie öffnet gesicherte Türen.\"))",
+     "unklar": "Der Strich zwischen Name und Beschreibung sieht länger aus als ein normales Minus. Ich weiß nicht, ob ich einfach das Minus auf meiner Tastatur nehmen darf. Den langen Strich finde ich auf der Tastatur nicht, deshalb hab ich ihn aus dem Text kopiert."
+    },
+    {
+     "nr": 4,
+     "verstanden": "ja",
+     "was_ich_tun_soll": "Ich soll eine Funktion schreiben, die eine JSON-Datei liest und den Inhalt zurückgibt. Wenn es die Datei nicht gibt, soll sie ein leeres Dictionary zurückgeben. Dann probiere ich es mit einer Datei, die es nicht gibt, und es soll Anzahl: 0 rauskommen.",
+     "code": "import json\n\ndef lade_stand(dateiname):\n    try:\n        with open(dateiname, \"r\", encoding=\"utf-8\") as f:\n            daten = json.load(f)\n    except FileNotFoundError:\n        return {}\n    return daten\n\nergebnis = lade_stand(\"gibtsnicht.json\")\nprint(f\"Anzahl: {len(ergebnis)}\")",
+     "unklar": ""
+    }
+   ],
+   "schwere_woerter": [
+    "Magic Methods",
+    "Magic Method",
+    "Vererbung",
+    "Fehlerbehandlung",
+    "Bausteine ganz bewusst verbinden"
+   ],
+   "verwirrende_saetze": [
+    "Würfle 20-mal und gib True aus, wenn **alle** Würfe zwischen 1 und 6 liegen (wie in Woche 7: alle_ok = True und auf False setzen, sobald ein Wurf nicht passt).",
+    "Gib in `super().__init__(...)` alle drei Werte weiter, die HP dabei mal 2.",
+    "Diese Extra-Herausforderung verbindet Zufall, Vererbung, Magic Methods und Dateien"
+   ],
+   "gesamteindruck": "Das war schwer, aber ich hab alles irgendwie geschafft, weil ich viel aus den Beispielen von vorher abgucken konnte. Bei Aufgabe 1 musste ich am meisten überlegen, weil da auf Woche 7 verwiesen wird und ich das nicht mehr wusste.",
+   "aendern": [
+    {
+     "stelle": "Aufgabe 1",
+     "problem": "Da steht „wie in Woche 7: alle_ok = True …“, aber ich weiß das nicht mehr und im Glossar steht es nicht. Außerdem verstehe ich nicht, warum ich prüfen soll, ob die Würfe zwischen 1 und 6 sind. randint(1, 6) macht das doch sowieso. Ich wusste auch nicht, ob 1 und 6 mitzählen.",
+     "haette_geholfen": "Ein kleines Beispiel mit alle_ok direkt in der Aufgabe. Und ein Satz, warum man das prüft und dass 1 und 6 mitzählen.",
+     "gewicht": "mittel"
+    },
+    {
+     "stelle": "Aufgabe 3",
+     "problem": "Der Strich zwischen Name und Beschreibung ist ein langer Strich. Den gibt es nicht auf meiner Tastatur, und ich weiß nicht, ob ein normales Minus auch richtig ist.",
+     "haette_geholfen": "Sagen, dass man den Strich aus dem Text kopieren soll. Oder einfach ein normales Minus nehmen.",
+     "gewicht": "mittel"
+    }
+   ],
+   "_kosten_usd": 1.5413443999999998
+  },
+  "ergebnisse": [
+   {
+    "nr": 1,
+    "verstanden": "teilweise",
+    "was_ich_tun_soll": "Ich soll eine Würfel-Funktion bauen, die eine Zahl von 1 bis 6 zurückgibt. Dann 20-mal würfeln und gucken, ob alle Zahlen zwischen 1 und 6 sind. Wenn ja, kommt True raus. Am Ende noch einmal würfeln und die Zahl ausgeben.",
+    "code": "import random\n\ndef wuerfle():\n    zahl = random.randint(1, 6)\n    return zahl\n\nalle_ok = True\nfor i in range(20):\n    wurf = wuerfle()\n    if wurf < 1 or wurf > 6:\n        alle_ok = False\n\nprint(alle_ok)\nprint(wuerfle())",
+    "unklar": "Da steht „wie in Woche 7: alle_ok = True und auf False setzen“. Ich weiß nicht mehr, wie das in Woche 7 war, im Glossar steht nichts davon. Ich hab es so gemacht, wie ich es verstanden habe. Ich war mir auch nicht sicher, ob „zwischen 1 und 6“ heißt, dass 1 und 6 mitzählen. Ich hab gedacht ja, weil ein Würfel ja auch 1 und 6 hat. Und eigentlich kommt bei randint(1, 6) doch immer was Richtiges raus, oder? Warum muss ich das dann prüfen?",
+    "geschafft": true,
+    "ausgabe": "True\n2",
+    "erwartet": "True"
+   },
+   {
+    "nr": 2,
+    "verstanden": "ja",
+    "was_ich_tun_soll": "Ich soll eine Klasse Boss bauen, die vom Gegner erbt. Der Boss hat doppelt so viele Lebenspunkte. Dann mache ich einen Boss mit 10 HP, und es soll HP: 20 rauskommen.",
+    "code": "class Boss(Gegner):\n    def __init__(self, name, hp, staerke):\n        super().__init__(name, hp * 2, staerke)\n\nboss = Boss(\"Wartungsroboter\", 10, 3)\nprint(f\"HP: {boss.hp}\")",
+    "unklar": "",
+    "geschafft": true,
+    "ausgabe": "HP: 20",
+    "erwartet": "HP: 20"
+   },
+   {
+    "nr": 3,
+    "verstanden": "teilweise",
+    "was_ich_tun_soll": "Ich soll die Klasse Gegenstand nochmal schreiben, aber mit __str__ dazu. Dann zeigt print den Namen und die Beschreibung mit einem Strich dazwischen.",
+    "code": "class Gegenstand:\n    def __init__(self, name, beschreibung):\n        self.name = name\n        self.beschreibung = beschreibung\n\n    def __str__(self):\n        return f\"{self.name} – {self.beschreibung}\"\n\nprint(Gegenstand(\"Zugangskarte\", \"Sie öffnet gesicherte Türen.\"))",
+    "unklar": "Der Strich zwischen Name und Beschreibung sieht länger aus als ein normales Minus. Ich weiß nicht, ob ich einfach das Minus auf meiner Tastatur nehmen darf. Den langen Strich finde ich auf der Tastatur nicht, deshalb hab ich ihn aus dem Text kopiert.",
+    "geschafft": true,
+    "ausgabe": "Zugangskarte – Sie öffnet gesicherte Türen.",
+    "erwartet": "Zugangskarte – Sie öffnet gesicherte Türen."
+   },
+   {
+    "nr": 4,
+    "verstanden": "ja",
+    "was_ich_tun_soll": "Ich soll eine Funktion schreiben, die eine JSON-Datei liest und den Inhalt zurückgibt. Wenn es die Datei nicht gibt, soll sie ein leeres Dictionary zurückgeben. Dann probiere ich es mit einer Datei, die es nicht gibt, und es soll Anzahl: 0 rauskommen.",
+    "code": "import json\n\ndef lade_stand(dateiname):\n    try:\n        with open(dateiname, \"r\", encoding=\"utf-8\") as f:\n            daten = json.load(f)\n    except FileNotFoundError:\n        return {}\n    return daten\n\nergebnis = lade_stand(\"gibtsnicht.json\")\nprint(f\"Anzahl: {len(ergebnis)}\")",
+    "unklar": "",
+    "geschafft": true,
+    "ausgabe": "Anzahl: 0",
+    "erwartet": "Anzahl: 0"
+   }
+  ]
+ }
+]

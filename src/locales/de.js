@@ -366,6 +366,7 @@ export default {
   'lesson.taskDoneRemaining': 'Richtig! Aufgabe {n} erledigt. Noch {r} Aufgabe(n) zu lösen.',
   'lesson.hintSoft':          'Noch nicht ganz – schau dir deine Ausgabe oben an und vergleiche sie mit der Aufgabenstellung.',
   'lesson.hintExpected':      'Die Ausgabe stimmt noch nicht. Erwartet wurde etwas mit: "{expected}"',
+  'lesson.hintVaries':        'Deine Ausgabe war bei jedem Lauf gleich. Die Aufgabe soll mit random zufällige Werte ziehen und sie ausgeben – dann sieht jeder Lauf anders aus.',
   'lesson.showSolution':      'Lösung anzeigen',
   'lesson.solutionLabel':     'Lösung:',
   'lesson.viewBadge':         'Dein Abzeichen wartet in deinem Profil!',

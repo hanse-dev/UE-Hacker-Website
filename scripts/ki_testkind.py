@@ -94,8 +94,9 @@ arbeitest, wie ein {alter}-jähriges Kind es täte.
 - Mach keine absichtlichen Fehler. Wenn eine Aufgabe unklar ist, mach das, was du am ehesten
   verstehst, und schreib dazu, was du dir gedacht hast.
 - "was_ich_tun_soll": In eigenen, kindlichen Worten, was die Aufgabe von dir will.
-- "code": Dein vollständiger Code für diese Aufgabe, so wie du ihn in den Editor tippen würdest
-  (die Vorlage mit deinen Ergänzungen).
+- "code": Dein Code für diese Aufgabe, so wie du ihn in den Editor tippen würdest. Endet die Vorlage
+  mit „# 🎯 Deine Lösung hier:“, schreib nur die Zeilen, die du darunter tippst – die Vorlage steht
+  ja schon im Editor. Sonst (z. B. Code reparieren) den ganzen Code. Kürze nie etwas mit „...“ ab.
 - "unklar": Was du nicht verstanden hast oder raten musstest. Leer lassen, wenn alles klar war.
 - "gesamteindruck": Ein bis zwei Sätze: Wie ging es dir mit dieser Lektion?
 - "aendern": Nur die Stellen, an denen ein echtes Kind in deinem Alter wahrscheinlich hängen
@@ -187,22 +188,31 @@ def output_ok(output: str, validation: dict) -> bool:
         return True
     if validation.get("type") == "output_equals":
         return output.strip() == expected
-    return normalize(expected) in normalize(output.strip())
+    # Eine Liste heißt: jeder Eintrag muss vorkommen. `varies` (mehrere Läufe) prüft das Test-Kind nicht.
+    return all(normalize(e) in normalize(output.strip()) for e in (expected if isinstance(expected, list) else [expected]))
+
+
+# Ohne Farben: Unter FORCE_COLOR (z.B. Playwright) färbt Python Tracebacks mit ANSI-Codes, die dann
+# im Bericht landen. PYTHON_COLORS wirkt wegen -I nicht.
+PLAIN_ENV = {**{k: v for k, v in os.environ.items() if k != "FORCE_COLOR"}, "NO_COLOR": "1"}
 
 
 def run_attempt(earlier_codes: list[str], code: str, validation: dict) -> tuple[bool, str]:
     """Führt den Code des Test-Kinds aus; frühere Aufgaben der Lektion laufen vorher mit (wie im
     selben Python-Kernel der Website), gezählt wird nur die Ausgabe nach der Markierung. Wie auf der
     Website bekommt nur die geprüfte Aufgabe `validation.stdin` - frühere input()-Aufrufe dürfen es
-    nicht wegessen, sie bekommen Füll-Eingaben."""
+    nicht wegessen, sie bekommen Füll-Eingaben. Jede frühere Aufgabe läuft für sich wie eine eigene
+    Zelle: Ein Fehler darin (auch ein SyntaxError) bricht die späteren Aufgaben nicht ab."""
     filler = "1\n" * 20
     own = "\n".join(map(str, validation.get("stdin") or [])) + "\n" + filler
-    program = "\n".join(["import io as __io, sys as __sys", f"__sys.stdin = __io.StringIO({filler!r})", *earlier_codes,
+    cells = [f"try:\n    exec(compile({c!r}, '<zelle>', 'exec'), globals())\nexcept BaseException:\n    pass" for c in earlier_codes]
+    program = "\n".join(["import io as __io, sys as __sys", f"__sys.stdin = __io.StringIO({filler!r})", *cells,
                          f"__sys.stdin = __io.StringIO({own!r})", f"print({MARKER!r})", code])
     with tempfile.TemporaryDirectory() as work:
         try:
             proc = subprocess.run([sys.executable, "-I", "-c", program], capture_output=True,
-                                  text=True, cwd=work, timeout=10, stdin=subprocess.DEVNULL)
+                                  text=True, cwd=work, timeout=10, stdin=subprocess.DEVNULL,
+                                  env=PLAIN_ENV)
         except subprocess.TimeoutExpired:
             return False, "Zeitüberschreitung (Endlosschleife?)"
     out = proc.stdout.split(MARKER, 1)[-1].lstrip("\n")
@@ -210,6 +220,19 @@ def run_attempt(earlier_codes: list[str], code: str, validation: dict) -> tuple[
         last = (proc.stderr.strip().splitlines() or ["Fehler"])[-1]
         return False, f"Fehler: {last}"
     return output_ok(out, validation), out.strip()[:200]
+
+
+LOESUNGS_MARKE = "# 🎯 Deine Lösung hier:"
+
+
+def with_template(template: str, code: str) -> str:
+    """Wie im Editor: Bei einer Vorlage mit Lösungs-Marke tippt das Kind darunter. Die Antwort enthält
+    dann nur die eigenen Zeilen (oder die Vorlage, oft abgekürzt, plus Marke) - ausgeführt wird die
+    echte Vorlage mit dem, was nach der Marke steht."""
+    if LOESUNGS_MARKE not in (template or ""):
+        return code
+    eigenes = code.split(LOESUNGS_MARKE, 1)[1] if LOESUNGS_MARKE in code else code
+    return template.split(LOESUNGS_MARKE, 1)[0] + LOESUNGS_MARKE + "\n" + eigenes.lstrip("\n")
 
 
 def evaluate(les: dict, answer: dict) -> list[dict]:
@@ -223,8 +246,9 @@ def evaluate(les: dict, answer: dict) -> list[dict]:
         if not attempt:
             results.append({"nr": i, "fehlt": True})
             continue
-        ok, out = run_attempt(earlier, attempt["code"], task.get("validation", {}))
-        earlier.append(attempt["code"])
+        code = with_template(task.get("codeTemplate", ""), attempt["code"])
+        ok, out = run_attempt(earlier, code, task.get("validation", {}))
+        earlier.append(code)
         results.append({**attempt, "geschafft": ok, "ausgabe": out, "erwartet": task.get("validation", {}).get("expected")})
     return results
 

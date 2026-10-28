@@ -121,4 +121,3 @@ def pruefe_gegner(spieler):
 welt["stallgasse"]["gegner"] = Gegner("Hofhund", 1, 1)
 spieler = Spieler("Mira", "stallgasse")
 pruefe_gegner(spieler)
-print(f"Besiegt: {welt['stallgasse']['gegner'].ist_besiegt()}")

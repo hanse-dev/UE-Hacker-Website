@@ -3,3 +3,4 @@ import random
 
 gewaehlt = random.choice(regale)
 print(f"Enthalten: {gewaehlt in regale}")
+print(gewaehlt)

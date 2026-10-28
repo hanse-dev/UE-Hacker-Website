@@ -1,3 +1,3 @@
-"""### Mission 1: Ein neuer Raum – Aufgabe 3
+"""### Mission 1: Ein neuer Raum – Aufgabe 2
 
-Schritt 3 – Einsammeln: Alles ist vorgegeben, der Gegenstand Energiezelle liegt in lager. Erzeuge den Spieler in korridor, gehe unten und nimm Energiezelle."""
+Schritt 2 – Gegenstand: Welt (mit Raum lager) und `Gegenstand` sind vorgegeben. Lege in lager den Gegenstand `Gegenstand(\"Energiezelle\", \"Eine Zelle, die Energie zurückgibt.\")` in die Liste `\"gegenstaende\"` und gib die Namen als Liste aus (genau ['Energiezelle'])."""

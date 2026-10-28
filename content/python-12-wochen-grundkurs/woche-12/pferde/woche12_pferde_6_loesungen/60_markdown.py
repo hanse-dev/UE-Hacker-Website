@@ -1,3 +1,3 @@
-"""### Mission 2: Heilung – Aufgabe 2
+"""### Mission 2: Heilung – Aufgabe 1
 
-Schritt 2 – Obergrenze: `heile()` ist vorgegeben, der Spieler hat 18 HP. Heile um 5 und gib genau HP: 20 aus."""
+Schritt 1 – Heilen: Der Spieler `spieler` hat 8 HP. Schreibe `heile(spieler, menge)`, die `menge` zu den HP addiert, aber nie über 20. Rufe `heile(spieler, 5)` auf und gib genau HP: 13 aus."""

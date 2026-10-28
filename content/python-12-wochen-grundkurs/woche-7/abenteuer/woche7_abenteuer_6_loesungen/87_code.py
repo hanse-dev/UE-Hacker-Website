@@ -1,9 +1,3 @@
-feld = []
-for zeile in range(8):
-    reihe = []
-    for spalte in range(8):
-        reihe.append(0)
-    feld.append(reihe)
 figur = [0, 0]
 ziel = [7, 7]
 zuege = 0

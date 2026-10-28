@@ -1,6 +1,19 @@
-bestenliste = {"Mira": 120, "Tom": 90, "Lena": 150}
-beste = None
-for name in bestenliste:
-    if beste is None or bestenliste[name] > bestenliste[beste]:
-        beste = name
-print(f"Bester: {beste}")
+welt = {
+    "eingang": {
+        "beschreibung": "Du stehst am Eingang der Drachenhöhle. Es riecht nach Rauch.",
+        "ausgaenge": {"norden": "halle"},
+    },
+    "halle": {
+        "beschreibung": "Eine riesige Halle. Fackeln flackern an den Wänden.",
+        "ausgaenge": {"sueden": "eingang", "osten": "schatzkammer", "westen": "quelle"},
+    },
+    "quelle": {"beschreibung": "Eine stille Quelle. Das Wasser funkelt magisch.", "ausgaenge": {"osten": "halle"}},
+    "schatzkammer": {"beschreibung": "Gold, so weit du blicken kannst – und mittendrin schläft der Drache!", "ausgaenge": {"westen": "halle"}},
+}
+
+def beschreibe(raumname):
+    raum = welt[raumname]
+    print(f"📍 {raumname.capitalize()}: {raum['beschreibung']}")
+    print("   Ausgänge:", ", ".join(raum["ausgaenge"]))
+
+print(sorted(welt))

@@ -13,3 +13,4 @@ for inhalt in inhalte:
         hindernis_anzahl += 1
 print(f"Stationen: {len(inhalte)}")
 print(f"Anzahl passt: {0 <= hindernis_anzahl <= 5}")
+print(inhalte)

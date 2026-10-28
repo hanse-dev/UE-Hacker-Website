@@ -1,3 +1,3 @@
-"""### Mission 3: Neue Befehle – Aufgabe 2
+"""### Mission 3: Neue Befehle – Aufgabe 1
 
-Schritt 2 – hp: Alles ist vorgegeben. Schreibe `fuehre_aus2(spieler, text)`: Ist `text` gleich hp, gibt sie ❤️ HP: gefolgt von den HP aus, sonst ruft sie `fuehre_aus()` auf. Führe hp aus (genau ❤️ HP: 20)."""
+Schritt 1 – inventar: Alles inklusive `fuehre_aus()` ist vorgegeben. Schreibe `fuehre_aus2(spieler, text)`: Ist `text` gleich inventar, ruft sie `zeige_inventar()` auf, sonst `fuehre_aus()`. Führe `nimm Taschenlampe` und dann inventar aus."""

@@ -1,3 +1,3 @@
 """### Extra-Herausforderung 1: Der Würfel-Simulator – Aufgabe 3
 
-Schritt 3 – Turnier: finde_gewinner ist vorgegeben. Spiele 5 Runden: In jeder Runde würfeln 3 Spieler (random.randint(1, 6)), der Gewinner bekommt einen Sieg in der Liste siege = [0, 0, 0]. Zähle danach die Siege zusammen und gib genau Siege insgesamt: 5 aus."""
+Schritt 3 – Turnier: finde_gewinner ist vorgegeben. Lege vor der Runden-Schleife siege = [0, 0, 0] an. Spiele dann 5 Runden mit einer for-Schleife: Fang in jeder Runde mit wuerfe = [] neu an und lass darin mit einer zweiten for-Schleife 3 Spieler würfeln (random.randint(1, 6)). Danach findest du mit gewinner = finde_gewinner(wuerfe) heraus, wer gewonnen hat; mit siege[gewinner] = siege[gewinner] + 1 bekommt er einen Sieg. Zähle nach allen Runden die Siege zusammen und gib genau Siege insgesamt: 5 aus. Gib zum Schluss die Liste siege aus."""

@@ -1,3 +1,3 @@
-"""### Mission 2: Heilung – Aufgabe 1
+"""### Mission 1: Ein neuer Raum – Aufgabe 3
 
-Schritt 1 – Heilen: Der Spieler `spieler` hat 8 HP. Schreibe `heile(spieler, menge)`, die `menge` zu den HP addiert, aber nie über 20. Rufe `heile(spieler, 5)` auf und gib genau HP: 13 aus."""
+Schritt 3 – Einsammeln: Alles ist vorgegeben, der Gegenstand Energiezelle liegt in lager. Erzeuge den Spieler in korridor, gehe unten und nimm Energiezelle."""

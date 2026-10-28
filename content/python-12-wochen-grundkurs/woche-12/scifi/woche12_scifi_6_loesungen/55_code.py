@@ -16,12 +16,6 @@ def beschreibe(raumname):
     print(f"📍 {raumname.capitalize()}: {raum['beschreibung']}")
     print("   Ausgänge:", ", ".join(raum["ausgaenge"]))
 
-class Gegenstand:
-    def __init__(self, name, beschreibung):
-        self.name = name
-        self.beschreibung = beschreibung
-
-welt["lager"] = {"beschreibung": "Ein Lager voller Kisten.", "ausgaenge": {"oben": "korridor"}, "gegenstaende": [], "gegner": None}
+welt["lager"] = {"beschreibung": "Ein Lager voller Kisten.", "ausgaenge": {"oben": "korridor"}}
 welt["korridor"]["ausgaenge"]["unten"] = "lager"
-welt["lager"]["gegenstaende"].append(Gegenstand("Energiezelle", "Eine Zelle, die Energie zurückgibt."))
-print([g.name for g in welt["lager"]["gegenstaende"]])
+beschreibe("korridor")

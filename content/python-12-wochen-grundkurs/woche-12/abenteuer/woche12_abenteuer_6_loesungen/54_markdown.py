@@ -1,3 +1,5 @@
-"""### Mission 1: Ein neuer Raum – Aufgabe 2
+"""## ⭐ Missionen
 
-Schritt 2 – Gegenstand: Welt (mit Raum keller) und `Gegenstand` sind vorgegeben. Lege in keller den Gegenstand `Gegenstand(\"Heiltrank\", \"Ein roter Trank, der Wunden heilt.\")` in die Liste `\"gegenstaende\"` und gib die Namen als Liste aus (genau ['Heiltrank'])."""
+### Mission 1: Ein neuer Raum – Aufgabe 1
+
+Schritt 1 – Raum anlegen: Welt und `beschreibe()` sind vorgegeben. Lege `welt[\"keller\"]` mit der Beschreibung Ein kühler Keller voller alter Fässer. und dem Ausgang oben nach halle an und füge in halle den Ausgang unten nach keller hinzu. Rufe `beschreibe(\"halle\")` auf."""

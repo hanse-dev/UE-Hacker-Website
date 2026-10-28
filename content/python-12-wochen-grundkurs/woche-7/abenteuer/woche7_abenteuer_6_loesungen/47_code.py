@@ -3,3 +3,4 @@ import random
 
 gewaehlt = random.choice(regale)
 print(f"Gewählt gültig: {gewaehlt in regale}")
+print(gewaehlt)

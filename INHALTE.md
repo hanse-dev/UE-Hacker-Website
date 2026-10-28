@@ -386,12 +386,18 @@ Ordner-Mapping (immer paarweise anpassen):
 - [ ] Ggf. Download-ZIP neu generieren (`npm run build:cells && npm run pack:notebooks`)
 
 ### Python-Lektions-Format (`content/python-woche{N}-{thema}[-en]/lessons.json`): Prüf-Felder
-- [ ] `validation.expected` — Teilstring der Ausgabe (Pflicht, `output_contains`).
-- [ ] `validation.codeContains` (optional, Array) — Bausteine, die im Code der Lernenden stehen müssen
-      (`def`, `class`, `super()`, `try`, `except`, `while`, `for`, `import`, `__str__` …, `json.dumps` …).
-      Kommentarzeilen zählen nicht, Wörter werden ganz gematcht. Nie bei Beispielen, und nie ein Baustein, der
-      schon im vorgegebenen `codeTemplate` steht (Test in `python-lektionen-format.spec.js`). Für Woche 3–12
-      wird das aus der Aufgabenstellung abgeleitet (`Schreibe eine Funktion` → `def`, `for-Schleife` → `for` …).
+- [ ] `validation.expected` — Teilstring der Ausgabe (Pflicht, `output_contains`). Fordert die Aufgabe
+      mehrere Zeilen (Überschrift + Ergebnis, zwei Werte), eine **Liste**: jeder Eintrag muss vorkommen,
+      der Hinweis ab dem zweiten Fehlversuch nennt den ersten fehlenden. Frei wählbare Teile nur mit
+      ihrem festen Anfang aufnehmen (`"Autor: "`).
+- [ ] `validation.varies: true` (Zufalls-Aufgaben) — Prüfen führt den Code bis zu 6-mal aus; mindestens
+      eine Ausgabe muss sich unterscheiden, jede muss `expected` erfüllen. Die Aufgabe muss deshalb den
+      gezogenen Wert mit ausgeben („Gib zum Schluss die Liste wuerfe aus.“); die Wahrscheinlichkeit, dass
+      eine richtige Lösung 6-mal dasselbe zieht, klein halten (nicht nur eine Münze werfen).
+- [ ] `validation.codeContains` (optional, Array) — wird in Lektionen **nicht** ausgewertet (Lektionen
+      prüfen nur die Ausgabe, Test „for-Aufgabe … auch hart codiert“); steht nur noch als Beschreibung der
+      erwarteten Bausteine da. Nie bei Beispielen, und nie ein Baustein, der schon im `codeTemplate` steht
+      (Test in `python-lektionen-format.spec.js`).
 - [ ] `validation.stdin` (optional, Array aus Texten) — Antworten für `input()` beim **Prüfen** (kein
       Eingabefenster, Ausgabe deterministisch); **Ausführen** öffnet weiter das Eingabefenster. In der
       Aufgabe nennen, was automatisch eingegeben wird, und `expected` darauf stützen.

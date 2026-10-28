@@ -35,6 +35,9 @@ welt["korridor"]["gegenstaende"] = []
 welt["labor"]["gegenstaende"] = [Gegenstand("Schweißbrenner", "Ein Werkzeug, das auch defekte Roboter stoppt.")]
 welt["reaktorraum"]["gegenstaende"] = [Gegenstand("Notschalter", "Der rote Not-Aus-Schalter des Reaktors.")]
 
+welt["lager"] = {"beschreibung": "Ein Lager voller Kisten.", "ausgaenge": {"oben": "korridor"}, "gegenstaende": [], "gegner": None}
+welt["korridor"]["ausgaenge"]["unten"] = "lager"
+welt["lager"]["gegenstaende"].append(Gegenstand("Energiezelle", "Eine Zelle, die Energie zurückgibt."))
 class Spieler:
     def __init__(self, name, position):
         self.name = name
@@ -76,12 +79,6 @@ class Spieler:
         else:
             print("🎒 Dein Beutel ist leer.")
 
-spieler = Spieler("Mira", "schleuse")
-spieler.hp = 8
-def heile(spieler, menge):
-    spieler.hp += menge
-    if spieler.hp > 20:
-        spieler.hp = 20
-
-heile(spieler, 5)
-print(f"HP: {spieler.hp}")
+spieler = Spieler("Mira", "korridor")
+spieler.gehe("unten")
+spieler.nimm("Energiezelle")

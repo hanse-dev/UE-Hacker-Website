@@ -76,68 +76,23 @@ class Spieler:
         else:
             print("🎒 Dein Beutel ist leer.")
 
-import random
+spieler = Spieler("Mira", "hof")
+def heile(spieler, menge):
+    spieler.hp += menge
+    if spieler.hp > 20:
+        spieler.hp = 20
 
-class Gegner:
-    def __init__(self, name, hp, staerke):
-        self.name = name
-        self.hp = hp
-        self.staerke = staerke
-
-    def ist_besiegt(self):
-        return self.hp <= 0
-
-welt["hof"]["gegner"] = None
-welt["stallgasse"]["gegner"] = None
-welt["sattelkammer"]["gegner"] = None
-welt["koppel"]["gegner"] = Gegner("Ziegenbock", 15, 6)
-
-def hat_gegenstand(spieler, name):
+spieler.hp = 5
+spieler.inventar.append(Gegenstand("Apfel", "Ein saftiger Apfel für neue Kraft."))
+def benutze(spieler):
     for gegenstand in spieler.inventar:
-        if gegenstand.name == name:
+        if gegenstand.name == "Apfel":
+            spieler.inventar.remove(gegenstand)
+            heile(spieler, 10)
             return True
+    print("Du hast nichts zum Heilen.")
     return False
 
-def kampf(spieler, gegner):
-    print(f"⚔️ Kampf: {spieler.name} gegen {gegner.name}!")
-    bonus = 3 if hat_gegenstand(spieler, "Stallbesen") else 0
-    while spieler.hp > 0 and not gegner.ist_besiegt():
-        schaden = random.randint(1, 6) + bonus
-        gegner.hp -= schaden
-        print(f"   Du triffst für {schaden} Schaden. ({gegner.name}: {max(gegner.hp, 0)} HP)")
-        if gegner.ist_besiegt():
-            break
-        gegenschlag = random.randint(1, gegner.staerke)
-        spieler.hp -= gegenschlag
-        print(f"   {gegner.name} trifft dich für {gegenschlag}. ({spieler.name}: {max(spieler.hp, 0)} HP)")
-    return spieler.hp > 0
-
-def pruefe_gegner(spieler):
-    gegner = welt[spieler.position]["gegner"]
-    if gegner is not None and not gegner.ist_besiegt():
-        if kampf(spieler, gegner):
-            print(f"🎉 {gegner.name} wurde besiegt!")
-
-def fuehre_aus(spieler, text):
-    try:
-        aktion, ziel = text.split()
-    except ValueError:
-        print("🤔 Ich verstehe nur Befehle aus zwei Wörtern, z.B. 'gehe norden' oder 'nimm Taschenlampe'.")
-        return
-    if aktion == "gehe":
-        spieler.gehe(ziel)
-        pruefe_gegner(spieler)
-    elif aktion == "nimm":
-        spieler.nimm(ziel)
-    else:
-        print(f"🤔 '{aktion}' kenne ich nicht. Versuche 'gehe' oder 'nimm'.")
-
-spieler = Spieler("Mira", "hof")
-def fuehre_aus2(spieler, text):
-    if text == "inventar":
-        spieler.zeige_inventar()
-    else:
-        fuehre_aus(spieler, text)
-
-fuehre_aus2(spieler, "nimm Taschenlampe")
-fuehre_aus2(spieler, "inventar")
+benutze(spieler)
+print(f"HP: {spieler.hp}")
+benutze(spieler)

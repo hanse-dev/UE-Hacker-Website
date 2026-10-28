@@ -6,3 +6,4 @@ for i in range(20):
     if wurf < 1 or wurf > 6:
         alle_ok = False
 print(f"Alle im Bereich: {alle_ok}")
+print(f"Letzter Wurf: {wurf}")

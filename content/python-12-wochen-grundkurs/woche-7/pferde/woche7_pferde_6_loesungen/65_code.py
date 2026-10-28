@@ -3,3 +3,4 @@ import random
 
 spruch = random.choice(prophezeiungen)
 print(f"Prophezeiung gültig: {spruch in prophezeiungen}")
+print(spruch)

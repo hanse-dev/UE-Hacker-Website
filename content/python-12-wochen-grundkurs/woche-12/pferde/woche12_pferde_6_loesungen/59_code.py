@@ -35,6 +35,9 @@ welt["stallgasse"]["gegenstaende"] = []
 welt["sattelkammer"]["gegenstaende"] = [Gegenstand("Stallbesen", "Ein kräftiger Besen. Er hilft, den Ziegenbock zu vertreiben.")]
 welt["koppel"]["gegenstaende"] = [Gegenstand("Fohlen", "Das kleine Fohlen folgt dir vertrauensvoll.")]
 
+welt["scheune"] = {"beschreibung": "Eine warme Scheune voller Heu.", "ausgaenge": {"oben": "stallgasse"}, "gegenstaende": [], "gegner": None}
+welt["stallgasse"]["ausgaenge"]["unten"] = "scheune"
+welt["scheune"]["gegenstaende"].append(Gegenstand("Apfel", "Ein saftiger Apfel für neue Kraft."))
 class Spieler:
     def __init__(self, name, position):
         self.name = name
@@ -76,12 +79,6 @@ class Spieler:
         else:
             print("🎒 Dein Beutel ist leer.")
 
-spieler = Spieler("Mira", "hof")
-spieler.hp = 8
-def heile(spieler, menge):
-    spieler.hp += menge
-    if spieler.hp > 20:
-        spieler.hp = 20
-
-heile(spieler, 5)
-print(f"HP: {spieler.hp}")
+spieler = Spieler("Mira", "stallgasse")
+spieler.gehe("unten")
+spieler.nimm("Apfel")

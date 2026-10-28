@@ -1,3 +1,3 @@
-"""### Mission 3: Neue Befehle – Aufgabe 1
+"""### Mission 2: Heilung – Aufgabe 3
 
-Schritt 1 – inventar: Alles inklusive `fuehre_aus()` ist vorgegeben. Schreibe `fuehre_aus2(spieler, text)`: Ist `text` gleich inventar, ruft sie `zeige_inventar()` auf, sonst `fuehre_aus()`. Führe `nimm Fackel` und dann inventar aus."""
+Schritt 3 – Gegenstand benutzen: `heile()` ist vorgegeben, der Spieler hat 5 HP und Heiltrank im Inventar. Schreibe `benutze(spieler)`: Sie sucht Heiltrank im Inventar, entfernt ihn und heilt um 10 – sonst gibt sie Du hast nichts zum Heilen. aus. Rufe sie zweimal auf und gib dazwischen genau HP: 15 aus."""

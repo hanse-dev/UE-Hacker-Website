@@ -1,5 +1,5 @@
-"""### Debug-Quest – Aufgabe 3
+"""### Debug-Quest – Aufgabe 2
 
-🐛 Bug #3 – Ziel: Das Programm soll 💾 Spielstand von Mira gespeichert. ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.
+🐛 Bug #2 – Ziel: Das Programm soll Anzahl: 1 ausgeben. Was ist falsch? Repariere den Code im Editor, bis das Ziel erreicht ist.
 
-**Erklärung:** `\"r\"` öffnet nur zum Lesen (und die Datei gibt es noch nicht). Zum Schreiben braucht `open` den Modus `\"w\"`."""
+**Erklärung:** Ohne `self.` ist `inventar` nur eine lokale Variable in `__init__` – später fehlt das Attribut."""

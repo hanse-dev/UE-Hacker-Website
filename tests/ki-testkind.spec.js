@@ -76,6 +76,45 @@ test('Bericht: nur lohnende Änderungen als Tabelle, Code geprüft wie auf der W
   expect(out).not.toContain('lektion-02');
 });
 
+test('Liste in expected: geschafft, wenn jeder Eintrag in der Ausgabe vorkommt (wie auf der Website)', () => {
+  const { root, antworten } = miniKurs();
+  const datei = path.join(root, 'python-woche2-abenteuer', 'lessons.json');
+  const lessons = JSON.parse(fs.readFileSync(datei, 'utf8'));
+  lessons[0].tasks[1].validation.expected = ['Gold:', '10'];
+  fs.writeFileSync(datei, JSON.stringify(lessons));
+  const out = run(['--content', root, '--wochen', '2', '--antworten', antworten]);
+  expect(out).toContain('Aufgabe 3 | nicht geschafft');
+  expect(out).not.toContain('Aufgabe 2 |');
+});
+
+test('Fehler in einer früheren Aufgabe (SyntaxError) bricht spätere nicht ab – wie getrennte Zellen auf der Website', () => {
+  const { root, antworten } = miniKurs();
+  const datei = path.join(antworten, '2-lektion-01.json');
+  const a = JSON.parse(fs.readFileSync(datei, 'utf8'));
+  a.aufgaben[0].code = 'print("Gold: " gold)'; // SyntaxError
+  a.aufgaben[1].code = 'print("Gold: 15")';
+  fs.writeFileSync(datei, JSON.stringify(a));
+  const out = run(['--content', root, '--wochen', '2', '--antworten', antworten]);
+  expect(out).toContain('| Aufgabe 2 | nicht geschafft: Ausgabe `Fehler: SyntaxError: invalid syntax');
+  expect(out).not.toContain('Aufgabe 3 | nicht geschafft');
+});
+
+test('Vorlage mit Lösungs-Marke: Antwort nur mit eigenen Zeilen oder abgekürzter Vorlage läuft unter der echten Vorlage', () => {
+  const { root, antworten } = miniKurs();
+  const datei = path.join(root, 'python-woche2-abenteuer', 'lessons.json');
+  const lessons = JSON.parse(fs.readFileSync(datei, 'utf8'));
+  lessons[0].tasks[1].codeTemplate = 'faktor = 2\n\n# 🎯 Deine Lösung hier:\n';
+  lessons[0].tasks[2].codeTemplate = 'basis = 15\n\n# 🎯 Deine Lösung hier:\n';
+  fs.writeFileSync(datei, JSON.stringify(lessons));
+  const a = JSON.parse(fs.readFileSync(path.join(antworten, '2-lektion-01.json'), 'utf8'));
+  a.aufgaben[0].code = 'print(f"Gold: {gold * faktor}")'; // nur eigene Zeile, nutzt faktor aus der Vorlage
+  a.aufgaben[1].code = 'basis = ... wie in der Vorlage ...\n# 🎯 Deine Lösung hier:\nprint(f"Gold: {basis}")'; // abgekürzt
+  fs.writeFileSync(path.join(antworten, '2-lektion-01.json'), JSON.stringify(a));
+  const out = run(['--content', root, '--wochen', '2', '--antworten', antworten]);
+  expect(out).not.toContain('Aufgabe 2 | nicht geschafft');
+  expect(out).not.toContain('Aufgabe 3 | nicht geschafft');
+});
+
 test('Prompt enthält Glossar früherer Wochen und die Lektion, aber nie eine Musterlösung', () => {
   const { root } = miniKurs();
   const out = run(['--content', root, '--wochen', '2', '--trocken', '--alter', '10']);

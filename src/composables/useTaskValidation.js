@@ -5,7 +5,9 @@ import { DEV_SKIP_CHECKS } from './devSkipChecks.js';
 
 /**
  * @param {string} output - stdout der ausgefuehrten Zelle
- * @param {object} validation - { type, expected }.
+ * @param {object} validation - { type, expected }. `expected` darf bei `output_contains` auch eine
+ *   Liste sein: dann muss jeder Eintrag in der Ausgabe vorkommen (Aufgaben mit mehreren geforderten
+ *   Zeilen, z.B. Ueberschrift + Ergebnis).
  *
  * Prueft bewusst nur die Ausgabe - nicht, wie sie zustande kam. Fuer den Wochen-Check
  * (`CodeChallenge.vue`, zertifikatsrelevant) gibt es dafuer zusaetzlich `structuralChecksOk()`.
@@ -22,6 +24,8 @@ export function validateOutput(output, validation) {
   // `expected` weg, das ist also rueckwirkend kompatibel.
   if (expected === undefined) return true;
 
+  if (Array.isArray(expected) && type !== 'output_equals') return missingExpected(out, validation).length === 0;
+
   switch (type) {
     case 'output_contains':
       // Bewusst tolerant: Groß-/Kleinschreibung, mehrfache/rand-staendige Leerzeichen und
@@ -34,6 +38,32 @@ export function validateOutput(output, validation) {
     default:
       return normalizeForComparison(out).includes(normalizeForComparison(expected));
   }
+}
+
+/**
+ * Die Eintraege von `validation.expected`, die in der Ausgabe fehlen (tolerant wie
+ * `output_contains`) - fuer den Hinweis ab dem zweiten Fehlversuch: gezeigt wird der erste
+ * fehlende statt der ganzen Liste.
+ */
+export function missingExpected(output, validation) {
+  const expected = validation?.expected;
+  if (expected === undefined) return [];
+  const out = normalizeForComparison((output || '').trim());
+  return (Array.isArray(expected) ? expected : [expected])
+    .filter((e) => !out.includes(normalizeForComparison(e)));
+}
+
+/**
+ * `validation.varies` (Zufalls-Aufgaben, Woche 7): Die Aufgabe wird mehrmals ausgefuehrt und muss
+ * dabei mindestens einmal eine andere Ausgabe liefern. So faellt auf, wenn die Zufallswerte gar
+ * nicht aus `random` kommen, ohne dass der Code selbst geprueft wird. Die Aufgabe muss dafuer den
+ * gezogenen Wert mit ausgeben.
+ */
+export const VARIES_MAX_RUNS = 6;
+
+export function outputsVary(outputs) {
+  if (DEV_SKIP_CHECKS) return true;
+  return new Set(outputs.map((o) => (o || '').trim())).size > 1;
 }
 
 /**

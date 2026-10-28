@@ -1,10 +1,9 @@
-import json
+class Gegenstand:
+    def __init__(self, name, beschreibung):
+        self.name = name
+        self.beschreibung = beschreibung
 
-def lade_stand(dateiname):
-    try:
-        with open(dateiname, "r") as f:
-            return json.load(f)
-    except FileNotFoundError:
-        return {}
+    def __str__(self):
+        return f"{self.name} – {self.beschreibung}"
 
-print(f"Anzahl: {len(lade_stand('gibtsnicht.json'))}")
+print(Gegenstand("Taschenlampe", "Sie leuchtet in dunklen Ecken."))

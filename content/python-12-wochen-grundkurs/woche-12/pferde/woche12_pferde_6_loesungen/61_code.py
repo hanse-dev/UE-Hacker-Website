@@ -77,11 +77,11 @@ class Spieler:
             print("🎒 Dein Beutel ist leer.")
 
 spieler = Spieler("Mira", "hof")
+spieler.hp = 8
 def heile(spieler, menge):
     spieler.hp += menge
     if spieler.hp > 20:
         spieler.hp = 20
 
-spieler.hp = 18
 heile(spieler, 5)
 print(f"HP: {spieler.hp}")

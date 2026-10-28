@@ -9,3 +9,4 @@ for z in schluessel:
         erlaubt = erlaubt + 1
 print(f"Länge: {len(schluessel)}")
 print(f"Nur erlaubte Zeichen: {erlaubt == len(schluessel)}")
+print(schluessel)

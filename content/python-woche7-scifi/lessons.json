@@ -53,14 +53,15 @@
         }
       },
       {
-        "instruction": "Wirf zwanzigmal mit random.randint(1, 6) in einer for-Schleife. Setze alle_ok = True am Anfang und auf False, sobald ein Wurf nicht zwischen 1 und 6 liegt. Gib danach genau Alle im Bereich: True aus.",
+        "instruction": "Wirf zwanzigmal mit random.randint(1, 6) in einer for-Schleife. Setze alle_ok = True am Anfang und auf False, sobald ein Wurf nicht zwischen 1 und 6 liegt. Gib danach genau Alle im Bereich: True aus. Gib zum Schluss den letzten Wurf aus, z. B. Letzter Wurf: 4.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Alle im Bereich: True",
           "codeContains": [
             "for"
-          ]
+          ],
+          "varies": true
         }
       },
       {
@@ -90,19 +91,21 @@
         }
       },
       {
-        "instruction": "Die Liste module ist vorgegeben. Wähle mit random.choice() einen Eintrag und gib genau Enthalten: True aus (gewählt in module).",
+        "instruction": "Die Liste module ist vorgegeben. Wähle mit random.choice() einen Eintrag und gib genau Enthalten: True aus (gewählt in module). Gib danach den gewählten Eintrag aus.",
         "codeTemplate": "module = [\"Navigation\", \"Kommunikation\", \"Antrieb\", \"Lebenserhaltung\", \"Sensoren\"]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Enthalten: True"
+          "expected": "Enthalten: True",
+          "varies": true
         }
       },
       {
-        "instruction": "Die Liste module ist vorgegeben. Ziehe mit random.sample() drei Einträge in gezogen, mische gezogen mit random.shuffle() und gib genau Anzahl: 3 und in der nächsten Zeile Verschieden: True aus (len(set(gezogen)) == 3).",
+        "instruction": "Die Liste module ist vorgegeben. Ziehe mit random.sample() drei Einträge in gezogen, mische gezogen mit random.shuffle() und gib genau Anzahl: 3 und in der nächsten Zeile Verschieden: True aus (len(set(gezogen)) == 3). Gib zum Schluss die Liste gezogen aus.",
         "codeTemplate": "module = [\"Navigation\", \"Kommunikation\", \"Antrieb\", \"Lebenserhaltung\", \"Sensoren\"]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Anzahl: 3\nVerschieden: True"
+          "expected": "Anzahl: 3\nVerschieden: True",
+          "varies": true
         }
       }
     ]
@@ -132,14 +135,15 @@
         }
       },
       {
-        "instruction": "Schmiede einen Schlüssel aus 10 zufälligen Zeichen (Buchstaben und Ziffern) mit \"\".join und random.choice. Gib genau Länge: 10 und in der nächsten Zeile Nur erlaubte Zeichen: True aus (prüfe jedes Zeichen mit einer for-Schleife und in).",
+        "instruction": "Schmiede einen Schlüssel aus 10 zufälligen Zeichen (Buchstaben und Ziffern) mit \"\".join und random.choice. Gib genau Länge: 10 und in der nächsten Zeile Nur erlaubte Zeichen: True aus (prüfe jedes Zeichen mit einer for-Schleife und in). Gib zum Schluss den Schlüssel aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Länge: 10\nNur erlaubte Zeichen: True",
           "codeContains": [
             "for"
-          ]
+          ],
+          "varies": true
         }
       }
     ]
@@ -301,27 +305,30 @@
     "lessonSummary": "Mission geschafft: Du hast drei Module gerufen und ihre Kraft bewiesen!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Drei Module: Importiere random, time und string (mindestens eines mit as). Gib genau Zufall im Bereich: True (randint(1, 6) liegt zwischen 1 und 6), in der nächsten Zeile Buchstaben: 52 und dann Zeit vergeht: True aus (time.time() ist größer als 0).",
+        "instruction": "Schritt 1 – Drei Module: Importiere random, time und string (mindestens eines mit as). Gib genau Zufall im Bereich: True (randint(1, 6) liegt zwischen 1 und 6), in der nächsten Zeile Buchstaben: 52 und dann Zeit vergeht: True aus (time.time() ist größer als 0). Speichere den Wurf dafür in wurf und gib zum Schluss Wurf: (die Zahl) aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Zufall im Bereich: True\nBuchstaben: 52\nZeit vergeht: True"
+          "expected": "Zufall im Bereich: True\nBuchstaben: 52\nZeit vergeht: True",
+          "varies": true
         }
       },
       {
-        "instruction": "Schritt 2 – Warte-Ritual: Erzeuge mit random.uniform(0.1, 0.3) eine Wartezeit, gib Ritual beginnt aus, warte mit time.sleep() genau so lange und gib danach Ritual vollendet aus. Gib zum Schluss Gewartet: True aus (gemessene Zeit mindestens 0.08).",
+        "instruction": "Schritt 2 – Warte-Ritual: Erzeuge mit random.uniform(0.1, 0.3) eine Wartezeit, gib Ritual beginnt aus, warte mit time.sleep() genau so lange und gib danach Ritual vollendet aus. Gib zum Schluss Gewartet: True aus (gemessene Zeit mindestens 0.08). Gib zum Schluss die Wartezeit aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Ritual beginnt\nRitual vollendet\nGewartet: True"
+          "expected": "Ritual beginnt\nRitual vollendet\nGewartet: True",
+          "varies": true
         }
       },
       {
-        "instruction": "Schritt 3 – Fragment: Ziehe mit random.choice() einen Buchstaben aus string.ascii_letters in fragment. Gib genau Fragment gültig: True (fragment ist in ascii_letters) und in der nächsten Zeile Länge: 1 aus.",
+        "instruction": "Schritt 3 – Fragment: Ziehe mit random.choice() einen Buchstaben aus string.ascii_letters in fragment. Gib genau Fragment gültig: True (fragment ist in ascii_letters) und in der nächsten Zeile Länge: 1 aus. Gib zum Schluss fragment aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Fragment gültig: True\nLänge: 1"
+          "expected": "Fragment gültig: True\nLänge: 1",
+          "varies": true
         }
       }
     ]
@@ -334,27 +341,30 @@
     "lessonSummary": "Mission geschafft: Würfel, Auswahl und Mischen – alles per Zufall im Griff!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Drei Würfe: Wirf dreimal mit random.randint(1, 6) und speichere die Würfe mit append() in der Liste wuerfe (Start []). Gib genau Würfe: 3 (len) und in der nächsten Zeile Alle im Bereich: True aus.",
+        "instruction": "Schritt 1 – Drei Würfe: Wirf dreimal mit random.randint(1, 6) und speichere die Würfe mit append() in der Liste wuerfe (Start []). Gib genau Würfe: 3 (len) und in der nächsten Zeile Alle im Bereich: True aus. Gib zum Schluss die Liste wuerfe aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Würfe: 3\nAlle im Bereich: True"
+          "expected": "Würfe: 3\nAlle im Bereich: True",
+          "varies": true
         }
       },
       {
-        "instruction": "Schritt 2 – Auswählen: Die Liste module ist vorgegeben. Wähle mit random.choice() einen Eintrag und gib genau Gewählt gültig: True aus.",
+        "instruction": "Schritt 2 – Auswählen: Die Liste module ist vorgegeben. Wähle mit random.choice() einen Eintrag und gib genau Gewählt gültig: True aus. Gib danach den gewählten Eintrag aus.",
         "codeTemplate": "module = [\"Navigation\", \"Kommunikation\", \"Antrieb\", \"Lebenserhaltung\", \"Sensoren\"]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Gewählt gültig: True"
+          "expected": "Gewählt gültig: True",
+          "varies": true
         }
       },
       {
-        "instruction": "Schritt 3 – Ziehen und mischen: Die Liste module mit sechs Einträgen ([\"Navigation\", \"Kommunikation\", \"Antrieb\", \"Lebenserhaltung\", \"Sensoren\", \"Waffen\"]) ist vorgegeben. Ziehe mit random.sample() drei Einträge in gezogen, mische sie mit random.shuffle() und gib genau Anzahl: 3 und in der nächsten Zeile Verschieden: True aus.",
+        "instruction": "Schritt 3 – Ziehen und mischen: Die Liste module mit sechs Einträgen ([\"Navigation\", \"Kommunikation\", \"Antrieb\", \"Lebenserhaltung\", \"Sensoren\", \"Waffen\"]) ist vorgegeben. Ziehe mit random.sample() drei Einträge in gezogen, mische sie mit random.shuffle() und gib genau Anzahl: 3 und in der nächsten Zeile Verschieden: True aus. Gib zum Schluss die Liste gezogen aus.",
         "codeTemplate": "module = [\"Navigation\", \"Kommunikation\", \"Antrieb\", \"Lebenserhaltung\", \"Sensoren\", \"Waffen\"]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Anzahl: 3\nVerschieden: True"
+          "expected": "Anzahl: 3\nVerschieden: True",
+          "varies": true
         }
       }
     ]
@@ -375,11 +385,12 @@
         }
       },
       {
-        "instruction": "Schritt 2 – Schlüssel: Schmiede mit random.choice, einer List Comprehension und \"\".join einen Schlüssel aus 8 Zeichen des Alphabets. Gib genau Länge: 8 und in der nächsten Zeile Nur erlaubte Zeichen: True aus.",
+        "instruction": "Schritt 2 – Schlüssel: Schmiede mit random.choice, einer List Comprehension und \"\".join einen Schlüssel aus 8 Zeichen des Alphabets. Gib genau Länge: 8 und in der nächsten Zeile Nur erlaubte Zeichen: True aus. Gib zum Schluss den Schlüssel aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Länge: 8\nNur erlaubte Zeichen: True"
+          "expected": "Länge: 8\nNur erlaubte Zeichen: True",
+          "varies": true
         }
       },
       {
@@ -400,15 +411,16 @@
     "lessonSummary": "Der Würfelturm steht: Würfeln, Gewinner finden und ein ganzes Turnier auswerten!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Würfeln: Drei Spieler würfeln je einmal mit random.randint(1, 6). Speichere die Würfe in der Liste wuerfe (append) und gib genau Spieler: 3 und in der nächsten Zeile Alle im Bereich: True aus.",
+        "instruction": "Schritt 1 – Würfeln: Drei Spieler würfeln je einmal mit random.randint(1, 6). Speichere die Würfe in der Liste wuerfe (append) und gib genau Spieler: 3 und in der nächsten Zeile Alle im Bereich: True aus. Gib zum Schluss die Liste wuerfe aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Spieler: 3\nAlle im Bereich: True"
+          "expected": "Spieler: 3\nAlle im Bereich: True",
+          "varies": true
         }
       },
       {
-        "instruction": "Schritt 2 – Gewinner: Schreibe eine Funktion finde_gewinner(wuerfe), die den Index des höchsten Wurfs zurückgibt (bei Gleichstand der erste). Gib für [4, 6, 2] genau Gewinner: Spieler 2 aus (Index + 1).",
+        "instruction": "Schritt 2 – Gewinner: Schreibe eine Funktion finde_gewinner(wuerfe), die den Index des höchsten Wurfs zurückgibt (bei Gleichstand der erste). Gib für [4, 6, 2] genau Gewinner: Spieler 2 aus (Index + 1). Tipp: Merke dir in beste die Stelle des bisher höchsten Wurfs (Start 0) und vergleiche mit for i in range(len(wuerfe)) jeden wuerfe[i] mit wuerfe[beste].",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -419,11 +431,12 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Turnier: finde_gewinner ist vorgegeben. Spiele 5 Runden: In jeder Runde würfeln 3 Spieler (random.randint(1, 6)), der Gewinner bekommt einen Sieg in der Liste siege = [0, 0, 0]. Zähle danach die Siege zusammen und gib genau Siege insgesamt: 5 aus.",
+        "instruction": "Schritt 3 – Turnier: finde_gewinner ist vorgegeben. Lege vor der Runden-Schleife siege = [0, 0, 0] an. Spiele dann 5 Runden mit einer for-Schleife: Fang in jeder Runde mit wuerfe = [] neu an und lass darin mit einer zweiten for-Schleife 3 Spieler würfeln (random.randint(1, 6)). Danach findest du mit gewinner = finde_gewinner(wuerfe) heraus, wer gewonnen hat; mit siege[gewinner] = siege[gewinner] + 1 bekommt er einen Sieg. Zähle nach allen Runden die Siege zusammen und gib genau Siege insgesamt: 5 aus. Gib zum Schluss die Liste siege aus.",
         "codeTemplate": "import random\n\ndef finde_gewinner(wuerfe):\n    beste = 0\n    for i in range(len(wuerfe)):\n        if wuerfe[i] > wuerfe[beste]:\n            beste = i\n    return beste\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Siege insgesamt: 5"
+          "expected": "Siege insgesamt: 5",
+          "varies": true
         }
       }
     ]
@@ -436,27 +449,30 @@
     "lessonSummary": "Das Orakel spricht: Rune, Prophezeiung und Horoskop entstehen aus Zufall und Text!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Glücks-Rune: Der Name steht in name = \"Nova\". Ziehe mit random.choice() so viele Großbuchstaben aus string.ascii_uppercase, wie der Name Buchstaben hat, und füge sie mit \"\".join zur Glücks-Rune zusammen. Gib genau Länge stimmt: True (len(rune) == len(name)) und in der nächsten Zeile Nur Großbuchstaben: True aus.",
+        "instruction": "Schritt 1 – Glücks-Rune: Der Name steht in name = \"Nova\". Ziehe mit random.choice() so viele Großbuchstaben aus string.ascii_uppercase, wie der Name Buchstaben hat, und füge sie mit \"\".join zur Glücks-Rune zusammen. Gib genau Länge stimmt: True (len(rune) == len(name)) und in der nächsten Zeile Nur Großbuchstaben: True aus. Gib zum Schluss die Rune aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Länge stimmt: True\nNur Großbuchstaben: True"
+          "expected": "Länge stimmt: True\nNur Großbuchstaben: True",
+          "varies": true
         }
       },
       {
-        "instruction": "Schritt 2 – Prophezeiung: Die Liste prophezeiungen mit sechs Sprüchen ist vorgegeben. Wähle mit random.choice() eine aus und gib genau Prophezeiung gültig: True aus (Spruch in der Liste).",
+        "instruction": "Schritt 2 – Prophezeiung: Die Liste prophezeiungen mit sechs Sprüchen ist vorgegeben. Wähle mit random.choice() eine aus und gib genau Prophezeiung gültig: True aus (Spruch in der Liste). Gib danach den gewählten Spruch aus.",
         "codeTemplate": "prophezeiungen = [\"Ein neuer Planet wartet auf dich\", \"Die Sterne stehen günstig\", \"Traue dem Bordcomputer\", \"Ein Signal aus der Ferne\", \"Hüte dich vor dem Sonnensturm\", \"Ein alter Kamerad meldet sich\"]\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Prophezeiung gültig: True"
+          "expected": "Prophezeiung gültig: True",
+          "varies": true
         }
       },
       {
-        "instruction": "Schritt 3 – Horoskop: Setze name = \"Nova\", ziehe eine Rune (ein zufälliger Großbuchstabe) und einen Spruch aus prophezeiungen und baue mit einem f-String horoskop = <name> – <Rune>: <Spruch>. Gib genau Name enthalten: True (name in horoskop) und in der nächsten Zeile Spruch enthalten: True aus.",
+        "instruction": "Schritt 3 – Horoskop: Setze name = \"Nova\", ziehe eine Rune (ein zufälliger Großbuchstabe) und einen Spruch aus prophezeiungen und baue daraus mit einem f-String horoskop, z. B. Nova - K: Die Sterne stehen günstig (im f-String stehen {name}, {rune} und {spruch}). Gib genau Name enthalten: True (name in horoskop) und in der nächsten Zeile Spruch enthalten: True aus. Gib zum Schluss das Horoskop aus.",
         "codeTemplate": "prophezeiungen = [\"Ein neuer Planet wartet auf dich\", \"Die Sterne stehen günstig\", \"Traue dem Bordcomputer\", \"Ein Signal aus der Ferne\", \"Hüte dich vor dem Sonnensturm\", \"Ein alter Kamerad meldet sich\"]\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Name enthalten: True\nSpruch enthalten: True"
+          "expected": "Name enthalten: True\nSpruch enthalten: True",
+          "varies": true
         }
       }
     ]
@@ -469,19 +485,21 @@
     "lessonSummary": "Der Zufalls-Sektor steht: Räume, Gefahren und Schilde – jedes Mal neu!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Räume: Die Liste typen = [\"Frachtraum\", \"Reaktor\", \"Leerer Raum\"] ist vorgegeben. Wähle mit einer List Comprehension und random.choice() fünf zufällige Räume in raeume und gib genau Räume: 5 und in der nächsten Zeile Alle gültig: True aus.",
+        "instruction": "Schritt 1 – Räume: Die Liste typen = [\"Frachtraum\", \"Reaktor\", \"Leerer Raum\"] ist vorgegeben. Wähle mit einer List Comprehension und random.choice() fünf zufällige Räume in raeume und gib genau Räume: 5 und in der nächsten Zeile Alle gültig: True aus. Gib zum Schluss die Liste raeume aus.",
         "codeTemplate": "typen = [\"Frachtraum\", \"Reaktor\", \"Leerer Raum\"]\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Räume: 5\nAlle gültig: True"
+          "expected": "Räume: 5\nAlle gültig: True",
+          "varies": true
         }
       },
       {
-        "instruction": "Schritt 2 – Gefahren: Die Liste gefahren = [\"Drohne\", \"Alien\", \"Roboter\"] ist vorgegeben. Gehe fünf Räume durch: Ist random.randint(0, 1) gleich 1, steht im Raum eine zufällige Gefahr (random.choice), sonst der Text \"leer\". Sammle die Inhalte mit append() in inhalte und zähle die Gefahren (Inhalte ungleich \"leer\") in gefahren_anzahl. Gib genau Räume: 5 und in der nächsten Zeile Anzahl passt: True aus (gefahren_anzahl liegt zwischen 0 und 5).",
+        "instruction": "Schritt 2 – Gefahren: Die Liste gefahren = [\"Drohne\", \"Alien\", \"Roboter\"] ist vorgegeben. Gehe fünf Räume durch: Ist random.randint(0, 1) gleich 1, steht im Raum eine zufällige Gefahr (random.choice), sonst der Text \"leer\". Sammle die Inhalte mit append() in inhalte und zähle die Gefahren (Inhalte ungleich \"leer\") in gefahren_anzahl. Gib genau Räume: 5 und in der nächsten Zeile Anzahl passt: True aus (gefahren_anzahl liegt zwischen 0 und 5). Gib zum Schluss die Liste inhalte aus.",
         "codeTemplate": "gefahren = [\"Drohne\", \"Alien\", \"Roboter\"]\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Räume: 5\nAnzahl passt: True"
+          "expected": "Räume: 5\nAnzahl passt: True",
+          "varies": true
         }
       },
       {
@@ -505,48 +523,52 @@
     "lessonSummary": "Die große Wiederholung ist geschafft: Zufall, Zufallswege, Primzahlen und ein Schachbrett aus Woche 4 bis 7!",
     "tasks": [
       {
-        "instruction": "Schritt 1 – Zufallswerte: Erzeuge in einer for-Schleife zehn zufällige Ganzzahlen zwischen 60 und 140 (random.randint) und speichere sie mit append() in werte. Gib genau Anzahl: 10, in der nächsten Zeile Alle im Bereich: True und dann Höchster mindestens Durchschnitt: True aus (Durchschnitt = Summe geteilt durch len).",
+        "instruction": "Schritt 1 – Zufallswerte: Erzeuge in einer for-Schleife zehn zufällige Ganzzahlen zwischen 60 und 140 (random.randint) und speichere sie mit append() in werte. Gib genau Anzahl: 10, in der nächsten Zeile Alle im Bereich: True und dann Höchster mindestens Durchschnitt: True aus (Durchschnitt = Summe geteilt durch len). Tipp: Zähle die Summe in einer Schleife mit summe = summe + wert zusammen, teile mit / durch len(werte) und merke dir den höchsten Wert wie in Woche 6. Gib zum Schluss die Liste werte aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Anzahl: 10\nAlle im Bereich: True\nHöchster mindestens Durchschnitt: True",
           "codeContains": [
             "for"
-          ]
+          ],
+          "varies": true
         }
       },
       {
-        "instruction": "Schritt 2 – Zufalls-Ereignisse: Die Liste ereignisse = [\"Asteroid\", \"Sonnensturm\", \"Alien\", \"Nebel\"] ist vorgegeben. Wähle für zehn Stockwerke je ein zufälliges Ereignis (random.choice) und sammle sie in der Liste verlauf. Gib genau Ereignisse: 10 und in der nächsten Zeile Alle gültig: True aus.",
+        "instruction": "Schritt 2 – Zufalls-Ereignisse: Die Liste ereignisse = [\"Asteroid\", \"Sonnensturm\", \"Alien\", \"Nebel\"] ist vorgegeben. Wähle für zehn Stockwerke je ein zufälliges Ereignis (random.choice) und sammle sie in der Liste verlauf. Gib genau Ereignisse: 10 und in der nächsten Zeile Alle gültig: True aus. Gib zum Schluss die Liste verlauf aus.",
         "codeTemplate": "ereignisse = [\"Asteroid\", \"Sonnensturm\", \"Alien\", \"Nebel\"]\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Ereignisse: 10\nAlle gültig: True"
+          "expected": "Ereignisse: 10\nAlle gültig: True",
+          "varies": true
         }
       },
       {
-        "instruction": "Schritt 3 – Zufallsweg: Starte bei position = 0 mit der Liste karte = [0] und schritte = 0. Wiederhole mit while, solange schritte kleiner als 100 ist: Wähle mit random.choice([-1, 1]) einen Schritt, addiere ihn zur Position, hänge die Position an karte an und erhöhe schritte. Beende die Schleife mit break, wenn die Position 5 erreicht. Gib genau Höchstens 100 Schritte: True und in der nächsten Zeile Karte passt: True aus (len(karte) == schritte + 1).",
+        "instruction": "Schritt 3 – Zufallsweg: Starte bei position = 0 mit der Liste karte = [0] und schritte = 0. Wiederhole mit while, solange schritte kleiner als 100 ist: Wähle mit random.choice([-1, 1]) einen Schritt, addiere ihn zur Position, hänge die Position an karte an und erhöhe schritte. Beende die Schleife mit break, wenn die Position 5 erreicht. Gib genau Höchstens 100 Schritte: True und in der nächsten Zeile Karte passt: True aus (len(karte) == schritte + 1). Gib zum Schluss die Liste karte aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Höchstens 100 Schritte: True\nKarte passt: True",
           "codeContains": [
             "while"
-          ]
+          ],
+          "varies": true
         }
       },
       {
-        "instruction": "Schritt 4 – Zufalls-Fähigkeit: Schreibe eine Funktion wuerfle_faehigkeit(), die mit random.choice() eine Fähigkeit aus [\"Scan\", \"Sprung\", \"Reparatur\"] zurückgibt. Rufe sie 20-mal auf und gib genau Alle gültig: True aus.",
+        "instruction": "Schritt 4 – Zufalls-Fähigkeit: Schreibe eine Funktion wuerfle_faehigkeit(), die mit random.choice() eine Fähigkeit aus [\"Scan\", \"Sprung\", \"Reparatur\"] zurückgibt. Rufe sie 20-mal auf und gib genau Alle gültig: True aus. Gib zum Schluss mit einem print() drei Aufrufe von wuerfle_faehigkeit() aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Alle gültig: True",
           "codeContains": [
             "def"
-          ]
+          ],
+          "varies": true
         }
       },
       {
-        "instruction": "Schritt 5 – Primzahlen bis 100: Sammle mit einer for-Schleife (2 bis 100) und einer inneren Schleife mit % alle Primzahlen in der Liste primzahlen. Gib genau Anzahl: 25 und in der nächsten Zeile Größte: 97 aus (letzter Eintrag).",
+        "instruction": "Schritt 5 – Primzahlen bis 100: Sammle mit einer for-Schleife (2 bis 100) und einer inneren Schleife mit % alle Primzahlen in der Liste primzahlen. Gib genau Anzahl: 25 und in der nächsten Zeile Größte: 97 aus (letzter Eintrag). Merke dir für jede Zahl in ist_prim = True, ob sie eine Primzahl ist, und setze es auf False, sobald die innere Schleife einen Teiler findet (% ergibt 0). Den letzten Eintrag holst du mit primzahlen[-1].",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -557,7 +579,7 @@
         }
       },
       {
-        "instruction": "Schritt 6 – Schachbrett: Baue ein 8×8-Brett aus zwei verschachtelten Schleifen. Auf Feld (zeile, spalte) steht \"#\", wenn (zeile + spalte) % 2 == 0 ist, sonst \".\". Gib die ersten zwei Zeilen aus (jede Zeile: die Zeichen mit \" \".join zusammengefügt): # . # . # . # . und darunter . # . # . # . #",
+        "instruction": "Schritt 6 – Schachbrett: Baue ein 8×8-Brett aus zwei verschachtelten Schleifen. Auf Feld (zeile, spalte) steht \"#\", wenn (zeile + spalte) % 2 == 0 ist, sonst \".\". Die innere Schleife baut jede Zeile als eigene Liste reihe mit 8 Zeichen; mit brett.append(reihe) kommt sie ins Brett, danach ist brett[0] die erste Zeile. Gib die ersten zwei Zeilen aus (jede Zeile: die Zeichen mit \" \".join zusammengefügt): # . # . # . # . und darunter . # . # . # . #",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
@@ -565,7 +587,7 @@
         }
       },
       {
-        "instruction": "Schritt 7 – Figur über das Feld: Baue ein 8×8-Feld als Liste von Listen (zwei verschachtelte Schleifen mit append(), jedes Feld 0). Die Figur startet bei figur = [0, 0], das Ziel ist ziel = [7, 7]. Wiederhole mit while True: Ist figur gleich ziel, beende mit break. Sonst geht die Figur nach rechts (figur[1] += 1), solange figur[1] kleiner als 7 ist, und danach nach unten (figur[0] += 1). Zähle die Züge. Gib genau Züge: 14 und in der nächsten Zeile Ziel erreicht: True aus.",
+        "instruction": "Schritt 7 – Figur über das Feld: Die Figur startet auf einem 8×8-Feld bei figur = [0, 0], das Ziel ist ziel = [7, 7]. Wiederhole mit while True: Ist figur gleich ziel, beende mit break. Sonst geht die Figur einen Schritt: nach rechts (figur[1] += 1), solange figur[1] kleiner als 7 ist, sonst nach unten (figur[0] += 1). figur[0] ist die Zeile, figur[1] die Spalte. Zähle die Züge. Gib genau Züge: 14 und in der nächsten Zeile Ziel erreicht: True aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

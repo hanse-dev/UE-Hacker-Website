@@ -1,3 +1,5 @@
-"""### Mission 1: Ein neuer Raum – Aufgabe 2
+"""## ⭐ Missionen
 
-Schritt 2 – Gegenstand: Welt (mit Raum scheune) und `Gegenstand` sind vorgegeben. Lege in scheune den Gegenstand `Gegenstand(\"Apfel\", \"Ein saftiger Apfel für neue Kraft.\")` in die Liste `\"gegenstaende\"` und gib die Namen als Liste aus (genau ['Apfel'])."""
+### Mission 1: Ein neuer Raum – Aufgabe 1
+
+Schritt 1 – Raum anlegen: Welt und `beschreibe()` sind vorgegeben. Lege `welt[\"scheune\"]` mit der Beschreibung Eine warme Scheune voller Heu. und dem Ausgang oben nach stallgasse an und füge in stallgasse den Ausgang unten nach scheune hinzu. Rufe `beschreibe(\"stallgasse\")` auf."""

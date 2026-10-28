@@ -16,4 +16,9 @@ def beschreibe(raumname):
     print(f"📍 {raumname.capitalize()}: {raum['beschreibung']}")
     print("   Ausgänge:", ", ".join(raum["ausgaenge"]))
 
-print(sorted(welt))
+import json
+with open("welt.json", "w", encoding="utf-8") as f:
+    json.dump(welt, f, ensure_ascii=False)
+with open("welt.json", "r", encoding="utf-8") as f:
+    daten = json.load(f)
+print(f"Räume: {len(daten)}")

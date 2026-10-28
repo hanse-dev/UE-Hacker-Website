@@ -8,3 +8,4 @@ for raum in raeume:
         alle_gueltig = False
 print(f"Räume: {len(raeume)}")
 print(f"Alle gültig: {alle_gueltig}")
+print(raeume)
