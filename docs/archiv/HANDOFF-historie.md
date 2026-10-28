@@ -3130,3 +3130,7 @@ Alles unten ist nach `main` gemergt. Für Details `grep -n "^### 3.NN" docs/arch
   (`korb(..., breit=2)` in `scripts/build_microbit_bilder.py`), neues Bild `breiter-korb.svg`.
 - Python-Lösung gegen ein nachgebautes `microbit`-Modul simuliert (Korb stoppt bei 3, beide Lampen
   fangen).
+- KI-Test-Kind in allen drei Varianten: erst 3 × „hoch“ (`|` tippen, `>=` in JS nie gezeigt,
+  Python-Bonus „Durch die Wand“ in Stufe 1 ließ die alten Zeilen stehen), nach der Überarbeitung
+  keine „hoch“ mehr. Offen gelassen (mittel, alt): Ort zum Hineinziehen der `.hex`-Datei, Reihenfolge
+  im „daneben“-Teil beim Bonus „Zwei Aufträge verbinden“.
