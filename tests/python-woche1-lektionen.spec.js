@@ -344,6 +344,41 @@ test.describe('Aufgaben-Pruefung: Struktur und vorgegebene Eingaben', () => {
     await expect(task.locator('.feedback-error')).toBeVisible({ timeout: 10000 });
   });
 
+  test('Weiter-Flow: Ausführen zeigt den Prüfen-Hinweis, gelöste Aufgabe führt zur nächsten', async ({ page }) => {
+    await page.goto('/kurs/python-12-wochen-grundkurs?week=1&variant=abenteuer');
+    await page.locator('.js-course-tour .stepper-step').nth(1).click(); // Lektion 2: zwei Aufgaben
+    await startKernel(page);
+    // nur noch ein kurzer Hinweis über dem Editor, keine Erklärung zum orangen Rahmen
+    await expect(page.locator('.editor-hint').first()).toContainText('erst dann ist sie erledigt');
+    await expect(page.locator('.editor-hint-ran')).toHaveCount(0);
+
+    await page.locator('.task-block').nth(0).locator('.btn-run').click(); // Beispiel
+    const t1 = page.locator('.task-block').nth(1);
+    await t1.locator('.code-editor').fill('ort = "Elfenwald"\nprint(ort)');
+    await t1.locator('.btn-run').click();
+    await expect(t1.locator('.run-then-check')).toBeVisible({ timeout: 10000 });
+    await expect(t1.locator('.task-done')).toHaveCount(0);
+
+    await t1.locator('.btn-check').click();
+    await expect(t1.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+    await expect(t1.locator('.run-then-check')).toHaveCount(0);
+    await expect(t1.locator('.code-ran-note')).toHaveCount(0); // gelöst: kein "schon ausgeführt" mehr
+    const marginLeft = await t1.locator('.task-status-label').evaluate((el) => getComputedStyle(el).marginLeft);
+    expect(marginLeft).not.toBe('0px'); // "(erledigt)" klebt nicht am Text
+
+    const next = t1.locator('.btn-next-task');
+    await expect(next).toContainText('Aufgabe 3');
+    await next.click();
+    const t2 = page.locator('.task-block').nth(2);
+    await expect(t2.locator('.code-editor')).toBeFocused();
+
+    await t2.locator('.code-editor').fill('gold = 50\ngold = 150\nprint(gold)');
+    await t2.locator('.btn-check').click();
+    await expect(t2.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('.btn-next-task')).toHaveCount(0); // alles gelöst: nur noch "Weiter zur nächsten Lektion"
+    await expect(page.locator('.lesson-complete-box')).toBeVisible();
+  });
+
   test('Liste in expected: jede geforderte Zeile muss vorkommen, der Hinweis nennt die erste fehlende', async ({ page }) => {
     await page.goto('/kurs/python-12-wochen-grundkurs?week=1&variant=abenteuer');
     await page.locator('.js-course-tour .stepper-step').nth(8).click(); // Mission 3: Heldenprofil

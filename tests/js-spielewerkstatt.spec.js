@@ -56,9 +56,10 @@ test.describe('JS-Spielewerkstatt (Sandbox-Engine)', () => {
     // wurde - sonst wirkt "keine Ausgabe" faelschlich wie "nichts ist passiert".
     await expect(page.locator('.js-workspace .output-content')).toContainText('Spielfeld');
 
-    // Ein oranger Rahmen um den Editor zeigt, dass dieser Code schon ausgeführt wurde.
+    // Ein oranger Rahmen um den Editor zeigt, dass dieser Code schon ausgeführt wurde. Der Satz
+    // dazu steht nur bei offenen Aufgaben (HANDOFF 3.127) - diese ist gelöst.
     await expect(task1.locator('.code-editor-wrapper')).toHaveClass(/code-editor-ran/);
-    await expect(task1.locator('.code-ran-note')).toBeVisible();
+    await expect(task1.locator('.code-ran-note')).toHaveCount(0);
 
     const hasDrawing = await page
       .frameLocator('.js-workspace iframe.js-sandbox')

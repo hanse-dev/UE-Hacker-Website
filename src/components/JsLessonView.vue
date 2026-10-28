@@ -1,5 +1,5 @@
 <template>
-  <div class="lesson-view js-lesson-view" :class="{ 'with-workspace': workspaceEnabled }">
+  <div ref="rootEl" class="lesson-view js-lesson-view" :class="{ 'with-workspace': workspaceEnabled }">
    <div class="js-lesson-grid">
     <div class="lesson-content">
       <p v-if="!lessonContent" class="lesson-loading">{{ t('lesson.loading') }}</p>
@@ -9,7 +9,6 @@
 
     <div class="lesson-editor-section">
       <p class="editor-hint">{{ t('jsLesson.editorHint') }}</p>
-      <p class="editor-hint editor-hint-ran">{{ t('jsLesson.ranExplainer') }}</p>
 
       <template v-for="(task, idx) in tasks" :key="lesson.id + '-' + idx">
         <div
@@ -33,7 +32,7 @@
           <div class="code-editor-wrapper" :class="{ 'code-editor-ran': taskRan[idx] }">
             <JsCodeCell v-model="taskCodes[idx]" :language="webMode ? 'html' : 'javascript'" />
           </div>
-          <p v-if="taskRan[idx]" class="code-ran-note">▶ {{ t('jsLesson.alreadyRan') }}</p>
+          <p v-if="taskRan[idx] && !isTaskDone(idx)" class="code-ran-note">▶ {{ t('jsLesson.alreadyRan') }}</p>
           <div class="editor-actions">
             <button @click="runTask(idx)" :disabled="checking" class="btn-run">
               {{ t('editor.run') }}
@@ -74,8 +73,17 @@
             <strong>{{ t('editor.output') }}</strong>
             <pre class="output-content">{{ taskOutputs[idx] }}</pre>
           </div>
+          <p v-if="runOnly[idx] && !isExample(idx) && !isTaskDone(idx)" class="run-then-check">💡 {{ t('lesson.runThenCheck') }}</p>
           <div v-if="taskFeedback[idx]" :class="['feedback', taskFeedback[idx].success ? 'feedback-success' : 'feedback-error']">
             {{ taskFeedback[idx].message }}
+            <button
+              v-if="taskFeedback[idx].success && !allTasksComplete && nextOpenTask(tasks, isTaskDone, idx) >= 0"
+              type="button"
+              class="btn-next-task"
+              @click="goToTask(nextOpenTask(tasks, isTaskDone, idx))"
+            >
+              {{ t('lesson.nextTask').replace('{n}', nextOpenTask(tasks, isTaskDone, idx) + 1) }}
+            </button>
           </div>
         </div>
       </template>
@@ -138,6 +146,7 @@ import ProjectCompletionBox from './ProjectCompletionBox.vue';
 import ConceptBox from './ConceptBox.vue';
 import { conceptsInText, mergeConcepts } from '../composables/useConcepts';
 import { reportLessonOpen, reportTaskEvent } from '../composables/useTaskStats';
+import { nextOpenTask, focusTask } from '../composables/useTaskFlow';
 
 export default {
   name: 'JsLessonView',
@@ -237,6 +246,10 @@ export default {
     const taskFeedback = ref([]);
     const taskAttempts = ref([]);
     const taskRan = ref([]);
+    // true, solange die Aufgabe nur ausgefuehrt, aber seitdem nicht geprueft wurde (Hinweis "erst Pruefen zaehlt")
+    const runOnly = ref([]);
+    const rootEl = ref(null);
+    const goToTask = (idx) => focusTask(rootEl.value, idx);
     const completedTasks = ref(new Set());
     const skippedTasks = ref(new Set());
 
@@ -254,6 +267,7 @@ export default {
       taskFeedback.value = list.map(() => null);
       taskAttempts.value = list.map(() => 0);
       taskRan.value = list.map(() => false);
+      runOnly.value = list.map(() => false);
       completedTasks.value = new Set();
       skippedTasks.value = new Set();
       activeIdx.value = null;
@@ -279,6 +293,7 @@ export default {
       taskOutputs.value[idx] = null;
       taskFeedback.value[idx] = null;
       taskRan.value[idx] = false;
+      runOnly.value[idx] = false;
       if (activeIdx.value === idx) activeIdx.value = null;
     };
 
@@ -349,6 +364,7 @@ export default {
       // Beispiel-Aufgaben haben keinen "Pruefen"-Button - ein erfolgreicher Lauf zaehlt hier schon
       // als "gesehen/erledigt", damit die Lektion trotzdem abschliessbar bleibt.
       if (result.success && isExample(idx)) markExampleDone(idx);
+      if (result.success) runOnly.value[idx] = true;
       checking.value = false;
     };
 
@@ -360,6 +376,7 @@ export default {
 
     const checkTask = async (idx) => {
       if (checking.value) return;
+      runOnly.value[idx] = false;
       // Dev-Modus (devSkipChecks.js): weder Code ausfuehren noch Canvas/DOM pruefen -
       // validateOutput() meldet ohnehin "bestanden".
       if (DEV_SKIP_CHECKS) {
@@ -492,6 +509,10 @@ export default {
       taskOutputs,
       taskFeedback,
       taskRan,
+      runOnly,
+      rootEl,
+      goToTask,
+      nextOpenTask,
       runTask,
       checkTask,
       goToNext,
@@ -758,6 +779,7 @@ export default {
 }
 
 .task-status-label {
+  margin-left: 0.35em;
   font-weight: 400;
   color: var(--text-muted);
   font-size: 0.9em;
@@ -805,8 +827,8 @@ a.btn-next {
   transition: box-shadow 0.15s, border-color 0.15s;
 }
 
-/* Rahmen zeigt: dieser Code wurde schon mindestens einmal ausgefuehrt (siehe jsLesson.ranExplainer
-   oben in der Lektion) - unabhaengig davon, ob die Aufgabe schon bestanden ist. */
+/* Rahmen zeigt: dieser Code wurde schon mindestens einmal ausgefuehrt (dazu der Satz
+   jsLesson.alreadyRan unter dem Code, solange die Aufgabe offen ist). */
 .code-editor-wrapper.code-editor-ran :deep(.cm-host) {
   border-color: var(--accent-orange, #ff9800);
   box-shadow: 0 0 0 2px rgba(255, 152, 0, 0.2);
@@ -827,6 +849,30 @@ a.btn-next {
   font-size: 0.82em;
   color: var(--accent-orange, #fb8c00);
   font-weight: 600;
+}
+
+/* Weiter-Flow (useTaskFlow.js): Hinweis nach "Ausfuehren" und Knopf zur naechsten offenen Aufgabe */
+.run-then-check {
+  margin: 8px 0 0 0;
+  font-size: 0.9em;
+  color: var(--text-muted);
+}
+
+.btn-next-task {
+  display: block;
+  margin-top: 10px;
+  background: var(--primary-purple, #4a2274);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-next-task:hover {
+  background: #3d1b5c;
 }
 
 .solution-reveal {

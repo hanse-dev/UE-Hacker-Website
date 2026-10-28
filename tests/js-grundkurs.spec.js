@@ -212,6 +212,32 @@ test.describe('JS-Grundkurs (Wochenauswahl)', () => {
     await expect(task2.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
   });
 
+  test('Weiter-Flow: Ausführen zeigt den Prüfen-Hinweis, gelöste Aufgabe führt zur nächsten', async ({ page }) => {
+    // Lektion 5 hat zwei Pflichtaufgaben; sie ist erst frei, wenn Lektion 1-4 abgeschlossen sind.
+    await page.addInitScript(() => {
+      localStorage.setItem('ue-hacker-interactive-progress-js-grundkurs-woche1', JSON.stringify({
+        version: 1, courseId: 'js-grundkurs-woche1', variant: 'js-grundkurs-woche1',
+        completedLessonIds: ['lektion-01', 'lektion-02', 'lektion-03', 'lektion-04'],
+      }));
+    });
+    await page.goto('/kurs/js-grundkurs?week=1');
+    await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
+    await page.locator('.stepper-step').nth(4).click();
+    await waitForFreshLesson(page);
+    await expect(page.locator('.editor-hint-ran')).toHaveCount(0);
+
+    const t1 = page.locator('.task-block').nth(1);
+    await setCodeMirrorContent(t1.locator('.cm-host'), 'let flaeche = 9 * 6;\nconsole.log(flaeche);');
+    await t1.locator('.btn-run').click();
+    await expect(t1.locator('.run-then-check')).toBeVisible({ timeout: 10000 });
+    await t1.locator('.btn-check').click();
+    await expect(t1.locator('.feedback-success')).toBeVisible({ timeout: 10000 });
+    await expect(t1.locator('.run-then-check')).toHaveCount(0);
+
+    await t1.locator('.btn-next-task').click();
+    await expect(page.locator('.task-block').nth(2).locator('.cm-content')).toBeFocused();
+  });
+
   test('Aufgabe ueberspringen: erscheint erst nach 2 Fehlversuchen, zaehlt fuer den Lektions-Abschluss', async ({ page }) => {
     await page.goto('/kurs/js-grundkurs?week=1');
     await expect(page.locator('.task-block').first()).toBeVisible({ timeout: 15000 });
