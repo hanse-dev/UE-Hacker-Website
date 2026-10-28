@@ -1,3 +1,3 @@
 """### Extra-Herausforderung 4: Die große Zufallsprobe – Aufgabe 6
 
-Schritt 6 – Schachbrett: Baue ein 8×8-Brett aus zwei verschachtelten Schleifen. Auf Feld (zeile, spalte) steht \"#\", wenn (zeile + spalte) % 2 == 0 ist, sonst \".\". Die innere Schleife baut jede Zeile als eigene Liste mit 8 Zeichen. Gib die ersten zwei Zeilen aus (jede Zeile: die Zeichen mit \" \".join zusammengefügt): # . # . # . # . und darunter . # . # . # . #"""
+Schritt 6 – Schachbrett: Baue ein 8×8-Brett aus zwei verschachtelten Schleifen. Auf Feld (zeile, spalte) steht \"#\", wenn (zeile + spalte) % 2 == 0 ist, sonst \".\". Die innere Schleife baut jede Zeile als eigene Liste reihe mit 8 Zeichen; mit brett.append(reihe) kommt sie ins Brett, danach ist brett[0] die erste Zeile. Gib die ersten zwei Zeilen aus (jede Zeile: die Zeichen mit \" \".join zusammengefügt): # . # . # . # . und darunter . # . # . # . #"""

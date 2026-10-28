@@ -3147,4 +3147,10 @@ nur die Ausgabe, aber schärfer; Bonus-Teile bleiben bewusst ungeprüft, keine F
   `siege[gewinner] = siege[gewinner] + 1`, Boss 2 Horoskop als Beispiel statt `<name> – <Rune>`,
   Boss 4 erklärt innere Schleife und `while True` im Text (beides wurde nie gezeigt), Schritt 7 ohne
   das ungenutzte Feld, „Zufall aus Woche 4“ → „aus dieser Woche“; W12 Boss 4 Schritt 1 Tipp `alle_ok`.
+- Kontrollrunde (20 Lektionen): Bei langen Vorlagen (W12) kürzte das Test-Kind die Vorlage in seiner
+  Antwort ab („welt = { ... wie in der Vorlage ... }“) – kein gültiges Python. Jetzt gibt es bei
+  Vorlagen mit „# 🎯 Deine Lösung hier:“ nur die eigenen Zeilen an; `with_template()` setzt sie unter
+  die echte Vorlage (wie im Editor). Inhaltlich: W7 Boss 1 „wuerfe = [] in jeder Runde neu“, Boss 4
+  Tipps zu Summe/`/` und `brett.append(reihe)`, W12 Boss 4 `super().__init__` mit allen drei Werten,
+  W12 Etappe 7 ein kleines `while True`-Beispiel.
 

@@ -94,8 +94,9 @@ arbeitest, wie ein {alter}-jähriges Kind es täte.
 - Mach keine absichtlichen Fehler. Wenn eine Aufgabe unklar ist, mach das, was du am ehesten
   verstehst, und schreib dazu, was du dir gedacht hast.
 - "was_ich_tun_soll": In eigenen, kindlichen Worten, was die Aufgabe von dir will.
-- "code": Dein vollständiger Code für diese Aufgabe, so wie du ihn in den Editor tippen würdest
-  (die Vorlage mit deinen Ergänzungen).
+- "code": Dein Code für diese Aufgabe, so wie du ihn in den Editor tippen würdest. Endet die Vorlage
+  mit „# 🎯 Deine Lösung hier:“, schreib nur die Zeilen, die du darunter tippst – die Vorlage steht
+  ja schon im Editor. Sonst (z. B. Code reparieren) den ganzen Code. Kürze nie etwas mit „...“ ab.
 - "unklar": Was du nicht verstanden hast oder raten musstest. Leer lassen, wenn alles klar war.
 - "gesamteindruck": Ein bis zwei Sätze: Wie ging es dir mit dieser Lektion?
 - "aendern": Nur die Stellen, an denen ein echtes Kind in deinem Alter wahrscheinlich hängen
@@ -221,6 +222,19 @@ def run_attempt(earlier_codes: list[str], code: str, validation: dict) -> tuple[
     return output_ok(out, validation), out.strip()[:200]
 
 
+LOESUNGS_MARKE = "# 🎯 Deine Lösung hier:"
+
+
+def with_template(template: str, code: str) -> str:
+    """Wie im Editor: Bei einer Vorlage mit Lösungs-Marke tippt das Kind darunter. Die Antwort enthält
+    dann nur die eigenen Zeilen (oder die Vorlage, oft abgekürzt, plus Marke) - ausgeführt wird die
+    echte Vorlage mit dem, was nach der Marke steht."""
+    if LOESUNGS_MARKE not in (template or ""):
+        return code
+    eigenes = code.split(LOESUNGS_MARKE, 1)[1] if LOESUNGS_MARKE in code else code
+    return template.split(LOESUNGS_MARKE, 1)[0] + LOESUNGS_MARKE + "\n" + eigenes.lstrip("\n")
+
+
 def evaluate(les: dict, answer: dict) -> list[dict]:
     by_nr = {a["nr"]: a for a in answer.get("aufgaben", [])}
     results, earlier = [], []
@@ -232,8 +246,9 @@ def evaluate(les: dict, answer: dict) -> list[dict]:
         if not attempt:
             results.append({"nr": i, "fehlt": True})
             continue
-        ok, out = run_attempt(earlier, attempt["code"], task.get("validation", {}))
-        earlier.append(attempt["code"])
+        code = with_template(task.get("codeTemplate", ""), attempt["code"])
+        ok, out = run_attempt(earlier, code, task.get("validation", {}))
+        earlier.append(code)
         results.append({**attempt, "geschafft": ok, "ausgabe": out, "erwartet": task.get("validation", {}).get("expected")})
     return results
 

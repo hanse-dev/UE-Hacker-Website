@@ -46,6 +46,14 @@ def spiele(spieler, befehle, ziel_gegenstand="Notschalter"):
 
 Die Funktion `spiele()` ist die **Spielschleife**: Sie führt Befehle aus und prüft nach jedem Schritt, ob du gewonnen (Ziel-Gegenstand im Beutel) oder verloren hast (HP 0).
 
-Bisher stehen die Befehle in einer Liste. In einem echten Spiel tippst du sie selbst: Eine `while True`-Schleife läuft immer weiter (Woche 7) und fragt mit `input()` (Woche 1) nach dem nächsten Befehl. Tippst du `ende`, beendet `break` (Woche 6) die Schleife.
+Bisher stehen die Befehle in einer Liste. In einem echten Spiel tippst du sie selbst: Eine `while True`-Schleife läuft immer weiter (Woche 7, Extra-Herausforderung 4), bis `break` (Woche 6) sie beendet. So fragt sie mit `input()` (Woche 1) immer wieder:
+
+```python
+while True:
+    antwort = input("Weiter? ")
+    if antwort == "nein":
+        break
+    print("Okay, noch eine Runde!")
+```
 
 > 🎓 Geschafft! Du hast fast alles aus dem Kurs in einem Projekt benutzt – jetzt kannst du dein Spiel beliebig erweitern.
