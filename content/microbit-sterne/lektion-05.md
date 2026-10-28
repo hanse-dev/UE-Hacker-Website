@@ -1,8 +1,10 @@
 # Werkstatt: Euer Spiel, eure Regeln
 
-Euer Spiel läuft. Jetzt macht ihr es zu eurem Spiel. Hier gibt es keine fertigen Programme mehr, nur Aufträge und Tipps. Die Sterne zeigen, wie knifflig ein Auftrag ist: ⭐ geht schnell, ⭐⭐⭐ braucht Ausdauer.
+Euer Spiel mit dem breiten Korb läuft. Jetzt macht ihr es zu eurem Spiel. Hier gibt es keine fertigen Programme mehr, nur Aufträge und Tipps. Die Sterne zeigen, wie knifflig ein Auftrag ist: ⭐ geht schnell, ⭐⭐⭐ braucht Ausdauer.
 
 Ein gelöster Auftrag reicht für den Abschluss.
+
+Kommt ihr nicht weiter, klappt den **Plan** unter einem Auftrag auf. Er sagt in Worten, was euer Programm Schritt für Schritt machen soll. In Blöcke oder Code übersetzt ihr ihn selbst.
 
 ## Auftrag 1: Treffer-Ton ⭐
 
@@ -35,6 +37,16 @@ music.playTone(880, music.beat(BeatFraction.Eighth))
 Das spielt einen hohen, kurzen Ton. Schreibt die Zeile direkt unter `punkte = punkte + 1`.
 
 :::
+
+<details>
+<summary>Plan anzeigen</summary>
+
+**Wenn der Korb den Stern fängt:**
+
+1. `punkte` wird um 1 größer. Das habt ihr schon.
+2. Neu: Der micro:bit spielt einen kurzen, hohen Ton.
+
+</details>
 
 ## Auftrag 2: Immer schneller ⭐⭐
 
@@ -72,6 +84,31 @@ In Python ist das Tempo die 8 in `if takt == 8:`. Der Stern fällt nach 8 Runden
 
 :::
 
+<details>
+<summary>Plan anzeigen</summary>
+
+**Am Anfang:**
+
+1. `tempo` bekommt seinen Startwert.
+
+**Beim Fallen:**
+
+1. Wie schnell der Stern fällt, bestimmt jetzt `tempo` und nicht mehr eine feste Zahl.
+
+**Wenn der Korb den Stern fängt:**
+
+1. `punkte` wird um 1 größer.
+2. Ist `tempo` noch größer als die Grenze? Dann wird `tempo` um einen Schritt kleiner. Sonst bleibt es, wie es ist.
+
+**Wenn der Stern daneben fällt:**
+
+1. Der micro:bit zeigt die Punkte, und `punkte` wird 0. Das habt ihr schon.
+2. `tempo` bekommt wieder seinen Startwert.
+
+Startwert, Schritt und Grenze stehen oben bei den Tipps.
+
+</details>
+
 ## Auftrag 3: Rekord ⭐⭐
 
 Der micro:bit merkt sich die meisten Punkte, die jemand geschafft hat. Ist eine Runde besser, zeigt er zuerst ein Symbol und dann den neuen Rekord.
@@ -100,6 +137,25 @@ Ein Symbol zeigt zum Beispiel `display.show(Image.HAPPY)`. Schreibt danach `slee
 Ein Symbol zeigt zum Beispiel `basic.showIcon(IconNames.Happy)`.
 
 :::
+
+<details>
+<summary>Plan anzeigen</summary>
+
+**Am Anfang:**
+
+1. `rekord` wird 0.
+
+**Wenn der Stern daneben fällt:**
+
+1. Ist `punkte` größer als `rekord`? Dann:
+   - Der micro:bit zeigt das Symbol.
+   - `rekord` wird so groß wie `punkte`.
+2. Der micro:bit zeigt die Punkte.
+3. `punkte` wird 0.
+
+Habt ihr drei Leben eingebaut? Dann passiert das alles erst, wenn das letzte Leben weg ist.
+
+</details>
 
 ## Auftrag 4: Steuern durch Neigen ⭐⭐
 
@@ -133,6 +189,19 @@ Für rechts heißt es `Gesture.TiltRight`. Kopiert den Inhalt von Knopf A an die
 
 :::
 
+<details>
+<summary>Plan anzeigen</summary>
+
+**Wenn der micro:bit nach links geneigt wird:**
+
+1. Ist `korb` größer als 0? Dann fährt der Korb ein Feld nach links, genau wie bei Knopf A.
+
+**Wenn der micro:bit nach rechts geneigt wird:**
+
+1. Ist `korb` kleiner als 3? Dann fährt der Korb ein Feld nach rechts, genau wie bei Knopf B.
+
+</details>
+
 ## Auftrag 5: Achtung, Bombe! ⭐⭐⭐
 
 <img src="/microbit/sterne/bombe.svg" alt="Neben dem hellen Stern fällt eine schwach leuchtende Bombe. Lenkt man den Korb unter die Bombe und fängt sie, ist das Spiel vorbei">
@@ -140,7 +209,7 @@ Für rechts heißt es `Gesture.TiltRight`. Kopiert den Inhalt von Knopf A an die
 Neben dem Stern fällt eine Bombe. Sie leuchtet nur schwach. Fängt der Korb die Bombe, ist das Spiel vorbei.
 
 - Die Bombe braucht eigene Variablen: `bombe_x` und `bombe_y`.
-- Gefangen ist die Bombe, wenn `bombe_y` 4 ist und `bombe_x` gleich `korb`. „Spiel vorbei“ heißt: Der micro:bit zeigt die Punkte, und alles fängt von vorn an – wie bei „daneben“.
+- Gefangen ist die Bombe, wenn `bombe_y` 4 ist und `bombe_x` gleich `korb` oder `korb + 1`. „Spiel vorbei“ heißt: Der micro:bit zeigt die Punkte, und alles fängt von vorn an – wie bei „daneben“.
 - Startet die Bombe ein paar Reihen über dem Spielfeld, zum Beispiel bei y = -3. Dann fallen Stern und Bombe nicht im Gleichschritt. Unten angekommen, fängt sie wie der Stern wieder bei y = 0 an.
 
 :::bloecke
@@ -176,9 +245,31 @@ Die 2 ist eine kleine Helligkeit, so leuchtet die Bombe nur schwach.
 
 :::
 
+<details>
+<summary>Plan anzeigen</summary>
+
+**Am Anfang:**
+
+1. `bombe_x` wird eine zufällige Zahl von 0 bis 4.
+2. `bombe_y` wird -3.
+
+**Beim Fallen, an derselben Stelle wie beim Stern:**
+
+1. Die Bombe wird an ihrer alten Stelle gelöscht, genau so, wie euer Programm den Stern löscht. Löscht euer Programm immer die ganze Anzeige, fällt dieser Schritt weg.
+2. `bombe_y` wird um 1 größer.
+3. Ist `bombe_y` größer als 4? Dann wird `bombe_y` 0, und `bombe_x` wird eine neue zufällige Zahl von 0 bis 4.
+4. Ist `bombe_y` 4? Dann:
+   - Ist `bombe_x` gleich `korb` oder gleich `korb + 1`? Dann ist das Spiel vorbei: Der micro:bit zeigt die Punkte, und `punkte` wird 0.
+
+**Beim Zeichnen:**
+
+1. Ist `bombe_y` 0 oder größer? Dann wird die Bombe schwach gezeichnet.
+
+</details>
+
 ## Auftrag 6: Eure eigene Idee
 
-Zwei Sterne gleichzeitig? Ein goldener Stern, der drei Punkte bringt? Ein Duell mit zwei micro:bits per Funk? Schreibt eure Idee zuerst als Plan in Worten auf und zeigt sie eurer Kursleitung.
+Zwei Sterne gleichzeitig? Ein goldener Stern, der drei Punkte bringt? Ein Duell mit zwei micro:bits per Funk? Schreibt eure Idee zuerst als Plan in Worten auf, so wie die Pläne oben, und zeigt sie eurer Kursleitung.
 
 ## Bonus: Zwei Aufträge in einem Programm
 

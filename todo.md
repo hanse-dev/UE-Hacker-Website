@@ -67,6 +67,9 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
         „BBC micro:bit“, „An micro:bit senden“, „Speichern“)? Block-Namen `Zeichne x … y …`/`lösche x … y …`
         (aus den offiziellen Übersetzungen) und die Kategorie „LED“ im Editor abgleichen.
       - Werkstatt: Heißt die Gesten-Auswahl im Block wirklich „nach links neigen“?
+      - Stufe 4 (breiter Korb, HANDOFF 3.126): Heißt der Block unter **Logik** „oder“? Läuft der
+        Python-Korb bei `korb < 4` am rechten Rand wirklich mit Fehlermeldung ab, wie angekündigt?
+        Ist das Spiel mit zwei Lampen zu leicht, und reichen die Werkstatt-Pläne ohne weitere Hilfe?
       - Einführung (`content/microbit-einfuehrung/`, gleicher Stand): Stimmt die Beschreibung der
         Rückseite (Lampe neben der USB-Buchse)? Zeigt der Simulator rechts im Editor das Programm wie
         beschrieben (Python: „Ausführen“)?
