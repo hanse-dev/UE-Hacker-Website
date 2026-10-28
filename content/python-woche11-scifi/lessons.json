@@ -28,11 +28,11 @@
         }
       },
       {
-        "instruction": "Die Klasse Roboter ist vorgegeben. Schreibe Reparaturroboter(Roboter) mit einer **neuen** Methode `lade_waffe(self)`, die Orbit lädt den Laser. ausgibt (Name aus `self`). Erzeuge Reparaturroboter(\"Orbit\") und rufe erst `stelle_vor()`, dann `lade_waffe()` auf.",
+        "instruction": "Die Klasse Roboter ist vorgegeben. Schreibe Reparaturroboter(Roboter) mit einer **neuen** Methode `hole_werkzeug(self)`, die Orbit holt den Schraubenschlüssel. ausgibt (Name aus `self`). Erzeuge Reparaturroboter(\"Orbit\") und rufe erst `stelle_vor()`, dann `hole_werkzeug()` auf.",
         "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Ich bin Orbit.\nOrbit lädt den Laser."
+          "expected": "Ich bin Orbit.\nOrbit holt den Schraubenschlüssel."
         }
       },
       {
@@ -163,8 +163,8 @@
         }
       },
       {
-        "instruction": "Die Klassen sind vorgegeben, ebenso die Liste `team = [Kampfroboter(\"Nova\"), Reparaturroboter(\"Orbit\"), Kampfroboter(\"Zeta\"), Roboter(\"Orbit\")]`. Zähle mit `isinstance`, wie viele Objekte zu Kampfroboter gehören, und gib genau Anzahl: 2 aus.",
-        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n    def kraft(self):\n        return 10\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n    def kraft(self):\n        return self.panzer\n\nclass Reparaturroboter(Roboter):\n    def __init__(self, name, werkzeuge=50):\n        super().__init__(name)\n        self.werkzeuge = werkzeuge\n\n    def arbeite(self):\n        print(f\"{self.name} repariert die Hülle.\")\n\n    def kraft(self):\n        return self.werkzeuge\n\nteam = [Kampfroboter(\"Nova\"), Reparaturroboter(\"Orbit\"), Kampfroboter(\"Zeta\"), Roboter(\"Orbit\")]\n# 🎯 Deine Lösung hier:\n",
+        "instruction": "Die Klassen sind vorgegeben, ebenso die Liste `team = [Kampfroboter(\"Nova\"), Reparaturroboter(\"Orbit\"), Kampfroboter(\"Zeta\"), Roboter(\"Kai\")]`. Zähle mit `isinstance`, wie viele Objekte zu Kampfroboter gehören, und gib genau Anzahl: 2 aus.",
+        "codeTemplate": "class Roboter:\n    def __init__(self, name):\n        self.name = name\n\n    def stelle_vor(self):\n        print(f\"Ich bin {self.name}.\")\n\n    def arbeite(self):\n        print(f\"{self.name} läuft im Leerlauf.\")\n\n    def kraft(self):\n        return 10\n\nclass Kampfroboter(Roboter):\n    def __init__(self, name, panzer=30):\n        super().__init__(name)\n        self.panzer = panzer\n\n    def arbeite(self):\n        print(f\"{self.name} feuert den Laser ab.\")\n\n    def kraft(self):\n        return self.panzer\n\nclass Reparaturroboter(Roboter):\n    def __init__(self, name, werkzeuge=50):\n        super().__init__(name)\n        self.werkzeuge = werkzeuge\n\n    def arbeite(self):\n        print(f\"{self.name} repariert die Hülle.\")\n\n    def kraft(self):\n        return self.werkzeuge\n\nteam = [Kampfroboter(\"Nova\"), Reparaturroboter(\"Orbit\"), Kampfroboter(\"Zeta\"), Roboter(\"Kai\")]\n# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": "Anzahl: 2",

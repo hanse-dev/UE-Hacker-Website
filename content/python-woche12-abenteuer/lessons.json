@@ -610,11 +610,11 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Magic Method (Woche 11): Schreibe die Klasse `Gegenstand` mit `__init__(self, name, beschreibung)` und `__str__`, das `Name – Beschreibung` zurückgibt. Gib `Gegenstand(\"Fackel\", \"Sie leuchtet in dunklen Ecken.\")` direkt mit `print` aus.",
+        "instruction": "Schritt 3 – Magic Method (Woche 11): Schreibe die Klasse `Gegenstand` mit `__init__(self, name, beschreibung)` und `__str__`, das `Name - Beschreibung` zurückgibt. Gib `Gegenstand(\"Fackel\", \"Sie leuchtet in dunklen Ecken.\")` direkt mit `print` aus.",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
-          "expected": "Fackel – Sie leuchtet in dunklen Ecken.",
+          "expected": "Fackel - Sie leuchtet in dunklen Ecken.",
           "codeContains": [
             "class",
             "__init__",

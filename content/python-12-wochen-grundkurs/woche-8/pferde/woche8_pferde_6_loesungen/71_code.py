@@ -3,9 +3,9 @@ zonen = {
     "Wald": {"hindernis": "Wassergraben", "preis": "Pokal", "schwierigkeit": 5},
     "Moor": {"hindernis": "Mauer", "preis": "Medaille", "schwierigkeit": 8},
 }
-stark = 5
-betretbar = []
+koennen = 5
+machbar = []
 for name, zone in zonen.items():
-    if zone["schwierigkeit"] <= stark:
-        betretbar.append(name)
-print(f"Betretbar: {betretbar}")
+    if zone["schwierigkeit"] <= koennen:
+        machbar.append(name)
+print(f"Machbar: {machbar}")

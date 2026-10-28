@@ -1,8 +1,7 @@
-mars_ertrag = 5.0
-mars_erfolg = 0.8
-europa_ertrag = 8.0
-europa_erfolg = 0.75
-exp1 = mars_ertrag * mars_erfolg
-exp2 = europa_ertrag * europa_erfolg
-print(f"Erwarteter Ertrag Mars: {exp1}")
-print(f"Erwarteter Ertrag Europa: {exp2}")
+ertrag_mars = 5.0
+erfolg_mars = 0.8
+ertrag_europa = 8.0
+erfolg_europa = 0.75
+
+print(f"Mars bei 10 Flügen: {10 * erfolg_mars * ertrag_mars} Punkte")
+print(f"Europa bei 10 Flügen: {10 * erfolg_europa * ertrag_europa} Punkte")

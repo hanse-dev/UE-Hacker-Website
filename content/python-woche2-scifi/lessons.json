@@ -596,18 +596,18 @@
         }
       },
       {
-        "instruction": "Schritt 3 – Berechne den erwarteten Ertrag (Ertrag × Wahrscheinlichkeit) für beide Missionen und gib genau zwei Zeilen aus: Erwarteter Ertrag Mars: 4.0 und darunter Erwarteter Ertrag Europa: 6.0",
+        "instruction": "Schritt 3 – Stell dir vor, jede Mission fliegt 10-mal. Bei einer Erfolgswahrscheinlichkeit von 0.8 gelingen davon etwa 8 (10 * 0.8), und jedes Mal gibt es den Ertrag. Berechne für beide Missionen die Forschungspunkte bei 10 Flügen (10 * Erfolgswahrscheinlichkeit * Ertrag) und gib genau zwei Zeilen aus: Mars bei 10 Flügen: 40.0 Punkte und darunter Europa bei 10 Flügen: 60.0 Punkte",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",
           "expected": [
-            "Erwarteter Ertrag Mars: 4.0",
-            "Erwarteter Ertrag Europa: 6.0"
+            "Mars bei 10 Flügen: 40.0 Punkte",
+            "Europa bei 10 Flügen: 60.0 Punkte"
           ]
         }
       },
       {
-        "instruction": "Schritt 4 – Speichere exp2 > exp1 (mit exp1 = 4.0 und exp2 = 6.0) in einer Boolean-Variable europa_besser und gib genau aus: Europa lohnt sich mehr: True",
+        "instruction": "Schritt 4 – Speichere punkte2 > punkte1 (mit punkte1 = 40.0 und punkte2 = 60.0) in einer Boolean-Variable europa_besser und gib genau aus: Europa lohnt sich mehr: True",
         "codeTemplate": "# 🎯 Deine Lösung hier:\n",
         "validation": {
           "type": "output_contains",

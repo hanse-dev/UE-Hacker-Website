@@ -13,7 +13,7 @@ def fuehre_aus(spieler, text):
         return
     if aktion == "gehe":
         spieler.gehe(ziel)
-        pruefe_gegner(spieler)
+        pruefe_ausreisser(spieler)
     elif aktion == "nimm":
         spieler.nimm(ziel)
     else:

@@ -4,10 +4,10 @@ crew = [
     {"name": "Zara", "rolle": "Botanikerin", "rang": 3, "energie": 90},
     {"name": "Kai", "rolle": "Pilotin", "rang": 5, "energie": 110},
 ]
-def finde_crew(liste, art):
+def finde_crew(liste, rolle):
     namen = []
     for h in liste:
-        if h["rolle"] == art:
+        if h["rolle"] == rolle:
             namen.append(h["name"])
     return namen
 

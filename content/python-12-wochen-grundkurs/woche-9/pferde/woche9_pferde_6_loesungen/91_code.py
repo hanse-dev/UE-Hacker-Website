@@ -10,13 +10,13 @@ with open("pferde.csv", "w", newline="") as f:
     w.writerows(pferde)
 import json
 
-starke = []
+aeltere = []
 with open("pferde.csv", "r") as f:
     for zeile in csv.DictReader(f):
         if int(zeile["alter"]) > 7:
-            starke.append(zeile["name"])
+            aeltere.append(zeile["name"])
 with open("pferd.json", "w") as f:
-    json.dump(starke, f)
+    json.dump(aeltere, f)
 with open("pferd.json", "r") as f:
     geladen = json.load(f)
-print(f"Starke: {geladen}")
+print(f"Ältere: {geladen}")

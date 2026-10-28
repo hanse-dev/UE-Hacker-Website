@@ -9,7 +9,7 @@
 
 Der **Ertrag** ist das, was eine gelungene Mission an Forschungspunkten einbringt. Eine **Erfolgswahrscheinlichkeit** von 0.8 bedeutet: Von 10 solchen Missionen gelingen etwa 8.
 
-Der **erwartete Ertrag** ist: Ertrag × Erfolgswahrscheinlichkeit.
+Fliegt eine Mission 10-mal, gelingt sie etwa `10 × Erfolgswahrscheinlichkeit`-mal – und jedes Mal gibt es den Ertrag. So siehst du, welche Mission sich auf Dauer mehr lohnt.
 
 **Bonus (freiwillig, ohne Prüfung):** Berechne den Ertrag pro Besatzungsmitglied für jede Mission!
 

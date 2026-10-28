@@ -88,12 +88,6 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
 - [ ] Backup-Cron auf dem Server einrichten bzw. prüfen, ob er läuft (Befehl siehe HANDOFF.md
       Abschnitt 4). Die Seite ist live; externe Sicherung der Backups ist bewusst nicht mitgebaut.
 - [ ] Offen aus der Inhaltsprüfung der deutschen Texte (HANDOFF 3.98, Details im Archiv):
-      - **Woche 2 Boss 3 (Abenteuer, Pferde)** rechnet mit Erfolgswahrscheinlichkeit und
-        Erwartungswert — für 10/11-Jährige schwer; nur in Sci-Fi ist das jetzt erklärt.
-      - **Woche 12 Pferde:** Das Text-Adventure hat auch im Pferde-Thema „Gegner“ und „Kampf“
-        (Spielmechanik aus dem gemeinsamen Skelett) — ggf. umthematisieren.
-      - **Pferde/Sci-Fi Woche 6–12:** Aufgabentexte nicht Zeile für Zeile gelesen (nur
-        Geschichten-Texte + LanguageTool), Glossar nur im Abenteuer-Thema gelesen.
       - **`lint:spelling:de -- --grammatik`** meldet ~300 Hinweise, fast alles Fehlalarme durch
         Code-Bezeichner im Fließtext. Wer es schärfer will: im Extraktor Inline-Code durch ein
         Platzhalterwort ersetzen statt löschen.

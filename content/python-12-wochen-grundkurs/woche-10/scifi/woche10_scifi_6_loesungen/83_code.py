@@ -21,8 +21,8 @@ class Roboter:
         if self.energie > 100:
             self.energie = 100
 
-def erstelle_figur(name, level):
+def erstelle_roboter(name, level):
     return Roboter(name, level)
 
-gruppe = [erstelle_figur("Nova", 2), erstelle_figur("Orbit", 5)]
+gruppe = [erstelle_roboter("Nova", 2), erstelle_roboter("Orbit", 5)]
 print(f"Gruppe: {len(gruppe)}")

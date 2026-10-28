@@ -39,7 +39,7 @@ class Spieler:
     def __init__(self, name, position):
         self.name = name
         self.position = position
-        self.hp = 20
+        self.puste = 20
         self.inventar = []
 
     def gehe(self, richtung):
@@ -79,5 +79,5 @@ class Spieler:
 spieler = Spieler("Mira", "hof")
 spieler.nimm("Taschenlampe")
 import json
-daten = {"name": spieler.name, "position": spieler.position, "hp": spieler.hp, "inventar": [g.name for g in spieler.inventar]}
+daten = {"name": spieler.name, "position": spieler.position, "puste": spieler.puste, "inventar": [g.name for g in spieler.inventar]}
 print(json.dumps(daten))

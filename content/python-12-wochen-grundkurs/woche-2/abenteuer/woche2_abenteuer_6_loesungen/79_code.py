@@ -7,5 +7,6 @@ dauer2 = 7
 gruppe2 = 4
 chance2 = 0.75
 
-rentabler = belohnung2 * chance2 > belohnung1 * chance1
-print(f"Quest 2 rentabler: {rentabler}")
+gold1 = 10 * chance1 * belohnung1
+gold2 = 10 * chance2 * belohnung2
+print(f"Quest 2 bringt mehr: {gold2 > gold1}")

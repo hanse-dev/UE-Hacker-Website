@@ -1,3 +1,3 @@
-"""### Mission 2: Heilung – Aufgabe 1
+"""### Mission 2: Verschnaufpause – Aufgabe 1
 
-Schritt 1 – Heilen: Der Spieler `spieler` hat 8 HP. Schreibe `heile(spieler, menge)`, die `menge` zu den HP addiert, aber nie über 20. Rufe `heile(spieler, 5)` auf und gib genau HP: 13 aus."""
+Schritt 1 – Verschnaufen: Der Spieler `spieler` hat 8 Puste. Schreibe `verschnaufe(spieler, menge)`, die `menge` zur Puste addiert, aber nie über 20. Rufe `verschnaufe(spieler, 5)` auf und gib genau Puste: 13 aus."""

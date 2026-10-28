@@ -5,6 +5,6 @@
 |---------|-----------|----------|
 | **Komposition** *(= „hat ein")* | Ein Objekt enthält andere Objekte | `self.inventar = [Gegenstand(...)]` |
 | **Verschachteltes Dictionary** | Ein Dictionary, dessen Werte wieder Dictionaries sind | `welt["stallgasse"]["ausgaenge"]` |
-| `None` | Der Wert für „nichts" – z.B. ein Raum ohne Gegner | `"gegner": None` |
-| `is not None` | Prüft, ob etwas da ist | `if gegner is not None:` |
+| `None` | Der Wert für „nichts" – z.B. ein Raum ohne Ausreißer | `"ausreisser": None` |
+| `is not None` | Prüft, ob etwas da ist | `if ausreisser is not None:` |
 | **Spielschleife** | Eine Schleife, die Befehle abarbeitet und den Spielstand prüft | `for text in befehle:` |"""

@@ -33,7 +33,7 @@ class Springpferd(Pferd):
     def kraft(self):
         return self.hoehe
 
-team = [Rennpferd("Blitz"), Springpferd("Stella"), Rennpferd("Sturm"), Pferd("Stella")]
+team = [Rennpferd("Blitz"), Springpferd("Stella"), Rennpferd("Sturm"), Pferd("Luna")]
 anzahl = 0
 for f in team:
     if isinstance(f, Rennpferd):

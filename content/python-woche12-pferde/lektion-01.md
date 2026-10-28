@@ -12,7 +12,7 @@ Wir bauen das Spiel in **7 Etappen**. Bei jeder Etappe zeigt ein Hinweis, woher 
 | 2 | Bewegung | Woche 3–5 (if, Funktionen) |
 | 3 | Gegenstände | Woche 6 + 10 (Listen, Klassen) |
 | 4 | Spieler und Inventar | Woche 10 (Klassen, Komposition) |
-| 5 | Gegner und Kampf | Woche 7 + 11 (random, Methoden) |
+| 5 | Ausreißer einfangen | Woche 7 + 11 (random, Methoden) |
 | 6 | Falsche Eingaben | Woche 8 (try/except) |
 | 7 | Speichern und Finale | Woche 9 (JSON, Dateien) |
 

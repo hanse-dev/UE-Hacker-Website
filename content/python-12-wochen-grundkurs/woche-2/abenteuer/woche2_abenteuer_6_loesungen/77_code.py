@@ -7,5 +7,5 @@ dauer2 = 7
 gruppe2 = 4
 chance2 = 0.75
 
-print(f"Quest 1 erwartet: {belohnung1 * chance1}")
-print(f"Quest 2 erwartet: {belohnung2 * chance2}")
+print(f"Quest 1 bei 10 Versuchen: {10 * chance1 * belohnung1} Gold")
+print(f"Quest 2 bei 10 Versuchen: {10 * chance2 * belohnung2} Gold")

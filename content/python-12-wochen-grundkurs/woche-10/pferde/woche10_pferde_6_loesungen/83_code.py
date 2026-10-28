@@ -21,8 +21,8 @@ class Pferd:
         if self.energie > 100:
             self.energie = 100
 
-def erstelle_figur(name, level):
+def erstelle_pferd(name, level):
     return Pferd(name, level)
 
-gruppe = [erstelle_figur("Blitz", 2), erstelle_figur("Stella", 5)]
+gruppe = [erstelle_pferd("Blitz", 2), erstelle_pferd("Stella", 5)]
 print(f"Gruppe: {len(gruppe)}")

@@ -39,7 +39,7 @@ class Spieler:
     def __init__(self, name, position):
         self.name = name
         self.position = position
-        self.hp = 20
+        self.puste = 20
         self.inventar = []
 
     def gehe(self, richtung):
@@ -77,22 +77,22 @@ class Spieler:
             print("🎒 Dein Beutel ist leer.")
 
 spieler = Spieler("Mira", "hof")
-def heile(spieler, menge):
-    spieler.hp += menge
-    if spieler.hp > 20:
-        spieler.hp = 20
+def verschnaufe(spieler, menge):
+    spieler.puste += menge
+    if spieler.puste > 20:
+        spieler.puste = 20
 
-spieler.hp = 5
+spieler.puste = 5
 spieler.inventar.append(Gegenstand("Apfel", "Ein saftiger Apfel für neue Kraft."))
 def benutze(spieler):
     for gegenstand in spieler.inventar:
         if gegenstand.name == "Apfel":
             spieler.inventar.remove(gegenstand)
-            heile(spieler, 10)
+            verschnaufe(spieler, 10)
             return True
-    print("Du hast nichts zum Heilen.")
+    print("Du hast nichts zum Verschnaufen.")
     return False
 
 benutze(spieler)
-print(f"HP: {spieler.hp}")
+print(f"Puste: {spieler.puste}")
 benutze(spieler)

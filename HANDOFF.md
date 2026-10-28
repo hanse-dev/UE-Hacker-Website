@@ -53,6 +53,7 @@ Alles unten ist nach `main` gemergt. Details: `grep -n "^### 3.NN" docs/archiv/H
 | 3.125 | KI als Test-Kind | `npm run testkind -- --wochen 3 [--lektion lektion-02] [--alter 10] --out bericht.md` (`scripts/ki_testkind.py`): Claude spielt über die `claude`-CLI ein Kind, das nur das bisherige Material kennt; Code wird gegen `expected` geprüft. `--geaendert [BASIS]` prüft nur Neues/Geändertes seit `main` (Pflicht vor dem Merge, `CLAUDE.md`). Auch Anleitungs-Kurse: `--kurs microbit-ampel [--variante bloecke|python|javascript]` (nichts wird ausgeführt, je Abhakpunkt „ohne Hilfe geschafft?“; alle drei Varianten der micro:bit-Kurse sind durchgelaufen und überarbeitet). Nur lokal, Vorfilter fürs Beobachten |
 | 3.126 | Schärfere Ausgabe-Prüfung | `expected` als Liste (jede Zeile muss vorkommen, Hinweis nennt die erste fehlende), `varies` für Zufalls-Aufgaben (bis 6 Läufe, eine Ausgabe muss abweichen; Woche 7 + W12 Boss 4), W12 Etappe 7 Aufgabe 6: Spielschleife mit `input()` über `stdin`; weiterhin keine Code-Prüfung in Lektionen |
 | 3.127 | Weiter-Flow in Lektionen | `useTaskFlow.js` (`nextOpenTask`/`focusTask`) in `LessonView`/`JsLessonView`: Hinweis „erst Prüfen zählt“ nach Ausführen, Knopf „Weiter zu Aufgabe N“ nach einer gelösten Aufgabe, eine Hinweiszeile über dem Editor statt drei |
+| 3.128 | Inhalte Woche 2/6–12 | W2 Boss 3 rechnet mit „10-mal versuchen“ statt Erwartungswert; W12 Pferde „Ausreißer einfangen“ statt Gegner/Kampf; Skelett-Reste in Pferde/Sci-Fi W6–12 behoben |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -61,6 +62,7 @@ Punkte-System, Zertifikate), wird hier nicht wiederholt.
 
 **Content**
 - JSON gezielt ersetzen + danach `json.loads()` prüfen; in Skripten erst lesen, dann schreiben (`open(f, 'w')` leert die Datei sofort).
+- Bezeichner per Regex umbenennen (`\bgegner\b`) nie auf dem Roh-Text von `lessons.json`: nach einem `\n` im JSON fehlt die Wortgrenze. Datei laden, die Strings ersetzen, neu schreiben (3.128).
 - Lösungs-Markdown-Zellen (`*_6_loesungen/NN_markdown.py`) speichern `"` mal roh, mal als `\"`: beim Ersetzen beide Formen suchen, neue Anführungszeichen immer als `\"` schreiben (ein `"` direkt vor dem schließenden `"""` bricht die Zelle); danach `sync_loesungen.py --check`.
 - Ein Fund in einer Variante gilt nicht automatisch für alle: vor Massenänderungen alle 3 Themen × DE/EN per grep prüfen.
 - Anleitungs-Kurse (micro:bit): Text außerhalb von `:::bloecke`/`:::python`/`:::javascript` sehen alle Ansichten – dort keine Block-Namen („beim Start“, „Logik“, „ansonsten“, „Motor A“). Ortsangaben, Tipps und `else`/`elif` je Variante schreiben; ein Python-/JS-Hinweis braucht ein Gegenstück für Blöcke (`guide-content.js` zählt die Abschnitte). Prüfen mit `npm run testkind -- --kurs … --variante python|javascript`.

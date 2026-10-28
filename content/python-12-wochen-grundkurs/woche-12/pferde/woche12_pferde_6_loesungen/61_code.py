@@ -39,7 +39,7 @@ class Spieler:
     def __init__(self, name, position):
         self.name = name
         self.position = position
-        self.hp = 20
+        self.puste = 20
         self.inventar = []
 
     def gehe(self, richtung):
@@ -77,11 +77,11 @@ class Spieler:
             print("🎒 Dein Beutel ist leer.")
 
 spieler = Spieler("Mira", "hof")
-spieler.hp = 8
-def heile(spieler, menge):
-    spieler.hp += menge
-    if spieler.hp > 20:
-        spieler.hp = 20
+spieler.puste = 8
+def verschnaufe(spieler, menge):
+    spieler.puste += menge
+    if spieler.puste > 20:
+        spieler.puste = 20
 
-heile(spieler, 5)
-print(f"HP: {spieler.hp}")
+verschnaufe(spieler, 5)
+print(f"Puste: {spieler.puste}")

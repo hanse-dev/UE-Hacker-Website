@@ -9,4 +9,4 @@ for name, zone in zonen.items():
     if zone["schwierigkeit"] > hoechste:
         hoechste = zone["schwierigkeit"]
         gefaehrlichste = name
-print(f"Gefährlichste: {gefaehrlichste} ({hoechste})")
+print(f"Schwerste: {gefaehrlichste} ({hoechste})")

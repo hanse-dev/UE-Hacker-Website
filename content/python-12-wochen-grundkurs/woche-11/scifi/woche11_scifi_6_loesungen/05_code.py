@@ -9,9 +9,9 @@ class Roboter:
         print(f"{self.name} läuft im Leerlauf.")
 
 class Reparaturroboter(Roboter):
-    def lade_waffe(self):
-        print(f"{self.name} lädt den Laser.")
+    def hole_werkzeug(self):
+        print(f"{self.name} holt den Schraubenschlüssel.")
 
 k = Reparaturroboter("Orbit")
 k.stelle_vor()
-k.lade_waffe()
+k.hole_werkzeug()
