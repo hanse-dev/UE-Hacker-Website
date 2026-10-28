@@ -106,6 +106,7 @@ const RULES = [
   ['api/src/progress.js', ['tests/site.spec.js']],
   // Stolperstellen-Zähler: die eigentlichen Tests laufen nur in `npm run test:auth` (stolperstellen.spec.js).
   ['src/composables/useTaskStats.js', ['tests/js-grundkurs.spec.js', 'tests/python-woche1-lektionen.spec.js']],
+  ['src/composables/useTaskFlow.js', ['tests/js-grundkurs.spec.js', 'tests/python-woche1-lektionen.spec.js']],
   ['src/components/AdminStolperstellen.vue', ['tests/site.spec.js']],
   ['api/src/routes/taskStats.js', ['tests/site.spec.js']],
   ['tests/stolperstellen.spec.js', ['tests/site.spec.js']],

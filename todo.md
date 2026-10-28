@@ -101,8 +101,7 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
 - [ ] Aus dem früheren HANDOFF-Abschnitt 5 übernommen (16.10.2026), Stand unklar – beim nächsten Deploy prüfen:
       einmalig `docker compose exec app node api/src/scripts/import-termine-json.js`, falls die
       `termine`-Tabelle auf dem Server noch leer ist.
-- [ ] Ohne Termin, braucht Entscheidung oder Rückmeldung: Interaktiv-Kurs „Ausführen vs. Prüfen“/Weiter-Flow
-      (Nutzer-Feedback abwarten); EN-Versionen der Projekt-Kurse (DE-first, siehe Memory „vorerst nur
+- [ ] Ohne Termin, braucht Entscheidung oder Rückmeldung: EN-Versionen der Projekt-Kurse (DE-first, siehe Memory „vorerst nur
       Deutsch“); Zertifikat per E-Mail (hängt an einer Kontakt-Adresse); dritte Sprache (UI ist schon auf `t()`).
 
 ## Nächste Themen (je eigener Branch von `main`)

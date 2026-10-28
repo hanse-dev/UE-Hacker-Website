@@ -3138,3 +3138,22 @@ nur die Ausgabe, aber schärfer; Bonus-Teile bleiben bewusst ungeprüft, keine F
   `ki-testkind.spec.js` (Liste). Musterlösungen aller 36 Woche-Themen-Kombinationen mit `python3`
   gegen `expected` (und `varies`: 6 Läufe) geprüft.
 
+### 3.127 — Weiter-Flow „Ausführen vs. Prüfen“ (Branch `lektion-weiter-flow`)
+
+Seit 3.7 zurückgestellter Punkt. Kein konkretes Nutzer-Feedback; Eike ließ Claude eine Lektion als
+Kind durchspielen und Vorschläge machen (24.10.2026), alle vier wurden gewählt:
+
+- Nach „Ausführen“ einer offenen Pflichtaufgabe steht unter der Ausgabe `lesson.runThenCheck`
+  (Zustand `runOnly[idx]`, gelöscht von Prüfen/Zurücksetzen). Grund: Wer nur ausführt und die
+  richtige Ausgabe sieht, hält die Aufgabe für erledigt – es kam aber kein Haken, kein Weiter.
+- Nach einer gelösten Aufgabe (Lektion noch nicht fertig) steht im Erfolgs-Kasten „Weiter zu
+  Aufgabe N ↓“: `nextOpenTask()` sucht die nächste offene Pflichtaufgabe (danach von vorne, Beispiele
+  zählen nicht), `focusTask()` scrollt zum n-ten `.task-block` und setzt den Cursor (Textarea bzw.
+  `.cm-content`). Nummer N = Index + 1 wie in `lesson.taskDoneRemaining`.
+- Über dem Editor nur noch `lesson.editorHint`/`jsLesson.editorHint` („Ausführen“ zeigt die
+  Ausgabe, „Prüfen“ kontrolliert …); die Zeile zum orangen Rahmen (`jsLesson.ranExplainer`) ist weg,
+  ebenso der Satz zur Ladezeit (der Python-Knopf zeigt den Stand).
+- „(erledigt)“/„(noch offen)“ mit Abstand; „Diesen Code hast du schon ausgeführt“ nur bei offenen
+  Aufgaben (der orange Rahmen bleibt).
+- Tests: `python-woche1-lektionen.spec.js` und `js-grundkurs.spec.js` („Weiter-Flow: …“).
+

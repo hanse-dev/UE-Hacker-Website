@@ -347,7 +347,7 @@ export default {
 
   // ── Lesson view (interactive lessons / Cäsar-Chiffre) ────────────────────
   'lesson.loading':           'Lektion wird geladen...',
-  'lesson.editorHint':        'Python wird beim Öffnen automatisch geladen (~30 Sek.). Schreibe deinen Code in das Feld unten. Mit „Ausführen“ siehst du nur die Ausgabe, mit „Prüfen“ wird zusätzlich kontrolliert, ob die Aufgabe gelöst ist – klicke „Prüfen“, sobald „Python bereit“ angezeigt wird.',
+  'lesson.editorHint':        '„Ausführen“ zeigt dir die Ausgabe. „Prüfen“ kontrolliert die Aufgabe – erst dann ist sie erledigt.',
   'lesson.blankHint':         'Wo in der Vorlage ___ (drei Unterstriche) steht, fehlt noch etwas: Ersetze genau das ___ durch deinen eigenen Code (z.B. einen Text, eine Zahl oder einen Variablennamen) – den Rest der Zeile lässt du stehen.',
   'lesson.flexibleHint':      'Diese Lektion hat {total} Aufgaben, aber du musst nur mindestens {min} davon lösen, um weiterzugehen – den Rest kannst du jederzeit mit „Überspringen“ auslassen.',
   'lesson.flexibleProgress':  'Bisher gelöst: {solved} von mindestens {min} nötigen Aufgaben.',
@@ -367,6 +367,8 @@ export default {
   'lesson.hintSoft':          'Noch nicht ganz – schau dir deine Ausgabe oben an und vergleiche sie mit der Aufgabenstellung.',
   'lesson.hintExpected':      'Die Ausgabe stimmt noch nicht. Erwartet wurde etwas mit: "{expected}"',
   'lesson.hintVaries':        'Deine Ausgabe war bei jedem Lauf gleich. Die Aufgabe soll mit random zufällige Werte ziehen und sie ausgeben – dann sieht jeder Lauf anders aus.',
+  'lesson.runThenCheck':    'Passt die Ausgabe? Dann klicke „Prüfen“ – erst dann zählt die Aufgabe.',
+  'lesson.nextTask':        'Weiter zu Aufgabe {n} ↓',
   'lesson.showSolution':      'Lösung anzeigen',
   'lesson.solutionLabel':     'Lösung:',
   'lesson.viewBadge':         'Dein Abzeichen wartet in deinem Profil!',
@@ -374,8 +376,7 @@ export default {
   'lesson.moreProjects':      'Weitere Projekte entdecken',
 
   // ── JS-Sandbox-Lektion (JsLessonView.vue + JsSandboxFrame.vue) ───────────
-  'jsLesson.editorHint':   'Dein Code läuft in einem eigenen, abgeschotteten Bereich. Schau dir zuerst das Beispiel an und führe es aus – danach bist du an der Reihe. Jeder Klick auf „Ausführen“/„Prüfen“ startet frisch neu.',
-  'jsLesson.ranExplainer': '🟠 Ein oranger Rahmen um den Code-Bereich zeigt dir, welchen Code du schon ausgeführt hast.',
+  'jsLesson.editorHint':   '„Ausführen“ zeigt dir die Ausgabe. „Prüfen“ kontrolliert die Aufgabe – erst dann ist sie erledigt. Schau dir zuerst das Beispiel an.',
   'jsLesson.alreadyRan':   'Diesen Code hast du schon ausgeführt.',
   'jsLesson.noOutput':     '(keine Ausgabe)',
   'jsLesson.canvasNote':   '🎨 Dein Spielfeld wurde gezeichnet – schau es dir auf der Arbeitsfläche an!',
