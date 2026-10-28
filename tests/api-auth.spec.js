@@ -345,6 +345,32 @@ test.describe('API: Admin + Auth + Progress', () => {
     expect(afterDelete.some((t) => t.id === termin.id)).toBeFalsy();
   });
 
+  test('Termin-Orte: Ort eines neuen Termins wird gespeichert, lässt sich entfernen und kommt nicht ungefragt zurück', async ({ request }) => {
+    const token = await adminToken(request);
+    const headers = { Authorization: `Bearer ${token}` };
+    const ort = `Ort ${Date.now()}`;
+    const orte = async () => (await (await request.get(`${API}/api/admin/termin-orte`, { headers })).json()).orte;
+
+    expect((await request.get(`${API}/api/admin/termin-orte`)).status()).toBe(401);
+
+    const created = await request.post(`${API}/api/admin/termine`, {
+      headers,
+      data: { date: 'Mittwoch, 03.02.27', time: '17:00 - 18:00 Uhr', location: ort, topic: 'Ort-Test', link: '/projekte' },
+    });
+    const { termin } = await created.json();
+    const gespeichert = (await orte()).find((o) => o.name === ort);
+    expect(gespeichert).toBeTruthy();
+
+    expect((await request.delete(`${API}/api/admin/termin-orte/${gespeichert.id}`, { headers })).status()).toBe(204);
+    expect((await orte()).some((o) => o.name === ort)).toBeFalsy();
+
+    // Nur absagen ändert den Ort nicht und trägt ihn nicht wieder ein
+    await request.patch(`${API}/api/admin/termine/${termin.id}`, { headers, data: { cancelled: true } });
+    expect((await orte()).some((o) => o.name === ort)).toBeFalsy();
+
+    await request.delete(`${API}/api/admin/termine/${termin.id}`, { headers });
+  });
+
   test('Termine: Validierung lehnt fehlende Pflichtfelder und ungültige Links ab', async ({ request }) => {
     const token = await adminToken(request);
 

@@ -105,3 +105,11 @@ export function updateTermin(id, payload) {
 export function deleteTermin(id) {
   return request(`/api/admin/termine/${id}`, { method: 'DELETE' });
 }
+
+export function listTerminOrte() {
+  return request('/api/admin/termin-orte');
+}
+
+export function deleteTerminOrt(id) {
+  return request(`/api/admin/termin-orte/${id}`, { method: 'DELETE' });
+}

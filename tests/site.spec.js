@@ -39,6 +39,24 @@ test.describe('Home & Navigation', () => {
     await expect(page.locator('.course-format-badge')).toHaveCount(5);
   });
 
+  test('Home zeigt kommende Termine auch bei frei getipptem Datum, vergangene nicht', async ({ page }) => {
+    const yyyy = new Date().getFullYear() + 1;
+    const yy = String(yyyy).slice(2);
+    const base = { time: '17:00 - 18:00 Uhr', location: 'Online', link: '/kurs/python-12-wochen-grundkurs', cancelled: false, recurring: false };
+    await page.route('**/api/termine', (route) => route.fulfill({
+      json: [
+        { ...base, id: 1, date: `Mittwoch, 03.03.${yy}`, topic: 'Klassisch' },
+        { ...base, id: 2, date: `03.02.${yy}`, topic: 'Ohne Wochentag' },
+        { ...base, id: 3, date: `Mittwoch 03.01.${yyyy}`, topic: 'Ohne Komma' },
+        { ...base, id: 4, date: `${yyyy}-04-07`, topic: 'ISO' },
+        { ...base, id: 5, date: 'Dienstag, 16.12.20', topic: 'Vergangen' },
+        { ...base, id: 6, date: `Mittwoch, 05.05.${yy}`, topic: 'Abgesagt', cancelled: true },
+      ],
+    }));
+    await page.goto('/');
+    await expect(page.locator('#termine .termin-topic')).toHaveText(['Ohne Komma', 'Ohne Wochentag', 'Klassisch', 'ISO']);
+  });
+
   test('Home zeigt als Unterstützer nur noch das DLC', async ({ page }) => {
     await page.goto('/');
     const supporters = page.locator('#unterstuetzer');

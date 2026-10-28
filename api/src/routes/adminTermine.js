@@ -56,7 +56,23 @@ function parseTerminInput(body, existing) {
   };
 }
 
+function rememberOrt(name) {
+  db.prepare('INSERT OR IGNORE INTO termin_orte (name, created_at) VALUES (?, ?)')
+    .run(name, new Date().toISOString());
+}
+
 router.use(requireAdmin);
+
+router.get('/termin-orte', (_req, res) => {
+  const orte = db.prepare('SELECT id, name FROM termin_orte ORDER BY name COLLATE NOCASE').all();
+  res.json({ orte });
+});
+
+router.delete('/termin-orte/:id', (req, res) => {
+  const info = db.prepare('DELETE FROM termin_orte WHERE id = ?').run(req.params.id);
+  if (info.changes === 0) return res.status(404).json({ error: 'Ort nicht gefunden.' });
+  return res.status(204).send();
+});
 
 router.get('/termine', (_req, res) => {
   const rows = db.prepare('SELECT * FROM termine ORDER BY id').all();
@@ -75,6 +91,7 @@ router.post('/termine', (req, res) => {
     value.date, value.time, value.location, value.topic, value.link,
     value.cancelled ? 1 : 0, value.recurring ? 1 : 0, value.validFrom, value.validUntil, now, now,
   );
+  rememberOrt(value.location);
 
   const row = db.prepare('SELECT * FROM termine WHERE id = ?').get(info.lastInsertRowid);
   return res.status(201).json({ termin: publicTermin(row) });
@@ -96,6 +113,7 @@ router.patch('/termine/:id', (req, res) => {
     value.date, value.time, value.location, value.topic, value.link,
     value.cancelled ? 1 : 0, value.recurring ? 1 : 0, value.validFrom, value.validUntil, now, existing.id,
   );
+  if (req.body?.location !== undefined) rememberOrt(value.location);
 
   const row = db.prepare('SELECT * FROM termine WHERE id = ?').get(existing.id);
   return res.json({ termin: publicTermin(row) });

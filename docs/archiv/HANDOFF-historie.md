@@ -3228,3 +3228,33 @@ einfangen“ umbauen, Pferde/Sci-Fi W6–12 Zeile für Zeile lesen.
 - Nummer 3.129 statt 3.128: 3.128 war beim Merge schon auf `main` vergeben. KI-Test-Kind
   (`--geaendert`) brach nach 4 von 38 Lektionen am Claude-Sitzungslimit ab; auf Wunsch Eike ohne
   vollständigen Lauf gemergt.
+
+### 3.130 — Termin-Formular und Termine auf der Hauptseite (Branch `termine-eingabe`)
+
+Wunsch Eike (28.10.2026): angelegter Termin fehlte auf der Hauptseite; bessere Eingabemaske mit
+Auswahl der Kurse/Projekte, Vorschlag ohne festes Thema, Vorgabe Mittwoch 17–18 Uhr, Orte zur Auswahl.
+
+- **Hauptseite:** `Home.vue` und `useCourseData.js` lasen das Datum nur als „Wochentag, TT.MM.JJ“
+  (`split(', ')`); alles andere (ohne Komma, ohne Wochentag, ISO) fiel still heraus. Jetzt
+  gemeinsam `upcomingTermine()` aus `src/utils/terminDate.js`: erkennt `TT.MM.JJ`, `TT.MM.JJJJ`,
+  `TT.MM.` (laufendes Jahr) und `JJJJ-MM-TT`, egal was davor steht. Den Live-Termin selbst nicht
+  gesehen (keine Server-Daten lokal); falls er nach dem Deploy weiter fehlt: Datum in der
+  Vergangenheit, „Abgesagt“ gesetzt oder wiederkehrend mit „Gültig ab“ in der Zukunft.
+- **Formular** (`AdminView.vue` + `useTerminForm.js`): Auswahl „Kurs oder Projekt“ (Kurse/Projekte
+  aus `kurse.json` ohne `unlisted`, dazu „Nichts Bestimmtes: offene Werkstatt“ → Link `/projekte`
+  und „Eigener Link …“). Beim 12-Wochen-Kurs Wochenwahl, Titel aus den `## Woche N – …`-Überschriften
+  in `lehrplan.md`, Link `#woche-N`. Thema wird bei jeder Auswahl neu gefüllt, bleibt editierbar und
+  wird beim Bearbeiten nicht überschrieben (`@change`, kein Watcher). Datum `type=date`, Von/Bis
+  `type=time`; gespeichert wird weiter der Anzeige-Text („Mittwoch, 04.11.26“, „17:00 - 18:00 Uhr“),
+  wiederkehrend „Jeden <Wochentag von Gültig ab>“. Vorschau-Zeile über „Abgesagt“.
+- **Vorschlag beim Anlegen:** nächster Mittwoch (heute nur bis 17 Uhr), 17–18 Uhr, Ort des zuletzt
+  angelegten Termins; Thema: nach dem neuesten nicht abgesagten Einzeltermin des 12-Wochen-Kurses
+  die Woche danach, sonst offene Werkstatt.
+- **Orte:** Tabelle `termin_orte` (beim ersten Start einmal aus den Orten vorhandener Termine
+  gefüllt, danach nie wieder, damit gelöschte nicht zurückkommen). Jeder Termin, der mit Ort
+  gespeichert wird, trägt ihn ein (`INSERT OR IGNORE`); PATCH ohne `location` nicht. Entfernen im
+  Formular über „Diesen Ort aus der Auswahl entfernen“; bestehende Termine bleiben unverändert.
+- Tests: `site.spec.js` (Home mit gemocktem `/api/termine`, schlägt mit altem `Home.vue` fehl),
+  `auth-ui.spec.js` (Anlegen mit Woche/neuem Ort, Bearbeiten behält Thema, Vorgaben, Ort entfernen;
+  Vorschlag mit gemockter Admin-Liste, weil die Auth-Dateien parallel auf derselben DB laufen),
+  `api-auth.spec.js` (Termin-Orte).

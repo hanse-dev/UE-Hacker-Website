@@ -55,6 +55,7 @@ Alles unten ist nach `main` gemergt. Details: `grep -n "^### 3.NN" docs/archiv/H
 | 3.127 | Weiter-Flow in Lektionen | `useTaskFlow.js` (`nextOpenTask`/`focusTask`) in `LessonView`/`JsLessonView`: Hinweis „erst Prüfen zählt“ nach Ausführen, Knopf „Weiter zu Aufgabe N“ nach einer gelösten Aufgabe, eine Hinweiszeile über dem Editor statt drei |
 | 3.128 | Fang den Stern: breiter Korb | Neue Stufe 4 (`lektion-breiter-korb`, zwei Lampen, Fangen mit „oder“), Werkstatt-Aufträge 1–5 mit eingeklapptem Plan in Worten; Kurs kein Beta mehr |
 | 3.129 | Inhalte Woche 2/6–12 | W2 Boss 3 rechnet mit „10-mal versuchen“ statt Erwartungswert; W12 Pferde „Ausreißer einfangen“ statt Gegner/Kampf; Skelett-Reste in Pferde/Sci-Fi W6–12 behoben |
+| 3.130 | Termin-Formular | `src/utils/terminDate.js` (toleranter Datums-Parser für Home/Kursseite, `upcomingTermine`), `useTerminForm.js` (Kurs/Projekt-Auswahl aus `kurse.json`, Woche aus `lehrplan.md`, Vorschlag nächste Woche bzw. offene Werkstatt, Vorgabe Mi 17–18 Uhr), Tabelle `termin_orte` + `GET/DELETE /api/admin/termin-orte`; gespeichert wird weiter Anzeige-Text |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 

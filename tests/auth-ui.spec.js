@@ -83,11 +83,15 @@ test.describe('UI: Admin + Header-Login', () => {
     await page.locator('.admin-termine .btn-primary').click();
 
     await expect(page.locator('.modal-card')).toBeVisible();
-    await page.locator('.modal-card input').nth(0).fill('Montag, 01.02.27');
-    await page.locator('.modal-card input').nth(1).fill('17:00 - 18:00 Uhr');
-    await page.locator('.modal-card input').nth(2).fill('Online');
-    await page.locator('.modal-card input').nth(3).fill(topic);
-    await page.locator('.modal-card input').nth(4).fill('/kurs/python-12-wochen-grundkurs');
+    await page.locator('.modal-card .termin-auswahl').selectOption('python-12-wochen-grundkurs');
+    await page.locator('.modal-card .termin-woche').selectOption('8');
+    await expect(page.locator('.modal-card .termin-topic')).toHaveValue('Woche 8: Dictionaries & Tupel');
+    await page.locator('.modal-card .termin-topic').fill(topic);
+    await page.locator('.modal-card .termin-datum').fill('2027-02-03');
+    await page.locator('.modal-card .termin-ort').selectOption('__neu');
+    const ort = `Testort ${Date.now()}`;
+    await page.locator('.modal-card .termin-neuer-ort').fill(ort);
+    await expect(page.locator('.modal-card .termin-preview')).toHaveText(`Mittwoch, 03.02.27 · 17:00 - 18:00 Uhr · ${ort}`);
     await page.locator('.modal-card .btn-primary').click();
 
     await expect(page.locator('.admin-termine .admin-table')).toContainText(topic);
@@ -95,20 +99,77 @@ test.describe('UI: Admin + Header-Login', () => {
     // Der neue Termin ist auch öffentlich sichtbar, ganz ohne Admin-Login.
     const publicList = await request.get(`${API}/api/termine`);
     const publicTermine = await publicList.json();
-    expect(publicTermine.some((t) => t.topic === topic)).toBeTruthy();
+    const saved = publicTermine.find((t) => t.topic === topic);
+    expect(saved).toMatchObject({
+      date: 'Mittwoch, 03.02.27',
+      time: '17:00 - 18:00 Uhr',
+      location: ort,
+      link: '/kurs/python-12-wochen-grundkurs#woche-8',
+    });
 
-    // Bearbeiten: als abgesagt markieren
+    // Bearbeiten: Thema, Woche und Ort bleiben stehen; als abgesagt markieren
     const row = page.locator('.admin-termine .admin-table tr', { hasText: topic });
     await row.locator('.btn-link').first().click();
     await expect(page.locator('.modal-card')).toBeVisible();
-    await page.locator('.modal-card input[type="checkbox"]').first().check();
+    await expect(page.locator('.modal-card .termin-topic')).toHaveValue(topic);
+    await expect(page.locator('.modal-card .termin-woche')).toHaveValue('8');
+    await expect(page.locator('.modal-card .termin-ort')).toHaveValue(ort);
+    await page.locator('.modal-card .termin-cancelled').check();
     await page.locator('.modal-card .btn-primary').click();
     await expect(row.locator('.badge-cancelled')).toBeVisible();
+
+    // Neuer Termin: Vorgaben Mittwoch 17–18 Uhr, der neue Ort steht zur Auswahl und lässt sich entfernen
+    await page.locator('.admin-termine .btn-primary').click();
+    await expect(page.locator('.modal-card .termin-start')).toHaveValue('17:00');
+    await expect(page.locator('.modal-card .termin-end')).toHaveValue('18:00');
+    const datum = await page.locator('.modal-card .termin-datum').inputValue();
+    expect(new Date(`${datum}T12:00:00`).getDay()).toBe(3);
+    await page.locator('.modal-card .termin-ort').selectOption(ort);
+    page.once('dialog', (dialog) => dialog.accept());
+    await page.locator('.modal-card .termin-ort-entfernen').click();
+    await expect(page.locator('.modal-card .termin-ort option', { hasText: ort })).toHaveCount(0);
+    await page.locator('.modal-card .btn-secondary').click();
 
     // Löschen
     page.once('dialog', (dialog) => dialog.accept());
     await row.locator('.btn-link.danger').click();
     await expect(page.locator('.admin-termine')).not.toContainText(topic);
+  });
+
+  test('Admin: Neuer Termin schlägt die nächste Kurswoche vor, sonst eine offene Werkstatt', async ({ page }) => {
+    const ort = 'Übergangshaus, Königstraße 54, 23564 Lübeck';
+    let liste = [
+      { id: 1, date: 'Mittwoch, 07.10.26', time: '17:00 - 18:00 Uhr', location: 'Online', topic: 'Alt', link: '/kurs/python-12-wochen-grundkurs#woche-2', cancelled: false, recurring: false },
+      { id: 2, date: 'Mittwoch, 14.10.26', time: '17:00 - 18:00 Uhr', location: ort, topic: 'Neu', link: '/kurs/python-12-wochen-grundkurs#woche-8', cancelled: false, recurring: false },
+    ];
+    await page.route('**/api/admin/termine', (route) => (route.request().method() === 'GET'
+      ? route.fulfill({ json: { termine: liste } })
+      : route.fallback()));
+
+    await page.goto('/admin');
+    await page.locator('.admin-login-card input[type="password"]').fill(ADMIN_PASSWORD);
+    await page.locator('.admin-login-card .btn-primary').click();
+    await page.locator('.admin-tab', { hasText: /Termine|Appointments/ }).click();
+
+    await page.locator('.admin-termine .btn-primary').click();
+    await expect(page.locator('.modal-card .termin-auswahl')).toHaveValue('python-12-wochen-grundkurs');
+    await expect(page.locator('.modal-card .termin-woche')).toHaveValue('9');
+    await expect(page.locator('.modal-card .termin-topic')).toHaveValue('Woche 9: Dateien & I/O');
+    await expect(page.locator('.modal-card .termin-vorschlag')).toBeVisible();
+    // Zuletzt genutzter Ort ist vorausgewählt (oder als neuer Ort vorausgefüllt, falls nicht gespeichert)
+    const ortWert = await page.locator('.modal-card .termin-ort').inputValue();
+    if (ortWert === '__neu') await expect(page.locator('.modal-card .termin-neuer-ort')).toHaveValue(ort);
+    else expect(ortWert).toBe(ort);
+    await page.locator('.modal-card .btn-secondary').click();
+
+    // Ohne laufenden Kurs: offene Werkstatt
+    liste = [{ ...liste[0], id: 3, link: '/kurs/ferienkurse', topic: 'Ferien' }];
+    await page.reload();
+    await page.locator('.admin-tab', { hasText: /Termine|Appointments/ }).click();
+    await page.locator('.admin-termine .btn-primary').click();
+    await expect(page.locator('.modal-card .termin-auswahl')).toHaveValue('__werkstatt');
+    await expect(page.locator('.modal-card .termin-topic')).toHaveValue(/Offene Werkstatt/);
+    await expect(page.locator('.modal-card .termin-woche')).toHaveCount(0);
   });
 
   test('Optionen: Anmelden, Sync, Abmelden', async ({ page, request }) => {

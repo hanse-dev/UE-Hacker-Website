@@ -226,43 +226,84 @@
         <div class="modal-card" role="dialog" aria-modal="true">
           <h2>{{ editingTermin ? t('admin.termine.editTitle') : t('admin.termine.createTitle') }}</h2>
           <label class="field">
-            <span>{{ t('admin.termine.col.date') }}</span>
-            <input v-model="terminForm.date" autocomplete="off" :placeholder="t('admin.termine.datePlaceholder')">
+            <span>{{ t('admin.termine.course') }}</span>
+            <select v-model="terminForm.auswahl" class="termin-auswahl" @change="onTerminAuswahl">
+              <option :value="WERKSTATT">{{ t('admin.termine.werkstatt') }}</option>
+              <optgroup :label="t('admin.termine.groupCourses')">
+                <option v-for="k in terminKurse.kurse" :key="k.id" :value="k.id">{{ k.title }}</option>
+              </optgroup>
+              <optgroup :label="t('admin.termine.groupProjects')">
+                <option v-for="k in terminKurse.projekte" :key="k.id" :value="k.id">{{ k.title }}</option>
+              </optgroup>
+              <option :value="EIGENER_LINK">{{ t('admin.termine.ownLink') }}</option>
+            </select>
           </label>
-          <label class="field">
-            <span>{{ t('admin.termine.time') }}</span>
-            <input v-model="terminForm.time" autocomplete="off" placeholder="17:30 - 18:30 Uhr">
-          </label>
-          <label class="field">
-            <span>{{ t('admin.termine.col.location') }}</span>
-            <input v-model="terminForm.location" autocomplete="off">
+          <p v-if="terminForm.vorgeschlagen" class="muted termin-vorschlag">{{ t('admin.termine.suggestion') }}</p>
+          <label v-if="terminForm.auswahl === WOCHEN_KURS" class="field">
+            <span>{{ t('admin.termine.week') }}</span>
+            <select v-model="terminForm.woche" class="termin-woche" @change="onTerminAuswahl">
+              <option :value="null">{{ t('admin.termine.noWeek') }}</option>
+              <option v-for="w in WOCHEN" :key="w.nr" :value="w.nr">{{ wochenTopic(w.nr) }}</option>
+            </select>
           </label>
           <label class="field">
             <span>{{ t('admin.termine.col.topic') }}</span>
-            <input v-model="terminForm.topic" autocomplete="off">
+            <input v-model="terminForm.topic" class="termin-topic" autocomplete="off">
           </label>
-          <label class="field">
+          <label v-if="terminForm.auswahl === EIGENER_LINK" class="field">
             <span>{{ t('admin.termine.link') }}</span>
-            <input v-model="terminForm.link" autocomplete="off" placeholder="/kurs/python-12-wochen-grundkurs">
+            <input v-model="terminForm.link" class="termin-link-input" autocomplete="off" placeholder="/kurs/python-12-wochen-grundkurs">
           </label>
           <label class="field field-checkbox">
-            <input v-model="terminForm.cancelled" type="checkbox">
-            <span>{{ t('admin.termine.cancelled') }}</span>
-          </label>
-          <label class="field field-checkbox">
-            <input v-model="terminForm.recurring" type="checkbox">
+            <input v-model="terminForm.recurring" type="checkbox" class="termin-recurring">
             <span>{{ t('admin.termine.recurring') }}</span>
           </label>
-          <template v-if="terminForm.recurring">
+          <label v-if="!terminForm.recurring" class="field">
+            <span>{{ t('admin.termine.col.date') }}</span>
+            <input v-model="terminForm.dateIso" type="date" class="termin-datum">
+          </label>
+          <template v-else>
             <label class="field">
               <span>{{ t('admin.termine.validFrom') }}</span>
-              <input v-model="terminForm.validFrom" type="date">
+              <input v-model="terminForm.validFrom" type="date" class="termin-valid-from">
             </label>
             <label class="field">
               <span>{{ t('admin.termine.validUntil') }}</span>
               <input v-model="terminForm.validUntil" type="date">
             </label>
           </template>
+          <div class="field-row">
+            <label class="field">
+              <span>{{ t('admin.termine.from') }}</span>
+              <input v-model="terminForm.start" type="time" class="termin-start">
+            </label>
+            <label class="field">
+              <span>{{ t('admin.termine.until') }}</span>
+              <input v-model="terminForm.end" type="time" class="termin-end">
+            </label>
+          </div>
+          <label class="field">
+            <span>{{ t('admin.termine.col.location') }}</span>
+            <select v-model="terminForm.ort" class="termin-ort">
+              <option v-for="o in terminOrte" :key="o.id" :value="o.name">{{ o.name }}</option>
+              <option :value="NEUER_ORT">{{ t('admin.termine.newPlace') }}</option>
+            </select>
+          </label>
+          <label v-if="terminForm.ort === NEUER_ORT" class="field">
+            <span>{{ t('admin.termine.newPlaceName') }}</span>
+            <input v-model="terminForm.neuerOrt" class="termin-neuer-ort" autocomplete="off">
+          </label>
+          <button
+            v-else-if="selectedOrt"
+            type="button"
+            class="btn-link danger termin-ort-entfernen"
+            @click="removeTerminOrt(selectedOrt)"
+          >{{ t('admin.termine.removePlace') }}</button>
+          <p class="muted termin-preview">{{ terminPreview }}</p>
+          <label class="field field-checkbox">
+            <input v-model="terminForm.cancelled" type="checkbox" class="termin-cancelled">
+            <span>{{ t('admin.termine.cancelled') }}</span>
+          </label>
           <p v-if="terminFormError" class="error">{{ terminFormError }}</p>
           <div class="modal-actions">
             <button type="button" class="btn-secondary" @click="closeTerminForm">{{ t('admin.cancel') }}</button>
@@ -277,7 +318,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useLanguage } from '../composables/useLanguage.js';
 import { assetUrl } from '../utils/assetUrl';
 import BetaBadge from '../components/BetaBadge.vue';
@@ -298,7 +339,23 @@ import {
   createTermin,
   updateTermin,
   deleteTermin,
+  listTerminOrte,
+  deleteTerminOrt,
 } from '../composables/useAdminApi.js';
+import {
+  WOCHEN,
+  WOCHEN_KURS,
+  WERKSTATT,
+  EIGENER_LINK,
+  NEUER_ORT,
+  wochenTopic,
+  terminKursOptionen,
+  neuesTerminForm,
+  terminFormAus,
+  terminPayload,
+  topicFuer,
+  linkFuer,
+} from '../composables/useTerminForm.js';
 import { completedCourseEntry } from '../composables/useInteractiveProgress.js';
 
 // Gleiches Wildcard-Glob wie useProjectBadges.js: Die Lektions-IDs eines Projekt-Kurses kennt nur
@@ -335,11 +392,46 @@ export default {
     const terminFormOpen = ref(false);
     const terminFormError = ref('');
     const editingTermin = ref(null);
-    const emptyTerminForm = () => ({
-      date: '', time: '', location: '', topic: '', link: '',
-      cancelled: false, recurring: false, validFrom: '', validUntil: '',
+    const terminForm = ref(neuesTerminForm([]));
+    const terminOrte = ref([]);
+    const terminKurse = computed(() => terminKursOptionen(adminKurse.value));
+    const selectedOrt = computed(() => terminOrte.value.find((o) => o.name === terminForm.value.ort) || null);
+    const terminPreview = computed(() => {
+      const p = terminPayload(terminForm.value);
+      return [p.date, p.time, p.location].filter(Boolean).join(' · ');
     });
-    const terminForm = ref(emptyTerminForm());
+
+    const fillTopicAndLink = () => {
+      const f = terminForm.value;
+      if (f.auswahl === EIGENER_LINK) return;
+      f.topic = topicFuer(f, adminKurse.value);
+      f.link = linkFuer(f);
+    };
+    const onTerminAuswahl = () => {
+      terminForm.value.vorgeschlagen = false;
+      if (terminForm.value.auswahl !== WOCHEN_KURS) terminForm.value.woche = null;
+      fillTopicAndLink();
+    };
+
+    const refreshTerminOrte = async () => {
+      try {
+        terminOrte.value = (await listTerminOrte()).orte || [];
+      } catch (e) {
+        terminFormError.value = e.message || t('admin.error');
+      }
+    };
+
+    const removeTerminOrt = async (ort) => {
+      const ok = window.confirm(t('admin.termine.confirmRemovePlace').replace('{name}', ort.name));
+      if (!ok) return;
+      try {
+        await deleteTerminOrt(ort.id);
+        await refreshTerminOrte();
+        terminForm.value.ort = terminOrte.value[0]?.name || NEUER_ORT;
+      } catch (e) {
+        terminFormError.value = e.message || t('admin.error');
+      }
+    };
 
     const ageLabel = (g) => (g === 'jugendliche' ? t('admin.age.jugendliche') : t('admin.age.kinder'));
 
@@ -525,27 +617,33 @@ export default {
       }
     };
 
-    const openCreateTermin = () => {
+    // Ein Ort, der nicht (mehr) in der Liste steht, erscheint als „Neuer Ort“ mit vorausgefülltem Namen.
+    const applyOrt = () => {
+      const f = terminForm.value;
+      if (!f.ort && terminOrte.value.length) f.ort = terminOrte.value[0].name;
+      if (f.ort && f.ort !== NEUER_ORT && !terminOrte.value.some((o) => o.name === f.ort)) {
+        f.neuerOrt = f.ort;
+        f.ort = NEUER_ORT;
+      }
+      if (!f.ort) f.ort = NEUER_ORT;
+    };
+
+    const openCreateTermin = async () => {
       editingTermin.value = null;
-      terminForm.value = emptyTerminForm();
       terminFormError.value = '';
+      await refreshTerminOrte();
+      terminForm.value = neuesTerminForm(termine.value);
+      fillTopicAndLink();
+      applyOrt();
       terminFormOpen.value = true;
     };
 
-    const openEditTermin = (terminItem) => {
+    const openEditTermin = async (terminItem) => {
       editingTermin.value = terminItem;
-      terminForm.value = {
-        date: terminItem.date,
-        time: terminItem.time,
-        location: terminItem.location,
-        topic: terminItem.topic,
-        link: terminItem.link,
-        cancelled: terminItem.cancelled,
-        recurring: terminItem.recurring,
-        validFrom: terminItem.validFrom || '',
-        validUntil: terminItem.validUntil || '',
-      };
       terminFormError.value = '';
+      await refreshTerminOrte();
+      terminForm.value = terminFormAus(terminItem, adminKurse.value);
+      applyOrt();
       terminFormOpen.value = true;
     };
 
@@ -558,17 +656,9 @@ export default {
       terminBusy.value = true;
       terminFormError.value = '';
       try {
-        const payload = {
-          date: terminForm.value.date,
-          time: terminForm.value.time,
-          location: terminForm.value.location,
-          topic: terminForm.value.topic,
-          link: terminForm.value.link,
-          cancelled: terminForm.value.cancelled,
-          recurring: terminForm.value.recurring,
-          validFrom: terminForm.value.recurring ? (terminForm.value.validFrom || null) : null,
-          validUntil: terminForm.value.recurring ? (terminForm.value.validUntil || null) : null,
-        };
+        const payload = terminPayload(terminForm.value);
+        if (!payload.date) throw new Error(t('admin.termine.dateMissing'));
+        if (!terminForm.value.start) throw new Error(t('admin.termine.timeMissing'));
         if (editingTermin.value) {
           await updateTermin(editingTermin.value.id, payload);
         } else {
@@ -634,6 +724,8 @@ export default {
       projects, grantUser, grantCourseId, grantError, grantResult, openGrant, closeGrant, grant,
       activeTab, termine, terminBusy, terminError, terminFormOpen, terminFormError, editingTermin, terminForm,
       openCreateTermin, openEditTermin, closeTerminForm, saveTermin, removeTermin,
+      terminOrte, terminKurse, selectedOrt, terminPreview, onTerminAuswahl, removeTerminOrt,
+      WOCHEN, WOCHEN_KURS, WERKSTATT, EIGENER_LINK, NEUER_ORT, wochenTopic,
       adminKurse,
     };
   },
@@ -659,6 +751,8 @@ export default {
   border-radius: 10px;
   padding: 20px;
   max-width: 420px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
 }
 
 .field {
@@ -702,6 +796,27 @@ export default {
 .admin-tab.active {
   color: var(--brand-text);
   border-bottom-color: var(--brand-text);
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.termin-vorschlag {
+  margin: -8px 0 14px;
+  font-size: 0.9em;
+}
+
+.termin-ort-entfernen {
+  margin: -6px 0 14px;
+  padding: 0;
+}
+
+.termin-preview {
+  margin: 0 0 14px;
+  font-weight: 600;
 }
 
 .field-checkbox {

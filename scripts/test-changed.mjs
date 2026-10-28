@@ -129,6 +129,9 @@ const RULES = [
   ['src/components/BetaBadge.vue', ['tests/kurse-beta.spec.js']],
   ['src/views/AdminView.vue', ['tests/site.spec.js']],
   ['src/composables/useAdminApi.js', ['tests/site.spec.js']],
+  // Termin-Formular: die eigentlichen Tests laufen nur in `npm run test:auth` (auth-ui, api-auth).
+  ['src/composables/useTerminForm.js', ['tests/site.spec.js']],
+  ['src/utils/terminDate.js', ['tests/site.spec.js']],
   ['api/src/routes/termine.js', ['tests/site.spec.js']],
   ['api/src/routes/adminTermine.js', ['tests/site.spec.js']],
   ['api/src/scripts/import-termine-json.js', ['tests/site.spec.js']],

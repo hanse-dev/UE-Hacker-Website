@@ -72,6 +72,7 @@
 <script>
 import { ref, onMounted } from 'vue';
 import { assetUrl } from '../utils/assetUrl';
+import { upcomingTermine, terminSortDate } from '../utils/terminDate.js';
 import { useLanguage } from '../composables/useLanguage.js';
 import BetaBadge from '../components/BetaBadge.vue';
 
@@ -82,58 +83,13 @@ export default {
     const termine = ref([]);
     const kurse = ref([]);
 
-    // Helper to parse date strings like "Dienstag, 16.09.25"
-    const parseDate = (dateString) => {
-      const datePart = dateString.split(', ')[1];
-      if (!datePart) return null;
-      const parts = datePart.split('.');
-      if (parts.length !== 3) return null;
-      // new Date(year, monthIndex, day)
-      return new Date(`20${parts[2]}`, parts[1] - 1, parts[0]);
-    };
-
-    // Helper for recurring terms: Laufzeit aktiv wenn heute zwischen validFrom und validUntil
-    const parseISO = (isoString) => (isoString ? new Date(isoString) : null);
-    const isRecurringActive = (termin, today) => {
-      if (!termin.recurring || !termin.validFrom) return false;
-      const from = parseISO(termin.validFrom);
-      if (!from || today < from) return false;
-      if (!termin.validUntil) return true;
-      const until = parseISO(termin.validUntil);
-      return until && today <= until;
-    };
-
     const fetchTermine = async () => {
       try {
         const response = await fetch('/api/termine');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        const allTermine = await response.json();
-
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-
-        const getSortDate = (termin) => {
-          if (termin.recurring) return parseISO(termin.validFrom) || today;
-          return parseDate(termin.date) || today;
-        };
-
-        termine.value = allTermine
-          .filter(termin => {
-            if (termin.cancelled) return false;
-            if (termin.recurring) return isRecurringActive(termin, today);
-            const terminDate = parseDate(termin.date);
-            return terminDate && terminDate >= today;
-          })
-          .sort((a, b) => {
-            // Wiederkehrende Termine zuerst, dann nach Datum
-            const aRec = a.recurring ? 0 : 1;
-            const bRec = b.recurring ? 0 : 1;
-            if (aRec !== bRec) return aRec - bRec;
-            return getSortDate(a) - getSortDate(b);
-          });
-
+        termine.value = upcomingTermine(await response.json());
       } catch (error) {
         console.error('Could not load or filter termine:', error);
       }
@@ -170,11 +126,12 @@ export default {
       });
 
       // Sort courses by their earliest appointment date
+      const today = new Date();
       kurse.value.sort((kursA, kursB) => {
         const getEarliestDate = (kursId) => {
           const kursTermine = termine.value
             .filter(termin => termin.link.startsWith(`/kurs/${kursId}`))
-            .map(termin => parseDate(termin.date));
+            .map(termin => terminSortDate(termin, today));
           
           if (kursTermine.length === 0) return null;
           

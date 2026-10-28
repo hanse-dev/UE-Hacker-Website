@@ -13,6 +13,8 @@ const db = new DatabaseSync(dbPath);
 db.exec('PRAGMA journal_mode = WAL');
 db.exec('PRAGMA foreign_keys = ON');
 
+const hadTerminOrte = !!db.prepare("SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'termin_orte'").get();
+
 db.exec(`
   CREATE TABLE IF NOT EXISTS users (
     id TEXT PRIMARY KEY,
@@ -46,6 +48,13 @@ db.exec(`
     updated_at TEXT NOT NULL
   );
 
+  -- Orte zur Auswahl im Termin-Formular (routes/adminTermine.js)
+  CREATE TABLE IF NOT EXISTS termin_orte (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL UNIQUE,
+    created_at TEXT NOT NULL
+  );
+
   -- Stolperstellen: anonyme Zähler je Aufgabe (routes/taskStats.js); task -1 = Lektion geöffnet
   CREATE TABLE IF NOT EXISTS task_stats (
     course TEXT NOT NULL,
@@ -69,6 +78,13 @@ if (!userColumns.has('must_change_password')) {
 }
 if (!userColumns.has('password_changed_at')) {
   db.exec('ALTER TABLE users ADD COLUMN password_changed_at TEXT');
+}
+// Nur beim Anlegen füllen: Ein später gelöschter Ort soll nicht beim nächsten Start zurückkommen.
+if (!hadTerminOrte) {
+  db.prepare(`
+    INSERT OR IGNORE INTO termin_orte (name, created_at)
+    SELECT DISTINCT location, ? FROM termine
+  `).run(new Date().toISOString());
 }
 
 export default db;
