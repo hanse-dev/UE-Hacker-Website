@@ -309,8 +309,8 @@ def plan_b():
 def schneller():
     return frames('Immer schneller', per_row=3, steps=[
         (korb(2, {(2, 1): 'on'}, breit=2), None, '400 ms', None),
+        (korb(2, {(2, 1): 'on'}, breit=2), None, '350 ms', None),
         (korb(2, {(2, 1): 'on'}, breit=2), None, '300 ms', None),
-        (korb(2, {(2, 1): 'on'}, breit=2), None, '200 ms', None),
     ])
 
 

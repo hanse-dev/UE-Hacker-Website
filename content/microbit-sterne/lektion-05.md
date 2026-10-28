@@ -12,7 +12,7 @@ Fängt der Korb einen Stern, spielt der micro:bit einen kurzen Ton.
 
 :::bloecke
 
-Töne findet ihr unter **Musik**. Der Ton kommt dorthin, wo `punkte` größer wird.
+Unter **Musik** nehmt ihr **spiele Note … für …**. Klickt auf die Note und wählt eine hohe, als Dauer passt 1/8 Takt. Der Ton kommt dorthin, wo `punkte` größer wird.
 
 :::
 
@@ -50,7 +50,7 @@ Das spielt einen hohen, kurzen Ton. Schreibt die Zeile direkt unter `punkte = pu
 
 ## Auftrag 2: Immer schneller ⭐⭐
 
-<img src="/microbit/sterne/schneller.svg" alt="Dreimal dasselbe Bild vom Spiel, darunter die Pausen 400, 300 und 200 Millisekunden: Mit jeder Stufe fällt der Stern schneller">
+<img src="/microbit/sterne/schneller.svg" alt="Dreimal dasselbe Bild vom Spiel, darunter die Pausen 400, 350 und 300 Millisekunden: Mit jeder Stufe fällt der Stern schneller">
 
 Mit jedem Punkt fällt der Stern ein bisschen schneller. Wie viele Sterne schafft ihr dann noch?
 
@@ -66,11 +66,11 @@ Statt **pausiere (ms) 400** steht dann **pausiere (ms) tempo**.
 
 :::python
 
-In Python ist das Tempo die 8 in `if takt == 8:`. Der Stern fällt nach 8 Runden der Schleife. Mit weniger Runden fällt er schneller.
+In Python ist das Tempo die 8 in `if takt == 8:`. Der Stern fällt nach 8 Runden der Schleife, 8 Runden mal 50 Millisekunden sind die 400 Millisekunden aus dem Bild. Mit weniger Runden fällt er schneller: 7 Runden sind 350 Millisekunden.
 
 - Schreibt oben zu den anderen Variablen `tempo = 8`.
-- Statt `if takt == 8:` steht dann `if takt >= tempo:`.
-- Bei jedem Punkt wird `tempo` um 1 kleiner, aber nur, **wenn** `tempo` noch größer als 2 ist. So wird es nie zu schnell.
+- Statt `if takt == 8:` steht dann `if takt >= tempo:`. `>=` heißt „größer oder gleich“. Mit `==` könnte der Stern hängen bleiben: Ist `takt` schon 7 und `tempo` wird 6, ist `takt` nie mehr genau 6.
+- Bei jedem Punkt wird `tempo` um 1 kleiner, aber nur, **wenn** `tempo` noch größer als 2 ist. So wird es nie zu schnell. Das neue `if` steht direkt unter `punkte = punkte + 1`, genauso weit eingerückt. Die Zeile darin rückt ihr 4 Leerzeichen weiter ein.
 - Nach „daneben“ setzt ihr `tempo` wieder auf 8.
 
 :::
@@ -104,6 +104,8 @@ In Python ist das Tempo die 8 in `if takt == 8:`. Der Stern fällt nach 8 Runden
 
 1. Der micro:bit zeigt die Punkte, und `punkte` wird 0. Das habt ihr schon.
 2. `tempo` bekommt wieder seinen Startwert.
+
+Habt ihr drei Leben eingebaut? Dann bekommt `tempo` erst wieder seinen Startwert, wenn das letzte Leben weg ist.
 
 Startwert, Schritt und Grenze stehen oben bei den Tipps.
 
@@ -161,13 +163,13 @@ Habt ihr drei Leben eingebaut? Dann passiert das alles erst, wenn das letzte Leb
 
 <img src="/microbit/sterne/neigen.svg" alt="Ein schräg gehaltener micro:bit: Wird er nach links geneigt, fährt der Korb nach links">
 
-Statt mit den Knöpfen steuert ihr den Korb, indem ihr den micro:bit nach links oder rechts neigt.
+Statt mit den Knöpfen steuert ihr den Korb, indem ihr den micro:bit nach links oder rechts neigt. Jedes Neigen schiebt den Korb um ein Feld. Haltet den micro:bit danach wieder gerade.
 
 - Am Rand darf der Korb auch jetzt nicht verschwinden.
 
 :::bloecke
 
-Unter **Eingabe** gibt es **wenn geschüttelt**. Im Feld könnt ihr statt „geschüttelt“ auch **nach links neigen** und **nach rechts neigen** wählen.
+Unter **Eingabe** gibt es **wenn geschüttelt**. Im Feld könnt ihr statt „geschüttelt“ auch **nach links neigen** und **nach rechts neigen** wählen. Den Inhalt von Knopf A müsst ihr nicht neu bauen: Rechtsklick auf den wenn-Block darin, dann **Duplizieren**, und die Kopie in den Neigen-Block ziehen.
 
 :::
 
@@ -210,6 +212,7 @@ Neben dem Stern fällt eine Bombe. Sie leuchtet nur schwach. Fängt der Korb die
 
 - Die Bombe braucht eigene Variablen: `bombe_x` und `bombe_y`.
 - Gefangen ist die Bombe, wenn `bombe_y` 4 ist und `bombe_x` gleich `korb` oder `korb + 1`. „Spiel vorbei“ heißt: Der micro:bit zeigt die Punkte, und alles fängt von vorn an – wie bei „daneben“.
+- Fällt die Bombe daneben, passiert nichts. Kopiert also nicht den Teil für „daneben“ vom Stern.
 - Startet die Bombe ein paar Reihen über dem Spielfeld, zum Beispiel bei y = -3. Dann fallen Stern und Bombe nicht im Gleichschritt. Unten angekommen, fängt sie wie der Stern wieder bei y = 0 an.
 
 :::bloecke
@@ -217,6 +220,7 @@ Neben dem Stern fällt eine Bombe. Sie leuchtet nur schwach. Fängt der Korb die
 - Die Bombe fällt genauso wie der Stern. Kopiert vom Stern: das Setzen in **beim Start**, das Löschen der alten Bombe, das Fallen (`bombe_y` um 1 größer, über 4 wieder oben mit zufälligem `bombe_x`) und das Zeichnen. Ändert dabei die Namen. Ihr kopiert mit einem Rechtsklick auf einen Block und **Duplizieren**.
 - Oberhalb des Spielfelds (y kleiner als 0) zeigt der micro:bit einfach nichts an. Das ist in Ordnung.
 - Schwach zeichnet ihr mit **Zeichne x y Helligkeit** unter **LED**, zum Beispiel mit Helligkeit 30.
+- Die Bombe zeichnet ihr nur, wenn `bombe_y` ≥ 0 ist. ≥ heißt „größer oder gleich“, ihr wählt es im Vergleich aus.
 
 :::
 
@@ -233,7 +237,7 @@ Die Bombe fällt genauso wie der Stern. Kopiert die Zeilen vom Stern und ändert
         display.set_pixel(bombe_x, bombe_y, 2)
 ```
 
-Die 2 ist eine kleine Helligkeit, so leuchtet die Bombe nur schwach.
+`>=` heißt „größer oder gleich“. Die 2 ist eine kleine Helligkeit, so leuchtet die Bombe nur schwach. Löschen müsst ihr die alte Bombe nicht, das macht `display.clear()` schon.
 
 :::
 
@@ -242,6 +246,7 @@ Die 2 ist eine kleine Helligkeit, so leuchtet die Bombe nur schwach.
 - Die Bombe fällt genauso wie der Stern. Kopiert vom Stern: `let bombe_x` und `let bombe_y` oben, `led.unplot` für die alte Bombe, das Fallen (`bombe_y` um 1 größer, über 4 wieder oben mit zufälligem `bombe_x`) und das Zeichnen. Ändert dabei die Namen.
 - Oberhalb des Spielfelds (y kleiner als 0) zeigt der micro:bit einfach nichts an. Das ist in Ordnung.
 - Schwach zeichnet ihr mit `led.plotBrightness(bombe_x, bombe_y, 30)`.
+- „0 oder größer“ schreibt ihr `bombe_y >= 0`. `>=` heißt „größer oder gleich“.
 
 :::
 
@@ -253,13 +258,21 @@ Die 2 ist eine kleine Helligkeit, so leuchtet die Bombe nur schwach.
 1. `bombe_x` wird eine zufällige Zahl von 0 bis 4.
 2. `bombe_y` wird -3.
 
+Die Bomben-Teile kommen jeweils direkt unter die passenden Teile vom Stern: Löschen unter Löschen, Fallen unter Fallen, Zeichnen unter Zeichnen. Der Korb wird zuletzt gezeichnet.
+
 **Beim Fallen, an derselben Stelle wie beim Stern:**
 
-1. Die Bombe wird an ihrer alten Stelle gelöscht, genau so, wie euer Programm den Stern löscht. Löscht euer Programm immer die ganze Anzeige, fällt dieser Schritt weg.
+1. Löscht euer Programm den alten Stern einzeln? Dann löscht es die Bombe genauso an ihrer alten Stelle.
 2. `bombe_y` wird um 1 größer.
 3. Ist `bombe_y` größer als 4? Dann wird `bombe_y` 0, und `bombe_x` wird eine neue zufällige Zahl von 0 bis 4.
-4. Ist `bombe_y` 4? Dann:
-   - Ist `bombe_x` gleich `korb` oder gleich `korb + 1`? Dann ist das Spiel vorbei: Der micro:bit zeigt die Punkte, und `punkte` wird 0.
+
+**Beim Prüfen, direkt unter der Prüfung, ob der Stern gefangen ist:**
+
+1. Ist `bombe_y` 4? Dann:
+   - Ist `bombe_x` gleich `korb` oder gleich `korb + 1`? Dann ist das Spiel vorbei. Es passiert dasselbe wie bei „daneben“: Der micro:bit zeigt die Punkte, `punkte` wird 0, und die Anzeige wird wieder leer.
+   - Fällt die Bombe daneben, passiert nichts. Für die Bombe gibt es keinen Teil „daneben“.
+
+Habt ihr drei Leben eingebaut? Bei der Bombe ist sofort Schluss, und `leben` wird wieder 3.
 
 **Beim Zeichnen:**
 

@@ -24,7 +24,7 @@ Dafür ändert ihr drei Stellen im Programm: das Zeichnen, den rechten Rand und 
 
 **`korb` + 1** baut ihr mit dem Block **0 + 0** unter **Mathematik**: `korb` kommt ins linke Feld, ins rechte tippt ihr 1.
 
-Baut Knopf B genauso um. Auch in **beim Start** und in **dauerhaft** wird der Korb gezeichnet. Dort braucht er ebenfalls seine rechte Lampe.
+Baut Knopf B genauso um. Auch in **beim Start** und in **dauerhaft** wird der Korb gezeichnet. Dort braucht er ebenfalls seine rechte Lampe. Zusammen sind das 4 neue Zeichne-Blöcke und 2 neue lösche-Blöcke. Fehlt einer, flackert die rechte Lampe oder geht aus.
 
 :::
 
@@ -85,7 +85,9 @@ Die rechte Hälfte vom Korb verschwindet einfach.
 
 :::
 
-Bis zu welcher Zahl darf `korb` jetzt nur noch fahren? Ändert die Grenze bei Knopf B. Am linken Rand bleibt alles, wie es ist: `korb` ist ja die linke Lampe.
+Bisher steht bei Knopf B `korb < 4`: Der Korb darf noch einen Schritt nach rechts fahren, solange `korb` kleiner als 4 ist. So kommt er bis 4. Jetzt soll er nur noch bis 3 kommen, dann steht die rechte Lampe bei x = 4. Welche Zahl muss bei Knopf B jetzt hinter dem `<` stehen? Am linken Rand bleibt alles, wie es ist: `korb` ist ja die linke Lampe.
+
+Habt ihr in Stufe 1 den Bonus „Durch die Wand“ gebaut? Dann springt der Korb jetzt auf 3 statt auf 4.
 
 ## Gefangen mit beiden Hälften
 
@@ -93,7 +95,12 @@ Fällt der Stern auf die rechte Lampe, gibt es noch keinen Punkt. Euer Programm 
 
 :::bloecke
 
-Den Block **oder** findet ihr unter **Logik**. Er kommt in den inneren wenn-Block, an die Stelle von **`stern_x` = `korb`**. In jedes seiner zwei Felder steckt ihr einen Vergleich **=**:
+Den Block **oder** findet ihr unter **Logik**. So baut ihr ihn ein:
+
+1. Zieht den Vergleich **`stern_x` = `korb`** aus dem inneren wenn-Block heraus und legt ihn kurz daneben. Der innere wenn-Block ist der mit `stern_x`. Fasst den Vergleich am Rand neben dem **=** an, nicht an `korb`.
+2. Steckt **oder** in das leere Feld hinter **wenn**.
+3. Steckt den alten Vergleich in das linke Feld vom **oder**.
+4. Ins rechte Feld kommt ein neuer Vergleich **`stern_x` = `korb` + 1**.
 
 ```bloecke
 [logik] wenn stern_x = korb oder stern_x = korb + 1 dann
@@ -114,7 +121,7 @@ Den Block **oder** findet ihr unter **Logik**. Er kommt in den inneren wenn-Bloc
 
 :::javascript
 
-„Oder“ heißt in JavaScript `||`. Ändert die Zeile `if (stern_x == korb) {` so:
+„Oder“ heißt in JavaScript `||`, zwei senkrechte Striche. Einen Strich tippt ihr unter Windows mit **AltGr** und der Taste **< >** links unten, am Mac mit **alt** und **7**. Ändert die Zeile `if (stern_x == korb) {` so:
 
 ```javascript
         if (stern_x == korb || stern_x == korb + 1) {
@@ -122,10 +129,10 @@ Den Block **oder** findet ihr unter **Logik**. Er kommt in den inneren wenn-Bloc
 
 :::
 
-Habt ihr in Stufe 3 drei Leben eingebaut? Dann bleibt euer Teil für „daneben“, wie er ist.
-
 <details>
 <summary>Lösung anzeigen</summary>
+
+Habt ihr in Stufe 3 drei Leben eingebaut? Die Lösung hat keine Leben. Übernehmt dann nur das Neue: die rechte Lampe, die Grenze am rechten Rand und das „oder“. Euer Teil für „daneben“ bleibt, wie er ist.
 
 :::bloecke
 
@@ -280,6 +287,7 @@ Der Korb wird drei Lampen breit. Fahren, Rand und Fangen funktionieren weiter.
 <summary>Tipps anzeigen</summary>
 
 - Die dritte Lampe steht bei `korb + 2`.
+- Jeder Vergleich beim Fangen braucht vorne wieder `stern_x`. Nur `korb + 2` allein ist kein Vergleich, dann gibt es bei jedem Stern einen Punkt.
 - Ihr ändert wieder dieselben drei Stellen: das Zeichnen, den rechten Rand und das Fangen.
 - Am rechten Rand darf die äußerste Lampe höchstens bei x = 4 stehen. Wie groß darf `korb` dann sein?
 
