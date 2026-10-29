@@ -102,6 +102,7 @@
           :variant="contentPath"
           :course-id="courseId"
           :is-project-course="isProject"
+          :concept-language="language"
           :is-last-lesson="isLastLesson"
           @completed="onLessonCompleted"
         />

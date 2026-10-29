@@ -23,7 +23,7 @@
   "ignoreRegExpList": [
     "/^```[\\s\\S]*?^```/gm",
     "/`[^`\\n]+`/g",
-    "/\"(codeTemplate|solution|referenceSolution|expected|id|file|section|type|target|click|name|nextCourseId|stdin|selector|property|value|notValue)\"\\s*:\\s*\"(?:[^\"\\\\]|\\\\.)*\"/g",
+    "/\"(codeTemplate|solution|referenceSolution|expected|id|file|section|type|target|click|name|nextCourseId|stdin|selector|property|value|notValue|anker)\"\\s*:\\s*\"(?:[^\"\\\\]|\\\\.)*\"/g",
     "/\\\\[nt]/g",
     "/<img src=\"[^\"]*\"/g",
     "/(?<![\\w])\\.[a-z][\\w-]*/g",
@@ -32,6 +32,8 @@
     "/\\b(figcaption|thead|tbody|tfoot|textarea|fieldset|legend|optgroup|blockquote|minmax)\\b/g"
   ],
   "words": [
+    "spickzettel",
+    "werkstatt",
     "handytauglich",
     "responsiv",
     "hineinzählen",

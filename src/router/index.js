@@ -24,6 +24,11 @@ const routes = [
     props: true,
   },
   {
+    path: '/microbit/spickzettel',
+    name: 'MicrobitSpickzettel',
+    component: () => import('../views/MicrobitSpickzettel.vue'),
+  },
+  {
     path: '/profil',
     name: 'Profil',
     component: ProfilView,

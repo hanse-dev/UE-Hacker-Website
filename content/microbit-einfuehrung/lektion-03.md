@@ -13,7 +13,7 @@ Bisher macht euer Programm immer dasselbe. Jetzt reagiert es: Drückt jemand Kno
   [grundlagen] zeige Symbol Fröhlich
 ```
 
-Den Block **wenn Knopf A geklickt** findet ihr unter **Eingabe**. Er steht frei auf der Fläche, nicht in **beim Start**. Alles darin passiert jedes Mal, wenn jemand Knopf A drückt.
+Den Block **wenn Knopf A geklickt** findet ihr unter **Eingabe**. Er steht frei auf der Fläche, nicht in **beim Start**. Alles darin passiert jedes Mal, wenn jemand Knopf A drückt. Im Block **zeige Symbol** klickt ihr auf das Herz und wählt das Bild „Fröhlich“ aus.
 
 :::
 
@@ -43,7 +43,7 @@ Alles in den geschweiften Klammern passiert jedes Mal, wenn jemand Knopf A drüc
 
 :::
 
-Probiert es aus. Dann baut ihr Knopf B selbst: Er zeigt ein trauriges Gesicht.
+Probiert es aus: Beim micro:bit auf dem Bildschirm klickt ihr auf A. Für den echten micro:bit klickt ihr wieder auf **Herunterladen**. Dann baut ihr Knopf B selbst: Er zeigt ein trauriges Gesicht.
 
 :::bloecke
 
@@ -117,6 +117,8 @@ Ihr kennt jetzt alles, was ihr für den Start braucht. Sucht euch einen Kurs aus
 - [Die Ampelanlage](/kurs/projekt-microbit-ampel): Lampen auf einem Steckbrett.
 - [Das Roboterauto](/kurs/projekt-microbit-auto): ein kleines Auto, das fährt und Hindernisse erkennt.
 
+Ist euch in einem Kurs ein Wort neu? Dann schlagt es im [micro:bit-Spickzettel](/microbit/spickzettel) nach. Wörter mit einem kleinen Pfeil ↗ führen direkt dorthin.
+
 ## Bonus: Der Würfel
 
 Schüttelt den micro:bit, und er zeigt eine zufällige Zahl von 1 bis 6.
@@ -126,7 +128,7 @@ Schüttelt den micro:bit, und er zeigt eine zufällige Zahl von 1 bis 6.
 
 :::bloecke
 
-Unter **Eingabe** gibt es **wenn geschüttelt**. Eine zufällige Zahl findet ihr unter **Mathematik**: **wähle eine zufällige Zahl von 0 bis 10**. Steckt sie in **zeige Zahl** und stellt sie auf 1 bis 6 um.
+Unter **Eingabe** gibt es **wenn geschüttelt**. Eine zufällige Zahl findet ihr unter **Mathematik**: **wähle eine zufällige Zahl von 0 bis 10**. Den Block **zeige Zahl** findet ihr unter **Grundlagen**. Zieht den Zufalls-Block auf die 0 in **zeige Zahl**. Ändert dann im Zufalls-Block die 0 in 1 und die 10 in 6.
 
 :::
 

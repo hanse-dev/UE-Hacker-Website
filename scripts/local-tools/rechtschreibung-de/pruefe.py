@@ -27,7 +27,7 @@ HIER = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HIER, "..", "..", ".."))
 CODE_KEYS = {"codeTemplate", "solution", "referenceSolution", "expected", "id", "file", "section",
              "type", "target", "click", "name", "nextCourseId", "stdin", "text", "codeContains",
-             "functionCalls", "variables"}
+             "functionCalls", "variables", "kurs", "anker"}
 WORT = re.compile(r"[A-Za-zÄÖÜäöüß]+")
 bezeichner = set()
 selbst_gestartet = False
@@ -57,7 +57,7 @@ def json_texte(datei, o, key=None):
         for x in o:
             json_texte(datei, x, key)
     elif isinstance(o, str):
-        code(o) if key in CODE_KEYS else text(datei, o)
+        code(o) if key in CODE_KEYS or o.startswith("/") else text(datei, o)
 
 
 def deutsch(p):

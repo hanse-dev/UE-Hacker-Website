@@ -73,6 +73,17 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
       - Einführung (`content/microbit-einfuehrung/`, gleicher Stand): Stimmt die Beschreibung der
         Rückseite (Lampe neben der USB-Buchse)? Zeigt der Simulator rechts im Editor das Programm wie
         beschrieben (Python: „Ausführen“)?
+- [ ] **micro:bit-Spickzettel (`content/microbit-spickzettel/spickzettel.md`, HANDOFF 3.131) im
+      echten MakeCode-Editor abgleichen.** Nicht nachgeprüft: Fügt das **+** unten am wenn-Block
+      erst „ansonsten“ und dann „sonst wenn“ hinzu? Zeigt der Vergleichsblock ≠ ≤ ≥ so an? Wie heißt
+      beim Erstellen einer Funktion der Knopf für einen Zahl-Parameter, und steht im Aufruf-Block
+      „Funktion zeigen“ mit Zahlenfeld? Python/JS-Beispiele sind nur per `compile()`/`tsc` gegen eine
+      nachgebaute API geprüft.
+- [ ] `npm run lint:spelling:de` ist auf `main` rot (Exit 1, 34 Wörter, Stand 29.10.2026), fast alles
+      CSS/HTML-Begriffe aus `content/web-*` (`font-weight`, `transition-duration`, `id-Selektor`,
+      `Hover-Effekt`, `Queries` …), dazu `MAINTENANCE`, `elektronik` (kurse.json), `unlisted` (de.js).
+      Vorschlag: Code-Wörter in den Web-Checks in Backticks setzen, echte Fachwörter nach
+      `scripts/local-tools/rechtschreibung-de/erlaubt.txt`; eigener kleiner Branch.
 - [ ] micro:bit „Das Roboterauto“ hat keine JavaScript-Ansicht (nur Blöcke/Python); Kinder, die in der
       Einführung JavaScript gewählt haben, landen bei Blöcken (Hinweis in Startklar steht da). Das
       Test-Kind meldete dafür 11 „wichtige“ Stellen. Vorschlag, falls gewünscht: JS-Variante aus den

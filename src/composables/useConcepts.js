@@ -30,9 +30,11 @@ export function conceptsFor(opts) {
 }
 
 // `pfade` in begriffe.json: Link-Ziel fuer Kurse ohne eigene Seite (Stufe Intensiv von „Meine erste
-// Website“ liegt unter /kurs/web-erste-website?stufe=intensiv).
+// Website“ liegt unter /kurs/web-erste-website?stufe=intensiv, der micro:bit-Spickzettel unter
+// /microbit/spickzettel). Begriffe mit `anker` springen dort zu einer Überschrift statt zu einer Woche.
 export function conceptHref(concept) {
   const base = data.pfade?.[concept.kurs] || `/kurs/${concept.kurs}`;
+  if (concept.anker) return `${base}#${concept.anker}`;
   return `${base}${base.includes('?') ? '&' : '?'}week=${concept.woche}`;
 }
 
@@ -40,16 +42,29 @@ export function courseName(concept) {
   return data.kurse?.[concept.kurs] || concept.kurs;
 }
 
+function conceptTitle(c) {
+  return c.woche ? `${c.erklaerung} – ${courseName(c)}, Woche ${c.woche}` : `${c.erklaerung} – ${courseName(c)}`;
+}
+
+function conceptLink(c, text) {
+  return `<a class="concept-link" href="${conceptHref(c)}" target="_blank" rel="noopener" title="${escapeAttr(conceptTitle(c))}">${text}</a>`;
+}
+
 // Ein einziger Regex über alle Schreibweisen (längste zuerst, damit "Arrays" vor "Array" und
 // "for-Schleife" vor "Schleife" greift). Nur ganze Wörter: kein Buchstabe, keine Ziffer, kein
 // Unterstrich oder Bindestrich direkt davor/danach ("funktioniert", "Klassen-Umfrage" zählen nicht).
+// `fett` (nur micro:bit): Block-Namen, die nur als kompletter Fettdruck zählen.
 function buildMatcher(list) {
   const byForm = new Map();
-  for (const c of list) for (const f of c.formen) byForm.set(f, c);
+  const byBold = new Map();
+  for (const c of list) {
+    for (const f of c.formen) byForm.set(f, c);
+    for (const f of c.fett || []) byBold.set(f, c);
+  }
   const forms = [...byForm.keys()].sort((a, b) => b.length - a.length);
   if (forms.length === 0) return null;
   const regex = new RegExp(`(?<![\\p{L}\\p{N}_-])(${forms.map(escapeRegex).join('|')})(?![\\p{L}\\p{N}_-])`, 'gu');
-  return { regex, byForm };
+  return { regex, byForm, byBold };
 }
 
 function sortByWeek(concepts) {
@@ -85,13 +100,58 @@ export function linkConcepts(html, opts) {
       const c = m.byForm.get(match);
       if (linked.has(c)) return match;
       linked.add(c);
-      const title = `${c.erklaerung} – ${courseName(c)}, Woche ${c.woche}`;
-      return `<a class="concept-link" href="${conceptHref(c)}" target="_blank" rel="noopener" title="${escapeAttr(title)}">${match}</a>`;
+      return conceptLink(c, match);
     });
   }).join('');
 
   const prose = html.replace(/<pre[\s\S]*?<\/pre>/gi, ' ').replace(/<[^>]+>/g, ' ');
   return { html: out, found: conceptsInText(prose, opts) };
+}
+
+/**
+ * Für die micro:bit-Anleitungen (GuideLessonView): Was zwischen <p>:::bloecke</p> und <p>:::</p>
+ * steht, sieht nur eine Ansicht. Deshalb zählt das erste Vorkommen je Ansicht - stünde der einzige
+ * Link im Python-Teil, sähe ihn ein Team mit Blöcken nie. Gemeinsamer Text zählt für alle Ansichten.
+ * Liefert das HTML und je Ansicht die gefundenen Begriffe für den Kasten.
+ */
+export function linkConceptsByMode(html, opts, allModes) {
+  // Nur Ansichten, die die Lektion hat (das Roboterauto hat kein JavaScript) - sonst bekäme
+  // gemeinsamer Text für eine fehlende Ansicht immer wieder einen Link.
+  const present = allModes.filter((mode) => (html || '').includes(`<p>:::${mode}</p>`));
+  const modes = present.length ? present : allModes;
+  const found = Object.fromEntries(allModes.map((mode) => [mode, new Set()]));
+  const sorted = () => Object.fromEntries(allModes.map((mode) => [mode, sortByWeek(found[mode])]));
+  const m = buildMatcher(conceptsFor(opts));
+  if (!m || !html) return { html: html || '', found: sorted() };
+
+  const linked = Object.fromEntries(modes.map((mode) => [mode, new Set()]));
+  let current = null;
+  // Zählt den Fund und sagt, ob er ein Link wird: nur, wenn eine betroffene Ansicht ihn noch nicht hat.
+  const take = (c) => {
+    const targets = current ? [current] : modes;
+    targets.forEach((mode) => found[mode].add(c));
+    if (targets.every((mode) => linked[mode].has(c))) return false;
+    targets.forEach((mode) => linked[mode].add(c));
+    return true;
+  };
+
+  const parts = html.split(SKIP);
+  const out = parts.map((part, i) => {
+    if (i % 2 === 1) return part;
+    const marker = part.match(/^:::(\w*)$/);
+    if (marker) {
+      current = modes.includes(marker[1]) ? marker[1] : null;
+      return part;
+    }
+    const bold = parts[i - 1] === '<strong>' && parts[i + 1] === '</strong>' ? m.byBold.get(part) : null;
+    if (bold) return take(bold) ? conceptLink(bold, part) : part;
+    return part.replace(m.regex, (match) => {
+      const c = m.byForm.get(match);
+      return take(c) ? conceptLink(c, match) : match;
+    });
+  }).join('');
+
+  return { html: out, found: sorted() };
 }
 
 /**

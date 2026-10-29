@@ -3258,3 +3258,36 @@ Auswahl der Kurse/Projekte, Vorschlag ohne festes Thema, Vorgabe Mittwoch 17–1
   `auth-ui.spec.js` (Anlegen mit Woche/neuem Ort, Bearbeiten behält Thema, Vorgaben, Ort entfernen;
   Vorschlag mit gemockter Admin-Liste, weil die Auth-Dateien parallel auf derselben DB laufen),
   `api-auth.spec.js` (Termin-Orte).
+
+### 3.131 — micro:bit-Spickzettel und Begriffs-Links in den micro:bit-Kursen (Branch `microbit-spickzettel`)
+
+Wunsch Eike (28.10.2026): In den micro:bit-Kursen jedes neue Konzept auf die passende Stelle
+verlinken. Gewählt aus drei Vorschlägen: ein zentraler Spickzettel als Ziel statt Links quer
+zwischen den Kursen (die Kurse sind unabhängig, es gibt keine feste Reihenfolge; „Funk“ etwa kommt
+nur in der Ampel vor).
+
+- **Spickzettel** `/microbit/spickzettel` (`src/views/MicrobitSpickzettel.vue`): rendert
+  `content/microbit-spickzettel/spickzettel.md` über `GuideLessonView` mit einer Lektion ohne
+  Aufgaben, also mit Ansichts-Umschalter und Block-Listings, ohne Fortschritt
+  (`useInteractiveProgress` speichert erst bei einer Änderung). 16 Abschnitte (Knöpfe … Einrückung),
+  jeder mit allen drei Ansichten, „Inhalt:“-Zeile oben. `GuideLessonView` gibt `<h2>` jetzt eine
+  `id` (`src/utils/slug.js`) und scrollt nach dem Rendern zum `#anker` der URL.
+- **Begriffe:** `begriffe.json` → `microbit` mit `anker` statt `woche`/`lektion`, Ziel über `pfade`.
+  `fett` = Block-Namen, die nur als ganzer Fettdruck zählen (**oder**, **wenn**, **dauerhaft**,
+  **4-mal wiederholen**): im Fließtext sind „oder“/„wenn“ keine Begriffe.
+- **Je Ansicht verlinkt** (`linkConceptsByMode()` in `useConcepts.js`): Wer Python liest, sieht den
+  Blöcke-Abschnitt nicht, also zählt das erste Vorkommen je Ansicht. Text außerhalb der
+  `:::`-Abschnitte gilt für alle Ansichten der Lektion; Ansichten, die die Lektion nicht hat (Auto
+  ohne JavaScript), zählen nicht mit, sonst bekäme gemeinsamer Text einen zweiten Link. Kasten
+  „📚 Neu oder unklar? Hier lest ihr mehr darüber“ (`ConceptBox`, neuer `title`, Link ohne Woche)
+  unter jeder Lektion, je Ansicht.
+- Nur über alle Lektionen eines Kurses wird nicht entdoppelt (jede Lektion verlinkt ihr erstes
+  Vorkommen): Wer in Stufe 3 einsteigt oder zurückblättert, findet den Link trotzdem.
+- **Content:** Ampel Stufe 3 „Rot **und** Gelb“ → „**beide**“ (sonst Link auf „Und, oder“), Digital-Pin
+  noch einmal erklärt; Einführung Knöpfe verweist auf den Spickzettel, Fröhlich/Würfel/Ausprobieren
+  genauer (KI-Test-Kind, nur „mittel“).
+- Tests: `tests/microbit-spickzettel.spec.js` (jeder Anker hat eine Überschrift und einen
+  Inhaltslink, jede Ansicht in jedem Abschnitt; Seite öffnet am Anker, Umschalter, keine Links und
+  kein Speicherstand auf der Seite; Sterne Werkstatt „Funk“; Links und Kasten je Ansicht in Stufe 1;
+  `linkConceptsByMode` direkt); `begriffe.spec.js` nimmt die micro:bit-Kurse aus `WITHOUT_LINKS`.
+  cspell/LanguageTool: `anker`/`kurs` gelten als Code-Felder, Pfade mit `/` als Code.

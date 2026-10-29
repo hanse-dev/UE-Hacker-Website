@@ -15,10 +15,6 @@ const WITHOUT_LINKS = {
   'python-einstufung': 'Einstufungstest, kein Lernstoff zum Nachschlagen',
   'python-grundlagen-interaktiv': 'hat eigene Glossar-Tooltips (glossary.json), beides würde doppelt markieren',
   ferienkurse: 'Info- und Terminseite, keine Lektionen',
-  'projekt-microbit-auto': 'micro:bit (MakeCode/MicroPython, eigene Anleitungs-Ansicht), keine Begriffsliste',
-  'projekt-microbit-ampel': 'micro:bit (MakeCode/MicroPython, eigene Anleitungs-Ansicht), keine Begriffsliste',
-  'projekt-microbit-sterne': 'micro:bit (MakeCode/MicroPython, eigene Anleitungs-Ansicht), keine Begriffsliste',
-  'projekt-microbit-einfuehrung': 'micro:bit (MakeCode/MicroPython, eigene Anleitungs-Ansicht), keine Begriffsliste',
 };
 
 // Zielordner einer Grundkurs-Woche (für die Prüfung, dass `lektion` dort wirklich vorkommt).
@@ -106,6 +102,11 @@ test.describe('Begriffe verlinken auf die Grundkurse (Projekte und Kurse)', () =
         expect([...ids, ...Object.keys(BEGRIFFE.pfade || {})], where).toContain(c.kurs);
         expect(Object.keys(BEGRIFFE.kurse), where).toContain(c.kurs);
         expect(c.formen.length, where).toBeGreaterThan(0);
+        // micro:bit: Sprung zu einer Überschrift im Spickzettel (geprüft in microbit-spickzettel.spec.js).
+        if (c.anker) {
+          expect(BEGRIFFE.pfade[c.kurs], where).toBeTruthy();
+          continue;
+        }
         const folder = WEEK_FOLDER[c.kurs]?.(c.woche);
         expect(folder, `${where}: unbekannter Zielkurs`).toBeTruthy();
         expect(existsSync(new URL(`../${folder}/lessons.json`, import.meta.url)), `${where}: Woche ${c.woche} fehlt`).toBe(true);
