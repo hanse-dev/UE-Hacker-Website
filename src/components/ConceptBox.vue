@@ -1,11 +1,12 @@
 <template>
   <aside class="concept-box">
-    <h3 class="concept-box-title">{{ t('concepts.title') }}</h3>
+    <h3 class="concept-box-title">{{ title || t('concepts.title') }}</h3>
     <ul class="concept-box-list">
       <li v-for="c in concepts" :key="c.kurs + c.begriff" class="concept-box-item">
         <strong>{{ c.begriff }}</strong> – {{ c.erklaerung }}
         <a class="concept-box-link" :href="href(c)" target="_blank" rel="noopener">
-          {{ name(c) }}, {{ t('concepts.week').replace('{n}', c.woche) }}: {{ c.lektion }} ↗
+          <template v-if="c.woche">{{ name(c) }}, {{ t('concepts.week').replace('{n}', c.woche) }}: {{ c.lektion }} ↗</template>
+          <template v-else>{{ name(c) }} ↗</template>
         </a>
       </li>
     </ul>
@@ -17,11 +18,13 @@ import { useLanguage } from '../composables/useLanguage';
 import { conceptHref, courseName } from '../composables/useConcepts';
 
 // "Neu oder unklar?"-Kasten am Ende einer Projekt-Lektion: alle Begriffe der Lektion mit einem
-// Satz Erklärung und Link auf die Grundkurs-Woche (siehe useConcepts.js, content/begriffe.json).
+// Satz Erklärung und Link auf die Grundkurs-Woche bzw. den micro:bit-Spickzettel (siehe
+// useConcepts.js, content/begriffe.json).
 export default {
   name: 'ConceptBox',
   props: {
     concepts: { type: Array, required: true },
+    title: { type: String, default: '' },
   },
   setup() {
     const { t } = useLanguage();

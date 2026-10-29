@@ -24,6 +24,8 @@ Dieses Dokument beschreibt, welche Dateien zusammengehören und was bei Änderun
 | `projekt-microbit-ampel` | `content/microbit-ampel/` | *(keine EN-Version)* | Projekt-Kurs (Markdown + JSON, `engine: "anleitung"`, LEDs auf dem Breadboard, Steckpläne als SVG) |
 | `projekt-microbit-sterne` | `content/microbit-sterne/` | *(keine EN-Version)* | Projekt-Kurs „Fang den Stern“ (Markdown + JSON, `engine: "anleitung"`, Spiel auf der 5×5-Anzeige, ohne Zusatzteile, Bilder als SVG) |
 | `projekt-microbit-einfuehrung` | `content/microbit-einfuehrung/` | *(keine EN-Version)* | Einführung „Erste Schritte“ (`engine: "anleitung"`, `unlisted`): jede Startseite eines micro:bit-Kurses (`language: "microbit"`) verweist Neue per Kasten hierher (`CourseDetail.vue`), die letzte Lektion verlinkt alle micro:bit-Kurse zurück |
+| *(kein Kurs)* micro:bit-Spickzettel | `content/microbit-spickzettel/spickzettel.md` | *(keine EN-Version)* | Nachschlageseite `/microbit/spickzettel` (`MicrobitSpickzettel.vue`, rendert über `GuideLessonView`, keine Aufgaben, speichert nichts): ein `##`-Abschnitt je Begriff, jeder mit `:::bloecke`/`:::python`/`:::javascript`; Ziel der Begriffs-Links aller micro:bit-Kurse |
+| *(kein Kurs)* micro:bit-Spickzettel | `content/microbit-spickzettel/spickzettel.md` | *(keine EN-Version)* | Nachschlageseite `/microbit/spickzettel` (`MicrobitSpickzettel.vue`, rendert über `GuideLessonView`, keine Aufgaben, speichert nichts): ein `##`-Abschnitt je Begriff, jeder mit `:::bloecke`/`:::python`/`:::javascript`; Ziel der Begriffs-Links aller micro:bit-Kurse |
 | *(Lektions-Format)* Woche 1–12 (alle) | `content/python-woche{N}-{abenteuer\|pferde\|scifi}/` | `content/python-woche{N}-{thema}-en/` | Markdown + JSON, Pyodide; ersetzt die Notebook-Schritte Lektion/Debug/Missionen/Boss jeder Woche/Variante/Sprache (siehe HANDOFF.md 3.47–3.54). Die alten `1_lektion`/`2_debug`/`3_missionen`/`5_boss`-Zellenordner gibt es nicht mehr — nur `0_glossar` und `6_loesungen` bleiben als Notebooks (Nachschlagewerke, siehe unten). |
 | `js-grundkurs` | `content/js-grundkurs/` (Beschreibung) + `content/js-grundkurs-woche{1-9}/` (Wochen) | *(keine EN-Version)* | Grundkurs (Markdown + JSON, `engine: "js-sandbox"`, eigene Mehrwochen-Struktur) |
 
@@ -313,6 +315,20 @@ Jeder Ordner enthält dieselben Dateien:
       und die ID in `LINKED_COURSES` des Tests eintragen. Sonst die ID mit Grund in `WITHOUT_LINKS`.
 - [ ] Neuer Grundkurs als Link-Ziel: Begriffe mit `kurs`/`woche` in `begriffe.json`, Kursname unter
       `kurse`, Wochen-Ordner in `WEEK_FOLDER` des Tests (prüft, dass `lektion` dort wirklich vorkommt).
+- [ ] **micro:bit** (`language: "microbit"`, HANDOFF 3.131): Ein neuer micro:bit-Kurs bekommt die
+      Links automatisch. Führt eine Lektion ein Konzept ein, das im Spickzettel fehlt: Abschnitt
+      `## Name` mit allen drei Ansichten in `content/microbit-spickzettel/spickzettel.md`, Eintrag in
+      der „Inhalt:“-Zeile und unter `microbit` in `begriffe.json` mit `anker` = Slug der Überschrift
+      (`src/utils/slug.js`: ä → ae, Leerzeichen → `-`). Block-Namen, die auch normale Wörter sind
+      („oder“, „wenn“), nur unter `fett` eintragen – die verlinken nur als ganzer Fettdruck. Danach
+      im Kurs prüfen, ob ein Wort falsch verlinkt (in Ampel Stufe 3 wurde „Rot **und** Gelb“ zu „Und, oder“).
+- [ ] **micro:bit** (`language: "microbit"`, HANDOFF 3.131): Ein neuer micro:bit-Kurs bekommt die
+      Links automatisch. Führt eine Lektion ein Konzept ein, das im Spickzettel fehlt: Abschnitt
+      `## Name` mit allen drei Ansichten in `content/microbit-spickzettel/spickzettel.md`, Eintrag in
+      der „Inhalt:“-Zeile und unter `microbit` in `begriffe.json` mit `anker` = Slug der Überschrift
+      (`src/utils/slug.js`: ä → ae, Leerzeichen → `-`). Block-Namen, die auch normale Wörter sind
+      („oder“, „wenn“), nur unter `fett` eintragen – die verlinken nur als ganzer Fettdruck. Danach
+      im Kurs prüfen, ob ein Wort falsch verlinkt (in Ampel Stufe 3 wurde „Rot **und** Gelb“ zu „Und, oder“).
 
 ### Wenn du einen Web-Kurs (HTML/CSS, `sandboxMode: "web"`) änderst oder anlegst:
 - [ ] Aufgaben prüfen nur über `validation: { "type": "web", "checks": [...] }` (Felder siehe

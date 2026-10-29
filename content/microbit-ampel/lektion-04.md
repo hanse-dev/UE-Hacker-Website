@@ -60,6 +60,8 @@ Fangt wieder ein **neues Projekt** an (im Python-Editor: Speichern, dann alles l
   [grundlagen] pausiere (ms) 2000
 ```
 
+Den Pin bekommt jede Variable wie in Stufe 1 mit dem Block **Digital-Pin**: Klickt in der Blockliste auf **Fortgeschritten**, dann auf **Pins** und darunter auf **… mehr**.
+
 :::
 
 :::python
@@ -106,7 +108,7 @@ input.onButtonPressed(Button.A, function () {
 
 :::
 
-Der Anfang von Schritt 3 steht schon da: Grün aus, Gelb an, 2 Sekunden warten. Baut die übrigen Schritte eures Plans dazu. Anders als in Stufe 2 schaltet ihr hier nur die LEDs, die sich ändern. Achtet bei jedem Schritt darauf, welche LED aus- und welche angeht. Beim letzten Schritt müssen Rot **und** Gelb aus.
+Der Anfang von Schritt 3 steht schon da: Grün aus, Gelb an, 2 Sekunden warten. Baut die übrigen Schritte eures Plans dazu. Anders als in Stufe 2 schaltet ihr hier nur die LEDs, die sich ändern. Achtet bei jedem Schritt darauf, welche LED aus- und welche angeht. Beim letzten Schritt müssen Rot und Gelb **beide** aus.
 
 Testet zum Schluss genau: Drückt Knopf A und schaut auf beide Ampeln gleichzeitig. Leuchten irgendwann beide Grün? Dann stimmt etwas nicht.
 

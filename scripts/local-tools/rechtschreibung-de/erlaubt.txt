@@ -167,3 +167,8 @@ GND-Stifte
 GND-Stiften
 MakeCode
 Liste inhalte
+AltGr
+bit-Kurs
+bit-Kurse
+bit-Spickzettel
+bits

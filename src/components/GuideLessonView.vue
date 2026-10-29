@@ -16,9 +16,10 @@
       </button>
     </div>
 
-    <div class="lesson-content">
+    <div ref="contentEl" class="lesson-content">
       <p v-if="!lessonContent" class="lesson-loading">{{ t('lesson.loading') }}</p>
       <div v-else v-html="guideHtml"></div>
+      <ConceptBox v-if="lessonContent && conceptList.length" :concepts="conceptList" :title="t('concepts.titleTeam')" />
     </div>
 
     <div v-if="tasks.length" class="lesson-editor-section guide-tasks">
@@ -55,7 +56,10 @@ import { ref, watch, computed, onMounted, onBeforeUnmount } from 'vue';
 import { useInteractiveProgress } from '../composables/useInteractiveProgress';
 import { useLanguage } from '../composables/useLanguage';
 import { useLessonContent } from '../composables/useLessonContent';
+import { linkConceptsByMode } from '../composables/useConcepts';
+import { slugify } from '../utils/slug';
 import ProjectCompletionBox from './ProjectCompletionBox.vue';
+import ConceptBox from './ConceptBox.vue';
 
 // Anzeige-Vorliebe (Bloecke, Python oder JavaScript), kein Fortschritt - bewusst nicht Teil des Syncs.
 // Nicht jeder Kurs hat jede Ansicht (JavaScript bisher nur in der Ampelanlage): Angezeigt werden nur
@@ -86,17 +90,19 @@ function renderBlocks(code) {
 }
 
 // `:::bloecke` / `:::python` / `:::javascript` ... `:::` im Markdown (jeweils als eigener Absatz) grenzen Abschnitte ab,
-// die nur in der gewaehlten Ansicht sichtbar sind.
+// die nur in der gewaehlten Ansicht sichtbar sind. Ueberschriften `##` bekommen eine Sprungmarke
+// (Spickzettel: /microbit/spickzettel#funk, siehe `anker` in content/begriffe.json).
 function toGuideHtml(html) {
   return html
     .replace(/<pre><code class="language-bloecke">([\s\S]*?)<\/code><\/pre>/g, (_, code) => renderBlocks(code))
     .replace(/<p>:::(bloecke|python|javascript)<\/p>/g, '<div class="variante variante-$1">')
-    .replace(/<p>:::<\/p>/g, '</div>');
+    .replace(/<p>:::<\/p>/g, '</div>')
+    .replace(/<h2>([\s\S]*?)<\/h2>/g, (_, inner) => `<h2 id="${slugify(inner.replace(/<[^>]+>/g, ''))}">${inner}</h2>`);
 }
 
 export default {
   name: 'GuideLessonView',
-  components: { ProjectCompletionBox },
+  components: { ProjectCompletionBox, ConceptBox },
   props: {
     lesson: { type: Object, required: true },
     contentPath: { type: String, required: true },
@@ -104,6 +110,8 @@ export default {
     courseId: { type: String, required: true },
     isProjectCourse: { type: Boolean, default: false },
     isLastLesson: { type: Boolean, default: false },
+    // `language` aus kurse.json (`microbit`): schaltet die Begriffs-Links auf den Spickzettel ein.
+    conceptLanguage: { type: String, default: '' },
   },
   emits: ['completed'],
   setup(props, { emit }) {
@@ -122,11 +130,24 @@ export default {
       }
     };
 
-    const guideHtml = computed(() => toGuideHtml(lessonContent.value));
+    // Begriffs-Links je Ansicht (useConcepts.js); nur auf Deutsch, wie in den übrigen Kursen.
+    const linked = computed(() => (props.conceptLanguage && lang.value !== 'en'
+      ? linkConceptsByMode(lessonContent.value, { language: props.conceptLanguage }, MODES)
+      : { html: lessonContent.value, found: null }));
+    const guideHtml = computed(() => toGuideHtml(linked.value.html));
     const availableModes = computed(() => MODES.filter((m) => guideHtml.value.includes(`class="variante variante-${m}"`)));
     const hasVariants = computed(() => availableModes.value.length > 0);
     const mode = computed(() =>
       (availableModes.value.includes(savedMode.value) ? savedMode.value : availableModes.value[0] || MODES[0]));
+    const conceptList = computed(() => linked.value.found?.[mode.value] || []);
+
+    // Kommt man über einen Begriffs-Link (#funk), steht die Überschrift erst nach dem Laden im DOM.
+    const contentEl = ref(null);
+    watch(guideHtml, () => {
+      const id = decodeURIComponent(window.location.hash.slice(1));
+      if (!id) return;
+      contentEl.value?.querySelector(`[id="${CSS.escape(id)}"]`)?.scrollIntoView({ block: 'start' });
+    }, { flush: 'post' });
 
     const tasks = computed(() => (Array.isArray(props.lesson?.tasks) ? props.lesson.tasks : []));
     const requiredIdx = computed(() =>
@@ -183,6 +204,8 @@ export default {
       setMode,
       lessonContent,
       guideHtml,
+      conceptList,
+      contentEl,
       hasVariants,
       tasks,
       isChecked,
@@ -255,6 +278,24 @@ export default {
   font-size: 1.2em;
   margin-top: 1.2em;
   margin-bottom: 0.5em;
+  scroll-margin-top: 16px;
+}
+
+.lesson-content :deep(.concept-link) {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted var(--brand-text);
+}
+
+.lesson-content :deep(.concept-link)::after {
+  content: '↗';
+  font-size: 0.75em;
+  margin-left: 1px;
+  color: var(--brand-text);
+}
+
+.lesson-content :deep(.concept-link:hover) {
+  color: var(--brand-text);
 }
 
 .lesson-content :deep(code) {

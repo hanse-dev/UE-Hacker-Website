@@ -368,6 +368,7 @@ export default {
   'lesson.yourCode':          'Your Code',
   'lesson.taskPrefix':        'Task ',
   'concepts.title':           '📚 New or unclear? Learn more here',
+  'concepts.titleTeam':       '📚 New or unclear? Learn more here',
   'concepts.week':            'Week {n}',
   'lesson.taskDone':          '(done)',
   'lesson.taskPending':       '(pending)',

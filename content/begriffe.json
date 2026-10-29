@@ -1,9 +1,10 @@
 {
-  "_info": "Begriffe, die in Projekt-Kursen auf den passenden Grundkurs verlinkt werden (useConcepts.js). Pro Sprache (kurse.json `language`): `formen` = Schreibweisen, die im Lektionstext gefunden werden (Groß-/Kleinschreibung zählt); `kurs`/`woche` = Ziel des Links (/kurs/<kurs>?week=<woche>); `lektion` = Titel der Lektion dort, nur zur Anzeige. `pfade` = Link-Ziel für Kurse, die keine eigene Seite haben (z. B. die Stufe Intensiv von „Meine erste Website“); `week` wird angehängt.",
+  "_info": "Begriffe, die in Projekt-Kursen auf den passenden Grundkurs verlinkt werden (useConcepts.js). Pro Sprache (kurse.json `language`): `formen` = Schreibweisen, die im Lektionstext gefunden werden (Groß-/Kleinschreibung zählt); `kurs`/`woche` = Ziel des Links (/kurs/<kurs>?week=<woche>); `lektion` = Titel der Lektion dort, nur zur Anzeige. `pfade` = Link-Ziel für Kurse, die keine eigene Seite haben (z. B. die Stufe Intensiv von „Meine erste Website“); `week` wird angehängt. micro:bit (`microbit`): Ziel ist der Spickzettel (`kurs` = `microbit-spickzettel`, Pfad aus `pfade`), `anker` = Sprungmarke der Überschrift dort statt `woche`/`lektion`; `fett` = Block-Namen, die nur als ganzer Fettdruck verlinkt werden (z. B. **oder**, im Fließtext ist „oder“ kein Begriff). Verlinkt wird je Ansicht (Blöcke/Python/JavaScript) beim ersten Vorkommen.",
   "kurse": {
     "js-grundkurs": "JavaScript-Grundkurs",
     "python-12-wochen-grundkurs": "Python-Grundkurs (12 Wochen)",
-    "web-grundkurs": "Meine erste Website (Intensiv)"
+    "web-grundkurs": "Meine erste Website (Intensiv)",
+    "microbit-spickzettel": "micro:bit-Spickzettel"
   },
   "javascript": [
     {
@@ -353,7 +354,8 @@
     }
   ],
   "pfade": {
-    "web-grundkurs": "/kurs/web-erste-website?stufe=intensiv"
+    "web-grundkurs": "/kurs/web-erste-website?stufe=intensiv",
+    "microbit-spickzettel": "/microbit/spickzettel"
   },
   "html": [
     {
@@ -569,6 +571,207 @@
       "kurs": "web-grundkurs",
       "woche": 8,
       "lektion": "Handy-Ansicht"
+    }
+  ],
+  "microbit": [
+    {
+      "begriff": "Knöpfe",
+      "formen": [
+        "Knöpfe"
+      ],
+      "fett": [
+        "wenn Knopf A geklickt",
+        "wenn Knopf B geklickt"
+      ],
+      "erklaerung": "Euer Programm merkt, wenn jemand Knopf A oder Knopf B drückt.",
+      "kurs": "microbit-spickzettel",
+      "anker": "knoepfe"
+    },
+    {
+      "begriff": "Warten",
+      "formen": [
+        "Millisekunden"
+      ],
+      "erklaerung": "Der micro:bit wartet eine Zeit in Millisekunden: 1000 Millisekunden sind 1 Sekunde.",
+      "kurs": "microbit-spickzettel",
+      "anker": "warten"
+    },
+    {
+      "begriff": "Variable",
+      "formen": [
+        "Variablen",
+        "Variable"
+      ],
+      "erklaerung": "Ein Name, unter dem sich das Programm einen Wert merkt, zum Beispiel eine Zahl.",
+      "kurs": "microbit-spickzettel",
+      "anker": "variable"
+    },
+    {
+      "begriff": "Schleife",
+      "formen": [
+        "Endlosschleife",
+        "Zählschleife",
+        "Schleifen",
+        "Schleife",
+        "Wiederholungen"
+      ],
+      "fett": [
+        "dauerhaft",
+        "3-mal wiederholen",
+        "4-mal wiederholen",
+        "5-mal wiederholen"
+      ],
+      "erklaerung": "Wiederholt Befehle: immer wieder oder so oft, wie ihr sagt.",
+      "kurs": "microbit-spickzettel",
+      "anker": "schleife"
+    },
+    {
+      "begriff": "Bedingung",
+      "formen": [
+        "Bedingungen",
+        "Bedingung"
+      ],
+      "fett": [
+        "wenn … dann",
+        "wenn"
+      ],
+      "erklaerung": "Die Befehle darin laufen nur, wenn etwas stimmt.",
+      "kurs": "microbit-spickzettel",
+      "anker": "bedingung"
+    },
+    {
+      "begriff": "Ansonsten",
+      "formen": [
+        "ansonsten",
+        "Ansonsten"
+      ],
+      "fett": [
+        "wenn … dann … ansonsten"
+      ],
+      "erklaerung": "Der zweite Weg einer Entscheidung: Er läuft, wenn die Bedingung nicht stimmt.",
+      "kurs": "microbit-spickzettel",
+      "anker": "ansonsten"
+    },
+    {
+      "begriff": "Mehrere Fälle",
+      "formen": [
+        "sonst wenn",
+        "sonst, wenn"
+      ],
+      "erklaerung": "Das Programm prüft mehrere Fälle von oben nach unten und nimmt den ersten, der stimmt.",
+      "kurs": "microbit-spickzettel",
+      "anker": "mehrere-faelle"
+    },
+    {
+      "begriff": "Vergleich",
+      "formen": [
+        "Vergleiche",
+        "Vergleich",
+        "Vergleichen",
+        "größer oder gleich",
+        "„ist gleich“"
+      ],
+      "erklaerung": "Prüft zwei Werte, zum Beispiel: Ist punkte größer als 4?",
+      "kurs": "microbit-spickzettel",
+      "anker": "vergleich"
+    },
+    {
+      "begriff": "Und, oder",
+      "formen": [
+        "„oder“",
+        "„Oder“",
+        "„und“",
+        "„Und“"
+      ],
+      "fett": [
+        "oder",
+        "und"
+      ],
+      "erklaerung": "Verbindet zwei Vergleiche: Bei und müssen beide stimmen, bei oder reicht einer.",
+      "kurs": "microbit-spickzettel",
+      "anker": "und-oder"
+    },
+    {
+      "begriff": "Zufall",
+      "formen": [
+        "Zufallszahl",
+        "Zufall",
+        "zufällige",
+        "zufälligen",
+        "zufälligem",
+        "zufälliges",
+        "zufällig"
+      ],
+      "erklaerung": "Der micro:bit wählt eine zufällige Zahl zwischen zwei Grenzen, wie beim Würfeln.",
+      "kurs": "microbit-spickzettel",
+      "anker": "zufall"
+    },
+    {
+      "begriff": "Funktion",
+      "formen": [
+        "Funktionen",
+        "Funktion",
+        "eigenen Befehl",
+        "eigener Befehl",
+        "eigene Befehle"
+      ],
+      "erklaerung": "Ein Ablauf mit Namen: einmal bauen, dann mit dem Namen starten, so oft ihr wollt.",
+      "kurs": "microbit-spickzettel",
+      "anker": "funktion"
+    },
+    {
+      "begriff": "Parameter",
+      "formen": [
+        "Parameter"
+      ],
+      "erklaerung": "Ein Platzhalter in einer Funktion, für den ihr beim Aufruf einen Wert mitgebt.",
+      "kurs": "microbit-spickzettel",
+      "anker": "parameter"
+    },
+    {
+      "begriff": "Pins",
+      "formen": [
+        "Pins",
+        "Pin",
+        "digitalen Wert",
+        "analogen Wert",
+        "analoge Werte"
+      ],
+      "erklaerung": "Die Anschlüsse am micro:bit: 1 heißt Strom an, 0 heißt Strom aus.",
+      "kurs": "microbit-spickzettel",
+      "anker": "pins"
+    },
+    {
+      "begriff": "Funk",
+      "formen": [
+        "Funkgruppen",
+        "Funkgruppe",
+        "Funk"
+      ],
+      "erklaerung": "micro:bits schicken sich kurze Nachrichten, aber nur innerhalb derselben Funkgruppe.",
+      "kurs": "microbit-spickzettel",
+      "anker": "funk"
+    },
+    {
+      "begriff": "Kommentar",
+      "formen": [
+        "Kommentare",
+        "Kommentar"
+      ],
+      "erklaerung": "Eine Notiz im Programm für Menschen, die der micro:bit überspringt.",
+      "kurs": "microbit-spickzettel",
+      "anker": "kommentar"
+    },
+    {
+      "begriff": "Einrückung",
+      "formen": [
+        "Einrückung",
+        "eingerückt",
+        "eingerückten"
+      ],
+      "erklaerung": "Zeigt, welche Befehle zu einer Schleife oder Bedingung gehören.",
+      "kurs": "microbit-spickzettel",
+      "anker": "einrueckung"
     }
   ]
 }
