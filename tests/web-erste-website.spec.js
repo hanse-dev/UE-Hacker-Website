@@ -107,6 +107,8 @@ test.describe('Meine erste Website: Meine Seite und gespeicherter Code', () => {
       }));
     }, PROGRESS_KEY);
     await openCourse(page);
+    // Der Kurs öffnet bei der ersten offenen Lektion (4) - für die eigene Seite zurück zu Lektion 1.
+    await openLesson(page, 0);
 
     // Lektion 1, Aufgabe 2: eigene Seite anlegen.
     const start = page.locator('.task-block').nth(1);
@@ -167,6 +169,19 @@ test.describe('Meine erste Website: Lektionswechsel', () => {
     await expect(page.locator('.lesson-content h1')).toHaveText(lessons[2].title, { timeout: 10000 });
     await page.waitForTimeout(2500);
     await expect(page.locator('.lesson-content h1')).toHaveText(lessons[2].title);
+  });
+
+  test('Neuladen bleibt bei der zuletzt geöffneten Lektion, ohne Merkstelle bei der ersten offenen', async ({ page }) => {
+    await completeLessons(page, lessons.slice(0, 4).map((l) => l.id));
+    await openCourse(page);
+    // Ohne gemerkte Lektion: erste noch nicht abgeschlossene (Lektion 5), nicht Lektion 1.
+    await expect(page.locator('.lesson-content h1')).toHaveText(lessons[4].title, { timeout: 10000 });
+    // Zurück zu Lektion 2 - genau dort soll man nach dem Neuladen wieder landen.
+    await page.locator('.lesson-item').nth(1).click();
+    await expect(page).toHaveURL(new RegExp(`lesson=${lessons[1].id}`));
+    await page.reload();
+    await expect(page.locator('.lesson-content h1')).toHaveText(lessons[1].title, { timeout: 10000 });
+    await expect(page.locator('.lesson-item.active')).toContainText(lessons[1].title);
   });
 });
 

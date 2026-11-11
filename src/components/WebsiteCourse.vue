@@ -112,6 +112,7 @@ export default {
       const query = { ...route.query };
       delete query.stufe;
       delete query.week;
+      delete query.lesson;
       router.replace({ query });
     };
 

@@ -135,7 +135,7 @@ import PartnerBox from './PartnerBox.vue';
 import OfflineDownloads from './OfflineDownloads.vue';
 import WeekCheckPanel from './WeekCheckPanel.vue';
 import FinalCertificate from './FinalCertificate.vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useWeekChecks } from '../composables/useWeekChecks';
 import { useInteractiveProgress } from '../composables/useInteractiveProgress';
 import { DEV_SKIP_CHECKS } from '../composables/devSkipChecks.js';
@@ -170,6 +170,7 @@ export default {
   },
   setup(props) {
     const route = useRoute();
+    const router = useRouter();
     // Ein Check-Speicher je Kurs - bei Kursen ohne Abschluss-Check nie angelegt.
     const checkState = props.finalCheck ? useWeekChecks(props.finalCheck) : null;
     // Profil-Link "Zertifikat ansehen" fuehrt per ?week=1 direkt zum Check.
@@ -223,7 +224,12 @@ export default {
         const mod = await loader();
         lessons.value = mod.default || [];
         if (lessons.value.length && !currentLessonId.value) {
-          currentLessonId.value = lessons.value[0].id;
+          // Neuladen: die Lektion aus ?lesson= (gesetzt beim Lektionswechsel, s.u.), sonst die erste
+          // noch nicht abgeschlossene - nicht immer Lektion 1.
+          const fromQuery = lessons.value.find((l) => l.id === route.query.lesson);
+          const firstOpen = lessons.value.find((l) => !isCompleted(l.id));
+          const start = fromQuery && isLessonUnlocked(fromQuery.id, lessons.value) ? fromQuery : firstOpen;
+          currentLessonId.value = (start || lessons.value[0]).id;
         }
       } catch (e) {
         console.error('Could not load lessons:', e);
@@ -268,6 +274,9 @@ export default {
     // Lektion bereits gerendert ist, bevor wir dorthin scrollen (sonst greift der Scroll noch die
     // Position der alten Lektion ab).
     watch(currentLessonId, (newId, oldId) => {
+      if (newId && route.query.lesson !== newId) {
+        router.replace({ query: { ...route.query, lesson: newId } });
+      }
       if (!oldId) return;
       mainEl.value?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, { flush: 'post' });

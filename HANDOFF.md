@@ -34,7 +34,7 @@ Alles unten ist nach `main` gemergt. Details: `grep -n "^### 3.NN" docs/archiv/H
 |---|---|---|
 | 3.1–3.46 | Grundlagen | Admin + Sync (Express/SQLite), Wochen-Checks/Zertifikate, Zellen-Format `NN_*.py`, `WeekTour.vue`, `/projekte`, `/profil`, JS-Spielewerkstatt + JS-Grundkurs, Woche 12 Text-Adventure |
 | 3.47–3.57, 3.71, 3.100 | Python 12 Wochen im Lektions-Format | `content/python-woche{N}-{thema}[-en]/`, `JsCourseTour` mit `engine="pyodide"`, `codeContains`/`stdin`, Lösungen per `sync_loesungen.py`, ZIP per `build_lesson_bundle.py` |
-| 3.58–3.62, 3.105 | Python-Projekt-Kurse | `ProjectCourse.vue`; `codeTemplate` blankt nur neue Funktionskörper; `ProjectCompletionBox.vue` |
+| 3.58–3.62, 3.105 | Python-Projekt-Kurse | `ProjectCourse.vue` (`?lesson=` merkt die Lektion fürs Neuladen, sonst erste offene); `codeTemplate` blankt nur neue Funktionskörper; `ProjectCompletionBox.vue` |
 | 3.66–3.70, 3.72–3.77, 3.96 | KI-Labor + Zertifikate im Profil | Checks per `courseKey`, `useCourseCertificates.js`, `referenceSolution` (geprüft von `check_kilabor_solutions.py`), Start-Gate auf der Kursseite |
 | 3.78–3.81, 3.85, 3.91, 3.94 | Prüf-Logik und Lektions-UI | `validateOutput()` (tolerant/exakt), Struktur-Checks nur im Wochen-Check, Überspringen nach 2 Fehlversuchen, Zurücksetzen, `minSolved`, Glossar-Regex |
 | 3.82, 3.99, 3.102 | Accounts und Fortschritt | Login ersetzt lokalen Stand, Fortschritts-Vertrag (`contract:update`), Passwort ändern/Einmal-Passwort |
@@ -70,7 +70,6 @@ Punkte-System, Zertifikate), wird hier nicht wiederholt.
 - Lösungs-Markdown-Zellen (`*_6_loesungen/NN_markdown.py`) speichern `"` mal roh, mal als `\"`: beim Ersetzen beide Formen suchen, neue Anführungszeichen immer als `\"` schreiben (ein `"` direkt vor dem schließenden `"""` bricht die Zelle); danach `sync_loesungen.py --check`.
 - Ein Fund in einer Variante gilt nicht automatisch für alle: vor Massenänderungen alle 3 Themen × DE/EN per grep prüfen.
 - Anleitungs-Kurse (micro:bit): Text außerhalb von `:::bloecke`/`:::python`/`:::javascript` sehen alle Ansichten – dort keine Block-Namen („beim Start“, „Logik“, „ansonsten“, „Motor A“). Ortsangaben, Tipps und `else`/`elif` je Variante schreiben; ein Python-/JS-Hinweis braucht ein Gegenstück für Blöcke (`guide-content.js` zählt die Abschnitte). Prüfen mit `npm run testkind -- --kurs … --variante python|javascript`.
-- Begriffs-Links in Anleitungs-Kursen zählen je Ansicht: gemeinsamer Text gilt für alle Ansichten, die die Lektion **hat** (Auto hat kein JavaScript – sonst doppelte Links). Block-Namen, die auch Alltagswörter sind, nur unter `fett`; neue Begriffe/Absätze im Kurs auf falsche Treffer prüfen (3.131).
 - Begriffs-Links in Anleitungs-Kursen zählen je Ansicht: gemeinsamer Text gilt für alle Ansichten, die die Lektion **hat** (Auto hat kein JavaScript – sonst doppelte Links). Block-Namen, die auch Alltagswörter sind, nur unter `fett`; neue Begriffe/Absätze im Kurs auf falsche Treffer prüfen (3.131).
 - Reihenfolge = Position in `lessons.json`, nicht die ID (3.100). Neue Aufgaben ans Ende einer Lektion hängen.
 - Debug-Aufgaben: vom Kernel-Zustand unabhängig, verraten die Lösung nicht, keine echte Endlosschleife (JS hat nur 5 s Timeout). Ihr `codeTemplate` ist absichtlich kaputt – Generatoren kompilieren nur Beispiele und Lösungen (3.95).
