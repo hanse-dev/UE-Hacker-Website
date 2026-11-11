@@ -43,7 +43,7 @@
               <span class="download-icon">📓</span>{{ t('week.download.nb') }}
             </a>
           </div>
-          <div class="cheat-sheet-markdown" v-html="activeCheatSheet.content"></div>
+          <div class="cheat-sheet-markdown" v-lerntext="activeCheatSheet.content"></div>
         </div>
         <div v-else-if="!activeReference && choosingNext" class="branch-choice-page">
           <h3>{{ t('tour.branch.title') }}</h3>

@@ -57,7 +57,7 @@ Alles unten ist nach `main` gemergt. Details: `grep -n "^### 3.NN" docs/archiv/H
 | 3.129 | Inhalte Woche 2/6–12 | W2 Boss 3 rechnet mit „10-mal versuchen“ statt Erwartungswert; W12 Pferde „Ausreißer einfangen“ statt Gegner/Kampf; Skelett-Reste in Pferde/Sci-Fi W6–12 behoben |
 | 3.130 | Termin-Formular | `src/utils/terminDate.js` (toleranter Datums-Parser für Home/Kursseite, `upcomingTermine`), `useTerminForm.js` (Kurs/Projekt-Auswahl aus `kurse.json`, Woche aus `lehrplan.md`, Vorschlag nächste Woche bzw. offene Werkstatt, Vorgabe Mi 17–18 Uhr), Tabelle `termin_orte` + `GET/DELETE /api/admin/termin-orte`; gespeichert wird weiter Anzeige-Text |
 | 3.131 | micro:bit-Spickzettel | `/microbit/spickzettel` (`content/microbit-spickzettel/spickzettel.md`, 16 Begriffe × 3 Ansichten); `begriffe.json` → `microbit` mit `anker`/`fett`, `linkConceptsByMode()` verlinkt je Ansicht beim ersten Vorkommen, Kasten „Neu oder unklar?“ unter jeder micro:bit-Lektion |
-| 3.131 | micro:bit-Spickzettel | `/microbit/spickzettel` (`content/microbit-spickzettel/spickzettel.md`, 16 Begriffe × 3 Ansichten); `begriffe.json` → `microbit` mit `anker`/`fett`, `linkConceptsByMode()` verlinkt je Ansicht beim ersten Vorkommen, Kasten „Neu oder unklar?“ unter jeder micro:bit-Lektion |
+| 3.132 | Seitenübersetzung | `#app` hat `translate="no"` (Edge/Chrome-Übersetzer bauen Absätze neu → Vue-Absturz `null.insertBefore` beim Prüfen); Lerntexte über `v-lerntext` (`src/directives/lerntext.js`: `innerHTML`, `translate="yes"`, `pre`/`code` `no`); Test `seitenuebersetzung.spec.js` |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -70,7 +70,6 @@ Punkte-System, Zertifikate), wird hier nicht wiederholt.
 - Lösungs-Markdown-Zellen (`*_6_loesungen/NN_markdown.py`) speichern `"` mal roh, mal als `\"`: beim Ersetzen beide Formen suchen, neue Anführungszeichen immer als `\"` schreiben (ein `"` direkt vor dem schließenden `"""` bricht die Zelle); danach `sync_loesungen.py --check`.
 - Ein Fund in einer Variante gilt nicht automatisch für alle: vor Massenänderungen alle 3 Themen × DE/EN per grep prüfen.
 - Anleitungs-Kurse (micro:bit): Text außerhalb von `:::bloecke`/`:::python`/`:::javascript` sehen alle Ansichten – dort keine Block-Namen („beim Start“, „Logik“, „ansonsten“, „Motor A“). Ortsangaben, Tipps und `else`/`elif` je Variante schreiben; ein Python-/JS-Hinweis braucht ein Gegenstück für Blöcke (`guide-content.js` zählt die Abschnitte). Prüfen mit `npm run testkind -- --kurs … --variante python|javascript`.
-- Begriffs-Links in Anleitungs-Kursen zählen je Ansicht: gemeinsamer Text gilt für alle Ansichten, die die Lektion **hat** (Auto hat kein JavaScript – sonst doppelte Links). Block-Namen, die auch Alltagswörter sind, nur unter `fett`; neue Begriffe/Absätze im Kurs auf falsche Treffer prüfen (3.131).
 - Begriffs-Links in Anleitungs-Kursen zählen je Ansicht: gemeinsamer Text gilt für alle Ansichten, die die Lektion **hat** (Auto hat kein JavaScript – sonst doppelte Links). Block-Namen, die auch Alltagswörter sind, nur unter `fett`; neue Begriffe/Absätze im Kurs auf falsche Treffer prüfen (3.131).
 - Reihenfolge = Position in `lessons.json`, nicht die ID (3.100). Neue Aufgaben ans Ende einer Lektion hängen.
 - Debug-Aufgaben: vom Kernel-Zustand unabhängig, verraten die Lösung nicht, keine echte Endlosschleife (JS hat nur 5 s Timeout). Ihr `codeTemplate` ist absichtlich kaputt – Generatoren kompilieren nur Beispiele und Lösungen (3.95).
@@ -99,6 +98,7 @@ Punkte-System, Zertifikate), wird hier nicht wiederholt.
 - Jede Pflichtaufgabe gegenprüfen: unveränderte Vorlage fällt durch, Musterlösung besteht (Web-Kurse: automatisch in `web-*.spec.js`).
 
 **Vue / CSS / Tests**
+- Lerntext-HTML nie per `v-html`, sondern `v-lerntext` (übersetzbar, Code nicht); alles andere bleibt unter `#app translate="no"`, sonst bricht die Browser-Übersetzung Vue (3.132).
 - Farben nur über die Tokens in `src/style.css` (`--surface`, `--text-muted`, `--brand-text` …), nie fest eintragen; neue Farbe = Token mit Wert für hell **und** `[data-theme="dark"]`. Lila als Schrift/Rand = `--brand-text` (`--primary-purple` nur als Hintergrund). Bewusst fest: `Teaser.vue`, `FinalCertificate.vue` (Papier-Look), Sandbox-Inhalte (3.122).
 - `@import` in `<style scoped>` → eigener unscoped Block; Watcher, die nach dem Rendern scrollen: `flush: 'post'`.
 - Asynchrones Nachladen je Auswahl (Lektionstext) braucht einen Anfrage-Zähler: Eine spät ankommende alte Antwort darf die neue nicht überschreiben (`useLessonContent.js`, unter Last im vollen Lauf aufgefallen).

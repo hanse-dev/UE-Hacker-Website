@@ -3291,3 +3291,25 @@ nur in der Ampel vor).
   kein Speicherstand auf der Seite; Sterne Werkstatt „Funk“; Links und Kasten je Ansicht in Stufe 1;
   `linkConceptsByMode` direkt); `begriffe.spec.js` nimmt die micro:bit-Kurse aus `WITHOUT_LINKS`.
   cspell/LanguageTool: `anker`/`kurs` gelten als Code-Felder, Pfade mit `/` als Code.
+
+### 3.132 — Absturz bei Browser-Seitenübersetzung (Branch `uebersetzung-absturz`)
+
+Meldung: In „Meine erste Website“ brach „Prüfen“ mit `TypeError: Cannot read properties of null
+(reading 'insertBefore')` ab, danach 150× `… reading 'emitsOptions'`; Reload half. In der Konsole
+stand „Edge revert page translation“. Ursache: Seitenübersetzer bauen jeden Absatz satzweise neu auf
+und ersetzen dabei auch Inline-Elemente (z. B. `○`-Span in `p.task-instruction`) durch Kopien. Vue
+hält Verweise auf die abgehängten Knoten; beim nächsten `v-if`-Wechsel (`○` → `✓`) ist deren
+`parentNode` `null`. Reines Ersetzen von Textknoten (`<font>`) löst den Fehler dagegen nicht aus.
+
+Entscheidung (Eike): nur Lerntexte übersetzbar. `index.html`: `<div id="app" translate="no">`;
+alle 8 `v-html`-Stellen (Lektions-/Anleitungstexte, Aufgabentexte, Spickzettel, Kursbeschreibung,
+Notebook-Markdown) nutzen jetzt die Direktive `v-lerntext` (`src/directives/lerntext.js`, global in
+`src/main.js`): setzt `innerHTML` nur bei neuem Wert (sonst verwirft jedes Re-Rendern die
+Übersetzung), `translate="yes"` am Element und `translate="no"` an `pre`/`code` im fertigen DOM.
+Verworfen: ein `marked`-Hook, der `translate` in die HTML-Tags schreibt – er hätte die Regexe auf
+`<pre><code>` in `useLessonContent.js` (Glossar) und `GuideLessonView.vue` (Blöcke) gebrochen.
+Quiz-Fragen und Bedienelemente werden nicht mehr übersetzt.
+
+Test `tests/seitenuebersetzung.spec.js` simuliert den Übersetzer (Absätze mit Text neu aufbauen,
+nur wo das `translate`-Attribut es erlaubt) und schlägt ohne den Fix mit genau dem
+`insertBefore`-Fehler fehl. `src/main.js` und `src/directives/` sind Kern-Dateien in `test-changed.mjs`.

@@ -20,7 +20,9 @@
     </script>
   </head>
   <body>
-    <div id="app"></div>
+    <!-- Bedienoberfläche nicht übersetzen: Seitenübersetzer (Edge/Chrome) bauen Absätze neu auf, danach
+         stürzt Vue beim nächsten Umschalten ab (null.insertBefore). Lerntexte über v-lerntext (src/directives/lerntext.js). -->
+    <div id="app" translate="no"></div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
