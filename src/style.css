@@ -39,6 +39,14 @@
   --backdrop: rgba(20, 20, 20, 0.45);
   --celebrate-bg: linear-gradient(135deg, #fef9e7 0%, #fdebd0 100%);
 
+  /* Markierung Aufgabe/Beispiel in Lektionen (Randstreifen + Badge) */
+  --task-accent: var(--accent-orange);
+  --task-badge-bg: var(--warning-bg);
+  --task-badge-text: var(--accent-orange);
+  --example-accent: var(--border-strong);
+  --example-badge-bg: var(--surface-muted);
+  --example-badge-text: var(--text-faint);
+
   /* Syntax-Farben für CodeMirror (src/utils/editorTheme.js) */
   --cm-keyword: #708;
   --cm-string: #a11;
@@ -87,6 +95,13 @@
   --shadow: rgba(0, 0, 0, 0.45);
   --backdrop: rgba(0, 0, 0, 0.65);
   --celebrate-bg: linear-gradient(135deg, #3a3014 0%, #3d2a17 100%);
+
+  /* Grau-auf-Dunkel war kaum zu sehen: Beispiele bekommen hier Himmelblau, Aufgaben kräftiges Orange. */
+  --task-badge-bg: #4a3110;
+  --task-badge-text: #ffc06b;
+  --example-accent: #6cc4f0;
+  --example-badge-bg: #173246;
+  --example-badge-text: #a8dcf7;
 
   --cm-keyword: #d19bf7;
   --cm-string: #f3a37c;

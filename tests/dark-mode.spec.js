@@ -7,6 +7,20 @@ const DARK_BG = 'rgb(21, 18, 27)';
 const DARK_SURFACE = 'rgb(31, 26, 39)';
 const DARK_TINT = 'rgb(44, 34, 56)'; // --surface-tint, Hintergrund der Code-Bereiche
 
+// WCAG-Kontrast zwischen einer Farbe des Elements und dem ersten nicht transparenten Hintergrund
+// (das Element selbst oder ein Vorfahre).
+const contrast = (locator, prop, against = 'parent') => locator.evaluate((el, [prop, against]) => {
+  const rgb = (c) => c.match(/[\d.]+/g).map(Number);
+  const lum = ([r, g, b]) => {
+    const f = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; };
+    return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
+  };
+  let bgEl = against === 'self' ? el : el.parentElement;
+  while (bgEl && rgb(getComputedStyle(bgEl).backgroundColor)[3] === 0) bgEl = bgEl.parentElement;
+  const [a, b] = [lum(rgb(getComputedStyle(el)[prop])), lum(rgb(getComputedStyle(bgEl).backgroundColor))];
+  return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+}, [prop, against]);
+
 const bodyBg = (page) => page.evaluate(() => getComputedStyle(document.body).backgroundColor);
 
 test.describe('Dark Mode', () => {
@@ -93,5 +107,28 @@ test.describe('Dark Mode', () => {
     // Normaler Text im Editor ist hell (--text), nicht das Schwarz des CodeMirror-Standards.
     await expect(editor).toHaveCSS('color', 'rgb(230, 225, 236)');
     await expect(page.locator('.lesson-content').first()).not.toHaveCSS('background-color', 'rgb(255, 255, 255)');
+  });
+
+  test('Lektion: Aufgaben und Beispiele sind deutlich markiert', async ({ page }) => {
+    // Regression: Beispiel-Streifen (--border-strong) und Badge-Schrift (--text-faint) waren auf
+    // dunklem Grund kaum zu sehen (Kontrast ~1,9 bzw. ~4).
+    await page.emulateMedia({ colorScheme: 'dark' });
+    await page.goto('/kurs/js-grundkurs?week=1');
+    const example = page.locator('.task-block.task-example').first();
+    const required = page.locator('.task-block.task-required').first();
+    await expect(example).toBeVisible({ timeout: 20000 });
+    expect(await contrast(example, 'borderLeftColor')).toBeGreaterThanOrEqual(3);
+    expect(await contrast(required, 'borderLeftColor')).toBeGreaterThanOrEqual(3);
+    expect(await contrast(example.locator('.badge-example'), 'color', 'self')).toBeGreaterThanOrEqual(7);
+    expect(await contrast(required.locator('.badge-required'), 'color', 'self')).toBeGreaterThanOrEqual(7);
+
+    // Python-Lektionsansicht (LessonView.vue) nutzt dieselben Tokens.
+    await page.goto('/kurs/python-grundlagen-interaktiv');
+    await page.locator('.btn-start-course').click();
+    await page.locator('.variant-card').first().click();
+    const pyExample = page.locator('.task-block.task-example').first();
+    await expect(pyExample).toBeVisible({ timeout: 20000 });
+    expect(await contrast(pyExample, 'borderLeftColor')).toBeGreaterThanOrEqual(3);
+    expect(await contrast(pyExample.locator('.task-badge'), 'color', 'self')).toBeGreaterThanOrEqual(7);
   });
 });
