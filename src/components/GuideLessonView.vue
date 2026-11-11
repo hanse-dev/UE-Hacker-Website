@@ -18,7 +18,7 @@
 
     <div ref="contentEl" class="lesson-content">
       <p v-if="!lessonContent" class="lesson-loading">{{ t('lesson.loading') }}</p>
-      <div v-else v-html="guideHtml"></div>
+      <div v-else v-lerntext="guideHtml"></div>
       <ConceptBox v-if="lessonContent && conceptList.length" :concepts="conceptList" :title="t('concepts.titleTeam')" />
     </div>
 

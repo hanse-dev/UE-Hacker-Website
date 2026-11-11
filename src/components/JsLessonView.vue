@@ -3,7 +3,7 @@
    <div class="js-lesson-grid">
     <div class="lesson-content">
       <p v-if="!lessonContent" class="lesson-loading">{{ t('lesson.loading') }}</p>
-      <div v-else v-html="lessonContent"></div>
+      <div v-else v-lerntext="lessonContent"></div>
       <ConceptBox v-if="lessonContent && conceptList.length" :concepts="conceptList" />
     </div>
 
@@ -23,7 +23,7 @@
             <span v-if="completedTasks.has(idx)" class="task-done">✓</span>
             <span v-else-if="skippedTasks.has(idx)" class="task-skipped">⏭</span>
             <span v-else class="task-pending">○</span>
-            <span v-html="instructionWithGlossary(task.instruction || t('lesson.taskPrefix') + (idx + 1))"></span>
+            <span v-lerntext="instructionWithGlossary(task.instruction || t('lesson.taskPrefix') + (idx + 1))"></span>
             <span v-if="completedTasks.has(idx)" class="task-status-label">{{ t('lesson.taskDone') }}</span>
             <span v-else-if="skippedTasks.has(idx)" class="task-status-label">{{ t('lesson.taskSkipped') }}</span>
             <span v-else-if="completedTasks.size > 0" class="task-status-label">{{ t('lesson.taskPending') }}</span>

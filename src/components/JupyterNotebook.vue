@@ -24,7 +24,7 @@
         :class="['cell', `cell-${cell.cell_type}`]"
       >
         <div v-if="cell.cell_type === 'markdown'" class="cell-markdown">
-          <div v-html="renderMarkdown(cell.source)"></div>
+          <div v-lerntext="renderMarkdown(cell.source)"></div>
         </div>
 
         <div v-else-if="cell.cell_type === 'code'" class="cell-code">

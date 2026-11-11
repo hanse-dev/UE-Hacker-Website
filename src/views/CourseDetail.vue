@@ -4,7 +4,7 @@
       <h1>{{ courseTitle }}</h1>
       <p v-if="course.beta" class="beta-hint"><BetaBadge /> {{ t('course.betaHint') }}</p>
       <div v-if="description || isWeeklyCourse" class="course-description">
-        <div v-if="description" v-html="description"></div>
+        <div v-if="description" v-lerntext="description"></div>
 
         <div v-if="isWeeklyCourse || isInteractiveCourse" class="placement-banner">
           <p>{{ t('course.placement.banner') }}</p>
