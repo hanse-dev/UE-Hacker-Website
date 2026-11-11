@@ -9,6 +9,12 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
 
 ## Offen
 
+- [ ] **Hook-Testlauf: Kaltstart-Ausfälle (11.11.2026).** Im `test:precommit` scheiterten einmal die
+      jeweils ersten Tests der 4 Worker schon beim Seitenaufbau (`.btn-start-course` bzw.
+      `.course-description` nie sichtbar; `begriffe`, `js-geteilte-ansicht`, `js-memory`, `js-quiz`),
+      einzeln und im nächsten Lauf grün. Vermutlich Vite-Dep-Optimierung/Reload beim ersten Aufruf.
+      Vorschlag: in `scripts/test-changed.mjs` bzw. der Playwright-Config vor dem Lauf eine Seite
+      vorwärmen (z. B. `globalSetup`, das `/kurs/projekt-js-quiz` einmal lädt).
 - [ ] **Verständlichkeit (Branch `verstaendlichkeit`, HANDOFF 3.123).** Bericht per
       `npm run check:verstaendlichkeit`. Die Funde „nie gezeigt“ sind behoben (0). Offen:
       lange Sätze/LIX/Fachwörter aus dem Bericht durchgehen (braucht Urteil). Stolperstellen-Zähler
