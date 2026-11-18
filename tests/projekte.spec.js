@@ -28,7 +28,7 @@ test.describe('Projekte-Übersicht', () => {
 
   test('zeigt alle Projekt-Karten', async ({ page }) => {
     await page.goto('/projekte');
-    await expect(page.locator('.projekt-card')).toHaveCount(13, { timeout: 15000 });
+    await expect(page.locator('.projekt-card')).toHaveCount(14, { timeout: 15000 });
     await expect(page.locator('a[href="/kurs/projekt-caesar-chiffre"]')).toBeVisible();
     await expect(page.locator('a[href="/kurs/projekt-vigenere-chiffre"]')).toBeVisible();
     await expect(page.locator('a[href="/kurs/projekt-haeufigkeitsanalyse"]')).toBeVisible();
@@ -42,11 +42,12 @@ test.describe('Projekte-Übersicht', () => {
     await expect(page.locator('a[href="/kurs/projekt-microbit-auto"]')).toBeVisible();
     await expect(page.locator('a[href="/kurs/projekt-microbit-ampel"]')).toBeVisible();
     await expect(page.locator('a[href="/kurs/projekt-microbit-sterne"]')).toBeVisible();
+    await expect(page.locator('a[href="/kurs/projekt-ausweichen"]')).toBeVisible();
   });
 
   test('Projekt-Karte ist ganzflächig klickbar, nicht nur der "Jetzt starten"-Link', async ({ page }) => {
     await page.goto('/projekte');
-    await expect(page.locator('.projekt-card')).toHaveCount(13, { timeout: 15000 });
+    await expect(page.locator('.projekt-card')).toHaveCount(14, { timeout: 15000 });
 
     await page.locator('a.projekt-card[href="/kurs/projekt-caesar-chiffre"] h3').click();
     await expect(page).toHaveURL(/projekt-caesar-chiffre/);
@@ -54,7 +55,7 @@ test.describe('Projekte-Übersicht', () => {
 
   test('Level-Filter "Fortgeschritten" reduziert auf Zahlen-Detektiv, Vigenère-Chiffre, Häufigkeitsanalyse, Snake, Quiz-Generator und Text-Adventure', async ({ page }) => {
     await page.goto('/projekte');
-    await expect(page.locator('.projekt-card')).toHaveCount(13, { timeout: 15000 });
+    await expect(page.locator('.projekt-card')).toHaveCount(14, { timeout: 15000 });
 
     await page.locator('.filter-chip', { hasText: 'Fortgeschritten' }).click();
     await expect(page.locator('.projekt-card')).toHaveCount(6);
@@ -68,7 +69,7 @@ test.describe('Projekte-Übersicht', () => {
 
   test('Tag-Filter "Kryptografie" zeigt Cäsar-, Vigenère-Chiffre und Häufigkeitsanalyse', async ({ page }) => {
     await page.goto('/projekte');
-    await expect(page.locator('.projekt-card')).toHaveCount(13, { timeout: 15000 });
+    await expect(page.locator('.projekt-card')).toHaveCount(14, { timeout: 15000 });
 
     await page.locator('.filter-chip', { hasText: 'Kryptografie' }).click();
     await expect(page.locator('.projekt-card')).toHaveCount(3);
@@ -79,7 +80,7 @@ test.describe('Projekte-Übersicht', () => {
 
   test('Sprach-Filter "JavaScript" zeigt Spielewerkstatt, Snake, Memory und Quiz-Generator', async ({ page }) => {
     await page.goto('/projekte');
-    await expect(page.locator('.projekt-card')).toHaveCount(13, { timeout: 15000 });
+    await expect(page.locator('.projekt-card')).toHaveCount(14, { timeout: 15000 });
 
     await page.locator('.filter-chip', { hasText: 'JavaScript' }).click();
     await expect(page.locator('.projekt-card')).toHaveCount(4);
@@ -91,13 +92,13 @@ test.describe('Projekte-Übersicht', () => {
 
   test('Zurücksetzen-Button stellt alle Projekte wieder her', async ({ page }) => {
     await page.goto('/projekte');
-    await expect(page.locator('.projekt-card')).toHaveCount(13, { timeout: 15000 });
+    await expect(page.locator('.projekt-card')).toHaveCount(14, { timeout: 15000 });
 
     await page.locator('.filter-chip', { hasText: 'Fortgeschritten' }).click();
     await expect(page.locator('.projekt-card')).toHaveCount(6);
 
     await page.locator('.filter-reset').click();
-    await expect(page.locator('.projekt-card')).toHaveCount(13);
+    await expect(page.locator('.projekt-card')).toHaveCount(14);
   });
 
   test('Morsecode-Projekt lädt und Lektion 1 lösen schaltet Lektion 2 frei', async ({ page }) => {

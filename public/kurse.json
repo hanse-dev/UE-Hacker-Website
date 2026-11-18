@@ -139,6 +139,20 @@
     "contentPath": "js-snake"
   },
   {
+    "id": "projekt-ausweichen",
+    "beta": true,
+    "type": "projekt",
+    "engine": "spiel",
+    "language": "python",
+    "level": "einsteiger",
+    "tags": ["spiele"],
+    "title": "Projekt: Ausweichen",
+    "title_en": "Project: Dodge",
+    "description": "Programmiere dein eigenes Spiel: Steuere deine Figur mit den Pfeiltasten und weiche den fallenden Steinen aus. Wahlweise mit Blöcken oder in Python – beides läuft direkt im Browser. Ab 10 Jahren.",
+    "description_en": "Program your own game: steer your figure with the arrow keys and dodge the falling rocks. With blocks or in Python – both run right in the browser. Ages 10 and up.",
+    "contentPath": "ausweichen"
+  },
+  {
     "id": "projekt-js-memory",
     "beta": true,
     "type": "projekt",

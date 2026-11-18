@@ -27,7 +27,7 @@ HIER = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HIER, "..", "..", ".."))
 CODE_KEYS = {"codeTemplate", "solution", "referenceSolution", "expected", "id", "file", "section",
              "type", "target", "click", "name", "nextCourseId", "stdin", "text", "codeContains",
-             "functionCalls", "variables", "kurs", "anker"}
+             "functionCalls", "variables", "kurs", "anker", "setze", "pruefe", "tasten"}
 WORT = re.compile(r"[A-Za-zÄÖÜäöüß]+")
 bezeichner = set()
 selbst_gestartet = False

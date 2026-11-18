@@ -5,11 +5,12 @@ Sammlung von Projekt-Ideen (Stand 2026-09-19), aus der wir nach und nach Projekt
 in `todo.md`, das Format-/Track-Modell in `VISION.md`.
 
 **Legende:** `[ ]` Idee · `[~]` in Arbeit (Branch) · `[x]` umgesetzt.
-**Engine:** 🐍 Python/Pyodide (synchron, kein Spiele-Loop) · 🟨 JS-Sandbox (Canvas/DOM, rAF möglich).
+**Engine:** 🐍 Python/Pyodide (synchron, kein Spiele-Loop) · 🟨 JS-Sandbox (Canvas/DOM, rAF möglich) ·
+🧩 Spiel (`engine: "spiel"`: Blöcke oder Python, `jedes_bild()` per rAF, HANDOFF 3.133).
 **Alter:** Richtwert für die Zielgruppe.
 
 Schon umgesetzt (nicht mehr hier): Cäsar-Chiffre, Morsecode, Zahlen-Detektiv, JS-Spielewerkstatt,
-Vigenère-Chiffre, Snake, Text-Adventure, Memory, Quiz-Generator, Häufigkeitsanalyse.
+Vigenère-Chiffre, Snake, Text-Adventure, Memory, Quiz-Generator, Häufigkeitsanalyse, Ausweichen (🧩).
 
 ## Empfohlene Reihenfolge (Vorschlag)
 1. ~~Vigenère-Chiffre~~ ✅ umgesetzt
@@ -90,5 +91,7 @@ dem Grundkurs.
   erledigt.
   Zweite Vorlage: `content/js-quiz/` (ein Knopf klickt den ganzen Ablauf durch, selbst erzeugte
   Elemente mit festen IDs, siehe HANDOFF "JS-Sandbox").
-- Python-Projekte: keine Spiele-Loops (Pyodide synchron, 5s-Loop-Guard).
+- Python-Projekte: keine Spiele-Loops (Pyodide synchron, 5s-Loop-Guard) – außer über die Spiel-Engine 🧩
+  (`jedes_bild()`, Vorlage `content/ausweichen/`; Flappy-Klon oder Space Invaders ließen sich so auch
+  mit Blöcken bauen).
 - Nach dem Umsetzen hier `[x]` setzen.

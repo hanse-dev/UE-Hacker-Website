@@ -58,6 +58,7 @@ Alles unten ist nach `main` gemergt. Details: `grep -n "^### 3.NN" docs/archiv/H
 | 3.130 | Termin-Formular | `src/utils/terminDate.js` (toleranter Datums-Parser für Home/Kursseite, `upcomingTermine`), `useTerminForm.js` (Kurs/Projekt-Auswahl aus `kurse.json`, Woche aus `lehrplan.md`, Vorschlag nächste Woche bzw. offene Werkstatt, Vorgabe Mi 17–18 Uhr), Tabelle `termin_orte` + `GET/DELETE /api/admin/termin-orte`; gespeichert wird weiter Anzeige-Text |
 | 3.131 | micro:bit-Spickzettel | `/microbit/spickzettel` (`content/microbit-spickzettel/spickzettel.md`, 16 Begriffe × 3 Ansichten); `begriffe.json` → `microbit` mit `anker`/`fett`, `linkConceptsByMode()` verlinkt je Ansicht beim ersten Vorkommen, Kasten „Neu oder unklar?“ unter jeder micro:bit-Lektion |
 | 3.132 | Seitenübersetzung | `#app` hat `translate="no"` (Edge/Chrome-Übersetzer bauen Absätze neu → Vue-Absturz `null.insertBefore` beim Prüfen); Lerntexte über `v-lerntext` (`src/directives/lerntext.js`: `innerHTML`, `translate="yes"`, `pre`/`code` `no`); Test `seitenuebersetzung.spec.js` |
+| 3.133 | Spiel-Projekt „Ausweichen“ | `engine: "spiel"` → `SpielLessonView.vue`: Blöcke (Blockly, `src/spiel/bloecke.js`) oder Python, beides auf `src/spiel/spiel.py` in Pyodide (`jedes_bild()` per rAF, `useSpiel.js`); Prüfen spielt unsichtbar durch (`validation.type: 'spiel'`, `checks`); Vorlagen nur als Python, `zu_bloecken.py` erzeugt die Blöcke; `scripts/check_spiel_loesungen.py` |
 
 ### Gelernte Regeln (wiederverwendbare Fallstricke)
 
@@ -87,6 +88,10 @@ Punkte-System, Zertifikate), wird hier nicht wiederholt.
 - Namespace vor jedem Check-Lauf leeren (`globals.delete()` wirft bei unbekanntem Namen); vor `functionCalls` `__cell_deadline__` neu setzen.
 - Lektionen prüfen nur die Ausgabe – neue Aufgaben brauchen immer ein `expected` (sonst bestehen sie bei fehlerfreiem Code).
 - `lesson.minSolved` (flexible Lektion): Aufgaben dürfen nicht auf Variablen einer vorherigen Aufgabe bauen – übersprungene Aufgaben liefen nie (3.85).
+
+**Spiel-Projekte (`engine: "spiel"`)**
+- Vorlagen/Lösungen nur als Python schreiben, und nur mit Sprachmitteln, die `src/spiel/zu_bloecken.py` kennt (kein `def` außer `jedes_bild`, kein `for i in range` mit benutztem `i`); neuer Block = Definition + Generator in `bloecke.js` **und** Gegenstück in `zu_bloecken.py`. Prüfen: `python3 scripts/check_spiel_loesungen.py`.
+- `_CellTimeout` erbt von `BaseException`: wer Kinder-Code im Spiel-Modul aufruft, fängt `BaseException`, sonst hängt „Prüfen“ bei einer Endlosschleife (3.133).
 
 **JS-Sandbox**
 - `functionCalls` sieht nur `function`/`var`, keine Arrow-Functions/Methoden; nie ein Array als `expected`; `dom_*`/`canvas_*` nutzen `validation.text`.
