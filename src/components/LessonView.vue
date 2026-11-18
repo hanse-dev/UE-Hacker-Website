@@ -897,7 +897,7 @@ a.btn-next {
 }
 
 .task-block.task-example {
-  border-left: 4px solid var(--border-strong);
+  border-left: 4px solid var(--example-accent);
   padding-left: 12px;
 }
 
@@ -910,8 +910,8 @@ a.btn-next {
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  background: var(--surface-muted);
-  color: var(--text-faint);
+  background: var(--example-badge-bg);
+  color: var(--example-badge-text);
 }
 
 /* Rahmen zeigt: dieser Code wurde schon mindestens einmal ausgefuehrt. */

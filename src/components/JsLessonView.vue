@@ -720,11 +720,11 @@ export default {
 }
 
 .task-block.task-required {
-  border-left-color: var(--accent-orange, #ff9800);
+  border-left-color: var(--task-accent);
 }
 
 .task-block.task-example {
-  border-left-color: var(--border-strong);
+  border-left-color: var(--example-accent);
 }
 
 .task-block:last-child {
@@ -745,13 +745,13 @@ export default {
 }
 
 .badge-example {
-  background: var(--surface-muted);
-  color: var(--text-faint);
+  background: var(--example-badge-bg);
+  color: var(--example-badge-text);
 }
 
 .badge-required {
-  background: var(--warning-bg);
-  color: var(--accent-orange, #fb8c00);
+  background: var(--task-badge-bg);
+  color: var(--task-badge-text);
 }
 
 .task-instruction {
