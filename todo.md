@@ -85,13 +85,6 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
       beim Erstellen einer Funktion der Knopf für einen Zahl-Parameter, und steht im Aufruf-Block
       „Funktion zeigen“ mit Zahlenfeld? Python/JS-Beispiele sind nur per `compile()`/`tsc` gegen eine
       nachgebaute API geprüft.
-- [ ] **Spiel-Projekt „Ausweichen“ (`content/ausweichen/`, HANDOFF 3.133, Beta) — im Unterricht
-      ausprobieren.** Zu beobachten: Ist das Tempo (Stein 4, Spieler 5 pro Bild) gut spielbar? Finden
-      Kinder in den Blöcken die Kategorien (Figuren/Spiel/Variablen) ohne Hilfe, und kommen sie mit
-      „Variable erstellen …“ für `stein` (Lektion 1) zurecht? Ist `global` in Lektion 6 für die
-      Python-Gruppe verständlich? Das KI-Test-Kind kann Spiel-Projekte noch nicht (meldet sie als
-      „nicht geprüft“). Vorschlag: `scripts/ki_testkind.py` um `engine: "spiel"` erweitern (Code wie
-      bei Python-Lektionen, geprüft über `check_spiel_loesungen.py`).
 - [ ] `npm run lint:spelling:de` ist auf `main` rot (Exit 1, 34 Wörter, Stand 29.10.2026), fast alles
       CSS/HTML-Begriffe aus `content/web-*` (`font-weight`, `transition-duration`, `id-Selektor`,
       `Hover-Effekt`, `Queries` …), dazu `MAINTENANCE`, `elektronik` (kurse.json), `unlisted` (de.js).

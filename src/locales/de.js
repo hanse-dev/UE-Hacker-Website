@@ -512,23 +512,6 @@ export default {
   'guide.mode.javascript': 'JavaScript',
   'guide.checkHint': 'Probiert jede Aufgabe am echten micro:bit aus. Hakt sie ab, wenn sie klappt.',
 
-  // Spiel-Projekte (engine "spiel", SpielLessonView.vue)
-  'spiel.modeLabel': 'Programmieren mit:',
-  'spiel.editorHint': '▶ Spielen startet dein Spiel auf der Bühne. „Prüfen“ spielt es automatisch durch – erst dann ist die Aufgabe erledigt.',
-  'spiel.kernelStarting': 'Python wird gestartet (beim ersten Mal bis zu 30 Sekunden)…',
-  'spiel.badgeExample': '🔍 Beispiel – nur spielen',
-  'spiel.play': 'Spielen',
-  'spiel.stop': 'Stopp',
-  'spiel.stage': 'Bühne',
-  'spiel.stageEmpty': 'Klicke bei einer Aufgabe auf ▶ Spielen – hier läuft dann dein Spiel.',
-  'spiel.keysHint': 'Steuern mit den Pfeiltasten. Reagiert nichts? Klicke einmal auf die Bühne.',
-  'spiel.touchKeys': 'Tasten zum Antippen',
-  'spiel.showPython': 'Python ansehen',
-  'spiel.blocksLoading': 'Die Blöcke werden vorbereitet…',
-  'spiel.blocksError': 'Diese Vorlage gibt es nicht als Blöcke: ',
-  'spiel.runThenCheck': 'Klappt dein Spiel? Dann klicke „Prüfen“ – erst dann zählt die Aufgabe.',
-  'spiel.errorInGame': 'Beim Spielen kam ein Fehler: ',
-
   'profil.title': 'Mein Profil',
   'profil.loginRequired': 'Melde dich an, um dein Profil und deine Abschluss-Abzeichen zu sehen.',
   'profil.greeting': 'Hallo, {name}!',

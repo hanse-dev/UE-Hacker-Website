@@ -649,3 +649,13 @@ Unverändert aus `todo.md` übernommen. Die wirklich offenen Prüf-Lücken darau
         (Spielmechanik aus dem gemeinsamen Skelett) — ggf. umthematisieren.
       - **Pferde/Sci-Fi Woche 6–12:** Aufgabentexte nicht Zeile für Zeile gelesen (nur
         Geschichten-Texte + LanguageTool), Glossar nur im Abenteuer-Thema gelesen.
+
+## Zurückgenommen
+
+### Spiel-Projekt „Ausweichen“ im Browser (18.11.2026)
+Eigene Spiel-Engine (`engine: "spiel"`, Pyodide-Modul `src/spiel/spiel.py`, Blockly 13 mit
+Python-Umwandlung, 8 Lektionen unter `content/ausweichen/`) war in `main` gemergt (Commit
+`fedcb956`, Merge `022bfb8a`) und am selben Tag per `git revert` wieder entfernt. Grund: Das Spiel
+soll stattdessen in MakeCode Arcade laufen, der Kurs auf der Seite nur anleiten (wie die
+micro:bit-Kurse). Bei Bedarf Code aus `fedcb956` holen. Behalten wurde nur die davon unabhängige
+Korrektur in `tests/seitenuebersetzung.spec.js`.
