@@ -16,7 +16,7 @@ einem leeren Ordner, damit keine CLAUDE.md mitgelesen wird.
     python3 scripts/ki_testkind.py --kurs microbit-ampel --variante python --alter 10
     python3 scripts/ki_testkind.py --geaendert                     # alles Neue/Geänderte seit main
 
-Mit --kurs prüft es einen Anleitungs-Kurs (engine "anleitung", micro:bit): Das Test-Kind arbeitet zu
+Mit --kurs prüft es einen Anleitungs-Kurs (engine "anleitung", micro:bit oder MakeCode Arcade): Das Test-Kind arbeitet zu
 zweit an der Hardware, kennt die Materialliste aus beschreibung.md, die Einführung "Erste Schritte"
 und die bisherigen Stufen, sieht von Blöcken/Python/JavaScript nur die gewählte Variante und statt
 der Steckplan-Bilder deren Beschreibung (alt). Ausgeführt wird nichts - für jeden Abhakpunkt sagt
@@ -285,14 +285,21 @@ GUIDE_SCHEMA = {
 VARIANT_NAMES = {"bloecke": "Blöcken in MakeCode", "python": "Python", "javascript": "JavaScript in MakeCode"}
 
 
-def guide_system_prompt(alter: int, variante: str) -> str:
-    return f"""Du spielst ein {alter}-jähriges Kind in einem micro:bit-Kurs. Du arbeitest zu zweit mit
-einem anderen Kind an einem echten micro:bit; die Teile aus der Materialliste liegen vor euch, ein
-Computer ist da. Ihr programmiert mit {VARIANT_NAMES[variante]}. Ein Kursleiter will herausfinden, wo
-seine Anleitung für Kinder zu schwer ist. Hilf ihm, indem du ehrlich so liest, wie ein
-{alter}-jähriges Kind es täte.
+def guide_system_prompt(alter: int, variante: str, kurs: str = "") -> str:
+    # MakeCode-Arcade-Kurse (`arcade-*`) laufen ganz im Browser: kein Gerät, keine Bauteile.
+    if kurs.startswith("arcade-"):
+        rahmen = (f"einem MakeCode-Arcade-Kurs. Du arbeitest zu zweit mit einem anderen Kind an einem Computer;\n"
+                  f"im Browser sind diese Anleitung und der Editor arcade.makecode.com offen, ein Gerät gibt es nicht")
+        thema = "MakeCode Arcade, Spiele"
+    else:
+        rahmen = (f"einem micro:bit-Kurs. Du arbeitest zu zweit mit einem anderen Kind an einem echten micro:bit;\n"
+                  f"die Teile aus der Materialliste liegen vor euch, ein Computer ist da")
+        thema = "micro:bit, Elektronik"
+    return f"""Du spielst ein {alter}-jähriges Kind in {rahmen}. Ihr programmiert mit {VARIANT_NAMES[variante]}.
+Ein Kursleiter will herausfinden, wo seine Anleitung für Kinder zu schwer ist. Hilf ihm, indem du
+ehrlich so liest, wie ein {alter}-jähriges Kind es täte.
 
-- Du kennst NUR das, was im mitgelieferten Material steht. Alles andere über micro:bit, Elektronik
+- Du kennst NUR das, was im mitgelieferten Material steht. Alles andere über {thema}
   und Programmieren weißt du nicht - auch wenn du es eigentlich weißt.
 - Bilder (Steckpläne, Fotos) siehst du hier als [Bild: Beschreibung]. Stell dir vor, du siehst das
   Bild. Bemängle nicht, dass ein Bild fehlt.
@@ -445,7 +452,7 @@ def changed_lessons(content: Path, base: str) -> tuple[list[tuple], list[str]]:
             continue
         folder, name = parts[1], parts[-1]
         m = py_re.match(folder)
-        if not m and not folder.startswith("microbit-"):
+        if not m and not folder.startswith(("microbit-", "arcade-")):
             if not folder.startswith("python-12-wochen-grundkurs"):  # Lösungen sieht das Test-Kind nie
                 skipped.append(f)
             continue
@@ -530,7 +537,7 @@ def main(argv=None):
             _, week, theme, lessons, idx = job
             return system_prompt(args.alter), SCHEMA, build_prompt(content, week, theme, lessons, idx)
         _, kurs, lessons, idx = job
-        return guide_system_prompt(args.alter, args.variante), GUIDE_SCHEMA, build_guide_prompt(content, kurs, args.variante, lessons, idx)
+        return guide_system_prompt(args.alter, args.variante, kurs), GUIDE_SCHEMA, build_guide_prompt(content, kurs, args.variante, lessons, idx)
 
     if args.trocken:
         system, _, prompt = prompt_for(jobs[0])

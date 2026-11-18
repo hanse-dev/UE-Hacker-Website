@@ -1,5 +1,5 @@
 <template>
-  <div class="lesson-view guide-lesson" :class="'modus-' + mode">
+  <div class="lesson-view guide-lesson" :class="['modus-' + mode, conceptLanguage && 'sprache-' + conceptLanguage]">
     <div v-if="hasVariants" class="guide-mode-switch" role="group" :aria-label="t('guide.modeLabel')">
       <span class="guide-mode-label">{{ t('guide.modeLabel') }}</span>
       <button
@@ -23,7 +23,7 @@
     </div>
 
     <div v-if="tasks.length" class="lesson-editor-section guide-tasks">
-      <p class="editor-hint">{{ t('guide.checkHint') }}</p>
+      <p class="editor-hint">{{ t(conceptLanguage === 'arcade' ? 'guide.checkHintArcade' : 'guide.checkHint') }}</p>
       <label
         v-for="(task, idx) in tasks"
         :key="lesson.id + '-' + idx"
@@ -110,7 +110,8 @@ export default {
     courseId: { type: String, required: true },
     isProjectCourse: { type: Boolean, default: false },
     isLastLesson: { type: Boolean, default: false },
-    // `language` aus kurse.json (`microbit`): schaltet die Begriffs-Links auf den Spickzettel ein.
+    // `language` aus kurse.json: `microbit` schaltet die Begriffs-Links auf den Spickzettel ein,
+    // `arcade` (MakeCode Arcade) die Arcade-Blockfarben und den Hinweis über den Abhakpunkten.
     conceptLanguage: { type: String, default: '' },
   },
   emits: ['completed'],
@@ -407,6 +408,17 @@ export default {
 .lesson-content :deep(.mc-pins) { background: #b22222; }
 .lesson-content :deep(.mc-funk) { background: #e3008c; }
 .lesson-content :deep(.mc-led) { background: #5c2d91; }
+
+/* MakeCode Arcade (pxt-arcade/pxt-common-packages): eigene Kategorien, Grundkategorien in anderen Farben. */
+.lesson-content :deep(.mc-sprites) { background: #4b7bec; }
+.lesson-content :deep(.mc-controller) { background: #d54322; }
+.lesson-content :deep(.mc-spiel) { background: #8854d0; }
+.lesson-content :deep(.mc-szene) { background: #4b6584; }
+.lesson-content :deep(.mc-info) { background: #cf6a87; }
+.sprache-arcade .lesson-content :deep(.mc-schleifen) { background: #20bf6b; }
+.sprache-arcade .lesson-content :deep(.mc-logik) { background: #45aaf2; }
+.sprache-arcade .lesson-content :deep(.mc-mathematik) { background: #a55eea; }
+.sprache-arcade .lesson-content :deep(.mc-variablen) { background: #ec3b59; }
 
 .lesson-editor-section {
   background: var(--surface-muted);

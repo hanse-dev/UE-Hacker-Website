@@ -511,6 +511,7 @@ export default {
   'guide.mode.python': 'Python',
   'guide.mode.javascript': 'JavaScript',
   'guide.checkHint': 'Probiert jede Aufgabe am echten micro:bit aus. Hakt sie ab, wenn sie klappt.',
+  'guide.checkHintArcade': 'Probiert jede Aufgabe im Spielfenster von MakeCode Arcade aus. Hakt sie ab, wenn sie klappt.',
 
   'profil.title': 'Mein Profil',
   'profil.loginRequired': 'Melde dich an, um dein Profil und deine Abschluss-Abzeichen zu sehen.',

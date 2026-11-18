@@ -1,0 +1,117 @@
+[
+  {
+    "id": "lektion-startklar",
+    "title": "Startklar: Editor und Spieler",
+    "file": "lektion-01.md",
+    "lessonSummary": "Euer Spieler steht auf dem Bildschirm. Gleich lernt er fahren.",
+    "tasks": [
+      {
+        "instruction": "Der Editor ist offen, auf Deutsch, und wir haben ein Projekt „Ausweichen“ angelegt."
+      },
+      {
+        "instruction": "Unser Spieler hat ein eigenes Bild und steht unten in der Mitte des Bildschirms."
+      },
+      {
+        "instruction": "Der Bildschirm hat eine eigene Hintergrundfarbe.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-steuern",
+    "title": "Stufe 1: Steuern",
+    "file": "lektion-02.md",
+    "lessonSummary": "Euer Spieler fährt hin und her und bleibt im Bild. Jetzt kommen die Steine.",
+    "tasks": [
+      {
+        "instruction": "Mit den Pfeiltasten fährt der Spieler nach links und rechts."
+      },
+      {
+        "instruction": "Nach oben und unten fährt er nicht."
+      },
+      {
+        "instruction": "Am Rand bleibt er stehen und verschwindet nicht."
+      },
+      {
+        "instruction": "Beim Start sagt der Spieler „Los!“ in einer Sprechblase.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-steine",
+    "title": "Stufe 2: Steine fallen",
+    "file": "lektion-03.md",
+    "lessonSummary": "Es regnet Steine! Als Nächstes tut ein Treffer weh.",
+    "tasks": [
+      {
+        "instruction": "Alle halbe Sekunde fällt ein Stein von oben."
+      },
+      {
+        "instruction": "Die Steine fallen an immer anderen Stellen."
+      },
+      {
+        "instruction": "Manche Steine fallen schneller als andere.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-getroffen",
+    "title": "Stufe 3: Getroffen!",
+    "file": "lektion-04.md",
+    "lessonSummary": "Jetzt kann man verlieren. Fehlen nur noch Punkte und Tempo.",
+    "tasks": [
+      {
+        "instruction": "Oben links stehen drei Herzen."
+      },
+      {
+        "instruction": "Trifft uns ein Stein, verschwinden ein Herz und der Stein."
+      },
+      {
+        "instruction": "Sind alle Herzen weg, ist das Spiel vorbei."
+      },
+      {
+        "instruction": "Bei einem Treffer wackelt der Bildschirm.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-punkte",
+    "title": "Stufe 4: Punkte und Tempo",
+    "file": "lektion-05.md",
+    "lessonSummary": "Euer Spiel ist komplett. In der Werkstatt macht ihr es zu eurem eigenen.",
+    "tasks": [
+      {
+        "instruction": "Jede Sekunde gibt es einen Punkt."
+      },
+      {
+        "instruction": "Die Steine werden mit der Zeit schneller."
+      },
+      {
+        "instruction": "Ab tempo 150 werden die Steine nicht mehr schneller.",
+        "isBonus": true
+      }
+    ]
+  },
+  {
+    "id": "lektion-werkstatt",
+    "title": "Werkstatt: Euer Spiel, eure Regeln",
+    "file": "lektion-06.md",
+    "lessonSummary": "Ihr habt ein eigenes Arcade-Spiel gebaut. Glückwunsch!",
+    "tasks": [
+      {
+        "instruction": "Wir haben einen Auftrag gelöst."
+      },
+      {
+        "instruction": "Wir haben einen zweiten Auftrag gelöst.",
+        "isBonus": true
+      },
+      {
+        "instruction": "Jemand, der unser Spiel nicht kannte, hat es gespielt.",
+        "isBonus": true
+      }
+    ]
+  }
+]

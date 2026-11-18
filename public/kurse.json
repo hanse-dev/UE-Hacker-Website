@@ -236,6 +236,20 @@
     "contentPath": "microbit-sterne"
   },
   {
+    "id": "projekt-arcade-ausweichen",
+    "beta": true,
+    "type": "projekt",
+    "engine": "anleitung",
+    "language": "arcade",
+    "level": "einsteiger",
+    "tags": ["spiele"],
+    "title": "MakeCode Arcade: Ausweichen",
+    "title_en": "MakeCode Arcade: Dodge",
+    "description": "Programmiert euer eigenes Spiel in MakeCode Arcade: Steuert euren Spieler mit den Pfeiltasten und weicht den fallenden Steinen aus. Mit Leben, Punkten und Steinen, die immer schneller werden. Die Anleitung steht hier, programmiert und gespielt wird im Browser auf arcade.makecode.com, ganz ohne Gerät. Jede Stufe mit Blöcken, Python und JavaScript, ab 10 Jahren.",
+    "description_en": "Program your own game in MakeCode Arcade: steer your player with the arrow keys and dodge the falling rocks, with lives, points and rocks that keep getting faster. The guide is here, you code and play in the browser on arcade.makecode.com, no device needed. Every level with blocks, Python and JavaScript, ages 10 and up. The guide is currently available in German.",
+    "contentPath": "arcade-ausweichen"
+  },
+  {
     "id": "web-erste-website",
     "type": "lektionen",
     "format": "einstieg",

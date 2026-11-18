@@ -1,5 +1,13 @@
 {
   "lessons": {
+    "arcade-ausweichen": [
+      "lektion-startklar",
+      "lektion-steuern",
+      "lektion-steine",
+      "lektion-getroffen",
+      "lektion-punkte",
+      "lektion-werkstatt"
+    ],
     "caesar-chiffre": [
       "lektion-01",
       "lektion-02",
@@ -2060,6 +2068,7 @@
     "ferienkurse",
     "js-grundkurs",
     "ki-labor",
+    "projekt-arcade-ausweichen",
     "projekt-caesar-chiffre",
     "projekt-haeufigkeitsanalyse",
     "projekt-js-memory",
@@ -2121,6 +2130,11 @@
       "valid_until",
       "created_at",
       "updated_at"
+    ],
+    "termin_orte": [
+      "id",
+      "name",
+      "created_at"
     ],
     "task_stats": [
       "course",

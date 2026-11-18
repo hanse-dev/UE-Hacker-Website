@@ -322,13 +322,12 @@ Jeder Ordner enthält dieselben Dateien:
       (`src/utils/slug.js`: ä → ae, Leerzeichen → `-`). Block-Namen, die auch normale Wörter sind
       („oder“, „wenn“), nur unter `fett` eintragen – die verlinken nur als ganzer Fettdruck. Danach
       im Kurs prüfen, ob ein Wort falsch verlinkt (in Ampel Stufe 3 wurde „Rot **und** Gelb“ zu „Und, oder“).
-- [ ] **micro:bit** (`language: "microbit"`, HANDOFF 3.131): Ein neuer micro:bit-Kurs bekommt die
-      Links automatisch. Führt eine Lektion ein Konzept ein, das im Spickzettel fehlt: Abschnitt
-      `## Name` mit allen drei Ansichten in `content/microbit-spickzettel/spickzettel.md`, Eintrag in
-      der „Inhalt:“-Zeile und unter `microbit` in `begriffe.json` mit `anker` = Slug der Überschrift
-      (`src/utils/slug.js`: ä → ae, Leerzeichen → `-`). Block-Namen, die auch normale Wörter sind
-      („oder“, „wenn“), nur unter `fett` eintragen – die verlinken nur als ganzer Fettdruck. Danach
-      im Kurs prüfen, ob ein Wort falsch verlinkt (in Ampel Stufe 3 wurde „Rot **und** Gelb“ zu „Und, oder“).
+
+- [ ] **MakeCode Arcade** (`language: "arcade"`, HANDOFF 3.134): Ordner `content/arcade-<name>/`
+      (das Test-Kind erkennt Arcade-Kurse am Präfix), Bilder unter `public/arcade/<name>/`. Kurs-ID
+      in `WITHOUT_LINKS` von `tests/begriffe.spec.js` (noch kein Arcade-Spickzettel). Block-Kategorien
+      `sprites`, `controller`, `spiel`, `szene`, `info`, `schleifen`, `logik`, `mathematik`,
+      `variablen`; Block-Texte aus den MakeCode-Übersetzungen (HANDOFF „Gelernte Regeln“).
 
 ### Wenn du einen Web-Kurs (HTML/CSS, `sandboxMode: "web"`) änderst oder anlegst:
 - [ ] Aufgaben prüfen nur über `validation: { "type": "web", "checks": [...] }` (Felder siehe

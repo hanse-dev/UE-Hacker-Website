@@ -9,6 +9,13 @@ EN-Punkte stehen im Archiv unter „Zurückgestellt: Englisch“.
 
 ## Offen
 
+- [ ] **MakeCode Arcade „Ausweichen“ (Beta, HANDOFF 3.134) im echten Editor nachklicken.** Block-Texte
+      und Farben sind aus den offiziellen Übersetzungen belegt, diese Editor-Angaben aber nicht:
+      Python über den Pfeil neben „JavaScript“ (Lektion 1), Bild-Symbol neben `img` im Code
+      (Lektion 1), Disketten-Symbol zum Speichern als Bilddatei (Plan B), „beim Start“ unter
+      Schleifen, Standardwerte „mySprite sagt :)“ und „Kamera schütteln um 4 Pixel für 500 ms“,
+      Game-over-Bildschirm mit Punkten und Rekord (Lektion 5). Danach im Unterricht ausprobieren und
+      über das Beta-Kennzeichen entscheiden.
 - [ ] **Hook-Testlauf: Kaltstart-Ausfälle (11.11.2026).** Im `test:precommit` scheiterten einmal die
       jeweils ersten Tests der 4 Worker schon beim Seitenaufbau (`.btn-start-course` bzw.
       `.course-description` nie sichtbar; `begriffe`, `js-geteilte-ansicht`, `js-memory`, `js-quiz`),
