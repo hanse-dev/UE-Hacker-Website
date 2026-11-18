@@ -512,23 +512,6 @@ export default {
   'guide.mode.javascript': 'JavaScript',
   'guide.checkHint': 'Try each task on the real micro:bit. Tick it off once it works.',
 
-  // Game projects (engine "spiel", SpielLessonView.vue)
-  'spiel.modeLabel': 'Code with:',
-  'spiel.editorHint': '▶ Play starts your game on the stage. “Check” plays it automatically – only then is the task done.',
-  'spiel.kernelStarting': 'Starting Python (up to 30 seconds the first time)…',
-  'spiel.badgeExample': '🔍 Example – just play',
-  'spiel.play': 'Play',
-  'spiel.stop': 'Stop',
-  'spiel.stage': 'Stage',
-  'spiel.stageEmpty': 'Click ▶ Play on a task – your game will run here.',
-  'spiel.keysHint': 'Steer with the arrow keys. Nothing happens? Click the stage once.',
-  'spiel.touchKeys': 'Keys to tap',
-  'spiel.showPython': 'Show Python',
-  'spiel.blocksLoading': 'Preparing the blocks…',
-  'spiel.blocksError': 'This template does not exist as blocks: ',
-  'spiel.runThenCheck': 'Does your game work? Then click “Check” – only then does the task count.',
-  'spiel.errorInGame': 'An error happened while playing: ',
-
   'profil.title': 'My Profile',
   'profil.loginRequired': 'Log in to see your profile and completion badges.',
   'profil.greeting': 'Hello, {name}!',
