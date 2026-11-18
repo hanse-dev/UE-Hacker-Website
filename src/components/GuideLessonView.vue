@@ -58,6 +58,7 @@ import { useLanguage } from '../composables/useLanguage';
 import { useLessonContent } from '../composables/useLessonContent';
 import { linkConceptsByMode } from '../composables/useConcepts';
 import { slugify } from '../utils/slug';
+import { renderBlockListings } from '../utils/bloeckeListing';
 import ProjectCompletionBox from './ProjectCompletionBox.vue';
 import ConceptBox from './ConceptBox.vue';
 
@@ -76,25 +77,11 @@ function loadMode() {
   }
 }
 
-// Ein ```bloecke-Codeblock beschreibt MakeCode-Bloecke als Text: pro Zeile `[kategorie] Beschriftung`,
-// zwei Leerzeichen Einrueckung je Verschachtelungsebene. Daraus werden farbige Block-Zeilen.
-function renderBlocks(code) {
-  const rows = code.replace(/\n$/, '').split('\n').filter((line) => line.trim()).map((line) => {
-    const indent = Math.floor(line.match(/^ */)[0].length / 2);
-    const m = line.trim().match(/^\[([a-z]+)\]\s*(.*)$/);
-    const category = m ? m[1] : 'grundlagen';
-    const label = m ? m[2] : line.trim();
-    return `<div class="mc-block mc-${category}" style="margin-left:${indent * 24}px">${label}</div>`;
-  });
-  return `<div class="mc-blocks">${rows.join('')}</div>`;
-}
-
 // `:::bloecke` / `:::python` / `:::javascript` ... `:::` im Markdown (jeweils als eigener Absatz) grenzen Abschnitte ab,
 // die nur in der gewaehlten Ansicht sichtbar sind. Ueberschriften `##` bekommen eine Sprungmarke
 // (Spickzettel: /microbit/spickzettel#funk, siehe `anker` in content/begriffe.json).
 function toGuideHtml(html) {
-  return html
-    .replace(/<pre><code class="language-bloecke">([\s\S]*?)<\/code><\/pre>/g, (_, code) => renderBlocks(code))
+  return renderBlockListings(html)
     .replace(/<p>:::(bloecke|python|javascript)<\/p>/g, '<div class="variante variante-$1">')
     .replace(/<p>:::<\/p>/g, '</div>')
     .replace(/<h2>([\s\S]*?)<\/h2>/g, (_, inner) => `<h2 id="${slugify(inner.replace(/<[^>]+>/g, ''))}">${inner}</h2>`);

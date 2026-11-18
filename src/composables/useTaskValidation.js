@@ -91,6 +91,22 @@ export function validateWebChecks(validation, facts) {
   return { ok: true, failedIndex: -1 };
 }
 
+/**
+ * Spiel-Projekte (engine "spiel", `validation.type: 'spiel'`): Ergebnis von useSpiel().pruefe().
+ * Das Spiel wurde dort unsichtbar mit den Pruefschritten aus `validation.checks` durchgespielt
+ * (src/spiel/spiel.py, `_pruefe`); hier wird nur entschieden, was die Kinder sehen.
+ * @param {{ ok: boolean, schritt: number, fehler: string }} ergebnis
+ * @returns {{ ok: boolean, hint: string, error: string }} hint = `hint` des ersten nicht bestandenen
+ *   Schritts, error = Python-Fehler (dann hilft der Hinweis meist nicht weiter).
+ */
+export function validateSpiel(validation, ergebnis) {
+  if (DEV_SKIP_CHECKS) return { ok: true, hint: '', error: '' };
+  if (!ergebnis) return { ok: false, hint: '', error: '' };
+  if (ergebnis.ok) return { ok: true, hint: '', error: '' };
+  const check = validation?.checks?.[ergebnis.schritt];
+  return { ok: false, hint: check?.hint || '', error: ergebnis.fehler || '' };
+}
+
 function webCheckOk(check, fact) {
   if (!fact || fact.error) return false;
   if (check.max !== undefined && fact.count > check.max) return false;

@@ -552,6 +552,29 @@ Ordner-Mapping (immer paarweise anpassen):
 - [ ] Neuer Ordner → Rechtschreib-Globs in `package.json` (`lint:spelling`) und Regel in
       `scripts/test-changed.mjs` ergänzen.
 
+**Für ein Spiel-Projekt mit Blöcken und Python (wie `ausweichen`, HANDOFF 3.133):**
+- [ ] `kurse.json`-Eintrag mit `"engine": "spiel"` und `"language": "python"` (Begriffs-Links auf den
+      Python-Grundkurs). `ProjectCourse.vue` rendert dann `SpielLessonView.vue`: Umschalter
+      Blöcke/Python, Bühne rechts, kein Offline-Download.
+- [ ] `lessons.json`-Aufgaben: `instruction` (optional `instructionBloecke`, wenn der Text für Blöcke
+      anders lauten muss), `codeTemplate` und `solution` **nur als Python** – die Blöcke erzeugt
+      `src/spiel/zu_bloecken.py` daraus. Nur Sprachmittel, die es als Block gibt (Liste im Kopf von
+      `zu_bloecken.py`); `example: true` zählt durch Spielen, `isBonus` wie überall.
+- [ ] Prüfen nur über `validation: { "type": "spiel", "checks": [...] }`. Jeder Schritt: optional
+      `setze` (Python, das vorher läuft, z. B. Stein über den Spieler legen), `tasten` (gedrückt
+      gehaltene Tasten), `bilder` (wie viele Bilder weiterrechnen), `pruefe` (Python-Ausdruck, muss
+      `True` sein) und immer `hint` (wird bei Fehlschlag gezeigt, beschreibt das beobachtete Verhalten,
+      nicht die Lösung). Schritte bauen aufeinander auf; zusätzlich gibt es `spiel_vorbei`,
+      `angezeigt`, `alle_figuren`, `hintergrundfarbe`. Geprüft wird mit 3 Zufalls-Startwerten.
+- [ ] `python3 scripts/check_spiel_loesungen.py` (Ordner in `KURSE` eintragen): Lösung besteht,
+      unveränderte Vorlage fällt durch, beides lässt sich in Blöcke übersetzen.
+- [ ] Markdown: `:::bloecke` / `:::python` … `:::` wie bei den Anleitungen, gleich viele Abschnitte je
+      Ansicht, Code nur darin. Block-Listings als ```` ```bloecke ```` mit den Kategorien `spiel`
+      (beim Start / jedes Bild), `aktion` (übrige Spiel-Blöcke), `figuren`, `logik`, `schleifen`,
+      `rechnen`, `text`, `listen`, `variablen`. Erklärtext zeigt das Prinzip an einem anderen Beispiel
+      als die nächste Pflichtaufgabe.
+- [ ] Test: Spec nach dem Muster `tests/spiel-ausweichen.spec.js` (Rundweg aller Lösungen als Blöcke).
+
 ---
 
 ## 7. Wo stehen welche Dinge im Code?

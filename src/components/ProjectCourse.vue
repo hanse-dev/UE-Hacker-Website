@@ -1,5 +1,5 @@
 <template>
-  <div class="project-course" :class="{ 'project-course-wide': engine === 'js-sandbox' }">
+  <div class="project-course" :class="{ 'project-course-wide': engine === 'js-sandbox' || engine === 'spiel' }">
     <div v-if="loading" class="loading">{{ t('lessons.loading') }}</div>
     <div v-else-if="error" class="error">{{ error }}</div>
 
@@ -95,6 +95,17 @@
           :is-last-lesson="isLastLesson"
           @completed="onLessonCompleted"
         />
+        <SpielLessonView
+          v-else-if="engine === 'spiel'"
+          :lesson="currentLesson"
+          :content-path="contentPath"
+          :variant="contentPath"
+          :course-id="courseId"
+          :is-project-course="isProject"
+          :concept-language="language"
+          :is-last-lesson="isLastLesson"
+          @completed="onLessonCompleted"
+        />
         <GuideLessonView
           v-else-if="engine === 'anleitung'"
           :lesson="currentLesson"
@@ -131,6 +142,8 @@ import { ref, computed, onMounted, watch } from 'vue';
 import LessonView from './LessonView.vue';
 import JsLessonView from './JsLessonView.vue';
 import GuideLessonView from './GuideLessonView.vue';
+// Spiel-Projekte (engine "spiel"): Bloecke oder Python, Spiel auf einer Buehne (src/spiel/).
+import SpielLessonView from './SpielLessonView.vue';
 import PartnerBox from './PartnerBox.vue';
 import OfflineDownloads from './OfflineDownloads.vue';
 import WeekCheckPanel from './WeekCheckPanel.vue';
@@ -145,7 +158,7 @@ const lessonJsonModules = import.meta.glob('../../content/*/lessons.json');
 
 export default {
   name: 'ProjectCourse',
-  components: { LessonView, JsLessonView, GuideLessonView, PartnerBox, OfflineDownloads, WeekCheckPanel, FinalCertificate },
+  components: { LessonView, JsLessonView, GuideLessonView, SpielLessonView, PartnerBox, OfflineDownloads, WeekCheckPanel, FinalCertificate },
   props: {
     courseId: { type: String, required: true },
     contentPath: { type: String, required: true },

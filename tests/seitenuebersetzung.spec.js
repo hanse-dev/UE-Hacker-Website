@@ -31,6 +31,9 @@ test('Seitenübersetzung: Lerntext wird übersetzt, „Prüfen“ funktioniert t
   const idx = lessons[0].tasks.findIndex((t) => !t.example);
   const block = page.locator('.task-block').nth(idx);
   await expect(block.locator('.task-pending')).toBeVisible();
+  // Erst übersetzen, wenn der Lektionstext da ist: Er lädt asynchron und hat unter Last (volle
+  // Suite) sonst die simulierte Übersetzung wieder überschrieben.
+  await expect(page.locator('.lesson-content')).toContainText('Das Gerüst');
 
   expect(await simulateTranslation(page)).toBeGreaterThan(0);
   await expect(page.locator('.lesson-content')).toContainText('[EN]');
