@@ -162,6 +162,16 @@ test('Anleitungs-Kurs: Prompt nur mit der gewählten Variante, Bilder als Beschr
   expect(out).toContain('2. Die LED blinkt. (Bonus, freiwillig)');
 });
 
+test('Anleitungs-Kurs für MakeCode Arcade: Test-Kind sitzt am Computer, ohne micro:bit', () => {
+  const { root } = miniGuide();
+  fs.renameSync(path.join(root, 'microbit-test'), path.join(root, 'arcade-test'));
+  fs.writeFileSync(path.join(root, 'arcade-test', 'beschreibung.md'), '**Ihr braucht:** einen Computer.\n');
+  const out = run(['--content', root, '--kurs', 'arcade-test', '--variante', 'javascript', '--trocken']);
+  expect(out).toContain('MakeCode-Arcade-Kurs');
+  expect(out).toContain('arcade.makecode.com');
+  expect(out).not.toContain('micro:bit');
+});
+
 test('Anleitungs-Kurs: "ohne Hilfe nicht geschafft" landet als wichtige Zeile im Bericht', () => {
   const { root, antworten } = miniGuide();
   const out = run(['--content', root, '--kurs', 'microbit-test', '--antworten', antworten]);
@@ -176,6 +186,7 @@ test('--geaendert findet geänderte Lektionen (Text und lessons.json), unveränd
   const repo = fs.mkdtempSync(path.join(os.tmpdir(), 'ki-geaendert-'));
   const py = path.join(repo, 'content', 'python-woche1-abenteuer');
   const mb = path.join(repo, 'content', 'microbit-test');
+  const ac = path.join(repo, 'content', 'arcade-test');
   fs.mkdirSync(py, { recursive: true });
   fs.mkdirSync(mb, { recursive: true });
   const pyTask = { instruction: 'Gib Hallo aus.', codeTemplate: '', validation: { type: 'output_contains', expected: 'Hallo' } };
@@ -188,6 +199,9 @@ test('--geaendert findet geänderte Lektionen (Text und lessons.json), unveränd
   const mbLessons = [{ id: 'lektion-01', title: 'LED', file: 'lektion-01.md', lessonSummary: '', tasks: [{ instruction: 'Die LED leuchtet.' }] }];
   fs.writeFileSync(path.join(mb, 'lessons.json'), JSON.stringify(mbLessons));
   fs.writeFileSync(path.join(mb, 'lektion-01.md'), '# LED\n');
+  fs.mkdirSync(ac, { recursive: true });
+  fs.writeFileSync(path.join(ac, 'lessons.json'), JSON.stringify(mbLessons));
+  fs.writeFileSync(path.join(ac, 'lektion-01.md'), '# Spieler\n');
   // Ohne GIT_DIR & Co.: Im Pre-commit-Hook zeigen sie auf das echte Repo. Ein `git init`/`commit`
   // im Mini-Repo landete sonst im Branch des Hooks (und setzte core.bare im Haupt-Repo).
   const env = Object.fromEntries(Object.entries(process.env).filter(([k]) => !k.startsWith('GIT_')));
@@ -199,10 +213,12 @@ test('--geaendert findet geänderte Lektionen (Text und lessons.json), unveränd
   fs.writeFileSync(path.join(py, 'lektion-02.md'), '# Zwei\n\nNeuer Text.\n');
   mbLessons[0].tasks[0].instruction = 'Die rote LED leuchtet.';
   fs.writeFileSync(path.join(mb, 'lessons.json'), JSON.stringify(mbLessons));
+  fs.writeFileSync(path.join(ac, 'lektion-01.md'), '# Spieler\n\nNeuer Text.\n');
 
   const out = execFileSync('python3', ['scripts/ki_testkind.py', '--content', path.join(repo, 'content'), '--geaendert', 'HEAD', '--trocken'],
     { cwd: process.cwd(), encoding: 'utf8', env });
   expect(out).toContain('Würde prüfen: 1 abenteuer lektion-02');
   expect(out).toContain('Würde prüfen: microbit-test lektion-01');
+  expect(out).toContain('Würde prüfen: arcade-test lektion-01');
   expect(out).not.toContain('abenteuer lektion-01');
 });

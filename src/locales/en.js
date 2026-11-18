@@ -511,6 +511,7 @@ export default {
   'guide.mode.python': 'Python',
   'guide.mode.javascript': 'JavaScript',
   'guide.checkHint': 'Try each task on the real micro:bit. Tick it off once it works.',
+  'guide.checkHintArcade': 'Try each task in the MakeCode Arcade game window. Tick it off once it works.',
 
   'profil.title': 'My Profile',
   'profil.loginRequired': 'Log in to see your profile and completion badges.',

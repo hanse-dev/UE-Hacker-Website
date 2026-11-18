@@ -15,6 +15,7 @@ const WITHOUT_LINKS = {
   'python-einstufung': 'Einstufungstest, kein Lernstoff zum Nachschlagen',
   'python-grundlagen-interaktiv': 'hat eigene Glossar-Tooltips (glossary.json), beides würde doppelt markieren',
   ferienkurse: 'Info- und Terminseite, keine Lektionen',
+  'projekt-arcade-ausweichen': 'MakeCode Arcade: noch kein Spickzettel, Begriffe werden in den Lektionen erklärt',
 };
 
 // Zielordner einer Grundkurs-Woche (für die Prüfung, dass `lektion` dort wirklich vorkommt).

@@ -7,7 +7,7 @@ const GUIDE_VIEW = fs.readFileSync(path.join('src', 'components', 'GuideLessonVi
 /**
  * Prüft die Regeln für Anleitungs-Kurse (`engine: "anleitung"`, INHALTE.md §6) für alle Lektionen
  * eines Content-Ordners: Pflichtaufgaben, Bonus-Abschnitte, Blöcke/Python paarweise, Code nur in
- * den Abschnitten (JavaScript, wenn der Kurs es hat, ebenso oft), jede Block-Kategorie hat eine Farbe und jedes Bild unter /microbit/ existiert.
+ * den Abschnitten (JavaScript, wenn der Kurs es hat, ebenso oft), jede Block-Kategorie hat eine Farbe und jedes Bild unter /microbit/ oder /arcade/ existiert.
  */
 export function expectGuideContent(contentDir) {
   const lessons = JSON.parse(fs.readFileSync(path.join(contentDir, 'lessons.json'), 'utf8'));
@@ -33,7 +33,7 @@ export function expectGuideContent(contentDir) {
     for (const [, category] of md.matchAll(/^\s*\[([a-z]+)\] /gm)) {
       expect(GUIDE_VIEW, `${lesson.file}: Farbe für [${category}]`).toContain(`.mc-${category})`);
     }
-    for (const [, src] of md.matchAll(/<img src="\/(microbit\/[^"]+)"/g)) {
+    for (const [, src] of md.matchAll(/<img src="\/((?:microbit|arcade)\/[^"]+)"/g)) {
       expect(fs.existsSync(path.join('public', src)), `${lesson.file}: Bild ${src}`).toBe(true);
     }
   }

@@ -3313,3 +3313,30 @@ Quiz-Fragen und Bedienelemente werden nicht mehr übersetzt.
 Test `tests/seitenuebersetzung.spec.js` simuliert den Übersetzer (Absätze mit Text neu aufbauen,
 nur wo das `translate`-Attribut es erlaubt) und schlägt ohne den Fix mit genau dem
 `insertBefore`-Fehler fehl. `src/main.js` und `src/directives/` sind Kern-Dateien in `test-changed.mjs`.
+
+### 3.134 — MakeCode Arcade: Ausweichen (Branch `arcade-ausweichen`)
+
+Ersetzt das zurückgenommene Browser-Spiel mit eigener Engine (frühere 3.133, Revert `de9983de`,
+siehe `todo-erledigt.md` → „Zurückgenommen“). Wunsch: Der Kurs steht auf der Seite, programmiert
+und gespielt wird in MakeCode Arcade – also dieselbe Form wie die micro:bit-Kurse.
+
+- `public/kurse.json`: `projekt-arcade-ausweichen`, `engine: "anleitung"`, `language: "arcade"`,
+  `beta`. 6 Lektionen (Startklar, Steuern, Steine, Getroffen, Punkte und Tempo, Werkstatt), jede
+  Stufe mit Blöcken, Python und JavaScript; Lösungen eingeklappt, Werkstatt mit Plänen in Worten.
+- Spiel: Spieler-Sprite unten (`controller.moveSprite` mit vy 0, `setStayInScreen`), Projektile von
+  oben alle 500 ms an zufälligem x, `sprites.onOverlap` Player/Projectile kostet ein Leben, Punkt
+  pro Sekunde, Variable `tempo` (+5/s). In Python/JS heißen Spieler/Stein `spieler`/`stein`, in den
+  Blöcken bleiben die Arcade-Vorgaben `mySprite`/`projectile` (kein Umbenennen nötig).
+- `GuideLessonView.vue`: Klasse `sprache-<language>`; Arcade-Kategorien `sprites`, `controller`,
+  `spiel`, `szene`, `info` und Arcade-Farben für `schleifen`/`logik`/`mathematik`/`variablen`.
+  Hinweis über den Abhakpunkten `guide.checkHintArcade` statt „echter micro:bit“.
+- `ProjekteView.vue`: Sprach-Label „MakeCode Arcade“. `tests/helpers/guide-content.js` prüft auch
+  Bilder unter `/arcade/`. Bild `public/arcade/ausweichen/bildschirm.svg` (Koordinaten 160 × 120).
+- Block-Texte und Farben stammen aus den offiziellen MakeCode-Übersetzungen bzw. dem Arcade-Quellcode
+  (Regel in HANDOFF „Gelernte Regeln“). Den Block „setze projectile x auf …“ meiden wir, weil seine
+  Übersetzung nicht belegt war – Steine werden mit „setze Position von … auf x … y 0“ platziert.
+- `scripts/ki_testkind.py`: Rolle für `arcade-*`-Kurse (Computer statt Gerät), `--geaendert` nimmt
+  `arcade-*`-Ordner mit.
+- Test: `tests/arcade-ausweichen.spec.js` (Inhaltsregeln, Link in neuem Tab, Arcade-Farben, drei
+  Ansichten, Werkstatt-Pläne ohne Code, Freischalten, Projektkarte).
+
